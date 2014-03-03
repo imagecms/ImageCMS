@@ -312,6 +312,7 @@
                                                         <b>%desc%</b> - {lang('Category description','mod_seoexpert')}<br/>
                                                         <b>%H1%</b> - {lang('field H1 of category','mod_seoexpert')}<br/>
                                                         <b>%brands%</b> - {lang('list of the top brands, separated by ','mod_seoexpert')}"," <br/>
+                                                        <b>%pagenumber%</b> - {lang('Display on pagination pages template from field <Unique pagination pages>','mod_seoexpert')}<br/>
                                                         <br/>
                                                         {lang('Additional params for using with category name','mod_seoexpert')}:<br/>
                                                         <b>[t]</b> - {lang('Translit','mod_seoexpert')}<br/>
@@ -333,6 +334,7 @@
                                                         <b>%desc%</b> - {lang('Category description','mod_seoexpert')}<br/>
                                                         <b>%H1%</b> - {lang('field H1 of category','mod_seoexpert')}<br/>
                                                         <b>%brands%</b> - {lang('list of the top brands, separated by ','mod_seoexpert')}"," <br/>
+                                                        <b>%pagenumber%</b> - {lang('Display on pagination pages template from field <Unique pagination pages>','mod_seoexpert')}<br/>
                                                         <br/>
                                                         {lang('Additional params for using with category name','mod_seoexpert')}:<br/>
                                                         <b>[t]</b> - {lang('Translit','mod_seoexpert')}<br/>
@@ -366,10 +368,23 @@
                                                         <b>%desc%</b> - {lang('Category description','mod_seoexpert')}<br/>
                                                         <b>%H1%</b> - {lang('field H1 of category','mod_seoexpert')}<br/>
                                                         <b>%brands%</b> - {lang('list of the top brands, separated by ','mod_seoexpert')}"," <br/>
+                                                        <b>%pagenumber%</b> - {lang('Display on pagination pages template from field <Unique pagination pages>','mod_seoexpert')}<br/>
                                                     </div>
                                                     Meta-keywords:
                                                 </span>
                                                 <span class="span8 discount-name"><input type="text" autocomplete="off" name='categoryTemplateKey' value="{$settings.categoryTemplateKey}" /></span>
+                                            </label>
+                                            <label class="">
+                                                <span class="span4">
+                                                    <span class="popover_ref" data-original-title="">
+                                                        <i class="icon-info-sign"></i>
+                                                    </span>
+                                                    <div class="d_n">
+                                                        <b>%number%</b> - {lang('Page number','mod_seoexpert')}<br/>
+                                                    </div>
+                                                    {lang('Unique pagination pages','mod_seoexpert')}:
+                                                </span>
+                                                <span class="span8 discount-name"><input type="text" autocomplete="off" name='categoryTemplatePaginationTemplate' value="{$settings.categoryTemplatePaginationTemplate}" /></span>
                                             </label>
                                             <div>
                                                 <div class="frame_label no_connection">
@@ -415,6 +430,7 @@
                                                         <b>%desc%</b> - {lang('Category description','mod_seoexpert')}<br/>
                                                         <b>%H1%</b> - {lang('field H1 of category','mod_seoexpert')}<br/>
                                                         <b>%brands%</b> - {lang('list of the top brands, separated by ','mod_seoexpert')}"," <br/>
+                                                        <b>%pagenumber%</b> - {lang('Display on pagination pages template from field <Unique pagination pages>','mod_seoexpert')}<br/>
                                                         <br/>
                                                         {lang('Additional params for using with category name','mod_seoexpert')}:<br/>
                                                         <b>[t]</b> - {lang('Translit','mod_seoexpert')}<br/>
@@ -436,6 +452,7 @@
                                                         <b>%desc%</b> - {lang('Category description','mod_seoexpert')}<br/>
                                                         <b>%H1%</b> - {lang('field H1 of category','mod_seoexpert')}<br/>
                                                         <b>%brands%</b> - {lang('list of the top brands, separated by ','mod_seoexpert')}"," <br/>
+                                                        <b>%pagenumber%</b> - {lang('Display on pagination pages template from field <Unique pagination pages>','mod_seoexpert')}<br/>
                                                         <br/>
                                                         {lang('Additional params for using with category name','mod_seoexpert')}:<br/>
                                                         <b>[t]</b> - {lang('Translit','mod_seoexpert')}<br/>
@@ -469,12 +486,24 @@
                                                         <b>%desc%</b> - {lang('Category description','mod_seoexpert')}<br/>
                                                         <b>%H1%</b> - {lang('field H1 of category','mod_seoexpert')}<br/>
                                                         <b>%brands%</b> - {lang('list of the top brands, separated by ','mod_seoexpert')}"," <br/>
+                                                        <b>%pagenumber%</b> - {lang('Display on pagination pages template from field <Unique pagination pages>','mod_seoexpert')}<br/>
                                                     </div>
                                                     Meta-keywords:
                                                 </span>
                                                 <span class="span8 discount-name"><input type="text" autocomplete="off" name='subcategoryTemplateKey' value="{$settings.subcategoryTemplateKey}" /></span>
                                             </label>
-
+                                            <label class="">
+                                                <span class="span4">
+                                                    <span class="popover_ref" data-original-title="">
+                                                        <i class="icon-info-sign"></i>
+                                                    </span>
+                                                    <div class="d_n">
+                                                        <b>%number%</b> - {lang('Page number','mod_seoexpert')}<br/>
+                                                    </div>
+                                                    {lang('Unique pagination pages','mod_seoexpert')}:
+                                                </span>
+                                                <span class="span8 discount-name"><input type="text" autocomplete="off" name='subcategoryTemplatePaginationTemplate' value="{$settings.subcategoryTemplatePaginationTemplate}" /></span>
+                                            </label>
                                             <div>
                                                 <div class="frame_label no_connection">
                                                     <span class="span4">{lang('Active','mod_seoexpert')}:</span>
@@ -555,7 +584,6 @@
                                                 </span>
                                                 <span class="span8 discount-name"><input type="text" autocomplete="off" name='brandTemplateKey' value="{$settings.brandTemplateKey}" /></span>
                                             </label>
-
                                             <div>
                                                 <div class="frame_label no_connection">
                                                     <span class="span4">{lang('Active','mod_seoexpert')}:</span>

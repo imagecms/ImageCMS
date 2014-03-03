@@ -57,6 +57,8 @@ class Mod_seoexpert extends \MY_Controller {
 
         $obj = new Mod_seoexpert();
 
+
+
         // Get categories ids which has unique settings
         $uniqueCategories = \ShopCore::$ci->seoexpert_model_products->getCategoriesArray();
 
@@ -187,8 +189,13 @@ class Mod_seoexpert extends \MY_Controller {
         $model = $arg['category'];
         $settings = ShopCore::$ci->seoexpert_model->getSettings($local);
 
-        $obj = new Mod_seoexpert();
 
+//        var_dump($settings['subcategoryTemplatePaginationTemplate']);
+//        var_dump(\CMSFactory\assetManager::create()->getData('page_number'));
+        $pageNumber = (int) \CMSFactory\assetManager::create()->getData('page_number');
+        
+        $obj = new Mod_seoexpert();
+        
         if ($model->getParentId()) {
             if ($settings['usesubcategoryPattern'] != 1) {
                 return FALSE;
@@ -204,6 +211,8 @@ class Mod_seoexpert extends \MY_Controller {
             $templateKey = $settings['subcategoryTemplateKey'];
             $descCount = $settings['subcategoryTemplateDescCount'];
             $brandsCount = $settings['subcategoryTemplateBrandsCount'];
+            $pagePattern = $settings['subcategoryTemplatePaginationTemplate'];
+            $pagePattern = str_replace('%number%', $pageNumber, $pagePattern);
         } else {
             if ($settings['useCategoryPattern'] != 1) {
                 return FALSE;
@@ -220,30 +229,38 @@ class Mod_seoexpert extends \MY_Controller {
             $templateKey = $settings['categoryTemplateKey'];
             $descCount = $settings['categoryTemplateDescCount'];
             $brandsCount = $settings['categoryTemplateBrandsCount'];
+            $pagePattern = $settings['categoryTemplatePaginationTemplate'];
+            $pagePattern = str_replace('%number%', $pageNumber, $pagePattern);
         }
+
+        if (!$pagePattern || $pageNumber <= 1){
+            $pagePattern="";
+        }
+        
         //Replace title variables
         $template = str_replace('%ID%', $model->getId(), $template);
         $template = str_replace('%name%', $model->getName(), $template);
         $template = str_replace('%desc%', substr(strip_tags($model->getDescription()), 0, intval($descCount)), $template);
         $template = str_replace('%H1%', $model->getH1(), $template);
+        $template = str_replace('%pagenumber%', $pagePattern, $template);
         // category name translit
-        $template = str_replace('%category[t]%', translit($model->getName()), $template);
+        $template = str_replace('%name[t]%', translit($model->getName()), $template);
 
         // the cases of words
-        $template = str_replace('%category[1]%', $obj->inflect($model->getName(), 1), $template);
-        $template = str_replace('%category[2]%', $obj->inflect($model->getName(), 2), $template);
-        $template = str_replace('%category[3]%', $obj->inflect($model->getName(), 3), $template);
-        $template = str_replace('%category[4]%', $obj->inflect($model->getName(), 4), $template);
-        $template = str_replace('%category[5]%', $obj->inflect($model->getName(), 5), $template);
-        $template = str_replace('%category[6]%', $obj->inflect($model->getName(), 6), $template);
+        $template = str_replace('%name[1]%', $obj->inflect($model->getName(), 1), $template);
+        $template = str_replace('%name[2]%', $obj->inflect($model->getName(), 2), $template);
+        $template = str_replace('%name[3]%', $obj->inflect($model->getName(), 3), $template);
+        $template = str_replace('%name[4]%', $obj->inflect($model->getName(), 4), $template);
+        $template = str_replace('%name[5]%', $obj->inflect($model->getName(), 5), $template);
+        $template = str_replace('%name[6]%', $obj->inflect($model->getName(), 6), $template);
 
         // the cases of words and translit
-        $template = str_replace(array('%category[1][t]%', '%category[t][1]%'), translit($obj->inflect($model->getName(), 1)), $template);
-        $template = str_replace(array('%category[2][t]%', '%category[t][2]%'), translit($obj->inflect($model->getName(), 2)), $template);
-        $template = str_replace(array('%category[3][t]%', '%category[t][3]%'), translit($obj->inflect($model->getName(), 3)), $template);
-        $template = str_replace(array('%category[4][t]%', '%category[t][4]%'), translit($obj->inflect($model->getName(), 4)), $template);
-        $template = str_replace(array('%category[5][t]%', '%category[t][5]%'), translit($obj->inflect($model->getName(), 5)), $template);
-        $template = str_replace(array('%category[6][t]%', '%category[t][6]%'), translit($obj->inflect($model->getName(), 6)), $template);
+        $template = str_replace(array('%name[1][t]%', '%name[t][1]%'), translit($obj->inflect($model->getName(), 1)), $template);
+        $template = str_replace(array('%name[2][t]%', '%name[t][2]%'), translit($obj->inflect($model->getName(), 2)), $template);
+        $template = str_replace(array('%name[3][t]%', '%name[t][3]%'), translit($obj->inflect($model->getName(), 3)), $template);
+        $template = str_replace(array('%name[4][t]%', '%name[t][4]%'), translit($obj->inflect($model->getName(), 4)), $template);
+        $template = str_replace(array('%name[5][t]%', '%name[t][5]%'), translit($obj->inflect($model->getName(), 5)), $template);
+        $template = str_replace(array('%name[6][t]%', '%name[t][6]%'), translit($obj->inflect($model->getName(), 6)), $template);
 
 
 
@@ -252,26 +269,29 @@ class Mod_seoexpert extends \MY_Controller {
         //Replace description variables
         $templateDesc = str_replace('%ID%', $model->getId(), $templateDesc);
         $templateDesc = str_replace('%name%', $model->getName(), $templateDesc);
-        $templateDesc = str_replace('%desc%', substr(strip_tags($model->getDescription()), 0, intval($descCount)), $templateDesc);
+        $templateDesc = str_replace('%desc%', mb_substr(strip_tags($model->getDescription()), 0, intval($descCount)), $templateDesc);
         $templateDesc = str_replace('%H1%', $model->getH1(), $templateDesc);
+        $templateDesc = str_replace('%pagenumber%', $pagePattern, $templateDesc);
+        
+    
         // category name translit
-        $templateDesc = str_replace('%category[t]%', translit($model->getName()), $templateDesc);
+        $templateDesc = str_replace('%name[t]%', translit($model->getName()), $templateDesc);
 
         // the cases of words
-        $templateDesc = str_replace('%category[1]%', $obj->inflect($model->getName(), 1), $templateDesc);
-        $templateDesc = str_replace('%category[2]%', $obj->inflect($model->getName(), 2), $templateDesc);
-        $templateDesc = str_replace('%category[3]%', $obj->inflect($model->getName(), 3), $templateDesc);
-        $templateDesc = str_replace('%category[4]%', $obj->inflect($model->getName(), 4), $templateDesc);
-        $templateDesc = str_replace('%category[5]%', $obj->inflect($model->getName(), 5), $templateDesc);
-        $templateDesc = str_replace('%category[6]%', $obj->inflect($model->getName(), 6), $templateDesc);
+        $templateDesc = str_replace('%name[1]%', $obj->inflect($model->getName(), 1), $templateDesc);
+        $templateDesc = str_replace('%name[2]%', $obj->inflect($model->getName(), 2), $templateDesc);
+        $templateDesc = str_replace('%name[3]%', $obj->inflect($model->getName(), 3), $templateDesc);
+        $templateDesc = str_replace('%name[4]%', $obj->inflect($model->getName(), 4), $templateDesc);
+        $templateDesc = str_replace('%name[5]%', $obj->inflect($model->getName(), 5), $templateDesc);
+        $templateDesc = str_replace('%name[6]%', $obj->inflect($model->getName(), 6), $templateDesc);
 
         // the cases of words and translit
-        $templateDesc = str_replace(array('%category[1][t]%', '%category[t][1]%'), translit($obj->inflect($model->getName(), 1)), $templateDesc);
-        $templateDesc = str_replace(array('%category[2][t]%', '%category[t][2]%'), translit($obj->inflect($model->getName(), 2)), $templateDesc);
-        $templateDesc = str_replace(array('%category[3][t]%', '%category[t][3]%'), translit($obj->inflect($model->getName(), 3)), $templateDesc);
-        $templateDesc = str_replace(array('%category[4][t]%', '%category[t][4]%'), translit($obj->inflect($model->getName(), 4)), $templateDesc);
-        $templateDesc = str_replace(array('%category[5][t]%', '%category[t][5]%'), translit($obj->inflect($model->getName(), 5)), $templateDesc);
-        $templateDesc = str_replace(array('%category[6][t]%', '%category[t][6]%'), translit($obj->inflect($model->getName(), 6)), $templateDesc);
+        $templateDesc = str_replace(array('%name[1][t]%', '%name[t][1]%'), translit($obj->inflect($model->getName(), 1)), $templateDesc);
+        $templateDesc = str_replace(array('%name[2][t]%', '%name[t][2]%'), translit($obj->inflect($model->getName(), 2)), $templateDesc);
+        $templateDesc = str_replace(array('%name[3][t]%', '%name[t][3]%'), translit($obj->inflect($model->getName(), 3)), $templateDesc);
+        $templateDesc = str_replace(array('%name[4][t]%', '%name[t][4]%'), translit($obj->inflect($model->getName(), 4)), $templateDesc);
+        $templateDesc = str_replace(array('%name[5][t]%', '%name[t][5]%'), translit($obj->inflect($model->getName(), 5)), $templateDesc);
+        $templateDesc = str_replace(array('%name[6][t]%', '%name[t][6]%'), translit($obj->inflect($model->getName(), 6)), $templateDesc);
 
 
 
@@ -283,6 +303,7 @@ class Mod_seoexpert extends \MY_Controller {
         $templateKey = str_replace('%name%', $model->getName(), $templateKey);
         $templateKey = str_replace('%desc%', substr(strip_tags($model->getDescription()), 0, intval($descCount)), $templateKey);
         $templateKey = str_replace('%H1%', $model->getH1(), $templateKey);
+        $templateKey = str_replace('%pagenumber%', $pagePattern, $templateKey);
 
 
 
@@ -299,7 +320,7 @@ class Mod_seoexpert extends \MY_Controller {
         $templateKey = str_replace('%brands%', $brandsString, $templateKey);
 
         // Set meta tags
-        ShopCore::$ci->core->set_meta_tags($template, $templateKey, iconv('utf-8', 'utf-8', substr($templateDesc, 0, -2)));
+        ShopCore::$ci->core->set_meta_tags($template, $templateKey, mb_substr($templateDesc, 0));
     }
 
     /**
@@ -382,7 +403,7 @@ class Mod_seoexpert extends \MY_Controller {
                 ->where('inflection_id', $inflection_id)
                 ->get('mod_seoexpert_inflect')
                 ->row_array();
-        
+
         $foundRes = FALSE;
         if ($resInflected) {
             $inflected = $resInflected['inflected'];
@@ -399,7 +420,7 @@ class Mod_seoexpert extends \MY_Controller {
                             continue;
                         elseif ($key['tag'] == 'INFLECTION') {
 
-                            
+
                             if ($key['attributes']['CASE'] == $inflection_id) {
                                 $foundRes = TRUE;
 
@@ -418,18 +439,17 @@ class Mod_seoexpert extends \MY_Controller {
 
 
                     if ($foundRes !== TRUE) {
-                        for ($i = 2; $i<=6; $i++) {
+                        for ($i = 2; $i <= 6; $i++) {
                             $dataArray = array(
-                                    'original' => $what,
-                                    'inflection_id' => $i,
-                                    'inflected' => $what,
-                                );
-                            
+                                'original' => $what,
+                                'inflection_id' => $i,
+                                'inflected' => $what,
+                            );
+
                             $this->db
                                     ->insert('mod_seoexpert_inflect', $dataArray);
                         }
                     }
-                    
                 }
             }
             xml_parser_free($parser);

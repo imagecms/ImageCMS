@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-03 04:50+0400\n"
-"PO-Revision-Date: 2014-03-03 04:50+0400\n"
+"POT-Creation-Date: 2014-03-03 06:22+0400\n"
+"PO-Revision-Date: 2014-03-03 06:22+0400\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -17,6 +17,20 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: ../../..\n"
+
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:272
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:392
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:507
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:599
+msgid "Page number"
+msgstr "Номер страницы"
+
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:274
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:394
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:509
+#: ./application/modules/mod_seoexpert/assets/admin/main.tpl:601
+msgid "Unique pagination pages"
+msgstr "Уникализация страниц пагинации"
 
 #: ./application/modules/mod_seoexpert/module_info.php:7
 msgid "Extends the metadata management"
@@ -389,12 +403,6 @@ msgstr "Редактирование метаданных категории"
 #: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryCreate.tpl:5
 msgid "Create meta-data for category"
 msgstr "Создание метаданных для категории"
-
-#: ./application/modules/mod_seoexpert/assets/admin/__productsCategoryCreate.tpl:19
-#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryCreate.tpl:19
-#: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryEdit.tpl:20
-msgid "Create"
-msgstr "Создать"
 
 #: ./application/modules/mod_seoexpert/assets/admin/advanced/productsCategoryEdit.tpl:16
 msgid "Save and exit"
