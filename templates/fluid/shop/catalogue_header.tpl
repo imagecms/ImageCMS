@@ -1,7 +1,7 @@
 {if $totalProducts > 0}
     <div class="frame-header-category">
         <div class="header-category f-s_0">
-            <div class="inside-padd clearfix">
+            <div class="inside-padd">
                 <!-- Start. Order by block -->
                 <div class="frame-sort f-s_0 d_i-b">
                     <span class="title">{lang('Показывать','newLevel')}:</span>

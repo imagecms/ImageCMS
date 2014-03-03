@@ -21,6 +21,30 @@
 <!--End. Make bread crumbs -->
 <div class="frame-inside page-category">
     <div class="container">
+        <div class="filter left-catalog">
+            {if $category->hasSubCats()}
+                <div class="frame-category-menu layout-highlight">
+                    <div class="title-menu-category">
+                        <div class="title-default">
+                            <div class="title-h3 title">{lang('Категории', 'newLevel')}:</div>
+                        </div>
+                    </div>
+                    <div class="inside-padd">
+                        <nav>
+                            <ul class="nav nav-vertical nav-category">
+                                {foreach $category->getChildsByParentIdI18n($category->getId()) as $key => $value}
+                                    <li>
+                                        <a href="{shop_url('category/' . $value->getFullPath())}">{echo $value->getName()}</a>
+                                    </li>
+                                {/foreach}
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            {/if}
+            <!-- Load filter-->
+            {$CI->load->module('smart_filter')->init()}
+        </div>
         <div class="right-catalog">
             <!-- Start. Category name and count products in category-->
             <div class="f-s_0 title-category">
@@ -56,31 +80,6 @@
             {/if}
             <!-- End.If count products in category > 0 then show products and pagination links -->
         </div>
-        <div class="filter left-catalog">
-            {if $category->hasSubCats()}
-                <div class="frame-category-menu layout-highlight">
-                    <div class="title-menu-category">
-                        <div class="title-default">
-                            <div class="title-h3 title">{lang('Категории', 'newLevel')}:</div>
-                        </div>
-                    </div>
-                    <div class="inside-padd">
-                        <nav>
-                            <ul class="nav nav-vertical nav-category">
-                                {foreach $category->getChildsByParentIdI18n($category->getId()) as $key => $value}
-                                    <li>
-                                        <a href="{shop_url('category/' . $value->getFullPath())}">{echo $value->getName()}</a>
-                                    </li>
-                                {/foreach}
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-            {/if}
-            <!-- Load filter-->
-            {$CI->load->module('smart_filter')->init()}
-        </div>
-        <!--widget for popular products in this category-->
     </div>
 </div>
 {widget('latest_news')}
