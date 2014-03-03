@@ -8,17 +8,8 @@
                         data-source="{site_url('auth')}"
                         >
                     <span class="icon_enter"></span>
-                    <span class="text-el">{lang('Вход','newLevel')}</span>
+                    <span class="text-el">{lang('Вход в личный кабинет','newLevel')}</span>
                 </button>
-            </li>
-            <li class="f-s_0 divider">
-                <span class="text-el">{lang('или','newLevel')}</span>
-            </li>
-            <li class="btn-register">
-                <a href="{site_url('/auth/register')}" rel=”nofollow”>
-                    <span class="icon_reg"></span>
-                    <span class="text-el">{lang('Регистрация','newLevel')}</span>
-                </a>
             </li>
             <!--Else show link for personal cabinet -->
         {else:}
