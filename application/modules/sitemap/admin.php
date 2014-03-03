@@ -56,7 +56,9 @@ class Admin extends BaseAdminController {
 
             /** Update settings */
             if ($this->sitemap_model->updateSettings($data)) {
-                $this->replaceRobots($data['robotsStatus']);
+                if (!$this->replaceRobots($data['robotsStatus'])) {
+                     showMessage(lang("Can not write in robots.txt. Check write permissions.", 'sitemap'), lang("Error", "sitemap"), 'r');
+                }
                 showMessage(lang("Changes have been saved", 'sitemap'), lang("Message", "sitemap"));
             } else {
                 showMessage(lang("Changes have not been saved", 'sitemap'), lang("Error", "sitemap"), 'r');
