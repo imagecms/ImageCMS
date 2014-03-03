@@ -1,12 +1,12 @@
 <script src="/application/modules/translator/assets/js/src-min/ace.js" type="text/javascript" charset="utf-8"></script>
-<div class="modal hide fade modal_file_edit" style="width: 1000px;left: 33%;">
+<div class="modal hide fade modal_file_edit">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h3>{lang('File editing', 'translator')}</h3>
         {if $editorStyles}
-            <div style=" float: right; margin-top: -30px; width: 225px; margin-right: 42px;">
-                <h5 style="float: left; margin-top: 4px; font-weight: bold">{lang('Editor theme', 'translator')}:</h5>
-                <select class="editorTheme" onchange="AceEditor.changeTheme($(this))" style="float: right; width: 120px">
+            <div>
+                <h5>{lang('Editor theme', 'translator')}:</h5>
+                <select class="editorTheme" onchange="AceEditor.changeTheme($(this))">
                     {foreach $editorStyles as $style}
                         <option {if $settings['editorTheme'] == $style}selected="selected"{/if} value="{echo $style}">{echo $style}</option>
                     {/foreach}
@@ -15,8 +15,7 @@
         {/if}
     </div>
     <div class="modal-body">
-        <div id="fileEdit" class="fileEdit " style="color: black; border-radius: initial; float: left;height: 390px; width: 995px; margin-top: -15px;
-             margin-bottom: -15px; margin-left: -15px;"></div>
+        <div id="fileEdit" class="fileEdit"></div>
     </div>
     <div class="modal-footer">
         <div class="pull-left" style="text-align: left">
@@ -43,17 +42,17 @@
             <ul class="nav nav-tabs">
                 <li class="active">
                     <a href="#newStringsTab" data-toggle="tab">
-                        <span class="parsedNewStringsCount" style="font-weight: bold"></span> {lang('string(s) wil be added', 'translator')}
+                        <span class="parsedNewStringsCount"></span> {lang('string(s) wil be added', 'translator')}
                     </a>
                 </li>
                 <li>
                     <a href="#obsoleteStringsTab" data-toggle="tab">
-                        <span class="parsedRemoveStringsCount" style="font-weight: bold"></span> {lang('string(s) will be removed', 'translator')}
+                        <span class="parsedRemoveStringsCount"></span> {lang('string(s) will be removed', 'translator')}
                     </a>
                 </li>
                 <li style="display: none;" class="notCorrectStringsLI">
                     <a href="#notCorrectStringsTab" data-toggle="tab">
-                        <span class="notCorrectStringsCount" style="font-weight: bold"></span> {lang('string(s) will be ignored', 'translator')}
+                        <span class="notCorrectStringsCount"></span> {lang('string(s) will be ignored', 'translator')}
                     </a>
                 </li>
             </ul>
@@ -125,24 +124,24 @@
             </div>
         </div>
         <div class="content_big_td row-fluid">
-            <div class="statistic" style="display: none; width: 302px; height: 50px; float: right; margin-top: 2px; margin-bottom: 2px;">
-                <div style="position: absolute; margin-left: -85px; margin-top: 5px;">
+            <div class="statistic">
+                <div class="statisticTitle">
                     <h5><b>{lang('Statistic', 'translator')}:</b></h5>
                 </div>
                 <div class="pull-left">
-                    <table class=" table-hover table-bordered" style="width: 140px; height: 50px; padding-left: 10px; border-left: 1px solid #ddd ">
+                    <table class=" table-hover table-bordered">
                         <tr>
-                            <td style="width: 90px; border: none!important"><b>{lang('All strings', 'translator')}:</b></td>
-                            <td style="width: 50px; border: none!important; color: grey"><b><i class="allStringsCount"></i></b></td>
-                            <td style="width: 100px; border: none!important"><b>{lang('Fuzzy strings', 'translator')}:</b></td>
-                            <td style="width: 50px; border: none!important; color: grey"><b><i class="fuzzyStringsCount"></i></b></td>
+                            <td style="width: 90px;"><b>{lang('All strings', 'translator')}:</b></td>
+                            <td style="width: 50px; color: grey"><b><i class="allStringsCount"></i></b></td>
+                            <td style="width: 100px;"><b>{lang('Fuzzy strings', 'translator')}:</b></td>
+                            <td style="width: 50px; color: grey"><b><i class="fuzzyStringsCount"></i></b></td>
 
                         </tr>
                         <tr>
-                            <td style="width: 90px; border: none!important"><b>{lang('Translated', 'translator')}:</b></td>
-                            <td style="width: 50px; border: none!important; color: grey"><b><i class="translatedStringsCount"></i></b></td>
-                            <td style="width: 100px; border: none!important"><b>{lang('Not translated', 'translator')}:</b></td>
-                            <td style="width: 50px; border: none!important; color: grey"><b><i class="notTranslatedStringsCount"></i></b></td>
+                            <td style="width: 90px;"><b>{lang('Translated', 'translator')}:</b></td>
+                            <td style="width: 50px; color: grey"><b><i class="translatedStringsCount"></i></b></td>
+                            <td style="width: 100px;"><b>{lang('Not translated', 'translator')}:</b></td>
+                            <td style="width: 50px; color: grey"><b><i class="notTranslatedStringsCount"></i></b></td>
                         </tr>
                     </table>
                 </div>
@@ -183,7 +182,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="pull-right" style="position: relative; right: 150px">
+                        <div class="pull-right">
                             <div class="input-append">
                                 <input class="span2 searchString" placeholder="{lang('Please, enter search string...', 'translator')}" onkeypress="Search.goOnEnterPress()" id="appendedInputButtons" type="text">
                                 <button id="searchTranslator" class="btn" type="button">{lang('Search', 'translator')}</button>
@@ -191,7 +190,7 @@
                                     {lang('Options', 'translator')}
                                     <span class="caret"></span>
                                 </a>
-                                <ul class="dropdown-menu searchTranslatorOptions" style="width: 430px; padding-left: 20px" >
+                                <ul class="dropdown-menu searchTranslatorOptions">
                                     <label>
                                         <input id="sensitiveSearch" type="checkbox" class="searchConditions">
                                         {lang('Sensitive search', 'translator')}
@@ -223,32 +222,32 @@
                             </div>
                         </div>
 
-                        <table id="po_table" style="display: none" class="table table-striped table-bordered table-hover table-condensed">
+                        <table id="po_table" class="table table-striped table-bordered table-hover table-condensed">
                             <thead>
                                 <tr>
                                     <th style="width: 50px">
                                         <a class="fuzzy sortTable" onclick="Sort.sortFuzzy($(this))">{lang('Fuzzy', 'translator')}
-                                            <span class="f-s_14 asc" style="display: none">↑</span>
-                                            <span class="f-s_14 desc" style="display: none">↓</span>
+                                            <span class="f-s_14 asc" >↑</span>
+                                            <span class="f-s_14 desc" >↓</span>
                                         </a>
                                     </th>
                                     <th class="span6 t-a_c">
                                         <a class="originHead sortTable" onclick="Sort.go($(this))">{lang('Origin', 'translator', 'wishlist')}
-                                            <span class="f-s_14 asc" style="display: none">↑</span>
-                                            <span class="f-s_14 desc" style="display: none">↓</span>
+                                            <span class="f-s_14 asc" >↑</span>
+                                            <span class="f-s_14 desc" >↓</span>
                                         </a>
                                         /
                                         <a class="translation sortTable" onclick="Sort.go($(this))">{lang('Translation', 'translator')}
-                                            <span class="f-s_14 asc" style="display: none">↑</span>
-                                            <span class="f-s_14 desc" style="display: none">↓</span>
+                                            <span class="f-s_14 asc" >↑</span>
+                                            <span class="f-s_14 desc" >↓</span>
                                         </a>
                                         /
                                         <a class="defaultSort sortTable" onclick="Sort.default($(this))">{lang('Default sort', 'translator')}</a>
                                     </th>
                                     <th class="commentTH t-a_c span3">
                                         <a class="comment sortTable" onclick="Sort.go($(this))">{lang('Comment', 'translator')}
-                                            <span class="f-s_14 asc" style="display: none">↑</span>
-                                            <span class="f-s_14 desc" style="display: none">↓</span>
+                                            <span class="f-s_14 asc" >↑</span>
+                                            <span class="f-s_14 desc" >↓</span>
                                         </a>
                                     </th>
                                     <th class="span3 t-a_c" class="linksTH">
@@ -263,17 +262,15 @@
                         <div class="alert alert-info" style="display: none">
                             {lang('There is no Po-file in such locale', 'translator')}                        
                         </div>
-                        <div class="alert alert-error fileNotExist" style="display: none; margin-top: 70px">
-                            <span style="font-size:15px" class="errors"></span> 
-                            <a class="needToCreate" style="color: #5bb75b; font-size: 15px; display: none" onclick="Translator.createFile($(this))"><i><b>{lang('Create file', 'translator')}</b></i></a> 
+                        <div class="alert alert-error fileNotExist">
+                            <span class="errors"></span> 
+                            <a class="needToCreate" onclick="Translator.createFile($(this))"><i><b>{lang('Create file', 'translator')}</b></i></a> 
                         </div>
 
 
                         <div class="clearfix">
                             <div class="pagination pull-left" style="display: none">
-                                <ul>
-
-                                </ul>
+                                <ul></ul>
                             </div>                        
                             <div class="pagination pull-right" style="margin-right: 25px;">
                                 <select id="per_page" style="max-width:60px; display: none" onchange="Pagination.perPage()" >
@@ -295,14 +292,14 @@
                     <div class="tab-pane" id="poSettingsTab">
 
                         <div class="originLangHolder">
-                            <label for="originLang" style="float: left; margin-top: -7px; margin-right: 10px">
+                            <label for="originLang">
                                 <h5>
                                     <b>
                                         {lang('Origins language', 'translator')}:
                                     </b>
                                 </h5>
                             </label>
-                            <select id="originLang" style="width: 80px" name="originLang" onchange="Translator.setOriginsLang($(this))">
+                            <select id="originLang" name="originLang" onchange="Translator.setOriginsLang($(this))">
                                 <option value="0">- {lang('No', 'translator')} -</option>
                                 {foreach $locales as $lang}
                                     <option {if $settings['originsLang'] == $lang}selected{/if} value="{$lang}">
@@ -312,8 +309,8 @@
                             </select>
                         </div>
 
-                        <div class="YandexApiKeyHolder" style="float: right; margin-top: -35px;"> 
-                            <label for="originLang" style="float: left; margin-top: -7px; margin-right: 10px">
+                        <div class="YandexApiKeyHolder"> 
+                            <label for="originLang">
                                 <h5>
                                     <b>
                                         {lang('Yandex Api Key', 'translator')}:
@@ -321,7 +318,7 @@
                                 </h5>
                                 <a href="http://api.yandex.ru/translate/" target="blanck">{lang('Get Yandex Api key', 'translator')}</a>
                             </label>
-                            <textarea class="YandexApiKey"  style="width: 500px">{echo $settings['YandexApiKey']}</textarea>
+                            <textarea class="YandexApiKey">{echo $settings['YandexApiKey']}</textarea>
                             <button onclick="Translator.addYandexApiKey($(this))"  type="button" class="btn btn-small btn-success">
                                 <i class="icon-ok"></i>
                                 {lang('Save', 'translator')}
@@ -342,9 +339,7 @@
                                     <tr>
                                         <td colspan="6">
                                             <div class="inside_padd">
-                                                <div class="po_settings">
-
-                                                </div>
+                                                <div class="po_settings"></div>
 
                                                 <div class="control-group pathParseHolder"  style="display: none">
                                                     <label class="control-label" for="file">{lang('Paths', 'translator')}:</label>
@@ -356,7 +351,6 @@
                                                             <div class="addPathClone" style="display: none">
                                                                 <div class="path">
                                                                     <b style="float: left; font-size: 15px; margin-right: 10px; margin-top: 3px; ">
-
                                                                     </b>
                                                                     <input type="text" name="path[]" style="width: 390px; margin-bottom: -10px;" value="">
                                                                     <div class="removePath" onclick="Translator.deletePath($(this))"><i class=" icon icon-remove-sign"></i></div>
