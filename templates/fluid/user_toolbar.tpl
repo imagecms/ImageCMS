@@ -21,15 +21,9 @@
                     </div>
                 </li>
                 <li class="box-4">
-                    <div class="btn-toggle-toolbar">
-                        <button type="button" data-rel="0" {if $_COOKIE['condUserToolbar'] == 0 && isset($_COOKIE['condUserToolbar'])}style="display: none;"{else:} class="activeUT"{/if}>
-                            <span class="text-el">{lang('Свернуть','newLevel')}</span>
-                        </button>
-                        <button type="button" data-rel="1" class="show{if $_COOKIE['condUserToolbar'] == 0 || isset($_COOKIE['condUserToolbar'])} activeUT{/if}" {if $_COOKIE['condUserToolbar'] == 1 ||  !isset($_COOKIE['condUserToolbar'])}style="display: none;"{/if}>
-                            <span class="icon_arrow_down"></span>
-                            <span class="text-el">{lang('Развернуть','newLevel')}</span>
-                        </button>
-                    </div>
+                    <!--Start. Top menu and authentication data block-->
+                    {include_shop_tpl('auth_data')}
+                    <!--End. Top menu and authentication data block-->
                 </li>
             </ul>
         </div>

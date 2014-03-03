@@ -6,14 +6,18 @@
         {if $origin}
             <tr class="originTR" {if $counter > 10}style="display: none"{/if}>
                 <td class="t-a_c fuzzyTD" rowspan="2">
-                    <button type="button" onclick="Translator.markFuzzy($(this))" class="{if $translation['fuzzy']} btn-danger {/if}btn btn-small notCorrect" style="margin-top: 30px"><i class="icon-lock"></i></button>
+                    <button type="button" onclick="Translator.markFuzzy($(this))" class="{if $translation['fuzzy']} btn-danger {/if}btn btn-small notCorrect">
+                        <i class="icon-lock"></i>
+                    </button>
                 </td>
                 <td>
-                    <button type="button" class="btn btn-small" onclick="Translator.translateString($(this))" style="float: right; margin-right: 5px; margin-bottom: -30px"><i class="icon-globe"></i></button>
-                    <textarea class="origin" style="margin-bottom: 0px" readonly="">{echo htmlspecialchars($origin,ENT_QUOTES|ENT_SUBSTITUTE)}</textarea>
+                    <button type="button" class="btn btn-small translateWord" data-rel="tooltip" data-placement="right" data-original-title="{lang('Translate', 'translator')}" onclick="Translator.translateString($(this))">
+                        <i class="icon-globe"></i>
+                    </button>
+                    <textarea class="origin" readonly="">{echo htmlspecialchars($origin,ENT_QUOTES|ENT_SUBSTITUTE)}</textarea>
                 </td>
                 <td  rowspan="2">
-                    <textarea class="comment" style="margin-bottom: 0px" rows="5" >{echo $translation['comment']}</textarea>                
+                    <textarea class="comment" rows="5" >{echo $translation['comment']}</textarea>                
                 </td>
                 <td class="t-a_c pathsTd" rowspan="2">
                     <select class="links" size="5">
@@ -27,9 +31,11 @@
             </tr>
             <tr class="translationTR" {if $counter > 10}style="display: none"{/if}>
                 <td>
-                    <button type="button" class="btn btn-small translationCancel" style="display: none; float: right; margin-left: 600px; margin-bottom: -30px"><i class="icon-share-alt"></i></button>
-                    <textarea class="translation" style="margin-bottom: 0px;">{echo htmlspecialchars($translation['text'], ENT_QUOTES|ENT_SUBSTITUTE)}</textarea>
-                    <textarea class="translationTEMP" style="display: none"></textarea>
+                    <button type="button" data-rel="tooltip" data-placement="right" data-original-title="{lang('Undo', 'translator')}" class="btn btn-small translationCancel">
+                        <i class="icon-share-alt"></i>
+                    </button>
+                    <textarea class="translation">{echo htmlspecialchars($translation['text'], ENT_QUOTES|ENT_SUBSTITUTE)}</textarea>
+                    <textarea class="translationTEMP"></textarea>
                 </td>
             </tr>
             {$counter++;}
@@ -38,14 +44,14 @@
 {else:}
     <tr>
         <td colspan="4">
-            <div class="alert alert-info" style="margin: 0px; text-align: center">
+            <div class="alert alert-info">
                 {lang('The file is empty.', 'translator')}  
             </div>
         </td>
     </tr>
 {/if}
 
-<div class="po_settingsClone" style="margin: 0px; display:none">
+<div class="po_settingsClone">
     <div class="control-group">
         <label class="control-label" for="file">{lang('Project Name', 'translator')}:</label>
         <div class="controls">
@@ -96,23 +102,21 @@
     </div>
 </div>
 
-<div class="pathHolderClone span7" style="margin: 0px; display:none">
+<div class="pathHolderClone span7" style="display:none;">
     {foreach $paths as $key => $path}
         {if $path['base'] && is_array($path)}
             <div class="path" style="width: 515px">
-                <b style="float: left; font-size: 15px; margin-right: 10px; margin-top: 3px;">
-                    {echo $key+1}.
-                </b>
-                <input type="text" name="path[]" class="basePath" style="width: 390px; margin-bottom: 25px;" value="{echo $path['base']}">
-                <b style="font-size: 15px; margin-right: -10px; float: right;">({lang('Basic path', 'translator')})</b>
+                <b class="pathNumber">{echo $key+1}.</b>
+                <input type="text" name="path[]" class="basePath" value="{echo $path['base']}">
+                <b class="baseTitle">({lang('Basic path', 'translator')})</b>
                 <br>
             </div>
         {else:}
             <div class="path">
-                <b style="float: left; font-size: 15px; margin-right: 10px; margin-top: 3px; ">
+                <b class="pathNumber">
                     {echo $key+1}.
                 </b>
-                <input type="text" name="path[]" style="width: 390px; margin-bottom: -10px;" value="{echo $path}">
+                <input type="text" name="path[]" class="otherPaths" value="{echo $path}">
                 <div class="removePath" onclick="Translator.deletePath($(this))"><i class=" icon icon-remove-sign"></i></div>
                 <br>
             </div>
