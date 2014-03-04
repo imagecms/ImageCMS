@@ -502,7 +502,7 @@
 
                                                             <div class="controls siteinfo_logoimage">
                                                                 <div class='siteinfo_image_container'>
-                                                                    {$logo = siteinfo('siteinfo_logo_url')}
+                                                                    {$logo = siteinfo('siteinfo_logo')}
                                                                     {if !empty($logo)}
                                                                         <button type="button" class="btn btn-small remove_btn">
                                                                             <i class="icon-trash"></i>
@@ -523,7 +523,7 @@
 
                                                             <div class="controls siteinfo_faviconimage">
                                                                 <div class='siteinfo_image_container'>
-                                                                    {$favicon = siteinfo('siteinfo_favicon_url')}
+                                                                    {$favicon = siteinfo('siteinfo_favicon')}
                                                                     {if !empty($favicon)}
                                                                         <button type="button" class="btn btn-small remove_btn">
                                                                             <i class="icon-trash"></i>

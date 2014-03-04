@@ -26,28 +26,58 @@ if (!function_exists('siteinfo')) {
         if (0 !== strpos($name, 'siteinfo_')) {
             $name = 'siteinfo_' . $name;
         }
-
-        $ci = &get_instance();
-        $siteinfo = $ci->load->library("SiteInfo");
-
-        switch ($name) {
-            case 'siteinfo_logo';
-            case 'siteinfo_logo_url';
-                return $siteinfo->getFaviconLogoUrl('siteinfo_logo');
-
-            case 'siteinfo_favicon';
-            case 'siteinfo_favicon_url';
-                return $siteinfo->getFaviconLogoUrl('siteinfo_favicon');
-
-            case 'siteinfo_logo_path';
-            case 'siteinfo_favicon_path';
-                $name_ = str_replace("_path", '', $name);
-                $file = $siteinfo->getSiteInfo($name_);
-                return $siteinfo->getFaviconLogoPath() . $file[$templateName];
-
-            default:
-                return $siteinfo->getSiteInfo($name);
+        $siteinfo = CI::$APP->load->library("SiteInfo");
+        // next code is only for compatibility with older versions of library, 
+        // so in the future needed to be removed (with funciton processOldVersions() too)
+        if (FALSE !== $data = siteInfoAdditionalManipulations($name)) {
+            return $data;
+        } else {
+            $value = $siteinfo->getSiteInfo($name);
+            if (in_array($name, array('siteinfo_logo', 'siteinfo_favicon'))) {
+                return CI::$APP->siteinfo->imagesPath . $value;
+            }
+            return $value;
         }
+    }
+
+}
+
+
+
+if (!function_exists('siteInfoAdditionalManipulations')) {
+
+    /**
+     * Функція існує суто для сумісності із старими версіями
+     * @param string $name
+     * @param string $value
+     * @return string|boolean
+     */
+    function siteInfoAdditionalManipulations($name) {
+        if (FALSE !== strpos($name, '_path')) {
+            $name = str_replace('_path', '', $name);
+        }
+        if (FALSE !== strpos($name, '_url')) {
+            $name = str_replace('_url', '', $name);
+        }
+        $siteinfo = CI::$APP->load->library("SiteInfo");
+        $value = $siteinfo->getSiteInfo($name);
+        switch ($name) {
+            case 'siteinfo_favicon':
+            case 'siteinfo_logo':
+                // із врахуванням активного шаблону
+                if (is_array($value)) {
+                    $settings = CI::$APP->cms_base->get_settings();
+                    if (key_exists($settings['site_template'], $value)) {
+                        $fileName = $value[$settings['site_template']];
+                        $colorScheme = CI::$APP->load->module('new_level')->getColorScheme();
+                        return "/templates/{$settings['site_template']}/{$colorScheme}/{$fileName}";
+                    }
+                    return '';
+                } elseif (is_string($value)) {
+                    return empty($value) ? '' : CI::$APP->siteinfo->imagesPath . $value;
+                }
+        }
+        return false;
     }
 
 }
