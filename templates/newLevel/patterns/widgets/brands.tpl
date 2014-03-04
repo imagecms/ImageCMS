@@ -4,9 +4,7 @@
             <div class="items-carousel">
                 {/*frame-scroll-pane || carousel-js-css || ' '*/}
                 <div class="frame-title container">
-                    <div class="title">
-                        <span class="text-el">{$title}</span>
-                    </div>
+                    <div class="title">{$title}</div>
                 </div>
                 <div class="container">
                     <div class="frame-brands-carousel">
