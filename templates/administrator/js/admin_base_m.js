@@ -1,8 +1,9 @@
 function change_status(hrefFn) {
     $.post(hrefFn, {}, function(data) {
-        $('.notifications').append(data)
-    })
+        $('.notifications').append(data);
+    });
 }
+
 function export_csv() {
     $('.export').die('click').live('click', function() {
 
@@ -274,19 +275,20 @@ var delete_currency_function = new Object({
     },
 });
 function showOnSite(id, currentEl) {
-    if (!$(currentEl).hasClass('disable_tovar')) {
-        event.stopPropagation()
-        return false;
-    }
-
     var checkedAsMain = $(currentEl).closest('tr').find('.mainCurrency').attr('checked');
     if (checkedAsMain) {
         event.stopPropagation()
         return false;
     }
 
-    $('.prod-on_off').addClass('disable_tovar').css('left', '-28px');
-    var showStatus = currentEl.attr('rel');
+    $('.prod-on_off').each(function() {
+        if ($(this).data('itemid') != $(currentEl).data('itemid')) {
+            $(this).addClass('disable_tovar').css('left', '-28px');
+            $(this).attr('rel', '0');
+        }
+    });
+
+    var showStatus = $(currentEl).attr('rel');
     if (showStatus == 1) {
         showStatus = 0;
         currentEl.attr('rel', '0');

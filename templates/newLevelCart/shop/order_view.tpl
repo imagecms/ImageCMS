@@ -214,6 +214,14 @@
                                         <span class="title">{lang('Сумма','newLevel')}:</span>
                                         <span class="frame-prices">
                                             <span class="current-prices f-s_0">
+                                                {if ShopCore::app()->SCurrencyHelper->convert($orderProduct->originPrice) != ShopCore::app()->SCurrencyHelper->convert($orderProduct->price)}
+                                                    <span class="price-discount">
+                                                        <span>
+                                                            <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($orderProduct->originPrice) * $orderProduct->quantity}</span>
+                                                            <span class="curr">{$CS}</span>
+                                                        </span>
+                                                    </span>
+                                                {/if}
                                                 <span class="price-new">
                                                     <span>
                                                         <span class="price">{echo $orderProduct->getPrice()*$orderProduct->getQuantity()}</span>
