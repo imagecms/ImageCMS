@@ -49,7 +49,7 @@
                             <input type="text" name="wishListName" value="" class="wish_list_name">
                         </div>
                     {/if}
-                    <div class="btn-def">
+                    <div class="btn-buy">
                         <button
                             type="submit"
                             onclick="serializeForm(this)"

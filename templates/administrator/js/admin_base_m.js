@@ -1,8 +1,9 @@
 function change_status(hrefFn) {
     $.post(hrefFn, {}, function(data) {
-        $('.notifications').append(data)
-    })
+        $('.notifications').append(data);
+    });
 }
+
 function export_csv() {
     $('.export').die('click').live('click', function() {
 
@@ -227,7 +228,12 @@ var delete_functionS = new Object({
 
 
 var delete_currency_function = new Object({
-    deleteFunction: function(cid) {
+    deleteFunction: function(cid, currentEl) {
+        var checkedAsMain = $(currentEl).closest('tr').find('.mainCurrency').attr('checked');
+        if (checkedAsMain) {
+            event.stopPropagation()
+            return false;
+        }
         $('#first').modal();
         id = cid;
         return id;
@@ -269,6 +275,18 @@ var delete_currency_function = new Object({
     },
 });
 function showOnSite(id, currentEl) {
+    if (!$(currentEl).hasClass('disable_tovar')) {
+        event.stopPropagation()
+        return false;
+    }
+
+    var checkedAsMain = $(currentEl).closest('tr').find('.mainCurrency').attr('checked');
+    if (checkedAsMain) {
+        event.stopPropagation()
+        return false;
+    }
+
+    $('.prod-on_off').addClass('disable_tovar').css('left', '-28px');
     var showStatus = currentEl.attr('rel');
     if (showStatus == 1) {
         showStatus = 0;

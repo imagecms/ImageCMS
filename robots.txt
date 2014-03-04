@@ -1,7 +1,2 @@
 User-agent: *
 Disallow:
-Disallow: /000777
-Disallow: /8889
-Disallow: /999999
-Disallow: /66
-Disallow: /novo*

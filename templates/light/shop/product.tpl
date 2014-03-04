@@ -268,7 +268,7 @@
                                                 {else:}
                                                     <div class="d_i-b v-a_m">
                                                         <div class="js-variant-{echo $productVariant->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
-                                                            <div class="alert-exists">{lang('Нет в наличии','newLevel')}</div>
+                                                            <div class="c_b f-s_12 f-w_b">{lang('Нет в наличии', 'newLevel')}</div>
                                                             <div class="btn-not-avail">
                                                                 <button
                                                                     type="button"
@@ -305,7 +305,7 @@
                                                                     data-url="{echo shop_url('product/'.$model->getUrl())}"
                                                                     >
                                                                     <span class="icon-but"></span>
-                                                                    <span class="text-el">{lang('Сообщить о появлении','newLevel')}</span>
+                                                                    <span class="text-el d_l_1">{lang('Сообщить о появлении','newLevel')}</span>
                                                                 </button>
                                                             </div>
                                                         </div>

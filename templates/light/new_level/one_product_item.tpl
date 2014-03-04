@@ -18,7 +18,7 @@
     {else:}
         {$variants = $p->getProductVariants()}
     {/if}
-    
+
     {$hasDiscounts = $p->hasDiscounts()}
 
     {if $key >= $opi_limit && $condlimit}
@@ -26,7 +26,7 @@
     {/if}
     {$Comments = $CI->load->module('comments')->init($p)}
     {$inCartFV = getAmountInCart('SProducts', $p->firstVariant->getId())}
-    <li class="globalFrameProduct{if $p->firstVariant->getStock() == 0} not-avail{else:}{if $inCartFV} in-cart{else:} to-cart{/if}{/if}" data-pos="{if intval(($key+1)/3) - ($key+1)/3 == 0}right{else:}left{/if}">
+    <li  class="globalFrameProduct{if $p->firstVariant->getStock() == 0} not-avail{else:}{if $inCartFV} in-cart{else:} to-cart{/if}{/if}" data-pos="{if intval(($key+1)/3) - ($key+1)/3 == 0}right{else:}left{/if}">
         <!-- Start. Photo & Name product -->
         <a href="{shop_url('product/' . $p->getUrl())}" class="frame-photo-title" title="{echo ShopCore::encode($p->getName())}">
             <span class="photo-block">
@@ -63,19 +63,6 @@
                             <span class="code js-code">
                                 {if !$hasVariant}
                                     {trim($p->firstVariant->getName())}
-                                {/if}
-                            </span>
-                        </span>
-                    {/if}
-                    {if $brand = $p->getBrand()}
-                        {$brand = $brand->getName()}
-                        {$hasBrand = trim($brand) != ''}
-                        <span class="frame-item-brand">{lang('Бренд','newLevel')}:
-                            <span class="code js-code">
-                                {if $hasBrand}
-                                    <a href="{shop_url('brand/'.$p->getBrand()->getUrl())}">
-                                        {echo trim($brand)}
-                                    </a>
                                 {/if}
                             </span>
                         </span>
@@ -278,6 +265,7 @@
                                     </form>
                                 </div>
                             {else:}
+                                <div class="c_b f-s_12 f-w_b">{lang('Нет в наличии', 'newLevel')}</div>
                                 <div class="btn-not-avail js-variant-{echo $pv->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
                                     <button
                                         class="infoBut"
@@ -308,7 +296,7 @@
                                         data-url="{echo shop_url('product/'.$p->getUrl())}"
                                         >
                                         <span class="icon-but"></span>
-                                        <span class="text-el">{lang('Сообщить о появлении','newLevel')}</span>
+                                        <span class="text-el d_l_1">{lang('Сообщить о появлении','newLevel')}</span>
                                     </button>
                                 </div>
                             {/if}

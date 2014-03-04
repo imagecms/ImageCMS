@@ -33,37 +33,34 @@ class Banners extends MY_Controller {
     /**
      * Render banner into template
      * @access public
+     * @param int $id is id entity (brand, category, product, page) .... for main id = 0
+     * @param string $group
+     * @return boolean
      * @author L.Andriy <l.andriy@siteimage.com.ua>
      * @copyright (c) 2013, ImageCMS
      */
-    public function render($id = 0) {
-
-
-        /* $id - is id entity (brand, category, product, page) .... for main id = 0 */
-        if ($this->no_install === false)
+    public function render($id = 0, $group = 0) {
+        if ($this->no_install === false) {
             return false;
-
-
+        }
         $type = $this->core->core_data['data_type'];
         $lang = $this->get_main_lang('identif');
         $painting = $type . '_' . (int) $id;
 
         $hash = 'baners' . $type . $id . \CI_Controller::get_instance()->config->item('template');
-        if ($cahe = Cache_html::get_html($hash)) {
+        if ($cache = Cache_html::get_html($hash)) {
             \CMSFactory\assetManager::create()
                     ->registerScript('jquery.cycle.all.min', TRUE);
-            echo $cahe;
+            echo $cache;
         } else {
-
-            $banners = $this->banner_model->get_all_banner($lang);
-
+            $banners = $this->banner_model->get_all_banner($lang, $group);
             foreach ($banners as $banner) {
                 $data = unserialize($banner['where_show']);
 
-                if (in_array($painting, $data) && $banner['active'] && time() < $banner['active_to'])
+                if ((in_array($painting, $data) || in_array($type . '_0', $data)) && $banner['active'] && time() < $banner['active_to']) {
                     $ban[] = $banner;
+                }
             }
-
             if (count($ban) > 0) {
 
                 $tpl = $this->banner_model->get_settings_tpl() ? $type . '_slider' : 'slider';
@@ -81,10 +78,15 @@ class Banners extends MY_Controller {
                 Cache_html::set_html($baners_view, $hash);
 
                 echo $baners_view;
-            }
-            else
+            } else {
                 return FALSE;
+            }
         }
+    }
+
+    public function getByGroup($group) {
+        $banners = $this->banner_model->get_all_banner(MY_Controller::getCurrentLocale(), $group);
+        return $banners;
     }
 
     /**
@@ -122,6 +124,7 @@ class Banners extends MY_Controller {
 
         $this->db->where('name', 'banners');
         $this->db->update('components', array('enabled' => 1));
+        $this->banner_model->createGroupsTable();
     }
 
     /**
@@ -132,8 +135,9 @@ class Banners extends MY_Controller {
      */
     public function _deinstall() {
 
-        if ($this->dx_auth->is_admin() == FALSE)
+        if ($this->dx_auth->is_admin() == FALSE) {
             exit;
+        }
 
         $this->load->dbforge();
         $this->dbforge->drop_table('mod_banner');
@@ -164,12 +168,15 @@ class Banners extends MY_Controller {
             $lang_id = $lang[0]['id'];
             $lang_ident = $lang[0]['identif'];
         }
-        if ($flag == 'id')
+        if ($flag == 'id') {
             return $lang_id;
-        if ($flag == 'identif')
+        }
+        if ($flag == 'identif') {
             return $lang_ident;
-        if ($flag == null)
+        }
+        if ($flag == null) {
             return array('id' => $lang_id, 'identif' => $lang_ident);
+        }
     }
 
 }

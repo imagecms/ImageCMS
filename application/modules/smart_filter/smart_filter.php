@@ -66,8 +66,8 @@ class Smart_filter extends \Category\BaseCategory {
     
     public function pre_filter(){
         $property = $this->data['propertiesInCat'];
-        
-        echo json_encode($property);
+        $brand = $this->data['brands'];
+        echo json_encode(array('prop' =>$property, 'brand' => $brand));
     }
 
 //    public function ()
