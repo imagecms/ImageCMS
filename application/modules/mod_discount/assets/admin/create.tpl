@@ -139,7 +139,7 @@ var currencySymbolJS = '{echo $CS}';
                             <span class="d-i_b">{echo $CS}</span>
                         </span>
                         <div class="m-b_5">
-                            <span class="frame_label no_connection m-r_15 spanForNoLimit" >
+                            <span class="frame_label no_connection m-r_15 spanForNoLimit noLimitChecker" >
                                 <span class="niceCheck" style="background-position: -46px 0px; ">
                                     <input type="checkbox" name="all_order[for_autorized]" value="1" class="noLimitCountCheck">
                                 </span>
