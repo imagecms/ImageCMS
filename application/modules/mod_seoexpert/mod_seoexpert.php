@@ -189,9 +189,6 @@ class Mod_seoexpert extends \MY_Controller {
         $model = $arg['category'];
         $settings = ShopCore::$ci->seoexpert_model->getSettings($local);
 
-
-//        var_dump($settings['subcategoryTemplatePaginationTemplate']);
-//        var_dump(\CMSFactory\assetManager::create()->getData('page_number'));
         $pageNumber = (int) \CMSFactory\assetManager::create()->getData('page_number');
         
         $obj = new Mod_seoexpert();
@@ -263,9 +260,6 @@ class Mod_seoexpert extends \MY_Controller {
         $template = str_replace(array('%name[6][t]%', '%name[t][6]%'), translit($obj->inflect($model->getName(), 6)), $template);
 
 
-
-
-
         //Replace description variables
         $templateDesc = str_replace('%ID%', $model->getId(), $templateDesc);
         $templateDesc = str_replace('%name%', $model->getName(), $templateDesc);
@@ -294,17 +288,12 @@ class Mod_seoexpert extends \MY_Controller {
         $templateDesc = str_replace(array('%name[6][t]%', '%name[t][6]%'), translit($obj->inflect($model->getName(), 6)), $templateDesc);
 
 
-
-
-
-
         ////Replace keywords variables
         $templateKey = str_replace('%ID%', $model->getId(), $templateKey);
         $templateKey = str_replace('%name%', $model->getName(), $templateKey);
         $templateKey = str_replace('%desc%', substr(strip_tags($model->getDescription()), 0, intval($descCount)), $templateKey);
         $templateKey = str_replace('%H1%', $model->getH1(), $templateKey);
         $templateKey = str_replace('%pagenumber%', $pagePattern, $templateKey);
-
 
 
         // Prepare brands for meta
