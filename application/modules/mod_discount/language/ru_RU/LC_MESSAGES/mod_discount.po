@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-04 12:18+0200\n"
-"PO-Revision-Date: 2014-03-04 12:18+0200\n"
+"POT-Creation-Date: 2014-03-04 02:10+0000\n"
+"PO-Revision-Date: 2014-03-04 02:10+0000\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -17,6 +17,10 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/mod_discount/assets/admin/list.tpl:116
+msgid "Discounts list is empty"
+msgstr "Список скидок пустой"
 
 #: ./application/modules/mod_discount/assets/admin/list.tpl:35
 msgid "Name"
