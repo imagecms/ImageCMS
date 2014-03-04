@@ -51,7 +51,7 @@
                 <div class="frame-title">
                     <h1 class="title">{echo $title}</h1>
                 </div>
-                <span class="count">({$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang('товар','newLevel'),lang('товара','newLevel'),lang('товаров','newLevel')))})</span>
+                <span class="count">{$totalProducts}</span>
             </div>
             <!-- End. Category name and count products in category-->
             {if $totalProducts == 0}
@@ -71,7 +71,7 @@
             {include_tpl('catalogue_header')}
             <!-- Start.If count products in category > 0 then show products list and pagination links -->
             {if $totalProducts > 0}
-                <ul class="animateListItems items items-catalog items-product {if $_COOKIE['listtable'] == 'table' || $_COOKIE['listtable'] == NULL} table{else:} list{/if}" id="items-catalog-main">
+                <ul class="animateListItems items items-catalog items-product {if $_COOKIE['listtable'] == 'list' || $_COOKIE['listtable'] == NULL}list{/if}{if $_COOKIE['listtable'] == 'table'}table{/if}{if $_COOKIE['listtable'] == 'tablemini'}tablemini{/if}" id="items-catalog-main">
                     <!-- Include template for one product item-->
                     {$CI->load->module('new_level')->OPI($model, array('opi_wishlist'=>true, 'opi_codeArticle' => true))}
                 </ul>
@@ -82,7 +82,6 @@
         </div>
     </div>
 </div>
-{widget('latest_news')}
 {if trim($category->getDescription()) != ""}
     <div class="frame-seo-text">
         <div class="container">

@@ -173,25 +173,6 @@
                             {$inCart = getAmountInCart('SProducts', $pv->getId())}
                             <div class="frame-count-buy js-variant-{echo $pv->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
                                 <form method="POST" action="/shop/cart/addProductByVariantId/{echo $pv->getId()}">
-                                    {if !$opi_widget && !$opi_defaultItem}
-                                        <div class="frame-count frameCount">
-                                            <div class="number js-number" data-title="{lang('Количество на складе','newLevel')} {echo $pv->getstock()}">
-                                                <div class="frame-change-count">
-                                                    <div class="btn-plus">
-                                                        <button type="button"{if $inCart} disabled="disabled"{/if}>
-                                                            <span class="icon-plus"></span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="btn-minus">
-                                                        <button type="button"{if $inCart} disabled="disabled"{/if}>
-                                                            <span class="icon-minus"></span>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                                <input type="text" name="quantity" value="{echo $inCart ? $inCart : 1}" class="plusMinus plus-minus" data-title="{lang('Только цифры','newLevel')}" data-min="1" data-max="{echo $pv->getstock()}"{if $inCart} disabled="disabled"{/if}>
-                                            </div>
-                                        </div>
-                                    {/if}
                                     <div class="btn-buy btn-cart{if !$inCart} d_n{/if}">
                                         <button 
                                             type="button"

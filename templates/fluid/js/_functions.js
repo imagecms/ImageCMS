@@ -192,7 +192,7 @@ var global = {
         var wishlist = wishList.all();
         $(genObj.btnWish).each(function() {
             var $this = $(this);
-            if (wishlist.indexOf($this.data('id')) !== -1) {
+            if (wishlist.indexOf($this.data('id').toString()) !== -1) {
                 $this.addClass(genObj.wishIn);
                 $this.find(genObj.toWishlist).hide();
                 $this.find(genObj.inWishlist).show();
@@ -527,7 +527,7 @@ function decorElemntItemProduct(el) {
                     'right': 'auto',
                     'left': 0,
                     'bottom': 'auto',
-                    'top': 0,
+                    'top': 15,
                     'min-height': 0,
                     'min-width': 'none'
                 }),
@@ -599,12 +599,12 @@ function decorElemntItemProduct(el) {
                 switch ($thisS) {
                     case 'top':
                         decEl.css({
-                            'height': sumH + decElH
+                            'height': sumH - 15 + decElH
                         })
                         break;
                     case 'bottom':
                         decEl.css({
-                            'height': sumH + decElH
+                            'height': sumH - 15 + decElH
                         })
                         break;
                     case 'left':
