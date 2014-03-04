@@ -387,7 +387,13 @@ class Admin extends BaseAdminController {
                     foreach ($langs as $lang) {
                         if ($lang && $lang != '.' && $lang != '..' && $lang[0] != '.' && is_dir($this->modules_path . $module . '/language/' . $lang) && $this->isLocale($lang)
                         ) {
-                            $this->langs[$lang][] = array('module' => $module);
+                            $objLang = new MY_Lang();
+                            $objLang->load($module);
+                            include($this->modules_path . $module . '/module_info.php');
+                            
+                            $this->langs[$lang][] = array('module' => $module, 'menu_name' => $com_info['menu_name']);
+                            
+                            unset($com_info);
                         }
                     }
                 }

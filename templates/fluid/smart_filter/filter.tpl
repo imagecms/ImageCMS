@@ -5,14 +5,6 @@
     <div class="frame-slider" data-rel="sliders.slider1">
         <div class="inside-padd">
             <div class="title">Цена</div>
-            <div class="slider-cont">
-                <noscript>{lang('Джаваскрипт не включен', 'newLevel')}</noscript>
-                {/*id="slider1" for cleaverfilter that paste frame with count finded products*/}
-                <div class="slider" id="slider1">
-                    <a href="#" class="ui-slider-handle left-slider"></a>
-                    <a href="#" class="ui-slider-handle right-slider"></a>
-                </div>
-            </div>
             <div class="form-cost number">
                 <div class="t-a_j">
                     {/*may been delete*/}
@@ -22,9 +14,14 @@
                     <label>
                         <input type="text" class="maxCost" data-title="{lang('только цифры', 'newLevel')}" name="rp" value="{echo $curMax}" data-maxs="{echo $maxPrice}"/>
                     </label>
-                    <div class="btn-def">
-                        <input type="submit" value="ОК"/>
-                    </div>
+                </div>
+            </div>
+            <div class="slider-cont">
+                <noscript>{lang('Джаваскрипт не включен', 'newLevel')}</noscript>
+                {/*id="slider1" for cleaverfilter that paste frame with count finded products*/}
+                <div class="slider" id="slider1">
+                    <a href="#" class="ui-slider-handle left-slider"></a>
+                    <a href="#" class="ui-slider-handle right-slider"></a>
                 </div>
             </div>
         </div>
@@ -135,21 +132,9 @@
                         {/if}
                     </div>
                 </div>
-            {if $condTypeProperty}<div class="preloader"></div>{/if}
-        {/if}
-    {/foreach}
-{/if}
-<div class="frame-group-checks">
-    <div class="inside-padd">
-        <div class="btn-form m-b_5">
-            <button type="submit">
-                <span class="text-el">{lang('Фильтровать', 'newLevel')}</span>
-            </button>
-        </div>
-        <button type="reset">
-            <span class="text-el d_l_1">{lang('Сбросить фильтр', 'newLevel')}</span>
-        </button>
-    </div>
-</div>
+                {if $condTypeProperty}<div class="preloader"></div>{/if}
+            {/if}
+        {/foreach}
+    {/if}
 </div>
 <input disabled="disabled" type="hidden" name="requestUri" value="{echo site_url($CI->uri->uri_string())}"/>
