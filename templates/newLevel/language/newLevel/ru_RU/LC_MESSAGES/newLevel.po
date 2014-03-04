@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-16 03:14+0200\n"
-"PO-Revision-Date: 2014-01-16 03:14+0200\n"
+"POT-Creation-Date: 2014-01-13 12:11+0200\n"
+"PO-Revision-Date: 2014-01-13 12:11+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -18,55 +18,23 @@ msgstr ""
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 
+#: ./templates/newLevel/wishlist/wishlist.tpl:172
+msgid "Поделится з другом"
+msgstr ""
+
 #: ./templates/newLevel/wishlist/wishlistEdit.tpl:17
 #: ./templates/newLevel/wishlist/wishlist.tpl:53
-#: ./templates/newLevel/wishlist/wishlist.tpl:171
 msgid "Коллективный"
 msgstr ""
 
 #: ./templates/newLevel/wishlist/wishlistEdit.tpl:18
 #: ./templates/newLevel/wishlist/wishlist.tpl:55
-#: ./templates/newLevel/wishlist/wishlist.tpl:165
 msgid "Приватный"
 msgstr ""
 
 #: ./templates/newLevel/wishlist/wishlistEdit.tpl:19
 #: ./templates/newLevel/wishlist/wishlist.tpl:54
-#: ./templates/newLevel/wishlist/wishlist.tpl:168
 msgid "Публичный"
-msgstr ""
-
-#: ./templates/newLevel/wishlist/wishlist.tpl:180
-msgid "Поделится з другом"
-msgstr ""
-
-#: ./templates/newLevel/shop/compare_data.tpl:32
-#: ./templates/newLevel/shop/wish_list_data.tpl:24
-msgid "Ваш список"
-msgstr ""
-
-#: ./templates/newLevel/shop/compare_data.tpl:33
-msgid "“Список сравнения” пуст"
-msgstr ""
-
-#: ./templates/newLevel/shop/wish_list_data.tpl:25
-msgid "“Список желаний” пуст"
-msgstr ""
-
-#: ./templates/newLevel/shop/cart.tpl:57
-msgid "Еще один номер"
-msgstr ""
-
-#: ./templates/newLevel/shop/cart.tpl:140
-msgid "Адрес доставки:"
-msgstr ""
-
-#: ./templates/newLevel/shop/cart.tpl:151
-msgid "Добавить комментарий к заказу"
-msgstr ""
-
-#: ./templates/newLevel/smart_filter/filter.tpl:7
-msgid "Цена"
 msgstr ""
 
 #: ./templates/newLevel/404.tpl:10

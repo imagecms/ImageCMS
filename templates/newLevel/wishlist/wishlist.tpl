@@ -3,7 +3,7 @@
     <div class="container">
         <div class="f-s_0 title-cart without-crumbs">
             <div class="frame-title">
-                <h1 class="d_i">{lang('Список желаний','newLevel')}</h1>
+                <h1 class="title">{lang('Список желаний','newLevel')}</h1>
             </div>
         </div>
         {if $errors}
@@ -76,7 +76,6 @@
                                                 <button
                                                     type="submit"
                                                     data-source="{site_url('/wishlist/wishlistApi/createWishList')}"
-                                                    data-type="json"
                                                     data-modal="true"
 
                                                     data-always="true"
@@ -112,8 +111,8 @@
                                         </div>
                                     {/if}
                                     {if $wishlist[0][variant_id]}
-                                        <ul class="items items-catalog items-wish-list">
-                                            {$CI->load->module('new_level')->OPI($wishlist, array(), 'array_product_item')}
+                                        <ul class="items items-catalog items-wish-list items-product">
+                                            {$CI->load->module('new_level')->OPI($wishlist, array('opi_wishListPage' => true))}
                                         </ul>
                                     {else:}
                                         <div class="msg layout-highlight layout-highlight-msg">
@@ -144,7 +143,7 @@
                                                     <button
                                                         type="button"
                                                         data-source="{site_url('/wishlist/wishlistApi/deleteWL/'.$wishlist[0][wish_list_id])}"
-                                                        data-type="json"
+
                                                         data-modal="true"
 
                                                         data-drop="#notification"
@@ -175,7 +174,7 @@
                                         <div>
                                             {if $wishlist[0]['access'] == 'shared' || $wishlist[0]['access'] == 'public'}
                                                 <div class="btn-form btn-send-wishlist">
-                                                    <button type="button" data-drop=".drop-sendemail" title="{lang('Поделится с другом','newLevel')}" data-source="{echo site_url('wishlist/wishlistApi/renderEmail/' . $wishlist[0][wish_list_id])}">
+                                                    <button type="button" data-drop=".drop-sendemail" title="{lang('Поделится с другом','newLevel')}" data-always="true" data-source="{echo site_url('wishlist/wishlistApi/renderEmail/' . $wishlist[0][wish_list_id])}">
                                                         <span class="icon_mail"></span>
                                                         <span class="text-el">{lang('Поделится з другом')}</span>
                                                     </button>
@@ -186,43 +185,6 @@
                                             {/if}
                                         </div>
                                     </div>
-                                    {if $wishlist[0][variant_id]}
-                                        <div class="f_r">
-                                            {$price = 0}
-                                            {$i = 0}
-                                            {foreach $wishlist as $key => $p}
-                                                {if $p.stock > 0}
-                                                    {$price += $p.price;}
-                                                    {$i++}
-                                                {/if}
-                                            {/foreach}
-                                            {if $i > 0}
-                                                <div class="frame-buy-all-products">
-                                                    <div class="title-h3">{lang('Всего','newLevel')} <b class="countProdsWL">{echo $i}</b> <span class="plurProd">{echo SStringHelper::Pluralize($i, array(lang('товар','newLevel'),lang('товара','newLevel'),lang('товаров','newLevel')))}</span> {lang('на сумму', 'newLevel')}
-                                                        <span class="frame-prices f-s_0">
-                                                            <span class="current-prices">
-                                                                <span class="price-new">
-                                                                    <span>
-                                                                        <span class="price genPriceProdsWL">{round($price, $pricePrecision)}</span>
-                                                                        <span class="curr">{$CS}</span>
-                                                                    </span>
-                                                                </span>
-                                                            </span>
-                                                        </span>
-                                                    </div>
-                                                    <div class="btn-buy">
-                                                        <button
-                                                            type="button"
-                                                            class="btnBuyWishList"
-                                                            >
-                                                            <span class="icon_cleaner icon_cleaner_buy"></span>
-                                                            <span class="text-el" data-cart="{lang('Просмотреть купленные товары','newLevel')}" data-buy="{lang('Купить все доступные товары','newLevel')}" data-buy-other="{lang('Докупить все доступные товары','newLevel')}">{lang('Купить все доступные товары','newLevel')}</span>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            {/if}
-                                        </div>
-                                    {/if}
                                 </div>
                             </div>
                             {form_csrf()}
@@ -264,7 +226,6 @@
                                                 <button
                                                     type="button"
                                                     data-source="{site_url('/wishlist/wishlistApi/deleteImage')}"
-                                                    data-type="json"
                                                     data-modal="true"
 
                                                     data-drop="#notification"
@@ -325,7 +286,6 @@
                                         <button
                                             type="submit"
                                             data-source="{site_url('/wishlist/wishlistApi/userUpdate')}"
-                                            data-type="json"
                                             data-modal="true"
 
                                             data-effect-on="fadeIn"
