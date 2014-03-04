@@ -731,10 +731,6 @@
 {widget('similar')}
 <!-- End. Similar Products-->
 
-<!-- Start. News-->
-{widget('latest_news')}
-<!-- End. News-->
-
 <!-- Start. Photo Popup Frame-->
 <div class="drop drop-style globalFrameProduct" id="photo"></div>
 <script type="text/template" id="framePhotoProduct">

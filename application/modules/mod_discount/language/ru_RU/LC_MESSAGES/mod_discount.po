@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-04 01:44+0000\n"
-"PO-Revision-Date: 2014-03-04 01:44+0000\n"
+"POT-Creation-Date: 2014-03-04 02:10+0000\n"
+"PO-Revision-Date: 2014-03-04 02:10+0000\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -21,6 +21,24 @@ msgstr ""
 #: ./application/modules/mod_discount/assets/admin/list.tpl:116
 msgid "Discounts list is empty"
 msgstr "Список скидок пустой"
+
+#: ./application/modules/mod_discount/assets/admin/list.tpl:35
+msgid "Name"
+msgstr "Название"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:234
+msgid "ID / Name"
+msgstr "ID / Имя"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:190
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:199
+msgid "ID / Name / E-mail"
+msgstr "ID / Имя / Электронная почта"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:229
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:238
+msgid "Name / ID"
+msgstr "Имя / ID"
 
 msgid "Unlimited"
 msgstr "Неограниченно"
@@ -43,10 +61,6 @@ msgstr "Сущность не существует!"
 msgid "Begin value must be numeric"
 msgstr "Начальное значение должно быть числовым"
 
-#: ./application/modules/mod_discount/assets/admin/list.tpl:35
-msgid "Name"
-msgstr "Имя"
-
 #: ./application/modules/mod_discount/assets/discount_order.tpl:12
 msgid "discount name"
 msgstr "Название скидки"
@@ -55,10 +69,6 @@ msgstr "Название скидки"
 #: ./application/modules/mod_discount/assets/admin/edit.tpl:14
 msgid "Back"
 msgstr "Вернуться"
-
-#: ./application/modules/mod_discount/assets/admin/create.tpl:234
-msgid "ID / Name"
-msgstr "ID / Имя"
 
 #: ./application/modules/mod_discount/admin.php:66
 #: ./application/modules/mod_discount/admin.php:187
@@ -77,11 +87,6 @@ msgstr "Да"
 #: ./application/modules/mod_discount/classes/DiscountManager.php:269
 msgid "Has been already created with the cumulative discount value"
 msgstr "Уже создана накопительная скидка с таким значением"
-
-#: ./application/modules/mod_discount/assets/admin/create.tpl:190
-#: ./application/modules/mod_discount/assets/admin/edit.tpl:199
-msgid "ID / Name / E-mail"
-msgstr "ID / Имя / Электронная почта"
 
 #: ./application/modules/mod_discount/assets/admin/list.tpl:40
 msgid "Active"
@@ -162,11 +167,6 @@ msgstr "Значение должно быть числовым"
 #: ./application/modules/mod_discount/admin.php:240
 msgid "Changes saved"
 msgstr "Изменения сохранены"
-
-#: ./application/modules/mod_discount/assets/admin/create.tpl:229
-#: ./application/modules/mod_discount/assets/admin/edit.tpl:238
-msgid "Name / ID"
-msgstr "Имя / ID"
 
 #: ./application/modules/mod_discount/assets/admin/list.tpl:37
 msgid "Used"
