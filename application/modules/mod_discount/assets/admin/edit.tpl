@@ -151,7 +151,7 @@
                                                 </div>
                                                 <div class="">
                                                     <span class="frame_label no_connection m-r_15 spanForNoLimit" >
-                                                        <span class="niceCheck" style="background-position: -46px 0px; ">
+                                                        <span class="niceCheck" id="giftSpanCheckbox" style="background-position: -46px 0px; ">
                                                             <input type="checkbox" name="all_order[is_gift]" value="1" {if $discount['all_order']['is_gift'] == 1}checked=checked{/if} >
                                                         </span>
                                                         {lang('Gift Certificate', 'mod_discount')}

@@ -2,10 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-03 10:20+0200\n"
-"PO-Revision-Date: 2014-03-03 10:20+0200\n"
-"POT-Creation-Date: 2014-03-03 11:24+0400\n"
-"PO-Revision-Date: 2014-03-03 11:24+0400\n"
+"POT-Creation-Date: 2014-03-04 02:11+0200\n"
+"PO-Revision-Date: 2014-03-04 02:11+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -22,6 +20,14 @@ msgstr ""
 "X-Poedit-SearchPath-1: ../../../templates/administrator\n"
 "X-Poedit-SearchPath-2: ../../modules/shop/admin\n"
 "X-Poedit-SearchPath-3: ../../../application/modules/shop/models/build/classes\n"
+
+#: ./application/modules/shop/admin/templates/callbacks/status_list.tpl:37
+msgid "Edit callback status"
+msgstr "Редактировать статус колбека"
+
+#: ./application/modules/shop/admin/templates/notifications/edit.tpl:50
+msgid "Date active to"
+msgstr "Дата окончания"
 
 #: ./application/modules/shop/admin/templates/callbacks/list.tpl:39
 #: ./application/modules/shop/admin/templates/callbacks/list.tpl:101
@@ -2229,10 +2235,6 @@ msgstr "Изменить продукт"
 #: ./templates/administrator/inc/javascriptVars.tpl:100
 msgid "Change product"
 msgstr "Изменить продукт"
-
-#: ./application/modules/shop/admin/templates/callbacks/status_list.tpl:37
-msgid "Edit topic callback"
-msgstr "Изменить тему колбека"
 
 #: ./application/modules/admin/languages.php:72
 #: ./application/modules/admin/languages.php:254
