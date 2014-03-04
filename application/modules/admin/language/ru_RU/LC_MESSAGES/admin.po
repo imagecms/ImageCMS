@@ -1,11 +1,11 @@
-﻿msgid ""
+msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-04 02:11+0200\n"
-"PO-Revision-Date: 2014-03-04 02:11+0200\n"
-"Last-Translator:  \n"
-"Language-Team:  \n"
+"POT-Creation-Date: 2014-03-04 01:24+0000\n"
+"PO-Revision-Date: 2014-03-04 15:59+0300\n"
+"Last-Translator: sdfsdfsdfs <sdfsdfsdf>\n"
+"Language-Team: \n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -14,12 +14,14 @@ msgstr ""
 "X-Poedit-Basepath: ../../..\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Generator: Poedit 1.5.7\n"
-"X-Poedit-Language: \n"
-"X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPath-1: ../../../templates/administrator\n"
 "X-Poedit-SearchPath-2: ../../modules/shop/admin\n"
 "X-Poedit-SearchPath-3: ../../../application/modules/shop/models/build/classes\n"
+
+#: ./application/modules/shop/admin/callbacks.php:297
+msgid "Callback was removed"
+msgstr "Колбек удалён"
 
 #: ./application/modules/shop/admin/templates/callbacks/status_list.tpl:37
 msgid "Edit callback status"
@@ -2235,6 +2237,10 @@ msgstr "Изменить продукт"
 #: ./templates/administrator/inc/javascriptVars.tpl:100
 msgid "Change product"
 msgstr "Изменить продукт"
+
+#: ./application/modules/shop/admin/templates/callbacks/status_list.tpl:37
+msgid "Edit topic callback"
+msgstr "Изменить тему колбека"
 
 #: ./application/modules/admin/languages.php:72
 #: ./application/modules/admin/languages.php:254
