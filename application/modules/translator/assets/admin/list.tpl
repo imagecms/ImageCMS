@@ -157,7 +157,7 @@
                     <div class="tab-pane active" id="poTab">
                         <div class="pull-left poSelectorsHolder">
                             <div class="d-i_b">
-                                <select id="langs" class="" onchange="Selectors.langs($(this))">
+                                <select id="langs" onchange="Selectors.langs($(this))">
                                     {if $langs}
                                         <option value="">-- {lang('Choose locale', 'translator')} --</option>
                                         {foreach $langs as $locale => $lang}
@@ -178,7 +178,6 @@
                             </div>
                             <div class="d-i_b">
                                 <select id="modules_templates" style="display: none" onchange="Selectors.names($(this))">
-
                                 </select>
                             </div>
                         </div>

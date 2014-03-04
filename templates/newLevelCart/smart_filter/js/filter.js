@@ -227,14 +227,14 @@ var Filter = {
         $('.clear-filter').click(function() {
             var nm = $(this).data('name');
             $('#' + nm + ' input').parent().nStCheck('checkUnChecked');
-            $(catalogForm).submit();
+            $(this.catalogForm).submit();
             return false;
         });
         $('.clear-slider').click(function() {
             var obj = eval($(this).data('rel'));
             $(obj.minCost).val(obj.defMin);
             $(obj.maxCost).val(obj.defMax);
-            $(catalogForm).submit();
+            $(this.catalogForm).submit();
 
             return false;
         });
@@ -331,14 +331,9 @@ var Filter = {
     ajaxRecount: function(el, slChk) {
         $(this.frameFilter).children(preloader).show();
 
-
-
-
         /*not hyper clever filter*/
         //    $(this.catalogForm).submit();
         /*/not hyper clever filter*/
-
-
 
         /*hyper clever filter*/
         var $this = el,

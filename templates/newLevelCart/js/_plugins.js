@@ -737,77 +737,73 @@ function getCookie(c_name)
                     offsetY: 0,
                     tooltip: '.tooltip',
                     durationOn: 300,
-                    durationOff: 200
+                    durationOff: 200,
+                    show: true
                 },
                 init: function(options) {
-                    if (!options)
-                        options = {};
+                    this.each(function() {
+                        if (!options)
+                            options = {};
 
-                    var $this = this,
-                            elSet = $this.data(),
-                            set = {};
+                        var $this = $(this),
+                                elSet = $this.data(),
+                                set = {};
 
-                    for (var i in methods.def) {
-                        var prop = (elSet[i] !== undefined ? elSet[i] : '').toString() || (options[i] !== undefined ? options[i] : '').toString() || methods.def[i].toString()
-                        if (!isNaN(parseFloat(methods.def[i])) && isFinite(methods.def[i]))
-                            set[i] = +(prop);
+                        for (var i in methods.def) {
+                            var prop = (elSet[i] !== undefined ? elSet[i] : '').toString() || (options[i] !== undefined ? options[i] : '').toString() || methods.def[i].toString()
+                            if (!isNaN(parseFloat(methods.def[i])) && isFinite(methods.def[i]))
+                                set[i] = +(prop);
+                            else
+                                set[i] = prop;
+                        }
+
+                        if ($.exists(set.tooltip))
+                            tooltip = $(set.tooltip);
                         else
-                            set[i] = prop;
-                    }
+                            tooltip = $(set.tooltip).appendTo(body);
 
-                    if ($.exists(set.tooltip))
-                        tooltip = $(set.tooltip);
-                    else
-                        tooltip = $(set.tooltip).appendTo(body);
-
-                    console.log(set.tooltip)
-
-                    if (set.effect !== 'always')
-                        $this.data(set);
-                    else
-                        $this.data('title', '');
-
-                    var textEl = $this.find(set.textEl);
-                    if (textEl.is(':visible') && $.existsN(textEl))
-                        return $this;
-                    tooltip.html(set.title);
-                    if (set.otherClass) {
-                        if (!$.exists(set.tooltip + '.' + set.otherClass))
-                            tooltip.clone().appendTo(body).addClass(set.otherClass);
-
-                        tooltip = $(set.tooltip + '.' + set.otherClass);
-                    }
-
-                    if (set.effect === 'mouse')
-                        $this.off('mousemove.' + nS).on('mousemove.' + nS, function(e) {
-                            tooltip.css({
-                                'left': methods.left($(this), tooltip, set.placement, e.pageX, set.effect, set.offsetX),
-                                'top': methods.top($(this), tooltip, set.placement, e.pageY, set.effect, set.offsetY)
-                            });
-                        });
-                    tooltip.removeClass('top bottom right left').addClass(set.placement);
-                    tooltip.css({
-                        'left': methods.left($this, tooltip, set.placement, $this.offset().left, set.effect, set.offsetX),
-                        'top': methods.top($this, tooltip, set.placement, $this.offset().top, set.effect, set.offsetY)
-                    }).fadeIn(set.durationOn, function() {
-                        $(document).trigger({
-                            'type': 'tooltip.show',
-                            'el': $(this).css('opacity', 1)
-                        });
-                    });
-                    $this.off('mouseleave.' + nS).on('mouseleave.' + nS, function(e) {
-                        var el = $(this);
                         if (set.effect !== 'always')
-                            el.tooltip('remove', e);
-                    });
-                    $this.filter(':input').off('blur.' + nS).on('blur.' + nS, function(e) {
-                        $(this).tooltip('remove', e);
-                    });
+                            $this.data(set);
+                        else
+                            $this.data('title', '');
 
-                    return $this;
+                        var textEl = $this.find(set.textEl);
+                        if (textEl.is(':visible') && $.existsN(textEl))
+                            return $this;
+                        tooltip.html(set.title);
+                        if (set.otherClass) {
+                            if (!$.exists(set.tooltip + '.' + set.otherClass))
+                                tooltip.clone().appendTo(body).addClass(set.otherClass);
+
+                            tooltip = $(set.tooltip + '.' + set.otherClass);
+                        }
+
+                        if (set.effect === 'mouse')
+                            $this.off('mousemove.' + nS).on('mousemove.' + nS, function(e) {
+                                tooltip.html(set.title).show().css({
+                                    'left': methods.left($(this), tooltip, set.placement, e.pageX, set.effect, set.offsetX),
+                                    'top': methods.top($(this), tooltip, set.placement, e.pageY, set.effect, set.offsetY)
+                                });
+                            });
+                        tooltip.removeClass('top bottom right left').addClass(set.placement);
+                        tooltip.css({
+                            'left': methods.left($this, tooltip, set.placement, $this.offset().left, set.effect, set.offsetX),
+                            'top': methods.top($this, tooltip, set.placement, $this.offset().top, set.effect, set.offsetY)
+                        });
+                        if (set.show == 'true')
+                            tooltip.fadeIn(set.durationOn);
+                        $this.off('mouseleave.' + nS).on('mouseleave.' + nS, function(e) {
+                            var el = $(this);
+                            if (set.effect !== 'always')
+                                el.tooltip('remove', e);
+                        });
+                        $this.filter(':input').off('blur.' + nS).on('blur.' + nS, function(e) {
+                            $(this).tooltip('remove', e);
+                        });
+                    });
+                    return this;
                 },
                 left: function(el, tooltip, placement, left, eff, offset) {
-                    console.log(tooltip)
                     if (placement === 'left')
                         return Math.ceil(left - (eff === 'mouse' ? offset : tooltip.actual('outerWidth') - offset));
                     if (placement === 'right')
@@ -828,10 +824,10 @@ function getCookie(c_name)
                     this.each(function() {
                         var $this = $(this),
                                 tooltip = $(methods.def.tooltip);
-                                
+
                         if ($this instanceof jQuery && $this['data']) {
                             var data = $this.data(),
-                            durOff = $this.data('durationOff');
+                                    durOff = $this.data('durationOff');
 
                             if (data.tooltip !== '.tooltip')
                                 tooltip = tooltip.add($(data.tooltip));
@@ -840,7 +836,7 @@ function getCookie(c_name)
                         }
                         else
                             durOff = methods.def.durationOff;
-                        
+
                         $(tooltip).stop().fadeOut(durOff, function() {
                             if (data.otherClass)
                                 $(this).remove();
@@ -853,7 +849,7 @@ function getCookie(c_name)
         if (methods[method]) {
             return methods[ method ].apply(this, Array.prototype.slice.call(arguments, 1));
         } else if (typeof method === 'object' || !method) {
-            return methods.init.apply(this, arguments);
+            return handlerTooltip.apply(this, arguments, null);
         } else {
             $.error('Method ' + method + ' does not exist on $.tooltip');
         }
@@ -861,10 +857,17 @@ function getCookie(c_name)
     $.tooltip = function(m) {
         return methods[m];
     };
+    function handlerTooltip(o, e) {
+        $(this).each(function() {
+            if (e && $(e.relatedTarget).has('[data-rel="tooltip"]'))
+                $(tooltip).hide();
+            $(this).tooltip('init', o);
+        });
+        return $(this);
+    }
+    ;
     body.on('mouseenter.' + nS, '[data-rel="tooltip"]', function(e) {
-        if ($(e.relatedTarget).has('[data-rel="tooltip"]'))
-            $(tooltip).hide();
-        $(this).tooltip('init', {}, e);
+        handlerTooltip.apply(this, null, e);
     }).on('click.' + nS + ' mouseup.' + nS, function(e) {
         if ($(this).data('effect') === 'always')
             $.tooltip('remove')(e);
