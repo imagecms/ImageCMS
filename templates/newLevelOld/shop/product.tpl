@@ -106,7 +106,7 @@
                                     {if $oldoprice && !$hasDiscounts}
                                         <span class="price-discount">
                                             <span>
-                                                <span class="price priceOrigVariant">{echo intval($model->getOldPrice())}</span>
+                                                <span class="price priceOrigVariant">{echo intval($model->toCurrency('OldPrice'))}</span>
                                                 <span class="curr">{$CS}</span>
                                             </span>
                                         </span>
@@ -743,7 +743,7 @@
 
 <!-- Start. JS vars-->
 <script type="text/javascript">
-    var hrefCategoryProduct = "{$category_url}";
+                                                                var hrefCategoryProduct = "{$category_url}";
 </script>
 {literal}
     <script type="text/javascript">

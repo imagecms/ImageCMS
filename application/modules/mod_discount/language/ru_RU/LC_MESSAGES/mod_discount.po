@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-04 02:10+0000\n"
-"PO-Revision-Date: 2014-03-04 02:10+0000\n"
+"POT-Creation-Date: 2014-03-04 05:15+0400\n"
+"PO-Revision-Date: 2014-03-04 05:15+0400\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -18,9 +18,16 @@ msgstr ""
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: ./application/modules/mod_discount/assets/admin/list.tpl:116
-msgid "Discounts list is empty"
-msgstr "Список скидок пустой"
+
+#: ./application/modules/mod_discount/admin.php:61
+#: ./application/modules/mod_discount/admin.php:182
+msgid "Amount <<from>> can not be greater than the sum <<to>>"
+msgstr "Количество << от >> не может быть больше, чем << до >>"
+
+#: ./application/modules/mod_discount/admin.php:77
+#: ./application/modules/mod_discount/admin.php:197
+msgid "There can be more than one discount with said upper threshold as a <<maximum>>!"
+msgstr "Может быть только одна накопительная скидка с максимальным верхним порогом"
 
 #: ./application/modules/mod_discount/assets/admin/list.tpl:35
 msgid "Name"
@@ -200,11 +207,6 @@ msgstr "Код сертификата"
 msgid "Discount code"
 msgstr "Код скидки"
 
-#: ./application/modules/mod_discount/admin.php:61
-#: ./application/modules/mod_discount/admin.php:182
-msgid "Amount <<from>> can not be greater than the sum <<to>>"
-msgstr "Количество << от >> не может быть больше, чем << до >>"
-
 #: ./application/modules/mod_discount/assets/admin/edit.tpl:57
 msgid "Count of usage"
 msgstr "Количество использования"
@@ -230,11 +232,6 @@ msgstr "Максимальный"
 #: ./application/modules/mod_discount/assets/admin/edit.tpl:85
 msgid "Method of calculation"
 msgstr "Метод подсчета"
-
-#: ./application/modules/mod_discount/admin.php:77
-#: ./application/modules/mod_discount/admin.php:197
-msgid "There can be more than one discount with said upper threshold as a <<maximum>>!"
-msgstr "Может быть более одной скидки с указанным верхним порогом в качестве <<максимального>> !"
 
 #: ./application/modules/mod_discount/assets/gift_succes.tpl:6
 msgid "on amount"
