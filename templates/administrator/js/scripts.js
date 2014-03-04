@@ -1130,7 +1130,7 @@ function initAdminArea() {
         if (!$(this).attr('disabled') && !$(this).hasClass('disabled'))
         {
             $('#loading').stop().fadeIn(100);
-            $('.listFilterForm').ajaxSubmit({
+            $('.tab-pane.active .listFilterForm').ajaxSubmit({
                 target: '#mainContent',
                 headers: {
                     'X-PJAX': 'X-PJAX'

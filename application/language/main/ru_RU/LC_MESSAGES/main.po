@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-03 06:41+0200\n"
-"PO-Revision-Date: 2014-03-03 06:41+0200\n"
+"POT-Creation-Date: 2014-03-04 01:04+0200\n"
+"PO-Revision-Date: 2014-03-04 01:04+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -28,6 +28,14 @@ msgstr ""
 "X-Poedit-SearchPath-9: ../../../../../system/language/upload\n"
 "X-Poedit-SearchPath-10: ../../../../../system/libraries\n"
 "X-Poedit-SearchPath-11: ../../../../../templates/administrator/js/jquery-validate\n"
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:602
+msgid "The Main tpl field can only contain Latin alpha-numeric characters"
+msgstr "Поле Главный шаблон может содержать только латинские алфавитно-цифровые символы"
+
+#: ./application/modules/shop/classes/Category/CategoryApi.php:517
+msgid "The tpl field can only contain Latin alpha-numeric characters"
+msgstr "Поле Шаблон категории может содержать только латинские алфавитно-цифровые символы"
 
 #: ./application/modules/shop/classes/Products/ProductApi.php:419
 msgid "Invalid url"
@@ -61,11 +69,6 @@ msgstr "Неверное значение position"
 #: ./application/modules/shop/classes/Category/CategoryApi.php:504
 msgid "Invalid parent_id"
 msgstr "Неверное значение parent_id"
-
-#: ./application/modules/shop/classes/Category/CategoryApi.php:512
-#: ./application/modules/shop/classes/Products/ProductApi.php:603
-msgid "The tpl field can only contain Latin characters"
-msgstr "Поле Tpl может содержать только латинские символы"
 
 #: ./application/modules/shop/classes/Products/ProductApi.php:471
 #: ./application/modules/shop/classes/Products/ProductApi.php:591
