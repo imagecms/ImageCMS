@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-04 12:28+0200\n"
-"PO-Revision-Date: 2014-03-04 12:28+0200\n"
+"POT-Creation-Date: 2014-03-04 01:04+0200\n"
+"PO-Revision-Date: 2014-03-04 01:04+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -36,6 +36,10 @@ msgstr "Поле Главный шаблон может содержать то�
 #: ./application/modules/shop/classes/Category/CategoryApi.php:517
 msgid "The tpl field can only contain Latin alpha-numeric characters"
 msgstr "Поле Шаблон категории может содержать только латинские алфавитно-цифровые символы"
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:419
+msgid "Invalid url"
+msgstr "Недопустимый url-адрес"
 
 #: ./system/language/form_validation/form_validation.php:18
 msgid "alpha_numeric"
@@ -542,10 +546,6 @@ msgstr "Неверный пароль"
 #: ./application/libraries/DX_Auth.php:1121
 msgid "auth incorrect old password"
 msgstr "Неверный старый пароль"
-
-#: ./application/modules/shop/classes/Products/ProductApi.php:419
-msgid "Invalid url"
-msgstr "Недопустимые url-адрес"
 
 #: ./application/libraries/DX_Auth.php:1232
 #: ./application/libraries/DX_Auth.php:1237
