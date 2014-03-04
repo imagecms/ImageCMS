@@ -20,16 +20,17 @@
                                     <span class="divider">/</span>
                                     <span class="code">{lang('Артикул','commerce_mobiles')}: {echo $item->getNumber()}</span>
                                 {/if}
-                                <input name="products[{$key}]" type="hidden" value="{$item->quantity}"/>
+                                <input name="products[{echo $item->quantity}]" type="hidden" value="{echo $item->quantity}"/>
                                 <span class="d_b price">{echo ShopCore::app()->SCurrencyHelper->convert($item->price * $item->quantity)}{$CS}</span>
                             </span>
                         </a>
                         <span class="descr">
-                            <a href="{shop_url('cart/delete/'.$key)}" class="remove_ref red"><span>×</span> Удалить</a>
+                            <a href="{shop_url('cart/removeProductByVariantId/'.$item->id)}" class="remove_ref red"><span>×</span> Удалить</a>
                             <input type="text"
-                                   name="products[{$key}]"
+                                   name="products[{echo $item->quantity}]"
                                    price="{echo $item->price}"
-                                   value="{$item->quantity}"
+                                   value="{echo $item->quantity}"
+                                   data-id="{echo $item->id}"
                                    autocomplete="off"
                                    onblur=""/>
                             <span class="frame_count">
@@ -40,28 +41,17 @@
                         </span>
                     </div>
                 </li>
-                {$summary = $item->price * $item->quantity}
-                {$total     += $summary}
-                {$total_nc  += $summary_nextc}
             {/foreach}
         </ul>
         <div class="main_frame_inside">
             <div class="gen_sum">
-                {$discount = $CI->load->module('mod_discount/discount_api')->get_discount_api(1);}
-                {if $discount['result_sum_discount']}
-                    Скидка: {echo $discount['result_sum_discount_convert']} {$CS} <br/>
+                {if $discount_val}
+                    Скидка: {echo ShopCore::app()->SCurrencyHelper->convert($discount_val)} {$CS} <br/>
                 {/if}
                 <span class="total_pay">Всего к оплате:</span>
 
                 <span class="price">
-
-                    {if $total < $item.delivery_free_from}
-                        {$total += $item.delivery_price}
-                    {/if}
-                    {if isset($item.gift_cert_price)}
-                        {$total -= $item.gift_cert_price}
-                    {/if}
-                    {echo $total - $discount['result_sum_discount_convert']} {$CS}
+                    {echo ShopCore::app()->SCurrencyHelper->convert($cartPrice)}
                 </span>
             </div>
         </div>
