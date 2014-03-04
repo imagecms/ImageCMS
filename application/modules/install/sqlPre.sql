@@ -1060,6 +1060,7 @@ CREATE TABLE IF NOT EXISTS `mod_discount_category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `category_id` int(11) DEFAULT NULL,
   `discount_id` int(11) DEFAULT NULL,
+  `child` int(3) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `discount_id` (`discount_id`),
   KEY `category_id` (`category_id`)
@@ -2243,6 +2244,7 @@ CREATE TABLE IF NOT EXISTS `shop_orders` (
   `discount` float(10,2) DEFAULT NULL,
   `discount_info` text,
   `origin_price` float(10,2) DEFAULT NULL,
+  `user_surname` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `shop_orders_I_1` (`key`),
   KEY `shop_orders_I_2` (`status`),
@@ -2274,6 +2276,7 @@ CREATE TABLE IF NOT EXISTS `shop_orders_products` (
   `product_name` varchar(255) DEFAULT NULL,
   `variant_name` varchar(255) DEFAULT NULL,
   `price` float(10,2) DEFAULT NULL,
+  `origin_price` float(10,2) DEFAULT NULL,
   `quantity` int(11) DEFAULT NULL,
   `kit_id` int(11) DEFAULT NULL,
   `is_main` tinyint(1) DEFAULT NULL,
@@ -2333,18 +2336,20 @@ DROP TABLE IF EXISTS `shop_order_statuses`;
 CREATE TABLE IF NOT EXISTS `shop_order_statuses` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `position` smallint(6) DEFAULT NULL,
+  `color` varchar(255) DEFAULT NULL,
+  `fontcolor` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `shop_order_statuses_I_2` (`position`),
   KEY `shop_order_statuses_I_1` (`position`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 --
--- Дамп даних таблиці `shop_order_statuses`
+-- Dumping data for table `shop_order_statuses`
 --
 
-INSERT INTO `shop_order_statuses` (`id`, `position`) VALUES
-(1, 1),
-(2, 99);
+INSERT INTO `shop_order_statuses` (`id`, `position`, `color`, `fontcolor`) VALUES
+(1, 0, '#8b8f8b', '#ffffff'),
+(2, 3, '#348c30', '#ffffff');
 
 -- --------------------------------------------------------
 
@@ -5829,7 +5834,8 @@ INSERT INTO `shop_rbac_privileges` (`id`, `name`, `group_id`, `description`) VAL
 (481, 'Widgets_manager::get', 59, NULL),
 (482, 'Widgets_manager::edit_html_widget', 59, NULL),
 (483, 'Widgets_manager::edit_module_widget', 59, NULL),
-(484, 'Widgets_manager::display_create_tpl', 59, NULL);
+(484, 'Widgets_manager::display_create_tpl', 59, NULL),
+(485, 'ShopAdminProducts::get_images', '19', NULL);
 
 -- --------------------------------------------------------
 
@@ -6323,7 +6329,8 @@ INSERT INTO `shop_rbac_privileges_i18n` (`id`, `title`, `description`, `locale`)
 (479, 'Обновление настроек виджета', 'Доступ к обновлению настроек виджета', 'ru'),
 (480, 'Удаление виджета', 'Доступ к удалению виджета', 'ru'),
 (482, 'Редактирование html виджета', 'Доступ к редактированию html виджета', 'ru'),
-(483, 'Редактирование модульного виджета', 'Доступ к редактированию модульного виджета', 'ru');
+(483, 'Редактирование модульного виджета', 'Доступ к редактированию модульного виджета', 'ru'),
+(485, 'Поиск картинок', NULL , 'ru' );
 
 -- --------------------------------------------------------
 

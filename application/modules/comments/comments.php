@@ -41,8 +41,8 @@ class Comments extends MY_Controller {
     public static function adminAutoload() {
         parent::adminAutoload();
 
-        \CMSFactory\Events::create()->onShopProductDelete()->setListener('commentsDeleteFromProduct');
-        \CMSFactory\Events::create()->onShopCategoryDelete()->setListener('commentsDeleteFromCategory');
+        //\CMSFactory\Events::create()->onShopProductDelete()->setListener('commentsDeleteFromProduct');
+        //\CMSFactory\Events::create()->onShopCategoryDelete()->setListener('commentsDeleteFromCategory');
     }
 
     public function commentsDeleteFromCategory($product) {

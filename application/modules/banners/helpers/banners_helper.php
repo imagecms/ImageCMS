@@ -1,8 +1,25 @@
 <?php
-if (!function_exists('get_entity_mod')){
-    function get_entity_mod($w){
+
+if (!function_exists('get_entity_mod')) {
+
+    function get_entity_mod($w) {
         $ci = & get_instance();
         switch ($w) {
+            case $w == 'product_0':
+                return 'product - all';
+                break;
+            case $w == 'shop_category_0':
+                return 'shop_category - all';
+                break;
+            case $w == 'brand_0':
+                return 'brand - all';
+                break;
+            case $w == 'category_0':
+                return 'category - all';
+                break;
+            case $w == 'page_0':
+                return 'page - all';
+                break;
             case strstr($w, 'product'):
                 $id = (int) str_replace('product_', '', $w);
                 $prod = SProductsQuery::create()->findPk($id);
@@ -23,13 +40,13 @@ if (!function_exists('get_entity_mod')){
                 break;
             case strstr($w, 'page'):
                 $id = (int) str_replace('page_', '', $w);
-                $page = $ci->db->where('id',$id)->get('content')->result_array();
+                $page = $ci->db->where('id', $id)->get('content')->result_array();
                 if (count($page) > 0)
                     return 'page - ' . $page[0]['title'];
                 break;
             case strstr($w, 'category'):
                 $id = (int) str_replace('category_', '', $w);
-                $page = $ci->db->where('id',$id)->get('category')->result_array();
+                $page = $ci->db->where('id', $id)->get('category')->result_array();
                 if (count($page) > 0)
                     return 'category - ' . $page[0]['name'];
                 break;
@@ -41,5 +58,6 @@ if (!function_exists('get_entity_mod')){
                 break;
         }
     }
+
 }
 ?>

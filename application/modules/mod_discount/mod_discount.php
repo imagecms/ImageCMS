@@ -5,14 +5,13 @@ if (!defined('BASEPATH'))
 
 /**
  * Class for Mod_Discount module
- * @uses \mod_discount\classes\BaseDiscount
+ * @uses \MY_Controller
  * @author DevImageCms 
  * @copyright (c) 2013, ImageCMS
  * @package ImageCMSModule
- * @property discount_model $discount_model
- * @property discount_model_front $discount_model_front
+ * @property discount_model_admin $discount_model_admin
  */
-class Mod_discount extends \mod_discount\classes\BaseDiscount {
+class Mod_discount extends \MY_Controller {
 
     public static $cnt = 0;
     public $no_install = true;
@@ -41,72 +40,114 @@ class Mod_discount extends \mod_discount\classes\BaseDiscount {
      * @copyright (c) 2013, ImageCMS
      */
     public function autoload() {
-        if ($this->check_module_install()) {
-            \CMSFactory\Events::create()->on('getVariantProduct')->setListener('get_discount_for_product');
-            \CMSFactory\Events::create()->onShopMakeOrder()->setListener('make_order_with_discount');
-            \CMSFactory\Events::create()->on('Cart:Operation')->setListener('changeCart');
+
+        if (count($this->db->where('name', 'mod_discount')->get('components')->result_array()) != 0) {
+
+            $this->applyDiscountCartItems();
+
+            $this->applyResultDiscount();
+            /** apply Gift */
+            if ($_POST['gift'])
+                $this->applyGift();
         }
+    }
 
+    /**
+     * apply discount to Cart Items
+     * @access private
+     * @author DevImageCms
+     * @param ---
+     * @return ---
+     * @copyright (c) 2013, ImageCMS
+     */
+    private function applyDiscountCartItems() {
+        $cart = \Cart\BaseCart::getInstance();
+        $cartItems = $cart->getItems('SProducts');
 
-        /** apply Gift */
-        if ($_POST['gift']) {
-            
-                $gift = $this->input->post('gift');
-                //echo __DIR__;
-                require_once __DIR__ . '/gift.php';
-                $obkGift = new \Gift();
+        if (count($cartItems['data']) > 0) {
+            foreach ($cartItems['data'] as $item) {
+                if ($item->originPrice == $item->price) {
+                    $arr_for_discount = array(
+                        'product_id' => $item->getSProducts()->getId(),
+                        'category_id' => $item->getSProducts()->getCategoryId(),
+                        'brand_id' => $item->getSProducts()->getBrandId(),
+                        'vid' => $item->id,
+                        'id' => $item->getSProducts()->getId()
+                    );
+                    \CMSFactory\assetManager::create()->discount = 0;
+
+                    if (\mod_discount\classes\BaseDiscount::checkModuleInstall())
+                        \mod_discount\discount_product::create()->getProductDiscount($arr_for_discount);
+
+                    if ($discount = \CMSFactory\assetManager::create()->discount) {
+                        $priceNew = ((float) $item->originPrice - (float) $discount['discount_value'] < 0) ? 1 : (float) $item->originPrice - (float) $discount['discount_value'];
+                        $cart->setItemPrice(array('instance' => 'SProducts', 'id' => $item->id), $priceNew);
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * apply result discount
+     * @access private
+     * @author DevImageCms
+     * @param ---
+     * @return ---
+     * @copyright (c) 2013, ImageCMS
+     */
+    private function applyResultDiscount() {
+        \mod_discount\classes\BaseDiscount::prepareOption(array('reBuild' => 1));
+        $this->baseDiscount = \mod_discount\classes\BaseDiscount::create();
+
+        if (\mod_discount\classes\BaseDiscount::checkModuleInstall()) {
+            $discount['max_discount'] = $this->baseDiscount->discountMax;
+            $discount['sum_discount_product'] = $this->baseDiscount->discountProductVal;
+            $discount['sum_discount_no_product'] = $this->baseDiscount->discountNoProductVal;
+            if ($this->baseDiscount->discountProductVal > $this->baseDiscount->discountNoProductVal) {
+                $discount['result_sum_discount'] = $this->baseDiscount->discountProductVal;
+                $discount['type'] = 'product';
+            } else {
+                $discount['result_sum_discount'] = $this->baseDiscount->discountNoProductVal;
+                $discount['type'] = 'user';
+            }
+
+            if ($discount['result_sum_discount']) {
+                $this->baseDiscount->cart->setTotalPrice($this->baseDiscount->cart->getOriginTotalPrice() - $discount['result_sum_discount']);
+                $this->baseDiscount->cart->discount_info = $discount;
+                $this->baseDiscount->cart->discount_type = $discount['type'];
+                $this->baseDiscount->updateDiskApply($discount['max_discount']['key']);
+            }
+        }
+    }
+
+    /**
+     * apply user gift
+     * @access private
+     * @author DevImageCms
+     * @param ---
+     * @return ---
+     * @copyright (c) 2013, ImageCMS
+     */
+    private function applyGift() {
+
+        $key = $this->input->post('gift');
+        $aplyGift = false;
+        foreach ($this->baseDiscount->discountType['all_order'] as $disc)
+            if ($disc['key'] == $key and $disc['is_gift']) {
+                $value = $this->baseDiscount->getDiscountValue($disc, $this->baseDiscount->cart->getTotalPrice());
+                $this->baseDiscount->cart->gift_info = $disc['key'];
+                $this->baseDiscount->cart->gift_value = $value;
+                $this->baseDiscount->cart->setTotalPrice($this->baseDiscount->cart->getTotalPrice() - $value);
+                $aplyGift = true;
                 if ($_POST['gift_ord'])
-                    $obkGift->get_gift_certificate_new($gift, null,true);
-                else
-                    $obkGift->get_gift_certificate_new($gift);
-        }
-    }
+                    $this->baseDiscount->updateDiskApply($disc['key'], 'gift');
 
-    /**
-     * change price cart
-     * @access public
-     * @author DevImageCms
-     * @param cart
-     * @return ---
-     * @copyright (c) 2013, ImageCMS
-     */
-    public static function changeCart($cart) {
-        $obj = new \mod_discount\discount_order;
-        $obj->update_cart_discount($cart['object']);
-    }
+                break;
+            }
 
-    /**
-     * get discount for product when get product variant
-     * @access public
-     * @author DevImageCms
-     * @param ---
-     * @return ---
-     * @copyright (c) 2013, ImageCMS
-     */
-    public function get_discount_for_product($product) {
-
-        $obj = new \mod_discount\discount_product;
-        $obj->get_product_discount_event($product);
-    }
-
-    /**
-     * update order with discount and gift
-     * @access public
-     * @author DevImageCms
-     * @param ---
-     * @return ---
-     * @copyright (c) 2013, ImageCMS
-     */
-    public function make_order_with_discount($data) {
-        if (self::$cnt == 0) {
-            $obj = new \mod_discount\discount_order;
-            $obj->update_order_discount($data);
-            self::$cnt++;
-        }
-    }
-
-    public function register_script() {
-        \CMSFactory\assetManager::create()->registerScript('main', TRUE);
+        if (!$aplyGift)
+            $this->baseDiscount->cart->gift_error = TRUE;
     }
 
     /**
@@ -134,6 +175,15 @@ class Mod_discount extends \mod_discount\classes\BaseDiscount {
             exit;
 
         $this->discount_model_admin->moduleDelete();
+    }
+
+    /**
+     * register javascript
+     * @deprecated since version 4.5.2
+     * @copyright (c) 2013, ImageCMS
+     */
+    public function register_script() {
+        \CMSFactory\assetManager::create()->registerScript('main', TRUE);
     }
 
 }

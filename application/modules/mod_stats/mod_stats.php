@@ -28,15 +28,36 @@ class Mod_stats extends \MY_Controller {
     }
 
     public function autoload() {
+        /** Check setting 'save_search_result' * */
+        if ($this->stats_model->getSettingByName('save_search_results_ac') == '1') {
+            //Autocomplete results
+            \CMSFactory\Events::create()->on('search:AC')->setListener('saveSearchedKeyWordsAC');
+        }
+        
         if (!$this->input->is_ajax_request()) {
             /** Check setting 'save_search_result' * */
             if ($this->stats_model->getSettingByName('save_search_results') == '1') {
+                // When enter press
                 \CMSFactory\Events::create()->on('ShopBaseSearch:preSearch')->setListener('saveSearchedKeyWords');
             }
+
             if ($this->stats_model->getSettingByName('save_users_attendance') == '1') {
                 \CMSFactory\Events::create()->on('Core:pageLoaded')->setListener('saveAttendance');
             }
         }
+    }
+
+    /**
+     * Save search keywords for autocomplete
+     * @param string $text
+     * @return 
+     */
+    public function saveSearchedKeyWordsAC($text = '') {
+        if ($text['search_text'] == '') {
+            return;
+        }
+        $thisObj = new Mod_stats();
+        $thisObj->stats_model->saveKeyWordsAC($text['search_text']);
     }
 
     /**
@@ -109,4 +130,3 @@ class Mod_stats extends \MY_Controller {
     }
 
 }
-

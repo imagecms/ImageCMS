@@ -5,7 +5,7 @@
 var SiteMap = {
     addHidenUrl: function(curElement) {
         var hide_url = $('#hide_url').val();
-        var newUrlContainer = $('.addHidenUrlClone').clone();
+        var newUrlContainer = $('.addHidenUrlClone').clone(true);
         $(newUrlContainer).find('.hide_url').val(hide_url);
         $(newUrlContainer).find('.hide_url').attr('name', 'hide_urls[]');
         $(newUrlContainer).insertAfter('.addHidenUrlClone');
@@ -29,5 +29,24 @@ var SiteMap = {
                 $('.notifications.top-right').append(data);
             }
         });
+    },
+    showHideSavedInformation: function(curElement) {
+        if (curElement.val()) {
+            $('.savedSitemap').show();
+        } else {
+            $('.savedSitemap').hide();
+        }
     }
 };
+$('[data-toggle="popover"]').popover();
+$('.frame_prod-on_off').off('click').off('click.setSitemap').on('click.setSitemap', function() {
+    var input = $(this).find('input'),
+            val = input.val(),
+            valOn = input.data('valOn'),
+            valOff = input.data('valOff');
+
+    if (val == valOn)
+        input.val(valOff);
+    else
+        input.val(valOn);
+});

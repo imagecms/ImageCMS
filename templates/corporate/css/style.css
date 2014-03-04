@@ -109,6 +109,7 @@ nav a{text-decoration: none;}
 /*/base*/
 
 /*text*/
+.text{word-break: break-word;word-wrap: break-word;}
 .text p {color:#5f5f5f;}
 .text ul{list-style-type: square;padding:0 10px 0 25px;}
 .text ul li {margin-bottom: 8px;color:#5f5f5f;}

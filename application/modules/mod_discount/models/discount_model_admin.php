@@ -3,7 +3,14 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Discount_model_admin extends CI_Model {
+/**
+ * Class discount_model_admin for Mod_Discount module
+ * @uses CI_Model
+ * @author DevImageCms
+ * @copyright (c) 2013, ImageCMS
+ * @package ImageCMSModule
+ */
+class discount_model_admin extends CI_Model {
 
     public function __construct() {
         parent::__construct();
@@ -19,13 +26,13 @@ class Discount_model_admin extends CI_Model {
     public function getDiscountsList($discountType = null, $rowCount = null, $offset = null) {
         $locale = \MY_Controller::getCurrentLocale();
         $query = $this->db->select("*, mod_shop_discounts.id as id")->join('mod_shop_discounts_i18n', "mod_shop_discounts_i18n.id = mod_shop_discounts.id and mod_shop_discounts_i18n.locale = '" . $locale . "'", 'left')
-                //->where("mod_shop_discounts_i18n.locale " , $locale )
-                ->order_by('mod_shop_discounts.active', 'desc')->order_by('mod_shop_discounts.id', 'desc');
+                        //->where("mod_shop_discounts_i18n.locale " , $locale )
+                        ->order_by('mod_shop_discounts.active', 'desc')->order_by('mod_shop_discounts.id', 'desc');
         if ($discountType != null) {
             $query = $query->where('mod_shop_discounts.type_discount', $discountType);
         }
         $query = $query->get('mod_shop_discounts')->result_array();
-        
+
         return $query;
     }
 
@@ -68,6 +75,7 @@ class Discount_model_admin extends CI_Model {
 
     /**
      * Check have any discoun with given key
+     * @return (bool) 
      */
     public function checkDiscountCode($key) {
         $query = $this->db->where('key', $key)->get('mod_shop_discounts')->row_array();
@@ -181,7 +189,7 @@ class Discount_model_admin extends CI_Model {
                 $this->db->query("update mod_shop_discounts_i18n set name = '$name' where id = '$id' and locale = '$locale'");
             else
                 $this->db->query("insert into mod_shop_discounts_i18n(id,name,locale) values('$id','$name','$locale')");
-            
+
             $this->db->where('discount_id', $id)->delete($discountTypeTableNamePrevious);
             $typeDiscountData['discount_id'] = $id;
 
@@ -296,6 +304,36 @@ class Discount_model_admin extends CI_Model {
     }
 
     /**
+     * Delete discount by id
+     * @param (int) $id
+     * @param (string) $entity
+     * @return boolean
+     */
+    public function checkEntityExists($entity, $id) {
+
+        switch ($entity) {
+            case 'product':
+                return $this->db->where('id', $id)->get('shop_products')->num_rows();
+                break;
+            case 'category':
+                return $this->db->where('id', $id)->get('shop_category')->num_rows();
+                break;
+            case 'brand':
+                return $this->db->where('id', $id)->get('shop_brands')->num_rows();
+                break;
+            case 'user':
+                return $this->db->where('id', $id)->get('users')->num_rows();
+                break;
+            case 'group_user':
+                return $this->db->where('id', $id)->get('shop_rbac_roles')->num_rows();
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    /**
      * Install module
      */
     public function moduleInstall() {
@@ -337,7 +375,7 @@ class Discount_model_admin extends CI_Model {
                 DEFAULT CHARACTER SET = utf8
                 COLLATE = utf8_general_ci;";
         $this->db->query($sql);
-        
+
         $sql = "CREATE  TABLE IF NOT EXISTS `mod_shop_discounts_i18n` (
                   `id` INT NOT NULL ,
                   `locale` VARCHAR(5) NOT NULL ,
@@ -346,7 +384,7 @@ class Discount_model_admin extends CI_Model {
                 ENGINE = MyISAM
                 DEFAULT CHARACTER SET = utf8
                 COLLATE = utf8_general_ci;";
-        
+
         $this->db->query($sql);
 
         $sql = "CREATE  TABLE IF NOT EXISTS `mod_discount_product` (
@@ -479,6 +517,33 @@ class Discount_model_admin extends CI_Model {
                 'rules' => 'required|integer',
             ),
         );
+    }
+
+    /**
+     * Check range for cumulative discount
+     * @param array $data
+     * @return boolean
+     */
+    public function checkRangeForCumulativeDiscount($data = FALSE) {
+        if (!$data) {
+            return FALSE;
+        }
+        if ($data['end_value'] != NULL) {
+            $sql = "SELECT * FROM `mod_discount_comulativ`
+                WHERE (`begin_value` BETWEEN  " . $data['begin_value'] . " AND " . $data['end_value'] . ") 
+                OR (`end_value` BETWEEN " . $data['begin_value'] . " AND " . $data['end_value'] . ")";
+        } else {
+            $sql = "SELECT * FROM `mod_discount_comulativ`
+                WHERE " . $data['begin_value'] . " < `end_value`";
+        }
+
+
+        $query = $this->db->query($sql)->row_array();
+
+        if ($query) {
+            return TRUE;
+        }
+        return FALSE;
     }
 
 }
