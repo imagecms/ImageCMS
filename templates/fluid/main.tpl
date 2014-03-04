@@ -134,11 +134,11 @@
             <div class="content">
                 {$content}
             </div>
-            <div class="h-footer"></div>
+            <div class="h-footer{if $CI->core->core_data['data_type'] == 'main'} footer-main{/if}"></div>
         </div>
-        <footer>
-            {include_tpl('footer')}
-        </footer>
+
+        {include_tpl('footer')}
+
         {include_tpl('user_toolbar')}
 
         {/*}Start. delete before upload to server{ */}

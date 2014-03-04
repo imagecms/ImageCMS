@@ -806,7 +806,7 @@ var Translator = {
             success: function(data) {
                 $('.modal_update_results').addClass('hide').addClass('fade');
                 $('.modal_update_results').modal('hide');
-                $('.modal-backdrop').hide();
+                $('.modal-backdrop').remove();
                 var tableData = data.replace(/<script[\W\w]+<\/script>/, '');
                 $('#po_table tbody').html(tableData);
                 $('.pagination ul li.active').removeClass('active');

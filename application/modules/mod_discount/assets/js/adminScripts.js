@@ -188,15 +188,13 @@ $(document).ready(function() {
         var countUsesBlock = $('.noLimitC')[0];
         if ($(this).find('input').prop('checked')) {
             $(countUsesBlock).find('#how-much').val('');
-            $(countUsesBlock).find('#how-much').prop('disabled', false);
-
+            $(countUsesBlock).find('.spanForNoLimit').click()
         } else {
             $(countUsesBlock).find('#how-much').val(1);
             $(countUsesBlock).find('#how-much').prop('disabled', 'disabled');
             $(countUsesBlock).find('.noLimitCountCheck').prop('checked', false);
             $(countUsesBlock).find('.spanForNoLimit').removeClass('active');
             $(countUsesBlock).find('.niceCheck').css('background-position', '-46px 0px');
-
         }
     });
 
@@ -204,7 +202,7 @@ $(document).ready(function() {
 
     /** Change active or not category*/
     function changeEmtyActive() {
-      
+
         $('.prod-on_off').live('click', function() {
             var $this = $(this);
             if (!$this.hasClass('disabled')) {
@@ -227,4 +225,5 @@ $(document).ready(function() {
         });
     }
 
-})
+
+});
