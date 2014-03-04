@@ -5,8 +5,8 @@
     </button>
 {/if}
 <div class="comments" id="comments">
-    <div class="title-comment">{if $comments_arr}{lang('Отзывы покупателей', 'newLevel')}{/if} {if !$visibleMainForm || $visibleMainForm == NULL}<button class="d_l_1" data-drop=".comments-main-form" data-place="inherit" data-overlay-opacity="0" data-after="Comments.toComment">Оставить свой отзыв</button>{/if}</div>
-    {if $comments_arr}
+    <div class="title-comment">{lang('Отзывы покупателей', 'newLevel')} {if $visibleMainForm === false || $visibleMainForm == NULL}<button class="d_l_1" data-drop=".comments-main-form" data-place="inherit" data-overlay-opacity="0" data-after="Comments.toComment">{lang('Оставить свой отзыв', 'newLevel')}</button>{/if}</div>
+        {if $comments_arr}
         <div class="frame-list-comments">
             <ul class="sub-1 product-comment patch-product-view">
                 {foreach $comments_arr as $key => $comment}
@@ -115,7 +115,7 @@
         </div>
     {/if}
     {if $can_comment == 0 OR $is_logged_in}
-        <div class="drop comments-main-form {if !$comments_arr}noComments{/if} {if $visibleMainForm}active inherit{/if}" {if $visibleMainForm}style="display: block;"{/if}>
+        <div class="drop comments-main-form {if !$comments_arr}noComments{/if} {if $visibleMainForm || $visibleMainForm == NULL}active inherit{/if}" {if $visibleMainForm}style="display: block;"{/if}>
             <div class="frame-comments layout-highlight">
                 <div class="title-default title-comment">
                     <div class="title">{lang('Оставить комментарий','newLevel')}</div>
