@@ -7,7 +7,7 @@
 	<title>Class Seoexpert_model_products | ImageCMS Docs</title>
 
 	<script type="text/javascript" src="resources/combined.js?394153670"></script>
-	<script type="text/javascript" src="elementlist.js?1494635625"></script>
+	<script type="text/javascript" src="elementlist.js?2674971047"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360">
 
 </head>
@@ -409,6 +409,7 @@
 				<li><a href="function-get_currencies.html">get_currencies</a></li>
 				<li><a href="function-get_entity_mod.html">get_entity_mod</a></li>
 				<li><a href="function-get_lang_admin_folders.html">get_lang_admin_folders</a></li>
+				<li><a href="function-get_language_names.html">get_language_names</a></li>
 				<li><a href="function-get_page.html">get_page</a></li>
 				<li><a href="function-get_permissions_array.html">get_permissions_array</a></li>
 				<li><a href="function-get_perms_groups.html">get_perms_groups</a></li>
@@ -489,6 +490,8 @@
 				<li><a href="function-shop_url.html">shop_url</a></li>
 				<li><a href="function-showMessage.html">showMessage</a></li>
 				<li><a href="function-siteinfo.html">siteinfo</a></li>
+				<li><a href="function-siteInfoAdditionalManipulations.html">siteInfoAdditionalManipulations</a></li>
+				<li><a href="function-sort_names.html">sort_names</a></li>
 				<li><a href="function-sub_category_list.html">sub_category_list</a></li>
 				<li><a href="function-tpl_assign.html">tpl_assign</a></li>
 				<li><a href="function-translit.html">translit</a></li>
@@ -869,24 +872,111 @@ CI_Model
 
 		<td class="attributes"><code>
 			 public 
-			
+			boolean\
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_deleteCategoryById">#</a>
-		<code>deleteCategoryById( <span>mixed <var>$id</var> = <span class="php-keyword1">FALSE</span></span> )</code>
+		<code>deleteCategoryById( <span>integer <var>$id</var> = <span class="php-keyword1">FALSE</span></span> )</code>
 
 		<div class="description short">
 			
+<p>Delete category by id</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Delete category by id</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>integer</code><br>$id</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean\</code><br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="changeActiveCategory" id="_changeActiveCategory">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_changeActiveCategory">#</a>
+		<code>changeActiveCategory( <span>mixed <var>$id</var> = <span class="php-keyword1">NULL</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Change category active</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Change category active</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="changeEmptyMetaCategory" id="_changeEmptyMetaCategory">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_changeEmptyMetaCategory">#</a>
+		<code>changeEmptyMetaCategory( <span>mixed <var>$id</var> = <span class="php-keyword1">NULL</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Change use for emty meta</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Change use for emty meta</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br>
+				</div>
 
 
 
