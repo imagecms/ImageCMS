@@ -102,7 +102,7 @@
         {include_tpl('user_toolbar')}
         
         {/*}Start. delete before upload to server{ */}
-        
+        {/*}
         <!-- scripts -->
         <script type="text/javascript" src="{$THEME}js/raphael-min.js"></script>
         <script type="text/javascript" src="{$THEME}js/_united_side_plugins.js"></script>
@@ -124,6 +124,19 @@
                 })
             </script>
         {/literal}
+<<<<<<< HEAD:templates/newLevelCart/main.tpl
+        { */}
+        {/*}End. delete before upload to server{ */}
+
+        {/*}uncomment before opload to server and combine and minimize scripts (in comment <!-- scripts -->...<!-- scripts end -->) into united_scripts file{ */}
+        {/*} Start. uncoment before development { */}
+        
+        <script type="text/javascript">
+            initDownloadScripts(['raphael-min', 'united_scripts'], 'init', 'scriptDefer');
+        </script>
+        
+        {/*} End. uncoment before development { */}
+=======
         {/*}End. delete before upload to server{ */}
 
         {/*}uncomment before opload to server and combine and minimize scripts (in comment <!-- scripts of development -->...<!-- scripts of development end -->) into united_scripts file{ */}
@@ -132,6 +145,7 @@
             initDownloadScripts(['raphael-min', 'united_scripts'], 'init', 'scriptDefer');
         </script>
         {*/}
+>>>>>>> cdca134cf553966e91ca2de97c20598765048735:templates/newLevelOld/main.tpl
         {include_shop_tpl('js_templates')}
     </body>
 </html>

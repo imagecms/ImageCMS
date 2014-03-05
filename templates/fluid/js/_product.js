@@ -90,19 +90,22 @@ Product = {
         $.drop.method('center')(drop);
     },
     changePhoto: function(arg, fancyFrameInPH, href) {
-        hrefOptions.curHref = href;
         var drop = arg[1];
         fancyFrameInPH.parent().addClass('p_r');
         fancyFrameInPH.append('<div class="preloader"></div>');
+        if (href == hrefOptions.curHref)
+            fancyFrameInPH.find('.preloader').remove();
+        hrefOptions.curHref = href;
         fancyFrameInPH.find('img').attr('src', href).load(function() {
             fancyFrameInPH.find('.preloader').remove();
             var carGal = drop.find('.content-carousel');
 
             $.drop.method('limitSize')(drop);
+            carGal.find('.jcarousel-item').eq($.inArray(hrefOptions.curHref, hrefOptions.thumbs)).focusin();
+            $.drop.method('heightContent')(drop);
             Product.resizePhoto(drop, function() {
                 $.drop.method('center')(drop);
             });
-            carGal.find('.jcarousel-item').eq($.inArray(hrefOptions.curHref, hrefOptions.thumbs)).focusin();
         });
     },
     beforeShowHref: function(el, drop, isajax) {
@@ -118,8 +121,7 @@ Product = {
         img = content.find('img');
         hrefOptions.curHref = img.attr('src');
 
-        ShopFront.Cart.processBtnBuyCount(frame);
-        ShopFront.Cart.changeCount(frame);
+        ShopFront.Cart.changeCount(frame.find(genObj.plusMinus));
 
         var fancyFrameInPH = content.find('.inside-padd');
 
@@ -219,8 +221,6 @@ Product = {
     onComplete: function(el, drop, isajax) {
         var carGal = drop.find('.content-carousel');
         drop.find('.drop-content img').css('visibility', 'visible');
-        
-        ShopFront.Cart.changeCount(drop.find(genObj.plusMinus));
 
         Product.resizePhoto(drop, function() {
             carGal.parent().myCarousel($.extend({}, carousel, {
