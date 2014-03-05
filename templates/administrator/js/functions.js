@@ -17,8 +17,8 @@ function caret(domObject, begin, end) {
             } else if (domObject.createTextRange) {
                 range = domObject.createTextRange();
                 range.collapse(true);
-                http://test21.siteimage.com.ua/corporate/main      range.moveEnd('character', end);
-                        range.moveStart('character', begin);
+                range.moveEnd('character', end);
+                range.moveStart('character', begin);
                 range.select();
             }
         });
