@@ -1,4 +1,4 @@
-{$cart = \Cart\BaseCart::getInstance()->recountOriginTotalPrice()->recountTotalPrice()}
+{$cart = \Cart\BaseCart::getInstance()}
 {$count = $cart->getTotalItems()}
 {$price = $cart->getTotalPrice()}
 {$priceOrigin = $cart->getOriginTotalPrice()}

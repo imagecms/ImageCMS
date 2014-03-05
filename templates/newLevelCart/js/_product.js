@@ -101,10 +101,11 @@ Product = {
             var carGal = drop.find('.content-carousel');
 
             $.drop.method('limitSize')(drop);
+            carGal.find('.jcarousel-item').eq($.inArray(hrefOptions.curHref, hrefOptions.thumbs)).focusin();
+            $.drop.method('heightContent')(drop);
             Product.resizePhoto(drop, function() {
                 $.drop.method('center')(drop);
             });
-            carGal.find('.jcarousel-item').eq($.inArray(hrefOptions.curHref, hrefOptions.thumbs)).focusin();
         });
     },
     beforeShowHref: function(el, drop, isajax) {
