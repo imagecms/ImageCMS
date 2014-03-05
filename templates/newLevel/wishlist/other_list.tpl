@@ -29,7 +29,7 @@
             <div class="right-wishlist">
                 <div class="f-s_0 without-crumbs-side">
                     <div class="frame-title">
-                        <h1 class="d_i">{$wishlist[0][title]}</h1>
+                        <h1 class="title">{$wishlist[0][title]}</h1>
                     </div>
                 </div>
                 <div class="text">
@@ -37,40 +37,9 @@
                 </div>
                 {if $wishlist[0][variant_id]}
                     <div data-rel="list-item">
-                        <ul class="items items-catalog items-wish-list">
-                            {$CI->load->module('new_level')->OPI($wishlist, array('opi_otherlist'=>true))}
+                        <ul class="items items-catalog items-wish-list items-product">
+                            {$CI->load->module('new_level')->OPI($wishlist, array('opi_wishListPage' => true, 'opi_otherlist'=>true))}
                         </ul>
-                        {if $wishlist[0][variant_id]}
-                            <div class="clearfix frame-gen-sum-buy">
-                                {$price = 0}
-                                {$i = 0}
-                                {foreach $wishlist as $key => $p}
-                                    {$price += $p.price;}
-                                    {$i++}
-                                {/foreach}
-                                <div class="title-h3 f_l">{lang('Всего','newLevel')} <b class="countProdsWL">{echo $i}</b> {lang('товара на сумму','newLevel')} 
-                                    <span class="frame-prices f-s_0">
-                                        <span class="current-prices">
-                                            <span class="price-new">
-                                                <span>
-                                                    <span class="price genPriceProdsWL">{round($price, $pricePrecision)}</span>
-                                                    <span class="curr">{$CS}</span>
-                                                </span>
-                                            </span>
-                                        </span>
-                                    </span>
-                                </div>
-                                <div class="btn-buy f_r">
-                                    <button
-                                        type="button"
-                                        class="btnBuyWishList"
-                                        >
-                                        <span class="icon_cleaner icon_cleaner_buy"></span>
-                                        <span class="text-el" data-cart="{lang('Просмотреть купленные товары','newLevel')}" data-buy="{lang('Купить все доступные товары','newLevel')}" data-buy-other="{lang('Докупить все доступные товары','newLevel')}">{lang('Купить все доступные товары','newLevel')}</span>
-                                    </button>
-                                </div>
-                            </div>
-                        {/if}
                     </div>
                 {else:}
                     <div class="msg layout-highlight layout-highlight-msg">
@@ -84,7 +53,7 @@
         {else:}
             <div class="f-s_0 without-crumbs-side">
                 <div class="frame-title">
-                    <h1 class="d_i">{lang('Список желаний','newLevel')}</h1>
+                    <h1 class="title">{lang('Список желаний','newLevel')}</h1>
                 </div>
             </div>
             <div class="msg layout-highlight layout-highlight-msg">
