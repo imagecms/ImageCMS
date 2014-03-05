@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-05 10:36+0200\n"
-"PO-Revision-Date: 2014-03-05 10:36+0200\n"
+"POT-Creation-Date: 2014-03-05 11:41+0200\n"
+"PO-Revision-Date: 2014-03-05 11:41+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -18,10 +18,6 @@ msgstr ""
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: ./application/modules/translator/assets/js/admin.js:1192
-msgid "First2"
-msgstr "777"
-
 #: ./application/modules/translator/assets/admin/po_table.tpl:34
 msgid "Undo"
 msgstr "Отменить"
@@ -34,12 +30,12 @@ msgstr "Перевести"
 msgid "Statistic"
 msgstr "Статистика"
 
-#: ./application/modules/translator/assets/js/admin.js:1190
-#: ./application/modules/translator/assets/js/admin.js:1192
+#: ./application/modules/translator/assets/js/admin.js:1194
+#: ./application/modules/translator/assets/js/admin.js:1196
 msgid "First"
 msgstr "Начало"
 
-#: ./application/modules/translator/assets/js/admin.js:1206
+#: ./application/modules/translator/assets/js/admin.js:1210
 msgid "Last "
 msgstr "Конец"
 
@@ -63,19 +59,19 @@ msgstr "Перевести все"
 msgid "Translate untranslated"
 msgstr "Перевести непереведенные"
 
-#: ./application/modules/translator/assets/js/admin.js:954
+#: ./application/modules/translator/assets/js/admin.js:958
 msgid "File was successfully saved."
 msgstr "Файл был успешно сохранен."
 
-#: ./application/modules/translator/admin.php:650
+#: ./application/modules/translator/admin.php:652
 msgid "File cant be read. Please, set read file permissions."
 msgstr "Нет прав на чтение файла. Пожалуйста, установите файлу права на чтение."
 
-#: ./application/modules/translator/admin.php:656
+#: ./application/modules/translator/admin.php:658
 msgid "File cant be written. Please, set write file permissions."
 msgstr "Нет прав на записать файла. Пожалуйста, установите файлу права на запись."
 
-#: ./application/modules/translator/assets/js/admin.js:928
+#: ./application/modules/translator/assets/js/admin.js:932
 msgid "File was successfully rendered."
 msgstr "Файл успешно открыт для редактирования."
 
@@ -87,11 +83,11 @@ msgstr "Язык оригинала был успешно изменен."
 msgid "Can not set origin language."
 msgstr "Невозможно установить язык оригинала."
 
-#: ./application/modules/translator/assets/js/admin.js:1164
+#: ./application/modules/translator/assets/js/admin.js:1168
 msgid "Yandex Api Key was successfully setted."
 msgstr "Яндекс Api-Ключ был успешно изменен."
 
-#: ./application/modules/translator/assets/js/admin.js:1166
+#: ./application/modules/translator/assets/js/admin.js:1170
 msgid "Can not set Yandex Api Key."
 msgstr "Невозможно установить яндекс Api-Ключ."
 
@@ -119,49 +115,49 @@ msgstr "Пожалуйста, введите более 1 символа"
 msgid "You did not select search criteria"
 msgstr "Вы не выбрали критерии поиска"
 
-#: ./application/modules/translator/assets/js/admin.js:971
-#: ./application/modules/translator/assets/js/admin.js:1060
+#: ./application/modules/translator/assets/js/admin.js:975
+#: ./application/modules/translator/assets/js/admin.js:1064
 msgid "You have not specified Yandex Api Key."
 msgstr "Вы не указали яндекс Api-Ключ."
 
-#: ./application/modules/translator/assets/js/admin.js:976
-#: ./application/modules/translator/assets/js/admin.js:1065
+#: ./application/modules/translator/assets/js/admin.js:980
+#: ./application/modules/translator/assets/js/admin.js:1069
 msgid "You have not specified origins strings language."
 msgstr "Вы не указали язык оригинальных строк."
 
-#: ./application/modules/translator/assets/js/admin.js:1097
+#: ./application/modules/translator/assets/js/admin.js:1101
 msgid "Successfully translated"
 msgstr "Успешно переведено"
 
-#: ./application/modules/translator/assets/js/admin.js:1100
+#: ./application/modules/translator/assets/js/admin.js:1104
 msgid "Wrong API key."
 msgstr "Неправильно API-ключ."
 
-#: ./application/modules/translator/assets/js/admin.js:1103
+#: ./application/modules/translator/assets/js/admin.js:1107
 msgid "API key is locked."
 msgstr "API-ключ заблокирован."
 
-#: ./application/modules/translator/assets/js/admin.js:1106
+#: ./application/modules/translator/assets/js/admin.js:1110
 msgid "Exceeded the daily limit on the number of requests."
 msgstr "Превышен дневной лимит на количество запросов."
 
-#: ./application/modules/translator/assets/js/admin.js:1109
+#: ./application/modules/translator/assets/js/admin.js:1113
 msgid "Exceeded the daily limit on the amount of translated text."
 msgstr "Превышен дневной лимит на размер переводимого текста."
 
-#: ./application/modules/translator/assets/js/admin.js:1112
+#: ./application/modules/translator/assets/js/admin.js:1116
 msgid "Exceeded the maximum allowable size of text."
 msgstr "Превышен максимально допустимый размер текста."
 
-#: ./application/modules/translator/assets/js/admin.js:1115
+#: ./application/modules/translator/assets/js/admin.js:1119
 msgid "Text can not be translated."
 msgstr "Текст не переводится."
 
-#: ./application/modules/translator/assets/js/admin.js:1118
+#: ./application/modules/translator/assets/js/admin.js:1122
 msgid "Set direction of translation is not supported."
 msgstr "Установите направление перевода не поддерживается."
 
-#: ./application/modules/translator/assets/js/admin.js:1121
+#: ./application/modules/translator/assets/js/admin.js:1125
 msgid "Translation fails."
 msgstr "Перевод не выполняется."
 
@@ -250,29 +246,29 @@ msgstr "Файл уже существует."
 
 #: ./application/modules/translator/admin.php:289
 #: ./application/modules/translator/admin.php:294
-#: ./application/modules/translator/admin.php:684
-#: ./application/modules/translator/admin.php:776
-#: ./application/modules/translator/admin.php:787
+#: ./application/modules/translator/admin.php:686
+#: ./application/modules/translator/admin.php:778
+#: ./application/modules/translator/admin.php:789
 #: ./application/modules/translator/assets/js/admin.js:158
 #: ./application/modules/translator/assets/js/admin.js:416
 #: ./application/modules/translator/assets/js/admin.js:419
 #: ./application/modules/translator/assets/js/admin.js:657
 #: ./application/modules/translator/assets/js/admin.js:689
-#: ./application/modules/translator/assets/js/admin.js:933
-#: ./application/modules/translator/assets/js/admin.js:958
-#: ./application/modules/translator/assets/js/admin.js:971
-#: ./application/modules/translator/assets/js/admin.js:976
-#: ./application/modules/translator/assets/js/admin.js:1060
-#: ./application/modules/translator/assets/js/admin.js:1065
-#: ./application/modules/translator/assets/js/admin.js:1100
-#: ./application/modules/translator/assets/js/admin.js:1103
-#: ./application/modules/translator/assets/js/admin.js:1106
-#: ./application/modules/translator/assets/js/admin.js:1109
-#: ./application/modules/translator/assets/js/admin.js:1112
-#: ./application/modules/translator/assets/js/admin.js:1115
-#: ./application/modules/translator/assets/js/admin.js:1118
-#: ./application/modules/translator/assets/js/admin.js:1121
-#: ./application/modules/translator/assets/js/admin.js:1166
+#: ./application/modules/translator/assets/js/admin.js:937
+#: ./application/modules/translator/assets/js/admin.js:962
+#: ./application/modules/translator/assets/js/admin.js:975
+#: ./application/modules/translator/assets/js/admin.js:980
+#: ./application/modules/translator/assets/js/admin.js:1064
+#: ./application/modules/translator/assets/js/admin.js:1069
+#: ./application/modules/translator/assets/js/admin.js:1104
+#: ./application/modules/translator/assets/js/admin.js:1107
+#: ./application/modules/translator/assets/js/admin.js:1110
+#: ./application/modules/translator/assets/js/admin.js:1113
+#: ./application/modules/translator/assets/js/admin.js:1116
+#: ./application/modules/translator/assets/js/admin.js:1119
+#: ./application/modules/translator/assets/js/admin.js:1122
+#: ./application/modules/translator/assets/js/admin.js:1125
+#: ./application/modules/translator/assets/js/admin.js:1170
 msgid "Error"
 msgstr "Ошибка"
 
@@ -285,41 +281,41 @@ msgid "File was succcessfuly created."
 msgstr "Файл был успешно создан."
 
 #: ./application/modules/translator/admin.php:341
-#: ./application/modules/translator/admin.php:774
-#: ./application/modules/translator/admin.php:784
+#: ./application/modules/translator/admin.php:776
+#: ./application/modules/translator/admin.php:786
 #: ./application/modules/translator/assets/js/admin.js:156
 #: ./application/modules/translator/assets/js/admin.js:410
 #: ./application/modules/translator/assets/js/admin.js:412
 #: ./application/modules/translator/assets/js/admin.js:655
-#: ./application/modules/translator/assets/js/admin.js:818
-#: ./application/modules/translator/assets/js/admin.js:928
-#: ./application/modules/translator/assets/js/admin.js:954
-#: ./application/modules/translator/assets/js/admin.js:1097
-#: ./application/modules/translator/assets/js/admin.js:1164
+#: ./application/modules/translator/assets/js/admin.js:822
+#: ./application/modules/translator/assets/js/admin.js:932
+#: ./application/modules/translator/assets/js/admin.js:958
+#: ./application/modules/translator/assets/js/admin.js:1101
+#: ./application/modules/translator/assets/js/admin.js:1168
 msgid "Message"
 msgstr "Сообщение"
 
-#: ./application/modules/translator/admin.php:662
+#: ./application/modules/translator/admin.php:664
 msgid "File does not exist."
 msgstr "Файл не существует."
 
-#: ./application/modules/translator/admin.php:774
+#: ./application/modules/translator/admin.php:776
 msgid "Translation file was successfuly saved."
 msgstr "Файл перевода был успешно сохранен."
 
-#: ./application/modules/translator/admin.php:776
+#: ./application/modules/translator/admin.php:778
 msgid "Operation failed. Can not convert to mo-file."
 msgstr "Операция не успешная. Не возможно преобразовать в mo-файл."
 
-#: ./application/modules/translator/admin.php:784
+#: ./application/modules/translator/admin.php:786
 msgid "Selection path memory was successfuly cleared."
 msgstr "Память работы модуля была успешно очищена."
 
-#: ./application/modules/translator/admin.php:787
+#: ./application/modules/translator/admin.php:789
 msgid "Operation failed!"
 msgstr "Операция не успешна!"
 
-#: ./application/modules/translator/assets/js/admin.js:818
+#: ./application/modules/translator/assets/js/admin.js:822
 msgid "File was successfuly updated."
 msgstr "Файл был успешно обновлен."
 
