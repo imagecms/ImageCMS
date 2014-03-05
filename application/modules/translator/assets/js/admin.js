@@ -809,7 +809,7 @@ var Translator = {
                 $('.modal_update_results').addClass('hide').addClass('fade');
                 $('.modal_update_results').modal('hide');
                 $('.modal-backdrop').remove();
-                
+
                 var tableData = data.replace(/<script[\W\w]+<\/script>/, '');
                 $('#po_table tbody').html(tableData);
                 $('.pagination ul li.active').removeClass('active');
@@ -1171,11 +1171,41 @@ var Translator = {
                 }
             }
         });
+    },
+    showYandexTranslateWindow: function() {
+        $('.modal_yandex_translate').removeClass('hide').removeClass('fade');
+        $('.modal_yandex_translate').modal('show');
+        $('.modal-backdrop').show();
+    },
+    yandexTranslate: function(curElement) {
+        var langFrom = $(curElement).closest('.modal_yandex_translate').find('.languageFrom').val();
+        var langTo = $(curElement).closest('.modal_yandex_translate').find('.languageTo').val();
+        var textToTranslate = $.trim($(curElement).closest('.modal_yandex_translate').find('.translation_text').val());
+        var YandexApiKey = $.trim($('.YandexApiKey').val());
+
+        if (!YandexApiKey) {
+            showMessage(lang('Error'), lang('You have not specified Yandex Api Key.'), 'r');
+            return false;
+        }
+
+        var text = '&text=' + encodeURI(textToTranslate);
+        var url = 'https://translate.yandex.net/api/v1.5/tr.json/translate?key=' + YandexApiKey + text + '&lang=' + langFrom + '-' + langTo + '&format=plain';
+        $.ajax({
+            type: 'POST',
+            url: url,
+            success: function(Answer) {
+                if (Answer.code == '200') {
+                    $(curElement).closest('.modal_yandex_translate').find('.translation_result').val(Answer.text[0]);
+                }
+                Translator.getAnswerCodeMessage(Answer.code);
+            }
+        });
+
+        console.log(langFrom)
+        console.log(langTo)
+        console.log(textToTranslate)
     }
 };
-
-
-
 var Pagination = {
     generate: function() {
         if ($('#langs').val()) {

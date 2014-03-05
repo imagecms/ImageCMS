@@ -16,12 +16,12 @@ var cleaverFilterObj = {
             $(this).each(function() {
                 var $this = $(this),
                         settings = $.extend({
-                    slider: $this.find('.slider'),
-                    minCost: null,
-                    maxCost: null,
-                    leftSlider: $this.find('.left-slider'),
-                    rightSlider: $this.find('.right-slider')
-                }, eval($this.data('rel')));
+                            slider: $this.find('.slider'),
+                            minCost: null,
+                            maxCost: null,
+                            leftSlider: $this.find('.left-slider'),
+                            rightSlider: $this.find('.right-slider')
+                        }, eval($this.data('rel')));
                 var slider = settings.slider,
                         minCost = $(settings.minCost),
                         maxCost = $(settings.maxCost),
@@ -250,7 +250,7 @@ var Filter = {
             elCheckWrap: '.niceCheck',
             evCond: true,
             resetChecked: true,
-            classRemove: 'b_n',//if not standart
+            classRemove: 'b_n', //if not standart
             //if evCond: true
             trigger: function(a, b, c, e) {
                 c.nStCheck('changeCheck');
@@ -330,39 +330,10 @@ var Filter = {
     },
     ajaxRecount: function(el, slChk) {
         $(this.frameFilter).children(preloader).show();
-        
-        var catUrlPre = window.location.pathname.replace('shop/category', 'smart_filter/pre_filter'),
-        dataPre = $(this.catalogForm).serialize();
-        $.ajax({
-            type: 'get',
-            async : false,
-            url: catUrlPre,
-            data: dataPre,
-            success: function(dane) {
-                if (dane) {
-                    dane = JSON.parse(dane);
-                    $(dane).each(function(key,value){
-                        var id = value.property_id;
-                        $(value.possibleValues).each(function(k,v){
-                            if (v.count == 0){
-                                $('#p_'+id+'_'+v.id+' input').parent().nStCheck('checkUnChecked');
-                            }
-                        })
-                        
-                    })
-                    
-                           
-                }
-            }
 
-        });
-        
-        
-         /*not hyper clever filter*/
+        /*not hyper clever filter*/
         //    $(this.catalogForm).submit();
         /*/not hyper clever filter*/
-        
-        
 
         /*hyper clever filter*/
         var $this = el,
@@ -393,7 +364,6 @@ var Filter = {
                 else {
                     Filter.filtertype($($this), totalProducts, otherClass);
                 }
-
             }
         });
         return false;
