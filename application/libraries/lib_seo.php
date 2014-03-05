@@ -10,13 +10,16 @@ if (!defined('BASEPATH'))
  */
 class Lib_seo {
 
+    protected $orderJustMaked = FALSE;
     public $origin_arr;
     public $modif_arr;
     public $min_word_length = 3;
     public $desc_chars = 160;
 
     function Lib_seo() {
-        
+        if (CI::$APP->session->flashdata('makeOrderForGA') === true) {
+            $this->orderJustMaked = TRUE;
+        }
     }
 
     function init($settings) {
@@ -236,7 +239,7 @@ s.parentNode.insertBefore(ga, s);
           _gaq.push (['_addOrganic', 'all.by', 'query']);
           _gaq.push(['_trackPageview']);
         </script>";
-            if ($model && $CI->session->flashdata('makeOrder') === true) {
+            if ($model && $this->orderJustMaked) {
                 $ga .= "
                     <script type='text/javascript'>
             _gaq.push(['_addTrans',
@@ -282,7 +285,7 @@ s.parentNode.insertBefore(ga, s);
 
     function makeOrderForGoogle($model) {
         $CI = & get_instance();
-        if ($model && $CI->session->flashdata('makeOrder') === true) {
+        if ($model && $this->orderJustMaked) {
             $ga = "
                     <script type='text/javascript'>
             _gaq.push(['_addTrans',
