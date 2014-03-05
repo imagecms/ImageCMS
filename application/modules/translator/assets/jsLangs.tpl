@@ -27,5 +27,6 @@ langs["Translation fails."] = '<?php echo lang("Translation fails.", "translator
 langs["Yandex Api Key was successfully setted."] = '<?php echo lang("Yandex Api Key was successfully setted.", "translator")?>';
 langs["Can not set Yandex Api Key."] = '<?php echo lang("Can not set Yandex Api Key.", "translator")?>';
 langs["First"] = '<?php echo lang("First", "translator")?>';
+langs["First2"] = '<?php echo lang("First2", "translator")?>';
 langs["Last "] = '<?php echo lang("Last ", "translator")?>';
 </script>

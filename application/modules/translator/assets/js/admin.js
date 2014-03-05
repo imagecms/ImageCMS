@@ -72,9 +72,9 @@ var Sort = {
         var module_template = $('#modules_templates').val();
         var per_page = $('#per_page').val();
         var url = '';
-        
+
         this.removeSortArrows(curElement);
-        
+
         switch (type) {
             case  'modules':
                 url = '/admin/components/init_window/translator/renderModulePoFile/' + module_template + '/' + type + '/' + lang + '/0/' + per_page;
@@ -774,6 +774,7 @@ var Translator = {
 
                     }
                     $('#loading').hide();
+
                 }
             });
         }
@@ -814,6 +815,8 @@ var Translator = {
                 $('.per_page10').attr('selected', 'selected');
                 Pagination.generate();
                 Translator.statisticRecount();
+                Translator.correctPaths();
+
                 if (data) {
                     showMessage(lang('File was successfuly updated.'), lang('Message'));
                 }
@@ -1189,7 +1192,7 @@ var Pagination = {
 
         var pages = "<li><a>< " + lang('First') + "</a></li><li data-number='1'><span>1</span></li>";
         if (page_number == 1) {
-            pages = "<li><a>< " + lang('First') + "</a></li><li class='active' data-number='1'><span>1</span></li>";
+            pages = "<li><a>< " + lang('First2') + "</a></li><li class='active' data-number='1'><span>1</span></li>";
         }
 
         var i = 2;
