@@ -27,7 +27,46 @@
         </div>
         <div class="pull-right">
             <a class="btn btn-primary" onclick="Translator.saveEditingFile($(this))" >{lang('Save', 'translator')}</a>
-            <a class="btn" onclick="$('.modal').modal('hide');">{lang('Cancel', 'translator','admin')}</a>
+            <a class="btn" onclick="$('.modal').modal('hide');">{lang('Cancel', 'translator')}</a>
+        </div>
+    </div>
+</div>
+
+<div class="modal hide fade modal_yandex_translate">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>{lang('Yandex Translate', 'translator')}</h3>
+        <div>
+            <h5>{lang('Translate from', 'translator')}:</h5>
+            <select class="languageSelect languageFrom">
+                <option value="0">- {lang('No', 'translator')} -</option>
+                {foreach $locales as $lang}
+                    <option {if $settings['originsLang'] == $lang}selected{/if} value="{$lang}">
+                        {echo $lang}
+                    </option>
+                {/foreach}
+            </select>
+        </div>
+        <div class="pull-right" style="margin-top: -45px;">
+            <h5>{lang('Translate to', 'translator')}:</h5>
+            <select class="languageSelect languageTo">
+                <option value="0">- {lang('No', 'translator')} -</option>
+                {foreach $locales as $lang}
+                    <option {if $settings['originsLang'] == $lang}selected{/if} value="{$lang}">
+                        {echo $lang}
+                    </option>
+                {/foreach}
+            </select>
+        </div>
+    </div>
+    <div class="modal-body">
+        <textarea class="translation_text" rows="5"></textarea>
+        <textarea class="translation_result" rows="5"></textarea>
+    </div>
+    <div class="modal-footer">
+        <div class="pull-right">
+            <a class="btn btn-primary" onclick="Translator.yandexTranslate($(this))" >{lang('Translate', 'translator')}</a>
+            <a class="btn" onclick="$('.modal').modal('hide');">{lang('Cancel', 'translator')}</a>
         </div>
     </div>
 </div>
@@ -118,6 +157,7 @@
                             <li class="divider"></li>
                             <li><a onclick="Translator.translate($(this))">{lang('Translate all', 'translator')}</a></li>
                             <li><a onclick="Translator.translate($(this), true)">{lang('Translate untranslated', 'translator')}</a></li>
+                            {/*}<li><a onclick="Translator.showYandexTranslateWindow()">{lang('Yandex translate', 'translator')}</a></li>{ */}
                         </ul>
                     </span>
                 </div>
