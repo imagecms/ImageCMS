@@ -136,18 +136,20 @@
                                         </span>
                                     </label>
                                 {/if}
-                                <label style="width: 45%;float: left;">
-                                    <span class="title">{lang('Ваше имя','newLevel')}</span>
-                                    <span class="frame-form-field">
-                                        <input type="text" name="comment_author" value="{get_cookie('comment_author')}"/>
-                                    </span>
-                                </label>
-                                <label style="width: 45%;margin-left: 10%;float: left;">
-                                    <span class="title">{lang('Ваш email:', 'newLevel')}</span>
-                                    <span class="frame-form-field">
-                                        <input type="text" name="comment_email" id="comment_email" value="{get_cookie('comment_email')}"/>
-                                    </span>
-                                </label>
+                                <div class="clearfix">
+                                    <label style="width: 45%;float: left;">
+                                        <span class="title">{lang('Ваше имя','newLevel')}</span>
+                                        <span class="frame-form-field">
+                                            <input type="text" name="comment_author" value="{get_cookie('comment_author')}"/>
+                                        </span>
+                                    </label>
+                                    <label style="width: 45%;margin-left: 10%;float: left;">
+                                        <span class="title">{lang('Ваш email:', 'newLevel')}</span>
+                                        <span class="frame-form-field">
+                                            <input type="text" name="comment_email" id="comment_email" value="{get_cookie('comment_email')}"/>
+                                        </span>
+                                    </label>
+                                </div>
                             {/if}
                             <label>
                                 <span class="title">{lang('Текст комментария:')}</span>
