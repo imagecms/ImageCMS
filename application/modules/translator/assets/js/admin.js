@@ -802,12 +802,14 @@ var Translator = {
             url: this.getUrl('update'),
             type: 'POST',
             data: {
-                results: JSON.stringify(results)
+                results: JSON.stringify(results),
+                paths: this.getPaths()
             },
             success: function(data) {
                 $('.modal_update_results').addClass('hide').addClass('fade');
                 $('.modal_update_results').modal('hide');
                 $('.modal-backdrop').remove();
+                
                 var tableData = data.replace(/<script[\W\w]+<\/script>/, '');
                 $('#po_table tbody').html(tableData);
                 $('.pagination ul li.active').removeClass('active');
@@ -815,7 +817,6 @@ var Translator = {
                 $('.per_page10').attr('selected', 'selected');
                 Pagination.generate();
                 Translator.statisticRecount();
-                Translator.correctPaths();
 
                 if (data) {
                     showMessage(lang('File was successfuly updated.'), lang('Message'));
@@ -1192,7 +1193,7 @@ var Pagination = {
 
         var pages = "<li><a>< " + lang('First') + "</a></li><li data-number='1'><span>1</span></li>";
         if (page_number == 1) {
-            pages = "<li><a>< " + lang('First2') + "</a></li><li class='active' data-number='1'><span>1</span></li>";
+            pages = "<li><a>< " + lang('First') + "</a></li><li class='active' data-number='1'><span>1</span></li>";
         }
 
         var i = 2;
