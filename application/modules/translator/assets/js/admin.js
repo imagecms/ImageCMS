@@ -1415,3 +1415,11 @@ function htmlspecialchars_decode(str) {
 
     return str;
 }
+
+
+//window.onerror=function(message, url, linenumber){
+// console.log(message)
+// console.log(url)
+// console.log(linenumber)
+// return true;
+//}
