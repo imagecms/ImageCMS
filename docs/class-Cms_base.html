@@ -137,7 +137,7 @@
 				<li><a href="class-ChartDataRemap.html">ChartDataRemap</a></li>
 				<li><a href="class-CI_Profiler.html">CI_Profiler</a></li>
 				<li><a href="class-Cms_admin.html">Cms_admin</a></li>
-				<li class="active"><a href="class-Cms_base.html" class="invalid">Cms_base</a></li>
+				<li class="active"><a href="class-Cms_base.html">Cms_base</a></li>
 				<li><a href="class-Cms_hooks.html">Cms_hooks</a></li>
 				<li><a href="class-CmsCacheHelper.html">CmsCacheHelper</a></li>
 				<li><a href="class-CMSEmail.html">CMSEmail</a></li>
@@ -542,17 +542,345 @@
 <div id="content" class="class">
 	<h1>Class Cms_base</h1>
 
-		<div class="invalid">
-			<p>
-				Documentation of this class could not be generated.
-			</p>
-			<p>
-				Class was originally declared in application/models/cms_base.php and is invalid because of:
-			</p>
-			<ul>
-				<li>Class was redeclared in application/models/cmsemail_model.php.</li>
-			</ul>
+
+
+	<dl class="tree">
+		<dd style="padding-left:0px">
+CI_Model
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by">
+<b><span>Cms_base</span></b>			
+			
+			
+		</dd>
+	</dl>
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		
+		
+
+		<b>Located at</b> application/models/cms_base.php<br>
+	</div>
+
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code>__construct( )</code>
+
+		<div class="description short">
+			
 		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="get_settings" id="_get_settings">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_get_settings">#</a>
+		<code>get_settings( )</code>
+
+		<div class="description short">
+			
+<p>Select main settings</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Select main settings</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="get_langs" id="_get_langs">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_get_langs">#</a>
+		<code>get_langs( )</code>
+
+		<div class="description short">
+			
+<p>Select site languages</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Select site languages</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="get_modules" id="_get_modules">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_get_modules">#</a>
+		<code>get_modules( )</code>
+
+		<div class="description short">
+			
+<p>Load modules</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Load modules</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="get_category_pages" id="_get_category_pages">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_get_category_pages">#</a>
+		<code>get_category_pages( <span>mixed <var>$cat_id</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="get_page_by_id" id="_get_page_by_id">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_get_page_by_id">#</a>
+		<code>get_page_by_id( <span>mixed <var>$page_id</var> = <span class="php-keyword1">FALSE</span></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="get_page" id="_get_page">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_get_page">#</a>
+		<code>get_page( <span>mixed <var>$page_id</var> = <span class="php-keyword1">FALSE</span></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="get_categories" id="_get_categories">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_get_categories">#</a>
+		<code>get_categories( )</code>
+
+		<div class="description short">
+			
+<p>Select all categories</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Select all categories</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary" id="magicProperties">
+	<caption>Magic properties summary</caption>
+	<tr data-order="db" id="m$db">
+		<td class="attributes"><code>
+			public  
+			CI_DB_active_record
+		</code></td>
+
+		<td class="name">
+<var>$db</var>		</td>
+		<td class="description"><div>
+			<a href="#m$db" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
 </div>
 
 	<div id="footer">
