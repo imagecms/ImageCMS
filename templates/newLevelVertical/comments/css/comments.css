@@ -57,7 +57,7 @@
 .author-data-comment-sub2{margin-bottom: 5px;}
 
 .comments .frame-mark{float: right;width: 207px;}
-.comments .comments-main-form{max-width: 650px;}
+.comments .comments-main-form{max-width: 650px;padding-top: 2px;overflow: visible !important;}
 .comments .comments-main-form.noComments{float: none;}
 .forComments{position: relative;}
 #comment .preloader{top: 15px;}

@@ -1,9 +1,9 @@
 {if count($products) > 0}
     <div class="vertical-carousel carousel-category-popular">
         <section class="special-proposition">
-            <div class="frame-title">
-                <div class="title">
-                    <span class="text-el text-proposition-v">{$title}</span>
+            <div class="title-proposition-v">
+                <div class="frame-title">
+                    <div class="title">{$title}</div>
                 </div>
             </div>
             <div class="big-container">
