@@ -391,8 +391,8 @@ class Admin extends BaseAdminController {
                             $objLang = new MY_Lang();
                             $objLang->load($module);
                             include($this->modules_path . $module . '/module_info.php');
-                            
-                            $this->langs[$lang][] = array('module' => $module, 'menu_name' => $com_info['menu_name']);
+                            $menu_name = $com_info['menu_name'] ? $com_info['menu_name'] : $module;
+                            $this->langs[$lang][] = array('module' => $module, 'menu_name' => ucfirst($menu_name));
                             
                             unset($com_info);
                         }
@@ -446,8 +446,10 @@ class Admin extends BaseAdminController {
     }
 
     public function renderModulesNames($lang) {
+        $this->load->helper('translator');
         $langs = $this->session->userdata('langs');
         $langs = $langs[$lang];
+        $langs = sort_names($langs);  
         return \CMSFactory\assetManager::create()
                         ->setData('langs', $langs)
                         ->fetchAdminTemplate('modules_names', FALSE);
