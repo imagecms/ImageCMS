@@ -172,7 +172,7 @@ class Install extends MY_Controller {
             //$this->form_validation->set_rules('db_pass', 'Пароль БД', 'required');
             $this->form_validation->set_rules('db_name', lang('Database name', 'install'), 'required');
 //            $this->form_validation->set_rules('admin_login', 'Логин администратора', 'required|min_length[4]');
-            $this->form_validation->set_rules('admin_pass', lang('Administrator name', 'install'), 'required|min_length[5]');
+            $this->form_validation->set_rules('admin_pass', lang('Administrator password', 'install'), 'required|min_length[5]');
             $this->form_validation->set_rules('admin_mail', lang('Administrator E-mail', 'install'), 'required|valid_email');
             $this->form_validation->set_rules('lang_sel', lang('Language', 'install'), 'required');
 
