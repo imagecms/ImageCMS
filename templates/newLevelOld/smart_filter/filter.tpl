@@ -1,5 +1,4 @@
 <div class="preloader wo-i"></div>
-{include_tpl('filter_opt')}
 <div id="slider-range"></div>
 <div class="frames-checks-sliders">
     <div class="frame-slider" data-rel="sliders.slider1">
@@ -123,7 +122,7 @@
                                         {else:}
                                             {$check = ''}
                                         {/if}
-                                        {if $item.count == 0}
+                                        {if $item.count == 0 && $check == ''}
                                             {$dis = 'disabled="disabled"'}
                                         {else:}
                                             {$dis = ""}

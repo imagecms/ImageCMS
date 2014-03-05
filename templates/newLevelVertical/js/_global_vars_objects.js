@@ -6,7 +6,6 @@ var
         ieV = $.browser.version,
         ltie7 = ie && (ieV <= 7),
         ltie8 = ie && (ieV <= 8),
-        orderDetails = $.exists('#orderDetails'),
         checkProdStock = checkProdStock == "" ? false : true,
         hrefCategoryProduct = hrefCategoryProduct != undefined ? hrefCategoryProduct : undefined;
 
@@ -75,23 +74,20 @@ var optionsDrop = {
     overlayOpacity: '0.6',
     place: 'center', //noinherit(default) || inherit(ex. for ViewedProducts)
     durationOn: 500,
-    durationOff: 200,
-    modalPlace: '.notification',
+    durationOff: 500,
     dropContent: '.drop-content',
     dropFooter: '.drop-footer',
     dropHeader: '.drop-header',
     animate: true,
-    placeBeforeShow: 'center center',
-    placeAfterClose: 'center center',
     timeclosemodal: 2000,
-    delayAfter: -500,
-    confirmSel: '#confirm',
+    modalPlace: '.notification',
     moreOne: false,
     closeClick: true,
     closeEsc: true,
     position: 'absolute',
     scroll: true,
     limitSize: true,
+    confirmBtnDrop: '#confirm',
     limitContentSize: true,
     scrollContent: true
 };

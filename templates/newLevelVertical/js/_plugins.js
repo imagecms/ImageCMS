@@ -4,28 +4,29 @@
  * @copyright ImageCMS (c) 2013, Avgustus <domovoj1@gmail.com>
  */
 var isTouch = 'ontouchstart' in document.documentElement,
-aC = 'active',
-dC = 'disabled',
-fC = 'focus',
-сC = 'cloned',
-wnd = $(window),
-body = $('body');
+        aC = 'active',
+        dC = 'disabled',
+        fC = 'focus',
+        сC = 'cloned',
+        wnd = $(window),
+        body = $('body');
 $.expr[':'].regex = function(elem, index, match) {
     var matchParams = match[3].split(','),
-    validLabels = /^(data|css):/,
-    attr = {
-        method: matchParams[0].match(validLabels) ?
-        matchParams[0].split(':')[0] : 'attr',
-        property: matchParams.shift().replace(validLabels, '')
-    },
+            validLabels = /^(data|css):/,
+            attr = {
+                method: matchParams[0].match(validLabels) ?
+                        matchParams[0].split(':')[0] : 'attr',
+                property: matchParams.shift().replace(validLabels, '')
+            },
     regexFlags = 'ig',
-    regex = new RegExp(matchParams.join('').replace(/^\s+|\s+$/g, ''), regexFlags);
+            regex = new RegExp(matchParams.join('').replace(/^\s+|\s+$/g, ''), regexFlags);
     return regex.test($(elem)[attr.method](attr.property));
 };
 String.prototype.trimMiddle = function()
 {
     var r = /\s\s+/g;
     return $.trim(this).replace(r, ' ');
+
 };
 String.prototype.pasteSAcomm = function() {
     var r = /\s,/g;
@@ -106,7 +107,7 @@ $.fn.setCursorPosition = function(pos) {
 };
 $.fn.getCursorPosition = function() {
     var el = $(this).get(0),
-    pos = 0;
+            pos = 0;
     if ('selectionStart' in el) {
         pos = el.selectionStart;
     } else if ('selection' in document) {
@@ -123,7 +124,7 @@ $.fn.getCursorPosition = function() {
     $.fn.actual = function() {
         if (arguments.length && typeof arguments[0] === 'string') {
             var dim = arguments[0],
-            clone = this.clone().addClass(сC);
+                    clone = this.clone().addClass(сC);
             if (arguments[1] === undefined)
                 clone.css({
                     position: 'absolute',
@@ -139,34 +140,34 @@ $.fn.getCursorPosition = function() {
 /*/plugin actual end*/
 $(document).on('textanimatechange', function(e) {
     var $this = e.el,
-    nv = e.nvalue,
-    ov = e.ovalue,
-    rank = e.rank,
-    dif = nv - ov,
-    temp = ov;
+            nv = e.nvalue,
+            ov = e.ovalue,
+            rank = e.rank,
+            dif = nv - ov,
+            temp = ov;
     if (dif > 0) {
         var ndif = dif,
-        step = Math.floor(dif / 100);
+                step = Math.floor(dif / 100);
     }
     else
     {
         ndif = Math.abs(dif),
-        step = -Math.floor(ndif / 100);
+                step = -Math.floor(ndif / 100);
     }
     var cond = '',
-    numb = setInterval(function() {
-        temp += step;
-        cond = temp < nv;
-        if (dif < 0)
-            cond = temp > nv;
-        if (cond && step !== 0)
-            $this.text(rank ? temp.toString().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ') : temp);
-        else {
-            $this.text(rank ? nv.toString().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ') : nv);
-            clearInterval(numb);
-            temp = nv;
-        }
-    }, 1);
+            numb = setInterval(function() {
+                temp += step;
+                cond = temp < nv;
+                if (dif < 0)
+                    cond = temp > nv;
+                if (cond && step !== 0)
+                    $this.text(rank ? temp.toString().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ') : temp);
+                else {
+                    $this.text(rank ? nv.toString().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ') : nv);
+                    clearInterval(numb);
+                    temp = nv;
+                }
+            }, 1);
 });
 function setCookie(name, value, expires, path, domain, secure)
 {
@@ -178,14 +179,14 @@ function setCookie(name, value, expires, path, domain, secure)
     }
     var expiresDate = new Date(today.getTime() + (expires));
     document.cookie = name + "=" + encodeURIComponent(value) +
-    ((expires) ? ";expires=" + expiresDate.toGMTString() : "") + ((path) ? ";path=" + path : "") +
-    ((domain) ? ";domain=" + domain : "") +
-    ((secure) ? ";secure" : "");
+            ((expires) ? ";expires=" + expiresDate.toGMTString() : "") + ((path) ? ";path=" + path : "") +
+            ((domain) ? ";domain=" + domain : "") +
+            ((secure) ? ";secure" : "");
 }
 function getCookie(c_name)
 {
     var c_value = document.cookie,
-    c_start = c_value.indexOf(" " + c_name + "=");
+            c_start = c_value.indexOf(" " + c_name + "=");
     if (c_start === -1)
         c_start = c_value.indexOf(c_name + "=");
     if (c_start === -1)
@@ -202,174 +203,171 @@ function getCookie(c_name)
 }
 /*plugin nstCheck*/
 (function($) {
-    $.existsN = function(nabir) {
-        return (nabir.length > 0);
-    };
     var nS = "nstcheck",
-    methods = {
-        init: function(options) {
-            if ($.existsN(this)) {
-                var settings = $.extend({
-                    wrapper: $("label:has(.niceCheck)"),
-                    elCheckWrap: '.niceCheck',
-                    evCond: false,
-                    classRemove: '',
-                    resetChecked: false,
-                    trigger: function() {
-                    },
-                    after: function() {
-                    }
-                }, options);
-                var frameChecks = $(this),
-                wrapper = settings.wrapper,
-                elCheckWrap = settings.elCheckWrap,
-                evCond = settings.evCond,
-                classRemove = settings.classRemove,
-                after = settings.after,
-                trigger = settings.trigger,
-                resetChecked = settings.resetChecked;
-                frameChecks.find(elCheckWrap).removeClass(dC + ' ' + aC + ' ' + fC);
-                //init event click on wrapper change state
-                frameChecks.find(wrapper).removeClass(dC + ' ' + aC + ' ' + fC).off('click.' + nS).on('click.' + nS, function(e) {
-                    var $this = $(this),
-                    nstcheck = $this.find(elCheckWrap);
-                    if (!$.existsN(nstcheck))
-                        nstcheck = $this;
-                    if (!$this.hasClass(dC)) {
-                        if (!evCond) {
-                            methods.changeCheck(nstcheck);
-                            after(frameChecks, $this, nstcheck, e);
-                        }
-                        else {
-                            trigger(frameChecks, $this, nstcheck, e);
-                        }
-                    }
-                    e.preventDefault();
-                });
-                //init event reset
-                frameChecks.closest('form').each(function() {
-                    var $this = $(this);
-                    if (resetChecked)
-                        $this.find('[type="reset"]').off('click.' + nS).on('click.' + nS, function(e) {
-                            methods.checkAllReset($this.find(elCheckWrap).filter('.' + aC));
-                        });
-                    else {
-                        checked = $([]);
-                        $this.find('input:checked').each(function() {
-                            checked = checked.add($(this).closest(elCheckWrap));
-                        });
-                        $this.find('[type="reset"]').off('click.' + nS).on('click.' + nS, function(e) {
-                            var wrap = $this.find(elCheckWrap);
-                            methods.checkAllReset(wrap.not(checked));
-                            methods.checkAllChecks(wrap.not('.' + aC).filter(checked));
+            methods = {
+                init: function(options) {
+                    if ($.existsN(this)) {
+                        var settings = $.extend({
+                            wrapper: $("label:has(.niceCheck)"),
+                            elCheckWrap: '.niceCheck',
+                            evCond: false,
+                            classRemove: '',
+                            resetChecked: false,
+                            trigger: function() {
+                            },
+                            after: function() {
+                            }
+                        }, options);
+                        var frameChecks = $(this),
+                                wrapper = settings.wrapper,
+                                elCheckWrap = settings.elCheckWrap,
+                                evCond = settings.evCond,
+                                classRemove = settings.classRemove,
+                                after = settings.after,
+                                trigger = settings.trigger,
+                                resetChecked = settings.resetChecked;
+                        frameChecks.find(elCheckWrap).removeClass(dC + ' ' + aC + ' ' + fC);
+                        //init event click on wrapper change state
+                        frameChecks.find(wrapper).removeClass(dC + ' ' + aC + ' ' + fC).off('click.' + nS).on('click.' + nS, function(e) {
+                            var $this = $(this),
+                                    nstcheck = $this.find(elCheckWrap);
+                            if (!$.existsN(nstcheck))
+                                nstcheck = $this;
+                            if (!$this.hasClass(dC)) {
+                                if (!evCond) {
+                                    methods.changeCheck(nstcheck);
+                                    after(frameChecks, $this, nstcheck, e);
+                                }
+                                else {
+                                    trigger(frameChecks, $this, nstcheck, e);
+                                }
+                            }
                             e.preventDefault();
                         });
+                        //init event reset
+                        frameChecks.closest('form').each(function() {
+                            var $this = $(this);
+                            if (resetChecked)
+                                $this.find('[type="reset"]').off('click.' + nS).on('click.' + nS, function(e) {
+                                    methods.checkAllReset($this.find(elCheckWrap).filter('.' + aC));
+                                });
+                            else {
+                                var checked = $([]);
+                                $this.find('input:checked').each(function() {
+                                    checked = checked.add($(this).closest(elCheckWrap));
+                                });
+                                $this.find('[type="reset"]').off('click.' + nS).on('click.' + nS, function(e) {
+                                    var wrap = $this.find(elCheckWrap);
+                                    methods.checkAllReset(wrap.not(checked));
+                                    methods.checkAllChecks(wrap.not('.' + aC).filter(checked));
+                                    e.preventDefault();
+                                });
+                            }
+                        });
+                        //init events input
+                        wrapper.find('input').off('mousedown.' + nS).on('mousedown.' + nS, function(e) {
+                            e.stopPropagation();
+                            e.preventDefault()
+                            if (e.button == 0)
+                                $(this).closest(wrapper).trigger('click.' + nS);
+                        }).off('click.' + nS).on('click.' + nS, function(e) {
+                            e.stopPropagation();
+                            e.preventDefault()
+                        }).off('keyup.' + nS).on('keyup.' + nS, function(e) {
+                            if (e.keyCode === 32)
+                                $(this).closest(wrapper).trigger('click.' + nS);
+                        }).off('focus.' + nS).on('focus.' + nS, function(e) {
+                            var $this = $(this);
+                            $this.closest(wrapper).add($this.closest(elCheckWrap)).addClass(fC);
+                        }).off('blur.' + nS).on('blur.' + nS, function(e) {
+                            var $this = $(this);
+                            $this.closest(wrapper).add($this.closest(elCheckWrap)).removeClass(fC);
+                        }).off('change.' + nS).on('change.' + nS, function(e) {
+                            e.preventDefault()
+                        });
+                        //init states of checkboxes
+                        frameChecks.find(elCheckWrap).each(function() {
+                            var $this = $(this).removeClass(classRemove).addClass(nS),
+                                    input = $this.find('input');
+                            methods._changeCheckStart($this);
+                            if (input.is(':focus'))
+                                input.trigger('focus.' + nS);
+                            if (input.is(':disabled'))
+                                methods.checkAllDisabled($this);
+                            else
+                                methods.checkAllEnabled($this);
+                        });
                     }
-                });
-                //init events input
-                wrapper.find('input').off('mousedown.' + nS).on('mousedown.' + nS, function(e) {
-                    e.stopPropagation();
-                    e.preventDefault()
-                    if (e.button == 0)
-                        $(this).closest(wrapper).trigger('click.' + nS);
-                }).off('click.' + nS).on('click.' + nS, function(e) {
-                    e.stopPropagation();
-                    e.preventDefault()
-                }).off('keyup.' + nS).on('keyup.' + nS, function(e) {
-                    if (e.keyCode === 32)
-                        $(this).closest(wrapper).trigger('click.' + nS);
-                }).off('focus.' + nS).on('focus.' + nS, function(e) {
-                    var $this = $(this);
-                    $this.closest(wrapper).add($this.closest(elCheckWrap)).addClass(fC);
-                }).off('blur.' + nS).on('blur.' + nS, function(e) {
-                    var $this = $(this);
-                    $this.closest(wrapper).add($this.closest(elCheckWrap)).removeClass(fC);
-                }).off('change.' + nS).on('change.' + nS, function(e) {
-                    e.preventDefault()
-                });
-                //init states of checkboxes
-                frameChecks.find(elCheckWrap).each(function() {
-                    var $this = $(this).removeClass(classRemove).addClass(nS),
-                    input = $this.find('input');
-                    methods._changeCheckStart($this);
-                    if (input.is(':focus'))
-                        input.trigger('focus.' + nS);
-                    if (input.is(':disabled'))
-                        methods.checkAllDisabled($this);
-                    else
-                        methods.checkAllEnabled($this);
-                });
-            }
-        },
-        _changeCheckStart: function(el) {
-            if (el === undefined)
-                el = this;
-            el.find("input").is(":checked") ? methods.checkChecked(el) : methods.checkUnChecked(el);
-        },
-        checkChecked: function(el) {
-            if (el === undefined)
-                el = this;
-            el.addClass(aC).parent().addClass(aC).end().find("input").attr("checked", "checked");
-            el.find('input').trigger({
-                'type': nS + '.cc',
-                'el': el
-            });
-        },
-        checkUnChecked: function(el) {
-            if (el === undefined)
-                el = this;
-            el.removeClass(aC).parent().removeClass(aC).end().find("input").removeAttr("checked");
-            el.find('input').trigger({
-                'type': nS + '.cuc',
-                'el': el
-            });
-        },
-        changeCheck: function(el)
-        {
-            if (el === undefined)
-                el = this;
-            if (el.find("input").attr("checked") != undefined) {
-                methods.checkUnChecked(el);
-            }
-            else {
-                methods.checkChecked(el);
-            }
-        },
-        checkAllChecks: function(el)
-        {
-            (el === undefined ? this : el).each(function() {
-                methods.checkChecked($(this));
-            });
-        },
-        checkAllReset: function(el)
-        {
-            (el === undefined ? this : el).each(function() {
-                methods.checkUnChecked($(this));
-            });
-        },
-        checkAllDisabled: function(el)
-        {
-            (el === undefined ? this : el).each(function() {
-                var $this = $(this);
-                $this.addClass(dC).parent().addClass(dC).end().find("input").attr('disabled', 'disabled');
-                $this.find('input').trigger({
-                    'type': nS + '.ad',
-                    'el': $this
-                });
-            });
-        },
-        checkAllEnabled: function(el)
-        {
-            (el === undefined ? this : el).each(function() {
-                var $this = $(this);
-                $this.removeClass(dC).parent().removeClass(dC).end().find("input").removeAttr('disabled');
-                $this.find('input').trigger({
-                    'type': nS + '.ae',
-                    'el': $this
-                });
-            });
-        }
-    };
+                },
+                _changeCheckStart: function(el) {
+                    if (el === undefined)
+                        el = this;
+                    el.find("input").is(":checked") ? methods.checkChecked(el) : methods.checkUnChecked(el);
+                },
+                checkChecked: function(el) {
+                    if (el === undefined)
+                        el = this;
+                    el.addClass(aC).parent().addClass(aC).end().find("input").attr("checked", "checked");
+                    el.find('input').trigger({
+                        'type': nS + '.cc',
+                        'el': el
+                    });
+                },
+                checkUnChecked: function(el) {
+                    if (el === undefined)
+                        el = this;
+                    el.removeClass(aC).parent().removeClass(aC).end().find("input").removeAttr("checked");
+                    el.find('input').trigger({
+                        'type': nS + '.cuc',
+                        'el': el
+                    });
+                },
+                changeCheck: function(el)
+                {
+                    if (el === undefined)
+                        el = this;
+                    if (el.find("input").attr("checked") != undefined) {
+                        methods.checkUnChecked(el);
+                    }
+                    else {
+                        methods.checkChecked(el);
+                    }
+                },
+                checkAllChecks: function(el)
+                {
+                    (el === undefined ? this : el).each(function() {
+                        methods.checkChecked($(this));
+                    });
+                },
+                checkAllReset: function(el)
+                {
+                    (el === undefined ? this : el).each(function() {
+                        methods.checkUnChecked($(this));
+                    });
+                },
+                checkAllDisabled: function(el)
+                {
+                    (el === undefined ? this : el).each(function() {
+                        var $this = $(this);
+                        $this.addClass(dC).parent().addClass(dC).end().find("input").attr('disabled', 'disabled');
+                        $this.find('input').trigger({
+                            'type': nS + '.ad',
+                            'el': $this
+                        });
+                    });
+                },
+                checkAllEnabled: function(el)
+                {
+                    (el === undefined ? this : el).each(function() {
+                        var $this = $(this);
+                        $this.removeClass(dC).parent().removeClass(dC).end().find("input").removeAttr('disabled');
+                        $this.find('input').trigger({
+                            'type': nS + '.ae',
+                            'el': $this
+                        });
+                    });
+                }
+            };
     $.fn.nStCheck = function(method) {
         if (methods[method]) {
             return methods[ method ].apply(this, Array.prototype.slice.call(arguments, 1));
@@ -386,118 +384,126 @@ function getCookie(c_name)
 /*plugin nstCheck end*/
 /*plugin nstRadio*/
 (function($) {
-    var methods = {
-        init: function(options) {
-            var optionsRadio = $.extend({
-                wrapper: $(".frame-label:has(.niceRadio)"),
-                elCheckWrap: '.niceRadio',
-                classRemove: null,
-                before: function() {
-                },
-                after: function() {
-                }
-            }, options),
-            settings = optionsRadio;
-            var $this = this;
-            if ($.existsN($this)) {
-                $this.each(function() {
-                    var $this = $(this),
-                    after = settings.after,
-                    before = settings.before,
-                    classRemove = settings.classRemove,
-                    wrapper = settings.wrapper,
-                    elCheckWrap = settings.elCheckWrap,
-                    input = $this.find(elCheckWrap).find('input');
-                    $this.find(elCheckWrap).each(function() {
-                        methods.changeRadioStart($(this), classRemove, after, true);
-                    });
-                    input.each(function() {
-                        var input = $(this);
-                        $(input.data('link')).focus(function(e) {
-                            if (e.which === 0)
-                                methods.radioCheck(input.parent(), after, false);
-                        });
-                    });
-                    $this.find(wrapper).off('click.radio').on('click.radio', function(e) {
-                        if (!$(this).find('input').is(':disabled')) {
-                            before($(this));
-                            methods.changeRadio($(this).find(elCheckWrap), after, false);
+    var nS = "nstradio",
+            methods = {
+                init: function(options) {
+                    var optionsRadio = $.extend({
+                        wrapper: $(".frame-label:has(.niceRadio)"),
+                        elCheckWrap: '.niceRadio',
+                        classRemove: null,
+                        before: function() {
+                        },
+                        after: function() {
                         }
+                    }, options),
+                            settings = optionsRadio;
+                    var $this = this;
+                    if ($.existsN($this)) {
+                        $this.each(function() {
+                            var $this = $(this),
+                                    after = settings.after,
+                                    before = settings.before,
+                                    classRemove = settings.classRemove,
+                                    wrapper = settings.wrapper,
+                                    elCheckWrap = settings.elCheckWrap,
+                                    input = $this.find(elCheckWrap).find('input');
+                            $this.find(elCheckWrap).each(function() {
+                                methods.changeRadioStart($(this), classRemove, after, true);
+                            });
+                            input.each(function() {
+                                var input = $(this);
+                                $(input.data('link')).focus(function(e) {
+                                    if (e.which === 0)
+                                        methods.radioCheck(input.parent(), after, false);
+                                });
+                            });
+                            $this.find(wrapper).off('click.' + nS).on('click.' + nS, function(e) {
+                                var input = $(this).find('input');
+                                if (!input.is(':disabled') && !input.is(':checked')) {
+                                    before($(this));
+                                    methods.changeRadio($(this).find(elCheckWrap), after, false);
+                                }
+                            });
+                            input.off('click.' + nS).off('change.' + nS).on('click.' + nS + ' change.' + nS, function(e) {
+                                e.preventDefault();
+                                e.stopPropagation();
+                            });
+                            input.off('mousedown.' + nS).on('mousedown.' + nS, function(e) {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                $(this).closest(wrapper).trigger('click.' + nS);
+                            });
+                        });
+                    }
+                },
+                changeRadioStart: function(el, classRemove, after, start)
+                {
+                    if (el === undefined)
+                        el = this;
+                    var input = el.find("input");
+                    if (input.is(":checked")) {
+                        methods.radioCheck(el, after, start);
+                    }
+                    if (input.is(":disabled")) {
+                        methods.radioDisabled(el);
+                    }
+                    el.removeClass(classRemove);
+                    return false;
+                },
+                changeRadio: function(el, after, start)
+                {
+                    if (el === undefined)
+                        el = this;
+                    methods.radioCheck(el, after, start);
+                },
+                radioCheck: function(el, after, start) {
+                    if (el === undefined)
+                        el = this;
+                    var input = el.find("input");
+                    el.addClass(aC).removeClass(dC);
+                    el.parent().addClass(aC).removeClass(dC);
+                    input.attr("checked", true);
+                    $(input.data('link')).focus();
+                    input.closest('form').find('[name=' + input.attr('name') + ']').not(input).each(function() {
+                        methods.radioUnCheck($(this).parent());
                     });
-                    input.on('mousedown change', function(e) {
-                        return false;
+                    after(el, start);
+                    $(document).trigger({
+                        'type': 'nStRadio.RC',
+                        'el': el,
+                        'input': input
                     });
-                });
-            }
-        },
-        changeRadioStart: function(el, classRemove, after, start)
-        {
-            if (el === undefined)
-                el = this;
-            var input = el.find("input");
-            if (input.is(":checked")) {
-                methods.radioCheck(el, after, start);
-            }
-            if (input.is(":disabled")) {
-                methods.radioDisabled(el);
-            }
-            el.removeClass(classRemove);
-            return false;
-        },
-        changeRadio: function(el, after, start)
-        {
-            if (el === undefined)
-                el = this;
-            methods.radioCheck(el, after, start);
-        },
-        radioCheck: function(el, after, start) {
-            if (el === undefined)
-                el = this;
-            var input = el.find("input");
-            el.addClass(aC).removeClass(dC);
-            el.parent().addClass(aC).removeClass(dC);
-            input.attr("checked", true);
-            $(input.data('link')).focus();
-            input.closest('form').find('[name=' + input.attr('name') + ']').not(input).each(function() {
-                methods.radioUnCheck($(this).parent());
-            });
-            after(el, start);
-            $(document).trigger({
-                'type': 'nStRadio.RC',
-                'el': el,
-                'input': input
-            });
-        },
-        radioUnCheck: function(el) {
-            if (el === undefined)
-                el = this;
-            var input = el.find("input");
-            el.removeClass(aC);
-            el.parent().removeClass(aC);
-            input.attr("checked", false);
-            $(document).trigger({
-                'type': 'nStRadio.RUC',
-                'el': el,
-                'input': input
-            });
-        },
-        radioDisabled: function(el) {
-            if (el === undefined)
-                el = this;
-            var input = el.find("input");
-            input.attr('disabled', 'disabled');
-            el.removeClass(aC).addClass(dC);
-            el.parent().removeClass(aC).addClass(dC);
-        },
-        radioUnDisabled: function(el) {
-            if (el === undefined)
-                el = this;
-            var input = el.find("input");
-            input.removeAttr('disabled');
-            el.removeClass(aC + ' ' + dC);
-            el.parent().removeClass(aC + ' ' + dC);
-        }
-    };
+                },
+                radioUnCheck: function(el) {
+                    if (el === undefined)
+                        el = this;
+                    var input = el.find("input");
+                    el.removeClass(aC);
+                    el.parent().removeClass(aC);
+                    input.attr("checked", false);
+                    $(document).trigger({
+                        'type': 'nStRadio.RUC',
+                        'el': el,
+                        'input': input
+                    });
+                },
+                radioDisabled: function(el) {
+                    if (el === undefined)
+                        el = this;
+                    var input = el.find("input");
+                    input.attr('disabled', 'disabled');
+                    el.removeClass(aC).addClass(dC);
+                    el.parent().removeClass(aC).addClass(dC);
+                },
+                radioUnDisabled: function(el) {
+                    if (el === undefined)
+                        el = this;
+                    var input = el.find("input");
+                    input.removeAttr('disabled');
+                    el.removeClass(aC + ' ' + dC);
+                    el.parent().removeClass(aC + ' ' + dC);
+                }
+            };
     $.fn.nStRadio = function(method) {
         if (methods[method]) {
             return methods[ method ].apply(this, Array.prototype.slice.call(arguments, 1));
@@ -535,9 +541,9 @@ function getCookie(c_name)
                 }, function(data) {
                     try {
                         var dataObj = JSON.parse(data),
-                        html = _.template($(underscoreLayout).html(), {
-                            'items': dataObj
-                        });
+                                html = _.template($(underscoreLayout).html(), {
+                                    'items': dataObj
+                                });
                     } catch (e) {
                         var html = e.toString();
                     }
@@ -633,14 +639,14 @@ function getCookie(c_name)
             }
 
             var $thisS = this,
-            blockEnter = settings.blockEnter,
-            itemA = settings.item,
-            durationA = settings.duration,
-            searchPath = settings.searchPath,
-            selectorPosition = -1,
-            inputString = settings.inputString,
-            underscoreLayout = settings.underscoreLayout,
-            minValue = settings.minValue;
+                    blockEnter = settings.blockEnter,
+                    itemA = settings.item,
+                    durationA = settings.duration,
+                    searchPath = settings.searchPath,
+                    selectorPosition = -1,
+                    inputString = settings.inputString,
+                    underscoreLayout = settings.underscoreLayout,
+                    minValue = settings.minValue;
             var submit = inputString.closest('form').find('[type="submit"]');
             if (blockEnter)
                 submit.on('click.autocomplete', function(e) {
@@ -717,134 +723,132 @@ function getCookie(c_name)
 /*plugin tooltip*/
 (function($) {
     var nS = 'tooltip',
-    sel = '.tooltip',
-    methods = {
-        setDefault: function() {
-            return {
-                otherClass: false,
-                effect: '',
-                textEl: '.text-el',
-                placement: 'top',
-                offsetX: 10,
-                offsetY: 10,
-                tooltip: false,
-                sel: '.tooltip',
-                durationOn: 300,
-                durationOff: 200
-            };
-        },
-        init: function(options, e) {
-            var sel = '.tooltip',
-            settings = $.extend(methods.setDefault(), {
-                title: this.attr('data-title')
-            }, options),
-            $this = this,
-            elSet = $this.data(),
-            title = elSet.title || settings.title,
-            otherClass = elSet.otherClass || settings.otherClass,
-            effect = elSet.effect || settings.effect,
-            textEl = elSet.textEl || settings.textEl,
-            placement = elSet.placement || settings.placement,
-            offsetX = elSet.offsetX || settings.offsetX,
-            offsetY = elSet.offsetY || settings.offsetY,
-            durationOn = elSet.durationOn || settings.durationOn,
-            durationOff = elSet.durationOff || settings.durationOff,
-            sel = elSet.tooltip || sel,
-            tooltip = $(sel).not('.' + сC);
-            if (effect !== 'always')
-                $this.data({
-                    'title': title,
-                    'otherClass': otherClass,
-                    'effect': effect,
-                    'textEl': textEl,
-                    'placement': placement,
-                    'offsetX': offsetX,
-                    'offsetY': offsetY,
-                    'tooltip': sel,
-                    'durationOn': durationOn,
-                    'durationOff': durationOff
-                });
-            else
-                $this.data({
-                    'title': ''
-                });
-            textEl = $this.find(textEl);
-            if (textEl.is(':visible') && $.existsN(textEl))
-                return false;
-            tooltip.html(title);
-            if (otherClass) {
-                if (!$.exists('.' + otherClass))
-                    tooltip = tooltip.addClass(otherClass).appendTo(body);
-                else
-                    tooltip = $('.' + otherClass);
-            }
+            sel = '.tooltip',
+            methods = {
+                def: {
+                    otherClass: false,
+                    effect: '',
+                    textEl: '.text-el',
+                    placement: 'top',
+                    offsetX: 10,
+                    offsetY: 10,
+                    tooltip: false,
+                    sel: '.tooltip',
+                    durationOn: 300,
+                    durationOff: 200
+                },
+                init: function(options, e) {
+                    var settings = $.extend(methods.def, options),
+                            $this = this,
+                            elSet = $this.data(),
+                            title = elSet.title || settings.title,
+                            otherClass = elSet.otherClass || settings.otherClass,
+                            effect = elSet.effect || settings.effect,
+                            textEl = elSet.textEl || settings.textEl,
+                            placement = elSet.placement || settings.placement,
+                            offsetX = elSet.offsetX || settings.offsetX,
+                            offsetY = elSet.offsetY || settings.offsetY,
+                            durationOn = elSet.durationOn || settings.durationOn,
+                            durationOff = elSet.durationOff || settings.durationOff,
+                            sel = elSet.tooltip || methods.def.sel,
+                            tooltip = $(sel).not('.' + сC);
+                    if (effect !== 'always')
+                        $this.data({
+                            'title': title,
+                            'otherClass': otherClass,
+                            'effect': effect,
+                            'textEl': textEl,
+                            'placement': placement,
+                            'offsetX': offsetX,
+                            'offsetY': offsetY,
+                            'tooltip': sel,
+                            'durationOn': durationOn,
+                            'durationOff': durationOff
+                        });
+                    else
+                        $this.data({
+                            'title': ''
+                        });
+                    textEl = $this.find(textEl);
+                    if (textEl.is(':visible') && $.existsN(textEl))
+                        return $this;
+                    tooltip.html(title);
+                    if (otherClass) {
+                        if (!$.exists('.' + otherClass))
+                            tooltip = tooltip.addClass(otherClass).appendTo(body);
+                        else
+                            tooltip = $('.' + otherClass);
+                    }
 
-            if (effect === 'mouse')
-                this.off('mousemove.' + nS).on('mousemove.' + nS, function(e) {
+                    if (effect === 'mouse')
+                        this.off('mousemove.' + nS).on('mousemove.' + nS, function(e) {
+                            tooltip.css({
+                                'left': methods.left($(this), tooltip, placement, e.pageX, effect, offsetX),
+                                'top': methods.top($(this), tooltip, placement, e.pageY, effect, offsetY)
+                            });
+                        });
+                    tooltip.removeClass('top bottom right left').addClass(placement);
                     tooltip.css({
-                        'left': methods.left($(this), tooltip, placement, e.pageX, effect, offsetX),
-                        'top': methods.top($(this), tooltip, placement, e.pageY, effect, offsetY)
+                        'left': methods.left(this, tooltip, placement, this.offset().left, effect, offsetX),
+                        'top': methods.top(this, tooltip, placement, this.offset().top, effect, offsetY)
+                    }).fadeIn(durationOn, function() {
+                        $(document).trigger({
+                            'type': 'tooltip.show',
+                            'el': $(this).css('opacity', 1)
+                        });
                     });
-                });
-            tooltip.removeClass('top bottom right left').addClass(placement);
-            tooltip.css({
-                'left': methods.left(this, tooltip, placement, this.offset().left, effect, offsetX),
-                'top': methods.top(this, tooltip, placement, this.offset().top, effect, offsetY)
-            }).fadeIn(durationOn, function() {
-                $(document).trigger({
-                    'type': 'tooltip.show',
-                    'el': $(this).css('opacity', 1)
-                });
-            });
-            $this.off('mouseleave.' + nS).on('mouseleave.' + nS, function(e) {
-                var el = $(this);
-                if (effect !== 'always')
-                    el.tooltip('remove', e);
-            });
-            $this.filter(':input').off('blur.' + nS).on('blur.' + nS, function(e) {
-                $(this).tooltip('remove', e);
-            });
-        },
-        left: function(el, tooltip, placement, left, eff, offset) {
-            if (placement === 'left')
-                return Math.ceil(left - (eff === 'mouse' ? offset : tooltip.actual('outerWidth')));
-            if (placement === 'right')
-                return Math.ceil(left + (eff === 'mouse' ? offset : el.outerWidth()));
-            else
-                return Math.ceil(left - (eff === 'mouse' ? offset : (tooltip.actual('outerWidth') - el.outerWidth()) / 2));
-        },
-        top: function(el, tooltip, placement, top, eff, offset) {
-            if (placement === 'top')
-                return Math.ceil(top - (eff === 'mouse' ? offset : tooltip.actual('outerHeight')));
-            if (placement === 'bottom')
-                return Math.ceil(top + (eff === 'mouse' ? offset : tooltip.actual('outerHeight')));
-            else {
-                return Math.ceil(top - (eff === 'mouse' ? offset : (tooltip.actual('outerHeight') - el.outerHeight()) / 2));
-            }
-        },
-        remove: function(e) {
-            var $this = this;
-            if ($this.length !== 0 && $this['data'] !== undefined) {
-                var data = $this.data(),
-                selA = $([]);
-                if (data.otherClass)
-                    selA = $(data.otherClass);
-                if (data.tooltip !== '.tooltip')
-                    selA = selA.add($(data.tooltip));
-                var durOff = $this.data('durationOff');
-                if ($.existsN(selA))
-                    sel = selA;
-            }
-            else
-                durOff = methods.setDefault().durationOff;
-            $(sel).stop().fadeOut(durOff, function() {
-                $(document).trigger({
-                    'type': 'tooltip.hide',
-                    'el': $(this)
-                });
-            });
-        }
-    };
+                    $this.off('mouseleave.' + nS).on('mouseleave.' + nS, function(e) {
+                        var el = $(this);
+                        if (effect !== 'always')
+                            el.tooltip('remove', e);
+                    });
+                    $this.filter(':input').off('blur.' + nS).on('blur.' + nS, function(e) {
+                        $(this).tooltip('remove', e);
+                    });
+
+                    return $this;
+                },
+                left: function(el, tooltip, placement, left, eff, offset) {
+                    if (placement === 'left')
+                        return Math.ceil(left - (eff === 'mouse' ? offset : tooltip.actual('outerWidth')));
+                    if (placement === 'right')
+                        return Math.ceil(left + (eff === 'mouse' ? offset : el.outerWidth()));
+                    else
+                        return Math.ceil(left - (eff === 'mouse' ? offset : (tooltip.actual('outerWidth') - el.outerWidth()) / 2));
+                },
+                top: function(el, tooltip, placement, top, eff, offset) {
+                    if (placement === 'top')
+                        return Math.ceil(top - (eff === 'mouse' ? offset : tooltip.actual('outerHeight')));
+                    if (placement === 'bottom')
+                        return Math.ceil(top + (eff === 'mouse' ? offset : tooltip.actual('outerHeight')));
+                    else {
+                        return Math.ceil(top - (eff === 'mouse' ? offset : (tooltip.actual('outerHeight') - el.outerHeight()) / 2));
+                    }
+                },
+                remove: function(e) {
+                    var $this = this;
+                    if ($this.length !== 0 && $this['data'] !== undefined) {
+                        var data = $this.data(),
+                                selA = $([]);
+                        if (data.otherClass)
+                            selA = $(data.otherClass);
+                        if (data.tooltip !== '.tooltip')
+                            selA = selA.add($(data.tooltip));
+                        var durOff = $this.data('durationOff');
+                        if ($.existsN(selA))
+                            var sel = selA;
+                    }
+                    else
+                        durOff = methods.def.durationOff;
+                    $(sel || methods.def.sel).stop().fadeOut(durOff, function() {
+                        $(document).trigger({
+                            'type': 'tooltip.hide',
+                            'el': $(this)
+                        });
+                    });
+                    return $this;
+                }
+            };
     $.fn.tooltip = function(method) {
         if (methods[method]) {
             return methods[ method ].apply(this, Array.prototype.slice.call(arguments, 1));
@@ -899,72 +903,72 @@ function getCookie(c_name)
                 var menu = $(this);
                 if ($.existsN(menu)) {
                     var sH = 0,
-                    optionsMenu = $.extend({
-                        item: 'li:first',
-                        direction: null,
-                        effectOn: 'fadeIn',
-                        effectOff: 'fadeOut',
-                        effectOnS: 'fadeIn',
-                        effectOffS: 'fadeOut',
-                        duration: 0,
-                        drop: 'li > ul',
-                        countColumn: 'none',
-                        columnPart: false,
-                        columnPart2: false,
-                        maxC: 10,
-                        sub3Frame: 'ul ul',
-                        columnClassPref: 'column_',
-                        columnClassPref2: 'column2_',
-                        durationOn: 0,
-                        durationOff: 0,
-                        durationOnS: 0,
-                        animatesub3: false,
-                        dropWidth: null,
-                        sub2Frame: null,
-                        evLF: 'hover',
-                        evLS: 'hover',
-                        hM: 'hoverM',
-                        menuCache: false,
-                        activeFl: aC,
-                        parentTl: 'li',
-                        refresh: false,
-                        otherPage: undefined,
-                        vertical: false
-                    }, options);
+                            optionsMenu = $.extend({
+                                item: 'li:first',
+                                direction: null,
+                                effectOn: 'fadeIn',
+                                effectOff: 'fadeOut',
+                                effectOnS: 'fadeIn',
+                                effectOffS: 'fadeOut',
+                                duration: 0,
+                                drop: 'li > ul',
+                                countColumn: 'none',
+                                columnPart: false,
+                                columnPart2: false,
+                                maxC: 10,
+                                sub3Frame: 'ul ul',
+                                columnClassPref: 'column_',
+                                columnClassPref2: 'column2_',
+                                durationOn: 0,
+                                durationOff: 0,
+                                durationOnS: 0,
+                                animatesub3: false,
+                                dropWidth: null,
+                                sub2Frame: null,
+                                evLF: 'hover',
+                                evLS: 'hover',
+                                hM: 'hoverM',
+                                menuCache: false,
+                                activeFl: aC,
+                                parentTl: 'li',
+                                refresh: false,
+                                otherPage: undefined,
+                                vertical: false
+                            }, options);
                     menu.data('options', optionsMenu);
                     var settings = optionsMenu,
-                    menuW = menu.width(),
-                    menuItem = menu.find(settings.item),
-                    direction = settings.direction,
-                    drop = settings.drop,
-                    dropOJ = $(drop),
-                    effOn = settings.effectOn,
-                    effOff = settings.effectOff,
-                    effOnS = settings.effectOnS,
-                    countColumn = settings.countColumn,
-                    columnPart = settings.columnPart,
-                    columnPart2 = settings.columnPart2,
-                    maxC = settings.maxC,
-                    sub3Frame = settings.sub3Frame,
-                    columnClassPref = settings.columnClassPref,
-                    columnClassPref2 = settings.columnClassPref2,
-                    itemMenuL = menuItem.length,
-                    dropW = settings.dropWidth,
-                    sub2Frame = settings.sub2Frame,
-                    duration = timeDurM = settings.duration,
-                    durationOn = settings.durationOn,
-                    durationOff = settings.durationOff,
-                    durationOnS = settings.durationOnS,
-                    animatesub3 = settings.animatesub3,
-                    evLF = settings.evLF,
-                    evLS = settings.evLS,
-                    hM = settings.frAClass,
-                    refresh = settings.refresh,
-                    menuCache = settings.menuCache,
-                    activeFl = settings.activeFl,
-                    parentTl = settings.parentTl,
-                    otherPage = settings.otherPage,
-                    vertical = settings.vertical;
+                            menuW = menu.width(),
+                            menuItem = menu.find(settings.item),
+                            direction = settings.direction,
+                            drop = settings.drop,
+                            dropOJ = menu.find(drop),
+                            effOn = settings.effectOn,
+                            effOff = settings.effectOff,
+                            effOnS = settings.effectOnS,
+                            countColumn = settings.countColumn,
+                            columnPart = settings.columnPart,
+                            columnPart2 = settings.columnPart2,
+                            maxC = settings.maxC,
+                            sub3Frame = settings.sub3Frame,
+                            columnClassPref = settings.columnClassPref,
+                            columnClassPref2 = settings.columnClassPref2,
+                            itemMenuL = menuItem.length,
+                            dropW = settings.dropWidth,
+                            sub2Frame = settings.sub2Frame,
+                            duration = timeDurM = settings.duration,
+                            durationOn = settings.durationOn,
+                            durationOff = settings.durationOff,
+                            durationOnS = settings.durationOnS,
+                            animatesub3 = settings.animatesub3,
+                            evLF = settings.evLF,
+                            evLS = settings.evLS,
+                            hM = settings.frAClass,
+                            refresh = settings.refresh,
+                            menuCache = settings.menuCache,
+                            activeFl = settings.activeFl,
+                            parentTl = settings.parentTl,
+                            otherPage = settings.otherPage,
+                            vertical = settings.vertical;
                     if (menuCache && !refresh) {
                         menu.find('a').each(function() {//if start without cache and remove active item
                             var $this = $(this);
@@ -972,7 +976,7 @@ function getCookie(c_name)
                             $this.removeClass(aC);
                         });
                         var locHref = location.href,
-                        locationHref = otherPage !== undefined ? otherPage : locHref;
+                                locationHref = otherPage !== undefined ? otherPage : locHref;
                         menu.find('a[href="' + locationHref + '"]').each(function() {
                             var $this = $(this);
                             $this.closest(activeFl.split(' ')[0]).addClass(aC);
@@ -988,8 +992,8 @@ function getCookie(c_name)
                         if (columnPart2) {
                             dropOJ.find(sub3Frame).each(function() {
                                 var $this = $(this),
-                                columnsObj = $this.find(':regex(class,' + columnClassPref2 + '([0-9]+))'),
-                                numbColumn = [];
+                                        columnsObj = $this.find(':regex(class,' + columnClassPref2 + '([0-9]+))'),
+                                        numbColumn = [];
                                 columnsObj.each(function(i) {
                                     numbColumn[i] = $(this).attr('class').match(new RegExp(columnClassPref2 + '([0-9]+)'))[0];
                                 });
@@ -1002,7 +1006,7 @@ function getCookie(c_name)
                                     }
                                     $.map(numbColumn, function(n, i) {
                                         var currC = columnsObj.filter('.' + n),
-                                        classCuurC = currC.first().attr('class');
+                                                classCuurC = currC.first().attr('class');
                                         $this.children().append('<li class="' + classCuurC + '" data-column="' + n + '"><ul></ul></li>');
                                         $this.find('[data-column="' + n + '"]').children().append(currC.clone());
                                         numbColumnL = numbColumnL > maxC ? maxC : numbColumnL;
@@ -1019,30 +1023,30 @@ function getCookie(c_name)
                         if (columnPart && !sub2Frame)
                             dropOJ.each(function() {
                                 var $this = $(this),
-                                columnsObj = $this.find(':regex(class,' + columnClassPref + '([-1-9]+))'),
-                                numbColumn = [];
+                                        columnsObj = $this.find(':regex(class,' + columnClassPref + '([0-9]|-1+))'),
+                                        numbColumn = [];
                                 columnsObj.each(function(i) {
-                                    numbColumn[i] = $(this).attr('class').match(/([-1-9]+)/)[0];
+                                    numbColumn[i] = $(this).attr('class').match(/([0-9]|-1+)/)[0];
                                 })
                                 numbColumn = _.uniq(numbColumn).sort();
                                 var numbColumnL = numbColumn.length;
                                 if (numbColumnL == 1 && $.inArray('0', numbColumn) == -1 || numbColumnL > 1) {
-                                    if ($.inArray('0', numbColumn) >= 0) {
-                                        numbColumn.shift();
-                                        numbColumn.push('0');
-                                    }
                                     if ($.inArray('-1', numbColumn) == 0) {
                                         numbColumn.shift();
                                         numbColumn.push('-1');
                                     }
+                                    if ($.inArray('0', numbColumn) == 0) {
+                                        numbColumn.shift();
+                                        numbColumn.push('0');
+                                    }
                                     $.map(numbColumn, function(n, i) {
                                         var $thisLi = columnsObj.filter('.' + columnClassPref + n),
-                                        sumx = 0;
+                                                sumx = 0;
                                         $thisLi.each(function() {
                                             var datax = $(this).attr('data-x');
                                             sumx = parseInt(datax == 0 || datax == undefined ? 1 : datax) > sumx ? parseInt(datax == 0 || datax == undefined ? 1 : datax) : sumx;
                                         })
-                                        $this.children().append('<li class="x' + sumx + '" data-column="' + n + '"><ul></ul></li>');
+                                        $this.children().append('<li class="x' + sumx + '" data-column="' + n + '" data-x="' + sumx + '"><ul></ul></li>');
                                         $this.find('[data-column="' + n + '"]').children().append($thisLi.clone());
                                     })
                                     columnsObj.remove();
@@ -1065,10 +1069,10 @@ function getCookie(c_name)
                         menuItem.add(menuItem.find('.helper:first')).css('height', '');
                     menuItem.each(function(index) {
                         var $this = $(this),
-                        $thisW = $this.width(),
-                        $thisL = $this.position().left,
-                        $thisH = $this.height(),
-                        $thisDrop = $this.find(drop);
+                                $thisW = $this.width(),
+                                $thisL = $this.position().left,
+                                $thisH = $this.height(),
+                                $thisDrop = $this.find(drop);
                         k[index] = false;
                         if ($thisH > sH)
                             sH = $thisH;
@@ -1106,144 +1110,144 @@ function getCookie(c_name)
                     if (evLS === 'toggle')
                         evLS = 'click';
                     menuItem.off(evLF)[evLF](
-                        function(e) {
-                            var $this = $(this);
-                            if ($this.data("show") === "no" || $this.data("show") === undefined) {
+                            function(e) {
+                                var $this = $(this);
+                                if ($this.data("show") === "no" || $this.data("show") === undefined) {
 
-                                $this.data("show", "yes");
-                                clearTimeout(hoverTO);
-                                closeMenu();
-                                var $thisI = $this.index(),
-                                $thisDrop = $this.find(drop);
-                                $this.addClass(hM);
-                                if ($thisI === 0)
-                                    $this.addClass('firstH');
-                                if ($thisI === itemMenuL - 1)
-                                    $this.addClass('lastH');
-                                if ($(e.relatedTarget).is(menuItem) || $.existsN($(e.relatedTarget).parents(menuItem)) || $this.data('kk') === 0)
-                                    k[$thisI] = true;
-                                if (k[$thisI]) {
-                                    hoverTO = setTimeout(function() {
-                                        $thisDrop[effOn](durationOn, function() {
-                                            $this.data('kk', $this.data('kk') + 1);
-                                            $(document).trigger({
-                                                type: 'menu.showDrop',
-                                                el: $thisDrop
-                                            });
-                                            if ($thisDrop.length !== 0)
-                                                menu.addClass(hM);
-                                            if (sub2Frame) {
-                                                var listDrop = $thisDrop.children();
-                                                $thisDrop.find(sub2Frame).addClass('is-side');
-                                                listDrop.children().off(evLS)[evLS](function(e) {
-                                                    var $this = $(this);
-                                                    if ($this.data("show") === "no" || $this.data("show") === undefined) {
-                                                        $this.data("show", "yes");
-                                                        subFrame = $this.find(sub2Frame);
-                                                        if (e.type !== 'click' && evLS !== 'toggle') {
-                                                            $this.siblings().removeClass(hM);
+                                    $this.data("show", "yes");
+                                    clearTimeout(hoverTO);
+                                    closeMenu();
+                                    var $thisI = $this.index(),
+                                            $thisDrop = $this.find(drop);
+                                    $this.addClass(hM);
+                                    if ($thisI === 0)
+                                        $this.addClass('firstH');
+                                    if ($thisI === itemMenuL - 1)
+                                        $this.addClass('lastH');
+                                    if ($(e.relatedTarget).is(menuItem) || $.existsN($(e.relatedTarget).parents(menuItem)) || $this.data('kk') === 0)
+                                        k[$thisI] = true;
+                                    if (k[$thisI]) {
+                                        hoverTO = setTimeout(function() {
+                                            $thisDrop[effOn](durationOn, function() {
+                                                $this.data('kk', $this.data('kk') + 1);
+                                                $(document).trigger({
+                                                    type: 'menu.showDrop',
+                                                    el: $thisDrop
+                                                });
+                                                if ($thisDrop.length !== 0)
+                                                    menu.addClass(hM);
+                                                if (sub2Frame) {
+                                                    var listDrop = $thisDrop.children();
+                                                    $thisDrop.find(sub2Frame).addClass('is-side');
+                                                    listDrop.children().off(evLS)[evLS](function(e) {
+                                                        var $this = $(this);
+                                                        if ($this.data("show") === "no" || $this.data("show") === undefined) {
+                                                            $this.data("show", "yes");
+                                                            subFrame = $this.find(sub2Frame);
+                                                            if (e.type !== 'click' && evLS !== 'toggle') {
+                                                                $this.siblings().removeClass(hM);
+                                                            }
+                                                            if ($.existsN(subFrame)) {
+                                                                if (e.type === 'click' && evLS === 'toggle') {
+                                                                    e.stopPropagation();
+                                                                    $this.siblings().filter('.' + hM).click();
+                                                                    $this.addClass(hM);
+                                                                }
+                                                                else {
+                                                                    $this.has(sub2Frame).addClass(hM);
+                                                                }
+
+                                                                $thisDrop.css('width', '');
+                                                                listDrop.add(subFrame).css('height', '');
+                                                                var dropW = $thisDrop.width(),
+                                                                        sumW = dropW + subFrame.width(),
+                                                                        subHL2 = subFrame.outerHeight(),
+                                                                        dropDH = listDrop.height();
+                                                                var addH = listDrop.outerHeight() - dropDH;
+                                                                if (subHL2 < dropDH)
+                                                                    subHL2 = dropDH;
+                                                                if (animatesub3) {
+                                                                    listDrop.animate({
+                                                                        'height': subHL2
+                                                                    }, {
+                                                                        queue: false,
+                                                                        duration: durationOnS,
+                                                                        complete: function() {
+                                                                            $thisDrop.animate({
+                                                                                'width': sumW,
+                                                                                'height': subHL2 + addH
+                                                                            }, {
+                                                                                queue: false,
+                                                                                duration: durationOnS
+                                                                            });
+                                                                        }
+                                                                    });
+                                                                }
+                                                                else {
+                                                                    listDrop.css('height', subHL2);
+                                                                    $thisDrop.css({
+                                                                        'height': subHL2 + addH,
+                                                                        'width': sumW
+                                                                    });
+                                                                }
+                                                                subFrame[effOnS](durationOnS, function() {
+                                                                    subFrame.css('height', subHL2);
+                                                                });
+                                                            }
+                                                            else
+                                                                return true;
                                                         }
-                                                        if ($.existsN(subFrame)) {
+                                                        else {
+                                                            $this.data("show", "no");
                                                             if (e.type === 'click' && evLS === 'toggle') {
                                                                 e.stopPropagation();
-                                                                $this.siblings().filter('.' + hM).click();
-                                                                $this.addClass(hM);
                                                             }
-                                                            else {
-                                                                $this.has(sub2Frame).addClass(hM);
-                                                            }
-
-                                                            $thisDrop.css('width', '');
-                                                            listDrop.add(subFrame).css('height', '');
-                                                            var dropW = $thisDrop.width(),
-                                                            sumW = dropW + subFrame.width(),
-                                                            subHL2 = subFrame.outerHeight(),
-                                                            dropDH = listDrop.height();
-                                                            var addH = listDrop.outerHeight() - dropDH;
-                                                            if (subHL2 < dropDH)
-                                                                subHL2 = dropDH;
-                                                            if (animatesub3) {
-                                                                listDrop.animate({
-                                                                    'height': subHL2
-                                                                }, {
-                                                                    queue: false,
-                                                                    duration: durationOnS,
-                                                                    complete: function() {
-                                                                        $thisDrop.animate({
-                                                                            'width': sumW,
-                                                                            'height': subHL2 + addH
-                                                                        }, {
-                                                                            queue: false,
-                                                                            duration: durationOnS
-                                                                        });
-                                                                    }
+                                                            var subFrame = $this.find(sub2Frame);
+                                                            if ($.existsN(subFrame)) {
+                                                                subFrame.hide();
+                                                                $thisDrop.stop().css({
+                                                                    'width': '',
+                                                                    'height': ''
                                                                 });
+                                                                listDrop.add(subFrame).stop().css('height', '');
+                                                                $this.removeClass(hM);
                                                             }
-                                                            else {
-                                                                listDrop.css('height', subHL2);
-                                                                $thisDrop.css({
-                                                                    'height': subHL2 + addH,
-                                                                    'width': sumW
-                                                                });
-                                                            }
-                                                            subFrame[effOnS](durationOnS, function() {
-                                                                subFrame.css('height', subHL2);
-                                                            });
                                                         }
-                                                        else
-                                                            return true;
-                                                    }
-                                                    else {
-                                                        $this.data("show", "no");
-                                                        if (e.type === 'click' && evLS === 'toggle') {
-                                                            e.stopPropagation();
-                                                        }
-                                                        var subFrame = $this.find(sub2Frame);
-                                                        if ($.existsN(subFrame)) {
-                                                            subFrame.hide();
-                                                            $thisDrop.stop().css({
-                                                                'width': '',
-                                                                'height': ''
-                                                            });
-                                                            listDrop.add(subFrame).stop().css('height', '');
-                                                            $this.removeClass(hM);
-                                                        }
-                                                    }
-                                                });
-                                            }
-                                        });
-                                    }, timeDurM);
+                                                    });
+                                                }
+                                            });
+                                        }, timeDurM);
+                                    }
                                 }
-                            }
-                            else {
-                                $this.data("show", "no");
-                                var $thisI = $this.index();
-                                k[$thisI] = true;
-                                if ($this.index() === 0)
-                                    $this.removeClass('firstH');
-                                if ($this.index() === itemMenuL - 1)
-                                    $this.removeClass('lastH');
-                                var $thisDrop = $this.find(drop);
-                                if ($.existsN($thisDrop)) {
-                                    $thisDrop.stop(true, false)[effOff](durationOff);
+                                else {
+                                    $this.data("show", "no");
+                                    var $thisI = $this.index();
+                                    k[$thisI] = true;
+                                    if ($this.index() === 0)
+                                        $this.removeClass('firstH');
+                                    if ($this.index() === itemMenuL - 1)
+                                        $this.removeClass('lastH');
+                                    var $thisDrop = $this.find(drop);
+                                    if ($.existsN($thisDrop)) {
+                                        $thisDrop.stop(true, false)[effOff](durationOff);
+                                    }
+                                    $this.removeClass(hM);
                                 }
-                                $this.removeClass(hM);
-                            }
-                        });
+                            });
                     menu.off('hover')['hover'](
-                        function(e) {
-                            menuItem.each(function() {
-                                $(this).data('kk', 0);
+                            function(e) {
+                                menuItem.each(function() {
+                                    $(this).data('kk', 0);
+                                });
+                                timeDurM = 0;
+                            },
+                            function(e) {
+                                closeMenu();
+                                menuItem.each(function() {
+                                    $(this).data('kk', -1);
+                                });
+                                timeDurM = duration;
                             });
-                            timeDurM = 0;
-                        },
-                        function(e) {
-                            closeMenu();
-                            menuItem.each(function() {
-                                $(this).data('kk', -1);
-                            });
-                            timeDurM = duration;
-                        });
                     body.off('click.menu').on('click.menu', function(e) {
                         closeMenu();
                     }).off('keydown.menu').on('keydown.menu', function(e) {
@@ -1312,27 +1316,27 @@ function getCookie(c_name)
                     }
                 }, options);
                 var tabsDiv = [],
-                tabsId = [],
-                navTabsLi = [],
-                regRefs = [],
-                thisL = this.length,
-                k = true,
-                refs = [],
-                attrOrdata = [];
+                        tabsId = [],
+                        navTabsLi = [],
+                        regRefs = [],
+                        thisL = this.length,
+                        k = true,
+                        refs = [],
+                        attrOrdata = [];
                 $this.each(function() {
                     var index = methods.index,
-                    $thiss = $(this),
-                    data = $thiss.data(),
-                    effectOn = data.effectOn || settings.effectOn,
-                    effectOff = data.effectOff || settings.effectOff,
-                    durationOn = parseInt(data.durationOn || settings.durationOn),
-                    durationOff = parseInt(data.durationOff || settings.durationOff);
+                            $thiss = $(this),
+                            data = $thiss.data(),
+                            effectOn = data.effectOn || settings.effectOn,
+                            effectOff = data.effectOff || settings.effectOff,
+                            durationOn = parseInt(data.durationOn || settings.durationOn),
+                            durationOff = parseInt(data.durationOff || settings.durationOff);
                     navTabsLi[index] = $thiss.children();
                     refs[index] = navTabsLi[index].children(':first-child');
                     attrOrdata[index] = refs[index].attr('href') !== undefined ? 'attr' : 'data';
                     var tempO = $([]),
-                    tempO2 = $([]),
-                    tempRefs = [];
+                            tempO2 = $([]),
+                            tempRefs = [];
                     methods.index += 1;
                     refs[index].each(function(ind) {
                         var tHref = $(this)[attrOrdata[index]]('href');
@@ -1348,24 +1352,24 @@ function getCookie(c_name)
                     refs[index].off('click.tabs').on('click.tabs', function(e) {
                         wST = wnd.scrollTop();
                         var $this = $(this),
-                        resB = settings.before($this);
+                                resB = settings.before($this);
                         if (resB === undefined || resB === true) {
                             if ($this.is('a'))
                                 e.preventDefault();
                             var cookie = $thiss.data('cookie') !== undefined,
-                            toggle = $thiss.data('type') === 'toggle',
-                            condStart = e.start;
+                                    toggle = $thiss.data('type') === 'toggle',
+                                    condStart = e.start;
                             if (!$this.parent().hasClass('disabled')) {
                                 var $thisA = $this[attrOrdata[index]]('href'),
-                                $thisAOld = navTabsLi[index].filter('.' + aC).children()[attrOrdata[index]]('href'),
-                                $thisAOld = $thisAOld == $thisA ? undefined : $thisAOld,
-                                $thisAO = $($thisA),
-                                $thisS = $this.data('source') || $this.attr('href'),
-                                $thisData = $this.data('data'),
-                                $thisSel = $this.data('selector');
+                                        $thisAOld = navTabsLi[index].filter('.' + aC).children()[attrOrdata[index]]('href'),
+                                        $thisAOld = $thisAOld == $thisA ? undefined : $thisAOld,
+                                        $thisAO = $($thisA),
+                                        $thisS = $this.data('source') || $this.attr('href'),
+                                        $thisData = $this.data('data'),
+                                        $thisSel = $this.data('selector');
                                 function tabsDivT() {
                                     var showBlock = $thisAO.add($('[data-id=' + $thisA + ']')),
-                                    addDiv = toggle ? ($thisAO.is(':visible') && !condStart ? $([]) : showBlock) : showBlock;
+                                            addDiv = toggle ? ($thisAO.is(':visible') && !condStart ? $([]) : showBlock) : showBlock;
                                     if ($thisA.indexOf('#') !== -1 && !$thisAO.is(':visible')) {
                                         showBlock[effectOn](durationOn, function() {
                                             settings.after($thiss, $thisA, $thisAO.add('[data-id=' + $thisA + ']'));
@@ -1420,7 +1424,7 @@ function getCookie(c_name)
                                 }
 
                                 if (e.scroll)
-                                    wnd.scrollTop($this.offset().top);
+                                    $('html, body').scrollTop($this.offset().top);
                                 $(document).trigger({
                                     'type': 'tabs.showtabs',
                                     'el': $thisAO
@@ -1429,7 +1433,7 @@ function getCookie(c_name)
                                     setCookie($thiss.data('cookie') === undefined ? 'cookie' + index : $thiss.data('cookie'), $this.data('href'), 0, '/');
                                 }
                                 var wLH = window.location.hash,
-                                i = 0;
+                                        i = 0;
                                 _.map(regRefs[index], function(n, j) {
                                     _.map(methods.hashs[0], function(m, j) {
                                         if (m == n)
@@ -1481,7 +1485,7 @@ function getCookie(c_name)
                 wnd.off('hashchange.tabs').on('hashchange.tabs', function(e) {
                     function scrollTop(wST) {
                         if (e.scroll || e.scroll === undefined)
-                            wnd.scrollTop(wST);
+                            $('html, body').scrollTop(wST);
                         wST = wnd.scrollTop();
                     }
                     //chrome bug
@@ -1497,21 +1501,21 @@ function getCookie(c_name)
                             }
                         }
                     });
-                    return false;
+                    e.preventDefault();
                 });
             }
             return $this;
         },
         location: function(regrefs, refs) {
             var hashs1 = [],
-            hashs2 = [];
+                    hashs2 = [];
             if (location.hash === '')
             {
                 var i = 0,
-                j = 0;
+                        j = 0;
                 _.map(refs, function(n, i) {
                     var $this = n.first(),
-                    attrOrdataL = $this.attr('href') !== undefined ? 'attr' : 'data';
+                            attrOrdataL = $this.attr('href') !== undefined ? 'attr' : 'data';
                     if (attrOrdataL !== 'data') {
                         hashs1[i] = $this[attrOrdataL]('href');
                         i++;
@@ -1526,17 +1530,17 @@ function getCookie(c_name)
             else {
                 _.map(refs, function(n, i) {
                     var j = 0,
-                    $this = n.first(),
-                    attrOrdataL = $this.attr('href') !== undefined ? 'attr' : 'data';
+                            $this = n.first(),
+                            attrOrdataL = $this.attr('href') !== undefined ? 'attr' : 'data';
                     if (attrOrdataL === 'data') {
                         hashs2[j] = $this[attrOrdataL]('href');
                         j++;
                     }
                 });
                 var t = location.hash,
-                s = '#',
-                m = s.length, res = 0,
-                i = 0, pos = [];
+                        s = '#',
+                        m = s.length, res = 0,
+                        i = 0, pos = [];
                 while (i < t.length - 1)
                 {
                     var ch = t.substr(i, m);
@@ -1559,11 +1563,11 @@ function getCookie(c_name)
         },
         startCheck: function(regrefs, hashs) {
             var hash = hashs[0].concat(hashs[1]),
-            regrefsL = regrefs.length,
-            sim = 0;
+                    regrefsL = regrefs.length,
+                    sim = 0;
             $.map(regrefs, function(n, k) {
                 var i = 0,
-                hashs2 = [].concat(hash);
+                        hashs2 = [].concat(hash);
                 $.map(hash, function(n, j) {
                     if ($.inArray(n, regrefs[k]) >= 0)
                         i++;
@@ -1611,9 +1615,10 @@ function getCookie(c_name)
 (function($) {
     var methods = {
         init: function(options) {
-            this.filter(':not(.isDrop)').each(function() {
+            this.drop('destroy').each(function() {
                 var el = $(this),
-                trigger = (methods._checkProp(el.data(), options, 'trigger')).toString();
+                        trigger = (methods._checkProp(el.data(), options, 'trigger')).toString();
+
                 methods._modalTrigger($.extend({}, options, el.data()));
                 var rel = this.rel;
                 if (rel !== undefined && rel !== '') {
@@ -1626,17 +1631,28 @@ function getCookie(c_name)
                     }
                 }
 
-                el.addClass('isDrop').data('drp', options);
+                el.data({
+                    'drp': options
+                });
+
+                var href = el.attr('href') || el.data('href');
+                if (href) {
+                    if (window.location.hash.indexOf(href) != -1 && !$.inArray(href, $.drop.dP.hrefs))
+                        methods.open(undefined, el, options, undefined)
+                    $.drop.dP.hrefs.push(href);
+                }
+
                 el.attr('trigger', trigger).on(trigger + '.' + $.drop.nS, function(e) {
                     $.drop.dP.wST = wnd.scrollTop();
-                    if ($(this).hasClass('isDrop')) {
-                        e.stopPropagation();
-                        e.preventDefault();
+                    if (el.parent().hasClass(aC))
+                        methods.close($(el.attr('data-drop')))
+                    else {
                         methods.open(undefined, $(this), options, e)
                     }
+                    e.stopPropagation();
+                    e.preventDefault();
                 });
-                if (window.location.hash.indexOf(el.attr('href')) != -1)
-                    methods.open(undefined, el, options, undefined)
+
             });
             for (i in $.drop.dP.galleries)
                 if ($.drop.dP.galleries[i].length <= 1) {
@@ -1645,21 +1661,20 @@ function getCookie(c_name)
             return $(this);
         },
         destroy: function(el, trigger) {
-            if (el == undefined)
-                el = this.elrun ? this.elrun : this;
+            el = el ? el : this;
+
             el.each(function() {
                 var el = $(this);
                 if (trigger == undefined)
                     trigger = el.attr('trigger');
-                el.removeAttr('trigger').removeData('trigger').removeClass('isDrop').off(trigger + '.' + $.drop.nS);
+                el.removeAttr('trigger').removeData('trigger').removeData('drp').off(trigger + '.' + $.drop.nS);
                 var drop = $(el.attr('data-drop'));
                 drop.removeData('drp');
             });
             return el;
         },
         open: function(datas, $this, opt, e) {
-            if (e === undefined)
-                e = window.event;
+            e = e ? e : window.event;
             if (datas !== undefined && $this === undefined) {
                 if (!$.exists($.drop.dP.modalBtnDrop)) {
                     $this = $('<button>').attr('data-drop', $.drop.dP.modalBtnDrop).appendTo(body).hide().data({
@@ -1675,17 +1690,17 @@ function getCookie(c_name)
                 $this = this.elrun ? this.elrun : this;
             $this.each(function() {
                 var $this = $(this),
-                elSet = $this.data(),
-                moreOne = methods._checkProp(elSet, opt, 'moreOne'),
-                confirmBtnDrop = methods._checkProp(elSet, opt, 'confirmBtnDrop'),
-                source = methods._checkProp(elSet, opt, 'source') || $this.attr('href'),
-                drop = $(elSet.drop),
-                start = methods._checkProp(elSet, opt, 'start', true);
+                        elSet = $this.data(),
+                        moreOne = methods._checkProp(elSet, opt, 'moreOne'),
+                        confirmBtnDrop = methods._checkProp(elSet, opt, 'confirmBtnDrop'),
+                        source = methods._checkProp(elSet, opt, 'source') || $this.attr('href'),
+                        drop = $(elSet.drop),
+                        start = methods._checkProp(elSet, opt, 'start', true);
                 function _confirmF() {
                     if (!$.existsN(drop) || modal || always) {
                         if (!modal)
                             drop.remove();
-                        if (datas !== undefined)
+                        if (datas !== undefined && modal)
                             methods._pasteModal($this, datas, opt, undefined);
                         else
                             methods.get($this, opt, e, modal);
@@ -1699,8 +1714,8 @@ function getCookie(c_name)
 
                     if (!$this.is(':disabled')) {
                         var modal = methods._checkProp(elSet, opt, 'modal'),
-                        confirm = methods._checkProp(elSet, opt, 'confirm'),
-                        always = methods._checkProp(elSet, opt, 'always');
+                                confirm = methods._checkProp(elSet, opt, 'confirm'),
+                                always = methods._checkProp(elSet, opt, 'always');
                         if (start !== undefined) {
                             var res = eval(start)($this, drop);
                             if (!res)
@@ -1750,62 +1765,82 @@ function getCookie(c_name)
             if (sel === undefined)
                 sel = this.self ? this.self : this;
             clearTimeout($.drop.dP.closeDropTime);
-            var cond = sel === undefined || !sel,
-            drop = cond ? $('[data-elrun].' + aC) : sel;
-            if (!cond)
-                body.off('click.' + $.drop.nS + ' keydown.' + $.drop.nS);
-            if ($.existsN(drop)) {
+            var drop = sel ? sel : $('[data-elrun].' + aC);
+
+            if ($.existsN(drop) && drop.data('drp')) {
                 drop.each(function() {
                     var drop = $(this),
-                    data = Object.keys(drop.data('drp')).length != 0 ? drop.data('drp') : $.drop.dP,
-                    condOverlay = (data.overlayOpacity !== undefined ? data.overlayOpacity.toString() : data.overlayOpacity) !== '0';
-                    if (data.modal || sel || condOverlay || data.place === 'noinherit' || data.inheritClose) {
-                        var $thisB = data.elrun;
+                            set = drop.data('drp'),
+                            condOverlay = (set.overlayOpacity !== undefined ? set.overlayOpacity.toString() : set.overlayOpacity) !== '0';
+                    if (set.modal || sel || condOverlay || set.place === 'noinherit' || set.inheritClose) {
+                        var $thisB = set.elrun;
                         if (el)
                             $thisB = el;
                         if ($thisB !== undefined) {
-                            var $thisEOff = data.effectOff,
-                            durOff = data.durationOff;
-                            if (data.scroll) {
+                            var $thisEOff = set.effectOff,
+                                    durOff = set.durationOff;
+                            if (set.scroll) {
                                 methods._checkMethod(function() {
                                     methods.scroll.remove()
                                 })
                             }
                             function _hide() {
                                 $thisB.parent().removeClass(aC);
-                                var $thisHref = $thisB.attr('href');
+                                var $thisHref = $thisB.attr('href') || $thisB.data('href');
                                 if ($thisHref !== undefined) {
                                     var wLH = location.hash;
                                     location.hash = wLH.replace($thisHref, '');
                                 }
 
                                 drop.removeClass(aC);
-                                var method = data.animate ? 'animate' : 'css',
-                                $thisPMT = data.placeAfterClose.toLowerCase().split(' '),
-                                l = 0, t = 0;
-                                if ($thisPMT[0] === 'bottom' || $thisPMT[1] === 'bottom')
+
+                                var method = set.animate ? 'animate' : 'css',
+                                        pmt = set.placeAfterClose.toLowerCase().split(' '),
+                                        l = 0, t = 0;
+                                if (pmt[0] === 'bottom' || pmt[1] === 'bottom')
                                     t = wnd.height();
-                                if ($thisPMT[0] === 'right' || $thisPMT[1] === 'right')
+                                if (pmt[0] === 'right' || pmt[1] === 'right')
                                     l = wnd.width();
-                                if ($thisPMT[0] !== 'center' && $thisPMT[1] !== 'center')
+
+                                if (pmt[0] == 'center' || pmt[1] == 'center') {
+                                    if (pmt[1] === 'left') {
+                                        l = -drop.actual('outerWidth');
+                                        t = drop.css('top');
+                                    }
+                                    if (pmt[1] === 'right') {
+                                        l = wnd.width() + wnd.scrollLeft();
+                                        t = drop.css('top');
+                                    }
+                                    if (pmt[0] === 'top') {
+                                        t = -drop.actual('outerHeight');
+                                        l = drop.css('left');
+                                    }
+                                    if (pmt[0] === 'bottom') {
+                                        t = wnd.height() + wnd.scrollTop();
+                                        l = drop.css('left');
+                                    }
+                                }
+                                if (pmt[0] !== 'center' || pmt[1] !== 'center')
                                     drop.stop()[method]({
                                         'top': t,
                                         'left': l
                                     }, {
                                         queue: false
                                     });
-                                if ($thisPMT[0] === 'inherit')
+
+                                if (pmt[0] === 'inherit')
                                     drop.stop()[method]({
                                         'left': $thisB.offset().left + wnd.scrollLeft(),
                                         'top': $thisB.offset().top + wnd.scrollTop()
                                     }, {
                                         queue: false
                                     });
-                                if (data.forCenter)
-                                    data.forCenter.stop(true, false).fadeOut(durOff);
+
+                                if (set.forCenter)
+                                    set.forCenter.stop(true, false).fadeOut(durOff);
                                 drop[$thisEOff](durOff, function() {
-                                    if (data.dropOver)
-                                        data.dropOver.fadeOut(durOff);
+                                    if (set.dropOver)
+                                        set.dropOver.fadeOut(durOff);
                                     var $this = $(this).css({
                                         'width': '',
                                         'height': '',
@@ -1815,37 +1850,34 @@ function getCookie(c_name)
                                         'right': '',
                                         'position': ''
                                     });
-                                    $this.removeClass(data.place);
-                                    if (data.closed !== undefined)
-                                        data.closed($thisB, $this, datas);
-                                    if (data.elClosed !== undefined)
-                                        eval(data.elClosed)($thisB, $this, datas);
+                                    $this.removeClass(set.place);
+                                    if (set.closed !== undefined)
+                                        set.closed($thisB, $this);
+                                    if (set.elClosed !== undefined)
+                                        eval(set.elClosed)($thisB, $this);
                                     if (isTouch)
-                                        data.dropOver.off('touchmove.' + $.drop.nS);
+                                        set.dropOver.off('touchmove.' + $.drop.nS);
                                     $this.add($(document)).trigger({
                                         type: 'closed.' + $.drop.nS,
                                         el: $thisB,
-                                        drop: $this,
-                                        datas: datas
+                                        drop: $this
                                     });
                                     var dC = $this.find($($this.data('drp').dropContent).add($($.drop.dPP.dropContent))).data('jsp');
-                                    if (dC !== undefined) {
+                                    if (dC)
                                         dC.destroy();
-                                    }
                                 });
                             }
                             drop.add($(document)).trigger({
                                 type: 'close.' + $.drop.nS,
                                 el: $thisB,
-                                drop: drop,
-                                datas: datas
+                                drop: drop
                             });
-                            var close = data.elClose !== undefined ? data.elClose : data.close;
+                            var close = set.elClose !== undefined ? set.elClose : set.close;
                             if (close !== undefined) {
                                 if (typeof close == 'string')
-                                    var res = eval(close)($thisB, $(this), datas);
+                                    var res = eval(close)($thisB, $(this));
                                 else
-                                    var res = close($thisB, $(this), datas);
+                                    var res = close($thisB, $(this));
                                 if (res === false && res !== true) {
                                     if (window.console)
                                         console.log(res);
@@ -1868,11 +1900,10 @@ function getCookie(c_name)
             drop.each(function() {
                 var drop = $(this);
                 if (!drop.data('drp').droppableIn) {
-                    start = start === undefined ? true : false;
-                    var method = drop.data('drp').animate && start ? 'animate' : 'css',
-                    dropV = drop.is(':visible'),
-                    w = dropV ? drop.outerWidth() : drop.actual('outerWidth'),
-                    h = dropV ? drop.outerHeight() : drop.actual('outerHeight');
+                    var method = drop.data('drp').animate && !start ? 'animate' : 'css',
+                            dropV = drop.is(':visible'),
+                            w = dropV ? drop.outerWidth() : drop.actual('outerWidth'),
+                            h = dropV ? drop.outerHeight() : drop.actual('outerHeight');
                     drop[method]({
                         'top': (body.height() - h) / 2 + (!drop.data('drp').scroll ? wnd.scrollTop() : 0),
                         'left': (body.width() - w) / 2 + (!drop.data('drp').scroll ? wnd.scrollLeft() : 0)
@@ -1915,7 +1946,7 @@ function getCookie(c_name)
         },
         _pasteModal: function(el, data, set, rel) {
             var elSet = el.data(),
-            drop = $(elSet.drop);
+                    drop = $(elSet.drop);
             methods._modalTrigger($.extend({}, set, elSet));
             methods._pasteDrop($.extend({}, $.drop.dP, set, elSet), drop, undefined, rel);
             $(document).trigger({
@@ -1926,25 +1957,23 @@ function getCookie(c_name)
             methods._show(el, undefined, false, set, data);
         },
         get: function(el, set, e, modal) {
-            if (set == undefined) {
-                if (el != undefined)
-                    set = el.data('drp');
-                else
-                    set = {};
-            }
-            if (el === undefined)
+            if (!el)
                 el = this;
+            if (!set)
+                set = el.data('drp');
+
             var elSet = el.data(),
-            source = elSet.source || el.attr('href');
-            var rel = '';
+                    source = methods._checkProp(elSet, set, 'source') || el.attr('href'),
+                    datas = methods._checkProp(elSet, set, 'datas');
+
+            var rel = null;
             if (el.get(0).rel != undefined)
                 rel = el.get(0).rel.replace(/[^a-zA-Z0-9]+/ig, '');
-            if (typeof $.drop.dP.galleriesContent[rel] === 'undefined')
-                $.drop.dP.galleriesContent[rel] = [];
+
             if (elSet.drop != undefined) {
                 $.ajax({
                     type: "post",
-                    data: elSet.datas,
+                    data: datas,
                     url: source,
                     beforeSend: function() {
                         if (!methods._checkProp(elSet, set, 'moreOne'))
@@ -1955,8 +1984,6 @@ function getCookie(c_name)
                     },
                     dataType: elSet.type ? elSet.type : 'html',
                     success: function(data) {
-                        if (typeof $.drop.dP.galleriesContent[rel][source] === 'undefined')
-                            $.drop.dP.galleriesContent[rel][source] = data;
                         if (elSet.type !== 'html' && elSet.type !== undefined && modal) {
                             methods._pasteModal(el, data, set, rel);
                         }
@@ -1970,33 +1997,42 @@ function getCookie(c_name)
                             });
                             methods._show(el, e, true, set, data);
                         }
-                        if (drop)
-                            methods.init.call(drop.find('[data-drop]:not(.isDrop)'), $.extend({}, $.drop.dP));
                     }
                 });
             }
             else {
-                $.drop.dP.curOld = $('.' + $.drop.dP.curDefault);
-                $.drop.dP.curDefault = 'drop-default' + (new Date()).getTime();
-                var drop = methods._pasteDrop($.extend({}, $.drop.dP, set, elSet), methods._checkProp(elSet, set, 'pattern'), $.drop.dP.curDefault, rel);
+                $.drop.dP.curDefault = 'drop-default-' + (rel ? rel : (new Date()).getTime());
+                el.data('drop', '.' + $.drop.dP.curDefault).attr('data-drop', '.' + $.drop.dP.curDefault);
+
+                function _update(data) {
+                    if (rel)
+                        $('.drop-default-' + rel).remove();
+
+                    var drop = methods._pasteDrop($.extend({}, $.drop.dP, set, elSet), methods._checkProp(elSet, set, 'pattern'), $.drop.dP.curDefault, rel);
+                    drop.find($(methods._checkProp(elSet, set, 'placePaste')).add($($.drop.dPP.placePaste))).html(data);
+                    methods._show(el, e, true, set, data);
+                    methods.init.call(drop.find('[data-drop]'));
+                }
 
                 $(document).trigger({
                     'type': 'showActivity'
                 });
                 if (source.match(/jpg|gif|png|bmp|jpeg/))
-                    $('<img src="' + source + '" style="max-height: 100%;"/>').load(function(data) {
-                        $.drop.dP.curOld.remove();
-                        drop.find($(methods._checkProp(elSet, set, 'placePaste')).add($($.drop.dPP.placePaste))).append($(this))
-                        methods._show(el, e, true, set, data);
+                    $('<img src="' + source + '" style="max-height: 100%;"/>').load(function() {
+                        _update($(this));
                     })
                 else
-                    drop.find($(methods._checkProp(elSet, set, 'placePaste')).add($($.drop.dPP.placePaste))).load(source, function(data) {
-                        $.drop.dP.curOld.remove();
-                        if (typeof $.drop.dP.galleriesContent[rel][source] === 'undefined')
-                            $.drop.dP.galleriesContent[rel][source] = data;
-                        methods._show(el, e, true, set, data);
-                    })
+                    $.ajax({
+                        type: "post",
+                        url: source,
+                        data: datas,
+                        dataType: 'html',
+                        success: function(data) {
+                            _update(data);
+                        }
+                    });
             }
+            return el;
         },
         _pasteDrop: function(set, drop, addClass, rel) {
             if (addClass === undefined)
@@ -2011,30 +2047,17 @@ function getCookie(c_name)
                     drop = $(drop).appendTo(body);
                 else {
                     var sel = '[data-rel="' + set.drop + '"].for-center';
-                    if (typeof drop !== 'string') {
-                        if (!$.existsN(drop.parent('.for-center'))) {
-                            _for_center(set.drop);
-                        }
-                        var forCenter = $(sel);
-                        drop.appendTo(forCenter);
-                        drop = $(set.drop).data({
-                            'drp': {
-                                'forCenter': forCenter
-                            }
-                        });
+
+                    if (!$.exists(sel)) {
+                        _for_center(set.drop);
                     }
-                    else {
-                        if (!$.exists(sel)) {
-                            _for_center(set.drop);
+                    var forCenter = $(sel).empty();
+                    $(drop).appendTo(forCenter);
+                    drop = $(set.drop).data({
+                        'drp': {
+                            'forCenter': forCenter
                         }
-                        var forCenter = $(sel);
-                        $(drop).appendTo(forCenter);
-                        drop = $(set.drop).data({
-                            'drp': {
-                                'forCenter': forCenter
-                            }
-                        });
-                    }
+                    });
                     forCenter.css('height', function() {
                         return set.scroll ? '100%' : $(document).height();
                     });
@@ -2070,58 +2093,61 @@ function getCookie(c_name)
                 $this = this;
             if (e === undefined)
                 e = window.event;
-            set = $.extend({}, $.drop.dP, set);
+            var elSet = $this.data();
+            set = $.extend({}, $.drop.dP, set ? set : elSet.drp);
             isajax = !isajax ? false : true;
-            var elSet = $this.data(),
-            $thisD = elSet.durationOn !== undefined ? elSet.durationOn.toString() : elSet.durationOn || set.durationOn,
-            $thisDOff = elSet.durationOff !== undefined ? elSet.durationOff.toString() : elSet.durationOff || set.durationOff,
-            overlayOpacity = elSet.overlayOpacity !== undefined ? elSet.overlayOpacity.toString() : elSet.overlayOpacity || set.overlayOpacity,
-            $thisA = elSet.animate !== undefined ? elSet.animate : set.animate,
-            trigger = elSet.trigger || set.trigger,
-            place = elSet.place || set.place,
-            placement = elSet.placement || set.placement,
-            $thisEOff = elSet.effectOff || set.effectOff,
-            $thisEOn = elSet.effectOn || set.effectOn,
-            overlayColor = elSet.overlayColor || set.overlayColor,
-            modal = elSet.modal || set.modal,
-            timeclosemodal = elSet.timeclosemodal || set.timeclosemodal,
-            confirm = elSet.confirm || set.confirm,
-            position = elSet.position || set.position,
-            placeBeforeShow = elSet.placeBeforeShow || set.placeBeforeShow,
-            placeAfterClose = elSet.placeAfterClose || set.placeAfterClose,
-            moreOne = elSet.moreOne || set.moreOne,
-            closeClick = elSet.closeClick || set.closeClick,
-            closeEsc = elSet.closeEsc || set.closeEsc,
-            droppable = elSet.droppable || set.droppable,
-            next = elSet.next || set.next,
-            prev = elSet.prev || set.prev,
-            cycle = elSet.cycle || set.cycle,
-            source = elSet.source || set.source || $this.attr('href'),
-            selSource = elSet.drop || set.drop,
-            tab = elSet.tab || set.tab,
-            scroll = elSet.scroll || set.scroll,
-            limitSize = elSet.limitSize || set.limitSize,
-            limitContentSize = elSet.limitContentSize || set.limitContentSize,
-            scrollContent = elSet.scrollContent || set.scrollContent,
-            inheritClose = elSet.inheritClose || set.inheritClose,
-            dropContent = elSet.dropContent || set.dropContent,
-            dropHeader = elSet.dropHeader || set.dropHeader,
-            dropFooter = elSet.dropFooter || set.dropFooter,
-            contentHeader = elSet.contentHeader != undefined ? elSet.contentHeader.toString() : (set.contentHeader != undefined ? set.contentHeader : false),
-            contentContent = elSet.contentContent != undefined ? elSet.contentContent.toString() : (set.contentContent != undefined ? set.contentContent : false),
-            contentFooter = elSet.contentFooter != undefined ? elSet.contentFooter.toString() : (set.contentFooter != undefined ? set.contentFooter : false),
-            start = elSet.start,
-            changeSource = set.changeSource,
-            elChangeSource = elSet.changeSource,
-            elBefore = elSet.before,
-            elAfter = elSet.after,
-            before = set.before,
-            after = set.after,
-            close = set.close,
-            elClose = elSet.close,
-            closed = set.closed,
-            elClosed = elSet.closed,
-            drop = $(selSource);
+
+            var $thisD = elSet.durationOn !== undefined ? elSet.durationOn.toString() : elSet.durationOn || set.durationOn,
+                    $thisDOff = elSet.durationOff !== undefined ? elSet.durationOff.toString() : elSet.durationOff || set.durationOff,
+                    overlayOpacity = elSet.overlayOpacity !== undefined ? elSet.overlayOpacity.toString() : elSet.overlayOpacity || set.overlayOpacity,
+                    $thisA = elSet.animate !== undefined ? elSet.animate : set.animate,
+                    exit = elSet.exit || set.exit,
+                    trigger = elSet.trigger || set.trigger,
+                    place = elSet.place || set.place,
+                    placement = elSet.placement || set.placement,
+                    $thisEOff = elSet.effectOff || set.effectOff,
+                    $thisEOn = elSet.effectOn || set.effectOn,
+                    overlayColor = elSet.overlayColor || set.overlayColor,
+                    modal = elSet.modal || set.modal,
+                    timeclosemodal = elSet.timeclosemodal || set.timeclosemodal,
+                    confirm = elSet.confirm || set.confirm,
+                    position = elSet.position || set.position,
+                    placeBeforeShow = elSet.placeBeforeShow || set.placeBeforeShow,
+                    placeAfterClose = elSet.placeAfterClose || set.placeAfterClose,
+                    moreOne = elSet.moreOne || set.moreOne,
+                    closeClick = elSet.closeClick || set.closeClick,
+                    closeEsc = elSet.closeEsc || set.closeEsc,
+                    droppable = elSet.droppable || set.droppable,
+                    next = elSet.next || set.next,
+                    prev = elSet.prev || set.prev,
+                    cycle = elSet.cycle || set.cycle,
+                    source = elSet.source || set.source || $this.attr('href'),
+                    selSource = elSet.drop,
+                    tab = elSet.tab || set.tab,
+                    scroll = elSet.scroll || set.scroll,
+                    limitSize = elSet.limitSize || set.limitSize,
+                    limitContentSize = elSet.limitContentSize || set.limitContentSize,
+                    scrollContent = elSet.scrollContent || set.scrollContent,
+                    inheritClose = elSet.inheritClose || set.inheritClose,
+                    dropContent = elSet.dropContent || set.dropContent,
+                    dropHeader = elSet.dropHeader || set.dropHeader,
+                    dropFooter = elSet.dropFooter || set.dropFooter,
+                    contentHeader = elSet.contentHeader != undefined ? elSet.contentHeader.toString() : (set.contentHeader != undefined ? set.contentHeader : false),
+                    contentContent = elSet.contentContent != undefined ? elSet.contentContent.toString() : (set.contentContent != undefined ? set.contentContent : false),
+                    contentFooter = elSet.contentFooter != undefined ? elSet.contentFooter.toString() : (set.contentFooter != undefined ? set.contentFooter : false),
+                    start = elSet.start,
+                    changeSource = set.changeSource,
+                    elChangeSource = elSet.changeSource,
+                    elBefore = elSet.before,
+                    elAfter = elSet.after,
+                    before = set.before,
+                    after = set.after,
+                    close = set.close,
+                    elClose = elSet.close,
+                    closed = set.closed,
+                    elClosed = elSet.closed,
+                    drop = $(selSource);
+
             $this.attr({
                 'data-drop': $this.data('drop')
             }).parent().addClass(aC);
@@ -2132,6 +2158,7 @@ function getCookie(c_name)
                 drp = {};
             drop.data({
                 'drp': $.extend(drp, {
+                    'exit': exit,
                     'trigger': trigger,
                     'effectOn': $thisEOn,
                     'position': position,
@@ -2187,121 +2214,16 @@ function getCookie(c_name)
                     }, $.drop.methods())
                 })
             });
-            drop.attr('data-elrun', selSource).off('click.' + $.drop.nS, set.exit).on('click.' + $.drop.nS, set.exit, function() {
+            drop.attr('data-elrun', selSource).off('click.' + $.drop.nS, exit).on('click.' + $.drop.nS, exit, function() {
                 methods.close($(this).closest('[data-elrun]'));
             });
-            (function(source) {
-                var tempF = arguments.callee,
-                relO = $this.get(0).rel;
-                if (relO != '' && relO !== undefined) {
-                    var rel = relO.replace(/[^a-zA-Z0-9]+/ig, ''),
-                    relA = $.drop.dP.galleries[rel],
-                    drop = $('[data-elrun][data-rel="' + rel + '"]');
-                    if (relA !== undefined) {
-                        var relL = relA.length,
-                        relP = $.inArray(source != undefined ? source : drop.find($(methods._checkProp(elSet, set, 'placePaste')).add($($.drop.dPP.placePaste))).find('img').attr('src'), relA);
-                        $(prev).add($(next)).hide();
-                        if (relP == 0)
-                            $(next).show();
-                        if (relP == relL - 1)
-                            $(prev).show();
-                        if ((relP > 0 && relP < relL - 1) || cycle)
-                            $(prev).add($(next)).show();
-                    }
-                    $(prev).add($(next)).attr('data-rel', rel).off('click.' + $.drop.nS).on('click.' + $.drop.nS, function() {
-                        var $thisB = $(this).attr('disabled', 'disabled'),
-                        relCur = relP + ($thisB.is(prev) ? -1 : 1);
-                        if (cycle) {
-                            if (relCur >= relL)
-                                relCur = 0;
-                            if (relCur < 0)
-                                relCur = relL - 1;
-                        }
-                        source = relA[relCur];
-                        var $this = $('[data-source="' + relA[relCur] + '"][rel], [href="' + relA[relCur] + '"][rel]').filter(':first'),
-                        elSet = $this.data();
-                        function _changeSource(data) {
-                            var dropContent = elSet.dropContent || set.dropContent,
-                            dropHeader = elSet.dropHeader || set.dropHeader,
-                            dropFooter = elSet.dropFooter || set.dropFooter,
-                            contentHeader = elSet.contentHeader != undefined ? elSet.contentHeader.toString() : (set.contentHeader != undefined ? set.contentHeader : false),
-                            contentContent = elSet.contentContent != undefined ? elSet.contentContent.toString() : (set.contentContent != undefined ? set.contentContent : false),
-                            contentFooter = elSet.contentFooter != undefined ? elSet.contentFooter.toString() : (set.contentFooter != undefined ? set.contentFooter : false);
-                            methods._pasteContent($this, drop, contentHeader, dropHeader, contentContent, dropContent, contentFooter, dropFooter);
-                            changeSource(data, $this, drop);
-                            if (elChangeSource !== undefined)
-                                eval(elChangeSource)(data, $this, drop);
-                            drop.add($(document)).trigger({
-                                'type': 'changeSource.' + $.drop.nS,
-                                'el': $this,
-                                'drop': drop,
-                                'datas': data
-                            });
-                        }
-                        if (source.match(/jpg|gif|png|bmp|jpeg/))
-                            $('<img src="' + source + '" style="max-height: 100%;"/>').load(function(data) {
-                                drop.find($(methods._checkProp(elSet, set, 'placePaste')).add($($.drop.dPP.placePaste))).empty().append($(this))
-                                $thisB.removeAttr('disabled');
-                                tempF();
-                                (function(data) {
-                                    var tempF2 = arguments.callee;
-                                    _changeSource(data);
-                                    methods._checkMethod(function() {
-                                        methods.limitSize(drop)
-                                    })
-                                    methods._checkMethod(function() {
-                                        methods.heightContent(drop)
-                                    })
-                                    if (place != 'inherit')
-                                        methods._checkMethod(function() {
-                                            methods[place](drop, true)
-                                        })
-                                    $(this).off('load.' + $.drop.nS).on('load.' + $.drop.nS, function() {
-                                        tempF2($(this));
-                                    });
-                                })($(this));
-                            });
-                        else {
-                            function _tempF3(data) {
-                                $thisB.removeAttr('disabled');
-                                tempF(source);
-                                _changeSource(data);
-                                methods._checkMethod(function() {
-                                    methods.heightContent(drop)
-                                })
-                                methods._checkMethod(function() {
-                                    methods.limitSize(drop)
-                                })
-                                if (place != 'inherit')
-                                    methods._checkMethod(function() {
-                                        methods[place](drop, true)
-                                    })
-                            }
 
-                            if (typeof $.drop.dP.galleriesContent[rel][source] !== 'undefined' && !(elSet.always || set.always)) {
-                                drop.find($(methods._checkProp(elSet, set, 'placePaste')).add($($.drop.dPP.placePaste))).html($.drop.dP.galleriesContent[rel][source])
-                                _tempF3($.drop.dP.galleriesContent[rel][source]);
-                            }
-                            else {
-                                if ($.exists(source)) {
-                                    if (typeof $.drop.dP.galleriesContent[rel][source] === 'undefined')
-                                        $.drop.dP.galleriesContent[rel][source] = $(source).html();
-                                    drop.find($(methods._checkProp(elSet, set, 'placePaste')).add($($.drop.dPP.placePaste))).html($.drop.dP.galleriesContent[rel][source])
-                                }
-                                else
-                                    drop.find($(methods._checkProp(elSet, set, 'placePaste')).add($($.drop.dPP.placePaste))).load(source, function(data) {
-                                        if (typeof $.drop.dP.galleriesContent[rel][source] === 'undefined')
-                                            $.drop.dP.galleriesContent[rel][source] = data;
-                                        _tempF3(data);
-                                    });
-                            }
-                        }
-                    });
-                }
-            })(source)
+            methods._checkMethod(function() {
+                methods.galleries($this, set, methods)
+            });
 
             var overlays = $('.overlayDrop').css('z-index', 1103),
-            condOverlay = (overlayOpacity !== undefined ? overlayOpacity.toString() : overlayOpacity) !== '0';
+                    condOverlay = (overlayOpacity !== undefined ? overlayOpacity.toString() : overlayOpacity) !== '0';
             if (condOverlay) {
                 if (!$.exists('[data-rel="' + selSource + '"].overlayDrop')) {
                     body.append('<div class="overlayDrop" data-rel="' + selSource + '" style="display:none;position:fixed;width:100%;height:100%;left:0;top:0;"></div>');
@@ -2318,169 +2240,150 @@ function getCookie(c_name)
             if (forCenter) {
                 forCenter.css('z-index', overlays.length + 1104);
             }
-            else
-                drop.css('z-index', 1105);
-            if (drop.hasClass(aC)) {
-                methods.close(drop);
-            }
-            else {
-                methods._pasteContent($this, drop, contentHeader, dropHeader, contentContent, dropContent, contentFooter, dropFooter);
-                before($this, drop, isajax, data, set);
-                if (elBefore !== undefined)
-                    eval(elBefore)($this, drop, isajax, data, set);
-                drop.add($(document)).trigger({
-                    'type': 'before.' + $.drop.nS,
-                    'el': $this,
-                    'drop': drop,
-                    'isajax': isajax,
-                    'datas': data,
-                    'settings': set
+            drop.css('z-index', 1105);
+
+            methods._pasteContent($this, drop, contentHeader, dropHeader, contentContent, dropContent, contentFooter, dropFooter);
+            before($this, drop, data);
+            if (elBefore !== undefined)
+                eval(elBefore)($this, drop, data);
+            drop.add($(document)).trigger({
+                'type': 'before.' + $.drop.nS,
+                'el': $this,
+                'drop': drop,
+                'datas': data
+            });
+            wnd.off('resize.' + $.drop.nS).on('resize.' + $.drop.nS, function() {
+                methods._checkMethod(function() {
+                    methods.limitSize(drop)
                 });
                 methods._checkMethod(function() {
                     methods.heightContent(drop)
-                })
-                var dropTimeout = '';
-                wnd.off('resize.' + $.drop.nS).on('resize.' + $.drop.nS, function() {
-                    clearTimeout(dropTimeout);
-                    dropTimeout = setTimeout(function() {
-                        methods._checkMethod(function() {
-                            methods.limitSize(drop)
-                        });
-                        methods._checkMethod(function() {
-                            methods.heightContent(drop)
-                        });
-                        if (place !== 'inherit')
-                            methods._checkMethod(function() {
-                                methods[place](drop)
-                            });
-                    }, 300);
                 });
-                if (condOverlay) {
-                    drop.data('drp').dropOver.fadeIn($thisD / 2);
-                    if (closeClick)
-                        drop.data('drp').dropOver.add(forCenter).off('click.' + $.drop.nS).on('click.' + $.drop.nS, function(e) {
-                            if ($(e.target).is(drop.data('drp').dropOver) || $(e.target).is('.for-center')) {
-                                methods.close($($(e.target).attr('data-rel')));
-                            }
-                        });
-                    if (isTouch)
-                        drop.data('drp').dropOver.on('touchmove.' + $.drop.nS, function(e) {
-                            return false;
-                        });
-                }
-                drop.addClass(place);
-                function _forCenterTop() {
-                    if (forCenter) {
-                        forCenter.css('top', function() {
-                            return scroll ? wnd.scrollTop() : 0;
-                        });
-                    }
-                }
-                function _show() {
-                    if (place !== 'inherit') {
-                        function _pos() {
-                            drop.css({
-                                'top': -drop.actual('outerHeight'),
-                                'left': -drop.actual('outerWidth')
-                            });
-                            var $thisPMT = placeBeforeShow.toLowerCase().split(' ');
-                            if ($thisPMT[0] === 'bottom' || $thisPMT[1] === 'bottom')
-                                drop.css('top', wnd.height());
-                            if ($thisPMT[0] === 'right' || $thisPMT[1] === 'right')
-                                drop.css('left', wnd.width());
-                            if ($thisPMT[0] === 'center' && $thisPMT[1] === 'center') {
-                                if (place != 'inherit')
-                                    methods._checkMethod(function() {
-                                        methods[place](drop, true)
-                                    })
-                            }
-                            if ($thisPMT[0] === 'inherit')
-                                drop.css({
-                                    'left': $this.offset().left + wnd.scrollLeft(),
-                                    'top': $this.offset().top + wnd.scrollTop()
-                                });
-                        }
-                        var tempPl = typeof placement;
-                        if (tempPl == 'object')
-                            if (placement.top != undefined && placement.left != undefined)
-                                _pos()
-                        if (tempPl == 'string')
-                            _pos();
-                    }
-
-                    if (place != 'inherit')
-                        methods._checkMethod(function() {
-                            methods[place](drop)
-                        })
-
-                    var href = $this.attr('href');
-                    if (href !== undefined) {
-                        var wlh = window.location.hash;
-                        if (href.indexOf('#') !== -1 && (new RegExp(href + '#|' + href + '$').exec(wlh) === null))
-                            window.location.hash = wlh + href;
-                    }
-                    drop[$thisEOn]($thisD, function(e) {
-                        var drop = $(this);
-                        drop.addClass(aC);
-                        if (!confirm && modal && timeclosemodal)
-                            $.drop.dP.closeDropTime = setTimeout(function() {
-                                methods.close(drop);
-                            }, timeclosemodal);
-                        methods._checkMethod(function() {
-                            methods.limitSize(drop)
-                        })
-                        if (place != 'inherit')
-                            methods._checkMethod(function() {
-                                methods[place](drop)
-                            })
-
-                        var cB = elAfter;
-                        if (cB !== undefined) {
-                            eval(cB)($this, drop, isajax, data, set);
-                        }
-                        after($this, drop, isajax, data, set);
-                        drop.add($(document)).trigger({
-                            'type': 'after.' + $.drop.nS,
-                            'el': $this,
-                            'drop': drop,
-                            'isajax': isajax,
-                            'datas': data,
-                            'settings': set
-                        });
-                        if (droppable && place != 'inherit')
-                            methods._checkMethod(function() {
-                                methods.droppable(drop)
-                            })
-                        if (place == 'center' && !scroll) {
-                            wnd.off('scroll.' + $.drop.nS).on('scroll.' + $.drop.nS, function(e) {
-                                methods.center(drop);
-                            });
+                if (place !== 'inherit')
+                    methods[place](drop)
+            });
+            if (condOverlay) {
+                drop.data('drp').dropOver.stop().fadeIn($thisD / 2);
+                if (closeClick)
+                    drop.data('drp').dropOver.add(forCenter).off('click.' + $.drop.nS).on('click.' + $.drop.nS, function(e) {
+                        if ($(e.target).is(drop.data('drp').dropOver) || $(e.target).is('.for-center')) {
+                            methods.close($($(e.target).attr('data-rel')));
                         }
                     });
-                }
-                if (forCenter) {
-                    forCenter.fadeIn($thisD);
-                }
-
-                _forCenterTop();
-                if (condOverlay && scroll) {
-                    methods._checkMethod(function() {
-                        methods.scroll.create()
-                    })
-                }
-                methods._positionType(drop);
-                _show();
+                if (isTouch)
+                    drop.data('drp').dropOver.on('touchmove.' + $.drop.nS, function(e) {
+                        return false;
+                    });
             }
-            body.off('click.' + $.drop.nS).off('keydown.' + $.drop.nS).on('click.' + $.drop.nS, function(e) {
+            drop.addClass(place);
+
+            methods._positionType(drop);
+            methods._checkMethod(function() {
+                methods.limitSize(drop)
+            });
+            methods._checkMethod(function() {
+                methods.heightContent(drop);
+            })
+
+            if (forCenter) {
+                forCenter.fadeIn($thisD);
+            }
+            if (forCenter) {
+                forCenter.css('top', function() {
+                    return scroll ? wnd.scrollTop() : 0;
+                });
+            }
+            if (condOverlay && scroll) {
+                methods._checkMethod(function() {
+                    methods.scroll.create()
+                })
+            }
+
+            if (place !== 'inherit') {
+                var t = -drop.actual('outerHeight'),
+                        l = -drop.actual('outerWidth');
+
+                var pmt = placeBeforeShow.toLowerCase().split(' ');
+                if (pmt[0] === 'bottom' || pmt[1] === 'bottom')
+                    t = wnd.height() + wnd.scrollTop();
+                if (pmt[0] === 'right' || pmt[1] === 'right')
+                    l = wnd.width() + wnd.scrollLeft();
+                if (pmt[0] === 'center' || pmt[1] === 'center') {
+                    if (pmt[1] === 'left')
+                        l = -drop.actual('outerWidth');
+                    if (pmt[1] === 'right')
+                        l = wnd.width() + wnd.scrollLeft();
+                    if (pmt[0] === 'top')
+                        t = -drop.actual('outerHeight');
+                    if (pmt[0] === 'bottom')
+                        t = wnd.height() + wnd.scrollTop();
+                }
+                drop.css({
+                    'left': l,
+                    'top': t
+                });
+                if (pmt[0] === 'center' && pmt[1] === 'center')
+                    methods._checkMethod(function() {
+                        methods[place](drop, true)
+                    })
+                if (pmt[0] === 'inherit')
+                    drop.css({
+                        'left': $this.offset().left + wnd.scrollLeft(),
+                        'top': $this.offset().top + wnd.scrollTop()
+                    });
+            }
+
+            var href = $this.attr('href') || $this.data('href');
+            if (href !== undefined) {
+                var wlh = window.location.hash;
+                if (href.indexOf('#') !== -1 && (new RegExp(href + '#|' + href + '$').exec(wlh) === null))
+                    window.location.hash = wlh + href;
+            }
+            if (place !== 'inherit')
+                methods._checkMethod(function() {
+                    methods[place](drop)
+                })
+            drop[$thisEOn]($thisD, function(e) {
+                var drop = $(this).focus();
+                methods.init.call(drop.find('[data-drop]'));
+                drop.addClass(aC);
+                if (!confirm && modal && timeclosemodal)
+                    $.drop.dP.closeDropTime = setTimeout(function() {
+                        methods.close(drop);
+                    }, timeclosemodal);
+
+                var cB = elAfter;
+                if (cB !== undefined) {
+                    eval(cB)($this, drop, data);
+                }
+                after($this, drop, data);
+                drop.add($(document)).trigger({
+                    'type': 'after.' + $.drop.nS,
+                    'el': $this,
+                    'drop': drop,
+                    'datas': data
+                });
+                if (droppable && place != 'inherit')
+                    methods._checkMethod(function() {
+                        methods.droppable(drop)
+                    })
+                if (place == 'center' && !scroll) {
+                    wnd.off('scroll.' + $.drop.nS).on('scroll.' + $.drop.nS, function(e) {
+                        methods.center(drop);
+                    });
+                }
+            });
+            var ev = (selSource ? selSource : '').replace(/[^a-zA-Z0-9]+/ig, '');
+            body.off('click.' + $.drop.nS + ev).on('click.' + $.drop.nS + ev, function(e) {
                 if (closeClick)
-                    if (!$.existsN($(e.target).closest('[data-elrun]')) && !($(e.target).is(drop.data('drp').dropOver) || $(e.target).is('.for-center'))) {
+                    if (!$.existsN($(e.target).closest('[data-elrun]')) && !($(e.target).is('.overlayDrop') || $(e.target).is('.for-center'))) {
                         methods.close(false);
                     }
                     else
                         return true;
             });
             if (closeEsc)
-                body.off('keydown.' + $.drop.nS).on('keydown.' + $.drop.nS, function(e) {
+                body.off('keydown.' + $.drop.nS + ev).on('keydown.' + $.drop.nS + ev, function(e) {
                     if (!e)
                         var e = window.event;
                     key = e.keyCode;
@@ -2518,10 +2421,16 @@ function getCookie(c_name)
     };
     $.dropInit = function(m) {
         this.nS = 'drop';
+        this.anyMethod = function(m) {
+            return methods[m];
+        }
         this.method = function(m) {
             if (!/_/.test(m))
                 return methods[m];
         };
+        this.anyMethods = function() {
+            return methods;
+        }
         this.methods = function() {
             var newM = {};
             for (var i in methods) {
@@ -2541,8 +2450,8 @@ function getCookie(c_name)
             contentHeader: null,
             contentFooter: null,
             contentContent: null,
+            hrefs: [],
             galleries: [],
-            galleriesContent: [],
             message: {
                 success: function(text) {
                     return '<div class = "msg js-msg"><div class = "success"><span class = "icon_info"></span><div class="text-el">' + text + '</div></div></div>'
@@ -2561,7 +2470,7 @@ function getCookie(c_name)
             durationOn: 200,
             durationOff: 100,
             place: 'center',
-            placement: 'top, left',
+            placement: 'top left',
             modal: false,
             confirm: false,
             overlayOpacity: '0',
@@ -2587,7 +2496,6 @@ function getCookie(c_name)
             changeSource: function() {
             },
             start: undefined,
-            drop: '.drop-default',
             pattern: '<div class="drop drop-style drop-default"><button type="button" class="icon_times_drop" data-closed="closed-js"></button><div class="drop-header-default"></div><div class="drop-content-default" style="height: 100%;"><button class="drop-prev" type="button"  style="display:none;font-size: 30px;position:absolute;left: 20px;top:50%;"><</button><button class="drop-next" type="button" style="display:none;font-size: 30px;position:absolute;right: 20px;top:50%;">></button><div class="inside-padd placePaste" style="height: 100%;"></div></div><div class="drop-footer-default"></div></div>',
             modalBtnDrop: '#drop-notification-default',
             patternNotif: '<div class="drop drop-style" id="drop-notification-default"><div class="drop-header-default"></div><div class="drop-content-default"><div class="inside-padd drop-notification-default"></div></div><div class="drop-footer-default"></div></div>',
@@ -2609,31 +2517,26 @@ function getCookie(c_name)
         };
         this.setMethods = function(ms) {
             $.extend(methods, ms);
-        }
+        };
     }
-    
-    var id = (new Date()).getTime().toString(),
-    el = $('<div/>', {
-        id: 'scrollDrop'+id
-    }).appendTo(body).css({
-        'height': 400, 
-        'width': 400, 
+
+    var el = $('<div/>').appendTo(body).css({
+        'height': 400,
+        'width': 400,
         'overflow': 'scroll'
     }).wrap($('<div style="width:0;height:0;overflow:hidden;"></div>'));
     $.dropInit.prototype.widthScroll = el.width() - el.get(0).clientWidth;
     el.parent().remove();
-    
+
     $.drop = new $.dropInit();
-    
+
     wnd.off('hashchange.' + $.drop.nS).on('hashchange.' + $.drop.nS, function(e) {
-        wnd.scrollTop($.drop.dP.wST);
-        return false;
+        setTimeout(function() {
+            $('html, body').scrollTop($.drop.dP.wST);
+        }, 0)
+
+        e.preventDefault();
     });
-    wnd.off('scroll.init' + $.drop.nS).on('scroll.init' + $.drop.nS, function(e) {
-        var wST = wnd.scrollTop();
-        if (e.isTrigger == undefined && wST != 0)//wST != 0 for change hash when occurs jump to target element
-            $.drop.dP.wST = wST;
-    })
 })(jQuery);
 /*/plugin drop end*/
 /*plugin plusminus*/
@@ -2648,57 +2551,71 @@ function getCookie(c_name)
                 after: function() {
                 },
                 before: function() {
+                },
+                hover: function() {
                 }
             }, options);
             if (this.length > 0) {
                 return this.each(function() {
                     var $this = $(this),
-                    prev = settings.prev.split('.'),
-                    next = settings.next.split('.'),
-                    checkProdStock = settings.checkProdStock,
-                    step = settings.step,
-                    $thisPrev = $this,
-                    $thisNext = $this,
-                    regS = '', regM = '';
-                    $.each(prev, function(i, v) {
-                        var regS = v.match(/\(.*\)/);
-                        if (regS !== null) {
-                            regM = regS['input'].replace(regS[0], '');
-                            regS = regS[0].substring(1, regS[0].length - 1);
-                        }
-                        if (regS === null)
-                            regM = v;
-                        $thisPrev = $thisPrev[regM](regS);
-                    });
-                    $.each(next, function(i, v) {
-                        regS = v.match(/\(.*\)/);
-                        if (regS !== null) {
-                            regM = regS['input'].replace(regS[0], '');
-                            regS = regS[0].substring(1, regS[0].length - 1);
-                        }
-                        if (regS === null)
-                            regM = v;
-                        $thisNext = $thisNext[regM](regS);
-                    });
+                            $thisVal = $this.val(),
+                            prev = settings.prev.split('.'),
+                            next = settings.next.split('.'),
+                            checkProdStock = settings.checkProdStock,
+                            step = settings.step,
+                            max = +$this.data('max'),
+                            min = +$this.data('min');
+
+                    function _checkBtn(type) {
+                        var btn = $this,
+                                regS = '',
+                                regM = '';
+                        $.each(type, function(i, v) {
+                            var regS = v.match(/\(.*\)/);
+                            if (regS !== null) {
+                                regM = regS['input'].replace(regS[0], '');
+                                regS = regS[0].substring(1, regS[0].length - 1);
+                            }
+                            if (regS === null)
+                                regM = v;
+                            btn = btn[regM](regS);
+                        });
+                        return btn;
+                    }
+
+                    var $thisPrev = _checkBtn(prev),
+                            $thisNext = _checkBtn(next);
+
+                    if (max != '' && $thisVal >= max && checkProdStock) {
+                        $this.val(max);
+                        $thisNext.attr('disabled', 'disabled');
+                    }
+                    if (min != '' && $thisVal <= min && checkProdStock) {
+                        $this.val(min);
+                        $thisPrev.attr('disabled', 'disabled');
+                    }
+                    $thisNext.add($thisPrev).off('hover').hover(function(e) {
+                        settings.hover(e, $(this), $this, $(this).is($thisNext) ? 'next' : 'prev');
+                    })
                     $thisNext.off('click.pM').on('click.pM', function(e) {
                         var el = $(this);
                         $thisPrev.removeAttr('disabled', 'disabled');
                         if (!el.is(':disabled')) {
                             var input = $this,
-                            inputVal = parseInt(input.val());
+                                    inputVal = parseFloat(input.val());
                             if (!isTouch)
                                 input.focus();
                             if (!input.is(':disabled')) {
-                                settings.before(e, el, input);
+                                settings.before(e, el, input, 'next');
+                                var nextVal = +(inputVal + step).toFixed(10);
                                 if (isNaN(inputVal))
-                                    input.val(input.data('min') || 1);
+                                    input.val(min || 1);
                                 else
-                                    input.val(inputVal + step);
-                                if (inputVal + step === input.data('max') && checkProdStock)
-                                    $thisNext.attr('disabled', 'disabled');
-                                if (checkProdStock)
-                                    input.maxminValue(e);
-                                settings.after(e, el, input);
+                                    input.val(nextVal);
+                                if (nextVal === max && checkProdStock) {
+                                    el.attr('disabled', 'disabled');
+                                }
+                                settings.after(e, el, input, 'next');
                             }
                         }
                     });
@@ -2707,20 +2624,20 @@ function getCookie(c_name)
                         $thisNext.removeAttr('disabled', 'disabled');
                         if (!el.is(':disabled')) {
                             var input = $this,
-                            inputVal = parseInt(input.val());
+                                    inputVal = parseFloat(input.val());
                             if (!isTouch)
                                 input.focus();
                             if (!input.is(':disabled')) {
-                                settings.before(e, el, input);
+                                settings.before(e, el, input, 'prev');
+                                var nextVal = +(inputVal - step).toFixed(10);
                                 if (isNaN(inputVal))
-                                    input.val(input.data('min') || 1);
-                                else if (inputVal > parseFloat(input.data('min') || 1)) {
-                                    input.val(inputVal - step);
-                                    if (inputVal - step === input.data('min') && checkProdStock)
-                                        $thisPrev.attr('disabled', 'disabled');
+                                    input.val(min || 1);
+                                else if (inputVal > min || 1) {
+                                    input.val(nextVal);
+                                    if (nextVal === min && checkProdStock)
+                                        el.attr('disabled', 'disabled');
                                 }
-
-                                settings.after(e, el, input);
+                                settings.after(e, el, input, 'prev');
                             }
                         }
                     });
@@ -2747,9 +2664,9 @@ function getCookie(c_name)
     var methods = {
         init: function(e, f) {
             var $this = this,
-            $thisVal = $this.val(),
-            set = $.maxminValue.settings,
-            $max = parseInt($this.attr('data-max'));
+                    $thisVal = $this.val(),
+                    set = $.maxminValue.settings,
+                    $max = parseInt($this.attr('data-max'));
             if ($thisVal > $max && set.addCond) {
                 $this.val($max);
                 if (typeof f === 'function')
@@ -2788,21 +2705,11 @@ function getCookie(c_name)
             });
         }, 0);
     });
-    body.off('blur.max', '[data-max]').on('blur.max', '[data-max]', function(e) {
-        var $this = $(this);
-        if ($this.val() === '')
-            $this.val($this.data('min'));
-        $this.trigger({
-            'type': 'maxminValue',
-            'event': e
-        });
-        $(this).maxminValue(e);
-    });
     body.off('keypress', '[data-min]').on('keypress', '[data-min]', function(e) {
         var key = e.keyCode,
-        keyChar = parseInt(String.fromCharCode(key));
+                keyChar = parseInt(String.fromCharCode(key));
         var $this = $(this),
-        $min = $this.attr('data-min');
+                $min = $this.attr('data-min');
         if ($this.val() === "" && keyChar === 0) {
             $this.val($min);
             return false;
@@ -2810,7 +2717,7 @@ function getCookie(c_name)
     });
     body.off('keyup', '[data-min]').on('keyup', '[data-min]', function(e) {
         var $this = $(this),
-        $min = $this.attr('data-min');
+                $min = $this.attr('data-min');
         if ($this.val() === "0") {
             $this.val($min);
             $this.trigger({
@@ -2844,29 +2751,29 @@ function getCookie(c_name)
         init: function(options) {
             if ($.existsN(this)) {
                 var $jsCarousel = this,
-                settings = $.extend({
-                    item: 'li',
-                    prev: '.prev',
-                    next: '.next',
-                    content: '.c-carousel',
-                    groupButtons: '.b-carousel',
-                    vCarousel: '.v-carousel',
-                    hCarousel: '.h-carousel',
-                    adding: {},
-                    before: function() {
-                    },
-                    after: function() {
-                    }
-                }, options);
+                        settings = $.extend({
+                            item: 'li',
+                            prev: '.prev',
+                            next: '.next',
+                            content: '.c-carousel',
+                            groupButtons: '.b-carousel',
+                            vCarousel: '.v-carousel',
+                            hCarousel: '.h-carousel',
+                            adding: {},
+                            before: function() {
+                            },
+                            after: function() {
+                            }
+                        }, options);
                 var item = settings.item,
-                prev = settings.prev,
-                next = settings.next,
-                content = settings.content,
-                groupButtons = settings.groupButtons,
-                hCarousel = settings.hCarousel,
-                vCarousel = settings.vCarousel,
-                addO = settings.adding,
-                nS = 'mycarousel';
+                        prev = settings.prev,
+                        next = settings.next,
+                        content = settings.content,
+                        groupButtons = settings.groupButtons,
+                        hCarousel = settings.hCarousel,
+                        vCarousel = settings.vCarousel,
+                        addO = settings.adding,
+                        nS = 'mycarousel';
                 $jsCarousel.each(function() {
                     var $this = $(this);
                     settings.before($this);
@@ -2874,22 +2781,22 @@ function getCookie(c_name)
                     if (addO.refresh && $this.hasClass('iscarousel'))
                         m = 'children';
                     var $content = $this.find(content),
-                    $items = $content.children()[m]().children(item),
-                    $itemL = $items.length,
-                    $itemW = $items.outerWidth(true),
-                    $itemH = $items.outerHeight(true),
-                    $thisPrev = $this.find(prev),
-                    $thisNext = $this.find(next),
-                    $marginR = $itemW - $items.outerWidth(),
-                    $marginB = $itemH - $items.outerHeight(),
-                    contW = $content.width(),
-                    contH = $content.height(),
-                    groupButton = $this.find(groupButtons);
+                            $items = $content.children()[m]().children(item),
+                            $itemL = $items.length,
+                            $itemW = $items.outerWidth(true),
+                            $itemH = $items.outerHeight(true),
+                            $thisPrev = $this.find(prev),
+                            $thisNext = $this.find(next),
+                            $marginR = $itemW - $items.outerWidth(),
+                            $marginB = $itemH - $items.outerHeight(),
+                            contW = $content.width(),
+                            contH = $content.height(),
+                            groupButton = $this.find(groupButtons);
                     var $countV = (contW / $itemW).toFixed(1);
                     var k = false, isVert = $.existsN($this.closest(vCarousel)),
-                    isHorz = $.existsN($this.closest(hCarousel)),
-                    condH = $itemW * $itemL - $marginR > contW && isHorz,
-                    condV = ($itemH * $itemL - $marginB > contH) && isVert;
+                            isHorz = $.existsN($this.closest(hCarousel)),
+                            condH = $itemW * $itemL - $marginR > contW && isHorz,
+                            condV = ($itemH * $itemL - $marginB > contH) && isVert;
                     var vertical = condV ? true : false;
                     if (condH || condV)
                         k = true;
@@ -2905,8 +2812,8 @@ function getCookie(c_name)
                             }
                         };
                         $this.jcarousel($.extend(
-                            mainO
-                            , addO)).addClass('iscarousel');
+                                mainO
+                                , addO)).addClass('iscarousel');
                         $thisNext.add($thisPrev).css('display', 'inline-block');
                         groupButton.append($thisNext.add($thisPrev));
                         groupButton.append($thisNext.add($thisPrev));
