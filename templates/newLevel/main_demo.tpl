@@ -26,9 +26,6 @@
         {else:}
             {$lang = ''} 
         {/if}
-        {if $CI->uri->segment(2) == 'profile' || $CI->uri->segment(1) == 'wishlist'}
-            <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW" />
-        {/if}
         <script type="text/javascript">
             var locale = "{echo $lang}";
         </script>
@@ -115,38 +112,42 @@
             </style>
         {/literal}
     </head>
-    <body class="is{echo $agent[0]} not-js"> 
+    <body class="is{echo $agent[0]} not-js {$CI->core->core_data['data_type']}"> 
         {include_tpl('language/jsLangsDefine.tpl')}
         {include_tpl('language/jsLangs.tpl')}
         <!-- Start. shop-->
         <div class="imagecms-top-fixed-header">
             <div class="container">
-                <butotn type="button" class="imagecms-close">
+                <button type="button" class="imagecms-close">
                     <img src="{$THEME}icon_close.png"/>
-                </butotn>
+                </button>
                 <div class="imagecms-buy-license">
-                    <a href="http://www.imagecms.net/shop/prices" onclick="_gaq.push(['_trackEvent', 'demoshop-front', '/shop/prices']);">
+                    <a href="http://www.imagecms.net/shop/prices">
                         <span class="imagecms-text-el">Купить лицензицю</span>
                     </a>
                 </div>
                 <ul class="imagecms-list">
                     <li>
-                        <a href="http://www.imagecms.net" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demoshop-front', '/shop/prices']);">Обзор продукта</a>
+                        <a href="http://www.imagecms.net" class="imagecms-ref">Обзор продукта</a>
                     </li>
                     <li>
-                        <a href="http://www.imagecms.net/kliuchevye-preimushchestva/vozmozhnosti" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demoshop-front', '/kliuchevye-preimushchestva/vozmozhnosti']);">Преимущества продукта</a>
+                        <a href="http://www.imagecms.net/kliuchevye-preimushchestva/vozmozhnosti" class="imagecms-ref">преимущества</a>
+                    </li>
+                    <li>
+                        <div>
+                            <span class="imagecms-phone">
+                                <img src="{$THEME}/icon_phone.png" class="imagecms-ico-phone"/>
+                                <span class="imagecms-text-el">+7 (499) 703-37-54</span>
+                            </span>
+                        </div>
+                        <div>
+                            <a href="skype:imagecms" class="imagecms-ref-skype">
+                                <img src="{$THEME}/icon_skype.png" class="imagecms-ico-skype"/>
+                                <span class="imagecms-text-el">imagecms</span>
+                            </a>
+                        </div>
                     </li>
                 </ul>
-                <div class="imagecms-contacts">
-                    <span class="imagecms-phone">
-                        <img src="{$THEME}icon_phone.png" class="imagecms-ico-phone"/>
-                        <span class="imagecms-text-el">+7 (499) 703-37-54</span>
-                    </span>
-                    <a href="skype:imagecms_partner" class="imagecms-ref-skype">
-                        <img src="{$THEME}icon_skype.png" class="imagecms-ico-skype"/>
-                        <span class="imagecms-text-el">imagecms_partner</span>
-                    </a>
-                </div>
             </div>
         </div>
         <!-- End. shop-->
@@ -170,7 +171,6 @@
         {include_tpl('user_toolbar')}
 
         {/*}Start. delete before upload to server{ */}
-        {/*}
         <!-- scripts -->
         <script type="text/javascript" src="{$THEME}js/raphael-min.js"></script>
         <script type="text/javascript" src="{$THEME}js/_united_side_plugins.js"></script>
@@ -192,15 +192,14 @@
                 })
             </script>
         {/literal}
-        { */}
         {/*}End. delete before upload to server{ */}
 
-        {/*}uncomment before opload to server and combine and minimize scripts (in comment <!-- scripts of development -->...<!-- scripts of development end -->) into united_scripts file{ */}
-
+        {/*}uncomment before opload to server and combine and minimize scripts (in comment <!-- scripts -->...<!-- scripts end -->) into united_scripts file{ */}
+        {/*}
         <script type="text/javascript">
-            initDownloadScripts(['raphael-min', 'united_scripts'], 'init', 'scriptDefer');
+            {initDownloadScripts(['raphael-min', 'united_scripts'], 'init', 'scriptDefer');}
         </script>
-
+        { */}
         {include_shop_tpl('js_templates')}
     </body>
 </html>

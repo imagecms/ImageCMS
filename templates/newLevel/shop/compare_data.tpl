@@ -29,6 +29,6 @@
 <div class="drop drop-info drop-info-compare">
     <span class="helper"></span>
     <span class="text-el">
-        {lang('Ваш список','newLevel')} <br/>
-        {lang('“Список сравнения” пуст','newLevel')}</span>
+        Ваш список <br/>
+        “Список сравнения” пуст</span>
 </div>

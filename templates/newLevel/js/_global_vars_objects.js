@@ -6,7 +6,6 @@ var
         ieV = $.browser.version,
         ltie7 = ie && (ieV <= 7),
         ltie8 = ie && (ieV <= 8),
-        orderDetails = $.exists('#orderDetails'),
         checkProdStock = checkProdStock == "" ? false : true,
         hrefCategoryProduct = hrefCategoryProduct != undefined ? hrefCategoryProduct : undefined;
 
@@ -72,28 +71,27 @@ var optionsCycle = {
 };
 var optionsDrop = {
     overlayColor: '#000',
-    overlayOpacity: '0.6',
+    overlayOpacity: 0.6,
     place: 'center', //noinherit(default) || inherit(ex. for ViewedProducts)
     durationOn: 500,
     durationOff: 200,
-    modalPlace: '.notification',
     dropContent: '.drop-content',
     dropFooter: '.drop-footer',
     dropHeader: '.drop-header',
     animate: true,
-    placeBeforeShow: 'center center',
-    placeAfterClose: 'center center',
     timeclosemodal: 2000,
-    delayAfter: -500,
-    confirmSel: '#confirm',
+    modalPlace: '.notification',
     moreOne: false,
     closeClick: true,
     closeEsc: true,
     position: 'absolute',
+    confirmBtnDrop: '#confirm',
     scroll: true,
     limitSize: true,
     limitContentSize: true,
-    scrollContent: true
+    scrollContent: true,
+    keyNavigate: true,
+    cycle: true
 };
 var productStatus = {
     action: '<span class="product-status action"></span>',
@@ -183,8 +181,9 @@ var lazyload = {
     effect: "fadeIn"
 };
 var optionsPlusminus = {
-    prev: 'prev.children(:eq(1)).children',
-    next: 'prev.children(:eq(0)).children',
+    prev: 'prev().children(:eq(1)).children()',
+    next: 'prev().children(:eq(0)).children()',
+    step: 1,
     checkProdStock: checkProdStock
 }
 $.maxminValue.settings = {

@@ -20,7 +20,7 @@
                                 {foreach $propertiesInCat as $prop}
                                     {foreach $prop->possibleValues as $key}
                                         {foreach $_GET['p'][$prop->property_id] as $nm}
-                                            {if $nm == $key.value}
+                                            {if $nm == $key.value or \ShopCore::encode($nm) == $key.value}
                                     <li data-name="p_{echo $prop->property_id}_{echo $key.id}" class="clear-filter"><button type="button"><span class="icon_times icon_remove_filter f_l"></span><span class="name-check-filter">{echo $prop->name}: {echo $key.value}</span></button></li>
                                             {/if}
                                         {/foreach}
