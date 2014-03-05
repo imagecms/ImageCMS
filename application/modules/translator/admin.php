@@ -161,6 +161,7 @@ class Admin extends BaseAdminController {
             $locales_unique[$data_locale] = $data_locale;
         }
 
+        $this->load->helper('translator');
         $settings = $this->getSettings();
         \CMSFactory\assetManager::create()
                 ->registerScript('admin')
@@ -168,6 +169,7 @@ class Admin extends BaseAdminController {
                 ->setData('langs', $this->langs)
                 ->setData('settings', $settings)
                 ->setData('locales', $locales_unique)
+                ->setData('languages_names', get_language_names())
                 ->setData('editorStyles', $this->getEditorStyles())
                 ->renderAdmin('list');
 
@@ -241,6 +243,7 @@ class Admin extends BaseAdminController {
                         ->setData('po_settings', $this->po_settings)
                         ->setData('po_array', $receiverPoArray)
                         ->setData('paths', $this->paths)
+                        ->setData('languages_names', get_language_names())
                         ->setData('page', 1)
                         ->fetchAdminTemplate('po_table', FALSE);
                 return $this->index(TRUE);
@@ -251,6 +254,7 @@ class Admin extends BaseAdminController {
                     ->registerScript('admin')
                     ->registerStyle('admin')
                     ->setData('langs', $this->langs)
+                    ->setData('languages_names', get_language_names())
                     ->renderAdmin('exchange');
         }
     }
