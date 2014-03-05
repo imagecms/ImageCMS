@@ -98,7 +98,7 @@ class Admin extends \ShopAdminController {
             $typeDiscount = $postArray['type_discount'];
 
             $discauntManager = new \mod_discount\classes\DiscountManager();
-            $discauntManager->validation($postArray);
+            $discauntManager->validation($postArray, $id);
 
             if (count($discauntManager->error) == 0) {
 
@@ -123,7 +123,7 @@ class Admin extends \ShopAdminController {
                 $typeDiscountData = $postArray[$typeDiscount];
                 
                 // Check range for cumulative discount
-                if ($typeDiscount == "comulativ" AND $this->discount_model_admin->checkRangeForCumulativeDiscount($postArray[$typeDiscount])) {
+                if ($typeDiscount == "comulativ" AND $this->discount_model_admin->checkRangeForCumulativeDiscount($postArray[$typeDiscount],$id)) {
                     showMessage(lang('Has been already created with the cumulative discount value','mod_discount'), '', 'r');
                     return ;
                 }
