@@ -47,8 +47,9 @@ class Mod_discount extends \MY_Controller {
 
             $this->applyResultDiscount();
             /** apply Gift */
-            if ($_POST['gift'])
+            if ($this->input->post('gift')) {
                 $this->applyGift();
+            }
         }
     }
 
@@ -116,7 +117,10 @@ class Mod_discount extends \MY_Controller {
                 $this->baseDiscount->cart->setTotalPrice($this->baseDiscount->cart->getOriginTotalPrice() - $discount['result_sum_discount']);
                 $this->baseDiscount->cart->discount_info = $discount;
                 $this->baseDiscount->cart->discount_type = $discount['type'];
-                $this->baseDiscount->updateDiskApply($discount['max_discount']['key']);
+                var_dump($this->session->flashdata());
+//                if ($this->session->flashdata('makeOrder') === true) {
+                    $this->baseDiscount->updateDiskApply($discount['max_discount']['key']);
+//                }
             }
         }
     }
