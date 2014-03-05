@@ -6,27 +6,27 @@
             <ul class="list-check-filter">
                 {if $curMin != $minPrice || $curMax != $maxPrice}
                     <li class="clear-slider" data-rel="sliders.slider1"><button type="button" class="ref"><span class="icon_times icon_remove_filter f_l"></span><span class="name-check-filter">Цена от {echo $_GET['lp']} до {echo $_GET['rp']} <span class="cur">{$CS}</span></></button></li>
-                {/if}
-                {if count($brands) > 0}
-                    {foreach $brands as $brand}
-                        {foreach $_GET['brand'] as $id}
-                            {if $id == $brand->id}
+                    {/if}
+                    {if count($brands) > 0}
+                        {foreach $brands as $brand}
+                            {foreach $_GET['brand'] as $id}
+                                {if $id == $brand->id}
                                 <li data-name="brand_{echo $brand->id}" class="clear-filter"><button type="button" class="ref"><span class="icon_times icon_remove_filter f_l"></span><span class="name-check-filter">{echo $brand->name}</span></button></li>
+                                        {/if}
+                                    {/foreach}
+                                {/foreach}
                             {/if}
-                        {/foreach}
-                    {/foreach}
-                {/if}
-                {if count($propertiesInCat) > 0}
-                    {foreach $propertiesInCat as $prop}
-                        {foreach $prop->possibleValues as $key}
-                            {foreach $_GET['p'][$prop->property_id] as $nm}
-                                {if $nm == $key.value}
+                            {if count($propertiesInCat) > 0}
+                                {foreach $propertiesInCat as $prop}
+                                    {foreach $prop->possibleValues as $key}
+                                        {foreach $_GET['p'][$prop->property_id] as $nm}
+                                            {if $nm == $key.value}
                                     <li data-name="p_{echo $prop->property_id}_{echo $key.id}" class="clear-filter"><button type="button" class="ref"><span class="icon_times icon_remove_filter f_l"></span><span class="name-check-filter">{echo $prop->name}: {echo $key.value}</span></button></li>
-                                {/if}
-                            {/foreach}
-                        {/foreach}
-                    {/foreach}
-                {/if}
+                                            {/if}
+                                        {/foreach}
+                                    {/foreach}
+                                {/foreach}
+                            {/if}
             </ul>
             <div class="foot-check-filter">
                 <button type="button" onclick="location.href = '{site_url($CI->uri->uri_string())}'" class="btn-reset-filter">
@@ -62,9 +62,7 @@
 <form method="get" id="catalogForm">
     <input type="hidden" name="order" value="{echo $order_method}" />
     <input type="hidden" name="user_per_page" value="{if !$_GET['user_per_page']}{echo \ShopCore::app()->SSettings->frontProductsPerPage}{else:}{echo $_GET['user_per_page']}{/if}"/>
-    {if $totalProducts > 0}
-        <div class="frame-filter p_r">
-            {include_tpl('filter')}
-        </div>
-    {/if}
+    <div class="frame-filter p_r">
+        {include_tpl('filter')}
+    </div>
 </form>
