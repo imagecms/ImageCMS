@@ -555,17 +555,7 @@
                         </div>
                     </div>
                     <div class="right-view-product">
-                        <table>
-                            <tbody>
-                                {foreach ShopCore::app()->SPropertiesRenderer->renderPropertiesArray($model) as $prop}
-                                    <tr>
-                                        <th><span class="text-el">{echo $prop.Name}</span></th>
-                                        <td>{echo $prop.Value}</td>
-                                    </tr>
-                                {/foreach}
-                            </tbody>
-                        </table>
-                        {if $dl_properties}
+                        {if $dl_properties = ShopCore::app()->SPropertiesRenderer->renderPropertiesArray($model)}
                             <div class="inside-padd">
                                 <div class="title-default">
                                     <div class="frame-title">
@@ -573,9 +563,16 @@
                                     </div>
                                 </div>
                                 <div class="characteristic">
-                                    <div class="product-charac patch-product-view">
-                                        {echo $dl_properties}
-                                    </div>
+                                    <table>
+                                        <tbody>
+                                            {foreach $dl_properties as $prop}
+                                                <tr>
+                                                    <th><span class="text-el">{echo $prop.Name}</span></th>
+                                                    <td><span class="text-el">{echo $prop.Value}</span></td>
+                                                </tr>
+                                            {/foreach}
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         {/if}

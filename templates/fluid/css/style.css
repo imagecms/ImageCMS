@@ -422,9 +422,10 @@ items-catalog.table > li, items-catalog.tablemini > li{margin-left: 10px;overflo
 
 .items-default{margin-left: -20px;}
 .items-default > li{margin-left: 20px;margin-bottom: 20px;}
-.items-default .photo-block{margin-bottom: 9px;width: 100px;height: 100px;float: left;margin-right: 8px;}
-.items-default .description{margin-left: 108px;}
 .items-default .frame-star{margin-bottom: 5px;}
+.items-default .photo-block{width: 100px;height: 100px;display: block;}
+.items-v-carousel .photo-block{margin-bottom: 9px;width: 100px;height: 100px;float: left;margin-right: 8px;}
+.items-v-carousel .description{margin-left: 108px;}
 
 .items-order-gen-info > li{width: 100%;}
 .items-order-gen-info .price-item{padding-left: 3px;}
@@ -468,6 +469,8 @@ items-catalog.table > li, items-catalog.tablemini > li{margin-left: 10px;overflo
 
 .items-contact li:first-child{margin-bottom: 3px;}
 .items-contact li{margin-bottom: 3px;}
+
+.accessories .items-default > li{width: 191px;}
 /*/items*/
 
 /*carousels*/
@@ -737,6 +740,7 @@ li[class*="x"] > .title-category-l1{width: 100%;text-align: center;display: bloc
 .items-catalog .price-new, .item-product .price-new{margin-right: 9px;}
 .items-catalog .price-add, .item-product .price-add{padding-left: 5px;}
 .items-bask .price-new, .items-catalog .price-new, .items-bask .price-add, .items-catalog .price-add{margin-bottom: 5px;}
+.items-product .price-new{margin-bottom: 5px;}
 /*/prices*/
 
 /*form*/
@@ -921,6 +925,7 @@ li.clear-pag-item{margin: 0 14px 4px;}
 
 .frame-phone-product{margin-bottom: 15px;padding: 9px 15px 18px;}
 
+.characteristic{margin-bottom: 35px;}
 .characteristic table{table-layout: auto;}
 
 #wrap{text-align: center;}
@@ -966,15 +971,12 @@ td.frame-cur-sum-price {vertical-align: middle;padding-left: 10px;padding-right:
 .drop-bask .empty .inside-padd{padding: 26px;}
 
 /*/drop-bask*/
-.frame-bask-order{}
 .title-cart h1{margin-right: 15px;}
 .frame-count{vertical-align: middle;min-width: 80px;}
 .frame-count > .number{display: inline-block;vertical-align: middle;min-width: 80px;}
 .frame-change-count{float: right;}
 .frame-count > input{float: left;height: 33px;}
 .count-or-compl{vertical-align: middle;}
-.frame-bask-order 
-{width: 152px;}
 .frame-bask-order .row-kits.row li{width: 100%;}
 .frame-bask-order .row-kits.row .frame-kit{width: auto;}
 .frame-bask-order .frame-kit{width: 117px;}
