@@ -102,9 +102,6 @@
                                 {/foreach}
                             </ul>
                         {/if}
-                        <div class="btn-all-comments">
-                            <button type="button"><span class="text-el" data-hide='<span class="d_l_1">{lang('Скрыть','newLevel')}</span> ↑' data-show='<span class="d_l_1">{lang('Смотреть все ответы','newLevel')}</span> ↓'></span></button>
-                        </div>
                     </li>
                 {/foreach}
             </ul>

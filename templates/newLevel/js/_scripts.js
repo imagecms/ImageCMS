@@ -417,10 +417,4 @@ function init() {
             banerResize('.baner:has(.cycle)');
         }, 300);
     });
-    $('.baner').tooltip({
-        'effect': 'mouse',
-        'title': 'asdfasdf',
-        'offsetX': -50,
-        'show': false
-    })
 }

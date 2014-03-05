@@ -188,7 +188,7 @@ class Admin extends BaseAdminController {
             $names = preg_replace('/<link[\W\w]+\/>/', '', $names);
             $names = preg_replace('/<script[\W\w]+<\/script>/', '', $names);
             $data = trim(preg_replace('/\s\s+/', ' ', $po_table));
-            
+
             jsCode("Translator.start(" . json_encode($data) . "," . json_encode($names) . ", '" . $type . "', '" . $lang . "', '" . $name . "');");
         }
     }
@@ -391,9 +391,9 @@ class Admin extends BaseAdminController {
                             $objLang = new MY_Lang();
                             $objLang->load($module);
                             include($this->modules_path . $module . '/module_info.php');
-                            
-                            $this->langs[$lang][] = array('module' => $module, 'menu_name' => $com_info['menu_name']);
-                            
+                            $menu_name = $com_info['menu_name'] ? $com_info['menu_name'] : $module;
+                            $this->langs[$lang][] = array('module' => $module, 'menu_name' => ucfirst($menu_name));
+
                             unset($com_info);
                         }
                     }
@@ -446,8 +446,10 @@ class Admin extends BaseAdminController {
     }
 
     public function renderModulesNames($lang) {
+        $this->load->helper('translator');
         $langs = $this->session->userdata('langs');
         $langs = $langs[$lang];
+        $langs = sort_names($langs);
         return \CMSFactory\assetManager::create()
                         ->setData('langs', $langs)
                         ->fetchAdminTemplate('modules_names', FALSE);
@@ -1010,7 +1012,7 @@ class Admin extends BaseAdminController {
         return json_encode($results);
     }
 
-    public function makeCorrectPoPaths($module_template, $type, $lang) {
+    public function makeCorrectPoPaths($module_template, $type, $lang, $returnArray = FALSE) {
         $url = '';
         switch ($type) {
             case 'modules':
@@ -1061,16 +1063,20 @@ class Admin extends BaseAdminController {
             }
         }
 
-        $this->session->set_userdata('translation', array(
-            'name' => $module_template,
-            'type' => $type,
-            'lang' => $lang
-        ));
-        return \CMSFactory\assetManager::create()
-                        ->setData('po_array', $currentLangs)
-                        ->setData('page', 1)
-                        ->setData('rows_count', ceil(count($currentLangs) / 11))
-                        ->fetchAdminTemplate('po_table', FALSE);
+        if ($returnArray) {
+            return $currentLangs;
+        } else {
+            $this->session->set_userdata('translation', array(
+                'name' => $module_template,
+                'type' => $type,
+                'lang' => $lang
+            ));
+            return \CMSFactory\assetManager::create()
+                            ->setData('po_array', $currentLangs)
+                            ->setData('page', 1)
+                            ->setData('rows_count', ceil(count($currentLangs) / 11))
+                            ->fetchAdminTemplate('po_table', FALSE);
+        }
     }
 
     public function makeCorrectUrl($from = '', $to = "") {
@@ -1101,7 +1107,7 @@ class Admin extends BaseAdminController {
 
     public function update($module_template, $type, $lang) {
         $strings = (array) json_decode($this->input->post('results'));
-        $translations = $this->poFileToArray($module_template, $type, $lang);
+        $translations = $this->makeCorrectPoPaths($module_template, $type, $lang, TRUE);
 
         if (!$translations) {
             $translations = array();
@@ -1112,7 +1118,6 @@ class Admin extends BaseAdminController {
         $oldStringsArray = (array) $strings['old'];
 
         foreach ($newStringsArray as $origin => $newStrings) {
-//            $origin = htmlspecialchars_decode($origin);
             $translationTEMP[$origin]['text'] = '';
             $translationTEMP[$origin]['comment'] = '';
             $translationTEMP[$origin]['links'] = $newStrings;
