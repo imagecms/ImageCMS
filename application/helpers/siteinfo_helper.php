@@ -67,10 +67,14 @@ if (!function_exists('siteInfoAdditionalManipulations')) {
                 // із врахуванням активного шаблону
                 if (is_array($value)) {
                     $settings = CI::$APP->cms_base->get_settings();
+                    $colorScheme = CI::$APP->load->module('new_level')->getColorScheme();
                     if (key_exists($settings['site_template'], $value)) {
                         $fileName = $value[$settings['site_template']];
-                        $colorScheme = CI::$APP->load->module('new_level')->getColorScheme();
                         return "/templates/{$settings['site_template']}/{$colorScheme}/{$fileName}";
+                    } elseif (count($value) > 0) {
+                        reset($value);
+                        $key = key($value);
+                        return "/templates/" . $key . "/{$colorScheme}/" . $value[$key];
                     }
                     return '';
                 } elseif (is_string($value)) {

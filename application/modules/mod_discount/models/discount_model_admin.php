@@ -524,20 +524,28 @@ class discount_model_admin extends CI_Model {
      * @param array $data
      * @return boolean
      */
-    public function checkRangeForCumulativeDiscount($data = FALSE) {
+    public function checkRangeForCumulativeDiscount($data = FALSE, $id = null) {
         if (!$data) {
             return FALSE;
         }
+
+        $sql = "SELECT * FROM `mod_discount_comulativ` ";
         if ($data['end_value'] != NULL) {
-            $sql = "SELECT * FROM `mod_discount_comulativ`
-                WHERE (`begin_value` BETWEEN  " . $data['begin_value'] . " AND " . $data['end_value'] . ") 
+            if ($id != NULL) {
+                $sql .="WHERE `discount_id` <> " . $id . " AND ((`begin_value` BETWEEN  " . $data['begin_value'] . " AND " . $data['end_value'] . ") 
+                OR (`end_value` BETWEEN " . $data['begin_value'] . " AND " . $data['end_value'] . "))";
+            } else {
+                $sql .="WHERE (`begin_value` BETWEEN  " . $data['begin_value'] . " AND " . $data['end_value'] . ") 
                 OR (`end_value` BETWEEN " . $data['begin_value'] . " AND " . $data['end_value'] . ")";
+            }
         } else {
-            $sql = "SELECT * FROM `mod_discount_comulativ`
-                WHERE " . $data['begin_value'] . " < `end_value`";
+            if ($id != NULL) {
+                $sql .="WHERE `discount_id` <> " . $id . " AND " . $data['begin_value'] . " < `begin_value`";
+            } else {
+                $sql .= "WHERE " . $data['begin_value'] . " < `begin_value`";
+            }
         }
-
-
+        
         $query = $this->db->query($sql)->row_array();
 
         if ($query) {
