@@ -122,7 +122,7 @@
         <div class="imagecms-top-fixed-header">
             <div class="container">
                 <butotn type="button" class="imagecms-close">
-                    <img src="{$THEME}/icon_close.png"/>
+                    <img src="{$THEME}icon_close.png"/>
                 </butotn>
                 <div class="imagecms-buy-license">
                     <a href="http://www.imagecms.net/shop/prices" onclick="_gaq.push(['_trackEvent', 'demoshop-front', '/shop/prices']);">
@@ -139,11 +139,11 @@
                 </ul>
                 <div class="imagecms-contacts">
                     <span class="imagecms-phone">
-                        <img src="{$THEME}/icon_phone.png" class="imagecms-ico-phone"/>
+                        <img src="{$THEME}icon_phone.png" class="imagecms-ico-phone"/>
                         <span class="imagecms-text-el">+7 (499) 703-37-54</span>
                     </span>
                     <a href="skype:imagecms_partner" class="imagecms-ref-skype">
-                        <img src="{$THEME}/icon_skype.png" class="imagecms-ico-skype"/>
+                        <img src="{$THEME}icon_skype.png" class="imagecms-ico-skype"/>
                         <span class="imagecms-text-el">imagecms_partner</span>
                     </a>
                 </div>
