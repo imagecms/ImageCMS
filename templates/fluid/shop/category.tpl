@@ -18,6 +18,7 @@
 <div class="frame-crumbs">
     {widget('path')}
 </div>
+
 <!--End. Make bread crumbs -->
 <div class="frame-inside page-category">
     <div class="container">

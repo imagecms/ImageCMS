@@ -390,7 +390,7 @@ var global = {
         var wishlist = wishList.all();
         $(genObj.btnWish).each(function() {
             var $this = $(this);
-            if (wishlist.indexOf($this.data('id')) !== -1) {
+            if (wishlist.indexOf($this.data('id').toString()) !== -1) {
                 $this.addClass(genObj.wishIn);
                 $this.find(genObj.toWishlist).hide();
                 $this.find(genObj.inWishlist).show();
