@@ -1636,14 +1636,14 @@ function getCookie(c_name)
                     el.data({'triggerOn': triggerOn, 'triggerOff': triggerOff}).on(triggerOn + '.' + $.drop.nS + ' ' + triggerOff + '.' + $.drop.nS, function(e) {
                         e.stopPropagation();
                         e.preventDefault();
-                    }).off(triggerOn + '.' + $.drop.nS).on(triggerOn + '.' + $.drop.nS, function(e) {
+                    }).on(triggerOn + '.' + $.drop.nS, function(e) {
                         if (condTrigger && eval('(function(){' + condTrigger + '})()'))
                             methods.open(options, null, $(this), e);
-                    }).off(triggerOff + '.' + $.drop.nS).on(triggerOff + '.' + $.drop.nS, function() {
+                    }).on(triggerOff + '.' + $.drop.nS, function() {
                         methods.close($(el.attr('data-drop')));
                     });
                 else
-                    el.data('trigger', trigger).off(trigger + '.' + $.drop.nS).on(trigger + '.' + $.drop.nS, function(e) {
+                    el.data('trigger', trigger).on(trigger + '.' + $.drop.nS, function(e) {
                         if (el.parent().hasClass(aC))
                             methods.close($(el.attr('data-drop')));
                         else
@@ -1654,7 +1654,7 @@ function getCookie(c_name)
                     });
                 el.on('contextmenu.' + $.drop.nS, function(e) {
                     e.preventDefault();
-                })
+                });
                 var href = el.data('href');
                 if (href && window.location.hash.indexOf(href) !== -1 && !$.drop.drp.hrefs[href])
                     methods.open(options, null, el, null);
@@ -1863,7 +1863,7 @@ function getCookie(c_name)
                 drop.each(function() {
                     var drop = $(this),
                             set = drop.data('drp');
-                    if (set && drop.is(':visible') && (set.modal || sel || set.place !== 'inherit' || set.inheritClose)) {
+                    if (set && drop.is(':visible') && (set.modal || sel || set.place !== 'inherit' || set.inheritClose || set.overlayOpacity !== 0)) {
                         var $thisB = set.elrun;
                         if ($thisB) {
                             var $thisEOff = set.effectOff,
