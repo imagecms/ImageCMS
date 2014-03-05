@@ -174,7 +174,7 @@
                                         <div>
                                             {if $wishlist[0]['access'] == 'shared' || $wishlist[0]['access'] == 'public'}
                                                 <div class="btn-form btn-send-wishlist">
-                                                    <button type="button" data-drop=".drop-sendemail" title="{lang('Поделится с другом','newLevel')}" data-always="true" data-source="{echo site_url('wishlist/wishlistApi/renderEmail/' . $wishlist[0][wish_list_id])}">
+                                                    <button type="button" data-drop=".drop-sendemail" title="{lang('Поделится с другом','newLevel')}" data-source="{echo site_url('wishlist/wishlistApi/renderEmail/' . $wishlist[0][wish_list_id])}">
                                                         <span class="icon_mail"></span>
                                                         <span class="text-el">{lang('Поделится з другом')}</span>
                                                     </button>
