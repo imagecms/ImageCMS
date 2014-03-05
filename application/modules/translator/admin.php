@@ -188,7 +188,8 @@ class Admin extends BaseAdminController {
             $names = preg_replace('/<link[\W\w]+\/>/', '', $names);
             $names = preg_replace('/<script[\W\w]+<\/script>/', '', $names);
             $data = trim(preg_replace('/\s\s+/', ' ', $po_table));
-            jsCode("Translator.start('" . $data . "','" . $names . "', '" . $type . "', '" . $lang . "', '" . $name . "');");
+            
+            jsCode("Translator.start(" . json_encode($data) . "," . json_encode($names) . ", '" . $type . "', '" . $lang . "', '" . $name . "');");
         }
     }
 
