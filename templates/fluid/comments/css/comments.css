@@ -10,7 +10,7 @@
 .comments .frame-comment-sub1 .frame-comment{}
 .comments .frame-comment-sub1{margin-left: 122px;margin-right: 260px;}
 .comments .frame-comment p{margin-bottom: 9px;}
-.comments .frame-list-comments.sub-2{float: none;width: auto;max-height: 201px;overflow: hidden;}
+.comments .frame-list-comments.sub-2{float: none;width: auto;}
 .comments .btn-all-comments{margin-left: 0;margin-top: 5px;}
 
 .comments .btn > *, .comments input.btn{padding: 0 !important;}

@@ -227,3 +227,11 @@ div[class="tooltip-inner"] {
 .YandexApiKeyHolder > textarea.YandexApiKey{
     width: 500px;
 }
+.modal_yandex_translate > .modal-header select.languageSelect{
+    width: 120px;
+    margin-top: 7px;
+    margin-left: 15px;
+}
+.modal_yandex_translate > .modal-header h5{
+    float: left; 
+}

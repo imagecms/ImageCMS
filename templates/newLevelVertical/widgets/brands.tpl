@@ -3,9 +3,9 @@
         <div class="big-container frame-brands">
             <div class="items-carousel">
                 {/*frame-scroll-pane || carousel-js-css || ' '*/}
-                <div class="frame-title container">
-                    <div class="title">
-                        <span class="text-el">{$title}</span>
+                <div class="title-brand-w container">
+                    <div class="frame-title">
+                        <div class="title">{$title}</div>
                     </div>
                 </div>
                 <div class="container">
