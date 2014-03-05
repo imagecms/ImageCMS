@@ -72,9 +72,9 @@ var Sort = {
         var module_template = $('#modules_templates').val();
         var per_page = $('#per_page').val();
         var url = '';
-        
+
         this.removeSortArrows(curElement);
-        
+
         switch (type) {
             case  'modules':
                 url = '/admin/components/init_window/translator/renderModulePoFile/' + module_template + '/' + type + '/' + lang + '/0/' + per_page;
@@ -774,6 +774,7 @@ var Translator = {
 
                     }
                     $('#loading').hide();
+
                 }
             });
         }
@@ -801,12 +802,14 @@ var Translator = {
             url: this.getUrl('update'),
             type: 'POST',
             data: {
-                results: JSON.stringify(results)
+                results: JSON.stringify(results),
+                paths: this.getPaths()
             },
             success: function(data) {
                 $('.modal_update_results').addClass('hide').addClass('fade');
                 $('.modal_update_results').modal('hide');
                 $('.modal-backdrop').remove();
+                
                 var tableData = data.replace(/<script[\W\w]+<\/script>/, '');
                 $('#po_table tbody').html(tableData);
                 $('.pagination ul li.active').removeClass('active');
@@ -814,6 +817,7 @@ var Translator = {
                 $('.per_page10').attr('selected', 'selected');
                 Pagination.generate();
                 Translator.statisticRecount();
+
                 if (data) {
                     showMessage(lang('File was successfuly updated.'), lang('Message'));
                 }

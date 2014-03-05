@@ -270,7 +270,7 @@ function init() {
         else
             document.location.href = '/shop/compare';
     });
-    $('.items-product').nStCheck({
+    $('.items-product, .item-product').nStCheck({
         wrapper: $(".btnCompare"),
         elCheckWrap: '.niceCheck',
         classRemove: 'b_n',

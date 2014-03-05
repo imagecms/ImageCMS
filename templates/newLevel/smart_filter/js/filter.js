@@ -364,10 +364,6 @@ var Filter = {
                 else {
                     Filter.filtertype($($this), totalProducts, otherClass);
                 }
-
-                $('[type=checkbox]:checked').removeAttr('disabled');
-                //$('[name=checkbox]:checked').closest('.frame-label').find('.count').text();
-
             }
         });
         return false;
