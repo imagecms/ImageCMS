@@ -1,41 +1,36 @@
 {if count($items) > 0}
-    <form method="post" action="{site_url(uri_string())}" id="cartForm">
+    <form method="post" action="{$BASE_URL}shop/order/make_order" id="cartForm">
         <div class="content_head">
             <div class="title_h1">{lang('Ваш заказ','commerce_mobiles')}</div>
         </div>
         <ul class="catalog">
-            {foreach $items as $key=>$item}
-                {$variants = $item.model->getProductVariants()}
-                {foreach $variants as $v}
-                    {if $v->getId() == $item.variantId}
-                        {$variant = $v}
-                    {/if}
-                {/foreach}
+            {foreach $items as $item}
                 <li>
                     <div class="top_frame_tov">
-                        <a href="{shop_url('product/' . $item.model->getUrl())}" class="t-d_n">
+                        <a href="{echo shop_url('product/'.$item->getSProducts()->getUrl())}" class="t-d_n">
                             <span class="figure">
-                                <img src="{echo $variant->getMainPhoto()}"/>
+                                <img src="{echo $item->getSmallPhoto()}"/>
                             </span>
                             <span class="descr">
-                                <span class="title">{echo ShopCore::encode($item.model->getName())}</span>
-                                {if $item.variantName}
-                                    <span class="code_v">{lang('Варіант','commerce_mobiles')}: {echo $item.variantName}</span>
+                                <span class="title">{echo $item->getSProducts()->getName()}</span>
+                                {if $item->getName() && trim($item->getName()) != trim($item->getSProducts()->getName())}
+                                    <span class="code_v">{lang('Варіант','commerce_mobiles')}: {echo trim($item->getName())}</span>
                                 {/if}
-                                {if $variant->getNumber()}
+                                {if $item->getNumber()}
                                     <span class="divider">/</span>
-                                    <span class="code">{lang('Артикул','commerce_mobiles')}: {echo $variant->getNumber()}</span>
+                                    <span class="code">{lang('Артикул','commerce_mobiles')}: {echo $item->getNumber()}</span>
                                 {/if}
-                                <input name="products[{$key}]" type="hidden" value="{$item.quantity}"/>
-                                <span class="d_b price">{$summary = $variant->getPrice() * $item.quantity}{echo $summary} {$CS}</span>
+                                <input name="products[{echo $item->quantity}]" type="hidden" value="{echo $item->quantity}"/>
+                                <span class="d_b price">{echo ShopCore::app()->SCurrencyHelper->convert($item->price * $item->quantity)}{$CS}</span>
                             </span>
                         </a>
                         <span class="descr">
-                            <a href="{shop_url('cart/delete/'.$key)}" class="remove_ref red"><span>×</span> Удалить</a>
+                            <a href="{shop_url('cart/removeProductByVariantId/'.$item->id)}" class="remove_ref red"><span>×</span> Удалить</a>
                             <input type="text"
-                                   name="products[{$key}]"
-                                   price="{echo $variant->getPrice()}"
-                                   value="{$item.quantity}"
+                                   name="products[{echo $item->quantity}]"
+                                   price="{echo $item->price}"
+                                   value="{echo $item->quantity}"
+                                   data-id="{echo $item->id}"
                                    autocomplete="off"
                                    onblur=""/>
                             <span class="frame_count">
@@ -46,28 +41,17 @@
                         </span>
                     </div>
                 </li>
-                {$summary = $item.price * $item.quantity}
-                {$total     += $summary}
-                {$total_nc  += $summary_nextc}
             {/foreach}
         </ul>
         <div class="main_frame_inside">
             <div class="gen_sum">
-                {$discount = $CI->load->module('mod_discount/discount_api')->get_discount_api(1);}
-                {if $discount['result_sum_discount']}
-                    Скидка: {echo $discount['result_sum_discount_convert']} {$CS} <br/>
+                {if $discount_val}
+                    Скидка: {echo ShopCore::app()->SCurrencyHelper->convert($discount_val)} {$CS} <br/>
                 {/if}
                 <span class="total_pay">Всего к оплате:</span>
-                
-                <span class="price">
 
-                    {if $total < $item.delivery_free_from}
-                        {$total += $item.delivery_price}
-                    {/if}
-                    {if isset($item.gift_cert_price)}
-                        {$total -= $item.gift_cert_price}
-                    {/if}
-                    {echo $total - $discount['result_sum_discount_convert']} {$CS}
+                <span class="price">
+                    {echo ShopCore::app()->SCurrencyHelper->convert($cartPrice)}
                 </span>
             </div>
         </div>
