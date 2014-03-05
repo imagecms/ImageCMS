@@ -312,10 +312,10 @@ class DiscountManager extends \MY_Controller {
      * @param array $postArray input params:
      * @copyright (c) 2013, ImageCMS
      */
-    public function validation($postArray) {
+    public function validation($postArray, $id = null) {
 
         $typeDiscount = $postArray['type_discount'];
-
+        
         if (!in_array($typeDiscount, array('all_order', 'comulativ', 'user', 'group_user', 'category', 'product', 'brand')))
             $this->error[] = lang('Wrong type discount');
 
@@ -343,7 +343,7 @@ class DiscountManager extends \MY_Controller {
         if ($typeDiscount == 'user' && !$postArray[$typeDiscount]['user_id'])
             $this->error[] = lang('Enter the user who is in the database', 'mod_discount');
 
-        if ($typeDiscount == 'comulativ' && $postArray[$typeDiscount]['end_value'] == null && $this->discount_model_admin->checkHaveAnyComulativDiscountMaxEndValue())
+        if ($typeDiscount == 'comulativ' && $postArray[$typeDiscount]['end_value'] == null && $this->discount_model_admin->checkHaveAnyComulativDiscountMaxEndValue($id))
             $this->error[] = lang('There can be more than one discount with said upper threshold as a <<maximum>>!', 'mod_discount');
 
         if ($postArray['type_value'] != 1 && $postArray['type_value'] != 2)

@@ -91,7 +91,7 @@
                 .imagecms-ref{color: #000;text-decoration: none;}
                 .imagecms-ico-phone, .imagecms-ico-skype{width: auto !important;height: auto !important;position: relative !important;vertical-align: baseline;}
                 .imagecms-ico-skype{position: relative;top: 2px;margin-right: 5px;}
-                .imagecms-ico-phone{position: relative;top: -1px;margin-right: 6px;}
+                .imagecms-ico-phone{position: relative;top: 1px;margin-right: 6px;}
                 .imagecms-buy-license > a{text-decoration: none;height: 100%;display: block;padding: 0 20px;font-size: 0;}
                 .imagecms-buy-license > a > .imagecms-text-el{color: #fff;font-weight: bold;font-size: 11px;line-height: 30px;text-transform: uppercase;}
                 .imagecms-buy-license{
@@ -133,21 +133,17 @@
                     <li>
                         <a href="http://www.imagecms.net/kliuchevye-preimushchestva/vozmozhnosti" class="imagecms-ref">преимущества</a>
                     </li>
-                    <li>
-                        <div>
-                            <span class="imagecms-phone">
-                                <img src="{$THEME}/icon_phone.png" class="imagecms-ico-phone"/>
-                                <span class="imagecms-text-el">+7 (499) 703-37-54</span>
-                            </span>
-                        </div>
-                        <div>
-                            <a href="skype:imagecms" class="imagecms-ref-skype">
-                                <img src="{$THEME}/icon_skype.png" class="imagecms-ico-skype"/>
-                                <span class="imagecms-text-el">imagecms</span>
-                            </a>
-                        </div>
-                    </li>
                 </ul>
+                <div class="imagecms-contacts">
+                    <span class="imagecms-phone">
+                        <img src="{$THEME}/icon_phone.png" class="imagecms-ico-phone"/>
+                        <span class="imagecms-text-el">+7 (499) 703-37-54</span>
+                    </span>
+                    <a href="skype:imagecms_partner" class="imagecms-ref-skype">
+                        <img src="{$THEME}/icon_skype.png" class="imagecms-ico-skype"/>
+                        <span class="imagecms-text-el">imagecms_partner</span>
+                    </a>
+                </div>
             </div>
         </div>
         <!-- End. shop-->
