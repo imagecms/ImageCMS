@@ -330,39 +330,10 @@ var Filter = {
     },
     ajaxRecount: function(el, slChk) {
         $(this.frameFilter).children(preloader).show();
-        
-        var catUrlPre = window.location.pathname.replace('shop/category', 'smart_filter/pre_filter'),
-        dataPre = $(this.catalogForm).serialize();
-        $.ajax({
-            type: 'get',
-            async : false,
-            url: catUrlPre,
-            data: dataPre,
-            success: function(dane) {
-                if (dane) {
-                    dane = JSON.parse(dane);
-                    $(dane).each(function(key,value){
-                        var id = value.property_id;
-                        $(value.possibleValues).each(function(k,v){
-                            if (v.count == 0){
-                                $('#p_'+id+'_'+v.id+' input').parent().nStCheck('checkUnChecked');
-                            }
-                        })
-                        
-                    })
-                    
-                           
-                }
-            }
 
-        });
-        
-        
-         /*not hyper clever filter*/
+        /*not hyper clever filter*/
         //    $(this.catalogForm).submit();
         /*/not hyper clever filter*/
-        
-        
 
         /*hyper clever filter*/
         var $this = el,
@@ -393,7 +364,6 @@ var Filter = {
                 else {
                     Filter.filtertype($($this), totalProducts, otherClass);
                 }
-
             }
         });
         return false;

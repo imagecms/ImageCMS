@@ -330,14 +330,10 @@ var Filter = {
     },
     ajaxRecount: function(el, slChk) {
         $(this.frameFilter).children(preloader).show();
-        
-       
-        
-         /*not hyper clever filter*/
+
+        /*not hyper clever filter*/
         //    $(this.catalogForm).submit();
         /*/not hyper clever filter*/
-        
-        
 
         /*hyper clever filter*/
         var $this = el,
@@ -368,8 +364,6 @@ var Filter = {
                 else {
                     Filter.filtertype($($this), totalProducts, otherClass);
                 }
-                $('[type=checkbox]:checked').removeAttr('disabled');
-
             }
         });
         return false;

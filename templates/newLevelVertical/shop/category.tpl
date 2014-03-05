@@ -25,7 +25,7 @@
             <!-- Start. Category name and count products in category-->
             <div class="f-s_0 title-category">
                 <div class="frame-title">
-                    <h1 class="d_i title">{echo $title}</h1>
+                    <h1 class="title">{echo $title}</h1>
                 </div>
                 <span class="count">({$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang('товар','newLevel'),lang('товара','newLevel'),lang('товаров','newLevel')))})</span>
             </div>
