@@ -37,11 +37,12 @@ $(document).ready(function() {
         var prodCount = input.val();
         if (prodId && prodCount) {
             $.ajax({
-                type: "POST",
-                url: "/shop/cart/setQuantityProductByVariantId/"+prodId,
-                data: "quantity="+prodCount,
+                type: "GET",
+                url: "/shop/cart/setQuantityProductByVariantId/" + prodId,
+                data: "quantity=" + prodCount,
                 success: function(msg) {
-                    alert("Data Saved: " + msg);
+                    location.reload();
+
                 }
             });
         }
