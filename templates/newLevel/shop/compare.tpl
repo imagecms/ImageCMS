@@ -18,7 +18,7 @@
                 <!-- Start. Buttons for change to show different or all properties -->
                 <div class="f-s_0 title-compare without-crumbs clearfix">
                     <div class="frame-title">
-                        <h1 class="d_i title">{lang('Сравнение товаров','newLevel')}</h1>
+                        <h1 class="title">{lang('Сравнение товаров','newLevel')}</h1>
                     </div>
                     <ul class="tabs groups-buttons tabs-compare-diferent" data-cookie="compare">
                         <li class="btn-def {if $_COOKIE['compare'] == "#all-params" || $_COOKIE['compare'] == NULL}active{/if}">
@@ -65,7 +65,7 @@
                                                     {if $p->category_id == $category['Id']}
                                                         <li class="compare_product_{echo $p->getId()}">
                                                             <!--                                                Start. Include product template-->
-                                                            <ul class="items items-catalog">
+                                                            <ul class="items items-catalog items-product">
                                                                 {$CI->load->module('new_level')->OPI(array($p), array('opi_compare'=>true, 'opi_wishlist'=>true))}
                                                             </ul>
                                                             <!--                                                End. Include product template-->
@@ -149,7 +149,7 @@
             <div class="js-empty empty">
                 <div class="f-s_0 title-compare without-crumbs clearfix">
                     <div class="frame-title">
-                        <h1 class="d_i title">{lang('Сравнение товаров','newLevel')}</h1>
+                        <h1 class="title">{lang('Сравнение товаров','newLevel')}</h1>
                     </div>
                 </div>
                 <div class="msg layout-highlight layout-highlight-msg">
@@ -163,7 +163,7 @@
         {else:}
             <div class="f-s_0 title-compare without-crumbs clearfix">
                 <div class="frame-title">
-                    <h1 class="d_i title">{lang('Cравнения товаров','newLevel')}</h1>
+                    <h1 class="title">{lang('Cравнения товаров','newLevel')}</h1>
                 </div>
             </div>
             <div class="msg layout-highlight layout-highlight-msg">
