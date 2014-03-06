@@ -227,3 +227,23 @@ div[class="tooltip-inner"] {
 .YandexApiKeyHolder > textarea.YandexApiKey{
     width: 500px;
 }
+.modal_yandex_translate > .modal-header select.languageSelect{
+    width: 120px;
+    margin-top: 7px;
+    margin-left: 15px;
+}
+.modal_yandex_translate > .modal-header h5{
+    float: left; 
+}
+.modal_yandex_translate > .modal-body .icon-chevron-down{
+    margin-left: 50%;
+    margin-bottom: -15px;
+}
+
+.modal_yandex_translate > .modal-header h3{
+    text-align: center;
+}
+
+.modal_yandex_translate > .modal-header h4{
+    text-align: center;
+}

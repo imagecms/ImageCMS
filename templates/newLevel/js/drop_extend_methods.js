@@ -388,6 +388,88 @@ $.dropInit.prototype.extendDrop = function() {
                 }, {
                     queue: false
                 });
+        },
+        confirmPrompt: function(source, methods, elSet, opt, hashChange, _confirmF, e) {
+            var prompt = methods._checkProp(elSet, opt, 'prompt'),
+                    confirm = methods._checkProp(elSet, opt, 'confirm');
+            if (confirm) {
+                var confirmBtnDrop = methods._checkProp(elSet, opt, 'confirmBtnDrop'),
+                        confirmPattern = methods._checkProp(elSet, opt, 'patternConfirm');
+
+                if (!$.exists('[data-drop="' + confirmBtnDrop + '"]'))
+                    var confirmBtn = $('<div><button></button></div>').appendTo(body).hide().children().attr('data-drop', confirmBtnDrop);
+                else
+                    confirmBtn = $('[data-drop="' + confirmBtnDrop + '"]');
+
+                confirmBtn.data({
+                    'drop': confirmBtnDrop,
+                    'confirm': true
+                });
+                if (!$.exists(confirmBtnDrop))
+                    methods._pasteDrop($.extend({}, $.drop.dP, opt, confirmBtn.data()), confirmPattern);
+                else
+                    methods._pasteDrop($.extend({}, $.drop.dP, opt, confirmBtn.data()), $(confirmBtnDrop));
+                setTimeout(function() {
+                    methods._show(confirmBtn, e, opt, false, hashChange);
+                });
+                $(methods._checkProp(elSet, opt, 'confirmActionBtn')).off('click.' + $.drop.nS).on('click.' + $.drop.nS, function(e) {
+                    e.stopPropagation();
+                    if (elSet.after)
+                        $(confirmBtnDrop).data({
+                            'drp': $.extend($(confirmBtnDrop).data('drp'), {
+                                'elClosed': elSet.after
+                            })
+                        });
+                    methods.close($(confirmBtnDrop));
+                    if (source)
+                        _confirmF();
+                });
+            }
+            if (prompt) {
+                var promptPattern = methods._checkProp(elSet, opt, 'patternPrompt'),
+                        promptBtnDrop = methods._checkProp(elSet, opt, 'promptBtnDrop');
+
+                if (!$.exists('[data-drop="' + promptBtnDrop + '"]'))
+                    var promptBtn = $('<div><button></button></div>').appendTo(body).hide().children().attr('data-drop', promptBtnDrop);
+                else
+                    promptBtn = $('[data-drop="' + promptBtnDrop + '"]');
+
+                promptBtn.data({
+                    'drop': promptBtnDrop,
+                    'prompt': true,
+                    'promptInputValue': methods._checkProp(elSet, opt, 'promptInputValue')
+                });
+
+                if (!$.exists(promptBtnDrop))
+                    methods._pasteDrop($.extend({}, $.drop.dP, opt, promptBtn.data()), promptPattern);
+                else
+                    methods._pasteDrop($.extend({}, $.drop.dP, opt, promptBtn.data()), $(promptBtnDrop));
+                setTimeout(function() {
+                    methods._show(promptBtn, e, opt, false, hashChange);
+                }, 0)
+                $(methods._checkProp(elSet, opt, 'promptActionBtn')).off('click.' + $.drop.nS).on('click.' + $.drop.nS, function(e) {
+                    e.stopPropagation();
+                    if (elSet.after)
+                        $(promptBtnDrop).data({
+                            'drp': $.extend($(promptBtnDrop).data('drp'), {
+                                'elClosed': elSet.after
+                            })
+                        });
+                    methods.close($(promptBtnDrop));
+                    function getUrlVars(url) {
+                        var hash, myJson = {}, hashes = url.slice(url.indexOf('?') + 1).split('&');
+                        for (var i = 0; i < hashes.length; i++) {
+                            hash = hashes[i].split('=');
+                            myJson[hash[0]] = hash[1];
+                        }
+                        return myJson;
+                    }
+
+                    elSet.dataPrompt = getUrlVars($(this).closest('form').serialize());
+                    if (source)
+                        _confirmF();
+                });
+            }
         }
     };
     var newMethods = {};
