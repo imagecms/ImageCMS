@@ -1,0 +1,276 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: mark\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-10-11 13:29+0300\n"
+"PO-Revision-Date: \n"
+"Last-Translator: mark <shfasdfsdf>\n"
+"Language-Team: \n"
+"Language: English\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-KeywordsList: lang\n"
+"X-Poedit-SearchPath-0: ../../..\n"
+
+#: /var/www/image.loc/_tempLangs.php:20
+msgid "Stats"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:21
+msgid "Back"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:22
+#: /var/www/image.loc/_tempLangs.php:71
+msgid "Orders"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:23
+#: /var/www/image.loc/_tempLangs.php:54
+msgid "Count"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:24
+msgid "Price"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:25
+msgid "Information"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:26
+msgid "Users"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:27
+msgid "Online"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:28
+msgid "Registered"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:29
+msgid "Attendance"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:30
+msgid "User information"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:31
+msgid "Products"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:32
+msgid "Categories"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:33
+msgid "Brands"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:34
+msgid "Product information"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:35
+msgid "Most visited"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:36
+msgid "Brands in category"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:37
+msgid "Searched keywords"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:38
+msgid "Brands in search results"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:39
+msgid "Settings:"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:40
+msgid "save search results"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:41
+msgid "save page URLs"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:42
+#: /var/www/image.loc/_tempLangs.php:49
+msgid "day"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:43
+#: /var/www/image.loc/_tempLangs.php:50
+msgid "week"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:44
+#: /var/www/image.loc/_tempLangs.php:51
+msgid "month"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:45
+#: /var/www/image.loc/_tempLangs.php:52
+msgid "year"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:46
+msgid "From:"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:47
+msgid "To:"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:48
+msgid "Group by:"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:53
+msgid "Key"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:55
+msgid "Date"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:56
+#: /var/www/image.loc/_tempLangs.php:62
+msgid "Quantity of words"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:57
+#: /var/www/image.loc/_tempLangs.php:63
+msgid "Consider the current language"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:58
+#: /var/www/image.loc/_tempLangs.php:64
+msgid "Count of results"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:59
+#: /var/www/image.loc/_tempLangs.php:65
+msgid "Starting the analysis"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:60
+#: /var/www/image.loc/_tempLangs.php:66
+#: /var/www/image.loc/_tempLangs.php:68
+#: /var/www/image.loc/_tempLangs.php:78
+#: /var/www/image.loc/_tempLangs.php:86
+msgid "pie"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:61
+#: /var/www/image.loc/_tempLangs.php:67
+#: /var/www/image.loc/_tempLangs.php:69
+#: /var/www/image.loc/_tempLangs.php:79
+#: /var/www/image.loc/_tempLangs.php:87
+msgid "bar"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:70
+msgid "Period"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:72
+msgid "Unique products"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:73
+msgid "Total products"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:74
+msgid "Sum"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:75
+msgid "Paid"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:76
+msgid "Select categories"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:77
+#: /var/www/image.loc/_tempLangs.php:81
+msgid "Show"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:80
+msgid "Product / ID"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:82
+msgid "Product name"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:83
+msgid "Count of purchasses"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:84
+msgid "Count of comments"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:85
+msgid "Rating"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:88
+msgid "Product's categories"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:89
+msgid "Search"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:90
+msgid "Product's categories in search results"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:91
+msgid "Page not found"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:8
+msgid "No online users"
+msgstr ""
+
+#: ../../../module_info.php:6
+msgid "Statistic"
+msgstr ""
+
+#: ../../../models/stats_model_urls.php:38
+msgid "Guest"
+msgstr ""
+
+#: ../../../classes/Orders.php:77
+msgid "All"
+msgstr ""
+
+#: ../../../classes/Orders.php:85
+msgid "Delivered"
+msgstr ""
+
+#: ../../../classes/Users.php:80
+msgid "Registrations number"
+msgstr ""
+
+#~ msgid "Site configuration"
+#~ msgstr "Настр1"
