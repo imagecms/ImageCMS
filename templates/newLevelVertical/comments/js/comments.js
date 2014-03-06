@@ -207,12 +207,6 @@ var Comments = {
                 data: "comid=" + comid,
                 dataType: "json",
                 url: '/comments/commentsapi/setyes',
-                beforeSend: function(){
-                    $(document).trigger('showActivity');
-                },
-                complete: function(){
-                    $(document).trigger('hideActivity');
-                },
                 success: function(obj) {
                     if (obj !== null) {
                         $('.yesholder' + comid).each(function() {
@@ -230,12 +224,6 @@ var Comments = {
                 data: "comid=" + comid,
                 dataType: "json",
                 url: '/comments/commentsapi/setno',
-                beforeSend: function(){
-                    $(document).trigger('showActivity');
-                },
-                complete: function(){
-                    $(document).trigger('hideActivity');
-                },
                 success: function(obj) {
                     if (obj !== null) {
                         $('.noholder' + comid).each(function() {
@@ -257,11 +245,7 @@ var Comments = {
             dataType: "json",
             data: dataSend,
             type: "post",
-            beforeSend: function(){
-                $(document).trigger('showActivity');
-            },
             success: function(obj) {
-                $(document).trigger('hideActivity');
                 el.each(function() {
                     $(this).empty();
                 });
@@ -300,13 +284,11 @@ var Comments = {
             '&action=newPost',
             dataType: "json",
             beforeSend: function(){
-                $(document).trigger('showActivity');
                 $(el).closest('.forComments').append('<div class="preloader"></div>');
             },
             type: "post",
             complete: function(){
                 $(el).closest('.forComments').find(preloader).remove();
-                $(document).trigger('hideActivity');
             },
             success: function(obj) {
                 if (obj.answer === 'sucesfull') {

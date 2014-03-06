@@ -345,9 +345,6 @@ var Filter = {
             url: catUrl,
             data: data,
             cache: true,
-            beforeSend: function() {
-                $.fancybox.showActivity();
-            },
             success: function(msg) {
 
                 var otherClass = '';

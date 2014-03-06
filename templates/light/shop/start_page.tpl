@@ -2,15 +2,14 @@
     <div class="left-start-page">
         {$CI->load->module('banners')->render()}
         <div id="action_products">
-            <div class="preloader"></div>
-            {widget_ajax('action_products', '#action_products')}
+            {widget('action_products', TRUE)}
         </div>
         <div id="popular_products">
             {widget('popular_products', TRUE)}
         </div>
         <div id="new_products">
             <div class="preloader"></div>
-            {widget_ajax('new_products', '#new_products')}
+            {widget('new_products', TRUE)}
         </div>
         <div class="frame-seo-text">
             <div class="text seo-text">

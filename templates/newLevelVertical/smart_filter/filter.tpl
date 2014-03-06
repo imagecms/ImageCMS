@@ -22,7 +22,7 @@
                     <label>
                         <input type="text" class="maxCost" data-title="{lang('только цифры', 'newLevel')}" name="rp" value="{echo $curMax}" data-maxs="{echo $maxPrice}"/>
                     </label>
-                    <div class="btn-def">
+                    <div class="btn-def d_n">
                         <input type="submit" value="ОК"/>
                     </div>
                 </div>
