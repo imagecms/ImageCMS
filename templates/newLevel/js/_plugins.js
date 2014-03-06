@@ -1693,6 +1693,7 @@ function getCookie(c_name)
                     always = methods._checkProp(elSet, set, 'always'),
                     modal = methods._checkProp(elSet, set, 'modal'),
                     type = methods._checkProp(elSet, set, 'type'),
+                    dataType = methods._checkProp(elSet, set, 'dataType'),
                     datas = methods._checkProp(elSet, set, 'datas');
             var rel = null;
             if (el.get(0).rel)
@@ -1726,7 +1727,7 @@ function getCookie(c_name)
 
                         $.drop.showActivity();
                     },
-                    dataType: modal ? 'json' : 'html',
+                    dataType: modal ? 'json' : dataType,
                     success: function(data) {
                         $.drop.hideActivity();
                         if (!always && !modal)
@@ -1762,7 +1763,7 @@ function getCookie(c_name)
                         type: type,
                         url: source,
                         data: datas,
-                        dataType: 'html',
+                        dataType: dataType ? dataType : 'html',
                         success: function(data) {
                             _update(data);
                         }
@@ -1831,7 +1832,7 @@ function getCookie(c_name)
                                 always = methods._checkProp(elSet, opt, 'always');
                         if (start && !eval(start)($this, drop))
                             return false;
-                        
+
                         if (($.existsN(drop) || !$.existsN(drop) && $.drop.drp.drops[source.replace(methods._reg(), '')]) && !modal && !always && !confirm && !prompt) {
                             methods._pasteDrop($.extend({}, $.drop.dP, opt, elSet), drop);
                             methods._show($this, e, opt, false, hashChange);
@@ -2056,7 +2057,7 @@ function getCookie(c_name)
                 }
             }
             var defaultClassBtnDrop = methods._checkProp(set, null, 'defaultClassBtnDrop');
-            return (set.drop ? (set.drop.indexOf(defaultClassBtnDrop) != -1 ? drop.filter('.'+defaultClassBtnDrop) : $(set.drop)) : drop).addClass(addClass).attr('data-rel', rel).attr('data-elrun', set.drop);
+            return (set.drop ? (set.drop.indexOf(defaultClassBtnDrop) != -1 ? drop.filter('.' + defaultClassBtnDrop) : $(set.drop)) : drop).addClass(addClass).attr('data-rel', rel).attr('data-elrun', set.drop);
         },
         _pasteContent: function($this, drop, opt) {
             function _pasteContent(content, place) {
@@ -2435,6 +2436,7 @@ function getCookie(c_name)
             next: '.drop-next',
             prev: '.drop-prev',
             type: 'post',
+            dataType: null,
             overlayOpacity: 0.7,
             durationOn: 200,
             durationOff: 100,
@@ -2613,7 +2615,7 @@ function getCookie(c_name)
                             if (!input.is(':disabled')) {
                                 settings.before(e, el, input, 'prev');
                                 var nextVal = +(inputVal - step).toFixed(10);
-                                
+
                                 if (isNaN(inputVal))
                                     input.val(min || 1);
                                 else if (inputVal > (min || 1)) {
