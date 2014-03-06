@@ -102,7 +102,7 @@ class ProductsController extends ControllerBase {
 //        $model = $model->orderBy('AddedToCartCount', 'DESC');
         // Order by params
         if (isset(ShopCore::$_GET['orderMethod']) && ShopCore::$_GET['orderMethod'] != '') {
-            $order_methods = array('Id', 'Name', 'CategoryId', 'Views', 'AddedToCartCount');
+            $order_methods = array('Id', 'Name', 'Category', 'Views', 'AddedToCartCount');
             if (in_array(ShopCore::$_GET['orderMethod'], $order_methods)) {
                 switch (ShopCore::$_GET['orderMethod']) {
                     case 'Id':
@@ -110,6 +110,9 @@ class ProductsController extends ControllerBase {
                         break;
                     case 'Name':
                         $model = $model->useSProductsI18nQuery()->orderByName(ShopCore::$_GET['order'])->endUse();
+                        break;
+                    case 'Category':
+                        $model = $model->useShopProductCategoriesQuery()->orderByCategoryId(ShopCore::$_GET['order'])->endUse();
                         break;
                     case 'AddedToCartCount':
                         $model = $model->orderByAddedToCartCount(ShopCore::$_GET['order']);
