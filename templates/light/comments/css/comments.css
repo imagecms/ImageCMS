@@ -8,10 +8,13 @@
 .comments .author-comment{color: #000;font-size:12px;font-weight: bold;}
 .comments .date-comment{color: #b1b1b1;}
 .comments .frame-list-comments > .sub-1{margin: 0;}
+.page-text .comments .frame-list-comments > .sub-1{max-height: none;}
 .comments .frame-comment-sub1 .frame-comment{}
 .comments .frame-comment-sub1{margin-left: 122px;margin-right: 110px;}
 .comments .frame-comment p{margin-bottom: 9px;}
 .comments .frame-list-comments.sub-2{float: none;width: auto;max-height: 213px;overflow: hidden;padding-left: 165px;margin: 0;}
+.page-text .comments .frame-list-comments.sub-2{max-height: none!important;height: auto!important;}
+.page-text .btn-all-comments{display: none !important;}
 .comments .btn-all-comments{margin-left: 0;margin-top: 5px;}
 
 .comments .btn > *, .comments input.btn{padding: 0 !important;}

@@ -357,7 +357,7 @@ function init() {
     doc.on('autocomplete.before showActivity before_add_to_compare before_delete_compare discount.load_certificate beforeAdd.Cart', function(e) {
         $.fancybox.showActivity();
     });
-    doc.on('autocomplete.after after.drop closed.drop hideActivity compare_list_add compare_list_rm compare_list_sync imageapi.success getTpl.Cart', function(e) {
+    doc.on('autocomplete.after after.drop closed.drop hideActivity compare_list_add compare_list_rm imageapi.success getTpl.Cart', function(e) {
         $.fancybox.hideActivity();
     });
 

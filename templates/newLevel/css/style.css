@@ -877,7 +877,7 @@ input + .msg{margin-top: 5px;}
 .slider {position: relative;height: 9px;}
 .left-slider{margin-left: -11px;}
 .right-slider{margin-left: -11px;}
-.form-cost label{width: 64px;}
+.form-cost label{width: 90px;}
 
 .ui-widget-header{position: absolute;z-index: 1;height: 100%;top: 0;}
 .frame-slider .inside-padd{padding: 14px 18px;}
@@ -1130,7 +1130,7 @@ footer .box-1 > .inside-padd{padding-left: 1px;}
 footer .box-2 > .inside-padd{padding-right: 18px;}
 footer .box-4 a{text-transform: none;}
 footer .box-4 > .inside-padd{padding: 21px 28px 10px;margin-bottom: 10px;}
-.footer-footer .container{padding-top: 14px;}
+.footer-footer .container{padding-top: 10px;}
 /*/footer*/
 
 /*drop*/
