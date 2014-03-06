@@ -72,9 +72,9 @@ StatsSettingsAndParams.setModStatsSetting = function(name, value) {
         url: base_url + 'admin/components/cp/mod_stats/adminAdd/ajaxUpdateSettingValue',
         success: function(response) {
             if (response !== 'false') {
-                showMessage('Message', 'Setting updated!');
+                showMessage(lang('Message'), lang('Settings updated!'));
             } else {
-                showMessage('Message', 'Setting not updated!', 'r');
+                showMessage(lang('Message'), lang('Settings not updated!'), 'r');
             }
         }
     });

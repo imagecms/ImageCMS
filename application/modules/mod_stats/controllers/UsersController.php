@@ -87,7 +87,6 @@ class UsersController extends ControllerBase implements FileImport {
     public function getAttendanceData() {
         $params = $this->params;
 
-       // $this->controller->import('traits/DateIntervalTrait.php');
         $this->controller->load->model('attendance_model');
 
         $params['type'] = 'registered';
