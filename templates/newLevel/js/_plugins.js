@@ -1272,9 +1272,10 @@ function getCookie(c_name)
                             e.stopPropagation();
                     });
                     menuItem.find('a:first').off('click.menuref').on('click.menuref', function(e) {
-                        e.preventDefault();
-                        if (!$.existsN($(this).closest(menuItem).find(drop)))
+                        if (!$.existsN($(this).closest(menuItem).find(drop))) {
+                            e.preventDefault();
                             e.stopPropagation();
+                        }
                     });
                 }
             });
@@ -1631,7 +1632,7 @@ function getCookie(c_name)
                 el.data({
                     'drp': options
                 }).addClass('isDrop');
-                
+
                 if (triggerOn || triggerOff)
                     el.data({'triggerOn': triggerOn, 'triggerOff': triggerOff}).on(triggerOn + '.' + $.drop.nS + ' ' + triggerOff + '.' + $.drop.nS, function(e) {
                         e.stopPropagation();
