@@ -1630,11 +1630,10 @@ function getCookie(c_name)
 
                 el.data({
                     'drp': options
-                });
-
-                el.addClass('isDrop');
+                }).addClass('isDrop');
+                
                 if (triggerOn || triggerOff)
-                    el.on(triggerOn + '.' + $.drop.nS + ' ' + triggerOff + '.' + $.drop.nS, function(e) {
+                    el.data({'triggerOn': triggerOn, 'triggerOff': triggerOff}).on(triggerOn + '.' + $.drop.nS + ' ' + triggerOff + '.' + $.drop.nS, function(e) {
                         e.stopPropagation();
                         e.preventDefault();
                     }).on(triggerOn + '.' + $.drop.nS, function(e) {
@@ -1644,7 +1643,7 @@ function getCookie(c_name)
                         methods.close($(el.attr('data-drop')));
                     });
                 else
-                    el.on(trigger + '.' + $.drop.nS, function(e) {
+                    el.data('trigger', trigger).on(trigger + '.' + $.drop.nS, function(e) {
                         if (el.parent().hasClass(aC))
                             methods.close($(el.attr('data-drop')));
                         else
@@ -1655,7 +1654,7 @@ function getCookie(c_name)
                     });
                 el.on('contextmenu.' + $.drop.nS, function(e) {
                     e.preventDefault();
-                })
+                });
                 var href = el.data('href');
                 if (href && window.location.hash.indexOf(href) !== -1 && !$.drop.drp.hrefs[href])
                     methods.open(options, null, el, null);
@@ -1672,7 +1671,13 @@ function getCookie(c_name)
             el.each(function() {
                 var el = $(this),
                         elSet = el.data();
-                el.removeClass('isDrop').off(elSet.trigger + '.' + $.drop.nS + ' ' + elSet.triggerOn + '.' + $.drop.nS + ' ' + elSet.triggerOff + '.' + $.drop.nS);
+                el.removeClass('isDrop');
+                if (elSet.trigger)
+                    el.off(elSet.trigger + '.' + $.drop.nS).removeData(elSet.trigger);
+                if (elSet.triggerOn)
+                    el.off(elSet.triggerOn + '.' + $.drop.nS).removeData(elSet.triggerOn);
+                if (elSet.triggerOff)
+                    el.off(elSet.triggerOff + '.' + $.drop.nS).removeData(elSet.triggerOff);
                 $(el.attr('data-drop')).removeData('drp');
             });
             return el;
@@ -1802,9 +1807,9 @@ function getCookie(c_name)
                         source = methods._checkProp(elSet, opt, 'source') || $this.attr('href'),
                         drop = $(elSet.drop),
                         start = elSet.start;
-                elSet.source = source;
+                elSet.source = source;//may delete?
                 function _confirmF() {
-                    if (!$.existsN(drop) || modal || always) {
+                    if (!$.existsN(drop) || $.existsN(drop) && !$.drop.drp.drops[source.replace(methods._reg(), '')] || modal || always) {
                         if (datas && modal)
                             methods._pasteModal($this, datas, opt, null, hashChange);
                         else
@@ -1826,7 +1831,7 @@ function getCookie(c_name)
                         if (start && !eval(start)($this, drop))
                             return false;
 
-                        if ($.existsN(drop) && !modal && !always && !confirm && !prompt) {
+                        if (($.existsN(drop) || !$.existsN(drop) && $.drop.drp.drops[source.replace(methods._reg(), '')]) && !modal && !always && !confirm && !prompt) {
                             methods._pasteDrop($.extend({}, $.drop.dP, opt, elSet), drop);
                             methods._show($this, e, opt, false, hashChange);
                         }
@@ -1834,84 +1839,9 @@ function getCookie(c_name)
                             if (!confirm && !prompt)
                                 _confirmF();
                             else {//for cofirm && prompt
-                                if (confirm) {
-                                    var confirmBtnDrop = methods._checkProp(elSet, opt, 'confirmBtnDrop'),
-                                            confirmPattern = methods._checkProp(elSet, opt, 'patternConfirm');
-
-                                    if (!$.exists('[data-drop="' + confirmBtnDrop + '"]'))
-                                        var confirmBtn = $('<div><button></button></div>').appendTo(body).hide().children().attr('data-drop', confirmBtnDrop);
-                                    else
-                                        confirmBtn = $('[data-drop="' + confirmBtnDrop + '"]');
-
-                                    confirmBtn.data({
-                                        'drop': confirmBtnDrop,
-                                        'confirm': true
-                                    });
-                                    if (!$.exists(confirmBtnDrop))
-                                        methods._pasteDrop($.extend({}, $.drop.dP, opt, confirmBtn.data()), confirmPattern);
-                                    else
-                                        methods._pasteDrop($.extend({}, $.drop.dP, opt, confirmBtn.data()), $(confirmBtnDrop));
-                                    setTimeout(function() {
-                                        methods._show(confirmBtn, e, opt, false, hashChange);
-                                    });
-                                    $(methods._checkProp(elSet, opt, 'confirmActionBtn')).off('click.' + $.drop.nS).on('click.' + $.drop.nS, function(e) {
-                                        e.stopPropagation();
-                                        if (elSet.after)
-                                            $(confirmBtnDrop).data({
-                                                'drp': $.extend($(confirmBtnDrop).data('drp'), {
-                                                    'elClosed': elSet.after
-                                                })
-                                            });
-                                        methods.close($(confirmBtnDrop));
-                                        if (source)
-                                            _confirmF();
-                                    });
-                                }
-                                if (prompt) {
-                                    var promptPattern = methods._checkProp(elSet, opt, 'patternPrompt'),
-                                            promptBtnDrop = methods._checkProp(elSet, opt, 'promptBtnDrop');
-
-                                    if (!$.exists('[data-drop="' + promptBtnDrop + '"]'))
-                                        var promptBtn = $('<div><button></button></div>').appendTo(body).hide().children().attr('data-drop', promptBtnDrop);
-                                    else
-                                        promptBtn = $('[data-drop="' + promptBtnDrop + '"]');
-
-                                    promptBtn.data({
-                                        'drop': promptBtnDrop,
-                                        'prompt': true,
-                                        'promptInputValue': methods._checkProp(elSet, opt, 'promptInputValue')
-                                    });
-
-                                    if (!$.exists(promptBtnDrop))
-                                        methods._pasteDrop($.extend({}, $.drop.dP, opt, promptBtn.data()), promptPattern);
-                                    else
-                                        methods._pasteDrop($.extend({}, $.drop.dP, opt, promptBtn.data()), $(promptBtnDrop));
-                                    setTimeout(function() {
-                                        methods._show(promptBtn, e, opt, false, hashChange);
-                                    }, 0)
-                                    $(methods._checkProp(elSet, opt, 'promptActionBtn')).off('click.' + $.drop.nS).on('click.' + $.drop.nS, function(e) {
-                                        e.stopPropagation();
-                                        if (elSet.after)
-                                            $(promptBtnDrop).data({
-                                                'drp': $.extend($(promptBtnDrop).data('drp'), {
-                                                    'elClosed': elSet.after
-                                                })
-                                            });
-                                        methods.close($(promptBtnDrop));
-                                        function getUrlVars(url) {
-                                            var hash, myJson = {}, hashes = url.slice(url.indexOf('?') + 1).split('&');
-                                            for (var i = 0; i < hashes.length; i++) {
-                                                hash = hashes[i].split('=');
-                                                myJson[hash[0]] = hash[1];
-                                            }
-                                            return myJson;
-                                        }
-
-                                        elSet.dataPrompt = getUrlVars($(this).closest('form').serialize());
-                                        if (source)
-                                            _confirmF();
-                                    });
-                                }
+                                methods._checkMethod(function() {
+                                    methods.confirmPrompt(source, methods, elSet, opt, hashChange, _confirmF, e);
+                                });
                             }
                         }
                         else //for validations
@@ -1924,16 +1854,16 @@ function getCookie(c_name)
             return $this;
         },
         close: function(sel, hashChange, f) {
-            if (!sel)
-                sel = this.self ? this.self : this;
-            var drop = sel instanceof jQuery ? sel : $('[data-elrun].' + aC);
-
+            var sel2 = sel;
+            if (!sel2)
+                sel2 = this.self ? this.self : this;
+            var drop = sel2 instanceof jQuery ? sel2 : $('[data-elrun].' + aC);
             if ((drop instanceof jQuery) && $.existsN(drop)) {
                 clearTimeout($.drop.drp.closeDropTime);
                 drop.each(function() {
                     var drop = $(this),
                             set = drop.data('drp');
-                    if (set && drop.is(':visible') && (set.modal || sel || set.place !== 'inherit' || set.inheritClose)) {
+                    if (set && drop.is(':visible') && (set.modal || sel || set.place !== 'inherit' || set.inheritClose || set.overlayOpacity !== 0)) {
                         var $thisB = set.elrun;
                         if ($thisB) {
                             var $thisEOff = set.effectOff,
@@ -2058,7 +1988,7 @@ function getCookie(c_name)
             if (!opt)
                 opt = {};
             if (!isNaN(parseFloat($.drop.dP[prop])) && isFinite($.drop.dP[prop])) {
-                return +((elSet[prop] ? elSet[prop].toString() : elSet[prop]) || (opt[prop] ? opt[prop].toString() : opt[prop]) || $.drop.dP[prop].toString());
+                return +((elSet[prop] != undefined && elSet[prop] != null ? elSet[prop].toString() : elSet[prop]) || (opt[prop] != undefined && opt[prop] != null ? opt[prop].toString() : opt[prop]) || $.drop.dP[prop].toString());
             }
             if ($.drop.dP[prop] !== undefined && $.drop.dP[prop] !== null && ($.drop.dP[prop].toString().toLowerCase() === 'false' || $.drop.dP[prop].toString().toLowerCase() === 'true'))
                 return ((/^true$/i).test(elSet[prop] !== undefined && elSet[prop] !== null ? elSet[prop].toString().toLowerCase() : elSet[prop])) || ((/^true$/i).test(opt[prop] !== undefined && opt[prop] !== null ? opt[prop].toString().toLowerCase() : opt[prop])) || $.drop.dP[prop];
@@ -2086,7 +2016,7 @@ function getCookie(c_name)
         _pasteModal: function(el, data, set, rel, hashChange) {
             var elSet = el.data(),
                     drop = $(elSet.drop);
-            methods._modalTrigger(set, elSet);
+            methods._modalTrigger(elSet, set);
             methods._pasteDrop($.extend({}, $.drop.dP, set, elSet), drop, null, rel);
             $(document).trigger({
                 type: 'successJson.' + $.drop.nS,
@@ -2178,10 +2108,6 @@ function getCookie(c_name)
             opt.drop = elSet.drop;
 
             var drop = $('[data-elrun="' + opt.drop + '"]');
-
-            elSet.trigger = opt.trigger;
-            elSet.triggerOn = opt.triggerOn;
-            elSet.triggerOff = opt.triggerOff;
 
             if (opt.dropFilter)
                 drop = methods._filterSource($this, opt.dropFilter);
@@ -2276,12 +2202,9 @@ function getCookie(c_name)
             });
 
             if (forCenter) {
-                forCenter.fadeIn(opt.durationOn);
-            }
-            if (forCenter) {
                 forCenter.css('top', function() {
                     return opt.scroll ? wnd.scrollTop() : 0;
-                });
+                }).fadeIn(opt.durationOn);
             }
 
             methods.placeBeforeShow(drop, $this, methods, opt.place, opt.placeBeforeShow);
@@ -2322,7 +2245,6 @@ function getCookie(c_name)
                 drop.click(focusConfirm);
             }
             $(opt.next).add($(opt.prev)).css('height', drop.actual('height'));
-
             drop[opt.effectOn](opt.durationOn, function(e) {
                 var drop = $(this),
                         drp = drop.data('drp');
@@ -2458,6 +2380,7 @@ function getCookie(c_name)
             dropFooter: '.drop-footer-default',
             placePaste: '.placePaste',
             modalPlace: '.drop-notification-default',
+            datas: null,
             contentHeader: null,
             contentFooter: null,
             contentContent: null,
