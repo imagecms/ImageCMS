@@ -10,6 +10,7 @@
                         <span class="help-block">{lang('Не меньше 4-х символов','newLevel')}</span>
                     </span>
                 </label>
+                    {echo ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPatternMain('pattern_custom_field')->getOneCustomFieldsByName('secondname','user',$profile->getId())->asHtml()}
                 <label>
                     <span class="title">{lang('Телефон','newLevel')}:</span>
                     <span class="frame-form-field">
