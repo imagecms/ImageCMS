@@ -1172,4 +1172,20 @@ class Admin extends BaseAdminController {
         }
     }
 
+    public function getLangaugesNames() {
+        $this->load->helper('translator');
+        $language = strtolower($this->input->get('term'));
+        $languages = get_language_names();
+        $data = array();
+
+        foreach ($languages as $key => $lang) {
+            if (strstr(strtolower($lang), $language) && $language != 'all_languages') {
+                $data[] = array('locale' => $key, 'label' => $lang);
+            } elseif ($language == 'all_languages') {
+                $data[] = array('locale' => $key, 'label' => $lang);
+            }
+        }
+        return json_encode($data);
+    }
+
 }

@@ -36,28 +36,17 @@
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h3>{lang('Translation tool', 'translator')}</h3>
+        <hr>
         <h4>{lang('Choose languages', 'translator')}:</h4>
         <div>
-            <h5>{lang('Source', 'translator')}:</h5>
-            <select class="languageSelect languageFrom">
-                <option value="0">- {lang('No', 'translator')} -</option>
-                {foreach $languages_names as $locale => $name}
-                    <option value="{$locale}">
-                        {echo $name}
-                    </option>
-                {/foreach}
-            </select>
+            <h5><b>{lang('Source', 'translator')}:</b></h5>
+            <input class="languageSelect languageFrom" autocomplete="off" tabindex="1" value="" class="ui-autocomplete-input" aria-autocomplete="list" aria-haspopup="true">
+            <button class="btn btn-small showAllLanguageList"><i class="icon-chevron-down"></i></button>
         </div>
-        <div class="pull-right" style="margin-top: -45px;">
-            <h5>{lang('Result', 'translator')}:</h5>
-            <select class="languageSelect languageTo">
-                <option value="0">- {lang('No', 'translator')} -</option>
-                {foreach $languages_names as $locale => $name}
-                    <option value="{$locale}">
-                        {echo $name}
-                    </option>
-                {/foreach}
-            </select>
+        <div class="pull-right" style="margin-top: -35px;">
+            <h5><b>{lang('Result', 'translator')}:</b></h5>
+            <input class="languageSelect languageTo" autocomplete="off" tabindex="1" value="" class="ui-autocomplete-input" aria-autocomplete="list" aria-haspopup="true">
+            <button class="btn btn-small showAllLanguageList"><i class="icon-chevron-down"></i></button>
         </div>
     </div>
     <div class="modal-body">
