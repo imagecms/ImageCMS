@@ -9,8 +9,6 @@
  * @package ImageCMSModule
  */
 class Search_model extends CI_Model {
-
-    use DateIntervalTrait;
     
     /**
      * Current locale
@@ -52,7 +50,7 @@ class Search_model extends CI_Model {
 
         $query = "
             SELECT  `mod_stats_search`.`key` ,
-                    DATE_FORMAT( FROM_UNIXTIME(  `mod_stats_search`.`date` ) , '" . $this->getDatePattern($interval) . "' ) AS  `date_search` , 
+                    DATE_FORMAT( FROM_UNIXTIME(  `mod_stats_search`.`date` ) , '" . \mod_stats\classes\DateInterval::getDatePattern($interval) . "' ) AS  `date_search` , 
                     COUNT(  `mod_stats_search`.`key` ) AS  `key_count` 
             FROM  
                 `mod_stats_search` 

@@ -232,7 +232,7 @@
                     </div>
                 </td>
             </tr>
-        {else:}
+        {elseif $CI->load->module('mod_discount/discount_api')->isGiftCertificat()}
             <tr>
                 <td colspan="3">
                     <div class="clearfix">

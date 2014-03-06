@@ -268,10 +268,10 @@ $.dropInit.prototype.extendDrop = function() {
                     relO = $this.get(0).rel;
 
             if (relO != '' && relO !== undefined) {
-                var source = elSet.source || set.source || $this.attr('href'),
-                        next = elSet.next || set.next,
-                        prev = elSet.prev || set.prev,
-                        cycle = elSet.cycle || set.cycle,
+                var source = methods._checkProp(elSet, set, 'source') || $this.attr('href'),
+                        next = methods._checkProp(elSet, set, 'next'),
+                        prev = methods._checkProp(elSet, set, 'prev'),
+                        cycle = methods._checkProp(elSet, set, 'cycle'),
                         rel = relO.replace(/[^a-zA-Z0-9]+/ig, ''),
                         relA = $.drop.drp.galleries[rel],
                         drop = $('[data-elrun][data-rel="' + rel + '"]');

@@ -98,5 +98,5 @@ $(document).on('scriptDefer', function() {
 });
 function initOrderTrEv() {
     Order.initGift();
-    $(".maskPhoneFrame input").mask("+9 (9999) 999-99-99");
+    $(".maskPhoneFrame input").mask("+99 (999) 999-99-99");
 }

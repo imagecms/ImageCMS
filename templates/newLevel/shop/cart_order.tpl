@@ -188,14 +188,13 @@
                     <div class="f_r">
                         {if !$deliveryMethod->getDeliverySumSpecified()}
                             {$priceDel = $deliveryMethod->getPrice()}
-                            {$priceDelAdd = ShopCore::app()->SCurrencyHelper->convert($deliveryMethod->getPrice(), $NextCSId)}
                             {$priceDelFreeFrom = ceil($deliveryMethod->getFreeFrom())}
-
+                            {$priceDelAdd = ShopCore::app()->SCurrencyHelper->convert($deliveryMethod->getPrice(), $NextCSId)}
                             {if $cartPrice < $priceDelFreeFrom}
                                 {$cartPrice += $priceDel}
                                 <span class="price f-w_b">{echo $priceDel}</span>
                                 <span class="curr">{$CS}</span>
-                                (<span class="price f-w_b">{echo $priceDelAdd}</span>
+                                (<span class="price f-w_b">{echo ShopCore::app()->SCurrencyHelper->convert($priceDelAdd)}</span>
                                 <span class="curr-add">{$NextCS}</span>)
                                 <span class="not-delivery-price"></span>
                             {else:}
@@ -229,7 +228,7 @@
                     </div>
                 </td>
             </tr>
-        {else:}
+        {elseif $CI->load->module('mod_discount/discount_api')->isGiftCertificat()}
             <tr>
                 <td colspan="3">
                     <div class="clearfix">
