@@ -1,13 +1,13 @@
 <?php
 
-trait DateIntervalTrait {
+class DateInterval {
 
     /**
      * Returns date pattern for mysql (select part)
      * @param int|string $dateInterval
      * @return string
      */
-    public function getDatePattern($dateInterval) {
+    public static function getDatePattern($dateInterval) {
         // date pattern for mysql
         switch ($dateInterval) {
             case 1:
@@ -30,7 +30,7 @@ trait DateIntervalTrait {
      *  - dateTo
      * @return string condition of date range
      */
-    public function prepareDateBetweenCondition($field, array $params = array()) {
+    public static function prepareDateBetweenCondition($field, array $params = array()) {
         $table = !isset($params['table']) ? "" : "`{$params['table']}`.";
         $betweenCondition = "";
         if (isset($params['dateFrom']) || isset($params['dateTo'])) {
