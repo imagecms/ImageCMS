@@ -39,9 +39,9 @@
                                         {/if}
                                     {/if}
                                 </th>
-                                <th class="span2 productListOrder" data-column="CategoryId">
+                                <th class="span2 productListOrder" data-column="Category">
                                     <span class="t-d_u">{lang('Categories','admin')}</span>
-                                    {if isset($_GET.orderMethod) AND $_GET.orderMethod == 'CategoryId'}
+                                    {if isset($_GET.orderMethod) AND $_GET.orderMethod == 'Category'}
                                         {if $_GET.order == 'ASC'}
                                             <span class="f-s_14">↑</span>
                                         {else:}
