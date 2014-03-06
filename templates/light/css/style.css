@@ -333,8 +333,7 @@ input.input-search{height: 33px;padding-right: 14px;}
 .items-news{margin-left: -40px;}
 .items-news .photo-block{margin-bottom: 7px;margin-right: 16px;width: 66px;}
 .items-news .photo-block > img{max-height: 110px;}
-.items-news > li{width: 300px;margin-left: 40px;margin-bottom: 15px;padding-top: 15px;}
-.items-news > li:first-child{padding-top: 0;}
+.items-news > li{width: 300px;margin-left: 40px;margin-bottom: 15px;}
 .vertical-layout .items-news > li{width: auto;}
 .items-news a{display: block;margin-bottom: 6px;}
 .items-news .date{display: block;margin-bottom: 2px;}
