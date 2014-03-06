@@ -27,6 +27,21 @@ class discount_api extends \MY_Controller {
     }
 
     /**
+     * is in project gift certificate
+     * @deprecated since version 4.5.2
+     * @copyright (c) 2013, ImageCMS
+     */
+    public function isGiftCertificat() {
+        $this->baseDiscount = \mod_discount\classes\BaseDiscount::create();
+        foreach ($this->baseDiscount->discountType['all_order'] as $disc)
+            if ($disc['is_gift']) {
+                return true;
+                break;
+            }
+        return false;
+    }
+
+    /**
      * get gift certificate in json format
      * @access public
      * @author DevImageCms
@@ -90,8 +105,7 @@ class discount_api extends \MY_Controller {
                 echo json_encode($discount);
             else
                 return $discount;
-        }
-        else
+        } else
             echo '';
     }
 
@@ -287,6 +301,7 @@ class discount_api extends \MY_Controller {
      * @copyright (c) 2013, ImageCMS
      */
     public function is_gift_certificat() {
+        return $this->isGiftCertificat();
         $this->baseDiscount = \mod_discount\classes\BaseDiscount::create();
         foreach ($this->baseDiscount->discountType['all_order'] as $disc)
             if ($disc['is_gift']) {

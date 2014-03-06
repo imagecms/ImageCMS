@@ -158,7 +158,7 @@ msgid "В список желаний могут добавлять только
 msgstr ""
 
 #: ./templates/newLevel/config.js.tpl:129
-msgid "Выберете размер меньше или равно"
+msgid "Выберите размер меньше или равно"
 msgstr ""
 
 #: ./templates/newLevel/config.js.tpl:131

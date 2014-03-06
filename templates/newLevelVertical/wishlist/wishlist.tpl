@@ -76,7 +76,6 @@
                                                 <button
                                                     type="submit"
                                                     data-source="{site_url('/wishlist/wishlistApi/createWishList')}"
-                                                    data-type="json"
                                                     data-modal="true"
 
                                                     data-always="true"
@@ -112,7 +111,7 @@
                                         </div>
                                     {/if}
                                     {if $wishlist[0][variant_id]}
-                                        <ul class="items items-catalog items-wish-list">
+                                        <ul class="items items-catalog items-wish-list items-product">
                                             {$CI->load->module('new_level')->OPI($wishlist, array('opi_wishListPage' => true))}
                                         </ul>
                                     {else:}
@@ -144,7 +143,7 @@
                                                     <button
                                                         type="button"
                                                         data-source="{site_url('/wishlist/wishlistApi/deleteWL/'.$wishlist[0][wish_list_id])}"
-                                                        data-type="json"
+
                                                         data-modal="true"
 
                                                         data-drop="#notification"
@@ -208,9 +207,9 @@
                                 <input type="hidden" value="{echo $user[id]}" name="userID"/>
                                 <div class="photo-block m-b_5">
                                     <span class="helper"></span>
-                                    <span id="wishlistphoto" data-width="{echo $settings[maxImageWidth]}" data-height="{echo $settings[maxImageHeight]}" data-src="{$THEME}{$colorScheme}/images/nophoto.png">
+                                    <span id="wishlistphoto" data-width="{echo $settings[maxImageWidth]}" data-height="{echo $settings[maxImageHeight]}">
                                         {if $user['user_image']!=''}
-                                            <img src="{site_url('uploads/mod_wishlist/'.$user['user_image'])}" alt="{lang('Фото пользователя', 'newLevel')}"/>
+                                            <img src="{site_url('uploads/mod_wishlist/'.$user['user_image'])}" alt='pic' data-src="{$THEME}{$colorScheme}/images/nophoto.png"/>
                                         {else:}
                                             <img src="{$THEME}{$colorScheme}/images/nophoto.png"/>
                                         {/if}
@@ -227,7 +226,6 @@
                                                 <button
                                                     type="button"
                                                     data-source="{site_url('/wishlist/wishlistApi/deleteImage')}"
-                                                    data-type="json"
                                                     data-modal="true"
 
                                                     data-drop="#notification"
@@ -288,7 +286,6 @@
                                         <button
                                             type="submit"
                                             data-source="{site_url('/wishlist/wishlistApi/userUpdate')}"
-                                            data-type="json"
                                             data-modal="true"
 
                                             data-effect-on="fadeIn"

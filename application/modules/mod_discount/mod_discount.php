@@ -94,7 +94,7 @@ class Mod_discount extends \MY_Controller {
      * @return ---
      * @copyright (c) 2013, ImageCMS
      */
-    public function applyResultDiscount($makeOrder = FALSE) {
+    private function applyResultDiscount() {
         \mod_discount\classes\BaseDiscount::prepareOption(array('reBuild' => 1));
         $this->baseDiscount = \mod_discount\classes\BaseDiscount::create();
 
@@ -110,13 +110,11 @@ class Mod_discount extends \MY_Controller {
                 $discount['type'] = 'user';
             }
 
-
-
             if ($discount['result_sum_discount'] > 0) {
                 $this->baseDiscount->cart->setTotalPrice($this->baseDiscount->cart->getOriginTotalPrice() - $discount['result_sum_discount']);
                 $this->baseDiscount->cart->discount_info = $discount;
                 $this->baseDiscount->cart->discount_type = $discount['type'];
-                if ($makeOrder) {
+                if (strstr($this->uri->uri_string(),'make_order')) {
                     $this->baseDiscount->updateDiskApply($discount['max_discount']['key']);
                 }
             }

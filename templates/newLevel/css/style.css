@@ -57,8 +57,9 @@ article, .container, .special-proposition .title-proposition-h{max-width: 980px;
 .left-catalog-first{float: left;width: 74.5%;}
 .right-catalog-first{float: right;width: 23.5%;}
 
-.left-cart{float: left;width: 45%;}
-.right-cart{float: right;width: 52%;}
+.left-cart{float: left;width: 45%;margin-bottom: 30px;}
+.right-cart{float: right;width: 52%;margin-bottom: 30px;}
+.vertical-layout .left-cart, .vertical-layout .right-cart{float: none;width: auto;}
 
 .left-order{float: left;width: 45%;}
 .right-order{float: right;width: 52%;}

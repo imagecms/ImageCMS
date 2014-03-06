@@ -1272,9 +1272,10 @@ function getCookie(c_name)
                             e.stopPropagation();
                     });
                     menuItem.find('a:first').off('click.menuref').on('click.menuref', function(e) {
-                        e.preventDefault();
-                        if (!$.existsN($(this).closest(menuItem).find(drop)))
+                        if (!$.existsN($(this).closest(menuItem).find(drop))) {
+                            e.preventDefault();
                             e.stopPropagation();
+                        }
                     });
                 }
             });
@@ -1631,7 +1632,7 @@ function getCookie(c_name)
                 el.data({
                     'drp': options
                 }).addClass('isDrop');
-                
+
                 if (triggerOn || triggerOff)
                     el.data({'triggerOn': triggerOn, 'triggerOff': triggerOff}).on(triggerOn + '.' + $.drop.nS + ' ' + triggerOff + '.' + $.drop.nS, function(e) {
                         e.stopPropagation();
@@ -1830,7 +1831,7 @@ function getCookie(c_name)
                                 always = methods._checkProp(elSet, opt, 'always');
                         if (start && !eval(start)($this, drop))
                             return false;
-
+                        
                         if (($.existsN(drop) || !$.existsN(drop) && $.drop.drp.drops[source.replace(methods._reg(), '')]) && !modal && !always && !confirm && !prompt) {
                             methods._pasteDrop($.extend({}, $.drop.dP, opt, elSet), drop);
                             methods._show($this, e, opt, false, hashChange);
@@ -2055,7 +2056,7 @@ function getCookie(c_name)
                 }
             }
             var defaultClassBtnDrop = methods._checkProp(set, null, 'defaultClassBtnDrop');
-            return (set.drop ? (set.drop.indexOf(defaultClassBtnDrop) != -1 ? drop.filter(defaultClassBtnDrop) : $(set.drop)) : drop).addClass(addClass).attr('data-rel', rel).attr('data-elrun', set.drop);
+            return (set.drop ? (set.drop.indexOf(defaultClassBtnDrop) != -1 ? drop.filter('.'+defaultClassBtnDrop) : $(set.drop)) : drop).addClass(addClass).attr('data-rel', rel).attr('data-elrun', set.drop);
         },
         _pasteContent: function($this, drop, opt) {
             function _pasteContent(content, place) {
@@ -2421,7 +2422,7 @@ function getCookie(c_name)
             },
             pattern: '<div class="drop drop-style drop-default" style="background-color: #fff;"><button type="button" class="icon-times-drop" data-closed="closed-js" style="position: absolute;right: 5px;top: 5px;background-color: red;width: 10px;height: 10px;"></button><div class="drop-header-default"></div><div class="drop-content-default"><button class="drop-prev" type="button"  style="display:none;font-size: 30px;position:absolute;width: 35%;left: 20px;top:0;text-align: left;"><</button><button class="drop-next" type="button" style="display:none;font-size: 30px;position:absolute;width: 35%;right: 20px;top:0;text-align: right;">></button><div class="inside-padd placePaste" style="padding: 20px 40px;text-align: center;"></div></div><div class="drop-footer-default"></div></div>',
             modalBtnDrop: '#drop-notification-default',
-            defaultClassBtnDrop: 'drop-default-',
+            defaultClassBtnDrop: 'drop-default',
             patternNotif: '<div class="drop drop-style" id="drop-notification-default" style="background-color: #fff;"><div class="drop-header-default" style="padding: 10px 20px;border-bottom: 1px solid #ccc;"></div><div class="drop-content-default"><div class="inside-padd drop-notification-default"></div></div><div class="drop-footer-default"></div></div>',
             confirmBtnDrop: '#drop-confirm-default',
             confirmActionBtn: '[data-button-confirm]',
@@ -2612,9 +2613,10 @@ function getCookie(c_name)
                             if (!input.is(':disabled')) {
                                 settings.before(e, el, input, 'prev');
                                 var nextVal = +(inputVal - step).toFixed(10);
+                                
                                 if (isNaN(inputVal))
                                     input.val(min || 1);
-                                else if (inputVal > min || 1) {
+                                else if (inputVal > (min || 1)) {
                                     input.val(nextVal);
                                     if (nextVal === min && checkProdStock)
                                         el.attr('disabled', 'disabled');

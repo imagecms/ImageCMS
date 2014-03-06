@@ -26,6 +26,9 @@ langs["Set direction of translation is not supported."] = '<?php echo lang("Set 
 langs["Translation fails."] = '<?php echo lang("Translation fails.", "translator")?>';
 langs["Yandex Api Key was successfully setted."] = '<?php echo lang("Yandex Api Key was successfully setted.", "translator")?>';
 langs["Can not set Yandex Api Key."] = '<?php echo lang("Can not set Yandex Api Key.", "translator")?>';
+langs["You have not specified source text language."] = '<?php echo lang("You have not specified source text language.", "translator")?>';
+langs["You have not specified translation text language."] = '<?php echo lang("You have not specified translation text language.", "translator")?>';
+langs["You have not specified text to translate."] = '<?php echo lang("You have not specified text to translate.", "translator")?>';
 langs["First"] = '<?php echo lang("First", "translator")?>';
 langs["Last "] = '<?php echo lang("Last ", "translator")?>';
 </script>

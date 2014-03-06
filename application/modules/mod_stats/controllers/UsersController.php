@@ -1,5 +1,7 @@
 <?php
 
+include_once __DIR__ . DIRECTORY_SEPARATOR . 'interfaces' . DIRECTORY_SEPARATOR . 'FileImport' . EXT;
+
 /**
  * Class UsersController for mod_stats module
  * @uses ControllerBase
@@ -7,9 +9,9 @@
  * @copyright (c) 2014, ImageCMS
  * @package ImageCMSModule
  */
-class UsersController extends ControllerBase {
+class UsersController extends ControllerBase implements FileImport {
 
-    use FileImportTrait;
+    //use FileImportTrait;
 
     public $params = array();
 
@@ -68,7 +70,7 @@ class UsersController extends ControllerBase {
             $viewType = 'table';
         }
 
-        $this->controller->import('traits/DateIntervalTrait.php');
+//        $this->controller->import('traits/DateIntervalTrait.php');
         $this->controller->load->model('attendance_model');
 
         $data = $this->controller->attendance_model->getCommonAttendance($this->params);
@@ -85,7 +87,7 @@ class UsersController extends ControllerBase {
     public function getAttendanceData() {
         $params = $this->params;
 
-        $this->controller->import('traits/DateIntervalTrait.php');
+       // $this->controller->import('traits/DateIntervalTrait.php');
         $this->controller->load->model('attendance_model');
 
         $params['type'] = 'registered';
@@ -109,11 +111,15 @@ class UsersController extends ControllerBase {
         }
 
         $this->controller->import('classes/ZeroFiller');
-
-        echo json_encode(array(
-            array('key' => 'Count of unique registered users', 'values' => ZeroFiller::fill($registered, 'x', 'y', $this->params['interval'])),
-            array('key' => 'Count of unique unregistered users', 'values' => ZeroFiller::fill($unregistered, 'x', 'y', $this->params['interval'])),
-        ));
+       
+        $response = array();
+        if ($registered) {
+            $response[] = array('key' => 'Count of unique registered users', 'values' => ZeroFiller::fill($registered, 'x', 'y', $this->params['interval']));
+        }
+        if ($unregistered) {
+            array('key' => 'Count of unique unregistered users', 'values' => ZeroFiller::fill($unregistered, 'x', 'y', $this->params['interval']));
+        }
+        echo json_encode($response);
     }
 
     /**
@@ -192,6 +198,33 @@ class UsersController extends ControllerBase {
             'robots' => $robots,
             'currentRobot' => $currentRobot
         ));
+    }
+
+    /**
+     * Include file (or all recursively files in dir) 
+     * The starting directory is the directory where the class is (witch using trait)
+     * @param string $filePath
+     */
+    public function import($filePath) {
+        $ext = strtolower(pathinfo($filePath, PATHINFO_EXTENSION));
+        if ($ext != 'php' && $ext != "")
+            return;
+
+        $filePath = str_replace('.php', '', $filePath);
+        $reflection = new ReflectionClass($this);
+        $workingDir = pathinfo($reflection->getFileName(), PATHINFO_DIRNAME);
+        $filePath = $workingDir . DIRECTORY_SEPARATOR . str_replace(array('\\', '/'), DIRECTORY_SEPARATOR, $filePath);
+
+        if (strpos($filePath, '*') === FALSE) {
+            include_once $filePath . EXT;
+        } else {
+            $filesOfDir = get_filenames(str_replace('*', '', $filePath), TRUE);
+            foreach ($filesOfDir as $file) {
+                if (strtolower(pathinfo($file, PATHINFO_EXTENSION)) == 'php') {
+                    include_once str_replace(array('\\', '/'), DIRECTORY_SEPARATOR, $file);
+                }
+            }
+        }
     }
 
 }
