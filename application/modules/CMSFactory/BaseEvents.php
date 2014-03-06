@@ -77,7 +77,7 @@ abstract class BaseEvents {
     }
 
     public function get() {
-        var_dumps($this->storage);
+        //var_dumps($this->storage);
     }
 
     /**

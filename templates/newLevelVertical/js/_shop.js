@@ -15,7 +15,6 @@ var Shop = {
     Cart: {
         baseUrl: siteUrl + 'shop/cart/api/',
         xhr: {
-            
         },
         add: function(obj, id, kit) {
             var method = kit ? 'addKit' : 'addProductByVariantId';
@@ -24,9 +23,9 @@ var Shop = {
                 'id': id,
                 'kit': kit
             });
-            if (this.xhr['add'+id])
-                this.xhr['add'+id].abort();
-            this.xhr['add'+id] = $.ajax({
+            if (this.xhr['add' + id])
+                this.xhr['add' + id].abort();
+            this.xhr['add' + id] = $.ajax({
                 'type': 'get',
                 'url': this.baseUrl + method + '/' + id,
                 'data': obj,
@@ -49,9 +48,9 @@ var Shop = {
                 'id': id,
                 'kit': kit
             });
-            if (this.xhr['remove'+id])
-                this.xhr['remove'+id].abort();
-            this.xhr['remove'+id] = $.getJSON(this.baseUrl + method + '/' + id, function(data) {
+            if (this.xhr['remove' + id])
+                this.xhr['remove' + id].abort();
+            this.xhr['remove' + id] = $.getJSON(this.baseUrl + method + '/' + id, function(data) {
                 $(document).trigger({
                     'type': 'remove.Cart',
                     'datas': data,
@@ -67,16 +66,16 @@ var Shop = {
                 'kit': kit,
                 'id': id
             });
-            if (this.xhr['amount'+id])
-                this.xhr['amount'+id].abort();
-            this.xhr['amount'+id] = $.ajax({
+            if (this.xhr['amount' + id])
+                this.xhr['amount' + id].abort();
+            this.xhr['amount' + id] = $.ajax({
                 'type': 'post',
                 'url': this.baseUrl + 'getAmountInCart',
                 'data': {
                     'id': id,
                     'instance': kit ? 'ShopKit' : 'SProducts'
                 },
-                success: function(data){
+                success: function(data) {
                     $(document).trigger({
                         'type': 'getAmount.Cart',
                         'kit': kit,
@@ -95,9 +94,9 @@ var Shop = {
                 'kit': kit,
                 'id': id
             });
-            if (this.xhr['count'+id])
-                this.xhr['count'+id].abort();
-            this.xhr['count'+id] = $.ajax({
+            if (this.xhr['count' + id])
+                this.xhr['count' + id].abort();
+            this.xhr['count' + id] = $.ajax({
                 'type': 'get',
                 'url': this.baseUrl + method + '/' + id,
                 'data': {
@@ -158,7 +157,7 @@ var Shop = {
         },
         composeCartItem: function($context) {
             var cartItem = {},
-            data = $context.data();
+                    data = $context.data();
             for (var i in data)
                 cartItem[i] = data[i]
             return cartItem;
@@ -187,13 +186,13 @@ var Shop = {
                         });
                         returnMsg("=== add Compare Item. call compare_list_add ===");
                     }
-                    else{
+                    else {
                         returnMsg("=== Error. add Compare ===");
                         $(document).trigger('hideActivity');
                     }
                     try {
                         var dataObj = JSON.parse(data);
-                        
+
                     } catch (e) {
                     }
                 });
@@ -221,7 +220,7 @@ var Shop = {
                         });
                         returnMsg("=== remove Compare Item. call compare_list_rm ===");
                     }
-                    else{
+                    else {
                         returnMsg("=== Error. remove Compare Item ===");
                         $(document).trigger('hideActivity');
                     }
@@ -319,7 +318,9 @@ var ImageCMSApi = {
             success: function(obj) {
                 $(document).trigger({
                     'type': 'imageapi.success',
-                    'object': obj
+                    'obj': DS,
+                    'el': form,
+                    'message': obj
                 });
                 if (obj !== null) {
                     var form = $(selector);
@@ -330,7 +331,8 @@ var ImageCMSApi = {
                         $(document).trigger({
                             'type': 'imageapi.before_refresh_reload',
                             'el': form,
-                            'obj': DS
+                            'obj': DS,
+                            'message': obj
                         });
 
                     if (typeof DS.callback == 'function')
@@ -361,26 +363,30 @@ var ImageCMSApi = {
                             $(message[type](obj.msg)).appendTo(form.parent());
                         $(document).trigger({
                             'type': 'imageapi.pastemsg',
-                            'el': form.parent()
+                            'el': form,
+                            'obj': DS,
+                            'message': obj
                         })
                     }
                     if (obj.cap_image != 'undefined' && obj.cap_image != null) {
                         ImageCMSApi.addCaptcha(obj.cap_image, DS);
                     }
                     if (obj.validations != 'undefined' && obj.validations != null) {
-                        ImageCMSApi.sendValidations(obj.validations, form, DS);
+                        ImageCMSApi.sendValidations(obj.validations, form, DS, obj);
                     }
                     $(form).find(':input').off('input.imageapi').on('input.imageapi', function() {
                         var $this = $(this),
-                        form = $this.closest('form'),
-                        $thisТ = $this.attr('name'),
-                        elMsg = form.find('[for=' + $thisТ + ']');
+                                form = $this.closest('form'),
+                                $thisТ = $this.attr('name'),
+                                elMsg = form.find('[for=' + $thisТ + ']');
                         if ($.exists(elMsg)) {
                             $this.removeClass(DS.err + ' ' + DS.scs);
                             elMsg.remove();
                             $(document).trigger({
                                 'type': 'imageapi.hidemsg',
-                                'el': form
+                                'el': form,
+                                'obj': DS,
+                                'message': obj
                             });
                             $this.focus();
                         }
@@ -406,7 +412,7 @@ var ImageCMSApi = {
      * in the form, which needs validation, for each validate input
      * 
      * */
-    sendValidations: function(validations, selector, DS) {
+    sendValidations: function(validations, selector, DS, obj) {
         var sel = $(selector);
         if (typeof validations === 'object') {
             var i = 1;
@@ -419,7 +425,9 @@ var ImageCMSApi = {
                 if (i == Object.keys(validations).length) {
                     $(document).trigger({
                         'type': 'imageapi.pastemsg',
-                        'el': sel.parent()
+                        'el': sel,
+                        'obj': DS,
+                        'message': obj
                     })
                     var finput = sel.find(':input.' + DS.err + ':first');
                     finput.setCursorPosition(finput.val().length);

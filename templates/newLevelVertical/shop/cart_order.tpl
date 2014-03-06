@@ -10,7 +10,7 @@
         {foreach $items as $item}
             <!-- Start. For single product -->
             {if  $item->instance == 'SProducts'}
-                <tr class="items items-bask cart-product">
+                <tr class="items items-bask cart-product items-product">
                     <td class="frame-items">
                         <a href="{echo shop_url('product/'.$item->getSProducts()->getUrl())}" class="frame-photo-title">
                             <span class="photo-block">
@@ -82,7 +82,7 @@
                 <tr class="row row-kits">
                     <td class="frame-items frame-items-kit">
                         <div class="title-h3 c_9">{lang('Комплект товаров', 'newLevel')}</div>
-                        <ul class="items items-bask">
+                        <ul class="items items-bask items-product">
                             {foreach $item->items as $k => $kitItem}
                                 <li>
                                     {if $k != 0}
@@ -188,14 +188,13 @@
                     <div class="f_r">
                         {if !$deliveryMethod->getDeliverySumSpecified()}
                             {$priceDel = $deliveryMethod->getPrice()}
-                            {$priceDelAdd = ShopCore::app()->SCurrencyHelper->convert($deliveryMethod->getPrice(), $NextCSId)}
                             {$priceDelFreeFrom = ceil($deliveryMethod->getFreeFrom())}
-
+                            {$priceDelAdd = ShopCore::app()->SCurrencyHelper->convert($deliveryMethod->getPrice(), $NextCSId)}
                             {if $cartPrice < $priceDelFreeFrom}
                                 {$cartPrice += $priceDel}
                                 <span class="price f-w_b">{echo $priceDel}</span>
                                 <span class="curr">{$CS}</span>
-                                (<span class="price f-w_b">{echo $priceDelAdd}</span>
+                                (<span class="price f-w_b">{echo ShopCore::app()->SCurrencyHelper->convert($priceDelAdd)}</span>
                                 <span class="curr-add">{$NextCS}</span>)
                                 <span class="not-delivery-price"></span>
                             {else:}
@@ -229,7 +228,7 @@
                     </div>
                 </td>
             </tr>
-        {else:}
+        {elseif $CI->load->module('mod_discount/discount_api')->isGiftCertificat()}
             <tr>
                 <td colspan="3">
                     <div class="clearfix">

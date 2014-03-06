@@ -290,7 +290,7 @@ msgid "В список желаний могут добавлять только
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:105
-msgid "Выберете размер меньше или равно"
+msgid "Выберите размер меньше или равно"
 msgstr ""
 
 #: /var/www/image.loc/_tempLangs.php:106
