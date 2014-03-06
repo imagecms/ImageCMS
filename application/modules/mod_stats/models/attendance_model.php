@@ -10,8 +10,6 @@
  */
 class Attendance_model extends CI_Model {
 
-    use DateIntervalTrait;
-
     /**
      * Common attendance by unique users per day(month|year)
      * @param array $params
@@ -44,12 +42,12 @@ class Attendance_model extends CI_Model {
         $query = "
             SELECT 
                 `time_add` as `unix_date`,
-                DATE_FORMAT(FROM_UNIXTIME(`time_add`), '" . $this->getDatePattern($params['interval']) . "') as `date`,
+                DATE_FORMAT(FROM_UNIXTIME(`time_add`), '" . \mod_stats\classes\DateInterval::getDatePattern($params['interval']) . "') as `date`,
                 COUNT(DISTINCT `id_user`) as `users_count`
             FROM 
                 `mod_stats_attendance`
             WHERE 1 
-                " . $this->prepareDateBetweenCondition('time_add', $params) . " 
+                " . \mod_stats\classes\DateInterval::prepareDateBetweenCondition('time_add', $params) . " 
                 {$registeredCondition}
             GROUP BY 
                 `date`
@@ -134,8 +132,8 @@ class Attendance_model extends CI_Model {
      * @param array $categoriesIds ids of categories witch attendance return
      */
     public function getCategoriesAttendance(array $params, array $categoriesIds) {
-        $datePattern = $this->getDatePattern($params['interval']);
-        $dateBetween = $this->prepareDateBetweenCondition('time_add', $params);
+        $datePattern = \mod_stats\classes\DateInterval::getDatePattern($params['interval']);
+        $dateBetween = \mod_stats\classes\DateInterval::prepareDateBetweenCondition('time_add', $params);
 
         $categoriesAttendance = array();
         foreach ($categoriesIds as $categoryId => $categoryIds) {

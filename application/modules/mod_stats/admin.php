@@ -2,7 +2,7 @@
 
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
-include_once __DIR__ . DIRECTORY_SEPARATOR . 'traits' . DIRECTORY_SEPARATOR . 'FileImportTrait' . EXT;
+include_once __DIR__ . DIRECTORY_SEPARATOR . 'interfaces' . DIRECTORY_SEPARATOR . 'FileImportTrait' . EXT;
 
 /**
  * Class Admin for mod_stats module
@@ -11,9 +11,8 @@ include_once __DIR__ . DIRECTORY_SEPARATOR . 'traits' . DIRECTORY_SEPARATOR . 'F
  * @copyright (c) 2014, ImageCMS
  * @package ImageCMSModule
  */
-class Admin extends \BaseAdminController {
-
-    use FileImportTrait;
+class Admin extends \BaseAdminController implements FileImport{
+    //use FileImportTrait;
 
     /**
      * Asset manager is building path of clients scripts by trace,
@@ -32,11 +31,11 @@ class Admin extends \BaseAdminController {
     public function __construct() {
         parent::__construct();
         $this->load->helper('file');
-        
-        if ($this->input->is_ajax_request() && $this->uri->uri_string() == "admin/components/cp/mod_stats" || $this->uri->uri_string() == "admin/components/init_window/mod_stats"){
+
+        if ($this->input->is_ajax_request() && $this->uri->uri_string() == "admin/components/cp/mod_stats" || $this->uri->uri_string() == "admin/components/init_window/mod_stats") {
             redirect('admin/components/cp/mod_stats');
         }
-        
+
         $this->import('classes/ControllerBase' . EXT);
         $this->assetManager = \CMSFactory\assetManager::create()
                 ->registerScript('functions')
@@ -130,5 +129,31 @@ class Admin extends \BaseAdminController {
         return call_user_func_array(array(new $controllerName($this), $action), $arguments);
     }
 
-}
+    /**
+     * Include file (or all recursively files in dir) 
+     * The starting directory is the directory where the class is (witch using trait)
+     * @param string $filePath
+     */
+    public function import($filePath) {
+        $ext = strtolower(pathinfo($filePath, PATHINFO_EXTENSION));
+        if ($ext != 'php' && $ext != "")
+            return;
 
+        $filePath = str_replace('.php', '', $filePath);
+        $reflection = new ReflectionClass($this);
+        $workingDir = pathinfo($reflection->getFileName(), PATHINFO_DIRNAME);
+        $filePath = $workingDir . DIRECTORY_SEPARATOR . str_replace(array('\\', '/'), DIRECTORY_SEPARATOR, $filePath);
+
+        if (strpos($filePath, '*') === FALSE) {
+            include_once $filePath . EXT;
+        } else {
+            $filesOfDir = get_filenames(str_replace('*', '', $filePath), TRUE);
+            foreach ($filesOfDir as $file) {
+                if (strtolower(pathinfo($file, PATHINFO_EXTENSION)) == 'php') {
+                    include_once str_replace(array('\\', '/'), DIRECTORY_SEPARATOR, $file);
+                }
+            }
+        }
+    }
+
+}
