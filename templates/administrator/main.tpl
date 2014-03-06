@@ -31,8 +31,9 @@
     <body>
         {literal}
             <style>
-                body{padding-top: 31px !important;}
                 .imagecms-close{float: right;width: 37px;margin-left: 26px;cursor: pointer;}
+                .imagecms-top-fixed-header + .main_body header{padding-top: 31px;}
+                .imagecms-top-fixed-header.close + .main_body header{padding-top: 0;}
                 .imagecms-top-fixed-header{background-color: #37414d;height: 31px;position: fixed;top: 0;left: 0;width: 100%;z-index: 1000;font-family: Arial, sans-serif;font-size: 12px;color: #223340;vertical-align: baseline;}
                 .imagecms-logo{float: left;}
                 .imagecms-ref-skype, .imagecms-phone{font-size: 0;}
@@ -68,9 +69,13 @@
                 .imagecms-buy-license .imagecms-ico-donwload{vertical-align: middle;margin-left: 11px;}
             </style>
         {/literal}
+        {include_tpl('inc/javascriptVars')}
+        {include_tpl('inc/jsLangs.tpl')}
+        {$langDomain = $CI->land->gettext_domain}
+        {$CI->lang->load('admin')}
         <div class="imagecms-top-fixed-header">
             <div class="container">
-                <button type="button" class="imagecms-close">
+                <button type="button" class="imagecms-close" onclick="$(this).closest('.imagecms-top-fixed-header').addClass('close').fadeOut();">
                     <img src="{$THEME}close.png"/>
                 </button>
                 <div class="imagecms-buy-license">
@@ -98,10 +103,6 @@
                 </div>
             </div>
         </div>
-        {include_tpl('inc/javascriptVars')}
-        {include_tpl('inc/jsLangs.tpl')}
-        {$langDomain = $CI->land->gettext_domain}
-        {$CI->lang->load('admin')}
         <div class="main_body">
             <div id="fixPage"></div>
             <!-- Here be notifications -->

@@ -8,7 +8,7 @@ a{cursor: pointer;}
 .d_l_b:hover{color: #005580;border-bottom-color: 1px dotted #005580;}
 .main_body{min-height: 100%;}
 html, body{height: 100%;}
-body{padding: 0 !important;}
+body{padding: 0;overflow-y: scroll;}
 html{background-image: url("../img/fon_document.png");}
 .hfooter{height: 70px;}
 footer{height:50px; margin: -70px auto 0;}
