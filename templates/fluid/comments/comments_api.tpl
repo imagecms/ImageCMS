@@ -5,8 +5,8 @@
     </button>
 {/if}
 <div class="comments" id="comments">
-    <div class="title-comment">{lang('Отзывы покупателей', 'newLevel')}</div>
     {if $comments_arr}
+        <div class="title-comment">{lang('Отзывы покупателей', 'newLevel')}</div>
         <div class="frame-list-comments">
             <ul class="sub-1 product-comment patch-product-view">
                 {foreach $comments_arr as $key => $comment}

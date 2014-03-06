@@ -1,4 +1,3 @@
-{include_tpl('filter_opt')}
 {if $_GET['brand'] != "" || $_GET['p'] != "" || ($_GET['lp'] && $_GET['lp'] != $minPrice) || ($_GET['rp'] && $_GET['rp'] != $maxPrice)}
     <div class="frame-check-filter">
         <div class="inside-padd">
