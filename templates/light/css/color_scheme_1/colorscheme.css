@@ -938,7 +938,8 @@ input.input-search{border: 0;-moz-box-shadow: inset 0 1px 2px #eeeeee;-webkit-bo
 .items-catalog.table .short-desc:after, .items-catalog.table .short-desc:before{content: '';border-style: solid;border-color: transparent;position: absolute;top: 50%;}
 .items-catalog.table .short-desc:after{border-width: 13px 14px;border-right-color: #c9c9c9;margin-top: -14px;left: -28px;}
 .items-catalog.table .short-desc:before{border-width: 12px 13px;border-right-color: #fff;margin-top: -13px;left: -26px;z-index: 1;}
-.items-catalog.table .short-desc b{float: left;clear: left;}
+.items-catalog.table [data-pos="right"] .short-desc:before{left: auto;right: -26px;border-right-color: transparent;border-left-color: #fff;}
+.items-catalog.table [data-pos="right"] .short-desc:after{border-right-color: transparent;border-left-color: #c9c9c9;left: auto;right: -28px;}
 
 .items-catalog.table .frame-wish-compare-list{display: none;}
 .notTouch .items-catalog.table li:hover .frame-wish-compare-list{display: block;}
