@@ -103,7 +103,7 @@
 .date_start, .date_end, .content-statistic select, .content-statistic input{margin-bottom: 0 !important;}
 .w_95{width: 95px;}
 .m-l_5{margin-left: 5px;}
-.frame-panel-stat > .d-i_b{margin-left: 45px;vertical-align: bottom;margin-bottom: 0;}
+.frame-panel-stat > .d-i_b{margin-right: 45px;vertical-align: bottom;margin-bottom: 0;}
 .frame-panel-stat > .d-i_b label{margin-bottom: 0;}
-.frame-panel-stat > .d-i_b:first-child{margin-left: 0;}
+.frame-panel-stat > .d-i_b:last-child{margin-right: 0;}
 .frame-panel-stat .title-field{margin-bottom: 4px;}

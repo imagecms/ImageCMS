@@ -29,7 +29,7 @@
                 </button>
             </span>
             <span class="d-i_b">
-                <span class="d_b title-field">{lang('Show','mod_stats')}</span>
+                <span class="d_b title-field">{lang('Group by','mod_stats')}</span>
                 <div class="btn-group" data-toggle="buttons-radio">
                     <button type="button" class="btn btn-default{if $_GET['group'] == 'day'} active{/if}" data-val="day" data-rel="[name='group']" data-btn-select>{lang('day','mod_stats')}</button>
                     <button type="button" class="btn btn-default{if $_GET['group'] == 'month' || !isset($_GET['group'])} active{/if}" data-val="month" data-rel="[name='group']" data-btn-select>{lang('month','mod_stats')}</button>
@@ -38,7 +38,7 @@
                 <input type="hidden" name='group' value="{if $_GET['group'] == 'day'}day{/if}{if $_GET['group'] == 'month' || !isset($_GET['group'])}month{/if}{if $_GET['group'] == 'year'}year{/if}"/>
             </span>
             <span class="d-i_b">
-                <span class="d_b title-field">{lang('View','mod_stats')}</span>
+                <span class="d_b title-field">{lang('Show','mod_stats')}</span>
                 <div class="btn-group" data-toggle="buttons-radio">
                     <button type="button" class="btn btn-default{if $show_by == 'Count'} active{/if}" data-val="Count" data-rel="[name='show_by']" data-btn-select>{lang('Count', 'mod_stats')}</button>
                     <button type="button" class="btn btn-default{if $show_by == 'Price'} active{/if}" data-val="Price" data-rel="[name='show_by']" data-btn-select>{lang('Price', 'mod_stats')}</button>

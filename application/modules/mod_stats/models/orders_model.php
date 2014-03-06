@@ -10,7 +10,6 @@
  */
 class Orders_model extends CI_Model {
 
-    use DateIntervalTrait;
 
     /**
      * Helper function to create all conditions
@@ -58,13 +57,13 @@ class Orders_model extends CI_Model {
      */
     public function getOrdersInfo(array $params = array()) {
         list($paidCondition, $betweenCondition) = $this->prepareConditions($params);
-
+        
         $interval = isset($params['interval']) ? $params['interval'] : NULL;
 
         $query = "
             SELECT
                 `dtable`.`date_created` as `unix_date`,
-                DATE_FORMAT(FROM_UNIXTIME(`dtable`.`date_created`), '" . $this->getDatePattern($interval) . "') as `date`,
+                DATE_FORMAT(FROM_UNIXTIME(`dtable`.`date_created`), '" . \mod_stats\classes\DateInterval::getDatePattern($interval) . "') as `date`,
                 SUM(`dtable`.`origin_price`) as `price_sum`,
                 COUNT(`dtable`.`id`) as `orders_count`,
                 SUM(`dtable`.`products_count`) as `products_count`,
@@ -160,7 +159,7 @@ class Orders_model extends CI_Model {
 
         $query = "
             SELECT
-                DATE_FORMAT(FROM_UNIXTIME(`date_created`), '" . $this->getDatePattern($params['interval']) . "') as `date`,
+                DATE_FORMAT(FROM_UNIXTIME(`date_created`), '" . \mod_stats\classes\DateInterval::getDatePattern($params['interval']) . "') as `date`,
                 COUNT(`order_id`) as `orders_count`,
                 SUM(`paid`) as `paid`,
                 COUNT(`order_id`) - SUM(`paid`) as `unpaid`,
@@ -188,7 +187,7 @@ class Orders_model extends CI_Model {
                  LEFT JOIN `users` ON `shop_orders`.`user_id` = `users`.`id`
                  WHERE 1
                     AND FROM_UNIXTIME(`shop_orders`.`date_created`) <= NOW() + INTERVAL 1 DAY 
-                    " . $this->prepareDateBetweenCondition('date_created', $params) . "
+                    " . \mod_stats\classes\DateInterval::prepareDateBetweenCondition('date_created', $params) . "
                     {$otherConditions}
                  GROUP BY 
                    `shop_orders`.`id`
