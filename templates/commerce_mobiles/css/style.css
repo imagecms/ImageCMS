@@ -61,7 +61,7 @@ blockquote:before, blockquote:after, q:before, q:after {content:  none;}
 .m-t_30{margin-top: 30px;}
 
 .h_f, .head_foot, .frame_search .frame_input input, .main_f_i_f-r{background: url("../images/h_f.png") repeat-x;}
-.icon, .list_item, .pagination li a, .pagination li span, .but_buy, .but_buy a, .subm_filter, .subm_filter input, .search_button, .frame_search .frame_input span, .niceCheck, .but_buy .b_buy_in{background: url("../images/sprite.png") no-repeat;}
+.icon, .list_item, .pagination li > a, .pagination li > span, .but_buy, .but_buy a, .subm_filter, .subm_filter input, .search_button, .frame_search .frame_input span, .niceCheck, .but_buy .b_buy_in{background: url("../images/sprite.png") no-repeat;}
 .icon{display: inline-block;position: relative;}
 
 .cont_icon{width: 45px;height: 42px;}
@@ -168,12 +168,12 @@ span.top_frame_tov .title{color:#333;}
 .pagination .last{display: none;}
 .pagination .helper{height: 82px;}
 .pagination li{display: inline-block;margin: 10px 0 0 12px;white-space: nowrap;}
-.pagination li span, .pagination li a{width: 75px;height: 82px;line-height: 82px;display: inline-block;text-align: center;vertical-align: middle;font-size: 32px;}
+.pagination li > span, .pagination li > a{width: 75px;height: 82px;line-height: 82px;display: inline-block;text-align: center;vertical-align: middle;font-size: 32px;}
 .pagination li .v-a_m, .hellip{font-size: 30px;}
-.pagination li a{background-position: -354px 0;color: #343434;}
-.pagination li a > .t-d_u{display: none;}
-.pagination li a:hover, .pagination li a:focus{color: #999;}
-.pagination li span{background-position: -272px 0;position: relative;top: 2px;cursor: default;}
+.pagination li > a{background-position: -354px 0;color: #343434;}
+.pagination li > a > .t-d_u{display: none;}
+.pagination li > a:hover, .pagination li > a:focus{color: #999;}
+.pagination li > span{background-position: -272px 0;position: relative;top: 2px;cursor: default;}
 .next-page, .prev-page, .first-page, .last-page{display: none !important;}
 
 .tovar_frame .top_frame_tov{padding-bottom: 10px;}
@@ -243,7 +243,7 @@ span.top_frame_tov .title{color:#333;}
     -pie-background: linear-gradient(#FEFEFE, #e7e7e7);;
 }
 .frame_desctop{padding-top: 16px;display: block;color: #343434;}
-.versions .mobile .title, .hellip, .pagination li span{color: #929292;}
+.versions .mobile .title, .hellip, .pagination li > span{color: #929292;}
 .copy{text-align: center;padding: 25px 0;color: #6d6d6d;}
 
 .figure, .f-s_0, .icon, .header, .header ul, .baner, .main_menu ul li a, .pagination, .but_buy a, .but_buy .b_buy_in, .check_frame, .versions, .main_menu{font-size: 0;}
@@ -255,7 +255,7 @@ h1, .title_h1, .tovar_frame .price, .gen_sum .price{font-size: 40px;}
 .price, h1, .title_h1, a.check_filter .title, div.check_filter .title, .remove_ref span, .neigh_r-o_c-k{line-height: 1;}
 .main_menu .pointer .v-a_m, .main_menu ul li a .v-a_m, .footer li a, .versions .title{line-height: 1.1;}
 .main_menu .pointer .v-a_m, .total_pay, .main_frame_inside .title, .count, .crumbs h1, label, .frame_label, .text p, .text dd, .price, .header li a{color: #474749;}
-.header li a, .logo, .main_menu ul li a, a.check_filter, .catalog .top_frame_tov, .remove_ref, .pagination li a, .but_buy a, .but_buy .b_buy_in, .versions .desctop, .frame_desctop, a.title{text-decoration: none;}
+.header li a, .logo, .main_menu ul li a, a.check_filter, .catalog .top_frame_tov, .remove_ref, .pagination li > a, .but_buy a, .but_buy .b_buy_in, .versions .desctop, .frame_desctop, a.title{text-decoration: none;}
 
 #ho_adv{display: none !important;}
 

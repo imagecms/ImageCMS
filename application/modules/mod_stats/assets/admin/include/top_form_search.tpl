@@ -27,7 +27,7 @@
                     {lang('OK','mod_stats')}
                 </button>
             </span>
-            <span class="d-i_b">
+            <span class="d-i_b" style="margin-left: 15px !important;">
                 <span class="d_b title-field">{lang('Quantity of words', 'mod_stats')}</span>
                 <label class="p_r w_95">
                     <input class="input-small required" 
@@ -35,7 +35,7 @@
                            type="text" name="swc" maxlength="2"/>
                 </label>
             </span>
-            <span class="d-i_b">
+            <span class="d-i_b" style="margin-left: 15px !important;">
                 <span class="d_b title-field">{lang('Count of results', 'mod_stats')}</span>
                 <label class="p_r w_95">
                     <input class="input-small required" 
@@ -43,7 +43,7 @@
                            type="text" name="swr" maxlength="2">
                 </label>
             </span>
-            <span class="d-i_b">
+            <span class="d-i_b" style="margin-left: 15px !important;">
                 <span class="d_b title-field">{lang('Show','mod_stats')}</span>
                 <div class="btn-group" data-toggle="buttons-radio">
                     <button type="button" class="btn btn-default{if $_GET['charType'] == 'pie'} active{/if}" data-val="pie" data-rel="[name='charType']" data-btn-select>{lang('Pie char','mod_stats')}</button>

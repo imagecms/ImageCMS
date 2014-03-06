@@ -94,7 +94,7 @@
                                 <%if (nextCsCond){%>
                                 <span class="price-add">
                                     <span>
-                                        (<span class="price addCurrPrice"><%-parseFloat(item.addprice).toFixed(pricePrecision)%></span>
+                                        (<span class="price addCurrPrice"><%-parseFloat(item.addPrice).toFixed(pricePrecision)%></span>
                                         <span class="curr-add"><%-nextCs%></span>)
                                     </span>
                                 </span>
@@ -144,4 +144,4 @@
         </div>
         <div class="drop-footer"></div>
     </div>
-    <button style="display: none;" type="button" data-drop="#confirm"  data-modal="true" data-confirm="true" data-effect-on="fadeIn" data-effect-off="fadeOut"></button>
+    <button style="display: none;" type="button" data-drop="#confirm"></button>

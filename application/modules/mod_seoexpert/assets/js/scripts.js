@@ -23,7 +23,7 @@ $(document).ready(function() {
             url: base_url + 'admin/components/init_window/mod_seoexpert/ajaxChangeActiveCategory',
             success: function(response) {
                 if (response == 'true')
-                    showMessage(lang('Status changed'), '', 'g')
+                    showMessage(lang('Message'), lang('Status changed'))
             }
         });
     });
@@ -39,7 +39,7 @@ $(document).ready(function() {
             url: base_url + 'admin/components/init_window/mod_seoexpert/ajaxChangeEmptyMetaCategory',
             success: function(response) {
                 if (response == 'true')
-                    showMessage(lang('Status changed'), '', 'g')
+                    showMessage(lang('Message'), lang('Status changed'));
             }
         });
     });

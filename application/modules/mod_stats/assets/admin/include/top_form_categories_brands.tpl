@@ -19,13 +19,18 @@
                     name="ci" value="{$_GET['ci']}"/>
             </span>
         </span>
+        <button type="submit" class="btn btn-small btn-default" type="button" id="refreshIntervalsButton">
+            {lang('OK','mod_stats')}
+        </button>
         <label class="d-i_b p_r">
-            <span class="d_b title-field">{lang('Show','mod_stats')}</span>
-            <div class="btn-group" data-toggle="buttons-radio">
-                <button type="button" class="btn btn-default{if $_GET['selectGroupBy'] == 'pie'} active{/if}" data-val="pie" data-rel="[name='selectGroupBy']" data-btn-select>{lang('Pie char','mod_stats')}</button>
-                <button type="button" class="btn btn-default{if $_GET['selectGroupBy'] == 'bar'} active{/if}" data-val="bar" data-rel="[name='selectGroupBy']" data-btn-select>{lang('Bar char','mod_stats')}</button>
-            </div>
-            <input type="hidden" name="selectGroupBy" value="{if $_GET['selectGroupBy'] == 'bar'}bar{else:}pie{/if}"/>
+            <span class="d-i_b">
+                <span class="d_b title-field">{lang('Char type','mod_stats')}</span>
+                <div class="btn-group" data-toggle="buttons-radio">
+                    <button type="button" class="btn btn-default{if $_GET['charType'] == 'pie'} active{/if}" data-val="pie" data-rel="[name='charType']" data-btn-select>{lang('Pie char','mod_stats')}</button>
+                    <button type="button" class="btn btn-default{if $_GET['charType'] == 'bar'} active{/if}" data-val="bar" data-rel="[name='charType']" data-btn-select>{lang('Bar char','mod_stats')}</button>
+                </div>
+                <input type="hidden" name="charType" value="{if $_GET['charType'] == 'bar'}bar{else:}pie{/if}"/>
+            </span>
         </label>
     </div>
 </form>

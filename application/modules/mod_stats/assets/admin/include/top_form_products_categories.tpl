@@ -15,7 +15,7 @@
             </label>
         </span>
         <span class="d-i_b">
-            <span class="d_b title-field">{lang('Show','mod_stats')}</span>
+            <span class="d_b title-field">{lang('Char type','mod_stats')}</span>
             <div class="btn-group" data-toggle="buttons-radio">
                 <button type="button" class="btn btn-default{if $_GET['charType'] == 'pie'} active{/if}" data-val="pie" data-rel="[name='charType']" data-btn-select>{lang('Pie char','mod_stats')}</button>
                 <button type="button" class="btn btn-default{if $_GET['charType'] == 'bar'} active{/if}" data-val="bar" data-rel="[name='charType']" data-btn-select>{lang('Bar char','mod_stats')}</button>

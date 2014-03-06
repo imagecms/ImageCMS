@@ -48,7 +48,7 @@
                             <li><button type="button" onclick="location = '{site_url('shop/compare')}'" title="{lang('Список сравнений','newLevel')}">{lang('Список сравнений','newLevel')}</button></li>
                         {/if}
                     {/if}
-                    <li><button type="button" data-href="#ordercall" data-drop="#ordercall" data-tab="true" data-source="{site_url('shop/callback')}" title="{lang('Обратный звонок','newLevel')}">{lang('Обратный звонок','newLevel')}</button></li>
+                    <li><button type="button" data-href="#ordercall" data-drop="#ordercall" data-source="{site_url('shop/callback')}" title="{lang('Обратный звонок','newLevel')}">{lang('Обратный звонок','newLevel')}</button></li>
                 </ul>
             </div>
         </div>

@@ -60,7 +60,7 @@
                                     {/if}
                                 </th>
                                 <th class="span1 productListOrder" data-column="Views">
-                                    <span class="t-d_u">{lang('Views', 'admin')}</span>
+                                    <span class="t-d_u">{lang('Views', 'mod_stats')}</span>
                                     {if isset($_GET.orderMethod) AND $_GET.orderMethod == 'Views'}
                                         {if $_GET.order == 'ASC'}
                                             <span class="f-s_14">↑</span>

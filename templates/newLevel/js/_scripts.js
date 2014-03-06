@@ -40,7 +40,7 @@ function init() {
             }));
 
             dropRep.append($('[data-clone="data-report"]').find(genObj.msgF).remove().end().clone(true).removeClass('d_n'));
-            dropRep.find('input[name="ProductId"]').val(el.data('prodid'));
+            dropRep.find('input[name="ProductId"]').val(el.data('id'));
         }
 
         try {
@@ -90,6 +90,7 @@ function init() {
     $.drop.setParameters(optionsDrop);
     $.drop.extendDrop('droppable', 'noinherit', 'heightContent', 'scroll', 'limitSize', 'galleries', 'placeBeforeShow', 'placeAfterClose', 'confirmPrompt');
     $('[data-drop]').drop();
+    $('a.fancybox').drop();
 
     ShopFront.CompareList.count();
     global.wishListCount();

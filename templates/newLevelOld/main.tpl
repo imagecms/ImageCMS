@@ -51,7 +51,7 @@
                                     if (cL == scriptsL)
                                         if (callback) {
                                             eval(callback)();
-                                            setTimeout(function(){
+                                            setTimeout(function() {
                                                 $(document).trigger({'type': customEvent});
                                             }, 0);
                                         }
@@ -100,7 +100,7 @@
             {include_tpl('footer')}
         </footer>
         {include_tpl('user_toolbar')}
-        
+
         {/*}Start. delete before upload to server{ */}
         {/*}
         <!-- scripts -->
@@ -116,36 +116,31 @@
 
         {literal}
             <script type="text/javascript">
-                $(window).load(function(){
+                $(window).load(function() {
                     init();
-                    setTimeout(function(){
+                    setTimeout(function() {
                         $(document).trigger({type: 'scriptDefer'})
                     }, 0)
                 })
             </script>
         {/literal}
-<<<<<<< HEAD:templates/newLevelCart/main.tpl
+
         { */}
         {/*}End. delete before upload to server{ */}
+        
+        {/*fancybox}
+        <link rel="stylesheet" type="text/css" href="{$THEME}js/fancybox/jquery.fancybox-1.3.4.css" media="all" />
+        <script type="text/javascript" src="{$THEME}js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+        {end. fancybox*/}
 
         {/*}uncomment before opload to server and combine and minimize scripts (in comment <!-- scripts -->...<!-- scripts end -->) into united_scripts file{ */}
         {/*} Start. uncoment before development { */}
-        
-        <script type="text/javascript">
-            initDownloadScripts(['raphael-min', 'united_scripts'], 'init', 'scriptDefer');
-        </script>
-        
-        {/*} End. uncoment before development { */}
-=======
-        {/*}End. delete before upload to server{ */}
 
-        {/*}uncomment before opload to server and combine and minimize scripts (in comment <!-- scripts of development -->...<!-- scripts of development end -->) into united_scripts file{ */}
-        {/*}
         <script type="text/javascript">
             initDownloadScripts(['raphael-min', 'united_scripts'], 'init', 'scriptDefer');
         </script>
-        {*/}
->>>>>>> cdca134cf553966e91ca2de97c20598765048735:templates/newLevelOld/main.tpl
+
+        {/*} End. uncoment before development { */}
         {include_shop_tpl('js_templates')}
     </body>
 </html>

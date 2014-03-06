@@ -35,7 +35,7 @@
             {/if}
             {include_tpl('catalogue_header')}
             {if $totalProducts > 0}
-                <ul class="animateListItems items items-catalog {if $_COOKIE['listtable'] == 'table' || $_COOKIE['listtable'] == NULL} table{else:} list{/if}" id="items-catalog-main">
+                <ul class="animateListItems items items-catalog items-product {if $_COOKIE['listtable'] == 'table' || $_COOKIE['listtable'] == NULL} table{else:} list{/if}" id="items-catalog-main">
                     <!-- Include template for one product item-->
                     {$CI->load->module('new_level')->OPI($model, array('opi_wishlist'=>true))}
                 </ul>

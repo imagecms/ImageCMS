@@ -85,6 +85,14 @@ function ajaxLoadChildCategory(el, id) {
             initNiceCheck();
             share_alt_init();
             sortInit();
+            if ($.exists('[data-rel="tooltip"], [rel="tooltip"]'))
+                $('[data-rel="tooltip"], [rel="tooltip"]').not('tr').not('.row-category').tooltip({
+                    'delay': {
+                        show: 500,
+                        hide: 100
+                    }
+                });
+            difTooltip();
         })
 
 
@@ -193,8 +201,8 @@ function translite_title(from, to)
     var url = base_url + 'admin/pages/ajax_translit/';
     $.post(
             url, {
-        'str': $(from).val()
-    }, function(data)
+                'str': $(from).val()
+            }, function(data)
 
     {
         $(to).val(data);
@@ -209,8 +217,8 @@ function create_description(from, to)
 
     $.post(
             base_url + 'admin/pages/ajax_create_description/', {
-        'text': $(from).val()
-    },
+                'text': $(from).val()
+            },
     function(data) {
         $(to).val(data);
     }
@@ -625,7 +633,7 @@ function initTinyMCE()
 
 function initTextEditor(name)
 {
-    if (typeof(name) != 'undefined' && name.length != 0 && name != 'none')
+    if (typeof (name) != 'undefined' && name.length != 0 && name != 'none')
         ({
             'elrte': initElRTE,
             'tinymce': initTinyMCE
