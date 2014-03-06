@@ -10,3 +10,6 @@
 [submodule "application/modules/mod_seo"]
 	path = application/modules/mod_seo
 	url = git@github.com:imagecms/ImageCMS-SEO.git
+[submodule "application/modules/mod_stats"]
+	path = application/modules/mod_stats
+	url = git@github.com:imagecms/ImageCMS-Statistick.git
