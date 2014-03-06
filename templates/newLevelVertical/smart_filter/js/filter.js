@@ -346,11 +346,9 @@ var Filter = {
             data: data,
             cache: true,
             success: function(msg) {
-
                 var otherClass = '';
                 $(Filter.frameFilter).html(msg).children(preloader).hide();
                 Filter.afterAjaxInitializeFilter();
-                $.fancybox.hideActivity();
                 if (slChk) {
                     otherClass = slChk;
                 }
