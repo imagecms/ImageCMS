@@ -20,10 +20,12 @@
         {widget_ajax('new_products', '#new_products')}
     </div>
     {widget('brands')}
-    <div class="frame-seo-text">
-        <div class="container">
-            <div class="text seo-text">
-                {widget('start_page_seo_text')}
+    <div class="frame-seotext-news">
+        <div class="frame-seo-text">
+            <div class="container">
+                <div class="text seo-text">
+                    {widget('start_page_seo_text')}
+                </div>
             </div>
         </div>
     </div>

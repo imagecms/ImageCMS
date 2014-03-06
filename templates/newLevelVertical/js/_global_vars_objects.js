@@ -25,7 +25,7 @@ var optionsMenu = {
     //if need column partition level 3
     columnPart2: true,
     columnClassPref2: 'column2_',
-    maxC: 4,
+    maxC: 5,
     effectOn: 'slideDown',
     effectOff: 'slideUp',
     effectOnS: 'fadeIn',
@@ -71,10 +71,10 @@ var optionsCycle = {
 };
 var optionsDrop = {
     overlayColor: '#000',
-    overlayOpacity: '0.6',
+    overlayOpacity: 0.6,
     place: 'center', //noinherit(default) || inherit(ex. for ViewedProducts)
     durationOn: 500,
-    durationOff: 500,
+    durationOff: 200,
     dropContent: '.drop-content',
     dropFooter: '.drop-footer',
     dropHeader: '.drop-header',
@@ -85,11 +85,13 @@ var optionsDrop = {
     closeClick: true,
     closeEsc: true,
     position: 'absolute',
+    confirmBtnDrop: '#confirm',
     scroll: true,
     limitSize: true,
-    confirmBtnDrop: '#confirm',
     limitContentSize: true,
-    scrollContent: true
+    scrollContent: true,
+    keyNavigate: true,
+    cycle: true
 };
 var productStatus = {
     action: '<span class="product-status action"></span>',
@@ -179,8 +181,9 @@ var lazyload = {
     effect: "fadeIn"
 };
 var optionsPlusminus = {
-    prev: 'prev.children(:eq(1)).children',
-    next: 'prev.children(:eq(0)).children',
+    prev: 'prev().children(:eq(1)).children()',
+    next: 'prev().children(:eq(0)).children()',
+    step: 1,
     checkProdStock: checkProdStock
 }
 $.maxminValue.settings = {
