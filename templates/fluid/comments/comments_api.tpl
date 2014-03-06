@@ -5,47 +5,33 @@
     </button>
 {/if}
 <div class="comments" id="comments">
-    <div class="title-comment">{lang('Отзывы покупателей', 'newLevel')} {if $visibleMainForm === false || $visibleMainForm == NULL}<button class="d_l_1" data-drop=".comments-main-form" data-place="inherit" data-overlay-opacity="0" data-after="Comments.toComment">{lang('Оставить свой отзыв', 'newLevel')}</button>{/if}</div>
-        {if $comments_arr}
+    {if $comments_arr}
+        <div class="title-comment">{lang('Отзывы покупателей', 'newLevel')}</div>
         <div class="frame-list-comments">
             <ul class="sub-1 product-comment patch-product-view">
                 {foreach $comments_arr as $key => $comment}
                     <li>
                         <input type="hidden" name="comment_item_id" value="{$comment['id']}"/>
-                        <div class="clearfix global-frame-comment-sub1">
-                            <div class="author-data-comment author-data-comment-sub1">
-                                <span class="f-s_0 frame-autor-comment"><span class="icon_comment"></span><span class="author-comment">{$comment.user_name}</span></span>
-                                <span class="date-comment">
-                                    <span class="day">{echo date("d", $comment.date)} </span>
-                                    <span class="month">{echo month(date("n", $comment.date))} </span>
-                                    <span class="year">{echo date("Y ", $comment.date)}</span>
-                                </span>
-                            </div>
-                            <div class="frame-mark">
-                                {if $comment.rate != 0}
-                                    <div class="mark-pr">
-                                        <span class="title">{lang('Оценка товара','newLevel')}:</span>
-                                        <div class="star-small d_i-b">
-                                            <div class="productRate star-small">
-                                                <div style="width: {echo (int)$comment.rate *20}%"></div>
+                        <div class=" global-frame-comment-sub1">
+                            <div class="clearfix">
+                                <div class="author-data-comment author-data-comment-sub1">
+                                    <span class="f-s_0 frame-autor-comment"><span class="icon_comment"></span><span class="author-comment">{$comment.user_name}</span></span>
+                                    <span class="date-comment">
+                                        <span class="day">{echo date("d", $comment.date)} </span>
+                                        <span class="month">{echo month(date("n", $comment.date))} </span>
+                                        <span class="year">{echo date("Y ", $comment.date)}</span>
+                                    </span>
+                                </div>
+                                <div class="frame-mark">
+                                    {if $comment.rate != 0}
+                                        <div class="mark-pr">
+                                            <div class="star-small d_i-b">
+                                                <div class="productRate star-small">
+                                                    <div style="width: {echo (int)$comment.rate *20}%"></div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                {/if}
-                                <div class="func-button-comment">
-                                    <span class="s-t">{lang('Отзыв полезен?','newLevel')}</span>
-                                    <span class="btn like">
-                                        <button type="button" class="usefullyes" data-comid="{echo $comment.id}">
-                                            <span class="icon_like"></span>
-                                            <span class="text-el d_l_1">{lang('Да','newLevel')} <span class="yesholder{$comment.id}">({echo $comment.like})</span></span>
-                                        </button>
-                                    </span>
-                                    <span class="btn dis-like">
-                                        <button type="button" class="usefullno" data-comid="{echo $comment.id}">
-                                            <span class="icon_dislike"></span>
-                                            <span class="text-el d_l_1">{lang('Нет','newLevel')} <span class="noholder{$comment.id}">({echo $comment.disslike})</span></span>
-                                        </button>
-                                    </span>
+                                    {/if}
                                 </div>
                             </div>
                             <div class="frame-comment-sub1">
@@ -64,14 +50,20 @@
                                         </p>
                                     {/if}
                                 </div>
-                                {if $can_comment == 0 OR $is_logged_in}
-                                    <div class="btn">
-                                        <button type="button" data-rel="cloneAddPaste" data-parid="{$comment['id']}">
-                                            <span class="icon_comment"></span>
-                                            <span class="text-el d_l_1">{lang('Ответить')}</span>
+                                <div class="func-button-comment">
+                                    <span class="btn like">
+                                        <button type="button" class="usefullyes" data-comid="{echo $comment.id}">
+                                            <span class="icon_like"></span>
+                                            <span class="text-el d_l_1">{lang('Полезно','newLevel')} <span class="yesholder{$comment.id}">({echo $comment.like})</span></span>
                                         </button>
-                                    </div>
-                                {/if}
+                                    </span>
+                                    <span class="btn dis-like">
+                                        <button type="button" class="usefullno" data-comid="{echo $comment.id}">
+                                            <span class="icon_dislike"></span>
+                                            <span class="text-el d_l_1">{lang('Не полезно','newLevel')} <span class="noholder{$comment.id}">({echo $comment.disslike})</span></span>
+                                        </button>
+                                    </span>
+                                </div>
                             </div>
                         </div>
                         {$countAnswers = $CI->load->module('comments')->commentsapi->getCountCommentAnswersByCommentId($comment.id)}
@@ -112,10 +104,10 @@
         </div>
     {/if}
     {if $can_comment == 0 OR $is_logged_in}
-        <div class="drop comments-main-form {if !$comments_arr}noComments{/if} {if $visibleMainForm || $visibleMainForm == NULL}active inherit{/if}" {if $visibleMainForm}style="display: block;"{/if}>
+        <div class="drop comments-main-form {if !$comments_arr}noComments{/if} active inherit" style="display: block;">
             <div class="frame-comments layout-highlight">
-                <div class="title-default title-comment">
-                    <div class="title">{lang('Оставить комментарий','newLevel')}</div>
+                <div class="title-comment">
+                    <div class="title">{lang('Ваш отзыв о товаре','newLevel')}</div>
                 </div>
                 <!-- Start of new comment fild -->
                 <div class="form-comment main-form-comments">
@@ -133,38 +125,37 @@
                                         </span>
                                     </label>
                                 {/if}
-                                <label style="width: 45%;float: left;">
-                                    <span class="title">{lang('Ваше имя','newLevel')}</span>
-                                    <span class="frame-form-field">
-                                        <input type="text" name="comment_author" value="{get_cookie('comment_author')}"/>
-                                    </span>
-                                </label>
-                                <label style="width: 45%;margin-left: 10%;float: left;">
-                                    <span class="title">{lang('Ваш email:', 'newLevel')}</span>
-                                    <span class="frame-form-field">
-                                        <input type="text" name="comment_email" id="comment_email" value="{get_cookie('comment_email')}"/>
-                                    </span>
-                                </label>
+                                <!-- Start star reiting -->
+                                <div class="frame-label">
+                                    <span class="title f_l t-a_l">{lang('Поставте оценку', 'newLevel')}</span>
+                                    <div class="frame-form-field">
+                                        <div class="star">
+                                            <div class="productRate star-big clicktemprate">
+                                                <div class="for_comment" style="width: 0%"></div>
+                                                <input class="ratec" name="ratec" type="hidden" value=""/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End star reiting -->
+                                <div class="clearfix">
+                                    <label style="width: 45%;float: left;">
+                                        <span class="frame-form-field">
+                                            <input type="text" name="comment_author" value="{get_cookie('comment_author')}" placeholder="{lang('Как вас зовут', 'newLevel')}"/>
+                                        </span>
+                                    </label>
+                                    <label style="width: 45%;margin-left: 10%;float: left;">
+                                        <span class="frame-form-field">
+                                            <input type="text" name="comment_email" id="comment_email" value="{get_cookie('comment_email')}" placeholder="{lang('Какая у вас почта', 'newLevel')}"/>
+                                        </span>
+                                    </label>
+                                </div>
                             {/if}
                             <label>
-                                <span class="title">{lang('Текст комментария:')}</span>
                                 <span class="frame-form-field">
                                     <textarea name="comment_text" class="comment_text">{$_POST.comment_text}</textarea>
                                 </span>
                             </label>
-                            <!-- Start star reiting -->
-                            <div class="frame-label">
-                                <span class="title f_l t-a_l">{lang('Ваша оценка:', 'newLevel')}</span>
-                                <div class="frame-form-field">
-                                    <div class="star">
-                                        <div class="productRate star-big clicktemprate">
-                                            <div class="for_comment" style="width: 0%"></div>
-                                            <input class="ratec" name="ratec" type="hidden" value=""/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End star reiting -->
                             {if $use_captcha}
                                 <div class="frame-label m-b_10">
                                     <span class="title">{lang('Код защиты')}:</span>
@@ -182,7 +173,7 @@
                             <div class="frame-label">
                                 <span class="frame-form-field">
                                     <div class="btn-form">
-                                        <input type="submit" value="{lang('Комментировать')}" onclick="Comments.post(this, {literal}{'visibleMainForm': '1'}{/literal})"/>
+                                        <input type="submit" value="{lang('Отправить')}" onclick="Comments.post(this, {literal}{'visibleMainForm': '1'}{/literal})"/>
                                     </div>
                                 </span>
                             </div>

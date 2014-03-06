@@ -7,7 +7,7 @@
 	<title>Class Mod_stats | ImageCMS Docs</title>
 
 	<script type="text/javascript" src="resources/combined.js?394153670"></script>
-	<script type="text/javascript" src="elementlist.js?1494635625"></script>
+	<script type="text/javascript" src="elementlist.js?4237105985"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360">
 
 </head>
@@ -137,7 +137,7 @@
 				<li><a href="class-ChartDataRemap.html">ChartDataRemap</a></li>
 				<li><a href="class-CI_Profiler.html">CI_Profiler</a></li>
 				<li><a href="class-Cms_admin.html">Cms_admin</a></li>
-				<li><a href="class-Cms_base.html" class="invalid">Cms_base</a></li>
+				<li><a href="class-Cms_base.html">Cms_base</a></li>
 				<li><a href="class-Cms_hooks.html">Cms_hooks</a></li>
 				<li><a href="class-CmsCacheHelper.html">CmsCacheHelper</a></li>
 				<li><a href="class-CMSEmail.html">CMSEmail</a></li>
@@ -203,7 +203,7 @@
 				<li><a href="class-Mod_discount.html">Mod_discount</a></li>
 				<li><a href="class-Mod_search.html">Mod_search</a></li>
 				<li><a href="class-Mod_seoexpert.html">Mod_seoexpert</a></li>
-				<li class="active"><a href="class-Mod_stats.html" class="invalid">Mod_stats</a></li>
+				<li class="active"><a href="class-Mod_stats.html">Mod_stats</a></li>
 				<li><a href="class-Module_frame.html">Module_frame</a></li>
 				<li><a href="class-Module_frame_model.html" class="invalid">Module_frame_model</a></li>
 				<li><a href="class-MY_Form_validation.html">MY_Form_validation</a></li>
@@ -314,13 +314,7 @@
 				<li><a href="class-SSettings.html">SSettings</a></li>
 				<li><a href="class-SStringHelper.html">SStringHelper</a></li>
 				<li><a href="class-Star_rating.html">Star_rating</a></li>
-				<li><a href="class-Stats_model.html" class="invalid">Stats_model</a></li>
-				<li><a href="class-Stats_model_categories.html">Stats_model_categories</a></li>
-				<li><a href="class-Stats_model_orders.html">Stats_model_orders</a></li>
-				<li><a href="class-Stats_model_products.html">Stats_model_products</a></li>
-				<li><a href="class-Stats_model_search.html">Stats_model_search</a></li>
-				<li><a href="class-Stats_model_urls.html">Stats_model_urls</a></li>
-				<li><a href="class-Stats_model_users.html">Stats_model_users</a></li>
+				<li><a href="class-Stats_model.html">Stats_model</a></li>
 				<li><a href="class-STimeHelper.html">STimeHelper</a></li>
 				<li><a href="class-SWatermark.html">SWatermark</a></li>
 				<li><a href="class-SWishList.html" class="invalid">SWishList</a></li>
@@ -409,6 +403,7 @@
 				<li><a href="function-get_currencies.html">get_currencies</a></li>
 				<li><a href="function-get_entity_mod.html">get_entity_mod</a></li>
 				<li><a href="function-get_lang_admin_folders.html">get_lang_admin_folders</a></li>
+				<li><a href="function-get_language_names.html">get_language_names</a></li>
 				<li><a href="function-get_page.html">get_page</a></li>
 				<li><a href="function-get_permissions_array.html">get_permissions_array</a></li>
 				<li><a href="function-get_perms_groups.html">get_perms_groups</a></li>
@@ -489,6 +484,8 @@
 				<li><a href="function-shop_url.html">shop_url</a></li>
 				<li><a href="function-showMessage.html">showMessage</a></li>
 				<li><a href="function-siteinfo.html">siteinfo</a></li>
+				<li><a href="function-siteInfoAdditionalManipulations.html">siteInfoAdditionalManipulations</a></li>
+				<li><a href="function-sort_names.html">sort_names</a></li>
 				<li><a href="function-sub_category_list.html">sub_category_list</a></li>
 				<li><a href="function-tpl_assign.html">tpl_assign</a></li>
 				<li><a href="function-translit.html">translit</a></li>
@@ -545,17 +542,376 @@
 <div id="content" class="class">
 	<h1>Class Mod_stats</h1>
 
-		<div class="invalid">
-			<p>
-				Documentation of this class could not be generated.
-			</p>
-			<p>
-				Class was originally declared in application/modules/mod_stats/mod_stats.php and is invalid because of:
-			</p>
-			<ul>
-				<li>Class was redeclared in application/modules/mod_stats_1/mod_stats.php.</li>
-			</ul>
+
+	<div class="description">
+	
+<p>Class Mod_stats for mod_stats module</p>
+
+	</div>
+
+	<dl class="tree">
+		<dd style="padding-left:0px">
+MY_Controller
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by">
+<b><span>Mod_stats</span></b>			
+			
+			 uses 
+				<a href="class-FileImportTrait.html"><span>FileImportTrait</span></a>
+			
+		</dd>
+	</dl>
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		
+		<b>Package:</b> ImageCMSModule<br>
+
+				<b>Copyright:</b>
+				(c) 2014, ImageCMS<br>
+				<b>Author:</b>
+				DevImageCms<br>
+				<b>Uses:</b>
+				\MY_Controller<br>
+		<b>Located at</b> application/modules/mod_stats/mod_stats.php<br>
+	</div>
+
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code>__construct( )</code>
+
+		<div class="description short">
+			
 		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="index" id="_index">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_index">#</a>
+		<code>index( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="autoload" id="_autoload">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_autoload">#</a>
+		<code>autoload( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="saveSearchedKeyWordsAC" id="_saveSearchedKeyWordsAC">
+
+		<td class="attributes"><code>
+			 public 
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_saveSearchedKeyWordsAC">#</a>
+		<code>saveSearchedKeyWordsAC( <span>string <var>$text</var> = <span class="php-quote">''</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Save search keywords for autocomplete</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Save search keywords for autocomplete</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$text</var></dt>
+					<dd><code>string</code><br>$text</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="saveAttendance" id="_saveAttendance">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_saveAttendance">#</a>
+		<code>saveAttendance( )</code>
+
+		<div class="description short">
+			
+<p>Save user attandance</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Save user attandance</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="saveSearchedKeyWords" id="_saveSearchedKeyWords">
+
+		<td class="attributes"><code>
+			 public 
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_saveSearchedKeyWords">#</a>
+		<code>saveSearchedKeyWords( <span>string <var>$text</var> = <span class="php-quote">''</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Save search keywords</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Save search keywords</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$text</var></dt>
+					<dd><code>string</code><br>$text</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="_install" id="__install">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#__install">#</a>
+		<code>_install( )</code>
+
+		<div class="description short">
+			
+<p>Install module</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Install module</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="_deinstall" id="__deinstall">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#__deinstall">#</a>
+		<code>_deinstall( )</code>
+
+		<div class="description short">
+			
+<p>Deinstall module</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Deinstall module</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+	<table class="summary used">
+	<caption>Methods used from <a href="class-FileImportTrait.html#methods">FileImportTrait</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-FileImportTrait.html#_import">()</a>
+		</code></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary" id="magicProperties">
+	<caption>Magic properties summary</caption>
+	<tr data-order="stats_model" id="m$stats_model">
+		<td class="attributes"><code>
+			public  
+			stats_model
+		</code></td>
+
+		<td class="name">
+<var>$stats_model</var>		</td>
+		<td class="description"><div>
+			<a href="#m$stats_model" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
 </div>
 
 	<div id="footer">

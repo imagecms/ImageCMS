@@ -743,13 +743,13 @@
 
 <!-- Start. JS vars-->
 <script type="text/javascript">
-                                                                var hrefCategoryProduct = "{$category_url}";
+    var hrefCategoryProduct = "{$category_url}";
 </script>
 {literal}
     <script type="text/javascript">
         var
-                productPhotoDrop = true,
-                productPhotoCZoom = true;
+        productPhotoDrop = true,
+        productPhotoCZoom = true;
     </script>
 {/literal}
 <!-- End. JS vars-->
@@ -757,3 +757,9 @@
 <script type="text/javascript">
     initDownloadScripts(['cusel-min-2.5', 'cloud-zoom.1.0.3.min', 'product'], 'initPhotoTrEv', 'initPhotoTrEv');
 </script>
+<div style="display: none;">
+    <img src="{echo $model->firstVariant->getLargePhoto()}" alt="{echo ShopCore::encode($model->getName())}" class="vImgPr"/>
+    {foreach $productImages as $key => $image}
+        <img src="{productImageUrl('products/additional/'.$image->getImageName())}" alt="{echo ShopCore::encode($model->getName())} - {echo ++$key}"/>
+    {/foreach}
+</div>

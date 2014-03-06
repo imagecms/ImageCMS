@@ -7,7 +7,7 @@
 	<title>Class SiteInfo | ImageCMS Docs</title>
 
 	<script type="text/javascript" src="resources/combined.js?394153670"></script>
-	<script type="text/javascript" src="elementlist.js?1494635625"></script>
+	<script type="text/javascript" src="elementlist.js?4237105985"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360">
 
 </head>
@@ -137,7 +137,7 @@
 				<li><a href="class-ChartDataRemap.html">ChartDataRemap</a></li>
 				<li><a href="class-CI_Profiler.html">CI_Profiler</a></li>
 				<li><a href="class-Cms_admin.html">Cms_admin</a></li>
-				<li><a href="class-Cms_base.html" class="invalid">Cms_base</a></li>
+				<li><a href="class-Cms_base.html">Cms_base</a></li>
 				<li><a href="class-Cms_hooks.html">Cms_hooks</a></li>
 				<li><a href="class-CmsCacheHelper.html">CmsCacheHelper</a></li>
 				<li><a href="class-CMSEmail.html">CMSEmail</a></li>
@@ -203,7 +203,7 @@
 				<li><a href="class-Mod_discount.html">Mod_discount</a></li>
 				<li><a href="class-Mod_search.html">Mod_search</a></li>
 				<li><a href="class-Mod_seoexpert.html">Mod_seoexpert</a></li>
-				<li><a href="class-Mod_stats.html" class="invalid">Mod_stats</a></li>
+				<li><a href="class-Mod_stats.html">Mod_stats</a></li>
 				<li><a href="class-Module_frame.html">Module_frame</a></li>
 				<li><a href="class-Module_frame_model.html" class="invalid">Module_frame_model</a></li>
 				<li><a href="class-MY_Form_validation.html">MY_Form_validation</a></li>
@@ -314,13 +314,7 @@
 				<li><a href="class-SSettings.html">SSettings</a></li>
 				<li><a href="class-SStringHelper.html">SStringHelper</a></li>
 				<li><a href="class-Star_rating.html">Star_rating</a></li>
-				<li><a href="class-Stats_model.html" class="invalid">Stats_model</a></li>
-				<li><a href="class-Stats_model_categories.html">Stats_model_categories</a></li>
-				<li><a href="class-Stats_model_orders.html">Stats_model_orders</a></li>
-				<li><a href="class-Stats_model_products.html">Stats_model_products</a></li>
-				<li><a href="class-Stats_model_search.html">Stats_model_search</a></li>
-				<li><a href="class-Stats_model_urls.html">Stats_model_urls</a></li>
-				<li><a href="class-Stats_model_users.html">Stats_model_users</a></li>
+				<li><a href="class-Stats_model.html">Stats_model</a></li>
 				<li><a href="class-STimeHelper.html">STimeHelper</a></li>
 				<li><a href="class-SWatermark.html">SWatermark</a></li>
 				<li><a href="class-SWishList.html" class="invalid">SWishList</a></li>
@@ -409,6 +403,7 @@
 				<li><a href="function-get_currencies.html">get_currencies</a></li>
 				<li><a href="function-get_entity_mod.html">get_entity_mod</a></li>
 				<li><a href="function-get_lang_admin_folders.html">get_lang_admin_folders</a></li>
+				<li><a href="function-get_language_names.html">get_language_names</a></li>
 				<li><a href="function-get_page.html">get_page</a></li>
 				<li><a href="function-get_permissions_array.html">get_permissions_array</a></li>
 				<li><a href="function-get_perms_groups.html">get_perms_groups</a></li>
@@ -489,6 +484,8 @@
 				<li><a href="function-shop_url.html">shop_url</a></li>
 				<li><a href="function-showMessage.html">showMessage</a></li>
 				<li><a href="function-siteinfo.html">siteinfo</a></li>
+				<li><a href="function-siteInfoAdditionalManipulations.html">siteInfoAdditionalManipulations</a></li>
+				<li><a href="function-sort_names.html">sort_names</a></li>
 				<li><a href="function-sub_category_list.html">sub_category_list</a></li>
 				<li><a href="function-tpl_assign.html">tpl_assign</a></li>
 				<li><a href="function-translit.html">translit</a></li>
@@ -546,6 +543,11 @@
 	<h1>Class SiteInfo</h1>
 
 
+	<div class="description">
+	
+<p>Class works with site info</p>
+
+	</div>
 
 
 
@@ -581,16 +583,25 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code>__construct( <span>mixed <var>$locale</var> = <span class="php-keyword1">NULL</span></span> )</code>
+		<code>__construct( <span>string <var>$locale</var> = <span class="php-keyword1">NULL</span></span> )</code>
 
 		<div class="description short">
 			
+<p>Setting class variables</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Setting class variables</p>
 
 
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$locale</var></dt>
+					<dd><code>string</code><br>$locale locale to intiate class with</dd>
+				</dl></div>
 
 
 
@@ -637,6 +648,110 @@
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="save" id="_save">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_save">#</a>
+		<code>save( )</code>
+
+		<div class="description short">
+			
+<p>Saving data in DB</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Saving data in DB</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setSiteInfoValue" id="_setSiteInfoValue">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setSiteInfoValue">#</a>
+		<code>setSiteInfoValue( <span>string <var>$key</var></span>, <span>string <var>$value</var></span>, <span>boolean <var>$contacts</var> = <span class="php-keyword1">FALSE</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Setting one value of site informations</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Setting one value of site informations</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code>string</code><br>$key</dd>
+					<dt><var>$value</var></dt>
+					<dd><code>string</code><br>$value</dd>
+					<dt><var>$contacts</var></dt>
+					<dd><code>boolean</code><br>$contacts (optional, default false) true if value need to be setted in contacts</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="deleteSiteInfoValue" id="_deleteSiteInfoValue">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_deleteSiteInfoValue">#</a>
+		<code>deleteSiteInfoValue( <span>mixed <var>$key</var></span>, <span>mixed <var>$contacts</var> = <span class="php-keyword1">FALSE</span></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="getSiteInfoData" id="_getSiteInfoData">
 
 		<td class="attributes"><code>
@@ -665,7 +780,7 @@
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$byLocale</var></dt>
-					<dd><code>boolean</code><br>$byLocale</dd>
+					<dd><code>boolean</code><br>$byLocale if true then will be returned data by locale, else all dataS</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -709,124 +824,6 @@
 					<dt><var>$name</var></dt>
 					<dd><code>string</code><br>$name name of param</dd>
 				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>string</code><br>
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getFaviconLogoPath" id="_getFaviconLogoPath">
-
-		<td class="attributes"><code>
-			 public 
-			string|boolean
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getFaviconLogoPath">#</a>
-		<code>getFaviconLogoPath( )</code>
-
-		<div class="description short">
-			
-<p>Returns path to images folder Depends from active template, and its type -
-for example newLevel template has different structure than commerce4x.</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Returns path to images folder Depends from active template, and its type -
-for example newLevel template has different structure than commerce4x.</p>
-
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>string|boolean</code><br>Description<br>
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getFaviconLogoUrl" id="_getFaviconLogoUrl">
-
-		<td class="attributes"><code>
-			 public 
-			string
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getFaviconLogoUrl">#</a>
-		<code>getFaviconLogoUrl( <span>string <var>$logoOrFavicon</var></span> )</code>
-
-		<div class="description short">
-			
-<p>Returning full url with image</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Returning full url with image</p>
-
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$logoOrFavicon</var></dt>
-					<dd><code>string</code><br>siteinfo_logo|siteinfo_favicon $logoOrFavicon</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>string</code><br>
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="getActiveTemplateName" id="_getActiveTemplateName">
-
-		<td class="attributes"><code>
-			 public 
-			string
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_getActiveTemplateName">#</a>
-		<code>getActiveTemplateName( )</code>
-
-		<div class="description short">
-			
-<p>Returns current active template</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Returns current active template</p>
-
-
-
 
 				<h4>Returns</h4>
 				<div class="list">
@@ -887,32 +884,6 @@ for example newLevel template has different structure than commerce4x.</p>
 
 	<table class="summary" id="properties">
 	<caption>Properties summary</caption>
-	<tr data-order="ci" id="$ci">
-		<td class="attributes"><code>
-			public  
-			type
-		</code></td>
-
-		<td class="name">
-<var>$ci</var>		</td>
-		<td class="value"><code></code></td>
-		<td class="description"><div>
-			<a href="#$ci" class="anchor">#</a>
-
-			<div class="description short">
-				
-<p>CI instance</p>
-
-			</div>
-
-			<div class="description detailed hidden">
-				
-<p>CI instance</p>
-
-
-			</div>
-		</div></td>
-	</tr>
 	<tr data-order="useLocales" id="$useLocales">
 		<td class="attributes"><code>
 			public  
@@ -983,6 +954,34 @@ for example newLevel template has different structure than commerce4x.</p>
 
 			<div class="description detailed hidden">
 				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="imagesPath" id="$imagesPath">
+		<td class="attributes"><code>
+			public  
+			string
+		</code></td>
+
+		<td class="name">
+<var>$imagesPath</var>		</td>
+		<td class="value"><code><span class="php-quote">'/uploads/images/'</span></code></td>
+		<td class="description"><div>
+			<a href="#$imagesPath" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Path to folder where images will be uploaded ATTENTION! serves as url
+too!!!</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Path to folder where images will be uploaded ATTENTION! serves as url
+too!!!</p>
+
 
 			</div>
 		</div></td>
