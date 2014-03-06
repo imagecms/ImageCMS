@@ -40,11 +40,8 @@ class Mod_discount extends \MY_Controller {
      * @copyright (c) 2013, ImageCMS
      */
     public function autoload() {
-
         if (count($this->db->where('name', 'mod_discount')->get('components')->result_array()) != 0) {
-
             $this->applyDiscountCartItems();
-
             $this->applyResultDiscount();
             /** apply Gift */
             if ($this->input->post('gift')) {
@@ -112,6 +109,8 @@ class Mod_discount extends \MY_Controller {
                 $discount['result_sum_discount'] = $this->baseDiscount->discountNoProductVal;
                 $discount['type'] = 'user';
             }
+
+
 
             if ($discount['result_sum_discount'] > 0) {
                 $this->baseDiscount->cart->setTotalPrice($this->baseDiscount->cart->getOriginTotalPrice() - $discount['result_sum_discount']);
