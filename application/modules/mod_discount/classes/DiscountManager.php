@@ -358,7 +358,7 @@ class DiscountManager extends \MY_Controller {
         if ($postArray['date_end'] && !preg_match('/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/', $postArray['date_end']))
             $this->error[] = lang('Invalid date range!', 'mod_discount');
 
-        if ($postArray['date_begin'] > $postArray['date_end'] && !$postArray['date_end'] == null)
+        if ($postArray['date_begin'] >= $postArray['date_end'] && !$postArray['date_end'] == null)
             $this->error[] = lang('Invalid date range!', 'mod_discount');
     }
 

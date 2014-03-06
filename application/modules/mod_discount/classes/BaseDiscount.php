@@ -133,7 +133,7 @@ class BaseDiscount {
             }
             if (!self::$ignoreCart)
                 $this->cartData = $this->getCartData();
-            
+
             $this->amoutUser = $this->ci->discount_model_front->getAmoutUser($this->userId);
             $this->totalPrice = (!self::$totalPrice) ? $this->cart->getOriginTotalPrice() : $this->totalPrice = self::$totalPrice;
             $this->allDiscount = $this->getAllDiscount();
@@ -254,7 +254,6 @@ class BaseDiscount {
      * @copyright (c) 2013, ImageCMS
      */
     public function getMaxDiscount($discount, $price) {
-
         $discount = array_filter(
                 $discount, function($el) {
                     return !empty($el);
