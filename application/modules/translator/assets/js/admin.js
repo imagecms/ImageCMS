@@ -1,4 +1,23 @@
 $(document).ready(function() {
+
+    $('.languageSelect').autocomplete({
+        source: base_url + 'admin/components/cp/translator/getLangaugesNames',
+        select: function(event, ui) {
+            $(this).attr('locale', ui.item.locale);
+        }
+    });
+
+    $('.languageSelect').bind('focus', function() {
+        $(this).autocomplete("search", "all_languages")
+    });
+
+    $('.showAllLanguageList').toggle(function() {
+        $(this).prev().focus();
+        $(this).prev().autocomplete("search", "all_languages")
+    }, function() {
+        $(this).prev().autocomplete("close");
+    });
+
     $('#fileEdit').scroll(function() {
         $('.fileLines').scrollTop($(this).scrollTop());
     });
@@ -1178,9 +1197,10 @@ var Translator = {
         $('.modal-backdrop').show();
     },
     yandexTranslate: function(curElement) {
-        var langFrom = $(curElement).closest('.modal_yandex_translate').find('.languageFrom').val();
-        var langTo = $(curElement).closest('.modal_yandex_translate').find('.languageTo').val();
+        var langFrom = $(curElement).closest('.modal_yandex_translate').find('.languageFrom').attr('locale');
+        var langTo = $(curElement).closest('.modal_yandex_translate').find('.languageTo').attr('locale');
         var textToTranslate = $.trim($(curElement).closest('.modal_yandex_translate').find('.translation_text').val());
+        var text = '&text=' + encodeURI(textToTranslate);
         var YandexApiKey = $.trim($('.YandexApiKey').val());
 
         if (!YandexApiKey) {
@@ -1188,22 +1208,32 @@ var Translator = {
             return false;
         }
 
-        var text = '&text=' + encodeURI(textToTranslate);
-        var url = 'https://translate.yandex.net/api/v1.5/tr.json/translate?key=' + YandexApiKey + text + '&lang=' + langFrom + '-' + langTo + '&format=plain';
-        $.ajax({
-            type: 'POST',
-            url: url,
-            success: function(Answer) {
-                if (Answer.code == '200') {
-                    $(curElement).closest('.modal_yandex_translate').find('.translation_result').val(Answer.text[0]);
-                }
-                Translator.getAnswerCodeMessage(Answer.code);
-            }
-        });
+        if (!langFrom) {
+            showMessage(lang('Error'), lang('You have not specified source text language.'), 'r');
+            return false;
+        }
 
-        console.log(langFrom)
-        console.log(langTo)
-        console.log(textToTranslate)
+        if (!langTo) {
+            showMessage(lang('Error'), lang('You have not specified translation text language.'), 'r');
+            return false;
+        }
+
+        if (!text) {
+            showMessage(lang('Error'), lang('You have not specified text to translate.'), 'r');
+            return false;
+        } else {
+            var url = 'https://translate.yandex.net/api/v1.5/tr.json/translate?key=' + YandexApiKey + text + '&lang=' + langFrom + '-' + langTo + '&format=plain';
+            $.ajax({
+                type: 'POST',
+                url: url,
+                success: function(Answer) {
+                    if (Answer.code == '200') {
+                        $(curElement).closest('.modal_yandex_translate').find('.translation_result').val(Answer.text[0]);
+                    }
+                    Translator.getAnswerCodeMessage(Answer.code);
+                }
+            });
+        }
     }
 };
 var Pagination = {

@@ -1,3 +1,14 @@
+ul.ui-autocomplete.ui-menu.ui-widget.ui-widget-content.ui-corner-all{
+    z-index: 1051!important;
+    position: fixed;
+    max-height: 310px;
+    overflow-y: scroll;
+}
+
+div.notifications{
+    z-index: 2051!important;
+}
+
 .pagination span:hover{
     cursor: pointer;
 }
@@ -227,11 +238,20 @@ div[class="tooltip-inner"] {
 .YandexApiKeyHolder > textarea.YandexApiKey{
     width: 500px;
 }
-.modal_yandex_translate > .modal-header select.languageSelect{
+.modal_yandex_translate > .modal-header input.languageSelect{
     width: 120px;
     margin-top: 7px;
     margin-left: 15px;
 }
+
+.modal_yandex_translate > .modal-header button{
+    margin-left: -6px;
+    margin-top: 7px;
+    height: 28px;
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px
+} 
+
 .modal_yandex_translate > .modal-header h5{
     float: left; 
 }
