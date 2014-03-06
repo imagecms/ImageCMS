@@ -7,6 +7,3 @@
 [submodule "application/modules/exchange"]
 	path = application/modules/exchange
 	url = git@github.com:imagecms/ImageCMS-Exchange.git
-[submodule "application/modules/mod_seoexpert"]
-	path = application/modules/mod_seoexpert
-	url = git@github.com:imagecms/ImageCMS-SEO.git
