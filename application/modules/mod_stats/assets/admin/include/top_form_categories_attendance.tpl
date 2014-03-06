@@ -28,7 +28,7 @@
                     {lang('OK','mod_stats')}
                 </button>
             </span>
-            <span class="span3 d-i_b m-r_10">
+                <span class="span3 d-i_b m-r_10" style="margin-left: 30px !important;">
                 <select name='category_id'>
                     {foreach $categories as $categoryData}
                         {$level = count($categoryData['full_path_ids'])}
@@ -48,7 +48,7 @@
                 {lang('Include childs','mod_stats')}
             </span>
             <span class="d-i_b">
-                <span class="d_b title-field">{lang('Show','mod_stats')}</span>
+                <span class="d_b title-field">{lang('Group by','mod_stats')}</span>
                 <div class="btn-group" data-toggle="buttons-radio">
                     <button type="button" class="btn btn-default{if $_GET['group'] == 'day'} active{/if}" data-val="day" data-rel="[name='group']" data-btn-select>{lang('day','mod_stats')}</button>
                     <button type="button" class="btn btn-default{if $_GET['group'] == 'month' || !isset($_GET['group'])} active{/if}" data-val="month" data-rel="[name='group']" data-btn-select>{lang('month','mod_stats')}</button>

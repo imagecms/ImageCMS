@@ -5,7 +5,7 @@
         <h3>{lang('Delete categories','admin')}</h3>
     </div>
     <div class="modal-body">
-        <p>{lang('Really delete selected categories?','admin')}</p>
+        <p>{lang('Really delete selected categories?','mod_seoexpert')}</p>
     </div>
     <div class="modal-footer">
         <a href="#" class="btn btn-primary" onclick="delete_function.deleteFunctionConfirm('/admin/components/init_window/mod_seoexpert/ajaxDeleteProductCategories')" >{lang('Delete','admin')}</a>
