@@ -5,7 +5,7 @@
     <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
     {if $totalItems > 0}
         <div class="drop-header">
-            <div class="title bask"><span>{lang('В корзине','newLevel')}</span><span class="add-info"><span class="topCartCount"> {echo $totalItems}</span></span> <span class="plurProd">{echo SStringHelper::Pluralize($count, array(lang('товар','newLevel'),lang('товара','newLevel'),lang('товаров','newLevel')))}</span> <span>{lang('Сумма','newLevel')}</span> <span class="add-info"><span class="topCartTotalPrice">{echo $cartPrice}</span></span> <span class="curr">{$CS}</span></div>
+            <div class="title bask"><span>{lang('В корзине','newLevel')}</span><span class="add-info"><span class="topCartCount"> {echo $totalItems}</span></span> <span class="plurProd">{echo SStringHelper::Pluralize($count, array(lang('товар','newLevel'),lang('товара','newLevel'),lang('товаров','newLevel')))}</span> <span>{lang('Сумма','newLevel')}</span> <span class="add-info"><span class="topCartTotalPrice">{echo ShopCore::app()->SCurrencyHelper->convert($cartPrice)}</span></span> <span class="curr">{$CS}</span></div>
         </div>
         <div class="drop-content">
             <div class="frame-bask-main">

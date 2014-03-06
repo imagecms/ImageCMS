@@ -219,7 +219,8 @@ var Filter = {
         }
     },
     afterAjaxInitializeFilter: function() {
-        var $sliders = $('.frame-slider');
+        var self = this,
+        $sliders = $('.frame-slider');
 
         $sliders.sliderInit();
         $(this.apply).cleaverFilter(cleaverFilterObj);
@@ -227,14 +228,14 @@ var Filter = {
         $('.clear-filter').click(function() {
             var nm = $(this).data('name');
             $('#' + nm + ' input').parent().nStCheck('checkUnChecked');
-            $(this.catalogForm).submit();
+            $(self.catalogForm).submit();
             return false;
         });
         $('.clear-slider').click(function() {
             var obj = eval($(this).data('rel'));
             $(obj.minCost).val(obj.defMin);
             $(obj.maxCost).val(obj.defMax);
-            $(this.catalogForm).submit();
+            $(self.catalogForm).submit();
 
             return false;
         });

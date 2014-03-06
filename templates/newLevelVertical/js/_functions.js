@@ -21,7 +21,7 @@ var ShopFront = {
                     el.parent(genObj.btnInCart).addClass('d_n');
                     el.closest(genObj.parentBtnBuy).addClass(genObj.toCart).removeClass(genObj.inCart)
                     .find(genObj.frameCount)
-                    .find(':input').removeAttr('disabled', 'disabled')
+                    .find(':input:not(:disabled)').removeAttr('disabled', 'disabled')
                     .end().find(genObj.plusMinus).attr('value', function(){
                         return $(this).data('min');
                     });
@@ -142,7 +142,7 @@ var ShopFront = {
                         addClass(genObj.compareIn).
                         
                         end().
-                        data('title', $this.attr('data-sectitle')).tooltip('remove').tooltip().
+                        data('title', $this.attr('data-sectitle')).tooltip('remove').
                         
                         find(genObj.textEl).
                         text($this.attr('data-sectitle'));
@@ -159,7 +159,7 @@ var ShopFront = {
                         removeClass(genObj.compareIn).
                         
                         end().
-                        data('title', $this.attr('data-firtitle')).tooltip('remove').tooltip().
+                        data('title', $this.attr('data-firtitle')).tooltip('remove').
                         
                         find(genObj.textEl).
                         text($this.attr('data-firtitle'));
@@ -169,7 +169,7 @@ var ShopFront = {
         count: function() {
             var count = Shop.CompareList.all().length,
             btn = $(genObj.tinyCompareList).find('[data-href]').drop('destroy').off('click.tocompare');
-
+            
             if (count > 0) {
                 $(genObj.tinyCompareList).addClass(genObj.isAvail).find(genObj.blockNoEmpty).show().end().find(genObj.blockEmpty).hide();
                 btn.on('click.tocompare', function() {
@@ -522,7 +522,7 @@ function decorElemntItemProduct(el) {
         function curFunc() {
             clearTimeout(curFuncTime);
             el.each(function() {
-                var $thisLi = $(this),
+                var $thisLi = $(this).css({'min-height': 0, 'max-height': 'none'}),
                 sumH = 0,
                 sumW = 0,
                 decEl = $thisLi.find('.decor-element').css({
@@ -593,7 +593,9 @@ function decorElemntItemProduct(el) {
                 $thisLi.css({
                     'width': '',
                     'height': '',
-                    'overflow': ''
+                    'overflow': '',
+                    'min-height': '',
+                    'max-height': ''
                 });
                 switch ($thisS) {
                     case 'top':
