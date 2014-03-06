@@ -35,33 +35,41 @@
 <div class="modal hide fade modal_yandex_translate">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h3>{lang('Yandex Translate', 'translator')}</h3>
+        <h3>{lang('Translation tool', 'translator')}</h3>
+        <h4>{lang('Choose languages', 'translator')}:</h4>
         <div>
-            <h5>{lang('Translate from', 'translator')}:</h5>
+            <h5>{lang('Source', 'translator')}:</h5>
             <select class="languageSelect languageFrom">
                 <option value="0">- {lang('No', 'translator')} -</option>
-                {foreach $locales as $lang}
-                    <option {if $settings['originsLang'] == $lang}selected{/if} value="{$lang}">
-                        {echo $lang}
+                {foreach $languages_names as $locale => $name}
+                    <option value="{$locale}">
+                        {echo $name}
                     </option>
                 {/foreach}
             </select>
         </div>
         <div class="pull-right" style="margin-top: -45px;">
-            <h5>{lang('Translate to', 'translator')}:</h5>
+            <h5>{lang('Result', 'translator')}:</h5>
             <select class="languageSelect languageTo">
                 <option value="0">- {lang('No', 'translator')} -</option>
-                {foreach $locales as $lang}
-                    <option {if $settings['originsLang'] == $lang}selected{/if} value="{$lang}">
-                        {echo $lang}
+                {foreach $languages_names as $locale => $name}
+                    <option value="{$locale}">
+                        {echo $name}
                     </option>
                 {/foreach}
             </select>
         </div>
     </div>
     <div class="modal-body">
-        <textarea class="translation_text" rows="5"></textarea>
-        <textarea class="translation_result" rows="5"></textarea>
+        <label for="translation_text">
+            <h5>{lang('Source text', 'translator')}:</h5>
+        </label>
+        <textarea id="translation_text" class="translation_text" rows="5"></textarea>
+        <span class="icon-chevron-down"></span>
+        <label for="translation_result">
+            <h5>{lang('Translation text', 'translator')}:</h5>
+        </label>
+        <textarea id="translation_result" class="translation_result" rows="5"></textarea>
     </div>
     <div class="modal-footer">
         <div class="pull-right">
@@ -157,7 +165,7 @@
                             <li class="divider"></li>
                             <li><a onclick="Translator.translate($(this))">{lang('Translate all', 'translator')}</a></li>
                             <li><a onclick="Translator.translate($(this), true)">{lang('Translate untranslated', 'translator')}</a></li>
-                            {/*}<li><a onclick="Translator.showYandexTranslateWindow()">{lang('Yandex translate', 'translator')}</a></li>{ */}
+                            <li><a onclick="Translator.showYandexTranslateWindow()">{lang('Translation tool', 'translator')}</a></li>
                         </ul>
                     </span>
                 </div>

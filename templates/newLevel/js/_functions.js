@@ -169,7 +169,7 @@ var ShopFront = {
         count: function() {
             var count = Shop.CompareList.all().length,
             btn = $(genObj.tinyCompareList).find('[data-href]').drop('destroy').off('click.tocompare');
-
+            
             if (count > 0) {
                 $(genObj.tinyCompareList).addClass(genObj.isAvail).find(genObj.blockNoEmpty).show().end().find(genObj.blockEmpty).hide();
                 btn.on('click.tocompare', function() {

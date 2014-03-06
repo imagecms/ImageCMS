@@ -21,7 +21,7 @@
                                     <span class="code">{lang('Артикул','commerce_mobiles')}: {echo $item->getNumber()}</span>
                                 {/if}
                                 <input name="products[{echo $item->quantity}]" type="hidden" value="{echo $item->quantity}"/>
-                                <span class="d_b price">{echo ShopCore::app()->SCurrencyHelper->convert($item->price * $item->quantity)} {$CS}</span>
+                                <span class="d_b price">{echo ShopCore::app()->SCurrencyHelper->convert($item->price)} {$CS}</span>
                             </span>
                         </a>
                         <span class="descr">
