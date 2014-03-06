@@ -108,10 +108,12 @@
                     </li>
                 {/foreach}
             </ul>
-            <button class="t-d_n f-s_0 s-all-d ref d_n_" data-trigger="[data-href='#comment']" data-scroll="true">
-                <span class="icon_arrow"></span>
-                <span class="text-el">{lang('Смотреть все ответы','newLevel')}</span>
-            </button>
+            {if $CI->core->core_data['data_type'] != 'page'}
+                <button class="t-d_n f-s_0 s-all-d ref d_n_" data-trigger="[data-href='#comment']" data-scroll="true">
+                    <span class="icon_arrow"></span>
+                    <span class="text-el">{lang('Смотреть все ответы','newLevel')}</span>
+                </button>
+            {/if}
         </div>
     {/if}
     {if $can_comment == 0 OR $is_logged_in}
