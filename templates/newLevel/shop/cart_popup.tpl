@@ -233,7 +233,6 @@
                 <div class="clearfix inside-padd">
                     <div class="btn-form f_l">
                         <button type="button" data-closed="closed-js">
-
                             <span class="text-el"><span class="f-s_14">←</span> {lang('Вернуться к покупкам','newLevel')}</span>
                         </button>
                     </div>

@@ -61,7 +61,7 @@ class Mod_discount extends \MY_Controller {
     private function applyDiscountCartItems() {
         $cart = \Cart\BaseCart::getInstance();
         $cartItems = $cart->getItems('SProducts');
-
+        
         if (count($cartItems['data']) > 0) {
             foreach ($cartItems['data'] as $item) {
                 if ($item->originPrice == $item->price) {
@@ -114,8 +114,24 @@ class Mod_discount extends \MY_Controller {
                 $this->baseDiscount->cart->setTotalPrice($this->baseDiscount->cart->getOriginTotalPrice() - $discount['result_sum_discount']);
                 $this->baseDiscount->cart->discount_info = $discount;
                 $this->baseDiscount->cart->discount_type = $discount['type'];
-                if (strstr($this->uri->uri_string(),'make_order')) {
-                    $this->baseDiscount->updateDiskApply($discount['max_discount']['key']);
+
+                if (strstr($this->uri->uri_string(), 'make_order')) {
+                    if ($discount['type'] == 'product') {
+                        $productDiscounts = array();
+                        foreach ($this->baseDiscount->discountType['product'] as $discountInfo) {
+                            $productDiscounts[$discountInfo['product_id']] = $discountInfo['key'];
+                        }
+                        $cartItems = \Cart\BaseCart::getInstance()->getItems(\Cart\CartItem::INSTANCE_PRODUCT);
+                        $cartItems = $cartItems['data'];
+
+                        foreach ($cartItems as $cartItem) {
+                            if (key_exists($cartItem->productId, $productDiscounts)) {
+                                $this->baseDiscount->updateDiskApply($productDiscounts[$cartItem->productId]);
+                            }
+                        }
+                    } else {
+                        $this->baseDiscount->updateDiskApply($discount['max_discount']['key']);
+                    }
                 }
             }
         }
