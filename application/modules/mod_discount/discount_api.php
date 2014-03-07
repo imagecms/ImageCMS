@@ -105,7 +105,8 @@ class discount_api extends \MY_Controller {
                 echo json_encode($discount);
             else
                 return $discount;
-        } else
+        }
+        else
             echo '';
     }
 
@@ -152,6 +153,17 @@ class discount_api extends \MY_Controller {
             $this->baseDiscount->discountType['comulativ'] = $this->getComulativDiscount($option);
             return $this->baseDiscount->discountType;
         }
+    }
+
+    /**
+     * If discount for current user exist or nots
+     * @return boolean
+     */
+    public function discountsExists() {
+        $ud = (bool) !\mod_discount\classes\DiscountManager::validateUserDiscount(CI::$APP->dx_auth->get_user_id());
+        $gd = (bool) !\mod_discount\classes\DiscountManager::validateGroupDiscount(CI::$APP->dx_auth->get_role_id());
+        $cd = (bool) $discount['comulativ'];
+        return $ud || $gd || $cd ? TRUE : FALSE;
     }
 
     /**
