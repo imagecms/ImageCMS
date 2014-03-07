@@ -219,7 +219,7 @@
                 </td>
             </tr>
         {/if}
-        {var_dump($CI->load->module('mod_discount')->isGiftCertificat())}
+        
         {if $gift_val}
             <tr>
                 <td colspan="3">

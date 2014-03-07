@@ -184,6 +184,7 @@ div[class="tooltip-inner"] {
 #poTab > .pull-right{
     position: relative; 
     right: 150px;
+    margin-right: 10px;
 }
 
 #poTab .searchTranslatorOptions{
@@ -239,7 +240,7 @@ div[class="tooltip-inner"] {
     width: 500px;
 }
 .modal_yandex_translate > .modal-header input.languageSelect{
-    width: 120px;
+    width: 100px;
     margin-top: 7px;
     margin-left: 15px;
 }
@@ -266,4 +267,8 @@ div[class="tooltip-inner"] {
 
 .modal_yandex_translate > .modal-header h4{
     text-align: center;
+}
+
+.poSelectorsHolder  #modules_templates{
+    max-width: 300px;
 }

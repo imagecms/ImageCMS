@@ -15,6 +15,7 @@ langs["File was successfully rendered."] = '<?php echo lang("File was successful
 langs["File was successfully saved."] = '<?php echo lang("File was successfully saved.", "translator")?>';
 langs["You have not specified Yandex Api Key."] = '<?php echo lang("You have not specified Yandex Api Key.", "translator")?>';
 langs["You have not specified origins strings language."] = '<?php echo lang("You have not specified origins strings language.", "translator")?>';
+langs["Successfully defined"] = '<?php echo lang("Successfully defined", "translator")?>';
 langs["Successfully translated"] = '<?php echo lang("Successfully translated", "translator")?>';
 langs["Wrong API key."] = '<?php echo lang("Wrong API key.", "translator")?>';
 langs["API key is locked."] = '<?php echo lang("API key is locked.", "translator")?>';
@@ -29,6 +30,7 @@ langs["Can not set Yandex Api Key."] = '<?php echo lang("Can not set Yandex Api 
 langs["You have not specified source text language."] = '<?php echo lang("You have not specified source text language.", "translator")?>';
 langs["You have not specified translation text language."] = '<?php echo lang("You have not specified translation text language.", "translator")?>';
 langs["You have not specified text to translate."] = '<?php echo lang("You have not specified text to translate.", "translator")?>';
+langs["Can not define language"] = '<?php echo lang("Can not define language", "translator")?>';
 langs["First"] = '<?php echo lang("First", "translator")?>';
 langs["Last "] = '<?php echo lang("Last ", "translator")?>';
 </script>
