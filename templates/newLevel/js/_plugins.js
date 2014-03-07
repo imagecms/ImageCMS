@@ -524,10 +524,11 @@ function getCookie(c_name)
 (function($) {
     var methods = {
         init: function(options) {
+            console.log(siteUrl);
             var settings = $.extend({
                 item: 'ul > li',
                 duration: 300,
-                searchPath: siteUrl + locale + "shop/search/ac",
+                searchPath: "/shop/search/ac",
                 inputString: $('#inputString'),
                 minValue: 3,
                 underscoreLayout: '#searchResultsTemplate',

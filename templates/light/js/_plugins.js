@@ -525,7 +525,7 @@ function getCookie(c_name)
             var settings = $.extend({
                 item: 'ul > li',
                 duration: 300,
-                searchPath: siteUrl + locale + "shop/search/ac",
+                searchPath: "/shop/search/ac",
                 inputString: $('#inputString'),
                 minValue: 3,
                 underscoreLayout: '#searchResultsTemplate',
