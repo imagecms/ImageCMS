@@ -866,7 +866,7 @@ input + .msg{margin-top: 5px;}
 .left-slider{margin-left: -11px;}
 .right-slider{margin-left: -11px;}
 .form-cost{margin-bottom: 16px;}
-.form-cost label{width: 73px;}
+.form-cost label{width: 95px;}
 
 .ui-widget-header{position: absolute;z-index: 1;height: 6px;top: -1px;}
 .frame-slider .inside-padd{padding: 0 15px 0 11px;}
@@ -961,6 +961,7 @@ td.frame-cur-sum-price {vertical-align: middle;padding-left: 10px;padding-right:
 .count-or-compl{display: block;margin-bottom: 3px;}
 .frame-cur-sum-price .title{display: block;margin-bottom: 3px;}
 .frame-cur-sum-price [class*="price-"]{margin-bottom: 0;}
+.frame-cur-sum-price .price-discount{margin-bottom: 5px;}
 
 /*drop-bask*/
 .drop-bask{max-width: 854px;width: 90%;}
@@ -1121,7 +1122,8 @@ footer .box-5{width: 179px;}
 .drop-header{padding: 9px 30px;text-align: left;position: relative;}
 .drop-header > .title:first-letter{text-transform: uppercase;}
 
-.drop-content .inside-padd{padding: 22px 43px 7px 10px;}
+.drop-content .inside-padd{padding: 22px 43px 17px 10px;}
+.drop-enter .drop-content .inside-padd, .drop-order-call .drop-content .inside-padd, .drop-report .drop-content .inside-padd{padding: 22px 43px 7px 10px;}
 .drop-footer .inside-padd{padding: 9px 23px 9px 10px;}
 .drop-content-notification .inside-padd.notification{padding: 12px 24px 1px 24px;}
 .drop-content-confirm .inside-padd{padding: 15px 35px;}

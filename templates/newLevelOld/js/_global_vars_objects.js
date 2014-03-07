@@ -85,7 +85,7 @@ var optionsDrop = {
     placeAfterClose: 'center center',
     timeclosemodal: 2000,
     delayAfter: -500,
-    confirmSel: '#confirm',
+    confirmBtnDrop: '#confirm',
     moreOne: false,
     closeClick: true,
     closeEsc: true,

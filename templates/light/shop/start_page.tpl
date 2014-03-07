@@ -8,7 +8,6 @@
             {widget('popular_products', TRUE)}
         </div>
         <div id="new_products">
-            <div class="preloader"></div>
             {widget('new_products', TRUE)}
         </div>
         <div class="frame-seo-text">

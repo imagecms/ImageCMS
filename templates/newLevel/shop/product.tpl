@@ -306,11 +306,11 @@
                     <dl class="social-product">
                         <dt class="s-t text-social-like">{lang('Понравился товар?', 'newLevel')}</dt>
                         <dd class="social-like">
-                            {//echo $CI->load->module('share')->_make_like_buttons()}
+                            {echo $CI->load->module('share')->_make_like_buttons()}
                         </dd>
                         <dt class="s-t text-social-tell">{lang('Рассказать друзьям:', 'newLevel')}</dt>
                         <dd class="social-tell">
-                            {//echo $CI->load->module('share')->_make_share_form()}
+                            {echo $CI->load->module('share')->_make_share_form()}
                         </dd>
                     </dl>
                     <!-- End. Share -->
