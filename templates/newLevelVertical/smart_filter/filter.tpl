@@ -135,21 +135,20 @@
                         {/if}
                     </div>
                 </div>
-            {if $condTypeProperty}<div class="preloader"></div>{/if}
-        {/if}
-    {/foreach}
-{/if}
-<div class="frame-group-checks">
-    <div class="inside-padd">
-        <div class="btn-form m-b_5">
-            <button type="submit">
-                <span class="text-el">{lang('Фильтровать', 'newLevel')}</span>
+            {/if}
+        {/foreach}
+    {/if}
+    <div class="frame-group-checks">
+        <div class="inside-padd">
+            <div class="btn-form m-b_5">
+                <button type="submit">
+                    <span class="text-el">{lang('Фильтровать', 'newLevel')}</span>
+                </button>
+            </div>
+            <button type="reset">
+                <span class="text-el d_l_1">{lang('Сбросить фильтр', 'newLevel')}</span>
             </button>
         </div>
-        <button type="reset">
-            <span class="text-el d_l_1">{lang('Сбросить фильтр', 'newLevel')}</span>
-        </button>
     </div>
-</div>
 </div>
 <input disabled="disabled" type="hidden" name="requestUri" value="{echo site_url($CI->uri->uri_string())}"/>

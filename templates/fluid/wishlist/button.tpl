@@ -10,9 +10,7 @@
             data-drop="#wishListPopup"
             data-source="{site_url('/wishlist/renderPopup/'. $varId)}"
         {else:}
-            data-drop="#notification"
-            data-modal="true"
-            data-timeclosemodal="3000"
+            data-drop="#dropAuth"
         {/if}
         {if !$condBtn}
             style="display: none;"

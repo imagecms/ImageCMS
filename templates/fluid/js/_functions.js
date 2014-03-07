@@ -322,51 +322,77 @@ function removePreloaderBaner(el) {
     })
 }
 function initCarouselJscrollPaneCycle(el) {
-    el.find('.horizontal-carousel .carousel-js-css:not(.cycleFrame):not(.frame-scroll-pane):visible').myCarousel(carousel);
-    el.find('.vertical-carousel .carousel-js-css:visible').myCarousel(carousel);
-    if ($.exists(selScrollPane)) {
-        el.find(selScrollPane).each(function() {
-            var $this = $(this),
-                    api = $this.jScrollPane(scrollPane),
-                    api = api.data('jsp');
-            $this.on('mousewheel', function(e, b, c, delta) {
-                if (delta == -1 && api.getContentWidth() - api.getContentPositionX() != api.getContentPane().width())
-                {
-                    //            ширина блоку товару разом з мергінами
-                    api.scrollByX(scrollPane.arrowButtonSpeed);
-                    return false;
-                }
-                if (delta == 1 && api.getContentPositionX() != 0) {
-                    api.scrollByX(-scrollPane.arrowButtonSpeed);
-                    return false;
-                }
-
-            })
-        })
+    function _jC() {
+        clearInterval(_jCI);
+        el.find('.horizontal-carousel .carousel-js-css:not(.cycleFrame):not(.frame-scroll-pane):visible').myCarousel(carousel);
+        el.find('.vertical-carousel .carousel-js-css:visible').myCarousel(carousel);
     }
-    el.find('.cycleFrame').each(function() {
-        var $this = $(this),
-                cycle = $this.find('.cycle'),
-                next = $this.find('.next'),
-                prev = $this.find('.prev');
+    var _jCI;
+    if (body.myCarousel)
+        _jC();
+    else
+        _jCI = setInterval(_jC, 100);
 
-        if (cycle.find('li').length > 1) {
-            cycle.cycle($.extend({}, optionsCycle, {
-                'next': next,
-                'prev': prev,
-                'pager': $this.find('.pager'),
-                'after': function() {
-                    wnd.scroll();
-                }
-            })).hover(function() {
-                cycle.cycle('pause');
-            }, function() {
-                cycle.cycle('resume');
-            });
-            $(next).add(prev).show();
+    function _sP() {
+        clearInterval(_sPI);
+        if ($.exists(selScrollPane)) {
+            el.find(selScrollPane).each(function() {
+                var $this = $(this),
+                        api = $this.jScrollPane(scrollPane),
+                        api = api.data('jsp');
+                $this.on('mousewheel', function(e, b, c, delta) {
+                    if (delta == -1 && api.getContentWidth() - api.getContentPositionX() != api.getContentPane().width())
+                    {
+                        //            ширина блоку товару разом з мергінами
+                        api.scrollByX(scrollPane.arrowButtonSpeed);
+                        return false;
+                    }
+                    if (delta == 1 && api.getContentPositionX() != 0) {
+                        api.scrollByX(-scrollPane.arrowButtonSpeed);
+                        return false;
+                    }
+
+                })
+            })
         }
-        removePreloaderBaner($('.baner:has(.cycle)')); //cycle - parent for images
-    });
+    }
+    var _sPI;
+    if (body.jScrollPane)
+        _sP();
+    else
+        _sPI = setInterval(_sP, 100);
+
+    function _c() {
+        clearInterval(_cI);
+        el.find('.cycleFrame').each(function() {
+            var $this = $(this),
+                    cycle = $this.find('.cycle'),
+                    next = $this.find('.next'),
+                    prev = $this.find('.prev');
+
+            if (cycle.find('li').length > 1) {
+                cycle.cycle($.extend({}, optionsCycle, {
+                    'next': next,
+                    'prev': prev,
+                    'pager': $this.find('.pager'),
+                    'after': function() {
+                        wnd.scroll();
+                    }
+                })).hover(function() {
+                    cycle.cycle('pause');
+                }, function() {
+                    cycle.cycle('resume');
+                });
+                $(next).add(prev).show();
+            }
+            removePreloaderBaner($('.baner:has(.cycle)')); //cycle - parent for images
+        });
+    }
+    var _cI;
+    if (body.cycle)
+        _c();
+    else
+        _cI = setInterval(_c, 100);
 }
 function hideDrop(drop, form, durationHideForm) {
     drop = $(drop);
