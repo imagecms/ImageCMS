@@ -66,34 +66,6 @@
                                 </div>
                             </div>
                         </div>
-                        {$countAnswers = $CI->load->module('comments')->commentsapi->getCountCommentAnswersByCommentId($comment.id)}
-                        {if $countAnswers}
-                            <ul class="frame-list-comments sub-2">
-                                {foreach $comment_ch as $com_ch}
-                                    {if $com_ch.parent == $comment.id}
-                                        <li>
-                                            <div class="global-frame-comment-sub2">
-                                                <div class="author-data-comment author-data-comment-sub2">
-                                                    <span class="author-comment">{$com_ch.user_name}</span>
-                                                    <span class="date-comment">
-                                                        <span class="day">{echo date("d", $comment.date)} </span>
-                                                        <span class="month">{echo month(date("n", $comment.date))} </span>
-                                                        <span class="year">{echo date("Y ", $comment.date)}</span>
-                                                    </span>
-                                                </div>
-                                                <div class="frame-comment-sub2">
-                                                    <div class="frame-comment">
-                                                        <p>
-                                                            {$com_ch.text}
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    {/if}
-                                {/foreach}
-                            </ul>
-                        {/if}
                     </li>
                 {/foreach}
             </ul>

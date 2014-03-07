@@ -982,7 +982,7 @@ td.frame-cur-sum-price {vertical-align: middle;padding-left: 10px;padding-right:
 .drop-bask{max-width: 854px;width: 90%;}
 .drop-bask .drop-content .inside-padd{padding: 0;}
 .table-order, .table-order table{table-layout: auto;}
-.frame-foot .table-order{table-layout: fixed;}
+.footer-bask .table-order{table-layout: fixed;}
 .drop-bask .drop-header{text-align: left;}
 .frame-remove-bask-btn{padding-left: 0 !important;width: 38px;text-align: center;vertical-align: middle !important;}
 .frame-kits-gen-sum{text-align: center;}
@@ -998,10 +998,10 @@ td.frame-cur-sum-price {vertical-align: middle;padding-left: 10px;padding-right:
 .table-order > tbody > tr > td.frame-cur-sum-price {padding-left: 10px;padding-right: 10px;}
 .table-order > tbody > tr:first-child > td{border-top: 0;}
 .table-order .frame-variant-name, .table-order .frame-variant-code{padding-top: 5px;display: block;}
-.header-frame-foot{text-align: center;}
-.right-order .header-frame-foot{text-align: left;}
-.drop-bask .header-frame-foot{text-align: right;}
-.drop-bask .header-frame-foot > .inside-padd{padding: 12px 26px 12px 12px;}
+.footer-bask{text-align: center;}
+.right-order .footer-bask{text-align: left;}
+.drop-bask .footer-bask{text-align: right;}
+.drop-bask .footer-bask > .inside-padd{padding: 12px 26px 12px 12px;}
 .drop-bask .content-frame-foot > .inside-padd{padding: 15px 26px 26px;}
 .drop-bask .empty .inside-padd{padding: 26px;}
 
@@ -1021,8 +1021,8 @@ td.frame-cur-sum-price {vertical-align: middle;padding-left: 10px;padding-right:
 .frame-bask-order .frame-items{padding-right: 20px;}
 .kits-gen-sum{padding: 0 20px;margin-bottom: 13px;}
 .frame-bask-order .frame-cur-sum-price > .frame-prices{display: block;position: relative;top: 3px;}
-.frame-bask-order .frame-foot{position: relative;overflow: hidden;}
-.frame-bask-order .header-frame-foot > .inside-padd{padding: 17px 10px;}
+.frame-bask-order .footer-bask{position: relative;overflow: hidden;}
+.frame-bask-order .footer-bask > .inside-padd{padding: 17px 10px;}
 
 /*order-view*/
 .left-order{margin-bottom: 30px;}
@@ -1032,7 +1032,7 @@ td.frame-cur-sum-price {vertical-align: middle;padding-left: 10px;padding-right:
 .items-order td{padding-left: 20px;}
 .frame-items-kit .gen-sum-row{text-align: center;margin: 5px 0 15px;}
 .frame-items-kit .gen-sum-row img{margin-bottom: 20px;}
-.right-order .header-frame-foot > .inside-padd{padding-left: 30px;}
+.right-order .footer-bask > .inside-padd{padding-left: 30px;}
 .frame-payment{margin-bottom: 13px;}
 .table-info-order{margin-bottom: 35px;}
 .table-info-order td, .table-info-order th{padding: 3px 0;}

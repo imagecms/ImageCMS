@@ -11,7 +11,6 @@
                 </div>
                 <div class="drop-content">
                     <div class="no-empty js-no-empty">
-                        <div class="frame-bask-main">
                             <div class="inside-padd">
                                 <table class="table-order">
                                     <tbody>
@@ -82,7 +81,6 @@
                                             </td>
                                             <td class="frame-cur-sum-price">
                                                 <span class="title">{/literal}{lang('Сумма','newLevel')}{literal}: </span>
-                                                <div class="frame-cur-sum-price">
                                                     <div class="frame-prices f-s_0">
                                                         <%if (item.origprice) { %>
                                                         <span class="price-discount">
@@ -109,7 +107,6 @@
                                                             <%}*/%>
                                                         </span>
                                                     </div>
-                                                </div>
                                             </td>
                                         </tr>
                                         <% } else { %>
@@ -263,11 +260,9 @@
                                     </tbody>
                                 </table>
                             </div>
-                        </div>
                     </div>
                 </div>
-                <div class="frame-foot drop-footer">
-                    <div class="header-frame-foot">
+                <div class="footer-bask drop-footer">
                         <div class="inside-padd">
                             <div class="clearfix">
                                 <span class="frame-discount frameDiscount">
@@ -282,7 +277,6 @@
                                 </div>
                                 <% } %>
                                 <span class="s-t">{/literal}{lang('Всего','newLevel')}{literal}:</span>
-                                <span class="frame-cur-sum-price">
                                     <span class="frame-prices f-s_0">
                                         <span class="price-discount">
                                             <span class="frame-discount frameDiscount">
@@ -307,7 +301,6 @@
                                             <%}%>
                                         </span>
                                     </span>
-                                </span>
                             </div>
                         </div>
                         <% if (!orderDetails) { %>
@@ -329,7 +322,6 @@
                         </div>
                         <% } %>
                     </div>
-                </div>
             </div>
             <div class="empty js-empty">
                 <div class="drop-header">
@@ -366,61 +358,61 @@
 {literal}
     <script type="text/template" id="searchResultsTemplate">
         <div class="inside-padd">
-            <% if (_.keys(items).length > 1) { %>
-            <ul class="items items-search-autocomplete">
-                <% _.each(items, function(item){
-                if (item.name != null){%>
-                <li>{/literal}
-                    <!-- Start. Photo Block and name  -->
-                    <a href="{shop_url('product')}/{literal}<%- item.url %>" class="frame-photo-title">
-                        <span class="photo-block">
-                            <span class="helper"></span>
-                            <img src="<%- item.smallImage %>">
-                        </span>
-                        <span class="title"><% print(item.name)  %></span>
-                        <!-- End. Photo Block and name -->
+        <% if (_.keys(items).length > 1) { %>
+        <ul class="items items-search-autocomplete">
+        <% _.each(items, function(item){
+        if (item.name != null){%>
+        <li>{/literal}
+        <!-- Start. Photo Block and name  -->
+        <a href="{shop_url('product')}/{literal}<%- item.url %>" class="frame-photo-title">
+        <span class="photo-block">
+        <span class="helper"></span>
+        <img src="<%- item.smallImage %>">
+        </span>
+        <span class="title"><% print(item.name)  %></span>
+        <!-- End. Photo Block and name -->
 
-                        <span class="description">
-                        <!-- Start. Product price  -->
-                            <span class="frame-prices f-s_0">
-                                <span class="current-prices var_price_{echo $p->firstVariant->getId()} prod_price_{echo $p->getId()}">
-                                    <span class="price-new">
-                                        <span>
-                                            <span class="price"><%- item.price %></span>{/literal}
-                                            <span class="curr">{$CS}</span>{literal}
-                                        </span>
-                                    </span>
-                                    <% if (item.nextCurrency != null) { %>
-                                    <span class="price-add">
-                                        <span>
-                                            (<span class="price addCurrPrice"><%- item.nextCurrency %></span>
-                                        {/literal}<span class="curr-add">{$NextCS}</span>){literal}                                            
-                                        </span>
-                                    </span>
-                                    <% } %>
-                                </span>
-                            </span>
-                        </span>
-                        <!-- End. Product price  -->
-                    </a>
-                </li>
-                <% }
-                }) %>
-            </ul>
-            <!-- Start. Show link see all results if amount products >0  -->
-            <div>
-                <div class="btn-autocomplete">{/literal}
-                    <a href="{shop_url('search')}?text={literal}<%- items.queryString %>" {/literal} class="f-s_0 t-d_u">
-                        <span class="icon_show_all"></span><span class="text-el">{lang('Посмотреть все результаты','newLevel')} →</span>
-                    </a>
-                </div>{literal}
-                <!-- End. Show link  -->
-                <% } else {%>    
-            {/literal}<div class="msg f-s_0">
-                <div class="info"><span class="icon_info"></span><span class="text-el">{echo ShopCore::t(lang('По Вашему запросу ничего не найдено','newLevel'))}</span></div>
-            </div>{literal}
-            <% }%>
-        </div>
+        <span class="description">
+        <!-- Start. Product price  -->
+        <span class="frame-prices f-s_0">
+        <span class="current-prices var_price_{echo $p->firstVariant->getId()} prod_price_{echo $p->getId()}">
+        <span class="price-new">
+        <span>
+        <span class="price"><%- item.price %></span>{/literal}
+        <span class="curr">{$CS}</span>{literal}
+        </span>
+        </span>
+        <% if (item.nextCurrency != null) { %>
+        <span class="price-add">
+        <span>
+        (<span class="price addCurrPrice"><%- item.nextCurrency %></span>
+    {/literal}<span class="curr-add">{$NextCS}</span>){literal}                                            
+        </span>
+        </span>
+        <% } %>
+        </span>
+        </span>
+        </span>
+        <!-- End. Product price  -->
+        </a>
+        </li>
+        <% }
+        }) %>
+        </ul>
+        <!-- Start. Show link see all results if amount products >0  -->
+        <div>
+        <div class="btn-autocomplete">{/literal}
+        <a href="{shop_url('search')}?text={literal}<%- items.queryString %>" {/literal} class="f-s_0 t-d_u">
+        <span class="icon_show_all"></span><span class="text-el">{lang('Посмотреть все результаты','newLevel')} →</span>
+        </a>
+        </div>{literal}
+        <!-- End. Show link  -->
+        <% } else {%>    
+    {/literal}<div class="msg f-s_0">
+    <div class="info"><span class="icon_info"></span><span class="text-el">{echo ShopCore::t(lang('По Вашему запросу ничего не найдено','newLevel'))}</span></div>
+    </div>{literal}
+    <% }%>
+    </div>
     </div>
 </script>
 {/literal}
@@ -428,43 +420,43 @@
         <script type="text/template" id="reportappearance">
             <% var nextCsCond = nextCs == '' ? false : true %>
             <ul class="items items-bask item-report">
-                <li>
-                    <a href="<%-item.url%>" class="frame-photo-title" title="<%-item.name%>">
-                        <span class="photo-block">
-                            <span class="helper"></span>
-                            <img src="<%-item.img%>" alt="<%-item.name%>">
-                        </span>
-                        <span class="title"><%-item.name%></span>
-                    </a>
-                    <div class="description">
-                        <div class="frame-prices f-s_0">
-                            <%if (item.origprice) { %>
-                            <span class="price-discount">
-                                <span>
-                                    <span class="price"><%- parseFloat(item.origprice).toFixed(pricePrecision) %></span>
-                                    <span class="curr"><%-curr%></span>
-                                </span>
-                            </span>
-                            <% } %>
-                            <span class="current-prices f-s_0">
-                                <span class="price-new">
-                                    <span>
-                                        <span class="price priceVariant"><%-parseFloat(item.price).toFixed(pricePrecision)%></span>
-                                        <span class="curr"><%-curr%></span>
-                                    </span>
-                                </span>
-                                <%if (nextCsCond){%>
-                                <span class="price-add">
-                                    <span>
-                                        (<span class="price addCurrPrice"><%-parseFloat(item.addprice).toFixed(pricePrecision)%></span>
-                                        <span class="curr-add"><%-nextCs%></span>)
-                                    </span>
-                                </span>
-                                <%}%>
-                            </span>
-                        </div>
-                    </div>
-                </li>
+            <li>
+            <a href="<%-item.url%>" class="frame-photo-title" title="<%-item.name%>">
+            <span class="photo-block">
+            <span class="helper"></span>
+            <img src="<%-item.img%>" alt="<%-item.name%>">
+            </span>
+            <span class="title"><%-item.name%></span>
+            </a>
+            <div class="description">
+            <div class="frame-prices f-s_0">
+            <%if (item.origprice) { %>
+            <span class="price-discount">
+            <span>
+            <span class="price"><%- parseFloat(item.origprice).toFixed(pricePrecision) %></span>
+            <span class="curr"><%-curr%></span>
+            </span>
+            </span>
+            <% } %>
+            <span class="current-prices f-s_0">
+            <span class="price-new">
+            <span>
+            <span class="price priceVariant"><%-parseFloat(item.price).toFixed(pricePrecision)%></span>
+            <span class="curr"><%-curr%></span>
+            </span>
+            </span>
+            <%if (nextCsCond){%>
+            <span class="price-add">
+            <span>
+            (<span class="price addCurrPrice"><%-parseFloat(item.addprice).toFixed(pricePrecision)%></span>
+            <span class="curr-add"><%-nextCs%></span>)
+            </span>
+            </span>
+            <%}%>
+            </span>
+            </div>
+            </div>
+            </li>
             </ul>
         </script>
     {/literal}
