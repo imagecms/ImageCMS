@@ -46,7 +46,7 @@
                                 url: theme + 'js/' + i + '.js',
                                 dataType: "script",
                                 cache: false,
-                                success: function() {
+                                complete: function() {
                                     cL++;
                                     if (cL == scriptsL)
                                         if (callback) {
