@@ -40,7 +40,8 @@
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
-                    <button type="button" class="btn btn-small disabled action_on listFilterSubmitButton " disabled="disabled" ><i class="icon-filter"></i>{lang('Filter','admin')}</button>
+                    <button type="submit" class="btn btn-small disabled action_on listFilterSubmitButton " disabled="disabled" ><i class="icon-filter"></i>{lang('Filter','admin')}</button>
+                    <a href="{site_url('/admin/pages/GetPagesByCategory')}"   title="{lang('Cancel filter','admin')}" type="button" class="btn btn-small {if !$_POST}disabled {/if}"><i class="icon-refresh"></i>{lang('Cancel filter','admin')}</a>
                     <button onclick="$('#pages_action_dialog').modal();" type="button" class="btn btn-small disabled action_on pages_action" ><i class="icon-asterisk"></i> {lang('Create copy','admin')}</button>
                     <button onclick="$('#pages_action_dialog').modal();
                 pagesAdmin.updDialogMove();" type="button" class="btn btn-small disabled action_on pages_action" ><i class="icon-move"></i>{lang('Move','admin')}</button>
@@ -217,4 +218,5 @@
             {/if}
         </div>
     </section>
+        {form_csrf()}
 </form>

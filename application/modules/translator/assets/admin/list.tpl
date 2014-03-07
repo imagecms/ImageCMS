@@ -42,6 +42,7 @@
             <h5><b>{lang('Source', 'translator')}:</b></h5>
             <input class="languageSelect languageFrom" autocomplete="off" tabindex="1" value="" class="ui-autocomplete-input" aria-autocomplete="list" aria-haspopup="true">
             <button class="btn btn-small showAllLanguageList"><i class="icon-chevron-down"></i></button>
+            <button class="btn btn-small languageAutoselect" data-rel="tooltip" data-placement="bottom" data-original-title="{lang('Auto define source language', 'translator')}" onclick="Translator.sourceLanguageAutoselect($(this))"><i class="icon-font"></i></button>
         </div>
         <div class="pull-right" style="margin-top: -35px;">
             <h5><b>{lang('Result', 'translator')}:</b></h5>

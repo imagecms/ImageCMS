@@ -218,6 +218,7 @@
                 </td>
             </tr>
         {/if}
+
         {if $gift_val}
             <tr>
                 <td colspan="3">

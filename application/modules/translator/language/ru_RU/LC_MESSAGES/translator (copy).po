@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-05 06:03+0200\n"
-"PO-Revision-Date: 2013-12-05 06:03+0200\n"
+"POT-Creation-Date: 2014-03-06 10:30+0200\n"
+"PO-Revision-Date: 2014-03-06 10:30+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -18,38 +18,220 @@ msgstr ""
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: ./application/modules/translator/assets/admin/list.tpl:46
+#: ./application/modules/translator/assets/js/admin.js:1212
+msgid "You have not specified source text language."
+msgstr "Вы не указали исходный язык текста."
+
+#: ./application/modules/translator/assets/js/admin.js:1217
+msgid "You have not specified translation text language."
+msgstr "Вы не указали язык текста перевода."
+
+#: ./application/modules/translator/assets/js/admin.js:1222
+msgid "You have not specified text to translate."
+msgstr "Вы не указали текст для перевода."
+
+#: ./application/modules/translator/assets/admin/list.tpl:59
+msgid "Translation text"
+msgstr "Перевод"
+
+#: ./application/modules/translator/assets/admin/list.tpl:42
+msgid "Source"
+msgstr "Исходный"
+
+#: ./application/modules/translator/assets/admin/list.tpl:47
+msgid "Result"
+msgstr "Перевод"
+
+#: ./application/modules/translator/assets/admin/list.tpl:38
+#: ./application/modules/translator/assets/admin/list.tpl:157
+msgid "Translation tool"
+msgstr "Инструмент для перевода"
+
+#: ./application/modules/translator/assets/admin/list.tpl:40
+msgid "Choose languages"
+msgstr "Выбрать языки"
+
+#: ./application/modules/translator/assets/admin/list.tpl:54
+msgid "Source text"
+msgstr "Исходный текст"
+
+#: ./application/modules/translator/assets/admin/po_table.tpl:34
+msgid "Undo"
+msgstr "Отменить"
+
+#: ./application/modules/translator/assets/admin/list.tpl:65
+#: ./application/modules/translator/assets/admin/po_table.tpl:14
+msgid "Translate"
+msgstr "Перевести"
+
+#: ./application/modules/translator/assets/admin/list.tpl:166
+msgid "Statistic"
+msgstr "Статистика"
+
+#: ./application/modules/translator/assets/js/admin.js:1254
+#: ./application/modules/translator/assets/js/admin.js:1256
+msgid "First"
+msgstr "Начало"
+
+#: ./application/modules/translator/assets/js/admin.js:1270
+msgid "Last "
+msgstr "Конец"
+
+#: ./application/modules/translator/assets/admin/list.tpl:223
+msgid "Please, enter search string..."
+msgstr "Пожалуйста, введите строку поиска..."
+
+#: ./application/modules/translator/assets/admin/list.tpl:91
+msgid "string(s) will be ignored"
+msgstr "будет проигнорировано"
+
+#: ./application/modules/translator/assets/js/admin.js:708
+msgid "Please set paths to parsing files."
+msgstr "Пожалуйста, установите пути сканирования в настройках."
+
+#: ./application/modules/translator/assets/admin/list.tpl:155
+msgid "Translate all"
+msgstr "Перевести все"
+
+#: ./application/modules/translator/assets/admin/list.tpl:156
+msgid "Translate untranslated"
+msgstr "Перевести непереведенные"
+
+#: ./application/modules/translator/assets/js/admin.js:977
+msgid "File was successfully saved."
+msgstr "Файл был успешно сохранен."
+
+#: ./application/modules/translator/admin.php:656
+msgid "File cant be read. Please, set read file permissions."
+msgstr "Нет прав на чтение файла. Пожалуйста, установите файлу права на чтение."
+
+#: ./application/modules/translator/admin.php:662
+msgid "File cant be written. Please, set write file permissions."
+msgstr "Нет прав на записать файла. Пожалуйста, установите файлу права на запись."
+
+#: ./application/modules/translator/assets/js/admin.js:951
+msgid "File was successfully rendered."
+msgstr "Файл успешно открыт для редактирования."
+
+#: ./application/modules/translator/assets/js/admin.js:674
+msgid "Origin language was successfully setted."
+msgstr "Язык оригинала был успешно изменен."
+
+#: ./application/modules/translator/assets/js/admin.js:676
+msgid "Can not set origin language."
+msgstr "Невозможно установить язык оригинала."
+
+#: ./application/modules/translator/assets/js/admin.js:1187
+msgid "Yandex Api Key was successfully setted."
+msgstr "Яндекс Api-Ключ был успешно изменен."
+
+#: ./application/modules/translator/assets/js/admin.js:1189
+msgid "Can not set Yandex Api Key."
+msgstr "Невозможно установить яндекс Api-Ключ."
+
+#: ./application/modules/translator/assets/js/admin.js:175
+msgid "Successfully sorted."
+msgstr "Успешно отсортировано."
+
+#: ./application/modules/translator/assets/js/admin.js:177
+msgid "Can not sort."
+msgstr "Не возможно отсортировать."
+
+#: ./application/modules/translator/assets/js/admin.js:429
+msgid "Number of searched matches"
+msgstr "Количество найденных совпадений"
+
+#: ./application/modules/translator/assets/js/admin.js:431
+msgid "Was not found any results"
+msgstr "Не было найдено никаких результатов"
+
+#: ./application/modules/translator/assets/js/admin.js:435
+msgid "Please, enter more than 1 symbol"
+msgstr "Пожалуйста, введите более 1 символа"
+
+#: ./application/modules/translator/assets/js/admin.js:438
+msgid "You did not select search criteria"
+msgstr "Вы не выбрали критерии поиска"
+
+#: ./application/modules/translator/assets/js/admin.js:994
+#: ./application/modules/translator/assets/js/admin.js:1083
+#: ./application/modules/translator/assets/js/admin.js:1207
+msgid "You have not specified Yandex Api Key."
+msgstr "Вы не указали яндекс Api-Ключ."
+
+#: ./application/modules/translator/assets/js/admin.js:999
+#: ./application/modules/translator/assets/js/admin.js:1088
+msgid "You have not specified origins strings language."
+msgstr "Вы не указали язык оригинальных строк."
+
+#: ./application/modules/translator/assets/js/admin.js:1120
+msgid "Successfully translated"
+msgstr "Успешно переведено"
+
+#: ./application/modules/translator/assets/js/admin.js:1123
+msgid "Wrong API key."
+msgstr "Неправильно API-ключ."
+
+#: ./application/modules/translator/assets/js/admin.js:1126
+msgid "API key is locked."
+msgstr "API-ключ заблокирован."
+
+#: ./application/modules/translator/assets/js/admin.js:1129
+msgid "Exceeded the daily limit on the number of requests."
+msgstr "Превышен дневной лимит на количество запросов."
+
+#: ./application/modules/translator/assets/js/admin.js:1132
+msgid "Exceeded the daily limit on the amount of translated text."
+msgstr "Превышен дневной лимит на размер переводимого текста."
+
+#: ./application/modules/translator/assets/js/admin.js:1135
+msgid "Exceeded the maximum allowable size of text."
+msgstr "Превышен максимально допустимый размер текста."
+
+#: ./application/modules/translator/assets/js/admin.js:1138
+msgid "Text can not be translated."
+msgstr "Текст не переводится."
+
+#: ./application/modules/translator/assets/js/admin.js:1141
+msgid "Set direction of translation is not supported."
+msgstr "Установите направление перевода не поддерживается."
+
+#: ./application/modules/translator/assets/js/admin.js:1144
+msgid "Translation fails."
+msgstr "Перевод не выполняется."
+
+#: ./application/modules/translator/assets/admin/list.tpl:81
 msgid "string(s) wil be added"
 msgstr "будет добавлено"
 
-#: ./application/modules/translator/assets/admin/list.tpl:51
+#: ./application/modules/translator/assets/admin/list.tpl:86
 msgid "string(s) will be removed"
 msgstr "будет удалено"
 
-#: ./application/modules/translator/assets/admin/list.tpl:68
-#: ./application/modules/translator/assets/admin/list.tpl:99
+#: ./application/modules/translator/assets/admin/list.tpl:112
+#: ./application/modules/translator/assets/admin/list.tpl:139
 msgid "Update"
 msgstr "Обновить"
 
-#: ./application/modules/translator/assets/admin/list.tpl:103
+#: ./application/modules/translator/assets/admin/list.tpl:148
 msgid "Others"
 msgstr "Другое"
 
 #: ./application/modules/translator/assets/admin/create.tpl:60
-#: ./application/modules/translator/assets/admin/list.tpl:163
+#: ./application/modules/translator/assets/admin/list.tpl:210
 #: ./application/modules/translator/assets/admin/exchange.tpl:56
 #: ./application/modules/translator/assets/admin/exchange.tpl:85
 msgid "Choose type"
 msgstr "Выберите тип"
 
 #: ./application/modules/translator/assets/admin/create.tpl:49
-#: ./application/modules/translator/assets/admin/list.tpl:152
+#: ./application/modules/translator/assets/admin/list.tpl:199
 #: ./application/modules/translator/assets/admin/exchange.tpl:45
 #: ./application/modules/translator/assets/admin/exchange.tpl:74
 msgid "Choose locale"
 msgstr "Выберите язык"
 
-#: ./application/modules/translator/assets/admin/po_table.tpl:107
+#: ./application/modules/translator/assets/admin/po_table.tpl:111
 msgid "Basic path"
 msgstr "Основной"
 
@@ -57,15 +239,15 @@ msgstr "Основной"
 msgid "Create Po-file"
 msgstr "Создать Po-файл"
 
-#: ./application/modules/translator/assets/admin/list.tpl:142
+#: ./application/modules/translator/assets/admin/list.tpl:189
 msgid "Po file"
 msgstr "Po-файл"
 
-#: ./application/modules/translator/assets/admin/list.tpl:241
+#: ./application/modules/translator/assets/admin/list.tpl:299
 msgid "There is no Po-file in such locale"
 msgstr "Нет Po-файла, в локали"
 
-#: ./application/modules/translator/assets/admin/list.tpl:312
+#: ./application/modules/translator/assets/admin/list.tpl:370
 msgid "Po file settings"
 msgstr "Настройки Po-файла"
 
@@ -77,90 +259,106 @@ msgstr "Модуль для работы с переводом po-файлов"
 msgid "Editor theme"
 msgstr "Тема окна"
 
-#: ./application/modules/translator/assets/admin/list.tpl:178
+#: ./application/modules/translator/assets/admin/list.tpl:224
 msgid "Search"
 msgstr "Поиск"
 
-#: ./application/modules/translator/assets/admin/list.tpl:133
+#: ./application/modules/translator/assets/admin/list.tpl:173
 msgid "Fuzzy strings"
 msgstr "Нечеткие"
 
-#: ./application/modules/translator/assets/admin/list.tpl:219
+#: ./application/modules/translator/assets/admin/list.tpl:265
 msgid "Fuzzy"
 msgstr "Скрить"
 
-#: ./application/modules/translator/assets/admin/list.tpl:115
-msgid "Translate"
-msgstr "Перевести все"
-
-#: ./application/modules/translator/assets/admin/list.tpl:127
+#: ./application/modules/translator/assets/admin/list.tpl:180
 msgid "Not translated"
 msgstr "Не переведено"
 
-#: ./application/modules/translator/assets/admin/list.tpl:131
+#: ./application/modules/translator/assets/admin/list.tpl:178
 msgid "Translated"
 msgstr "Переведено"
 
-#: ./application/modules/translator/admin.php:281
+#: ./application/modules/translator/admin.php:293
 msgid "File is already exists."
 msgstr "Файл уже существует."
 
-#: ./application/modules/translator/admin.php:282
-#: ./application/modules/translator/admin.php:287
-#: ./application/modules/translator/admin.php:638
-#: ./application/modules/translator/admin.php:731
-#: ./application/modules/translator/admin.php:742
+#: ./application/modules/translator/admin.php:293
+#: ./application/modules/translator/admin.php:298
+#: ./application/modules/translator/admin.php:690
+#: ./application/modules/translator/admin.php:782
+#: ./application/modules/translator/admin.php:793
+#: ./application/modules/translator/assets/js/admin.js:177
+#: ./application/modules/translator/assets/js/admin.js:435
+#: ./application/modules/translator/assets/js/admin.js:438
+#: ./application/modules/translator/assets/js/admin.js:676
+#: ./application/modules/translator/assets/js/admin.js:708
+#: ./application/modules/translator/assets/js/admin.js:956
+#: ./application/modules/translator/assets/js/admin.js:981
+#: ./application/modules/translator/assets/js/admin.js:994
+#: ./application/modules/translator/assets/js/admin.js:999
+#: ./application/modules/translator/assets/js/admin.js:1083
+#: ./application/modules/translator/assets/js/admin.js:1088
+#: ./application/modules/translator/assets/js/admin.js:1123
+#: ./application/modules/translator/assets/js/admin.js:1126
+#: ./application/modules/translator/assets/js/admin.js:1129
+#: ./application/modules/translator/assets/js/admin.js:1132
+#: ./application/modules/translator/assets/js/admin.js:1135
+#: ./application/modules/translator/assets/js/admin.js:1138
+#: ./application/modules/translator/assets/js/admin.js:1141
+#: ./application/modules/translator/assets/js/admin.js:1144
+#: ./application/modules/translator/assets/js/admin.js:1189
+#: ./application/modules/translator/assets/js/admin.js:1207
+#: ./application/modules/translator/assets/js/admin.js:1212
+#: ./application/modules/translator/assets/js/admin.js:1217
+#: ./application/modules/translator/assets/js/admin.js:1222
 msgid "Error"
 msgstr "Ошибка"
 
-#: ./application/modules/translator/admin.php:286
+#: ./application/modules/translator/admin.php:298
 msgid "Can not create file. Check if path to the file is correct - "
 msgstr "Не возможно создать файл. Проверьте правильность пути к файлу -"
 
-#: ./application/modules/translator/admin.php:333
+#: ./application/modules/translator/admin.php:345
 msgid "File was succcessfuly created."
 msgstr "Файл был успешно создан."
 
-#: ./application/modules/translator/admin.php:334
-#: ./application/modules/translator/admin.php:729
-#: ./application/modules/translator/admin.php:739
-#: ./application/modules/translator/assets/js/admin.js:762
+#: ./application/modules/translator/admin.php:345
+#: ./application/modules/translator/admin.php:780
+#: ./application/modules/translator/admin.php:790
+#: ./application/modules/translator/assets/js/admin.js:175
+#: ./application/modules/translator/assets/js/admin.js:429
+#: ./application/modules/translator/assets/js/admin.js:431
+#: ./application/modules/translator/assets/js/admin.js:674
+#: ./application/modules/translator/assets/js/admin.js:841
+#: ./application/modules/translator/assets/js/admin.js:951
+#: ./application/modules/translator/assets/js/admin.js:977
+#: ./application/modules/translator/assets/js/admin.js:1120
+#: ./application/modules/translator/assets/js/admin.js:1187
 msgid "Message"
 msgstr "Сообщение"
 
-#: ./application/modules/translator/admin.php:607
-msgid "File cant be read. Please, set read file permissions."
-msgstr "Файл невозможно прочитать. Пожалуйста, установите права для чтения файла."
-
-#: ./application/modules/translator/admin.php:612
-msgid "File cant be written. Please, set write file permissions."
-msgstr "Файл невозможно записать. Пожалуйста, установите права на запись к файлу."
-
-#: ./application/modules/translator/admin.php:617
+#: ./application/modules/translator/admin.php:668
 msgid "File does not exist."
 msgstr "Файл не существует."
 
-#: ./application/modules/translator/admin.php:728
+#: ./application/modules/translator/admin.php:780
 msgid "Translation file was successfuly saved."
 msgstr "Файл перевода был успешно сохранен."
 
-#: ./application/modules/translator/admin.php:730
+#: ./application/modules/translator/admin.php:782
 msgid "Operation failed. Can not convert to mo-file."
 msgstr "Операция не успешная. Не возможно преобразовать в mo-файл."
 
-#: ./application/modules/translator/admin.php:738
+#: ./application/modules/translator/admin.php:790
 msgid "Selection path memory was successfuly cleared."
 msgstr "Память работы модуля была успешно очищена."
 
-#: ./application/modules/translator/admin.php:741
+#: ./application/modules/translator/admin.php:793
 msgid "Operation failed!"
 msgstr "Операция не успешна!"
 
-#: ./application/modules/translator/admin.php:917
-msgid "' . $origin . '"
-msgstr "' . $origin . '"
-
-#: ./application/modules/translator/assets/js/admin.js:761
+#: ./application/modules/translator/assets/js/admin.js:841
 msgid "File was successfuly updated."
 msgstr "Файл был успешно обновлен."
 
@@ -169,15 +367,15 @@ msgid "Choose template"
 msgstr "Выберите шаблон"
 
 #: ./application/modules/translator/assets/admin/create.tpl:14
-#: ./application/modules/translator/assets/admin/list.tpl:85
+#: ./application/modules/translator/assets/admin/list.tpl:129
 #: ./application/modules/translator/assets/admin/exchange.tpl:14
 msgid "Back"
 msgstr "Назад"
 
 #: ./application/modules/translator/assets/admin/create.tpl:20
-#: ./application/modules/translator/assets/admin/list.tpl:30
-#: ./application/modules/translator/assets/admin/list.tpl:95
-#: ./application/modules/translator/assets/admin/list.tpl:303
+#: ./application/modules/translator/assets/admin/list.tpl:29
+#: ./application/modules/translator/assets/admin/list.tpl:135
+#: ./application/modules/translator/assets/admin/list.tpl:360
 msgid "Save"
 msgstr "Сохранить"
 
@@ -195,55 +393,55 @@ msgid "Choose file location"
 msgstr "Выбрать местоположение файла"
 
 #: ./application/modules/translator/assets/admin/create.tpl:54
-#: ./application/modules/translator/assets/admin/list.tpl:157
+#: ./application/modules/translator/assets/admin/list.tpl:204
 #: ./application/modules/translator/assets/admin/exchange.tpl:50
 #: ./application/modules/translator/assets/admin/exchange.tpl:79
 msgid "No locales"
 msgstr "Нет локалей"
 
 #: ./application/modules/translator/assets/admin/create.tpl:61
-#: ./application/modules/translator/assets/admin/list.tpl:164
+#: ./application/modules/translator/assets/admin/list.tpl:211
 #: ./application/modules/translator/assets/admin/exchange.tpl:57
 #: ./application/modules/translator/assets/admin/exchange.tpl:86
 msgid "Modules"
 msgstr "Модули"
 
 #: ./application/modules/translator/assets/admin/create.tpl:62
-#: ./application/modules/translator/assets/admin/list.tpl:165
+#: ./application/modules/translator/assets/admin/list.tpl:212
 #: ./application/modules/translator/assets/admin/exchange.tpl:58
 #: ./application/modules/translator/assets/admin/exchange.tpl:87
 msgid "Templates"
 msgstr "Шаблоны"
 
 #: ./application/modules/translator/assets/admin/create.tpl:63
-#: ./application/modules/translator/assets/admin/list.tpl:166
+#: ./application/modules/translator/assets/admin/list.tpl:213
 #: ./application/modules/translator/assets/admin/exchange.tpl:59
 #: ./application/modules/translator/assets/admin/exchange.tpl:88
 msgid "Main"
 msgstr "Главный"
 
 #: ./application/modules/translator/assets/admin/create.tpl:74
-#: ./application/modules/translator/assets/admin/po_table.tpl:50
+#: ./application/modules/translator/assets/admin/po_table.tpl:56
 msgid "Project Name"
 msgstr "Название Проекта"
 
 #: ./application/modules/translator/assets/admin/create.tpl:81
-#: ./application/modules/translator/assets/admin/po_table.tpl:57
+#: ./application/modules/translator/assets/admin/po_table.tpl:63
 msgid "Translator email"
 msgstr "Email переводчика"
 
 #: ./application/modules/translator/assets/admin/create.tpl:88
-#: ./application/modules/translator/assets/admin/po_table.tpl:64
+#: ./application/modules/translator/assets/admin/po_table.tpl:70
 msgid "Translator name"
 msgstr "Имя переводчика"
 
 #: ./application/modules/translator/assets/admin/create.tpl:95
-#: ./application/modules/translator/assets/admin/po_table.tpl:71
+#: ./application/modules/translator/assets/admin/po_table.tpl:77
 msgid "Language-Team name"
 msgstr "Название Language-Team"
 
 #: ./application/modules/translator/assets/admin/create.tpl:102
-#: ./application/modules/translator/assets/admin/po_table.tpl:78
+#: ./application/modules/translator/assets/admin/po_table.tpl:84
 msgid "Language-Team email"
 msgstr "Email Language-Team"
 
@@ -252,7 +450,7 @@ msgid "Basepath"
 msgstr "Базовой путь"
 
 #: ./application/modules/translator/assets/admin/create.tpl:116
-#: ./application/modules/translator/assets/admin/list.tpl:325
+#: ./application/modules/translator/assets/admin/list.tpl:381
 msgid "Paths"
 msgstr "Пути"
 
@@ -261,12 +459,12 @@ msgid "Add path"
 msgstr "Добавить путь"
 
 #: ./application/modules/translator/assets/admin/create.tpl:129
-#: ./application/modules/translator/assets/admin/po_table.tpl:85
+#: ./application/modules/translator/assets/admin/po_table.tpl:91
 msgid "Language"
 msgstr "Язык"
 
 #: ./application/modules/translator/assets/admin/create.tpl:136
-#: ./application/modules/translator/assets/admin/po_table.tpl:92
+#: ./application/modules/translator/assets/admin/po_table.tpl:98
 msgid "Country"
 msgstr "Страна"
 
@@ -274,126 +472,123 @@ msgstr "Страна"
 msgid "File editing"
 msgstr "Редактирование файла"
 
-#: ./application/modules/translator/assets/admin/list.tpl:23
+#: ./application/modules/translator/assets/admin/list.tpl:22
 msgid "Origin string"
 msgstr "Оригинальная строка"
 
-#: ./application/modules/translator/assets/admin/list.tpl:26
+#: ./application/modules/translator/assets/admin/list.tpl:25
 msgid "Line number"
 msgstr "Номер строки"
 
-#: ./application/modules/translator/assets/admin/list.tpl:31
-#: ./application/modules/translator/assets/admin/list.tpl:69
+#: ./application/modules/translator/assets/admin/list.tpl:30
+#: ./application/modules/translator/assets/admin/list.tpl:66
+#: ./application/modules/translator/assets/admin/list.tpl:113
 msgid "Cancel"
 msgstr "Отменить"
 
-#: ./application/modules/translator/assets/admin/list.tpl:39
+#: ./application/modules/translator/assets/admin/list.tpl:74
 msgid "Update results"
 msgstr "Результаты обновления"
 
-#: ./application/modules/translator/assets/admin/list.tpl:91
+#: ./application/modules/translator/assets/admin/list.tpl:143
 msgid "Reset"
 msgstr "Сброс"
 
-#: ./application/modules/translator/assets/admin/list.tpl:103
+#: ./application/modules/translator/assets/admin/list.tpl:151
 msgid "Create"
 msgstr "Создать"
 
-#: ./application/modules/translator/assets/admin/list.tpl:107
+#: ./application/modules/translator/assets/admin/list.tpl:152
 #: ./application/modules/translator/assets/admin/exchange.tpl:7
 #: ./application/modules/translator/assets/admin/exchange.tpl:20
 msgid "Exchange"
 msgstr "Обмен"
 
-#: ./application/modules/translator/assets/admin/list.tpl:111
+#: ./application/modules/translator/assets/admin/list.tpl:153
 msgid "Correct paths"
 msgstr "Править пути"
 
-#: ./application/modules/translator/assets/admin/list.tpl:125
+#: ./application/modules/translator/assets/admin/list.tpl:171
 msgid "All strings"
 msgstr "Все строки"
 
-#: ./application/modules/translator/assets/admin/list.tpl:143
+#: ./application/modules/translator/assets/admin/list.tpl:190
 msgid "Settings"
 msgstr "Настройки"
 
-#: ./application/modules/translator/assets/admin/list.tpl:180
+#: ./application/modules/translator/assets/admin/list.tpl:226
 msgid "Options"
 msgstr "Критерии"
 
-#: ./application/modules/translator/assets/admin/list.tpl:186
+#: ./application/modules/translator/assets/admin/list.tpl:232
 msgid "Sensitive search"
 msgstr "Поиск с учетом регистра"
 
-#: ./application/modules/translator/assets/admin/list.tpl:190
+#: ./application/modules/translator/assets/admin/list.tpl:236
 msgid "Whole word search"
 msgstr "Поиск по целому слову"
 
-#: ./application/modules/translator/assets/admin/list.tpl:194
+#: ./application/modules/translator/assets/admin/list.tpl:240
 msgid "Use regular expration search"
 msgstr "Использовать регулярное выражение"
 
-#: ./application/modules/translator/assets/admin/list.tpl:201
+#: ./application/modules/translator/assets/admin/list.tpl:247
 msgid "Search in origin strings"
 msgstr "Поиск в оригинальных строках"
 
-#: ./application/modules/translator/assets/admin/list.tpl:205
+#: ./application/modules/translator/assets/admin/list.tpl:251
 msgid "Search in translation strings"
 msgstr "Поиск в строках перевода"
 
-#: ./application/modules/translator/assets/admin/list.tpl:209
+#: ./application/modules/translator/assets/admin/list.tpl:255
 msgid "Search in comments strings"
 msgstr "Поиск в комментариях"
 
-#: ./application/modules/translator/assets/admin/list.tpl:222
+#: ./application/modules/translator/assets/admin/list.tpl:271
 msgid "Origin"
 msgstr "Оригинальные"
 
-#: ./application/modules/translator/assets/admin/list.tpl:224
+#: ./application/modules/translator/assets/admin/list.tpl:276
 msgid "Translation"
 msgstr "Перевод"
 
-#: ./application/modules/translator/assets/admin/list.tpl:226
+#: ./application/modules/translator/assets/admin/list.tpl:281
 msgid "Default sort"
 msgstr "Сортировка по умолчанию"
 
-#: ./application/modules/translator/assets/admin/list.tpl:229
+#: ./application/modules/translator/assets/admin/list.tpl:284
 msgid "Comment"
 msgstr "Комментарий"
 
-#: ./application/modules/translator/assets/admin/list.tpl:232
+#: ./application/modules/translator/assets/admin/list.tpl:290
 msgid "Links"
 msgstr "Ссылки"
 
-#: ./application/modules/translator/assets/admin/list.tpl:244
-msgid "File not exist"
-msgstr "Файл не существует"
-
-#: ./application/modules/translator/assets/admin/list.tpl:245
+#: ./application/modules/translator/assets/admin/list.tpl:303
 msgid "Create file"
 msgstr "Создайте файл"
 
-#: ./application/modules/translator/assets/admin/list.tpl:277
+#: ./application/modules/translator/assets/admin/list.tpl:334
 msgid "Origins language"
 msgstr "Языка оригинала"
 
-#: ./application/modules/translator/assets/admin/list.tpl:282
+#: ./application/modules/translator/assets/admin/list.tpl:339
 msgid "No"
 msgstr "Нет"
 
-#: ./application/modules/translator/assets/admin/list.tpl:295
+#: ./application/modules/translator/assets/admin/list.tpl:352
 msgid "Yandex Api Key"
 msgstr "Яндекс Api-Ключ"
 
-#: ./application/modules/translator/assets/admin/list.tpl:298
+#: ./application/modules/translator/assets/admin/list.tpl:355
 msgid "Get Yandex Api key"
 msgstr "Получить ключ Яндекс Api"
 
-#: ./application/modules/translator/assets/admin/list.tpl:343
+#: ./application/modules/translator/assets/admin/list.tpl:398
 msgid "Add"
 msgstr "Добавить"
 
-#: ./application/modules/translator/assets/admin/po_table.tpl:42
+#: ./application/modules/translator/assets/admin/po_table.tpl:48
 msgid "The file is empty."
 msgstr "Этот файл пуст."
 
@@ -409,6 +604,7 @@ msgstr "Выбрать файл расположения приемника"
 msgid "Choose module"
 msgstr "Выберите модуль"
 
+#: ./application/modules/translator/assets/admin/list.tpl:122
 #: ./application/modules/translator/module_info.php:6
 msgid "Translator"
 msgstr "Переводчик"
