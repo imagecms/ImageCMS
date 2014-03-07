@@ -100,101 +100,101 @@
                                             {foreach $deliveryMethods as $deliveryMethod}
                                                 {$del_id = $deliveryMethod->getId()}
                                                 <option
-                                                {if $counter} selected="selected"{/if}
-                                                {$counter = false}
-                                                {$del_id = $deliveryMethod->getId()}
-                                                {$price = ceil($deliveryMethod->getPrice())}
-                                                {$del_freefrom = ceil($deliveryMethod->getFreeFrom())}
+                                                    {if $counter} selected="selected"{/if}
+                                                    {$counter = false}
+                                                    {$del_id = $deliveryMethod->getId()}
+                                                    {$price = ceil($deliveryMethod->getPrice())}
+                                                    {$del_freefrom = ceil($deliveryMethod->getFreeFrom())}
 
-                                                name="met_del"
-                                                value="{echo $del_id}"
-                                                data-price="{$price}"
-                                                data-freefrom="{echo $del_freefrom}"/>
-                                            {echo $deliveryMethod->getName()}
-                                            </option>
-                                        {/foreach}
-                                    </select>
-                                </div>*/}
-                                <div class="frame-radio">
-                                    {foreach $deliveryMethods as $deliveryMethod}
-                                        {$del_id = $deliveryMethod->getId()}
-                                        <div class="frame-label">
-                                            <span class="niceRadio b_n">
-                                                <input type="radio"
-                                                {if $counter} checked="checked"{/if}
-                                                {$counter = false}
-                                                {$del_id = $deliveryMethod->getId()}
-                                                {$price = ceil($deliveryMethod->getPrice())}
-                                                {$del_freefrom = ceil($deliveryMethod->getFreeFrom())}
-                                                name="deliveryMethodId"
-                                                value="{echo $del_id}"
-                                                data-price="{$price}"
-                                                data-freefrom="{echo $del_freefrom}"
-                                                />
-                                        </span>
-                                        <div class="name-count">
-                                            <span class="text-el">{echo $deliveryMethod->getName()}</span>
-                                            {if $deliveryMethod->getDescription() && trim($deliveryMethod->getDescription()) != ""}
-                                                <span class="icon_ask" data-rel="tooltip" data-title="{echo $deliveryMethod->getDescription()}"></span>
-                                            {/if}
-                                        </div>
-                                        <div class="help-block">
-                                            <div>{lang('Стоимость ','newLevel')}: {echo $price} <span class="curr">{$CS}</span></div>
-                                        </div>
-                                    </div>
-                                {/foreach}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="frame-label">
-                        <span class="title">{lang('Адрес доставки:','newLevel')}</span>
-                        <span class="frame-form-field">
-                            {if $isRequired['userInfo[deliverTo]']}
-                                <span class="must">*</span>
-                            {/if}
-                            <input name="userInfo[deliverTo]" type="text" value="{$profile.address}"/>
-                        </span>
-                    </div>
-                    {echo ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPatternMain('pattern_custom_field')->getOneCustomFieldsByName('city','order',$profile.id,'user')->asHtml()}
-                    <div class="frame-label">
-                        <div class="frame-form-field">
-                            <button type="button" class="d_l_1 m-b_5" data-drop=".hidden-comment" data-place="inherit" data-overlay-opacity="0">{lang('Добавить комментарий к заказу','newLevel')}</button>
-                            <div class="hidden-comment drop">
-                                <textarea name="userInfo[commentText]" ></textarea>
-                            </div>
-                        </div>
-                    </div>
-                    {if count($paymentMethods)}
-                        <div class="frame-label">
-                            <span class="title">{lang('Оплата:','newLevel')}</span>
-                            <div class="frame-form-field check-variant-payment p_r">
-                                <div class="paymentMethod">
-                                    {$counter = true}
-                                    <div class="lineForm">
-                                        <select name="paymentMethodId" id="paymentMethod">
-                                            {foreach $paymentMethods as $paymentMethod}
-                                                <label>
-                                                    <option
-                                                        {$pay_id = $paymentMethod->getId()}
-                                                        {if $counter} checked="checked"
-                                                            {$counter = false}
-                                                        {/if}
-                                                        value="{echo $pay_id}"
-                                                        />
-                                                    {echo $paymentMethod->getName()}
-                                                    </option>
-                                                </label>
+                                                    name="met_del"
+                                                    value="{echo $del_id}"
+                                                    data-price="{$price}"
+                                                    data-freefrom="{echo $del_freefrom}"/>
+                                                {echo $deliveryMethod->getName()}
+                                                </option>
                                             {/foreach}
                                         </select>
+                                    </div>*/}
+                                    <div class="frame-radio">
+                                        {foreach $deliveryMethods as $deliveryMethod}
+                                            {$del_id = $deliveryMethod->getId()}
+                                            <div class="frame-label">
+                                                <span class="niceRadio b_n">
+                                                    <input type="radio"
+                                                           {if $counter} checked="checked"{/if}
+                                                           {$counter = false}
+                                                           {$del_id = $deliveryMethod->getId()}
+                                                           {$price = ceil($deliveryMethod->getPrice())}
+                                                           {$del_freefrom = ceil($deliveryMethod->getFreeFrom())}
+                                                           name="deliveryMethodId"
+                                                           value="{echo $del_id}"
+                                                           data-price="{$price}"
+                                                           data-freefrom="{echo $del_freefrom}"
+                                                           />
+                                                </span>
+                                                <div class="name-count">
+                                                    <span class="text-el">{echo $deliveryMethod->getName()}</span>
+                                                    {if $deliveryMethod->getDescription() && trim($deliveryMethod->getDescription()) != ""}
+                                                        <span class="icon_ask" data-rel="tooltip" data-title="{echo $deliveryMethod->getDescription()}"></span>
+                                                    {/if}
+                                                </div>
+                                                <div class="help-block">
+                                                    <div>{lang('Стоимость ','newLevel')}: {echo $price} <span class="curr">{$CS}</span></div>
+                                                </div>
+                                            </div>
+                                        {/foreach}
                                     </div>
-                                    {/*<div class="frame-radio">
-                                    {foreach $paymentMethods as $paymentMethod}
+                                </div>
+                            </div>
+                            <div class="frame-label">
+                                <span class="title">{lang('Адрес доставки:','newLevel')}</span>
+                                <span class="frame-form-field">
+                                    {if $isRequired['userInfo[deliverTo]']}
+                                        <span class="must">*</span>
+                                    {/if}
+                                    <input name="userInfo[deliverTo]" type="text" value="{$profile.address}"/>
+                                </span>
+                            </div>
+                            {echo ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPatternMain('pattern_custom_field')->getOneCustomFieldsByName('city','order',$profile.id,'user')->asHtml()}
+                            <div class="frame-label">
+                                <div class="frame-form-field">
+                                    <button type="button" class="d_l_1 m-b_5" data-drop=".hidden-comment" data-place="inherit" data-overlay-opacity="0">{lang('Добавить комментарий к заказу','newLevel')}</button>
+                                    <div class="hidden-comment drop">
+                                        <textarea name="userInfo[commentText]" ></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            {if count($paymentMethods)}
+                                <div class="frame-label">
+                                    <span class="title">{lang('Оплата:','newLevel')}</span>
+                                    <div class="frame-form-field check-variant-payment p_r">
+                                        <div class="paymentMethod">
+                                            {$counter = true}
+                                            <div class="lineForm">
+                                                <select name="paymentMethodId" id="paymentMethod">
+                                                    {foreach $paymentMethods as $paymentMethod}
+                                                        <label>
+                                                            <option
+                                                                {$pay_id = $paymentMethod->getId()}
+                                                                {if $counter} checked="checked"
+                                                                    {$counter = false}
+                                                                {/if}
+                                                                value="{echo $pay_id}"
+                                                                />
+                                                            {echo $paymentMethod->getName()}
+                                                            </option>
+                                                        </label>
+                                                    {/foreach}
+                                                </select>
+                                            </div>
+                                            {/*<div class="frame-radio">
+                                            {foreach $paymentMethods as $paymentMethod}
                                     <div class="frame-label">
                                         <span class="niceRadio b_n">
                                             <input type="radio"
-                                        {if $counter} checked="checked"
-                                            {$counter = false}
-                                        {/if}
+                                                {if $counter} checked="checked"
+                                                    {$counter = false}
+                                                {/if}
                                                    value="{echo $paymentMethod->getId()}"
                                                    name="paymentMethodId"
                                                    />
@@ -202,129 +202,126 @@
                                         <div class="name-count">
                                             <span class="text-el">{echo $paymentMethod->getName()}</span>
                                         </div>
-                                        {if $paymentMethod->getDescription()}
+                                                {if $paymentMethod->getDescription()}
                                             <div class="help-block">{echo $paymentMethod->getDescription()}</div>
-                                        {/if}
+                                                {/if}
                                     </div>
-                                    {/foreach}
+                                            {/foreach}
                                     </div>
                                     */}
+                                        </div>
+                                        <div class="preloader"></div>
+                                    </div>
                                 </div>
-                                <div class="preloader"></div>
+                            {/if}
+                        </div>
+                        <div class="groups-form">
+                            <div class="frame-label">
+                                <span class="title">&nbsp;</span>
+                                <span class="frame-form-field">
+                                    <div class="btn-cart btn-cart-p">
+                                        <input type="submit" class="btn btn_cart" value="{lang('Подтвердить заказ','newLevel')}"/>
+                                    </div>
+                                </span>
                             </div>
                         </div>
-                    {/if}
+                    </div>
                 </div>
-                <div class="groups-form">
-                    <div class="frame-label">
-                        <span class="title">&nbsp;</span>
-                        <span class="frame-form-field">
-                            <div class="btn-cart btn-cart-p">
-                                <input type="submit" class="btn btn_cart" value="{lang('Подтвердить заказ','newLevel')}"/>
+                <div class="right-cart">
+                    <div class="frameBask frame-bask frame-bask-order">
+                        <div class="frame-title clearfix">
+                            <div class="title f_l">Мой заказ</div>
+                            <div class="f_r">
+                                <button type="button" class="d_l_1" onClick="ShopFront.Cart.togglePopup()">Редактировать</button>
                             </div>
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="right-cart">
-            <div class="frameBask frame-bask frame-bask-order">
-                <div class="frame-title clearfix">
-                    <div class="title f_l">Мой заказ</div>
-                    <div class="f_r">
-                        <button type="button" class="d_l_1" onClick="ShopFront.Cart.togglePopup()">Редактировать</button>
-                    </div>
-                </div>
-                <div id="orderDetails">
-                    <div class="preloader"></div>
-                </div>
-                <table class="table-order table-order-view">
-                    <tfoot class="gen-info-price">
-                        <tr class="frame-gen-discount" id="frameGenSumDiscount">
-                            <td colspan="2">
-                                <span class="s-t">{lang('Сумма товаров','newLevel')}</span>
-                            </td>
-                            <td>
-                                <span class="price f-w_b" id="totalPrice">{echo str_replace(',', '.', ShopCore::app()->SCart->totalPrice())}</span>
-                                <span class="curr"> {$CS}</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">
-                                <span class="s-t">{lang('Стоимость доставки','newLevel')}:</span>
-                            </td>
-                            <td>
-                                <span class="price"><span class="text-el"></span><span class="f-w_b" id="shipping"></span></span>
-                                <span class="curr">{$CS}</span>
-                            </td>
-                        </tr>
-                        <tr id="frameGenDiscount" style="display: none;">
-                            <td colspan="2">
-                                <span class="s-t">{lang('Ваша текущая скидка','newLevel')}:</span>
-                            </td>
-                            <td>
-                                <div class="text-discount current-discount frameDiscount">
-                                    <span class="curDiscount"></span>
-                                    <span class="curr">{$CS}</span>
-                                </div>
-                                <div id="discount"></div>
-                            </td>
-                        </tr>
-                        <tr id="frameGift" style="display: none;">
-                            <td>
-                                <span class="s-t">{lang('Подарочный сертификат','newLevel')}:</span>
-                            </td>
-                            <td colspan="2">
-                                <div class="f_r btn-toggle-gift">
-                                    <button type="button" class="d_l_1" data-drop="#gift" data-place="inherit" data-overlay-opacity="0">
-                                        <span class="text-el">Ввести промо-код</span>
-                                    </button>
-                                </div>
-                                <div id="gift" class="drop o_h">
-                                    <div class="preloader"></div>
-                                </div>
-                            </td>
-                        </tr>
-                    </tfoot>
-                </table>
-                <div class="gen-sum-order frame-foot">
-                    <div class="header-frame-foot">
-                        <div class="inside-padd clearfix">
-                            <span class="title f_l">{lang('К оплате с учетом доставки','newLevel')}:</span>
-                            <span class="frame-prices f_r">
-                                <span class="current-prices f-s_0">
-                                    <span class="price-new">
-                                        <span>
-                                            <span class="price" id="finalAmount"></span>
+                        </div>
+                        <div id="orderDetails">
+                            <div class="preloader"></div>
+                        </div>
+                        <table class="table-order table-order-view">
+                            <tfoot class="gen-info-price">
+                                <tr class="frame-gen-discount" id="frameGenSumDiscount">
+                                    <td colspan="2">
+                                        <span class="s-t">{lang('Сумма товаров','newLevel')}</span>
+                                    </td>
+                                    <td>
+                                        <span class="price f-w_b" id="totalPrice">{echo str_replace(',', '.', ShopCore::app()->SCart->totalPrice())}</span>
+                                        <span class="curr"> {$CS}</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <span class="s-t">{lang('Стоимость доставки','newLevel')}:</span>
+                                    </td>
+                                    <td>
+                                        <span class="price"><span class="text-el"></span><span class="f-w_b" id="shipping"></span></span>
+                                        <span class="curr">{$CS}</span>
+                                    </td>
+                                </tr>
+                                <tr id="frameGenDiscount" style="display: none;">
+                                    <td colspan="2">
+                                        <span class="s-t">{lang('Ваша текущая скидка','newLevel')}:</span>
+                                    </td>
+                                    <td>
+                                        <div class="text-discount current-discount frameDiscount">
+                                            <span class="curDiscount"></span>
                                             <span class="curr">{$CS}</span>
-                                        </span>
-                                    </span>
-                                    {if $NextCS != null}
-                                        <span class="price-add">
+                                        </div>
+                                        <div id="discount"></div>
+                                    </td>
+                                </tr>
+                                <tr id="frameGift" style="display: none;">
+                                    <td>
+                                        <span class="s-t">{lang('Подарочный сертификат','newLevel')}:</span>
+                                    </td>
+                                    <td colspan="2">
+                                        <div class="f_r btn-toggle-gift">
+                                            <button type="button" class="d_l_1" data-drop="#gift" data-place="inherit" data-overlay-opacity="0">
+                                                <span class="text-el">Ввести промо-код</span>
+                                            </button>
+                                        </div>
+                                        <div id="gift" class="drop o_h">
+                                            <div class="preloader"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        <div class="gen-sum-order footer-bask">
+                            <div class="inside-padd clearfix">
+                                <span class="title f_l">{lang('К оплате с учетом доставки','newLevel')}:</span>
+                                <span class="frame-prices f_r">
+                                    <span class="current-prices f-s_0">
+                                        <span class="price-new">
                                             <span>
-                                                (<span class="price" id="finalAmountAdd"></span>
-                                                <span class="curr-add">{$NextCS}</span>)
+                                                <span class="price" id="finalAmount"></span>
+                                                <span class="curr">{$CS}</span>
                                             </span>
                                         </span>
-                                    {/if}
+                                        {if $NextCS != null}
+                                            <span class="price-add">
+                                                <span>
+                                                    (<span class="price" id="finalAmountAdd"></span>
+                                                    <span class="curr-add">{$NextCS}</span>)
+                                                </span>
+                                            </span>
+                                        {/if}
+                                    </span>
                                 </span>
-                            </span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+                <input type="hidden" name="makeOrder" value="1">
+                <input type="hidden" name="checkCert" value="0">
+                {form_csrf()}
+            </form>
         </div>
-        <input type="hidden" name="makeOrder" value="1">
-        <input type="hidden" name="checkCert" value="0">
-        {form_csrf()}
-    </form>
-</div>
-</div>
+    </div>
 </div>
 <script type="text/template" id="orderDetailsTemplate">
     {literal}   
         <div class="js-no-empty no-empty">
-        <div class="frame-bask-main">
         <div class="inside-padd">
         <table class="table-order">
         <tbody>
@@ -388,7 +385,6 @@
         </td>
         <td>
         <div class="s-t"><%-text.sum%></div>
-        <div class="frame-cur-sum-price">
         <div class="frame-prices f-s_0">
         <%if (item.origprice) { %>
         <span class="price-discount">
@@ -416,7 +412,6 @@
         <%}%>
         <%*/%>
         </span>
-        </div>
         </div>
         </td>
         </tr>
@@ -585,7 +580,6 @@
         </div>
         </div>
         </div>
-        </div>
     {/literal}
 </script>
 <script type="text/template" id="orderPaymentSelect">
@@ -618,5 +612,5 @@
     {/literal}
 </script>
 <script type="text/javascript">
-                                initDownloadScripts(['jquery.maskedinput-1.3.min', 'cusel-min-2.5', 'order'], 'initOrderTrEv', 'initOrder');
+    initDownloadScripts(['jquery.maskedinput-1.3.min', 'cusel-min-2.5', 'order'], 'initOrderTrEv', 'initOrder');
 </script>
