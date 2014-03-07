@@ -1,8 +1,8 @@
 <div class="inside-padd clearfix">
     <div class="frame-change-profile">
         <div class="horizontal-form">
-              <form method="post" id="form_change_info" onsubmit="ImageCMSApi.formAction('{site_url("/shop/profileapi/changeInfo")}', '#form_change_info', {literal}{hideForm: false, durationHideForm: 1000}{/literal});
-                return false;">
+            <form method="post" id="form_change_info" onsubmit="ImageCMSApi.formAction('{site_url("/shop/profileapi/changeInfo")}', '#form_change_info', {literal}{hideForm: false, durationHideForm: 1000}{/literal});
+                      return false;">
                 <label>
                     <span class="title">{lang('Ваше имя','newLevel')}:</span>
                     <span class="frame-form-field">
@@ -43,9 +43,8 @@
             </form>
         </div>
     </div>
-    {$discount = (array)\mod_discount\classes\BaseDiscount::create()}
-
-    {if $discount['user'] or $discount['group_user'] or $discount['comulativ']}
+    {if $CI->load->module('mod_discount/discount_api')->discountsExists()}
+        {$discount = $CI->load->module('mod_discount/discount_api')->get_user_discount_api()}
         <div class="layout-highlight info-discount">
             <div class="title-default">
                 <div class="title">{lang('Скидки','newLevel')}</div>
