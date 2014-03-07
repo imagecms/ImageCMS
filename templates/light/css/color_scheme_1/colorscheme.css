@@ -100,6 +100,8 @@ input[type="text"][disabled], input[type="password"][disabled], textarea[disable
 .date{color: #b9b9b9;}
 
 /*active*/
+:focus, :acitve{outline: none;}
+button:focus:active{outline: none;}
 button[disabled="disabled"], input[type="submit"][disabled="disabled"], input[type="reset"][disabled="disabled"], input[type="button"][disabled="disabled"], .disabled, .disabled > *, .divider{cursor: default;color: #999;}
 .active > span, .active > a{cursor: default;color: #999;}
 .active > button{color: #fff;}
@@ -137,7 +139,7 @@ input[type="radio"]:focus, input[type="checkbox"]:focus, input[type="submit"]:fo
 
 /*links*/
 a, .ref, .btn-crumb a .divider{color: #fd7c06;text-decoration: underline;}
-a:hover, .selected a, .ref:hover, .nav-static-pages > li > a:hover, a:focus, a:active{color: #fec4a4;text-decoration: none;}
+a:hover, .selected a, .ref:hover, .nav-static-pages > li > a:hover, a:focus, a:active{color: #fec4a4;}
 a.c_w:hover{color: #51d2ff !important;}
 /*/links*/
 
@@ -148,7 +150,7 @@ a.c_w:hover{color: #51d2ff !important;}
 .d_l_black{color: #000;border-bottom-color: #000;}
 .d_l_black:hover{color: #fec4a4;border-bottom-color: #fec4a4;}
 .d_l_1:hover, .pointer:hover .d_l_1, .btn-order-call .d_l:hover, .btn-compare > button:hover .d_l, .btn-wish > button:hover .d_l, .old-buyer:hover .d_l, a:focus [class*="d_l"], button:focus [class*="d_l"], .header-category .cuselText:hover, .items-catalog .cuselText:hover{color: #fec4a4;border-bottom-color: #fec4a4;}
-.active > a > [class*="d_l"], .active > button > [class*="d_l"], .active > [class*="d_l"]{color: #51d2ff;border-bottom-color: #51d2ff;}
+.active > a > [class*="d_l"], .active > button > [class*="d_l"], .active > [class*="d_l"]{color: #fec4a4;border-bottom-color: #fec4a4;}
 .d_l_r_f, .btn-additional-s_c .d_l{color: #fff;border-bottom-color: #fff;}
 
 .btn-already-show .d_l_1{color: #333;border-bottom-color: #333;}
