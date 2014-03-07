@@ -132,7 +132,6 @@
                         {/if}
                     </div>
                 </div>
-                {if $condTypeProperty}<div class="preloader"></div>{/if}
             {/if}
         {/foreach}
     {/if}
