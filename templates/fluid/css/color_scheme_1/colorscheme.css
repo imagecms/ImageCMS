@@ -46,6 +46,8 @@ input[type="text"][disabled], input[type="password"][disabled], textarea[disable
 .date{color: #a0a0a0;}
 
 /*active*/
+:focus, :acitve{outline: none;}
+button:focus:active{outline: none;}
 button[disabled="disabled"], input[type="submit"][disabled="disabled"], input[type="reset"][disabled="disabled"], input[type="button"][disabled="disabled"], .disabled, .disabled > *, .divider{cursor: default;color: #b1b1b1;}
 .active > span, .active > a, .active > button{cursor: default;color: #999;}
 .active > button{color: #fff;}
@@ -1031,3 +1033,5 @@ input.input-search:focus{box-shadow: none;color: #fff;}
 
 .nav a, .crumbs a .text-el{border-bottom: 1px solid #9fb4d0;}
 .short-desc{color: #9aa1ab;}
+
+button:focus{outline: 1px solid #75d9ff;}

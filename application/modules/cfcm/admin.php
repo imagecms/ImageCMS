@@ -101,7 +101,7 @@ class Admin extends BaseAdminController {
                 exit;
             }
             if (!preg_match("/^[0-9a-z_]+$/i", $_POST['field_name'])) {
-                showMessage(lang("Only Latin characters", 'cfcm'), false, 'r');
+                showMessage(lang("Field Name cant contain only Latin alphanumeric characters", 'cfcm'), false, 'r');
                 exit;
             }
 

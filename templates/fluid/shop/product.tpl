@@ -355,10 +355,10 @@
                         <!--Start .Share-->
                         <div class="social-product">
                             <div class="social-like d_i-b">
-                                {//echo $CI->load->module('share')->_make_like_buttons()}
+                                {echo $CI->load->module('share')->_make_like_buttons()}
                             </div>
                             <div class="social-tell d_i-b">
-                                {//echo $CI->load->module('share')->_make_share_form()}
+                                {echo $CI->load->module('share')->_make_share_form()}
                             </div>
                         </div>
                         <!-- End. Share -->

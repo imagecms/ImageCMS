@@ -49,7 +49,8 @@ input[type="text"][disabled], input[type="password"][disabled], textarea[disable
 .date{color: #a0a0a0;}
 
 /*active*/
-:focus, :active{outline: none;}
+:focus, :acitve{outline: none;}
+button:focus{outline: none;}
 button[disabled="disabled"], input[type="submit"][disabled="disabled"], input[type="reset"][disabled="disabled"], input[type="button"][disabled="disabled"], .disabled, .disabled > *, .divider{cursor: default;color: #999;}
 .active > span, .active > a, .active > button{cursor: default;color: #999;}
 .active > button{color: #fff;}

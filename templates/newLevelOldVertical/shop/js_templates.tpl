@@ -507,3 +507,13 @@
         <div class="drop-footer"></div>
     </div>
     <button style="display: none;" type="button" data-drop="#confirm"  data-modal="true" data-confirm="true" data-effect-on="fadeIn" data-effect-off="fadeOut"></button>
+    {if !$is_logged_in}
+        <div class="drop drop-style" id="dropAuth">
+            <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
+            <div class="drop-content t-a_c" style="width: 350px;min-height: 0;">
+                <div class="inside-padd">
+                    {lang('Для того, что бы добавить товар в список желаний, Вам нужно', 'newLevel')} <button type="button" class="d_l_1" data-drop=".drop-enter" data-source="{site_url('auth')}">{lang('авторизоваться', 'newLevel')}</button>
+                </div>
+            </div>
+        </div>
+    {/if}

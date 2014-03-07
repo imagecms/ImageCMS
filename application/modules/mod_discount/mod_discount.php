@@ -61,7 +61,7 @@ class Mod_discount extends \MY_Controller {
     private function applyDiscountCartItems() {
         $cart = \Cart\BaseCart::getInstance();
         $cartItems = $cart->getItems('SProducts');
-
+        
         if (count($cartItems['data']) > 0) {
             foreach ($cartItems['data'] as $item) {
                 if ($item->originPrice == $item->price) {

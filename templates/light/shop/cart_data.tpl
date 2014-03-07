@@ -12,7 +12,7 @@
             <span class="text-cleaner">
                 <span class="helper"></span>
                 <span>
-                    <span class="text-el topCartCount">{echo $count}</span>
+                    <span class="text-el topCartCount">0</span>
                 </span>
             </span>
         </button>
