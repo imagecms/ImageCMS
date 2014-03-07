@@ -961,6 +961,7 @@ td.frame-cur-sum-price {vertical-align: middle;padding-left: 10px;padding-right:
 .count-or-compl{display: block;margin-bottom: 3px;}
 .frame-cur-sum-price .title{display: block;margin-bottom: 3px;}
 .frame-cur-sum-price [class*="price-"]{margin-bottom: 0;}
+.frame-cur-sum-price .price-discount{margin-bottom: 5px;}
 
 /*drop-bask*/
 .drop-bask{max-width: 854px;width: 90%;}
