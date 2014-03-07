@@ -294,9 +294,6 @@ td:last-child .frame-item-menu:hover{border-right-color: #fd7c06;}
 .items-brand-list > li > a{font-weight: bold;color: #333;text-decoration: none;}
 
 .items-brands .photo-block{border-width: 1px 0 0 1px;border-style: solid;border-color: #dedede;}
-
-.items-news > li{border-top: 1px solid #dedede;}
-.items-news > li:first-child{border-top: 0;}
 /*/items*/
 
 /*decor-element*/

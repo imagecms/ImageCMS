@@ -43,7 +43,8 @@
             </form>
         </div>
     </div>
-    {$discount = $CI->load->module('mod_discount/discount_api')->get_user_discount_api()}
+    {$discount = (array)\mod_discount\classes\BaseDiscount::create()}
+
     {if $discount['user'] or $discount['group_user'] or $discount['comulativ']}
         <div class="layout-highlight info-discount">
             <div class="title-default">

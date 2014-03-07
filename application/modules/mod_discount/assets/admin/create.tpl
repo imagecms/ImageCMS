@@ -46,7 +46,7 @@ var currencySymbolJS = '{echo $CS}';
                                 <label class="">
                                     <span class="span4">{lang('Discount code', 'mod_discount')}:</span>
                                     <span class="span8">
-                                     <input readonly id="discountKey" type="text" name="key" value="" onkeypress="return false;" onkeyup="return false;" onkeydown="return false;" autocomplete="off"/>
+                                     <input readonly id="discountKey" type="text" name="key" value="" autocomplete="off"/>
                                      <button class="btn btn-small" type="button" id="generateDiscountKey">
                                         <i class="icon-refresh"></i>
                                     </button>

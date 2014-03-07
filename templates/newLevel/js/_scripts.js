@@ -40,7 +40,7 @@ function init() {
             }));
 
             dropRep.append($('[data-clone="data-report"]').find(genObj.msgF).remove().end().clone(true).removeClass('d_n'));
-            dropRep.find('input[name="ProductId"]').val(el.data('prodid'));
+            dropRep.find('input[name="ProductId"]').val(el.data('id'));
         }
 
         try {
@@ -90,6 +90,7 @@ function init() {
     $.drop.setParameters(optionsDrop);
     $.drop.extendDrop('droppable', 'noinherit', 'heightContent', 'scroll', 'limitSize', 'galleries', 'placeBeforeShow', 'placeAfterClose', 'confirmPrompt');
     $('[data-drop]').drop();
+    $('a.fancybox').drop();
 
     ShopFront.CompareList.count();
     global.wishListCount();
@@ -356,7 +357,7 @@ function init() {
     doc.on('autocomplete.before showActivity before_add_to_compare before_delete_compare discount.load_certificate beforeAdd.Cart', function(e) {
         $.fancybox.showActivity();
     });
-    doc.on('autocomplete.after after.drop closed.drop hideActivity compare_list_add compare_list_rm compare_list_sync imageapi.success getTpl.Cart', function(e) {
+    doc.on('autocomplete.after after.drop closed.drop hideActivity compare_list_add compare_list_rm imageapi.success getTpl.Cart', function(e) {
         $.fancybox.hideActivity();
     });
 

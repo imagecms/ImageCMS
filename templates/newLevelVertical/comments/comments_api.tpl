@@ -108,10 +108,12 @@
                     </li>
                 {/foreach}
             </ul>
-            <button class="t-d_n f-s_0 s-all-d ref d_n_" data-trigger="[data-href='#comment']" data-scroll="true">
-                <span class="icon_arrow"></span>
-                <span class="text-el">{lang('Смотреть все ответы','newLevel')}</span>
-            </button>
+            {if $CI->core->core_data['data_type'] != 'page'}
+                <button class="t-d_n f-s_0 s-all-d ref d_n_" data-trigger="[data-href='#comment']" data-scroll="true">
+                    <span class="icon_arrow"></span>
+                    <span class="text-el">{lang('Смотреть все ответы','newLevel')}</span>
+                </button>
+            {/if}
         </div>
     {/if}
     {if $can_comment == 0 OR $is_logged_in}
@@ -136,18 +138,20 @@
                                         </span>
                                     </label>
                                 {/if}
-                                <label style="width: 45%;float: left;">
-                                    <span class="title">{lang('Ваше имя','newLevel')}</span>
-                                    <span class="frame-form-field">
-                                        <input type="text" name="comment_author" value="{get_cookie('comment_author')}"/>
-                                    </span>
-                                </label>
-                                <label style="width: 45%;margin-left: 10%;float: left;">
-                                    <span class="title">{lang('Ваш email:', 'newLevel')}</span>
-                                    <span class="frame-form-field">
-                                        <input type="text" name="comment_email" id="comment_email" value="{get_cookie('comment_email')}"/>
-                                    </span>
-                                </label>
+                                <div class="clearfix">
+                                    <label style="width: 45%;float: left;">
+                                        <span class="title">{lang('Ваше имя','newLevel')}</span>
+                                        <span class="frame-form-field">
+                                            <input type="text" name="comment_author" value="{get_cookie('comment_author')}"/>
+                                        </span>
+                                    </label>
+                                    <label style="width: 45%;margin-left: 10%;float: left;">
+                                        <span class="title">{lang('Ваш email:', 'newLevel')}</span>
+                                        <span class="frame-form-field">
+                                            <input type="text" name="comment_email" id="comment_email" value="{get_cookie('comment_email')}"/>
+                                        </span>
+                                    </label>
+                                </div>
                             {/if}
                             <label>
                                 <span class="title">{lang('Текст комментария:')}</span>

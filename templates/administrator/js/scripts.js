@@ -1301,21 +1301,6 @@ $(document).ready(
             var txt_val = $('.now-active-prod').text();
             $('.discount-out #productForDiscount').attr('value', txt_val);
 
-
-            $('.main_body').append('<div class="overlay"></div>');
-
-            $(this).keydown(function(e) {
-                e = e || window.event;
-                if (e.target.id == "baseSearch" || e.target.id == "shopSearch")
-                {
-                    if ((e.keyCode === 13 || (e.keyCode === 83 && e.ctrlKey)) && e.target.localName != 'textarea') {
-                        $('#adminSearchSubmit').click();
-                        return false;
-                    }
-                }
-            });
-
-
             $('a.pjax').unbind('click').die('click').on('click', function(event) {
                 event.preventDefault();
                 $('#loading').fadeIn(100);
@@ -1398,13 +1383,10 @@ $(document).ready(
             $(document).die('keydown').live('keydown', function(e) {
                 var dataSubmit = $("[data-submit]");
                 e = e || window.event;
-                if (e.ctrlKey)
-                    $('#baseSearch, #shopSearch').blur();
-                //if ((event.ctrlKey && event.shiftKey) || (event.shiftKey && event.altKey)) $('.baseSearch:first').focus();
                 if (e.keyCode === 83 && e.ctrlKey) {
                     if (!dataSubmit.hasClass('disabled') && dataSubmit.closest('.tab-pane').css('display') != 'none')
                         dataSubmit.trigger('click');
-                    return false;
+                    e.preventDefault();
                 }
             });
 
@@ -1438,7 +1420,6 @@ $(document).ready(
             });
 
             /**/
-            $('#baseSearch, #shopSearch').focus();
             $('[data-remove]').live('click', function() {
                 $(this).closest('tr').remove();
             });

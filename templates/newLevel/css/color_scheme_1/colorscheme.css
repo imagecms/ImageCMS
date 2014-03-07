@@ -95,7 +95,7 @@ a:focus, a:active {color: #51d2ff;}
 /*/links*/
 
 /*dotted lines*/
-[class*="d_l"]{text-decoration: none;cursor: pointer;position: relative;display: inline-block;border-bottom: 1px dotted transparent;line-height: 1.2;}
+[class*="d_l"]{text-decoration: none;cursor: pointer;position: relative;display: inline;border-bottom: 1px dotted transparent;line-height: 1.2;}
 [disabled] [class*="d_l"]{cursor: default;}
 .d_l_1, .btn-order-call .d_l, .btn-compare .d_l, .btn-wish .d_l, .old-buyer .d_l, .frame-group-checks .title .d_l{color: #0088cc;border-bottom-color: #0088cc;line-height: 1.2;}
 .d_l_1:hover, .pointer:hover .d_l_1, .btn-order-call .d_l:hover, .btn-compare > button:hover .d_l, .btn-wish > button:hover .d_l, .old-buyer:hover .d_l, a:focus [class*="d_l"], button:focus [class*="d_l"]{color: #51d2ff;border-bottom-color: #51d2ff;}
@@ -845,8 +845,8 @@ hr{border-top: 1px solid #fff;border-bottom: 1px solid #e4e4e4;}
 .btn-cart > button, .btn-cart > a, .btn-cart > input{height: 32px;line-height: 31px;padding: 0 24px 0 17px;}
 .btn-cart .text-el, .btn-cart > input{text-transform: uppercase;font-size: 13px;color: #fff;}
 
-.btn-cart-p .text-el, .btn-cart-p > input, .frame-payment input[type="submit"]{font-size: 18px;}
-.btn-cart-p > button, .btn-cart-p > a, .btn-cart-p > input, .frame-payment input[type="submit"]{height: 45px;line-height: 44px;padding: 0 24px;}
+.btn-cart-p .text-el, .btn-cart-p > input, .frame-payment input[type="submit"]{font-size: 15px;}
+.btn-cart-p > button, .btn-cart-p > a, .btn-cart-p > input, .frame-payment input[type="submit"]{height: 45px;line-height: 44px;padding: 0 20px;}
 .btn-cart:hover, .btn-cart:active, .frame-payment input[type="submit"]:hover, frame-payment input[type="submit"]:active{
     background: #a5cb04; /* Old browsers */
     background: -moz-linear-gradient(top,  #a5cb04 0%, #7ea404 49%, #699202 50%, #83ab07 100%); /* FF3.6+ */
@@ -1366,7 +1366,8 @@ footer .box-4{overflow: visible;}
 .vertical-carousel .group-button-carousel .prev > [class*="icon_arrow"], .btn-to-up [class*="icon_arrow"]{transform: rotate(90deg);-webkit-transform: rotate(90deg);-moz-transform: rotate(90deg);-o-transform: rotate(90deg);-ms-transform: rotate(90deg);}
 .vertical-carousel .group-button-carousel .next > [class*="icon_arrow"]{left: 1px;transform: rotate(90deg);-webkit-transform: rotate(90deg);-moz-transform: rotate(90deg);-o-transform: rotate(90deg);-ms-transform: rotate(90deg);}
 /*outlines*/
-input[type="radio"]:focus, input[type="checkbox"]:focus, input[type="submit"]:focus, input[type="button"]:focus, input[type="reset"]:focus, button:focus, .frame-item-menu > .frame-title > .title:focus{outline: 1px solid #75d9ff;}
+input[type="radio"]:focus, input[type="checkbox"]:focus, input[type="submit"]:focus, input[type="button"]:focus, input[type="reset"]:focus, .frame-item-menu > .frame-title > .title:focus, button:focus{outline: 1px solid #75d9ff;}
+button:focus:active{outline: none;}
 .cloud-zoom-lens {outline: 1px solid #969696;}
 .baner li > a:focus{outline: 1px solid #51d2ff;}
 .start-page-category-menu a:focus{outline: 1px solid #51d2ff;}

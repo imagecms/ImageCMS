@@ -15,12 +15,10 @@ class Wishlist_model extends CI_Model {
      * @return array
      */
     public function getSettings() {
-        $this->db->cache_on();
         $settings = $this->db->select('settings')
                 ->where('identif', 'wishlist')
                 ->get('components')
                 ->row_array();
-        $this->db->cache_off();
         $settings = unserialize($settings['settings']);
         return $settings;
     }
