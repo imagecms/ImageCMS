@@ -57,8 +57,9 @@ article, .container, .special-proposition .title-proposition-h{max-width: 980px;
 .left-catalog-first{float: left;width: 74.5%;}
 .right-catalog-first{float: right;width: 23.5%;}
 
-.left-cart{float: left;width: 45%;}
-.right-cart{float: right;width: 52%;}
+.left-cart{float: left;width: 45%;margin-bottom: 30px;}
+.right-cart{float: right;width: 52%;margin-bottom: 30px;}
+.vertical-layout .left-cart, .vertical-layout .right-cart{float: none;width: auto;}
 
 .left-order{float: left;width: 45%;}
 .right-order{float: right;width: 52%;}
@@ -90,7 +91,7 @@ body.isScroll{overflow: hidden;margin-right: 17px;}
 body.isScroll.isTouch{padding-right: 0;}
 body {text-align: left;overflow-y: scroll;}
 body, input, select, button, textarea {font-family: Tahoma, Geneva, Kalimati, sans-serif;line-height: 1.5;}
-body, input, select, button, textarea, .f-s_0 > *, .items > li, .items > td, .text-el, .nav > li{font-size: 13px;}
+body, input, select, button, textarea, .f-s_0 > *, .items > li, .items > td, .text-el, .nav > li, .cuselText, .cusel span, .frame-kit .title, .t-a_j > *{font-size: 13px;}
 input[type="submit"], input[type="reset"], input[type="button"], button {-webkit-appearance: button;overflow: visible;background-color: transparent;border: none;}
 input[type="button"], input[type="submit"], input[type="reset"], button{text-align: center;}
 label, input[type="button"], input[type="submit"], input[type="reset"], button{padding: 0;cursor: pointer;}
@@ -120,7 +121,7 @@ a{cursor: pointer;}
 
 /*base icons*/
 a.f-s_0{display: inline-block;text-decoration: none;}
-[class*="frame-icon"]{text-align: center;float: left;font-size: 0;background-image: none !important;}
+[class*="frame-ico"]{text-align: center;float: left;font-size: 0;background-image: none !important;}
 [class*="icon_"], [class*="icon-"]{display: inline-block;font-size: 0;line-height: 0;position: relative;width: 0;height: 0;}
 /*/base icons*/
 
@@ -176,6 +177,7 @@ a.f-s_0{display: inline-block;text-decoration: none;}
 .frame-inside .no-empty{display: block;}
 /*/adding selectors*/
 
+/*for delete*/
 /*icons*/
 .icon_reg{width: 18px;height: 14px;}
 .icon_enter{width: 12px;height: 15px;}
@@ -215,6 +217,7 @@ a.f-s_0{display: inline-block;text-decoration: none;}
 .icon_arrow_p2{width: 10px;height: 13px;}
 .icon_ask{width: 16px;height: 16px;}
 /*/icons*/
+/*/for delete*/
 
 /*methods*/
 .clearfix:after, article:after, .nav:after, .container:after, .horizontal-form label:after, .horizontal-form .frame-label:after, .frame-inside:after, .frame-label:after{visibility: hidden;display: block;font-size: 0;content: ".";clear: both;height: 0;}
@@ -408,8 +411,7 @@ input.input-search{height: 33px;}
 .product-charac{max-height: 520px;}
 .product-descr{max-height: 250px;}
 #view .product-comment{max-height: 400px;}
-
-.photoProduct .photo-block{width: 100%;height: 270px;padding: 15px;}
+.item-product .photo-block{width: 100%;height: 270px;padding: 15px;}
 .title-product{margin-bottom: 19px;}
 .title-product .frame-title{margin-right: 15px;}
 .title-product .frame-variant-name-code{display: inline;}
@@ -566,7 +568,7 @@ input.input-search{height: 33px;}
 
 .jspContainer{overflow: hidden;position: relative;}
 .jspPane{position: absolute;}
-.jspVerticalBar{position: absolute;top: 0;right: 0;width: 16px;height: 100%;background: red;}
+.jspVerticalBar{position: absolute;top: 0;right: 0;width: 16px;height: 100%;}
 .jspHorizontalBar{position: absolute;bottom: 0;left: 0;width: 100%;}
 .jspHorizontalBar, .scrollNSP.jScrollPane > div{height: 16px;}
 .jspVerticalBar *, .jspHorizontalBar *{margin: 0;padding: 0;}
@@ -875,7 +877,7 @@ input + .msg{margin-top: 5px;}
 .slider {position: relative;height: 9px;}
 .left-slider{margin-left: -11px;}
 .right-slider{margin-left: -11px;}
-.form-cost label{width: 64px;}
+.form-cost label{width: 90px;}
 
 .ui-widget-header{position: absolute;z-index: 1;height: 100%;top: 0;}
 .frame-slider .inside-padd{padding: 14px 18px;}
@@ -1109,7 +1111,7 @@ td.frame-cur-sum-price {vertical-align: middle;padding-left: 10px;padding-right:
 
 /*footer*/
 .h-footer{height: 349px;}
-footer{min-height:346px; margin: -346px auto 0;position: relative;}
+footer{min-height:346px; margin: -349px auto 0;position: relative;}
 footer .content-footer{min-height: 245px;}
 .footer-footer{position: relative;height: 91px;}
 
@@ -1128,7 +1130,7 @@ footer .box-1 > .inside-padd{padding-left: 1px;}
 footer .box-2 > .inside-padd{padding-right: 18px;}
 footer .box-4 a{text-transform: none;}
 footer .box-4 > .inside-padd{padding: 21px 28px 10px;margin-bottom: 10px;}
-.footer-footer .container{padding-top: 14px;}
+.footer-footer .container{padding-top: 10px;}
 /*/footer*/
 
 /*drop*/

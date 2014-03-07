@@ -29,7 +29,7 @@ function init() {
         ieBoxSize();
         ieBoxSize($('.photo-block, .frame-baner-start_page .content-carousel, .cloud-zoom-lens, .items-user-toolbar'));
     }
-    optionsDrop.before = function(el, drop, isajax) {
+    optionsDrop.before = function(el, drop) {
         drop.find('label.' + genObj.err + ', label.' + genObj.scs).hide();
         drop.find(':input').removeClass(genObj.scs + ' ' + genObj.err);
 
@@ -50,7 +50,7 @@ function init() {
         } catch (err) {
         }
     };
-    optionsDrop.after = function(el, drop, isajax) {
+    optionsDrop.after = function(el, drop) {
         drawIcons(drop.find(selIcons));
 
         drop.find("img.lazy:not(.load)").lazyload(lazyload);
@@ -74,9 +74,9 @@ function init() {
         }
         cuselInit(drop, '.lineForm select');
     };
-    optionsDrop.close = function(el, drop, data) {
+    optionsDrop.close = function(el, drop) {
     };
-    optionsDrop.closed = function(el, drop, data) {
+    optionsDrop.closed = function(el, drop) {
         if (drop.hasClass('frame-already-show')) {
             $('.frame-user-toolbar').css({
                 'width': body.width(),
@@ -88,8 +88,9 @@ function init() {
     $('.menu-main').menuImageCms(optionsMenu);
     $('.footer-category-menu').find('[href="' + $('.frame-item-menu.active > .frame-title > .title').attr('href') + '"]').parent().addClass('active');
     $.drop.setParameters(optionsDrop);
-    $.drop.extendDrop('droppable', 'noinherit', 'heightContent', 'scroll', 'limitSize', 'galleries');
+    $.drop.extendDrop('droppable', 'noinherit', 'heightContent', 'scroll', 'limitSize', 'galleries', 'placeBeforeShow', 'placeAfterClose', 'confirmPrompt');
     $('[data-drop]').drop();
+    $('a.fancybox').drop();
 
     ShopFront.CompareList.count();
     global.wishListCount();
@@ -335,7 +336,7 @@ function init() {
     doc.on('rendercomment.after', function(e) {
         showHidePart(e.el.find('.frame-list-comments.sub-2'));
         showHidePart(e.el.find('.product-comment'));
-        e.el.find('[data-drop]').drop(optionsDrop);
+        e.el.find('[data-drop]').drop();
         e.el.find(preloader).remove();
     });
     doc.on('autocomplete.after rendercomment.after imageapi.pastemsg showCleaverFilter tabs.afterload renderorder.after', function(e) {
@@ -356,7 +357,7 @@ function init() {
     doc.on('autocomplete.before showActivity before_add_to_compare before_delete_compare discount.load_certificate beforeAdd.Cart', function(e) {
         $.fancybox.showActivity();
     });
-    doc.on('autocomplete.after after.drop closed.drop hideActivity compare_list_add compare_list_rm compare_list_sync imageapi.success getTpl.Cart', function(e) {
+    doc.on('autocomplete.after after.drop closed.drop hideActivity compare_list_add compare_list_rm imageapi.success getTpl.Cart', function(e) {
         $.fancybox.hideActivity();
     });
 

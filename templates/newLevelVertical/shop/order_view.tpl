@@ -19,7 +19,7 @@
 {$NextCSIdCond = $NextCS != null}
 <div class="frame-inside page-order">
     <div class="container">
-        {if $CI->session->flashdata('makeOrder') === true}
+        {if $CI->session->flashdata('makeOrderForTpl') === true}
             <div class="f-s_0 without-crumbs">
                 <div class="frame-title">
                     <h1 class="title">{lang('Спасибо, ваш заказ принят!<br/>Наши менеджеры свяжутся с вами.','newLevel')}</h1>
@@ -168,7 +168,7 @@
                                                 {break;}
                                             {/if}
                                         {/foreach}
-                                        <tr class="items items-bask items-order cart-product">
+                                        <tr class="items items-bask items-order cart-product items-product">
                                             <td class="frame-items">
                                                 <!-- Start. Render Ordered Products -->            
                                                 <a href="{shop_url('product/'.$orderProduct->getSProducts()->getUrl())}" class="frame-photo-title">
@@ -214,6 +214,14 @@
                                         <span class="title">{lang('Сумма','newLevel')}:</span>
                                         <span class="frame-prices">
                                             <span class="current-prices f-s_0">
+                                                {if ShopCore::app()->SCurrencyHelper->convert($orderProduct->originPrice) != ShopCore::app()->SCurrencyHelper->convert($orderProduct->price)}
+                                                    <span class="price-discount">
+                                                        <span>
+                                                            <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($orderProduct->originPrice) * $orderProduct->quantity}</span>
+                                                            <span class="curr">{$CS}</span>
+                                                        </span>
+                                                    </span>
+                                                {/if}
                                                 <span class="price-new">
                                                     <span>
                                                         <span class="price">{echo $orderProduct->getPrice()*$orderProduct->getQuantity()}</span>
@@ -242,7 +250,7 @@
                                 <tr class="row-kits rowKits items-order row">
                                     <td class="frame-items frame-items-kit">
                                         <div class="title-h3 c_9">{lang('Комплект товаров', 'newLevel')}</div>
-                                        <ul class="items items-bask">
+                                        <ul class="items items-bask items-product">
                                             <li>
                                                 <div class="frame-kit main-product">
                                                     <a href="{shop_url('product/' . $orderProduct->getKit()->getMainProduct()->getUrl())}" class="frame-photo-title">
