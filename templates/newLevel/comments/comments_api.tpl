@@ -1,4 +1,4 @@
-{if $can_comment == 1 AND !$is_logged_in}
+Отзыв полезен?{if $can_comment == 1 AND !$is_logged_in}
     <span class="title-comment"><b>{sprintf(lang('Пожалуйста, войдите для комментирования', 'newLevel'), site_url($modules.auth))}</b></span>
     <button type="button" data-trigger="#loginButton">
         <span class="text-el d_l_1">{lang('Войти','newLevel')}</span>
