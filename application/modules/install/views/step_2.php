@@ -96,10 +96,9 @@ if ($other_errors) {
 
 <p align="left">
     <br/>
-    <button class="btn btn-success" type="submit" class="button_130"><i class="icon-ok icon-white"></i><?php echo lang('Next', 'install') ?> </button>
+    <button class="btn btn-success" type="submit" class="button_130"><i class="icon-ok icon-white"></i> <?php echo lang('Next', 'install') ?> </button>
 
 </p>
 </form>
 
-<div ><?php echo lang('All fields are required', 'install') ?>.</div>
 <br/>
