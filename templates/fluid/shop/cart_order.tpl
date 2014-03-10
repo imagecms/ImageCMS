@@ -35,7 +35,7 @@
                             </div>
                         </div>
                     </td>
-                    <td>
+                    <td class="frame-cur-sum-price">
                         <div class="frame-prices f-s_0">
                             {if ShopCore::app()->SCurrencyHelper->convert($item->originPrice) != ShopCore::app()->SCurrencyHelper->convert($item->price)}
                                 <span class="price-discount">

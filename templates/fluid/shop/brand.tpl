@@ -25,6 +25,51 @@
 </div>
 <div class="frame-inside">
     <div class="container">
+        {if $totalProducts > 0}
+            <div class="left-catalog">
+                <form method="GET" action="" id="catalogForm">
+                    <input type="hidden" name="order" value="{echo $_GET[order]}" />
+                    <input type="hidden" name="user_per_page" value="{echo $_GET[user_per_page]}">
+                </form>
+                <div class="frame-category-menu layout-highlight">
+                    <div class="title-menu-category">
+                        <div class="title-default">
+                            <div class="title">{lang('Найдено в категориях','newLevel')}</div>
+                        </div>
+                    </div>
+                    <div class="inside-padd">
+                        <nav>
+                            {foreach $categories as $key => $category}
+                                <ul class="nav nav-vertical nav-category">
+                                    <li>
+                                        <span>{echo trim(key($category))}</span>
+                                    </li>
+                                    {foreach $category[key($category)] as $subItem}
+                                        {if $_GET['category'] && $_GET['category'] == $subItem['id']}
+                                            <li class="active">
+                                                <span>{echo $subItem['name']}</span>
+                                            {else:}
+                                            <li>
+                                                <a rel="nofollow" data-id="{echo $subItem['id']}" 
+                                                   {if $_SERVER['QUERY_STRING']}
+                                                       href="{shop_url('brand/'. strtolower($model->getUrl()).'/'.$subItem['id'].'?'.$_SERVER['QUERY_STRING'])}"
+                                                   {else:}
+                                                       href="{shop_url('brand/'. strtolower($model->getUrl()).'/'.$subItem['id'])}"
+                                                   {/if}
+                                                   >
+                                                    <span class="text-el">{echo $subItem['name']}</span> 
+                                                    <span class="count">({echo $subItem['count']})</span>
+                                                </a>
+                                            {/if}
+                                        </li>
+                                    {/foreach}
+                                </ul>
+                            {/foreach}
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        {/if}
         <div class="right-catalog" {if !$totalProducts > 0}style="width:100% !important"{/if}>
             <div class="f-s_0 title-category">
                 <div class="frame-title">
@@ -73,52 +118,6 @@
             {/if}
             {$pagination}
         </div>
-        {if $totalProducts > 0}
-            <div class="left-catalog">
-                <form method="GET" action="" id="catalogForm">
-                    <input type="hidden" name="order" value="{echo $_GET[order]}" />
-                    <input type="hidden" name="user_per_page" value="{echo $_GET[user_per_page]}">
-                </form>
-                <div class="frame-category-menu layout-highlight">
-                    <div class="title-menu-category">
-                        <div class="title-default">
-                            <div class="title-h3 title">{lang('Найдено в категориях:','newLevel')}</div>
-                        </div>
-                    </div>
-                    <div class="inside-padd">
-                        <nav>
-                            {foreach $categories as $key => $category}
-                                <ul class="nav nav-vertical nav-category">
-                                    <li>
-                                        <span>{echo trim(key($category))}</span>
-                                    </li>
-                                    {foreach $category[key($category)] as $subItem}
-                                        {if $_GET['category'] && $_GET['category'] == $subItem['id']}
-                                            <li class="active">
-                                                <span>{echo $subItem['name']}</span>
-                                            {else:}
-                                            <li>
-                                                <a rel="nofollow" data-id="{echo $subItem['id']}" 
-                                                   {if $_SERVER['QUERY_STRING']}
-                                                        href="{shop_url('brand/'. strtolower($model->getUrl()).'/'.$subItem['id'].'?'.$_SERVER['QUERY_STRING'])}"
-                                                   {else:}
-                                                        href="{shop_url('brand/'. strtolower($model->getUrl()).'/'.$subItem['id'])}"
-                                                   {/if}
-                                                 >
-                                                        <span class="text-el">{echo $subItem['name']}</span> 
-                                                        <span class="count">({echo $subItem['count']})</span>
-                                                </a>
-                                            {/if}
-                                        </li>
-                                    {/foreach}
-                                </ul>
-                            {/foreach}
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        {/if}
-
     </div>
 </div>
 <script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>
