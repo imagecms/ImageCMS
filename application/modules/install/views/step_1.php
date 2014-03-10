@@ -44,6 +44,6 @@
 
 <p align="left">
 <br/>
-<a href="<?php echo $next_link ?>" class="btn btn-success"><i class="icon-ok icon-white"></i><?php echo lang('Next', 'install') ?></a>
+<a href="<?php echo $next_link ?>" class="btn btn-success"><i class="icon-ok icon-white"></i> <?php echo lang('Next', 'install') ?></a>
 <a href="" type="submit" class="btn" ><i class="icon-refresh"></i> <?php echo lang('Update', 'install')?></a>
 </p>

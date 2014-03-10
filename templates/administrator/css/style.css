@@ -843,5 +843,7 @@ table#backups_list thead th:nth-child(3) {width: 10px;}*/
 
 .ui-autocomplete.ui-menu.ui-widget.ui-widget-content.ui-corner-all{
     z-index: 4!important;
+    max-height: 300px;
+    overflow-y: scroll;
 }
 .s-t{color: #b1b1b1;}
