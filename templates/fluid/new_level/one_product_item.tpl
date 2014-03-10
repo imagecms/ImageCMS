@@ -264,7 +264,7 @@
             {if !$opi_defaultItem}
                 <div class="frame-without-top">
                     <!-- Wish List & Compare List buttons -->
-                    <div class="frame-wish-compare-list no-vis-table t-a_j">
+                    <div class="frame-wish-compare-list no-vis-table{if !$opi_wishListPage && !$opi_compare} t-a_j{/if}">
                         {if !$opi_compare}
                             <div class="frame-btn-comp">
                                 <!-- Start. Compare List button -->
@@ -274,7 +274,7 @@
                                          type="button"
                                          data-title="{lang('Сравнить','newLevel')}"
                                          data-firtitle="{lang('Сравнить','newLevel')}"
-                                         data-sectitle="{lang('В списке сравнений','newLevel')}"
+                                         data-sectitle="{lang('В сравнении','newLevel')}"
                                          data-rel="tooltip">
                                         <span class="niceCheck b_n">
                                             <input type="checkbox">
@@ -347,7 +347,7 @@
                             data-effect-off="fadeOut"
                             data-source="{site_url('/wishlist/wishlistApi/deleteItem/'.$p[variant_id].'/'.$p[wish_list_id])}"
                             data-after="WishListFront.removeItem"
-                            ><span class="icon_remove"></span><span class="text-el d_l_1">{lang('Удалить', 'newLevel')}</span></button>
+                            ><span class="icon_times_cart"></span></button>
                     </div>
                     <div class="btn-move-item-wl">
                         <button
@@ -355,7 +355,7 @@
                             data-drop="#wishListPopup"
                             data-source="{site_url('/wishlist/renderPopup/'.$p[variant_id].'/'.$p[wish_list_id])}"
                             data-always="true"
-                            ><span class="icon_move"></span><span class="text-el d_l_1">{lang('Переместить', 'newLevel')}</span>
+                            ><span class="icon_move"></span><span class="text-el d_l_1">{lang('Перенести в другой список', 'newLevel')}</span>
                         </button>
                     </div>
                 </div>
