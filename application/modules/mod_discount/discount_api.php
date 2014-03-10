@@ -51,7 +51,6 @@ class discount_api extends \MY_Controller {
      * @copyright (c) 2013, ImageCMS
      */
     public function getGiftCertificate($key = null, $totalPrice = null) {
-
         $cart = \Cart\BaseCart::getInstance();
         $this->baseDiscount = \mod_discount\classes\BaseDiscount::create();
         if ($totalPrice === null)
