@@ -14,7 +14,7 @@
                             <span class="descr">
                                 <span class="title">{echo $item->getSProducts()->getName()}</span>
                                 {if $item->getName() && trim($item->getName()) != trim($item->getSProducts()->getName())}
-                                    <span class="code_v">{lang('Варіант','commerce_mobiles')}: {echo trim($item->getName())}</span>
+                                    <span class="code_v">{lang('Вариант','commerce_mobiles')}: {echo trim($item->getName())}</span>
                                 {/if}
                                 {if $item->getNumber()}
                                     <span class="divider">/</span>
