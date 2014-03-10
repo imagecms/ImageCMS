@@ -121,10 +121,6 @@
                                             {echo SStringHelper::Pluralize($Comments[$model->getId()], array(lang("отзыв","newLevel"),lang("отзыва","newLevel"),lang("отзывов","newLevel")))}
                                         </button>
                                     </div>
-                                {else:}
-                                    <div class="frame-star">
-                                        <button data-trigger="[data-href='#comment']" data-scroll="true" class="count-null-response d_l">{lang('Оставить отзыв','newLevel')}</button>
-                                    </div>
                                 {/if}
                             </div>
                             <!-- End. Star rating-->
@@ -154,7 +150,7 @@
                             {/if}
                             <!-- End. Check variant-->
                             <div class="frame-prices-buy-wish-compare">
-                                <div class="w_375 d_i-b v-a_m">
+                                <div class="frame-for-photo-popup">
                                     <div class="frame-prices-buy f-s_0">
                                         <!-- Start. Prices-->
                                         <div class="frame-prices f-s_0">
@@ -317,18 +313,18 @@
                                 <!-- Start. Wish List & Compare List buttons -->
                                 <div class="frame-wish-compare-list f-s_0 d_i-b v-a_m">
                                     {foreach $variants as $key => $pv}
-                                        <div class="frame-btn-wish js-variant-{echo $pv->getId()} js-variant" {if $key != 0}style="display:none"{/if} data-id="{echo $pv->getId()}">
+                                        <div class="frame-btn-wish v-a_bl js-variant-{echo $pv->getId()} js-variant" {if $key != 0}style="display:none"{/if} data-id="{echo $pv->getId()}">
                                             {$CI->load->module('wishlist')->renderWLButton($pv->getId())}
                                         </div>
                                     {/foreach}
-                                    <div class="frame-btn-compare">
+                                    <div class="frame-btn-compare v-a_bl">
                                         <div class="btn-compare">
                                             <div class="toCompare btnCompare"
                                                  data-id="{echo $model->getId()}"
                                                  type="button"
                                                  data-title="{lang('Cравнить','newLevel')}"
                                                  data-firtitle="{lang('Cравнить','newLevel')}"
-                                                 data-sectitle="{lang('В списке сравнений','newLevel')}"
+                                                 data-sectitle="{lang('В сравнении','newLevel')}"
                                                  data-rel="tooltip">
                                                 <span class="niceCheck b_n">
                                                     <input type="checkbox">
@@ -355,10 +351,10 @@
                         <!--Start .Share-->
                         <div class="social-product">
                             <div class="social-like d_i-b">
-                                {echo $CI->load->module('share')->_make_like_buttons()}
+                                {//echo $CI->load->module('share')->_make_like_buttons()}
                             </div>
                             <div class="social-tell d_i-b">
-                                {echo $CI->load->module('share')->_make_share_form()}
+                                {//echo $CI->load->module('share')->_make_share_form()}
                             </div>
                         </div>
                         <!-- End. Share -->
@@ -623,6 +619,24 @@
         <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
         <div class="drop-header">
         <div class="title"><%- obj.title %></div>
+        </div>
+        <div class="drop-content">
+        <div class="inside-padd">
+        <img src="<%- obj.mainPhoto %>" alt="<%- obj.title %>"/>
+        </div>
+        <div class="horizontal-carousel" id="photoButton">
+        <div class="group-button-carousel">
+        <button type="button" class="prev arrow">
+        <span class="icon_arrow_p"></span>
+        </button>
+        <button type="button" class="next arrow">
+        <span class="icon_arrow_n"></span>
+        </button>
+        </div>
+        </div>
+        </div>
+        <div class="drop-footer">
+        <div class="inside-padd">
         <div class="horizontal-carousel">
         <div class="frame-fancy-gallery frame-thumbs">
         <div class="fancy-gallery carousel-js-css">
@@ -643,23 +657,6 @@
         </div>
         </div>
         </div>
-        <div class="drop-content">
-        <div class="inside-padd">
-        <img src="<%- obj.mainPhoto %>" alt="<%- obj.title %>"/>
-        </div>
-        <div class="horizontal-carousel">
-        <div class="group-button-carousel">
-        <button type="button" class="prev arrow">
-        <span class="icon_arrow_p"></span>
-        </button>
-        <button type="button" class="next arrow">
-        <span class="icon_arrow_n"></span>
-        </button>
-        </div>
-        </div>
-        </div>
-        <div class="drop-footer">
-        <div class="inside-padd">
         <%= obj.frame.find(obj.footerContent).html()%>
         </div>
         </div>
