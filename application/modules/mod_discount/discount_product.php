@@ -16,7 +16,7 @@ class Discount_product {
 
     private $discountForProduct;
     private static $object;
-    
+
     /**
      * singelton method
      * @return object BaseDiscount
@@ -44,7 +44,7 @@ class Discount_product {
         $this->baseDiscount = \mod_discount\classes\BaseDiscount::create();
         $this->discountForProduct = array_merge($this->baseDiscount->discountType['product'], $this->baseDiscount->discountType['brand'], $this->createChildDiscount($this->baseDiscount->discountType['category']));
     }
-    
+
     /**
      * create child discount
      * @access private
@@ -71,7 +71,8 @@ class Discount_product {
             }
 
             return $resultDiscount;
-        } else
+        }
+        else
             return $discount;
     }
 
@@ -86,6 +87,7 @@ class Discount_product {
     public function getProductDiscount($product, $price = null) {
 
         $discountArray = $this->getDiscountOneProduct($product);
+
         if (count($discountArray) > 0) {
             if (null === $price)
                 $price = $this->ci->discount_model_front->getPrice($product['vid']);
