@@ -16,36 +16,6 @@
 </div>
 <div class="frame-inside">
     <div class="container">
-        <div class="right-catalog" {if !$totalProducts > 0}style="width:100% !important"{/if}>
-            {if $totalProducts != 0}
-                <div class="f-s_0 title-category">
-                    <div class="frame-title">
-                        <h1 class="title"><span class="s-t">{lang('Результаты поиска','newLevel')}</span> <span class="what-search">«{encode($_GET['text'])}»</span></h1>
-                    </div>
-                <span class="count">({lang('Найдено','newLevel')} {$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang('товар','newLevel'),lang('товара','newLevel'),lang('товаров','newLevel')))})</span>
-                </div>
-            {/if}
-            {if $totalProducts == 0}
-                <div class="msg layout-highlight layout-highlight-msg">
-                    <div class="info">
-                        <span class="icon_info"></span>
-                        <span class="text-el">{lang('Не найдено товаров','newLevel')}</span>
-                    </div>
-                </div>
-            {/if}
-            {include_tpl('catalogue_header')}
-            {if $totalProducts > 0}
-                <ul class="animateListItems items items-catalog items-product {if $_COOKIE['listtable'] == 'table' || $_COOKIE['listtable'] == NULL} table{else:} list{/if}" id="items-catalog-main">
-                    <!-- Include template for one product item-->
-                    {$CI->load->module('new_level')->OPI($model, array('opi_wishlist'=>true))}
-                </ul>
-            {/if}            <!--Start. Pagination -->
-            {if $pagination}
-                {$pagination}
-            {/if}
-            <!-- End pagination -->
-        </div>
-
         {if $totalProducts > 0}
             <div class="left-catalog">
                 <form method="GET" action="" id="catalogForm">
@@ -57,7 +27,7 @@
                 <div class="frame-category-menu layout-highlight">
                     <div class="title-menu-category">
                         <div class="title-default">
-                            <div class="title-h3 title">{lang('Категории','newLevel')}:</div>
+                            <div class="title">{lang('Категории','newLevel')}:</div>
                         </div>
                     </div>
                     <div class="inside-padd">
@@ -84,6 +54,35 @@
                 </div>
             </div>
         {/if}
+        <div class="right-catalog" {if !$totalProducts > 0}style="width:100% !important"{/if}>
+            {if $totalProducts != 0}
+                <div class="f-s_0 title-category">
+                    <div class="frame-title">
+                        <h1 class="title"><span class="s-t">{lang('Результаты поиска','newLevel')}</span> <span class="what-search">«{encode($_GET['text'])}»</span></h1>
+                    </div>
+                    <span class="count">({lang('Найдено','newLevel')} {$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang('товар','newLevel'),lang('товара','newLevel'),lang('товаров','newLevel')))})</span>
+                </div>
+            {/if}
+            {if $totalProducts == 0}
+                <div class="msg layout-highlight layout-highlight-msg">
+                    <div class="info">
+                        <span class="icon_info"></span>
+                        <span class="text-el">{lang('Не найдено товаров','newLevel')}</span>
+                    </div>
+                </div>
+            {/if}
+            {include_tpl('catalogue_header')}
+            {if $totalProducts > 0}
+                <ul class="animateListItems items items-catalog items-product {if $_COOKIE['listtable'] == 'table' || $_COOKIE['listtable'] == NULL} table{else:} list{/if}" id="items-catalog-main">
+                    <!-- Include template for one product item-->
+                    {$CI->load->module('new_level')->OPI($model, array('opi_wishlist'=>true))}
+                </ul>
+            {/if}            <!--Start. Pagination -->
+            {if $pagination}
+                {$pagination}
+            {/if}
+            <!-- End pagination -->
+        </div>
     </div>
 </div>
 

@@ -5,7 +5,7 @@
     <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
     {if $totalItems > 0}
         <div class="drop-header">
-            <div class="title bask"><span>{lang('В корзине','newLevel')}</span><span class="add-info"><span class="topCartCount"> {echo $totalItems}</span></span> <span class="plurProd">{echo SStringHelper::Pluralize($count, array(lang('товар','newLevel'),lang('товара','newLevel'),lang('товаров','newLevel')))}</span></div>
+            <div class="title bask"><span>{lang('В корзине','newLevel')}</span><span class="add-info"><span class="topCartCount"> {echo $totalItems}</span></span> <span class="plurProd">{echo SStringHelper::Pluralize($totalItems, array(lang('товар','newLevel'),lang('товара','newLevel'),lang('товаров','newLevel')))}</span></div>
         </div>
         <div class="drop-content">
             <div class="inside-padd">
@@ -174,28 +174,14 @@
         <div class="footer-bask drop-footer">
             <div class="inside-padd">
                 <div class="clearfix">
-                    {if $discount_val}
-                        <span class="frame-discount">
-                            <span class="s-t">{lang('Ваша текущая скидка','newLevel')}:</span>
-                            <span class="text-discount current-discount"><span class="text-el">{echo ShopCore::app()->SCurrencyHelper->convert($discount_val)}</span> <span class="curr">{$CS}</span></span>
-                        </span>
-                    {/if}
                     <div class="btn-form f_l isCart">
                         <button type="button" data-closed="closed-js">
                             <span class="icon-arrow-l2"></span>
                             <span class="text-el">{lang('Вернуться к оформлению','newLevel')}</span>
                         </button>
                     </div>
-                    <span class="s-t">{lang('Всего','newLevel')}:</span>
+                    <span class="s-t">{lang('Сумма товаров','newLevel')}</span>
                     <span class="frame-prices f-s_0">
-                        {if $discount_val}
-                            <span class="price-discount">
-                                <span>
-                                    <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($cartOriginPrice)}</span>
-                                    <span class="curr">{$CS}</span>
-                                </span>
-                            </span>
-                        {/if}
                         <span class="current-prices f-s_0">
                             <span class="price-new">
                                 <span>
