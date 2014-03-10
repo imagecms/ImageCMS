@@ -48,6 +48,7 @@ if (!function_exists('siteInfoAdditionalManipulations')) {
 
     /**
      * Функція існує суто для сумісності із старими версіями
+     * @deprecated since version 4.6
      * @param string $name
      * @param string $value
      * @return string|boolean
@@ -67,14 +68,23 @@ if (!function_exists('siteInfoAdditionalManipulations')) {
                 // із врахуванням активного шаблону
                 if (is_array($value)) {
                     $settings = CI::$APP->cms_base->get_settings();
-                    $colorScheme = CI::$APP->load->module('new_level')->getColorScheme();
                     if (key_exists($settings['site_template'], $value)) {
                         $fileName = $value[$settings['site_template']];
-                        return "/templates/{$settings['site_template']}/{$colorScheme}/{$fileName}";
+                        if (SHOP_INSTALLED) {
+                            $colorScheme = CI::$APP->load->module('new_level')->getColorScheme();
+                            return "/templates/{$settings['site_template']}/{$colorScheme}/{$fileName}";
+                        } else {
+                            return "/templates/{$settings['site_template']}/{$fileName}";
+                        }
                     } elseif (count($value) > 0) {
                         reset($value);
                         $key = key($value);
-                        return "/templates/" . $key . "/{$colorScheme}/" . $value[$key];
+                        if (SHOP_INSTALLED) {
+                            $colorScheme = CI::$APP->load->module('new_level')->getColorScheme();
+                            return "/templates/" . $key . "/{$colorScheme}/" . $value[$key];
+                        } else {
+                            return "/templates/{$settings['site_template']}/{$fileName}";
+                        }
                     }
                     return '';
                 } elseif (is_string($value)) {
