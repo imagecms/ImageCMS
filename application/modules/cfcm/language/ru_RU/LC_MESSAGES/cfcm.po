@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-07 05:43+0200\n"
-"PO-Revision-Date: 2014-03-07 05:43+0200\n"
+"POT-Creation-Date: 2014-03-07 05:48+0200\n"
+"PO-Revision-Date: 2014-03-07 05:48+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -18,6 +18,14 @@ msgstr ""
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 
+#: ./application/modules/cfcm/admin.php:160
+msgid "Field editing"
+msgstr "Редактирование поля"
+
+#: ./application/modules/cfcm/admin.php:227
+msgid "Field editing "
+msgstr "Редактирования поля"
+
 #: ./application/modules/cfcm/admin.php:104
 msgid "Field Name cant contain only Latin alphanumeric characters"
 msgstr "Поле Название может содержать только латинские алфавитно-цифровые символы"
@@ -27,7 +35,7 @@ msgid "Enable Tinymce editor"
 msgstr "Включить редактор Tinymce"
 
 #: ./application/modules/cfcm/admin.php:117
-msgid "Select another  name"
+msgid "Select another name"
 msgstr "Выберите другое имя"
 
 #: ./application/modules/cfcm/templates/admin/index.tpl:47
@@ -266,10 +274,6 @@ msgstr "Укажите <b> Метка</ B> поле"
 msgid "Field created"
 msgstr "Поле создано"
 
-#: ./application/modules/cfcm/admin.php:160
-msgid "Field editing"
-msgstr "Редактирования поля"
-
 #: ./application/modules/cfcm/admin.php:178
 #: ./application/modules/cfcm/admin.php:266
 msgid "Field has been updated"
@@ -278,10 +282,6 @@ msgstr "Поле обновлено"
 #: ./application/modules/cfcm/admin.php:212
 msgid "Field deleted successfuly"
 msgstr "Поле успешно удалено"
-
-#: ./application/modules/cfcm/admin.php:227
-msgid "Field editing "
-msgstr "Редактирования поля"
 
 #: ./application/modules/cfcm/admin.php:282
 msgid "Field has not been found"
