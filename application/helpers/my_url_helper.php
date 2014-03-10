@@ -1,8 +1,7 @@
 <?php
 
-if (!defined('BASEPATH')) {
+if (!defined('BASEPATH'))
     exit('No direct script access allowed');
-}
 
 if (!function_exists('media_url')) {
 
@@ -29,11 +28,11 @@ if (!function_exists('whereami')) {
 
     function whereami() {
         $CI = & get_instance();
-        if ($CI->uri->segment(1)) {
+        if ($CI->uri->segment(1))
             return 'inside';
-        } else {
+        else
             return 'mainpage';
-        }
     }
 
 }
+    
