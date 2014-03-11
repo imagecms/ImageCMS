@@ -161,7 +161,7 @@
                 {/if}
                 <!-- End. Check variant-->
             {/if}
-            {if !$opi_defaultItem }
+            {if !$opi_defaultItem && !$opi_widget}
                 <div class="funcs-buttons frame-without-top">
                     <div class="no-vis-table">
                         <!-- Start. Collect information about Variants, for future processing -->
@@ -264,7 +264,7 @@
                 </div>
                 <!-- End. Collect information about Variants, for future processing -->
             {/if}
-            {if !$opi_defaultItem}
+            {if !$opi_defaultItem && !$opi_widget}
                 <div class="frame-without-top">
                     <!-- Wish List & Compare List buttons -->
                     <div class="frame-wish-compare-list no-vis-table{if !$opi_wishListPage && !$opi_compare} t-a_j{/if}">
@@ -365,7 +365,8 @@
             {/if}
         {/if}
         <!-- End. For wishlist page-->
-
-        <div class="decor-element"></div>
+        {if !$opi_widget}
+            <div class="decor-element"></div>
+        {/if}
     </li>
 {/foreach}
