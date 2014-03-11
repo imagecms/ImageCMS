@@ -738,7 +738,7 @@ function getCookie(c_name)
                     tooltip: '.tooltip',
                     durationOn: 300,
                     durationOff: 200,
-                    show: true
+                    show: false
                 },
                 init: function(options) {
                     this.each(function() {
@@ -790,7 +790,7 @@ function getCookie(c_name)
                             'left': methods.left($this, tooltip, set.placement, $this.offset().left, set.effect, set.offsetX),
                             'top': methods.top($this, tooltip, set.placement, $this.offset().top, set.effect, set.offsetY)
                         });
-                        if (set.show == 'true')
+                        if (set.show === 'true')
                             tooltip.fadeIn(set.durationOn);
                         $this.off('mouseleave.' + nS).on('mouseleave.' + nS, function(e) {
                             var el = $(this);
@@ -802,6 +802,9 @@ function getCookie(c_name)
                         });
                     });
                     return this;
+                },
+                show: function(options) {
+                    methods.init.call(this, $.extend({show: true}, options));
                 },
                 left: function(el, tooltip, placement, left, eff, offset) {
                     if (placement === 'left')
