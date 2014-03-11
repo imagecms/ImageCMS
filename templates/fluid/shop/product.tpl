@@ -262,7 +262,7 @@
                                                 {else:}
                                                     <div class="d_i-b v-a_m">
                                                         <div class="js-variant-{echo $productVariant->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
-                                                            <div class="alert-exists">{lang('Нет в наличии','newLevel')}</div>
+                                                            <div class="alert-exists">{lang('Нет в наличии', 'newLevel')}</div>
                                                             <div class="btn-not-avail">
                                                                 <button
                                                                     type="button"
