@@ -38,7 +38,7 @@ class Banner_model extends CI_Model {
     public function edit_banner($data) {
         $this->db
                 ->where('id', $data['id'])
-//                ->set('group', $data['group'])
+                ->set('group', $data['group'])
                 ->set('active', $data['active'])
                 ->set('active_to', $data['active_to'])
                 ->set('where_show', $data['where_show'])

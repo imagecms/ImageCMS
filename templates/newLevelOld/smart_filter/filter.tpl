@@ -145,9 +145,6 @@
                     <span class="text-el">{lang('Фильтровать', 'newLevel')}</span>
                 </button>
             </div>
-            <button type="reset">
-                <span class="text-el d_l_1">{lang('Сбросить фильтр', 'newLevel')}</span>
-            </button>
         </div>
     </div>
 </div>

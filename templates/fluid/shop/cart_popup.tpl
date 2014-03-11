@@ -90,31 +90,34 @@
                                         <button type="button" class="icon_times_cart" onclick="Shop.Cart.remove({echo $item->getId()}, true)"></button></button>
                                     </td>
                                     <td class="frame-items frame-items-kit">
-                                        <ul class="items items-bask items-product">
-                                            {foreach $item->items as $k => $kitItem}
-                                                <li>
-                                                    {if $k != 0}
-                                                        <div class="next-kit">+</div>
-                                                    {/if}
-                                                    <div class="frame-kit{if $k === 0} main-product{/if}">
-                                                        <a class="frame-photo-title" href="{echo shop_url('product/'.$kitItem->getSProducts()->getUrl())}">
-                                                            <span class="photo-block">
-                                                                <span class="helper"></span>
-                                                                <img src="{echo $kitItem->getSmallPhoto()}">
-                                                            </span>
-                                                            <span class="title">{echo $kitItem->getSProducts()->getName()}</span>
-                                                        </a>
-                                                        <div class="description">
-                                                            {if $item->getName() && trim($kitItem->getName()) != trim($kitItem->getSProducts()->getName())}
-                                                                <span class="frame-variant-name">
-                                                                    <span class="code">{echo $kitItem->getName()}</span>
+                                        <div class="p_r">
+                                            <div class="main-title">{lang('Комплект', 'newLevel')}</div>
+                                            <ul class="items items-bask items-product">
+                                                {foreach $item->items as $k => $kitItem}
+                                                    <li>
+                                                        {if $k != 0}
+                                                            <div class="next-kit">+</div>
+                                                        {/if}
+                                                        <div class="frame-kit{if $k === 0} main-product{/if}">
+                                                            <a class="frame-photo-title" href="{echo shop_url('product/'.$kitItem->getSProducts()->getUrl())}">
+                                                                <span class="photo-block">
+                                                                    <span class="helper"></span>
+                                                                    <img src="{echo $kitItem->getSmallPhoto()}">
                                                                 </span>
-                                                            {/if}
+                                                                <span class="title">{echo $kitItem->getSProducts()->getName()}</span>
+                                                            </a>
+                                                            <div class="description">
+                                                                {if $item->getName() && trim($kitItem->getName()) != trim($kitItem->getSProducts()->getName())}
+                                                                    <span class="frame-variant-name">
+                                                                        <span class="code">{echo $kitItem->getName()}</span>
+                                                                    </span>
+                                                                {/if}
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </li>
-                                            {/foreach}
-                                        </ul>
+                                                    </li>
+                                                {/foreach}
+                                            </ul>
+                                        </div>
                                     </td>
                                     <td class="frame-count t-a_c">
                                         <div class="number js-number" data-title="{lang('Количество на складе','newLevel')} {echo $item->getStock()}">

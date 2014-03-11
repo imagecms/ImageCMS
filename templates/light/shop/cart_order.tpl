@@ -182,7 +182,7 @@
                 </div>
             </td>
         </tr>
-        {if $deliveryMethod}
+        {if $deliveryMethod && $deliveryMethod->getPrice() != 0 || $deliveryMethod && $deliveryMethod->getDeliverySumSpecifiedMessage() != ''}
             <tr>
                 <td colspan="3">
                     <span class="s-t f_l">{lang('Доставка','newLevel')}:</span>
