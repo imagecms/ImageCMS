@@ -7,7 +7,7 @@ var hrefOptions = {
     gallery: '#photo .frame-fancy-gallery',
     cycle: false,
     //    'frame' and other in extend optionsPhoto and this object
-    footerContent: '.frame-prices-buy',
+    footerContent: '.frame-prices-buy-wish-compare',
     galleryContent: '.items-thumbs'
 };
 var optionsPhoto = {

@@ -131,6 +131,8 @@ var ShopFront = {
         process: function() {
             //comparelist checking
             var comparelist = Shop.CompareList.all();
+            $('.btnCompare' + ' ' + genObj.textEl).off('click.inCompare');
+
             $('.' + genObj.toCompare).each(function() {
                 if (comparelist.indexOf($(this).data('id')) !== -1) {
                     var $this = $(this);
@@ -160,6 +162,21 @@ var ShopFront = {
                             text($this.attr('data-firtitle'));
                     $this.find('.niceCheck').nStCheck('checkUnChecked');
                 }
+            });
+
+            $('.' + genObj.inCompare + ' ' + genObj.textEl).on('click.inCompare', function(e) {
+                e.stopPropagation();
+                var pN = window.location.pathname,
+                        tab;
+                if (/category|product/.test(pN)) {
+                    if (pN.indexOf('category') !== -1)
+                        tab = pN.substr(pN.lastIndexOf('/') + 1, pN.length);
+                    else if (pN.indexOf('product') !== -1)
+                        tab = hrefCategoryProduct.substr(hrefCategoryProduct.lastIndexOf('/') + 1, hrefCategoryProduct.length)
+                    document.location.href = '/shop/compare#tab_' + tab;
+                }
+                else
+                    document.location.href = '/shop/compare';
             });
         },
         count: function() {
