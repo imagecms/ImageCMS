@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-26 01:49+0200\n"
-"PO-Revision-Date: 2013-12-26 01:49+0200\n"
+"POT-Creation-Date: 2014-03-11 04:44+0200\n"
+"PO-Revision-Date: 2014-03-11 04:44+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: ./application/modules/rss/templates/admin/settings.tpl:5
 msgid "RSS channel options or specifications"
-msgstr "Параметры RSS каналу"
+msgstr "Параметры RSS канала"
 
 #: ./application/modules/rss/templates/admin/settings.tpl:9
 msgid "Go back"

@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-26 01:50+0200\n"
-"PO-Revision-Date: 2013-12-26 01:50+0200\n"
+"POT-Creation-Date: 2014-03-11 04:32+0200\n"
+"PO-Revision-Date: 2014-03-11 04:32+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -17,6 +17,10 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/share/templates/admin/settings.tpl:136
+msgid "counter"
+msgstr "счетчик"
 
 #: ./application/modules/share/templates/admin/settings.tpl:5
 msgid "Button social networks module settings"
@@ -39,12 +43,12 @@ msgid "VK"
 msgstr "В.К."
 
 #: ./application/modules/share/templates/admin/settings.tpl:53
-#: ./application/modules/share/templates/admin/settings.tpl:163
+#: ./application/modules/share/templates/admin/settings.tpl:164
 msgid "Facebook"
 msgstr "Facebook"
 
 #: ./application/modules/share/templates/admin/settings.tpl:63
-#: ./application/modules/share/templates/admin/settings.tpl:199
+#: ./application/modules/share/templates/admin/settings.tpl:200
 msgid "Twitter"
 msgstr "Twitter"
 
@@ -76,31 +80,31 @@ msgstr "Google+"
 msgid "External view"
 msgstr "Внешний вид"
 
-#: ./application/modules/share/templates/admin/settings.tpl:136
+#: ./application/modules/share/templates/admin/settings.tpl:137
 msgid "button"
 msgstr "кнопка"
 
-#: ./application/modules/share/templates/admin/settings.tpl:137
+#: ./application/modules/share/templates/admin/settings.tpl:138
 msgid "link"
 msgstr "ссылка"
 
-#: ./application/modules/share/templates/admin/settings.tpl:138
+#: ./application/modules/share/templates/admin/settings.tpl:139
 msgid "icon and menu"
 msgstr "значок и меню"
 
-#: ./application/modules/share/templates/admin/settings.tpl:139
+#: ./application/modules/share/templates/admin/settings.tpl:140
 msgid "only icons"
 msgstr "только иконки"
 
-#: ./application/modules/share/templates/admin/settings.tpl:173
+#: ./application/modules/share/templates/admin/settings.tpl:174
 msgid "Вконтакте"
 msgstr "Вконтакте"
 
-#: ./application/modules/share/templates/admin/settings.tpl:183
+#: ./application/modules/share/templates/admin/settings.tpl:184
 msgid "Ваш API ID"
 msgstr "Ваш API ID"
 
-#: ./application/modules/share/templates/admin/settings.tpl:189
+#: ./application/modules/share/templates/admin/settings.tpl:190
 msgid "Google +"
 msgstr "Google+"
 
@@ -117,7 +121,7 @@ msgid "Save and go back"
 msgstr "Сохранить и вернуться"
 
 #: ./application/modules/share/templates/admin/settings.tpl:25
-#: ./application/modules/share/templates/admin/settings.tpl:155
+#: ./application/modules/share/templates/admin/settings.tpl:156
 msgid "Settings"
 msgstr "Настройки"
 
