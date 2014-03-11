@@ -221,10 +221,9 @@ class Admin extends BaseAdminController {
         if ($field->num_rows() == 1) {
             $field = $field->row();
             $field_data = unserialize($field->data);
-
             $form = $this->load->module('cfcm/cfcm_forms')->edit_field($field->type);
 
-            $form->title = lang("Field editing ", 'cfcm') . ' ' . $field->label;
+            $form->title = lang("Field editing", 'cfcm') . ' ' . $field->label;
             $form->action = $this->get_url('edit_field/' . $name);
 
             $form->setAttributes($field_data);

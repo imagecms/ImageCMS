@@ -1,24 +1,24 @@
 <div class="inside-padd clearfix">
     <div class="frame-change-profile">
         <div class="horizontal-form">
-              <form method="post" id="form_change_info" onsubmit="ImageCMSApi.formAction('{site_url("/shop/profileapi/changeInfo")}', '#form_change_info', {literal}{hideForm: false, durationHideForm: 1000}{/literal});
-                return false;">
+            <form method="post" id="form_change_info" onsubmit="ImageCMSApi.formAction('{site_url("/shop/profileapi/changeInfo")}', '#form_change_info', {literal}{hideForm: false, durationHideForm: 1000}{/literal});
+                      return false;">
                 <label>
-                    <span class="title">{lang('Ваше имя','newLevel')}:</span>
+                    <span class="title">{lang('Ваше имя','newLevel')}</span>
                     <span class="frame-form-field">
                         <input type="text" value="{echo encode($profile->getName())}" name="name"/>
                         <span class="help-block">{lang('Не меньше 4-х символов','newLevel')}</span>
                     </span>
                 </label>
-                    {echo ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPatternMain('pattern_custom_field')->getOneCustomFieldsByName('secondname','user',$profile->getId())->asHtml()}
+                {echo ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPatternMain('pattern_custom_field')->getOneCustomFieldsByName('secondname','user',$profile->getId())->asHtml()}
                 <label>
-                    <span class="title">{lang('Телефон','newLevel')}:</span>
+                    <span class="title">{lang('Телефон','newLevel')}</span>
                     <span class="frame-form-field">
                         <input type="text" value="{echo encode($profile->getPhone())}" name="phone"/>
                     </span>
                 </label>
                 <label>
-                    <span class="title">Email:</span>
+                    <span class="title">Email</span>
                     <span class="frame-form-field">
                         <input type="text" disabled="disabled" value="{echo encode($profile->getUserEmail())}" name="email"/>
                         <input type="hidden" value="{echo encode($profile->getUserEmail())}" name="email"/>
@@ -27,7 +27,7 @@
                 </label>
                 {echo ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPatternMain('pattern_custom_field')->getOneCustomFieldsByName('city','user',$profile->getId())->asHtml()}
                 <label>
-                    <span class="title">{lang('Адрес','newLevel')}:</span>
+                    <span class="title">{lang('Адрес','newLevel')}</span>
                     <span class="frame-form-field">
                         <input type="text" value="{echo encode($profile->getAddress())}" name="address"/>
                     </span>
@@ -47,16 +47,14 @@
     {$discount = $CI->load->module('mod_discount/discount_api')->get_user_discount_api()}
     {if $discount['user'] or $discount['group_user'] or $discount['comulativ']}
         <div class="layout-highlight info-discount">
-            <div class="title-default">
-                <div class="title">{lang('Скидки','newLevel')}</div>
-            </div>
+            <div class="title">{lang('Ваша скидка','newLevel')}</div>
             <div class="content">
                 <ul class="items items-info-discount">
                     <li class="inside-padd">
                         <div>
-                            {lang('Товаров на сумму','newLevel')}:
+                            {lang('Куплено товаров на сумму','newLevel')}:
                             <span class="price-item">
-                                <span class="text-discount">
+                                <span class="f-w_b">
                                     <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($profile->getamout())}</span>
                                     <span class="curr">{$CS}</span>
                                 </span>
@@ -94,18 +92,18 @@
                                 </span>
                             </div>
                         {/if}
-
                     </li>
 
                     {if $discount_comul_next}
                         <li class="inside-padd">
-                            <div>{lang('Для следующих скидкок','newLevel')} {echo $discount_comul_next['value']}{if  $discount_comul_next['type_value'] == 1}%{else:}{$CS}{/if}</b> {lang('оставить','newLevel')}</div>
-                            <div>{lang('Сделать покупки по ценам','newLevel')}: <b>{echo $discount_comul_next['begin_value'] - $profile->getamout()} {$CS}</b></div>
+                            <div>{lang('Для следующей скидки','newLevel')} <b>{echo $discount_comul_next['value']}{if  $discount_comul_next['type_value'] == 1}%{else:} {$CS}{/if}</b> {lang('осталось','newLevel')}</div>
+                            <div>{lang('совершить покупок на сумму','newLevel')}: <b>{echo $discount_comul_next['begin_value'] - $profile->getamout()} {$CS}</b></div>
                         </li>
                     {/if}
                     {if  $discount['comulativ']}
                         <li class="inside-padd">
-                            <button type="button" class="d_l_1" data-drop=".drop-comulativ-discounts" data-place="noinherit" data-placement="top left" data-overlay-opacity= "0">{lang('Посмотреть таблицу скидок','newLevel')}</button>
+                            <span class="text-el">{lang('Таблица скидок','newLevel')}</span>
+                            <button type="button" class="icon_info_t" data-drop=".drop-comulativ-discounts"></button>
                         </li>
                     {/if}
                 </ul>
