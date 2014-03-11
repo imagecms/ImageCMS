@@ -123,7 +123,7 @@
                 </button>
                 <div class="imagecms-buy-license">
                     <a href="http://www.imagecms.net/shop/prices">
-                        <span class="imagecms-text-el">Купить лицензицю</span>
+                        <span class="imagecms-text-el">Купить лицензию</span>
                     </a>
                 </div>
                 <ul class="imagecms-list">
