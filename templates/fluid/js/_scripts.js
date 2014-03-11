@@ -255,21 +255,6 @@ function init() {
         });
     });
     //End. Cart
-
-    $(genObj.parentBtnBuy).on('click.inCompare', '.' + genObj.inCompare + ' ' + genObj.textEl, function(e) {
-        e.stopPropagation();
-        var pN = window.location.pathname,
-                tab;
-        if (/category|product/.test(pN)) {
-            if (pN.indexOf('category') !== -1)
-                tab = pN.substr(pN.lastIndexOf('/') + 1, pN.length);
-            else if (pN.indexOf('product') !== -1)
-                tab = hrefCategoryProduct.substr(hrefCategoryProduct.lastIndexOf('/') + 1, hrefCategoryProduct.length)
-            document.location.href = '/shop/compare#tab_' + tab;
-        }
-        else
-            document.location.href = '/shop/compare';
-    });
     $('.items-product, .item-product').nStCheck({
         wrapper: $(".btnCompare"),
         elCheckWrap: '.niceCheck',

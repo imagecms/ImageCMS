@@ -14,7 +14,7 @@
                 <span class="helper"></span>
                 <span>
                     <span class="title text-el">{lang('Моя корзина', 'newLevel')}</span>
-                    <span class="text-el">{lang('Корзина пуста','newLevel')}</span>
+                    <span class="text-el">{lang('пуста','newLevel')}</span>
                 </span>
             </span>
         </button>
