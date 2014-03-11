@@ -46,7 +46,7 @@
                                                 </span>
                                             </span>
                                         </th>
-                                        <th class="span4">{lang("Name","admin")}</th>
+                                        <th class="span4">{lang("Language","admin")}</th>
                                         <th class="span4">{lang("Identifier","admin")}</th>
                                         <th class="span4">{lang("Template","admin")}</th>
                                         <th class="span2">{lang("Image","admin")}</th>
