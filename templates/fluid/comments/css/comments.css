@@ -19,6 +19,7 @@
 .comments .icon_comment{background-image: none;width: 0;height: 0;margin-right: 0!important;overflow: hidden;}
 .comments .frame-list-comments li{border-top: 0;padding: 0;}
 .comments .frame-list-comments > .sub-1 > li{margin-top: 29px;margin-bottom: 0;}
+.comments .frame-list-comments > .sub-1 > li:before{display: none;}
 .comments .frame-list-comments > .sub-1 > li:first-child{margin-top: 0;}
 .comments .frame-list-comments.sub-2 + .s-all-comments{margin-left: 33px;}
 .comments .frame-list-comments.sub-2 > li{background-color: #efedea;margin-top: 29px;position: relative;}
