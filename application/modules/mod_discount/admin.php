@@ -22,6 +22,11 @@ class Admin extends \ShopAdminController {
                 ->registerScript('adminScripts');
     }
 
+    public function test() {
+        echo $this->router->class;
+        //echo $this->router->method;
+    }
+
     /**
      * For displaing list of discounts
      * @return html
