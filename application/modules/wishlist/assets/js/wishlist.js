@@ -207,6 +207,7 @@ $('.APItester').live('click', function() {
 
 $("#createWishList").unbind().bind('click', function() {
     var data = $("form#wishlistForm").serialize();
+    $('#wishlistForm .wishListName').next().hide();
     $.post('/admin/components/cp/wishlist/createWishList', data, function(response) {
         $("#notifies").empty();
         var notifContainer = document.getElementById('notifies');
@@ -232,13 +233,18 @@ $("#createWishList").unbind().bind('click', function() {
         var i = 0;
         if (typeof(response.errors) != 'undefined') {
             for (var key in response.errors) {
-                p[i] = document.createElement('p');
-                text[i] = document.createTextNode(response.errors[key]);
-                p[i].appendChild(text[i]);
-                errorsDiv.appendChild(p[i]);
-                i++;
+                if (key == 'name') {
+                    $('#wishlistForm .wishListName').next().show();
+                } else {
+                    p[i] = document.createElement('p');
+                    text[i] = document.createTextNode(response.errors[key]);
+                    p[i].appendChild(text[i]);
+                    errorsDiv.appendChild(p[i]);
+                    i++;
+                }
             }
-            notifContainer.appendChild(errorsDiv);
+            if (i)
+                notifContainer.appendChild(errorsDiv);
         }
 
 
