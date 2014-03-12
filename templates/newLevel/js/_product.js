@@ -93,7 +93,7 @@ Product = {
         var drop = arg[1];
         fancyFrameInPH.parent().addClass('p_r');
         fancyFrameInPH.append('<div class="preloader"></div>');
-        if (href == hrefOptions.curHref)
+        if (href === hrefOptions.curHref)
             fancyFrameInPH.find('.preloader').remove();
         hrefOptions.curHref = href;
         $('<img src="' + href+'">').one('load').each(function() {
@@ -103,7 +103,8 @@ Product = {
 
             $.drop.method('limitSize')(drop);
             Product.resizePhoto(drop, function() {
-                $.drop.method('center')(drop);
+                drop.drop('heightContent');
+                drop.drop('center');
             });
             carGal.find('.jcarousel-item').eq($.inArray(hrefOptions.curHref, hrefOptions.thumbs)).focusin();
             

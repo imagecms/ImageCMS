@@ -63,7 +63,6 @@
                                             <button
                                                 type="submit"
                                                 data-source="{site_url('/wishlist/wishlistApi/createWishList')}"
-                                                data-type="json"
                                                 data-modal="true"
 
                                                 data-always="true"
@@ -119,7 +118,6 @@
                                         <button
                                             type="button"
                                             data-source="{site_url('/wishlist/wishlistApi/deleteWL/'.$wishlist[0][wish_list_id])}"
-                                            data-type="json"
                                             data-modal="true"
 
                                             data-drop="#notification"
