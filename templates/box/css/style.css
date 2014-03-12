@@ -749,7 +749,7 @@ li[class*="x"] > .title-category-l1{width: 100%;text-align: center;display: bloc
 .price-new .curr{font-size: 13px;}
 .price-discount{font-size: 13px;}
 .price-add{font-size: 13px;}
-.items-bask .price-new, .items-catalog .price-new, .items-bask .price-add, .items-catalog .price-add{margin-bottom: 8px;}
+.items-default .price-new, .items-bask .price-new, .items-catalog .price-new, .items-bask .price-add, .items-catalog .price-add{margin-bottom: 8px;}
 /*/prices*/
 
 /*form*/
@@ -1183,7 +1183,7 @@ footer .box-5{width: 179px;}
 /*/safari inline-block fix*/
 
 /*photo product*/
-#photo {min-width: 450px;}
+#photo {min-width: 450px;max-height: 95%;}
 #photo .frame-prices{display: inline-block;vertical-align: middle;padding-bottom: 0;margin-right: 10px;}
 #photo .price-discount{margin-bottom: 0;}
 #photo img{max-height: 94%;margin: 3% 0;}

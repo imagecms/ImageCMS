@@ -200,7 +200,7 @@ $(document).on('scriptDefer', function() {
     else {
         $(genObj.toWishlist).data({
             'always': true,
-            'data': {
+            'datas': {
                 "ignoreWrap": true
             }
         });
