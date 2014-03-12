@@ -3,7 +3,7 @@
         <div class="frame_title clearfix">
             <div class="pull-left">
                 <span class="help-inline"></span>
-                <span class="title">{lang('Edit list', 'wishlist')}: {echo $user[user_name]}</span>
+                <span class="title">{lang('Edit list', 'wishlist')}</span>
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
