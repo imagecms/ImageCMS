@@ -231,7 +231,7 @@
                                             <!-- class="alert alert-error" -->
                                         </div>
 
-                                        <form id="wishlistForm">
+                                        <form id="wishlistForm" class="form-horizontal">
                                             <input type="hidden" value="{echo $user[id]}" name="user_id"/>
                                             <div class="form-horizontal">
                                                 <div class="control-group">
@@ -247,7 +247,8 @@
                                                 <div class="control-group">
                                                     <label class="control-label" for="banner_type">{lang('List name', 'wishlist')}:</label>
                                                     <div class="controls">
-                                                        <input type="text" value="" name="wishListName"/>
+                                                        <input type="text" class="alert alert-error wishListName" value="" name="wishListName"/>
+                                                        <div class="alert alert-error" style="display: none">{lang('This field is required', 'admin')}</div>
                                                     </div>
                                                 </div>
                                                 <div class="control-group">

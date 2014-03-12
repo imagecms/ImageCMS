@@ -31,7 +31,7 @@
                                         <div class="inside_padd span9">
                                             <div class="form-horizontal">
                                                 <div class="control-group">
-                                                    <label class="control-label" for="name">{lang("Name","admin")}:</label>
+                                                    <label class="control-label" for="name">{lang("Language","admin")}:</label>
                                                     <div class="controls">
                                                         <input type="text" name="name" id="name" required/>
                                                     </div>
@@ -44,7 +44,7 @@
                                                         </div>
                                                     </div> 
                                                     <div class="control-group">
-                                                        <label class="control-label" for="locale">{lang("Locale","admin")}:</label>
+                                                        <label class="control-label" for="locale">{lang("Localization","admin")}:</label>
                                                         <div class="controls">
                                                             <select id="locale" name="locale">
                                                                 {foreach $locales as $locale_name}
