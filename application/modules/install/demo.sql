@@ -164,7 +164,7 @@ INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_me
 (92, 'gallery', 'gallery', 1, 0, 1, 'a:26:{s:13:"max_file_size";s:1:"5";s:9:"max_width";s:1:"0";s:10:"max_height";s:1:"0";s:7:"quality";s:3:"100";s:14:"maintain_ratio";b:1;s:19:"maintain_ratio_prev";b:1;s:19:"maintain_ratio_icon";b:1;s:4:"crop";b:0;s:9:"crop_prev";b:0;s:9:"crop_icon";b:1;s:14:"prev_img_width";s:3:"500";s:15:"prev_img_height";s:3:"500";s:11:"thumb_width";s:3:"200";s:12:"thumb_height";s:3:"200";s:14:"watermark_text";s:0:"";s:16:"wm_vrt_alignment";s:6:"bottom";s:16:"wm_hor_alignment";s:4:"left";s:19:"watermark_font_size";s:2:"14";s:15:"watermark_color";s:6:"ffffff";s:17:"watermark_padding";s:2:"-5";s:19:"watermark_font_path";s:20:"./system/fonts/1.ttf";s:15:"watermark_image";s:0:"";s:23:"watermark_image_opacity";s:2:"50";s:14:"watermark_type";s:4:"text";s:8:"order_by";s:4:"date";s:10:"sort_order";s:4:"desc";}', NULL),
 (55, 'rss', 'rss', 1, 0, 1, 'a:5:{s:5:"title";s:22:"Блог ImageRobotics";s:11:"description";s:64:"Последние тенденции в мире роботов";s:10:"categories";a:7:{i:0;s:2:"56";i:1;s:2:"57";i:2;s:2:"55";i:3;s:2:"58";i:4;s:2:"59";i:5;s:2:"60";i:6;s:2:"61";}s:9:"cache_ttl";i:60;s:11:"pages_count";i:10;}', NULL),
 (60, 'menu', 'menu', 0, 1, 1, NULL, NULL),
-(58, 'sitemap', 'sitemap', 0, 0, 1, 'a:5:{s:18:"main_page_priority";s:1:"1";s:13:"cats_priority";s:3:"0.9";s:14:"pages_priority";s:3:"0.5";s:20:"main_page_changefreq";s:6:"weekly";s:16:"pages_changefreq";s:7:"monthly";}', NULL),
+(58, 'sitemap', 'sitemap', 0, 0, 1, 'a:5:{s:12:"robotsStatus";i:0;s:11:"generateXML";i:1;s:11:"sendSiteMap";i:1;s:8:"lastSend";i:0;s:18:"sendWhenUrlChanged";i:0;}', NULL),
 (80, 'search', 'search', 1, 0, 0, NULL, NULL),
 (84, 'feedback', 'feedback', 1, 0, 0, 'a:2:{s:5:"email";s:19:"admin@localhost.loc";s:15:"message_max_len";i:550;}', NULL),
 (117, 'template_editor', 'template_editor', 0, 0, 0, NULL, NULL),
@@ -2281,6 +2281,73 @@ INSERT INTO `widget_i18n` (`id`, `locale`, `data`) VALUES
 (15, 'ru', '<div class="frame-benefits">\n<div class="container">\n<ul class="items items-benefits">\n<li class="d_i-b">\n<div class="photo-block"><span class="helper">&nbsp;</span><img src="/uploads/images/benefits/benef1.jpg" alt="Предоставление сервиса" /></div>\n<h3>Предоставление сервиса</h3>\n<p>Если вы приобрели робота у нас, но срок гарантии вышел, мы предоставим сервис высшего уровня за некоторое маленькое вознаграждение.</p>\n</li>\n<li class="d_i-b">\n<div class="photo-block"><span class="helper">&nbsp;</span><img src="/uploads/images/benefits/benef2.jpg" alt="Нано технология" /></div>\n<h3>Нано технология</h3>\n<p>Диагностика проблемы и ремонт роботов проходит под средством нано техники от Image Robotics. Ее нельзя приобрети на свободном рынке, такие возможности есть только у нас.</p>\n</li>\n<li class="d_i-b">\n<div class="photo-block"><span class="helper">&nbsp;</span><img src="/uploads/images/benefits/benef3.jpg" alt="Предоставление сервиса" /></div>\n<h3>Диагностика</h3>\n<p>Диагностика любой проблемы занимает несколько секунд, а ремонт составляет не более десяти минут с момента обнаружения проблемы. Если на складе есть ресурсы.</p>\n</li>\n</ul>\n</div>\n</div>'),
 (16, 'ru', '<p>&copy; 2012 Image Robotics - лидер в производстве роботов</p><p><a href="http://www.imagecms.net/free-cms-corporate">Бесплатная CMS</a></p>'),
 (17, 'ru', '<div class="d_i-b phones-header"><span>8 800 <span class="f-w_b">772-22-22</span></span>\n<p class="phones-info">бесплатно по Украине</p>\n</div>\n<div class="d_i-b phones-header phones-header-last"><span>097 <span class="f-w_b">772-22-22</span></span>\n<p class="phones-info">Мобильный телефон</p>\n</div>');
+
+--
+-- Table structure for table `mod_sitemap_blocked_urls`
+--
+
+DROP TABLE IF EXISTS `mod_sitemap_blocked_urls`;
+CREATE TABLE IF NOT EXISTS `mod_sitemap_blocked_urls` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `url` varchar(255) NOT NULL,
+  `robots_check` int(11) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mod_sitemap_changefreq`
+--
+
+DROP TABLE IF EXISTS `mod_sitemap_changefreq`;
+CREATE TABLE IF NOT EXISTS `mod_sitemap_changefreq` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `main_page_changefreq` varchar(255) DEFAULT NULL,
+  `pages_changefreq` varchar(255) DEFAULT NULL,
+  `product_changefreq` varchar(255) DEFAULT NULL,
+  `categories_changefreq` varchar(255) DEFAULT NULL,
+  `products_categories_changefreq` varchar(255) DEFAULT NULL,
+  `products_sub_categories_changefreq` varchar(255) DEFAULT NULL,
+  `brands_changefreq` varchar(255) DEFAULT NULL,
+  `sub_categories_changefreq` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `mod_sitemap_changefreq`
+--
+
+INSERT INTO `mod_sitemap_changefreq` (`id`, `main_page_changefreq`, `pages_changefreq`, `product_changefreq`, `categories_changefreq`, `products_categories_changefreq`, `products_sub_categories_changefreq`, `brands_changefreq`, `sub_categories_changefreq`) VALUES
+(1, 'weekly', 'weekly', 'weekly', 'weekly', 'weekly', 'weekly', 'weekly', 'weekly');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mod_sitemap_priorities`
+--
+
+DROP TABLE IF EXISTS `mod_sitemap_priorities`;
+CREATE TABLE IF NOT EXISTS `mod_sitemap_priorities` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `main_page_priority` float DEFAULT '1',
+  `cats_priority` float DEFAULT '1',
+  `pages_priority` float DEFAULT '1',
+  `sub_cats_priority` float DEFAULT '1',
+  `products_priority` float DEFAULT '1',
+  `products_categories_priority` float DEFAULT '1',
+  `products_sub_categories_priority` float DEFAULT '1',
+  `brands_priority` float DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `mod_sitemap_priorities`
+--
+
+INSERT INTO `mod_sitemap_priorities` (`id`, `main_page_priority`, `cats_priority`, `pages_priority`, `sub_cats_priority`, `products_priority`, `products_categories_priority`, `products_sub_categories_priority`, `brands_priority`) VALUES
+(1, 1, 0.8, 0.9, 0.7, 0.4, 0.6, 0.5, 0.3);
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
