@@ -25,7 +25,7 @@
                             {$per_page_arr = unserialize(ShopCore::app()->SSettings->arrayFrontProductsPerPage)}
                             <select id="sort2" name="user_per_page">
                                 {foreach $per_page_arr as $pp}
-                                    <option {if $pp == ShopCore::$_GET['user_per_page']}selected="selected"{/if} value="{$pp}">{$pp}</option>
+                                    <option {if $pp == ShopCore::$_GET['user_per_page']}selected="selected"{/if} value="{$pp}">{$pp} {echo SStringHelper::Pluralize($pp, array(lang('товар','newLevel'),lang('товара','newLevel'),lang('товаров','newLevel')))} {lang('на странице', 'newLevel')}</option>
                                 {/foreach}
                             </select>
                         </div>
@@ -34,7 +34,7 @@
                     <!--        Start. Show products as list or table-->
                     <nav class="frame-catalog-view d_i-b v-a_t">
                         <ul class="tabs tabs-list-table" data-elchange="#items-catalog-main" data-cookie="listtable">
-                            <li class="{if $_COOKIE['listtable'] == 'list'}active{/if}">
+                            <li class="{if $_COOKIE['listtable'] == 'list' || $_COOKIE['listtable'] == NULL}active{/if}">
                                 <button type="button" data-href="list" data-title="{lang('Список','newLevel')}" data-rel="tooltip">
                                     <span class="icon_list_cat"></span><span class="text-el">{lang('Список','newLevel')}</span>
                                 </button>
@@ -44,7 +44,7 @@
                                     <span class="icon_tablemini_cat"></span><span class="text-el">{lang('Мини таблица','newLevel')}</span>
                                 </button>
                             </li>
-                            <li class="{if $_COOKIE['listtable'] == 'table' || $_COOKIE['listtable'] == NULl}active{/if}">
+                            <li class="{if $_COOKIE['listtable'] == 'table'}active{/if}">
                                 <button type="button" data-href="table" data-title="{lang('Таблица','newLevel')}" data-rel="tooltip">
                                     <span class="icon_table_cat"></span><span class="text-el">{lang('Таблица','newLevel')}</span>
                                 </button>
