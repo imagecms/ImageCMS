@@ -292,7 +292,7 @@ class ParentWishlist extends \MY_Controller {
             }
             $this->wishlist_model->createWishList($listName, $user_id, $wlType, $wlDescription);
         } else {
-            $this->errors[] = lang('Wish List name can not be empty!', 'wishlist');
+            $this->errors['name'] = lang('Wish List name can not be empty!', 'wishlist');
         }
 
         if (count($this->errors))

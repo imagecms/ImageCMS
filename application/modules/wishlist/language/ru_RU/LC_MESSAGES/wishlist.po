@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-12 09:55+0200\n"
-"PO-Revision-Date: 2014-03-12 09:55+0200\n"
+"POT-Creation-Date: 2014-03-12 11:03+0200\n"
+"PO-Revision-Date: 2014-03-12 11:03+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -17,6 +17,20 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/wishlist/classes/ParentWishlist.php:279
+#: ./application/modules/wishlist/classes/ParentWishlist.php:406
+msgid "List maximum"
+msgstr "Максимум списков"
+
+#: ./application/modules/wishlist/assets/js/wishlist.js:174
+msgid "Limit of Wish List finished "
+msgstr "Лимит списков исчерпан"
+
+#: ./application/modules/wishlist/classes/ParentWishlist.php:279
+#: ./application/modules/wishlist/classes/ParentWishlist.php:406
+msgid "Wish Lists limit exhausted"
+msgstr "Лимит списков пожеланий исчерпан"
 
 #: ./application/modules/wishlist/assets/admin/main.tpl:5
 #: ./application/modules/wishlist/assets/admin/main.tpl:31
@@ -43,14 +57,16 @@ msgstr "Максимальная длина описания Списка Жел
 msgid "Wish list name will be changed"
 msgstr "Имя Списка Желания будет изменено"
 
-#: ./application/modules/wishlist/assets/admin/wishlist.tpl:215
 #: ./application/modules/wishlist/assets/admin/wishlistEdit.tpl:53
+#: ./application/modules/wishlist/assets/admin/wishlist.tpl:142
+#: ./application/modules/wishlist/assets/admin/wishlist.tpl:243
 #: ./application/modules/wishlist/assets/wishlist.tpl:49
 msgid "private"
 msgstr "приватный"
 
-#: ./application/modules/wishlist/assets/admin/wishlist.tpl:213
 #: ./application/modules/wishlist/assets/admin/wishlistEdit.tpl:52
+#: ./application/modules/wishlist/assets/admin/wishlist.tpl:137
+#: ./application/modules/wishlist/assets/admin/wishlist.tpl:241
 #: ./application/modules/wishlist/assets/wishlist.tpl:47
 msgid "shared"
 msgstr "коллективный"
@@ -67,28 +83,28 @@ msgstr "максимальная ширина"
 msgid "max height"
 msgstr "максимальная высота"
 
-#: ./application/modules/wishlist/assets/admin/wishlist.tpl:152
-#: ./application/modules/wishlist/assets/admin/wishlistEdit.tpl:80
-#: ./application/modules/wishlist/assets/list.tpl:16
-#: ./application/modules/wishlist/assets/other_list.tpl:15
 #: ./application/modules/wishlist/assets/other_wishlist.tpl:25
-#: ./application/modules/wishlist/assets/wishlist.tpl:81
+#: ./application/modules/wishlist/assets/other_list.tpl:15
+#: ./application/modules/wishlist/assets/list.tpl:16
 #: ./application/modules/wishlist/assets/wishlistEdit.tpl:28
+#: ./application/modules/wishlist/assets/admin/wishlistEdit.tpl:80
+#: ./application/modules/wishlist/assets/admin/wishlist.tpl:175
+#: ./application/modules/wishlist/assets/wishlist.tpl:81
 msgid "Product"
 msgstr "Товар"
 
-#: ./application/modules/wishlist/assets/admin/wishlist.tpl:153
-#: ./application/modules/wishlist/assets/admin/wishlistEdit.tpl:81
-#: ./application/modules/wishlist/assets/list.tpl:17
-#: ./application/modules/wishlist/assets/other_list.tpl:16
 #: ./application/modules/wishlist/assets/other_wishlist.tpl:26
-#: ./application/modules/wishlist/assets/wishlist.tpl:82
+#: ./application/modules/wishlist/assets/other_list.tpl:16
+#: ./application/modules/wishlist/assets/list.tpl:17
 #: ./application/modules/wishlist/assets/wishlistEdit.tpl:29
+#: ./application/modules/wishlist/assets/admin/wishlistEdit.tpl:81
+#: ./application/modules/wishlist/assets/admin/wishlist.tpl:176
+#: ./application/modules/wishlist/assets/wishlist.tpl:82
 msgid "Comment"
 msgstr "Комментарий"
 
-#: ./application/modules/wishlist/assets/list.tpl:41
 #: ./application/modules/wishlist/assets/other_wishlist.tpl:48
+#: ./application/modules/wishlist/assets/list.tpl:41
 #: ./application/modules/wishlist/assets/wishlist.tpl:114
 msgid "Emty list"
 msgstr "Пустой список"
@@ -98,11 +114,11 @@ msgstr "Пустой список"
 msgid "Wish list is empty"
 msgstr "Список Желаний пуст"
 
-#: ./application/modules/wishlist/assets/admin/wishlist.tpl:28
-#: ./application/modules/wishlist/assets/admin/wishlist.tpl:199
-#: ./application/modules/wishlist/assets/admin/wishlist.tpl:233
-#: ./application/modules/wishlist/assets/admin/wishPopup.tpl:49
 #: ./application/modules/wishlist/assets/js/wishlist.js:17
+#: ./application/modules/wishlist/assets/admin/wishlist.tpl:28
+#: ./application/modules/wishlist/assets/admin/wishlist.tpl:222
+#: ./application/modules/wishlist/assets/admin/wishlist.tpl:261
+#: ./application/modules/wishlist/assets/admin/wishPopup.tpl:49
 msgid "Create list"
 msgstr "Создать список"
 
@@ -110,8 +126,8 @@ msgstr "Создать список"
 msgid "Wrong list name"
 msgstr "Неверное имя списка"
 
-#: ./application/modules/wishlist/assets/js/wishlist.js:56
 #: ./application/modules/wishlist/wishlist.php:220
+#: ./application/modules/wishlist/assets/js/wishlist.js:56
 #: ./application/modules/wishlist/wishlistApi.php:197
 msgid "Already in Wish List"
 msgstr "Уже в Списке Желаний"
@@ -120,47 +136,43 @@ msgstr "Уже в Списке Желаний"
 msgid "List does not chosen"
 msgstr "Список не обран"
 
-#: ./application/modules/wishlist/assets/js/wishlist.js:174
-msgid "Limit of Wish List finished "
-msgstr "Лимит списков исчерпан"
-
 #: ./application/modules/wishlist/assets/all.tpl:9
 msgid "User Information"
 msgstr "Информация пользователя"
 
-#: ./application/modules/wishlist/assets/admin/wishlist.tpl:86
-#: ./application/modules/wishlist/assets/admin/wishlistEdit.tpl:43
 #: ./application/modules/wishlist/assets/all.tpl:11
+#: ./application/modules/wishlist/assets/admin/wishlistEdit.tpl:43
+#: ./application/modules/wishlist/assets/admin/wishlist.tpl:95
 msgid "Name"
 msgstr "Название"
 
-#: ./application/modules/wishlist/assets/admin/wishlist.tpl:53
 #: ./application/modules/wishlist/assets/all.tpl:15
+#: ./application/modules/wishlist/assets/admin/wishlist.tpl:61
 msgid "Ava"
 msgstr "Ава"
 
-#: ./application/modules/wishlist/assets/admin/wishlist.tpl:92
 #: ./application/modules/wishlist/assets/all.tpl:18
+#: ./application/modules/wishlist/assets/admin/wishlist.tpl:101
 msgid "Birthday"
 msgstr "День рождения"
 
-#: ./application/modules/wishlist/assets/admin/wishlist.tpl:6
 #: ./application/modules/wishlist/assets/all.tpl:23
+#: ./application/modules/wishlist/assets/admin/wishlist.tpl:6
 msgid "User lists"
 msgstr "Списки пользователя"
 
-#: ./application/modules/wishlist/assets/admin/wishlist.tpl:151
-#: ./application/modules/wishlist/assets/admin/wishlistEdit.tpl:79
 #: ./application/modules/wishlist/assets/list.tpl:15
-#: ./application/modules/wishlist/assets/wishlist.tpl:80
 #: ./application/modules/wishlist/assets/wishlistEdit.tpl:27
+#: ./application/modules/wishlist/assets/admin/wishlistEdit.tpl:79
+#: ./application/modules/wishlist/assets/admin/wishlist.tpl:174
+#: ./application/modules/wishlist/assets/wishlist.tpl:80
 msgid "Unsubscribe"
 msgstr "Отписаться"
 
 #: ./application/modules/wishlist/assets/list.tpl:25
-#: ./application/modules/wishlist/assets/wishlist.tpl:72
 #: ./application/modules/wishlist/assets/wishlistEdit.tpl:21
 #: ./application/modules/wishlist/assets/wishlistEdit.tpl:39
+#: ./application/modules/wishlist/assets/wishlist.tpl:72
 msgid "delete"
 msgstr "удалить"
 
@@ -168,7 +180,7 @@ msgstr "удалить"
 msgid "Already in WishList"
 msgstr "Уже в Списке Желаний"
 
-#: ./application/modules/wishlist/assets/admin/wishlist.tpl:75
+#: ./application/modules/wishlist/assets/admin/wishlist.tpl:83
 #: ./application/modules/wishlist/assets/wishlist.tpl:28
 msgid "Delete image"
 msgstr "Удалить картинку"
@@ -177,13 +189,14 @@ msgstr "Удалить картинку"
 msgid "Lists types"
 msgstr "Типы списков"
 
-#: ./application/modules/wishlist/assets/admin/wishlist.tpl:214
 #: ./application/modules/wishlist/assets/admin/wishlistEdit.tpl:54
+#: ./application/modules/wishlist/assets/admin/wishlist.tpl:147
+#: ./application/modules/wishlist/assets/admin/wishlist.tpl:242
 #: ./application/modules/wishlist/assets/wishlist.tpl:48
 msgid "public"
 msgstr "публичный"
 
-#: ./application/modules/wishlist/assets/admin/wishlist.tpl:220
+#: ./application/modules/wishlist/assets/admin/wishlist.tpl:248
 #: ./application/modules/wishlist/assets/wishlist.tpl:52
 msgid "List name"
 msgstr "Имя списка"
@@ -196,8 +209,8 @@ msgstr "Описание списка"
 msgid "Create new list"
 msgstr "Создать новый список"
 
-#: ./application/modules/wishlist/assets/admin/wishlist.tpl:125
 #: ./application/modules/wishlist/assets/admin/wishlistEdit.tpl:49
+#: ./application/modules/wishlist/assets/admin/wishlist.tpl:134
 #: ./application/modules/wishlist/assets/wishlist.tpl:70
 msgid "List type"
 msgstr "Тип списка"
@@ -206,17 +219,17 @@ msgstr "Тип списка"
 msgid "edit"
 msgstr "редактировать"
 
+#: ./application/modules/wishlist/assets/admin/wishlistEdit.tpl:89
 #: ./application/modules/wishlist/assets/admin/users.tpl:12
 #: ./application/modules/wishlist/assets/admin/users.tpl:38
-#: ./application/modules/wishlist/assets/admin/wishlist.tpl:136
-#: ./application/modules/wishlist/assets/admin/wishlist.tpl:162
-#: ./application/modules/wishlist/assets/admin/wishlistEdit.tpl:89
+#: ./application/modules/wishlist/assets/admin/wishlist.tpl:159
+#: ./application/modules/wishlist/assets/admin/wishlist.tpl:185
 #: ./application/modules/wishlist/assets/wishlist.tpl:93
 #: ./application/modules/wishlist/assets/wishlist.tpl:121
 msgid "Delete"
 msgstr "Удалить"
 
-#: ./application/modules/wishlist/assets/admin/wishlist.tpl:163
+#: ./application/modules/wishlist/assets/admin/wishlist.tpl:186
 #: ./application/modules/wishlist/assets/wishlist.tpl:94
 msgid "Move"
 msgstr "Переместить"
@@ -239,9 +252,9 @@ msgid "Add to list"
 msgstr "Добавить в список"
 
 #: ./application/modules/wishlist/assets/admin/main.tpl:12
+#: ./application/modules/wishlist/assets/admin/wishlistEdit.tpl:13
 #: ./application/modules/wishlist/assets/admin/users.tpl:28
 #: ./application/modules/wishlist/assets/admin/wishlist.tpl:13
-#: ./application/modules/wishlist/assets/admin/wishlistEdit.tpl:13
 #: ./application/modules/wishlist/assets/admin/wishPopup.tpl:13
 msgid "Back"
 msgstr "Назад"
@@ -251,8 +264,8 @@ msgid "Users"
 msgstr "Пользователи"
 
 #: ./application/modules/wishlist/assets/admin/main.tpl:21
-#: ./application/modules/wishlist/assets/admin/wishlist.tpl:105
 #: ./application/modules/wishlist/assets/admin/wishlistEdit.tpl:106
+#: ./application/modules/wishlist/assets/admin/wishlist.tpl:114
 msgid "Save"
 msgstr "Сохранить"
 
@@ -296,9 +309,9 @@ msgstr "Максимальный размер изображения"
 msgid "Edit list"
 msgstr "Редактировать список"
 
+#: ./application/modules/wishlist/assets/admin/wishlistEdit.tpl:17
 #: ./application/modules/wishlist/assets/admin/users.tpl:32
 #: ./application/modules/wishlist/assets/admin/wishlist.tpl:17
-#: ./application/modules/wishlist/assets/admin/wishlistEdit.tpl:17
 #: ./application/modules/wishlist/assets/admin/wishPopup.tpl:17
 msgid "Settings"
 msgstr "Настройки"
@@ -307,10 +320,10 @@ msgstr "Настройки"
 msgid "List"
 msgstr "Список"
 
-#: ./application/modules/wishlist/assets/admin/wishlist.tpl:98
-#: ./application/modules/wishlist/assets/admin/wishlist.tpl:128
-#: ./application/modules/wishlist/assets/admin/wishlist.tpl:226
 #: ./application/modules/wishlist/assets/admin/wishlistEdit.tpl:59
+#: ./application/modules/wishlist/assets/admin/wishlist.tpl:107
+#: ./application/modules/wishlist/assets/admin/wishlist.tpl:151
+#: ./application/modules/wishlist/assets/admin/wishlist.tpl:254
 msgid "Description"
 msgstr "Описание"
 
@@ -354,24 +367,24 @@ msgstr "Количество товаров в списках"
 msgid "Lists"
 msgstr "Списки"
 
-#: ./application/modules/wishlist/assets/admin/wishlist.tpl:67
+#: ./application/modules/wishlist/assets/admin/wishlist.tpl:75
 msgid "Upload"
 msgstr "Загрузить"
 
-#: ./application/modules/wishlist/assets/admin/wishlist.tpl:140
+#: ./application/modules/wishlist/assets/admin/wishlist.tpl:163
 msgid "Edit"
 msgstr "Редактировать"
 
-#: ./application/modules/wishlist/assets/admin/wishlist.tpl:183
+#: ./application/modules/wishlist/assets/admin/wishlist.tpl:206
 msgid "Empty list"
 msgstr "Список пуст"
 
-#: ./application/modules/wishlist/assets/admin/wishlist.tpl:190
+#: ./application/modules/wishlist/assets/admin/wishlist.tpl:213
 #: ./application/modules/wishlist/classes/ParentWishlist.php:102
 msgid "No lists"
 msgstr "Нет списков"
 
-#: ./application/modules/wishlist/assets/admin/wishlist.tpl:210
+#: ./application/modules/wishlist/assets/admin/wishlist.tpl:238
 msgid "Type"
 msgstr "Тип"
 
@@ -406,36 +419,27 @@ msgstr "Неправильный запрос"
 msgid "No views"
 msgstr "Нет просмотров"
 
+#: ./application/modules/wishlist/classes/ParentWishlist.php:257
 #: ./application/modules/wishlist/classes/BaseApi.php:172
 #: ./application/modules/wishlist/classes/BaseWishlist.php:174
 msgid "Updated"
 msgstr "Обновлен"
 
+#: ./application/modules/wishlist/classes/ParentWishlist.php:259
 #: ./application/modules/wishlist/classes/BaseApi.php:174
 #: ./application/modules/wishlist/classes/BaseWishlist.php:176
-#: ./application/modules/wishlist/classes/ParentWishlist.php:259
 msgid "Not updated"
 msgstr "Не обновлен"
 
-#: ./application/modules/wishlist/classes/ParentWishlist.php:279
-#: ./application/modules/wishlist/classes/ParentWishlist.php:406
-msgid "Wish Lists limit exhausted"
-msgstr "Лимит Списков Желаний исчерпан"
-
-#: ./application/modules/wishlist/classes/ParentWishlist.php:279
-#: ./application/modules/wishlist/classes/ParentWishlist.php:406
-msgid "List maximum"
-msgstr "Максимум спосков"
-
+#: ./application/modules/wishlist/classes/ParentWishlist.php:285
 #: ./application/modules/wishlist/classes/BaseApi.php:235
 #: ./application/modules/wishlist/classes/BaseWishlist.php:190
-#: ./application/modules/wishlist/classes/ParentWishlist.php:285
 msgid "List description limit exhausted"
 msgstr "Лимит описания сиска исчерпан"
 
+#: ./application/modules/wishlist/classes/ParentWishlist.php:285
 #: ./application/modules/wishlist/classes/BaseApi.php:235
 #: ./application/modules/wishlist/classes/BaseWishlist.php:190
-#: ./application/modules/wishlist/classes/ParentWishlist.php:285
 msgid "List description max count"
 msgstr "Максимальная длина описания списка"
 
@@ -443,9 +447,9 @@ msgstr "Максимальная длина описания списка"
 msgid "List name length maximum"
 msgstr "Максимальная длина названия списка"
 
+#: ./application/modules/wishlist/classes/ParentWishlist.php:301
 #: ./application/modules/wishlist/classes/BaseApi.php:204
 #: ./application/modules/wishlist/classes/BaseWishlist.php:141
-#: ./application/modules/wishlist/classes/ParentWishlist.php:301
 msgid "Created"
 msgstr "Создано"
 
@@ -508,7 +512,7 @@ msgstr "Неверный формат файла"
 #: ./application/modules/wishlist/classes/BaseApi.php:95
 #: ./application/modules/wishlist/classes/BaseApi.php:328
 #: ./application/modules/wishlist/classes/BaseWishlist.php:71
-#: ./application/modules/wishlist/classes/BaseWishlist.php:305
+#: ./application/modules/wishlist/classes/BaseWishlist.php:310
 msgid "Successful operation"
 msgstr "Успешная операция"
 
@@ -525,7 +529,7 @@ msgstr "Успешное удаление"
 
 #: ./application/modules/wishlist/classes/BaseApi.php:274
 #: ./application/modules/wishlist/classes/BaseApi.php:330
-#: ./application/modules/wishlist/classes/BaseWishlist.php:307
+#: ./application/modules/wishlist/classes/BaseWishlist.php:312
 msgid "Error"
 msgstr "Ошибка"
 
@@ -535,7 +539,7 @@ msgstr "Ошибка загрузки"
 
 #: ./application/modules/wishlist/classes/BaseApi.php:292
 #: ./application/modules/wishlist/classes/BaseApi.php:294
-#: ./application/modules/wishlist/classes/BaseWishlist.php:287
+#: ./application/modules/wishlist/classes/BaseWishlist.php:291
 msgid "Image uploaded"
 msgstr "Изображение загружено"
 
@@ -548,7 +552,7 @@ msgid "You did not enter user"
 msgstr "Вы не ввели пользователя"
 
 #: ./application/modules/wishlist/classes/BaseApi.php:324
-#: ./application/modules/wishlist/classes/BaseWishlist.php:301
+#: ./application/modules/wishlist/classes/BaseWishlist.php:306
 msgid "Invalid email"
 msgstr "Неверный email"
 
@@ -562,7 +566,7 @@ msgstr "Успешное удален"
 msgid "Unable to delete"
 msgstr "Не удается удалить"
 
-#: ./application/modules/wishlist/classes/BaseWishlist.php:289
+#: ./application/modules/wishlist/classes/BaseWishlist.php:294
 msgid "Can not upload photo"
 msgstr "Не возможно загрузить фото"
 
