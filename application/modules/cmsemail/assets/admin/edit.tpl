@@ -221,7 +221,7 @@
                                     <input type="text" name="variableValueEdit" class="variableValueEdit"/>
                                 </td>
                                 <td  class="span5" colspan="2">
-                                    <button data-update="count" onclick="EmailTemplateVariables.add($(this), {$model['id']}, '{echo $locale}')"  class="btn btn-small" type="button" style="display: block; margin-top: 4px;margin-left: 4px">
+                                    <button data-update="count" onclick="EmailTemplateVariables.add($(this), {$model['id']}, '', '{echo $locale}')" data-variable=""  class="btn btn-small" type="button" style="display: block; margin-top: 4px;margin-left: 4px">
                                         <i class="icon-plus"></i>
                                     </button>
                                 </td>
