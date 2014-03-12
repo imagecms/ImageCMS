@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-12 12:21+0200\n"
-"PO-Revision-Date: 2014-03-12 12:21+0200\n"
+"POT-Creation-Date: 2014-03-12 12:27+0200\n"
+"PO-Revision-Date: 2014-03-12 12:27+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -17,6 +17,34 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/wishlist/assets/admin/wishlist.tpl:251
+msgid "This field is required"
+msgstr "Это поле обязательно для заполнения"
+
+#: ./application/modules/wishlist/classes/ParentWishlist.php:279
+#: ./application/modules/wishlist/classes/ParentWishlist.php:406
+msgid "List maximum"
+msgstr "Максимум спосков"
+
+#: ./application/modules/wishlist/assets/js/wishlist.js:174
+msgid "Limit of Wish List finished "
+msgstr "Лимит списков исчерпан"
+
+#: ./application/modules/wishlist/classes/ParentWishlist.php:279
+#: ./application/modules/wishlist/classes/ParentWishlist.php:406
+msgid "Wish Lists limit exhausted"
+msgstr "Лимит Списков Желаний исчерпан"
+
+#: ./application/modules/wishlist/classes/BaseWishlist.php:190
+#: ./application/modules/wishlist/classes/ParentWishlist.php:285
+#: ./application/modules/wishlist/classes/BaseApi.php:235
+msgid "List description limit exhausted"
+msgstr "Лимит описания сиска исчерпан"
+
+#: ./application/modules/wishlist/classes/ParentWishlist.php:386
+msgid "Limit of list items exhausted"
+msgstr "Лимит товаров списка исчерпан"
 
 #: ./application/modules/wishlist/assets/admin/wishlistEdit.tpl:6
 msgid "Edit list"
@@ -40,7 +68,7 @@ msgstr "Список Желаний пуст"
 #: ./application/modules/wishlist/assets/admin/wishPopup.tpl:49
 #: ./application/modules/wishlist/assets/admin/wishlist.tpl:28
 #: ./application/modules/wishlist/assets/admin/wishlist.tpl:222
-#: ./application/modules/wishlist/assets/admin/wishlist.tpl:261
+#: ./application/modules/wishlist/assets/admin/wishlist.tpl:262
 #: ./application/modules/wishlist/assets/js/wishlist.js:17
 msgid "Create list"
 msgstr "Создать список"
@@ -58,10 +86,6 @@ msgstr "Уже в Списке Желаний"
 #: ./application/modules/wishlist/assets/js/wishlist.js:69
 msgid "List does not chosen"
 msgstr "Список не обран"
-
-#: ./application/modules/wishlist/assets/js/wishlist.js:174
-msgid "Limit of Wish List finished "
-msgstr "Лимит списков исчерпан"
 
 #: ./application/modules/wishlist/assets/all.tpl:23
 #: ./application/modules/wishlist/assets/admin/wishlist.tpl:6
@@ -169,22 +193,6 @@ msgstr "Добавить в Список Желаний"
 msgid "Managing of online store users Wish Lists"
 msgstr "Управление списками пожеланий пользователей интернет-магазина"
 
-#: ./application/modules/wishlist/classes/ParentWishlist.php:279
-#: ./application/modules/wishlist/classes/ParentWishlist.php:406
-msgid "Wish Lists limit exhausted"
-msgstr "Лимит Списков Желаний исчерпан"
-
-#: ./application/modules/wishlist/classes/ParentWishlist.php:279
-#: ./application/modules/wishlist/classes/ParentWishlist.php:406
-msgid "List maximum"
-msgstr "Максимум спосков"
-
-#: ./application/modules/wishlist/classes/BaseWishlist.php:190
-#: ./application/modules/wishlist/classes/ParentWishlist.php:285
-#: ./application/modules/wishlist/classes/BaseApi.php:235
-msgid "List description limit exhausted"
-msgstr "Лимит описания сиска исчерпан"
-
 #: ./application/modules/wishlist/classes/BaseWishlist.php:190
 #: ./application/modules/wishlist/classes/ParentWishlist.php:285
 #: ./application/modules/wishlist/classes/BaseApi.php:235
@@ -212,10 +220,6 @@ msgstr "Вы не можете удалить Список Желаний"
 #: ./application/modules/wishlist/classes/ParentWishlist.php:459
 msgid "Can not remove items from wishlist"
 msgstr "Невозможно удалить товары из желаний"
-
-#: ./application/modules/wishlist/classes/ParentWishlist.php:386
-msgid "Limit of list items exhausted"
-msgstr "Лимит товаров списка исчерпан"
 
 #: ./application/modules/wishlist/classes/ParentWishlist.php:397
 msgid "Wishlist name will be changed"
@@ -397,7 +401,7 @@ msgstr "Настройки"
 #: ./application/modules/wishlist/assets/admin/wishlistEdit.tpl:59
 #: ./application/modules/wishlist/assets/admin/wishlist.tpl:107
 #: ./application/modules/wishlist/assets/admin/wishlist.tpl:151
-#: ./application/modules/wishlist/assets/admin/wishlist.tpl:254
+#: ./application/modules/wishlist/assets/admin/wishlist.tpl:255
 msgid "Description"
 msgstr "Описание"
 

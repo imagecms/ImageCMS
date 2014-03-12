@@ -141,7 +141,7 @@ class Admin extends BaseAdminController {
                 /** Create new banner from data-array */
                 $lid = $this->banner_model->add_banner($data);
 
-
+                showMessage(lang('Banner created', 'banners'));
                 /** Show successful message and redirect */
                 pjax('/admin/components/init_window/banners');
             } else {
