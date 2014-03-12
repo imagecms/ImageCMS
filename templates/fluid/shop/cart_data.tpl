@@ -33,7 +33,7 @@
                     <span class="text-el">{echo $count}</span>
                     <span class="text-el">&nbsp;</span>
                     <span class="text-el">{echo SStringHelper::Pluralize($count, array(lang('товар','newLevel'),lang('товара','newLevel'),lang('товаров','newLevel')))}</span>
-                    <span class="divider text-el">&#8226;</span>
+                    <span class="divider text-el">&ndash;</span>
                     <span class="d_i-b">
                         <span class="text-el">{echo $price}</span>
                         <span class="text-el">&nbsp;<span class="curr">{$CS}</span></span>
