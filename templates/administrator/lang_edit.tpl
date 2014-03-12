@@ -43,7 +43,7 @@
                                             <form action="{$BASE_URL}admin/languages/update/{$id}" method="post" id="editLang">
                                                 <div class="row-fluid">
                                                     <div class="control-group">
-                                                        <label class="control-label" for="inputName">{lang("Name","admin")}:</label>
+                                                        <label class="control-label" for="inputName">{lang("Language","admin")}:</label>
                                                         <div class="controls">
                                                             <input type="text" name="lang_name" id="" value="{$lang_name}" />
                                                         </div>
@@ -55,7 +55,7 @@
                                                         </div>
                                                     </div> 
                                                     <div class="control-group">
-                                                        <label class="control-label" for="locale">{lang("Locale","admin")}:</label>
+                                                        <label class="control-label" for="locale">{lang("Localization","admin")}:</label>
                                                         <div class="controls">
                                                             <select id="locale" name="locale">
                                                                 {foreach $locales as $locale_name}

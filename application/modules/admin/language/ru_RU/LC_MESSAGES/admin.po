@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-12 01:15+0200\n"
-"PO-Revision-Date: 2014-03-12 01:15+0200\n"
+"POT-Creation-Date: 2014-03-12 04:23+0200\n"
+"PO-Revision-Date: 2014-03-12 04:23+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -20,6 +20,11 @@ msgstr ""
 "X-Poedit-SearchPath-1: ../../../templates/administrator\n"
 "X-Poedit-SearchPath-2: ../../modules/shop/admin\n"
 "X-Poedit-SearchPath-3: ../../../application/modules/shop/models/build/classes\n"
+
+#: ./templates/administrator/lang_edit.tpl:58
+#: ./templates/administrator/lang_create.tpl:47
+msgid "Localization"
+msgstr "Локализация"
 
 #: ./application/modules/shop/admin/templates/customfields/create.tpl:100
 msgid "Text field"
@@ -1718,7 +1723,7 @@ msgstr "Данные дополнительного поля"
 #: ./application/modules/shop/admin/deliverymethods.php:175
 #: ./application/modules/shop/admin/users.php:521
 #: ./application/modules/shop/admin/banners.php:283
-#: ./application/modules/shop/admin/customfields.php:205
+#: ./application/modules/shop/admin/customfields.php:204
 #: ./application/modules/shop/admin/notifications.php:250
 #: ./application/modules/shop/admin/notificationstatuses.php:141
 #: ./application/modules/shop/admin/comulativ.php:245
@@ -1978,7 +1983,7 @@ msgstr "Дополнительная валюта"
 msgid "Additional image"
 msgstr "Дополнительное изображение"
 
-#: ./application/modules/shop/admin/customfields.php:59
+#: ./application/modules/shop/admin/customfields.php:58
 msgid "An additional field is created"
 msgstr "Дополнительное поле создано"
 
@@ -2245,7 +2250,7 @@ msgstr "Изменения сохранены"
 #: ./application/modules/shop/admin/orderstatuses.php:129
 #: ./application/modules/shop/admin/kits.php:167
 #: ./application/modules/shop/admin/kits.php:209
-#: ./application/modules/shop/admin/customfields.php:156
+#: ./application/modules/shop/admin/customfields.php:155
 #: ./application/modules/shop/admin/brands.php:255
 #: ./application/modules/shop/admin/brands.php:408
 #: ./application/modules/shop/admin/notificationstatuses.php:113
@@ -4416,11 +4421,11 @@ msgstr "Поле должно содержать только латинские
 msgid "The field must contain only Latin characters ."
 msgstr "Поле должно содержать только латинские символы."
 
-#: ./application/modules/shop/admin/customfields.php:119
+#: ./application/modules/shop/admin/customfields.php:118
 msgid "Field not found"
 msgstr "Поле не найдено"
 
-#: ./application/modules/shop/admin/customfields.php:218
+#: ./application/modules/shop/admin/customfields.php:217
 msgid "Field is removed"
 msgstr "Поле удалено"
 
@@ -7225,6 +7230,8 @@ msgstr "Этот язык был использован по умолчанию 
 msgid "Core"
 msgstr "Ядро"
 
+#: ./templates/administrator/lang_edit.tpl:46
+#: ./templates/administrator/lang_create.tpl:34
 #: ./templates/administrator/login_page.tpl:97
 #: ./templates/administrator/languages.tpl:49
 msgid "Language"
