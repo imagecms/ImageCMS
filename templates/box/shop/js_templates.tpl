@@ -142,7 +142,7 @@
         </div>
         <div class="drop-footer"></div>
     </div>
-    <button style="display: none;" type="button" data-drop="#confirm"  data-modal="true" data-confirm="true" data-effect-on="fadeIn" data-effect-off="fadeOut"></button>
+    <button style="display: none;" type="button" data-drop="#confirm" data-confirm="true" data-effect-on="fadeIn" data-effect-off="fadeOut"></button>
 
     {if !$is_logged_in}
         <div class="drop drop-style" id="dropAuth">
