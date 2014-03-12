@@ -1,9 +1,9 @@
-msgid ""
+﻿msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-26 12:53+0200\n"
-"PO-Revision-Date: 2013-12-26 12:53+0200\n"
+"POT-Creation-Date: 2014-03-12 05:18+0200\n"
+"PO-Revision-Date: 2014-03-12 05:18+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -17,6 +17,41 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/cmsemail/assets/js/email.js:184
+msgid "Variable must be surrounded by $"
+msgstr "Переменная должна быть окружена $"
+
+#: ./application/modules/cmsemail/assets/js/email.js:188
+msgid "Variable must have a value"
+msgstr "Переменная должна иметь значение"
+
+#: ./application/modules/cmsemail/assets/js/email.js:106
+msgid "Variable successfully removed"
+msgstr "Переменная успешно удалена"
+
+#: ./application/modules/cmsemail/assets/js/email.js:137
+msgid "Variable successfully updated"
+msgstr "Переменная успешно обновлена"
+
+#: ./application/modules/cmsemail/assets/js/email.js:163
+msgid "Variable successfully added"
+msgstr "Переменная успешно додана"
+
+#: ./application/modules/cmsemail/assets/admin/create.tpl:17
+#: ./application/modules/cmsemail/assets/admin/edit.tpl:17
+msgid "Save and go back"
+msgstr "Сохранить и выйти"
+
+#: ./application/modules/cmsemail/assets/admin/create.tpl:11
+#: ./application/modules/cmsemail/assets/admin/edit.tpl:11
+msgid "Go back"
+msgstr "Вернуться"
+
+#: ./application/modules/cmsemail/assets/admin/list.tpl:30
+#: ./application/modules/cmsemail/assets/admin/settings.tpl:13
+msgid "Back"
+msgstr "Вернуться"
 
 #: ./application/modules/cmsemail/assets/admin/settings.tpl:73
 msgid "Use wraper"
@@ -53,53 +88,23 @@ msgstr "Переменная не удалена"
 msgid "Message"
 msgstr "Сообщение"
 
-#: ./application/modules/cmsemail/assets/js/email.js:106
-msgid "Variable successfully removed"
-msgstr "Переменная успешно удалена"
-
 #: ./application/modules/cmsemail/assets/js/email.js:128
 msgid "Variable is not updated"
 msgstr "Переменная не обновлена"
-
-#: ./application/modules/cmsemail/assets/js/email.js:137
-msgid "Variable successfully updated"
-msgstr "Переменная успешно обновлена"
 
 #: ./application/modules/cmsemail/assets/js/email.js:157
 msgid "Variable is not added"
 msgstr "Переменная не додана"
 
-#: ./application/modules/cmsemail/assets/js/email.js:163
-msgid "Variable successfully added"
-msgstr "Переменная успешно додана"
-
-#: ./application/modules/cmsemail/assets/js/email.js:184
-msgid "Variable must be surrounded by $"
-msgstr "Переменная должна быть окружена $"
-
-#: ./application/modules/cmsemail/assets/js/email.js:188
-msgid "Variable must have a value"
-msgstr "Переменная должна иметь значение"
-
 #: ./application/modules/cmsemail/assets/admin/create.tpl:5
 msgid "Creating mail template"
 msgstr "Создать шаблон письма"
-
-#: ./application/modules/cmsemail/assets/admin/create.tpl:11
-#: ./application/modules/cmsemail/assets/admin/edit.tpl:11
-msgid "Go back"
-msgstr "Назад"
 
 #: ./application/modules/cmsemail/assets/admin/create.tpl:14
 #: ./application/modules/cmsemail/assets/admin/settings.tpl:19
 #: ./application/modules/cmsemail/assets/admin/edit.tpl:14
 msgid "Save"
 msgstr "Сохранить"
-
-#: ./application/modules/cmsemail/assets/admin/create.tpl:17
-#: ./application/modules/cmsemail/assets/admin/edit.tpl:17
-msgid "Save and go back"
-msgstr "Сохранить и вернуться"
 
 #: ./application/modules/cmsemail/assets/admin/create.tpl:27
 #: ./application/modules/cmsemail/assets/admin/list.tpl:34
@@ -207,11 +212,6 @@ msgstr "Удалить"
 #: ./application/modules/cmsemail/assets/admin/list.tpl:13
 msgid "Cancel"
 msgstr "Отменить"
-
-#: ./application/modules/cmsemail/assets/admin/list.tpl:30
-#: ./application/modules/cmsemail/assets/admin/settings.tpl:13
-msgid "Back"
-msgstr "Назад"
 
 #: ./application/modules/cmsemail/assets/admin/list.tpl:43
 msgid "Create template"
