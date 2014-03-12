@@ -13,7 +13,7 @@ langs["Show answers"] = '<?php echo lang("Show answers", "comments")?>';
                 <div class="dropdown d-i_b">
                     <button type="button" class="btn btn-small dropdown-toggle disabled action_on" data-toggle="dropdown">
                         <i class="icon-tag"></i>
-                        {lang("Designate", 'comments')}
+                        {lang("Status", 'comments')}
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
