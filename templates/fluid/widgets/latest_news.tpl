@@ -2,7 +2,7 @@
     <div class="frame-news">
         <div class="title-news">
             <div class="frame-title">
-                <div class="title-h1 d_i title">
+                <div class="title">
                     <a href="{site_url('novosti')}" class="t-d_n f-s_0 s-all-d">
                         <span class="text-el">{lang('Новости и акции','newLevel')}</span>
                         <span class="icon_arrow"></span>
