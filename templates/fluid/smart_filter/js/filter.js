@@ -47,6 +47,7 @@ var cleaverFilterObj = {
                     slide: function(e, ui) {
                         if ($(ui.handle).is(left)) {
                             $(ui.handle).tooltip({
+                                'show': true,
                                 'title': ui.values[0],
                                 'effect': 'always',
                                 'otherClass': 'tooltip-slider'
@@ -54,6 +55,7 @@ var cleaverFilterObj = {
                         }
                         if ($(ui.handle).is(right)) {
                             $(ui.handle).tooltip({
+                                'show': true,
                                 'title': ui.values[1],
                                 'effect': 'always',
                                 'otherClass': 'tooltip-slider'
@@ -251,7 +253,7 @@ var Filter = {
             elCheckWrap: '.niceCheck',
             evCond: true,
             resetChecked: true,
-            //classRemove: 'b_n',//if not standart
+            classRemove: 'b_n',//if not standart
             //if evCond: true
             trigger: function(a, b, c, e) {
                 c.nStCheck('changeCheck');

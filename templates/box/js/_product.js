@@ -90,14 +90,15 @@ Product = {
         $.drop.method('center')(drop);
     },
     changePhoto: function(arg, fancyFrameInPH, href) {
-        hrefOptions.curHref = href;
         var drop = arg[1];
         fancyFrameInPH.parent().addClass('p_r');
         fancyFrameInPH.append('<div class="preloader"></div>');
         if (href == hrefOptions.curHref)
             fancyFrameInPH.find('.preloader').remove();
-        fancyFrameInPH.find('img').attr('src', href).load(function() {
-            fancyFrameInPH.find('.preloader').remove();
+        hrefOptions.curHref = href;
+        $('<img src="' + href+'">').one('load').each(function() {
+            drop.find('.drop-content .inside-padd').empty().append($(this).css('visibility', 'visible')).prepend('<span class="helper"></span>');
+
             var carGal = drop.find('.content-carousel');
 
             $.drop.method('limitSize')(drop);
@@ -105,6 +106,7 @@ Product = {
                 $.drop.method('center')(drop);
             });
             carGal.find('.jcarousel-item').eq($.inArray(hrefOptions.curHref, hrefOptions.thumbs)).focusin();
+            
         });
     },
     beforeShowHref: function(el, drop, isajax) {

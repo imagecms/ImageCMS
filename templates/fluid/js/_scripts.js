@@ -53,7 +53,7 @@ function init() {
             drop.nStRadio({
                 wrapper: $(".frame-label"),
                 elCheckWrap: '.niceRadio'
-                        //,classRemove: 'b_n'//if not standart
+                , classRemove: 'b_n'//if not standart
             });
         }
         if ($.existsN(drop.find('[onsubmit*="ImageCMSApi"]')) || drop.is('#sendMail')) {
@@ -304,7 +304,7 @@ function init() {
         e.els.find(preloader).remove();
     });
     doc.on('autocomplete.fewLength', function(e) {
-        e.el.tooltip({
+        e.el.tooltip('show', {
             'title': text.search(e.value)
         });
     });

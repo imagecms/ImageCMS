@@ -161,7 +161,7 @@
                 {/if}
                 <!-- End. Check variant-->
             {/if}
-            {if !$opi_defaultItem }
+            {if !$opi_defaultItem && !$opi_widget}
                 <div class="funcs-buttons frame-without-top">
                     <div class="no-vis-table">
                         <!-- Start. Collect information about Variants, for future processing -->
@@ -222,38 +222,41 @@
                                     </form>
                                 </div>
                             {else:}
-                                <div class="btn-not-avail js-variant-{echo $pv->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
-                                    <button
-                                        class="infoBut"
-                                        type="button"
-                                        data-drop=".drop-report"
-                                        data-source="/shop/ajax/getNotifyingRequest"
+                                <div class="js-variant-{echo $pv->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
+                                    <div class="alert-exists">{lang('Нет в наличии', 'newLevel')}</div>
+                                    <div class="btn-not-avail">
+                                        <button
+                                            class="infoBut"
+                                            type="button"
+                                            data-drop=".drop-report"
+                                            data-source="/shop/ajax/getNotifyingRequest"
 
-                                        data-id="{echo $pv->getId()}"
-                                        data-name="{echo ShopCore::encode($p->getName())}"
-                                        data-vname="{echo ShopCore::encode($pv->getName())}"
-                                        data-number="{echo $pv->getNumber()}"
-                                        data-price="{echo $pv->toCurrency()}"
-                                        data-add-price="{if $NextCS != null}{echo $pv->toCurrency('Price',$NextCSId)}{/if}"
-                                        data-orig-price="{if $hasDiscounts}{echo $pv->toCurrency('OrigPrice')}{/if}"
-                                        data-medium-image="
-                                        {if preg_match('/nophoto/', $pv->getMediumPhoto()) > 0}
-                                            {echo $p->firstVariant->getMediumPhoto()}
-                                        {else:}
-                                            {echo $pv->getMediumPhoto()}
-                                        {/if}"
-                                        data-img="
-                                        {if preg_match('/nophoto/', $pv->getSmallPhoto()) > 0}
-                                            {echo $p->firstVariant->getSmallPhoto()}
-                                        {else:}
-                                            {echo $pv->getSmallPhoto()}
-                                        {/if}"
-                                        data-maxcount="{echo $pv->getstock()}"
-                                        data-url="{echo shop_url('product/'.$p->getUrl())}"
-                                        >
-                                        <span class="icon-but"></span>
-                                        <span class="text-el">{lang('Сообщить о появлении','newLevel')}</span>
-                                    </button>
+                                            data-id="{echo $pv->getId()}"
+                                            data-name="{echo ShopCore::encode($p->getName())}"
+                                            data-vname="{echo ShopCore::encode($pv->getName())}"
+                                            data-number="{echo $pv->getNumber()}"
+                                            data-price="{echo $pv->toCurrency()}"
+                                            data-add-price="{if $NextCS != null}{echo $pv->toCurrency('Price',$NextCSId)}{/if}"
+                                            data-orig-price="{if $hasDiscounts}{echo $pv->toCurrency('OrigPrice')}{/if}"
+                                            data-medium-image="
+                                            {if preg_match('/nophoto/', $pv->getMediumPhoto()) > 0}
+                                                {echo $p->firstVariant->getMediumPhoto()}
+                                            {else:}
+                                                {echo $pv->getMediumPhoto()}
+                                            {/if}"
+                                            data-img="
+                                            {if preg_match('/nophoto/', $pv->getSmallPhoto()) > 0}
+                                                {echo $p->firstVariant->getSmallPhoto()}
+                                            {else:}
+                                                {echo $pv->getSmallPhoto()}
+                                            {/if}"
+                                            data-maxcount="{echo $pv->getstock()}"
+                                            data-url="{echo shop_url('product/'.$p->getUrl())}"
+                                            >
+                                            <span class="icon-but"></span>
+                                            <span class="text-el">{lang('Сообщить о появлении','newLevel')}</span>
+                                        </button>
+                                    </div>
                                 </div>
                             {/if}
                         {/foreach}
@@ -261,7 +264,7 @@
                 </div>
                 <!-- End. Collect information about Variants, for future processing -->
             {/if}
-            {if !$opi_defaultItem}
+            {if !$opi_defaultItem && !$opi_widget}
                 <div class="frame-without-top">
                     <!-- Wish List & Compare List buttons -->
                     <div class="frame-wish-compare-list no-vis-table{if !$opi_wishListPage && !$opi_compare} t-a_j{/if}">
@@ -362,7 +365,8 @@
             {/if}
         {/if}
         <!-- End. For wishlist page-->
-
-        <div class="decor-element"></div>
+        {if !$opi_widget}
+            <div class="decor-element"></div>
+        {/if}
     </li>
 {/foreach}
