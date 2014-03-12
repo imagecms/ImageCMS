@@ -164,6 +164,7 @@ class Admin extends BaseAdminController {
                     ->setData('template_id', $template_id)
                     ->setData('variable', $variable)
                     ->setData('variable_value', $variableValue)
+                    ->setData('locale', $locale)
                     ->render('newVariable', true);
         } else {
             return FALSE;

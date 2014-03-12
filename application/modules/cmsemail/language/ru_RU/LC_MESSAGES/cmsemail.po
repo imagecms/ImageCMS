@@ -1,9 +1,9 @@
-msgid ""
+﻿msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-26 12:53+0200\n"
-"PO-Revision-Date: 2013-12-26 12:53+0200\n"
+"POT-Creation-Date: 2014-03-12 05:04+0200\n"
+"PO-Revision-Date: 2014-03-12 05:04+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -22,8 +22,8 @@ msgstr ""
 msgid "Use wraper"
 msgstr "Использовать обгортку"
 
+#: ./application/modules/cmsemail/admin.php:112
 #: ./application/modules/cmsemail/admin.php:114
-#: ./application/modules/cmsemail/admin.php:116
 #: ./application/modules/cmsemail/assets/admin/settings.tpl:84
 msgid "Wraper"
 msgstr "Обёртка"
@@ -39,12 +39,12 @@ msgstr "Управление email-уведомлениями"
 msgid "Error"
 msgstr "Ошибка"
 
-#: ./application/modules/cmsemail/assets/js/email.js:102
+#: ./application/modules/cmsemail/assets/js/email.js:101
 msgid "Variable is not removed"
 msgstr "Переменная не удалена"
 
-#: ./application/modules/cmsemail/admin.php:119
-#: ./application/modules/cmsemail/admin.php:123
+#: ./application/modules/cmsemail/admin.php:117
+#: ./application/modules/cmsemail/admin.php:120
 #: ./application/modules/cmsemail/assets/js/email.js:105
 #: ./application/modules/cmsemail/assets/js/email.js:136
 #: ./application/modules/cmsemail/assets/js/email.js:162
@@ -53,31 +53,31 @@ msgstr "Переменная не удалена"
 msgid "Message"
 msgstr "Сообщение"
 
-#: ./application/modules/cmsemail/assets/js/email.js:106
+#: ./application/modules/cmsemail/assets/js/email.js:105
 msgid "Variable successfully removed"
 msgstr "Переменная успешно удалена"
 
-#: ./application/modules/cmsemail/assets/js/email.js:128
+#: ./application/modules/cmsemail/assets/js/email.js:127
 msgid "Variable is not updated"
 msgstr "Переменная не обновлена"
 
-#: ./application/modules/cmsemail/assets/js/email.js:137
+#: ./application/modules/cmsemail/assets/js/email.js:136
 msgid "Variable successfully updated"
 msgstr "Переменная успешно обновлена"
 
-#: ./application/modules/cmsemail/assets/js/email.js:157
+#: ./application/modules/cmsemail/assets/js/email.js:156
 msgid "Variable is not added"
 msgstr "Переменная не додана"
 
-#: ./application/modules/cmsemail/assets/js/email.js:163
+#: ./application/modules/cmsemail/assets/js/email.js:162
 msgid "Variable successfully added"
 msgstr "Переменная успешно додана"
 
-#: ./application/modules/cmsemail/assets/js/email.js:184
+#: ./application/modules/cmsemail/assets/js/email.js:183
 msgid "Variable must be surrounded by $"
 msgstr "Переменная должна быть окружена $"
 
-#: ./application/modules/cmsemail/assets/js/email.js:188
+#: ./application/modules/cmsemail/assets/js/email.js:187
 msgid "Variable must have a value"
 msgstr "Переменная должна иметь значение"
 
@@ -113,7 +113,7 @@ msgstr "Настройки"
 msgid "Template name (only latin)"
 msgstr "Имя шаблона (только латинские)"
 
-#: ./application/modules/cmsemail/admin.php:110
+#: ./application/modules/cmsemail/admin.php:108
 #: ./application/modules/cmsemail/assets/admin/create.tpl:42
 #: ./application/modules/cmsemail/assets/admin/list.tpl:65
 #: ./application/modules/cmsemail/assets/admin/settings.tpl:45
@@ -121,12 +121,12 @@ msgstr "Имя шаблона (только латинские)"
 msgid "From"
 msgstr "От"
 
-#: ./application/modules/cmsemail/admin.php:111
+#: ./application/modules/cmsemail/admin.php:109
 #: ./application/modules/cmsemail/assets/admin/create.tpl:49
 #: ./application/modules/cmsemail/assets/admin/settings.tpl:52
 #: ./application/modules/cmsemail/assets/admin/edit.tpl:58
-#: ./application/modules/cmsemail/classes/ParentEmail.php:235
-#: ./application/modules/cmsemail/classes/ParentEmail.php:289
+#: ./application/modules/cmsemail/classes/ParentEmail.php:247
+#: ./application/modules/cmsemail/classes/ParentEmail.php:301
 msgid "From email"
 msgstr "От кого (email)"
 
@@ -144,8 +144,8 @@ msgstr "Тип сообщения"
 
 #: ./application/modules/cmsemail/assets/admin/create.tpl:81
 #: ./application/modules/cmsemail/assets/admin/edit.tpl:90
-#: ./application/modules/cmsemail/classes/ParentEmail.php:239
-#: ./application/modules/cmsemail/classes/ParentEmail.php:293
+#: ./application/modules/cmsemail/classes/ParentEmail.php:251
+#: ./application/modules/cmsemail/classes/ParentEmail.php:305
 msgid "Template user mail"
 msgstr "Шаблон письма пользователю"
 
@@ -180,8 +180,8 @@ msgstr "Отправлять письмо администратору"
 
 #: ./application/modules/cmsemail/assets/admin/create.tpl:131
 #: ./application/modules/cmsemail/assets/admin/edit.tpl:154
-#: ./application/modules/cmsemail/classes/ParentEmail.php:246
-#: ./application/modules/cmsemail/classes/ParentEmail.php:300
+#: ./application/modules/cmsemail/classes/ParentEmail.php:258
+#: ./application/modules/cmsemail/classes/ParentEmail.php:312
 msgid "Admin address"
 msgstr "Адрес администратора"
 
@@ -233,7 +233,7 @@ msgstr "Список шаблонов пуст"
 msgid "Install standart templates"
 msgstr "Установите стандартные шаблоны"
 
-#: ./application/modules/cmsemail/admin.php:108
+#: ./application/modules/cmsemail/admin.php:106
 #: ./application/modules/cmsemail/assets/admin/settings.tpl:59
 msgid "Admin email"
 msgstr "Email администратора"
@@ -251,7 +251,7 @@ msgid "Port"
 msgstr "Порт"
 
 #: ./application/modules/cmsemail/assets/admin/settings.tpl:121
-#: ./application/modules/cmsemail/classes/ParentEmail.php:379
+#: ./application/modules/cmsemail/classes/ParentEmail.php:391
 msgid "Check email sending"
 msgstr "Проверка отправки электронной почты"
 
@@ -291,27 +291,27 @@ msgstr "Добавить новую переменную"
 msgid "Template created"
 msgstr "Шаблон создан"
 
-#: ./application/modules/cmsemail/admin.php:61
+#: ./application/modules/cmsemail/admin.php:60
 msgid "email_sent"
 msgstr "Ваше сообщение успешно отправлено"
 
-#: ./application/modules/cmsemail/admin.php:84
+#: ./application/modules/cmsemail/admin.php:83
 msgid "Template edited"
 msgstr "Шаблон отредактирован"
 
-#: ./application/modules/cmsemail/admin.php:109
+#: ./application/modules/cmsemail/admin.php:107
 msgid "Email sender"
 msgstr "От кого"
 
-#: ./application/modules/cmsemail/admin.php:122
+#: ./application/modules/cmsemail/admin.php:120
 msgid "Settings saved"
 msgstr "Настройки сохранены"
 
-#: ./application/modules/cmsemail/admin.php:133
+#: ./application/modules/cmsemail/admin.php:131
 msgid "Field"
 msgstr "Поле"
 
-#: ./application/modules/cmsemail/admin.php:134
+#: ./application/modules/cmsemail/admin.php:131
 msgid "Must contain variable"
 msgstr "Должен содержать переменную"
 
@@ -319,22 +319,22 @@ msgstr "Должен содержать переменную"
 msgid "Allows you to customize letters templates to be sent to users when certain actions"
 msgstr "Позволяет настроить шаблоны писем для отправки пользователям при совершении определенных действий"
 
-#: ./application/modules/cmsemail/classes/ParentEmail.php:165
-#: ./application/modules/cmsemail/classes/ParentEmail.php:194
+#: ./application/modules/cmsemail/classes/ParentEmail.php:175
+#: ./application/modules/cmsemail/classes/ParentEmail.php:205
 msgid "User message doesnt send"
 msgstr "Письмо пользователю не отослано"
 
-#: ./application/modules/cmsemail/classes/ParentEmail.php:234
+#: ./application/modules/cmsemail/classes/ParentEmail.php:246
 msgid "Template name"
 msgstr "Название шаблона"
 
-#: ./application/modules/cmsemail/classes/ParentEmail.php:236
-#: ./application/modules/cmsemail/classes/ParentEmail.php:290
+#: ./application/modules/cmsemail/classes/ParentEmail.php:248
+#: ./application/modules/cmsemail/classes/ParentEmail.php:302
 msgid "Template theme"
 msgstr "Тема шаблона"
 
-#: ./application/modules/cmsemail/classes/ParentEmail.php:243
-#: ./application/modules/cmsemail/classes/ParentEmail.php:297
+#: ./application/modules/cmsemail/classes/ParentEmail.php:255
+#: ./application/modules/cmsemail/classes/ParentEmail.php:309
 msgid "Template admin mail"
 msgstr "Шаблон письма админу"
 
