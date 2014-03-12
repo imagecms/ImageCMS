@@ -274,7 +274,7 @@ $shopMenu = array(
             ),
             array(
                 'link' => '/admin/categories/create_form',
-                'text' => lang('Create new', 'admin'),
+                'text' => lang('Create category', 'admin'),
             ),
             array(
                 'link' => '/admin/categories/cat_list',
