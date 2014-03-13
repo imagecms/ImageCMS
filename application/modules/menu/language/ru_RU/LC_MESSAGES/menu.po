@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-11 04:42+0200\n"
-"PO-Revision-Date: 2014-03-11 04:42+0200\n"
+"POT-Creation-Date: 2014-03-13 11:53+0200\n"
+"PO-Revision-Date: 2014-03-13 11:53+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -17,6 +17,17 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/menu/templates/edit_item_origin.tpl:5
+#: ./application/modules/menu/templates/_menulistitem.tpl:29
+#: ./application/modules/menu/templates/edit_item.tpl:5
+msgid "Edit menu item"
+msgstr "Редактирование пункта меню"
+
+#: ./application/modules/menu/templates/edit_menu.tpl:7
+#: ./application/modules/menu/templates/edit_menu.tpl:26
+msgid "Edit a menu"
+msgstr "Редактировать меню"
 
 #: ./application/modules/menu/templates/create_menu.tpl:12
 msgid "Create and exit"
@@ -68,17 +79,6 @@ msgstr "Создание пункта меню"
 #: ./application/modules/menu/templates/edit_menu.tpl:11
 msgid "Go back"
 msgstr "Вернуться"
-
-#: ./application/modules/menu/templates/edit_menu.tpl:26
-msgid "Edit a menu"
-msgstr "Редактировать меню"
-
-#: ./application/modules/menu/templates/edit_item_origin.tpl:5
-#: ./application/modules/menu/templates/_menulistitem.tpl:29
-#: ./application/modules/menu/templates/edit_item.tpl:5
-#: ./application/modules/menu/templates/edit_menu.tpl:7
-msgid "Edit menu item"
-msgstr "Редактировать пункт меню"
 
 #: ./application/modules/menu/templates/module_selector.tpl:9
 #: ./application/modules/menu/templates/category_selector.tpl:9
