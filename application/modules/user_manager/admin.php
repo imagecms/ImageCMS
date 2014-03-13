@@ -172,6 +172,7 @@ class Admin extends BaseAdminController {
             $val->set_rules('password', lang('Password', 'user_manager'), 'trim|min_length[' . $this->config->item('DX_login_min_length') . ']|max_length[' . $this->config->item('DX_login_max_length') . ']|required|xss_clean');
             $val->set_rules('password_conf', lang('Confirm the password', 'user_manager'), 'matches[password]|required');
             $val->set_rules('email', lang('E-Mail', 'user_manager'), 'trim|required|xss_clean|valid_email');
+            $val->set_rules('phone', lang('Phone', 'user_manager'), 'trim|numeric');
 
             ($hook = get_hook('users_create_set_val_rules')) ? eval($hook) : NULL;
 
@@ -363,7 +364,7 @@ class Admin extends BaseAdminController {
         $val->set_rules('username', lang('amt_user_login'), 'trim|xss_clean');
         $val->set_rules('new_pass', lang('amt_password'), 'trim|max_length[' . $this->config->item('DX_login_max_length') . ']|xss_clean');
         $val->set_rules('new_pass_conf', lang('amt_new_pass_confirm'), 'matches[new_pass]');
-
+        $val->set_rules('phone', lang('Phone', 'user_manager'), 'trim|numeric');
         $val->set_rules('email', lang('amt_email'), 'trim|xss_clean|valid_email');
 
         $user_data = $this->user2->get_user_field($user_id, array('username', 'email'))->row_array();
@@ -408,7 +409,7 @@ class Admin extends BaseAdminController {
             );
 
 
-            showMessage(lang('amt_changes_saved'));
+            showMessage(lang('User successful updated', 'user_manager'));
 
             $action = $_POST['action'];
 
