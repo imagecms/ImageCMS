@@ -27,6 +27,8 @@
  * @link		http://codeigniter.com/user_guide/database/
  */
 class CI_DB_result {
+    
+        use third_party\system_extends\CI_DB_Result_methods;
 
 	var $conn_id				= NULL;
 	var $result_id				= NULL;

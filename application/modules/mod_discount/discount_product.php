@@ -87,7 +87,7 @@ class Discount_product {
     public function getProductDiscount($product, $price = null) {
 
         $discountArray = $this->getDiscountOneProduct($product);
-
+        
         if (count($discountArray) > 0) {
             if (null === $price)
                 $price = $this->ci->discount_model_front->getPrice($product['vid']);

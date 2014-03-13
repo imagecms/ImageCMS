@@ -279,7 +279,7 @@ class Admin extends BaseAdminController {
             $this->db->select("shop_rbac_roles_i18n.alt_name AS role_alt_name", FALSE);
             $this->db->join("shop_rbac_roles", "shop_rbac_roles.id = users.role_id");
             $this->db->join("shop_rbac_roles_i18n", "shop_rbac_roles.id = shop_rbac_roles_i18n.id");
-            $this->db->where('locale', BaseAdminController::getCurrentLocale());
+            //$this->db->where('locale', BaseAdminController::getCurrentLocale());
             if (!empty($s_data)) {
                 $this->db->like('username', $s_data);
             } elseif (!empty($s_email)) {
@@ -408,7 +408,7 @@ class Admin extends BaseAdminController {
             );
 
 
-            showMessage(lang('amt_changes_saved'));
+            showMessage(lang('Changes saved', 'user_manager'));
 
             $action = $_POST['action'];
 
@@ -513,7 +513,7 @@ class Admin extends BaseAdminController {
             $this->db->delete('permissions');
         }
 
-        showMessage(lang('amt_changes_saved'));
+        showMessage(lang('Changes saved', 'user_manager'));
     }
 
     function show_edit_prems_tpl($id) {
