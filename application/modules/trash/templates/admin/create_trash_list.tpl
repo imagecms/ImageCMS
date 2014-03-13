@@ -20,7 +20,7 @@
                     </button>
                     <button type="button" 
                             class="btn btn-small action_on formSubmit" 
-                            data-form="#create" 
+                            data-form="#mass_create" 
                             data-action="exit">
                         <i class="icon-check"></i>{lang("Save and exit", 'trash')}
                     </button>
