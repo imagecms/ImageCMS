@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-13 04:24+0200\n"
-"PO-Revision-Date: 2014-03-13 04:24+0200\n"
+"POT-Creation-Date: 2014-03-13 04:48+0200\n"
+"PO-Revision-Date: 2014-03-13 04:48+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -17,6 +17,15 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/user_manager/admin.php:293
+msgid "User not found"
+msgstr "Пользователь не найден"
+
+#: ./application/modules/user_manager/templates/main.tpl:48
+#: ./application/modules/user_manager/templates/main.tpl:49
+msgid "Cancel filtering"
+msgstr "Отменить фильтрацию"
 
 #: ./application/modules/user_manager/templates/edit_user.tpl:6
 msgid "User editing"
@@ -61,17 +70,12 @@ msgstr "Группы"
 msgid "Access rights differentiation system"
 msgstr "Права доступа разных систем"
 
-#: ./application/modules/user_manager/templates/main.tpl:48
-#: ./application/modules/user_manager/templates/main.tpl:48
-msgid "Cancel filter"
-msgstr "Отменить фильтр"
-
 # �
-#: ./application/modules/user_manager/templates/main.tpl:49
+#: ./application/modules/user_manager/templates/main.tpl:51
 msgid "Filter admin"
 msgstr "Фильтр"
 
-#: ./application/modules/user_manager/templates/main.tpl:77
+#: ./application/modules/user_manager/templates/main.tpl:79
 msgid "All groups"
 msgstr "Все группы"
 
@@ -86,7 +90,7 @@ msgstr "Сохранить"
 msgid "Properties"
 msgstr "Свойства"
 
-#: ./application/modules/user_manager/templates/main.tpl:65
+#: ./application/modules/user_manager/templates/main.tpl:67
 #: ./application/modules/user_manager/templates/genreroletable.tpl:20
 #: ./application/modules/user_manager/templates/edit_perms.tpl:35
 #: ./application/modules/user_manager/templates/users_table_search.tpl:7
@@ -103,7 +107,7 @@ msgstr "Отменить все"
 msgid "Cancel selection"
 msgstr "Отменить выбранное"
 
-#: ./application/modules/user_manager/templates/main.tpl:62
+#: ./application/modules/user_manager/templates/main.tpl:64
 #: ./application/modules/user_manager/templates/users_table_search.tpl:4
 #: ./application/modules/user_manager/templates/groups.tpl:6
 msgid "ID"
@@ -125,7 +129,7 @@ msgstr "E-Mail"
 msgid "Ban"
 msgstr "Бан"
 
-#: ./application/modules/user_manager/templates/main.tpl:67
+#: ./application/modules/user_manager/templates/main.tpl:69
 #: ./application/modules/user_manager/templates/users_table_search.tpl:9
 msgid "Last IP"
 msgstr "Последний IP"
@@ -290,15 +294,15 @@ msgstr "Удалить пользователя?"
 msgid "Corporate site users"
 msgstr "Пользователи корпоративного сайта"
 
-#: ./application/modules/user_manager/templates/main.tpl:63
+#: ./application/modules/user_manager/templates/main.tpl:65
 msgid "User"
 msgstr "Пользователь"
 
-#: ./application/modules/user_manager/templates/main.tpl:64
+#: ./application/modules/user_manager/templates/main.tpl:66
 msgid "E-mail"
 msgstr "E-mail"
 
-#: ./application/modules/user_manager/templates/main.tpl:66
+#: ./application/modules/user_manager/templates/main.tpl:68
 msgid "Banned"
 msgstr "Бан"
 
@@ -353,7 +357,6 @@ msgstr "Пользователь забанен"
 msgid "The user has been unbanned "
 msgstr "Пользователь был удален с бана"
 
-#: ./application/modules/user_manager/admin.php:293
 #: ./application/modules/user_manager/admin.php:310
 #: ./application/modules/user_manager/admin.php:340
 msgid "amt_users_not_found"
