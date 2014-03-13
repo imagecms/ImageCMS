@@ -302,23 +302,23 @@ function init() {
             ieBoxSize(e.el.find(':input:not(button):not([type="button"]):not([type="reset"]):not([type="submit"])'));
     });
     doc.on('comments.beforeshowformreply', function(e) {
-        var patchCom = e.el.closest('.patch-product-view');
+        var patchCom = e.el.closest('.patch-product-view'),
+                h = patchCom.outerHeight(),
+                elH = e.el.outerHeight();
+        
         patchCom.css({
-            'height': 'auto'
-        });
-
-        var sumH = (patchCom.outerHeight() < patchCom.data('maxHeight') ? patchCom.data('maxHeight') : patchCom.outerHeight()) + e.el.outerHeight();
-
-        patchCom.css({
-            'height': sumH,
-            'max-height': sumH
+            'height': h + elH,
+            'max-height': h + elH
         });
     });
     doc.on('comments.beforehideformreply', function(e) {
-        var patchCom = e.el.closest('.patch-product-view');
+        var patchCom = e.el.closest('.patch-product-view'),
+                h = patchCom.outerHeight(),
+                elH = e.el.outerHeight();
+        
         patchCom.css({
-            'max-height': 'none',
-            'height': patchCom.height() - e.el.outerHeight()
+            'height': h - elH,
+            'max-height': ''
         });
     });
     doc.on('menu.showDrop', function(e) {

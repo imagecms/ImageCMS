@@ -103,7 +103,7 @@
                     {if  $discount['comulativ']}
                         <li class="inside-padd">
                             <span class="text-el">{lang('Таблица скидок','newLevel')}</span>
-                            <button type="button" class="icon_info_t" data-drop=".drop-comulativ-discounts"></button>
+                            <button type="button" class="icon_info_t" data-drop=".drop-comulativ-discounts">&nbsp;</button>
                         </li>
                     {/if}
                 </ul>

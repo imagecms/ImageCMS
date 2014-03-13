@@ -1,16 +1,16 @@
 {if $_GET['brand'] != "" || $_GET['p'] != "" || ($_GET['lp'] && $_GET['lp'] != $minPrice) || ($_GET['rp'] && $_GET['rp'] != $maxPrice)}
     <div class="frame-check-filter">
         <div class="inside-padd">
-            <div class="title">{echo count($products)} {echo SStringHelper::Pluralize(count($products), array('товар','товара','товаров'))} {lang('с фильтрами', 'newLevel')}:</div>
+            <div class="title">{lang('Выбранные фильтры', 'newLevel')}  </div>
             <ul class="list-check-filter">
                 {if $curMin != $minPrice || $curMax != $maxPrice}
-                    <li class="clear-slider" data-rel="sliders.slider1"><button type="button"><span class="icon_times icon_remove_filter f_l"></span><span class="name-check-filter">Цена от {echo $_GET['lp']} до {echo $_GET['rp']} <span class="cur">{$CS}</span></></button></li>
+                    <li class="clear-slider" data-rel="sliders.slider1"><button type="button"><span class="icon_remove_filter f_l"></span><span class="name-check-filter">Цена от {echo $_GET['lp']} до {echo $_GET['rp']} <span class="cur">{$CS}</span></></button></li>
                     {/if}
                     {if count($brands) > 0}
                         {foreach $brands as $brand}
                             {foreach $_GET['brand'] as $id}
                                 {if $id == $brand->id}
-                                <li data-name="brand_{echo $brand->id}" class="clear-filter"><button type="button"><span class="icon_times icon_remove_filter f_l"></span><span class="name-check-filter">{echo $brand->name}</span></button></li>
+                                <li data-name="brand_{echo $brand->id}" class="clear-filter"><button type="button"><span class="icon_remove_filter f_l"></span><span class="name-check-filter">{echo $brand->name}</span></button></li>
                                         {/if}
                                     {/foreach}
                                 {/foreach}
@@ -20,7 +20,7 @@
                                     {foreach $prop->possibleValues as $key}
                                         {foreach $_GET['p'][$prop->property_id] as $nm}
                                             {if $nm == $key.value}
-                                    <li data-name="p_{echo $prop->property_id}_{echo $key.id}" class="clear-filter"><button type="button"><span class="icon_times icon_remove_filter f_l"></span><span class="name-check-filter">{echo $prop->name}: {echo $key.value}</span></button></li>
+                                    <li data-name="p_{echo $prop->property_id}_{echo $key.id}" class="clear-filter"><button type="button"><span class="icon_remove_filter f_l"></span><span class="name-check-filter">{echo $prop->name}: {echo $key.value}</span></button></li>
                                             {/if}
                                         {/foreach}
                                     {/foreach}
@@ -29,8 +29,8 @@
             </ul>
             <div class="foot-check-filter">
                 <button type="button" onclick="location.href = '{site_url($CI->uri->uri_string())}'" class="btn-reset-filter">
-                    <span class="icon_times icon_remove_all_filter f_l"></span>
-                    <span class="text-el d_l_r_f">{lang('Сбросить фильтр', 'newLevel')}</span>
+                    <span class="icon_remove_all_filter f_l"></span>
+                    <span class="text-el d_l_2">{lang('Сбросить все фильтры', 'newLevel')}</span>
                 </button>
             </div>
         </div>
