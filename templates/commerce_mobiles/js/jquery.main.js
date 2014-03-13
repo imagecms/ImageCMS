@@ -113,4 +113,11 @@ $(document).ready(function() {
     if (ltie7) {
         $('.head_cle_foot').replaceWith('<div class="' + $('.head_cle_foot').attr('class') + '"></div>');
     }
+    
+    
+    // Change form url in order to check gift
+    $('#checkGiftButton').on('click',function(){
+        var el = $(this);
+        el.closest('form').attr('action','/shop/cart').submit();
+    });
 });

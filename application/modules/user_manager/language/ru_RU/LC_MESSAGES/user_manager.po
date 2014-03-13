@@ -1,11 +1,11 @@
-﻿msgid ""
+msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-13 02:42+0000\n"
-"PO-Revision-Date: 2014-03-13 02:42+0000\n"
-"Last-Translator:  \n"
-"Language-Team:  \n"
+"PO-Revision-Date: 2014-03-13 18:40+0300\n"
+"Last-Translator: sdfsdfsdfs <sdfsdfsdf>\n"
+"Language-Team: \n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -14,8 +14,6 @@ msgstr ""
 "X-Poedit-Basepath: ../../..\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Generator: Poedit 1.5.7\n"
-"X-Poedit-Language: \n"
-"X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 
 #: ./application/modules/user_manager/admin.php:411
@@ -67,7 +65,6 @@ msgstr "Группы"
 msgid "Access rights differentiation system"
 msgstr "Права доступа разных систем"
 
-#: ./application/modules/user_manager/templates/main.tpl:48
 #: ./application/modules/user_manager/templates/main.tpl:48
 msgid "Cancel filter"
 msgstr "Отменить фильтр"

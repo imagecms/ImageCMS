@@ -75,7 +75,7 @@
                             <!-- End. additional images-->
                         {/if}
                         <!-- Start. Photo block-->
-                        <a rel="position: 'xBlock'" onclick="return false;" href="{echo $model->firstVariant->getLargePhoto()}" class="frame-photo-title photoProduct cloud-zoom" id="photoProduct" title="{echo ShopCore::encode($model->getName())}" data-drop="#photo" data-start="Product.initDrop">
+                        <a rel="position: 'xBlock'" onclick="return false;" href="{echo $model->firstVariant->getLargePhoto()}" class="frame-photo-title photoProduct cloud-zoom" id="photoProduct" title="{echo ShopCore::encode($model->getName())}" data-drop="#photo" data-start="Product.initDrop" data-scroll-content="false">
                             <span class="photo-block">
                                 <span class="helper"></span>
                                 <img src="{echo $model->firstVariant->getMainPhoto()}" alt="{echo ShopCore::encode($model->getName())}" title="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" class="vImgPr"/>
@@ -96,9 +96,12 @@
                             </div>
                             <!-- End. Name product -->
                         </div>
-                        <div class="t-a_j">
+                        <!-- Start. frame for cloudzoom -->
+                        <div id="xBlock"></div>
+                        <!-- End. frame for cloudzoom -->
+                        <div class="o_h">
                             <!-- Start. article & variant name & brand name -->
-                            <div>
+                            <div class="f_l">
                                 <span class="frame-variant-name-code">
                                     <span class="frame-variant-code frameVariantCode" {if !$model->firstVariant->getNumber()}style="display:none;"{/if}>
                                         <span class="s-t">{lang('Код','newLevel')}:</span>
@@ -112,7 +115,7 @@
                             </div>
                             <!-- End. article & variant name & brand name -->
                             <!-- Start. Star rating -->
-                            <div>
+                            <div class="f_l">
                                 {if $model->enable_comments && intval($Comments[$model->getId()]) !== 0}
                                     <div class="frame-star">
                                         {$CI->load->module('star_rating')->show_star_rating($model, false)}
@@ -121,17 +124,10 @@
                                             {echo SStringHelper::Pluralize($Comments[$model->getId()], array(lang("отзыв","newLevel"),lang("отзыва","newLevel"),lang("отзывов","newLevel")))}
                                         </button>
                                     </div>
-                                {else:}
-                                    <div class="frame-star">
-                                        <button data-trigger="[data-href='#comment']" data-scroll="true" class="count-null-response d_l">{lang('Оставить отзыв','newLevel')}</button>
-                                    </div>
                                 {/if}
                             </div>
                             <!-- End. Star rating-->
                         </div>
-                        <!-- Start. frame for cloudzoom -->
-                        <div id="xBlock"></div>
-                        <!-- End. frame for cloudzoom -->
 
                         <div class="f-s_0 buy-block">
                             <!-- Start. Check variant-->
@@ -154,7 +150,7 @@
                             {/if}
                             <!-- End. Check variant-->
                             <div class="frame-prices-buy-wish-compare">
-                                <div class="w_375 d_i-b v-a_m">
+                                <div class="frame-for-photo-popup">
                                     <div class="frame-prices-buy f-s_0">
                                         <!-- Start. Prices-->
                                         <div class="frame-prices f-s_0">
@@ -212,7 +208,7 @@
                                                     {$inCart = getAmountInCart('SProducts', $productVariant->getId())}
                                                     <div class="frame-count-buy js-variant-{echo $productVariant->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
                                                         <form method="POST" action="/shop/cart/addProductByVariantId/{echo $productVariant->getId()}">
-                                                            <div class="btn-buy-p btn-cart{if !$inCart} d_n{/if}">
+                                                            <div class="btn-buy btn-cart{if !$inCart} d_n{/if}">
                                                                 <button 
                                                                     type="button"
                                                                     data-id="{echo $productVariant->getId()}"
@@ -266,7 +262,7 @@
                                                 {else:}
                                                     <div class="d_i-b v-a_m">
                                                         <div class="js-variant-{echo $productVariant->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
-                                                            <div class="alert-exists">{lang('Нет в наличии','newLevel')}</div>
+                                                            <div class="alert-exists">{lang('Нет в наличии', 'newLevel')}</div>
                                                             <div class="btn-not-avail">
                                                                 <button
                                                                     type="button"
@@ -316,19 +312,14 @@
                                 </div>
                                 <!-- Start. Wish List & Compare List buttons -->
                                 <div class="frame-wish-compare-list f-s_0 d_i-b v-a_m">
-                                    {foreach $variants as $key => $pv}
-                                        <div class="frame-btn-wish js-variant-{echo $pv->getId()} js-variant" {if $key != 0}style="display:none"{/if} data-id="{echo $pv->getId()}">
-                                            {$CI->load->module('wishlist')->renderWLButton($pv->getId())}
-                                        </div>
-                                    {/foreach}
-                                    <div class="frame-btn-compare">
+                                    <div class="frame-btn-compare v-a_bl">
                                         <div class="btn-compare">
                                             <div class="toCompare btnCompare"
                                                  data-id="{echo $model->getId()}"
                                                  type="button"
                                                  data-title="{lang('Cравнить','newLevel')}"
                                                  data-firtitle="{lang('Cравнить','newLevel')}"
-                                                 data-sectitle="{lang('В списке сравнений','newLevel')}"
+                                                 data-sectitle="{lang('В сравнении','newLevel')}"
                                                  data-rel="tooltip">
                                                 <span class="niceCheck b_n">
                                                     <input type="checkbox">
@@ -337,6 +328,11 @@
                                             </div>
                                         </div>
                                     </div>
+                                    {foreach $variants as $key => $pv}
+                                        <div class="frame-btn-wish v-a_bl js-variant-{echo $pv->getId()} js-variant" {if $key != 0}style="display:none"{/if} data-id="{echo $pv->getId()}">
+                                            {$CI->load->module('wishlist')->renderWLButton($pv->getId())}
+                                        </div>
+                                    {/foreach}
                                 </div>
                                 <!-- End. Wish List & Compare List buttons -->
                             </div>
@@ -355,10 +351,10 @@
                         <!--Start .Share-->
                         <div class="social-product">
                             <div class="social-like d_i-b">
-                                {echo $CI->load->module('share')->_make_like_buttons()}
+                                {//echo $CI->load->module('share')->_make_like_buttons()}
                             </div>
                             <div class="social-tell d_i-b">
-                                {echo $CI->load->module('share')->_make_share_form()}
+                                {//echo $CI->load->module('share')->_make_share_form()}
                             </div>
                         </div>
                         <!-- End. Share -->
@@ -495,7 +491,7 @@
                                                         </span>
                                                     </div>
                                                     <form method="POST" action="/shop/cart/addKit/{echo $kitProducts->getId()}">
-                                                        <div class="btn-buy-p btn-cart{if !$inCart} d_n{/if}">
+                                                        <div class="btn-buy btn-cart{if !$inCart} d_n{/if}">
                                                             <button 
                                                                 type="button"
                                                                 data-id="{echo $kitProducts->getId()}"
@@ -623,6 +619,24 @@
         <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
         <div class="drop-header">
         <div class="title"><%- obj.title %></div>
+        </div>
+        <div class="drop-content">
+        <div class="inside-padd">
+        <img src="<%- obj.mainPhoto %>" alt="<%- obj.title %>"/>
+        </div>
+        <div class="horizontal-carousel" id="photoButton">
+        <div class="group-button-carousel">
+        <button type="button" class="prev arrow">
+        <span class="icon_arrow_p"></span>
+        </button>
+        <button type="button" class="next arrow">
+        <span class="icon_arrow_n"></span>
+        </button>
+        </div>
+        </div>
+        </div>
+        <div class="drop-footer">
+        <div class="inside-padd">
         <div class="horizontal-carousel">
         <div class="frame-fancy-gallery frame-thumbs">
         <div class="fancy-gallery carousel-js-css">
@@ -643,23 +657,6 @@
         </div>
         </div>
         </div>
-        <div class="drop-content">
-        <div class="inside-padd">
-        <img src="<%- obj.mainPhoto %>" alt="<%- obj.title %>"/>
-        </div>
-        <div class="horizontal-carousel">
-        <div class="group-button-carousel">
-        <button type="button" class="prev arrow">
-        <span class="icon_arrow_p"></span>
-        </button>
-        <button type="button" class="next arrow">
-        <span class="icon_arrow_n"></span>
-        </button>
-        </div>
-        </div>
-        </div>
-        <div class="drop-footer">
-        <div class="inside-padd">
         <%= obj.frame.find(obj.footerContent).html()%>
         </div>
         </div>

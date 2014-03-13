@@ -14,7 +14,7 @@
                         <button type="button" data-drop=".frame-already-show" data-effect-on="slideDown" data-effect-off="slideUp" data-place="inherit">
                             <span class="icon_arrow_down"></span>
                             <span class="text-view-list">
-                                <span class="text-el d_l_1">{lang("Просмотренные товары",'newLevel')}</span>
+                                <span class="text-el">{lang("Просмотренные товары",'newLevel')}</span>
                                 <span class="text-el">&nbsp;({echo $countSh})</span>
                             </span>
                         </button>

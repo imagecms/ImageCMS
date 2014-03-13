@@ -45,8 +45,8 @@ input[type="text"][disabled], input[type="password"][disabled], textarea[disable
 .date{color: #a0a0a0;}
 
 /*active*/
-:focus, :acitve{outline: none;}
-button:focus:active{outline: none;}
+:acitve{outline: none;} :focus{outline: none;}
+
 button[disabled="disabled"], input[type="submit"][disabled="disabled"], input[type="reset"][disabled="disabled"], input[type="button"][disabled="disabled"], .disabled, .disabled > *, .divider{cursor: default;color: #999;}
 .active > span, .active > a, .active > button{cursor: default;color: #999;}
 .active > button{color: #fff;}
@@ -105,7 +105,7 @@ a:focus, a:active {color: #51d2ff;}
 .count-response, .count-null-response{border-bottom-color: #999;color:#999;}
 
 .btn-already-show .d_l_1{color: #fff;border-bottom-color: #fff;}
-.btn-already-show > button:hover .d_l_1, .btn-already-show > button:hover .text-el, .frames-checks-sliders .title > .f-s_0:hover .d_l{color: #51d2fe;border-bottom-color: #51d2fe;}
+.btn-already-show > button:hover .d_l_1, .btn-already-show > button:hover .text-el, .frames-checks-sliders .title > .f-s_0:hover .d_l{color: #51d2ff;border-bottom-color: #51d2ff;}
 /*/dotted lines*/
 
 /*for delete*/
@@ -351,9 +351,9 @@ a:focus, a:active {color: #51d2ff;}
 .frame-group-checks .icon-arrow{border-width: 0;display: none;}
 .frame-group-checks[data-rel*="dropDown"] .icon-arrow{border-width: 5px 7px;border-style: solid;border-color: transparent;border-left-color: #0c9acb;margin-right: -2px;background-image: none;float: left;top: 4px;display: block;}
 .frame-group-checks[data-rel*="dropDown"] .icon-arrow + .d_b{margin-left: 14px;}
-.frame-group-checks[data-rel*="dropDown"] .f-s_0:hover .icon-arrow{border-left-color: #51d2fe;}
+.frame-group-checks[data-rel*="dropDown"] .f-s_0:hover .icon-arrow{border-left-color: #51d2ff;}
 .frame-group-checks[data-rel*="dropDown"] .f-s_0.valuePD .icon-arrow{border-color: transparent;border-top-color: #0c9acb;border-width: 7px 5px;margin-right: 2px;position: relative;top: 5px;}
-.frame-group-checks[data-rel*="dropDown"] .f-s_0.valuePD:hover .icon-arrow{border-top-color: #51d2fe;}
+.frame-group-checks[data-rel*="dropDown"] .f-s_0.valuePD:hover .icon-arrow{border-top-color: #51d2ff;}
 
 .apply{border: 2px solid #0c9acb;background-color: #faf8f6;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;-moz-box-shadow: 5px 5px 4px 0 rgba(0,0,0,0.2);-webkit-box-shadow: 5px 5px 4px 0 rgba(0,0,0,0.2);box-shadow: 5px 5px 4px 0 rgba(0,0,0,0.2);}
 .apply:before{border-style: solid;border-width: 6px 7px;border-color: transparent;border-right-color: #0c9acb;}
@@ -914,7 +914,7 @@ form .btn-form .text-el, .btn-not-avail .text-el, .btn-form input{font-weight: b
 
 .btn-crumb .divider{font-size: 14px;margin-left: 4px;}
 .btn-crumb .text-el{text-shadow: 0 1px #fff;}
-.btn-crumb a:hover .text-el{color: #01afeb;}
+.btn-crumb a:hover .text-el{color: #51d2ff}
 
 .btn-compare{height: 20px;margin-bottom: 4px;}
 .btn-wish{height: 20px;margin-bottom: 4px;}
@@ -1368,7 +1368,7 @@ footer .box-4{overflow: visible;}
 .vertical-carousel .group-button-carousel .prev > [class*="icon_arrow"], .btn-to-up [class*="icon_arrow"]{transform: rotate(90deg);-webkit-transform: rotate(90deg);-moz-transform: rotate(90deg);-o-transform: rotate(90deg);-ms-transform: rotate(90deg);}
 .vertical-carousel .group-button-carousel .next > [class*="icon_arrow"]{left: 1px;transform: rotate(90deg);-webkit-transform: rotate(90deg);-moz-transform: rotate(90deg);-o-transform: rotate(90deg);-ms-transform: rotate(90deg);}
 /*outlines*/
-input[type="radio"]:focus, input[type="checkbox"]:focus, input[type="submit"]:focus, input[type="button"]:focus, input[type="reset"]:focus, button:focus, .frame-item-menu > .frame-title > .title:focus{outline: 1px solid #75d9ff;}
+input[type="radio"]:focus, input[type="checkbox"]:focus, input[type="submit"]:focus, input[type="button"]:focus, input[type="reset"]:focus, .frame-item-menu > .frame-title > .title:focus{outline: 1px solid #75d9ff;}
 .cloud-zoom-lens {outline: 1px solid #969696;}
 .baner li > a:focus{outline: 1px solid #51d2ff;}
 .start-page-category-menu a:focus{outline: 1px solid #51d2ff;}

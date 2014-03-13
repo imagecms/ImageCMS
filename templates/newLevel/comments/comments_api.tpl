@@ -49,6 +49,23 @@
                                     </div>
                                 </div>
                                 <div class="frame-comment-sub1">
+
+                                    <div class="frame-comment">
+                                        <p>{$comment.text}</p>
+                                        {if $comment.text_plus != Null}
+                                            <p>
+                                                <b>{lang('Да', 'newLevel')}</b><br>
+                                                {$comment.text_plus}
+                                            </p>
+                                        {/if}
+                                        {if $comment.text_minus != Null}
+                                            <p>
+                                                <b>{lang('Нет', 'newLevel')}</b><br>
+                                                {$comment.text_minus}
+                                            </p>
+                                        {/if}
+                                    </div>
+
                                     {if $can_comment == 0 OR $is_logged_in}
                                         <div class="btn">
                                             <button type="button" data-rel="cloneAddPaste" data-parid="{$comment['id']}">
@@ -80,6 +97,7 @@
                                                                 {$com_ch.text}
                                                             </p>
                                                         </div>
+
                                                     </div>
                                                 </div>
                                             </li>
@@ -111,18 +129,18 @@
                     <div class="form-comment main-form-comments">
                         <div class="inside-padd">
                             <form method="post">
-                                {if !$is_logged_in}
-                                    {if $use_moderation}
-                                        <label class="d_n succ">
-                                            <span class="frame-form-field">
-                                                <div class="msg">
-                                                    <div class="success">
-                                                        {lang('Комментарий будет отправлен на модерацию','newLevel')}
-                                                    </div>
+                                {if $use_moderation}
+                                    <label class="d_n succ">
+                                        <span class="frame-form-field">
+                                            <div class="msg">
+                                                <div class="success">
+                                                    {lang('Ваш комментарий будет опубликован после модерации администратором','newLevel')}
                                                 </div>
-                                            </span>
-                                        </label>
-                                    {/if}
+                                            </div>
+                                        </span>
+                                    </label>
+                                {/if}
+                                {if !$is_logged_in}
                                     <div class="clearfix">
                                         <label style="width: 45%;float: left;">
                                             <span class="title">{lang('Ваше имя','newLevel')}</span>
@@ -212,16 +230,23 @@
                                     <input type="text" name="comment_email" value="{get_cookie('comment_email')}"/>
                                 </span>
                             </label>
+
+                        {/if}
+                        {if $use_moderation}
+
                             <label class="d_n succ">
                                 <span class="frame-form-field">
                                     <div class="msg">
                                         <div class="success">
-                                            {lang('Комментарий будет отправлен на модерацию','newLevel')}
+
+                                            {lang('Ваш комментарий будет опубликован после модерации администратором','newLevel')}
+
                                         </div>
                                     </div>
                                 </span>
                             </label>
                         {/if}
+
                         <label>
                             <span class="title">{lang('Текст ответа:','newLevel')}</span>
                             <span class="frame-form-field">

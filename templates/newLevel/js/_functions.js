@@ -73,13 +73,13 @@ var ShopFront = {
             inputs.plusminus($.extend({}, optionsPlusminus, {
                 after: function(e, el, input) {
                     if (checkProdStock && input.val() == input.data('max'))
-                        el.closest(genObj.numberC).tooltip();
+                        el.closest(genObj.numberC).tooltip('show');
                 }
             }));
             testNumber(inputs);
             inputs.off('maxminValue').on('maxminValue', function(e) {
                 if (checkProdStock && e.res)
-                    $(this).closest(genObj.numberC).tooltip();
+                    $(this).closest(genObj.numberC).tooltip('show');
             });
         },
         baskChangeCount: function(inputs) {
@@ -767,7 +767,7 @@ function testNumber(el) {
         if (e.res)
             $(this).tooltip('remove');
         else {
-            $(this).tooltip();
+            $(this).tooltip('show');
         }
     }).testNumber();
 //    ['.']

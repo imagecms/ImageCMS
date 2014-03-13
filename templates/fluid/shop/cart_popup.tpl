@@ -5,7 +5,7 @@
     <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
     {if $totalItems > 0}
         <div class="drop-header">
-            <div class="title bask"><span>{lang('В корзине','newLevel')}</span><span class="add-info"><span class="topCartCount"> {echo $totalItems}</span></span> <span class="plurProd">{echo SStringHelper::Pluralize($count, array(lang('товар','newLevel'),lang('товара','newLevel'),lang('товаров','newLevel')))}</span></div>
+            <div class="title bask"><span>{lang('В корзине','newLevel')}</span><span class="add-info"><span class="topCartCount"> {echo $totalItems}</span></span> <span class="plurProd">{echo SStringHelper::Pluralize($totalItems, array(lang('товар','newLevel'),lang('товара','newLevel'),lang('товаров','newLevel')))}</span></div>
         </div>
         <div class="drop-content">
             <div class="inside-padd">
@@ -90,31 +90,34 @@
                                         <button type="button" class="icon_times_cart" onclick="Shop.Cart.remove({echo $item->getId()}, true)"></button></button>
                                     </td>
                                     <td class="frame-items frame-items-kit">
-                                        <ul class="items items-bask items-product">
-                                            {foreach $item->items as $k => $kitItem}
-                                                <li>
-                                                    {if $k != 0}
-                                                        <div class="next-kit">+</div>
-                                                    {/if}
-                                                    <div class="frame-kit{if $k === 0} main-product{/if}">
-                                                        <a class="frame-photo-title" href="{echo shop_url('product/'.$kitItem->getSProducts()->getUrl())}">
-                                                            <span class="photo-block">
-                                                                <span class="helper"></span>
-                                                                <img src="{echo $kitItem->getSmallPhoto()}">
-                                                            </span>
-                                                            <span class="title">{echo $kitItem->getSProducts()->getName()}</span>
-                                                        </a>
-                                                        <div class="description">
-                                                            {if $item->getName() && trim($kitItem->getName()) != trim($kitItem->getSProducts()->getName())}
-                                                                <span class="frame-variant-name">
-                                                                    <span class="code">{echo $kitItem->getName()}</span>
+                                        <div class="p_r">
+                                            <div class="main-title">{lang('Комплект', 'newLevel')}</div>
+                                            <ul class="items items-bask items-product">
+                                                {foreach $item->items as $k => $kitItem}
+                                                    <li>
+                                                        {if $k != 0}
+                                                            <div class="next-kit">+</div>
+                                                        {/if}
+                                                        <div class="frame-kit{if $k === 0} main-product{/if}">
+                                                            <a class="frame-photo-title" href="{echo shop_url('product/'.$kitItem->getSProducts()->getUrl())}">
+                                                                <span class="photo-block">
+                                                                    <span class="helper"></span>
+                                                                    <img src="{echo $kitItem->getSmallPhoto()}">
                                                                 </span>
-                                                            {/if}
+                                                                <span class="title">{echo $kitItem->getSProducts()->getName()}</span>
+                                                            </a>
+                                                            <div class="description">
+                                                                {if $item->getName() && trim($kitItem->getName()) != trim($kitItem->getSProducts()->getName())}
+                                                                    <span class="frame-variant-name">
+                                                                        <span class="code">{echo $kitItem->getName()}</span>
+                                                                    </span>
+                                                                {/if}
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </li>
-                                            {/foreach}
-                                        </ul>
+                                                    </li>
+                                                {/foreach}
+                                            </ul>
+                                        </div>
                                     </td>
                                     <td class="frame-count t-a_c">
                                         <div class="number js-number" data-title="{lang('Количество на складе','newLevel')} {echo $item->getStock()}">
@@ -174,28 +177,14 @@
         <div class="footer-bask drop-footer">
             <div class="inside-padd">
                 <div class="clearfix">
-                    {if $discount_val}
-                        <span class="frame-discount">
-                            <span class="s-t">{lang('Ваша текущая скидка','newLevel')}:</span>
-                            <span class="text-discount current-discount"><span class="text-el">{echo ShopCore::app()->SCurrencyHelper->convert($discount_val)}</span> <span class="curr">{$CS}</span></span>
-                        </span>
-                    {/if}
                     <div class="btn-form f_l isCart">
                         <button type="button" data-closed="closed-js">
                             <span class="icon-arrow-l2"></span>
                             <span class="text-el">{lang('Вернуться к оформлению','newLevel')}</span>
                         </button>
                     </div>
-                    <span class="s-t">{lang('Всего','newLevel')}:</span>
+                    <span class="s-t">{lang('Сумма товаров','newLevel')}</span>
                     <span class="frame-prices f-s_0">
-                        {if $discount_val}
-                            <span class="price-discount">
-                                <span>
-                                    <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($cartOriginPrice)}</span>
-                                    <span class="curr">{$CS}</span>
-                                </span>
-                            </span>
-                        {/if}
                         <span class="current-prices f-s_0">
                             <span class="price-new">
                                 <span>

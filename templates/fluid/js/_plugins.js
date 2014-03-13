@@ -62,7 +62,7 @@ returnMsg = function(msg) {
 };
 $.fn.testNumber = function(add) {
     $(this).off('keypress.testNumber').on('keypress.testNumber', function(e) {
-        $this = $(this);
+        var $this = $(this);
         if (e.ctrlKey || e.altKey || e.metaKey)
             return;
         var chr = getChar(e);
@@ -96,7 +96,7 @@ $.fn.pricetext = function(e, rank) {
     });
     return $this;
 };
-$.fn.setCursorPosition = function(pos) {
+$.fn.setCursorPosition = function(pos) {if (!isTouch)
     this.each(function() {
         this.select();
         try {
@@ -527,7 +527,7 @@ function getCookie(c_name)
             var settings = $.extend({
                 item: 'ul > li',
                 duration: 300,
-                searchPath: "/shop/search/ac"+locale,
+                searchPath: "/shop/search/ac" + locale,
                 inputString: $('#inputString'),
                 minValue: 3,
                 underscoreLayout: '#searchResultsTemplate',
@@ -738,7 +738,7 @@ function getCookie(c_name)
                     tooltip: '.tooltip',
                     durationOn: 300,
                     durationOff: 200,
-                    show: true
+                    show: false
                 },
                 init: function(options) {
                     this.each(function() {
@@ -773,9 +773,9 @@ function getCookie(c_name)
                         tooltip.html(set.title);
                         if (set.otherClass) {
                             if (!$.exists(set.tooltip + '.' + set.otherClass))
-                                tooltip.clone().appendTo(body).addClass(set.otherClass);
+                                $(tooltip).first().clone().appendTo(body).addClass(set.otherClass);
 
-                            tooltip = $(set.tooltip + '.' + set.otherClass);
+                            tooltip = $(set.tooltip + '.' + set.otherClass).data(set);
                         }
 
                         if (set.effect === 'mouse')
@@ -790,7 +790,7 @@ function getCookie(c_name)
                             'left': methods.left($this, tooltip, set.placement, $this.offset().left, set.effect, set.offsetX),
                             'top': methods.top($this, tooltip, set.placement, $this.offset().top, set.effect, set.offsetY)
                         });
-                        if (set.show == 'true')
+                        if (set.show === 'true')
                             tooltip.fadeIn(set.durationOn);
                         $this.off('mouseleave.' + nS).on('mouseleave.' + nS, function(e) {
                             var el = $(this);
@@ -802,6 +802,9 @@ function getCookie(c_name)
                         });
                     });
                     return this;
+                },
+                show: function(options) {
+                    methods.init.call(this, $.extend({show: true}, options));
                 },
                 left: function(el, tooltip, placement, left, eff, offset) {
                     if (placement === 'left')
@@ -838,8 +841,9 @@ function getCookie(c_name)
                             durOff = methods.def.durationOff;
 
                         $(tooltip).stop().fadeOut(durOff, function() {
-                            if (data.otherClass)
-                                $(this).remove();
+                            var $this = $(this);
+                            if ($this.data('otherClass') && $this.data('otherClass') !== '')
+                                $this.remove();
                         });
                     });
                     return this;
@@ -849,7 +853,7 @@ function getCookie(c_name)
         if (methods[method]) {
             return methods[ method ].apply(this, Array.prototype.slice.call(arguments, 1));
         } else if (typeof method === 'object' || !method) {
-            return handlerTooltip.apply(this, arguments, null);
+            return handlerTooltip.call(this, arguments[0], null);
         } else {
             $.error('Method ' + method + ' does not exist on $.tooltip');
         }
@@ -867,7 +871,7 @@ function getCookie(c_name)
     }
     ;
     body.on('mouseenter.' + nS, '[data-rel="tooltip"]', function(e) {
-        handlerTooltip.apply(this, null, e);
+        handlerTooltip.call(this, {show: true}, e);
     }).on('click.' + nS + ' mouseup.' + nS, function(e) {
         if ($(this).data('effect') === 'always')
             $.tooltip('remove')(e);
@@ -1989,11 +1993,11 @@ function getCookie(c_name)
                 elSet = {};
             if (!opt)
                 opt = {};
-            if (!isNaN(parseFloat($.drop.dP[prop])) && isFinite($.drop.dP[prop])) {
-                return +((elSet[prop] != undefined && elSet[prop] != null ? elSet[prop].toString() : elSet[prop]) || (opt[prop] != undefined && opt[prop] != null ? opt[prop].toString() : opt[prop]) || $.drop.dP[prop].toString());
+            if (!isNaN(parseFloat($.drop.dP[prop])) && isFinite($.drop.dP[prop]))
+                return +((elSet[prop] !== undefined && elSet[prop] !== null ? elSet[prop].toString() : elSet[prop]) || (opt[prop] !== undefined && opt[prop] !== null ? opt[prop].toString() : opt[prop]) || $.drop.dP[prop].toString());
+            if ($.drop.dP[prop] !== undefined && $.drop.dP[prop] !== null && ($.drop.dP[prop].toString().toLowerCase() === 'false' || $.drop.dP[prop].toString().toLowerCase() === 'true')) {
+                return ((/^true$/i).test(elSet[prop] !== undefined && elSet[prop] !== null ? elSet[prop].toString().toLowerCase() : elSet[prop])) || ((/^true$/i).test(opt[prop] !== undefined && opt[prop] !== null ? opt[prop].toString().toLowerCase() : opt[prop])) || (elSet[prop] !== undefined && elSet[prop] !== null || opt[prop] !== undefined && opt[prop] !== null ? false : $.drop.dP[prop]);
             }
-            if ($.drop.dP[prop] !== undefined && $.drop.dP[prop] !== null && ($.drop.dP[prop].toString().toLowerCase() === 'false' || $.drop.dP[prop].toString().toLowerCase() === 'true'))
-                return ((/^true$/i).test(elSet[prop] !== undefined && elSet[prop] !== null ? elSet[prop].toString().toLowerCase() : elSet[prop])) || ((/^true$/i).test(opt[prop] !== undefined && opt[prop] !== null ? opt[prop].toString().toLowerCase() : opt[prop])) || $.drop.dP[prop];
             else
                 return elSet[prop] || (opt[prop] ? opt[prop] : false) || $.drop.dP[prop];
         },

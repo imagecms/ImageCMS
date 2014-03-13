@@ -7,7 +7,7 @@
         <div class="pull-right">
             <div class="d-i_b">
                 <a href="{$BASE_URL}admin/components/modules_table/" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Go back", 'share')}</span></a>
-                <button type="button" class="btn btn-small formSubmit" data-form="#widget_form"><i class="icon-ok"></i>{lang("Save", 'share')}</button>
+                <button type="button" class="btn btn-small formSubmit btn-primary" data-form="#widget_form"><i class="icon-ok"></i>{lang("Save", 'share')}</button>
                 <button type="button" class="btn btn-small formSubmit" data-form="#widget_form" data-action="tomain"><i class="icon-edit"></i>{lang("Save and go back", 'share')}</button>
             </div>
         </div>                            
