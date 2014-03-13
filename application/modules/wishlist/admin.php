@@ -147,7 +147,6 @@ class Admin extends BaseAdminController {
             $response['errors'] = $result;
         } else {
             $response['status'] = 1;
-            //redirect($_SERVER['HTTP_REFERER'] . "#lists");
         }
         echo json_encode($response);
     }

@@ -847,3 +847,5 @@ table#backups_list thead th:nth-child(3) {width: 10px;}*/
     overflow-y: scroll;
 }
 .s-t{color: #b1b1b1;}
+
+.dt_130pxwidth dt {width: 130px !important;}

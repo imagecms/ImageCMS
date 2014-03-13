@@ -51,7 +51,7 @@
                     });
                     pasteAfterEL.next()[effectIn](duration, function() {
                         $(document).trigger({
-                            'type': 'comments.showformreply', 
+                            'type': 'comments.showformreply',
                             'el': $(this)
                         });
                     });

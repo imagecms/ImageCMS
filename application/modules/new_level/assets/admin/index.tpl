@@ -77,7 +77,7 @@
                             <thead>
                                 <tr>
                                     <th colspan="6">
-                                        {lang('Categories columns', 'new_level')}:
+                                        {lang('Categories menu', 'new_level')}:
                                     </th>
                                 </tr>
                             </thead>

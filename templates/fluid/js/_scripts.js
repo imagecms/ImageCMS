@@ -53,7 +53,7 @@ function init() {
             drop.nStRadio({
                 wrapper: $(".frame-label"),
                 elCheckWrap: '.niceRadio'
-                        //,classRemove: 'b_n'//if not standart
+                , classRemove: 'b_n'//if not standart
             });
         }
         if ($.existsN(drop.find('[onsubmit*="ImageCMSApi"]')) || drop.is('#sendMail')) {
@@ -255,21 +255,6 @@ function init() {
         });
     });
     //End. Cart
-
-    $(genObj.parentBtnBuy).on('click.inCompare', '.' + genObj.inCompare + ' ' + genObj.textEl, function(e) {
-        e.stopPropagation();
-        var pN = window.location.pathname,
-                tab;
-        if (/category|product/.test(pN)) {
-            if (pN.indexOf('category') !== -1)
-                tab = pN.substr(pN.lastIndexOf('/') + 1, pN.length);
-            else if (pN.indexOf('product') !== -1)
-                tab = hrefCategoryProduct.substr(hrefCategoryProduct.lastIndexOf('/') + 1, hrefCategoryProduct.length)
-            document.location.href = '/shop/compare#tab_' + tab;
-        }
-        else
-            document.location.href = '/shop/compare';
-    });
     $('.items-product, .item-product').nStCheck({
         wrapper: $(".btnCompare"),
         elCheckWrap: '.niceCheck',
@@ -319,7 +304,7 @@ function init() {
         e.els.find(preloader).remove();
     });
     doc.on('autocomplete.fewLength', function(e) {
-        e.el.tooltip({
+        e.el.tooltip('show', {
             'title': text.search(e.value)
         });
     });
@@ -359,21 +344,23 @@ function init() {
             ieBoxSize(e.el.find(':input:not(button):not([type="button"]):not([type="reset"]):not([type="submit"])'));
     });
     doc.on('comments.beforeshowformreply', function(e) {
-        var patchCom = e.el.closest('.patch-product-view');
+        var patchCom = e.el.closest('.patch-product-view'),
+                h = patchCom.outerHeight(),
+                elH = e.el.outerHeight();
+        
         patchCom.css({
-            'height': 'auto'
-        });
-        var sumH = (patchCom.outerHeight() < patchCom.data('maxHeight') ? patchCom.data('maxHeight') : patchCom.outerHeight()) + e.el.outerHeight();
-        patchCom.css({
-            'height': sumH,
-            'max-height': sumH
+            'height': h + elH,
+            'max-height': h + elH
         });
     });
     doc.on('comments.beforehideformreply', function(e) {
-        var patchCom = e.el.closest('.patch-product-view');
+        var patchCom = e.el.closest('.patch-product-view'),
+                h = patchCom.outerHeight(),
+                elH = e.el.outerHeight();
+        
         patchCom.css({
-            'max-height': 'none',
-            'height': patchCom.height() - e.el.outerHeight()
+            'height': h - elH,
+            'max-height': ''
         });
     });
     doc.on('menu.showDrop', function(e) {
