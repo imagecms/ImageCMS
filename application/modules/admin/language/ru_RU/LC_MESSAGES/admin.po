@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-13 02:49+0200\n"
-"PO-Revision-Date: 2014-03-13 02:49+0200\n"
+"POT-Creation-Date: 2014-03-13 02:52+0200\n"
+"PO-Revision-Date: 2014-03-13 02:52+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -26,6 +26,24 @@ msgstr ""
 msgid "ProductNot"
 msgstr "Товар"
 
+#: ./application/modules/shop/admin/templates/kits/kit_create.tpl:46
+#: ./application/modules/shop/admin/templates/kits/kit_edit.tpl:45
+msgid "Added products"
+msgstr "Прикрепленные продукты"
+
+#: ./application/modules/shop/admin/templates/kits/index.tpl:47
+#: ./application/modules/shop/admin/templates/kits/kit_create.tpl:40
+#: ./application/modules/shop/admin/templates/kits/kit_edit.tpl:39
+msgid "main product"
+msgstr "главный товар"
+
+#: ./application/modules/shop/admin/templates/kits/index.tpl:48
+#: ./application/modules/shop/admin/templates/kits/kit_create.tpl:34
+#: ./application/modules/shop/admin/templates/kits/kit_edit.tpl:33
+msgid "Main product"
+msgstr "Главный товар"
+
+#: ./templates/administrator/lang_edit.tpl:58
 #: ./templates/administrator/lang_create.tpl:47
 #: ./templates/administrator/lang_edit.tpl:58
 msgid "Localization"
@@ -1633,18 +1651,6 @@ msgstr "Главный размер"
 msgid "Main phone"
 msgstr "Главный телефон"
 
-#: ./application/modules/shop/admin/templates/kits/index.tpl:47
-#: ./application/modules/shop/admin/templates/kits/kit_create.tpl:40
-#: ./application/modules/shop/admin/templates/kits/kit_edit.tpl:39
-msgid "main product"
-msgstr "главный товар"
-
-#: ./application/modules/shop/admin/templates/kits/index.tpl:48
-#: ./application/modules/shop/admin/templates/kits/kit_create.tpl:34
-#: ./application/modules/shop/admin/templates/kits/kit_edit.tpl:33
-msgid "Main product"
-msgstr "Главный товар"
-
 #: ./application/modules/admin/categories.php:153
 msgid "Main template"
 msgstr "Главный шаблон"
@@ -1958,11 +1964,6 @@ msgstr "Добавить подкатегорию"
 #: ./templates/administrator/cats_tree_css.tpl:8
 msgid "Add an article"
 msgstr "Добавить статью"
-
-#: ./application/modules/shop/admin/templates/kits/kit_create.tpl:46
-#: ./application/modules/shop/admin/templates/kits/kit_edit.tpl:45
-msgid "Added products"
-msgstr "Добавленные продукты"
 
 #: ./templates/administrator/inc/javascriptVars.tpl:57
 msgid "Wait for resize ending"

@@ -232,7 +232,7 @@ class Admin extends BaseAdminController {
 
           $this->_recount_comments($comment['item_id'], $comment['module']);
          */
-        showMessage(lang('Success', 'comments'), lang('Status updated', 'comments'));
+        showMessage(lang('Status updated', 'comments'), lang('Message', 'comments'));
         $this->load->helper('url');
         $url = '/' . str_replace(base_url(), '', $_SERVER['HTTP_REFERER']);
         pjax($url);

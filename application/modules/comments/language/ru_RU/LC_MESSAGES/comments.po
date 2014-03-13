@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-13 11:50+0200\n"
-"PO-Revision-Date: 2014-03-13 11:50+0200\n"
+"POT-Creation-Date: 2014-03-13 01:56+0200\n"
+"PO-Revision-Date: 2014-03-13 01:56+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -18,9 +18,26 @@ msgstr ""
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 
+#: ./application/modules/comments/templates/comments_list.tpl:21
+msgid "In the waiting"
+msgstr "В ожидающие"
+
+#: ./application/modules/comments/templates/edit.tpl:54
+msgid "Pending approval"
+msgstr "В ожидании одобрения"
+
+#: ./application/modules/comments/templates/comments_list.tpl:109
+msgid "Waiting moderation"
+msgstr "В ожидающие"
+
+# �
+#: ./application/modules/comments/templates/comments_list.tpl:382
+msgid "No data has been found"
+msgstr "Комментарии отсутствуют"
+
 #: ./application/modules/comments/templates/settings.tpl:38
-msgid "Comment frequency restriction  per minute . O - check off"
-msgstr "Ограничение частоты комментирования в минутах . 0 - виключить"
+msgid "Comment frequency restriction per minute . O - check off"
+msgstr "Ограничение частоты комментирования в минутах. 0 - отключить ограничение"
 
 #: ./application/modules/comments/commentsapi.php:285
 msgid "The following comment can be left through"
@@ -67,10 +84,6 @@ msgstr "Комментарии"
 msgid "Into spam"
 msgstr "В спам"
 
-#: ./application/modules/comments/templates/comments_list.tpl:21
-msgid "In the waiting"
-msgstr "В ожидании"
-
 #: ./application/modules/comments/templates/comments_list.tpl:22
 #: ./application/modules/comments/templates/comments_list.tpl:104
 #: ./application/modules/comments/templates/comments_list.tpl:202
@@ -108,10 +121,6 @@ msgstr "Сохранить"
 #: ./application/modules/comments/templates/comments_list.tpl:308
 msgid "Cancel"
 msgstr "Отмена"
-
-#: ./application/modules/comments/templates/comments_list.tpl:109
-msgid "Waiting moderation"
-msgstr "Ожидание модерации"
 
 #: ./application/modules/comments/templates/comments_list.tpl:25
 #: ./application/modules/comments/templates/comments_list.tpl:111
@@ -317,11 +326,6 @@ msgstr "Пользователь"
 msgid "Page"
 msgstr "Страница"
 
-# �
-#: ./application/modules/comments/templates/comments_list.tpl:382
-msgid "No data has been found"
-msgstr "Ничего не найдено"
-
 #: ./application/modules/comments/templates/edit.tpl:36
 msgid "Author"
 msgstr "Автор"
@@ -338,10 +342,6 @@ msgstr "Статус"
 #: ./application/modules/comments/templates/edit.tpl:53
 msgid "Approved"
 msgstr "Одобрено"
-
-#: ./application/modules/comments/templates/edit.tpl:54
-msgid "Pending approval"
-msgstr "В ожидании одобрения"
 
 #: ./application/modules/comments/templates/edit.tpl:60
 msgid "Contents"
