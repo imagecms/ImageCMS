@@ -227,16 +227,19 @@
                                     <input type="text" name="comment_email" value="{get_cookie('comment_email')}"/>
                                 </span>
                             </label>
+                        {/if}
+                        {if $use_moderation}
                             <label class="d_n succ">
                                 <span class="frame-form-field">
                                     <div class="msg">
                                         <div class="success">
-                                            {lang('Комментарий будет отправлен на модерацию','newLevel')}
+                                            {lang('Ваш комментарий будет опубликован после модерации администратором','newLevel')}
                                         </div>
                                     </div>
                                 </span>
                             </label>
                         {/if}
+
                         <label>
                             <span class="title">{lang('Текст ответа:','newLevel')}</span>
                             <span class="frame-form-field">
