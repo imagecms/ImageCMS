@@ -13,9 +13,6 @@
 
             {\Category\RenderMenu::create()->load('category_menu_first')}
         </div>
-        <div class="right-catalog-first" id="popular_product_category">
-            {widget('popular_products_category_v', TRUE)}
-        </div>
     </div>
 </div>
 {if trim($category->getDescription()) != ""}
