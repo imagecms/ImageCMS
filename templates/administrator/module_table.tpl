@@ -102,17 +102,17 @@
 
                                             </td>
                                             <td class="t-a_c">
-                                                <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="{lang('switch on','admin')}"  data-off="{lang('switch off','admin')}">
+                                                <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="{if !$module.autoload}{lang('switch off','admin')}{else:}{lang('switch on','admin')}{/if}"  data-off="{lang('switch off','admin')}">
                                                     <span class="prod-on_off autoload_ch {if !$module.autoload}disable_tovar{/if}" data-mid="{$module.id}"></span>
                                                 </div>
                                             </td>
                                             <td class="t-a_c">
-                                                <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="{lang('switch on','admin')}"  data-off="{lang('switch off','admin')}">
+                                                <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="{if !$module.enabled}{lang('switch off','admin')}{else:}{lang('switch on','admin')}{/if}"  data-off="{lang('switch off','admin')}">
                                                     <span class="prod-on_off urlen_ch {if !$module.enabled}disable_tovar{/if} {if $module.name == 'filter'}disabled{/if}" data-mid="{$module.id}" data-murl="{$BASE_URL}{$module.identif}" data-mname="{$module.identif}"></span>
                                                 </div>
                                             </td>
                                             <td class="t-a_c">
-                                                <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="{lang('switch on','admin')}"  data-off="{lang('switch off','admin')}">
+                                                <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="{if !$module.in_menu}{lang('switch off','admin')}{else:}{lang('switch on','admin')}{/if}"  data-off="{lang('switch off','admin')}">
                                                     <span class="prod-on_off show_in_menu {if $module.in_menu == 0}disable_tovar{/if}" data-mid="{$module.id}"></span>
                                                 </div>
                                             </td>
