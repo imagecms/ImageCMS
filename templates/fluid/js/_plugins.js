@@ -96,7 +96,7 @@ $.fn.pricetext = function(e, rank) {
     });
     return $this;
 };
-$.fn.setCursorPosition = function(pos) {
+$.fn.setCursorPosition = function(pos) {if (!isTouch)
     this.each(function() {
         this.select();
         try {

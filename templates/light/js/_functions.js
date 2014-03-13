@@ -424,31 +424,33 @@ function showHidePart(el, absolute, time, btnPlace) {
         btnPlace = 'next';
     el.each(function() {
         var $this = $(this),
-        $thisH = isNaN(parseInt($this.css('max-height'))) ? parseInt($this.css('height')) : parseInt($this.css('max-height')),
-        $item = $this.children(),
-        sumHeight = 0;
+                $thisH = isNaN(parseInt($this.css('max-height'))) ? parseInt($this.css('height')) : parseInt($this.css('max-height')),
+                $item = $this.children(),
+                sumHeight = 0;
         $this.addClass('showHidePart').data('maxHeight', $thisH);
         $this.find('*').css('max-height', 'none');
         $item.each(function() {
             sumHeight += $(this).outerHeight(true);
         })
         $this.find('*').css('max-height', '');
+
         if (sumHeight > $thisH) {
             $this.css({
                 'max-height': 'none',
                 'height': $thisH
             });
             var btn = $this[btnPlace](),
-            textEl = btn.find(genObj.textEl);
+                    textEl = btn.find(genObj.textEl);
             btn.addClass('d_i-b hidePart');
             if (!btn.is('[data-trigger]')) {
                 textEl.html(textEl.data('show'))
                 btn.off('click.showhidepart').on('click.showhidepart', function() {
                     var $thisB = $(this);
-                    if ($thisB.data("show") == "no" || $thisB.data("show") == undefined) {
+                    if ($thisB.data("show") === "no" || $thisB.data("show") === undefined) {
                         $thisB.addClass('showPart').removeClass('hidePart');
                         var textEl = $thisB.find(genObj.textEl),
-                        sHH = 0;
+                                sHH = 0;
+                                
                         $this.parents('li').children(':not(.wrapper-h)').each(function() {
                             sHH += $(this).height();
                         });
@@ -485,7 +487,7 @@ function showHidePart(el, absolute, time, btnPlace) {
                     }
                     else {
                         var $thisB = $(this).removeClass('showPart').addClass('hidePart'),
-                        textEl = $thisB.find(genObj.textEl);
+                                textEl = $thisB.find(genObj.textEl);
                         $thisB.parent().nextAll('.wrapper-h').animate({
                             'height': $this.data('heightDecor')
                         }, time, function() {

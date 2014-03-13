@@ -49,7 +49,6 @@
                         </div>
                     </td>
                     <td class="frame-cur-sum-price">
-                        <span class="title">{lang('Сумма','newLevel')}: </span>
                         <div class="frame-prices f-s_0">
                             {if ShopCore::app()->SCurrencyHelper->convert($item->originPrice) != ShopCore::app()->SCurrencyHelper->convert($item->price)}
                                 <span class="price-discount">
@@ -126,7 +125,6 @@
                         </div>
                     </td>
                     <td class="frame-cur-sum-price">
-                        <span class="title">{lang('Сумма','newLevel')}: </span>
                         <div class="frame-prices f-s_0">
                             {if ShopCore::app()->SCurrencyHelper->convert($item->originPrice) != ShopCore::app()->SCurrencyHelper->convert($item->price)}
                                 <span class="price-discount">
@@ -269,7 +267,7 @@
 </table>
 <div class="gen-sum-order footer-bask">
     <div class="inside-padd clearfix">
-        <span class="title f_l">{lang('К оплате с учетом доставки','newLevel')}:</span>
+        <span class="title f_l">{lang('К оплате','newLevel')}:</span>
         <span class="frame-prices f_r">
             <span class="current-prices f-s_0">
                 <span class="price-new">
