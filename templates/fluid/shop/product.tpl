@@ -99,9 +99,9 @@
                         <!-- Start. frame for cloudzoom -->
                         <div id="xBlock"></div>
                         <!-- End. frame for cloudzoom -->
-                        <div class="t-a_j">
+                        <div class="o_h">
                             <!-- Start. article & variant name & brand name -->
-                            <div>
+                            <div class="f_l">
                                 <span class="frame-variant-name-code">
                                     <span class="frame-variant-code frameVariantCode" {if !$model->firstVariant->getNumber()}style="display:none;"{/if}>
                                         <span class="s-t">{lang('Код','newLevel')}:</span>
@@ -115,7 +115,7 @@
                             </div>
                             <!-- End. article & variant name & brand name -->
                             <!-- Start. Star rating -->
-                            <div>
+                            <div class="f_l">
                                 {if $model->enable_comments && intval($Comments[$model->getId()]) !== 0}
                                     <div class="frame-star">
                                         {$CI->load->module('star_rating')->show_star_rating($model, false)}
@@ -208,7 +208,7 @@
                                                     {$inCart = getAmountInCart('SProducts', $productVariant->getId())}
                                                     <div class="frame-count-buy js-variant-{echo $productVariant->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
                                                         <form method="POST" action="/shop/cart/addProductByVariantId/{echo $productVariant->getId()}">
-                                                            <div class="btn-buy-p btn-cart{if !$inCart} d_n{/if}">
+                                                            <div class="btn-buy btn-cart{if !$inCart} d_n{/if}">
                                                                 <button 
                                                                     type="button"
                                                                     data-id="{echo $productVariant->getId()}"
@@ -491,7 +491,7 @@
                                                         </span>
                                                     </div>
                                                     <form method="POST" action="/shop/cart/addKit/{echo $kitProducts->getId()}">
-                                                        <div class="btn-buy-p btn-cart{if !$inCart} d_n{/if}">
+                                                        <div class="btn-buy btn-cart{if !$inCart} d_n{/if}">
                                                             <button 
                                                                 type="button"
                                                                 data-id="{echo $kitProducts->getId()}"
