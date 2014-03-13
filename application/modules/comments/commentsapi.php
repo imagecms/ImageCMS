@@ -33,6 +33,7 @@ class Commentsapi extends Comments {
                 $this->$k = $v;
             }
         }
+        $this->use_moderation = $this->dx_auth->is_admin() ? FALSE : $settings['use_moderation'];
     }
 
     public function renderAsArray($url) {
@@ -501,7 +502,8 @@ class Commentsapi extends Comments {
                 return FALSE;
             else
                 return TRUE;
-        } else
+        }
+        else
             return TRUE;
     }
 
