@@ -44,6 +44,28 @@
             </span>
             <span class="title">{echo ShopCore::encode($p->getName())}</span>
         </a>
+        {if !$opi_widget && !$opi_defaultItem && !$opi_compare && !$opi_wishListPage}
+            <!-- Start. Check variant-->
+            {if count($variants) > 1}
+                <div class="check-variant-catalog">
+                    <div class="lineForm">
+                        <select id="сVariantSwitcher_{echo $p->firstVariant->getId()}" name="variant">
+                            {foreach $variants as $key => $pv}
+                                {if $pv->getName()}
+                                    {$name = ShopCore::encode($pv->getName())}
+                                {else:}
+                                    {$name = ShopCore::encode($p->getName())}
+                                {/if}
+                                <option value="{echo $pv->getId()}" title="{echo $name}">
+                                    {echo $name}
+                                </option>
+                            {/foreach}
+                        </select>
+                    </div>
+                </div>
+            {/if}
+            <!-- End. Check variant-->
+        {/if}
         <!-- End. Photo & Name product -->
         <div class="description">
             <!-- Start. article & variant name & brand name -->
@@ -139,28 +161,6 @@
                 <!-- End. Product price-->
             </div>
             <!-- End. Prices-->
-            {if !$opi_widget && !$opi_defaultItem && !$opi_compare && !$opi_wishListPage}
-                <!-- Start. Check variant-->
-                {if count($variants) > 1}
-                    <div class="check-variant-catalog">
-                        <div class="lineForm">
-                            <select id="сVariantSwitcher_{echo $p->firstVariant->getId()}" name="variant">
-                                {foreach $variants as $key => $pv}
-                                    {if $pv->getName()}
-                                        {$name = ShopCore::encode($pv->getName())}
-                                    {else:}
-                                        {$name = ShopCore::encode($p->getName())}
-                                    {/if}
-                                    <option value="{echo $pv->getId()}" title="{echo $name}">
-                                        {echo $name}
-                                    </option>
-                                {/foreach}
-                            </select>
-                        </div>
-                    </div>
-                {/if}
-                <!-- End. Check variant-->
-            {/if}
             {if !$opi_defaultItem && !$opi_widget}
                 <div class="funcs-buttons frame-without-top">
                     <div class="no-vis-table">
@@ -253,8 +253,6 @@
                                             data-maxcount="{echo $pv->getstock()}"
                                             data-url="{echo shop_url('product/'.$p->getUrl())}"
                                             >
-                                            <span class="icon-but"></span>
-                                            <span class="text-el">{lang('Сообщить о появлении','newLevel')}</span>
                                         </button>
                                     </div>
                                 </div>
