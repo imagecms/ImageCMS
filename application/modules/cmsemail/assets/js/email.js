@@ -189,19 +189,19 @@ var EmailTemplateVariables = {
             exit;
         }
 
-        if ((variable[0] != '$' || variable[variable.length - 1] != '$') || variable.length < 3) {
-            showMessage(lang('Error'), lang('Variable must be surrounded by $'), 'r');
-            exit;
-        }
-        if (!variableValue) {
-            showMessage(lang('Error'), lang('Variable must have a value'), 'r');
-            exit;
-        }
-
         if (variable.match(/[а-яА-Я]{1,}/)) {
             showMessage(lang('Error'), lang('Variable should contain only Latin characters'), 'r');
             exit;
         }
 
+        if ((variable[0] != '$' || variable[variable.length - 1] != '$') || variable.length < 3) {
+            showMessage(lang('Error'), lang('Variable must be surrounded by $'), 'r');
+            exit;
+        }
+        
+        if (!variableValue) {
+            showMessage(lang('Error'), lang('Variable must have a value'), 'r');
+            exit;
+        }
     }
 };
