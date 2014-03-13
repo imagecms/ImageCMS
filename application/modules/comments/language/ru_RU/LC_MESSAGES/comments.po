@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-13 11:34+0200\n"
-"PO-Revision-Date: 2014-03-13 11:34+0200\n"
+"POT-Creation-Date: 2014-03-13 11:50+0200\n"
+"PO-Revision-Date: 2014-03-13 11:50+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -215,7 +215,7 @@ msgstr "Комментарий"
 #: ./application/modules/comments/comments.php:279
 #: ./application/modules/comments/assets/comments_api.tpl:177
 msgid "Code protection"
-msgstr "Защитный код"
+msgstr "Код защиты"
 
 #: ./application/modules/comments/commentsapi.php:104
 #: ./application/modules/comments/assets/comments_api.tpl:188
