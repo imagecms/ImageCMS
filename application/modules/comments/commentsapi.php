@@ -34,6 +34,7 @@ class Commentsapi extends Comments {
             }
         }
         $this->use_moderation = $this->dx_auth->is_admin() ? FALSE : $settings['use_moderation'];
+        $this->use_captcha = $this->dx_auth->is_admin() ? FALSE : $settings['use_captcha'];
     }
 
     public function renderAsArray($url) {
@@ -152,7 +153,7 @@ class Commentsapi extends Comments {
             'visibleMainForm' => $_POST[visibleMainForm]
         );
 
-        if ($this->use_captcha == TRUE) {
+        if ($this->use_captcha == TRUE && !$this->dx_auth->is_admin()) {
             $this->dx_auth->captcha();
             $data['cap_image'] = $this->dx_auth->get_captcha_image();
         }
