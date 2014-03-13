@@ -4,7 +4,7 @@
         <div class="frame_title clearfix">
             <div class="pull-left">
                 <span class="help-inline"></span>
-                <span class="title">{lang('Edit menu item', "menu")}</span>
+                <span class="title">{lang('Edit a menu', "menu")}</span>
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
