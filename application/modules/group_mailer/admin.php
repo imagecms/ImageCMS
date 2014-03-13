@@ -100,9 +100,9 @@ class Admin extends BaseAdminController {
                     $class = 'r';
                 }
                 if ($class !== 'r') {
-                    showMessage(lang("message has been sent", 'group_mailer') . ': ' . $counter['true'] . lang("Number of e-mails sent", 'group_mailer') . $counter['all'] . lang('pcs.', 'group_mailer'), false, $class);
+                    showMessage(lang("Message has been sent.", 'group_mailer') . ' ' .lang("Number of e-mails sent", 'group_mailer') . ' ' . $counter['all'] . ' ' . lang('pcs.', 'group_mailer'), false, $class);
                 } else {
-                    showMessage(lang("none of the messages", 'group_mailer') . $counter['all'] . lang("Number not", 'group_mailer'), false, $class);
+                    showMessage(lang("None of the messages", 'group_mailer') . $counter['all'] . lang("Number not", 'group_mailer'), false, $class);
                 }
 
                 updateDiv('page', site_url('admin/components/cp/group_mailer/index'));

@@ -179,6 +179,8 @@ class Cmsemail_model extends \CI_Model {
         $this->db
                 ->where_in('id', $ids)
                 ->delete('mod_email_paterns_i18n');
+        
+        return TRUE;
     }
 
     public function deleteTemplateByNames($names) {

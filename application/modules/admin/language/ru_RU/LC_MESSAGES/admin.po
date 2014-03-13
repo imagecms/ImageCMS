@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-12 04:23+0200\n"
-"PO-Revision-Date: 2014-03-12 04:23+0200\n"
+"POT-Creation-Date: 2014-03-13 04:10+0200\n"
+"PO-Revision-Date: 2014-03-13 04:10+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -20,6 +20,31 @@ msgstr ""
 "X-Poedit-SearchPath-1: ../../../templates/administrator\n"
 "X-Poedit-SearchPath-2: ../../modules/shop/admin\n"
 "X-Poedit-SearchPath-3: ../../../application/modules/shop/models/build/classes\n"
+
+#: ./application/modules/shop/admin/templates/properties/list.tpl:60
+msgid "Property"
+msgstr "Свойство"
+
+#: ./templates/administrator/inc/javascriptVars.tpl:78
+msgid "Product"
+msgstr "Товар"
+
+#: ./application/modules/shop/admin/templates/kits/kit_create.tpl:46
+#: ./application/modules/shop/admin/templates/kits/kit_edit.tpl:45
+msgid "Added products"
+msgstr "Прикрепленные продукты"
+
+#: ./application/modules/shop/admin/templates/kits/index.tpl:47
+#: ./application/modules/shop/admin/templates/kits/kit_create.tpl:40
+#: ./application/modules/shop/admin/templates/kits/kit_edit.tpl:39
+msgid "main product"
+msgstr "главный товар"
+
+#: ./application/modules/shop/admin/templates/kits/index.tpl:48
+#: ./application/modules/shop/admin/templates/kits/kit_create.tpl:34
+#: ./application/modules/shop/admin/templates/kits/kit_edit.tpl:33
+msgid "Main product"
+msgstr "Главный товар"
 
 #: ./templates/administrator/lang_edit.tpl:58
 #: ./templates/administrator/lang_create.tpl:47
@@ -1628,18 +1653,6 @@ msgstr "Главный размер"
 msgid "Main phone"
 msgstr "Главный телефон"
 
-#: ./application/modules/shop/admin/templates/kits/index.tpl:47
-#: ./application/modules/shop/admin/templates/kits/kit_create.tpl:40
-#: ./application/modules/shop/admin/templates/kits/kit_edit.tpl:39
-msgid "main product"
-msgstr "главный товар"
-
-#: ./application/modules/shop/admin/templates/kits/index.tpl:48
-#: ./application/modules/shop/admin/templates/kits/kit_create.tpl:34
-#: ./application/modules/shop/admin/templates/kits/kit_edit.tpl:33
-msgid "Main product"
-msgstr "Главный товар"
-
 #: ./application/modules/admin/categories.php:153
 msgid "Main template"
 msgstr "Главный шаблон"
@@ -1953,11 +1966,6 @@ msgstr "Добавить подкатегорию"
 #: ./templates/administrator/cats_tree_css.tpl:8
 msgid "Add an article"
 msgstr "Добавить статью"
-
-#: ./application/modules/shop/admin/templates/kits/kit_create.tpl:46
-#: ./application/modules/shop/admin/templates/kits/kit_edit.tpl:45
-msgid "Added products"
-msgstr "Добавленные продукты"
 
 #: ./templates/administrator/inc/javascriptVars.tpl:57
 msgid "Wait for resize ending"
@@ -3306,7 +3314,10 @@ msgid "don't show"
 msgstr "не показывать"
 
 #: ./templates/administrator/module_table.tpl:105
+#: ./templates/administrator/module_table.tpl:105
 #: ./templates/administrator/module_table.tpl:110
+#: ./templates/administrator/module_table.tpl:110
+#: ./templates/administrator/module_table.tpl:115
 #: ./templates/administrator/module_table.tpl:115
 msgid "switch off"
 msgstr "не показывать"
@@ -4651,10 +4662,6 @@ msgstr "Проверка цен"
 #: ./templates/administrator/inc/javascriptVars.tpl:88
 msgid "Check the input data and fill in all mandatory fields"
 msgstr "Проверьте введенные данные и заполните все обязательные поля"
-
-#: ./templates/administrator/inc/javascriptVars.tpl:78
-msgid "Product"
-msgstr "Продукт"
 
 #: ./application/modules/shop/admin/products.php:225
 msgid "The product was successfully created"

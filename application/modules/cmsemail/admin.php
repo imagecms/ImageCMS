@@ -41,9 +41,9 @@ class Admin extends BaseAdminController {
         if ($_POST) {
             if ($this->email->create()) {
 
-                showMessage(lang('Template created', 'cms_email'));
+                showMessage(lang('Template created', 'cmsemail'));
 
-                if ($this->input->post('action') == 'save')
+                if ($this->input->post('action') == 'tomain')
                     pjax('/admin/components/cp/cmsemail/index');
             }
             else {
@@ -63,6 +63,8 @@ class Admin extends BaseAdminController {
 
     public function delete() {
         $this->email->delete($_POST['ids']);
+        showMessage(lang('Email template deleted', 'cmsemail'), lang('Message', 'cmsemail'));
+        
     }
 
     public function edit($id, $locale = null) {
@@ -164,6 +166,7 @@ class Admin extends BaseAdminController {
                     ->setData('template_id', $template_id)
                     ->setData('variable', $variable)
                     ->setData('variable_value', $variableValue)
+                    ->setData('locale', $locale)
                     ->render('newVariable', true);
         } else {
             return FALSE;
