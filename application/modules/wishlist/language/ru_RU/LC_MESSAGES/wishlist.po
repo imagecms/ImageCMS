@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-12 12:27+0200\n"
-"PO-Revision-Date: 2014-03-12 12:27+0200\n"
+"POT-Creation-Date: 2014-03-12 12:40+0200\n"
+"PO-Revision-Date: 2014-03-12 12:40+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -18,29 +18,45 @@ msgstr ""
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 
+#: ./application/modules/wishlist/assets/admin/main.tpl:83
+msgid "Maximum Wish List description length"
+msgstr "Максимальная длина описания списка пожеланий"
+
+#: ./application/modules/wishlist/classes/BaseApi.php:235
+#: ./application/modules/wishlist/classes/BaseWishlist.php:190
+#: ./application/modules/wishlist/classes/ParentWishlist.php:285
+msgid "List description max count"
+msgstr "Максимальная длина описания списка"
+
+#: ./application/modules/wishlist/assets/admin/main.tpl:76
+msgid "Maximum description length"
+msgstr "Максимальная длина описания"
+
+#: ./application/modules/wishlist/assets/admin/main.tpl:5
+#: ./application/modules/wishlist/assets/admin/main.tpl:31
+msgid "Wish List settings"
+msgstr "Настройки списка пожеланий"
+
+#: ./application/modules/wishlist/assets/admin/users.tpl:32
+#: ./application/modules/wishlist/assets/admin/wishlist.tpl:17
+#: ./application/modules/wishlist/assets/admin/wishlistEdit.tpl:17
+#: ./application/modules/wishlist/assets/admin/wishPopup.tpl:17
+msgid "Settings"
+msgstr "Настройки"
+
 #: ./application/modules/wishlist/assets/admin/wishlist.tpl:251
 msgid "This field is required"
 msgstr "Это поле обязательно для заполнения"
 
-#: ./application/modules/wishlist/classes/ParentWishlist.php:279
-#: ./application/modules/wishlist/classes/ParentWishlist.php:406
-msgid "List maximum"
-msgstr "Максимум спосков"
-
 #: ./application/modules/wishlist/assets/js/wishlist.js:174
 msgid "Limit of Wish List finished "
-msgstr "Лимит списков исчерпан"
-
-#: ./application/modules/wishlist/classes/ParentWishlist.php:279
-#: ./application/modules/wishlist/classes/ParentWishlist.php:406
-msgid "Wish Lists limit exhausted"
-msgstr "Лимит Списков Желаний исчерпан"
+msgstr "Лимит списков пожеланий исчерпан"
 
 #: ./application/modules/wishlist/classes/BaseWishlist.php:190
 #: ./application/modules/wishlist/classes/ParentWishlist.php:285
 #: ./application/modules/wishlist/classes/BaseApi.php:235
 msgid "List description limit exhausted"
-msgstr "Лимит описания сиска исчерпан"
+msgstr "Лимит описания списка исчерпан"
 
 #: ./application/modules/wishlist/classes/ParentWishlist.php:386
 msgid "Limit of list items exhausted"
@@ -136,11 +152,6 @@ msgstr "Переместить в список"
 msgid "Add to list"
 msgstr "Добавить в список"
 
-#: ./application/modules/wishlist/assets/admin/main.tpl:5
-#: ./application/modules/wishlist/assets/admin/main.tpl:31
-msgid "Wish List settings"
-msgstr "Настройки Списка Желаний"
-
 #: ./application/modules/wishlist/assets/admin/main.tpl:48
 msgid "Maximum list name length"
 msgstr "Максимальная длина имени списка"
@@ -149,10 +160,7 @@ msgstr "Максимальная длина имени списка"
 msgid "Maximum lists counts"
 msgstr "Максимальное количество списков"
 
-#: ./application/modules/wishlist/assets/admin/main.tpl:83
-msgid "Maximum Wish List description length"
-msgstr "Максимальная длина описания Списка Желания"
-
+#: ./application/modules/wishlist/assets/admin/users.tpl:21
 #: ./application/modules/wishlist/module_info.php:6
 #: ./application/modules/wishlist/assets/admin/users.tpl:21
 msgid "Wish Lists"
@@ -192,12 +200,6 @@ msgstr "Добавить в Список Желаний"
 #: ./application/modules/wishlist/module_info.php:7
 msgid "Managing of online store users Wish Lists"
 msgstr "Управление списками пожеланий пользователей интернет-магазина"
-
-#: ./application/modules/wishlist/classes/BaseWishlist.php:190
-#: ./application/modules/wishlist/classes/ParentWishlist.php:285
-#: ./application/modules/wishlist/classes/BaseApi.php:235
-msgid "List description max count"
-msgstr "Максимальная длина описания списка"
 
 #: ./application/modules/wishlist/classes/ParentWishlist.php:291
 msgid "Wish list name will be changed"
@@ -375,10 +377,6 @@ msgstr "Максимальное количество элементов"
 msgid "Maximum comment length"
 msgstr "Максимальная длина комментария"
 
-#: ./application/modules/wishlist/assets/admin/main.tpl:76
-msgid "Maximum description length"
-msgstr "Максимальная длина описания"
-
 #: ./application/modules/wishlist/assets/admin/main.tpl:90
 msgid "Maximum image width"
 msgstr "Максимальная ширина изображения"
@@ -390,13 +388,6 @@ msgstr "Максимальная высота изображения"
 #: ./application/modules/wishlist/assets/admin/main.tpl:104
 msgid "Maximum image size"
 msgstr "Максимальный размер изображения"
-
-#: ./application/modules/wishlist/assets/admin/users.tpl:32
-#: ./application/modules/wishlist/assets/admin/wishlistEdit.tpl:17
-#: ./application/modules/wishlist/assets/admin/wishPopup.tpl:17
-#: ./application/modules/wishlist/assets/admin/wishlist.tpl:17
-msgid "Settings"
-msgstr "Настройки"
 
 #: ./application/modules/wishlist/assets/admin/wishlistEdit.tpl:59
 #: ./application/modules/wishlist/assets/admin/wishlist.tpl:107

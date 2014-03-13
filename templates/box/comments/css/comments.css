@@ -10,7 +10,8 @@
 .comments .frame-list-comments.sub-2{float: none;width: auto;max-height: 201px;overflow: hidden;padding-left: 42px;}
 .page-text .comments .frame-list-comments.sub-2{max-height: none!important;height: auto!important;}
 .page-text .btn-all-comments{display: none !important;}
-.comments .btn-all-comments{margin-left: 0;margin-top: -22px;}
+.comments .btn-all-comments{margin-left: 0;}
+.comments .frame-list-comments.sub-2 + .btn-all-comments{margin-left: 42px;}
 
 .comments .btn > *, .comments input.btn{padding: 0 !important;}
 .comments .frame-list-comments .btn{background-image: none !important;border: none !important;}
@@ -35,7 +36,6 @@
 .comments .frame-drop-comment .frame-comments {border: 0;margin-bottom: 0;}
 .comments .frame-drop-comment form{width: 500px;}
 
-.comments .frame-list-comments{padding-bottom: 26px;}
 .comments .title-comment{margin-bottom: 8px;font-size: 18px;font-weight: normal;}
 .comments label{display: block;}
 #comments .title{width: 55px;text-align: left;padding-left: 0;}
