@@ -43,7 +43,7 @@ class Admin extends BaseAdminController {
 
                 showMessage(lang('Template created', 'cmsemail'));
 
-                if ($this->input->post('action') == 'save')
+                if ($this->input->post('action') == 'tomain')
                     pjax('/admin/components/cp/cmsemail/index');
             }
             else {
