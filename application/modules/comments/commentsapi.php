@@ -33,6 +33,7 @@ class Commentsapi extends Comments {
                 $this->$k = $v;
             }
         }
+        $this->use_moderation = $this->dx_auth->is_admin() ? FALSE : $settings['use_moderation'];
     }
 
     public function renderAsArray($url) {
@@ -281,7 +282,7 @@ class Commentsapi extends Comments {
                 echo json_encode(
                         array(
                             'answer' => 'error',
-                            'validation_errors' => lang('Time for new  comment has not yet come', 'comments')
+                            'validation_errors' => lang('The following comment can be left through', 'comments') . ' ' . $this->period . ' ' . lang('minutes', 'comments')
                         )
                 );
                 return;
@@ -494,14 +495,18 @@ class Commentsapi extends Comments {
         if ($query->num_rows() == 1) {
             $query = $query->row_array();
 
+
             $latest_comment = $query['date'];
             $allow_time = $latest_comment + ($this->period * 60);
-
+//            var_dumps(time());
+//            var_dumps($allow_time);
+//var_dumps_exit($query);
             if ($allow_time > time())
                 return FALSE;
             else
                 return TRUE;
-        } else
+        }
+        else
             return TRUE;
     }
 

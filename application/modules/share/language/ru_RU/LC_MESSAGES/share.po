@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-11 04:32+0200\n"
-"PO-Revision-Date: 2014-03-11 04:32+0200\n"
+"POT-Creation-Date: 2014-03-13 11:41+0200\n"
+"PO-Revision-Date: 2014-03-13 11:41+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -17,6 +17,22 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/share/templates/admin/settings.tpl:11
+msgid "Save and go back"
+msgstr "Cохранить и выйти"
+
+#: ./application/modules/share/templates/admin/settings.tpl:9
+msgid "Go back"
+msgstr "Вернуться"
+
+#: ./application/modules/share/templates/admin/settings.tpl:10
+msgid "Save"
+msgstr "Сохранить"
+
+#: ./application/modules/share/admin.php:44
+msgid "Settings successfully saved"
+msgstr "Настройки успешно сохранены"
 
 #: ./application/modules/share/templates/admin/settings.tpl:136
 msgid "counter"
@@ -108,26 +124,10 @@ msgstr "Ваш API ID"
 msgid "Google +"
 msgstr "Google+"
 
-#: ./application/modules/share/templates/admin/settings.tpl:9
-msgid "Go back"
-msgstr "Назад"
-
-#: ./application/modules/share/templates/admin/settings.tpl:10
-msgid "Save"
-msgstr "Сохранить"
-
-#: ./application/modules/share/templates/admin/settings.tpl:11
-msgid "Save and go back"
-msgstr "Сохранить и вернуться"
-
 #: ./application/modules/share/templates/admin/settings.tpl:25
 #: ./application/modules/share/templates/admin/settings.tpl:156
 msgid "Settings"
 msgstr "Настройки"
-
-#: ./application/modules/share/admin.php:44
-msgid "Settings successfully saved"
-msgstr "Настройки успешно сохранены"
 
 #: ./application/modules/share/module_info.php:4
 msgid "Social Networking Buttons"

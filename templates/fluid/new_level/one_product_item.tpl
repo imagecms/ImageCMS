@@ -342,7 +342,6 @@
                             data-id="{echo $p.variant_id}"
                             class="btnRemoveItem"
 
-                            data-type="json"
                             data-modal="true"
 
                             data-drop="#notification"

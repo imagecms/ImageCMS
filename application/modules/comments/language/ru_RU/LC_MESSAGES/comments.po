@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-15 03:59+0200\n"
-"PO-Revision-Date: 2014-01-15 03:59+0200\n"
+"POT-Creation-Date: 2014-03-13 11:34+0200\n"
+"PO-Revision-Date: 2014-03-13 11:34+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -18,8 +18,21 @@ msgstr ""
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: ./application/modules/comments/templates/comments_list.tpl:281
-#: ./application/modules/comments/assets/js/admin.js:29
+#: ./application/modules/comments/templates/settings.tpl:38
+msgid "Comment frequency restriction  per minute . O - check off"
+msgstr "Ограничение частоты комментирования в минутах . 0 - виключить"
+
+#: ./application/modules/comments/commentsapi.php:285
+msgid "The following comment can be left through"
+msgstr "Следующий комментарий можно оставить через"
+
+#: ./application/modules/comments/commentsapi.php:285
+msgid "minutes"
+msgstr "минут"
+
+#: ./application/modules/comments/templates/comments_list.tpl:3
+#: ./application/modules/comments/templates/comments_list.tpl:286
+#: ./application/modules/comments/assets/js/admin.js:30
 msgid "Show answers"
 msgstr "Показать ответы"
 
@@ -27,7 +40,8 @@ msgstr "Показать ответы"
 msgid "log in, please."
 msgstr "Войдите, пожалуйста."
 
-#: ./application/modules/comments/assets/js/admin.js:21
+#: ./application/modules/comments/templates/comments_list.tpl:2
+#: ./application/modules/comments/assets/js/admin.js:22
 msgid "Hide answers"
 msgstr "Скрыть ответы"
 
@@ -35,79 +49,79 @@ msgstr "Скрыть ответы"
 msgid "Recent reviews"
 msgstr "Последние отзывы"
 
-#: ./application/modules/comments/commentsapi.php:173
-#: ./application/modules/comments/commentsapi.php:544
-#: ./application/modules/comments/commentsapi.php:548
+#: ./application/modules/comments/commentsapi.php:174
+#: ./application/modules/comments/commentsapi.php:573
+#: ./application/modules/comments/commentsapi.php:577
 msgid "reviews"
 msgstr "комментариев"
 
-#: ./application/modules/comments/templates/comments_list.tpl:5
+#: ./application/modules/comments/templates/comments_list.tpl:9
 #: ./application/modules/comments/module_info.php:4
 msgid "Comments"
 msgstr "Комментарии"
 
-#: ./application/modules/comments/templates/comments_list.tpl:16
-#: ./application/modules/comments/templates/comments_list.tpl:102
-#: ./application/modules/comments/templates/comments_list.tpl:200
-#: ./application/modules/comments/templates/comments_list.tpl:291
+#: ./application/modules/comments/templates/comments_list.tpl:20
+#: ./application/modules/comments/templates/comments_list.tpl:107
+#: ./application/modules/comments/templates/comments_list.tpl:205
+#: ./application/modules/comments/templates/comments_list.tpl:311
 msgid "Into spam"
 msgstr "В спам"
 
-#: ./application/modules/comments/templates/comments_list.tpl:17
+#: ./application/modules/comments/templates/comments_list.tpl:21
 msgid "In the waiting"
 msgstr "В ожидании"
 
-#: ./application/modules/comments/templates/comments_list.tpl:18
-#: ./application/modules/comments/templates/comments_list.tpl:99
-#: ./application/modules/comments/templates/comments_list.tpl:197
-#: ./application/modules/comments/templates/comments_list.tpl:289
+#: ./application/modules/comments/templates/comments_list.tpl:22
+#: ./application/modules/comments/templates/comments_list.tpl:104
+#: ./application/modules/comments/templates/comments_list.tpl:202
+#: ./application/modules/comments/templates/comments_list.tpl:309
 msgid "In approve"
-msgstr "В утверждении"
+msgstr "В одобренные"
 
 #: ./application/modules/comments/templates/recent_product_comments_form.tpl:20
-#: ./application/modules/comments/templates/comments_list.tpl:22
+#: ./application/modules/comments/templates/comments_list.tpl:26
 #: ./application/modules/comments/templates/edit.tpl:23
 #: ./application/modules/comments/templates/recent_comments_form.tpl:20
 msgid "Settings"
 msgstr "Настройки"
 
-#: ./application/modules/comments/templates/comments_list.tpl:71
+#: ./application/modules/comments/templates/comments_list.tpl:76
 msgid "Mark"
 msgstr "Оценка"
 
-#: ./application/modules/comments/templates/comments_list.tpl:73
+#: ./application/modules/comments/templates/comments_list.tpl:78
 msgid "User Email"
 msgstr "E-mail пользователя"
 
 #: ./application/modules/comments/templates/recent_product_comments_form.tpl:10
 #: ./application/modules/comments/templates/settings.tpl:10
-#: ./application/modules/comments/templates/comments_list.tpl:95
-#: ./application/modules/comments/templates/comments_list.tpl:191
-#: ./application/modules/comments/templates/comments_list.tpl:287
+#: ./application/modules/comments/templates/comments_list.tpl:100
+#: ./application/modules/comments/templates/comments_list.tpl:196
+#: ./application/modules/comments/templates/comments_list.tpl:307
 #: ./application/modules/comments/templates/edit.tpl:12
 #: ./application/modules/comments/templates/recent_comments_form.tpl:10
 msgid "Save"
 msgstr "Сохранить"
 
-#: ./application/modules/comments/templates/comments_list.tpl:97
-#: ./application/modules/comments/templates/comments_list.tpl:194
-#: ./application/modules/comments/templates/comments_list.tpl:288
+#: ./application/modules/comments/templates/comments_list.tpl:102
+#: ./application/modules/comments/templates/comments_list.tpl:199
+#: ./application/modules/comments/templates/comments_list.tpl:308
 msgid "Cancel"
 msgstr "Отмена"
 
-#: ./application/modules/comments/templates/comments_list.tpl:104
+#: ./application/modules/comments/templates/comments_list.tpl:109
 msgid "Waiting moderation"
 msgstr "Ожидание модерации"
 
-#: ./application/modules/comments/templates/comments_list.tpl:21
-#: ./application/modules/comments/templates/comments_list.tpl:106
-#: ./application/modules/comments/templates/comments_list.tpl:204
-#: ./application/modules/comments/templates/comments_list.tpl:295
+#: ./application/modules/comments/templates/comments_list.tpl:25
+#: ./application/modules/comments/templates/comments_list.tpl:111
+#: ./application/modules/comments/templates/comments_list.tpl:209
+#: ./application/modules/comments/templates/comments_list.tpl:315
 msgid "Delete"
 msgstr "Удалить"
 
-#: ./application/modules/comments/templates/comments_list.tpl:202
-#: ./application/modules/comments/templates/comments_list.tpl:293
+#: ./application/modules/comments/templates/comments_list.tpl:207
+#: ./application/modules/comments/templates/comments_list.tpl:313
 msgid "Wait moderation"
 msgstr "Подождите модерацию"
 
@@ -123,6 +137,7 @@ msgstr "Назад"
 msgid "Create and exit"
 msgstr "Создать и выйти"
 
+#: ./application/modules/comments/comments.php:241
 #: ./application/modules/comments/assets/comments_api.tpl:3
 msgid "Only authorized users can leave comments."
 msgstr "Только авторизованные пользователи могут оставлять комментарии"
@@ -166,43 +181,43 @@ msgstr "Ваш рейтинг"
 msgid "The comment will be sent for moderation"
 msgstr "Комментарий будет отправлен на модерацию"
 
-#: ./application/modules/comments/commentsapi.php:286
+#: ./application/modules/comments/commentsapi.php:296
 #: ./application/modules/comments/comments.php:269
 #: ./application/modules/comments/assets/comments_api.tpl:134
 #: ./application/modules/comments/assets/comments_api.tpl:210
 msgid "Your name"
 msgstr "Ваше имя"
 
-#: ./application/modules/comments/commentsapi.php:285
+#: ./application/modules/comments/commentsapi.php:295
 #: ./application/modules/comments/comments.php:268
 #: ./application/modules/comments/assets/comments_api.tpl:140
 #: ./application/modules/comments/assets/comments_api.tpl:216
 msgid "Email"
 msgstr "Email"
 
-#: ./application/modules/comments/commentsapi.php:287
+#: ./application/modules/comments/commentsapi.php:297
 #: ./application/modules/comments/comments.php:270
 #: ./application/modules/comments/assets/comments_api.tpl:147
 msgid "Site"
 msgstr "Сайт"
 
-#: ./application/modules/comments/commentsapi.php:300
-#: ./application/modules/comments/commentsapi.php:302
+#: ./application/modules/comments/commentsapi.php:310
+#: ./application/modules/comments/commentsapi.php:312
 #: ./application/modules/comments/comments.php:282
 #: ./application/modules/comments/assets/comments_api.tpl:156
 #: ./application/modules/comments/assets/comments_api.tpl:234
 msgid "Comment"
 msgstr "Комментарий"
 
-#: ./application/modules/comments/commentsapi.php:294
-#: ./application/modules/comments/commentsapi.php:296
+#: ./application/modules/comments/commentsapi.php:304
+#: ./application/modules/comments/commentsapi.php:306
 #: ./application/modules/comments/comments.php:277
 #: ./application/modules/comments/comments.php:279
 #: ./application/modules/comments/assets/comments_api.tpl:177
 msgid "Code protection"
 msgstr "Защитный код"
 
-#: ./application/modules/comments/commentsapi.php:106
+#: ./application/modules/comments/commentsapi.php:104
 #: ./application/modules/comments/assets/comments_api.tpl:188
 #: ./application/modules/comments/assets/comments_api.tpl:243
 msgid "Leave comment"
@@ -257,11 +272,6 @@ msgstr "0 - длина комментария не ограничивается"
 msgid "Comment restrictions"
 msgstr "Ограничение комментирования"
 
-# �
-#: ./application/modules/comments/templates/settings.tpl:38
-msgid "Comment frequency restriction per minute . O - check off"
-msgstr "Ограничение частоты комментирования в минутах. 0 - Отключить проверку"
-
 #: ./application/modules/comments/templates/settings.tpl:48
 msgid "Forbid comments for unregistered users"
 msgstr "Запретить комментирование для незарегистрированных пользователей"
@@ -274,45 +284,41 @@ msgstr "Включить одобрение комментариев админ�
 msgid "Use the protection code"
 msgstr "Использовать защитный код"
 
-#: ./application/modules/comments/templates/comments_list.tpl:12
-msgid "Designate"
-msgstr "Обозначить"
-
-#: ./application/modules/comments/templates/comments_list.tpl:27
+#: ./application/modules/comments/templates/comments_list.tpl:31
 msgid "All comments"
 msgstr "Все комментарии"
 
-#: ./application/modules/comments/templates/comments_list.tpl:34
+#: ./application/modules/comments/templates/comments_list.tpl:39
 msgid "Waiting for moderation"
 msgstr "Ожидают модерации"
 
-#: ./application/modules/comments/templates/comments_list.tpl:39
+#: ./application/modules/comments/templates/comments_list.tpl:44
 msgid "Approval"
 msgstr "Одобренные"
 
-#: ./application/modules/comments/templates/comments_list.tpl:47
+#: ./application/modules/comments/templates/comments_list.tpl:52
 #: ./application/modules/comments/templates/edit.tpl:55
 msgid "Spam"
 msgstr "Спам"
 
-#: ./application/modules/comments/templates/comments_list.tpl:69
+#: ./application/modules/comments/templates/comments_list.tpl:74
 msgid "ID"
 msgstr "ID"
 
-#: ./application/modules/comments/templates/comments_list.tpl:70
+#: ./application/modules/comments/templates/comments_list.tpl:75
 msgid "Text"
 msgstr "Текст"
 
-#: ./application/modules/comments/templates/comments_list.tpl:72
+#: ./application/modules/comments/templates/comments_list.tpl:77
 msgid "User"
 msgstr "Пользователь"
 
-#: ./application/modules/comments/templates/comments_list.tpl:74
+#: ./application/modules/comments/templates/comments_list.tpl:79
 msgid "Page"
 msgstr "Страница"
 
 # �
-#: ./application/modules/comments/templates/comments_list.tpl:361
+#: ./application/modules/comments/templates/comments_list.tpl:382
 msgid "No data has been found"
 msgstr "Ничего не найдено"
 
@@ -324,6 +330,7 @@ msgstr "Автор"
 msgid "E-Mail"
 msgstr "E-Mail"
 
+#: ./application/modules/comments/templates/comments_list.tpl:16
 #: ./application/modules/comments/templates/edit.tpl:50
 msgid "Status"
 msgstr "Статус"
@@ -340,75 +347,71 @@ msgstr "В ожидании одобрения"
 msgid "Contents"
 msgstr "Содержание"
 
-#: ./application/modules/comments/assets/comments_api.tpl:4
+#: ./application/modules/comments/assets/comments_api.tpl:3
 msgid "log in"
 msgstr "войдите"
 
-#: ./application/modules/comments/assets/comments_api.tpl:5
+#: ./application/modules/comments/assets/comments_api.tpl:3
 msgid "please"
 msgstr "пожалуйста"
 
-#: ./application/modules/comments/commentsapi.php:76
-#: ./application/modules/comments/commentsapi.php:146
+#: ./application/modules/comments/commentsapi.php:78
+#: ./application/modules/comments/commentsapi.php:147
 #: ./application/modules/comments/comments.php:204
 msgid "Total comments: "
 msgstr "Всего комментариев:"
 
-#: ./application/modules/comments/commentsapi.php:103
+#: ./application/modules/comments/commentsapi.php:104
 #: ./application/modules/comments/commentsapi.php:104
 msgid "comment"
 msgstr "комментарий"
 
-#: ./application/modules/comments/commentsapi.php:105
-#: ./application/modules/comments/commentsapi.php:549
+#: ./application/modules/comments/commentsapi.php:104
+#: ./application/modules/comments/commentsapi.php:577
 msgid "comments"
 msgstr "комментарии"
 
-#: ./application/modules/comments/commentsapi.php:172
 #: ./application/modules/comments/commentsapi.php:174
-#: ./application/modules/comments/commentsapi.php:543
-#: ./application/modules/comments/commentsapi.php:545
-#: ./application/modules/comments/commentsapi.php:547
+#: ./application/modules/comments/commentsapi.php:174
+#: ./application/modules/comments/commentsapi.php:573
+#: ./application/modules/comments/commentsapi.php:573
+#: ./application/modules/comments/commentsapi.php:577
 msgid "review"
 msgstr "просмотр"
 
-#: ./application/modules/comments/commentsapi.php:175
+#: ./application/modules/comments/commentsapi.php:174
 msgid "Leave a comment"
 msgstr "Оставить коментарий"
 
-#: ./application/modules/comments/commentsapi.php:275
-msgid "Time for new comment has not yet come"
-msgstr "Время для новых комментариев еще не пришло"
-
-#: ./application/modules/comments/admin.php:106
+#: ./application/modules/comments/admin.php:119
 msgid "Next"
 msgstr "Следующий"
 
-#: ./application/modules/comments/admin.php:107
+#: ./application/modules/comments/admin.php:120
 msgid "Prev"
 msgstr "Предыдущий"
 
-#: ./application/modules/comments/admin.php:205
+#: ./application/modules/comments/admin.php:215
 msgid "Comment successfully updated"
 msgstr "Комментарий успешно обновлен"
 
-#: ./application/modules/comments/admin.php:206
+#: ./application/modules/comments/admin.php:215
 msgid "Message"
 msgstr "Сообщение"
 
-#: ./application/modules/comments/admin.php:225
+#: ./application/modules/comments/admin.php:235
 msgid "Success"
 msgstr "Успех"
 
-#: ./application/modules/comments/admin.php:226
+#: ./application/modules/comments/admin.php:235
 msgid "Status updated"
 msgstr "Статус обновлен"
 
-#: ./application/modules/comments/admin.php:248
+#: ./application/modules/comments/admin.php:258
 msgid "Comment(s) deleted"
 msgstr "Комментарий(ии) удален"
 
-#: ./application/modules/comments/admin.php:307
+#: ./application/modules/comments/admin.php:317
 msgid "Changes saved"
 msgstr "Изменения сохранены"
 

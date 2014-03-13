@@ -334,7 +334,7 @@ class ParentEmail extends \MY_Controller {
     }
 
     public function delete($ids) {
-        $this->cmsemail_model->deleteTemplateByID($ids);
+        return $this->cmsemail_model->deleteTemplateByID($ids);
     }
 
     /**
