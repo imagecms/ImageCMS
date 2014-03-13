@@ -16,12 +16,12 @@ var cleaverFilterObj = {
             $(this).each(function() {
                 var $this = $(this),
                         settings = $.extend({
-                    slider: $this.find('.slider'),
-                    minCost: null,
-                    maxCost: null,
-                    leftSlider: $this.find('.left-slider'),
-                    rightSlider: $this.find('.right-slider')
-                }, eval($this.data('rel')));
+                            slider: $this.find('.slider'),
+                            minCost: null,
+                            maxCost: null,
+                            leftSlider: $this.find('.left-slider'),
+                            rightSlider: $this.find('.right-slider')
+                        }, eval($this.data('rel')));
                 var slider = settings.slider,
                         minCost = $(settings.minCost),
                         maxCost = $(settings.maxCost),
@@ -222,7 +222,7 @@ var Filter = {
     },
     afterAjaxInitializeFilter: function() {
         var self = this,
-        $sliders = $('.frame-slider');
+                $sliders = $('.frame-slider');
 
         $sliders.sliderInit();
         $(this.apply).cleaverFilter(cleaverFilterObj);
@@ -253,7 +253,7 @@ var Filter = {
             elCheckWrap: '.niceCheck',
             evCond: true,
             resetChecked: true,
-            classRemove: 'b_n',//if not standart
+            classRemove: 'b_n', //if not standart
             //if evCond: true
             trigger: function(a, b, c, e) {
                 c.nStCheck('changeCheck');
@@ -335,36 +335,36 @@ var Filter = {
         $(this.frameFilter).children(preloader).show();
 
         /*not hyper clever filter*/
-        //    $(this.catalogForm).submit();
+        $(this.catalogForm).submit();
         /*/not hyper clever filter*/
 
         /*hyper clever filter*/
-        var $this = el,
-                data = $(this.catalogForm).serialize(),
-                catUrl = window.location.pathname.replace('shop/category', 'smart_filter/filter');
-        $.ajax({
-            type: 'get',
-            url: catUrl,
-            data: data,
-            cache: true,
-            success: function(msg) {
-                var otherClass = '';
-                $(Filter.frameFilter).html(msg).children(preloader).hide();
-                Filter.afterAjaxInitializeFilter();
-                if (slChk) {
-                    otherClass = slChk;
-                }
-                var frameChecks = $($this).closest(Filter.framechecks);
-                if (frameChecks.data('rel') == undefined || frameChecks.data('rel').match('cusel')) {
-                    cleaverFilterObj.currentPosScroll[frameChecks.index()] = 0;
-                    $($this).cleaverFilter('paste', totalProducts, otherClass);
-                }
-                else {
-                    Filter.filtertype($($this), totalProducts, otherClass);
-                }
-            }
-        });
-        return false;
+//        var $this = el,
+//                data = $(this.catalogForm).serialize(),
+//                catUrl = window.location.pathname.replace('shop/category', 'smart_filter/filter');
+//        $.ajax({
+//            type: 'get',
+//            url: catUrl,
+//            data: data,
+//            cache: true,
+//            success: function(msg) {
+//                var otherClass = '';
+//                $(Filter.frameFilter).html(msg).children(preloader).hide();
+//                Filter.afterAjaxInitializeFilter();
+//                if (slChk) {
+//                    otherClass = slChk;
+//                }
+//                var frameChecks = $($this).closest(Filter.framechecks);
+//                if (frameChecks.data('rel') == undefined || frameChecks.data('rel').match('cusel')) {
+//                    cleaverFilterObj.currentPosScroll[frameChecks.index()] = 0;
+//                    $($this).cleaverFilter('paste', totalProducts, otherClass);
+//                }
+//                else {
+//                    Filter.filtertype($($this), totalProducts, otherClass);
+//                }
+//            }
+//        });
+//        return false;
         /*/hyper clever filter*/
     }
 };

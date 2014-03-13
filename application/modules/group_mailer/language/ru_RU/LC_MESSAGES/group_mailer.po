@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-13 12:34+0200\n"
-"PO-Revision-Date: 2014-03-13 12:34+0200\n"
+"POT-Creation-Date: 2014-03-13 03:29+0200\n"
+"PO-Revision-Date: 2014-03-13 03:29+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -17,6 +17,14 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/group_mailer/admin.php:103
+msgid "Message has been sent."
+msgstr "Сообщение было отправлено."
+
+#: ./application/modules/group_mailer/admin.php:105
+msgid "None of the messages"
+msgstr "Ни одно из сообщений не отправлено"
 
 #: ./application/modules/group_mailer/admin.php:95
 msgid "Sent"
@@ -83,27 +91,19 @@ msgstr "HTML"
 msgid "Plain Text"
 msgstr "Обычный текст"
 
-#: ./application/modules/group_mailer/admin.php:96
+#: ./application/modules/group_mailer/admin.php:95
 msgid "users e-mail with a subject"
 msgstr "пользовательский e-mail с темой"
 
 #: ./application/modules/group_mailer/admin.php:103
-msgid "message has been sent"
-msgstr "сообщение было отправлено"
-
-#: ./application/modules/group_mailer/admin.php:104
 msgid "Number of e-mails sent"
 msgstr "Количество отправленных писем"
 
-#: ./application/modules/group_mailer/admin.php:105
+#: ./application/modules/group_mailer/admin.php:103
 msgid "pcs."
 msgstr "шт."
 
 #: ./application/modules/group_mailer/admin.php:105
-msgid "none of the messages"
-msgstr "ни одно из сообщений"
-
-#: ./application/modules/group_mailer/admin.php:106
 msgid "Number not"
 msgstr "Число не"
 

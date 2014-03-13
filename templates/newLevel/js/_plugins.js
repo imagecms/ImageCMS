@@ -97,14 +97,15 @@ $.fn.pricetext = function(e, rank) {
     return $this;
 };
 $.fn.setCursorPosition = function(pos) {
-    this.each(function() {
-        this.select();
-        try {
-            this.setSelectionRange(pos, pos);
-        } catch (err) {
-        }
+    if (!isTouch)
+        this.each(function() {
+            this.select();
+            try {
+                this.setSelectionRange(pos, pos);
+            } catch (err) {
+            }
 
-    });
+        });
     return this;
 };
 $.fn.getCursorPosition = function() {

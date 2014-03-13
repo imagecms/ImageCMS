@@ -56,6 +56,7 @@ var ShopFront = {
                 liBlock.find(genObj.imgVC).attr('src', vMediumImage).attr('alt', vName);
 
                 liBlock.find(genObj.selVariant).hide();
+                console.log(liBlock.find(genObj.prefV + vId));
                 liBlock.find(genObj.prefV + vId).show();
                 if (vOrigPrice != '')
                     liBlock.find(genObj.priceOrigVariant).html(vOrigPrice);
