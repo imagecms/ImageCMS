@@ -269,3 +269,8 @@ h1, .title_h1, .tovar_frame .price, .gen_sum .price{font-size: 40px;}
 .tableOrderData th, .tableOrderData td{padding: 0 10px;}
 .tableOrderData th{text-align: left;padding-left: 28px;}
 .psPay{background-color: #6aa209;padding: 10px 15px;font-size: 18px;color: #fff;-moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;text-shadow: 0 -1px #3e7100;margin-top: 5px;}
+
+
+
+.inputGift {width: 190px !important; margin-bottom: 10px;}
+.submitGiftButton{width: 125px; margin: 0 auto;}

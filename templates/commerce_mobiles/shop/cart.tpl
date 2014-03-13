@@ -21,6 +21,11 @@
                                     <span class="code">{lang('Артикул','commerce_mobiles')}: {echo $item->getNumber()}</span>
                                 {/if}
                                 <input name="products[{echo $item->quantity}]" type="hidden" value="{echo $item->quantity}"/>
+                                {if ShopCore::app()->SCurrencyHelper->convert($item->originPrice) != ShopCore::app()->SCurrencyHelper->convert($item->price)}
+                                <span class="d_b price" style="color: red; text-decoration: line-through;">
+                                    {echo ShopCore::app()->SCurrencyHelper->convert($item->originPrice)} {$CS}
+                                </span>
+                                {/if}
                                 <span class="d_b price">{echo ShopCore::app()->SCurrencyHelper->convert($item->price)} {$CS}</span>
                             </span>
                         </a>
@@ -45,11 +50,30 @@
         </ul>
         <div class="main_frame_inside">
             <div class="gen_sum">
+                {if $gift_val}
+                    {lang('Подарочный сертификат','commerce_mobiles')}:
+                    {echo ShopCore::app()->SCurrencyHelper->convert($gift_val)} {$CS}
+                    {if $gift_key}
+                        <input type="hidden" name="gift" value="{echo $gift_key}"/>
+                        <input type="hidden" name="gift_ord" value="1"/>
+                    {/if}
+                {elseif $CI->load->module('mod_discount/discount_api')->isGiftCertificat()}
+                    <span>{lang('Подарочный сертификат','commerce_mobiles')}:</span>
+                    <div class="frame-gift">
+                        {if $gift_error}
+                            <span class="text-el" style="color:red;">{lang('Неверный подарочный сертификат', 'commerce_mobiles')}</span><br/>
+                        {/if}
+                        <input type="text" name="gift" class="inputGift">
+                        <div class="subm_filter submitGiftButton">
+                            <input id="checkGiftButton" type="button" value="{lang('Применить', 'commerce_mobiles')}" style="cursor: pointer !important;">
+                        </div>
+                    </div>
+                {/if}
+                <br/>
                 {if $discount_val}
                     Скидка: {echo ShopCore::app()->SCurrencyHelper->convert($discount_val)} {$CS} <br/>
                 {/if}
                 <span class="total_pay">Всего к оплате:</span>
-
                 <span class="price">
                     {echo ShopCore::app()->SCurrencyHelper->convert($cartPrice)} {$CS} 
                 </span>
