@@ -27,8 +27,8 @@
                     <div class="but_buy">
                         <form method="POST" name="orderForm" action="{shop_url('cart/addProductByVariantId/'.$model->firstVariant->getId())}">
                             <a href="{shop_url('cart')}" 
-                               onclick="orderForm.submit();
-                                    return false;">
+                               onclick="$(this).closest('form').submit();
+                                            return false;">
                                 <span class="helper"></span>
                                 <!--<span class="v-a_m">Купить</span>-->
                                 <span class="v-a_m">В корзину</span>
@@ -79,7 +79,7 @@
                         <span class="d_b price">{echo $p->toCurrency()} {$CS}</span>
                         {if $p->getStock() != 0}
                             <div class="but_buy">
-                                <form method="POST" name="orderForm" action="{shop_url('cart/addProductByVariantId/'.$model->firstVariant->getId())}">
+                                <form method="POST" name="orderForm" action="{shop_url('cart/addProductByVariantId/'.$p->getId())}">
                                     <a href="{shop_url('cart')}" onclick="$(this).closest('form').submit();
                                             return false;">
                                         <span class="helper"></span>
