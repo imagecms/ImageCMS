@@ -1159,8 +1159,8 @@ class DX_Auth {
     function captcha() {
         $this->ci->load->helper('dx_captcha');
         // Load library SESSION
-
-        if (!strstr($this->ci->uri->uri_string(), 'admin'))
+//        var_dumps_exit($this->ci->input->is_ajax_request());
+        if ($this->ci->uri->segment(1) == 'feedback')
             $this->ci->load->library('session');
 
         $vals = array(
