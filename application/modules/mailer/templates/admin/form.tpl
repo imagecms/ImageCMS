@@ -60,25 +60,25 @@
 
 
                                                 <div class="control-group">
-                                                    <label class="control-label" for="subject">{lang("Theme", 'mailer')}</label>
+                                                    <label class="control-label" for="subject">{lang("Theme", 'mailer')}<span class="required">*</span></label>
                                                     <div class="controls">
                                                         <input type="text" name="subject" id="subject" value=""/>
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
-                                                    <label class="control-label" for="name">{lang("Your name", 'mailer')}</label>
+                                                    <label class="control-label" for="name">{lang("Your name", 'mailer')}<span class="required">*</span></label>
                                                     <div class="controls">
                                                         <input type="text" name="name" id="name" value=""/>
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
-                                                    <label class="control-label" for="email">{lang("Your e-mail", 'mailer')}</label>
+                                                    <label class="control-label" for="email">{lang("Your e-mail", 'mailer')}<span class="required">*</span></label>
                                                     <div class="controls">
                                                         <input type="text" name="email" id="email" value="{$admin_mail}"/>
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
-                                                    <label class="control-label" for="message">{lang("Message", 'mailer')}</label>
+                                                    <label class="control-label" for="message">{lang("Message", 'mailer')}<span class="required">*</span></label>
                                                     <div class="controls">
                                                         <textarea name="message" id="message" class="elRTE">
                                                             {lang("Hello", 'mailer')}.
