@@ -323,7 +323,7 @@ input.input-search{height: 33px;padding-right: 14px;}
 .items-catalog .star{margin-right: 11px;}
 
 .animateListItems.table .no-vis-table{filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0);-moz-opacity: 0;-khtml-opacity: 0;opacity: 0;position: absolute;}
-.animateListItems.table .short-desc:hover{display: none;}
+.animateListItems.table .no-vis-table:hover .short-desc{display: none;}
 .animateListItems.table > li:hover{z-index: 2;}
 .items-catalog.list{margin-left: 0;}
 .items-catalog.list > li{width: auto !important;margin-left: 0;overflow: hidden;display: block;}

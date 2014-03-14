@@ -1,5 +1,6 @@
 <div class="content-header">
     <div class="container">
+        <div class="left-content-header t-a_j">
         <!--        Logo-->
         {if  $CI->uri->uri_string() == ''}
             <span class="logo">
@@ -10,7 +11,6 @@
                 <img src="{echo siteinfo('siteinfo_logo_url')}" alt="logo"/>
             </a>
         {/if}
-        <div class="left-content-header t-a_j">
             <!--                Start. contacts block-->
             <div class="phones-header">
                 <div class="frame-ico">
