@@ -9,7 +9,7 @@ var Order = {
                 ignoreWrap: '1',
                 template: 'cart_order',
                 gift: $(genObj.gift).val(),
-                deliveryMethodId: function(){
+                deliveryMethodId: function() {
                     if (selectDeliv)
                         return $(genObj.dM).val()
                     else
@@ -24,10 +24,16 @@ var Order = {
             }
         })
     },
-    initOrder: function(){
+    initOrder: function() {
         if (selectDeliv) {
             cuselInit($(genObj.frameDelivery), $(genObj.dM));
             $(genObj.dM).on('change.methoddeliv', function() {
+                Shop.Cart.getTpl({
+                    ignoreWrap: '1',
+                    template: 'cart_order',
+                    gift: $(genObj.gift).val(),
+                    deliveryMethodId: $(this).val()
+                });
                 Shop.Cart.getPayment($(this).val(), '');
             });
         }
@@ -35,7 +41,7 @@ var Order = {
             $(genObj.frameDelivery).nStRadio({
                 wrapper: $(".frame-radio > .frame-label"),
                 elCheckWrap: '.niceRadio'
-                //,classRemove: 'b_n', //if not standart
+                        //,classRemove: 'b_n' //if not standart
                 ,
                 after: function(el, start) {
                     if (!start) {
@@ -51,7 +57,7 @@ var Order = {
                 }
             });
         }
-                
+
         if (selectPayment)
             cuselInit($(genObj.framePaymentMethod), $(genObj.pM));
 
@@ -59,7 +65,7 @@ var Order = {
             $(genObj.framePaymentMethod).nStRadio({
                 wrapper: $(".frame-radio > .frame-label"),
                 elCheckWrap: '.niceRadio'
-            //,classRemove: 'b_n'//if not standart
+                        //,classRemove: 'b_n'//if not standart
             });
     }
 }
@@ -78,7 +84,7 @@ $(document).on('scriptDefer', function() {
             $(genObj.framePaymentMethod).nStRadio({
                 wrapper: $(".frame-radio > .frame-label"),
                 elCheckWrap: '.niceRadio'
-            //,classRemove: 'b_n'//if not standart
+                        //,classRemove: 'b_n'//if not standart
             });
         }
 
@@ -88,10 +94,10 @@ $(document).on('scriptDefer', function() {
         if (e.obj.template == 'cart_order') {
             $(genObj.orderDetails).empty().append(e.datas);
             $(genObj.orderDetails).find('[data-drop]').drop();
-            
+
             Order.initGift();
-            
-            if (totalItemsBask == 0){
+
+            if (totalItemsBask == 0) {
                 $('.pageCart').find(genObj.blockEmpty).show().end().find(genObj.blockNoEmpty).hide();
             }
         }

@@ -66,6 +66,8 @@ class Admin extends MY_Controller {
         exit;
     }
 
+  
+
     /**
      * Delete cached files
      *

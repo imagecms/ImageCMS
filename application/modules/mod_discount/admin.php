@@ -23,8 +23,14 @@ class Admin extends \ShopAdminController {
     }
 
     public function test() {
-        echo $this->router->class;
-        //echo $this->router->method;
+        $bd = \mod_discount\classes\BaseDiscount::create();
+        $something1 = $bd->getAppliesCart();
+        
+        $something2 = $bd->getAppliesOverloadDifference($something1);
+        echo '<pre>';
+        print_r($something1);
+        echo '</pre>';
+        exit;
     }
 
     /**
