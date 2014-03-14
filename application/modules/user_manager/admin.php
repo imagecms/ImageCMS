@@ -278,6 +278,7 @@ class Admin extends BaseAdminController {
             $this->db->select("users.*", FALSE);
             $this->db->select("shop_rbac_roles.name AS role_name", FALSE);
             $this->db->select("shop_rbac_roles_i18n.alt_name AS role_alt_name", FALSE);
+
             $this->db->join("shop_rbac_roles", "shop_rbac_roles.id = users.role_id", 'left');
             $this->db->join("shop_rbac_roles_i18n", "shop_rbac_roles.id = shop_rbac_roles_i18n.id", 'left');
 //            $this->db->where('locale', BaseAdminController::getCurrentLocale());
@@ -408,8 +409,7 @@ class Admin extends BaseAdminController {
                     ' <a href="' . site_url('/admin/components/cp/user_manager/edit_user/' . $user_id) . '">' . $data['username'] . '</a>'
             );
 
-
-            showMessage(lang('User successful updated', 'user_manager'));
+            showMessage(lang('Changes saved', 'user_manager'));
 
             $action = $_POST['action'];
 
@@ -514,7 +514,7 @@ class Admin extends BaseAdminController {
             $this->db->delete('permissions');
         }
 
-        showMessage(lang('amt_changes_saved'));
+        showMessage(lang('Changes saved', 'user_manager'));
     }
 
     function show_edit_prems_tpl($id) {

@@ -49,6 +49,7 @@
                                     </div>
                                 </div>
                                 <div class="frame-comment-sub1">
+
                                     <div class="frame-comment">
                                         <p>{$comment.text}</p>
                                         {if $comment.text_plus != Null}
@@ -64,6 +65,7 @@
                                             </p>
                                         {/if}
                                     </div>
+
                                     {if $can_comment == 0 OR $is_logged_in}
                                         <div class="btn">
                                             <button type="button" data-rel="cloneAddPaste" data-parid="{$comment['id']}">
@@ -95,6 +97,7 @@
                                                                 {$com_ch.text}
                                                             </p>
                                                         </div>
+
                                                     </div>
                                                 </div>
                                             </li>
@@ -227,13 +230,17 @@
                                     <input type="text" name="comment_email" value="{get_cookie('comment_email')}"/>
                                 </span>
                             </label>
+
                         {/if}
                         {if $use_moderation}
+
                             <label class="d_n succ">
                                 <span class="frame-form-field">
                                     <div class="msg">
                                         <div class="success">
+
                                             {lang('Ваш комментарий будет опубликован после модерации администратором','newLevel')}
+
                                         </div>
                                     </div>
                                 </span>
