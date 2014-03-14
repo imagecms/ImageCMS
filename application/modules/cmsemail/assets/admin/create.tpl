@@ -14,7 +14,7 @@
                     <i class="icon-ok icon-white"></i>{lang('Create', 'cmsemail')}
                 </button>
                 <button type="button" class="btn btn-small formSubmit" data-form="#email_form" data-action="tomain">
-                    <i class="icon-edit"></i>{lang('Save and go back', 'cmsemail')}
+                    <i class="icon-edit"></i>{lang('Create and exit', 'cmsemail')}
                 </button>
             </div>
         </div>
