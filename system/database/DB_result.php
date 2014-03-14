@@ -27,8 +27,8 @@
  * @link		http://codeigniter.com/user_guide/database/
  */
 class CI_DB_result {
-    
-        var $conn_id				= NULL;
+
+	var $conn_id				= NULL;
 	var $result_id				= NULL;
 	var $result_array			= array();
 	var $result_object			= array();
