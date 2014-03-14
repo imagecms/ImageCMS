@@ -197,7 +197,7 @@ class Admin extends \ShopAdminController {
         // checking if discount exists
         $res = CI::$APP->db->get_where('mod_shop_discounts', array('id' => $id))->row_array();
         if (is_null($res)) {
-            $msg = showMessage(lang('Discount don\'t exists'), lang('Error'), 'error', TRUE);
+            $msg = showMessage(lang('Discount don\'t exists', 'mod_discount'), lang('Error'), 'error', TRUE);
             echo json_encode(array('status' => 0, 'msg' => $msg));
             return;
         }
@@ -205,19 +205,19 @@ class Admin extends \ShopAdminController {
         // additional validation for users and groups
         $dm = new \mod_discount\classes\DiscountManager();
         if ($res['type_discount'] == 'user' && !$dm->validateUserDiscount($res['type_value']) && $res['active'] == 0) {
-            $msg = showMessage(lang('This user already have active discount'), lang('Error'), 'error', TRUE);
+            $msg = showMessage(lang('This user already have active discount', 'mod_discount'), lang('Error'), 'error', TRUE);
             echo json_encode(array('status' => 0, 'msg' => $msg));
             return;
         }
         if ($res['type_discount'] == 'group_user' && !$dm->validateGroupDiscount($res['type_value']) && $res['active'] == 0) {
-            $msg = showMessage(lang('This group of users already have active discount'), lang('Error'), 'error', TRUE);
+            $msg = showMessage(lang('This group of users already have active discount', 'mod_discount'), lang('Error'), 'error', TRUE);
             echo json_encode(array('status' => 0, 'msg' => $msg));
             return;
         }
 
         $res = $this->discount_model_admin->changeActive($id);
         if ($res) {
-            $msg = showMessage(lang('Status changed'), '', '', TRUE);
+            $msg = showMessage(lang('Status changed', 'mod_discount'), '', '', TRUE);
             echo json_encode(array('status' => 1, 'msg' => $msg));
         }
     }
