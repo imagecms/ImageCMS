@@ -245,19 +245,19 @@ p {margin-bottom: 10px;line-height: 18px;}
 /*/buttons base*/
 
 /*header*/
+.left-content-header > *{margin: 0 15px 20px 0;}
 .phone-number{margin-right: 7px;font-size: 14px;font-weight: bold;}
-header{padding: 14px 0 20px;}
+header{padding: 14px 0 0;}
 .fon-header{position: relative;z-index: 2;}
 
-.left-header{position: relative;display: inline-block;width: 320px;top: 1px;margin-right: -30px;}
+.left-header{position: relative;display: inline-block;width: 330px;top: 1px;}
 .frame-time-work .frame-ico + div{margin-left: 47px;}
 
-.left-content-header{margin-left: 237px;}
 .phones-header{display: inline-block;}
 .phones-header .frame-ico + div{margin-left: 45px;}
-.frame-time-work{margin-left: -35px;min-width: 230px;}
+.frame-time-work{}
 
-.frame-cleaner{float: right;}
+.frame-cleaner{margin-right: 0;}
 input.input-search{height: 33px;}
 .drop-search{width: 388px;top: 100%;z-index: 1000;right: 0;}
 .drop-search > .inside-padd{padding: 0 16px;}

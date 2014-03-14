@@ -227,7 +227,7 @@
                                             {if $hasDiscounts}
                                                 {$discount = $productVariant->getvirtual('numDiscount')/$productVariant->toCurrency()*100}
                                             {/if}
-                                            <div class="d_i-b v-a_m">
+                                            <div class="d_i-b v-a_b">
                                                 {if $productVariant->getStock() > 0}
                                                     {$inCart = getAmountInCart('SProducts', $productVariant->getId())}
                                                     <div class="frame-count-buy js-variant-{echo $productVariant->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
@@ -289,9 +289,9 @@
                                                         </form>
                                                     </div>
                                                 {else:}
-                                                    <div class="d_i-b v-a_m">
+                                                    <div class="d_i-b v-a_b t-a_c m-r_20">
                                                         <div class="js-variant-{echo $productVariant->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
-                                                            <div class="alert-exists">{lang('Нет в наличии','newLevel')}</div>
+                                                            <div class="c_6 f-w_b f-s_12">{lang('Нет в наличии','newLevel')}</div>
                                                             <div class="btn-not-avail">
                                                                 <button
                                                                     type="button"
@@ -337,7 +337,7 @@
                                             </div>
                                         {/foreach}
                                         <!-- Start. Wish List & Compare List buttons -->
-                                        <div class="frame-wish-compare-list f-s_0">
+                                        <div class="frame-wish-compare-list f-s_0 v-a_b">
                                             <div class="frame-btn-comp">
                                                 <div class="btn-compare">
                                                     <button class="toCompare"

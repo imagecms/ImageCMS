@@ -28,9 +28,7 @@
  */
 class CI_DB_result {
     
-        use third_party\system_extends\CI_DB_Result_methods;
-
-	var $conn_id				= NULL;
+        var $conn_id				= NULL;
 	var $result_id				= NULL;
 	var $result_array			= array();
 	var $result_object			= array();
