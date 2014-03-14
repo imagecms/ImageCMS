@@ -1,11 +1,11 @@
-msgid ""
+﻿msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-13 12:31+0000\n"
-"PO-Revision-Date: 2014-03-13 18:39+0300\n"
+"POT-Creation-Date: 2014-03-14 12:19+0200\n"
+"PO-Revision-Date: 2014-03-14 12:19+0200\n"
 "Last-Translator: sdfsdfsdfs <sdfsdfsdf>\n"
-"Language-Team: \n"
+"Language-Team:  \n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -14,10 +14,132 @@ msgstr ""
 "X-Poedit-Basepath: ../../..\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Generator: Poedit 1.5.7\n"
+"X-Poedit-Language: \n"
+"X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPath-1: ../../../templates/administrator\n"
 "X-Poedit-SearchPath-2: ../../modules/shop/admin\n"
 "X-Poedit-SearchPath-3: ../../../application/modules/shop/models/build/classes\n"
+
+#: ./application/modules/shop/admin/callbacks.php:295
+msgid "Callback was removed"
+msgstr "Обратный звонок удалён"
+
+#: ./application/modules/shop/admin/templates/callbacks/status_list.tpl:37
+msgid "Edit callback status"
+msgstr "Редактировать статус обратного звонка"
+
+#: ./application/modules/shop/admin/templates/callbacks/edit_status.tpl:6
+msgid "Editing callback status"
+msgstr "Редактирование статуса обратного звонка"
+
+#: ./application/modules/shop/admin/templates/notificationstatuses/edit.tpl:23
+msgid "Callback status data"
+msgstr "Данные статуса обратного звонка"
+
+#: ./application/modules/shop/admin/templates/callbacks/create_status.tpl:6
+msgid "Creating a status callback"
+msgstr "Создание статуса обратного звонка"
+
+#: ./templates/administrator/inc/menus.php:183
+#: ./templates/administrator/shop_menu.tpl:15
+msgid "Callback statuses"
+msgstr "Статусы обратных звонков"
+
+#: ./application/modules/shop/admin/templates/callbacks/themes_list.tpl:31
+msgid "Edit callback theme"
+msgstr "Редактировать тему обратного звонка"
+
+#: ./application/modules/shop/admin/callbacks.php:279
+msgid "Callback theme is changed"
+msgstr "Тема обратного звонка изменена"
+
+#: ./application/modules/shop/admin/callbacks.php:300
+msgid "Callback(s) was removed"
+msgstr "Обратный(е) звонок(ки) удален(ы)"
+
+#: ./application/modules/shop/admin/callbacks.php:248
+msgid "Callback's status was changed"
+msgstr "Cтатус обратного звонка изменен"
+
+#: ./application/modules/shop/admin/templates/settings/settings.tpl:662
+msgid "Email for sending notifications about new Callbacks"
+msgstr "E-mail для отправки уведомлений о новых обратных звонках"
+
+#: ./application/modules/shop/admin/templates/callbacks/list.tpl:155
+msgid "All Callbacks "
+msgstr "Все обратные звонки"
+
+#: ./application/modules/shop/admin/templates/callbacks/list.tpl:173
+msgid "Really delete callback(s)"
+msgstr "Вы действительно хотите удалить обратный(е) звонок(ки)"
+
+#: ./application/modules/shop/admin/templates/settings/settings.tpl:706
+msgid " Callback request date"
+msgstr "Дата обратного звонка"
+
+#: ./templates/administrator/shop_menu.tpl:14
+msgid "Callback"
+msgstr "Обратный звонок"
+
+#: ./templates/administrator/inc/menus.php:175
+#: ./templates/administrator/shop_menu.tpl:13
+msgid "Callbacks"
+msgstr "Обратные звонки"
+
+#: ./application/modules/shop/admin/templates/settings/settings.tpl:707
+msgid "Comments by a callback user"
+msgstr "Комментарии пользователя обратного звонка"
+
+#: ./application/modules/shop/admin/templates/callbacks/list.tpl:160
+msgid "Empty callback list."
+msgstr "Пустой список обратных звонков."
+
+#: ./application/modules/shop/admin/templates/callbacks/edit.tpl:6
+msgid "Callback editing"
+msgstr "Редактирование обратного звонка"
+
+#: ./application/modules/shop/admin/templates/callbacks/edit_theme.tpl:6
+msgid "Сallback topic editing"
+msgstr "Редактирование темы обратного звонка"
+
+#: ./application/modules/shop/admin/templates/callbacks/list.tpl:59
+#: ./application/modules/shop/admin/templates/callbacks/list.tpl:122
+msgid "Edit callback"
+msgstr "Редактировать обратный звонок"
+
+#: ./application/modules/shop/admin/templates/callbacks/create_theme.tpl:6
+msgid "Callback topic сreation"
+msgstr "Создание темы обратного звонка"
+
+#: ./application/modules/shop/admin/templates/settings/settings.tpl:1212
+msgid "Message about a callback"
+msgstr "Сообщение обратного звонка"
+
+#: ./templates/administrator/inc/menus.php:179
+msgid "Callbacks list"
+msgstr "Список обратных звонков"
+
+#: ./application/modules/shop/admin/templates/callbacks/list.tpl:9
+msgid "Callback list"
+msgstr "Список обратных звонков"
+
+#: ./application/modules/shop/admin/templates/callbacks/themes_list.tpl:45
+msgid "List of callbacks is empty"
+msgstr "Список обратных звонков пуст"
+
+#: ./application/modules/shop/admin/templates/callbacks/themes_list.tpl:7
+msgid "Collbacks topics"
+msgstr "Темы обратных звонков"
+
+#: ./templates/administrator/inc/menus.php:187
+#: ./templates/administrator/shop_menu.tpl:16
+msgid "Callback themes"
+msgstr "Темы обратных звонков"
+
+#: ./application/modules/shop/admin/templates/callbacks/list.tpl:170
+msgid "Remove callback(s)"
+msgstr "Удалить обратный(е) звонок(ки)"
 
 #: ./application/modules/shop/admin/templates/categories/list.tpl:28
 msgid "Number of products"
@@ -34,14 +156,6 @@ msgstr "Количество товаров на сайте"
 #: ./templates/administrator/create_cat.tpl:21
 msgid "Meta-tags"
 msgstr "Мета-теги"
-
-#: ./application/modules/shop/admin/callbacks.php:295
-msgid "Callback was removed"
-msgstr "Колбек удалён"
-
-#: ./application/modules/shop/admin/templates/callbacks/status_list.tpl:37
-msgid "Edit callback status"
-msgstr "Редактировать статус колбека"
 
 #: ./application/modules/shop/admin/templates/notifications/edit.tpl:50
 msgid "Date active to"
@@ -60,10 +174,6 @@ msgstr "Редактирование уведомления"
 msgid "Status has been set"
 msgstr "Статус установлен"
 
-#: ./application/modules/shop/admin/templates/callbacks/edit_status.tpl:6
-msgid "Editing callback status"
-msgstr "Редактирование статуса колбека"
-
 #: ./application/modules/shop/admin/templates/settings/settings.tpl:937
 msgid "Time of the order status change"
 msgstr "Время изменения статуса заказа"
@@ -75,10 +185,6 @@ msgstr "Вы действительно хотите удалить статус
 #: ./application/modules/shop/admin/gifts.php:139
 msgid "You have changed the status of the certificate"
 msgstr "Вы изменили статус сертификата"
-
-#: ./application/modules/shop/admin/templates/notificationstatuses/edit.tpl:23
-msgid "Callback status data"
-msgstr "Данные статуса колбека"
 
 #: ./application/modules/shop/admin/templates/notifications/list.tpl:7
 msgid " Change the status of marked notifications?"
@@ -129,10 +235,6 @@ msgstr "Редактирование статуса появления"
 #: ./application/modules/shop/admin/templates/orderstatuses/list.tpl:11
 msgid "Orders status creating"
 msgstr "Создание статуса заказа"
-
-#: ./application/modules/shop/admin/templates/callbacks/create_status.tpl:6
-msgid "Creating a status callback"
-msgstr "Создание статуса колбека"
 
 #: ./application/modules/shop/admin/templates/notificationstatuses/create.tpl:6
 msgid "Creation of Status pending"
@@ -210,11 +312,6 @@ msgstr "Статусы заказов"
 #: ./templates/administrator/inc/menus.php:171
 msgid "Order statuses"
 msgstr "Статусы заказов"
-
-#: ./templates/administrator/inc/menus.php:183
-#: ./templates/administrator/shop_menu.tpl:15
-msgid "Callback statuses"
-msgstr "Статусы колбеков"
 
 #: ./templates/administrator/inc/menus.php:199
 msgid "Notification statuses"
@@ -294,18 +391,6 @@ msgstr "Уведомить"
 msgid "Back"
 msgstr "Вернуться"
 
-#: ./application/modules/shop/admin/templates/callbacks/themes_list.tpl:31
-msgid "Edit callback theme"
-msgstr "Редактировать тему колбека"
-
-#: ./application/modules/shop/admin/callbacks.php:279
-msgid "Callback theme is changed"
-msgstr "Тема колбека изменена"
-
-#: ./application/modules/shop/admin/callbacks.php:300
-msgid "Callback(s) was removed"
-msgstr "Колбек(и) удален(ы)"
-
 #: ./application/modules/shop/admin/templates/notificationstatuses/create.tpl:13
 #: ./application/modules/shop/admin/templates/notificationstatuses/edit.tpl:13
 #: ./application/modules/shop/admin/templates/currencies/create.tpl:11
@@ -355,10 +440,6 @@ msgstr "API Key для Mail Chimp"
 msgid "Csv name is already used"
 msgstr "CSV имя уже используется"
 
-#: ./application/modules/shop/admin/callbacks.php:248
-msgid "Callback's status was changed"
-msgstr "Cтатус колбека изменен"
-
 #: ./application/modules/admin/login.php:50
 msgid "E-mail"
 msgstr "E-mail"
@@ -366,10 +447,6 @@ msgstr "E-mail"
 #: ./application/modules/shop/admin/templates/settings/settings.tpl:1073
 msgid "Site webmaster email"
 msgstr "E-mail вебмастера сайта"
-
-#: ./application/modules/shop/admin/templates/settings/settings.tpl:662
-msgid "Email for sending notifications about new Callbacks"
-msgstr "E-mail для отправки уведомлений о новых колбеках"
 
 #: ./application/modules/shop/admin/templates/notifications/edit.tpl:118
 msgid "Notified email"
@@ -1321,10 +1398,6 @@ msgstr "Все заказы"
 msgid "All categories"
 msgstr "Все категории"
 
-#: ./application/modules/shop/admin/templates/callbacks/list.tpl:155
-msgid "All Callbacks "
-msgstr "Все колбеки"
-
 #: ./templates/administrator/new_desktop.tpl:66
 msgid "All content by categories"
 msgstr "Все контента по категориям"
@@ -1366,10 +1439,6 @@ msgstr "Вы действительно хотите удалить выбран
 #: ./application/modules/shop/admin/templates/warehouses/list.tpl:10
 msgid "Really remove selected warehouses?"
 msgstr "Вы действительно хотите удалить выбранные склады?"
-
-#: ./application/modules/shop/admin/templates/callbacks/list.tpl:173
-msgid "Really delete callback(s)"
-msgstr "Вы действительно хотите удалить колбек(и)"
 
 #: ./application/modules/admin/sys_upgrade.php:48
 msgid "You are using the latest version"
@@ -1761,10 +1830,6 @@ msgstr "Дата изменений"
 #: ./application/modules/shop/admin/templates/settings/settings.tpl:627
 msgid " User notification request date"
 msgstr "Дата когда пользователь оставил запрос уведомления"
-
-#: ./application/modules/shop/admin/templates/settings/settings.tpl:706
-msgid " Callback request date"
-msgstr "Дата колбека"
 
 #: ./application/modules/shop/admin/templates/discounts/create.tpl:56
 #: ./application/modules/shop/admin/templates/discounts/edit.tpl:59
@@ -2628,15 +2693,6 @@ msgstr "Код защиты"
 msgid "Encoding"
 msgstr "Кодирование"
 
-#: ./templates/administrator/shop_menu.tpl:14
-msgid "Callback"
-msgstr "Колбек"
-
-#: ./templates/administrator/inc/menus.php:175
-#: ./templates/administrator/shop_menu.tpl:13
-msgid "Callbacks"
-msgstr "Колбеки"
-
 #: ./application/modules/shop/admin/comulativ.php:49
 #: ./application/modules/shop/admin/comulativ.php:112
 msgid "The amount of"
@@ -2680,10 +2736,6 @@ msgstr "Колонки"
 #: ./templates/administrator/dashboard.tpl:144
 msgid "Comments"
 msgstr "Комментарии"
-
-#: ./application/modules/shop/admin/templates/settings/settings.tpl:707
-msgid "Comments by a callback user"
-msgstr "Комментарии пользователя колбека"
 
 #: ./application/modules/shop/admin/templates/notifications/edit.tpl:92
 #: ./application/modules/shop/admin/templates/orders/_create.tpl:139
@@ -4700,10 +4752,6 @@ msgstr "Просмотреть выбранные категории"
 msgid "Simple user"
 msgstr "Простой пользователь"
 
-#: ./application/modules/shop/admin/templates/callbacks/list.tpl:160
-msgid "Empty callback list."
-msgstr "Пустой список колбеков."
-
 #: ./templates/administrator/roleList.tpl:81
 #: ./templates/administrator/groupList.tpl:59
 #: ./templates/administrator/rbac.tpl:59
@@ -4852,10 +4900,6 @@ msgstr "Редактирование дополнительного поля"
 msgid "Edit category ID"
 msgstr "Редактирование категории ID"
 
-#: ./application/modules/shop/admin/templates/callbacks/edit.tpl:6
-msgid "Callback editing"
-msgstr "Редактирование колбека"
-
 #: ./application/modules/shop/admin/templates/gifts/edit.tpl:4
 msgid "Gift certificate edit"
 msgstr "Редактирование подарочного сертификата"
@@ -4884,10 +4928,6 @@ msgstr "Редактирование скидкок"
 msgid "Delivery method edit"
 msgstr "Редактирование способа доставки"
 
-#: ./application/modules/shop/admin/templates/callbacks/edit_theme.tpl:6
-msgid "Сallback topic editing"
-msgstr "Редактирование темы колбека"
-
 #: ./templates/administrator/lang_edit.tpl:6
 msgid "Language edit"
 msgstr "Редактирование языка"
@@ -4913,11 +4953,6 @@ msgstr "Редактировать заказ"
 #: ./templates/administrator/_catlistitem.tpl:25
 msgid "edit category"
 msgstr "редактировать категорию"
-
-#: ./application/modules/shop/admin/templates/callbacks/list.tpl:59
-#: ./application/modules/shop/admin/templates/callbacks/list.tpl:122
-msgid "Edit callback"
-msgstr "Редактировать колбек"
 
 #: ./application/modules/shop/admin/templates/kits/kit_edit.tpl:5
 msgid "Edit product kit"
@@ -5317,10 +5352,6 @@ msgstr "Создание склада"
 msgid "Payment method create"
 msgstr "Создание способа оплаты"
 
-#: ./application/modules/shop/admin/templates/callbacks/create_theme.tpl:6
-msgid "Callback topic сreation"
-msgstr "Создание темы колбека"
-
 #: ./application/modules/shop/admin/templates/products/_create.tpl:5
 #: ./application/modules/shop/admin/templates/products/create.tpl:5
 msgid "Product creation"
@@ -5535,10 +5566,6 @@ msgstr "Сообщение"
 #: ./templates/administrator/modules_search.tpl:44
 msgid "message"
 msgstr "сообщение"
-
-#: ./application/modules/shop/admin/templates/settings/settings.tpl:1212
-msgid "Message about a callback"
-msgstr "Сообщение колбека"
 
 #: ./application/modules/shop/admin/templates/settings/settings.tpl:1206
 msgid "Message about arrival"
@@ -5776,18 +5803,6 @@ msgstr "Список категорий"
 #: ./application/modules/shop/admin/templates/categories/list_old.tpl:6
 msgid "Category list is empty"
 msgstr "Список категорий пуст"
-
-#: ./templates/administrator/inc/menus.php:179
-msgid "Callbacks list"
-msgstr "Список колбеков"
-
-#: ./application/modules/shop/admin/templates/callbacks/list.tpl:9
-msgid "Callback list"
-msgstr "Список колбеков"
-
-#: ./application/modules/shop/admin/templates/callbacks/themes_list.tpl:45
-msgid "List of callbacks is empty"
-msgstr "Список колбеков пуст"
 
 #: ./application/modules/shop/admin/templates/kits/index.tpl:109
 #: ./application/modules/shop/admin/templates/products/default_edit.tpl:574
@@ -6263,15 +6278,6 @@ msgstr "Тема"
 msgid "Topic started"
 msgstr "Тема начата"
 
-#: ./application/modules/shop/admin/templates/callbacks/themes_list.tpl:7
-msgid "Collbacks topics"
-msgstr "Темы колбеков"
-
-#: ./templates/administrator/inc/menus.php:187
-#: ./templates/administrator/shop_menu.tpl:16
-msgid "Callback themes"
-msgstr "Темы колбеков"
-
 #: ./application/modules/shop/admin/templates/customfields/create.tpl:31
 msgid "Entity"
 msgstr "Тип"
@@ -6673,10 +6679,6 @@ msgstr "Удалить категории"
 #: ./templates/administrator/category_list.tpl:19
 msgid "Delete category"
 msgstr "Удалить категорию"
-
-#: ./application/modules/shop/admin/templates/callbacks/list.tpl:170
-msgid "Remove callback(s)"
-msgstr "Удалить колбек(и)"
 
 #: ./templates/administrator/module_table.tpl:19
 msgid "Delete modules?"
