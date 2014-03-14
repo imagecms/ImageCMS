@@ -153,11 +153,21 @@
             <div class="frame-bask frame-bask-order">
                 <div class="frame-bask-scroll">
                     <div class="inside-padd">
+                        <div class="frame-title clearfix">
+                            <div class="title f_l">Мой заказ</div>
+                        </div>
                         <table class="table-order table-order-view">
                             <colgroup>
                                 <col/>
                                 <col width="120"/>
                             </colgroup>
+                            <thead>
+                                <tr>
+                                    <th>{lang('Товар', 'newLevel')}</th>
+                                    <th>{lang('Кол-во', 'newLevel')}</th>
+                                    <th>{lang('Cумма', 'newLevel')}</th>
+                                </tr>
+                            </thead>
                             <tbody>
                                 <!-- for single product -->
                                 {foreach $model->getOrderProducts() as $orderProduct}
@@ -205,12 +215,10 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="count-or-compl">{lang('Кол-во','newLevel')}:</div>
                                             <span class="plus-minus">{echo $orderProduct->getQuantity()}</span>
                                             <span class="text-el">{lang('шт','newLevel')}.</span>
                                         </td>
                                         <td class="frame-cur-sum-price">
-                                            <span class="title">{lang('Сумма','newLevel')}:</span>
                                             <span class="frame-prices">
                                                 <span class="current-prices f-s_0">
                                                     <span class="price-new">
@@ -325,12 +333,10 @@
                                             </ul>
                                         </td>
                                         <td>
-                                            <div class="count-or-compl">{lang('Кол-во','newLevel')}:</div>
                                             <span class="plus-minus">{echo $orderProduct->getQuantity()}</span>
                                             <span class="text-el">{lang('шт','newLevel')}.</span>
                                         </td>
                                         <td class="frame-cur-sum-price">
-                                            <span class="title">{lang('Сумма','newLevel')}:</span>
                                             <span class="frame-prices">
                                                 <span class="price-discount">
                                                     <span>
@@ -369,10 +375,10 @@
                                     <tr>
                                         <td colspan="3">
                                             <span class="s-t f_l">{lang('Начальная стоимость товаров','newLevel')}</span>
-                                            <span class="price-new">
+                                            <span class="price-new f_r">
                                                 <span>
-                                                    <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($model->getOriginPrice())}</span>
-                                                    <span class="curr">{$CS}</span>
+                                                    <span class="price f-s_12">{echo ShopCore::app()->SCurrencyHelper->convert($model->getOriginPrice())}</span>
+                                                    <span class="curr f-s_12">{$CS}</span>
                                                 </span>
                                             </span>
                                         </td>
@@ -458,7 +464,7 @@
                     <div class="inside-padd">
                         <!-- Start. Price block-->
                         <div class="gen-sum-order clearfix">
-                            <span class="title f_l">{lang('К оплате с учетом доставки','newLevel')}:</span>
+                            <span class="title f_l">{lang('К оплате','newLevel')}:</span>
                             <span class="frame-prices f-s_0 f_r">
                                 <span class="current-prices f-s_0">
                                     <span class="price-new">

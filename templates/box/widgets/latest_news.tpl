@@ -21,7 +21,6 @@
                         <span class="title">{$item.title}</span>
                     </a>
                     <div class="description">
-                        {$item.prev_text}
                         {if trim($item.field_info) != ""}
                             <div class="info">{$item.field_info}</div>
                         {/if}

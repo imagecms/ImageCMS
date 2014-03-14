@@ -2,31 +2,14 @@
     <ul class="nav nav-enter-reg">
         {if !$CI->dx_auth->is_logged_in()}
             <li class="btn-enter-register">
-                <button type="button" data-drop=".dropEnterRegister" data-place="noinherit" data-overlay-opacity="0" data-placement="top right">
+                <button type="button" id="loginButton" data-drop=".drop-enter" data-source="{site_url('auth')}">
                     <span class="icon_enter"></span>
                     <span class="text-el">{lang('Войти', 'newLevel')}</span>
                 </button>
-                <ul class="drop dropEnterRegister drop-auth-refer drop-noinherit">
-                    <li class="btn-enter">
-                        <button type="button"
-                                id="loginButton"
-                                data-drop=".drop-enter"
-                                data-source="{site_url('auth')}"
-                                >
-                            <span class="text-el">{lang('Вход','newLevel')}</span>
-                        </button>
-                    </li>
-                    <li>
-                        <a href="{site_url('/auth/register')}" rel=”nofollow” class="t-d_u">
-                            <span class="text-el">{lang('Регистрация','newLevel')}</span>
-                        </a>
-                    </li>
-                    <!--Else show link for personal cabinet -->
-                </ul>
             </li>
         {else:}
             <li class="btn-personal-exit">
-                <button type="button" data-drop=".dropPersonalExit" data-place="noinherit" data-overlay-opacity="0" data-placement="top right">
+                <button type="button" data-drop=".dropPersonalExit" data-place="noinherit" data-overlay-opacity="0" data-placement="top left">
                     <span class="icon_enter"></span>
                     <span class="text-el">{lang('Личный кабинет', 'newLevel')}</span>
                 </button>
