@@ -291,6 +291,12 @@ class ParentWishlist extends \MY_Controller {
                 $this->errors[] = lang('Wish list name will be changed', 'wishlist') . '. ' . lang('List name length maximum', 'wishlist') . ' - ' . $this->settings['maxListName'];
             }
             $this->wishlist_model->createWishList($listName, $user_id, $wlType, $wlDescription);
+            \cmsemail\email::getInstance()->sendEmail($this->dx_auth->get_user_email(), 'wish_list', array(
+                'wishListViews' => '',
+                'userName' => $this->dx_auth->get_username(),
+                'wishName' => $listName,
+                'wishLink' => site_url('wishlist')
+            ));
         } else {
             $this->errors['name'] = lang('Wish List name can not be empty!', 'wishlist');
         }
@@ -558,21 +564,21 @@ class ParentWishlist extends \MY_Controller {
         list($width, $height, $type, $attr) = getimagesize($_FILES["file"]['tmp_name']);
 
         if ($this->settings['maxImageSize'] < $_FILES["file"]['size'])
-            $this->errors[] = lang('Maximum image size is exceeded', 'wishlist') . ' (' . lang('max size', 'wishlist') .' '.  $this->settings['maxImageSize'] . ')';
+            $this->errors[] = lang('Maximum image size is exceeded', 'wishlist') . ' (' . lang('max size', 'wishlist') . ' ' . $this->settings['maxImageSize'] . ')';
         if ($this->settings['maxImageWidth'] < $width)
-            $this->errors[] = lang('Maximum width of the image is exceeded', 'wishlist') . ' (' . lang('max width', 'wishlist') . ' ' .  $this->settings['maxImageWidth'] . 'px)';
+            $this->errors[] = lang('Maximum width of the image is exceeded', 'wishlist') . ' (' . lang('max width', 'wishlist') . ' ' . $this->settings['maxImageWidth'] . 'px)';
         if ($this->settings['maxImageHeight'] < $height)
-            $this->errors[] = lang('Max image height exceeded', 'wishlist')  . ' (' . lang('max height', 'wishlist') . ' '.  $this->settings['maxImageHeight'] . 'px)';
+            $this->errors[] = lang('Max image height exceeded', 'wishlist') . ' (' . lang('max height', 'wishlist') . ' ' . $this->settings['maxImageHeight'] . 'px)';
         if (!in_array($_FILES["file"]['type'], $allowedFileFormats))
             $this->errors[] = lang('Invalid file format', 'wishlist');
         if ($this->errors)
             return FALSE;
 
-        if(!file_exists('./uploads/mod_wishlist/')){
+        if (!file_exists('./uploads/mod_wishlist/')) {
             mkdir('./uploads/mod_wishlist/');
             chmod('./uploads/mod_wishlist/', 0777);
         }
-        
+
         $config['upload_path'] = './uploads/mod_wishlist/';
         $config['allowed_types'] = 'gif|jpg|png|jpeg';
         $config['max_size'] = $this->settings['maxImageSize'];
@@ -669,7 +675,7 @@ class ParentWishlist extends \MY_Controller {
     public function send_email($wish_list_id, $email) {
         $user = $this->wishlist_model->getUserByID($this->dx_auth->get_user_id());
         $wish_list = $this->db->where('id', $wish_list_id)->get('mod_wish_list');
-        
+
         if ($wish_list) {
             $wish_list = $wish_list->row_array();
         } else {
@@ -680,19 +686,19 @@ class ParentWishlist extends \MY_Controller {
         if ($user) {
             $name = $user['user_name'] ? $user['user_name'] : $this->dx_auth->get_username();
             $phone = $db_user['phone'] ? $db_user['phone'] : '(---) --- --- --- ';
-            
+
             $user_variables = array(
                 '$userName$' => $name,
                 '$userPhone$' => $phone,
                 '$wishName$' => $wish_list['title'],
                 '$wishLink$' => site_url('wishlist/show/' . $wish_list['hash']),
-                '$wishListViews$' =>  $wish_list['hash']['review_count'],
+                '$wishListViews$' => $wish_list['hash']['review_count'],
             );
-            
+
             \cmsemail\email::getInstance()->sendEmail($email, 'wish_list', $user_variables);
-            
+
             return TRUE;
-        }else{
+        } else {
             return FALSE;
         }
     }
