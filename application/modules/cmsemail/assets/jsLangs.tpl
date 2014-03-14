@@ -8,7 +8,7 @@ langs["Variable successfully updated"] = '<?php echo lang("Variable successfully
 langs["Variable is not added"] = '<?php echo lang("Variable is not added", "cmsemail")?>';
 langs["Variable successfully added"] = '<?php echo lang("Variable successfully added", "cmsemail")?>';
 langs["Enter variable"] = '<?php echo lang("Enter variable", "cmsemail")?>';
+langs["Variable should contain only Latin characters"] = '<?php echo lang("Variable should contain only Latin characters", "cmsemail")?>';
 langs["Variable must be surrounded by $"] = '<?php echo lang("Variable must be surrounded by $", "cmsemail")?>';
 langs["Variable must have a value"] = '<?php echo lang("Variable must have a value", "cmsemail")?>';
-langs["Variable should contain only Latin characters"] = '<?php echo lang("Variable should contain only Latin characters", "cmsemail")?>';
 </script>
