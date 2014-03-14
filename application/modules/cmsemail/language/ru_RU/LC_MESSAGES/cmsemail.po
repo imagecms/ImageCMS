@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-13 02:15+0200\n"
-"PO-Revision-Date: 2014-03-13 02:15+0200\n"
+"POT-Creation-Date: 2014-03-14 01:13+0200\n"
+"PO-Revision-Date: 2014-03-14 01:13+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -17,6 +17,18 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/cmsemail/assets/admin/create.tpl:17
+msgid "Create and exit"
+msgstr "Создать и выйти"
+
+#: ./application/modules/cmsemail/assets/js/email.js:157
+msgid "Variable is not added"
+msgstr "Переменная не добавлена"
+
+#: ./application/modules/cmsemail/assets/js/email.js:164
+msgid "Variable successfully added"
+msgstr "Переменная успешно добавлена"
 
 #: ./application/modules/cmsemail/assets/admin/create.tpl:14
 msgid "Create"
@@ -42,19 +54,18 @@ msgstr "Удалить выбранные шаблоны"
 msgid "Enter variable"
 msgstr "Введите переменную"
 
-#: ./application/modules/cmsemail/assets/js/email.js:202
+#: ./application/modules/cmsemail/assets/js/email.js:193
 msgid "Variable should contain only Latin characters"
 msgstr "Переменная должна содержать только символы латинского алфавита"
 
-#: ./application/modules/cmsemail/assets/js/email.js:193
+#: ./application/modules/cmsemail/assets/js/email.js:198
 msgid "Variable must be surrounded by $"
 msgstr "Переменная должна быть окружена $"
 
-#: ./application/modules/cmsemail/assets/js/email.js:197
+#: ./application/modules/cmsemail/assets/js/email.js:203
 msgid "Variable must have a value"
 msgstr "Переменная должна иметь значение"
 
-#: ./application/modules/cmsemail/assets/admin/create.tpl:17
 #: ./application/modules/cmsemail/assets/admin/edit.tpl:17
 msgid "Save and go back"
 msgstr "Сохранить и выйти"
@@ -89,8 +100,8 @@ msgstr "Управление email-уведомлениями"
 #: ./application/modules/cmsemail/assets/js/email.js:157
 #: ./application/modules/cmsemail/assets/js/email.js:188
 #: ./application/modules/cmsemail/assets/js/email.js:193
-#: ./application/modules/cmsemail/assets/js/email.js:197
-#: ./application/modules/cmsemail/assets/js/email.js:202
+#: ./application/modules/cmsemail/assets/js/email.js:198
+#: ./application/modules/cmsemail/assets/js/email.js:203
 msgid "Error"
 msgstr "Ошибка"
 
@@ -118,14 +129,6 @@ msgstr "Переменная не обновлена"
 #: ./application/modules/cmsemail/assets/js/email.js:137
 msgid "Variable successfully updated"
 msgstr "Переменная успешно обновлена"
-
-#: ./application/modules/cmsemail/assets/js/email.js:157
-msgid "Variable is not added"
-msgstr "Переменная не додана"
-
-#: ./application/modules/cmsemail/assets/js/email.js:164
-msgid "Variable successfully added"
-msgstr "Переменная успешно додана"
 
 #: ./application/modules/cmsemail/assets/admin/edit.tpl:14
 #: ./application/modules/cmsemail/assets/admin/settings.tpl:19
