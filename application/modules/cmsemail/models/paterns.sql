@@ -5,4 +5,6 @@ INSERT INTO `mod_email_paterns` (`id`, `name`, `patern`, `from`, `from_email`, `
 (4, 'create_user', '', 'Администрация сайта', 'no-replay@shop.com', '', 'HTML',1,1),
 (5, 'forgot_password', '', 'Администрация сайта', 'no-replay@shop.com', '', 'HTML', 1,0),
 (6, 'change_password', '', 'Администрация сайта', 'no-replay@shop.com', '', 'HTML', 1,0),
-(7, 'price_change', '', 'Администрация сайта', 'no-replay@shop.com', '', 'HTML', 1, 0);
+(7, 'price_change', '', 'Администрация сайта', 'no-replay@shop.com', '', 'HTML', 1, 0),
+(8, 'wish_list', '', '', '', '', 'HTML', 1, 0),
+(9, 'callback', '', '', '', '', 'HTML', 1, 1);
