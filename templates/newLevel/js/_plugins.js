@@ -62,7 +62,7 @@ returnMsg = function(msg) {
 };
 $.fn.testNumber = function(add) {
     $(this).off('keypress.testNumber').on('keypress.testNumber', function(e) {
-        $this = $(this);
+        var $this = $(this);
         if (e.ctrlKey || e.altKey || e.metaKey)
             return;
         var chr = getChar(e);
@@ -97,14 +97,15 @@ $.fn.pricetext = function(e, rank) {
     return $this;
 };
 $.fn.setCursorPosition = function(pos) {
-    this.each(function() {
-        this.select();
-        try {
-            this.setSelectionRange(pos, pos);
-        } catch (err) {
-        }
+    if (!isTouch)
+        this.each(function() {
+            this.select();
+            try {
+                this.setSelectionRange(pos, pos);
+            } catch (err) {
+            }
 
-    });
+        });
     return this;
 };
 $.fn.getCursorPosition = function() {
@@ -738,7 +739,7 @@ function getCookie(c_name)
                     tooltip: '.tooltip',
                     durationOn: 300,
                     durationOff: 200,
-                    show: true
+                    show: false
                 },
                 init: function(options) {
                     this.each(function() {
@@ -773,9 +774,9 @@ function getCookie(c_name)
                         tooltip.html(set.title);
                         if (set.otherClass) {
                             if (!$.exists(set.tooltip + '.' + set.otherClass))
-                                tooltip.clone().appendTo(body).addClass(set.otherClass);
+                                $(tooltip).first().clone().appendTo(body).addClass(set.otherClass);
 
-                            tooltip = $(set.tooltip + '.' + set.otherClass);
+                            tooltip = $(set.tooltip + '.' + set.otherClass).data(set);
                         }
 
                         if (set.effect === 'mouse')
@@ -790,7 +791,7 @@ function getCookie(c_name)
                             'left': methods.left($this, tooltip, set.placement, $this.offset().left, set.effect, set.offsetX),
                             'top': methods.top($this, tooltip, set.placement, $this.offset().top, set.effect, set.offsetY)
                         });
-                        if (set.show == 'true')
+                        if (set.show === 'true')
                             tooltip.fadeIn(set.durationOn);
                         $this.off('mouseleave.' + nS).on('mouseleave.' + nS, function(e) {
                             var el = $(this);
@@ -802,6 +803,9 @@ function getCookie(c_name)
                         });
                     });
                     return this;
+                },
+                show: function(options) {
+                    methods.init.call(this, $.extend({show: true}, options));
                 },
                 left: function(el, tooltip, placement, left, eff, offset) {
                     if (placement === 'left')
@@ -838,8 +842,9 @@ function getCookie(c_name)
                             durOff = methods.def.durationOff;
 
                         $(tooltip).stop().fadeOut(durOff, function() {
-                            if (data.otherClass)
-                                $(this).remove();
+                            var $this = $(this);
+                            if ($this.data('otherClass') && $this.data('otherClass') !== '')
+                                $this.remove();
                         });
                     });
                     return this;
@@ -849,7 +854,7 @@ function getCookie(c_name)
         if (methods[method]) {
             return methods[ method ].apply(this, Array.prototype.slice.call(arguments, 1));
         } else if (typeof method === 'object' || !method) {
-            return handlerTooltip.apply(this, arguments, null);
+            return handlerTooltip.call(this, arguments[0], null);
         } else {
             $.error('Method ' + method + ' does not exist on $.tooltip');
         }
@@ -867,7 +872,7 @@ function getCookie(c_name)
     }
     ;
     body.on('mouseenter.' + nS, '[data-rel="tooltip"]', function(e) {
-        handlerTooltip.apply(this, null, e);
+        handlerTooltip.call(this, {show: true}, e);
     }).on('click.' + nS + ' mouseup.' + nS, function(e) {
         if ($(this).data('effect') === 'always')
             $.tooltip('remove')(e);
@@ -2802,48 +2807,45 @@ function getCookie(c_name)
                         $thisNext.add($thisPrev).css('display', 'inline-block');
                         groupButton.append($thisNext.add($thisPrev));
                         groupButton.append($thisNext.add($thisPrev));
-                        if (isTouch && isHorz) {
-                            $this.off('touchstart.' + nS).on('touchstart.' + nS, function(e) {
-                                sP = e.originalEvent.touches[0];
-                                sP = sP.pageX;
-                            });
-                            $this.off('touchmove.' + nS).on('touchmove.' + nS, function(e) {
-                                e.stopPropagation();
-                                e.preventDefault();
-                                eP = e.originalEvent.touches[0];
-                                eP = eP.pageX;
-                            });
-                            $this.off('touchend.' + nS).on('touchend.' + nS, function(e) {
-                                e.stopPropagation();
-                                if (Math.abs(eP - sP) > 200) {
-                                    if (eP - sP > 0)
-                                        $thisPrev.click();
-                                    else
-                                        $thisNext.click();
+                        var elSet = $this.data();
+                        function _handlTouch(type) {
+                            if (isTouch && type) {
+                                var f = 'pageX',
+                                        s = 'pageY';
+                                if (type === 'v') {
+                                    f = 'pageY';
+                                    s = 'pageX';
                                 }
-                            });
+
+                                $this.off('touchstart.' + nS).on('touchstart.' + nS, function(e) {
+                                    e = e.originalEvent.touches[0];
+                                    elSet.sP = e[f];
+                                    elSet.sPs = e[s];
+                                });
+                                $this.off('touchmove.' + nS).on('touchmove.' + nS, function(e) {
+                                    e = e.originalEvent.touches[0];
+                                    elSet.eP = e[f];
+                                    elSet.ePs = e[s];
+                                });
+
+                                $this.off('touchend.' + nS).on('touchend.' + nS, function(e) {
+                                    if (Math.abs(elSet.eP - elSet.sP) > Math.abs(elSet.ePs - elSet.sPs))
+                                        e.preventDefault();
+                                    if (Math.abs(elSet.eP - elSet.sP) > 200) {
+                                        if (elSet.eP - elSet.sP > 0)
+                                            $thisPrev.click();
+                                        else
+                                            $thisNext.click();
+                                    }
+                                });
+                            }
                         }
-                        if (isTouch && isVert) {
-                            $this.off('touchstart.' + nS).on('touchstart.' + nS, function(e) {
-                                sP = e.originalEvent.touches[0];
-                                sP = sP.pageY;
-                            });
-                            $this.off('touchmove.' + nS).on('touchmove.' + nS, function(e) {
-                                e.stopPropagation();
-                                e.preventDefault();
-                                eP = e.originalEvent.touches[0];
-                                eP = eP.pageY;
-                            });
-                            $this.off('touchend.' + nS).on('touchend.' + nS, function(e) {
-                                e.stopPropagation();
-                                if (Math.abs(eP - sP) > 200) {
-                                    if (eP - sP > 0)
-                                        $thisPrev.click();
-                                    else
-                                        $thisNext.click();
-                                }
-                            });
-                        }
+                        var type = false;
+                        if (isHorz)
+                            type = 'h';
+                        if (isVert)
+                            type = 'v';
+                        _handlTouch(type);
                     }
                     else {
                         if (isHorz) {

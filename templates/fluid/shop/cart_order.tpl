@@ -156,7 +156,7 @@
                 </div>
             </td>
         </tr>
-        {if $deliveryMethod}
+        {if $deliveryMethod && $deliveryMethod->getPrice() != 0 || $deliveryMethod && $deliveryMethod->getDeliverySumSpecifiedMessage() != ''}
             <tr>
                 <td colspan="3">
                     <span class="s-t f_l">{lang('Доставка','newLevel')}:</span>
@@ -186,7 +186,10 @@
         {if $discount_val}
             <tr>
                 <td colspan="3">
-                    <span class="s-t f_l">{lang('Текущая скидка','newLevel')}<span class="icon_info_t"></span></span>
+                    <span class="s-t f_l">
+                        {lang('Текущая скидка','newLevel')}
+                        <span class="icon_info_t" data-rel="tooltip" data-title="{lang('Выбрана наиболее выгодная скидка', 'newLevel')}" data-other-class="info-patch" data-placement="right"></span>
+                    </span>
                     <div class="text-discount current-discount f_r">
                         <span class="price f-w_b">{echo ShopCore::app()->SCurrencyHelper->convert($discount_val)}</span>
                         <span class="curr">{$CS}</span>

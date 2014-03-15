@@ -96,15 +96,18 @@ Product = {
         if (href == hrefOptions.curHref)
             fancyFrameInPH.find('.preloader').remove();
         hrefOptions.curHref = href;
-        fancyFrameInPH.find('img').attr('src', href).load(function() {
-            fancyFrameInPH.find('.preloader').remove();
+        $('<img src="' + href+'">').one('load').each(function() {
+            drop.find('.drop-content .inside-padd').empty().append($(this).css('visibility', 'visible')).prepend('<span class="helper"></span>');
+
             var carGal = drop.find('.content-carousel');
 
             $.drop.method('limitSize')(drop);
             Product.resizePhoto(drop, function() {
-                $.drop.method('center')(drop);
+                drop.drop('heightContent');
+                drop.drop('center');
             });
             carGal.find('.jcarousel-item').eq($.inArray(hrefOptions.curHref, hrefOptions.thumbs)).focusin();
+            
         });
     },
     beforeShowHref: function(el, drop, isajax) {

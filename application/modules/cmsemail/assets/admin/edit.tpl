@@ -10,8 +10,8 @@
                     <span class="f-s_14">←</span>
                     <span class="t-d_u">{lang('Go back', 'cmsemail')}</span>
                 </a>
-                <button type="button" class="btn btn-small formSubmit" data-form="#email_form" data-action="save">
-                    <i class="icon-ok"></i>{lang('Save', 'cmsemail')}
+                <button type="button" class="btn btn-small formSubmit btn-success" data-form="#email_form" data-action="save">
+                    <i class="icon-ok icon-white"></i>{lang('Save', 'cmsemail')}
                 </button>
                 <button type="button" class="btn btn-small formSubmit" data-form="#email_form" data-action="tomain">
                     <i class="icon-edit"></i>{lang('Save and go back', 'cmsemail')}
@@ -221,7 +221,7 @@
                                     <input type="text" name="variableValueEdit" class="variableValueEdit"/>
                                 </td>
                                 <td  class="span5" colspan="2">
-                                    <button data-update="count" onclick="EmailTemplateVariables.add($(this), {$model['id']}, '{echo $locale}')"  class="btn btn-small" type="button" style="display: block; margin-top: 4px;margin-left: 4px">
+                                    <button data-update="count" onclick="EmailTemplateVariables.add($(this), {$model['id']}, '', '{echo $locale}')" data-variable=""  class="btn btn-small" type="button" style="display: block; margin-top: 4px;margin-left: 4px">
                                         <i class="icon-plus"></i>
                                     </button>
                                 </td>

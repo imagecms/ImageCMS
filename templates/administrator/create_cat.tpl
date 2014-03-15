@@ -18,7 +18,7 @@
             <div class="clearfix">
                 <div class="btn-group myTab m-t_20 pull-left" data-toggle="buttons-radio">
                     <a href="#parameters" class="btn btn-small active">{lang("Settings","admin")}</a>
-                    <a href="#metatag" class="btn btn-small">{lang("Meta tags","admin")}</a>
+                    <a href="#metatag" class="btn btn-small">{lang("Meta-tags","admin")}</a>
                     {if $moduleAdditions}
                         <a href="#modules_additions" class="btn btn-small">{lang('Modules additions', 'admin')}</a>
                     {/if}

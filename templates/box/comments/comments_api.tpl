@@ -137,13 +137,13 @@
                                             <span class="btn like">
                                                 <button type="button" class="usefullyes" data-comid="{echo $comment.id}">
                                                     <span class="icon_like"></span>
-                                                    <span class="text-el d_l_3">{lang('Да','newLevel')}<span class="yesholder{$comment.id}">({echo $comment.like})</span></span>
+                                                    <span class="text-el d_l_3">{lang('Да','newLevel')}<span class="yesholder{$comment.id}{if !$comment.like} d_n{/if}">({echo $comment.like})</span></span>
                                                 </button>
                                             </span>
                                             <span class="btn dis-like">
                                                 <button type="button" class="usefullno" data-comid="{echo $comment.id}">
                                                     <span class="icon_dislike"></span>
-                                                    <span class="text-el d_l_4">{lang('Нет','newLevel')}<span class="noholder{$comment.id}">({echo $comment.disslike})</span></span>
+                                                    <span class="text-el d_l_4">{lang('Нет','newLevel')}<span class="noholder{$comment.id}{if !$comment.disslike} d_n{/if}">({echo $comment.disslike})</span></span>
                                                 </button>
                                             </span>
                                         </div>

@@ -106,7 +106,8 @@ Product = {
 
             $.drop.method('limitSize')(drop);
             Product.resizePhoto(drop, function() {
-                $.drop.method('center')(drop);
+                drop.drop('heightContent');
+                drop.drop('center');
             });
             carGal.find('.jcarousel-item').eq($.inArray(hrefOptions.curHref, hrefOptions.thumbs)).focusin();
         });

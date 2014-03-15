@@ -148,7 +148,7 @@
                             {echo ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPatternMain('pattern_custom_field')->getOneCustomFieldsByName('city','order',$profile.id,'user')->asHtml()}
                             <div class="frame-label">
                                 <div class="frame-form-field">
-                                    <button type="button" class="d_l_1 m-b_5" data-drop=".hidden-comment" data-place="inherit" data-overlay-opacity="0">Добавить комментарий к заказу</button>
+                                    <button type="button" class="d_l_1 m-b_5" data-drop=".hidden-comment" data-place="inherit" data-overlay-opacity="0">{lang('Добавить комментарий к заказу', 'newLevel')}</button>
                                     <div class="hidden-comment drop">
                                         <textarea name="userInfo[commentText]" ></textarea>
                                     </div>

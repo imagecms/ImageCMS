@@ -21,6 +21,12 @@ class BaseDiscount {
     private static $userId;
 
     /**
+     * Information about each product which quantity was more then max applies
+     * @var array
+     */
+    public $aplyOverloadProducts = array();
+
+    /**
      * check_module_install
      * @access public
      * @author DevImageCms
@@ -135,7 +141,7 @@ class BaseDiscount {
                 $this->cartData = $this->getCartData();
 
             $this->amoutUser = $this->ci->discount_model_front->getAmoutUser($this->userId);
-            $this->totalPrice = (!self::$totalPrice) ? $this->cart->getOriginTotalPrice() : $this->totalPrice = self::$totalPrice;
+            $this->totalPrice = (!self::$totalPrice) ? $this->cart->getOriginTotalPrice() : self::$totalPrice;
             $this->allDiscount = $this->getAllDiscount();
             $this->discountType = $this->collectType($this->allDiscount);
             $this->discountAllOrder = $this->getAllOrderDiscountNotRegister();
@@ -358,7 +364,6 @@ class BaseDiscount {
      * @copyright (c) 2013, ImageCMS
      */
     private function getDiscountProducts() {
-
         foreach ($this->cartData as $item) {
             $priceOrigin = number_format($item->originPrice, \ShopCore::app()->SSettings->pricePrecision, '.', ''); // new Cart
             if (abs($priceOrigin - $item->price) > 1)
@@ -396,7 +401,6 @@ class BaseDiscount {
      * @copyright (c) 2013, ImageCMS
      */
     private function getAllOrderDiscountNotRegister() {
-
         $allOrderArrNotReg = array();
         foreach ($this->discountType['all_order'] as $disc)
             if (!$disc['is_gift'])
@@ -404,6 +408,76 @@ class BaseDiscount {
                     $allOrderArrNotReg[] = $disc;
 
         return (count($allOrderArrNotReg) > 0) ? $this->getMaxDiscount($allOrderArrNotReg, $this->totalPrice) : false;
+    }
+
+    /**
+     * Returns the number of uses of discounts (only in cart) (grouped by key of discounts)
+     * @return array array(discountKey => array(productId => quantity in cart))
+     */
+    public function getAppliesCart() {
+        $cartItems = \Cart\BaseCart::getInstance()->getItems('SProducts');
+        $discountQuantities = array();
+        foreach ($cartItems['data'] as $item) {
+            if (!is_null($item->discountKey)) {
+                if (!isset($discountQuantities[$item->discountKey])) {
+                    $discountQuantities[$item->discountKey] = array();
+                }
+                $discountQuantities[$item->discountKey][] = array(
+                    'productId' => $item->id,
+                    'quantity' => $item->quantity,
+                    'price' => $item->price,
+                    'originPrice' => $item->originPrice,
+                );
+            }
+        }
+        return $discountQuantities;
+    }
+
+    /**
+     * 
+     * @param type $discountCounts
+     * @return type
+     */
+    public function getAppliesOverloadDifference($discountCounts) {
+        $dTypes = $this->discountType;
+        $overload = 0;
+        foreach ($dTypes as $typeName => $discounts) {
+            for ($i = 0; $i < count($discounts); $i++) {
+                $key = $discounts[$i]['key'];
+                if (isset($discountCounts[$key]) && $discounts[$i]['max_apply'] > 0) {
+                    $appliesLeftDB = $discounts[$i]['max_apply'] - $discounts[$i]['count_apply'];
+                    $currentDiscountApplies = 0;
+                    $currentDiscountOverload = 0;
+                    foreach ($discountCounts[$key] as $product) {
+                        $currentDiscountApplies += $product['quantity'];
+                        if ($currentDiscountApplies > $appliesLeftDB && $product['originPrice'] > $product['price']) {
+                            $count = $currentDiscountApplies - $appliesLeftDB;
+                            $currentDiscountOverload += ($product['originPrice'] - $product['price']) * $count;
+                            $this->aplyOverloadProducts[] = $product['productId'];
+                        }
+                    }
+                    $overload += $currentDiscountOverload;
+                }
+            }
+        }
+        return $overload;
+    }
+
+    /**
+     * 
+     * @param type $discountCounts
+     * @return int
+     */
+    public function recountPriceAccordApplies($discountCounts = NULL) {
+        if ($discountCounts == NULL) {
+            $discountCounts = $this->getAppliesCart();
+            if (count($discountCounts) == 0) {
+                return 0;
+            }
+        }
+        $difference = $this->getAppliesOverloadDifference($discountCounts);
+        $this->cart->setTotalPrice();
+        return $difference;
     }
 
 }

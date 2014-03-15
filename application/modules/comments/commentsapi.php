@@ -33,6 +33,8 @@ class Commentsapi extends Comments {
                 $this->$k = $v;
             }
         }
+        $this->use_moderation = $this->dx_auth->is_admin() ? FALSE : $settings['use_moderation'];
+        $this->use_captcha = $this->dx_auth->is_admin() ? FALSE : $settings['use_captcha'];
     }
 
     public function renderAsArray($url) {
@@ -151,7 +153,7 @@ class Commentsapi extends Comments {
             'visibleMainForm' => $_POST[visibleMainForm]
         );
 
-        if ($this->use_captcha == TRUE) {
+        if ($this->use_captcha == TRUE && !$this->dx_auth->is_admin()) {
             $this->dx_auth->captcha();
             $data['cap_image'] = $this->dx_auth->get_captcha_image();
         }
@@ -281,7 +283,7 @@ class Commentsapi extends Comments {
                 echo json_encode(
                         array(
                             'answer' => 'error',
-                            'validation_errors' => lang('Time for new  comment has not yet come', 'comments')
+                            'validation_errors' => lang('The following comment can be left through', 'comments') . ' ' . $this->period . ' ' . lang('minutes', 'comments')
                         )
                 );
                 return;
@@ -299,10 +301,11 @@ class Commentsapi extends Comments {
         // Check captcha code if captcha_check enabled and user in not admin.
         if ($this->use_captcha == TRUE AND $this->dx_auth->is_admin() == FALSE) {
             ($hook = get_hook('comments_set_captcha')) ? eval($hook) : NULL;
+            $this->form_validation->set_message('callback_captcha_check', lang('Wrong222 code protection', 'comments'));
             if ($this->dx_auth->use_recaptcha)
-                $this->form_validation->set_rules('recaptcha_response_field', lang("Code protection"), 'trim|required|xss_clean|callback_captcha_check');
+                $this->form_validation->set_rules('recaptcha_response_field', lang("Code protection", 'comments'), 'trim|required|xss_clean|callback_captcha_check');
             else
-                $this->form_validation->set_rules('captcha', lang("Code protection"), 'trim|required|xss_clean|callback_captcha_check');
+                $this->form_validation->set_rules('captcha', lang("Code protection", 'comments'), 'trim|required|xss_clean|callback_captcha_check');
         }
 
         if ($this->max_comment_length != 0)
@@ -494,14 +497,18 @@ class Commentsapi extends Comments {
         if ($query->num_rows() == 1) {
             $query = $query->row_array();
 
+
             $latest_comment = $query['date'];
             $allow_time = $latest_comment + ($this->period * 60);
-
+//            var_dumps(time());
+//            var_dumps($allow_time);
+//var_dumps_exit($query);
             if ($allow_time > time())
                 return FALSE;
             else
                 return TRUE;
-        } else
+        }
+        else
             return TRUE;
     }
 
