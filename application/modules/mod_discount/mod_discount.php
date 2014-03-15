@@ -121,15 +121,19 @@ class Mod_discount extends \MY_Controller {
                 $this->baseDiscount->cart->discount_info = $discount;
                 $this->baseDiscount->cart->discount_type = $discount['type'];
 
-                if (strstr($this->uri->uri_string(), 'make_order')) {
-                    $cartItems = $this->baseDiscount->cart->getItems();
-                    $discountsKeys = array();
-                    foreach ($cartItems['data'] as $item) {
-                        if (is_null($item->discountKey)) {
-                            continue;
-                        }
-                        for ($i = 0; $i < $item->quantity; $i++) {
-                            $this->baseDiscount->updateDiskApply($item->discountKey);
+                if (strstr($this->uri->uri_string(), 'make_order')) {               
+
+                    if ($discount['type'] != 'product') {
+                        $this->baseDiscount->updateDiskApply($discount['max_discount']['key']);
+                    } else {
+                        $cartItems = $this->baseDiscount->cart->getItems();
+                        foreach ($cartItems['data'] as $item) {
+                            if (is_null($item->discountKey)) {
+                                continue;
+                            }
+                            for ($i = 0; $i < $item->quantity; $i++) {
+                                $this->baseDiscount->updateDiskApply($item->discountKey);
+                            }
                         }
                     }
                 }

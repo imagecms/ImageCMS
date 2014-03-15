@@ -322,8 +322,8 @@ input.input-search{height: 33px;padding-right: 14px;}
 .items-catalog.table > li:hover{overflow: visible;}
 .items-catalog .star{margin-right: 11px;}
 
-.animateListItems.table .no-vis-table{filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0);-moz-opacity: 0;-khtml-opacity: 0;opacity: 0;position: absolute;-webkit-transition: all .1s .3s ease-in-out;-moz-transition: all .1s .3s ease-in-out;-o-transition: all .1s .3s ease-in-out;transition: all .1s .3s ease-in-out;}
-.animateListItems.table > li{-webkit-transition: z-index .1s .3s ease-in-out;-moz-transition: z-index .1s .3s ease-in-out;-o-transition: z-index .1s .3s ease-in-out;transition: z-index .1s .3s ease-in-out;}
+.animateListItems.table .no-vis-table{filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0);-moz-opacity: 0;-khtml-opacity: 0;opacity: 0;position: absolute;}
+.animateListItems.table .no-vis-table:hover .short-desc{display: none;}
 .animateListItems.table > li:hover{z-index: 2;}
 .items-catalog.list{margin-left: 0;}
 .items-catalog.list > li{width: auto !important;margin-left: 0;overflow: hidden;display: block;}
@@ -344,7 +344,7 @@ input.input-search{height: 33px;padding-right: 14px;}
 .frame-news .frame-title .title{margin-right: 7px;}
 
 .items-search-autocomplete > li{width: 100%;}
-.items-search-autocomplete .frame-photo-title{display: block;padding: 13px 15px;}
+.items-search-autocomplete .frame-photo-title{display: block;padding: 13px 15px;overflow: hidden;}
 .items-search-autocomplete .photo-block{width: 41px;height: 41px;margin-right: 17px;float: left;}
 .items-search-autocomplete .description{display: block;margin-left: 58px;margin-top: 5px;}
 .items-search-autocomplete .title{top: -5px;position: relative;}
@@ -377,7 +377,7 @@ input.input-search{height: 33px;padding-right: 14px;}
 .item-product .frame-photo-title{display: block;margin-bottom: 10px;}
 .patch-product-view{overflow: hidden;margin-bottom: 10px;}
 .product-charac{max-height: 520px;}
-.product-descr{max-height: 250px;}
+.product-descr{max-height: 250px;padding-bottom: 0 !important;margin-bottom: 0;}
 #view .product-comment{max-height: 400px;}
 
 .photoProduct .photo-block{width: 100%;height: 252px;padding: 15px;}
@@ -844,6 +844,7 @@ input + .msg{margin-top: 5px;}
 .left-slider{margin-left: 0;}
 .right-slider{margin-left: 0;}
 .form-cost label{width: 80px;}
+.form-cost{overflow: hidden;}
 
 .ui-widget-header{position: absolute;z-index: 1;height: 100%;top: 0;}
 .frame-slider .inside-padd{padding: 14px 23px 14px 20px;}
@@ -893,7 +894,7 @@ li.clear-pag-item{margin: 0 14px 4px;}
 .frame-complect{margin-bottom: 40px;}
 .frame-complect .content-carousel{margin: 0 auto;}
 .items-complect > li{width: 602px!important;}
-.items-complect [class*="items"]{max-width: 416px;}
+.items-complect [class*="items"]{max-width: 416px;width: auto;}
 .complects-carousel{padding: 10px 10px 10px 30px;}
 .vertical-layout .complects-carousel .prev{left: 5px;}
 .vertical-layout .complects-carousel .next{right: 5px;}
@@ -959,7 +960,8 @@ td.frame-cur-sum-price {vertical-align: middle;padding-left: 10px;padding-right:
 .table-order .frame-variant-code{display: none;}*/
 .table-order > tbody > tr > td{padding-top: 10px;padding-bottom: 10px;vertical-align: top;}
 .table-order .frame-items{padding-left: 20px;}
-.table-order > tbody > tr > td.frame-cur-sum-price {padding-left: 10px;padding-right: 10px;text-align: center;}
+.table-order > tbody > tr > td.frame-cur-sum-price {padding-left: 10px;padding-right: 10px;text-align: right;}
+.table-order th:last-child{text-align: right;padding-right: 10px;}
 .table-order > tbody > tr:first-child > td{border-top: 0;}
 .table-order .frame-variant-name{margin-bottom: 0px;display: block;padding-top: 4px;}
 .footer-bask{text-align: center;}
@@ -1192,6 +1194,7 @@ img.cloned{max-width: none;max-height: none;}
 .frame-little-banner a img{margin-bottom: 0;}
 
 .title-category{margin-bottom: 3px;}
+.left-catalog-first .title-category{margin-bottom: 20px;}
 .items-contacts li{margin-top: 10px;}
 .page-main{padding-top: 6px;}
 .check-variant-catalog{margin-bottom: 4px;}

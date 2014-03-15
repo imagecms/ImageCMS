@@ -29,6 +29,15 @@ $(document).ready(function() {
     // *********************** Navigate pagination *********************************************
     $('.pagination li').live('click', function() {
         Pagination.navigate($(this));
+
+        var scrollTop = $('html').offset().top,
+                elementOffset = $('.mini-layout').offset().top,
+                distance = (elementOffset - scrollTop);
+
+        distance = distance ? distance : 0;
+        $('html').animate({
+            scrollTop: distance
+        }, 300);
     });
 
     // *********************** GO Search *********************************************
@@ -1275,8 +1284,8 @@ var Translator = {
                                 if (data) {
                                     $(curElement).closest('.modal_yandex_translate').find('.languageFrom').attr('locale', locale);
                                     $(curElement).closest('.modal_yandex_translate').find('.languageFrom').val(data);
-                                }else{
-                                     showMessage(lang('Error'), lang('Can not define language'), 'r');
+                                } else {
+                                    showMessage(lang('Error'), lang('Can not define language'), 'r');
                                 }
                             }
                         });

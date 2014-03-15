@@ -215,7 +215,8 @@ class Menu extends MY_Controller {
                 //echo $item['item_type'];
                 if ($item['item_type'] == 'url' && strstr($item['link'], 'http://') or $item['item_type'] == 'url' && strstr($item['link'], 'www')) {
                     $href = $item['link'];
-                } else
+                }
+                else
                     $href = rtrim(site_url($item['link']), '/');
 
 
@@ -517,6 +518,7 @@ class Menu extends MY_Controller {
             // Select hidden items
             if ($this->select_hidden == TRUE) {
                 $this->db->or_where('menus_data.hidden', 1);
+                $this->db->where('menus.name', $menu);
             }
 
             $menus = $this->db->get('menus');

@@ -32,8 +32,9 @@ $(document).ready(function() {
 
     });
 
-    $('table.variablesTable .icon-edit').on('click', function() {
+    $('table.variablesTable .icon-edit').die().live('click', function() {
         var editor = $(this).closest('tr').find('div.variable');
+
         var editValue = $.trim(editor.text());
         editor.empty();
         editor.parent().find('.variableEdit').css('display', 'block').val(editValue);
@@ -49,7 +50,7 @@ $(document).ready(function() {
     });
 
     $('.addVariable').on('click', function() {
-        $('.addVariableContainer').css('display', '');
+        $('.addVariableContainer').show();
     });
 });
 
@@ -116,8 +117,8 @@ var EmailTemplateVariables = {
         $.ajax({
             type: 'POST',
             data: {
-                variable: variable.val(),
-                variableValue: variableValue.val(),
+                variable: $.trim(variable.val()),
+                variableValue: $.trim(variableValue.val()),
                 oldVariable: oldVariable,
                 template_id: template_id
             },
@@ -146,8 +147,8 @@ var EmailTemplateVariables = {
         $.ajax({
             type: 'POST',
             data: {
-                variable: variable.val(),
-                variableValue: variableValue.val(),
+                variable: $.trim(variable.val()),
+                variableValue: $.trim(variableValue.val()),
                 template_id: template_id
             },
             url: '/admin/components/cp/cmsemail/addVariable/' + locale,
@@ -158,6 +159,7 @@ var EmailTemplateVariables = {
                 }
                 curElement.parent('div').find('.typeVariable').val('');
                 $('.addVariableContainer').css('display', 'none');
+//                $('.addVariableContainer button').data('variable', $.trim(variable.val()));
                 $(data).insertBefore('table.variablesTable .addVariableContainer');
                 showMessage(lang('Message'), lang('Variable successfully added'));
             }
@@ -179,12 +181,26 @@ var EmailTemplateVariables = {
         }
     },
     validateVariable: function(variable, variableValue) {
-        if (variable[0] != '$' || variable[variable.length - 1] != '$') {
-            showMessage(lang('Message'), lang('Variable must be surrounded by $'), 'r');
+        var variable = $.trim(variable);
+        var variableValue = $.trim(variableValue);
+
+        if (!variable) {
+            showMessage(lang('Error'), lang('Enter variable'), 'r');
             exit;
         }
+
+        if (variable.match(/[а-яА-Я]{1,}/)) {
+            showMessage(lang('Error'), lang('Variable should contain only Latin characters'), 'r');
+            exit;
+        }
+
+        if ((variable[0] != '$' || variable[variable.length - 1] != '$') || variable.length < 3) {
+            showMessage(lang('Error'), lang('Variable must be surrounded by $'), 'r');
+            exit;
+        }
+        
         if (!variableValue) {
-            showMessage(lang('Message'), lang('Variable must have a value'), 'r');
+            showMessage(lang('Error'), lang('Variable must have a value'), 'r');
             exit;
         }
     }

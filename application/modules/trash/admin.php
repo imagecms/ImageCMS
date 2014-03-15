@@ -62,6 +62,7 @@ class Admin extends BaseAdminController {
             $data = explode('<br />', $data);
             $data = array_map('trim', $data);
             $data = array_filter($data);
+            
             foreach ($data as $value) {
 
                 $value = explode(' ', $value);
@@ -72,9 +73,14 @@ class Admin extends BaseAdminController {
                     exit;
                 }
             }
+            
             showMessage(lang('Success', 'trash'));
+            
+            if($this->input->post('action') == 'exit'){
+                pjax('/admin/components/init_window/trash');
+            }
         } else {
-            showMessage(lang('Failure', 'trash'), FALSE, 'r');
+            showMessage(lang('Error', 'admin'), FALSE, 'r');
         }
     }
 

@@ -55,7 +55,7 @@
                                                     <a onclick="return false;" rel="useZoom: 'photoProduct'" href="{productImageUrl('products/additional/'.$image->getImageName())}" title="{echo ShopCore::encode($model->getName())}" class="cloud-zoom-gallery">
                                                         <span class="photo-block">
                                                             <span class="helper"></span>
-                                                            <img src="{echo productImageUrl('products/additional/thumb_'.$image->getImageName())}" alt="{echo ShopCore::encode($model->getName())} - {echo ++$key}"/>
+                                                            <img src="{echo productImageUrl('products/additional/thumb_'.$image->getImageName())}" alt="{echo ShopCore::encode($model->getName())} - {echo ++$key}" title="{echo ShopCore::encode($model->getName())} - {echo ++$key}" />
                                                         </span>
                                                     </a>
                                                 </li>
@@ -75,7 +75,7 @@
                             <!-- End. additional images-->
                         {/if}
                         <!-- Start. Photo block-->
-                        <a rel="position: 'xBlock'" onclick="return false;" href="{echo $model->firstVariant->getLargePhoto()}" class="frame-photo-title photoProduct cloud-zoom" id="photoProduct" title="{echo ShopCore::encode($model->getName())}" data-drop="#photo" data-start="Product.initDrop">
+                        <a rel="position: 'xBlock'" onclick="return false;" href="{echo $model->firstVariant->getLargePhoto()}" class="frame-photo-title photoProduct cloud-zoom" id="photoProduct" title="{echo ShopCore::encode($model->getName())}" data-drop="#photo" data-start="Product.initDrop" data-scroll-content="false">
                             <span class="photo-block">
                                 <span class="helper"></span>
                                 <img src="{echo $model->firstVariant->getMainPhoto()}" alt="{echo ShopCore::encode($model->getName())}" title="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" class="vImgPr"/>
@@ -96,9 +96,12 @@
                             </div>
                             <!-- End. Name product -->
                         </div>
-                        <div class="t-a_j">
+                        <!-- Start. frame for cloudzoom -->
+                        <div id="xBlock"></div>
+                        <!-- End. frame for cloudzoom -->
+                        <div class="o_h">
                             <!-- Start. article & variant name & brand name -->
-                            <div>
+                            <div class="f_l">
                                 <span class="frame-variant-name-code">
                                     <span class="frame-variant-code frameVariantCode" {if !$model->firstVariant->getNumber()}style="display:none;"{/if}>
                                         <span class="s-t">{lang('Код','newLevel')}:</span>
@@ -112,7 +115,7 @@
                             </div>
                             <!-- End. article & variant name & brand name -->
                             <!-- Start. Star rating -->
-                            <div>
+                            <div class="f_l">
                                 {if $model->enable_comments && intval($Comments[$model->getId()]) !== 0}
                                     <div class="frame-star">
                                         {$CI->load->module('star_rating')->show_star_rating($model, false)}
@@ -125,9 +128,6 @@
                             </div>
                             <!-- End. Star rating-->
                         </div>
-                        <!-- Start. frame for cloudzoom -->
-                        <div id="xBlock"></div>
-                        <!-- End. frame for cloudzoom -->
 
                         <div class="f-s_0 buy-block">
                             <!-- Start. Check variant-->
@@ -208,7 +208,7 @@
                                                     {$inCart = getAmountInCart('SProducts', $productVariant->getId())}
                                                     <div class="frame-count-buy js-variant-{echo $productVariant->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
                                                         <form method="POST" action="/shop/cart/addProductByVariantId/{echo $productVariant->getId()}">
-                                                            <div class="btn-buy-p btn-cart{if !$inCart} d_n{/if}">
+                                                            <div class="btn-buy btn-cart{if !$inCart} d_n{/if}">
                                                                 <button 
                                                                     type="button"
                                                                     data-id="{echo $productVariant->getId()}"
@@ -262,7 +262,7 @@
                                                 {else:}
                                                     <div class="d_i-b v-a_m">
                                                         <div class="js-variant-{echo $productVariant->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
-                                                            <div class="alert-exists">{lang('Нет в наличии','newLevel')}</div>
+                                                            <div class="alert-exists">{lang('Нет в наличии', 'newLevel')}</div>
                                                             <div class="btn-not-avail">
                                                                 <button
                                                                     type="button"
@@ -312,11 +312,6 @@
                                 </div>
                                 <!-- Start. Wish List & Compare List buttons -->
                                 <div class="frame-wish-compare-list f-s_0 d_i-b v-a_m">
-                                    {foreach $variants as $key => $pv}
-                                        <div class="frame-btn-wish v-a_bl js-variant-{echo $pv->getId()} js-variant" {if $key != 0}style="display:none"{/if} data-id="{echo $pv->getId()}">
-                                            {$CI->load->module('wishlist')->renderWLButton($pv->getId())}
-                                        </div>
-                                    {/foreach}
                                     <div class="frame-btn-compare v-a_bl">
                                         <div class="btn-compare">
                                             <div class="toCompare btnCompare"
@@ -333,6 +328,11 @@
                                             </div>
                                         </div>
                                     </div>
+                                    {foreach $variants as $key => $pv}
+                                        <div class="frame-btn-wish v-a_bl js-variant-{echo $pv->getId()} js-variant" {if $key != 0}style="display:none"{/if} data-id="{echo $pv->getId()}">
+                                            {$CI->load->module('wishlist')->renderWLButton($pv->getId())}
+                                        </div>
+                                    {/foreach}
                                 </div>
                                 <!-- End. Wish List & Compare List buttons -->
                             </div>
@@ -491,7 +491,7 @@
                                                         </span>
                                                     </div>
                                                     <form method="POST" action="/shop/cart/addKit/{echo $kitProducts->getId()}">
-                                                        <div class="btn-buy-p btn-cart{if !$inCart} d_n{/if}">
+                                                        <div class="btn-buy btn-cart{if !$inCart} d_n{/if}">
                                                             <button 
                                                                 type="button"
                                                                 data-id="{echo $kitProducts->getId()}"

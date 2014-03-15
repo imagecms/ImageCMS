@@ -1,9 +1,9 @@
-msgid ""
+﻿msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-26 01:57+0200\n"
-"PO-Revision-Date: 2013-12-26 01:57+0200\n"
+"POT-Creation-Date: 2014-03-14 01:09+0200\n"
+"PO-Revision-Date: 2014-03-14 01:09+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -18,422 +18,429 @@ msgstr ""
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: ./application/modules/user_manager//templates/main.tpl:12
-#: ./application/modules/user_manager//templates/main.tpl:47
+#: ./application/modules/user_manager/templates/main.tpl:48
+#: ./application/modules/user_manager/templates/main.tpl:49
+msgid "Cancel filtering"
+msgstr "Отменить фильтрацию"
+
+#: ./application/modules/user_manager/templates/edit_user.tpl:6
+msgid "User editing"
+msgstr "Редактирование пользователя"
+
+#: ./application/modules/user_manager/admin.php:295
+msgid "User not found"
+msgstr "Пользователь не найден"
+
+#: ./application/modules/user_manager/admin.php:412
+#: ./application/modules/user_manager/admin.php:517
+msgid "Changes saved"
+msgstr "Изменения сохранены"
+
+#: ./application/modules/user_manager/templates/edit_user.tpl:10
+#: ./application/modules/user_manager/templates/create_user.tpl:11
+msgid "Back"
+msgstr "Вернуться"
+
+#: ./application/modules/user_manager/templates/create_user.tpl:6
+msgid "Create a new user"
+msgstr "Создать нового пользователя"
+
+#: ./application/modules/user_manager/templates/main.tpl:12
+#: ./application/modules/user_manager/templates/main.tpl:47
 msgid "Delete"
 msgstr "Удалить"
 
-#: ./application/modules/user_manager//templates/main.tpl:13
+#: ./application/modules/user_manager/templates/main.tpl:13
 msgid "Cancel"
 msgstr "Отмена"
 
-#: ./application/modules/user_manager//templates/main.tpl:30
-#: ./application/modules/user_manager//templates/edit_user.tpl:10
-#: ./application/modules/user_manager//templates/groups_edit.tpl:10
+#: ./application/modules/user_manager/templates/main.tpl:30
+#: ./application/modules/user_manager/templates/groups_edit.tpl:10
 msgid "Return"
 msgstr "Назад"
 
-#: ./application/modules/user_manager//templates/main.tpl:31
+#: ./application/modules/user_manager/templates/main.tpl:31
 msgid "User create"
 msgstr "Создать пользователя"
 
-#: ./application/modules/user_manager//templates/main.tpl:32
+#: ./application/modules/user_manager/templates/main.tpl:32
 msgid "Create a Group"
 msgstr "Создать Группу"
 
-#: ./application/modules/user_manager//templates/main.tpl:38
+#: ./application/modules/user_manager/templates/main.tpl:38
 msgid "Users"
 msgstr "Пользователи"
 
-#: ./application/modules/user_manager//templates/main.tpl:39
+#: ./application/modules/user_manager/templates/main.tpl:39
 msgid "Groups"
 msgstr "Группы"
 
 # х�
-#: ./application/modules/user_manager//templates/main.tpl:40
+#: ./application/modules/user_manager/templates/main.tpl:40
 msgid "Access rights differentiation system"
 msgstr "Права доступа разных систем"
 
-#: ./application/modules/user_manager//templates/main.tpl:48
-#: ./application/modules/user_manager//templates/main.tpl:49
-msgid "Cancel filter"
-msgstr "Отменить фильтр"
-
 # �
-#: ./application/modules/user_manager//templates/main.tpl:49
+#: ./application/modules/user_manager/templates/main.tpl:51
 msgid "Filter admin"
 msgstr "Фильтр"
 
-#: ./application/modules/user_manager//templates/main.tpl:77
+#: ./application/modules/user_manager/templates/main.tpl:79
 msgid "All groups"
 msgstr "Все группы"
 
-#: ./application/modules/user_manager//templates/genreroletable.tpl:2
-#: ./application/modules/user_manager//templates/edit_perms.tpl:63
-#: ./application/modules/user_manager//templates/edit_user.tpl:11
-#: ./application/modules/user_manager//templates/groups_edit.tpl:11
+#: ./application/modules/user_manager/templates/genreroletable.tpl:2
+#: ./application/modules/user_manager/templates/edit_perms.tpl:63
+#: ./application/modules/user_manager/templates/edit_user.tpl:11
+#: ./application/modules/user_manager/templates/groups_edit.tpl:11
 msgid "Save"
 msgstr "Сохранить"
 
-#: ./application/modules/user_manager//templates/genreroletable.tpl:8
+#: ./application/modules/user_manager/templates/genreroletable.tpl:8
 msgid "Properties"
 msgstr "Свойства"
 
-#: ./application/modules/user_manager//templates/main.tpl:65
-#: ./application/modules/user_manager//templates/genreroletable.tpl:20
-#: ./application/modules/user_manager//templates/edit_perms.tpl:35
-#: ./application/modules/user_manager//templates/users_table_search.tpl:7
-#: ./application/modules/user_manager//templates/edit_user.tpl:54
-#: ./application/modules/user_manager//templates/create_user.tpl:77
+#: ./application/modules/user_manager/templates/main.tpl:67
+#: ./application/modules/user_manager/templates/genreroletable.tpl:20
+#: ./application/modules/user_manager/templates/edit_perms.tpl:35
+#: ./application/modules/user_manager/templates/users_table_search.tpl:7
+#: ./application/modules/user_manager/templates/edit_user.tpl:54
+#: ./application/modules/user_manager/templates/create_user.tpl:77
 msgid "Group"
 msgstr "Группа"
 
-#: ./application/modules/user_manager//templates/edit_perms.tpl:64
+#: ./application/modules/user_manager/templates/edit_perms.tpl:64
 msgid "Cancel all"
 msgstr "Отменить все"
 
-#: ./application/modules/user_manager//templates/edit_perms.tpl:65
+#: ./application/modules/user_manager/templates/edit_perms.tpl:64
 msgid "Cancel selection"
 msgstr "Отменить выбранное"
 
-#: ./application/modules/user_manager//templates/main.tpl:62
-#: ./application/modules/user_manager//templates/users_table_search.tpl:4
-#: ./application/modules/user_manager//templates/groups.tpl:6
+#: ./application/modules/user_manager/templates/main.tpl:64
+#: ./application/modules/user_manager/templates/users_table_search.tpl:4
+#: ./application/modules/user_manager/templates/groups.tpl:6
 msgid "ID"
 msgstr "ID"
 
-#: ./application/modules/user_manager//templates/users_table_search.tpl:5
-#: ./application/modules/user_manager//admin.php:171
+#: ./application/modules/user_manager/templates/users_table_search.tpl:5
+#: ./application/modules/user_manager/admin.php:171
 msgid "Login"
 msgstr "Войти"
 
-#: ./application/modules/user_manager//templates/users_table_search.tpl:6
-#: ./application/modules/user_manager//templates/edit_user.tpl:34
-#: ./application/modules/user_manager//admin.php:174
+#: ./application/modules/user_manager/templates/users_table_search.tpl:6
+#: ./application/modules/user_manager/templates/edit_user.tpl:34
+#: ./application/modules/user_manager/admin.php:174
 msgid "E-Mail"
 msgstr "E-Mail"
 
-#: ./application/modules/user_manager//templates/users_table_search.tpl:8
-#: ./application/modules/user_manager//templates/edit_user.tpl:78
+#: ./application/modules/user_manager/templates/users_table_search.tpl:8
+#: ./application/modules/user_manager/templates/edit_user.tpl:78
 msgid "Ban"
 msgstr "Бан"
 
-#: ./application/modules/user_manager//templates/main.tpl:67
-#: ./application/modules/user_manager//templates/users_table_search.tpl:9
+#: ./application/modules/user_manager/templates/main.tpl:69
+#: ./application/modules/user_manager/templates/users_table_search.tpl:9
 msgid "Last IP"
 msgstr "Последний IP"
 
 # нее�
-#: ./application/modules/user_manager//templates/users_table_search.tpl:10
+#: ./application/modules/user_manager/templates/users_table_search.tpl:10
 msgid "Latest Entry or Last Entry"
 msgstr "Последний Вход"
 
-#: ./application/modules/user_manager//templates/users_table_search.tpl:11
+#: ./application/modules/user_manager/templates/users_table_search.tpl:11
 msgid "Created"
 msgstr "Создано"
 
-#: ./application/modules/user_manager//templates/users_table_search.tpl:28
+#: ./application/modules/user_manager/templates/users_table_search.tpl:28
 msgid "Edit"
 msgstr "Редактировать"
 
-#: ./application/modules/user_manager//templates/edit_user.tpl:6
-msgid "Editing by"
-msgstr "Редактировать"
-
-#: ./application/modules/user_manager//templates/edit_user.tpl:12
-#: ./application/modules/user_manager//templates/groups_edit.tpl:12
+#: ./application/modules/user_manager/templates/edit_user.tpl:12
+#: ./application/modules/user_manager/templates/groups_edit.tpl:12
 msgid "Save and exit"
 msgstr "Создать и вийти"
 
-#: ./application/modules/user_manager//templates/edit_user.tpl:21
+#: ./application/modules/user_manager/templates/edit_user.tpl:21
 msgid "User data"
 msgstr "Данные пользователя"
 
-#: ./application/modules/user_manager//templates/edit_user.tpl:41
-#: ./application/modules/user_manager//templates/create_user.tpl:46
+#: ./application/modules/user_manager/templates/edit_user.tpl:41
+#: ./application/modules/user_manager/templates/create_user.tpl:46
 msgid "Full name"
 msgstr "Полное имя"
 
-#: ./application/modules/user_manager//templates/edit_user.tpl:48
+#: ./application/modules/user_manager/templates/edit_user.tpl:48
+#: ./application/modules/user_manager/admin.php:175
+#: ./application/modules/user_manager/admin.php:368
 msgid "Phone"
 msgstr "Телефон"
 
-#: ./application/modules/user_manager//templates/edit_user.tpl:57
+#: ./application/modules/user_manager/templates/edit_user.tpl:57
 msgid "Without group"
 msgstr "Без группы"
 
-#: ./application/modules/user_manager//templates/edit_user.tpl:65
-#: ./application/modules/user_manager//templates/create_user.tpl:60
+#: ./application/modules/user_manager/templates/edit_user.tpl:65
+#: ./application/modules/user_manager/templates/create_user.tpl:60
 msgid "New password"
 msgstr "Новый пароль"
 
-#: ./application/modules/user_manager//templates/edit_user.tpl:71
+#: ./application/modules/user_manager/templates/edit_user.tpl:71
 msgid "Password confirm"
 msgstr "Подтвердить пароль"
 
-#: ./application/modules/user_manager//templates/edit_user.tpl:81
+#: ./application/modules/user_manager/templates/edit_user.tpl:81
 msgid "No"
 msgstr "Нет"
 
-#: ./application/modules/user_manager//templates/edit_user.tpl:82
+#: ./application/modules/user_manager/templates/edit_user.tpl:82
 msgid "Yes"
 msgstr "Да"
 
-#: ./application/modules/user_manager//templates/edit_user.tpl:87
+#: ./application/modules/user_manager/templates/edit_user.tpl:87
 msgid "Ban Reason"
 msgstr "Причина Бана"
 
-#: ./application/modules/user_manager//templates/groups.tpl:30
+#: ./application/modules/user_manager/templates/groups.tpl:30
 msgid "Options"
 msgstr "Опции"
 
-#: ./application/modules/user_manager//templates/groups.tpl:31
-#: ./application/modules/user_manager//templates/groups.tpl:49
-#: ./application/modules/user_manager//templates/create_group.tpl:11
+#: ./application/modules/user_manager/templates/groups.tpl:30
+#: ./application/modules/user_manager/templates/groups.tpl:49
+#: ./application/modules/user_manager/templates/create_group.tpl:11
 msgid "Create"
 msgstr "Создать"
 
-#: ./application/modules/user_manager//templates/groups.tpl:7
-#: ./application/modules/user_manager//templates/groups.tpl:33
-#: ./application/modules/user_manager//templates/groups_edit.tpl:32
-#: ./application/modules/user_manager//templates/create_group.tpl:35
+#: ./application/modules/user_manager/templates/groups.tpl:7
+#: ./application/modules/user_manager/templates/groups.tpl:33
+#: ./application/modules/user_manager/templates/groups_edit.tpl:32
+#: ./application/modules/user_manager/templates/create_group.tpl:35
 msgid "Name"
 msgstr "Название"
 
-#: ./application/modules/user_manager//templates/groups.tpl:8
-#: ./application/modules/user_manager//templates/groups.tpl:37
-#: ./application/modules/user_manager//templates/groups_edit.tpl:38
-#: ./application/modules/user_manager//templates/groups_edit.tpl:41
-#: ./application/modules/user_manager//templates/create_group.tpl:41
+#: ./application/modules/user_manager/templates/groups.tpl:8
+#: ./application/modules/user_manager/templates/groups.tpl:37
+#: ./application/modules/user_manager/templates/groups_edit.tpl:38
+#: ./application/modules/user_manager/templates/groups_edit.tpl:41
+#: ./application/modules/user_manager/templates/create_group.tpl:41
 msgid "Identifier"
 msgstr "Идентификатор"
 
-#: ./application/modules/user_manager//templates/groups.tpl:38
+#: ./application/modules/user_manager/templates/groups.tpl:38
 msgid "Just latin characters"
 msgstr "Только латинские буквы"
 
-#: ./application/modules/user_manager//templates/groups.tpl:9
-#: ./application/modules/user_manager//templates/groups.tpl:41
-#: ./application/modules/user_manager//templates/groups_edit.tpl:45
-#: ./application/modules/user_manager//templates/create_group.tpl:48
+#: ./application/modules/user_manager/templates/groups.tpl:9
+#: ./application/modules/user_manager/templates/groups.tpl:41
+#: ./application/modules/user_manager/templates/groups_edit.tpl:45
+#: ./application/modules/user_manager/templates/create_group.tpl:48
 msgid "Description"
 msgstr "Описание"
 
-#: ./application/modules/user_manager//templates/create_user.tpl:6
-msgid "Create a new user"
-msgstr "Создать новго пользователя"
-
-#: ./application/modules/user_manager//templates/create_user.tpl:11
-#: ./application/modules/user_manager//templates/create_group.tpl:10
+#: ./application/modules/user_manager/templates/create_group.tpl:10
 msgid "Go back"
 msgstr "Назад"
 
-#: ./application/modules/user_manager//templates/create_user.tpl:12
+#: ./application/modules/user_manager/templates/create_user.tpl:12
 msgid "Сreate"
 msgstr "Создать"
 
-#: ./application/modules/user_manager//templates/create_user.tpl:13
-#: ./application/modules/user_manager//templates/create_group.tpl:12
+#: ./application/modules/user_manager/templates/create_user.tpl:13
+#: ./application/modules/user_manager/templates/create_group.tpl:12
 msgid "Create and exit"
 msgstr "Создать и выйти"
 
-#: ./application/modules/user_manager//templates/create_user.tpl:26
+#: ./application/modules/user_manager/templates/create_user.tpl:26
 msgid "New user"
 msgstr "Новый пользователь"
 
-#: ./application/modules/user_manager//templates/create_user.tpl:39
+#: ./application/modules/user_manager/templates/create_user.tpl:39
 msgid "Email"
 msgstr "E-mail"
 
-#: ./application/modules/user_manager//templates/create_user.tpl:53
+#: ./application/modules/user_manager/templates/create_user.tpl:53
 msgid "Phone number"
 msgstr "Номер телефона"
 
-#: ./application/modules/user_manager//templates/create_user.tpl:69
-#: ./application/modules/user_manager//admin.php:173
+#: ./application/modules/user_manager/templates/create_user.tpl:69
+#: ./application/modules/user_manager/admin.php:173
 msgid "Confirm the password"
 msgstr "Подтвердите пароль"
 
-#: ./application/modules/user_manager//templates/create_user.tpl:80
+#: ./application/modules/user_manager/templates/create_user.tpl:80
 msgid "No group"
 msgstr "Нет групп"
 
-#: ./application/modules/user_manager//templates/create_group.tpl:6
+#: ./application/modules/user_manager/templates/create_group.tpl:6
 msgid "Creating a group"
 msgstr "Создать группу"
 
-#: ./application/modules/user_manager//templates/create_group.tpl:24
+#: ./application/modules/user_manager/templates/create_group.tpl:24
 msgid "Group details"
 msgstr "Детали группы"
 
-#: ./application/modules/user_manager//templates/create_group.tpl:44
+#: ./application/modules/user_manager/templates/create_group.tpl:44
 msgid "Only Latin characters"
 msgstr "Только латинские буквы"
 
-#: ./application/modules/user_manager//templates/main.tpl:6
-#: ./application/modules/user_manager//templates/main.tpl:18
+#: ./application/modules/user_manager/templates/main.tpl:6
+#: ./application/modules/user_manager/templates/main.tpl:18
 msgid "Deleting a user"
 msgstr "Удаление пользователя"
 
-#: ./application/modules/user_manager//templates/main.tpl:9
+#: ./application/modules/user_manager/templates/main.tpl:9
 msgid "Remove selected users?"
 msgstr "Удалить выбранных пользователей?"
 
-#: ./application/modules/user_manager//templates/main.tpl:19
+#: ./application/modules/user_manager/templates/main.tpl:19
 msgid "Delete a user?"
 msgstr "Удалить пользователя?"
 
-#: ./application/modules/user_manager//templates/main.tpl:26
+#: ./application/modules/user_manager/templates/main.tpl:26
 msgid "Corporate site users"
 msgstr "Пользователи корпоративного сайта"
 
-#: ./application/modules/user_manager//templates/main.tpl:63
+#: ./application/modules/user_manager/templates/main.tpl:65
 msgid "User"
 msgstr "Пользователь"
 
-#: ./application/modules/user_manager//templates/main.tpl:64
+#: ./application/modules/user_manager/templates/main.tpl:66
 msgid "E-mail"
 msgstr "E-mail"
 
-#: ./application/modules/user_manager//templates/main.tpl:66
+#: ./application/modules/user_manager/templates/main.tpl:68
 msgid "Banned"
 msgstr "Бан"
 
-#: ./application/modules/user_manager//templates/groups.tpl:2
+#: ./application/modules/user_manager/templates/groups.tpl:2
 msgid "Preliminary contents"
 msgstr "Предварительное содержание"
 
-#: ./application/modules/user_manager//templates/groups.tpl:3
+#: ./application/modules/user_manager/templates/groups.tpl:2
 msgid "Group list"
 msgstr "Список групп"
 
-#: ./application/modules/user_manager//templates/groups_edit.tpl:6
+#: ./application/modules/user_manager/templates/groups_edit.tpl:6
 msgid "Editing Groups"
 msgstr "Редактирование групп"
 
-#: ./application/modules/user_manager//templates/groups_edit.tpl:21
+#: ./application/modules/user_manager/templates/groups_edit.tpl:21
 msgid "Group data"
 msgstr "Данные группы"
 
-#: ./application/modules/user_manager//admin.php:93
+#: ./application/modules/user_manager/admin.php:93
 msgid "Next"
 msgstr "Слядующая"
 
-#: ./application/modules/user_manager//admin.php:94
+#: ./application/modules/user_manager/admin.php:94
 #, fuzzy
 msgid "Prev"
 msgstr "Смотреть"
 
-#: ./application/modules/user_manager//admin.php:172
+#: ./application/modules/user_manager/admin.php:172
 msgid "Password"
 msgstr "Пароль"
 
-#: ./application/modules/user_manager//admin.php:184
+#: ./application/modules/user_manager/admin.php:185
 msgid "User with the same e-mail has been registered"
 msgstr "Пользователь с таким e-mail был зарегистрирован"
 
 # нее�
-#: ./application/modules/user_manager//admin.php:204
+#: ./application/modules/user_manager/admin.php:205
 msgid "Create a user or the username has been created"
 msgstr "Создать пользователя"
 
 # нее�
-#: ./application/modules/user_manager//admin.php:208
+#: ./application/modules/user_manager/admin.php:209
 msgid "Username has been created or user has been created"
 msgstr "Пользователь был создан"
 
-#: ./application/modules/user_manager//admin.php:247
+#: ./application/modules/user_manager/admin.php:248
 msgid "Ban the user  or the user has been banned"
 msgstr "Пользователь забанен"
 
-#: ./application/modules/user_manager//admin.php:256
+#: ./application/modules/user_manager/admin.php:257
 msgid "The user has been unbanned "
 msgstr "Пользователь был удален с бана"
 
-#: ./application/modules/user_manager//admin.php:293
-#: ./application/modules/user_manager//admin.php:310
-#: ./application/modules/user_manager//admin.php:340
+#: ./application/modules/user_manager/admin.php:312
+#: ./application/modules/user_manager/admin.php:342
 msgid "amt_users_not_found"
 msgstr ""
 
-#: ./application/modules/user_manager//admin.php:322
+#: ./application/modules/user_manager/admin.php:324
 msgid "a_bas_filt_pass_not_post"
 msgstr ""
 
-#: ./application/modules/user_manager//admin.php:363
+#: ./application/modules/user_manager/admin.php:365
 msgid "amt_user_login"
 msgstr ""
 
-#: ./application/modules/user_manager//admin.php:364
-#: ./application/modules/user_manager//admin.php:372
+#: ./application/modules/user_manager/admin.php:366
+#: ./application/modules/user_manager/admin.php:374
 #, fuzzy
 msgid "amt_password"
 msgstr "Пароль"
 
-#: ./application/modules/user_manager//admin.php:365
-#: ./application/modules/user_manager//admin.php:373
+#: ./application/modules/user_manager/admin.php:367
+#: ./application/modules/user_manager/admin.php:375
 msgid "amt_new_pass_confirm"
 msgstr ""
 
-#: ./application/modules/user_manager//admin.php:367
+#: ./application/modules/user_manager/admin.php:369
 #, fuzzy
 msgid "amt_email"
 msgstr "Нааааааааамеееееееееее"
 
-#: ./application/modules/user_manager//admin.php:378
+#: ./application/modules/user_manager/admin.php:380
 msgid "amt_email_exists"
 msgstr ""
 
-#: ./application/modules/user_manager//admin.php:406
+#: ./application/modules/user_manager/admin.php:408
 #, fuzzy
 msgid "amt_updated_user"
 msgstr "Пользователь обновлен"
 
-#: ./application/modules/user_manager//admin.php:411
-#: ./application/modules/user_manager//admin.php:516
-#, fuzzy
-msgid "amt_changes_saved"
-msgstr "Нааааааааамеееееееееее"
-
-#: ./application/modules/user_manager//admin.php:444
+#: ./application/modules/user_manager/admin.php:445
 #, fuzzy
 msgid "amt_identif"
 msgstr "Нааааааааамеееееееееее"
 
-#: ./application/modules/user_manager//admin.php:445
+#: ./application/modules/user_manager/admin.php:446
 #, fuzzy
 msgid "amt_tname"
 msgstr "Нааааааааамеееееееееее"
 
-#: ./application/modules/user_manager//admin.php:446
+#: ./application/modules/user_manager/admin.php:447
 #, fuzzy
 msgid "amt_description"
 msgstr "Описание"
 
-#: ./application/modules/user_manager//admin.php:461
+#: ./application/modules/user_manager/admin.php:462
 #, fuzzy
 msgid "amt_created_group"
 msgstr "Нааааааааамеееееееееее"
 
-#: ./application/modules/user_manager//admin.php:462
+#: ./application/modules/user_manager/admin.php:463
 #, fuzzy
 msgid "amt_group_created"
 msgstr "Нааааааааамеееееееееее"
 
-#: ./application/modules/user_manager//admin.php:480
+#: ./application/modules/user_manager/admin.php:481
 msgid "a_del_user_notif"
 msgstr ""
 
-#: ./application/modules/user_manager//admin.php:490
+#: ./application/modules/user_manager/admin.php:491
 #, fuzzy
 msgid "amt_deleted_user"
 msgstr "Пользователь удален"
 
-#: ./application/modules/user_manager//module_info.php:4
+#: ./application/modules/user_manager/module_info.php:4
 msgid "Users manager"
 msgstr "Управление пользователями"
 
-#: ./application/modules/user_manager//module_info.php:5
+#: ./application/modules/user_manager/module_info.php:5
 msgid "User management in ImageCMS Corporate."
 msgstr "Управление пользователями для корпоративного сайта."
 

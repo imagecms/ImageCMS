@@ -38,7 +38,7 @@
         <div class="container">
             <div class="inside-padd t-a_j">
                 <div>
-                    <div class="c_b">{echo siteinfo('siteinfo_companytype')} {echo date('Y')}</div>
+                    <div class="c_b f-w_b">{echo siteinfo('siteinfo_companytype')} {echo date('Y')}</div>
                     <div class="c_9">{lang('Все права защищены','newLevel')}</div>
                 </div>
                 <div>
@@ -109,14 +109,6 @@
                         </li>
                     </ul>
                 </div>
-                {if function_exists('mobile_site_address')}
-                    <div>
-                        <a href="{mobile_site_address()}" class="f-s_0 c_w">
-                            <span class="icon_phone_footer"></span>
-                            <span class="text-el">{lang('Мобильная версия','newLevel')}</span>
-                        </a>
-                    </div>
-                {/if}
             </div>
         </div>
     </div>

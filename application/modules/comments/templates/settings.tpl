@@ -35,7 +35,7 @@
                                 <label class="control-label" for="period">{lang("Comment restrictions", 'comments')}:</label>
                                 <div class="controls number">
                                     <input type="text" value="{$settings.period}" name="period" id="period"/>
-                                    <span class="help-block">{lang("Comment frequency restriction  per minute . O - check off", 'comments')}</span>
+                                    <span class="help-block">{lang("Comment frequency restriction per minute . O - check off", 'comments')}</span>
                                 </div>
                             </div>
                             <div class="control-group">
