@@ -846,7 +846,7 @@ hr{border-top: 1px solid #fff;border-bottom: 1px solid #e4e4e4;}
     background: linear-gradient(to bottom,  #9ec300 0%,#719500 50%,#638a00 51%,#638a00 100%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9ec300', endColorstr='#638a00',GradientType=0 ); /* IE6-9 */
 }
-.btn-cart > button, .btn-cart > a, .btn-cart > input{height: 32px;line-height: 31px;padding: 0 24px 0 17px;}
+.btn-cart > button, .btn-cart > a, .btn-cart > input{height: 32px;line-height: 31px;padding: 0 24px 0 24px;}
 .btn-cart .text-el, .btn-cart > input{text-transform: uppercase;font-size: 13px;color: #fff;}
 
 .btn-cart-p .text-el, .btn-cart-p > input, .frame-payment input[type="submit"]{font-size: 15px;}
