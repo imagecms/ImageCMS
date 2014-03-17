@@ -21,7 +21,7 @@
                     <tbody>
                         <tr>
                             <td>
-                                <div class="inside_padd">
+                                <div class="inside_padd span9">
                                     <div class="row-fluid">
                                         {foreach $langs as $l}
                                             <div class="control-group">

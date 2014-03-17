@@ -16,7 +16,7 @@
             <div class="tab-pane active">
                 {foreach $groups as $key =>$group} 
                     <div class="span3">
-                        <table class="table table-striped table-bordered table-hover table-condensed">
+                        <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
                             <thead>
                                 <tr>
                                     <th class="t-a_c span1">

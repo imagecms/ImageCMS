@@ -17,7 +17,7 @@
             <div class="tab-content">
                 <div class="tab-pane active" id="parameters">
                     <form action="{$BASE_URL}admin/languages/insert" method="post"  id="createLang" >
-                        <table class="table table-striped table-bordered table-hover table-condensed">
+                        <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
                             <thead>
                                 <tr>
                                     <th colspan="6">
@@ -28,7 +28,7 @@
                             <tbody>
                                 <tr>
                                     <td colspan="6">
-                                        <div class="inside_padd span9">
+                                        <div class="inside_padd span9 span9">
                                             <div class="form-horizontal">
                                                 <div class="control-group">
                                                     <label class="control-label" for="name">{lang("Language","admin")}:</label>

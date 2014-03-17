@@ -183,9 +183,14 @@ div[class="tooltip-inner"] {
 
 #poTab > .pull-right{
     position: relative; 
-    right: 150px;
-    margin-right: 10px;
+    right: 2px;
 }
+
+#poTab > .pull-right .searchString{
+    min-width: 250px;
+}
+
+
 
 #poTab .searchTranslatorOptions{
     width: 430px!important; 
@@ -222,7 +227,8 @@ div[class="tooltip-inner"] {
 }
 
 .originLangHolder > select#originLang{
-    width: 80px;
+    min-width: 50px;
+    width: auto;
 }
 
 .YandexApiKeyHolder{
@@ -271,4 +277,8 @@ div[class="tooltip-inner"] {
 
 .poSelectorsHolder  #modules_templates{
     max-width: 300px;
+}
+
+.poSelectorsHolder  select{
+    width: auto;
 }

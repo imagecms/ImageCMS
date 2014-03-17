@@ -150,7 +150,7 @@
                         </button>
                         <ul class="dropdown-menu" role="menu">
                             <li><a class="pjax" style="text-decoration: none" href="/admin/components/init_window/translator/createFile">{lang('Create', 'translator')}</a></li>
-                            <li><a class="pjax" style="text-decoration: none" href="/admin/components/init_window/translator/exchangeTranslation">{lang('Exchange', 'translator')}</a></li>
+                            <li><a class="pjax" style="text-decoration: none" href="/admin/components/init_window/translator/exchangeTranslation">{lang('Translation exchange', 'translator')}</a></li>
                             <li><a onclick="Translator.correctPaths($(this))">{lang('Correct paths', 'translator')}</a></li>
                             <li class="divider"></li>
                             <li><a onclick="Translator.translate($(this))">{lang('Translate all', 'translator')}</a></li>
@@ -259,7 +259,7 @@
                             </div>
                         </div>
 
-                        <table id="po_table" class="table table-striped table-bordered table-hover table-condensed">
+                        <table id="po_table" class="table table-striped table-bordered table-hover table-condensed t-l_a">
                             <thead>
                                 <tr>
                                     <th style="width: 50px">
@@ -268,7 +268,7 @@
                                             <span class="f-s_14 desc" >↓</span>
                                         </a>
                                     </th>
-                                    <th class="span6 t-a_c">
+                                    <th class="t-a_c">
                                         <a class="originHead sortTable" onclick="Sort.go($(this))">{lang('Origin', 'translator', 'wishlist')}
                                             <span class="f-s_14 asc" >↑</span>
                                             <span class="f-s_14 desc" >↓</span>
@@ -281,14 +281,14 @@
                                         /
                                         <a class="defaultSort sortTable" onclick="Sort.default($(this))">{lang('Default sort', 'translator')}</a>
                                     </th>
-                                    <th class="commentTH t-a_c span3">
+                                    <th class="commentTH t-a_c">
                                         <a class="comment sortTable" onclick="Sort.go($(this))">{lang('Comment', 'translator')}
                                             <span class="f-s_14 asc" >↑</span>
                                             <span class="f-s_14 desc" >↓</span>
                                         </a>
                                     </th>
                                     <th class="span3 t-a_c" class="linksTH">
-                                        {lang('Links', 'translator')}
+                                        {lang('Paths to contains files', 'translator')}
                                     </th>
                                 </tr>
                             </thead>
@@ -364,7 +364,7 @@
                         <br>
 
                         <form method="post" action="{site_url('admin/components/init_window/translator/createFile')}" class="form-horizontal" id="create_file_form">
-                            <table class="table table-striped table-bordered table-hover table-condensed">
+                            <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
                                 <thead>
                                     <tr>
                                         <th colspan="6">
@@ -375,7 +375,7 @@
                                 <tbody>
                                     <tr>
                                         <td colspan="6">
-                                            <div class="inside_padd">
+                                            <div class="inside_padd span9">
                                                 <div class="po_settings"></div>
 
                                                 <div class="control-group pathParseHolder"  style="display: none">
