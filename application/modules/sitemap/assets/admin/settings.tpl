@@ -34,7 +34,7 @@
             <tbody>
                 <tr>
                     <td>
-                        <div class="inside_padd span10">
+                        <div class="inside_padd span9">
 
                             <div class="control-group">
                                 <label class="control-label" for="comcount">{lang("Site Map", 'sitemap')}:</label>

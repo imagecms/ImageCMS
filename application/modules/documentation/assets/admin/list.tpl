@@ -106,70 +106,71 @@
                             </ul>
                         </div>
                     {/if}
-
-                    <table class="table table-striped table-bordered table-hover table-condensed pages-table span9" {if $show_cat_list != 'yes'} style="width:100%;"{/if}>
-                        <thead>
-                            <tr>
-                                <th class="t-a_c span1">
-                                    <span class="frame_label">
-                                        <span class="niceCheck b_n">
-                                            <input type="checkbox"/>
-                                        </span>
-                                    </span>
-                                </th>
-                                <th class="span1">ID</th>
-                                <th class="span4">{lang('Title','documentation')}</th>
-                                <th class="span2">{lang('Created','documentation')}</th>
-                                <th class="span2">{lang('Last update','documentation')}</th>
-                                <th class="span1">{lang('Status','documentation')}</th>
-                            </tr>
-                        </thead>
-                        <tbody data-url="" class="sortable ui-sortable">
-                            {if count($pages)}
-                                {foreach $pages as $page}
-                                    <tr data-id="{$page.id}">
-                                        <td class="t-a_c">
-                                            <span class="frame_label">
-                                                <span class="niceCheck b_n">
-                                                    <input type="checkbox" data-id="{$page.id}" name="ids" value="{$page.id}"/>
-                                                </span>
+                    <span class="span9">
+                        <table class="table table-striped table-bordered table-hover table-condensed pages-table t-l_a">
+                            <thead>
+                                <tr>
+                                    <th class="t-a_c span1">
+                                        <span class="frame_label">
+                                            <span class="niceCheck b_n">
+                                                <input type="checkbox"/>
                                             </span>
-                                        </td>
-                                        <td><span>{$page.id}</span></td>
-                                        <td class="share_alt">
-                                            <a href="{$BASE_URL}{$page.cat_url}{$page.url}" target="_blank" class="go_to_site pull-right btn btn-small" data-rel="tooltip" data-placement="top" data-original-title="{lang("go to site",'documentation')}"><i class="icon-share-alt"></i></a>
-                                            <a href="{$BASE_URL}admin/components/cp/documentation/history/{$page.id}" class="title pjax" data-rel="tooltip" data-original-title="{lang("Editing",'documentation')}">{$page.title}</a>
-                                        </td>
-                                        <td>
-                                            {date('d-m-Y H:i', $page.created)}
-                                        </td>
-                                        <td>
-                                            {date('d-m-Y H:i', $page.updated)}
-                                        </td>
-                                        <td>
-                                            <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="{if $page['post_status'] == 'publish'}{lang("show",'documentation')}{else:}{lang('dont show')}{/if}" onclick="change_page_status('{$page.id}');">
-                                                <span class="prod-on_off {if $page['post_status'] != 'publish'}disable_tovar{/if}" style="{if $page['post_status'] != 'publish'}left: -28px;{/if}"></span>
-                                            </div>
+                                        </span>
+                                    </th>
+                                    <th>ID</th>
+                                    <th>{lang('Title','documentation')}</th>
+                                    <th>{lang('Created','documentation')}</th>
+                                    <th>{lang('Last update','documentation')}</th>
+                                    <th>{lang('Status','documentation')}</th>
+                                </tr>
+                            </thead>
+                            <tbody data-url="" class="sortable ui-sortable">
+                                {if count($pages)}
+                                    {foreach $pages as $page}
+                                        <tr data-id="{$page.id}">
+                                            <td class="t-a_c">
+                                                <span class="frame_label">
+                                                    <span class="niceCheck b_n">
+                                                        <input type="checkbox" data-id="{$page.id}" name="ids" value="{$page.id}"/>
+                                                    </span>
+                                                </span>
+                                            </td>
+                                            <td><span>{$page.id}</span></td>
+                                            <td class="share_alt">
+                                                <a href="{$BASE_URL}{$page.cat_url}{$page.url}" target="_blank" class="go_to_site pull-right btn btn-small" data-rel="tooltip" data-placement="top" data-original-title="{lang("go to site",'documentation')}"><i class="icon-share-alt"></i></a>
+                                                <a href="{$BASE_URL}admin/components/cp/documentation/history/{$page.id}" class="title pjax" data-rel="tooltip" data-original-title="{lang("Editing",'documentation')}">{$page.title}</a>
+                                            </td>
+                                            <td>
+                                                {date('d-m-Y H:i', $page.created)}
+                                            </td>
+                                            <td>
+                                                {date('d-m-Y H:i', $page.updated)}
+                                            </td>
+                                            <td>
+                                                <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="{if $page['post_status'] == 'publish'}{lang("show",'documentation')}{else:}{lang('dont show')}{/if}" onclick="change_page_status('{$page.id}');">
+                                                    <span class="prod-on_off {if $page['post_status'] != 'publish'}disable_tovar{/if}" style="{if $page['post_status'] != 'publish'}left: -28px;{/if}"></span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    {/foreach}
+                                {else:}
+                                    <tr>
+                                        <td colspan="6">
+                                            <table>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <div class="alert alert-info" style="margin: 18px;">{lang('Your search did not found', 'documentation')}</div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
                                         </td>
                                     </tr>
-                                {/foreach}
-                            {else:}
-                                <tr>
-                                    <td colspan="6">
-                                        <table>
-                                            <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <div class="alert alert-info" style="margin: 18px;">{lang('Your search did not found', 'documentation')}</div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </td>
-                                </tr>
-                            {/if}
-                        </tbody>
-                    </table>
+                                {/if}
+                            </tbody>
+                        </table>
+                    </span>
                 </div>
                 {if $paginator > ''}
                     <div class="clearfix">
@@ -179,12 +180,12 @@
             </div>
             <div class="tab-pane" id="menu_categories">
                 <div class="row-fluid">
-                    <table class="table table-striped table-bordered table-hover table-condensed pages-table">
+                    <table class="table table-striped table-bordered table-hover table-condensed pages-table t-l_a">
                         <thead>
                             <tr>
-                                <th class="span1">ID</th>
-                                <th class="span8">{lang('Title','documentation')}</th>
-                                <th class="span8">{lang('Category menu','documentation')}</th>
+                                <th>ID</th>
+                                <th>{lang('Title','documentation')}</th>
+                                <th>{lang('Category menu','documentation')}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -222,10 +223,10 @@
                 <div class="row-fluid">
                     <table class="table table-striped table-bordered table-hover table-condensed pages-table">
                         <thead>
-                            
+
                         </thead>
                         <tbody>
-                            
+
                         </tbody>
                     </table>
                 </div>

@@ -24,7 +24,7 @@
                     <div class="header_title">
                         {lang('Login page', 'socauth')}
                     </div>
-                    <div class="inside_padd">
+                    <div class="inside_padd span9">
                         <div class="horizontal_form standart_form">
                             <!-- login form -->
                             <form method="post" id="login_form" onsubmit="ImageCMSApi.formAction('/auth/authapi/login', 'login_form');

@@ -23,7 +23,7 @@
         <tbody>
             <tr>
                 <td colspan="6">
-                    <div class="inside_padd">
+                    <div class="inside_padd span9">
                         <div class="form-horizontal">
                             <form id="edit" method="post" action="{$SELF_URL}/edit_trash/{echo $trash->id}">
                                 <div class="span9">

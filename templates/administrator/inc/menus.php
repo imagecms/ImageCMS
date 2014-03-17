@@ -322,12 +322,29 @@ $shopMenu = array(
         'icon' => 'icon-statistic',
         'subMenu' => array(
             array(
-                'link' => $ADMIN_URL . 'charts/brands',
-                'text' => lang('Brands', 'admin'),
+                'link' => '/admin/components/cp/mod_stats/orders/charts',
+                'text' => lang('Orders', 'admin'),
+                'pjax' => FALSE
             ),
             array(
-                'link' => $ADMIN_URL . 'charts/orders',
-                'text' => lang('Orders', 'admin'),
+                'link' => '/admin/components/cp/mod_stats/users/online',
+                'text' => lang('Users', 'admin'),
+                'pjax' => FALSE
+            ),
+            array(
+                'link' => '/admin/components/cp/mod_stats/products/categories',
+                'text' => lang('Products', 'admin'),
+                'pjax' => FALSE
+            ),
+            array(
+                'link' => '/admin/components/cp/mod_stats/categories/attendance',
+                'text' => lang('Categories', 'admin'),
+                'pjax' => FALSE
+            ),
+            array(
+                'link' => '/admin/components/cp/mod_stats/search/keywords',
+                'text' => lang('Search', 'admin'),
+                'pjax' => FALSE
             )
         )
     ),
