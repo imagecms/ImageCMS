@@ -7,7 +7,7 @@
         <div class="pull-right">
             <div class="d-i_b">
                 <a href="/admin/components/cp/menu/menu_item/{$menu.name}" class="t-d_n m-r_15 pjax"><span class="f-s_14"></span>←<span class="t-d_u">{lang("Go back", "menu")}</span></a>
-                <button type="button" class="btn btn-small btn-primary formSubmit submit_link" data-form="#page_form" data-submit><i class="icon-ok"></i>{lang("Create", "menu")}</button>
+                <button type="button" class="btn btn-small btn-success formSubmit submit_link" data-form="#page_form" data-submit><i class="icon-ok"></i>{lang("Create", "menu")}</button>
                 <button type="button" class="btn btn-small formSubmit submit_link" data-form="#page_form" data-action="tomain"><i class="icon-ok"></i>{lang("Create and exit", "menu")}</button>
             </div>
         </div>                            

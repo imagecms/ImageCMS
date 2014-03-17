@@ -43,7 +43,7 @@
             {/if}
         </div>
         <div class="btn-group myTab m-t_20 pull-left" data-toggle="buttons-radio">
-            <a href="#content_article" class="btn btn-small active">{lang("Content","admin")}</a>
+            <a href="#content_article" class="btn btn-small active">{lang("Page","admin")}</a>
             <a href="#parameters_article" class="btn btn-small ">{lang("Properties","admin")}</a>
             <a href="#addfields_article" class="btn btn-small">{lang("Additional fields","admin")}</a>
             <a href="#setings_article" class="btn btn-small">{lang("Settings","admin")}</a>
@@ -63,7 +63,7 @@
                     <thead>
                         <tr>
                             <th colspan="6">
-                                {lang("Content","admin")}
+                                {lang("Page","admin")}
                             </th>
                         </tr>
                     </thead>
@@ -73,7 +73,7 @@
                                 <div class="inside_padd">
                                     <div class="control-group">
                                         <label class="control-label" for="category_selectbox">
-                                            {lang("Categories","admin")}:
+                                            {lang("Category","admin")}:
                                         </label>
                                         <div class="controls">
                                             <a onclick="$('.modal').modal();

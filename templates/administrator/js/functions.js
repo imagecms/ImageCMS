@@ -182,6 +182,7 @@ function ChangeSortActive(el, sortId)
         sortId: sortId,
         status: currentActiveStatus
     }, function(data) {
+        
         $('.notifications').append(data)
         if (currentActiveStatus == 'true')
         {
@@ -190,7 +191,8 @@ function ChangeSortActive(el, sortId)
         } else {
             $(el).removeClass('disable_tovar').attr('rel', true);
         }
-
+        $(el).closest('tr').find('.orderMethodsEdit').removeClass('disabled')
+        $(el).closest('tr').find('.orderMethodsEdit').removeAttr('disabled')
     });
 }
 
