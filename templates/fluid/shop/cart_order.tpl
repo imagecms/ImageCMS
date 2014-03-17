@@ -170,9 +170,10 @@
                                 {$cartPrice += $priceDel}
                                 <span class="price f-w_b">{echo $priceDel}</span>
                                 <span class="curr">{$CS}</span>
-                                (<span class="price f-w_b">{echo $priceDelAdd}</span>
-                                <span class="curr-add">{$NextCS}</span>)
-                                <span class="not-delivery-price"></span>
+                                {if $NextCSId}
+                                    (<span class="price f-w_b">{echo $priceDelAdd}</span>
+                                    <span class="curr-add">{$NextCS}</span>)
+                                {/if}
                             {else:}
                                 <span class="text-el s-t">{lang('Бесплатно', 'newLevel')}</span>
                             {/if}
@@ -191,8 +192,8 @@
                         <span class="icon_info_t" data-rel="tooltip" data-title="{lang('Выбрана наиболее выгодная скидка', 'newLevel')}" data-other-class="info-patch" data-placement="right"></span>
                     </span>
                     <div class="text-discount current-discount f_r">
-                        <span class="price f-w_b">{echo ShopCore::app()->SCurrencyHelper->convert($discount_val)}</span>
-                        <span class="curr">{$CS}</span>
+                                        <span class="price f-w_b">{echo ShopCore::app()->SCurrencyHelper->convert($discount_val)}</span>
+                                    <span class="curr">{$CS}</span>
                     </div>
                 </td>
             </tr>
