@@ -48,7 +48,7 @@
                         <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
                             <thead>
                                 <tr>
-                                    <th class="span1 t-a_c">
+                                    <th class="t-a_c span1">
                                         <span class="frame_label">
                                             <span class="niceCheck b_n">
                                                 <input type="checkbox"/>

@@ -51,7 +51,7 @@
                 <button type="button" class="btn btn-small disabled listFilterSubmitButton pull-right " style="margin-top:-26px; margin-right: 3px;" disabled="disabled"><i class="icon-filter"></i> {lang('Filter admin', 'user_manager')}</button>
 
                 <form method="get" action="/admin/components/cp/user_manager/search/" id="ordersListFilter" class="listFilterForm">
-                    <table class="table table-striped table-bordered table-hover table-condensed" style="clear: both;">
+                    <table class="table table-striped table-bordered table-hover table-condensed t-l_a" style="clear: both;">
                         <thead>
                             <tr>
                                 <th class="t-a_c span1">
@@ -61,12 +61,12 @@
                                         </span>
                                     </span>
                                 </th>
-                                <th class="span1">{lang("ID", 'user_manager')}</th>
-                                <th class="span3">{lang("User", 'user_manager')}</th>
-                                <th class="span3">{lang("E-mail", 'user_manager')}</th>
-                                <th class="span2">{lang("Group", 'user_manager')}</th>
-                                <th class="span1">{lang("Banned", 'user_manager')}</th>
-                                <th class="span2">{lang("Last IP", 'user_manager')}</th>
+                                <th>{lang("ID", 'user_manager')}</th>
+                                <th>{lang("User", 'user_manager')}</th>
+                                <th>{lang("E-mail", 'user_manager')}</th>
+                                <th>{lang("Group", 'user_manager')}</th>
+                                <th>{lang("Banned", 'user_manager')}</th>
+                                <th>{lang("Last IP", 'user_manager')}</th>
                             </tr>
 
                             <tr class="head_body">

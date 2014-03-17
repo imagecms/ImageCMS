@@ -47,6 +47,20 @@ function readCookie(name) {
     }
     return null;
 }
+function setCookie(name, value, expires, path, domain, secure)
+{
+    var today = new Date();
+    today.setTime(today.getTime());
+    if (expires)
+    {
+        expires = expires * 1000 * 60 * 60 * 24;
+    }
+    var expiresDate = new Date(today.getTime() + (expires));
+    document.cookie = name + "=" + encodeURIComponent(value) +
+            ((expires) ? ";expires=" + expiresDate.toGMTString() : "") + ((path) ? ";path=" + path : "") +
+            ((domain) ? ";domain=" + domain : "") +
+            ((secure) ? ";secure" : "");
+}
 
 // expand categories tree to show last visited category
 function expandCategories(button) {
@@ -168,6 +182,7 @@ function ChangeSortActive(el, sortId)
         sortId: sortId,
         status: currentActiveStatus
     }, function(data) {
+        
         $('.notifications').append(data)
         if (currentActiveStatus == 'true')
         {
@@ -176,7 +191,8 @@ function ChangeSortActive(el, sortId)
         } else {
             $(el).removeClass('disable_tovar').attr('rel', true);
         }
-
+        $(el).closest('tr').find('.orderMethodsEdit').removeClass('disabled')
+        $(el).closest('tr').find('.orderMethodsEdit').removeAttr('disabled')
     });
 }
 

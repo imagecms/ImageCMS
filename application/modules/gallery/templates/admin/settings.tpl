@@ -26,7 +26,7 @@
                         <tbody>
                             <tr>
                                 <td colspan="6">
-                                    <div class="inside_padd">
+                                    <div class="inside_padd span9">
                                         <div class="row-fluid">
                                             <div class="control-group">
                                                 <div class="control-label">{lang("Sort", 'gallery')}:</div>
@@ -59,7 +59,7 @@
                         <tbody>
                             <tr>
                                 <td colspan="6">
-                                    <div class="inside_padd">
+                                    <div class="inside_padd span9">
                                         <div class="row-fluid">
                                             <div class="control-group">
                                                 <label class="control-label" for="max_file_size">{lang("maximum file size", 'gallery')}</label>
@@ -127,7 +127,7 @@
                         <tbody>
                             <tr>
                                 <td colspan="6">
-                                    <div class="inside_padd">
+                                    <div class="inside_padd span9">
                                         <div class="row-fluid">
                                             <div class="control-group">
                                                 <label class="control-label" for="prev_img_width">{lang("Width", 'gallery')}</label>
@@ -178,7 +178,7 @@
                         <tbody>
                             <tr>
                                 <td colspan="6">
-                                    <div class="inside_padd">
+                                    <div class="inside_padd span9">
                                         <div class="row-fluid">
                                             <div class="control-group">
                                                 <label class="control-label" for="thumb_width">{lang("Width", 'gallery')}</label>
@@ -229,7 +229,7 @@
                         <tbody>
                             <tr>
                                 <td colspan="6">
-                                    <div class="inside_padd">
+                                    <div class="inside_padd span9">
                                         <div class="row-fluid">
                                             <div class="control-group">
                                                 <label class="control-label" for="wm_hor_alignment">{lang("horizontal alignment", 'gallery')}</label>

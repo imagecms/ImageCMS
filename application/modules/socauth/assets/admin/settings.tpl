@@ -17,7 +17,7 @@
         </div>                            
     </div>
     <form method="post" action="{site_url('admin/components/cp/socauth/update_settings')}" class="form-horizontal" id="settings_form">
-        <table class="table table-striped table-bordered table-hover table-condensed">
+        <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
             <thead>
                 <tr>
                     <th colspan="6">
@@ -28,7 +28,7 @@
             <tbody>
                 <tr>
                     <td colspan="6">
-                        <div class="inside_padd">
+                        <div class="inside_padd span9">
                             <div class="control-group">
                                 <span class="control-label">
                                     <span data-title="&lt;b&gt;OAuth2 client ID&lt;/b&gt;" class="popover_ref" data-original-title="">
@@ -68,7 +68,7 @@
             </tbody>
         </table>
 
-        <table class="table table-striped table-bordered table-hover table-condensed">
+        <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
             <thead>
                 <tr>
                     <th colspan="6">
@@ -79,7 +79,7 @@
             <tbody>
                 <tr>
                     <td colspan="6">
-                        <div class="inside_padd">
+                        <div class="inside_padd span9">
                             <div class="control-group">
                                 <span class="control-label">
                                     <span data-title="&lt;b&gt;OAuth2 client ID&lt;/b&gt;" class="popover_ref" data-original-title="">
@@ -119,7 +119,7 @@
             </tbody>
         </table>
 
-        <table class="table table-striped table-bordered table-hover table-condensed">
+        <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
             <thead>
                 <tr>
                     <th colspan="6">
@@ -130,7 +130,7 @@
             <tbody>
                 <tr>
                     <td colspan="6">
-                        <div class="inside_padd">
+                        <div class="inside_padd span9">
                             <div class="control-group">
                                 <span class="control-label">
                                     <span data-title="&lt;b&gt;OAuth2 client ID&lt;/b&gt;" class="popover_ref" data-original-title="">
@@ -170,7 +170,7 @@
             </tbody>
         </table>
 
-        <table class="table table-striped table-bordered table-hover table-condensed">
+        <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
             <thead>
                 <tr>
                     <th colspan="6">
@@ -181,7 +181,7 @@
             <tbody>
                 <tr>
                     <td colspan="6">
-                        <div class="inside_padd">
+                        <div class="inside_padd span9">
                             <div class="control-group">
                                 <span class="control-label">
                                     <span data-title="&lt;b&gt;OAuth2 client ID&lt;/b&gt;" class="popover_ref" data-original-title="">
@@ -221,7 +221,7 @@
             </tbody>
         </table>
 
-        <!--<table class="table table-striped table-bordered table-hover table-condensed">
+        <!--<table class="table table-striped table-bordered table-hover table-condensed t-l_a">
             <thead>
                 <tr>
                     <th colspan="6">
@@ -232,7 +232,7 @@
             <tbody>
                 <tr>
                     <td colspan="6">
-                        <div class="inside_padd">
+                        <div class="inside_padd span9">
                             <div class="control-group">
                                 <span class="control-label">
                                     <span data-title="&lt;b&gt;OAuth client ID&lt;/b&gt;" class="popover_ref" data-original-title="">

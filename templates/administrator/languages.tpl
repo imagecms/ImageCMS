@@ -36,21 +36,21 @@
                 <div class="tab-pane active" id="lang">
                     <div class="row-fluid">
                         <div class="form-horizontal">
-                            <table class="table table-striped table-bordered table-hover table-condensed">
+                            <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
                                 <thead>
                                     <tr>
-                                        <th class="span1 t-a_c">
+                                        <th class="t-a_c span1">
                                             <span class="frame_label">
                                                 <span class="niceCheck b_n">
                                                     <input type="checkbox"/>
                                                 </span>
                                             </span>
                                         </th>
-                                        <th class="span4">{lang("Language","admin")}</th>
-                                        <th class="span4">{lang("Identifier","admin")}</th>
-                                        <th class="span4">{lang("Template","admin")}</th>
-                                        <th class="span2">{lang("Image","admin")}</th>
-                                        <th class="span2">{lang("by default","admin")}</th>
+                                        <th>{lang("Language","admin")}</th>
+                                        <th>{lang("Identifier","admin")}</th>
+                                        <th>{lang("Template","admin")}</th>
+                                        <th>{lang("Image","admin")}</th>
+                                        <th>{lang("by default","admin")}</th>
                                     </tr>
                                 </thead>
                                 <tbody>

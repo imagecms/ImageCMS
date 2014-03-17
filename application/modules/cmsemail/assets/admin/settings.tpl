@@ -22,7 +22,7 @@
             </div>
         </div>
         <form method="post" action="{site_url('admin/components/cp/cmsemail/update_settings')}" class="form-horizontal" id="wishlist_settings_form">
-            <table class="table table-striped table-bordered table-hover table-condensed">
+            <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
                 <thead>
                     <tr>
                         <th colspan="6">
