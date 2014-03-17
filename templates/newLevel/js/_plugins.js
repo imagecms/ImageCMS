@@ -941,12 +941,14 @@ function getCookie(c_name)
                                 parentTl: 'li',
                                 refresh: false,
                                 otherPage: undefined,
+                                classRemove: 'not-js',
                                 vertical: false
                             }, options);
                     menu.data('options', optionsMenu);
                     var settings = optionsMenu,
                             menuW = menu.width(),
-                            menuItem = menu.find(settings.item),
+                            item = settings.item,
+                            menuItem = menu.find(item),
                             direction = settings.direction,
                             drop = settings.drop,
                             dropOJ = menu.find(drop),
@@ -963,7 +965,8 @@ function getCookie(c_name)
                             itemMenuL = menuItem.length,
                             dropW = settings.dropWidth,
                             sub2Frame = settings.sub2Frame,
-                            duration = timeDurM = settings.duration,
+                            duration = settings.duration,
+                            timeDurM = settings.duration,
                             durationOn = settings.durationOn,
                             durationOff = settings.durationOff,
                             durationOnS = settings.durationOnS,
@@ -976,6 +979,7 @@ function getCookie(c_name)
                             activeFl = settings.activeFl,
                             parentTl = settings.parentTl,
                             otherPage = settings.otherPage,
+                            classRemove = settings.classRemove,
                             vertical = settings.vertical;
                     if (menuCache && !refresh) {
                         menu.find('a').each(function() {//if start without cache and remove active item
@@ -1099,13 +1103,13 @@ function getCookie(c_name)
                     }).css('height', sH);
                     if (!vertical)
                         menuItem.find('.helper:first').css('height', sH);
-                    menu.removeClass('not-js');
+                    menu.removeClass(classRemove);
                     var hoverTO = '';
                     function closeMenu() {
                         var $thisDrop = menu.find(drop);
                         if ($thisDrop.length !== 0)
                             menu.removeClass(hM);
-                        if (evLS === 'toggle' || evLF === 'toggle') {
+                        if (evLS === 'click' || evLF === 'click') {
                             menu.find('.' + hM).click();
                             dropOJ.hide();
                         }
@@ -1120,7 +1124,7 @@ function getCookie(c_name)
                     menuItem.off(evLF)[evLF](
                             function(e) {
                                 var $this = $(this);
-                                if ($this.data("show") === "no" || $this.data("show") === undefined) {
+                                if ($this.data("show") === "no" || !$this.data("show")) {
                                     $this.data("show", "yes");
                                     clearTimeout(hoverTO);
                                     closeMenu();
@@ -1134,6 +1138,8 @@ function getCookie(c_name)
                                     if ($(e.relatedTarget).is(menuItem) || $.existsN($(e.relatedTarget).parents(menuItem)) || $this.data('kk') === 0)
                                         k[$thisI] = true;
                                     if (k[$thisI]) {
+                                        if (evLF === 'click')
+                                            e.stopPropagation();
                                         hoverTO = setTimeout(function() {
                                             $thisDrop[effOn](durationOn, function(e) {
                                                 $this.data('kk', $this.data('kk') + 1);
@@ -1148,21 +1154,22 @@ function getCookie(c_name)
                                                     $thisDrop.find(sub2Frame).addClass('is-side');
                                                     listDrop.children().off(evLS)[evLS](function(e) {
                                                         var $this = $(this);
-                                                        if ($this.data("show") === "no" || $this.data("show") === undefined) {
+                                                        if (evLS === 'click')
+                                                            e.stopPropagation();
+                                                        if ($this.data("show") === "no" || !$this.data("show")) {
                                                             $this.data("show", "yes");
                                                             subFrame = $this.find(sub2Frame);
-                                                            if (e.type !== 'click' && evLS !== 'toggle') {
+                                                            if (e.type !== 'click' && evLS !== 'click') {
                                                                 $this.siblings().removeClass(hM);
                                                             }
                                                             if ($.existsN(subFrame)) {
-                                                                if (e.type === 'click' && evLS === 'toggle') {
+                                                                if (e.type === 'click' && evLS === 'click') {
                                                                     e.stopPropagation();
                                                                     $this.siblings().filter('.' + hM).click();
                                                                     $this.addClass(hM);
                                                                 }
-                                                                else {
+                                                                else
                                                                     $this.has(sub2Frame).addClass(hM);
-                                                                }
 
                                                                 $thisDrop.css('width', '');
                                                                 listDrop.add(subFrame).css('height', '');
@@ -1206,13 +1213,13 @@ function getCookie(c_name)
                                                         }
                                                         else {
                                                             $this.data("show", "no");
-                                                            if (e.type === 'click' && evLS === 'toggle') {
+                                                            if (e.type === 'click' && evLS === 'click') {
                                                                 e.stopPropagation();
                                                             }
                                                             var subFrame = $this.find(sub2Frame);
                                                             if ($.existsN(subFrame)) {
                                                                 subFrame.hide();
-                                                                $thisDrop.stop().css({
+                                                                $thisDrop.css({
                                                                     'width': '',
                                                                     'height': ''
                                                                 });
@@ -1265,7 +1272,7 @@ function getCookie(c_name)
                         }
                     });
                     dropOJ.find('a').off('click.menuref').on('click.menuref', function(e) {
-                        if (evLS === 'toggle') {
+                        if (evLS === 'click') {
                             if ($.existsN($(this).next()) && sub2Frame) {
                                 e.preventDefault();
                                 return true;
@@ -1277,10 +1284,10 @@ function getCookie(c_name)
                             e.stopPropagation();
                     });
                     menuItem.find('a:first').off('click.menuref').on('click.menuref', function(e) {
-                        if (!$.existsN($(this).closest(menuItem).find(drop))) {
-                            e.preventDefault();
+                        if (!$.existsN($(this).closest(item).find(drop)))
                             e.stopPropagation();
-                        }
+                        if (evLF === 'click' && $.existsN($(this).closest(item).find(drop)))
+                            e.preventDefault();
                     });
                 }
             });
@@ -2195,7 +2202,7 @@ function getCookie(c_name)
                     });
                 if (isTouch)
                     drop.data('drp').dropOver.on('touchmove.' + $.drop.nS, function(e) {
-                        return false;
+                        e.preventDefault();
                     });
             }
             drop.addClass(opt.place);
@@ -2488,7 +2495,7 @@ function getCookie(c_name)
         'width': 100,
         'overflow': 'scroll'
     }).wrap($('<div style="width:0;height:0;overflow:hidden;"></div>'));
-    $.dropInit.prototype.widthScroll = el.width() - el.get(0).clientWidth + 1;
+    $.dropInit.prototype.widthScroll = el.width() - el.get(0).clientWidth;
     el.parent().remove();
 
     var loadingTimer, loadingFrame = 1,
@@ -2826,6 +2833,7 @@ function getCookie(c_name)
                                     e = e.originalEvent.touches[0];
                                     elSet.eP = e[f];
                                     elSet.ePs = e[s];
+                                    e.preventDefault();
                                 });
 
                                 $this.off('touchend.' + nS).on('touchend.' + nS, function(e) {

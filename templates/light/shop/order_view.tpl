@@ -19,7 +19,7 @@
 {$NextCSIdCond = $NextCS != null}
 <div class="frame-inside page-order">
     <div class="container">
-        {if $CI->session->flashdata('makeOrder') === true}
+        {if $CI->session->flashdata('makeOrderNotif') == 1}
             <div class="f-s_0 without-crumbs">
                 <div class="frame-title">
                     <h1 class="title">{lang('Спасибо, ваш заказ принят!<br/>Наши менеджеры свяжутся с вами.','newLevel')}</h1>
@@ -412,9 +412,10 @@
                                                         {$cartPrice += $priceDel}
                                                         <span class="price f-w_b">{echo $priceDel}</span>
                                                         <span class="curr">{$CS}</span>
-                                                        (<span class="price f-w_b">{echo $priceDelAdd}</span>
-                                                        <span class="curr-add">{$NextCS}</span>)
-                                                        <span class="not-delivery-price"></span>
+                                                        {if $NextCSId}
+                                                            (<span class="price f-w_b">{echo $priceDelAdd}</span>
+                                                            <span class="curr-add">{$NextCS}</span>)
+                                                        {/if}
                                                     {else:}
                                                         <span class="text-el s-t">{lang('Бесплатно', 'newLevel')}</span>
                                                     {/if}

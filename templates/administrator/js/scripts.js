@@ -853,7 +853,7 @@ function fixed_frame_title() {
             frame_zH_frame_title.css("top", fixed_block_top - top + 6);
         }
         else {
-            fixed_block.css("top", 20 + ($.exists('.imagecms-top-fixed-header') ? 31 : 0));
+            fixed_block.css("top", 20 + ($.exists('.imagecms-top-fixed-header.imagecms-active') ? 31 : 0));
             frame_zH_frame_title.css("top", 6);
         }
 
