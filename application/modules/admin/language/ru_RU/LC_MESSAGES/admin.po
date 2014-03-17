@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-17 10:52+0200\n"
-"PO-Revision-Date: 2014-03-17 10:52+0200\n"
+"POT-Creation-Date: 2014-03-17 11:24+0200\n"
+"PO-Revision-Date: 2014-03-17 11:24+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -20,6 +20,16 @@ msgstr ""
 "X-Poedit-SearchPath-1: ../../../templates/administrator\n"
 "X-Poedit-SearchPath-2: ../../modules/shop/admin\n"
 "X-Poedit-SearchPath-3: ../../../application/modules/shop/models/build/classes\n"
+
+#: ./application/modules/shop/admin/templates/products/_edit.tpl:586
+#: ./application/modules/shop/admin/templates/products/default_edit.tpl:500
+#: ./application/modules/shop/admin/templates/kits/index.tpl:28
+msgid "Create a set"
+msgstr "Создать набор"
+
+#: ./application/modules/shop/admin/templates/kits/kit_create.tpl:5
+msgid "Create product kit"
+msgstr "Создание набора товаров"
 
 #: ./application/modules/shop/admin/templates/customfields/list.tpl:52
 msgid "Active field"
@@ -5517,16 +5527,6 @@ msgstr "Создать категорию"
 #: ./application/modules/shop/admin/templates/products/_create.tpl:215
 msgid "Create small image"
 msgstr "Создать миниатюру"
-
-#: ./application/modules/shop/admin/templates/products/_edit.tpl:586
-#: ./application/modules/shop/admin/templates/products/default_edit.tpl:500
-#: ./application/modules/shop/admin/templates/kits/index.tpl:28
-msgid "Create a set"
-msgstr "Создать набор"
-
-#: ./application/modules/shop/admin/templates/kits/kit_create.tpl:5
-msgid "Create product kit"
-msgstr "Создать набор товаров"
 
 #: ./application/modules/shop/admin/templates/orders/create.tpl:144
 msgid "Create new user"
