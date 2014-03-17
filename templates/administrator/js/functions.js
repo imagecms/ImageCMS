@@ -47,6 +47,20 @@ function readCookie(name) {
     }
     return null;
 }
+function setCookie(name, value, expires, path, domain, secure)
+{
+    var today = new Date();
+    today.setTime(today.getTime());
+    if (expires)
+    {
+        expires = expires * 1000 * 60 * 60 * 24;
+    }
+    var expiresDate = new Date(today.getTime() + (expires));
+    document.cookie = name + "=" + encodeURIComponent(value) +
+            ((expires) ? ";expires=" + expiresDate.toGMTString() : "") + ((path) ? ";path=" + path : "") +
+            ((domain) ? ";domain=" + domain : "") +
+            ((secure) ? ";secure" : "");
+}
 
 // expand categories tree to show last visited category
 function expandCategories(button) {

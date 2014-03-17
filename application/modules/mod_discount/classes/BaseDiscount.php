@@ -479,4 +479,5 @@ class BaseDiscount {
         $this->cart->setTotalPrice();
         return $difference;
     }
+
 }

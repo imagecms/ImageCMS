@@ -161,7 +161,6 @@ class discount_api extends \MY_Controller {
     public function discountsExists() {
         $ud = (bool) !\mod_discount\classes\DiscountManager::validateUserDiscount(CI::$APP->dx_auth->get_user_id());
         $gd = (bool) !\mod_discount\classes\DiscountManager::validateGroupDiscount(CI::$APP->dx_auth->get_role_id());
-        $cd = (bool) $discount['comulativ'];
         return $ud || $gd || $cd ? TRUE : FALSE;
     }
 
