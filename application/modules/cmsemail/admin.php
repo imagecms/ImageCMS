@@ -192,8 +192,8 @@ class Admin extends BaseAdminController {
      * import templates from file
      */
     public function import_templates() {
-        $this->db->where_in('id', array(1, 2, 3, 4, 5, 6, 7))->delete('mod_email_paterns');
-        $this->db->where_in('id', array(1, 2, 3, 4, 5, 6, 7))->delete('mod_email_paterns_i18n');
+        $this->db->where_in('id', array(1, 2, 3, 4, 5, 6, 7, 8, 9))->delete('mod_email_paterns');
+        $this->db->where_in('id', array(1, 2, 3, 4, 5, 6, 7, 8, 9))->delete('mod_email_paterns_i18n');
 
         $file = $this->load->file(dirname(__FILE__) . '/models/paterns.sql', true);
         $this->db->query($file);
