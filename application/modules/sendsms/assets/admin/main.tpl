@@ -65,7 +65,7 @@
             <tbody>
                 <tr>
                     <td colspan="6">
-                        <div class="inside_padd discount-out">
+                        <div class="inside_padd span9 discount-out">
                             <div class="form-horizontal">
                                 <label class="">
                                     <span class="span4">

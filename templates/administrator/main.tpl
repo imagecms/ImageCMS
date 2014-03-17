@@ -32,9 +32,10 @@
         {literal}
             <style>
                 .imagecms-close{cursor: pointer;position: absolute;right: -100px;top: 0;height: 31px;background-color: #4e5a68;width: 95px;display: none;}
+                .imagecms-top-fixed-header.imagecms-active{z-index: 1000;}
                 .imagecms-toggle-close-text{color: #fff;}
                 .imagecms-top-fixed-header.imagecms-active + .main_body header{padding-top: 31px;}
-                .imagecms-top-fixed-header{height: 31px;position: fixed;top: 0;left: 0;width: 100%;z-index: 1000;font-family: Arial, sans-serif;font-size: 12px;color: #223340;vertical-align: baseline;}
+                .imagecms-top-fixed-header{height: 31px;position: fixed;top: 0;left: 0;width: 100%;font-family: Arial, sans-serif;font-size: 12px;color: #223340;vertical-align: baseline;overflow: hidden;}
                 .imagecms-top-fixed-header.imagecms-active{background-color: #37414d;}
                 .imagecms-top-fixed-header .container{position: relative;}
                 .imagecms-logo{float: left;}

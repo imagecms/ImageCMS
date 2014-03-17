@@ -1366,7 +1366,6 @@ function getCookie(c_name)
                     tabsId[index] = tempO2;
                     regRefs[index] = tempRefs;
                     refs[index].off('click.tabs').on('click.tabs', function(e) {
-                        wST = wnd.scrollTop();
                         var $this = $(this),
                                 resB = settings.before($this);
                         if (resB === undefined || resB === true) {
@@ -1934,6 +1933,8 @@ function getCookie(c_name)
                                         dC.destroy();
                                     if (f)
                                         f();
+                                    if (!$.exists('[data-elrun].center:visible, [data-elrun].noinherit:visible'))
+                                        $('body, html').css('height', '');
                                 });
                             }
                             drop.add($(document)).trigger({
@@ -2305,7 +2306,8 @@ function getCookie(c_name)
                     }
                 });
             });
-            body.off('click.' + $.drop.nS + ev).on('click.' + $.drop.nS + ev, function(e) {
+            $('html').css('height', '100%');
+            body.css('height', '100%').off('click.' + $.drop.nS + ev).on('click.' + $.drop.nS + ev, function(e) {
                 if (opt.closeClick)
                     if (!$.existsN($(e.target).closest('[data-elrun]'))) {
                         methods.close(false);

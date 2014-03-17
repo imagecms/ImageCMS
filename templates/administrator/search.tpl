@@ -22,14 +22,14 @@
             <div class="tab-content">
             <div class="tab-pane {if count($pages) || !count($users)} active {/if} " id="pages">
 	    {if count($pages)}
-            <table class="table table-striped table-bordered table-hover table-condensed pages-table">
+            <table class="table table-striped table-bordered table-hover table-condensed pages-table t-l_a">
                 <thead>
                     <tr>
                         <th class="span1">ID</th>
-                        <th class="span4">{lang("Title","admin")}</th>
-                        <th class="span3">{lang("URL","admin")}</th>
-                        <th class="span2">{lang('Category','admin')}</th>
-                        <th class="span1">{lang("Status","admin")}</th>
+                        <th>{lang("Title","admin")}</th>
+                        <th>{lang("URL","admin")}</th>
+                        <th>{lang('Category','admin')}</th>
+                        <th>{lang("Status","admin")}</th>
                     </tr>
                 </thead>
                 <tbody >
@@ -62,15 +62,15 @@
             <div class="tab-pane  {if !count($pages) && count($users)} active{/if}" id="users">
                 {if count($users)}
                     
-                    <table class="table table-striped table-bordered table-hover table-condensed" style="clear: both;">
+                    <table class="table table-striped table-bordered table-hover table-condensed t-l_a" style="clear: both;">
                         <thead>
                             <tr>
                                 <th class="span1">{lang("ID","admin")}</th>
-                                <th class="span3">{lang("User","admin")}</th>
-                                <th class="span3">{lang("E-mail")}</th>
-                                <th class="span2">{lang("Group","admin")}</th>
-                                <th class="span1">{lang("Banned","admin")}</th>
-                                <th class="span2">{lang("Last IP","admin")}</th>
+                                <th>{lang("User","admin")}</th>
+                                <th>{lang("E-mail")}</th>
+                                <th>{lang("Group","admin")}</th>
+                                <th>{lang("Banned","admin")}</th>
+                                <th>{lang("Last IP","admin")}</th>
                             </tr>
                         </thead>
                         <tbody>
