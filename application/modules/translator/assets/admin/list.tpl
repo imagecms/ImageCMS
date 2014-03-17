@@ -150,7 +150,7 @@
                         </button>
                         <ul class="dropdown-menu" role="menu">
                             <li><a class="pjax" style="text-decoration: none" href="/admin/components/init_window/translator/createFile">{lang('Create', 'translator')}</a></li>
-                            <li><a class="pjax" style="text-decoration: none" href="/admin/components/init_window/translator/exchangeTranslation">{lang('Exchange', 'translator')}</a></li>
+                            <li><a class="pjax" style="text-decoration: none" href="/admin/components/init_window/translator/exchangeTranslation">{lang('Translation exchange', 'translator')}</a></li>
                             <li><a onclick="Translator.correctPaths($(this))">{lang('Correct paths', 'translator')}</a></li>
                             <li class="divider"></li>
                             <li><a onclick="Translator.translate($(this))">{lang('Translate all', 'translator')}</a></li>
@@ -288,7 +288,7 @@
                                         </a>
                                     </th>
                                     <th class="span3 t-a_c" class="linksTH">
-                                        {lang('Links', 'translator')}
+                                        {lang('Paths to contains files', 'translator')}
                                     </th>
                                 </tr>
                             </thead>
