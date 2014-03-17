@@ -21,7 +21,7 @@
         </div>
     </div>
     <form method="post" action="{$BASE_URL}admin/sys_update/properties" class="form-horizontal" id="sys_form">
-        <table class="table table-striped table-bordered table-hover table-condensed">
+        <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
             <thead>
                 <tr>
                     <th colspan="6">
@@ -32,7 +32,7 @@
             <tbody>
                 <tr>
                     <td colspan="6">
-                        <div class="inside_padd">
+                        <div class="inside_padd span9">
                             <div class="control-group">
                                 <label class="control-label">{lang('Your updation key', 'admin')}:</label>
                                 <div class="controls">

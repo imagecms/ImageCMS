@@ -31,11 +31,11 @@
     <body>
         {literal}
             <style>
-                .imagecms-close{cursor: pointer;position: absolute;right: -100px;top: 0;height: 31px;background-color: #4e5a68;width: 95px;display: none;}
+                .imagecms-close{cursor: pointer;position: absolute;right: -100px;top: 0;height: 31px;background-color: #4e5a68;width: 95px;display: none;z-index: 3;}
+                .imagecms-top-fixed-header.imagecms-active{height: 31px;background-color: #37414d;}
                 .imagecms-toggle-close-text{color: #fff;}
                 .imagecms-top-fixed-header.imagecms-active + .main_body header{padding-top: 31px;}
-                .imagecms-top-fixed-header{height: 31px;position: fixed;top: 0;left: 0;width: 100%;z-index: 1000;font-family: Arial, sans-serif;font-size: 12px;color: #223340;vertical-align: baseline;}
-                .imagecms-top-fixed-header.imagecms-active{background-color: #37414d;}
+                .imagecms-top-fixed-header{height: 0;position: fixed;top: 0;left: 0;width: 100%;font-family: Arial, sans-serif;font-size: 12px;color: #223340;vertical-align: baseline;z-index: 1000}
                 .imagecms-top-fixed-header .container{position: relative;}
                 .imagecms-logo{float: left;}
                 .imagecms-ref-skype, .imagecms-phone{font-size: 0;}
@@ -66,7 +66,7 @@
                     background: linear-gradient(to bottom,  #0eb48e 0%,#09a77d 100%); /* W3C */
                     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0eb48e', endColorstr='#09a77d',GradientType=0 ); /* IE6-9 */
                 }
-                .imagecms-contacts{text-align: center;padding-top: 4px;display: none;}
+                .imagecms-contacts{text-align: center;padding-top: 6px;display: none;}
                 .imagecms-buy-license .imagecms-text-el{vertical-align: middle;}
                 .imagecms-buy-license .imagecms-ico-donwload{vertical-align: middle;margin-left: 11px;}
 
@@ -81,34 +81,39 @@
         <div class="imagecms-top-fixed-header{if $_COOKIE['condPromoToolbar'] == '1' || $_COOKIE['condPromoToolbar'] == NULL} imagecms-active{/if}">
             <div class="imagecms-inside">
                 <div class="container">
-                    <button type="button" class="imagecms-close" {if $_COOKIE['condPromoToolbar'] == '1' || $_COOKIE['condPromoToolbar'] == NULL}style="display: block;"{/if} onclick="setCookie('condPromoToolbar', '0');$('.imagecms-top-fixed-header').removeClass('imagecms-active');$(this).hide().next().show();$(window).scroll();">
+                    <button type="button" class="imagecms-close" {if $_COOKIE['condPromoToolbar'] == '1' || $_COOKIE['condPromoToolbar'] == NULL}style="display: block;"{/if} onclick="setCookie('condPromoToolbar', '0');
+                            $('.imagecms-top-fixed-header').removeClass('imagecms-active');
+                            $(this).hide().next().show();
+                            $(window).scroll();">
                         <span class="imagecms-toggle-close-text imagecms-bar-close-text"><span style="font-size: 14px;">↑</span> Скрыть</span>
                     </button>
-                    <button type="button" class="imagecms-close" {if $_COOKIE['condPromoToolbar'] == '0'}style="display: block;"{/if} onclick="setCookie('condPromoToolbar', '1');$('.imagecms-top-fixed-header').addClass('imagecms-active');$(this).hide().prev().show();$(window).scroll();">
+                    <button type="button" class="imagecms-close" {if $_COOKIE['condPromoToolbar'] == '0'}style="display: block;"{/if} onclick="setCookie('condPromoToolbar', '1');
+                            $('.imagecms-top-fixed-header').addClass('imagecms-active');
+                            $(this).hide().prev().show();
+                            $(window).scroll();">
                         <span class="imagecms-toggle-close-text imagecms-bar-show-text"><span style="font-size: 14px;">↓</span> Показать</span>
                     </button>
                     <div class="imagecms-buy-license">
-                        <a href="http://www.imagecms.net/shop/prices" onclick="_gaq.push(['_trackEvent', 'demoshop-front', '/shop/prices']);">
+                        <a href="http://www.imagecms.net/shop/prices" target="_blank" onclick="_gaq.push(['_trackEvent', 'demoshop-front', '/shop/prices']);">
                             <span class="imagecms-text-el">Купить лицензицю</span>
                         </a>
                     </div>
                     <ul class="imagecms-list">
                         <li>
-                            <a href="http://www.imagecms.net" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demoshop-front', '/shop/prices']);">Обзор продукта</a>
+                            <a href="http://www.imagecms.net" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demoshop-front', '/shop/prices']);">Обзор продукта</a>
                         </li>
                         <li>
-                            <a href="http://www.imagecms.net/kliuchevye-preimushchestva/vozmozhnosti" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demoshop-front', '/kliuchevye-preimushchestva/vozmozhnosti']);">преимущества продукта</a>
+                            <a href="http://www.imagecms.net/kliuchevye-preimushchestva/vozmozhnosti" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demoshop-front', '/kliuchevye-preimushchestva/vozmozhnosti']);">преимущества продукта</a>
+                        </li>
+                        <li>
+                            <a href="http://www.imagecms.net/store/category/shoptemplates" target="_blank" class="imagecms-ref">{lang('Шаблоны для Shop', 'newLevel')}</a>
                         </li>
                     </ul>
                     <div class="imagecms-contacts">
                         <span class="imagecms-phone">
                             <img src="{$THEME}icon_phone.png" class="imagecms-ico-phone"/>
-                            <span class="imagecms-text-el">+7 (499) 703-37-54</span>
+                            <span class="imagecms-text-el">+7 (499) 703-37-51</span>
                         </span>
-                        <a href="skype:imagecms_partner" class="imagecms-ref-skype">
-                            <img src="{$THEME}icon_skype.png" class="imagecms-ico-skype"/>
-                            <span class="imagecms-text-el">imagecms_partner</span>
-                        </a>
                     </div>
                 </div>
             </div>

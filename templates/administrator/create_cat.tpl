@@ -27,7 +27,7 @@
             <form method="post" id="save" action="{$BASE_URL}admin/categories/create/new" >
                 <div class="tab-content">
                     <div class="tab-pane active" id="parameters">
-                        <table class="table table-striped table-bordered table-hover table-condensed">
+                        <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
                             <thead>
                                 <tr>
                                     <th colspan="6">
@@ -38,7 +38,7 @@
                             <tbody>
                                 <tr>
                                     <td colspan="6">
-                                        <div class="inside_padd span12">
+                                        <div class="inside_padd">
                                             <div class="form-horizontal">
                                                 <div class="control-group">
                                                     <label class="control-label" for="name">{lang("Name","admin")}:</label>
@@ -150,7 +150,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <table class="table table-striped table-bordered table-hover table-condensed">
+                        <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
                             <thead>
                                 <tr>
                                     <th colspan="6">
@@ -161,7 +161,7 @@
                             <tbody>
                                 <tr>
                                     <td colspan="6">
-                                        <div class="inside_padd span12">
+                                        <div class="inside_padd span9">
                                             <div class="form-horizontal">
                                                 <div class="control-group">
                                                     <label class="control-label" for="order_by">{lang("Sort by","admin")}:</label>
@@ -245,7 +245,7 @@
                         </table>
                     </div>
                     <div class="tab-pane" id="metatag">
-                        <table class="table table-striped table-bordered table-hover table-condensed">
+                        <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
                             <thead>
                                 <tr>
                                     <th colspan="6">
@@ -256,7 +256,7 @@
                             <tbody>
                                 <tr>
                                     <td colspan="6">
-                                        <div class="inside_padd span12">
+                                        <div class="inside_padd span9">
                                             <div class="form-horizontal">
                                                 <div class="control-group">
                                                     <label class="control-label" for="title">{lang("Meta Title","admin")}:</label>

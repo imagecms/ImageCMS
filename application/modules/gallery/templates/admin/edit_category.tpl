@@ -9,35 +9,33 @@
                 <a href="/admin/components/cp/gallery" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Back", 'gallery')}</span></a>
                 <button type="button" class="btn btn-small formSubmit btn-primary" data-form="#create_category_form" data-action="edit" data-submit><i class="icon-ok"></i>{lang("Save", 'gallery')}</button>
                 <button type="button" class="btn btn-small formSubmit" data-form="#create_category_form" data-action="close"><i class="icon-check"></i>{lang("Save and exit", 'gallery')}</button>
-                {echo create_language_select($languages, $locale, "/admin/components/cp/gallery/edit_category/" . $category.id)}
+                    {echo create_language_select($languages, $locale, "/admin/components/cp/gallery/edit_category/" . $category.id)}
             </div>
         </div>
     </div>
     <div class="inside_padd">
         <div class="form-horizontal row-fluid">
-            <div class="span9">
-                <form method="post" action="{site_url('admin/components/cp/gallery/update_category/' . $category.id . '/' . $locale)}" id="create_category_form">
-                    <div class="control-group">
-                        <label class="control-label" for="name">{lang("Name", 'gallery')}:</label>
-                        <div class="controls">
-                            <input type="text" name="name" id="name" value="{$category.name}"/>
-                        </div>
+            <form method="post" action="{site_url('admin/components/cp/gallery/update_category/' . $category.id . '/' . $locale)}" id="create_category_form">
+                <div class="control-group">
+                    <label class="control-label" for="name">{lang("Name", 'gallery')}:</label>
+                    <div class="controls">
+                        <input type="text" name="name" id="name" value="{$category.name}"/>
                     </div>
-                    <div class="control-group">
-                        <label class="control-label" for="g_c_desc">{lang("Description", 'gallery')}:</label>
-                        <div class="controls">
-                            <textarea name="description" id="g_c_desc" class="smallTextarea elRTE">{htmlspecialchars($category.description)}</textarea>
-                        </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="g_c_desc">{lang("Description", 'gallery')}:</label>
+                    <div class="controls">
+                        <textarea name="description" id="g_c_desc" class="smallTextarea elRTE">{htmlspecialchars($category.description)}</textarea>
                     </div>
-                    <div class="control-group">
-                        <label class="control-label" for="position">{lang("Position", 'gallery')}:</label>
-                        <div class="controls number">
-                            <input type="text" name="position" id="position" value="{$category.position}" class="textbox_long" />
-                        </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="position">{lang("Position", 'gallery')}:</label>
+                    <div class="controls number">
+                        <input type="text" name="position" id="position" value="{$category.position}" class="textbox_long" />
                     </div>
-                    {form_csrf()}
-                </form>
-            </div>
+                </div>
+                {form_csrf()}
+            </form>
         </div>
     </div>
 </section>

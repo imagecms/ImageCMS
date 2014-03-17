@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-14 01:09+0200\n"
-"PO-Revision-Date: 2014-03-14 01:09+0200\n"
+"POT-Creation-Date: 2014-03-17 08:33+0000\n"
+"PO-Revision-Date: 2014-03-17 08:33+0000\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -17,6 +17,10 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/user_manager/templates/create_user.tpl:6
+msgid "Create a new user"
+msgstr "Создание нового пользователя"
 
 #: ./application/modules/user_manager/templates/main.tpl:48
 #: ./application/modules/user_manager/templates/main.tpl:49
@@ -40,10 +44,6 @@ msgstr "Изменения сохранены"
 #: ./application/modules/user_manager/templates/create_user.tpl:11
 msgid "Back"
 msgstr "Вернуться"
-
-#: ./application/modules/user_manager/templates/create_user.tpl:6
-msgid "Create a new user"
-msgstr "Создать нового пользователя"
 
 #: ./application/modules/user_manager/templates/main.tpl:12
 #: ./application/modules/user_manager/templates/main.tpl:47

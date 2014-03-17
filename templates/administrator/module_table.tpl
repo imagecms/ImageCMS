@@ -41,22 +41,22 @@
                 {if count($installed) != 0}
                     <div class="tab-pane active" id="modules">
                         <div class="row-fluid">
-                            <table class="table table-striped table-bordered table-hover table-condensed">
+                            <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
                                 <thead>
                                     <tr>
-                                        <th class="span1 t-a_c">
+                                        <th class="t-a_c span1">
                                             <span class="frame_label">
                                                 <span class="niceCheck b_n">
                                                     <input type="checkbox"/>
                                                 </span>
                                             </span>
                                         </th>
-                                        <th class="span3">{lang('Module','admin')}</th>
-                                        <th class="span3">{lang('Description','admin')}</th>
-                                        <th class="span2">{lang('URL','admin')}</th>
-                                        <th class="span2 t-a_c">{lang('Auto loading ','admin')}</th>
-                                        <th class="span2 t-a_c">{lang('URL access','admin')}</th>
-                                        <th class="span2 t-a_c">{lang('Show in menu','admin')}</th>
+                                        <th>{lang('Module','admin')}</th>
+                                        <th>{lang('Description','admin')}</th>
+                                        <th width="120">{lang('URL','admin')}</th>
+                                        <th class="t-a_c" width="80">{lang('Auto loading ','admin')}</th>
+                                        <th class="t-a_c" width="80">{lang('URL access','admin')}</th>
+                                        <th class="t-a_c" width="120">{lang('Show in menu','admin')}</th>
                                     </tr>
                                 </thead>
                                 <tbody class="sortable save_positions" data-url="/admin/components/save_components_positions">
@@ -128,13 +128,13 @@
                 <div class="tab-pane" id="set_modul">
                     {if count($not_installed) > 0}
                         <div class="row-fluid" id="nimc">
-                            <table class="table table-striped table-bordered table-hover table-condensed" id="nimt">
+                            <table class="table table-striped table-bordered table-hover table-condensed t-l_a" id="nimt">
                                 <thead>
                                     <tr>
-                                        <th class="span3">{lang('Module','admin')}</th>
-                                        <th class="span3">{lang('Description','admin')}</th>
-                                        <th class="span2">{lang('Version','admin')}</th>
-                                        <th class="span1">{lang('Install','admin')}</th>
+                                        <th>{lang('Module','admin')}</th>
+                                        <th>{lang('Description','admin')}</th>
+                                        <th>{lang('Version','admin')}</th>
+                                        <th>{lang('Install','admin')}</th>
                                     </tr>
                                 </thead>
                                 <tbody class="nim">

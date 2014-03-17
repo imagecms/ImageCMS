@@ -15,7 +15,7 @@
         </div>
         <form action="{$BASE_URL}admin/components/cp/menu/create_menu" id="createForm" method="post">
             <div class="content_big_td">
-                <table class="table table-striped table-bordered table-hover table-condensed">
+                <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
                     <thead>
                         <tr>
                             <th colspan="6">
