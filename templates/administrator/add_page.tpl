@@ -2,20 +2,20 @@
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
-            <span class="title w-s_n">{lang('Create new page','admin')}</span>
+            <span class="title w-s_n">{lang('Creating new page','admin')}</span>
         </div>
         <div class="pull-right">
             <span class="help-inline"></span>
             <div class="d-i_b">
-                <a href="/admin/pages/GetPagesByCategory" class="pjax t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('back','admin')}</span></a>
+                <a href="/admin/pages/GetPagesByCategory" class="pjax t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Back','admin')}</span></a>
                 <button type="button" class="btn btn-small btn-success action_on formSubmit" data-form="#add_page_form" data-action="edit" data-submit><i class="icon-plus-sign icon-white"></i>{lang("Create","admin")}</button>
-                <button type="button" class="btn btn-small action_on formSubmit" data-form="#add_page_form" data-action="close"><i class="icon-check"></i>{lang("Save and go back","admin")}</button>
+                <button type="button" class="btn btn-small action_on formSubmit" data-form="#add_page_form" data-action="close"><i class="icon-check"></i>{lang("Create and exit","admin")}</button>
             </div>
         </div>                            
     </div>  
     <div class="clearfix">
         <div class="btn-group myTab m-t_20 pull-left" data-toggle="buttons-radio">
-            <a href="#content_article" class="btn btn-small active">{lang("Content","admin")}</a>
+            <a href="#content_article" class="btn btn-small active">{lang("Page","admin")}</a>
             <a href="#parameters_article" class="btn btn-small ">{lang("Properties","admin")}</a>
             <a href="#addfields_article" class="btn btn-small">{lang("Additional fields","admin")}</a>
             <a href="#setings_article" class="btn btn-small">{lang("Settings","admin")}</a>       
@@ -31,7 +31,7 @@
                     <thead>
                         <tr>
                             <th colspan="6">
-                                {lang("Content","admin")}
+                                {lang("Page","admin")}
                             </th>
                         </tr>
                     </thead>
@@ -41,7 +41,7 @@
                                 <div class="inside_padd">
                                     <div class="control-group">
                                         <label class="control-label" for="category_selectbox">
-                                            {lang("Categories","admin")}:
+                                            {lang("Category","admin")}:
                                         </label>
                                         <div class="controls">
                                             <a onclick="$('.modal').modal(); return false;" class="btn btn-success btn-small pull-right" href="#"><i class="icon-plus-sign icon-white"></i> {lang("Create a category","admin")}</a>

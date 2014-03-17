@@ -33,11 +33,11 @@ class BaseEmail extends ParentEmail {
                 $data['admin_email'] = $this->input->post('admin_email');
                 $data['description'] = $this->input->post('mail_desc');
 
-                $this->cmsemail_model->create($data);
+                $id = $this->cmsemail_model->create($data);
             } else {
-                $this->cmsemail_model->create($this->data_model);
+                $id = $this->cmsemail_model->create($this->data_model);
             }
-            return TRUE;
+            return $id;
         } else {
             return FALSE;
         }
