@@ -39,14 +39,16 @@ class Admin extends BaseAdminController {
 
     public function create() {
         if ($_POST) {
-            if ($this->email->create()) {
-
+            $id = $this->email->create();
+            if ($id) {
                 showMessage(lang('Template created', 'cmsemail'));
 
-                if ($this->input->post('action') == 'tomain')
+                if ($this->input->post('action') == 'tomain') {
                     pjax('/admin/components/cp/cmsemail/index');
-            }
-            else {
+                } else {
+                    pjax('/admin/components/cp/cmsemail/edit/'.$id);
+                }
+            } else {
                 showMessage($this->email->errors, '', 'r');
             }
         } else
@@ -64,7 +66,6 @@ class Admin extends BaseAdminController {
     public function delete() {
         $this->email->delete($_POST['ids']);
         showMessage(lang('Email template deleted', 'cmsemail'), lang('Message', 'cmsemail'));
-        
     }
 
     public function edit($id, $locale = null) {

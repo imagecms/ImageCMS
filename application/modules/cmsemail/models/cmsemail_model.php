@@ -107,6 +107,7 @@ class Cmsemail_model extends \CI_Model {
         );
         $this->db->insert('mod_email_paterns_i18n', $data_locale);
         
+        return $lid;
 
     }
 
