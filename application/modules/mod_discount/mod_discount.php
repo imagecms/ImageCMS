@@ -41,10 +41,6 @@ class Mod_discount extends \MY_Controller {
      */
     public function autoload() {
         if (count($this->db->where('name', 'mod_discount')->get('components')->result_array()) != 0) {
-            $disctounts = $this->db->get('mod_shop_discounts');
-            if ($disctounts->num_rows == 0) {
-                return;
-            }
             $this->applyDiscountCartItems();
             $this->applyResultDiscount();
             /** apply Gift */
@@ -77,7 +73,6 @@ class Mod_discount extends \MY_Controller {
                         'vid' => $item->id,
                         'id' => $item->getSProducts()->getId()
                     );
-
                     \CMSFactory\assetManager::create()->discount = 0;
 
                     if (\mod_discount\classes\BaseDiscount::checkModuleInstall())
@@ -126,15 +121,19 @@ class Mod_discount extends \MY_Controller {
                 $this->baseDiscount->cart->discount_info = $discount;
                 $this->baseDiscount->cart->discount_type = $discount['type'];
 
-                if (strstr($this->uri->uri_string(), 'make_order')) {
-                    $cartItems = $this->baseDiscount->cart->getItems();
-                    $discountsKeys = array();
-                    foreach ($cartItems['data'] as $item) {
-                        if (is_null($item->discountKey)) {
-                            continue;
-                        }
-                        for ($i = 0; $i < $item->quantity; $i++) {
-                            $this->baseDiscount->updateDiskApply($item->discountKey);
+                if (strstr($this->uri->uri_string(), 'make_order')) {               
+
+                    if ($discount['type'] != 'product') {
+                        $this->baseDiscount->updateDiskApply($discount['max_discount']['key']);
+                    } else {
+                        $cartItems = $this->baseDiscount->cart->getItems();
+                        foreach ($cartItems['data'] as $item) {
+                            if (is_null($item->discountKey)) {
+                                continue;
+                            }
+                            for ($i = 0; $i < $item->quantity; $i++) {
+                                $this->baseDiscount->updateDiskApply($item->discountKey);
+                            }
                         }
                     }
                 }

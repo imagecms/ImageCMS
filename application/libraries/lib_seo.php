@@ -17,7 +17,7 @@ class Lib_seo {
     public $desc_chars = 160;
 
     function Lib_seo() {
-        if (CI::$APP->session->flashdata('makeOrderForGA') === true) {
+        if (CI::$APP->session->flashdata('makeOrderForGA') == true) {
             $this->orderJustMaked = TRUE;
         }
     }
@@ -322,10 +322,14 @@ s.parentNode.insertBefore(ga, s);
             $YandexMetrik = '<!-- Yandex.Metrika counter -->
 
                     <script type="text/javascript">
-                        (function (d, w, c) {
-                            (w[c] = w[c] || []).push(function() {
+                    (function (d, w, c) {
+                        (w[c] = w[c] || []).push(function() {
                             try {
-                                w.yaCounter4788157 = new Ya.Metrika({id:' . $YaMetricaId['yandex_metric'] . ', enableAll: true, webvisor:true,params:window.yaParams||{ }});
+                                w.yaCounter24267703 = new Ya.Metrika({id:' . $YaMetricaId['yandex_metric'] . ',
+                                        webvisor:true,
+                                        clickmap:true,
+                                        trackLinks:true,
+                                        accurateTrackBounce:true});
                             } catch(e) { }
                         });
 
@@ -337,9 +341,9 @@ s.parentNode.insertBefore(ga, s);
                         s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
 
                         if (w.opera == "[object Opera]") {
-                            d.addEventListener("DOMContentLoaded", f);
+                            d.addEventListener("DOMContentLoaded", f, false);
                         } else { f(); }
-                        })(document, window, "yandex_metrika_callbacks");
+                    })(document, window, "yandex_metrika_callbacks");
                     </script>
                     <noscript><div><img src="//mc.yandex.ru/watch/' . $YaMetricaId['yandex_metric'] . '" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
         <!-- /Yandex.Metrika counter -->';
