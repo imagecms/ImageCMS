@@ -8,6 +8,7 @@ class Install extends MY_Controller {
     public $host = '';
     public $useSqlFile = 'sql.sql'; // sqlShop.sql
     private $exts = FALSE;
+    private $loadedExt = FALSE;
 
     public function __construct() {
         parent::__construct();
@@ -18,6 +19,7 @@ class Install extends MY_Controller {
         $this->load->helper('string');
         $this->load->helper('form_csrf');
         $this->host = reduce_multiples($this->host);
+        $this->loadedExt = get_loaded_extensions();
     }
 
     public function index() {
@@ -72,7 +74,7 @@ class Install extends MY_Controller {
             }
         }
 
-        if (strnatcmp(phpversion(), '5.3.4') != -1) {
+        if (strnatcmp(phpversion(), '5.4') != -1) {
             $allow_params['PHP version >= 5.3.4'] = 'ok';
         } else {
             $allow_params['PHP version >= 5.3.4'] = 'err';
@@ -88,13 +90,14 @@ class Install extends MY_Controller {
             'gd' => 'ok',
             'zlib' => 'ok',
             'gettext' => 'ok',
-            'soap' => 'ok'
+            'soap' => 'ok',
+            'ionCube Loader' => 'ok'
         );
-
+        var_dump($this->checkExtensions());
         foreach ($exts as $k => $v) {
-            if ($this->_get_ext($k) === FALSE) {
+            //if ($this->_get_ext($k) === FALSE) {
+            if ($this->checkExtensions($k) === FALSE) {
                 $exts[$k] = 'warning';
-
                 if ($k == 'json') {
                     $exts[$k] = 'err';
                     $result = FALSE;
@@ -140,6 +143,18 @@ class Install extends MY_Controller {
         );
         $this->_display($this->load->view('step_1', $data, TRUE));
     }
+    
+    /**
+     * Check is extension loaded
+     * @param string $name extension name
+     */
+    private function checkExtensions ($name = ''){
+        if (in_array($name, $this->loadedExt)){
+            return TRUE;
+        }
+        return FALSE;
+    }
+
 
     private function _get_ext($name = '') {
         if ($this->exts === FALSE) {
