@@ -45,7 +45,7 @@
         </div>
     </div>
     {$discount = $CI->load->module('mod_discount/discount_api')->get_user_discount_api()}
-    {if $discount['user'] or $discount['group_user'] or $discount['comulativ']}
+    {if $CI->load->module('mod_discount/discount_api')->discountsExists() || $discount['comulativ']}
         <div class="layout-highlight info-discount">
             <div class="title">{lang('Ваша скидка','newLevel')}</div>
             <div class="content">

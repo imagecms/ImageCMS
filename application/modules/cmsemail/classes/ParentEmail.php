@@ -243,7 +243,7 @@ class ParentEmail extends \MY_Controller {
      */
     public function create($data = array()) {
         if ($_POST) {
-            $this->form_validation->set_rules('mail_name', lang('Template name', 'cmsemail'), 'required|alpha');
+            $this->form_validation->set_rules('mail_name', lang('Template name', 'cmsemail'), 'required|alpha_dash');
             $this->form_validation->set_rules('from_email', lang('From email', 'cmsemail'), 'valid_email');
             $this->form_validation->set_rules('mail_theme', lang('Template theme', 'cmsemail'), 'required');
 

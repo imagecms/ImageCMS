@@ -155,8 +155,6 @@ class BaseDiscount {
             $this->discountProductVal = (self::$ignoreCart) ? null : $this->getDiscountProducts();
             $this->discountMax = $this->getMaxDiscount(array($this->discountUser, $this->discountGroupUser, $this->discountComul, $this->discountAllOrder), $this->totalPrice);
             $this->discountNoProductVal = $this->getDiscountValue($this->discountMax, $this->totalPrice);
-
-            $this->recountPriceAccordApplies();
         }
     }
 
@@ -481,4 +479,5 @@ class BaseDiscount {
         $this->cart->setTotalPrice();
         return $difference;
     }
+
 }
