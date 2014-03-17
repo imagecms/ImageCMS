@@ -23,8 +23,8 @@
         </div>
         <div class="tab-content">
             <div class="tab-pane active" id="properties">
-                <div class="inside_padd">
-                    <table class="table table-striped table-bordered table-hover table-condensed">
+                <div class="inside_padd span9">
+                    <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
                         <thead>
                             <tr>
                                 <th colspan="6">
@@ -35,11 +35,11 @@
                         <tbody>
                             <tr>
                                 <td colspan="6">
-                                    <div class="inside_padd">
+                                    <div class="inside_padd span9">
                                         <div class="control-group">
                                             <label class="control-label" for="settings[propertiesTypes]"></label>
                                             <div class="controls">
-                                                <table class="propertyTypes table table-striped table-bordered table-hover table-condensed">
+                                                <table class="propertyTypes table table-striped table-bordered table-hover table-condensed t-l_a">
                                                     {foreach $settings['propertiesTypes'] as $type}
                                                         <tr>
                                                             <td>
@@ -88,8 +88,8 @@
                 </div>
             </div>
             <div class="tab-pane" id="columns">
-                <div class="inside_padd">
-                    <table class="table table-striped table-bordered table-hover table-condensed">
+                <div class="inside_padd span9">
+                    <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
                         <thead>
                             <tr>
                                 <th colspan="6">
@@ -100,11 +100,11 @@
                         <tbody>
                             <tr>
                                 <td colspan="6">
-                                    <div class="inside_padd">
+                                    <div class="inside_padd span9">
                                         <div class="control-group">
                                             <label class="control-label" for="settings[propertiesTypes]"></label>
                                             <div class="controls">
-                                                <table class="columns table table-striped table-bordered table-hover table-condensed">
+                                                <table class="columns table table-striped table-bordered table-hover table-condensed t-l_a">
                                                     {foreach $settings['columns'] as $column}
                                                         <tr>
                                                             <td>

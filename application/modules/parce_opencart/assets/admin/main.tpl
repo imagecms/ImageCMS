@@ -21,7 +21,7 @@
         </div>
     </div>
     <form method="post" action="{site_url('admin/components/cp/parce_opencart/run_process')}" class="form-horizontal" id="parce_opencart_settings_form">
-        <table class="table table-striped table-bordered table-hover table-condensed">
+        <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
             <thead>
                 <tr>
                     <th colspan="6">
@@ -32,7 +32,7 @@
             <tbody>
                 <tr>
                     <td colspan="6">
-                        <div class="inside_padd">
+                        <div class="inside_padd span9">
 
                             <div class="control-group">
                                 <label class="control-label" for="username">{lang('DB username', 'parce_opencart')}</label>

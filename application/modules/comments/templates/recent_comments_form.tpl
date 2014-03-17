@@ -22,7 +22,7 @@
                     <tbody>
                         <tr>
                             <td>
-                                <div class="inside_padd">
+                                <div class="inside_padd span9">
                                     <div class="row-fluid">
                                         <div class="control-group">
                                             <label class="control-label" for="comcount">{lang("Number of comments for display", 'comments')}:</label>

@@ -28,7 +28,7 @@
         </div>
         <div class="content_big_td row-fluid">
             <form method="post" action="{site_url('admin/components/init_window/translator/createFile')}" class="form-horizontal" id="create_file_form">
-                <table class="table table-striped table-bordered table-hover table-condensed">
+                <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
                     <thead>
                         <tr>
                             <th colspan="6">
@@ -39,7 +39,7 @@
                     <tbody>
                         <tr>
                             <td colspan="6">
-                                <div class="inside_padd">
+                                <div class="inside_padd span9">
                                     <div class="control-group">
                                         <label class="control-label" for="file">{lang('Choose file location', 'translator')}:</label>
                                         <div class="controls poSelectorsHolder">

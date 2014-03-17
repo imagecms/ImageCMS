@@ -42,7 +42,7 @@
                 <tbody>
                     <tr>
                         <td colspan="6">
-                            <div class="inside_padd span9">                                
+                            <div class="inside_padd span9 span9">                                
                                 <div class="control-group">
                                     <label class="control-label" for="Title">{lang("Description","admin")}:</label>
                                     <div class="controls">

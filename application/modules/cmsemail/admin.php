@@ -39,14 +39,16 @@ class Admin extends BaseAdminController {
 
     public function create() {
         if ($_POST) {
-            if ($this->email->create()) {
-
+            $id = $this->email->create();
+            if ($id) {
                 showMessage(lang('Template created', 'cmsemail'));
 
-                if ($this->input->post('action') == 'tomain')
+                if ($this->input->post('action') == 'tomain') {
                     pjax('/admin/components/cp/cmsemail/index');
-            }
-            else {
+                } else {
+                    pjax('/admin/components/cp/cmsemail/edit/'.$id);
+                }
+            } else {
                 showMessage($this->email->errors, '', 'r');
             }
         } else
@@ -64,7 +66,6 @@ class Admin extends BaseAdminController {
     public function delete() {
         $this->email->delete($_POST['ids']);
         showMessage(lang('Email template deleted', 'cmsemail'), lang('Message', 'cmsemail'));
-        
     }
 
     public function edit($id, $locale = null) {
@@ -191,8 +192,8 @@ class Admin extends BaseAdminController {
      * import templates from file
      */
     public function import_templates() {
-        $this->db->where_in('id', array(1, 2, 3, 4, 5, 6, 7))->delete('mod_email_paterns');
-        $this->db->where_in('id', array(1, 2, 3, 4, 5, 6, 7))->delete('mod_email_paterns_i18n');
+        $this->db->where_in('id', array(1, 2, 3, 4, 5, 6, 7, 8, 9))->delete('mod_email_paterns');
+        $this->db->where_in('id', array(1, 2, 3, 4, 5, 6, 7, 8, 9))->delete('mod_email_paterns_i18n');
 
         $file = $this->load->file(dirname(__FILE__) . '/models/paterns.sql', true);
         $this->db->query($file);
