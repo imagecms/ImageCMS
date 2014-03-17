@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-26 01:50+0200\n"
-"PO-Revision-Date: 2013-12-26 01:50+0200\n"
+"POT-Creation-Date: 2014-03-17 12:02+0200\n"
+"PO-Revision-Date: 2014-03-17 12:02+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -18,6 +18,10 @@ msgstr ""
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 
+#: ./application/modules/shop_news/shop_news.php:98
+msgid "Changes have been saved"
+msgstr "Изменения были сохранены"
+
 #: ./application/modules/shop_news/assets/admin/adminModuleInterface.tpl:5
 msgid "The news for products category"
 msgstr "Новости для категории продуктов"
@@ -26,7 +30,6 @@ msgstr "Новости для категории продуктов"
 msgid "Show in categories"
 msgstr "Показать в категориях"
 
-#: ./application/modules/shop_news/shop_news.php:98
 #: ./application/modules/shop_news/assets/admin/adminModuleInterface.tpl:33
 msgid "Save"
 msgstr "Сохранить"
