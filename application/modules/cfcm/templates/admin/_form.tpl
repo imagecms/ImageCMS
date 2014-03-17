@@ -14,7 +14,7 @@
         </div>                            
     </div>             
     <div>
-        <table class="table table-striped table-bordered table-hover table-condensed">
+        <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
             <thead>
                 <tr>
                     <th colspan="6">
@@ -25,7 +25,7 @@
             <tbody>
                 <tr>
                     <td colspan="6">
-                        <div class="inside_padd span12">
+                        <div class="inside_padd span9">
                             <form action="{echo $form->action}" method="post" id="{$f_id}" class="form-horizontal">
                                 {foreach $form->asArray() as $f}
                                     <div class="control-group">

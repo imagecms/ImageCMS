@@ -410,7 +410,7 @@
         <div class="container">
             <section class="frame-complect horizontal-carousel">
                 <div class="frame-title">
-                    <div class="title">{lang('Специальное предложение! Купить, установить и получить скидку на аксессуары!','newLevel')}</div>
+                    <div class="title">{lang('Вместе дешевле','newLevel')}</div>
                 </div>
                 <div class="carousel-js-css items-carousel complects-carousel">
                     <div class="content-carousel">

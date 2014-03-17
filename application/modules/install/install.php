@@ -93,7 +93,6 @@ class Install extends MY_Controller {
             'soap' => 'ok',
             'ionCube Loader' => 'ok'
         );
-        var_dump($this->checkExtensions());
         foreach ($exts as $k => $v) {
             //if ($this->_get_ext($k) === FALSE) {
             if ($this->checkExtensions($k) === FALSE) {
@@ -155,7 +154,11 @@ class Install extends MY_Controller {
         return FALSE;
     }
 
-
+    /**
+     * @deprecated since version 4.6
+     * @param type $name
+     * @return boolean
+     */
     private function _get_ext($name = '') {
         if ($this->exts === FALSE) {
             ob_start();

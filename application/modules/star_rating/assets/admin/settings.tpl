@@ -23,7 +23,7 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <div class="inside_padd">
+                                    <div class="inside_padd span9">
                                         <div class="row-fluid" style ='padding:10px'>
                                             <div class="controls-group" style ='padding:5px'>
                                                  <span class="frame_label">
