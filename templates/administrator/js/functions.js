@@ -201,8 +201,8 @@ function translite_title(from, to)
     var url = base_url + 'admin/pages/ajax_translit/';
     $.post(
             url, {
-                'str': $(from).val()
-            }, function(data)
+        'str': $(from).val()
+    }, function(data)
 
     {
         $(to).val(data);
@@ -217,8 +217,8 @@ function create_description(from, to)
 
     $.post(
             base_url + 'admin/pages/ajax_create_description/', {
-                'text': $(from).val()
-            },
+        'text': $(from).val()
+    },
     function(data) {
         $(to).val(data);
     }
@@ -833,7 +833,7 @@ var orders = new Object({
         }, function(data) {
             $('#mainContent').after(data);
             $.pjax({
-                url: window.location.pathname,
+                url: window.location.href,
                 container: '#mainContent',
                 timeout: 3000
             });
@@ -855,7 +855,7 @@ var orders = new Object({
         }, function(data) {
             $('#mainContent').after(data);
             $.pjax({
-                url: window.location.pathname,
+                url: window.location.href,
                 container: '#mainContent',
                 timeout: 3000
             });
