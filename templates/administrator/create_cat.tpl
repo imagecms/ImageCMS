@@ -3,13 +3,13 @@
         <div class="frame_title clearfix">
             <div class="pull-left">
                 <span class="help-inline"></span>
-                <span class="title">{lang("Create a category","admin")}</span>
+                <span class="title">{lang("Category creating","admin")}</span>
             </div>
 
             <div class="pull-right">
                 <div class="d-i_b">                        
                     <a href="/admin/categories/cat_list" class="t-d_n m-r_15"><span class="f-s_14 pjax">←</span> <span class="t-d_u">{lang("Back","admin")}</span></a>
-                    <button type="button" class="btn btn-small action_on btn-success formSubmit" data-action="edit" data-form="#save" data-submit><i class="icon-plus-sign icon-white"></i>{lang("Create a category","admin")}</button>
+                    <button type="button" class="btn btn-small action_on btn-success formSubmit" data-action="edit" data-form="#save" data-submit><i class="icon-plus-sign icon-white"></i>{lang("Create","admin")}</button>
                     <button type="button" class="btn btn-small action_on formSubmit" data-action="close" data-form="#save"><i class="icon-check"></i>{lang("Create and exit","admin")}</button>                   
                 </div>
             </div>                            
