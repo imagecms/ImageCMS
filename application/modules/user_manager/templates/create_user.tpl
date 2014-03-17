@@ -19,7 +19,7 @@
 
         <!----------------------------------------------------- CREATE USER-------------------------------------------------------------->
         <div class="tab-pane">
-            <table class="table table-striped table-bordered table-hover table-condensed">
+            <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
                 <thead>
                     <tr>
                         <th colspan="6">
@@ -30,7 +30,7 @@
                 <tbody>
                     <tr>
                         <td colspan="6">
-                            <div class="inside_padd span12">
+                            <div class="inside_padd span9">
                                 <div class="form-horizontal">
                                     <div class="row-fluid">
                                         <form id="create" method="post" active="{$SELF_URL}/create_user/">

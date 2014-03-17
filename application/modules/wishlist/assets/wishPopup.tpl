@@ -5,7 +5,7 @@
                 <div class="header_title">{lang('Select Wishlist', 'wishlist')}
                 </div>
                 <div class="drop-content">
-                    <div class="inside_padd">
+                    <div class="inside_padd span9">
                         <div class="addWL">
                             {foreach $wish_lists as $wish_list}
                                 <label>

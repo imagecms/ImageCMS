@@ -30,7 +30,7 @@
             </div>
             <div class="tab-content">
                 <div class="tab-pane active" id="user">
-                    <table class="table table-striped table-bordered table-hover table-condensed">
+                    <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
                         <thead>
                             <tr>
                                 <th colspan="6">{lang('User', 'wishlist')}</th>
@@ -39,7 +39,7 @@
                         <tbody>
                             <tr>
                                 <td colspan="6">
-                                    <div class="inside_padd">
+                                    <div class="inside_padd span9">
                                         <label>
                                             <span class="frame_form_field__icsi-css">
                                                 <div class="frameLabel__icsi-css error_text" name="error_text"></div>
@@ -216,7 +216,7 @@
                     {/if}
                 </div>
                 <div class="tab-pane" id="create_list">
-                    <table class="table table-striped table-bordered table-hover table-condensed">
+                    <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
                         <thead>
                             <tr>
                                 <th colspan="6">{lang('Create list', 'wishlist')}</th>
@@ -225,7 +225,7 @@
                         <tbody>
                             <tr>
                                 <td colspan="6">
-                                    <div class="inside_padd">
+                                    <div class="inside_padd span9">
 
                                         <div id="notifies" >
                                             <!-- class="alert alert-error" -->

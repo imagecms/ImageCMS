@@ -681,12 +681,12 @@ function autocomplete() {
                 }, 'json')
             },
             select: function(event, ui) {
-                $('#relatedProductsNames').append('<div id="tpm_row' + ui.item.identifier.id + '">' +
-                        '<span style="width: 70%;margin-left: 1%;" class="pull-left">' +
+                $('#relatedProductsNames').append('<div id="tpm_row' + ui.item.identifier.id + '" class="item-accessories">' +
+                        '<span class="pull-left">' +
                         '<a id="AttachedProducts" href="edit/' + ui.item.identifier.id + '">' + ui.item.label + '</a>' +
                         '<input type="hidden" name="RelatedProducts[]" value="' + ui.item.identifier.id + '">' +
                         '</span>' +
-                        '<span style="width: 8%;margin-left: 1%;" class="pull-left">' +
+                        '<span style="margin-left: 1%;" class="pull-left">' +
                         '<button class="btn btn-small del_tmp_row" data-kid="' + ui.item.identifier.id + '"><i class="icon-trash"></i></button>' +
                         '</span>' +
                         '</div>');
@@ -840,7 +840,7 @@ function fixed_frame_title() {
     fixed_block = $(".frame_title:not(.no_fixed)");
     mini_layout = $('.mini-layout');
     container = $('.container');
-    containerW = container.width();
+    containerW = container.width() - parseInt($('body').css('padding-left')) * 2;
     frame_zH_frame_title = $('.frame_zH_frame_title');
 
     if ($.exists_nabir(fixed_block)) {

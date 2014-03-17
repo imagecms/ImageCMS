@@ -27,7 +27,7 @@
     <form method="post" action="{$BASE_URL}admin/pages/add" id="add_page_form" class="form-horizontal" >
         <div class="tab-content content_big_td">
             <div class="tab-pane active" id="content_article">
-                <table class="table table-striped table-bordered table-hover table-condensed">
+                <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
                     <thead>
                         <tr>
                             <th colspan="6">
@@ -38,7 +38,7 @@
                     <tbody>
                         <tr>
                             <td colspan="6">
-                                <div class="inside_padd span12">
+                                <div class="inside_padd">
                                     <div class="control-group">
                                         <label class="control-label" for="category_selectbox">
                                             {lang("Categories","admin")}:
@@ -86,7 +86,7 @@
                 </table>
             </div>
             <div class="tab-pane" id="parameters_article">
-                <table class="table table-striped table-bordered table-hover table-condensed">
+                <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
                     <thead>
                         <tr>
                             <th colspan="6">
@@ -97,7 +97,7 @@
                     <tbody>
                         <tr>
                             <td colspan="6">
-                                <div class="inside_padd span12">
+                                <div class="inside_padd span9">
                                     <div class="control-group">
                                         <label class="control-label" for="page_url">
                                             {lang("URL","admin")}:
@@ -201,7 +201,7 @@
             </div>
 
             <div class="tab-pane" id="setings_article">
-                <table class="table table-striped table-bordered table-hover table-condensed">
+                <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
                     <thead>
                         <tr>
                             <th colspan="6">
@@ -212,7 +212,7 @@
                     <tbody>
                         <tr>
                             <td colspan="6">
-                                <div class="inside_padd span12">
+                                <div class="inside_padd span9">
                                     <div class="control-group">
                                         <label class="control-label" for="post_status">
                                             {lang("Publication status","admin")}:

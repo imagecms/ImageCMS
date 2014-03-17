@@ -29,7 +29,7 @@
         </div>
         <div class="tab-content">
             <div class="tab-pane active" id="settings">
-                <div class="inside_padd">
+                <div class="inside_padd span9">
                     <form action="{$BASE_URL}admin/components/cp/cmsemail/edit/{$model['id']}/{echo $locale}" id="email_form" method="post" class="form-horizontal">
                         <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
                             <thead>
@@ -176,13 +176,13 @@
             </div>
             <div class="tab-pane active" id="variables">
 
-                <div class="inside_padd">
-                    <table class="table table-striped table-bordered table-hover table-condensed content_big_td variablesTable">
+                <div class="inside_padd span9">
+                    <table class="table table-striped table-bordered table-hover table-condensed content_big_td variablesTable t-l_a">
                         <thead>
                         <th>{lang('Variables', 'cmsemail')}</th>
                         <th>{lang('Values', 'cmsemail')}</th>
-                        <th class="span2">{lang('Edit', 'cmsemail')}</th>
-                        <th class="span1">{lang('Delete', 'cmsemail')}</th>
+                        <th>{lang('Edit', 'cmsemail')}</th>
+                        <th>{lang('Delete', 'cmsemail')}</th>
                         </thead>
                             {foreach $variables as $variable => $variable_value}
                                 <tr>
