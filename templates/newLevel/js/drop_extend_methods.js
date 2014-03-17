@@ -37,8 +37,8 @@ $.dropInit.prototype.extendDrop = function() {
                             $this.css({
                                 'left': l,
                                 'top': t
-                            })
-                        })
+                            });
+                        });
                     }
                 });
             });
@@ -59,7 +59,7 @@ $.dropInit.prototype.extendDrop = function() {
                             $thisH = $this.height(),
                             $thisT = 0,
                             $thisL = 0;
-                    if (typeof placement == 'object') {
+                    if (typeof placement === 'object') {
                         var tempObj = {};
                         for (var key in placement) {
                             tempObj[key] = placement[key];
@@ -122,7 +122,7 @@ $.dropInit.prototype.extendDrop = function() {
                         var el = drop.find($(drp.dropContent)).filter(':visible');
 
                         if (el.data('jsp'))
-                            el.data('jsp').destroy()
+                            el.data('jsp').destroy();
 
                         el = drop.find($(drp.dropContent)).filter(':visible').css({'height': ''});
 
@@ -147,13 +147,13 @@ $.dropInit.prototype.extendDrop = function() {
 
                             var footerHeader = drop.find($(drp.dropHeader)).outerHeight() + drop.find($(drp.dropFooter)).outerHeight();
 
-                            if (drp.place == 'noinherit') {
+                            if (drp.place === 'noinherit') {
                                 var mayHeight = 0,
                                         placement = drp.placement;
-                                if (typeof placement == 'object') {
-                                    if (placement.top != undefined)
+                                if (typeof placement === 'object') {
+                                    if (placement.top !== undefined)
                                         mayHeight = (drp.scroll ? wnd.height() : docH) - placement.top - footerHeader - (dropH - dropHm);
-                                    if (placement.bottom != undefined)
+                                    if (placement.bottom !== undefined)
                                         mayHeight = placement.bottom - footerHeader - (dropH - dropHm);
                                 }
                                 else {
@@ -221,7 +221,7 @@ $.dropInit.prototype.extendDrop = function() {
         scroll: {
             create: function() {
                 if (!isTouch) {
-                    if (body.css('overflow') == 'auto' || wnd.height() < $(document).height()) {
+                    if (body.css('overflow') === 'auto' || wnd.height() < $(document).height()) {
                         body.addClass('isScroll').css({
                             'overflow': 'hidden',
                             'margin-right': $.drop.widthScroll,
@@ -267,7 +267,7 @@ $.dropInit.prototype.extendDrop = function() {
             var elSet = $this.data(),
                     relO = $this.get(0).rel;
 
-            if (relO != '' && relO !== undefined) {
+            if (relO !== '' && relO !== undefined) {
                 var source = methods._checkProp(elSet, set, 'source') || $this.attr('href'),
                         next = methods._checkProp(elSet, set, 'next'),
                         prev = methods._checkProp(elSet, set, 'prev'),
@@ -316,7 +316,7 @@ $.dropInit.prototype.extendDrop = function() {
 
                 if (pmt[0] === 'center' || pmt[1] === 'center') {
                     methods._checkMethod(function() {
-                        methods[place](drop, true)
+                        methods[place](drop, true);
                     });
                     t = drop.css('top');
                     l = drop.css('left');
@@ -356,7 +356,7 @@ $.dropInit.prototype.extendDrop = function() {
                 t = wnd.height();
             if (pmt[0] === 'right' || pmt[1] === 'right')
                 l = wnd.width();
-            if (pmt[0] == 'center' || pmt[1] == 'center') {
+            if (pmt[0] === 'center' || pmt[1] === 'center') {
                 if (pmt[0] === 'left') {
                     l = -drop.actual('outerWidth');
                     t = drop.css('top');
@@ -446,7 +446,7 @@ $.dropInit.prototype.extendDrop = function() {
                     methods._pasteDrop($.extend({}, $.drop.dP, opt, promptBtn.data()), $(promptBtnDrop));
                 setTimeout(function() {
                     methods._show(promptBtn, e, opt, false, hashChange);
-                }, 0)
+                }, 0);
                 $(methods._checkProp(elSet, opt, 'promptActionBtn')).off('click.' + $.drop.nS).on('click.' + $.drop.nS, function(e) {
                     e.stopPropagation();
                     if (elSet.after)
