@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-17 12:03+0200\n"
-"PO-Revision-Date: 2014-03-17 12:03+0200\n"
+"POT-Creation-Date: 2014-03-17 01:05+0200\n"
+"PO-Revision-Date: 2014-03-17 01:05+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -20,6 +20,14 @@ msgstr ""
 "X-Poedit-SearchPath-1: ../../../templates/administrator\n"
 "X-Poedit-SearchPath-2: ../../modules/shop/admin\n"
 "X-Poedit-SearchPath-3: ../../../application/modules/shop/models/build/classes\n"
+
+#: ./application/modules/admin/categories.php:221
+msgid "Category has been created"
+msgstr "Категория создана"
+
+#: ./templates/administrator/add_page.tpl:5
+msgid "Creating new page"
+msgstr "Создание новой страницы"
 
 #: ./application/modules/shop/admin/templates/users/create.tpl:6
 msgid "Creating user"
@@ -452,6 +460,7 @@ msgstr "Что-то пошло не так. Начальный статус не
 msgid "Inform"
 msgstr "Уведомить"
 
+#: ./templates/administrator/add_page.tpl:10
 #: ./templates/administrator/category_edit.tpl:10
 #: ./templates/administrator/cat_translate_edit.tpl:10
 #: ./templates/administrator/create_cat.tpl:11
@@ -2620,13 +2629,11 @@ msgstr "Каталог товаров"
 msgid "Products catalogue"
 msgstr "Каталог товаров"
 
-#: ./templates/administrator/add_page.tpl:44
 #: ./templates/administrator/category_list.tpl:27
 #: ./templates/administrator/dashboard.tpl:23
 #: ./templates/administrator/dashboard.tpl:71
 #: ./templates/administrator/dashboard.tpl:143
 #: ./templates/administrator/desktop.tpl:112
-#: ./templates/administrator/edit_page.tpl:76
 #: ./templates/administrator/inc/menus.php:50
 #: ./templates/administrator/inc/menus.php:273
 #: ./templates/administrator/modules_search.tpl:120
@@ -2645,12 +2652,10 @@ msgstr "Категории переведена"
 msgid "Product categories"
 msgstr "Категории товаров"
 
-#: ./application/modules/admin/categories.php:229
 #: ./application/modules/admin/categories.php:388
 msgid "Category"
 msgstr "Категория"
 
-#: ./application/modules/admin/categories.php:221
 #: ./application/modules/admin/categories.php:369
 msgid "Category has been created or created a category"
 msgstr "Категория была создана"
@@ -2664,7 +2669,7 @@ msgstr "Категория изменена"
 msgid "Category not found"
 msgstr "Категория не найдена"
 
-#: ./application/modules/shop/admin/categories.php:139
+#: ./application/modules/admin/categories.php:229
 msgid "Category created"
 msgstr "Категория создана"
 
@@ -3139,7 +3144,6 @@ msgstr "Наборы товаров"
 msgid "Prev"
 msgstr "Назад"
 
-#: ./templates/administrator/add_page.tpl:10
 #: ./templates/administrator/sys_update.tpl:13
 msgid "back"
 msgstr "Назад"
@@ -5436,10 +5440,6 @@ msgstr "Создание товара"
 msgid "Created by"
 msgstr "Созданный"
 
-#: ./application/modules/admin/categories.php:229
-msgid "Created or has been created"
-msgstr "Созданный или был создан"
-
 #: ./templates/administrator/add_page.tpl:11
 #: ./templates/administrator/add_page.tpl:314
 #: ./templates/administrator/backup.tpl:19
@@ -5514,6 +5514,7 @@ msgstr "Создать заказ"
 msgid "Make order"
 msgstr "Создать заказ"
 
+#: ./templates/administrator/add_page.tpl:12
 #: ./templates/administrator/create_cat.tpl:13
 #: ./templates/administrator/roleCreate.tpl:11
 msgid "Create and exit"
@@ -5542,10 +5543,6 @@ msgstr "Создать миниатюру"
 #: ./application/modules/shop/admin/templates/orders/create.tpl:144
 msgid "Create new user"
 msgstr "Создать нового пользователя"
-
-#: ./templates/administrator/add_page.tpl:5
-msgid "Create new page"
-msgstr "Создать новую страницу"
 
 #: ./application/modules/shop/admin/templates/categories/create.tpl:90
 #: ./application/modules/shop/admin/templates/categories/edit.tpl:112
@@ -5740,7 +5737,6 @@ msgstr "Сохранить"
 msgid "Save and exit"
 msgstr "Сохранить и выйти"
 
-#: ./templates/administrator/add_page.tpl:12
 #: ./templates/administrator/edit_page.tpl:12
 #: ./templates/administrator/lang_edit.tpl:22
 #: ./templates/administrator/privilegeEdit.tpl:11
@@ -6148,10 +6144,6 @@ msgstr "Страница удалена."
 msgid "Pages"
 msgstr "Страницы"
 
-#: ./templates/administrator/add_page.tpl:18
-#: ./templates/administrator/add_page.tpl:34
-#: ./templates/administrator/edit_page.tpl:46
-#: ./templates/administrator/edit_page.tpl:66
 #: ./templates/administrator/inc/menus.php:20
 #: ./templates/administrator/inc/menus.php:253
 #: ./templates/administrator/inc/menus.php:258
