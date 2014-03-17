@@ -137,7 +137,7 @@
                 <div class="imagecms-contacts">
                     <span class="imagecms-phone">
                         <img src="{$THEME}/icon_phone.png" class="imagecms-ico-phone"/>
-                        <span class="imagecms-text-el">+7 (499) 703-37-54</span>
+                        <span class="imagecms-text-el">+7 (499) 703-37-51</span>
                     </span>
                     <a href="skype:imagecms_partner" class="imagecms-ref-skype">
                         <img src="{$THEME}/icon_skype.png" class="imagecms-ico-skype"/>

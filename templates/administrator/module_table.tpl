@@ -53,10 +53,10 @@
                                         </th>
                                         <th>{lang('Module','admin')}</th>
                                         <th>{lang('Description','admin')}</th>
-                                        <th>{lang('URL','admin')}</th>
-                                        <th class="t-a_c">{lang('Auto loading ','admin')}</th>
-                                        <th class="t-a_c">{lang('URL access','admin')}</th>
-                                        <th class="t-a_c">{lang('Show in menu','admin')}</th>
+                                        <th width="120">{lang('URL','admin')}</th>
+                                        <th class="t-a_c" width="80">{lang('Auto loading ','admin')}</th>
+                                        <th class="t-a_c" width="80">{lang('URL access','admin')}</th>
+                                        <th class="t-a_c" width="120">{lang('Show in menu','admin')}</th>
                                     </tr>
                                 </thead>
                                 <tbody class="sortable save_positions" data-url="/admin/components/save_components_positions">
