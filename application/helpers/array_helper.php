@@ -28,6 +28,29 @@ if (!function_exists('is_true_array')) {
 
 }
 
+if (!function_exists('result_column')) {
+
+    /**
+     * For 
+     * @param array $result array of arrays
+     * @return array
+     */
+    function result_column($result) {
+
+        if (count($result) == 0) {
+            return array();
+        }
+
+        $key = key($result[0]); 
+       
+        for ($i = 0; $i < count($result); $i++) {
+            $result[$i] = $result[$i][$key];
+        }
+
+        return $result;
+    }
+
+}
 
 if (!function_exists('array_key_exists_recursive')) {
 

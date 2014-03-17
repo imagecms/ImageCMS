@@ -2,9 +2,9 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-14 12:19+0200\n"
-"PO-Revision-Date: 2014-03-14 12:19+0200\n"
-"Last-Translator: sdfsdfsdfs <sdfsdfsdf>\n"
+"POT-Creation-Date: 2014-03-14 01:15+0200\n"
+"PO-Revision-Date: 2014-03-14 01:15+0200\n"
+"Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
@@ -20,6 +20,49 @@ msgstr ""
 "X-Poedit-SearchPath-1: ../../../templates/administrator\n"
 "X-Poedit-SearchPath-2: ../../modules/shop/admin\n"
 "X-Poedit-SearchPath-3: ../../../application/modules/shop/models/build/classes\n"
+
+#: ./application/modules/shop/admin/templates/deliverymethods/list.tpl:33
+msgid "Create a way to deliver"
+msgstr "Создать способ доставки"
+
+#: ./application/modules/shop/admin/templates/deliverymethods/create.tpl:6
+msgid "Delivery method create"
+msgstr "Создание способа доставки"
+
+#: ./application/modules/shop/admin/templates/paymentmethods/list.tpl:50
+#: ./application/modules/shop/admin/templates/deliverymethods/list.tpl:51
+msgid "Method name"
+msgstr "Способ"
+
+#: ./templates/administrator/languages.tpl:25
+msgid "Languages list"
+msgstr "Список языков"
+
+#: ./templates/administrator/lang_create.tpl:47
+#: ./templates/administrator/lang_edit.tpl:58
+msgid "Localization"
+msgstr "Локализация"
+
+#: ./application/modules/shop/admin/templates/notifications/list.tpl:73
+#: ./application/modules/shop/admin/templates/notifications/list.tpl:197
+msgid "ProductNot"
+msgstr ""
+
+#: ./application/modules/shop/admin/templates/customfields/create.tpl:100
+msgid "Text field"
+msgstr "Поле ввода"
+
+#: ./application/modules/shop/admin/templates/customfields/create.tpl:101
+msgid "Textarea field"
+msgstr "Текстовое поле"
+
+#: ./application/modules/shop/admin/templates/customfields/create.tpl:102
+msgid "File field"
+msgstr "Файл"
+
+#: ./application/modules/shop/admin/templates/properties/list.tpl:60
+msgid "Property"
+msgstr "Свойство"
 
 #: ./application/modules/shop/admin/callbacks.php:295
 msgid "Callback was removed"
@@ -483,7 +526,7 @@ msgstr "Enail заказчика"
 #: ./templates/administrator/roleEdit.tpl:19
 #: ./templates/administrator/roleEdit.tpl:34
 #: ./templates/administrator/new_desktop.tpl:151
-#: ./templates/administrator/main.tpl:316
+#: ./templates/administrator/main.tpl:318
 msgid "English"
 msgstr "English"
 
@@ -547,7 +590,7 @@ msgstr "ID удаленой страницы"
 msgid "ID : "
 msgstr "ID:"
 
-#: ./application/modules/admin/admin.php:205
+#: ./application/modules/admin/admin.php:207
 msgid "ip-address"
 msgstr "IP-адрес"
 
@@ -721,7 +764,7 @@ msgid "Administer shop"
 msgstr "Администрирование магазина"
 
 #: ./templates/administrator/inc/javascriptVars.tpl:93
-#: ./templates/administrator/main.tpl:240
+#: ./templates/administrator/main.tpl:242
 msgid "Manage shop"
 msgstr "Администрировать магазин"
 
@@ -733,7 +776,7 @@ msgstr "Администрировать сайт"
 msgid "Administrate site"
 msgstr "Администрировать сайт"
 
-#: ./templates/administrator/main.tpl:291
+#: ./templates/administrator/main.tpl:293
 msgid "Manage site"
 msgstr "Администрировать сайт"
 
@@ -751,7 +794,7 @@ msgstr "Адрес доставки"
 msgid "Delivery address specified by the customer"
 msgstr "Адрес доставкы , указаный клиентом"
 
-#: ./application/modules/admin/admin.php:205
+#: ./application/modules/admin/admin.php:207
 msgid "Site address"
 msgstr "Адрес сайта"
 
@@ -942,6 +985,7 @@ msgstr "Блокировать"
 msgid "Blocking"
 msgstr "Блокировка"
 
+#: ./application/modules/shop/admin/templates/brands/list.tpl:50
 #: ./application/modules/shop/admin/templates/system/export_.tpl:80
 #: ./application/modules/shop/admin/templates/system/importfields.tpl:177
 #: ./application/modules/shop/admin/templates/system/importcsv.tpl:106
@@ -1030,8 +1074,8 @@ msgstr "В том числе дополнительные изображения
 msgid "Importance"
 msgstr "Важность"
 
-#: ./application/modules/shop/admin/templates/customfields/create.tpl:115
-#: ./application/modules/shop/admin/templates/customfields/create.tpl:121
+#: ./application/modules/shop/admin/templates/customfields/create.tpl:114
+#: ./application/modules/shop/admin/templates/customfields/create.tpl:120
 #: ./application/modules/shop/admin/templates/customfields/edit.tpl:105
 #: ./application/modules/shop/admin/templates/customfields/edit.tpl:111
 msgid "Validators"
@@ -1087,7 +1131,7 @@ msgstr "Варианты"
 msgid "Product variations "
 msgstr "Варианты товара"
 
-#: ./application/modules/admin/admin.php:191
+#: ./application/modules/admin/admin.php:193
 msgid "Your Email"
 msgstr "Ваш E-mail"
 
@@ -1095,15 +1139,15 @@ msgstr "Ваш E-mail"
 msgid "Your updation key"
 msgstr "Ваш ключ обновления"
 
-#: ./application/modules/admin/admin.php:192
+#: ./application/modules/admin/admin.php:194
 msgid "Your remark"
 msgstr "Ваше замечание"
 
-#: ./application/modules/admin/admin.php:190
+#: ./application/modules/admin/admin.php:192
 msgid "Your Name"
 msgstr "Ваше имя"
 
-#: ./application/modules/admin/admin.php:216
+#: ./application/modules/admin/admin.php:218
 msgid "Your message has been sent"
 msgstr "Ваше сообщение было отправлено"
 
@@ -1223,7 +1267,7 @@ msgstr "Вернуться"
 #: ./templates/administrator/sys_info.tpl:36
 #: ./templates/administrator/new_desktop.tpl:157
 #: ./templates/administrator/dashboard.tpl:123
-#: ./templates/administrator/main.tpl:322
+#: ./templates/administrator/main.tpl:324
 msgid "Version"
 msgstr "Версия"
 
@@ -1327,7 +1371,7 @@ msgstr "Водяной знак"
 msgid "Return"
 msgstr "Возвращение"
 
-#: ./application/modules/shop/admin/templates/customfields/create.tpl:108
+#: ./application/modules/shop/admin/templates/customfields/create.tpl:107
 msgid "Possible values"
 msgstr "Возможные значения"
 
@@ -1407,7 +1451,7 @@ msgstr "Все контента по категориям"
 #: ./templates/administrator/inc/menus.php:80
 #: ./templates/administrator/inc/menus.php:308
 #: ./templates/administrator/new_desktop.tpl:95
-#: ./templates/administrator/main.tpl:277
+#: ./templates/administrator/main.tpl:279
 #: ./templates/administrator/desktop.tpl:132
 msgid "All modules"
 msgstr "Все модули"
@@ -1621,7 +1665,7 @@ msgstr "Высота, px"
 msgid "Exit"
 msgstr "Выхад"
 
-#: ./application/modules/admin/admin.php:181
+#: ./application/modules/admin/admin.php:183
 msgid "Exited the control panel"
 msgstr "Вышли с контрольной панели"
 
@@ -1712,7 +1756,7 @@ msgstr "Горизонтальное выравнивание"
 msgid "City"
 msgstr "Город"
 
-#: ./templates/administrator/main.tpl:138
+#: ./templates/administrator/main.tpl:140
 msgid "Guest"
 msgstr "Гость"
 
@@ -1983,11 +2027,15 @@ msgid "Add a new product to the order"
 msgstr "Добавить новый товар к заказу"
 
 #: ./templates/administrator/cats_tree_css.tpl:7
+#: ./templates/administrator/cats_tree_css.tpl:7
+#: ./templates/administrator/cats_sidebar.tpl:3
 #: ./templates/administrator/cats_sidebar.tpl:3
 msgid "Add a subcategory"
 msgstr "Добавить подкатегорию"
 
 #: ./templates/administrator/cats_tree_css.tpl:8
+#: ./templates/administrator/cats_tree_css.tpl:8
+#: ./templates/administrator/cats_sidebar.tpl:4
 #: ./templates/administrator/cats_sidebar.tpl:4
 msgid "Add an article"
 msgstr "Добавить статью"
@@ -2002,7 +2050,7 @@ msgid "Wait for resize ending"
 msgstr "Дождитесь окончания ресайза"
 
 #: ./templates/administrator/new_desktop.tpl:162
-#: ./templates/administrator/main.tpl:327
+#: ./templates/administrator/main.tpl:329
 msgid "Documentation"
 msgstr "Документация"
 
@@ -2185,7 +2233,8 @@ msgstr "Заказчик"
 #: ./templates/administrator/inc/menus.php:330
 #: ./templates/administrator/shop_menu.tpl:8
 #: ./templates/administrator/shop_menu.tpl:10
-#: ./templates/administrator/main.tpl:158
+#: ./templates/administrator/main.tpl:160
+#: ./templates/administrator/main.tpl:160
 msgid "Orders"
 msgstr "Заказы"
 
@@ -2245,7 +2294,7 @@ msgid "Here you can search for modules and set them to automatic mode"
 msgstr "Здесь Вы можете искать модули и установить их в автоматический режим"
 
 #: ./templates/administrator/new_desktop.tpl:26
-#: ./templates/administrator/main.tpl:125
+#: ./templates/administrator/main.tpl:127
 #: ./templates/administrator/desktop.tpl:99
 msgid "Hello"
 msgstr "Здравствуйте"
@@ -2316,6 +2365,7 @@ msgstr "Изменения успешно сохранены"
 msgid "Change"
 msgstr "Изменить"
 
+#: ./templates/administrator/cats_tree_css.tpl:6
 #: ./templates/administrator/cats_tree_css.tpl:6
 msgid "Change category data"
 msgstr "Изменить данные категории"
@@ -2402,7 +2452,7 @@ msgstr "Имя заказчика"
 msgid "CSV column name "
 msgstr "Имя колонки CSV"
 
-#: ./application/modules/admin/admin.php:205
+#: ./application/modules/admin/admin.php:207
 msgid "user name"
 msgstr "имя пользователя"
 
@@ -2453,7 +2503,7 @@ msgid "Integration with social networks"
 msgstr "Интеграция с социальными сетями"
 
 #: ./templates/administrator/new_desktop.tpl:144
-#: ./templates/administrator/main.tpl:309
+#: ./templates/administrator/main.tpl:311
 msgid "Interface"
 msgstr "Интерфейс"
 
@@ -2608,8 +2658,8 @@ msgstr "Качество"
 msgid "Cache"
 msgstr "Кеш"
 
-#: ./application/modules/shop/admin/templates/customfields/create.tpl:129
-#: ./application/modules/shop/admin/templates/customfields/create.tpl:135
+#: ./application/modules/shop/admin/templates/customfields/create.tpl:128
+#: ./application/modules/shop/admin/templates/customfields/create.tpl:134
 msgid "Classes"
 msgstr "Классы"
 
@@ -2852,12 +2902,12 @@ msgstr "Купленные товары"
 msgid "Currency rate"
 msgstr "Курс валюты"
 
-#: ./application/modules/admin/admin.php:81
+#: ./application/modules/admin/admin.php:83
 msgid "Cleared the cache"
 msgstr "Кэш очищен"
 
-#: ./application/modules/admin/admin.php:89
-#: ./application/modules/admin/admin.php:97
+#: ./application/modules/admin/admin.php:91
+#: ./application/modules/admin/admin.php:99
 msgid "Cache has been cleared"
 msgstr "Кэш очищен"
 
@@ -3315,12 +3365,15 @@ msgstr "Не отображать"
 
 #: ./templates/administrator/search.tpl:49
 #: ./templates/administrator/pages_list.tpl:191
-#: ./templates/administrator/main.tpl:410
+#: ./templates/administrator/main.tpl:412
 msgid "don't show"
 msgstr "не показывать"
 
 #: ./templates/administrator/module_table.tpl:105
+#: ./templates/administrator/module_table.tpl:105
 #: ./templates/administrator/module_table.tpl:110
+#: ./templates/administrator/module_table.tpl:110
+#: ./templates/administrator/module_table.tpl:115
 #: ./templates/administrator/module_table.tpl:115
 msgid "switch off"
 msgstr "не показывать"
@@ -3882,10 +3935,11 @@ msgstr "Отключение сайта"
 #: ./templates/administrator/edit_page.tpl:362
 #: ./templates/administrator/fast_cat_add.tpl:21
 #: ./templates/administrator/rbac.tpl:70
-#: ./templates/administrator/main.tpl:348
+#: ./templates/administrator/main.tpl:350
 msgid "Cancel"
 msgstr "Отменить"
 
+#: ./templates/administrator/pages_list.tpl:44
 #: ./templates/administrator/pages_list.tpl:44
 msgid "Cancel filter"
 msgstr "Отменить фильтрацию"
@@ -3943,7 +3997,7 @@ msgstr "отправитель"
 
 #: ./templates/administrator/forgot_password.tpl:38
 #: ./templates/administrator/move_pages.tpl:9
-#: ./templates/administrator/main.tpl:347
+#: ./templates/administrator/main.tpl:349
 msgid "Send"
 msgstr "Отправить"
 
@@ -4001,7 +4055,7 @@ msgstr "Ошибка"
 msgid "Error in the script. Please notify the administrator"
 msgstr "Ошибка в сценарии. Пожалуйста, сообщите администратору"
 
-#: ./application/modules/admin/admin.php:100
+#: ./application/modules/admin/admin.php:102
 msgid "Clearing cache error"
 msgstr "Ошибка очистки кэша"
 
@@ -4359,7 +4413,7 @@ msgstr "Поиск пользователя"
 
 #: ./templates/administrator/search.tpl:49
 #: ./templates/administrator/pages_list.tpl:191
-#: ./templates/administrator/main.tpl:409
+#: ./templates/administrator/main.tpl:411
 msgid "show"
 msgstr "показать"
 
@@ -4525,12 +4579,12 @@ msgstr "Пользователь уже был уведомлен по элек�
 msgid "User already notified via E-mail upon availability! Notify again"
 msgstr "Пользователь уже уведомлен по электронной почте про наличие! Сообщить снова"
 
-#: ./application/modules/shop/admin/templates/customfields/create.tpl:133
+#: ./application/modules/shop/admin/templates/customfields/create.tpl:132
 msgid "Custom classes for widget"
 msgstr "Пользовательские классы для виджета"
 
 #: ./templates/administrator/new_desktop.tpl:158
-#: ./templates/administrator/main.tpl:323
+#: ./templates/administrator/main.tpl:325
 msgid "Help us get better"
 msgstr "Помогите нам стать лучше"
 
@@ -4549,7 +4603,8 @@ msgid "Last comments"
 msgstr "Последние комментарии"
 
 #: ./templates/administrator/dashboard.tpl:154
-#: ./templates/administrator/main.tpl:167
+#: ./templates/administrator/main.tpl:169
+#: ./templates/administrator/main.tpl:169
 msgid "Latest/recent comments"
 msgstr "Последние/Недавние комментарии"
 
@@ -4571,12 +4626,12 @@ msgstr "Последняя ссылка"
 msgid "In the middle"
 msgstr "Посредине"
 
-#: ./application/modules/shop/admin/templates/customfields/create.tpl:145
-#: ./application/modules/shop/admin/templates/customfields/create.tpl:151
+#: ./application/modules/shop/admin/templates/customfields/create.tpl:144
+#: ./application/modules/shop/admin/templates/customfields/create.tpl:150
 msgid "Access rights"
 msgstr "Права доступа"
 
-#: ./application/modules/shop/admin/templates/customfields/create.tpl:149
+#: ./application/modules/shop/admin/templates/customfields/create.tpl:148
 msgid "Access rights define <br />a set of actions (eg, read,<br /> write, execute) permissions for<br /> the subjects (for example, users<br /> of the system) of <br />the data objects."
 msgstr "Права доступа определяют <br /> набор действий (например, чтение, <br /> запись, выполнение) разрешенных для <br /> предметов (например, пользователи <br /> системы) из <br />объектов данных."
 
@@ -4694,7 +4749,7 @@ msgstr "Прозрачность"
 msgid "Resize images for products"
 msgstr "Произвести ресайз для товара"
 
-#: ./application/modules/admin/admin.php:214
+#: ./application/modules/admin/admin.php:216
 msgid "An error occurred while sending a message"
 msgstr "Произошла ошибка при отправке сообщения"
 
@@ -4706,7 +4761,7 @@ msgstr "Произошла ошибка при отправке сообщени
 msgid "Skip column"
 msgstr "Пропустить колонки"
 
-#: ./templates/administrator/main.tpl:141
+#: ./templates/administrator/main.tpl:143
 msgid "Preview"
 msgstr "Просмотр"
 
@@ -5057,7 +5112,7 @@ msgstr "Роль"
 #: ./templates/administrator/roleEdit.tpl:32
 #: ./templates/administrator/new_desktop.tpl:147
 #: ./templates/administrator/new_desktop.tpl:152
-#: ./templates/administrator/main.tpl:317
+#: ./templates/administrator/main.tpl:319
 msgid "Russian"
 msgstr "Русский"
 
@@ -5066,7 +5121,7 @@ msgid "The site will be available only to the Administrator"
 msgstr "Сайт будет доступен только для Администратора"
 
 #: ./templates/administrator/new_desktop.tpl:27
-#: ./templates/administrator/main.tpl:141
+#: ./templates/administrator/main.tpl:143
 msgid "site"
 msgstr "сайта"
 
@@ -5368,6 +5423,7 @@ msgstr "Созданный или был создан"
 #: ./templates/administrator/add_page.tpl:11
 #: ./templates/administrator/add_page.tpl:314
 #: ./templates/administrator/privilegeCreate.tpl:5
+#: ./templates/administrator/roleCreate.tpl:10
 #: ./templates/administrator/backup.tpl:19
 #: ./templates/administrator/backup.tpl:74
 #: ./templates/administrator/backup.tpl:144
@@ -5386,7 +5442,6 @@ msgid "Create"
 msgstr "Создать"
 
 #: ./templates/administrator/inc/menus.php:55
-#: ./templates/administrator/inc/menus.php:277
 msgid "Create new"
 msgstr "Создать"
 
@@ -5440,9 +5495,11 @@ msgid "Make order"
 msgstr "Создать заказ"
 
 #: ./templates/administrator/create_cat.tpl:13
+#: ./templates/administrator/roleCreate.tpl:11
 msgid "Create and exit"
 msgstr "Создать и выйти"
 
+#: ./templates/administrator/inc/menus.php:277
 #: ./templates/administrator/category_list.tpl:32
 msgid "Create category"
 msgstr "Создать категорию"
@@ -5515,14 +5572,6 @@ msgstr "Создать скидку"
 msgid "Create a warehouse"
 msgstr "Создать склад"
 
-#: ./application/modules/shop/admin/templates/deliverymethods/list.tpl:33
-msgid "Create a way to deliver"
-msgstr "Создать способ доставки"
-
-#: ./application/modules/shop/admin/templates/deliverymethods/create.tpl:6
-msgid "Delivery method create"
-msgstr "Создать способ доставки"
-
 #: ./application/modules/shop/admin/templates/paymentmethods/list.tpl:32
 msgid "Create a payment method"
 msgstr "Создать способ оплаты"
@@ -5559,7 +5608,7 @@ msgstr "Создать язык"
 msgid " Create a product copy?"
 msgstr "Создаье копию товара?"
 
-#: ./application/modules/admin/admin.php:205
+#: ./application/modules/admin/admin.php:207
 msgid "Message"
 msgstr "Сообщение"
 
@@ -5588,7 +5637,7 @@ msgid "Notify a user by e-mail about product arrival?"
 msgstr "Сообщите пользователю по электронной почте о прибытии товара?"
 
 #: ./templates/administrator/new_desktop.tpl:158
-#: ./templates/administrator/main.tpl:323
+#: ./templates/administrator/main.tpl:325
 msgid "report an error"
 msgstr "сообщить об ошибке"
 
@@ -5654,7 +5703,6 @@ msgstr "Сохранено"
 #: ./templates/administrator/widget_edit_html.tpl:13
 #: ./templates/administrator/category_edit.tpl:11
 #: ./templates/administrator/privilegeEdit.tpl:10
-#: ./templates/administrator/roleCreate.tpl:10
 #: ./templates/administrator/translateGroup.tpl:10
 #: ./templates/administrator/component_settings.tpl:16
 #: ./templates/administrator/groupEdit.tpl:10
@@ -5685,7 +5733,6 @@ msgstr "Сохранить и выйти"
 
 #: ./templates/administrator/add_page.tpl:12
 #: ./templates/administrator/privilegeEdit.tpl:11
-#: ./templates/administrator/roleCreate.tpl:11
 #: ./templates/administrator/widget_create.tpl:11
 #: ./templates/administrator/translatePrivilege.tpl:11
 #: ./templates/administrator/edit_page.tpl:12
@@ -6057,7 +6104,7 @@ msgstr "Статус был удален"
 msgid "Cost of the certificate"
 msgstr "Стоимость сертификата"
 
-#: ./application/modules/admin/admin.php:205
+#: ./application/modules/admin/admin.php:207
 msgid "page"
 msgstr "страница"
 
@@ -6330,7 +6377,7 @@ msgstr "Товары"
 msgid "Products without images"
 msgstr "Товары без картинок"
 
-#: ./templates/administrator/main.tpl:161
+#: ./templates/administrator/main.tpl:163
 msgid "Products without icons"
 msgstr "Товары без картинок"
 
@@ -6355,7 +6402,7 @@ msgstr "Только для зарегистрированных пользов�
 msgid "Only Latin characters"
 msgstr "Только латинские буквы"
 
-#: ./templates/administrator/main.tpl:408
+#: ./templates/administrator/main.tpl:410
 msgid "numbers only"
 msgstr "только цифры"
 
@@ -6789,7 +6836,7 @@ msgid "Unique key"
 msgstr "Уникальный ключ"
 
 #: ./templates/administrator/new_desktop.tpl:84
-#: ./templates/administrator/main.tpl:197
+#: ./templates/administrator/main.tpl:199
 #: ./templates/administrator/desktop.tpl:121
 msgid "Management"
 msgstr "Управление"
@@ -6839,6 +6886,7 @@ msgid "Set the directory access rights to continue the work with widgets"
 msgstr "Установите права доступа к каталогу, чтобы продолжить работу с виджетами"
 
 #: ./templates/administrator/module_table.tpl:38
+#: ./templates/administrator/module_table.tpl:38
 msgid "Install modules"
 msgstr "Установить модули"
 
@@ -6862,7 +6910,7 @@ msgstr "Установка модулей"
 msgid "Module installation module"
 msgstr "Установка модуля"
 
-#: ./application/modules/admin/admin.php:95
+#: ./application/modules/admin/admin.php:97
 msgid "Outdated files have been deleted"
 msgstr "Устаревшие файлы удалены"
 
@@ -6912,7 +6960,7 @@ msgstr "Файл шрифта должен находиться на серве�
 msgid "Files"
 msgstr "Файлы"
 
-#: ./application/modules/admin/admin.php:87
+#: ./application/modules/admin/admin.php:89
 msgid "Files deleted"
 msgstr "Файлы удалены"
 
@@ -6959,7 +7007,7 @@ msgstr "Формула популярности: количество просм
 msgid "Photo"
 msgstr "Фото"
 
-#: ./application/modules/shop/admin/templates/customfields/create.tpl:119
+#: ./application/modules/shop/admin/templates/customfields/create.tpl:118
 #: ./application/modules/shop/admin/templates/customfields/edit.tpl:109
 msgid "Snippet of a certain format,<br /> verifies syntactic correctness<br /> of the entered information - that is,<br /> to validate."
 msgstr "Фрагмента кода определённого формату, <br /> ппроверяет синтаксическую корректность введеной информации — то есть, <br /> производит валидацию."
@@ -7203,7 +7251,10 @@ msgstr "Этот язык был использован по умолчанию 
 msgid "Core"
 msgstr "Ядро"
 
+#: ./templates/administrator/languages.tpl:49
+#: ./templates/administrator/lang_create.tpl:34
 #: ./templates/administrator/login_page.tpl:97
+#: ./templates/administrator/lang_edit.tpl:46
 msgid "Language"
 msgstr "Язык"
 
@@ -7232,7 +7283,6 @@ msgstr "Язык страницы"
 msgid "the language has been deleted"
 msgstr "язык удален"
 
-#: ./templates/administrator/languages.tpl:25
 #: ./templates/administrator/inc/menus.php:120
 #: ./templates/administrator/inc/menus.php:385
 #: ./templates/administrator/new_desktop.tpl:118
