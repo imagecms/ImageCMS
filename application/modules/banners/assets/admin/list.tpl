@@ -24,7 +24,7 @@
         <div class="tab-content">
             <div class="row-fluid">
                 {if count($banners) > 0}
-                    <table class="table table-striped table-bordered table-hover table-condensed">
+                    <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
                         <thead>
                             <tr>
                                 <th class="t-a_c span1">
@@ -34,11 +34,11 @@
                                         </span>
                                     </span>
                                 </th>
-                                <th class="span1">{lang('ID', 'banners')}</th>
-                                <th class="span3">{lang('Name', 'banners')}</th>
-                                <th class="span3">{lang('Groups', 'banners')}</th>
-                                <th class="span2" style="width:80px;">{lang('Active to', 'banners')}</th>
-                                <th class="span1" style="width:60px;">{lang('Status', 'banners')}</th>
+                                <th>{lang('ID', 'banners')}</th>
+                                <th>{lang('Name', 'banners')}</th>
+                                <th>{lang('Groups', 'banners')}</th>
+                                <th style="width:80px;">{lang('Active to', 'banners')}</th>
+                                <th style="width:60px;">{lang('Status', 'banners')}</th>
 
                             </tr>
                         </thead>

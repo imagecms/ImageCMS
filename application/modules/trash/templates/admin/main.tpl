@@ -34,10 +34,10 @@
 
         <div class="row-fluid">
             <form method="post" action="#" class="form-horizontal">
-                <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+                <table class="table table-striped table-bordered table-hover table-condensed content_big_td t-l_a">
                     <thead>
                         <tr>
-                            <th class="span1 t-a_c">
+                            <th class="t-a_c span1">
                                 <span class="frame_label">
                                     <span class="niceCheck b_n">
                                         <input type="checkbox"/>

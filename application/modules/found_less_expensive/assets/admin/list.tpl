@@ -31,17 +31,17 @@
         {if count($data) > 0}
             <div class="tab-pane active" id="modules">
                 <div class="row-fluid">
-                   <table class="table table-striped table-bordered table-hover table-condensed">
+                   <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
                     <thead>
                         <tr>
                             <th class="t-a_c span1"></th>
-                            <th class="span1">{lang('ID', 'found_less_expensive')}</th>
-                            <th class="span4">{lang('Contact information', 'found_less_expensive')}</th>
-                            <th class="span4">{lang('Question', 'found_less_expensive')}</th>
-                            <th class="span5">{lang('Product link', 'found_less_expensive')}</th>
-                            <th class="span5">{lang('Page', 'found_less_expensive')}</th>
-                            <th class="span3">{lang('Status', 'found_less_expensive')}</th>
-                            <th class="span3">{lang('Date', 'found_less_expensive')}</th>
+                            <th>{lang('ID', 'found_less_expensive')}</th>
+                            <th>{lang('Contact information', 'found_less_expensive')}</th>
+                            <th>{lang('Question', 'found_less_expensive')}</th>
+                            <th>{lang('Product link', 'found_less_expensive')}</th>
+                            <th>{lang('Page', 'found_less_expensive')}</th>
+                            <th>{lang('Status', 'found_less_expensive')}</th>
+                            <th>{lang('Date', 'found_less_expensive')}</th>
                         </tr>
                     </thead>
                     <tbody class="">

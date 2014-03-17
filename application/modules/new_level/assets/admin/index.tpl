@@ -31,17 +31,17 @@
             </div>
             <div class="tab-content">
                 <div class="tab-pane active" id="properties">
-                    <div class="inside_padd">
-                        <table class="table table-striped table-bordered table-hover table-condensed">
+                    <div class="inside_padd span9">
+                        <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
                             <thead>
                                 <tr>
-                                    <th class="span1">
+                                    <th>
                                         {lang('Id', 'new_level')}
                                     </th>
-                                    <th class="span5">
+                                    <th>
                                         {lang('Name', 'new_level')}
                                     </th>
-                                    <th class="span5">
+                                    <th>
                                         {lang('Type', 'new_level')}
                                     </th>                               
                                 </tr>
@@ -72,8 +72,8 @@
                     </div>
                 </div>
                 <div class="tab-pane" id="columns">
-                    <div class="inside_padd">
-                        <table class="table table-striped table-bordered table-hover table-condensed">
+                    <div class="inside_padd span9">
+                        <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
                             <thead>
                                 <tr>
                                     <th colspan="6">
@@ -84,7 +84,7 @@
                             <tbody>
                                 <tr>
                                     <td colspan="6">
-                                        <div class="inside_padd">
+                                        <div class="inside_padd span9">
                                             <div class="row-fluid" style="overflow: auto;">
                                                 <div class="span3">
                                                     <table class="table-columns">
@@ -120,8 +120,8 @@
                     </div>
                 </div>
                 <div class="tab-pane" id="theme">
-                    <div class="inside_padd">
-                        <table id="tickets_table" class="table table-striped table-bordered table-hover table-condensed" style="clear:both;">
+                    <div class="inside_padd span9">
+                        <table id="tickets_table" class="table table-striped table-bordered table-hover table-condensed t-l_a" style="clear:both;">
                             <thead>
                             <th class="span1">{lang('Settings', 'new_level')}</th>
                             </thead>
@@ -129,7 +129,7 @@
                                 <tr>
                                     <td>
                                         <form method="post" class="form-horizontal" id="saveMenu">
-                                            <div class="inside_padd">
+                                            <div class="inside_padd span9">
                                                 <div class="form-horizontal">
                                                     <div class="row-fluid">
                                                         <div class="control-group">

@@ -28,24 +28,22 @@
                             <div class="inside_padd">
                                 <div class="form-horizontal">
                                     <form id="send" method="post" action="{$BASE_URL}admin/components/cp/group_mailer/send_email">
-                                        <div class="span9">
-                                            <div class="control-group">
-                                                <label class="control-label" for="subject">{lang("Theme", 'group_mailer')}</label>
-                                                <div class="controls">
-                                                    <input type="text" name="subject" id="subject" value="" />
-                                                </div>
+                                        <div class="control-group">
+                                            <label class="control-label" for="subject">{lang("Theme", 'group_mailer')}</label>
+                                            <div class="controls">
+                                                <input type="text" name="subject" id="subject" value="" />
                                             </div>
-                                            <div class="control-group">
-                                                <label class="control-label" for="name">{lang("Your name", 'group_mailer')}</label>
-                                                <div class="controls">
-                                                    <input type="text" name="name" id="name" value="" />
-                                                </div>
+                                        </div>
+                                        <div class="control-group">
+                                            <label class="control-label" for="name">{lang("Your name", 'group_mailer')}</label>
+                                            <div class="controls">
+                                                <input type="text" name="name" id="name" value="" />
                                             </div>
-                                            <div class="control-group">
-                                                <label class="control-label" for="email">{lang("Your e-mail", 'group_mailer')}</label>
-                                                <div class="controls">
-                                                    <input type="text" id="email" name="email" value="{$admin_mail}"/>
-                                                </div>
+                                        </div>
+                                        <div class="control-group">
+                                            <label class="control-label" for="email">{lang("Your e-mail", 'group_mailer')}</label>
+                                            <div class="controls">
+                                                <input type="text" id="email" name="email" value="{$admin_mail}"/>
                                             </div>
                                         </div>
                                         <div class="control-group">
