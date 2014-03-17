@@ -20,17 +20,17 @@
         </div>
     </div>
     <form method="post" action="{site_url('admin/components/cp/exchangeunfu/update_settings')}" class="form-horizontal" id="exchange_settings_form">
-        <table class="table table-striped table-bordered table-hover table-condensed">
+        <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
             <thead>
                 <tr>
                     <th class="span1">#</th>
                     <th>{lang('Name', 'exchangeunfu')}</th>
-                    <th class="span2">{lang('Prefix', 'exchangeunfu')}</th>
+                    <th>{lang('Prefix', 'exchangeunfu')}</th>
                     <th>{lang('Code', 'exchangeunfu')}</th>
-                    <th class="span3">{lang('Region', 'exchangeunfu')}</th>
-                    <th class="span3">Стандартні періоди</th>
-                    <th class="span2">{lang('Edit', 'exchangeunfu')}</th>
-                    <th class="span2">{lang('Delete', 'exchangeunfu')}</th>
+                    <th>{lang('Region', 'exchangeunfu')}</th>
+                    <th>Стандартні періоди</th>
+                    <th>{lang('Edit', 'exchangeunfu')}</th>
+                    <th>{lang('Delete', 'exchangeunfu')}</th>
                 </tr>
             </thead>
             <tbody>

@@ -44,7 +44,7 @@
 
             <div class="tab-content">
                 <div class="tab-pane active" id="users">
-                    <table class="table table-striped table-bordered table-hover table-condensed">
+                    <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
                         <thead>
                             <tr>
                                 <th class="t-a_c span1">
@@ -54,10 +54,10 @@
                                         </span>
                                     </span>
                                 </th>
-                                <th class="span1">{lang('ID', 'wishlist')}</th>
-                                <th class="span5">{lang('User', 'wishlist')}</th>
-                                <th class="span5">{lang('Lists count','wishlist')}</th>
-                                <th class="span5">{lang('Lists items count','wishlist')}</th>
+                                <th>{lang('ID', 'wishlist')}</th>
+                                <th>{lang('User', 'wishlist')}</th>
+                                <th>{lang('Lists count','wishlist')}</th>
+                                <th>{lang('Lists items count','wishlist')}</th>
                             </tr>
                         </thead>
                         <tbody>

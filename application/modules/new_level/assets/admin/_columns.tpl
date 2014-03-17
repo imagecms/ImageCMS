@@ -1,4 +1,4 @@
-<table class="table table-striped table-bordered table-hover table-condensed">
+<table class="table table-striped table-bordered table-hover table-condensed t-l_a">
     <thead>
         <tr>
             <th colspan="6">
@@ -9,7 +9,7 @@
     <tbody>
         <tr>
             <td colspan="6">
-                <div class="inside_padd">
+                <div class="inside_padd span9">
                     <div class="row-fluid">
                         <div class="span3">
                             <table class="table-columns">

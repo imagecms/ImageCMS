@@ -14,7 +14,7 @@
             </div>                            
         </div>
         <div class="tab-pane">
-            <table class="table table-striped table-bordered table-hover table-condensed">
+            <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
                 <thead>
                     <tr>
                         <th colspan="6">

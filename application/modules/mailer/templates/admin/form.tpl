@@ -42,7 +42,7 @@
         <div class="tab-content">
             <!-----------------------------------------------------SETTINGS MAIL-------------------------------------------------------------->
             <div class="tab-pane active" id="mail">
-                <table class="table table-striped table-bordered table-hover table-condensed">
+                <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
                     <thead>
                         <tr>
                             <th colspan="6">
@@ -118,7 +118,7 @@
             <!-----------------------------------------------------USER-------------------------------------------------------------->
             <div class="tab-pane" id="user">
                 {if count($all) > 0}
-                    <table class="table table-striped table-bordered table-hover table-condensed">
+                    <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
                         <thead>
                             <tr>
                                 <th class="t-a_c span1">
@@ -128,9 +128,9 @@
                                         </span>
                                     </span>
                                 </th>
-                                <th class="span1">{lang("ID", 'mailer')}</th>
-                                <th class="span3">{lang("E-mail", 'mailer')}</th>
-                                <th class="span3">{lang("Date", 'mailer')}</th>
+                                <th>{lang("ID", 'mailer')}</th>
+                                <th>{lang("E-mail", 'mailer')}</th>
+                                <th>{lang("Date", 'mailer')}</th>
                             </tr>                        
                         </thead>
                         <tbody class="sortable">
