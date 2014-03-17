@@ -41,20 +41,19 @@ $.existsN = function(nabir) {
     return nabir.length > 0 && nabir instanceof jQuery;
 };
 getChar = function(e) {
-    if (e.which == null) {  // IE
+    if (e.which === null) {  // IE
         if (e.keyCode < 32)
             return null;
-        return String.fromCharCode(e.keyCode)
+        return String.fromCharCode(e.keyCode);
     }
 
-    if (e.which != 0 && e.charCode != 0) { // non IE
+    if (e.which !== 0 && e.charCode !== 0) { // non IE
         if (e.which < 32)
             return null;
         return String.fromCharCode(e.which);
     }
-
     return null;
-}
+};
 returnMsg = function(msg) {
     if (window.console) {
         console.log(msg);
@@ -66,9 +65,9 @@ $.fn.testNumber = function(add) {
         if (e.ctrlKey || e.altKey || e.metaKey)
             return;
         var chr = getChar(e);
-        if (chr == null)
+        if (chr === null)
             return;
-        if (!isNaN(parseFloat(chr)) || $.inArray(chr, add) != -1) {
+        if (!isNaN(parseFloat(chr)) || $.inArray(chr, add) !== -1) {
             $this.trigger({
                 type: 'testNumber',
                 'res': true
@@ -270,12 +269,12 @@ function getCookie(c_name)
                         //init events input
                         wrapper.find('input').off('mousedown.' + nS).on('mousedown.' + nS, function(e) {
                             e.stopPropagation();
-                            e.preventDefault()
-                            if (e.button == 0)
+                            e.preventDefault();
+                            if (e.button === 0)
                                 $(this).closest(wrapper).trigger('click.' + nS);
                         }).off('click.' + nS).on('click.' + nS, function(e) {
                             e.stopPropagation();
-                            e.preventDefault()
+                            e.preventDefault();
                         }).off('keyup.' + nS).on('keyup.' + nS, function(e) {
                             if (e.keyCode === 32)
                                 $(this).closest(wrapper).trigger('click.' + nS);
@@ -286,7 +285,7 @@ function getCookie(c_name)
                             var $this = $(this);
                             $this.closest(wrapper).add($this.closest(elCheckWrap)).removeClass(fC);
                         }).off('change.' + nS).on('change.' + nS, function(e) {
-                            e.preventDefault()
+                            e.preventDefault();
                         });
                         //init states of checkboxes
                         frameChecks.find(elCheckWrap).each(function() {
@@ -329,7 +328,7 @@ function getCookie(c_name)
                 {
                     if (el === undefined)
                         el = this;
-                    if (el.find("input").attr("checked") != undefined) {
+                    if (el.find("input").attr("checked") !== undefined) {
                         methods.checkUnChecked(el);
                     }
                     else {
@@ -751,7 +750,7 @@ function getCookie(c_name)
                                 set = {};
 
                         for (var i in methods.def) {
-                            var prop = (elSet[i] !== undefined ? elSet[i] : '').toString() || (options[i] !== undefined ? options[i] : '').toString() || methods.def[i].toString()
+                            var prop = (elSet[i] !== undefined ? elSet[i] : '').toString() || (options[i] !== undefined ? options[i] : '').toString() || methods.def[i].toString();
                             if (!isNaN(parseFloat(methods.def[i])) && isFinite(methods.def[i]))
                                 set[i] = +(prop);
                             else
@@ -941,12 +940,14 @@ function getCookie(c_name)
                                 parentTl: 'li',
                                 refresh: false,
                                 otherPage: undefined,
+                                classRemove: 'not-js',
                                 vertical: false
                             }, options);
                     menu.data('options', optionsMenu);
                     var settings = optionsMenu,
                             menuW = menu.width(),
-                            menuItem = menu.find(settings.item),
+                            item = settings.item,
+                            menuItem = menu.find(item),
                             direction = settings.direction,
                             drop = settings.drop,
                             dropOJ = menu.find(drop),
@@ -963,7 +964,8 @@ function getCookie(c_name)
                             itemMenuL = menuItem.length,
                             dropW = settings.dropWidth,
                             sub2Frame = settings.sub2Frame,
-                            duration = timeDurM = settings.duration,
+                            duration = settings.duration,
+                            timeDurM = settings.duration,
                             durationOn = settings.durationOn,
                             durationOff = settings.durationOff,
                             durationOnS = settings.durationOnS,
@@ -976,6 +978,7 @@ function getCookie(c_name)
                             activeFl = settings.activeFl,
                             parentTl = settings.parentTl,
                             otherPage = settings.otherPage,
+                            classRemove = settings.classRemove,
                             vertical = settings.vertical;
                     if (menuCache && !refresh) {
                         menu.find('a').each(function() {//if start without cache and remove active item
@@ -1035,15 +1038,15 @@ function getCookie(c_name)
                                         numbColumn = [];
                                 columnsObj.each(function(i) {
                                     numbColumn[i] = $(this).attr('class').match(/([0-9]|-1+)/)[0];
-                                })
+                                });
                                 numbColumn = _.uniq(numbColumn).sort();
                                 var numbColumnL = numbColumn.length;
-                                if (numbColumnL == 1 && $.inArray('0', numbColumn) == -1 || numbColumnL > 1) {
-                                    if ($.inArray('-1', numbColumn) == 0) {
+                                if (numbColumnL === 1 && $.inArray('0', numbColumn) === -1 || numbColumnL > 1) {
+                                    if ($.inArray('-1', numbColumn) === 0) {
                                         numbColumn.shift();
                                         numbColumn.push('-1');
                                     }
-                                    if ($.inArray('0', numbColumn) == 0) {
+                                    if ($.inArray('0', numbColumn) === 0) {
                                         numbColumn.shift();
                                         numbColumn.push('0');
                                     }
@@ -1051,18 +1054,18 @@ function getCookie(c_name)
                                         var $thisLi = columnsObj.filter('.' + columnClassPref + n),
                                                 sumx = 0;
                                         $thisLi.each(function() {
-                                            var datax = $(this).attr('data-x');
-                                            sumx = parseInt(datax == 0 || datax == undefined ? 1 : datax) > sumx ? parseInt(datax == 0 || datax == undefined ? 1 : datax) : sumx;
-                                        })
+                                            var datax = +$(this).attr('data-x');
+                                            sumx = parseInt(datax === 0 || !datax ? 1 : datax) > sumx ? parseInt(datax === 0 || !datax ? 1 : datax) : sumx;
+                                        });
                                         $this.children().append('<li class="x' + sumx + '" data-column="' + n + '" data-x="' + sumx + '"><ul></ul></li>');
                                         $this.find('[data-column="' + n + '"]').children().append($thisLi.clone());
-                                    })
+                                    });
                                     columnsObj.remove();
                                 }
                                 var sumx = 0;
                                 $this.children().children().each(function() {
-                                    var datax = $(this).attr('data-x');
-                                    sumx = sumx + parseInt(datax == 0 || datax == undefined ? 1 : datax);
+                                    var datax = +$(this).attr('data-x');
+                                    sumx = sumx + parseInt(datax === 0 || !datax ? 1 : datax);
                                 });
                                 sumx = sumx > maxC ? maxC : sumx;
                                 $this.addClass('x' + sumx);
@@ -1099,13 +1102,13 @@ function getCookie(c_name)
                     }).css('height', sH);
                     if (!vertical)
                         menuItem.find('.helper:first').css('height', sH);
-                    menu.removeClass('not-js');
+                    menu.removeClass(classRemove);
                     var hoverTO = '';
                     function closeMenu() {
                         var $thisDrop = menu.find(drop);
                         if ($thisDrop.length !== 0)
                             menu.removeClass(hM);
-                        if (evLS === 'toggle' || evLF === 'toggle') {
+                        if (evLS === 'click' || evLF === 'click') {
                             menu.find('.' + hM).click();
                             dropOJ.hide();
                         }
@@ -1120,7 +1123,7 @@ function getCookie(c_name)
                     menuItem.off(evLF)[evLF](
                             function(e) {
                                 var $this = $(this);
-                                if ($this.data("show") === "no" || $this.data("show") === undefined) {
+                                if ($this.data("show") === "no" || !$this.data("show")) {
                                     $this.data("show", "yes");
                                     clearTimeout(hoverTO);
                                     closeMenu();
@@ -1134,6 +1137,8 @@ function getCookie(c_name)
                                     if ($(e.relatedTarget).is(menuItem) || $.existsN($(e.relatedTarget).parents(menuItem)) || $this.data('kk') === 0)
                                         k[$thisI] = true;
                                     if (k[$thisI]) {
+                                        if (evLF === 'click')
+                                            e.stopPropagation();
                                         hoverTO = setTimeout(function() {
                                             $thisDrop[effOn](durationOn, function(e) {
                                                 $this.data('kk', $this.data('kk') + 1);
@@ -1148,21 +1153,22 @@ function getCookie(c_name)
                                                     $thisDrop.find(sub2Frame).addClass('is-side');
                                                     listDrop.children().off(evLS)[evLS](function(e) {
                                                         var $this = $(this);
-                                                        if ($this.data("show") === "no" || $this.data("show") === undefined) {
+                                                        if (evLS === 'click')
+                                                            e.stopPropagation();
+                                                        if ($this.data("show") === "no" || !$this.data("show")) {
                                                             $this.data("show", "yes");
                                                             subFrame = $this.find(sub2Frame);
-                                                            if (e.type !== 'click' && evLS !== 'toggle') {
+                                                            if (e.type !== 'click' && evLS !== 'click') {
                                                                 $this.siblings().removeClass(hM);
                                                             }
                                                             if ($.existsN(subFrame)) {
-                                                                if (e.type === 'click' && evLS === 'toggle') {
+                                                                if (e.type === 'click' && evLS === 'click') {
                                                                     e.stopPropagation();
                                                                     $this.siblings().filter('.' + hM).click();
                                                                     $this.addClass(hM);
                                                                 }
-                                                                else {
+                                                                else
                                                                     $this.has(sub2Frame).addClass(hM);
-                                                                }
 
                                                                 $thisDrop.css('width', '');
                                                                 listDrop.add(subFrame).css('height', '');
@@ -1206,13 +1212,13 @@ function getCookie(c_name)
                                                         }
                                                         else {
                                                             $this.data("show", "no");
-                                                            if (e.type === 'click' && evLS === 'toggle') {
+                                                            if (e.type === 'click' && evLS === 'click') {
                                                                 e.stopPropagation();
                                                             }
                                                             var subFrame = $this.find(sub2Frame);
                                                             if ($.existsN(subFrame)) {
                                                                 subFrame.hide();
-                                                                $thisDrop.stop().css({
+                                                                $thisDrop.css({
                                                                     'width': '',
                                                                     'height': ''
                                                                 });
@@ -1265,7 +1271,7 @@ function getCookie(c_name)
                         }
                     });
                     dropOJ.find('a').off('click.menuref').on('click.menuref', function(e) {
-                        if (evLS === 'toggle') {
+                        if (evLS === 'click') {
                             if ($.existsN($(this).next()) && sub2Frame) {
                                 e.preventDefault();
                                 return true;
@@ -1277,10 +1283,10 @@ function getCookie(c_name)
                             e.stopPropagation();
                     });
                     menuItem.find('a:first').off('click.menuref').on('click.menuref', function(e) {
-                        if (!$.existsN($(this).closest(menuItem).find(drop))) {
-                            e.preventDefault();
+                        if (!$.existsN($(this).closest(item).find(drop)))
                             e.stopPropagation();
-                        }
+                        if (evLF === 'click' && $.existsN($(this).closest(item).find(drop)))
+                            e.preventDefault();
                     });
                 }
             });
@@ -1359,7 +1365,6 @@ function getCookie(c_name)
                     tabsId[index] = tempO2;
                     regRefs[index] = tempRefs;
                     refs[index].off('click.tabs').on('click.tabs', function(e) {
-                        wST = wnd.scrollTop();
                         var $this = $(this),
                                 resB = settings.before($this);
                         if (resB === undefined || resB === true) {
@@ -1371,7 +1376,7 @@ function getCookie(c_name)
                             if (!$this.parent().hasClass('disabled')) {
                                 var $thisA = $this[attrOrdata[index]]('href'),
                                         $thisAOld = navTabsLi[index].filter('.' + aC).children()[attrOrdata[index]]('href'),
-                                        $thisAOld = $thisAOld == $thisA ? undefined : $thisAOld,
+                                        $thisAOld = $thisAOld === $thisA ? undefined : $thisAOld,
                                         $thisAO = $($thisA),
                                         $thisS = $this.data('source') || $this.attr('href'),
                                         $thisData = $this.data('data'),
@@ -1445,7 +1450,7 @@ function getCookie(c_name)
                                         i = 0;
                                 _.map(regRefs[index], function(n, j) {
                                     _.map(methods.hashs[0], function(m, j) {
-                                        if (m == n)
+                                        if (m === n)
                                             i++;
                                     });
                                 });
@@ -1927,6 +1932,8 @@ function getCookie(c_name)
                                         dC.destroy();
                                     if (f)
                                         f();
+                                    if (!$.exists('[data-elrun].center:visible, [data-elrun].noinherit:visible'))
+                                        $('body, html').css('height', '');
                                 });
                             }
                             drop.add($(document)).trigger({
@@ -2061,7 +2068,7 @@ function getCookie(c_name)
                 }
             }
             var defaultClassBtnDrop = methods._checkProp(set, null, 'defaultClassBtnDrop');
-            return (set.drop ? (set.drop.indexOf(defaultClassBtnDrop) != -1 ? drop.filter('.' + defaultClassBtnDrop) : $(set.drop)) : drop).addClass(addClass).attr('data-rel', rel).attr('data-elrun', set.drop);
+            return (set.drop ? (set.drop.indexOf(defaultClassBtnDrop) !== -1 ? drop.filter('.' + defaultClassBtnDrop) : $(set.drop)) : drop).addClass(addClass).attr('data-rel', rel).attr('data-elrun', set.drop);
         },
         _pasteContent: function($this, drop, opt) {
             function _pasteContent(content, place) {
@@ -2195,7 +2202,7 @@ function getCookie(c_name)
                     });
                 if (isTouch)
                     drop.data('drp').dropOver.on('touchmove.' + $.drop.nS, function(e) {
-                        return false;
+                        e.preventDefault();
                     });
             }
             drop.addClass(opt.place);
@@ -2298,7 +2305,8 @@ function getCookie(c_name)
                     }
                 });
             });
-            body.off('click.' + $.drop.nS + ev).on('click.' + $.drop.nS + ev, function(e) {
+            $('html').css('height', '100%');
+            body.css('height', '100%').off('click.' + $.drop.nS + ev).on('click.' + $.drop.nS + ev, function(e) {
                 if (opt.closeClick)
                     if (!$.existsN($(e.target).closest('[data-elrun]'))) {
                         methods.close(false);
@@ -2344,7 +2352,7 @@ function getCookie(c_name)
                     regS, regM = '';
 
             $.each(source, function(i, v) {
-                regS = (v[v.length - 1] != ')' ? v + ')' : v).match(/\(.*\)/);
+                regS = (v[v.length - 1] !== ')' ? v + ')' : v).match(/\(.*\)/);
                 regM = regS['input'].replace(regS[0], '');
                 regS = regS[0].substring(1, regS[0].length - 1);
                 btn = btn[regM](regS);
@@ -2470,10 +2478,8 @@ function getCookie(c_name)
             galleries: {},
             scrollemulatetimeout: null,
             curHash: null,
-            curHashTimeout: null,
             curDrop: null,
-            curHashTimeout: null,
-                    scrollemulatetimeout: null
+            curHashTimeout: null
         };
         this.setParameters = function(options) {
             $.extend($.drop.dP, options);
@@ -2488,7 +2494,7 @@ function getCookie(c_name)
         'width': 100,
         'overflow': 'scroll'
     }).wrap($('<div style="width:0;height:0;overflow:hidden;"></div>'));
-    $.dropInit.prototype.widthScroll = el.width() - el.get(0).clientWidth + 1;
+    $.dropInit.prototype.widthScroll = el.width() - el.get(0).clientWidth;
     el.parent().remove();
 
     var loadingTimer, loadingFrame = 1,
@@ -2717,15 +2723,15 @@ function getCookie(c_name)
             return false;
         }
         else {
-            if (e.which != null) {  // IE
-                if (e.keyCode == 46 || e.keyCode == 8)
+            if (e.which !== null) {  // IE
+                if (e.keyCode === 46 || e.keyCode === 8)
                     $this.trigger({
                         'type': 'maxminValue',
                         'event': e
                     });
             }
-            else if (e.which != 0 && e.charCode != 0) { // non IE
-                if (e.keyCode == 46 || e.keyCode == 8)
+            else if (e.which !== 0 && e.charCode !== 0) { // non IE
+                if (e.keyCode === 46 || e.keyCode === 8)
                     $this.trigger({
                         'type': 'maxminValue',
                         'event': e
@@ -2826,6 +2832,7 @@ function getCookie(c_name)
                                     e = e.originalEvent.touches[0];
                                     elSet.eP = e[f];
                                     elSet.ePs = e[s];
+                                    e.preventDefault();
                                 });
 
                                 $this.off('touchend.' + nS).on('touchend.' + nS, function(e) {

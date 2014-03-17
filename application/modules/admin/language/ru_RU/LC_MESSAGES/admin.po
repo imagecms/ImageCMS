@@ -1,11 +1,11 @@
-﻿msgid ""
+msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-17 12:35+0000\n"
-"PO-Revision-Date: 2014-03-17 12:35+0000\n"
-"Last-Translator:  \n"
-"Language-Team:  \n"
+"POT-Creation-Date: 2014-03-14 01:15+0200\n"
+"PO-Revision-Date: 2014-03-17 18:00+0300\n"
+"Last-Translator: sdfsdfsdfs <sdfsdfsdf>\n"
+"Language-Team: \n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -14,16 +14,10 @@ msgstr ""
 "X-Poedit-Basepath: ../../..\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Generator: Poedit 1.5.7\n"
-"X-Poedit-Language: \n"
-"X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPath-1: ../../../templates/administrator\n"
 "X-Poedit-SearchPath-2: ../../modules/shop/admin\n"
 "X-Poedit-SearchPath-3: ../../../application/modules/shop/models/build/classes\n"
-
-#: ./application/modules/shop/admin/templates/kits/kit_create.tpl:40
-msgid "of main product"
-msgstr "главного товара"
 
 #: ./application/modules/shop/admin/templates/deliverymethods/list.tpl:33
 msgid "Create a way to deliver"
@@ -52,6 +46,10 @@ msgstr "Локализация"
 msgid "ProductNot"
 msgstr ""
 
+#: ./application/modules/shop/admin/templates/customfields/create.tpl:100
+msgid "Text field"
+msgstr "Поле ввода"
+
 #: ./application/modules/shop/admin/templates/customfields/create.tpl:101
 msgid "Textarea field"
 msgstr "Текстовое поле"
@@ -64,7 +62,7 @@ msgstr "Файл"
 msgid "Property"
 msgstr "Свойство"
 
-#: ./application/modules/shop/admin/callbacks.php:300
+#: ./application/modules/shop/admin/callbacks.php:295
 msgid "Callback was removed"
 msgstr "Обратный звонок удалён"
 
@@ -93,15 +91,15 @@ msgstr "Статусы обратных звонков"
 msgid "Edit callback theme"
 msgstr "Редактировать тему обратного звонка"
 
-#: ./application/modules/shop/admin/callbacks.php:284
+#: ./application/modules/shop/admin/callbacks.php:279
 msgid "Callback theme is changed"
 msgstr "Тема обратного звонка изменена"
 
-#: ./application/modules/shop/admin/callbacks.php:305
+#: ./application/modules/shop/admin/callbacks.php:300
 msgid "Callback(s) was removed"
 msgstr "Обратный(е) звонок(ки) удален(ы)"
 
-#: ./application/modules/shop/admin/callbacks.php:253
+#: ./application/modules/shop/admin/callbacks.php:248
 msgid "Callback's status was changed"
 msgstr "Cтатус обратного звонка изменен"
 
@@ -245,7 +243,7 @@ msgstr "История статусов"
 msgid "Commentary to change the status"
 msgstr "Комментарий к изменению статуса"
 
-#: ./application/modules/shop/admin/callbacks.php:322
+#: ./application/modules/shop/admin/callbacks.php:317
 msgid "Unable to remove default status"
 msgstr "Не удается удалить статус по умолчанию"
 
@@ -325,7 +323,7 @@ msgstr "Статус оплаты"
 msgid "Payment status of orders changed"
 msgstr "Статус оплаты заказов изменен"
 
-#: ./application/modules/shop/admin/callbacks.php:234
+#: ./application/modules/shop/admin/callbacks.php:229
 msgid "Default status was changed"
 msgstr "Статус по умолчанию изменен"
 
@@ -364,7 +362,7 @@ msgstr "Статусы уведомлений"
 msgid "Statuses of the appearance"
 msgstr "Статусы уведомлений"
 
-#: ./application/modules/shop/admin/callbacks.php:190
+#: ./application/modules/shop/admin/callbacks.php:185
 #: ./application/modules/shop/admin/orderstatuses.php:188
 msgid "Such status does not exist"
 msgstr "Такой статус не существует"
@@ -1720,6 +1718,7 @@ msgstr "Главный телефон"
 
 #: ./application/modules/shop/admin/templates/kits/kit_edit.tpl:39
 #: ./application/modules/shop/admin/templates/kits/index.tpl:47
+#: ./application/modules/shop/admin/templates/kits/kit_create.tpl:40
 msgid "main product"
 msgstr "главный товар"
 
@@ -2026,20 +2025,17 @@ msgid "Add a new product to the order"
 msgstr "Добавить новый товар к заказу"
 
 #: ./templates/administrator/cats_tree_css.tpl:7
-#: ./templates/administrator/cats_tree_css.tpl:7
-#: ./templates/administrator/cats_sidebar.tpl:3
 #: ./templates/administrator/cats_sidebar.tpl:3
 msgid "Add a subcategory"
 msgstr "Добавить подкатегорию"
 
 #: ./templates/administrator/cats_tree_css.tpl:8
-#: ./templates/administrator/cats_tree_css.tpl:8
-#: ./templates/administrator/cats_sidebar.tpl:4
 #: ./templates/administrator/cats_sidebar.tpl:4
 msgid "Add an article"
 msgstr "Добавить статью"
 
 #: ./application/modules/shop/admin/templates/kits/kit_edit.tpl:45
+#: ./application/modules/shop/admin/templates/kits/kit_create.tpl:46
 msgid "Added products"
 msgstr "Добавленные продукты"
 
@@ -2232,7 +2228,6 @@ msgstr "Заказчик"
 #: ./templates/administrator/shop_menu.tpl:8
 #: ./templates/administrator/shop_menu.tpl:10
 #: ./templates/administrator/main.tpl:160
-#: ./templates/administrator/main.tpl:160
 msgid "Orders"
 msgstr "Заказы"
 
@@ -2323,9 +2318,9 @@ msgid "Changes has been saved"
 msgstr "Изменения сохранены"
 
 #: ./application/modules/shop/admin/deliverymethods.php:148
-#: ./application/modules/shop/admin/callbacks.php:104
-#: ./application/modules/shop/admin/callbacks.php:206
-#: ./application/modules/shop/admin/callbacks.php:404
+#: ./application/modules/shop/admin/callbacks.php:99
+#: ./application/modules/shop/admin/callbacks.php:201
+#: ./application/modules/shop/admin/callbacks.php:399
 #: ./application/modules/shop/admin/customfields.php:155
 #: ./application/modules/shop/admin/users.php:405
 #: ./application/modules/shop/admin/users.php:416
@@ -2363,7 +2358,6 @@ msgstr "Изменения успешно сохранены"
 msgid "Change"
 msgstr "Изменить"
 
-#: ./templates/administrator/cats_tree_css.tpl:6
 #: ./templates/administrator/cats_tree_css.tpl:6
 msgid "Change category data"
 msgstr "Изменить данные категории"
@@ -3368,10 +3362,7 @@ msgid "don't show"
 msgstr "не показывать"
 
 #: ./templates/administrator/module_table.tpl:105
-#: ./templates/administrator/module_table.tpl:105
 #: ./templates/administrator/module_table.tpl:110
-#: ./templates/administrator/module_table.tpl:110
-#: ./templates/administrator/module_table.tpl:115
 #: ./templates/administrator/module_table.tpl:115
 msgid "switch off"
 msgstr "не показывать"
@@ -3691,7 +3682,7 @@ msgstr "Обработано"
 msgid "Back to the system"
 msgstr "Обратно в систему"
 
-#: ./application/modules/shop/admin/callbacks.php:442
+#: ./application/modules/shop/admin/callbacks.php:437
 msgid "Topic deleted"
 msgstr "Обсуждение удалено"
 
@@ -3937,7 +3928,6 @@ msgstr "Отключение сайта"
 msgid "Cancel"
 msgstr "Отменить"
 
-#: ./templates/administrator/pages_list.tpl:44
 #: ./templates/administrator/pages_list.tpl:44
 msgid "Cancel filter"
 msgstr "Отменить фильтрацию"
@@ -4377,7 +4367,7 @@ msgstr "Позиции обновлены"
 msgid "Positions saved"
 msgstr "Позиции сохранены"
 
-#: ./application/modules/shop/admin/callbacks.php:266
+#: ./application/modules/shop/admin/callbacks.php:261
 #: ./application/modules/shop/admin/orderstatuses.php:223
 msgid "Positions saved successfully"
 msgstr "Позиции успешно сохранены"
@@ -4386,7 +4376,7 @@ msgstr "Позиции успешно сохранены"
 msgid "Position"
 msgstr "Позиция"
 
-#: ./application/modules/shop/admin/callbacks.php:159
+#: ./application/modules/shop/admin/callbacks.php:154
 msgid "Position created"
 msgstr "Позиция создана"
 
@@ -4601,7 +4591,6 @@ msgid "Last comments"
 msgstr "Последние комментарии"
 
 #: ./templates/administrator/dashboard.tpl:154
-#: ./templates/administrator/main.tpl:169
 #: ./templates/administrator/main.tpl:169
 msgid "Latest/recent comments"
 msgstr "Последние/Недавние комментарии"
@@ -5184,7 +5173,6 @@ msgid "Related entity"
 msgstr "Связанная сущность"
 
 #: ./application/modules/shop/admin/templates/kits/index.tpl:77
-#: ./application/modules/shop/admin/templates/kits/kit_create.tpl:46
 msgid "Attached products"
 msgstr "Связанные продукты"
 
@@ -6094,7 +6082,7 @@ msgstr "Статус будет назначен всем новым запро�
 msgid "Status change success"
 msgstr "Статус был изменен"
 
-#: ./application/modules/shop/admin/callbacks.php:329
+#: ./application/modules/shop/admin/callbacks.php:324
 msgid "Status was removed"
 msgstr "Статус был удален"
 
@@ -6224,7 +6212,6 @@ msgstr "Табуляция"
 msgid "Just like the number 10"
 msgstr "Так же, как номер 10"
 
-#: ./application/modules/shop/admin/templates/customfields/create.tpl:100
 #: ./application/modules/shop/admin/templates/settings/settings.tpl:365
 #: ./application/modules/shop/admin/templates/settings/settings.tpl:407
 #: ./application/modules/shop/admin/templates/settings/settings.tpl:1064
@@ -6321,7 +6308,7 @@ msgstr "Тема"
 msgid "Subject"
 msgstr "Тема"
 
-#: ./application/modules/shop/admin/callbacks.php:366
+#: ./application/modules/shop/admin/callbacks.php:361
 msgid "Topic started"
 msgstr "Тема начата"
 
@@ -6885,7 +6872,6 @@ msgstr "Успешное удаление"
 msgid "Set the directory access rights to continue the work with widgets"
 msgstr "Установите права доступа к каталогу, чтобы продолжить работу с виджетами"
 
-#: ./templates/administrator/module_table.tpl:38
 #: ./templates/administrator/module_table.tpl:38
 msgid "Install modules"
 msgstr "Установить модули"

@@ -378,7 +378,7 @@ items-catalog.table > li, items-catalog.tablemini > li{margin-left: 10px;overflo
 .title-product{margin-bottom: 10px;margin-top: 5px;}
 .title-product .frame-title{margin-right: 15px;}
 .title-product .frame-variant-name-code{display: inline;}
-.items-thumbs.items > li > a{display: block;}
+.items-thumbs.items > li > a{display: block;font-size: 0;}
 .items-thumbs .photo-block{width: 107px;height: 90px;}
 .item-product .items-thumbs .photo-block{width: 78px;height: 102px;}
 .item-product .vertical-carousel .jcarousel-clip, .item-product .vertical-carousel .content-carousel{max-height: 308px;overflow: hidden;}
@@ -403,8 +403,8 @@ items-catalog.table > li, items-catalog.tablemini > li{margin-left: 10px;overflo
 .item-product .items-thumbs.items li{height: 102px !important;margin-left: 0;border-bottom: 1px solid #dfe4eb;}
 .items-thumbs.items{margin-left: -5px;}
 .items-thumbs.items li{margin-left: 5px;}
-.carousel-js-css .items-thumbs.items{margin-left: 0;display: inline-block;}
-.carousel-js-css .items-thumbs.items li{margin-left: 0;margin-bottom: 0;}
+.carousel-js-css .items-thumbs.items{margin-left: 0;}
+.carousel-js-css .items-thumbs.items li{margin: 1px 0;}
 /*if not carousel*/
 .fancy-gallery .content-carousel{padding: 14px 0 9px;text-align: center;font-size: 0;}
 .fancy-gallery .items-thumbs > li{margin-left: 0;height: 90px !important;width: 107px !important;position: relative;}

@@ -27,7 +27,7 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <div class="inside_padd">
+                                    <div class="inside_padd span9">
                                         <div class="row-fluid">
                                             <div class="control-group">
                                                 <label class="control-label" for="yarucheck">{lang('Я.ру', 'share')}<span class="check_yandex"></span></label>
@@ -158,7 +158,7 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <div class="inside_padd">
+                                    <div class="inside_padd span9">
                                         <div class="row-fluid">
                                             <div class="control-group">
                                                 <label class="control-label" for="yarucheck">{lang('Facebook', 'share')}<span class="check_facebook"></span></label>

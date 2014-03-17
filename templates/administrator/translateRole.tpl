@@ -45,7 +45,7 @@
                     <tbody>
                         <tr>
                             <td colspan="6">
-                                <div class="inside_padd">
+                                <div class="inside_padd span9">
                                     <div class="row-fluid">
                                         <div class="control-group m-t_10">
                                             <label class="control-label" for="alt_name">{lang("Description","admin")}:</label>

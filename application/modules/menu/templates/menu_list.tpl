@@ -33,7 +33,7 @@
             </div>
             <div class="tab-content">
                 <div class="row-fluid">
-                    <table class="table table-striped table-bordered table-hover table-condensed">
+                    <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
                         <thead>
                             <tr>
                                 <th class="t-a_c span1">
@@ -43,12 +43,12 @@
                                         </span>
                                     </span>
                                 </th>
-                                <th class="span1">{lang("ID", "menu")}</th>
-                                <th class="span3">{lang("Denotation", "menu")}</th>
-                                <th class="span3">{lang("Name", "menu")}</th>
-                                <th class="span4">{lang("Description", "menu")}</th>
-                                <th class="span2">{lang("Created", "menu")}</th>
-                                <th class="span2">{lang("Editing", "menu")}</th>
+                                <th>{lang("ID", "menu")}</th>
+                                <th>{lang("Denotation", "menu")}</th>
+                                <th>{lang("Name", "menu")}</th>
+                                <th>{lang("Description", "menu")}</th>
+                                <th>{lang("Created", "menu")}</th>
+                                <th>{lang("Editing", "menu")}</th>
                             </tr>
                         </thead>
                         <tbody >
