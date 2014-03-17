@@ -14,7 +14,7 @@
         </div>
     </div>
     {if $categories}
-        <table id="cats_table" class="table table-striped table-bordered table-hover table-condensed content_big_td">
+        <table id="cats_table" class="table table-striped table-bordered table-hover table-condensed content_big_td t-l_a">
             <thead>
             <th class="t-a_c span1">
                 <span class="frame_label">

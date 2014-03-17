@@ -7,7 +7,7 @@
         <div class="pull-right">
             <div class="d-i_b">
                 <a href="/admin/components/cp/menu/menu_item/{$menu.name}" class="t-d_n m-r_15 pjax"><span class="f-s_14"></span>←<span class="t-d_u">{lang("Go back", "menu")}</span></a>
-                <button type="button" class="btn btn-small btn-primary formSubmit submit_link" data-form="#page_form" data-submit><i class="icon-ok"></i>{lang("Create", "menu")}</button>
+                <button type="button" class="btn btn-small btn-success formSubmit submit_link" data-form="#page_form" data-submit><i class="icon-ok"></i>{lang("Create", "menu")}</button>
                 <button type="button" class="btn btn-small formSubmit submit_link" data-form="#page_form" data-action="tomain"><i class="icon-ok"></i>{lang("Create and exit", "menu")}</button>
             </div>
         </div>                            
@@ -30,7 +30,7 @@
                 <input type="hidden" name="menu_id" value="{$menu.id}"/>
                 <input type="hidden" name="item_id" value="{$item.item_id}" id="item_page_id"/>
                 <input type="hidden" name="item_type" value="page"/>
-                <table class="table table-striped table-bordered table-hover table-condensed">
+                <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
                     <thead>
                         <tr>
                             <th colspan="6">
@@ -41,7 +41,7 @@
                     <tbody>
                         <tr>
                             <td colspan="6">
-                                <div class="inside_padd">
+                                <div class="inside_padd span9">
                                     <div class="span12">
                                         <div class="control-group">
                                             <label class="control-label">{lang("Categories", "menu")}:</label>
@@ -85,7 +85,7 @@
                     </tbody>
                 </table>
                 <input type="hidden" id="owner_id" value="{$insert_id}" />
-                <table class="table table-striped table-bordered table-hover table-condensed">
+                <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
                     <thead>
                         <tr>
                             <th colspan="6">
@@ -96,7 +96,7 @@
                     <tbody>
                         <tr>
                             <td colspan="6">
-                                <div class="inside_padd">
+                                <div class="inside_padd span9">
                                     <div class="span12">
                                         <div class="control-group">
                                             <label class="control-label">{lang("Type", "menu")}:</label>
@@ -213,7 +213,7 @@
                 <input type="hidden" name="menu_id" value="{$menu.id}"/>
                 <input type="hidden" name="item_id" value="{$item.item_id}" id="cat_input"/>
                 <input type="hidden" name="item_type" value="category"/>
-                <table class="table table-striped table-bordered table-hover table-condensed">
+                <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
                     <thead>
                         <tr>
                             <th colspan="6">
@@ -224,7 +224,7 @@
                     <tbody>
                         <tr>
                             <td colspan="6">
-                                <div class="inside_padd">
+                                <div class="inside_padd span9">
                                     <div class="span12">
                                         <div class="control-group">
                                             <label class="control-label">{lang("Choose a category", "menu")}:</label>
@@ -240,7 +240,7 @@
                         </tr>
                     </tbody>
                 </table>
-                <table class="table table-striped table-bordered table-hover table-condensed">
+                <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
                     <thead>
                         <tr>
                             <th colspan="6">
@@ -251,7 +251,7 @@
                     <tbody>
                         <tr>
                             <td colspan="6">
-                                <div class="inside_padd">
+                                <div class="inside_padd span9">
                                     <div class="span12">
                                         <div class="control-group">
                                             <label class="control-label">{lang("Type", "menu")}:</label>
@@ -378,7 +378,7 @@
                         </ul>
                     </div>
                     <div class="span9">
-                        <table class="table table-striped table-bordered table-hover table-condensed">
+                        <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
                             <thead>
                                 <tr>
                                     <th colspan="6">
@@ -389,7 +389,7 @@
                             <tbody>
                                 <tr>
                                     <td colspan="6">
-                                        <div class="inside_padd">
+                                        <div class="inside_padd span9">
                                             <div class="span12">
                                                 <div class="control-group">
                                                     <label class="control-label">{lang("Type", "menu")}:</label>
@@ -518,7 +518,7 @@
                 <input type="hidden" name="menu_id" value="{$menu.id}">
                 <input type="hidden" name="item_id" value="0"/>
                 <input type="hidden" name="item_type" value="url"/>
-                <table class="table table-striped table-bordered table-hover table-condensed">
+                <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
                     <thead>
                         <tr>
                             <th colspan="6">
@@ -529,7 +529,7 @@
                     <tbody>
                         <tr>
                             <td colspan="6">
-                                <div class="inside_padd">
+                                <div class="inside_padd span9">
                                     <div class="span12">
                                         <div class="control-group">
                                             <label class="control-label">{lang("Specify or select a link to the page", "menu")}:</label>
@@ -543,7 +543,7 @@
                         </tr>
                     </tbody>
                 </table>
-                <table class="table table-striped table-bordered table-hover table-condensed">
+                <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
                     <thead>
                         <tr>
                             <th colspan="6">
@@ -555,7 +555,7 @@
                         <tr>
                             <td colspan="6">
                                 {$r = unserialize($item.roles)}
-                                <div class="inside_padd">
+                                <div class="inside_padd span9">
                                     <div class="span12">
                                         <div class="control-group">
                                             <label class="control-label">{lang("Title", "menu")}:</label>

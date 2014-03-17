@@ -34,7 +34,7 @@
             <tbody>
                 <tr>
                     <td>
-                        <div class="inside_padd span10">
+                        <div class="inside_padd span9">
                             <div class="control-group control-frame-group">
                                 <label class="control-label">{lang("Main page", 'sitemap')}:</label>
                                 <div class="controls">

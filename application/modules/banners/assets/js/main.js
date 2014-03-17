@@ -14,6 +14,7 @@ function DeleteSliderBanner() {
         ids.push($(this).val());
     });
     $.post('/admin/components/init_window/banners/delete', {id: JSON.stringify(ids)}, function() {
+        showMessage(lang('Message'),lang('Banner (s) successfully removed'));
         window.location.reload()
     });
 }

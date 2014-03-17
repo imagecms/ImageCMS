@@ -23,7 +23,7 @@
             <tbody>
                 <tr>
                     <td colspan="6">
-                        <div class="inside_padd span9">
+                        <div class="inside_padd span9 span9">
                             <div class="control-group m-t_10">
                                 <label class="control-label" for="inputName">{lang("Name","admin")}:</label>
                                 <div class="controls">

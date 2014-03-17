@@ -22,7 +22,7 @@
             <form method="post" action="/admin/components/cp/menu/insert_menu_item/" id="{$item_type}_form">
                 <div class="row-fluid">
                     <div class="span6">
-                        <table class="table table-striped table-bordered table-hover table-condensed">
+                        <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
                             <thead>
                                 <tr>
                                     <th colspan="6">
@@ -33,7 +33,7 @@
                             <tbody>
                                 <tr>
                                     <td colspan="6">
-                                        <div class="inside_padd">
+                                        <div class="inside_padd span9">
                                             <div class="row-fluid">
                                                 <div class="control-group">
                                                     <label class="control-label">{lang("Categories", "menu")}:</label>
@@ -78,7 +78,7 @@
                     </div>
                     <div class="span6">
                         <input type="hidden" id="owner_id" value="{$insert_id}" />
-                        <table class="table table-striped table-bordered table-hover table-condensed">
+                        <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
                             <thead>
                                 <tr>
                                     <th colspan="6">
@@ -89,7 +89,7 @@
                             <tbody>
                                 <tr>
                                     <td colspan="6">
-                                        <div class="inside_padd">
+                                        <div class="inside_padd span9">
                                             <div class="row-fluid">
                                                 <div class="control-group">
                                                     <label class="control-label">{lang("Type", "menu")}:</label>

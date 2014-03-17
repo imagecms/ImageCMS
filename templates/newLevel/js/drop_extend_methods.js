@@ -224,18 +224,17 @@ $.dropInit.prototype.extendDrop = function() {
                     if (body.css('overflow') === 'auto' || wnd.height() < $(document).height()) {
                         body.addClass('isScroll').css({
                             'overflow': 'hidden',
-                            'margin-right': $.drop.widthScroll,
-                            'margin-left': 1
+                            'margin-right': +$.drop.widthScroll
                         });
-                        body.prepend('<div class="scrollEmulation" style="position: fixed;right: 0;height: 100%;width: ' + $.drop.widthScroll + 'px;overflow-y: scroll;z-index:10000;"><div style="width: 1px;height: ' + $.drop.drp.curDrop.height() + 'px;"></div></div>');
+                        body.prepend('<div class="scrollEmulation" style="position: fixed;right: 0;overflow-y: scroll;height: 100%;width: ' + $.drop.widthScroll + 'px;z-index:10000;"><div style="width: 1px;' + ($.drop.drp.curDrop.data('drp').limitSize ? 'height: 100%;' : 'height: ' + $.drop.drp.curDrop.height() + 'px;') + '"></div></div>');
                         $('.scrollEmulation').off('scroll.' + $.drop.nS).on('scroll.' + $.drop.nS, function() {
                             $.drop.drp.curDrop.data('drp').forCenter.scrollTop($(this).scrollTop());
                         });
                     }
                 }
-                if (isTouch)
-                    $('.for-center').on('touchmove.' + $.drop.nS, function(e) {
-                        return false;
+                if (isTouch && $.drop.drp.curDrop.height() < wnd.height())
+                    $.drop.dP.forCenter.off('touchmove.' + $.drop.nS).on('touchmove.' + $.drop.nS, function(e) {
+                        e.preventDefault();
                     });
                 $(document).trigger({
                     'type': 'scrollEmulate.' + $.drop.nS
@@ -256,7 +255,8 @@ $.dropInit.prototype.extendDrop = function() {
                     //$('html').css('overflow', '');
                     $('.scrollEmulation').remove();
                     if (isTouch)
-                        $('.for-center').off('touchmove.' + $.drop.nS);
+                        $('.forCenter').off('touchmove.' + $.drop.nS);
+
                     $(document).trigger({
                         'type': 'scrollEmulateRemove.' + $.drop.nS
                     });
