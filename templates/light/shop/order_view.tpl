@@ -412,9 +412,10 @@
                                                         {$cartPrice += $priceDel}
                                                         <span class="price f-w_b">{echo $priceDel}</span>
                                                         <span class="curr">{$CS}</span>
-                                                        (<span class="price f-w_b">{echo $priceDelAdd}</span>
-                                                        <span class="curr-add">{$NextCS}</span>)
-                                                        <span class="not-delivery-price"></span>
+                                                        {if $NextCSId}
+                                                            (<span class="price f-w_b">{echo $priceDelAdd}</span>
+                                                            <span class="curr-add">{$NextCS}</span>)
+                                                        {/if}
                                                     {else:}
                                                         <span class="text-el s-t">{lang('Бесплатно', 'newLevel')}</span>
                                                     {/if}

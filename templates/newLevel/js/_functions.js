@@ -21,7 +21,7 @@ var ShopFront = {
                     el.parent(genObj.btnInCart).addClass('d_n');
                     el.closest(genObj.parentBtnBuy).addClass(genObj.toCart).removeClass(genObj.inCart)
                             .find(genObj.frameCount)
-                            .find(':input:not(:disabled)').removeAttr('disabled', 'disabled')
+                            .find(':input').removeAttr('disabled', 'disabled')
                             .end().find(genObj.plusMinus).attr('value', function() {
                         return $(this).data('min');
                     });
