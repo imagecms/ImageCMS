@@ -23,25 +23,27 @@
         <script type="text/javascript" src="{$THEME}js/jquery-1.8.3.min.js"></script>
         {literal}
             <style>
-                body{padding-top: 33px;}
-                .imagecms-top-fixed-header{box-shadow: 0 1px 4px rgba(0,0,0,.2);background-color: #fafafa;height: 30px;border-top: 3px solid #0aae85;position: fixed;top: 0;left: 0;width: 100%;z-index: 1000;font-family: Arial, sans-serif;font-size: 12px;color: #223340;vertical-align: baseline;}
+                .imagecms-top-fixed-header{height: 0;box-shadow: 0 1px 4px rgba(0,0,0,.2);background-color: #fafafa;border-top: 0 solid #0aae85;position: fixed;top: 0;left: 0;width: 100%;z-index: 1000;font-family: Arial, sans-serif;font-size: 12px;color: #223340;vertical-align: baseline;}
+                .imagecms-top-fixed-header.imagecms-active + .main-body header{padding-top: 30px;}
+                .imagecms-top-fixed-header.imagecms-active{height: 30px;border-top-width: 3px;}
+                .imagecms-top-fixed-header .container{position: relative;}
                 .imagecms-logo{float: left;}
                 .imagecms-ref-skype, .imagecms-phone{font-size: 0;}
                 .imagecms-phone{margin-right: 32px;}
                 .imagecms-phone .imagecms-text-el{font-size: 11px;color: #333;}
                 .imagecms-ref-skype .imagecms-text-el{font-size: 12px;color: #223340;}
                 .imagecms-ref-skype{color: #223340;text-decoration: none;}
-                .imagecms-list{list-style: none;font-size: 0;border-width: 0 1px;border-style: solid;border-left-color: #ccc;border-right-color: #fff;float: left;}
+                .imagecms-list{list-style: none;font-size: 0;border-width: 0 1px;border-style: solid;border-left-color: #ccc;border-right-color: #fff;float: left;display: none;}
                 .imagecms-list > li{height: 30px;vertical-align: top;padding: 0 27px;text-align: left;display: inline-block;border-width: 0 1px;border-style: solid;border-left-color: #fff;border-right-color: #ccc;font-size: 12px;}
                 .imagecms-list > li > a{line-height: 30px;}
                 .imagecms-ref{color: #000;text-decoration: none;}
                 .imagecms-ico-phone, .imagecms-ico-skype{width: auto !important;height: auto !important;position: relative !important;vertical-align: baseline;}
                 .imagecms-ico-skype{position: relative;top: 2px;margin-right: 5px;}
-                .imagecms-ico-phone{position: relative;top: -1px;margin-right: 6px;}
+                .imagecms-ico-phone{position: relative;top: 1px;margin-right: 6px;}
                 .imagecms-buy-license > a{text-decoration: none;height: 100%;display: block;padding: 0 20px;font-size: 0;}
                 .imagecms-buy-license > a > .imagecms-text-el{color: #fff;font-weight: bold;font-size: 11px;line-height: 30px;text-transform: uppercase;}
                 .imagecms-buy-license{
-                    float: right;height: 30px;box-shadow: 0 1px 1px rgba(0,0,0,.1);
+                    float: right;height: 30px;box-shadow: 0 1px 1px rgba(0,0,0,.1);display: none;
                     background: #0eb48e; /* Old browsers */
                     background: -moz-linear-gradient(top,  #0eb48e 0%, #09a77d 100%); /* FF3.6+ */
                     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#0eb48e), color-stop(100%,#09a77d)); /* Chrome,Safari4+ */
@@ -53,34 +55,67 @@
                 }
                 .imagecms-buy-license .imagecms-text-el{vertical-align: middle;}
                 .imagecms-buy-license .imagecms-ico-donwload{vertical-align: middle;margin-left: 11px;}
-                .imagecms-close{float: right;margin-left: 32px;cursor: pointer;}
-                .imagecms-contacts{text-align: center;padding-top: 4px;}
+                .imagecms-contacts{text-align: center;padding-top: 6px;display: none;}
+                .imagecms-close{cursor: pointer;position: absolute;right: -100px;top: 0;height: 30px;line-height: 30px;background-color: #9adccb;width: 95px;display: none;z-index: 3;}
+                .imagecms-toggle-close-text{color: #333;position: relative;top: -1px;}
+                .imagecms-active .imagecms-buy-license, .imagecms-active .imagecms-list, .imagecms-active .imagecms-contacts{display: block;}
             </style>
+            <script type="text/javascript">
+                function setCookie(name, value, expires, path, domain, secure)
+                {
+                    var today = new Date();
+                    today.setTime(today.getTime());
+                    if (expires)
+                    {
+                        expires = expires * 1000 * 60 * 60 * 24;
+                    }
+                    var expiresDate = new Date(today.getTime() + (expires));
+                    document.cookie = name + "=" + encodeURIComponent(value) +
+                            ((expires) ? ";expires=" + expiresDate.toGMTString() : "") + ((path) ? ";path=" + path : "") +
+                            ((domain) ? ";domain=" + domain : "") +
+                            ((secure) ? ";secure" : "");
+                }
+            </script>
         {/literal}
     </head>
     <body>
         <!-- Start. corporate-->
-        <div class="imagecms-top-fixed-header">
+        <div class="imagecms-top-fixed-header{if $_COOKIE['condPromoToolbar'] == '1' || $_COOKIE['condPromoToolbar'] == NULL} imagecms-active{/if}">
             <div class="container">
-                <butotn type="button" class="imagecms-close">
-                    <img src="{$THEME}/icon_close.png"/>
-                </butotn>
+                <button type="button" class="imagecms-close" {if $_COOKIE['condPromoToolbar'] == '1' || $_COOKIE['condPromoToolbar'] == NULL}style="display: block;"{/if} onclick="setCookie('condPromoToolbar', '0');
+                        $('.imagecms-top-fixed-header').removeClass('imagecms-active');
+                        $(this).hide().next().show();
+                        $(window).scroll();">
+                    <span class="imagecms-toggle-close-text imagecms-bar-close-text"><span style="font-size: 14px;">↑</span> {lang('Скрыть', 'newLevel')}</span>
+                </button>
+                <button type="button" class="imagecms-close" {if $_COOKIE['condPromoToolbar'] == '0'}style="display: block;"{/if} onclick="setCookie('condPromoToolbar', '1');
+                        $('.imagecms-top-fixed-header').addClass('imagecms-active');
+                        $(this).hide().prev().show();
+                        $(window).scroll();">
+                    <span class="imagecms-toggle-close-text imagecms-bar-show-text"><span style="font-size: 14px;">↓</span> {lang('Показать', 'newLevel')}</span>
+                </button>
                 <div class="imagecms-buy-license">
-                    <a href="http://www.imagecms.net/download/corporate" onclick="_gaq.push(['_trackEvent', 'demo-front', '/download/corporate']);">
+                    <a href="http://www.imagecms.net/download/corporate" target="_blank" onclick="_gaq.push(['_trackEvent', 'demo-front', '/download/corporate']);">
                         <span class="imagecms-text-el">Скачать бесплатно</span>
                     </a>
                 </div>
                 <ul class="imagecms-list">
                     <li>
-                        <a href="http://www.imagecms.net/free-cms-corporate" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demo-front', '/free-cms-corporate']);">Обзор продукта</a>
+                        <a href="http://www.imagecms.net/free-cms-corporate" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demo-front', '/free-cms-corporate']);">Обзор продукта</a>
                     </li>
                     <li>
-                        <a href="http://www.imagecms.net/corporate-bazovye-vozmozhnosti" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demo-front', '/corporate-bazovye-vozmozhnosti']);">Базовые возможности</a>
+                        <a href="http://www.imagecms.net/corporate-bazovye-vozmozhnosti" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demo-front', '/corporate-bazovye-vozmozhnosti']);">Базовые возможности</a>
                     </li>
                     <li>
-                        <a href="http://www.imagecms.net/blog" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demo-front', '/blog']);">Блог</a>
+                        <a href="http://www.imagecms.net/blog" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demo-front', '/blog']);">Блог</a>
                     </li>
                 </ul>
+                <div class="imagecms-contacts">
+                    <span class="imagecms-phone">
+                        <img src="{$THEME}/icon_phone.png" class="imagecms-ico-phone"/>
+                        <span class="imagecms-text-el">+7 (499) 703-37-51</span>
+                    </span>
+                </div>
             </div>
         </div>
         <!-- End. corporate-->

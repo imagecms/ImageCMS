@@ -31,6 +31,7 @@ class Admin extends BaseAdminController {
         $this->set_tpl_roles();
         $this->template->add_array($this->genre_user_table());
         $this->template->add_array($this->show_edit_prems_tpl($id = 10));
+        $this->template->registerJsFile('application/modules/user_manager/templates/js/script.js', 'after');
         $this->display_tpl('main');
     }
 
@@ -316,6 +317,7 @@ class Admin extends BaseAdminController {
 
                 $this->template->assign('users', $users);
                 $this->template->add_array($this->show_edit_prems_tpl($id = 2));
+                $this->template->add_array(array('role_id' => $role));
                 $rezult_table = $this->fetch_tpl('main');
 
                 echo $rezult_table;
