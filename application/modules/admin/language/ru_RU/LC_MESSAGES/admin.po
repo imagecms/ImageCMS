@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-18 09:55+0200\n"
-"PO-Revision-Date: 2014-03-18 09:55+0200\n"
+"POT-Creation-Date: 2014-03-18 01:05+0200\n"
+"PO-Revision-Date: 2014-03-18 01:05+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -20,6 +20,10 @@ msgstr ""
 "X-Poedit-SearchPath-1: ../../../templates/administrator\n"
 "X-Poedit-SearchPath-2: ../../modules/shop/admin\n"
 "X-Poedit-SearchPath-3: ../../../application/modules/shop/models/build/classes\n"
+
+#: ./application/modules/shop/admin/templates/kits/kit_create.tpl:40
+msgid "of main product"
+msgstr "главного товара"
 
 #: ./application/modules/shop/admin/templates/kits/kit_create.tpl:5
 msgid "Create product kit"
@@ -49,7 +53,6 @@ msgstr "Все найденные продукты"
 msgid "Really delete selected products?"
 msgstr "Вы действительно хотите удалить выбранные продукты?"
 
-#: ./application/modules/shop/admin/templates/kits/kit_create.tpl:46
 #: ./application/modules/shop/admin/templates/kits/kit_edit.tpl:45
 msgid "Added products"
 msgstr "Добавленные продукты"
@@ -125,6 +128,7 @@ msgid "Properties of the products"
 msgstr "Свойства продуктов"
 
 #: ./application/modules/shop/admin/templates/kits/index.tpl:77
+#: ./application/modules/shop/admin/templates/kits/kit_create.tpl:46
 msgid "Attached products"
 msgstr "Связанные продукты"
 
@@ -166,6 +170,7 @@ msgstr "Шаблоны для Shop"
 msgid "Create additional field"
 msgstr "Создать дополнительное поле"
 
+#: ./application/modules/shop/admin/templates/customfields/create.tpl:81
 #: ./application/modules/shop/admin/templates/customfields/list.tpl:52
 msgid "Active field"
 msgstr "Активное"
@@ -985,7 +990,6 @@ msgstr "активный"
 #: ./application/modules/shop/admin/templates/comulativ/edit.tpl:50
 #: ./application/modules/shop/admin/templates/comulativ/list.tpl:52
 #: ./application/modules/shop/admin/templates/comulativ/list.tpl:78
-#: ./application/modules/shop/admin/templates/customfields/create.tpl:81
 #: ./application/modules/shop/admin/templates/customfields/list.tpl:78
 #: ./application/modules/shop/admin/templates/deliverymethods/create.tpl:46
 #: ./application/modules/shop/admin/templates/deliverymethods/edit.tpl:47
@@ -1858,7 +1862,6 @@ msgstr "Главный размер"
 msgid "Main phone"
 msgstr "Главный телефон"
 
-#: ./application/modules/shop/admin/templates/kits/kit_create.tpl:40
 #: ./application/modules/shop/admin/templates/kits/kit_edit.tpl:39
 msgid "main product"
 msgstr "главный товар"
@@ -2774,6 +2777,8 @@ msgstr "Кеш"
 
 #: ./application/modules/shop/admin/templates/customfields/create.tpl:128
 #: ./application/modules/shop/admin/templates/customfields/create.tpl:134
+#: ./application/modules/shop/admin/templates/customfields/edit.tpl:121
+#: ./application/modules/shop/admin/templates/customfields/edit.tpl:127
 msgid "Classes"
 msgstr "Классы"
 
@@ -4663,6 +4668,7 @@ msgid "User already notified via E-mail upon availability! Notify again"
 msgstr "Пользователь уже уведомлен по электронной почте про наличие! Сообщить снова"
 
 #: ./application/modules/shop/admin/templates/customfields/create.tpl:132
+#: ./application/modules/shop/admin/templates/customfields/edit.tpl:125
 msgid "Custom classes for widget"
 msgstr "Пользовательские классы для виджета"
 
