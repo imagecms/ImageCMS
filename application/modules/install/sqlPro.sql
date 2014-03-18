@@ -3,18 +3,12 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Час створення: Бер 18 2014 р., 14:52
+-- Час створення: Бер 18 2014 р., 18:40
 -- Версія сервера: 5.5.35-0ubuntu0.13.10.2
 -- Версія PHP: 5.5.9-1+sury.org~saucy+1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
 
 --
 -- База даних: `newtest`
@@ -704,6 +698,8 @@ CREATE TABLE IF NOT EXISTS `logs` (
   KEY `date` (`date`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=788 ;
 
+-- --------------------------------------------------------
+
 --
 -- Структура таблиці `mail`
 --
@@ -1161,52 +1157,6 @@ INSERT INTO `mod_sample_settings` (`id`, `name`, `value`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `mod_seo`
---
-
-DROP TABLE IF EXISTS `mod_seo`;
-CREATE TABLE IF NOT EXISTS `mod_seo` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `locale` varchar(5) DEFAULT NULL,
-  `settings` text,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Структура таблиці `mod_seo_inflect`
---
-
-DROP TABLE IF EXISTS `mod_seo_inflect`;
-CREATE TABLE IF NOT EXISTS `mod_seo_inflect` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `original` varchar(250) NOT NULL,
-  `inflection_id` int(11) NOT NULL,
-  `inflected` varchar(250) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Структура таблиці `mod_seo_products`
---
-
-DROP TABLE IF EXISTS `mod_seo_products`;
-CREATE TABLE IF NOT EXISTS `mod_seo_products` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `cat_id` int(11) NOT NULL,
-  `locale` varchar(5) DEFAULT NULL,
-  `settings` text,
-  `active` tinyint(4) DEFAULT NULL,
-  `empty_meta` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
 -- Структура таблиці `mod_shop_discounts`
 --
 
@@ -1320,63 +1270,6 @@ CREATE TABLE IF NOT EXISTS `mod_sitemap_priorities` (
 
 INSERT INTO `mod_sitemap_priorities` (`id`, `main_page_priority`, `cats_priority`, `pages_priority`, `sub_cats_priority`, `products_priority`, `products_categories_priority`, `products_sub_categories_priority`, `brands_priority`) VALUES
 (1, 1, 0.8, 0.9, 0.7, 0.4, 0.6, 0.5, 0.3);
-
--- --------------------------------------------------------
-
---
--- Структура таблиці `mod_stats_attendance`
---
-
-DROP TABLE IF EXISTS `mod_stats_attendance`;
-CREATE TABLE IF NOT EXISTS `mod_stats_attendance` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_user` int(5) NOT NULL,
-  `type_id` int(2) NOT NULL,
-  `id_entity` int(6) NOT NULL,
-  `time_add` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Структура таблиці `mod_stats_attendance_robots`
---
-
-DROP TABLE IF EXISTS `mod_stats_attendance_robots`;
-CREATE TABLE IF NOT EXISTS `mod_stats_attendance_robots` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_robot` int(5) NOT NULL,
-  `type_id` int(2) NOT NULL,
-  `id_entity` int(6) NOT NULL,
-  `time_add` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Структура таблиці `mod_stats_search`
---
-
-DROP TABLE IF EXISTS `mod_stats_search`;
-CREATE TABLE IF NOT EXISTS `mod_stats_search` (
-  `key` varchar(70) DEFAULT NULL,
-  `date` int(11) DEFAULT NULL,
-  `ac` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Структура таблиці `mod_stats_settings`
---
-
-DROP TABLE IF EXISTS `mod_stats_settings`;
-CREATE TABLE IF NOT EXISTS `mod_stats_settings` (
-  `setting` varchar(70) DEFAULT NULL,
-  `value` varchar(500) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -2930,7 +2823,7 @@ INSERT INTO `shop_products` (`id`, `url`, `active`, `hit`, `brand_id`, `category
 (1025, 'garnitura-samsung-ehs62asn-white', 1, NULL, 28, 933, '', '1025_main.jpg', '1025_small.jpg', 1364500800, 1364748482, 0.00, 22, 0, NULL, NULL, 1, NULL, '1025_mainMod.jpg', '1025_smallMod.jpg', '', NULL),
 (1096, 'mobilnyi-telefon-samsung-galaxy-grand-duos-i9082-elegant-white', 1, 1, 28, 931, '', '1096_main.jpg', '1096_small.jpg', 1364673600, 1368876800, 0.00, 31, NULL, NULL, NULL, 1, NULL, '1096_mainMod.jpg', '1096_smallMod.jpg', '', NULL),
 (1099, 'mobilnyi-telefon-sony-xperia-z-c6603-black', 1, NULL, 26, 931, '', '1099_main.jpg', '1099_small.jpg', 1364673600, 1368876582, 0.00, 19, 1, NULL, NULL, 1, NULL, '1099_mainMod.jpg', '1099_smallMod.jpg', '', NULL),
-(1104, 'mobilnyi-telefon-sony-xperia-v-lt25i-black', 1, 1, 26, 931, '13893,13897,13902,13904,6199,6201,6204,6193,6194,5775', '1104_main.jpg', '1104_small.jpg', 1364760000, 1395052529, 5400.00, 29, NULL, NULL, 7, 1, NULL, '1104_mainMod.jpg', '1104_smallMod.jpg', '', NULL),
+(1104, 'mobilnyi-telefon-sony-xperia-v-lt25i-black', 1, 1, 26, 931, '13893,13897,13902,13904,6199,6201,6204,6193,6194,5775', '1104_main.jpg', '1104_small.jpg', 1364760000, 1395052529, 5400.00, 31, NULL, NULL, 7, 1, NULL, '1104_mainMod.jpg', '1104_smallMod.jpg', '', NULL),
 (1105, 'mobilnyi-telefon-lg-nexus-4-e960-black', 1, 1, 35, 931, NULL, '1105_main.jpg', '1105_small.jpg', 1364760000, 1395055056, 6000.00, 0, NULL, NULL, 0, 1, NULL, '1105_mainMod.jpg', '1105_smallMod.jpg', '', NULL),
 (1107, 'akkumuliator-k-telefonu-nokia-bl-4c', 1, NULL, 42, 935, '', '1107_main.jpg', '1107_small.jpg', 1364760000, 1367087224, 0.00, 16, NULL, NULL, NULL, 1, NULL, '1107_mainMod.jpg', '1107_smallMod.jpg', '', NULL),
 (1108, 'nokia-lumia-920-white', 1, 0, 42, 931, '', '1108_main.jpg', '1108_small.jpg', 1364760000, 1368876641, 0.00, 36, 1, NULL, NULL, 1, NULL, '1108_mainMod.jpg', '1108_smallMod.jpg', '', NULL),
@@ -8657,83 +8550,6 @@ INSERT INTO `shop_warehouse_data` (`id`, `product_id`, `warehouse_id`, `count`) 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `support_comments`
---
-
-DROP TABLE IF EXISTS `support_comments`;
-CREATE TABLE IF NOT EXISTS `support_comments` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `ticket_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `user_status` int(11) NOT NULL,
-  `user_name` varchar(100) NOT NULL,
-  `text` varchar(500) NOT NULL,
-  `date` int(11) NOT NULL,
-  UNIQUE KEY `id` (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- Дамп даних таблиці `support_comments`
---
-
-INSERT INTO `support_comments` (`id`, `ticket_id`, `user_id`, `user_status`, `user_name`, `text`, `date`) VALUES
-(1, 3, 1, 1, 'admin', 'Вы можете оплатить услуги безналичным переводом и наличными.', 1353064129);
-
--- --------------------------------------------------------
-
---
--- Структура таблиці `support_departments`
---
-
-DROP TABLE IF EXISTS `support_departments`;
-CREATE TABLE IF NOT EXISTS `support_departments` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
-
---
--- Дамп даних таблиці `support_departments`
---
-
-INSERT INTO `support_departments` (`id`, `name`) VALUES
-(1, 'Техническая поддержка'),
-(2, 'Финансовый отдел'),
-(3, 'Отдел консультаций');
-
--- --------------------------------------------------------
-
---
--- Структура таблиці `support_tickets`
---
-
-DROP TABLE IF EXISTS `support_tickets`;
-CREATE TABLE IF NOT EXISTS `support_tickets` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) DEFAULT NULL,
-  `last_comment_author` varchar(50) NOT NULL,
-  `text` text,
-  `theme` varchar(100) NOT NULL,
-  `department` int(11) NOT NULL,
-  `status` smallint(1) DEFAULT NULL,
-  `priority` varchar(15) DEFAULT NULL,
-  `date` int(11) DEFAULT NULL,
-  `updated` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
-
---
--- Дамп даних таблиці `support_tickets`
---
-
-INSERT INTO `support_tickets` (`id`, `user_id`, `last_comment_author`, `text`, `theme`, `department`, `status`, `priority`, `date`, `updated`) VALUES
-(1, 1, '', 'Не могу настроить на сайте переадресации. На локалке все работает. Помогите пожалуйста.', 'htaccess', 1, 0, '2', 1353061322, 1353061322),
-(2, 1, '', 'Какой тарифный план лучше подходит для моего сайта?', 'хостинг', 3, 0, '1', 1353061376, 1353061376),
-(3, 1, 'admin', 'Как я могу полатить хостинг?', 'Оплата услуг', 2, 0, '0', 1353061402, 1353064130);
-
--- --------------------------------------------------------
-
---
 -- Структура таблиці `tags`
 --
 
@@ -8760,18 +8576,7 @@ CREATE TABLE IF NOT EXISTS `trash` (
   `trash_redirect` varchar(255) DEFAULT NULL,
   `trash_type` varchar(3) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
-
---
--- Дамп даних таблиці `trash`
---
-
-INSERT INTO `trash` (`id`, `trash_id`, `trash_url`, `trash_redirect_type`, `trash_redirect`, `trash_type`) VALUES
-(1, '930', 'shop/product/mobilnyi-telefon-philips-xenium-x130-silver', 'category', 'http://pro.imagecms.net/shop/category/telefoniia-pleery-gps/telefony/mobilnye-telefony', '301'),
-(2, '930', 'shop/product/mobilnyi-telefon-philips-xenium-x130-silver', 'category', 'http://pro.imagecms.net/shop/category/telefoniia-pleery-gps/telefony/mobilnye-telefony', '301'),
-(3, '930', 'shop/product/mobilnyi-telefon-nokia-asha-205-pink', 'category', 'http://pro.imagecms.net/shop/category/telefoniia-pleery-gps/telefony/mobilnye-telefony', '301'),
-(4, '930', 'shop/product/mobilnyi-telefon-philips-xenium-x128-black', 'category', 'http://pro.imagecms.net/shop/category/telefoniia-pleery-gps/telefony/mobilnye-telefony', '301'),
-(5, '930', 'shop/product/mobilnyi-telefon-philips-xenium-x623-black', 'category', 'http://pro.imagecms.net/shop/category/telefoniia-pleery-gps/telefony/mobilnye-telefony', '301');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -8905,7 +8710,3 @@ INSERT INTO `widget_i18n` (`id`, `locale`, `data`) VALUES
 (16, 'ru', '<div class="container">\n<ul class="items items-benefits">\n<li>\n<div class="frame-icon-benefit"><span class="helper">&nbsp;</span> <span class="icon-benefits_1">&nbsp;</span></div>\n<div class="frame-description-benefit f-s_0"><span class="helper">&nbsp;</span>\n<div>\n<div class="title">Бесплатная</div>\n<p>доставка</p>\n</div>\n</div>\n</li>\n<li>\n<div class="frame-icon-benefit"><span class="helper">&nbsp;</span> <span class="icon-benefits_2">&nbsp;</span></div>\n<div class="frame-description-benefit f-s_0"><span class="helper">&nbsp;</span>\n<div>\n<div class="title">Гибкая система</div>\n<p>скидок</p>\n</div>\n</div>\n</li>\n<li>\n<div class="frame-icon-benefit"><span class="helper">&nbsp;</span> <span class="icon-benefits_3">&nbsp;</span></div>\n<div class="frame-description-benefit f-s_0"><span class="helper">&nbsp;</span>\n<div>\n<div class="title">Индивидуальный</div>\n<p>подход</p>\n</div>\n</div>\n</li>\n<li>\n<div class="frame-icon-benefit"><span class="helper">&nbsp;</span> <span class="icon-benefits_4">&nbsp;</span></div>\n<div class="frame-description-benefit f-s_0"><span class="helper">&nbsp;</span>\n<div>\n<div class="title">высокий уровень</div>\n<p>сервиса</p>\n</div>\n</div>\n</li>\n</ul>\n</div>'),
 (17, 'ru', '<div class="frame-delivery-payment"><dl><dt class="title f-s_0"><span class="icon_delivery">&nbsp;</span><span class="text-el">Доставка</span></dt><dd class="frame-list-delivery">\n<ul class="list-style-1">\n<li>Новая Почта</li>\n<li>Другие транспортные службы</li>\n<li>Курьером по Киеву</li>\n<li>Самовывоз</li>\n</ul>\n</dd><dt class="title f-s_0"><span class="icon_payment">&nbsp;</span><span class="text-el">Оплата</span></dt><dd class="frame-list-payment">\n<ul class="list-style-1">\n<li>Наличными при получении</li>\n<li>Безналичный перевод</li>\n<li>Приват 24</li>\n<li>WebMoney</li>\n</ul>\n</dd></dl></div>\n<div class="frame-phone-product">\n<div class="title f-s_0"><span class="icon_phone_product">&nbsp;</span><span class="text-el">Заказы по телефонах</span></div>\n<ul class="list-style-1">\n<li>(097) <span class="d_n">&minus;</span>567-43-21</li>\n<li>(097) <span class="d_n">&minus;</span>567-43-22</li>\n</ul>\n</div>'),
 (20, 'ru', '<h1>Интернет-магазин</h1>\n<p>Интернет-магазин &mdash; сайт, торгующий товарами в интернете. Позволяет пользователям сформировать заказ на покупку, выбрать способ оплаты и доставки заказа в сети Интернет.</p>\n<h2>Заголовок второго уровня</h2>\n<h3>Заголовок третьего уровня</h3>\n<p>Выбрав необходимые товары или услуги, пользователь обычно имеет возможность тут же на сайте выбрать метод оплаты и доставки.</p>\n<p>Совокупность отобранных товаров, способ оплаты и доставки представляют собой законченный заказ, который оформляется на сайте путем сообщения минимально необходимой информации о покупателе.</p>\n<h3>Заголовок третьего уровня</h3>\n<p><strong>Основные способы оплаты покупок в интернет-магазине:</strong></p>\n<ul>\n<li>наличный расчет &mdash; товар оплачивается курьеру наличными деньгами при получении покупателем товара, наличный расчет &mdash; товар оплачивается курьеру наличными деньгами при получении покупателем товара;</li>\n<li>электронные деньги &mdash; безналичный вид расчёта;</li>\n<li>терминалы моментальной оплаты &mdash; оплата производится в уличных платёжных терминалах;</li>\n</ul>\n<h4>Заголовок четвертого уровня</h4>\n<p>электронные кассы &mdash; вид расчета, объединяющий практически все перечисленные выше способы оплаты.</p>\n<table>\n<tbody>\n<tr>\n<td>название</td>\n<td>размер</td>\n<td>цена</td>\n</tr>\n<tr>\n<td>длинна трубы</td>\n<td>10 метров</td>\n<td>145 уе</td>\n</tr>\n<tr>\n<td>ширина трубы</td>\n<td>2 метра</td>\n<td>134 уе</td>\n</tr>\n</tbody>\n</table>\n<p>При выборе такого способа оплаты пользователю предлагается на выбор наиболее удобный способ перевода денег от пластиковой карточки до терминала и мобильного телефона.</p>\n<p>Основные способы оплаты покупок в интернет-магазине:</p>\n<ol>\n<li>наличный расчет &mdash; товар оплачивается курьеру наличными деньгами при получении покупателем товара, наличный расчет &mdash; товар оплачивается курьеру наличными деньгами при получении покупателем товара;</li>\n<li>электронные деньги &mdash; безналичный вид расчёта;</li>\n<li>терминалы моментальной оплаты &mdash; оплата производится в уличных платёжных терминалах;</li>\n</ol>\n<p>электронные кассы &mdash; вид расчета, объединяющий практически все перечисленные выше способы оплаты.</p>');
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
