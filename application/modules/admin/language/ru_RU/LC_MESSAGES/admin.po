@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-18 09:35+0200\n"
-"PO-Revision-Date: 2014-03-18 09:35+0200\n"
+"POT-Creation-Date: 2014-03-18 09:48+0200\n"
+"PO-Revision-Date: 2014-03-18 09:48+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -21,6 +21,135 @@ msgstr ""
 "X-Poedit-SearchPath-2: ../../modules/shop/admin\n"
 "X-Poedit-SearchPath-3: ../../../application/modules/shop/models/build/classes\n"
 
+#: ./application/modules/shop/admin/templates/kits/kit_create.tpl:5
+msgid "Create product kit"
+msgstr "Создание набора товаров"
+
+#: ./application/modules/shop/admin/brands.php:293
+msgid "Brand (s) has been successfully removed (s)"
+msgstr "Бренд(ы) успешно удален(ы)"
+
+#: ./templates/administrator/inc/javascriptVars.tpl:78
+msgid "Product"
+msgstr "Продукт"
+
+#: ./application/modules/shop/admin/templates/discounts/create.tpl:92
+msgid "Enter a product for promotion"
+msgstr "Ввести код продукта для продвижения"
+
+#: ./application/modules/shop/admin/templates/categories/list.tpl:52
+msgid "Attention! will also remove all the products from this category"
+msgstr "Внимание! Также будут удалены все продукты из этой категории"
+
+#: ./templates/administrator/inc/javascriptVars.tpl:59
+msgid "All finding products"
+msgstr "Все найденные продукты"
+
+#: ./application/modules/shop/admin/templates/search/list.tpl:8
+msgid "Really delete selected products?"
+msgstr "Вы действительно хотите удалить выбранные продукты?"
+
+#: ./application/modules/shop/admin/templates/kits/kit_create.tpl:46
+#: ./application/modules/shop/admin/templates/kits/kit_edit.tpl:45
+msgid "Added products"
+msgstr "Добавленные продукты"
+
+#: ./application/modules/shop/admin/templates/system/export_.tpl:3
+msgid "Products export"
+msgstr "Експорт продуктов"
+
+#: ./templates/administrator/inc/javascriptVars.tpl:53
+msgid "Product changes"
+msgstr "Изменить продукт"
+
+#: ./templates/administrator/inc/javascriptVars.tpl:100
+msgid "Change product"
+msgstr "Изменить продукт"
+
+#: ./application/modules/shop/admin/templates/system/importcsv.tpl:3
+#: ./application/modules/shop/admin/templates/system/importfields.tpl:15
+msgid "Products import"
+msgstr "Импорт продуктов"
+
+#: ./application/modules/shop/admin/templates/settings/settings.tpl:68
+msgid "Products count in control panel"
+msgstr "Количество продуктов в панели управления"
+
+#: ./application/modules/shop/admin/templates/system/importfields.tpl:168
+msgid "Product Name"
+msgstr "Название продукта"
+
+#: ./application/modules/shop/admin/templates/orders/check.tpl:67
+#: ./application/modules/shop/admin/templates/products/create.tpl:46
+#: ./application/modules/shop/admin/templates/products/default_edit.tpl:18
+#: ./application/modules/shop/admin/templates/products/_create.tpl:43
+#: ./application/modules/shop/admin/templates/products/_edit.tpl:50
+#: ./application/modules/shop/admin/templates/settings/settings.tpl:496
+msgid "Product name"
+msgstr "Название продукта"
+
+#: ./application/modules/shop/admin/templates/system/export_.tpl:71
+#: ./application/modules/shop/admin/templates/system/importcsv.tpl:97
+msgid "Products name"
+msgstr "Название продуктов"
+
+#: ./application/modules/shop/admin/templates/search/advanced.tpl:168
+#: ./application/modules/shop/admin/templates/search/list.tpl:398
+msgid "Drag product variant"
+msgstr "Перетащите вариант продукта"
+
+#: ./application/modules/shop/admin/products.php:225
+msgid "The product was successfully created"
+msgstr "Продукт был успешно создан"
+
+#: ./application/modules/shop/admin/orders.php:812
+#: ./application/modules/shop/admin/orders.php:839
+msgid "Product updated"
+msgstr "Продукт обновлен"
+
+#: ./application/modules/shop/admin/orders.php:633
+#: ./application/modules/shop/admin/orders.php:648
+msgid "Product is removed from the Order"
+msgstr "Продукт удален из Заказа"
+
+#: ./application/modules/shop/admin/products.php:457
+msgid "The product was successfully edited"
+msgstr "Продукт успешно отредактирован"
+
+#: ./templates/administrator/inc/javascriptVars.tpl:66
+msgid "Resize products images"
+msgstr "Ресайз изображений продуктов"
+
+#: ./application/modules/shop/admin/templates/system/export.tpl:42
+msgid "Properties of the products"
+msgstr "Свойства продуктов"
+
+#: ./application/modules/shop/admin/templates/kits/index.tpl:77
+msgid "Attached products"
+msgstr "Связанные продукты"
+
+#: ./application/modules/shop/admin/templates/properties/create.tpl:5
+msgid "Product property creating"
+msgstr "Создание свойства продукта"
+
+#: ./application/modules/shop/admin/templates/kits/index.tpl:109
+#: ./application/modules/shop/admin/templates/products/default_edit.tpl:574
+#: ./application/modules/shop/admin/templates/products/_edit.tpl:656
+msgid "Kit List products are empty"
+msgstr "Список наборов продуктов пустой"
+
+#: ./application/modules/shop/admin/templates/settings/settings.tpl:626
+msgid "Link to view the product"
+msgstr "Ссылку для просмотра продукта"
+
+#: ./application/modules/shop/admin/templates/search/list.tpl:5
+msgid "Delete products"
+msgstr "Удалить продукты"
+
+#: ./application/modules/shop/admin/templates/kits/index.tpl:23
+msgid "Product kits review"
+msgstr "Обзор наборов товара"
+
 #: ./application/modules/admin/categories.php:221
 msgid "Category has been created"
 msgstr "Категория создана"
@@ -32,10 +161,6 @@ msgstr "Создание новой страницы"
 #: ./templates/administrator/main.tpl:109
 msgid "Шаблоны для Shop"
 msgstr "Шаблоны для Shop"
-
-#: ./application/modules/shop/admin/brands.php:293
-msgid "Brand (s) has been successfully removed (s)"
-msgstr "Бренд (ы) был (и) успешно удален (ы)"
 
 #: ./application/modules/shop/admin/templates/customfields/create.tpl:5
 msgid "Create additional field"
@@ -1263,10 +1388,6 @@ msgstr "введите только цифры"
 msgid "enter number from"
 msgstr "введите число от"
 
-#: ./application/modules/shop/admin/templates/discounts/create.tpl:92
-msgid "Enter a product for promotion"
-msgstr "Ввести код продукта для продвижения"
-
 #: ./templates/administrator/inc/javascriptVars.tpl:26
 msgid "enter the correct URL"
 msgstr "ввести правильный URL"
@@ -1381,10 +1502,6 @@ msgstr "Внимание или Осторожно"
 msgid "Attention! All pages in this language will be deleted!"
 msgstr "Внимание! Все страницы на этом языке будут удалены!"
 
-#: ./application/modules/shop/admin/templates/categories/list.tpl:52
-msgid "Attention! will also remove all the products from this category"
-msgstr "Внимание! Также будут удалены все продукты из этой категории"
-
 #: ./templates/administrator/backup.tpl:180
 msgid "Warning! Files will be deleted automaticly on backup creating"
 msgstr "Внимание! Файлы будут удалены автоматически на создании резервной копии"
@@ -1487,10 +1604,6 @@ msgstr "Все контента по категориям"
 msgid "All modules"
 msgstr "Все модули"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:59
-msgid "All finding products"
-msgstr "Все найденные продукты"
-
 #: ./templates/administrator/cache_all.tpl:25
 msgid "Total file caching"
 msgstr "Всего файлов кэширования"
@@ -1506,10 +1619,6 @@ msgstr "Вы ввели как тип контакту"
 #: ./application/modules/shop/admin/templates/kits/index.tpl:10
 msgid "Do you really want to delete selected kits?"
 msgstr "Вы действительно хотите удалить выбранные наборы?"
-
-#: ./application/modules/shop/admin/templates/search/list.tpl:8
-msgid "Really delete selected products?"
-msgstr "Вы действительно хотите удалить выбранные продукты?"
 
 #: ./application/modules/shop/admin/templates/warehouses/list.tpl:10
 msgid "Really remove selected warehouses?"
@@ -2070,11 +2179,6 @@ msgstr "Добавить подкатегорию"
 msgid "Add an article"
 msgstr "Добавить статью"
 
-#: ./application/modules/shop/admin/templates/kits/kit_create.tpl:46
-#: ./application/modules/shop/admin/templates/kits/kit_edit.tpl:45
-msgid "Added products"
-msgstr "Добавленные продукты"
-
 #: ./templates/administrator/inc/javascriptVars.tpl:57
 msgid "Wait for resize ending"
 msgstr "Дождитесь окончания ресайза"
@@ -2173,10 +2277,6 @@ msgstr "Другой основной вариант изображения"
 #: ./application/modules/shop/admin/templates/search/form.tpl:31
 msgid "Item"
 msgstr "Еденыца"
-
-#: ./application/modules/shop/admin/templates/system/export_.tpl:3
-msgid "Products export"
-msgstr "Експорт продуктов"
 
 #: ./templates/administrator/settings_site.tpl:288
 msgid "If not specified"
@@ -2400,14 +2500,6 @@ msgstr "Изменить"
 msgid "Change category data"
 msgstr "Изменить данные категории"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:53
-msgid "Product changes"
-msgstr "Изменить продукт"
-
-#: ./templates/administrator/inc/javascriptVars.tpl:100
-msgid "Change product"
-msgstr "Изменить продукт"
-
 #: ./application/modules/admin/categories.php:144
 #: ./application/modules/admin/categories.php:439
 #: ./application/modules/admin/languages.php:74
@@ -2450,11 +2542,6 @@ msgstr "Импорт завершен"
 #: ./application/modules/shop/admin/templates/system/importcsv.tpl:171
 msgid "Import completed"
 msgstr "Импорт завершен"
-
-#: ./application/modules/shop/admin/templates/system/importcsv.tpl:3
-#: ./application/modules/shop/admin/templates/system/importfields.tpl:15
-msgid "Products import"
-msgstr "Импорт продуктов"
 
 #: ./application/modules/shop/admin/templates/system/import.tpl:139
 msgid "Import language "
@@ -2789,10 +2876,6 @@ msgstr "Количество добавленных в корзину"
 #: ./application/modules/shop/admin/templates/charts/orders.tpl:48
 msgid "Number of Orders"
 msgstr "Количество заказов"
-
-#: ./application/modules/shop/admin/templates/settings/settings.tpl:68
-msgid "Products count in control panel"
-msgstr "Количество продуктов в панели управления"
 
 #: ./application/modules/shop/admin/settings.php:89
 msgid "The number of items in the control panel"
@@ -3192,24 +3275,6 @@ msgstr "Название модуля"
 #: ./application/modules/shop/admin/templates/settings/settings.tpl:113
 msgid "The name at the website"
 msgstr "Название на сайте"
-
-#: ./application/modules/shop/admin/templates/system/importfields.tpl:168
-msgid "Product Name"
-msgstr "Название продукта"
-
-#: ./application/modules/shop/admin/templates/orders/check.tpl:67
-#: ./application/modules/shop/admin/templates/products/create.tpl:46
-#: ./application/modules/shop/admin/templates/products/default_edit.tpl:18
-#: ./application/modules/shop/admin/templates/products/_create.tpl:43
-#: ./application/modules/shop/admin/templates/products/_edit.tpl:50
-#: ./application/modules/shop/admin/templates/settings/settings.tpl:496
-msgid "Product name"
-msgstr "Название продукта"
-
-#: ./application/modules/shop/admin/templates/system/export_.tpl:71
-#: ./application/modules/shop/admin/templates/system/importcsv.tpl:97
-msgid "Products name"
-msgstr "Название продуктов"
 
 #: ./templates/administrator/settings_site.tpl:236
 #: ./templates/administrator/settings_site.tpl:333
@@ -3668,10 +3733,6 @@ msgstr "Номер столбца обновлен"
 #: ./application/modules/shop/admin/templates/settings/settings.tpl:705
 msgid "User telephone number requested a callback"
 msgstr "Номер телефона пользователя запросившего Сallback"
-
-#: ./application/modules/shop/admin/templates/kits/index.tpl:23
-msgid "Product kits review"
-msgstr "Обзор наборов товара"
 
 #: ./templates/administrator/old_browser.tpl:30
 msgid "Update or download new browsers here"
@@ -4245,11 +4306,6 @@ msgstr "Пересчет"
 msgid "Recalculate products after payment of the order?"
 msgstr "Пересчитать товары после оплаты заказа?"
 
-#: ./application/modules/shop/admin/templates/search/advanced.tpl:168
-#: ./application/modules/shop/admin/templates/search/list.tpl:398
-msgid "Drag product variant"
-msgstr "Перетащите вариант продукта"
-
 #: ./templates/administrator/sys_info.tpl:37
 msgid "Period"
 msgstr "Период"
@@ -4746,28 +4802,6 @@ msgstr "Проверка цен"
 msgid "Check the input data and fill in all mandatory fields"
 msgstr "Проверьте введенные данные и заполните все обязательные поля"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:78
-msgid "Product"
-msgstr "Продукт"
-
-#: ./application/modules/shop/admin/products.php:225
-msgid "The product was successfully created"
-msgstr "Продукт был успешно создан"
-
-#: ./application/modules/shop/admin/orders.php:812
-#: ./application/modules/shop/admin/orders.php:839
-msgid "Product updated"
-msgstr "Продукт обновлен"
-
-#: ./application/modules/shop/admin/orders.php:633
-#: ./application/modules/shop/admin/orders.php:648
-msgid "Product is removed from the Order"
-msgstr "Продукт удален из Заказа"
-
-#: ./application/modules/shop/admin/products.php:457
-msgid "The product was successfully edited"
-msgstr "Продукт успешно отредактирован"
-
 #: ./application/modules/shop/admin/templates/settings/settings.tpl:392
 msgid "Transparency"
 msgstr "Прозрачность"
@@ -5098,10 +5132,6 @@ msgstr "Ресайз"
 msgid "Additional images resize"
 msgstr "Ресайз дополнительных изображений"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:66
-msgid "Resize products images"
-msgstr "Ресайз изображений продуктов"
-
 #: ./application/modules/shop/admin/templates/system/export_.tpl:25
 #: ./application/modules/shop/admin/templates/system/importcsv.tpl:41
 #: ./application/modules/shop/admin/templates/system/importfields.tpl:48
@@ -5186,10 +5216,6 @@ msgstr "Свернуть категорию"
 msgid "Properties"
 msgstr "Свойства"
 
-#: ./application/modules/shop/admin/templates/system/export.tpl:42
-msgid "Properties of the products"
-msgstr "Свойства продуктов"
-
 #: ./templates/administrator/inc/menus.php:219
 #: ./templates/administrator/shop_menu.tpl:31
 msgid "Products properties"
@@ -5211,10 +5237,6 @@ msgstr "Свойство(а) удалено(ы)"
 #: ./application/modules/shop/admin/templates/customfields/list.tpl:50
 msgid "Related entity"
 msgstr "Связанная сущность"
-
-#: ./application/modules/shop/admin/templates/kits/index.tpl:77
-msgid "Attached products"
-msgstr "Связанные продукты"
 
 #: ./application/modules/shop/admin/templates/products/create.tpl:228
 #: ./application/modules/shop/admin/templates/products/default_edit.tpl:283
@@ -5417,10 +5439,6 @@ msgstr "Создание подарочного сертификата"
 msgid "Role create"
 msgstr "Создание роли"
 
-#: ./application/modules/shop/admin/templates/properties/create.tpl:5
-msgid "Product property creating"
-msgstr "Создание свойства продукта"
-
 #: ./application/modules/shop/admin/templates/warehouses/create.tpl:5
 msgid "Creating a warehouse"
 msgstr "Создание склада"
@@ -5543,10 +5561,6 @@ msgstr "Создать миниатюру"
 #: ./application/modules/shop/admin/templates/products/_edit.tpl:586
 msgid "Create a set"
 msgstr "Создать набор"
-
-#: ./application/modules/shop/admin/templates/kits/kit_create.tpl:5
-msgid "Create product kit"
-msgstr "Создать набор товаров"
 
 #: ./application/modules/shop/admin/templates/orders/create.tpl:144
 msgid "Create new user"
@@ -5864,12 +5878,6 @@ msgstr "Список категорий"
 msgid "Category list is empty"
 msgstr "Список категорий пуст"
 
-#: ./application/modules/shop/admin/templates/kits/index.tpl:109
-#: ./application/modules/shop/admin/templates/products/default_edit.tpl:574
-#: ./application/modules/shop/admin/templates/products/_edit.tpl:656
-msgid "Kit List products are empty"
-msgstr "Список наборов продуктов пустой"
-
 #: ./application/modules/shop/admin/templates/comulativ/list.tpl:25
 msgid "List of cumulative discounts"
 msgstr "Список накопительных скидок"
@@ -6062,10 +6070,6 @@ msgstr "Ссылка на заказ"
 #: ./application/modules/shop/admin/templates/settings/settings.tpl:1070
 msgid "Link to confirm password recovery"
 msgstr "Ссылку для подтверждения восстановления пароля"
-
-#: ./application/modules/shop/admin/templates/settings/settings.tpl:626
-msgid "Link to view the product"
-msgstr "Ссылку для просмотра продукта"
 
 #: ./application/modules/shop/admin/templates/settings/settings.tpl:563
 msgid "Link to view the WishList"
@@ -6770,10 +6774,6 @@ msgstr "Удалить поля"
 #: ./templates/administrator/backup.tpl:185
 msgid "Delete after date"
 msgstr "Удалить после даты"
-
-#: ./application/modules/shop/admin/templates/search/list.tpl:5
-msgid "Delete products"
-msgstr "Удалить продукты"
 
 #: ./templates/administrator/groupList.tpl:81
 #: ./templates/administrator/privilegeList.tpl:72
