@@ -361,7 +361,7 @@
                     </div>
                 </div><!-- frame. left-product-* -->
                 <!-- Start. Kit-->
-                {if count($model->getShopKitsLoggedUsersCheck($CI->dx_auth->is_logged_in())) > 0}
+                {if $model->getShopKitsLoggedUsersCheck($CI->dx_auth->is_logged_in()) != false}
                     <div class="title-complect">
                         <div class="frame-title">
                             <div class="title">{lang('В комплекте дешевле','newLevel')}</div>
