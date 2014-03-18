@@ -35,13 +35,13 @@
                         for (var j = 0; j < liLength; j++) {
                             var nab = $([]);
                             right.each(function() {
-                                nab = nab.add($(this).find(elEven).eq(j))
-                            })
+                                nab = nab.add($(this).find(elEven).eq(j));
+                            });
                             var tempNabir = left.eq(j).add(nab);
                             tempNabir.each(function(index) {
                                 var thisCh = $(this);
                                 liH[index] = thisCh.outerHeight();
-                                liH[index] > h ? h = liH[index] : h = h;
+                                h = liH[index] > h ? liH[index] : h;
                             });
                             tempNabir.add(tempNabir.find(helper)).css('height', h).attr('data-equalHorizCell', '');
                             liH = [];
@@ -50,27 +50,27 @@
                         var w = 0;
                         frameScroll.children().each(function() {
                             w += $(this).outerWidth(true);
-                        })
+                        });
                         frameScroll.css('width', w);
                         var frameScrollP = frameScroll.parent(),
                                 frameScrollPW = frameScrollP.width(),
                                 scrollW = w - frameScrollPW;
-                        if (scrollNSP && frameScrollCL != 0) {
+                        if (scrollNSP && frameScrollCL !== 0) {
                             scrollNSPT = $this.find(scrollNSPT);
                             var topScrollNSP = scrollNSPT.position().top + scrollNSPT.height();
                             $this.children('.scrollNSP').remove();
-                            $this.append('<div class="scrollNSP" style = "overflow:auto;"><div style="width:' + w + 'px;"></div></div>')
+                            $this.append('<div class="scrollNSP" style = "overflow:auto;"><div style="width:' + w + 'px;"></div></div>');
                         }
                         var firstScrl = frameScrollP.css('overflow', 'hidden'),
                                 secScrl = $([]);
                         if (scrollNSP) {
                             secScrl = $this.children('.scrollNSP');
                             if (jScrollPane)
-                                secScrl.addClass('jScrollPane')
+                                secScrl.addClass('jScrollPane');
                             secScrl.css({
                                 'width': frameScrollPW,
                                 'top': topScrollNSP
-                            })
+                            });
                         }
                         var api = '';
                         function initNSS() {
@@ -81,15 +81,15 @@
                         if (jScrollPane)
                             api = initNSS();
                         function scrollNst(deltaY, $thisSL) {
-                            if ($thisSL != scrollW && deltaY < 0) {
+                            if ($thisSL !== scrollW && deltaY < 0) {
                                 if (jScrollPane)
-                                    api.scrollToX($thisSL + w / frameScrollCL)
+                                    api.scrollToX($thisSL + w / frameScrollCL);
                                 else
                                     firstScrl.add(secScrl).scrollLeft($thisSL + w / frameScrollCL);
                             }
                             if ($thisSL > 0 && deltaY > 0) {
                                 if (jScrollPane)
-                                    api.scrollToX($thisSL - w / frameScrollCL)
+                                    api.scrollToX($thisSL - w / frameScrollCL);
                                 else
                                     firstScrl.add(secScrl).scrollLeft($thisSL - w / frameScrollCL);
                             }
@@ -100,7 +100,7 @@
                                 if (jScrollPane)
                                     $thisSL = api.getContentPositionX();
                                 scrollNst(deltaY, $thisSL);
-                                if ($thisSL != scrollW && $thisSL > 0)
+                                if ($thisSL !== scrollW && $thisSL > 0)
                                     return false;
                             });
                             if (isTouch) {
@@ -129,7 +129,7 @@
                             }
                         }
                         if (jScrollPane)
-                            api.scrollToX(0)
+                            api.scrollToX(0);
                         else
                             firstScrl.add(secScrl).scrollLeft('0');
                         if (scrollW > 0)
@@ -144,20 +144,20 @@
                     var right = right.find(hoverParent),
                             left = left.parent(hoverParent).children();
                     left.each(function(ind) {
-                        if (ind % 2 == 0)
+                        if (ind % 2 === 0)
                             $(this).removeClass('evenC').addClass('oddC');
                         else
-                            $(this).removeClass('oddC').addClass('evenC')
+                            $(this).removeClass('oddC').addClass('evenC');
                     });
                     right.each(function() {
                         $(this).find(elEven).each(function(ind) {
                             var $this = $(this),
                                     $thisCL = $this.children(':last');
                             $thisCL.text($thisCL.text().trimMiddle().pasteSAcomm());
-                            if (ind % 2 == 0)
+                            if (ind % 2 === 0)
                                 $this.removeClass('evenC').addClass('oddC');
                             else
-                                $this.removeClass('oddC').addClass('evenC')
+                                $this.removeClass('oddC').addClass('evenC');
                         });
                     });
                     methods.hoverComprasion(left, right, elEven);
@@ -171,13 +171,13 @@
                     allParams.parent('.' + aC).children().trigger('click.' + nS);
                     after($this);
                 }
-            })
+            });
             return $this;
         },
         refresh: function(optionCompare) {
             var $this = $(this);
             $('[data-equalHorizCell]').removeAttr('data-equalHorizCell').filter(':not([data-refresh])').removeAttr('style');
-            $this.equalHorizCell($.extend($.extend({}, optionCompare), {refresh: true}))
+            $this.equalHorizCell($.extend($.extend({}, optionCompare), {refresh: true}));
             return $this;
         },
         hoverComprasion: function(left, right, elEven) {
@@ -186,18 +186,18 @@
                         index = $this.index(),
                         nab = $([]);
                 right.each(function() {
-                    nab = nab.add($(this).find(elEven).eq(index))
-                })
-                $([]).add(left.eq(index)).add(nab).addClass('hover')
+                    nab = nab.add($(this).find(elEven).eq(index));
+                });
+                $([]).add(left.eq(index)).add(nab).addClass('hover');
             },
                     function() {
                         var $this = $(this),
                                 index = $this.index(),
                                 nab = $([]);
                         right.each(function() {
-                            nab = nab.add($(this).find(elEven).eq(index))
-                        })
-                        $([]).add(left.eq(index)).add(nab).removeClass('hover')
+                            nab = nab.add($(this).find(elEven).eq(index));
+                        });
+                        $([]).add(left.eq(index)).add(nab).removeClass('hover');
                     });
         },
         onlyDifM: function(left, right, liLength, elEven) {
@@ -208,18 +208,18 @@
             for (var j = 0; j < liLength; j++) {
                 var nab = $([]);
                 right.each(function() {
-                    nab = nab.add($(this).find(elEven).eq(j))
-                })
-                var tempNabir = nab,
-                        tempText = '';
+                    nab = nab.add($(this).find(elEven).eq(j));
+                });
+                var tempNabir = nab;
+                tempText = '';
                 tempNabir.each(function(index) {
                     var thisCh = $(this);
                     liH[index] = thisCh.text();
-                    if (tempText == liH[index])
+                    if (tempText === liH[index])
                         k++;
                     tempText = liH[index];
                 });
-                if (k == tempNabir.length - 1 && k != 0)
+                if (k === tempNabir.length - 1 && k !== 0)
                     genObjC = genObjC.add(left.eq(j)).add(tempNabir);
                 liH = [];
                 k = 0;
@@ -227,35 +227,35 @@
             }
             right.each(function() {
                 $(this).find(elEven).not(genObjC).removeClass('evenC').removeClass('oddC').each(function(ind) {
-                    if (ind % 2 == 0)
+                    if (ind % 2 === 0)
                         $(this).addClass('oddC');
                     else
-                        $(this).addClass('evenC')
+                        $(this).addClass('evenC');
                 });
             });
             left.not(genObjC).removeClass('evenC').removeClass('oddC').each(function(ind) {
-                if (ind % 2 == 0)
+                if (ind % 2 === 0)
                     $(this).addClass('oddC');
                 else
-                    $(this).addClass('evenC')
+                    $(this).addClass('evenC');
             });
             genObjC.hide();
         },
         allParamsM: function(left, right, elEven) {
             left.removeClass('evenC').removeClass('oddC').each(function(ind) {
-                if (ind % 2 == 0)
+                if (ind % 2 === 0)
                     $(this).addClass('oddC');
                 else
-                    $(this).addClass('evenC')
+                    $(this).addClass('evenC');
             }).show();
             right.each(function() {
                 $(this).find(elEven).removeClass('evenC').removeClass('oddC').each(function(ind) {
-                    if (ind % 2 == 0)
+                    if (ind % 2 === 0)
                         $(this).addClass('oddC');
                     else
-                        $(this).addClass('evenC')
+                        $(this).addClass('evenC');
                 }).show();
-            })
+            });
         }
     };
     $.fn.equalHorizCell = function(method) {
