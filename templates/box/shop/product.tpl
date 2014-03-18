@@ -387,7 +387,7 @@
                 </div>
 
                 <!-- Start. Kit-->
-                {if count($model->getShopKitsLoggedUsersCheck($CI->dx_auth->is_logged_in())) > 0}
+                {if $model->getShopKitsLoggedUsersCheck($CI->dx_auth->is_logged_in()) != false}
                     <div class="container">
                         <section class="frame-complect horizontal-carousel">
                             <div class="frame-title">
