@@ -708,7 +708,7 @@ class Permitions {
                 $this->db->delete('shop_rbac_roles_privileges', array('role_id' => $id));
             }
 
-            showMessage('Успех', 'Группа(ы) успешно удалены');
+            showMessage('Роль(и) успешно удалена(ы)');
             pjax('/admin/rbac/roleList');
         }
     }
