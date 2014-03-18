@@ -75,9 +75,9 @@ class Install extends MY_Controller {
         }
 
         if (strnatcmp(phpversion(), '5.4') != -1) {
-            $allow_params['PHP version >= 5.3.4'] = 'ok';
+            $allow_params['PHP version >= 5.4'] = 'ok';
         } else {
-            $allow_params['PHP version >= 5.3.4'] = 'err';
+            $allow_params['PHP version >= 5.4'] = 'err';
             $result = false;
         }
 
@@ -113,6 +113,10 @@ class Install extends MY_Controller {
                 }
 
                 if ($k == 'curl') {
+                    $exts[$k] = 'err';
+                    $result = FALSE;
+                }
+                if ($k == 'ionCube Loader') {
                     $exts[$k] = 'err';
                     $result = FALSE;
                 }
