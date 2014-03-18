@@ -38,11 +38,11 @@
                         <div class="container">
                             {if $CI->core->core_data['data_type'] == 'main'}
                                 <span class="logo f_l">
-                                    <img src="{echo siteinfo('siteinfo_logo_url')}333" alt="logo.png"/>
+                                    <img src="{echo siteinfo('siteinfo_logo')}" alt="logo.png"/>
                                 </span>
                             {else:}
                                 <a href="{site_url()}" class="logo f_l">
-                                    <img src="{echo siteinfo('siteinfo_logo_url')}" alt="logo.png"/>
+                                    <img src="{echo siteinfo('siteinfo_logo')}" alt="logo.png"/>
                                 </a>
                             {/if}
                             <div class="content-cleaner-search f_r">
