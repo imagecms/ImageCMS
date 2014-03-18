@@ -40,9 +40,8 @@ function init() {
             }));
 
             dropRep.append($('[data-clone="data-report"]').find(genObj.msgF).remove().end().clone(true).removeClass('d_n'));
-            dropRep.find('input[name="ProductId"]').val(el.data('id'));
-            console.log(3333)
-            dropRep.find('input[name="VariantId"]').val(el.data('variantid'));
+            dropRep.find('input[name="ProductId"]').val(el.data('productId'));
+            dropRep.find('input[name="VariantId"]').val(el.data('id'));
         }
 
         try {
