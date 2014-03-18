@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.9
+-- version 4.1.9deb0.1
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Час створення: Бер 17 2014 р., 16:04
--- Версія сервера: 5.5.36-log
--- Версія PHP: 5.4.26
+-- Час створення: Бер 18 2014 р., 14:52
+-- Версія сервера: 5.5.35-0ubuntu0.13.10.2
+-- Версія PHP: 5.5.9-1+sury.org~saucy+1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- База даних: `imagecms_pro`
+-- База даних: `newtest`
 --
 
 -- --------------------------------------------------------
@@ -705,61 +705,6 @@ CREATE TABLE IF NOT EXISTS `logs` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=788 ;
 
 --
--- Дамп даних таблиці `logs`
---
-
-INSERT INTO `logs` (`id`, `user_id`, `username`, `message`, `date`) VALUES
-(741, 1, 'admin', 'Вышел из панели управления', 1363601996),
-(742, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1363602140),
-(743, 1, 'admin', 'Изменил настройки сайта', 1363605006),
-(744, 1, 'admin', 'Создал виджет popular_products', 1363606273),
-(745, 1, 'admin', 'Создал виджет new_products', 1363606324),
-(746, 1, 'admin', 'Создал виджет action_products', 1363606361),
-(747, 1, 'admin', 'Создал виджет brands', 1363606422),
-(748, 1, 'admin', 'Создал виджет view_product', 1363606497),
-(749, 1, 'admin', 'Создал виджет similar', 1363606582),
-(750, 1, 'admin', 'Создал категорию        <a href="/admin/categories/edit/69"> Новости</a>', 1363608590),
-(751, 1, 'admin', 'Создал категорию        <a href="/admin/categories/edit/70"> Последние новости</a>', 1363608751),
-(752, 1, 'admin', 'Изменил категорию   <a href="/admin/categories/edit/70"> Последние новости</a>', 1363608759),
-(753, 1, 'admin', 'Создал категорию        <a href="/admin/categories/edit/71"> Архив</a>', 1363608777),
-(754, 1, 'admin', 'Изменил категорию   <a href="/admin/categories/edit/69"> Новости</a>', 1363610618),
-(755, 1, 'admin', 'Вышел из панели управления', 1363617075),
-(756, 47, 'admin', 'Очистил кеш', 1368176031),
-(757, 48, 'ad@min.com', 'Вышли с контрольной панели', 1388407415),
-(758, 48, 'ad@min.com', 'Удаленный модуль exchange', 1388407478),
-(759, 48, 'ad@min.com', 'Удаленный модуль mobile', 1388407478),
-(760, 49, 'ad@min.com', 'Кэш очищен', 1394797058),
-(761, 49, 'ad@min.com', 'Кэш очищен', 1394797331),
-(762, 49, 'ad@min.com', 'Введен IP панели управления 194.44.52.70', 1395046480),
-(763, 49, 'ad@min.com', 'Удалено категорию с ID 70', 1395047122),
-(764, 49, 'ad@min.com', 'Удалено категорию с ID 71', 1395047122),
-(765, 49, 'ad@min.com', 'ID удаленой страницы 35', 1395047130),
-(766, 49, 'ad@min.com', 'Страница изменена <a href="http://pro.imagecms.net/admin/pages/edit/64">О магазине</a>', 1395047143),
-(767, 49, 'ad@min.com', 'Страница изменена <a href="http://pro.imagecms.net/admin/pages/edit/65">Оплата</a>', 1395047151),
-(768, 49, 'ad@min.com', 'Страница изменена <a href="http://pro.imagecms.net/admin/pages/edit/66">Доставка</a>', 1395047159),
-(769, 49, 'ad@min.com', 'Страница изменена <a href="http://pro.imagecms.net/admin/pages/edit/67">Помощь</a>', 1395047170),
-(770, 49, 'ad@min.com', 'Страница изменена <a href="http://pro.imagecms.net/admin/pages/edit/68">Контакты</a>', 1395047194),
-(771, 49, 'ad@min.com', 'Кэш очищен', 1395047358),
-(772, 49, 'ad@min.com', 'Кэш очищен', 1395047419),
-(773, 49, 'ad@min.com', 'Категория изменена <a href="/admin/categories/edit/69"> Новости</a>', 1395047517),
-(774, 49, 'ad@min.com', 'Кэш очищен', 1395047622),
-(775, 49, 'ad@min.com', 'Категория изменена <a href="/admin/categories/edit/69"> Новости</a>', 1395049216),
-(776, 49, 'ad@min.com', 'Страница изменена <a href="http://pro.imagecms.net/admin/pages/edit/91">Как раскрутить сайт? Методы поискового продвижения</a>', 1395049229),
-(777, 49, 'ad@min.com', 'Кэш очищен', 1395050752),
-(778, 49, 'ad@min.com', 'Кэш очищен', 1395051764),
-(779, 49, 'ad@min.com', 'Кэш очищен', 1395053036),
-(780, 49, 'ad@min.com', 'Введен IP панели управления 194.44.52.70', 1395054121),
-(781, 49, 'ad@min.com', 'Введен IP панели управления 194.44.52.70', 1395054561),
-(782, 49, 'ad@min.com', 'Модуль установлен mod_seo', 1395055226),
-(783, 49, 'ad@min.com', 'Модуль установлен mod_stats', 1395055232),
-(784, 49, 'ad@min.com', 'Виджет удален view_product', 1395056159),
-(785, 49, 'ad@min.com', 'Настройки сайта изменены', 1395056477),
-(786, 49, 'ad@min.com', 'Удаленный модуль mod_seo', 1395062845),
-(787, 49, 'ad@min.com', 'Удаленный модуль mod_stats', 1395062845);
-
--- --------------------------------------------------------
-
---
 -- Структура таблиці `mail`
 --
 
@@ -1216,6 +1161,52 @@ INSERT INTO `mod_sample_settings` (`id`, `name`, `value`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Структура таблиці `mod_seo`
+--
+
+DROP TABLE IF EXISTS `mod_seo`;
+CREATE TABLE IF NOT EXISTS `mod_seo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `locale` varchar(5) DEFAULT NULL,
+  `settings` text,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `mod_seo_inflect`
+--
+
+DROP TABLE IF EXISTS `mod_seo_inflect`;
+CREATE TABLE IF NOT EXISTS `mod_seo_inflect` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `original` varchar(250) NOT NULL,
+  `inflection_id` int(11) NOT NULL,
+  `inflected` varchar(250) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `mod_seo_products`
+--
+
+DROP TABLE IF EXISTS `mod_seo_products`;
+CREATE TABLE IF NOT EXISTS `mod_seo_products` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `cat_id` int(11) NOT NULL,
+  `locale` varchar(5) DEFAULT NULL,
+  `settings` text,
+  `active` tinyint(4) DEFAULT NULL,
+  `empty_meta` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблиці `mod_shop_discounts`
 --
 
@@ -1333,6 +1324,22 @@ INSERT INTO `mod_sitemap_priorities` (`id`, `main_page_priority`, `cats_priority
 -- --------------------------------------------------------
 
 --
+-- Структура таблиці `mod_stats_attendance`
+--
+
+DROP TABLE IF EXISTS `mod_stats_attendance`;
+CREATE TABLE IF NOT EXISTS `mod_stats_attendance` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_user` int(5) NOT NULL,
+  `type_id` int(2) NOT NULL,
+  `id_entity` int(6) NOT NULL,
+  `time_add` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблиці `mod_stats_attendance_robots`
 --
 
@@ -1345,6 +1352,31 @@ CREATE TABLE IF NOT EXISTS `mod_stats_attendance_robots` (
   `time_add` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `mod_stats_search`
+--
+
+DROP TABLE IF EXISTS `mod_stats_search`;
+CREATE TABLE IF NOT EXISTS `mod_stats_search` (
+  `key` varchar(70) DEFAULT NULL,
+  `date` int(11) DEFAULT NULL,
+  `ac` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `mod_stats_settings`
+--
+
+DROP TABLE IF EXISTS `mod_stats_settings`;
+CREATE TABLE IF NOT EXISTS `mod_stats_settings` (
+  `setting` varchar(70) DEFAULT NULL,
+  `value` varchar(500) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -2901,7 +2933,7 @@ INSERT INTO `shop_products` (`id`, `url`, `active`, `hit`, `brand_id`, `category
 (1104, 'mobilnyi-telefon-sony-xperia-v-lt25i-black', 1, 1, 26, 931, '13893,13897,13902,13904,6199,6201,6204,6193,6194,5775', '1104_main.jpg', '1104_small.jpg', 1364760000, 1395052529, 5400.00, 29, NULL, NULL, 7, 1, NULL, '1104_mainMod.jpg', '1104_smallMod.jpg', '', NULL),
 (1105, 'mobilnyi-telefon-lg-nexus-4-e960-black', 1, 1, 35, 931, NULL, '1105_main.jpg', '1105_small.jpg', 1364760000, 1395055056, 6000.00, 0, NULL, NULL, 0, 1, NULL, '1105_mainMod.jpg', '1105_smallMod.jpg', '', NULL),
 (1107, 'akkumuliator-k-telefonu-nokia-bl-4c', 1, NULL, 42, 935, '', '1107_main.jpg', '1107_small.jpg', 1364760000, 1367087224, 0.00, 16, NULL, NULL, NULL, 1, NULL, '1107_mainMod.jpg', '1107_smallMod.jpg', '', NULL),
-(1108, 'nokia-lumia-920-white', 1, 0, 42, 931, '', '1108_main.jpg', '1108_small.jpg', 1364760000, 1368876641, 0.00, 35, 1, NULL, NULL, 1, NULL, '1108_mainMod.jpg', '1108_smallMod.jpg', '', NULL),
+(1108, 'nokia-lumia-920-white', 1, 0, 42, 931, '', '1108_main.jpg', '1108_small.jpg', 1364760000, 1368876641, 0.00, 36, 1, NULL, NULL, 1, NULL, '1108_mainMod.jpg', '1108_smallMod.jpg', '', NULL),
 (1109, 'karta-pamiati-kingston-microsd-16-gb-sdc4-16gb', 1, 1, 114, 937, '', '1109_main.jpg', '1109_small.jpg', 1364760000, 1364764440, 0.00, 17, 0, NULL, NULL, 1, NULL, '1109_mainMod.jpg', '1109_smallMod.jpg', '', NULL),
 (1110, 'zariadnoe-ustroistvo-setevoi-adapter-apple-mb707-white', 1, NULL, 27, 939, '', '1110_main.jpg', '1110_small.jpg', 1364760000, 1367087111, 0.00, 14, NULL, NULL, NULL, 1, NULL, '1110_mainMod.jpg', '1110_smallMod.jpg', '', NULL),
 (1111, 'zariadnoe-ustroistvo-nokia-ac-4e', 1, NULL, 42, 936, '', '1111_main.jpg', '1111_small.jpg', 1364760000, 1364764446, 0.00, 14, NULL, 1, NULL, 1, NULL, '1111_mainMod.jpg', '1111_smallMod.jpg', '', NULL),
@@ -3071,7 +3103,6 @@ INSERT INTO `shop_products` (`id`, `url`, `active`, `hit`, `brand_id`, `category
 (11225, 'stilus-samsung-etc-s1j9wegstd-n7100-white', 1, NULL, 28, 2597, NULL, '11225_main.jpg', '11225_small.jpg', 1368860874, 1368860874, NULL, NULL, NULL, NULL, NULL, 1, NULL, '11225_mainMod.jpg', '11225_smallMod.jpg', NULL, NULL),
 (11226, 'universalnaia-podstavka-samsung-edd-d100begstd-black', 1, NULL, 28, 2597, NULL, '11226_main.jpg', '11226_small.jpg', 1368860874, 1368860874, NULL, NULL, NULL, NULL, NULL, 1, NULL, '11226_mainMod.jpg', '11226_smallMod.jpg', NULL, NULL),
 (11227, 'universalnaia-podstavka-samsung-edd-d200begstd-black', 1, NULL, 28, 2597, NULL, '11227_main.jpg', '11227_small.jpg', 1368860874, 1368860874, NULL, 2, NULL, NULL, NULL, 1, NULL, '11227_mainMod.jpg', '11227_smallMod.jpg', NULL, NULL),
-(11677, 'kontsentrirovannyi-analnyi-lubrikant-pjurback-door-glide-100-ml', 1, NULL, 0, 2603, '', '11677_main.jpg', '11677_small.jpg', 1368820800, 1368865249, NULL, 11, NULL, NULL, NULL, 1, NULL, '11677_mainMod.jpg', '11677_smallMod.jpg', '', NULL),
 (12737, 'zhk-televizor-bbk-lem2249hd-black', 1, NULL, 143, 9, NULL, '12737_main.jpg', '12737_small.jpg', 1369060816, 1369060998, NULL, 18, NULL, NULL, NULL, 1, NULL, '12737_mainMod.jpg', '12737_smallMod.jpg', NULL, NULL),
 (13377, 'zashchitnaia-plenka-screen-ward-samsung-s5660', 1, NULL, 28, 938, '', '13377_main.jpg', '13377_small.jpg', 1369512000, 1369583657, 0.00, 7, NULL, NULL, NULL, 1, NULL, '13377_mainMod.jpg', '13377_smallMod.jpg', '', NULL),
 (13378, 'zashchitnaia-plenka-samsung-i9300-matovaia', 1, NULL, 28, 938, '', '13378_main.jpg', '13378_small.jpg', 1369512000, 1369584252, 0.00, 6, NULL, NULL, NULL, 1, NULL, '13378_mainMod.jpg', '13378_smallMod.jpg', '', NULL),
@@ -3099,9 +3130,9 @@ INSERT INTO `shop_products` (`id`, `url`, `active`, `hit`, `brand_id`, `category
 (13905, 'karta-pamiati-goodram-microsdhc-8-gb-class-10-adapter-retail-10', 1, NULL, 193, 937, NULL, '13905_main.jpg', '13905_small.jpg', 1369839018, 1369910832, NULL, 7, NULL, NULL, NULL, 1, NULL, '13905_mainMod.jpg', '13905_smallMod.jpg', NULL, NULL),
 (13906, 'karta-pamiati-goodram-microsdhc-8-gb-class-10-adapter', 1, NULL, 193, 937, NULL, '13906_main.jpg', '13906_small.jpg', 1369839018, 1369910832, NULL, 4, NULL, NULL, NULL, 1, NULL, '13906_mainMod.jpg', '13906_smallMod.jpg', NULL, NULL),
 (13907, 'karta-pamiati-goodram-microsdhc-8-gb-class-4-adapter-retail-10', 1, NULL, 193, 937, NULL, '13907_main.jpg', '13907_small.jpg', 1369839018, 1369910832, NULL, 7, NULL, NULL, NULL, 1, NULL, '13907_mainMod.jpg', '13907_smallMod.jpg', NULL, NULL),
-(14190, 'garnitura-samsung-bhm-1200-black', 1, NULL, 28, 932, '', '14190_main.jpg', '14190_small.jpg', 1369857600, 1369921931, 0.00, 12, NULL, NULL, NULL, 1, NULL, '14190_mainMod.jpg', '14190_smallMod.jpg', '', NULL);
+(14190, 'garnitura-samsung-bhm-1200-black', 1, NULL, 28, 932, '', '14190_main.jpg', '14190_small.jpg', 1369857600, 1369921931, 0.00, 12, NULL, NULL, NULL, 1, NULL, '14190_mainMod.jpg', '14190_smallMod.jpg', '', NULL),
+(14192, 'bluetooth-garnitura-nokia-bh-806', 1, NULL, 28, 932, '', '14192_main.jpg', '14192_small.jpg', 1369857600, 1369938293, 0.00, 8, NULL, NULL, NULL, 1, NULL, '14192_mainMod.jpg', '14192_smallMod.jpg', '', NULL);
 INSERT INTO `shop_products` (`id`, `url`, `active`, `hit`, `brand_id`, `category_id`, `related_products`, `mainImage`, `smallImage`, `created`, `updated`, `old_price`, `views`, `hot`, `action`, `added_to_cart_count`, `enable_comments`, `external_id`, `mainModImage`, `smallModImage`, `tpl`, `user_id`) VALUES
-(14192, 'bluetooth-garnitura-nokia-bh-806', 1, NULL, 28, 932, '', '14192_main.jpg', '14192_small.jpg', 1369857600, 1369938293, 0.00, 8, NULL, NULL, NULL, 1, NULL, '14192_mainMod.jpg', '14192_smallMod.jpg', '', NULL),
 (14194, 'garnitura-nokia-bh-108-ice', 1, NULL, 28, 932, '', '14194_main.jpg', '14194_small.jpg', 1369857600, 1369923308, 0.00, 5, NULL, NULL, NULL, 1, NULL, '14194_mainMod.jpg', '14194_smallMod.jpg', '', NULL),
 (14196, 'garnitura-jabra-easy-call', 1, NULL, 142, 932, '', '14196_main.jpg', '14196_small.jpg', 1369857600, 1369924423, 0.00, 6, NULL, NULL, NULL, 1, NULL, '14196_mainMod.jpg', '14196_smallMod.jpg', '', NULL),
 (14198, 'garnitura-jabra-bt2045', 1, NULL, 142, 932, '', '14198_main.jpg', '14198_small.jpg', 1369857600, 1369925784, 0.00, 5, NULL, NULL, NULL, 1, NULL, '14198_mainMod.jpg', '14198_smallMod.jpg', '', NULL),
@@ -3344,7 +3375,6 @@ INSERT INTO `shop_products_i18n` (`id`, `locale`, `name`, `short_description`, `
 (11225, 'ru', 'Стилус Samsung ETC-S1J9WEGSTD N7100 White', '<ul><li> Стилус для Samsung N7100</li></ul>', '<ul>    <li>Стилус</li>    <li>Совместимость: <a>Samsung Galaxy Note II (N7100)</a></li></ul>', NULL, NULL, NULL),
 (11226, 'ru', 'Универсальная подставка Samsung EDD-D100BEGSTD Black', '<ul><li> Универсальная подставка с аудиовыходом для Galaxy Tab</li></ul>', '<p>Универсальная подставка с аудиовыходом для Galaxy Tab</p><ul>    <li>Интерфейс: аудиовыход 3.5 мм</li>    <li>Совместимость: Galaxy Tab / Tab 2</li>    <li>Размеры (ШхВхГ): 104 х 42 х 96 мм</li>    <li>Вес: 0.15 кг</li></ul>', NULL, NULL, NULL),
 (11227, 'ru', 'Универсальная подставка Samsung EDD-D200BEGSTD Black', '<ul><li> Универсальная подставка с аудиовыходом</li></ul>', '<ul>    <li>Универсальная подставка с аудиовыходом</li>    <li>Может использоваться в книжной или альбомной ориентации</li>    <li>Тип разъема: Micro-USB</li>    <li>Совместимость: <a>Samsung I9300 Galaxy S III</a><br>     </li></ul>', NULL, NULL, NULL),
-(11677, 'ru', 'Концентрированный анальный лубрикант pjur®back door glide 100 ml', '<br>Анальный лубрикант на силиконовой основе с концентрированным (повышенным) содержанием всех ингредиентов. Скользкий лубрикант с натуральным экстрактом жожоба помогает расслабить мышцы анального сфинктера    ', '<br>Анальный лубрикант на силиконовой основе с концентрированным (повышенным) содержанием всех ингредиентов. Скользкий лубрикант с натуральным экстрактом жожоба помогает расслабить мышцы анального сфинктера. Создает тонкий защитный барьер, не блокируя при этом нормальное функционирование кожи, сохраняя её естественную влажность. Безопасен для использования с интимными игрушками и презервативом. Рекомендуется использовать с Pjur® BackDoor spray. Лубрикант наносится непосредственно перед половым контактом на половые органы и/или область анального отверстия. Не снижает чувствительность.    ', NULL, NULL, NULL),
 (12215, 'ru', 'Чехол-футляр Samsung EFC-1J9LDEGSTD N7100 Dark Brown', '<ul><li> Материал - искусственная кожа</li><li> Цвет – темно коричневый</li></ul>', '<ul>    <li>Чехол-футляр. Оптимальная защита и модный аксессуар.</li>    <li>Совместимость: <a>Samsung Galaxy Note II (N7100)</a></li></ul>', NULL, NULL, NULL),
 (12737, 'ru', 'ЖК-телевизор BBK LEM2249HD Black', '<ul><li>ЖК-телевизор BBK LEM2249HD Black</li><li> Диагональ экрана 21.5</li><li> Разрешение экрана 1920 x 1080</li><li> Яркость 250 кд/м2, контрастность 1000:1 </li><li><i>Черный цвет</i></li></ul>', '<p><strong>Оснащение</strong></p><ul>    <li>Высококачественная цветная TFT-матрица с диагональю 55 см</li>    <li>Максимальное разрешение 1920x1080</li>    <li>2 цифровых аудио-, видеоинтерфейса HDMI</li>    <li>Разъем VGA и линейный аудиовход</li>    <li>Компонентный видеовход</li>    <li>Композитный видеовход</li>    <li>Стереофонический аудиовход</li>    <li>Видеовход SCART</li>    <li>USB2.0-порт, позволяющий воспроизводить все известные форматы (в том числе HD-Video файлы)</li>    <li>Русифицированное меню</li>    <li>Совместимость с настенными креплениями стандарта VESA</li>    <li>Настройка цветовой температуры</li>    <li>Регулировка тембра, баланса акустической системы</li>    <li>Предустановленные настройки звука</li></ul><p><strong>Режим телевизора</strong></p><ul>    <li>Чувствительный тюнер, обеспечивающий уверенный прием аналоговых каналов</li>    <li>Функция автоматического и ручного поиска каналов</li>    <li>Поддержка NICAM стерео</li>    <li>Функция телетекста</li>    <li>Регулировка яркости, контрастности и предустановленные настройки изображения</li>    <li>Современные методы шумоподавления</li></ul><p><strong>Режим монитора персонального компьютера</strong></p><ul>    <li>Широкий диапазон поддерживаемых разрешений</li>    <li>Регулировка частоты и фазы<!--more--></li></ul>', NULL, NULL, NULL),
 (13390, 'ru', 'Защитная пленка HTC P730 для One X', '<p><span>Оригинальная защитная пленка HTC SP P730 для One X (2шт) защищает экран вашего смартфона от потертостей и царапин. Данная модель - это оригинальная пленка от компании HTC.</span></p>', '<p><span>Жесткий слой пленки создает прочный и износостойкий барьер, который будет противостоять суровости бытового использования телефона. Защитная пленка помогает держать экран телефона в идеальном состоянии, защищая его от потертостей, царапин и повреждений.</span><br /><span>Защитная пленка легко наносится и не оставляет липких следов при удалении. Для нанесения пленки вам необходимо протереть экран телефона салфеткой, далее необходимо осторожно положить пленку вниз с одной стороны на другую. После этого, используя, например пластиковую карту, необходимо разгладить все пузыри воздуха. После нанесения защитной пленки вы заметите, что она стала практически невидимой.</span></p>', NULL, NULL, NULL),
@@ -3362,11 +3392,11 @@ INSERT INTO `shop_products_i18n` (`id`, `locale`, `name`, `short_description`, `
 (13379, 'ru', 'Защитная пленка для Samsung  I9300 ', '<p><strong></strong></p>\n<table>\n<tbody>\n<tr>\n<td class="title">Тип</td>\n<td class="field">Пленки</td>\n</tr>\n<tr>\n<td class="title">Назначение</td>\n<td class="field">для мобильных телефонов</td>\n</tr>\n<tr>\n<td class="title">Совместимость</td>\n<td class="field">Samsung Galaxy S III I9300<span id="copyinfo"><br /></span></td>\n</tr>\n</tbody>\n</table>\n<p>&nbsp;</p>\n<p>&nbsp;</p>', '<p><span>Защитная пленка Drobak имеет особое антибликовое покрытие, благодаря чему, даже в солнечную погоду, Вы без труда сможете читать информацию с экрана.</span><span id="copyinfo"><br /><br /></span></p>', NULL, NULL, NULL),
 (13380, 'ru', 'Защитная пленка Samsung i8160', '<p><span>Прозрачная защитная пленка полностью повторяет форму дисплея и практически не заметна. Не снижает чувствительность касания и яркость дисплея. Цена Samsung Samsung i8160 Clear Glass указана за комплект из &nbsp;двух плёнок.</span></p>', '', NULL, NULL, NULL),
 (13376, 'ru', 'Защитная пленка Screen Ward Samsung S6102', '<table class="pp-tab-characteristics-table">\n<tbody>\n<tr class="color">\n<td class="title">Тип</td>\n<td class="field">Пленки</td>\n</tr>\n<tr>\n<td class="title">Назначение</td>\n<td class="field">для мобильных телефонов</td>\n</tr>\n<tr class="color">\n<td class="title">Совместимость</td>\n<td class="field">Samsung S6102 Galaxy Y Duos</td>\n</tr>\n</tbody>\n</table>\n<p><span id="copyinfo"><br /><br /></span></p>', '<p><span>Ультрапрозрачная защитная пленка ADPO ScreenWard отличается высокой прозрачностью структуры (99%), поглощением отраженных ультрафиолетовых лучей, легкостью установки на экран. Изготовлена пленка из cверх прозрачного многослойного материала, произведенного в Японии.&nbsp;</span><br /><br /></p>', NULL, NULL, NULL),
-(13377, 'ru', 'Защитная пленка Screen Ward Samsung S5660', '', '<p><span>Защитная пленка для Samsung S5660 изготовлена из высококачественных японских материалов. Пленка не препятствует управлению гаджетом, а также не понижает цветопередачу экрана телефона. Благодаря статическому способу нанесения, пленка для Samsung S5660 не оставляет следов и пятен на дисплее, поэтому удалить при необходимости с экрана телефона ее можно без следов. Пленка для Samsung S5660 отлично защитит экран вашего телефона от царапин, грязи и пыли, надолго сохранив презентабельный вид вашего телефона</span></p>', NULL, NULL, NULL);
-INSERT INTO `shop_products_i18n` (`id`, `locale`, `name`, `short_description`, `full_description`, `meta_title`, `meta_description`, `meta_keywords`) VALUES
+(13377, 'ru', 'Защитная пленка Screen Ward Samsung S5660', '', '<p><span>Защитная пленка для Samsung S5660 изготовлена из высококачественных японских материалов. Пленка не препятствует управлению гаджетом, а также не понижает цветопередачу экрана телефона. Благодаря статическому способу нанесения, пленка для Samsung S5660 не оставляет следов и пятен на дисплее, поэтому удалить при необходимости с экрана телефона ее можно без следов. Пленка для Samsung S5660 отлично защитит экран вашего телефона от царапин, грязи и пыли, надолго сохранив презентабельный вид вашего телефона</span></p>', NULL, NULL, NULL),
 (13891, 'ru', 'Карта памяти GOODRAM microSD 2 GB (+ адаптер Retail 10)', '<ul><li><i>Емкость 2 GB<br></i></li><li>В комплекте адаптер Retail 10</li></ul>', '<p>Карты памяти GOODRAM модели microSDHC были разработаны специально для мобильных устройств. Поэтому они идеально подходят для сотовых телефонов, навигаторов и плееров.  <br><br>Скорость считывания и записи, а также бессрочная гарантия - вот несомненные достоинства карт microSDHC GOODRAM.</p>', NULL, NULL, NULL),
 (13892, 'ru', 'Карта памяти GOODRAM microSD 2 GB Retail 9 (+ адаптер)', '<ul><li><i>Емкость 2 GB<br></i></li><li>В комплекте адаптер</li></ul>', '<p>Карты памяти GOODRAM модели microSDHC были разработаны специально для мобильных устройств. Поэтому они идеально подходят для сотовых телефонов, навигаторов и плееров.  <br><br>Скорость считывания и записи, а также бессрочная гарантия - вот несомненные достоинства карт microSDHC GOODRAM.</p>', NULL, NULL, NULL),
-(13893, 'ru', 'Карта памяти GOODRAM microSD 4 GB (+ адаптер и USB-кадтридер)', '<ul><li><i>Емкость 4 GB<br></i></li><li>В комплекте адаптер и USB-кадтридер</li></ul>', '<p>Карты памяти GOODRAM модели microSDHC были разработаны специально для мобильных устройств. Поэтому они идеально подходят для сотовых телефонов, навигаторов и плееров.  <br><br>Скорость считывания и записи, а также бессрочная гарантия - вот несомненные достоинства карт microSDHC GOODRAM.</p>', NULL, NULL, NULL),
+(13893, 'ru', 'Карта памяти GOODRAM microSD 4 GB (+ адаптер и USB-кадтридер)', '<ul><li><i>Емкость 4 GB<br></i></li><li>В комплекте адаптер и USB-кадтридер</li></ul>', '<p>Карты памяти GOODRAM модели microSDHC были разработаны специально для мобильных устройств. Поэтому они идеально подходят для сотовых телефонов, навигаторов и плееров.  <br><br>Скорость считывания и записи, а также бессрочная гарантия - вот несомненные достоинства карт microSDHC GOODRAM.</p>', NULL, NULL, NULL);
+INSERT INTO `shop_products_i18n` (`id`, `locale`, `name`, `short_description`, `full_description`, `meta_title`, `meta_description`, `meta_keywords`) VALUES
 (13894, 'ru', 'Карта памяти GOODRAM microSD 8 GB (+ адаптер и USB-кадтридер)', '<ul><li><i>Емкость 8 GB<br></i></li><li>В комплекте адаптер и USB-кадтридер</li></ul>', '<p>Карты памяти GOODRAM модели microSDHC были разработаны специально для мобильных устройств. Поэтому они идеально подходят для сотовых телефонов, навигаторов и плееров.  <br><br>Скорость считывания и записи, а также бессрочная гарантия - вот несомненные достоинства карт microSDHC GOODRAM.</p>', NULL, NULL, NULL),
 (13895, 'ru', 'Карта памяти GOODRAM microSDHC 16 GB Class 10 (+ адаптер Retail 10)', '<ul><li><i>Емкость 16 GB<br></i></li><li>В комплекте адаптер Retail 10</li></ul>', '<p>Карты памяти GOODRAM модели microSD (microSDHC) были разработаны специально для мобильных устройств.</p><p>Поэтому они идеально подходят для сотовых телефонов, навигаторов и плееров.</p><p>Скорость считывания и записи, а также бессрочная гарантия – вот несомненные достоинства карт microSD (microSDHC) GOODRAM.</p>', NULL, NULL, NULL),
 (13896, 'ru', 'Карта памяти GOODRAM microSDHC 16 GB Class 10 (+ адаптер)', '<ul><li><i>Емкость 16 GB<br></i></li><li>В комплекте адаптер</li></ul>', '<p>Карты памяти GOODRAM модели microSD (microSDHC) были разработаны специально для мобильных устройств.</p><p>Поэтому они идеально подходят для сотовых телефонов, навигаторов и плееров.</p><p>Скорость считывания и записи, а также бессрочная гарантия – вот несомненные достоинства карт microSD (microSDHC) GOODRAM.</p>', NULL, NULL, NULL),
@@ -7079,7 +7109,6 @@ INSERT INTO `shop_product_variants` (`id`, `product_id`, `price`, `number`, `sto
 (11683, 11226, 100.00000, '200446', 0, 0, '11226_main_origin.jpg', NULL, NULL, 2, 100.00000),
 (11684, 11227, 100.00000, '200447', 0, 0, '11227_main_origin.jpg', NULL, NULL, 2, 100.00000),
 (12810, 12215, 100.00000, '200520', 0, 0, '12215_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(12179, 11677, 8967.74194, '101187', 0, 0, '11677_main_origin.jpg', NULL, NULL, 1, 278.00000),
 (12625, 12030, 156.00000, '20190', 1, 0, '12030_main_origin.jpg', NULL, NULL, 2, 156.00000),
 (12626, 12031, 156.00000, '20191', 1, 0, '12031_main_origin.jpg', NULL, NULL, 2, 156.00000),
 (12627, 12032, 100.00000, '20192', 0, 0, '12032_main_origin.jpg', NULL, NULL, 2, 100.00000),
@@ -7352,7 +7381,6 @@ INSERT INTO `shop_product_variants_i18n` (`id`, `locale`, `name`) VALUES
 (11683, 'ru', 'Универсальная подставка Samsung EDD-D100BEGSTD Black'),
 (11684, 'ru', 'Универсальная подставка Samsung EDD-D200BEGSTD Black'),
 (12810, 'ru', 'Чехол-футляр Samsung EFC-1J9LDEGSTD N7100 Dark Brown'),
-(12179, 'ru', ''),
 (12625, 'ru', 'Смартфон Samsung GT-S6500 Galaxy Mini 2 RWD Ceramic White'),
 (12626, 'ru', 'Смартфон Samsung GT-S6500 Galaxy Mini 2 ZYD Yellow'),
 (12627, 'ru', 'Смартфон Samsung GT-S6802 AKA Galaxy Ace Duos Metallic Black'),
