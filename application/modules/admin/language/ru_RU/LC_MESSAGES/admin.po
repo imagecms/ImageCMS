@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-18 09:48+0200\n"
-"PO-Revision-Date: 2014-03-18 09:48+0200\n"
+"POT-Creation-Date: 2014-03-18 09:55+0200\n"
+"PO-Revision-Date: 2014-03-18 09:55+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -31,7 +31,7 @@ msgstr "Бренд(ы) успешно удален(ы)"
 
 #: ./templates/administrator/inc/javascriptVars.tpl:78
 msgid "Product"
-msgstr "Продукт"
+msgstr "Товар"
 
 #: ./application/modules/shop/admin/templates/discounts/create.tpl:92
 msgid "Enter a product for promotion"
@@ -176,7 +176,7 @@ msgstr "ID главного товара"
 
 #: ./application/modules/shop/admin/templates/products/edit.tpl:88
 msgid "Do you really want to delete this kit"
-msgstr "Вы действительно хотите удалить этот комплект"
+msgstr "Вы действительно хотите удалить этот набор"
 
 #: ./application/modules/shop/admin/templates/users/create.tpl:6
 msgid "Creating user"
