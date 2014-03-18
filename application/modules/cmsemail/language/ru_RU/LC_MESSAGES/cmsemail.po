@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-14 01:13+0200\n"
-"PO-Revision-Date: 2014-03-14 01:13+0200\n"
+"POT-Creation-Date: 2014-03-18 10:10+0200\n"
+"PO-Revision-Date: 2014-03-18 10:10+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -82,13 +82,13 @@ msgstr "Вернуться"
 
 #: ./application/modules/cmsemail/assets/admin/settings.tpl:73
 msgid "Use wraper"
-msgstr "Использовать обгортку"
+msgstr "Использовать обёртку"
 
 #: ./application/modules/cmsemail/admin.php:114
 #: ./application/modules/cmsemail/admin.php:116
 #: ./application/modules/cmsemail/assets/admin/settings.tpl:84
 msgid "Wraper"
-msgstr "Обёртка"
+msgstr "Обёртка шаблона письма"
 
 #: ./application/modules/cmsemail/assets/admin/list.tpl:23
 #: ./application/modules/cmsemail/module_info.php:6
