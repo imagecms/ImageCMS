@@ -7,7 +7,7 @@
 	<title>Tree | ImageCMS Docs</title>
 
 	<script type="text/javascript" src="resources/combined.js?394153670"></script>
-	<script type="text/javascript" src="elementlist.js?4237105985"></script>
+	<script type="text/javascript" src="elementlist.js?2613982002"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360">
 
 </head>
@@ -60,9 +60,9 @@
 				<li><a href="namespace-mod_discount.classes.html">classes</a>
 						</li>
 							</ul></li>
-				<li><a href="namespace-mod_seoexpert.html">mod_seoexpert<span></span></a>
+				<li><a href="namespace-mod_seo.html">mod_seo<span></span></a>
 						<ul>
-				<li><a href="namespace-mod_seoexpert.classes.html">classes</a>
+				<li><a href="namespace-mod_seo.classes.html">classes</a>
 						</li>
 							</ul></li>
 				<li><a href="namespace-mod_stats.html">mod_stats<span></span></a>
@@ -177,6 +177,7 @@
 				<li><a href="class-Custom_model.html">Custom_model</a></li>
 				<li><a href="class-CustomFieldsHelper.html">CustomFieldsHelper</a></li>
 				<li><a href="class-Dashboard.html">Dashboard</a></li>
+				<li><a href="class-DateInterval.html">DateInterval</a></li>
 				<li><a href="class-Digital_products.html">Digital_products</a></li>
 				<li><a href="class-discount_api.html">discount_api</a></li>
 				<li><a href="class-discount_model_admin.html">discount_model_admin</a></li>
@@ -248,10 +249,11 @@
 				<li><a href="class-mod_discount.classes.DiscountManager.html">mod_discount\classes\DiscountManager</a></li>
 				<li><a href="class-mod_discount.Discount_product.html">mod_discount\Discount_product</a></li>
 				<li><a href="class-Mod_search.html">Mod_search</a></li>
-				<li><a href="class-Mod_seoexpert.html">Mod_seoexpert</a></li>
-				<li><a href="class-mod_seoexpert.classes.SeoHelper.html">mod_seoexpert\classes\SeoHelper</a></li>
+				<li><a href="class-Mod_seo.html">Mod_seo</a></li>
+				<li><a href="class-mod_seo.classes.SeoHelper.html">mod_seo\classes\SeoHelper</a></li>
 				<li><a href="class-Mod_stats.html">Mod_stats</a></li>
 				<li><a href="class-mod_stats.classes.AdminHelper.html">mod_stats\classes\AdminHelper</a></li>
+				<li><a href="class-mod_stats.classes.DateInterval.html">mod_stats\classes\DateInterval</a></li>
 				<li><a href="class-Module_frame.html">Module_frame</a></li>
 				<li><a href="class-Module_frame_model.html" class="invalid">Module_frame_model</a></li>
 				<li><a href="class-MY_Form_validation.html">MY_Form_validation</a></li>
@@ -344,7 +346,7 @@
 				<li><a href="class-ShopAdminWarehouses.html">ShopAdminWarehouses</a></li>
 				<li><a href="class-ShopBaseObject.html">ShopBaseObject</a></li>
 				<li><a href="class-ShopComponents.html">ShopComponents</a></li>
-				<li><a href="class-ShopController.html">ShopController</a></li>
+				<li><a href="class-ShopController.html" class="invalid">ShopController</a></li>
 				<li><a href="class-ShopCore.html">ShopCore</a></li>
 				<li><a href="class-ShopExport.html">ShopExport</a></li>
 				<li><a href="class-ShopExportDataBase.html">ShopExportDataBase</a></li>
@@ -411,15 +413,11 @@
 				<li><a href="class-ArrayAccess.html">ArrayAccess</a></li>
 				<li><a href="class-CFormObject.html">CFormObject</a></li>
 				<li><a href="class-Countable.html">Countable</a></li>
+				<li><a href="class-FileImport.html">FileImport</a></li>
 				<li><a href="class-Iterator.html">Iterator</a></li>
 				<li><a href="class-Traversable.html">Traversable</a></li>
 			</ul>
 
-			<h3>Traits</h3>
-			<ul>
-				<li><a href="class-DateIntervalTrait.html">DateIntervalTrait</a></li>
-				<li><a href="class-FileImportTrait.html">FileImportTrait</a></li>
-			</ul>
 
 			<h3>Exceptions</h3>
 			<ul>
@@ -542,6 +540,7 @@
 				<li><a href="function-recaptcha_mailhide_url.html">recaptcha_mailhide_url</a></li>
 				<li><a href="function-renderCategoryPath.html">renderCategoryPath</a></li>
 				<li><a href="function-renderCategoryPathNoSeo.html">renderCategoryPathNoSeo</a></li>
+				<li><a href="function-result_column.html">result_column</a></li>
 				<li><a href="function-ru_date.html">ru_date</a></li>
 				<li><a href="function-searchResultsInCategories.html">searchResultsInCategories</a></li>
 				<li><a href="function-seo_nofollow_replace.html">seo_nofollow_replace</a></li>
@@ -550,7 +549,7 @@
 				<li><a href="function-shop_url.html">shop_url</a></li>
 				<li><a href="function-showMessage.html">showMessage</a></li>
 				<li><a href="function-siteinfo.html">siteinfo</a></li>
-				<li><a href="function-siteInfoAdditionalManipulations.html">siteInfoAdditionalManipulations</a></li>
+				<li><a href="function-siteInfoAdditionalManipulations.html" class="deprecated">siteInfoAdditionalManipulations</a></li>
 				<li><a href="function-sort_names.html">sort_names</a></li>
 				<li><a href="function-sub_category_list.html">sub_category_list</a></li>
 				<li><a href="function-tpl_assign.html">tpl_assign</a></li>
@@ -768,8 +767,6 @@
 
 			<li><div class="notlast"><a href="class-Attendance_model.html"><span>Attendance_model</span></a>
 			
-			 uses 
-				<a href="class-DateIntervalTrait.html"><span>DateIntervalTrait</span></a>
 			
 			</div>
 
@@ -917,8 +914,6 @@
 
 			<li><div class="notlast"><a href="class-Orders_model.html"><span>Orders_model</span></a>
 			
-			 uses 
-				<a href="class-DateIntervalTrait.html"><span>DateIntervalTrait</span></a>
 			
 			</div>
 
@@ -975,8 +970,6 @@
 
 			<li><div class="notlast"><a href="class-Search_model.html"><span>Search_model</span></a>
 			
-			 uses 
-				<a href="class-DateIntervalTrait.html"><span>DateIntervalTrait</span></a>
 			
 			</div>
 
@@ -1061,8 +1054,6 @@
 
 			<li><div class="notlast"><a href="class-Users_model.html"><span>Users_model</span></a>
 			
-			 uses 
-				<a href="class-DateIntervalTrait.html"><span>DateIntervalTrait</span></a>
 			
 			</div>
 
@@ -1264,9 +1255,9 @@
 				</li>
 
 			<li class="last"><div class="last"><a href="class-UsersController.html"><span>UsersController</span></a>
+			 implements 
+				<a href="class-FileImport.html"><span>FileImport</span></a>
 			
-			 uses 
-				<a href="class-FileImportTrait.html"><span>FileImportTrait</span></a>
 			
 			</div>
 
@@ -1287,6 +1278,13 @@
 				</li>
 
 			<li><div class="notlast"><a href="class-DX_Auth_Event.html"><span>DX_Auth_Event</span></a>
+			
+			
+			</div>
+
+				</li>
+
+			<li><div class="notlast"><a href="class-DateInterval.html"><span>DateInterval</span></a>
 			
 			
 			</div>
@@ -1698,7 +1696,7 @@
 
 				</li>
 
-			<li><div class="notlast"><a href="class-Mod_seoexpert.html"><span>Mod_seoexpert</span></a>
+			<li><div class="notlast"><a href="class-Mod_seo.html"><span>Mod_seo</span></a>
 			
 			
 			</div>
@@ -1706,9 +1704,9 @@
 				</li>
 
 			<li><div class="notlast"><a href="class-Mod_stats.html"><span>Mod_stats</span></a>
+			 implements 
+				<a href="class-FileImport.html"><span>FileImport</span></a>
 			
-			 uses 
-				<a href="class-FileImportTrait.html"><span>FileImportTrait</span></a>
 			
 			</div>
 
@@ -1980,286 +1978,6 @@
 
 				</ul></li>
 
-			<li><div class="notlast"><a href="class-ShopController.html"><span>ShopController</span></a>
-			
-			
-			</div>
-
-				<ul>
-
-			<li><div class="notlast"><a href="class-Ajax.html"><span>Ajax</span></a>
-			
-			
-			</div>
-
-				</li>
-
-			<li><div class="notlast"><a href="class-Brands.BaseBrands.html"><span>Brands\BaseBrands</span></a>
-			
-			
-			</div>
-
-				<ul>
-
-			<li class="last"><div class="last"><a href="class-Brand.html"><span>Brand</span></a>
-			
-			
-			</div>
-
-				</ul></li>
-
-			<li><div class="notlast"><a href="class-Cart.BaseCart.html"><span>Cart\BaseCart</span></a>
-			
-			
-			</div>
-
-				<ul>
-
-			<li><div class="notlast"><a href="class-Cart.html"><span>Cart</span></a>
-			
-			
-			</div>
-
-				</li>
-
-			<li class="last"><div class="last"><a href="class-Cart_api.html"><span>Cart_api</span></a>
-			
-			
-			</div>
-
-				</ul></li>
-
-			<li><div class="notlast"><a href="class-Cart.BaseOrder.html"><span>Cart\BaseOrder</span></a>
-			
-			
-			</div>
-
-				<ul>
-
-			<li class="last"><div class="last"><a href="class-Order.html"><span>Order</span></a>
-			
-			
-			</div>
-
-				</ul></li>
-
-			<li><div class="notlast"><a href="class-Cart.IDataStorage.html"><span>Cart\IDataStorage</span></a>
-			
-			
-			</div>
-
-				<ul>
-
-			<li><div class="notlast"><a href="class-Cart.DBStorage.html"><span>Cart\DBStorage</span></a>
-			
-			
-			</div>
-
-				</li>
-
-			<li class="last"><div class="last"><a href="class-Cart.SessionStorage.html"><span>Cart\SessionStorage</span></a>
-			
-			
-			</div>
-
-				</ul></li>
-
-			<li><div class="notlast"><a href="class-Cart_new.html"><span>Cart_new</span></a>
-			
-			
-			</div>
-
-				</li>
-
-			<li><div class="notlast"><a href="class-Category.BaseCategory.html"><span>Category\BaseCategory</span></a>
-			
-			
-			</div>
-
-				<ul>
-
-			<li><div class="notlast"><a href="class-Category.html"><span>Category</span></a>
-			
-			
-			</div>
-
-				</li>
-
-			<li><div class="notlast"><a href="class-Smart_filter.html"><span>Smart_filter</span></a>
-			
-			
-			</div>
-
-				</li>
-
-			<li class="last"><div class="last"><a href="class-mobile.collection.Mobile_category.html"><span>mobile\collection\Mobile_category</span></a>
-			
-			
-			</div>
-
-				</ul></li>
-
-			<li><div class="notlast"><a href="class-Category.CategoryApi.html"><span>Category\CategoryApi</span></a>
-			
-			
-			</div>
-
-				</li>
-
-			<li><div class="notlast"><a href="class-Compare.BaseCompare.html"><span>Compare\BaseCompare</span></a>
-			
-			
-			</div>
-
-				<ul>
-
-			<li class="last"><div class="last"><a href="class-Compare.html"><span>Compare</span></a>
-			
-			
-			</div>
-
-				</ul></li>
-
-			<li><div class="notlast"><a href="class-Compare_api.html"><span>Compare_api</span></a>
-			
-			
-			</div>
-
-				</li>
-
-			<li><div class="notlast"><a href="class-Google.html"><span>Google</span></a>
-			
-			
-			</div>
-
-				</li>
-
-			<li><div class="notlast"><a href="class-MediaManager.BaseImageClass.html"><span>MediaManager\BaseImageClass</span></a>
-			
-			
-			</div>
-
-				<ul>
-
-			<li class="last"><div class="last"><a href="class-MediaManager.Image.html"><span>MediaManager\Image</span></a>
-			
-			
-			</div>
-
-				</ul></li>
-
-			<li><div class="notlast"><a href="class-Mobile.html"><span>Mobile</span></a>
-			
-			
-			</div>
-
-				</li>
-
-			<li><div class="notlast"><a href="class-Product_api.html"><span>Product_api</span></a>
-			
-			
-			</div>
-
-				</li>
-
-			<li><div class="notlast"><a href="class-Products.BaseProducts.html"><span>Products\BaseProducts</span></a>
-			
-			
-			</div>
-
-				<ul>
-
-			<li><div class="notlast"><a href="class-Product.html"><span>Product</span></a>
-			
-			
-			</div>
-
-				</li>
-
-			<li class="last"><div class="last"><a href="class-mobile.collection.Mobile_product.html"><span>mobile\collection\Mobile_product</span></a>
-			
-			
-			</div>
-
-				</ul></li>
-
-			<li><div class="notlast"><a href="class-Products.ProductApi.html"><span>Products\ProductApi</span></a>
-			
-			
-			</div>
-
-				</li>
-
-			<li><div class="notlast"><a href="class-Profile.BaseProfile.html"><span>Profile\BaseProfile</span></a>
-			
-			
-			</div>
-
-				<ul>
-
-			<li class="last"><div class="last"><a href="class-Profile.html"><span>Profile</span></a>
-			
-			
-			</div>
-
-				</ul></li>
-
-			<li><div class="notlast"><a href="class-Profileapi.html"><span>Profileapi</span></a>
-			
-			
-			</div>
-
-				</li>
-
-			<li><div class="notlast"><a href="class-Search.BaseSearch.html"><span>Search\BaseSearch</span></a>
-			
-			
-			</div>
-
-				<ul>
-
-			<li class="last"><div class="last"><a href="class-mobile.collection.Mobile_search.html"><span>mobile\collection\Mobile_search</span></a>
-			
-			
-			</div>
-
-				</ul></li>
-
-			<li><div class="notlast"><a href="class-Shop.html"><span>Shop</span></a>
-			
-			
-			</div>
-
-				</li>
-
-			<li><div class="notlast"><a href="class-Shop_widgets.html"><span>Shop_widgets</span></a>
-			
-			
-			</div>
-
-				</li>
-
-			<li><div class="notlast"><a href="class-Wish_list.html"><span>Wish_list</span></a>
-			
-			
-			</div>
-
-				</li>
-
-			<li><div class="notlast"><a href="class-Wish_list_api.html"><span>Wish_list_api</span></a>
-			
-			
-			</div>
-
-				</li>
-
-			<li class="last"><div class="last"><a href="class-Yandex.html"><span>Yandex</span></a>
-			
-			
-			</div>
-
-				</ul></li>
-
 			<li><div class="notlast"><a href="class-Shop_news.html"><span>Shop_news</span></a>
 			
 			
@@ -2386,7 +2104,7 @@
 
 				</li>
 
-			<li><div class="notlast"><a href="class-mod_seoexpert.classes.SeoHelper.html"><span>mod_seoexpert\classes\SeoHelper</span></a>
+			<li><div class="notlast"><a href="class-mod_seo.classes.SeoHelper.html"><span>mod_seo\classes\SeoHelper</span></a>
 			
 			
 			</div>
@@ -2679,6 +2397,286 @@
 
 				</li>
 
+			<li><div class="notlast"><a href="class-ShopController.html"><span class="invalid">ShopController</span></a>
+			
+			
+			</div>
+
+				<ul>
+
+			<li><div class="notlast"><a href="class-Ajax.html"><span>Ajax</span></a>
+			
+			
+			</div>
+
+				</li>
+
+			<li><div class="notlast"><a href="class-Brands.BaseBrands.html"><span>Brands\BaseBrands</span></a>
+			
+			
+			</div>
+
+				<ul>
+
+			<li class="last"><div class="last"><a href="class-Brand.html"><span>Brand</span></a>
+			
+			
+			</div>
+
+				</ul></li>
+
+			<li><div class="notlast"><a href="class-Cart.BaseCart.html"><span>Cart\BaseCart</span></a>
+			
+			
+			</div>
+
+				<ul>
+
+			<li><div class="notlast"><a href="class-Cart.html"><span>Cart</span></a>
+			
+			
+			</div>
+
+				</li>
+
+			<li class="last"><div class="last"><a href="class-Cart_api.html"><span>Cart_api</span></a>
+			
+			
+			</div>
+
+				</ul></li>
+
+			<li><div class="notlast"><a href="class-Cart.BaseOrder.html"><span>Cart\BaseOrder</span></a>
+			
+			
+			</div>
+
+				<ul>
+
+			<li class="last"><div class="last"><a href="class-Order.html"><span>Order</span></a>
+			
+			
+			</div>
+
+				</ul></li>
+
+			<li><div class="notlast"><a href="class-Cart.IDataStorage.html"><span>Cart\IDataStorage</span></a>
+			
+			
+			</div>
+
+				<ul>
+
+			<li><div class="notlast"><a href="class-Cart.DBStorage.html"><span>Cart\DBStorage</span></a>
+			
+			
+			</div>
+
+				</li>
+
+			<li class="last"><div class="last"><a href="class-Cart.SessionStorage.html"><span>Cart\SessionStorage</span></a>
+			
+			
+			</div>
+
+				</ul></li>
+
+			<li><div class="notlast"><a href="class-Cart_new.html"><span>Cart_new</span></a>
+			
+			
+			</div>
+
+				</li>
+
+			<li><div class="notlast"><a href="class-Category.BaseCategory.html"><span>Category\BaseCategory</span></a>
+			
+			
+			</div>
+
+				<ul>
+
+			<li><div class="notlast"><a href="class-Category.html"><span>Category</span></a>
+			
+			
+			</div>
+
+				</li>
+
+			<li><div class="notlast"><a href="class-Smart_filter.html"><span>Smart_filter</span></a>
+			
+			
+			</div>
+
+				</li>
+
+			<li class="last"><div class="last"><a href="class-mobile.collection.Mobile_category.html"><span>mobile\collection\Mobile_category</span></a>
+			
+			
+			</div>
+
+				</ul></li>
+
+			<li><div class="notlast"><a href="class-Category.CategoryApi.html"><span>Category\CategoryApi</span></a>
+			
+			
+			</div>
+
+				</li>
+
+			<li><div class="notlast"><a href="class-Compare.BaseCompare.html"><span>Compare\BaseCompare</span></a>
+			
+			
+			</div>
+
+				<ul>
+
+			<li class="last"><div class="last"><a href="class-Compare.html"><span>Compare</span></a>
+			
+			
+			</div>
+
+				</ul></li>
+
+			<li><div class="notlast"><a href="class-Compare_api.html"><span>Compare_api</span></a>
+			
+			
+			</div>
+
+				</li>
+
+			<li><div class="notlast"><a href="class-Google.html"><span>Google</span></a>
+			
+			
+			</div>
+
+				</li>
+
+			<li><div class="notlast"><a href="class-MediaManager.BaseImageClass.html"><span>MediaManager\BaseImageClass</span></a>
+			
+			
+			</div>
+
+				<ul>
+
+			<li class="last"><div class="last"><a href="class-MediaManager.Image.html"><span>MediaManager\Image</span></a>
+			
+			
+			</div>
+
+				</ul></li>
+
+			<li><div class="notlast"><a href="class-Mobile.html"><span>Mobile</span></a>
+			
+			
+			</div>
+
+				</li>
+
+			<li><div class="notlast"><a href="class-Product_api.html"><span>Product_api</span></a>
+			
+			
+			</div>
+
+				</li>
+
+			<li><div class="notlast"><a href="class-Products.BaseProducts.html"><span>Products\BaseProducts</span></a>
+			
+			
+			</div>
+
+				<ul>
+
+			<li><div class="notlast"><a href="class-Product.html"><span>Product</span></a>
+			
+			
+			</div>
+
+				</li>
+
+			<li class="last"><div class="last"><a href="class-mobile.collection.Mobile_product.html"><span>mobile\collection\Mobile_product</span></a>
+			
+			
+			</div>
+
+				</ul></li>
+
+			<li><div class="notlast"><a href="class-Products.ProductApi.html"><span>Products\ProductApi</span></a>
+			
+			
+			</div>
+
+				</li>
+
+			<li><div class="notlast"><a href="class-Profile.BaseProfile.html"><span>Profile\BaseProfile</span></a>
+			
+			
+			</div>
+
+				<ul>
+
+			<li class="last"><div class="last"><a href="class-Profile.html"><span>Profile</span></a>
+			
+			
+			</div>
+
+				</ul></li>
+
+			<li><div class="notlast"><a href="class-Profileapi.html"><span>Profileapi</span></a>
+			
+			
+			</div>
+
+				</li>
+
+			<li><div class="notlast"><a href="class-Search.BaseSearch.html"><span>Search\BaseSearch</span></a>
+			
+			
+			</div>
+
+				<ul>
+
+			<li class="last"><div class="last"><a href="class-mobile.collection.Mobile_search.html"><span>mobile\collection\Mobile_search</span></a>
+			
+			
+			</div>
+
+				</ul></li>
+
+			<li><div class="notlast"><a href="class-Shop.html"><span>Shop</span></a>
+			
+			
+			</div>
+
+				</li>
+
+			<li><div class="notlast"><a href="class-Shop_widgets.html"><span>Shop_widgets</span></a>
+			
+			
+			</div>
+
+				</li>
+
+			<li><div class="notlast"><a href="class-Wish_list.html"><span>Wish_list</span></a>
+			
+			
+			</div>
+
+				</li>
+
+			<li><div class="notlast"><a href="class-Wish_list_api.html"><span>Wish_list_api</span></a>
+			
+			
+			</div>
+
+				</li>
+
+			<li class="last"><div class="last"><a href="class-Yandex.html"><span>Yandex</span></a>
+			
+			
+			</div>
+
+				</ul></li>
+
 			<li><div class="notlast"><a href="class-ShopCore.html"><span>ShopCore</span></a>
 			
 			
@@ -2843,6 +2841,13 @@
 
 				</li>
 
+			<li><div class="notlast"><a href="class-mod_stats.classes.DateInterval.html"><span>mod_stats\classes\DateInterval</span></a>
+			
+			
+			</div>
+
+				</li>
+
 			<li class="last"><div class="last"><a href="class-vkapi.html"><span>vkapi</span></a>
 			
 			
@@ -2878,6 +2883,13 @@
 
 				</li>
 
+			<li><div class="notlast"><a href="class-FileImport.html"><span>FileImport</span></a>
+			
+			
+			</div>
+
+				</li>
+
 			<li><div class="notlast"><a href="class-Iterator.html"><span>Iterator</span></a>
 			 implements 
 				<a href="class-Traversable.html"><span>Traversable</span></a>
@@ -2897,26 +2909,6 @@
 	</ul>
 </div>
 
-		<h3>Traits</h3>
-<div class="tree">
-	<ul>
-
-			<li><div class="notlast"><a href="class-DateIntervalTrait.html"><span>DateIntervalTrait</span></a>
-			
-			
-			</div>
-
-				</li>
-
-			<li class="last"><div class="last"><a href="class-FileImportTrait.html"><span>FileImportTrait</span></a>
-			
-			
-			</div>
-
-		</li>
-		
-	</ul>
-</div>
 
 		<h3>Exceptions</h3>
 <div class="tree">
