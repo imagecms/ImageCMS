@@ -331,9 +331,23 @@ href="mailto:dev&#64;imagecms.net">dev&#64;<!-- -->imagecms.net</a>&gt;<br>
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$data</var></dt>
-					<dd><code>array</code><br>$data data category array</dd>
+					<dd><code>array</code><br>$data data category array<br />
+string $data['url'] category url<br />
+int $data['parent_id'] category parent id, 0 if main category<br />
+int $data['active'] is category active, can bo '1' or '0'<br />
+string $data['external_id'] 1C indentificator of category<br />
+string $data['image'] category image<br />
+string $data['tpl'] category template, if empty set default template<br />
+int $data['order_method'] category order method<br />
+int $data['showsitetitle'] if '1' will show site title on category<br />
+string $data['name'] category name<br />
+string $data['h1'] category h1<br />
+string $data['description'] category description<br />
+string $data['meta_desc'] category meta description<br />
+string $data['meta_title'] category meta title<br />
+string $data['meta_keywords'] category meta keywords</dd>
 					<dt><var>$locale</var></dt>
-					<dd><code>string</code><br>$data['url'] category url</dd>
+					<dd><code>string</code><br>$locale category translation locale</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
