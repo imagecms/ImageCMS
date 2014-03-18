@@ -228,6 +228,7 @@
                                                             data-source="/shop/ajax/getNotifyingRequest"
 
                                                             data-id="{echo $productVariant->getId()}"
+                                                            data-product-id="{echo $model->getId()}"
                                                             data-name="{echo ShopCore::encode($model->getName())}"
                                                             data-vname="{echo ShopCore::encode($productVariant->getName())}"
                                                             data-number="{echo $productVariant->getNumber()}"
