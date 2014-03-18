@@ -40,7 +40,7 @@
                         {if $can_comment == 0 OR $is_logged_in}
                             <div class="btn__icsi-css f_l__icsi-css">
                                 <button type="button"  data-rel="cloneAddPaste" data-parid="{$comment['id']}">
-                                    <span class="icon-comment__icsi-css" style="width: 50px;">
+                                    <span class="icon-comment__icsi-css" style="width: 90px;">
                                         <div style="margin-left: 20px; margin-top: 5px;">
                                             {lang('Answer', 'comments')}
                                         </div>

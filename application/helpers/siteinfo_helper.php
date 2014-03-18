@@ -22,10 +22,12 @@ if (!function_exists('siteinfo')) {
      *    - "or some contact name"
      */
     function siteinfo($name = NULL) {
+
         // for shorter notation...
         if (0 !== strpos($name, 'siteinfo_')) {
             $name = 'siteinfo_' . $name;
         }
+
         $siteinfo = CI::$APP->load->library("SiteInfo");
         // next code is only for compatibility with older versions of library, 
         // so in the future needed to be removed (with funciton processOldVersions() too)
@@ -33,6 +35,7 @@ if (!function_exists('siteinfo')) {
             return $data;
         } else {
             $value = $siteinfo->getSiteInfo($name);
+            
             if (in_array($name, array('siteinfo_logo', 'siteinfo_favicon'))) {
                 return CI::$APP->siteinfo->imagesPath . $value;
             }
@@ -74,7 +77,7 @@ if (!function_exists('siteInfoAdditionalManipulations')) {
                             $colorScheme = CI::$APP->load->module('new_level')->getColorScheme();
                             return "/templates/{$settings['site_template']}/{$colorScheme}/{$fileName}";
                         } else {
-                            return "/templates/{$settings['site_template']}/{$fileName}";
+                            return "/templates/{$settings['site_template']}/images/{$fileName}";
                         }
                     } elseif (count($value) > 0) {
                         reset($value);
@@ -83,7 +86,7 @@ if (!function_exists('siteInfoAdditionalManipulations')) {
                             $colorScheme = CI::$APP->load->module('new_level')->getColorScheme();
                             return "/templates/" . $key . "/{$colorScheme}/" . $value[$key];
                         } else {
-                            return "/templates/{$settings['site_template']}/{$fileName}";
+                            return "/templates/{$settings['site_template']}/images/{$fileName}";
                         }
                     }
                     return '';
