@@ -280,7 +280,7 @@ class Sitemap extends MY_Controller {
      * @return string
      */
     public function sitemap_ul($items = array()) {
-        $out .= '<ul id="sitemap">';
+        $out .= '<ul class="sitemap">';
 
         foreach ($items as $item) {
             if (isset($item['path_url'])) {
