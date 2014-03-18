@@ -326,9 +326,44 @@ href="mailto:dev&#64;imagecms.net">dev&#64;<!-- -->imagecms.net</a>&gt;<br>
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$data</var></dt>
-					<dd><code>array</code><br>$data array of product data for insert</dd>
+					<dd><code>array</code><br>$data array of product data for insert<br />
+string $data['url'] (optional) product url<br />
+int $data['active'] (optional) is product will be show in store - 1 or 0<br />
+int $data['brand_id'] (optional) brand id<br />
+int $data['category_id'] (required) category id<br />
+array $data['additional_categories_ids'] (optional) product additional
+categories<br />
+string $data['related_products'] (optional) related products for current
+product<br />
+int $data['created'] (optional) unix timestamp<br />
+int $data['updated'] (optional) unix timestamp<br />
+float $data['old_price'] (optional) old price of product<br />
+int $data['views'] (optional) count of views<br />
+int $data['hot'] (optional) is product type is "hot" - 1 or 0<br />
+int $data['action'] (optional) is product type is "action" - 1 or 0<br />
+int $data['added_to_cart_count'] (optional) count of adding to cart<br />
+int $data['enable_comments'] (optional) allow leave comments for product - 1 or
+0<br />
+string $data['external_id'] (optional) product external id<br />
+string $data['tpl'] (optional) set non-standard template file for product<br />
+int $data['user_id'] (optional) user id who create product<br />
+string $data['product_name'] (required) product name<br />
+string $data['short_description'] (optional) short description<br />
+string $data['full_description'] (optional) full description<br />
+string $data['meta_title'] (optional) meta title<br />
+string $data['meta_description'] (optional) meta description<br />
+string $data['meta_keywords'] (optional) meta keywords<br />
+string $data['number'] (optional) product SKU<br />
+int $data['stock'] (optional) count of products in warehouse<br />
+int $data['position'] (optional) variant position<br />
+string $data['mainImage'] (optional) product image<br />
+string $data['var_external_id'] (optional) variant external id<br />
+int $data['currency'] (required) currency id<br />
+float $data['price_in_main'] (required) price in main currency<br />
+string $data['variant_name'] (optional) product variant name<br />
+string $data['enable_comments'] (optional) enable comments</dd>
 					<dt><var>$locale</var></dt>
-					<dd><code>string</code><br>$data['url'] (optional) product url</dd>
+					<dd><code>string</code><br>$locale locale</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -372,9 +407,15 @@ href="mailto:dev&#64;imagecms.net">dev&#64;<!-- -->imagecms.net</a>&gt;<br>
 					<dt><var>$productId</var></dt>
 					<dd><code>integer</code><br>$productId</dd>
 					<dt><var>$data</var></dt>
-					<dd><code>array</code><br>$data</dd>
+					<dd><code>array</code><br>$data<br />
+string $data['product_name'] (required) product name<br />
+string $data['short_description'] (optional) short description<br />
+string $data['full_description'] (optional) full description<br />
+string $data['meta_title'] (optional) meta title<br />
+string $data['meta_description'] (optional) meta description<br />
+string $data['meta_keywords'] (optional) meta keywords</dd>
 					<dt><var>$locale</var></dt>
-					<dd><code>string</code><br>$data['product_name'] (required) product name</dd>
+					<dd><code>string</code><br>$locale</dd>
 				</dl></div>
 
 
@@ -395,7 +436,7 @@ href="mailto:dev&#64;imagecms.net">dev&#64;<!-- -->imagecms.net</a>&gt;<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_addVariant">#</a>
-		<code>addVariant( <span>integer <var>$productId</var></span>, <span>array <var>$data</var> = <span class="php-keyword1">array</span>()</span>, <span>string <var>$locale</var> = <span class="php-quote">'ru'</span></span> )</code>
+		<code>addVariant( <span>integer <var>$productId</var></span>, <span>array <var>$data</var> = <span class="php-keyword1">array</span>()</span>, <span>mixed <var>$locale</var> = <span class="php-quote">'ru'</span></span> )</code>
 
 		<div class="description short">
 			
@@ -414,9 +455,17 @@ href="mailto:dev&#64;imagecms.net">dev&#64;<!-- -->imagecms.net</a>&gt;<br>
 					<dt><var>$productId</var></dt>
 					<dd><code>integer</code><br>$productId</dd>
 					<dt><var>$data</var></dt>
-					<dd><code>array</code><br>$data</dd>
+					<dd><code>array</code><br>$data<br />
+string $data['number'] (optional) product SKU<br />
+int $data['stock'] (optional) count of products in warehouse<br />
+int $data['position'] (optional) variant position<br />
+string $data['mainImage'] (optional) product image<br />
+string $data['var_external_id'] (optional) variant external id<br />
+int $data['currency'] (required) currency id<br />
+float $data['price_in_main'] (optional) price in main currency<br />
+string $data['variant_name'] (optional) product variant name</dd>
 					<dt><var>$locale</var></dt>
-					<dd><code>string</code><br>$data['number'] (optional) product SKU</dd>
+					<dd></dd>
 				</dl></div>
 
 
@@ -456,9 +505,10 @@ href="mailto:dev&#64;imagecms.net">dev&#64;<!-- -->imagecms.net</a>&gt;<br>
 					<dt><var>$variantId</var></dt>
 					<dd><code>integer</code><br>$variantId</dd>
 					<dt><var>$data</var></dt>
-					<dd><code>array</code><br>$data</dd>
+					<dd><code>array</code><br>$data<br />
+string $data['variant_name'] (optional) product variant name</dd>
 					<dt><var>$locale</var></dt>
-					<dd><code>string</code><br>$data['variant_name'] (optional) product variant name</dd>
+					<dd><code>string</code><br>$locale</dd>
 				</dl></div>
 
 
@@ -479,7 +529,7 @@ href="mailto:dev&#64;imagecms.net">dev&#64;<!-- -->imagecms.net</a>&gt;<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_updateProduct">#</a>
-		<code>updateProduct( <span>type <var>$productId</var></span>, <span>array <var>$data</var> = <span class="php-keyword1">array</span>()</span>, <span>string <var>$locale</var> = <span class="php-quote">'ru'</span></span>, <span>integer <var>$variant_id</var> = <span class="php-keyword1">NULL</span></span> )</code>
+		<code>updateProduct( <span>type <var>$productId</var></span>, <span>array <var>$data</var> = <span class="php-keyword1">array</span>()</span>, <span>string <var>$locale</var> = <span class="php-quote">'ru'</span></span>, <span>mixed <var>$variant_id</var> = <span class="php-keyword1">NULL</span></span> )</code>
 
 		<div class="description short">
 			
@@ -498,11 +548,46 @@ href="mailto:dev&#64;imagecms.net">dev&#64;<!-- -->imagecms.net</a>&gt;<br>
 					<dt><var>$productId</var></dt>
 					<dd><code>type</code><br>$productId - product id</dd>
 					<dt><var>$data</var></dt>
-					<dd><code>array</code><br>$data array of product data for update</dd>
+					<dd><code>array</code><br>$data array of product data for update<br />
+string $data['url'] (optional) product url<br />
+int $data['active'] (optional) is product will be show in store - 1 or 0<br />
+int $data['brand_id'] (optional) brand id<br />
+int $data['category_id'] (required) category id<br />
+array $data['additional_categories_ids'] (optional) product additional
+categories<br />
+string $data['related_products'] (optional) related products for current
+product<br />
+int $data['updated'] (optional) unix timestamp<br />
+float $data['old_price'] (optional) old price of product<br />
+int $data['views'] (optional) count of views<br />
+int $data['hot'] (optional) is product type is "hot" - 1 or 0<br />
+int $data['action'] (optional) is product type is "action" - 1 or 0<br />
+int $data['added_to_cart_count'] (optional) count of adding to cart<br />
+int $data['enable_comments'] (optional) allow leave comments for product - 1 or
+0<br />
+string $data['external_id'] (optional) product external id<br />
+string $data['tpl'] (optional) set non-standard template file for product<br />
+int $data['user_id'] (optional) user id who create product<br />
+string $data['product_name'] (required) product name<br />
+string $data['short_description'] (optional) short description<br />
+string $data['full_description'] (optional) full description<br />
+string $data['meta_title'] (optional) meta title<br />
+string $data['meta_description'] (optional) meta description<br />
+string $data['meta_keywords'] (optional) meta keywords<br />
+float $data['price'] (required) product price<br />
+string $data['number'] (optional) product SKU<br />
+int $data['stock'] (optional) count of products in warehouse<br />
+int $data['position'] (optional) variant position<br />
+string $data['mainImage'] (optional) product image<br />
+string $data['var_external_id'] (optional) variant external id<br />
+int $data['currency'] (required) currency id<br />
+float $data['price_in_main'] (optional) price in main currency<br />
+string $data['variant_name'] (optional) product variant name<br />
+string $data['enable_comments'] (optional) enable comments</dd>
 					<dt><var>$locale</var></dt>
-					<dd><code>string</code><br>$data['url'] (optional) product url</dd>
+					<dd><code>string</code><br>$locale</dd>
 					<dt><var>$variant_id</var></dt>
-					<dd><code>integer</code><br>$data['active'] (optional) is product will be show in store - 1 or 0</dd>
+					<dd></dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -546,9 +631,15 @@ href="mailto:dev&#64;imagecms.net">dev&#64;<!-- -->imagecms.net</a>&gt;<br>
 					<dt><var>$productId</var></dt>
 					<dd><code>integer</code><br>$productId</dd>
 					<dt><var>$data</var></dt>
-					<dd><code>array</code><br>$data</dd>
+					<dd><code>array</code><br>$data<br />
+string $data['product_name'] (required) product name<br />
+string $data['short_description'] (optional) short description<br />
+string $data['full_description'] (optional) full description<br />
+string $data['meta_title'] (optional) meta title<br />
+string $data['meta_description'] (optional) meta description<br />
+string $data['meta_keywords'] (optional) meta keywords</dd>
 					<dt><var>$locale</var></dt>
-					<dd><code>string</code><br>$data['product_name'] (required) product name</dd>
+					<dd><code>string</code><br>$locale</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -577,7 +668,7 @@ href="mailto:dev&#64;imagecms.net">dev&#64;<!-- -->imagecms.net</a>&gt;<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_updateVariant">#</a>
-		<code>updateVariant( <span>integer <var>$productId</var></span>, <span>array <var>$data</var></span>, <span>float <var>$locale</var> = <span class="php-quote">'ru'</span></span>, <span>string <var>$variantId</var> = <span class="php-keyword1">NULL</span></span> )</code>
+		<code>updateVariant( <span>integer <var>$productId</var></span>, <span>array <var>$data</var></span>, <span>string <var>$locale</var> = <span class="php-quote">'ru'</span></span>, <span>integer <var>$variantId</var> = <span class="php-keyword1">NULL</span></span> )</code>
 
 		<div class="description short">
 			
@@ -596,11 +687,20 @@ href="mailto:dev&#64;imagecms.net">dev&#64;<!-- -->imagecms.net</a>&gt;<br>
 					<dt><var>$productId</var></dt>
 					<dd><code>integer</code><br>$productId product ID</dd>
 					<dt><var>$data</var></dt>
-					<dd><code>array</code><br>$data data array to update</dd>
+					<dd><code>array</code><br>$data data array to update<br />
+float $data['price'] (required) product price<br />
+string $data['number'] (optional) product SKU<br />
+int $data['stock'] (optional) count of products in warehouse<br />
+int $data['position'] (optional) variant position<br />
+string $data['mainImage'] (optional) product image<br />
+string $data['var_external_id'] (optional) variant external id<br />
+int $data['currency'] (required) currency id<br />
+float $data['price_in_main'] (optional) price in main currency<br />
+string $data['variant_name'] (optional) product variant name</dd>
 					<dt><var>$locale</var></dt>
-					<dd><code>float</code><br>$data['price'] (required) product price</dd>
+					<dd><code>string</code><br>$locale product variant locale</dd>
 					<dt><var>$variantId</var></dt>
-					<dd><code>string</code><br>$data['number'] (optional) product SKU</dd>
+					<dd><code>integer</code><br>$variantId variant id</dd>
 				</dl></div>
 
 
@@ -640,9 +740,10 @@ href="mailto:dev&#64;imagecms.net">dev&#64;<!-- -->imagecms.net</a>&gt;<br>
 					<dt><var>$variantId</var></dt>
 					<dd><code>type</code><br>$variantId product variant ID</dd>
 					<dt><var>$data</var></dt>
-					<dd><code>array</code><br>$data array to update</dd>
+					<dd><code>array</code><br>$data array to update<br />
+string $data['variant_name'] (optional) product variant name</dd>
 					<dt><var>$locale</var></dt>
-					<dd><code>string</code><br>$data['variant_name'] (optional) product variant name</dd>
+					<dd><code>string</code><br>$locale product variant locale</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -981,7 +1082,7 @@ href="mailto:dev&#64;imagecms.net">dev&#64;<!-- -->imagecms.net</a>&gt;<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setProductAdditionalCategories">#</a>
-		<code>setProductAdditionalCategories( <span>SProduct <var>$model</var></span>, <span>array <var>$data</var></span> )</code>
+		<code>setProductAdditionalCategories( <span>SProduct <var>$model</var></span>, <span>mixed <var>$data</var></span> )</code>
 
 		<div class="description short">
 			
@@ -998,9 +1099,10 @@ href="mailto:dev&#64;imagecms.net">dev&#64;<!-- -->imagecms.net</a>&gt;<br>
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$model</var></dt>
-					<dd><code>SProduct</code><br>$model - product model</dd>
+					<dd><code>SProduct</code><br>$model - product model<br />
+array $data['additional_categories_ids'] - product additional categories ids</dd>
 					<dt><var>$data</var></dt>
-					<dd><code>array</code><br>$data['additional_categories_ids'] - product additional categories ids</dd>
+					<dd></dd>
 				</dl></div>
 
 				<h4>Returns</h4>
