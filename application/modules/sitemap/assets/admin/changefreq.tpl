@@ -29,7 +29,7 @@
     <form action="/admin/components/cp/sitemap/changefreq" id="sitemap_changefreq_form" method="post" class="form-horizontal">
         <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
             <thead>
-            <th>{lang("Page change frequency", 'sitemap')}</th>
+            <th>{lang("Сhange frequency", 'sitemap')}</th>
             </thead>
             <tbody>
                 <tr>
