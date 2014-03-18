@@ -18,7 +18,7 @@
     {else:}
         {$variants = $p->getProductVariants()}
     {/if}
-    
+
     {$hasDiscounts = $p->hasDiscounts()}
 
     {if $key >= $opi_limit && $condlimit}
@@ -239,39 +239,40 @@
                             </form>
                         </div>
                     {else:}
-                        <div class="btn-not-avail js-variant-{echo $pv->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
-                            <button
-                                class="infoBut"
-                                type="button"
-                                data-drop=".drop-report"
-                                data-source="/shop/ajax/getNotifyingRequest"
+                        <div class="js-variant-{echo $pv->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
+                            <div class="btn-not-avail">
+                                <button
+                                    class="infoBut"
+                                    type="button"
+                                    data-drop=".drop-report"
+                                    data-source="/shop/ajax/getNotifyingRequest"
 
-                                data-id="{echo $p->getId()}"
-                                data-variantid="{echo $pv->getId()}"
-                                data-name="{echo ShopCore::encode($p->getName())}"
-                                data-vname="{echo ShopCore::encode($pv->getName())}"
-                                data-number="{echo $pv->getNumber()}"
-                                data-price="{echo $pv->toCurrency()}"
-                                data-add-price="{if $NextCS != null}{echo $pv->toCurrency('Price',$NextCSId)}{/if}"
-                                data-orig-price="{if $hasDiscounts}{echo $pv->toCurrency('OrigPrice')}{/if}"
-                                data-medium-image="
-                                {if preg_match('/nophoto/', $pv->getMediumPhoto()) > 0}
-                                    {echo $p->firstVariant->getMediumPhoto()}
-                                {else:}
-                                    {echo $pv->getMediumPhoto()}
-                                {/if}"
-                                data-img="
-                                {if preg_match('/nophoto/', $pv->getSmallPhoto()) > 0}
-                                    {echo $p->firstVariant->getSmallPhoto()}
-                                {else:}
-                                    {echo $pv->getSmallPhoto()}
-                                {/if}"
-                                data-maxcount="{echo $pv->getstock()}"
-                                data-url="{echo shop_url('product/'.$p->getUrl())}"
-                                >
-                                <span class="icon-but"></span>
-                                <span class="text-el">{lang('Сообщить о появлении','newLevel')}</span>
-                            </button>
+                                    data-id="{echo $pv->getId()}"
+                                    data-name="{echo ShopCore::encode($p->getName())}"
+                                    data-vname="{echo ShopCore::encode($pv->getName())}"
+                                    data-number="{echo $pv->getNumber()}"
+                                    data-price="{echo $pv->toCurrency()}"
+                                    data-add-price="{if $NextCS != null}{echo $pv->toCurrency('Price',$NextCSId)}{/if}"
+                                    data-orig-price="{if $hasDiscounts}{echo $pv->toCurrency('OrigPrice')}{/if}"
+                                    data-medium-image="
+                                    {if preg_match('/nophoto/', $pv->getMediumPhoto()) > 0}
+                                        {echo $p->firstVariant->getMediumPhoto()}
+                                    {else:}
+                                        {echo $pv->getMediumPhoto()}
+                                    {/if}"
+                                    data-img="
+                                    {if preg_match('/nophoto/', $pv->getSmallPhoto()) > 0}
+                                        {echo $p->firstVariant->getSmallPhoto()}
+                                    {else:}
+                                        {echo $pv->getSmallPhoto()}
+                                    {/if}"
+                                    data-maxcount="{echo $pv->getstock()}"
+                                    data-url="{echo shop_url('product/'.$p->getUrl())}"
+                                    >
+                                    <span class="icon-but"></span>
+                                    <span class="text-el">{lang('Сообщить о появлении','newLevel')}</span>
+                                </button>
+                            </div>
                         </div>
                     {/if}
                 {/foreach}

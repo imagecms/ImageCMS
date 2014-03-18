@@ -22,7 +22,7 @@
         <link rel="SHORTCUT ICON" href="favicon.ico" />
         <script type="text/javascript" src="{$THEME}js/jquery-1.8.3.min.js"></script>
     </head>
-    <body>        
+    <body>
         <div class="main-body">
             <div class="fon-header">
                 <header>

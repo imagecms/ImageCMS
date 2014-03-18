@@ -98,8 +98,8 @@
 
                     {if $discount_comul_next}
                         <li class="inside-padd">
-                            <div>{lang('Для следующих скидкок','newLevel')} {echo $discount_comul_next['value']}{if  $discount_comul_next['type_value'] == 1}%{else:}{$CS}{/if}</b> {lang('оставить','newLevel')}</div>
-                            <div>{lang('Сделать покупки по ценам','newLevel')}: <b>{echo $discount_comul_next['begin_value'] - $profile->getamout()} {$CS}</b></div>
+                            <div>{lang('Для следующей скидки','newLevel')} {echo $discount_comul_next['value']}{if  $discount_comul_next['type_value'] == 1}%{else:}{$CS}{/if}</b> {lang('осталось','newLevel')}</div>
+                            <div>{lang('cделать покупки на сумму','newLevel')}: <b>{echo $discount_comul_next['begin_value'] - $profile->getamout()} {$CS}</b></div>
                         </li>
                     {/if}
                     {if  $discount['comulativ']}

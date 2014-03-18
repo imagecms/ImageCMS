@@ -353,7 +353,7 @@ s.parentNode.insertBefore(ga, s);
 
     function renderYandexWebmaster($YaWebmasterId = null) {
         if ($YaWebmasterId['yandex_webmaster'])
-            $YaWebmaster = '<meta name="yandex-verification" content="' . $YaWebmasterId['yandex_webmaster'] . '" />';
+            $YaWebmaster = '<meta name=\'yandex-verification\' content=\'' . $YaWebmasterId['yandex_webmaster'] . '\' />';
 
         return $YaWebmaster;
     }
