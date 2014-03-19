@@ -78,46 +78,80 @@
         {$langDomain = $CI->land->gettext_domain}
         {$CI->lang->load('admin')}
         {if SHOP_INSTALLED && (trim($content) == 'Строк тестовой лицензии истек' OR trim($content) == 'Ошибка проверки лицензии.')}
-        <div class="imagecms-top-fixed-header{if $_COOKIE['condPromoToolbar'] == '1' || $_COOKIE['condPromoToolbar'] == NULL} imagecms-active{/if}">
-            <div class="imagecms-inside">
+            <div class="imagecms-top-fixed-header{if $_COOKIE['condPromoToolbar'] == '1' || $_COOKIE['condPromoToolbar'] == NULL} imagecms-active{/if}">
+                <div class="imagecms-inside">
+                    <div class="container">
+                        <button type="button" class="imagecms-close" {if $_COOKIE['condPromoToolbar'] == '1' || $_COOKIE['condPromoToolbar'] == NULL}style="display: block;"{/if} onclick="setCookie('condPromoToolbar', '0');
+                                $('.imagecms-top-fixed-header').removeClass('imagecms-active');
+                                $(this).hide().next().show();
+                                $(window).scroll();">
+                            <span class="imagecms-toggle-close-text imagecms-bar-close-text"><span style="font-size: 14px;">↑</span> Скрыть</span>
+                        </button>
+                        <button type="button" class="imagecms-close" {if $_COOKIE['condPromoToolbar'] == '0'}style="display: block;"{/if} onclick="setCookie('condPromoToolbar', '1');
+                                $('.imagecms-top-fixed-header').addClass('imagecms-active');
+                                $(this).hide().prev().show();
+                                $(window).scroll();">
+                            <span class="imagecms-toggle-close-text imagecms-bar-show-text"><span style="font-size: 14px;">↓</span> Показать</span>
+                        </button>
+                        <div class="imagecms-buy-license">
+                            <a href="http://www.imagecms.net/shop/prices" target="_blank" onclick="_gaq.push(['_trackEvent', 'demoshop-admin', '/shop/prices']);">
+                                <span class="imagecms-text-el">Купить лицензицю</span>
+                            </a>
+                        </div>
+                        <ul class="imagecms-list">
+                            <li>
+                                <a href="http://www.imagecms.net" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demoshop-admin', 'obzor-product-shop']);">Обзор продукта</a>
+                            </li>
+                            <li>
+                                <a href="http://www.imagecms.net/kliuchevye-preimushchestva/vozmozhnosti" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demoshop-admin', '/kliuchevye-preimushchestva/vozmozhnosti']);">преимущества продукта</a>
+                            </li>
+                            <li>
+                                <a href="http://www.imagecms.net/store/category/shoptemplates" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demoshop-admin', 'shoptemplates']);">{lang('Шаблоны для Shop', 'newLevel')}</a>
+                            </li>
+                        </ul>
+                        <div class="imagecms-contacts">
+                            <span class="imagecms-phone">
+                                <img src="{$THEME}icon_phone.png" class="imagecms-ico-phone"/>
+                                <span class="imagecms-text-el">+7 (499) 703-37-51</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {/if}
+        {if !SHOP_INSTALLED}
+            <div class="imagecms-top-fixed-header{if $_COOKIE['condPromoToolbar'] == '1' || $_COOKIE['condPromoToolbar'] == NULL} imagecms-active{/if}">
                 <div class="container">
                     <button type="button" class="imagecms-close" {if $_COOKIE['condPromoToolbar'] == '1' || $_COOKIE['condPromoToolbar'] == NULL}style="display: block;"{/if} onclick="setCookie('condPromoToolbar', '0');
                             $('.imagecms-top-fixed-header').removeClass('imagecms-active');
                             $(this).hide().next().show();
                             $(window).scroll();">
-                        <span class="imagecms-toggle-close-text imagecms-bar-close-text"><span style="font-size: 14px;">↑</span> Скрыть</span>
+                        <span class="imagecms-toggle-close-text imagecms-bar-close-text"><span style="font-size: 14px;">↑</span> {lang('Скрыть', 'newLevel')}</span>
                     </button>
                     <button type="button" class="imagecms-close" {if $_COOKIE['condPromoToolbar'] == '0'}style="display: block;"{/if} onclick="setCookie('condPromoToolbar', '1');
                             $('.imagecms-top-fixed-header').addClass('imagecms-active');
                             $(this).hide().prev().show();
                             $(window).scroll();">
-                        <span class="imagecms-toggle-close-text imagecms-bar-show-text"><span style="font-size: 14px;">↓</span> Показать</span>
+                        <span class="imagecms-toggle-close-text imagecms-bar-show-text"><span style="font-size: 14px;">↓</span> {lang('Показать', 'newLevel')}</span>
                     </button>
                     <div class="imagecms-buy-license">
-                        <a href="http://www.imagecms.net/shop/prices" target="_blank" onclick="_gaq.push(['_trackEvent', 'demoshop-admin', '/shop/prices']);">
-                            <span class="imagecms-text-el">Купить лицензицю</span>
+                        <a href="http://www.imagecms.net/download/corporate" target="_blank" onclick="_gaq.push(['_trackEvent', 'demo-admin', '/download/corporate']);">
+                            <span class="imagecms-text-el">Скачать бесплатно</span>
                         </a>
                     </div>
                     <ul class="imagecms-list">
                         <li>
-                            <a href="http://www.imagecms.net" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demoshop-admin', 'obzor-product-shop']);">Обзор продукта</a>
+                            <a href="http://www.imagecms.net/free-cms-corporate" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demo-admin', '/free-cms-corporate']);">Обзор продукта</a>
                         </li>
                         <li>
-                            <a href="http://www.imagecms.net/kliuchevye-preimushchestva/vozmozhnosti" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demoshop-admin', '/kliuchevye-preimushchestva/vozmozhnosti']);">преимущества продукта</a>
+                            <a href="http://www.imagecms.net/corporate-bazovye-vozmozhnosti" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demo-admin', '/corporate-bazovye-vozmozhnosti']);">Базовые возможности</a>
                         </li>
                         <li>
-                            <a href="http://www.imagecms.net/store/category/shoptemplates" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demoshop-admin', 'shoptemplates']);">{lang('Шаблоны для Shop', 'newLevel')}</a>
+                            <a href="http://www.imagecms.net/blog" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demo-admin', '/blog']);">Блог</a>
                         </li>
                     </ul>
-                    <div class="imagecms-contacts">
-                        <span class="imagecms-phone">
-                            <img src="{$THEME}icon_phone.png" class="imagecms-ico-phone"/>
-                            <span class="imagecms-text-el">+7 (499) 703-37-51</span>
-                        </span>
-                    </div>
                 </div>
             </div>
-        </div>
         {/if}
         <div class="main_body">
             <div id="fixPage"></div>
@@ -367,15 +401,15 @@
         </div>
         <script>
             {$settings = $CI->cms_admin->get_settings();}
-            var textEditor = '{$settings.text_editor}';
+                    var textEditor = '{$settings.text_editor}';
             {if $CI->dx_auth->is_logged_in()}
-            var userLogined = true;
+                    var userLogined = true;
             {else:}
-            var userLogined = false;
+                    var userLogined = false;
             {/if}
 
-            var locale = '{echo $this->CI->config->item('language')}';
-            var base_url = "{site_url()}";
+                    var locale = '{echo $this->CI->config->item('language')}';
+                    var base_url = "{site_url()}";
         </script>
 
         <script src="{$THEME}js/jquery-1.8.2.min.js" type="text/javascript"></script>
@@ -417,73 +451,73 @@
 
         <script>
             {if $CI->uri->segment('4') == 'shop'}
-            var isShop = true;
+                    var isShop = true;
             {else:}
-            var isShop = false;
+                    var isShop = false;
             {/if}
-            var lang_only_number = "{lang("numbers only","admin")}";
-            var show_tovar_text = "{lang("show","admin")}";
-            var hide_tovar_text = "{lang("don't show", 'admin')}";
+                    var lang_only_number = "{lang("numbers only","admin")}";
+                    var show_tovar_text = "{lang("show","admin")}";
+                    var hide_tovar_text = "{lang("don't show", 'admin')}";
             {literal}
 
-                $(document).ready(function() {
+                        $(document).ready(function() {
 
-                    if (!isShop)
-                    {
-                        $('#shopAdminMenu').hide();
-                        //$('#topPanelNotifications').hide();
-                    }
-                    else
-                        $('#baseAdminMenu').hide();
-                })
+                            if (!isShop)
+                            {
+                                $('#shopAdminMenu').hide();
+                                //$('#topPanelNotifications').hide();
+                            }
+                            else
+                                $('#baseAdminMenu').hide();
+                        })
 
-                function number_tooltip_live() {
-                    $('.number input').each(function() {
-                        $(this).attr({
-                            'data-placement': 'top',
-                            'data-title': lang_only_number
-                        });
-                    })
-                    number_tooltip();
-                }
-                function prod_on_off() {
-                    $('.prod-on_off').die('click').live('click', function() {
-                        var $this = $(this);
-                        if (!$this.hasClass('disabled')) {
-                            if ($this.hasClass('disable_tovar')) {
-                                $this.animate({
-                                    'left': '0'
-                                }, 200).removeClass('disable_tovar');
-                                if ($this.parent().data('only-original-title') == undefined) {
-                                    $this.parent().attr('data-original-title', show_tovar_text)
-                                    $('.tooltip-inner').text(show_tovar_text);
-                                }
-                                $this.next().attr('checked', true).end().closest('td').next().children().removeClass('disabled').removeAttr('disabled');
-                                if ($this.attr('data-page') != undefined)
-                                    $('.setHit, .setHot, .setAction').removeClass('disabled').removeAttr('disabled');
-                            }
-                            else {
-                                $this.animate({
-                                    'left': '-28px'
-                                }, 200).addClass('disable_tovar');
-                                if ($this.parent().data('only-original-title') == undefined) {
-                                    $this.parent().attr('data-original-title', hide_tovar_text)
-                                    $('.tooltip-inner').text(hide_tovar_text);
-                                }
-                                $this.next().attr('checked', false).end().closest('td').next().children().addClass('disabled').attr('disabled', 'disabled');
-                                if ($this.attr('data-page') != undefined)
-                                    $('.setHit, .setHot, .setAction').addClass('disabled').attr('disabled', 'disabled')
-                            }
+                        function number_tooltip_live() {
+                            $('.number input').each(function() {
+                                $(this).attr({
+                                    'data-placement': 'top',
+                                    'data-title': lang_only_number
+                                });
+                            })
+                            number_tooltip();
                         }
-                    });
-                }
-                $(window).load(function() {
-                    number_tooltip_live();
-                    prod_on_off();
-                })
-                base_url = '{/literal}{$BASE_URL}';
+                        function prod_on_off() {
+                            $('.prod-on_off').die('click').live('click', function() {
+                                var $this = $(this);
+                                if (!$this.hasClass('disabled')) {
+                                    if ($this.hasClass('disable_tovar')) {
+                                        $this.animate({
+                                            'left': '0'
+                                        }, 200).removeClass('disable_tovar');
+                                        if ($this.parent().data('only-original-title') == undefined) {
+                                            $this.parent().attr('data-original-title', show_tovar_text)
+                                            $('.tooltip-inner').text(show_tovar_text);
+                                        }
+                                        $this.next().attr('checked', true).end().closest('td').next().children().removeClass('disabled').removeAttr('disabled');
+                                        if ($this.attr('data-page') != undefined)
+                                            $('.setHit, .setHot, .setAction').removeClass('disabled').removeAttr('disabled');
+                                    }
+                                    else {
+                                        $this.animate({
+                                            'left': '-28px'
+                                        }, 200).addClass('disable_tovar');
+                                        if ($this.parent().data('only-original-title') == undefined) {
+                                            $this.parent().attr('data-original-title', hide_tovar_text)
+                                            $('.tooltip-inner').text(hide_tovar_text);
+                                        }
+                                        $this.next().attr('checked', false).end().closest('td').next().children().addClass('disabled').attr('disabled', 'disabled');
+                                        if ($this.attr('data-page') != undefined)
+                                            $('.setHit, .setHot, .setAction').addClass('disabled').attr('disabled', 'disabled')
+                                    }
+                                }
+                            });
+                        }
+                        $(window).load(function() {
+                            number_tooltip_live();
+                            prod_on_off();
+                        })
+                        base_url = '{/literal}{$BASE_URL}';
 
-                    var elfToken = '{echo $CI->lib_csrf->get_token()}';
+                            var elfToken = '{echo $CI->lib_csrf->get_token()}';
             </script>
             <div id="jsOutput" style="display: none;"></div>
         </body>
