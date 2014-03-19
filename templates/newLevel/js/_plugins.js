@@ -1880,7 +1880,6 @@ function getCookie(c_name)
                         if ($thisB) {
                             var $thisEOff = set.effectOff,
                                     durOff = set.durationOff;
-
                             function _hide() {
                                 $thisB.parent().removeClass(aC);
                                 var $thisHref = $thisB.data('href');
@@ -1888,12 +1887,12 @@ function getCookie(c_name)
                                 if ($thisHref) {
                                     clearTimeout($.drop.drp.curHashTimeout);
                                     $.drop.drp.curHash = hashChange ? $thisHref : null;
-
-                                    var wLH = location.hash;
-                                    location.hash = wLH.replace($thisHref, '');
+                                    $.drop.drp.scrollTop = wnd.scrollTop();
+                                    location.hash = location.hash.replace($thisHref, '');
 
                                     $.drop.drp.curHashTimeout = setTimeout(function() {
                                         $.drop.drp.curHash = null;
+                                        $.drop.drp.scrollTop = null;
                                     }, 400);
                                 }
 
@@ -2223,6 +2222,7 @@ function getCookie(c_name)
             if (href) {
                 clearTimeout($.drop.drp.curHashTimeout);
                 $.drop.drp.curHash = !hashChange ? href : null;
+                $.drop.drp.scrollTop = wnd.scrollTop();
 
                 var wlh = window.location.hash;
                 if (href.indexOf('#') !== -1 && (new RegExp(href + '#|' + href + '$').exec(wlh) === null))
@@ -2230,6 +2230,7 @@ function getCookie(c_name)
 
                 $.drop.drp.curHashTimeout = setTimeout(function() {
                     $.drop.drp.curHash = null;
+                    $.drop.drp.scrollTop = null;
                 }, 400);
             }
             if (opt.place !== 'inherit')
@@ -2471,7 +2472,8 @@ function getCookie(c_name)
             scrollemulatetimeout: null,
             curHash: null,
             curDrop: null,
-            curHashTimeout: null
+            curHashTimeout: null,
+            scrollTop: null
         };
         this.setParameters = function(options) {
             $.extend($.drop.dP, options);
@@ -2513,6 +2515,8 @@ function getCookie(c_name)
     var wLH = window.location.hash;
     wnd.off('hashchange.' + $.drop.nS).on('hashchange.' + $.drop.nS, function(e) {
         e.preventDefault();
+        if ($.drop.drp.scrollTop)
+            $('html, body').scrollTop($.drop.drp.scrollTop);
         var wLHN = window.location.hash;
         if (!$.drop.drp.curHash) {
             for (var i in $.drop.drp.hrefs) {
