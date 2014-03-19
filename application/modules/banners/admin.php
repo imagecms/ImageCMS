@@ -274,7 +274,7 @@ class Admin extends BaseAdminController {
                     ->update('mod_banner', array('position' => $key));
         }
 
-        showMessage('Positions saved');
+        showMessage(lang('Positions saved', 'banners'));
     }
 
 }
