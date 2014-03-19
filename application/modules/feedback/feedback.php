@@ -66,39 +66,20 @@ class Feedback extends MY_Controller {
 
         $this->template->add_array($tpl_data);
 
-
-
         if (count($_POST) > 0) {
-            $this->form_validation->set_rules('name', lang('Name', 'feedback'), 'trim|required|min_length[3]|max_length[' . $this->username_max_len . ']|xss_clean');
-            $this->form_validation->set_rules('email', lang('E-Mail', 'feedback'), 'trim|required|valid_email|xss_clean');
-            $this->form_validation->set_rules('theme', lang('Theme', 'feedback'), 'trim|required|max_length[' . $this->theme_max_len . ']|xss_clean');
-
-            if ($this->dx_auth->use_recaptcha)
-                $this->form_validation->set_rules('recaptcha_response_field', lang("Code protection", 'feedback') . 'RECAPTCHA', 'trim|xss_clean|required|callback_recaptcha_check');
-            else
-                $this->form_validation->set_rules('captcha', lang("Code protection", 'feedback') . 'RECAPTCHA', 'trim|required|xss_clean|callback_captcha_check');
-
+            $this->form_validation->set_rules('name', lang('Your name', 'feedback'), 'trim|required|min_length[3]|max_length[' . $this->username_max_len . ']|xss_clean');
+            $this->form_validation->set_rules('email', lang('Email', 'feedback'), 'trim|required|valid_email|xss_clean');
+            $this->form_validation->set_rules('theme', lang('Subject', 'feedback'), 'trim|required|max_length[' . $this->theme_max_len . ']|xss_clean');
             $this->form_validation->set_rules('message', lang('Message', 'feedback'), 'trim|required|max_length[' . $this->message_max_len . ']|xss_clean');
 
+            if ($this->dx_auth->use_recaptcha)
+                $this->form_validation->set_rules('recaptcha_response_field', lang("Protection code", 'feedback'), 'trim|xss_clean|required|callback_recaptcha_check');
+            else
+                $this->form_validation->set_rules('captcha', lang("Protection code", 'feedback'), 'trim|required|xss_clean|callback_captcha_check');
+
             if ($this->form_validation->run($this) == FALSE) { // there are errors
-                $fields = array(
-                    'theme' => lang('Theme', 'feedback'),
-                    'name' => lang('Name', 'feedback'),
-                    'email' => lang('E-mail', 'feedback'),
-                    'message' => lang('Message', 'feedback'),
-                    'captcha' => lang('Captcha', 'feedback')
-                );
-                $errors = "";
                 $this->form_validation->set_error_delimiters("", "");
-                foreach ($fields as $field => $name) {
-                    $error = $this->form_validation->error($field);
-                    if (!empty($error)) {
-                        $error_ = isset($this->formErrors[$error]) ? $this->formErrors[$error] : lang('Error', 'feedback');
-                        $errors .= "<div style=\"color:red\">{$name} - {$error_}</div>";
-                    }
-                }
-                //$this->template->assign('form_errors', $errors);
-                CMSFactory\assetManager::create()->appendData('form_errors', $errors);
+                CMSFactory\assetManager::create()->setData('validation', $this->form_validation);
             } else { // form is validate
                 $this->message = strip_tags(nl2br(
                                 lang('Theme', 'feedback') . ' : ' . $this->input->post('theme') .
