@@ -41,7 +41,7 @@
 }
 
 .page-wishlist .btn-def{margin-right: 10px;}
-.frame-button-add-wish-list{margin-bottom: 20px;padding: 8px 22px;background-color: #f2f6f9;border: 1px solid #dfe4eb;}
+.frame-button-add-wish-list{overflow: hidden;margin-bottom: 20px;padding: 8px 22px;background-color: #f2f6f9;border: 1px solid #dfe4eb;}
 
 .check-public{width: 300px;}
 .check-public-drop{width: 150px;}

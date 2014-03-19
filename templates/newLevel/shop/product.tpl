@@ -228,6 +228,7 @@
                                                             data-source="/shop/ajax/getNotifyingRequest"
 
                                                             data-id="{echo $productVariant->getId()}"
+                                                            data-product-id="{echo $model->getId()}"
                                                             data-name="{echo ShopCore::encode($model->getName())}"
                                                             data-vname="{echo ShopCore::encode($productVariant->getName())}"
                                                             data-number="{echo $productVariant->getNumber()}"
@@ -801,7 +802,7 @@
 <!-- End. JS vars-->
 
 <script type="text/javascript">
-    initDownloadScripts(['cusel-min-2.5', 'cloud-zoom.1.0.3.min', '_product'], 'initPhotoTrEv', 'initPhotoTrEv');
+    initDownloadScripts(['cusel-min-2.5', 'cloud-zoom.1.0.3.min', 'product'], 'initPhotoTrEv', 'initPhotoTrEv');
 </script>
 <div style="display: none;">
     <img src="{echo $model->firstVariant->getLargePhoto()}" alt="{echo ShopCore::encode($model->getName())}" class="vImgPr"/>

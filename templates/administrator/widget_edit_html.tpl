@@ -6,7 +6,7 @@
         <div class="pull-right">
             <div class="d-i_b">
                 {if $widget.id == 16 || $widget.id == 17}
-                    <a href="/admin/widgets_manager" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Return','admin')}</span></a>
+                    <a href="/admin/widgets_manager" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Back','admin')}</span></a>
                  {else:}
                     <a href="{$BASE_URL}admin/widgets_manager/index/" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Return','admin')}</span></a>
                  {/if}
