@@ -940,12 +940,14 @@ function getCookie(c_name)
                                 parentTl: 'li',
                                 refresh: false,
                                 otherPage: undefined,
+                                classRemove: 'not-js',
                                 vertical: false
                             }, options);
                     menu.data('options', optionsMenu);
                     var settings = optionsMenu,
                             menuW = menu.width(),
-                            menuItem = menu.find(settings.item),
+                            item = settings.item,
+                            menuItem = menu.find(item),
                             direction = settings.direction,
                             drop = settings.drop,
                             dropOJ = menu.find(drop),
@@ -962,7 +964,8 @@ function getCookie(c_name)
                             itemMenuL = menuItem.length,
                             dropW = settings.dropWidth,
                             sub2Frame = settings.sub2Frame,
-                            duration = timeDurM = settings.duration,
+                            duration = settings.duration,
+                            timeDurM = settings.duration,
                             durationOn = settings.durationOn,
                             durationOff = settings.durationOff,
                             durationOnS = settings.durationOnS,
@@ -975,6 +978,7 @@ function getCookie(c_name)
                             activeFl = settings.activeFl,
                             parentTl = settings.parentTl,
                             otherPage = settings.otherPage,
+                            classRemove = settings.classRemove,
                             vertical = settings.vertical;
                     if (menuCache && !refresh) {
                         menu.find('a').each(function() {//if start without cache and remove active item
@@ -1034,15 +1038,15 @@ function getCookie(c_name)
                                         numbColumn = [];
                                 columnsObj.each(function(i) {
                                     numbColumn[i] = $(this).attr('class').match(/([0-9]|-1+)/)[0];
-                                })
+                                });
                                 numbColumn = _.uniq(numbColumn).sort();
                                 var numbColumnL = numbColumn.length;
-                                if (numbColumnL == 1 && $.inArray('0', numbColumn) == -1 || numbColumnL > 1) {
-                                    if ($.inArray('-1', numbColumn) == 0) {
+                                if (numbColumnL === 1 && $.inArray('0', numbColumn) === -1 || numbColumnL > 1) {
+                                    if ($.inArray('-1', numbColumn) === 0) {
                                         numbColumn.shift();
                                         numbColumn.push('-1');
                                     }
-                                    if ($.inArray('0', numbColumn) == 0) {
+                                    if ($.inArray('0', numbColumn) === 0) {
                                         numbColumn.shift();
                                         numbColumn.push('0');
                                     }
@@ -1050,18 +1054,18 @@ function getCookie(c_name)
                                         var $thisLi = columnsObj.filter('.' + columnClassPref + n),
                                                 sumx = 0;
                                         $thisLi.each(function() {
-                                            var datax = $(this).attr('data-x');
-                                            sumx = parseInt(datax == 0 || datax == undefined ? 1 : datax) > sumx ? parseInt(datax == 0 || datax == undefined ? 1 : datax) : sumx;
-                                        })
+                                            var datax = +$(this).attr('data-x');
+                                            sumx = parseInt(datax === 0 || !datax ? 1 : datax) > sumx ? parseInt(datax === 0 || !datax ? 1 : datax) : sumx;
+                                        });
                                         $this.children().append('<li class="x' + sumx + '" data-column="' + n + '" data-x="' + sumx + '"><ul></ul></li>');
                                         $this.find('[data-column="' + n + '"]').children().append($thisLi.clone());
-                                    })
+                                    });
                                     columnsObj.remove();
                                 }
                                 var sumx = 0;
                                 $this.children().children().each(function() {
-                                    var datax = $(this).attr('data-x');
-                                    sumx = sumx + parseInt(datax == 0 || datax == undefined ? 1 : datax);
+                                    var datax = +$(this).attr('data-x');
+                                    sumx = sumx + parseInt(datax === 0 || !datax ? 1 : datax);
                                 });
                                 sumx = sumx > maxC ? maxC : sumx;
                                 $this.addClass('x' + sumx);
@@ -1098,13 +1102,13 @@ function getCookie(c_name)
                     }).css('height', sH);
                     if (!vertical)
                         menuItem.find('.helper:first').css('height', sH);
-                    menu.removeClass('not-js');
+                    menu.removeClass(classRemove);
                     var hoverTO = '';
                     function closeMenu() {
                         var $thisDrop = menu.find(drop);
                         if ($thisDrop.length !== 0)
                             menu.removeClass(hM);
-                        if (evLS === 'toggle' || evLF === 'toggle') {
+                        if (evLS === 'click' || evLF === 'click') {
                             menu.find('.' + hM).click();
                             dropOJ.hide();
                         }
@@ -1119,7 +1123,7 @@ function getCookie(c_name)
                     menuItem.off(evLF)[evLF](
                             function(e) {
                                 var $this = $(this);
-                                if ($this.data("show") === "no" || $this.data("show") === undefined) {
+                                if ($this.data("show") === "no" || !$this.data("show")) {
                                     $this.data("show", "yes");
                                     clearTimeout(hoverTO);
                                     closeMenu();
@@ -1133,6 +1137,8 @@ function getCookie(c_name)
                                     if ($(e.relatedTarget).is(menuItem) || $.existsN($(e.relatedTarget).parents(menuItem)) || $this.data('kk') === 0)
                                         k[$thisI] = true;
                                     if (k[$thisI]) {
+                                        if (evLF === 'click')
+                                            e.stopPropagation();
                                         hoverTO = setTimeout(function() {
                                             $thisDrop[effOn](durationOn, function(e) {
                                                 $this.data('kk', $this.data('kk') + 1);
@@ -1147,21 +1153,22 @@ function getCookie(c_name)
                                                     $thisDrop.find(sub2Frame).addClass('is-side');
                                                     listDrop.children().off(evLS)[evLS](function(e) {
                                                         var $this = $(this);
-                                                        if ($this.data("show") === "no" || $this.data("show") === undefined) {
+                                                        if (evLS === 'click')
+                                                            e.stopPropagation();
+                                                        if ($this.data("show") === "no" || !$this.data("show")) {
                                                             $this.data("show", "yes");
                                                             subFrame = $this.find(sub2Frame);
-                                                            if (e.type !== 'click' && evLS !== 'toggle') {
+                                                            if (e.type !== 'click' && evLS !== 'click') {
                                                                 $this.siblings().removeClass(hM);
                                                             }
                                                             if ($.existsN(subFrame)) {
-                                                                if (e.type === 'click' && evLS === 'toggle') {
+                                                                if (e.type === 'click' && evLS === 'click') {
                                                                     e.stopPropagation();
                                                                     $this.siblings().filter('.' + hM).click();
                                                                     $this.addClass(hM);
                                                                 }
-                                                                else {
+                                                                else
                                                                     $this.has(sub2Frame).addClass(hM);
-                                                                }
 
                                                                 $thisDrop.css('width', '');
                                                                 listDrop.add(subFrame).css('height', '');
@@ -1205,13 +1212,13 @@ function getCookie(c_name)
                                                         }
                                                         else {
                                                             $this.data("show", "no");
-                                                            if (e.type === 'click' && evLS === 'toggle') {
+                                                            if (e.type === 'click' && evLS === 'click') {
                                                                 e.stopPropagation();
                                                             }
                                                             var subFrame = $this.find(sub2Frame);
                                                             if ($.existsN(subFrame)) {
                                                                 subFrame.hide();
-                                                                $thisDrop.stop().css({
+                                                                $thisDrop.css({
                                                                     'width': '',
                                                                     'height': ''
                                                                 });
@@ -1264,7 +1271,7 @@ function getCookie(c_name)
                         }
                     });
                     dropOJ.find('a').off('click.menuref').on('click.menuref', function(e) {
-                        if (evLS === 'toggle') {
+                        if (evLS === 'click') {
                             if ($.existsN($(this).next()) && sub2Frame) {
                                 e.preventDefault();
                                 return true;
@@ -1276,10 +1283,10 @@ function getCookie(c_name)
                             e.stopPropagation();
                     });
                     menuItem.find('a:first').off('click.menuref').on('click.menuref', function(e) {
-                        if (!$.existsN($(this).closest(menuItem).find(drop))) {
-                            e.preventDefault();
+                        if (!$.existsN($(this).closest(item).find(drop)))
                             e.stopPropagation();
-                        }
+                        if (evLF === 'click' && $.existsN($(this).closest(item).find(drop)))
+                            e.preventDefault();
                     });
                 }
             });
@@ -1874,7 +1881,6 @@ function getCookie(c_name)
                         if ($thisB) {
                             var $thisEOff = set.effectOff,
                                     durOff = set.durationOff;
-
                             function _hide() {
                                 $thisB.parent().removeClass(aC);
                                 var $thisHref = $thisB.data('href');
@@ -1882,12 +1888,12 @@ function getCookie(c_name)
                                 if ($thisHref) {
                                     clearTimeout($.drop.drp.curHashTimeout);
                                     $.drop.drp.curHash = hashChange ? $thisHref : null;
-
-                                    var wLH = location.hash;
-                                    location.hash = wLH.replace($thisHref, '');
+                                    $.drop.drp.scrollTop = wnd.scrollTop();
+                                    location.hash = location.hash.replace($thisHref, '');
 
                                     $.drop.drp.curHashTimeout = setTimeout(function() {
                                         $.drop.drp.curHash = null;
+                                        $.drop.drp.scrollTop = null;
                                     }, 400);
                                 }
 
@@ -1926,6 +1932,8 @@ function getCookie(c_name)
                                         dC.destroy();
                                     if (f)
                                         f();
+                                    if (!$.exists('[data-elrun].center:visible, [data-elrun].noinherit:visible'))
+                                        $('body, html').css('height', '');
                                 });
                             }
                             drop.add($(document)).trigger({
@@ -1995,9 +2003,8 @@ function getCookie(c_name)
                 opt = {};
             if (!isNaN(parseFloat($.drop.dP[prop])) && isFinite($.drop.dP[prop]))
                 return +((elSet[prop] !== undefined && elSet[prop] !== null ? elSet[prop].toString() : elSet[prop]) || (opt[prop] !== undefined && opt[prop] !== null ? opt[prop].toString() : opt[prop]) || $.drop.dP[prop].toString());
-            if ($.drop.dP[prop] !== undefined && $.drop.dP[prop] !== null && ($.drop.dP[prop].toString().toLowerCase() === 'false' || $.drop.dP[prop].toString().toLowerCase() === 'true')) {
+            if ($.drop.dP[prop] !== undefined && $.drop.dP[prop] !== null && ($.drop.dP[prop].toString().toLowerCase() === 'false' || $.drop.dP[prop].toString().toLowerCase() === 'true'))
                 return ((/^true$/i).test(elSet[prop] !== undefined && elSet[prop] !== null ? elSet[prop].toString().toLowerCase() : elSet[prop])) || ((/^true$/i).test(opt[prop] !== undefined && opt[prop] !== null ? opt[prop].toString().toLowerCase() : opt[prop])) || (elSet[prop] !== undefined && elSet[prop] !== null || opt[prop] !== undefined && opt[prop] !== null ? false : $.drop.dP[prop]);
-            }
             else
                 return elSet[prop] || (opt[prop] ? opt[prop] : false) || $.drop.dP[prop];
         },
@@ -2056,12 +2063,11 @@ function getCookie(c_name)
                     if (!$.exists(sel)) {
                         _for_center(set.drop);
                     }
-                    var forCenter = $(sel).empty();
-                    drop = $(drop).appendTo(forCenter);
+                    drop = $(drop).appendTo($(sel).empty());
                 }
             }
             var defaultClassBtnDrop = methods._checkProp(set, null, 'defaultClassBtnDrop');
-            return (set.drop ? (set.drop.indexOf(defaultClassBtnDrop) != -1 ? drop.filter('.' + defaultClassBtnDrop) : $(set.drop)) : drop).addClass(addClass).attr('data-rel', rel).attr('data-elrun', set.drop);
+            return (set.drop ? (set.drop.indexOf(defaultClassBtnDrop) !== -1 ? drop.filter('.' + defaultClassBtnDrop) : $(set.drop)) : drop).addClass(addClass).attr('data-rel', rel).attr('data-elrun', set.drop);
         },
         _pasteContent: function($this, drop, opt) {
             function _pasteContent(content, place) {
@@ -2186,18 +2192,17 @@ function getCookie(c_name)
             if (condOverlay) {
                 drop.data('drp').dropOver.stop().fadeIn(opt.durationOn / 2);
 
-                if (opt.closeClick)
-                    drop.data('drp').dropOver.add(forCenter).off('click.' + $.drop.nS).on('click.' + $.drop.nS, function(e) {
-                        e.stopPropagation();
-                        if ($(e.target).is(drop.data('drp').dropOver) || $(e.target).is('.forCenter')) {
-                            methods.close($($(e.target).attr('data-rel')));
-                        }
-                    });
                 if (isTouch)
                     drop.data('drp').dropOver.on('touchmove.' + $.drop.nS, function(e) {
-                        return false;
+                        e.preventDefault();
                     });
             }
+            if (opt.closeClick)
+                $(forCenter).add(drop.data('drp').dropOver).off('click.' + $.drop.nS).on('click.' + $.drop.nS, function(e) {
+                    e.stopPropagation();
+                    if ($(e.target).is(drop.data('drp').dropOver) || $(e.target).is('.forCenter'))
+                        methods.close($($(e.target).attr('data-rel')));
+                });
             drop.addClass(opt.place);
             methods._positionType(drop);
             methods._checkMethod(function() {
@@ -2207,11 +2212,10 @@ function getCookie(c_name)
                 methods.heightContent(drop);
             });
 
-            if (forCenter) {
+            if (forCenter)
                 forCenter.css('top', function() {
                     return opt.scroll ? wnd.scrollTop() : 0;
                 }).fadeIn(opt.durationOn);
-            }
 
             methods.placeBeforeShow(drop, $this, methods, opt.place, opt.placeBeforeShow);
 
@@ -2219,6 +2223,7 @@ function getCookie(c_name)
             if (href) {
                 clearTimeout($.drop.drp.curHashTimeout);
                 $.drop.drp.curHash = !hashChange ? href : null;
+                $.drop.drp.scrollTop = wnd.scrollTop();
 
                 var wlh = window.location.hash;
                 if (href.indexOf('#') !== -1 && (new RegExp(href + '#|' + href + '$').exec(wlh) === null))
@@ -2226,6 +2231,7 @@ function getCookie(c_name)
 
                 $.drop.drp.curHashTimeout = setTimeout(function() {
                     $.drop.drp.curHash = null;
+                    $.drop.drp.scrollTop = null;
                 }, 400);
             }
             if (opt.place !== 'inherit')
@@ -2267,9 +2273,8 @@ function getCookie(c_name)
                         methods.close(drop);
                     }, opt.timeclosemodal);
                 var cB = opt.elAfter;
-                if (cB) {
+                if (cB)
                     eval(cB)($this, drop, data);
-                }
                 if (opt.after)
                     opt.after($this, drop, data);
                 if (opt.afterG)
@@ -2285,24 +2290,23 @@ function getCookie(c_name)
                         methods.droppable(drop);
                     });
 
-                if (drp.forCenter) {
+                if (drp.forCenter)
                     drp.forCenter.off('scroll.emulateScroll' + $.drop.nS + ev).on('scroll.emulateScroll' + $.drop.nS + ev, function(e) {
                         $('.scrollEmulation').scrollTop($(this).scrollTop());
                     });
-                }
+
                 wnd.off('scroll.' + $.drop.nS + ev).on('scroll.' + $.drop.nS + ev, function(e) {
-                    if (opt.place === 'center' && opt.scrollCenter) {
+                    if (opt.place === 'center' && opt.scrollCenter)
                         wnd.on('scroll.' + $.drop.nS, function(e) {
                             methods.center(drop);
                         });
-                    }
                 });
             });
-            body.off('click.' + $.drop.nS + ev).on('click.' + $.drop.nS + ev, function(e) {
+            $('html').css('height', '100%');
+            body.css('height', '100%').off('click.' + $.drop.nS + ev).on('click.' + $.drop.nS + ev, function(e) {
                 if (opt.closeClick)
-                    if (!$.existsN($(e.target).closest('[data-elrun]'))) {
+                    if (!$.existsN($(e.target).closest('[data-elrun]')))
                         methods.close(false);
-                    }
                     else
                         return true;
             });
@@ -2310,9 +2314,8 @@ function getCookie(c_name)
             if (opt.closeEsc)
                 body.on('keydown.' + $.drop.nS + ev, function(e) {
                     var key = e.keyCode;
-                    if (key === 27) {
+                    if (key === 27)
                         methods.close(false);
-                    }
                 });
             if (rel && opt.keyNavigate && methods.galleries)
                 body.off('keydown.navigate' + $.drop.nS + ev).on('keydown.navigate' + $.drop.nS + ev, function(e) {
@@ -2333,18 +2336,17 @@ function getCookie(c_name)
         },
         _positionType: function(drop) {
             var data = drop.data('drp');
-            if (data.place !== 'inherit') {
+            if (data.place !== 'inherit')
                 drop.css({
                     'position': data.position
                 });
-            }
         },
         _filterSource: function(btn, s) {
             var source = s.split(').'),
                     regS, regM = '';
 
             $.each(source, function(i, v) {
-                regS = (v[v.length - 1] != ')' ? v + ')' : v).match(/\(.*\)/);
+                regS = (v[v.length - 1] !== ')' ? v + ')' : v).match(/\(.*\)/);
                 regM = regS['input'].replace(regS[0], '');
                 regS = regS[0].substring(1, regS[0].length - 1);
                 btn = btn[regM](regS);
@@ -2445,7 +2447,6 @@ function getCookie(c_name)
             durationOn: 200,
             durationOff: 100,
             timeclosemodal: 2000,
-            scrollCenter: false,
             modal: false,
             confirm: false,
             prompt: false,
@@ -2457,6 +2458,7 @@ function getCookie(c_name)
             droppable: false,
             cycle: false,
             scroll: false,
+            scrollCenter: false,
             limitSize: false,
             limitContentSize: false,
             scrollContent: false,
@@ -2470,10 +2472,9 @@ function getCookie(c_name)
             galleries: {},
             scrollemulatetimeout: null,
             curHash: null,
-            curHashTimeout: null,
             curDrop: null,
             curHashTimeout: null,
-                    scrollemulatetimeout: null
+            scrollTop: null
         };
         this.setParameters = function(options) {
             $.extend($.drop.dP, options);
@@ -2488,7 +2489,7 @@ function getCookie(c_name)
         'width': 100,
         'overflow': 'scroll'
     }).wrap($('<div style="width:0;height:0;overflow:hidden;"></div>'));
-    $.dropInit.prototype.widthScroll = el.width() - el.get(0).clientWidth + 1;
+    $.dropInit.prototype.widthScroll = el.width() - el.get(0).clientWidth;
     el.parent().remove();
 
     var loadingTimer, loadingFrame = 1,
@@ -2515,6 +2516,8 @@ function getCookie(c_name)
     var wLH = window.location.hash;
     wnd.off('hashchange.' + $.drop.nS).on('hashchange.' + $.drop.nS, function(e) {
         e.preventDefault();
+        if ($.drop.drp.scrollTop)
+            $('html, body').scrollTop($.drop.drp.scrollTop);
         var wLHN = window.location.hash;
         if (!$.drop.drp.curHash) {
             for (var i in $.drop.drp.hrefs) {
@@ -2807,48 +2810,46 @@ function getCookie(c_name)
                         $thisNext.add($thisPrev).css('display', 'inline-block');
                         groupButton.append($thisNext.add($thisPrev));
                         groupButton.append($thisNext.add($thisPrev));
-                        if (isTouch && isHorz) {
-                            $this.off('touchstart.' + nS).on('touchstart.' + nS, function(e) {
-                                sP = e.originalEvent.touches[0];
-                                sP = sP.pageX;
-                            });
-                            $this.off('touchmove.' + nS).on('touchmove.' + nS, function(e) {
-                                e.stopPropagation();
-                                e.preventDefault();
-                                eP = e.originalEvent.touches[0];
-                                eP = eP.pageX;
-                            });
-                            $this.off('touchend.' + nS).on('touchend.' + nS, function(e) {
-                                e.stopPropagation();
-                                if (Math.abs(eP - sP) > 200) {
-                                    if (eP - sP > 0)
-                                        $thisPrev.click();
-                                    else
-                                        $thisNext.click();
+                        var elSet = $this.data();
+                        function _handlTouch(type) {
+                            if (isTouch && type) {
+                                var f = 'pageX',
+                                        s = 'pageY';
+                                if (type === 'v') {
+                                    f = 'pageY';
+                                    s = 'pageX';
                                 }
-                            });
+
+                                $this.off('touchstart.' + nS).on('touchstart.' + nS, function(e) {
+                                    e = e.originalEvent.touches[0];
+                                    elSet.sP = e[f];
+                                    elSet.sPs = e[s];
+                                });
+                                $this.off('touchmove.' + nS).on('touchmove.' + nS, function(e) {
+                                    e = e.originalEvent.touches[0];
+                                    elSet.eP = e[f];
+                                    elSet.ePs = e[s];
+                                    e.preventDefault();
+                                });
+
+                                $this.off('touchend.' + nS).on('touchend.' + nS, function(e) {
+                                    if (Math.abs(elSet.eP - elSet.sP) > Math.abs(elSet.ePs - elSet.sPs))
+                                        e.preventDefault();
+                                    if (Math.abs(elSet.eP - elSet.sP) > 200) {
+                                        if (elSet.eP - elSet.sP > 0)
+                                            $thisPrev.click();
+                                        else
+                                            $thisNext.click();
+                                    }
+                                });
+                            }
                         }
-                        if (isTouch && isVert) {
-                            $this.off('touchstart.' + nS).on('touchstart.' + nS, function(e) {
-                                sP = e.originalEvent.touches[0];
-                                sP = sP.pageY;
-                            });
-                            $this.off('touchmove.' + nS).on('touchmove.' + nS, function(e) {
-                                e.stopPropagation();
-                                e.preventDefault();
-                                eP = e.originalEvent.touches[0];
-                                eP = eP.pageY;
-                            });
-                            $this.off('touchend.' + nS).on('touchend.' + nS, function(e) {
-                                e.stopPropagation();
-                                if (Math.abs(eP - sP) > 200) {
-                                    if (eP - sP > 0)
-                                        $thisPrev.click();
-                                    else
-                                        $thisNext.click();
-                                }
-                            });
-                        }
+                        var type = false;
+                        if (isHorz)
+                            type = 'h';
+                        if (isVert)
+                            type = 'v';
+                        _handlTouch(type);
                     }
                     else {
                         if (isHorz) {

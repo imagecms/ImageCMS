@@ -269,10 +269,10 @@ input.input-search{height: 33px;}
 .frame-variant-name-code{margin-bottom: 5px;display: block;}
 .frame-variant-code, .frame-variant-name{}
 .items-catalog .frame-item-brand{display: block;}
-.item-product .frame-variant-code{margin-right: 7px;}
+.item-product .frame-variant-code{margin-right: 15px;}
+.item-product .frame-variant-name-code, .item-product .frame-star{margin-bottom: 5px;}
 .code + .code{margin-left: 10px;}
 .frame-star{display: block;}
-.item-product .frame-variant-name-code{margin-right: 15px;}
 .star{display: inline-block;position: relative;margin-right: 5px;vertical-align: bottom;}
 .item-product .star{top: -3px;}
 .funcs-buttons{display: inline-block;position: relative;vertical-align: middle;}
