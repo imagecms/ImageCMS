@@ -45,7 +45,7 @@
                                                 <a onclick="return false;" rel="useZoom: 'photoProduct'" href="{echo $model->firstVariant->getLargePhoto()}" title="{echo ShopCore::encode($model->getName())}" class="cloud-zoom-gallery" id="mainThumb">
                                                     <span class="photo-block">
                                                         <span class="helper"></span>
-                                                        <img src="{echo $model->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($model->getName())}" class="vImgPr"/>
+                                                        <img src="{echo $model->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($model->getName())}" title="{echo ShopCore::encode($model->getName())}" class="vImgPr"/>
                                                     </span>
                                                 </a>
                                             </li>
@@ -78,7 +78,7 @@
                         <a rel="position: 'xBlock'" onclick="return false;" href="{echo $model->firstVariant->getLargePhoto()}" class="frame-photo-title photoProduct cloud-zoom" id="photoProduct" title="{echo ShopCore::encode($model->getName())}" data-drop="#photo" data-start="Product.initDrop" data-scroll-content="false">
                             <span class="photo-block">
                                 <span class="helper"></span>
-                                <img src="{echo $model->firstVariant->getMainPhoto()}" alt="{echo ShopCore::encode($model->getName())}" title="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" class="vImgPr"/>
+                                <img src="{echo $model->firstVariant->getMainPhoto()}" alt="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" title="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" class="vImgPr"/>
                                 {$discount = 0}
                                 {if $hasDiscounts}
                                     {$discount = $model->firstVariant->getvirtual('numDiscount')/$model->firstVariant->toCurrency('origprice')*100}
@@ -382,7 +382,7 @@
                                                         <div class="frame-photo-title">
                                                             <span class="photo-block">
                                                                 <span class="helper"></span>
-                                                                <img src="{echo $kitProducts->getMainProduct()->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($kitProducts->getMainProduct()->getName())}"/>
+                                                                <img src="{echo $kitProducts->getMainProduct()->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($kitProducts->getMainProduct()->getName())}" title="{echo ShopCore::encode($kitProducts->getMainProduct()->getName())}"/>
                                                             </span>
                                                             <span class="title">{echo ShopCore::encode($model->getName())}</span>
                                                         </div>
@@ -419,7 +419,7 @@
                                                             <a href="{shop_url('product/' . $kitProduct->getSProducts()->getUrl())}" class="frame-photo-title">
                                                                 <span class="photo-block">
                                                                     <span class="helper"></span>
-                                                                    <img src="{echo $kitProduct->getSProducts()->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($kitProduct->getSProducts()->getName())}"/>
+                                                                    <img src="{echo $kitProduct->getSProducts()->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($kitProduct->getSProducts()->getName())}" title="{echo ShopCore::encode($kitProduct->getSProducts()->getName())}"/>
 
                                                                     {$discount = $kitProduct->getDiscount()}
                                                                 </span>

@@ -87,7 +87,7 @@
                                                 <a onclick="return false;" rel="useZoom: 'photoProduct'" href="{echo $model->firstVariant->getLargePhoto()}" title="{echo ShopCore::encode($model->getName())}" class="cloud-zoom-gallery" id="mainThumb">
                                                     <span class="photo-block">
                                                         <span class="helper"></span>
-                                                        <img src="{echo $model->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($model->getName())}" class="vImgPr"/>
+                                                        <img src="{echo $model->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($model->getName())}" title="{echo ShopCore::encode($model->getName())}" class="vImgPr"/>
                                                     </span>
                                                 </a>
                                             </li>
@@ -408,7 +408,7 @@
                                                             <div class="frame-photo-title">
                                                                 <span class="photo-block">
                                                                     <span class="helper"></span>
-                                                                    <img src="{echo $kitProducts->getMainProduct()->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($kitProducts->getMainProduct()->getName())}"/>
+                                                                    <img src="{echo $kitProducts->getMainProduct()->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($kitProducts->getMainProduct()->getName())}" title="{echo ShopCore::encode($kitProducts->getMainProduct()->getName())}" />
                                                                     {promoLabel($kitProducts->getSProducts()->getAction(), $kitProducts->getSProducts()->getHot(), $kitProducts->getSProducts()->getHit(), 0)}
                                                                 </span>
                                                                 <span class="title">{echo ShopCore::encode($model->getName())}</span>
@@ -448,7 +448,7 @@
                                                                 <a href="{shop_url('product/' . $kitProduct->getSProducts()->getUrl())}" class="frame-photo-title">
                                                                     <span class="photo-block">
                                                                         <span class="helper"></span>
-                                                                        <img src="{echo $kitProduct->getSProducts()->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($kitProduct->getSProducts()->getName())}"/>
+                                                                        <img src="{echo $kitProduct->getSProducts()->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($kitProduct->getSProducts()->getName())}" title="{echo ShopCore::encode($kitProduct->getSProducts()->getName())}"/>
 
                                                                         {$discount = $kitProduct->getDiscount()}
 
