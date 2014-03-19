@@ -76,7 +76,7 @@ div[class="tooltip-inner"] {
 #po_table .translationCancel{
     display: none; 
     float: right; 
-    margin-left: 600px; 
+    /*margin-left: 600px;*/ 
     margin-bottom: -30px;
 }
 
