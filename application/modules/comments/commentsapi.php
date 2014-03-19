@@ -301,7 +301,7 @@ class Commentsapi extends Comments {
         // Check captcha code if captcha_check enabled and user in not admin.
         if ($this->use_captcha == TRUE AND $this->dx_auth->is_admin() == FALSE) {
             ($hook = get_hook('comments_set_captcha')) ? eval($hook) : NULL;
-            $this->form_validation->set_message('callback_captcha_check', lang('Wrong222 code protection', 'comments'));
+            $this->form_validation->set_message('callback_captcha_check', lang('Wrong code protection', 'comments'));
             if ($this->dx_auth->use_recaptcha)
                 $this->form_validation->set_rules('recaptcha_response_field', lang("Code protection", 'comments'), 'trim|required|xss_clean|callback_captcha_check');
             else
