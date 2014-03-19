@@ -343,6 +343,7 @@ class Admin extends BaseAdminController {
                     $this->menu_model->delete_menu_item($item_id);
                 }
             }
+            showMessage(lang('Menu item successfuly deleted', 'menu'), '');
         } else {
             if ($id > 0) {
                 $this->db->where('id', $id);
@@ -355,6 +356,7 @@ class Admin extends BaseAdminController {
                     $this->menu_model->delete_menu_item($item_id);
                 }
 
+                showMessage(lang('Menu item successfuly deleted', 'menu'), '');
                 return TRUE;
             } else {
                 return FALSE;
@@ -881,17 +883,16 @@ class Admin extends BaseAdminController {
             if ($_POST['action'] == 'tomain')
                 pjax('/admin/components/cp/menu');
         }
-
     }
 
     function check_menu_data() {
         if ($_POST['menu_name'] == NULL) {
-            showMessage(lang("The field is required to be filled in"),false,'r');
+            showMessage(lang("The field is required to be filled in"), false, 'r');
             exit;
         }
 
         if ($this->db->get_where('menus', array('name' => $_POST['menu_name']))->num_rows() > 0) {
-            showMessage(lang("The menu with the same name has been created yet"),false,'r');
+            showMessage(lang("The menu with the same name has been created yet"), false, 'r');
             exit;
         }
     }
