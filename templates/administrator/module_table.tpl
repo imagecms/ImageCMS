@@ -33,10 +33,14 @@
                     </div>
                 </div>
             </div>
-            <div class="btn-group myTab m-t_10" data-toggle="buttons-radio">
-                <a href="#modules" class="btn btn-small active" onclick="$('#allM').html('{lang('All modules','admin')}')">{lang('Modules','admin')}</a>
-                <a href="#set_modul" class="btn btn-small" onclick="$('#allM').html('{lang('Install modules','admin')}')">{lang('Install modules','admin')}</a>
-                <div class="span3 pull-right"><input type="text" id="modules_filter" style="width:270px;" /></div>
+            <div class="clearfix">
+                <div class="btn-group myTab m-t_10 pull-left" data-toggle="buttons-radio">
+                    <a href="#modules" class="btn btn-small active" onclick="$('#allM').html('{lang('All modules','admin')}')">{lang('Modules','admin')}</a>
+                    <a href="#set_modul" class="btn btn-small" onclick="$('#allM').html('{lang('Install modules','admin')}')">{lang('Install modules','admin')}</a>
+                </div>
+                <div class="pull-right m-t_10">
+                    <input type="text" id="modules_filter" class="span3 m-b_0"/>
+                </div>
             </div>
             <div class="tab-content">
                 {if count($installed) != 0}
