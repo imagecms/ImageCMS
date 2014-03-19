@@ -131,7 +131,7 @@
 
                                 <div class="">
                                     <div class="span4"></div>
-                                    <div class="span8">
+                                    <div class="span6">
                                         <div class="">
                                             <!--Start. Show if discount type is all_orders -->
                                             <div id="all_orderBlock" class="forHide" style="display: none;">
