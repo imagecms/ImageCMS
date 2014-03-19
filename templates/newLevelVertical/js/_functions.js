@@ -418,20 +418,20 @@ function hideDrop(drop, form, durationHideForm) {
     })
 }
 function showHidePart(el, absolute, time, btnPlace) {
-    if (time == undefined)
+    if (!time)
         time = 300;
-    if (btnPlace == undefined)
+    if (!btnPlace)
         btnPlace = 'next';
     el.each(function() {
         var $this = $(this),
-        $thisH = isNaN(parseInt($this.css('max-height'))) ? parseInt($this.css('height')) : parseInt($this.css('max-height')),
-        $item = $this.children(),
-        sumHeight = 0;
+                $thisH = isNaN(parseInt($this.css('max-height'))) ? parseInt($this.css('height')) : parseInt($this.css('max-height')),
+                $item = $this.children(),
+                sumHeight = 0;
         $this.addClass('showHidePart').data('maxHeight', $thisH);
         $this.find('*').css('max-height', 'none');
         $item.each(function() {
             sumHeight += $(this).outerHeight(true);
-        })
+        });
         $this.find('*').css('max-height', '');
 
         if (sumHeight > $thisH) {
@@ -440,16 +440,16 @@ function showHidePart(el, absolute, time, btnPlace) {
                 'height': $thisH
             });
             var btn = $this[btnPlace](),
-            textEl = btn.find(genObj.textEl);
+                    textEl = btn.find(genObj.textEl);
             btn.addClass('d_i-b hidePart');
             if (!btn.is('[data-trigger]')) {
-                textEl.html(textEl.data('show'))
+                textEl.html(textEl.data('show'));
                 btn.off('click.showhidepart').on('click.showhidepart', function() {
                     var $thisB = $(this);
-                    if ($thisB.data("show") == "no" || $thisB.data("show") == undefined) {
+                    if ($thisB.data("show") === "no" || !$thisB.data("show")) {
                         $thisB.addClass('showPart').removeClass('hidePart');
                         var textEl = $thisB.find(genObj.textEl),
-                        sHH = 0;
+                                sHH = 0;
                         $this.parents('li').children(':not(.wrapper-h)').each(function() {
                             sHH += $(this).height();
                         });
@@ -458,56 +458,31 @@ function showHidePart(el, absolute, time, btnPlace) {
                             'height': sumHeight
                         }, time, function() {
                             var sH = 0;
-                            $this.css('max-height', 'none');
-                            $this.parents('li').children(':not(.wrapper-h)').each(function() {
+                            $this.css('max-height', 'none').data('heightDecor', sHH).parents('li').children(':not(.wrapper-h)').each(function() {
                                 sH += $(this).height();
                             });
-                            $this.data('heightDecor', sHH);
-                            var wrapperH = $this.parent().nextAll('.wrapper-h');
-                            wrapperH.css({
+                            $this.parent().nextAll('.wrapper-h').css({
                                 'width': '100%',
                                 'height': sH
-                            }).fadeIn();
-                            wrapperH.addClass('active')
+                            }).fadeIn().addClass('active');
                             $(this).removeClass('cut-height').addClass('full-height');
-                            textEl.hide().html(textEl.data('hide')).fadeIn(time)
-                            $(this).parents('.showHidePart').each(function() {
-                                var sH = 0;
-                                $(this).children().each(function() {
-                                    sH += $(this).outerHeight(true);
-                                })
-                                $(this).css({
-                                    'max-height': 'none',
-                                    'height': sH
-                                });
-                            })
+                            textEl.hide().html(textEl.data('hide')).fadeIn(time);
                         });
                         $thisB.data('show', "yes");
                     }
                     else {
                         var $thisB = $(this).removeClass('showPart').addClass('hidePart'),
-                        textEl = $thisB.find(genObj.textEl);
+                                textEl = $thisB.find(genObj.textEl);
                         $thisB.parent().nextAll('.wrapper-h').animate({
                             'height': $this.data('heightDecor')
                         }, time, function() {
-                            $(this).removeClass('active').fadeOut()
+                            $(this).removeClass('active').fadeOut();
                         });
                         $thisB.prev().stop().animate({
                             'height': $thisH
                         }, time, function() {
-                            $(this).css('max-height', 'none')
-                            $(this).removeClass('full-height').addClass('cut-height');
-                            textEl.hide().html(textEl.data('show')).fadeIn(time)
-                            $(this).parents('.showHidePart').each(function() {
-                                var sH = 0;
-                                $(this).children().each(function() {
-                                    sH += $(this).outerHeight(true);
-                                })
-                                $(this).css({
-                                    'max-height': 'none',
-                                    'height': sH
-                                });
-                            })
+                            $(this).css('max-height', 'none').removeClass('full-height').addClass('cut-height');
+                            textEl.hide().html(textEl.data('show')).fadeIn(time);
                         });
                         $thisB.data('show', "no");
                     }
@@ -518,7 +493,7 @@ function showHidePart(el, absolute, time, btnPlace) {
             var sH = 0;
             $(this).children().each(function() {
                 sH += $(this).outerHeight(true);
-            })
+            });
             $(this).css({
                 'max-height': $(this).data('maxHeight'),
                 'height': sH
@@ -532,9 +507,8 @@ function showHidePart(el, absolute, time, btnPlace) {
             var $this = $(this);
             tempH = $this.outerHeight();
             sH = tempH > sH ? tempH : sH;
-            $this.append('<div class="wrapper-h"></div>')
-        }).css('height', sH)
-
+            $this.append('<div class="wrapper-h"></div>');
+        }).css('height', sH);
     }
 }
 function decorElemntItemProduct(el) {

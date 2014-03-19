@@ -439,7 +439,7 @@ function showHidePart(el, absolute, time, btnPlace) {
                 textEl.html(textEl.data('show'));
                 btn.off('click.showhidepart').on('click.showhidepart', function() {
                     var $thisB = $(this);
-                    if ($thisB.data("show") === "no" || $thisB.data("show")) {
+                    if ($thisB.data("show") === "no" || !$thisB.data("show")) {
                         $thisB.addClass('showPart').removeClass('hidePart');
                         var textEl = $thisB.find(genObj.textEl),
                                 sHH = 0;
@@ -451,29 +451,15 @@ function showHidePart(el, absolute, time, btnPlace) {
                             'height': sumHeight
                         }, time, function() {
                             var sH = 0;
-                            $this.css('max-height', 'none');
-                            $this.parents('li').children(':not(.wrapper-h)').each(function() {
+                            $this.css('max-height', 'none').data('heightDecor', sHH).parents('li').children(':not(.wrapper-h)').each(function() {
                                 sH += $(this).height();
                             });
-                            $this.data('heightDecor', sHH);
-                            var wrapperH = $this.parent().nextAll('.wrapper-h');
-                            wrapperH.css({
+                            $this.parent().nextAll('.wrapper-h').css({
                                 'width': '100%',
                                 'height': sH
-                            }).fadeIn();
-                            wrapperH.addClass('active');
+                            }).fadeIn().addClass('active');
                             $(this).removeClass('cut-height').addClass('full-height');
                             textEl.hide().html(textEl.data('hide')).fadeIn(time);
-                            $(this).parents('.showHidePart').each(function() {
-                                var sH = 0;
-                                $(this).children().each(function() {
-                                    sH += $(this).outerHeight(true);
-                                });
-                                $(this).css({
-                                    'max-height': 'none',
-                                    'height': sH
-                                });
-                            });
                         });
                         $thisB.data('show', "yes");
                     }
@@ -488,19 +474,8 @@ function showHidePart(el, absolute, time, btnPlace) {
                         $thisB.prev().stop().animate({
                             'height': $thisH
                         }, time, function() {
-                            $(this).css('max-height', 'none');
-                            $(this).removeClass('full-height').addClass('cut-height');
+                            $(this).css('max-height', 'none').removeClass('full-height').addClass('cut-height');
                             textEl.hide().html(textEl.data('show')).fadeIn(time);
-                            $(this).parents('.showHidePart').each(function() {
-                                var sH = 0;
-                                $(this).children().each(function() {
-                                    sH += $(this).outerHeight(true);
-                                });
-                                $(this).css({
-                                    'max-height': 'none',
-                                    'height': sH
-                                });
-                            });
                         });
                         $thisB.data('show', "no");
                     }
