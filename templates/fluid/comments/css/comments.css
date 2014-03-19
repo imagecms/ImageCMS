@@ -9,6 +9,7 @@
 .page-text .comments .frame-list-comments > .sub-1{max-height: none;}
 .comments .frame-comment p{margin-bottom: 9px;}
 .comments .frame-list-comments.sub-2{float: none;width: auto;}
+#comment .comments .frame-list-comments.sub-2{max-height: 200px;}
 .page-text .comments .frame-list-comments.sub-2{max-height: none!important;height: auto!important;}
 .page-text .btn-all-comments{display: none !important;}
 .comments .btn-all-comments{margin-left: 0;margin-top: 5px;}

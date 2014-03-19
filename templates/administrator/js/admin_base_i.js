@@ -1611,7 +1611,30 @@ $(document).ready(function() {
     /* --------------------- end of Backup -------------------------*/
 
 
-
+    /*
+     * Фільтр модулів
+     */
+    $('#modules_filter').keyup(function() {
+        var inputValue = $(this).val().toLowerCase();
+        if (inputValue == "") {
+            $('.module_row').show();
+            return;
+        }
+        $('.module_row').each(function() {
+            var moduleName = $(this).find('.module_name').text().toLowerCase();
+            var moduleDescription = $(this).find('.module_description').text().toLowerCase();
+            if (
+                    moduleName.indexOf(inputValue) != -1 ||
+                    inputValue.indexOf(moduleName) != -1 ||
+                    moduleDescription.indexOf(inputValue) != -1 ||
+                    inputValue.indexOf(moduleDescription) != -1
+                    ) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
+    });
 
 
 });

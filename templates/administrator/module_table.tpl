@@ -36,12 +36,13 @@
             <div class="btn-group myTab m-t_10" data-toggle="buttons-radio">
                 <a href="#modules" class="btn btn-small active" onclick="$('#allM').html('{lang('All modules','admin')}')">{lang('Modules','admin')}</a>
                 <a href="#set_modul" class="btn btn-small" onclick="$('#allM').html('{lang('Install modules','admin')}')">{lang('Install modules','admin')}</a>
+                <div class="span3 pull-right"><input type="text" id="modules_filter" style="width:270px;" /></div>
             </div>
             <div class="tab-content">
                 {if count($installed) != 0}
                     <div class="tab-pane active" id="modules">
                         <div class="row-fluid">
-                            <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                            <table class="modules_table table table-striped table-bordered table-hover table-condensed t-l_a">
                                 <thead>
                                     <tr>
                                         <th class="t-a_c span1">
@@ -64,7 +65,7 @@
                                         {if $module.name == 'shop'}
                                             {continue;}
                                         {/if}
-                                        <tr data-id="{$module.id}">
+                                        <tr data-id="{$module.id}" class="module_row">
                                             <td class="t-a_c">
                                                 <span class="frame_label">
                                                     {if $module.name != 'shop' && $module.name != 'cmsemail'}
@@ -74,7 +75,7 @@
                                                     {/if}
                                                 </span>
                                             </td>
-                                            <td>
+                                            <td class="module_name">
                                                 {if $module['admin_file'] == 1}
                                                     {if $module.name == 'shop'}
                                                         {$module.menu_name}
@@ -86,7 +87,7 @@
                                                 {/if}
                                                 <!--                                    <a href="#">{lang('Users','admin')}</a>-->
                                             </td>
-                                            <td>
+                                            <td class="module_description">
                                                 <p>{$module.description}</p>
                                             </td>
                                             <td class="urlholder">
@@ -139,11 +140,11 @@
                                 </thead>
                                 <tbody class="nim">
                                     {foreach $not_installed as $module}
-                                        <tr>
-                                            <td>
+                                        <tr class="module_row">
+                                            <td class="module_name">
                                                 <a href="#">{$module.menu_name}</a>
                                             </td>
-                                            <td>
+                                            <td class="module_description">
                                                 <p>{$module.description}</p>
                                             </td>
                                             <td class="fdel">
