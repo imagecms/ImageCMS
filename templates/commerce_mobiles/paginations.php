@@ -50,7 +50,7 @@ $categoryPagination['page_query_string'] = true;
 $categoryPagination['first_link'] = '1';
 $categoryPagination['num_links'] = 3;
 $categoryPagination['next_tag_open'] = '<li>';
-$categoryPaginationig['next_tag_close'] = '</li>';
+$categoryPagination['next_tag_close'] = '</li>';
 
 /**
  * Config for search page pagination 

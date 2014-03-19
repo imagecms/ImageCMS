@@ -1614,7 +1614,7 @@ $(document).ready(function() {
     /*
      * Фільтр модулів
      */
-    $('#modules_filter').keyup(function() {
+    $('#modules_filter').live('keyup', function() {
         var inputValue = $(this).val().toLowerCase();
         if (inputValue == "") {
             $('.module_row').show();

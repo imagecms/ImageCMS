@@ -165,6 +165,7 @@ span.top_frame_tov .title{color:#333;}
 .code_v{color: #84b913;font-size: 80%;}
 .divider{color: #111;font-size: 75%;}
 .pagination{margin: 0 16px;padding: 16px 0;}
+.clear-pag-item{font-size: 24px;}
 .pagination .last{display: none;}
 .pagination .helper{height: 82px;}
 .pagination li{display: inline-block;margin: 10px 0 0 12px;white-space: nowrap;}

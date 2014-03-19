@@ -34,7 +34,7 @@
             <tbody>
                 <tr>
                     <td colspan="6">
-                        <div class="inside_padd span9 discount-out">
+                        <div class="inside_padd discount-out">
                             <div class="form-horizontal">
                                 <div class="title-bonus-out">
                                     <div class="span4"></div>
@@ -47,10 +47,12 @@
                                 <label class="">
                                     <span class="span4">{lang('Discount code', 'mod_discount')}:</span>
                                     <span class="span8">
-                                        <input readonly id="discountKey" type="text" name="key" value="{echo $discount['key']}" autocomplete="off"/>
-                                        <button class="btn btn-small" type="button" id="generateDiscountKey">
+                                        <button class="btn pull-right btn-small" type="button" id="generateDiscountKey">
                                             <i class="icon-refresh"></i>
                                         </button>
+                                        <div class="o_h">
+                                            <input readonly id="discountKey" type="text" name="key" value="{echo $discount['key']}" autocomplete="off"/>
+                                        </div>
                                     </span>
                                 </label>
                                 <div class="noLimitC">
@@ -78,7 +80,7 @@
                 </tr>
                 <tr>
                     <td colspan="6">
-                        <div class="inside_padd span9 discount-out">
+                        <div class="inside_padd discount-out">
                             <div class="form-horizontal">
                                 <div class="title-bonus-out">
                                     <div class="span4"></div>
@@ -88,7 +90,7 @@
                                     <div class="span4">{lang('Choose method', 'mod_discount')}:</div>
                                     <div class="span8">
                                         <div class="d-i_b m-r_15">
-                                            <select name="type_value" id="selectTypeValue">
+                                            <select name="type_value" id="selectTypeValue" class="span4">
                                                 <option value="1" {if $discount['type_value'] == 1}selected {/if}>{lang('Percents', 'mod_discount')}</option>
                                                 <option value="2" {if $discount['type_value'] == 2}selected {/if}>{lang('Fixed', 'mod_discount')}</option>
                                             </select>
@@ -108,7 +110,7 @@
                 </tr>
                 <tr>
                     <td colspan="6">
-                        <div class="inside_padd span9 discount-out">
+                        <div class="inside_padd discount-out">
                             <div class="form-horizontal">
                                 <div class="title-bonus-out">
                                     <div class="span4"></div>
@@ -117,8 +119,8 @@
                                 <!-- Start. Choose type discount -->
                                 <div class="m-b_15">
                                     <div class="span4">{lang('Choose type', 'mod_discount')}:</div>
-                                    <div class="span8">
-                                        <select name="type_discount" id="selectDiscountType" class="required no_color">
+                                    <div class="span4">
+                                        <select name="type_discount" id="selectDiscountType" class="required no_color span4">
                                             <option value="all_order" {if $discount['type_discount'] == 'all_order'} selected {/if}>{lang('Order amount of more than', 'mod_discount')}</option>
                                             <option value="comulativ" {if $discount['type_discount'] == 'comulativ'} selected {/if}>{lang('Cumulative discount', 'mod_discount')}</option>
                                             <option value="user" {if $discount['type_discount'] == 'user'} selected {/if}>{lang('User', 'mod_discount')}</option>
@@ -133,7 +135,7 @@
 
                                 <div class="">
                                     <div class="span4"></div>
-                                    <div class="span8">
+                                    <div class="span6">
                                         <div class="">
                                             <!--Start. Show if discount type is all_orders -->
                                             <div id="all_orderBlock" class="forHide" {if $discount['type_discount'] != 'all_order'}style="display: none;"{/if}>
@@ -267,7 +269,7 @@
             <tr>
                 <td colspan="6">
                     <!-- Start. Data discount block -->
-                    <div class="inside_padd span9 discount-out">
+                    <div class="inside_padd discount-out">
                         <div class="title-bonus-out">
                             <div class="span4"></div>
                             <div class="span8 title-bonus">{lang('Allowed time for discounts', 'mod_discount')}</div>
