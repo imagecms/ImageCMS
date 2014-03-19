@@ -23,23 +23,26 @@
                                     <label for="name"><b>{lang('Your name', 'feedback')}</b></label>
                                     <input type="text" id="name" name="name" class="text" value="{if $_POST.name}{$_POST.name}{/if}"
                                            placeholder="{lang('Your name', 'feedback')}"/>
+                                    <span class="must">*</span>
                                 </div>
 
                                 <div class="textbox" style="margin-top: 15px;">
                                     <label for="email"><b>{lang('Email')}</b></label>
                                     <input type="text" id="email" name="email" class="text" value="{if $_POST.email}{$_POST.email}{/if}" placeholder="{lang('Email')}"/>
+                                    <span class="must">*</span>
                                 </div>
 
                                 <div class="textbox" style="margin-top: 15px;">
                                     <label for="theme"><b>{lang('Subject', 'feedback')}</b></label>
                                     <input type="text" id="theme" name="theme" class="text" value="{if $_POST.theme}{$_POST.theme}{/if}" placeholder="{lang('Subject', 'feedback')}"/>
+                                    <span class="must">*</span>
                                 </div>
 
                                 <div class="clearfix"></div>
                                 <div class="textbox" style="margin-top: 15px;">
                                     <label for="message"><b>{lang('Message', 'feedback')}</b></label>
                                     <textarea cols="45" rows="10" name="message" id="message" placeholder="{lang('Message text', 'feedback')}">{if $_POST.message}{$_POST.message}{/if}</textarea>
-
+                                    <span class="must_textarea">*</span>
                                 </div>
 
                                 <div class="comment_form_info">
@@ -48,6 +51,7 @@
                                             <label for="captcha"><b>{lang('Protection code', 'feedback')}</b></label>
                                             <div>{$cap_image}</div>
                                             <input type="text" name="captcha" style="width: 150px" id="recaptcha_response_field" value="" placeholder="{lang('Enter protection code', 'feedback')}"/>
+                                            <span class="must_no_float">*</span>
                                         </div>
                                     {/if}
                                 </div>
