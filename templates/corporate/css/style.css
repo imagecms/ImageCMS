@@ -531,3 +531,27 @@ li.clear-pag-item{margin: 0 14px 4px;}
 }
 .pagination li > span{border: 0;}
 /*/pagination*/
+
+
+/* Required fields icon for feedback*/
+#contact span.must{
+    float: right;
+    margin-top: -30px;
+    margin-right: -15px;
+    color: red;
+    font-size: 20px;
+}
+
+#contact span.must_no_float{
+    color: red;
+    font-size: 20px;
+    height: 40px;
+}
+
+#contact span.must_textarea{
+    float: right;
+    margin-top: -170px;
+    margin-right: -15px;
+    color: red;
+    font-size: 20px;
+}
