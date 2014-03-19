@@ -34,9 +34,8 @@
                 {$photo = $p->firstVariant->getMediumPhoto()}
                 <img 
                     {if !opi_widget}
-                        data-original="{echo $photo}"
-                        src="{$THEME}images/blank.gif"
-                        class="vImg lazy"
+                        src="{echo $photo}"
+                        class="vImg"
                     {else:}
                         src="{echo $photo}"
                     {/if}
