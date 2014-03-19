@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Час створення: Бер 18 2014 р., 18:34
+-- Час створення: Бер 19 2014 р., 12:25
 -- Версія сервера: 5.5.35-0ubuntu0.13.10.2
 -- Версія PHP: 5.5.9-1+sury.org~saucy+1
 
@@ -2956,7 +2956,7 @@ INSERT INTO `shop_products` (`id`, `url`, `active`, `hit`, `brand_id`, `category
 (1025, 'garnitura-samsung-ehs62asn-white', 1, NULL, 28, 933, '', '1025_main.jpg', '1025_small.jpg', 1364500800, 1364748482, 0.00, 22, 0, NULL, NULL, 1, NULL, '1025_mainMod.jpg', '1025_smallMod.jpg', '', NULL),
 (1096, 'mobilnyi-telefon-samsung-galaxy-grand-duos-i9082-elegant-white', 1, 1, 28, 931, '', '1096_main.jpg', '1096_small.jpg', 1364673600, 1368876800, 0.00, 31, NULL, NULL, NULL, 1, NULL, '1096_mainMod.jpg', '1096_smallMod.jpg', '', NULL),
 (1099, 'mobilnyi-telefon-sony-xperia-z-c6603-black', 1, NULL, 26, 931, '', '1099_main.jpg', '1099_small.jpg', 1364673600, 1368876582, 0.00, 19, 1, NULL, NULL, 1, NULL, '1099_mainMod.jpg', '1099_smallMod.jpg', '', NULL),
-(1104, 'mobilnyi-telefon-sony-xperia-v-lt25i-black', 1, 1, 26, 931, '13893,13897,13902,13904,6199,6201,6204,6193,6194,5775', '1104_main.jpg', '1104_small.jpg', 1364760000, 1395052529, 5400.00, 32, NULL, NULL, 7, 1, NULL, '1104_mainMod.jpg', '1104_smallMod.jpg', '', NULL),
+(1104, 'mobilnyi-telefon-sony-xperia-v-lt25i-black', 1, 1, 26, 931, '13893,13897,13902,13904,6199,6201,6204,6193,6194,5775', '1104_main.jpg', '1104_small.jpg', 1364760000, 1395052529, 5400.00, 33, NULL, NULL, 7, 1, NULL, '1104_mainMod.jpg', '1104_smallMod.jpg', '', NULL),
 (1105, 'mobilnyi-telefon-lg-nexus-4-e960-black', 1, 1, 35, 931, NULL, '1105_main.jpg', '1105_small.jpg', 1364760000, 1395055056, 6000.00, 0, NULL, NULL, 0, 1, NULL, '1105_mainMod.jpg', '1105_smallMod.jpg', '', NULL),
 (1107, 'akkumuliator-k-telefonu-nokia-bl-4c', 1, NULL, 42, 935, '', '1107_main.jpg', '1107_small.jpg', 1364760000, 1367087224, 0.00, 16, NULL, NULL, NULL, 1, NULL, '1107_mainMod.jpg', '1107_smallMod.jpg', '', NULL),
 (1108, 'nokia-lumia-920-white', 1, 0, 42, 931, '', '1108_main.jpg', '1108_small.jpg', 1364760000, 1368876641, 0.00, 36, 1, NULL, NULL, 1, NULL, '1108_mainMod.jpg', '1108_smallMod.jpg', '', NULL),
@@ -6988,8 +6988,6 @@ INSERT INTO `shop_product_variants` (`id`, `product_id`, `price`, `number`, `sto
 (1234, 1117, 29000.00000, '20032', 5, 0, '1117_main_origin.jpg', NULL, NULL, 1, 899.00000),
 (8365, 7983, 40.00000, '200530', 1, 0, '7983_main_origin.jpg', NULL, NULL, 2, 40.00000),
 (8364, 7982, 40.00000, '200529', 1, 0, '7982_main_origin.jpg', NULL, NULL, 2, 40.00000),
-(1383, 1247, 3612.90323, '100014', 5, 0, '1383_main_origin.jpg', NULL, NULL, 1, 112.00000),
-(1384, 1247, 3612.90323, '100014', 5, 0, '1384_main_origin.jpg', NULL, NULL, 1, 112.00000),
 (8361, 7979, 100.00000, '200526', 1, 0, '7979_main_origin.jpg', NULL, NULL, 2, 100.00000),
 (8359, 7977, 100.00000, '200524', 1, 0, '7977_main_origin.jpg', NULL, NULL, 2, 100.00000),
 (8357, 7975, 25.00000, '200522', 1, 0, '7975_main_origin.jpg', NULL, NULL, 2, 25.00000),
@@ -7261,8 +7259,6 @@ INSERT INTO `shop_product_variants_i18n` (`id`, `locale`, `name`) VALUES
 (1231, 'ru', ''),
 (1232, 'ru', ''),
 (1234, 'ru', ''),
-(1383, 'ru', 'Анальная цепочка SPECTRA GELS 0290-07 CD DJ'),
-(1384, 'ru', 'Анальная цепочка SPECTRA GELS 0290-07 CD DJ'),
 (4223, 'ru', 'Вставка для беременных в демисезонную слингокуртку (ВБДУ-010.00) ТМ Katinka'),
 (4228, 'ru', 'Вставка для беременных в зимнюю слингокуртку (ВБЗ-010.00) ТМ Katinka'),
 (4227, 'ru', 'Зимняя универсальная слингокуртка 5 в 1 с возможностью ношения за спиной. (ЗС-020.00) ТМ Katinka'),
