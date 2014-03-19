@@ -55,6 +55,7 @@ header form{margin-bottom: 0;}
 .frame_nav:after{height: 4px;width: 100%;position: absolute;top: 100%;left: 0;content: "";}
 .frame_nav [class^="icon-"], .frame_nav [class*=" icon-"]{background-image: url("../img/glyphicons-halflings-white.png");}
 .frame_title [class^="icon-"], .frame_title [class*=" icon-"], .navbar .nav > li [class^="icon-"], .navbar .nav > li [class*=" icon-"]{margin-right: 5px;}
+.frame_title select, .frame_title input{margin-bottom: 0;}
 .navbar .nav > li > a{padding: 11px 15px 10px!important;}
 .navbar-inverse .nav .active > a, .navbar-inverse .nav .active > a:hover, .navbar-inverse .nav .active > a:focus, .navbar-inverse .nav li.dropdown.active > .dropdown-toggle, .navbar-inverse .nav li.dropdown.open.active > .dropdown-toggle{background-color: #147197;}
 .navbar-inverse .nav li.dropdown.open > .dropdown-toggle{background-color: #44aedb !important;}
@@ -325,6 +326,7 @@ a:hover .icon-thumbs-up{background-position: -152px 0;}
 .m-r_5{margin-right: 5px;}
 .inside_padd{padding: 10px 20px 0;}
 .m-b_15{margin-bottom: 15px;}
+.m-b_0{margin-bottom: 0px !important;}
 .m-t_30{margin-top: 30px;}
 .m-t_20{margin-top: 20px;}
 .m-t_10{margin-top: 10px;}
