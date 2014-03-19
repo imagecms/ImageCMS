@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-12 12:40+0200\n"
-"PO-Revision-Date: 2014-03-12 12:40+0200\n"
+"POT-Creation-Date: 2014-03-19 02:04+0200\n"
+"PO-Revision-Date: 2014-03-19 02:04+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -18,13 +18,23 @@ msgstr ""
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 
+#: ./application/modules/wishlist/classes/ParentWishlist.php:279
+#: ./application/modules/wishlist/classes/ParentWishlist.php:412
+msgid "Wish Lists limit exhausted"
+msgstr "Лимит списков пожеланий исчерпан"
+
+#: ./application/modules/wishlist/classes/ParentWishlist.php:279
+#: ./application/modules/wishlist/classes/ParentWishlist.php:412
+msgid "List maximum"
+msgstr "Максимальное количество списков"
+
 #: ./application/modules/wishlist/assets/admin/main.tpl:83
 msgid "Maximum Wish List description length"
 msgstr "Максимальная длина описания списка пожеланий"
 
-#: ./application/modules/wishlist/classes/BaseApi.php:235
 #: ./application/modules/wishlist/classes/BaseWishlist.php:190
 #: ./application/modules/wishlist/classes/ParentWishlist.php:285
+#: ./application/modules/wishlist/classes/BaseApi.php:235
 msgid "List description max count"
 msgstr "Максимальная длина описания списка"
 
@@ -38,9 +48,9 @@ msgid "Wish List settings"
 msgstr "Настройки списка пожеланий"
 
 #: ./application/modules/wishlist/assets/admin/users.tpl:32
-#: ./application/modules/wishlist/assets/admin/wishlist.tpl:17
 #: ./application/modules/wishlist/assets/admin/wishlistEdit.tpl:17
 #: ./application/modules/wishlist/assets/admin/wishPopup.tpl:17
+#: ./application/modules/wishlist/assets/admin/wishlist.tpl:17
 msgid "Settings"
 msgstr "Настройки"
 
@@ -58,7 +68,7 @@ msgstr "Лимит списков пожеланий исчерпан"
 msgid "List description limit exhausted"
 msgstr "Лимит описания списка исчерпан"
 
-#: ./application/modules/wishlist/classes/ParentWishlist.php:386
+#: ./application/modules/wishlist/classes/ParentWishlist.php:392
 msgid "Limit of list items exhausted"
 msgstr "Лимит товаров списка исчерпан"
 
@@ -160,7 +170,6 @@ msgstr "Максимальная длина имени списка"
 msgid "Maximum lists counts"
 msgstr "Максимальное количество списков"
 
-#: ./application/modules/wishlist/assets/admin/users.tpl:21
 #: ./application/modules/wishlist/module_info.php:6
 #: ./application/modules/wishlist/assets/admin/users.tpl:21
 msgid "Wish Lists"
@@ -209,29 +218,29 @@ msgstr "Имя Списка Желания будет изменено"
 msgid "List name length maximum"
 msgstr "Максимальная длина названия списка"
 
-#: ./application/modules/wishlist/classes/ParentWishlist.php:295
+#: ./application/modules/wishlist/classes/ParentWishlist.php:301
 msgid "Wish List name can not be empty!"
 msgstr "Имя Списка Желаний не может быть пустым!"
 
-#: ./application/modules/wishlist/classes/ParentWishlist.php:324
-#: ./application/modules/wishlist/classes/ParentWishlist.php:353
+#: ./application/modules/wishlist/classes/ParentWishlist.php:330
+#: ./application/modules/wishlist/classes/ParentWishlist.php:359
 msgid "You can not delete Wish List"
 msgstr "Вы не можете удалить Список Желаний"
 
-#: ./application/modules/wishlist/classes/ParentWishlist.php:349
-#: ./application/modules/wishlist/classes/ParentWishlist.php:459
+#: ./application/modules/wishlist/classes/ParentWishlist.php:355
+#: ./application/modules/wishlist/classes/ParentWishlist.php:465
 msgid "Can not remove items from wishlist"
 msgstr "Невозможно удалить товары из желаний"
 
-#: ./application/modules/wishlist/classes/ParentWishlist.php:397
+#: ./application/modules/wishlist/classes/ParentWishlist.php:403
 msgid "Wishlist name will be changed"
 msgstr "Имя Списка Желаний будет изменено"
 
-#: ./application/modules/wishlist/classes/ParentWishlist.php:397
+#: ./application/modules/wishlist/classes/ParentWishlist.php:403
 msgid "Maximum length of wishlist name"
 msgstr "Максимальная длина названия Списка Желаний"
 
-#: ./application/modules/wishlist/classes/ParentWishlist.php:416
+#: ./application/modules/wishlist/classes/ParentWishlist.php:422
 msgid "Added to wishlist"
 msgstr "Добавлено в Список Желаний"
 
@@ -249,15 +258,15 @@ msgstr "приватный"
 msgid "shared"
 msgstr "коллективный"
 
-#: ./application/modules/wishlist/classes/ParentWishlist.php:561
+#: ./application/modules/wishlist/classes/ParentWishlist.php:567
 msgid "max size"
 msgstr "максимальный размер"
 
-#: ./application/modules/wishlist/classes/ParentWishlist.php:563
+#: ./application/modules/wishlist/classes/ParentWishlist.php:569
 msgid "max width"
 msgstr "максимальная ширина"
 
-#: ./application/modules/wishlist/classes/ParentWishlist.php:565
+#: ./application/modules/wishlist/classes/ParentWishlist.php:571
 msgid "max height"
 msgstr "максимальная высота"
 
@@ -440,7 +449,7 @@ msgstr "Нет пользователей"
 
 #: ./application/modules/wishlist/classes/ParentWishlist.php:136
 #: ./application/modules/wishlist/classes/ParentWishlist.php:209
-#: ./application/modules/wishlist/classes/ParentWishlist.php:602
+#: ./application/modules/wishlist/classes/ParentWishlist.php:608
 msgid "Invalid request"
 msgstr "Неправильный запрос"
 
@@ -461,45 +470,45 @@ msgid "Not updated"
 msgstr "Не обновлен"
 
 #: ./application/modules/wishlist/classes/BaseWishlist.php:141
-#: ./application/modules/wishlist/classes/ParentWishlist.php:301
+#: ./application/modules/wishlist/classes/ParentWishlist.php:307
 #: ./application/modules/wishlist/classes/BaseApi.php:204
 msgid "Created"
 msgstr "Создано"
 
-#: ./application/modules/wishlist/classes/ParentWishlist.php:329
-#: ./application/modules/wishlist/classes/ParentWishlist.php:358
+#: ./application/modules/wishlist/classes/ParentWishlist.php:335
+#: ./application/modules/wishlist/classes/ParentWishlist.php:364
 msgid "Successfully deleted"
 msgstr "Успешно удалено"
 
-#: ./application/modules/wishlist/classes/ParentWishlist.php:391
+#: ./application/modules/wishlist/classes/ParentWishlist.php:397
 msgid "User is not logged in"
 msgstr "Пользователь не вошли в систему"
 
-#: ./application/modules/wishlist/classes/ParentWishlist.php:411
+#: ./application/modules/wishlist/classes/ParentWishlist.php:417
 msgid "You can not add"
 msgstr "Вы не можете добавить"
 
-#: ./application/modules/wishlist/classes/ParentWishlist.php:461
+#: ./application/modules/wishlist/classes/ParentWishlist.php:467
 msgid "Item deleted"
 msgstr "Товар удален"
 
-#: ./application/modules/wishlist/classes/ParentWishlist.php:501
+#: ./application/modules/wishlist/classes/ParentWishlist.php:507
 msgid "User data is not found"
 msgstr "Данные пользователя не найдены"
 
-#: ./application/modules/wishlist/classes/ParentWishlist.php:561
+#: ./application/modules/wishlist/classes/ParentWishlist.php:567
 msgid "Maximum image size is exceeded"
 msgstr "Превышен максимальный размер изображения"
 
-#: ./application/modules/wishlist/classes/ParentWishlist.php:563
+#: ./application/modules/wishlist/classes/ParentWishlist.php:569
 msgid "Maximum width of the image is exceeded"
 msgstr "Превышена максимальная ширина изображения"
 
-#: ./application/modules/wishlist/classes/ParentWishlist.php:565
+#: ./application/modules/wishlist/classes/ParentWishlist.php:571
 msgid "Max image height exceeded"
 msgstr "Превышена максимальная высота изображения"
 
-#: ./application/modules/wishlist/classes/ParentWishlist.php:567
+#: ./application/modules/wishlist/classes/ParentWishlist.php:573
 msgid "Invalid file format"
 msgstr "Неверный формат файла"
 

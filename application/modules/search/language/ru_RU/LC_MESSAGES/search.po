@@ -1,9 +1,9 @@
-msgid ""
+﻿msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-26 01:50+0200\n"
-"PO-Revision-Date: 2013-12-26 01:50+0200\n"
+"POT-Creation-Date: 2014-03-19 02:06+0200\n"
+"PO-Revision-Date: 2014-03-19 02:06+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -18,28 +18,16 @@ msgstr ""
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: ./application/modules/search/search.php:108
-msgid "Forward"
-msgstr "Вперед"
-
-#: ./application/modules/search/search.php:109
-msgid "Beginning"
-msgstr "В начало"
-
-#: ./application/modules/search/search.php:113
-msgid "Back"
-msgstr "Назад"
-
-#: ./application/modules/search/search.php:135
 #: ./application/modules/search/module_info.php:4
+#: ./application/modules/search/search.php:129
 msgid "Search"
 msgstr "Поиск"
 
-#: ./application/modules/search/search.php:193
+#: ./application/modules/search/search.php:187
 msgid "Positions saved"
 msgstr "Позиции сохранены"
 
-#: ./application/modules/search/search.php:229
+#: ./application/modules/search/search.php:223
 msgid "Error. Select or specify the table for search"
 msgstr "Ошибка. Выберите или укажите таблицу для поиска"
 
