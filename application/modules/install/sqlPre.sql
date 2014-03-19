@@ -9148,6 +9148,7 @@ INSERT INTO `shop_rbac_roles_privileges` (`id`, `role_id`, `privilege_id`) VALUE
 (480, 1, 480),
 (482, 1, 482),
 (483, 1, 483),
+(485, 1, 485),
 (612, 1, 424),
 (613, 1, 425);
 
