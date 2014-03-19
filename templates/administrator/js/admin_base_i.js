@@ -617,7 +617,7 @@ $(document).ready(function() {
         $('.modal_move_to_cat').modal();
     }
 
-    $(".save_positions").on("sortstop", function(event, ui) {
+    $(".save_positions").live("sortstop", function(event, ui) {
         var categoryId = $(ui.item[0]).find('input[name="ids"]:first-child').val();
         var url = $(this).attr('data-url');
         save_positions(url, categoryId);

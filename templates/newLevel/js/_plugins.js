@@ -1880,7 +1880,6 @@ function getCookie(c_name)
                         if ($thisB) {
                             var $thisEOff = set.effectOff,
                                     durOff = set.durationOff;
-
                             function _hide() {
                                 $thisB.parent().removeClass(aC);
                                 var $thisHref = $thisB.data('href');
@@ -1888,12 +1887,12 @@ function getCookie(c_name)
                                 if ($thisHref) {
                                     clearTimeout($.drop.drp.curHashTimeout);
                                     $.drop.drp.curHash = hashChange ? $thisHref : null;
-
-                                    var wLH = location.hash;
-                                    location.hash = wLH.replace($thisHref, '');
+                                    $.drop.drp.scrollTop = wnd.scrollTop();
+                                    location.hash = location.hash.replace($thisHref, '');
 
                                     $.drop.drp.curHashTimeout = setTimeout(function() {
                                         $.drop.drp.curHash = null;
+                                        $.drop.drp.scrollTop = null;
                                     }, 400);
                                 }
 
@@ -2063,8 +2062,7 @@ function getCookie(c_name)
                     if (!$.exists(sel)) {
                         _for_center(set.drop);
                     }
-                    var forCenter = $(sel).empty();
-                    drop = $(drop).appendTo(forCenter);
+                    drop = $(drop).appendTo($(sel).empty());
                 }
             }
             var defaultClassBtnDrop = methods._checkProp(set, null, 'defaultClassBtnDrop');
@@ -2193,18 +2191,17 @@ function getCookie(c_name)
             if (condOverlay) {
                 drop.data('drp').dropOver.stop().fadeIn(opt.durationOn / 2);
 
-                if (opt.closeClick)
-                    drop.data('drp').dropOver.add(forCenter).off('click.' + $.drop.nS).on('click.' + $.drop.nS, function(e) {
-                        e.stopPropagation();
-                        if ($(e.target).is(drop.data('drp').dropOver) || $(e.target).is('.forCenter')) {
-                            methods.close($($(e.target).attr('data-rel')));
-                        }
-                    });
                 if (isTouch)
                     drop.data('drp').dropOver.on('touchmove.' + $.drop.nS, function(e) {
                         e.preventDefault();
                     });
             }
+            if (opt.closeClick)
+                $(forCenter).add(drop.data('drp').dropOver).off('click.' + $.drop.nS).on('click.' + $.drop.nS, function(e) {
+                    e.stopPropagation();
+                    if ($(e.target).is(drop.data('drp').dropOver) || $(e.target).is('.forCenter'))
+                        methods.close($($(e.target).attr('data-rel')));
+                });
             drop.addClass(opt.place);
             methods._positionType(drop);
             methods._checkMethod(function() {
@@ -2214,11 +2211,10 @@ function getCookie(c_name)
                 methods.heightContent(drop);
             });
 
-            if (forCenter) {
+            if (forCenter)
                 forCenter.css('top', function() {
                     return opt.scroll ? wnd.scrollTop() : 0;
                 }).fadeIn(opt.durationOn);
-            }
 
             methods.placeBeforeShow(drop, $this, methods, opt.place, opt.placeBeforeShow);
 
@@ -2226,6 +2222,7 @@ function getCookie(c_name)
             if (href) {
                 clearTimeout($.drop.drp.curHashTimeout);
                 $.drop.drp.curHash = !hashChange ? href : null;
+                $.drop.drp.scrollTop = wnd.scrollTop();
 
                 var wlh = window.location.hash;
                 if (href.indexOf('#') !== -1 && (new RegExp(href + '#|' + href + '$').exec(wlh) === null))
@@ -2233,6 +2230,7 @@ function getCookie(c_name)
 
                 $.drop.drp.curHashTimeout = setTimeout(function() {
                     $.drop.drp.curHash = null;
+                    $.drop.drp.scrollTop = null;
                 }, 400);
             }
             if (opt.place !== 'inherit')
@@ -2274,9 +2272,8 @@ function getCookie(c_name)
                         methods.close(drop);
                     }, opt.timeclosemodal);
                 var cB = opt.elAfter;
-                if (cB) {
+                if (cB)
                     eval(cB)($this, drop, data);
-                }
                 if (opt.after)
                     opt.after($this, drop, data);
                 if (opt.afterG)
@@ -2292,25 +2289,23 @@ function getCookie(c_name)
                         methods.droppable(drop);
                     });
 
-                if (drp.forCenter) {
+                if (drp.forCenter)
                     drp.forCenter.off('scroll.emulateScroll' + $.drop.nS + ev).on('scroll.emulateScroll' + $.drop.nS + ev, function(e) {
                         $('.scrollEmulation').scrollTop($(this).scrollTop());
                     });
-                }
+
                 wnd.off('scroll.' + $.drop.nS + ev).on('scroll.' + $.drop.nS + ev, function(e) {
-                    if (opt.place === 'center' && opt.scrollCenter) {
+                    if (opt.place === 'center' && opt.scrollCenter)
                         wnd.on('scroll.' + $.drop.nS, function(e) {
                             methods.center(drop);
                         });
-                    }
                 });
             });
             $('html').css('height', '100%');
             body.css('height', '100%').off('click.' + $.drop.nS + ev).on('click.' + $.drop.nS + ev, function(e) {
                 if (opt.closeClick)
-                    if (!$.existsN($(e.target).closest('[data-elrun]'))) {
+                    if (!$.existsN($(e.target).closest('[data-elrun]')))
                         methods.close(false);
-                    }
                     else
                         return true;
             });
@@ -2318,9 +2313,8 @@ function getCookie(c_name)
             if (opt.closeEsc)
                 body.on('keydown.' + $.drop.nS + ev, function(e) {
                     var key = e.keyCode;
-                    if (key === 27) {
+                    if (key === 27)
                         methods.close(false);
-                    }
                 });
             if (rel && opt.keyNavigate && methods.galleries)
                 body.off('keydown.navigate' + $.drop.nS + ev).on('keydown.navigate' + $.drop.nS + ev, function(e) {
@@ -2341,11 +2335,10 @@ function getCookie(c_name)
         },
         _positionType: function(drop) {
             var data = drop.data('drp');
-            if (data.place !== 'inherit') {
+            if (data.place !== 'inherit')
                 drop.css({
                     'position': data.position
                 });
-            }
         },
         _filterSource: function(btn, s) {
             var source = s.split(').'),
@@ -2453,7 +2446,6 @@ function getCookie(c_name)
             durationOn: 200,
             durationOff: 100,
             timeclosemodal: 2000,
-            scrollCenter: false,
             modal: false,
             confirm: false,
             prompt: false,
@@ -2465,6 +2457,7 @@ function getCookie(c_name)
             droppable: false,
             cycle: false,
             scroll: false,
+            scrollCenter: false,
             limitSize: false,
             limitContentSize: false,
             scrollContent: false,
@@ -2479,7 +2472,8 @@ function getCookie(c_name)
             scrollemulatetimeout: null,
             curHash: null,
             curDrop: null,
-            curHashTimeout: null
+            curHashTimeout: null,
+            scrollTop: null
         };
         this.setParameters = function(options) {
             $.extend($.drop.dP, options);
@@ -2521,6 +2515,8 @@ function getCookie(c_name)
     var wLH = window.location.hash;
     wnd.off('hashchange.' + $.drop.nS).on('hashchange.' + $.drop.nS, function(e) {
         e.preventDefault();
+        if ($.drop.drp.scrollTop)
+            $('html, body').scrollTop($.drop.drp.scrollTop);
         var wLHN = window.location.hash;
         if (!$.drop.drp.curHash) {
             for (var i in $.drop.drp.hrefs) {
