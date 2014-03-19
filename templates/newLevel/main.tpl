@@ -113,7 +113,7 @@
         <script type="text/javascript" src="{$THEME}js/_functions.js"></script>
         <script type="text/javascript" src="{$THEME}js/_scripts.js"></script>
         <!-- scripts end -->
-
+        
         {literal}
             <script type="text/javascript">
                 $(window).load(function() {
