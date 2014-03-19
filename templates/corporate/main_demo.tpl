@@ -110,12 +110,6 @@
                         <a href="http://www.imagecms.net/blog" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demo-front', '/blog']);">Блог</a>
                     </li>
                 </ul>
-                <div class="imagecms-contacts">
-                    <span class="imagecms-phone">
-                        <img src="{$THEME}/icon_phone.png" class="imagecms-ico-phone"/>
-                        <span class="imagecms-text-el">+7 (499) 703-37-51</span>
-                    </span>
-                </div>
             </div>
         </div>
         <!-- End. corporate-->
