@@ -49,7 +49,6 @@
                                 </div>
                             </div>
                             <div class="frame-comment-sub1">
-
                                 <div class="frame-comment">
                                     <p>{$comment.text}</p>
                                     {if $comment.text_plus != Null}

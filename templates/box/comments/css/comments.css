@@ -7,7 +7,8 @@
 .comments .frame-list-comments > .sub-1{margin: 0;}
 .page-text .comments .frame-list-comments > .sub-1{max-height: none;}
 .comments .frame-comment p{margin-bottom: 9px;}
-.comments .frame-list-comments.sub-2{float: none;width: auto;max-height: 201px;overflow: hidden;padding-left: 42px;}
+.comments .frame-list-comments.sub-2{float: none;width: auto;overflow: hidden;padding-left: 42px;}
+#comment .comments .frame-list-comments.sub-2{max-height: 201px;}
 .page-text .comments .frame-list-comments.sub-2{max-height: none!important;height: auto!important;}
 .page-text .btn-all-comments{display: none !important;}
 .comments .btn-all-comments{margin-left: 0;}
