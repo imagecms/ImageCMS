@@ -33,7 +33,7 @@ var currencySymbolJS = '{echo $CS}';
             <tbody>
                 <tr>
                     <td colspan="6">
-                        <div class="inside_padd span9 discount-out">
+                        <div class="inside_padd discount-out">
                             <div class="form-horizontal">
                                 <div class="title-bonus-out">
                                     <div class="span4"></div>
@@ -74,7 +74,7 @@ var currencySymbolJS = '{echo $CS}';
             </tr>
             <tr>
                 <td colspan="6">
-                    <div class="inside_padd span9 discount-out">
+                    <div class="inside_padd discount-out">
                         <div class="form-horizontal">
                          <div class="title-bonus-out">
                             <div class="span4"></div>
@@ -103,7 +103,7 @@ var currencySymbolJS = '{echo $CS}';
       </tr>
       <tr>
         <td colspan="6">
-           <div class="inside_padd span9 discount-out">
+           <div class="inside_padd discount-out">
             <div class="form-horizontal">
                <div class="title-bonus-out">
                 <div class="span4"></div>
@@ -258,7 +258,7 @@ var currencySymbolJS = '{echo $CS}';
 <tr>
     <td colspan="6">
         <!-- Start. Data discount block -->
-        <div class="inside_padd span9 discount-out">
+        <div class="inside_padd discount-out">
          <div class="title-bonus-out">
             <div class="span4"></div>
             <div class="span8 title-bonus">{lang('Allowed time for discounts', 'mod_discount')}</div>
