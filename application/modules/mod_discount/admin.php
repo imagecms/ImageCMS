@@ -197,7 +197,7 @@ class Admin extends \ShopAdminController {
         // checking if discount exists
         $res = CI::$APP->db->get_where('mod_shop_discounts', array('id' => $id))->row_array();
         if (is_null($res)) {
-            $msg = showMessage(lang('Discount don\'t exists', 'mod_discount'), lang('Error'), 'error', TRUE);
+            $msg = showMessage(lang("Discount don't exists", 'mod_discount'), lang('Error'), 'error', TRUE);
             echo json_encode(array('status' => 0, 'msg' => $msg));
             return;
         }
