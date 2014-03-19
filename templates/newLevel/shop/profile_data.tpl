@@ -45,6 +45,10 @@
     </div>
     {$discount = (array)\mod_discount\classes\BaseDiscount::create()}
 
+{$discount['comulativ'] = $discount->discountType['comulativ']}
+{$discount['user'] = $discount->discountType['user'][0]}
+{$discount['group_user'] = $discount->discountType['group_user'][0]}
+
     {if $discount['user'] or $discount['group_user'] or $discount['comulativ']}
         <div class="layout-highlight info-discount">
             <div class="title-default">
