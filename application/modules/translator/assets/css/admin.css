@@ -18,8 +18,8 @@ div.notifications{
 .searched{
     color: white;
     background: linear-gradient(to bottom, 
-        rgba(162, 173, 179, 1) 0%, 
-        rgba(74, 89, 94, 1) 100%);
+        rgba(55,146,185,1) 0%,
+        rgba(8,127,173,1) 100%); 
 }
 .removePath{
     position: relative;
