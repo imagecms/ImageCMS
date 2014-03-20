@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-20 11:30+0200\n"
-"PO-Revision-Date: 2014-03-20 11:30+0200\n"
+"POT-Creation-Date: 2014-03-20 01:53+0200\n"
+"PO-Revision-Date: 2014-03-20 01:53+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -20,6 +20,10 @@ msgstr ""
 "X-Poedit-SearchPath-1: ../../../templates/administrator\n"
 "X-Poedit-SearchPath-2: ../../modules/shop/admin\n"
 "X-Poedit-SearchPath-3: ../../../application/modules/shop/models/build/classes\n"
+
+#: ./application/modules/admin/pages.php:804
+msgid "Successful copying"
+msgstr "Страница скопирована успешно"
 
 #: ./templates/administrator/pages_list.tpl:22
 msgid "Copy page"
@@ -249,7 +253,7 @@ msgstr "Meta Keywords"
 msgid "Meta Title"
 msgstr "Meta Title"
 
-#: ./application/modules/admin/categories.php:443
+#: ./application/modules/admin/categories.php:444
 msgid "Meta title"
 msgstr "Meta title"
 
@@ -2028,6 +2032,7 @@ msgstr "Изменения сохранены"
 
 #: ./application/modules/admin/components.php:467
 #: ./application/modules/admin/sys_update.php:103
+#: ./application/modules/admin/categories.php:273
 msgid "Changes saved"
 msgstr "Изменения сохранены"
 
@@ -2064,7 +2069,7 @@ msgstr "Изменить статус"
 #: ./application/modules/admin/languages.php:74
 #: ./application/modules/admin/languages.php:255
 #: ./application/modules/admin/categories.php:144
-#: ./application/modules/admin/categories.php:439
+#: ./application/modules/admin/categories.php:440
 msgid "Image"
 msgstr "Изображение"
 
@@ -2294,7 +2299,7 @@ msgstr "Каталог товаров"
 msgid "Categories"
 msgstr "Категории"
 
-#: ./application/modules/admin/categories.php:466
+#: ./application/modules/admin/categories.php:467
 msgid "Translated the category"
 msgstr "Категории переведена"
 
@@ -2302,11 +2307,11 @@ msgstr "Категории переведена"
 msgid "Product categories"
 msgstr "Категории товаров"
 
-#: ./application/modules/admin/categories.php:388
+#: ./application/modules/admin/categories.php:389
 msgid "Category"
 msgstr "Категория"
 
-#: ./application/modules/admin/categories.php:369
+#: ./application/modules/admin/categories.php:370
 msgid "Category has been created or created a category"
 msgstr "Категория была создана"
 
@@ -2327,7 +2332,7 @@ msgstr "Категория создана"
 msgid "Category created"
 msgstr "Категория создана"
 
-#: ./application/modules/admin/categories.php:618
+#: ./application/modules/admin/categories.php:619
 msgid "Category deleted"
 msgstr "Категория удалена"
 
@@ -2410,7 +2415,7 @@ msgstr "Ключевые слова"
 #: ./application/modules/admin/pages.php:493
 #: ./application/modules/admin/settings.php:98
 #: ./application/modules/admin/categories.php:148
-#: ./application/modules/admin/categories.php:441
+#: ./application/modules/admin/categories.php:442
 msgid "Keywords"
 msgstr "Ключевые слова"
 
@@ -2585,7 +2590,7 @@ msgid "Short site name"
 msgstr "Краткое название сайта"
 
 #: ./application/modules/admin/categories.php:149
-#: ./application/modules/admin/categories.php:442
+#: ./application/modules/admin/categories.php:443
 msgid "Short description"
 msgstr "Краткое описание"
 
@@ -2830,8 +2835,8 @@ msgstr "Назад"
 #: ./application/modules/admin/languages.php:253
 #: ./application/modules/admin/categories.php:142
 #: ./application/modules/admin/categories.php:150
-#: ./application/modules/admin/categories.php:316
-#: ./application/modules/admin/categories.php:438
+#: ./application/modules/admin/categories.php:317
+#: ./application/modules/admin/categories.php:439
 msgid "Title"
 msgstr "Название"
 
@@ -3193,7 +3198,7 @@ msgid "Wrong file type. Only csv|xls|xlsx"
 msgstr "Неправильный тип файла. Только csv|xls|xlsx"
 
 #: ./application/modules/admin/settings.php:56
-#: ./application/modules/admin/categories.php:389
+#: ./application/modules/admin/categories.php:390
 msgid "No"
 msgstr "Нет"
 
@@ -3530,7 +3535,7 @@ msgstr "Операция прошла успешно"
 #: ./application/modules/admin/widgets_manager.php:310
 #: ./application/modules/admin/widgets_manager.php:341
 #: ./application/modules/admin/categories.php:147
-#: ./application/modules/admin/categories.php:440
+#: ./application/modules/admin/categories.php:441
 msgid "Description "
 msgstr "Описание"
 
@@ -3789,7 +3794,7 @@ msgid "Error "
 msgstr "Ошибка"
 
 #: ./application/modules/admin/sys_update.php:105
-#: ./application/modules/admin/categories.php:547
+#: ./application/modules/admin/categories.php:548
 msgid "Error"
 msgstr "Ошибка"
 
@@ -3870,7 +3875,7 @@ msgstr "Ошибки в операции"
 msgid "Script error. Notify administrator."
 msgstr "Ошибки сценария. Сообщите администратору."
 
-#: ./application/modules/admin/categories.php:547
+#: ./application/modules/admin/categories.php:548
 msgid "Category deletion error"
 msgstr "Ошибки удаления категории"
 
@@ -3921,11 +3926,11 @@ msgstr "Перевод ID бренда:"
 msgid "Category translation"
 msgstr "Перевод категории"
 
-#: ./application/modules/admin/categories.php:475
+#: ./application/modules/admin/categories.php:476
 msgid "Changed the category translation"
 msgstr "Перевод категории изменен"
 
-#: ./application/modules/admin/categories.php:488
+#: ./application/modules/admin/categories.php:489
 msgid "Category translation updated"
 msgstr "Перевод категории обновлен"
 
@@ -4874,7 +4879,7 @@ msgid "Sharp"
 msgstr "Решотка"
 
 #: ./application/modules/admin/categories.php:146
-#: ./application/modules/admin/categories.php:317
+#: ./application/modules/admin/categories.php:318
 msgid "Parent"
 msgstr "Родитель"
 
@@ -6543,8 +6548,8 @@ msgstr "Удаление статуса заказа"
 msgid "Deleted a module"
 msgstr "Удаленный модуль"
 
-#: ./application/modules/admin/categories.php:558
-#: ./application/modules/admin/categories.php:590
+#: ./application/modules/admin/categories.php:559
+#: ./application/modules/admin/categories.php:591
 msgid "Deleted ID category or ID category has been deleted"
 msgstr "Удалено категорию с ID"
 
@@ -7013,7 +7018,7 @@ msgstr "Формат письма"
 msgid "File format"
 msgstr "Формат файла"
 
-#: ./templates/administrator/js/scripts.js:1170
+#: ./templates/administrator/js/scripts.js:1174
 msgid "Not supported file format"
 msgstr "Формат файла не поддерживается"
 
