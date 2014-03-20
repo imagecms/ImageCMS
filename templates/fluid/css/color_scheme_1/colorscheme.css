@@ -442,13 +442,12 @@ hr{border-top: 1px solid #fff;border-bottom: 1px solid #e4e4e4;}
 .btn-bask .text-el{color: #9aa1ab;}
 .btn-bask .text-el.title{color: #000;display: block;margin-bottom: 3px;margin-top: 2px;}
 .btn-bask{width: 100%;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;}
-.btn-bask > button, .btn-bask > a{width: 100%;height: 43px;text-align: left;}
+.btn-bask > button, .btn-bask > a{width: 100%;text-align: left;}
 .btn-bask.pointer .text-el{color: #9aa1ab;}
 .btn-bask.pointer .title{color: #000;}
 .btn-bask .divider{font-size: 10px;margin: 0 6px;}
 .btn-bask .curr{text-transform: lowercase;}
-.btn-bask .frame-icon{width: 58px;height: 100%;}
-.btn-bask .text-cleaner{margin-left: 58px;display: block;padding: 0 5px;height: 100%;}
+.btn-bask .frame-icon{width: 38px;}
 
 .btn-bask .divider.text-el{color: #999;}
 
