@@ -149,10 +149,9 @@ table thead td a:hover, table thead th a:hover{color: #aaa;}
 .b_n.niceCheck, .b_n.niceRadio{background: none !important;}
 .b_n.niceCheck input, .b_n.niceRadio input{display: block !important;}
 .main_body input[type="text"], .main_body input[type="password"], .main_body textarea, .main_body select, .main_body input[type="file"]{-webkit-box-sizing: border-box;-moz-box-sizing: border-box;-ms-box-sizing: border-box;box-sizing: border-box;}
-td input[type="text"], th input[type="text"], td select, th select, textarea{width: 100%;}
-#mainContent input[type="text"], #mainContent select{min-width: 50%;}
+.o_h select, .o_h input, .head_body input[type="text"], .head_body select, .head_body select, textarea{width: 100%;}
 input[type="checkbox"], input[type="radio"]{width: auto !important;vertical-align: baseline;margin-right: 5px;}
-select, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input{height: 28px !important;}
+select, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input{height: 28px !important;max-width: 100%;}
 table select, table input[type="text"], table input[type="password"], table input[type="datetime"], table input[type="datetime-local"], table input[type="date"], table input[type="month"], table input[type="time"], table input[type="week"], table input[type="number"], table input[type="email"], table input[type="url"], table input[type="search"], table input[type="tel"], table input[type="color"], table .uneditable-input, #category input{height: 27px !important;margin-bottom: 0;}
 label, input, button, select, textarea{font-size: 12px !important;}
 textarea{line-height: 1.5!important;}

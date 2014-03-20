@@ -310,6 +310,7 @@ var Comments = {
                     form.find('.error_text').remove();
                     form.prepend('<div class="error_text">' + message.error(obj.validation_errors) + '</div>');
                     drawIcons(form.find('.error_text').find(selIcons));
+                    $(el).closest('.patch-product-view').removeAttr('style').css('max-height', 'none');
                 }
             }
         });
