@@ -35,13 +35,12 @@ class Dashboard extends BaseAdminController {
 
         // get comments
         if ($this->db->get_where('components', array('name' => 'comments'))->row()) {
-            $first = memory_get_usage();
             $comments = $this->db->where('status', '0')
                     ->or_where('status', '1')
                     ->order_by('date', 'DESC')
                     ->get('comments')
                     ->result_array();
-            $total_comments = count($comments) + 1;
+            $total_comments = count($comments);
             $comments = array_slice($comments, 0, 5);
 //            $total_comments = $this->db->query('SELECT FOUND_ROWS() as bla')->row();
         } else {
