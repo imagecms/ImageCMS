@@ -44,8 +44,10 @@
             </form>
         </div>
     </div>
-    {$discount = $CI->load->module('mod_discount/discount_api')->get_user_discount_api()}
-    {if $CI->load->module('mod_discount/discount_api')->discountsExists() || $discount['comulativ']}
+            
+    {$dApi = $CI->load->module('mod_discount/discount_api')}
+    {if $dApi->discountsExists()}
+        {$discount = $dApi->get_user_discount_api()}
         <div class="layout-highlight info-discount">
             <div class="title">{lang('Ваша скидка','newLevel')}</div>
             <div class="content">
@@ -60,7 +62,7 @@
                                 </span>
                             </span>
                         </div>
-                        {if $discount['user']}
+                        {if $dApi->userDiscountExists()}
                             <div>
                                 {lang('Ваша текущая скидка','newLevel')}:
                                 <span class="price-item">
@@ -68,7 +70,7 @@
                                 </span>
                             </div>
                         {/if}
-                        {if $discount['group_user']}
+                        {if $dApi->groupDiscountExists()}
                             <div>
                                 {lang('Ваша текущая скидка группы пользователей','newLevel')}:
                                 <span class="price-item">
