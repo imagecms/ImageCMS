@@ -57,6 +57,6 @@ $categoryPagination['next_tag_close'] = '</li>';
  */
 $searchPagination['page_query_string'] = true;
 $searchPagination['first_link'] = 1;
-$searchPagination['num_links'] = 6;
+$searchPagination['num_links'] = 3;
 $searchPagination['next_tag_open'] = '<li>';
 $searchPagination['next_tag_close'] = '</li>';
