@@ -2,13 +2,13 @@
 <div class="modal hide fade" id="pages_action_dialog">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h3 id="mvMv">{lang("Copy/Move pages")}</h3>
+        <h3 id="mvMv">{lang("Move page", 'admin')}</h3>
     </div>
     <div class="modal-body">
-        {lang("Categories","admin")}:
+        {lang("Category","admin")}:
         <select id="CopyMoveCategorySelect" url="{$BASE_URL}admin/pages/GetPagesByCategory/">
             <option value="0">{lang("Without a category","admin")}</option>
-            { $this->view("cats_select.tpl", array('tree' => $this->template_vars['tree'] )); }
+            {$this->view("cats_select.tpl", array('tree' => $this->template_vars['tree'] ));}
         </select>
     </div>
     <div class="modal-footer">
