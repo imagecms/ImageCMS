@@ -131,7 +131,7 @@
                     </a>
                 </div>
                 <div class="d-i_b">
-                    <button id="save" type="button" onclick="Translator.save()" class="btn btn-small btn-success pjax">
+                    <button id="save" type="button" onclick="Translator.save()" class="btn btn-small btn-primary pjax">
                         <i class="icon-white icon-ok"></i>
                         {lang('Save', 'translator')}
                     </button>
