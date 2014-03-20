@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-19 06:36+0200\n"
-"PO-Revision-Date: 2014-03-19 06:36+0200\n"
+"POT-Creation-Date: 2014-03-20 11:39+0200\n"
+"PO-Revision-Date: 2014-03-20 11:39+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -17,6 +17,11 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/banners/assets/admin/edit.tpl:24
+#: ./application/modules/banners/assets/admin/create.tpl:10
+msgid "Back"
+msgstr "Вернуться"
 
 #: ./application/modules/banners/admin.php:277
 msgid "Positions saved"
@@ -63,11 +68,6 @@ msgstr "Активно до"
 #: ./application/modules/banners/assets/admin/create.tpl:6
 msgid "Banner creating"
 msgstr "Создание баннера"
-
-#: ./application/modules/banners/assets/admin/edit.tpl:24
-#: ./application/modules/banners/assets/admin/create.tpl:10
-msgid "Back"
-msgstr "Назад"
 
 #: ./application/modules/banners/assets/admin/edit.tpl:25
 msgid "Save"

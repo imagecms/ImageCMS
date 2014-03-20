@@ -66,7 +66,7 @@
 <div class="container">
     {widget('latest_news')}
 </div>
-{if trim($category->getDescription()) != ""}
+{if trim($category->getDescription()) != "" and $page_number < 2}
     <div class="frame-seo-text">
         <div class="container">
             <div class="text seo-text">

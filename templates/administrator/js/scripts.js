@@ -908,6 +908,10 @@ function what_key(enter_key, event) {
         return false;
 }
 function initAdminArea() {
+    $('.btn.disabled').each(function(event) {
+        $(this).attr('disabled', true);
+    });
+    
     if ($.exists('#shopAdminMenu')) {
         if (isShop)
         {
