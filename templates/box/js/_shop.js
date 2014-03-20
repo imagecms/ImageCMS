@@ -335,10 +335,10 @@ var ImageCMSApi = {
                     returnMsg("[status]:" + obj.status);
                     returnMsg("[message]: " + obj.msg);
 
-                    obj.refresh = obj.refresh ? obj.refresh.toString() : obj.refresh;
-                    obj.redirect = obj.redirect ? obj.redirect.toString() : obj.redirect;
+                    obj.refresh = obj.refresh != undefined ? obj.refresh.toString() : obj.refresh;
+                    obj.redirect = obj.redirect != undefined ? obj.redirect.toString() : obj.redirect;
 
-                    var cond = (obj.refresh === 'true' && obj.redirect === 'false') || (obj.refresh === 'false' && obj.redirect !== '');
+                    var cond = (obj.refresh && obj.refresh === 'true' && obj.redirect === 'false') || (obj.redirect && obj.redirect !== 'false' && obj.redirect !== '');
                     if (cond)
                         $(document).trigger({
                             'type': 'imageapi.before_refresh_reload',
@@ -346,7 +346,6 @@ var ImageCMSApi = {
                             'obj': DS,
                             'message': obj
                         });
-
                     if (typeof DS.callback === 'function')
                         DS.callback(obj.msg, obj.status, form, DS);
                     else if (obj.status === true && !cond)
@@ -361,7 +360,7 @@ var ImageCMSApi = {
                     setTimeout(function() {
                         if (obj.refresh === 'true' && obj.redirect === 'false')
                             location.reload();
-                        if (obj.refresh === 'false' && obj.redirect === 'true' && obj.redirect !== '')
+                        if (obj.refresh === 'false' && obj.redirect !== '' && obj.redirect !== 'false')
                             location.href = obj.redirect;
                     }, DS.durationHideForm);
 
