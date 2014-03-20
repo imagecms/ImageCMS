@@ -159,10 +159,18 @@ class discount_api extends \MY_Controller {
      * @return boolean
      */
     public function discountsExists() {
-        $ud = (bool) !\mod_discount\classes\DiscountManager::validateUserDiscount(CI::$APP->dx_auth->get_user_id());
-        $gd = (bool) !\mod_discount\classes\DiscountManager::validateGroupDiscount(CI::$APP->dx_auth->get_role_id());
-        //$ao = count($this->baseDiscount->discountType['all_order']) > 0 ? TRUE : FALSE;
-        return $ud || $gd || $cd ? TRUE : FALSE;
+        $ud = $this->userDiscountExists();
+        $gd = $this->groupDiscountExists();
+        $userDiscount = $this->getUserDiscount();
+        return $ud || $gd || (bool) $userDiscount['comulativ'] ? TRUE : FALSE;
+    }
+
+    public function userDiscountExists() {
+        return (bool) !\mod_discount\classes\DiscountManager::validateUserDiscount(CI::$APP->dx_auth->get_user_id());
+    }
+
+    public function groupDiscountExists() {
+        return (bool) !\mod_discount\classes\DiscountManager::validateGroupDiscount(CI::$APP->dx_auth->get_role_id());
     }
 
     /**
@@ -180,13 +188,11 @@ class discount_api extends \MY_Controller {
         if (count($option) > 0)
             \mod_discount\classes\BaseDiscount::prepareOption($option);
 
-        function cmp($a, $b) {
-            return strnatcmp($a["begin_value"], $b["begin_value"]);
-        }
-
         $this->baseDiscount = \mod_discount\classes\BaseDiscount::create();
         if (\mod_discount\classes\BaseDiscount::checkModuleInstall())
-            usort($this->baseDiscount->discountType['comulativ'], 'cmp');
+            usort($this->baseDiscount->discountType['comulativ'], function($a, $b) {
+                        return strnatcmp($a["begin_value"], $b["begin_value"]);
+                    });
         return $this->baseDiscount->discountType['comulativ'];
     }
 
