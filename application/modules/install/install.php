@@ -74,11 +74,20 @@ class Install extends MY_Controller {
             }
         }
 
-        if (strnatcmp(phpversion(), '5.4') != -1) {
-            $allow_params['PHP version >= 5.4'] = 'ok';
+        if (file_exists('./application/modules/shop')) {
+            if (strnatcmp(phpversion(), '5.4') != -1) {
+                $allow_params['PHP version >= 5.4'] = 'ok';
+            } else {
+                $allow_params['PHP version >= 5.4'] = 'err';
+                $result = false;
+            }
         } else {
-            $allow_params['PHP version >= 5.4'] = 'err';
-            $result = false;
+            if (strnatcmp(phpversion(), '5.3.4') != -1) {
+                $allow_params['PHP version >= 5.3.4'] = 'ok';
+            } else {
+                $allow_params['PHP version >= 5.3.4'] = 'err';
+                $result = false;
+            }
         }
 
         // Check installed php exts.
@@ -91,8 +100,12 @@ class Install extends MY_Controller {
             'zlib' => 'ok',
             'gettext' => 'ok',
             'soap' => 'ok',
-            'ionCube Loader' => 'ok'
         );
+
+        if (file_exists('./application/modules/shop')) {
+            $exts['ionCube Loader'] = 'ok';
+        }
+
         foreach ($exts as $k => $v) {
             //if ($this->_get_ext($k) === FALSE) {
             if ($this->checkExtensions($k) === FALSE) {
@@ -133,7 +146,7 @@ class Install extends MY_Controller {
                 if (!setlocale(LC_ALL, '')) {
                     $locales[$locale] = 'warning';
                 }
-            } 
+            }
         }
 
         $data = array(
@@ -146,13 +159,13 @@ class Install extends MY_Controller {
         );
         $this->_display($this->load->view('step_1', $data, TRUE));
     }
-    
+
     /**
      * Check is extension loaded
      * @param string $name extension name
      */
-    private function checkExtensions ($name = ''){
-        if (in_array($name, $this->loadedExt)){
+    private function checkExtensions($name = '') {
+        if (in_array($name, $this->loadedExt)) {
             return TRUE;
         }
         return FALSE;
