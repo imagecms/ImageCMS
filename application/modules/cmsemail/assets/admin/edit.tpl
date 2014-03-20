@@ -29,7 +29,7 @@
         </div>
         <div class="tab-content">
             <div class="tab-pane active" id="settings">
-                <div class="inside_padd span9">
+                <div class="inside_padd">
                     <form action="{$BASE_URL}admin/components/cp/cmsemail/edit/{$model['id']}/{echo $locale}" id="email_form" method="post" class="form-horizontal">
                         <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
                             <thead>
@@ -176,7 +176,7 @@
             </div>
             <div class="tab-pane active" id="variables">
 
-                <div class="inside_padd span9">
+                <div class="inside_padd">
                     <table class="table table-striped table-bordered table-hover table-condensed content_big_td variablesTable t-l_a">
                         <thead>
                         <th>{lang('Variables', 'cmsemail')}</th>
@@ -198,7 +198,7 @@
                                         </div>
                                         <input type="text" name="variableValueEdit" class="variableValueEdit" style="display: none"/>
                                     </td>
-                                    <td class="span1">
+                                    <td style="width: 100px">
                                         <button class="btn my_btn_s btn-small btn-success editVariable" type="button">
                                             <i class="icon-edit"></i>
                                         </button>
