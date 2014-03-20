@@ -210,8 +210,8 @@
                 right.each(function() {
                     nab = nab.add($(this).find(elEven).eq(j));
                 });
-                var tempNabir = nab,
-                        tempText;
+                var tempNabir = nab;
+                tempText = '';
                 tempNabir.each(function(index) {
                     var thisCh = $(this);
                     liH[index] = thisCh.text();
