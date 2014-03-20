@@ -276,8 +276,8 @@ function init() {
         e.el.find(preloader).remove();
     });
     doc.on('render_popup_cart autocomplete.after rendercomment.after imageapi.pastemsg showCleaverFilter tabs.afterload renderorder.after', function(e) {
-        if (e.el.is(':visible'))
-            drawIcons(e.el.find(selIcons));
+        if (e.el.parent().is(':visible'))
+            drawIcons(e.el.parent().find(selIcons));
     });
     doc.on('imageapi.pastemsg imageapi.hidemsg', function(e) {
         e.el.closest('[data-elrun]').drop('heightContent');
@@ -312,14 +312,7 @@ function init() {
         });
     });
     doc.on('comments.beforehideformreply', function(e) {
-        var patchCom = e.el.closest('.patch-product-view'),
-                h = patchCom.outerHeight(),
-                elH = e.el.outerHeight();
-        
-        patchCom.css({
-            'height': h - elH,
-            'max-height': ''
-        });
+        e.el.closest('.patch-product-view').removeAttr('style');
     });
     doc.on('menu.showDrop', function(e) {
         if (ltie7)
