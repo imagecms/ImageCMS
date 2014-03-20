@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-19 10:51+0000\n"
-"PO-Revision-Date: 2014-03-19 10:51+0000\n"
+"POT-Creation-Date: 2014-03-19 04:41+0200\n"
+"PO-Revision-Date: 2014-03-19 04:41+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -20,6 +20,10 @@ msgstr ""
 "X-Poedit-SearchPath-1: ../../../templates/administrator\n"
 "X-Poedit-SearchPath-2: ../../modules/shop/admin\n"
 "X-Poedit-SearchPath-3: ../../../application/modules/shop/models/build/classes\n"
+
+#: ./application/modules/shop/admin/templates/customfields/create.tpl:5
+msgid "Create additional field"
+msgstr "Создание дополнительного поля"
 
 #: ./templates/administrator/module_table.tpl:39
 msgid "Start typing name here"
@@ -5289,10 +5293,6 @@ msgstr "Создать группу ролей"
 #: ./templates/administrator/groupCreate.tpl:5
 msgid "Roles group create"
 msgstr "Создать группу роли"
-
-#: ./application/modules/shop/admin/templates/customfields/create.tpl:5
-msgid "Create additional field"
-msgstr "Создать дополнительное поле"
 
 #: ./application/modules/shop/admin/templates/orders/list.tpl:44
 msgid "Create order"
