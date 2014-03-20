@@ -19,7 +19,7 @@
             </style>
         <![endif]-->
         <link rel="icon" type="image/vnd.microsoft.icon" href="{echo siteinfo('siteinfo_favicon_url')}" />
-        <link rel="SHORTCUT ICON" href="favicon.ico" />
+        <link rel="SHORTCUT ICON" href="{echo siteinfo('siteinfo_favicon_url')}"/>
         <script type="text/javascript" src="{$THEME}js/jquery-1.8.3.min.js"></script>
     </head>
     <body>

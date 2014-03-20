@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-17 04:47+0200\n"
-"PO-Revision-Date: 2014-03-17 04:47+0200\n"
+"POT-Creation-Date: 2014-03-20 10:16+0200\n"
+"PO-Revision-Date: 2014-03-20 10:16+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -17,6 +17,24 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/translator/assets/admin/list.tpl:172
+msgid "All strings"
+msgstr "Всех строк"
+
+#: ./application/modules/translator/assets/admin/list.tpl:266
+msgid "Fuzzy"
+msgstr "Скрыть"
+
+#: ./application/modules/translator/assets/admin/list.tpl:174
+msgid "Fuzzy strings"
+msgstr "Скрытие"
+
+#: ./application/modules/translator/assets/admin/create.tpl:14
+#: ./application/modules/translator/assets/admin/list.tpl:130
+#: ./application/modules/translator/assets/admin/exchange.tpl:14
+msgid "Back"
+msgstr "Вернуться"
 
 #: ./application/modules/translator/assets/admin/list.tpl:291
 msgid "Paths to contains files"
@@ -649,14 +667,6 @@ msgstr "Тема окна"
 msgid "Search"
 msgstr "Поиск"
 
-#: ./application/modules/translator/assets/admin/list.tpl:174
-msgid "Fuzzy strings"
-msgstr "Нечеткие"
-
-#: ./application/modules/translator/assets/admin/list.tpl:266
-msgid "Fuzzy"
-msgstr "Скрить"
-
 #: ./application/modules/translator/assets/admin/list.tpl:181
 msgid "Not translated"
 msgstr "Не переведено"
@@ -751,12 +761,6 @@ msgstr "Операция не успешна!"
 #: ./application/modules/translator/assets/js/admin.js:856
 msgid "File was successfuly updated."
 msgstr "Файл был успешно обновлен."
-
-#: ./application/modules/translator/assets/admin/create.tpl:14
-#: ./application/modules/translator/assets/admin/list.tpl:130
-#: ./application/modules/translator/assets/admin/exchange.tpl:14
-msgid "Back"
-msgstr "Назад"
 
 #: ./application/modules/translator/assets/admin/create.tpl:20
 #: ./application/modules/translator/assets/admin/list.tpl:29
@@ -892,10 +896,6 @@ msgstr "Обмен"
 #: ./application/modules/translator/assets/admin/list.tpl:154
 msgid "Correct paths"
 msgstr "Править пути"
-
-#: ./application/modules/translator/assets/admin/list.tpl:172
-msgid "All strings"
-msgstr "Все строки"
 
 #: ./application/modules/translator/assets/admin/list.tpl:191
 msgid "Settings"
