@@ -126,13 +126,13 @@
                             $('.imagecms-top-fixed-header').removeClass('imagecms-active');
                             $(this).hide().next().show();
                             $(window).scroll();">
-                        <span class="imagecms-toggle-close-text imagecms-bar-close-text"><span style="font-size: 14px;">↑</span> {lang('Скрыть', 'newLevel')}</span>
+                        <span class="imagecms-toggle-close-text imagecms-bar-close-text"><span style="font-size: 14px;">↑</span> {lang('Hide','admin')}</span>
                     </button>
                     <button type="button" class="imagecms-close" {if $_COOKIE['condPromoToolbar'] == '0'}style="display: block;"{/if} onclick="setCookie('condPromoToolbar', '1');
                             $('.imagecms-top-fixed-header').addClass('imagecms-active');
                             $(this).hide().prev().show();
                             $(window).scroll();">
-                        <span class="imagecms-toggle-close-text imagecms-bar-show-text"><span style="font-size: 14px;">↓</span> {lang('Показать', 'newLevel')}</span>
+                        <span class="imagecms-toggle-close-text imagecms-bar-show-text"><span style="font-size: 14px;">↓</span> {lang('Show', 'admin')}</span>
                     </button>
                     <div class="imagecms-buy-license">
                         <a href="http://www.imagecms.net/download/corporate" target="_blank" onclick="_gaq.push(['_trackEvent', 'demo-admin', '/download/corporate']);">
