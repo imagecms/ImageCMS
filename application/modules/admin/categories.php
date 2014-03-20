@@ -270,6 +270,7 @@ class Categories extends BaseAdminController {
                     /** Init Event. Create new Category */
                     \CMSFactory\Events::create()->registerEvent(array_merge($data, array('userId' => $this->dx_auth->get_user_id())), 'Categories:update');
 
+                    showMessage(lang('Changes saved', 'admin'));
                     $act = $_POST['action'];
                     if ($act == 'close')
                         pjax('/admin/categories/cat_list');

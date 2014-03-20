@@ -120,14 +120,14 @@
         <div class="frame_title clearfix">
             <div class="pull-left">
                 <span class="help-inline"></span>
-                <span class="title">{lang('Translator', 'translator', 'wishlist')}</span>
+                <span class="title">{lang('Translator', 'translator')}</span>
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
                     <a href="{$BASE_URL}admin/components/modules_table"
                        class="t-d_n m-r_15 pjax">
                         <span class="f-s_14">←</span>
-                        <span class="t-d_u">{lang('Back', 'translator', 'wishlist')}</span>
+                        <span class="t-d_u">{lang('Back', 'translator')}</span>
                     </a>
                 </div>
                 <div class="d-i_b">
@@ -164,7 +164,9 @@
         <div class="content_big_td row-fluid">
             <div class="statistic">
                 <div class="statisticTitle">
-                    <h5><b>{lang('Statistic', 'translator')}:</b></h5>
+                    <h5>
+                        <b>{lang('Statistic', 'translator')}:</b>     
+                    </h5>
                 </div>
                 <div class="pull-left">
                     <table class=" table-hover table-bordered">
