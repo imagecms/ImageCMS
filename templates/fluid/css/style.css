@@ -250,14 +250,14 @@ p {margin-bottom: 10px;line-height: 18px;}
 header{padding: 14px 0 0;}
 .fon-header{position: relative;z-index: 2;}
 
-.left-header{position: relative;display: inline-block;width: 330px;top: 1px;}
+.left-header{position: relative;display: inline-block;width: 310px;top: 1px;}
 .frame-time-work .frame-ico + div{margin-left: 47px;}
 
 .phones-header{display: inline-block;}
 .phones-header .frame-ico + div{margin-left: 45px;}
 .frame-time-work{}
 
-.frame-cleaner{margin-right: 0;}
+.frame-cleaner{margin-right: 0 !important;width: 210px;}
 input.input-search{height: 33px;}
 .drop-search{width: 388px;top: 100%;z-index: 1000;right: 0;}
 .drop-search > .inside-padd{padding: 0 16px;}
@@ -971,6 +971,8 @@ li.clear-pag-item{margin: 0 14px 4px;}
 /*/product*/
 
 /*bask*/
+.btn-bask .text-cleaner{padding: 0 5px 0 8px;margin-left: 38px;display: block;}
+
 .title-cart{margin-bottom: 10px;}
 td.frame-cur-sum-price {vertical-align: middle;padding-left: 10px;padding-right: 10px;}
 .frame-cur-sum-price{text-align: right;}
@@ -1100,7 +1102,7 @@ td.frame-cur-sum-price {vertical-align: middle;padding-left: 10px;padding-right:
 .nav-static-pages > li > a, .nav-static-pages > li > span{padding: 15px 16px;}
 
 footer .nav-default-inline{width: 310px;}
-.nav-default-inline > li{margin: 1px 25px 2px 0;float: none;display: inline-block;}
+.nav-default-inline > li{margin: 1px 25px 2px 0;float: none;display: inline-block;vertical-align: top;}
 .nav-default-inline > li > a, .nav-default-inline > li > span{display: inline;}
 /*/navs*/
 
@@ -1232,3 +1234,16 @@ img.cloned{max-width: none;max-height: none;}
     .right-product{display: none;}
     .left-product{margin-right: 0;float: none;padding-right: 0;border-right: 0 !important;}
 }
+@media (max-width: 1325px){
+    .phones-header .phone-number{display: block;}
+    .frame-time-work .text-el{display: block;}
+    .left-header{width: 190px;}
+    .left-header .nav > li{width: 90px;margin-right: 5px;}
+    .left-content-header > *{margin-right: 10px;}
+    .frame-cleaner{width: 180px;}
+ }
+@media (max-width: 1015px){
+    .left-header{width: 170px;}
+    .left-header .nav > li{width: 80px;}
+    .frame-cleaner{width: 164px;}
+ }
