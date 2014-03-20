@@ -18,8 +18,8 @@ div.notifications{
 .searched{
     color: white;
     background: linear-gradient(to bottom, 
-        rgba(55,146,185,1) 0%,
-        rgba(8,127,173,1) 100%); 
+        rgba(162, 173, 179, 1) 0%, 
+        rgba(74, 89, 94, 1) 100%);
 }
 .removePath{
     position: relative;
@@ -166,7 +166,7 @@ div[class="tooltip-inner"] {
 
 .content_big_td .statistic > .statisticTitle{
     position: absolute; 
-    margin-left: -85px; 
+    margin-left: -90px; 
     margin-top: 5px;
 }
 

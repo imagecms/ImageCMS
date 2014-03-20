@@ -32,10 +32,9 @@
             <span class="photo-block">
                 <span class="helper"></span>
                 {$photo = $p->firstVariant->getMediumPhoto()}
-                <img data-original="{echo $photo}"
-                     src="{$THEME}images/blank.gif"
+                <img src="{echo $photo}"
                      alt="{echo ShopCore::encode($p->firstVariant->getName())}"
-                     class="vImg lazy"/>
+                     class="vImg"/>
                 {$discount = 0}
                 {if $hasDiscounts}
                     {$discount = $p->firstVariant->getvirtual('numDiscount') / $p->firstVariant->toCurrency('origprice') * 100}
