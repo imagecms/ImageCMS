@@ -16,6 +16,23 @@
         <a href="#" id="confirmMove" class="btn btn-primary" onclick="pagesAdmin.confirmListAction('{$BASE_URL}admin/pages/move_pages/copy')" >{lang('Approve','admin')}</a>
     </div>
 </div>
+<div class="modal hide fade" id="pages_action_dialog_copy">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3 id="mvMv">{lang("Copy page", 'admin')}</h3>
+    </div>
+    <div class="modal-body">
+        {lang("Category","admin")}:
+        <select id="CopyMoveCategorySelect" url="{$BASE_URL}admin/pages/GetPagesByCategory/">
+            <option value="0">{lang("Without a category","admin")}</option>
+            {$this->view("cats_select.tpl", array('tree' => $this->template_vars['tree'] ));}
+        </select>
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang("Cancel","admin")}</a>
+        <a href="#" id="confirmMove" class="btn btn-primary" onclick="pagesAdmin.confirmListAction('{$BASE_URL}admin/pages/move_pages/copy')" >{lang('Approve','admin')}</a>
+    </div>
+</div>
 
 <div class="modal hide fade" id="pages_delete_dialog">
     <div class="modal-header">
@@ -42,11 +59,11 @@
                 <div class="d-i_b">
                     <button type="submit" class="btn btn-small disabled action_on listFilterSubmitButton " disabled="disabled" ><i class="icon-filter"></i>{lang('Filter','admin')}</button>
                     <a href="{site_url('/admin/pages/GetPagesByCategory')}"   title="{lang('Cancel filter','admin')}" type="button" class="btn btn-small {if !$_POST}disabled {/if}"><i class="icon-refresh"></i>{lang('Cancel filter','admin')}</a>
-                    <button onclick="$('#pages_action_dialog').modal();" type="button" class="btn btn-small disabled action_on pages_action" ><i class="icon-asterisk"></i> {lang('Create copy','admin')}</button>
+                    <button onclick="$('#pages_action_dialog_copy').modal();" type="button" class="btn btn-small disabled action_on pages_action" ><i class="icon-asterisk"></i> {lang('Create copy','admin')}</button>
                     <button onclick="$('#pages_action_dialog').modal();
-                            pagesAdmin.updDialogMove();" type="button" class="btn btn-small disabled action_on pages_action" ><i class="icon-move"></i>{lang('Move','admin')}</button>
+                pagesAdmin.updDialogMove();" type="button" class="btn btn-small disabled action_on pages_action" ><i class="icon-move"></i>{lang('Move','admin')}</button>
                     <button onclick="$('#pages_delete_dialog').modal();
-                            pagesAdmin.updDialogCopy();" type="button" class="btn btn-small btn-danger disabled action_on pages_action pages_delete" ><i class="icon-trash icon-white"></i>{lang('Delete','admin')}</button>
+                pagesAdmin.updDialogCopy();" type="button" class="btn btn-small btn-danger disabled action_on pages_action pages_delete" ><i class="icon-trash icon-white"></i>{lang('Delete','admin')}</button>
                     <!--<button type="button" class="btn btn-small btn-success" onclick="window.location.href='{$BASE_URL}admin/pages'"><i class="icon-plus-sign icon-white"></i>{lang('Create page','admin')}</button>-->
                     <a class="btn btn-small btn-success pjax" href='{$BASE_URL}admin/pages'><i class="icon-plus-sign icon-white"></i>{lang('Create page','admin')}</a>
                 </div>
