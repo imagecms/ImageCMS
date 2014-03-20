@@ -23,6 +23,9 @@ class Admin extends BaseAdminController {
         $lang = new MY_Lang();
         $lang->load('banners');
 
+        if (!$this->db->table_exists('mod_banner_groups')) {
+            $this->banner_model->createGroupsTable();
+        }
 
         $this->is_shop = SHOP_INSTALLED;
     }
