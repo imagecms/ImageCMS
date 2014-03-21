@@ -16,7 +16,7 @@ body, input, textarea{color: #333;}
 .items-brand-image > li > .frame-photo-title > .title, .start-page-category-menu > li .title{font-weight: normal;}
 .text blockquote:before, .text blockquote:after{border-width: 1px 0;border-style: solid;border-top-color: #e7e2dd;border-bottom-color: #fff;}
 
-[class*="icon_"], [class*="icon-"], .ui-slider-handle, .product-status, .niceCheck, .niceRadio, .cuselFrameRight{background: url("images/sprite.png") no-repeat;}
+[class*="icon_"], [class*="icon-"], .ui-slider-handle, .product-status, .niceCheck, .niceRadio, .cuselFrameRight, .btn-to-up{background: url("images/sprite.png") no-repeat;}
 .icon-plus{width: 10px;height: 10px;background-position: -260px 0;}
 .icon-minus{width: 10px;height: 2px;background-position: -280px 0;}
 /*.buti, .buti > button, .buti > a, .buti > input{background: url("images/buttons.png") no-repeat;}
@@ -71,7 +71,9 @@ button[disabled="disabled"], input[type="submit"][disabled="disabled"], input[ty
 .items-user-toolbar button:hover .text-el{color: #3baf48;}
 
 .drop-info .text-el{color: #000;}
+.frame-user-toolbar.active .content-user-toolbar{border-top: 1px solid #ebebeb;}
 .items-user-toolbar{
+    box-shadow: inset 0 1px #fff, 0 0 5px rgba(0,0,0,.2);
     background: #fafafa; /* Old browsers */
     background: -moz-linear-gradient(top,  #fafafa 0%, #ebebeb 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fafafa), color-stop(100%,#ebebeb)); /* Chrome,Safari4+ */
@@ -81,14 +83,15 @@ button[disabled="disabled"], input[type="submit"][disabled="disabled"], input[ty
     background: linear-gradient(to bottom,  #fafafa 0%,#ebebeb 100%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fafafa', endColorstr='#ebebeb',GradientType=0 ); /* IE6-9 */
 }
-.items-user-toolbar > li{}
 .items-user-toolbar > .box-1{border-right: 1px solid #e9e9e9;}
 .items-user-toolbar > .box-2{border-width: 0 1px;border-style: solid;border-left-color: #fafafa;border-right-color: #e7e7e7;}
 .items-user-toolbar > .box-3{border-width: 0 1px;border-style: solid;border-color: #fafafa;}
-.items-user-toolbar > .box-3 > button{border-right-color: #e7e7e7;}
-.items-user-toolbar > .box-4{}
+.btn-already-show > button{border-right: 1px solid #e7e7e7;}
 
-.items-user-toolbar .btn-toggle-toolbar button{background-color: #0b92c1;}
+.active.frame-user-toolbar .btn-toggle-toolbar > button{border-left: 1px solid #fafafa;}
+.active.frame-user-toolbar .box-4{border-left: 1px solid #e7e7e7;}
+
+.btn-toggle-toolbar .text-el{color: #3baf48;}
 .frame-user-toolbar.active .items-user-toolbar .btn-toggle-toolbar button{background-color: transparent;}
 .items-user-toolbar button.show.activeUT{border-top: 1px solid #fff;-moz-box-shadow: 0 -2px 5px rgba(0,0,0,0.3);-webkit-box-shadow: 0 -2px 5px rgba(0,0,0,0.3);box-shadow: 0 -2px 5px rgba(0,0,0,0.3);}
 .drop-info{background-color: #fff;-moz-border-radius: 2px 2px 0 0;-webkit-border-radius: 2px 2px 0 0;border-radius: 2px 2px 0 0;-moz-box-shadow: 0 -2px 5px rgba(0,0,0,0.3);-webkit-box-shadow: 0 -2px 5px rgba(0,0,0,0.3);box-shadow: 0 -2px 5px rgba(0,0,0,0.3);}
@@ -143,8 +146,9 @@ button:hover .icon_remove_filter, .icon_remove_filter:hover, .icon_times_cart:ho
 .icon_ask:hover{background-position: -1060px -20px;}
 .icon_times_drop{width: 14px;height: 14px;top: 12px;position: absolute !important;right: 14px;cursor: pointer !important;z-index: 2;background-position: -1080px 0;}
 .icon_times_drop:hover{background-position: -1080px -20px;}
+.icon_arrow_down{width: 14px;height: 14px;background-position: -1100px 0;margin-right: 4px;top: 3px;}
 
-.icon_compare_list, .icon_wish_list, .icon_error, .icon_arrow_down, .icon_arrow_p2, .icon_success, .icon_payment, .icon_home, .icon_edit, .icon_phone_header, .icon_delivery, .icon_remove, .icon_exit, .icon_time, .icon_info, .icon_already_show{display: none;}
+.icon_compare_list, .icon_wish_list, .icon_error, .icon_arrow_p2, .icon_success, .icon_payment, .icon_home, .icon_edit, .icon_phone_header, .icon_delivery, .icon_remove, .icon_exit, .icon_time, .icon_info, .icon_already_show{display: none;}
 /*/icons*/
 
 /*links*/
@@ -553,8 +557,6 @@ footer .frame-seo-text{border-bottom: 1px solid #12456f;}
 
 /*buttons*/
 .btn-personal-exit > button > .text-el, .btn-enter-register > button > .text-el{color: #fff;}
-
-.btn-bask > button, .wish-list-btn > button, .compare-list-btn > button, .btn-already-show > button{cursor: default;}
 
 .btn-bask .text-el{color: #fff;font-size: 11px;text-transform: uppercase;}
 .btn-bask{width: 100%;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;}
@@ -988,12 +990,9 @@ form .btn-form .text-el, .btn-form input{font-size: 13px;color: #3aae47;}
 .btn-reset-filter{padding: 8px 12px 12px;}
 .btn-reset-filter .text-el{display: block;margin-left: 23px;}
 
-.btn-to-up{
-    -moz-border-radius: 2px;-webkit-border-radius: 2px;border-radius: 2px;
-    background-color: rgba(0,0,0,.3);
-}
-.btn-to-up > button > .text-el{text-transform: uppercase;color: #fff;font-size: 12px;}
-.items-user-toolbar .btn-toggle-toolbar button{padding: 0;width: 140px;}
+.btn-to-up{width: 52px;height: 52px;background-position: -1120px 0;}
+.btn-to-up > button > .text-el{display: none;}
+.items-user-toolbar .btn-toggle-toolbar button{padding: 0;width: 102px;}
 /*/buttons*/
 
 /*prices*/
