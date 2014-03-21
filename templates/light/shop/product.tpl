@@ -735,6 +735,7 @@
         </div>
         <div class="drop-content">
         <div class="inside-padd p_r">
+        <span class="helper"></span>
         <img src="<%- obj.mainPhoto %>" alt="<%- obj.title %>"/>
         </div>
         <div class="horizontal-carousel">
