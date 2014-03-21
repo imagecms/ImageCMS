@@ -286,6 +286,7 @@ td:last-child .frame-item-menu:hover{border-right-color: #fd7c06;}
 .items-search-autocomplete{border-bottom: 1px solid #eaeaea;}
 .items-search-autocomplete > li.selected{background-color: #ededed;}
 
+.right-start-page .items-news > li + li{border-top: 1px solid #dedede;}
 .items-news a{text-decoration: underline !important;}
 .items-news .description{color: #b1b1b1;margin-bottom: 10px;}
 

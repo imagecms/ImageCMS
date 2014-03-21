@@ -126,6 +126,9 @@
                                 </div>
                             </div>
                             <div class="frame-comment-sub1">
+                                <div class="frame-comment">
+                                    <p>{$comment.text}</p>
+                                </div>
                                 {if $can_comment == 0 OR $is_logged_in}
                                     <div class="btn">
                                         <button type="button" data-rel="cloneAddPaste" data-parid="{$comment['id']}">
