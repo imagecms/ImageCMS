@@ -262,7 +262,7 @@ p {margin-bottom: 10px;line-height: 18px;}
 .header-left-content-header{margin-bottom: 1px;}
 .phones-header{margin-right: 25px;display: inline-block;}
 
-.frame-search-form{float: left;width: 577px;}
+.frame-search-form{float: left;width: 572px;}
 .frame-cleaner{width: 158px;float: right;text-align: center;}
 .frame-search-input{margin-right: 79px;display: block;}
 input.input-search{height: 31px;padding-left: 34px;}
@@ -1109,10 +1109,10 @@ footer .footer{height: 65px;width: 100%;position: absolute;left: 0;bottom: 0;}
 footer [class^="box"] .main-title{text-transform: uppercase;margin-bottom: 6px;}
 
 footer [class^="box"]{overflow: hidden;float: left;width: 20%;}
-footer .box-1{width: 213px;}
-footer .box-3{width: 176px;}
-footer .box-4{width: 216px;}
-footer .box-5{width: 179px;}
+footer .box-1{max-width: 213px;}
+footer .box-3{max-width: 176px;}
+footer .box-4{max-width: 216px;}
+footer .box-5{max-width: 179px;}
 /*/footer*/
 
 /*drop*/

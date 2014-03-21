@@ -13,7 +13,7 @@
         <ul class="items items-news">
             {foreach $recent_news as $item}
                 {$item = $CI->load->module('cfcm')->connect_fields($item, 'page')}
-                <li>
+                <li{if trim($item.field_list_image) != ""} class="is-photo"{/if}>
                     <a href="{site_url($item.full_url)}" class="frame-photo-title">
                         {if trim($item.field_list_image) != ""}
                             <span class="photo-block">

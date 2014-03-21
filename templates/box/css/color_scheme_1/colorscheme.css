@@ -532,7 +532,7 @@ a:focus, a:active {color: #51d2ff;}
 .frame-icon-benefit > .icon-benefits_2{width: 30px;height: 31px;background-position: 0 -33px;}
 .frame-icon-benefit > .icon-benefits_3{width: 32px;height: 30px;background-position: 0 -65px;}
 .frame-icon-benefit > .icon-benefits_4{width: 32px;height: 30px;background-position: 0 -96px;}
-.frame-description-benefit{margin-left: 64px;padding-right: 6px;}
+.frame-description-benefit{margin-left: 66px;padding-right: 6px;}
 /*/benefits*/
 
 .text table {border: 1px solid #000;}
@@ -1413,8 +1413,8 @@ footer .box-4 a{color: #fff;}
 .nav-top-menu{border-right: 1px solid #33759f;margin-right: 13px;}
 .nav-top-menu > li:first-child{border-left: 0;}
 .nav-top-menu > li > *{padding: 0 10px;}
-.nav-top-menu > li > a{color: #a8d9ef;}
-.nav-top-menu > li.active > a, .nav-top-menu > li.active > span{color: #fff; }
+.nav-top-menu > li > a, .nav-top-menu > li > button{color: #a8d9ef;}
+.nav-top-menu > li.active > a, .nav-top-menu > li.active > span, .nav-top-menu > li.active > button{color: #fff; }
 
 .frame-sort{border: 1px solid #e6e6e6;border-radius: 2px;}
 

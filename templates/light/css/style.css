@@ -32,7 +32,7 @@ article, .container, .special-proposition > .frame-title{margin: 0 auto;clear: b
 .frame-inside .no-empty{display: block;}
 /*/base scaffolding*/
 
-body, .overlayDrop{min-width: 460px;}
+body, .overlayDrop{min-width: 960px;}
 article, .container, .special-proposition > .frame-title{max-width: 980px;}
 .container{padding: 0 10px;}
 .big-container{max-width: 1125px;}
