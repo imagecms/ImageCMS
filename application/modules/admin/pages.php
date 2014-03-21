@@ -801,7 +801,7 @@ class Pages extends BaseAdminController {
             }
 
             if ($action == 'copy')
-                showMessage(lang('Page successfuly copied', 'admin') , lang('Successful coping', 'admin'));
+                showMessage(lang('Page successfuly copied', 'admin'));
             else if ($action == 'move')
                 showMessage(lang("Successfull moving", "admin"));
             pjax($_SERVER["HTTP_REFERER"]);

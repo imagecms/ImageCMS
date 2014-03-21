@@ -922,6 +922,8 @@ form .btn-form .text-el, .btn-not-avail .text-el, .btn-form input{font-weight: b
 .btn-comp-in .text-el, .btn-wish-in .text-el{color: #699200;}
 .btn-comp-in button:focus .text-el, .btn-wish-in button:focus .text-el{color: #85b901;}
 .btn-comp-in .d_l, .btn-wish-in .d_l{border-bottom: 0;text-decoration: underline;}
+
+.item-product .btn-compare, .item-product .btn-wish{margin-bottom: 0;}
 /*.table .btn-wish .text-el, .table .btn-compare .text-el{display: none;}*/
 
 .btn-reset-filter{padding: 3px 13px 7px;}
