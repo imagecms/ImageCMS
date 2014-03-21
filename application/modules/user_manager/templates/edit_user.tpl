@@ -3,18 +3,18 @@
         <div class="frame_title clearfix">
             <div class="pull-left">
                 <span class="help-inline"></span>
-                <span class="title">{lang('Editing by', 'user_manager')}</span>
+                <span class="title">{lang('User editing', 'user_manager')}</span>
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
-                    <a href="{$SELF_URL}" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Return', 'user_manager')}</span></a>                   
+                    <a href="{$SELF_URL}" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Back', 'admin')}</span></a>                   
                     <button type="button" class="btn btn-small btn-primary action_on formSubmit" data-form="#update" data-action="close" data-submit><i class="icon-ok icon-white"></i>{lang('Save', 'user_manager')}</button>
-                    <button type="button" class="btn btn-small action_on formSubmit" data-form="#update" data-action="exit"><i class="icon-check"></i>{lang('Save and exit', 'user_manager')}</button>
+                    <button type="button" class="btn btn-small action_on formSubmit" data-form="#update" data-action="exit"><i class="icon-check"></i>{lang('Save and exit', 'admin')}</button>
                 </div>
             </div>                            
         </div>
         <div class="tab-pane">
-            <table class="table table-striped table-bordered table-hover table-condensed">
+            <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
                 <thead>
                     <tr>
                         <th colspan="6">

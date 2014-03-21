@@ -50,7 +50,7 @@
             </span>
         </div>
         <div class="span7">
-            <dl class="dl-horizontal m-t_20">
+            <dl class="dl-horizontal m-t_20 dt_130pxwidth">
                 <dt>{lang("Name", 'gallery')}</dt>
                 <dd>{truncate($image.file_name, 25)}{$image.file_ext}</dd>
                 <dt>{lang("Has been downloaded", 'gallery')}</dt>

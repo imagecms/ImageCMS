@@ -101,7 +101,7 @@ class Admin extends BaseAdminController {
                 exit;
             }
             if (!preg_match("/^[0-9a-z_]+$/i", $_POST['field_name'])) {
-                showMessage(lang("Only Latin characters", 'cfcm'), false, 'r');
+                showMessage(lang("Field Name cant contain only Latin alphanumeric characters", 'cfcm'), false, 'r');
                 exit;
             }
 
@@ -221,10 +221,9 @@ class Admin extends BaseAdminController {
         if ($field->num_rows() == 1) {
             $field = $field->row();
             $field_data = unserialize($field->data);
-
             $form = $this->load->module('cfcm/cfcm_forms')->edit_field($field->type);
 
-            $form->title = lang("Field editing ", 'cfcm') . ' ' . $field->label;
+            $form->title = lang("Field editing", 'cfcm') . ' ' . $field->label;
             $form->action = $this->get_url('edit_field/' . $name);
 
             $form->setAttributes($field_data);

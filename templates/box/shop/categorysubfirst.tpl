@@ -14,8 +14,7 @@
             {\Category\RenderMenu::create()->load('category_menu_first')}
         </div>
         <div class="right-catalog-first" id="popular_product_category">
-            <div class="preloader" style="height: 500px;"></div>
-            {widget_ajax('popular_products_category_v', '#popular_product_category')}
+            {widget('popular_products_category_v', TRUE)}
         </div>
     </div>
 </div>

@@ -20,7 +20,7 @@
                         <tbody>
                             <tr>
                                 <td colspan="6">
-                                    <div class="inside_padd">
+                                    <div class="inside_padd span9">
                                         <div class="control-group m-t_10">
                                             <label class="control-label" for="inputName">{lang("Total file caching","admin")}:</label>
                                             <div class="controls">

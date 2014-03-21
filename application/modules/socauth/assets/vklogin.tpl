@@ -7,7 +7,7 @@
                     <div class="header_title">
                         {lang('Login page', 'socauth')}
                     </div>
-                    <div class="inside_padd">
+                    <div class="inside_padd span9">
                         <div class="horizontal_form standart_form">
                             <!-- login form -->
                             <form action="/socauth/vk" method="POST">

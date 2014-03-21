@@ -1188,4 +1188,18 @@ class Admin extends BaseAdminController {
         return json_encode($data);
     }
 
+    public function getLanguageByLocale($locale = '') {
+        $this->load->helper('translator');
+        if ($locale) {
+            $languages = get_language_names();
+            if ($languages[$locale]) {
+                echo $languages[$locale];
+            } else {
+                echo '';
+            }
+        } else {
+            echo  '';
+        }
+    }
+
 }

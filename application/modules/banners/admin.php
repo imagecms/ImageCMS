@@ -23,6 +23,9 @@ class Admin extends BaseAdminController {
         $lang = new MY_Lang();
         $lang->load('banners');
 
+        if (!$this->db->table_exists('mod_banner_groups')) {
+            $this->banner_model->createGroupsTable();
+        }
 
         $this->is_shop = SHOP_INSTALLED;
     }
@@ -141,7 +144,7 @@ class Admin extends BaseAdminController {
                 /** Create new banner from data-array */
                 $lid = $this->banner_model->add_banner($data);
 
-
+                showMessage(lang('Banner created', 'banners'));
                 /** Show successful message and redirect */
                 pjax('/admin/components/init_window/banners');
             } else {
@@ -274,7 +277,7 @@ class Admin extends BaseAdminController {
                     ->update('mod_banner', array('position' => $key));
         }
 
-        showMessage('Positions saved');
+        showMessage(lang('Positions saved', 'banners'));
     }
 
 }

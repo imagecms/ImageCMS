@@ -45,11 +45,13 @@
             <!----------------------------------------------------- USERS-------------------------------------------------------------->
             <div class="tab-pane active" id="users">
                 <button type="button" class="btn btn-small btn-danger action_on disabled pull-right" style="margin-top:-26px;" onclick="delete_function.deleteFunction()" disabled="disabled"><i class="icon-trash icon-white"></i> {lang('Delete', 'user_manager')}</button>
-                <a href="/admin/components/init_window/user_manager"  title="{lang('Cancel filter', 'user_manager')}" type="button" class="btn btn-small pjax action_on  pull-right" style="margin-top:-26px; margin-bottom: 10px; margin-right: 3px;"><i class="icon-refresh"></i> {lang('Cancel filter', 'user_manager')}</a>
+                <a href="/admin/components/init_window/user_manager"  title="{lang('Cancel filtering', 'user_manager')}" type="button" class="btn btn-small pjax action_on  pull-right" {if !$_GET || (count($_GET) == 1 && $_GET['_pjax'])}disabled="disabled"{/if} style="margin-top:-26px; margin-bottom: 10px; margin-right: 3px;">
+                    <i class="icon-refresh"></i> {lang('Cancel filtering', 'user_manager')}
+                </a>
                 <button type="button" class="btn btn-small disabled listFilterSubmitButton pull-right " style="margin-top:-26px; margin-right: 3px;" disabled="disabled"><i class="icon-filter"></i> {lang('Filter admin', 'user_manager')}</button>
 
                 <form method="get" action="/admin/components/cp/user_manager/search/" id="ordersListFilter" class="listFilterForm">
-                    <table class="table table-striped table-bordered table-hover table-condensed" style="clear: both;">
+                    <table class="table table-striped table-bordered table-hover table-condensed t-l_a" style="clear: both;">
                         <thead>
                             <tr>
                                 <th class="t-a_c span1">
@@ -59,12 +61,12 @@
                                         </span>
                                     </span>
                                 </th>
-                                <th class="span1">{lang("ID", 'user_manager')}</th>
-                                <th class="span3">{lang("User", 'user_manager')}</th>
-                                <th class="span3">{lang("E-mail", 'user_manager')}</th>
-                                <th class="span2">{lang("Group", 'user_manager')}</th>
-                                <th class="span1">{lang("Banned", 'user_manager')}</th>
-                                <th class="span2">{lang("Last IP", 'user_manager')}</th>
+                                <th>{lang("ID", 'user_manager')}</th>
+                                <th>{lang("User", 'user_manager')}</th>
+                                <th>{lang("E-mail", 'user_manager')}</th>
+                                <th>{lang("Group", 'user_manager')}</th>
+                                <th>{lang("Banned", 'user_manager')}</th>
+                                <th>{lang("Last IP", 'user_manager')}</th>
                             </tr>
 
                             <tr class="head_body">

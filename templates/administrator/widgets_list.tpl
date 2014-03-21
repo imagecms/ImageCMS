@@ -36,27 +36,27 @@
     {else:}   
         {if count($widgets)>0}
             <form method="post" action="#" class="form-horizontal">
-                <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+                <table class="table table-striped table-bordered table-hover table-condensed content_big_td t-l_a">
                     <thead>
                         <tr>
-                            <th class="span1 t-a_c">
+                            <th class="t-a_c span1">
                                 <span class="frame_label no_connection">
                                     <span class="niceCheck b_n">
                                         <input type="checkbox"/>
                                     </span>
                                 </span>
                             </th>
-                            <th class="span1">{lang("ID","admin")}</th>
+                            <th>{lang("ID","admin")}</th>
                             <th>{lang("Name","admin")}</th>
                             <th>{lang("Type","admin")}</th>
                             <th>{lang("Description","admin")}</th>
-                            <th class="span2 t-a_c">{lang("Settings","admin")}</th>
+                            <th class="t-a_c">{lang("Settings","admin")}</th>
                         </tr>    
                     </thead>
                     <tbody>
                         {foreach $widgets as $widget}
                             <tr class="simple_tr">
-                                <td class="span1 t-a_c">
+                                <td class="t-a_c span1">
                                     <span class="frame_label">
                                         <span class="niceCheck b_n">
                                             <input type="checkbox" name="ids" value="{$widget.name}"/>

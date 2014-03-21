@@ -29,95 +29,72 @@
     </div>
     <div class="row-fluid">
         {if count($discountsList) > 0}
-            <table class="table table-striped table-bordered table-hover table-condensed discounts_table">
+            <table class="table table-striped table-bordered table-hover table-condensed discounts_table t-l_a">
                 <thead>
                     <tr style="cursor: pointer;">
-                        <th class="span3">{lang('Key', 'mod_discount')}</th>
-                        <th class="span3">{lang('Name', 'mod_discount')}</th>
-                        <th class="span2">{lang('Limit', 'mod_discount')}</th>
-                        <th class="span2">{lang('Used', 'mod_discount')}</th>
-                        <th class="span2">{lang('Beggining time', 'mod_discount')}</th>
-                        <th class="span2">{lang('End time', 'mod_discount')}</th>
-                        <th class="span1" style="width: 60px;">{lang('Active', 'mod_discount')}</th>
-                        <th class="span1" style="width: 60px;">{lang('Delete', 'mod_discount')}</th>
+                        <th>{lang('Key', 'mod_discount')}</th>
+                        <th>{lang('Name', 'mod_discount')}</th>
+                        <th>{lang('Limit', 'mod_discount')}</th>
+                        <th>{lang('Used', 'mod_discount')}</th>
+                        <th>{lang('Beggining time', 'mod_discount')}</th>
+                        <th>{lang('End time', 'mod_discount')}</th>
+                        <th style="width: 60px;">{lang('Active', 'mod_discount')}</th>
+                        <th style="width: 60px;">{lang('Delete', 'mod_discount')}</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td colspan="10">
-                            <table>
-                                <thead class="no_vis">
-                                    <tr>
-                                        <td class="span3"></td>
-                                        <td class="span3"></td>
-                                        <td class="span2"></td>
-                                        <td class="span2"></td>
-                                        <td class="span2"></td>
-                                        <td class="span2"></td>
-                                        <td class="span1" style="width: 60px;"></td>
-                                        <td class="span1" style="width: 60px;"></td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-
-                                    {foreach $discountsList as $discount}
-                                        <tr data-id="{echo $discount['id']}">
-                                            <td>
-                                                <a href="/admin/components/init_window/mod_discount/edit/{echo $discount['id']}" class="pjax" >{echo $discount['key']}</a>
-                                            </td>
-                                            <td>
-                                                <p>{echo $discount['name']}</p>
-                                            </td>
-                                            <td>
-                                                {if $discount['max_apply'] != 0}
-                                                    {echo $discount['max_apply']}
-                                                {else:} 
-                                                    {lang('Unlimited', 'mod_discount')}
-                                                {/if}
-                                            </td>
-                                            <td>
-                                                {if $discount['count_apply'] != null}
-                                                    {echo $discount['count_apply']}
-                                                {else:} - 
-                                                {/if}
-                                            </td>
-                                            <td {if time()< (int)$discount['date_begin']}style="color: red;"{/if}>
-                                                {echo date("Y-m-d", $discount['date_begin'])}
-                                            </td>
-                                            <td {if time()> (int)$discount['date_end'] && $discount['date_end'] != '0'}style="color: red;"{/if}>
-                                                {if $discount['date_end'] != 0}
-                                                    {echo date("Y-m-d", $discount['date_end'])}
-                                                {else:} - 
-                                                {/if}
-                                            </td>
-                                            <td>
-                                                <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="
-                                                     {if $discount['active'] == 1}
-                                                         {lang('Yes', 'mod_discount')}
-                                                     {else:}
-                                                         {lang('No', 'mod_discount')}
-                                                     {/if}">
-                                                    {if $discount['active'] == 1}
-                                                        <span class="prod-on_off" data-id="{echo $discount['id']}"></span>
-                                                    {else:}
-                                                        <span class="prod-on_off disable_tovar" data-id="{echo $discount['id']}"></span>
-                                                    {/if}
-                                                </div>
-                                            </td>
-                                            <td>
-                                    <u class="removeDiscountLink" style="cursor: pointer;">
-                                        {lang('Delete', 'mod_discount')}
-                                    </u>
+                    {foreach $discountsList as $discount}
+                        <tr data-id="{echo $discount['id']}">
+                            <td>
+                                <a href="/admin/components/init_window/mod_discount/edit/{echo $discount['id']}" class="pjax" >{echo $discount['key']}</a>
                             </td>
-                        </tr>
-                    {/foreach}
-
+                            <td>
+                                <p>{echo $discount['name']}</p>
+                            </td>
+                            <td>
+                                {if $discount['max_apply'] != 0}
+                                    {echo $discount['max_apply']}
+                                {else:} 
+                                    {lang('Unlimited', 'mod_discount')}
+                                {/if}
+                            </td>
+                            <td>
+                                {if $discount['count_apply'] != null}
+                                    {echo $discount['count_apply']}
+                                {else:} - 
+                                {/if}
+                            </td>
+                            <td {if time()< (int)$discount['date_begin']}style="color: red;"{/if}>
+                                {echo date("Y-m-d", $discount['date_begin'])}
+                            </td>
+                            <td {if time()> (int)$discount['date_end'] && $discount['date_end'] != '0'}style="color: red;"{/if}>
+                                {if $discount['date_end'] != 0}
+                                    {echo date("Y-m-d", $discount['date_end'])}
+                                {else:} - 
+                                {/if}
+                            </td>
+                            <td>
+                                <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="
+                                     {if $discount['active'] == 1}
+                                         {lang('Yes', 'mod_discount')}
+                                     {else:}
+                                         {lang('No', 'mod_discount')}
+                                     {/if}">
+                                    {if $discount['active'] == 1}
+                                        <span class="prod-on_off" data-id="{echo $discount['id']}"></span>
+                                    {else:}
+                                        <span class="prod-on_off disable_tovar" data-id="{echo $discount['id']}"></span>
+                                    {/if}
+                                </div>
+                            </td>
+                            <td>
+                    <u class="removeDiscountLink" style="cursor: pointer;">
+                        {lang('Delete', 'mod_discount')}
+                    </u>
+                    </td>
+                    </tr>
+                {/foreach}
                 </tbody>
-            </table>
-            </td>
-            </tr>
-            </tbody>
             </table>
         {else:}
 

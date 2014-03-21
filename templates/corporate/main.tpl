@@ -19,10 +19,10 @@
             </style>
         <![endif]-->
         <link rel="icon" type="image/vnd.microsoft.icon" href="{echo siteinfo('siteinfo_favicon_url')}" />
-        <link rel="SHORTCUT ICON" href="favicon.ico" />
+        <link rel="SHORTCUT ICON" href="{echo siteinfo('siteinfo_favicon_url')}"/>
         <script type="text/javascript" src="{$THEME}js/jquery-1.8.3.min.js"></script>
     </head>
-    <body>        
+    <body>
         <div class="main-body">
             <div class="fon-header">
                 <header>
@@ -38,11 +38,11 @@
                         <div class="container">
                             {if $CI->core->core_data['data_type'] == 'main'}
                                 <span class="logo f_l">
-                                    <img src="{echo siteinfo('siteinfo_logo_url')}" alt="logo.png"/>
+                                    <img src="{echo siteinfo('siteinfo_logo')}" alt="logo.png"/>
                                 </span>
                             {else:}
                                 <a href="{site_url()}" class="logo f_l">
-                                    <img src="{echo siteinfo('siteinfo_logo_url')}" alt="logo.png"/>
+                                    <img src="{echo siteinfo('siteinfo_logo')}" alt="logo.png"/>
                                 </a>
                             {/if}
                             <div class="content-cleaner-search f_r">

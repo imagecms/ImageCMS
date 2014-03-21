@@ -29,6 +29,15 @@ $(document).ready(function() {
     // *********************** Navigate pagination *********************************************
     $('.pagination li').live('click', function() {
         Pagination.navigate($(this));
+
+        var scrollTop = $('html').offset().top,
+                elementOffset = $('.mini-layout').offset().top,
+                distance = (elementOffset - scrollTop);
+
+        distance = distance ? distance : 0;
+        $('html').animate({
+            scrollTop: distance
+        }, 300);
     });
 
     // *********************** GO Search *********************************************
@@ -37,6 +46,12 @@ $(document).ready(function() {
     });
 
     $('.translateWord').live('mouseover', function() {
+        setTimeout(function() {
+            $('div[class="tooltip-inner"]').attr('style', 'min-width: 90px!important; text-align: center!important;');
+        }, 500);
+    });
+
+    $('.languageAutoselect').live('mouseover', function() {
         setTimeout(function() {
             $('div[class="tooltip-inner"]').attr('style', 'min-width: 90px!important; text-align: center!important;');
         }, 500);
@@ -1114,10 +1129,14 @@ var Translator = {
             }
         });
     },
-    getAnswerCodeMessage: function(code) {
+    getAnswerCodeMessage: function(code, type) {
         switch (code.toString()) {
             case '200':
-                showMessage(lang('Message'), lang('Successfully translated'));
+                if (type == 'detect') {
+                    showMessage(lang('Message'), lang('Successfully defined'));
+                } else {
+                    showMessage(lang('Message'), lang('Successfully translated'));
+                }
                 break;
             case '401':
                 showMessage(lang('Error'), lang('Wrong API key.'), 'r');
@@ -1218,7 +1237,7 @@ var Translator = {
             return false;
         }
 
-        if (!text) {
+        if (!textToTranslate) {
             showMessage(lang('Error'), lang('You have not specified text to translate.'), 'r');
             return false;
         } else {
@@ -1231,6 +1250,47 @@ var Translator = {
                         $(curElement).closest('.modal_yandex_translate').find('.translation_result').val(Answer.text[0]);
                     }
                     Translator.getAnswerCodeMessage(Answer.code);
+                }
+            });
+        }
+    },
+    sourceLanguageAutoselect: function(curElement) {
+        var textToTranslate = $.trim($(curElement).closest('.modal_yandex_translate').find('.translation_text').val());
+        var text = '&text=' + encodeURI(textToTranslate);
+        var YandexApiKey = $.trim($('.YandexApiKey').val());
+
+        if (!YandexApiKey) {
+            showMessage(lang('Error'), lang('You have not specified Yandex Api Key.'), 'r');
+            return false;
+        }
+
+        if (!textToTranslate) {
+            showMessage(lang('Error'), lang('You have not specified text to translate.'), 'r');
+            return false;
+        } else {
+            var url = 'https://translate.yandex.net/api/v1.5/tr.json/detect?key=' + YandexApiKey + text;
+            $.ajax({
+                type: 'POST',
+                url: url,
+                success: function(Answer) {
+                    if (Answer.code == '200') {
+                        var locale = Answer.lang;
+
+                        var url = '/admin/components/init_window/translator/getLanguageByLocale/' + locale;
+                        $.ajax({
+                            type: 'POST',
+                            url: url,
+                            success: function(data) {
+                                if (data) {
+                                    $(curElement).closest('.modal_yandex_translate').find('.languageFrom').attr('locale', locale);
+                                    $(curElement).closest('.modal_yandex_translate').find('.languageFrom').val(data);
+                                } else {
+                                    showMessage(lang('Error'), lang('Can not define language'), 'r');
+                                }
+                            }
+                        });
+                    }
+                    Translator.getAnswerCodeMessage(Answer.code, 'detect');
                 }
             });
         }

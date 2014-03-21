@@ -40,9 +40,9 @@
     -moz-border-radius: 0 2px 2px 0;-webkit-border-radius: 0 2px 2px 0;border-radius: 0 2px 2px 0;
 }
 
-.page-wishlist .btn-cart{margin-right: 10px;}
+.page-wishlist .btn-cart{margin-right: 10px;float: left;}
 .page-wishlist .btn-cart .text-el{text-transform: none;font-weight: bold;}
-.frame-button-add-wish-list{margin-bottom: 20px;padding: 23px 28px;background-color: #faf8f6;border: 1px solid #eae5e1;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;-moz-box-shadow: 0 2px 2px #ece9e6;-webkit-box-shadow: 0 2px 2px #ece9e6;box-shadow: 0 2px 2px #ece9e6;}
+.frame-button-add-wish-list{overflow: hidden;margin-bottom: 20px;padding: 23px 28px;background-color: #faf8f6;border: 1px solid #eae5e1;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;-moz-box-shadow: 0 2px 2px #ece9e6;-webkit-box-shadow: 0 2px 2px #ece9e6;box-shadow: 0 2px 2px #ece9e6;}
 
 .check-public{width: 300px;}
 .check-public-drop{width: 150px;}

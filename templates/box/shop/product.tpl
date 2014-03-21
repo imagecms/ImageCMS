@@ -87,7 +87,7 @@
                                                 <a onclick="return false;" rel="useZoom: 'photoProduct'" href="{echo $model->firstVariant->getLargePhoto()}" title="{echo ShopCore::encode($model->getName())}" class="cloud-zoom-gallery" id="mainThumb">
                                                     <span class="photo-block">
                                                         <span class="helper"></span>
-                                                        <img src="{echo $model->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($model->getName())}" class="vImgPr"/>
+                                                        <img src="{echo $model->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($model->getName())}" title="{echo ShopCore::encode($model->getName())}" class="vImgPr"/>
                                                     </span>
                                                 </a>
                                             </li>
@@ -97,7 +97,7 @@
                                                     <a onclick="return false;" rel="useZoom: 'photoProduct'" href="{productImageUrl('products/additional/'.$image->getImageName())}" title="{echo ShopCore::encode($model->getName())}" class="cloud-zoom-gallery">
                                                         <span class="photo-block">
                                                             <span class="helper"></span>
-                                                            <img src="{echo productImageUrl('products/additional/thumb_'.$image->getImageName())}" alt="{echo ShopCore::encode($model->getName())} - {echo ++$key}"/>
+                                                            <img src="{echo productImageUrl('products/additional/thumb_'.$image->getImageName())}" alt="{echo ShopCore::encode($model->getName())} - {echo ++$key}" title="{echo ShopCore::encode($model->getName())} - {echo ++$key}"/>
                                                         </span>
                                                     </a>
                                                 </li>
@@ -117,7 +117,7 @@
                             <!-- End. additional images-->
                         {/if}
                         <!-- Start. Photo block-->
-                        <a rel="position: 'xBlock'" onclick="return false;" href="{echo $model->firstVariant->getLargePhoto()}" class="frame-photo-title photoProduct cloud-zoom" id="photoProduct" title="{echo ShopCore::encode($model->getName())}" data-drop="#photo" data-start="Product.initDrop">
+                        <a rel="position: 'xBlock'" onclick="return false;" href="{echo $model->firstVariant->getLargePhoto()}" class="frame-photo-title photoProduct cloud-zoom" id="photoProduct" title="{echo ShopCore::encode($model->getName())}" data-drop="#photo" data-start="Product.initDrop" data-scroll-content="false">
                             <span class="photo-block">
                                 <span class="helper"></span>
                                 <img src="{echo $model->firstVariant->getMainPhoto()}" alt="{echo ShopCore::encode($model->getName())}" title="{echo ShopCore::encode($model->getName())} - {echo $model->getId()}" class="vImgPr"/>
@@ -227,7 +227,7 @@
                                             {if $hasDiscounts}
                                                 {$discount = $productVariant->getvirtual('numDiscount')/$productVariant->toCurrency()*100}
                                             {/if}
-                                            <div class="d_i-b v-a_m">
+                                            <div class="d_i-b v-a_b">
                                                 {if $productVariant->getStock() > 0}
                                                     {$inCart = getAmountInCart('SProducts', $productVariant->getId())}
                                                     <div class="frame-count-buy js-variant-{echo $productVariant->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
@@ -289,9 +289,9 @@
                                                         </form>
                                                     </div>
                                                 {else:}
-                                                    <div class="d_i-b v-a_m">
+                                                    <div class="d_i-b v-a_b t-a_c m-r_20">
                                                         <div class="js-variant-{echo $productVariant->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
-                                                            <div class="alert-exists">{lang('Нет в наличии','newLevel')}</div>
+                                                            <div class="c_6 f-w_b f-s_12">{lang('Нет в наличии','newLevel')}</div>
                                                             <div class="btn-not-avail">
                                                                 <button
                                                                     type="button"
@@ -300,6 +300,7 @@
                                                                     data-source="/shop/ajax/getNotifyingRequest"
 
                                                                     data-id="{echo $productVariant->getId()}"
+                                                                    data-product-id="{echo $model->getId()}"
                                                                     data-name="{echo ShopCore::encode($model->getName())}"
                                                                     data-vname="{echo ShopCore::encode($productVariant->getName())}"
                                                                     data-number="{echo $productVariant->getNumber()}"
@@ -337,7 +338,7 @@
                                             </div>
                                         {/foreach}
                                         <!-- Start. Wish List & Compare List buttons -->
-                                        <div class="frame-wish-compare-list f-s_0">
+                                        <div class="frame-wish-compare-list f-s_0 v-a_b">
                                             <div class="frame-btn-comp">
                                                 <div class="btn-compare">
                                                     <button class="toCompare"
@@ -387,7 +388,7 @@
                 </div>
 
                 <!-- Start. Kit-->
-                {if count($model->getShopKitsLoggedUsersCheck($CI->dx_auth->is_logged_in())) > 0}
+                {if $model->getShopKitsLoggedUsersCheck($CI->dx_auth->is_logged_in()) != false}
                     <div class="container">
                         <section class="frame-complect horizontal-carousel">
                             <div class="frame-title">
@@ -407,7 +408,7 @@
                                                             <div class="frame-photo-title">
                                                                 <span class="photo-block">
                                                                     <span class="helper"></span>
-                                                                    <img src="{echo $kitProducts->getMainProduct()->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($kitProducts->getMainProduct()->getName())}"/>
+                                                                    <img src="{echo $kitProducts->getMainProduct()->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($kitProducts->getMainProduct()->getName())}" title="{echo ShopCore::encode($kitProducts->getMainProduct()->getName())}" />
                                                                     {promoLabel($kitProducts->getSProducts()->getAction(), $kitProducts->getSProducts()->getHot(), $kitProducts->getSProducts()->getHit(), 0)}
                                                                 </span>
                                                                 <span class="title">{echo ShopCore::encode($model->getName())}</span>
@@ -447,7 +448,7 @@
                                                                 <a href="{shop_url('product/' . $kitProduct->getSProducts()->getUrl())}" class="frame-photo-title">
                                                                     <span class="photo-block">
                                                                         <span class="helper"></span>
-                                                                        <img src="{echo $kitProduct->getSProducts()->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($kitProduct->getSProducts()->getName())}"/>
+                                                                        <img src="{echo $kitProduct->getSProducts()->firstVariant->getSmallPhoto()}" alt="{echo ShopCore::encode($kitProduct->getSProducts()->getName())}" title="{echo ShopCore::encode($kitProduct->getSProducts()->getName())}"/>
 
                                                                         {$discount = $kitProduct->getDiscount()}
 
@@ -779,7 +780,7 @@
 <!-- End. JS vars-->
 
 <script type="text/javascript">
-    initDownloadScripts(['cusel-min-2.5', 'cloud-zoom.1.0.3.min', '_product'], 'initPhotoTrEv', 'initPhotoTrEv');
+    initDownloadScripts(['cusel-min-2.5', 'cloud-zoom.1.0.3.min', 'product'], 'initPhotoTrEv', 'initPhotoTrEv');
 </script>
 <div style="display: none;">
     <img src="{echo $model->firstVariant->getLargePhoto()}" alt="{echo ShopCore::encode($model->getName())}" class="vImgPr"/>

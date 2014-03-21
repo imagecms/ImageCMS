@@ -59,7 +59,7 @@ returnMsg = function(msg) {
 };
 $.fn.testNumber = function(add) {
     $(this).off('keypress.testNumber').on('keypress.testNumber', function(e) {
-        $this = $(this);
+        var $this = $(this);
         if (e.ctrlKey || e.altKey || e.metaKey)
             return;
         var chr = getChar(e);
@@ -93,7 +93,7 @@ $.fn.pricetext = function(e, rank) {
     });
     return $this;
 };
-$.fn.setCursorPosition = function(pos) {
+$.fn.setCursorPosition = function(pos) {if (!isTouch)
     this.each(function() {
         this.select();
         try {

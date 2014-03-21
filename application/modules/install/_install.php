@@ -8,6 +8,7 @@ class Install extends MY_Controller {
     public $host = '';
     public $useSqlFile = 'sql.sql'; // sqlShop.sql
     private $exts = FALSE;
+    private $loadedExt = FALSE;
 
     public function __construct() {
         parent::__construct();
@@ -18,6 +19,7 @@ class Install extends MY_Controller {
         $this->load->helper('string');
         $this->load->helper('form_csrf');
         $this->host = reduce_multiples($this->host);
+        $this->loadedExt = get_loaded_extensions();
     }
 
     public function index() {
@@ -72,11 +74,20 @@ class Install extends MY_Controller {
             }
         }
 
-        if (strnatcmp(phpversion(), '5.3.4') != -1) {
-            $allow_params['PHP version >= 5.3.4'] = 'ok';
+        if (file_exists('./application/modules/shop')) {
+            if (strnatcmp(phpversion(), '5.4') != -1) {
+                $allow_params['PHP version >= 5.4'] = 'ok';
+            } else {
+                $allow_params['PHP version >= 5.4'] = 'err';
+                $result = false;
+            }
         } else {
-            $allow_params['PHP version >= 5.3.4'] = 'err';
-            $result = false;
+            if (strnatcmp(phpversion(), '5.3.4') != -1) {
+                $allow_params['PHP version >= 5.3.4'] = 'ok';
+            } else {
+                $allow_params['PHP version >= 5.3.4'] = 'err';
+                $result = false;
+            }
         }
 
         // Check installed php exts.
@@ -88,13 +99,17 @@ class Install extends MY_Controller {
             'gd' => 'ok',
             'zlib' => 'ok',
             'gettext' => 'ok',
-            'soap' => 'ok'
+            'soap' => 'ok',
         );
 
-        foreach ($exts as $k => $v) {
-            if ($this->_get_ext($k) === FALSE) {
-                $exts[$k] = 'warning';
+        if (file_exists('./application/modules/shop')) {
+            $exts['ionCube Loader'] = 'ok';
+        }
 
+        foreach ($exts as $k => $v) {
+            //if ($this->_get_ext($k) === FALSE) {
+            if ($this->checkExtensions($k) === FALSE) {
+                $exts[$k] = 'warning';
                 if ($k == 'json') {
                     $exts[$k] = 'err';
                     $result = FALSE;
@@ -114,6 +129,10 @@ class Install extends MY_Controller {
                     $exts[$k] = 'err';
                     $result = FALSE;
                 }
+                if ($k == 'ionCube Loader') {
+                    $exts[$k] = 'err';
+                    $result = FALSE;
+                }
             }
         }
 
@@ -127,7 +146,7 @@ class Install extends MY_Controller {
                 if (!setlocale(LC_ALL, '')) {
                     $locales[$locale] = 'warning';
                 }
-            } 
+            }
         }
 
         $data = array(
@@ -141,6 +160,22 @@ class Install extends MY_Controller {
         $this->_display($this->load->view('step_1', $data, TRUE));
     }
 
+    /**
+     * Check is extension loaded
+     * @param string $name extension name
+     */
+    private function checkExtensions($name = '') {
+        if (in_array($name, $this->loadedExt)) {
+            return TRUE;
+        }
+        return FALSE;
+    }
+
+    /**
+     * @deprecated since version 4.6
+     * @param type $name
+     * @return boolean
+     */
     private function _get_ext($name = '') {
         if ($this->exts === FALSE) {
             ob_start();

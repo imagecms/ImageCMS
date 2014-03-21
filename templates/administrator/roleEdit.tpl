@@ -53,7 +53,7 @@
             <tbody>
                 <tr>
                     <td colspan="6">
-                        <div class="inside_padd">
+                        <div class="inside_padd span9">
                             <div class="row-fluid">
                                 <div class="control-group m-t_10">
                                     <label class="control-label" for="Name">{lang('Name', 'admin')}:</label>
@@ -98,7 +98,7 @@
                     <div class="tab-pane row {if $key == 'base'}active{/if}" id="{echo $key}">
                         {foreach $type as $k => $groups}
                             <div class="span3">
-                                <table class="table table-striped table-bordered table-hover table-condensed">
+                                <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
                                     <thead>
                                         <tr>
                                             <th class="t-a_c span1">

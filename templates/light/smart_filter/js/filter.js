@@ -16,12 +16,12 @@ var cleaverFilterObj = {
             $(this).each(function() {
                 var $this = $(this),
                         settings = $.extend({
-                    slider: $this.find('.slider'),
-                    minCost: null,
-                    maxCost: null,
-                    leftSlider: $this.find('.left-slider'),
-                    rightSlider: $this.find('.right-slider')
-                }, eval($this.data('rel')));
+                            slider: $this.find('.slider'),
+                            minCost: null,
+                            maxCost: null,
+                            leftSlider: $this.find('.left-slider'),
+                            rightSlider: $this.find('.right-slider')
+                        }, eval($this.data('rel')));
                 var slider = settings.slider,
                         minCost = $(settings.minCost),
                         maxCost = $(settings.maxCost),
@@ -199,6 +199,7 @@ var cleaverFilterObj = {
     };
 })(jQuery);
 var Filter = {
+    interval: null,
     framechecks: ".frame-group-checks",
     frameFilter: '.frame-filter',
     catalogForm: '#catalogForm',
@@ -220,7 +221,7 @@ var Filter = {
     },
     afterAjaxInitializeFilter: function() {
         var self = this,
-        $sliders = $('.frame-slider');
+                $sliders = $('.frame-slider');
 
         $sliders.sliderInit();
         $(this.apply).cleaverFilter(cleaverFilterObj);
@@ -345,15 +346,10 @@ var Filter = {
             url: catUrl,
             data: data,
             cache: true,
-            beforeSend: function() {
-                $.fancybox.showActivity();
-            },
             success: function(msg) {
-
                 var otherClass = '';
                 $(Filter.frameFilter).html(msg).children(preloader).hide();
                 Filter.afterAjaxInitializeFilter();
-                $.fancybox.hideActivity();
                 if (slChk) {
                     otherClass = slChk;
                 }

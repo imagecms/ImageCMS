@@ -4,10 +4,10 @@
     <div class="modal hide fade modal_del">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h3>{lang("Menu deleting")}</h3>
+            <h3>{lang("Menu items deleting", 'menu')}</h3>
         </div>
         <div class="modal-body">
-            <p>{lang("Delete selected menu?", 'menu')}</p>
+            <p>{lang("Delete selected menu items?", 'menu')}</p>
         </div>
         <div class="modal-footer">
             <a href="#" class="btn btn-primary" onclick="delete_function.deleteFunctionConfirm('/admin/components/cp/menu/delete_item')" >{lang("Delete", "menu")}</a>

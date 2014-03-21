@@ -21,7 +21,7 @@ var ShopFront = {
                     el.parent(genObj.btnInCart).addClass('d_n');
                     el.closest(genObj.parentBtnBuy).addClass(genObj.toCart).removeClass(genObj.inCart)
                     .find(genObj.frameCount)
-                    .find(':input:not(:disabled)').removeAttr('disabled', 'disabled')
+                    .find(':input').removeAttr('disabled', 'disabled')
                     .end().find(genObj.plusMinus).attr('value', function(){
                         return $(this).data('min');
                     });
@@ -73,13 +73,13 @@ var ShopFront = {
             inputs.plusminus($.extend({}, optionsPlusminus, {
                 after: function(e, el, input) {
                     if (checkProdStock && input.val() == input.data('max'))
-                        el.closest(genObj.numberC).tooltip();
+                        el.closest(genObj.numberC).tooltip('show');
                 }
             }));
             testNumber(inputs);
             inputs.off('maxminValue').on('maxminValue', function(e) {
                 if (checkProdStock && e.res)
-                    $(this).closest(genObj.numberC).tooltip();
+                    $(this).closest(genObj.numberC).tooltip('show');
             });
         },
         baskChangeCount: function(inputs) {
@@ -326,51 +326,77 @@ function removePreloaderBaner(el) {
     })
 }
 function initCarouselJscrollPaneCycle(el) {
-    el.find('.horizontal-carousel .carousel-js-css:not(.cycleFrame):not(.frame-scroll-pane):visible').myCarousel(carousel);
-    el.find('.vertical-carousel .carousel-js-css:visible').myCarousel(carousel);
-    if ($.exists(selScrollPane)) {
-        el.find(selScrollPane).each(function() {
-            var $this = $(this),
-            api = $this.jScrollPane(scrollPane),
-            api = api.data('jsp');
-            $this.on('mousewheel', function(e, b, c, delta) {
-                if (delta == -1 && api.getContentWidth() - api.getContentPositionX() != api.getContentPane().width())
-                {
-                    //            ширина блоку товару разом з мергінами
-                    api.scrollByX(scrollPane.arrowButtonSpeed);
-                    return false;
-                }
-                if (delta == 1 && api.getContentPositionX() != 0) {
-                    api.scrollByX(-scrollPane.arrowButtonSpeed);
-                    return false;
-                }
-
-            })
-        })
+    function _jC() {
+        clearInterval(_jCI);
+        el.find('.horizontal-carousel .carousel-js-css:not(.cycleFrame):not(.frame-scroll-pane):visible').myCarousel(carousel);
+        el.find('.vertical-carousel .carousel-js-css:visible').myCarousel(carousel);
     }
-    el.find('.cycleFrame').each(function() {
-        var $this = $(this),
-        cycle = $this.find('.cycle'),
-        next = $this.find('.next'),
-        prev = $this.find('.prev');
+    var _jCI;
+    if (body.myCarousel)
+        _jC();
+    else
+        _jCI = setInterval(_jC, 100);
 
-        if (cycle.find('li').length > 1) {
-            cycle.cycle($.extend({}, optionsCycle, {
-                'next': next,
-                'prev': prev,
-                'pager': $this.find('.pager'),
-                'after': function() {
-                    wnd.scroll();
-                }
-            })).hover(function() {
-                cycle.cycle('pause');
-            }, function() {
-                cycle.cycle('resume');
-            });
-            $(next).add(prev).show();
+    function _sP() {
+        clearInterval(_sPI);
+        if ($.exists(selScrollPane)) {
+            el.find(selScrollPane).each(function() {
+                var $this = $(this),
+                        api = $this.jScrollPane(scrollPane),
+                        api = api.data('jsp');
+                $this.on('mousewheel', function(e, b, c, delta) {
+                    if (delta == -1 && api.getContentWidth() - api.getContentPositionX() != api.getContentPane().width())
+                    {
+                        //            ширина блоку товару разом з мергінами
+                        api.scrollByX(scrollPane.arrowButtonSpeed);
+                        return false;
+                    }
+                    if (delta == 1 && api.getContentPositionX() != 0) {
+                        api.scrollByX(-scrollPane.arrowButtonSpeed);
+                        return false;
+                    }
+
+                })
+            })
         }
-        removePreloaderBaner($('.baner:has(.cycle)')); //cycle - parent for images
-    });
+    }
+    var _sPI;
+    if (body.jScrollPane)
+        _sP();
+    else
+        _sPI = setInterval(_sP, 100);
+
+    function _c() {
+        clearInterval(_cI);
+        el.find('.cycleFrame').each(function() {
+            var $this = $(this),
+                    cycle = $this.find('.cycle'),
+                    next = $this.find('.next'),
+                    prev = $this.find('.prev');
+
+            if (cycle.find('li').length > 1) {
+                cycle.cycle($.extend({}, optionsCycle, {
+                    'next': next,
+                    'prev': prev,
+                    'pager': $this.find('.pager'),
+                    'after': function() {
+                        wnd.scroll();
+                    }
+                })).hover(function() {
+                    cycle.cycle('pause');
+                }, function() {
+                    cycle.cycle('resume');
+                });
+                $(next).add(prev).show();
+            }
+            removePreloaderBaner($('.baner:has(.cycle)')); //cycle - parent for images
+        });
+    }
+    var _cI;
+    if (body.cycle)
+        _c();
+    else
+        _cI = setInterval(_c, 100);
 }
 function hideDrop(drop, form, durationHideForm) {
     drop = $(drop);
@@ -392,20 +418,20 @@ function hideDrop(drop, form, durationHideForm) {
     })
 }
 function showHidePart(el, absolute, time, btnPlace) {
-    if (time == undefined)
+    if (!time)
         time = 300;
-    if (btnPlace == undefined)
+    if (!btnPlace)
         btnPlace = 'next';
     el.each(function() {
         var $this = $(this),
-        $thisH = isNaN(parseInt($this.css('max-height'))) ? parseInt($this.css('height')) : parseInt($this.css('max-height')),
-        $item = $this.children(),
-        sumHeight = 0;
+                $thisH = isNaN(parseInt($this.css('max-height'))) ? parseInt($this.css('height')) : parseInt($this.css('max-height')),
+                $item = $this.children(),
+                sumHeight = 0;
         $this.addClass('showHidePart').data('maxHeight', $thisH);
         $this.find('*').css('max-height', 'none');
         $item.each(function() {
             sumHeight += $(this).outerHeight(true);
-        })
+        });
         $this.find('*').css('max-height', '');
 
         if (sumHeight > $thisH) {
@@ -414,16 +440,16 @@ function showHidePart(el, absolute, time, btnPlace) {
                 'height': $thisH
             });
             var btn = $this[btnPlace](),
-            textEl = btn.find(genObj.textEl);
+                    textEl = btn.find(genObj.textEl);
             btn.addClass('d_i-b hidePart');
             if (!btn.is('[data-trigger]')) {
-                textEl.html(textEl.data('show'))
+                textEl.html(textEl.data('show'));
                 btn.off('click.showhidepart').on('click.showhidepart', function() {
                     var $thisB = $(this);
-                    if ($thisB.data("show") == "no" || $thisB.data("show") == undefined) {
+                    if ($thisB.data("show") === "no" || !$thisB.data("show")) {
                         $thisB.addClass('showPart').removeClass('hidePart');
                         var textEl = $thisB.find(genObj.textEl),
-                        sHH = 0;
+                                sHH = 0;
                         $this.parents('li').children(':not(.wrapper-h)').each(function() {
                             sHH += $(this).height();
                         });
@@ -432,56 +458,31 @@ function showHidePart(el, absolute, time, btnPlace) {
                             'height': sumHeight
                         }, time, function() {
                             var sH = 0;
-                            $this.css('max-height', 'none');
-                            $this.parents('li').children(':not(.wrapper-h)').each(function() {
+                            $this.css('max-height', 'none').data('heightDecor', sHH).parents('li').children(':not(.wrapper-h)').each(function() {
                                 sH += $(this).height();
                             });
-                            $this.data('heightDecor', sHH);
-                            var wrapperH = $this.parent().nextAll('.wrapper-h');
-                            wrapperH.css({
+                            $this.parent().nextAll('.wrapper-h').css({
                                 'width': '100%',
                                 'height': sH
-                            }).fadeIn();
-                            wrapperH.addClass('active')
+                            }).fadeIn().addClass('active');
                             $(this).removeClass('cut-height').addClass('full-height');
-                            textEl.hide().html(textEl.data('hide')).fadeIn(time)
-                            $(this).parents('.showHidePart').each(function() {
-                                var sH = 0;
-                                $(this).children().each(function() {
-                                    sH += $(this).outerHeight(true);
-                                })
-                                $(this).css({
-                                    'max-height': 'none',
-                                    'height': sH
-                                });
-                            })
+                            textEl.hide().html(textEl.data('hide')).fadeIn(time);
                         });
                         $thisB.data('show', "yes");
                     }
                     else {
                         var $thisB = $(this).removeClass('showPart').addClass('hidePart'),
-                        textEl = $thisB.find(genObj.textEl);
+                                textEl = $thisB.find(genObj.textEl);
                         $thisB.parent().nextAll('.wrapper-h').animate({
                             'height': $this.data('heightDecor')
                         }, time, function() {
-                            $(this).removeClass('active').fadeOut()
+                            $(this).removeClass('active').fadeOut();
                         });
                         $thisB.prev().stop().animate({
                             'height': $thisH
                         }, time, function() {
-                            $(this).css('max-height', 'none')
-                            $(this).removeClass('full-height').addClass('cut-height');
-                            textEl.hide().html(textEl.data('show')).fadeIn(time)
-                            $(this).parents('.showHidePart').each(function() {
-                                var sH = 0;
-                                $(this).children().each(function() {
-                                    sH += $(this).outerHeight(true);
-                                })
-                                $(this).css({
-                                    'max-height': 'none',
-                                    'height': sH
-                                });
-                            })
+                            $(this).css('max-height', 'none').removeClass('full-height').addClass('cut-height');
+                            textEl.hide().html(textEl.data('show')).fadeIn(time);
                         });
                         $thisB.data('show', "no");
                     }
@@ -492,7 +493,7 @@ function showHidePart(el, absolute, time, btnPlace) {
             var sH = 0;
             $(this).children().each(function() {
                 sH += $(this).outerHeight(true);
-            })
+            });
             $(this).css({
                 'max-height': $(this).data('maxHeight'),
                 'height': sH
@@ -506,9 +507,8 @@ function showHidePart(el, absolute, time, btnPlace) {
             var $this = $(this);
             tempH = $this.outerHeight();
             sH = tempH > sH ? tempH : sH;
-            $this.append('<div class="wrapper-h"></div>')
-        }).css('height', sH)
-
+            $this.append('<div class="wrapper-h"></div>');
+        }).css('height', sH);
     }
 }
 function decorElemntItemProduct(el) {
@@ -747,7 +747,7 @@ function testNumber(el) {
         if (e.res)
             $(this).tooltip('remove');
         else {
-            $(this).tooltip();
+            $(this).tooltip('show');
         }
     }).testNumber();
 //    ['.']

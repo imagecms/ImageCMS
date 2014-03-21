@@ -43,15 +43,16 @@ class discount_model_admin extends CI_Model {
      */
     public function changeActive($id) {
         $discount = $this->db->where('id', $id)->get('mod_shop_discounts')->row();
+        
+        // Check is discount with such id
+        if ($discount == null)
+            return false;
+        
         $active = $discount->active;
         if ($active == 1)
             $active = 0;
         else
             $active = 1;
-
-        // Check is discount with such id
-        if ($discount == null)
-            return false;
 
         // If updated active succes then return TRUE
         if ($this->db->where('id', $id)->update('mod_shop_discounts', array('active' => $active)))

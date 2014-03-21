@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-26 01:49+0200\n"
-"PO-Revision-Date: 2013-12-26 01:49+0200\n"
+"POT-Creation-Date: 2014-03-17 12:30+0000\n"
+"PO-Revision-Date: 2014-03-17 12:30+0000\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -20,7 +20,11 @@ msgstr ""
 
 #: ./application/modules/rss/templates/admin/settings.tpl:5
 msgid "RSS channel options or specifications"
-msgstr "Параметры RSS каналу"
+msgstr "Параметры RSS-канала"
+
+#: ./application/modules/rss/templates/admin/settings.tpl:58
+msgid "Specify caсhe lifetime in minutes"
+msgstr "Укажите период обновления кеша в минутах"
 
 #: ./application/modules/rss/templates/admin/settings.tpl:9
 msgid "Go back"
@@ -65,10 +69,6 @@ msgstr "Укажите количество страниц для отображ
 #: ./application/modules/rss/templates/admin/settings.tpl:55
 msgid "Cache"
 msgstr "Кэш"
-
-#: ./application/modules/rss/templates/admin/settings.tpl:58
-msgid "Specify caсhe lifetime in minutes"
-msgstr "Укажите время содержания кеша в минутах"
 
 #: ./application/modules/rss/admin.php:60
 msgid "Changes have been saved"

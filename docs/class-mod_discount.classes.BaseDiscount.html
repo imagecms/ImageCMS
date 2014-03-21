@@ -7,7 +7,7 @@
 	<title>Class mod_discount\classes\BaseDiscount | ImageCMS Docs</title>
 
 	<script type="text/javascript" src="resources/combined.js?394153670"></script>
-	<script type="text/javascript" src="elementlist.js?4237105985"></script>
+	<script type="text/javascript" src="elementlist.js?2613982002"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360">
 
 </head>
@@ -60,9 +60,9 @@
 				<li class="active"><a href="namespace-mod_discount.classes.html">classes</a>
 						</li>
 							</ul></li>
-				<li><a href="namespace-mod_seoexpert.html">mod_seoexpert<span></span></a>
+				<li><a href="namespace-mod_seo.html">mod_seo<span></span></a>
 						<ul>
-				<li><a href="namespace-mod_seoexpert.classes.html">classes</a>
+				<li><a href="namespace-mod_seo.classes.html">classes</a>
 						</li>
 							</ul></li>
 				<li><a href="namespace-mod_stats.html">mod_stats<span></span></a>
@@ -463,6 +463,121 @@ cart Data: - (bool) reBuild: for redeclare singelton:</dd>
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="getAppliesCart" id="_getAppliesCart">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getAppliesCart">#</a>
+		<code>getAppliesCart( )</code>
+
+		<div class="description short">
+			
+<p>Returns the number of uses of discounts (only in cart) (grouped by key of
+discounts)</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Returns the number of uses of discounts (only in cart) (grouped by key of
+discounts)</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br>array(discountKey =&gt; array(productId =&gt; quantity in cart))<br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getAppliesOverloadDifference" id="_getAppliesOverloadDifference">
+
+		<td class="attributes"><code>
+			 public 
+			type
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getAppliesOverloadDifference">#</a>
+		<code>getAppliesOverloadDifference( <span>type <var>$discountCounts</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$discountCounts</var></dt>
+					<dd><code>type</code><br>$discountCounts</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>type</code><br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="recountPriceAccordApplies" id="_recountPriceAccordApplies">
+
+		<td class="attributes"><code>
+			 public 
+			integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_recountPriceAccordApplies">#</a>
+		<code>recountPriceAccordApplies( <span>type <var>$discountCounts</var> = <span class="php-keyword1">NULL</span></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$discountCounts</var></dt>
+					<dd><code>type</code><br>$discountCounts</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code><br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	</table>
 
 
@@ -476,6 +591,35 @@ cart Data: - (bool) reBuild: for redeclare singelton:</dd>
 
 
 
+	<table class="summary" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="aplyOverloadProducts" id="$aplyOverloadProducts">
+		<td class="attributes"><code>
+			public  
+			array
+		</code></td>
+
+		<td class="name">
+<var>$aplyOverloadProducts</var>		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
+		<td class="description"><div>
+			<a href="#$aplyOverloadProducts" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Information about each product which quantity was more then max applies</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Information about each product which quantity was more then max applies</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
 
 
 

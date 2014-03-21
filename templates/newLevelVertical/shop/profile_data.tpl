@@ -1,8 +1,8 @@
 <div class="inside-padd clearfix">
     <div class="frame-change-profile">
         <div class="horizontal-form">
-              <form method="post" id="form_change_info" onsubmit="ImageCMSApi.formAction('{site_url("/shop/profileapi/changeInfo")}', '#form_change_info', {literal}{hideForm: false, durationHideForm: 1000}{/literal});
-                return false;">
+            <form method="post" id="form_change_info" onsubmit="ImageCMSApi.formAction('{site_url("/shop/profileapi/changeInfo")}', '#form_change_info', {literal}{hideForm: false, durationHideForm: 1000}{/literal});
+                      return false;">
                 <label>
                     <span class="title">{lang('Ваше имя','newLevel')}:</span>
                     <span class="frame-form-field">
@@ -43,9 +43,10 @@
             </form>
         </div>
     </div>
-    {$discount = (array)\mod_discount\classes\BaseDiscount::create()}
-
-    {if $discount['user'] or $discount['group_user'] or $discount['comulativ']}
+            
+    {$dApi = $CI->load->module('mod_discount/discount_api')}
+    {if $dApi->discountsExists()}
+        {$discount = $dApi->get_user_discount_api()}
         <div class="layout-highlight info-discount">
             <div class="title-default">
                 <div class="title">{lang('Скидки','newLevel')}</div>
@@ -62,7 +63,7 @@
                                 </span>
                             </span>
                         </div>
-                        {if $discount['user']}
+                        {if $dApi->userDiscountExists()}
                             <div>
                                 {lang('Ваша текущая скидка','newLevel')}:
                                 <span class="price-item">
@@ -70,7 +71,7 @@
                                 </span>
                             </div>
                         {/if}
-                        {if $discount['group_user']}
+                        {if $dApi->groupDiscountExists()}
                             <div>
                                 {lang('Ваша текущая скидка группы пользователей','newLevel')}:
                                 <span class="price-item">
@@ -99,8 +100,8 @@
 
                     {if $discount_comul_next}
                         <li class="inside-padd">
-                            <div>{lang('Для следующих скидкок','newLevel')} {echo $discount_comul_next['value']}{if  $discount_comul_next['type_value'] == 1}%{else:}{$CS}{/if}</b> {lang('оставить','newLevel')}</div>
-                            <div>{lang('Сделать покупки по ценам','newLevel')}: <b>{echo $discount_comul_next['begin_value'] - $profile->getamout()} {$CS}</b></div>
+                            <div>{lang('Для следующей скидки','newLevel')} {echo $discount_comul_next['value']}{if  $discount_comul_next['type_value'] == 1}%{else:}{$CS}{/if}</b> {lang('осталось','newLevel')}</div>
+                            <div>{lang('cделать покупки на сумму','newLevel')}: <b>{echo $discount_comul_next['begin_value'] - $profile->getamout()} {$CS}</b></div>
                         </li>
                     {/if}
                     {if  $discount['comulativ']}

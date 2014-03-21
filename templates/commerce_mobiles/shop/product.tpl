@@ -3,6 +3,8 @@
 # @var editProductUrl
 # @var jsCode
 #}
+{$hasDiscounts = $model->hasDiscounts()}
+{$oldoprice = $model->getOldPrice() && $model->getOldPrice() != 0 && $model->getOldPrice() > $model->firstVariant->toCurrency()}
 <div class="content_head">
     {widget('path')}
 </div>
@@ -22,21 +24,40 @@
                     <span class="divider">/</span>
                     <span class="code">{lang('Артикул','commerce_mobiles')}: {echo $model->firstVariant->number}</span>
                 {/if}
+
+                <!-- Start. Check for discount-->
+                {if $hasDiscounts}
+                    <span class="d_b price" style="color: red; text-decoration: line-through;">{echo $model->firstVariant->toCurrency('OrigPrice')}</span>
+                {/if}
+                <!-- End. Check for discount-->
+                <!-- Start. Check old price-->
+                {if $oldoprice && !$hasDiscounts}
+                    <span class="d_b price" style="color: red; text-decoration: line-through;">{echo intval($model->toCurrency('OldPrice'))}</span>
+                {/if}
+                <!-- End. Check old price-->
                 <span class="d_b price">{echo $model->firstVariant->toCurrency()} {$CS}</span>
-                <div class="but_buy">
-                    <form method="GET" name="orderForm" action="{shop_url('cart/add')}">
-                        <a href="{shop_url('cart')}" onclick="$(this).closest('form').submit();
-                                return false;">
-                            <span class="helper"></span>
-                            <span class="v-a_m">{lang('Купить','commerce_mobiles')}</span>
-                        </a>
-                        <input type="hidden" name="productId" value="{echo $model->getId()}" />
-                        <input type="hidden" name="variantId" value="{echo $model->firstVariant->getId()}" />
-                        <input type="hidden" name="quantity" value="1" />
-                        <input type="hidden" name="mobile" value="1" />
-                        {form_csrf()}
-                    </form>
-                </div>
+                {if $model->firstVariant->getStock() != 0}
+                    <div class="but_buy">
+                        <form method="POST" name="orderForm" action="{shop_url('cart/addProductByVariantId/'.$model->firstVariant->getId())}">
+                            <a href="{shop_url('cart')}" 
+                               onclick="$(this).closest('form').submit();
+                                       return false;">
+                                <span class="helper"></span>
+                                <!--<span class="v-a_m">Купить</span>-->
+                                <span class="v-a_m">В корзину</span>
+                            </a>
+                            <input type="hidden" name="productId" value="{echo $model->getId()}" />
+                            <input type="hidden" name="variantId" value="{echo $model->firstVariant->getId()}" />
+                            <input type="hidden" name="quantity" value="1" />
+                            <input type="hidden" name="mobile" value="1" />
+                            {form_csrf()}
+                        </form>
+                    </div>
+                {else:}
+                    <div class="f_l subm_filter">
+                        <input type="submit" value="Нет в наличии" style="width: 190px !important;">
+                    </div>
+                {/if}
             </div>
         </div>
     </li>
@@ -68,21 +89,38 @@
                             <span class="divider">/</span>
                             <span class="code">{lang('Артикул','commerce_mobiles')}: {echo $p->number}</span>
                         {/if}
+                        <!-- Start. Check for discount-->
+                        {if $hasDiscounts}
+                            <span class="d_b price" style="color: red; text-decoration: line-through;">{echo $p->toCurrency('OrigPrice')}</span>
+                        {/if}
+                        <!-- End. Check for discount-->
+                        <!-- Start. Check old price-->
+                        {if $oldoprice && !$hasDiscounts}
+                            <span class="d_b price" style="color: red; text-decoration: line-through;">{echo intval($model->toCurrency('OldPrice'))}</span>
+                        {/if}
+                        <!-- End. Check old price-->
                         <span class="d_b price">{echo $p->toCurrency()} {$CS}</span>
-                        <div class="but_buy">
-                            <form method="POST" name="orderForm" action="{shop_url('cart/add')}">
-                                <a href="{shop_url('cart')}" onclick="$(this).closest('form').submit();
-                                return false;">
-                                    <span class="helper"></span>
-                                    <span class="v-a_m">{lang('Купить','commerce_mobiles')}</span>
-                                </a>
-                                <input type="hidden" name="productId" value="{echo $model->getId()}" />
-                                <input type="hidden" name="variantId" value="{echo $p->getId()}" />
-                                <input type="hidden" name="quantity" value="1" />
-                                <input type="hidden" name="mobile" value="1" />
-                                {form_csrf()}
-                            </form>
-                        </div>
+                        {if $p->getStock() != 0}
+                            <div class="but_buy">
+                                <form method="POST" name="orderForm" action="{shop_url('cart/addProductByVariantId/'.$p->getId())}">
+                                    <a href="{shop_url('cart')}" onclick="$(this).closest('form').submit();
+                                            return false;">
+                                        <span class="helper"></span>
+                                        <span class="v-a_m">{lang('Купить','commerce_mobiles')}</span>
+                                    </a>
+                                    <input type="hidden" name="productId" value="{echo $model->getId()}" />
+                                    <input type="hidden" name="variantId" value="{echo $p->getId()}" />
+                                    <input type="hidden" name="quantity" value="1" />
+                                    <input type="hidden" name="mobile" value="1" />
+                                    {form_csrf()}
+                                </form>
+                            </div>
+                        {else:}
+                            <div class="f_l subm_filter">
+                                <input type="submit" value="Нет в наличии" style="width: 190px !important;">
+                            </div>
+                        {/if}
+
                     </div>
                 </div>
             </li>

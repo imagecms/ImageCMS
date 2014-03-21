@@ -71,12 +71,13 @@ div[class="tooltip-inner"] {
 
 #po_table  select.links{
     min-height: 97px;
+    width: 100%;
 }
 
 #po_table .translationCancel{
     display: none; 
     float: right; 
-    margin-left: 600px; 
+    /*margin-left: 600px;*/ 
     margin-bottom: -30px;
 }
 
@@ -166,7 +167,7 @@ div[class="tooltip-inner"] {
 
 .content_big_td .statistic > .statisticTitle{
     position: absolute; 
-    margin-left: -85px; 
+    margin-left: -90px; 
     margin-top: 5px;
 }
 
@@ -183,8 +184,14 @@ div[class="tooltip-inner"] {
 
 #poTab > .pull-right{
     position: relative; 
-    right: 150px;
+    right: 2px;
 }
+
+#poTab > .pull-right .searchString{
+    min-width: 250px;
+}
+
+
 
 #poTab .searchTranslatorOptions{
     width: 430px!important; 
@@ -221,7 +228,8 @@ div[class="tooltip-inner"] {
 }
 
 .originLangHolder > select#originLang{
-    width: 80px;
+    min-width: 50px;
+    width: auto;
 }
 
 .YandexApiKeyHolder{
@@ -239,7 +247,7 @@ div[class="tooltip-inner"] {
     width: 500px;
 }
 .modal_yandex_translate > .modal-header input.languageSelect{
-    width: 120px;
+    width: 100px;
     margin-top: 7px;
     margin-left: 15px;
 }
@@ -266,4 +274,12 @@ div[class="tooltip-inner"] {
 
 .modal_yandex_translate > .modal-header h4{
     text-align: center;
+}
+
+.poSelectorsHolder  #modules_templates{
+    max-width: 300px;
+}
+
+.poSelectorsHolder  select{
+    width: auto;
 }

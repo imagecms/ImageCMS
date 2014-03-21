@@ -22,7 +22,7 @@
                     <label>
                         <input type="text" class="maxCost" data-title="{lang('только цифры', 'newLevel')}" name="rp" value="{echo $curMax}" data-maxs="{echo $maxPrice}"/>
                     </label>
-                    <div class="btn-def">
+                    <div class="btn-def d_n">
                         <input type="submit" value="ОК"/>
                     </div>
                 </div>
@@ -135,21 +135,17 @@
                         {/if}
                     </div>
                 </div>
-            {if $condTypeProperty}<div class="preloader"></div>{/if}
-        {/if}
-    {/foreach}
-{/if}
-<div class="frame-group-checks">
-    <div class="inside-padd">
-        <div class="btn-form m-b_5">
-            <button type="submit">
-                <span class="text-el">{lang('Фильтровать', 'newLevel')}</span>
-            </button>
+            {/if}
+        {/foreach}
+    {/if}
+    <div class="frame-group-checks">
+        <div class="inside-padd">
+            <div class="btn-form m-b_5">
+                <button type="submit">
+                    <span class="text-el">{lang('Фильтровать', 'newLevel')}</span>
+                </button>
+            </div>
         </div>
-        <button type="reset">
-            <span class="text-el d_l_1">{lang('Сбросить фильтр', 'newLevel')}</span>
-        </button>
     </div>
-</div>
 </div>
 <input disabled="disabled" type="hidden" name="requestUri" value="{echo site_url($CI->uri->uri_string())}"/>

@@ -225,6 +225,7 @@ class DiscountManager extends \MY_Controller {
 
         $data['type_discount'] = 'all_order';
         $data['all_order']['is_gift'] = 1;
+        $data['max_apply'] = 1;
         return $this->create($data);
     }
 
@@ -263,10 +264,10 @@ class DiscountManager extends \MY_Controller {
 
         $typeDiscount = $postArray['type_discount'];
         $typeDiscountTableName = 'mod_discount_' . $typeDiscount;
-     
+
         // Check range for cumulative discount
         if ($typeDiscount == "comulativ" AND $this->discount_model_admin->checkRangeForCumulativeDiscount($postArray[$typeDiscount])) {
-            return array('success' => false, 'error' => array(lang('Has been already created with the cumulative discount value','mod_discount')));
+            return array('success' => false, 'error' => array(lang('Has been already created with the cumulative discount value', 'mod_discount')));
         }
 
         $data = array(
@@ -280,6 +281,11 @@ class DiscountManager extends \MY_Controller {
             'active' => '1'
         );
 
+        // gift correction (just in case)
+        if (isset($postArray['all_order']['is_gift'])) {
+            $data['max_apply'] = 1;
+        }
+
         $discountId = $this->discount_model_admin->insertDataToDB('mod_shop_discounts', $data);
 
         $data_locale = array(
@@ -291,8 +297,6 @@ class DiscountManager extends \MY_Controller {
         $typeDiscountData = $postArray[$typeDiscount];
 
         $this->discount_model_admin->insertDataToDB('mod_shop_discounts_i18n', $data_locale);
-
-
 
         if ($discountId != false) {
             $typeDiscountData['discount_id'] = $discountId;
@@ -315,7 +319,7 @@ class DiscountManager extends \MY_Controller {
     public function validation($postArray, $id = null) {
 
         $typeDiscount = $postArray['type_discount'];
-        
+
         if (!in_array($typeDiscount, array('all_order', 'comulativ', 'user', 'group_user', 'category', 'product', 'brand')))
             $this->error[] = lang('Wrong type discount');
 
@@ -343,6 +347,12 @@ class DiscountManager extends \MY_Controller {
         if ($typeDiscount == 'user' && !$postArray[$typeDiscount]['user_id'])
             $this->error[] = lang('Enter the user who is in the database', 'mod_discount');
 
+        if ($typeDiscount == 'user' && !$this->validateUserDiscount($postArray[$typeDiscount]['user_id']))
+            $this->error[] = lang('This user already have active discount', 'mod_discount');
+
+        if ($typeDiscount == 'group_user' && !$this->validateGroupDiscount($postArray[$typeDiscount]['group_id']))
+            $this->error[] = lang('This group of users already have active discount', 'mod_discount');
+
         if ($typeDiscount == 'comulativ' && $postArray[$typeDiscount]['end_value'] == null && $this->discount_model_admin->checkHaveAnyComulativDiscountMaxEndValue($id))
             $this->error[] = lang('There can be more than one discount with said upper threshold as a <<maximum>>!', 'mod_discount');
 
@@ -360,6 +370,36 @@ class DiscountManager extends \MY_Controller {
 
         if ($postArray['date_begin'] >= $postArray['date_end'] && !$postArray['date_end'] == null)
             $this->error[] = lang('Invalid date range!', 'mod_discount');
+    }
+
+    /**
+     * Helper function for checking that user have no discounts already
+     * @param int $userId id of user
+     * @return boolean true if user have no discounts alreaty, false otherwise
+     */
+    public static function validateUserDiscount($userId) {
+        $data = \mod_discount\classes\BaseDiscount::create()->discountType['user'];
+        foreach ($data as $oneDiscountData) {
+            if ($oneDiscountData['user_id'] == $userId) {
+                return FALSE;
+            }
+        }
+        return TRUE;
+    }
+
+    /**
+     * Helper function for checking that user-group have no discounts already
+     * @param int $groupId id of group
+     * @return boolean true if user-group have no discounts alreaty, false otherwise
+     */
+    public static function validateGroupDiscount($groupId) {
+        $data = \mod_discount\classes\BaseDiscount::create()->discountType['group_user'];
+        foreach ($data as $oneDiscountData) {
+            if ($oneDiscountData['group_id'] == $groupId) {
+                return FALSE;
+            }
+        }
+        return TRUE;
     }
 
     /**
