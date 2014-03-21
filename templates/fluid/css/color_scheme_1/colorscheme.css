@@ -266,7 +266,7 @@ a:focus, a:active {color: #ff8001;}
 .items-news a{text-decoration: none;}
 .items-news .frame-photo-title{line-height: 1.4;}
 .items-news > li .title{font-size: 12px;font-weight: bold;}
-.items-news .description{color: #666;margin-bottom: 10px;}
+.items-news .description{color: #666;}
 
 .item-product .frame-prices-buy, #photo .frame-prices-buy{border: 1px solid #dfe4eb;background-color: #f2f6f9;}
 .not-avail .frame-prices-buy{background-color: transparent;border: 0;display: inline;}
@@ -516,6 +516,7 @@ hr{border-top: 1px solid #fff;border-bottom: 1px solid #e4e4e4;}
 .btn-def2.active > button .text-el{color: #fff;}
 .btn-def2:hover{background-color: #f5f9ff;}
 .btn-def > input, .btn-def > button, .btn-form > input, .btn-form > button, .btn-not-avail > button{height: 33px;line-height: 33px;padding: 0 23px;}
+.btn-def.active > input, .btn-def.active > button, .btn-form.active > input, .btn-form.active > button, .btn-not-avail.active > button{color: #999;}
 form .btn-form > button, .btn-form input{padding: 0 33px;}
 form .btn-form .text-el, .btn-not-avail .text-el, .btn-form input, .btn-cart .text-el, .frame-payment input[type="submit"]{font-weight: bold;font-size: 12px;color: #000;}
 .neigh-buttonform{height: 32px;}
@@ -798,6 +799,7 @@ input.input-search:focus + .btn-search .icon_search{background-position: -120px 
 
 /*pagination*/
 .pagination li{border: 3px solid #dfe4eb;border-radius: 21px;}
+li.clear-pag-item{border: 0;}
 .pagination li > a, .pagination li > span{border-radius: 3px;}
 .pagination li > a{color: #000;text-decoration: none;}
 .pagination li:hover > a{color: #6f92bc;}

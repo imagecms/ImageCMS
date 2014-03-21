@@ -304,6 +304,7 @@ input.input-search{height: 33px;}
 .items-catalog.list .funcs-buttons{display: inline-block;margin-bottom: 0;vertical-align: middle;margin-right: 17px;}
 .items-catalog.list .funcs-buttons .btn-buy{margin-bottom: 0;}
 .items-catalog.list .funcs-buttons + .frame-without-top{display: inline-block;vertical-align: middle;}
+.items-catalog.list .funcs-buttons + .frame-without-top .t-a_j:after{content: none;}
 .items-catalog .frame-star{margin-bottom: 10px;margin-top: 5px;}
 .items-catalog.list .frame-star{position: absolute;right: 0;top: 22px;}
 .items-catalog .price-discount{margin-bottom: 10px;display: block;}
@@ -321,8 +322,8 @@ input.input-search{height: 33px;}
 .items-catalog.table, .items-catalog.tablemini{margin-left: 0;}
 .items-catalog.table:hover, .items-catalog.tablemini:hover{position: relative;z-index: 2;}
 items-catalog.table > li, items-catalog.tablemini > li{margin-left: 10px;overflow: hidden;}
-.items-catalog.table > li{width: 238px !important;}
-.items-catalog.tablemini > li{width: 198px !important;}
+.items-catalog.table > li{width: 230px !important;padding: 0 4px;}
+.items-catalog.tablemini > li{width: 190px !important;padding: 0 4px;}
 .items-catalog.table > li:hover, .items-catalog.tablemini > li:hover{overflow: visible;}
 .items-catalog .star{margin-right: 6px;}
 .items-catalog .frame-btn-comp, .items-catalog .frame-btn-wish{margin: 2px 0;}
@@ -337,7 +338,8 @@ items-catalog.table > li, items-catalog.tablemini > li{margin-left: 10px;overflo
 .items-news{margin-left: -43px;}
 .items-news .photo-block{margin-bottom: 7px;height: 74px;width: 84px;float: left;margin-right: 20px;}
 .items-news .photo-block > img{max-height: 110px;}
-.items-news .description{margin-left: 104px;}
+.items-news .description{margin-bottom: 10px;}
+.items-news li.is-photo .description{margin-left: 104px;}
 .items-news > li{width: 440px;margin-left: 43px;margin-bottom: 30px;}
 .vertical-layout .items-news > li{width: auto;}
 .items-news .frame-photo-title{display: block;margin-bottom: 1px;}
@@ -1156,8 +1158,6 @@ footer .content-footer{min-height: 223px;padding-top: 32px;}
 
 .content-already-show .inside-padd{padding: 25px 30px;}
 .frame-already-show .special-proposition{margin-bottom: 0;}
-
-.drop-wishlist .icon_times_drop{right: 20px;}
 /*/drop*/
 
 /*user-toolbar*/
