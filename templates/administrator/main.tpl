@@ -77,7 +77,7 @@
         {include_tpl('inc/jsLangs.tpl')}
         {$langDomain = $CI->land->gettext_domain}
         {$CI->lang->load('admin')}
-        {if SHOP_INSTALLED && (trim($content) == 'Строк тестовой лицензии истек' OR trim($content) == 'Ошибка проверки лицензии.')}
+        {if SHOP_INSTALLED && !file_exists('./application/modules/shop/license.key')}
             <div class="imagecms-top-fixed-header{if $_COOKIE['condPromoToolbar'] == '1' || $_COOKIE['condPromoToolbar'] == NULL} imagecms-active{/if}">
                 <div class="imagecms-inside">
                     <div class="container">
