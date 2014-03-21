@@ -45,7 +45,8 @@ input[type="text"][disabled], input[type="password"][disabled], textarea[disable
 .date{color: #a0a0a0;}
 
 /*active*/
-:acitve{outline: none;} :focus{outline: none;}
+:acitve{outline: none;}
+:focus{outline: none;}
 
 button[disabled="disabled"], input[type="submit"][disabled="disabled"], input[type="reset"][disabled="disabled"], input[type="button"][disabled="disabled"], .disabled, .disabled > *, .divider{cursor: default;color: #999;}
 .active > span, .active > a, .active > button{cursor: default;color: #999;}
@@ -645,7 +646,10 @@ hr{border-top: 1px solid #fff;border-bottom: 1px solid #e4e4e4;}
 /*seo*/
 .frame-seotext-news, .frame-benefits{background: url("images/fon_benefits.png") repeat;}
 .frame-seotext-news{padding-top: 45px;position: relative;}
+.vertical-layout .frame-seotext-news{padding-top: 0;}
 .frame-seotext-news:before{content: "";position: absolute;left: -5%;top: -6px;width: 110%;-moz-box-shadow: 0 3px 7px rgba(229, 225, 222, 0.79);-webkit-box-shadow: 0 3px 7px rgba(229, 225, 222, 0.79);-moz-box-shadow: 0 3px 7px rgba(229, 225, 222, 0.79);height: 6px;}
+.vertical-layout .frame-seotext-news:before{content: none;}
+
 .seo-text{margin-bottom: 50px;}
 .seo-text table, .seo-text td, .seo-text th{border-color: #999;}
 .seo-text *{color: #999;}
@@ -844,7 +848,7 @@ hr{border-top: 1px solid #fff;border-bottom: 1px solid #e4e4e4;}
     background: linear-gradient(to bottom,  #9ec300 0%,#719500 50%,#638a00 51%,#638a00 100%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9ec300', endColorstr='#638a00',GradientType=0 ); /* IE6-9 */
 }
-.btn-cart > button, .btn-cart > a, .btn-cart > input{height: 32px;line-height: 31px;padding: 0 24px 0 17px;}
+.btn-cart > button, .btn-cart > a, .btn-cart > input{height: 32px;line-height: 31px;padding: 0 24px 0 24px;}
 .btn-cart .text-el, .btn-cart > input{text-transform: uppercase;font-size: 13px;color: #fff;}
 
 .btn-cart-p .text-el, .btn-cart-p > input, .frame-payment input[type="submit"]{font-size: 15px;}
@@ -914,13 +918,15 @@ form .btn-form .text-el, .btn-not-avail .text-el, .btn-form input{font-weight: b
 
 .btn-crumb .divider{font-size: 14px;margin-left: 4px;}
 .btn-crumb .text-el{text-shadow: 0 1px #fff;}
-.btn-crumb a:hover .text-el{color: #51d2ff}
+.btn-crumb a:hover .text-el{color: #51d2ff;}
 
 .btn-compare{height: 20px;margin-bottom: 4px;}
 .btn-wish{height: 20px;margin-bottom: 4px;}
 .btn-comp-in .text-el, .btn-wish-in .text-el{color: #699200;}
 .btn-comp-in button:focus .text-el, .btn-wish-in button:focus .text-el{color: #85b901;}
 .btn-comp-in .d_l, .btn-wish-in .d_l{border-bottom: 0;text-decoration: underline;}
+
+.item-product .btn-compare, .item-product .btn-wish{margin-bottom: 0;}
 /*.table .btn-wish .text-el, .table .btn-compare .text-el{display: none;}*/
 
 .btn-reset-filter{padding: 3px 13px 7px;}

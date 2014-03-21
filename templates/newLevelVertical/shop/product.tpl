@@ -228,6 +228,7 @@
                                                             data-source="/shop/ajax/getNotifyingRequest"
 
                                                             data-id="{echo $productVariant->getId()}"
+                                                            data-product-id="{echo $model->getId()}"
                                                             data-name="{echo ShopCore::encode($model->getName())}"
                                                             data-vname="{echo ShopCore::encode($productVariant->getName())}"
                                                             data-number="{echo $productVariant->getNumber()}"
@@ -406,11 +407,12 @@
     </div>
     <!-- End. benefits block-->
     <!-- Start. Kit-->
+    
     {if $model->getShopKitsLoggedUsersCheck($CI->dx_auth->is_logged_in()) != false}
         <div class="container">
             <section class="frame-complect horizontal-carousel">
                 <div class="frame-title">
-                    <div class="title">{lang('Специальное предложение! Купить, установить и получить скидку на аксессуары!','newLevel')}</div>
+                    <div class="title">{lang('Вместе дешевле','newLevel')}</div>
                 </div>
                 <div class="carousel-js-css items-carousel complects-carousel">
                     <div class="content-carousel">
@@ -798,3 +800,9 @@
 <script type="text/javascript">
     initDownloadScripts(['cusel-min-2.5', 'cloud-zoom.1.0.3.min', 'product'], 'initPhotoTrEv', 'initPhotoTrEv');
 </script>
+<div style="display: none;">
+    <img src="{echo $model->firstVariant->getLargePhoto()}" alt="{echo ShopCore::encode($model->getName())}" class="vImgPr"/>
+    {foreach $productImages as $key => $image}
+        <img src="{productImageUrl('products/additional/'.$image->getImageName())}" alt="{echo ShopCore::encode($model->getName())} - {echo ++$key}"/>
+    {/foreach}
+</div>

@@ -1,7 +1,7 @@
 var Order = {
     initGift: function() {
         $(document).on('beforeGetTpl.Cart', function(e) {
-            if (e.obj.template == 'cart_order')
+            if (e.obj.template === 'cart_order')
                 $(genObj.orderDetails).find(preloader).show();
         });
         $(genObj.giftButton).click(function(e) {
@@ -11,18 +11,18 @@ var Order = {
                 gift: $(genObj.gift).val(),
                 deliveryMethodId: function() {
                     if (selectDeliv)
-                        return $(genObj.dM).val()
+                        return $(genObj.dM).val();
                     else
-                        return $(genObj.dM).filter(':checked').val()
+                        return $(genObj.dM).filter(':checked').val();
                 }
             });
-        })
+        });
         $(genObj.gift).keydown(function(e) {
-            if (e.keyCode == 13) {
-                $(genObj.giftButton).trigger('click')
+            if (e.keyCode === 13) {
+                $(genObj.giftButton).trigger('click');
                 e.preventDefault();
             }
-        })
+        });
     },
     initOrder: function() {
         if (selectDeliv) {
@@ -68,7 +68,7 @@ var Order = {
                         //,classRemove: 'b_n'//if not standart
             });
     }
-}
+};
 $(document).on('scriptDefer', function() {
     Order.initOrder();
     $(document).on('beforeGetPayment.Cart', function(e) {
@@ -91,13 +91,13 @@ $(document).on('scriptDefer', function() {
         $(document).trigger('hideActivity');
     });
     $(document).on('getTpl.Cart', function(e) {
-        if (e.obj.template == 'cart_order') {
+        if (e.obj.template === 'cart_order') {
             $(genObj.orderDetails).empty().append(e.datas);
             $(genObj.orderDetails).find('[data-drop]').drop();
 
             Order.initGift();
 
-            if (totalItemsBask == 0) {
+            if (totalItemsBask === 0) {
                 $('.pageCart').find(genObj.blockEmpty).show().end().find(genObj.blockNoEmpty).hide();
             }
         }
