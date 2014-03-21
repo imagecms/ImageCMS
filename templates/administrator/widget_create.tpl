@@ -26,7 +26,7 @@
                     <tbody>
                         <tr>
                             <td colspan="6">
-                                <div class="inside_padd">
+                                <div class="inside_padd span9">
                                     <div class="control-group m-t_10">
                                         <label class="control-label" for="inputName">{lang("Name","admin")}:</label>
                                         <div class="controls">
@@ -71,13 +71,13 @@
                     </tbody>
                 </table>
                 <div class="row-fluid">
-                    <table class="table table-striped table-bordered table-hover table-condensed" id="moduleholder">
+                    <table class="table table-striped table-bordered table-hover table-condensed t-l_a" id="moduleholder">
                         <thead>
                             <tr>
                                 <th class="t-a_c span1"></th>
-                                <th class="span3">{lang("Name","admin")}</th>
-                                <th class="span5">{lang("Description","admin")}</th>
-                                <th class="span2">{lang("Type","admin")}</th>
+                                <th>{lang("Name","admin")}</th>
+                                <th>{lang("Description","admin")}</th>
+                                <th>{lang("Type","admin")}</th>
                             </tr>
                         </thead>
                         <tbody class="sortable ui-sortable">

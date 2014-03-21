@@ -128,18 +128,6 @@
                             <div class="frame-comment-sub1">
                                 <div class="frame-comment">
                                     <p>{$comment.text}</p>
-                                    {if $comment.text_plus != Null}
-                                        <p>
-                                            <b>{lang('Да', 'newLevel')}</b><br>
-                                            {$comment.text_plus}
-                                        </p>
-                                    {/if}
-                                    {if $comment.text_minus != Null}
-                                        <p>
-                                            <b>{lang('Нет', 'newLevel')}</b><br>
-                                            {$comment.text_minus}
-                                        </p>
-                                    {/if}
                                 </div>
                                 {if $can_comment == 0 OR $is_logged_in}
                                     <div class="btn">

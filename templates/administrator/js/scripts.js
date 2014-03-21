@@ -681,12 +681,12 @@ function autocomplete() {
                 }, 'json')
             },
             select: function(event, ui) {
-                $('#relatedProductsNames').append('<div id="tpm_row' + ui.item.identifier.id + '">' +
-                        '<span style="width: 70%;margin-left: 1%;" class="pull-left">' +
+                $('#relatedProductsNames').append('<div id="tpm_row' + ui.item.identifier.id + '" class="item-accessories">' +
+                        '<span class="pull-left">' +
                         '<a id="AttachedProducts" href="edit/' + ui.item.identifier.id + '">' + ui.item.label + '</a>' +
                         '<input type="hidden" name="RelatedProducts[]" value="' + ui.item.identifier.id + '">' +
                         '</span>' +
-                        '<span style="width: 8%;margin-left: 1%;" class="pull-left">' +
+                        '<span style="margin-left: 1%;" class="pull-left">' +
                         '<button class="btn btn-small del_tmp_row" data-kid="' + ui.item.identifier.id + '"><i class="icon-trash"></i></button>' +
                         '</span>' +
                         '</div>');
@@ -840,7 +840,7 @@ function fixed_frame_title() {
     fixed_block = $(".frame_title:not(.no_fixed)");
     mini_layout = $('.mini-layout');
     container = $('.container');
-    containerW = container.width();
+    containerW = container.width() - parseInt($('body').css('padding-left')) * 2;
     frame_zH_frame_title = $('.frame_zH_frame_title');
 
     if ($.exists_nabir(fixed_block)) {
@@ -853,7 +853,7 @@ function fixed_frame_title() {
             frame_zH_frame_title.css("top", fixed_block_top - top + 6);
         }
         else {
-            fixed_block.css("top", 20 + ($.exists('.imagecms-top-fixed-header') ? 31 : 0));
+            fixed_block.css("top", 20 + ($.exists('.imagecms-top-fixed-header.imagecms-active') ? 31 : 0));
             frame_zH_frame_title.css("top", 6);
         }
 
@@ -908,6 +908,10 @@ function what_key(enter_key, event) {
         return false;
 }
 function initAdminArea() {
+    $('.btn.disabled').each(function(event) {
+        $(this).attr('disabled', true);
+    });
+    
     if ($.exists('#shopAdminMenu')) {
         if (isShop)
         {
@@ -1301,21 +1305,6 @@ $(document).ready(
             var txt_val = $('.now-active-prod').text();
             $('.discount-out #productForDiscount').attr('value', txt_val);
 
-
-            $('.main_body').append('<div class="overlay"></div>');
-
-            $(this).keydown(function(e) {
-                e = e || window.event;
-                if (e.target.id == "baseSearch" || e.target.id == "shopSearch")
-                {
-                    if ((e.keyCode === 13 || (e.keyCode === 83 && e.ctrlKey)) && e.target.localName != 'textarea') {
-                        $('#adminSearchSubmit').click();
-                        return false;
-                    }
-                }
-            });
-
-
             $('a.pjax').unbind('click').die('click').on('click', function(event) {
                 event.preventDefault();
                 $('#loading').fadeIn(100);
@@ -1398,13 +1387,10 @@ $(document).ready(
             $(document).die('keydown').live('keydown', function(e) {
                 var dataSubmit = $("[data-submit]");
                 e = e || window.event;
-                if (e.ctrlKey)
-                    $('#baseSearch, #shopSearch').blur();
-                //if ((event.ctrlKey && event.shiftKey) || (event.shiftKey && event.altKey)) $('.baseSearch:first').focus();
                 if (e.keyCode === 83 && e.ctrlKey) {
                     if (!dataSubmit.hasClass('disabled') && dataSubmit.closest('.tab-pane').css('display') != 'none')
                         dataSubmit.trigger('click');
-                    return false;
+                    e.preventDefault();
                 }
             });
 
@@ -1438,7 +1424,6 @@ $(document).ready(
             });
 
             /**/
-            $('#baseSearch, #shopSearch').focus();
             $('[data-remove]').live('click', function() {
                 $(this).closest('tr').remove();
             });

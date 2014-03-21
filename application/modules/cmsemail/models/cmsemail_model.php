@@ -107,6 +107,7 @@ class Cmsemail_model extends \CI_Model {
         );
         $this->db->insert('mod_email_paterns_i18n', $data_locale);
         
+        return $lid;
 
     }
 
@@ -179,6 +180,8 @@ class Cmsemail_model extends \CI_Model {
         $this->db
                 ->where_in('id', $ids)
                 ->delete('mod_email_paterns_i18n');
+        
+        return TRUE;
     }
 
     public function deleteTemplateByNames($names) {

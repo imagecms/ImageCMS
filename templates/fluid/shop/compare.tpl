@@ -18,15 +18,15 @@
                 <!-- Start. Buttons for change to show different or all properties -->
                 <div class="f-s_0 title-compare without-crumbs clearfix">
                     <div class="frame-title">
-                        <h1 class="title">{lang('Сравнение товаров','newLevel')}</h1>
+                        <h1 class="title">{lang('Список сравнений','newLevel')}</h1>
                     </div>
                     <ul class="tabs groups-buttons tabs-compare-diferent" data-cookie="compare">
-                        <li class="btn-def {if $_COOKIE['compare'] == "#all-params" || $_COOKIE['compare'] == NULL}active{/if}">
+                        <li class="btn-def2 {if $_COOKIE['compare'] == "#all-params" || $_COOKIE['compare'] == NULL}active{/if}">
                             <button type="button" data-href="#all-params">
                                 <span class="text-el">{lang('Все параметры','newLevel')}</span>
                             </button>
                         </li>
-                        <li class="btn-def {if $_COOKIE['compare'] == "#only-dif"}active{/if}">
+                        <li class="btn-def2 {if $_COOKIE['compare'] == "#only-dif"}active{/if}">
                             <button type="button" data-href="#only-dif">
                                 <span class="text-el">{lang('Только Различия','newLevel')}</span>
                             </button>
@@ -124,7 +124,7 @@
                         {/foreach}
                     </div>
                     <div class="comprasion-head">
-                        <div class="title-h3">{lang('Категория','newLevel')}:</div>
+                        <div class="title">{lang('Категория','newLevel')}</div>
                         <ul class="tabs tabs-compare-category" data-cookie="category">
                             {foreach $categories as $category}
                                 <li {if $_COOKIE['category'] == '#tab_'.$category[Url]}class="active"{/if}>

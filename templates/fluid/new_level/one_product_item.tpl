@@ -32,10 +32,9 @@
             <span class="photo-block">
                 <span class="helper"></span>
                 {$photo = $p->firstVariant->getMediumPhoto()}
-                <img data-original="{echo $photo}"
-                     src="{$THEME}images/blank.gif"
+                <img src="{echo $photo}"
                      alt="{echo ShopCore::encode($p->firstVariant->getName())}"
-                     class="vImg lazy"/>
+                     class="vImg"/>
                 {$discount = 0}
                 {if $hasDiscounts}
                     {$discount = $p->firstVariant->getvirtual('numDiscount') / $p->firstVariant->toCurrency('origprice') * 100}
@@ -44,6 +43,28 @@
             </span>
             <span class="title">{echo ShopCore::encode($p->getName())}</span>
         </a>
+        {if !$opi_widget && !$opi_defaultItem && !$opi_compare && !$opi_wishListPage}
+            <!-- Start. Check variant-->
+            {if count($variants) > 1}
+                <div class="check-variant-catalog">
+                    <div class="lineForm">
+                        <select id="сVariantSwitcher_{echo $p->firstVariant->getId()}" name="variant">
+                            {foreach $variants as $key => $pv}
+                                {if $pv->getName()}
+                                    {$name = ShopCore::encode($pv->getName())}
+                                {else:}
+                                    {$name = ShopCore::encode($p->getName())}
+                                {/if}
+                                <option value="{echo $pv->getId()}" title="{echo $name}">
+                                    {echo $name}
+                                </option>
+                            {/foreach}
+                        </select>
+                    </div>
+                </div>
+            {/if}
+            <!-- End. Check variant-->
+        {/if}
         <!-- End. Photo & Name product -->
         <div class="description">
             <!-- Start. article & variant name & brand name -->
@@ -139,29 +160,7 @@
                 <!-- End. Product price-->
             </div>
             <!-- End. Prices-->
-            {if !$opi_widget && !$opi_defaultItem && !$opi_compare && !$opi_wishListPage}
-                <!-- Start. Check variant-->
-                {if count($variants) > 1}
-                    <div class="check-variant-catalog">
-                        <div class="lineForm">
-                            <select id="сVariantSwitcher_{echo $p->firstVariant->getId()}" name="variant">
-                                {foreach $variants as $key => $pv}
-                                    {if $pv->getName()}
-                                        {$name = ShopCore::encode($pv->getName())}
-                                    {else:}
-                                        {$name = ShopCore::encode($p->getName())}
-                                    {/if}
-                                    <option value="{echo $pv->getId()}" title="{echo $name}">
-                                        {echo $name}
-                                    </option>
-                                {/foreach}
-                            </select>
-                        </div>
-                    </div>
-                {/if}
-                <!-- End. Check variant-->
-            {/if}
-            {if !$opi_defaultItem }
+            {if !$opi_defaultItem && !$opi_widget}
                 <div class="funcs-buttons frame-without-top">
                     <div class="no-vis-table">
                         <!-- Start. Collect information about Variants, for future processing -->
@@ -222,38 +221,40 @@
                                     </form>
                                 </div>
                             {else:}
-                                <div class="btn-not-avail js-variant-{echo $pv->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
-                                    <button
-                                        class="infoBut"
-                                        type="button"
-                                        data-drop=".drop-report"
-                                        data-source="/shop/ajax/getNotifyingRequest"
+                                <div class="js-variant-{echo $pv->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
+                                    <div class="alert-exists">{lang('Нет в наличии', 'newLevel')}</div>
+                                    <div class="btn-not-avail">
+                                        <button
+                                            class="infoBut"
+                                            type="button"
+                                            data-drop=".drop-report"
+                                            data-source="/shop/ajax/getNotifyingRequest"
 
-                                        data-id="{echo $pv->getId()}"
-                                        data-name="{echo ShopCore::encode($p->getName())}"
-                                        data-vname="{echo ShopCore::encode($pv->getName())}"
-                                        data-number="{echo $pv->getNumber()}"
-                                        data-price="{echo $pv->toCurrency()}"
-                                        data-add-price="{if $NextCS != null}{echo $pv->toCurrency('Price',$NextCSId)}{/if}"
-                                        data-orig-price="{if $hasDiscounts}{echo $pv->toCurrency('OrigPrice')}{/if}"
-                                        data-medium-image="
-                                        {if preg_match('/nophoto/', $pv->getMediumPhoto()) > 0}
-                                            {echo $p->firstVariant->getMediumPhoto()}
-                                        {else:}
-                                            {echo $pv->getMediumPhoto()}
-                                        {/if}"
-                                        data-img="
-                                        {if preg_match('/nophoto/', $pv->getSmallPhoto()) > 0}
-                                            {echo $p->firstVariant->getSmallPhoto()}
-                                        {else:}
-                                            {echo $pv->getSmallPhoto()}
-                                        {/if}"
-                                        data-maxcount="{echo $pv->getstock()}"
-                                        data-url="{echo shop_url('product/'.$p->getUrl())}"
-                                        >
-                                        <span class="icon-but"></span>
-                                        <span class="text-el">{lang('Сообщить о появлении','newLevel')}</span>
-                                    </button>
+                                            data-id="{echo $pv->getId()}"
+                                            data-product-id="{echo $p->getId()}"
+                                            data-name="{echo ShopCore::encode($p->getName())}"
+                                            data-vname="{echo ShopCore::encode($pv->getName())}"
+                                            data-number="{echo $pv->getNumber()}"
+                                            data-price="{echo $pv->toCurrency()}"
+                                            data-add-price="{if $NextCS != null}{echo $pv->toCurrency('Price',$NextCSId)}{/if}"
+                                            data-orig-price="{if $hasDiscounts}{echo $pv->toCurrency('OrigPrice')}{/if}"
+                                            data-medium-image="
+                                            {if preg_match('/nophoto/', $pv->getMediumPhoto()) > 0}
+                                                {echo $p->firstVariant->getMediumPhoto()}
+                                            {else:}
+                                                {echo $pv->getMediumPhoto()}
+                                            {/if}"
+                                            data-img="
+                                            {if preg_match('/nophoto/', $pv->getSmallPhoto()) > 0}
+                                                {echo $p->firstVariant->getSmallPhoto()}
+                                            {else:}
+                                                {echo $pv->getSmallPhoto()}
+                                            {/if}"
+                                            data-maxcount="{echo $pv->getstock()}"
+                                            data-url="{echo shop_url('product/'.$p->getUrl())}"
+                                            >
+                                        </button>
+                                    </div>
                                 </div>
                             {/if}
                         {/foreach}
@@ -261,10 +262,10 @@
                 </div>
                 <!-- End. Collect information about Variants, for future processing -->
             {/if}
-            {if !$opi_defaultItem}
+            {if !$opi_defaultItem && !$opi_widget}
                 <div class="frame-without-top">
                     <!-- Wish List & Compare List buttons -->
-                    <div class="frame-wish-compare-list no-vis-table t-a_j">
+                    <div class="frame-wish-compare-list no-vis-table{if !$opi_wishListPage && !$opi_compare} t-a_j{/if}">
                         {if !$opi_compare}
                             <div class="frame-btn-comp">
                                 <!-- Start. Compare List button -->
@@ -274,7 +275,7 @@
                                          type="button"
                                          data-title="{lang('Сравнить','newLevel')}"
                                          data-firtitle="{lang('Сравнить','newLevel')}"
-                                         data-sectitle="{lang('В списке сравнений','newLevel')}"
+                                         data-sectitle="{lang('В сравнении','newLevel')}"
                                          data-rel="tooltip">
                                         <span class="niceCheck b_n">
                                             <input type="checkbox">
@@ -339,7 +340,6 @@
                             data-id="{echo $p.variant_id}"
                             class="btnRemoveItem"
 
-                            data-type="json"
                             data-modal="true"
 
                             data-drop="#notification"
@@ -347,7 +347,7 @@
                             data-effect-off="fadeOut"
                             data-source="{site_url('/wishlist/wishlistApi/deleteItem/'.$p[variant_id].'/'.$p[wish_list_id])}"
                             data-after="WishListFront.removeItem"
-                            ><span class="icon_remove"></span><span class="text-el d_l_1">{lang('Удалить', 'newLevel')}</span></button>
+                            ><span class="icon_times_cart"></span></button>
                     </div>
                     <div class="btn-move-item-wl">
                         <button
@@ -355,14 +355,15 @@
                             data-drop="#wishListPopup"
                             data-source="{site_url('/wishlist/renderPopup/'.$p[variant_id].'/'.$p[wish_list_id])}"
                             data-always="true"
-                            ><span class="icon_move"></span><span class="text-el d_l_1">{lang('Переместить', 'newLevel')}</span>
+                            ><span class="icon_move"></span><span class="text-el d_l_1">{lang('Перенести в другой список', 'newLevel')}</span>
                         </button>
                     </div>
                 </div>
             {/if}
         {/if}
         <!-- End. For wishlist page-->
-
-        <div class="decor-element"></div>
+        {if !$opi_widget}
+            <div class="decor-element"></div>
+        {/if}
     </li>
 {/foreach}

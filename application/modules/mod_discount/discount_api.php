@@ -51,7 +51,6 @@ class discount_api extends \MY_Controller {
      * @copyright (c) 2013, ImageCMS
      */
     public function getGiftCertificate($key = null, $totalPrice = null) {
-
         $cart = \Cart\BaseCart::getInstance();
         $this->baseDiscount = \mod_discount\classes\BaseDiscount::create();
         if ($totalPrice === null)
@@ -105,7 +104,8 @@ class discount_api extends \MY_Controller {
                 echo json_encode($discount);
             else
                 return $discount;
-        } else
+        }
+        else
             echo '';
     }
 
@@ -155,6 +155,25 @@ class discount_api extends \MY_Controller {
     }
 
     /**
+     * If discount for current user exist or nots
+     * @return boolean
+     */
+    public function discountsExists() {
+        $ud = $this->userDiscountExists();
+        $gd = $this->groupDiscountExists();
+        $userDiscount = $this->getUserDiscount();
+        return $ud || $gd || (bool) $userDiscount['comulativ'] ? TRUE : FALSE;
+    }
+
+    public function userDiscountExists() {
+        return (bool) !\mod_discount\classes\DiscountManager::validateUserDiscount(CI::$APP->dx_auth->get_user_id());
+    }
+
+    public function groupDiscountExists() {
+        return (bool) !\mod_discount\classes\DiscountManager::validateGroupDiscount(CI::$APP->dx_auth->get_role_id());
+    }
+
+    /**
      * get comulativ discount sorting
      * @access private
      * @author DevImageCms
@@ -169,13 +188,11 @@ class discount_api extends \MY_Controller {
         if (count($option) > 0)
             \mod_discount\classes\BaseDiscount::prepareOption($option);
 
-        function cmp($a, $b) {
-            return strnatcmp($a["begin_value"], $b["begin_value"]);
-        }
-
         $this->baseDiscount = \mod_discount\classes\BaseDiscount::create();
         if (\mod_discount\classes\BaseDiscount::checkModuleInstall())
-            usort($this->baseDiscount->discountType['comulativ'], 'cmp');
+            usort($this->baseDiscount->discountType['comulativ'], function($a, $b) {
+                        return strnatcmp($a["begin_value"], $b["begin_value"]);
+                    });
         return $this->baseDiscount->discountType['comulativ'];
     }
 

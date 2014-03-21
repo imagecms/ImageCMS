@@ -13,17 +13,15 @@
         </ul>
         <div class="frame-tabs-ref">
             <div id="popular_products">
-                {widget('popular_products', TRUE)}
+                {widget('popular_products')}
             </div>
             <div id="new_products">
-                <div class="preloader"></div>
-                {widget_ajax('new_products', '#new_products')}
+                {widget('new_products')}
             </div>
             <div id="action_products">
-                <div class="preloader"></div>
-                {widget_ajax('action_products', '#action_products')}
+                {widget('action_products')}
             </div>
         </div>
-        {widget('latest_news', TRUE)}
+        {widget('latest_news')}
     </div>
 </div>

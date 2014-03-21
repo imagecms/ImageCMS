@@ -50,7 +50,7 @@ class Banners extends MY_Controller {
         $hash = 'baners' . $type . $id . \CI_Controller::get_instance()->config->item('template');
         if ($cache = Cache_html::get_html($hash)) {
             \CMSFactory\assetManager::create()
-                    ->registerScript('jquery.cycle.all.min', TRUE);
+                    ->registerScript('jquery.cycle.all.min');
             echo $cache;
         } else {
             $banners = $this->banner_model->get_all_banner($lang, $group);
@@ -68,8 +68,7 @@ class Banners extends MY_Controller {
                 ob_start();
                 \CMSFactory\assetManager::create()
                         ->registerStyle('style')
-                        ->registerScript('jquery.cycle.all.min', TRUE)
-                        ->registerScript('main')
+                        ->registerScript('jquery.cycle.all.min')
                         ->setData(array('banners' => $ban))
                         ->render($tpl, TRUE);
 

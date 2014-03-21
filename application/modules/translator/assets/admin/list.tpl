@@ -42,6 +42,7 @@
             <h5><b>{lang('Source', 'translator')}:</b></h5>
             <input class="languageSelect languageFrom" autocomplete="off" tabindex="1" value="" class="ui-autocomplete-input" aria-autocomplete="list" aria-haspopup="true">
             <button class="btn btn-small showAllLanguageList"><i class="icon-chevron-down"></i></button>
+            <button class="btn btn-small languageAutoselect" data-rel="tooltip" data-placement="bottom" data-original-title="{lang('Auto define source language', 'translator')}" onclick="Translator.sourceLanguageAutoselect($(this))"><i class="icon-font"></i></button>
         </div>
         <div class="pull-right" style="margin-top: -35px;">
             <h5><b>{lang('Result', 'translator')}:</b></h5>
@@ -119,18 +120,18 @@
         <div class="frame_title clearfix">
             <div class="pull-left">
                 <span class="help-inline"></span>
-                <span class="title">{lang('Translator', 'translator', 'wishlist')}</span>
+                <span class="title">{lang('Translator', 'translator')}</span>
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
                     <a href="{$BASE_URL}admin/components/modules_table"
                        class="t-d_n m-r_15 pjax">
                         <span class="f-s_14">←</span>
-                        <span class="t-d_u">{lang('Back', 'translator', 'wishlist')}</span>
+                        <span class="t-d_u">{lang('Back', 'translator')}</span>
                     </a>
                 </div>
                 <div class="d-i_b">
-                    <button id="save" type="button" onclick="Translator.save()" class="btn btn-small btn-success pjax">
+                    <button id="save" type="button" onclick="Translator.save()" class="btn btn-small btn-primary pjax">
                         <i class="icon-white icon-ok"></i>
                         {lang('Save', 'translator')}
                     </button>
@@ -149,7 +150,7 @@
                         </button>
                         <ul class="dropdown-menu" role="menu">
                             <li><a class="pjax" style="text-decoration: none" href="/admin/components/init_window/translator/createFile">{lang('Create', 'translator')}</a></li>
-                            <li><a class="pjax" style="text-decoration: none" href="/admin/components/init_window/translator/exchangeTranslation">{lang('Exchange', 'translator')}</a></li>
+                            <li><a class="pjax" style="text-decoration: none" href="/admin/components/init_window/translator/exchangeTranslation">{lang('Translation exchange', 'translator')}</a></li>
                             <li><a onclick="Translator.correctPaths($(this))">{lang('Correct paths', 'translator')}</a></li>
                             <li class="divider"></li>
                             <li><a onclick="Translator.translate($(this))">{lang('Translate all', 'translator')}</a></li>
@@ -163,7 +164,9 @@
         <div class="content_big_td row-fluid">
             <div class="statistic">
                 <div class="statisticTitle">
-                    <h5><b>{lang('Statistic', 'translator')}:</b></h5>
+                    <h5>
+                        <b>{lang('Statistic', 'translator')}:</b>     
+                    </h5>
                 </div>
                 <div class="pull-left">
                     <table class=" table-hover table-bordered">
@@ -258,7 +261,7 @@
                             </div>
                         </div>
 
-                        <table id="po_table" class="table table-striped table-bordered table-hover table-condensed">
+                        <table id="po_table" class="table table-striped table-bordered table-hover table-condensed t-l_a">
                             <thead>
                                 <tr>
                                     <th style="width: 50px">
@@ -267,7 +270,7 @@
                                             <span class="f-s_14 desc" >↓</span>
                                         </a>
                                     </th>
-                                    <th class="span6 t-a_c">
+                                    <th class="t-a_c">
                                         <a class="originHead sortTable" onclick="Sort.go($(this))">{lang('Origin', 'translator', 'wishlist')}
                                             <span class="f-s_14 asc" >↑</span>
                                             <span class="f-s_14 desc" >↓</span>
@@ -280,14 +283,14 @@
                                         /
                                         <a class="defaultSort sortTable" onclick="Sort.default($(this))">{lang('Default sort', 'translator')}</a>
                                     </th>
-                                    <th class="commentTH t-a_c span3">
+                                    <th class="commentTH t-a_c">
                                         <a class="comment sortTable" onclick="Sort.go($(this))">{lang('Comment', 'translator')}
                                             <span class="f-s_14 asc" >↑</span>
                                             <span class="f-s_14 desc" >↓</span>
                                         </a>
                                     </th>
                                     <th class="span3 t-a_c" class="linksTH">
-                                        {lang('Links', 'translator')}
+                                        {lang('Paths to contains files', 'translator')}
                                     </th>
                                 </tr>
                             </thead>
@@ -363,7 +366,7 @@
                         <br>
 
                         <form method="post" action="{site_url('admin/components/init_window/translator/createFile')}" class="form-horizontal" id="create_file_form">
-                            <table class="table table-striped table-bordered table-hover table-condensed">
+                            <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
                                 <thead>
                                     <tr>
                                         <th colspan="6">
@@ -374,7 +377,7 @@
                                 <tbody>
                                     <tr>
                                         <td colspan="6">
-                                            <div class="inside_padd">
+                                            <div class="inside_padd span9">
                                                 <div class="po_settings"></div>
 
                                                 <div class="control-group pathParseHolder"  style="display: none">

@@ -22,7 +22,7 @@
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
-                    <a href="/admin/components/modules_table" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Go back", 'trash')}</span></a>
+                    <a href="/admin/components/modules_table" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Back", 'admin')}</span></a>
                 </div>
                 <div class="d-i_b">
                     <a href="/admin/components/init_window/trash/create_trash/" class="btn btn-small btn-success pjax"><i class="icon-plus-sign icon-white"></i>{lang('Create redirect', 'trash')}</a>
@@ -34,10 +34,10 @@
 
         <div class="row-fluid">
             <form method="post" action="#" class="form-horizontal">
-                <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+                <table class="table table-striped table-bordered table-hover table-condensed content_big_td t-l_a">
                     <thead>
                         <tr>
-                            <th class="span1 t-a_c">
+                            <th class="t-a_c span1">
                                 <span class="frame_label">
                                     <span class="niceCheck b_n">
                                         <input type="checkbox"/>

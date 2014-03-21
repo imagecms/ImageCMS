@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-26 01:05+0200\n"
-"PO-Revision-Date: 2013-12-26 01:05+0200\n"
+"POT-Creation-Date: 2014-03-12 03:19+0200\n"
+"PO-Revision-Date: 2014-03-12 03:19+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -17,6 +17,10 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/imagebox/templates/install.tpl:9
+msgid "and set them to record rights"
+msgstr "и установить на нее права записи"
 
 #: ./application/modules/imagebox/templates/install.tpl:2
 msgid "Install"
@@ -33,10 +37,6 @@ msgstr "Установить модуль через панель управле
 #: ./application/modules/imagebox/templates/install.tpl:8
 msgid "Create directory"
 msgstr "Создать директорию"
-
-#: ./application/modules/imagebox/templates/install.tpl:9
-msgid "and set them to record rights"
-msgstr "и установить им права записи"
 
 #: ./application/modules/imagebox/templates/main_window.tpl:3
 msgid "Files uploading"

@@ -1,9 +1,9 @@
-msgid ""
+﻿msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-26 01:18+0200\n"
-"PO-Revision-Date: 2013-12-26 01:18+0200\n"
+"POT-Creation-Date: 2014-03-13 12:52+0200\n"
+"PO-Revision-Date: 2014-03-13 12:52+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -17,6 +17,10 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/mailer/templates/admin/form.tpl:32
+msgid "Go back"
+msgstr "Вернуться"
 
 #: ./application/modules/mailer/templates/public/error.tpl:2
 msgid "Invalid e-mail"
@@ -82,10 +86,6 @@ msgstr "Удалить бренды?"
 #: ./application/modules/mailer/templates/admin/form.tpl:27
 msgid "Subscription and Notification letters"
 msgstr "Подписка и рассылка писем"
-
-#: ./application/modules/mailer/templates/admin/form.tpl:32
-msgid "Go back"
-msgstr "Назад"
 
 #: ./application/modules/mailer/templates/admin/form.tpl:33
 msgid "Send a letter"

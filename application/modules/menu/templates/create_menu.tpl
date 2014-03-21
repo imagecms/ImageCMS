@@ -9,13 +9,13 @@
                 <div class="d-i_b">
                     <a href="/admin/components/cp/menu" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Go back", "menu")}</span></a>
                     <button type="button" class="btn btn-small btn-success action_on formSubmit" data-form="#createForm" data-submit><i class="icon-plus-sign icon-white"></i>{lang("Create", "menu")}</button>
-                    <button type="button" class="btn btn-small action_on formSubmit" data-form="#createForm" data-action="tomain"><i class="icon-ok"></i>{lang("Save and go back", "menu")}</button>
+                    <button type="button" class="btn btn-small action_on formSubmit" data-form="#createForm" data-action="tomain"><i class="icon-ok"></i>{lang("Create and exit", "menu")}</button>
                 </div>
             </div>                            
         </div>
         <form action="{$BASE_URL}admin/components/cp/menu/create_menu" id="createForm" method="post">
             <div class="content_big_td">
-                <table class="table table-striped table-bordered table-hover table-condensed">
+                <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
                     <thead>
                         <tr>
                             <th colspan="6">

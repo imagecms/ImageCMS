@@ -32,10 +32,15 @@
             <span class="photo-block">
                 <span class="helper"></span>
                 {$photo = $p->firstVariant->getMediumPhoto()}
-                <img data-original="{echo $photo}"
-                     src="{$THEME}images/blank.gif"
-                     alt="{echo ShopCore::encode($p->firstVariant->getName())}"
-                     class="vImg lazy"/>
+                <img 
+                    {if !opi_widget}
+                        src="{echo $photo}"
+                        class="vImg"
+                    {else:}
+                        src="{echo $photo}"
+                    {/if}
+                    alt="{echo ShopCore::encode($p->firstVariant->getName())}"
+                    />
                 {$discount = 0}
                 {if $hasDiscounts}
                     {$discount = $p->firstVariant->getvirtual('numDiscount') / $p->firstVariant->toCurrency('origprice') * 100}
@@ -266,6 +271,7 @@
                                             data-source="/shop/ajax/getNotifyingRequest"
 
                                             data-id="{echo $pv->getId()}"
+                                            data-product-id="{echo $p->getId()}"
                                             data-name="{echo ShopCore::encode($p->getName())}"
                                             data-vname="{echo ShopCore::encode($pv->getName())}"
                                             data-number="{echo $pv->getNumber()}"
@@ -354,7 +360,6 @@
                             data-id="{echo $p.variant_id}"
                             class="btnRemoveItem"
 
-                            data-type="json"
                             data-modal="true"
 
                             data-drop="#notification"

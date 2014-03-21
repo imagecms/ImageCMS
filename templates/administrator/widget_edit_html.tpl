@@ -6,9 +6,9 @@
         <div class="pull-right">
             <div class="d-i_b">
                 {if $widget.id == 16 || $widget.id == 17}
-                    <a href="/admin/widgets_manager" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Return','admin')}</span></a>
+                    <a href="/admin/widgets_manager" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Back','admin')}</span></a>
                  {else:}
-                    <a href="{$BASE_URL}admin/widgets_manager/index/" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Return','admin')}</span></a>
+                    <a href="{$BASE_URL}admin/widgets_manager/index/" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Back','admin')}</span></a>
                  {/if}
                 <button type="button" class="btn btn-small btn-success formSubmit" data-form="#wid_ed_form"><i class="icon-list-alt icon-white"></i>{lang('Save','admin')}</button>
                 {if !$widget.id == 16 and $widget.id != 17}

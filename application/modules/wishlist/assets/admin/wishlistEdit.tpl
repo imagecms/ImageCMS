@@ -3,7 +3,7 @@
         <div class="frame_title clearfix">
             <div class="pull-left">
                 <span class="help-inline"></span>
-                <span class="title">{lang('Edit list', 'wishlist')}: {echo $user[user_name]}</span>
+                <span class="title">{lang('Edit list', 'wishlist')}</span>
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
@@ -27,7 +27,7 @@
             </label>
             {foreach $wishlists as $key => $wishlist}
                 <form method="POST" action="/admin/components/cp/wishlist/updateWL">
-                    <table class="table table-striped table-bordered table-hover table-condensed">
+                    <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
                         <input type="hidden" name="WLID" value="{echo $wishlist[0][wish_list_id]}">
                         <thead>
                             <tr>
@@ -37,7 +37,7 @@
                         <tbody>
                             <tr>
                                 <td colspan="6">
-                                    <div class="inside_padd">
+                                    <div class="inside_padd span9">
                                         <div class="form-horizontal">
                                             <div class="control-group">
                                                 <label class="control-label" for="banner_type">{lang('Name', 'wishlist')}:</label>
@@ -68,7 +68,7 @@
                         </tbody>
                     </table>
                     {if $wishlist[0][id] != null}
-                        <table class="table table-striped table-bordered table-hover table-condensed">
+                        <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
                             <thead>
                                 <tr>
                                     <td colspan="3">

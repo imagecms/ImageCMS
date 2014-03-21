@@ -64,6 +64,7 @@
                                         </p>
                                     {/if}
                                 </div>
+
                                 {if $can_comment == 0 OR $is_logged_in}
                                     <div class="btn">
                                         <button type="button" data-rel="cloneAddPaste" data-parid="{$comment['id']}">
@@ -95,6 +96,7 @@
                                                             {$com_ch.text}
                                                         </p>
                                                     </div>
+
                                                 </div>
                                             </div>
                                         </li>
@@ -126,18 +128,18 @@
                 <div class="form-comment main-form-comments">
                     <div class="inside-padd">
                         <form method="post">
-                            {if !$is_logged_in}
-                                {if $use_moderation}
-                                    <label class="d_n succ">
-                                        <span class="frame-form-field">
-                                            <div class="msg">
-                                                <div class="success">
-                                                    {lang('Комментарий будет отправлен на модерацию','newLevel')}
-                                                </div>
+                            {if $use_moderation}
+                                <label class="d_n succ">
+                                    <span class="frame-form-field">
+                                        <div class="msg">
+                                            <div class="success">
+                                                {lang('Ваш комментарий будет опубликован после модерации администратором','newLevel')}
                                             </div>
-                                        </span>
-                                    </label>
-                                {/if}
+                                        </div>
+                                    </span>
+                                </label>
+                            {/if}
+                            {if !$is_logged_in}
                                 <div class="clearfix">
                                     <label style="width: 45%;float: left;">
                                         <span class="title">{lang('Ваше имя','newLevel')}</span>
@@ -227,22 +229,43 @@
                                 <input type="text" name="comment_email" value="{get_cookie('comment_email')}"/>
                             </span>
                         </label>
+
+                    {/if}
+                    {if $use_moderation}
+
                         <label class="d_n succ">
                             <span class="frame-form-field">
                                 <div class="msg">
                                     <div class="success">
-                                        {lang('Комментарий будет отправлен на модерацию','newLevel')}
+
+                                        {lang('Ваш комментарий будет опубликован после модерации администратором','newLevel')}
+
                                     </div>
                                 </div>
                             </span>
                         </label>
                     {/if}
+
                     <label>
                         <span class="title">{lang('Текст ответа:','newLevel')}</span>
                         <span class="frame-form-field">
                             <textarea class="comment_text" name="comment_text"></textarea>
                         </span>
                     </label>
+                    <!-- End star reiting -->
+                    {if $use_captcha}
+                        <div class="frame-label m-b_10">
+                            <span class="title">{lang('Код защиты')}:</span>
+                            <div class="clearfix">
+                                <div class="m-b_10 m-t_5 f_l">
+                                    {$cap_image}
+                                </div>
+                                <div class="frame-form-field o_h">
+                                    <input type="text" name="captcha" id="captcha" class="m-t_5"/>
+                                </div>
+                            </div>
+                        </div>
+                    {/if}
                     <div class="frame-label">
                         <span class="frame-form-field">
                             <input type="hidden" id="parent" name="comment_parent" value="">

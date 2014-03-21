@@ -13,7 +13,6 @@
 *   $pageNumber: integer variable contains the current page number
 *   $banners: array of (object)s of SBanners which have to be displayed in current page
 */}
-
 <!--Start. Make bread crumbs -->
 <div class="frame-crumbs">
     {widget('path')}
@@ -84,7 +83,7 @@
     </div>
 </div>
 {widget('latest_news')}
-{if trim($category->getDescription()) != ""}
+{if trim($category->getDescription()) != "" and $page_number < 2}
     <div class="frame-seo-text">
         <div class="container">
             <div class="text seo-text">

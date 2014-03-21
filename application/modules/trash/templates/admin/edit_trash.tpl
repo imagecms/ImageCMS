@@ -6,7 +6,7 @@
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <a href="/admin/components/init_window/trash" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Go back", 'trash')}</span></a>
+                <a href="/admin/components/init_window/trash" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Back", 'admin')}</span></a>
                 <button type="button" class="btn btn-small btn-primary formSubmit" data-form="#edit" data-action="save" data-submit><i class="icon-ok icon-white"></i>{lang("Save", 'trash')}</button>
                 <button type="button" class="btn btn-small action_on formSubmit" data-form="#edit" data-action="exit"><i class="icon-check"></i>{lang("Save and exit", 'trash')}</button>                    
             </div>
@@ -23,7 +23,7 @@
         <tbody>
             <tr>
                 <td colspan="6">
-                    <div class="inside_padd">
+                    <div class="inside_padd span9">
                         <div class="form-horizontal">
                             <form id="edit" method="post" action="{$SELF_URL}/edit_trash/{echo $trash->id}">
                                 <div class="span9">

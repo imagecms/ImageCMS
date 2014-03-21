@@ -47,6 +47,20 @@ function readCookie(name) {
     }
     return null;
 }
+function setCookie(name, value, expires, path, domain, secure)
+{
+    var today = new Date();
+    today.setTime(today.getTime());
+    if (expires)
+    {
+        expires = expires * 1000 * 60 * 60 * 24;
+    }
+    var expiresDate = new Date(today.getTime() + (expires));
+    document.cookie = name + "=" + encodeURIComponent(value) +
+            ((expires) ? ";expires=" + expiresDate.toGMTString() : "") + ((path) ? ";path=" + path : "") +
+            ((domain) ? ";domain=" + domain : "") +
+            ((secure) ? ";secure" : "");
+}
 
 // expand categories tree to show last visited category
 function expandCategories(button) {
@@ -168,6 +182,7 @@ function ChangeSortActive(el, sortId)
         sortId: sortId,
         status: currentActiveStatus
     }, function(data) {
+        
         $('.notifications').append(data)
         if (currentActiveStatus == 'true')
         {
@@ -176,7 +191,8 @@ function ChangeSortActive(el, sortId)
         } else {
             $(el).removeClass('disable_tovar').attr('rel', true);
         }
-
+        $(el).closest('tr').find('.orderMethodsEdit').removeClass('disabled')
+        $(el).closest('tr').find('.orderMethodsEdit').removeAttr('disabled')
     });
 }
 
@@ -201,8 +217,8 @@ function translite_title(from, to)
     var url = base_url + 'admin/pages/ajax_translit/';
     $.post(
             url, {
-                'str': $(from).val()
-            }, function(data)
+        'str': $(from).val()
+    }, function(data)
 
     {
         $(to).val(data);
@@ -217,8 +233,8 @@ function create_description(from, to)
 
     $.post(
             base_url + 'admin/pages/ajax_create_description/', {
-                'text': $(from).val()
-            },
+        'text': $(from).val()
+    },
     function(data) {
         $(to).val(data);
     }
@@ -833,7 +849,7 @@ var orders = new Object({
         }, function(data) {
             $('#mainContent').after(data);
             $.pjax({
-                url: window.location.pathname,
+                url: window.location.href,
                 container: '#mainContent',
                 timeout: 3000
             });
@@ -855,7 +871,7 @@ var orders = new Object({
         }, function(data) {
             $('#mainContent').after(data);
             $.pjax({
-                url: window.location.pathname,
+                url: window.location.href,
                 container: '#mainContent',
                 timeout: 3000
             });

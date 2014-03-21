@@ -333,7 +333,7 @@ class Core extends MY_Controller {
     function _mainpage() {
         /** Register event 'Core:_mainpage' */
         \CMSFactory\Events::create()->registerEvent(NULL, 'Core:_mainPage')->runFactory();
-        
+
         switch ($this->settings['main_type']) {
             // Load main page
             case 'page':
@@ -412,7 +412,7 @@ class Core extends MY_Controller {
     function _display_page_and_cat($page = array(), $category = array()) {
         /** Register event 'Core:_displayPage' */
         \CMSFactory\Events::create()->registerEvent($this->page_content, 'Core:_displayPage')->runFactory();
-        
+
         //$this->load->library('typography');
         ($hook = get_hook('core_disp_page_and_cat')) ? eval($hook) : NULL;
 
@@ -448,6 +448,24 @@ class Core extends MY_Controller {
             $this->template->registerCanonical(site_url());
 
         $this->template->assign('content', $this->template->read($page_tpl));
+
+
+        if ($this->settings['create_description'] == 'auto' && !$page['description']) {
+            $page['description'] = $this->lib_seo->get_description($page['full_text']);
+        }
+        if ($this->settings['create_keywords'] == 'auto' && !$page['keywords']) {
+            $keywords = $this->lib_seo->get_keywords($page['full_text'], TRUE);
+            $i = FALSE;
+            foreach ($keywords as $key => $value) {
+                if (!$i) {
+                    $page['keywords'] .= $key;
+                    $i = TRUE;
+                } else {
+                    $page['keywords'] .= ', ' . $key;
+                }
+            }
+        }
+
 
         $this->set_meta_tags($page['meta_title'] == NULL ? $page['title'] : $page['meta_title'], $page['keywords'], $page['description']);
 
@@ -514,7 +532,7 @@ class Core extends MY_Controller {
     function _display_category($category = array()) {
         /** Register event 'Core:_displayCategory' */
         \CMSFactory\Events::create()->registerEvent($this->cat_content, 'Core:_displayCategory')->runFactory();
-        
+
         ($hook = get_hook('core_disp_category')) ? eval($hook) : NULL;
 
         $category['fetch_pages'] = unserialize($category['fetch_pages']);
@@ -593,17 +611,34 @@ class Core extends MY_Controller {
 
         ($hook = get_hook('core_dispcat_set_meta')) ? eval($hook) : NULL;
 
+        
+        // Generate auto meta-tags 
+        if ($this->settings['create_description'] == 'auto' && !$category['description']) {
+            $category['description'] = $this->lib_seo->get_description($category['short_desc']);
+        }
+        if ($this->settings['create_keywords'] == 'auto' && !$category['keywords']) {
+            $keywords = $this->lib_seo->get_keywords($category['short_desc'], TRUE);
+            $i = FALSE;
+            foreach ($keywords as $key => $value) {
+                if (!$i) {
+                    $category['keywords'] .= $key;
+                    $i = TRUE;
+                } else {
+                    $category['keywords'] .= ', ' . $key;
+                }
+            }
+        }
+        
         // adding page number for pages with pagination (from second page)
         $curPage = $this->pagination->cur_page;
         if ($curPage > 1) {
-            $titile = $category['title'] . ' - ' . $curPage;
-            $description = $category['keywords'] . ' - ' . $curPage;
+            $title = $category['title'] . ' - ' . $curPage;
+            $description =  $category['description'] . ' - ' . $curPage;
 
-            $this->set_meta_tags($titile, $category['keywords'], $description);
+            $this->set_meta_tags($title, $category['keywords'], $description);
         } else {
             $this->set_meta_tags($category['title'], $category['keywords'], $category['description']);
         }
-
 
         ($hook = get_hook('core_dispcat_set_content')) ? eval($hook) : NULL;
         $this->template->assign('content', $content);

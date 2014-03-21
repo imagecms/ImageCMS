@@ -6,8 +6,12 @@
 .comments .author-comment{color: #5986b6;font-size:12px;font-weight: bold;}
 .comments .date-comment{color: #999;}
 .comments .frame-list-comments > .sub-1{margin: 0;}
+.page-text .comments .frame-list-comments > .sub-1{max-height: none;}
 .comments .frame-comment p{margin-bottom: 9px;}
 .comments .frame-list-comments.sub-2{float: none;width: auto;}
+#comment .comments .frame-list-comments.sub-2{max-height: 200px;}
+.page-text .comments .frame-list-comments.sub-2{max-height: none!important;height: auto!important;}
+.page-text .btn-all-comments{display: none !important;}
 .comments .btn-all-comments{margin-left: 0;margin-top: 5px;}
 
 .comments .btn > *, .comments input.btn{padding: 0 !important;}
@@ -16,6 +20,7 @@
 .comments .icon_comment{background-image: none;width: 0;height: 0;margin-right: 0!important;overflow: hidden;}
 .comments .frame-list-comments li{border-top: 0;padding: 0;}
 .comments .frame-list-comments > .sub-1 > li{margin-top: 29px;margin-bottom: 0;}
+.comments .frame-list-comments > .sub-1 > li:before{display: none;}
 .comments .frame-list-comments > .sub-1 > li:first-child{margin-top: 0;}
 .comments .frame-list-comments.sub-2 + .s-all-comments{margin-left: 33px;}
 .comments .frame-list-comments.sub-2 > li{background-color: #efedea;margin-top: 29px;position: relative;}
@@ -31,7 +36,7 @@
 
 .comments .frame-list-comments .frame-drop-comment{padding: 25px 0 0;}
 .comments .frame-list-comments{padding-bottom: 35px;}
-.comments .title-comment{margin-bottom: 3px;font-size: 12px;font-weight: bold;text-transform: uppercase;color: #000;}
+.comments .title-comment{margin-bottom: 12px;font-size: 12px;font-weight: bold;text-transform: uppercase;color: #000;}
 .comments label{display: block;}
 .comments label, .comments .frame-label{margin-bottom: 12px;display: block;}
 .comments label .title, .comments .frame-label .title{float: left;width: 128px;padding-right: 10px;margin-top: 6px;text-align: right;}

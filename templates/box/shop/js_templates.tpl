@@ -4,61 +4,61 @@
 {literal}
     <script type="text/template" id="searchResultsTemplate">
         <div class="inside-padd">
-            <% if (_.keys(items).length > 1) { %>
-            <ul class="items items-search-autocomplete">
-                <% _.each(items, function(item){
-                if (item.name != null){%>
-                <li>{/literal}
-                    <!-- Start. Photo Block and name  -->
-                    <a href="{shop_url('product')}/{literal}<%- item.url %>" class="frame-photo-title">
-                        <span class="photo-block">
-                            <span class="helper"></span>
-                            <img src="<%- item.smallImage %>">
-                        </span>
-                        <span class="description">
-                        <span class="title"><% print(item.name)  %></span>
-                        <!-- End. Photo Block and name -->
+        <% if (_.keys(items).length > 1) { %>
+        <ul class="items items-search-autocomplete">
+        <% _.each(items, function(item){
+        if (item.name != null){%>
+        <li>{/literal}
+        <!-- Start. Photo Block and name  -->
+        <a href="{shop_url('product')}/{literal}<%- item.url %>" class="frame-photo-title">
+        <span class="photo-block">
+        <span class="helper"></span>
+        <img src="<%- item.smallImage %>">
+        </span>
+        <span class="description">
+        <span class="title"><% print(item.name)  %></span>
+        <!-- End. Photo Block and name -->
 
-                        <!-- Start. Product price  -->
-                            <span class="frame-prices f-s_0">
-                                <span class="current-prices var_price_{echo $p->firstVariant->getId()} prod_price_{echo $p->getId()}">
-                                    <span class="price-new">
-                                        <span>
-                                            <span class="price"><%- item.price %></span>{/literal}
-                                            <span class="curr">{$CS}</span>{literal}
-                                        </span>
-                                    </span>
-                                    <% if (item.nextCurrency != null) { %>
-                                    <span class="price-add">
-                                        <span>
-                                            (<span class="price addCurrPrice"><%- item.nextCurrency %></span>
+        <!-- Start. Product price  -->
+        <span class="frame-prices f-s_0">
+        <span class="current-prices var_price_{echo $p->firstVariant->getId()} prod_price_{echo $p->getId()}">
+        <span class="price-new">
+        <span>
+        <span class="price"><%- item.price %></span>{/literal}
+        <span class="curr">{$CS}</span>{literal}
+        </span>
+        </span>
+        <% if (item.nextCurrency != null) { %>
+        <span class="price-add">
+        <span>
+        (<span class="price addCurrPrice"><%- item.nextCurrency %></span>
     {/literal}<span class="curr-add">{$NextCS}</span>){literal}                                            
-                                        </span>
-                                    </span>
-                                    <% } %>
-                                </span>
-                            </span>
-                        <!-- End. Product price  -->
-                        </span>
-                    </a>
-                </li>
-                <% }
-                }) %>
-            </ul>
-            <!-- Start. Show link see all results if amount products >0  -->
-            <div>
-                <div class="btn-autocomplete">{/literal}
-                    <a href="{shop_url('search')}?text={literal}<%- items.queryString %>" {/literal} class="f-s_0 t-d_u ref2">
-                        <span class="icon_arrow"></span><span class="text-el">{lang('Смотреть все результаты','newLevel')}</span>
-                    </a>
-                </div>{literal}
-                <!-- End. Show link  -->
-                <% } else {%>    
+        </span>
+        </span>
+        <% } %>
+        </span>
+        </span>
+        <!-- End. Product price  -->
+        </span>
+        </a>
+        </li>
+        <% }
+        }) %>
+        </ul>
+        <!-- Start. Show link see all results if amount products >0  -->
+        <div>
+        <div class="btn-autocomplete">{/literal}
+        <a href="{shop_url('search')}?text={literal}<%- items.queryString %>" {/literal} class="f-s_0 t-d_u ref2">
+        <span class="icon_arrow"></span><span class="text-el">{lang('Смотреть все результаты','newLevel')}</span>
+        </a>
+        </div>{literal}
+        <!-- End. Show link  -->
+        <% } else {%>    
     {/literal}<div class="msg f-s_0">
-                <div class="info"><span class="icon_info"></span><span class="text-el">{echo ShopCore::t(lang('По Вашему запросу ничего не найдено','newLevel'))}</span></div>
-            </div>{literal}
-            <% }%>
-        </div>
+    <div class="info"><span class="icon_info"></span><span class="text-el">{echo ShopCore::t(lang('По Вашему запросу ничего не найдено','newLevel'))}</span></div>
+    </div>{literal}
+    <% }%>
+    </div>
     </div>
 </script>
 {/literal}
@@ -142,4 +142,15 @@
         </div>
         <div class="drop-footer"></div>
     </div>
-    <button style="display: none;" type="button" data-drop="#confirm"  data-modal="true" data-confirm="true" data-effect-on="fadeIn" data-effect-off="fadeOut"></button>
+    <button style="display: none;" type="button" data-drop="#confirm" data-confirm="true" data-effect-on="fadeIn" data-effect-off="fadeOut"></button>
+
+    {if !$is_logged_in}
+        <div class="drop drop-style" id="dropAuth">
+            <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
+            <div class="drop-content t-a_c" style="width: 350px;min-height: 0;">
+                <div class="inside-padd">
+                    {lang('Для того, что бы добавить товар в список желаний, Вам нужно', 'newLevel')} <button type="button" class="d_l_1" data-drop=".drop-enter" data-source="{site_url('auth')}">{lang('авторизоваться', 'newLevel')}</button>
+                </div>
+            </div>
+        </div>
+    {/if}

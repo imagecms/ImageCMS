@@ -2,7 +2,7 @@
     <div class="frame-news">
         <div class="title-news">
             <div class="frame-title">
-                <div class="title-h1 d_i title">
+                <div class="title">
                     <a href="{site_url('novosti')}" class="t-d_n f-s_0 s-all-d">
                         <span class="text-el">{lang('Новости и акции','newLevel')}</span>
                         <span class="icon_arrow"></span>
@@ -13,7 +13,7 @@
         <ul class="items items-news">
             {foreach $recent_news as $item}
                 {$item = $CI->load->module('cfcm')->connect_fields($item, 'page')}
-                <li>
+                <li{if trim($item.field_list_image) != ""} class="is-photo"{/if}>
                     <a href="{site_url($item.full_url)}" class="frame-photo-title">
                         {if trim($item.field_list_image) != ""}
                             <span class="photo-block">

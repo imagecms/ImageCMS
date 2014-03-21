@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="tab-pane active" id="mail">
-            <table class="table table-striped table-bordered table-hover table-condensed">
+            <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
                 <thead>
                     <tr>
                         <th colspan="6">
@@ -26,7 +26,7 @@
                 <tbody>
                     <tr>
                         <td colspan="6">
-                            <div class="inside_padd">
+                            <div class="inside_padd span9">
                                 <div class="form-horizontal">
                                     <div class="row-fluid">
                                         <form id="sample_module_settings" method="post" action="{$BASE_URL}admin/components/cp/sample_module/updateSettings">

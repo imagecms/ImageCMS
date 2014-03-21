@@ -176,10 +176,12 @@ class Admin extends BaseAdminController {
             $this->form_validation->set_rules('cats_priority', lang('Categories priority', 'sitemap'), "required|callback_priority_validation");
             $this->form_validation->set_rules('pages_priority', lang('Regular or usual pages priority', 'sitemap'), "required|callback_priority_validation");
             $this->form_validation->set_rules('sub_cats_priority', lang('Subcategories priority', 'sitemap'), "required|callback_priority_validation");
-            $this->form_validation->set_rules('products_priority', lang('Products priority', 'sitemap'), "required|callback_priority_validation");
-            $this->form_validation->set_rules('brands_priority', lang('Brands priority', 'sitemap'), "required|callback_priority_validation");
-            $this->form_validation->set_rules('products_categories_priority', lang('Products categories priority', 'sitemap'), "required|callback_priority_validation");
-            $this->form_validation->set_rules('products_sub_categories_priority', lang('Products subcategories priority', 'sitemap'), "required|callback_priority_validation");
+            if (SHOP_INSTALLED) {
+                $this->form_validation->set_rules('products_priority', lang('Products priority', 'sitemap'), "required|callback_priority_validation");
+                $this->form_validation->set_rules('brands_priority', lang('Brands priority', 'sitemap'), "required|callback_priority_validation");
+                $this->form_validation->set_rules('products_categories_priority', lang('Products categories priority', 'sitemap'), "required|callback_priority_validation");
+                $this->form_validation->set_rules('products_sub_categories_priority', lang('Products subcategories priority', 'sitemap'), "required|callback_priority_validation");
+            }
 
             if ($this->form_validation->run($this) == FALSE) {
                 showMessage(validation_errors(), lang("Error", "sitemap"), 'r');
@@ -190,16 +192,25 @@ class Admin extends BaseAdminController {
              * Prepare data to update priorities
              * 
              */
-            $data = array(
-                'main_page_priority' => $this->input->post('main_page_priority'),
-                'cats_priority' => $this->input->post('cats_priority'),
-                'pages_priority' => $this->input->post('pages_priority'),
-                'sub_cats_priority' => $this->input->post('sub_cats_priority'),
-                'products_priority' => $this->input->post('products_priority'),
-                'brands_priority' => $this->input->post('brands_priority'),
-                'products_categories_priority' => $this->input->post('products_categories_priority'),
-                'products_sub_categories_priority' => $this->input->post('products_sub_categories_priority'),
-            );
+            if (SHOP_INSTALLED) {
+                $data = array(
+                    'main_page_priority' => $this->input->post('main_page_priority'),
+                    'cats_priority' => $this->input->post('cats_priority'),
+                    'pages_priority' => $this->input->post('pages_priority'),
+                    'sub_cats_priority' => $this->input->post('sub_cats_priority'),
+                    'products_priority' => $this->input->post('products_priority'),
+                    'brands_priority' => $this->input->post('brands_priority'),
+                    'products_categories_priority' => $this->input->post('products_categories_priority'),
+                    'products_sub_categories_priority' => $this->input->post('products_sub_categories_priority'),
+                );
+            } else {
+                $data = array(
+                    'main_page_priority' => $this->input->post('main_page_priority'),
+                    'cats_priority' => $this->input->post('cats_priority'),
+                    'pages_priority' => $this->input->post('pages_priority'),
+                    'sub_cats_priority' => $this->input->post('sub_cats_priority'),
+                );
+            }
 
             /** Set priorities */
             if ($this->sitemap_model->updatePriorities($data)) {
@@ -228,17 +239,26 @@ class Admin extends BaseAdminController {
             /**
              * Prepare data to update changefreq
              */
-            $data = array(
-                'main_page_changefreq' => $this->input->post('main_page_changefreq'),
-                'categories_changefreq' => $this->input->post('categories_changefreq'),
-                'pages_changefreq' => $this->input->post('pages_changefreq'),
-                'product_changefreq' => $this->input->post('product_changefreq'),
-                'categories_changefreq' => $this->input->post('categories_changefreq'),
-                'products_categories_changefreq' => $this->input->post('products_categories_changefreq'),
-                'products_sub_categories_changefreq' => $this->input->post('products_sub_categories_changefreq'),
-                'sub_categories_changefreq' => $this->input->post('sub_categories_changefreq'),
-                'brands_changefreq' => $this->input->post('brands_changefreq'),
-            );
+            if (SHOP_INSTALLED) {
+                $data = array(
+                    'main_page_changefreq' => $this->input->post('main_page_changefreq'),
+                    'categories_changefreq' => $this->input->post('categories_changefreq'),
+                    'pages_changefreq' => $this->input->post('pages_changefreq'),
+                    'product_changefreq' => $this->input->post('product_changefreq'),
+                    'categories_changefreq' => $this->input->post('categories_changefreq'),
+                    'products_categories_changefreq' => $this->input->post('products_categories_changefreq'),
+                    'products_sub_categories_changefreq' => $this->input->post('products_sub_categories_changefreq'),
+                    'sub_categories_changefreq' => $this->input->post('sub_categories_changefreq'),
+                    'brands_changefreq' => $this->input->post('brands_changefreq'),
+                );
+            } else {
+                $data = array(
+                    'main_page_changefreq' => $this->input->post('main_page_changefreq'),
+                    'categories_changefreq' => $this->input->post('categories_changefreq'),
+                    'pages_changefreq' => $this->input->post('pages_changefreq'),
+                    'categories_changefreq' => $this->input->post('categories_changefreq'),
+                );
+            }
 
             /** Set changefreq */
             if ($this->sitemap_model->updateChangefreq($data)) {

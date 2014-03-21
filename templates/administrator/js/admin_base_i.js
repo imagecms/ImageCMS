@@ -617,7 +617,7 @@ $(document).ready(function() {
         $('.modal_move_to_cat').modal();
     }
 
-    $(".save_positions").on("sortstop", function(event, ui) {
+    $(".save_positions").live("sortstop", function(event, ui) {
         var categoryId = $(ui.item[0]).find('input[name="ids"]:first-child').val();
         var url = $(this).attr('data-url');
         save_positions(url, categoryId);
@@ -1611,7 +1611,30 @@ $(document).ready(function() {
     /* --------------------- end of Backup -------------------------*/
 
 
-
+    /*
+     * Фільтр модулів
+     */
+    $('#modules_filter').live('keyup', function() {
+        var inputValue = $(this).val().toLowerCase();
+        if (inputValue == "") {
+            $('.module_row').show();
+            return;
+        }
+        $('.module_row').each(function() {
+            var moduleName = $(this).find('.module_name').text().toLowerCase();
+            var moduleDescription = $(this).find('.module_description').text().toLowerCase();
+            if (
+                    moduleName.indexOf(inputValue) != -1 ||
+                    inputValue.indexOf(moduleName) != -1 ||
+                    moduleDescription.indexOf(inputValue) != -1 ||
+                    inputValue.indexOf(moduleDescription) != -1
+                    ) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
+    });
 
 
 });

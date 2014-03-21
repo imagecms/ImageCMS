@@ -19,17 +19,17 @@
     </div>
     <div class="row-fluid">
         <form action="{$BASE_URL}admin/components/cp/documentation/saveSettings" method="POST" id="doc_roles_settings">
-            <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+            <table class="table table-striped table-bordered table-hover table-condensed content_big_td t-l_a">
                 <thead>
                     <tr>
-                        <th class="span1">
+                        <th>
                             <span class="frame_label">
                                 <span class="niceCheck" style="background-position: -46px 0px;">
                                     <input type="checkbox">
                                 </span>
                             </span>
                         </th>
-                        <th class="span1">ID</th>
+                        <th>ID</th>
                         <th>Имя</th>
                         <th>Описание</th>                                   
                     </tr>    

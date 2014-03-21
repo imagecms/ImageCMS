@@ -251,7 +251,7 @@ var Filter = {
             elCheckWrap: '.niceCheck',
             evCond: true,
             resetChecked: true,
-            //classRemove: 'b_n',//if not standart
+            classRemove: 'b_n',//if not standart
             //if evCond: true
             trigger: function(a, b, c, e) {
                 c.nStCheck('changeCheck');
@@ -345,15 +345,10 @@ var Filter = {
             url: catUrl,
             data: data,
             cache: true,
-            beforeSend: function() {
-                $.fancybox.showActivity();
-            },
             success: function(msg) {
-
                 var otherClass = '';
                 $(Filter.frameFilter).html(msg).children(preloader).hide();
                 Filter.afterAjaxInitializeFilter();
-                $.fancybox.hideActivity();
                 if (slChk) {
                     otherClass = slChk;
                 }

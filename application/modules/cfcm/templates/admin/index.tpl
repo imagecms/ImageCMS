@@ -21,14 +21,14 @@
                     </div>                            
                     <h4>{lang("Additional fields", 'cfcm')}</h4>
                     {if !empty($fields)}
-                        <table class="table table-striped table-bordered table-hover table-condensed pages-table">
+                        <table class="table table-striped table-bordered table-hover table-condensed pages-table t-l_a">
                             <thead>
                                 <tr>
-                                    <th class="span2">{lang("Label", 'cfcm')}</th>
-                                    <th class="span2">{lang("Name", 'cfcm')}</th>
-                                    <th class="span1">{lang("Type", 'cfcm')}</th>
-                                    <th class="span3">{lang("Categories", 'cfcm')}</th>
-                                    <th class="span1">{lang("Delete", 'cfcm')}</th>
+                                    <th>{lang("Label", 'cfcm')}</th>
+                                    <th>{lang("Name", 'cfcm')}</th>
+                                    <th>{lang("Type", 'cfcm')}</th>
+                                    <th>{lang("Categories", 'cfcm')}</th>
+                                    <th>{lang("Delete", 'cfcm')}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -87,14 +87,14 @@
                            {lang("No groups", "cfcm")}
                         </div>
                     {else:}
-                        <table class="table table-striped table-bordered table-hover table-condensed pages-table">
+                        <table class="table table-striped table-bordered table-hover table-condensed pages-table t-l_a">
                             <thead>
                                 <tr>
-                                    <th class="span1">ID</th>
-                                    <th class="span1">{lang("Name", 'cfcm')}</th>
-                                    <th class="span2">{lang("Description", 'cfcm')}</th>
-                                    <th class="span1">{lang('Fields', 'cfcm')}</th>
-                                    <th class="span1">{lang("Delete", 'cfcm')}</th>
+                                    <th>ID</th>
+                                    <th>{lang("Name", 'cfcm')}</th>
+                                    <th>{lang("Description", 'cfcm')}</th>
+                                    <th>{lang('Fields', 'cfcm')}</th>
+                                    <th>{lang("Delete", 'cfcm')}</th>
                                 </tr>
                             </thead>
                             <tbody>

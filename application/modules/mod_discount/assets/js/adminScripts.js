@@ -11,14 +11,24 @@ $(document).ready(function() {
      */
     $('.discounts_table').find('span.prod-on_off').add($('[data-page="tovar"]')).on('click', function() {
         var discountId = $(this).attr('data-id');
-        changeEmtyActive();
         $.ajax({
             type: 'POST',
             data: 'id=' + discountId,
+            dataType: 'json',
             url: base_url + 'admin/components/init_window/mod_discount/ajaxChangeActive',
             success: function(response) {
-                if (response == true)
-                    showMessage(lang('Status changed'), '', 'g')
+                $('body').append(response.msg);
+                if (response.status == 0) {
+                    setTimeout(function() {
+                        var switcher = $('span.prod-on_off[data-id="' + discountId + '"]');
+                        if ($(switcher).hasClass('disable_tovar')) {
+                            $(switcher).removeClass('disable_tovar').css('background-position', '-64px 0');
+                        } else {
+                            $(switcher).addClass('disable_tovar').css('background-position', '-92px 0');
+                        }
+                    }, 1000);
+
+                }
             }
         });
     });

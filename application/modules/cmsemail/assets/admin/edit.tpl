@@ -10,8 +10,8 @@
                     <span class="f-s_14">←</span>
                     <span class="t-d_u">{lang('Go back', 'cmsemail')}</span>
                 </a>
-                <button type="button" class="btn btn-small formSubmit" data-form="#email_form" data-action="save">
-                    <i class="icon-ok"></i>{lang('Save', 'cmsemail')}
+                <button type="button" class="btn btn-small formSubmit btn-success" data-form="#email_form" data-action="save">
+                    <i class="icon-ok icon-white"></i>{lang('Save', 'cmsemail')}
                 </button>
                 <button type="button" class="btn btn-small formSubmit" data-form="#email_form" data-action="tomain">
                     <i class="icon-edit"></i>{lang('Save and go back', 'cmsemail')}
@@ -91,7 +91,7 @@
                                                         </br>&nbsp;
                                                         <select name="mail_variables[]" multiple="multiple" id="userMailVariables" size="20">
                                                             {foreach $variables as $variable => $variableValue}
-                                                                 <option title="{echo $variableValue}" value="{echo $variable}">{echo $variableValue}</option>
+                                                                <option title="{echo $variableValue}" value="{echo $variable}">{echo $variableValue}</option>
                                                             {/foreach}
                                                         </select>
                                                     </label>
@@ -123,7 +123,7 @@
                                                         </br>&nbsp;
                                                         <select name="mail_variables[]" multiple="multiple" id="adminMailVariables" size="20">
                                                             {foreach $variables as $variable => $variableValue}
-                                                                 <option title="{echo $variableValue}" value="{echo $variable}">{echo $variableValue}</option>
+                                                                <option title="{echo $variableValue}" value="{echo $variable}">{echo $variableValue}</option>
                                                             {/foreach}
                                                         </select>
                                                     </label>
@@ -177,55 +177,55 @@
             <div class="tab-pane active" id="variables">
 
                 <div class="inside_padd">
-                    <table class="table table-striped table-bordered table-hover table-condensed content_big_td variablesTable">
+                    <table class="table table-striped table-bordered table-hover table-condensed content_big_td variablesTable t-l_a">
                         <thead>
                         <th>{lang('Variables', 'cmsemail')}</th>
                         <th>{lang('Values', 'cmsemail')}</th>
-                        <th class="span2">{lang('Edit', 'cmsemail')}</th>
-                        <th class="span1">{lang('Delete', 'cmsemail')}</th>
+                        <th>{lang('Edit', 'cmsemail')}</th>
+                        <th>{lang('Delete', 'cmsemail')}</th>
                         </thead>
-                            {foreach $variables as $variable => $variable_value}
-                                <tr>
-                                    <td>
-                                        <div class="variable">
-                                            {echo $variable}
-                                        </div>
-                                        <input type="text" name="variableEdit" class="variableEdit" style="display: none"/>
-                                    </td>
-                                    <td>
-                                        <div class="variableValue">
-                                            {echo $variable_value}
-                                        </div>
-                                        <input type="text" name="variableValueEdit" class="variableValueEdit" style="display: none"/>
-                                    </td>
-                                    <td class="span1">
-                                        <button class="btn my_btn_s btn-small btn-success editVariable" type="button">
-                                            <i class="icon-edit"></i>
-                                        </button>
-                                        <button data-update="count" onclick="EmailTemplateVariables.update($(this), '{$model['id']}', '{echo $variable}', '{echo $locale}')" class="btn btn-small refreshVariable" type="button" style="display: none;">
-                                            <i class="icon-refresh"></i>
-                                        </button>
-                                    </td>
-                                    <td class="span1">
-                                        <button class="btn my_btn_s btn-small btn-danger " type="button" onclick="EmailTemplateVariables.delete({$model['id']}, '{echo $variable}', $(this), '{echo $locale}')">
-                                            <i class="icon-trash"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            {/foreach}
-                            <tr class="addVariableContainer" style="display: none">
-                                <td class="span10">
-                                    <input type="text" name="variableEdit" class="variableEdit"/>
+                        {foreach $variables as $variable => $variable_value}
+                            <tr>
+                                <td class="span5">
+                                    <div class="variable">
+                                        {echo $variable}
+                                    </div>
+                                    <input type="text" name="variableEdit" class="variableEdit" style="display: none"/>
                                 </td>
-                                <td class="span10">
-                                    <input type="text" name="variableValueEdit" class="variableValueEdit"/>
+                                <td class="span5">
+                                    <div class="variableValue">
+                                        {echo $variable_value}
+                                    </div>
+                                    <input type="text" name="variableValueEdit" class="variableValueEdit" style="display: none"/>
                                 </td>
-                                <td  class="span5" colspan="2">
-                                    <button data-update="count" onclick="EmailTemplateVariables.add($(this), {$model['id']}, '{echo $locale}')"  class="btn btn-small" type="button" style="display: block; margin-top: 4px;margin-left: 4px">
-                                        <i class="icon-plus"></i>
+                                <td style="width: 100px">
+                                    <button class="btn my_btn_s btn-small btn-success editVariable" type="button">
+                                        <i class="icon-edit"></i>
+                                    </button>
+                                    <button data-update="count" onclick="EmailTemplateVariables.update($(this), '{$model['id']}', '{echo $variable}', '{echo $locale}')" class="btn btn-small refreshVariable" type="button" style="display: none;">
+                                        <i class="icon-refresh"></i>
+                                    </button>
+                                </td>
+                                <td class="span1">
+                                    <button class="btn my_btn_s btn-small btn-danger " type="button" onclick="EmailTemplateVariables.delete({$model['id']}, '{echo $variable}', $(this), '{echo $locale}')">
+                                        <i class="icon-trash"></i>
                                     </button>
                                 </td>
                             </tr>
+                        {/foreach}
+                        <tr class="addVariableContainer" style="display: none">
+                            <td class="span5">
+                                <input type="text" name="variableEdit" class="variableEdit"/>
+                            </td>
+                            <td class="span5">
+                                <input type="text" name="variableValueEdit" class="variableValueEdit"/>
+                            </td>
+                            <td style="width: 100px" colspan="2">
+                                <button data-update="count" onclick="EmailTemplateVariables.add($(this), {$model['id']}, '', '{echo $locale}')" data-variable=""  class="btn btn-small" type="button" style="display: block; margin-top: 4px;margin-left: 4px">
+                                    <i class="icon-plus"></i>
+                                </button>
+                            </td>
+                        </tr>
                     </table>
                     <button  class="btn btn-small btn-success addVariable">
                         <i class="icon-plus icon-white"></i>&nbsp;{lang('Add new variable', 'cmsemail')}

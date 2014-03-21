@@ -3,9 +3,11 @@
 # @var paymentMethods
 # @var deliveryMethod
 #}
+{$cartPrice = $model->gettotalprice()}
+{$discount = ShopCore::app()->SCurrencyHelper->convert($model->getdiscount())}
 <div class="content_head">
     <h1>Заказ №{echo $model->getId()}</h1>
-{if $CI->session->flashdata('makeOrder') === true}<h2>{lang('Спасибо за Ваш заказ','commerce_mobiles')}.</h2>{/if}
+    {if $CI->session->flashdata('makeOrder') === true}<h2>{lang('Спасибо за Ваш заказ','commerce_mobiles')}.</h2>{/if}
 </div>
 <table class="tableOrderData">
     <!-- Start. Render Order number -->
@@ -37,13 +39,26 @@
         </tr>
     {/if}
     <!-- End. Render certificate -->
+    {if $discount}
+        <tr>
+            <th>{lang('Ваша текущая скидка','commerce_mobiles')}: </th>
+            <td>-{echo $discount} {$CS}</td>
+        </tr>
+    {/if}
+
 
     <!-- Start. Delivery Method name -->
-    {if $model->getDeliveryMethod() > 0}
+    {$deliveryMethod = $model->getSDeliveryMethods()}
+    {if $deliveryMethod}
         <tr>
             <th>{lang('Доставка','commerce_mobiles')}:</th>
             <td>{echo $model->getSDeliveryMethods()->getName()}</td>
         </tr>
+        {$priceDelFreeFrom = ceil($deliveryMethod->getFreeFrom())}
+
+        {if $cartPrice < $priceDelFreeFrom}
+            {$cartPrice += $priceDel}
+        {/if}
     {/if}
     <!-- End. Delivery Method name -->
 
@@ -99,7 +114,7 @@
     <div class="gen_sum">
         <span class="total_pay">{lang('Всего к оплате','commerce_mobiles')}:</span>
         <span class="price">
-            {echo $total - $model->getDiscount() + $model->getDeliveryPrice()} {$CS}
+            {echo $cartPrice} {$CS}
         </span>
     </div>
 </div>

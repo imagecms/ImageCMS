@@ -1,16 +1,24 @@
 /*
  *imagecms shop plugins
  **/
-if (!Array.indexOf) {
+if (!Array.indexOf)
     Array.prototype.indexOf = function(obj, start) {
         for (var i = (start || 0); i < this.length; i++) {
-            if (this[i] == obj) {
+            if (this[i] === obj) {
                 return i;
             }
         }
         return -1;
-    }
-}
+    };
+if (!Object.keys)
+    Object.prototype.keys = function(obj) {
+        var keys = [];
+        for (var i in obj) {
+            if (obj.hasOwnProperty(i))
+                keys.push(i);
+        }
+        return keys;
+    };
 var Shop = {
     Cart: {
         baseUrl: siteUrl + 'shop/cart/api/',
@@ -159,7 +167,7 @@ var Shop = {
             var cartItem = {},
                     data = $context.data();
             for (var i in data)
-                cartItem[i] = data[i]
+                cartItem[i] = data[i];
             return cartItem;
         }
     },
@@ -176,7 +184,7 @@ var Shop = {
             });
             if (_self.items.indexOf(key) === -1) {
                 $.getJSON(siteUrl + 'shop/compare_api/add/' + key, function(data) {
-                    if (data.success == true) {
+                    if (data.success) {
                         data.id = key;
                         _self.items.push(key);
                         localStorage.setItem('compareList', JSON.stringify(_self.items));
@@ -189,6 +197,11 @@ var Shop = {
                     else {
                         returnMsg("=== Error. add Compare ===");
                         $(document).trigger('hideActivity');
+                    }
+                    try {
+                        var dataObj = JSON.parse(data);
+
+                    } catch (e) {
                     }
                 });
             }
@@ -204,7 +217,7 @@ var Shop = {
                 _self.items = _.without(_self.items, key);
                 _self.items = _self.all();
                 $.getJSON(siteUrl + 'shop/compare_api/remove/' + key, function(data) {
-                    if (data.success == true) {
+                    if (data.success) {
                         data.id = key;
                         _self.items = _.without(_self.items, key);
                         localStorage.setItem('compareList', JSON.stringify(_self.items));
@@ -225,7 +238,7 @@ var Shop = {
         },
         sync: function() {
             $.getJSON(siteUrl + 'shop/compare_api/sync', function(data) {
-                if (typeof data == 'object' || typeof data == 'Array') {
+                if (typeof data === 'object' || typeof data === 'Array') {
                     localStorage.setItem('compareList', JSON.stringify(data));
                 }
                 else if (data === false) {
@@ -241,11 +254,11 @@ var Shop = {
         }
     }
 };
-if (typeof (wishList) != 'object')
+if (typeof (wishList) !== 'object')
     var wishList = {
         all: function() {
             try {
-                return JSON.parse(localStorage.getItem('wishList')) ? _.compact(JSON.parse(localStorage.getItem('wishList'))) : []
+                return JSON.parse(localStorage.getItem('wishList')) ? _.compact(JSON.parse(localStorage.getItem('wishList'))) : [];
             } catch (err) {
                 return [];
             }
@@ -258,9 +271,9 @@ if (typeof (wishList) != 'object')
                     dataObj: data
                 });
                 returnMsg("=== WishList sync. call wish_list_sync ===");
-            })
+            });
         }
-    }
+    };
 /**
  * AuthApi ajax client
  * Makes simple request to api controllers and get return data in json
@@ -295,7 +308,7 @@ var ImageCMSApi = {
     },
     formAction: function(url, selector, obj) {
         //collect data from form
-        var DS = $.extend($.extend({}, this.defSet()), obj)
+        var DS = $.extend($.extend({}, this.defSet()), obj);
         if (selector !== '')
             var dataSend = this.collectFormData(selector);
         //send api request to api controller
@@ -313,21 +326,27 @@ var ImageCMSApi = {
             success: function(obj) {
                 $(document).trigger({
                     'type': 'imageapi.success',
-                    'object': obj
+                    'obj': DS,
+                    'el': form,
+                    'message': obj
                 });
                 if (obj !== null) {
                     var form = $(selector);
                     returnMsg("[status]:" + obj.status);
                     returnMsg("[message]: " + obj.msg);
-                    var cond = ((obj.refresh == true || obj.refresh == 'true') && (obj.redirect == false || obj.redirect == 'false')) || ((obj.refresh == 'false' || obj.refresh == false) && (obj.redirect == true || obj.redirect != ''));
+
+                    obj.refresh = obj.refresh != undefined ? obj.refresh.toString() : obj.refresh;
+                    obj.redirect = obj.redirect != undefined ? obj.redirect.toString() : obj.redirect;
+
+                    var cond = (obj.refresh && obj.refresh === 'true' && obj.redirect === 'false') || (obj.redirect && obj.redirect !== 'false' && obj.redirect !== '');
                     if (cond)
                         $(document).trigger({
                             'type': 'imageapi.before_refresh_reload',
                             'el': form,
-                            'obj': DS
+                            'obj': DS,
+                            'message': obj
                         });
-
-                    if (typeof DS.callback == 'function')
+                    if (typeof DS.callback === 'function')
                         DS.callback(obj.msg, obj.status, form, DS);
                     else if (obj.status === true && !cond)
                         setTimeout((function() {
@@ -339,9 +358,9 @@ var ImageCMSApi = {
                         }), DS.durationHideForm);
 
                     setTimeout(function() {
-                        if ((obj.refresh == true || obj.refresh == 'true') && (obj.redirect == false || obj.redirect == 'false'))
+                        if (obj.refresh === 'true' && obj.redirect === 'false')
                             location.reload();
-                        if ((obj.refresh == 'false' || obj.refresh == false) && (obj.redirect == true || obj.redirect != ''))
+                        if (obj.refresh === 'false' && obj.redirect !== '' && obj.redirect !== 'false')
                             location.href = obj.redirect;
                     }, DS.durationHideForm);
 
@@ -349,20 +368,22 @@ var ImageCMSApi = {
                         if (DS.hideForm)
                             form.hide();
                         var type = obj.status === true ? 'success' : 'error';
-                        if (DS.messagePlace == 'ahead')
+                        if (DS.messagePlace === 'ahead')
                             $(message[type](obj.msg)).prependTo(form.parent());
-                        if (DS.messagePlace == 'behind')
+                        if (DS.messagePlace === 'behind')
                             $(message[type](obj.msg)).appendTo(form.parent());
                         $(document).trigger({
                             'type': 'imageapi.pastemsg',
-                            'el': form.parent()
-                        })
+                            'el': form,
+                            'obj': DS,
+                            'message': obj
+                        });
                     }
-                    if (obj.cap_image != 'undefined' && obj.cap_image != null) {
+                    if (obj.cap_image) {
                         ImageCMSApi.addCaptcha(obj.cap_image, DS);
                     }
-                    if (obj.validations != 'undefined' && obj.validations != null) {
-                        ImageCMSApi.sendValidations(obj.validations, form, DS);
+                    if (obj.validations) {
+                        ImageCMSApi.sendValidations(obj.validations, form, DS, obj);
                     }
                     $(form).find(':input').off('input.imageapi').on('input.imageapi', function() {
                         var $this = $(this),
@@ -374,7 +395,9 @@ var ImageCMSApi = {
                             elMsg.remove();
                             $(document).trigger({
                                 'type': 'imageapi.hidemsg',
-                                'el': form
+                                'el': form,
+                                'obj': DS,
+                                'message': obj
                             });
                             $this.focus();
                         }
@@ -395,26 +418,28 @@ var ImageCMSApi = {
         var queryString = findSelector.serialize();
         return queryString;
     },
-    /**
-     * for displaying validation messages 
-     * in the form, which needs validation, for each validate input
-     * 
-     * */
-    sendValidations: function(validations, selector, DS) {
+    sendValidations: function(validations, selector, DS, obj) {
+        /**
+         * for displaying validation messages 
+         * in the form, which needs validation, for each validate input
+         * 
+         * */
         var sel = $(selector);
         if (typeof validations === 'object') {
             var i = 1;
             for (var key in validations) {
-                if (validations[key] != "") {
+                if (validations[key] !== "") {
                     var input = sel.find('[name=' + key + ']');
                     input.addClass(DS.err);
                     input[DS.cMsgPlace](DS.cMsg(key, validations[key], DS.err, sel));
                 }
-                if (i == Object.keys(validations).length) {
+                if (i === Object.keys(validations).length) {
                     $(document).trigger({
                         'type': 'imageapi.pastemsg',
-                        'el': sel.parent()
-                    })
+                        'el': sel,
+                        'obj': DS,
+                        'message': obj
+                    });
                     var finput = sel.find(':input.' + DS.err + ':first');
                     finput.setCursorPosition(finput.val().length);
                 }
@@ -424,12 +449,12 @@ var ImageCMSApi = {
             return false;
         }
     },
-    /**
-     * add captcha block if needed
-     * @param {type} captcha_image
-     */
     addCaptcha: function(cI, DS) {
+        /**
+         * add captcha block if needed
+         * @param {type} captcha_image
+         */
         DS.captchaBlock.html(DS.captcha(cI));
         return false;
     }
-}
+};

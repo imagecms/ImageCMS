@@ -333,7 +333,7 @@ class Auth extends MY_Controller {
         if ($this->dx_auth->reset_password($email, $key)) {
 //             ($hook = get_hook('auth_reset_pass_restored')) ? eval($hook) : NULL;
 
-            $data['auth_message'] = lang('You have successfully zeroed my password. ', 'auth') . anchor(site_url($this->dx_auth->login_uri), lang('Login Here', 'auth'));
+            $data['auth_message'] = lang('You have successfully zeroed my password. ', 'auth');
 
             $this->template->assign('auth_message', $data['auth_message']);
             if ($_SERVER['HTTP_X_REQUESTED_WITH'] != 'XMLHttpRequest') {

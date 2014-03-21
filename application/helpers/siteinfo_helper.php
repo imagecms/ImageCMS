@@ -22,10 +22,12 @@ if (!function_exists('siteinfo')) {
      *    - "or some contact name"
      */
     function siteinfo($name = NULL) {
+
         // for shorter notation...
         if (0 !== strpos($name, 'siteinfo_')) {
             $name = 'siteinfo_' . $name;
         }
+
         $siteinfo = CI::$APP->load->library("SiteInfo");
         // next code is only for compatibility with older versions of library, 
         // so in the future needed to be removed (with funciton processOldVersions() too)
@@ -33,6 +35,7 @@ if (!function_exists('siteinfo')) {
             return $data;
         } else {
             $value = $siteinfo->getSiteInfo($name);
+            
             if (in_array($name, array('siteinfo_logo', 'siteinfo_favicon'))) {
                 return CI::$APP->siteinfo->imagesPath . $value;
             }
@@ -48,6 +51,7 @@ if (!function_exists('siteInfoAdditionalManipulations')) {
 
     /**
      * Функція існує суто для сумісності із старими версіями
+     * @deprecated since version 4.6
      * @param string $name
      * @param string $value
      * @return string|boolean
@@ -67,14 +71,23 @@ if (!function_exists('siteInfoAdditionalManipulations')) {
                 // із врахуванням активного шаблону
                 if (is_array($value)) {
                     $settings = CI::$APP->cms_base->get_settings();
-                    $colorScheme = CI::$APP->load->module('new_level')->getColorScheme();
                     if (key_exists($settings['site_template'], $value)) {
                         $fileName = $value[$settings['site_template']];
-                        return "/templates/{$settings['site_template']}/{$colorScheme}/{$fileName}";
+                        if (SHOP_INSTALLED) {
+                            $colorScheme = CI::$APP->load->module('new_level')->getColorScheme();
+                            return "/templates/{$settings['site_template']}/{$colorScheme}/{$fileName}";
+                        } else {
+                            return "/templates/{$settings['site_template']}/images/{$fileName}";
+                        }
                     } elseif (count($value) > 0) {
                         reset($value);
                         $key = key($value);
-                        return "/templates/" . $key . "/{$colorScheme}/" . $value[$key];
+                        if (SHOP_INSTALLED) {
+                            $colorScheme = CI::$APP->load->module('new_level')->getColorScheme();
+                            return "/templates/" . $key . "/{$colorScheme}/" . $value[$key];
+                        } else {
+                            return "/templates/{$settings['site_template']}/images/{$fileName}";
+                        }
                     }
                     return '';
                 } elseif (is_string($value)) {
