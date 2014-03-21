@@ -2,7 +2,7 @@
     <div class="frame-change-profile">
         <div class="horizontal-form">
             <form method="post" id="form_change_info" onsubmit="ImageCMSApi.formAction('{site_url("/shop/profileapi/changeInfo")}', '#form_change_info', {literal}{hideForm: false, durationHideForm: 1000}{/literal});
-                      return false;">
+                    return false;">
                 <label>
                     <span class="title">{lang('Ваше имя','newLevel')}:</span>
                     <span class="frame-form-field">
@@ -43,10 +43,12 @@
             </form>
         </div>
     </div>
-            
+
+
     {$dApi = $CI->load->module('mod_discount/discount_api')}
     {if $dApi->discountsExists()}
         {$discount = $dApi->get_user_discount_api()}
+
         <div class="layout-highlight info-discount">
             <div class="title-default">
                 <div class="title">{lang('Скидки','newLevel')}</div>

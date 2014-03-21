@@ -6,8 +6,8 @@ var
         ieV = $.browser.version,
         ltie7 = ie && (ieV <= 7),
         ltie8 = ie && (ieV <= 8),
-        checkProdStock = checkProdStock == "" ? false : true,
-        hrefCategoryProduct = hrefCategoryProduct != undefined ? hrefCategoryProduct : undefined;
+        checkProdStock = checkProdStock === "" ? false : true,
+        hrefCategoryProduct = hrefCategoryProduct ? hrefCategoryProduct : undefined;
 
 var optionsMenu = {
     item: 'td',
@@ -25,7 +25,7 @@ var optionsMenu = {
     //if need column partition level 3
     columnPart2: true,
     columnClassPref2: 'column2_',
-    maxC: 5,
+    maxC: 3,
     effectOn: 'slideDown',
     effectOff: 'slideUp',
     effectOnS: 'fadeIn',
@@ -45,7 +45,7 @@ var optionsMenu = {
     parentTl: '.frame-l2', //prev a level 2
     otherPage: hrefCategoryProduct, //for product [undefined or value not other]
 
-    vertical: false
+    vertical: true
 };
 var scrollPane = {
     animateScroll: true,
@@ -114,7 +114,7 @@ var imageCmsApiDefaults = {
                         <span class="frame-form-field">\n\
                             <input type="text" name="captcha" value="' + text.captchaText + '"/> \n\
                             <span class="help-block" id="for_captcha_image">' + ci + '</span>\n\
-                        </span></div>'
+                        </span></div>';
     },
     captchaBlock: '#captcha_block',
     cMsg: function(name, text, classN, form) {
@@ -168,13 +168,13 @@ var cuselOptions = {
 };
 var message = {
     success: function(text) {
-        return '<div class = "msg js-msg"><div class = "success ' + genObj.scs + '"><span class = "icon_info"></span><div class="text-el">' + text + '</div></div></div>'
+        return '<div class = "msg js-msg"><div class = "success ' + genObj.scs + '"><span class = "icon_info"></span><div class="text-el">' + text + '</div></div></div>';
     },
     error: function(text) {
-        return '<div class = "msg js-msg"><div class = "error ' + genObj.err + '"><span class = "icon_info"></span><div class="text-el">' + text + '</div></div></div>'
+        return '<div class = "msg js-msg"><div class = "error ' + genObj.err + '"><span class = "icon_info"></span><div class="text-el">' + text + '</div></div></div>';
     },
     info: function(text) {
-        return '<div class = "msg js-msg"><div class = "info ' + genObj.info + '"><span class = "icon_info"></span><div class="text-el">' + text + '</div></div></div>'
+        return '<div class = "msg js-msg"><div class = "info ' + genObj.info + '"><span class = "icon_info"></span><div class="text-el">' + text + '</div></div></div>';
     }
 };
 var lazyload = {
@@ -185,7 +185,7 @@ var optionsPlusminus = {
     next: 'prev().children(:eq(0)).children()',
     step: 1,
     checkProdStock: checkProdStock
-}
+};
 $.maxminValue.settings = {
     addCond: checkProdStock
-}
+};
