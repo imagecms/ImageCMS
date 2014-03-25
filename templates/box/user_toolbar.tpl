@@ -2,7 +2,7 @@
     <div class="container inside-padd">
         {$countSh = getProductViewsCount()}
         <div class="content-user-toolbar">
-            <ul class="items items-user-toolbar" {if $_COOKIE['condUserToolbar'] == 0}style="width: 102px;"{/if}>
+            <ul class="items items-user-toolbar" {if $_COOKIE['condUserToolbar'] == 0 && isset($_COOKIE['condUserToolbar'])}style="width: 102px;"{/if}>
                 <li class="box-1">
                     {include_shop_tpl('wish_list_data')}
                 </li>
