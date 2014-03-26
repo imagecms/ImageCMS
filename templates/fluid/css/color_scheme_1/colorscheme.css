@@ -274,7 +274,7 @@ a:focus, a:active {color: #ff8001;}
 .item-product .items-thumbs .photo-block{border: 3px solid transparent;}
 .item-product .items-thumbs .active .photo-block{border-color: #5986b6;}
 .left-product{border-right: 1px solid #dfe4eb;}
-.left-product-left{border: 1px solid #dfe4eb;}
+.left-product-left > .inside{border: 1px solid #dfe4eb;margin-bottom: 30px;}
 .left-product-left .photo-block{border: 0;}
 
 .items-info-discount > li{display: block;border-top: 1px solid #eae5e1;}
@@ -295,6 +295,7 @@ a:focus, a:active {color: #ff8001;}
 .frame-delivery-payment dt:first-child{border-top: 0;}
 .frame-delivery-payment dd{color: #878d9b;}
 .item-product .short-desc{border-bottom: 1px solid #dfe4eb;margin-bottom: 12px;}
+.complect-gen-sum{background-color: #f2f6f9;border-top: 1px solid #dfe4eb;}
 .title-complect{margin-bottom: 7px;}
 .title-complect .title{color: #878d9b;font-size: 14px;}
 .frame-delivery-payment .title .text-el{color: #4f7db0;text-transform: uppercase;font-weight: bold;}
@@ -337,6 +338,10 @@ a:focus, a:active {color: #ff8001;}
 .vertical-carousel .group-button-carousel{position: absolute;right: 9px;top: -31px;}
 .vertical-carousel .group-button-carousel .arrow{width: 25px;height: 24px;background-color: #fff;border: 1px solid #c5cdd8;position: static;}
 .vertical-carousel .group-button-carousel .next{border-left: 0;}
+.frame-thumbs .group-button-carousel{position: static;}
+.frame-thumbs .group-button-carousel .arrow{left: 0;top: auto;width: 100%;height: 22px;right: auto;position: absolute;border: 0;}
+.frame-thumbs .group-button-carousel .next{bottom: 0;}
+.frame-thumbs .group-button-carousel .prev{border-bottom: 1px solid #dfe4eb;top: 0;}
 .fancy-gallery .group-button-carousel .arrow{width: 30px;height: 30px;margin-top: -15px;}
 .fancy-gallery a:hover .photo-block{border-color: #dfe4eb;}
 .horizontal-carousel .frame-thumbs .group-button-carousel .arrow{background: none;-moz-box-shadow: none;-webkit-box-shadow: none;box-shadow: none;border: 0;width: 20px;}
@@ -582,7 +587,7 @@ form .btn-form .text-el, .btn-not-avail .text-el, .btn-form input, .btn-cart .te
 .icon-arrow-l, .icon-arrow-r, .vertical-carousel .group-button-carousel [class*="icon_arrow_"]{width: 4px;height: 8px;}
 .icon-arrow-l, .vertical-carousel .icon_arrow_p{background-position: -760px -20px;}
 .icon-arrow-r, .vertical-carousel .icon_arrow_n{background-position: -760px -40px;}
-.frame-thumbs .icon_arrow_p, .frame-thumbs .icon_arrow_n{width: 12px;height: 8px;}
+.frame-thumbs .group-button-carousel [class*="icon_arrow_"]{width: 12px;height: 8px;}
 .frame-thumbs .icon_arrow_p{background-position: -840px 0;}
 .frame-thumbs .icon_arrow_n{background-position: -860px 0;}
 .icon_payment, .icon_delivery{margin-right: 9px;vertical-align: text-bottom;}

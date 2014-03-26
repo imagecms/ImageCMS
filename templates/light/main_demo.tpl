@@ -81,7 +81,7 @@
         <link rel="shortcut icon" href="{echo siteinfo('siteinfo_favicon_url')}" type="image/x-icon" />
         {literal}
             <style>
-                .imagecms-top-fixed-header{height: 0;box-shadow: 0 1px 4px rgba(0,0,0,.2);background-color: #fafafa;border-top: 0 solid #0aae85;position: fixed;top: 0;left: 0;width: 100%;z-index: 1000;font-family: Arial, sans-serif;font-size: 12px;color: #223340;vertical-align: baseline;}
+                .imagecms-top-fixed-header{min-width: 960px;height: 0;box-shadow: 0 1px 4px rgba(0,0,0,.2);background-color: #fafafa;border-top: 0 solid #0aae85;position: fixed;top: 0;left: 0;width: 100%;z-index: 1000;font-family: Arial, sans-serif;font-size: 12px;color: #223340;vertical-align: baseline;}
                 .imagecms-top-fixed-header.imagecms-active + .main-body header{padding-top: 30px;}
                 .imagecms-top-fixed-header.imagecms-active{height: 30px;border-top-width: 3px;}
                 .imagecms-top-fixed-header .container{position: relative;}
