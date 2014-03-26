@@ -522,7 +522,7 @@ items-catalog.table > li, items-catalog.tablemini > li{margin-left: 10px;overflo
 .items-v-carousel > li > .frame-photo-title{float: none !important;display: inline;}
 .items-v-carousel .frame-photo-title .title{display: block;padding-top: 20px;}
 .special-proposition .content-carousel{padding: 0 20px 25px;}
-.vertical-carousel .jcarousel-clip, .vertical-carousel .content-carousel{max-height: 451px;padding: 0;}
+.vertical-carousel .jcarousel-clip, .vertical-carousel .content-carousel{max-height: 452px;padding: 0;}
 .carousel-category-popular .frame-title{position: relative;overflow: hidden;}
 
 .frame-baner{position: relative;overflow: hidden;}
