@@ -84,7 +84,7 @@ body.isScroll{overflow: hidden;margin-right: 17px;}
 body.isScroll.isTouch{padding-right: 0;}
 body {text-align: left;overflow-y: scroll;}
 body, input, select, button, textarea {font-family: Arial, Helvetica CY, Nimbus Sans L, sans-serif;line-height: 1.5;}
-body, input, select, button, textarea, .f-s_0 > *, .items > li, .items > td, .text-el, .nav > li, .cuselText, .cusel span, .filters-content .name-count, .t-a_j > *, .frame-kit .title{font-size: 12px;}
+body, input, select, button, textarea, .f-s_0 > *, .items > li, .items > td, .text-el, .nav > li, .cuselText, .cusel span, .filters-content .name-count, .t-a_j > *, .frame-kit .title, .frame-photo-title .title{font-size: 12px;}
 input[type="submit"], input[type="reset"], input[type="button"], button {-webkit-appearance: button;overflow: visible;background-color: transparent;border: none;}
 input[type="button"], input[type="submit"], input[type="reset"], button{text-align: center;}
 label, input[type="button"], input[type="submit"], input[type="reset"], button{padding: 0;cursor: pointer;}
@@ -282,7 +282,7 @@ input.input-search{height: 33px;}
 .items{font-size: 0;}
 .items > li{display: inline-block;vertical-align: top;}
 .items .frame-photo-title, .item-product .frame-photo-title{text-decoration: none;}
-.frame-photo-title{-webkit-transition: all 0.3s ease-in-out;-moz-transition: all 0.3s ease-in-out;-o-transition: all 0.3s ease-in-out;transition: all 0.3s ease-in-out;}
+.frame-photo-title{font-size: 0;-webkit-transition: all 0.3s ease-in-out;-moz-transition: all 0.3s ease-in-out;-o-transition: all 0.3s ease-in-out;transition: all 0.3s ease-in-out;}
 .items-row > li{width: 100%;}
 
 .items-crumbs > li{vertical-align: baseline;margin-left: 5px;}
@@ -323,7 +323,7 @@ items-catalog.table > li, items-catalog.tablemini > li{margin-left: 10px;overflo
 .items-catalog.tablemini > li{width: 190px !important;padding: 0 4px;}
 .items-catalog.table > li:hover, .items-catalog.tablemini > li:hover{overflow: visible;}
 .items-catalog .star{margin-right: 6px;}
-.items-catalog .frame-btn-comp, .items-catalog .frame-btn-wish{margin: 2px 0;}
+.items-catalog .frame-btn-comp, .items-catalog .frame-btn-wish{margin: 2px 0;vertical-align: baseline;}
 
 .animateListItems.tablemini .no-vis-table, .animateListItems.table .no-vis-table, .animateListItems.items-h-carousel .no-vis-table{width: 100%;filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0);-moz-opacity: 0;-khtml-opacity: 0;opacity: 0;position: absolute;}
 .animateListItems.table > li:hover, .animateListItems.tablemini > li:hover{z-index: 2;}
@@ -370,33 +370,34 @@ items-catalog.table > li, items-catalog.tablemini > li{margin-left: 10px;overflo
 .item-report .description{padding-top: 0;}
 
 .item-product{padding-bottom: 25px;}
-.item-product .frame-photo-title{display: block;margin-bottom: 10px;}
+.item-product .frame-photo-title{display: block;}
 
-.photoProduct .photo-block{width: 100%;height: 339px;padding: 15px;}
+.photoProduct .photo-block{width: 100%;height: 353px;padding: 15px;}
 .title-product{margin-bottom: 10px;margin-top: 5px;}
 .title-product .frame-title{margin-right: 15px;}
 .title-product .frame-variant-name-code{display: inline;}
 .items-thumbs.items > li > a{display: block;font-size: 0;}
 .items-thumbs .photo-block{width: 107px;height: 90px;}
 .item-product .items-thumbs .photo-block{width: 78px;height: 102px;}
-.item-product .vertical-carousel .jcarousel-clip, .item-product .vertical-carousel .content-carousel{max-height: none;height: 309px;overflow: hidden;}
+.item-product .vertical-carousel .jcarousel-clip, .item-product .vertical-carousel .content-carousel{max-height: none;height: 309px !important;overflow: hidden;}
 .items-thumbs > li{margin-bottom: 5px;}
-.fancy-gallery{max-width: 430px;margin: 0 auto;}
+.fancy-gallery{max-width: 428px;margin: 0 auto;}
 .fancy-gallery .items-thumbs{margin: auto;overflow: hidden;}
 
 /*if carousel*/
-.left-product-left .vertical-carousel{float: right;width: 78px;border-left: 1px solid #dfe4eb;}
+.left-product-left .vertical-carousel{float: right;width: 78px;}
 
-.left-product-left .vertical-carousel + *{margin-right: 79px;}
+.left-product-left .vertical-carousel + *{margin-right: 78px;}
 .item-product .frame-thumbs{margin-bottom: 15px;}
 .frame-thumbs.carousel-js-css{padding: 22px 0;margin-bottom: 0;}
 #photoButton .arrow{margin-top: -28px;}
 #photoButton .prev{left: 25px;}
 #photoButton .next{right: 25px;}
-.horizontal-carousel .frame-thumbs .group-button-carousel .next{right: -25px;}
+.horizontal-carousel .frame-thumbs .group-button-carousel .next{right: -25px;left: auto;}
 .horizontal-carousel .frame-thumbs .group-button-carousel .prev{left: -25px;}
 .items-thumbs{margin: auto;text-align: left !important;}
-.item-product .items-thumbs.items li{height: 102px !important;margin-left: 0;border-bottom: 1px solid #dfe4eb;}
+.item-product .items-thumbs.items li{height: 102px !important;margin-left: 0;border-top: 1px solid #dfe4eb;}
+.item-product .items-thumbs.items li:first-child{border-top: 0;}
 .items-thumbs.items{margin-left: -5px;}
 .items-thumbs.items li{margin-left: 5px;}
 .carousel-js-css .items-thumbs.items{margin-left: 0;}
@@ -412,7 +413,7 @@ items-catalog.table > li, items-catalog.tablemini > li{margin-left: 10px;overflo
 .item-product .frame-prices-buy, #photo .frame-prices-buy{padding: 17px 10px 17px 32px;}
 .item-product .funcs-buttons{margin-right: 10px;}
 .not-avail .frame-prices-buy{padding: 0;}
-.item-product .frame-btn-compare{margin-right: 16px;}
+.item-product .frame-btn-comp{margin-right: 16px;}
 .items-catalog .frame-count, .item-product .frame-count, #photo .drop-footer .frame-count{display: inline-block;vertical-align: middle;margin-right: 10px;}
 .frame-prices-buy-wish-compare{margin-bottom: 15px;}
 .item-product .frame-for-photo-popup{margin-right: 23px;margin-bottom: 5px;}
@@ -1209,7 +1210,7 @@ footer .content-footer{min-height: 223px;padding-top: 32px;}
 #photo .drop-content > .horizontal-carousel{position: absolute;left: 0;top: 0;width: 100%;height: 100%;}
 #photo .drop-content > .horizontal-carousel .next{right: 15px;}
 #photo .drop-content > .horizontal-carousel .prev{left: 15px;}
-#photo .content-carousel > ul{width: auto;overflow: hidden;height: 90px;visibility: hidden;}
+#photo .content-carousel > ul{width: auto;overflow: hidden;height: 90px;visibility: hidden;margin: auto;}
 #photo .drop-footer{text-align: center;border-top: 10px solid #fff;border-bottom: 42px solid #fff;}
 #photo .drop-footer .inside-padd{padding: 12px 20px 11px;}
 #photo .drop-footer .frame-prices-buy .price-discount{display: block;}

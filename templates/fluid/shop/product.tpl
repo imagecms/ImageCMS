@@ -32,7 +32,7 @@
             </div>
             <div class="left-product leftProduct">
                 <div class="item-product globalFrameProduct{if $model->firstVariant->getStock() == 0} not-avail{else:}{if $inCartFV} in-cart{else:} to-cart{/if}{/if}">
-                    <div class="left-product-left">
+                    <div class="left-product-left {if $sizeAddImg > 0}is-add{/if}">
                         <div class="inside">
                             {if $sizeAddImg > 0}
                                 <!-- Start. additional images-->
@@ -323,7 +323,7 @@
                                 </div>
                                 <!-- Start. Wish List & Compare List buttons -->
                                 <div class="frame-wish-compare-list f-s_0 d_i-b v-a_m">
-                                    <div class="frame-btn-compare v-a_bl">
+                                    <div class="frame-btn-comp v-a_bl">
                                         <div class="btn-compare">
                                             <div class="toCompare btnCompare"
                                                  data-id="{echo $model->getId()}"
