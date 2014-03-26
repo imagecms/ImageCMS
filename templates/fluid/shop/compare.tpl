@@ -45,15 +45,17 @@
                                         <li></li>
                                     </ul>
                                     <!--Start.Product properties names -->
-                                    <ul class="compare-characteristic">
-                                        {$data = ShopCore::app()->SPropertiesRenderer->renderCategoryPropertiesArray($category['Id'])}
-                                        {foreach $data as $d}
-                                            <li>
-                                                <span class="helper helper-comp"></span>
-                                                <span>{echo $d} </span>
-                                            </li>
-                                        {/foreach}
-                                    </ul>
+                                    {$data = ShopCore::app()->SPropertiesRenderer->renderCategoryPropertiesArray($category['Id'])}
+                                    {if $data}
+                                        <ul class="compare-characteristic">
+                                            {foreach $data as $d}
+                                                <li>
+                                                    <span class="helper helper-comp"></span>
+                                                    <span>{echo $d} </span>
+                                                </li>
+                                            {/foreach}
+                                        </ul>
+                                    {/if}
                                     <!--End. Product properties names -->
                                 </div>
                                 <div class="right-compare horizontal-carousel">
@@ -70,39 +72,41 @@
                                                             </ul>
                                                             <!--                                                End. Include product template-->
                                                             <!--Start. Product characteristics -->
-                                                            <ul class="compare-characteristic">
-                                                                {$pdata = ShopCore::app()->SPropertiesRenderer->renderPropertiesCompareArray($p)}
-                                                                {foreach $data as $d}
-                                                                    {$cval = ShopCore::encode($d)}
-                                                                    {if is_array($pdata[$cval])}
-                                                                        <li>
-                                                                            <span class="helper helper-comp"></span>
-                                                                            <span>
-                                                                                {$i = 0}
-                                                                                {foreach $pdata[$cval] as $ms}
-                                                                                    {echo $ms}
-                                                                                    {if $i<(count($pdata[$cval])-1)}
-                                                                                        ,
-                                                                                    {/if}
-                                                                                    {$i++}
-                                                                                {/foreach}
-                                                                            </span>
-                                                                        </li>
-                                                                    {else:}
-                                                                        {if $pdata[$cval]}
+                                                            {$pdata = ShopCore::app()->SPropertiesRenderer->renderPropertiesCompareArray($p)}
+                                                            {if $data}
+                                                                <ul class="compare-characteristic">
+                                                                    {foreach $data as $d}
+                                                                        {$cval = ShopCore::encode($d)}
+                                                                        {if is_array($pdata[$cval])}
                                                                             <li>
                                                                                 <span class="helper helper-comp"></span>
-                                                                                <span>{echo $pdata[$cval]}</span>
+                                                                                <span>
+                                                                                    {$i = 0}
+                                                                                    {foreach $pdata[$cval] as $ms}
+                                                                                        {echo $ms}
+                                                                                        {if $i<(count($pdata[$cval])-1)}
+                                                                                            ,
+                                                                                        {/if}
+                                                                                        {$i++}
+                                                                                    {/foreach}
+                                                                                </span>
                                                                             </li>
                                                                         {else:}
-                                                                            <li>
-                                                                                <span class="helper helper-comp"></span>
-                                                                                <span>-</span>
-                                                                            </li>
+                                                                            {if $pdata[$cval]}
+                                                                                <li>
+                                                                                    <span class="helper helper-comp"></span>
+                                                                                    <span>{echo $pdata[$cval]}</span>
+                                                                                </li>
+                                                                            {else:}
+                                                                                <li>
+                                                                                    <span class="helper helper-comp"></span>
+                                                                                    <span>-</span>
+                                                                                </li>
+                                                                            {/if}
                                                                         {/if}
-                                                                    {/if}
-                                                                {/foreach}
-                                                            </ul>
+                                                                    {/foreach}
+                                                                </ul>
+                                                            {/if}
                                                             <!--End. Product characteristics -->
                                                         </li>
                                                     {/if}
