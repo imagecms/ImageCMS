@@ -93,9 +93,9 @@ a:focus, a:active {color: #ff8001;}
 [class*="d_l"], .check-variant-catalog .cuselText{text-decoration: none;cursor: pointer;position: relative;display: inline;border-bottom: 1px dotted transparent;line-height: 1.2;}
 .active > [class*="d_l"]{cursor: pointer;}
 [disabled] [class*="d_l"]{cursor: default;}
-.d_l_1, .btn-order-call .d_l, .btn-compare .d_l, .btn-wish .d_l, .old-buyer .d_l{color: #0088cc;border-bottom-color: #0088cc;line-height: 1.2;}
+.frame-group-checks .title .d_l, .d_l_1, .btn-order-call .d_l, .btn-compare .d_l, .btn-wish .d_l, .old-buyer .d_l{color: #0088cc;border-bottom-color: #0088cc;line-height: 1.2;}
 .frame-form-field [class*="d_l"]{border-bottom-color: #4f7db0;color: #4f7db0;}
-.d_l_1:hover, .pointer:hover .d_l_1, .btn-order-call .d_l:hover, .btn-compare > button:hover .d_l, .btn-wish > button:hover .d_l, .old-buyer:hover .d_l, a:focus [class*="d_l"], button:focus [class*="d_l"]{color: #ff8a01;border-bottom-color: #ff8a01;}
+.d_l_1:hover, .pointer:hover .d_l_1, .btn-order-call .d_l:hover, .btn-compare:hover .d_l, .btn-wish > button:hover .d_l, .old-buyer:hover .d_l, a:focus [class*="d_l"], button:focus [class*="d_l"]{color: #ff8a01;border-bottom-color: #ff8a01;}
 .d_l_2, .check-variant-catalog .cuselText{color: #ff8a01;border-bottom-color: #ff8a01;}
 .d_l_2:hover, .check-variant-catalog .cuselText:hover{color: #ffaf67;}
 .active > a > [class*="d_l"], .active > button > [class*="d_l"], .active > [class*="d_l"]{color: #ff8001;border-bottom-color: #ff8001;}
@@ -227,6 +227,7 @@ a:focus, a:active {color: #ff8001;}
 .frame-check-filter{border: 1px solid #fd7c06;}
 .form-cost input{color: #afb6bd;}
 .name-count .text-el{color: #475057;}
+.frame-label.disabled .name-count .text-el{color: #afb6bd;}
 .name-count .count{color: #afb6bd;}
 .foot-check-filter{}
 .frames-checks-sliders{background-color: #f2f6f9;}
@@ -590,7 +591,7 @@ form .btn-form .text-el, .btn-not-avail .text-el, .btn-form input, .btn-cart .te
 .icon_payment{width: 25px;height: 24px;background-position: -920px 0;}
 .icon_info_t{width: 14px;height: 14px;background-position: -960px 0;margin-left: 5px;top: 0px;vertical-align: text-bottom;cursor: pointer;}
 .text-el + .icon_info_t{top: -2px;}
-.icon_times_drop{width: 46px;height: 39px;background-position: -1100px 0;right: 0;top: 0;position: absolute;z-index: 2;cursor: pointer;}
+.icon_times_drop{width: 46px;height: 39px;background-position: -1100px 0;right: 0;top: 0;position: absolute;z-index: 2;cursor: pointer !important;}
 .icon_times_drop:hover{background-position: -1100px -40px;}
 .icon_times_cart, .icon_times{width: 11px;height: 11px;background-position: -1020px 0;margin-top: 15px;}
 .icon_times_cart:hover, .icon_times:hover{background-position: -1020px -20px;}

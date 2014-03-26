@@ -2,6 +2,27 @@
     {if $CI->core->core_data['data_type'] == 'main'}
         <div class="content-footer">
             <div class="container">
+                <div class="frame-box23">
+                    <div class="box-2">
+                        <div class="inside-padd">
+                            <div class="frame-benefits">
+                                <div class="title-h1">{lang('Почему мы', 'newLevel')}</div>
+                                {widget('benefits')}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-3">
+                        <div class="inside-padd">
+                            <div class="title-h1">
+                                <a href="{shop_url('brand')}" class="t-d_n f-s_0 s-all-d">
+                                    <span class="text-el">{lang('Бренды', 'newLevel')}</span>
+                                    <span class="icon_arrow"></span>
+                                </a>
+                            </div>
+                            {widget('brands')}
+                        </div>
+                    </div>
+                </div>
                 <!--Start. Load menu in footer-->
                 <div class="box-1">
                     <div class="inside-padd">
@@ -10,25 +31,6 @@
                                 {widget('seo_text_footer')}
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="box-2">
-                    <div class="inside-padd">
-                        <div class="frame-benefits">
-                            <div class="title-h1">{lang('Почему мы', 'newLevel')}</div>
-                            {widget('benefits')}
-                        </div>
-                    </div>
-                </div>
-                <div class="box-3">
-                    <div class="inside-padd">
-                        <div class="title-h1">
-                            <a href="{shop_url('brand')}" class="t-d_n f-s_0 s-all-d">
-                                <span class="text-el">{lang('Бренды', 'newLevel')}</span>
-                                <span class="icon_arrow"></span>
-                            </a>
-                        </div>
-                        {widget('brands')}
                     </div>
                 </div>
             </div>
@@ -75,7 +77,7 @@
                         </li>
                     </ul>
                 </div>
-                <div>
+                <div class="frame-items-benefits">
                     <ul class="items items-payment">
                         <li>
                             <span class="photo-block">
