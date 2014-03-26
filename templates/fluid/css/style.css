@@ -452,9 +452,10 @@ items-catalog.table > li, items-catalog.tablemini > li{margin-left: 10px;overflo
 .items-compare .items > li{margin-bottom: 20px;}
 
 .content-carousel .items.items-brands{width: auto;}
-.items-brands{margin-left: -8px;}
+.items-brands{margin-left: -8px;margin-bottom: -8px;}
 .items-brands > li{margin-bottom: 7px;margin-left: 8px;width: 110px;}
 .items-brands > li .photo-block{width: 110px;height: 60px;padding: 10px;}
+.items-brands .frame-photo-title{display: block;font-size: 0;}
 .vertical-layout .items-brands > li .photo-block{width: 152px;}
 .items-brands-main{margin-left: -23px;padding-bottom: 50px;}
 .items-brands-main > li{margin-left: 23px;margin-bottom: 18px;}
@@ -733,6 +734,7 @@ li[class*="x"] > .title-category-l1{width: 100%;text-align: center;display: bloc
 
 /*benefits*/
 .frame-benefits-product{margin-bottom: 30px;padding-bottom: 5px;overflow: hidden;}
+.items-benefits{margin-bottom: -12px;}
 .items-benefits > li{position: relative;margin-bottom: 12px;display: block;}
 .vertical-layout .items-benefits > li:before{left: -7px;}
 .frame-icon-benefit > [class*="icon-"]{position: relative;z-index: 1;}
@@ -1126,17 +1128,18 @@ footer.footer-main{min-height:387px; margin: -388px auto 0;}
 .h-footer{height: 133px;}
 footer{min-height:132px; margin: -133px auto 0;position: relative;}
 footer .content-footer{min-height: 223px;padding-top: 32px;}
-.footer-footer{position: relative;height: 87px;padding-bottom: 45px;overflow: hidden;}
+.footer-footer{position: relative;min-height: 87px;padding-bottom: 45px;overflow: hidden;}
 .footer-footer .t-a_j > div{vertical-align: top !important;}
-.content-footer [class*="box-"]{float: left;}
-.content-footer .box-1{width: 900px;}
-.content-footer .box-2{width: 272px;}
-.content-footer .box-3{width: 267px;}
+.content-footer .box-1{margin-right: 540px;overflow: hidden;}
+.frame-box23{float: right;width: 540px;}
+.content-footer [class*="box-"]{margin-bottom: 20px;}
+.content-footer .box-2{width: 272px;float: left;}
+.content-footer .box-3{width: 265px;float: left;}
 .content-footer .box-2, .content-footer .box-3{position: relative;}
 .content-footer .box-2 .title-h1, .content-footer .box-3 .title-h1{margin-bottom: 10px;}
-.content-footer .box-2:before, .content-footer .box-3:before{content: "";position: absolute;left: 0;top: 10px;height: 173px;border-left: 1px solid #dfe4eb;}
-.content-footer .box-2 .inside-padd{padding-left: 27px;}
-.content-footer .box-3 .inside-padd{padding-left: 36px;}
+.content-footer .box-2, .content-footer .box-3{border-left: 1px solid #dfe4eb;}
+.content-footer .box-2 .inside-padd{padding-left: 30px;}
+.content-footer .box-3 .inside-padd{padding-left: 30px;}
 /*/footer*/
 
 /*drop*/
@@ -1230,20 +1233,41 @@ img.cloned{max-width: none;max-height: none;}
 
 .frame-bask .title-default{margin-bottom: 9px;}
 
+/*seo*/
+.seo-left-start-page{width: 45%;padding-right: 5%;}
+.seo-right-start-page{width: 45%;padding-left: 1%;padding-right: 4%;}
+.seo-left-start-page, .seo-right-start-page{float: left;}
+/*/seo*/
+@media (max-width: 980px){
+    .content-footer .box-2{margin-bottom: 0;}
+    footer .frame-box23{width: 340px;}
+    .content-footer .box-1{margin-right: 340px;}
+    footer .frame-benefits{border-bottom: 1px solid #dfe4eb;padding-bottom: 24px;}
+    footer .box-3 > .inside-padd{padding-top: 18px;}
+    .seo-left-start-page, .seo-right-start-page{float: none;width: auto;}
+}
+@media (max-width: 1440px){
+    .frame-baner .content-carousel .f_r{display: none;}
+    .frame-baner-start_page .content-carousel ul{margin-right: 0;}
+    .frame-baner-start_page .baner li > a, .frame-baner-start_page .baner li > span{text-align: right;}
+}
+@media (max-width: 1300px){
+    .frame-items-benefits{width: 100%;text-align: center;}
+}
 @media (max-width: 1330px){
     .right-product{display: none;}
     .left-product{margin-right: 0;float: none;padding-right: 0;border-right: 0 !important;}
 }
-@media (max-width: 1325px){
+@media (max-width: 1355px){
     .phones-header .phone-number{display: block;}
     .frame-time-work .text-el{display: block;}
     .left-header{width: 190px;}
     .left-header .nav > li{width: 90px;margin-right: 5px;}
     .left-content-header > *{margin-right: 10px;}
-    .frame-cleaner{width: 180px;}
- }
-@media (max-width: 1015px){
+    .frame-cleaner{width: 170px;}
+}
+@media (max-width: 1035px){
     .left-header{width: 170px;}
     .left-header .nav > li{width: 80px;}
-    .frame-cleaner{width: 164px;}
- }
+    .frame-cleaner{width: 130px;}
+}
