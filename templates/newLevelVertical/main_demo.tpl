@@ -26,6 +26,9 @@
         {else:}
             {$lang = ''} 
         {/if}
+        {if $CI->uri->segment(2) == 'profile' || $CI->uri->segment(1) == 'wishlist'}
+            <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW" />
+        {/if}
         <script type="text/javascript">
             var locale = "{echo $lang}";
         </script>
@@ -77,7 +80,7 @@
         <link rel="shortcut icon" href="{echo siteinfo('siteinfo_favicon_url')}" type="image/x-icon" />
         {literal}
             <style>
-                .imagecms-top-fixed-header{height: 0;box-shadow: 0 1px 4px rgba(0,0,0,.2);background-color: #fafafa;border-top: 0 solid #0aae85;position: fixed;top: 0;left: 0;width: 100%;z-index: 1000;font-family: Arial, sans-serif;font-size: 12px;color: #223340;vertical-align: baseline;}
+                .imagecms-top-fixed-header{min-width: 960px;height: 0;box-shadow: 0 1px 4px rgba(0,0,0,.2);background-color: #fafafa;border-top: 0 solid #0aae85;position: fixed;top: 0;left: 0;width: 100%;z-index: 1000;font-family: Arial, sans-serif;font-size: 12px;color: #223340;vertical-align: baseline;}
                 .imagecms-top-fixed-header.imagecms-active + .main-body header{padding-top: 30px;}
                 .imagecms-top-fixed-header.imagecms-active{height: 30px;border-top-width: 3px;}
                 .imagecms-top-fixed-header .container{position: relative;}
@@ -129,9 +132,9 @@
                     <span class="imagecms-toggle-close-text imagecms-bar-close-text"><span style="font-size: 14px;">↑</span> {lang('Скрыть', 'newLevel')}</span>
                 </button>
                 <button type="button" class="imagecms-close" {if $_COOKIE['condPromoToolbar'] == '0'}style="display: block;"{/if} onclick="setCookie('condPromoToolbar', '1');
-                            $('.imagecms-top-fixed-header').addClass('imagecms-active');
-                            $(this).hide().prev().show();
-                            $(window).scroll();">
+                        $('.imagecms-top-fixed-header').addClass('imagecms-active');
+                        $(this).hide().prev().show();
+                        $(window).scroll();">
                     <span class="imagecms-toggle-close-text imagecms-bar-show-text"><span style="font-size: 14px;">↓</span> {lang('Показать', 'newLevel')}</span>
                 </button>
                 <div class="imagecms-buy-license">
@@ -164,12 +167,15 @@
                 <header>
                     {include_tpl('header')}
                 </header>
-                <div class="frame-menu-main horizontal-menu">
-                    {\Category\RenderMenu::create()->setConfig(array('cache'=>TRUE))->load('category_menu')}
-                </div>
             </div>
-            <div class="content">
-                {$content}
+            <div class="vertical-layout container">
+                <div class="frame-menu-main vertical-menu">
+                    {\Category\RenderMenu::create()->setConfig(array('cache'=>TRUE))->load('category_menu')}
+                    {widget('latest_news', TRUE)}
+                </div>
+                <div class="content">
+                    {$content}
+                </div>
             </div>
             <div class="h-footer"></div>
         </div>
@@ -179,6 +185,7 @@
         {include_tpl('user_toolbar')}
 
         {/*}Start. delete before upload to server{ */}
+        {/*}
         <!-- scripts -->
         <script type="text/javascript" src="{$THEME}js/raphael-min.js"></script>
         <script type="text/javascript" src="{$THEME}js/_united_side_plugins.js"></script>
@@ -200,14 +207,22 @@
                 })
             </script>
         {/literal}
+        { */}
         {/*}End. delete before upload to server{ */}
 
+        {/*fancybox}
+        <link rel="stylesheet" type="text/css" href="{$THEME}js/fancybox/jquery.fancybox-1.3.4.css" media="all" />
+        <script type="text/javascript" src="{$THEME}js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+        {end. fancybox*/}
+
         {/*}uncomment before opload to server and combine and minimize scripts (in comment <!-- scripts -->...<!-- scripts end -->) into united_scripts file{ */}
-        {/*}
+        {/*} Start. uncoment before development { */}
+
         <script type="text/javascript">
-            {initDownloadScripts(['raphael-min', 'united_scripts'], 'init', 'scriptDefer');}
+            initDownloadScripts(['raphael-min', 'united_scripts'], 'init', 'scriptDefer');
         </script>
-        { */}
+
+        {/*} End. uncoment before development { */}
         {include_shop_tpl('js_templates')}
     </body>
 </html>
