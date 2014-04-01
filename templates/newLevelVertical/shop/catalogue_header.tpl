@@ -7,7 +7,8 @@
                     <span class="title">{lang('Показывать','newLevel')}:</span>
                     <div class="lineForm">
                         <select class="sort" id="sort" name="order">
-                            {$sort =ShopCore::app()->SSettings->getSortingFront()}
+                            {if $category}{$order_method = $category->getOrderMethod()}{else:}{$order_method = ''}{/if}
+                            {$sort =ShopCore::app()->SSettings->getSortingFront($order_method)}
                             {foreach $sort as $s}
                                 <option value="{echo $s['get']}" {if ShopCore::$_GET['order']==$s['get']}selected="selected"{/if}>{echo $s['name_front']}</option>
                             {/foreach}
