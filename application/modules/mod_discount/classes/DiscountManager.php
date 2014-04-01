@@ -225,7 +225,7 @@ class DiscountManager extends \MY_Controller {
 
         $data['type_discount'] = 'all_order';
         $data['all_order']['is_gift'] = 1;
-        $data['max_apply'] = 1;
+        $data['max_apply'] = 777;
         return $this->create($data);
     }
 
