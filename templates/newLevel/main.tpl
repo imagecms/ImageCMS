@@ -79,7 +79,7 @@
         <link rel="icon" href="{echo siteinfo('siteinfo_favicon_url')}" type="image/x-icon" />
         <link rel="shortcut icon" href="{echo siteinfo('siteinfo_favicon_url')}" type="image/x-icon" />
     </head>
-    <body class="is{echo $agent[0]} not-js {$CI->core->core_data['data_type']}"> 
+    <body class="is{echo $agent[0]} not-js {$CI->core->core_data['data_type']}">
         {include_tpl('language/jsLangsDefine.tpl')}
         {include_tpl('language/jsLangs.tpl')}
         <div class="main-body">

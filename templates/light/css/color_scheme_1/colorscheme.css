@@ -151,7 +151,7 @@ a.c_w:hover{color: #51d2ff !important;}
 .d_l_black:hover{color: #fec4a4;border-bottom-color: #fec4a4;}
 .d_l_1:hover, .pointer:hover .d_l_1, .btn-order-call .d_l:hover, .btn-compare > button:hover .d_l, .btn-wish > button:hover .d_l, .old-buyer:hover .d_l, a:focus [class*="d_l"], button:focus [class*="d_l"], .header-category .cuselText:hover, .items-catalog .cuselText:hover{color: #fec4a4;border-bottom-color: #fec4a4;}
 .active > a > [class*="d_l"], .active > button > [class*="d_l"], .active > [class*="d_l"]{color: #fec4a4;border-bottom-color: #fec4a4;}
-.d_l_r_f, .btn-additional-s_c .d_l{color: #fff;border-bottom-color: #fff;}
+.d_l_r_f, .btn-additional-s_c .d_l, button:focus .d_l_r_f, .btn-additional-s_c button:focus  .d_l{color: #fff;border-bottom-color: #fff;}
 
 .btn-already-show .d_l_1{color: #333;border-bottom-color: #333;}
 .btn-already-show > button:hover .d_l_1, .btn-already-show > button:hover .text-el{color: #fec4a4;border-bottom-color: #fec4a4;}
@@ -286,6 +286,7 @@ td:last-child .frame-item-menu:hover{border-right-color: #fd7c06;}
 .items-search-autocomplete{border-bottom: 1px solid #eaeaea;}
 .items-search-autocomplete > li.selected{background-color: #ededed;}
 
+.right-start-page .items-news > li + li{border-top: 1px solid #dedede;}
 .items-news a{text-decoration: underline !important;}
 .items-news .description{color: #b1b1b1;margin-bottom: 10px;}
 

@@ -23,7 +23,7 @@
                                     <span class="date f-s_0 d_b">
                                         <span class="icon_time"></span><span class="text-el"></span>
                                         <span class="day">{echo date("d", $p.publish_date)} </span>
-                                        <span class="month">{echo month(date("n", $item.publish_date))} </span>
+                                        <span class="month">{echo month(date("n", $p.publish_date))} </span>
                                         <span class="year">{echo date("Y ", $p.publish_date)}</span>
                                     </span>
                                     <span class="title">{$p.title}</span>
