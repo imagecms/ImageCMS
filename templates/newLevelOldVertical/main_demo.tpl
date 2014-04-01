@@ -78,7 +78,7 @@
         {literal}
             <style>
                 body{padding-top: 63px;}
-                .imagecms-top-fixed-header{background-color: #fff;height: 60px;border-top: 3px solid #3e92d5;position: fixed;top: 0;left: 0;width: 100%;z-index: 1000;font-family: Arial, sans-serif;font-size: 12px;color: #223340;vertical-align: baseline;}
+                .imagecms-top-fixed-header{min-width: 960px;background-color: #fff;height: 60px;border-top: 3px solid #3e92d5;position: fixed;top: 0;left: 0;width: 100%;z-index: 1000;font-family: Arial, sans-serif;font-size: 12px;color: #223340;vertical-align: baseline;}
                 .imagecms-top-fixed-header .container{padding-top: 9px;}
                 .imagecms-logo{float: left;}
                 .imagecms-ref-skype, .imagecms-phone{font-size: 0;}

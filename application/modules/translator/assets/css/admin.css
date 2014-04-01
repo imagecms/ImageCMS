@@ -71,6 +71,7 @@ div[class="tooltip-inner"] {
 
 #po_table  select.links{
     min-height: 97px;
+    width: 100%;
 }
 
 #po_table .translationCancel{

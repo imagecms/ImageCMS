@@ -44,9 +44,11 @@
         </div>
     </div>
 
+
     {$dApi = $CI->load->module('mod_discount/discount_api')}
     {if $dApi->discountsExists()}
         {$discount = $dApi->get_user_discount_api()}
+
         <div class="layout-highlight info-discount">
             <div class="title-default">
                 <div class="title">{lang('Скидки','newLevel')}</div>
