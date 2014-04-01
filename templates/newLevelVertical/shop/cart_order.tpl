@@ -1,11 +1,11 @@
 <script type="text/javascript">
-    totalItemsBask = {echo $totalItems}
+    totalItemsBask = {echo $totalItems && $totalItems != 0 ? $totalItems : 0}
 </script>
 {if $gift_key}
     <input type="hidden" name="gift" value="{echo $gift_key}"/>
     <input type="hidden" name="gift_ord" value="1"/>
 {/if}
-<table class="table-order table-order-view">
+<table class="table-order">
     <tbody>
         {foreach $items as $item}
             <!-- Start. For single product -->
@@ -201,92 +201,93 @@
                             {/if}
                         {else:}
                             <span class="text-el s-t">{echo $deliveryMethod->getDeliverySumSpecifiedMessage()}</span>
-                            {/if}
-                        </div>
-                    </td>
-                </tr>
-            {/if}
-            {if $discount_val}
-                <tr>
-                    <td colspan="3">
-                        <span class="s-t f_l">{lang('Ваша текущая скидка','newLevel')}:</span>
-                        <div class="text-discount current-discount f_r">
-                            <span class="price f-w_b">{echo ShopCore::app()->SCurrencyHelper->convert($discount_val)}</span>
-                             <span class="curr">{$CS}</span>
-                            </div>
-                        </td>
-                    </tr>
-                {/if}
-                {if $gift_val}
-                    <tr>
-                        <td colspan="3">
-                            <span class="s-t f_l">{lang('Подарочный сертификат','newLevel')}:</span>
-                            <div class="text-discount f_r">
-                                <span class="price f-w_b">{echo ShopCore::app()->SCurrencyHelper->convert($gift_val)}</span>
-                                 <span class="curr">{$CS}</span>
-                                </div>
-                            </td>
-                        </tr>
-                    {elseif $CI->load->module('mod_discount/discount_api')->isGiftCertificat()}
-                        <tr>
-                            <td colspan="3">
-                                <div class="clearfix">
-                                    <span class="s-t f_l">{lang('Подарочный сертификат','newLevel')}:</span>
-                                    <div class="frame-gift f_r">
-                                        {if $gift_error}
-                                            <div class="msg">
-                                                <div class="error">
-                                                    <span class="icon_error"></span>
-                                                    <span class="text-el">{lang('Неверный подарочный сертификат', 'newLevel')}</span>
-                                                </div>
-                                            </div>
-                                        {else:}
-                                            <div class="btn-toggle-gift">
-                                                <button type="button" class="d_l_1" data-drop="#gift" data-place="inherit" data-overlay-opacity="0">
-                                                    <span class="text-el">{lang('Ввести промо-код', 'newLevel')}</span>
-                                                </button>
-                                            </div>
-                                        {/if}
-                                        <div id="gift" class="{if !$gift_error}drop{/if} o_h">
-                                            <div class="btn-def f_r">
-                                                <button type="button" id="giftButton">
-                                                    <span class="text-el">{lang('Применить', 'newLevel')}</span>
-                                                </button>
-                                            </div>
-                                            <div class="o_h">
-                                                <input type="text" name="gift"/>
-                                            </div>
-                                        </div>
+                        {/if}
+                    </div>
+                </td>
+            </tr>
+        {/if}
+        {if $discount_val}
+            <tr>
+                <td colspan="3">
+                    <span class="s-t f_l">{lang('Ваша текущая скидка','newLevel')}:</span>
+                    <div class="text-discount current-discount f_r">
+                                        <span class="price f-w_b">{echo ShopCore::app()->SCurrencyHelper->convert($discount_val)}</span>
+                                    <span class="curr">{$CS}</span>
+                    </div>
+                </td>
+            </tr>
+        {/if}
+
+        {if $gift_val}
+            <tr>
+                <td colspan="3">
+                    <span class="s-t f_l">{lang('Подарочный сертификат','newLevel')}:</span>
+                    <div class="text-discount f_r">
+                        <span class="price f-w_b">{echo ShopCore::app()->SCurrencyHelper->convert($gift_val)}</span>
+                        <span class="curr">{$CS}</span>
+                    </div>
+                </td>
+            </tr>
+        {elseif $CI->load->module('mod_discount/discount_api')->isGiftCertificat()}
+            <tr>
+                <td colspan="3">
+                    <div class="clearfix">
+                        <span class="s-t f_l">{lang('Подарочный сертификат','newLevel')}:</span>
+                        <div class="frame-gift f_r">
+                            {if $gift_error}
+                                <div class="msg">
+                                    <div class="error">
+                                        <span class="icon_error"></span>
+                                        <span class="text-el">{lang('Неверный подарочный сертификат', 'newLevel')}</span>
                                     </div>
                                 </div>
-                            </td>
-                        </tr>
-                    {/if}
-                </tfoot>
-            </table>
-            <div class="gen-sum-order footer-bask">
-                <div class="inside-padd clearfix">
-                    <span class="title f_l">{lang('К оплате с учетом доставки','newLevel')}:</span>
-                    <span class="frame-prices f_r">
-                        <span class="current-prices f-s_0">
-                            <span class="price-new">
-                                <span>
-                                    <span class="price" id="finalAmount">
-                                        {echo ShopCore::app()->SCurrencyHelper->convert($cartPrice)}
-                                    </span>
-                                    <span class="curr">{$CS}</span>
-                                </span>
-                            </span>
-                            {if $NextCS != null}
-                                <span class="price-add">
-                                    <span>
-                                        (<span class="price" id="finalAmountAdd">{echo ShopCore::app()->SCurrencyHelper->convert($cartPrice, $NextCSId)}</span>
-                                        <span class="curr-add">{$NextCS}</span>)
-                                    </span>
-                                {/if}
-                            </span>
+                            {else:}
+                                <div class="btn-toggle-gift">
+                                    <button type="button" class="d_l_1" data-drop="#gift" data-place="inherit" data-overlay-opacity="0">
+                                        <span class="text-el">{lang('Ввести промо-код', 'newLevel')}</span>
+                                    </button>
+                                </div>
+                            {/if}
+                            <div id="gift" class="{if !$gift_error}drop{/if} o_h">
+                                <div class="btn-def f_r">
+                                    <button type="button" id="giftButton">
+                                        <span class="text-el">{lang('Применить', 'newLevel')}</span>
+                                    </button>
+                                </div>
+                                <div class="o_h">
+                                    <input type="text" name="gift"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        {/if}
+    </tfoot>
+</table>
+<div class="gen-sum-order footer-bask">
+    <div class="inside-padd clearfix">
+        <span class="title f_l">{lang('К оплате с учетом доставки','newLevel')}:</span>
+        <span class="frame-prices f_r">
+            <span class="current-prices f-s_0">
+                <span class="price-new">
+                    <span>
+                        <span class="price" id="finalAmount">
+                            {echo ShopCore::app()->SCurrencyHelper->convert($cartPrice)}
                         </span>
+                        <span class="curr">{$CS}</span>
                     </span>
-                </div>
-            </div>
-            <div class="preloader" style="display: none;"></div>
+                </span>
+                {if $NextCS != null}
+                    <span class="price-add">
+                        <span>
+                            (<span class="price" id="finalAmountAdd">{echo ShopCore::app()->SCurrencyHelper->convert($cartPrice, $NextCSId)}</span>
+                            <span class="curr-add">{$NextCS}</span>)
+                        </span>
+                    {/if}
+                </span>
+            </span>
+        </span>
+    </div>
+</div>
+<div class="preloader" style="display: none;"></div>

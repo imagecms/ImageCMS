@@ -26,6 +26,9 @@
         {else:}
             {$lang = ''} 
         {/if}
+        {if $CI->uri->segment(2) == 'profile' || $CI->uri->segment(1) == 'wishlist'}
+            <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW" />
+        {/if}
         <script type="text/javascript">
             var locale = "{echo $lang}";
         </script>
@@ -77,7 +80,7 @@
         <link rel="shortcut icon" href="{echo siteinfo('siteinfo_favicon_url')}" type="image/x-icon" />
         {literal}
             <style>
-                .imagecms-top-fixed-header{height: 0;box-shadow: 0 1px 4px rgba(0,0,0,.2);background-color: #fafafa;border-top: 0 solid #0aae85;position: fixed;top: 0;left: 0;width: 100%;z-index: 1000;font-family: Arial, sans-serif;font-size: 12px;color: #223340;vertical-align: baseline;}
+                .imagecms-top-fixed-header{min-width: 960px;height: 0;box-shadow: 0 1px 4px rgba(0,0,0,.2);background-color: #fafafa;border-top: 0 solid #0aae85;position: fixed;top: 0;left: 0;width: 100%;z-index: 1000;font-family: Arial, sans-serif;font-size: 12px;color: #223340;vertical-align: baseline;}
                 .imagecms-top-fixed-header.imagecms-active + .main-body header{padding-top: 30px;}
                 .imagecms-top-fixed-header.imagecms-active{height: 30px;border-top-width: 3px;}
                 .imagecms-top-fixed-header .container{position: relative;}
@@ -129,9 +132,9 @@
                     <span class="imagecms-toggle-close-text imagecms-bar-close-text"><span style="font-size: 14px;">↑</span> {lang('Скрыть', 'newLevel')}</span>
                 </button>
                 <button type="button" class="imagecms-close" {if $_COOKIE['condPromoToolbar'] == '0'}style="display: block;"{/if} onclick="setCookie('condPromoToolbar', '1');
-                            $('.imagecms-top-fixed-header').addClass('imagecms-active');
-                            $(this).hide().prev().show();
-                            $(window).scroll();">
+                        $('.imagecms-top-fixed-header').addClass('imagecms-active');
+                        $(this).hide().prev().show();
+                        $(window).scroll();">
                     <span class="imagecms-toggle-close-text imagecms-bar-show-text"><span style="font-size: 14px;">↓</span> {lang('Показать', 'newLevel')}</span>
                 </button>
                 <div class="imagecms-buy-license">
@@ -167,18 +170,59 @@
                 <div class="frame-menu-main horizontal-menu">
                     {\Category\RenderMenu::create()->setConfig(array('cache'=>TRUE))->load('category_menu')}
                 </div>
+                {if $CI->core->core_data['data_type'] == 'main'}
+                    <div class="frame-baner frame-baner-start_page">
+                        <section class="carousel-js-css baner container cycleFrame">
+                            <!--remove class="resize" if not resize-->
+                            <div class="content-carousel">
+                                <div class="f_l">
+                                    {foreach $CI->load->module('banners')->getByGroup('leftStartPage') as $banner}
+                                        <p>
+                                            {if trim($banner.url)}
+                                                <a href="{site_url($banner.url)}"><img data-original="{echo $banner['photo']}" src="{$THEME}images/blank.gif" alt="{ShopCore::encode($banner.name)}"/></a>
+                                                {else:}
+                                                <span><img data-original="{echo $banner['photo']}" src="{$THEME}images/blank.gif" alt="{ShopCore::encode($banner.name)}"/></span>
+                                                {/if}
+                                        </p>
+                                    {/foreach}
+                                </div>
+                                <div class="f_r">
+                                    {foreach $CI->load->module('banners')->getByGroup('rightStartPage') as $banner}
+                                        <p>
+                                            {if trim($banner.url)}
+                                                <a href="{site_url($banner.url)}"><img data-original="{echo $banner['photo']}" src="{$THEME}images/blank.gif" alt="{ShopCore::encode($banner.name)}"/></a>
+                                                {else:}
+                                                <span><img data-original="{echo $banner['photo']}" src="{$THEME}images/blank.gif" alt="{ShopCore::encode($banner.name)}"/></span>
+                                                {/if}
+                                        </p>
+                                    {/foreach}
+                                </div>
+                                {$CI->load->module('banners')->render()}
+                            </div>
+                            <div class="group-button-carousel">
+                                <button type="button" class="prev arrow">
+                                    <span class="icon_arrow_p"></span>
+                                </button>
+                                <button type="button" class="next arrow">
+                                    <span class="icon_arrow_n"></span>
+                                </button>
+                            </div>
+                        </section>
+                    </div>
+                {/if}
             </div>
             <div class="content">
                 {$content}
             </div>
-            <div class="h-footer"></div>
+            <div class="h-footer{if $CI->core->core_data['data_type'] == 'main'} footer-main{/if}"></div>
         </div>
-        <footer>
-            {include_tpl('footer')}
-        </footer>
+
+        {include_tpl('footer')}
+
         {include_tpl('user_toolbar')}
 
         {/*}Start. delete before upload to server{ */}
+        {/*}
         <!-- scripts -->
         <script type="text/javascript" src="{$THEME}js/raphael-min.js"></script>
         <script type="text/javascript" src="{$THEME}js/_united_side_plugins.js"></script>
@@ -200,14 +244,22 @@
                 })
             </script>
         {/literal}
+        { */}
         {/*}End. delete before upload to server{ */}
+        
+        {/*fancybox}
+        <link rel="stylesheet" type="text/css" href="{$THEME}js/fancybox/jquery.fancybox-1.3.4.css" media="all" />
+        <script type="text/javascript" src="{$THEME}js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+        {end. fancybox*/}
 
         {/*}uncomment before opload to server and combine and minimize scripts (in comment <!-- scripts -->...<!-- scripts end -->) into united_scripts file{ */}
-        {/*}
+        {/*} Start. uncoment before development { */}
+        
         <script type="text/javascript">
-            {initDownloadScripts(['raphael-min', 'united_scripts'], 'init', 'scriptDefer');}
+            initDownloadScripts(['raphael-min', 'united_scripts'], 'init', 'scriptDefer');
         </script>
-        { */}
+        
+        {/*} End. uncoment before development { */}
         {include_shop_tpl('js_templates')}
     </body>
 </html>

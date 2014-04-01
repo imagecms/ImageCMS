@@ -55,6 +55,7 @@
                 </div>
             </div>
             <input type="hidden" name="ProductId" value=""/>
+            <input type="hidden" name="VariantId" value=""/>
             <input type="hidden" name="notifme" value="true"/>
             {form_csrf()}
         </form>

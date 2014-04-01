@@ -1,5 +1,5 @@
 <script type="text/javascript">
-    totalItemsBask = {echo $totalItems}
+    totalItemsBask = {echo $totalItems && $totalItems != 0 ? $totalItems : 0}
 </script>
 {if $gift_key}
     <input type="hidden" name="gift" value="{echo $gift_key}"/>

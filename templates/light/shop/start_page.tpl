@@ -18,8 +18,15 @@
     </div>
     <div class="right-start-page">
         <div class="frame-little-banner">
-            {widget('add_baner1')}
-            {widget('add_baner2')}
+            {foreach $CI->load->module('banners')->getByGroup('right-main') as $banner}
+                <p>
+                    {if trim($banner.url)}
+                        <a href="{site_url($banner.url)}"><img data-original="{echo $banner['photo']}" src="{$THEME}images/blank.gif" alt="{ShopCore::encode($banner.name)}" class="lazy"/></a>
+                        {else:}
+                        <span><img data-original="{echo $banner['photo']}" src="{$THEME}images/blank.gif" alt="{ShopCore::encode($banner.name)}" class="lazy"/></span>
+                        {/if}
+                </p>
+            {/foreach}
         </div>
         <div class="frame-benefits">
             {widget('benefits')}
