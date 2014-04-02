@@ -61,10 +61,12 @@
         </component>
         
         <component handler="TProperties">
-            <param name="15,15,15,85,85" value="scrol,dropdown" />
-            <param name="15,15,15,85,85" value="scrol" />
-            <param name="15,15,15,85,85" value="dropdown" />
+            <params name="properties">
+                <param key="68" value="scroll" />
+                <param key="334" value="dropDown, scrol" />
+            </params>
         </component>
+        
         <component handler="TOpi">
 
         </component>

@@ -20,11 +20,8 @@ class TTemplateEditor extends \template_manager\classes\TComponent {
      * @param \SimpleXMLElement $nodes
      */
     public function setParamsXml(\SimpleXMLElement $nodes) {
-
+        
     }
-
-
-
 
     /**
      * 
@@ -34,11 +31,15 @@ class TTemplateEditor extends \template_manager\classes\TComponent {
         return lang('Color scheme', 'template_manager');
     }
 
+    public function getType() {
+        return __CLASS__;
+    }
+
     /**
      * render wityh param
      */
     public function renderAdmin() {
-       
+
         $this->cAssetManager->display('admin/main');
     }
 

@@ -48,6 +48,7 @@ class TMenuColumn extends \template_manager\classes\TComponent {
     public function renderAdmin() {
         $this->cAssetManager->display('admin/main', array('columns' => $this->column,'params' => $this->getParam(), 'handler' => $this->handler));
     }
+    
 
     /**
      * id component to save db 
@@ -57,7 +58,11 @@ class TMenuColumn extends \template_manager\classes\TComponent {
     }
 
     public function getLabel() {
-        ;
+        return;
+    }
+    
+    public function getType() {
+        return __CLASS__;
     }
 
 }

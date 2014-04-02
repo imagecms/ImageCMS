@@ -86,10 +86,8 @@ class TemplateManager {
         foreach ($template->xml->components->component as $component) {
             $attributes = $component->attributes();
             $handler = (string) $attributes['handler'];
-            if (isset($component->param)) {
-                $instance = $template->getComponent($handler);
-                $instance->setParamsXml($component->param);
-            }
+            $instance = $template->getComponent($handler);
+            $instance->setParamsXml($component);
         }
 
         \CI::$APP->db->where('name', 'systemTemplatePath')->update('shop_settings', array('value' => './templates/' . $template->name . '/shop/'));

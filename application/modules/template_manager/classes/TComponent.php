@@ -58,18 +58,34 @@ abstract class TComponent {
      * @param array $params one dimentional associative array 
      */
     public function setParams($params) {
-        \CI::$APP->db->where('type', $this->getId())->delete('template_settings');
-        foreach ($params as $key => $value) {
-            \CI::$APP->db->insert('template_settings', array('type' => $this->getId(), 'key' => $key, 'value' => $value));
+        \CI::$APP->db->where('type', $this->getType())->delete('template_settings');
+        foreach ($params as $key => $data) {
+            \CI::$APP->db->insert('template_settings', array('type' => $this->getType(), 'key' => $key, 'data' => $data));
         }
     }
 
     public function getParam($key = null) {
 
         if ($key === NULL) {
-            return \CI::$APP->db->where('type', $this->getId())->get('template_settings')->result_array();
+            return \CI::$APP->db->where('type', $this->getType())->get('template_settings')->result_array();
         } else {
-            return \CI::$APP->db->where('type', $this->getId())->where('key', $key)->get('template_settings')->row_array();
+            return \CI::$APP->db->where('type', $this->getType())->where('key', $key)->get('template_settings')->row_array();
+        }
+    }
+
+    public function updateParams($params) {
+        if (count($params) > 0) {
+            foreach ($params as $key => $data) {
+                $component = \CI::$APP->db->where('type', $this->getType())->where('key', $key)->get('template_settings');
+                if ($component->num_rows()) {
+                    \CI::$APP->db->update('template_settings', array('type' => $this->getType(), 'key' => $key, 'data' => $data));
+                } else {
+                    \CI::$APP->db->insert('template_settings', array('type' => $this->getType(), 'key' => $key, 'data' => $data));
+                }
+            }
+            return TRUE;
+        }else{
+            return FALSE;
         }
     }
 
@@ -80,10 +96,9 @@ abstract class TComponent {
     abstract public function setParamsXml(\SimpleXMLElement $nodes);
 
     /**
-     * Each component must have his own unique id
-     * @return int id for field `handler_id`
+     * Each component must have his own unique type
      */
-    abstract public function getId();
+    abstract public function getType();
 
     /**
      * @return string Name of component (for view)

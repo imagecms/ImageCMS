@@ -1,7 +1,8 @@
-<form method="post" action=""> 
-    <input type="hidden" name="handler" value="{echo $handler}" />
+<button type="button" class="btn btn-small action_on formSubmit btn-success" data-form="#component_{echo $handler}_form" data-action="close">
+    <i class="icon-check"></i>{lang('Save', 'template_manager')}
+</button>
+    <form method="post" action="{site_url('admin/components/init_window/template_manager/updateComponent')}/{echo $handler}" id="component_{echo $handler}_form"> 
     <div class="inside_padd">
-        <button type="submit"  class="btn btn-small btn-primary btn-success"><i class="icon-ok icon-white"></i>{lang('Save', 'template_manager')}</button>
         <table class="table table-striped table-bordered table-hover table-condensed">
             <thead>
                 <tr>
@@ -17,23 +18,23 @@
                 </tr>
             </thead>
             <tbody>
-                {foreach $properties as $propertie}
+                {foreach $productProperties as $property}
                     <tr>
                         <td>
-                            {$propertie.id}
+                            {$property.id}
                         </td>
                         <td>
-                            {$propertie.name}
+                            {$property.name}
                         </td>
                         <td>
                             <div>
                                 {$type = array()}
-                                {if $propertie.param}
-                                    {$type = unserialize($propertie.param)}
+                                {if $property.param}
+                                    {$type = unserialize($property.param)}
                                 {/if}
                                 {foreach $propType as $pt}
-                                    <label>
-                                        <input type="checkbox" name="property[prop{echo $propertie.id}][{echo $pt}]" {if in_array($pt,$type)}checked="checked"{/if} value="1" />
+                                    <label style="display: inline-block;">
+                                        <input type="checkbox" name="properties[{echo $property.id}][]" {if $properties[$property.id] && in_array($pt, $properties[$property.id])}checked="checked"{/if} value="{echo $pt}" />
                                         {echo $pt}
                                     </label>
                                 {/foreach}
@@ -43,8 +44,6 @@
                 {/foreach}
             </tbody>
         </table>
-
     </div>
     {form_csrf()}
-
 </form>                            
