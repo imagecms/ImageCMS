@@ -44,8 +44,8 @@ class Admin extends BaseAdminController {
             }
         }
 
-        $currentTemplate = \template_manager\classes\TemplateManager::getInstance()->getCurentTemplate();
-        $template = new \template_manager\classes\Template($currentTemplate);
+        $currentTemplateName = \template_manager\classes\TemplateManager::getInstance()->getCurentTemplate();
+        $template = new \template_manager\classes\Template($currentTemplateName);
         \CMSFactory\assetManager::create()
                 ->registerStyle('style_admin')
                 ->registerScript('script_admin')

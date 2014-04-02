@@ -65,6 +65,7 @@ class TemplateManager {
      * 
      * @param type $template
      * @return boolean 
+     * @throws Exception
      */
     public function setTemplate(Template $template) {
         if ($this->currentTemplate == $template->name) {
@@ -96,7 +97,6 @@ class TemplateManager {
         \CI::$APP->db->update('settings', array('site_template' => $template->name));
 
         $this->currentTemplate = $template->name;
-        return TRUE;
     }
 
     public function getCurentTemplate() {
@@ -162,7 +162,7 @@ class TemplateManager {
                 return TRUE;
             }
         } else {
-            throw new \Exception('No params.xml file');
+            throw new \Exception('No "params.xml" file');
         }
     }
 
