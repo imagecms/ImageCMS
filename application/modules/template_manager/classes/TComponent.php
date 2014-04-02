@@ -13,12 +13,6 @@ namespace template_manager\classes;
 abstract class TComponent {
 
     /**
-     * Extended class name
-     * @var string 
-     */
-    protected $handler;
-
-    /**
      * Path to folder where component is located
      * @var string 
      */
@@ -37,75 +31,119 @@ abstract class TComponent {
     protected $cAssetManager;
 
     /**
-     *
-     * @var currTemplate 
+     * current template
+     * @var string
      */
     protected $currTemplate;
+
+    /**
+     * Name of component (name of class which extends TComponent)
+     * @var string 
+     */
+    protected $name;
 
     /**
      * Getting paths & data from DB
      */
     public function __construct() {
-        $this->currTemplate =
-                $this->handler = get_class($this);
+        //$this->currTemplate =
         $rfc = new \ReflectionClass($this);
         $this->basePath = dirname($rfc->getFileName());
         $this->cAssetManager = new TComponentAssetManager($this->basePath);
+        $this->name = get_class($this);
     }
 
     /**
-     * Setting params of components
+     * Setting params of components into DB
      * @param array $params one dimentional associative array 
      */
     public function setParams($params) {
-        \CI::$APP->db->where('type', $this->getType())->delete('template_settings');
-        foreach ($params as $key => $data) {
-            \CI::$APP->db->insert('template_settings', array('type' => $this->getType(), 'key' => $key, 'data' => $data));
+        \CI::$APP->db->where('component', $this->name)
+                ->delete('template_settings');
+
+        foreach ($params as $key => $value) {
+            \CI::$APP->db
+                    ->insert('template_settings', array(
+                        'component' => $this->name,
+                        'key' => $key,
+                        'data' => $value
+            ));
         }
     }
 
+    /**
+     * Gettins param/params of component
+     * @param string $key (default null) params name (if no specified, then all params)
+     * @return null|array array of key => data of component, or specified in argument value
+     */
     public function getParam($key = null) {
-
         if ($key === NULL) {
-            return \CI::$APP->db->where('type', $this->getType())->get('template_settings')->result_array();
+            $result = \CI::$APP->db
+                    ->where('component', $this->name)
+                    ->get('template_settings');
+
+            if ($result) {
+                $result = $result->result_array();
+                $data = array();
+                for ($i = 0; $i < count($result); $i++) {
+                    $data[$result['key']] = $result['data'];
+                }
+
+                return $data;
+            }
         } else {
-            return \CI::$APP->db->where('type', $this->getType())->where('key', $key)->get('template_settings')->row_array();
+            $result = \CI::$APP->db
+                    ->where('component', $this->name)
+                    ->where('key', $key)
+                    ->get('template_settings');
+
+            if ($result) {
+                if ($result->num_rows > 0) {
+                    return $result->row()->data;
+                }
+            }
         }
+        return null;
     }
 
     public function updateParams($params) {
         if (count($params) > 0) {
             foreach ($params as $key => $data) {
-                $component = \CI::$APP->db->where('type', $this->getType())->where('key', $key)->get('template_settings');
+                $component = \CI::$APP->db->where('component', $this->name)->where('key', $key)->get('template_settings');
                 if ($component->num_rows()) {
-                    \CI::$APP->db->update('template_settings', array('type' => $this->getType(), 'key' => $key, 'data' => $data));
+                    \CI::$APP->db->update('template_settings', array('component' => $this->name, 'key' => $key, 'data' => $data));
                 } else {
-                    \CI::$APP->db->insert('template_settings', array('type' => $this->getType(), 'key' => $key, 'data' => $data));
+                    \CI::$APP->db->insert('template_settings', array('component' => $this->name, 'key' => $key, 'data' => $data));
                 }
             }
             return TRUE;
-        }else{
+        } else {
             return FALSE;
         }
     }
-
-    /**
-     * Method parses params of 
-     * @param \SimpleXMLElement $nodes nodes from xml
-     */
-    abstract public function setParamsXml(\SimpleXMLElement $nodes);
 
     /**
      * Each component must have his own unique type
      */
     abstract public function getType();
 
-    /**
-     * @return string Name of component (for view)
+    /** Needed to be overloaded with some pretty name = )
+     * @return string Name of component (for admin view)
      */
-    abstract public function getLabel();
+    public function getLabel() {
+        return $this->name;
+    }
 
     /**
+     * Method parses params of xml
+     * each component can have it's own structure of param tags
+     * Kind of template method - in the end need to run setParams() method
+     * @param \SimpleXMLElement $nodes nodes from xml
+     */
+    abstract public function setParamsXml(\SimpleXMLElement $nodes);
+
+    /**
+     * Renders settings page of current component for admin panel
      * @return string html
      */
     abstract public function renderAdmin();

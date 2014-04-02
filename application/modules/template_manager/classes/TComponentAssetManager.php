@@ -3,7 +3,7 @@
 namespace template_manager\classes;
 
 /**
- * Each template component have may have his own "views" - this class
+ * Each template component may have his own "views" - this class
  * is for comfortably using of tpl-files and clients scripts
  * 
  * Default pathes:

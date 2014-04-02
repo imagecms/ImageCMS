@@ -9,10 +9,12 @@
 class Admin extends BaseAdminController {
 
     public $errors = array();
+    private $templatesUploadPath;
 
     public function __construct() {
         parent::__construct();
         $this->templateName = $this->db->get('settings')->row()->site_template;
+        $this->templatesUploadPath = PUBPATH . 'uploads/templates';
     }
 
     /**
@@ -21,6 +23,7 @@ class Admin extends BaseAdminController {
     public function index() {
         $error = '';
         $message = '';
+
         if ($_POST) {
             try {
                 if (isset($_POST['upload_template'])) { // UPLOAD TEMPLATE FROM PC OR BY URL
@@ -42,8 +45,8 @@ class Admin extends BaseAdminController {
             }
         }
 
-        $templateName = $this->db->get('settings')->row()->site_template;
-        $template = new \template_manager\classes\Template($templateName);
+        $currentTemplateName = \template_manager\classes\TemplateManager::getInstance()->getCurentTemplate();
+        $template = new \template_manager\classes\Template($currentTemplateName);
         \CMSFactory\assetManager::create()
                 ->registerStyle('style_admin')
                 ->registerScript('script_admin')
@@ -87,6 +90,9 @@ class Admin extends BaseAdminController {
      * @return boolean|string хиба, або шлях до файлу
      */
     private function uploadByUrl($url) {
+        if (!file_exists($this->templatesUploadPath)) {
+            mkdir($this->templatesUploadPath, 0777);
+        }
         $fullName = array_pop(explode('/', $url));
         $nameArray = explode('.', $fullName);
         $ext = array_pop($nameArray);
@@ -107,13 +113,17 @@ class Admin extends BaseAdminController {
      * @return boolean|string хиба, або шлях до файлу
      */
     private function uploadFromPc($fieldName) {
+        if (!file_exists($this->templatesUploadPath)) {
+            mkdir($this->templatesUploadPath, 0777);
+        }
         $this->load->library('upload', array(
-            'upload_path' => './uploads/templates/',
+            'upload_path' => $this->templatesUploadPath,
             'allowed_types' => 'zip',
             'max_size' => 1024 * 10, // 10 Mb
             'file_name' => $_FILES[$fieldName]['name'],
         ));
-        $destination = './uploads/templates/' . $_FILES[$fieldName]['name'];
+        $destination = $this->templatesUploadPath . '/' . $_FILES[$fieldName]['name'];
+
         if (file_exists($destination)) {
             unlink($destination);
         }

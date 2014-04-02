@@ -66,12 +66,13 @@ class TProperties extends \template_manager\classes\TComponent {
      */
     public function getParam($key = null) {
         $params = parent::getParam($key);
+        $params = unserialize($params);
         $data = array();
         if ($key) {
-            $data[$key] = @unserialize($params['data']);
+            $data[$key] = $params;
         } else {
             foreach ($params as $param) {
-                $data[$param['key']] = @unserialize($param['data']);
+                $data[$key] = $param;
             }
         }
 
@@ -91,7 +92,7 @@ class TProperties extends \template_manager\classes\TComponent {
 
         $this->cAssetManager->display('admin/main', array(
             'propType' => $this->propType,
-            'handler' => $this->handler,
+            'handler' => $this->name,
             'properties' => $propertiesSorted,
             'productProperties' => $this->getProductsProperties()
                 )

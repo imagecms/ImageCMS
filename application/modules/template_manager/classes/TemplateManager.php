@@ -65,6 +65,7 @@ class TemplateManager {
      * 
      * @param type $template
      * @return boolean 
+     * @throws Exception
      */
     public function setTemplate(Template $template) {
         if ($this->currentTemplate == $template->name) {
@@ -92,7 +93,12 @@ class TemplateManager {
 
         \CI::$APP->db->where('name', 'systemTemplatePath')->update('shop_settings', array('value' => './templates/' . $template->name . '/shop/'));
         \CI::$APP->db->update('settings', array('site_template' => $template->name));
-        return TRUE;
+
+        $this->currentTemplate = $template->name;
+    }
+
+    public function getCurentTemplate() {
+        return $this->currentTemplate;
     }
 
     /**
@@ -145,16 +151,16 @@ class TemplateManager {
             }
         }
 
-        if ($paramsXml == TRUE) {
-            if (is_dir('templates/' . $templateName)) {
+        if ($paramsXml == TRUE) { // imposible to download tamplate if such already exists
+            if (is_dir(PUBPATH . 'templates/' . $templateName)) {
                 throw new \Exception('Template already exists');
             }
-            if (mkdir('templates/' . $templateName, 0777)) {
-                $zip->extractTo('templates/');
+            if (mkdir(PUBPATH . 'templates/' . $templateName, 0777)) {
+                $zip->extractTo(PUBPATH . 'templates/');
                 return TRUE;
             }
         } else {
-            throw new \Exception('No params.xml file');
+            throw new \Exception('No "params.xml" file');
         }
     }
 
