@@ -120,7 +120,6 @@ class Template {
             return $tm->defaultComponents[$componentName];
         }
         // searching in template
-
         if (!isset($this->componentsInstances[$componentName])) {
             if (array_search($componentName, $this->components)) {
                 require_once $this->templatePath . "components/{$componentName}/{$componentName}" . EXT;
@@ -138,7 +137,7 @@ class Template {
         $xmlPath = 'templates/' . $this->name . '/params.xml';
         if (!file_exists($xmlPath)) {
             throw new \Exception("XML-file 'params.xml' don't exist");
-        } 
+        }
         $this->xml = simplexml_load_file($xmlPath);
     }
 
@@ -162,7 +161,7 @@ class Template {
         if (isset($this->xml->screenshots->screenshot))
             foreach ($this->xml->screenshots->screenshot as $screen) {
                 $attrs = $screen->attributes();
-                ($attrs['main']) ? $this->mainImage = $attrs['url'] : $this->screenshots[] = $attrs['url']; 
+                ($attrs['main']) ? $this->mainImage = $attrs['url'] : $this->screenshots[] = $attrs['url'];
             }
     }
 

@@ -94,7 +94,13 @@ class TemplateManager {
 
         \CI::$APP->db->where('name', 'systemTemplatePath')->update('shop_settings', array('value' => './templates/' . $template->name . '/shop/'));
         \CI::$APP->db->update('settings', array('site_template' => $template->name));
+
+        $this->currentTemplate = $template->name;
         return TRUE;
+    }
+
+    public function getCurentTemplate() {
+        return $this->currentTemplate;
     }
 
     /**

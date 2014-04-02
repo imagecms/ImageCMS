@@ -8,14 +8,6 @@
 class TColorScheme extends \template_manager\classes\TComponent {
 
     /**
-     * id component to save db
-     * @return int
-     */
-    public function getId() {
-        return 28;
-    }
-
-    /**
      * prepare param from xml to save in db
      * @param \SimpleXMLElement $nodes
      */
@@ -52,7 +44,6 @@ class TColorScheme extends \template_manager\classes\TComponent {
      * @return array 
      */
     public function getAllColorSchema() {
-
         $Path = 'templates/' . $this->currTemplate . '/css/';
         $dirList = array();
         if ($handle = opendir($Path)) {
@@ -76,7 +67,6 @@ class TColorScheme extends \template_manager\classes\TComponent {
      * render wityh param
      */
     public function renderAdmin() {
-        
         $mainSchema = $this->getParam('color_scheme');
         $this->cAssetManager->display('admin/main', array('handler' => $this->handler, 'mainSchema' => 'templates/' . $this->currTemplate . '/css/' . $mainSchema['value'], 'allScheme' => $this->getAllColorSchema()));
     }
