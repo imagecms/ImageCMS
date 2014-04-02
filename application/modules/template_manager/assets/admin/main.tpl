@@ -38,7 +38,7 @@
                     <a href="#properties_template" class="btn btn-small active">{lang('Template properties', 'template_manager')}</a>
                     <a href="/admin/components/init_window/template_manager/templates" class="btn btn-small">{lang('Templates list', 'template_manager')}</a>
                     <a href="#upload_template" class="btn btn-small">{lang('Upload template', 'template_manager')}</a>
-                    <a href="#logofav" class="btn btn-small">{lang('Logo', 'template_manager')}</a>
+                    <a href="#logofav" class="btn btn-small">{lang('Logo & Favicon', 'template_manager')}</a>
                 </div>
             </div>
             <div class="tab-content">

@@ -153,12 +153,12 @@ class TemplateManager {
             }
         }
 
-        if ($paramsXml == TRUE) {
-            if (is_dir('templates/' . $templateName)) {
+        if ($paramsXml == TRUE) { // imposible to download tamplate if such already exists
+            if (is_dir(PUBPATH . 'templates/' . $templateName)) {
                 throw new \Exception('Template already exists');
             }
-            if (mkdir('templates/' . $templateName, 0777)) {
-                $zip->extractTo('templates/');
+            if (mkdir(PUBPATH . 'templates/' . $templateName, 0777)) {
+                $zip->extractTo(PUBPATH . 'templates/');
                 return TRUE;
             }
         } else {
