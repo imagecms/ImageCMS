@@ -55,9 +55,10 @@
         -->
         
         <component handler="TMenuColumn">
-            <param name="938,45,54,654" value="1" />
-            <param name="938,45,54,654" value="2" />
-            <param name="938,45,54,654" value="3" />
+            <params name="columns">
+                <param key="1" value="927, 931" />
+                <param key="2" value="933, 935" />
+            </params>
         </component>
         
         <component handler="TProperties">
@@ -68,7 +69,6 @@
         </component>
         
         <component handler="TOpi">
-
         </component>
         
     </components>

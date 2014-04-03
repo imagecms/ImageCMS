@@ -48,8 +48,10 @@
                         <div class="btn-group myTab m-t_20 pull-left" data-toggle="buttons-radio">
                             {$cnt = 1}
                             {foreach $template->components as $componentName}
-                                {$components = $template->getComponent($componentName)}
-                                <a href="#{echo $componentName}" class="btn btn-small {if $cnt == 1}active{/if}">{echo $componentName}</a>
+                                {$component = $template->getComponent($componentName)}
+                                {if !$component->notRenderAdminTemplate}
+                                    <a href="#{echo $componentName}" class="btn btn-small {if $cnt == 1}active{/if}">{echo $componentName}</a>
+                                {/if}
                                 {$cnt++}
                             {/foreach}
                         </div>

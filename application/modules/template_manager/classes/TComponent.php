@@ -46,7 +46,7 @@ abstract class TComponent {
      * Getting paths & data from DB
      */
     public function __construct() {
-        //$this->currTemplate =
+        $this->templateName = \CI::$APP->db->get('settings')->row()->site_template;
         $rfc = new \ReflectionClass($this);
         $this->basePath = dirname($rfc->getFileName());
         $this->cAssetManager = new TComponentAssetManager($this->basePath);
