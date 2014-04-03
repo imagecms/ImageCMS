@@ -20,8 +20,8 @@ class New_level extends MY_Controller {
     }
 
     public function autoload() {
-        //$colorScheme = $this->getColorScheme();
-        //$this->template->assign('colorScheme', $colorScheme);
+        $colorScheme = $this->getColorScheme();
+        $this->template->assign('colorScheme', $colorScheme);
     }
 
     public function getColorScheme() {

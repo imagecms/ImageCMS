@@ -1,17 +1,11 @@
 <?php
 
 /**
- * 
+ * Class works with site info
  *
  * @author kolia
  */
 class SiteInfo {
-
-    /**
-     * CI instance
-     * @var type 
-     */
-    public $ci;
 
     /**
      * If TRUE then setting will be saved and getted for each locale
@@ -33,12 +27,6 @@ class SiteInfo {
     public $locale;
 
     /**
-     * Name of current template name
-     * @var string
-     */
-    protected $templateName;
-
-    /**
      *
      * @var array
      */
@@ -50,28 +38,36 @@ class SiteInfo {
      */
     protected $siteinfo;
 
+    /**
+     * Path to folder where images will be uploaded
+     * ATTENTION! serves as url too!!!
+     * @var string
+     */
+    public $imagesPath;
+
+    /**
+     * Setting class variables
+     * @param string $locale locale to intiate class with
+     */
     public function __construct($locale = NULL) {
-        $this->ci = &get_instance();
-        $settings = $this->ci->cms_base->get_settings();
-        $this->templateName = $settings['site_template'];
+        $this->imagesPath = 'uploads/images/';
+
         if ($this->useLocales == TRUE) {
             $this->locale = !is_null($locale) ? $locale : MY_Controller::getCurrentLocale();
-            //$this->locale = 'ua';
         }
 
-        $locales_ = $this->ci->db->select('identif,id')->get('languages')->result_array();
+        $locales_ = CI::$APP->db->select('identif,id')->get('languages')->result_array();
         foreach ($locales_ as $row) {
             $this->locales[$row['id']] = $row['identif'];
         }
 
         // getting data from DB
-        $result = $this->ci->db->select('siteinfo')->get('settings');
-        if ($result) {
-            $result1 = $result->row_array();
-            $siteinfo = @unserialize($result1['siteinfo']);
-            if (is_array($siteinfo)) {
-                $this->siteinfo = $siteinfo;
-            }
+        $result = CI::$APP->db->select('siteinfo')->get('settings')->row_array();
+        $siteinfo = @unserialize($result['siteinfo']);
+        if (is_array($siteinfo)) {
+            $this->siteinfo = $siteinfo;
+        } else {
+            // throw new Exception();
         }
     }
 
@@ -97,8 +93,72 @@ class SiteInfo {
     }
 
     /**
+     * Saving data in DB
+     */
+    public function save() {
+        $this->normalizeData();
+        $siteinfo = $this->getSiteInfoData(FALSE);
+        $string = serialize($siteinfo);
+        return CI::$APP->db->update('settings', array('siteinfo' => $string));
+    }
+
+    /**
+     * Setting one value of site informations
+     * @param string $key
+     * @param string $value
+     * @param boolean $contacts (optional, default false) true if value need to be setted in contacts
+     */
+    public function setSiteInfoValue($key, $value, $contacts = FALSE) {
+        if (0 !== strpos($key, 'siteinfo_')) {
+            $key = 'siteinfo_' . $key;
+        }
+
+        if ($this->useLocales != TRUE || in_array($key, $this->nonLocaleKeys)) {
+            if ($contacts == TRUE) {
+                $this->siteinfo['contacts'][$key] = $value;
+                return TRUE;
+            } else {
+                if (key_exists($key, $this->siteinfo)) {
+                    $this->siteinfo[$key] = $value;
+                    return TRUE;
+                }
+            }
+        } else {
+            if ($contacts == TRUE) {
+                $this->siteinfo[$this->locale]['contacts'][$key] = $value;
+                return TRUE;
+            } else {
+                if (key_exists($key, $this->siteinfo[$this->locale])) {
+                    $this->siteinfo[$this->locale][$key] = $value;
+                    return TRUE;
+                }
+            }
+        }
+        return false;
+    }
+
+    public function deleteSiteInfoValue($key, $contacts = FALSE) {
+        if (0 !== strpos($key, 'siteinfo_')) {
+            $key = 'siteinfo_' . $key;
+        }
+        if ($this->useLocales != TRUE || in_array($key, $this->nonLocaleKeys)) {
+            if ($contacts == TRUE) {
+                unset($this->siteinfo['contacts'][$key]);
+            } else {
+                unset($this->siteinfo[$key]);
+            }
+        } else {
+            if ($contacts == TRUE) {
+                unset($this->siteinfo[$this->locale]['contacts'][$key]);
+            } else {
+                unset($this->siteinfo[$this->locale][$key]);
+            }
+        }
+    }
+
+    /**
      * Returns all params in one array (for serialize)
-     * @param boolean $byLocale
+     * @param boolean $byLocale if true then will be returned data by locale, else all dataS
      * @return type
      */
     public function getSiteInfoData($byLocale = FALSE) {
@@ -128,16 +188,13 @@ class SiteInfo {
      * @return string
      */
     public function getSiteInfo($name = NULL) {
-        // simple check just in case
+        // simple checks just in case
         if (!is_string($name)) {
             return '';
         }
-
         if (!(strlen($name) > 0)) {
             return '';
         }
-
-        // another simple check
         if (!is_array($this->siteinfo)) {
             return '';
         }
@@ -176,52 +233,11 @@ class SiteInfo {
     }
 
     /**
-     * Returns path to images folder
-     * Depends from active template, and its 
-     * type - for example newLevel template has different 
-     * structure than commerce4x.
-     * @return string|boolean Description
-     */
-    public function getFaviconLogoPath() {
-        // looking for any color scheme (by folder existing)
-        return PUBPATH . 'uploads/images';
-    }
-
-    /**
-     * Returning full url with image
-     * @param string siteinfo_logo|siteinfo_favicon $logoOrFavicon
-     * @return string
-     */
-    public function getFaviconLogoUrl($logoOrFavicon) {
-        $path = $this->getFaviconLogoPath($this->templateName);
-
-
-        $fileData = $this->getSiteInfo($logoOrFavicon);
-
-        if (!key_exists($this->templateName, $fileData) || empty($fileData)) {
-            return '';
-        }
-
-        $path = str_replace(PUBPATH, '', $path);
-        $path .= $fileData[$this->templateName];
-        $path = trim($path, DIRECTORY_SEPARATOR);
-        return '/' . str_replace(DIRECTORY_SEPARATOR, '/', $path);
-    }
-
-    /**
-     * Returns current active template
-     * @return string
-     */
-    public function getActiveTemplateName() {
-        return $this->templateName;
-    }
-
-    /**
      * Changing array structure relatively to that locales are use or not
      */
     public function normalizeData() {
         if ($this->useLocales == TRUE) {
-            // deleting non locale fields from data array (exept those is $this->nonLocaleKeys)
+            // deleting non locale fields from data array (except those what are present $this->nonLocaleKeys)
             foreach ($this->siteinfo as $key => $value) {
                 if (!in_array($key, $this->locales) & !in_array($key, $this->nonLocaleKeys)) {
                     unset($this->siteinfo[$key]);
@@ -246,5 +262,3 @@ class SiteInfo {
     }
 
 }
-
-?>

@@ -50,7 +50,7 @@ class Admin extends BaseAdminController {
                 ->registerStyle('style_admin')
                 ->registerScript('script_admin')
                 ->setData(array(
-                    'template' => $template,
+                    'template' => $currentTemplate,
                     'error' => $error,
                     'message' => $message,
                     'templates' => $templates,
@@ -59,19 +59,10 @@ class Admin extends BaseAdminController {
                 ->renderAdmin('main');
     }
 
-    public function test() {
-        $this->load->library('SiteInfo');
-        $siteinfo = $this->siteinfo->getSiteInfo('siteinfo_logo_url');
-        echo '<pre>';
-        var_dump($siteinfo);
-        echo '</pre>';
-        exit;
-    }
-
     private function setLogoFav() {
 
         $this->load->library('SiteInfo');
-        $imagesPath = $this->siteinfo->getFaviconLogoPath();
+        $imagesPath = PUBPATH . $this->siteinfo->imagesPath;
 
         $config['upload_path'] = $imagesPath;
         $config['allowed_types'] = 'jpg|jpeg|png|ico|gif';

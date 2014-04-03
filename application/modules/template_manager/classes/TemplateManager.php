@@ -99,6 +99,7 @@ class TemplateManager {
     }
 
     public function getCurentTemplate() {
+      
         if (is_null($this->currentTemplate)) {
             $currentTemplateName = \CI::$APP->db->get('settings')->row()->site_template;
             $this->currentTemplate = new Template($currentTemplateName);
