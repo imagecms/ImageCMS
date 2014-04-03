@@ -108,7 +108,7 @@ class TProperties extends \template_manager\classes\TComponent {
     }
 
     public function getLabel() {
-        ;
+        return lang('Properties', 'template_maneger');
     }
 
     /**

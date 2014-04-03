@@ -109,7 +109,7 @@ class TMenuColumn extends \template_manager\classes\TComponent {
     }
 
     public function getLabel() {
-        return;
+        return lang('Menu Column', 'template_maneger');
     }
 
     public function getType() {

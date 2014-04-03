@@ -45,6 +45,7 @@ class Admin extends BaseAdminController {
         }
 
         $templates = \template_manager\classes\TemplateManager::getInstance()->listLocal();
+        $template = new \template_manager\classes\Template($currentTemplate->name);
 
         \CMSFactory\assetManager::create()
                 ->registerStyle('style_admin')
@@ -92,7 +93,8 @@ class Admin extends BaseAdminController {
                 ->limit(1)
                 ->update('settings', array('siteinfo' => $siteinfoString), array('s_name' => 'main'));
 
-        if (!empty(CI::$APP->db->_error_message())) {
+        $error = CI::$APP->db->_error_message();
+        if (!empty($error)) {
             throw new Exception(lang('DB Error', 'template_manager'));
         }
     }
@@ -214,8 +216,43 @@ class Admin extends BaseAdminController {
             } else {
                 showMessage(lang('Component settings can not update', 'template_maneger'), '', 'r');
             }
-            pjax(site_url('admin/components/init_window/template_manager') . '/' . '#' . $componentName);
+            pjax(site_url('admin/components/init_window/template_manager') . '/#' . $componentName);
         }
+    }
+
+    public function deleteTemplate($templateName) {
+        $dir = TEMPLATES_PATH . $templateName;
+        $delete = TRUE;
+        if ($this->templateName == $templateName) {
+            showMessage(lang('Can not delete installed template.', 'template_maneger'), '', 'r');
+            $delete = FALSE;
+        }
+
+        if (!is_writable($dir)) {
+            showMessage(lang('Can not delete template. Check files permissions.', 'template_maneger'), '', 'r');
+            $delete = FALSE;
+        }
+
+        if (!file_exists($dir)) {
+            showMessage(lang('Template does not exists.', 'template_maneger'), '', 'r');
+            $delete = FALSE;
+        }
+
+        if ($delete) {
+            $it = new RecursiveDirectoryIterator($dir);
+            $it = new RecursiveIteratorIterator($it, RecursiveIteratorIterator::CHILD_FIRST);
+            foreach ($it as $file) {
+                if ('.' === $file->getBasename() || '..' === $file->getBasename())
+                    continue;
+                if ($file->isDir())
+                    rmdir($file->getPathname());
+                else
+                    unlink($file->getPathname());
+            }
+            rmdir($dir);
+            showMessage(lang('Template successfuly deleted.', 'template_maneger'));
+        }
+        pjax(site_url('admin/components/init_window/template_manager') . '/#list');
     }
 
 }

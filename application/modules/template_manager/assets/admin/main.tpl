@@ -50,7 +50,7 @@
                             {foreach $template->components as $componentName}
                                 {$component = $template->getComponent($componentName)}
                                 {if !$component->notRenderAdminTemplate}
-                                    <a href="#{echo $componentName}" class="btn btn-small {if $cnt == 1}active{/if}">{echo $componentName}</a>
+                                    <a href="#{echo $componentName}" class="btn btn-small {if $cnt == 1}active{/if}">{echo $component->getLabel()}</a>
                                 {/if}
                                 {$cnt++}
                             {/foreach}
@@ -80,13 +80,18 @@
                                         <input {if $currTpl == $tpl->name}checked="checked"{/if} type="radio" name="template_name" value="{echo $tpl->name}">
                                     </div>        
                                     <div class="span5">
-                                        <img src="{echo $tpl->mainImage}" />
+                                        <img src="{echo $tpl->mainImage}"/>
                                     </div>        
                                     <div class="span6">
                                         <p><b>Названия:</b> {echo $tpl->name}</p>
                                         <p><b>Тип:</b> {echo $tpl->type}</p>
                                         <p><b>Версия:</b> {echo $tpl->version}</p>
                                         <p><b>Описание:</b> {echo $tpl->description}</p>
+                                    </div>
+                                    <div>
+                                        <a {if $currTpl != $tpl->name}href="{site_url('admin/components/init_window/template_manager/deleteTemplate')}/{echo $tpl->name}"{/if} name="delete_template" type="button" class="{if $currTpl == $tpl->name}disabled{else:}pjax{/if} pull-right btn btn-small btn-danger" style="margin-top: -115px;">
+                                            <i class="icon-trash icon-white"></i>{lang('Delete', 'template_manager')}
+                                        </a>
                                     </div>
                                 </div>
                                 <hr />

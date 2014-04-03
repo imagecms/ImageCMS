@@ -8,14 +8,6 @@
 class TTemplateEditor extends \template_manager\classes\TComponent {
 
     /**
-     * id component to save db
-     * @return int
-     */
-    public function getId() {
-        return 28;
-    }
-
-    /**
      * prepare param from xml to save in db
      * @param \SimpleXMLElement $nodes
      */
@@ -28,7 +20,7 @@ class TTemplateEditor extends \template_manager\classes\TComponent {
      * @return type
      */
     public function getLabel() {
-        return lang('Color scheme', 'template_manager');
+        return lang('Template Editor', 'template_manager');
     }
 
     public function getType() {
