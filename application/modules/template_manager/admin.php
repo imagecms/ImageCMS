@@ -13,6 +13,7 @@ class Admin extends BaseAdminController {
 
     public function __construct() {
         parent::__construct();
+        $this->templateName = $this->db->get('settings')->row()->site_template;
         $this->templatesUploadPath = PUBPATH . 'uploads/templates';
     }
 
@@ -209,6 +210,20 @@ class Admin extends BaseAdminController {
         } else {
             $data = $this->upload->data();
             return $data['full_path'];
+        }
+    }
+
+    public function updateComponent($componentName) {
+        $template = new \template_manager\classes\Template($this->templateName);
+        $component = $template->getComponent($componentName);
+
+        if ($component instanceof $componentName) {
+            if ($component->updateParams()) {
+                showMessage(lang('Component settings successfuly updated', 'template_maneger'));
+            } else {
+                showMessage(lang('Component settings can not update', 'template_maneger'), '', 'r');
+            }
+            pjax(site_url('admin/components/init_window/template_manager') . '/' . '#' . $componentName);
         }
     }
 

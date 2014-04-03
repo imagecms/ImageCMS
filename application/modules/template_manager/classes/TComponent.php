@@ -46,7 +46,7 @@ abstract class TComponent {
      * Getting paths & data from DB
      */
     public function __construct() {
-        //$this->currTemplate =
+        $this->templateName = \CI::$APP->db->get('settings')->row()->site_template;
         $rfc = new \ReflectionClass($this);
         $this->basePath = dirname($rfc->getFileName());
         $this->cAssetManager = new TComponentAssetManager($this->basePath);
@@ -97,7 +97,7 @@ abstract class TComponent {
                     ->where('key', $key)
                     ->get('template_settings');
 
-            if (!$result) {
+            if ($result) {
                 if ($result->num_rows > 0) {
                     return $result->row()->data;
                 }
@@ -106,8 +106,28 @@ abstract class TComponent {
         return null;
     }
 
+    public function updateParams($params) {
+        if (count($params) > 0) {
+            foreach ($params as $key => $data) {
+                $component = \CI::$APP->db->where('component', $this->name)->where('key', $key)->get('template_settings');
+                if ($component->num_rows()) {
+                    \CI::$APP->db->update('template_settings', array('component' => $this->name, 'key' => $key, 'data' => $data));
+                } else {
+                    \CI::$APP->db->insert('template_settings', array('component' => $this->name, 'key' => $key, 'data' => $data));
+                }
+            }
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+
     /**
-     * Needed to be overloaded with some pretty name =)
+     * Each component must have his own unique type
+     */
+    abstract public function getType();
+
+    /** Needed to be overloaded with some pretty name = )
      * @return string Name of component (for admin view)
      */
     public function getLabel() {

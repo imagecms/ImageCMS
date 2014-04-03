@@ -4,82 +4,107 @@
  * class TProperties for Components template manager
  */
 class TProperties extends \template_manager\classes\TComponent {
-    
+
     private $propType = array('dropDown', 'scroll', 'select');
 
     /**
-     *  prepare to save param from xml to db 
+     * Prepare to save param from xml to db 
      * @param \SimpleXMLElement $nodes
      */
-    public function setParamsXml(\SimpleXMLElement $nodes) {
+    public function setParamsXml(\SimpleXMLElement $component) {
         $data = array();
-        foreach ($nodes as $node) {
-            $nodeAttr = $node->attributes();
-            $keys = explode(',', (string)$nodeAttr['name']);
-            foreach ($keys as $key) {
-                $value = serialize(explode(',', (string)$nodeAttr['value']));
-                $data[$key] = $value;
+        foreach ($component as $item) {
+            switch ($item->getName()) {
+                case 'params':
+                    $params_attributes = $item->attributes();
+                    foreach ($item as $param) {
+                        $param_attributes = $param->attributes();
+                        $data[(string) $params_attributes->name][] = array(
+                            'property_id' => (string) $param_attributes->key,
+                            'values' => (string) $param_attributes->value
+                        );
+                    }
+                    $data[(string) $params_attributes->name] = serialize($data[(string) $params_attributes->name]);
+                    break;
             }
         }
+
         if (count($data) > 0)
             $this->setParams($data);
     }
 
     /**
-     * prepare to save param from form to db 
+     * Prepare to save param from form to db 
      */
     public function setParams($data = array()) {
-
         if (count($data) > 0)
             parent::setParams($data);
-        else {
-            if ($_POST['property']) {
-                $data = array();
-                foreach ($_POST['property'] as $key => $prop) {
-                    $keyData = str_replace('prop', '', $key);
-                    $arrAux = array();
-                    foreach ($prop as $k => $v)
-                        $arrAux[] = $k;
+    }
 
-                    $keyValue = serialize($arrAux);
-                    $data[$keyData] = $keyValue;
-                }
-
-                if (count($data) > 0)
-                    parent::setParams($data);
+    /**
+     * Update component params
+     */
+    public function updateParams() {
+        if ($_POST['properties']) {
+            $data = \CI::$APP->input->post();
+            $dataToUpdate = array();
+            foreach ($data['properties'] as $property_id => $values) {
+                $dataToUpdate['properties'][] = array(
+                    'property_id' => $property_id,
+                    'values' => implode(',', $values)
+                );
             }
+
+            $dataToUpdate['properties'] = serialize($dataToUpdate['properties']);
+            if (count($dataToUpdate) > 0)
+                return parent::updateParams($dataToUpdate);
         }
     }
 
     /**
-     * prepare param to output
+     * Prepare param to output
      */
     public function getParam($key = null) {
         $params = parent::getParam($key);
-        $paramsWithKey = array();
-        foreach ($params as $param)
-            $paramsWithKey[$param['key']] = $param['value'];
+        $params = unserialize($params);
+        $data = array();
+        if ($key) {
+            $data[$key] = $params;
+        } else {
+            foreach ($params as $param) {
+                $data[$key] = $param;
+            }
+        }
 
-        $properties = $this->getProperties();
-        foreach ($properties as $key => $prop)
-            $properties[$key]['param'] = $paramsWithKey[$prop['id']];
-
-        return $properties;
+        return $data;
     }
 
     /**
-     * render tpl
+     * Render admin tpl
      */
     public function renderAdmin() {
+        $properties = $this->getParam('properties');
+        $propertiesSorted = array();
+        foreach ($properties['properties'] as $property) {
+            $property['values'] = preg_replace('/\s+/', '', $property['values']);
+            $propertiesSorted[$property['property_id']] = explode(',', $property['values']);
+        }
 
-        $this->cAssetManager->display('admin/main', array('propType' => $this->propType,'handler' => $this->handler, 'properties' => $this->getParam()));
+        $this->cAssetManager->display('admin/main', array(
+            'propType' => $this->propType,
+            'handler' => $this->name,
+            'properties' => $propertiesSorted,
+            'productProperties' => $this->getProductsProperties()
+                )
+        );
     }
 
     /**
-     * id component to save db 
+     * Get component type
+     * @return string
      */
-    public function getId() {
-        return 6;
+    public function getType() {
+        return __CLASS__;
     }
 
     public function getLabel() {
@@ -87,15 +112,15 @@ class TProperties extends \template_manager\classes\TComponent {
     }
 
     /**
-     * get properties
+     * Get product properties
      * @return array
      */
-    public function getProperties() {
+    public function getProductsProperties() {
         $locale = \MY_Controller::getCurrentLocale();
         return \CI::$APP->db
-                        ->select('shop_product_properties_i18n.id, shop_product_properties_i18n.name, mod_new_level_product_properties_types.type as type')
-                        ->join('mod_new_level_product_properties_types', 'mod_new_level_product_properties_types.property_id=shop_product_properties_i18n.id', 'left')
+                        ->select('shop_product_properties_i18n.id, shop_product_properties_i18n.name')
                         ->where('shop_product_properties_i18n.locale', $locale)
+                        ->order_by('id')
                         ->get('shop_product_properties_i18n')
                         ->result_array();
     }
