@@ -29,7 +29,7 @@ class TemplateManager {
 
     /**
      * Current template
-     * @var string
+     * @var Template
      */
     private $currentTemplate;
 
@@ -47,8 +47,9 @@ class TemplateManager {
      * Getting core components
      */
     private function __construct() {
-        $this->currentTemplate = \CI::$APP->db->get('settings')->row()->site_template;
+
         $componentsPath = __DIR__ . '/../components/';
+
         $dirList = array();
         if ($handle = opendir($componentsPath)) {
             while (false !== ($componentName = readdir($handle))) {
@@ -68,7 +69,7 @@ class TemplateManager {
      * @throws Exception
      */
     public function setTemplate(Template $template) {
-        if ($this->currentTemplate == $template->name) {
+        if ($this->currentTemplate->name == $template->name) {
             throw new \Exception('Template ' . $template->name . ' already installed');
         }
 
@@ -94,10 +95,14 @@ class TemplateManager {
         \CI::$APP->db->where('name', 'systemTemplatePath')->update('shop_settings', array('value' => './templates/' . $template->name . '/shop/'));
         \CI::$APP->db->update('settings', array('site_template' => $template->name));
 
-        $this->currentTemplate = $template->name;
+        $this->currentTemplate = $template;
     }
 
     public function getCurentTemplate() {
+        if (is_null($this->currentTemplate)) {
+            $currentTemplateName = \CI::$APP->db->get('settings')->row()->site_template;
+            $this->currentTemplate = new Template($currentTemplateName);
+        }
         return $this->currentTemplate;
     }
 

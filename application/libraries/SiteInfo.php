@@ -184,33 +184,7 @@ class SiteInfo {
      */
     public function getFaviconLogoPath() {
         // looking for any color scheme (by folder existing)
-        $cssPath = TEMPLATES_PATH . $this->templateName . DIRECTORY_SEPARATOR . "css" . DIRECTORY_SEPARATOR;
-        $cssPath = str_replace(array('/', '\\'), DIRECTORY_SEPARATOR, $cssPath);
-
-        $cssDir = dir($cssPath);
-        $colorSchemes = array();
-        while (false !== ($item = $cssDir->read())) {
-            if ($item == '.' || $item == '..') {
-                continue;
-            }
-            if (is_dir($cssPath . DIRECTORY_SEPARATOR . $item)) {
-                if (0 === strpos($item, 'color_scheme_')) {
-                    $colorSchemes[] = $item;
-                }
-            }
-        }
-        if (count($colorSchemes) > 0) { // newLevel-type template
-            $colorScheme_ = $this->ci->load->module('new_level')->getColorScheme();
-            $colorScheme = array_pop(explode('/', $colorScheme_));
-            if (!in_array($colorScheme, $colorSchemes)) {
-                return FALSE;
-            }
-            $imagesPath = $cssPath . $colorScheme . DIRECTORY_SEPARATOR;
-        } else { // old-school template type
-            $imagesPath = TEMPLATES_PATH . $this->templateName . DIRECTORY_SEPARATOR . "images" . DIRECTORY_SEPARATOR;
-        }
-        // enshure that path is correct formed to current OS
-        return str_replace(array('/', '\\'), DIRECTORY_SEPARATOR, $imagesPath);
+        return PUBPATH . 'uploads/images';
     }
 
     /**
@@ -221,7 +195,7 @@ class SiteInfo {
     public function getFaviconLogoUrl($logoOrFavicon) {
         $path = $this->getFaviconLogoPath($this->templateName);
 
-        
+
         $fileData = $this->getSiteInfo($logoOrFavicon);
 
         if (!key_exists($this->templateName, $fileData) || empty($fileData)) {

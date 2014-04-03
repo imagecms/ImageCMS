@@ -89,11 +89,17 @@ class Template {
     public function __construct($templateName) {
         $this->templatePath = TEMPLATES_PATH . $templateName . '/';
         $this->name = $templateName;
+
+       
         try {
             $this->loadXml();
+           
             $this->loadData();
+           
             $this->getScreenshots();
+            
             $this->loadComponents();
+             
         } catch (\Exception $e) {
             $this->isValid = FALSE;
         }
@@ -171,7 +177,8 @@ class Template {
      */
     protected function loadComponents() {
         // loading core components
-        foreach (\template_manager\classes\TemplateManager::getInstance()->defaultComponents as $name => $instance) {
+        $defaultConponents = \template_manager\classes\TemplateManager::getInstance()->defaultComponents;
+        foreach ($defaultConponents as $name => $instance) {
             array_push($this->components, $name);
             $this->componentsInstances[$name] = $instance;
         }
