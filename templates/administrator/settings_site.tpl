@@ -490,51 +490,6 @@
                                                                 </a>
                                                             </p>
                                                         </div>
-
-                                                        <hr />
-                                                        <div class="control-group">
-                                                            <label class="control-label" data-toggle="ttip" data-title="{$tooltipText} 'siteinfo_logo'">
-                                                                {lang('Logo', 'admin')} 
-                                                                <i class="icon-info-sign"></i>
-                                                            </label>
-                                                            <input type="file" id="siteinfo_logo" name="siteinfo_logo" data-url="file">
-                                                            <input type="hidden" id="si_delete_logo" class="si_delete_image" name="si_delete_logo" value="0">
-
-                                                            <div class="controls siteinfo_logoimage">
-                                                                <div class='siteinfo_image_container'>
-                                                                    {$logo = siteinfo('siteinfo_logo_url')}
-                                                                    {if !empty($logo)}
-                                                                        <button type="button" class="btn btn-small remove_btn">
-                                                                            <i class="icon-trash"></i>
-                                                                        </button>
-                                                                        <img class="img-polaroid" src="{site_url($logo)}" alt="{lang('Click to select the image', 'admin')}" />
-                                                                    {else:}
-                                                                        <img class="img-polaroid" src="{$BASE_URL}templates/administrator/images/select-picture.png" alt="{lang('Click to select the image', 'admin')}" />
-                                                                    {/if}
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="control-group">
-                                                            <label class="control-label" data-toggle="ttip" data-title="{$tooltipText} 'siteinfo_favicon'">Favicon 
-                                                                <i class="icon-info-sign"></i>
-                                                            </label>
-                                                            <input type="file" id="siteinfo_favicon" name="siteinfo_favicon" data-url="file">
-                                                            <input type="hidden" id="si_delete_favicon" class="si_delete_image" name="si_delete_favicon" value="0">
-
-                                                            <div class="controls siteinfo_faviconimage">
-                                                                <div class='siteinfo_image_container'>
-                                                                    {$favicon = siteinfo('siteinfo_favicon_url')}
-                                                                    {if !empty($favicon)}
-                                                                        <button type="button" class="btn btn-small remove_btn">
-                                                                            <i class="icon-trash"></i>
-                                                                        </button>
-                                                                        <img class="img-polaroid" src="{site_url($favicon)}" alt="{lang('Click to select the image', 'admin')}" />
-                                                                    {else:}
-                                                                        <img class="img-polaroid" src="{$BASE_URL}templates/administrator/images/select-picture.png" alt="{lang('Click to select the image', 'admin')}" />
-                                                                    {/if}
-                                                                </div>
-                                                            </div>
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>

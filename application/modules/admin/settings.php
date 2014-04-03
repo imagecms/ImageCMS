@@ -306,28 +306,6 @@ class Settings extends BaseAdminController {
 
         $siteinfo['contacts'] = $additional;
 
-        $this->imagesPath = $this->siteinfo->getFaviconLogoPath();
-
-        $config['upload_path'] = $this->imagesPath;
-        $config['allowed_types'] = 'jpg|jpeg|png|ico|gif';
-        $config['overwrite'] = TRUE;
-        $this->load->library('upload', $config);
-
-        // upload or delete (or do nothing) favicon and logo
-        if ($_POST['si_delete_favicon'] == 1) {
-            if (isset($siteinfo['siteinfo_favicon'][$this->activeTemplateName]))
-                unset($siteinfo['siteinfo_favicon'][$this->activeTemplateName]);
-        } else {
-            $this->processLogoOrFavicon('siteinfo_favicon', $siteinfo);
-        }
-
-        if ($_POST['si_delete_logo'] == 1) {
-            if (isset($siteinfo['siteinfo_logo'][$this->activeTemplateName]))
-                unset($siteinfo['siteinfo_logo'][$this->activeTemplateName]);
-        } else {
-            $this->processLogoOrFavicon('siteinfo_logo', $siteinfo);
-        }
-
         // saving admin's email in application/config/auth.php
         $authFullPath = "./application/config/auth.php";
         $authContents = file_get_contents($authFullPath);
@@ -346,33 +324,6 @@ class Settings extends BaseAdminController {
         $this->load->library('SiteInfo', $_POST['locale']);
         $data = $this->siteinfo->getSiteInfoData(TRUE);
         echo json_encode(array_merge($data, array('locale' => $_POST['locale'])));
-    }
-
-    /**
-     * 
-     * @param type $paramName
-     * @param type $siteinfo
-     */
-    protected function processLogoOrFavicon($paramName, &$siteinfo) {
-        // setting old value
-
-        $oldValue = $this->siteinfo->getSiteInfo($paramName);
-        $siteinfo[$paramName] = !empty($oldValue) ? $oldValue : '';
-        if (isset($_FILES[$paramName])) {
-            // deleting files if such exist and param $this->siteInfoDeleteFiles is set to TRUE
-            if ($this->siteInfoDeleteFiles == TRUE) {
-                $isFile = $this->imagesPath . $_FILES[$paramName]['name'];
-                if (file_exists($isFile)) {
-                    unlink($isFile);
-                }
-            }
-            if (!$this->upload->do_upload($paramName)) {
-                echo $this->upload->display_errors('', '');
-            } else {
-                $uploadData = $this->upload->data();
-                $siteinfo[$paramName][$this->activeTemplateName] = $uploadData['file_name'];
-            }
-        }
     }
 
     public function switch_admin_lang($lang) {

@@ -23,43 +23,121 @@ class Admin extends BaseAdminController {
         $error = '';
         $message = '';
 
+        $currentTemplate = \template_manager\classes\TemplateManager::getInstance()->getCurentTemplate();
+
         if ($_POST) {
             try {
                 if (isset($_POST['upload_template'])) { // UPLOAD TEMPLATE FROM PC OR BY URL
                     $this->upload();
                 } elseif (isset($_POST['install_template'])) { // INSTALL TEMPLATE
-                    $template = new \template_manager\classes\Template($_POST['template_name']);
-                    if ($template->isValid()) {
-                        \template_manager\classes\TemplateManager::getInstance()->setTemplate($template);
-                        $message = 'Template ' . $template->name . ' is set';
-                    } else {
-                        throw new \Exception('Template is broken');
-                    }
+                    $this->install($_POST['template_name']);
+                    $message = 'Template ' . $template->name . ' is set';
+                } elseif (isset($_POST['set_logofav'])) { // set logo &|| favicon
+                    $this->setLogoFav();
                 } else { // SETTING SOME PARAMS
-                    $handlerComponent = $this->input->post('handler');
-                    $template->getComponent($handlerComponent)->setParams();
+                    $component = $this->input->post('handler');
+                    $currentTemplate->getComponent($component)->setParams();
                 }
             } catch (\Exception $e) {
                 $error = $e->getMessage();
             }
         }
 
-        $currentTemplateName = \template_manager\classes\TemplateManager::getInstance()->getCurentTemplate();
-        $template = new \template_manager\classes\Template($currentTemplateName);
+        $templates = \template_manager\classes\TemplateManager::getInstance()->listLocal();
+
         \CMSFactory\assetManager::create()
                 ->registerStyle('style_admin')
                 ->registerScript('script_admin')
-                ->setData(array('template' => $template, 'error' => $error, 'message' => $message))
+                ->setData(array(
+                    'template' => $template,
+                    'error' => $error,
+                    'message' => $message,
+                    'templates' => $templates,
+                    'currTpl' => $currentTemplate->name
+                ))
                 ->renderAdmin('main');
     }
 
+    public function test() {
+        $this->load->library('SiteInfo');
+        $siteinfo = $this->siteinfo->getSiteInfo('siteinfo_logo_url');
+        echo '<pre>';
+        var_dump($siteinfo);
+        echo '</pre>';
+        exit;
+    }
+
+    private function setLogoFav() {
+
+        $this->load->library('SiteInfo');
+        $imagesPath = $this->siteinfo->getFaviconLogoPath();
+
+        $config['upload_path'] = $imagesPath;
+        $config['allowed_types'] = 'jpg|jpeg|png|ico|gif';
+        $config['overwrite'] = TRUE;
+        $this->load->library('upload', $config);
+
+        $siteinfo = $this->siteinfo->getSiteInfoData(TRUE);
+
+        // upload or delete (or do nothing) favicon and logo
+        if ($_POST['si_delete_favicon'] == 1) {
+            if (isset($siteinfo['siteinfo_favicon']))
+                $siteinfo['siteinfo_favicon'] = "";
+        } else {
+            $this->processLogoOrFavicon('siteinfo_favicon', $siteinfo);
+        }
+
+        if ($_POST['si_delete_logo'] == 1) {
+            if (isset($siteinfo['siteinfo_logo']))
+                $siteinfo['siteinfo_logo'] = "";
+        } else {
+            $this->processLogoOrFavicon('siteinfo_logo', $siteinfo);
+        }
+
+        $siteinfoString = serialize($siteinfo);
+
+        CI::$APP->db
+                ->limit(1)
+                ->update('settings', array('siteinfo' => $siteinfoString), array('s_name' => 'main'));
+
+        if (!empty(CI::$APP->db->_error_message())) {
+            throw new Exception(lang('DB Error', 'template_manager'));
+        }
+    }
+
     /**
-     * render template list
+     * 
+     * @param type $paramName
      */
-    public function templates() {
-        $templateNameCurr = $this->db->get('settings')->row()->site_template;
-        $templates = \template_manager\classes\TemplateManager::getInstance()->listLocal();
-        \CMSFactory\assetManager::create()->setData(array('templates' => $templates, 'currTpl' => $templateNameCurr))->renderAdmin('list');
+    protected function processLogoOrFavicon($paramName, &$siteinfo) {
+        if (!isset($_FILES[$paramName])) {
+            return;
+        }
+
+        if (empty($_FILES[$paramName]['name'])) {
+            return;
+        }
+
+        if (!$this->upload->do_upload($paramName)) {
+            throw new Exception($this->upload->display_errors('', ''));
+        } else {
+            $uploadData = $this->upload->data();
+            $siteinfo[$paramName] = $uploadData['file_name'];
+        }
+    }
+
+    /**
+     * 
+     * @param type $templateName
+     * @throws \Exception
+     */
+    private function install($templateName) {
+        $template = new \template_manager\classes\Template($templateName);
+        if ($template->isValid()) {
+            \template_manager\classes\TemplateManager::getInstance()->setTemplate($template);
+        } else {
+            throw new \Exception('Template is broken');
+        }
     }
 
     /**
