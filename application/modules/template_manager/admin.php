@@ -45,6 +45,7 @@ class Admin extends BaseAdminController {
         }
 
         $templates = \template_manager\classes\TemplateManager::getInstance()->listLocal();
+        $template = new \template_manager\classes\Template($currentTemplate->name);
 
         \CMSFactory\assetManager::create()
                 ->registerStyle('style_admin')
@@ -101,7 +102,8 @@ class Admin extends BaseAdminController {
                 ->limit(1)
                 ->update('settings', array('siteinfo' => $siteinfoString), array('s_name' => 'main'));
 
-        if (!empty(CI::$APP->db->_error_message())) {
+        $error = CI::$APP->db->_error_message();
+        if (!empty($error)) {
             throw new Exception(lang('DB Error', 'template_manager'));
         }
     }
