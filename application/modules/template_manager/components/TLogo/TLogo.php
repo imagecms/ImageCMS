@@ -23,7 +23,7 @@ class TLogo extends \template_manager\classes\TComponent {
     }
 
     public function getLabel() {
-        ;
+        return lang('Logo', 'template_maneger');
     }
 
     public function getType() {

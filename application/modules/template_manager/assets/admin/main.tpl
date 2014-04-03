@@ -50,7 +50,7 @@
                             {foreach $template->components as $componentName}
                                 {$component = $template->getComponent($componentName)}
                                 {if !$component->notRenderAdminTemplate}
-                                    <a href="#{echo $componentName}" class="btn btn-small {if $cnt == 1}active{/if}">{echo $componentName}</a>
+                                    <a href="#{echo $componentName}" class="btn btn-small {if $cnt == 1}active{/if}">{echo $component->getLabel()}</a>
                                 {/if}
                                 {$cnt++}
                             {/foreach}
