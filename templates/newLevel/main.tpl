@@ -134,27 +134,11 @@
 
         {/*}uncomment before opload to server and combine and minimize scripts (in comment <!-- scripts -->...<!-- scripts end -->) into united_scripts file{ */}
         {/*} Start. uncoment before development { */}
-        <<<<<<< HEAD
-        <<<<<<< HEAD
-
-        <script type="text/javascript">
-            initDownloadScripts(['raphael-min', 'united_scripts'], 'init', 'scriptDefer');
-        </script>
-
-        =======
         {/*}
         <script type="text/javascript">
             initDownloadScripts(['raphael-min', 'united_scripts'], 'init', 'scriptDefer');
         </script>
         { */}
-        >>>>>>> 4d52d8f6d23b4b0d8e6a69fdd69f2f3d701c5b14
-        =======
-        {/*}
-        <script type="text/javascript">
-            initDownloadScripts(['raphael-min', 'united_scripts'], 'init', 'scriptDefer');
-        </script>
-        { */}
-        >>>>>>> 4d52d8f6d23b4b0d8e6a69fdd69f2f3d701c5b14
         {/*} End. uncoment before development { */}
         {include_shop_tpl('js_templates')}
     </body>
