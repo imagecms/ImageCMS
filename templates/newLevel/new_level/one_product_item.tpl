@@ -8,7 +8,7 @@
 
 {$condlimit = $opi_limit != false && $opi_limit != NULL}
 {foreach $products as $key => $p}
-
+    
     {if is_array($p) && $p.id}
         {$pArray = $p;}
         {$variants = array()}

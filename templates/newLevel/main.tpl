@@ -35,6 +35,9 @@
         <script type="text/javascript" src="{$THEME}js/jquery-1.8.3.min.js"></script>
         {include_tpl('config.js')}
         {literal}
+        <style>
+            body{background-color: #fff;}
+        </style>
             <script type="text/javascript">
                 function initDownloadScripts(scripts, callback, customEvent) {
                     function downloadJSAtOnload(scripts, callback, customEvent) {
@@ -113,7 +116,7 @@
         <script type="text/javascript" src="{$THEME}js/_functions.js"></script>
         <script type="text/javascript" src="{$THEME}js/_scripts.js"></script>
         <!-- scripts end -->
-        
+
         {literal}
             <script type="text/javascript">
                 $(window).load(function() {
@@ -134,11 +137,11 @@
 
         {/*}uncomment before opload to server and combine and minimize scripts (in comment <!-- scripts -->...<!-- scripts end -->) into united_scripts file{ */}
         {/*} Start. uncoment before development { */}
-        
+
         <script type="text/javascript">
             initDownloadScripts(['raphael-min', 'united_scripts'], 'init', 'scriptDefer');
         </script>
-        
+
         {/*} End. uncoment before development { */}
         {include_shop_tpl('js_templates')}
     </body>

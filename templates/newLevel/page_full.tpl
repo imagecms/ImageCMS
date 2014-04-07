@@ -2,6 +2,7 @@
     {widget('path')}
 </div>
 <div class="frame-inside page-text">
+    {var_dump($page)}
     <div class="container">
         <div class="text-left">{load_menu('left_menu')}</div>
         <div class="text-right">
