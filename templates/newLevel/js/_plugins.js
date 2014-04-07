@@ -1764,10 +1764,13 @@ function getCookie(c_name)
                 el.data('drop', '.' + $.drop.drp.curDefault).attr('data-drop', '.' + $.drop.drp.curDefault);
 
                 $.drop.showActivity();
-                if (source.match(/jpg|gif|png|bmp|jpeg/))
-                    $('<img src="' + source + '" style="max-height: 100%;"/>').load(function() {
-                        _update($(this));
+                if (source.match(/jpg|gif|png|bmp|jpeg/)) {
+                    var img = new Image();
+                    $(img).load(function() {
+                        _update($(this).css('max-height', '100%'));
                     });
+                    img.src = source;
+                }
                 else
                     $.ajax({
                         type: type,
@@ -1914,21 +1917,32 @@ function getCookie(c_name)
 
                                     wnd.off('resize.' + $.drop.nS + ev);
 
-                                    var condOverlay = true;
+                                    var zInd = 0,
+                                            drpV = null;
                                     $('[data-elrun]:visible').each(function() {
-                                        if ($(this).data('drp').overlayOpacity === 0)
-                                            condOverlay = false;
+                                        var $this = $(this);
+                                        if (parseInt($this.css('z-index')) > zInd) {
+                                            zInd = parseInt($this.css('z-index'));
+                                            drpV = $this.data('drp');
+                                        }
                                     });
-                                    if (!condOverlay || !$.exists('[data-elrun]:visible')) {
+                                    console.log(drpV)
+
+                                    if (drpV && (!drpV.scroll || drpV.overlayOpacity === 0) || !$.exists('[data-elrun]:visible')) {
                                         body.removeClass('isScroll').css({
                                             'overflow': '',
-                                            'margin-right': '',
-                                            'margin-left': 0
+                                            'margin-right': ''
                                         });
 
                                         if (isTouch)
                                             $('.forCenter').off('touchmove.' + $.drop.nS);
                                     }
+                                    if (drpV && drpV.overlayOpacity !== 0 && drpV.scroll)
+                                        body.addClass('isScroll').css({
+                                            'overflow': 'hidden',
+                                            'margin-right': $.drop.widthScroll
+                                        });
+
                                     if (set.dropOver && !f)
                                         set.dropOver.fadeOut(durOff);
 
@@ -1993,11 +2007,12 @@ function getCookie(c_name)
                             dropV = drop.is(':visible'),
                             w = dropV ? drop.outerWidth() : drop.actual('outerWidth'),
                             h = dropV ? drop.outerHeight() : drop.actual('outerHeight'),
-                            top = (body.height() - h) / 2,
-                            left = (body.width() - w) / 2;
+                            top = (wnd.height() - h) / 2,
+                            left = (wnd.width() - w) / 2;
+                    console.log(top)
                     drop[method]({
-                        'top': (top > 0 ? top : 0) + wnd.scrollTop(),
-                        'left': (left > 0 ? left : 0) + wnd.scrollLeft()
+                        'top': (top > 0 ? top : 0) + (!drop.data('drp').scroll ? wnd.scrollTop() : 0),
+                        'left': (left > 0 ? left : 0) + (!drop.data('drp').scroll ? wnd.scrollLeft() : 0)
                     }, {
                         duration: drop.data('drp').durationOn,
                         queue: false
@@ -2075,7 +2090,7 @@ function getCookie(c_name)
             }
             else {
                 function _for_center(rel) {
-                    body.append('<div class="forCenter" data-rel="' + rel + '" style="left: 0;top:0;width: 100%;dispaly:none;overflow:hidden;overflow-у: scroll;position: absolute;"></div>');
+                    body.append('<div class="forCenter" data-rel="' + rel + '" style="left: 0;width: 100%;dispaly:none;height: 100%;"></div>');
                 }
                 if (set.place === 'noinherit')
                     drop = $(drop).appendTo(body);
@@ -2145,15 +2160,16 @@ function getCookie(c_name)
                 'data-drop': opt.drop
             }).parent().addClass(aC);
 
-            var drp = drop.data('drp') ? drop.data('drp') : {};
             drop.data({
-                'drp': $.extend(drp, opt, {
+                'drp': $.extend(drop.data('drp') ? drop.data('drp') : {}, opt, {
                     'methods': $.extend({}, {
                         'self': drop,
                         'elrun': $this
                     }, $.drop.methods())
                 })
             });
+            var drp = drop.data('drp');
+
             drop.attr('data-elrun', opt.drop).off('click.' + $.drop.nS, opt.exit).on('click.' + $.drop.nS, opt.exit, function(e) {
                 e.stopPropagation();
                 methods.close($(this).closest('[data-elrun]'));
@@ -2181,7 +2197,6 @@ function getCookie(c_name)
             if (forCenter) {
                 drop.data('drp').forCenter = forCenter;
                 forCenter.add(drop).css('z-index', overlays.length + 1104);
-                forCenter.css('height', '100%');
             }
             methods._pasteContent($this, drop, opt);
             if (opt.elBefore)
@@ -2207,8 +2222,9 @@ function getCookie(c_name)
                 if (opt.place !== 'inherit')
                     methods[opt.place](drop);
                 setTimeout(function() {
-                    if (drop.data('drp').dropOver)
-                        drop.data('drp').dropOver.css('height', '').css('height', $(document).height());
+                    var drp = drop.data('drp');
+                    if (drp.dropOver)
+                        drp.dropOver.css('height', '').css('height', $(document).height());
                 }, 100);
             });
             if (condOverlay) {
@@ -2277,18 +2293,22 @@ function getCookie(c_name)
                 drop.click(focusConfirm);
             }
             $(opt.next).add($(opt.prev)).css('height', drop.actual('height'));
+            if (opt.scroll && condOverlay && (!isTouch && (body.css('overflow-y') === 'scroll' || wnd.height() < $(document).height()))) {
+                body.addClass('isScroll').css({'overflow': 'hidden', 'margin-right': $.drop.widthScroll});
+                drp.forCenter.css({'overflow': 'hidden', 'overflow-y': 'scroll', 'position': 'absolute'});
+            }
+            else if (drp.forCenter) {
+                body.removeClass('isScroll').css({'overflow': '', 'margin-right': ''});
+                drp.forCenter.css({'overflow': '', 'overflow-y': '', 'position': 'static'});
+            }
+
+            if (isTouch && $.drop.drp.curDrop.height() < wnd.height() && drp.forCenter)
+                drp.forCenter.on('touchmove.' + $.drop.nS, function(e) {
+                    e.preventDefault();
+                });
             drop[opt.effectOn](opt.durationOn, function(e) {
-                var drop = $(this),
-                        drp = drop.data('drp');
+                var drop = $(this);
                 $.drop.drp.curDrop = drop;
-
-                if (!isTouch && (body.css('overflow') === 'auto' || wnd.height() < $(document).height()))
-                    body.addClass('isScroll').css({'overflow': 'hidden', 'margin-right': $.drop.widthScroll});
-
-                if (isTouch && $.drop.drp.curDrop.height() < wnd.height() && drp.forCenter)
-                    drp.forCenter.on('touchmove.' + $.drop.nS, function(e) {
-                        e.preventDefault();
-                    });
 
                 if ($.existsN(drop.find('[data-drop]')))
                     methods.init.call(drop.find('[data-drop]'));
@@ -2475,6 +2495,7 @@ function getCookie(c_name)
             closeEsc: false,
             droppable: false,
             cycle: false,
+            scroll: false,
             scrollCenter: false,
             limitSize: false,
             limitContentSize: false,

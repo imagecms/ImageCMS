@@ -24,7 +24,6 @@
     {widget('path')}
 </div>
 <div class="frame-inside">
-    {var_dump($products)}
     <div class="container">
         <div class="right-catalog" {if !$totalProducts > 0}style="width:100% !important"{/if}>
             <div class="f-s_0 title-category">
