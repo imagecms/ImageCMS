@@ -218,51 +218,6 @@ $.dropInit.prototype.extendDrop = function() {
             });
             return drop;
         },
-        scroll: {
-            create: function() {
-                if (!isTouch) {
-                    if (body.css('overflow') === 'auto' || wnd.height() < $(document).height()) {
-                        body.addClass('isScroll').css({
-                            'overflow': 'hidden',
-                            'margin-right': +$.drop.widthScroll
-                        });
-                        body.prepend('<div class="scrollEmulation" style="position: fixed;right: 0;overflow-y: scroll;height: 100%;width: ' + $.drop.widthScroll + 'px;z-index:10000;"><div style="width: 1px;' + ($.drop.drp.curDrop.data('drp').limitSize ? 'height: 100%;' : 'height: ' + $.drop.drp.curDrop.height() + 'px;') + '"></div></div>');
-                        $('.scrollEmulation').off('scroll.' + $.drop.nS).on('scroll.' + $.drop.nS, function() {
-                            $.drop.drp.curDrop.data('drp').forCenter.scrollTop($(this).scrollTop());
-                        });
-                    }
-                }
-                if (isTouch && $.drop.drp.curDrop.height() < wnd.height())
-                    $.drop.dP.forCenter.off('touchmove.' + $.drop.nS).on('touchmove.' + $.drop.nS, function(e) {
-                        e.preventDefault();
-                    });
-                $(document).trigger({
-                    'type': 'scrollEmulate.' + $.drop.nS
-                });
-            },
-            remove: function() {
-                var condOverlay = true;
-                $('[data-elrun]:visible').each(function() {
-                    if ($(this).data('drp').overlayOpacity === 0)
-                        condOverlay = false;
-                });
-                if (!condOverlay || !$.exists('[data-elrun]:visible')) {
-                    body.removeClass('isScroll').css({
-                        'overflow': '',
-                        'margin-right': '',
-                        'margin-left': 0
-                    });
-                    //$('html').css('overflow', '');
-                    $('.scrollEmulation').remove();
-                    if (isTouch)
-                        $('.forCenter').off('touchmove.' + $.drop.nS);
-
-                    $(document).trigger({
-                        'type': 'scrollEmulateRemove.' + $.drop.nS
-                    });
-                }
-            }
-        },
         galleries: function($this, set, methods) {
             var elSet = $this.data(),
                     relO = $this.get(0).rel;
