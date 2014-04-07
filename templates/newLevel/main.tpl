@@ -35,9 +35,6 @@
         <script type="text/javascript" src="{$THEME}js/jquery-1.8.3.min.js"></script>
         {include_tpl('config.js')}
         {literal}
-        <style>
-            body{background-color: #fff;}
-        </style>
             <script type="text/javascript">
                 function initDownloadScripts(scripts, callback, customEvent) {
                     function downloadJSAtOnload(scripts, callback, customEvent) {
@@ -105,7 +102,7 @@
         {include_tpl('user_toolbar')}
 
         {/*}Start. delete before upload to server{ */}
-        
+
         <!-- scripts -->
         <script type="text/javascript" src="{$THEME}js/raphael-min.js"></script>
         <script type="text/javascript" src="{$THEME}js/_united_side_plugins.js"></script>
@@ -127,7 +124,7 @@
                 })
             </script>
         {/literal}
-        
+
         {/*}End. delete before upload to server{ */}
 
         {/*fancybox}
@@ -137,19 +134,27 @@
 
         {/*}uncomment before opload to server and combine and minimize scripts (in comment <!-- scripts -->...<!-- scripts end -->) into united_scripts file{ */}
         {/*} Start. uncoment before development { */}
-<<<<<<< HEAD
+        <<<<<<< HEAD
+        <<<<<<< HEAD
 
         <script type="text/javascript">
             initDownloadScripts(['raphael-min', 'united_scripts'], 'init', 'scriptDefer');
         </script>
 
-=======
+        =======
         {/*}
         <script type="text/javascript">
             initDownloadScripts(['raphael-min', 'united_scripts'], 'init', 'scriptDefer');
         </script>
         { */}
->>>>>>> 4d52d8f6d23b4b0d8e6a69fdd69f2f3d701c5b14
+        >>>>>>> 4d52d8f6d23b4b0d8e6a69fdd69f2f3d701c5b14
+        =======
+        {/*}
+        <script type="text/javascript">
+            initDownloadScripts(['raphael-min', 'united_scripts'], 'init', 'scriptDefer');
+        </script>
+        { */}
+        >>>>>>> 4d52d8f6d23b4b0d8e6a69fdd69f2f3d701c5b14
         {/*} End. uncoment before development { */}
         {include_shop_tpl('js_templates')}
     </body>
