@@ -39,7 +39,6 @@
                                 <a href="/auth/register">{lang('Перейти к регистрации','newLevel')}</a>
                             </div>
                         </div>
-                            <button type="button" class="d_l_1" data-drop=".drop-register" data-source="{site_url('auth/register')}">{lang('Забыли Пароль?','newLevel')}</button>
                     </div>
                     {form_csrf()}
                 </form>
