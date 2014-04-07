@@ -88,8 +88,6 @@ article, .container, .special-proposition .title-proposition-h{max-width: 980px;
 body, input, select, button, textarea, .f-s_0 > *, .items > li, .items > td, .text-el, .nav > li, .cuselText, .frame-kit .title, .t-a_j > *{font-size: 13px;}
 html, body{height: 100%;}
 html {-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;}
-body.isScroll{overflow: hidden;margin-right: 17px;}
-body.isScroll.isTouch{padding-right: 0;}
 body {text-align: left;overflow-y: scroll;}
 body, input, select, button, textarea {font-family: Tahoma, Geneva, Kalimati, sans-serif;line-height: 1.5;}
 input[type="submit"], input[type="reset"], input[type="button"], button {overflow: visible;background-color: transparent;border: none;}
