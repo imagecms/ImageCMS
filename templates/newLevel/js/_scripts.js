@@ -91,6 +91,7 @@ function init() {
     $.drop.setParameters(optionsDrop);
     $.drop.extendDrop('droppable', 'noinherit', 'heightContent', 'limitSize', 'galleries', 'placeBeforeShow', 'placeAfterClose', 'confirmPrompt');
     $('a.fancybox').drop();
+    $('.cloud-zoom-gallery').drop();
     $('[data-drop]').drop();
 
     ShopFront.CompareList.count();
