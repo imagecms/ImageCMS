@@ -2,6 +2,8 @@
 
 namespace template_manager\classes;
 
+use template_manager\classes\TComponentData as TLicense;
+
 /**
  * 
  *
@@ -73,6 +75,12 @@ class TemplateManager {
             throw new \Exception('Template ' . $template->name . ' already installed');
         }
 
+        $license = new TLicense($template->name);
+
+        if ($license->checkLicense() !== TRUE) {
+            throw new \Exception(lang('License error', 'template_manager'));
+        }
+
         // processing all dependicies 
         if (isset($template->xml->dependencies)) {
             if (isset($template->xml->dependencies->dependence)) {
@@ -99,7 +107,6 @@ class TemplateManager {
     }
 
     public function getCurentTemplate() {
-      
         if (is_null($this->currentTemplate)) {
             $currentTemplateName = \CI::$APP->db->get('settings')->row()->site_template;
             $this->currentTemplate = new Template($currentTemplateName);
@@ -112,7 +119,6 @@ class TemplateManager {
      * @return array of Template
      */
     public function listLocal() {
-
         if ($handle = opendir('templates')) {
             while (false !== ($fileName = readdir($handle)))
                 if ($fileName != "." && $fileName != ".." && is_dir('templates/' . $fileName)) {
@@ -122,7 +128,6 @@ class TemplateManager {
                 }
             closedir($handle);
         }
-
 
         return $templates;
     }

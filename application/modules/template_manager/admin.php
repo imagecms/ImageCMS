@@ -2,6 +2,8 @@
 
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
+use template_manager\classes\TComponentData as TLicense;
+
 /**
  * Image CMS 
  * tenplate Manager Module Admin
@@ -25,6 +27,12 @@ class Admin extends BaseAdminController {
         $message = '';
 
         $currentTemplate = \template_manager\classes\TemplateManager::getInstance()->getCurentTemplate();
+
+        $license = new TLicense($currentTemplate->name);
+        if ($license->checkLicense() !== TRUE) {
+            \CMSFactory\assetManager::create()->renderAdmin('no_license');
+            exit;
+        }
 
         if ($_POST) {
             try {

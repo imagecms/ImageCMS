@@ -90,14 +90,10 @@ class Template {
         $this->templatePath = TEMPLATES_PATH . $templateName . '/';
         $this->name = $templateName;
 
-
         try {
             $this->loadXml();
-
             $this->loadData();
-
             $this->getScreenshots();
-
             $this->loadComponents();
         } catch (\Exception $e) {
             $this->isValid = FALSE;
@@ -181,11 +177,11 @@ class Template {
             array_push($this->components, $name);
             $this->componentsInstances[$name] = $instance;
         }
-        
+
         if (!isset($this->xml->components)) {
             return;
         }
-        
+
         if (!isset($this->xml->components->component)) {
             return;
         }
