@@ -42,9 +42,9 @@ class TComponentData { // TLicense
     }
 
     public function checkLicense() {
-        if (self::isLocal()) {
-            return true;
-        }
+//        if (self::isLocal()) {
+//            return true;
+//        }
         return $this->licenseType != self::TYPE_NONE ? true : false;
     }
 

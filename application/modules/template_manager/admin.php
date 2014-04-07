@@ -148,20 +148,19 @@ class Admin extends BaseAdminController {
      * @return boolan|string хиба якщо помилка, назва шаблону якшо все ок
      */
     private function upload() {
-        if (!empty($_POST['template_url']) || !empty($_FILES['template_file'])) {
-            if (!empty($_POST['template_url'])) {
-                $zipPath = $this->uploadByUrl($_POST['template_url']);
-            } else {
-                $zipPath = $this->uploadFromPc('template_file');
-            }
-            // розпакувати шаблон
-            if (TRUE == \template_manager\classes\TemplateManager::getInstance()->unpack($zipPath)) {
-                return TRUE;
-            } else {
-                throw new Exception('Error while unpacking');
-            }
+        if (!empty($_POST['template_url']) & !empty($_FILES['template_file'])) {
+            throw new Exception('No input data specified');
         }
-        throw new Exception('No input data specified');
+
+        if (!empty($_POST['template_url'])) {
+            $zipPath = $this->uploadByUrl($_POST['template_url']);
+        } else {
+            $zipPath = $this->uploadFromPc('template_file');
+        }
+
+        $archive = new \template_manager\classes\ArchiveManager($zipPath);
+        $templateName = $archive->unpack();
+        return $templateName;
     }
 
     /**
@@ -172,18 +171,23 @@ class Admin extends BaseAdminController {
         if (!file_exists($this->templatesUploadPath)) {
             mkdir($this->templatesUploadPath, 0777);
         }
-        $fullName = array_pop(explode('/', $url));
-        $nameArray = explode('.', $fullName);
-        $ext = array_pop($nameArray);
-        $name = count($nameArray) > 1 ? implode('.', $nameArray) : $nameArray[0];
 
-        if ($ext == 'zip') {
-            $fullPath = './uploads/templates/' . $name . '.zip';
-            if (file_put_contents($fullPath, file_get_contents($url)) > 0) {
-                return $fullPath;
-            }
-        } else {
+        $ext = pathinfo($url, PATHINFO_EXTENSION);
+        if ($ext != 'zip') {
             throw new Exception('Wrong file type');
+        }
+
+        $tempFolder = PUBPATH . 'uploads/templates/';
+        if (!file_exists($tempFolder)) {
+            mkdir($tempFolder);
+        }
+
+        $fileName = pathinfo($url, PATHINFO_BASENAME);
+        $fullPath = $tempFolder . $fileName;
+        if (file_put_contents($fullPath, file_get_contents($url)) > 0) {
+            return $fullPath;
+        } else {
+            return false;
         }
     }
 

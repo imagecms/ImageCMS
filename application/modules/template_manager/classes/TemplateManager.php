@@ -141,40 +141,6 @@ class TemplateManager {
         
     }
 
-    /**
-     * 
-     * @param string $url path to zip file
-     * @return Template
-     * @throws Exception
-     */
-    public function unpack($zipPath) {
-        $templateName = pathinfo($zipPath, PATHINFO_FILENAME);
-        $zip = new \ZipArchive();
-        $zip->open($zipPath);
-
-        // перевірка чи є файл із параметрами
-        $paramsXml = FALSE;
-        for ($i = 0; $i < $zip->numFiles; $i++) {
-            $innerFilePath = $zip->getNameIndex($i);
-            if ($innerFilePath == "{$templateName}/params.xml") {
-                $paramsXml = TRUE;
-                break;
-            }
-        }
-
-        if ($paramsXml == TRUE) { // imposible to download tamplate if such already exists
-            if (is_dir(PUBPATH . 'templates/' . $templateName)) {
-                throw new \Exception('Template already exists');
-            }
-            if (mkdir(PUBPATH . 'templates/' . $templateName, 0777)) {
-                $zip->extractTo(PUBPATH . 'templates/');
-                return TRUE;
-            }
-        } else {
-            throw new \Exception('No "params.xml" file');
-        }
-    }
-
 }
 
 ?>
