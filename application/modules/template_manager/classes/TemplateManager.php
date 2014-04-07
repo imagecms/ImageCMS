@@ -32,6 +32,7 @@ class TemplateManager {
      * @var Template
      */
     private $currentTemplate;
+    private static $ImageCMSRepositoryURL = 'http://ofcite.loc/addons/shop/templates_xml';
 
     /**
      * 
@@ -59,6 +60,13 @@ class TemplateManager {
                 }
             }
             closedir($handle);
+        }
+        
+        // TODO: REMOVE ! symbol
+        if(!SHOP_INSTALLED){
+            self::$ImageCMSRepositoryURL = self::$ImageCMSRepositoryURL . '/Shop';
+        }else{
+            self::$ImageCMSRepositoryURL = self::$ImageCMSRepositoryURL . '/Corporate';
         }
     }
 
@@ -99,7 +107,7 @@ class TemplateManager {
     }
 
     public function getCurentTemplate() {
-      
+
         if (is_null($this->currentTemplate)) {
             $currentTemplateName = \CI::$APP->db->get('settings')->row()->site_template;
             $this->currentTemplate = new Template($currentTemplateName);
@@ -132,8 +140,16 @@ class TemplateManager {
      * @param string $sourceUrl url of remote xml file with template data
      * @return array of Template
      */
-    public function listRemote($sourceUrl) {
-        
+    public function listRemote($sourceUrl = '') {
+        if (!$sourceUrl) {
+            $sourceUrl = self::$ImageCMSRepositoryURL;
+        }
+        $templatesXML = file_get_contents($sourceUrl);
+        $xml = simplexml_load_string($templatesXML);
+        $json = json_encode($xml);
+        $array = json_decode($json, TRUE);
+
+        return $array;
     }
 
     /**

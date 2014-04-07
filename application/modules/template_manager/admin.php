@@ -47,6 +47,8 @@ class Admin extends BaseAdminController {
         $templates = \template_manager\classes\TemplateManager::getInstance()->listLocal();
         $template = new \template_manager\classes\Template($currentTemplate->name);
 
+        $remoteTemplates = \template_manager\classes\TemplateManager::getInstance()->listRemote();
+
         \CMSFactory\assetManager::create()
                 ->registerStyle('style_admin')
                 ->registerScript('script_admin')
@@ -55,6 +57,7 @@ class Admin extends BaseAdminController {
                     'error' => $error,
                     'message' => $message,
                     'templates' => $templates,
+                    'remoteTemplates' => $remoteTemplates,
                     'currTpl' => $currentTemplate->name
                 ))
                 ->renderAdmin('main');
@@ -252,6 +255,21 @@ class Admin extends BaseAdminController {
             rmdir($dir);
             showMessage(lang('Template successfuly deleted.', 'template_maneger'));
         }
+        pjax(site_url('admin/components/init_window/template_manager') . '/#list');
+    }
+
+    public function getRemoteTemplate($templateId = NULL) {
+        if ($templateId) {
+            $template_path = file_get_contents('http://ofcite.loc/addons/shop/remoteDownload/' . $templateId);
+            if ($template_path) {
+                if ($this->uploadByUrl($template_path)) {
+                    showMessage(lang('Template was successfuly uploaded.', 'template_maneger'));
+                }
+            }
+        } else {
+            showMessage(lang('Can not upload template.', 'template_maneger'), '', 'r');
+        }
+
         pjax(site_url('admin/components/init_window/template_manager') . '/#list');
     }
 
