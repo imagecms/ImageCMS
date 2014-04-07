@@ -39,6 +39,7 @@
                     <a href="#properties_template" class="btn btn-small active">{lang('Template properties', 'template_manager')}</a>
                     <a href="#list" class="btn btn-small">{lang('Templates list', 'template_manager')}</a>
                     <a href="#upload_template" class="btn btn-small">{lang('Upload template', 'template_manager')}</a>
+                    <a href="#remote_templates" class="btn btn-small">{lang('Remote templates', 'template_manager')}</a>
                 </div>
             </div>
             <div class="tab-content">
@@ -70,7 +71,6 @@
                 </div>
 
                 <div class="tab-pane" id="list">
-
                     <div class="inside_padd">
                         <h4>Список шаблонов</h4>
                         <form method="post">
@@ -80,7 +80,7 @@
                                         <input {if $currTpl == $tpl->name}checked="checked"{/if} type="radio" name="template_name" value="{echo $tpl->name}">
                                     </div>        
                                     <div class="span5">
-                                        <img src="{echo $tpl->mainImage}"/>
+                                        <img src="{echo $tpl->mainImage}" style="max-width: 60%"/>
                                     </div>        
                                     <div class="span6">
                                         <p><b>Названия:</b> {echo $tpl->name}</p>
@@ -96,12 +96,82 @@
                                 </div>
                                 <hr />
                             {/foreach}
-
                             <button name="install_template" type="submit" class="pull-right btn btn-small btn-primary"><i class="icon-ok icon-white"></i>{lang('Install', 'template_manager')}</button>
                                 {form_csrf()}
                         </form>
                     </div>
+                </div>
+                <div class="tab-pane" id="remote_templates">
+                    <div class="inside_padd">
+                        {if $remoteTemplates}
+                            <h4>{echo $remoteTemplates['CategoryName']}</h4>
+                            <form method="post">
+                                {foreach $remoteTemplates['Template'] as $remoteTemplate}
+                                    <div class="row-fluid">
+                                        <div class="span1">
+                                            <input type="radio" name="template_name" value="{echo $remoteTemplate['Name']}">
+                                        </div>        
+                                        <div class="span5">
+                                            {if isset($remoteTemplate['Images']['MainImage']) && $remoteTemplate['Images']['MainImage']}
+                                                {$image = $remoteTemplate['Images']['MainImage'];}
+                                            {else:}
+                                                {$image = site_url('uploads/shop/nophoto/nophoto.jpg');}
+                                            {/if}
+                                            <div style="height: 300px; background-image: url('{echo $image}'); background-repeat: no-repeat;"></div>
+                                            {if $remoteTemplate['Images']['AdditionalImages']['Image']}
+                                                <div style="height: 115px; overflow-y: scroll; margin-top: 20px; border: 2px solid lightgray; border-radius: 5px;">
+                                                    {if is_array($remoteTemplate['Images']['AdditionalImages']['Image'])}
+                                                        {foreach $remoteTemplate['Images']['AdditionalImages']['Image'] as $image}
+                                                            <img src="{echo $image}" style="max-height: 100px; margin: 5px"/>
+                                                        {/foreach}
+                                                    {else:}
+                                                        <img src="{echo $remoteTemplate['Images']['AdditionalImages']['Image']}" style="max-height: 100px; margin: 5px"/>
+                                                    {/if}
+                                                </div>
+                                            {/if}
+                                        </div>        
+                                        <div class="span6">
+                                            {if $remoteTemplate['IsFree'] == 'Yes'}
+                                                <a class="btn btn-small btn-success pull-right pjax" href="{site_url('admin/components/init_window/template_manager/getRemoteTemplate')}/{echo $remoteTemplate['Id']}">
+                                                    <i class="icon-white icon-download-alt"></i>
+                                                    {lang('Download', 'template_manager')}
+                                                </a>
+                                            {else:}
+                                                <a class="btn btn-small btn-primary pull-right" href="{echo $remoteTemplate['Url']}" target="_blank">
+                                                    <i class="icon-white icon-shopping-cart"></i>
+                                                    {lang('Buy', 'template_manager')}
+                                                </a>
+                                            {/if}
 
+                                            <p><b>Названия:</b> {echo $remoteTemplate['Name']}</p>
+                                            <p><b>Тип:</b> {echo $remoteTemplate['Type']}</p>
+                                            {if $remoteTemplate['Version']}
+                                                <p><b>Версия:</b> {echo $remoteTemplate['Version']}</p>
+                                            {/if}
+                                            {if $remoteTemplate['Demo']}
+                                                <p><b>Демо:</b> {echo $remoteTemplate['Demo']}</p>
+                                            {/if}
+                                            {if $remoteTemplate['Description']}
+                                                <p><b>Описание:</b> {echo $remoteTemplate['Description']}</p>
+                                            {/if}
+                                        </div>
+                                        <div>
+                                            <!--a {if $currTpl != $tpl->name}href="{site_url('admin/components/init_window/template_manager/deleteTemplate')}/{echo $tpl->name}"{/if} name="delete_template" type="button" class="{if $currTpl == $tpl->name}disabled{else:}pjax{/if} pull-right btn btn-small btn-danger" style="margin-top: -115px;">
+                                                <i class="icon-trash icon-white"></i>{lang('Delete', 'template_manager')}
+                                            </a-->
+                                        </div>
+                                    </div>
+                                    <hr />
+                                {/foreach}
+                                <button name="install_template" type="submit" class="pull-right btn btn-small btn-primary"><i class="icon-ok icon-white"></i>{lang('Install', 'template_manager')}</button>
+                                    {form_csrf()}
+                            </form>
+                        {else:}
+                            <div class="alert alert-warning t_notice_on_load" style='margin:10px;'>
+                                {lang('No templates', 'template_manager')}
+                            </div>
+                        {/if}
+                    </div>
                 </div>
 
                 <div class="tab-pane" id="upload_template">
