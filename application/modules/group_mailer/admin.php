@@ -85,9 +85,9 @@ class Admin extends BaseAdminController {
                     $this->email->reply_to($_POST['email'], $_POST['name']);
                     $this->email->subject($_POST['subject']);
                     $this->email->message($tmp_msg);
-                    $counter['all']++;
+                    $counter['all'] ++;
                     if ($this->email->send()) {
-                        $counter['true']++;
+                        $counter['true'] ++;
                     }
                 }
 
@@ -100,7 +100,7 @@ class Admin extends BaseAdminController {
                     $class = 'r';
                 }
                 if ($class !== 'r') {
-                    showMessage(lang("Message has been sent.", 'group_mailer') . ' ' .lang("Number of e-mails sent", 'group_mailer') . ' ' . $counter['all'] . ' ' . lang('pcs.', 'group_mailer'), false, $class);
+                    showMessage(lang("Message has been sent.", 'group_mailer') . ' ' . lang("Number of e-mails sent", 'group_mailer') . ' ' . $counter['all'] . ' ' . lang('pcs.', 'group_mailer'), false, $class);
                 } else {
                     showMessage(lang("None of the messages", 'group_mailer') . $counter['all'] . lang("Number not", 'group_mailer'), false, $class);
                 }
