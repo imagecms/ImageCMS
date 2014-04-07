@@ -24,6 +24,7 @@
     {widget('path')}
 </div>
 <div class="frame-inside">
+    {var_dump($products)}
     <div class="container">
         <div class="right-catalog" {if !$totalProducts > 0}style="width:100% !important"{/if}>
             <div class="f-s_0 title-category">
@@ -42,7 +43,7 @@
             {/if}
 
             {include_tpl('catalogue_header')}
-
+            
             <!--Start. Show brand description if $CI->uri->segment(2) == "brand" and description is not empty-->
             {if $model->getImage() && trim($model->getDescription()) != ""}
                 <div class="frame-category-brand">

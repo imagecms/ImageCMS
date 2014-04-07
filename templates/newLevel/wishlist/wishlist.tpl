@@ -6,6 +6,7 @@
                 <h1 class="title">{lang('Список желаний','newLevel')}</h1>
             </div>
         </div>
+        {var_dump($settings)}
         {if $errors}
             {foreach $errors as $error}
                 <div class="msg">
