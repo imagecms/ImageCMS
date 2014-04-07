@@ -106,7 +106,7 @@ $.dropInit.prototype.extendDrop = function() {
                 drop = this.self ? this.self : this;
             drop.each(function() {
                 var drop = $(this),
-                        drp = drop.data('drp');
+                        drp = $.extend({}, drop.data('drp'));
 
                 if (drp.limitContentSize) {
                     var dropV = drop.is(':visible'),

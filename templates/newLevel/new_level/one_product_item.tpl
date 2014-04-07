@@ -242,7 +242,7 @@
                                     class="infoBut"
                                     type="button"
                                     data-drop=".drop-report"
-                                    data-source="/shop/ajax/getNotifyingRequest"
+                                    data-source="{shop_url('ajax/getNotifyingRequest')}"
 
                                     data-id="{echo $pv->getId()}"
                                     data-product-id="{echo $p->getId()}"
