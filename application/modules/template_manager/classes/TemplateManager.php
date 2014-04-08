@@ -61,10 +61,10 @@ class TemplateManager {
             }
             closedir($handle);
         }
-        
-        if(SHOP_INSTALLED){
+
+        if (SHOP_INSTALLED) {
             self::$ImageCMSRepositoryURL = self::$ImageCMSRepositoryURL . '/Shop';
-        }else{
+        } else {
             self::$ImageCMSRepositoryURL = self::$ImageCMSRepositoryURL . '/Corporate';
         }
     }
@@ -92,6 +92,9 @@ class TemplateManager {
             }
         }
 
+        // Truncate table template_settings
+        \CI::$APP->db->truncate('template_settings');
+        
         foreach ($template->xml->components->component as $component) {
             $attributes = $component->attributes();
             $handler = (string) $attributes['handler'];
