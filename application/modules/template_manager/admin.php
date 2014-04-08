@@ -161,7 +161,7 @@ class Admin extends BaseAdminController {
             $zipPath = $this->uploadFromPc('template_file');
         }
 
-        $archive = new \template_manager\classes\ArchiveManager($zipPath);
+        $archive = new \template_manager\classes\TArchive($zipPath);
         $templateName = $archive->unpack();
         return $templateName;
     }

@@ -3,11 +3,12 @@
 namespace template_manager\classes;
 
 /**
+ * Class for working with template archive
+ * Template archive must always be zip-type
  * 
- *
  * 
  */
-class ArchiveManager {
+class TArchive {
 
     /**
      *
@@ -84,6 +85,10 @@ class ArchiveManager {
         if (!$this->zip->extractTo($unpackPath)) {
             throw new \Exception('Unable to extract archive');
         }
+    }
+
+    public function getZipHandler() {
+        return $this->zip;
     }
 
     public function getTemplateName() {
@@ -163,4 +168,5 @@ class ArchiveManager {
     }
 
 }
+
 ?>
