@@ -104,7 +104,7 @@
                 <div class="tab-pane" id="remote_templates">
                     <div class="inside_padd">
                         {if $remoteTemplates}
-                            <h4>{echo $remoteTemplates['CategoryName']}</h4>
+                            <h4>{echo $remoteTemplates['CategoryName']} ({count($remoteTemplates['Template'])})</h4>
                             <form method="post">
                                 {foreach $remoteTemplates['Template'] as $remoteTemplate}
                                     <div class="row-fluid">
@@ -145,8 +145,14 @@
 
                                             <p><b>Названия:</b> {echo $remoteTemplate['Name']}</p>
                                             <p><b>Тип:</b> {echo $remoteTemplate['Type']}</p>
+                                            {if $remoteTemplate['Price']}
+                                                <p><b>Цена:</b> {echo $remoteTemplate['Price']} {echo $remoteTemplate['CurrencySymbol']}</p>
+                                            {/if}
                                             {if $remoteTemplate['Version']}
                                                 <p><b>Версия:</b> {echo $remoteTemplate['Version']}</p>
+                                            {/if}
+                                            {if $remoteTemplate['SupportedVersions']}
+                                                <p><b>Поддерживается с:</b> {echo $remoteTemplate['SupportedVersions']}</p>
                                             {/if}
                                             {if $remoteTemplate['Demo']}
                                                 <p><b>Демо:</b> {echo $remoteTemplate['Demo']}</p>
