@@ -21,8 +21,8 @@ class template_manager extends \MY_Controller {
 
     public function autoload() {
 
-        $schema = $this->getComponent('TColorScheme')->getParam('color_scheme');
-        $this->template->assign('colorScheme', $schema['value']);
+//        $schema = $this->getComponent('TColorScheme')->getParam('color_scheme');
+//        $this->template->assign('colorScheme', $schema['value']);
     }
 
     public function getComponent($handler) {

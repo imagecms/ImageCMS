@@ -152,10 +152,10 @@
                                                 <p><b>Поддерживается с:</b> {echo $remoteTemplate['SupportedVersions']}</p>
                                             {/if}
                                             {if $remoteTemplate['Demo']}
-                                                <p><b>Демо:</b> {echo $remoteTemplate['Demo']}</p>
+                                                <p><b>Демоssss:</b> {echo $remoteTemplate['Demo']}</p>
                                             {/if}
                                             {if $remoteTemplate['Description']}
-                                                <p><b>Описание:</b> {echo $remoteTemplate['Description']}</p>
+                                                <p><b>Описание:</b> {echo str_replace('href','target="_blanck" href',$remoteTemplate['Description'])}</p>
                                             {/if}
                                         </div>
                                         <div>
