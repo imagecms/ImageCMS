@@ -173,7 +173,7 @@
                                     {form_csrf()}
                             </form>
                         {else:}
-                            <div class="alert alert-warning t_notice_on_load" style='margin:10px;'>
+                            <div class="alert alert-warning" style='margin:10px;'>
                                 {lang('No templates', 'template_manager')}
                             </div>
                         {/if}
