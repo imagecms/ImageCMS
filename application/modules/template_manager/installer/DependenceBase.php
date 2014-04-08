@@ -3,43 +3,43 @@
 namespace template_manager\installer;
 
 /**
- *
- * @author 
+ * Image CMS
+ * Module Template_manager
+ * class DependenceBase
  */
 abstract class DependenceBase {
 
     /**
-     *
+     * Error messages array
      * @var array
      */
     protected $messages = array();
 
     /**
-     *
+     * SimpleXMLElement dependence node
      * @var \SimpleXMLElement 
      */
     protected $node;
 
     /**
-     *
+     * Dependence type
      * @var string 
      */
     public $type;
 
     /**
-     *
+     * Dependence name
      * @var string 
      */
     public $name;
 
     /**
-     *
+     * Dependence relation
      * @var string 
      */
     public $relation;
 
     /**
-     * 
      * @param \SimpleXMLElement $node
      */
     public function __construct(\SimpleXMLElement $node) {
@@ -51,13 +51,13 @@ abstract class DependenceBase {
     }
 
     /**
-     * 
+     * Verify dependence relations
      * @return int status (from DependenceDirector constants) 
      */
     abstract public function verify();
 
     /**
-     * 
+     * Get error messages
      * @return array
      */
     public function getMessages() {

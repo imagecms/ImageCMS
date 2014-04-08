@@ -5,10 +5,14 @@
  */
 class TProperties extends \template_manager\classes\TComponent {
 
+    /**
+     * Properties names
+     * @var type 
+     */
     private $propType = array('dropDown', 'scroll', 'select');
 
     /**
-     * Prepare to save param from xml to db 
+     * Prepare param from xml to save in db
      * @param \SimpleXMLElement $nodes
      */
     public function setParamsXml(\SimpleXMLElement $component) {
@@ -34,7 +38,8 @@ class TProperties extends \template_manager\classes\TComponent {
     }
 
     /**
-     * Prepare to save param from form to db 
+     * Prepare param from form to save in db
+     * @param type $data - data array
      */
     public function setParams($data = array()) {
         if (count($data) > 0)
@@ -62,7 +67,9 @@ class TProperties extends \template_manager\classes\TComponent {
     }
 
     /**
-     * Prepare param to output
+     * Get param
+     * @param string $key - param key
+     * @return array
      */
     public function getParam($key = null) {
         $params = parent::getParam($key);
@@ -80,7 +87,7 @@ class TProperties extends \template_manager\classes\TComponent {
     }
 
     /**
-     * Render admin tpl
+     * Render admin template
      */
     public function renderAdmin() {
         $properties = $this->getParam('properties');
@@ -107,6 +114,10 @@ class TProperties extends \template_manager\classes\TComponent {
         return __CLASS__;
     }
 
+    /**
+     * Get component label
+     * @return string
+     */
     public function getLabel() {
         return lang('Properties', 'template_maneger');
     }

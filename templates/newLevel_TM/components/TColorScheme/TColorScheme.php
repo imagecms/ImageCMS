@@ -3,12 +3,11 @@
 /**
  * class TColorScheme for Components template manager
  *
- * @author 
  */
 class TColorScheme extends \template_manager\classes\TComponent {
 
     /**
-     * prepare param from xml to save in db
+     * Prepare param from xml to save in db
      * @param \SimpleXMLElement $nodes
      */
     public function setParamsXml(\SimpleXMLElement $component) {
@@ -26,8 +25,10 @@ class TColorScheme extends \template_manager\classes\TComponent {
             $this->setParams($data);
     }
 
+
     /**
-     * prepare param from form to save in db
+     * Prepare param from form to save in db
+     * @param type $data - data array
      */
     public function setParams($data = array()) {
         if (count($data) > 0)
@@ -50,7 +51,9 @@ class TColorScheme extends \template_manager\classes\TComponent {
     }
 
     /**
-     * Prepare param to output
+     * Get param
+     * @param string $key - param key
+     * @return array
      */
     public function getParam($key = null) {
         $params = parent::getParam($key);
@@ -67,7 +70,7 @@ class TColorScheme extends \template_manager\classes\TComponent {
     }
 
     /**
-     * get all color schema
+     * Get all color schema
      * @return array 
      */
     public function getAllColorSchema() {
@@ -85,19 +88,23 @@ class TColorScheme extends \template_manager\classes\TComponent {
     }
 
     /**
-     * 
-     * @return type
+     * Get component label
+     * @return string
      */
     public function getLabel() {
         return lang('Color scheme', 'template_manager');
     }
 
+    /**
+     * Get component type
+     * @return system
+     */
     public function getType() {
         return __CLASS__;
     }
 
     /**
-     * render wityh param
+     * Render admin template
      */
     public function renderAdmin() {
         $sheme = $this->getParam('color_scheme');
