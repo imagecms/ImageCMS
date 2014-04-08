@@ -62,8 +62,7 @@ class TemplateManager {
             closedir($handle);
         }
         
-        // TODO: REMOVE ! symbol
-        if(!SHOP_INSTALLED){
+        if(SHOP_INSTALLED){
             self::$ImageCMSRepositoryURL = self::$ImageCMSRepositoryURL . '/Shop';
         }else{
             self::$ImageCMSRepositoryURL = self::$ImageCMSRepositoryURL . '/Corporate';

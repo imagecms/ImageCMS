@@ -83,7 +83,7 @@
                                         <img src="{echo $tpl->mainImage}" style="max-width: 60%"/>
                                     </div>        
                                     <div class="span6">
-                                        <p><b>Названия:</b> {echo $tpl->name}</p>
+                                        <p><b>Названия:</b> {if $tpl->label}{echo $tpl->label}{else:}{echo $tpl->name}{/if}</p>
                                         <p><b>Тип:</b> {echo $tpl->type}</p>
                                         <p><b>Версия:</b> {echo $tpl->version}</p>
                                         <p><b>Описание:</b> {echo $tpl->description}</p>
@@ -108,9 +108,6 @@
                             <form method="post">
                                 {foreach $remoteTemplates['Template'] as $remoteTemplate}
                                     <div class="row-fluid">
-                                        <div class="span1">
-                                            <input type="radio" name="template_name" value="{echo $remoteTemplate['Name']}">
-                                        </div>        
                                         <div class="span5">
                                             {if isset($remoteTemplate['Images']['MainImage']) && $remoteTemplate['Images']['MainImage']}
                                                 {$image = $remoteTemplate['Images']['MainImage'];}
@@ -169,8 +166,7 @@
                                     </div>
                                     <hr />
                                 {/foreach}
-                                <button name="install_template" type="submit" class="pull-right btn btn-small btn-primary"><i class="icon-ok icon-white"></i>{lang('Install', 'template_manager')}</button>
-                                    {form_csrf()}
+                                {form_csrf()}
                             </form>
                         {else:}
                             <div class="alert alert-warning" style='margin:10px;'>

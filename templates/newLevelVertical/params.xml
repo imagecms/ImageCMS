@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<template label='Сині Фіалки' name='newLevelVertical' type="shop" version="0.1">
+<template label='New Level Vertical' name='newLevelVertical' type="shop" version="0.1">
     
     <dependencies><!-- ОДНОРАЗОВО - ПРИ ІНСТАЛЯЦІЇ -->
         <!-- залежності - те має бути в ЦМС для правильної роботи шаблону -->
