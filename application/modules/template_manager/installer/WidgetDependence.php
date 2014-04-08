@@ -1,12 +1,16 @@
 <?php
 
 /**
- * 
- *
- * @author 
+ * Image CMS
+ * Module Template_manager
+ * class WidgetDependence
  */
 class WidgetDependence extends \template_manager\installer\DependenceBase {
 
+    /**
+     * Verify widgets dependence relations
+     * @return boolean
+     */
     public function verify() {
         $this->getWidgets();
         switch ($this->relation) {
@@ -20,6 +24,9 @@ class WidgetDependence extends \template_manager\installer\DependenceBase {
         return FALSE;
     }
 
+    /**
+     * Prepare installed widgets array
+     */
     private function getWidgets() {
         $widgets = \CI::$APP->db
                 ->select('name')
@@ -32,6 +39,10 @@ class WidgetDependence extends \template_manager\installer\DependenceBase {
         }
     }
 
+    /**
+     * Add widget
+     * @return boolean
+     */
     private function add() {
         if (in_array($this->name, $this->widgets)) {
             $this->messages[] = 'Widget already exists';
@@ -63,6 +74,10 @@ class WidgetDependence extends \template_manager\installer\DependenceBase {
         return TRUE;
     }
 
+    /**
+     * Check if widget is required
+     * @return boolean
+     */
     private function required() {
         if (!in_array($this->name, $this->widgets)) {
             return FALSE;
@@ -70,6 +85,10 @@ class WidgetDependence extends \template_manager\installer\DependenceBase {
         return TRUE;
     }
 
+    /**
+     * Check if widget is wishful
+     * @return boolean
+     */
     private function wishful() {
         if (!in_array($this->name, $this->widgets)) {
             $this->messages[] = '';

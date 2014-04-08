@@ -7,7 +7,7 @@
 class TComponentName extends \template_manager\classes\TComponent {
 
     /**
-     * prepare param from xml to save in db
+     * Prepare param from xml to save in db
      * @param \SimpleXMLElement $nodes
      */
     public function setParamsXml(\SimpleXMLElement $nodes) {
@@ -15,19 +15,23 @@ class TComponentName extends \template_manager\classes\TComponent {
     }
 
     /**
-     * 
+     * Get componet lable
      * @return type
      */
     public function getLabel() {
         return lang('Component Name', 'template_manager');
     }
 
+    /**
+     * Get component type
+     * @return string
+     */
     public function getType() {
         return __CLASS__;
     }
 
     /**
-     * render wityh param
+     * Render admin template
      */
     public function renderAdmin() {
 

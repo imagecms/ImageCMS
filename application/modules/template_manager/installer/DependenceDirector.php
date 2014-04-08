@@ -3,26 +3,26 @@
 namespace template_manager\installer;
 
 /**
- * 
- *
- * @author 
+ * Image CMS
+ * Module Template_manager
+ * class DependenceDirector
  */
 class DependenceDirector {
 
     /**
-     *
+     * Status of dependences verify
      * @var boolean
      */
     private $status = TRUE;
 
     /**
-     *
+     * SilmpleXmlElement dependence node
      * @var \SilmpleXmlElement
      */
     private $dependicies;
 
     /**
-
+     * Error messages array
      * @var array
      */
     private $messages = array();
@@ -31,6 +31,10 @@ class DependenceDirector {
         $this->dependicies = $dependicies;
     }
 
+    /**
+     * Verify dependences
+     * @return type
+     */
     public function verify() {
         foreach ($this->dependicies as $node) {
             $attributes = $node->attributes();
@@ -64,6 +68,10 @@ class DependenceDirector {
         return $this->status;
     }
 
+    /**
+     * Get error messages
+     * @return type
+     */
     public function getMessages() {
         return $this->messages;
     }
