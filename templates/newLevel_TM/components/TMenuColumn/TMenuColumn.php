@@ -5,10 +5,15 @@
  */
 class TMenuColumn extends \template_manager\classes\TComponent {
 
-    private $column = array(1, 2, 3, 4, 5);
+    /**
+     * Columns names array
+     * @var type 
+     */
+    private $columns = array(1, 2, 3, 4, 5);
 
     /**
-     * prepare to save param from xml to db 
+     * Prepare param from xml to save in db
+     * @param \SimpleXMLElement $nodes
      */
     public function setParamsXml(\SimpleXMLElement $component) {
         $data = array();
@@ -33,7 +38,8 @@ class TMenuColumn extends \template_manager\classes\TComponent {
     }
 
     /**
-     * prepare to save param from form to db 
+     * Prepare param from form to save in db
+     * @param type $data - data array
      */
     public function setParams($data = array()) {
         if (count($data) > 0)
@@ -53,7 +59,9 @@ class TMenuColumn extends \template_manager\classes\TComponent {
     }
 
     /**
-     * Prepare param to output
+     * Get param
+     * @param string $key - param key
+     * @return array
      */
     public function getParam($key = null) {
         $params = parent::getParam($key);
@@ -72,7 +80,7 @@ class TMenuColumn extends \template_manager\classes\TComponent {
     }
 
     /**
-     * render admin tpl with data
+     * Render admin template
      */
     public function renderAdmin() {
         $params = $this->getParam('columns');
@@ -85,12 +93,15 @@ class TMenuColumn extends \template_manager\classes\TComponent {
         }
 
         $this->cAssetManager->display('admin/main', array(
-            'columns' => $this->column,
+            'columns' => $this->columns,
             'columns_db' => $columns,
             'handler' => $this->name)
         );
     }
 
+    /**
+     * Update component params
+     */
     public function updateParams() {
         if ($_POST['columns']) {
             $data = \CI::$APP->input->post();
@@ -101,17 +112,25 @@ class TMenuColumn extends \template_manager\classes\TComponent {
                     'values' => implode(',', $values)
                 );
             }
-            
+
             $dataToUpdate['columns'] = serialize($dataToUpdate['columns']);
             if (count($dataToUpdate) > 0)
                 return parent::updateParams($dataToUpdate);
         }
     }
 
+    /**
+     * Get component label
+     * @return string
+     */
     public function getLabel() {
         return lang('Menu Column', 'template_maneger');
     }
 
+    /**
+     * Get component type
+     * @return system
+     */
     public function getType() {
         return __CLASS__;
     }
