@@ -69,6 +69,12 @@ class TComponentData { // TLicense
         return false;
     }
 
+    /**
+     * Ця ф-я є таких місцях: (якщо раптом треба буде щось змінити в формуванні ключа, то змінити тре бде і там)
+     *  - головний проект: /application/modules/template_manager/classes/TComponentData.php
+     *  - магазин доповнень оф. сайту: /addons/application/modules/shop/classes/TLicense.php
+     *  - скрипт генерації файлу ліцензії "tlic"
+     */
     private static function generateKey($templateName, $domain, $type) {
         if ($type == self::TYPE_PAID) { // paid
             $dummy = 'fpnsdg97f-p43279gr9g974';
