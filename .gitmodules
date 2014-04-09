@@ -7,6 +7,3 @@
 [submodule "application/modules/exchange"]
 	path = application/modules/exchange
 	url = git@github.com:imagecms/ImageCMS-Exchange.git
-[submodule "application/modules/template_manager"]
-	path = application/modules/template_manager
-	url = git@github.com:imagecms/ImageCMS-Template-Manager.git
