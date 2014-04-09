@@ -74,6 +74,7 @@ class Settings extends BaseAdminController {
                 $lang_meta[$lang['id']] = null;
         }
         $this->template->assign('langs', $langs);
+
         $this->template->assign('meta_langs', $lang_meta);
 
 //++++++++++++++++++++
@@ -218,11 +219,7 @@ class Settings extends BaseAdminController {
         }
 
 
-        $siData = $this->processSiteInfo();
-
-        $this->siteinfo->setSiteInfoData($siData);
-        $this->siteinfo->normalizeData();
-        $siData = $this->siteinfo->getSiteInfoData();
+        $res = $this->processSiteInfo();
 
         $data_m = array(
             'create_keywords' => $this->input->post('create_keywords'),
@@ -242,7 +239,7 @@ class Settings extends BaseAdminController {
             'yandex_metric' => $this->input->post('yandex_metric'),
             'lang_sel' => $this->input->post('lang_sel'),
             'text_editor' => $this->input->post('text_editor'),
-            'siteinfo' => serialize($siData)
+                //'siteinfo' => serialize($siData)
         );
 
         /** Save template path for shop * */
@@ -250,7 +247,6 @@ class Settings extends BaseAdminController {
             $shopTemplatePath = './templates/' . $this->input->post('template') . '/shop/';
             $this->db->where('name', 'systemTemplatePath')->update('shop_settings', array('value' => $shopTemplatePath));
         }
-
 
         $this->translate_meta();
 
@@ -270,14 +266,12 @@ class Settings extends BaseAdminController {
     /**
      * Getting values of "siteinfo" from POST
      * Uploads logo and favicon (if present)
-     * @return array siteinfo data
+     * @return boolean whatever data was saved or not
      */
     protected function processSiteInfo() {
 
         $this->load->library('SiteInfo', $_POST['siteinfo_locale']);
         unset($_POST['siteinfo_locale']);
-
-        $this->activeTemplateName = $this->siteinfo->getActiveTemplateName();
 
         // getting all parameters with keys
         $siteinfo = array();
@@ -306,6 +300,13 @@ class Settings extends BaseAdminController {
 
         $siteinfo['contacts'] = $additional;
 
+        $upload_path = rtrim(FCPATH, '/') . $this->siteinfo->imagesPath;
+
+        $config['upload_path'] = $upload_path;
+        $config['allowed_types'] = 'jpg|jpeg|png|ico|gif';
+        $config['overwrite'] = TRUE;
+        $this->load->library('upload', $config);
+
         // saving admin's email in application/config/auth.php
         $authFullPath = "./application/config/auth.php";
         $authContents = file_get_contents($authFullPath);
@@ -316,14 +317,40 @@ class Settings extends BaseAdminController {
             $this->load->helper('file');
             write_file($authFullPath, $newAuthContents);
         }
-        // returning beautiful array =)
-        return $siteinfo;
+
+        $this->siteinfo->setSiteInfoData($siteinfo);
+        if ($_POST['si_delete_favicon'] == 1) {
+            $this->siteinfo->deleteSiteInfoValue('favicon');
+        }
+        if ($_POST['si_delete_logo'] == 1) {
+            $this->siteinfo->deleteSiteInfoValue('logo');
+        }
+        return $this->siteinfo->save();
     }
 
     public function getSiteInfoDataJson() {
         $this->load->library('SiteInfo', $_POST['locale']);
         $data = $this->siteinfo->getSiteInfoData(TRUE);
         echo json_encode(array_merge($data, array('locale' => $_POST['locale'])));
+    }
+
+    /**
+     * 
+     * @param type $paramName
+     * @param type $siteinfo
+     */
+    protected function processLogoOrFavicon($paramName, &$siteinfo) {
+        // setting old value
+        $oldValue = $this->siteinfo->getSiteInfo($paramName);
+        $siteinfo[$paramName] = !empty($oldValue) ? $oldValue : '';
+        if (isset($_FILES[$paramName])) {
+            if (!$this->upload->do_upload($paramName)) {
+                echo $this->upload->display_errors('', '');
+            } else {
+                $uploadData = $this->upload->data();
+                $siteinfo[$paramName] = $uploadData['file_name'];
+            }
+        }
     }
 
     public function switch_admin_lang($lang) {
@@ -354,4 +381,3 @@ class Settings extends BaseAdminController {
 }
 
 /* End of settings.php */
-
