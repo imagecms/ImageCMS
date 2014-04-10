@@ -40,12 +40,12 @@ class DependenceDirectorTest extends \PHPUnit_Framework_TestCase {
             <dependency entityName="widget" name="' . $this->dbWidgets[1]['name'] . '" type="wishful"/> 
             <dependency entityName="widget" name="notExistingWidget1" type="required"/>
             <dependency entityName="widget" name="notExistingWidget2" type="wishful"/>
-            <dependency entityName="widget" name="addHTMLWidget" type="add" widgetType="html">
+            <dependency entityName="widget" name="addHTMLWidget" type="add" widgetType="html" locale="en">
                 <data>
                    <div>WidgetText</div>
                 </data>
             </dependency>
-            <dependency entityName="widget" name="addModuleWidget" type="add" widgetType="module" module="widgetModule" method="methodName" description="widget description">
+            <dependency entityName="widget" name="addModuleWidget" type="add" widgetType="module" locale="en" module="widgetModule" method="methodName" description="widget description">
                 <settings>
                     <setting1>1</setting1>
                     <setting2>2</setting2>
