@@ -88,8 +88,6 @@ article, .container, .special-proposition .title-proposition-h{max-width: 980px;
 body, input, select, button, textarea, .f-s_0 > *, .items > li, .items > td, .text-el, .nav > li, .cuselText, .frame-kit .title, .t-a_j > *{font-size: 13px;}
 html, body{height: 100%;}
 html {-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;}
-body.isScroll{overflow: hidden;margin-right: 17px;}
-body.isScroll.isTouch{padding-right: 0;}
 body {text-align: left;overflow-y: scroll;}
 body, input, select, button, textarea {font-family: Tahoma, Geneva, Kalimati, sans-serif;line-height: 1.5;}
 input[type="submit"], input[type="reset"], input[type="button"], button {overflow: visible;background-color: transparent;border: none;}
@@ -889,7 +887,7 @@ input + .msg{margin-top: 5px;}
 .frame-group-checks[data-rel="cusel"] .inside-padd{padding-right: 20px;}
 .frame-group-checks .inside-padd{padding: 10px 10px 10px 18px;}
 .frame-group-checks .frame-label{cursor: pointer;}
-/*.filter*/
+/*/filter*/
 
 /*catalog*/
 .left-catalog{margin-bottom: 30px;}
@@ -1005,7 +1003,6 @@ td.frame-cur-sum-price {vertical-align: middle;padding-left: 10px;padding-right:
 
 /*/drop-bask*/
 
-.frame-bask-order{}
 .title-cart h1{margin-right: 15px;}
 .frame-count{vertical-align: middle;min-width: 80px;}
 .frame-count > .number{display: inline-block;vertical-align: middle;min-width: 80px;}

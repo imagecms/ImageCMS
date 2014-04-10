@@ -14,6 +14,7 @@
 <!--End. Top menu and authentication data block-->
 <div class="content-header">
     <div class="container">
+        {load_menu('asdf')}
         <!--        Logo-->
         {if  $CI->uri->uri_string() == ''}
             <span class="logo">
