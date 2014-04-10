@@ -1,15 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <template label='New Level TM' name='newLevel_TM' type="shop" version="0.1">
-    
-    <dependencies><!-- ОДНОРАЗОВО - ПРИ ІНСТАЛЯЦІЇ -->
-        <!-- залежності - те має бути в ЦМС для правильної роботи шаблону -->
-        <dependency entityName="widget" name="name1" type="required" /><!-- обов’язковий якщо віджет не встановлений, то шаблон не поставиться -->
-        <dependency entityName="widget" name="name2" type="wishful" /><!-- бажаний - шаблон поставиться, але видасть повідовлення, якщо він не встановлений -->
-        <dependency entityName="widget" name="someNew" type="add" ><!-- бажаний - шаблон поставиться, але видасть повідовлення, якщо він не встановлений -->
+    <!--
+    <dependencies>
+        <dependency entityName="module" name="moduleName1" type="required"/>
+        <dependency entityName="module" name="moduleName2" type="wishful"/>
+        <dependency entityName="module" name="moduleName3" type="add"/>
+        <dependency entityName="widget" name="widgetName1" type="required"/>
+        <dependency entityName="widget" name="widgetName1" type="wishful"/>
+        <dependency entityName="widget" name="addHTMLWidgetName" type="add" widgetType="html">
+            <data>
+                <div>WidgetText</div>
+            </data>
         </dependency>
-        <dependency entityName="module" name="name1" type="wishful"/> <!-- все те саме що і в віджеті -->  
-         </dependency>  
+        <dependency entityName="widget" name="addModuleWidgetName" type="add" widgetType="module" module="widgetModule" method="methodName" description="widget description">
+            <settings>
+                <setting1>1</setting1>
+                <setting2>2</setting2>
+                <setting3>3</setting3>
+            </settings>
+        </dependency>
     </dependencies>
+    -->
+    
     
     <description><!-- КОЖЕН РАЗ ПРИ ЗВЕРНЕННІ -->
         <!-- буде показуватись в інформації про шаблон -->
