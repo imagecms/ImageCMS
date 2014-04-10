@@ -13,3 +13,6 @@
 [submodule "application/modules/mod_stats"]
 	path = application/modules/mod_stats
 	url = git@github.com:imagecms/ImageCMS-Statistick.git
+[submodule "templates/fluid"]
+	path = templates/fluid
+	url = git@github.com:imagecms/ImageCMS-Fluid
