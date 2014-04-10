@@ -10,7 +10,7 @@
 *   $content : variable for insert content of page
 */}
 <!DOCTYPE html>
-<html>
+<html class="html">
     <head>
         <meta charset="utf-8" />
         <title>{$site_title}</title>
@@ -35,6 +35,10 @@
         <script type="text/javascript" src="{$THEME}js/jquery-1.8.3.min.js"></script>
         {include_tpl('config.js')}
         {literal}
+            <style>
+                .apn-toolbar{height: 0!important;border: 0!important;}
+                html.html{padding-top: 0!important;border: 0!important;}
+            </style>
             <script type="text/javascript">
                 function initDownloadScripts(scripts, callback, customEvent) {
                     function downloadJSAtOnload(scripts, callback, customEvent) {
@@ -102,7 +106,7 @@
         {include_tpl('user_toolbar')}
 
         {/*}Start. delete before upload to server{ */}
-        {/*}
+
         <!-- scripts -->
         <script type="text/javascript" src="{$THEME}js/raphael-min.js"></script>
         <script type="text/javascript" src="{$THEME}js/_united_side_plugins.js"></script>
@@ -113,7 +117,7 @@
         <script type="text/javascript" src="{$THEME}js/_functions.js"></script>
         <script type="text/javascript" src="{$THEME}js/_scripts.js"></script>
         <!-- scripts end -->
-        
+
         {literal}
             <script type="text/javascript">
                 $(window).load(function() {
@@ -124,7 +128,7 @@
                 })
             </script>
         {/literal}
-        { */}
+
         {/*}End. delete before upload to server{ */}
 
         {/*fancybox}
@@ -134,11 +138,11 @@
 
         {/*}uncomment before opload to server and combine and minimize scripts (in comment <!-- scripts -->...<!-- scripts end -->) into united_scripts file{ */}
         {/*} Start. uncoment before development { */}
-        
+        {/*}
         <script type="text/javascript">
             initDownloadScripts(['raphael-min', 'united_scripts'], 'init', 'scriptDefer');
         </script>
-        
+        { */}
         {/*} End. uncoment before development { */}
         {include_shop_tpl('js_templates')}
     </body>
