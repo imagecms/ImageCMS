@@ -46,6 +46,7 @@ class TTemplateEditorTest extends \PHPUnit_Framework_TestCase {
         $this->testParamsDataUpdate = array('paramKey' => 'paramDataUpdated', 'paramKey2' => 'paramDataUpdated2');
 
         $this->ci = & get_instance();
+        $this->ci->db->where('component', get_class($this->object))->delete('template_settings');
     }
 
     /**

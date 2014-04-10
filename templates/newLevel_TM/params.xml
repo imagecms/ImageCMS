@@ -6,15 +6,9 @@
         <dependency entityName="widget" name="name1" type="required" /><!-- обов’язковий якщо віджет не встановлений, то шаблон не поставиться -->
         <dependency entityName="widget" name="name2" type="wishful" /><!-- бажаний - шаблон поставиться, але видасть повідовлення, якщо він не встановлений -->
         <dependency entityName="widget" name="someNew" type="add" ><!-- бажаний - шаблон поставиться, але видасть повідовлення, якщо він не встановлений -->
-            <![CDATA[
-                s;dlfjkhsd;
-            ]]>  
         </dependency>
-        <dependency entityName="module" name="name1" type="wishful"/> <!-- все те саме що і в віджеті -->    
-        <dependency entityName="page" name="name1" type="add"><!-- такий тип використовується коли треба добавити контент в базу -->
-            Контент сторінки
-        </dependency>
-        <dependency entityName="category" name="Назва категорії" parent_name="назва_батьківської (якщо є)" type="add"></dependency>
+        <dependency entityName="module" name="name1" type="wishful"/> <!-- все те саме що і в віджеті -->  
+         </dependency>  
     </dependencies>
     
     <description><!-- КОЖЕН РАЗ ПРИ ЗВЕРНЕННІ -->
