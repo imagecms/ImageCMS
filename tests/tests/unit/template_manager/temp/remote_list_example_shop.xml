@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<TemplatesList>
+<CategoryName>Shop Templates</CategoryName>
+<Template>
+<Id>200</Id>
+<Name>New Level TM</Name>
+<Url>http://offsite.loc/addons/shop/product/new-level-tm</Url>
+<Images>
+<MainImage></MainImage>
+</Images>
+<Description></Description>
+<Version></Version>
+<SupportedVersions></SupportedVersions>
+<Demo></Demo>
+<Type>Shop</Type>
+<Price>300</Price>
+<CurrencySymbol>$</CurrencySymbol>
+<IsFree>No</IsFree>
+</Template>
+</TemplatesList>

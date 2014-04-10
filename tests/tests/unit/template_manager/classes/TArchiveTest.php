@@ -25,7 +25,7 @@ class TArchiveTest extends \PHPUnit_Framework_TestCase {
      * This method is called before a test is executed.
      */
     protected function setUp() {
-        $this->dataFolder = PUBPATH . 'tests/tests/unit/template_manager/temp/TArchiveTest/';
+        $this->dataFolder = UNIT_TESTS_PATH . '/template_manager/temp/';
 
         // cleaning temporary folder
         \CI::$APP->load->helper('file');
@@ -35,10 +35,9 @@ class TArchiveTest extends \PHPUnit_Framework_TestCase {
             mkdir($tempFolder);
         }
 
-        $testArchive = 'some_template.zip';
+        $testArchive = 'test_template.zip';
 
         $this->objectValid = new TArchive($this->dataFolder . $testArchive);
-        //$this->objectNotValid = new TArchive($this->dataFolder . $testArchive . '111');
     }
 
     /**
@@ -57,14 +56,15 @@ class TArchiveTest extends \PHPUnit_Framework_TestCase {
         $tempFolder = $this->dataFolder . 'temp';
         $res = $this->objectValid->unpack($tempFolder);
         $this->assertTrue($res);
+        $this->assertFileExists($tempFolder . '/newLevel_TM');
     }
 
     /**
      * @covers template_manager\classes\TArchive::getZipHandler
      */
     public function testGetZipHandler() {
-        $zip = $this->objectValid->getZipHandler();
-        $this->assertTrue($zip instanceof \ZipArchive);
+        $res = $this->objectValid->getZipHandler();
+        $this->assertInstanceOf('ZipArchive', $res);
     }
 
     /**
@@ -72,7 +72,7 @@ class TArchiveTest extends \PHPUnit_Framework_TestCase {
      */
     public function testGetTemplateName() {
         $result = $this->objectValid->getTemplateName();
-        $this->assertTrue(is_string($result));
+        $this->assertInternalType('string', $result);
     }
 
     /**
@@ -80,7 +80,7 @@ class TArchiveTest extends \PHPUnit_Framework_TestCase {
      */
     public function testGetColorSchemes() {
         $result = $this->objectValid->getColorSchemes();
-        $this->assertTrue(is_array($result));
+        $this->assertInternalType('array', $result);
     }
 
     /**
@@ -88,7 +88,7 @@ class TArchiveTest extends \PHPUnit_Framework_TestCase {
      */
     public function testGetComponents() {
         $result = $this->objectValid->getComponents();
-        $this->assertTrue(is_array($result));
+        $this->assertInternalType('array', $result);
     }
 
 }
