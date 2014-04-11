@@ -13,7 +13,7 @@ var optionCompare = {
     allParams: $('[data-href="#all-params"]'),
     hoverParent: '.compare-characteristic',
     after: function(el) {
-        $('.comprasion-head').css('height', el.find(optionCompare.scrollNSPT).height())
+        $('.comprasion-head').css('height', el.find(optionCompare.scrollNSPT).height());
         //        if carousel in compare
         if ($.existsN(el.find('.carousel-js-css:not(.iscarousel)')))
             el.find('.carousel-js-css:not(.iscarousel)').myCarousel(carousel);
@@ -49,7 +49,7 @@ $(document).on('scriptDefer', function() {
         productsCGen = productsC.add($thisP.siblings().find(optionCompare.right)).length,
         productsCL = productsC.length;
         $thisI.remove();
-        if (productsCL == 1) {
+        if (productsCL === 1) {
             var btn = $('[data-href="#' + $thisP.attr('id') + '"],[href="#' + $thisP.attr('id') + '"]').parent();
             $thisP.find(optionCompare.left).remove();
             if ($.existsN(btn.next()))
@@ -58,14 +58,14 @@ $(document).on('scriptDefer', function() {
                 btn.prev().children().click();
             btn.remove();
         }
-        if (productsCGen == 1) {
-            $('.page-compare').find(genObj.blockEmpty).show().end().find(genObj.blockNoEmpty).hide()
+        if (productsCGen === 1) {
+            $('.page-compare').find(genObj.blockEmpty).show().end().find(genObj.blockNoEmpty).hide();
         }
         //    if carousel
         if ($.existsN($thisP.find('.jcarousel-list')))
-            if ($thisP.find('.right-compare').width() == (productsCL - 1) * productsC.last().width()) {
-                $thisP.find('.jcarousel-list').css('left', 0)
-                $thisP.find('.group-button-carousel').children().hide()
+            if ($thisP.find('.right-compare').width() === (productsCL - 1) * productsC.last().width()) {
+                $thisP.find('.jcarousel-list').css('left', 0);
+                $thisP.find('.group-button-carousel').children().hide();
             }
 
         $(optionCompare.frameCompare).equalHorizCell('refresh', optionCompare);

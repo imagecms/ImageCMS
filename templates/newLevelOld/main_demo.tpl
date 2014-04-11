@@ -81,7 +81,7 @@
         {literal}
             <style>
                 body{padding-top: 33px;}
-                .imagecms-top-fixed-header{box-shadow: 0 1px 4px rgba(0,0,0,.2);background-color: #fafafa;height: 30px;border-top: 3px solid #0aae85;position: fixed;top: 0;left: 0;width: 100%;z-index: 1000;font-family: Arial, sans-serif;font-size: 12px;color: #223340;vertical-align: baseline;}
+                .imagecms-top-fixed-header{min-width: 960px;box-shadow: 0 1px 4px rgba(0,0,0,.2);background-color: #fafafa;height: 30px;border-top: 3px solid #0aae85;position: fixed;top: 0;left: 0;width: 100%;z-index: 1000;font-family: Arial, sans-serif;font-size: 12px;color: #223340;vertical-align: baseline;}
                 .imagecms-logo{float: left;}
                 .imagecms-ref-skype, .imagecms-phone{font-size: 0;}
                 .imagecms-phone{margin-right: 32px;}

@@ -26,6 +26,9 @@
         {else:}
             {$lang = ''} 
         {/if}
+        {if $CI->uri->segment(2) == 'profile' || $CI->uri->segment(1) == 'wishlist'}
+            <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW" />
+        {/if}
         <script type="text/javascript">
             var locale = "{echo $lang}";
         </script>
@@ -77,15 +80,17 @@
         <link rel="shortcut icon" href="{echo siteinfo('siteinfo_favicon_url')}" type="image/x-icon" />
         {literal}
             <style>
-                body{padding-top: 33px;}
-                .imagecms-top-fixed-header{box-shadow: 0 1px 4px rgba(0,0,0,.2);background-color: #fafafa;height: 30px;border-top: 3px solid #0aae85;position: fixed;top: 0;left: 0;width: 100%;z-index: 1000;font-family: Arial, sans-serif;font-size: 12px;color: #223340;vertical-align: baseline;}
+                .imagecms-top-fixed-header{min-width: 960px;height: 0;box-shadow: 0 1px 4px rgba(0,0,0,.2);background-color: #fafafa;border-top: 0 solid #0aae85;position: fixed;top: 0;left: 0;width: 100%;z-index: 1000;font-family: Arial, sans-serif;font-size: 12px;color: #223340;vertical-align: baseline;}
+                .imagecms-top-fixed-header.imagecms-active + .main-body header{padding-top: 30px;}
+                .imagecms-top-fixed-header.imagecms-active{height: 30px;border-top-width: 3px;}
+                .imagecms-top-fixed-header .container{position: relative;}
                 .imagecms-logo{float: left;}
                 .imagecms-ref-skype, .imagecms-phone{font-size: 0;}
                 .imagecms-phone{margin-right: 32px;}
                 .imagecms-phone .imagecms-text-el{font-size: 11px;color: #333;}
                 .imagecms-ref-skype .imagecms-text-el{font-size: 12px;color: #223340;}
                 .imagecms-ref-skype{color: #223340;text-decoration: none;}
-                .imagecms-list{list-style: none;font-size: 0;border-width: 0 1px;border-style: solid;border-left-color: #ccc;border-right-color: #fff;float: left;}
+                .imagecms-list{list-style: none;font-size: 0;border-width: 0 1px;border-style: solid;border-left-color: #ccc;border-right-color: #fff;float: left;display: none;}
                 .imagecms-list > li{height: 30px;vertical-align: top;padding: 0 27px;text-align: left;display: inline-block;border-width: 0 1px;border-style: solid;border-left-color: #fff;border-right-color: #ccc;font-size: 12px;}
                 .imagecms-list > li > a{line-height: 30px;}
                 .imagecms-ref{color: #000;text-decoration: none;}
@@ -95,7 +100,7 @@
                 .imagecms-buy-license > a{text-decoration: none;height: 100%;display: block;padding: 0 20px;font-size: 0;}
                 .imagecms-buy-license > a > .imagecms-text-el{color: #fff;font-weight: bold;font-size: 11px;line-height: 30px;text-transform: uppercase;}
                 .imagecms-buy-license{
-                    float: right;height: 30px;box-shadow: 0 1px 1px rgba(0,0,0,.1);
+                    float: right;height: 30px;box-shadow: 0 1px 1px rgba(0,0,0,.1);display: none;
                     background: #0eb48e; /* Old browsers */
                     background: -moz-linear-gradient(top,  #0eb48e 0%, #09a77d 100%); /* FF3.6+ */
                     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#0eb48e), color-stop(100%,#09a77d)); /* Chrome,Safari4+ */
@@ -107,8 +112,10 @@
                 }
                 .imagecms-buy-license .imagecms-text-el{vertical-align: middle;}
                 .imagecms-buy-license .imagecms-ico-donwload{vertical-align: middle;margin-left: 11px;}
-                .imagecms-close{float: right;margin-left: 32px;cursor: pointer;}
-                .imagecms-contacts{text-align: center;padding-top: 4px;}
+                .imagecms-contacts{text-align: center;padding-top: 6px;display: none;}
+                .imagecms-close{cursor: pointer;position: absolute;right: -100px;top: 0;height: 30px;line-height: 30px;background-color: #9adccb;width: 95px;display: none;z-index: 3;}
+                .imagecms-toggle-close-text{color: #333;position: relative;top: -1px;}
+                .imagecms-active .imagecms-buy-license, .imagecms-active .imagecms-list, .imagecms-active .imagecms-contacts{display: block;}
             </style>
         {/literal}
     </head>
@@ -116,33 +123,41 @@
         {include_tpl('language/jsLangsDefine.tpl')}
         {include_tpl('language/jsLangs.tpl')}
         <!-- Start. shop-->
-        <div class="imagecms-top-fixed-header">
+        <div class="imagecms-top-fixed-header{if $_COOKIE['condPromoToolbar'] == '1' || $_COOKIE['condPromoToolbar'] == NULL} imagecms-active{/if}">
             <div class="container">
-                <button type="button" class="imagecms-close">
-                    <img src="{$THEME}icon_close.png"/>
+                <button type="button" class="imagecms-close" {if $_COOKIE['condPromoToolbar'] == '1' || $_COOKIE['condPromoToolbar'] == NULL}style="display: block;"{/if} onclick="setCookie('condPromoToolbar', '0');
+                        $('.imagecms-top-fixed-header').removeClass('imagecms-active');
+                        $(this).hide().next().show();
+                        $(window).scroll();">
+                    <span class="imagecms-toggle-close-text imagecms-bar-close-text"><span style="font-size: 14px;">↑</span> {lang('Скрыть', 'newLevel')}</span>
+                </button>
+                <button type="button" class="imagecms-close" {if $_COOKIE['condPromoToolbar'] == '0'}style="display: block;"{/if} onclick="setCookie('condPromoToolbar', '1');
+                        $('.imagecms-top-fixed-header').addClass('imagecms-active');
+                        $(this).hide().prev().show();
+                        $(window).scroll();">
+                    <span class="imagecms-toggle-close-text imagecms-bar-show-text"><span style="font-size: 14px;">↓</span> {lang('Показать', 'newLevel')}</span>
                 </button>
                 <div class="imagecms-buy-license">
-                    <a href="http://www.imagecms.net/shop/prices">
+                    <a href="http://www.imagecms.net/shop/prices" target="_blank" onclick="_gaq.push(['_trackEvent', 'demoshop-front', '/shop/prices']);">
                         <span class="imagecms-text-el">Купить лицензию</span>
                     </a>
                 </div>
                 <ul class="imagecms-list">
                     <li>
-                        <a href="http://www.imagecms.net" class="imagecms-ref">Обзор продукта</a>
+                        <a href="http://www.imagecms.net" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demoshop-front', 'obzor-product-shop']);">{lang('Обзор продукта', 'newLevel')}</a>
                     </li>
                     <li>
-                        <a href="http://www.imagecms.net/kliuchevye-preimushchestva/vozmozhnosti" class="imagecms-ref">преимущества</a>
+                        <a href="http://www.imagecms.net/kliuchevye-preimushchestva/vozmozhnosti" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demoshop-front', '/kliuchevye-preimushchestva/vozmozhnosti']);">{lang('Преимущества продукта', 'newLevel')}</a>
+                    </li>
+                    <li>
+                        <a href="http://www.imagecms.net/store/category/shoptemplates" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demoshop-front', 'shoptemplates']);">{lang('Шаблоны для Shop', 'newLevel')}</a>
                     </li>
                 </ul>
                 <div class="imagecms-contacts">
                     <span class="imagecms-phone">
                         <img src="{$THEME}/icon_phone.png" class="imagecms-ico-phone"/>
-                        <span class="imagecms-text-el">+7 (499) 703-37-54</span>
+                        <span class="imagecms-text-el">+7 (499) 703-37-51</span>
                     </span>
-                    <a href="skype:imagecms_partner" class="imagecms-ref-skype">
-                        <img src="{$THEME}/icon_skype.png" class="imagecms-ico-skype"/>
-                        <span class="imagecms-text-el">imagecms_partner</span>
-                    </a>
                 </div>
             </div>
         </div>
@@ -152,12 +167,15 @@
                 <header>
                     {include_tpl('header')}
                 </header>
-                <div class="frame-menu-main horizontal-menu">
-                    {\Category\RenderMenu::create()->setConfig(array('cache'=>TRUE))->load('category_menu')}
-                </div>
             </div>
-            <div class="content">
-                {$content}
+            <div class="vertical-layout container">
+                <div class="frame-menu-main vertical-menu">
+                    {\Category\RenderMenu::create()->setConfig(array('cache'=>TRUE))->load('category_menu')}
+                    {widget('latest_news', TRUE)}
+                </div>
+                <div class="content">
+                    {$content}
+                </div>
             </div>
             <div class="h-footer"></div>
         </div>
@@ -167,6 +185,7 @@
         {include_tpl('user_toolbar')}
 
         {/*}Start. delete before upload to server{ */}
+        {/*}
         <!-- scripts -->
         <script type="text/javascript" src="{$THEME}js/raphael-min.js"></script>
         <script type="text/javascript" src="{$THEME}js/_united_side_plugins.js"></script>
@@ -188,14 +207,22 @@
                 })
             </script>
         {/literal}
+        { */}
         {/*}End. delete before upload to server{ */}
 
+        {/*fancybox}
+        <link rel="stylesheet" type="text/css" href="{$THEME}js/fancybox/jquery.fancybox-1.3.4.css" media="all" />
+        <script type="text/javascript" src="{$THEME}js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+        {end. fancybox*/}
+
         {/*}uncomment before opload to server and combine and minimize scripts (in comment <!-- scripts -->...<!-- scripts end -->) into united_scripts file{ */}
-        {/*}
+        {/*} Start. uncoment before development { */}
+
         <script type="text/javascript">
-            {initDownloadScripts(['raphael-min', 'united_scripts'], 'init', 'scriptDefer');}
+            initDownloadScripts(['raphael-min', 'united_scripts'], 'init', 'scriptDefer');
         </script>
-        { */}
+
+        {/*} End. uncoment before development { */}
         {include_shop_tpl('js_templates')}
     </body>
 </html>

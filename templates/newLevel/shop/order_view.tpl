@@ -120,7 +120,7 @@
                         </td>
                     </tr>
                 {/if}
-                <!--                Start. Order status-->
+                <!--Start. Order status-->
                 <tr>
                     <th>{lang('Статус оплаты','newLevel')}:</th>
                     <td>
@@ -131,7 +131,7 @@
                         {/if}
                     </td>
                 </tr>
-                <!--                End. Order status-->
+                <!--End. Order status-->
                 {if $paymentMethod && $model->getPaid() != true}
                     <tr>
                         <td></td>
