@@ -8,7 +8,7 @@
 
 {$condlimit = $opi_limit != false && $opi_limit != NULL}
 {foreach $products as $key => $p}
-
+    
     {if is_array($p) && $p.id}
         {$pArray = $p;}
         {$variants = array()}
@@ -242,7 +242,7 @@
                                     class="infoBut"
                                     type="button"
                                     data-drop=".drop-report"
-                                    data-source="/shop/ajax/getNotifyingRequest"
+                                    data-source="{shop_url('ajax/getNotifyingRequest')}"
 
                                     data-id="{echo $pv->getId()}"
                                     data-product-id="{echo $p->getId()}"

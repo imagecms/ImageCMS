@@ -233,12 +233,11 @@
                 <div class="clearfix inside-padd">
                     <div class="btn-form f_l">
                         <button type="button" data-closed="closed-js">
-
                             <span class="text-el"><span class="f-s_14">←</span> {lang('Вернуться к покупкам','newLevel')}</span>
                         </button>
                     </div>
                     <div class="btn-cart btn-cart-p f_r">
-                        <a href="/shop/cart">
+                        <a href="{shop_url('cart')}">
                             <span class="icon_cart_p"></span>
                             <span class="text-el">{lang('Оформить заказ','newLevel')}</span>
                         </a>
