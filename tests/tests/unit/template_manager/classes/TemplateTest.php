@@ -45,8 +45,15 @@ class TemplateTest extends \PHPUnit_Framework_TestCase {
     /**
      * @covers template_manager\classes\Template::isValid
      */
-    public function testIsValid() {
+    public function testIsValid1() {
         $this->assertTrue($this->object->isValid(), 'Tested template must be valid from start');
+    }
+
+    /**
+     * Making tempalte not valid
+     * @covers template_manager\classes\Template::isValid
+     */
+    public function testIsValid2() {
         $tPath = TEMPLATES_PATH . $this->testedTempalateName;
         $renameStatus = rename($tPath . '/params.xml', $tPath . '/params1.xml');
 
@@ -74,10 +81,18 @@ class TemplateTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
-     * @covers template_manager\classes\Template::getComponents
+     * @covers template_manager\classes\Template::getComponent
      */
-    public function testGetComponent() {
-        $this->assertTrue(true);
+    public function testGetComponent1() {
+        $this->object->getComponent('TColorScheme');
+    }
+
+    /**
+     * @covers template_manager\classes\Template::getComponent
+     * @expectedException \Exception
+     */
+    public function testGetComponent2() {
+        $this->object->getComponent('someComponent');
     }
 
     /**

@@ -48,6 +48,7 @@ class TemplateManagerTest extends \PHPUnit_Framework_TestCase {
         if (!is_array($templates) || count($templates) == 0) {
             $this->markTestIncomplete('Something wrong - no templates for testing');
         }
+
         // trying to set some else template (not the one is installed)
         $templateToSet = NULL;
         foreach ($templates as $template) {

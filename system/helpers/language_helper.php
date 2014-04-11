@@ -41,12 +41,12 @@ if (!defined('BASEPATH'))
 if (!function_exists('lang')) {
 
     function lang($line, $name = "main", $id = '') {
-        
+
         textdomain($name);
         $CI = & get_instance();
         $line_tmp = $line;
         $line = $CI->lang->line($line);
-        if(!$line)
+        if (!$line)
             return $line_tmp;
 
         if ($id != '') {
@@ -54,6 +54,30 @@ if (!function_exists('lang')) {
         }
 
         textdomain('main');
+        return $line;
+    }
+
+}
+
+
+
+/**
+ * Same as lang() function, but can adding data into line
+ * 
+ * @param string $line
+ * @param string $name textdomain name
+ * @param string|array $data data for adding to line
+ * @return string
+ */
+if (!function_exists('langf')) {
+
+    function langf($line, $name = "main", array $data = array()) {
+        $line = lang($line, $name);
+
+        foreach ($data as $key => $value) {
+            $line = str_replace('{' . $key . '}', $value, $line);
+        }
+
         return $line;
     }
 
@@ -112,18 +136,18 @@ function get_main_lang($flag = null) {
     if ($flag == null)
         return array('id' => $lang_id, 'identif' => $lang_ident);
 }
+
 /*
  * Get admin locale name
  */
-function get_admin_locale(){
+
+function get_admin_locale() {
     $ci = & get_instance();
     $admin_language = $ci->config->item('language');
     $all_languages = $ci->config->item('languages');
-    
-    return isset($all_languages[$admin_language][0]) ? $all_languages[$admin_language][0] : 'ru';
-    
-}
 
+    return isset($all_languages[$admin_language][0]) ? $all_languages[$admin_language][0] : 'ru';
+}
 
 // ------------------------------------------------------------------------
 /* End of file language_helper.php */
