@@ -1,0 +1,123 @@
+#sortable table {
+	border-bottom: 1px solid #ccc;
+	width: 100%;
+}
+
+#sortable th {
+	background-color: #eee;
+	background: #6f9fbd url('../images/form_button.png') repeat-x bottom;
+	padding: 0px 0px 0px 10px;
+	font-weight: none;
+	font-size:	11px;
+	color:#fff;
+	height:28px;
+    text-shadow:0px 0px 0 #fff;
+}
+
+.items_table th {
+	background-color: #eee;
+	background: #6f9fbd url('../images/form_button.png') repeat-x bottom;
+	padding: 4px 4px 4px 14px;
+	font-weight: none;
+	font-size:	11px;
+	color: #fff;
+	height:32px;
+}
+.items_table td {
+	font-weight: none;
+	font-size:	11px;
+}
+
+.row_even:hover{ background-color: #d4e1e6;  cursor:pointer;}
+.row_odd:hover{ background-color: #d4e1e6; cursor:pointer; }
+
+.row_even {
+	background-color:#F8F8F8;
+}
+
+.row_odd {
+	background-color:#F0F0F0;
+}
+
+#sortable tr {
+	padding: 4px;
+	position:relative;
+	background:#eee url('../images/tr.gif') repeat-x bottom;
+	text-shadow:1px 1px 0 #fff;
+}
+
+#sortable tr.row_notified {
+	padding: 4px;
+	position:relative;
+	background:#e2eada url('../images/tr.gif') repeat-x bottom;
+	text-shadow:1px 1px 0 #fff;
+}
+
+#sortable tr.row_available {
+	padding: 4px;
+	position:relative;
+	background:#F7E0DA url('../images/tr.gif') repeat-x bottom;
+	text-shadow:1px 1px 0 #fff;
+}
+
+#sortable tr.altRow {
+	background: #f5f5f5 url('../images/tr.gif') repeat-x bottom;
+}
+
+#sortable td {
+	padding: 1px 2px 1px 10px;
+	position:relative;
+}
+#sortable tfoot tr { background:#999; padding:0;}
+#sortable tfoot tr td { padding:0}
+
+#sortable .rightAlign {
+	text-align: right;
+}
+#sortable .rightAlign img { margin:0 3px;}
+#sortable .sortedASC {
+	background: url(../images/sortable/icon-table-sort-asc.png) no-repeat 2px 4px #464646;
+}
+
+#sortable .sortedDESC {
+	background: url(../images/sortable/icon-table-sort-desc.png) no-repeat 2px 10px #464646;
+}
+
+#sortable .tableHeaderOver {
+	cursor: pointer;
+	color: #fff;
+}
+
+
+/*tr.selected {
+	background-color: gold;
+	color: #fff;
+}*/
+
+#sortable tr.over {
+	background-color: #e8eef6;
+	cursor: pointer;
+}
+
+#sortable tr.hide {
+	display: none;
+}
+#sortable input { vertical-align:middle}
+
+/***************************/
+.tableFilter {
+	border: 1px solid #ccc;
+	padding: 2px;
+	margin: 5px 0 10px 0;
+}
+
+.tableFilter input {
+	border: 1px solid #ccc;
+}
+
+.tableFilter select {
+	border: 1px solid #ccc;
+}
+
+
+/*************************************************************/
