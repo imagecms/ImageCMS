@@ -430,7 +430,7 @@ input.input-search{height: 33px;}
 .items-thumbs.items li{margin-left: 5px;}
 .carousel-js-css .items-thumbs.items{margin-left: 0;}
 .carousel-js-css .items-thumbs.items li{margin: 1px 5px 1px 0;}
-/*if not carousel*/
+/*/if carousel*/
 .fancy-gallery .content-carousel{padding: 14px 0 9px;text-align: center;font-size: 0;}
 .fancy-gallery .items-thumbs > li{margin-right: 5px;margin-top: 5px;margin-left: 0;}
 
