@@ -7,12 +7,12 @@
         <dependency entityName="module" name="moduleName3" type="add"/>
         <dependency entityName="widget" name="widgetName1" type="required"/>
         <dependency entityName="widget" name="widgetName1" type="wishful"/>
-        <dependency entityName="widget" name="addHTMLWidgetName" type="add" widgetType="html">
+        <dependency entityName="widget" name="addHTMLWidgetName" type="add" widgetType="html" locale="ru">
             <data>
                 <div>WidgetText</div>
             </data>
         </dependency>
-        <dependency entityName="widget" name="addModuleWidgetName" type="add" widgetType="module" module="widgetModule" method="methodName" description="widget description">
+        <dependency entityName="widget" name="addModuleWidgetName" type="add" widgetType="module" module="widgetModule" method="methodName" description="widget description" locale="ru">
             <settings>
                 <setting1>1</setting1>
                 <setting2>2</setting2>
