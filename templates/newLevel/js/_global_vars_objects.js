@@ -89,8 +89,6 @@ var optionsDrop = {
     limitSize: false,
     limitContentSize: true,
     scrollContent: true,
-    scroll: true,
-    scrollCenter: false,
     keyNavigate: true,
     cycle: true
 };
