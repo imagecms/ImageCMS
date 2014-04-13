@@ -21,7 +21,7 @@ $.dropInit.prototype.extendDrop = function() {
                         body.on('selectstart.' + $.drop.nS, function(e) {
                             e.preventDefault();
                         });
-                        var condScroll = $.exists('.scrollEmulation');
+                        var condScroll = body.hasClass('isScroll');
                         body.on('mousemove.' + $.drop.nS, function(e) {
                             drop.data('drp').droppableIn = true;
                             var l = e.pageX - left,
@@ -110,8 +110,7 @@ $.dropInit.prototype.extendDrop = function() {
 
                 if (drp.limitContentSize) {
                     var dropV = drop.is(':visible'),
-                            forCenter = drp.forCenter,
-                            docH = $(document).height();
+                            forCenter = drp.forCenter;
                     if (!dropV) {
                         drop.show();
                         if (forCenter)
@@ -152,16 +151,16 @@ $.dropInit.prototype.extendDrop = function() {
                                         placement = drp.placement;
                                 if (typeof placement === 'object') {
                                     if (placement.top !== undefined)
-                                        mayHeight = (drp.scroll ? wnd.height() : docH) - placement.top - footerHeader - (dropH - dropHm);
+                                        mayHeight = wnd.height() - placement.top - footerHeader - (dropH - dropHm);
                                     if (placement.bottom !== undefined)
                                         mayHeight = placement.bottom - footerHeader - (dropH - dropHm);
                                 }
                                 else {
                                     if (placement.search(/top/) >= 0) {
-                                        mayHeight = (drp.scroll ? wnd.height() : docH) - refer.offset().top - (drp.scroll ? wnd.scrollTop() : 0) - footerHeader - refer.outerHeight() - (dropH - dropHm);
+                                        mayHeight = wnd.height() - refer.offset().top - footerHeader - refer.outerHeight() - (dropH - dropHm);
                                     }
                                     if (placement.search(/bottom/) >= 0) {
-                                        mayHeight = refer.offset().top - (drp.scroll ? wnd.scrollTop() : 0) - footerHeader - (dropH - dropHm);
+                                        mayHeight = refer.offset().top - footerHeader - (dropH - dropHm);
                                     }
                                 }
                                 if (mayHeight > elCH)
@@ -201,7 +200,7 @@ $.dropInit.prototype.extendDrop = function() {
                             'height': ''
                         });
                         var wndW = wnd.width(),
-                                wndH = drop.data('drp').scroll ? wnd.height() : $(document).height();
+                                wndH = wnd.height();
 
                         var dropV = drop.is(':visible'),
                                 w = dropV ? drop.outerWidth() : drop.actual('outerWidth'),
