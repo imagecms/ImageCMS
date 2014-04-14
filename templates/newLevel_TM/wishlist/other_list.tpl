@@ -38,7 +38,7 @@
                 {if $wishlist[0][variant_id]}
                     <div data-rel="list-item">
                         <ul class="items items-catalog items-wish-list">
-                            {$CI->load->module('new_level')->OPI($wishlist, array('opi_otherlist'=>true))}
+                            {getOPI($wishlist, array('opi_otherlist'=>true))}
                         </ul>
                         {if $wishlist[0][variant_id]}
                             <div class="clearfix frame-gen-sum-buy">

@@ -1,5 +1,5 @@
 {$categories = \ShopCore::app()->SCategoryTree->getTree();}
-<button type="button" class="btn btn-small action_on formSubmit btn-success" data-form="#component_{echo $handler}_form" data-action="close">
+<button type="button" style=" float: right; margin-top: -15px;margin-right: 20px;" class="btn btn-small action_on formSubmit btn-success cattegoryColumnSaveButtonMod" data-form="#component_{echo $handler}_form" data-action="close">
     <i class="icon-check"></i>{lang('Save', 'template_manager')}
 </button>
 <form method="post" action="{site_url('admin/components/init_window/template_manager/updateComponent')}/{echo $handler}" id="component_{echo $handler}_form"> 

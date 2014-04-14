@@ -92,6 +92,7 @@ class TMenuColumn extends \template_manager\classes\TComponent {
             }
         }
 
+        $this->cAssetManager->registerScript('scripts', 'after');
         $this->cAssetManager->display('admin/main', array(
             'columns' => $this->columns,
             'columns_db' => $columns,
