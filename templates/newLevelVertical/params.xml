@@ -69,8 +69,8 @@
         </component>
         
 -->        
-        <component handler="TComponentName">
-        </component>
+<!--        <component handler="TComponentName">
+        </component>-->
         
     </components>
 

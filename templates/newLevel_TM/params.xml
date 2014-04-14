@@ -40,25 +40,6 @@
         <component handler='TColorScheme'>
             <param name="color_scheme" value="color_scheme_1" />
         </component>
-        <!--
-        <component handler="TPaginationBrand">
-            <param name="page_query_string" value="true" />
-            <param name="first_link" value="1" />
-            <param name="page_query_string" value="3" />
-        </component>
-        
-        <component handler="TPaginationCategory">
-            <param name="page_query_string" value="true" />
-            <param name="first_link" value="1" />
-            <param name="page_query_string" value="3" />
-        </component>
-        
-        <component handler="TPaginationSearch">
-            <param name="page_query_string" value="true" />
-            <param name="first_link" value="1" />
-            <param name="page_query_string" value="3" />
-        </component>
-        -->
         
         <component handler="TMenuColumn">
             <params name="columns">
