@@ -38,6 +38,7 @@ class TArchiveTest extends \PHPUnit_Framework_TestCase {
         $testArchive = 'test_template.zip';
 
         $this->objectValid = new TArchive($this->dataFolder . $testArchive);
+        
     }
 
     /**
@@ -50,7 +51,6 @@ class TArchiveTest extends \PHPUnit_Framework_TestCase {
 
     /**
      * @covers template_manager\classes\TArchive::unpack
-     * expectedException Exception
      */
     public function testUnpack() {
         $tempFolder = $this->dataFolder . 'temp';

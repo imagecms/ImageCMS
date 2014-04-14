@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<template label='New Level TEST' name='newLevel_TEST' type="shop" version="0.1">
+<template label='New Level TEST' type="shop" version="0.1">
     <!--
     <dependencies>
         <dependency entityName="module" name="moduleName1" type="required"/>
