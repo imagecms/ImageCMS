@@ -25,7 +25,6 @@ class TColorScheme extends \template_manager\classes\TComponent {
             $this->setParams($data);
     }
 
-
     /**
      * Prepare param from form to save in db
      * @param type $data - data array
@@ -114,6 +113,18 @@ class TColorScheme extends \template_manager\classes\TComponent {
             'mainScheme' => $sheme,
             'shemes' => $allShemes)
         );
+    }
+
+    /**
+     * Get color sheme for template
+     * @return boolean
+     */
+    public function getColorSheme() {
+        $component_data = $this->getParam();
+        if (isset($component_data['color_scheme'])) {
+            return $component_data['color_scheme'];
+        }
+        return FALSE;
     }
 
 }

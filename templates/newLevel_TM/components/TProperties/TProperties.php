@@ -136,6 +136,30 @@ class TProperties extends \template_manager\classes\TComponent {
                         ->result_array();
     }
 
+    /**
+     * Get property types
+     * @param int $property_id - propety id
+     * @return boolean
+     */
+    public function getPropertyTypes($property_id = NULL) {
+
+        $component_data = $this->getParam('properties');
+
+        if (!isset($component_data['properties'])) {
+            return FALSE;
+        }
+
+        if ($property_id !== NULL) {
+            foreach ($component_data['properties'] as $property_types) {
+                if ($property_types['property_id'] == $property_id) {
+                    return explode(',', $property_types['values']);
+                }
+            }
+        } else {
+            return $component_data['properties'];
+        }
+    }
+
 }
 
 ?>
