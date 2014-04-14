@@ -17,11 +17,12 @@
         <!--        Logo-->
         {if  $CI->uri->uri_string() == ''}
             <span class="logo">
+                
                 <img src="{echo siteinfo('siteinfo_logo_url')}" alt="logo.png"/>
             </span>
         {else:}
             <a href="{site_url('')}" class="logo">
-                <img src="{echo siteinfo('siteinfo_logo_url')}" alt="logo.png"/>
+                <img src="/{echo siteinfo('siteinfo_logo_url')}" alt="logo.png"/>
             </a>
         {/if}
         <div class="left-content-header">
