@@ -68,7 +68,7 @@ class Lib_init {
         
         if (SHOP_INSTALLED) {
             // Full path to shop module dir with ending slash.
-            define('SHOP_DIR', PUBPATH . '../t1.loc/' . 'application/modules/shop/');
+            define('SHOP_DIR', PUBPATH . 'application/modules/shop/');
 
             // Include Shop core.
             require_once(SHOP_DIR . 'classes/ShopCore.php');
