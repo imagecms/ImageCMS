@@ -136,6 +136,29 @@ class TMenuColumn extends \template_manager\classes\TComponent {
         return __CLASS__;
     }
 
+    public function getCategoryColumns($category_id = NULL) {
+        $component_data = $this->getParam('columns');
+
+        if (!isset($component_data['columns'])) {
+            return FALSE;
+        }
+
+        if ($category_id !== NULL) {
+            $category_columns = array();
+            foreach ($component_data['columns'] as $column) {
+                $values = explode(',', $column['values']);
+                if (in_array($category_id, $values)) {
+                    $category_columns[] = $column['column'];
+                }
+            }
+
+            if (count($category_columns) > 0) {
+                return implode('_', $category_columns);
+            }
+        }
+        return '0';
+    }
+
 }
 
 ?>
