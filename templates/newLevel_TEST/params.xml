@@ -36,9 +36,9 @@
     <components><!-- ОДНОРАЗОВО - ПРИ ІНСТАЛЯЦІЇ ТА КОЖЕН РАЗ ПРИ ЗВЕРНЕННІ -->
         <!-- початкові параметри для компонентів шаблону -->
         
-<!--        <component handler='TColorScheme'>
+        <component handler='TColorScheme'>
             <param name="color_scheme" value="color_scheme_1" />
-        </component>-->
+        </component>
         
         <!--
         <component handler="TPaginationBrand">
@@ -60,7 +60,7 @@
         </component>
         -->
         
-<!--        <component handler="TMenuColumn">
+        <component handler="TMenuColumn">
             <params name="columns">
                 <param key="1" value="927, 931" />
                 <param key="2" value="933, 935" />
@@ -75,7 +75,7 @@
         </component>
         
         <component handler="TOpi">
-        </component>-->
+        </component>
         
     </components>
 

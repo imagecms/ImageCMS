@@ -61,7 +61,7 @@ class TColorScheme extends \template_manager\classes\TComponent {
         if ($key) {
             $data[$key] = $params;
         } else {
-            foreach ($params as $param) {
+            foreach ($params as $key => $param) {
                 $data[$key] = $param;
             }
         }
