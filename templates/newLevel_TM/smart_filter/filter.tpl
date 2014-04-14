@@ -73,7 +73,8 @@
         {$flagScroll = 0}
         {foreach $propertiesInCat as $prop}
             {if count($prop->possibleValues) > 0}
-                {$typeProperty = $CI->load->module('new_level')->getPropertyTypes($prop->property_id)}
+                {$typeProperty = getPropertyTypes($prop->property_id)}
+                {//$typeProperty = $CI->load->module('new_level')->getPropertyTypes($prop->property_id)}
                 {$condTypeProperty = $typeProperty != '' && sizeof($typeProperty) != 0}
                 <div class="frame-group-checks" {if $condTypeProperty}data-rel="{implode(" ",$typeProperty)}"{/if} {if in_array('dropDown', $typeProperty)}id="dropDown{$flagScroll}"{$flagScroll++}{/if}>
                     <div class="inside-padd">

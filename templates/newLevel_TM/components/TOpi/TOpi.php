@@ -17,7 +17,7 @@ class TOpi extends \template_manager\classes\TComponent {
      * @param array $data - template variables array
      * @param string $tpl - template name
      */
-    public function OPI($model, $data = array(), $tpl = 'one_product_item') {
+    public function getOPI($model, $data = array(), $tpl = 'one_product_item') {
         $this->cAssetManager->display($tpl, array_merge($data, array('products' => $model)));
     }
 
