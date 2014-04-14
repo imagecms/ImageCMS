@@ -19,6 +19,7 @@ define('TEMPLATES_PATH', FCPATH . 'templates/');
 define('SYSDIR', trim(strrchr(trim(BASEPATH, '/'), '/'), '/'));
 
 define('UNIT_TESTS_PATH', PUBPATH . 'tests/tests/unit/');
+define('UNIT_TESTS', TRUE);
 
 
 if (is_dir($application_folder)) {

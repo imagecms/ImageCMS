@@ -44,6 +44,7 @@ class TemplateManagerTest extends \PHPUnit_Framework_TestCase {
      * @covers template_manager\classes\TemplateManager::setTemplate
      */
     public function testSetTemplate() {
+        
         $templates = $this->object->listLocal();
         if (!is_array($templates) || count($templates) == 0) {
             $this->markTestIncomplete('Something wrong - no templates for testing');
@@ -61,6 +62,7 @@ class TemplateManagerTest extends \PHPUnit_Framework_TestCase {
             }
         }
 
+        
         if (is_null($templateToSet)) {
             $this->markTestIncomplete('No templates to test');
         }
@@ -77,7 +79,6 @@ class TemplateManagerTest extends \PHPUnit_Framework_TestCase {
 
         echo 'Setting template ' . $templateToSet->name . PHP_EOL;
         $this->object->setTemplate($templateToSet);
-
         $currentTemplate = \CI::$APP->db->get('settings')->row()->site_template;
 
         $this->assertTrue($currentTemplate != $this->siteTemplateName);
