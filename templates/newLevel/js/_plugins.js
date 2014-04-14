@@ -1930,12 +1930,12 @@ function getCookie(c_name)
                                         }
                                     });
 
-                                    if (drpV && (drpV.overlayOpacity === 0) || !$.exists('[data-elrun]:visible'))
+                                    if (drpV && drpV.place !== 'inherit' && drpV.overlayOpacity !== 0 || !$.exists('[data-elrun]:visible'))
                                         body.removeClass('isScroll').css({
                                             'overflow': '',
                                             'margin-right': ''
                                         });
-                                    if (drpV && drpV.overlayOpacity !== 0 && !isTouch)
+                                    if (drpV && drpV.place !== 'inherit' && drpV.overlayOpacity !== 0 && !isTouch)
                                         body.addClass('isScroll').css({
                                             'overflow': 'hidden',
                                             'margin-right': $.drop.widthScroll
@@ -2240,7 +2240,7 @@ function getCookie(c_name)
                 });
             drop.addClass(opt.place);
             methods._positionType(drop);
-            if (!isTouch && opt.overlayOpacity !== 0)
+            if (!isTouch && opt.place !== 'inherit' && opt.overlayOpacity !== 0)
                 body.addClass('isScroll').css({'overflow': 'hidden', 'margin-right': $.drop.widthScroll});
 
             forCenter.css({'position': 'absolute', 'height': '100%', 'overflow': 'hidden', 'overflow-y': 'scroll'});
