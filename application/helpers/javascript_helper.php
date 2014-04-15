@@ -44,7 +44,7 @@ function pjax($url, $selector = '#mainContent') {
  * Redirect function
  */
 function ajax_redirect($location, $time=3000) {
-    echo "<script type='text/javascript'> setTimeout(\"location.href = '" . $location . "';\"," . $time . "); </script>";
+    echo "<script type='text/javascript'> setTimeout(\"location.href = '" . $location . "'; location.reload();\"," . $time . "); </script>";
 }
 
 /*
