@@ -1260,10 +1260,8 @@ var Pagination = {
     },
     movePrev: function() {
         var activeNum = $('ul.pagination li.active').data('number');
-        console.log(activeNum)
         if (activeNum > 1) {
             if ($('ul.pagination li')[activeNum - 1]) {
-                console.log($($('ul.pagination li')[activeNum - 1]))
                 $($('ul.pagination li')[activeNum - 1]).click();
             }
         }

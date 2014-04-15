@@ -59,9 +59,9 @@ if (!function_exists('callComponentMethod')) {
         }
 
         $arguments = func_get_args();
+        
         array_shift($arguments);
         array_shift($arguments);
-
         return call_user_func(array($component, $methodName), $arguments);
     }
 
