@@ -15,7 +15,8 @@ if (!function_exists('getColorSheme')) {
 if (!function_exists('getOPI')) {
 
     function getOPI($model, $data = array(), $tpl = 'one_product_item') {
-        return callComponentMethod('TOpi', __FUNCTION__, $model, $data, $tpl);
+        $tcs = new \template_manager\classes\TComponentShortcut();
+        return $tcs->TOpi->getOPI($model, $data, $tpl);
     }
 
 }
@@ -23,7 +24,8 @@ if (!function_exists('getOPI')) {
 if (!function_exists('getPropertyTypes')) {
 
     function getPropertyTypes($property_id = NULL) {
-        return callComponentMethod('TProperties', __FUNCTION__, $property_id);
+        $tcs = new \template_manager\classes\TComponentShortcut();
+        return $tcs->TProperties->getPropertyTypes($property_id);
     }
 
 }
@@ -31,7 +33,8 @@ if (!function_exists('getPropertyTypes')) {
 if (!function_exists('getCategoryColumns')) {
 
     function getCategoryColumns($category_id = NULL) {
-        return callComponentMethod('TMenuColumn', __FUNCTION__, $category_id);
+        $tcs = new \template_manager\classes\TComponentShortcut();
+        return $tcs->TMenuColumn->getCategoryColumns($category_id);
     }
 
 }
