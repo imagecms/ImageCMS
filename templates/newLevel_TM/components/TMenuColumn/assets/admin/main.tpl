@@ -1,6 +1,6 @@
 {$categories = \ShopCore::app()->SCategoryTree->getTree();}
 <button type="button" style=" float: right; margin-top: -15px;margin-right: 20px;" class="btn btn-small action_on formSubmit btn-success cattegoryColumnSaveButtonMod" data-form="#component_{echo $handler}_form" data-action="close">
-    <i class="icon-check"></i>{lang('Save', 'template_manager')}
+    <i class="icon-check"></i>{lang('Save', 'newLevel_TM')}
 </button>
 <form method="post" action="{site_url('admin/components/init_window/template_manager/updateComponent')}/{echo $handler}" id="component_{echo $handler}_form"> 
     <input type="hidden" name="handler" value="{echo $handler}">
@@ -9,7 +9,7 @@
             <thead>
                 <tr>
                     <th colspan="6">
-                        {lang('Categories columns', 'template_manager')}:
+                        {lang('Categories columns', 'newLevel_TM')}:
                     </th>
                 </tr>
             </thead>
@@ -24,7 +24,7 @@
                                             {foreach $columns as $colon}
                                                 <td class="span4">
                                                     <div class="control-group">
-                                                        <label class="control-label"><b class="columnName">{lang('Column', 'template_manager')} {echo $colon}:</b></label>
+                                                        <label class="control-label"><b class="columnName">{lang('Column', 'newLevel_TM')} {echo $colon}:</b></label>
                                                         <div class="controls ">
                                                             <select  class="ColumnsSelect" name="columns[{echo $colon}][]" multiple="multiple" style="height:400px !important;">
                                                                 {foreach $categories as $key => $category}

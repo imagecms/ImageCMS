@@ -91,7 +91,7 @@ class TColorScheme extends \template_manager\classes\TComponent {
      * @return string
      */
     public function getLabel() {
-        return lang('Color scheme', 'template_manager');
+        return lang('Color scheme', 'newLevel_TM');
     }
 
     /**
