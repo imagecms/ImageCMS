@@ -1850,12 +1850,11 @@ function getCookie(c_name)
                                 always = methods._checkProp(elSet, opt, 'always');
                         if (start && !eval(start)($this, drop))
                             return false;
-
-                        if (($.existsN(drop) || !$.existsN(drop) && $.drop.drp.drops[source.replace(methods._reg(), '')]) && !modal && !always && !confirm && !prompt) {
+                        if (($.existsN(drop) && !source || $.drop.drp.drops[source.replace(methods._reg(), '')]) && !always && !confirm && !prompt) {
                             methods._pasteDrop($.extend({}, $.drop.dP, opt, elSet), $.existsN(drop) ? drop : $.drop.drp.drops[source.replace(methods._reg(), '')]);
                             methods._show($this, e, opt, false, hashChange);
                         }
-                        else if (prompt || source || always || confirm || datas) {
+                        else if (prompt || confirm || source || always) {
                             if (!confirm && !prompt)
                                 _confirmF();
                             else {//for cofirm && prompt
@@ -1865,7 +1864,7 @@ function getCookie(c_name)
                             }
                         }
                         else //for validations
-                            methods._pasteModal($this, $this.data('datas'), opt, null, hashChange);
+                            methods._pasteModal($this, datas, opt, null, hashChange);
                     }
                 }
                 else
@@ -1930,12 +1929,12 @@ function getCookie(c_name)
                                         }
                                     });
 
-                                    if (drpV && (drpV.overlayOpacity === 0) || !$.exists('[data-elrun]:visible'))
+                                    if (drpV && drpV.place !== 'inherit' && drpV.overlayOpacity !== 0 || !$.exists('[data-elrun]:visible'))
                                         body.removeClass('isScroll').css({
                                             'overflow': '',
                                             'margin-right': ''
                                         });
-                                    if (drpV && drpV.overlayOpacity !== 0 && !isTouch)
+                                    if (drpV && drpV.place !== 'inherit' && drpV.overlayOpacity !== 0 && !isTouch)
                                         body.addClass('isScroll').css({
                                             'overflow': 'hidden',
                                             'margin-right': $.drop.widthScroll
@@ -2006,7 +2005,7 @@ function getCookie(c_name)
                             w = dropV ? drop.outerWidth() : drop.actual('outerWidth'),
                             h = dropV ? drop.outerHeight() : drop.actual('outerHeight'),
                             top = Math.floor((wnd.height() - h) / 2),
-                            left = Math.floor((wnd.width() - w) / 2);
+                            left = Math.floor((wnd.width() - w - $.drop.widthScroll) / 2);
                     drop[method]({
                         'top': top > 0 ? top : 0,
                         'left': left > 0 ? left : 0
@@ -2062,6 +2061,7 @@ function getCookie(c_name)
         _pasteModal: function(el, datas, set, rel, hashChange) {
             var elSet = el.data(),
                     drop = $(elSet.drop);
+            datas = datas || el.data('datas');
             methods._modalTrigger(elSet, set);
             methods._pasteDrop($.extend({}, $.drop.dP, set, elSet), drop, null, rel);
             $(document).trigger({
@@ -2087,7 +2087,7 @@ function getCookie(c_name)
             }
             else {
                 function _for_center(rel) {
-                    body.append('<div class="forCenter" data-rel="' + rel + '" style="left: 0;width: 100%;display:none;height: 100%;"></div>');
+                    body.append('<div class="forCenter" data-rel="' + rel + '" style="left: 0;width: 100%;display:none;height: 100%;position: absolute;height: 100%;overflow-x: auto;overflow-y: scroll;"></div>');
                 }
                 if (set.place === 'noinherit')
                     drop = $(drop).appendTo(body);
@@ -2240,10 +2240,9 @@ function getCookie(c_name)
                 });
             drop.addClass(opt.place);
             methods._positionType(drop);
-            if (!isTouch && opt.overlayOpacity !== 0)
+            if (!isTouch && opt.place !== 'inherit' && opt.overlayOpacity !== 0)
                 body.addClass('isScroll').css({'overflow': 'hidden', 'margin-right': $.drop.widthScroll});
 
-            forCenter.css({'position': 'absolute', 'height': '100%', 'overflow': 'hidden', 'overflow-y': 'scroll'});
             methods._checkMethod(function() {
                 methods.limitSize(drop);
             });

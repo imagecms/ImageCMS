@@ -208,8 +208,8 @@ $.dropInit.prototype.extendDrop = function() {
                                 ws = dropV ? drop.width() : drop.actual('width'),
                                 hs = dropV ? drop.height() : drop.actual('height');
 
-                        if (w > wndW)
-                            drop.css('width', wndW - w + ws);
+                        if (w + $.drop.widthScroll > wndW)
+                            drop.css('width', wndW - w + ws - $.drop.widthScroll);
                         if (h > wndH)
                             drop.css('height', wndH - h + hs);
                     }
