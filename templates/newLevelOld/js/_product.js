@@ -1,4 +1,4 @@
-var productPhotoCZoom = window.productPhotoCZoom !== undefined,
+var productPhotoCZoom = winxdow.productPhotoCZoom !== undefined,
         productPhotoDrop = window.productPhotoDrop !== undefined;
 
 var hrefOptions = {

@@ -45,7 +45,7 @@
                                 </span>
                                 <div class="f_r neigh-buttonform">
                                     <span class="helper"></span>
-                                    <button type="button" class="d_l_1" data-drop=".drop-forgot" data-source="{site_url('auth/forgot_password')}">{lang('Забыли Пароль?','newLevel')}</button>
+                                    <button type="button" class="d_l_1" data-scroll="true" data-drop=".drop-forgot" data-source="{site_url('auth/forgot_password')}">{lang('Забыли Пароль?','newLevel')}</button>
                                 </div>
                             </div>
                         </div>

@@ -204,7 +204,7 @@
                         </button>
                     </div>
                     <div class="btn-buy btn-buy-p btn-buy-pp f_r">
-                        <a href="/shop/cart">
+                        <a href="{shop_url('cart')}">
                             <span class="text-el">{lang('Оформить заказ','newLevel')}</span>
                         </a>
                     </div>
