@@ -1,12 +1,12 @@
 <button type="button" style=" float: right; margin-top: -15px;margin-right: 20px;" class="btn btn-small action_on formSubmit btn-success" data-form="#component_{echo $handler}_form" data-action="close">
-    <i class="icon-check"></i>{lang('Save', 'template_manager')}
+    <i class="icon-check"></i>{lang('Save', 'newLevel_TM')}
 </button>
 <form method="post" action="{site_url('admin/components/init_window/template_manager/updateComponent')}/{echo $handler}" id="component_{echo $handler}_form"> 
     <input type="hidden" name="handler" value="{echo $handler}" />
     <div class="inside_padd">
         <table id="tickets_table" class="table table-striped table-bordered table-hover table-condensed" style="clear:both;">
             <thead>
-            <th class="span1">{lang('Settings', 'template_manager')}</th>
+            <th class="span1">{lang('Settings', 'newLevel_TM')}</th>
             </thead>
             <tbody>
                 <tr>
@@ -16,7 +16,7 @@
                             <div class="form-horizontal">
                                 <div class="row-fluid">
                                     <div class="control-group">
-                                        <label class="control-label" for="template">{lang('Colour scheme', 'template_manager')}:</label>
+                                        <label class="control-label" for="template">{lang('Colour scheme', 'newLevel_TM')}:</label>
                                         <div class="controls">                                         
                                             <select onchange="changethema(this)" style="width:25% !important" name="color_scheme" id="template">
                                                 {foreach $shemes as $sheme => $shemePath}

@@ -42,7 +42,7 @@ class TOpi extends \template_manager\classes\TComponent {
      * @return string
      */
     public function getLabel() {
-        return lang('One Product Item', 'template_maneger');
+        return lang('One Product Item component', 'newLevel_TM');
     }
 
     /**
