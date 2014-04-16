@@ -863,7 +863,7 @@ function itemUserToolbar() {
     this.show = function(itemsUT, btn, hideSet, btnUp) {
         btn.on('click.UT', function() {
             var $this = $(this),
-            dataRel = $this.data('rel');
+                    dataRel = $this.data('rel');
             setCookie('condUserToolbar', dataRel, 0, '/')
             if (dataRel == 0) {
                 $this.removeClass('activeUT').hide().next().show().addClass('activeUT');
@@ -872,28 +872,30 @@ function itemUserToolbar() {
             }
             else {
                 $this.removeClass('activeUT').hide().prev().show().addClass('activeUT');
-                itemsUT.stop().css('width', '100%');
+                itemsUT.stop().css('width', '');
                 itemsUT.closest('.frame-user-toolbar').addClass('active');
             }
         }).not('.activeUT').trigger('click.UT');
         wnd.off('scroll.UT').on('scroll.UT', function() {
-            if (wnd.scrollTop() > wnd.height())
+            var btnW = btnUp.show().outerWidth(true),
+                    itemsUTCW = itemsUT.width();
+            btnUp.hide();
+            if ((wnd.width() - itemsUTCW) / 2 > btnW && wnd.scrollTop() > wnd.height())
                 btnUp.fadeIn();
             else
-                btnUp.fadeOut();
+                btnUp.hide();
         })
         return itemsUT;
-    },
-    this.resize = function(itemsUT, btnUp) {
-        var btnW = btnUp.outerWidth(true),
-        bodyW = body.width(),
-        itemsUT = $(itemsUT),
-        itemsUTCW = itemsUT.children().width();
-        if ((bodyW - itemsUTCW) / 2 > btnW && wnd.scrollTop() > wnd.height())
+    }
+    , this.resize = function(itemsUT, btnUp) {
+        itemsUT = $(itemsUT);
+        var btnW = btnUp.show().outerWidth(true),
+                itemsUTCW = itemsUT.width();
+        btnUp.hide();
+        if ((wnd.width() - itemsUTCW) / 2 > btnW && wnd.scrollTop() > wnd.height())
             btnUp.fadeIn();
         else
-            btnUp.fadeOut();
-        itemsUT.css('width', bodyW)
+            btnUp.hide();
         return itemsUT;
     }
 }
