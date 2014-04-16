@@ -19,7 +19,7 @@
 <article class="container">
     <!-- Show Banners in circle -->
 
-        {$CI->load->module('banners')->render($category->getId())}
+    {$CI->load->module('banners')->render($category->getId())}
 
     <!-- Show banners in circle -->
 
