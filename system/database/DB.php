@@ -30,7 +30,11 @@ function &DB($params = '', $active_record_override = NULL) {
     // Load the DB config file if a DSN string wasn't passed
     if (is_string($params) AND strpos($params, '://') === FALSE) {
         // Is the config file in the environment folder?
-        $file_path = APPPATH . 'config/config' . EXT;
+        if (file_exists(APPPATH . 'config/' . ENVIRONMENT . '/config' . EXT)) {
+            $file_path = APPPATH . 'config/' . ENVIRONMENT . '/config' . EXT;
+        } else {
+            $file_path = APPPATH . 'config/config' . EXT;
+        }
 
         if (!file_exists($file_path)) {
             continue;
@@ -116,7 +120,7 @@ function &DB($params = '', $active_record_override = NULL) {
             eval('class CI_DB extends CI_DB_driver { }');
         }
     }
-    
+
     require_once(BASEPATH . 'database/drivers/' . $params['dbdriver'] . '/' . $params['dbdriver'] . '_driver.php');
 
     // Instantiate the DB adapter
