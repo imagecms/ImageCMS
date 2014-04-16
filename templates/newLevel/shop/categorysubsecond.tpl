@@ -14,9 +14,8 @@
             {\Category\RenderMenu::create()->load('category_menu_second')}
         </div>
         <div class="right-catalog-first">
-            {widget('popular_products_category_v')}
+            {widget('popular_products_category_v', TRUE)}
         </div>
-
     </div>
 </div>
 {widget('latest_news')}

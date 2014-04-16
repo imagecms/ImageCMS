@@ -6,6 +6,7 @@
 /uploads
 /gitpush
 /application/backups
+/application/config/*/
 /application/config/config.php
 /application/config/database.php
 /application/modules/shop/cmlTemp/

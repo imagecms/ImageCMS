@@ -88,8 +88,6 @@ article, .container, .special-proposition .title-proposition-h{max-width: 980px;
 body, input, select, button, textarea, .f-s_0 > *, .items > li, .items > td, .text-el, .nav > li, .cuselText, .frame-kit .title, .t-a_j > *{font-size: 13px;}
 html, body{height: 100%;}
 html {-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;}
-body.isScroll{overflow: hidden;margin-right: 17px;}
-body.isScroll.isTouch{padding-right: 0;}
 body {text-align: left;overflow-y: scroll;}
 body, input, select, button, textarea {font-family: Tahoma, Geneva, Kalimati, sans-serif;line-height: 1.5;}
 input[type="submit"], input[type="reset"], input[type="button"], button {overflow: visible;background-color: transparent;border: none;}
@@ -432,7 +430,7 @@ input.input-search{height: 33px;}
 .items-thumbs.items li{margin-left: 5px;}
 .carousel-js-css .items-thumbs.items{margin-left: 0;}
 .carousel-js-css .items-thumbs.items li{margin: 1px 5px 1px 0;}
-/*if not carousel*/
+/*/if carousel*/
 .fancy-gallery .content-carousel{padding: 14px 0 9px;text-align: center;font-size: 0;}
 .fancy-gallery .items-thumbs > li{margin-right: 5px;margin-top: 5px;margin-left: 0;}
 
@@ -889,7 +887,7 @@ input + .msg{margin-top: 5px;}
 .frame-group-checks[data-rel="cusel"] .inside-padd{padding-right: 20px;}
 .frame-group-checks .inside-padd{padding: 10px 10px 10px 18px;}
 .frame-group-checks .frame-label{cursor: pointer;}
-/*.filter*/
+/*/filter*/
 
 /*catalog*/
 .left-catalog{margin-bottom: 30px;}
@@ -1005,7 +1003,6 @@ td.frame-cur-sum-price {vertical-align: middle;padding-left: 10px;padding-right:
 
 /*/drop-bask*/
 
-.frame-bask-order{}
 .title-cart h1{margin-right: 15px;}
 .frame-count{vertical-align: middle;min-width: 80px;}
 .frame-count > .number{display: inline-block;vertical-align: middle;min-width: 80px;}
@@ -1160,7 +1157,7 @@ footer .box-4 > .inside-padd{padding: 21px 28px 10px;margin-bottom: 10px;}
 
 /*user-toolbar*/
 .drop-info{position: absolute !important;left: 0;bottom: 100%;text-align: center;width: 100%;height: 111px;}
-.frame-user-toolbar{position: fixed;z-index: 100;bottom: 0;width: 100%;}
+.frame-user-toolbar{position: fixed;z-index: 100;bottom: 0;width: 100%;min-width: 960px;}
 .frame-user-toolbar > .container{position: relative;padding: 0;z-index: 1104;}
 .frame-user-toolbar.active .items-user-toolbar > li{display: inline-block;}
 .items-user-toolbar{width: 100%;float: right;min-height: 41px;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;-ms-box-sizing: border-box;box-sizing: border-box;}

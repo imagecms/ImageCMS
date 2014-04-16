@@ -13,6 +13,7 @@
 *   $pageNumber: integer variable contains the current page number
 *   $banners: array of (object)s of SBanners which have to be displayed in current page
 */}
+
 <!--Start. Make bread crumbs -->
 <div class="frame-crumbs">
     {widget('path')}

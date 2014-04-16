@@ -21,7 +21,7 @@ $.dropInit.prototype.extendDrop = function() {
                         body.on('selectstart.' + $.drop.nS, function(e) {
                             e.preventDefault();
                         });
-                        var condScroll = $.exists('.scrollEmulation');
+                        var condScroll = body.hasClass('isScroll');
                         body.on('mousemove.' + $.drop.nS, function(e) {
                             drop.data('drp').droppableIn = true;
                             var l = e.pageX - left,
@@ -106,12 +106,11 @@ $.dropInit.prototype.extendDrop = function() {
                 drop = this.self ? this.self : this;
             drop.each(function() {
                 var drop = $(this),
-                        drp = drop.data('drp');
+                        drp = $.extend({}, drop.data('drp'));
 
                 if (drp.limitContentSize) {
                     var dropV = drop.is(':visible'),
-                            forCenter = drp.forCenter,
-                            docH = $(document).height();
+                            forCenter = drp.forCenter;
                     if (!dropV) {
                         drop.show();
                         if (forCenter)
@@ -152,16 +151,16 @@ $.dropInit.prototype.extendDrop = function() {
                                         placement = drp.placement;
                                 if (typeof placement === 'object') {
                                     if (placement.top !== undefined)
-                                        mayHeight = (drp.scroll ? wnd.height() : docH) - placement.top - footerHeader - (dropH - dropHm);
+                                        mayHeight = wnd.height() - placement.top - footerHeader - (dropH - dropHm);
                                     if (placement.bottom !== undefined)
                                         mayHeight = placement.bottom - footerHeader - (dropH - dropHm);
                                 }
                                 else {
                                     if (placement.search(/top/) >= 0) {
-                                        mayHeight = (drp.scroll ? wnd.height() : docH) - refer.offset().top - (drp.scroll ? wnd.scrollTop() : 0) - footerHeader - refer.outerHeight() - (dropH - dropHm);
+                                        mayHeight = wnd.height() - refer.offset().top - footerHeader - refer.outerHeight() - (dropH - dropHm);
                                     }
                                     if (placement.search(/bottom/) >= 0) {
-                                        mayHeight = refer.offset().top - (drp.scroll ? wnd.scrollTop() : 0) - footerHeader - (dropH - dropHm);
+                                        mayHeight = refer.offset().top - footerHeader - (dropH - dropHm);
                                     }
                                 }
                                 if (mayHeight > elCH)
@@ -201,7 +200,7 @@ $.dropInit.prototype.extendDrop = function() {
                             'height': ''
                         });
                         var wndW = wnd.width(),
-                                wndH = drop.data('drp').scroll ? wnd.height() : $(document).height();
+                                wndH = wnd.height();
 
                         var dropV = drop.is(':visible'),
                                 w = dropV ? drop.outerWidth() : drop.actual('outerWidth'),
@@ -209,59 +208,14 @@ $.dropInit.prototype.extendDrop = function() {
                                 ws = dropV ? drop.width() : drop.actual('width'),
                                 hs = dropV ? drop.height() : drop.actual('height');
 
-                        if (w > wndW)
-                            drop.css('width', wndW - w + ws);
+                        if (w + $.drop.widthScroll > wndW)
+                            drop.css('width', wndW - w + ws - $.drop.widthScroll);
                         if (h > wndH)
                             drop.css('height', wndH - h + hs);
                     }
                 }
             });
             return drop;
-        },
-        scroll: {
-            create: function() {
-                if (!isTouch) {
-                    if (body.css('overflow') === 'auto' || wnd.height() < $(document).height()) {
-                        body.addClass('isScroll').css({
-                            'overflow': 'hidden',
-                            'margin-right': +$.drop.widthScroll
-                        });
-                        body.prepend('<div class="scrollEmulation" style="position: fixed;right: 0;overflow-y: scroll;height: 100%;width: ' + $.drop.widthScroll + 'px;z-index:10000;"><div style="width: 1px;' + ($.drop.drp.curDrop.data('drp').limitSize ? 'height: 100%;' : 'height: ' + $.drop.drp.curDrop.height() + 'px;') + '"></div></div>');
-                        $('.scrollEmulation').off('scroll.' + $.drop.nS).on('scroll.' + $.drop.nS, function() {
-                            $.drop.drp.curDrop.data('drp').forCenter.scrollTop($(this).scrollTop());
-                        });
-                    }
-                }
-                if (isTouch && $.drop.drp.curDrop.height() < wnd.height())
-                    $.drop.dP.forCenter.off('touchmove.' + $.drop.nS).on('touchmove.' + $.drop.nS, function(e) {
-                        e.preventDefault();
-                    });
-                $(document).trigger({
-                    'type': 'scrollEmulate.' + $.drop.nS
-                });
-            },
-            remove: function() {
-                var condOverlay = true;
-                $('[data-elrun]:visible').each(function() {
-                    if ($(this).data('drp').overlayOpacity === 0)
-                        condOverlay = false;
-                });
-                if (!condOverlay || !$.exists('[data-elrun]:visible')) {
-                    body.removeClass('isScroll').css({
-                        'overflow': '',
-                        'margin-right': '',
-                        'margin-left': 0
-                    });
-                    //$('html').css('overflow', '');
-                    $('.scrollEmulation').remove();
-                    if (isTouch)
-                        $('.forCenter').off('touchmove.' + $.drop.nS);
-
-                    $(document).trigger({
-                        'type': 'scrollEmulateRemove.' + $.drop.nS
-                    });
-                }
-            }
         },
         galleries: function($this, set, methods) {
             var elSet = $this.data(),

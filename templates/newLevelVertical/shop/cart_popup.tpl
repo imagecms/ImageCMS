@@ -237,7 +237,7 @@
                         </button>
                     </div>
                     <div class="btn-cart btn-cart-p f_r">
-                        <a href="/shop/cart">
+                        <a href="{shop_url('cart')}">
                             <span class="icon_cart_p"></span>
                             <span class="text-el">{lang('Оформить заказ','newLevel')}</span>
                         </a>
