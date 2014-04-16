@@ -14,6 +14,9 @@
 /application/modules/shop
 /application/modules/mobile/
 /application/modules/exchange/
+/application/modules/template_manager/
+/application/modules/mod_stats/
+/templates/fluid/
 .tmp_staging
 /tests/tests/_log/*
 /tests/application/*
