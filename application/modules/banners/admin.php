@@ -211,7 +211,11 @@ class Admin extends BaseAdminController {
 
             $banner = $this->banner_model->get_one_banner($id, $locale);
             $groups = $this->banner_model->getGroups();
-
+            
+            if (!isset($banner['id']) OR empty($banner)) {
+                $banner['id'] = $id;
+            }
+            
             /** Show Banner edit template */
             CMSFactory\assetManager::create()
                     ->registerScript('main')

@@ -79,10 +79,7 @@ function init() {
     };
     optionsDrop.closed = function(el, drop, data) {
         if (drop.hasClass('frame-already-show')) {
-            $('.frame-user-toolbar').css({
-                'width': body.width(),
-                'z-index': ''
-            });
+            $('.frame-user-toolbar').css('z-index', '');
             drop.prev().css('z-index', '');
         }
     };

@@ -8,12 +8,12 @@ $(document).ready(function() {
     });
 
     $('.languageSelect').bind('focus', function() {
-        $(this).autocomplete("search", "all_languages")
+        $(this).autocomplete("search", "all_languages");
     });
 
     $('.showAllLanguageList').toggle(function() {
         $(this).prev().focus();
-        $(this).prev().autocomplete("search", "all_languages")
+        $(this).prev().autocomplete("search", "all_languages");
     }, function() {
         $(this).prev().autocomplete("close");
     });
@@ -131,15 +131,15 @@ var Sort = {
     },
     sortOrigins: function(curElement) {
         this.sortType = 'origin';
-        this.sort(this.originsArray, this.translationsArray)
+        this.sort(this.originsArray, this.translationsArray);
     },
     sortTranslations: function(curElement) {
         this.sortType = 'translation';
-        this.sort(this.translationsArray, this.originsArray)
+        this.sort(this.translationsArray, this.originsArray);
     },
     sortComments: function(curElement) {
         this.sortType = 'comment';
-        this.sort(this.originsArray, this.translationsArray)
+        this.sort(this.originsArray, this.translationsArray);
     },
     sortFuzzy: function(curElement) {
         this.init();
@@ -393,7 +393,7 @@ var Search = {
         var all = '';
         $(this.findValues.concat(this.undiscoveredValues)).each(function() {
             all += $(this)[0].outerHTML;
-        })
+        });
         $(this.table).html(all);
 
         var searchObj = this;
@@ -443,14 +443,14 @@ var Search = {
                 if (this.countResults) {
                     showMessage(lang('Message'), lang('Number of searched matches') + ': ' + this.countResults + '.');
                 } else {
-                    showMessage(lang('Message'), lang('Was not found any results'), 'r')
+                    showMessage(lang('Message'), lang('Was not found any results'), 'r');
                 }
                 this.countResults = 0;
             } else {
-                showMessage(lang('Error'), lang('Please, enter more than 1 symbol'), 'r')
+                showMessage(lang('Error'), lang('Please, enter more than 1 symbol'), 'r');
             }
         } else {
-            showMessage(lang('Error'), lang('You did not select search criteria'), 'r')
+            showMessage(lang('Error'), lang('You did not select search criteria'), 'r');
         }
     },
     goOnEnterPress: function() {
@@ -503,8 +503,9 @@ var Selectors = {
             this.clearContent();
         } else {
             if (this.module_tempate || this.type == 'main') {
-                if (this.type == 'main')
+                if (this.type == 'main') {
                     this.module_tempate = 'main';
+                }
 
                 var url = '/admin/components/init_window/translator/renderModulePoFile/' + this.module_tempate + '/' + this.type + '/' + this.lang + '/0/' + this.per_page;
                 this.renderTable(url);
@@ -619,7 +620,7 @@ var Translator = {
         {
             var respons = $.parseJSON(data);
             if (typeof respons == 'object') {
-                console.log('333')
+
                 var respons = JSON.parse(data);
                 if (respons['error']) {
                     $('#po_table tbody').html('');
@@ -1318,11 +1319,13 @@ var Pagination = {
 
         var i = 2;
         while (i <= to) {
-            if (rows_count == i - 1)
+            if (rows_count == i - 1) {
                 break;
+            }
             var active = '';
-            if (page_number == i)
+            if (page_number == i) {
                 active = 'active';
+            }
 
             pages += "<li class='" + active + "' data-number='" + i + "'><span>" + i + "</span></li>";
             i++;
@@ -1339,8 +1342,9 @@ var Pagination = {
         var offset = (parseInt($(curElement).data('number')) - 1) * per_page;
         var page = parseInt($(curElement).data('number'));
 
-        if (type == 'main')
+        if (type == 'main') {
             module = 'main';
+        }
 
         $('#po_table tbody tr').each(function(iteration) {
             iteration = iteration / 2;
@@ -1406,14 +1410,14 @@ var Pagination = {
             }
         });
 
-        this.generate()
+        this.generate();
     },
     movePrev: function() {
         var activeNum = $('ul.pagination li.active').data('number');
-        console.log(activeNum)
+        console.log(activeNum);
         if (activeNum > 1) {
             if ($('ul.pagination li')[activeNum - 1]) {
-                console.log($($('ul.pagination li')[activeNum - 1]))
+                console.log($($('ul.pagination li')[activeNum - 1]));
                 $($('ul.pagination li')[activeNum - 1]).click();
             }
         }
@@ -1424,13 +1428,13 @@ var Pagination = {
         return false;
     }
 
-}
+};
 
 var CreatePoFile = {
     addPath: function(curElement) {
         var path = $.trim($(curElement).next().val());
         var pathSelector = $(curElement).next().next();
-        $(pathSelector).append('<option selected value="' + path + '">' + path + '</option>')
+        $(pathSelector).append('<option selected value="' + path + '">' + path + '</option>');
         $(curElement).next().val('');
     }
 };
@@ -1539,11 +1543,3 @@ function htmlspecialchars_decode(str) {
 
     return str;
 }
-
-
-//window.onerror=function(message, url, linenumber){
-// console.log(message)
-// console.log(url)
-// console.log(linenumber)
-// return true;
-//}

@@ -1766,7 +1766,7 @@ function getCookie(c_name)
                 if (source.match(/jpg|gif|png|bmp|jpeg/)) {
                     var img = new Image();
                     $(img).load(function() {
-                        _update($(this).css('max-height', '100%'));
+                        _update($(this));
                     });
                     img.src = source;
                 }
@@ -1811,12 +1811,11 @@ function getCookie(c_name)
                     }
                 }
             }
-
             $this.each(function() {
                 var $this = $(this),
                         elSet = $this.data(),
                         moreOne = methods._checkProp(elSet, opt, 'moreOne'),
-                        source = methods._checkProp(elSet, opt, 'source') || $this.attr('href') || null,
+                        source = methods._checkProp(elSet, opt, 'source') || null,
                         drop = $(elSet.drop),
                         dropFilter = methods._checkProp(elSet, opt, 'dropFilter'),
                         start = elSet.start;
@@ -1851,12 +1850,11 @@ function getCookie(c_name)
                                 always = methods._checkProp(elSet, opt, 'always');
                         if (start && !eval(start)($this, drop))
                             return false;
-
-                        if (($.existsN(drop) || !$.existsN(drop) && $.drop.drp.drops[source.replace(methods._reg(), '')]) && !modal && !always && !confirm && !prompt) {
+                        if (($.existsN(drop) && !source || $.drop.drp.drops[source.replace(methods._reg(), '')]) && !always && !confirm && !prompt) {
                             methods._pasteDrop($.extend({}, $.drop.dP, opt, elSet), $.existsN(drop) ? drop : $.drop.drp.drops[source.replace(methods._reg(), '')]);
                             methods._show($this, e, opt, false, hashChange);
                         }
-                        else if (prompt || source || always || confirm || datas) {
+                        else if (prompt || confirm || source || always) {
                             if (!confirm && !prompt)
                                 _confirmF();
                             else {//for cofirm && prompt
@@ -1866,7 +1864,7 @@ function getCookie(c_name)
                             }
                         }
                         else //for validations
-                            methods._pasteModal($this, $this.data('datas'), opt, null, hashChange);
+                            methods._pasteModal($this, datas, opt, null, hashChange);
                     }
                 }
                 else
@@ -1931,13 +1929,12 @@ function getCookie(c_name)
                                         }
                                     });
 
-                                    if (drpV && (!drpV.scroll || drpV.overlayOpacity === 0) || !$.exists('[data-elrun]:visible')) {
+                                    if (drpV && drpV.place !== 'inherit' && drpV.overlayOpacity !== 0 || !$.exists('[data-elrun]:visible'))
                                         body.removeClass('isScroll').css({
                                             'overflow': '',
                                             'margin-right': ''
                                         });
-                                    }
-                                    if (drpV && drpV.overlayOpacity !== 0 && drpV.scroll)
+                                    if (drpV && drpV.place !== 'inherit' && drpV.overlayOpacity !== 0 && !isTouch)
                                         body.addClass('isScroll').css({
                                             'overflow': 'hidden',
                                             'margin-right': $.drop.widthScroll
@@ -2000,19 +1997,20 @@ function getCookie(c_name)
             if (!drop)
                 drop = this.self ? this.self : this;
             drop.each(function() {
-                var drop = $(this);
-                if (drop.data('drp') && !drop.data('drp').droppableIn) {
-                    var method = drop.data('drp').animate && !start ? 'animate' : 'css',
+                var drop = $(this),
+                        drp = drop.data('drp');
+                if (drp && !drp.droppableIn) {
+                    var method = drp.animate && !start ? 'animate' : 'css',
                             dropV = drop.is(':visible'),
                             w = dropV ? drop.outerWidth() : drop.actual('outerWidth'),
                             h = dropV ? drop.outerHeight() : drop.actual('outerHeight'),
-                            top = (wnd.height() - h) / 2,
-                            left = (wnd.width() - w) / 2;
+                            top = Math.floor((wnd.height() - h) / 2),
+                            left = Math.floor((wnd.width() - w - $.drop.widthScroll) / 2);
                     drop[method]({
-                        'top': (top > 0 ? top : 0) + wnd.scrollTop(),
-                        'left': (left > 0 ? left : 0) + wnd.scrollLeft()
+                        'top': top > 0 ? top : 0,
+                        'left': left > 0 ? left : 0
                     }, {
-                        duration: drop.data('drp').durationOn,
+                        duration: drp.durationOn,
                         queue: false
                     });
                 }
@@ -2063,6 +2061,7 @@ function getCookie(c_name)
         _pasteModal: function(el, datas, set, rel, hashChange) {
             var elSet = el.data(),
                     drop = $(elSet.drop);
+            datas = datas || el.data('datas');
             methods._modalTrigger(elSet, set);
             methods._pasteDrop($.extend({}, $.drop.dP, set, elSet), drop, null, rel);
             $(document).trigger({
@@ -2088,7 +2087,7 @@ function getCookie(c_name)
             }
             else {
                 function _for_center(rel) {
-                    body.append('<div class="forCenter" data-rel="' + rel + '" style="left: 0;width: 100%;dispaly:none;height: 100%;"></div>');
+                    body.append('<div class="forCenter" data-rel="' + rel + '" style="left: 0;width: 100%;display:none;height: 100%;position: absolute;height: 100%;overflow-x: auto;overflow-y: scroll;"></div>');
                 }
                 if (set.place === 'noinherit')
                     drop = $(drop).appendTo(body);
@@ -2149,7 +2148,9 @@ function getCookie(c_name)
             opt.afterG = $.drop.dP.after;
             opt.closeG = $.drop.dP.close;
             opt.closedG = $.drop.dP.closed;
+            //
             opt.elrun = $this;
+            opt.rel = rel;
             opt.drop = elSet.drop;
 
             var drop = $('[data-elrun="' + opt.drop + '"]');
@@ -2177,11 +2178,13 @@ function getCookie(c_name)
             var overlays = $('.overlayDrop').css('z-index', 1103),
                     condOverlay = opt.overlayOpacity !== 0;
             var dropOver = undefined;
+
             if (condOverlay) {
                 if (!$.exists('[data-rel="' + opt.drop + '"].overlayDrop'))
                     body.append('<div class="overlayDrop" data-rel="' + opt.drop + '" style="display:none;position:absolute;width:100%;left:0;top:0;"></div>');
 
                 dropOver = $('[data-rel="' + opt.drop + '"].overlayDrop');
+                
                 drop.data('drp').dropOver = dropOver;
 
                 dropOver.css({
@@ -2196,6 +2199,8 @@ function getCookie(c_name)
             var forCenter = $('[data-rel="' + opt.drop + '"].forCenter');
 
             if (forCenter) {
+                if (isTouch)
+                    forCenter.css('height', $(document).height());
                 drop.data('drp').forCenter = forCenter;
                 forCenter.add(drop).css('z-index', overlays.length + 1104);
             }
@@ -2225,6 +2230,8 @@ function getCookie(c_name)
                 setTimeout(function() {
                     if (dropOver)
                         dropOver.css('height', '').css('height', $(document).height());
+                    if (forCenter && isTouch)
+                        forCenter.css('height', '').css('height', $(document).height());
                 }, 100);
             });
             if (condOverlay)
@@ -2238,6 +2245,9 @@ function getCookie(c_name)
                 });
             drop.addClass(opt.place);
             methods._positionType(drop);
+            if (!isTouch && opt.place !== 'inherit' && opt.overlayOpacity !== 0)
+                body.addClass('isScroll').css({'overflow': 'hidden', 'margin-right': $.drop.widthScroll});
+
             methods._checkMethod(function() {
                 methods.limitSize(drop);
             });
@@ -2251,6 +2261,10 @@ function getCookie(c_name)
             methods._checkMethod(function() {
                 methods.placeBeforeShow(drop, $this, methods, opt.place, opt.placeBeforeShow);
             });
+            if (opt.place !== 'inherit')
+                methods._checkMethod(function() {
+                    methods[opt.place](drop);
+                });
 
             var href = $this.data('href');
             if (href) {
@@ -2267,10 +2281,6 @@ function getCookie(c_name)
                     $.drop.drp.scrollTop = null;
                 }, 400);
             }
-            if (opt.place !== 'inherit')
-                methods._checkMethod(function() {
-                    methods[opt.place](drop);
-                });
             if (opt.prompt) {
                 var input = drop.find(opt.promptInput).val(opt.promptInputValue);
                 function focusInput() {
@@ -2291,25 +2301,6 @@ function getCookie(c_name)
             }
             $(opt.next).add($(opt.prev)).css('height', drop.actual('height'));
 
-            if (condOverlay && !isTouch) {
-                if (opt.scroll)
-                    body.addClass('isScroll').css({'overflow': 'hidden', 'margin-right': $.drop.widthScroll});
-                else
-                    body.removeClass('isScroll').css({'overflow': '', 'margin-right': ''});
-            }
-            if (!opt.limitSize) {
-                forCenter.css({'position': 'absolute', 'height': '100%', 'overflow': 'hidden', 'overflow-y': 'scroll'})
-                body.addClass('isScroll').css({'overflow': 'hidden', 'margin-right': $.drop.widthScroll});
-            }
-            else {
-                forCenter.css({'position': 'static', 'height': 0, 'overflow': '', 'overflow-y': ''})
-                body.removeClass('isScroll').css({'overflow': '', 'margin-right': ''});
-            }
-
-            if (isTouch)
-                $(forCenter).add(dropOver).off('touchmove.' + $.drop.nS + ev).on('touchmove.' + $.drop.nS + ev, function(e) {
-                    e.preventDefault();
-                });
             drop[opt.effectOn](opt.durationOn, function(e) {
                 var drop = $(this);
                 $.drop.drp.curDrop = drop;
@@ -2340,7 +2331,7 @@ function getCookie(c_name)
                     });
 
                 wnd.off('scroll.' + $.drop.nS + ev).on('scroll.' + $.drop.nS + ev, function(e) {
-                    if (opt.place === 'center' && opt.scrollCenter)
+                    if (opt.place === 'center')
                         methods.center(drop);
                 });
             });
@@ -2352,7 +2343,7 @@ function getCookie(c_name)
                     else
                         return true;
             });
-            body.off('keydown.' + $.drop.nS + ev);
+            body.off('keyup.' + $.drop.nS + ev);
             if (opt.closeEsc)
                 body.on('keydown.' + $.drop.nS + ev, function(e) {
                     var key = e.keyCode;
@@ -2360,7 +2351,7 @@ function getCookie(c_name)
                         methods.close(false);
                 });
             if (rel && opt.keyNavigate && methods.galleries)
-                body.off('keydown.navigate' + $.drop.nS + ev).on('keydown.navigate' + $.drop.nS + ev, function(e) {
+                body.off('keyup.navigate' + $.drop.nS + ev).on('keyup.navigate' + $.drop.nS + ev, function(e) {
                     var key = e.keyCode;
                     if (key === 37)
                         $(opt.prev).trigger('click.' + $.drop.nS);
@@ -2498,8 +2489,6 @@ function getCookie(c_name)
             closeEsc: false,
             droppable: false,
             cycle: false,
-            scroll: false,
-            scrollCenter: false,
             limitSize: false,
             limitContentSize: false,
             scrollContent: false,
