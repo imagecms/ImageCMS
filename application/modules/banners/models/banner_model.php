@@ -69,6 +69,7 @@ class Banner_model extends CI_Model {
         $query = $this->db
                 ->select('*, mod_banner.id as id')
                 ->where('locale', $locale)
+                ->where('active', 1)
                 ->join('mod_banner_i18n', 'mod_banner.id = mod_banner_i18n.id')
                 ->order_by('position')
                 ->get('mod_banner');

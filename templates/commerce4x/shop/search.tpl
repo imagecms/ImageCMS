@@ -22,32 +22,32 @@
             <aside class="span3">
                 <div class="filter">
                     <!-- Start. Categories tree with navigation -->
-<div class="boxFilter">
-    <div class="title">{lang('Найдено в категориях','commerce4x')}:</div>
-    <nav>
-        <ul>
-        {foreach $categories as $key => $category}
-            <ul  data-pid="{echo $key}">
-                <div class="title">
-                    {echo trim(key($category))}
-                </div>
-                {foreach $category[key($category)] as $subItem}
-                    <li{if $_GET['category'] && $_GET['category'] == $subItem['id']} class="active"{/if}>
-                        <span>
-                            {if $_GET['category'] && $_GET['category'] == $subItem['id']}
-                                {echo $subItem['name']}
-                            {else:}
-                                <a rel="nofollow" data-id="{echo $subItem['id']}" href="{shop_url('search?text='.$_GET['text'].'&category='.$subItem['id'])}"> {echo $subItem['name']}</a>
-                            {/if}
-                            <span class="count">({echo $subItem['count']})</span>
-                        </span>
-                    </li>
+                    <div class="boxFilter">
+                        <div class="title">{lang('Найдено в категориях','commerce4x')}:</div>
+                        <nav>
+                            <ul>
+                            {foreach $categories as $key => $category}
+                                <ul  data-pid="{echo $key}">
+                                    <div class="title">
+                                        {echo trim(key($category))}
+                                    </div>
+                                    {foreach $category[key($category)] as $subItem}
+                                        <li{if $_GET['category'] && $_GET['category'] == $subItem['id']} class="active"{/if}>
+                                            <span>
+                                                {if $_GET['category'] && $_GET['category'] == $subItem['id']}
+                                                    {echo $subItem['name']}
+                                                {else:}
+                                                    <a rel="nofollow" data-id="{echo $subItem['id']}" href="{shop_url('search?text='.$_GET['text'].'&category='.$subItem['id'])}"> {echo $subItem['name']}</a>
+                                                {/if}
+                                                <span class="count">({echo $subItem['count']})</span>
+                                            </span>
+                                        </li>
 
-                {/foreach}
-            </ul>
-        {/foreach}
-    </nav>
-</div>
+                                    {/foreach}
+                                </ul>
+                            {/foreach}
+                        </nav>
+                    </div>
                     <!-- End. Categories tree with navigation -->
                 </div>
             </aside>
@@ -65,15 +65,15 @@
                             <input type=hidden name="order" value="{echo $order_method}"/>
                             <input type=hidden name="user_per_page" value="{if !$_GET['user_per_page']}{echo \ShopCore::app()->SSettings->frontProductsPerPage}{else:}{echo $_GET['user_per_page']}{/if}"/>
                             <div class="f_l">
-<span class="v-a_m">Фильтровать по:</span>
-<div class="lineForm w_170">
-    <select class="sort" id="sort" name="order">
-        {$sort =ShopCore::app()->SSettings->getSortingFront()}
-        {foreach $sort as $s}
-        <option value="{echo $s['get']}" {if ShopCore::$_GET['order']==$s['get']}selected="selected"{/if}>{echo $s['name_front']}</option>
-        {/foreach}
-    </select>
-</div>
+                                <span class="v-a_m">Фильтровать по:</span>
+                                <div class="lineForm w_170">
+                                    <select class="sort" id="sort" name="order">
+                                        {$sort =ShopCore::app()->SSettings->getSortingFront()}
+                                        {foreach $sort as $s}
+                                        <option value="{echo $s['get']}" {if ShopCore::$_GET['order']==$s['get']}selected="selected"{/if}>{echo $s['name_front']}</option>
+                                        {/foreach}
+                                    </select>
+                                </div>
                             </div>
                             <!-- End. Sort by block -->
                             <!-- Start. Per page block -->
