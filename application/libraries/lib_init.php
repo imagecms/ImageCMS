@@ -76,7 +76,7 @@ class Lib_init {
 
             // Register shop autoloader.
             spl_autoload_unregister(array('ShopCore', 'autoload'));
-            spl_autoload_register(array('ShopCore', 'autoload'));
+            spl_autoload_register(array('ShopCore', 'autoload')); 
 
             // Diable CSRF library form web money service
             $CI = & get_instance();

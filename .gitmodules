@@ -16,3 +16,6 @@
 [submodule "templates/fluid"]
 	path = templates/fluid
 	url = git@github.com:imagecms/ImageCMS-Fluid
+[submodule "application/modules/template_manager"]
+	path = application/modules/template_manager
+	url = git@github.com:imagecms/ImageCMS-Template-Manager.git
