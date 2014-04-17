@@ -1631,7 +1631,7 @@ function getCookie(c_name)
                 var rel = this.rel;
                 if (rel) {
                     rel = rel.replace(methods._reg(), '');
-                    var source = el.data('source') || el.attr('href');
+                    var source = el.data('source');
                     if (source) {
                         if (!$.drop.drp.galleries[rel])
                             $.drop.drp.galleries[rel] = new Array();
@@ -1698,7 +1698,7 @@ function getCookie(c_name)
             if (!set)
                 set = el.data('drp');
             var elSet = el.data(),
-                    source = methods._checkProp(elSet, set, 'source') || el.attr('href'),
+                    source = methods._checkProp(elSet, set, 'source'),
                     always = methods._checkProp(elSet, set, 'always'),
                     modal = methods._checkProp(elSet, set, 'modal'),
                     type = methods._checkProp(elSet, set, 'type'),
