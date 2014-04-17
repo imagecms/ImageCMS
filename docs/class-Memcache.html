@@ -4,7 +4,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="generator" content="ApiGen 2.8.0">
 
-	<title>Class exchange\classes\DataCollector | ImageCMS Docs</title>
+	<title>Class Memcache | ImageCMS Docs</title>
 
 	<script type="text/javascript" src="resources/combined.js?394153670"></script>
 	<script type="text/javascript" src="elementlist.js?639510069"></script>
@@ -39,9 +39,9 @@
 						</li>
 				<li><a href="namespace-Compare.html">Compare</a>
 						</li>
-				<li class="active"><a href="namespace-exchange.html">exchange<span></span></a>
+				<li><a href="namespace-exchange.html">exchange<span></span></a>
 						<ul>
-				<li class="active"><a href="namespace-exchange.classes.html">classes</a>
+				<li><a href="namespace-exchange.classes.html">classes</a>
 						</li>
 							</ul></li>
 				<li><a href="namespace-ImportCSV.html">ImportCSV</a>
@@ -72,7 +72,7 @@
 							</ul></li>
 				<li><a href="namespace-None.html">None</a>
 						</li>
-				<li><a href="namespace-PHP.html">PHP</a>
+				<li class="active"><a href="namespace-PHP.html">PHP</a>
 						</li>
 				<li><a href="namespace-Products.html">Products</a>
 						</li>
@@ -94,17 +94,26 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
-				<li><a href="class-exchange.classes.Categories.html">Categories</a></li>
-				<li class="active"><a href="class-exchange.classes.DataCollector.html">DataCollector</a></li>
-				<li><a href="class-exchange.classes.ExchangeBase.html">ExchangeBase</a></li>
-				<li><a href="class-exchange.classes.ExchangeDataLoad.html">ExchangeDataLoad</a></li>
-				<li><a href="class-exchange.classes.Prices.html">Prices</a></li>
-				<li><a href="class-exchange.classes.Products.html">Products</a></li>
-				<li><a href="class-exchange.classes.Properties.html">Properties</a></li>
+				<li class="active"><a href="class-Memcache.html">Memcache</a></li>
+				<li><a href="class-MemcachePool.html">MemcachePool</a></li>
+				<li><a href="class-SimpleXMLElement.html">SimpleXMLElement</a></li>
+				<li><a href="class-SoapClient.html">SoapClient</a></li>
+				<li><a href="class-SplFixedArray.html">SplFixedArray</a></li>
+			</ul>
+
+			<h3>Interfaces</h3>
+			<ul>
+				<li><a href="class-ArrayAccess.html">ArrayAccess</a></li>
+				<li><a href="class-Countable.html">Countable</a></li>
+				<li><a href="class-Iterator.html">Iterator</a></li>
+				<li><a href="class-Traversable.html">Traversable</a></li>
 			</ul>
 
 
-
+			<h3>Exceptions</h3>
+			<ul>
+				<li><a href="class-Exception.html">Exception</a></li>
+			</ul>
 
 
 		</div>
@@ -128,7 +137,7 @@
 				<a href="index.html" title="Overview"><span>Overview</span></a>
 			</li>
 			<li>
-				<a href="namespace-exchange.classes.html" title="Summary of exchange\classes"><span>Namespace</span></a>
+				<a href="namespace-PHP.html" title="Summary of PHP"><span>Namespace</span></a>
 			</li>
 			<li class="active">
 <span>Class</span>			</li>
@@ -149,17 +158,30 @@
 	</div>
 
 <div id="content" class="class">
-	<h1>Class DataCollector</h1>
+	<h1>Class Memcache</h1>
 
 
-	<div class="description">
-	
-<p>Class-helper for Products (to simplify product processing)</p>
 
+	<dl class="tree">
+		<dd style="padding-left:0px">
+			<a href="class-MemcachePool.html"><span>MemcachePool</span></a>
+			
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by">
+<b><span>Memcache</span></b>			
+			
+			
+		</dd>
+	</dl>
+
+
+	<div>
+		<h4>Direct known subclasses</h4>
+			<a href="class-Mem_cache.html">Mem_cache</a>
 	</div>
-
-
-
 
 
 
@@ -168,20 +190,18 @@
 
 	<div class="info">
 		
+		<b>PHP Extension:</b> <a href="http://php.net/manual/book.memcache.php" title="Go to PHP documentation">Memcache</a><br>
 		
-		<b>Namespace:</b> <a href="namespace-exchange.html">exchange</a>\<a href="namespace-exchange.classes.html">classes</a><br>
 		
 
-				<b>Author:</b>
-				kolia<br>
-		<b>Located at</b> application/modules/exchange/classes/DataCollector.php<br>
+		<b>Documented at</b> <a href="http://php.net/manual/class.memcache.php" title="Go to PHP documentation">php.net</a><br>
 	</div>
 
 
 
 	<table class="summary" id="methods">
 	<caption>Methods summary</caption>
-	<tr data-order="addData" id="_addData">
+	<tr data-order="connect" id="_connect">
 
 		<td class="attributes"><code>
 			 public 
@@ -191,8 +211,8 @@
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_addData">#</a>
-		<code>addData( <span>string <var>$table</var></span>, <span>array <var>$data</var></span>, <span>string|integer <var>$key</var> = <span class="php-keyword1">NULL</span></span> )</code>
+		<a class="anchor" href="#_connect">#</a>
+		<code><a href="http://php.net/manual/memcache.connect.php" title="Go to PHP documentation">connect</a>( )</code>
 
 		<div class="description short">
 			
@@ -202,24 +222,17 @@
 			
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$table</var></dt>
-					<dd><code>string</code><br>$table</dd>
-					<dt><var>$data</var></dt>
-					<dd><code>array</code><br>$data</dd>
-					<dt><var>$key</var></dt>
-					<dd><code>string|integer</code><br>$key array key (optioanl)</dd>
-				</dl></div>
 
 
 
 
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-MemcachePool.html#_connect">MemcachePool::connect()</a></code></div>
 
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="updateData" id="_updateData">
+	<tr data-order="pconnect" id="_pconnect">
 
 		<td class="attributes"><code>
 			 public 
@@ -229,61 +242,15 @@
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_updateData">#</a>
-		<code>updateData( <span>type <var>$table</var></span>, <span>array <var>$data</var></span>, <span>type <var>$key</var> = <span class="php-keyword1">NULL</span></span> )</code>
+		<a class="anchor" href="#_pconnect">#</a>
+		<code><a href="http://php.net/manual/memcache.pconnect.php" title="Go to PHP documentation">pconnect</a>( )</code>
 
 		<div class="description short">
 			
-<p>Similar to addData, but adds rows to existing "product"</p>
-
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Similar to addData, but adds rows to existing "product"</p>
-
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$table</var></dt>
-					<dd><code>type</code><br>$table</dd>
-					<dt><var>$data</var></dt>
-					<dd><code>array</code><br>$data</dd>
-					<dt><var>$key</var></dt>
-					<dd><code>type</code><br>$key</dd>
-				</dl></div>
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="newPass" id="_newPass">
-
-		<td class="attributes"><code>
-			 public 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_newPass">#</a>
-		<code>newPass( )</code>
-
-		<div class="description short">
-			
-<p>Collects data of current pass, getting ready for new pass</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Collects data of current pass, getting ready for new pass</p>
-
 
 
 
@@ -294,7 +261,7 @@
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="getData" id="_getData">
+	<tr data-order="addserver" id="_addserver">
 
 		<td class="attributes"><code>
 			 public 
@@ -304,8 +271,8 @@
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_getData">#</a>
-		<code>getData( <span>string <var>$tableBName</var> = <span class="php-keyword1">NULL</span></span> )</code>
+		<a class="anchor" href="#_addserver">#</a>
+		<code><a href="http://php.net/manual/memcache.addserver.php" title="Go to PHP documentation">addserver</a>( )</code>
 
 		<div class="description short">
 			
@@ -315,59 +282,45 @@
 			
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$tableBName</var></dt>
-					<dd><code>string</code><br>$tableBName</dd>
-				</dl></div>
 
 
 
 
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="unsetData" id="_unsetData">
-
-		<td class="attributes"><code>
-			 public 
-			boolean
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_unsetData">#</a>
-		<code>unsetData( <span>string <var>$tableBName</var> = <span class="php-keyword1">NULL</span></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$tableBName</var></dt>
-					<dd><code>string</code><br>$tableBName</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code>boolean</code><br>
-				</div>
-
-
-
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-MemcachePool.html#_addserver">MemcachePool::addserver()</a></code></div>
 
 		</div>
 		</div></td>
 	</tr>
 	</table>
 
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-MemcachePool.html#methods">MemcachePool</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-MemcachePool.html#_add">add()</a>, 
+			<a href="class-MemcachePool.html#_append">append()</a>, 
+			<a href="class-MemcachePool.html#_cas">cas()</a>, 
+			<a href="class-MemcachePool.html#_close">close()</a>, 
+			<a href="class-MemcachePool.html#_decrement">decrement()</a>, 
+			<a href="class-MemcachePool.html#_delete">delete()</a>, 
+			<a href="class-MemcachePool.html#_findserver">findserver()</a>, 
+			<a href="class-MemcachePool.html#_flush">flush()</a>, 
+			<a href="class-MemcachePool.html#_get">get()</a>, 
+			<a href="class-MemcachePool.html#_getextendedstats">getextendedstats()</a>, 
+			<a href="class-MemcachePool.html#_getserverstatus">getserverstatus()</a>, 
+			<a href="class-MemcachePool.html#_getstats">getstats()</a>, 
+			<a href="class-MemcachePool.html#_getversion">getversion()</a>, 
+			<a href="class-MemcachePool.html#_increment">increment()</a>, 
+			<a href="class-MemcachePool.html#_prepend">prepend()</a>, 
+			<a href="class-MemcachePool.html#_replace">replace()</a>, 
+			<a href="class-MemcachePool.html#_set">set()</a>, 
+			<a href="class-MemcachePool.html#_setcompressthreshold">setcompressthreshold()</a>, 
+			<a href="class-MemcachePool.html#_setfailurecallback">setfailurecallback()</a>, 
+			<a href="class-MemcachePool.html#_setserverparams">setserverparams()</a>
+		</code></td>
+	</tr>
+	</table>
 
 
 
