@@ -57,7 +57,7 @@ class Sys_update extends BaseAdminController {
         $this->update->createBackUp();
         $this->update->getUpdate();
         $this->cache->delete_all();
-        $this->update->restoreFromZIP('./application/backups/updates.zip');
+        $this->update->restoreFromZIP(BACKUPFOLDER . 'updates.zip');
     }
 
     public function update($sort_by = "create_date", $order = 'asc') {
@@ -144,7 +144,7 @@ class Sys_update extends BaseAdminController {
     }
 
     public function delete_backup($file_name) {
-        echo unlink('./application/backups/' . $file_name);
+        echo unlink(BACKUPFOLDER . $file_name);
     }
 
     public function getQuerys($file = 'backup.sql') {

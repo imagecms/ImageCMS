@@ -25,7 +25,11 @@ class Admin extends BaseAdminController {
     public $fileError = '';
     public $filePermissionsErrors;
     public $allowed_extentions = array('php', 'tpl', 'js');
-    public $parse_regexpr = array('(?<!\w)lang\([\"]{1}(?!\')(.*?)[\"]{1}', "(?<!\w)lang\([']{1}(?!\")(.*?)[']{1}");
+    public $parse_regexpr = array(
+        '(?<!\w)lang\([\"]{1}(?!\')(.*?)[\"]{1}',
+        "(?<!\w)lang\([']{1}(?!\")(.*?)[']{1}",
+        '(?<!\w)langf\([\"]{1}(?!\')(.*?)[\"]{1}',
+        "(?<!\w)langf\([']{1}(?!\")(.*?)[']{1}");
 
     public function __construct() {
         parent::__construct();
@@ -1198,7 +1202,7 @@ class Admin extends BaseAdminController {
                 echo '';
             }
         } else {
-            echo  '';
+            echo '';
         }
     }
 

@@ -4,7 +4,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="generator" content="ApiGen 2.8.0">
 
-	<title>Class SplFixedArray | ImageCMS Docs</title>
+	<title>Class MemcachePool | ImageCMS Docs</title>
 
 	<script type="text/javascript" src="resources/combined.js?394153670"></script>
 	<script type="text/javascript" src="elementlist.js?639510069"></script>
@@ -95,10 +95,10 @@
 			<h3>Classes</h3>
 			<ul>
 				<li><a href="class-Memcache.html">Memcache</a></li>
-				<li><a href="class-MemcachePool.html">MemcachePool</a></li>
+				<li class="active"><a href="class-MemcachePool.html">MemcachePool</a></li>
 				<li><a href="class-SimpleXMLElement.html">SimpleXMLElement</a></li>
 				<li><a href="class-SoapClient.html">SoapClient</a></li>
-				<li class="active"><a href="class-SplFixedArray.html">SplFixedArray</a></li>
+				<li><a href="class-SplFixedArray.html">SplFixedArray</a></li>
 			</ul>
 
 			<h3>Interfaces</h3>
@@ -158,28 +158,21 @@
 	</div>
 
 <div id="content" class="class">
-	<h1>Class SplFixedArray</h1>
+	<h1>Class MemcachePool</h1>
 
 
 
-	<dl class="tree">
-		<dd style="padding-left:0px">
-<b><span>SplFixedArray</span></b>			
-			 implements 
-				<a href="class-Iterator.html"><span>Iterator</span></a>, 
-			
-				<a href="class-Traversable.html"><span>Traversable</span></a>, 
-			
-				<a href="class-ArrayAccess.html"><span>ArrayAccess</span></a>, 
-			
-				<a href="class-Countable.html"><span>Countable</span></a>
-			
-			
-		</dd>
-	</dl>
 
 
+	<div>
+		<h4>Direct known subclasses</h4>
+			<a href="class-Memcache.html">Memcache</a>
+	</div>
 
+	<div>
+		<h4>Indirect known subclasses</h4>
+			<a href="class-Mem_cache.html">Mem_cache</a>
+	</div>
 
 
 
@@ -187,18 +180,18 @@
 
 	<div class="info">
 		
-		<b>PHP Extension:</b> <a href="http://php.net/manual/book.spl.php" title="Go to PHP documentation">SPL</a><br>
+		<b>PHP Extension:</b> <a href="http://php.net/manual/book.memcache.php" title="Go to PHP documentation">Memcache</a><br>
 		
 		
 
-		<b>Documented at</b> <a href="http://php.net/manual/class.splfixedarray.php" title="Go to PHP documentation">php.net</a><br>
+		<b>Documented at</b> <a href="http://php.net/manual/class.memcachepool.php" title="Go to PHP documentation">php.net</a><br>
 	</div>
 
 
 
 	<table class="summary" id="methods">
 	<caption>Methods summary</caption>
-	<tr data-order="__construct" id="___construct">
+	<tr data-order="connect" id="_connect">
 
 		<td class="attributes"><code>
 			 public 
@@ -208,8 +201,8 @@
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#___construct">#</a>
-		<code><a href="http://php.net/manual/splfixedarray.construct.php" title="Go to PHP documentation">__construct</a>( <span>mixed <var>$size</var></span> )</code>
+		<a class="anchor" href="#_connect">#</a>
+		<code><a href="http://php.net/manual/memcachepool.connect.php" title="Go to PHP documentation">connect</a>( )</code>
 
 		<div class="description short">
 			
@@ -227,7 +220,7 @@
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="__wakeup" id="___wakeup">
+	<tr data-order="addserver" id="_addserver">
 
 		<td class="attributes"><code>
 			 public 
@@ -237,8 +230,8 @@
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#___wakeup">#</a>
-		<code><a href="http://php.net/manual/splfixedarray.wakeup.php" title="Go to PHP documentation">__wakeup</a>( )</code>
+		<a class="anchor" href="#_addserver">#</a>
+		<code><a href="http://php.net/manual/memcachepool.addserver.php" title="Go to PHP documentation">addserver</a>( )</code>
 
 		<div class="description short">
 			
@@ -256,7 +249,7 @@
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="count" id="_count">
+	<tr data-order="setserverparams" id="_setserverparams">
 
 		<td class="attributes"><code>
 			 public 
@@ -266,39 +259,8 @@
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_count">#</a>
-		<code><a href="http://php.net/manual/splfixedarray.count.php" title="Go to PHP documentation">count</a>( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-				<h4>Implementation of</h4>
-				<div class="list"><code><a href="class-Countable.html#_count">Countable::count()</a></code></div>
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="toArray" id="_toArray">
-
-		<td class="attributes"><code>
-			 public 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_toArray">#</a>
-		<code><a href="http://php.net/manual/splfixedarray.toarray.php" title="Go to PHP documentation">toArray</a>( )</code>
+		<a class="anchor" href="#_setserverparams">#</a>
+		<code><a href="http://php.net/manual/memcachepool.setserverparams.php" title="Go to PHP documentation">setserverparams</a>( )</code>
 
 		<div class="description short">
 			
@@ -316,18 +278,18 @@
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="fromArray" id="_fromArray">
+	<tr data-order="setfailurecallback" id="_setfailurecallback">
 
 		<td class="attributes"><code>
-			 public static
+			 public 
 			
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_fromArray">#</a>
-		<code><a href="http://php.net/manual/splfixedarray.fromarray.php" title="Go to PHP documentation">fromArray</a>( <span>mixed <var>$data</var></span>, <span>mixed <var>$save_indexes</var></span> )</code>
+		<a class="anchor" href="#_setfailurecallback">#</a>
+		<code><a href="http://php.net/manual/memcachepool.setfailurecallback.php" title="Go to PHP documentation">setfailurecallback</a>( )</code>
 
 		<div class="description short">
 			
@@ -345,7 +307,7 @@
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="getSize" id="_getSize">
+	<tr data-order="getserverstatus" id="_getserverstatus">
 
 		<td class="attributes"><code>
 			 public 
@@ -355,8 +317,8 @@
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_getSize">#</a>
-		<code><a href="http://php.net/manual/splfixedarray.getsize.php" title="Go to PHP documentation">getSize</a>( )</code>
+		<a class="anchor" href="#_getserverstatus">#</a>
+		<code><a href="http://php.net/manual/memcachepool.getserverstatus.php" title="Go to PHP documentation">getserverstatus</a>( )</code>
 
 		<div class="description short">
 			
@@ -374,7 +336,7 @@
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="setSize" id="_setSize">
+	<tr data-order="findserver" id="_findserver">
 
 		<td class="attributes"><code>
 			 public 
@@ -384,8 +346,8 @@
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_setSize">#</a>
-		<code><a href="http://php.net/manual/splfixedarray.setsize.php" title="Go to PHP documentation">setSize</a>( <span>mixed <var>$value</var></span> )</code>
+		<a class="anchor" href="#_findserver">#</a>
+		<code><a href="http://php.net/manual/memcachepool.findserver.php" title="Go to PHP documentation">findserver</a>( )</code>
 
 		<div class="description short">
 			
@@ -403,7 +365,7 @@
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="offsetExists" id="_offsetExists">
+	<tr data-order="getversion" id="_getversion">
 
 		<td class="attributes"><code>
 			 public 
@@ -413,8 +375,8 @@
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_offsetExists">#</a>
-		<code><a href="http://php.net/manual/splfixedarray.offsetexists.php" title="Go to PHP documentation">offsetExists</a>( <span>mixed <var>$index</var></span> )</code>
+		<a class="anchor" href="#_getversion">#</a>
+		<code><a href="http://php.net/manual/memcachepool.getversion.php" title="Go to PHP documentation">getversion</a>( )</code>
 
 		<div class="description short">
 			
@@ -429,12 +391,10 @@
 
 
 
-				<h4>Implementation of</h4>
-				<div class="list"><code><a href="class-ArrayAccess.html#_offsetExists">ArrayAccess::offsetExists()</a></code></div>
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="offsetGet" id="_offsetGet">
+	<tr data-order="add" id="_add">
 
 		<td class="attributes"><code>
 			 public 
@@ -444,8 +404,8 @@
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_offsetGet">#</a>
-		<code><a href="http://php.net/manual/splfixedarray.offsetget.php" title="Go to PHP documentation">offsetGet</a>( <span>mixed <var>$index</var></span> )</code>
+		<a class="anchor" href="#_add">#</a>
+		<code><a href="http://php.net/manual/memcachepool.add.php" title="Go to PHP documentation">add</a>( )</code>
 
 		<div class="description short">
 			
@@ -460,12 +420,10 @@
 
 
 
-				<h4>Implementation of</h4>
-				<div class="list"><code><a href="class-ArrayAccess.html#_offsetGet">ArrayAccess::offsetGet()</a></code></div>
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="offsetSet" id="_offsetSet">
+	<tr data-order="set" id="_set">
 
 		<td class="attributes"><code>
 			 public 
@@ -475,8 +433,8 @@
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_offsetSet">#</a>
-		<code><a href="http://php.net/manual/splfixedarray.offsetset.php" title="Go to PHP documentation">offsetSet</a>( <span>mixed <var>$index</var></span>, <span>mixed <var>$newval</var></span> )</code>
+		<a class="anchor" href="#_set">#</a>
+		<code><a href="http://php.net/manual/memcachepool.set.php" title="Go to PHP documentation">set</a>( )</code>
 
 		<div class="description short">
 			
@@ -491,12 +449,10 @@
 
 
 
-				<h4>Implementation of</h4>
-				<div class="list"><code><a href="class-ArrayAccess.html#_offsetSet">ArrayAccess::offsetSet()</a></code></div>
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="offsetUnset" id="_offsetUnset">
+	<tr data-order="replace" id="_replace">
 
 		<td class="attributes"><code>
 			 public 
@@ -506,8 +462,8 @@
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_offsetUnset">#</a>
-		<code><a href="http://php.net/manual/splfixedarray.offsetunset.php" title="Go to PHP documentation">offsetUnset</a>( <span>mixed <var>$index</var></span> )</code>
+		<a class="anchor" href="#_replace">#</a>
+		<code><a href="http://php.net/manual/memcachepool.replace.php" title="Go to PHP documentation">replace</a>( )</code>
 
 		<div class="description short">
 			
@@ -522,12 +478,10 @@
 
 
 
-				<h4>Implementation of</h4>
-				<div class="list"><code><a href="class-ArrayAccess.html#_offsetUnset">ArrayAccess::offsetUnset()</a></code></div>
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="rewind" id="_rewind">
+	<tr data-order="cas" id="_cas">
 
 		<td class="attributes"><code>
 			 public 
@@ -537,8 +491,8 @@
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_rewind">#</a>
-		<code><a href="http://php.net/manual/splfixedarray.rewind.php" title="Go to PHP documentation">rewind</a>( )</code>
+		<a class="anchor" href="#_cas">#</a>
+		<code><a href="http://php.net/manual/memcachepool.cas.php" title="Go to PHP documentation">cas</a>( )</code>
 
 		<div class="description short">
 			
@@ -553,12 +507,10 @@
 
 
 
-				<h4>Implementation of</h4>
-				<div class="list"><code><a href="class-Iterator.html#_rewind">Iterator::rewind()</a></code></div>
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="current" id="_current">
+	<tr data-order="append" id="_append">
 
 		<td class="attributes"><code>
 			 public 
@@ -568,8 +520,8 @@
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_current">#</a>
-		<code><a href="http://php.net/manual/splfixedarray.current.php" title="Go to PHP documentation">current</a>( )</code>
+		<a class="anchor" href="#_append">#</a>
+		<code><a href="http://php.net/manual/memcachepool.append.php" title="Go to PHP documentation">append</a>( )</code>
 
 		<div class="description short">
 			
@@ -584,12 +536,10 @@
 
 
 
-				<h4>Implementation of</h4>
-				<div class="list"><code><a href="class-Iterator.html#_current">Iterator::current()</a></code></div>
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="key" id="_key">
+	<tr data-order="prepend" id="_prepend">
 
 		<td class="attributes"><code>
 			 public 
@@ -599,8 +549,8 @@
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_key">#</a>
-		<code><a href="http://php.net/manual/splfixedarray.key.php" title="Go to PHP documentation">key</a>( )</code>
+		<a class="anchor" href="#_prepend">#</a>
+		<code><a href="http://php.net/manual/memcachepool.prepend.php" title="Go to PHP documentation">prepend</a>( )</code>
 
 		<div class="description short">
 			
@@ -615,12 +565,10 @@
 
 
 
-				<h4>Implementation of</h4>
-				<div class="list"><code><a href="class-Iterator.html#_key">Iterator::key()</a></code></div>
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="next" id="_next">
+	<tr data-order="get" id="_get">
 
 		<td class="attributes"><code>
 			 public 
@@ -630,8 +578,8 @@
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_next">#</a>
-		<code><a href="http://php.net/manual/splfixedarray.next.php" title="Go to PHP documentation">next</a>( )</code>
+		<a class="anchor" href="#_get">#</a>
+		<code><a href="http://php.net/manual/memcachepool.get.php" title="Go to PHP documentation">get</a>( )</code>
 
 		<div class="description short">
 			
@@ -646,12 +594,10 @@
 
 
 
-				<h4>Implementation of</h4>
-				<div class="list"><code><a href="class-Iterator.html#_next">Iterator::next()</a></code></div>
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="valid" id="_valid">
+	<tr data-order="delete" id="_delete">
 
 		<td class="attributes"><code>
 			 public 
@@ -661,8 +607,8 @@
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_valid">#</a>
-		<code><a href="http://php.net/manual/splfixedarray.valid.php" title="Go to PHP documentation">valid</a>( )</code>
+		<a class="anchor" href="#_delete">#</a>
+		<code><a href="http://php.net/manual/memcachepool.delete.php" title="Go to PHP documentation">delete</a>( )</code>
 
 		<div class="description short">
 			
@@ -677,8 +623,209 @@
 
 
 
-				<h4>Implementation of</h4>
-				<div class="list"><code><a href="class-Iterator.html#_valid">Iterator::valid()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getstats" id="_getstats">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getstats">#</a>
+		<code><a href="http://php.net/manual/memcachepool.getstats.php" title="Go to PHP documentation">getstats</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getextendedstats" id="_getextendedstats">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getextendedstats">#</a>
+		<code><a href="http://php.net/manual/memcachepool.getextendedstats.php" title="Go to PHP documentation">getextendedstats</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setcompressthreshold" id="_setcompressthreshold">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setcompressthreshold">#</a>
+		<code><a href="http://php.net/manual/memcachepool.setcompressthreshold.php" title="Go to PHP documentation">setcompressthreshold</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="increment" id="_increment">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_increment">#</a>
+		<code><a href="http://php.net/manual/memcachepool.increment.php" title="Go to PHP documentation">increment</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="decrement" id="_decrement">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_decrement">#</a>
+		<code><a href="http://php.net/manual/memcachepool.decrement.php" title="Go to PHP documentation">decrement</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="close" id="_close">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_close">#</a>
+		<code><a href="http://php.net/manual/memcachepool.close.php" title="Go to PHP documentation">close</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="flush" id="_flush">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_flush">#</a>
+		<code><a href="http://php.net/manual/memcachepool.flush.php" title="Go to PHP documentation">flush</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
 		</div>
 		</div></td>
 	</tr>
