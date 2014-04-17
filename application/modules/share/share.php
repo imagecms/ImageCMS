@@ -74,19 +74,17 @@ class Share extends MY_Controller {
         if ($settings['gg'] == 1) {
             $html .= 'gplus,';
         }
-        
+
         if ($settings['type'] == 'counter') {
-            $type = 'data-yashareTheme="counter"';
+            $type = ' data-yashareTheme="counter" ';
         } else {
-            $type = 'data-yashareType="' . $settings['type'] . '"';
+            $type = ' data-yashareType="' . $settings['type'] . '" ';
         }
 
-        $html = '<script async="async" defer="defer" type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script>
-                 <span class="yashare-auto-init"
-                       data-yashareL10n="ru"'
-                . $type .
-                '"data-yashareLink="' . $url . '"
-                       data-yashareQuickServices="' . $html . '"></span> ';
+        $html = '<script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script>
+                <div class="yashare-auto-init" data-yashareL10n="ru" data-yashareLink="' . $url . '"
+                data-yashareType="' . $type . '" data-yashareQuickServices="' . $html . '"></div> 
+                ';
         return $html;
     }
 
