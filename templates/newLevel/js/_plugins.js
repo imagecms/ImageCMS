@@ -1815,7 +1815,7 @@ function getCookie(c_name)
                 var $this = $(this),
                         elSet = $this.data(),
                         moreOne = methods._checkProp(elSet, opt, 'moreOne'),
-                        source = methods._checkProp(elSet, opt, 'source') || $this.attr('href') || null,
+                        source = methods._checkProp(elSet, opt, 'source') || null,
                         drop = $(elSet.drop),
                         dropFilter = methods._checkProp(elSet, opt, 'dropFilter'),
                         start = elSet.start;
@@ -2184,6 +2184,7 @@ function getCookie(c_name)
                     body.append('<div class="overlayDrop" data-rel="' + opt.drop + '" style="display:none;position:absolute;width:100%;left:0;top:0;"></div>');
 
                 dropOver = $('[data-rel="' + opt.drop + '"].overlayDrop');
+                
                 drop.data('drp').dropOver = dropOver;
 
                 dropOver.css({
@@ -2198,6 +2199,8 @@ function getCookie(c_name)
             var forCenter = $('[data-rel="' + opt.drop + '"].forCenter');
 
             if (forCenter) {
+                if (isTouch)
+                    forCenter.css('height', $(document).height());
                 drop.data('drp').forCenter = forCenter;
                 forCenter.add(drop).css('z-index', overlays.length + 1104);
             }
@@ -2227,6 +2230,8 @@ function getCookie(c_name)
                 setTimeout(function() {
                     if (dropOver)
                         dropOver.css('height', '').css('height', $(document).height());
+                    if (forCenter && isTouch)
+                        forCenter.css('height', '').css('height', $(document).height());
                 }, 100);
             });
             if (condOverlay)
@@ -2296,11 +2301,6 @@ function getCookie(c_name)
             }
             $(opt.next).add($(opt.prev)).css('height', drop.actual('height'));
 
-
-            if (isTouch)
-                $(forCenter).add(dropOver).off('touchmove.' + $.drop.nS + ev).on('touchmove.' + $.drop.nS + ev, function(e) {
-                    e.preventDefault();
-                });
             drop[opt.effectOn](opt.durationOn, function(e) {
                 var drop = $(this);
                 $.drop.drp.curDrop = drop;
