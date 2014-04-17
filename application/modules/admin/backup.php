@@ -112,13 +112,13 @@ class Backup extends BaseAdminController {
 
     // Create backup file
     public function create() {
-        if (!file_exists('./application/backups/')) {
-            mkdir('./application/backups/');
-            chmod('./application/backups/', 0777);
+        if (!file_exists(BACKUPFOLDER)) {
+            mkdir(BACKUPFOLDER);
+            chmod(BACKUPFOLDER, 0777);
         }
 
-        if (!is_really_writable('./application/backups')) {
-            showMessage(lang("Directory ./application/backups has no writing permission"), false, 'r');
+        if (!is_really_writable(BACKUPFOLDER)) {
+            showMessage(langf('Directory {0} has no writing permission', 'admin', array(BACKUPFOLDER)), false, 'r');
             exit;
         }
 
@@ -129,8 +129,7 @@ class Backup extends BaseAdminController {
 
             case 'server':
                 $this->load->helper('file');
-                //write_file('./application/backups/' . $this->generate_file_name($_POST['file_type']), $this->get_backup_str($_POST['file_type']));
-                //$this->done();
+
                 $backup = \libraries\Backup::create();
                 $deleteOld = $backup->getSetting('backup_del_status');
                 if ($deleteOld == 1) {
