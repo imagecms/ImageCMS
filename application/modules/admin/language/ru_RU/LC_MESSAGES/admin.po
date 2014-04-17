@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-20 02:01+0200\n"
-"PO-Revision-Date: 2014-03-20 02:01+0200\n"
+"POT-Creation-Date: 2014-04-17 12:46+0300\n"
+"PO-Revision-Date: 2014-04-17 12:46+0300\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -20,6 +20,10 @@ msgstr ""
 "X-Poedit-SearchPath-1: ../../../templates/administrator\n"
 "X-Poedit-SearchPath-2: ../../modules/shop/admin\n"
 "X-Poedit-SearchPath-3: ../../../application/modules/shop/models/build/classes\n"
+
+#: ./application/modules/shop/admin/templates/orderstatuses/list.tpl:35
+msgid "Edit status"
+msgstr "Редактировать статус"
 
 #: ./application/modules/admin/pages.php:804
 msgid "Page successfuly copied"
@@ -4745,10 +4749,6 @@ msgstr "Редактирование скидкок"
 #: ./application/modules/shop/admin/templates/deliverymethods/edit.tpl:22
 msgid "Delivery method edit"
 msgstr "Редактирование способа доставки"
-
-#: ./application/modules/shop/admin/templates/orderstatuses/list.tpl:35
-msgid "Edit status"
-msgstr "Редактирование статуса"
 
 #: ./application/modules/shop/admin/templates/orderstatuses/edit.tpl:6
 msgid "Orders status edit"
