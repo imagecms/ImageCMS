@@ -845,7 +845,7 @@ input + .msg{margin-top: 5px;}
 /*tabs*/
 .tabs{display: inline-block;}
 .tabs-data{position: relative;z-index: 1;top: 1px;}
-.tabs li{float: left;}
+.tabs > li{float: left;position: relative;}
 .tabs-data > li.active{margin-top: -3px;}
 .tabs-data > li > a, .tabs-data > li > button{padding: 10px 25px;display: inline-block;}
 .tabs-data > li > a{text-decoration: none;}
