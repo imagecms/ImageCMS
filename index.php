@@ -180,7 +180,8 @@ define('TEMPLATES_PATH', PUBPATH . 'templates/');
 // Name of the "system folder"
 define('SYSDIR', trim(strrchr(trim(BASEPATH, '/'), '/'), '/'));
 
-
+define('DOCUMENT_ROOT', $_SERVER['DOCUMENT_ROOT']);
+define('MAINSITE', '');
 // The path to the "application" folder
 if (is_dir($application_folder)) {
     define('APPPATH', $application_folder . '/');
