@@ -100,9 +100,9 @@ a:hover, .selected a, .ref:hover, .nav-static-pages > li > a:hover{text-decorati
 .icon_mail{margin: 21px 7px 0 16px;}
 .icon_phone_header{margin: 23px 6px 0 20px;top: 3px;}
 .icon_search{margin: 16px 0 0 14px;}
-.icon_cleaner{margin: 5px 0 0 3px;}
 [class*="icon_arrow"]{margin: 6px 0 0 9px;left: 0;}
 .next > [class*="icon_arrow"]{left: 2px;}
+.icon_cleaner{margin: 5px 0 0 3px;}
 .icon_cleaner_buy{top: 1px;margin: 20px 8px 0 16px;}
 .icon_time{margin: 24px 4px 0 22px;}
 .icon_phone_footer{margin: 12px 8px 0 16px;}
