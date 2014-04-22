@@ -63,7 +63,7 @@ class Permitions {
 
             //if user exists!
             if (!empty($userProfile)) {
-            //get user role
+                //get user role
                 $userRole = $ci->db->where('id', $userProfile->role_id)->get(self::$rbac_roles_table)->row();
             }
 
@@ -87,7 +87,7 @@ class Permitions {
                     redirect('admin/rbac/permition_denied');
                 }
             }
-        }else {
+        } else {
             //user always has access to admin/login page
             if ($adminClassName != 'Login') {
                 if ($ci->input->is_ajax_request()) {
@@ -166,9 +166,15 @@ class Permitions {
         if (!$adminMethod) {
             $adminMethod = 'index';
         }
-//        var_dump(!file_exists(MAINSITE .'/'. $adminClassFile) , $adminClassFile , MAINSITE . '/application/modules/admin/.php');exit;
-        if (!file_exists(MAINSITE .'/'. $adminClassFile) AND $adminClassFile != MAINSITE . '/application/modules/admin/.php') {
-            die("Файл " . MAINSITE .'/'. $adminClassFile . " не найден");
+
+        if (MAINSITE) {
+            $res = !file_exists(MAINSITE . '/' . $adminClassFile) AND $adminClassFile != MAINSITE . '/application/modules/admin/.php';
+        } else {
+            $res = !file_exists('./' . $adminClassFile) AND $adminClassFile != './application/modules/admin/.php';
+        }
+        
+        if ($res) {
+            die("Файл " . $adminClassFile . " не найден");
         } else {
             if ($checkLink AND $link != '') {
                 return array('adminClassName' => $adminClassName, 'adminMethod' => $adminMethod);
@@ -976,5 +982,3 @@ class Permitions {
 
      */
 }
-
-
