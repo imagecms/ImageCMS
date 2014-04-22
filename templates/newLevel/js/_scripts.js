@@ -46,7 +46,7 @@ function init() {
 
         try {
             var fAS = $('.frame-already-show'),
-            zInd = parseFloat(fAS.data('drp').dropOver.css('z-index'));
+                    zInd = parseFloat(fAS.data('drp').dropOver.css('z-index'));
             fAS.prev().css('z-index', zInd + 3).closest('.frame-user-toolbar').css('z-index', zInd + 1);
         } catch (err) {
         }
@@ -61,7 +61,7 @@ function init() {
             drop.nStRadio({
                 wrapper: $(".frame-label"),
                 elCheckWrap: '.niceRadio'
-            //,classRemove: 'b_n'//if not standart
+                        //,classRemove: 'b_n'//if not standart
             });
         }
         if ($.existsN(drop.find('[onsubmit*="ImageCMSApi"]')) || drop.is('#sendMail')) {
@@ -88,7 +88,6 @@ function init() {
     $.drop.setParameters(optionsDrop);
     $.drop.extendDrop('droppable', 'noinherit', 'heightContent', 'limitSize', 'galleries', 'placeBeforeShow', 'placeAfterClose', 'confirmPrompt');
     $('a.fancybox').drop();
-    $('.cloud-zoom-gallery').drop();
     $('[data-drop]').drop();
 
     ShopFront.CompareList.count();
@@ -118,7 +117,7 @@ function init() {
     showHidePart($('.patch-product-view'));
     showHidePart($('.frame-list-comments.sub-2'));
     var userTool = new itemUserToolbar(),
-    btnToUp = $('.btn-to-up');
+            btnToUp = $('.btn-to-up');
     btnToUp.click(function() {
         $("html, body").animate({
             scrollTop: "0"
@@ -138,7 +137,7 @@ function init() {
     initCarouselJscrollPaneCycle(body);
 
     reinitializeScrollPane(body);
-    
+
     $("img.lazy").lazyload(lazyload);
     wnd.scroll(); //for lazy load start initialize
     /*/call front plugins and functions*/
@@ -164,7 +163,7 @@ function init() {
     });
     doc.on('getAmount.Cart', function(e) {
         ShopFront.Cart.processBtnBuyCount(e.id, 'change', false, e.datas);
-    });    
+    });
 
     doc.on('beforeGetTpl.Cart', function(e) {
         if (e.obj.template === 'cart_popup' && !$(genObj.popupCart).is(':visible'))
@@ -172,20 +171,20 @@ function init() {
     });
     doc.on('getTpl.Cart', function(e) {
         var popup = $(genObj.popupCart),
-        tinyBask = $(genObj.tinyBask);
+                tinyBask = $(genObj.tinyBask);
 
         if (e.obj.template === 'cart_popup') {
             popup.empty().html(e.datas);
-            
+
             if (popup.is(':visible')) {
                 popup.drop('limitSize');
                 popup.drop('heightContent');
                 popup.drop('center');
             }
-            
+
             if (e.objF.show)
                 $(genObj.showCartPopup).drop('open');
-            
+
             drawIcons(popup.find(selIcons));
             ShopFront.Cart.baskChangeCount(popup.find(genObj.plusMinus));
 
@@ -268,7 +267,7 @@ function init() {
     });
     $(genObj.parentBtnBuy).on('click.inCompare', '.' + genObj.inCompare, function() {
         var pN = window.location.pathname,
-        tab;
+                tab;
 
         if (/category|product/.test(pN)) {
             if (pN.indexOf('category') !== -1)
@@ -368,7 +367,7 @@ function init() {
         var patchCom = e.el.closest('.patch-product-view'),
                 h = patchCom.outerHeight(),
                 elH = e.el.outerHeight();
-        
+
         patchCom.css({
             'height': h + elH,
             'max-height': h + elH

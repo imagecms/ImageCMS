@@ -195,7 +195,7 @@
 
                                         class="btnBuy"
                                         >
-                                        <span class="icon_cleaner icon_cleaner_buy"></span>
+                                        <span class="icon_cleaner_buy"></span>
                                         <span class="text-el">{lang('В корзине', 'newLevel')}</span>
                                     </button>
                                 </div>
@@ -228,7 +228,7 @@
                                         data-url="{echo shop_url('product/'.$p->getUrl())}"
                                         data-maxcount="{echo $pv->getstock()}"
                                         >
-                                        <span class="icon_cleaner icon_cleaner_buy"></span>
+                                        <span class="icon_cleaner_buy"></span>
                                         <span class="text-el">{lang('Купить', 'newLevel')}</span>
                                     </button>
                                 </div>
