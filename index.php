@@ -1,4 +1,5 @@
 <?php
+
 /*
  * ---------------------------------------------------------------
  * APPLICATION ENVIRONMENT
@@ -182,6 +183,7 @@ define('SYSDIR', trim(strrchr(trim(BASEPATH, '/'), '/'), '/'));
 
 define('DOCUMENT_ROOT', $_SERVER['DOCUMENT_ROOT']);
 define('MAINSITE', '');
+define('BACKUPFOLDER', PUBPATH . 'application/backups/');
 // The path to the "application" folder
 if (is_dir($application_folder)) {
     define('APPPATH', $application_folder . '/');

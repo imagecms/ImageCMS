@@ -154,7 +154,7 @@
                                         <td class="span2">
                                             <button class="btn btn-small btn-success pjax"
                                                     type="button"
-                                                    onclick="Update.restore('./application/backups/{echo $file_inf['name']}')">
+                                                    onclick="Update.restore('{echo BACKUPFOLDER.$file_inf['name']}')">
                                                 <i class="icon-refresh"></i>
                                                 {lang('Restore', 'admin')}
                                             </button>
