@@ -25,7 +25,11 @@ class Admin extends BaseAdminController {
     public $fileError = '';
     public $filePermissionsErrors;
     public $allowed_extentions = array('php', 'tpl', 'js');
-    public $parse_regexpr = array('(?<!\w)lang\([\"]{1}(?!\')(.*?)[\"]{1}', "(?<!\w)lang\([']{1}(?!\")(.*?)[']{1}");
+    public $parse_regexpr = array(
+        '(?<!\w)lang\([\"]{1}(?!\')(.*?)[\"]{1}',
+        "(?<!\w)lang\([']{1}(?!\")(.*?)[']{1}",
+        '(?<!\w)langf\([\"]{1}(?!\')(.*?)[\"]{1}',
+        "(?<!\w)langf\([']{1}(?!\")(.*?)[']{1}");
 
     public function __construct() {
         parent::__construct();
@@ -161,10 +165,12 @@ class Admin extends BaseAdminController {
             $locales_unique[$data_locale] = $data_locale;
         }
 
+       
         $this->load->helper('translator');
         $settings = $this->getSettings();
         \CMSFactory\assetManager::create()
                 ->registerScript('admin')
+                ->registerScript('src-min/ace')
                 ->registerStyle('admin')
                 ->setData('langs', $this->langs)
                 ->setData('settings', $settings)
@@ -1198,7 +1204,7 @@ class Admin extends BaseAdminController {
                 echo '';
             }
         } else {
-            echo  '';
+            echo '';
         }
     }
 

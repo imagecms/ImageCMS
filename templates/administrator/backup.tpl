@@ -102,7 +102,7 @@
                                                                 </span>
                                                                 {lang("Save on the server","admin")}
                                                             </span>
-                                                            <p class="help-block">{lang("File will be saved in the directory","admin")} ./application/backups.</p>
+                                                            <p class="help-block">{lang("File will be saved in the directory","admin")} {echo BACKUPFOLDER}</p>
                                                         </div>
                                                     </div>
 

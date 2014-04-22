@@ -1556,7 +1556,7 @@ $('#variantsForOrders').live('change', function() {
     }
     // Check is element in cart
     if (orders.isInCart(variantId) == 'true') {
-        $('#addVariantToCart').removeClass('btn-success').addClass('btn-primary').html(langs.inTheCart);
+        $('#addVariantToCart').removeClass('btn-success').attr('disabled', 'disabled').addClass('btn-primary').html(langs.inTheCart);
     }
 
     dataForButton = $('#variantsForOrders option:selected').data();
@@ -1567,7 +1567,7 @@ $('#variantsForOrders').live('change', function() {
 $('#addVariantToCart').die().live('click', function() {
     if ((checkProdStock != 1 || $(this).data('stock') != 0) && !$(this).hasClass('btn-primary')) {
         orders.addToCartAdmin($(this));
-        $(this).removeClass('btn-success').addClass('btn-primary').html(langs.inTheCart);
+        $(this).removeClass('btn-success').attr('disabled', 'disabled').addClass('btn-primary').html(langs.inTheCart);
     }
 
 });
