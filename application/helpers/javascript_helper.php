@@ -43,8 +43,8 @@ function pjax($url, $selector = '#mainContent') {
 /**
  * Redirect function
  */
-function ajax_redirect($location) {
-    echo lang('Redirecting') . ': <b>' . $location . '</b> ' . "<script type='text/javascript'> setTimeout(\"location.href = '" . $location . "';\",3000); </script>";
+function ajax_redirect($location, $time=3000) {
+    echo "<script type='text/javascript'> setTimeout(\"location.href = '" . $location . "'; location.reload();\"," . $time . "); </script>";
 }
 
 /*
@@ -80,6 +80,10 @@ if (!function_exists('checkAjaxRequest')) {
             return true;
     }
 
+}
+
+function ajax_refresh($url){
+        echo "<script type=\"text/javascript\"> location.href=" . $url . " </script>";
 }
 
 /* End of javascript helper */

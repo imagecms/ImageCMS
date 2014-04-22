@@ -114,11 +114,11 @@ class Admin extends MY_Controller {
     //initialyze elFinder
     public function elfinder_init($edMode = false) {
         $this->load->helper('path');
-
+        $template = $this->db->get('settings')->row()->site_template;
         if (!$edMode)
             $path = 'uploads';
         else
-            $path = 'templates';
+            $path = 'templates/' . $template;
 
         if ($this->input->get('path'))
             $path = $this->input->get('path');

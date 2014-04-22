@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template label='New Level - New Generation Super-Puper Cart' name='newLevelCart' type="shop" version="0.1">
+    
+    <description>
+        "Новий рівень" - це шаблон інтернет-магазину для Вас, навіть якщо ви слюсар!
+    </description>
+    
+    <main_screenshot fileName="" main="1" />
+    
+    <components>
+        <component handler='TColorScheme'>
+            <param name="color_scheme" value="color_scheme_1" />
+        </component>
+    </components>
+
+</template>

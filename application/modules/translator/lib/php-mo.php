@@ -150,12 +150,15 @@ function phpmo_parse_po_file($in) {
     // Cleanup data, merge multiline entries, reindex hash for ksort
     $temp = $hash;
     $hash = array();
+//    var_dumps_exit('3333');
     foreach ($temp as $entry) {
         foreach ($entry as & $v) {
+            
             $v = phpmo_clean_helper($v);
             if ($v === FALSE) {
+//                var_dumps_exit($entry);
                 // parse error
-                return FALSE;
+                continue;
             }
         }
         $hash[$entry['msgid']] = $entry;

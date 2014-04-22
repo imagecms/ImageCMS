@@ -141,6 +141,9 @@ class Banners extends MY_Controller {
         $this->load->dbforge();
         $this->dbforge->drop_table('mod_banner');
         $this->dbforge->drop_table('mod_banner_i18n');
+        
+        $this->db->where('name', 'banners');
+        $this->db->delete('components');
     }
 
     /**

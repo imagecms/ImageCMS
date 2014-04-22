@@ -280,7 +280,9 @@ $('.formSubmit').live('click', function() {
     var btn = this;
 
     var selector = $(this).attr('data-form');
+    var selector = $(this).attr('data-form');
     var action = $(this).data('action');
+    var addData = $(this).data('adddata');
     $(selector).validate()
     if ($(selector).valid())
     {
@@ -291,6 +293,11 @@ $('.formSubmit').live('click', function() {
                 formData.push({
                     name: "action",
                     value: action
+                });
+                
+                formData.push({
+                    name: "addData",
+                    value: addData
                 });
 
             },

@@ -1,0 +1,1 @@
+<ul class="info_menu">{$wrapper}</ul>

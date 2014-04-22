@@ -59,6 +59,30 @@ if (!function_exists('lang')) {
 
 }
 
+
+
+/**
+ * Same as lang() function, but can adding data into line
+ * 
+ * @param string $line
+ * @param string $name textdomain name
+ * @param string|array $data data for adding to line
+ * @return string
+ */
+if (!function_exists('langf')) {
+
+    function langf($line, $name = "main", array $data = array()) {
+        $line = lang($line, $name);
+
+        foreach ($data as $key => $value) {
+            $line = str_replace('{' . $key . '}', $value, $line);
+        }
+
+        return $line;
+    }
+
+}
+
 // select language identif from url address
 if (!function_exists('chose_language')) {
 
@@ -146,6 +170,7 @@ if (!function_exists('langf')) {
     }
 
 }
+
 // ------------------------------------------------------------------------
 /* End of file language_helper.php */
 /* Location: ./system/helpers/language_helper.php */

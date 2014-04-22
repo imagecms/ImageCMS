@@ -46,7 +46,6 @@ if (!function_exists('siteinfo')) {
 }
 
 
-
 if (!function_exists('siteInfoAdditionalManipulations')) {
 
     /**
@@ -98,6 +97,3 @@ if (!function_exists('siteInfoAdditionalManipulations')) {
     }
 
 }
-
-/* End of siteinfo.php */
-?>

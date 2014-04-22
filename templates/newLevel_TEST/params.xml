@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template label='New Level TEST' name="newLevel_TEST" type="shop" version="0.1">
+    <!--
+    <dependencies>
+        <dependency entityName="module" name="moduleName1" type="required"/>
+        <dependency entityName="module" name="moduleName2" type="wishful"/>
+        <dependency entityName="module" name="moduleName3" type="add"/>
+        <dependency entityName="widget" name="widgetName1" type="required"/>
+        <dependency entityName="widget" name="widgetName1" type="wishful"/>
+        <dependency entityName="widget" name="addHTMLWidgetName" type="add" widgetType="html">
+            <data>
+                <div>WidgetText</div>
+            </data>
+        </dependency>
+        <dependency entityName="widget" name="addModuleWidgetName" type="add" widgetType="module" module="widgetModule" method="methodName" description="widget description">
+            <settings>
+                <setting1>1</setting1>
+                <setting2>2</setting2>
+                <setting3>3</setting3>
+            </settings>
+        </dependency>
+    </dependencies>
+    -->
+    
+    
+    <description><!-- КОЖЕН РАЗ ПРИ ЗВЕРНЕННІ -->
+        <!-- буде показуватись в інформації про шаблон -->
+        Тестовий шаблон
+    </description>
+    
+    <screenshots><!-- КОЖЕН РАЗ ПРИ ЗВЕРНЕННІ -->
+        <screenshot url="/templates/newLevel/screenshot.png" main="1" />
+        <screenshot url="/templates/newLevel/screenshot.png" main="0" />
+    </screenshots>
+    
+    <components><!-- ОДНОРАЗОВО - ПРИ ІНСТАЛЯЦІЇ ТА КОЖЕН РАЗ ПРИ ЗВЕРНЕННІ -->
+        <!-- початкові параметри для компонентів шаблону -->
+        
+<!--        <component handler='TColorScheme'>
+            <param name="color_scheme" value="color_scheme_1" />
+        </component>-->
+        
+        <!--
+        <component handler="TPaginationBrand">
+            <param name="page_query_string" value="true" />
+            <param name="first_link" value="1" />
+            <param name="page_query_string" value="3" />
+        </component>
+        
+        <component handler="TPaginationCategory">
+            <param name="page_query_string" value="true" />
+            <param name="first_link" value="1" />
+            <param name="page_query_string" value="3" />
+        </component>
+        
+        <component handler="TPaginationSearch">
+            <param name="page_query_string" value="true" />
+            <param name="first_link" value="1" />
+            <param name="page_query_string" value="3" />
+        </component>
+        -->
+        
+<!--        <component handler="TMenuColumn">
+            <params name="columns">
+                <param key="1" value="927, 931" />
+                <param key="2" value="933, 935" />
+            </params>
+        </component>
+        
+        <component handler="TProperties">
+            <params name="properties">
+                <param key="68" value="scroll" />
+                <param key="334" value="dropDown, scrol" />
+            </params>
+        </component>
+        
+        <component handler="TOpi">
+        </component>-->
+        
+    </components>
+
+</template>

@@ -308,23 +308,6 @@ class Settings extends BaseAdminController {
         $config['overwrite'] = TRUE;
         $this->load->library('upload', $config);
 
-
-
-        // upload or delete (or do nothing) favicon and logo
-        if ($_POST['si_delete_favicon'] == 1) {
-            if (isset($siteinfo['siteinfo_favicon']))
-                unset($siteinfo['siteinfo_favicon']);
-        } else {
-            $this->processLogoOrFavicon('siteinfo_favicon', $siteinfo);
-        }
-
-        if ($_POST['si_delete_logo'] == 1) {
-            if (isset($siteinfo['siteinfo_logo']))
-                unset($siteinfo['siteinfo_logo']);
-        } else {
-            $this->processLogoOrFavicon('siteinfo_logo', $siteinfo);
-        }
-
         // saving admin's email in application/config/auth.php
         $authFullPath = "./application/config/auth.php";
         $authContents = file_get_contents($authFullPath);
@@ -399,4 +382,3 @@ class Settings extends BaseAdminController {
 }
 
 /* End of settings.php */
-

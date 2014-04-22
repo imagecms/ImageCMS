@@ -499,7 +499,7 @@ class CI_Loader {
 			}
 
 			$ext_helper = APPPATH.'helpers/'.config_item('subclass_prefix').$helper.'.php';
-
+                        
 			// Is this a helper extension request?
 			if (file_exists($ext_helper))
 			{
