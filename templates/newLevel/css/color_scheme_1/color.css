@@ -57,9 +57,9 @@ button[disabled="disabled"], input[type="submit"][disabled="disabled"], input[ty
 /*/fill*/
 
 /*icons*/
+.icon_search, .icon_cleaner_buy, .icon_times_drop, .btn-toggle-toolbar .icon_times, .icon_wish_list, .icon_compare_list, .icon_already_show, .icon_arrow_down, .icon_arrow_p2{color: #fff;}
 .icon_home, .icon_delivery, .icon_payment, .icon_comment, .icon_edit, .icon_remove, .icon_times_apply, .icon_exit, .icon_reg, .icon_enter, [class*="icon_arrow"], .icon_phone_product, .icon_compare, .icon_wish, .icon_arrow{color: #0c9acb;}
 .icon_phone_header, .icon_skype, .icon_mail, .icon_cleaner, .icon_times_cart, .icon_times, .icon_list_cat, .icon_table_cat{color: #999;}
-.icon_search, .icon_cleaner_buy, .icon_times_drop, .btn-toggle-toolbar .icon_times, .icon_wish, .icon_wish_list, .icon_compare, .icon_compare_list, .icon_already_show, .icon_arrow_down, .icon_arrow_p2{color: #fff;}
 .icon_time, .icon_info, .info .icon_info{color: #333;}
 .icon_phone_footer, .icon_ask{color: #bababa;}
 .icon_error{color: #ff7264;}

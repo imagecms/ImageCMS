@@ -25,11 +25,13 @@
                         </label>
                         <div class="frame-label">
                             <span class="title">&nbsp;</span>
-                            <div class="btn-form">
-                                <button type="submit">
-                                    <span class="icon_forgot_password"></span>
-                                    <span class="text-el">{lang('Отправить','newLevel')}</span>
-                                </button>
+                            <div class="frame-form-field">
+                                <div class="btn-form">
+                                    <button type="submit">
+                                        <span class="icon_forgot_password"></span>
+                                        <span class="text-el">{lang('Отправить','newLevel')}</span>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                         <div class="frame-label">
