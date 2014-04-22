@@ -36,7 +36,9 @@ class Admin extends BaseAdminController {
 
     function index() {
         $root_menus = $this->db->get('menus')->result_array();
-        $this->render('menu_list', array('menus' => $root_menus), true);
+        \CMSFactory\assetManager::create()
+                ->setData('menus', $root_menus)
+                ->renderAdmin('menu_list');
     }
 
     public function chose_hidden() {
