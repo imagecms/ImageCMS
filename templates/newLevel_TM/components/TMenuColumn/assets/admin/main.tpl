@@ -26,7 +26,7 @@
         </tr>
     </table>
     {//echo $template->getComponent('TMenuColumn')->select_column_menu()}
-    <table class="frame_level table table-striped table-bordered table-hover table-condensed products_table">
+    <table class="frame-level-menu frame_level table table-striped table-bordered table-hover table-condensed products_table">
         {foreach $categories as $key => $category}
             {if $category->parent_id == 0}
                 {$arrId[$category->id] = $category->id}
