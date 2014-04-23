@@ -44,14 +44,6 @@
                     </div>
                     {form_csrf()}
                 </form>
-                <button type="button"
-                        id="loginButton"
-                        data-drop=".drop-enter"
-                        data-source="{site_url('auth')}"
-                        >
-                    <span class="icon_enter"></span>
-                    <span class="text-el">{lang('Вход','newLevel')}</span>
-                </button>
             </div>
         </div>
     </div>
