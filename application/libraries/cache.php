@@ -23,13 +23,13 @@ class Cache {
 
     public function __construct() {
         $this->CI = & get_instance();
-
         if ($this->CI->config->item('cache_path') != '') {
+            $this->_Config['default_store'] = $this->CI->config->item('cache_path');
             $this->_Config['store'] = $this->CI->config->item('cache_path');
         } else {
+            $this->_Config['default_store'] = BASEPATH . 'cache/';
             $this->_Config['store'] = BASEPATH . 'cache/';
         }
-
         $this->disableCache = (boolean) $this->CI->config->item('disable_cache');
 
 // Is cache folder wratible?
@@ -51,8 +51,9 @@ class Cache {
      * @return mixed
      */
     public function fetch($key, $group = FALSE) {
-        if ($this->disableCache === true)
+        if ($this->disableCache === true) {
             return false;
+        }
 
         $this->set_group($group);
 
@@ -164,9 +165,8 @@ class Cache {
      * @access public
      */
     public function set_group($group) {
-
         if ($group == FALSE) {
-            $this->_Config['store'] = BASEPATH . 'cache/';
+            $this->_Config['store'] = $this->_Config['default_store'];
             return;
         }
 
@@ -174,12 +174,11 @@ class Cache {
             mkdir($this->_Config['store'] . $group);
             @chmod($this->_Config['store'] . $group, 0777);
         }
-
         $this->_Config['store'] .= $group . '/';
     }
 
     public function set_default_group() {
-        $this->_Config['store'] = BASEPATH . 'cache/';
+        $this->_Config['store'] = $this->_Config['default_store'];
     }
 
     /**
@@ -189,8 +188,9 @@ class Cache {
      * @access public
      */
     function call($func = array(), $args = array(), $ttl = false) {
-        if ($ttl == false)
+        if ($ttl == false) {
             $ttl = $this->_Config['ttl'];
+        }
 
         $arguments = func_get_args();
 
