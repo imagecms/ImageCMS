@@ -1,5 +1,4 @@
 {$categories = \ShopCore::app()->SCategoryTree->getTree();}
-{$countColumn = 7}
 <form method="post" action="{site_url('admin/components/init_window/template_manager/updateComponent')}/{echo $handler}" id="component_{echo $handler}_form"> 
     <input type="hidden" name="handler" value="{echo $handler}">
     <table class="table-columns">
@@ -24,7 +23,6 @@
             {/foreach}
         </tr>
     </table>
-    {var_dump($columns)}
     {var_dump($columns_db)}
     {//echo $template->getComponent('TMenuColumn')->select_column_menu()}
     <table class="frame_level table table-striped table-bordered table-hover table-condensed products_table">
@@ -35,7 +33,7 @@
             {/if}
         {/foreach}
         {$select = '<select class="input-mini">'}
-        {for $i = 0; $i <= $countColumn; $i++}
+        {for $i = 0; $i <= $columns; $i++}
             {$select .= "<option value='" . $i . "'>" . $i . "</option>"}
         {/for}
         {$select.='</select>'}
