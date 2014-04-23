@@ -2104,7 +2104,7 @@ function getCookie(c_name)
         _pasteContent: function($this, drop, opt) {
             function _pasteContent(content, place) {
                 if (content) {
-                    var place = drop.find(place);
+                    place = drop.find(place);
                     if (typeof content === 'string' || typeof content === 'number' || typeof content === 'object')
                         place.empty().append(content);
                     else if (typeof content === 'function')
@@ -2149,25 +2149,24 @@ function getCookie(c_name)
             opt.closeG = $.drop.dP.close;
             opt.closedG = $.drop.dP.closed;
             //
-            opt.elrun = $this;
-            opt.rel = rel;
             opt.drop = elSet.drop;
-
-            var drop = $('[data-elrun="' + opt.drop + '"]');
+            var drop = $('[data-elrun="' + opt.drop + '"]'),
+                    drp = $.extend({}, drop.data('drp'));
+            
+            opt.elrun = drp.elrun ? drp.elrun.add($this) : $this;
+            opt.rel = rel;
 
             $this.attr({
                 'data-drop': opt.drop
             }).parent().addClass(aC);
 
-            drop.data({
-                'drp': $.extend(drop.data('drp') ? drop.data('drp') : {}, opt, {
-                    'methods': $.extend({}, {
-                        'self': drop,
-                        'elrun': $this
-                    }, $.drop.methods())
-                })
-            });
-
+            drop.data('drp', $.extend(drp, opt, {
+                'methods': $.extend({}, {
+                    'self': drop,
+                    'elrun': opt.elrun
+                }, $.drop.methods())
+            }));
+            
             drop.attr('data-elrun', opt.drop).off('click.' + $.drop.nS, opt.exit).on('click.' + $.drop.nS, opt.exit, function(e) {
                 e.stopPropagation();
                 methods.close($(this).closest('[data-elrun]'));
