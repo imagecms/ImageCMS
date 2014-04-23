@@ -2,15 +2,13 @@
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
-            <span class="title">{lang("Album", 'gallery')} #{$album.id}</span>
+            <span class="title">{lang("Album editing", 'gallery')}: {$album.name}</span>
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <a href="/admin/components/cp/gallery/category/{$album['category_id']}" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Back", 'gallery')}</span></a>
+                <a href="/admin/components/cp/gallery/category/{$album['category_id']}" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Back", 'admin')}</span></a>
                 <button type="button" class="btn btn-small formSubmit btn-primary" data-form="#create_album_form" data-action="edit" data-submit><i class="icon-ok"></i>{lang("Save", 'gallery')}</button> 
-                <button type="button" class="btn btn-small formSubmit" data-form="#create_album_form" data-action="close"><i class="icon-check"></i>{lang("Save and go back", 'gallery')}</button>
-                <button type="button" class="btn btn-small btn-danger" onclick="$('.modal').modal('show');
-                        GalleryAlbums.whatDelete(this);" ><i class="icon-trash icon-white"></i>{lang("Delete", 'gallery')}</button> 
+                <button type="button" class="btn btn-small formSubmit" data-form="#create_album_form" data-action="close"><i class="icon-check"></i>{lang("Save and go back", 'admin')}</button>
                     {echo create_language_select($languages, $locale, "/admin/components/cp/gallery/edit_album_params/" . $album.id)}
             </div>
         </div>
