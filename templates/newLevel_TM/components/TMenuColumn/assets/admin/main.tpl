@@ -3,6 +3,7 @@
     <input type="hidden" name="handler" value="{echo $handler}">
     <table class="table-columns">
         <tr>
+            {/*}
             {foreach $columns as $colon}
                 <td class="span4">
                     <div class="control-group">
@@ -21,9 +22,9 @@
                     </div>   
                 </td>
             {/foreach}
+            { */}
         </tr>
     </table>
-    {var_dump($columns_db)}
     {//echo $template->getComponent('TMenuColumn')->select_column_menu()}
     <table class="frame_level table table-striped table-bordered table-hover table-condensed products_table">
         {foreach $categories as $key => $category}
@@ -32,16 +33,11 @@
                 {$arrName[$category->id] = $category->name}
             {/if}
         {/foreach}
-        {$select = '<select class="input-mini">'}
-        {for $i = 0; $i <= $columns; $i++}
-            {$select .= "<option value='" . $i . "'>" . $i . "</option>"}
-        {/for}
-        {$select.='</select>'}
         {foreach $arrId as $id}
             {$arrHtml[$id] = ''}
             {foreach $categories as $key => $cat}
                 {if $cat->parent_id == $id}
-                    {$arrHtml[$id] .= '<tr><td><div class="title lev"><a href="/admin/components/run/shop/categories/edit/' . $cat->id . '" class="pjax" data-rel="tooltip" data-placement="top" data-original-title="' . lang("Edit of category", "newLevel_TM") . '">' . $cat->name . '</a></div></td><td class="span3 t-a_c">' . $select . '</td></tr>'}
+                    {$arrHtml[$id] .= '<tr><td><div class="title lev"><a href="/admin/components/run/shop/categories/edit/' . $cat->id . '" class="pjax" data-rel="tooltip" data-placement="top" data-original-title="' . lang("Edit of category", "newLevel_TM") . '">' . $cat->name . '</a></div></td><td class="span3 t-a_c">' . $template->getComponent('TMenuColumn')->select_column_menu($cat->id) . '</td></tr>'}
                 {/if}
             {/foreach}
         {/foreach}

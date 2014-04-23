@@ -911,7 +911,7 @@ function initAdminArea() {
     $('.btn.disabled').each(function(event) {
         $(this).attr('disabled', true);
     });
-    
+
     if ($.exists('#shopAdminMenu')) {
         if (isShop)
         {
@@ -947,7 +947,9 @@ function initAdminArea() {
         $(window).scrollTop(top);
     });
     if (location.hash != '') {
-        $("[href=" + location.hash + "]").click();
+        var active = $("[href=" + location.hash + "]");
+        $('[href="#' + active.closest('.tab-pane').attr('id') + '"]').click();
+        active.click();
     }
     else {
         $('.myTab li.active a').click();
