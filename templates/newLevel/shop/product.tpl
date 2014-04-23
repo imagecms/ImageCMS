@@ -172,7 +172,7 @@
 
                                                             class="btnBuy"
                                                             >
-                                                            <span class="icon_cleaner icon_cleaner_buy"></span>
+                                                            <span class="icon_cleaner_buy"></span>
                                                             <span class="text-el">{lang('В корзине', 'newLevel')}</span>
                                                         </button>
                                                     </div>
@@ -209,7 +209,7 @@
                                                             {/if}"
                                                             data-maxcount="{echo $productVariant->getstock()}"
                                                             >
-                                                            <span class="icon_cleaner icon_cleaner_buy"></span>
+                                                            <span class="icon_cleaner_buy"></span>
                                                             <span class="text-el">{lang('Купить', 'newLevel')}</span>
                                                         </button>
                                                     </div>
@@ -549,7 +549,7 @@
 
                                                         class="btnBuy infoBut btnBuyKit"
                                                         >
-                                                        <span class="icon_cleaner icon_cleaner_buy"></span>
+                                                        <span class="icon_cleaner_buy"></span>
                                                         <span class="text-el">{lang('В корзине', 'newLevel')}</span>
                                                     </button>
                                                 </div>
@@ -561,7 +561,7 @@
                                                         onclick='Shop.Cart.add($(this).closest("form").serialize(), "{echo $kitProducts->getId()}", true)'
                                                         class="btnBuy infoBut btnBuyKit"
                                                         >
-                                                        <span class="icon_cleaner icon_cleaner_buy"></span>
+                                                        <span class="icon_cleaner_buy"></span>
                                                         <span class="text-el">{lang('Купить', 'newLevel')}</span>
                                                     </button>
                                                 </div>

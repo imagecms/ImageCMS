@@ -1,11 +1,11 @@
-﻿msgid ""
+msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-17 03:25+0300\n"
-"PO-Revision-Date: 2014-04-17 03:25+0300\n"
-"Last-Translator:  \n"
-"Language-Team:  \n"
+"PO-Revision-Date: 2014-04-23 15:15+0300\n"
+"Last-Translator: sdfsdfsdfs <sdfsdfsdf>\n"
+"Language-Team: \n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -14,8 +14,6 @@ msgstr ""
 "X-Poedit-Basepath: ../../..\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Generator: Poedit 1.5.7\n"
-"X-Poedit-Language: \n"
-"X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPath-1: ../../../templates/administrator\n"
 "X-Poedit-SearchPath-2: ../../modules/shop/admin\n"
@@ -1715,15 +1713,11 @@ msgid "Add a new product to the order"
 msgstr "Добавить новый товар к заказу"
 
 #: ./templates/administrator/cats_sidebar.tpl:3
-#: ./templates/administrator/cats_sidebar.tpl:3
-#: ./templates/administrator/cats_tree_css.tpl:7
 #: ./templates/administrator/cats_tree_css.tpl:7
 msgid "Add a subcategory"
 msgstr "Добавить подкатегорию"
 
 #: ./templates/administrator/cats_sidebar.tpl:4
-#: ./templates/administrator/cats_sidebar.tpl:4
-#: ./templates/administrator/cats_tree_css.tpl:8
 #: ./templates/administrator/cats_tree_css.tpl:8
 msgid "Add an article"
 msgstr "Добавить статью"
@@ -1916,7 +1910,6 @@ msgid "Customer"
 msgstr "Заказчик"
 
 #: ./templates/administrator/main.tpl:208
-#: ./templates/administrator/main.tpl:208
 #: ./templates/administrator/shop_menu.tpl:8
 #: ./templates/administrator/shop_menu.tpl:10
 #: ./templates/administrator/inc/menus.php:158
@@ -2057,7 +2050,6 @@ msgstr "Изменения успешно сохранены"
 msgid "Change"
 msgstr "Изменить"
 
-#: ./templates/administrator/cats_tree_css.tpl:6
 #: ./templates/administrator/cats_tree_css.tpl:6
 msgid "Change category data"
 msgstr "Изменить данные категории"
@@ -3081,10 +3073,7 @@ msgid "Do not display"
 msgstr "Не отображать"
 
 #: ./templates/administrator/module_table.tpl:111
-#: ./templates/administrator/module_table.tpl:111
 #: ./templates/administrator/module_table.tpl:116
-#: ./templates/administrator/module_table.tpl:116
-#: ./templates/administrator/module_table.tpl:121
 #: ./templates/administrator/module_table.tpl:121
 msgid "switch off"
 msgstr "не показывать"
@@ -3692,7 +3681,6 @@ msgstr "Отключение сайта"
 msgid "Cancel"
 msgstr "Отменить"
 
-#: ./templates/administrator/pages_list.tpl:61
 #: ./templates/administrator/pages_list.tpl:61
 msgid "Cancel filter"
 msgstr "Отменить фильтрацию"
@@ -4354,7 +4342,6 @@ msgstr "Порт"
 msgid "Last comments"
 msgstr "Последние комментарии"
 
-#: ./templates/administrator/main.tpl:217
 #: ./templates/administrator/main.tpl:217
 #: ./templates/administrator/dashboard.tpl:154
 msgid "Latest/recent comments"
@@ -6907,7 +6894,6 @@ msgstr "Установите права доступа к каталогу, чт
 msgid "Set another status for these orders"
 msgstr "Установить другой статус этих заказов"
 
-#: ./templates/administrator/module_table.tpl:40
 #: ./templates/administrator/module_table.tpl:40
 msgid "Install modules"
 msgstr "Установить модули"

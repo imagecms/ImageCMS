@@ -165,10 +165,12 @@ class Admin extends BaseAdminController {
             $locales_unique[$data_locale] = $data_locale;
         }
 
+       
         $this->load->helper('translator');
         $settings = $this->getSettings();
         \CMSFactory\assetManager::create()
                 ->registerScript('admin')
+                ->registerScript('src-min/ace')
                 ->registerStyle('admin')
                 ->setData('langs', $this->langs)
                 ->setData('settings', $settings)
