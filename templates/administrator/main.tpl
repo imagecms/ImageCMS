@@ -19,12 +19,11 @@
         <link rel="stylesheet" type="text/css" href="{$THEME}css/jquery/custom-theme/jquery-ui-1.8.16.custom.css">
         <link rel="stylesheet" type="text/css" href="{$THEME}css/jquery/custom-theme/jquery.ui.1.8.16.ie.css">
 
+        <link rel="stylesheet" type="text/css" href="{if MAINSITE}{echo 'http://' . ltrim(MAINSITE,'../')}{/if}/js/elfinder-2.0/css/Aristo/css/Aristo/Aristo.css" media="screen" charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="{if MAINSITE}{echo 'http://' . ltrim(MAINSITE,'../')}{/if}/js/elrte-1.3/css/elrte.min.css" media="screen" charset="utf-8">
 
-        <link rel="stylesheet" type="text/css" href="/js/elfinder-2.0/css/Aristo/css/Aristo/Aristo.css" media="screen" charset="utf-8">
-        <link rel="stylesheet" type="text/css" href="/js/elrte-1.3/css/elrte.min.css" media="screen" charset="utf-8">
-
-        <link rel="stylesheet" type="text/css" href="/js/elfinder-2.0/css/elfinder.min.css" media="screen" charset="utf-8">
-        <link rel="stylesheet" type="text/css" href="/js/elfinder-2.0/css/theme.css" media="screen" charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="{if MAINSITE}{echo 'http://' . ltrim(MAINSITE,'../')}{/if}/js/elfinder-2.0/css/elfinder.min.css" media="screen" charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="{if MAINSITE}{echo 'http://' . ltrim(MAINSITE,'../')}{/if}/js/elfinder-2.0/css/theme.css" media="screen" charset="utf-8">
 
 
     </head>
@@ -77,7 +76,7 @@
         {include_tpl('inc/jsLangs.tpl')}
         {$langDomain = $CI->land->gettext_domain}
         {$CI->lang->load('admin')}
-        {if SHOP_INSTALLED && !file_exists('./application/modules/shop/license.key')}
+        {if SHOP_INSTALLED && (trim($content) == 'Строк тестовой лицензии истек' OR trim($content) == 'Ошибка проверки лицензии.')}
             <div class="imagecms-top-fixed-header{if $_COOKIE['condPromoToolbar'] == '1' || $_COOKIE['condPromoToolbar'] == NULL} imagecms-active{/if}">
                 <div class="imagecms-inside">
                     <div class="container">
@@ -126,13 +125,13 @@
                             $('.imagecms-top-fixed-header').removeClass('imagecms-active');
                             $(this).hide().next().show();
                             $(window).scroll();">
-                        <span class="imagecms-toggle-close-text imagecms-bar-close-text"><span style="font-size: 14px;">↑</span> {lang('Hide','admin')}</span>
+                        <span class="imagecms-toggle-close-text imagecms-bar-close-text"><span style="font-size: 14px;">↑</span> {lang('Скрыть', 'newLevel')}</span>
                     </button>
                     <button type="button" class="imagecms-close" {if $_COOKIE['condPromoToolbar'] == '0'}style="display: block;"{/if} onclick="setCookie('condPromoToolbar', '1');
                             $('.imagecms-top-fixed-header').addClass('imagecms-active');
                             $(this).hide().prev().show();
                             $(window).scroll();">
-                        <span class="imagecms-toggle-close-text imagecms-bar-show-text"><span style="font-size: 14px;">↓</span> {lang('Show', 'admin')}</span>
+                        <span class="imagecms-toggle-close-text imagecms-bar-show-text"><span style="font-size: 14px;">↓</span> {lang('Показать', 'newLevel')}</span>
                     </button>
                     <div class="imagecms-buy-license">
                         <a href="http://www.imagecms.net/download/corporate" target="_blank" onclick="_gaq.push(['_trackEvent', 'demo-admin', '/download/corporate']);">
@@ -426,14 +425,14 @@
         <script src="{$THEME}js/functions.js" type="text/javascript"></script>
         <script src="{$THEME}js/scripts.js" type="text/javascript"></script>
 
-        <script type="text/javascript" src="/js/elrte-1.3/js/elrte.min.js"></script>
-        <script type="text/javascript" src="/js/elfinder-2.0/js/elfinder.min.js"></script>
+        <script type="text/javascript" src="{if MAINSITE}{echo 'http://' . ltrim(MAINSITE,'../')}{/if}/js/elrte-1.3/js/elrte.min.js"></script>
+        <script type="text/javascript" src="{if MAINSITE}{echo 'http://' . ltrim(MAINSITE,'../')}{/if}/js/elfinder-2.0/js/elfinder.min.js"></script>
 
 
         {if $this->CI->config->item('language') == 'russian'}
             <script async="async" src="{$THEME}js/jquery-validate/messages_ru.js" type="text/javascript"></script>
-            <script type="text/javascript" src="/js/elrte-1.3/js/i18n/elrte.ru.js"></script>
-            <script type="text/javascript" src="/js/elfinder-2.0/js/i18n/elfinder.ru.js"></script>
+            <script type="text/javascript" src="{if MAINSITE}{echo 'http://' . ltrim(MAINSITE,'../')}{/if}/js/elrte-1.3/js/i18n/elrte.ru.js"></script>
+            <script type="text/javascript" src="{if MAINSITE}{echo 'http://' . ltrim(MAINSITE,'../')}{/if}/js/elfinder-2.0/js/i18n/elfinder.ru.js"></script>
         {/if}
 
 
@@ -446,7 +445,7 @@
         <script src="{$THEME}js/admin_base_r.js" type="text/javascript"></script>
         <script src="{$THEME}js/admin_base_v.js" type="text/javascript"></script>
         <script src="{$THEME}js/admin_base_y.js" type="text/javascript"></script>
-        <script type="text/javascript" src="/js/tiny_mce/jquery.tinymce.js"></script>
+        <script type="text/javascript" src="{if MAINSITE}{echo 'http://' . ltrim(MAINSITE,'../')}{/if}/js/tiny_mce/jquery.tinymce.js"></script>
         <script src="{$THEME}js/autosearch.js" type="text/javascript"></script>
 
         <script>

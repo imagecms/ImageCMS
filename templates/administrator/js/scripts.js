@@ -805,8 +805,10 @@ function number_tooltip() {
             key = event.keyCode;
         else if (event.which)
             key = event.which;
+        
+        console.log(key);
 
-        if (key == null || key == 0 || key == 8 || key == 13 || key == 9 || key == 46 || key == 37 || key == 39)
+        if (key == null || key == 0 || key == 8 || key == 13 || key == 9 || key == 46 || key == 39)
             return true;
         keyChar = String.fromCharCode(key);
 
