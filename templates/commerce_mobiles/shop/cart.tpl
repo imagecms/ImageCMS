@@ -61,7 +61,7 @@
                     <span>{lang('Подарочный сертификат','commerce_mobiles')}:</span>
                     <div class="frame-gift">
                         {if $gift_error}
-                            <span class="text-el" style="color:red;">{lang('Неверный подарочный сертификат', 'commerce_mobiles')}</span><br/>
+                            <span class="text-el" style="color:red;">{lang('Неверный код подарочного сертификата', 'commerce_mobiles')}</span><br/>
                         {/if}
                         <input type="text" name="gift" class="inputGift">
                         <div class="subm_filter submitGiftButton">
