@@ -32,10 +32,9 @@
             {if $category->parent_id == 0}
                 {$arrId[$category->id] = $category->id}
                 {$arrName[$category->id] = $category->name}
-                {$arrUrl[$category->id] = $category->url}
             {/if}
         {/foreach}
-        {$select = '<select>'}
+        {$select = '<select class="input-mini">'}
         {for $i = 0; $i <= $countColumn; $i++}
             {$select .= "<option value='" . $i . "'>" . $i . "</option>"}
         {/for}
@@ -44,14 +43,14 @@
             {$arrHtml[$id] = ''}
             {foreach $categories as $key => $cat}
                 {if $cat->parent_id == $id}
-                    {$arrHtml[$id] .= '<tr><td><div class="title lev"><a href="' . $cat->url . '" class="pjax" data-rel="tooltip" data-placement="top" data-original-title="' . lang("Edit of category", "newLevel_TM") . '">' . $cat->name . '</a></div></td><td>' . $select . '</td></tr>'}
+                    {$arrHtml[$id] .= '<tr><td><div class="title lev"><a href="/admin/components/run/shop/categories/edit/' . $cat->id . '" class="pjax" data-rel="tooltip" data-placement="top" data-original-title="' . lang("Edit of category", "newLevel_TM") . '">' . $cat->name . '</a></div></td><td class="span3 t-a_c">' . $select . '</td></tr>'}
                 {/if}
             {/foreach}
         {/foreach}
         <thead>
             <tr>
                 <td>{lang('Category', 'newLevel_TM')}</td>
-                <td>{lang('Show in column', 'newLevel_TM')}</td>
+                <td class="span3">{lang('Show in column', 'newLevel_TM')}</td>
             </tr>
         </thead>
         <tbody>
@@ -68,7 +67,7 @@
                                         <i class="my_icon icon-plus"></i>
                                     </button>
                                 {/if}
-                                <a href="{$arrUrl[$category->id]}" class="pjax" data-rel="tooltip" data-placement="top" data-original-title="{lang('Editing category', 'newLevel_TM')}">{echo $arrName[$category->id]}</a>
+                                <a href="/admin/components/run/shop/categories/edit/{$category->id}" class="pjax" data-rel="tooltip" data-placement="top" data-original-title="{lang('Editing category', 'newLevel_TM')}">{echo $arrName[$category->id]}</a>
                             </div>
                         </td>
                         <td></td>
