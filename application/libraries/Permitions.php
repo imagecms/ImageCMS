@@ -167,21 +167,21 @@ class Permitions {
             $adminMethod = 'index';
         }
 
-        if (MAINSITE) {
-            $res = !file_exists(MAINSITE . '/' . $adminClassFile) AND $adminClassFile != MAINSITE . '/application/modules/admin/.php';
-        } else {
-            $res = !file_exists('./' . $adminClassFile) AND $adminClassFile != './application/modules/admin/.php';
-        }
-        
-        if ($res) {
-            die("Файл " . $adminClassFile . " не найден");
-        } else {
+//        if (MAINSITE) {
+//            $res = !file_exists(MAINSITE . '/' . $adminClassFile) AND $adminClassFile != MAINSITE . '/application/modules/admin/.php';
+//        } else {
+//            $res = !file_exists('./' . $adminClassFile) AND $adminClassFile != './application/modules/admin/.php';
+//        }
+//        
+//        if ($res) {
+//            die("Файл " . $adminClassFile . " не найден");
+//        } else {
             if ($checkLink AND $link != '') {
                 return array('adminClassName' => $adminClassName, 'adminMethod' => $adminMethod);
             } else {
                 self::checkAllPermitions($adminClassName, $adminMethod);
             }
-        }
+//        }
     }
 
     /**
