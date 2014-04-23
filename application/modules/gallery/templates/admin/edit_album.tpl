@@ -2,11 +2,11 @@
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
-            <span class="title w-s_n">{lang("Album", 'gallery')}: {$album['name']}</span>
+            <span class="title w-s_n">{lang("Album editing", 'gallery')}: {$album['name']}</span>
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <a href="/admin/components/cp/gallery/category/{$album['category_id']}" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Back", 'gallery')}</span></a>
+                <a href="/admin/components/cp/gallery/category/{$album['category_id']}" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Back", 'admin')}</span></a>
                 <label style="display:inline;">
                     <button type="button" class="btn btn-small btn-success openDlg"><i class="icon-white icon-plus"></i>{lang('Add pictures', 'gallery')}</button>
                 </label>
