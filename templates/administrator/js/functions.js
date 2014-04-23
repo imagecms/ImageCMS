@@ -182,7 +182,7 @@ function ChangeSortActive(el, sortId)
         sortId: sortId,
         status: currentActiveStatus
     }, function(data) {
-        
+
         $('.notifications').append(data)
         if (currentActiveStatus == 'true')
         {
@@ -217,8 +217,8 @@ function translite_title(from, to)
     var url = base_url + 'admin/pages/ajax_translit/';
     $.post(
             url, {
-        'str': $(from).val()
-    }, function(data)
+                'str': $(from).val()
+            }, function(data)
 
     {
         $(to).val(data);
@@ -233,8 +233,8 @@ function create_description(from, to)
 
     $.post(
             base_url + 'admin/pages/ajax_create_description/', {
-        'text': $(from).val()
-    },
+                'text': $(from).val()
+            },
     function(data) {
         $(to).val(data);
     }
@@ -280,9 +280,10 @@ $('.formSubmit').live('click', function() {
     var btn = this;
 
     var selector = $(this).attr('data-form');
-    var selector = $(this).attr('data-form');
     var action = $(this).data('action');
     var addData = $(this).data('adddata');
+    var datas = $(this).data('datas');
+    var after = $(this).data('after');
     $(selector).validate()
     if ($(selector).valid())
     {
@@ -294,12 +295,11 @@ $('.formSubmit').live('click', function() {
                     name: "action",
                     value: action
                 });
-                
-                formData.push({
-                    name: "addData",
-                    value: addData
-                });
-
+                if (addData)
+                    formData.push({
+                        name: "addData",
+                        value: addData
+                    });
             },
             success: function(data) {
                 $('#loading').fadeOut(100);
@@ -308,9 +308,13 @@ $('.formSubmit').live('click', function() {
                 $(resp).find('p').remove();
                 $('.notifications').append(resp);
                 $(btn).removeClass('disabled').attr('disabled', false);
+                if (after)
+                    eval(after);
                 return true;
             }
         };
+        if (datas)
+            options.data = datas;
         $(selector).ajaxSubmit(options);
     }
     else

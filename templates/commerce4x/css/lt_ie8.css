@@ -1,0 +1,7 @@
+@charset "utf-8";
+
+.frameSearch input[type="text"]{line-height: 30px;}
+#popupCart{min-width: 700px;}
+.table_order{table-layout: fixed;}
+.frameEnterReg > li{border: 1px solid transparent;}
+.fancy.fancy_cleaner .inside_padd{height: expression(this.scrollHeight > 400 ? "400px" : "auto");}

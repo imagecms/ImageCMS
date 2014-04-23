@@ -15,6 +15,9 @@ class TMenuColumn extends \template_manager\classes\TComponent {
      * Prepare param from xml to save in db
      * @param \SimpleXMLElement $nodes
      */
+    public function select_column_menu() {
+        return '<select></select>';
+    }
     public function setParamsXml(\SimpleXMLElement $component) {
         $data = array();
         foreach ($component as $item) {

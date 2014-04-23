@@ -1480,14 +1480,6 @@ $(document).ready(function() {
 
     });
     // the delete button appears only on image hover
-    $(".siteinfo_image_container").die('change').live("mouseover", function() {
-        //$("#site_info_tab").delegate('.siteinfo_image_container', "mouseover", function() {
-        $(this).find(".remove_btn").show();
-    });
-    $(".siteinfo_image_container").die('change').live("mouseout", function() {
-        //$("#site_info_tab").delegate('.siteinfo_image_container', "mouseout", function() {
-        $(this).find(".remove_btn").hide();
-    });
 
     var siteInfoLocalesDataCache = {};
     $("#siteinfo_locale").die('change').live("change", function() {

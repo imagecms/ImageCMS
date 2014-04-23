@@ -528,7 +528,8 @@ input.input-search{height: 33px;}
 .items-h-carousel > li{width: 212px !important;margin-bottom: 30px;}
 .vertical-layout .items-h-carousel > li{width: 210px !important;}
 
-.items-catalog.table > li, .frame-scroll-page .items-catalog > li{min-height: 392px;margin-left: -1px;}
+.items-catalog.table > li, .frame-scroll-page .items-catalog > li{margin-left: -1px;}
+.items-catalog > li > .frame-in{min-height: 392px;}
 .items-catalog.table .description, .items-catalog.table .frame-photo-title .title, .items-h-carousel .description, .items-h-carousel .frame-photo-title .title{padding: 0 20px;}
 .frame-scroll-pane .items-h-carousel > li{white-space: normal;margin: 0;width: 246px !important;min-height: 392px;margin-left: -1px;text-align: center;}
 .frame-scroll-pane .items-h-carousel > li:first-child{margin-left: 0;width: 245px !important;}
