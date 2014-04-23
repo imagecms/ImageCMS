@@ -81,7 +81,7 @@ var optionsDrop = {
     animate: true,
     timeclosemodal: 2000,
     modalPlace: '.notification',
-    moreOne: true,
+    moreOne: false,
     closeClick: true,
     closeEsc: true,
     position: 'absolute',
