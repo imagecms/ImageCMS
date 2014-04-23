@@ -807,7 +807,7 @@ form .f_r + .o_h, form .f_l + .o_h{position: relative;}
 form .f_r + .o_h{padding-right: 5px;}
 form .f_l + .o_h{padding-left: 5px;}
 
-.layout-highlight{margin-bottom: 20px;}
+.layout-highlight{margin-bottom: 20px;position: relative;}
 .msg{margin-bottom: 15px;overflow: hidden;text-align: left;}
 .drop-bask .msg{margin-bottom: 32px;}
 .msg p{padding: 0;margin-bottom: 3px;}
@@ -845,7 +845,7 @@ input + .msg{margin-top: 5px;}
 /*tabs*/
 .tabs{display: inline-block;}
 .tabs-data{position: relative;z-index: 1;top: 1px;}
-.tabs li{float: left;}
+.tabs > li{float: left;position: relative;}
 .tabs-data > li.active{margin-top: -3px;}
 .tabs-data > li > a, .tabs-data > li > button{padding: 10px 25px;display: inline-block;}
 .tabs-data > li > a{text-decoration: none;}

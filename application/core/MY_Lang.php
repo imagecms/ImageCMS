@@ -157,10 +157,18 @@ class MY_Lang extends MX_Lang {
             $this->addDomain('application/language/main/', 'main', $lang);
             $this->addDomain('templates/' . $template_name . '/language/' . $template_name . '/', $template_name, $lang);
         } else {
-            if ($module == 'admin')
-                $this->addDomain('application/language/main/', 'main', $lang);
-
-            $this->addDomain('application/modules/' . $module . '/language', $module, $lang);
+            if ($module == 'admin') {
+                if (MAINSITE) {
+                    $this->addDomain(MAINSITE . '/application/language/main/', 'main', $lang);
+                } else {
+                    $this->addDomain('application/language/main/', 'main', $lang);
+                }
+            }
+            if (MAINSITE) {
+                $this->addDomain(MAINSITE . '/application/modules/' . $module . '/language', $module, $lang);
+            } else {
+                $this->addDomain('application/modules/' . $module . '/language', $module, $lang);
+            }
         }
     }
 

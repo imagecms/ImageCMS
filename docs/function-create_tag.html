@@ -4,10 +4,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="generator" content="ApiGen 2.8.0">
 
-	<title>Class Parce_opencart | ImageCMS Docs</title>
+	<title>Function create_tag | ImageCMS Docs</title>
 
 	<script type="text/javascript" src="resources/combined.js?394153670"></script>
-	<script type="text/javascript" src="elementlist.js?2613982002"></script>
+	<script type="text/javascript" src="elementlist.js?639510069"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360">
 
 </head>
@@ -220,8 +220,6 @@
 				<li><a href="class-OrdersController.html">OrdersController</a></li>
 				<li><a href="class-OschadBankInvoiceSystem.html">OschadBankInvoiceSystem</a></li>
 				<li><a href="class-Pages.html">Pages</a></li>
-				<li class="active"><a href="class-Parce_opencart.html">Parce_opencart</a></li>
-				<li><a href="class-Parce_opencart_model.html">Parce_opencart_model</a></li>
 				<li><a href="class-PclZip.html">PclZip</a></li>
 				<li><a href="class-Permissions.html">Permissions</a></li>
 				<li><a href="class-Permitions.html">Permitions</a></li>
@@ -387,6 +385,7 @@
 				<li><a href="function-cp_check_perm.html">cp_check_perm</a></li>
 				<li><a href="function-create_captcha.html">create_captcha</a></li>
 				<li><a href="function-create_language_select.html">create_language_select</a></li>
+				<li class="active"><a href="function-create_tag.html">create_tag</a></li>
 				<li><a href="function-currency_convert.html">currency_convert</a></li>
 				<li><a href="function-encode.html">encode</a></li>
 				<li><a href="function-endCache.html">endCache</a></li>
@@ -520,7 +519,7 @@
 				<a href="namespace-None.html" title="Summary of None"><span>Namespace</span></a>
 			</li>
 			<li class="active">
-<span>Class</span>			</li>
+<span>Function</span>			</li>
 		</ul>
 		<ul>
 			<li>
@@ -537,212 +536,59 @@
 		</ul>
 	</div>
 
-<div id="content" class="class">
-	<h1>Class Parce_opencart</h1>
+<div id="content" class="function">
+	<h1>Function create_tag</h1>
 
 
 	<div class="description">
 	
-<p>Image CMS Module Frame</p>
+<p>Creates a html tag.</p>
 
 	</div>
-
-	<dl class="tree">
-		<dd style="padding-left:0px">
-MY_Controller
-			
-			
-		</dd>
-		<dd style="padding-left:30px">
-			<img src="resources/inherit.png" alt="Extended by">
-<b><span>Parce_opencart</span></b>			
-			
-			
-		</dd>
-	</dl>
-
-
-
-
-
-
-
 
 	<div class="info">
 		
 		
-		
-		
-
-		<b>Located at</b> application/modules/parce_opencart/parce_opencart.php<br>
+		<b>Located at</b> application/helpers/html_helper.php<br>
 	</div>
 
 
-
-	<table class="summary" id="methods">
-	<caption>Methods summary</caption>
-	<tr data-order="__construct" id="___construct">
-
-		<td class="attributes"><code>
-			 public 
+	<table class="summary" id="parameters">
+	<caption>Parameters summary</caption>
+	<tr id="$tagName">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$tagName</var></code></td>
+		<td>
 			
-			
-			</code>
 		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#___construct">#</a>
-		<code>__construct( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
 	</tr>
-	<tr data-order="index" id="_index">
-
-		<td class="attributes"><code>
-			 public 
+	<tr id="$innerText">
+		<td class="name"><code>string</code></td>
+		<td class="value"><code><var>$innerText</var></code></td>
+		<td>
 			
-			
-			</code>
 		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_index">#</a>
-		<code>index( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
 	</tr>
-	<tr data-order="autoload" id="_autoload">
-
-		<td class="attributes"><code>
-			 public 
+	<tr id="$attributes">
+		<td class="name"><code>array</code></td>
+		<td class="value"><code><var>$attributes</var> = <span class="php-keyword1">array</span>()</code></td>
+		<td>
 			
-			
-			</code>
 		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_autoload">#</a>
-		<code>autoload( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="_install" id="__install">
-
-		<td class="attributes"><code>
-			 public 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#__install">#</a>
-		<code>_install( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="_deinstall" id="__deinstall">
-
-		<td class="attributes"><code>
-			 public 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#__deinstall">#</a>
-		<code>_deinstall( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
 	</tr>
 	</table>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	<table class="summary" id="returns">
+	<caption>Return value summary</caption>
+	<tr>
+		<td class="name"><code>
+			type
+		</code></td>
+		<td>
+			
+		</td>
+	</tr>
+	</table>
 
 
 </div>

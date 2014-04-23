@@ -83,6 +83,10 @@ class Banner_model extends CI_Model {
                     if (!in_array($group, unserialize($banner['group']))) {
                         unset($query[$key]);
                     }
+
+                    if ($banner['active_to'] && $banner['active_to'] < time()) {
+                        unset($query[$key]);
+                    }
                 }
             }
         }

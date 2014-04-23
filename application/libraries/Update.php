@@ -101,12 +101,12 @@ class Update {
             $key = $this->getSettings('careKey');
             $result = $this->client->getHashSum($domen, IMAGECMS_NUMBER, BUILD_ID, $key);
 
-            write_file('./application/backups/md5.txt', $result);
+            write_file(BACKUPFOLDER . 'md5.txt', $result);
             $result = (array) json_decode($result);
 
             $this->setSettings(array("checkTime" => time()));
         } else {
-            $result = (array) json_decode(read_file('./application/backups/md5.txt'));
+            $result = (array) json_decode(read_file(BACKUPFOLDER . 'md5.txt'));
         }
 
         return $result;
@@ -117,7 +117,7 @@ class Update {
         $domen = $_SERVER['SERVER_NAME'];
         $href = $this->client->getUpdate($domen, IMAGECMS_NUMBER, $this->getSettings('careKey'));
         $all_href = $this->US . 'update/takeUpdate/' . $href . '/' . $domen . '/' . IMAGECMS_NUMBER . '/' . BUILD_ID;
-        file_put_contents('./application/backups/updates.zip', file_get_contents($all_href));
+        file_put_contents(BACKUPFOLDER . 'updates.zip', file_get_contents($all_href));
     }
 
     /**
@@ -161,10 +161,10 @@ class Update {
 
         $zip = new ZipArchive();
         $time = time();
-        $filename = "./application/backups/backup.zip";
+        $filename = BACKUPFOLDER . "backup.zip";
 
         if (file_exists($filename))
-            rename($filename, "./application/backups/$time.zip");
+            rename($filename, BACKUPFOLDER . "$time.zip");
 
         if ($zip->open($filename, ZipArchive::CREATE) !== TRUE)
             exit("cannot open <$filename>\n");
@@ -179,20 +179,20 @@ class Update {
     }
 
     public function createBackUp() {
-        $old = $this->getOldMD5File('./application/backups/md5.txt');
+        $old = $this->getOldMD5File(BACKUPFOLDER . 'md5.txt');
         $array = $this->parse_md5();
         $diff = array_diff($array, $old);
         $this->add_to_ZIP($diff);
 
-        $filename = "./application/backups/backup.zip";
+        $filename = BACKUPFOLDER . "backup.zip";
         $zip = new ZipArchive();
         $zip->open($filename);
         $db = $this->db_backup();
-        $zip->addFile('./application/backups/' . $db, $db);
+        $zip->addFile(BACKUPFOLDER . $db, $db);
         $zip->close();
 
-        chmod('./application/backups/' . $db, 0777);
-        unlink('./application/backups/' . $db);
+        chmod(BACKUPFOLDER . $db, 0777);
+        unlink(BACKUPFOLDER . $db);
     }
 
     /**
@@ -200,9 +200,14 @@ class Update {
      * @param string $file path to zip file
      * @param string $destination path to destination folder
      */
-    public function restoreFromZIP($file = "./application/backups/backup.zip", $destination = '.') {
-        if (!file_exists($file) || substr(decoct(fileperms($destination)), 2) != '777')
+    public function restoreFromZIP($file, $destination = '.') {
+        if (!$file) {
+            $file = BACKUPFOLDER . "backup.zip";
+        }
+
+        if (!file_exists($file) || substr(decoct(fileperms($destination)), 2) != '777') {
             return FALSE;
+        }
 
         $zip = new ZipArchive();
         $zip->open($file);
@@ -262,8 +267,7 @@ class Update {
                     if (!in_array($this->dir_upd . $file, $dont_arr_marge_file)) {
                         unlink($this->dir_curr . $file);
                         copy($this->dir_marge . $file, $this->dir_curr . $file);
-                    }
-                    else
+                    } else
                         copy($this->dir_upd . $file . '_update', $this->dir_curr . $file);
                 }
             }
@@ -274,12 +278,12 @@ class Update {
      * database backup
      */
     public function db_backup() {
-        if (is_really_writable('./application/backups')) {
+        if (is_really_writable(BACKUPFOLDER)) {
             $this->ci->load->dbutil();
             $filePath = \libraries\Backup::create()->createBackup("sql", "backup", TRUE);
             return pathinfo($filePath, PATHINFO_BASENAME);
         } else {
-            showMessage('Невозможно создать снимок базы, проверте папку /application/backups на возможность записи');
+            showMessage(langf('Невозможно создать снимок базы, проверте папку {0} на возможность записи', 'admin', array(BACKUPFOLDER)));
         }
 
         return $name;
@@ -305,20 +309,20 @@ class Update {
      * Create restore files list
      */
     public function restore_files_list() {
-        if (is_readable('./application/backups/')) {
-            $dh = opendir('./application/backups/');
+        if (is_readable(BACKUPFOLDER)) {
+            $dh = opendir(BACKUPFOLDER);
             while ($filename = readdir($dh)) {
                 if (filetype($filename) != 'dir') {
                     $file_type = '';
                     preg_match('/\.[a-z]{2,3}/', $filename, $file_type);
                     if ($file_type[0] == '.zip') {
                         $zip = new ZipArchive();
-                        $zip->open('./application/backups/' . $filename);
+                        $zip->open(BACKUPFOLDER . $filename);
                         if ($zip->statName('backup.sql')) {
                             $this->restore_files[] = array(
                                 'name' => $filename,
-                                'size' => round(filesize('./application/backups/' . $filename) / 1024 / 1024, 2),
-                                'create_date' => filemtime('./application/backups/' . $filename)
+                                'size' => round(filesize(BACKUPFOLDER . $filename) / 1024 / 1024, 2),
+                                'create_date' => filemtime(BACKUPFOLDER . $filename)
                             );
                         }
                         $zip->close();
@@ -348,8 +352,8 @@ class Update {
      * @param string $file_name
      */
     public function db_update($file_name = 'sql_19-08-2013_17.16.14.txt') {
-        if (is_readable('./application/backups/' . $file_name)) {
-            $restore = file_get_contents('./application/backups/' . $file_name);
+        if (is_readable(BACKUPFOLDER . $file_name)) {
+            $restore = file_get_contents(BACKUPFOLDER . $file_name);
             $this->query_from_file($restore);
         } else {
             return FALSE;

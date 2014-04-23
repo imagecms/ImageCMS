@@ -36,7 +36,9 @@ class Admin extends BaseAdminController {
 
     function index() {
         $root_menus = $this->db->get('menus')->result_array();
-        $this->render('menu_list', array('menus' => $root_menus), true);
+        \CMSFactory\assetManager::create()
+                ->setData('menus', $root_menus)
+                ->renderAdmin('menu_list');
     }
 
     public function chose_hidden() {
@@ -85,10 +87,10 @@ class Admin extends BaseAdminController {
             $cats = $this->lib_category->build();
             $pages = $this->get_pages(0, 0, 'controller');
             //$query = $this->db->get('shop_rbac_roles');
-
+            $locale = MY_Controller::getCurrentLocale();
             $this->db->select("shop_rbac_roles.*", FALSE);
             $this->db->select("shop_rbac_roles_i18n.alt_name", FALSE);
-            $this->db->where('locale', MY_Controller::getCurrentLocale());
+            $this->db->where('locale', $locale);
             $this->db->join("shop_rbac_roles_i18n", "shop_rbac_roles_i18n.id = shop_rbac_roles.id");
             $role = $this->db->get('shop_rbac_roles')->result_array();
 
@@ -142,8 +144,7 @@ class Admin extends BaseAdminController {
                     $image = $_POST['module_item_image'];
                 } elseif ($_POST['url_item_image']) {
                     $image = $_POST['url_item_image'];
-                }
-                else
+                } else
                     $image = '';
 
 
@@ -410,10 +411,10 @@ class Admin extends BaseAdminController {
             $menu = $this->db->where('id', $item['menu_id'])->get('menus')->row_array();
             $cats = $this->lib_category->build();
             $pages = $this->get_pages(0, 0, 'controller');
-
+            $locale = MY_Controller::getCurrentLocale();
             $this->db->select("shop_rbac_roles.*", FALSE);
             $this->db->select("shop_rbac_roles_i18n.alt_name", FALSE);
-            $this->db->where('locale', MY_Controller::getCurrentLocale());
+            $this->db->where('locale', $locale);
             $this->db->join("shop_rbac_roles_i18n", "shop_rbac_roles_i18n.id = shop_rbac_roles.id");
             $role = $this->db->get('shop_rbac_roles')->result_array();
 
@@ -978,8 +979,7 @@ class Admin extends BaseAdminController {
                 if ($referer == 'controller')
                     return $data;
                 echo json_encode($data);
-            }
-            else
+            } else
                 return $data;
         }
     }

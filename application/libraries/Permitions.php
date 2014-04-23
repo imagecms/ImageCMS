@@ -8,7 +8,7 @@ class Permitions {
 
     private static $shop_controllers_path;  //define shop admin controllers path
     private static $base_controllers_path;       //define base admin controllers path
-    private static $modules_controllers_path = 'application/modules/';          //define modules path
+    private static $modules_controllers_path = '/application/modules/';          //define modules path
     private static $rbac_roles_table = 'shop_rbac_roles';                       //define rbac roles table name
     private static $rbac_privileges_table = 'shop_rbac_privileges';             //define privileges table name
     private static $rbac_group_table = 'shop_rbac_group';                       //define group table
@@ -18,8 +18,8 @@ class Permitions {
     public function __construct() {
         $ci = & get_instance();
         $ci->load->library('DX_Auth');
-        self::$shop_controllers_path = MAINSITE . "application/modules/shop/admin/";
-        self::$base_controllers_path = MAINSITE . "application/modules/admin/";
+        self::$shop_controllers_path = MAINSITE . "/application/modules/shop/admin/";
+        self::$base_controllers_path = MAINSITE . "/application/modules/admin/";
     }
 
     /**
@@ -63,7 +63,7 @@ class Permitions {
 
             //if user exists!
             if (!empty($userProfile)) {
-            //get user role
+                //get user role
                 $userRole = $ci->db->where('id', $userProfile->role_id)->get(self::$rbac_roles_table)->row();
             }
 
@@ -87,7 +87,7 @@ class Permitions {
                     redirect('admin/rbac/permition_denied');
                 }
             }
-        }else {
+        } else {
             //user always has access to admin/login page
             if ($adminClassName != 'Login') {
                 if ($ci->input->is_ajax_request()) {
@@ -167,15 +167,21 @@ class Permitions {
             $adminMethod = 'index';
         }
 
-        if (!file_exists(MAINSITE . $adminClassFile) AND $adminClassFile != MAINSITE . 'application/modules/admin/.php') {
-            die("Файл " . MAINSITE . $adminClassFile . " не найден");
-        } else {
+//        if (MAINSITE) {
+//            $res = !file_exists(MAINSITE . '/' . $adminClassFile) AND $adminClassFile != MAINSITE . '/application/modules/admin/.php';
+//        } else {
+//            $res = !file_exists('./' . $adminClassFile) AND $adminClassFile != './application/modules/admin/.php';
+//        }
+//        
+//        if ($res) {
+//            die("Файл " . $adminClassFile . " не найден");
+//        } else {
             if ($checkLink AND $link != '') {
                 return array('adminClassName' => $adminClassName, 'adminMethod' => $adminMethod);
             } else {
                 self::checkAllPermitions($adminClassName, $adminMethod);
             }
-        }
+//        }
     }
 
     /**
@@ -976,5 +982,3 @@ class Permitions {
 
      */
 }
-
-
