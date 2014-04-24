@@ -333,14 +333,16 @@ $.dropInit.prototype.extendDrop = function() {
                     'top': t,
                     'left': l
                 }, {
-                    queue: false
+                    queue: false,
+                    duration: set.durationOff
                 });
             if (pmt[0] === 'inherit')
                 drop.stop()[method]({
                     'left': $this.offset().left,
                     'top': $this.offset().top
                 }, {
-                    queue: false
+                    queue: false,
+                    duration: set.durationOff
                 });
         },
         confirmPrompt: function(source, methods, elSet, opt, hashChange, _confirmF, e) {

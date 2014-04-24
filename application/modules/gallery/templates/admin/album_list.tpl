@@ -6,8 +6,8 @@
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <a href="/admin/components/cp/gallery" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Back", 'gallery')}</span></a>
-                <a href="/admin/components/init_window/gallery/show_crate_album" class="btn btn-small pjax btn-success pjax"><i class="icon-plus-sign icon-white"></i>{lang("Create", 'gallery')}</a>
+                <a href="/admin/components/cp/gallery" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Back", 'admin')}</span></a>
+                <a href="/admin/components/init_window/gallery/show_crate_album" class="btn btn-small pjax btn-success pjax"><i class="icon-plus-sign icon-white"></i>{lang("Create album", 'gallery')}</a>
             </div>
         </div>
     </div>
@@ -70,7 +70,7 @@
                                                             onclick="change_status('/admin/components/init_window/gallery/delete_album/{echo $item.id}/{echo $item.category_id}')"
                                                             data-title="{lang('Delete', 'gallery')}"
                                                             data-remove="">
-                                                        <i class="icon-trash icon-white"></i> {lang('Delete albums', 'gallery')}
+                                                        <i class="icon-trash icon-white"></i> {lang('Delete', 'gallery')}
                                                     </button>
                                                 </td>
                                             </tr>
