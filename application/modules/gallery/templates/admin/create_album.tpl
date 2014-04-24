@@ -2,7 +2,7 @@
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
-            <span class="title">{lang("Create an album", 'gallery')}</span>
+            <span class="title">{lang("Album creating", 'gallery')}</span>
         </div>
         <div class="pull-right">
             <div class="d-i_b">
