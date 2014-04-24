@@ -53,10 +53,11 @@ class Admin extends MY_Controller {
     }
 
     public function init() {
-        if (SHOP_INSTALLED)
+        if (SHOP_INSTALLED) {
             redirect('/admin/components/run/shop/dashboard');
-        else
+        } else {
             $this->index();
+        }
     }
 
     public function index() {
@@ -65,6 +66,8 @@ class Admin extends MY_Controller {
         $this->dashboard->index();
         exit;
     }
+
+  
 
     /**
      * Delete cached files

@@ -19,12 +19,47 @@ class Admin extends BaseAdminController {
 
         $locale = $this->db->where('default', 1)->get('languages')->result_array();
         $this->def_locale = $locale[0]['identif'];
-        
+
         $lang = new MY_Lang();
         $lang->load('banners');
 
-        
+        if (!$this->db->table_exists('mod_banner_groups')) {
+            $this->banner_model->createGroupsTable();
+        }
+
         $this->is_shop = SHOP_INSTALLED;
+    }
+
+    function createGroup() {
+        $name = $this->input->post('name');
+        if ($this->db->table_exists('mod_banner_groups')) {
+            $this->db->set('name', $name)->insert('mod_banner_groups');
+        } else {
+            $this->banner_model->createGroupsTable();
+
+            $this->db->set('name', $name)->insert('mod_banner_groups');
+        }
+        if (!$this->db->_error_message()) {
+            echo $this->db->insert_id();
+        } else {
+            echo 0;
+        }
+    }
+
+    function delGroup() {
+        $name = $this->input->post('name');
+        if ($this->db->table_exists('mod_banner_groups')) {
+            $this->db->where('name', $name[0])->delete('mod_banner_groups');
+        } else {
+            $this->banner_model->createGroupsTable();
+
+            $this->db->where('name', $name[0])->delete('mod_banner_groups');
+        }
+        if (!$this->db->_error_message()) {
+            echo 1;
+        } else {
+            echo 0;
+        }
     }
 
     /**
@@ -43,20 +78,18 @@ class Admin extends BaseAdminController {
                 ->setData(array('banners' => $banners, 'locale' => $locale, 'show_tpl' => $this->banner_model->get_settings_tpl()))
                 ->renderAdmin('list');
     }
-    
-     /**
+
+    /**
      * @access public
      * @author L.Andriy <l.andriy@siteimage.com.ua>
      * @copyright (c) 2013, ImageCMS
      */
-    public function settings(){
-        $st = (int)$_POST['status'];
-        
-        $arr = serialize(array ('show_tpl' => $st));
-        $sql = $this->db->query("update  components set settings = '$arr' where name = 'banners'");
-        
-    }
+    public function settings() {
+        $st = (int) $_POST['status'];
 
+        $arr = serialize(array('show_tpl' => $st));
+        $sql = $this->db->query("update  components set settings = '$arr' where name = 'banners'");
+    }
 
     /**
      * Switch Banners activity status
@@ -96,7 +129,6 @@ class Admin extends BaseAdminController {
             /** Set Validation reles */
             $this->form_validation->set_rules('name', lang('Banner name', 'banners'), 'required|xss_clean|max_length[45]');
             $this->form_validation->set_rules('photo', lang('Image', 'banners'), 'required|xss_clean');
-
             if ($this->form_validation->run($this) !== FALSE) {
                 /** Set Instart data */
                 $data = array(
@@ -110,13 +142,12 @@ class Admin extends BaseAdminController {
                     'locale' => $this->def_locale,
                 );
                 /** Create new banner from data-array */
-
                 $lid = $this->banner_model->add_banner($data);
 
-
+                showMessage(lang('Banner created', 'banners'));
                 /** Show successful message and redirect */
                 pjax('/admin/components/init_window/banners');
-            }else {
+            } else {
                 /** Show validation error message */
                 showMessage(validation_errors(), false, 'r');
             }
@@ -129,9 +160,6 @@ class Admin extends BaseAdminController {
                     ->setData(array('is_shop' => $this->is_shop, 'locale' => $locale, 'languages' => $lan))
                     ->renderAdmin('create');
         }
-        
-       
-
     }
 
     /**
@@ -152,7 +180,6 @@ class Admin extends BaseAdminController {
             $this->form_validation->set_rules('name', lang('Banner name', 'banners'), 'required|xss_clean|max_length[45]');
             $this->form_validation->set_rules('photo', lang('Photo', 'banners'), 'required|xss_clean');
 
-
             if ($this->form_validation->run($this) != FALSE) {
 
                 /** Set Update data */
@@ -165,17 +192,17 @@ class Admin extends BaseAdminController {
                     'photo' => $this->input->post('photo'),
                     'url' => $this->input->post('url'),
                     'locale' => $locale,
+                    'group' => serialize($this->input->post('group')),
                     'id' => (int) $id,
                 );
-
                 /** Update banner from data-array */
                 $this->banner_model->edit_banner($data);
 
                 /** Show successful message and redirect */
                 showMessage(lang('Data saved', 'banners'));
-                if ($this->input->post('action') == 'tomain')
+                if ($this->input->post('action') == 'tomain') {
                     pjax('/admin/components/init_window/banners');
-                
+                }
             } else {
                 /** Show validation error message */
                 showMessage(validation_errors(), false, 'r');
@@ -183,13 +210,23 @@ class Admin extends BaseAdminController {
         } else {
 
             $banner = $this->banner_model->get_one_banner($id, $locale);
-
-
+            $groups = $this->banner_model->getGroups();
+            
+            if (!isset($banner['id']) OR empty($banner)) {
+                $banner['id'] = $id;
+            }
+            
             /** Show Banner edit template */
             CMSFactory\assetManager::create()
                     ->registerScript('main')
                     ->registerStyle('style')
-                    ->setData(array('is_shop' => $this->is_shop, 'banner' => $banner, 'locale' => $locale, 'languages' => $this->db->get('languages')->result_array()))
+                    ->setData(array(
+                        'is_shop' => $this->is_shop,
+                        'banner' => $banner,
+                        'locale' => $locale,
+                        'languages' => $this->db->get('languages')->result_array(),
+                        'groups' => $groups,
+                    ))
                     ->renderAdmin('edit');
         }
     }
@@ -229,7 +266,7 @@ class Admin extends BaseAdminController {
                 ->setData('entity', $entity)
                 ->render($this->input->post('tpl'), TRUE);
     }
-    
+
     /**
      * Save banners positions
      * @access public
@@ -240,11 +277,11 @@ class Admin extends BaseAdminController {
             return;
 
         foreach ($this->input->post('positions') as $key => $value) {
-            $this->db->where('id = '.$value)
-                ->update('mod_banner', array('position' => $key));
+            $this->db->where('id = ' . $value)
+                    ->update('mod_banner', array('position' => $key));
         }
 
-        showMessage('Positions saved');
+        showMessage(lang('Positions saved', 'banners'));
     }
 
 }

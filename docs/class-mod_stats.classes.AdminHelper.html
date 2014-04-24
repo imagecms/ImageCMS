@@ -7,7 +7,7 @@
 	<title>Class mod_stats\classes\AdminHelper | ImageCMS Docs</title>
 
 	<script type="text/javascript" src="resources/combined.js?394153670"></script>
-	<script type="text/javascript" src="elementlist.js?2660862840"></script>
+	<script type="text/javascript" src="elementlist.js?639510069"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360">
 
 </head>
@@ -60,6 +60,11 @@
 				<li><a href="namespace-mod_discount.classes.html">classes</a>
 						</li>
 							</ul></li>
+				<li><a href="namespace-mod_seo.html">mod_seo<span></span></a>
+						<ul>
+				<li><a href="namespace-mod_seo.classes.html">classes</a>
+						</li>
+							</ul></li>
 				<li class="active"><a href="namespace-mod_stats.html">mod_stats<span></span></a>
 						<ul>
 				<li class="active"><a href="namespace-mod_stats.classes.html">classes</a>
@@ -90,12 +95,7 @@
 			<h3>Classes</h3>
 			<ul>
 				<li class="active"><a href="class-mod_stats.classes.AdminHelper.html">AdminHelper</a></li>
-				<li><a href="class-mod_stats.classes.Categories.html">Categories</a></li>
-				<li><a href="class-mod_stats.classes.LineDiagramBase.html">LineDiagramBase</a></li>
-				<li><a href="class-mod_stats.classes.Orders.html">Orders</a></li>
-				<li><a href="class-mod_stats.classes.Products.html">Products</a></li>
-				<li><a href="class-mod_stats.classes.Search.html">Search</a></li>
-				<li><a href="class-mod_stats.classes.Users.html">Users</a></li>
+				<li><a href="class-mod_stats.classes.DateInterval.html">DateInterval</a></li>
 			</ul>
 
 
@@ -149,7 +149,7 @@
 
 	<div class="description">
 	
-<p>Class BaseStats for mod_stats module</p>
+<p>Class AdminHelper for mod_stats module</p>
 
 	</div>
 
@@ -181,7 +181,7 @@ MY_Controller
 		<b>Package:</b> ImageCMSModule<br>
 
 				<b>Copyright:</b>
-				(c) 2013, ImageCMS<br>
+				(c) 2014, ImageCMS<br>
 				<b>Author:</b>
 				DevImageCms<br>
 				<b>Uses:</b>
@@ -304,7 +304,86 @@ MY_Controller
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="autoCompliteProducts" id="_autoCompliteProducts">
+	<tr data-order="getSetting" id="_getSetting">
+
+		<td class="attributes"><code>
+			 public 
+			string|boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getSetting">#</a>
+		<code>getSetting( <span>string <var>$settingName</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get setting by value</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get setting by value</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$settingName</var></dt>
+					<dd><code>string</code><br>$settingName</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string|boolean</code><br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getCurrencySymbol" id="_getCurrencySymbol">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getCurrencySymbol">#</a>
+		<code>getCurrencySymbol( )</code>
+
+		<div class="description short">
+			
+<p>Get main currency symbol</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get main currency symbol</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="autoCompleteProducts" id="_autoCompleteProducts">
 
 		<td class="attributes"><code>
 			 public 
@@ -314,8 +393,8 @@ MY_Controller
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_autoCompliteProducts">#</a>
-		<code>autoCompliteProducts( )</code>
+		<a class="anchor" href="#_autoCompleteProducts">#</a>
+		<code>autoCompleteProducts( )</code>
 
 		<div class="description short">
 			
@@ -326,6 +405,43 @@ MY_Controller
 		<div class="description detailed hidden">
 			
 <p>Autocomlete products</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>jsone</code><br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="autoCompleteCategories" id="_autoCompleteCategories">
+
+		<td class="attributes"><code>
+			 public 
+			jsone
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_autoCompleteCategories">#</a>
+		<code>autoCompleteCategories( )</code>
+
+		<div class="description short">
+			
+<p>Autocomlete categories</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Autocomlete categories</p>
 
 
 
@@ -357,6 +473,30 @@ MY_Controller
 
 
 
+	<table class="summary" id="magicProperties">
+	<caption>Magic properties summary</caption>
+	<tr data-order="stats_model" id="m$stats_model">
+		<td class="attributes"><code>
+			public  
+			stats_model
+		</code></td>
+
+		<td class="name">
+<var>$stats_model</var>		</td>
+		<td class="description"><div>
+			<a href="#m$stats_model" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
 
 
 

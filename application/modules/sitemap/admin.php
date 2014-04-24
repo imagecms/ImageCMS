@@ -7,69 +7,380 @@ if (!defined('BASEPATH'))
  * Image CMS
  *
  * Sample Module Admin
+ * @property sitemap_model $sitemap_model
  */
 class Admin extends BaseAdminController {
 
+    /**
+     * Path to saved sitemap file
+     * @var string
+     */
+    private $sitemap_path = './application/modules/sitemap/map/sitemap.xml';
+
     function __construct() {
         parent::__construct();
-         $lang = new MY_Lang();
+        $lang = new MY_Lang();
         $lang->load('sitemap');
 
         $this->load->library('DX_Auth');
+        $this->load->model('sitemap_model');
         //cp_check_perm('module_admin');
     }
 
+    /**
+     * Show sitemap priorities page
+     */
     function index() {
-
-        $this->render('settings', array(
-            'settings' => $this->_load_settings(),
-            'changefreq_options' => array(
-                'always' => lang('always', 'sitemap'),
-                'hourly' => lang('hourly', 'sitemap'),
-                'daily' => lang('daily', 'sitemap'),
-                'weekly' => lang('weekly', 'sitemap'),
-                'monthly' => lang('monthly', 'sitemap'),
-                'yearly' => lang('yearly', 'sitemap'),
-                'never' => lang('never', 'sitemap')
-                )
-        ));
+        $this->priorities();
     }
 
-    public function _load_settings() {
-        return $this->load->module('sitemap')->_load_settings();
+    /**
+     * Validation for priority name field
+     * @param string $tpl
+     */
+    public function priority_validation($priority) {
+        if ($priority > 0 && $priority <= 1) {
+            return TRUE;
+        }
+        $this->form_validation->set_message('priority_validation', lang('The %s field value can be in range from 0.1 to 1', 'sitemap'));
+        return FALSE;
     }
 
-    public function update_settings() {
-        if (!$this->input->post('sendXML'))
-            $XMLDataMap = array(
-                'main_page_priority' => $this->input->post('main_page_priority'),
-                'cats_priority' => $this->input->post('cats_priority'),
-                'pages_priority' => $this->input->post('pages_priority'),
-                'main_page_changefreq' => $this->input->post('main_page_changefreq'),
-                'categories_changefreq' => $this->input->post('categories_changefreq'),
-                'pages_changefreq' => $this->input->post('pages_changefreq'),
-                'product_changefreq' => $this->input->post('product_changefreq'),
-                'sendXML' => 'false',
-                'lastSend' => time()
-            );
-        else
-            $XMLDataMap = array(
-                'main_page_priority' => $this->input->post('main_page_priority'),
-                'cats_priority' => $this->input->post('cats_priority'),
-                'pages_priority' => $this->input->post('pages_priority'),
-                'main_page_changefreq' => $this->input->post('main_page_changefreq'),
-                'categories_changefreq' => $this->input->post('categories_changefreq'),
-                'pages_changefreq' => $this->input->post('pages_changefreq'),
-                'product_changefreq' => $this->input->post('product_changefreq'),
-                'sendXML' => $this->input->post('sendXML'),
-                'lastSend' => time()
-            );
+    /**
+     * Update settings
+     */
+    public function settings() {
+        if ($_POST) {
+            /** Data to update */
+            $data = $this->input->post('settings');
 
-        $this->db->limit(1);
-        $this->db->where('name', 'sitemap');
-        $this->db->update('components', array('settings' => serialize($XMLDataMap)));
+            /** Update settings */
+            if ($this->sitemap_model->updateSettings($data)) {
+                if (!$this->replaceRobots($data['robotsStatus'])) {
+                    showMessage(lang("Can not write in robots.txt. Check write permissions.", 'sitemap'), lang("Error", "sitemap"), 'r');
+                }
+                showMessage(lang("Changes have been saved", 'sitemap'), lang("Message", "sitemap"));
+            } else {
+                showMessage(lang("Changes have not been saved", 'sitemap'), lang("Error", "sitemap"), 'r');
+            }
 
-        showMessage(lang("Changes have been saved", 'sitemap'));
+            $this->_viewSiteMap();
+        } else {
+            // Get Information About Saved Site Map
+            if (file_exists($this->sitemap_path)) {
+                $file_data = array('url' => $this->sitemap_path, 'time' => filemtime($this->sitemap_path), 'size' => filesize($this->sitemap_path));
+            } else {
+                $file_data = array();
+            }
+
+            $settings = $this->sitemap_model->load_settings();
+            \CMSFactory\assetManager::create()
+                    ->registerScript('admin')
+                    ->appendData(array(
+                        'settings' => $settings,
+                        'fileSiteMapData' => $file_data
+                    ))
+                    ->renderAdmin('settings');
+        }
+    }
+
+    /**
+     * Save sitemap
+     */
+    public function saveSiteMap() {
+        // Get Site Map Data
+        $sitemap = file_get_contents(site_url('sitemap.xml'));
+
+        if ($sitemap) {
+            // Create file and puts Site Map data 
+            if (file_put_contents($this->sitemap_path, $sitemap)) {
+                showMessage(lang("Site map have been saved", 'sitemap'), lang("Message", "sitemap"));
+            } else {
+                showMessage(lang("Site map have not been saved. Set writing permissions on module folder.", 'sitemap'), lang("Error", "sitemap"), 'r');
+            }
+        } else {
+            showMessage(lang("Site map have not been saved", 'sitemap'), lang("Error", "sitemap"), 'r');
+        }
+    }
+
+    /**
+     * Download saved sitemap xml file
+     */
+    public function sitemapDownload() {
+        $this->load->helper('download');
+        $sitemap = file_get_contents($this->sitemap_path);
+
+        if ($sitemap) {
+            force_download('sitemap.xml', $sitemap);
+        } else {
+            redirect(site_url('admin/components/init_window/sitemap/settings'));
+        }
+    }
+
+    /**
+     * Replace robots
+     * @param int $robotsStatus - robots status(turn on - 1, turn off - 0)
+     * @return int
+     */
+    public function replaceRobots($robotsStatus = 0) {
+        $robots = file('robots.txt');
+
+        if ((int) $robotsStatus) {
+            // Turn on robots
+            $turnOnRobot = TRUE;
+
+            foreach ($robots as $key => $robot) {
+                if (trim($robot) == 'Disallow: /') {
+                    $turnOnRobot = FALSE;
+                    break;
+                }
+
+                if (trim($robot) == 'Disallow:') {
+                    unset($robots[$key]);
+                }
+            }
+
+            if ($turnOnRobot) {
+                array_splice($robots, 1, 0, 'Disallow: /' . PHP_EOL);
+            }
+        } else {
+            // Turn off robots
+            $turnOffRobot = TRUE;
+
+            foreach ($robots as $key => $robot) {
+                if (trim($robot) == 'Disallow:') {
+                    $turnOffRobot = FALSE;
+                    break;
+                }
+
+                if (trim($robot) == 'Disallow: /') {
+                    unset($robots[$key]);
+                }
+            }
+
+            if ($turnOffRobot) {
+                array_splice($robots, 1, 0, 'Disallow:' . PHP_EOL);
+            }
+        }
+
+        return file_put_contents('robots.txt', $robots);
+    }
+
+    /**
+     * Site map priorities
+     */
+    public function priorities() {
+        if ($_POST) {
+            /** Priorities validation */
+            $this->form_validation->set_rules('main_page_priority', lang('Main page priority', 'sitemap'), "required|callback_priority_validation");
+            $this->form_validation->set_rules('cats_priority', lang('Categories priority', 'sitemap'), "required|callback_priority_validation");
+            $this->form_validation->set_rules('pages_priority', lang('Regular or usual pages priority', 'sitemap'), "required|callback_priority_validation");
+            $this->form_validation->set_rules('sub_cats_priority', lang('Subcategories priority', 'sitemap'), "required|callback_priority_validation");
+            if (SHOP_INSTALLED) {
+                $this->form_validation->set_rules('products_priority', lang('Products priority', 'sitemap'), "required|callback_priority_validation");
+                $this->form_validation->set_rules('brands_priority', lang('Brands priority', 'sitemap'), "required|callback_priority_validation");
+                $this->form_validation->set_rules('products_categories_priority', lang('Products categories priority', 'sitemap'), "required|callback_priority_validation");
+                $this->form_validation->set_rules('products_sub_categories_priority', lang('Products subcategories priority', 'sitemap'), "required|callback_priority_validation");
+            }
+
+            if ($this->form_validation->run($this) == FALSE) {
+                showMessage(validation_errors(), lang("Error", "sitemap"), 'r');
+                exit;
+            }
+
+            /**
+             * Prepare data to update priorities
+             * 
+             */
+            if (SHOP_INSTALLED) {
+                $data = array(
+                    'main_page_priority' => $this->input->post('main_page_priority'),
+                    'cats_priority' => $this->input->post('cats_priority'),
+                    'pages_priority' => $this->input->post('pages_priority'),
+                    'sub_cats_priority' => $this->input->post('sub_cats_priority'),
+                    'products_priority' => $this->input->post('products_priority'),
+                    'brands_priority' => $this->input->post('brands_priority'),
+                    'products_categories_priority' => $this->input->post('products_categories_priority'),
+                    'products_sub_categories_priority' => $this->input->post('products_sub_categories_priority'),
+                );
+            } else {
+                $data = array(
+                    'main_page_priority' => $this->input->post('main_page_priority'),
+                    'cats_priority' => $this->input->post('cats_priority'),
+                    'pages_priority' => $this->input->post('pages_priority'),
+                    'sub_cats_priority' => $this->input->post('sub_cats_priority'),
+                );
+            }
+
+            /** Set priorities */
+            if ($this->sitemap_model->updatePriorities($data)) {
+                showMessage(lang("Changes have been saved", 'sitemap'), lang("Message", "sitemap"));
+            } else {
+                showMessage(lang("Changes have not been saved", 'sitemap'), lang("Error", "sitemap"), 'r');
+            }
+
+            $this->_viewSiteMap();
+        } else {
+            $priorities = $this->sitemap_model->getPriorities();
+
+            \CMSFactory\assetManager::create()
+                    ->setData($priorities)
+                    ->registerStyle('style_rating')
+                    ->registerScript('rating')
+                    ->renderAdmin('priorities');
+        }
+    }
+
+    /**
+     * Site map changefreq
+     */
+    public function changefreq() {
+        if ($_POST) {
+            /**
+             * Prepare data to update changefreq
+             */
+            if (SHOP_INSTALLED) {
+                $data = array(
+                    'main_page_changefreq' => $this->input->post('main_page_changefreq'),
+                    'categories_changefreq' => $this->input->post('categories_changefreq'),
+                    'pages_changefreq' => $this->input->post('pages_changefreq'),
+                    'product_changefreq' => $this->input->post('product_changefreq'),
+                    'categories_changefreq' => $this->input->post('categories_changefreq'),
+                    'products_categories_changefreq' => $this->input->post('products_categories_changefreq'),
+                    'products_sub_categories_changefreq' => $this->input->post('products_sub_categories_changefreq'),
+                    'sub_categories_changefreq' => $this->input->post('sub_categories_changefreq'),
+                    'brands_changefreq' => $this->input->post('brands_changefreq'),
+                );
+            } else {
+                $data = array(
+                    'main_page_changefreq' => $this->input->post('main_page_changefreq'),
+                    'categories_changefreq' => $this->input->post('categories_changefreq'),
+                    'pages_changefreq' => $this->input->post('pages_changefreq'),
+                    'categories_changefreq' => $this->input->post('categories_changefreq'),
+                );
+            }
+
+            /** Set changefreq */
+            if ($this->sitemap_model->updateChangefreq($data)) {
+                showMessage(lang("Changes have been saved", 'sitemap'), lang("Message", "sitemap"));
+            } else {
+                showMessage(lang("Changes have not been saved", 'sitemap'), lang("Error", "sitemap"), 'r');
+            }
+
+
+            $this->_viewSiteMap();
+        } else {
+            $changefreq = $this->sitemap_model->getChangefreq();
+            \CMSFactory\assetManager::create()
+                    ->setData($changefreq)
+                    ->appendData(array(
+                        'changefreq_options' => array(
+                            'always' => lang('always', 'sitemap'),
+                            'hourly' => lang('hourly', 'sitemap'),
+                            'daily' => lang('daily', 'sitemap'),
+                            'weekly' => lang('weekly', 'sitemap'),
+                            'monthly' => lang('monthly', 'sitemap'),
+                            'yearly' => lang('yearly', 'sitemap'),
+                            'never' => lang('never', 'sitemap')
+                        )
+                            )
+                    )
+                    ->renderAdmin('changefreq');
+        }
+    }
+
+    /**
+     * Site map blocked urls
+     */
+    public function blockedUrls() {
+        if ($_POST) {
+            /**
+             * Prepare data to update changefreq
+             */
+            $data = array();
+            $hide_urls = $this->input->post('hide_urls');
+            $robots_check = $this->input->post('robots_check');
+
+//            var_dumps_exit($robots_check);
+            if ($hide_urls) {
+                foreach ($hide_urls as $key => $url) {
+                    if ($url) {
+                        $data[] = array(
+                            'url' => $url,
+                            'robots_check' => $robots_check[$key + 1] ? 1 : 0
+                        );
+                    }
+                }
+            }
+
+
+            $this->robotsAdd($data);
+
+            /** Set blockedUrls */
+            if ($this->sitemap_model->updateBlockedUrls($data)) {
+                showMessage(lang("Changes have been saved", 'sitemap'), lang("Message", "sitemap"));
+            } else {
+                if ($data) {
+                    showMessage(lang("Changes have not been saved", 'sitemap'), lang("Error", "sitemap"), 'r');
+                } else {
+                    showMessage(lang("Changes have been saved", 'sitemap'), lang("Message", "sitemap"));
+                }
+            }
+
+
+            $this->_viewSiteMap();
+        } else {
+            $blockedUrls = $this->sitemap_model->getBlockedUrls();
+            \CMSFactory\assetManager::create()
+                    ->registerScript('admin')
+                    ->setData('hide_urls', $blockedUrls)
+                    ->renderAdmin('blocked_urls');
+        }
+    }
+
+    /**
+     * Check robots 
+     * @param type $url
+     * @return boolean
+     */
+    public function robotsAdd($data) {
+        $robots = file('robots.txt');
+
+        foreach ($data as $url) {
+            if ($url['robots_check']) {
+                $putUrl = TRUE;
+
+                foreach ($robots as $robot) {
+                    if (strstr($robot, $url['url'])) {
+                        $putUrl = FALSE;
+                        break;
+                    }
+                }
+
+                if ($putUrl == TRUE) {
+                    if (mb_strpos($url['url'], '/') === 0) {
+                        $robots[] = 'Disallow: ' . $url['url'] . PHP_EOL;
+                    } else {
+                        $robots[] = 'Disallow: /' . $url['url'] . PHP_EOL;
+                    }
+                }
+            } else {
+                foreach ($robots as $key => $robot) {
+                    if (strstr($robot, $url['url'])) {
+                        unset($robots[$key]);
+                        break;
+                    }
+                }
+            }
+        }
+
+        foreach ($robots as $key => $robot) {
+            if (!trim($robot)) {
+                unset($robots[$key]);
+            }
+        }
+
+        return file_put_contents('robots.txt', implode('', $robots));
     }
 
     /**
@@ -88,6 +399,9 @@ class Admin extends BaseAdminController {
         return $this->template->fetch('file:' . $file);
     }
 
+    /**
+     * Render template file
+     */
     public function render($viewName, array $data = array(), $return = false) {
         if (!empty($data))
             $this->template->add_array($data);
@@ -99,6 +413,16 @@ class Admin extends BaseAdminController {
             $this->template->show('file:' . 'application/modules/sitemap/templates/admin/' . $viewName);
         else
             return $this->template->fetch('file:' . 'application/modules/sitemap/templates/admin/' . $viewName);
+    }
+
+    /**
+     * Viev site map
+     */
+    private function _viewSiteMap() {
+        if ($this->input->post('action') == 'show_sitemap') {
+            echo "<script>location.href = '" . site_url('sitemap.xml') . "';</script>;";
+            exit;
+        }
     }
 
 }

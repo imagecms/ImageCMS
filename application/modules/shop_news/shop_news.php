@@ -95,7 +95,7 @@ class Shop_news extends MY_Controller {
         $this->load->model('shop_news_model');
 
         $this->shop_news_model->saveCategories($contentId, $data);
-        showMessage(lang('Save', 'shop_news'));
+        showMessage(lang('Changes have been saved', 'shop_news'));
     }
 
     /**

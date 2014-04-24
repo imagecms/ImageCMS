@@ -7,7 +7,7 @@
 	<title>Class MediaManager\Image | ImageCMS Docs</title>
 
 	<script type="text/javascript" src="resources/combined.js?394153670"></script>
-	<script type="text/javascript" src="elementlist.js?2660862840"></script>
+	<script type="text/javascript" src="elementlist.js?639510069"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360">
 
 </head>
@@ -58,6 +58,11 @@
 				<li><a href="namespace-mod_discount.html">mod_discount<span></span></a>
 						<ul>
 				<li><a href="namespace-mod_discount.classes.html">classes</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-mod_seo.html">mod_seo<span></span></a>
+						<ul>
+				<li><a href="namespace-mod_seo.classes.html">classes</a>
 						</li>
 							</ul></li>
 				<li><a href="namespace-mod_stats.html">mod_stats<span></span></a>
@@ -143,33 +148,22 @@
 	<h1>Class Image</h1>
 
 
-	<div class="description">
-	
-<p>Shop Controller class file.</p>
-
-	</div>
 
 	<dl class="tree">
 		<dd style="padding-left:0px">
-MY_Controller
+			<a href="class-ShopController.html"><span class="invalid">ShopController</span></a>
+			
 			
 			
 		</dd>
 		<dd style="padding-left:30px">
-			<img src="resources/inherit.png" alt="Extended by">
-			<a href="class-ShopController.html"><span>ShopController</span></a>
-			
-			
-			
-		</dd>
-		<dd style="padding-left:60px">
 			<img src="resources/inherit.png" alt="Extended by">
 			<a href="class-MediaManager.BaseImageClass.html"><span>MediaManager\BaseImageClass</span></a>
 			
 			
 			
 		</dd>
-		<dd style="padding-left:90px">
+		<dd style="padding-left:60px">
 			<img src="resources/inherit.png" alt="Extended by">
 <b><span>MediaManager\Image</span></b>			
 			
@@ -222,8 +216,6 @@ MY_Controller
 
 
 
-				<h4>Overrides</h4>
-				<div class="list"><code><a href="class-ShopController.html#___construct">ShopController::__construct()</a></code></div>
 
 		</div>
 		</div></td>
@@ -972,19 +964,104 @@ MY_Controller
 		</div>
 		</div></td>
 	</tr>
-	</table>
+	<tr data-order="loadImage" id="_loadImage">
 
-	<table class="summary inherited">
-	<caption>Methods inherited from <a href="class-ShopController.html#methods">ShopController</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-ShopController.html#_error404">error404()</a>, 
-			<a href="class-ShopController.html#_getShowUntranslated">getShowUntranslated()</a>, 
-			<a href="class-ShopController.html#_render">render()</a>, 
-			<a href="class-ShopController.html#_render_min">render_min()</a>
-		</code></td>
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_loadImage">#</a>
+		<code>loadImage( <span>integer <var>$varId</var></span>, <span>string <var>$image</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Load image</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Load image</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$varId</var></dt>
+					<dd><code>integer</code><br>$varId</dd>
+					<dt><var>$image</var></dt>
+					<dd><code>string</code><br>$image</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-Exception.html">Exception</a></code></code><br>
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="loadAdditionalImage" id="_loadAdditionalImage">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_loadAdditionalImage">#</a>
+		<code>loadAdditionalImage( <span>integer <var>$prodId</var></span>, <span>string <var>$image</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Load additional image</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Load additional image</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$prodId</var></dt>
+					<dd><code>integer</code><br>$prodId</dd>
+					<dt><var>$image</var></dt>
+					<dd><code>string</code><br>$image</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-Exception.html">Exception</a></code></code><br>
+				</div>
+
+
+
+		</div>
+		</div></td>
 	</tr>
 	</table>
+
 
 
 
@@ -1022,15 +1099,6 @@ MY_Controller
 	</tr>
 	</table>
 
-	<table class="summary inherited">
-	<caption>Properties inherited from <a href="class-ShopController.html#properties">ShopController</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-ShopController.html#$currentLocale"><var>$currentLocale</var></a>, 
-			<a href="class-ShopController.html#$doShowUntranslated"><var>$doShowUntranslated</var></a>
-		</code></td>
-	</tr>
-	</table>
 
 
 

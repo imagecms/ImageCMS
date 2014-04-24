@@ -15,8 +15,9 @@ if (!function_exists('media_url')) {
         }
 
         $index_page = $config->slash_item('index_page');
-        if ($index_page === '/')
+        if ($index_page === '/') {
             $index_page = '';
+        }
 
         $return = $config->slash_item('static_base_url') . $index_page . preg_replace("|^/*(.+?)/*$|", "\\1", $url);
         return $return;

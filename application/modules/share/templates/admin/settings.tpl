@@ -2,19 +2,19 @@
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
-            <span class="title">{lang('Button social networks module settings', 'share')}</span>
+            <span class="title">Настройки модуля кнопок соцсетей</span>
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <a href="{$BASE_URL}admin/components/modules_table/" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Go back", 'share')}</span></a>
-                <button type="button" class="btn btn-small formSubmit" data-form="#widget_form"><i class="icon-ok"></i>{lang("Save", 'share')}</button>
-                <button type="button" class="btn btn-small formSubmit" data-form="#widget_form" data-action="tomain"><i class="icon-edit"></i>{lang("Save and go back", 'share')}</button>
+                <a href="{$BASE_URL}admin/components/modules_table/" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('a_return')}</span></a>
+                <button type="button" class="btn btn-small formSubmit" data-form="#widget_form"><i class="icon-ok"></i>{lang('a_save')}</button>
+                <button type="button" class="btn btn-small formSubmit" data-form="#widget_form" data-action="tomain"><i class="icon-edit"></i>{lang('a_save_and_exit')}</button>
             </div>
         </div>                            
     </div>
     <div class="btn-group myTab m-t_10" data-toggle="buttons-radio">
-        <a href="#likes" class="btn btn-small active">{lang('Share buttons', 'share')}</a>
-        <a href="#share_buttons" class="btn btn-small">{lang('Buttons I like', 'share')}</a>
+        <a href="#likes" class="btn btn-small active">Набор сервисов</a>
+        <a href="#share_buttons" class="btn btn-small">Кнопки "Мне нравится"</a>
     </div>
     <form action="{$BASE_URL}admin/components/cp/share/update_settings" id="widget_form" method="post" class="form-horizontal">
         <div class="tab-content">
@@ -22,7 +22,7 @@
                 <div class="row-fluid">
                     <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
                         <thead>
-                        <th>{lang("Settings", 'share')}</th>
+                        <th>{lang('a_sett')}</th>
                         </thead>
                         <tbody>
                             <tr>
@@ -30,7 +30,7 @@
                                     <div class="inside_padd">
                                         <div class="row-fluid">
                                             <div class="control-group">
-                                                <label class="control-label" for="yarucheck">{lang('Я.ру', 'share')}<span class="check_yandex"></span></label>
+                                                <label class="control-label" for="yarucheck">Я.ру<span class="check_yandex"></span></label>
                                                 <div class="controls">
                                                     <span class="frame_label">
                                                         <span class="niceCheck b_n">
@@ -40,7 +40,7 @@
                                                 </div>
                                             </div>
                                             <div class="control-group">
-                                                <label class="control-label" for="symcount">{lang('VK', 'share')}<span class="check_vkcom"></span></label>
+                                                <label class="control-label" for="symcount">Вконтакте<span class="check_vkcom"></span></label>
                                                 <div class="controls">
                                                     <span class="frame_label">
                                                         <span class="niceCheck b_n">
@@ -50,7 +50,7 @@
                                                 </div>
                                             </div>
                                             <div class="control-group">
-                                                <label class="control-label" for="newscount">{lang('Facebook', 'share')}<span class="check_facebook"></span></label>
+                                                <label class="control-label" for="newscount">Facebook<span class="check_facebook"></span></label>
                                                 <div class="controls">
                                                     <span class="frame_label">
                                                         <span class="niceCheck b_n">
@@ -60,7 +60,7 @@
                                                 </div>            
                                             </div>
                                             <div class="control-group">
-                                                <label class="control-label" for="maxsym">{lang('Twitter', 'share')}<span class="check_twitter"></span></label>
+                                                <label class="control-label" for="maxsym">Twitter<span class="check_twitter"></span></label>
                                                 <div class="controls">
                                                     <span class="frame_label">
                                                         <span class="niceCheck b_n">
@@ -70,7 +70,7 @@
                                                 </div>            
                                             </div>
                                             <div class="control-group">
-                                                <label class="control-label" for="maxsym">{lang('Odnoklassniki', 'share')}<span class="check_odnoclass"></span></label>
+                                                <label class="control-label" for="maxsym">Одноклассники<span class="check_odnoclass"></span></label>
                                                 <div class="controls">
                                                     <span class="frame_label">
                                                         <span class="niceCheck b_n">
@@ -80,7 +80,7 @@
                                                 </div>            
                                             </div>
                                             <div class="control-group">
-                                                <label class="control-label" for="maxsym">{lang('My World', 'share')}<span class="check_myworld"></span></label>
+                                                <label class="control-label" for="maxsym">МойМир<span class="check_myworld"></span></label>
                                                 <div class="controls">
                                                     <span class="frame_label">
                                                         <span class="niceCheck b_n">
@@ -90,7 +90,7 @@
                                                 </div>            
                                             </div>
                                             <div class="control-group">
-                                                <label class="control-label" for="maxsym">{lang('Livejournal', 'share')}<span class="check_lj"></span></label>
+                                                <label class="control-label" for="maxsym">Livejournal<span class="check_lj"></span></label>
                                                 <div class="controls">
                                                     <span class="frame_label">
                                                         <span class="niceCheck b_n">
@@ -100,7 +100,7 @@
                                                 </div>            
                                             </div>
                                             <div class="control-group">
-                                                <label class="control-label" for="maxsym">{lang('Friendfeed', 'share')}<span class="check_ff"></span></label>
+                                                <label class="control-label" for="maxsym">Friendfeed<span class="check_ff"></span></label>
                                                 <div class="controls">
                                                     <span class="frame_label">
                                                         <span class="niceCheck b_n">
@@ -110,7 +110,7 @@
                                                 </div>            
                                             </div>
                                             <div class="control-group">
-                                                <label class="control-label" for="maxsym">{lang('My circle', 'share')}<span class="check_mc"></span></label>
+                                                <label class="control-label" for="maxsym">Мой круг<span class="check_mc"></span></label>
                                                 <div class="controls">
                                                     <span class="frame_label">
                                                         <span class="niceCheck b_n">
@@ -120,7 +120,7 @@
                                                 </div>            
                                             </div>
                                             <div class="control-group">
-                                                <label class="control-label" for="maxsym">{lang('Google+', 'share')}<span class="check_gg"></span></label>
+                                                <label class="control-label" for="maxsym">Google+<span class="check_gg"></span></label>
                                                 <div class="controls">
                                                     <span class="frame_label">
                                                         <span class="niceCheck b_n">
@@ -130,13 +130,13 @@
                                                 </div>            
                                             </div>
                                             <div class="control-group">
-                                                <label class="control-label" for="maxsym">{lang('External view', 'share')}:</label>
+                                                <label class="control-label" for="maxsym">Внешний вид:</label>
                                                 <div class="controls">
                                                     <select name="ss[type]">
-                                                        <option value="button" {if $settings['type'] == 'button'}selected="selected"{/if}>{lang('button', 'share')}</option>
-                                                        <option value="link" {if $settings['type'] == 'link'}selected="selected"{/if}>{lang('link', 'share')}</option>
-                                                        <option value="icon" {if $settings['type'] == 'icon'}selected="selected"{/if}>{lang('icon and menu', 'share')}</option>
-                                                        <option value="none" {if $settings['type'] == 'none'}selected="selected"{/if}>{lang('only icons', 'share')}</option>
+                                                        <option value="button" {if $settings['type'] == 'button'}selected="selected"{/if}>кнопка</option>
+                                                        <option value="link" {if $settings['type'] == 'link'}selected="selected"{/if}>ссылка</option>
+                                                        <option value="icon" {if $settings['type'] == 'icon'}selected="selected"{/if}>иконки и меню</option>
+                                                        <option value="none" {if $settings['type'] == 'none'}selected="selected"{/if}>только иконки</option>
                                                     </select>
                                                 </div>            
                                             </div>
@@ -152,7 +152,7 @@
                 <div class="row-fluid">
                     <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
                         <thead>
-                        <th>{lang("Settings", 'share')}</th>
+                        <th>{lang('a_sett')}</th>
                         </thead>
                         <tbody>
                             <tr>
@@ -160,7 +160,7 @@
                                     <div class="inside_padd">
                                         <div class="row-fluid">
                                             <div class="control-group">
-                                                <label class="control-label" for="yarucheck">{lang('Facebook', 'share')}<span class="check_facebook"></span></label>
+                                                <label class="control-label" for="yarucheck">Facebook<span class="check_facebook"></span></label>
                                                 <div class="controls">
                                                     <span class="frame_label">
                                                         <span class="niceCheck b_n">
@@ -170,7 +170,7 @@
                                                 </div>
                                             </div>
                                             <div class="control-group">
-                                                <label class="control-label" for="yarucheck">{lang('Вконтакте', 'share')}<span class="check_vkcom"></span></label>
+                                                <label class="control-label" for="yarucheck">Вконтакте<span class="check_vkcom"></span></label>
                                                 <div class="controls">
                                                     <span class="frame_label">
                                                         <span class="niceCheck b_n">
@@ -180,13 +180,13 @@
                                                 </div>
                                             </div>
                                             <div class="control-group">
-                                                <label class="control-label" for="yarucheck">{lang('Ваш API ID', 'share')}<span class="check_vkcom"></span></label>
+                                                <label class="control-label" for="yarucheck">Ваш API ID<span class="check_vkcom"></span></label>
                                                 <div class="controls">
                                                     <input type="text" name="ss[vk_apiid]" value="{$settings['vk_apiid']}"/>
                                                 </div>
                                             </div>
                                             <div class="control-group">
-                                                <label class="control-label" for="yarucheck">{lang('Google +', 'share')}<span class="check_gg"></span></label>
+                                                <label class="control-label" for="yarucheck">Google +<span class="check_gg"></span></label>
                                                 <div class="controls">
                                                     <span class="frame_label">
                                                         <span class="niceCheck b_n">
@@ -196,7 +196,7 @@
                                                 </div>
                                             </div>
                                             <div class="control-group">
-                                                <label class="control-label" for="yarucheck">{lang('Twitter', 'share')}<span class="check_twitter"></span></label>
+                                                <label class="control-label" for="yarucheck">Twitter<span class="check_twitter"></span></label>
                                                 <div class="controls">
                                                     <span class="frame_label">
                                                         <span class="niceCheck b_n">

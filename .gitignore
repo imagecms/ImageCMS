@@ -6,12 +6,17 @@
 /uploads
 /gitpush
 /application/backups
+/application/config/*/
 /application/config/config.php
 /application/config/database.php
 /application/modules/shop/cmlTemp/
+/application/modules/sitemap/map/
 /application/modules/shop
 /application/modules/mobile/
 /application/modules/exchange/
+/application/modules/template_manager/
+/application/modules/mod_stats/
+/templates/fluid/
 .tmp_staging
 /tests/tests/_log/*
 /tests/application/*
@@ -27,3 +32,5 @@ Thumbs.db
 *.*~
 /templates/corporate1/nbproject/private/
 /_tempLangs.php
+/uploadsNewlevel/.tmb/
+/uploads_cur

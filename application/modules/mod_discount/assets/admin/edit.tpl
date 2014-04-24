@@ -47,10 +47,12 @@
                                 <label class="">
                                     <span class="span4">{lang('Discount code', 'mod_discount')}:</span>
                                     <span class="span8">
-                                        <input readonly id="discountKey" type="text" name="key" value="{echo $discount['key']}" onkeypress="return false;" onkeyup="return false;" onkeydown="return false;" autocomplete="off"/>
-                                        <button class="btn btn-small" type="button" id="generateDiscountKey">
+                                        <button class="btn pull-right btn-small" type="button" id="generateDiscountKey">
                                             <i class="icon-refresh"></i>
                                         </button>
+                                        <div class="o_h">
+                                            <input readonly id="discountKey" type="text" name="key" value="{echo $discount['key']}" autocomplete="off"/>
+                                        </div>
                                     </span>
                                 </label>
                                 <div class="noLimitC">
@@ -88,13 +90,13 @@
                                     <div class="span4">{lang('Choose method', 'mod_discount')}:</div>
                                     <div class="span8">
                                         <div class="d-i_b m-r_15">
-                                            <select name="type_value" id="selectTypeValue">
+                                            <select name="type_value" id="selectTypeValue" class="span4">
                                                 <option value="1" {if $discount['type_value'] == 1}selected {/if}>{lang('Percents', 'mod_discount')}</option>
                                                 <option value="2" {if $discount['type_value'] == 2}selected {/if}>{lang('Fixed', 'mod_discount')}</option>
                                             </select>
                                         </div>
                                         <div class="d-i_b w-s_n-w">
-                                            <input id="valueInput" class="input-small required" type="text" name="value" value="{echo $discount['value']}" maxlength="9" />
+                                            <input id="valueInput" required="required" class="input-small required" type="text" name="value" value="{echo $discount['value']}" maxlength="9" />
                                             <span  id="typeValue">
                                                 {if $discount['type_value'] == 1} % {/if}
                                                 {if $discount['type_value'] == 2} {echo $CS} {/if}
@@ -117,8 +119,8 @@
                                 <!-- Start. Choose type discount -->
                                 <div class="m-b_15">
                                     <div class="span4">{lang('Choose type', 'mod_discount')}:</div>
-                                    <div class="span8">
-                                        <select name="type_discount" id="selectDiscountType" class="required no_color">
+                                    <div class="span4">
+                                        <select name="type_discount" id="selectDiscountType" class="required no_color span4">
                                             <option value="all_order" {if $discount['type_discount'] == 'all_order'} selected {/if}>{lang('Order amount of more than', 'mod_discount')}</option>
                                             <option value="comulativ" {if $discount['type_discount'] == 'comulativ'} selected {/if}>{lang('Cumulative discount', 'mod_discount')}</option>
                                             <option value="user" {if $discount['type_discount'] == 'user'} selected {/if}>{lang('User', 'mod_discount')}</option>
@@ -133,12 +135,12 @@
 
                                 <div class="">
                                     <div class="span4"></div>
-                                    <div class="span8">
+                                    <div class="span6">
                                         <div class="">
                                             <!--Start. Show if discount type is all_orders -->
                                             <div id="all_orderBlock" class="forHide" {if $discount['type_discount'] != 'all_order'}style="display: none;"{/if}>
                                                 <span class="d_b m-b_10">
-                                                    <span class="d-i_b sum-of-order"><input class="input-small onlyNumbersInput" type="text" name="all_order[begin_value]" value="{if !$discount['all_order']['begin_value']}0{else:}{echo $discount['all_order']['begin_value']}{/if}" maxlength="9" /></span>
+                                                    <span class="d-i_b sum-of-order"><input required="required" class="input-small onlyNumbersInput" type="text" name="all_order[begin_value]" value="{if !$discount['all_order']['begin_value']}0{else:}{echo $discount['all_order']['begin_value']}{/if}" maxlength="9" /></span>
                                                     <span class="d-i_b">{echo $CS}</span>
                                                 </span>
                                                 <div class="m-b_5">
@@ -151,7 +153,7 @@
                                                 </div>
                                                 <div class="">
                                                     <span class="frame_label no_connection m-r_15 spanForNoLimit" >
-                                                        <span class="niceCheck" style="background-position: -46px 0px; ">
+                                                        <span class="niceCheck" id="giftSpanCheckbox" style="background-position: -46px 0px; ">
                                                             <input type="checkbox" name="all_order[is_gift]" value="1" {if $discount['all_order']['is_gift'] == 1}checked=checked{/if} >
                                                         </span>
                                                         {lang('Gift Certificate', 'mod_discount')}
@@ -201,7 +203,7 @@
                                                             {/if}
                                                         </label>
                                                         <label> {lang('ID / Name / E-mail', 'mod_discount')}:</label>
-                                                        <input id="usersForDiscount" type="text" value="" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
+                                                        <input id="usersForDiscount" required="required" style="border-color: coral;" type="text" value="" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
                                                         <input id="discountUserId" type="hidden" name="user[user_id]" value="{echo $discount['user']['user_id']}"/>
                                                     </div>
                                                 </div>
@@ -229,6 +231,7 @@
                                                     <option {if $category->getLevel() == 0}style="font-weight: bold;"{/if} value="{echo $category->getId()}" {if $category->getId() == $discount['category']['category_id']}selected=selected{/if}>{str_repeat('-',$category->getLevel())}{echo ShopCore::encode($category->getName())}</option>
                                                 {/foreach}
                                             </select>
+                                            <input type="checkbox" name="category[child]" value="1"{if $discount['category']['child']}checked="checked"{/if}/>  {lang('Change child category', 'mod_discount')} 
                                         </div>
                                         <!-- End. Show if discount type is category of products-->
                                     </div>
@@ -240,7 +243,7 @@
                                                     <span class="now-active-prod">{echo $discount['product']['productInfo']}</span>
                                                 </label>
                                                 <label> {lang('Name / ID', 'mod_discount')}  :</label>
-                                                <input id="productForDiscount" type="text" value="" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
+                                                <input id="productForDiscount" required="required" style="border-color: coral;" type="text" value="" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
                                                 <input id="discountProductId" type="hidden" name="product[product_id]" value="{echo $discount['product']['product_id']}"/>
                                             </div>
                                         </div>
@@ -288,7 +291,7 @@
                                                 {$endDate = true;}
                                             {/if}
                                             <label class="d-i_b p_r">
-                                                <input class="datepicker discountDate" type="text" {if $endDate} value="{echo date("Y-m-d",$discount['date_end'])}"{/if}{if !$endDate} disabled="disabled"{/if} name="date_end" onkeypress="return false;" onkeyup="return false;" onkeydown="return false;" autocomplete="off"/>
+                                                <input class="discountDate endDateDiscount" type="text" {if $endDate} value="{echo date("Y-m-d",$discount['date_end'])}"{/if}{if !$endDate} disabled="disabled"{/if} name="date_end" onkeypress="return false;" onkeyup="return false;" onkeydown="return false;" autocomplete="off"/>
                                                 <span class="icon-calendar"></span>
                                             </label>
                                             <div class="d-i_b m-l_10 v-a_m">

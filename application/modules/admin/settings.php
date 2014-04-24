@@ -178,6 +178,7 @@ class Settings extends BaseAdminController {
         }
     }
 
+
     /**
      * Save site settings
      *

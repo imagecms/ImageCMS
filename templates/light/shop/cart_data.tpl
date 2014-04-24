@@ -1,4 +1,4 @@
-{$cart = \Cart\BaseCart::getInstance()->recountOriginTotalPrice()->recountTotalPrice()}
+{$cart = \Cart\BaseCart::getInstance()}
 {$count = $cart->getTotalItems()}
 {$price = $cart->getTotalPrice()}
 {$priceOrigin = $cart->getOriginTotalPrice()}
@@ -12,7 +12,7 @@
             <span class="text-cleaner">
                 <span class="helper"></span>
                 <span>
-                    <span class="text-el topCartCount">{echo $count}</span>
+                    <span class="text-el topCartCount">0</span>
                 </span>
             </span>
         </button>

@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="generator" content="ApiGen 2.8.0">
+
+	<title>Class mod_discount\classes\DiscountManager | ImageCMS Docs</title>
+
+	<script type="text/javascript" src="resources/combined.js?394153670"></script>
+	<script type="text/javascript" src="elementlist.js?639510069"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360">
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li><a href="namespace-Brands.html">Brands</a>
+						</li>
+				<li><a href="namespace-Cart.html">Cart<span></span></a>
+						<ul>
+				<li><a href="namespace-Cart.ItemsTypes.html">ItemsTypes</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Category.html">Category</a>
+						</li>
+				<li><a href="namespace-cmsemail.html">cmsemail<span></span></a>
+						<ul>
+				<li><a href="namespace-cmsemail.classes.html">classes</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-CMSFactory.html">CMSFactory</a>
+						</li>
+				<li><a href="namespace-Compare.html">Compare</a>
+						</li>
+				<li><a href="namespace-exchange.html">exchange<span></span></a>
+						<ul>
+				<li><a href="namespace-exchange.classes.html">classes</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-ImportCSV.html">ImportCSV</a>
+						</li>
+				<li><a href="namespace-libraries.html">libraries</a>
+						</li>
+				<li><a href="namespace-MediaManager.html">MediaManager</a>
+						</li>
+				<li><a href="namespace-mobile.html">mobile<span></span></a>
+						<ul>
+				<li><a href="namespace-mobile.collection.html">collection</a>
+						</li>
+							</ul></li>
+				<li class="active"><a href="namespace-mod_discount.html">mod_discount<span></span></a>
+						<ul>
+				<li class="active"><a href="namespace-mod_discount.classes.html">classes</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-mod_seo.html">mod_seo<span></span></a>
+						<ul>
+				<li><a href="namespace-mod_seo.classes.html">classes</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-mod_stats.html">mod_stats<span></span></a>
+						<ul>
+				<li><a href="namespace-mod_stats.classes.html">classes</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-None.html">None</a>
+						</li>
+				<li><a href="namespace-PHP.html">PHP</a>
+						</li>
+				<li><a href="namespace-Products.html">Products</a>
+						</li>
+				<li><a href="namespace-Profile.html">Profile</a>
+						</li>
+				<li><a href="namespace-Search.html">Search</a>
+						</li>
+				<li><a href="namespace-wishlist.html">wishlist<span></span></a>
+						<ul>
+				<li><a href="namespace-wishlist.classes.html">classes</a>
+						</li>
+							</ul></li>
+			</ul>
+		</div>
+
+		<hr>
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-mod_discount.classes.BaseDiscount.html">BaseDiscount</a></li>
+				<li class="active"><a href="class-mod_discount.classes.DiscountManager.html">DiscountManager</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="">
+		<input type="hidden" name="ie" value="UTF-8">
+		<input type="text" name="q" class="text">
+		<input type="submit" value="Search">
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-mod_discount.classes.html" title="Summary of mod_discount\classes"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+			<li>
+				<a href="deprecated.html" title="List of deprecated elements"><span>Deprecated</span></a>
+			</li>
+			<li>
+				<a href="todo.html" title="Todo list"><span>Todo</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class DiscountManager</h1>
+
+
+	<div class="description">
+	
+<p>Class DiscountManager for Mod_Discount module</p>
+
+	</div>
+
+	<dl class="tree">
+		<dd style="padding-left:0px">
+MY_Controller
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by">
+<b><span>mod_discount\classes\DiscountManager</span></b>			
+			
+			
+		</dd>
+	</dl>
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-mod_discount.html">mod_discount</a>\<a href="namespace-mod_discount.classes.html">classes</a><br>
+		<b>Package:</b> ImageCMSModule<br>
+
+				<b>Copyright:</b>
+				(c) 2013, ImageCMS<br>
+				<b>Author:</b>
+				DevImageCms<br>
+				<b>Use:</b>
+				\My_Controller<br>
+		<b>Located at</b> application/modules/mod_discount/classes/DiscountManager.php<br>
+	</div>
+
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code>__construct( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="createBrandDiscount" id="_createBrandDiscount">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_createBrandDiscount">#</a>
+		<code>createBrandDiscount( <span>array <var>$data</var></span> )</code>
+
+		<div class="description short">
+			
+<p>create brand discount</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>create brand discount</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$data</var></dt>
+					<dd><code>array</code><br>$postArray input params: - (string) key: discount key optional - (string) name:
+discount name - (int) max_apply: max apply discount default null - infinity -
+(int) type_value: 1 - % 2 - float - (int) value: discount value - (string)
+type_discount: (all_order, comulativ, user, group_user, category, product,
+brand) - (string) date_begin: data begin discount - (string) date_end: data end
+discount default null - infinity - (int) brand_id: id brand</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br>$data params: - (boolean) success: result of create brand discount - (string)
+errors: message of error<br>
+				</div>
+
+
+				<h4>Copyright</h4>
+				<div class="list">
+						(c) 2013, ImageCMS<br>
+				</div>
+				<h4>Author</h4>
+				<div class="list">
+						DevImageCms<br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="createCategoryDiscount" id="_createCategoryDiscount">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_createCategoryDiscount">#</a>
+		<code>createCategoryDiscount( <span>array <var>$data</var></span> )</code>
+
+		<div class="description short">
+			
+<p>create category discount</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>create category discount</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$data</var></dt>
+					<dd><code>array</code><br>$postArray input params: - (string) key: discount key optional - (string) name:
+discount name - (int) max_apply: max apply discount default null - infinity -
+(int) type_value: 1 - % 2 - float - (int) value: discount value - (string)
+type_discount: (all_order, comulativ, user, group_user, category, product,
+brand) - (string) date_begin: data begin discount - (string) date_end: data end
+discount default null - infinity - (int) category_id: id category - (int) child:
+change childs category</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br>$data params: - (boolean) success: result of create category discount - (string)
+errors: message of error<br>
+				</div>
+
+
+				<h4>Copyright</h4>
+				<div class="list">
+						(c) 2013, ImageCMS<br>
+				</div>
+				<h4>Author</h4>
+				<div class="list">
+						DevImageCms<br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="createProductDiscount" id="_createProductDiscount">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_createProductDiscount">#</a>
+		<code>createProductDiscount( <span>array <var>$data</var></span> )</code>
+
+		<div class="description short">
+			
+<p>create product discount</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>create product discount</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$data</var></dt>
+					<dd><code>array</code><br>$postArray input params: - (string) key: discount key optional - (string) name:
+discount name - (int) max_apply: max apply discount default null - infinity -
+(int) type_value: 1 - % 2 - float - (int) value: discount value - (string)
+type_discount: (all_order, comulativ, user, group_user, category, product,
+brand) - (string) date_begin: data begin discount - (string) date_end: data end
+discount default null - infinity - (int) product_id: id product</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br>$data params: - (boolean) success: result of create product discount - (string)
+errors: message of error<br>
+				</div>
+
+
+				<h4>Copyright</h4>
+				<div class="list">
+						(c) 2013, ImageCMS<br>
+				</div>
+				<h4>Author</h4>
+				<div class="list">
+						DevImageCms<br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="createUserDiscount" id="_createUserDiscount">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_createUserDiscount">#</a>
+		<code>createUserDiscount( <span>array <var>$data</var></span> )</code>
+
+		<div class="description short">
+			
+<p>create user discount</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>create user discount</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$data</var></dt>
+					<dd><code>array</code><br>$postArray input params: - (string) key: discount key optional - (string) name:
+discount name - (int) max_apply: max apply discount default null - infinity -
+(int) type_value: 1 - % 2 - float - (int) value: discount value - (string)
+type_discount: (all_order, comulativ, user, group_user, category, product,
+brand) - (string) date_begin: data begin discount - (string) date_end: data end
+discount default null - infinity - (int) user_id: id user</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br>$data params: - (boolean) success: result of create user discount - (string)
+errors: message of error<br>
+				</div>
+
+
+				<h4>Copyright</h4>
+				<div class="list">
+						(c) 2013, ImageCMS<br>
+				</div>
+				<h4>Author</h4>
+				<div class="list">
+						DevImageCms<br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="createUserGroupDiscount" id="_createUserGroupDiscount">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_createUserGroupDiscount">#</a>
+		<code>createUserGroupDiscount( <span>array <var>$data</var></span> )</code>
+
+		<div class="description short">
+			
+<p>create user group discount discount</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>create user group discount discount</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$data</var></dt>
+					<dd><code>array</code><br>$postArray input params: - (string) key: discount key optional - (string) name:
+discount name - (int) max_apply: max apply discount default null - infinity -
+(int) type_value: 1 - % 2 - float - (int) value: discount value - (string)
+type_discount: (all_order, comulativ, user, group_user, category, product,
+brand) - (string) date_begin: data begin discount - (string) date_end: data end
+discount default null - infinity - (int) group_id: id user group</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br>$data params: - (boolean) success: result of create user group discount -
+(string) errors: message of error<br>
+				</div>
+
+
+				<h4>Copyright</h4>
+				<div class="list">
+						(c) 2013, ImageCMS<br>
+				</div>
+				<h4>Author</h4>
+				<div class="list">
+						DevImageCms<br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="createComulativDiscount" id="_createComulativDiscount">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_createComulativDiscount">#</a>
+		<code>createComulativDiscount( <span>array <var>$data</var></span> )</code>
+
+		<div class="description short">
+			
+<p>create comulativ discount</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>create comulativ discount</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$data</var></dt>
+					<dd><code>array</code><br>$postArray input params: - (string) key: discount key optional - (string) name:
+discount name - (int) max_apply: max apply discount default null - infinity -
+(int) type_value: 1 - % 2 - float - (int) value: discount value - (string)
+type_discount: (all_order, comulativ, user, group_user, category, product,
+brand) - (string) date_begin: data begin discount - (string) date_end: data end
+discount default null - infinity - (float) begin_value: value begin - (float)
+end_value: value end default null - infinity</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br>$data params: - (boolean) success: result of create comulativ - (string) errors:
+message of error<br>
+				</div>
+
+
+				<h4>Copyright</h4>
+				<div class="list">
+						(c) 2013, ImageCMS<br>
+				</div>
+				<h4>Author</h4>
+				<div class="list">
+						DevImageCms<br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="createGift" id="_createGift">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_createGift">#</a>
+		<code>createGift( <span>array <var>$data</var></span> )</code>
+
+		<div class="description short">
+			
+<p>create gift discount</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>create gift discount</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$data</var></dt>
+					<dd><code>array</code><br>$postArray input params: - (string) key: discount key optional - (string) name:
+discount name - (int) max_apply: max apply discount default null - infinity -
+(int) type_value: 1 - % 2 - float - (int) value: discount value - (string)
+type_discount: (all_order, comulativ, user, group_user, category, product,
+brand) - (string) date_begin: data begin discount - (string) date_end: data end
+discount default null - infinity</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br>$data params: - (boolean) success: result of create gift - (string) errors:
+message of error<br>
+				</div>
+
+
+				<h4>Copyright</h4>
+				<div class="list">
+						(c) 2013, ImageCMS<br>
+				</div>
+				<h4>Author</h4>
+				<div class="list">
+						DevImageCms<br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="deleteDiscount" id="_deleteDiscount">
+
+		<td class="attributes"><code>
+			 public 
+			(boolean)
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_deleteDiscount">#</a>
+		<code>deleteDiscount( <span>(int) <var>$id</var></span> )</code>
+
+		<div class="description short">
+			
+<p>delete discount</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>delete discount</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>(int)</code><br>id discount:</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>(boolean)</code><br>success: result of deleting<br>
+				</div>
+
+
+				<h4>Copyright</h4>
+				<div class="list">
+						(c) 2013, ImageCMS<br>
+				</div>
+				<h4>Author</h4>
+				<div class="list">
+						DevImageCms<br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="create" id="_create">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_create">#</a>
+		<code>create( <span>array <var>$postArray</var></span> )</code>
+
+		<div class="description short">
+			
+<p>create discount</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>create discount</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$postArray</var></dt>
+					<dd><code>array</code><br>$postArray input params:</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br>$data params: - (boolean) success: result of create - (string) errors: message
+of error<br>
+				</div>
+
+
+				<h4>Copyright</h4>
+				<div class="list">
+						(c) 2013, ImageCMS<br>
+				</div>
+				<h4>Author</h4>
+				<div class="list">
+						DevImageCms<br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="validation" id="_validation">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_validation">#</a>
+		<code>validation( <span>array <var>$postArray</var></span>, <span>mixed <var>$id</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>validation data</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>validation data</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$postArray</var></dt>
+					<dd><code>array</code><br>$postArray input params:</dd>
+					<dt><var>$id</var></dt>
+					<dd></dd>
+				</dl></div>
+
+
+
+				<h4>Copyright</h4>
+				<div class="list">
+						(c) 2013, ImageCMS<br>
+				</div>
+				<h4>Author</h4>
+				<div class="list">
+						DevImageCms<br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="validateUserDiscount" id="_validateUserDiscount">
+
+		<td class="attributes"><code>
+			 public static
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_validateUserDiscount">#</a>
+		<code>validateUserDiscount( <span>integer <var>$userId</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Helper function for checking that user have no discounts already</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Helper function for checking that user have no discounts already</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$userId</var></dt>
+					<dd><code>integer</code><br>$userId id of user</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br>true if user have no discounts alreaty, false otherwise<br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="validateGroupDiscount" id="_validateGroupDiscount">
+
+		<td class="attributes"><code>
+			 public static
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_validateGroupDiscount">#</a>
+		<code>validateGroupDiscount( <span>integer <var>$groupId</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Helper function for checking that user-group have no discounts already</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Helper function for checking that user-group have no discounts already</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$groupId</var></dt>
+					<dd><code>integer</code><br>$groupId id of group</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br>true if user-group have no discounts alreaty, false otherwise<br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="error" id="$error">
+		<td class="attributes"><code>
+			public  
+			array
+		</code></td>
+
+		<td class="name">
+<var>$error</var>		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
+		<td class="description"><div>
+			<a href="#$error" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+	<table class="summary" id="magicProperties">
+	<caption>Magic properties summary</caption>
+	<tr data-order="discount_model_admin" id="m$discount_model_admin">
+		<td class="attributes"><code>
+			public  
+			<code><a href="class-discount_model_admin.html">discount_model_admin</a></code>
+		</code></td>
+
+		<td class="name">
+<var>$discount_model_admin</var>		</td>
+		<td class="description"><div>
+			<a href="#m$discount_model_admin" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+</div>
+
+	<div id="footer">
+		ImageCMS Docs API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

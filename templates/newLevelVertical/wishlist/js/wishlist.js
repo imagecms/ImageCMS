@@ -26,11 +26,10 @@ jQuery(function($) {
 var WishListFront = {
     btnRemoveItem: '.btnRemoveItem',
     frameWL: '[data-rel="list-item"]',
-    wishPhotoFrame: '#wishlistphoto',
     deleteImage: function(el) {
         el.parent().remove();
-        var wishPhotoFrame = $(WishListFront.wishPhotoFrame);
-        wishPhotoFrame.empty().append('<img src="'+wishPhotoFrame.data('scr')+'">');
+        var img = $('#wishlistphoto img');
+        img.attr('src', img.data('src'));
     },
     changeDataWishlist: function(el) {
         $('[data-wishlist-name]').each(function() {
@@ -38,7 +37,7 @@ var WishListFront = {
             $this.html(el.closest('form').find('[name=' + $this.data('wishlistName') + ']').val());
         });
     },
-    createWishList: function(el, elS, isajax, data) {
+    createWishList: function(el, elS, data) {
         if (data) {
             if (data.answer == 'success') {
                 location.reload();
@@ -81,14 +80,14 @@ var WishListFront = {
             return true;
         }
     },
-    reload: function(el, elS, isajax, data) {
+    reload: function(el, elS, data) {
         if (data) {
             if (data.answer == 'success') {
                 location.reload();
             }
         }
     },
-    addToWL: function(el, elS, isajax, data) {
+    addToWL: function(el, elS, data) {
         if (data) {
             if (data.answer == 'success') {
                 wishList.add(el.data('id'));
@@ -97,7 +96,7 @@ var WishListFront = {
             }
         }
     },
-    removeItem: function(el, elS, isajax, data) {
+    removeItem: function(el, elS, data) {
         if (data) {
             if (data.answer == 'success') {
                 var li = el.closest(genObj.parentBtnBuy),
@@ -109,7 +108,7 @@ var WishListFront = {
             }
         }
     },
-    removeWL: function(el, elS, isajax, data) {
+    removeWL: function(el, elS, data) {
         if (data) {
             if (data.answer == 'success') {
                 var frame = el.closest(WishListFront.frameWL),
@@ -161,7 +160,7 @@ var wishList = {
 };
 
 $(document).on('scriptDefer', function() {
-    var wishPhotoFrame = $(WishListFront.wishPhotoFrame);
+    var wishPhoto = $('#wishlistphoto');
     $('.btn-edit-photo-wishlist input[type="file"]').change(function(e) {
         var file = this.files[0],
         img = document.createElement("img"),
@@ -170,17 +169,17 @@ $(document).on('scriptDefer', function() {
             img.src = reader.result;
         };
         reader.readAsDataURL(file);
-        wishPhotoFrame.empty().append($(img));
+        wishPhoto.html($(img));
         $(img).load(function() {
-            if ($(this).actual('width') > wishPhotoFrame.data('widht') || $(this).actual('height') > wishPhotoFrame.data('height')) {
+            if ($(this).actual('width') > wishPhoto.data('widht') || $(this).actual('height') > wishPhoto.data('height')) {
                 $('[data-drop="#notification"].trigger').data({
                     'timeclosemodal': 3000, 
                     datas: {
                         'answer': true,
-                        'data': text.error.fewsize(wishPhotoFrame.data('width') + '&times' + wishPhotoFrame.data('height'))
+                        'data': text.error.fewsize(wishPhoto.data('width') + '&times' + wishPhoto.data('height'))
                     }
                 }).drop('open').removeData('timeclosemodal');
-                wishPhotoFrame.empty().append('<img src="'+wishPhotoFrame.data('src')+'">');
+                wishPhoto.empty();
                 $(this).val('');
                 $('[data-wishlist="do_upload"]').attr('disabled', 'disabled').parent().addClass('disabled');
             }
@@ -201,7 +200,7 @@ $(document).on('scriptDefer', function() {
     else {
         $(genObj.toWishlist).data({
             'always': true,
-            'data': {
+            'datas': {
                 "ignoreWrap": true
             }
         });

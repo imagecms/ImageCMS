@@ -8,7 +8,7 @@
  * @author DevImageCms
  * @copyright (c) 2013, ImageCMS
  * @package ImageCMSModule
-
+ * @property discount_model_admin $discount_model_admin
  */
 class Admin extends \ShopAdminController {
 
@@ -22,8 +22,20 @@ class Admin extends \ShopAdminController {
                 ->registerScript('adminScripts');
     }
 
+    public function test() {
+        $bd = \mod_discount\classes\BaseDiscount::create();
+        $something1 = $bd->getAppliesCart();
+        
+        $something2 = $bd->getAppliesOverloadDifference($something1);
+        echo '<pre>';
+        print_r($something1);
+        echo '</pre>';
+        exit;
+    }
+
     /**
      * For displaing list of discounts
+     * @return html
      */
     public function index() {
         $filterParam = $this->input->get('filterBy');
@@ -41,104 +53,27 @@ class Admin extends \ShopAdminController {
 
     /**
      * Create discount
+     * @return html
      */
     public function create() {
 
         if ($this->input->post()) {
             $postArray = $this->input->post();
-            $typeDiscount = $postArray['type_discount'];
-            $typeDiscountTableName = 'mod_discount_' . $typeDiscount;
 
-            if ($typeDiscount == 'comulativ') {
-                $this->form_validation->set_rules('comulativ[begin_value]', lang('Value from', 'mod_discount'), 'trim|required|integer|xss_clean');
-                $this->form_validation->set_rules('comulativ[end_value]', lang('Value to', 'mod_discount'), 'trim|integer|xss_clean');
-            }
-            if ($typeDiscount == 'all_order') {
-                $this->form_validation->set_rules('all_order[begin_value]', lang('Value from', 'mod_discount'), 'trim|integer|xss_clean');
-            }
+            $discauntManager = new \mod_discount\classes\DiscountManager();
 
-            if ($typeDiscount == 'comulativ' && $postArray[$typeDiscount]['end_value'] < $postArray[$typeDiscount]['begin_value'] && is_numeric($postArray[$typeDiscount]['end_value'])) {
-                showMessage(lang('Amount <<from>> can not be greater than the sum <<to>>', 'mod_discount'), '', 'r');
-                exit;
-            }
+            $result = $discauntManager->create($postArray);
 
-            if ($typeDiscount == 'product' && !$postArray[$typeDiscount]['product_id']) {
-                showMessage(lang('Enter a product that is in the database', 'mod_discount'), '', 'r');
-                exit;
-            }
-
-            if ($typeDiscount == 'user' && !$postArray[$typeDiscount]['user_id']) {
-                showMessage(lang('Enter the user who is in the database', 'mod_discount'), '', 'r');
-                exit;
-            }
-
-            //Check have any comulativ discount max end value
-            if ($typeDiscount == 'comulativ' && $postArray[$typeDiscount]['end_value'] == null && $this->discount_model_admin->checkHaveAnyComulativDiscountMaxEndValue()) {
-                showMessage(lang('There can be more than one discount with said upper threshold as a <<maximum>>!', 'mod_discount'), '', 'r');
-                exit;
-            }
-            //Check date end is > then date begin
-            if ($postArray['date_begin'] > $postArray['date_end'] && !$postArray['date_end'] == null) {
-                showMessage(lang('Invalid date range!', 'mod_discount'), '', 'r');
-                exit;
-            }
-
-            if ($postArray['type_value'] == 1 && $postArray['value'] >= 100) {
-                showMessage(lang('Discounts percents may not be more than 99!', 'mod_discount'), '', 'r');
-                exit;
-            }
-
-            $this->form_validation->set_rules($this->discount_model_admin->rules());
-            if ($this->form_validation->run()) {
-
-                // If empty field with discount key, then generate key
-                if ($postArray['key'] == null)
-                    $postArray['key'] = $this->generateDiscountKey();
-
-                //Prepare data for inserting in the table 'mod_shop_discounts'
-                $data = array(
-                    // 'name' => $postArray['name'],
-                    'key' => $postArray['key'],
-                    'max_apply' => $postArray['max_apply'],
-                    'type_value' => $postArray['type_value'],
-                    'value' => $postArray['value'],
-                    'type_discount' => $typeDiscount,
-                    'date_begin' => strtotime($postArray['date_begin']),
-                    'date_end' => strtotime($postArray['date_end']),
-                    'active' => '1'
-                );
-
-                //Insert data in table 'mod_shop_discounts' and if success then get discount id
-                $discountId = $this->discount_model_admin->insertDataToDB('mod_shop_discounts', $data);
-
-                //Prepare data for inserting in the table of selected discount type
-                $typeDiscountData = $postArray[$typeDiscount];
-
-                $data_locale = array(
-                    'id' => $discountId,
-                    'locale' => \MY_Controller::getCurrentLocale(),
-                    'name' => $postArray['name']
-                );
-
-                $this->discount_model_admin->insertDataToDB('mod_shop_discounts_i18n', $data_locale);
-
-
-                //If was error when inserted in the table 'mod_shop_discounts' then exit
-                if ($discountId != false) {
-                    $typeDiscountData['discount_id'] = $discountId;
-                    $result = $this->discount_model_admin->insertDataToDB($typeDiscountTableName, $typeDiscountData);
+            if ($result['success']) {
+                showMessage(lang('Discount successfully created!', 'mod_discount'));
+                if ($postArray['action'] == 'tomain') {
+                    pjax('/admin/components/init_window/mod_discount/index');
                 } else {
-                    showMessage(lang('Failed to create a discount', 'mod_discount'), '', 'r');
-                    exit;
-                }
-
-                //If discount created success then show message and redirect to discounts list
-                if ($result != false) {
-                    showMessage(lang('Discount successfully created!', 'mod_discount'));
-                    pjax('index');
+                    pjax('/admin/components/init_window/mod_discount/edit/' . $result['id']);
                 }
             } else {
-                showMessage(validation_errors(), '', 'r');
+                showMessage(implode('<br/> ', $result['error']), '', 'r');
+                exit;
             }
         } else {
 
@@ -159,61 +94,24 @@ class Admin extends \ShopAdminController {
     }
 
     /**
-     * Edit discount   
+     * Edit discount 
+     * @paran (int) $id
+     * @paran (string) $locale
+     * @return html  
      */
     public function edit($id, $locale = null) {
 
         if (null === $locale)
             $locale = \MY_Controller::getCurrentLocale();
         if ($this->input->post()) {
-            $this->form_validation->set_rules($this->discount_model_admin->rules());
+
             $postArray = $this->input->post();
             $typeDiscount = $postArray['type_discount'];
 
-            if ($typeDiscount == 'comulativ') {
-                $this->form_validation->set_rules('comulativ[begin_value]', lang('Value from', 'mod_discount'), 'trim|required|integer|xss_clean');
-                $this->form_validation->set_rules('comulativ[end_value]', lang('Value to', 'mod_discount'), 'trim|integer|xss_clean');
-            }
-            if ($typeDiscount == 'all_order') {
-                $this->form_validation->set_rules('all_order[begin_value]', lang('Value from', 'mod_discount'), 'trim|integer|xss_clean');
-            }
+            $discauntManager = new \mod_discount\classes\DiscountManager();
+            $discauntManager->validation($postArray, $id);
 
-            if ($typeDiscount == 'comulativ' && $postArray[$typeDiscount]['end_value'] < $postArray[$typeDiscount]['begin_value'] && is_numeric($postArray[$typeDiscount]['end_value'])) {
-                showMessage(lang('Amount <<from>> can not be greater than the sum <<to>>', 'mod_discount'), '', 'r');
-                exit;
-            }
-
-            if ($typeDiscount == 'product' && !$postArray[$typeDiscount]['product_id']) {
-                showMessage(lang('Enter a product that is in the database', 'mod_discount'), '', 'r');
-                exit;
-            }
-            if ($typeDiscount == 'user' && !$postArray[$typeDiscount]['user_id']) {
-                showMessage(lang('Enter the user who is in the database', 'mod_discount'), '', 'r');
-                exit;
-            }
-
-            //Check have any comulativ discount max end value
-            if ($typeDiscount == 'comulativ' && $postArray[$typeDiscount]['end_value'] == null && $this->discount_model_admin->checkHaveAnyComulativDiscountMaxEndValue($id)) {
-                showMessage(lang('There can be more than one discount with said upper threshold as a <<maximum>>!', 'mod_discount'), '', 'r');
-                exit;
-            }
-
-            //Check date end is > then date begin
-            if ($postArray['date_begin'] > $postArray['date_end'] && !$postArray['date_end'] == null) {
-                showMessage(lang('Invalid date range!', 'mod_discount'), '', 'r');
-                exit;
-            }
-
-
-
-            if ($postArray['type_value'] == 1 && $postArray['value'] >= 100) {
-                showMessage(lang('Discount successfully created!', 'mod_discount'));
-                exit;
-            }
-
-
-            if ($this->form_validation->run()) {
-
+            if (count($discauntManager->error) == 0) {
 
                 // If empty field with discount key, then generate key
                 if ($postArray['key'] == null)
@@ -235,6 +133,12 @@ class Admin extends \ShopAdminController {
                 //Prepare data for inserting in the table of selected discount type
                 $typeDiscountData = $postArray[$typeDiscount];
 
+                // Check range for cumulative discount
+                if ($typeDiscount == "comulativ" AND $this->discount_model_admin->checkRangeForCumulativeDiscount($postArray[$typeDiscount], $id)) {
+                    showMessage(lang('Has been already created with the cumulative discount value', 'mod_discount'), '', 'r');
+                    return;
+                }
+
                 // Insert data
                 if ($this->discount_model_admin->updateDiscountById($id, $data, $typeDiscountData, $locale)) {
                     showMessage(lang('Changes saved', 'mod_discount'));
@@ -245,7 +149,7 @@ class Admin extends \ShopAdminController {
                 else
                     pjax('/admin/components/init_window/mod_discount/edit/' . $id);
             }else {
-                showMessage(validation_errors(), '', 'r');
+                showMessage(implode('<br/> ', $discauntManager->error), '', 'r');
             }
         } else {
 
@@ -285,10 +189,37 @@ class Admin extends \ShopAdminController {
 
     /**
      * Change status(active or not)
+     * @return boolean 
      */
     public function ajaxChangeActive() {
         $id = $this->input->post('id');
-        echo $this->discount_model_admin->changeActive($id);
+
+        // checking if discount exists
+        $res = CI::$APP->db->get_where('mod_shop_discounts', array('id' => $id))->row_array();
+        if (is_null($res)) {
+            $msg = showMessage(lang("Discount don't exists", 'mod_discount'), lang('Error'), 'error', TRUE);
+            echo json_encode(array('status' => 0, 'msg' => $msg));
+            return;
+        }
+
+        // additional validation for users and groups
+        $dm = new \mod_discount\classes\DiscountManager();
+        if ($res['type_discount'] == 'user' && !$dm->validateUserDiscount($res['type_value']) && $res['active'] == 0) {
+            $msg = showMessage(lang('This user already have active discount', 'mod_discount'), lang('Error'), 'error', TRUE);
+            echo json_encode(array('status' => 0, 'msg' => $msg));
+            return;
+        }
+        if ($res['type_discount'] == 'group_user' && !$dm->validateGroupDiscount($res['type_value']) && $res['active'] == 0) {
+            $msg = showMessage(lang('This group of users already have active discount', 'mod_discount'), lang('Error'), 'error', TRUE);
+            echo json_encode(array('status' => 0, 'msg' => $msg));
+            return;
+        }
+
+        $res = $this->discount_model_admin->changeActive($id);
+        if ($res) {
+            $msg = showMessage(lang('Status changed', 'mod_discount'), '', '', TRUE);
+            echo json_encode(array('status' => 1, 'msg' => $msg));
+        }
     }
 
     /**
@@ -302,7 +233,6 @@ class Admin extends \ShopAdminController {
 
     /**
      * Generate key for discount
-     *
      * @param int $charsCount
      * @param int $digitsCount
      * @static
@@ -374,7 +304,7 @@ class Admin extends \ShopAdminController {
         if ($products != false) {
             foreach ($products as $product) {
                 $response[] = array(
-                    'value' => $product['name'],
+                    'value' => $product['id'] . ' - ' . $product['name'],
                     'id' => $product['id'],
                 );
             }

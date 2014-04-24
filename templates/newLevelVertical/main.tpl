@@ -46,12 +46,12 @@
                                 url: theme + 'js/' + i + '.js',
                                 dataType: "script",
                                 cache: false,
-                                success: function() {
+                                complete: function() {
                                     cL++;
                                     if (cL == scriptsL)
                                         if (callback) {
                                             eval(callback)();
-                                            setTimeout(function(){
+                                            setTimeout(function() {
                                                 $(document).trigger({'type': customEvent});
                                             }, 0);
                                         }
@@ -79,7 +79,7 @@
         <link rel="icon" href="{echo siteinfo('siteinfo_favicon_url')}" type="image/x-icon" />
         <link rel="shortcut icon" href="{echo siteinfo('siteinfo_favicon_url')}" type="image/x-icon" />
     </head>
-    <body class="is{echo $agent[0]} not-js"> 
+    <body class="is{echo $agent[0]} not-js {$CI->core->core_data['data_type']}"> 
         {include_tpl('language/jsLangsDefine.tpl')}
         {include_tpl('language/jsLangs.tpl')}
         <div class="main-body">
@@ -119,9 +119,9 @@
 
         {literal}
             <script type="text/javascript">
-                $(window).load(function(){
+                $(window).load(function() {
                     init();
-                    setTimeout(function(){
+                    setTimeout(function() {
                         $(document).trigger({type: 'scriptDefer'})
                     }, 0)
                 })
@@ -130,12 +130,19 @@
         { */}
         {/*}End. delete before upload to server{ */}
 
-        {/*}uncomment before opload to server and combine and minimize scripts (in comment <!-- scripts of development -->...<!-- scripts of development end -->) into united_scripts file{ */}
+        {/*fancybox}
+        <link rel="stylesheet" type="text/css" href="{$THEME}js/fancybox/jquery.fancybox-1.3.4.css" media="all" />
+        <script type="text/javascript" src="{$THEME}js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+        {end. fancybox*/}
+
+        {/*}uncomment before opload to server and combine and minimize scripts (in comment <!-- scripts -->...<!-- scripts end -->) into united_scripts file{ */}
+        {/*} Start. uncoment before development { */}
 
         <script type="text/javascript">
             initDownloadScripts(['raphael-min', 'united_scripts'], 'init', 'scriptDefer');
         </script>
 
+        {/*} End. uncoment before development { */}
         {include_shop_tpl('js_templates')}
     </body>
 </html>

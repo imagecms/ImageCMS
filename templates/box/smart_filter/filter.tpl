@@ -1,10 +1,10 @@
-<div class="preloader wo-i"></div>
 {include_tpl('filter_opt')}
+<div class="preloader wo-i"></div>
 <div id="slider-range"></div>
 <div class="frames-checks-sliders">
     <div class="frame-slider" data-rel="sliders.slider1">
         <div class="inside-padd">
-            <div class="title">Цена</div>
+            <div class="title">{lang('Фильтр по цене', 'newLevel')}</div>
             <div class="slider-cont">
                 <noscript>{lang('Джаваскрипт не включен', 'newLevel')}</noscript>
                 {/*id="slider1" for cleaverfilter that paste frame with count finded products*/}
@@ -22,7 +22,7 @@
                     <label>
                         <input type="text" class="maxCost" data-title="{lang('только цифры', 'newLevel')}" name="rp" value="{echo $curMax}" data-maxs="{echo $maxPrice}"/>
                     </label>
-                    <div class="btn-def">
+                    <div class="btn-def d_n">
                         <input type="submit" value="ОК"/>
                     </div>
                 </div>
@@ -40,31 +40,33 @@
                         </span>
                     </span>
                 </div>
-                <ul class="filters-content">
-                    {foreach $brands as $brand}
-                        {if is_array(ShopCore::$_GET['brand']) && in_array($brand->id, ShopCore::$_GET['brand'])}
-                            {$check = 'checked="checked"'}
-                        {else:}
-                            {$check = ''}
-                        {/if}
-                        {if $brand->countProducts == 0}
-                            {$dis = 'disabled="disabled"'}
-                        {else:}
-                            {$dis = ""}
-                        {/if}
-                        <li>
-                            <div class="frame-label" id="brand_{echo $brand->id}">
-                                <span class="niceCheck b_n">
-                                    <input {$dis} class="brand{echo $brand->id}" name="brand[]" value="{echo $brand->id}" type="checkbox" {$check}/>
-                                </span>
-                                <div class="name-count">
-                                    <span class="text-el">{echo $brand->name}</span>
-                                    <span class="count">({echo $brand->countProducts})</span>
+                <div class="filters-content">
+                    <ul>
+                        {foreach $brands as $brand}
+                            {if is_array(ShopCore::$_GET['brand']) && in_array($brand->id, ShopCore::$_GET['brand'])}
+                                {$check = 'checked="checked"'}
+                            {else:}
+                                {$check = ''}
+                            {/if}
+                            {if $brand->countProducts == 0 && $check == ''}
+                                {$dis = 'disabled="disabled"'}
+                            {else:}
+                                {$dis = ""}
+                            {/if}
+                            <li>
+                                <div class="frame-label" id="brand_{echo $brand->id}">
+                                    <span class="niceCheck b_n">
+                                        <input {$dis} class="brand{echo $brand->id}" name="brand[]" value="{echo $brand->id}" type="checkbox" {$check}/>
+                                    </span>
+                                    <div class="name-count">
+                                        <span class="text-el">{echo $brand->name}</span>
+                                        <span class="count">({echo $brand->countProducts})</span>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
-                    {/foreach}
-                </ul>
+                            </li>
+                        {/foreach}
+                    </ul>
+                </div>
             </div>
         </div>
     {/if}
@@ -94,7 +96,7 @@
                                         {else:}
                                             {$check = ''}
                                         {/if}
-                                        {if $item.count == 0}
+                                        {if $item.count == 0 && $check == ''}
                                             {$dis = 'disabled="disabled"'}
                                         {else:}
                                             {$dis = ""}
@@ -123,7 +125,7 @@
                                         {else:}
                                             {$check = ''}
                                         {/if}
-                                        {if $item.count == 0}
+                                        {if $item.count == 0 && $check == ''}
                                             {$dis = 'disabled="disabled"'}
                                         {else:}
                                             {$dis = ""}
@@ -135,21 +137,17 @@
                         {/if}
                     </div>
                 </div>
-            {if $condTypeProperty}<div class="preloader"></div>{/if}
-        {/if}
-    {/foreach}
-{/if}
-<div class="frame-group-checks">
-    <div class="inside-padd">
-        <div class="btn-form m-b_5">
-            <button type="submit">
-                <span class="text-el">{lang('Фильтровать', 'newLevel')}</span>
-            </button>
+            {/if}
+        {/foreach}
+    {/if}
+    <div class="filter-foot">
+        <div class="inside-padd t-a_c">
+            <div class="btn-form">
+                <button type="submit">
+                    <span class="text-el">{lang('Фильтровать', 'newLevel')}</span>
+                </button>
+            </div>
         </div>
-        <button type="reset">
-            <span class="text-el d_l_1">{lang('Сбросить фильтр', 'newLevel')}</span>
-        </button>
     </div>
-</div>
 </div>
 <input disabled="disabled" type="hidden" name="requestUri" value="{echo site_url($CI->uri->uri_string())}"/>

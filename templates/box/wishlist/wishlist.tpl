@@ -76,7 +76,6 @@
                                                 <button
                                                     type="submit"
                                                     data-source="{site_url('/wishlist/wishlistApi/createWishList')}"
-                                                    data-type="json"
                                                     data-modal="true"
 
                                                     data-always="true"
@@ -144,7 +143,6 @@
                                                     <button
                                                         type="button"
                                                         data-source="{site_url('/wishlist/wishlistApi/deleteWL/'.$wishlist[0][wish_list_id])}"
-                                                        data-type="json"
                                                         data-modal="true"
 
                                                         data-drop="#notification"
@@ -177,7 +175,7 @@
                                                 <div class="btn-form btn-send-wishlist">
                                                     <button type="button" data-drop=".drop-sendemail" title="{lang('Поделится с другом','newLevel')}" data-source="{echo site_url('wishlist/wishlistApi/renderEmail/' . $wishlist[0][wish_list_id])}">
                                                         <span class="icon_mail"></span>
-                                                        <span class="text-el">{lang('Поделится з другом')}</span>
+                                                        <span class="text-el">{lang('Поделиться с другом')}</span>
                                                     </button>
                                                 </div>
                                             {/if}
@@ -219,6 +217,7 @@
                                         <label class="btn-edit-photo-wishlist" for="img">
                                             <button type="button" class="p_r hidden">
                                                 <span class="icon_edit"></span>
+                                                <span class="text-el">{lang('Выбрать фото', 'newLevel')}</span>
                                                 <input id="img" data-wishlist="image" type="file" name="file" size="20" accept="image/gif, image/jpeg, image/png, image/jpg"/>
                                             </button>
                                         </label>
@@ -227,7 +226,6 @@
                                                 <button
                                                     type="button"
                                                     data-source="{site_url('/wishlist/wishlistApi/deleteImage')}"
-                                                    data-type="json"
                                                     data-modal="true"
 
                                                     data-drop="#notification"
@@ -288,7 +286,6 @@
                                         <button
                                             type="submit"
                                             data-source="{site_url('/wishlist/wishlistApi/userUpdate')}"
-                                            data-type="json"
                                             data-modal="true"
 
                                             data-effect-on="fadeIn"

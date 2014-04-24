@@ -1,13 +1,14 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 class Permitions {
 
-    private static $shop_controllers_path = 'application/modules/shop/admin/';  //define shop admin controllers path
-    private static $base_controllers_path = 'application/modules/admin/';       //define base admin controllers path
-    private static $modules_controllers_path = 'application/modules/';          //define modules path
+    private static $shop_controllers_path;  //define shop admin controllers path
+    private static $base_controllers_path;       //define base admin controllers path
+    private static $modules_controllers_path = '/application/modules/';          //define modules path
     private static $rbac_roles_table = 'shop_rbac_roles';                       //define rbac roles table name
     private static $rbac_privileges_table = 'shop_rbac_privileges';             //define privileges table name
     private static $rbac_group_table = 'shop_rbac_group';                       //define group table
@@ -17,6 +18,8 @@ class Permitions {
     public function __construct() {
         $ci = & get_instance();
         $ci->load->library('DX_Auth');
+        self::$shop_controllers_path = MAINSITE . "/application/modules/shop/admin/";
+        self::$base_controllers_path = MAINSITE . "/application/modules/admin/";
     }
 
     /**
@@ -59,9 +62,10 @@ class Permitions {
             $priv_title = $ci->db->select("title")->where(array('id' => $privilege->id, 'locale' => $locale))->get(self::$rbac_privileges_table . "_i18n")->row();
 
             //if user exists!
-            if (!empty($userProfile))
-            //get user role
+            if (!empty($userProfile)) {
+                //get user role
                 $userRole = $ci->db->where('id', $userProfile->role_id)->get(self::$rbac_roles_table)->row();
+            }
 
             //if privilege found
             if (!empty($privilege)) {
@@ -79,18 +83,20 @@ class Permitions {
                 }
             } else {
                 //if privilege not found in base check if user is admin
-                if ($userRole->name != 'Administrator' AND $adminMethod != 'permition_denied')
+                if ($userRole->name != 'Administrator' AND $adminMethod != 'permition_denied') {
                     redirect('admin/rbac/permition_denied');
+                }
             }
-        }else {
+        } else {
             //user always has access to admin/login page
-            if ($adminClassName != 'Login')
+            if ($adminClassName != 'Login') {
                 if ($ci->input->is_ajax_request()) {
                     echo json_encode(array('success' => false, 'redirect' => 'admin/login'));
                     exit;
-                }
-                else
+                } else {
                     redirect('admin/login');
+                }
+            }
         }
     }
 
@@ -106,9 +112,9 @@ class Permitions {
         if ($checkLink AND $link != '') {
             $uri_array = explode("/", $link);
             $for_check = $uri_array[1];
-        }
-        else
+        } else {
             $for_check = $ci->uri->segment(2);
+        }
 
         if ($for_check == 'components') {
             if (in_array($ci->uri->segment(3), array('init_window', 'run', 'cp')) OR in_array($uri_array[2], array('init_window', 'run', 'cp'))) {
@@ -131,10 +137,11 @@ class Permitions {
             $classNamePrep = 'Base';
         }
 
-        if ($checkLink AND $link != '')
+        if ($checkLink AND $link != '') {
             $adminController = $uri_array[$controller_segment - 1];
-        else
+        } else {
             $adminController = $ci->uri->segment($controller_segment);
+        }
 
         switch ($classNamePrep) {
             case 'ShopAdmin':
@@ -150,22 +157,31 @@ class Permitions {
                 $adminClassFile = self::$base_controllers_path . $adminController . '.php';
                 break;
         }
-        if ($checkLink AND $link != '')
+        if ($checkLink AND $link != '') {
             $adminMethod = $uri_array[$controller_method - 1];
-        else
+        } else {
             $adminMethod = $ci->uri->segment($controller_method);
-
-        if (!$adminMethod)
-            $adminMethod = 'index';
-
-        if (!file_exists($adminClassFile) AND $adminClassFile != 'application/modules/admin/.php')
-            die("Файл " . $adminClassFile . " не найден");
-        else {
-            if ($checkLink AND $link != '')
-                return array('adminClassName' => $adminClassName, 'adminMethod' => $adminMethod);
-            else
-                self::checkAllPermitions($adminClassName, $adminMethod);
         }
+
+        if (!$adminMethod) {
+            $adminMethod = 'index';
+        }
+
+//        if (MAINSITE) {
+//            $res = !file_exists(MAINSITE . '/' . $adminClassFile) AND $adminClassFile != MAINSITE . '/application/modules/admin/.php';
+//        } else {
+//            $res = !file_exists('./' . $adminClassFile) AND $adminClassFile != './application/modules/admin/.php';
+//        }
+        
+//        if ($res) {
+//            die("Файл " . $adminClassFile . " не найден");
+//        } else {
+            if ($checkLink AND $link != '') {
+                return array('adminClassName' => $adminClassName, 'adminMethod' => $adminMethod);
+            } else {
+                self::checkAllPermitions($adminClassName, $adminMethod);
+            }
+//        }
     }
 
     /**
@@ -196,8 +212,9 @@ class Permitions {
 
             if ($handle = opendir($adminControllersDir)) {
                 //list of the admin controllers
-                if (!$controllers)
+                if (!$controllers) {
                     $controllers = glob($adminControllersDir . "*$fileExtension");
+                }
                 foreach ($controllers as $controller) {
 
                     self::scanControllers($controller, $folder);
@@ -261,8 +278,9 @@ class Permitions {
                 }
             }
         }
-        if ($folder == 'module')
+        if ($folder == 'module') {
             unlink($controller);
+        }
     }
 
     /**
@@ -272,22 +290,24 @@ class Permitions {
     private static function checkSuperAdmin() {
         $ci = & get_instance();
         $superAdmin = $ci->db->where('id', 1)->get('users')->row();
-        if (empty($superAdmin))
+        if (empty($superAdmin)) {
             die("Супер администратор не найден");
-        else {
+        } else {
             $role_id = $superAdmin->role_id;
             $privileges = $ci->db->get(self::$rbac_privileges_table)->result();
             if (!empty($privileges)) {
                 $countAllPermitions = count($privileges);
                 $countUserPermitions = 0;
                 foreach ($privileges as $privilege) {
-                    if ($ci->db->where(array('privilege_id' => $privilege->id, 'role_id' => $role_id))->get(self::$rbac_roles_privileges_table)->num_rows() > 0)
+                    if ($ci->db->where(array('privilege_id' => $privilege->id, 'role_id' => $role_id))->get(self::$rbac_roles_privileges_table)->num_rows() > 0) {
                         $countUserPermitions++;
+                    }
                 }
-                if ($countAllPermitions == $countUserPermitions)
+                if ($countAllPermitions == $countUserPermitions) {
                     return true;
-                else
+                } else {
                     die("Суперадмин не найден");
+                }
             }
         }
     }
@@ -298,16 +318,18 @@ class Permitions {
     private static function createSuperAdmin() {
         $ci = & get_instance();
         $superAdmin = $ci->db->where('id', 1)->get('users')->row();
-        if (empty($superAdmin))
+        if (empty($superAdmin)) {
             die("Супер администратор не найден");
-        else {
+        } else {
             $role_id = $superAdmin->role_id;
             $privileges = $ci->db->get(self::$rbac_privileges_table)->result();
-            if (!empty($privileges))
+            if (!empty($privileges)) {
                 foreach ($privileges as $privilege) {
-                    if ($ci->db->where(array('privilege_id' => $privilege->id, 'role_id' => $role_id))->get(self::$rbac_roles_privileges_table)->num_rows() == 0)
+                    if ($ci->db->where(array('privilege_id' => $privilege->id, 'role_id' => $role_id))->get(self::$rbac_roles_privileges_table)->num_rows() == 0) {
                         $ci->db->insert(self::$rbac_roles_privileges_table, array('role_id' => $role_id, 'privilege_id' => $privilege->id));
+                    }
                 }
+            }
         }
     }
 
@@ -344,12 +366,15 @@ class Permitions {
                 }
 
                 showMessage('Группа создана');
-                if ($_POST['action'] == 'tomain')
+                if ($_POST['action'] == 'tomain') {
                     pjax('/admin/rbac/groupEdit/' . $idNewGroup);
-                if ($_POST['action'] == 'tocreate')
+                }
+                if ($_POST['action'] == 'tocreate') {
                     pjax('/admin/rbac/groupCreate');
-                if ($_POST['action'] == 'toedit')
+                }
+                if ($_POST['action'] == 'toedit') {
                     pjax('/admin/rbac/groupEdit/' . $idNewGroup);
+                }
             }
         } else {
 
@@ -374,9 +399,9 @@ class Permitions {
             INNER JOIN shop_rbac_group_i18n SRGI ON SRGI.id = SRG.id WHERE SRG.id = "' . $groupId . '" AND SRGI.locale = "' . MY_Controller::getCurrentLocale() . '"  ORDER BY SRG.name ASC';
         $model = $this->db->query($sqlModel);
 
-        if ($model === null)
-            $this->error404('Гр
-                    уппа не найдена');
+        if ($model === null) {
+            $this->error404('Группа не найдена');
+        }
 
         if (!empty($_POST)) {
 
@@ -393,12 +418,15 @@ class Permitions {
                 $this->db->query($sql);
             }
             showMessage('Изменения сохранены');
-            if ($_POST['action'] == 'tomain')
+            if ($_POST['action'] == 'tomain') {
                 pjax('/admin/rbac/groupEdit/' . $groupId);
-            if ($_POST['action'] == 'tocreate')
+            }
+            if ($_POST['action'] == 'tocreate') {
                 pjax('/admin/rbac/groupCreate');
-            if ($_POST['action'] == 'toedit')
+            }
+            if ($_POST['action'] == 'toedit') {
                 pjax('/admin/rbac/groupEdit/' . $groupId);
+            }
         } else {
 
             $sqlPrivilege = $this->db->select(array('id', 'name', 'group_id'))->get('shop_rbac_privileges')->result();
@@ -491,8 +519,9 @@ class Permitions {
         } else {
             //preparing array of controller types
             $types = $this->db->query("SELECT DISTINCT `type` FROM " . self::$rbac_group_table)->result_array();
-            foreach ($types as $item)
+            foreach ($types as $item) {
                 $controller_types[] = $item['type'];
+            }
 
             //preparing groups
             foreach ($controller_types as $controller_type) {
@@ -512,13 +541,15 @@ class Permitions {
             foreach ($controller_types as $controller_type) {
                 //foreach ($result[$controller_type] as $key => $value) {
                 for ($j = 0; $j < count($result[$controller_type]); $j++) {
-                    for ($i = 0; $i < count($result[$controller_type]) - $j; $i++)
-                        if ($result[$controller_type][$i + 1])
+                    for ($i = 0; $i < count($result[$controller_type]) - $j; $i++) {
+                        if ($result[$controller_type][$i + 1]) {
                             if (count($result[$controller_type][$i + 1]['privileges']) < count($result[$controller_type][$i]['privileges'])) {
                                 $temp = $result[$controller_type][$i];
                                 $result[$controller_type][$i] = $result[$controller_type][$i + 1];
                                 $result[$controller_type][$i + 1] = $temp;
                             }
+                        }
+                    }
                 }
             }
             $this->template->add_array(array(
@@ -581,8 +612,9 @@ class Permitions {
         $queryModel = $this->db->query($sqlModel);
         $queryModel->row();
 
-        if ($queryModel === null)
+        if ($queryModel === null) {
             $this->error404(lang("Role not found"));
+        }
 
         if (!empty($_POST)) {
             $this->form_validation->set_rules('Name', 'Name', 'required');
@@ -613,8 +645,9 @@ class Permitions {
                     }
                 }
                 showMessage(lang("Changes have been saved"));
-                if ($_POST['action'] != 'edit')
+                if ($_POST['action'] != 'edit') {
                     pjax('/admin/rbac/roleList');
+                }
             }
         } else {
             //preparing array of privileges ids which belong to currenc role
@@ -622,13 +655,15 @@ class Permitions {
             FROM `shop_rbac_roles_privileges` WHERE `role_id` = ' . $roleId;
             $queryPrivilegeR = $this->db->query($sql)->result_array();
             $role_privileges = array();
-            foreach ($queryPrivilegeR as $item)
+            foreach ($queryPrivilegeR as $item) {
                 $role_privileges[] = (int) $item['privilege_id'];
+            }
 
             //preparing array of controller types
             $types = $this->db->query("SELECT DISTINCT `type` FROM " . self::$rbac_group_table)->result_array();
-            foreach ($types as $item)
+            foreach ($types as $item) {
                 $controller_types[] = $item['type'];
+            }
 
             //preparing groups
             foreach ($controller_types as $controller_type) {
@@ -648,13 +683,15 @@ class Permitions {
             foreach ($controller_types as $controller_type) {
                 //foreach ($result[$controller_type] as $key => $value) {
                 for ($j = 0; $j < count($result[$controller_type]); $j++) {
-                    for ($i = 0; $i < count($result[$controller_type]) - $j; $i++)
-                        if ($result[$controller_type][$i + 1])
+                    for ($i = 0; $i < count($result[$controller_type]) - $j; $i++) {
+                        if ($result[$controller_type][$i + 1]) {
                             if (count($result[$controller_type][$i + 1]['privileges']) < count($result[$controller_type][$i]['privileges'])) {
                                 $temp = $result[$controller_type][$i];
                                 $result[$controller_type][$i] = $result[$controller_type][$i + 1];
                                 $result[$controller_type][$i + 1] = $temp;
                             }
+                        }
+                    }
                 }
             }
 
@@ -708,7 +745,7 @@ class Permitions {
                 $this->db->delete('shop_rbac_roles_privileges', array('role_id' => $id));
             }
 
-            showMessage('Успех', 'Группа(ы) успешно удалены');
+            showMessage('Роль(и) успешно удалена(ы)');
             pjax('/admin/rbac/roleList');
         }
     }
@@ -783,8 +820,9 @@ class Permitions {
             INNER JOIN   shop_rbac_privileges_i18n SRPI ON SRPI.id = SRP.id WHERE SRPI.locale = "' . MY_Controller::getCurrentLocale() . '" AND SRP.id = ' . $privilegeId;
         $queryRBACPrivilege = $this->db->query($sqlPr)->row();
 
-        if ($queryRBACPrivilege === null AND FALSE)
+        if ($queryRBACPrivilege === null AND FALSE) {
             $this->error404(lang("The privilege is not found"));
+        }
 
 
         if (!empty($_POST)) {
@@ -873,19 +911,20 @@ class Permitions {
             $r = $ci->db->query("SELECT * FROM `" . self::$rbac_roles_privileges_table . "`
                         JOIN `" . self::$rbac_privileges_table . "` ON " . self::$rbac_roles_privileges_table . ".privilege_id = " . self::$rbac_privileges_table . ".id
                         WHERE " . self::$rbac_roles_privileges_table . ".role_id = " . $role_id . " AND `name` = 'Admin::__construct'")->num_rows();
-            if ($r > 0)
+            if ($r > 0) {
                 return 'admin';
-            else
+            } else {
                 return '';
-        }
-        else
+            }
+        } else {
             return '';
+        }
     }
 
     public function deletePermition($id = null) {
-        if (!$id)
+        if (!$id) {
             return false;
-        else {
+        } else {
             $this->db->where('id', $id)->delete(self::$rbac_privileges_table . "_i18n");
             $this->db->where('id', $id)->delete(self::$rbac_privileges_table);
             showMessage("Привилегия удалена");
@@ -943,5 +982,3 @@ class Permitions {
 
      */
 }
-
-?>

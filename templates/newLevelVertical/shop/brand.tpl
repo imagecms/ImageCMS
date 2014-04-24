@@ -28,7 +28,7 @@
         <div class="right-catalog" {if !$totalProducts > 0}style="width:100% !important"{/if}>
             <div class="f-s_0 title-category">
                 <div class="frame-title">
-                    <h1 class="d_i">{echo $model->getName()}</h1>
+                    <h1 class="title">{echo $model->getName()}</h1>
                 </div>
                 <span class="count">({lang('Найдено','newLevel')} {$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang('товар','newLevel'),lang('товара','newLevel'),lang('товаров','newLevel')))})</span>
             </div>
@@ -67,8 +67,8 @@
             <!--End. Show brand description-->
 
             {if $totalProducts > 0}
-                <ul class="animateListItems items items-catalog {if $_COOKIE['listtable'] == 'table' || $_COOKIE['listtable'] == NULL} table{else:} list{/if}" id="items-catalog-main">
-                    {$CI->load->module('new_level')->OPI($products, array('opi_wishlist'=>true))}
+                <ul class="animateListItems items items-catalog items-product {if $_COOKIE['listtable'] == 'table' || $_COOKIE['listtable'] == NULL} table{else:} list{/if}" id="items-catalog-main">
+                    {$CI->load->module('new_level')->OPI($products, array('opi_wishlist'=>true, 'opi_codeArticle' => true))}
                 </ul>
             {/if}
             {$pagination}

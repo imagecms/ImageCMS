@@ -218,7 +218,7 @@ class Categories extends BaseAdminController {
                     $id = $this->cms_admin->create_category($data);
 
                     $this->lib_admin->log(
-                            lang("Category has been created or created a category", "admin") . " " .
+                            lang("Category has been created", "admin") . " " .
                             '<a href="' . $BASE_URL . '/admin/categories/edit/' . $id . '"> ' . $data['name'] . '</a>'
                     );
 
@@ -226,7 +226,7 @@ class Categories extends BaseAdminController {
                     \CMSFactory\Events::create()->registerEvent(array_merge($data, array('userId' => $this->dx_auth->get_user_id())));
 
                     /** End init Event. Create new Page */
-                    showMessage(lang("Category", "admin") . ' ' . $data['name'] . ' ' . lang("Created or has been created", "admin"));
+                    showMessage(lang("Category created", "admin"));
 
                     $act = $_POST['action'];
                     if ($act == 'close') {
@@ -238,6 +238,12 @@ class Categories extends BaseAdminController {
                     break;
 
                 case 'update':
+                    $cat = $this->cms_admin->get_category($cat_id);
+
+                    /** Init Event. Pre Create Category */
+                    \CMSFactory\Events::create()->registerEvent(array('pageId' => $cat_id, 'url' => $cat['url']), 'Categories:preUpdate');
+                    \CMSFactory\Events::runFactory();
+
                     ($hook = get_hook('admin_update_category')) ? eval($hook) : NULL;
                     $this->cms_admin->update_category($data, $cat_id);
 
@@ -264,6 +270,7 @@ class Categories extends BaseAdminController {
                     /** Init Event. Create new Category */
                     \CMSFactory\Events::create()->registerEvent(array_merge($data, array('userId' => $this->dx_auth->get_user_id())), 'Categories:update');
 
+                    showMessage(lang('Changes saved', 'admin'));
                     $act = $_POST['action'];
                     if ($act == 'close')
                         pjax('/admin/categories/cat_list');
@@ -398,7 +405,7 @@ class Categories extends BaseAdminController {
         $cat = $this->cms_admin->get_category($id);
 
         /** Init Event. Pre Create Category */
-        \CMSFactory\Events::create()->registerEvent(array('pageId' => $id), 'Categories:preUpdate');
+        \CMSFactory\Events::create()->registerEvent(array('pageId' => $id, 'url' => $cat['url']), 'Categories:preUpdate');
         \CMSFactory\Events::runFactory();
 
         ($hook = get_hook('admin_edit_category')) ? eval($hook) : NULL;

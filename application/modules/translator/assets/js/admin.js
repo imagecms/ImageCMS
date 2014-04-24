@@ -1,4 +1,23 @@
 $(document).ready(function() {
+
+    $('.languageSelect').autocomplete({
+        source: base_url + 'admin/components/cp/translator/getLangaugesNames',
+        select: function(event, ui) {
+            $(this).attr('locale', ui.item.locale);
+        }
+    });
+
+    $('.languageSelect').bind('focus', function() {
+        $(this).autocomplete("search", "all_languages");
+    });
+
+    $('.showAllLanguageList').toggle(function() {
+        $(this).prev().focus();
+        $(this).prev().autocomplete("search", "all_languages");
+    }, function() {
+        $(this).prev().autocomplete("close");
+    });
+
     $('#fileEdit').scroll(function() {
         $('.fileLines').scrollTop($(this).scrollTop());
     });
@@ -10,11 +29,38 @@ $(document).ready(function() {
     // *********************** Navigate pagination *********************************************
     $('.pagination li').live('click', function() {
         Pagination.navigate($(this));
+
+        var scrollTop = $('html').offset().top,
+                elementOffset = $('.mini-layout').offset().top,
+                distance = (elementOffset - scrollTop);
+
+        distance = distance ? distance : 0;
+        $('html').animate({
+            scrollTop: distance
+        }, 300);
     });
 
     // *********************** GO Search *********************************************
     $('#searchTranslator').die().live('click', function() {
         Search.go();
+    });
+
+    $('.translateWord').live('mouseover', function() {
+        setTimeout(function() {
+            $('div[class="tooltip-inner"]').attr('style', 'min-width: 90px!important; text-align: center!important;');
+        }, 500);
+    });
+
+    $('.languageAutoselect').live('mouseover', function() {
+        setTimeout(function() {
+            $('div[class="tooltip-inner"]').attr('style', 'min-width: 90px!important; text-align: center!important;');
+        }, 500);
+    });
+
+    $('.translationCancel').live('mouseover', function() {
+        setTimeout(function() {
+            $('div[class="tooltip-inner"]').attr('style', 'min-width: 90px!important; text-align: center!important;');
+        }, 500);
     });
 
 
@@ -54,12 +100,15 @@ var Sort = {
         this.isAsc = $(curElement).hasClass('asc');
         this.sortType = '';
     },
-    default: function() {
+    default: function(curElement) {
         var lang = $('#langs').val();
         var type = $('#types').val();
         var module_template = $('#modules_templates').val();
         var per_page = $('#per_page').val();
         var url = '';
+
+        this.removeSortArrows(curElement);
+
         switch (type) {
             case  'modules':
                 url = '/admin/components/init_window/translator/renderModulePoFile/' + module_template + '/' + type + '/' + lang + '/0/' + per_page;
@@ -82,18 +131,19 @@ var Sort = {
     },
     sortOrigins: function(curElement) {
         this.sortType = 'origin';
-        this.sort(this.originsArray, this.translationsArray)
+        this.sort(this.originsArray, this.translationsArray);
     },
     sortTranslations: function(curElement) {
         this.sortType = 'translation';
-        this.sort(this.translationsArray, this.originsArray)
+        this.sort(this.translationsArray, this.originsArray);
     },
     sortComments: function(curElement) {
         this.sortType = 'comment';
-        this.sort(this.originsArray, this.translationsArray)
+        this.sort(this.originsArray, this.translationsArray);
     },
     sortFuzzy: function(curElement) {
         this.init();
+        this.removeSortArrows(curElement);
         var findContent = '';
         var leftContent = '';
         var condition = false;
@@ -144,6 +194,7 @@ var Sort = {
     },
     go: function(curElement) {
         this.init(curElement);
+        this.removeSortArrows(curElement);
 
         if ($(curElement).hasClass('originHead')) {
             this.sortOrigins(curElement);
@@ -221,6 +272,14 @@ var Sort = {
             this.sort(array, array2, newPivot + 1, right);
         }
 
+    },
+    removeSortArrows: function(curElement) {
+        $('.sortTable').each(function() {
+            if ($(this)[0].className !== $(curElement)[0].className) {
+                $(this).removeClass('asc');
+                $(this).removeClass('desc');
+            }
+        });
     }
 };
 
@@ -334,7 +393,7 @@ var Search = {
         var all = '';
         $(this.findValues.concat(this.undiscoveredValues)).each(function() {
             all += $(this)[0].outerHTML;
-        })
+        });
         $(this.table).html(all);
 
         var searchObj = this;
@@ -384,14 +443,14 @@ var Search = {
                 if (this.countResults) {
                     showMessage(lang('Message'), lang('Number of searched matches') + ': ' + this.countResults + '.');
                 } else {
-                    showMessage(lang('Message'), lang('Was not found any results'), 'r')
+                    showMessage(lang('Message'), lang('Was not found any results'), 'r');
                 }
                 this.countResults = 0;
             } else {
-                showMessage(lang('Error'), lang('Please, enter more than 1 symbol'), 'r')
+                showMessage(lang('Error'), lang('Please, enter more than 1 symbol'), 'r');
             }
         } else {
-            showMessage(lang('Error'), lang('You did not select search criteria'), 'r')
+            showMessage(lang('Error'), lang('You did not select search criteria'), 'r');
         }
     },
     goOnEnterPress: function() {
@@ -444,8 +503,9 @@ var Selectors = {
             this.clearContent();
         } else {
             if (this.module_tempate || this.type == 'main') {
-                if (this.type == 'main')
+                if (this.type == 'main') {
                     this.module_tempate = 'main';
+                }
 
                 var url = '/admin/components/init_window/translator/renderModulePoFile/' + this.module_tempate + '/' + this.type + '/' + this.lang + '/0/' + this.per_page;
                 this.renderTable(url);
@@ -560,7 +620,7 @@ var Translator = {
         {
             var respons = $.parseJSON(data);
             if (typeof respons == 'object') {
-                console.log('333')
+
                 var respons = JSON.parse(data);
                 if (respons['error']) {
                     $('#po_table tbody').html('');
@@ -749,6 +809,7 @@ var Translator = {
 
                     }
                     $('#loading').hide();
+
                 }
             });
         }
@@ -776,12 +837,14 @@ var Translator = {
             url: this.getUrl('update'),
             type: 'POST',
             data: {
-                results: JSON.stringify(results)
+                results: JSON.stringify(results),
+                paths: this.getPaths()
             },
             success: function(data) {
                 $('.modal_update_results').addClass('hide').addClass('fade');
                 $('.modal_update_results').modal('hide');
-                $('.modal-backdrop').hide();
+                $('.modal-backdrop').remove();
+
                 var tableData = data.replace(/<script[\W\w]+<\/script>/, '');
                 $('#po_table tbody').html(tableData);
                 $('.pagination ul li.active').removeClass('active');
@@ -789,6 +852,7 @@ var Translator = {
                 $('.per_page10').attr('selected', 'selected');
                 Pagination.generate();
                 Translator.statisticRecount();
+
                 if (data) {
                     showMessage(lang('File was successfuly updated.'), lang('Message'));
                 }
@@ -963,7 +1027,7 @@ var Translator = {
         var counter = 0;
         for (var origin in po_array) {
             if (origin) {
-                var nextTmp =values[counter] + '&text=' + encodeURIComponent(origin);
+                var nextTmp = values[counter] + '&text=' + encodeURIComponent(origin);
                 if (nextTmp.length < 9999) {
                     if (!values[counter]) {
                         values[counter] = '';
@@ -978,7 +1042,8 @@ var Translator = {
 
         var translations = [];
         for (var value in values) {
-            var text = values[value].replace("undefined","");;
+            var text = values[value].replace("undefined", "");
+            ;
             var url = 'https://translate.yandex.net/api/v1.5/tr.json/translate?key=' + YandexApiKey + text + '&lang=' + originLang + '-' + lang + '&format=plain';
             $.ajax({
                 crossDomain: true,
@@ -1065,10 +1130,14 @@ var Translator = {
             }
         });
     },
-    getAnswerCodeMessage: function(code) {
+    getAnswerCodeMessage: function(code, type) {
         switch (code.toString()) {
             case '200':
-                showMessage(lang('Message'), lang('Successfully translated'));
+                if (type == 'detect') {
+                    showMessage(lang('Message'), lang('Successfully defined'));
+                } else {
+                    showMessage(lang('Message'), lang('Successfully translated'));
+                }
                 break;
             case '401':
                 showMessage(lang('Error'), lang('Wrong API key.'), 'r');
@@ -1141,11 +1210,93 @@ var Translator = {
                 }
             }
         });
+    },
+    showYandexTranslateWindow: function() {
+        $('.modal_yandex_translate').removeClass('hide').removeClass('fade');
+        $('.modal_yandex_translate').modal('show');
+        $('.modal-backdrop').show();
+    },
+    yandexTranslate: function(curElement) {
+        var langFrom = $(curElement).closest('.modal_yandex_translate').find('.languageFrom').attr('locale');
+        var langTo = $(curElement).closest('.modal_yandex_translate').find('.languageTo').attr('locale');
+        var textToTranslate = $.trim($(curElement).closest('.modal_yandex_translate').find('.translation_text').val());
+        var text = '&text=' + encodeURI(textToTranslate);
+        var YandexApiKey = $.trim($('.YandexApiKey').val());
+
+        if (!YandexApiKey) {
+            showMessage(lang('Error'), lang('You have not specified Yandex Api Key.'), 'r');
+            return false;
+        }
+
+        if (!langFrom) {
+            showMessage(lang('Error'), lang('You have not specified source text language.'), 'r');
+            return false;
+        }
+
+        if (!langTo) {
+            showMessage(lang('Error'), lang('You have not specified translation text language.'), 'r');
+            return false;
+        }
+
+        if (!textToTranslate) {
+            showMessage(lang('Error'), lang('You have not specified text to translate.'), 'r');
+            return false;
+        } else {
+            var url = 'https://translate.yandex.net/api/v1.5/tr.json/translate?key=' + YandexApiKey + text + '&lang=' + langFrom + '-' + langTo + '&format=plain';
+            $.ajax({
+                type: 'POST',
+                url: url,
+                success: function(Answer) {
+                    if (Answer.code == '200') {
+                        $(curElement).closest('.modal_yandex_translate').find('.translation_result').val(Answer.text[0]);
+                    }
+                    Translator.getAnswerCodeMessage(Answer.code);
+                }
+            });
+        }
+    },
+    sourceLanguageAutoselect: function(curElement) {
+        var textToTranslate = $.trim($(curElement).closest('.modal_yandex_translate').find('.translation_text').val());
+        var text = '&text=' + encodeURI(textToTranslate);
+        var YandexApiKey = $.trim($('.YandexApiKey').val());
+
+        if (!YandexApiKey) {
+            showMessage(lang('Error'), lang('You have not specified Yandex Api Key.'), 'r');
+            return false;
+        }
+
+        if (!textToTranslate) {
+            showMessage(lang('Error'), lang('You have not specified text to translate.'), 'r');
+            return false;
+        } else {
+            var url = 'https://translate.yandex.net/api/v1.5/tr.json/detect?key=' + YandexApiKey + text;
+            $.ajax({
+                type: 'POST',
+                url: url,
+                success: function(Answer) {
+                    if (Answer.code == '200') {
+                        var locale = Answer.lang;
+
+                        var url = '/admin/components/init_window/translator/getLanguageByLocale/' + locale;
+                        $.ajax({
+                            type: 'POST',
+                            url: url,
+                            success: function(data) {
+                                if (data) {
+                                    $(curElement).closest('.modal_yandex_translate').find('.languageFrom').attr('locale', locale);
+                                    $(curElement).closest('.modal_yandex_translate').find('.languageFrom').val(data);
+                                } else {
+                                    showMessage(lang('Error'), lang('Can not define language'), 'r');
+                                }
+                            }
+                        });
+                    }
+                    Translator.getAnswerCodeMessage(Answer.code, 'detect');
+                }
+            });
+        }
     }
 };
-
-
-
 var Pagination = {
     generate: function() {
         if ($('#langs').val()) {
@@ -1168,11 +1319,13 @@ var Pagination = {
 
         var i = 2;
         while (i <= to) {
-            if (rows_count == i - 1)
+            if (rows_count == i - 1) {
                 break;
+            }
             var active = '';
-            if (page_number == i)
+            if (page_number == i) {
                 active = 'active';
+            }
 
             pages += "<li class='" + active + "' data-number='" + i + "'><span>" + i + "</span></li>";
             i++;
@@ -1189,8 +1342,9 @@ var Pagination = {
         var offset = (parseInt($(curElement).data('number')) - 1) * per_page;
         var page = parseInt($(curElement).data('number'));
 
-        if (type == 'main')
+        if (type == 'main') {
             module = 'main';
+        }
 
         $('#po_table tbody tr').each(function(iteration) {
             iteration = iteration / 2;
@@ -1256,12 +1410,14 @@ var Pagination = {
             }
         });
 
-        this.generate()
+        this.generate();
     },
     movePrev: function() {
         var activeNum = $('ul.pagination li.active').data('number');
+
         if (activeNum > 1) {
             if ($('ul.pagination li')[activeNum - 1]) {
+
                 $($('ul.pagination li')[activeNum - 1]).click();
             }
         }
@@ -1272,13 +1428,13 @@ var Pagination = {
         return false;
     }
 
-}
+};
 
 var CreatePoFile = {
     addPath: function(curElement) {
         var path = $.trim($(curElement).next().val());
         var pathSelector = $(curElement).next().next();
-        $(pathSelector).append('<option selected value="' + path + '">' + path + '</option>')
+        $(pathSelector).append('<option selected value="' + path + '">' + path + '</option>');
         $(curElement).next().val('');
     }
 };

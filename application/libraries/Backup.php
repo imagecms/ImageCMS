@@ -21,7 +21,7 @@ class Backup {
      * Backup directory
      * @var string
      */
-    protected $directory = './application/backups';
+    protected $directory = BACKUPFOLDER;
 
     /**
      * Aviable extentions
@@ -99,12 +99,12 @@ class Backup {
      */
     public function getSetting($key = NULL) {
         $result = $this->ci->db->select('backup')->get('settings');
-        if($result){
+        if ($result) {
             $row = $result->result_array();
-        }else{
+        } else {
             $row = array();
         }
-        
+
         $backupSettings = unserialize($row[0]['backup']);
         if (!is_array($backupSettings)) { // no settings yet
             return NULL;
@@ -138,10 +138,10 @@ class Backup {
             if (write_file($this->directory . '/' . $fileName . '.' . $ext, $backup)) {
                 return $this->directory . '/' . $fileName . '.' . $ext;
             }
-            $this->error = 'Невозможно создать файл, проверте папку /application/backups на возможность записи';
+            $this->error = 'Невозможно создать файл, проверте папку ' . BACKUPFOLDER . ' на возможность записи';
             return FALSE;
         } else {
-            $this->error = 'Невозможно создать снимок базы, проверте папку /application/backups на возможность записи';
+            $this->error = 'Невозможно создать снимок базы, проверте папку ' . BACKUPFOLDER . ' на возможность записи';
             return FALSE;
         }
     }

@@ -149,6 +149,28 @@ function get_admin_locale() {
     return isset($all_languages[$admin_language][0]) ? $all_languages[$admin_language][0] : 'ru';
 }
 
+/**
+ * Same as lang() function, but can adding data into line
+ * 
+ * @param string $line
+ * @param string $name textdomain name
+ * @param string|array $data data for adding to line
+ * @return string
+ */
+if (!function_exists('langf')) {
+
+    function langf($line, $name = "main", array $data = array()) {
+        $line = lang($line, $name);
+
+        foreach ($data as $key => $value) {
+            $line = str_replace('{' . $key . '}', $value, $line);
+        }
+
+        return $line;
+    }
+
+}
+
 // ------------------------------------------------------------------------
 /* End of file language_helper.php */
 /* Location: ./system/helpers/language_helper.php */

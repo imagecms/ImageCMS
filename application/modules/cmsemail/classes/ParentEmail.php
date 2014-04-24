@@ -154,7 +154,8 @@ class ParentEmail extends \MY_Controller {
             }
         }
         $default_settings['type'] = strtolower($patern_settings['type']);
-
+        $patern_settings['protocol'] = $default_settings['protocol'];
+        
         //Initializing library settings
         $this->_set_config($patern_settings);
 
@@ -242,7 +243,7 @@ class ParentEmail extends \MY_Controller {
      */
     public function create($data = array()) {
         if ($_POST) {
-            $this->form_validation->set_rules('mail_name', lang('Template name', 'cmsemail'), 'required|');
+            $this->form_validation->set_rules('mail_name', lang('Template name', 'cmsemail'), 'required|alpha_dash');
             $this->form_validation->set_rules('from_email', lang('From email', 'cmsemail'), 'valid_email');
             $this->form_validation->set_rules('mail_theme', lang('Template theme', 'cmsemail'), 'required');
 
@@ -333,7 +334,7 @@ class ParentEmail extends \MY_Controller {
     }
 
     public function delete($ids) {
-        $this->cmsemail_model->deleteTemplateByID($ids);
+        return $this->cmsemail_model->deleteTemplateByID($ids);
     }
 
     /**

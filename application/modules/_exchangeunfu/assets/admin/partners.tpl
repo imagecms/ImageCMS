@@ -20,16 +20,17 @@
         </div>
     </div>
     <form method="post" action="{site_url('admin/components/cp/exchangeunfu/update_settings')}" class="form-horizontal" id="exchange_settings_form">
-        <table class="table table-striped table-bordered table-hover table-condensed">
+        <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
             <thead>
                 <tr>
                     <th class="span1">#</th>
                     <th>{lang('Name', 'exchangeunfu')}</th>
-                    <th class="span2">{lang('Prefix', 'exchangeunfu')}</th>
+                    <th>{lang('Prefix', 'exchangeunfu')}</th>
                     <th>{lang('Code', 'exchangeunfu')}</th>
-                    <th class="span4">{lang('Region', 'exchangeunfu')}</th>
-                    <th class="span2">{lang('Edit', 'exchangeunfu')}</th>
-                    <th class="span2">{lang('Delete', 'exchangeunfu')}</th>
+                    <th>{lang('Region', 'exchangeunfu')}</th>
+                    <th>Стандартні періоди</th>
+                    <th>{lang('Edit', 'exchangeunfu')}</th>
+                    <th>{lang('Delete', 'exchangeunfu')}</th>
                 </tr>
             </thead>
             <tbody>
@@ -54,6 +55,34 @@
                             <input type="text" class="region" style="display: none"/>
                         </td>
                         <td class="span1">
+
+
+                        <div class="periods" style="display: none;">
+
+                            <div class="first">Первый период</div>
+                            <input type="text" name="periodFirst" value='{echo $periods[$partner['id']][first]}'  />
+
+                             <div class="second">Другій период</div>
+                            <input type="text" name="periodSecond"  value='{echo $periods[$partner['id']][second]}' />
+
+
+                             <div class="third">Третій период</div>
+                            <input type="text" name="periodThird" value='{echo $periods[$partner['id']][third]}'   />
+
+
+                             <div class="prefix">Четвертий период</div>
+                            <input type="text" name="periodFourth" value='{echo $periods[$partner['id']][fourth]}'  />
+
+                        </div>
+
+                            <button type="button" class="btn btn-small btn-success periodEdit">
+                                <i class="icon-edit"></i>{lang('Edit', 'exchangeunfu')}</button>
+                            <button type="button" class="btn btn-small btn-success periodUpdate" style="display: none">
+                                <i class="icon-refresh"></i>{lang('Refresh', 'exchangeunfu')}</button>
+
+
+                        </td>
+                        <td class="span1">
                             <button type="button" class="btn btn-small btn-success partnerRefresh">
                                 <i class="icon-edit"></i>{lang('Edit', 'exchangeunfu')}</button>
                             <button type="button" class="btn btn-small btn-success partnerUpdate" style="display: none">
@@ -64,6 +93,7 @@
                                 <i class="icon-trash"></i>{lang('Delete', 'exchangeunfu')}</button>
                         </td>
 
+                      
                     </tr>
                 {/foreach}
                 <tr class="newPartner" style="display: none">

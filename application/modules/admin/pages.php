@@ -351,7 +351,7 @@ class Pages extends BaseAdminController {
             }
         }
         /** Init Event. Pre Edit Page */
-        \CMSFactory\Events::create()->registerEvent(array('pageId' => $page_id), 'BaseAdminPage:preUpdate');
+        \CMSFactory\Events::create()->registerEvent(array('pageId' => $page_id, 'url' => $data['url']), 'BaseAdminPage:preUpdate');
         \CMSFactory\Events::runFactory();
 
         ($hook = get_hook('admin_page_edit_found')) ? eval($hook) : NULL;
@@ -402,8 +402,9 @@ class Pages extends BaseAdminController {
             // set langs
             $langs = $this->cms_admin->get_langs();
 
-            if (count($langs) > 1)
+            if (count($langs) > 1) {
                 $this->template->assign('show_langs', 1);
+            }
 
             // Load category
             $category = $this->lib_category->get_category($data['category']);
@@ -434,7 +435,6 @@ class Pages extends BaseAdminController {
 
             if ($cur_lang != FALSE) { // lang exists
                 $defpage = $this->cms_admin->get_page($page_id);
-//                var_dump($defpage);exit;
                 $new_data = array(
                     'author' => $this->dx_auth->get_username(),
                     'comments_status' => $defpage['comments_status'],
@@ -453,13 +453,14 @@ class Pages extends BaseAdminController {
                 ($hook = get_hook('admin_page_create_empty_translation')) ? eval($hook) : NULL;
 
                 $new_p_id = $this->cms_admin->add_page($new_data);
-                
+
                 if ($new_p_id > 0) {
                     showMessage(lang("Language of the page", "admin") . '<b> ' . $cur_lang['lang_name'] . '. </b>' . lang("ID", 'admin') . ' <b>' . $new_p_id . '.</b>');
-                    if ($this->pjaxRequest)
+                    if ($this->pjaxRequest) {
                         pjax('/admin/pages/edit/' . $page_id . '/' . $lang);
-                    else
+                    } else {
                         redirect('/admin/pages/edit/' . $page_id . '/' . $lang);
+                    }
                     //exit;
                 } else {
                     die('Cant get page id!');
@@ -476,13 +477,24 @@ class Pages extends BaseAdminController {
     function update($page_id) {
         //cp_check_perm('page_edit');
 
+        $data = $this->db->get_where('content', array('id' => $page_id));
+
+        if ($data->num_rows() > 0) {
+            $data = $data->row_array();
+        } else {
+            $data = FALSE;
+        }
+        /** Init Event. Pre Edit Page */
+        \CMSFactory\Events::create()->registerEvent(array('pageId' => $page_id, 'url' => $data['url']), 'BaseAdminPage:preUpdate');
+        \CMSFactory\Events::runFactory();
+
         $this->form_validation->set_rules('page_title', lang("Title", "admin"), 'trim|required|min_length[1]|max_length[500]');
         $this->form_validation->set_rules('page_url', lang("URL", "admin"), 'alpha_dash');
         $this->form_validation->set_rules('page_keywords', lang("Keywords", "admin"), 'trim');
         $this->form_validation->set_rules('prev_text', lang("Preliminary contents", "admin"), 'trim|required');
         $this->form_validation->set_rules('page_description', lang("Description ", "admin"), 'trim');
         $this->form_validation->set_rules('full_tpl', lang("Page template", "admin"), 'trim|max_length[50]|min_length[2]|callback_tpl_validation');
-        $this->form_validation->set_rules('main_tpl', lang("Main page template ", "admin"), 'trim|max_length[50]|min_length[2]|callback_tpl_validation'); 
+        $this->form_validation->set_rules('main_tpl', lang("Main page template ", "admin"), 'trim|max_length[50]|min_length[2]|callback_tpl_validation');
         $this->form_validation->set_rules('create_date', lang("Creation date", "admin"), 'required|valid_date');
         $this->form_validation->set_rules('create_time', lang("Creation time", "admin"), 'required|valid_time');
         $this->form_validation->set_rules('publish_date', lang("Publication date", "admin"), 'required|valid_date');
@@ -508,7 +520,6 @@ class Pages extends BaseAdminController {
             } else {
                 $url = $this->input->post('page_url');
             }
-
 
             // check if we have existing module with entered URL
             $this->db->where('name', $url);
@@ -586,6 +597,10 @@ class Pages extends BaseAdminController {
             );
 
             $data['id'] = $page_id;
+
+            if ($b_page['lang_alias'] != 0)
+                $data['url'] = $b_page['url'];
+
             $this->on_page_update($data);
 
             $this->load->module('cfcm')->save_item_data($page_id, 'page');
@@ -786,7 +801,7 @@ class Pages extends BaseAdminController {
             }
 
             if ($action == 'copy')
-                showMessage('Successful copying');
+                showMessage(lang('Page successfuly copied', 'admin'));
             else if ($action == 'move')
                 showMessage(lang("Successfull moving", "admin"));
             pjax($_SERVER["HTTP_REFERER"]);

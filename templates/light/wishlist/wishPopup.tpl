@@ -49,14 +49,13 @@
                             <input type="text" name="wishListName" value="" class="wish_list_name">
                         </div>
                     {/if}
-                    <div class="btn-def">
+                    <div class="btn-buy">
                         <button
                             type="submit"
                             onclick="serializeForm(this)"
                             data-id="{$varId}"
                             data-drop="#notification"
                             data-source="{if $wish_list_id}{site_url('/wishlist/wishlistApi/moveItem/'.$varId . '/' . $wish_list_id)}{else:}{site_url('/wishlist/wishlistApi/addItem/'.$varId)}{/if}"
-                            data-type="json"
                             data-modal="true"
                             data-effect-on="fadeIn"
                             data-effect-off="fadeOut"

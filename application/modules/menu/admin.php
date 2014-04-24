@@ -36,7 +36,9 @@ class Admin extends BaseAdminController {
 
     function index() {
         $root_menus = $this->db->get('menus')->result_array();
-        $this->render('menu_list', array('menus' => $root_menus), true);
+        \CMSFactory\assetManager::create()
+                ->setData('menus', $root_menus)
+                ->renderAdmin('menu_list');
     }
 
     public function chose_hidden() {
@@ -85,10 +87,10 @@ class Admin extends BaseAdminController {
             $cats = $this->lib_category->build();
             $pages = $this->get_pages(0, 0, 'controller');
             //$query = $this->db->get('shop_rbac_roles');
-
+            $locale = MY_Controller::getCurrentLocale();
             $this->db->select("shop_rbac_roles.*", FALSE);
             $this->db->select("shop_rbac_roles_i18n.alt_name", FALSE);
-            $this->db->where('locale', MY_Controller::getCurrentLocale());
+            $this->db->where('locale', $locale);
             $this->db->join("shop_rbac_roles_i18n", "shop_rbac_roles_i18n.id = shop_rbac_roles.id");
             $role = $this->db->get('shop_rbac_roles')->result_array();
 
@@ -142,8 +144,7 @@ class Admin extends BaseAdminController {
                     $image = $_POST['module_item_image'];
                 } elseif ($_POST['url_item_image']) {
                     $image = $_POST['url_item_image'];
-                }
-                else
+                } else
                     $image = '';
 
 
@@ -343,6 +344,7 @@ class Admin extends BaseAdminController {
                     $this->menu_model->delete_menu_item($item_id);
                 }
             }
+            showMessage(lang('Menu item successfuly deleted', 'menu'), '');
         } else {
             if ($id > 0) {
                 $this->db->where('id', $id);
@@ -355,6 +357,7 @@ class Admin extends BaseAdminController {
                     $this->menu_model->delete_menu_item($item_id);
                 }
 
+                showMessage(lang('Menu item successfuly deleted', 'menu'), '');
                 return TRUE;
             } else {
                 return FALSE;
@@ -408,10 +411,10 @@ class Admin extends BaseAdminController {
             $menu = $this->db->where('id', $item['menu_id'])->get('menus')->row_array();
             $cats = $this->lib_category->build();
             $pages = $this->get_pages(0, 0, 'controller');
-
+            $locale = MY_Controller::getCurrentLocale();
             $this->db->select("shop_rbac_roles.*", FALSE);
             $this->db->select("shop_rbac_roles_i18n.alt_name", FALSE);
-            $this->db->where('locale', MY_Controller::getCurrentLocale());
+            $this->db->where('locale', $locale);
             $this->db->join("shop_rbac_roles_i18n", "shop_rbac_roles_i18n.id = shop_rbac_roles.id");
             $role = $this->db->get('shop_rbac_roles')->result_array();
 
@@ -852,19 +855,6 @@ class Admin extends BaseAdminController {
     }
 
     function update_menu($id) {
-        //cp_check_perm('menu_edit');
-//        if ($_POST['menu_name'] == NULL) {
-//            $title = lang("Fail");
-//            $message = lang("Name field sieve");
-//            $result = false;
-//            echo json_encode(array(
-//                'title' => $title,
-//                'message' => $message,
-//                'result' => $result,
-//            ));
-//            exit;
-//        }
-
         $val = $this->form_validation;
         $val->set_rules('menu_name', lang("Name", 'menu'), 'required|min_length[2]|max_length[25]|alpha_dash');
         $val->set_rules('main_title', lang("Name", 'menu'), 'required|max_length[100]');
@@ -875,9 +865,6 @@ class Admin extends BaseAdminController {
 
         if ($this->form_validation->run($this) == FALSE) {
             showMessage(validation_errors(), '', 'r');
-//            $title = lang("Fail");
-//            $message = validation_errors();
-//            $result = false;
         } else {
 
 
@@ -893,36 +880,25 @@ class Admin extends BaseAdminController {
 
             $this->db->where('id', $id);
             $this->db->update('menus', $data);
-//            $title = lang("message", 'menu');
-//            $message = lang("Menu Update");
-//            $result = true;
             showMessage(lang('Changes saved', 'menu'));
             if ($_POST['action'] == 'tomain')
                 pjax('/admin/components/cp/menu');
         }
-
-
-//        echo json_encode(array(
-//            'title' => $title,
-//            'message' => $message,
-//            'result' => $result,
-//        ));
     }
 
     function check_menu_data() {
         if ($_POST['menu_name'] == NULL) {
-            //showMessage(lang("The field is required to be filled in"),false,'r');
+            showMessage(lang("The field is required to be filled in"), false, 'r');
             exit;
         }
 
         if ($this->db->get_where('menus', array('name' => $_POST['menu_name']))->num_rows() > 0) {
-            //showMessage(lang("The menu with the same name has been created yet"),false,'r');
+            showMessage(lang("The menu with the same name has been created yet"), false, 'r');
             exit;
         }
     }
 
     function delete_menu($name = null) {
-        //cp_check_perm('menu_delete');
         if ($name == null) {
             $name = $this->input->post('ids');
             foreach ($name as $n) {
@@ -1003,8 +979,7 @@ class Admin extends BaseAdminController {
                 if ($referer == 'controller')
                     return $data;
                 echo json_encode($data);
-            }
-            else
+            } else
                 return $data;
         }
     }

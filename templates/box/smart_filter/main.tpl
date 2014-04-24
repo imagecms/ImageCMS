@@ -1,4 +1,3 @@
-{include_tpl('filter_opt')}
 {if $_GET['brand'] != "" || $_GET['p'] != "" || ($_GET['lp'] && $_GET['lp'] != $minPrice) || ($_GET['rp'] && $_GET['rp'] != $maxPrice)}
     <div class="frame-check-filter">
         <div class="inside-padd">
@@ -31,7 +30,7 @@
             <div class="foot-check-filter">
                 <button type="button" onclick="location.href = '{site_url($CI->uri->uri_string())}'" class="btn-reset-filter">
                     <span class="icon_times icon_remove_all_filter f_l"></span>
-                    <span class="text-el d_l_r_f">{lang('Сбросить фильтр', 'newLevel')}</span>
+                    <span class="text-el d_l_2">{lang('Сбросить все параметры', 'newLevel')}</span>
                 </button>
             </div>
         </div>
@@ -42,9 +41,7 @@
 <form method="get" id="catalogForm">
     <input type="hidden" name="order" value="{echo $order_method}" />
     <input type="hidden" name="user_per_page" value="{if !$_GET['user_per_page']}{echo \ShopCore::app()->SSettings->frontProductsPerPage}{else:}{echo $_GET['user_per_page']}{/if}"/>
-    {if $totalProducts > 0}
-        <div class="frame-filter p_r">
-            {include_tpl('filter')}
-        </div>
-    {/if}
+    <div class="frame-filter p_r">
+        {include_tpl('filter')}
+    </div>
 </form>

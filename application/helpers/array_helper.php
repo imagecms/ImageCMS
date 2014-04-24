@@ -28,6 +28,29 @@ if (!function_exists('is_true_array')) {
 
 }
 
+if (!function_exists('result_column')) {
+
+    /**
+     * For 
+     * @param array $result array of arrays
+     * @return array
+     */
+    function result_column($result) {
+
+        if (count($result) == 0) {
+            return array();
+        }
+
+        $key = key($result[0]); 
+       
+        for ($i = 0; $i < count($result); $i++) {
+            $result[$i] = $result[$i][$key];
+        }
+
+        return $result;
+    }
+
+}
 
 if (!function_exists('array_key_exists_recursive')) {
 
@@ -51,6 +74,32 @@ if (!function_exists('array_key_exists_recursive')) {
             }
         }
         return FALSE;
+    }
+
+}
+
+if (!function_exists('array_to_file')) {
+
+    /**
+     * Write array in file.
+     * 
+     * @param string $file
+     * @param array $array
+     * @return bool
+     */
+    function array_to_file($file, $array) {
+        return file_put_contents($file, '<?php $arr = ' . var_export($array, true) . ';');
+    }
+
+}
+
+if (!function_exists('user_function_sort')) {
+
+    function user_function_sort($arr) {
+        usort($arr, function($a, $b) {
+                    return strnatcmp($a['value'], $b['value']);
+                });
+        return $arr;
     }
 
 }

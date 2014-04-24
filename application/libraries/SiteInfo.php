@@ -43,13 +43,16 @@ class SiteInfo {
      * ATTENTION! serves as url too!!!
      * @var string
      */
+
     public $imagesPath;
+
 
     /**
      * Setting class variables
      * @param string $locale locale to intiate class with
      */
     public function __construct($locale = NULL) {
+
         $this->imagesPath = 'uploads/images/';
 
         if ($this->useLocales == TRUE) {

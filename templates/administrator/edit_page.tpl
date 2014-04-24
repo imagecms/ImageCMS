@@ -43,7 +43,7 @@
             {/if}
         </div>
         <div class="btn-group myTab m-t_20 pull-left" data-toggle="buttons-radio">
-            <a href="#content_article" class="btn btn-small active">{lang("Content","admin")}</a>
+            <a href="#content_article" class="btn btn-small active">{lang("Page","admin")}</a>
             <a href="#parameters_article" class="btn btn-small ">{lang("Properties","admin")}</a>
             <a href="#addfields_article" class="btn btn-small">{lang("Additional fields","admin")}</a>
             <a href="#setings_article" class="btn btn-small">{lang("Settings","admin")}</a>
@@ -58,22 +58,22 @@
             <div class="tab-pane active" id="content_article">
 
 
-                <table class="table table-striped table-bordered table-hover table-condensed">
+                <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
 
                     <thead>
                         <tr>
                             <th colspan="6">
-                                {lang("Content","admin")}
+                                {lang("Page","admin")}
                             </th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td colspan="6">
-                                <div class="inside_padd span12">
+                                <div class="inside_padd">
                                     <div class="control-group">
                                         <label class="control-label" for="category_selectbox">
-                                            {lang("Categories","admin")}:
+                                            {lang("Category","admin")}:
                                         </label>
                                         <div class="controls">
                                             <a onclick="$('.modal').modal();
@@ -125,7 +125,7 @@
 
 
 
-                <table class="table table-striped table-bordered table-hover table-condensed">
+                <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
 
                     <thead>
                         <tr>
@@ -138,7 +138,7 @@
                         <tr>
                             <td colspan="6">
 
-                                <div class="inside_padd span12">
+                                <div class="inside_padd span9">
                                     <div class="control-group">
                                         <label class="control-label" for="page_url">
                                             {lang("URL","admin")}:
@@ -150,7 +150,7 @@
                                                     <input type="text" name="page_url" value="{$url}" id="page_url" />
                                                 </div>
                                             {else:}
-                                                <input type="text" name="page_url" value="{$url}" id="page_url" disabled="disabled" />
+                                                <input type="text" name="page_url" value="{$url}" id="page_url" />
                                             {/if}
                                             <div class="help-block">({lang("Only Latin characters","admin")})</div>
                                         </div>
@@ -248,7 +248,7 @@
 
             <div class="tab-pane" id="setings_article">
 
-                <table class="table table-striped table-bordered table-hover table-condensed">
+                <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
 
                     <thead>
                         <tr>
@@ -260,7 +260,7 @@
                     <tbody>
                         <tr>
                             <td colspan="6">
-                                <div class="inside_padd span12">
+                                <div class="inside_padd span9">
                                     <div class="control-group">
                                         <label class="control-label" for="post_status">
                                             {lang("Publication status","admin")}:

@@ -18,8 +18,8 @@
                     <div class="frame-label">
                         <span class="title">&nbsp;</span>
                         <div class="frame-form-field">
-                            <div class="btn-form">
-                                <button type="submit" data-modal="true" data-source="{site_url('/wishlist/wishlistApi/send_email')}" data-drop="#notification" data-type="json" onclick="serializeForm(this)">
+                            <div class="btn-buy">
+                                <button type="submit" data-modal="true" data-source="{site_url('/wishlist/wishlistApi/send_email')}" data-drop="#notification" onclick="serializeForm(this)">
                                     <span class="text-el">{lang('Отправить','newLevel')}</span>
                                 </button>
                             </div>

@@ -42,7 +42,7 @@
                 
                 <div class="tab-content">
                     <div class="tab-pane active">
-                        <table class="table table-striped table-bordered table-hover table-condensed">
+                        <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
                             <thead>
                                 <tr>
                                     <th colspan="6">
@@ -53,7 +53,7 @@
                             <tbody>
                                 <tr>
                                     <td colspan="6">
-                                        <div class="inside_padd span9">
+                                        <div class="inside_padd">
                                             <div class="form-horizontal">
                                                 <div class="row-fluid">
                                                     <div class="control-group">

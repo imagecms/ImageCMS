@@ -617,7 +617,7 @@ $(document).ready(function() {
         $('.modal_move_to_cat').modal();
     }
 
-    $(".save_positions").on("sortstop", function(event, ui) {
+    $(".save_positions").live("sortstop", function(event, ui) {
         var categoryId = $(ui.item[0]).find('input[name="ids"]:first-child').val();
         var url = $(this).attr('data-url');
         save_positions(url, categoryId);
@@ -1010,7 +1010,7 @@ $(document).ready(function() {
 
         // go furter if one image is selected
         var selectedImageUrl = $("span.selected_image img").attr("src");
-        $("#" + trId + " input.changeImage").val(selectedImageUrl);
+        $("#" + trId + " input.inetImage").val(selectedImageUrl);
         // adding thumbnail
         var img = document.createElement("img");
         img.src = selectedImageUrl;
@@ -1480,14 +1480,6 @@ $(document).ready(function() {
 
     });
     // the delete button appears only on image hover
-    $(".siteinfo_image_container").die('change').live("mouseover", function() {
-        //$("#site_info_tab").delegate('.siteinfo_image_container', "mouseover", function() {
-        $(this).find(".remove_btn").show();
-    });
-    $(".siteinfo_image_container").die('change').live("mouseout", function() {
-        //$("#site_info_tab").delegate('.siteinfo_image_container', "mouseout", function() {
-        $(this).find(".remove_btn").hide();
-    });
 
     var siteInfoLocalesDataCache = {};
     $("#siteinfo_locale").die('change').live("change", function() {
@@ -1579,7 +1571,30 @@ $(document).ready(function() {
     /* --------------------- end of Backup -------------------------*/
 
 
-
+    /*
+     * Фільтр модулів
+     */
+    $('#modules_filter').live('keyup', function() {
+        var inputValue = $(this).val().toLowerCase();
+        if (inputValue == "") {
+            $('.module_row').show();
+            return;
+        }
+        $('.module_row').each(function() {
+            var moduleName = $(this).find('.module_name').text().toLowerCase();
+            var moduleDescription = $(this).find('.module_description').text().toLowerCase();
+            if (
+                    moduleName.indexOf(inputValue) != -1 ||
+                    inputValue.indexOf(moduleName) != -1 ||
+                    moduleDescription.indexOf(inputValue) != -1 ||
+                    inputValue.indexOf(moduleDescription) != -1
+                    ) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
+    });
 
 
 });

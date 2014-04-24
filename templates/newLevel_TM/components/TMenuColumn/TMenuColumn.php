@@ -9,12 +9,34 @@ class TMenuColumn extends \template_manager\classes\TComponent {
      * Columns names array
      * @var type 
      */
-    private $columns = array(1, 2, 3, 4, 5);
+    private $columns = array(0, 1, 2, 3, 4, 5, 6, 7);
 
     /**
      * Prepare param from xml to save in db
      * @param \SimpleXMLElement $nodes
      */
+    public function select_column_menu($id) {
+        $params = $this->getParam('columns');
+        $columns = array();
+        if (isset($params['columns'])) {
+            foreach ($params['columns'] as $column) {
+                $column['values'] = preg_replace('/\s+/', '', $column['values']);
+                $columns[$column['column']] = explode(',', $column['values']);
+            }
+        }
+
+        $select = '<select class="input-mini">';
+        
+        foreach ($this->columns as $i) {
+            $selected = '';
+            if ($columns[$i] && in_array($id, $columns[$i]))
+                $selected = 'selected="selected"';
+            $select .= "<option value='" . $i . "'" . $selected . ">" . $i . "</option>";
+        }
+        $select.='</select>';
+        return $select;
+    }
+
     public function setParamsXml(\SimpleXMLElement $component) {
         $data = array();
         foreach ($component as $item) {
@@ -83,19 +105,8 @@ class TMenuColumn extends \template_manager\classes\TComponent {
      * Render admin template
      */
     public function renderAdmin() {
-        $params = $this->getParam('columns');
-        $columns = array();
-        if (isset($params['columns'])) {
-            foreach ($params['columns'] as $column) {
-                $column['values'] = preg_replace('/\s+/', '', $column['values']);
-                $columns[$column['column']] = explode(',', $column['values']);
-            }
-        }
-
         $this->cAssetManager->registerScript('scripts', 'after');
         $this->cAssetManager->display('admin/main', array(
-            'columns' => $this->columns,
-            'columns_db' => $columns,
             'handler' => $this->name)
         );
     }

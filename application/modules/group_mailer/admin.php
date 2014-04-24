@@ -85,14 +85,14 @@ class Admin extends BaseAdminController {
                     $this->email->reply_to($_POST['email'], $_POST['name']);
                     $this->email->subject($_POST['subject']);
                     $this->email->message($tmp_msg);
-                    $counter['all']++;
+                    $counter['all'] ++;
                     if ($this->email->send()) {
-                        $counter['true']++;
+                        $counter['true'] ++;
                     }
                 }
 
                 $this->load->library('lib_admin');
-                $this->lib_admin->log(lang("Send", 'group_mailer') . '(' . $counter['true'] . '/' . $counter['all'] . ')' . lang("users e-mail with a subject", 'group_mailer') . ')' . $_POST['subject']);
+                $this->lib_admin->log(lang("Sent", 'group_mailer') . ' (' . $counter['true'] . '/' . $counter['all'] . ') ' . lang("users e-mail with a subject", 'group_mailer') . ' - ' . $_POST['subject']);
                 $class = 'b';
                 if ($counter['true'] == $counter['all']) {
                     $class = 'g';
@@ -100,9 +100,9 @@ class Admin extends BaseAdminController {
                     $class = 'r';
                 }
                 if ($class !== 'r') {
-                    showMessage(lang("message has been sent", 'group_mailer') . ': ' . $counter['true'] . lang("Number of e-mails sent", 'group_mailer') . $counter['all'] . lang('pcs.', 'group_mailer'), false, $class);
+                    showMessage(lang("Message has been sent.", 'group_mailer') . ' ' . lang("Number of e-mails sent", 'group_mailer') . ' ' . $counter['all'] . ' ' . lang('pcs.', 'group_mailer'), false, $class);
                 } else {
-                    showMessage(lang("none of the messages", 'group_mailer') . $counter['all'] . lang("Number not", 'group_mailer'), false, $class);
+                    showMessage(lang("None of the messages", 'group_mailer') . $counter['all'] . lang("Number not", 'group_mailer'), false, $class);
                 }
 
                 updateDiv('page', site_url('admin/components/cp/group_mailer/index'));

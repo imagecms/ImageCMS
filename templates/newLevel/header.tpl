@@ -14,14 +14,15 @@
 <!--End. Top menu and authentication data block-->
 <div class="content-header">
     <div class="container">
+        {load_menu('asdf')}
         <!--        Logo-->
         {if  $CI->uri->uri_string() == ''}
             <span class="logo">
-                <img src="{echo siteinfo('siteinfo_logo_url')}" alt="logo.png"/>
+                <img src="{echo siteinfo('siteinfo_logo_url')}" alt="logo"/>
             </span>
         {else:}
             <a href="{site_url('')}" class="logo">
-                <img src="{echo siteinfo('siteinfo_logo_url')}" alt="logo.png"/>
+                <img src="{echo siteinfo('siteinfo_logo_url')}" alt="logo"/>
             </a>
         {/if}
         <div class="left-content-header">
@@ -36,7 +37,7 @@
                         </span>
                     </div>
                     <div class="btn-order-call">
-                        <button type="button" data-drop="#ordercall" data-source="{site_url('shop/callback')}">
+                        <button data-href="#ordercall" data-drop="#ordercall" data-source="{site_url('shop/callback')}">
                             <span class="icon_order_call"></span>
                             <span class="text-el d_l">{lang('Заказать звонок','newLevel')}</span>
                         </button>
@@ -54,7 +55,7 @@
             </div>
             <div class="frame-search-cleaner">
                 <!--                Start. Include cart data template-->
-                <div id="bask_block" class="frame-cleaner">
+                <div id="tinyBask" class="frame-cleaner">
                     {include_shop_tpl('cart_data')}
                 </div>
                 <!--                    End. Include cart data template-->

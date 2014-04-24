@@ -27,7 +27,7 @@
                 <form action="{$BASE_URL}admin/settings/save" method="post" id="saveSettings">
                     <div class="tab-content">
                         <div class="tab-pane active" id="setings">
-                            <table class="table table-striped table-bordered table-hover table-condensed">
+                            <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
                                 <thead>
                                     <tr>
                                         <th colspan="6">
@@ -38,7 +38,7 @@
                                 <tbody>
                                     <tr>
                                         <td colspan="6">
-                                            <div class="inside_padd">
+                                            <div class="inside_padd span9">
                                                 <div class="form-horizontal">
                                                     <div class="row-fluid">
                                                         <div class="control-group">
@@ -103,7 +103,7 @@
                         </div>
 
                         <div class="tab-pane" id="seo">
-                            <table class="table table-striped table-bordered table-hover table-condensed">
+                            <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
                                 <thead>
                                     <tr>
                                         <th colspan="6">
@@ -114,7 +114,7 @@
                                 <tbody>
                                     <tr>
                                         <td colspan="6">
-                                            <div class="inside_padd">
+                                            <div class="inside_padd span9">
                                                 <div class="form-horizontal">
                                                     <div class="row-fluid">
                                                         <div class="control-group m-t_10">
@@ -156,7 +156,7 @@
                         </div>
 
                         <div class="tab-pane" id="homePage">
-                            <table class="table table-striped table-bordered table-hover table-condensed">
+                            <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
                                 <thead>
                                     <tr>
                                         <th colspan="6">
@@ -167,7 +167,7 @@
                                 <tbody>
                                     <tr>
                                         <td colspan="6">
-                                            <div class="inside_padd">
+                                            <div class="inside_padd span9">
                                                 <div class="form-horizontal">
                                                     <div class="row-fluid">
 
@@ -217,7 +217,7 @@
                             </table>
                         </div>
                         <div class="tab-pane" id="metatag">
-                            <table class="table table-striped table-bordered table-hover table-condensed">
+                            <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
                                 <thead>
                                     <tr>
                                         <th colspan="6">
@@ -228,7 +228,7 @@
                                 <tbody>
                                     <tr>
                                         <td colspan="6">
-                                            <div class="inside_padd">
+                                            <div class="inside_padd span9">
                                                 <div class="form-horizontal">
                                                     <div class="row-fluid">
 
@@ -299,7 +299,7 @@
                             </table>
                         </div>
                         <div class="tab-pane" id="metatag_edit">
-                            <table class="table table-striped table-bordered table-hover table-condensed">
+                            <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
                                 <thead>
                                     <tr>
                                         <th colspan="6">
@@ -310,7 +310,7 @@
                                 <tbody>
                                     <tr>
                                         <td colspan="6">
-                                            <div class="inside_padd">
+                                            <div class="inside_padd span9">
                                                 <div class="form-horizontal">
                                                     <div class="row-fluid">
                                                         <div class="control-group">
@@ -325,12 +325,10 @@
                                                                 </select>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    {$i = 1}
-                                                    {foreach $meta_langs as $lan => $meta}
-                                                        <div class="lan {if $i!= 1}d_n{/if}" id="lang_form{echo $lan}">
-                                                            <input  {if $i!= 1}disabled="disabled"{/if}type="hidden" name="lang_ident" value="{echo $lan}">
-                                                            <div class="row-fluid">
+                                                        {$i = 1}
+                                                        {foreach $meta_langs as $lan => $meta}
+                                                            <div class="lan {if $i!= 1}d_n{/if}" id="lang_form{echo $lan}">
+                                                                <input  {if $i!= 1}disabled="disabled"{/if}type="hidden" name="lang_ident" value="{echo $lan}">
                                                                 <div class="control-group m-t_10">
                                                                     <label class="control-label" for="titleNa">{lang('Site name', 'admin')}:</label>
                                                                     <div class="controls">
@@ -358,15 +356,11 @@
                                                                         <input {if $i!= 1}disabled="disabled"{/if} type="text" id="keywordsss" name="keywords" value="{echo $meta.keywords}" />
                                                                     </div>
                                                                 </div>
-
-
                                                             </div>
-                                                        </div>
-                                                        {$i++}
-                                                    {/foreach}
+                                                            {$i++}
+                                                        {/foreach}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            </div>
                                             </div>
                                         </td>
                                     </tr>
@@ -377,7 +371,7 @@
                         </div>
                         <div class="tab-pane" id="site_info_tab"> <!-- Інформація про сайт -->
                             {$tooltipText = lang('Please use function siteinfo() with the parameter', 'admin')}
-                            <table class="table table-striped table-bordered table-hover table-condensed">
+                            <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
                                 <thead>
                                     <tr>
                                         <th colspan="6">
@@ -388,7 +382,7 @@
                                 <tbody>
                                     <tr>
                                         <td colspan="6">
-                                            <div class="inside_padd">
+                                            <div class="inside_padd span9">
                                                 <div class="form-horizontal">
                                                     <div class="row-fluid">
 

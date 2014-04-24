@@ -2,18 +2,35 @@
 <div class="modal hide fade" id="pages_action_dialog">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h3 id="mvMv">{lang("Copy/Move pages")}</h3>
+        <h3 id="mvMv">{lang("Move page", 'admin')}</h3>
     </div>
     <div class="modal-body">
-        {lang("Categories","admin")}:
+        {lang("Category","admin")}:
         <select id="CopyMoveCategorySelect" url="{$BASE_URL}admin/pages/GetPagesByCategory/">
             <option value="0">{lang("Without a category","admin")}</option>
-            { $this->view("cats_select.tpl", array('tree' => $this->template_vars['tree'] )); }
+            {$this->view("cats_select.tpl", array('tree' => $this->template_vars['tree'] ));}
         </select>
     </div>
     <div class="modal-footer">
         <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang("Cancel","admin")}</a>
-        <a href="#" id="confirmMove" class="btn btn-primary" onclick="pagesAdmin.confirmListAction('{$BASE_URL}admin/pages/move_pages/copy')" >{lang('Confirm','admin')}</a>
+        <a href="#" id="confirmMove" class="btn btn-primary" onclick="pagesAdmin.confirmListAction('{$BASE_URL}admin/pages/move_pages/copy')" >{lang('Approve','admin')}</a>
+    </div>
+</div>
+<div class="modal hide fade" id="pages_action_dialog_copy">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3 id="mvMv">{lang("Copy page", 'admin')}</h3>
+    </div>
+    <div class="modal-body">
+        {lang("Category","admin")}:
+        <select id="CopyMoveCategorySelect" url="{$BASE_URL}admin/pages/GetPagesByCategory/">
+            <option value="0">{lang("Without a category","admin")}</option>
+            {$this->view("cats_select.tpl", array('tree' => $this->template_vars['tree'] ));}
+        </select>
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang("Cancel","admin")}</a>
+        <a href="#" id="confirmMove" class="btn btn-primary" onclick="pagesAdmin.confirmListAction('{$BASE_URL}admin/pages/move_pages/copy')" >{lang('Approve','admin')}</a>
     </div>
 </div>
 
@@ -40,8 +57,9 @@
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
-                    <button type="button" class="btn btn-small disabled action_on listFilterSubmitButton " disabled="disabled" ><i class="icon-filter"></i>{lang('Filter','admin')}</button>
-                    <button onclick="$('#pages_action_dialog').modal();" type="button" class="btn btn-small disabled action_on pages_action" ><i class="icon-asterisk"></i> {lang('Create copy','admin')}</button>
+                    <button type="submit" class="btn btn-small disabled action_on listFilterSubmitButton " disabled="disabled" ><i class="icon-filter"></i>{lang('Filter','admin')}</button>
+                    <a href="{site_url('/admin/pages/GetPagesByCategory')}"   title="{lang('Cancel filter','admin')}" type="button" class="btn btn-small {if !$_POST}disabled {/if}"><i class="icon-refresh"></i>{lang('Cancel filter','admin')}</a>
+                    <button onclick="$('#pages_action_dialog_copy').modal();" type="button" class="btn btn-small disabled action_on pages_action" ><i class="icon-asterisk"></i> {lang('Create copy','admin')}</button>
                     <button onclick="$('#pages_action_dialog').modal();
                 pagesAdmin.updDialogMove();" type="button" class="btn btn-small disabled action_on pages_action" ><i class="icon-move"></i>{lang('Move','admin')}</button>
                     <button onclick="$('#pages_delete_dialog').modal();
@@ -103,113 +121,115 @@
                     </ul>
                 </div>
             {/if}
-            <table class="table table-striped table-bordered table-hover table-condensed pages-table span9" {if $show_cat_list != 'yes'} style="width:100%;"{/if}>
-                <thead>
-                    <tr>
-                        <th class="t-a_c span1">
-                            <span class="frame_label">
-                                <span class="niceCheck b_n">
-                                    <input type="checkbox"/>
-                                </span>
-                            </span>
-                        </th>
-                        <th class="span1">ID</th>
-                        <th class="span4">{lang('Title','admin')}</th>
-                        <th class="span3">{lang('Url','admin')}</th>
-                            {if $show_cat_list != 'yes'}
-                            <th class="span2">{lang('Category','admin')}</th>
-                            {/if}
-                        <th class="span2">{lang('Creation date','admin')}</th>
-                        <th class="span1">{lang('Status','admin')}</th>
-                    </tr>
-                    <tr class="head_body">
-                        <td>
-                        </td>
-                        <td class="number">
-                            <input type="text" name="id" data-original-title="{lang('Digits only','admin')}" value="{$_POST['id']}"/>
-                        </td>
-                        <td>
-                            <input type="text" name="title" value="{$_POST['title']}"/>
-                        </td>
-                        <td>
-                            <input type="text" name="url" value="{$_POST['url']}"/>
-                        </td>
-                        {if $show_cat_list != 'yes'}
-                            <td>
-                                <select id="categorySelect" url="{$BASE_URL}admin/pages/GetPagesByCategory/">
-                                    <option value="">{lang('All categories','admin')}</option>
-                                    <option value="0" {if $cat_id === "0"}selected="selected"{/if}>{lang('Without category','admin')}</option>
-                                    {$this->view("cats_select.tpl", array('tree' => $this->template_vars['tree'], 'sel_cat' => $this->template_vars['cat_id']));}
-                                </select>
-                            </td>
-                        {/if}
-                        <td>
-                        </td>
-                        <td>
-                        </td>
-                    </tr>
-                </thead>
-                <tbody data-url="" class="sortable ui-sortable">
-                    {if count($pages)}
-                        {foreach $pages as $page}
-                            <tr data-id="{$page.id}">
-                                <td class="t-a_c">
-                                    <span class="frame_label">
-                                        <span class="niceCheck b_n">
-                                            <input type="checkbox" data-id="{$page.id}" name="ids" value="{$page.id}"/>
-                                        </span>
-                                    </span>
-                                </td>
-                                <td><span>{$page.id}</span></td>
-                                <td class="share_alt">
-                                    <a href="{$BASE_URL}{$page.cat_url}{$page.url}" target="_blank" class="go_to_site pull-right btn btn-small" data-rel="tooltip" data-placement="top" data-original-title="{lang("go to site","admin")}"><i class="icon-share-alt"></i></a>
-                                    <a href="{$BASE_URL}admin/pages/edit/{$page.id}" class="title pjax" data-rel="tooltip" data-original-title="{lang("Editing","admin")}">{$page.title}</a>
-                                </td>
-                                <td><span>{truncate($page.url, 40, '...')}</span></td>
-                                {if $show_cat_list != 'yes'}
-                                    <td>
-                                        <span>{if $category}{$category.name}{else:}
-
-                                            {if 0 == $page.category}
-                                                {lang("Without a category","admin")}
-                                            {else:}
-
-                                                {foreach $cats  as $c}
-                                                    {if $c.id == $page.category}
-                                                        {$c.name}
-                                                    {/if}
-                                                {/foreach}
-
-                                            {/if}
-                                        {/if}</span>
-                                </td>{/if}
-                                <td>
-                                    {date('d-m-Y, H:i', $page.publish_date)}
-                                </td>
-                                <td>
-                                    <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="{if $page['post_status'] == 'publish'}{lang("show","admin")}{else:}{lang("don't show", 'admin')}{/if}" onclick="change_page_status('{$page.id}');">
-                                        <span class="prod-on_off {if $page['post_status'] != 'publish'}disable_tovar{/if}" style="{if $page['post_status'] != 'publish'}left: -28px;{/if}"></span>
-                                    </div>
-                                </td>
-                            </tr>
-                        {/foreach}
-                    {else:}
+            <div class="span9">
+                <table class="table table-striped table-bordered table-hover table-condensed pages-table t-l_a" {if $show_cat_list != 'yes'} style="width:100%;"{/if}>
+                    <thead>
                         <tr>
-                            <td colspan="6">
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <div class="alert alert-info" style="margin: 18px;">{lang('Your search did not found', 'admin')}</div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                            <th class="t-a_c span1">
+                                <span class="frame_label">
+                                    <span class="niceCheck b_n">
+                                        <input type="checkbox"/>
+                                    </span>
+                                </span>
+                            </th>
+                            <th>ID</th>
+                            <th>{lang('Title','admin')}</th>
+                            <th>{lang('Url','admin')}</th>
+                                {if $show_cat_list != 'yes'}
+                                <th>{lang('Category','admin')}</th>
+                                {/if}
+                            <th class="span2">{lang('Creation date','admin')}</th>
+                            <th>{lang('Status','admin')}</th>
+                        </tr>
+                        <tr class="head_body">
+                            <td>
+                            </td>
+                            <td class="number">
+                                <input type="text" name="id" data-original-title="{lang('Digits only','admin')}" value="{$_POST['id']}"/>
+                            </td>
+                            <td>
+                                <input type="text" name="title" value="{$_POST['title']}"/>
+                            </td>
+                            <td>
+                                <input type="text" name="url" value="{$_POST['url']}"/>
+                            </td>
+                            {if $show_cat_list != 'yes'}
+                                <td>
+                                    <select id="categorySelect" url="{$BASE_URL}admin/pages/GetPagesByCategory/">
+                                        <option value="">{lang('All categories','admin')}</option>
+                                        <option value="0" {if $cat_id === "0"}selected="selected"{/if}>{lang('Without category','admin')}</option>
+                                        {$this->view("cats_select.tpl", array('tree' => $this->template_vars['tree'], 'sel_cat' => $this->template_vars['cat_id']));}
+                                    </select>
+                                </td>
+                            {/if}
+                            <td>
+                            </td>
+                            <td>
                             </td>
                         </tr>
-                    {/if}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody data-url="" class="sortable ui-sortable">
+                        {if count($pages)}
+                            {foreach $pages as $page}
+                                <tr data-id="{$page.id}">
+                                    <td class="t-a_c">
+                                        <span class="frame_label">
+                                            <span class="niceCheck b_n">
+                                                <input type="checkbox" data-id="{$page.id}" name="ids" value="{$page.id}"/>
+                                            </span>
+                                        </span>
+                                    </td>
+                                    <td><span>{$page.id}</span></td>
+                                    <td class="share_alt">
+                                        <a href="{$BASE_URL}{$page.cat_url}{$page.url}" target="_blank" class="go_to_site pull-right btn btn-small" data-rel="tooltip" data-placement="top" data-original-title="{lang("go to site","admin")}"><i class="icon-share-alt"></i></a>
+                                        <a href="{$BASE_URL}admin/pages/edit/{$page.id}" class="title pjax" data-rel="tooltip" data-original-title="{lang("Editing","admin")}">{$page.title}</a>
+                                    </td>
+                                    <td><span>{truncate($page.url, 40, '...')}</span></td>
+                                    {if $show_cat_list != 'yes'}
+                                        <td>
+                                            <span>{if $category}{$category.name}{else:}
+
+                                                {if 0 == $page.category}
+                                                    {lang("Without a category","admin")}
+                                                {else:}
+
+                                                    {foreach $cats  as $c}
+                                                        {if $c.id == $page.category}
+                                                            {$c.name}
+                                                        {/if}
+                                                    {/foreach}
+
+                                                {/if}
+                                            {/if}</span>
+                                    </td>{/if}
+                                    <td>
+                                        {date('d-m-Y, H:i', $page.publish_date)}
+                                    </td>
+                                    <td>
+                                        <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="{if $page['post_status'] == 'publish'}{lang("show","admin")}{else:}{lang("don't show", 'admin')}{/if}" onclick="change_page_status('{$page.id}');">
+                                            <span class="prod-on_off {if $page['post_status'] != 'publish'}disable_tovar{/if}" style="{if $page['post_status'] != 'publish'}left: -28px;{/if}"></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {/foreach}
+                        {else:}
+                            <tr>
+                                <td colspan="6">
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div class="alert alert-info" style="margin: 18px;">{lang('Your search did not found', 'admin')}</div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        {/if}
+                    </tbody>
+                </table>
+            </div>
             {if $paginator > ''}
                 <div class="span9">
                     {$paginator}
@@ -217,4 +237,5 @@
             {/if}
         </div>
     </section>
+    {form_csrf()}
 </form>

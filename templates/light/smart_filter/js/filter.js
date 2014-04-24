@@ -16,12 +16,12 @@ var cleaverFilterObj = {
             $(this).each(function() {
                 var $this = $(this),
                         settings = $.extend({
-                    slider: $this.find('.slider'),
-                    minCost: null,
-                    maxCost: null,
-                    leftSlider: $this.find('.left-slider'),
-                    rightSlider: $this.find('.right-slider')
-                }, eval($this.data('rel')));
+                            slider: $this.find('.slider'),
+                            minCost: null,
+                            maxCost: null,
+                            leftSlider: $this.find('.left-slider'),
+                            rightSlider: $this.find('.right-slider')
+                        }, eval($this.data('rel')));
                 var slider = settings.slider,
                         minCost = $(settings.minCost),
                         maxCost = $(settings.maxCost),
@@ -199,6 +199,7 @@ var cleaverFilterObj = {
     };
 })(jQuery);
 var Filter = {
+    interval: null,
     framechecks: ".frame-group-checks",
     frameFilter: '.frame-filter',
     catalogForm: '#catalogForm',
@@ -219,7 +220,8 @@ var Filter = {
         }
     },
     afterAjaxInitializeFilter: function() {
-        var $sliders = $('.frame-slider');
+        var self = this,
+                $sliders = $('.frame-slider');
 
         $sliders.sliderInit();
         $(this.apply).cleaverFilter(cleaverFilterObj);
@@ -227,14 +229,14 @@ var Filter = {
         $('.clear-filter').click(function() {
             var nm = $(this).data('name');
             $('#' + nm + ' input').parent().nStCheck('checkUnChecked');
-            $(catalogForm).submit();
+            $(self.catalogForm).submit();
             return false;
         });
         $('.clear-slider').click(function() {
             var obj = eval($(this).data('rel'));
             $(obj.minCost).val(obj.defMin);
             $(obj.maxCost).val(obj.defMax);
-            $(catalogForm).submit();
+            $(self.catalogForm).submit();
 
             return false;
         });
@@ -330,39 +332,10 @@ var Filter = {
     },
     ajaxRecount: function(el, slChk) {
         $(this.frameFilter).children(preloader).show();
-        
-        var catUrlPre = window.location.pathname.replace('shop/category', 'smart_filter/pre_filter'),
-        dataPre = $(this.catalogForm).serialize();
-        $.ajax({
-            type: 'get',
-            async : false,
-            url: catUrlPre,
-            data: dataPre,
-            success: function(dane) {
-                if (dane) {
-                    dane = JSON.parse(dane);
-                    $(dane).each(function(key,value){
-                        var id = value.property_id;
-                        $(value.possibleValues).each(function(k,v){
-                            if (v.count == 0){
-                                $('#p_'+id+'_'+v.id+' input').parent().nStCheck('checkUnChecked');
-                            }
-                        })
-                        
-                    })
-                    
-                           
-                }
-            }
 
-        });
-        
-        
-         /*not hyper clever filter*/
+        /*not hyper clever filter*/
         //    $(this.catalogForm).submit();
         /*/not hyper clever filter*/
-        
-        
 
         /*hyper clever filter*/
         var $this = el,
@@ -373,15 +346,10 @@ var Filter = {
             url: catUrl,
             data: data,
             cache: true,
-            beforeSend: function() {
-                $.fancybox.showActivity();
-            },
             success: function(msg) {
-
                 var otherClass = '';
                 $(Filter.frameFilter).html(msg).children(preloader).hide();
                 Filter.afterAjaxInitializeFilter();
-                $.fancybox.hideActivity();
                 if (slChk) {
                     otherClass = slChk;
                 }
@@ -393,7 +361,6 @@ var Filter = {
                 else {
                     Filter.filtertype($($this), totalProducts, otherClass);
                 }
-
             }
         });
         return false;

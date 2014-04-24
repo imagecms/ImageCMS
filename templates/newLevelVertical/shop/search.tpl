@@ -20,7 +20,7 @@
             {if $totalProducts != 0}
                 <div class="f-s_0 title-category">
                     <div class="frame-title">
-                        <h1 class="d_i"><span class="s-t">{lang('Результаты поиска','newLevel')}</span> <span class="what-search">«{encode($_GET['text'])}»</span></h1>
+                        <h1 class="title"><span class="s-t">{lang('Результаты поиска','newLevel')}</span> <span class="what-search">«{encode($_GET['text'])}»</span></h1>
                     </div>
                 <span class="count">({lang('Найдено','newLevel')} {$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang('товар','newLevel'),lang('товара','newLevel'),lang('товаров','newLevel')))})</span>
                 </div>
@@ -35,9 +35,9 @@
             {/if}
             {include_tpl('catalogue_header')}
             {if $totalProducts > 0}
-                <ul class="animateListItems items items-catalog {if $_COOKIE['listtable'] == 'table' || $_COOKIE['listtable'] == NULL} table{else:} list{/if}" id="items-catalog-main">
+                <ul class="animateListItems items items-catalog items-product {if $_COOKIE['listtable'] == 'table' || $_COOKIE['listtable'] == NULL} table{else:} list{/if}" id="items-catalog-main">
                     <!-- Include template for one product item-->
-                    {$CI->load->module('new_level')->OPI($model, array('opi_wishlist'=>true))}
+                    {$CI->load->module('new_level')->OPI($model, array('opi_wishlist'=>true, 'opi_codeArticle' => true))}
                 </ul>
             {/if}            <!--Start. Pagination -->
             {if $pagination}

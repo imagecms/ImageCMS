@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-26 01:09+0200\n"
-"PO-Revision-Date: 2013-12-26 01:09+0200\n"
+"POT-Creation-Date: 2014-03-05 02:52+0200\n"
+"PO-Revision-Date: 2014-03-05 02:52+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -18,43 +18,46 @@ msgstr ""
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: ./application/modules/install/_install.php:169
+#: ./application/modules/install/install.php:175
+msgid "Administrator password"
+msgstr "Пароль администратора"
+
+#: ./application/modules/install/install.php:169
 msgid "Site name"
 msgstr "Название сайта"
 
-#: ./application/modules/install/views/step_2.php:42
-#: ./application/modules/install/_install.php:170
+#: ./application/modules/install/views/step_2.php:44
+#: ./application/modules/install/install.php:170
 msgid "Host"
 msgstr "Хост"
 
-#: ./application/modules/install/_install.php:171
+#: ./application/modules/install/install.php:171
 msgid "Database username"
 msgstr "Имя пользователя базы данных"
 
-#: ./application/modules/install/views/step_2.php:60
-#: ./application/modules/install/_install.php:173
+#: ./application/modules/install/views/step_2.php:69
+#: ./application/modules/install/install.php:173
 msgid "Database name"
 msgstr "Имя базы данных"
 
-#: ./application/modules/install/views/step_2.php:66
-#: ./application/modules/install/_install.php:175
+#: ./application/modules/install/views/step_2.php:77
 msgid "Administrator name"
 msgstr "Имя администратора"
 
-#: ./application/modules/install/_install.php:176
+#: ./application/modules/install/install.php:176
 msgid "Administrator E-mail"
 msgstr "E-mail администратора"
 
 #: ./application/modules/install/views/main.php:150
-#: ./application/modules/install/_install.php:177
+#: ./application/modules/install/install.php:177
 msgid "Language"
 msgstr "Язык"
 
-#: ./application/modules/install/_install.php:184
+#: ./application/modules/install/install.php:184
 msgid "Database connection error"
 msgstr "Ошибка подключения к базе данных"
 
-#: ./application/modules/install/_install.php:379
+#: ./application/modules/install/install.php:379
 msgid "Error writing file config.php"
 msgstr "Ошибка записи файла config.php"
 
@@ -70,50 +73,50 @@ msgstr "Настройки сайта"
 msgid "Site title"
 msgstr "Название сайта"
 
-#: ./application/modules/install/views/step_2.php:17
+#: ./application/modules/install/views/step_2.php:19
 msgid "Language of the administrative part"
 msgstr "Язык административной части"
 
-#: ./application/modules/install/views/step_2.php:20
+#: ./application/modules/install/views/step_2.php:22
 #: ./application/modules/install/views/main.php:147
 msgid "Russian"
 msgstr "Русский"
 
-#: ./application/modules/install/views/step_2.php:21
+#: ./application/modules/install/views/step_2.php:23
 msgid "English (beta)"
 msgstr "Английский (бета)"
 
-#: ./application/modules/install/views/step_2.php:26
+#: ./application/modules/install/views/step_2.php:28
 msgid "Install demo data"
 msgstr "Установить демо-данные"
 
-#: ./application/modules/install/views/step_2.php:33
+#: ./application/modules/install/views/step_2.php:35
 msgid "Database connection"
 msgstr "Подключение к базе данных"
 
-#: ./application/modules/install/views/step_2.php:37
+#: ./application/modules/install/views/step_2.php:39
 msgid "Attention"
 msgstr "Внимание"
 
-#: ./application/modules/install/views/step_2.php:38
+#: ./application/modules/install/views/step_2.php:39
 msgid "All the data in this database will be destroyed"
 msgstr "Все данные в этой базе данных будет уничтожены"
 
-#: ./application/modules/install/views/step_2.php:48
+#: ./application/modules/install/views/step_2.php:55
 msgid "User name"
 msgstr "Имя пользователя"
 
-#: ./application/modules/install/views/step_2.php:54
-#: ./application/modules/install/views/step_2.php:74
+#: ./application/modules/install/views/step_2.php:63
+#: ./application/modules/install/views/step_2.php:87
 msgid "Password"
 msgstr "Пароль"
 
-#: ./application/modules/install/views/step_2.php:84
+#: ./application/modules/install/views/step_2.php:99
 #: ./application/modules/install/views/step_1.php:47
 msgid "Next"
 msgstr "Следующий"
 
-#: ./application/modules/install/views/step_2.php:89
+#: ./application/modules/install/views/step_2.php:104
 msgid "All fields are required"
 msgstr "Все поля обязательны для заполнения"
 
@@ -161,7 +164,7 @@ msgstr "Проверка директорий"
 msgid "To continue the installation, install the write rights"
 msgstr "Для продолжения установки, установите права на запись"
 
-#: ./application/modules/install/views/step_1.php:4
+#: ./application/modules/install/views/step_1.php:3
 msgid "to the following directories"
 msgstr "к следующим каталогам"
 

@@ -6,7 +6,7 @@
         <div class="left-catalog-first">
             <div class="f-s_0 title-category">
                 <div class="frame-title">
-                    <h1 class="d_i">{echo $category->getName()}</h1>
+                    <h1 class="title">{echo $category->getName()}</h1>
                 </div>
             </div>
             {$CI->load->module('banners')->render($category->getId())}
@@ -14,8 +14,7 @@
             {\Category\RenderMenu::create()->load('category_menu_first')}
         </div>
         <div class="right-catalog-first" id="popular_product_category">
-            <div class="preloader" style="height: 500px;"></div>
-            {widget_ajax('popular_products_category_v', '#popular_product_category')}
+            {widget('popular_products_category_v', TRUE)}
         </div>
     </div>
 </div>

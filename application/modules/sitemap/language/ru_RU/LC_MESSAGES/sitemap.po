@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-26 01:51+0200\n"
-"PO-Revision-Date: 2013-12-26 01:51+0200\n"
+"POT-Creation-Date: 2014-03-18 10:39+0200\n"
+"PO-Revision-Date: 2014-03-18 10:39+0200\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -18,89 +18,321 @@ msgstr ""
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: ./application/modules/sitemap/templates/admin/settings.tpl:43
-msgid "Send XML"
-msgstr "Отправить XML"
+#: ./application/modules/sitemap/assets/admin/changefreq.tpl:32
+msgid "Сhange frequency"
+msgstr "Изменение частоты"
 
-#: ./application/modules/sitemap/templates/admin/settings.tpl:80
+#: ./application/modules/sitemap/admin.php:60
+msgid "Can not write in robots.txt. Check write permissions."
+msgstr "Не возможно изменить файл robots.txt. Проверьте права на запись."
+
+#: ./application/modules/sitemap/assets/admin/priorities.tpl:110
+msgid "Products subcategories pages"
+msgstr "Страницы подкатегрий товаров"
+
+#: ./application/modules/sitemap/assets/admin/changefreq.tpl:39
+#: ./application/modules/sitemap/assets/admin/priorities.tpl:39
+msgid "Main page"
+msgstr "Главная страница"
+
+#: ./application/modules/sitemap/assets/admin/priorities.tpl:81
+msgid "Subcategories pages"
+msgstr "Страницы подкатегорий"
+
+#: ./application/modules/sitemap/assets/admin/priorities.tpl:124
+msgid "Products pages"
+msgstr "Страницы товаров"
+
+#: ./application/modules/sitemap/assets/admin/blocked_urls.tpl:41
+msgid "will blocked this url"
+msgstr "будет блокировать этот url"
+
+#: ./application/modules/sitemap/assets/admin/blocked_urls.tpl:42
+msgid "blocked all urls than starts with"
+msgstr "заблокированы все адреса, которие начинаются с"
+
+#: ./application/modules/sitemap/assets/admin/blocked_urls.tpl:43
+msgid "blocked all urls than ends with"
+msgstr "заблокированы все адреса, которие с окончанием"
+
+#: ./application/modules/sitemap/assets/admin/blocked_urls.tpl:67
+#: ./application/modules/sitemap/assets/admin/blocked_urls.tpl:88
+msgid "Block in robots"
+msgstr "Блокировать в robots.txt"
+
+#: ./application/modules/sitemap/assets/admin/changefreq.tpl:99
+#: ./application/modules/sitemap/assets/admin/priorities.tpl:154
+#: ./application/modules/sitemap/assets/admin/settings.tpl:117
+msgid "View code"
+msgstr "Просмотр кода"
+
+#: ./application/modules/sitemap/assets/admin/settings.tpl:44
+msgid "Use saved"
+msgstr "Использовать сохраненную"
+
+#: ./application/modules/sitemap/assets/admin/settings.tpl:63
+msgid "Update"
+msgstr "Обновить"
+
+#: ./application/modules/sitemap/assets/admin/settings.tpl:86
+msgid "Send/Not send Site Map"
+msgstr "Отправлять/Не отправлять Карту Сайта"
+
+#: ./application/modules/sitemap/assets/admin/settings.tpl:96
+msgid "Send Site Map only when page url is changed"
+msgstr "Отправлять Карту Сайта только при изменении url страницы"
+
+#: ./application/modules/sitemap/admin.php:99
+msgid "Site map have not been saved. Set writing permissions on module folder."
+msgstr "Карта сайта не сохранена. Установите права записи на папку модуля."
+
+#: ./application/modules/sitemap/assets/admin/settings.tpl:56
+msgid "There is no saved Site Map."
+msgstr "Нет сохраненной Карты Сайта."
+
+#: ./application/modules/sitemap/assets/admin/blocked_urls.tpl:5
+#: ./application/modules/sitemap/assets/admin/changefreq.tpl:5
+#: ./application/modules/sitemap/assets/admin/priorities.tpl:5
+#: ./application/modules/sitemap/assets/admin/settings.tpl:5
+#: ./application/modules/sitemap/assets/admin/settings.tpl:40
+msgid "Site Map"
+msgstr "Карта Сайта"
+
+#: ./application/modules/sitemap/admin.php:97
+msgid "Site map have been saved"
+msgstr "Карта сайта создана"
+
+#: ./application/modules/sitemap/admin.php:102
+msgid "Site map have not been saved"
+msgstr "Карта сайта не сохранена"
+
+#: ./application/modules/sitemap/assets/admin/blocked_urls.tpl:14
+#: ./application/modules/sitemap/assets/admin/changefreq.tpl:14
+#: ./application/modules/sitemap/assets/admin/priorities.tpl:14
+#: ./application/modules/sitemap/assets/admin/settings.tpl:14
+msgid "Others"
+msgstr "Другое"
+
+#: ./application/modules/sitemap/assets/admin/blocked_urls.tpl:18
+#: ./application/modules/sitemap/assets/admin/changefreq.tpl:18
+#: ./application/modules/sitemap/assets/admin/priorities.tpl:18
+#: ./application/modules/sitemap/assets/admin/settings.tpl:18
+msgid "Change frequency"
+msgstr "Изменение частоты"
+
+#: ./application/modules/sitemap/assets/admin/blocked_urls.tpl:19
+#: ./application/modules/sitemap/assets/admin/changefreq.tpl:19
+#: ./application/modules/sitemap/assets/admin/priorities.tpl:19
+#: ./application/modules/sitemap/assets/admin/settings.tpl:19
+msgid "Block urls"
+msgstr "Блокировать url"
+
+#: ./application/modules/sitemap/assets/admin/blocked_urls.tpl:21
+#: ./application/modules/sitemap/assets/admin/changefreq.tpl:21
+#: ./application/modules/sitemap/assets/admin/priorities.tpl:21
+#: ./application/modules/sitemap/assets/admin/settings.tpl:21
+msgid "View Site Map"
+msgstr "Просмотр Карты Сайта"
+
+#: ./application/modules/sitemap/assets/admin/blocked_urls.tpl:23
+#: ./application/modules/sitemap/assets/admin/changefreq.tpl:23
+#: ./application/modules/sitemap/assets/admin/priorities.tpl:23
+#: ./application/modules/sitemap/assets/admin/settings.tpl:23
+#: ./application/modules/sitemap/assets/admin/settings.tpl:32
+msgid "Settings"
+msgstr "Настройки"
+
+#: ./application/modules/sitemap/assets/admin/settings.tpl:43
+msgid "Generate new"
+msgstr "Создать новую"
+
+#: ./application/modules/sitemap/assets/admin/settings.tpl:51
+msgid "Saved Site Map"
+msgstr "Сохраненная Карта Сайта"
+
+#: ./application/modules/sitemap/assets/admin/settings.tpl:52
+msgid "Created at"
+msgstr "Создана в"
+
+#: ./application/modules/sitemap/assets/admin/settings.tpl:52
+msgid "Size"
+msgstr "Размер"
+
+#: ./application/modules/sitemap/assets/admin/settings.tpl:52
+msgid "Kb"
+msgstr "КБ"
+
+#: ./application/modules/sitemap/assets/admin/settings.tpl:76
+msgid "Turn ON/OFF robots"
+msgstr "Включить/Выключить роботов"
+
+#: ./application/modules/sitemap/assets/admin/settings.tpl:107
+msgid "Last send Site Map time"
+msgstr "Время последнего отправления Карты Сайта"
+
+#: ./application/modules/sitemap/admin.php:45
+msgid "The %s field value can be in range from 0.1 to 1"
+msgstr "Значение поля %s может быть только в диапазоне от 0,1 до 1"
+
+#: ./application/modules/sitemap/admin.php:178
+msgid "Subcategories priority"
+msgstr "Приоритет подкатегорий"
+
+#: ./application/modules/sitemap/admin.php:182
+msgid "Products subcategories priority"
+msgstr "Приоритет подкатегорий товаров"
+
+#: ./application/modules/sitemap/admin.php:175
+msgid "Main page priority"
+msgstr "Приоритет главной страницы"
+
+#: ./application/modules/sitemap/admin.php:176
+msgid "Categories priority"
+msgstr "Приоритет категорий"
+
+#: ./application/modules/sitemap/admin.php:177
+msgid "Regular or usual pages priority"
+msgstr "Приоритет обычных страниц"
+
+#: ./application/modules/sitemap/admin.php:179
+msgid "Products priority"
+msgstr "Приоритет товаров"
+
+#: ./application/modules/sitemap/admin.php:180
+msgid "Brands priority"
+msgstr "Приоритет брендов"
+
+#: ./application/modules/sitemap/admin.php:181
+msgid "Products categories priority"
+msgstr "Приоритет категорий товаров"
+
+#: ./application/modules/sitemap/assets/admin/blocked_urls.tpl:40
+msgid "Example:"
+msgstr "Пример:"
+
+#: ./application/modules/sitemap/assets/admin/changefreq.tpl:53
+#: ./application/modules/sitemap/assets/admin/priorities.tpl:67
+msgid "Categories pages"
+msgstr "Страницы категорий"
+
+#: ./application/modules/sitemap/assets/admin/changefreq.tpl:60
+msgid "Sub categories pages"
+msgstr "Страницы подкатегорий"
+
+#: ./application/modules/sitemap/assets/admin/changefreq.tpl:76
+#: ./application/modules/sitemap/assets/admin/priorities.tpl:96
+msgid "Products categories pages"
+msgstr "Cтраницы категорий товаров"
+
+#: ./application/modules/sitemap/assets/admin/changefreq.tpl:83
+msgid "Products sub categories pages"
+msgstr "Подкатегории страниц товаров"
+
+#: ./application/modules/sitemap/assets/admin/changefreq.tpl:90
+#: ./application/modules/sitemap/assets/admin/priorities.tpl:138
+msgid "Brands pages"
+msgstr "Страницы брендов"
+
+#: ./application/modules/sitemap/assets/admin/blocked_urls.tpl:32
+msgid "Do not show on Site Map"
+msgstr "Не показывать на Карте Сайта"
+
+#: ./application/modules/sitemap/admin.php:62
+#: ./application/modules/sitemap/admin.php:97
+#: ./application/modules/sitemap/admin.php:206
+#: ./application/modules/sitemap/admin.php:245
+#: ./application/modules/sitemap/admin.php:301
+#: ./application/modules/sitemap/admin.php:306
+msgid "Message"
+msgstr "Сообщение"
+
+#: ./application/modules/sitemap/admin.php:64
+#: ./application/modules/sitemap/admin.php:208
+#: ./application/modules/sitemap/admin.php:247
+#: ./application/modules/sitemap/admin.php:304
+msgid "Changes have not been saved"
+msgstr "Изменения не были сохранены"
+
+#: ./application/modules/sitemap/admin.php:60
+#: ./application/modules/sitemap/admin.php:64
+#: ./application/modules/sitemap/admin.php:99
+#: ./application/modules/sitemap/admin.php:102
+#: ./application/modules/sitemap/admin.php:185
+#: ./application/modules/sitemap/admin.php:208
+#: ./application/modules/sitemap/admin.php:247
+#: ./application/modules/sitemap/admin.php:304
+msgid "Error"
+msgstr "Ошибка"
+
+#: ./application/modules/sitemap/assets/admin/blocked_urls.tpl:50
+msgid "Add"
+msgstr "Добавить"
+
+#: ./application/modules/sitemap/assets/admin/changefreq.tpl:69
 msgid "Products page"
 msgstr "Страница товаров"
 
-#: ./application/modules/sitemap/templates/admin/settings.tpl:92
-msgid "XML Site Map"
-msgstr "XML Карта сайта"
-
-#: ./application/modules/sitemap/templates/admin/settings.tpl:99
-msgid "Shop site map"
-msgstr "Карта магазина сайта"
-
-#: ./application/modules/sitemap/templates/admin/settings.tpl:5
-msgid "Sitemap settings"
-msgstr "Настройки карты сайта"
-
-#: ./application/modules/sitemap/templates/admin/settings.tpl:9
+#: ./application/modules/sitemap/assets/admin/blocked_urls.tpl:9
+#: ./application/modules/sitemap/assets/admin/changefreq.tpl:9
+#: ./application/modules/sitemap/assets/admin/priorities.tpl:9
+#: ./application/modules/sitemap/assets/admin/settings.tpl:9
 msgid "Go back"
 msgstr "Назад"
 
-#: ./application/modules/sitemap/templates/admin/settings.tpl:10
+#: ./application/modules/sitemap/assets/admin/blocked_urls.tpl:10
+#: ./application/modules/sitemap/assets/admin/changefreq.tpl:10
+#: ./application/modules/sitemap/assets/admin/priorities.tpl:10
+#: ./application/modules/sitemap/assets/admin/settings.tpl:10
+#: ./application/modules/sitemap/assets/admin/settings.tpl:66
 msgid "Save"
 msgstr "Сохранить"
 
-#: ./application/modules/sitemap/templates/admin/settings.tpl:18
+#: ./application/modules/sitemap/assets/admin/blocked_urls.tpl:17
+#: ./application/modules/sitemap/assets/admin/changefreq.tpl:17
+#: ./application/modules/sitemap/assets/admin/priorities.tpl:17
+#: ./application/modules/sitemap/assets/admin/priorities.tpl:32
+#: ./application/modules/sitemap/assets/admin/settings.tpl:17
 msgid "Priorities"
 msgstr "Приоритеты"
 
-#: ./application/modules/sitemap/templates/admin/settings.tpl:25
-#: ./application/modules/sitemap/templates/admin/settings.tpl:62
-msgid "Main page"
-msgstr "Главная"
-
-#: ./application/modules/sitemap/templates/admin/settings.tpl:31
-msgid "Categories"
-msgstr "Категории"
-
-#: ./application/modules/sitemap/templates/admin/settings.tpl:37
-#: ./application/modules/sitemap/templates/admin/settings.tpl:74
+#: ./application/modules/sitemap/assets/admin/changefreq.tpl:46
+#: ./application/modules/sitemap/assets/admin/priorities.tpl:53
 msgid "Regular or usual pages"
 msgstr "Обычные страницы"
 
-#: ./application/modules/sitemap/templates/admin/settings.tpl:55
-msgid "Page change frequency"
-msgstr "Страница изменения частоты"
-
-#: ./application/modules/sitemap/templates/admin/settings.tpl:68
-msgid "Other pages"
-msgstr "Другие страницы"
-
-#: ./application/modules/sitemap/admin.php:27
+#: ./application/modules/sitemap/admin.php:258
 msgid "always"
 msgstr "всегда"
 
-#: ./application/modules/sitemap/admin.php:28
+#: ./application/modules/sitemap/admin.php:259
 msgid "hourly"
 msgstr "ежечасно"
 
-#: ./application/modules/sitemap/admin.php:29
+#: ./application/modules/sitemap/admin.php:260
 msgid "daily"
 msgstr "ежедневно"
 
-#: ./application/modules/sitemap/admin.php:30
+#: ./application/modules/sitemap/admin.php:261
 msgid "weekly"
 msgstr "еженедельно"
 
-#: ./application/modules/sitemap/admin.php:31
+#: ./application/modules/sitemap/admin.php:262
 msgid "monthly"
 msgstr "ежемесячно"
 
-#: ./application/modules/sitemap/admin.php:32
+#: ./application/modules/sitemap/admin.php:263
 msgid "yearly"
 msgstr "ежегодно"
 
-#: ./application/modules/sitemap/admin.php:33
+#: ./application/modules/sitemap/admin.php:264
 msgid "never"
 msgstr "никогда"
 
-#: ./application/modules/sitemap/admin.php:72
+#: ./application/modules/sitemap/admin.php:62
+#: ./application/modules/sitemap/admin.php:206
+#: ./application/modules/sitemap/admin.php:245
+#: ./application/modules/sitemap/admin.php:301
+#: ./application/modules/sitemap/admin.php:306
 msgid "Changes have been saved"
 msgstr "Изменения сохранены"
 
@@ -112,7 +344,7 @@ msgstr "Карта сайта"
 msgid "Creating a site map for search engines"
 msgstr "Создание карты сайта для поисковых систем"
 
-#: ./application/modules/sitemap/sitemap.php:349
+#: ./application/modules/sitemap/sitemap.php:670
 msgid "Ping sended"
 msgstr "Пинг отправлен"
 

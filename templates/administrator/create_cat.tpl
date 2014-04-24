@@ -3,13 +3,13 @@
         <div class="frame_title clearfix">
             <div class="pull-left">
                 <span class="help-inline"></span>
-                <span class="title">{lang("Create a category","admin")}</span>
+                <span class="title">{lang("Category creating","admin")}</span>
             </div>
 
             <div class="pull-right">
                 <div class="d-i_b">                        
                     <a href="/admin/categories/cat_list" class="t-d_n m-r_15"><span class="f-s_14 pjax">←</span> <span class="t-d_u">{lang("Back","admin")}</span></a>
-                    <button type="button" class="btn btn-small action_on btn-success formSubmit" data-action="edit" data-form="#save" data-submit><i class="icon-plus-sign icon-white"></i>{lang("Create a category","admin")}</button>
+                    <button type="button" class="btn btn-small action_on btn-success formSubmit" data-action="edit" data-form="#save" data-submit><i class="icon-plus-sign icon-white"></i>{lang("Create","admin")}</button>
                     <button type="button" class="btn btn-small action_on formSubmit" data-action="close" data-form="#save"><i class="icon-check"></i>{lang("Create and exit","admin")}</button>                   
                 </div>
             </div>                            
@@ -18,7 +18,7 @@
             <div class="clearfix">
                 <div class="btn-group myTab m-t_20 pull-left" data-toggle="buttons-radio">
                     <a href="#parameters" class="btn btn-small active">{lang("Settings","admin")}</a>
-                    <a href="#metatag" class="btn btn-small">{lang("Meta tags","admin")}</a>
+                    <a href="#metatag" class="btn btn-small">{lang("Meta-tags","admin")}</a>
                     {if $moduleAdditions}
                         <a href="#modules_additions" class="btn btn-small">{lang('Modules additions', 'admin')}</a>
                     {/if}
@@ -27,7 +27,7 @@
             <form method="post" id="save" action="{$BASE_URL}admin/categories/create/new" >
                 <div class="tab-content">
                     <div class="tab-pane active" id="parameters">
-                        <table class="table table-striped table-bordered table-hover table-condensed">
+                        <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
                             <thead>
                                 <tr>
                                     <th colspan="6">
@@ -38,7 +38,7 @@
                             <tbody>
                                 <tr>
                                     <td colspan="6">
-                                        <div class="inside_padd span12">
+                                        <div class="inside_padd">
                                             <div class="form-horizontal">
                                                 <div class="control-group">
                                                     <label class="control-label" for="name">{lang("Name","admin")}:</label>
@@ -150,7 +150,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <table class="table table-striped table-bordered table-hover table-condensed">
+                        <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
                             <thead>
                                 <tr>
                                     <th colspan="6">
@@ -161,7 +161,7 @@
                             <tbody>
                                 <tr>
                                     <td colspan="6">
-                                        <div class="inside_padd span12">
+                                        <div class="inside_padd span9">
                                             <div class="form-horizontal">
                                                 <div class="control-group">
                                                     <label class="control-label" for="order_by">{lang("Sort by","admin")}:</label>
@@ -245,7 +245,7 @@
                         </table>
                     </div>
                     <div class="tab-pane" id="metatag">
-                        <table class="table table-striped table-bordered table-hover table-condensed">
+                        <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
                             <thead>
                                 <tr>
                                     <th colspan="6">
@@ -256,7 +256,7 @@
                             <tbody>
                                 <tr>
                                     <td colspan="6">
-                                        <div class="inside_padd span12">
+                                        <div class="inside_padd span9">
                                             <div class="form-horizontal">
                                                 <div class="control-group">
                                                     <label class="control-label" for="title">{lang("Meta Title","admin")}:</label>

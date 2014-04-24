@@ -8,10 +8,14 @@
 .comments .author-comment{color: #000;font-size:12px;font-weight: bold;}
 .comments .date-comment{color: #b1b1b1;}
 .comments .frame-list-comments > .sub-1{margin: 0;}
+.page-text .comments .frame-list-comments > .sub-1{max-height: none;}
 .comments .frame-comment-sub1 .frame-comment{}
 .comments .frame-comment-sub1{margin-left: 122px;margin-right: 110px;}
 .comments .frame-comment p{margin-bottom: 9px;}
-.comments .frame-list-comments.sub-2{float: none;width: auto;max-height: 201px;overflow: hidden;padding-left: 165px;}
+.comments .frame-list-comments.sub-2{float: none;width: auto;overflow: hidden;padding-left: 165px;margin: 0;}
+#comment .comments .frame-list-comments.sub-2{max-height: 213px;}
+.page-text .comments .frame-list-comments.sub-2{max-height: none!important;height: auto!important;}
+.page-text .btn-all-comments{display: none !important;}
 .comments .btn-all-comments{margin-left: 0;margin-top: 5px;}
 
 .comments .btn > *, .comments input.btn{padding: 0 !important;}
@@ -19,9 +23,10 @@
 .comments .frame-list-comments .btn.active{-moz-box-shadow: none;-webkit-box-shadow: none;box-shadow: none;}
 .comments .icon_comment{background-image: none;width: 0;height: 0;margin-right: 0!important;overflow: hidden;}
 .comments .frame-list-comments li{border-top: 0;padding: 0;}
+.comments .frame-list-comments li:before{content: none;}
 .comments .frame-list-comments > .sub-1 > li{margin-top: 29px;margin-bottom: 0;}
 .comments .frame-list-comments > .sub-1 > li:first-child{border-top: 0;padding-top: 0;margin-top: 0;}
-.comments .frame-list-comments.sub-2 + .s-all-comments{margin-left: 33px;}
+.comments .frame-list-comments.sub-2 + .btn-all-comments{margin-left: 165px;}
 .comments .frame-list-comments.sub-2 > li{position: relative;}
 .comments .global-frame-comment-sub2{padding: 11px 0 5px;}
 .comments .funcs-buttons-comment + .frame-list-comments{padding-top: 1px;}
@@ -30,7 +35,7 @@
 .comments .s-all-comments{margin-top: 7px;}
 
 .comments .btn-form input{padding: 0 33px !important;}
-.comments .frame-drop-comment{padding-bottom: 0;display: none;width: auto;margin: 0 3px;}
+.comments .frame-drop-comment{padding-bottom: 0;display: none;width: auto;margin: 0 3px;clear: both;}
 
 .comments .frame-list-comments .frame-drop-comment{padding: 25px 0 0;}
 .comments .frame-drop-comment + .frame-list-comments{padding-top: 25px;}
@@ -60,4 +65,5 @@
 .comments .frame-drop-comment .title-comment{padding-left: 137px;margin-bottom: 0;}
 .forComments{position: relative;}
 #comment .preloader{top: 15px;}
+.frame-comments{margin-bottom: 0;}
 /*/comments*/

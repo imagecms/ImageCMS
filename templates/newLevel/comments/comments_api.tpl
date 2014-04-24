@@ -5,8 +5,8 @@
     </button>
 {/if}
 <div class="comments" id="comments">
-    <div class="title-comment">{if $comments_arr}{lang('Отзывы покупателей', 'newLevel')}{/if} {if !$visibleMainForm || $visibleMainForm == NULL}<button class="d_l_1" data-drop=".comments-main-form" data-place="inherit" data-overlay-opacity="0" data-after="Comments.toComment">Оставить свой отзыв</button>{/if}</div>
-    {if $comments_arr}
+    <div class="title-comment">{lang('Отзывы покупателей', 'newLevel')} {if $visibleMainForm === false || $visibleMainForm == NULL}<button class="d_l_1" data-drop=".comments-main-form" data-place="inherit" data-overlay-opacity="0" data-after="Comments.toComment">{lang('Оставить свой отзыв', 'newLevel')}</button>{/if}</div>
+        {if $comments_arr}
         <div class="frame-list-comments">
             <ul class="sub-1 product-comment patch-product-view">
                 {foreach $comments_arr as $key => $comment}
@@ -64,6 +64,7 @@
                                         </p>
                                     {/if}
                                 </div>
+
                                 {if $can_comment == 0 OR $is_logged_in}
                                     <div class="btn">
                                         <button type="button" data-rel="cloneAddPaste" data-parid="{$comment['id']}">
@@ -95,6 +96,7 @@
                                                             {$com_ch.text}
                                                         </p>
                                                     </div>
+
                                                 </div>
                                             </div>
                                         </li>
@@ -108,14 +110,16 @@
                     </li>
                 {/foreach}
             </ul>
-            <button class="t-d_n f-s_0 s-all-d ref d_n_" data-trigger="[data-href='#comment']" data-scroll="true">
-                <span class="icon_arrow"></span>
-                <span class="text-el">{lang('Смотреть все ответы','newLevel')}</span>
-            </button>
+            {if $CI->core->core_data['data_type'] != 'page'}
+                <button class="t-d_n f-s_0 s-all-d ref d_n_" data-trigger="[data-href='#comment']" data-scroll="true">
+                    <span class="icon_arrow"></span>
+                    <span class="text-el">{lang('Смотреть все ответы','newLevel')}</span>
+                </button>
+            {/if}
         </div>
     {/if}
     {if $can_comment == 0 OR $is_logged_in}
-        <div class="drop comments-main-form {if !$comments_arr}noComments{/if} {if $visibleMainForm}active inherit{/if}" {if $visibleMainForm}style="display: block;"{/if}>
+        <div class="drop comments-main-form {if !$comments_arr}noComments{/if} {if $visibleMainForm || $visibleMainForm == NULL}active inherit{/if}" {if $visibleMainForm}style="display: block;"{/if}>
             <div class="frame-comments layout-highlight">
                 <div class="title-default title-comment">
                     <div class="title">{lang('Оставить комментарий','newLevel')}</div>
@@ -124,30 +128,32 @@
                 <div class="form-comment main-form-comments">
                     <div class="inside-padd">
                         <form method="post">
-                            {if !$is_logged_in}
-                                {if $use_moderation}
-                                    <label class="d_n succ">
-                                        <span class="frame-form-field">
-                                            <div class="msg">
-                                                <div class="success">
-                                                    {lang('Комментарий будет отправлен на модерацию','newLevel')}
-                                                </div>
+                            {if $use_moderation}
+                                <label class="d_n succ">
+                                    <span class="frame-form-field">
+                                        <div class="msg">
+                                            <div class="success">
+                                                {lang('Ваш комментарий будет опубликован после модерации администратором','newLevel')}
                                             </div>
+                                        </div>
+                                    </span>
+                                </label>
+                            {/if}
+                            {if !$is_logged_in}
+                                <div class="clearfix">
+                                    <label style="width: 45%;float: left;">
+                                        <span class="title">{lang('Ваше имя','newLevel')}</span>
+                                        <span class="frame-form-field">
+                                            <input type="text" name="comment_author" value="{get_cookie('comment_author')}"/>
                                         </span>
                                     </label>
-                                {/if}
-                                <label style="width: 45%;float: left;">
-                                    <span class="title">{lang('Ваше имя','newLevel')}</span>
-                                    <span class="frame-form-field">
-                                        <input type="text" name="comment_author" value="{get_cookie('comment_author')}"/>
-                                    </span>
-                                </label>
-                                <label style="width: 45%;margin-left: 10%;float: left;">
-                                    <span class="title">{lang('Ваш email:', 'newLevel')}</span>
-                                    <span class="frame-form-field">
-                                        <input type="text" name="comment_email" id="comment_email" value="{get_cookie('comment_email')}"/>
-                                    </span>
-                                </label>
+                                    <label style="width: 45%;margin-left: 10%;float: left;">
+                                        <span class="title">{lang('Ваш email:', 'newLevel')}</span>
+                                        <span class="frame-form-field">
+                                            <input type="text" name="comment_email" id="comment_email" value="{get_cookie('comment_email')}"/>
+                                        </span>
+                                    </label>
+                                </div>
                             {/if}
                             <label>
                                 <span class="title">{lang('Текст комментария:')}</span>
@@ -223,22 +229,43 @@
                                 <input type="text" name="comment_email" value="{get_cookie('comment_email')}"/>
                             </span>
                         </label>
+
+                    {/if}
+                    {if $use_moderation}
+
                         <label class="d_n succ">
                             <span class="frame-form-field">
                                 <div class="msg">
                                     <div class="success">
-                                        {lang('Комментарий будет отправлен на модерацию','newLevel')}
+
+                                        {lang('Ваш комментарий будет опубликован после модерации администратором','newLevel')}
+
                                     </div>
                                 </div>
                             </span>
                         </label>
                     {/if}
+
                     <label>
                         <span class="title">{lang('Текст ответа:','newLevel')}</span>
                         <span class="frame-form-field">
                             <textarea class="comment_text" name="comment_text"></textarea>
                         </span>
                     </label>
+                    <!-- End star reiting -->
+                    {if $use_captcha}
+                        <div class="frame-label m-b_10">
+                            <span class="title">{lang('Код защиты')}:</span>
+                            <div class="clearfix">
+                                <div class="m-b_10 m-t_5 f_l">
+                                    {$cap_image}
+                                </div>
+                                <div class="frame-form-field o_h">
+                                    <input type="text" name="captcha" id="captcha" class="m-t_5"/>
+                                </div>
+                            </div>
+                        </div>
+                    {/if}
                     <div class="frame-label">
                         <span class="frame-form-field">
                             <input type="hidden" id="parent" name="comment_parent" value="">

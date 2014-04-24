@@ -25,7 +25,7 @@
                 <div class="tab-content">
                     <div class="tab-pane" id="backup_list">
 
-                        <table id="backups_list" class="table table-striped table-bordered table-hover table-condensed">
+                        <table id="backups_list" class="table table-striped table-bordered table-hover table-condensed t-l_a">
                             <thead>
                             <th>{lang('File name', 'admin')}</th>
                             <th>{lang('Source', 'admin')}</th>
@@ -67,7 +67,7 @@
                     </div>
 
                     <div class="tab-pane active" id="backup_create">
-                        <table class="table table-striped table-bordered table-hover table-condensed">
+                        <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
                             <thead>
                                 <tr>
                                     <th colspan="6">
@@ -80,7 +80,7 @@
                                     <td colspan="6">
                                         <form action="{$BASE_URL}admin/backup/create" method="post" id="createBackup">
                                             <div class="form-horizontal">
-                                                <div class="inside_padd">
+                                                <div class="inside_padd span9">
                                                     <div class="control-group m-t_10">
                                                         <div class="control-label"></div>
                                                         <div class="controls">
@@ -102,7 +102,7 @@
                                                                 </span>
                                                                 {lang("Save on the server","admin")}
                                                             </span>
-                                                            <p class="help-block">{lang("File will be saved in the directory","admin")} ./application/backups.</p>
+                                                            <p class="help-block">{lang("File will be saved in the directory","admin")} {echo BACKUPFOLDER}</p>
                                                         </div>
                                                     </div>
 
@@ -155,7 +155,7 @@
                     </div>
 
                     <div class="tab-pane" id="backup_settings">
-                        <table class="table table-striped table-bordered table-hover table-condensed">
+                        <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
                             <thead>
                                 <tr>
                                     <th colspan="6">
@@ -166,7 +166,7 @@
                             <tbody>
                                 <tr>
                                     <td colspan="6">
-                                        <div class="inside_padd">
+                                        <div class="inside_padd span9">
                                             <div class="form-horizontal">
                                                 <div class="row-fluid">
                                                     <div class="control-group">

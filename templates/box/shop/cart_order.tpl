@@ -1,5 +1,5 @@
 <script type="text/javascript">
-    totalItemsBask = {echo $totalItems}
+    totalItemsBask = {echo $totalItems && $totalItems != 0 ? $totalItems : 0}
 </script>
 {if $gift_key}
     <input type="hidden" name="gift" value="{echo $gift_key}"/>
@@ -22,8 +22,8 @@
                         <div class="description">
                             {if $item->getName() && trim($item->getName()) != trim($item->getSProducts()->getName())}
                                 <span class="frame-variant-name">
-                                    <span class="text-el">{lang('Вариант','newLevel')}</span>
-                                    <span class="code">({echo trim($item->getName())})</span>
+                                    <span class="code text-el">{lang('Вариант','newLevel')}</span>
+                                    <span class="text-el">{echo trim($item->getName())}</span>
                                 </span>
                             {/if}
                             {if $item->getNumber()}
@@ -37,43 +37,38 @@
                     <td>
                         <div class="frame-frame-count">
                             <div class="frame-count">
-                                <span class="count-or-compl">{lang('Кол-во', 'newLevel')}:</span>
-                                <span class="plus-minus">{echo $item->quantity}</span>
-                                <span class="text-el">{lang('шт.', 'newLevel')}</span>
+                                <span class="plus-minus">{echo $item->quantity}</span><span class="text-el">{lang('шт.', 'newLevel')}</span>
                             </div>
                         </div>
                     </td>
                     <td class="frame-cur-sum-price">
-                        <span class="title">{lang('Сумма','newLevel')}: </span>
-                        <div class="frame-cur-sum-price">
-                            <div class="frame-prices f-s_0">
-                                {if ShopCore::app()->SCurrencyHelper->convert($item->originPrice) != ShopCore::app()->SCurrencyHelper->convert($item->price)}
-                                    <span class="price-discount">
+                        <div class="frame-prices f-s_0">
+                            {if ShopCore::app()->SCurrencyHelper->convert($item->originPrice) != ShopCore::app()->SCurrencyHelper->convert($item->price)}
+                                <span class="price-discount">
+                                    <span>
+                                        <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($item->originPrice) * $item->quantity}</span>
+                                        <span class="curr">{$CS}</span>
+                                    </span>
+                                </span>
+                            {/if}
+                            <span class="current-prices f-s_0">
+                                <span class="price-new">
+                                    <span>
+                                        <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($item->price * $item->quantity)}</span>
+                                        <span class="curr">{$CS}</span>
+                                    </span>
+                                </span>
+                                {/*}
+                                {if $NextCSId}
+                                    <span class="price-add">
                                         <span>
-                                            <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($item->originPrice) * $item->quantity}</span>
-                                            <span class="curr">{$CS}</span>
+                                            <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($item->price * $item->quantity, $NextCSId)}</span>
+                                            <span class="curr">{$NextCS}</span>
                                         </span>
                                     </span>
                                 {/if}
-                                <span class="current-prices f-s_0">
-                                    <span class="price-new">
-                                        <span>
-                                            <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($item->price * $item->quantity)}</span>
-                                            <span class="curr">{$CS}</span>
-                                        </span>
-                                    </span>
-                                    {/*}
-                                    {if $NextCSId}
-                                        <span class="price-add">
-                                            <span>
-                                                <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($item->price * $item->quantity, $NextCSId)}</span>
-                                                <span class="curr">{$NextCS}</span>
-                                            </span>
-                                        </span>
-                                    {/if}
-                                    { */}
-                                </span>
-                            </div>
+                                { */}
+                            </span>
                         </div>
                     </td>
                 </tr>
@@ -81,7 +76,7 @@
                 <!-- Start. Shop kit -->
                 <tr class="row row-kits">
                     <td class="frame-items frame-items-kit">
-                        <div class="title-h3 c_9">{lang('Комплект товаров', 'newLevel')}</div>
+                        <div class="title">{lang('Комплект товаров', 'newLevel')}</div>
                         <ul class="items items-bask">
                             {foreach $item->items as $k => $kitItem}
                                 <li>
@@ -99,8 +94,8 @@
                                         <div class="description">
                                             {if $kitItem->getName() && trim($kitItem->getName()) != trim($kitItem->getSProducts()->getName())}
                                                 <span class="frame-variant-name">
-                                                    <span class="text-el">{lang('Вариант','newLevel')}</span>
-                                                    <span class="code">({echo $kitItem->getName()})</span>
+                                                    <span class="code text-el">{lang('Вариант','newLevel')}</span>
+                                                    <span class="text-el">{echo $kitItem->getName()}</span>
                                                 </span>
                                             {/if}
                                             {if $kitItem->getSProducts()->getNumber()}
@@ -118,14 +113,11 @@
                     <td>
                         <div class="frame-frame-count">
                             <div class="frame-count">
-                                <span class="count-or-compl">{lang('Кол-во', 'newLevel')}:</span>
-                                <span class="plus-minus">{echo $item->quantity}</span>
-                                <span class="text-el">{lang('шт.', 'newLevel')}</span>
+                                <span class="plus-minus">{echo $item->quantity}</span><span class="text-el">{lang('шт.', 'newLevel')}</span>
                             </div>
                         </div>
                     </td>
                     <td class="frame-cur-sum-price">
-                        <span class="title">{lang('Сумма','newLevel')}: </span>
                         <div class="frame-prices f-s_0">
                             {if ShopCore::app()->SCurrencyHelper->convert($item->originPrice) != ShopCore::app()->SCurrencyHelper->convert($item->price)}
                                 <span class="price-discount">
@@ -181,7 +173,7 @@
                 </div>
             </td>
         </tr>
-        {if $deliveryMethod}
+        {if $deliveryMethod && $deliveryMethod->getPrice() != 0 || $deliveryMethod && $deliveryMethod->getDeliverySumSpecifiedMessage() != ''}
             <tr>
                 <td colspan="3">
                     <span class="s-t f_l">{lang('Доставка','newLevel')}:</span>
@@ -195,9 +187,10 @@
                                 {$cartPrice += $priceDel}
                                 <span class="price f-w_b">{echo $priceDel}</span>
                                 <span class="curr">{$CS}</span>
-                                (<span class="price f-w_b">{echo $priceDelAdd}</span>
-                                <span class="curr-add">{$NextCS}</span>)
-                                <span class="not-delivery-price"></span>
+                                {if $NextCSId}
+                                    (<span class="price f-w_b">{echo $priceDelAdd}</span>
+                                    <span class="curr-add">{$NextCS}</span>)
+                                {/if}
                             {else:}
                                 <span class="text-el s-t">{lang('Бесплатно', 'newLevel')}</span>
                             {/if}
@@ -229,7 +222,7 @@
                     </div>
                 </td>
             </tr>
-        {else:}
+        {elseif $CI->load->module('mod_discount/discount_api')->isGiftCertificat()}
             <tr>
                 <td colspan="3">
                     <div class="clearfix">
@@ -244,7 +237,7 @@
                                 </div>
                             {else:}
                                 <div class="btn-toggle-gift">
-                                    <button type="button" class="d_l_1" data-drop="#gift" data-place="inherit" data-overlay-opacity="0">
+                                    <button type="button" class="d_l_3" data-drop="#gift" data-place="inherit" data-overlay-opacity="0">
                                         <span class="text-el">{lang('Ввести промо-код', 'newLevel')}</span>
                                     </button>
                                 </div>
@@ -266,31 +259,29 @@
         {/if}
     </tfoot>
 </table>
-<div class="gen-sum-order frame-foot">
-    <div class="header-frame-foot">
-        <div class="inside-padd clearfix">
-            <span class="title f_l">{lang('К оплате с учетом доставки','newLevel')}:</span>
-            <span class="frame-prices f_r">
-                <span class="current-prices f-s_0">
-                    <span class="price-new">
-                        <span>
-                            <span class="price" id="finalAmount">
-                                {echo ShopCore::app()->SCurrencyHelper->convert($cartPrice)}
-                            </span>
-                            <span class="curr">{$CS}</span>
+<div class="gen-sum-order footer-bask">
+    <div class="inside-padd clearfix">
+        <span class="title f_l">{lang('Всего к оплате','newLevel')}:</span>
+        <span class="frame-prices f_r">
+            <span class="current-prices f-s_0">
+                <span class="price-new">
+                    <span>
+                        <span class="price" id="finalAmount">
+                            {echo ShopCore::app()->SCurrencyHelper->convert($cartPrice)}
                         </span>
-                    </span>
-                    {if $NextCS != null}
-                        <span class="price-add">
-                            <span>
-                                (<span class="price" id="finalAmountAdd">{echo ShopCore::app()->SCurrencyHelper->convert($cartPrice, $NextCSId)}</span>
-                                <span class="curr-add">{$NextCS}</span>)
-                            </span>
-                        {/if}
+                        <span class="curr">{$CS}</span>
                     </span>
                 </span>
+                {if $NextCS != null}
+                    <span class="price-add">
+                        <span>
+                            (<span class="price" id="finalAmountAdd">{echo ShopCore::app()->SCurrencyHelper->convert($cartPrice, $NextCSId)}</span>
+                            <span class="curr-add">{$NextCS}</span>)
+                        </span>
+                    {/if}
+                </span>
             </span>
-        </div>
+        </span>
     </div>
 </div>
 <div class="preloader" style="display: none;"></div>

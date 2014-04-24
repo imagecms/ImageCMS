@@ -1,4 +1,5 @@
 <?php
+
 /*
  * ---------------------------------------------------------------
  * APPLICATION ENVIRONMENT
@@ -180,7 +181,9 @@ define('TEMPLATES_PATH', PUBPATH . 'templates/');
 // Name of the "system folder"
 define('SYSDIR', trim(strrchr(trim(BASEPATH, '/'), '/'), '/'));
 
-
+define('DOCUMENT_ROOT', $_SERVER['DOCUMENT_ROOT']);
+define('MAINSITE', '');
+define('BACKUPFOLDER', PUBPATH . 'application/backups/');
 // The path to the "application" folder
 if (is_dir($application_folder)) {
     define('APPPATH', $application_folder . '/');
@@ -193,13 +196,13 @@ if (is_dir($application_folder)) {
 }
 
 
-define('IMAGECMS_NUMBER', '4.5.2 Premium');
+define('IMAGECMS_NUMBER', '4.6 Premium');
 
-define('IMAGECMS_VERSION', '20140115');
+define('IMAGECMS_VERSION', '20140320');
 
 define('IMAGECMS_BUILD_ID', '');
 
-define('BUILD_ID', '452.657');
+define('BUILD_ID', '46.777');
 
 define('IMAGECMS_PUBLIC_ID', '51035d2a96a227c54d0dea3ff415ced6d39266c3');
 /*

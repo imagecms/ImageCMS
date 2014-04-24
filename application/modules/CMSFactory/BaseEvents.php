@@ -77,7 +77,7 @@ abstract class BaseEvents {
     }
 
     public function get() {
-        var_dumps($this->storage);
+        //var_dumps($this->storage);
     }
 
     /**
@@ -397,6 +397,68 @@ abstract class BaseEvents {
 
     final public function onSearchPageLoad() {
         $this->key = 'search:load';
+        return $this;
+    }
+
+    /**
+     * <p>The possible returned elements from <b>setListener</b> are as follows:</p>
+     * <table>
+     * <tr valign="top"><td>['model']</td><td>Brand model</td></tr>
+     * <tr valign="top"><td>['url']</td><td>Brand Url</td></tr>
+     * <tr valign="top"><td>['userId']</td><td>User Id</td></tr>
+     * </table>
+     * @return BehaviorFactory
+     * @author Hellmark
+     * @copyright ImageCMS (c) 2014, Hellmark <dev@imagecms.net>
+     */
+    public function onShopBrandPreEdit() {
+        $this->key = 'ShopAdminBrands:preEdit';
+        return $this;
+    }
+
+    /**
+     * <p>The possible returned elements from <b>setListener</b> are as follows:</p>
+     * <table>
+     * <tr valign="top"><td>['model']</td><td>Brand model</td></tr>
+     * <tr valign="top"><td>['userId']</td><td>User Id</td></tr>
+     * </table>
+     * @return BehaviorFactory
+     * @author Hellmark
+     * @copyright ImageCMS (c) 2014, Hellmark <dev@imagecms.net>
+     */
+    public function onShopBrandCreate() {
+        $this->key = 'ShopAdminBrands:create';
+        return $this;
+    }
+
+    /**
+     * <p>The possible returned elements from <b>setListener</b> are as follows:</p>
+     * <table>
+     * <tr valign="top"><td>['model']</td><td>Brand model</td></tr>
+     * <tr valign="top"><td>['url']</td><td>Brand Url</td></tr>
+     * <tr valign="top"><td>['userId']</td><td>User Id</td></tr>
+     * </table>
+     * @return BehaviorFactory
+     * @author Hellmark
+     * @copyright ImageCMS (c) 2014, Hellmark <dev@imagecms.net>
+     */
+    public function onShopBrandEdit() {
+        $this->key = 'ShopAdminBrands:edit';
+        return $this;
+    }
+
+    /**
+     * <p>The possible returned elements from <b>setListener</b> are as follows:</p>
+     * <table>
+     * <tr valign="top"><td>['brandId']</td><td>Brand Id</td></tr>
+     * <tr valign="top"><td>['url']</td><td>Brand Url</td></tr>
+     * </table>
+     * @return BehaviorFactory
+     * @author Hellmark
+     * @copyright ImageCMS (c) 2014, Hellmark <dev@imagecms.net>
+     */
+    public function onShopBrandDelete() {
+        $this->key = 'ShopAdminBrands:delete';
         return $this;
     }
 

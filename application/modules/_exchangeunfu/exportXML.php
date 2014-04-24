@@ -83,11 +83,37 @@ class ExportXML {
 
                 $prod_ids = array_unique($p_ids);
                 $cat_ids = array_unique($c_ids);
+            }else {
+                if ($this->orders) {
+                    foreach ($this->orders as $order) {
+                        $users[] = $order['user_id'];
+                        $orders_ids[] = $order['id'];
+                    }
+                    $users = array_unique($users);
+                    $prod_ids = $this->ci->db
+                            ->select('product_id, category_id, full_path_ids,shop_products.external_id as spexid')
+                            ->join('shop_products', 'shop_products.id=shop_orders_products.product_id')
+                            ->join('shop_category', 'shop_products.category_id=shop_category.id')
+                            ->get('shop_orders_products')
+                            ->result_array();
+
+//        var_dumps($prod_ids);
+                    foreach ($prod_ids as $id) {
+                        $p_ids[] = $id['product_id'];
+                        $c_ids[] = $id['category_id'];
+                        foreach (unserialize($id['full_path_ids']) as $value) {
+                            $c_ids[] = $value;
+                        }
+                    }
+
+                    $prod_ids = array_unique($p_ids);
+                    $cat_ids = array_unique($c_ids);
+                }
             }
         }
-        // var_dumps($users);
-        // var_dumps($prod_ids);
-        // exit;
+         // var_dumps($partner_id);
+         // var_dumps($prod_ids);
+         // exit;
         $this->users = $this->ci->export_model->getUsers($users);
         $this->partners = $this->ci->export_model->getPartners($partner_id);
         $this->products = $this->ci->export_model->getProducts($prod_ids);

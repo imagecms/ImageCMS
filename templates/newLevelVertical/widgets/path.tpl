@@ -8,13 +8,13 @@
                 </a>
             </li>
             {foreach $navi_cats as $item} {$i++}
-                <li class="btn-crumb">
+                <li class="btn-crumb" typeof="v:Breadcrumb">
                     {if $i < count($navi_cats)}
-                        <a href="{site_url($item.path_url)}" typeof="v:Breadcrumb">
+                        <a href="{site_url($item.path_url)}" rel="v:url" property="v:title">
                             <span class="text-el">{$item.name}<span class="divider">→</span></span>
                         </a>
                     {else:}
-                        <button typeof="v:Breadcrumb" disabled="disabled">
+                        <button rel="v:url" property="v:title" disabled="disabled">
                             <span class="text-el">{$item.name}</span>
                         </button>
                     {/if}

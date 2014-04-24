@@ -40,23 +40,24 @@
                     function downloadJSAtOnload(scripts, callback, customEvent) {
                         var cL = 0,
                                 scriptsL = scripts.length;
-
+                        
                         $.map(scripts, function(i, n) {
                             $.ajax({
                                 url: theme + 'js/' + i + '.js',
                                 dataType: "script",
-                                cache: true,
-                                success: function() {
+                                cache: false,
+                                complete: function() {
                                     cL++;
                                     if (cL == scriptsL)
                                         if (callback) {
                                             eval(callback)();
-                                            setTimeout(function(){
+                                            setTimeout(function() {
                                                 $(document).trigger({'type': customEvent});
                                             }, 0);
                                         }
                                 }
                             });
+                            
                         })
                     }
                     // Check for browser support of event handling capability
@@ -120,9 +121,9 @@
 
         {literal}
             <script type="text/javascript">
-                $(window).load(function(){
+                $(window).load(function() {
                     init();
-                    setTimeout(function(){
+                    setTimeout(function() {
                         $(document).trigger({type: 'scriptDefer'})
                     }, 0)
                 })
@@ -130,12 +131,18 @@
         {/literal}
         { */}
         {/*}End. delete before upload to server{ */}
-        
+        {/*fancybox}
+        <link rel="stylesheet" type="text/css" href="{$THEME}js/fancybox/jquery.fancybox-1.3.4.css" media="all" />
+        <script type="text/javascript" src="{$THEME}js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+        {end. fancybox*/}
+
         {/*}uncomment before opload to server and combine and minimize scripts (in comment <!-- scripts -->...<!-- scripts end -->) into united_scripts file{ */}
         {/*} Start. uncoment before development { */}
+        
         <script type="text/javascript">
             initDownloadScripts(['united_scripts'], 'init', 'scriptDefer');
         </script>
+        
         {/*} End. uncoment before development { */}
         {include_shop_tpl('js_templates')}
     </body>

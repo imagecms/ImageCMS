@@ -9,7 +9,7 @@
 class Smart_filter extends \Category\BaseCategory {
 
     public function __construct() {
-        if ($this->uri->segments[2] == 'category' || $this->uri->segments[2] == 'filter' || $this->uri->segments[2] == 'pre_filter') {
+        if ($this->uri->segments[2] == 'category' || $this->uri->segments[3] == 'category' || $this->uri->segments[2] == 'filter' || $this->uri->segments[3] == 'filter' || $this->uri->segments[2] == 'pre_filter' || $this->uri->segments[3] == 'pre_filter') {
             parent::__construct();
             $lang = new MY_Lang();
             $lang->load('smart_filter');
@@ -66,8 +66,8 @@ class Smart_filter extends \Category\BaseCategory {
     
     public function pre_filter(){
         $property = $this->data['propertiesInCat'];
-        
-        echo json_encode($property);
+        $brand = $this->data['brands'];
+        echo json_encode(array('prop' =>$property, 'brand' => $brand));
     }
 
 //    public function ()

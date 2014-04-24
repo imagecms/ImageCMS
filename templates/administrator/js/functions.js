@@ -1,39 +1,39 @@
 var editorsEnabled = false;
- /**
-     * Getting/Setting caret position
-     * @param node domObject
-     * @param int begin
-     * @param int end
-     *
-     */
-    function caret(domObject, begin, end) {
-        var range;
+/**
+ * Getting/Setting caret position
+ * @param node domObject
+ * @param int begin
+ * @param int end
+ *
+ */
+function caret(domObject, begin, end) {
+    var range;
 
-        if (typeof begin == 'number') {
-            end = (typeof end === 'number') ? end : begin;
-            return $(domObject).each(function() {
-                if (domObject.setSelectionRange) {
-                    domObject.setSelectionRange(begin, end);
-                } else if (domObject.createTextRange) {
-                    range = domObject.createTextRange();
-                    range.collapse(true);
-              http://test21.siteimage.com.ua/corporate/main      range.moveEnd('character', end);
-                    range.moveStart('character', begin);
-                    range.select();
-                }
-            });
-        } else {
-            if (domObject[0].setSelectionRange) {
-                begin = domObject[0].selectionStart;
-                end = domObject[0].selectionEnd;
-            } else if (document.selection && document.selection.createRange) {
-                range = document.selection.createRange();
-                begin = 0 - range.duplicate().moveStart('character', -100000);
-                end = begin + range.text.length;
+    if (typeof begin == 'number') {
+        end = (typeof end === 'number') ? end : begin;
+        return $(domObject).each(function() {
+            if (domObject.setSelectionRange) {
+                domObject.setSelectionRange(begin, end);
+            } else if (domObject.createTextRange) {
+                range = domObject.createTextRange();
+                range.collapse(true);
+                range.moveEnd('character', end);
+                range.moveStart('character', begin);
+                range.select();
             }
-            return {begin: begin, end: end};
+        });
+    } else {
+        if (domObject[0].setSelectionRange) {
+            begin = domObject[0].selectionStart;
+            end = domObject[0].selectionEnd;
+        } else if (document.selection && document.selection.createRange) {
+            range = document.selection.createRange();
+            begin = 0 - range.duplicate().moveStart('character', -100000);
+            end = begin + range.text.length;
         }
+        return {begin: begin, end: end};
     }
+}
 // read cookie by name
 function readCookie(name) {
     var nameEQ = name + "=";
@@ -46,6 +46,20 @@ function readCookie(name) {
             return c.substring(nameEQ.length, c.length);
     }
     return null;
+}
+function setCookie(name, value, expires, path, domain, secure)
+{
+    var today = new Date();
+    today.setTime(today.getTime());
+    if (expires)
+    {
+        expires = expires * 1000 * 60 * 60 * 24;
+    }
+    var expiresDate = new Date(today.getTime() + (expires));
+    document.cookie = name + "=" + encodeURIComponent(value) +
+            ((expires) ? ";expires=" + expiresDate.toGMTString() : "") + ((path) ? ";path=" + path : "") +
+            ((domain) ? ";domain=" + domain : "") +
+            ((secure) ? ";secure" : "");
 }
 
 // expand categories tree to show last visited category
@@ -85,6 +99,14 @@ function ajaxLoadChildCategory(el, id) {
             initNiceCheck();
             share_alt_init();
             sortInit();
+            if ($.exists('[data-rel="tooltip"], [rel="tooltip"]'))
+                $('[data-rel="tooltip"], [rel="tooltip"]').not('tr').not('.row-category').tooltip({
+                    'delay': {
+                        show: 500,
+                        hide: 100
+                    }
+                });
+            difTooltip();
         })
 
 
@@ -95,9 +117,30 @@ function changeDefaultValute(id) {
     $.post('/admin/components/run/shop/currencies/makeCurrencyDefault', {id: id})
 
 }
-function changeMainValute(id) {
+function changeMainValute(id, curElement) {
+    $('.btn-danger').removeAttr('disabled');
+
+    $(curElement).closest('tr').find('.btn-danger').attr('disabled', 'disabled');
+
+    var additionalCurrency = $(curElement).closest('tr').find('.prod-on_off ');
+    if (!$(additionalCurrency).hasClass('disable_tovar')) {
+        $('.prod-on_off').addClass('disable_tovar').css('left', '-28px');
+
+        $.ajax({
+            type: "post",
+            data: {id: id, showOnSite: 0},
+            url: '/admin/components/run/shop/currencies/showOnSite',
+            success: function(data) {
+                //alert(data)
+            },
+            error: function() {
+
+            }
+        });
+    }
 
     $.post('/admin/components/run/shop/currencies/makeCurrencyMain', {id: id})
+
 
 }
 function ChangeMenuItemActive(obj, id) {
@@ -139,6 +182,7 @@ function ChangeSortActive(el, sortId)
         sortId: sortId,
         status: currentActiveStatus
     }, function(data) {
+
         $('.notifications').append(data)
         if (currentActiveStatus == 'true')
         {
@@ -147,7 +191,8 @@ function ChangeSortActive(el, sortId)
         } else {
             $(el).removeClass('disable_tovar').attr('rel', true);
         }
-
+        $(el).closest('tr').find('.orderMethodsEdit').removeClass('disabled')
+        $(el).closest('tr').find('.orderMethodsEdit').removeAttr('disabled')
     });
 }
 
@@ -172,8 +217,8 @@ function translite_title(from, to)
     var url = base_url + 'admin/pages/ajax_translit/';
     $.post(
             url, {
-        'str': $(from).val()
-    }, function(data)
+                'str': $(from).val()
+            }, function(data)
 
     {
         $(to).val(data);
@@ -188,8 +233,8 @@ function create_description(from, to)
 
     $.post(
             base_url + 'admin/pages/ajax_create_description/', {
-        'text': $(from).val()
-    },
+                'text': $(from).val()
+            },
     function(data) {
         $(to).val(data);
     }
@@ -235,9 +280,10 @@ $('.formSubmit').live('click', function() {
     var btn = this;
 
     var selector = $(this).attr('data-form');
-    var selector = $(this).attr('data-form');
     var action = $(this).data('action');
     var addData = $(this).data('adddata');
+    var datas = $(this).data('datas');
+    var after = $(this).data('after');
     $(selector).validate()
     if ($(selector).valid())
     {
@@ -249,12 +295,11 @@ $('.formSubmit').live('click', function() {
                     name: "action",
                     value: action
                 });
-                
-                formData.push({
-                    name: "addData",
-                    value: addData
-                });
-
+                if (addData)
+                    formData.push({
+                        name: "addData",
+                        value: addData
+                    });
             },
             success: function(data) {
                 $('#loading').fadeOut(100);
@@ -263,9 +308,13 @@ $('.formSubmit').live('click', function() {
                 $(resp).find('p').remove();
                 $('.notifications').append(resp);
                 $(btn).removeClass('disabled').attr('disabled', false);
+                if (after)
+                    eval(after);
                 return true;
             }
         };
+        if (datas)
+            options.data = datas;
         $(selector).ajaxSubmit(options);
     }
     else
@@ -611,7 +660,7 @@ function initTinyMCE()
 
 function initTextEditor(name)
 {
-    if (typeof(name) != 'undefined' && name.length != 0 && name != 'none')
+    if (typeof (name) != 'undefined' && name.length != 0 && name != 'none')
         ({
             'elrte': initElRTE,
             'tinymce': initTinyMCE
@@ -811,7 +860,7 @@ var orders = new Object({
         }, function(data) {
             $('#mainContent').after(data);
             $.pjax({
-                url: window.location.pathname,
+                url: window.location.href,
                 container: '#mainContent',
                 timeout: 3000
             });
@@ -833,7 +882,7 @@ var orders = new Object({
         }, function(data) {
             $('#mainContent').after(data);
             $.pjax({
-                url: window.location.pathname,
+                url: window.location.href,
                 container: '#mainContent',
                 timeout: 3000
             });
@@ -1150,17 +1199,28 @@ var callbacks = new Object({
     },
     setDefaultStatus: function(id, element)
     {
-
+        $('.btn-danger').removeAttr('disabled');
         $('.prod-on_off').addClass('disable_tovar').css('left', '-28px');
+        if ($(element).hasClass('disable_tovar')) {
+            $(element).closest('tr').find('.btn-danger').attr('disabled', 'disabled');
+            $(element).closest('tr').find('.prod-on_off').css('left', '0');
+            event.stopPropagation();
+        }
+
+
         $.post('/admin/components/run/shop/callbacks/setDefaultStatus', {
             id: id
         }, function(data) {
             $('.notifications').append(data);
         });
+
         return true;
     },
-    deleteStatus: function(id)
+    deleteStatus: function(id, curElement)
     {
+        if (!$(curElement).closest('tr').find('.disable_tovar').length) {
+            return false;
+        }
         $.post('/admin/components/run/shop/callbacks/deleteStatus', {
             id: id
         }, function(data) {

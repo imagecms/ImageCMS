@@ -51,7 +51,7 @@
                     });
                     pasteAfterEL.next()[effectIn](duration, function() {
                         $(document).trigger({
-                            'type': 'comments.showformreply', 
+                            'type': 'comments.showformreply',
                             'el': $(this)
                         });
                     });
@@ -207,12 +207,6 @@ var Comments = {
                 data: "comid=" + comid,
                 dataType: "json",
                 url: '/comments/commentsapi/setyes',
-                beforeSend: function(){
-                    $(document).trigger('showActivity');
-                },
-                complete: function(){
-                    $(document).trigger('hideActivity');
-                },
                 success: function(obj) {
                     if (obj !== null) {
                         $('.yesholder' + comid).each(function() {
@@ -230,12 +224,6 @@ var Comments = {
                 data: "comid=" + comid,
                 dataType: "json",
                 url: '/comments/commentsapi/setno',
-                beforeSend: function(){
-                    $(document).trigger('showActivity');
-                },
-                complete: function(){
-                    $(document).trigger('hideActivity');
-                },
                 success: function(obj) {
                     if (obj !== null) {
                         $('.noholder' + comid).each(function() {
@@ -257,11 +245,7 @@ var Comments = {
             dataType: "json",
             data: dataSend,
             type: "post",
-            beforeSend: function(){
-                $(document).trigger('showActivity');
-            },
             success: function(obj) {
-                $(document).trigger('hideActivity');
                 el.each(function() {
                     $(this).empty();
                 });
@@ -276,8 +260,7 @@ var Comments = {
                         }
                     });
                     if (parseInt(obj.commentsCount) != 0) {
-                        $('#cc').html('');
-                        $('#cc').html(text.comment + ' ('+parseInt(obj.commentsCount)+')');
+                        $('#cc').html('('+parseInt(obj.commentsCount)+')');
                     }
                     $(document).trigger({
                         'type': 'rendercomment.after', 
@@ -294,13 +277,11 @@ var Comments = {
             '&action=newPost',
             dataType: "json",
             beforeSend: function(){
-                $(document).trigger('showActivity');
                 $(el).closest('.forComments').append('<div class="preloader"></div>');
             },
             type: "post",
             complete: function(){
                 $(el).closest('.forComments').find(preloader).remove();
-                $(document).trigger('hideActivity');
             },
             success: function(obj) {
                 if (obj.answer === 'sucesfull') {
@@ -316,6 +297,7 @@ var Comments = {
                     form.find('.error_text').remove();
                     form.prepend('<div class="error_text">' + message.error(obj.validation_errors) + '</div>');
                     drawIcons(form.find('.error_text').find(selIcons));
+                    $(el).closest('.patch-product-view').removeAttr('style').css('max-height', 'none');
                 }
             }
         });
