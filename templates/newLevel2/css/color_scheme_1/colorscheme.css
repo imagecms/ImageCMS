@@ -72,7 +72,7 @@ a:hover, .selected a, .ref:hover, .nav-static-pages > li > a:hover{text-decorati
 
 /*border top*/
 .frame-check-filter, .frames-checks-sliders, .header-category, .frame-prices-buy-wish-compare, .layout-highlight-msg, .frame-bask-order, .frame-category-menu, .nav-static-pages{position: relative;border: 1px solid transparent;-moz-border-radius: 4px;-webkit-border-radius: 4px;border-radius: 4px;}
-.frames-checks-sliders:before, .header-category:before, .item-product .frame-prices-buy:before, .tabs-data > li.active:before, .layout-highlight:before, .frame-bask-order:before{content: "";width: 100%;height: 3px;-moz-border-radius: 5px 5px 0 0;-webkit-border-radius: 5px 5px 0 0;border-radius: 5px 5px 0 0;position: absolute;top: -3px;z-index: -1;left: 0;}
+.frames-checks-sliders:before, .header-category:before, .tabs-data > li.active:before, .layout-highlight:before, .frame-bask-order:before{content: "";width: 100%;height: 3px;-moz-border-radius: 5px 5px 0 0;-webkit-border-radius: 5px 5px 0 0;border-radius: 5px 5px 0 0;position: absolute;top: -3px;z-index: -1;left: 0;}
 .tabs-data > li.active:before{padding: 0 2px;left: -2px;}
 /*/border top*/
 
@@ -102,7 +102,10 @@ a:hover, .selected a, .ref:hover, .nav-static-pages > li > a:hover{text-decorati
 .icon_table_cat{background-position: -180px -100px;}
 .icon_wish, .icon_wish_list{background-position: -200px -100px;}
 .icon_compare, .icon_compare_list{background-position: -220px -100px;}
+.icon_times_drop, .icon_times{background-position: -240px -100px;}
+.icon_remove_all_filter{background-position: -260px -100px;}
 
+.icon_delivery, .icon_payment, .icon_phone_product{visibility: hidden;}
 .icon_reg{}
 [class*="icon_arrow"]{}
 .icon_phone_product{}
@@ -110,12 +113,10 @@ a:hover, .selected a, .ref:hover, .nav-static-pages > li > a:hover{text-decorati
 .icon_times_drop{}
 .icon_times_cart{}
 .icon_times_apply{}
-.icon_times{}
 .icon_compare{}
 .icon_already_show{}
 .icon_arrow{}
 
-.icon_delivery{}
 .icon_payment{}
 .icon_comment{}
 .icon_info{}
@@ -187,9 +188,6 @@ a:hover, .selected a, .ref:hover, .nav-static-pages > li > a:hover{text-decorati
 .items-search-autocomplete{border-bottom: 1px solid transparent;}
 
 .item-product .frame-variant-name{margin-right: 10px;}
-.item-product .frame-wish-compare-list{border-top: 1px solid transparent;overflow: hidden;-moz-border-radius: 0 0 4px 4px;-webkit-border-radius: 0 0 4px 4px;border-radius: 0 0 4px 4px;}
-.item-product .frame-wish-compare-list:before{content: "";width: 110%;position: absolute;height: 2px;top: 0;left: -5%;}
-.item-product .frame-wish-compare-list .frame-btn-wish{margin-left: -1px;border-right: 1px solid transparent;}
 
 .items-info-discount > li{display: block;border-top: 1px solid transparent;}
 .items-brand-list > li > a{text-decoration: none;font-weight: bold;}
@@ -198,7 +196,7 @@ a:hover, .selected a, .ref:hover, .nav-static-pages > li > a:hover{text-decorati
 /*/items*/
 
 /*decor-element*/
-.decor-element{left: 0;padding: 8px;margin: -10px;position: absolute;top: 0;width: 100%;height: 100%;z-index: -1;border: 2px solid transparent;-moz-border-radius: 4px;-webkit-border-radius: 4px;border-radius: 4px;-webkit-transition: border-color .1s .3s ease-in-out, background-color .1s .3s ease-in-out;-moz-transition: border-color .1s .3s ease-in-out, background-color .1s .3s ease-in-out;-o-transition: border-color .1s .3s ease-in-out, background-color .1s .3s ease-in-out;transition: border-color .1s .3s ease-in-out, background-color .1s .3s ease-in-out;}
+.decor-element{left: 0;margin: -2px;position: absolute;top: 0;width: 100%;height: 100%;z-index: -1;border: 2px solid transparent;-webkit-transition: border-color .1s .3s ease-in-out, background-color .1s .3s ease-in-out, box-shadow .1s .3s ease-in-out;-moz-transition: border-color .1s .3s ease-in-out, background-color .1s .3s ease-in-out, box-shadow .1s .3s ease-in-out;-o-transition: border-color .1s .3s ease-in-out, background-color .1s .3s ease-in-out, box-shadow .1s .3s ease-in-out;transition: border-color .1s .3s ease-in-out, background-color .1s .3s ease-in-out, box-shadow .1s .3s ease-in-out;box-shadow: 5px 5px 4px rgba(0,0,0,.2);}
 /*/decor-element*/
 
 /*product*/
@@ -233,6 +231,9 @@ a:hover, .selected a, .ref:hover, .nav-static-pages > li > a:hover{text-decorati
 .items-v-carousel > li:before{border-top: 1px solid transparent;content: '';position: absolute;left: 0;top: 0;width: 100%;}
 .items-v-carousel > li:first-child:before{content: none;}
 .horizontal-carousel .group-button-carousel .arrow{border: 1px solid transparent;width: 50px;height: 50px;margin-top: -25px;-moz-border-radius: 25px;-webkit-border-radius: 25px;border-radius: 25px;}
+.horizontal-carousel .group-button-carousel [class*="icon_arrow_"]{width: 9px;height: 14px;}
+.horizontal-carousel .group-button-carousel .icon_arrow_p{background-position: -300px -80px;}
+.horizontal-carousel .group-button-carousel .icon_arrow_n{background-position: -320px -80px;}
 .vertical-carousel .group-button-carousel .arrow{left: 50%;margin-left: -9px;width: 15px;}
 .vertical-carousel .group-button-carousel .prev{top: 9px;}
 .vertical-carousel .group-button-carousel .next{bottom: 9px;top: auto;}
@@ -249,10 +250,16 @@ a:hover, .selected a, .ref:hover, .nav-static-pages > li > a:hover{text-decorati
 .frame-brands .frame-title > .title{font-size: 21px;}
 
 .frame-baner-start_page{border-bottom: 1px solid transparent;}
-.baner .prev, .baner .next{margin-top: -40px;}
-.baner [class*="icon_arrow_"]{width: 28px;height: 80px;}
-.baner .icon_arrow_n{background-position: -340px 0;}
-.baner .icon_arrow_p{background-position: -300px 0;}
+.frame-baner-start_page .prev, .frame-baner-start_page .next{margin-top: -40px;}
+.frame-baner-catalog .prev, .frame-baner-catalog .next{margin-top: -21px;}
+.frame-baner-start_page [class*="icon_arrow_"]{width: 28px;height: 80px;}
+.frame-baner-start_page .icon_arrow_n{background-position: -340px 0;}
+.frame-baner-start_page .icon_arrow_p{background-position: -300px 0;}
+
+.frame-baner-catalog .baner .arrow{background-color: rgba(255,255,255, .85);width: 42px;height: 42px;}
+.frame-baner-catalog [class*="icon_arrow_"]{width: 9px;height: 14px;}
+.frame-baner-catalog .icon_arrow_p{background-position: -300px -80px;}
+.frame-baner-catalog .icon_arrow_n{background-position: -320px -80px;}
 
 .jspHorizontalBar .jspTrack, .jspVerticalBar .jspTrack{border-radius: 4px;}
 .jspVerticalBar .sjspDrag, .jspHorizontalBar .jspDrag{border-radius: 8px;}
