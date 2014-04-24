@@ -9,7 +9,7 @@
                 <a href="{$BASE_URL}admin/components/modules_table"
                    class="t-d_n m-r_15 pjax">
                     <span class="f-s_14">←</span>
-                    <span class="t-d_u">{lang('Back', 'wishlist')}</span>
+                    <span class="t-d_u">{lang('Back', 'admin')}</span>
                 </a>
                 <a href="{$BASE_URL}admin/components/cp/wishlist" class="btn btn-small pjax">
                     {lang('Users', 'wishlist')}

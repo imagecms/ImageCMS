@@ -33,14 +33,14 @@
                                         <div class="control-group">
                                             <label class="control-label" for="email">{lang('E-Mail', 'user_manager')}</label>
                                             <div class="controls">
-                                                <input type="text" name="email" id="email" value="{$email}" class="required email"/>
+                                                <input type="text" name="email" id="email" value="{$email}" class="email required"/>
                                             </div>
                                         </div>
 
                                         <div class="control-group">
                                             <label class="control-label" for="username">{lang('Full name', 'user_manager')}</label>
                                             <div class="controls">
-                                                <input type="text" name="username" id="email" value="{$username}"/>
+                                                <input type="text" name="username" id="email" value="{$username}" class="text required"/>
                                             </div>
                                         </div>
 
