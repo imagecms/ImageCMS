@@ -238,7 +238,7 @@
                                 <div class="msg">
                                     <div class="error">
                                         <span class="icon_error"></span>
-                                        <span class="text-el">{lang('Неверный подарочный сертификат', 'newLevel')}</span>
+                                        <span class="text-el">{lang('Неверный код подарочного сертификата', 'newLevel')}</span>
                                     </div>
                                 </div>
                             {else:}
