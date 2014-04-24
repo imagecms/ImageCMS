@@ -36,10 +36,6 @@
         <script type="text/javascript" src="{$THEME}js/jquery-1.8.3.min.js"></script>
         {include_tpl('config.js')}
         {literal}
-            <style>
-                .apn-toolbar{height: 0!important;border: 0!important;}
-                html.html{padding-top: 0!important;border: 0!important;}
-            </style>
             <script type="text/javascript">
                 function initDownloadScripts(scripts, callback, customEvent) {
                     function downloadJSAtOnload(scripts, callback, customEvent) {
@@ -124,9 +120,9 @@
                 $(window).load(function() {
                     init();
                     setTimeout(function() {
-                        $(document).trigger({type: 'scriptDefer'})
-                    }, 0)
-                })
+                        $(document).trigger({type: 'scriptDefer'});
+                    }, 0);
+                });
             </script>
         {/literal}
 
