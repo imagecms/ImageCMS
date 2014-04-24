@@ -2,7 +2,7 @@
     <div class="horizontal-carousel">
         <section class="special-proposition frame-view-products">
             <div class="big-container">
-                <div class="carousel-js-css items-carousel">
+                <div class="frame-scroll-pane items-carousel">
                     {/*frame-scroll-pane || carousel-js-css || ' '*/}
                     <div class="content-carousel container">
                         <ul class="items items-catalog items-h-carousel items-product">
