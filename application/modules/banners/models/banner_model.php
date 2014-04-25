@@ -64,13 +64,17 @@ class Banner_model extends CI_Model {
         $this->db->query($sql);
     }
 
-    public function get_all_banner($locale, $group = 0) {
+    public function get_all_banner($locale, $group = 0, $active = 1) {
 
         $query = $this->db
                 ->select('*, mod_banner.id as id')
-                ->where('locale', $locale)
-                ->where('active', 1)
-                ->join('mod_banner_i18n', 'mod_banner.id = mod_banner_i18n.id')
+                ->where('locale', $locale);
+
+        if ($active) {
+            $query->where('active', $active);
+        }
+
+        $query = $query->join('mod_banner_i18n', 'mod_banner.id = mod_banner_i18n.id')
                 ->order_by('position')
                 ->get('mod_banner');
 

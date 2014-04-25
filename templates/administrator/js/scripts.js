@@ -1524,6 +1524,7 @@ $('#productsForOrders').live('change', function() {
 $('#variantsForOrders option').live('click', function() {
     var variantId = $(this).val();
     $('#variantsForOrders ').val(variantId)
+    $('#addVariantToCart').removeClass('btn-primary').removeAttr('disabled').addClass('btn-success').removeClass('btn-danger disabled').html(langs.addToCart);
 
 });
 
@@ -1551,7 +1552,7 @@ $('#variantsForOrders').live('change', function() {
         $('#variantInfoBlock').show();
 
     //Disable button if stock =0
-    if (checkProdStock == 1 && stock == 0) {
+    if (stock == 0) {
         $('#addVariantToCart').removeClass('btn-primary').removeClass('btn-success').addClass('btn-danger disabled').html(langs.outOfStock);
     } else {
         $('#addVariantToCart').removeClass('btn-primary').addClass('btn-success').removeClass('btn-danger disabled').html(langs.addToCart);

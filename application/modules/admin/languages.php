@@ -278,7 +278,7 @@ class Languages extends BaseAdminController {
         }
     }
 
-    function deleteLanguageFolders2($lang) {
+    private function deleteLanguageFolders($lang) {
         $templates_dir = './templates';
         $main_dir = './application/language/main';
         $modules_dir = './application/modules';
@@ -402,6 +402,7 @@ class Languages extends BaseAdminController {
                     exit;
                 }
                 $this->cms_admin->delete_lang($item);
+                $this->deleteLanguageFolders($lang['locale']);
                 // delete translated pages
                 $this->db->where('lang', $item);
                 $this->db->delete('content');
