@@ -73,20 +73,29 @@ class Trash extends MY_Controller {
 
     public static function addProductWhenAjaxChangeActive($arg) {
         /* @var $model SProducts */
-        $model = $arg['model'];
+        $models = $arg['model'];
         /* @var $ci MY_Controller */
         $ci = &get_instance();
-        if ($model->getActive()) {
-            $ci->db->where('trash_url', 'shop/product/' . $model->getUrl())->delete('trash');
-        } else {
-            $array = array(
-                'trash_id' => $model->getCategoryId(),
-                'trash_url' => 'shop/product/' . $model->getUrl(),
-                'trash_redirect_type' => 'category',
-                'trash_type' => '301',
-                'trash_redirect' => shop_url('category/' . $model->getMainCategory()->getFullPath())
-            );
-            $ci->db->insert('trash', $array);
+
+        if (!$models instanceof \PropelObjectCollection) {
+            $model = $models;
+            $models = new \PropelObjectCollection();
+            $models->append($model);
+        }
+
+        foreach ($models as $model) {
+            if ($model->getActive()) {
+                $ci->db->where('trash_url', 'shop/product/' . $model->getUrl())->delete('trash');
+            } else {
+                $array = array(
+                    'trash_id' => $model->getCategoryId(),
+                    'trash_url' => 'shop/product/' . $model->getUrl(),
+                    'trash_redirect_type' => 'category',
+                    'trash_type' => '301',
+                    'trash_redirect' => shop_url('category/' . $model->getMainCategory()->getFullPath())
+                );
+                $ci->db->insert('trash', $array);
+            }
         }
     }
 
