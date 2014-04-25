@@ -11,7 +11,7 @@
         </div>
         <input type="text" name="variableValueEdit" class="variableValueEdit" style="display: none"/>
     </td>
-    <td class="span1">
+    <td style="width: 100px">
         <button class="btn my_btn_s btn-small btn-success editVariable" type="button">
             <i class="icon-edit"></i>
         </button>

@@ -36,7 +36,7 @@
                                         <form id="create" method="post" active="{$SELF_URL}/create_user/">
 
                                             <div class="control-group">
-                                                <label class="control-label" for="email">{lang('Email', 'user_manager')}</label>
+                                                <label class="control-label" for="email">{lang('Email', 'user_manager')}:</label>
                                                 <div class="controls">
                                                     <input type="text" name="email" id="email" value="" class="required email" autocomplete="off"/>
                                                 </div>
@@ -50,14 +50,14 @@
                                             </div>
 
                                             <div class="control-group">
-                                                <label class="control-label" for="phone">{lang('Phone number', 'user_manager')}</label>
+                                                <label class="control-label" for="phone">{lang('Phone number', 'user_manager')}:</label>
                                                 <div class="controls">
                                                     <input type="text" name="phone" id="phone" value="" autocomplete="off"/>
                                                 </div>
                                             </div>
 
                                             <div class="control-group">
-                                                <label class="control-label" for="password">{lang('New password', 'user_manager')}</label>
+                                                <label class="control-label" for="password">{lang('New password', 'user_manager')}:</label>
                                                 <div class="controls">
                                                     <input type="password" name="password" id="password" value="" required autocomplete="off"/>
                                                 </div>
@@ -66,7 +66,7 @@
 
 
                                             <div class="control-group">
-                                                <label class="control-label" for="password_conf">{lang('Confirm the password', 'user_manager')}</label>
+                                                <label class="control-label" for="password_conf">{lang('Confirm the password', 'user_manager')}:</label>
                                                 <div class="controls">
                                                     <input type="password" name="password_conf" id="password_conf" value="" required/>
                                                 </div>
@@ -74,7 +74,7 @@
 
 
                                             <div class="control-group">
-                                                <label class="control-label" for="role">{lang('Group', 'user_manager')}</label>
+                                                <label class="control-label" for="role">{lang('Group', 'user_manager')}:</label>
                                                 <div class="controls">
                                                     <select name="role" id="role">
                                                         <option value="0">{lang('No group', 'user_manager')}</option>
