@@ -52,6 +52,7 @@ class Admin extends MY_Controller {
 // 		$this->output->enable_profiler(true);
     }
 
+
     public function init() {
         if (SHOP_INSTALLED) {
             redirect('/admin/components/run/shop/dashboard');
@@ -66,8 +67,6 @@ class Admin extends MY_Controller {
         $this->dashboard->index();
         exit;
     }
-
-  
 
     /**
      * Delete cached files

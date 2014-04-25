@@ -22,17 +22,6 @@ class Admin extends \ShopAdminController {
                 ->registerScript('adminScripts');
     }
 
-    public function test() {
-        $bd = \mod_discount\classes\BaseDiscount::create();
-        $something1 = $bd->getAppliesCart();
-        
-        $something2 = $bd->getAppliesOverloadDifference($something1);
-        echo '<pre>';
-        print_r($something1);
-        echo '</pre>';
-        exit;
-    }
-
     /**
      * For displaing list of discounts
      * @return html
