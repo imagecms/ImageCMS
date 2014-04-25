@@ -73,6 +73,7 @@ function init() {
             carouselInDrop.addClass('visited');
             carouselInDrop.myCarousel(carousel);
         }
+        initCarouselJscrollPaneCycle(drop.find('#ViewedProducts'));
         cuselInit(drop, '.lineForm select');
     };
     optionsDrop.close = function(el, drop) {
@@ -83,7 +84,7 @@ function init() {
             drop.prev().css('z-index', '');
         }
     };
-    $('.menu-main').menuImageCms(optionsMenu);
+    $('.menu-main nav').menuImageCms(optionsMenu);
     $('.footer-category-menu').find('[href="' + $('.frame-item-menu.active > .frame-title > .title').attr('href') + '"]').parent().addClass('active');
     $.drop.setParameters(optionsDrop);
     $.drop.extendDrop('droppable', 'noinherit', 'heightContent', 'limitSize', 'galleries', 'placeBeforeShow', 'placeAfterClose', 'confirmPrompt');
@@ -407,7 +408,7 @@ function init() {
         genTimeout = setTimeout(function() {
             var userTool = new itemUserToolbar();
             userTool.resize($('.frame-user-toolbar'), $('.btn-to-up'));
-            $('.menu-main').menuImageCms('refresh');
+            $('.menu-main nav').menuImageCms('refresh');
             banerResize('.baner:has(.cycle)');
         }, 300);
     });

@@ -58,10 +58,10 @@
 
 .drop-wishlist-items  > .drop-content2 > .inside-padd{padding: 20px;}
 
-.items-wish-list > li{margin-left: 25px;margin-bottom: 15px;}
-.items-wish-list {margin-left: -25px;}
+.items-wish-list > li{margin-bottom: 15px;width: 235px;margin-left: -1px;}
+.items-wish-list{margin-left: 1px;}
 
-.funcs-buttons-WL-item{margin-bottom: 5px;}
+.funcs-buttons-WL-item{margin-bottom: 15px;}
 .funcs-buttons-wishlist{margin-right: 10px;}
 .funcs-buttons-wishlist > [class*="btn-"]{margin-right: 10px;min-height: 18px;vertical-align: baseline;}
 .funcs-buttons-WL-item > [class*="btn-"]{margin-right: 10px;}
