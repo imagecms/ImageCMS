@@ -70,7 +70,7 @@ class Admin extends BaseAdminController {
     public function index() {
         /** Get all Banners from DB */
         $locale = $this->def_locale;
-        $banners = $this->banner_model->get_all_banner($locale);
+        $banners = $this->banner_model->get_all_banner($locale, 0, FALSE);
 
         /** Show Banners list */
         \CMSFactory\assetManager::create()
@@ -211,11 +211,11 @@ class Admin extends BaseAdminController {
 
             $banner = $this->banner_model->get_one_banner($id, $locale);
             $groups = $this->banner_model->getGroups();
-            
+
             if (!isset($banner['id']) OR empty($banner)) {
                 $banner['id'] = $id;
             }
-            
+
             /** Show Banner edit template */
             CMSFactory\assetManager::create()
                     ->registerScript('main')
