@@ -558,7 +558,33 @@ $(document).ready(function() {
         $('#tpm_row' + id).remove();
     });
 
+
+
     product = new Object;
+
+    product.changeActive = function(bool) {
+        var ids = new Array();
+        $('input[name=ids]:checked').each(function() {
+            ids.push($(this).val());
+        });
+        $.post('/admin/components/run/shop/products/ajaxChangeActive', {
+            ids: ids
+        }, function(data) {
+            $('.notifications').append(data);
+        });
+    };
+
+    product.toHit = function() {
+        var ids = new Array();
+        $('input[name=ids]:checked').each(function() {
+            ids.push($(this).val());
+        });
+        $.post('/admin/components/run/shop/products/ajaxChangeHit', {
+            ids: ids
+        }, function(data) {
+            $('.notifications').append(data);
+        });
+    };
 
     product.toHit = function() {
         var ids = new Array();
