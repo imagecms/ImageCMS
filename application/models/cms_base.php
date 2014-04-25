@@ -142,6 +142,35 @@ class Cms_base extends CI_Model {
         return FALSE;
     }
 
+    public function get_category_by_id($id) {
+
+        $query = $this->db
+                ->order_by('position', 'ASC')
+                ->where('id', $id)
+                ->get('category');
+
+        if ($query->num_rows() > 0) {
+            $categories = $query->row_array();
+
+            return $categories;
+        }
+
+        return FALSE;
+    }
+
+    public function get_category_full_path($id) {
+        $cats = $this->get_category_by_id($id);
+        $url = $cats['url'];
+
+        if ($cats['parent_id']) {
+            $url = $this->get_category_full_path($cats['parent_id']) . '/' . $url;
+        } else {
+            return $cats['url'];
+        }
+        
+        return $url;
+    }
+
 }
 
 /* end of cms_base.php */
