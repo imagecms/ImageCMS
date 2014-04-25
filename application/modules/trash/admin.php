@@ -21,8 +21,9 @@ class Admin extends BaseAdminController {
     public function index() {
         $query = $this->db->get('trash');
         $this->template->add_array(array('model' => $query->result()));
-        if (!$this->ajaxRequest)
+        if (!$this->ajaxRequest) {
             $this->display_tpl('main');
+        }
     }
 
     /**
@@ -33,11 +34,13 @@ class Admin extends BaseAdminController {
      * @throws Exception
      */
     function create_redirect($trash_url, $redirect_url, $type = 301) {
-        if (!isset($trash_url))
+        if (!isset($trash_url)) {
             throw new Exception(lang('Old URL is not specified', 'tresh'));
+        }
 
-        if (!isset($redirect_url))
+        if (!isset($redirect_url)) {
             throw new Exception(lang('New URL is not specified', 'tresh'));
+        }
 
         $array = array(
             'trash_url' => ltrim($trash_url, '/'),
@@ -48,8 +51,9 @@ class Admin extends BaseAdminController {
 
         $this->db->insert('trash', $array);
 
-        if ($this->db->_error_message())
+        if ($this->db->_error_message()) {
             throw new Exception($this->db->_error_message());
+        }
     }
 
     function create_trash_list() {
@@ -62,7 +66,7 @@ class Admin extends BaseAdminController {
             $data = explode('<br />', $data);
             $data = array_map('trim', $data);
             $data = array_filter($data);
-            
+
             foreach ($data as $value) {
 
                 $value = explode(' ', $value);
@@ -73,10 +77,10 @@ class Admin extends BaseAdminController {
                     exit;
                 }
             }
-            
+
             showMessage(lang('Success', 'trash'));
-            
-            if($this->input->post('action') == 'exit'){
+
+            if ($this->input->post('action') == 'exit') {
                 pjax('/admin/components/init_window/trash');
             }
         } else {
@@ -150,7 +154,7 @@ class Admin extends BaseAdminController {
                             'trash_url' => ltrim($this->input->post('url'), '/'),
                             'trash_redirect_type' => $this->input->post('redirect_type'),
                             'trash_type' => $this->input->post('type'),
-                            'trash_redirect' => site_url() . $url->url
+                            'trash_redirect' => site_url($this->cms_base->get_category_full_path($url->id))
                         );
                         break;
 
@@ -238,7 +242,7 @@ class Admin extends BaseAdminController {
                         'trash_url' => $this->input->post('old_url'),
                         'trash_redirect_type' => $this->input->post('redirect_type'),
                         'trash_type' => $this->input->post('type'),
-                        'trash_redirect' => site_url() . 'shop/category/' . $url->url
+                        'trash_redirect' => site_url() . 'shop/category/' . $url->full_path
                     );
                     break;
 
@@ -252,7 +256,7 @@ class Admin extends BaseAdminController {
                         'trash_url' => $this->input->post('old_url'),
                         'trash_redirect_type' => $this->input->post('redirect_type'),
                         'trash_type' => $this->input->post('type'),
-                        'trash_redirect' => site_url() . $url->url
+                        'trash_redirect' => site_url($this->cms_base->get_category_full_path($url->id))
                     );
                     break;
 
@@ -277,10 +281,12 @@ class Admin extends BaseAdminController {
             $this->db->update('trash', $array);
         }
 
-        if ($this->input->post('action'))
+        if ($this->input->post('action')) {
             showMessage(lang('Success', 'trash'));
-        if ($this->input->post('action') == 'exit')
+        }
+        if ($this->input->post('action') == 'exit') {
             pjax('/admin/components/init_window/trash');
+        }
     }
 
     function delete_trash() {
