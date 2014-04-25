@@ -147,6 +147,7 @@ a:hover, .selected a, .ref:hover, .nav-static-pages > li > a:hover{text-decorati
 .frame-item-menu > .frame-title > .title > .text-el{cursor: pointer;text-transform: uppercase;}
 .menu-row-category .title-category-l1.is-sub:after, .menu-row-category .title-category-l1.is-sub .ie{content: "";position: absolute;top: 50%;margin-top: -4px;width: 6px;height: 8px;}
 .frame-drop-menu{-moz-border-radius: 0 0 5px 5px;-webkit-border-radius: 0 0 5px 5px;border-radius: 0 0 5px 5px;}
+.frame-drop-menu > ul{-moz-border-radius: 0 0 5px 5px;-webkit-border-radius: 0 0 5px 5px;border-radius: 0 0 5px 5px;border: 2px solid transparent;}
 .vertical-menu .frame-drop-menu > ul{-moz-border-radius: 0 5px 5px 0;-webkit-border-radius: 0 5px 5px 0;border-radius: 0 5px 5px 0;}
 .frame-l2 > ul > li > a, .frame-l2 > ul > li > ul > li > a{line-height: 1.2;}
 .menu-col-category .title-category-l1 > .text-el{font-weight: bold;}
@@ -549,6 +550,8 @@ input.input-search{-moz-border-radius: 2px 0 0 2px;-webkit-border-radius: 2px 0 
 
 .drop-bask .footer-bask{border-top: 1px solid transparent;}
 .drop-bask .content-frame-foot{border-top: 1px solid transparent;}
+
+.drop-info{-moz-border-radius: 2px 2px 0 0;-webkit-border-radius: 2px 2px 0 0;border-radius: 2px 2px 0 0;}
 /*/drop*/
 
 /*page profile*/

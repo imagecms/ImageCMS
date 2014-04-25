@@ -1,7 +1,7 @@
 <!--    menu-row-category || menu-col-category-->
-<div class="menu-main not-js menu-col-category">
+<div class="menu-main menu-row-category">
     <div class="container">
-        <nav>
+        <nav class="not-js">
             <table>
                 <tbody>
                     <tr>

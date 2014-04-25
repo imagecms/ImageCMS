@@ -7,7 +7,7 @@
     <div class="btn-bask">
         <button>
             <span class="icon_cleaner"></span>
-            <span class="text-el">{lang('Корзина пуста','newLevel')}</span>
+            <span class="text-el">{lang('Ваша Корзина пуста','newLevel')}</span>
         </button>
     </div>
 {else:}
@@ -17,6 +17,7 @@
             <span class="text-el">{echo $count}</span>
             <span class="text-el">&nbsp;</span>
             <span class="text-el">{echo SStringHelper::Pluralize($count, array(lang('товар','newLevel'),lang('товара','newLevel'),lang('товаров','newLevel')))}</span>
+            <span class="text-el">&nbsp;</span>
             <span class="d_i-b">
                 <span class="text-el">{echo ShopCore::app()->SCurrencyHelper->convert($price)}</span>
                 <span class="text-el">&nbsp;<span class="curr">{$CS}</span></span>

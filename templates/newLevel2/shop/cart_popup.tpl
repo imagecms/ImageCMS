@@ -16,7 +16,7 @@
                             {if $item->instance === "SProducts"}
                                 <tr data-id="{echo $item->getId()}" class="items items-bask cart-product items-product">
                                     <td class="frame-remove-bask-btn">
-                                        <button type="button" class="icon_times_cart" onclick="Shop.Cart.remove({echo $item->getId()})"></button>
+                                        <button type="button" class="icon_times_cart icon_times" onclick="Shop.Cart.remove({echo $item->getId()})"></button>
                                     </td>
                                     <td class="frame-items">
                                         <a href="{echo shop_url('product/'.$item->getSProducts()->getUrl())}" title="{echo $item->getName()}" class="frame-photo-title">
@@ -94,7 +94,7 @@
                             {else:}
                                 <tr class="row-kits" data-id="{echo $item->getId()}">
                                     <td class="frame-remove-bask-btn">
-                                        <button type="button" class="icon_times_cart" onclick="Shop.Cart.remove({echo $item->getId()}, true)"></button></button>
+                                        <button type="button" class="icon_times_cart icon_times" onclick="Shop.Cart.remove({echo $item->getId()}, true)"></button></button>
                                     </td>
                                     <td class="frame-items frame-items-kit">
                                         <ul class="items items-bask items-product">

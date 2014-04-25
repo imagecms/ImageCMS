@@ -672,7 +672,7 @@ function autocomplete() {
         $('#RelatedProducts').autocomplete({
             minChars: 0,
             source: function(request, response) {
-                $.post('/admin/components/run/shop/kits/get_products_list', {
+                $.post('/admin/components/run/shop/kits/get_products_list/', {
                     limit: 20,
                     q: request.term,
                     noids: getAddedRelatedProductsIds()
@@ -687,7 +687,7 @@ function autocomplete() {
                         '<input type="hidden" name="RelatedProducts[]" value="' + ui.item.identifier.id + '">' +
                         '</span>' +
                         '<span style="margin-left: 1%;" class="pull-left">' +
-                        '<button class="btn btn-small del_tmp_row" data-kid="' + ui.item.identifier.id + '"><i class="icon-trash"></i></button>' +
+                        '<button class="btn btn-small btn-danger del_tmp_row" data-kid="' + ui.item.identifier.id + '"><i class="icon-trash icon-white"></i></button>' +
                         '</span>' +
                         '</div>');
             },
@@ -735,7 +735,8 @@ function autocomplete() {
 }
 function getAddedRelatedProductsIds() {
     var inputs = $("#relatedProductsNames input[name='RelatedProducts[]']");
-    var idsString = "";
+    var productId = location.href.match(/products\/edit\/([0-9]+)/)[1];
+    var idsString = productId + ",";
     $(inputs).each(function() {
         idsString += this.value + ",";
     });
@@ -805,7 +806,7 @@ function number_tooltip() {
             key = event.keyCode;
         else if (event.which)
             key = event.which;
-        
+
         console.log(key);
 
         if (key == null || key == 0 || key == 8 || key == 13 || key == 9 || key == 46 || key == 39)
@@ -827,12 +828,12 @@ function getScrollTop() {
         scrOfY = window.pageYOffset;
     } else if (document.body
             && (document.body.scrollLeft
-                    || document.body.scrollTop)) {
+            || document.body.scrollTop)) {
         //DOM compliant
         scrOfY = document.body.scrollTop;
     } else if (document.documentElement
             && (document.documentElement.scrollLeft
-                    || document.documentElement.scrollTop)) {
+            || document.documentElement.scrollTop)) {
         //IE6 Strict
         scrOfY = document.documentElement.scrollTop;
     }
@@ -913,7 +914,7 @@ function initAdminArea() {
     $('.btn.disabled').each(function(event) {
         $(this).attr('disabled', true);
     });
-    
+
     if ($.exists('#shopAdminMenu')) {
         if (isShop)
         {
@@ -1208,8 +1209,8 @@ function initAdminArea() {
 
     })
             .on('pjax:end', function() {
-                $('#loading').fadeOut(300);
-            });
+        $('#loading').fadeOut(300);
+    });
 
     //add arrows to orders list
     if (window.hasOwnProperty('orderField'))
