@@ -225,6 +225,96 @@ class Languages extends BaseAdminController {
     }
 
     /**
+     * Rename locales folders (example ./application/modules/module_name/langauge/lo_LO)
+     * @param string $from_locale - locale name to rename
+     * @param string $to_locale - locale name rename by 
+     * @return boolean
+     */
+    private function renameLocaleFolders($from_locale, $to_locale) {
+        if ($from_locale && $to_locale) {
+            $templates_dir = './templates';
+            $main_dir = './application/language/main';
+            $modules_dir = './application/modules';
+
+            if (is_dir($main_dir)) {
+                $from_name = $main_dir . '/' . $from_locale;
+                $to_name = $main_dir . '/' . $to_locale;
+                if (is_dir($from_name)) {
+                    chmod($from_name, 0777);
+                    rename($from_name, $to_name);
+                }
+            }
+
+            if (is_dir($modules_dir)) {
+                foreach (new DirectoryIterator($modules_dir) as $module) {
+                    $language_dir = $modules_dir . '/' . $module->getFilename() . '/language/';
+                    if (is_dir($language_dir) && $module->isDir() && !$module->isDot()) {
+                        $from_name = $language_dir . $from_locale;
+                        $to_name = $language_dir . $to_locale;
+                        if (is_dir($from_name)) {
+                            chmod($from_name, 0777);
+                            rename($from_name, $to_name);
+                        }
+                    }
+                }
+            }
+
+            if (is_dir($templates_dir)) {
+                foreach (new DirectoryIterator($templates_dir) as $template) {
+                    if ($template->isDir() && !$template->isDot()) {
+                        $from_name = $templates_dir . '/' . $template . '/language/' . $template . '/' . $from_locale;
+                        $to_name = $templates_dir . '/' . $template . '/language/' . $template . '/' . $to_locale;
+                        if (is_dir($from_name)) {
+                            chmod($from_name, 0777);
+                            rename($from_name, $to_name);
+                        }
+                    }
+                }
+            }
+
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+
+    function deleteLanguageFolders2($lang) {
+        $templates_dir = './templates';
+        $main_dir = './application/language/main';
+        $modules_dir = './application/modules';
+        if (is_dir($templates_dir)) {
+            $templates = scandir($templates_dir);
+            foreach ($templates as $template) {
+                if (is_dir($templates_dir . '/' . $template) && $template != "." && $template != '..' && $template[0] != '.') {
+                    if (is_dir($templates_dir . '/' . $template . '/language/' . $template . '/' . $lang)) {
+                        chmod($templates_dir . '/' . $template . '/language/' . $template . '/'. $lang, 0777);
+                        system("rm -rf " . escapeshellarg($templates_dir . '/' . $template . '/language/' . $template . '/'. $lang));
+                    }
+                }
+            }
+        }
+
+        if (is_dir($main_dir)) {
+            if (is_dir($main_dir . '/' . $lang)) {
+                chmod($main_dir . '/' . $lang, 0777);
+                system("rm -rf " . escapeshellarg($main_dir . '/' . $lang));
+            }
+        }
+
+        if (is_dir($modules_dir)) {
+            $modules = scandir($modules_dir);
+            foreach ($modules as $module) {
+                if (is_dir($modules_dir . '/' . $module . '/language') && $module != "." && $module != '..' && $module[0] != '.') {
+                    if (is_dir($modules_dir . '/' . $module . '/language/' . $lang)) {
+                        chmod($modules_dir . '/' . $module . '/language/' . $lang, 0777);
+                        system("rm -rf " . escapeshellarg($modules_dir . '/' . $module . '/language/'  . $lang));
+                    }
+                }
+            }
+        }
+    }
+
+    /**
      * Show lang_edit form
      */
     function edit($lang_id) {
@@ -260,12 +350,15 @@ class Languages extends BaseAdminController {
             showMessage(validation_errors(), '', 'r');
         } else {
 
+            $lang = $this->cms_admin->get_lang($lang_id);
+            $post_locale = trim($this->input->post('locale'));
+
             $data = array(
                 'lang_name' => $this->input->post('lang_name'),
                 'identif' => $this->input->post('identif'),
                 //'image' => $this->lib_admin->db_post('image'),
                 'image' => $this->input->post('image'),
-                'locale' => $this->input->post('locale'),
+                'locale' => $post_locale,
 //                'folder' => $this->input->post('folder'),
                 'template' => $this->input->post('template')
             );
@@ -278,9 +371,11 @@ class Languages extends BaseAdminController {
 
             $this->cache->delete('main_site_langs');
 
-            /* Create languages folders */
-
-            $this->createLanguageFolders($data['locale']);
+            /* Rename languages folders */
+            if (($lang['locale'] !== $post_locale) && $post_locale) {
+                $this->renameLocaleFolders($lang['locale'], $post_locale);
+            }
+//            $this->deleteLanguageFolders2($post_locale);
 
             showMessage(lang("Changes has been saved", "admin"));
 

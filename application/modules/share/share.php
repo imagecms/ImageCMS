@@ -7,6 +7,7 @@ if (!defined('BASEPATH'))
  * Image CMS
  *
  * Comments component
+ * @link http://api.yandex.ru/share/
  */
 class Share extends MY_Controller {
 
@@ -82,9 +83,9 @@ class Share extends MY_Controller {
         }
 
         $html = '<script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script>
-                <div class="yashare-auto-init" data-yashareL10n="ru" data-yashareLink="' . $url . '"
-                data-yashareType="' . $type . '" data-yashareQuickServices="' . $html . '"></div> 
-                ';
+                <div class="yashare-auto-init" data-yashareL10n="ru" data-yashareLink="' . $url . '"'
+                . $type . ' data-yashareQuickServices="' . $html . '"></div>';
+
         return $html;
     }
 
