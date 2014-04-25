@@ -7,7 +7,7 @@ var optionCompare = {
     frameScroll: '.items-compare',
     mouseWhell: true,
     scrollNSP: true, //show scroll
-    jScrollPane: true,
+    jScrollPane: false,
     scrollNSPT: '.items-catalog',
     onlyDif: $('[data-href="#only-dif"]'),
     allParams: $('[data-href="#all-params"]'),
