@@ -48,9 +48,10 @@
                                         </th>
                                         <th>{lang("Language","admin")}</th>
                                         <th>{lang("Identifier","admin")}</th>
+                                        <th>{lang("Locale","admin")}</th>
                                         <th>{lang("Template","admin")}</th>
                                         <th>{lang("Image","admin")}</th>
-                                        <th>{lang("by default","admin")}</th>
+                                        <th class="span2">{lang("by default","admin")}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -75,6 +76,7 @@
                                                 </p>
                                             </td>
                                             <td><p>{$lang.identif}</p></td>
+                                            <td><p>{$lang.locale}</p></td>
                                             <td><p>{if $lang.default == 1}{echo $template_selected}{else:}{$lang.template}{/if}</p></td>
                                             <td><p><img src="{$lang.image}" width="16" height="16" /></p></td>
                                             <td class="t-a_c"><button class="btn btn-small lan_def {if $lang.default == 1} btn-primary active {/if}" data-id="{$lang.id}"><i class="icon-star"></i></button></td>
