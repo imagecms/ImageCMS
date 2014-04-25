@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-17 08:33+0000\n"
-"PO-Revision-Date: 2014-03-17 08:33+0000\n"
+"POT-Creation-Date: 2014-04-25 12:53+0300\n"
+"PO-Revision-Date: 2014-04-25 12:53+0300\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -18,6 +18,10 @@ msgstr ""
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 
+#: ./application/modules/user_manager/templates/main.tpl:125
+msgid "There are no results."
+msgstr "По данным критериям результатов не найдено"
+
 #: ./application/modules/user_manager/templates/create_user.tpl:6
 msgid "Create a new user"
 msgstr "Создание нового пользователя"
@@ -31,15 +35,17 @@ msgstr "Отменить фильтрацию"
 msgid "User editing"
 msgstr "Редактирование пользователя"
 
-#: ./application/modules/user_manager/admin.php:295
+#: ./application/modules/user_manager/admin.php:296
+#: ./application/modules/user_manager/admin.php:317
 msgid "User not found"
 msgstr "Пользователь не найден"
 
-#: ./application/modules/user_manager/admin.php:412
-#: ./application/modules/user_manager/admin.php:517
+#: ./application/modules/user_manager/admin.php:418
+#: ./application/modules/user_manager/admin.php:523
 msgid "Changes saved"
 msgstr "Изменения сохранены"
 
+#: ./application/modules/user_manager/templates/main.tpl:30
 #: ./application/modules/user_manager/templates/edit_user.tpl:10
 #: ./application/modules/user_manager/templates/create_user.tpl:11
 msgid "Back"
@@ -54,7 +60,6 @@ msgstr "Удалить"
 msgid "Cancel"
 msgstr "Отмена"
 
-#: ./application/modules/user_manager/templates/main.tpl:30
 #: ./application/modules/user_manager/templates/groups_edit.tpl:10
 msgid "Return"
 msgstr "Назад"
@@ -124,13 +129,13 @@ msgid "ID"
 msgstr "ID"
 
 #: ./application/modules/user_manager/templates/users_table_search.tpl:5
-#: ./application/modules/user_manager/admin.php:171
+#: ./application/modules/user_manager/admin.php:172
 msgid "Login"
 msgstr "Войти"
 
 #: ./application/modules/user_manager/templates/users_table_search.tpl:6
 #: ./application/modules/user_manager/templates/edit_user.tpl:34
-#: ./application/modules/user_manager/admin.php:174
+#: ./application/modules/user_manager/admin.php:175
 msgid "E-Mail"
 msgstr "E-Mail"
 
@@ -153,7 +158,7 @@ msgstr "Последний Вход"
 msgid "Created"
 msgstr "Создано"
 
-#: ./application/modules/user_manager/templates/users_table_search.tpl:28
+#: ./application/modules/user_manager/templates/users_table_search.tpl:29
 msgid "Edit"
 msgstr "Редактировать"
 
@@ -172,8 +177,8 @@ msgid "Full name"
 msgstr "Полное имя"
 
 #: ./application/modules/user_manager/templates/edit_user.tpl:48
-#: ./application/modules/user_manager/admin.php:175
-#: ./application/modules/user_manager/admin.php:368
+#: ./application/modules/user_manager/admin.php:176
+#: ./application/modules/user_manager/admin.php:374
 msgid "Phone"
 msgstr "Телефон"
 
@@ -264,7 +269,7 @@ msgid "Phone number"
 msgstr "Номер телефона"
 
 #: ./application/modules/user_manager/templates/create_user.tpl:69
-#: ./application/modules/user_manager/admin.php:173
+#: ./application/modules/user_manager/admin.php:174
 msgid "Confirm the password"
 msgstr "Подтвердите пароль"
 
@@ -329,109 +334,108 @@ msgstr "Редактирование групп"
 msgid "Group data"
 msgstr "Данные группы"
 
-#: ./application/modules/user_manager/admin.php:93
+#: ./application/modules/user_manager/admin.php:94
 msgid "Next"
 msgstr "Слядующая"
 
-#: ./application/modules/user_manager/admin.php:94
+#: ./application/modules/user_manager/admin.php:95
 #, fuzzy
 msgid "Prev"
 msgstr "Смотреть"
 
-#: ./application/modules/user_manager/admin.php:172
+#: ./application/modules/user_manager/admin.php:173
 msgid "Password"
 msgstr "Пароль"
 
-#: ./application/modules/user_manager/admin.php:185
+#: ./application/modules/user_manager/admin.php:186
 msgid "User with the same e-mail has been registered"
 msgstr "Пользователь с таким e-mail был зарегистрирован"
 
 # нее�
-#: ./application/modules/user_manager/admin.php:205
+#: ./application/modules/user_manager/admin.php:206
 msgid "Create a user or the username has been created"
 msgstr "Создать пользователя"
 
 # нее�
-#: ./application/modules/user_manager/admin.php:209
+#: ./application/modules/user_manager/admin.php:210
 msgid "Username has been created or user has been created"
 msgstr "Пользователь был создан"
 
-#: ./application/modules/user_manager/admin.php:248
+#: ./application/modules/user_manager/admin.php:249
 msgid "Ban the user  or the user has been banned"
 msgstr "Пользователь забанен"
 
-#: ./application/modules/user_manager/admin.php:257
+#: ./application/modules/user_manager/admin.php:258
 msgid "The user has been unbanned "
 msgstr "Пользователь был удален с бана"
 
-#: ./application/modules/user_manager/admin.php:312
-#: ./application/modules/user_manager/admin.php:342
+#: ./application/modules/user_manager/admin.php:348
 msgid "amt_users_not_found"
 msgstr ""
 
-#: ./application/modules/user_manager/admin.php:324
+#: ./application/modules/user_manager/admin.php:330
 msgid "a_bas_filt_pass_not_post"
 msgstr ""
 
-#: ./application/modules/user_manager/admin.php:365
+#: ./application/modules/user_manager/admin.php:371
 msgid "amt_user_login"
 msgstr ""
 
-#: ./application/modules/user_manager/admin.php:366
-#: ./application/modules/user_manager/admin.php:374
+#: ./application/modules/user_manager/admin.php:372
+#: ./application/modules/user_manager/admin.php:380
 #, fuzzy
 msgid "amt_password"
 msgstr "Пароль"
 
-#: ./application/modules/user_manager/admin.php:367
-#: ./application/modules/user_manager/admin.php:375
+#: ./application/modules/user_manager/admin.php:373
+#: ./application/modules/user_manager/admin.php:381
 msgid "amt_new_pass_confirm"
 msgstr ""
 
-#: ./application/modules/user_manager/admin.php:369
+#: ./application/modules/user_manager/admin.php:375
 #, fuzzy
 msgid "amt_email"
 msgstr "Нааааааааамеееееееееее"
 
-#: ./application/modules/user_manager/admin.php:380
+#: ./application/modules/user_manager/admin.php:386
 msgid "amt_email_exists"
 msgstr ""
 
-#: ./application/modules/user_manager/admin.php:408
+#: ./application/modules/user_manager/admin.php:414
 #, fuzzy
 msgid "amt_updated_user"
 msgstr "Пользователь обновлен"
 
-#: ./application/modules/user_manager/admin.php:445
+#: ./application/modules/user_manager/admin.php:451
 #, fuzzy
 msgid "amt_identif"
 msgstr "Нааааааааамеееееееееее"
 
-#: ./application/modules/user_manager/admin.php:446
+#: ./application/modules/user_manager/admin.php:452
 #, fuzzy
 msgid "amt_tname"
 msgstr "Нааааааааамеееееееееее"
 
-#: ./application/modules/user_manager/admin.php:447
+#: ./application/modules/user_manager/admin.php:453
 #, fuzzy
 msgid "amt_description"
 msgstr "Описание"
 
-#: ./application/modules/user_manager/admin.php:462
+#: ./application/modules/user_manager/admin.php:468
 #, fuzzy
 msgid "amt_created_group"
 msgstr "Нааааааааамеееееееееее"
 
-#: ./application/modules/user_manager/admin.php:463
+#: ./application/modules/user_manager/admin.php:469
 #, fuzzy
 msgid "amt_group_created"
 msgstr "Нааааааааамеееееееееее"
 
-#: ./application/modules/user_manager/admin.php:481
+#: ./application/modules/user_manager/admin.php:487
 msgid "a_del_user_notif"
 msgstr ""
 
-#: ./application/modules/user_manager/admin.php:491
+#: ./application/modules/user_manager/admin.php:497
 #, fuzzy
 msgid "amt_deleted_user"
 msgstr "Пользователь удален"

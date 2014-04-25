@@ -313,7 +313,8 @@ class DiscountManager extends \MY_Controller {
      * validation data
      * @access public
      * @author DevImageCms
-     * @param array $postArray input params:
+     * @param array $postArray 
+     * @param int $id (optional) need to be specified on discount editing
      * @copyright (c) 2013, ImageCMS
      */
     public function validation($postArray, $id = null) {
@@ -347,10 +348,10 @@ class DiscountManager extends \MY_Controller {
         if ($typeDiscount == 'user' && !$postArray[$typeDiscount]['user_id'])
             $this->error[] = lang('Enter the user who is in the database', 'mod_discount');
 
-        if ($typeDiscount == 'user' && !$this->validateUserDiscount($postArray[$typeDiscount]['user_id']))
+        if ($typeDiscount == 'user' && !$this->validateUserDiscount($postArray[$typeDiscount]['user_id']) && is_null($id))
             $this->error[] = lang('This user already have active discount', 'mod_discount');
 
-        if ($typeDiscount == 'group_user' && !$this->validateGroupDiscount($postArray[$typeDiscount]['group_id']))
+        if ($typeDiscount == 'group_user' && !$this->validateGroupDiscount($postArray[$typeDiscount]['group_id']) && is_null($id))
             $this->error[] = lang('This group of users already have active discount', 'mod_discount');
 
         if ($typeDiscount == 'comulativ' && $postArray[$typeDiscount]['end_value'] == null && $this->discount_model_admin->checkHaveAnyComulativDiscountMaxEndValue($id))
