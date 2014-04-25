@@ -31,27 +31,27 @@
 
 
                                         <div class="control-group">
-                                            <label class="control-label" for="email">{lang('E-Mail', 'user_manager')}</label>
+                                            <label class="control-label" for="email">{lang('E-Mail', 'user_manager')}:</label>
                                             <div class="controls">
                                                 <input type="text" name="email" id="email" value="{$email}" class="email required"/>
                                             </div>
                                         </div>
 
                                         <div class="control-group">
-                                            <label class="control-label" for="username">{lang('Full name', 'user_manager')}</label>
+                                            <label class="control-label" for="username">{lang('Full name', 'user_manager')}:</label>
                                             <div class="controls">
                                                 <input type="text" name="username" id="email" value="{$username}" class="text required"/>
                                             </div>
                                         </div>
 
                                         <div class="control-group">
-                                            <label class="control-label" for="phone">{lang('Phone', 'user_manager')}</label>
+                                            <label class="control-label" for="phone">{lang('Phone', 'user_manager')}:</label>
                                             <div class="controls">
                                                 <input type="text" name="phone" id="phone" value="{$phone}" autocomplete="off"/>
                                             </div>
                                         </div>
                                         <div class="control-group">
-                                            <label class="control-label" for="role_id">{lang('Group', 'user_manager')}</label>
+                                            <label class="control-label" for="role_id">{lang('Group', 'user_manager')}:</label>
                                             <div class="controls">
                                                 <select name="role_id" id="role_id">
                                                     <option value ="0">{lang('Without group', 'user_manager')}</option>
@@ -62,20 +62,20 @@
                                             </div>
                                         </div>
                                         <div class="control-group">
-                                            <label class="control-label" for="new_pass">{lang('New password', 'user_manager')}</label>
+                                            <label class="control-label" for="new_pass">{lang('New password', 'user_manager')}:</label>
                                             <div class="controls">
                                                 <input type="password" name="new_pass" id="new_pass" value=""/>
                                             </div>
                                         </div>
                                         <div class="control-group">
-                                            <label class="control-label" for="new_pass_conf">{lang('Password confirm', 'user_manager')}</label>
+                                            <label class="control-label" for="new_pass_conf">{lang('Password confirm', 'user_manager')}:</label>
                                             <div class="controls">
                                                 <input type="password" name="new_pass_conf" id="new_pass_conf" value=""/>
                                             </div>
                                         </div>
                                         {if $id != $CI->dx_auth->get_user_id()}
                                             <div class="control-group">
-                                                <label class="control-label" for="banned">{lang('Ban', 'user_manager')}</label>
+                                                <label class="control-label" for="banned">{lang('Ban', 'user_manager')}:</label>
                                                 <div class="controls">
                                                     <select name="banned" id="banned">
                                                         <option value ="0" selected="selected" >{lang('No', 'user_manager')}</option>
@@ -84,7 +84,7 @@
                                                 </div>
                                             </div>
                                             <div class="control-group">
-                                                <label class="control-label" for="ban_reason">{lang('Ban Reason', 'user_manager')}</label>
+                                                <label class="control-label" for="ban_reason">{lang('Ban Reason', 'user_manager')}:</label>
                                                 <div class="controls">
                                                     <input type="text" name="ban_reason" id="ban_reason" value="{$ban_reason}"/>
                                                 </div>

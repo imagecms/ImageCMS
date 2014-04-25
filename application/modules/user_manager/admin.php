@@ -293,9 +293,13 @@ class Admin extends BaseAdminController {
             $query = $this->db->get('users');
 
             if ($query->num_rows() == 0) {
-                showMessage(lang('User not found', 'user_manager'), '', 'r');
-                pjax('/admin/components/init_window/user_manager');
-                exit();
+//                showMessage(lang('User not found', 'user_manager'), '', 'r');
+//                pjax('/admin/components/init_window/user_manager');
+                $this->template->assign('users', FALSE);
+                $rezult_table = $this->fetch_tpl('main');
+
+                echo $rezult_table;
+//                exit();
             } else {
                 $users = $query->result_array();
 
@@ -310,7 +314,7 @@ class Admin extends BaseAdminController {
 
                 // recount users
                 if (count($users) == 0) {
-                    showMessage(lang('amt_users_not_found'), '', 'r');
+                    showMessage(lang('User not found'), '', 'r');
                     pjax('/admin/components/init_window/user_manager');
                     exit();
                 }

@@ -86,35 +86,47 @@
                                 <td></td>
                             </tr>
                         </thead>
-                        <tbody>
-                            {foreach $users as $user}
-                                <tr class="simple_tr">
-                                    <td class="t-a_c">
-                                        {if $user.id != $CI->dx_auth->get_user_id()}
-                                            <span class="frame_label">
-                                                <span class="niceCheck b_n">
-                                                    <input type="checkbox" id="user_del" name="ids" data-id-group="1" value="{echo $user.id}"/>
-                                                </span>
-                                            </span>
-                                        {/if}
-                                    </td>
-                                    <td><p>{echo $user.id}</p></td>
-                                    <td><a href="{$SELF_URL}/edit_user/{echo $user.id}" class="pjax">{echo $user.username}</a></td>                            
-                                    <td>{$user.email}</td>
-                                    <td><p>{$user.role_alt_name}</p></td>
-                                    <td>
-                                        <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" onclick="change_status('{$BASE_URL}admin/components/cp/user_manager/actions/{echo $user.id}');" >
+                        <tbody> 
+                            {if $users}
+                                {foreach $users as $user}
+                                    <tr class="simple_tr">
+                                        <td class="t-a_c">
                                             {if $user.id != $CI->dx_auth->get_user_id()}
-                                                <span class="prod-on_off {if $user.banned == 1}disable_tovar{/if}" ></span>  
+                                                <span class="frame_label">
+                                                    <span class="niceCheck b_n">
+                                                        <input type="checkbox" id="user_del" name="ids" data-id-group="1" value="{echo $user.id}"/>
+                                                    </span>
+                                                </span>
                                             {/if}
-                                        </div>
-                                        </div>
-                                    </td>
-                                    <td><p>{$user.last_ip}</p></td>
-                                </tr>
-                            {/foreach}
+                                        </td>
+                                        <td><p>{echo $user.id}</p></td>
+                                        <td><a href="{$SELF_URL}/edit_user/{echo $user.id}" class="pjax">{echo $user.username}</a></td>                            
+                                        <td>{$user.email}</td>
+                                        <td><p>{$user.role_alt_name}</p></td>
+                                        <td>
+                                            <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" onclick="change_status('{$BASE_URL}admin/components/cp/user_manager/actions/{echo $user.id}');" >
+                                                {if $user.id != $CI->dx_auth->get_user_id() && $user.banned}
+                                                    <span class="prod-on_off {if $user.banned == 1}disable_tovar{/if}" ></span>  
+                                                {/if}
+                                            </div>
+                                            </div>
+                                        </td>
+                                        <td><p>{$user.last_ip}</p></td>
+                                    </tr>
+                                {/foreach}
+                            {/if}
+
                         </tbody>
                     </table>
+                    {if !$users}
+                        <div class="row-fluid news">
+                            <div class="span12">
+                                <div class="alert alert-warning">
+                                    <p>{lang('There are no results.', 'user_manager')}</p>
+                                </div>
+                            </div>
+                        </div>
+                    {/if}
                 </form>
                 <div align="center" style="padding:5px;">
                     {$paginator}
