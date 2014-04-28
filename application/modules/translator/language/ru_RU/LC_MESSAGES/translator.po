@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-20 10:16+0200\n"
-"PO-Revision-Date: 2014-03-20 10:16+0200\n"
+"POT-Creation-Date: 2014-04-25 02:41+0300\n"
+"PO-Revision-Date: 2014-04-25 02:41+0300\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: ru_RU\n"
@@ -17,6 +17,10 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/translator/assets/admin/list.tpl:335
+msgid "Origins language"
+msgstr "Язык оригинала"
 
 #: ./application/modules/translator/assets/admin/list.tpl:172
 msgid "All strings"
@@ -948,10 +952,6 @@ msgstr "Комментарий"
 #: ./application/modules/translator/assets/admin/list.tpl:304
 msgid "Create file"
 msgstr "Создайте файл"
-
-#: ./application/modules/translator/assets/admin/list.tpl:335
-msgid "Origins language"
-msgstr "Языка оригинала"
 
 #: ./application/modules/translator/assets/admin/list.tpl:340
 msgid "No"
