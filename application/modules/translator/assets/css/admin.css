@@ -245,6 +245,7 @@ div[class="tooltip-inner"] {
 
 .YandexApiKeyHolder > textarea.YandexApiKey{
     width: 500px;
+    height: 52px;
 }
 .modal_yandex_translate > .modal-header input.languageSelect{
     width: 100px;
@@ -282,4 +283,22 @@ div[class="tooltip-inner"] {
 
 .poSelectorsHolder  select{
     width: auto;
+}
+
+.originLangHolder .languageFrom{
+    max-width: 120px;
+}
+
+.originLangHolder button{
+    margin-left: -5px;
+    height: 28px;
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px
+}
+.nav.nav-tabs{
+    margin-bottom: 5px;
+}
+#poTab hr{
+    margin-top: 40px;
+    margin-bottom: 10px;
 }
