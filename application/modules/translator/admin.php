@@ -35,6 +35,7 @@ class Admin extends BaseAdminController {
         parent::__construct();
         $lang = new MY_Lang();
         $lang->load('translator');
+        $this->load->helper('translator');
     }
 
     /**
@@ -165,8 +166,6 @@ class Admin extends BaseAdminController {
             $locales_unique[$data_locale] = $data_locale;
         }
 
-       
-        $this->load->helper('translator');
         $settings = $this->getSettings();
         \CMSFactory\assetManager::create()
                 ->registerScript('admin')
