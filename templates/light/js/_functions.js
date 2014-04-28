@@ -340,7 +340,7 @@ function initCarouselJscrollPaneCycle(el) {
     function _sP() {
         clearInterval(_sPI);
         if ($.exists(selScrollPane)) {
-            el.find(selScrollPane).each(function() {
+            el.find(selScrollPane).filter(':visible').each(function() {
                 var $this = $(this),
                         api = $this.jScrollPane(scrollPane),
                         api = api.data('jsp');
@@ -672,7 +672,7 @@ function itemUserToolbar() {
 function reinitializeScrollPane(el) {
     if ($.exists(selScrollPane)) {
         wnd.on('resize.scroll', function() {
-            el.find(selScrollPane).each(function() {
+            el.find(selScrollPane).filter(':visible').each(function() {
                 $(this).jScrollPane(scrollPane);
                 var api = $(this).data('jsp');
                 var throttleTimeout;

@@ -73,7 +73,7 @@
                         <!-- Start. Check variant-->
                         {if count($variants) > 1}
                             <div class="check-variant-product">
-                                <div class="title">{lang('Выберите вариант','newLevel')}:</div>
+                                <div class="title">{lang('Выбор варианта','newLevel')}:</div>
                                 <div class="lineForm">
                                     <select name="variant" id="variantSwitcher">
                                         {foreach $variants as $key => $productVariant}
@@ -305,16 +305,13 @@
                     <!--  End. Description -->
                     <!--Start .Share-->
                     <dl class="social-product">
-                        <dt class="s-t text-social-like">{lang('Понравился товар?', 'newLevel')}</dt>
-                        <dd class="social-like">
-                            {echo $CI->load->module('share')->_make_like_buttons()}
-                        </dd>
                         <dt class="s-t text-social-tell">{lang('Рассказать друзьям:', 'newLevel')}</dt>
                         <dd class="social-tell">
                             {echo $CI->load->module('share')->_make_share_form()}
                         </dd>
                     </dl>
                     <!-- End. Share -->
+                    {widget('phone_product')}
                 </div>
                 <div class="right-product-right">
                     <!--Start. Payments method form -->
@@ -399,7 +396,7 @@
             </div>
         </div>
     </div>
-    
+
     <!-- Start. Kit-->
     {if $model->getShopKits()}
         <div class="container">
@@ -591,13 +588,13 @@
             {if $dl_properties = ShopCore::app()->SPropertiesRenderer->renderPropertiesTableNew($model->getId())}
 
                 <li><button data-href="#first" data-source="{shop_url('product_api/renderProperties')}" data-data='{literal}{"product_id":{/literal} {echo $model->getId()} {literal}}{/literal}' data-selector=".characteristic">{lang('Свойства','newLevel')}</button></li>
-            {/if}
-            {if $fullDescription = $model->getFullDescription()}
+                {/if}
+                {if $fullDescription = $model->getFullDescription()}
                 <li><button data-href="#second" data-source="{shop_url('product_api/renderFullDescription')}" data-data='{literal}{"product_id":{/literal} {echo $model->getId()}{literal}}{/literal}' data-selector=".inside-padd > .text">{lang('Полное описание','newLevel')}</button></li>
-            {/if}
-            {if $accessories}
+                {/if}
+                {if $accessories}
                 <li><button data-href="#fourth" data-source="{shop_url('product_api/getAccessories')}" data-data='{literal}{"product_id":{/literal} {echo $model->getId()}, "arrayVars": {json_encode(array('opi_defaultItem'=>true))}, "tpl": "one_product_item_mini"{literal}}{/literal}' data-selector=".inside-padd > .items">{lang('Аксессуары','newLevel')}</button></li>
-            {/if}
+                {/if}
             <!--Output of the block comments-->
             {if $Comments && $model->enable_comments}
                 <li>
@@ -731,47 +728,47 @@
     {literal}
         <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
         <div class="drop-header">
-            <div class="title"><%- obj.title %></div>
-            <div class="horizontal-carousel">
-                <div class="frame-fancy-gallery frame-thumbs">
-                    <div class="fancy-gallery carousel-js-css">
-                        <div class="content-carousel">
-                            <ul class="items-thumbs items">
-                                <%= obj.frame.find(obj.galleryContent).html() %>
-                            </ul>
-                        </div>
-                        <div class="group-button-carousel">
-                            <button type="button" class="prev arrow">
-                                <span class="icon_arrow_p"></span>
-                            </button>
-                            <button type="button" class="next arrow">
-                                <span class="icon_arrow_n"></span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="title"><%- obj.title %></div>
+        <div class="horizontal-carousel">
+        <div class="frame-fancy-gallery frame-thumbs">
+        <div class="fancy-gallery carousel-js-css">
+        <div class="content-carousel">
+        <ul class="items-thumbs items">
+        <%= obj.frame.find(obj.galleryContent).html() %>
+        </ul>
+        </div>
+        <div class="group-button-carousel">
+        <button type="button" class="prev arrow">
+        <span class="icon_arrow_p"></span>
+        </button>
+        <button type="button" class="next arrow">
+        <span class="icon_arrow_n"></span>
+        </button>
+        </div>
+        </div>
+        </div>
+        </div>
         </div>
         <div class="drop-content">
-            <div class="inside-padd">
-                <span class="helper"></span>
-                <img src="<%- obj.mainPhoto %>" alt="<%- obj.title %>"/>
-            </div>
-            <div class="horizontal-carousel">
-                <div class="group-button-carousel">
-                    <button type="button" class="prev arrow">
-                        <span class="icon_arrow_p"></span>
-                    </button>
-                    <button type="button" class="next arrow">
-                        <span class="icon_arrow_n"></span>
-                    </button>
-                </div>
-            </div>
+        <div class="inside-padd">
+        <span class="helper"></span>
+        <img src="<%- obj.mainPhoto %>" alt="<%- obj.title %>"/>
+        </div>
+        <div class="horizontal-carousel">
+        <div class="group-button-carousel">
+        <button type="button" class="prev arrow">
+        <span class="icon_arrow_p"></span>
+        </button>
+        <button type="button" class="next arrow">
+        <span class="icon_arrow_n"></span>
+        </button>
+        </div>
+        </div>
         </div>
         <div class="drop-footer">
-            <div class="inside-padd">
-                <%= obj.frame.find(obj.footerContent).html()%>
-            </div>
+        <div class="inside-padd">
+        <%= obj.frame.find(obj.footerContent).html()%>
+        </div>
         </div>
     {/literal}
 </script>
@@ -784,8 +781,8 @@
 {literal}
     <script type="text/javascript">
         var
-        productPhotoDrop = true,
-        productPhotoCZoom = true;
+                productPhotoDrop = true,
+                productPhotoCZoom = true;
     </script>
 {/literal}
 <!-- End. JS vars-->

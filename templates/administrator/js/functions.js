@@ -1055,7 +1055,12 @@ var orders = new Object({
 
         if (data.variantname != 'noName') {
             variantName = data.variantname;
+            if(!data.variantname){
+                variantName = '-';
+            }
+            
         }
+        
         clonedElement.find('.variantCartName').html(variantName);
         clonedElement.find('.productCartName').html(data.productname);
         clonedElement.find('.productCartPrice').html(parseFloat(data.price).toFixed(2));
@@ -1080,6 +1085,7 @@ var orders = new Object({
     deleteCartProduct: function(element) {
         $(element).closest('tr').remove();
         orders.updateTotalCartSum();
+        $('#addVariantToCart').removeClass('btn-primary').removeAttr('disabled').addClass('btn-success').removeClass('btn-danger disabled').html(langs.addToCart);
     },
     updateQuantityAdmin: function(element) {
         var stock = $(element).data('stock');

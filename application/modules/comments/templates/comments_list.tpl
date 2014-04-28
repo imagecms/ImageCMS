@@ -90,7 +90,7 @@ langs["Show answers"] = '<?php echo lang("Show answers", "comments")?>';
                                                 </span>
                                             </span>
                                         </td>
-                                        <td>{$item.id}</td>
+                                        <td><a href="{echo site_url('admin/components/cp/comments/edit/')}/{$item.id}" class="pjax">{$item.id}</a></td>
                                         <td>
                                             <span class="time muted">{date('d-m-Y H:i', $item.date)}</span>
                                             <span class="text_comment" id="comment_text_holder{$item.id}">{truncate(htmlspecialchars($item.text), 80, '...')}</span>
@@ -186,7 +186,7 @@ langs["Show answers"] = '<?php echo lang("Show answers", "comments")?>';
                                                                 </span>
                                                             </span>
                                                         </td>
-                                                        <td>{$item.id}</td>
+                                                        <td><a href="{echo site_url('admin/components/cp/comments/edit/')}/{$item.id}" class="pjax">{$item.id}</a></td>
                                                         <td>
                                                             <span class="time muted">{date('d-m-Y H:i', $item.date)}</span>
                                                             <span class="text_comment parent_comment_{$item.id}" id="comment_text_holder{$item.id}">{truncate(htmlspecialchars($item.text), 80, '...')}</span>
@@ -296,7 +296,7 @@ langs["Show answers"] = '<?php echo lang("Show answers", "comments")?>';
                                                                                     </span>
                                                                                 </span>
                                                                             </td>
-                                                                            <td>{$ic.id}</td>
+                                                                            <td><a href="{echo site_url('admin/components/cp/comments/edit/')}/{$ic.id}" class="pjax">{$ic.id}</a></td>
                                                                             <td>
                                                                                 <span class="simple_tree pull-left">&#8627;</span>
                                                                                 <div class="o_h">

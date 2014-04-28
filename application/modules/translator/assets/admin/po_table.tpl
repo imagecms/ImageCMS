@@ -34,7 +34,7 @@
                     <button type="button" data-rel="tooltip" data-placement="right" data-original-title="{lang('Undo', 'translator')}" class="btn btn-small translationCancel">
                         <i class="icon-share-alt"></i>
                     </button>
-                    <textarea class="translation">{echo htmlspecialchars($translation['text'], ENT_QUOTES|ENT_SUBSTITUTE)}</textarea>
+                    <textarea class="translation">{echo htmlspecialchars($translation['translation'], ENT_QUOTES|ENT_SUBSTITUTE)}</textarea>
                     <textarea class="translationTEMP"></textarea>
                 </td>
             </tr>
@@ -102,26 +102,54 @@
     </div>
 </div>
 
-<div class="pathHolderClone span7" style="display:none;">
-    {foreach $paths as $key => $path}
-        {if $path['base'] && is_array($path)}
-            <div class="path" style="width: 515px">
-                <b class="pathNumber">{echo $key+1}.</b>
-                <input type="text" name="path[]" class="basePath" value="{echo $path['base']}">
-                <b class="baseTitle">({lang('Basic path', 'translator')})</b>
-                <br>
-            </div>
-        {else:}
-            <div class="path">
-                <b class="pathNumber">
-                    {echo $key+1}.
-                </b>
-                <input type="text" name="path[]" class="otherPaths" value="{echo $path}">
-                <div class="removePath" onclick="Translator.deletePath($(this))"><i class=" icon icon-remove-sign"></i></div>
-                <br>
-            </div>
-        {/if}
-    {/foreach}
+<tr class="pathHolderClone" style="display: none;">
+    <td>
+        <b class="pathNumber">1</b>
+    </td>
+    <td>
+        <input type="text" name="path[]" class="basePath" style="width: 100%;" value="{echo $po_settings['Basepath']}">
+    </td>
+    <td >
+        <b class="baseTitle">({lang('Basic path', 'translator')})</b>
+        <button style="display: none;" class="btn btn-small btn-danger v-a_b" onclick="Translator.deletePath($(this))" type="button">
+            <i class="icon-trash icon-white"></i>
+        </button>
+    </td>
+</tr>
+{foreach $po_settings['SearchPath'] as $key => $path}
+    <tr class="pathHolderClone" style="display: none;">
+        <td>
+            <b class="pathNumber">
+                {echo $key+2}
+            </b>
+        </td>
+        <td>
+            <input type="text" name="path[]" class="otherPaths" style="width: 100%;" value="{echo $path}">
+        </td>
+        <td>
+            <button class="btn btn-small btn-danger v-a_b" onclick="Translator.deletePath($(this))" type="button">
+                <i class="icon-trash icon-white"></i>
+            </button>
+        </td>
+    </tr>
+{/foreach}
+{ /* }
+<div class="path" style="width: 515px">
+    <b class="pathNumber">1</b>
+    <input type="text" name="path[]" class="basePath" value="{echo $po_settings['Basepath']}">
+    <b class="baseTitle">({lang('Basic path', 'translator')})</b>
+    <br>
 </div>
+{foreach $po_settings['SearchPath'] as $key => $path}
+    <div class="path">
+        <b class="pathNumber">
+            {echo $key+1}.
+        </b>
+        <input type="text" name="path[]" class="otherPaths" value="{echo $path}">
+        <div class="removePath" onclick="Translator.deletePath($(this))"><i class=" icon icon-remove-sign"></i></div>
+        <br>
+    </div>
+{/foreach}
+{ */ }
 
 
