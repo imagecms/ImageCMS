@@ -797,7 +797,9 @@ $(document).ready(function() {
 
         clonedVarTr.attr('id', 'ProductVariantRow_' + countVarRows);
         $('#variantHolder').append(clonedVarTr);
-        $(window).scrollTop($(window).scrollTop() + 59)
+        $(window).scrollTop($(window).scrollTop() + 59);
+        number_tooltip();
+
     });
 
     /*------------------------- IMAGES -------------------------*/
@@ -1387,12 +1389,7 @@ $(document).ready(function() {
         }
     });
 
-
-    // if choose not a font file for watermark text
-    $("input[type='file'][name='watermark[watermark_font_path]']").live("click", function() {
-        oldFontPath = $("input[type='text'][name='watermark[watermark_font_path]']").val();
-    });
-    $("input[type='file'][name='watermark[watermark_font_path]']").live("change", function() {
+    $("input[type='file'][name='watermark_font_path']").live("change", function() {
         var allowedFileExtentions = ['ttf', 'fnt', 'fon', 'otf'];
         var ext = $(this).val().split('.').pop();
         var extentionIsAllowed = false;
@@ -1402,11 +1399,12 @@ $(document).ready(function() {
                 break;
             }
         }
+
         if (extentionIsAllowed == false) {
             $(this).removeAttr("value");
             showMessage("Ошибка", "Можно загружать только изображения", "error");
-            $("input[type='text'][name='watermark[watermark_font_path]']").val(oldFontPath);
-            return;
+        } else {
+            $(".watermark_path_info div").html($(this).val().split('\\').pop());
         }
     });
 
@@ -1662,6 +1660,8 @@ $(document).ready(function() {
         });
     });
 
+    $("#createUserPhone").mask("+99 (999) 999-99-99");
+    $("#UserPhone").mask("+99 (999) 999-99-99");
 
 });
 
