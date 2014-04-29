@@ -278,6 +278,16 @@ class Languages extends BaseAdminController {
         }
     }
 
+    private function rrmdir($dir) {
+        foreach (glob($dir . '/*') as $file) {
+            if (is_dir($file))
+                $this->rrmdir($file);
+            else
+                unlink($file);
+        }
+        rmdir($dir);
+    }
+
     private function deleteLanguageFolders($lang) {
         $templates_dir = './templates';
         $main_dir = './application/language/main';
@@ -288,7 +298,7 @@ class Languages extends BaseAdminController {
                 if (is_dir($templates_dir . '/' . $template) && $template != "." && $template != '..' && $template[0] != '.') {
                     if (is_dir($templates_dir . '/' . $template . '/language/' . $template . '/' . $lang)) {
                         chmod($templates_dir . '/' . $template . '/language/' . $template . '/' . $lang, 0777);
-                        system("rm -rf " . escapeshellarg($templates_dir . '/' . $template . '/language/' . $template . '/' . $lang));
+                        $this->rrmdir($templates_dir . '/' . $template . '/language/' . $template . '/' . $lang);
                     }
                 }
             }
@@ -297,7 +307,7 @@ class Languages extends BaseAdminController {
         if (is_dir($main_dir)) {
             if (is_dir($main_dir . '/' . $lang)) {
                 chmod($main_dir . '/' . $lang, 0777);
-                system("rm -rf " . escapeshellarg($main_dir . '/' . $lang));
+                $this->rrmdir($main_dir . '/' . $lang);
             }
         }
 
@@ -307,7 +317,7 @@ class Languages extends BaseAdminController {
                 if (is_dir($modules_dir . '/' . $module . '/language') && $module != "." && $module != '..' && $module[0] != '.') {
                     if (is_dir($modules_dir . '/' . $module . '/language/' . $lang)) {
                         chmod($modules_dir . '/' . $module . '/language/' . $lang, 0777);
-                        system("rm -rf " . escapeshellarg($modules_dir . '/' . $module . '/language/' . $lang));
+                        $this->rrmdir($modules_dir . '/' . $module . '/language/' . $lang);
                     }
                 }
             }
