@@ -422,7 +422,8 @@
 
         <script async="async" src="{$THEME}js/jquery-validate/jquery.validate.min.js" type="text/javascript"></script>
         <script async="async" src="{$THEME}js/jquery-validate/jquery.validate.i18n.js" type="text/javascript"></script>
-
+        
+        <script src="{$THEME}js/chosen.js" type="text/javascript"></script>
 
         <script src="{$THEME}js/functions.js" type="text/javascript"></script>
         <script src="{$THEME}js/scripts.js" type="text/javascript"></script>
