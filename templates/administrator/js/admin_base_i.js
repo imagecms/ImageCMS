@@ -1659,10 +1659,10 @@ $(document).ready(function() {
             }
         });
     });
-
-    $("#createUserPhone").mask("+99 (999) 999-99-99");
-    $("#UserPhone").mask("+99 (999) 999-99-99");
-
+    if ($.fn.mask) {
+        $("#createUserPhone").mask("+99 (999) 999-99-99");
+        $("#UserPhone").mask("+99 (999) 999-99-99");
+    }
 });
 
 
