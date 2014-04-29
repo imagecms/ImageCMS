@@ -1519,7 +1519,9 @@ $(document).ready(function() {
         };
 
         reader.readAsDataURL(file);
-        $(img).addClass('img-polaroid');
+        $(img).addClass('img-polaroid').css({
+            'max-height': '100%'
+        });
         $(this).siblings('.controls').html(img);
 
     });
@@ -1659,10 +1661,46 @@ $(document).ready(function() {
             }
         });
     });
-    if ($.fn.mask) {
-        $("#createUserPhone").mask("+99 (999) 999-99-99");
-        $("#UserPhone").mask("+99 (999) 999-99-99");
+    getChar = function(e) {
+        if (e.which == null) {  // IE
+            if (e.keyCode < 32)
+                return null;
+            return String.fromCharCode(e.keyCode)
+        }
+
+        if (e.which != 0 && e.charCode != 0) { // non IE
+            if (e.which < 32)
+                return null;
+            return String.fromCharCode(e.which);
+        }
+
+        return null;
     }
+    $.fn.testNumber = function(add) {
+        $(this).off('keypress.testNumber').on('keypress.testNumber', function(e) {
+            var $this = $(this);
+            if (e.ctrlKey || e.altKey || e.metaKey)
+                return;
+            var chr = getChar(e);
+            if (chr == null)
+                return;
+            if (!isNaN(parseFloat(chr)) || $.inArray(chr, add) != -1) {
+                $this.trigger({
+                    type: 'testNumber',
+                    'res': true
+                });
+                return true;
+            }
+            else {
+                $this.trigger({
+                    type: 'testNumber',
+                    'res': false
+                });
+                return false;
+            }
+        });
+    };
+    $("#createUserPhone, #UserPhone").testNumber(['(', ')', '+', '-']);
 });
 
 
