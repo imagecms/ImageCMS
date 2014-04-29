@@ -275,7 +275,14 @@ class Admin extends BaseAdminController {
 
             showMessage(lang('Album created', 'gallery'));
 
-            pjax(site_url('admin/components/cp/gallery/edit_album_params/' . $album_id));
+            $_POST['action'] ? $action = $_POST['action'] : $action = 'edit';
+
+            if ($action == 'edit')
+                pjax(site_url('admin/components/cp/gallery/edit_album_params/' . $album_id));
+
+            if ($action == 'exit')
+                pjax('/admin/components/cp/gallery/category/' . $album['category_id']);
+
         }
     }
 
@@ -315,7 +322,8 @@ class Admin extends BaseAdminController {
         if ($this->db->where('id', $id)->where('locale', $locale)->get('gallery_albums_i18n')->num_rows()) {
             $this->db->where('id', $id)->where('locale', $locale);
             $this->db->update('gallery_albums_i18n', $data_locale);
-        } else
+        }
+        else
             $this->db->insert('gallery_albums_i18n', $data_locale);
 
         $album = $this->gallery_m->get_album($id);
@@ -325,7 +333,7 @@ class Admin extends BaseAdminController {
         if ($action == 'edit')
             pjax('/admin/components/cp/gallery/edit_album_params/' . $category . $id);
 
-        if ($action == 'close')
+        if ($action == 'exit')
             pjax('/admin/components/cp/gallery/category/' . $album['category_id']);
     }
 
@@ -696,7 +704,8 @@ class Admin extends BaseAdminController {
             if ($this->db->where('id', $id)->where('locale', $locale)->get('gallery_category_i18n')->num_rows()) {
                 $this->db->where('id', $id)->where('locale', $locale);
                 $this->db->update('gallery_category_i18n', $data_locale);
-            } else
+            }
+            else
                 $this->db->insert('gallery_category_i18n', $data_locale);
 
 
@@ -877,7 +886,8 @@ class Admin extends BaseAdminController {
                     foreach ($album_data['images'] as $image) {
                         array_push($album_images, $image['full_name']);
                     }
-                } else
+                }
+                else
                     $album_data = array();
                 //$this->load->library('image_lib');
 

@@ -89,8 +89,7 @@ class Admin extends BaseAdminController {
      */
     public function saveSiteMap() {
         // Get Site Map Data
-        $sitemap = file_get_contents(site_url('sitemap.xml'));
-
+        $sitemap = file_get_contents(site_url('sitemapRegenerate.xml'));
         if ($sitemap) {
             // Create file and puts Site Map data 
             if (file_put_contents($this->sitemap_path, $sitemap)) {

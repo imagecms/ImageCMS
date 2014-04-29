@@ -105,8 +105,8 @@
                                         <td><p>{$user.role_alt_name}</p></td>
                                         <td>
                                             <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" onclick="change_status('{$BASE_URL}admin/components/cp/user_manager/actions/{echo $user.id}');" >
-                                                {if $user.id != $CI->dx_auth->get_user_id() && $user.banned}
-                                                    <span class="prod-on_off {if $user.banned == 1}disable_tovar{/if}" ></span>  
+                                                {if $user.id != $CI->dx_auth->get_user_id()}
+                                                    <span class="prod-on_off {if !$user.banned}disable_tovar{/if}" ></span>
                                                 {/if}
                                             </div>
                                             </div>

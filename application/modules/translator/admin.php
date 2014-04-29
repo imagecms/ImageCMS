@@ -610,7 +610,8 @@ class Admin extends BaseAdminController {
         if (FileOperator::getInstatce()->getFile($filePath)) {
             return json_encode(array('success' => TRUE, 'data' => FileOperator::getInstatce()->getData()));
         } else {
-            return json_encode(array('error' => TRUE, 'errors' => FileOperator::getInstatce()->getErrors()));
+            $error = FileOperator::getInstatce()->getErrors();
+            return json_encode(array('error' => TRUE, 'errors' => $error['error']));
         }
     }
 

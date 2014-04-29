@@ -780,7 +780,7 @@ handleFileSelect = function(evt) {
             return function(e) {
                 // Render thumbnail.
                 var span = document.createElement('div');
-                span.innerHTML = ['<img style="max-width:100px;" src="', e.target.result,
+                span.innerHTML = ['<img style="max-height: 100%;" src="', e.target.result,
                     '" title="', escape(theFile.name), '"/>'].join('');
                 document.getElementById('picsToUpload').insertBefore(span, null);
                 document.getElementById('picsToUpload').className = 'is_content';
@@ -828,12 +828,12 @@ function getScrollTop() {
         scrOfY = window.pageYOffset;
     } else if (document.body
             && (document.body.scrollLeft
-            || document.body.scrollTop)) {
+                    || document.body.scrollTop)) {
         //DOM compliant
         scrOfY = document.body.scrollTop;
     } else if (document.documentElement
             && (document.documentElement.scrollLeft
-            || document.documentElement.scrollTop)) {
+                    || document.documentElement.scrollTop)) {
         //IE6 Strict
         scrOfY = document.documentElement.scrollTop;
     }
@@ -911,6 +911,8 @@ function what_key(enter_key, event) {
         return false;
 }
 function initAdminArea() {
+    console.log('initialising of administration area started');
+
     $('.btn.disabled').each(function(event) {
         $(this).attr('disabled', true);
     });
@@ -923,10 +925,6 @@ function initAdminArea() {
 
         }
     }
-
-
-
-    console.log('initialising of administration area started');
     var startExecTime = Date.now();
 
     //gistogram
@@ -1168,7 +1166,7 @@ function initAdminArea() {
 
         reader.readAsDataURL(file);
         $(img).addClass('img-polaroid').css({
-            width: '100px'
+            'max-height': '100%'
         });
 
         img.onerror = function() {
@@ -1209,8 +1207,8 @@ function initAdminArea() {
 
     })
             .on('pjax:end', function() {
-        $('#loading').fadeOut(300);
-    });
+                $('#loading').fadeOut(300);
+            });
 
     //add arrows to orders list
     if (window.hasOwnProperty('orderField'))
@@ -1243,6 +1241,11 @@ function initAdminArea() {
         $(this).remove();
         return false;
     });
+    $('select').each(function() {
+        if ($(this).children().length > 20)
+            $(this).chosen();
+    });
+    $('.chosen').chosen();
 
     console.log('initialising of administration area ended');
     console.log('script execution time:' + (Date.now() - startExecTime) / 1000 + " sec.");
@@ -1437,7 +1440,6 @@ $(document).ready(
             $('#settings_form .control-label').live('click', function() {
                 $(this).next().find(':input:first').focus();
             });
-
         });
 
 $(window).load(function() {
