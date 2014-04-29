@@ -456,6 +456,7 @@ form .btn-form .text-el, .btn-form input{font-weight: bold;font-size: 13px;}
 
 .ui-slider-handle{position: absolute;z-index: 2;width: 3px;height: 20px;cursor: pointer;top: -4px;}
 .ui-slider-handle:active, .ui-slider-handle:focus{outline: none;}
+.horizontal-form .cusel{border: 1px solid transparent;}
 .horizontal-form .cuselFrameRight{border-radius: 0 4px 4px 0;}
 .cusel .jScrollPaneContainer{border: 1px solid transparent;}
 .msg > .error{border: 1px solid transparent;}
