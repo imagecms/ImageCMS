@@ -93,6 +93,7 @@ class FileOperator {
      */
     public function checkFile($filePath) {
         clearstatcache();
+        
         if (file_exists($filePath)) {
             if (!is_readable($filePath)) {
                 $this->setError(lang('File cant be read. Please, set read file permissions.', 'translator'), 'read');
@@ -105,7 +106,7 @@ class FileOperator {
             }
             return TRUE;
         } else {
-            $this->setError(lang('File does not exist.', 'translator'), 'create');
+            $this->setError(lang('File does not exist or check perrmissions to the file.', 'translator'), 'create');
             return FALSE;
         }
     }
