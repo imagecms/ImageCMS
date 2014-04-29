@@ -269,6 +269,13 @@ footer [class^="box"] .main-title{font-size: 14px;}
 .start-page-category-menu .sub-category > li{padding-left: 1px;}
 .frame-menu-category-first .title-category-l1{text-decoration: none;}
 .frame-menu-category-first .title-category-l1:hover{text-decoration: underline;}
+
+.nav-static-pages > li{border-top: 1px solid transparent;}
+.nav-static-pages > li:first-child{border-top: 0;}
+.nav-static-pages > li > ul{padding-left: 17px;padding-bottom: 10px;}
+.nav-static-pages > li > ul > li{margin-bottom: 7px;}
+.nav-static-pages > li > ul a{text-decoration: underline;}
+.nav-static-pages .is-sub .text-el{font-weight: bold;}
 /*/menus*/
 
 /*benefits*/
@@ -566,15 +573,6 @@ footer .box-1 > .inside-padd{border-left: 0;}
 .tooltip{font-size:11px;text-align:center;text-decoration:none;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;}
 .tooltip:after{border-color:transparent;border-style:solid;border-width:5px 5px 0;}
 /*/tooltip*/
-
-/*navs*/
-.nav-static-pages > li{border-top: 1px solid transparent;}
-.nav-static-pages > li:first-child{border-top: 0;}
-.nav-static-pages > li > ul{padding-left: 17px;padding-bottom: 10px;}
-.nav-static-pages > li > ul > li{margin-bottom: 7px;}
-.nav-static-pages > li > ul a{text-decoration: underline;}
-.nav-static-pages .is-sub .text-el{font-weight: bold;}
-/*/navs*/
 
 /*stars*/
 .star-small, .star-small div, .star-small span{background: url('images/stars.png');}
