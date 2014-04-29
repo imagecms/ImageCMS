@@ -40,7 +40,7 @@
                                         <div class="control-group">
                                             <label class="control-label" for="username">{lang('Full name', 'user_manager')}:</label>
                                             <div class="controls">
-                                                <input type="text" name="username" id="email" value="{$username}" class="text required"/>
+                                                <input type="text" name="username" id="email" value="{$username}" required class="text required"/>
                                             </div>
                                         </div>
 
