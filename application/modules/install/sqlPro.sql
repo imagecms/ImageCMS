@@ -206,7 +206,7 @@ INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_me
 (183, 'wishlist', 'wishlist', 1, 1, 0, 'a:10:{s:11:"maxUserName";s:3:"256";s:11:"maxListName";s:3:"254";s:13:"maxListsCount";s:2:"10";s:13:"maxItemsCount";s:3:"100";s:16:"maxCommentLenght";s:3:"500";s:13:"maxDescLenght";s:4:"1000";s:15:"maxWLDescLenght";s:4:"1000";s:13:"maxImageWidth";s:3:"150";s:14:"maxImageHeight";s:3:"150";s:12:"maxImageSize";s:7:"2000000";}" }', 3),
 (188, 'cmsemail', 'cmsemail', 1, 0, 1, 'a:9:{s:4:"from";s:41:"Интернет-магазин ImageShop";s:10:"from_email";s:22:"noreplay@client.com.ua";s:11:"admin_email";s:18:"info@client.com.ua";s:5:"theme";s:41:"Интернет-магазин ImageShop";s:12:"wraper_activ";s:2:"on";s:6:"wraper";s:304:"<h2>Интернет-магазин "ImageShop"</h2>\n<div>$content</div>\n<hr />\n<p>С уважением, Интернет-магазин "ImageShop"</p>\n<p><small>Данное письмо создано автоматически, пожалуйста не отвечайте на него.</small></p>";s:8:"mailpath";s:0:"";s:8:"protocol";s:4:"mail";s:4:"port";s:0:"";}', 4),
 (191, 'mod_discount', 'mod_discount', 1, 1, 1, NULL, 2),
-(253, 'smart_filter', 'smart_filter', 1, 1, 0, NULL, 25),
+(253, 'smart_filter', 'smart_filter', 1, 0, 0, NULL, 25),
 (261, 'trash', 'trash', 0, 1, 1, NULL, 4),
 (264, 'language_switch', 'language_switch', 0, 0, 0, NULL, 22),
 (265, 'star_rating', 'star_rating', 1, 0, 0, NULL, 11),
@@ -2281,7 +2281,7 @@ CREATE TABLE IF NOT EXISTS `shop_currencies` (
   `is_default` tinyint(1) DEFAULT NULL,
   `code` varchar(5) DEFAULT NULL,
   `symbol` varchar(5) DEFAULT NULL,
-  `rate` float(6,3) DEFAULT '1.000',
+  `rate` float(7,6) DEFAULT '1.000000',
   `showOnSite` int(1) DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `shop_currencies_I_1` (`name`),
@@ -2294,8 +2294,8 @@ CREATE TABLE IF NOT EXISTS `shop_currencies` (
 --
 
 INSERT INTO `shop_currencies` (`id`, `name`, `main`, `is_default`, `code`, `symbol`, `rate`, `showOnSite`) VALUES
-(1, 'Dollars', 0, 0, 'USD', '$', 0.031, 1),
-(2, 'Рубль', 1, 1, 'RUR', 'руб', 1.000, 0);
+(1, 'Dollars', 0, 0, 'USD', '$', 0.031000, 1),
+(2, 'Рубль', 1, 1, 'RUR', 'руб', 1.000000, 0);
 
 -- --------------------------------------------------------
 

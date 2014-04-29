@@ -1279,7 +1279,7 @@ CREATE TABLE IF NOT EXISTS `shop_currencies` (
   `is_default` tinyint(1) DEFAULT NULL,
   `code` varchar(5) DEFAULT NULL,
   `symbol` varchar(5) DEFAULT NULL,
-  `rate` float(6,3) DEFAULT '1.000',
+  `rate` float(7,6) DEFAULT '1.000000',
   PRIMARY KEY (`id`),
   KEY `shop_currencies_I_1` (`name`),
   KEY `shop_currencies_I_2` (`main`),
@@ -1291,8 +1291,8 @@ CREATE TABLE IF NOT EXISTS `shop_currencies` (
 --
 
 INSERT INTO `shop_currencies` (`id`, `name`, `main`, `is_default`, `code`, `symbol`, `rate`) VALUES
-(1, 'Dollars', 0, 0, 'USD', '$', 0.031),
-(2, 'Ruble', 1, 1, 'RUR', 'RUR', 1.000);
+(1, 'Dollars', 0, 0, 'USD', '$', 0.031000),
+(2, 'Ruble', 1, 1, 'RUR', 'RUR', 1.000000);
 
 -- --------------------------------------------------------
 

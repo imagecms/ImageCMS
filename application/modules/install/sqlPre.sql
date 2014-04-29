@@ -209,7 +209,7 @@ INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_me
 (270, 'mod_stats', 'mod_stats', 1, 1, 0, NULL, 4),
 (271, 'mod_seo', 'mod_seo', 0, 1, 1, NULL, 5),
 (191, 'mod_discount', 'mod_discount', 1, 1, 1, NULL, 2),
-(253, 'smart_filter', 'smart_filter', 1, 1, 0, NULL, 29),
+(253, 'smart_filter', 'smart_filter', 1, 0, 0, NULL, 29),
 (204, 'mobile', 'mobile', 1, 1, 0, 'a:5:{s:15:"MobileVersionON";s:1:"1";s:17:"MobileVersionSite";s:21:"demoshop.imagecms.net";s:20:"MobileVersionAddress";s:23:"m.demoshop.imagecms.net";s:18:"mobileTemplatePath";s:37:"./templates/commerce_mobiles/shop";s:6:"action";s:0:"";}', 10),
 (261, 'trash', 'trash', 0, 1, 1, NULL, 8),
 (264, 'language_switch', 'language_switch', 0, 0, 0, NULL, 26),
@@ -2414,7 +2414,7 @@ CREATE TABLE IF NOT EXISTS `shop_currencies` (
   `is_default` tinyint(1) DEFAULT NULL,
   `code` varchar(5) DEFAULT NULL,
   `symbol` varchar(5) DEFAULT NULL,
-  `rate` float(6,3) DEFAULT '1.000',
+  `rate` float(7,6) DEFAULT '1.000000',
   `showOnSite` int(1) DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `shop_currencies_I_1` (`name`),
@@ -2427,8 +2427,8 @@ CREATE TABLE IF NOT EXISTS `shop_currencies` (
 --
 
 INSERT INTO `shop_currencies` (`id`, `name`, `main`, `is_default`, `code`, `symbol`, `rate`, `showOnSite`) VALUES
-(1, 'Dollars', 0, 0, 'USD', '$', 0.031, 1),
-(2, 'Рубль', 1, 1, 'RUR', 'руб', 1.000, 0);
+(1, 'Dollars', 0, 0, 'USD', '$', 0.031000, 1),
+(2, 'Рубль', 1, 1, 'RUR', 'руб', 1.000000, 0);
 
 -- --------------------------------------------------------
 

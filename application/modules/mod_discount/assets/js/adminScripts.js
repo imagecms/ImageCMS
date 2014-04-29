@@ -32,10 +32,15 @@ $(document).ready(function() {
             }
         });
     });
+
     /**
      * If check/unckech input for no limit count for discount
      */
     $('.spanForNoLimit').bind('click', function() {
+        var isGift = $('#gift_checkbox').attr('checked') == 'checked';
+        if (isGift & $(this).hasClass('spanForNoLimitCheckbox')) {
+            return false;
+        }
         var spanBlock = $(this);
         var checkBox = spanBlock.find('.noLimitCountCheck');
         var controlBlock = spanBlock.closest('.noLimitC');
@@ -198,7 +203,7 @@ $(document).ready(function() {
         var countUsesBlock = $('.noLimitC')[0];
         if ($(this).find('input').prop('checked')) {
             $(countUsesBlock).find('#how-much').val('');
-            $(countUsesBlock).find('.spanForNoLimit').click()
+            $(countUsesBlock).find('#how-much').removeAttr('disabled');
         } else {
             $(countUsesBlock).find('#how-much').val(1);
             $(countUsesBlock).find('#how-much').prop('disabled', 'disabled');
