@@ -843,7 +843,6 @@ table#backups_list thead th:nth-child(3) {width: 10px;}*/
 #backups_list thead th:nth-child(7) {width: 50px}
 
 .ui-autocomplete.ui-menu.ui-widget.ui-widget-content.ui-corner-all{
-    z-index: 4!important;
     max-height: 300px;
     overflow-y: scroll;
 }

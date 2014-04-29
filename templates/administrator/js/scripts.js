@@ -780,7 +780,7 @@ handleFileSelect = function(evt) {
             return function(e) {
                 // Render thumbnail.
                 var span = document.createElement('div');
-                span.innerHTML = ['<img style="max-width:100px;" src="', e.target.result,
+                span.innerHTML = ['<img style="max-height: 100%;" src="', e.target.result,
                     '" title="', escape(theFile.name), '"/>'].join('');
                 document.getElementById('picsToUpload').insertBefore(span, null);
                 document.getElementById('picsToUpload').className = 'is_content';
@@ -1166,7 +1166,7 @@ function initAdminArea() {
 
         reader.readAsDataURL(file);
         $(img).addClass('img-polaroid').css({
-            width: '100px'
+            'max-height': '100%'
         });
 
         img.onerror = function() {
@@ -1241,7 +1241,10 @@ function initAdminArea() {
         $(this).remove();
         return false;
     });
-
+    $('select').each(function() {
+        if ($(this).children().length > 20)
+            $(this).chosen();
+    });
     $('.chosen').chosen();
 
     console.log('initialising of administration area ended');
