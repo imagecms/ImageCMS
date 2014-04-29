@@ -791,32 +791,63 @@ handleFileSelect = function(evt) {
         reader.readAsDataURL(f);
     }
 };
+getChar = function(e) {
+    if (e.which == null) {  // IE
+        if (e.keyCode < 32)
+            return null;
+        return String.fromCharCode(e.keyCode)
+    }
+
+    if (e.which != 0 && e.charCode != 0) { // non IE
+        if (e.which < 32)
+            return null;
+        return String.fromCharCode(e.which);
+    }
+
+    return null;
+}
+$.fn.testNumber = function(add) {
+    $(this).off('keypress.testNumber').on('keypress.testNumber', function(e) {
+        var $this = $(this);
+        if (e.ctrlKey || e.altKey || e.metaKey)
+            return;
+        var chr = getChar(e);
+        if (chr == null)
+            return;
+        if (!isNaN(parseFloat(chr)) || $.inArray(chr, add) != -1) {
+            $this.trigger({
+                type: 'testNumber',
+                'res': true
+            });
+            return true;
+        }
+        else {
+            $this.trigger({
+                type: 'testNumber',
+                'res': false
+            });
+            return false;
+        }
+    });
+};
+function initChosenSelect(el) {
+    el = el ? el : $('#mainContent');
+    el.find('select:visible').each(function() {
+        if ($(this).children().length > 20)
+            $(this).chosen();
+    });
+    el.find('.chosen:visible').chosen();
+}
 function number_tooltip() {
+    $('.number input').testNumber(['.'])
     $('.number input').tooltip({
         'delay': {
             show: 500,
             hide: 100
         }
-    }).die('keypress').live('keypress', function(event) {
-        var key, keyChar;
-        if (!event)
-            var event = window.event;
-
-        if (event.keyCode)
-            key = event.keyCode;
-        else if (event.which)
-            key = event.which;
-
-        console.log(key);
-
-        if (key == null || key == 0 || key == 8 || key == 13 || key == 9 || key == 46 || key == 39)
-            return true;
-        keyChar = String.fromCharCode(key);
-
-        if (!/\d/.test(keyChar)) {
+    }).die('testNumber').live('testNumber', function(e) {
+        if (!e.res)
             $(this).tooltip('show');
-            return false;
-        }
         else
             $(this).tooltip('hide');
     });
@@ -912,6 +943,8 @@ function what_key(enter_key, event) {
 }
 function initAdminArea() {
     console.log('initialising of administration area started');
+    
+    $('[href="' + location.pathname + '"]').closest('li').addClass('active');
 
     $('.btn.disabled').each(function(event) {
         $(this).attr('disabled', true);
@@ -1230,6 +1263,7 @@ function initAdminArea() {
 
     $('.myTab a').live('click', function() {
         initElRTE();
+        initChosenSelect($($(this).attr('href')));
         return true;
     });
 
@@ -1241,11 +1275,8 @@ function initAdminArea() {
         $(this).remove();
         return false;
     });
-    $('select').each(function() {
-        if ($(this).children().length > 20)
-            $(this).chosen();
-    });
-    $('.chosen').chosen();
+    if ($.fn.chosen)
+        initChosenSelect();
 
     console.log('initialising of administration area ended');
     console.log('script execution time:' + (Date.now() - startExecTime) / 1000 + " sec.");
@@ -1294,20 +1325,6 @@ $(document).ready(
             initAdminArea();
             //$('.nav .dropdown-menu a').die('click');
 
-            $('a.pjax').not('#mainContent a.pjax').unbind('click').die('click').on('click', function(event) {
-                event.preventDefault();
-                $('#loading').fadeIn(100);
-                $.pjax({
-                    url: $(this).attr('href'),
-                    container: '#mainContent',
-                    timeout: 3000
-                });
-                $('nav li').removeClass('active');
-                $(this).closest('li').addClass('active').closest('li.dropdown').addClass('active').removeClass('open');
-                return true;
-            });
-
-
             var txt_val = $('.now-active-prod').text();
             $('.discount-out #productForDiscount').attr('value', txt_val);
 
@@ -1319,8 +1336,9 @@ $(document).ready(
                     container: '#mainContent',
                     timeout: 3000
                 });
-                $('nav li').removeClass('active');
-                $(this).closest('li').addClass('active').closest('li.dropdown').addClass('active').removeClass('open');
+                $('.frame_nav nav li').removeClass('active');
+                if ($(this).closest('.frame_nav').length > 0)
+                    $(this).closest('li').addClass('active').closest('li.dropdown').addClass('active').removeClass('open');
                 return false;
             });
 
@@ -1570,7 +1588,7 @@ $('#variantsForOrders').live('change', function() {
     $('#addVariantToCart').data(dataForButton);
 });
 //Add product
-$('#addVariantToCart').die().live('click', function() {
+$('#addVariantToCart').die('click').live('click', function() {
     if ((checkProdStock != 1 || $(this).data('stock') != 0) && !$(this).hasClass('btn-primary')) {
         orders.addToCartAdmin($(this));
         $(this).removeClass('btn-success').attr('disabled', 'disabled').addClass('btn-primary').html(langs.inTheCart);
@@ -1667,16 +1685,18 @@ $('#getAllOrderInfoButton').live('click', function() {
     }
 });
 /** Get payments methds for delivery method **/
-$('#shopOrdersdeliveryMethod').live('click', function() {
-    id = $(this).val();
+$('#shopOrdersdeliveryMethod').live('change', function() {
+    var id = $(this).val();
     $.get('/admin/components/run/shop/orders/getPaymentsMethods/' + id, function(dataStr) {
-        data = JSON.parse(dataStr);
+        var data = JSON.parse(dataStr);
         $('#shopOrdersPaymentMethod').empty();
         jQuery.each(data, function(index, el) {
             $("#shopOrdersPaymentMethod").append($('<option value="' + el.id + '">' + el.name + '</option>'));
         });
-
-
+        if (data.length === 0)
+            $("#shopOrdersPaymentMethod").attr('disabled', 'disabled');
+        else
+            $("#shopOrdersPaymentMethod").removeAttr('disabled');
     });
 });
 /** When change discount recount total price**/
@@ -1735,7 +1755,7 @@ $('.removeGiftCert').live('click', function() {
 });
 
 
-$('table.orderMethodsTable .orderMethodsEdit').live('click', function() {
+$('.orderMethodsEdit').live('click', function() {
     $(this).next('.orderMethodsRefresh').css('display', 'block');
     $(this).css('display', 'none');
 
@@ -1748,7 +1768,7 @@ $('table.orderMethodsTable .orderMethodsEdit').live('click', function() {
     closestTr.find('[name=tooltip]').css('display', 'block');
 });
 
-$('table.orderMethodsTable .orderMethodsRefresh').on('click', function() {
+$('.orderMethodsRefresh').live('click', function() {
     $(this).prev('.orderMethodsEdit').css('display', 'block');
     $(this).css('display', 'none');
     var closestTr = $(this).closest('tr');
