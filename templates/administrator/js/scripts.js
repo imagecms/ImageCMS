@@ -1540,15 +1540,21 @@ $('#variantsForOrders').live('change', function() {
     var variantPrice = $('#variantsForOrders option:selected').data('price');
     var stock = $('#variantsForOrders option:selected').data('stock');
     var currency = $('#variantsForOrders option:selected').data('productcurrency');
+    var origPrice = $('#variantsForOrders option:selected').data('orig_price');
 
     $('#productText').html('<b>' + langs.product + ': ' + productName + '</b>');
     if (variantName != '')
         $('#productText').append('<br/>' + langs.variant + ': ' + variantName);
 
     $('#productText').append('<br/>' + langs.price + ': ' + parseFloat(variantPrice).toFixed(pricePrecision) + ' ' + currency);
+    if (origPrice != variantPrice & origPrice > variantPrice) {
+        $('#productText').append('<br/>' + langs.discount + ': ' + (origPrice - variantPrice) + " " + currency);
+    }
 
     $("#imageSrc").attr("src", '/uploads/shop/products/origin/' + imageName);
     $('#productStock').html('<br/>' + langs.balance + ': ' + stock);
+
+    
 
     //Show info product block
     if (variantId != undefined)

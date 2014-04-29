@@ -204,10 +204,12 @@ $(document).ready(function() {
         if ($(this).find('input').prop('checked')) {
             $(countUsesBlock).find('#how-much').val('');
             $(countUsesBlock).find('#how-much').removeAttr('disabled');
+            $(countUsesBlock).find('.spanForNoLimitCheckbox').show();
         } else {
             $(countUsesBlock).find('#how-much').val(1);
             $(countUsesBlock).find('#how-much').prop('disabled', 'disabled');
             $(countUsesBlock).find('.noLimitCountCheck').prop('checked', false);
+            $(countUsesBlock).find('.spanForNoLimitCheckbox').hide();
             $(countUsesBlock).find('.spanForNoLimit').removeClass('active');
             $(countUsesBlock).find('.niceCheck').css('background-position', '-46px 0px');
         }
