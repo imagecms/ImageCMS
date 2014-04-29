@@ -53,7 +53,7 @@
                                             <div class="control-group">
                                                 <label class="control-label" for="inputWayImg">{lang("Template folder", "menu")}:</label>
                                                 <div class="controls">
-                                                    <input type="text" class="textbox" name="menu_tpl" value="{$tpl}" />
+                                                    <input type="text" class="textbox required" required="required" name="menu_tpl" value="{$tpl}" />
                                                 </div>
                                             </div>
                                             <div class="control-group">

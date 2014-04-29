@@ -307,13 +307,12 @@ class Admin extends BaseAdminController {
             $query = $this->db->get('users');
 
             if ($query->num_rows() == 0) {
-//                showMessage(lang('User not found', 'user_manager'), '', 'r');
-//                pjax('/admin/components/init_window/user_manager');
+                $this->template->add_array($this->show_edit_prems_tpl($id = 2));
+                $this->template->add_array(array('role_id' => $role));
                 $this->template->assign('users', FALSE);
                 $rezult_table = $this->fetch_tpl('main');
 
                 echo $rezult_table;
-//                exit();
             } else {
                 $users = $query->result_array();
 
@@ -328,17 +327,23 @@ class Admin extends BaseAdminController {
 
                 // recount users
                 if (count($users) == 0) {
-                    showMessage(lang('User not found'), '', 'r');
-                    pjax('/admin/components/init_window/user_manager');
-                    exit();
+                    $this->template->add_array($this->show_edit_prems_tpl($id = 2));
+                    $this->template->add_array(array('role_id' => $role));
+                    $this->template->assign('users', FALSE);
+                    $rezult_table = $this->fetch_tpl('main');
+
+                    echo $rezult_table;
+                } else {
+
+
+
+                    $this->template->assign('users', $users);
+                    $this->template->add_array($this->show_edit_prems_tpl($id = 2));
+                    $this->template->add_array(array('role_id' => $role));
+                    $rezult_table = $this->fetch_tpl('main');
+
+                    echo $rezult_table;
                 }
-
-                $this->template->assign('users', $users);
-                $this->template->add_array($this->show_edit_prems_tpl($id = 2));
-                $this->template->add_array(array('role_id' => $role));
-                $rezult_table = $this->fetch_tpl('main');
-
-                echo $rezult_table;
             }
         } else {
             showMessage(lang('a_bas_filt_pass_not_post'), '', 'r');

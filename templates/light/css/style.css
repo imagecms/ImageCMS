@@ -167,9 +167,9 @@ a.f-s_0{display: inline-block;text-decoration: none;}
 .m-b_5{margin-bottom: 5px !important;}
 
 .o_5, [rel="group"].active, .active > [rel="group"], .frame-thumbs .active img, .not-avail img{filter:progid:DXImageTransform.Microsoft.Alpha(opacity=50);-moz-opacity: .5;-khtml-opacity: .5;opacity: .5;}
-.b-r_5{-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;}
-.b-r_4{-moz-border-radius: 4px;-webkit-border-radius: 4px;border-radius: 4px;}
-.b-r_3{-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;}
+.b-r_5{border-radius:5px;}
+.b-r_4{border-radius: 4px;}
+.b-r_3{border-radius: 3px;}
 
 .empty, .no-empty, .frameDiscount, .frame-price-discount{display: none;}
 /*/adding selectors*/
@@ -931,7 +931,7 @@ li.clear-pag-item{margin: 0 14px 4px;}
 .cloud-zoom img{display: inline-block !important;}
 .cloud-zoom-lens {cursor:move;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;-ms-box-sizing: border-box;box-sizing: border-box;}
 .cloud-zoom-title {position:absolute !important;padding:3px;width:100%;text-align:center;top:0px;}
-.cloud-zoom-big {width: 100% !important;height: 415px !important;-moz-border-radius: 4px;-webkit-border-radius: 4px;border-radius: 4px;overflow:hidden;position: absolute;background-repeat: no-repeat;}
+.cloud-zoom-big {width: 100% !important;height: 415px !important;border-radius: 4px;overflow:hidden;position: absolute;background-repeat: no-repeat;}
 #xBlock{position: relative;}
 /*/product*/
 
@@ -1010,7 +1010,6 @@ td.frame-count{text-align: center;padding: 0 15px;}
 .table-info-order hr{margin: 17px 0;}
 .nav-order-user{margin-bottom: 20px;}
 .nav-order-user > li{padding: 3px 15px;}
-.gen-info-price td{padding: 15px 20px;border-top: 1px solid #eae5e1;vertical-align: middle;text-align: right !important;}
 .gen-info-price td:first-child{text-align: left!important;}
 .gen-info-price .current-discount, .gen-info-price .price-new{margin-right: 0;}
 .frame-bask-order .table-order td{text-align: center;padding-right: 15px;}
@@ -1173,7 +1172,7 @@ footer .box-5 > .inside-padd{padding-right: 24px;}
 /*photo product*/
 #photo{overflow: hidden;max-height: 95%;min-width:300px;-webkit-transition: background-color 0.3s ease-in-out;-moz-transition: background-color 0.3s ease-in-out;-o-transition: background-color 0.3s ease-in-out;transition: background-color 0.3s ease-in-out;}
 #photo .drop-content .inside-padd{padding: 0 40px;height: 100%;}
-#photo .drop-header{padding: 0;border: 1px solid #eae5e1;}
+#photo .drop-header{padding: 0;}
 #photo .drop-header > .title{padding: 13px 50px 0;}
 #photo .drop-content {text-align: center;position: relative;}
 #photo .drop-content img{max-height: 96%;visibility: hidden;margin: 2% 0;}

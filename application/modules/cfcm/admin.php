@@ -148,8 +148,6 @@ class Admin extends BaseAdminController {
                 'form' => $form,
             ));
 
-            //$this->display_tpl('top_navigation');
-//         $this->display_tpl('_form');
             $this->render('_form');
         }
     }
@@ -234,9 +232,6 @@ class Admin extends BaseAdminController {
                 $data = $form->getData();
 
                 $matches = array();
-//                if (preg_match_all('/<p>([\W\S]+)<\/p>/', $data['initial'], $matches)) {
-//                    $data['initial'] = $matches[1];
-//                }
 
                 if (isset($data['required']))
                     $data['validation'] = 'required|' . $data['validation'];
@@ -263,22 +258,43 @@ class Admin extends BaseAdminController {
                     $this->db->insert_batch('content_fields_groups_relations', $toInsert);
                 }
                 showMessage(lang("Field has been updated", 'cfcm'));
-//                if ($this->input->post('action') == 'close')
-//                    pjax( $this->get_url('index'));
-//                else
-//                    pjax( $_SERVER['HTTP_REFERER']);
-//                exit;
             }else {
+                $this->template->registerJsFile('./application/modules/cfcm/templates/scripts/admin.js', 'after');
                 $this->template->add_array(array(
                     'form' => $form,
                 ));
 
-//             $this->display_tpl('_form');
                 $this->render('_form');
             }
         }
         else
             echo lang("Field has not been found", 'cfcm');
+    }
+
+    public function getFormFields($type = NULL) {
+        if ($type) {
+
+            $form = $this->load->module('cfcm/cfcm_forms')->edit_field($type);
+
+            $findType = FALSE;
+            $fieldsData = array();
+            foreach ($form->fields as $key => $field) {
+
+                if ($findType && $key != 'validation') {
+                    $fieldsData[$key] = $field;
+                }
+
+                if ($key == 'type') {
+                    $findType = TRUE;
+                }
+
+                if ($key == 'validation') {
+                    break;
+                }
+            }
+
+            return $this->render('one_type_field', array('fields' => $fieldsData), TRUE);
+        }
     }
 
     public function create_group() {
