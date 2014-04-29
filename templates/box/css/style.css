@@ -178,9 +178,9 @@ a.f-s_0{display: inline-block;text-decoration: none;}
 .m-b_5{margin-bottom: 5px !important;}
 
 .o_5, [rel="group"].active, .active > [rel="group"], .frame-thumbs .active > a, .not-avail img, .items-brands > li .photo-block:hover{filter:progid:DXImageTransform.Microsoft.Alpha(opacity=50);-moz-opacity: .5;-khtml-opacity: .5;opacity: .5;}
-.b-r_5{-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;}
-.b-r_4{-moz-border-radius: 4px;-webkit-border-radius: 4px;border-radius: 4px;}
-.b-r_3{-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;}
+.b-r_5{border-radius:5px;}
+.b-r_4{border-radius: 4px;}
+.b-r_3{border-radius: 3px;}
 
 .empty, .no-empty{display: none;}
 .frame-inside .no-empty{display: block;}
@@ -200,7 +200,7 @@ a.f-s_0{display: inline-block;text-decoration: none;}
 /*/headers*/
 
 /*photo-block*/
-.photo-block{max-width: 100%;border: 1px solid transparent;border-radius: 1px;padding: 4px;position: relative;font-size: 0;overflow: hidden;text-align: center;display: inline-block;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;-ms-box-sizing: border-box;box-sizing: border-box;}
+.photo-block{max-width: 100%;padding: 4px;position: relative;font-size: 0;overflow: hidden;text-align: center;display: inline-block;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;-ms-box-sizing: border-box;box-sizing: border-box;}
 .photo-block .helper{height: 100%!important;}
 .photo-block img{max-height: 100%;}
 .photo-block a{display: block;}
@@ -284,7 +284,7 @@ input.input-search{height: 31px;padding-left: 34px;}
 .funcs-buttons{display: inline-block;position: relative;vertical-align: middle;}
 .items-catalog .funcs-buttons{margin-right: 6px;}
 .frame-wish-compare-list{display: inline-block;position: relative;font-size: 0;}
-.left-product .vertical-carousel{width: 62px;border: 1px solid #e9e9e9;border-radius: 2px;float: left;}
+.left-product .vertical-carousel{width: 62px;float: left;}
 .left-product .vertical-carousel + *{margin-left: 75px;}
 .item-product .frame-count-buy{margin-right: 20px;}
 
@@ -339,7 +339,7 @@ input.input-search{height: 31px;padding-left: 34px;}
 
 .items-search-autocomplete > li{width: 100%;}
 .items-search-autocomplete .frame-photo-title{display: block;padding: 6px 9px 7px;overflow: hidden;font-size: 0;}
-.items-search-autocomplete .photo-block{width: 62px;height: 60px;margin-right: 11px;background-color: #fff;vertical-align: middle;}
+.items-search-autocomplete .photo-block{width: 62px;height: 60px;margin-right: 11px;vertical-align: middle;}
 .items-search-autocomplete .description{display: inline-block;vertical-align: middle;width: 480px;}
 .items-search-autocomplete .title{margin-top: 10px;font-size: 12px;}
 .items-search-autocomplete .frame-prices{display: block;margin-top: 5px;padding-bottom: 0;}
@@ -541,7 +541,7 @@ input.input-search{height: 31px;padding-left: 34px;}
 
 /*if cycle*/
 .frame-baner-start_page .baner{height: 233px;padding-bottom: 41px;}
-.frame-baner-start_page .next, .frame-baner-start_page .prev{top: auto;bottom: 0;margin-top: 0;border: 1px solid #cfcfcf;}
+.frame-baner-start_page .next, .frame-baner-start_page .prev{top: auto;bottom: 0;margin-top: 0;}
 .frame-baner-start_page .next{width: 37px;}
 .frame-baner-catalog .baner{height: 233px;}
 .frame-baner .content-carousel{position: absolute;height: 100%;width: 100%;}
@@ -575,7 +575,7 @@ input.input-search{height: 31px;padding-left: 34px;}
 /*/carousels*/
 
 /*menu*/
-.frame-menu-main{position: relative;z-index: 2;border-bottom: 1px solid #fff;box-shadow: 0 2px 3px rgba(0, 0, 0, .1);}
+.frame-menu-main{position: relative;z-index: 2;}
 .menu-main{position: relative;z-index: 1;}
 .vertical-menu .menu-main{margin-bottom: 20px;}
 .horizontal-menu .menu-main{padding-bottom: 1px;}
@@ -602,7 +602,7 @@ input.input-search{height: 31px;padding-left: 34px;}
 .vertical-menu .menu-main td{text-align: left;}
 .frame-drop-menu > ul{position: relative;}
 .not-js .frame-item-menu:hover .frame-drop-menu{display: block;}
-.menu-row-category .frame-drop-menu > ul > li:after{content: "";position: absolute;top: 0;width: 1px;height: 100%;display: none;border-left: 1px solid #e8edef;}
+.menu-row-category .frame-drop-menu > ul > li:after{content: "";position: absolute;top: 0;width: 1px;height: 100%;display: none;}
 .menu-row-category .frame-drop-menu > ul > li.hoverM:after{display: block;}
 .left-drop{right: auto !important;}
 .right-drop{left: auto !important;}
@@ -924,8 +924,8 @@ li.clear-pag-item{margin: 0 14px 4px;}
 .items-complect [class*="items"]{max-width: 480px;width: auto;}
 .complects-carousel{padding: 5px 41px;}
 .complects-carousel .arrow{width: 21px;height: 50px;margin-top: -25px;}
-.complects-carousel .prev{left: -1px;border-radius: 0 2px 2px 0;}
-.complects-carousel .next{right: -1px;border-radius: 2px 0 0 2px;}
+.complects-carousel .prev{left: -1px;}
+.complects-carousel .next{right: -1px;}
 .frame-complect .frame-title{overflow: hidden;}
 
 .social-tell .b-share{padding-left: 0 !important;}
@@ -950,7 +950,7 @@ li.clear-pag-item{margin: 0 14px 4px;}
 .cloud-zoom img{display: inline-block !important;}
 .cloud-zoom-lens {cursor:move;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;-ms-box-sizing: border-box;box-sizing: border-box;}
 .cloud-zoom-title {position:absolute !important;padding:3px;width:100%;text-align:center;top:0px;}
-.cloud-zoom-big {width: 100% !important;height: 415px !important;-moz-border-radius: 4px;-webkit-border-radius: 4px;border-radius: 4px;overflow:hidden;position: absolute;background-repeat: no-repeat;}
+.cloud-zoom-big {width: 100% !important;height: 415px !important;border-radius: 4px;overflow:hidden;position: absolute;background-repeat: no-repeat;}
 #xBlock{position: relative;}
 /*/product*/
 
@@ -1080,7 +1080,6 @@ td.frame-cur-sum-price {vertical-align: middle;padding-left: 10px;padding-right:
 .nav-order-user{margin-bottom: 20px;}
 .nav-order-user > li{padding: 3px 15px;}
 
-.frame-category-menu > .inside-padd{border-width: 0 1px 1px;border-style: solid;border-color: #e6e6e6;border-radius: 0 0 3px 3px;}
 .nav-category > li{padding: 0 12px;}
 .nav-category > li > span{font-size: 14px;}
 .nav-static-pages > li > a, .nav-static-pages > li > span{padding: 10px 16px;}

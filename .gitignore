@@ -26,6 +26,7 @@ Thumbs.db
 .directory
 /nbproject
 /.project
+/templates/builds/
 /templates/.quarantine/
 /templates/.tmb/
 /*.csv
