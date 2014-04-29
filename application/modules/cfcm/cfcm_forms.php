@@ -108,7 +108,7 @@ class Cfcm_forms extends MY_Controller {
         if ($type == 'checkbox')
             $f['checked'] = array(
                 'type'    => 'checkbox',
-                'label'   => 'Checked',
+                'label'   => lang('Checked', 'cfcm'),
                 'initial' => '1',
                 'checked' => FALSE,
             );

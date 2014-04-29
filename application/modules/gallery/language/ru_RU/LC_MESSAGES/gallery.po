@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-28 04:32+0300\n"
-"PO-Revision-Date: 2014-04-28 04:32+0300\n"
+"POT-Creation-Date: 2014-04-29 02:19+0300\n"
+"PO-Revision-Date: 2014-04-29 02:19+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -18,6 +18,26 @@ msgstr ""
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 
+#: ./application/modules/gallery/templates/admin/settings.tpl:239"
+msgid "in the center"
+msgstr "по центру"
+
+#: ./application/modules/gallery/templates/admin/settings.tpl:238"
+msgid "left or on the left"
+msgstr "слева"
+
+#: ./application/modules/gallery/templates/admin/settings.tpl:250"
+msgid "at the bottom"
+msgstr "внизу"
+
+#: ./application/modules/gallery/templates/admin/settings.tpl:249"
+msgid "in the middle"
+msgstr "по центру"
+
+#: ./application/modules/gallery/templates/admin/settings.tpl:248"
+msgid "at the top"
+msgstr "вверху"
+
 #: ./application/modules/gallery/templates/admin/edit_category.tpl:5"
 msgid "Category editing"
 msgstr "Редактирование категории"
@@ -27,7 +47,7 @@ msgid "Edit category"
 msgstr "Редактировать категорию"
 
 #: ./application/modules/gallery/templates/admin/settings.tpl:41"
-msgid "in  ascending order"
+msgid "in ascending order"
 msgstr "в порядке возрастания"
 
 #: ./application/modules/gallery/templates/admin/album_params.tpl:5"
@@ -450,14 +470,6 @@ msgstr "Водяной знак"
 msgid "horizontal alignment"
 msgstr "Горизонтальное выравнивание"
 
-#: ./application/modules/gallery/templates/admin/settings.tpl:238"
-msgid "left or on the left"
-msgstr "налево или слева"
-
-#: ./application/modules/gallery/templates/admin/settings.tpl:239"
-msgid "in the center"
-msgstr "в центре"
-
 #: ./application/modules/gallery/templates/admin/settings.tpl:240"
 msgid "on the right"
 msgstr "справа"
@@ -465,18 +477,6 @@ msgstr "справа"
 #: ./application/modules/gallery/templates/admin/settings.tpl:245"
 msgid "vertical alignment"
 msgstr "Вертикальное выравнивание"
-
-#: ./application/modules/gallery/templates/admin/settings.tpl:248"
-msgid "at the top"
-msgstr "в верху"
-
-#: ./application/modules/gallery/templates/admin/settings.tpl:249"
-msgid "in the middle"
-msgstr "в середине"
-
-#: ./application/modules/gallery/templates/admin/settings.tpl:250"
-msgid "at the bottom"
-msgstr "в низу"
 
 #: ./application/modules/gallery/templates/admin/settings.tpl:255"
 msgid "Type"
