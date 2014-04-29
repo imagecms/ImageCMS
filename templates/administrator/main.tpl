@@ -400,15 +400,15 @@
         </div>
         <script>
             {$settings = $CI->cms_admin->get_settings();}
-                    var textEditor = '{$settings.text_editor}';
+            var textEditor = '{$settings.text_editor}';
             {if $CI->dx_auth->is_logged_in()}
-                    var userLogined = true;
+            var userLogined = true;
             {else:}
-                    var userLogined = false;
+            var userLogined = false;
             {/if}
 
-                    var locale = '{echo $this->CI->config->item('language')}';
-                    var base_url = "{site_url()}";
+            var locale = '{echo $this->CI->config->item('language')}';
+            var base_url = "{site_url()}";
         </script>
 
         <script src="{$THEME}js/jquery-1.8.2.min.js" type="text/javascript"></script>
@@ -417,12 +417,12 @@
         <script src="{$THEME}js/bootstrap.min.js" type="text/javascript"></script>
         <script async="async" src="{$THEME}js/bootstrap-notify.js" type="text/javascript"></script>
         <script src="{$THEME}js/jquery.form.js" type="text/javascript"></script>
-        
+
         <script src="{$THEME}js/jquery.maskedinput-1.3.min" type="text/javascript"></script>
 
         <script async="async" src="{$THEME}js/jquery-validate/jquery.validate.min.js" type="text/javascript"></script>
         <script async="async" src="{$THEME}js/jquery-validate/jquery.validate.i18n.js" type="text/javascript"></script>
-        
+
         <script src="{$THEME}js/chosen.js" type="text/javascript"></script>
 
         <script src="{$THEME}js/functions.js" type="text/javascript"></script>
@@ -453,73 +453,73 @@
 
         <script>
             {if $CI->uri->segment('4') == 'shop'}
-                    var isShop = true;
+            var isShop = true;
             {else:}
-                    var isShop = false;
+            var isShop = false;
             {/if}
-                    var lang_only_number = "{lang("numbers only","admin")}";
-                    var show_tovar_text = "{lang("show","admin")}";
-                    var hide_tovar_text = "{lang("don't show", 'admin')}";
+            var lang_only_number = "{lang("numbers only","admin")}";
+            var show_tovar_text = "{lang("show","admin")}";
+            var hide_tovar_text = "{lang("don't show", 'admin')}";
             {literal}
 
-                        $(document).ready(function() {
+                $(document).ready(function() {
 
-                            if (!isShop)
-                            {
-                                $('#shopAdminMenu').hide();
-                                //$('#topPanelNotifications').hide();
-                            }
-                            else
-                                $('#baseAdminMenu').hide();
-                        })
+                    if (!isShop)
+                    {
+                        $('#shopAdminMenu').hide();
+                        //$('#topPanelNotifications').hide();
+                    }
+                    else
+                        $('#baseAdminMenu').hide();
+                })
 
-                        function number_tooltip_live() {
-                            $('.number input').each(function() {
-                                $(this).attr({
-                                    'data-placement': 'top',
-                                    'data-title': lang_only_number
-                                });
-                            })
-                            number_tooltip();
-                        }
-                        function prod_on_off() {
-                            $('.prod-on_off').die('click').live('click', function() {
-                                var $this = $(this);
-                                if (!$this.hasClass('disabled')) {
-                                    if ($this.hasClass('disable_tovar')) {
-                                        $this.animate({
-                                            'left': '0'
-                                        }, 200).removeClass('disable_tovar');
-                                        if ($this.parent().data('only-original-title') == undefined) {
-                                            $this.parent().attr('data-original-title', show_tovar_text)
-                                            $('.tooltip-inner').text(show_tovar_text);
-                                        }
-                                        $this.next().attr('checked', true).end().closest('td').next().children().removeClass('disabled').removeAttr('disabled');
-                                        if ($this.attr('data-page') != undefined)
-                                            $('.setHit, .setHot, .setAction').removeClass('disabled').removeAttr('disabled');
-                                    }
-                                    else {
-                                        $this.animate({
-                                            'left': '-28px'
-                                        }, 200).addClass('disable_tovar');
-                                        if ($this.parent().data('only-original-title') == undefined) {
-                                            $this.parent().attr('data-original-title', hide_tovar_text)
-                                            $('.tooltip-inner').text(hide_tovar_text);
-                                        }
-                                        $this.next().attr('checked', false).end().closest('td').next().children().addClass('disabled').attr('disabled', 'disabled');
-                                        if ($this.attr('data-page') != undefined)
-                                            $('.setHit, .setHot, .setAction').addClass('disabled').attr('disabled', 'disabled')
-                                    }
+                function number_tooltip_live() {
+                    $('.number input').each(function() {
+                        $(this).attr({
+                            'data-placement': 'top',
+                            'data-title': lang_only_number
+                        });
+                    })
+                    number_tooltip();
+                }
+                function prod_on_off() {
+                    $('.prod-on_off').die('click').live('click', function() {
+                        var $this = $(this);
+                        if (!$this.hasClass('disabled')) {
+                            if ($this.hasClass('disable_tovar')) {
+                                $this.animate({
+                                    'left': '0'
+                                }, 200).removeClass('disable_tovar');
+                                if ($this.parent().data('only-original-title') == undefined) {
+                                    $this.parent().attr('data-original-title', show_tovar_text)
+                                    $('.tooltip-inner').text(show_tovar_text);
                                 }
-                            });
+                                $this.next().attr('checked', true).end().closest('td').next().children().removeClass('disabled').removeAttr('disabled');
+                                if ($this.attr('data-page') != undefined)
+                                    $('.setHit, .setHot, .setAction').removeClass('disabled').removeAttr('disabled');
+                            }
+                            else {
+                                $this.animate({
+                                    'left': '-28px'
+                                }, 200).addClass('disable_tovar');
+                                if ($this.parent().data('only-original-title') == undefined) {
+                                    $this.parent().attr('data-original-title', hide_tovar_text)
+                                    $('.tooltip-inner').text(hide_tovar_text);
+                                }
+                                $this.next().attr('checked', false).end().closest('td').next().children().addClass('disabled').attr('disabled', 'disabled');
+                                if ($this.attr('data-page') != undefined)
+                                    $('.setHit, .setHot, .setAction').addClass('disabled').attr('disabled', 'disabled')
+                            }
                         }
-                        $(window).load(function() {
-                            number_tooltip_live();
-                            prod_on_off();
-                        })
-                        base_url = '{/literal}{$BASE_URL}';
+                    });
+                }
+                $(window).load(function() {
+                    number_tooltip_live();
+                    prod_on_off();
+                })
+                base_url = '{/literal}{$BASE_URL}';
 
-                            var elfToken = '{echo $CI->lib_csrf->get_token()}';
+                    var elfToken = '{echo $CI->lib_csrf->get_token()}';
             </script>
             <div id="jsOutput" style="display: none;"></div>
         </body>
