@@ -65,8 +65,8 @@ class Lib_init {
         if (!defined('DS')) {
             define('DS', DIRECTORY_SEPARATOR);
         }
-        
-        if (SHOP_INSTALLED) {
+
+        if (is_dir(APPPATH . '' . 'modules/shop/')) {
             // Full path to shop module dir with ending slash.
 
             define('SHOP_DIR', APPPATH . '' . 'modules/shop/');
@@ -76,7 +76,7 @@ class Lib_init {
 
             // Register shop autoloader.
             spl_autoload_unregister(array('ShopCore', 'autoload'));
-            spl_autoload_register(array('ShopCore', 'autoload')); 
+            spl_autoload_register(array('ShopCore', 'autoload'));
 
             // Diable CSRF library form web money service
             $CI = & get_instance();
