@@ -438,7 +438,7 @@
 
                                                         <hr />
                                                         <div class="control-group">
-                                                            <label class="control-label" data-toggle="ttip" data-title="{$tooltipText} {lang('that you entered as a contact type', 'admin')}" for="">{lang('Contacts', 'admin')} 
+                                                            <label class="control-label" data-toggle="ttip" data-title="{$tooltipText}, {lang('that you entered as a contact type', 'admin')}" for="">{lang('Contacts', 'admin')} 
                                                                 <i class="icon-info-sign"></i>
                                                             </label>  
                                                             <div class="controls">
