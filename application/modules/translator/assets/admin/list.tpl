@@ -1,3 +1,4 @@
+<script src="/application/modules/translator/assets/js/src-min/ace.js" type="text/javascript" charset="utf-8"></script>
 <div class="modal hide fade modal_file_edit">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -138,10 +139,6 @@
                         <i class="icon-white icon-refresh"></i>
                         {lang('Update', 'translator')}
                     </button>
-                    <button id="cancel" disabled="" onclick="Translator.cancel()" type="button" class="btn btn-small action_on btn-danger pjax">
-                        <i class="icon-white icon-remove"></i>
-                        {lang('Reset', 'translator')}
-                    </button>
                     <span class="btn-group">
                         <button type="button" class="btn btn-small btn-info dropdown-toggle" data-toggle="dropdown" style="margin-top: -5px;">
                             <i class="icon-white icon-list"></i>
@@ -155,6 +152,8 @@
                             <li><a onclick="Translator.translate($(this))">{lang('Translate all', 'translator')}</a></li>
                             <li><a onclick="Translator.translate($(this), true)">{lang('Translate untranslated', 'translator')}</a></li>
                             <li><a onclick="Translator.showYandexTranslateWindow()">{lang('Translation tool', 'translator')}</a></li>
+                            <li class="divider"></li>
+                            <li><a onclick="Translator.cancel()">{lang('Reset', 'translator')}</a></li>
                         </ul>
                     </span>
                 </div>
@@ -188,7 +187,7 @@
             <br>
             <div class="tabbable"> <!-- Only required for left/right tabs -->
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#poTab" data-toggle="tab">{lang('Po file', 'translator')}</a></li>
+                    <li class="active"><a href="#poTab" data-toggle="tab">{lang('Translation file', 'translator')}</a></li>
                     <li><a href="#poSettingsTab" id="settings" data-toggle="tab">{lang('Settings', 'translator')}</a></li>
                 </ul>
 
@@ -199,7 +198,7 @@
                                 <select id="langs" onchange="Selectors.langs($(this))">
                                     {if $langs}
                                         <option value="">-- {lang('Choose locale', 'translator')} --</option>
-                                        {foreach $langs as $locale => $lang}
+                                        {foreach $langs as $locale}
                                             <option class="{echo $locale}">{echo $locale}</option>
                                         {/foreach}
                                     {else:}
@@ -221,7 +220,7 @@
                             </div>
                         </div>
                         <div class="pull-right">
-                            <div class="input-append">
+                            <div class="input-append poSearchHolder">
                                 <input class="span2 searchString" placeholder="{lang('Please, enter search string...', 'translator')}" onkeypress="Search.goOnEnterPress()" id="appendedInputButtons" type="text">
                                 <button id="searchTranslator" class="btn" type="button">{lang('Search', 'translator')}</button>
                                 <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
@@ -259,7 +258,7 @@
                                 </ul>
                             </div>
                         </div>
-
+                        <hr>
                         <table id="po_table" class="table table-striped table-bordered table-hover table-condensed t-l_a">
                             <thead>
                                 <tr>
@@ -337,14 +336,9 @@
                                     </b>
                                 </h5>
                             </label>
-                            <select id="originLang" name="originLang" onchange="Translator.setOriginsLang($(this))">
-                                <option value="0">- {lang('No', 'translator')} -</option>
-                                {foreach $locales as $lang}
-                                    <option {if $settings['originsLang'] == $lang}selected{/if} value="{$lang}">
-                                        {echo $lang}
-                                    </option>
-                                {/foreach}
-                            </select>
+                            <input id="originLang" class="languageSelect languageFrom" autocomplete="off" tabindex="1" value="{echo $languages_names[$settings['originsLang']]}" class="ui-autocomplete-input" aria-autocomplete="list" aria-haspopup="true" locale="{echo $settings['originsLang']}">
+                            <button class="btn btn-small showAllLanguageList"><i class="icon-chevron-down"></i></button>
+                            <button class="btn btn-small languageAutoselect" data-rel="tooltip" data-placement="bottom" data-original-title="{lang('Auto define source language', 'translator')}" onclick="Translator.sourceLanguageAutoselect($(this))"><i class="icon-font"></i></button>
                         </div>
 
                         <div class="YandexApiKeyHolder"> 
@@ -363,13 +357,14 @@
                             </button>
                         </div>
                         <br>
+                        <hr>
 
-                        <form method="post" action="{site_url('admin/components/init_window/translator/createFile')}" class="form-horizontal" id="create_file_form">
-                            <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                        <form method="post" action="{site_url('admin/components/init_window/translator/createFile')}" class="form-horizontal" id="po_settings_form">
+                            <table style="width: 49%; float: left;" class="table table-striped table-bordered table-hover table-condensed t-l_a">
                                 <thead>
                                     <tr>
-                                        <th colspan="6">
-                                            {lang('Po file settings', 'translator')}
+                                        <th>
+                                            {lang('Translation file information', 'translator')}
                                         </th>
                                     </tr>
                                 </thead>
@@ -378,36 +373,39 @@
                                         <td colspan="6">
                                             <div class="inside_padd span9">
                                                 <div class="po_settings"></div>
-
-                                                <div class="control-group pathParseHolder"  style="display: none">
-                                                    <label class="control-label" for="file">{lang('Paths', 'translator')}:</label>
-                                                    <div class="controls" >
-                                                        <div class="pathHolder span5" style="margin: 0px">
-                                                        </div>
-
-                                                        <div class="span13" style="margin-left: 22px; float: left">
-                                                            <div class="addPathClone" style="display: none">
-                                                                <div class="path">
-                                                                    <b style="float: left; font-size: 15px; margin-right: 10px; margin-top: 3px; ">
-                                                                    </b>
-                                                                    <input type="text" name="path[]" style="width: 390px; margin-bottom: -10px;" value="">
-                                                                    <div class="removePath" onclick="Translator.deletePath($(this))"><i class=" icon icon-remove-sign"></i></div>
-                                                                    <br>
-                                                                </div>
-                                                            </div>
-                                                            <button id="add" type="button" class="btn btn-small btn-success" onclick="Translator.addNewPath($(this))">
-                                                                <i class="icon-plus"></i>
-                                                                {lang('Add', 'translator')}
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
                                             </div>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
+
+                            <br>
+                            <table style="width: 49%; float: right; margin-top: -28px;" class="po_path_table table table-striped table-bordered table-hover table-condensed t-l_a">
+                                <caption>
+                                    <b><h5>{lang('Searched langs paths', 'translator')}</h5></b>
+                                </caption>
+                                <thead>
+                                    <tr>
+                                        <th class="span1">
+                                            №
+                                        </th>
+                                        <th class="span5">
+                                            {lang('Path', 'translator')}
+                                        </th>
+                                        <th class="span2">
+                                            {lang('Delete', 'translator')}
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody class="pathParseHolder">
+
+                                </tbody>
+                            </table>
+                            <button style="float: right" id="add" type="button" class="btn btn-small btn-success" onclick="Translator.addNewPath($(this))">
+                                <i class="icon-plus"></i>
+                                {lang('Add', 'translator')}
+                            </button>
+
                             {form_csrf()}
                         </form>
                     </div>

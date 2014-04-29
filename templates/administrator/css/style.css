@@ -852,3 +852,16 @@ table#backups_list thead th:nth-child(3) {width: 10px;}*/
 .dt_130pxwidth dt {width: 130px !important;}
 .item-accessories{margin-bottom: 5px;overflow: hidden;}
 span.must{color:red;}
+
+
+.product_list_order span.thead_name {
+    text-decoration: underline;
+}
+
+.watermark_path_info {
+    height: 25px;
+}
+
+.watermark_path_info div {
+    margin-top: 7px;
+}

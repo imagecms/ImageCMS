@@ -1,12 +1,12 @@
 ﻿msgid ""
 msgstr ""
-"Project-Id-Version: 1\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-09 02:21+0200\n"
-"PO-Revision-Date: 2013-12-09 02:21+0200\n"
-"Last-Translator: 3 <2>\n"
-"Language-Team: 4 <5>\n"
-"Language: en_US\n"
+"POT-Creation-Date: 2014-04-27 11:41+0300\n"
+"PO-Revision-Date: 2014-04-27 11:41+0300\n"
+"Last-Translator:  <>\n"
+"Language-Team:  <>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -14,7 +14,994 @@ msgstr ""
 "X-Poedit-Basepath: ../../..\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Generator: Poedit 1.5.7\n"
-"X-Poedit-Language: 8\n"
-"X-Poedit-Country: 9\n"
+"X-Poedit-Language: \n"
+"X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 
+#: ./application/modules/translator\admin.php:404"
+msgid "File was succcessfuly created."
+msgstr ""
+
+#: ./application/modules/translator\admin.php:404"
+#: ./application/modules/translator\admin.php:455"
+#: ./application/modules/translator\admin.php:469"
+#: ./application/modules/translator\assets\js\admin.js:192"
+#: ./application/modules/translator\assets\js\admin.js:446"
+#: ./application/modules/translator\assets\js\admin.js:448"
+#: ./application/modules/translator\assets\js\admin.js:705"
+#: ./application/modules/translator\assets\js\admin.js:876"
+#: ./application/modules/translator\assets\js\admin.js:988"
+#: ./application/modules/translator\assets\js\admin.js:1014"
+#: ./application/modules/translator\assets\js\admin.js:1159"
+#: ./application/modules/translator\assets\js\admin.js:1161"
+#: ./application/modules/translator\assets\js\admin.js:1229"
+msgid "Message"
+msgstr ""
+
+#: ./application/modules/translator\admin.php:412"
+#: ./application/modules/translator\admin.php:458"
+#: ./application/modules/translator\admin.php:472"
+#: ./application/modules/translator\assets\js\admin.js:194"
+#: ./application/modules/translator\assets\js\admin.js:452"
+#: ./application/modules/translator\assets\js\admin.js:455"
+#: ./application/modules/translator\assets\js\admin.js:707"
+#: ./application/modules/translator\assets\js\admin.js:743"
+#: ./application/modules/translator\assets\js\admin.js:993"
+#: ./application/modules/translator\assets\js\admin.js:1018"
+#: ./application/modules/translator\assets\js\admin.js:1031"
+#: ./application/modules/translator\assets\js\admin.js:1036"
+#: ./application/modules/translator\assets\js\admin.js:1120"
+#: ./application/modules/translator\assets\js\admin.js:1125"
+#: ./application/modules/translator\assets\js\admin.js:1165"
+#: ./application/modules/translator\assets\js\admin.js:1168"
+#: ./application/modules/translator\assets\js\admin.js:1171"
+#: ./application/modules/translator\assets\js\admin.js:1174"
+#: ./application/modules/translator\assets\js\admin.js:1177"
+#: ./application/modules/translator\assets\js\admin.js:1180"
+#: ./application/modules/translator\assets\js\admin.js:1183"
+#: ./application/modules/translator\assets\js\admin.js:1186"
+#: ./application/modules/translator\assets\js\admin.js:1231"
+#: ./application/modules/translator\assets\js\admin.js:1249"
+#: ./application/modules/translator\assets\js\admin.js:1254"
+#: ./application/modules/translator\assets\js\admin.js:1259"
+#: ./application/modules/translator\assets\js\admin.js:1264"
+#: ./application/modules/translator\assets\js\admin.js:1289"
+#: ./application/modules/translator\assets\js\admin.js:1294"
+#: ./application/modules/translator\assets\js\admin.js:1319"
+msgid "Error"
+msgstr ""
+
+#: ./application/modules/translator\admin.php:455"
+msgid "Translation file was successfuly saved."
+msgstr ""
+
+#: ./application/modules/translator\admin.php:469"
+msgid "Selection path memory was successfuly cleared."
+msgstr ""
+
+#: ./application/modules/translator\admin.php:472"
+msgid "Operation failed!"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\create.tpl:7"
+msgid "Create Po-file"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\create.tpl:14"
+#: ./application/modules/translator\assets\admin\exchange.tpl:14"
+#: ./application/modules/translator\assets\admin\list.tpl:130"
+msgid "Back"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\create.tpl:20"
+#: ./application/modules/translator\assets\admin\list.tpl:29"
+#: ./application/modules/translator\assets\admin\list.tpl:136"
+#: ./application/modules/translator\assets\admin\list.tpl:358"
+msgid "Save"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\create.tpl:24"
+msgid "Save and Go to Edit"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\create.tpl:35"
+#: ./application/modules/translator\assets\admin\exchange.tpl:31"
+msgid "Values"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\create.tpl:44"
+msgid "Choose file location"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\create.tpl:49"
+#: ./application/modules/translator\assets\admin\exchange.tpl:45"
+#: ./application/modules/translator\assets\admin\exchange.tpl:74"
+#: ./application/modules/translator\assets\admin\list.tpl:202"
+msgid "Choose locale"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\create.tpl:54"
+#: ./application/modules/translator\assets\admin\exchange.tpl:50"
+#: ./application/modules/translator\assets\admin\exchange.tpl:79"
+#: ./application/modules/translator\assets\admin\list.tpl:207"
+msgid "No locales"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\create.tpl:60"
+#: ./application/modules/translator\assets\admin\exchange.tpl:56"
+#: ./application/modules/translator\assets\admin\exchange.tpl:85"
+#: ./application/modules/translator\assets\admin\list.tpl:213"
+msgid "Choose type"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\create.tpl:61"
+#: ./application/modules/translator\assets\admin\exchange.tpl:57"
+#: ./application/modules/translator\assets\admin\exchange.tpl:86"
+#: ./application/modules/translator\assets\admin\list.tpl:214"
+msgid "Modules"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\create.tpl:62"
+#: ./application/modules/translator\assets\admin\exchange.tpl:58"
+#: ./application/modules/translator\assets\admin\exchange.tpl:87"
+#: ./application/modules/translator\assets\admin\list.tpl:215"
+msgid "Templates"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\create.tpl:63"
+#: ./application/modules/translator\assets\admin\exchange.tpl:59"
+#: ./application/modules/translator\assets\admin\exchange.tpl:88"
+#: ./application/modules/translator\assets\admin\list.tpl:216"
+msgid "Main"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\create.tpl:74"
+#: ./application/modules/translator\assets\admin\po_table.tpl:56"
+msgid "Project Name"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\create.tpl:81"
+#: ./application/modules/translator\assets\admin\po_table.tpl:63"
+msgid "Translator email"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\create.tpl:88"
+#: ./application/modules/translator\assets\admin\po_table.tpl:70"
+msgid "Translator name"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\create.tpl:95"
+#: ./application/modules/translator\assets\admin\po_table.tpl:77"
+msgid "Language-Team name"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\create.tpl:102"
+#: ./application/modules/translator\assets\admin\po_table.tpl:84"
+msgid "Language-Team email"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\create.tpl:109"
+msgid "Basepath"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\create.tpl:116"
+msgid "Paths"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\create.tpl:120"
+msgid "Add path"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\create.tpl:130"
+#: ./application/modules/translator\assets\admin\po_table.tpl:91"
+msgid "Language"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\create.tpl:137"
+#: ./application/modules/translator\assets\admin\po_table.tpl:98"
+msgid "Country"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\exchange.tpl:7"
+#: ./application/modules/translator\assets\admin\exchange.tpl:20"
+msgid "Exchange"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\exchange.tpl:40"
+msgid "Choose file exchanger location"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\exchange.tpl:69"
+msgid "Choose file receiver location"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\list.tpl:5"
+msgid "File editing"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\list.tpl:8"
+msgid "Editor theme"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\list.tpl:22"
+msgid "Origin string"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\list.tpl:25"
+msgid "Line number"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\list.tpl:30"
+#: ./application/modules/translator\assets\admin\list.tpl:67"
+#: ./application/modules/translator\assets\admin\list.tpl:114"
+msgid "Cancel"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\list.tpl:38"
+#: ./application/modules/translator\assets\admin\list.tpl:158"
+msgid "Translation tool"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\list.tpl:40"
+msgid "Choose languages"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\list.tpl:42"
+msgid "Source"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\list.tpl:45"
+#: ./application/modules/translator\assets\admin\list.tpl:343"
+msgid "Auto define source language"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\list.tpl:48"
+msgid "Result"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\list.tpl:55"
+msgid "Source text"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\list.tpl:60"
+msgid "Translation text"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\list.tpl:66"
+#: ./application/modules/translator\assets\admin\po_table.tpl:14"
+msgid "Translate"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\list.tpl:75"
+msgid "Update results"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\list.tpl:82"
+msgid "string(s) wil be added"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\list.tpl:87"
+msgid "string(s) will be removed"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\list.tpl:92"
+msgid "string(s) will be ignored"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\list.tpl:113"
+#: ./application/modules/translator\assets\admin\list.tpl:140"
+msgid "Update"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\list.tpl:123"
+#: ./application/modules/translator\module_info.php:6"
+msgid "Translator"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\list.tpl:144"
+msgid "Reset"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\list.tpl:149"
+msgid "Others"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\list.tpl:152"
+msgid "Create"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\list.tpl:153"
+msgid "Translation exchange"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\list.tpl:154"
+msgid "Correct paths"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\list.tpl:156"
+msgid "Translate all"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\list.tpl:157"
+msgid "Translate untranslated"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\list.tpl:168"
+msgid "Statistic"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\list.tpl:174"
+msgid "All strings"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\list.tpl:176"
+msgid "Fuzzy strings"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\list.tpl:181"
+msgid "Translated"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\list.tpl:183"
+msgid "Not translated"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\list.tpl:192"
+msgid "Translation file"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\list.tpl:193"
+msgid "Settings"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\list.tpl:226"
+msgid "Please, enter search string..."
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\list.tpl:227"
+msgid "Search"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\list.tpl:229"
+msgid "Options"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\list.tpl:235"
+msgid "Sensitive search"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\list.tpl:239"
+msgid "Whole word search"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\list.tpl:243"
+msgid "Use regular expration search"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\list.tpl:250"
+msgid "Search in origin strings"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\list.tpl:254"
+msgid "Search in translation strings"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\list.tpl:258"
+msgid "Search in comments strings"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\list.tpl:268"
+msgid "Fuzzy"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\list.tpl:274"
+msgid "Origin"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\list.tpl:279"
+msgid "Translation"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\list.tpl:284"
+msgid "Default sort"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\list.tpl:287"
+msgid "Comment"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\list.tpl:293"
+msgid "Paths to contains files"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\list.tpl:302"
+msgid "There is no Po-file in such locale"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\list.tpl:306"
+msgid "Create file"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\list.tpl:337"
+msgid "Origins language"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\list.tpl:350"
+msgid "Yandex Api Key"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\list.tpl:353"
+msgid "Get Yandex Api key"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\list.tpl:369"
+msgid "Translation file information"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\list.tpl:386"
+msgid "Searched langs paths"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\list.tpl:394"
+msgid "Path"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\list.tpl:397"
+msgid "Delete"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\list.tpl:407"
+msgid "Add"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\modules_names.tpl:1"
+msgid "Choose module"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\po_table.tpl:34"
+msgid "Undo"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\po_table.tpl:48"
+msgid "The file is empty."
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\po_table.tpl:113"
+#: ./application/modules/translator\assets\admin\po_table.tpl:140"
+msgid "Basic path"
+msgstr ""
+
+#: ./application/modules/translator\assets\admin\templates_names.tpl:1"
+msgid "Choose template"
+msgstr ""
+
+#: ./application/modules/translator\assets\js\admin.js:192"
+msgid "Successfully sorted."
+msgstr ""
+
+#: ./application/modules/translator\assets\js\admin.js:194"
+msgid "Can not sort."
+msgstr ""
+
+#: ./application/modules/translator\assets\js\admin.js:446"
+msgid "Number of searched matches"
+msgstr ""
+
+#: ./application/modules/translator\assets\js\admin.js:448"
+msgid "Was not found any results"
+msgstr ""
+
+#: ./application/modules/translator\assets\js\admin.js:452"
+msgid "Please, enter more than 1 symbol"
+msgstr ""
+
+#: ./application/modules/translator\assets\js\admin.js:455"
+msgid "You did not select search criteria"
+msgstr ""
+
+#: ./application/modules/translator\assets\js\admin.js:705"
+msgid "Origin language was successfully setted."
+msgstr ""
+
+#: ./application/modules/translator\assets\js\admin.js:707"
+msgid "Can not set origin language."
+msgstr ""
+
+#: ./application/modules/translator\assets\js\admin.js:743"
+msgid "Please set paths to parsing files."
+msgstr ""
+
+#: ./application/modules/translator\assets\js\admin.js:876"
+msgid "File was successfuly updated."
+msgstr ""
+
+#: ./application/modules/translator\assets\js\admin.js:988"
+msgid "File was successfully rendered."
+msgstr ""
+
+#: ./application/modules/translator\assets\js\admin.js:1014"
+msgid "File was successfully saved."
+msgstr ""
+
+#: ./application/modules/translator\assets\js\admin.js:1031"
+#: ./application/modules/translator\assets\js\admin.js:1120"
+#: ./application/modules/translator\assets\js\admin.js:1249"
+#: ./application/modules/translator\assets\js\admin.js:1289"
+msgid "You have not specified Yandex Api Key."
+msgstr ""
+
+#: ./application/modules/translator\assets\js\admin.js:1036"
+#: ./application/modules/translator\assets\js\admin.js:1125"
+msgid "You have not specified origins strings language."
+msgstr ""
+
+#: ./application/modules/translator\assets\js\admin.js:1159"
+msgid "Successfully defined"
+msgstr ""
+
+#: ./application/modules/translator\assets\js\admin.js:1161"
+msgid "Successfully translated"
+msgstr ""
+
+#: ./application/modules/translator\assets\js\admin.js:1165"
+msgid "Wrong API key."
+msgstr ""
+
+#: ./application/modules/translator\assets\js\admin.js:1168"
+msgid "API key is locked."
+msgstr ""
+
+#: ./application/modules/translator\assets\js\admin.js:1171"
+msgid "Exceeded the daily limit on the number of requests."
+msgstr ""
+
+#: ./application/modules/translator\assets\js\admin.js:1174"
+msgid "Exceeded the daily limit on the amount of translated text."
+msgstr ""
+
+#: ./application/modules/translator\assets\js\admin.js:1177"
+msgid "Exceeded the maximum allowable size of text."
+msgstr ""
+
+#: ./application/modules/translator\assets\js\admin.js:1180"
+msgid "Text can not be translated."
+msgstr ""
+
+#: ./application/modules/translator\assets\js\admin.js:1183"
+msgid "Set direction of translation is not supported."
+msgstr ""
+
+#: ./application/modules/translator\assets\js\admin.js:1186"
+msgid "Translation fails."
+msgstr ""
+
+#: ./application/modules/translator\assets\js\admin.js:1229"
+msgid "Yandex Api Key was successfully setted."
+msgstr ""
+
+#: ./application/modules/translator\assets\js\admin.js:1231"
+msgid "Can not set Yandex Api Key."
+msgstr ""
+
+#: ./application/modules/translator\assets\js\admin.js:1254"
+msgid "You have not specified source text language."
+msgstr ""
+
+#: ./application/modules/translator\assets\js\admin.js:1259"
+msgid "You have not specified translation text language."
+msgstr ""
+
+#: ./application/modules/translator\assets\js\admin.js:1264"
+#: ./application/modules/translator\assets\js\admin.js:1294"
+msgid "You have not specified text to translate."
+msgstr ""
+
+#: ./application/modules/translator\assets\js\admin.js:1319"
+msgid "Can not define language"
+msgstr ""
+
+#: ./application/modules/translator\assets\js\admin.js:1345"
+#: ./application/modules/translator\assets\js\admin.js:1347"
+msgid "First"
+msgstr ""
+
+#: ./application/modules/translator\assets\js\admin.js:1361"
+msgid "Last "
+msgstr ""
+
+#: ./application/modules/translator\classes\FileOperator.php:98"
+msgid "File cant be read. Please, set read file permissions."
+msgstr ""
+
+#: ./application/modules/translator\classes\FileOperator.php:103"
+msgid "File cant be written. Please, set write file permissions."
+msgstr ""
+
+#: ./application/modules/translator\classes\FileOperator.php:108"
+msgid "File does not exist."
+msgstr ""
+
+#: ./application/modules/translator\classes\PoFileManager.php:183"
+msgid "Settings array is empty"
+msgstr ""
+
+#: ./application/modules/translator\classes\PoFileManager.php:201"
+msgid "File is already exists."
+msgstr ""
+
+#: ./application/modules/translator\classes\PoFileManager.php:206"
+#: ./application/modules/translator\classes\PoFileManager.php:214"
+msgid "Can not create file. Check if path to the file is correct - "
+msgstr ""
+
+#: ./application/modules/translator\classes\PoFileManager.php:232"
+msgid "Wrong po-file path"
+msgstr ""
+
+#: ./application/modules/translator\classes\PoFileManager.php:252"
+msgid "Operation failed. Can not convert to mo-file."
+msgstr ""
+
+#: ./application/modules/translator\classes\PoFileManager.php:256"
+msgid "Can not save po-file."
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:25"
+msgid "Abkhazian"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:26"
+msgid "Avestan"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:27"
+msgid "Aragonese"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:28"
+msgid "Arabic"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:29"
+msgid "Azerbaijani"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:30"
+msgid "Bashkir"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:31"
+msgid "Belarusian"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:32"
+msgid "Bulgarian"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:33"
+msgid "Bihari"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:34"
+msgid "Bengali"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:35"
+msgid "Breton"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:36"
+msgid "Bosnian"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:37"
+msgid "Catalan"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:38"
+msgid "Corsican"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:39"
+msgid "Cree"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:40"
+msgid "Czech"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:41"
+msgid "Chuvash"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:42"
+msgid "Welsh"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:43"
+msgid "Danish"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:44"
+msgid "German"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:45"
+msgid "Greek"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:46"
+msgid "English"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:47"
+msgid "Esperanto"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:48"
+msgid "Spanish"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:49"
+msgid "Estonian"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:50"
+msgid "Basque"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:51"
+msgid "Fijian"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:52"
+msgid "Faroese"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:53"
+msgid "French"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:54"
+msgid "Irish"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:55"
+msgid "Hebrew"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:56"
+msgid "Hungarian"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:57"
+msgid "Armenian"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:58"
+msgid "Indonesian"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:59"
+msgid "Icelandic"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:60"
+msgid "Italian"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:61"
+msgid "Inuktitut"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:62"
+msgid "Japanese"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:63"
+msgid "Javanese"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:64"
+msgid "Georgian"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:65"
+msgid "Kazakh"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:66"
+msgid "Kalaallisut"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:67"
+msgid "Kannada"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:68"
+msgid "Korean"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:69"
+msgid "Cornish"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:70"
+msgid "Kirghiz"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:71"
+msgid "Latin"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:72"
+msgid "Luxembourgish"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:73"
+msgid "Ganda"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:74"
+msgid "Limburgish"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:75"
+msgid "Lingala"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:76"
+msgid "Lao"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:77"
+msgid "Lithuanian"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:78"
+msgid "Latvian"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:79"
+msgid "Marshallese"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:80"
+msgid "Maori"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:81"
+msgid "Macedonian"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:82"
+msgid "Mongolian"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:83"
+msgid "Nepali"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:84"
+msgid "Dutch"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:85"
+msgid "Norwegian"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:86"
+msgid "Chichewa"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:87"
+msgid "Ossetian"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:88"
+msgid "Pali"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:89"
+msgid "Polish"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:90"
+msgid "Pashto"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:91"
+msgid "Portuguese"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:92"
+msgid "Quechua"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:93"
+msgid "Romanian"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:94"
+msgid "Russian"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:95"
+msgid "Sanskrit"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:96"
+msgid "Sango"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:97"
+msgid "Slovak"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:98"
+msgid "Slovenian"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:99"
+msgid "Somali"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:100"
+msgid "Albanian"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:101"
+msgid "Serbian"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:102"
+msgid "Sundanese"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:103"
+msgid "Swedish"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:104"
+msgid "Tamil"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:105"
+msgid "Turkmen"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:106"
+msgid "Tswana"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:107"
+msgid "Turkish"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:108"
+msgid "Tatar"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:109"
+msgid "Ukrainian"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:110"
+msgid "Uzbek"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:111"
+msgid "Vietnamese"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:112"
+msgid "Yiddish"
+msgstr ""
+
+#: ./application/modules/translator\helpers\translator_helper.php:113"
+msgid "Chinese"
+msgstr ""
+
+#: ./application/modules/translator\module_info.php:7"
+msgid "Module for work with po-files translations"
+msgstr ""

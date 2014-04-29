@@ -38,7 +38,7 @@
                                             <div class="control-group">
                                                 <label class="control-label" for="email">{lang('Email', 'user_manager')}:</label>
                                                 <div class="controls">
-                                                    <input type="text" name="email" id="email" value="" class="required email" autocomplete="off"/>
+                                                    <input type="text" name="email" id="email" value="йцу@qew.qwe" class="required email" autocomplete="off"/>
                                                 </div>
                                             </div>
 
