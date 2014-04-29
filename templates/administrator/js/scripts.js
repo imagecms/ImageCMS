@@ -828,12 +828,12 @@ function getScrollTop() {
         scrOfY = window.pageYOffset;
     } else if (document.body
             && (document.body.scrollLeft
-            || document.body.scrollTop)) {
+                    || document.body.scrollTop)) {
         //DOM compliant
         scrOfY = document.body.scrollTop;
     } else if (document.documentElement
             && (document.documentElement.scrollLeft
-            || document.documentElement.scrollTop)) {
+                    || document.documentElement.scrollTop)) {
         //IE6 Strict
         scrOfY = document.documentElement.scrollTop;
     }
@@ -911,6 +911,8 @@ function what_key(enter_key, event) {
         return false;
 }
 function initAdminArea() {
+    console.log('initialising of administration area started');
+
     $('.btn.disabled').each(function(event) {
         $(this).attr('disabled', true);
     });
@@ -923,10 +925,6 @@ function initAdminArea() {
 
         }
     }
-
-
-
-    console.log('initialising of administration area started');
     var startExecTime = Date.now();
 
     //gistogram
@@ -1209,8 +1207,8 @@ function initAdminArea() {
 
     })
             .on('pjax:end', function() {
-        $('#loading').fadeOut(300);
-    });
+                $('#loading').fadeOut(300);
+            });
 
     //add arrows to orders list
     if (window.hasOwnProperty('orderField'))
@@ -1243,6 +1241,8 @@ function initAdminArea() {
         $(this).remove();
         return false;
     });
+
+    $('.chosen').chosen();
 
     console.log('initialising of administration area ended');
     console.log('script execution time:' + (Date.now() - startExecTime) / 1000 + " sec.");
@@ -1437,7 +1437,6 @@ $(document).ready(
             $('#settings_form .control-label').live('click', function() {
                 $(this).next().find(':input:first').focus();
             });
-
         });
 
 $(window).load(function() {
