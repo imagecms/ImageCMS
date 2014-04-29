@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-29 11:36+0300\n"
-"PO-Revision-Date: 2014-04-29 11:36+0300\n"
+"POT-Creation-Date: 2014-04-29 02:02+0300\n"
+"PO-Revision-Date: 2014-04-29 02:02+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -20,6 +20,18 @@ msgstr ""
 "X-Poedit-SearchPath-1: ../../../templates/administrator\n"
 "X-Poedit-SearchPath-2: ../../modules/shop/admin\n"
 "X-Poedit-SearchPath-3: ../../../application/modules/shop/models/build/classes\n"
+
+#: ./application/modules/shop/admin/templates/settings/settings.tpl:346"
+msgid "In the middle"
+msgstr "По центру"
+
+#: ./application/modules/shop/admin/templates/settings/settings.tpl:345"
+msgid "Up"
+msgstr "Вверху"
+
+#: ./application/modules/shop/admin/templates/orders/create.tpl:266"
+msgid "Enter promo-code"
+msgstr "Ввести промо-код"
 
 #: ./templates/administrator/settings_site.tpl:441"
 msgid "that you entered as a contact type"
@@ -355,7 +367,7 @@ msgid "Delete order ID"
 msgstr "ID удаленого заказа"
 
 #: ./application/modules/admin/languages.php:410"
-#: ./application/modules/admin/languages.php:430"
+#: ./application/modules/admin/languages.php:431"
 msgid "Deleted the ID language"
 msgstr "ID удаленого языка"
 
@@ -872,7 +884,7 @@ msgid "The currency is in use in the products. Recalculate?"
 msgstr "Валюта используется в товарах. Пересчитать?"
 
 #: ./application/modules/shop/admin/currencies.php:74"
-#: ./application/modules/shop/admin/currencies.php:114"
+#: ./application/modules/shop/admin/currencies.php:108"
 msgid "Currency not found"
 msgstr "Валюта не найдена"
 
@@ -880,7 +892,7 @@ msgstr "Валюта не найдена"
 msgid "Currency created"
 msgstr "Валюта создана"
 
-#: ./application/modules/shop/admin/currencies.php:231"
+#: ./application/modules/shop/admin/currencies.php:225"
 msgid "Currency successfully removed"
 msgstr "Валюта успешно удалена"
 
@@ -958,10 +970,6 @@ msgstr "Введите имя или ID"
 msgid "Enter template name"
 msgstr "Введите имя шаблона"
 
-#: ./application/modules/shop/admin/templates/orders/create.tpl:266"
-msgid "Enter the key"
-msgstr "Введите ключ"
-
 #: ./templates/administrator/inc/javascriptVars.tpl:34"
 msgid "Enter no more"
 msgstr "Введите не более"
@@ -1025,10 +1033,6 @@ msgstr "ввести число больше или равно"
 #: ./templates/administrator/inc/javascriptVars.tpl:40"
 msgid "enter a number less than or equal to"
 msgstr "ввести число меньше или равно"
-
-#: ./application/modules/shop/admin/templates/settings/settings.tpl:345"
-msgid "Up"
-msgstr "Вгору"
 
 #: ./templates/administrator/widget_edit_module.tpl:8"
 #: ./templates/administrator/edit_page.tpl:10"
@@ -2468,7 +2472,7 @@ msgstr "Категория удалена"
 msgid "Category successfully added"
 msgstr "Категория успешно добавлена"
 
-#: ./application/modules/shop/admin/categories.php:261"
+#: ./application/modules/shop/admin/categories.php:259"
 msgid "Category deleted successfully"
 msgstr "Категория успешно удалена"
 
@@ -3021,7 +3025,7 @@ msgstr "Название сайта"
 msgid "File name"
 msgstr "Название файла"
 
-#: ./application/modules/shop/admin/categories.php:458"
+#: ./application/modules/shop/admin/categories.php:456"
 msgid "Template name"
 msgstr "Название шаблона"
 
@@ -3144,7 +3148,7 @@ msgstr "Начать поиск"
 msgid "Start resize images after import"
 msgstr "Начать ресайз изображений после импорта"
 
-#: ./application/modules/shop/admin/currencies.php:251"
+#: ./application/modules/shop/admin/currencies.php:245"
 msgid "There was no price for the upgrade"
 msgstr "Не было цены для обновления"
 
@@ -3223,7 +3227,7 @@ msgstr "Не удалось обновить номер столбца"
 msgid "Failed to create user"
 msgstr "Не удалось создать пользователя"
 
-#: ./application/modules/shop/admin/categories.php:474"
+#: ./application/modules/shop/admin/categories.php:472"
 msgid "Could not create file"
 msgstr "Не удалось создать файл"
 
@@ -3253,16 +3257,16 @@ msgstr "Не хватает прав доступа"
 msgid "inactive"
 msgstr "Неактивный"
 
-#: ./application/modules/shop/admin/currencies.php:211"
+#: ./application/modules/shop/admin/currencies.php:205"
 msgid "Unable to remove currency. The currency used in the payment methods."
 msgstr "Невозможно удалить валюту. Эта валюта используется в Способах оплаты."
 
-#: ./application/modules/shop/admin/currencies.php:201"
+#: ./application/modules/shop/admin/currencies.php:195"
 msgid "Unable to remove the main currency"
 msgstr "Невозможно удалить главную валюту"
 
-#: ./application/modules/shop/admin/categories.php:258"
-#: ./application/modules/shop/admin/categories.php:265"
+#: ./application/modules/shop/admin/categories.php:256"
+#: ./application/modules/shop/admin/categories.php:263"
 msgid "Failed to delete the category"
 msgstr "Невозможно удалить категорию"
 
@@ -3941,7 +3945,7 @@ msgstr "Ошибка удаления модуля"
 msgid "Module installation error"
 msgstr "Ошибка установки модуля"
 
-#: ./application/modules/shop/admin/currencies.php:222"
+#: ./application/modules/shop/admin/currencies.php:216"
 msgid "Error. The currency used in the products. Check the currency options products"
 msgstr "Ошибка. Валюта, используется в товарах. Проверьте настройки валюты товаров"
 
@@ -4096,7 +4100,7 @@ msgstr "По рейтингу"
 msgid "By default"
 msgstr "По умолчанию"
 
-#: ./application/modules/admin/languages.php:453"
+#: ./application/modules/admin/languages.php:454"
 msgid "by default"
 msgstr "по умолчанию"
 
@@ -4104,6 +4108,7 @@ msgstr "по умолчанию"
 msgid "Gift Certificates"
 msgstr "Подарочные сертификаты"
 
+#: ./application/modules/shop/admin/templates/orders/create.tpl:265"
 #: ./application/modules/shop/admin/templates/orders/edit.tpl:329"
 msgid "Gift Certificate"
 msgstr "Подарочный сертификат"
@@ -4208,7 +4213,7 @@ msgstr "Позиции обновлены"
 #: ./application/modules/shop/admin/notificationstatuses.php:182"
 #: ./application/modules/shop/admin/paymentmethods.php:194"
 #: ./application/modules/shop/admin/settings.php:459"
-#: ./application/modules/shop/admin/categories.php:410"
+#: ./application/modules/shop/admin/categories.php:408"
 msgid "Positions saved"
 msgstr "Позиции сохранены"
 
@@ -4454,10 +4459,6 @@ msgstr "Последний комментарий, оставленный мен
 msgid "Last link"
 msgstr "Последняя ссылка"
 
-#: ./application/modules/shop/admin/templates/settings/settings.tpl:346"
-msgid "In the middle"
-msgstr "Посредине"
-
 #: ./application/modules/shop/admin/templates/customfields/create.tpl:144"
 #: ./application/modules/shop/admin/templates/customfields/create.tpl:150"
 msgid "Access rights"
@@ -4490,7 +4491,7 @@ msgstr "Предупреждение"
 msgid "Previous"
 msgstr "Предыдущий"
 
-#: ./application/modules/shop/admin/currencies.php:244"
+#: ./application/modules/shop/admin/currencies.php:238"
 msgid "Conversion completed. Now the currency may be removed"
 msgstr "Преобразование завершено. Сейчас валюта может быть удалена"
 
@@ -5091,10 +5092,6 @@ msgstr "Секретный ключ"
 #: ./templates/administrator/sys_info.tpl:22"
 msgid "Server"
 msgstr "Сервер"
-
-#: ./application/modules/shop/admin/templates/orders/create.tpl:265"
-msgid "Certificate"
-msgstr "Сертификат"
 
 #: ./application/modules/shop/admin/gifts.php:43"
 msgid "Certificate with this key already exists"
@@ -6891,7 +6888,7 @@ msgstr "Укажите"
 msgid "enter a valid credit card number"
 msgstr "укажите действительный номер кредитной карты"
 
-#: ./application/modules/admin/languages.php:453"
+#: ./application/modules/admin/languages.php:454"
 msgid "Specified a language or selected a language"
 msgstr "Указажите язык"
 
@@ -7016,11 +7013,11 @@ msgstr "Файл загружается. Слот"
 msgid "File cannot be uploaded, because file with such extention <br /> can not have those mime-type. Mime: "
 msgstr "Файл не может быть загружен! Файл с таким расширением <br /> не может иметь такой мийм-тип. Текущий тип:"
 
-#: ./application/modules/shop/admin/categories.php:481"
+#: ./application/modules/shop/admin/categories.php:479"
 msgid "File with the same name is already exist."
 msgstr "Файл с таким именем уже существует."
 
-#: ./application/modules/shop/admin/categories.php:471"
+#: ./application/modules/shop/admin/categories.php:469"
 msgid "The file has been successfully created"
 msgstr "Файл успешно создан"
 
@@ -7165,7 +7162,7 @@ msgstr "Цена уточняется"
 msgid "Center"
 msgstr "Центр"
 
-#: ./application/modules/shop/admin/currencies.php:249"
+#: ./application/modules/shop/admin/currencies.php:243"
 msgid "Prices updated"
 msgstr "Цены обновлены"
 
@@ -7340,7 +7337,7 @@ msgstr "Язык"
 msgid " language "
 msgstr "язык"
 
-#: ./application/modules/admin/languages.php:455"
+#: ./application/modules/admin/languages.php:456"
 msgid "The language has been installed by default"
 msgstr "Язык был установлен по умолчанию"
 
@@ -7356,7 +7353,7 @@ msgstr "Язык создан"
 msgid "Language of the page"
 msgstr "Язык страницы"
 
-#: ./application/modules/admin/languages.php:432"
+#: ./application/modules/admin/languages.php:433"
 msgid "the language has been deleted"
 msgstr "язык удален"
 
