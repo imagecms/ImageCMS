@@ -84,6 +84,7 @@ class Mod_discount extends \MY_Controller {
                         $cartItem = $cart->getItem($productData);
                         if ($cartItem['success'] === TRUE) {
                             $cartItem['data']->discountKey = $discount['discount_max']['key'];
+                            //$cartItem['data']->discountData = $discount['discount_max'];
                         }
                         $cart->setItemPrice($productData, $priceNew);
                     }
@@ -121,7 +122,7 @@ class Mod_discount extends \MY_Controller {
                 $this->baseDiscount->cart->discount_info = $discount;
                 $this->baseDiscount->cart->discount_type = $discount['type'];
 
-                if (strstr($this->uri->uri_string(), 'make_order')) {               
+                if (strstr($this->uri->uri_string(), 'make_order')) {
 
                     if ($discount['type'] != 'product') {
                         $this->baseDiscount->updateDiskApply($discount['max_discount']['key']);

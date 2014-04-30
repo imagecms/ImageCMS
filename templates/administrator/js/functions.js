@@ -929,6 +929,7 @@ var orders = new Object({
                     select: function(event, ui) {
                         productName = ui.item.name;
                         pNumber = ui.item.number;
+                        console.log(ui.item);
                         $('#product_id').val(ui.item.value);
                         vKeys = Object.keys(ui.item.variants);
 
@@ -938,6 +939,7 @@ var orders = new Object({
                     },
                     close: function() {
                         $('#product_name').val(productName);
+                        console.log(pNumber);
                         $('#productNumber').val(pNumber);
                     }
 

@@ -24,8 +24,9 @@ class Lib_seo {
 
     function init($settings) {
         $CI = & get_instance();
-        if (!strstr($CI->uri->uri_string(), '/cart/'))
+        if (!strstr($CI->uri->uri_string(), '/cart/')) {
             $CI->template->registerJsScript($this->renderGA($settings));
+        }
         $CI->template->registerJsScript($this->renderYaMetrica($settings), 'after');
         $CI->template->registerJsScript($this->renderYandexWebmaster($settings));
         $CI->template->registerJsScript($this->renderGoogleWebmaster($settings));
@@ -128,7 +129,7 @@ class Lib_seo {
                 $val = mb_strtolower($val, 'utf-8');
 
                 if (array_key_exists($val, $tmp_arr)) {
-                    $tmp_arr[$val]++;
+                    $tmp_arr[$val] ++;
                 } else {
                     $tmp_arr[$val] = 1;
                 }
@@ -140,58 +141,22 @@ class Lib_seo {
 
     function renderGA($GAid = null) {
         /* Show Google Analytics code if some value inserted in admin panel */
-        if ($GAid['google_analytics_id']) {
-            $ga = "<script type='text/javascript'>
-            var _gaq = _gaq || [];
-          _gaq.push(['_setAccount', '" . $GAid['google_analytics_id'] . "']);
-          _gaq.push (['_addOrganic', 'images.yandex.ru', 'text']);
-          _gaq.push (['_addOrganic', 'blogs.yandex.ru', 'text']);
-          _gaq.push (['_addOrganic', 'video.yandex.ru', 'text']);
-          _gaq.push (['_addOrganic', 'meta.ua', 'q']);
-          _gaq.push (['_addOrganic', 'search.bigmir.net', 'z']);
-          _gaq.push (['_addOrganic', 'search.i.ua', 'q']);
-          _gaq.push (['_addOrganic', 'mail.ru', 'q']);
-          _gaq.push (['_addOrganic', 'go.mail.ru', 'q']);
-          _gaq.push (['_addOrganic', 'google.com.ua', 'q']);
-          _gaq.push (['_addOrganic', 'images.google.com.ua', 'q']);
-          _gaq.push (['_addOrganic', 'maps.google.com.ua', 'q']);
-          _gaq.push (['_addOrganic', 'images.google.ru', 'q']);
-          _gaq.push (['_addOrganic', 'maps.google.ru', 'q']);
-          _gaq.push (['_addOrganic', 'rambler.ru', 'words']);
-          _gaq.push (['_addOrganic', 'nova.rambler.ru', 'query']);
-          _gaq.push (['_addOrganic', 'nova.rambler.ru', 'words']);
-          _gaq.push (['_addOrganic', 'gogo.ru', 'q']);
-          _gaq.push (['_addOrganic', 'nigma.ru', 's']);
-          _gaq.push (['_addOrganic', 'poisk.ru', 'text']);
-          _gaq.push (['_addOrganic', 'go.km.ru', 'sq']);
-          _gaq.push (['_addOrganic', 'liveinternet.ru', 'ask']);
-          _gaq.push (['_addOrganic', 'gde.ru', 'keywords']);
-          _gaq.push (['_addOrganic', 'search.qip.ru', 'query']);
-          _gaq.push (['_addOrganic', 'webalta.ru', 'q']);
-          _gaq.push (['_addOrganic', 'sm.aport.ru', 'r']);
-          _gaq.push (['_addOrganic', 'index.online.ua', 'q']);
-          _gaq.push (['_addOrganic', 'web20.a.ua', 'query']);
-          _gaq.push (['_addOrganic', 'search.ukr.net', 'search_query']);
-          _gaq.push (['_addOrganic', 'search.com.ua', 'q']);
-          _gaq.push (['_addOrganic', 'search.ua', 'q']);
-          _gaq.push (['_addOrganic', 'affiliates.quintura.com', 'request']);
-          _gaq.push (['_addOrganic', 'akavita.by', 'z']);
-          _gaq.push (['_addOrganic', 'search.tut.by', 'query']);
-          _gaq.push (['_addOrganic', 'all.by', 'query']);
-          _gaq.push(['_trackPageview']);
-        </script>";
 
-            $ga .= "
-<script type = 'text/javascript'>
-(function() {
-var ga = document.createElement('script');
-ga.type = 'text/javascript';
-ga.async = true;
-ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-var s = document.getElementsByTagName('script')[0];
-s.parentNode.insertBefore(ga, s);
-})();
+        if ($GAid['google_analytics_id']) {
+            $ga = "<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', '" . $GAid['google_analytics_id'] . "', '" . str_replace('www.', '', $_SERVER['HTTP_HOST']) . "');
+  ga('send', 'pageview');
+  
+  ga('require', 'ecommerce', 'ecommerce.js');
+
 </script>";
+
+
             return $ga;
         }
     }
@@ -200,85 +165,57 @@ s.parentNode.insertBefore(ga, s);
         $CI = & get_instance();
         /* Show Google Analytics code if some value inserted in admin panel */
         if ($GAid['google_analytics_id']) {
-            $ga = "<script type='text/javascript'>
-            var _gaq = _gaq || [];
-          _gaq.push(['_setAccount', '" . $GAid['google_analytics_id'] . "']);
-          _gaq.push (['_addOrganic', 'images.yandex.ru', 'text']);
-          _gaq.push (['_addOrganic', 'blogs.yandex.ru', 'text']);
-          _gaq.push (['_addOrganic', 'video.yandex.ru', 'text']);
-          _gaq.push (['_addOrganic', 'meta.ua', 'q']);
-          _gaq.push (['_addOrganic', 'search.bigmir.net', 'z']);
-          _gaq.push (['_addOrganic', 'search.i.ua', 'q']);
-          _gaq.push (['_addOrganic', 'mail.ru', 'q']);
-          _gaq.push (['_addOrganic', 'go.mail.ru', 'q']);
-          _gaq.push (['_addOrganic', 'google.com.ua', 'q']);
-          _gaq.push (['_addOrganic', 'images.google.com.ua', 'q']);
-          _gaq.push (['_addOrganic', 'maps.google.com.ua', 'q']);
-          _gaq.push (['_addOrganic', 'images.google.ru', 'q']);
-          _gaq.push (['_addOrganic', 'maps.google.ru', 'q']);
-          _gaq.push (['_addOrganic', 'rambler.ru', 'words']);
-          _gaq.push (['_addOrganic', 'nova.rambler.ru', 'query']);
-          _gaq.push (['_addOrganic', 'nova.rambler.ru', 'words']);
-          _gaq.push (['_addOrganic', 'gogo.ru', 'q']);
-          _gaq.push (['_addOrganic', 'nigma.ru', 's']);
-          _gaq.push (['_addOrganic', 'poisk.ru', 'text']);
-          _gaq.push (['_addOrganic', 'go.km.ru', 'sq']);
-          _gaq.push (['_addOrganic', 'liveinternet.ru', 'ask']);
-          _gaq.push (['_addOrganic', 'gde.ru', 'keywords']);
-          _gaq.push (['_addOrganic', 'search.qip.ru', 'query']);
-          _gaq.push (['_addOrganic', 'webalta.ru', 'q']);
-          _gaq.push (['_addOrganic', 'sm.aport.ru', 'r']);
-          _gaq.push (['_addOrganic', 'index.online.ua', 'q']);
-          _gaq.push (['_addOrganic', 'web20.a.ua', 'query']);
-          _gaq.push (['_addOrganic', 'search.ukr.net', 'search_query']);
-          _gaq.push (['_addOrganic', 'search.com.ua', 'q']);
-          _gaq.push (['_addOrganic', 'search.ua', 'q']);
-          _gaq.push (['_addOrganic', 'affiliates.quintura.com', 'request']);
-          _gaq.push (['_addOrganic', 'akavita.by', 'z']);
-          _gaq.push (['_addOrganic', 'search.tut.by', 'query']);
-          _gaq.push (['_addOrganic', 'all.by', 'query']);
-          _gaq.push(['_trackPageview']);
-        </script>";
+            $ga = "<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', '" . $GAid['google_analytics_id'] . "', '" . str_replace('www.', '', $_SERVER['HTTP_HOST']) . "');
+  ga('send', 'pageview');
+  
+  ga('require', 'ecommerce', 'ecommerce.js');
+
+</script>";
+            /* @var $model SOrders */
             if ($model && $this->orderJustMaked) {
+                if ($model->getSDeliveryMethods()) {
+                    $affiliation = $model->getSDeliveryMethods()->getName();
+                }
                 $ga .= "
-                    <script type='text/javascript'>
-            _gaq.push(['_addTrans',
-                '" . $model->id . "',
-                '',
-                '" . $model->getTotalPrice() . "',
-                '',
-                '" . $model->getSDeliveryMethods()->name . "',
-                '',
-                '',
-                ''
-            ]);";
+                    <script>
+            ga('ecommerce:addTransaction', {
+  'id': '" . $model->getId() . "',
+  'affiliation': '" . $affiliation . "',
+  'revenue': '" . $model->getTotalPrice() . "',
+  'shipping': '',
+  'tax': '',
+});";
 
                 foreach ($model->getSOrderProductss() as $item) {
                     $total = $total + $item->getQuantity() * $item->toCurrency();
+                    /* @var $product SProducts */
                     $product = $item->getSProducts();
-
-                    $ga .="_gaq.push(['_addItem',
-                '" . $model->id . "',
-                '" . $product->getUrl() . "',
-                '" . encode($product->getName()) . " " . encode($item->getVariantName()) . "',
-                '" . encode($product->getMainCategory()->name) . "',
-                '" . $item->toCurrency() . "',
-                '" . $item->getQuantity() . "']);";
+                    foreach ($product->getProductVariants() as $v) {
+                        if ($v->getid() == $item->getVariantId()) {
+                            $Variant = $v;
+                            break;
+                        }
+                    }
+                    var_dump($Variant->getNumber());
+                    $ga .="ga('ecommerce:addItem', {
+    'id': '" . $model->getId() . "',
+    'name': '" . encode($product->getName()) . " " . encode($item->getVariantName()) . "',
+    'sku': '" . encode($Variant->getNumber()) . "',
+    'category': '" . encode($product->getMainCategory()->getName()) . "',
+    'price': '" . $item->toCurrency() . "',
+    'quantity': '" . $item->getQuantity() . "',
+  });";
                 }
-                $ga .="_gaq.push(['_trackTrans']);</script>";
+                $ga .="ga('ecommerce:send');</script>";
             }
 
-            $ga .= "
-<script type = 'text/javascript'>
-(function() {
-var ga = document.createElement('script');
-ga.type = 'text/javascript';
-ga.async = true;
-ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-var s = document.getElementsByTagName('script')[0];
-s.parentNode.insertBefore(ga, s);
-})();
-</script>";
+
             return $ga;
         }
     }
@@ -287,31 +224,29 @@ s.parentNode.insertBefore(ga, s);
         $CI = & get_instance();
         if ($model && $this->orderJustMaked) {
             $ga = "
-                    <script type='text/javascript'>
-            _gaq.push(['_addTrans',
-                '" . $model->id . "',
-                '',
-                '" . $model->getTotalPrice() . "',
-                '',
-                '" . $model->getSDeliveryMethods()->name . "',
-                '',
-                '',
-                ''
-            ]);";
+                    <script>
+            ga('ecommerce:addTransaction', {
+  'id': '" . $model->id . "',
+  'affiliation': '" . $model->getSDeliveryMethods()->name . "',
+  'revenue': '" . $model->getTotalPrice() . "',
+  'shipping': '',
+  'tax': '',
+});";
 
             foreach ($model->getSOrderProductss() as $item) {
                 $total = $total + $item->getQuantity() * $item->toCurrency();
                 $product = $item->getSProducts();
 
-                $ga .="_gaq.push(['_addItem',
-                '" . $model->id . "',
-                '" . $product->getUrl() . "',
-                '" . encode($product->getName()) . " " . encode($item->getVariantName()) . "',
-                '" . encode($product->getMainCategory()->name) . "',
-                '" . $item->toCurrency() . "',
-                '" . $item->getQuantity() . "']);";
+                $ga .="ga('ecommerce:addItem', {
+    'id': '" . $model->id . "',
+    'name': '" . encode($product->getName()) . " " . encode($item->getVariantName()) . "',
+    'sku': '" . $product->getUrl() . "',
+    'category': '" . encode($product->getMainCategory()->name) . "',
+    'price': '" . $item->toCurrency() . "',
+    'quantity': '" . $item->getQuantity() . "',
+  });";
             }
-            $ga .="_gaq.push(['_trackTrans']);</script>";
+            $ga .="ga('ecommerce:send');</script>";
 
             return $ga;
         }
