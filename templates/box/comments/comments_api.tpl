@@ -5,7 +5,8 @@
     </button>
 {/if}
 <div class="comments" id="comments">
-    <div class="title-comment">{lang('Отзывы', 'newLevel')} {if $visibleMainForm === false || $visibleMainForm == NULL}<button data-drop=".comments-main-form" data-place="inherit" data-overlay-opacity="0" data-after="Comments.toComment" class="m-l_5"><span class="ref2 f-w_b">+</span> <span class="d_l_3">{lang('Добавить отзыв', 'newLevel')}</span></button>{/if}</div>
+    {$showButton = $visibleMainForm === false || $visibleMainForm == NULL}
+    <div class="title-comment">{lang('Отзывы', 'newLevel')} {if $showButton && $can_comment === 0 || $showButton && $is_logged_in}<button data-drop=".comments-main-form" data-place="inherit" data-overlay-opacity="0" data-after="Comments.toComment" class="m-l_5"><span class="ref2 f-w_b">+</span> <span class="d_l_3">{lang('Добавить отзыв', 'newLevel')}</span></button>{/if}</div>
             {if $can_comment == 0 OR $is_logged_in}
         <div class="drop comments-main-form {if !$comments_arr}noComments{/if} {if $visibleMainForm || $visibleMainForm == NULL}active inherit{/if}" {if $visibleMainForm}style="display: block;"{/if}>
             <div class="frame-comments layout-highlight horizontal-form">
