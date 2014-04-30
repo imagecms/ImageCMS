@@ -196,11 +196,17 @@ class Lib_seo {
                     $total = $total + $item->getQuantity() * $item->toCurrency();
                     /* @var $product SProducts */
                     $product = $item->getSProducts();
-
+                    foreach ($product->getProductVariants() as $v) {
+                        if ($v->getid() == $item->getVariantId()) {
+                            $Variant = $v;
+                            break;
+                        }
+                    }
+                    var_dump($Variant->getNumber());
                     $ga .="ga('ecommerce:addItem', {
     'id': '" . $model->getId() . "',
     'name': '" . encode($product->getName()) . " " . encode($item->getVariantName()) . "',
-    'sku': '" . $product->getUrl() . "',
+    'sku': '" . encode($Variant->getNumber()) . "',
     'category': '" . encode($product->getMainCategory()->getName()) . "',
     'price': '" . $item->toCurrency() . "',
     'quantity': '" . $item->getQuantity() . "',
