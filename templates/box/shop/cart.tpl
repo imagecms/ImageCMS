@@ -82,50 +82,52 @@
                                 {echo ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPatternMain('pattern_custom_field')->getOneCustomFieldsByName('Selo','order',$profile.id,'user')->asHtml()}
                             </div>
                             <div class="groups-form">
-                                <!-- Start. Delivery methods block -->
-                                <div class="frame-label" id="frameDelivery">
-                                    <span class="title">{lang('Способ доставки','newLevel')}</span>
-                                    <div class="frame-form-field check-variant-delivery">
-                                        {/* <div class="lineForm">
+                                {if count($deliveryMethods) > 0}
+                                    <!-- Start. Delivery methods block -->
+                                    <div class="frame-label" id="frameDelivery">
+                                        <span class="title">{lang('Способ доставки','newLevel')}</span>
+                                        <div class="frame-form-field check-variant-delivery">
+                                            {/* <div class="lineForm">
                                             <select id="method_deliv" name="deliveryMethodId">
                                                 <option value="">{lang('--Выбирете способ доставки--', 'newLevel')}</option>
-                                        {foreach $deliveryMethods as $deliveryMethod}
+                                            {foreach $deliveryMethods as $deliveryMethod}
                                             <option
                                                 name="met_del"
                                                 value="{echo $deliveryMethod->getId()}">
-                                            {echo $deliveryMethod->getName()}
+                                                {echo $deliveryMethod->getName()}
                                             </option>
-                                        {/foreach}
+                                            {/foreach}
                                         </select>
                                     </div>*/}
-                                        <div class="frame-radio">
-                                            {foreach $deliveryMethods as $deliveryMethod}
-                                                <div class="frame-label">
-                                                    <span class="niceRadio b_n">
-                                                        <input type="radio"
-                                                               name="deliveryMethodId"
-                                                               value="{echo $deliveryMethod->getId()}"
-                                                               />
-                                                    </span>
-                                                    <div class="name-count">
-                                                        <span class="text-el p_r">
-                                                            {echo $deliveryMethod->getName()}
-                                                            {if $deliveryMethod->getDescription() && trim($deliveryMethod->getDescription()) != ""}
-                                                                <span class="icon_ask" data-rel="tooltip" data-placement="right" data-other-class="info-delivery" data-title='{echo $deliveryMethod->getDescription()}' data-offset-x="16"></span>
-                                                            {/if}
+                                            <div class="frame-radio">
+                                                {foreach $deliveryMethods as $deliveryMethod}
+                                                    <div class="frame-label">
+                                                        <span class="niceRadio b_n">
+                                                            <input type="radio"
+                                                                   name="deliveryMethodId"
+                                                                   value="{echo $deliveryMethod->getId()}"
+                                                                   />
                                                         </span>
+                                                        <div class="name-count">
+                                                            <span class="text-el p_r">
+                                                                {echo $deliveryMethod->getName()}
+                                                                {if $deliveryMethod->getDescription() && trim($deliveryMethod->getDescription()) != ""}
+                                                                    <span class="icon_ask" data-rel="tooltip" data-placement="right" data-other-class="info-delivery" data-title='{echo $deliveryMethod->getDescription()}' data-offset-x="16"></span>
+                                                                {/if}
+                                                            </span>
+                                                        </div>
+                                                        <div class="help-block">
+                                                            {if $deliveryMethod->getDeliverySumSpecified()}
+                                                                {echo $deliveryMethod->getDeliverySumSpecifiedMessage()}
+                                                            {/if}
+                                                        </div>
                                                     </div>
-                                                    <div class="help-block">
-                                                        {if $deliveryMethod->getDeliverySumSpecified()}
-                                                            {echo $deliveryMethod->getDeliverySumSpecifiedMessage()}
-                                                        {/if}
-                                                    </div>
-                                                </div>
-                                            {/foreach}
+                                                {/foreach}
+                                            </div>
                                         </div>
+                                        <!-- End. Delivery methods block -->
                                     </div>
-                                    <!-- End. Delivery methods block -->
-                                </div>
+                                {/if}
                                 <!-- Start. Delivery  address block and comment-->
                                 <div class="frame-label">
                                     <span class="title">{lang('Адрес', 'newLevel')}</span>
@@ -148,19 +150,21 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Start. Payment methods block-->
-                                <div class="frame-payment p_r">
-                                    <div id="framePaymentMethod">
-                                        <div class="frame-label">
-                                            <span class="title">{lang('Оплата','newLevel')}:</span>
-                                            <div class="frame-form-field" style="padding-top: 6px;">
-                                                <div class="help-block">{lang('Выберите доставку', 'newLevel')}</div>
+                                {if count($deliveryMethods) > 0}
+                                    <!-- Start. Payment methods block-->
+                                    <div class="frame-payment p_r">
+                                        <div id="framePaymentMethod">
+                                            <div class="frame-label">
+                                                <span class="title">{lang('Оплата','newLevel')}:</span>
+                                                <div class="frame-form-field" style="padding-top: 6px;">
+                                                    <div class="help-block">{lang('Выберите доставку', 'newLevel')}</div>
+                                                </div>
                                             </div>
                                         </div>
+                                        <div class="preloader d_n_"></div>
                                     </div>
-                                    <div class="preloader d_n_"></div>
-                                </div>
-                                <!-- End. Payment methods block-->
+                                    <!-- End. Payment methods block-->
+                                {/if}
                             </div>
                             <div class="groups-form">
                                 <div class="frame-label">
