@@ -2213,9 +2213,9 @@ function getCookie(c_name)
                 drop.data('drp').forCenter = forCenter;
                 forCenter.add(drop).css('z-index', overlays.length + 1104);
             }
-            
+
             methods._pasteContent($this, drop, opt);
-            
+
             if (opt.elBefore)
                 eval(opt.elBefore)($this, drop, data);
             if (opt.before)
@@ -2298,7 +2298,6 @@ function getCookie(c_name)
 
             if (opt.closeClick)
                 $(forCenter).add(dropOver).off('click.' + $.drop.nS + ev).on('click.' + $.drop.nS + ev, function(e) {
-                    e.stopPropagation();
                     if ($(e.target).is('.overlayDrop') || $(e.target).is('.forCenter'))
                         methods.close($($(e.target).attr('data-rel')));
                 });

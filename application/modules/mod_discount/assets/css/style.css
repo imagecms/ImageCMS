@@ -22,7 +22,7 @@
 .title-bonus{font-size: 16px;font-weight: bold;color: #dd4b39;}
 .title-bonus-out{margin-bottom: 8px;}
 .discount-out{padding-bottom: 22px;}
-.discount-out .span4{padding-right: 22px;text-align: right;}
+.discount-out .span4:first-child{padding-right: 22px;text-align: right;}
 .discount-out .icon-info-sign{margin-right: 7px;}
 .discount-out #valueInput,.discount-out #comulativBlock .input-small,.discount-out #how-much{width: 60px !important;margin-right: 5px;}
 .sum-of-order{width: 80px!important;margin-right: 7px;}
