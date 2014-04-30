@@ -31,6 +31,15 @@
     </tr>
     <!-- End. Show Order status name -->
 
+    <!-- Start. Show address -->
+    {if $model->getUserDeliverTo()}
+        <tr>
+            <th>{lang('Адрес','commerce_mobiles')}:</th>
+            <td>{echo $model->getUserDeliverTo()}</td>
+        </tr>
+    {/if}
+    <!-- End. Show address -->
+
     <!-- Start. Render certificate -->
     {if $model->getGiftCertKey() != null}
         <tr>
