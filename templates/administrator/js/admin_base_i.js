@@ -1402,7 +1402,7 @@ $(document).ready(function() {
 
         if (extentionIsAllowed == false) {
             $(this).removeAttr("value");
-            showMessage("Ошибка", "Можно загружать только изображения", "error");
+            showMessage(langs.error, langs.onlyFontsFilesAllowed, "error");
         } else {
             $(".watermark_path_info div").html($(this).val().split('\\').pop());
         }
@@ -1700,7 +1700,7 @@ $(document).ready(function() {
             }
         });
     };
-    $("#createUserPhone, #UserPhone").testNumber(['(', ')', '+', '-']);
+    $("#createUserPhone, #UserPhone, #Phone").testNumber(['(', ')', '+', '-']);
 });
 
 

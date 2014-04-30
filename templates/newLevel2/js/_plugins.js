@@ -2127,19 +2127,19 @@ function getCookie(c_name)
             return this;
         },
         _show: function($this, e, set, data, hashChange) {
-            if (!$this)
-                $this = this;
-            if (!e)
-                e = window.event;
+            $this = $this ? $this : this;
+            e = e ? e : window.event;
+
             var elSet = $this.data(),
+                    rel = null,
+                    opt = {},
                     self = $this.get(0);
+
             set = $.extend({}, set ? set : elSet.drp);
 
-            var rel = null;
             if (self.rel)
                 rel = self.rel.replace(methods._reg(), '');
 
-            var opt = {};
             for (var i in $.drop.dP)
                 opt[i] = methods._checkProp(elSet, set, i);
 
@@ -2178,17 +2178,13 @@ function getCookie(c_name)
                 }, $.drop.methods())
             }));
 
-            drop.attr('data-elrun', opt.drop).off('click.' + $.drop.nS, opt.exit).on('click.' + $.drop.nS, opt.exit, function(e) {
-                e.stopPropagation();
-                methods.close($(this).closest('[data-elrun]'));
-            });
             methods._checkMethod(function() {
                 methods.galleries($this, set, methods);
             });
+
             var overlays = $('.overlayDrop').css('z-index', 1103),
                     condOverlay = opt.overlayOpacity !== 0,
                     dropOver = null;
-
             if (condOverlay) {
                 if (!$.exists('[data-rel="' + opt.drop + '"].overlayDrop'))
                     body.append('<div class="overlayDrop" data-rel="' + opt.drop + '" style="display:none;position:absolute;width:100%;left:0;top:0;"></div>');
@@ -2204,8 +2200,8 @@ function getCookie(c_name)
                     'z-index': overlays.length + 1103
                 });
             }
-            $('.forCenter').css('z-index', 1104);
 
+            $('.forCenter').css('z-index', 1104);
             var forCenter = null,
                     objForC = $('[data-rel="' + opt.drop + '"].forCenter');
             if ($.existsN(objForC))
@@ -2217,7 +2213,9 @@ function getCookie(c_name)
                 drop.data('drp').forCenter = forCenter;
                 forCenter.add(drop).css('z-index', overlays.length + 1104);
             }
+
             methods._pasteContent($this, drop, opt);
+
             if (opt.elBefore)
                 eval(opt.elBefore)($this, drop, data);
             if (opt.before)
@@ -2230,32 +2228,7 @@ function getCookie(c_name)
                 'drop': drop,
                 'datas': data
             });
-            var ev = opt.drop ? opt.drop.replace(methods._reg(), '') : '';
-            wnd.off('resize.' + $.drop.nS + ev).on('resize.' + $.drop.nS + ev, function() {
-                methods._checkMethod(function() {
-                    methods.limitSize(drop);
-                });
-                methods._checkMethod(function() {
-                    methods.heightContent(drop);
-                });
-                if (opt.place !== 'inherit')
-                    methods[opt.place](drop);
-                setTimeout(function() {
-                    if (dropOver)
-                        dropOver.css('height', '').css('height', $(document).height());
-                    if (forCenter && isTouch)
-                        forCenter.css('height', '').css('height', $(document).height());
-                }, 100);
-            });
-            if (condOverlay)
-                dropOver.stop().fadeIn(opt.durationOn / 2);
 
-            if (opt.closeClick)
-                $(forCenter).add(dropOver).off('click.' + $.drop.nS + ev).on('click.' + $.drop.nS + ev, function(e) {
-                    e.stopPropagation();
-                    if ($(e.target).is('.overlayDrop') || $(e.target).is('.forCenter'))
-                        methods.close($($(e.target).attr('data-rel')));
-                });
             drop.addClass(opt.place);
             methods._positionType(drop);
             if (!isTouch && opt.place !== 'inherit' && opt.overlayOpacity !== 0)
@@ -2294,6 +2267,40 @@ function getCookie(c_name)
                     $.drop.drp.scrollTop = null;
                 }, 400);
             }
+            if (opt.confirm) {
+                function focusConfirm() {
+                    $(opt.confirmActionBtn).focus();
+                }
+                setTimeout(focusConfirm, 0);
+                drop.click(focusConfirm);
+            }
+            $(opt.next).add($(opt.prev)).css('height', drop.actual('height'));
+
+            var ev = opt.drop ? opt.drop.replace(methods._reg(), '') : '';
+            wnd.off('resize.' + $.drop.nS + ev).on('resize.' + $.drop.nS + ev, function() {
+                methods._checkMethod(function() {
+                    methods.limitSize(drop);
+                });
+                methods._checkMethod(function() {
+                    methods.heightContent(drop);
+                });
+                if (opt.place !== 'inherit')
+                    methods[opt.place](drop);
+                setTimeout(function() {
+                    if (dropOver)
+                        dropOver.css('height', '').css('height', $(document).height());
+                    if (forCenter && isTouch)
+                        forCenter.css('height', '').css('height', $(document).height());
+                }, 100);
+            });
+            if (condOverlay)
+                dropOver.stop().fadeIn(opt.durationOn / 2);
+
+            if (opt.closeClick)
+                $(forCenter).add(dropOver).off('click.' + $.drop.nS + ev).on('click.' + $.drop.nS + ev, function(e) {
+                    if ($(e.target).is('.overlayDrop') || $(e.target).is('.forCenter'))
+                        methods.close($($(e.target).attr('data-rel')));
+                });
             if (opt.prompt) {
                 var input = drop.find(opt.promptInput).val(opt.promptInputValue);
                 function focusInput() {
@@ -2305,15 +2312,10 @@ function getCookie(c_name)
                 });
                 drop.click(focusInput);
             }
-            if (opt.confirm) {
-                function focusConfirm() {
-                    $(opt.confirmActionBtn).focus();
-                }
-                setTimeout(focusConfirm, 0);
-                drop.click(focusConfirm);
-            }
-            $(opt.next).add($(opt.prev)).css('height', drop.actual('height'));
-
+            drop.attr('data-elrun', opt.drop).off('click.' + $.drop.nS, opt.exit).on('click.' + $.drop.nS, opt.exit, function(e) {
+                e.stopPropagation();
+                methods.close($(this).closest('[data-elrun]'));
+            });
             body.off('keyup.' + $.drop.nS);
             if (opt.closeEsc)
                 body.on('keyup.' + $.drop.nS, function(e) {
@@ -2359,7 +2361,6 @@ function getCookie(c_name)
                     if (opt.place === 'center')
                         methods.center(drop);
                 });
-
 
                 if (rel && opt.keyNavigate && methods.galleries)
                     body.off('keyup.' + $.drop.nS + ev).on('keyup.' + $.drop.nS + ev, function(e) {
