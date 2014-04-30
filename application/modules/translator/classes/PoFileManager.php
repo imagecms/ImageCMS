@@ -241,7 +241,7 @@ class PoFileManager {
 
         $settings = $this->makePoFileSettings((array) $data['settings']);
         unset($data['settings']);
-
+        
         $po_file_data = $this->makePoFileData($data);
         $po_file_content = b"\xEF\xBB\xBF" . $settings . "\n\n" . $po_file_data;
 
@@ -294,12 +294,12 @@ class PoFileManager {
                 $po = $this->preparePoFileData((array) $po);
 
                 if ($po['comment']) {
-                    $resultData[] = "# " . $po['comment'] . '"';
+                    $resultData[] = "# " . $po['comment'];
                 }
 
                 if ($po['links']) {
                     foreach ($po['links'] as $link) {
-                        $resultData[] = "#: " . $link . '"';
+                        $resultData[] = "#: " . $link;
                     }
                 }
 
@@ -360,7 +360,7 @@ class PoFileManager {
             }
 
             if ($first2symbols == '#:') {
-                $links[] = trim(substr($line, 2, -2));
+                $links[] = trim(substr($line, 2, -1));
                 continue;
             }
 

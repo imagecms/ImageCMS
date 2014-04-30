@@ -1,4 +1,6 @@
 <script>
+langs["Select Some Options"] = '<?php echo lang("Select Some Options", "admin")?>';
+langs["No results match"] = '<?php echo lang("No results match", "admin")?>';
 langs["Error"] = '<?php echo lang("Error", "admin")?>';
 langs["Not supported file format"] = '<?php echo lang("Not supported file format", "admin")?>';
 langs["PHP GD library is not installed"] = '<?php echo lang("PHP GD library is not installed", "admin")?>';
