@@ -291,12 +291,6 @@ class ParentWishlist extends \MY_Controller {
                 $this->errors[] = lang('Wish list name will be changed', 'wishlist') . '. ' . lang('List name length maximum', 'wishlist') . ' - ' . $this->settings['maxListName'];
             }
             $this->wishlist_model->createWishList($listName, $user_id, $wlType, $wlDescription);
-            \cmsemail\email::getInstance()->sendEmail($this->dx_auth->get_user_email(), 'wish_list', array(
-                'wishListViews' => '',
-                'userName' => $this->dx_auth->get_username(),
-                'wishName' => $listName,
-                'wishLink' => site_url('wishlist')
-            ));
         } else {
             $this->errors['name'] = lang('Wish List name can not be empty!', 'wishlist');
         }

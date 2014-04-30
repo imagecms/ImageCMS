@@ -508,6 +508,14 @@ class Wishlist_model extends CI_Model {
             'hash' => random_string('unique', 16),
             'access' => $access
         );
+
+        \cmsemail\email::getInstance()->sendEmail($this->dx_auth->get_user_email(), 'wish_list', array(
+            'wishListViews' => '',
+            'userName' => $this->dx_auth->get_username(),
+            'wishName' => $listName,
+            'wishLink' => site_url('wishlist/show') . '/' . $data['hash']
+        ));
+        
         return $this->db->insert('mod_wish_list', $data);
     }
 
@@ -741,16 +749,16 @@ class Wishlist_model extends CI_Model {
                     'enabled' => 1,
                     'autoload' => 1
         ));
-        
+
         $this->insertPaterns();
-        
+
         return TRUE;
     }
 
     public function insertPaterns() {
         $this->db->where_in('id', '111')->delete('mod_email_paterns');
         $this->db->where_in('id', '111')->delete('mod_email_paterns_i18n');
-        
+
         $file = $this->load->file(dirname(__FILE__) . '/patern.sql', true);
         $this->db->query($file);
 
