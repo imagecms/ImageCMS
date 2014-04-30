@@ -377,8 +377,9 @@ class PoFileManager {
 
             if (substr($line, 0, 6) == 'msgstr') {
                 if ($origin) {
+                    preg_match('/"(.*?)"/', $line, $translation);
                     $translations[$origin] = array(
-                        'translation' => trim(substr($line, 8, -2)),
+                        'translation' => $translation[1],
                         'comment' => $comment,
                         'links' => $links,
                         'fuzzy' => $fuzzy
