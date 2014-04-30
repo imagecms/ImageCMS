@@ -86,8 +86,8 @@
         </div>
         <hr class="head_cle_foot"/>
         <div class="main_frame_inside">
-            {if validation_errors()}
-                <label><span class="red d_b">{validation_errors()}</span></label>
+            {if $errors}
+                <label><span class="red d_b">{echo $errors}</span></label>
                 {/if}
             <label>
                 {lang('Имя','commerce_mobiles')}:<span class="must">*</span>
@@ -98,7 +98,7 @@
                 <input type="text" name="userInfo[email]" value="{$profile.email}"/>
             </label>
             <label>
-                {lang('Телефон','commerce_mobiles')}:
+                {lang('Телефон','commerce_mobiles')}:<span class="must">*</span>
                 <input type="text" name="userInfo[phone]" value="{$profile.phone}" />
             </label>
             <label>
@@ -112,7 +112,7 @@
                     {foreach $deliveryMethods as $deliveryMethod}
                         {if $counter}
                             <option value="">
-                                {lang('Выберете способ доставки','commerce_mobiles')}
+                                {lang('Не выбран','commerce_mobiles')}
                             </option>
                             {$counter = false}
                         {/if}
@@ -136,9 +136,15 @@
                 <label>
                     {$counter = true}
                     {lang('Способ оплаты','commerce_mobiles')}:
+                    <span id="notSelectedPayment">
+                        {lang('Выберите доставку','commerce_mobiles')}
+                    </span>
                     {foreach $deliveryMethods as $dm}
                         {if count($dm->getPaymentMethodss()) > 0}
                             <select id="paymentMethod{echo $dm->getId()}">
+                                <option value="">
+                                    {lang('Не выбран','commerce_mobiles')}
+                                </option>
                                 {foreach $dm->getPaymentMethodss() as $pm}
                                     <option value="{echo $pm->getId()}">
                                         {echo $pm->getName()}
