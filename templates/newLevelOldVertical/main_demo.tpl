@@ -45,7 +45,7 @@
                                 cache: false,
                                 complete: function() {
                                     cL++;
-                                    if (cL == scriptsL)
+                                    if (cL === scriptsL)
                                         if (callback) {
                                             eval(callback)();
                                             setTimeout(function() {
