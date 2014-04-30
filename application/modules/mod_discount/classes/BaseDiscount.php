@@ -172,6 +172,18 @@ class BaseDiscount {
         return $cart['data'];
     }
 
+    public static function getDiscountsLabels() {
+        return array(
+            "all_order" => lang('Order amount of more than', 'mod_discount'),
+            "comulativ" => lang('Cumulative discount', 'mod_discount'),
+            "user" => lang('User', 'mod_discount'),
+            "group_user" => lang('Users group', 'mod_discount'),
+            "category" => lang('Category', 'mod_discount'),
+            "product" => lang('Product', 'mod_discount'),
+            "brand" => lang('Brand', 'mod_discount'),
+        );
+    }
+
     /**
      * get all active discount joined whith his type
      * @access private
