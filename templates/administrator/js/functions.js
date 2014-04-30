@@ -1039,7 +1039,7 @@ var orders = new Object({
                     price = parseFloat(productVariants[i]['price']).toFixed(2);
                     $("#variantsForOrders").append($('<option data-stock=' + productVariants[i]['stock'] + ' data-price=' + price + ' data-variantName=\'' + variantName +
                             '\' data-productId=' + productId + ' data-productName=\'' + productName + '\' data-productCurrency=' + curr + ' data-variantId=' + productVariants[i]['id'] +
-                            ' value=' + productVariants[i]['id'] + '>' + variantName + separate + price + ' ' + curr + '</option>'));
+                            ' value=' + productVariants[i]['id'] + ' data-orig_price="'+productVariants[i]['origPrice']+'">' + variantName + separate + price + ' ' + curr + '</option>'));
 
                     $($('#variantsForOrders').find('option')[0]).trigger('click');
                     $('#variantsForOrders').trigger('change');
