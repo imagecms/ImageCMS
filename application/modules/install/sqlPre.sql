@@ -1072,7 +1072,7 @@ INSERT INTO `mod_email_paterns` (`id`, `name`, `patern`, `from`, `from_email`, `
 (5, 'forgot_password', '', '', '', '', 'HTML', 1, 0),
 (6, 'change_password', '', '', '', '', 'HTML', 1, 0),
 (7, 'price_change', '', '', '', '', 'HTML', 1, 0),
-(8, 'wish_list', '', '', '', '', 'HTML', 0, 1),
+(8, 'wish_list', '', '', '', '', 'HTML', 1, 1),
 (9, 'callback', '', '', '', '', 'HTML', 1, 1);
 
 -- --------------------------------------------------------
@@ -2414,7 +2414,7 @@ CREATE TABLE IF NOT EXISTS `shop_currencies` (
   `is_default` tinyint(1) DEFAULT NULL,
   `code` varchar(5) DEFAULT NULL,
   `symbol` varchar(5) DEFAULT NULL,
-  `rate` float(9,4) DEFAULT '1.0000',
+  `rate` float(10,4) DEFAULT '1.0000',
   `showOnSite` int(1) DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `shop_currencies_I_1` (`name`),

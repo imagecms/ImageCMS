@@ -1279,7 +1279,7 @@ CREATE TABLE IF NOT EXISTS `shop_currencies` (
   `is_default` tinyint(1) DEFAULT NULL,
   `code` varchar(5) DEFAULT NULL,
   `symbol` varchar(5) DEFAULT NULL,
-  `rate` float(7,6) DEFAULT '1.000000',
+  `rate` float(10,4) DEFAULT '1.000000',
   PRIMARY KEY (`id`),
   KEY `shop_currencies_I_1` (`name`),
   KEY `shop_currencies_I_2` (`main`),

@@ -385,6 +385,11 @@ abstract class BaseEvents {
         return $this;
     }
 
+    final public function onShopAdminOrderDelete() {
+        $this->key = 'ShopAdminOrder:ajaxDeleteOrders';
+        return $this;
+    }
+
     final public function onShopMakeOrder() {
         $this->key = 'Cart:MakeOrder';
         return $this;

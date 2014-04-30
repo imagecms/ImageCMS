@@ -241,7 +241,7 @@ class PoFileManager {
 
         $settings = $this->makePoFileSettings((array) $data['settings']);
         unset($data['settings']);
-
+        
         $po_file_data = $this->makePoFileData($data);
         $po_file_content = b"\xEF\xBB\xBF" . $settings . "\n\n" . $po_file_data;
 
@@ -294,12 +294,12 @@ class PoFileManager {
                 $po = $this->preparePoFileData((array) $po);
 
                 if ($po['comment']) {
-                    $resultData[] = "# " . $po['comment'] . '"';
+                    $resultData[] = "# " . $po['comment'];
                 }
 
                 if ($po['links']) {
                     foreach ($po['links'] as $link) {
-                        $resultData[] = "#: " . $link . '"';
+                        $resultData[] = "#: " . $link;
                     }
                 }
 
@@ -360,7 +360,7 @@ class PoFileManager {
             }
 
             if ($first2symbols == '#:') {
-                $links[] = trim(substr($line, 2, -2));
+                $links[] = trim(substr($line, 2, -1));
                 continue;
             }
 
@@ -377,8 +377,9 @@ class PoFileManager {
 
             if (substr($line, 0, 6) == 'msgstr') {
                 if ($origin) {
+                    preg_match('/"(.*?)"/', $line, $translation);
                     $translations[$origin] = array(
-                        'translation' => trim(substr($line, 8, -2)),
+                        'translation' => $translation[1],
                         'comment' => $comment,
                         'links' => $links,
                         'fuzzy' => $fuzzy
