@@ -104,6 +104,7 @@
     langs.scriptErrorTellAdmin = "{lang('Error in the script. Please notify the administrator','admin')}";
 
     langs.onlyFontsFilesAllowed = "{lang('Only fonts-files can be uploaded','admin')}";
+    langs.fontNotUploaded = "{lang('Font is not uploaded', 'admin')}";
 
     {literal}
         function lang(value) {
