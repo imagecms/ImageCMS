@@ -333,7 +333,7 @@ class Admin extends BaseAdminController {
         if ($action == 'edit')
             pjax('/admin/components/cp/gallery/edit_album_params/' . $category . $id);
 
-        if ($action == 'exit')
+        if ($action == 'close')
             pjax('/admin/components/cp/gallery/category/' . $album['category_id']);
     }
 
