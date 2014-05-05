@@ -77,7 +77,7 @@ input[type="text"][disabled], input[type="password"][disabled], textarea[disable
 .frame-menu-main{border-bottom-color: #fff;box-shadow: 0 2px 3px rgba(0, 0, 0, .1);}
 .horizontal-menu .menu-main{background-color: #0a3151;}
 .menu-row-category .frame-drop-menu .frame-l2 > ul, .menu-row-category .frame-drop-menu .frame-l2{background-color: #fafbfc;}
-.menu-row-category .frame-drop-menu > ul > li:after{border-left-color: solid #e8edef;}
+.menu-row-category .frame-drop-menu > ul > li:after{border-left-color: #e8edef;}
 .menu-main td > .frame-item-menu > ul{background-color: #fff;}
 .menu-main td > .frame-item-menu > ul{border-color: #0d6b8d;}
 .frame-item-menu > .frame-title > .title .text-el{color: #fff;}
@@ -808,7 +808,7 @@ label.error, .error .text-el{color: #ff7264;}
 }
 .cusel .jScrollPaneContainer{border-color: #dfdfdf;box-shadow: 0 1px 3px rgba(0,0,0,.1);}
 .cusel .cusel-scroll-wrap{background: #fff;}
-.msg > .error{border: 1px solid #ff7264;background-color: #ffe7e5;}
+.msg > .error{border-color: #ff7264;background-color: #ffe7e5;}
 .msg > .error .text-el{color: #ff7264;}
 .msg > .success{background-color: #ECFFE8;color: #5FA335;border-color: #80C232;}
 .msg > .success .text-el{color: #5FA335;}
@@ -896,7 +896,7 @@ input.input-search{box-shadow: inset 0 1px 3px #c6c6c6;}
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3fb04c', endColorstr='#34a640',GradientType=0 ); /* IE6-9 */
 }
 .default-frame{border-color: #e6e6e6;}
-.default-title{background-color: #fafafa;border-bottom-color: 1px solid #e6e6e6;}
+.default-title{background-color: #fafafa;border-bottom-color: #e6e6e6;}
 /*/titles*/
 
 /*order*/
@@ -981,7 +981,7 @@ input.input-search{box-shadow: inset 0 1px 3px #c6c6c6;}
 .drop-content, .drop-content-notification, .drop-content-confirm{background-color: #fff;}
 .drop-footer{background-color: #fbfbfb;border-top-color: #e9e9e9;}
 .drop-header{
-    border-bottom-color: 1px solid #fff;
+    border-bottom-color: #fff;
     background: #00598c; /* Old browsers */
     background: -moz-linear-gradient(top,  #00598c 0%, #004e81 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#00598c), color-stop(100%,#004e81)); /* Chrome,Safari4+ */
@@ -1106,7 +1106,7 @@ footer .box-4 a{color: #fff;}
 .comments-main-form:after{border-bottom-color: #e9e9e9;}
 .comments-main-form:before{border-bottom-color: #fafafa;}
 #comment .btn-form input{color: #333;}
-.frame-comment-sub1{border-color: 1px solid #e9e9e9;}
+.frame-comment-sub1{border-color: #e9e9e9;}
 .frame-comment-sub1:after{border-bottom-color: #e9e9e9;}
 .frame-comment-sub1:before{border-bottom-color: #fff;}
 .frame-comment-sub1 .footer-comment{background-color: #fbfbfb;border-top-color: #e9e9e9;}

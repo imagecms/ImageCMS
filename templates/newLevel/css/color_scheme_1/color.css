@@ -784,7 +784,7 @@ input[type="text"].error, input[type="password"].error, textarea.error, select.e
 input.plus-minus{color: #999;border-color: #d8d8d8;border-right: 0;-moz-box-shadow: inset 0 1px 2px #e8e8e8;-webkit-box-shadow: inset 0 1px 2px #e8e8e8;box-shadow: inset 0 1px 2px #e8e8e8;}
 
 .cusel span{color: #434343;}
-#slider {border: 1px solid #d7d6d2;-moz-box-shadow: inset 0 1px 0 #efefef;-webkit-box-shadow: inset 0 1px 0 #efefef;box-shadow: inset 0 1px 0 #efefef;}
+#slider {border-color: #d7d6d2;-moz-box-shadow: inset 0 1px 0 #efefef;-webkit-box-shadow: inset 0 1px 0 #efefef;box-shadow: inset 0 1px 0 #efefef;}
 .content-apply{color: #333;}
 .cusel{border-color: #d8d8d8;background-color: #ffffff;-moz-box-shadow: inset 0 1px 2px #e8e8e8;-webkit-box-shadow: inset 0 1px 2px #e8e8e8;box-shadow: inset 0 1px 2px #e8e8e8;}
 .cusel span:hover,.cusel .cuselOptHover{color: #fff;}
@@ -982,7 +982,7 @@ input.input-search{border-color: #d8d8d8;-moz-box-shadow: inset 0 2px 2px #e8e8e
 .drop-header{background-color: #fff;}
 .drop-header:before{border-top-color: #f0edea;border-bottom-color: #f6f4f2;}
 
-#photo .drop-footer .inside-padd{background-color: #faf8f6;border-top: 1px solid #eae5e1;}
+#photo .drop-footer .inside-padd{background-color: #faf8f6;border-top-color: #eae5e1;}
 #photo .drop-content{background-color: #fff;}
 
 .drop-bask .footer-bask{background-color: #fff;border-top-color: #eae5e1;}
@@ -1049,12 +1049,12 @@ footer .box-4 .main-title{color: #9c9c9c;}
 /*page brand*/
 
 /*outlines*/
-input[type="radio"]:focus, input[type="checkbox"]:focus, input[type="submit"]:focus, input[type="button"]:focus, input[type="reset"]:focus, .frame-item-menu > .frame-title > .title:focus{outline: 1px solid #75d9ff;}
-.cloud-zoom-lens {outline: 1px solid #969696;}
-.baner li > a:focus{outline: 1px solid #51d2ff;}
-.start-page-category-menu a:focus{outline: 1px solid #51d2ff;}
-.btn-enter button:focus, .btn-personal-area a:focus{outline: 1px solid #51d2ff;}
-.left-header > .nav > li > a:focus{outline: 1px solid #999;}
+input[type="radio"]:focus, input[type="checkbox"]:focus, input[type="submit"]:focus, input[type="button"]:focus, input[type="reset"]:focus, .frame-item-menu > .frame-title > .title:focus{outline-color: #75d9ff;}
+.cloud-zoom-lens {outline-color: #969696;}
+.baner li > a:focus{outline-color: #51d2ff;}
+.start-page-category-menu a:focus{outline-color: #51d2ff;}
+.btn-enter button:focus, .btn-personal-area a:focus{outline-color: #51d2ff;}
+.left-header > .nav > li > a:focus{outline-color: #999;}
 /*/outlines*/
 
 /*comments*/

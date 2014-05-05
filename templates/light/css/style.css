@@ -876,7 +876,6 @@ input + .msg{margin-top: 5px;}
 .header-category .title{vertical-align: middle;margin-right: 12px;}
 .header-category .lineForm select{height: 0;}
 .header-category .cusel{width: auto !important;}
-.header-category .lineForm{max-width: 100px;}
 .header-category .groups-buttons, .header-category .lineForm{vertical-align: middle;}
 
 .item-brand-category .photo-block{width: 176px;height: 86px;}
@@ -1208,7 +1207,7 @@ img.cloned{max-width: none;max-height: none;}
 .frame-bask-order .frame-title > .f_r{height: 41px;line-height: 41px;padding-left: 28px;}
 .title-menu-category{margin-bottom: 10px;}
 
-.drop-profile{margin-top: 7px !important;margin-left: -20px;overflow: visible !important;}
+.drop-profile{margin-top: 7px !important;margin-left: -20px;overflow: visible !important;z-index: 100;}
 .drop-profile .drop-content .inside-padd{padding: 0 5px 0 8px;}
 
 .isCart{display:none;}
