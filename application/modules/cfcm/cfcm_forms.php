@@ -67,27 +67,27 @@ class Cfcm_forms extends MY_Controller {
 
         $f['label'] = array(
             'type' => 'text',
-            'label' => lang('Label', 'cfcm'),
+            'label' => lang('Label', 'cfcm'). ':',
             'validation' => 'max_length[255]',
             'class' => 'required',
         );
         $f['initial'] = array(
             'type' => 'textarea',
-            'label' => lang('The initial value', 'cfcm'),
+            'label' => lang('The initial value', 'cfcm'). ':',
         );
         $f['help_text'] = array(
             'type' => 'text',
-            'label' => lang('Hint', 'cfcm'),
+            'label' => lang('Hint', 'cfcm'). ':',
             'help_text' => lang('Field description ', 'cfcm') . '.',
         );
         $f['required'] = array(
             'type' => 'checkbox',
-            'label' => lang('Required field', 'cfcm'),
+            'label' => lang('Required field', 'cfcm'). ':',
             'initial' => '1',
         );
         $f['type'] = array(
             'type' => 'select',
-            'label' => lang('Type', 'cfcm'),
+            'label' => lang('Type', 'cfcm'). ':',
             'initial' => $this->field_types,
         );
 
@@ -130,7 +130,7 @@ class Cfcm_forms extends MY_Controller {
 //        {
 //                $f['enable_tinymce_editor'] = array(
 //                'type'  => 'checkbox',
-//                'label' => lang('Enable Tinymce editor', 'cfcm'),
+//                'label' => lang('Enable Tinymce editor', 'cfcm'). ':',
 //                'initial'=> '1',
 //                'checked'=> FALSE,
 //            );
@@ -138,12 +138,12 @@ class Cfcm_forms extends MY_Controller {
 
         $f['validation'] = array(
             'type' => 'text',
-            'label' => lang('Check conditions', 'cfcm'),
+            'label' => lang('Check conditions', 'cfcm'). ':',
             'help_text' => lang('For example', 'cfcm') . ': valid_email|max_length[255]',
         );
         $f['groups'] = array(
             'type' => 'select',
-            'label' => lang('Group', 'cfcm'),
+            'label' => lang('Group', 'cfcm'). ':',
             'initial' => self::prepare_groups_select(),
             'multiple' => true,
             'class' => 'required'

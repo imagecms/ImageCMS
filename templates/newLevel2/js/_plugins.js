@@ -1923,7 +1923,6 @@ function getCookie(c_name)
                                     wnd.off('resize.' + $.drop.nS + ev).off('scroll.' + $.drop.nS + ev);
                                     body.off('keyup.' + $.drop.nS + ev).off('keyup.' + $.drop.nS).off('click.' + $.drop.nS);
 
-
                                     var zInd = 0,
                                             drpV = null;
                                     $('[data-elrun]:visible').each(function() {
@@ -1933,8 +1932,8 @@ function getCookie(c_name)
                                             drpV = $.extend({}, $this.data('drp'));
                                         }
                                     });
-
-                                    if (drpV && drpV.place !== 'inherit' && drpV.overlayOpacity !== 0 || !$.exists('[data-elrun]:visible'))
+                                    
+                                    if (!drpV)
                                         body.removeClass('isScroll').css({
                                             'overflow': '',
                                             'margin-right': ''
