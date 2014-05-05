@@ -32,9 +32,9 @@ article, .container, .special-proposition > .frame-title{margin: 0 auto;clear: b
 .frame-inside .no-empty{display: block;}
 /*/base scaffolding*/
 
-body, .overlayDrop{min-width: 960px;}
+body, .overlayDrop{min-width: 980px;}
 article, .container, .special-proposition > .frame-title{max-width: 980px;}
-.container{padding: 0 10px;}
+.container{padding: 0 5px;}
 .big-container{max-width: 1125px;}
 
 .frame-baner-start_page .content-carousel{width: 100%;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;-ms-box-sizing: border-box;box-sizing: border-box;}
