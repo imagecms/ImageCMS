@@ -185,7 +185,7 @@
                     <span class="s-t f_l">{lang('Доставка','newLevel')}:</span>
                     <div class="f_r">
                         {if !$deliveryMethod->getDeliverySumSpecified()}
-                            {$priceDel = $deliveryMethod->getPrice()}
+                            {$priceDel = ShopCore::app()->SCurrencyHelper->convert($deliveryMethod->getPrice())}
                             {$priceDelFreeFrom = ceil($deliveryMethod->getFreeFrom())}
                             {$priceDelAdd = ShopCore::app()->SCurrencyHelper->convert($deliveryMethod->getPrice(), $NextCSId)}
                             {if $cartPrice < $priceDelFreeFrom}
@@ -193,7 +193,7 @@
                                 <span class="price f-w_b">{echo $priceDel}</span>
                                 <span class="curr">{$CS}</span>
                                 {if $NextCSId}
-                                    (<span class="price f-w_b">{echo ShopCore::app()->SCurrencyHelper->convert($priceDelAdd)}</span>
+                                    (<span class="price f-w_b">{$priceDelAdd}</span>
                                     <span class="curr-add">{$NextCS}</span>)
                                 {/if}
                             {else:}
