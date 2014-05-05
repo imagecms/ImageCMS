@@ -33,17 +33,17 @@
                                         <form id="create" method="post" action="{$SELF_URL}/create_trash">
 
                                             <div class="control-group">
-                                                <label class="control-label" for="url">Url</label>
+                                                <label class="control-label" for="url">Url:</label>
                                                 <div class="controls">
                                                     <div class="input-prepend">
                                                         <span class="add-on">{site_url()}</span>
-                                                        <input name="url" id="Url" class="span2" id="prependedInput" type="text" >
+                                                        <input name="url" id="Url" class="span19" id="prependedInput" type="text" >
                                                     </div>
                                                 </div> 
                                             </div>
 
                                             <div class="control-group">
-                                                <label class="control-label" for="redirect_type">{lang('Type', 'trash')}</label>
+                                                <label class="control-label" for="redirect_type">{lang('Type', 'trash')}:</label>
                                                 <div class="controls">
                                                     <span class="frame_label no_connection m-r_15" id="url">
                                                         <span class="niceRadio b_n">
@@ -81,7 +81,7 @@
                                             </div>
 
                                             <div class="control-group">
-                                                <label class="control-label" for="type">{lang('Type', 'trash')}</label>
+                                                <label class="control-label" for="type">{lang('Type', 'trash')}:</label>
                                                 <div class="controls">
                                                     <span class="frame_label no_connection m-r_15">
                                                         <span class="niceRadio b_n">
@@ -99,7 +99,7 @@
                                             </div>
 
                                             <div class="control-group" id="forUrl">
-                                                <label class="control-label" for="redirect_url">{lang('Redirect Url', 'trash')}</label>
+                                                <label class="control-label" for="redirect_url">{lang('Redirect Url', 'trash')}:</label>
                                                 <div class="controls">
                                                     <input type="text" name="redirect_url" id="RedirectUrl" value="" autocomplete="off"/>
                                                 </div>
@@ -107,7 +107,7 @@
 
                                             {if count($CI->db->get_where('components', array('name' => 'shop'))->row()) > 0}
                                                 <div class="control-group" style="display: none" id="forProd">
-                                                    <label class="control-label" for="products">{lang('Product', 'trash')}</label>
+                                                    <label class="control-label" for="products">{lang('Product', 'trash')}:</label>
                                                     <div class="controls">
                                                         <select id="inputMainC" value="" name="products">
                                                             {foreach $products as $item}
@@ -118,7 +118,7 @@
                                                 </div>
 
                                                 <div class="control-group" style="display: none" id="forCat">
-                                                    <label class="control-label" for="products">{lang('Categories', 'trash')}</label>
+                                                    <label class="control-label" for="products">{lang('Categories', 'trash')}:</label>
                                                     <div class="controls">
                                                         <select id="inputMainC" value="" name="category">
                                                             {foreach $category as $item}
@@ -130,7 +130,7 @@
                                             {/if}
 
                                             <div class="control-group" style="display: none" id="forBase">
-                                                <label class="control-label" for="products">{lang('Category of Base', 'trash')}</label>
+                                                <label class="control-label" for="products">{lang('Category of Base', 'trash')}:</label>
                                                 <div class="controls">
                                                     <select id="inputMainC" value="" name="category_base">
                                                         {foreach $category_base as $item}
