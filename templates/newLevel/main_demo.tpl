@@ -10,7 +10,7 @@
 *   $content : variable for insert content of page
 */}
 <!DOCTYPE html>
-<html>
+<html class="html">
     <head>
         <meta charset="utf-8" />
         <title>{$site_title}</title>
@@ -20,11 +20,15 @@
         <meta name = "format-detection" content = "telephone=no" />
         <link rel="stylesheet" type="text/css" href="{$THEME}css/style.css" media="all" />
         <link rel="stylesheet" type="text/css" href="{$THEME}{$colorScheme}/colorscheme.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="{$THEME}{$colorScheme}/color.css" media="all" />
 
         {if $CI->uri->segment(1) == MY_Controller::getCurrentLocale()}
             {$lang = '/' . \MY_Controller::getCurrentLocale()} 
         {else:}
             {$lang = ''} 
+        {/if}
+        {if $CI->uri->segment(2) == 'profile' || $CI->uri->segment(1) == 'wishlist'}
+            <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW" />
         {/if}
         <script type="text/javascript">
             var locale = "{echo $lang}";
@@ -42,7 +46,7 @@
                             $.ajax({
                                 url: theme + 'js/' + i + '.js',
                                 dataType: "script",
-                                cache: false,
+                                cache: true,
                                 complete: function() {
                                     cL++;
                                     if (cL === scriptsL)
@@ -116,7 +120,7 @@
             </style>
         {/literal}
     </head>
-    <body class="is{echo $agent[0]} not-js {$CI->core->core_data['data_type']}"> 
+    <body class="is{echo $agent[0]} not-js {$CI->core->core_data['data_type']}">
         {include_tpl('language/jsLangsDefine.tpl')}
         {include_tpl('language/jsLangs.tpl')}
         <!-- Start. shop-->
@@ -129,9 +133,9 @@
                     <span class="imagecms-toggle-close-text imagecms-bar-close-text"><span style="font-size: 14px;">↑</span> {lang('Скрыть', 'newLevel')}</span>
                 </button>
                 <button type="button" class="imagecms-close" {if $_COOKIE['condPromoToolbar'] == '0'}style="display: block;"{/if} onclick="setCookie('condPromoToolbar', '1');
-                            $('.imagecms-top-fixed-header').addClass('imagecms-active');
-                            $(this).hide().prev().show();
-                            $(window).scroll();">
+                        $('.imagecms-top-fixed-header').addClass('imagecms-active');
+                        $(this).hide().prev().show();
+                        $(window).scroll();">
                     <span class="imagecms-toggle-close-text imagecms-bar-show-text"><span style="font-size: 14px;">↓</span> {lang('Показать', 'newLevel')}</span>
                 </button>
                 <div class="imagecms-buy-license">
@@ -179,6 +183,7 @@
         {include_tpl('user_toolbar')}
 
         {/*}Start. delete before upload to server{ */}
+        {/*}
         <!-- scripts -->
         <script type="text/javascript" src="{$THEME}js/raphael-min.js"></script>
         <script type="text/javascript" src="{$THEME}js/_united_side_plugins.js"></script>
@@ -189,25 +194,32 @@
         <script type="text/javascript" src="{$THEME}js/_functions.js"></script>
         <script type="text/javascript" src="{$THEME}js/_scripts.js"></script>
         <!-- scripts end -->
-
         {literal}
             <script type="text/javascript">
                 $(window).load(function() {
                     init();
                     setTimeout(function() {
-                        $(document).trigger({type: 'scriptDefer'})
-                    }, 0)
-                })
+                        $(document).trigger({type: 'scriptDefer'});
+                    }, 0);
+                });
             </script>
         {/literal}
+        { */}
         {/*}End. delete before upload to server{ */}
 
+        {/*fancybox}
+        <link rel="stylesheet" type="text/css" href="{$THEME}js/fancybox/jquery.fancybox-1.3.4.css" media="all" />
+        <script type="text/javascript" src="{$THEME}js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+        {end. fancybox*/}
+
         {/*}uncomment before opload to server and combine and minimize scripts (in comment <!-- scripts -->...<!-- scripts end -->) into united_scripts file{ */}
-        {/*}
+        {/*} Start. uncoment before development { */}
+
         <script type="text/javascript">
-            {initDownloadScripts(['raphael-min', 'united_scripts'], 'init', 'scriptDefer');}
+            initDownloadScripts(['raphael-min', 'united_scripts'], 'init', 'scriptDefer');
         </script>
-        { */}
+
+        {/*} End. uncoment before development { */}
         {include_shop_tpl('js_templates')}
     </body>
 </html>

@@ -176,8 +176,7 @@
         {/literal}
     </head>
     <body>
-        <div class="main_body">
-
+        <div class="main-body">
             <div class="order_partner_ship frame_ fonds" id="with_out_article">
                 <h1 class="reRegistration">{lang('Сайт в стадии строительства','newLevel')}</h1>                    
                 <h2 class="reRegistrationH3">{lang('Управление сайтом','newLevel')}</h2>   
@@ -187,16 +186,15 @@
                     <div class="clear" ></div>
                 </div>               
             </div>
+            <div class="hfooter"></div>
         </div>
-        <div class="hfooter"></div>
-    </div>
-    <footer class="b_c_n">
-        <div class="container w_260">
-            <div class="d_t_c l_h_17">
-                <span class="l_h_27">© {lang('ООО «Сайт Имидж»','newLevel')}</span>
-                {lang('ImageCMS активно развивается в создание качественных интернет-магазинов','newLevel')}
-            </div>            
-        </div>
-    </footer>
-</body>
+        <footer class="b_c_n">
+            <div class="container w_260">
+                <div class="d_t_c l_h_17">
+                    <span class="l_h_27">© {lang('ООО «Сайт Имидж»','newLevel')}</span>
+                    {lang('ImageCMS активно развивается в создание качественных интернет-магазинов','newLevel')}
+                </div>            
+            </div>
+        </footer>
+    </body>
 </html>

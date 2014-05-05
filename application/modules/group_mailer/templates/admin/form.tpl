@@ -29,27 +29,35 @@
                                 <div class="form-horizontal">
                                     <form id="send" method="post" action="{$BASE_URL}admin/components/cp/group_mailer/send_email">
                                         <div class="control-group">
-                                            <label class="control-label" for="subject">{lang("Theme", 'group_mailer')}</label>
+                                            <label class="control-label" for="subject">{lang("Theme", 'group_mailer')}:
+                                                <span class="must">*</span>
+                                            </label>
                                             <div class="controls">
-                                                <input type="text" name="subject" id="subject" value="" />
+                                                <input type="text" name="subject" required="required" class="required" id="subject" value="" />
                                             </div>
                                         </div>
                                         <div class="control-group">
-                                            <label class="control-label" for="name">{lang("Your name", 'group_mailer')}</label>
+                                            <label class="control-label" for="name">{lang("Your name", 'group_mailer')}:
+                                                <span class="must">*</span>
+                                            </label>
                                             <div class="controls">
-                                                <input type="text" name="name" id="name" value="" />
+                                                <input type="text" name="name" required="required" class="required" id="name" value="" />
                                             </div>
                                         </div>
                                         <div class="control-group">
-                                            <label class="control-label" for="email">{lang("Your e-mail", 'group_mailer')}</label>
+                                            <label class="control-label" for="email">{lang("Your e-mail", 'group_mailer')}:
+                                                <span class="must">*</span>
+                                            </label>
                                             <div class="controls">
-                                                <input type="text" id="email" name="email" value="{$admin_mail}"/>
+                                                <input type="text" id="email" required="required" class="required" name="email" value="{$admin_mail}"/>
                                             </div>
                                         </div>
                                         <div class="control-group">
-                                            <label class="control-label" for="message">{lang("Message", 'group_mailer')}</label>
+                                            <label class="control-label" for="message">{lang("Message", 'group_mailer')}:
+                                                <span class="must">*</span>
+                                            </label>
                                             <div class="controls">
-                                                <textarea name="message" id="message" class="elRTE">{lang("Hello", 'group_mailer')}, %username%.
+                                                <textarea name="message" id="message" class="elRTE required" required="required">{lang("Hello", 'group_mailer')}, %username%.
 --------------------------------
                                                     {lang("best regards, administration", 'group_mailer')} {$site_settings.site_title}
 
@@ -61,7 +69,7 @@
 
                                         <div class="span9">
                                             <div class="control-group">
-                                                <div class="control-label">{lang("Send to groups", 'group_mailer')}</div>
+                                                <div class="control-label">{lang("Send to groups", 'group_mailer')}:</div>
                                                 <div class="controls">
                                                     {foreach $roles as $role}
                                                         <div class="frame_label m-b_15 d_b no_connection">
@@ -76,7 +84,7 @@
 
 
                                             <div class="control-group">
-                                                <label class="control-label" for="mailtype">{lang("Formatting", 'group_mailer')}</label>
+                                                <label class="control-label" for="mailtype">{lang("Formatting", 'group_mailer')}:</label>
                                                 <div class="controls">
                                                     <select name="mailtype" id="mailtype">
                                                         <option value="html" selected="selected">{lang("HTML", 'group_mailer')}</option>

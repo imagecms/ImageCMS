@@ -8,7 +8,7 @@
 
 {$condlimit = $opi_limit != false && $opi_limit != NULL}
 {foreach $products as $key => $p}
-
+    
     {if is_array($p) && $p.id}
         {$pArray = $p;}
         {$variants = array()}
@@ -195,7 +195,7 @@
 
                                         class="btnBuy"
                                         >
-                                        <span class="icon_cleaner icon_cleaner_buy"></span>
+                                        <span class="icon_cleaner_buy"></span>
                                         <span class="text-el">{lang('В корзине', 'newLevel')}</span>
                                     </button>
                                 </div>
@@ -228,7 +228,7 @@
                                         data-url="{echo shop_url('product/'.$p->getUrl())}"
                                         data-maxcount="{echo $pv->getstock()}"
                                         >
-                                        <span class="icon_cleaner icon_cleaner_buy"></span>
+                                        <span class="icon_cleaner_buy"></span>
                                         <span class="text-el">{lang('Купить', 'newLevel')}</span>
                                     </button>
                                 </div>
@@ -242,7 +242,7 @@
                                     class="infoBut"
                                     type="button"
                                     data-drop=".drop-report"
-                                    data-source="/shop/ajax/getNotifyingRequest"
+                                    data-source="{shop_url('ajax/getNotifyingRequest')}"
 
                                     data-id="{echo $pv->getId()}"
                                     data-product-id="{echo $p->getId()}"
