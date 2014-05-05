@@ -172,8 +172,13 @@ class BaseDiscount {
         return $cart['data'];
     }
 
-    public static function getDiscountsLabels() {
-        return array(
+    /**
+     * 
+     * @param string $type short type of discount (en)
+     * @return string full translated name of discount
+     */
+    public static function getDiscountsLabels($type = NULL) {
+        $discounts = array(
             "all_order" => lang('Order amount of more than', 'mod_discount'),
             "comulativ" => lang('Cumulative discount', 'mod_discount'),
             "user" => lang('User', 'mod_discount'),
@@ -182,6 +187,13 @@ class BaseDiscount {
             "product" => lang('Product', 'mod_discount'),
             "brand" => lang('Brand', 'mod_discount'),
         );
+        if (is_null($type)) {
+            return $discounts;
+        }
+        if (isset($discounts[$type])) {
+            return $discounts[$type];
+        }
+        return false;
     }
 
     /**
