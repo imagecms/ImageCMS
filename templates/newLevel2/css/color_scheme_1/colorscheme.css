@@ -130,6 +130,7 @@ footer .b-share-icon_gplus{background-position: -240px -60px !important;}
 /*/main-menu*/
 
 /*filter*/
+#slider{border: 1px solid transparent;}
 .foot-check-filter:after{content: "";position: absolute;width: 110%;left: -5%;height: 2px;top: -2px;}
 .frames-checks-sliders{border: 1px solid transparent;-moz-border-radius: 4px;-webkit-border-radius: 4px;border-radius: 4px;}
 
@@ -526,7 +527,7 @@ input.input-search{border-radius: 2px;text-transform: uppercase;}
 .drop-style{border: 5px solid transparent;-moz-border-radius: 8px;-webkit-border-radius: 8px;border-radius: 8px;}
 .drop > .drop-content{-moz-border-radius: 3px;-webkit-border-radius: 3px;-moz-border-radius: 3px;min-height: 100px;}
 #notification.drop > .drop-content{min-height: 0;}
-#photo .drop-footer .inside-padd{z-index: 1103;}
+#photo .drop-footer .inside-padd{z-index: 1103;border-top: 1px solid transparent;}
 #photo .drop-content{-moz-border-radius: 0;-webkit-border-radius: 0;border-radius: 0;}
 .drop-header:before{content: "";position: absolute;top: 100%;width: 100%;left: 0;border-width: 1px 0;border-style: solid;}
 .drop-header .title{font-size: 18px;}

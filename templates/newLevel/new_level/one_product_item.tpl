@@ -331,13 +331,13 @@
             {/if}
         </div>
         <!-- Start. Remove buttons if compare-->
-        {if $opi_compare && !$opi_widget && !$opi_wishListPage}
+        {if $opi_compare && !$opi_widget}
             <button type="button" class="icon_times deleteFromCompare" onclick="Shop.CompareList.rm({echo  $p->getId()}, this)"></button>
         {/if}
         <!-- End. Remove buttons if compare-->
 
         <!-- Start. For wishlist page-->
-        {if $opi_wishListPage}
+        {if $opi_wishListPage && !$opi_widget && !$opi_widget}
             {$p = $pArray}
             {if trim($p[comment]) != ''}
                 <p>

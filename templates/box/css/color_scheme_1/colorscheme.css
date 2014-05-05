@@ -498,7 +498,7 @@ form .btn-form .text-el, .btn-form input{font-size: 13px;}
 .right-slider{background-position: -540px 0;}
 .cusel .jScrollPaneContainer{border-width: 0 1px 1px 1px;border-style: solid;}
 
-.msg > .error{border-radius: 4px;}
+.msg > .error{border-radius: 4px;border: 1px solid transparent;}
 .msg > .error .text-el{font-weight: normal;}
 .msg > .success{border: 1px solid transparent;border-radius: 4px;}
 .msg > .success .text-el{font-weight: normal;}
