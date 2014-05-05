@@ -12,6 +12,8 @@ class BaseAdminController extends MY_Controller {
 
         $this->load->library('Permitions');
         Permitions::checkPermitions();
+        $this->load->library('lib_admin');
+        $this->lib_admin->init_settings();
         $this->autoloadModules();
 
 
