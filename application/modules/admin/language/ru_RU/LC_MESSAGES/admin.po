@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-05 10:13+0300\n"
-"PO-Revision-Date: 2014-05-05 10:13+0300\n"
+"POT-Creation-Date: 2014-05-05 11:23+0300\n"
+"PO-Revision-Date: 2014-05-05 11:23+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -20,6 +20,22 @@ msgstr ""
 "X-Poedit-SearchPath-1: ../../../templates/administrator\n"
 "X-Poedit-SearchPath-2: ../../modules/shop/admin\n"
 "X-Poedit-SearchPath-3: ../../../application/modules/shop/models/build/classes\n"
+
+#: ./application/modules/shop/admin/templates/settings/settings.tpl:418
+msgid "Font colour"
+msgstr "Цвет шрифта"
+
+#: ./application/modules/shop/admin/templates/orderstatuses/create.tpl:54
+#: ./application/modules/shop/admin/templates/orderstatuses/list.tpl:23
+#: ./application/modules/shop/admin/templates/orderstatuses/edit.tpl:55
+msgid "Font Color"
+msgstr "Цвет шрифта"
+
+#: ./application/modules/shop/admin/templates/orderstatuses/create.tpl:44
+#: ./application/modules/shop/admin/templates/orderstatuses/list.tpl:22
+#: ./application/modules/shop/admin/templates/orderstatuses/edit.tpl:44
+msgid "Background Color"
+msgstr "Цвет фона"
 
 #: ./application/modules/shop/admin/templates/orders/edit.tpl:58
 #: ./application/modules/shop/admin/templates/orders/edit.tpl:487
@@ -7135,22 +7151,6 @@ msgstr "Хит"
 #: ./application/modules/shop/admin/templates/products/default_edit.tpl:41
 msgid "hit"
 msgstr "Хит"
-
-#: ./application/modules/shop/admin/templates/orderstatuses/create.tpl:44
-#: ./application/modules/shop/admin/templates/orderstatuses/list.tpl:22
-#: ./application/modules/shop/admin/templates/orderstatuses/edit.tpl:44
-msgid "Background Color"
-msgstr "Цвет Фона"
-
-#: ./application/modules/shop/admin/templates/settings/settings.tpl:418
-msgid "Font colour"
-msgstr "Цвет шрифта"
-
-#: ./application/modules/shop/admin/templates/orderstatuses/create.tpl:54
-#: ./application/modules/shop/admin/templates/orderstatuses/list.tpl:23
-#: ./application/modules/shop/admin/templates/orderstatuses/edit.tpl:55
-msgid "Font Color"
-msgstr "Цвет Шрифта"
 
 #: ./templates/administrator/inc/javascriptVars.tpl:80
 msgid "Price"
