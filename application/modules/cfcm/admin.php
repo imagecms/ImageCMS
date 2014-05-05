@@ -88,7 +88,7 @@ class Admin extends BaseAdminController {
     public function create_field() {
         $form = $this->get_form('create_field');
         $form->action = $this->get_url('create_field');
-        $form->title = lang("Create a field", 'cfcm');
+        $form->title = lang("Field creating", 'cfcm');
 
         if ($_POST) {
 
@@ -221,7 +221,7 @@ class Admin extends BaseAdminController {
             $field_data = unserialize($field->data);
             $form = $this->load->module('cfcm/cfcm_forms')->edit_field($field->type);
 
-            $form->title = lang("Field editing", 'cfcm') . ' ' . $field->label;
+            $form->title = lang("Field editing", 'cfcm') . ': ' . $field->label;
             $form->action = $this->get_url('edit_field/' . $name);
 
             $form->setAttributes($field_data);
@@ -258,6 +258,10 @@ class Admin extends BaseAdminController {
                     $this->db->insert_batch('content_fields_groups_relations', $toInsert);
                 }
                 showMessage(lang("Field has been updated", 'cfcm'));
+                
+                if($this->input->post('action') == 'close'){
+                    pjax('/admin/components/cp/cfcm/index#additional_fields');
+                }
             }else {
                 $this->template->registerJsFile('./application/modules/cfcm/templates/scripts/admin.js', 'after');
                 $this->template->add_array(array(
