@@ -51,7 +51,7 @@
                                         <th>{lang("Locale","admin")}</th>
                                         <th>{lang("Template","admin")}</th>
                                         <th>{lang("Image","admin")}</th>
-                                        <th class="span2">{lang("by default","admin")}</th>
+                                        <th class="span2">{lang("By default","admin")}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
