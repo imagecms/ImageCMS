@@ -42,6 +42,7 @@ input[type="text"][disabled], input[type="password"][disabled], textarea[disable
 .active > span, .active > a, .active > button{color: #999;}
 .active > button{color: #fff;}
 .preloader, .lazy{background-color: #fff;background-color: rgba(255,255,255, 0.5);}
+.text blockquote:before, .text blockquote:after{border-top-color: #e7e2dd;border-bottom-color: #fff;}
 /*/base*/
 
 /*user-toolbar*/
@@ -1093,3 +1094,48 @@ footer .box-4 a{color: #fff;}
 /*catalogue-header*/
 .frame-sort{border-color: #e6e6e6;}
 /*/catalogue-header*/
+
+/*comments*/
+.comments .author-comment{color: #000;}
+.comments .date-comment{color: #999;}
+.comments .frame-list-comments.sub-2 > li{border-top-color: #cdcdcd;}
+.comments .frame-comments{border-color: #e9e9e9;background-color: #fbfbfb;}
+.comments .btn{color: #555;}
+.comments .btn.active{color: #979797;}
+.comments .mark-pr .title{color: #999;}
+.comments-main-form:after{border-bottom-color: #e9e9e9;}
+.comments-main-form:before{border-bottom-color: #fafafa;}
+#comment .btn-form input{color: #333;}
+.frame-comment-sub1{border-color: 1px solid #e9e9e9;}
+.frame-comment-sub1:after{border-bottom-color: #e9e9e9;}
+.frame-comment-sub1:before{border-bottom-color: #fff;}
+.frame-comment-sub1 .footer-comment{background-color: #fbfbfb;border-top-color: #e9e9e9;}
+.frame-comment-sub1 .footer-comment.already{border-bottom-color: #e9e9e9;}
+/*/comments*/
+
+/*wishlist*/
+.right-wishlist{border-left-color: #eae5e1;}
+.frame-gen-sum-buy{border-color: #eae5e1;}
+.btn-remove-photo-wishlist, .btn-edit-photo-wishlist{
+    border-color: rgba(12, 154, 203, 0.4);
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.75);
+    background: #fdfdfd; /* Old browsers */
+    background: -moz-linear-gradient(top,  #fdfdfd 0%, #e7e7e7 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fdfdfd), color-stop(100%,#e7e7e7)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #fdfdfd 0%,#e7e7e7 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #fdfdfd 0%,#e7e7e7 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #fdfdfd 0%,#e7e7e7 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #fdfdfd 0%,#e7e7e7 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fdfdfd', endColorstr='#e7e7e7',GradientType=0 ); /* IE6-9 */
+}
+.frame-button-add-wish-list{background-color: #faf8f6;border-color: #eae5e1;box-shadow: 0 2px 2px #ece9e6;}
+
+.drop-style-2{border-color: #eae5e1;box-shadow: 0 2px 2px #ece9e6;}
+.drop-style-2 > .drop-content2{background-color: #faf8f6;}
+.drop-style-2 > .drop-footer2{background-color: #fff;}
+.drop-style-2 > .drop-header{background-color: #fff;}
+.btn-send-wishlist .text-el{color: #0c9acb;}
+.tabs-wishlist > .active > button{background-color: #0c99ca;}
+.tabs-wishlist > .active > button:after{border-top-color: #0c99ca;}
+.tabs-wishlist > .active .text-el{color: #fff;}
+/*/wishlist*/

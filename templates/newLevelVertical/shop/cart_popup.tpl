@@ -194,7 +194,7 @@
                             <span class="s-t">{lang('Ваша текущая скидка','newLevel')}:</span>
                             <span class="text-discount current-discount"><span class="text-el">{echo ShopCore::app()->SCurrencyHelper->convert($discount_val)}</span> <span class="curr">{$CS}</span></span>
                         </span>
-                    {/if}
+                    {/if}      
                     <div class="btn-form f_l isCart">
                         <button type="button" data-closed="closed-js">
                             <span class="text-el"><span class="f-s_14">←</span> {lang('Вернуться к оформлению','newLevel')}</span>
@@ -227,6 +227,12 @@
                             {/if}
                         </span>
                     </span>
+                    <br />
+                    {if $overloadedDiscounts}
+                        <span class="s-t">
+                            {lang('Для некоторых скидок превышено их максимальное количество использования','newLevel')}
+                        </span>
+                    {/if}
                 </div>
             </div>
             <div class="content-frame-foot notCart">
@@ -237,7 +243,7 @@
                         </button>
                     </div>
                     <div class="btn-cart btn-cart-p f_r">
-                        <a href="{shop_url('cart')}">
+                        <a href="/shop/cart">
                             <span class="icon_cart_p"></span>
                             <span class="text-el">{lang('Оформить заказ','newLevel')}</span>
                         </a>

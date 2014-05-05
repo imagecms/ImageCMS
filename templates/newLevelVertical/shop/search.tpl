@@ -60,6 +60,7 @@
                             <div class="title-h3 title">{lang('Категории','newLevel')}:</div>
                         </div>
                     </div>
+                        
                     <div class="inside-padd">
                         <nav>
                             {foreach $categories as $key => $category}
