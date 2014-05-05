@@ -20,6 +20,7 @@
         <meta name = "format-detection" content = "telephone=no" />
         <link rel="stylesheet" type="text/css" href="{$THEME}css/style.css" media="all" />
         <link rel="stylesheet" type="text/css" href="{$THEME}{$colorScheme}/colorscheme.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="{$THEME}{$colorScheme}/color.css" media="all" />
 
         {if $CI->uri->segment(1) == MY_Controller::getCurrentLocale()}
             {$lang = '/' . \MY_Controller::getCurrentLocale()} 
@@ -40,12 +41,12 @@
                     function downloadJSAtOnload(scripts, callback, customEvent) {
                         var cL = 0,
                                 scriptsL = scripts.length;
-                        
+
                         $.map(scripts, function(i, n) {
                             $.ajax({
                                 url: theme + 'js/' + i + '.js',
                                 dataType: "script",
-                                cache: false,
+                                cache: true,
                                 complete: function() {
                                     cL++;
                                     if (cL === scriptsL)
@@ -57,7 +58,7 @@
                                         }
                                 }
                             });
-                            
+
                         })
                     }
                     // Check for browser support of event handling capability
@@ -218,11 +219,11 @@
 
         {/*}uncomment before opload to server and combine and minimize scripts (in comment <!-- scripts -->...<!-- scripts end -->) into united_scripts file{ */}
         {/*} Start. uncoment before development { */}
-        
+
         <script type="text/javascript">
             initDownloadScripts(['united_scripts'], 'init', 'scriptDefer');
         </script>
-        
+
         {/*} End. uncoment before development { */}
         {include_shop_tpl('js_templates')}
     </body>

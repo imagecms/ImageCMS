@@ -9,7 +9,7 @@
 .f-w_b{font-weight: bold!important;}
 .f-w_n{font-weight: normal!important;}
 .items-brand-image > li > .frame-photo-title > .title, .start-page-category-menu > li .title{font-weight: normal;}
-.text blockquote:before, .text blockquote:after{border-width: 1px 0;border-style: solid;border-top-color: #e7e2dd;border-bottom-color: #fff;}
+.text blockquote:before, .text blockquote:after{border-width: 1px 0;border-style: solid;}
 
 [class*="icon-"], .title-category-l1.is-sub:after, .title-category-l1.is-sub .ie, .ui-slider-handle, .product-status, .niceCheck, .niceRadio{background: url("images/sprite.png") no-repeat;}
 .icon-plus{width: 10px;height: 10px;background-position: -260px 0;}
@@ -126,8 +126,6 @@ a:hover, .selected a, .ref:hover, .nav-static-pages > li > a:hover{text-decorati
 .icon_payment{margin: 17px 5px 0 17px;}
 .icon_comment{margin: 22px 5px 0 18px;}
 .icon_info{margin: 9px 11px 0 9px;}
-.error .icon_info{color: red;}
-.success .icon_info{color: green;}
 .success + .icon_success{display: block;}
 .icon_success{margin: 18px 0 0 9px;display: none;}
 .icon_error{margin: 6px 9px 0 6px;}
