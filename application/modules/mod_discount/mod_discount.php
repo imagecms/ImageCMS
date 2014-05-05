@@ -47,6 +47,11 @@ class Mod_discount extends \MY_Controller {
             if ($this->input->post('gift')) {
                 $this->applyGift();
             }
+
+            $giftKey = \CI::$APP->session->flashdata('makeOrderGiftKey');
+            if (!empty($giftKey)) {
+                $this->baseDiscount->updateDiskApply($giftKey, 'gift');
+            }
         }
     }
 
@@ -161,8 +166,8 @@ class Mod_discount extends \MY_Controller {
                 $this->baseDiscount->cart->gift_value = $value;
                 $this->baseDiscount->cart->setTotalPrice($this->baseDiscount->cart->getTotalPrice() - $value);
                 $aplyGift = true;
-                if ($_POST['gift_ord'])
-                    $this->baseDiscount->updateDiskApply($disc['key'], 'gift');
+//                if ($_POST['gift_ord'])
+//                    $this->baseDiscount->updateDiskApply($disc['key'], 'gift');
 
                 break;
             }
