@@ -11,7 +11,7 @@
 .f-w_b{font-weight: bold!important;}
 .f-w_n{font-weight: normal!important;}
 .items-brand-image > li > .frame-photo-title > .title, .start-page-category-menu > li .title{font-weight: normal;}
-.text blockquote:before, .text blockquote:after{border-width: 1px 0;border-style: solid;border-top-color: #e7e2dd;border-bottom-color: #fff;}
+.text blockquote:before, .text blockquote:after{border-width: 1px 0;border-style: solid;}
 
 [class*="icon_"], [class*="icon-"], .title-category-l1.is-sub:after, .title-category-l1.is-sub .ie, .product-status, .niceCheck, .niceRadio{background: url("images/sprite.png") no-repeat;}
 .icon-plus{width: 10px;height: 10px;background-position: -260px 0;}

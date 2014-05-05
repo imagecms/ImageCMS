@@ -172,7 +172,7 @@
 
                                                             class="btnBuy"
                                                             >
-                                                            <span class="icon_cleaner icon_cleaner_buy"></span>
+                                                            <span class="icon_cleaner_buy"></span>
                                                             <span class="text-el">{lang('В корзине', 'newLevel')}</span>
                                                         </button>
                                                     </div>
@@ -209,7 +209,7 @@
                                                             {/if}"
                                                             data-maxcount="{echo $productVariant->getstock()}"
                                                             >
-                                                            <span class="icon_cleaner icon_cleaner_buy"></span>
+                                                            <span class="icon_cleaner_buy"></span>
                                                             <span class="text-el">{lang('Купить', 'newLevel')}</span>
                                                         </button>
                                                     </div>
@@ -408,7 +408,7 @@
     <!-- End. benefits block-->
     <!-- Start. Kit-->
     
-    {if $model->getShopKitsLoggedUsersCheck($CI->dx_auth->is_logged_in()) != false}
+    {if $model->getShopKits()}
         <div class="container">
             <section class="frame-complect horizontal-carousel">
                 <div class="frame-title">
@@ -417,7 +417,7 @@
                 <div class="carousel-js-css items-carousel complects-carousel">
                     <div class="content-carousel">
                         <ul class="items-complect items">
-                            {foreach $model->getShopKitsLoggedUsersCheck($CI->dx_auth->is_logged_in()) as $key => $kitProducts}
+                            {foreach $model->getShopKits() as $key => $kitProducts}
                                 {$inCart = getAmountInCart('ShopKit', $kitProducts->getId())}
                                 <li class="globalFrameProduct{if $inCart} in-cart{else:} to-cart{/if}">
                                     <ul class="items items-bask row-kits rowKits items-product">
@@ -549,7 +549,7 @@
 
                                                         class="btnBuy infoBut btnBuyKit"
                                                         >
-                                                        <span class="icon_cleaner icon_cleaner_buy"></span>
+                                                        <span class="icon_cleaner_buy"></span>
                                                         <span class="text-el">{lang('В корзине', 'newLevel')}</span>
                                                     </button>
                                                 </div>
@@ -561,7 +561,7 @@
                                                         onclick='Shop.Cart.add($(this).closest("form").serialize(), "{echo $kitProducts->getId()}", true)'
                                                         class="btnBuy infoBut btnBuyKit"
                                                         >
-                                                        <span class="icon_cleaner icon_cleaner_buy"></span>
+                                                        <span class="icon_cleaner_buy"></span>
                                                         <span class="text-el">{lang('Купить', 'newLevel')}</span>
                                                     </button>
                                                 </div>
