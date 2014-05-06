@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-05 05:29+0300\n"
-"PO-Revision-Date: 2014-05-05 05:29+0300\n"
+"POT-Creation-Date: 2014-05-06 12:23+0300\n"
+"PO-Revision-Date: 2014-05-06 12:23+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -17,6 +17,11 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/trash/templates/admin/main.tpl:21
+#: ./application/modules/trash/templates/admin/main.tpl:49
+msgid "Redirect"
+msgstr "Список редиректов"
 
 #: ./application/modules/trash/templates/admin/edit_trash.tpl:5
 msgid "Link editing"
@@ -59,7 +64,7 @@ msgstr "Старый URL"
 
 #: ./application/modules/trash/templates/admin/main.tpl:29
 msgid "Create redirect list"
-msgstr "Создать список перенаправления"
+msgstr "Создать список редиректов"
 
 #: ./application/modules/trash/templates/admin/create_trash_list.tpl:33
 #: ./application/modules/trash/templates/admin/create_trash_list.tpl:40
@@ -90,11 +95,6 @@ msgstr "Удаление ссылки редиректа"
 #: ./application/modules/trash/templates/admin/main.tpl:9
 msgid "Remove links?"
 msgstr "Удалить ссылки?"
-
-#: ./application/modules/trash/templates/admin/main.tpl:21
-#: ./application/modules/trash/templates/admin/main.tpl:49
-msgid "Redirect"
-msgstr "Редирект"
 
 #: ./application/modules/trash/templates/admin/main.tpl:28
 msgid "Create redirect"
