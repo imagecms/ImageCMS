@@ -1038,8 +1038,21 @@ function initAdminArea() {
         }
         catch (err) {
         }
-
     }
+    if ($.exists('.datepickerTime')) {
+        $.ajax({
+            url: theme_url + "js/timepicker.js",
+            dataType: "script",
+            cache: true,
+            success: function() {
+                $(".datepickerTime").datetimepicker({
+                    dateFormat: 'yy-mm-dd',
+                    timeFormat: "H:mm:ss"
+                });
+            }
+        });
+    }
+
     $('.ui-datepicker').addClass('dropdown-menu');
 
     // $('.ui-dialog button').ready(function(){ $('.ui-dialog button').addClass('btn')});
@@ -1526,7 +1539,6 @@ $('#categoryForOrders option').live('mouseup click', function() {
     $('#categoryForOrders ').val(categoryId)
 });
 
-
 //Get products
 $('#categoryForOrders').live('change', function() {
     var categoryId = $(this).val();
@@ -1535,8 +1547,8 @@ $('#categoryForOrders').live('change', function() {
 
 $('#productsForOrders option').live('mouseup click', function() {
     var productId = $(this).val();
-    $('#productsForOrders ').val(productId)
-})
+    $('#productsForOrders ').val(productId);
+});
 
 
 //Get product variants
