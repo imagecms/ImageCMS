@@ -8,8 +8,8 @@
             <div class="pull-right">
                 <div class="d-i_b">
                     <a href="/admin/components/init_window/trash" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Back", 'admin')}</span></a>                   
-                    <button type="button" class="btn btn-small btn-success action_on formSubmit" data-form="#create" data-action="create" data-submit><i class="icon-plus-sign icon-white"></i>{lang("Save", 'trash')}</button>
-                    <button type="button" class="btn btn-small action_on formSubmit" data-form="#create" data-action="exit"><i class="icon-check"></i>{lang("Save and exit", 'trash')}</button>
+                    <button type="button" class="btn btn-small btn-success action_on formSubmit" data-form="#create" data-action="create" data-submit><i class="icon-plus-sign icon-white"></i>{lang("Create", 'admin')}</button>
+                    <button type="button" class="btn btn-small action_on formSubmit" data-form="#create" data-action="exit"><i class="icon-check"></i>{lang("Create and exit", 'admin')}</button>
                 </div>
             </div>                            
         </div>
