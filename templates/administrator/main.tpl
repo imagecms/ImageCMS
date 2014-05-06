@@ -418,8 +418,6 @@
         <script async="async" src="{$THEME}js/bootstrap-notify.js" type="text/javascript"></script>
         <script src="{$THEME}js/jquery.form.js" type="text/javascript"></script>
 
-        <script src="{$THEME}js/jquery.maskedinput-1.3.min" type="text/javascript"></script>
-
         <script async="async" src="{$THEME}js/jquery-validate/jquery.validate.min.js" type="text/javascript"></script>
         <script async="async" src="{$THEME}js/jquery-validate/jquery.validate.i18n.js" type="text/javascript"></script>
 
@@ -518,6 +516,7 @@
                     prod_on_off();
                 })
                 base_url = '{/literal}{$BASE_URL}';
+                theme_url = '{$THEME}';
 
                     var elfToken = '{echo $CI->lib_csrf->get_token()}';
             </script>
