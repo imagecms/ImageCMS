@@ -1539,6 +1539,7 @@ $('#categoryForOrders option').live('mouseup click', function() {
     $('#categoryForOrders ').val(categoryId)
 });
 
+
 //Get products
 $('#categoryForOrders').live('change', function() {
     var categoryId = $(this).val();
@@ -1547,8 +1548,8 @@ $('#categoryForOrders').live('change', function() {
 
 $('#productsForOrders option').live('mouseup click', function() {
     var productId = $(this).val();
-    $('#productsForOrders ').val(productId);
-});
+    $('#productsForOrders ').val(productId)
+})
 
 
 //Get product variants
