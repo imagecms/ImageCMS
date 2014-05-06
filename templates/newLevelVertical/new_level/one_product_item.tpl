@@ -337,7 +337,7 @@
         <!-- End. Remove buttons if compare-->
 
         <!-- Start. For wishlist page-->
-        {if $opi_wishListPage}
+        {if $opi_wishListPage && !$opi_widget}
             {$p = $pArray}
             {if trim($p[comment]) != ''}
                 <p>
