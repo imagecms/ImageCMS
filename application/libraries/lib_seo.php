@@ -202,7 +202,6 @@ class Lib_seo {
                             break;
                         }
                     }
-                    var_dump($Variant->getNumber());
                     $ga .="ga('ecommerce:addItem', {
     'id': '" . $model->getId() . "',
     'name': '" . encode($product->getName()) . " " . encode($item->getVariantName()) . "',
