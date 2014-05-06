@@ -943,7 +943,7 @@ function what_key(enter_key, event) {
 }
 function initAdminArea() {
     console.log('initialising of administration area started');
-    
+
     $('[href="' + location.href + '"]').click();
     $('[href="' + location.pathname + '"]').closest('li').addClass('active');
 
@@ -1036,8 +1036,21 @@ function initAdminArea() {
         }
         catch (err) {
         }
-
     }
+    if ($.exists('.datepickerTime')) {
+        $.ajax({
+            url: theme_url + "js/timepicker.js",
+            dataType: "script",
+            cache: true,
+            success: function() {
+                $(".datepickerTime").datetimepicker({
+                    dateFormat: 'yy-mm-dd',
+                    timeFormat: "H:mm:ss"
+                });
+            }
+        });
+    }
+
     $('.ui-datepicker').addClass('dropdown-menu');
 
     // $('.ui-dialog button').ready(function(){ $('.ui-dialog button').addClass('btn')});
@@ -1553,7 +1566,7 @@ $('#variantsForOrders option').live('click', function() {
     } else {
         $('#addVariantToCart').removeClass('btn-primary').removeAttr('disabled').addClass('btn-success').removeClass('btn-danger disabled').html(langs.addToCart);
     }
-    
+
 
 });
 
@@ -1593,7 +1606,7 @@ $('#variantsForOrders').live('change', function() {
     // Check is element in cart
     if (orders.isInCart(variantId) == 'true') {
         $('#addVariantToCart').removeClass('btn-success').attr('disabled', 'disabled').addClass('btn-primary').html(langs.inTheCart);
-    } 
+    }
 
     dataForButton = $('#variantsForOrders option:selected').data();
 
