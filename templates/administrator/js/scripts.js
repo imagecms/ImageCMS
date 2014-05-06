@@ -944,6 +944,7 @@ function what_key(enter_key, event) {
 function initAdminArea() {
     console.log('initialising of administration area started');
     
+    $('[href="' + location.href + '"]').click();
     $('[href="' + location.pathname + '"]').closest('li').addClass('active');
 
     $('.btn.disabled').each(function(event) {
