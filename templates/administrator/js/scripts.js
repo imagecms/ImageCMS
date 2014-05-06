@@ -832,7 +832,7 @@ $.fn.testNumber = function(add) {
 };
 function initChosenSelect(el) {
     el = el ? el : $('#mainContent');
-    el.find('select:visible').each(function() {
+    el.find('select:visible:not(.notchosen)').each(function() {
         if ($(this).children().length > 20)
             $(this).chosen();
     });
@@ -859,12 +859,12 @@ function getScrollTop() {
         scrOfY = window.pageYOffset;
     } else if (document.body
             && (document.body.scrollLeft
-                    || document.body.scrollTop)) {
+            || document.body.scrollTop)) {
         //DOM compliant
         scrOfY = document.body.scrollTop;
     } else if (document.documentElement
             && (document.documentElement.scrollLeft
-                    || document.documentElement.scrollTop)) {
+            || document.documentElement.scrollTop)) {
         //IE6 Strict
         scrOfY = document.documentElement.scrollTop;
     }
@@ -944,8 +944,10 @@ function what_key(enter_key, event) {
 function initAdminArea() {
     console.log('initialising of administration area started');
 
-    $('[href="' + location.href + '"]').click();
-    $('[href="' + location.pathname + '"]').closest('li').addClass('active');
+    if ($.exists('[data-href="' + location.hash + '"]')) {
+        $('[data-href="' + location.hash + '"]').siblings().removeClass('active').end().addClass('active');
+        $(location.hash).siblings().removeClass('active').end().addClass('active');
+    }
 
     $('.btn.disabled').each(function(event) {
         $(this).attr('disabled', true);
@@ -1256,8 +1258,8 @@ function initAdminArea() {
 
     })
             .on('pjax:end', function() {
-                $('#loading').fadeOut(300);
-            });
+        $('#loading').fadeOut(300);
+    });
 
     //add arrows to orders list
     if (window.hasOwnProperty('orderField'))
