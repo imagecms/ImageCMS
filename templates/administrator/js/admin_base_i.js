@@ -1700,7 +1700,7 @@ $(document).ready(function() {
             }
         });
     };
-    $("#createUserPhone, #UserPhone, #Phone").testNumber(['(', ')', '+', '-']);
+    $("#createUserPhone, #UserPhone, #Phone, #shopOrdersUserPhone").testNumber(['(', ')', '+', '-']);
 });
 
 
