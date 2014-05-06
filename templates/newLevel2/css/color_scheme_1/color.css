@@ -686,7 +686,7 @@ input[type="text"].error, input[type="password"].error, textarea.error, select.e
 input.plus-minus{color: #999;border-color: #d8d8d8;border-right: 0;-moz-box-shadow: inset 0 1px 2px #e8e8e8;-webkit-box-shadow: inset 0 1px 2px #e8e8e8;box-shadow: inset 0 1px 2px #e8e8e8;}
 
 .cusel span{color: #434343;}
-#slider {border: 1px solid #d7d6d2;-moz-box-shadow: inset 0 1px 0 #efefef;-webkit-box-shadow: inset 0 1px 0 #efefef;box-shadow: inset 0 1px 0 #efefef;}
+#slider {border-color: #d7d6d2;-moz-box-shadow: inset 0 1px 0 #efefef;-webkit-box-shadow: inset 0 1px 0 #efefef;box-shadow: inset 0 1px 0 #efefef;}
 .content-apply{color: #333;}
 .cusel{border-color: #d8d8d8;background-color: #ffffff;-moz-box-shadow: inset 0 1px 2px #e8e8e8;-webkit-box-shadow: inset 0 1px 2px #e8e8e8;box-shadow: inset 0 1px 2px #e8e8e8;}
 .cusel span:hover,.cusel .cuselOptHover{color: #fff;}
@@ -861,7 +861,7 @@ input.input-search{border-color: #cdcdcd;-moz-box-shadow: none;-webkit-box-shado
 .drop-header{background-color: #fff;}
 .drop-header:before{border-top-color: #f0edea;border-bottom-color: #f6f4f2;}
 
-#photo .drop-footer .inside-padd{background-color: #faf8f6;border-top: 1px solid #eae5e1;}
+#photo .drop-footer .inside-padd{background-color: #faf8f6;border-top-color: #eae5e1;}
 #photo .drop-content{background-color: #fff;}
 
 .drop-bask .footer-bask{background-color: #fff;border-top-color: #eae5e1;}
@@ -937,9 +937,9 @@ input.input-search{border-color: #cdcdcd;-moz-box-shadow: none;-webkit-box-shado
     background: linear-gradient(to bottom,  #fdfdfd 0%,#e7e7e7 100%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fdfdfd', endColorstr='#e7e7e7',GradientType=0 ); /* IE6-9 */
 }
-.frame-button-add-wish-list{background-color: #faf8f6;border-color: #eae5e1;box-shadow: 0 2px 2px #ece9e6;}
+.frame-button-add-wish-list{background-color: #ECECEC;border-color: #eae5e1;box-shadow: 0 2px 2px #ece9e6;}
 .drop-style-2{border-color: #eae5e1;box-shadow: 0 2px 2px #ece9e6;}
-.drop-style-2 > .drop-content2{background-color: #faf8f6;}
+.drop-style-2 > .drop-content2{background-color: #ECECEC;}
 .drop-style-2 > .drop-footer2{background-color: #fff;}
 .drop-style-2 > .drop-header{background-color: #fff;}
 .btn-send-wishlist .icon_mail{color: #0c9acb;}
