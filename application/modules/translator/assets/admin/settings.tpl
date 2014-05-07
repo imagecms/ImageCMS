@@ -42,9 +42,18 @@
                                 <div class="inside_padd span9">
 
                                     <div class="control-group">
-                                        <label class="control-label" for="file">
-                                            {lang('Origins language', 'translator')}:
+                                        <label for="file" style="float: left;width: 180px;padding-top: 5px;text-align: right;">
+                                            <span class="span4">
+                                                <span data-title="{lang('Information', 'translator')}:" class="popover_ref" data-original-title="">
+                                                    <i class="icon-info-sign"></i>
+                                                </span>
+                                                <div class="d_n">
+                                                    {lang('Language name of source string which need to translate.', 'translator')} 
+                                                </div>
+                                                {lang('Origins language', 'translator')}:
+                                            </span>
                                         </label>
+
                                         <div class="controls">
                                             <input id="originLang" class="languageSelect languageFrom" autocomplete="off" value="{echo $languages_names[$settings['originsLang']]}" class="ui-autocomplete-input" aria-autocomplete="list" aria-haspopup="true">
                                             <button class="btn btn-small showAllLanguageList"><i class="icon-chevron-down"></i></button>
@@ -54,7 +63,15 @@
 
                                     <div class="control-group">
                                         <label class="control-label" for="file">
-                                            {lang('Yandex Api Key', 'translator')}:
+                                            <span class="span4">
+                                                <span data-title="{lang('Information', 'translator')}:" class="popover_ref" data-original-title="">
+                                                    <i class="icon-info-sign"></i>
+                                                </span>
+                                                <div class="d_n">
+                                                    {lang('Key that needed for translation with Yandex Translation Api service.', 'translator')} 
+                                                </div>
+                                                {lang('Yandex Api Key', 'translator')}:
+                                            </span>
                                         </label>
                                         <div class="controls">
                                             <textarea class="YandexApiKey" cols="80" name="settings[YandexApiKey]">{echo $settings['YandexApiKey']}</textarea>
@@ -64,12 +81,22 @@
 
                                     <div class="control-group">
                                         <label class="control-label" for="file">
-                                            {lang('Show fast translation form', 'translator')}:
+                                            <span class="span4">
+                                                <span data-title="{lang('Usage', 'translator')}:" class="popover_ref" data-original-title="">
+                                                    <i class="icon-info-sign"></i>
+                                                </span>
+                                                <div class="d_n">
+                                                    {lang('To display translation form press Ctrl+Alt and move mouse cursor on string title.', 'translator')} 
+                                                </div>
+                                                {lang('Show fast translation form', 'translator')}:
+                                            </span>
                                         </label>
+
                                         <div class="controls">
                                             <span class="frame_label no_connection">
+                                                <br>
                                                 <span class="niceCheck {if $settings['showApiForm']}active{/if}" style="background-position: -46px 0px;">
-                                                     <input type="checkbox" name="settings[showApiForm]" {if $settings['showApiForm']}checked="checked" {/if} value="1">
+                                                    <input type="checkbox" name="settings[showApiForm]" {if $settings['showApiForm']}checked="checked" {/if} value="1">
                                                 </span>
                                             </span>
                                         </div>
