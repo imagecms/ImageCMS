@@ -40,17 +40,16 @@ if (!defined('BASEPATH'))
  */
 if (!function_exists('lang')) {
 
-    function lang($line, $name = "main", $id = '') {
-
+    function lang($line, $name = "main", $wraper = TRUE) {
         textdomain($name);
         $CI = & get_instance();
         $line_tmp = $line;
         $line = $CI->lang->line($line);
         if (!$line)
-            return $line_tmp;
+            $line = $line_tmp;
 
-        if ($id != '') {
-//            $line = '<label for="' . $name . '">' . $line . "</label>";
+        if ($wraper && defined('ENABLE_TRANSLATION_API')) {
+            $line = "<translate origin='" . $line_tmp . "' domain='" . $name . "'>" . $line . "</translate>";
         }
 
         textdomain('main');
