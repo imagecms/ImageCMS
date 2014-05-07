@@ -21,6 +21,10 @@ $baseMenu = array(
         'icon' => 'icon-align-justify',
         'subMenu' => array(
             array(
+                'header' => true,
+                'text' => lang('Content', 'admin', FALSE),
+            ),
+            array(
                 'link' => '/admin/pages',
                 'text' => lang('Create page', 'admin', FALSE),
             ),
