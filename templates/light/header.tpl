@@ -9,7 +9,7 @@
         <div class="right-header f_r">
             {include_shop_tpl('auth_data')}
         </div>
-        <div class="social-head items f_l">
+        <div class="social-head f_l social-NS">
             {echo $CI->load->module('share')->_make_share_form()}
         </div>
     </div>
