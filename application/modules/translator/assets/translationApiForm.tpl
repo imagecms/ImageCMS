@@ -17,23 +17,23 @@
         </span>
     </label>
     <input type="hidden" id="domain" name="domain">
-    <a class="hideformButton" style="float: right; margin-top: -10px;">{lang('Hide form', 'main', FALSE)}</a>
+    <a class="hideformButton" style="float: right; margin-top: -10px;">{lang('Hide form', 'translator')}</a>
     <br>
     <label>
-        <b>{lang('Origin')}:</b>
+        <b>{lang('Origin', 'translator')}:</b>
         <textarea id="origin" name="origin" readonly="readonly" class="readonly disabled" disabled="disabled" style="max-height: 40px;">
         </textarea>
     </label>
-    <a id="autoTranslate" style="float: right;">{lang('Autotranslate')}</a>
+    <a id="autoTranslate" style="float: right;">{lang('Autotranslate', 'translator')}</a>
     <label>
-        <b>{lang('Translation')}:</b>
+        <b>{lang('Translation', 'translator')}:</b>
         <textarea id="translation" name="translation" style="max-height: 40px;">
         </textarea>
     </label>
     <label>
-        <b>{lang('Comment')}:</b>
+        <b>{lang('Comment', 'translator')}:</b>
         <textarea id="comment" name="comment" style="max-height: 40px;">
         </textarea>
     </label>
-    <button type="button" style="background-color: rgb(163, 170, 207);border: 1px solid rgb(48, 90, 117);border-radius: 3px;margin: 0 auto;margin-top: 10px;padding: 4px;"><b>{lang('Translate', 'main', FALSE)}</b></button>
+    <button type="button" style="background-color: rgb(163, 170, 207);border: 1px solid rgb(48, 90, 117);border-radius: 3px;margin: 0 auto;margin-top: 10px;padding: 4px;"><b>{lang('Translate', 'translator')}</b></button>
 </form>
