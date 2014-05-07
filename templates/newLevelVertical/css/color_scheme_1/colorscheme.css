@@ -34,7 +34,7 @@ button[disabled="disabled"], input[type="submit"][disabled="disabled"], input[ty
 /*/base*/
 
 /*active*/
-:acitve{outline: none;}
+:active{outline: none;}
 :focus{outline: none;}
 input[type="radio"]:focus, input[type="checkbox"]:focus, input[type="submit"]:focus, input[type="button"]:focus, input[type="reset"]:focus, .frame-item-menu > .frame-title > .title:focus, .left-header > .nav > li > a:focus, .btn-enter button:focus, .btn-personal-area a:focus, .start-page-category-menu a:focus, .baner li > a:focus{outline: 1px solid transparent;}
 /*/active*/
