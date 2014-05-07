@@ -166,6 +166,8 @@ class Admin extends BaseAdminController {
     public function settings($action = 'show') {
         switch ($action) {
             case 'show':
+                $this->template->registerCssFile('/templates/administrator/js/colorpicker/css/colorpicker.css', 'after');
+                $this->template->registerJsFile('/templates/administrator/js/colorpicker/js/colorpicker.js', 'after');
                 $this->template->assign('settings', $this->gallery_m->load_settings());
 
                 $this->display_tpl('settings');
@@ -282,7 +284,6 @@ class Admin extends BaseAdminController {
 
             if ($action == 'exit')
                 pjax('/admin/components/cp/gallery/category/' . $album['category_id']);
-
         }
     }
 

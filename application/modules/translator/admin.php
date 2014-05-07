@@ -67,6 +67,25 @@ class Admin extends BaseAdminController {
         return updateSettings($settings);
     }
 
+    public function settings() {
+        if ($_POST) {
+            $settings = $this->input->post('settings');
+            updateSettings($settings);
+            showMessage(lang('Settings was successfully updated', 'translator', FALSE));
+
+            if ($this->input->post('action') == 'exit') {
+                pjax(site_url('admin/components/init_window/translator'));
+            }
+        } else {
+            \CMSFactory\assetManager::create()
+                    ->registerScript('admin')
+                    ->registerStyle('admin')
+                    ->setData('settings', getSettings())
+                    ->setData('languages_names', get_language_names())
+                    ->renderAdmin('settings');
+        }
+    }
+
     public function index($isExchange = FALSE) {
         $translation = $this->session->userdata('translation');
         $po_table = '';

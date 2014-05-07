@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-05 01:01+0300\n"
-"PO-Revision-Date: 2014-05-05 01:01+0300\n"
+"POT-Creation-Date: 2014-05-07 10:39+0300\n"
+"PO-Revision-Date: 2014-05-07 10:39+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -4574,7 +4574,7 @@ msgstr "Просмотр свойств товаров"
 
 #: ./application/modules/shop/admin/templates/notificationstatuses/list.tpl:27
 msgid "View the status of appearance"
-msgstr "Просмотр состояния появления"
+msgstr "Статусы уведомлений о появлении"
 
 #: ./templates/administrator/create_cat.tpl:157
 #: ./templates/administrator/category_edit.tpl:175
