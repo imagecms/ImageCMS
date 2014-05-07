@@ -6,7 +6,7 @@
         </button>
         {$wrapper}
     {else:}
-        <a href="{$link}" title="{$title}">
+        <a href="{$link}" {$target} title="{$title}">
             {$title}
         </a>
     {/if}
