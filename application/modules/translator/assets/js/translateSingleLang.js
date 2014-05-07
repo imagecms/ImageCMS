@@ -120,7 +120,7 @@ $(document).ready(function() {
                             if (Answer.code == '200') {
                                 $('#trabslateForm').find('#translation').val(Answer.text[0]);
                                 $('#trabslateForm').find('.succ').find('.success').html('');
-                                $('#trabslateForm').find('.succ').find('.success').append('<p>' + lang('Successfully translated.', 'translator') + '</p>');
+                                $('#trabslateForm').find('.succ').find('.success').append('<p>' + lang('Successfully translated.') + '</p>');
                                 $('#trabslateForm').find('.succ').show();
                             } else {
                                 var error = getAnswerCodeMessage(Answer.code);
