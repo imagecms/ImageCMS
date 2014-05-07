@@ -664,7 +664,7 @@ hr{border-top-color: #fff;border-bottom-color: #e4e4e4;}
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9ec300', endColorstr='#638a00',GradientType=0 ); /* IE6-9 */
 }
 .btn-cart .text-el, .btn-cart > input{color: #fff;}
-.btn-cart:hover, .btn-cart:active, .frame-payment input[type="submit"]:hover, frame-payment input[type="submit"]:active{
+.btn-cart:hover, .btn-cart:active, .frame-payment input[type="submit"]:hover, .frame-payment input[type="submit"]:active{
     background: #a5cb04; /* Old browsers */
     background: -moz-linear-gradient(top,  #a5cb04 0%, #7ea404 49%, #699202 50%, #83ab07 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a5cb04), color-stop(49%,#7ea404), color-stop(50%,#699202), color-stop(100%,#83ab07)); /* Chrome,Safari4+ */
