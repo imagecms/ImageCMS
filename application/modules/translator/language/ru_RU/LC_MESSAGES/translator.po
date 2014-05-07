@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-07 10:27+0300\n"
-"PO-Revision-Date: 2014-05-07 10:27+0300\n"
+"POT-Creation-Date: 2014-05-07 01:20+0300\n"
+"PO-Revision-Date: 2014-05-07 01:20+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -17,6 +17,10 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/translator/classes/FileOperator.php:104
+msgid "File cant be written. Please, set write file permissions."
+msgstr "Файл не может быть записан. Пожалуйста, установите права на запись файла."
 
 #: ./application/modules/translator/admin.php:74
 msgid "Settings was successfully updated"
@@ -582,7 +586,7 @@ msgstr "Оригинальная строка"
 #: ./application/modules/translator/assets/translationApiForm.tpl:23
 #: ./application/modules/translator/assets/admin/list.tpl:274
 msgid "Origin"
-msgstr "Оригинальные"
+msgstr "Оригинал"
 
 #: ./application/modules/translator/helpers/translator_helper.php:87
 msgid "Ossetian"
@@ -943,10 +947,6 @@ msgstr "Файл был успешно создан."
 #: ./application/modules/translator/assets/js/admin.js:1013
 msgid "File was successfully saved."
 msgstr "Файл был успешно сохранен."
-
-#: ./application/modules/translator/classes/FileOperator.php:104
-msgid "File cant be written. Please, set write file permissions."
-msgstr "Файл не может быть записан. Пожалуйста, установите права на запись файлу."
 
 #: ./application/modules/translator/classes/FileOperator.php:109
 msgid "File does not exist or check perrmissions to the file."
