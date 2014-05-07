@@ -2439,8 +2439,8 @@ INSERT INTO `shop_currencies` (`id`, `name`, `main`, `is_default`, `code`, `symb
 DROP TABLE IF EXISTS `shop_delivery_methods`;
 CREATE TABLE IF NOT EXISTS `shop_delivery_methods` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `price` float(10,2) NOT NULL,
-  `free_from` float(10,2) NOT NULL,
+  `price` double(20,5) NOT NULL,
+  `free_from` double(20,5) NOT NULL,
   `enabled` tinyint(1) DEFAULT NULL,
   `is_price_in_percent` tinyint(1) NOT NULL,
   `position` int(11) DEFAULT NULL,
