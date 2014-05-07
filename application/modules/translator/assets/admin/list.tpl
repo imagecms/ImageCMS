@@ -145,7 +145,7 @@
                             {lang('Others', 'translator')}<span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a class="pjax" style="text-decoration: none" href="/admin/components/init_window/translator/createFile">{lang('Create', 'translator')}</a></li>
+                            <li><a class="pjax" style="text-decoration: none" href="/admin/components/init_window/translator/createFile">{lang('Create translation file', 'translator')}</a></li>
                             <li><a class="pjax" style="text-decoration: none" href="/admin/components/init_window/translator/exchangeTranslation">{lang('Translation exchange', 'translator')}</a></li>
                             <li><a onclick="Translator.correctPaths($(this))">{lang('Correct paths', 'translator')}</a></li>
                             <li class="divider"></li>
@@ -153,7 +153,9 @@
                             <li><a onclick="Translator.translate($(this), true)">{lang('Translate untranslated', 'translator')}</a></li>
                             <li><a onclick="Translator.showYandexTranslateWindow()">{lang('Translation tool', 'translator')}</a></li>
                             <li class="divider"></li>
-                            <li><a onclick="Translator.cancel()">{lang('Reset', 'translator')}</a></li>
+                            <li><a class="pjax" style="text-decoration: none" href="/admin/components/init_window/translator/settings">{lang('Settings', 'translator')}</a></li>
+                            <li class="divider"></li>
+                            <li><a onclick="Translator.cancel()">{lang('Clear translator memory', 'translator')}</a></li>
                         </ul>
                     </span>
                 </div>
@@ -188,7 +190,7 @@
             <div class="tabbable"> <!-- Only required for left/right tabs -->
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#poTab" data-toggle="tab">{lang('Translation file', 'translator')}</a></li>
-                    <li><a href="#poSettingsTab" id="settings" data-toggle="tab">{lang('Settings', 'translator')}</a></li>
+                    <li><a href="#poSettingsTab" id="settings" data-toggle="tab">{lang('Translation file settings', 'translator')}</a></li>
                 </ul>
 
                 <div class="tab-content">
@@ -327,38 +329,38 @@
                         </div>
                     </div>
                     <div class="tab-pane" id="poSettingsTab">
+                        <div style="display: none;">
+                            <div class="originLangHolder">
+                                <label for="originLang">
+                                    <h5>
+                                        <b>
+                                            {lang('Origins language', 'translator')}:
+                                        </b>
+                                    </h5>
+                                </label>
+                                <input id="originLang" class="languageSelect languageFrom" autocomplete="off" tabindex="1" value="{echo $languages_names[$settings['originsLang']]}" class="ui-autocomplete-input" aria-autocomplete="list" aria-haspopup="true" locale="{echo $settings['originsLang']}">
+                                <button class="btn btn-small showAllLanguageList"><i class="icon-chevron-down"></i></button>
+                                <button class="btn btn-small languageAutoselect" data-rel="tooltip" data-placement="bottom" data-original-title="{lang('Auto define source language', 'translator')}" onclick="Translator.sourceLanguageAutoselect($(this))"><i class="icon-font"></i></button>
+                            </div>
 
-                        <div class="originLangHolder">
-                            <label for="originLang">
-                                <h5>
-                                    <b>
-                                        {lang('Origins language', 'translator')}:
-                                    </b>
-                                </h5>
-                            </label>
-                            <input id="originLang" class="languageSelect languageFrom" autocomplete="off" tabindex="1" value="{echo $languages_names[$settings['originsLang']]}" class="ui-autocomplete-input" aria-autocomplete="list" aria-haspopup="true" locale="{echo $settings['originsLang']}">
-                            <button class="btn btn-small showAllLanguageList"><i class="icon-chevron-down"></i></button>
-                            <button class="btn btn-small languageAutoselect" data-rel="tooltip" data-placement="bottom" data-original-title="{lang('Auto define source language', 'translator')}" onclick="Translator.sourceLanguageAutoselect($(this))"><i class="icon-font"></i></button>
+                            <div class="YandexApiKeyHolder"> 
+                                <label for="originLang">
+                                    <h5>
+                                        <b>
+                                            {lang('Yandex Api Key', 'translator')}:
+                                        </b>
+                                    </h5>
+                                    <a href="http://api.yandex.ru/translate/" target="blanck">{lang('Get Yandex Api key', 'translator')}</a>
+                                </label>
+                                <textarea class="YandexApiKey">{echo $settings['YandexApiKey']}</textarea>
+                                <button onclick="Translator.addYandexApiKey($(this))"  type="button" class="btn btn-small btn-success">
+                                    <i class="icon-ok"></i>
+                                    {lang('Save', 'translator')}
+                                </button>
+                            </div>
+                            <br>
+                            <hr>
                         </div>
-
-                        <div class="YandexApiKeyHolder"> 
-                            <label for="originLang">
-                                <h5>
-                                    <b>
-                                        {lang('Yandex Api Key', 'translator')}:
-                                    </b>
-                                </h5>
-                                <a href="http://api.yandex.ru/translate/" target="blanck">{lang('Get Yandex Api key', 'translator')}</a>
-                            </label>
-                            <textarea class="YandexApiKey">{echo $settings['YandexApiKey']}</textarea>
-                            <button onclick="Translator.addYandexApiKey($(this))"  type="button" class="btn btn-small btn-success">
-                                <i class="icon-ok"></i>
-                                {lang('Save', 'translator')}
-                            </button>
-                        </div>
-                        <br>
-                        <hr>
-
                         <form method="post" action="{site_url('admin/components/init_window/translator/createFile')}" class="form-horizontal" id="po_settings_form">
                             <table style="width: 49%; float: left;" class="table table-striped table-bordered table-hover table-condensed t-l_a">
                                 <thead>

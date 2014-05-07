@@ -219,7 +219,6 @@ class FilesParser {
                 foreach ($paths as $key => $path) {
                     $scan_path = makeCorrectUrl($baseUrl, $path);
                     if (file_exists($scan_path)) {
-//                        var_dumps($scan_path);
                         $finded = $this->findLangs($scan_path);
                         if ($finded['parsed_langs']) {
                             $result['js_langs'][] = $finded['js_langs'];
@@ -232,7 +231,6 @@ class FilesParser {
                     }
                 }
             }
-//            exit;
             return $result;
         } else {
             return FALSE;

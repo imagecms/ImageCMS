@@ -305,7 +305,7 @@
                                                 <div class="control-group">
                                                     <label class="control-label" for="watermark_color">{lang("Font colour", 'gallery')}</label>
                                                     <div class="controls">
-                                                        <input type="text" value="{$settings.watermark_color}" name="watermark_color" id="watermark_color" maxlength="6"/>
+                                                        <input type="text" value="{$settings.watermark_color}" class="ColorPicker"  name="watermark_color" id="watermark_color" maxlength="6"/>
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
