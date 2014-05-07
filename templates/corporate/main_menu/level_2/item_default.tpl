@@ -1,3 +1,3 @@
 <li>
-    <a href="{$link}" title="{$title}">{$title}</a>
+    <a href="{$link}" {$target} title="{$title}">{$title}</a>
 </li>
