@@ -79,7 +79,7 @@ class assetManager {
         } else {
             \CI_Controller::get_instance()->template->registerJsFile($this->buildScriptPath($name), $position);
         }
-//        var_dump($this->buildScriptPath($name));
+
         return $this;
     }
 
