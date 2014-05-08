@@ -138,7 +138,7 @@
         <script type="text/javascript">
             initDownloadScripts(['raphael-min', 'united_scripts'], 'init', 'scriptDefer');
         </script>
-        
+
         {/*} End. uncoment before development { */}
         {include_shop_tpl('js_templates')}
     </body>

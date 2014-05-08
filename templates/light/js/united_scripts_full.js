@@ -1688,8 +1688,11 @@ function getCookie(c_name)
                         trigger = methods._checkProp(elSet, options, 'trigger'),
                         triggerOn = methods._checkProp(elSet, options, 'triggerOn'),
                         triggerOff = methods._checkProp(elSet, options, 'triggerOff'),
-                        condTrigger = methods._checkProp(elSet, options, 'condTrigger');
-                methods._modalTrigger(elSet, options);
+                        condTrigger = methods._checkProp(elSet, options, 'condTrigger'),
+                        modal = methods._checkProp(elSet, options, 'modal');
+                if (modal)
+                    methods._modalTrigger(el, elSet, options);
+
                 var rel = this.rel;
                 if (rel) {
                     rel = rel.replace(methods._reg(), '');
@@ -1793,7 +1796,7 @@ function getCookie(c_name)
                     url: source,
                     beforeSend: function() {
                         if (!methods._checkProp(elSet, set, 'moreOne'))
-                            methods._closeMoreOne(el);
+                            methods._closeMoreOne();
 
                         $.drop.showActivity();
                     },
@@ -1857,6 +1860,7 @@ function getCookie(c_name)
                         else
                             $this = $('[data-drop="' + modalBtnDrop + '"]');
                         $this.data('datas', datas);
+                        methods._modalTrigger($this, $this.data(), opt);
                     }
                     else {
                         var sourcePref = opt.source.replace(methods._reg(), ''),
@@ -1906,7 +1910,7 @@ function getCookie(c_name)
 
                 if (!$this.parent().hasClass(aC)) {
                     if (!moreOne && !start)
-                        methods._closeMoreOne($this);
+                        methods._closeMoreOne();
 
                     if (!$this.is(':disabled')) {
                         var confirm = methods._checkProp(elSet, opt, 'confirm'),
@@ -1994,16 +1998,16 @@ function getCookie(c_name)
                                             drpV = $.extend({}, $this.data('drp'));
                                         }
                                     });
-                                    
-                                    if (!drpV)
-                                        body.removeClass('isScroll').css({
-                                            'overflow': '',
-                                            'margin-right': ''
-                                        });
-                                    if (drpV && drpV.place !== 'inherit' && drpV.overlayOpacity !== 0 && !isTouch)
+
+                                    if (drpV && drpV.overlayOpacity !== 0 && !isTouch)
                                         body.addClass('isScroll').css({
                                             'overflow': 'hidden',
                                             'margin-right': $.drop.widthScroll
+                                        });
+                                    else
+                                        body.removeClass('isScroll').css({
+                                            'overflow': '',
+                                            'margin-right': ''
                                         });
 
                                     if (set.dropOver && !f)
@@ -2085,6 +2089,7 @@ function getCookie(c_name)
         },
         _resetStyleDrop: function(drop) {
             return drop.css({
+                'z-index': '',
                 'width': '',
                 'height': '',
                 'top': '',
@@ -2107,15 +2112,13 @@ function getCookie(c_name)
                 return elSet[prop] || (opt[prop] ? opt[prop] : false) || $.drop.dP[prop];
             return this;
         },
-        _closeMoreOne: function($this) {
-            if ($.existsN($this.closest('[data-elrun]')) && !$this.data('modal'))
-                methods.close($this.closest('[data-elrun]'));
+        _closeMoreOne: function() {
             if ($.exists('[data-elrun].center:visible, [data-elrun].noinherit:visible'))
                 methods.close($('[data-elrun].center:visible, [data-elrun].noinherit:visible'));
             return this;
         },
-        _modalTrigger: function(elSet, set) {
-            $(document).off('successJson.' + $.drop.nS).on('successJson.' + $.drop.nS, function(e) {
+        _modalTrigger: function(el, elSet, set) {
+            el.off('successJson.' + $.drop.nS).on('successJson.' + $.drop.nS, function(e) {
                 if (e.datas) {
                     if (e.datas.answer === "success")
                         e.el.find(methods._checkProp(elSet, set, 'modalPlace')).empty().append(methods._checkProp(elSet, set, 'message').success(e.datas.data));
@@ -2131,9 +2134,8 @@ function getCookie(c_name)
             var elSet = el.data(),
                     drop = $(elSet.drop);
             datas = datas || el.data('datas');
-            methods._modalTrigger(elSet, set);
             methods._pasteDrop($.extend({}, $.drop.dP, set, elSet), drop, null, rel);
-            $(document).trigger({
+            el.trigger({
                 type: 'successJson.' + $.drop.nS,
                 el: drop,
                 datas: datas
@@ -2272,8 +2274,9 @@ function getCookie(c_name)
                 if (isTouch)
                     forCenter.css('height', '').css('height', $(document).height());
                 drop.data('drp').forCenter = forCenter;
-                forCenter.add(drop).css('z-index', overlays.length + 1104);
+                forCenter.css('z-index', overlays.length + 1104);
             }
+            drop.css('z-index', overlays.length + 1104);
 
             methods._pasteContent($this, drop, opt);
 
@@ -3888,8 +3891,7 @@ var ImageCMSApi = {
         return false;
     }
 };
-var
-        isTouch = 'ontouchstart' in document.documentElement,
+var isTouch = 'ontouchstart' in document.documentElement,
         wnd = $(window),
         body = $('body'),
         ie = $.browser.msie,
@@ -3964,7 +3966,7 @@ var optionsDrop = {
     overlayOpacity: 0.6,
     place: 'center', //noinherit(default) || inherit(ex. for ViewedProducts)
     durationOn: 500,
-    durationOff: 200,
+    durationOff: 300,
     dropContent: '.drop-content',
     dropFooter: '.drop-footer',
     dropHeader: '.drop-header',
@@ -3997,7 +3999,7 @@ var imageCmsApiDefaults = {
     scs: 'success', //клас
     hideForm: true,
     messagePlace: 'ahead', // behind
-    durationHideForm: 3000,
+    durationHideForm: 7000,
     cMsgPlace: 'after', //place error
     captcha: function(ci) {
         return '<div class="frame-label"><span class="title">' + text.captchaText + '</span>\n\
@@ -4058,16 +4060,16 @@ var ShopFront = {
                     el.parent(genObj.btnToCart).addClass('d_n');
                     el.parent(genObj.btnInCart).removeClass('d_n');
                     el.closest(genObj.parentBtnBuy).removeClass(genObj.toCart).addClass(genObj.inCart)
-                    .find(genObj.frameCount)
-                    .find(':input').attr('disabled', 'disabled');
+                            .find(genObj.frameCount)
+                            .find(':input').attr('disabled', 'disabled');
                 }
                 if (status == 'remove') {
                     el.parent(genObj.btnToCart).removeClass('d_n');
                     el.parent(genObj.btnInCart).addClass('d_n');
                     el.closest(genObj.parentBtnBuy).addClass(genObj.toCart).removeClass(genObj.inCart)
-                    .find(genObj.frameCount)
-                    .find(':input').removeAttr('disabled', 'disabled')
-                    .end().find(genObj.plusMinus).attr('value', function(){
+                            .find(genObj.frameCount)
+                            .find(':input').removeAttr('disabled', 'disabled')
+                            .end().find(genObj.plusMinus).attr('value', function() {
                         return $(this).data('min');
                     });
                 }
@@ -4087,16 +4089,16 @@ var ShopFront = {
             /*Variants in Category*/
             el.find(genObj.parentBtnBuy).find(genObj.changeVariantCategory).on('change', function() {
                 var productId = parseInt($(this).attr('value')),
-                liBlock = $(this).closest(genObj.parentBtnBuy),
-                btnInfo = liBlock.find(genObj.prefV + productId).find(genObj.infoBut),
-                vMediumImage = $.trim(btnInfo.data('mediumImage')),
-                vId = btnInfo.data('id'),
-                vName = $.trim(btnInfo.data('vname')),
-                vNumber = $.trim(btnInfo.data('number')),
-                vPrice = btnInfo.data('price'),
-                vOrigPrice = btnInfo.data('origPrice'),
-                vAddPrice = btnInfo.data('addPrice'),
-                vStock = btnInfo.data('maxcount');
+                        liBlock = $(this).closest(genObj.parentBtnBuy),
+                        btnInfo = liBlock.find(genObj.prefV + productId).find(genObj.infoBut),
+                        vMediumImage = $.trim(btnInfo.data('mediumImage')),
+                        vId = btnInfo.data('id'),
+                        vName = $.trim(btnInfo.data('vname')),
+                        vNumber = $.trim(btnInfo.data('number')),
+                        vPrice = btnInfo.data('price'),
+                        vOrigPrice = btnInfo.data('origPrice'),
+                        vAddPrice = btnInfo.data('addPrice'),
+                        vStock = btnInfo.data('maxcount');
 
                 liBlock.find(genObj.imgVC).attr('src', vMediumImage).attr('alt', vName);
 
@@ -4109,10 +4111,10 @@ var ShopFront = {
                 ShopFront.Cart.existsVnumber(vNumber, liBlock);
                 ShopFront.Cart.existsVnames(vName, liBlock);
                 ShopFront.Cart.condProduct(vStock, liBlock, liBlock.find(genObj.prefV + vId).find(genObj.infoBut));
-                
+
                 decorElemntItemProduct(liBlock);
             });
-        /*/Variants in Category*/
+            /*/Variants in Category*/
         },
         changeCount: function(inputs) {
             inputs.plusminus($.extend({}, optionsPlusminus, {
@@ -4180,40 +4182,34 @@ var ShopFront = {
                 if (comparelist.indexOf($(this).data('id')) !== -1) {
                     var $this = $(this);
                     $this.
-                    removeClass(genObj.toCompare).
-                    addClass(genObj.inCompare).
-                        
-                    parent().
-                    addClass(genObj.compareIn).
-                        
-                    end().
-                    data('title', $this.attr('data-sectitle')).tooltip('remove').tooltip().
-                        
-                    find(genObj.textEl).
-                    text($this.attr('data-sectitle'));
+                            removeClass(genObj.toCompare).
+                            addClass(genObj.inCompare).
+                            parent().
+                            addClass(genObj.compareIn).
+                            end().
+                            data('title', $this.attr('data-sectitle')).tooltip('remove').tooltip().
+                            find(genObj.textEl).
+                            text($this.attr('data-sectitle'));
                 }
             });
             $('.' + genObj.inCompare).each(function() {
                 if (comparelist.indexOf($(this).data('id')) === -1) {
                     var $this = $(this);
                     $this.
-                    addClass(genObj.toCompare).
-                    removeClass(genObj.inCompare).
-                        
-                    parent().
-                    removeClass(genObj.compareIn).
-                        
-                    end().
-                    data('title', $this.attr('data-firtitle')).tooltip('remove').tooltip().
-                        
-                    find(genObj.textEl).
-                    text($this.attr('data-firtitle'));
+                            addClass(genObj.toCompare).
+                            removeClass(genObj.inCompare).
+                            parent().
+                            removeClass(genObj.compareIn).
+                            end().
+                            data('title', $this.attr('data-firtitle')).tooltip('remove').tooltip().
+                            find(genObj.textEl).
+                            text($this.attr('data-firtitle'));
                 }
             });
         },
         count: function() {
             var count = Shop.CompareList.all().length,
-            btn = $(genObj.tinyCompareList).find('[data-href]').drop('destroy').off('click.tocompare');
+                    btn = $(genObj.tinyCompareList).find('[data-href]').drop('destroy').off('click.tocompare');
 
             if (count > 0) {
                 $(genObj.tinyCompareList).addClass(genObj.isAvail).find(genObj.blockNoEmpty).show().end().find(genObj.blockEmpty).hide();
@@ -4255,7 +4251,7 @@ var global = {
     },
     wishListCount: function() {
         var count = wishList.all().length,
-        btn = $(genObj.tinyWishList).find('[data-href]').drop('destroy').off('click.towish');
+                btn = $(genObj.tinyWishList).find('[data-href]').drop('destroy').off('click.towish');
 
         if (count > 0) {
             $(genObj.tinyWishList).addClass(genObj.isAvail).find(genObj.blockNoEmpty).show().end().find(genObj.blockEmpty).hide();
@@ -4327,7 +4323,7 @@ if (!$.isFunction($.fancybox)) {
         loadingFrame = (loadingFrame + 1) % 12;
     };
     $.fancybox = function() {
-        };
+    };
     $.fancybox.showActivity = function() {
         clearInterval(loadingTimer);
         loading.show();
@@ -4356,8 +4352,8 @@ function banerResize(el) {
 }
 function removePreloaderBaner(el) {
     var img = el.find('img[data-original]'),
-    imgL = img.length,
-    i = 0;
+            imgL = img.length,
+            i = 0;
     img.each(function() {
         var $this = $(this);
         $this.attr('src', $this.attr('data-original')).load(function() {
@@ -4447,12 +4443,12 @@ function hideDrop(drop, form, durationHideForm) {
     drop = $(drop);
     var closedrop = setTimeout(function() {
         drop.drop('close');
-    }, durationHideForm - drop.data('drp').durationOff);
+    }, durationHideForm - drop.data('drp').durationOff - 200);
     setTimeout(function() {
         drop.find(genObj.msgF).hide().remove();
         form.show();
         drop.drop('heightContent');
-    }, durationHideForm)
+    }, durationHideForm);
 
     //    if close "esc" or click on body
     drop.off('closed.' + $.drop.nS).on('closed.' + $.drop.nS, function(e) {
@@ -4460,7 +4456,7 @@ function hideDrop(drop, form, durationHideForm) {
 
         e.drop.find(genObj.msgF).hide().remove();
         form.show();
-    })
+    });
 }
 function showHidePart(el, absolute, time, btnPlace) {
     if (!time)
@@ -4568,9 +4564,9 @@ function decorElemntItemProduct(el) {
             clearTimeout(curFuncTime);
             el.each(function() {
                 var $thisLi = $(this),
-                sumH = 0,
-                sumW = 0,
-                decEl = $thisLi.find('.decor-element').css({
+                        sumH = 0,
+                        sumW = 0,
+                        decEl = $thisLi.find('.decor-element').css({
                     'height': '100%',
                     'width': '100%',
                     'position': 'absolute',
@@ -4580,10 +4576,10 @@ function decorElemntItemProduct(el) {
                     'top': 0
                 }),
                 decElH = decEl.height(),
-                decElW = decEl.width(),
-                noVisT = $thisLi.find('.no-vis-table'),
-                noVisTL = noVisT.length,
-                $thisS = $thisLi.data('pos').match(/top|bottom|left|right/)[0];
+                        decElW = decEl.width(),
+                        noVisT = $thisLi.find('.no-vis-table'),
+                        noVisTL = noVisT.length,
+                        $thisS = $thisLi.data('pos').match(/top|bottom|left|right/)[0];
                 $thisLi.css('overflow', 'hidden');
                 noVisT.each(function() {
                     var $this = $(this);
@@ -4692,27 +4688,24 @@ function itemUserToolbar() {
             }
         }).not('.activeUT').trigger('click.UT');
         wnd.off('scroll.UT').on('scroll.UT', function() {
-            var btnW = btnUp.show().outerWidth(true),
-                    itemsUTCW = itemsUT.width();
-            btnUp.hide();
-            if ((wnd.width() - itemsUTCW) / 2 > btnW && wnd.scrollTop() > wnd.height())
+            if (wnd.scrollTop() > wnd.height() && !btnUp.hasClass('non-v'))
                 btnUp.fadeIn();
             else
                 btnUp.hide();
-        })
+        });
         return itemsUT;
     }
     , this.resize = function(itemsUT, btnUp) {
         itemsUT = $(itemsUT);
         var btnW = btnUp.show().outerWidth(true),
-                itemsUTCW = itemsUT.width();
+                itemsUTCW = itemsUT.children().width();
         btnUp.hide();
-        if ((wnd.width() - itemsUTCW) / 2 > btnW && wnd.scrollTop() > wnd.height())
-            btnUp.fadeIn();
+        if ((wnd.width() - itemsUTCW) / 2 > btnW)
+            btnUp.show().removeClass('non-v');
         else
-            btnUp.hide();
+            btnUp.hide().addClass('non-v');
         return itemsUT;
-    }
+    };
 }
 function reinitializeScrollPane(el) {
     if ($.exists(selScrollPane)) {

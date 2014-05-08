@@ -4,9 +4,7 @@ $(document).ready(function() {
         source: base_url + 'admin/components/cp/translator/getLangaugesNames',
         select: function(event, ui) {
             $(this).attr('locale', ui.item.locale);
-            if ($(this).closest('.originLangHolder').length) {
-                Translator.setOriginsLang($(this));
-            }
+            $(this).next().next().val(ui.item.locale);
         }
     });
 
@@ -1491,7 +1489,7 @@ var Exchange = {
                 if (data) {
 //                    var tableData = data.replace(/<script[\W\w]+<\/script>/, '');
                     $('#mainContent').html(data);
-                   
+
                     window.history.pushState({}, "", "/admin/components/init_window/translator");
                 }
             }

@@ -102,7 +102,7 @@
                 <input type="text" name="userInfo[phone]" value="{$profile.phone}" />
             </label>
             <label>
-                {lang('Адрес', 'newLevel')}
+                {lang('Адрес', 'newLevel')}:
                 <input name="userInfo[deliverTo]" type="text" value="{$profile.address}"/>
             </label>
             <label>
