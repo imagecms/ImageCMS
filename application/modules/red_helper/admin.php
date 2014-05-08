@@ -17,7 +17,6 @@ class Admin extends BaseAdminController {
     }
 
     public function index() {
-        var_dump($this->red_helper_model->getSettings());
         \CMSFactory\assetManager::create()
                 ->registerScript('red_helper_admin')
                 ->renderAdmin('main');
