@@ -1391,7 +1391,7 @@ $(document).ready(function() {
 
     $("input[type='file'][name='watermark_font_path']").live("change", function() {
         var allowedFileExtentions = ['ttf', 'fnt', 'fon', 'otf'];
-        var ext = $(this).val().split('.').pop();
+        var ext = $(this).val().split('.').pop().toLowerCase();
         var extentionIsAllowed = false;
         for (var i = 0; i < allowedFileExtentions.length; i++) {
             if (allowedFileExtentions[i] == ext) {
