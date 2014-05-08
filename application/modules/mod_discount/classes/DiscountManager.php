@@ -16,7 +16,7 @@ if (!defined('BASEPATH'))
  * @property discount_model_admin $discount_model_admin
  */
 class DiscountManager extends \MY_Controller {
-    
+
     public $error = array();
 
     public function __construct() {
@@ -24,8 +24,6 @@ class DiscountManager extends \MY_Controller {
         $lang = new \MY_Lang();
         $lang->load('mod_discount');
         $this->load->model('discount_model_admin');
-
-        
     }
 
     /**
@@ -308,7 +306,7 @@ class DiscountManager extends \MY_Controller {
         if ($result && $discountId)
             return array('success' => true, 'id' => $discountId);
         else
-            return array('success' => false, 'error' => array('wrong query to db'));
+            return array('success' => false, 'error' => array(lang('Error creating discount', 'mod_discount')));
     }
 
     /**

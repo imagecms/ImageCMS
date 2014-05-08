@@ -806,8 +806,8 @@ getChar = function(e) {
 
     return null;
 }
-$.fn.testNumber = function(add) {
-    $(this).off('keypress.testNumber').on('keypress.testNumber', function(e) {
+testNumber = function(el, add, ns) {
+    $('body').off('keypress.testNumber'+ns).on('keypress.testNumber'+ns, el, function(e) {
         var $this = $(this);
         if (e.ctrlKey || e.altKey || e.metaKey)
             return;
@@ -839,7 +839,6 @@ function initChosenSelect(el) {
     el.find('.chosen:visible').chosen();
 }
 function number_tooltip() {
-    $('.number input').testNumber(['.'])
     $('.number input').tooltip({
         'delay': {
             show: 500,
@@ -859,12 +858,12 @@ function getScrollTop() {
         scrOfY = window.pageYOffset;
     } else if (document.body
             && (document.body.scrollLeft
-            || document.body.scrollTop)) {
+                    || document.body.scrollTop)) {
         //DOM compliant
         scrOfY = document.body.scrollTop;
     } else if (document.documentElement
             && (document.documentElement.scrollLeft
-            || document.documentElement.scrollTop)) {
+                    || document.documentElement.scrollTop)) {
         //IE6 Strict
         scrOfY = document.documentElement.scrollTop;
     }
@@ -944,6 +943,9 @@ function what_key(enter_key, event) {
 function initAdminArea() {
     console.log('initialising of administration area started');
 
+    testNumber("#createUserPhone, #UserPhone, #Phone, #shopOrdersUserPhone", ['(', ')', '+', '-'], 'phone');
+    testNumber('.number input', ['.'], 'count');
+    
     if ($.exists('[data-href="' + location.hash + '"]')) {
         $('[data-href="' + location.hash + '"]').siblings().removeClass('active').end().addClass('active');
         $(location.hash).siblings().removeClass('active').end().addClass('active');
@@ -1258,8 +1260,8 @@ function initAdminArea() {
 
     })
             .on('pjax:end', function() {
-        $('#loading').fadeOut(300);
-    });
+                $('#loading').fadeOut(300);
+            });
 
     //add arrows to orders list
     if (window.hasOwnProperty('orderField'))

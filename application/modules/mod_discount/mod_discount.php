@@ -52,6 +52,14 @@ class Mod_discount extends \MY_Controller {
             if (!empty($giftKey)) {
                 $this->baseDiscount->updateDiskApply($giftKey, 'gift');
             }
+
+            // to not overload max applies of discounts
+            $overload = \mod_discount\classes\ApplyChecker::getInstance()->getAppliesOverloadDifference();
+            if ($overload > 0) {
+                $totalPrice = \Cart\BaseCart::getInstance()->getTotalPrice();
+                \Cart\BaseCart::getInstance()->setTotalPrice($totalPrice + $overload);
+                \mod_discount\classes\ApplyChecker::getInstance()->changeCartItemsOveralPrice();
+            }
         }
     }
 
@@ -89,9 +97,9 @@ class Mod_discount extends \MY_Controller {
                         $cartItem = $cart->getItem($productData);
                         if ($cartItem['success'] === TRUE) {
                             $cartItem['data']->discountKey = $discount['discount_max']['key'];
-                            //$cartItem['data']->discountData = $discount['discount_max'];
                         }
                         $cart->setItemPrice($productData, $priceNew);
+                        //$item->overallPrice = $priceNew * $item->quantity;
                     }
                 }
             }
@@ -137,6 +145,7 @@ class Mod_discount extends \MY_Controller {
                             if (is_null($item->discountKey)) {
                                 continue;
                             }
+
                             for ($i = 0; $i < $item->quantity; $i++) {
                                 $this->baseDiscount->updateDiskApply($item->discountKey);
                             }
@@ -210,6 +219,14 @@ class Mod_discount extends \MY_Controller {
      */
     public function register_script() {
         \CMSFactory\assetManager::create()->registerScript('main', TRUE);
+    }
+
+    public function test() {
+        $res = \mod_discount\classes\ApplyChecker::getInstance()->getAppliesOverloadDifference();
+        echo '<pre>';
+        var_dump($res);
+        echo '</pre>';
+        exit;
     }
 
 }
