@@ -20,8 +20,6 @@
 */}
 <!-- Get category tree -->
 {ShopCore::app()->SCategoryTree->getTree(SCategoryTree::MODE_MULTI);}
-            {$CI->load->module('banners')->render($model->getId())}
-
 <div class="frame-crumbs">
     {widget('path')}
 </div>
@@ -44,6 +42,8 @@
             {/if}
 
             {include_tpl('catalogue_header')}
+            
+            {$CI->load->module('banners')->render($model->getId())}
             
             <!--Start. Show brand description if $CI->uri->segment(2) == "brand" and description is not empty-->
             {if $model->getImage() && trim($model->getDescription()) != ""}
