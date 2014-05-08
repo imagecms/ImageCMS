@@ -73,7 +73,7 @@
                                             <span class="current-prices f-s_0">
                                                 <span class="price-new">
                                                     <span>
-                                                        <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($item->price * $item->quantity)}</span>
+                                                        <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($item->overallPrice)}</span>
                                                         <span class="curr">{$CS}</span>
                                                     </span>
                                                 </span>
