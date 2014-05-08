@@ -20,6 +20,8 @@
 */}
 <!-- Get category tree -->
 {ShopCore::app()->SCategoryTree->getTree(SCategoryTree::MODE_MULTI);}
+            {$CI->load->module('banners')->render($model->getId())}
+
 <div class="frame-crumbs">
     {widget('path')}
 </div>

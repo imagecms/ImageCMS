@@ -18,6 +18,8 @@
     <!-- Making bread crumbs -->
     {widget('path')}
 </div>
+            {$CI->load->module('banners')->render($model->getId())}
+
 <div class="frame-inside page-product">
     <div class="container">
         {$inCartFV = getAmountInCart('SProducts', $model->firstVariant->getId())}
