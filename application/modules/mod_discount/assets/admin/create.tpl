@@ -219,7 +219,7 @@
                                                     {foreach $categories as $category}
                                                         <option {if $category->getLevel() == 0}style="font-weight: bold;"{/if} value="{echo $category->getId()}">{str_repeat('-',$category->getLevel())}{echo ShopCore::encode($category->getName())}</option>
                                                     {/foreach}
-                                                </select>
+                                                </select></br>
                                                 <input type="checkbox" name="category[child]" value="1"/>  {lang('Change child category', 'mod_discount')} 
 
                                             </div>

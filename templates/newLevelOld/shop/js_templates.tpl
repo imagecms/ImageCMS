@@ -480,7 +480,7 @@
 
     <div class="drop drop-style" id="confirm">
         <div class="drop-header">
-            <div class="title">{lang('Подтвердите' , 'newLevel')}</div>
+            <div class="title">{lang('Удалить список?' , 'newLevel')}</div>
         </div>
         <div class="drop-content-confirm">
             <div class="inside-padd cofirm w-s_n-w">
@@ -489,9 +489,9 @@
                         <span class="text-el">{lang('Подтвердить' , 'newLevel')}</span>
                     </button>
                 </div>
-                <div class="btn-cancel">
+                <div class="btn-def">
                     <button type="button" data-closed="closed-js">
-                        <span class="text-el d_l_1">{lang('Отменить' , 'newLevel')}</span>
+                        <span class="text-el">{lang('Отменить' , 'newLevel')}</span>
                     </button>
                 </div>
             </div>

@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-05 01:01+0300\n"
-"PO-Revision-Date: 2014-05-05 01:01+0300\n"
+"POT-Creation-Date: 2014-05-07 02:04+0300\n"
+"PO-Revision-Date: 2014-05-07 02:04+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -20,6 +20,41 @@ msgstr ""
 "X-Poedit-SearchPath-1: ../../../templates/administrator\n"
 "X-Poedit-SearchPath-2: ../../modules/shop/admin\n"
 "X-Poedit-SearchPath-3: ../../../application/modules/shop/models/build/classes\n"
+
+#: ./application/modules/shop/admin/templates/customfields/create.tpl:70
+#: ./application/modules/shop/admin/templates/customfields/list.tpl:53
+#: ./application/modules/shop/admin/templates/customfields/edit.tpl:69
+msgid "Field required"
+msgstr "Поле необходимое"
+
+#: ./application/modules/shop/admin/templates/customfields/create.tpl:81
+#: ./application/modules/shop/admin/templates/customfields/list.tpl:52
+#: ./application/modules/shop/admin/templates/customfields/edit.tpl:80
+msgid "Field active"
+msgstr "Поле активное"
+
+#: ./application/modules/shop/admin/templates/customfields/create.tpl:92
+#: ./application/modules/shop/admin/templates/customfields/edit.tpl:91
+msgid "Field private"
+msgstr "Поле приватное"
+
+#: ./application/modules/shop/admin/templates/products/create.tpl:213
+#: ./application/modules/shop/admin/templates/products/default_edit.tpl:274
+msgid "Format date: yyyy-mm-dd H:mm:ss"
+msgstr "Формат даты: ГГГГ-мм-ДД ч:мм:СС"
+
+#: ./templates/administrator/inc/menus.php:371
+msgid "Delivery methods (shipping)"
+msgstr "Способы доставки"
+
+#: ./templates/administrator/shop_menu.tpl:60
+msgid "Delivery method"
+msgstr "Способ доставки"
+
+#: ./application/modules/shop/admin/templates/orders/_create.tpl:188
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:97
+msgid "Delivery Method"
+msgstr "Способ доставки"
 
 #: ./application/modules/shop/admin/templates/properties/create.tpl:5
 msgid "Product property creating"
@@ -46,7 +81,7 @@ msgid "Background Color"
 msgstr "Цвет фона"
 
 #: ./application/modules/shop/admin/templates/orders/edit.tpl:58
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:487
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:488
 #: ./application/modules/shop/admin/templates/dashboard/dashboard.tpl:93
 #: ./application/modules/shop/admin/templates/users/edit.tpl:215
 msgid "Unpaid"
@@ -69,7 +104,7 @@ msgid "Only fonts-files can be uploaded"
 msgstr "Только файлы-шрифтов могут быть загружены"
 
 #: ./application/modules/shop/admin/templates/orders/check.tpl:89
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:117
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:118
 msgid "Gift certificate"
 msgstr "Подарочный сертификат"
 
@@ -81,7 +116,7 @@ msgstr "Загрузить"
 msgid "Font file must support all characters you need."
 msgstr "Файл шрифта должен поддерживать все символы, которые вам нужны."
 
-#: ./application/modules/shop/admin/orders.php:152
+#: ./application/modules/shop/admin/orders.php:151
 msgid "&nbsp;Back"
 msgstr "&nbsp;Назад"
 
@@ -112,7 +147,7 @@ msgstr "API Key для Mail Chimp"
 msgid "Csv name is already used"
 msgstr "CSV имя уже используется"
 
-#: ./application/modules/shop/admin/callbacks.php:253
+#: ./application/modules/shop/admin/callbacks.php:254
 msgid "Callback's status was changed"
 msgstr "Cтатус обратного звонка изменен"
 
@@ -388,8 +423,8 @@ msgstr "Автоподбор"
 
 #: ./application/modules/shop/admin/templates/categories/create.tpl:109
 #: ./application/modules/shop/admin/templates/categories/edit.tpl:131
-#: ./application/modules/shop/admin/templates/products/create.tpl:288
-#: ./application/modules/shop/admin/templates/products/default_edit.tpl:351
+#: ./application/modules/shop/admin/templates/products/create.tpl:258
+#: ./application/modules/shop/admin/templates/products/default_edit.tpl:352
 msgid "Autoselection"
 msgstr "Автоподбор"
 
@@ -428,7 +463,7 @@ msgstr "Адрес"
 
 #: ./application/modules/shop/admin/templates/orders/check.tpl:26
 #: ./application/modules/shop/admin/templates/orders/_create.tpl:123
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:181
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:182
 msgid "Delivery Address"
 msgstr "Адрес доставки"
 
@@ -455,11 +490,6 @@ msgstr "Активние поля"
 msgid "Active until"
 msgstr "Активно до"
 
-#: ./application/modules/shop/admin/templates/customfields/create.tpl:81
-#: ./application/modules/shop/admin/templates/customfields/list.tpl:52
-msgid "Active field"
-msgstr "Активное"
-
 #: ./application/modules/shop/admin/templates/search/advanced.tpl:38
 #: ./application/modules/shop/admin/templates/search/list.tpl:58
 #: ./application/modules/shop/admin/templates/search/list.tpl:135
@@ -483,7 +513,7 @@ msgstr "Активное"
 #: ./application/modules/shop/admin/templates/products/_edit.tpl:169
 #: ./application/modules/shop/admin/templates/products/_edit.tpl:619
 #: ./application/modules/shop/admin/templates/products/default_edit.tpl:24
-#: ./application/modules/shop/admin/templates/products/default_edit.tpl:542
+#: ./application/modules/shop/admin/templates/products/default_edit.tpl:543
 #: ./application/modules/shop/admin/templates/products/_create.tpl:142
 #: ./application/modules/shop/admin/templates/kits/index.tpl:50
 #: ./application/modules/shop/admin/templates/kits/kit_create.tpl:72
@@ -551,8 +581,8 @@ msgstr "Акция"
 #: ./application/modules/shop/admin/templates/search/list.tpl:123
 #: ./application/modules/shop/admin/templates/orders/create.tpl:44
 #: ./application/modules/shop/admin/templates/orders/_editAddToCartWindow.tpl:5
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:239
-#: ./application/modules/shop/admin/templates/products/default_edit.tpl:287
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:240
+#: ./application/modules/shop/admin/templates/products/default_edit.tpl:288
 msgid "Article"
 msgstr "Артикул"
 
@@ -655,7 +685,7 @@ msgid "Brand (s) has been successfully removed (s)"
 msgstr "Бренд(ы) успешно удален(ы)"
 
 #: ./templates/administrator/shop_menu.tpl:46
-#: ./templates/administrator/inc/menus.php:223
+#: ./templates/administrator/inc/menus.php:227
 msgid "Brands"
 msgstr "Бренды"
 
@@ -757,7 +787,7 @@ msgstr "Валюта создана"
 msgid "Currency successfully removed"
 msgstr "Валюта успешно удалена"
 
-#: ./templates/administrator/inc/menus.php:363
+#: ./templates/administrator/inc/menus.php:367
 msgid "Currencies"
 msgstr "Валюты"
 
@@ -977,8 +1007,8 @@ msgstr "Виджет успешно удален"
 
 #: ./templates/administrator/new_desktop.tpl:108
 #: ./templates/administrator/desktop.tpl:145
-#: ./templates/administrator/inc/menus.php:92
-#: ./templates/administrator/inc/menus.php:379
+#: ./templates/administrator/inc/menus.php:96
+#: ./templates/administrator/inc/menus.php:383
 msgid "Widgets"
 msgstr "Виджеты"
 
@@ -1066,7 +1096,7 @@ msgstr "Вперед"
 msgid "Forward"
 msgstr "Вперед&nbsp;"
 
-#: ./application/modules/shop/admin/orders.php:151
+#: ./application/modules/shop/admin/orders.php:150
 msgid "Forward&nbsp;"
 msgstr "Вперед&nbsp;"
 
@@ -1122,8 +1152,8 @@ msgstr "Все контента по категориям"
 #: ./templates/administrator/module_table.tpl:39
 #: ./templates/administrator/new_desktop.tpl:95
 #: ./templates/administrator/desktop.tpl:132
-#: ./templates/administrator/inc/menus.php:80
-#: ./templates/administrator/inc/menus.php:308
+#: ./templates/administrator/inc/menus.php:84
+#: ./templates/administrator/inc/menus.php:312
 msgid "All modules"
 msgstr "Все модули"
 
@@ -1197,7 +1227,7 @@ msgstr "Вы можете использовать следующие перем
 msgid "You do not choose"
 msgstr "Вы не выбрали"
 
-#: ./application/modules/shop/admin/orders.php:617
+#: ./application/modules/shop/admin/orders.php:619
 msgid "You can not delete the last item from the order"
 msgstr "Вы не можете удалить последний элемент из заказа"
 
@@ -1274,7 +1304,7 @@ msgstr "Выберите тип модуля в таблице ниже"
 #: ./application/modules/shop/admin/templates/products/_edit.tpl:234
 #: ./application/modules/shop/admin/templates/products/_edit.tpl:288
 #: ./application/modules/shop/admin/templates/products/_edit.tpl:548
-#: ./application/modules/shop/admin/templates/products/default_edit.tpl:440
+#: ./application/modules/shop/admin/templates/products/default_edit.tpl:441
 #: ./application/modules/shop/admin/templates/products/_create.tpl:203
 #: ./application/modules/shop/admin/templates/products/_create.tpl:251
 #: ./application/modules/shop/admin/templates/brands/create.tpl:98
@@ -1364,7 +1394,7 @@ msgstr "Выхад"
 msgid "Exited the control panel"
 msgstr "Вышли с контрольной панели"
 
-#: ./templates/administrator/inc/menus.php:152
+#: ./templates/administrator/inc/menus.php:156
 msgid "Shop dashboard"
 msgstr "Главная"
 
@@ -1389,7 +1419,7 @@ msgstr "главного товара"
 
 #: ./application/modules/shop/admin/templates/system/importfields.tpl:180
 #: ./application/modules/shop/admin/templates/products/create.tpl:101
-#: ./application/modules/shop/admin/templates/products/create.tpl:375
+#: ./application/modules/shop/admin/templates/products/create.tpl:345
 #: ./application/modules/shop/admin/templates/products/_edit.tpl:108
 #: ./application/modules/shop/admin/templates/products/_edit.tpl:132
 #: ./application/modules/shop/admin/templates/products/_edit.tpl:232
@@ -1436,8 +1466,8 @@ msgstr "Главный шаблон категории. По умолчанию"
 
 #: ./templates/administrator/shop_menu.tpl:58
 #: ./templates/administrator/settings_site.tpl:6
-#: ./templates/administrator/inc/menus.php:112
-#: ./templates/administrator/inc/menus.php:394
+#: ./templates/administrator/inc/menus.php:116
+#: ./templates/administrator/inc/menus.php:398
 msgid "Global settings"
 msgstr "Глобальные настройки"
 
@@ -1506,7 +1536,7 @@ msgstr "Данные дополнительного поля"
 #: ./application/modules/shop/admin/users.php:521
 #: ./application/modules/shop/admin/banners.php:283
 #: ./application/modules/shop/admin/customfields.php:204
-#: ./application/modules/shop/admin/notifications.php:255
+#: ./application/modules/shop/admin/notifications.php:268
 #: ./application/modules/shop/admin/notificationstatuses.php:141
 #: ./application/modules/shop/admin/comulativ.php:245
 #: ./application/modules/shop/admin/paymentmethods.php:165
@@ -1523,7 +1553,7 @@ msgstr "Данные пользователя"
 
 #: ./application/modules/shop/admin/templates/notificationstatuses/edit.tpl:23
 msgid "Callback status data"
-msgstr "Данные статуса обратного звонка"
+msgstr "Данные статуса уведомления о появлении"
 
 #: ./application/modules/shop/admin/templates/orders/_editWindow.tpl:3
 msgid " This product has been deleted from the shop! You can only change the quantity or replace by another product"
@@ -1561,9 +1591,9 @@ msgstr "Дата и время создания"
 msgid "Date of changes"
 msgstr "Дата изменений"
 
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:466
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:500
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:526
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:467
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:501
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:527
 msgid "Modify date"
 msgstr "Дата изменения"
 
@@ -1695,7 +1725,7 @@ msgstr "До"
 msgid "to"
 msgstr "до"
 
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:585
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:586
 #: ./application/modules/shop/admin/templates/orders/cart_list.tpl:21
 #: ./application/modules/shop/admin/templates/settings/settings.tpl:240
 msgid "Add"
@@ -1726,21 +1756,25 @@ msgstr "Добавить контакт"
 msgid "Add a new topic"
 msgstr "Добавить новую тему"
 
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:366
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:367
 msgid "Add a new product to the order"
 msgstr "Добавить новый товар к заказу"
 
 #: ./templates/administrator/cats_sidebar.tpl:3
+#: ./templates/administrator/cats_sidebar.tpl:3
+#: ./templates/administrator/cats_tree_css.tpl:7
 #: ./templates/administrator/cats_tree_css.tpl:7
 msgid "Add a subcategory"
 msgstr "Добавить подкатегорию"
 
 #: ./templates/administrator/cats_sidebar.tpl:4
+#: ./templates/administrator/cats_sidebar.tpl:4
+#: ./templates/administrator/cats_tree_css.tpl:8
 #: ./templates/administrator/cats_tree_css.tpl:8
 msgid "Add an article"
 msgstr "Добавить статью"
 
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:580
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:581
 msgid "Add product to order"
 msgstr "Добавление товара к заказу"
 
@@ -1777,8 +1811,8 @@ msgid "An additional field is created"
 msgstr "Дополнительное поле создано"
 
 #: ./application/modules/shop/admin/templates/orders/_create.tpl:148
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:398
-#: ./application/modules/shop/admin/templates/products/default_edit.tpl:481
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:399
+#: ./application/modules/shop/admin/templates/products/default_edit.tpl:482
 #: ./application/modules/shop/admin/templates/products/edit.tpl:28
 #: ./application/modules/shop/admin/templates/users/create.tpl:89
 #: ./application/modules/shop/admin/templates/users/edit.tpl:107
@@ -1798,7 +1832,7 @@ msgstr "Дополнительные изображения"
 msgid "Additional categories"
 msgstr "Дополнительные категории"
 
-#: ./templates/administrator/inc/menus.php:383
+#: ./templates/administrator/inc/menus.php:387
 msgid "Custom fields"
 msgstr "Дополнительные поля"
 
@@ -1809,10 +1843,10 @@ msgstr "Дополнительные поля"
 msgid "Additional fields"
 msgstr "Дополнительные поля"
 
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:111
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:371
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:112
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:372
 #: ./application/modules/shop/admin/templates/orders/cart_list.tpl:28
-#: ./application/modules/shop/admin/orders.php:1001
+#: ./application/modules/shop/admin/orders.php:1002
 msgid "Delivery"
 msgstr "Доставка"
 
@@ -1863,8 +1897,8 @@ msgstr "Еще одно небольшое изображение вариант
 msgid "Sorry but you have an old browser"
 msgstr "Жаль, но у вас старый браузер"
 
-#: ./templates/administrator/inc/menus.php:127
-#: ./templates/administrator/inc/menus.php:409
+#: ./templates/administrator/inc/menus.php:131
+#: ./templates/administrator/inc/menus.php:413
 msgid "Events journal"
 msgstr "Журнал событий"
 
@@ -1888,7 +1922,7 @@ msgid "Completed"
 msgstr "Завершено"
 
 #: ./application/modules/shop/admin/templates/products/create.tpl:110
-#: ./application/modules/shop/admin/templates/products/create.tpl:384
+#: ./application/modules/shop/admin/templates/products/create.tpl:354
 #: ./application/modules/shop/admin/templates/products/default_edit.tpl:130
 msgid "Load from internet"
 msgstr "Загрузите из интернета"
@@ -1909,11 +1943,11 @@ msgstr "Загрузка свойств"
 msgid "Order"
 msgstr "Заказ"
 
-#: ./application/modules/shop/admin/orders.php:219
+#: ./application/modules/shop/admin/orders.php:218
 msgid "Order not found"
 msgstr "Заказ не найден"
 
-#: ./application/modules/shop/admin/orders.php:1184
+#: ./application/modules/shop/admin/orders.php:1185
 msgid "Order was successfully created"
 msgstr "Заказ успешно создан"
 
@@ -1928,11 +1962,12 @@ msgid "Customer"
 msgstr "Заказчик"
 
 #: ./templates/administrator/main.tpl:207
+#: ./templates/administrator/main.tpl:207
 #: ./templates/administrator/shop_menu.tpl:8
 #: ./templates/administrator/shop_menu.tpl:10
-#: ./templates/administrator/inc/menus.php:158
-#: ./templates/administrator/inc/menus.php:163
-#: ./templates/administrator/inc/menus.php:326
+#: ./templates/administrator/inc/menus.php:162
+#: ./templates/administrator/inc/menus.php:167
+#: ./templates/administrator/inc/menus.php:330
 msgid "Orders"
 msgstr "Заказы"
 
@@ -1941,7 +1976,7 @@ msgstr "Заказы"
 msgid "Orders "
 msgstr "Заказы"
 
-#: ./application/modules/shop/admin/orders.php:484
+#: ./application/modules/shop/admin/orders.php:486
 msgid "Orders are removed"
 msgstr "Заказы удалены"
 
@@ -2034,9 +2069,9 @@ msgstr "Изменения сохранены"
 #: ./application/modules/shop/admin/users.php:416
 #: ./application/modules/shop/admin/gifts.php:116
 #: ./application/modules/shop/admin/discounts.php:164
-#: ./application/modules/shop/admin/callbacks.php:104
-#: ./application/modules/shop/admin/callbacks.php:206
-#: ./application/modules/shop/admin/callbacks.php:404
+#: ./application/modules/shop/admin/callbacks.php:105
+#: ./application/modules/shop/admin/callbacks.php:207
+#: ./application/modules/shop/admin/callbacks.php:405
 #: ./application/modules/shop/admin/orderstatuses.php:129
 #: ./application/modules/shop/admin/kits.php:167
 #: ./application/modules/shop/admin/kits.php:209
@@ -2065,6 +2100,7 @@ msgid "Change"
 msgstr "Изменить"
 
 #: ./templates/administrator/cats_tree_css.tpl:6
+#: ./templates/administrator/cats_tree_css.tpl:6
 msgid "Change category data"
 msgstr "Изменить данные категории"
 
@@ -2091,7 +2127,7 @@ msgstr "Изображение"
 #: ./application/modules/shop/admin/templates/products/create.tpl:22
 #: ./application/modules/shop/admin/templates/products/_edit.tpl:26
 #: ./application/modules/shop/admin/templates/products/_edit.tpl:529
-#: ./application/modules/shop/admin/templates/products/default_edit.tpl:423
+#: ./application/modules/shop/admin/templates/products/default_edit.tpl:424
 #: ./application/modules/shop/admin/templates/products/_create.tpl:22
 #: ./application/modules/shop/admin/templates/products/edit.tpl:26
 #: ./application/modules/shop/admin/templates/settings/settings.tpl:20
@@ -2133,7 +2169,7 @@ msgstr "Импорт продуктов"
 msgid "Import language "
 msgstr "Импорт языка"
 
-#: ./templates/administrator/inc/menus.php:375
+#: ./templates/administrator/inc/menus.php:379
 msgid "Import-Export CSV/XLS"
 msgstr "Импорт-Экспорт CSV/XLS"
 
@@ -2160,8 +2196,8 @@ msgstr "Имя колонки CSV"
 #: ./application/modules/shop/admin/templates/callbacks/edit.tpl:64
 #: ./application/modules/shop/admin/templates/orders/check.tpl:12
 #: ./application/modules/shop/admin/templates/orders/_create.tpl:96
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:137
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:140
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:138
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:141
 #: ./application/modules/shop/admin/templates/notifications/edit.tpl:73
 #: ./application/modules/shop/admin/templates/settings/settings.tpl:542
 #: ./application/modules/shop/admin/templates/settings/settings.tpl:605
@@ -2216,7 +2252,7 @@ msgstr "Интерфейс"
 msgid "Information"
 msgstr "Информация"
 
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:425
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:426
 msgid "Ordering information"
 msgstr "Информация для заказа"
 
@@ -2235,7 +2271,7 @@ msgid "Update information"
 msgstr "Информация обновления"
 
 #: ./templates/administrator/sys_info.tpl:5
-#: ./templates/administrator/inc/menus.php:428
+#: ./templates/administrator/inc/menus.php:432
 msgid "System information"
 msgstr "Информация системы"
 
@@ -2251,7 +2287,7 @@ msgstr "Использувать подарочные сертификаты?"
 msgid "Orders history"
 msgstr "История заказов"
 
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:495
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:496
 msgid "Status history"
 msgstr "История статусов"
 
@@ -2259,8 +2295,8 @@ msgstr "История статусов"
 msgid "Source"
 msgstr "Источник"
 
-#: ./application/modules/shop/admin/templates/orders/check.tpl:102
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:379
+#: ./application/modules/shop/admin/templates/orders/check.tpl:110
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:380
 msgid "In total"
 msgstr "Итого"
 
@@ -2291,7 +2327,7 @@ msgstr "Картинки обновлена"
 msgid "Catalog"
 msgstr "Каталог"
 
-#: ./templates/administrator/inc/menus.php:206
+#: ./templates/administrator/inc/menus.php:210
 msgid "Products catalogue"
 msgstr "Каталог товаров"
 
@@ -2305,9 +2341,9 @@ msgstr "Каталог товаров"
 #: ./templates/administrator/modules_search.tpl:120
 #: ./templates/administrator/settings_site.tpl:175
 #: ./templates/administrator/desktop.tpl:112
-#: ./templates/administrator/inc/menus.php:50
-#: ./templates/administrator/inc/menus.php:273
-#: ./templates/administrator/inc/menus.php:341
+#: ./templates/administrator/inc/menus.php:54
+#: ./templates/administrator/inc/menus.php:277
+#: ./templates/administrator/inc/menus.php:345
 #: ./templates/administrator/dashboard.tpl:23
 #: ./templates/administrator/dashboard.tpl:71
 #: ./templates/administrator/dashboard.tpl:143
@@ -2318,7 +2354,7 @@ msgstr "Категории"
 msgid "Translated the category"
 msgstr "Категории переведена"
 
-#: ./templates/administrator/inc/menus.php:211
+#: ./templates/administrator/inc/menus.php:215
 msgid "Product categories"
 msgstr "Категории товаров"
 
@@ -2427,9 +2463,9 @@ msgstr "Ключевые слова"
 
 #: ./application/modules/shop/admin/templates/categories/create.tpl:168
 #: ./application/modules/shop/admin/templates/categories/edit.tpl:191
-#: ./application/modules/shop/admin/templates/products/create.tpl:271
+#: ./application/modules/shop/admin/templates/products/create.tpl:241
 #: ./application/modules/shop/admin/templates/products/_edit.tpl:457
-#: ./application/modules/shop/admin/templates/products/default_edit.tpl:334
+#: ./application/modules/shop/admin/templates/products/default_edit.tpl:335
 #: ./application/modules/shop/admin/templates/products/_create.tpl:414
 msgid "Meta data"
 msgstr "Ключевые слова"
@@ -2462,7 +2498,7 @@ msgstr "Кодирование"
 #: ./application/modules/shop/admin/templates/orders/check.tpl:70
 #: ./application/modules/shop/admin/templates/orders/create.tpl:95
 #: ./application/modules/shop/admin/templates/orders/_editAddToCartWindow.tpl:34
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:241
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:242
 msgid "Quantity"
 msgstr "Количество"
 
@@ -2518,10 +2554,10 @@ msgstr "Комментарии пользователя обратного зв�
 #: ./application/modules/shop/admin/templates/callbacks/edit.tpl:82
 #: ./application/modules/shop/admin/templates/orders/check.tpl:50
 #: ./application/modules/shop/admin/templates/orders/_create.tpl:139
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:221
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:467
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:501
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:527
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:222
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:468
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:502
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:528
 #: ./application/modules/shop/admin/templates/notifications/edit.tpl:92
 msgid "Comment"
 msgstr "Комментарий"
@@ -2530,7 +2566,7 @@ msgstr "Комментарий"
 msgid "Comments of the wishlist author"
 msgstr "Комментарий автора желаний"
 
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:444
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:445
 msgid "Commentary to change the status"
 msgstr "Комментарий к изменению статуса"
 
@@ -2555,8 +2591,8 @@ msgstr "Комплекты дель тела"
 msgid "Components"
 msgstr "Компоненты"
 
-#: ./templates/administrator/inc/menus.php:36
-#: ./templates/administrator/inc/menus.php:288
+#: ./templates/administrator/inc/menus.php:40
+#: ./templates/administrator/inc/menus.php:292
 msgid "Custom fields constructor"
 msgstr "Конструктор полей"
 
@@ -2683,21 +2719,21 @@ msgstr "Массив значений для ряда товаров на сай
 
 #: ./application/modules/shop/admin/templates/callbacks/list.tpl:44
 #: ./application/modules/shop/admin/templates/callbacks/list.tpl:106
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:468
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:502
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:528
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:469
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:503
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:529
 #: ./application/modules/shop/admin/templates/notifications/list.tpl:71
 #: ./application/modules/shop/admin/templates/notifications/list.tpl:196
 msgid "Manager"
 msgstr "Менеджер"
 
-#: ./application/modules/shop/admin/notifications.php:148
+#: ./application/modules/shop/admin/notifications.php:161
 msgid "Manager does not exist or is not set"
 msgstr "Менеджер не существует или не установлен"
 
 #: ./templates/administrator/new_desktop.tpl:81
 #: ./templates/administrator/desktop.tpl:119
-#: ./templates/administrator/inc/menus.php:65
+#: ./templates/administrator/inc/menus.php:69
 msgid "Menu"
 msgstr "Меню"
 
@@ -2761,8 +2797,8 @@ msgstr "Множественный выбор"
 #: ./templates/administrator/new_desktop.tpl:93
 #: ./templates/administrator/roleCreate.tpl:58
 #: ./templates/administrator/desktop.tpl:130
-#: ./templates/administrator/inc/menus.php:75
-#: ./templates/administrator/inc/menus.php:303
+#: ./templates/administrator/inc/menus.php:79
+#: ./templates/administrator/inc/menus.php:307
 msgid "Modules"
 msgstr "Модули"
 
@@ -2831,7 +2867,7 @@ msgstr "Набор(ы) был(и) успешно удален(ы)"
 #: ./application/modules/shop/admin/templates/products/create.tpl:23
 #: ./application/modules/shop/admin/templates/products/_edit.tpl:27
 #: ./application/modules/shop/admin/templates/products/_edit.tpl:593
-#: ./application/modules/shop/admin/templates/products/default_edit.tpl:513
+#: ./application/modules/shop/admin/templates/products/default_edit.tpl:514
 #: ./application/modules/shop/admin/templates/products/_create.tpl:23
 #: ./application/modules/shop/admin/templates/products/edit.tpl:31
 msgid "Kits"
@@ -2841,7 +2877,7 @@ msgstr "Наборы"
 msgid "Product kits"
 msgstr "Наборы товаров"
 
-#: ./templates/administrator/inc/menus.php:227
+#: ./templates/administrator/inc/menus.php:231
 msgid "Produkts kits"
 msgstr "Наборы товаров"
 
@@ -2984,7 +3020,7 @@ msgstr "Например:"
 #: ./templates/administrator/create_cat.tpl:34
 #: ./templates/administrator/shop_menu.tpl:56
 #: ./templates/administrator/category_edit.tpl:42
-#: ./templates/administrator/inc/menus.php:354
+#: ./templates/administrator/inc/menus.php:358
 msgid "Settings"
 msgstr "Настройки"
 
@@ -2998,7 +3034,7 @@ msgstr "Настройки FTP соединения"
 msgid "Analysts settings"
 msgstr "Настройки аналитики"
 
-#: ./templates/administrator/inc/menus.php:359
+#: ./templates/administrator/inc/menus.php:363
 msgid "Shop settings"
 msgstr "Настройки магазина"
 
@@ -3087,7 +3123,7 @@ msgstr "не найдены"
 #: ./application/modules/shop/admin/templates/orders/list.tpl:40
 #: ./application/modules/shop/admin/templates/orders/list.tpl:168
 #: ./application/modules/shop/admin/templates/orders/list.tpl:247
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:546
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:547
 msgid "Not paid"
 msgstr "Не оплачен"
 
@@ -3106,12 +3142,15 @@ msgid "Do not display"
 msgstr "Не отображать"
 
 #: ./templates/administrator/module_table.tpl:111
+#: ./templates/administrator/module_table.tpl:111
 #: ./templates/administrator/module_table.tpl:116
+#: ./templates/administrator/module_table.tpl:116
+#: ./templates/administrator/module_table.tpl:121
 #: ./templates/administrator/module_table.tpl:121
 msgid "switch off"
 msgstr "не показывать"
 
-#: ./templates/administrator/main.tpl:462
+#: ./templates/administrator/main.tpl:460
 #: ./templates/administrator/pages_list.tpl:209
 #: ./templates/administrator/search.tpl:49
 msgid "don't show"
@@ -3130,7 +3169,7 @@ msgstr "Не создано виджетов"
 msgid "Can't load module info file"
 msgstr "Не удается загрузить файл информации модуля"
 
-#: ./application/modules/shop/admin/callbacks.php:322
+#: ./application/modules/shop/admin/callbacks.php:323
 msgid "Unable to remove default status"
 msgstr "Не удается удалить статус по умолчанию"
 
@@ -3154,8 +3193,8 @@ msgstr "Не удалось создать файл"
 msgid "Unable to remove the base status"
 msgstr "Не удалось удалить основной статус"
 
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:92
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:104
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:93
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:105
 #: ./application/modules/shop/admin/templates/products/create.tpl:138
 #: ./application/modules/shop/admin/templates/products/_edit.tpl:197
 #: ./application/modules/shop/admin/templates/products/default_edit.tpl:176
@@ -3203,10 +3242,7 @@ msgstr "Некоторые настройки не сохранены"
 msgid "You must attach the goods to create a set"
 msgstr "Необходимо прикрепить товары для создания набора"
 
-#: ./application/modules/shop/admin/templates/customfields/create.tpl:70
-#: ./application/modules/shop/admin/templates/customfields/list.tpl:53
 #: ./application/modules/shop/admin/templates/customfields/list.tpl:87
-#: ./application/modules/shop/admin/templates/customfields/edit.tpl:69
 msgid "Required"
 msgstr "Необходимое"
 
@@ -3223,8 +3259,8 @@ msgstr "Неправильный путь к корневому каталогу
 msgid "Wrong file type. Only csv|xls|xlsx"
 msgstr "Неправильный тип файла. Только csv|xls|xlsx"
 
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:199
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:211
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:200
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:212
 #: ./application/modules/shop/admin/templates/notifications/list.tpl:85
 #: ./application/modules/shop/admin/templates/notifications/list.tpl:124
 #: ./application/modules/shop/admin/templates/notifications/list.tpl:208
@@ -3428,7 +3464,7 @@ msgstr "Обновление"
 msgid "Updating has been completed"
 msgstr "Обновление завершено"
 
-#: ./templates/administrator/inc/menus.php:424
+#: ./templates/administrator/inc/menus.php:428
 #: ./templates/administrator/sys_upgrade.tpl:3
 msgid "System update"
 msgstr "Обновление системы"
@@ -3447,7 +3483,7 @@ msgid "Back to the system"
 msgstr "Обратно в систему"
 
 #: ./templates/administrator/shop_menu.tpl:13
-#: ./templates/administrator/inc/menus.php:175
+#: ./templates/administrator/inc/menus.php:179
 msgid "Callbacks"
 msgstr "Обратные звонки"
 
@@ -3455,15 +3491,15 @@ msgstr "Обратные звонки"
 msgid "Callback"
 msgstr "Обратный звонок"
 
-#: ./application/modules/shop/admin/callbacks.php:300
+#: ./application/modules/shop/admin/callbacks.php:301
 msgid "Callback was removed"
 msgstr "Обратный звонок удалён"
 
-#: ./application/modules/shop/admin/callbacks.php:305
+#: ./application/modules/shop/admin/callbacks.php:306
 msgid "Callback(s) was removed"
 msgstr "Обратный(е) звонок(ки) удален(ы)"
 
-#: ./application/modules/shop/admin/callbacks.php:442
+#: ./application/modules/shop/admin/callbacks.php:443
 msgid "Topic deleted"
 msgstr "Обсуждение удалено"
 
@@ -3478,7 +3514,7 @@ msgstr "Общая стоимость заказов"
 #: ./application/modules/shop/admin/templates/orders/check.tpl:72
 #: ./application/modules/shop/admin/templates/orders/create.tpl:96
 #: ./application/modules/shop/admin/templates/orders/list.tpl:92
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:242
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:243
 #: ./application/modules/shop/admin/templates/users/edit.tpl:161
 msgid "Total price"
 msgstr "Общая цена"
@@ -3494,7 +3530,6 @@ msgstr "Общие настройки"
 
 #: ./application/modules/shop/admin/templates/orders/create.tpl:108
 #: ./application/modules/shop/admin/templates/orders/_editWindow.tpl:47
-#: ./application/modules/shop/admin/templates/dashboard/dashboard.tpl:140
 #: ./application/modules/shop/admin/templates/settings/settings.tpl:75
 #: ./application/modules/shop/admin/templates/users/edit_orders_list.tpl:34
 msgid "Total"
@@ -3542,8 +3577,8 @@ msgid "Operating system"
 msgstr "Операционная система"
 
 #: ./application/modules/shop/admin/warehouses.php:107
-#: ./application/modules/shop/admin/orders.php:484
-#: ./application/modules/shop/admin/orders.php:523
+#: ./application/modules/shop/admin/orders.php:486
+#: ./application/modules/shop/admin/orders.php:525
 msgid "The operation was successful"
 msgstr "Операция прошла успешно"
 
@@ -3579,18 +3614,18 @@ msgstr "Описание цены доставки"
 #: ./application/modules/shop/admin/templates/paymentmethods/create.tpl:74
 #: ./application/modules/shop/admin/templates/paymentmethods/edit.tpl:75
 msgid "Payments"
-msgstr "Оплаты"
+msgstr "оплаты"
 
 #: ./application/modules/shop/admin/templates/orders/list.tpl:39
 #: ./application/modules/shop/admin/templates/orders/list.tpl:169
 #: ./application/modules/shop/admin/templates/orders/list.tpl:245
 #: ./application/modules/shop/admin/templates/orders/_create.tpl:89
 #: ./application/modules/shop/admin/templates/orders/edit.tpl:56
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:123
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:441
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:485
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:529
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:543
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:124
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:442
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:486
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:530
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:544
 #: ./application/modules/shop/admin/templates/dashboard/dashboard.tpl:91
 #: ./application/modules/shop/admin/templates/users/edit_orders_list.tpl:101
 #: ./application/modules/shop/admin/templates/users/edit_orders_list.tpl:104
@@ -3634,9 +3669,9 @@ msgstr "Основной шаблон страницы"
 msgid "Main page template"
 msgstr "Основной шаблон страницы"
 
-#: ./application/modules/shop/admin/templates/products/create.tpl:257
+#: ./application/modules/shop/admin/templates/products/create.tpl:227
 #: ./application/modules/shop/admin/templates/products/_edit.tpl:444
-#: ./application/modules/shop/admin/templates/products/default_edit.tpl:321
+#: ./application/modules/shop/admin/templates/products/default_edit.tpl:322
 #: ./application/modules/shop/admin/templates/products/_create.tpl:400
 msgid "Product main template. By default product.tpl"
 msgstr "Основной шаблон товара. По-умолчанию product.tpl"
@@ -3709,6 +3744,7 @@ msgid "Cancel"
 msgstr "Отменить"
 
 #: ./templates/administrator/pages_list.tpl:61
+#: ./templates/administrator/pages_list.tpl:61
 msgid "Cancel filter"
 msgstr "Отменить фильтрацию"
 
@@ -3776,7 +3812,7 @@ msgstr "Отправить email"
 msgid "Send notification about new callback to administrator"
 msgstr "Отправлять администратору оповещение о новом Callback'e"
 
-#: ./application/modules/shop/admin/orders.php:726
+#: ./application/modules/shop/admin/orders.php:728
 msgid "Very high price, please set smaller"
 msgstr "Очень высокая цена, пожалуйста, установите меньшую"
 
@@ -3790,8 +3826,8 @@ msgstr "Очистите старые или удалять устаревшие
 msgid "Clean"
 msgstr "Очистить"
 
-#: ./templates/administrator/inc/menus.php:143
-#: ./templates/administrator/inc/menus.php:436
+#: ./templates/administrator/inc/menus.php:147
+#: ./templates/administrator/inc/menus.php:440
 msgid "Clear cache"
 msgstr "Очистить кеш"
 
@@ -4027,10 +4063,7 @@ msgstr "По положению"
 msgid "By raiting"
 msgstr "По рейтингу"
 
-#: ./application/modules/shop/admin/templates/callbacks/status_list.tpl:27
-#: ./application/modules/shop/admin/templates/callbacks/status_list.tpl:40
-#: ./application/modules/shop/admin/templates/callbacks/create_status.tpl:47
-#: ./application/modules/shop/admin/templates/callbacks/edit_status.tpl:50
+#: ./templates/administrator/languages.tpl:54
 msgid "By default"
 msgstr "По умолчанию"
 
@@ -4048,7 +4081,7 @@ msgid "Gift Certificates"
 msgstr "Подарочные сертификаты"
 
 #: ./application/modules/shop/admin/templates/orders/create.tpl:265
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:355
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:356
 msgid "Gift Certificate"
 msgstr "Подарочный сертификат"
 
@@ -4161,7 +4194,7 @@ msgstr "Позиции обновлены"
 msgid "Positions saved"
 msgstr "Позиции сохранены"
 
-#: ./application/modules/shop/admin/callbacks.php:266
+#: ./application/modules/shop/admin/callbacks.php:267
 #: ./application/modules/shop/admin/orderstatuses.php:223
 msgid "Positions saved successfully"
 msgstr "Позиции успешно сохранены"
@@ -4170,7 +4203,7 @@ msgstr "Позиции успешно сохранены"
 msgid "Position"
 msgstr "Позиция"
 
-#: ./application/modules/shop/admin/callbacks.php:159
+#: ./application/modules/shop/admin/callbacks.php:160
 msgid "Position created"
 msgstr "Позиция создана"
 
@@ -4182,7 +4215,7 @@ msgstr "Позиция сохранена"
 #: ./templates/administrator/modules_search.tpl:42
 #: ./templates/administrator/modules_search.tpl:44
 #: ./templates/administrator/desktop.tpl:133
-#: ./templates/administrator/inc/menus.php:346
+#: ./templates/administrator/inc/menus.php:350
 msgid "Search"
 msgstr "Поиск"
 
@@ -4198,7 +4231,7 @@ msgstr "Поиск пользователя"
 msgid "Find a product"
 msgstr "Поиск товара"
 
-#: ./templates/administrator/main.tpl:461
+#: ./templates/administrator/main.tpl:459
 #: ./templates/administrator/pages_list.tpl:209
 #: ./templates/administrator/search.tpl:49
 msgid "show"
@@ -4209,7 +4242,7 @@ msgid "Show"
 msgstr "Показать"
 
 #: ./application/modules/shop/admin/templates/orders/_create.tpl:129
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:186
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:187
 msgid "Show on map"
 msgstr "Показать на карте"
 
@@ -4244,6 +4277,7 @@ msgstr "Показывать в фильтре"
 msgid "Show on product page"
 msgstr "Показывать на странице товаров"
 
+#: ./application/modules/shop/admin/templates/dashboard/dashboard.tpl:140
 #: ./application/modules/shop/admin/templates/comulativ/user.tpl:48
 #: ./application/modules/shop/admin/templates/commulative/user.tpl:48
 #: ./application/modules/shop/admin/templates/users/list.tpl:64
@@ -4251,12 +4285,7 @@ msgstr "Показывать на странице товаров"
 msgid "Purchase price"
 msgstr "Покупная цена"
 
-#: ./application/modules/shop/admin/templates/customfields/create.tpl:70
-#: ./application/modules/shop/admin/templates/customfields/create.tpl:92
-#: ./application/modules/shop/admin/templates/customfields/list.tpl:53
 #: ./application/modules/shop/admin/templates/customfields/list.tpl:54
-#: ./application/modules/shop/admin/templates/customfields/edit.tpl:69
-#: ./application/modules/shop/admin/templates/customfields/edit.tpl:91
 msgid "Field"
 msgstr "Поле"
 
@@ -4264,10 +4293,6 @@ msgstr "Поле"
 #: ./application/modules/admin/categories.php:129
 msgid "The %s field can only contain Latin characters"
 msgstr "Поле %s должно содержать только латинские символы."
-
-#: ./application/modules/shop/admin/templates/customfields/edit.tpl:80
-msgid "Field Active"
-msgstr "Поле Активное"
 
 #: ./application/modules/shop/admin/templates/customfields/create.tpl:46
 #: ./application/modules/shop/admin/templates/customfields/edit.tpl:45
@@ -4315,13 +4340,13 @@ msgstr "Полное описание"
 msgid "Full contents"
 msgstr "Полное содержание"
 
-#: ./templates/administrator/inc/menus.php:238
+#: ./templates/administrator/inc/menus.php:242
 msgid "Users management"
 msgstr "Пользователи"
 
 #: ./templates/administrator/module_table.tpl:93
 #: ./templates/administrator/shop_menu.tpl:37
-#: ./templates/administrator/inc/menus.php:331
+#: ./templates/administrator/inc/menus.php:335
 msgid "Users"
 msgstr "Пользователи"
 
@@ -4335,7 +4360,7 @@ msgstr "Пользователи удалены"
 msgid "User"
 msgstr "Пользователь"
 
-#: ./application/modules/shop/admin/orders.php:1197
+#: ./application/modules/shop/admin/orders.php:1198
 msgid "User is not selected"
 msgstr "Пользователь не выбран"
 
@@ -4343,7 +4368,7 @@ msgstr "Пользователь не выбран"
 msgid "User not found"
 msgstr "Пользователь не найден"
 
-#: ./application/modules/shop/admin/notifications.php:215
+#: ./application/modules/shop/admin/notifications.php:228
 msgid "User is notified by E-mail"
 msgstr "Пользователь получил уведомление по электронной почте"
 
@@ -4391,6 +4416,7 @@ msgstr "Порт"
 msgid "Last comments"
 msgstr "Последние комментарии"
 
+#: ./templates/administrator/main.tpl:216
 #: ./templates/administrator/main.tpl:216
 #: ./templates/administrator/dashboard.tpl:154
 msgid "Latest/recent comments"
@@ -4450,10 +4476,8 @@ msgstr "Преобразование завершено. Сейчас валют
 msgid "Prefix (folder will be created)"
 msgstr "Префикс (папка будет создана)"
 
-#: ./application/modules/shop/admin/templates/customfields/create.tpl:92
 #: ./application/modules/shop/admin/templates/customfields/list.tpl:54
 #: ./application/modules/shop/admin/templates/customfields/list.tpl:98
-#: ./application/modules/shop/admin/templates/customfields/edit.tpl:91
 msgid "Private"
 msgstr "Приватное"
 
@@ -4511,8 +4535,8 @@ msgstr "Продукт"
 msgid "The product was successfully created"
 msgstr "Продукт был успешно создан"
 
-#: ./application/modules/shop/admin/orders.php:821
-#: ./application/modules/shop/admin/orders.php:848
+#: ./application/modules/shop/admin/orders.php:823
+#: ./application/modules/shop/admin/orders.php:850
 msgid "Product updated"
 msgstr "Продукт обновлен"
 
@@ -4548,7 +4572,7 @@ msgstr "Просмотр"
 msgid "View"
 msgstr "Просмотр"
 
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:185
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:186
 msgid "View on map"
 msgstr "Просмотр на карте"
 
@@ -4574,7 +4598,7 @@ msgstr "Просмотр свойств товаров"
 
 #: ./application/modules/shop/admin/templates/notificationstatuses/list.tpl:27
 msgid "View the status of appearance"
-msgstr "Просмотр состояния появления"
+msgstr "Статусы уведомлений о появлении"
 
 #: ./templates/administrator/create_cat.tpl:157
 #: ./templates/administrator/category_edit.tpl:175
@@ -4807,7 +4831,7 @@ msgstr "Редактирование статуса обратного звон�
 
 #: ./application/modules/shop/admin/templates/notificationstatuses/edit.tpl:6
 msgid "Editing status of appearance"
-msgstr "Редактирование статуса появления"
+msgstr "Редактирование статуса уведомления о появлении"
 
 #: ./application/modules/shop/admin/templates/callbacks/edit_theme.tpl:6
 msgid "Сallback topic editing"
@@ -4829,7 +4853,7 @@ msgstr "Редактирования группы ролей"
 #: ./application/modules/shop/admin/templates/deliverymethods/list.tpl:70
 #: ./application/modules/shop/admin/templates/paymentmethods/list.tpl:70
 #: ./application/modules/shop/admin/templates/products/create.tpl:109
-#: ./application/modules/shop/admin/templates/products/create.tpl:383
+#: ./application/modules/shop/admin/templates/products/create.tpl:353
 #: ./application/modules/shop/admin/templates/products/default_edit.tpl:129
 #: ./application/modules/shop/admin/templates/products/edit.tpl:145
 #: ./application/modules/shop/admin/templates/settings/settings.tpl:117
@@ -4838,6 +4862,7 @@ msgid "Edit"
 msgstr "Редактировать"
 
 #: ./application/modules/shop/admin/templates/orders/list.tpl:185
+#: ./application/modules/shop/admin/templates/dashboard/dashboard.tpl:36
 msgid "Edit order"
 msgstr "Редактировать заказ"
 
@@ -4863,7 +4888,7 @@ msgid "Editing by"
 msgstr "Редактировать по"
 
 #: ./application/modules/shop/admin/templates/orders/list.tpl:196
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:135
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:136
 #: ./application/modules/shop/admin/templates/dashboard/dashboard.tpl:147
 #: ./application/modules/shop/admin/templates/dashboard/dashboard.tpl:195
 msgid "Edit user"
@@ -4889,15 +4914,15 @@ msgstr "Редактировать страницу"
 msgid "Edit callback theme"
 msgstr "Редактировать тему обратного звонка"
 
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:258
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:302
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:259
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:303
 #: ./application/modules/shop/admin/templates/kits/index.tpl:67
 #: ./application/modules/shop/admin/templates/kits/index.tpl:75
 msgid "Edit product"
 msgstr "Редактировать товар"
 
-#: ./templates/administrator/inc/menus.php:116
-#: ./templates/administrator/inc/menus.php:398
+#: ./templates/administrator/inc/menus.php:120
+#: ./templates/administrator/inc/menus.php:402
 msgid "Template editor"
 msgstr "Редактор шаблонов"
 
@@ -4905,8 +4930,8 @@ msgstr "Редактор шаблонов"
 msgid "Backup copying"
 msgstr "Резервное копирование"
 
-#: ./templates/administrator/inc/menus.php:131
-#: ./templates/administrator/inc/menus.php:413
+#: ./templates/administrator/inc/menus.php:135
+#: ./templates/administrator/inc/menus.php:417
 msgid "Backup"
 msgstr "Резервное копирование"
 
@@ -5027,7 +5052,7 @@ msgid "Properties of the products"
 msgstr "Свойства продуктов"
 
 #: ./templates/administrator/shop_menu.tpl:31
-#: ./templates/administrator/inc/menus.php:219
+#: ./templates/administrator/inc/menus.php:223
 msgid "Products properties"
 msgstr "Свойства товаров"
 
@@ -5060,9 +5085,8 @@ msgstr "Связанные продукты"
 #: ./application/modules/shop/admin/templates/system/importcsv.tpl:108
 #: ./application/modules/shop/admin/templates/system/importfields.tpl:179
 #: ./application/modules/shop/admin/templates/system/export_.tpl:82
-#: ./application/modules/shop/admin/templates/products/create.tpl:226
 #: ./application/modules/shop/admin/templates/products/_edit.tpl:420
-#: ./application/modules/shop/admin/templates/products/default_edit.tpl:285
+#: ./application/modules/shop/admin/templates/products/default_edit.tpl:286
 #: ./application/modules/shop/admin/templates/products/_create.tpl:374
 msgid "Related products"
 msgstr "Связанные товары"
@@ -5116,8 +5140,8 @@ msgstr "символов"
 
 #: ./templates/administrator/new_desktop.tpl:115
 #: ./templates/administrator/desktop.tpl:149
-#: ./templates/administrator/inc/menus.php:107
-#: ./templates/administrator/inc/menus.php:389
+#: ./templates/administrator/inc/menus.php:111
+#: ./templates/administrator/inc/menus.php:393
 #: ./templates/administrator/dashboard.tpl:117
 msgid "System"
 msgstr "Система"
@@ -5314,7 +5338,7 @@ msgstr "Создание товара"
 msgid "Created by"
 msgstr "Созданный"
 
-#: ./templates/administrator/inc/menus.php:55
+#: ./templates/administrator/inc/menus.php:59
 msgid "Create new"
 msgstr "Создать"
 
@@ -5364,7 +5388,7 @@ msgstr "Создать валюту"
 msgid "Create a widget"
 msgstr "Создать виджет"
 
-#: ./templates/administrator/inc/menus.php:97
+#: ./templates/administrator/inc/menus.php:101
 msgid "Create widget"
 msgstr "Создать виджет"
 
@@ -5393,7 +5417,6 @@ msgstr "Создать и выйти"
 
 #: ./application/modules/shop/admin/templates/properties/create.tpl:11
 #: ./application/modules/shop/admin/templates/notificationstatuses/create.tpl:13
-#: ./application/modules/shop/admin/templates/notificationstatuses/edit.tpl:13
 #: ./application/modules/shop/admin/templates/orderstatuses/create.tpl:14
 #: ./application/modules/shop/admin/templates/currencies/create.tpl:11
 msgid "Create and go back"
@@ -5408,7 +5431,7 @@ msgid "Create a category"
 msgstr "Создать категорию"
 
 #: ./templates/administrator/category_list.tpl:32
-#: ./templates/administrator/inc/menus.php:277
+#: ./templates/administrator/inc/menus.php:281
 msgid "Create category"
 msgstr "Создать категорию"
 
@@ -5418,7 +5441,7 @@ msgid "Create small image"
 msgstr "Создать миниатюру"
 
 #: ./application/modules/shop/admin/templates/products/_edit.tpl:586
-#: ./application/modules/shop/admin/templates/products/default_edit.tpl:505
+#: ./application/modules/shop/admin/templates/products/default_edit.tpl:506
 #: ./application/modules/shop/admin/templates/kits/index.tpl:28
 msgid "Create a set"
 msgstr "Создать набор"
@@ -5481,8 +5504,8 @@ msgstr "Создать страницу"
 
 #: ./templates/administrator/pages_list.tpl:67
 #: ./templates/administrator/pages_list.tpl:68
-#: ./templates/administrator/inc/menus.php:25
-#: ./templates/administrator/inc/menus.php:262
+#: ./templates/administrator/inc/menus.php:29
+#: ./templates/administrator/inc/menus.php:266
 msgid "Create page"
 msgstr "Создать страницу"
 
@@ -5603,7 +5626,7 @@ msgstr "Сортировка по умолчанию"
 msgid "Save and edit"
 msgstr "Сохраненить и измененить"
 
-#: ./application/modules/shop/admin/orders.php:562
+#: ./application/modules/shop/admin/orders.php:564
 msgid "Saved"
 msgstr "Сохранено"
 
@@ -5711,7 +5734,7 @@ msgid "Currencies list"
 msgstr "Список валют"
 
 #: ./templates/administrator/widgets_list.tpl:22
-#: ./templates/administrator/inc/menus.php:101
+#: ./templates/administrator/inc/menus.php:105
 msgid "Widgets list"
 msgstr "Список виджетов"
 
@@ -5723,8 +5746,8 @@ msgstr "Список виджетов пуст"
 msgid "Group list"
 msgstr "Список групп"
 
-#: ./templates/administrator/inc/menus.php:44
-#: ./templates/administrator/inc/menus.php:296
+#: ./templates/administrator/inc/menus.php:48
+#: ./templates/administrator/inc/menus.php:300
 msgid "Group's list "
 msgstr "Список групп"
 
@@ -5745,12 +5768,12 @@ msgstr "Список желаний"
 msgid "Wish List"
 msgstr "Список желаний"
 
-#: ./templates/administrator/inc/menus.php:167
+#: ./templates/administrator/inc/menus.php:171
 msgid "Orders list"
 msgstr "Список заказов"
 
-#: ./templates/administrator/inc/menus.php:59
-#: ./templates/administrator/inc/menus.php:281
+#: ./templates/administrator/inc/menus.php:63
+#: ./templates/administrator/inc/menus.php:285
 msgid "Categories list"
 msgstr "Список категорий"
 
@@ -5759,7 +5782,7 @@ msgid "Category list is empty"
 msgstr "Список категорий пуст"
 
 #: ./application/modules/shop/admin/templates/products/_edit.tpl:656
-#: ./application/modules/shop/admin/templates/products/default_edit.tpl:579
+#: ./application/modules/shop/admin/templates/products/default_edit.tpl:580
 #: ./application/modules/shop/admin/templates/kits/index.tpl:109
 msgid "Kit List products are empty"
 msgstr "Список наборов товаров пустой"
@@ -5768,7 +5791,7 @@ msgstr "Список наборов товаров пустой"
 msgid "List of cumulative discounts"
 msgstr "Список накопительных скидок"
 
-#: ./templates/administrator/inc/menus.php:179
+#: ./templates/administrator/inc/menus.php:183
 msgid "Callbacks list"
 msgstr "Список обратных звонков"
 
@@ -5788,8 +5811,8 @@ msgstr "Список подарочных сертификатов"
 msgid "Gift certificate list is empty."
 msgstr "Список подарочных сертификатов пуст."
 
-#: ./templates/administrator/inc/menus.php:40
-#: ./templates/administrator/inc/menus.php:292
+#: ./templates/administrator/inc/menus.php:44
+#: ./templates/administrator/inc/menus.php:296
 msgid "Fields list"
 msgstr "Список полей"
 
@@ -5797,7 +5820,7 @@ msgstr "Список полей"
 msgid "Users list"
 msgstr "Список пользователей"
 
-#: ./templates/administrator/inc/menus.php:243
+#: ./templates/administrator/inc/menus.php:247
 msgid "List of users"
 msgstr "Список пользователей"
 
@@ -5860,8 +5883,8 @@ msgid "Payment methods list is empty"
 msgstr "Список способов оплаты пуст"
 
 #: ./templates/administrator/pages_list.tpl:56
-#: ./templates/administrator/inc/menus.php:29
-#: ./templates/administrator/inc/menus.php:266
+#: ./templates/administrator/inc/menus.php:33
+#: ./templates/administrator/inc/menus.php:270
 msgid "Articles list"
 msgstr "Список страниц"
 
@@ -5869,11 +5892,11 @@ msgstr "Список страниц"
 msgid "Products sets"
 msgstr "Список товаров"
 
-#: ./templates/administrator/inc/menus.php:215
+#: ./templates/administrator/inc/menus.php:219
 msgid "Products list"
 msgstr "Список товаров"
 
-#: ./templates/administrator/inc/menus.php:195
+#: ./templates/administrator/inc/menus.php:199
 msgid "Notifications list"
 msgstr "Список уведомлений"
 
@@ -5895,20 +5918,7 @@ msgstr "Список языков"
 msgid "Method name"
 msgstr "Способ"
 
-#: ./templates/administrator/inc/menus.php:367
-msgid "Delivery methods (shipping)"
-msgstr "Способ доставки"
-
-#: ./templates/administrator/shop_menu.tpl:60
-msgid "Delivery method"
-msgstr "Способ доставки"
-
-#: ./application/modules/shop/admin/templates/orders/_create.tpl:188
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:96
-msgid "Delivery Method"
-msgstr "Способ доставки"
-
-#: ./application/modules/shop/admin/orders.php:1199
+#: ./application/modules/shop/admin/orders.php:1200
 msgid "Delivery method is not selected"
 msgstr "Способ доставки не выбран"
 
@@ -5925,13 +5935,13 @@ msgstr "Способ доставки удален"
 #: ./application/modules/shop/admin/templates/orders/check.tpl:42
 #: ./application/modules/shop/admin/templates/orders/create.tpl:259
 #: ./application/modules/shop/admin/templates/orders/_create.tpl:226
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:84
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:207
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:85
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:208
 #: ./application/modules/shop/admin/templates/users/edit_orders_list.tpl:30
 msgid "Payment method"
 msgstr "Способ оплаты"
 
-#: ./application/modules/shop/admin/orders.php:1201
+#: ./application/modules/shop/admin/orders.php:1202
 msgid "Payment method is not selected"
 msgstr "Способ оплаты не выбран"
 
@@ -5951,7 +5961,7 @@ msgstr "Способ оплаты удален"
 msgid "Payd method"
 msgstr "Способы оплаты"
 
-#: ./templates/administrator/inc/menus.php:371
+#: ./templates/administrator/inc/menus.php:375
 msgid "Payment methods"
 msgstr "Способы оплаты"
 
@@ -5987,14 +5997,14 @@ msgstr "Ссылку для просмотра Списка жеданий"
 #: ./application/modules/shop/admin/templates/system/importcsv.tpl:100
 #: ./application/modules/shop/admin/templates/system/importfields.tpl:171
 #: ./application/modules/shop/admin/templates/system/export_.tpl:74
-#: ./application/modules/shop/admin/templates/products/create.tpl:218
+#: ./application/modules/shop/admin/templates/products/create.tpl:217
 #: ./application/modules/shop/admin/templates/products/_edit.tpl:413
-#: ./application/modules/shop/admin/templates/products/default_edit.tpl:278
+#: ./application/modules/shop/admin/templates/products/default_edit.tpl:279
 #: ./application/modules/shop/admin/templates/products/_create.tpl:366
 msgid "Old price"
 msgstr "Старая цена"
 
-#: ./templates/administrator/inc/menus.php:321
+#: ./templates/administrator/inc/menus.php:325
 #: ./templates/administrator/dashboard.tpl:136
 msgid "Statistics"
 msgstr "Статистика"
@@ -6021,17 +6031,17 @@ msgstr "Статус будет назначен всем новым запро�
 msgid "Status change success"
 msgstr "Статус был изменен"
 
-#: ./application/modules/shop/admin/callbacks.php:329
+#: ./application/modules/shop/admin/callbacks.php:330
 msgid "Status was removed"
 msgstr "Статус был удален"
 
-#: ./application/modules/shop/admin/notifications.php:298
-#: ./application/modules/shop/admin/orders.php:319
+#: ./application/modules/shop/admin/notifications.php:311
+#: ./application/modules/shop/admin/orders.php:318
 msgid "Order status changed"
 msgstr "Статус заказа изменен"
 
-#: ./application/modules/shop/admin/orders.php:419
-#: ./application/modules/shop/admin/orders.php:523
+#: ./application/modules/shop/admin/orders.php:416
+#: ./application/modules/shop/admin/orders.php:525
 msgid "Order Status changed"
 msgstr "Статус заказа изменен"
 
@@ -6058,18 +6068,18 @@ msgstr "Статус ожидания создан"
 #: ./application/modules/shop/admin/templates/orders/list.tpl:38
 #: ./application/modules/shop/admin/templates/orders/list.tpl:102
 #: ./application/modules/shop/admin/templates/orders/edit.tpl:53
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:469
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:470
 #: ./application/modules/shop/admin/templates/dashboard/dashboard.tpl:29
 #: ./application/modules/shop/admin/templates/users/edit_orders_list.tpl:35
 #: ./application/modules/shop/admin/templates/users/edit.tpl:162
 msgid "Payment status"
 msgstr "Статус оплаты"
 
-#: ./application/modules/shop/admin/orders.php:562
+#: ./application/modules/shop/admin/orders.php:564
 msgid "Payment status of orders changed"
 msgstr "Статус оплаты заказов изменен"
 
-#: ./application/modules/shop/admin/callbacks.php:234
+#: ./application/modules/shop/admin/callbacks.php:235
 msgid "Default status was changed"
 msgstr "Статус по умолчанию изменен"
 
@@ -6082,7 +6092,7 @@ msgstr "Статус публикации"
 msgid "Notification status about the arrival"
 msgstr "Статус уведомления о прибытии"
 
-#: ./application/modules/shop/admin/notifications.php:189
+#: ./application/modules/shop/admin/notifications.php:202
 msgid "Notification status updated"
 msgstr "Статус уведомления обновлен"
 
@@ -6100,12 +6110,12 @@ msgstr "Статус установлен"
 msgid "Order status"
 msgstr "Статусы заказов"
 
-#: ./templates/administrator/inc/menus.php:171
+#: ./templates/administrator/inc/menus.php:175
 msgid "Order statuses"
 msgstr "Статусы заказов"
 
 #: ./templates/administrator/shop_menu.tpl:15
-#: ./templates/administrator/inc/menus.php:183
+#: ./templates/administrator/inc/menus.php:187
 msgid "Callback statuses"
 msgstr "Статусы обратных звонков"
 
@@ -6113,7 +6123,7 @@ msgstr "Статусы обратных звонков"
 msgid "Statuses of the appearance"
 msgstr "Статусы уведомлений"
 
-#: ./templates/administrator/inc/menus.php:199
+#: ./templates/administrator/inc/menus.php:203
 msgid "Notification statuses"
 msgstr "Статусы уведомлений"
 
@@ -6157,8 +6167,9 @@ msgstr "Страница удалена."
 
 #: ./templates/administrator/new_desktop.tpl:63
 #: ./templates/administrator/inc/menus.php:20
-#: ./templates/administrator/inc/menus.php:253
-#: ./templates/administrator/inc/menus.php:258
+#: ./templates/administrator/inc/menus.php:25
+#: ./templates/administrator/inc/menus.php:257
+#: ./templates/administrator/inc/menus.php:262
 msgid "Content"
 msgstr "Страницы"
 
@@ -6194,7 +6205,7 @@ msgstr "Сумма"
 msgid "Amount before"
 msgstr "Сумма до"
 
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:108
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:109
 msgid "Order amount"
 msgstr "Сумма заказа"
 
@@ -6243,7 +6254,7 @@ msgstr "Табуляция"
 msgid "Just like the number 10"
 msgstr "Так же, как номер 10"
 
-#: ./application/modules/shop/admin/callbacks.php:190
+#: ./application/modules/shop/admin/callbacks.php:191
 #: ./application/modules/shop/admin/orderstatuses.php:188
 msgid "Such status does not exist"
 msgstr "Такой статус не существует"
@@ -6306,7 +6317,7 @@ msgstr "Текущий сертификат (сумма):"
 #: ./application/modules/shop/admin/templates/warehouses/edit.tpl:45
 #: ./application/modules/shop/admin/templates/orders/create.tpl:193
 #: ./application/modules/shop/admin/templates/orders/_create.tpl:114
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:172
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:173
 #: ./application/modules/shop/admin/templates/notifications/edit.tpl:85
 #: ./application/modules/shop/admin/templates/comulativ/edit.tpl:95
 #: ./application/modules/shop/admin/templates/commulative/edit.tpl:94
@@ -6349,16 +6360,16 @@ msgstr "Тема"
 msgid "Subject"
 msgstr "Тема"
 
-#: ./application/modules/shop/admin/callbacks.php:366
+#: ./application/modules/shop/admin/callbacks.php:367
 msgid "Topic started"
 msgstr "Тема начата"
 
-#: ./application/modules/shop/admin/callbacks.php:284
+#: ./application/modules/shop/admin/callbacks.php:285
 msgid "Callback theme is changed"
 msgstr "Тема обратного звонка изменена"
 
 #: ./templates/administrator/shop_menu.tpl:16
-#: ./templates/administrator/inc/menus.php:187
+#: ./templates/administrator/inc/menus.php:191
 msgid "Callback themes"
 msgstr "Темы обратных звонков"
 
@@ -6405,7 +6416,7 @@ msgstr "товар"
 msgid "Product"
 msgstr "Товар"
 
-#: ./application/modules/shop/admin/orders.php:894
+#: ./application/modules/shop/admin/orders.php:896
 msgid "Item has been added to the order"
 msgstr "Товар добавлен к заказу"
 
@@ -6413,18 +6424,18 @@ msgstr "Товар добавлен к заказу"
 msgid "Product not found"
 msgstr "Товар не найден"
 
-#: ./application/modules/shop/admin/orders.php:637
-#: ./application/modules/shop/admin/orders.php:652
+#: ./application/modules/shop/admin/orders.php:639
+#: ./application/modules/shop/admin/orders.php:654
 msgid "Product is removed from the Order"
 msgstr "Товар удалён из заказа"
 
 #: ./templates/administrator/shop_menu.tpl:30
-#: ./templates/administrator/inc/menus.php:336
+#: ./templates/administrator/inc/menus.php:340
 msgid "Products"
 msgstr "Товары"
 
 #: ./templates/administrator/shop_menu.tpl:33
-#: ./templates/administrator/inc/menus.php:231
+#: ./templates/administrator/inc/menus.php:235
 msgid "Products without images"
 msgstr "Товары без картинок"
 
@@ -6432,7 +6443,7 @@ msgstr "Товары без картинок"
 msgid "Products without icons"
 msgstr "Товары без картинок"
 
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:238
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:239
 msgid "Items in Cart"
 msgstr "Товары в корзине"
 
@@ -6461,7 +6472,7 @@ msgstr "Только латинские буквы"
 msgid "Digits only"
 msgstr "Только цифры"
 
-#: ./templates/administrator/main.tpl:460
+#: ./templates/administrator/main.tpl:458
 msgid "numbers only"
 msgstr "только цифры"
 
@@ -6499,11 +6510,11 @@ msgstr "Уведомление"
 msgid "Administrator notification about the order placement by e-mail"
 msgstr "Уведомление администратора о совершение заказа по e-mail"
 
-#: ./application/modules/shop/admin/notifications.php:131
+#: ./application/modules/shop/admin/notifications.php:144
 msgid "Notification is not found"
 msgstr "Уведомление не найдено"
 
-#: ./application/modules/shop/admin/notifications.php:166
+#: ./application/modules/shop/admin/notifications.php:179
 msgid "Notification updated"
 msgstr "Уведомление обновлено"
 
@@ -6511,7 +6522,7 @@ msgstr "Уведомление обновлено"
 msgid "E-mail notification"
 msgstr "Уведомление по электронной почте"
 
-#: ./templates/administrator/inc/menus.php:191
+#: ./templates/administrator/inc/menus.php:195
 msgid "Notifications"
 msgstr "Уведомления"
 
@@ -6535,13 +6546,13 @@ msgstr "Уведомления покупателя о размещении за
 #: ./application/modules/shop/admin/templates/notifications/list.tpl:157
 #: ./application/modules/shop/admin/templates/notifications/list.tpl:288
 msgid "Notify"
-msgstr "Уведомлять"
+msgstr "Уведомить"
 
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:452
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:453
 msgid "Info buyer about change status"
 msgstr "Уведомлять покупателя о смене статуса"
 
-#: ./application/modules/shop/admin/notifications.php:268
+#: ./application/modules/shop/admin/notifications.php:281
 msgid "Uninstalling"
 msgstr "Удаление"
 
@@ -6816,7 +6827,7 @@ msgid "Delete modules?"
 msgstr "Удалить модулей?"
 
 #: ./application/modules/shop/admin/templates/products/_edit.tpl:616
-#: ./application/modules/shop/admin/templates/products/default_edit.tpl:536
+#: ./application/modules/shop/admin/templates/products/default_edit.tpl:537
 msgid "Delete set"
 msgstr "Удалить набор"
 
@@ -6941,13 +6952,13 @@ msgstr "Управление"
 msgid "Management of Meta Tags"
 msgstr "Управление Мета-тегами"
 
-#: ./templates/administrator/inc/menus.php:135
-#: ./templates/administrator/inc/menus.php:417
+#: ./templates/administrator/inc/menus.php:139
+#: ./templates/administrator/inc/menus.php:421
 #: ./templates/administrator/roleList.tpl:28
 msgid "Roles list"
 msgstr "Управление правами доступа"
 
-#: ./templates/administrator/inc/menus.php:247
+#: ./templates/administrator/inc/menus.php:251
 msgid "RBAC control"
 msgstr "Управление правами доступа"
 
@@ -6985,6 +6996,7 @@ msgstr "Установите права доступа к каталогу, чт
 msgid "Set another status for these orders"
 msgstr "Установить другой статус этих заказов"
 
+#: ./templates/administrator/module_table.tpl:40
 #: ./templates/administrator/module_table.tpl:40
 msgid "Install modules"
 msgstr "Установить модули"
@@ -7075,7 +7087,7 @@ msgstr "Файлы, которые будут изменены"
 msgid "Surname"
 msgstr "Фамилия"
 
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:153
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:154
 msgid "User Surname"
 msgstr "Фамилия пользователя"
 
@@ -7097,7 +7109,7 @@ msgstr "Формат письма"
 msgid "File format"
 msgstr "Формат файла"
 
-#: ./templates/administrator/js/scripts.js:1208
+#: ./templates/administrator/js/scripts.js:1226
 msgid "Not supported file format"
 msgstr "Формат файла не поддерживается"
 
@@ -7249,7 +7261,7 @@ msgstr "Ширина"
 msgid "Width, px"
 msgstr "Ширина, px"
 
-#: ./application/modules/shop/admin/templates/settings/settings.tpl:442
+#: ./templates/administrator/inc/javascriptVars.tpl:107
 msgid "Font is not uploaded"
 msgstr "Шрифт не загружен"
 
@@ -7330,7 +7342,7 @@ msgstr "Это поле обязательное."
 msgid "This URL is already in use"
 msgstr "Этот адрес уже используется"
 
-#: ./application/modules/shop/admin/orders.php:898
+#: ./application/modules/shop/admin/orders.php:899
 msgid "This product does not exist"
 msgstr "Этот товар не существует"
 
@@ -7381,8 +7393,8 @@ msgstr "язык удален"
 
 #: ./templates/administrator/new_desktop.tpl:118
 #: ./templates/administrator/desktop.tpl:153
-#: ./templates/administrator/inc/menus.php:120
-#: ./templates/administrator/inc/menus.php:402
+#: ./templates/administrator/inc/menus.php:124
+#: ./templates/administrator/inc/menus.php:406
 msgid "Languages"
 msgstr "Языки"
 

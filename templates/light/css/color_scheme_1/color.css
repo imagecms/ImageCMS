@@ -588,7 +588,7 @@ input.input-search{box-shadow: inset 0 1px 1px rgba(0,0,0,.085);}
 
 /*order view*/
 .gen-info-price td{border-top-color: #eae5e1;}
-.table-info-order hr{border-top:-color #999;}\
+.table-info-order hr{border-top:-color #999;}
 .paid{background-color: #c9d99a;}
 .not-paid{background-color: #d6d6d6;}
 /*/order view*/

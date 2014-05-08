@@ -5,17 +5,9 @@
                 <div class="c_b f-w_b">© «YorStore»  {echo date('Y')}</div>
                 <div class="s-t">Все права защищены</div>
             </div>
-            <ul class="social-foot items">
-                <li>
-                    <a href="#" class="icon-vk"></a>
-                </li>
-                <li>
-                    <a href="#" class="icon-fb"></a>
-                </li>
-                <li>
-                    <a href="#" class="icon-gp"></a>
-                </li>
-            </ul>
+            <div class="social-foot social-NS">
+                {echo $CI->load->module('share')->_make_share_form()}
+            </div>
         </div>
         <div class="box-2">
             <div class="inside-padd">
@@ -75,8 +67,8 @@
                         {$count = count($compare);}
                         {if $count > 0}
                             <li><button type="button" onclick="location = '{site_url('shop/compare')}'" title="{lang('Список сравнений','newLevel')}">{lang('Список сравнений','newLevel')}</button></li>
+                            {/if}
                         {/if}
-                    {/if}
                     <li><button type="button" data-trigger="[data-drop='#ordercall']" title="{lang('Обратный звонок','newLevel')}">{lang('Обратный звонок','newLevel')}</button></li>
                 </ul>
             </div>

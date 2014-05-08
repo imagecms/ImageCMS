@@ -406,9 +406,9 @@
         </div>
     </div>
     <!-- End. benefits block-->
-    <!-- Start. Kit-->
     
-    {if $model->getShopKits()}
+    <!-- Start. Kit-->
+    {if $model->getShopKitsLoggedUsersCheck($CI->dx_auth->is_logged_in())}
         <div class="container">
             <section class="frame-complect horizontal-carousel">
                 <div class="frame-title">

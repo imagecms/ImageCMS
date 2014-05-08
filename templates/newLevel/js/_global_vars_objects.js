@@ -86,7 +86,7 @@ var optionsDrop = {
     closeEsc: true,
     position: 'absolute',
     confirmBtnDrop: '#confirm',
-    limitSize: false,
+    limitSize: true,
     limitContentSize: true,
     scrollContent: true,
     keyNavigate: true,
