@@ -38,7 +38,6 @@ function sortInit() {
 var notificationsInitialized = false;
 
 $(document).ajaxComplete(function(event, XHR, ajaxOptions) {
-    $('.popover').remove();
     if (ajaxOptions.url != "/admin/components/run/shop/notifications/getAvailableNotification")
     {
         if ((XHR.getAllResponseHeaders().match(/X-PJAX/)))
@@ -317,7 +316,13 @@ function init_2() {
             deliverySumSpecifiedMessageBlock.hide();
         }
     });
-
+    $('body').off('click.popover').on('click.popover', function(e) {
+        var popovers = '.popover, .buy_prod, .popover_ref';
+        if ($.exists(popovers) && $(e.target).is(popovers) && $(e.target).closest().is(popovers)) {
+            e.stopimmediatepropagation();
+            $(popovers).popover('hide');
+        }
+    });
     if ($.exists('.buy_prod, .popover_ref')) {
         //alert('init2');
         $('.buy_prod').popover('destroy').each(function() {
@@ -425,7 +430,6 @@ function init_2() {
         $(".niceRadio").each(function() {
             active_R_b_p = '-179px -17px';
             n_active_R_b_p = '-179px 0';
-            console.log($(this))
             changeRadioStart($(this));
         });
     }
@@ -807,7 +811,7 @@ getChar = function(e) {
     return null;
 }
 testNumber = function(el, add, ns) {
-    $('body').off('keypress.testNumber'+ns).on('keypress.testNumber'+ns, el, function(e) {
+    $('body').off('keypress.testNumber' + ns).on('keypress.testNumber' + ns, el, function(e) {
         var $this = $(this);
         if (e.ctrlKey || e.altKey || e.metaKey)
             return;
@@ -945,7 +949,7 @@ function initAdminArea() {
 
     testNumber("#createUserPhone, #UserPhone, #Phone, #shopOrdersUserPhone", ['(', ')', '+', '-'], 'phone');
     testNumber('.number input', ['.'], 'count');
-    
+
     if ($.exists('[data-href="' + location.hash + '"]')) {
         $('[data-href="' + location.hash + '"]').siblings().removeClass('active').end().addClass('active');
         $(location.hash).siblings().removeClass('active').end().addClass('active');
@@ -1058,18 +1062,6 @@ function initAdminArea() {
     $('.ui-datepicker').addClass('dropdown-menu');
 
     // $('.ui-dialog button').ready(function(){ $('.ui-dialog button').addClass('btn')});
-
-    //my
-    $('html').die('click').live('click', function(event) {
-        if ($(event.target).filter('.popover')[0] == undefined && $(event.target).parents('.popover')[0] == undefined && $(event.target).filter('.buy_prod')[0] == undefined && $(event.target).parents('.buy_prod')[0] == undefined && $(event.target).filter('.popover_ref')[0] == undefined && $(event.target).parents('.popover_ref')[0] == undefined) {
-            if ($.exists('.popover, .buy_prod, .popover_ref')) {
-                $(this).find('.popover').popover('hide');
-                $(this).find('.buy_prod').popover('hide');
-                $(this).find('.popover_ref').popover('hide');
-            }
-        }
-        event.stopPropagation();
-    });
 
     $('.js_price').die('click').live('click', function() {
         $(this).next().show();
