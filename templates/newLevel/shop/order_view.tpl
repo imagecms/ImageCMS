@@ -458,7 +458,7 @@
                                     <span class="s-t">{lang('Подарочный сертификат','newLevel')}:</span>
                                     <span class="price-item f_r">
                                         <span class="text-discount">
-                                            <span class="price">- {echo ShopCore::app()->SCurrencyHelper->convert($model->getGiftCertPrice())} </span>
+                                            <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($model->getGiftCertPrice())} </span>
                                             <span class="curr">{$CS}</span>
                                         </span>
                                     </span>

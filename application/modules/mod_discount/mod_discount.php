@@ -176,9 +176,6 @@ class Mod_discount extends \MY_Controller {
                 $this->baseDiscount->cart->gift_value = $value;
                 $this->baseDiscount->cart->setTotalPrice($this->baseDiscount->cart->getTotalPrice() - $value);
                 $aplyGift = true;
-//                if ($_POST['gift_ord'])
-//                    $this->baseDiscount->updateDiskApply($disc['key'], 'gift');
-
                 break;
             }
 
