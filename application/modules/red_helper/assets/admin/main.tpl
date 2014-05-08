@@ -7,7 +7,7 @@
         <form method="post" action="/admin/components/init_window/red_helper/saveSettings" enctype="multipart/form-data" id="settingsForm">
             <div>
                 <label for="login">{lang('Your login', 'red_helper')}:</label>
-                <input name="login" type="text" id="login"/>
+                <input name="login" type="text" id="login" value="{$login}"/>
             </div>
         </form>
     </div>
@@ -45,14 +45,14 @@
     </div>
     <div class="modal-footer">
         <a href="#" class="btn" onclick="$('#registerModal').modal('hide')">{lang("Close", 'red_helper')}</a>
-        <a href="#" id="go" class="btn btn-primary">{lang("Save changes", 'red_helper')}</a>
+        <a href="#" id="go" class="btn btn-primary">{lang("Registration", 'red_helper')}</a>
     </div>
 </div>
 <section class="mini-layout">
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
-            <span class="title">{lang('RedHelper', 'red_helper')}</span>
+            <span class="title">{lang('Red Helper', 'red_helper')}</span>
         </div>
         <div class="pull-right">
             <div class="d-i_b">
