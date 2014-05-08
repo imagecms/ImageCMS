@@ -227,12 +227,6 @@
                             {/if}
                         </span>
                     </span>
-                    <br />
-                    {if $overloadedDiscounts}
-                        <span class="s-t">
-                            {lang('Для некоторых скидок превышено их максимальное количество использования','newLevel')}
-                        </span>
-                    {/if}
                 </div>
             </div>
             <div class="content-frame-foot notCart">
