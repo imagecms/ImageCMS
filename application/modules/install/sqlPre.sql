@@ -882,6 +882,7 @@ CREATE TABLE IF NOT EXISTS `mod_banner` (
   `active` tinyint(4) NOT NULL,
   `active_to` int(11) DEFAULT NULL,
   `where_show` text,
+  `group` text,
   `position` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
