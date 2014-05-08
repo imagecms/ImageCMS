@@ -14,18 +14,8 @@
                 <div class="form-comment main-form-comments">
                     <div class="inside-padd">
                         <form method="post">
+                            <div class="mainPlace"></div>
                             {if !$is_logged_in}
-                                {if $use_moderation}
-                                    <label class="d_n succ">
-                                        <span class="frame-form-field">
-                                            <div class="msg">
-                                                <div class="success">
-                                                    {lang('Комментарий будет отправлен на модерацию','newLevel')}
-                                                </div>
-                                            </div>
-                                        </span>
-                                    </label>
-                                {/if}
                                 <div class="clearfix">
                                     <label style="width: 40%;float: left;">
                                         <span class="title">{lang('Ваше имя','newLevel')}</span>
@@ -72,7 +62,7 @@
                                         </div>
                                     </div>
                                     <div class="btn-def f_r">
-                                        <input type="submit" value="{lang('Оставить отзыв')}" onclick="Comments.post(this, {literal}{'visibleMainForm': '1'}{/literal})"/>
+                                        <input type="submit" value="{lang('Оставить отзыв')}" onclick="Comments.post(this, {literal}{'visibleMainForm': '1'}{/literal}, '.mainPlace')"/>
                                     </div>
                                 </div>
                             </div>
@@ -152,6 +142,7 @@
                                 </div>
                             </div>
                         </div>
+                        <div data-place="{$comment['id']}"></div>
                         {$countAnswers = $CI->load->module('comments')->commentsapi->getCountCommentAnswersByCommentId($comment.id)}
                         {if $countAnswers}
                             <ul class="frame-list-comments sub-2">
@@ -216,15 +207,6 @@
                                 <input type="text" name="comment_email" value="{get_cookie('comment_email')}"/>
                             </span>
                         </label>
-                        <label class="d_n succ">
-                            <span class="frame-form-field">
-                                <div class="msg">
-                                    <div class="success">
-                                        {lang('Комментарий будет отправлен на модерацию','newLevel')}
-                                    </div>
-                                </div>
-                            </span>
-                        </label>
                     {/if}
                     <label>
                         <span class="title">{lang('Ответ','newLevel')}</span>
@@ -236,7 +218,7 @@
                         <span class="frame-form-field">
                             <input type="hidden" id="parent" name="comment_parent" value="">
                             <span class="btn-form">
-                                <input type="submit" value="{lang('Комментировать', 'newLevel')}" onclick="Comments.post(this)"/>
+                                <input type="submit" value="{lang('Комментировать', 'newLevel')}" onclick="Comments.post(this, {if $visibleMainForm}{literal}{'visibleMainForm': '1'}{/literal}{else:}{literal}{'visibleMainForm': '0'}{/literal}{/if})"/>
                             </span>
                         </span>
                     </div>
@@ -245,3 +227,16 @@
         </div>
     </div>
 </div>
+
+<div class="d_n" id="useModeration">
+    <div class="usemoderation">
+        <div class="msg">
+            <div class="success">
+                {lang('Ваш комментарий будет опубликован после модерации администратором','newLevel')}
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+            var _useModeration = {if $use_moderation}{$use_moderation}{else:}0{/if};
+</script>
