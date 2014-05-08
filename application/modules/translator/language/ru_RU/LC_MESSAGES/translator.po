@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-07 05:47+0300\n"
-"PO-Revision-Date: 2014-05-07 05:47+0300\n"
+"POT-Creation-Date: 2014-05-08 10:40+0300\n"
+"PO-Revision-Date: 2014-05-08 10:40+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -67,12 +67,12 @@ msgstr "API-ключ заблокирован."
 #: ./application/modules/translator/assets/admin/create.tpl:102
 #: ./application/modules/translator/assets/admin/po_table.tpl:84
 msgid "Language-Team email"
-msgstr "Email Language-Team"
+msgstr "E-mail Language-Team"
 
 #: ./application/modules/translator/assets/admin/create.tpl:81
 #: ./application/modules/translator/assets/admin/po_table.tpl:63
 msgid "Translator email"
-msgstr "Email переводчика"
+msgstr "E-mail переводчика"
 
 #: ./application/modules/translator/helpers/translator_helper.php:25
 msgid "Abkhazian"
@@ -479,7 +479,7 @@ msgstr "Название Language-Team"
 #: ./application/modules/translator/assets/admin/create.tpl:74
 #: ./application/modules/translator/assets/admin/po_table.tpl:56
 msgid "Project Name"
-msgstr "Название Проекта"
+msgstr "Название проекта"
 
 #: ./application/modules/translator/assets/admin/list.tpl:156
 #: ./application/modules/translator/assets/admin/settings.tpl:35
@@ -770,7 +770,7 @@ msgstr "Пути к содержащим файлам"
 
 #: ./application/modules/translator/assets/admin/list.tpl:387
 msgid "Searched langs paths"
-msgstr "Пути поиску фраз для перевода"
+msgstr "Пути поиска фраз для перевода"
 
 #: ./application/modules/translator/assets/admin/list.tpl:395
 msgid "Path"
