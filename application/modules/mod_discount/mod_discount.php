@@ -135,7 +135,7 @@ class Mod_discount extends \MY_Controller {
                 $this->baseDiscount->cart->discount_info = $discount;
                 $this->baseDiscount->cart->discount_type = $discount['type'];
 
-                if (strstr($this->uri->uri_string(), 'make_order')) {
+                if (strstr($this->uri->uri_string(), 'make_order') & empty($this->session->flashdata('validation_errors'))) {
 
                     if ($discount['type'] != 'product') {
                         $this->baseDiscount->updateDiskApply($discount['max_discount']['key']);

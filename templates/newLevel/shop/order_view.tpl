@@ -432,6 +432,9 @@
                                 </td>
                             </tr>
                         {/if}
+                        {if $model->getGiftCertPrice() > 0} 
+                            {$discount = $discount - $model->getGiftCertPrice()}
+                        {/if}
                         {if $discount}
                             <tr>
                                 <td colspan="3">
@@ -440,9 +443,6 @@
                                         <span>
                                             <span class="text-discount current-discount">
                                                 <span class="price f-w_b">
-                                                    {if $model->getGiftCertPrice() > 0} 
-                                                        {$discount = $discount - $model->getGiftCertPrice()}
-                                                    {/if}
                                                     {echo $discount}
                                                 </span>
                                                 <span class="curr">{$CS}</span>
