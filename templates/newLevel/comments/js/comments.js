@@ -267,7 +267,7 @@ var Comments = {
                         $('#cc').html(parseInt(obj.commentsCount) + ' ' + pluralStr(parseInt(obj.commentsCount), text.plurComments));
                     }
 
-                    if (visible) {
+                    if (visible && _useModeration) {
                         visible = isNaN(visible) ? $(visible) : $('[data-place="' + visible + '"]');
 
                         visible.empty().append($('#useModeration').html());
