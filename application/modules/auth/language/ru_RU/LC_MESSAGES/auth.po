@@ -2,11 +2,11 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-13 05:44+0200\n"
-"PO-Revision-Date: 2014-03-13 05:44+0200\n"
-"Last-Translator:  \n"
-"Language-Team:  \n"
-"Language: ru_RU\n"
+"POT-Creation-Date: 2014-05-08 01:54+0300\n"
+"PO-Revision-Date: 2014-05-08 01:54+0300\n"
+"Last-Translator:  <>\n"
+"Language-Team:  <>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -18,6 +18,10 @@ msgstr ""
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 
+#: ./application/modules/auth/auth.php:347
+msgid "Reset failed. Possible reasons: wrong email, wrong restore url, used restore url"
+msgstr "Сброс не удался. Возможные причины: неправильная электронная почта, неправильный или использованный URL восстановления."
+
 #: ./application/modules/auth/auth.php:46
 msgid "This username is already registered."
 msgstr "Этот логин уже зарегистрирован."
@@ -26,13 +30,13 @@ msgstr "Этот логин уже зарегистрирован."
 msgid "Login field can only contain letters, numbers, underscores, dashes, or e-mail address"
 msgstr "Поле логин может содержать только буквы, цифры, подчеркивания, тире, или e-mail адрес"
 
-#: ./application/modules/auth/auth.php:268
+#: ./application/modules/auth/auth.php:267
 msgid "You are already registered ;)"
 msgstr "Вы уже зарегистрированы"
 
-#: ./application/modules/auth/module_info.php:4
 #: ./application/modules/auth/auth.php:103
 #: ./application/modules/auth/auth.php:133
+#: ./application/modules/auth/module_info.php:4
 msgid "Authorization"
 msgstr "Авторизация"
 
@@ -40,21 +44,21 @@ msgstr "Авторизация"
 msgid "The authorization module and user registration"
 msgstr "Модуль авторизации и регистрации пользователей"
 
+#: ./application/modules/auth/auth.php:108
+#: ./application/modules/auth/auth.php:205
+#: ./application/modules/auth/auth.php:303
 #: ./application/modules/auth/authapi.php:38
 #: ./application/modules/auth/authapi.php:131
 #: ./application/modules/auth/authapi.php:214
-#: ./application/modules/auth/auth.php:108
-#: ./application/modules/auth/auth.php:205
-#: ./application/modules/auth/auth.php:304
 msgid "Email"
 msgstr "E-mail"
 
+#: ./application/modules/auth/auth.php:109
+#: ./application/modules/auth/auth.php:207
+#: ./application/modules/auth/auth.php:397
 #: ./application/modules/auth/authapi.php:39
 #: ./application/modules/auth/authapi.php:133
 #: ./application/modules/auth/authapi.php:334
-#: ./application/modules/auth/auth.php:109
-#: ./application/modules/auth/auth.php:207
-#: ./application/modules/auth/auth.php:394
 msgid "Password"
 msgstr "Пароль"
 
@@ -75,38 +79,38 @@ msgstr "Пользователь с таким именем и паролем н
 msgid "Logout completed"
 msgstr "Выход завершен"
 
-#: ./application/modules/auth/authapi.php:132
 #: ./application/modules/auth/auth.php:206
+#: ./application/modules/auth/authapi.php:132
 msgid "Name"
 msgstr "Название"
 
-#: ./application/modules/auth/authapi.php:134
 #: ./application/modules/auth/auth.php:208
+#: ./application/modules/auth/authapi.php:134
 msgid "Repeat Password"
 msgstr "Повторить пароль"
 
-#: ./application/modules/auth/authapi.php:138
-#: ./application/modules/auth/authapi.php:140
 #: ./application/modules/auth/auth.php:115
 #: ./application/modules/auth/auth.php:117
 #: ./application/modules/auth/auth.php:214
 #: ./application/modules/auth/auth.php:216
+#: ./application/modules/auth/authapi.php:138
+#: ./application/modules/auth/authapi.php:140
 msgid "Code protection"
 msgstr "Защитный код"
 
-#: ./application/modules/auth/authapi.php:149
 #: ./application/modules/auth/auth.php:226
+#: ./application/modules/auth/authapi.php:149
 msgid "You have successfully registered. Please check your email to activate your account."
 msgstr "Вы успешно зарегистрировались. Зайдите в свою почту, чтобы активировать аккаунт."
 
-#: ./application/modules/auth/authapi.php:151
 #: ./application/modules/auth/auth.php:228
+#: ./application/modules/auth/authapi.php:151
 msgid "You have successfully registered. "
 msgstr "Вы успешно зарегистрировались."
 
-#: ./application/modules/auth/authapi.php:152
-#: ./application/modules/auth/auth.php:229
-#: ./application/modules/auth/auth.php:284
+#: ./application/modules/auth/auth.php:228
+#: ./application/modules/auth/auth.php:282
+#: ./application/modules/auth/authapi.php:151
 msgid "Login"
 msgstr "Войти"
 
@@ -118,13 +122,12 @@ msgstr "Регистрация прошла успешно"
 msgid "Email with new password send to you email"
 msgstr "E-mail с новым паролем отправлено на Ваш e-mail"
 
+#: ./application/modules/auth/auth.php:336
 #: ./application/modules/auth/authapi.php:251
-#: ./application/modules/auth/auth.php:338
 msgid "You have successfully zeroed my password. "
 msgstr "Вы успешно восстановили пароль."
 
-#: ./application/modules/auth/authapi.php:252
-#: ./application/modules/auth/auth.php:339
+#: ./application/modules/auth/authapi.php:251
 msgid "Login Here"
 msgstr "Войти"
 
@@ -136,13 +139,13 @@ msgstr "Старый пароль"
 msgid "New password"
 msgstr "Новый пароль"
 
+#: ./application/modules/auth/auth.php:370
 #: ./application/modules/auth/authapi.php:284
-#: ./application/modules/auth/auth.php:367
 msgid "Repeat new password"
 msgstr "Повторите новый пароль"
 
+#: ./application/modules/auth/auth.php:374
 #: ./application/modules/auth/authapi.php:292
-#: ./application/modules/auth/auth.php:371
 msgid "Your password was successfully changed."
 msgstr "Ваш пароль был успешно изменен."
 
@@ -154,8 +157,8 @@ msgstr "Поле Старый пароль указано неверно"
 msgid "You are not logged in to change password"
 msgstr "Вы не вошли в систему для изменения пароля"
 
-#: ./application/modules/auth/authapi.php:320
 #: ./application/modules/auth/auth.php:61
+#: ./application/modules/auth/authapi.php:320
 msgid "A user with this email is already registered."
 msgstr "Пользователь с таким E-mail уже зарегистрирован."
 
@@ -167,20 +170,20 @@ msgstr "Удаление аккаунта завершено"
 msgid "You are not logged in, you dont have any account to delete"
 msgstr "Вы не вошли в систему, вы не имеете никакого акаунта, чтобы удалить"
 
+#: ./application/modules/auth/auth.php:426
 #: ./application/modules/auth/authapi.php:363
-#: ./application/modules/auth/auth.php:423
 msgid "Your account has been blocked."
 msgstr "Ваш аккаунт был заблокирован."
 
-#: ./application/modules/auth/authapi.php:374
+#: ./application/modules/auth/authapi.php:376
 msgid "User is already login in"
 msgstr "Пользователь уже войшол в систему"
 
-#: ./application/modules/auth/authapi.php:379
+#: ./application/modules/auth/authapi.php:381
 msgid "User not logined"
 msgstr "Пользователь не вошол"
 
-#: ./application/modules/auth/authapi.php:394
+#: ./application/modules/auth/authapi.php:396
 msgid "A user with such mail is not found in the database"
 msgstr "Пользователь с такой почтой не найден в базе"
 
@@ -188,7 +191,7 @@ msgstr "Пользователь с такой почтой не найден в
 msgid "Improper protection code"
 msgstr "Неправильной код защиты"
 
-#: ./application/modules/auth/auth.php:134
+#: ./application/modules/auth/auth.php:133
 msgid "Authorization successfully completed"
 msgstr "Авторизация успешно завершена"
 
@@ -200,39 +203,34 @@ msgstr "Вы уже зарегистрированы."
 msgid "Registration"
 msgstr "Регистрация"
 
-#: ./application/modules/auth/auth.php:260
+#: ./application/modules/auth/auth.php:259
 msgid "Registration is prohibited."
 msgstr "Регистрация запрещена."
 
-#: ./application/modules/auth/auth.php:283
+#: ./application/modules/auth/auth.php:282
 msgid "Your account has been successfully activated. "
 msgstr "Ваша учетная запись была успешно активирована."
 
-#: ./application/modules/auth/auth.php:288
+#: ./application/modules/auth/auth.php:287
 msgid "You have provided an incorrect activation code."
 msgstr "Вы указали неверный код активации."
 
-#: ./application/modules/auth/auth.php:297
+#: ./application/modules/auth/auth.php:296
 msgid "Forgot password"
 msgstr "Забыли пароль"
 
-#: ./application/modules/auth/auth.php:308
+#: ./application/modules/auth/auth.php:307
 msgid "Please check your email for instructions on how to activate the new password."
 msgstr "Пожалуйста, проверьте свою электронную почту для получения инструкций о том, как активировать новый пароль."
 
-#: ./application/modules/auth/auth.php:347
-msgid "Reset failed. Not a valid user name and / or password. Check your email and follow the instructions."
-msgstr "Сброс не удалось. Не правильное имя пользователя и / или пароль. Проверьте вашу электронную почту и следуйте инструкциям."
-
-#: ./application/modules/auth/auth.php:365
+#: ./application/modules/auth/auth.php:368
 msgid "Old Password"
 msgstr "Старый пароль"
 
-#: ./application/modules/auth/auth.php:366
+#: ./application/modules/auth/auth.php:369
 msgid "The new password"
 msgstr "Новый пароль"
 
-#: ./application/modules/auth/auth.php:416
+#: ./application/modules/auth/auth.php:419
 msgid "You are not allowed to view the page."
 msgstr "Вам не разрешен просмотр страницы."
-
