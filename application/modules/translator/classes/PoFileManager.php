@@ -450,6 +450,8 @@ class PoFileManager {
         $path = $this->getPoFileUrl($name, $type, $lang);
 
         if (!FileOperator::getInstatce()->checkFile($path)) {
+            $error = FileOperator::getInstatce()->getErrors();
+            $this->setError($error['error']);
             return FALSE;
         } else {
             $po = file($path);
