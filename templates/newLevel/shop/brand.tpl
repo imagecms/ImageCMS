@@ -43,6 +43,8 @@
 
             {include_tpl('catalogue_header')}
             
+            {$CI->load->module('banners')->render($model->getId())}
+            
             <!--Start. Show brand description if $CI->uri->segment(2) == "brand" and description is not empty-->
             {if $model->getImage() && trim($model->getDescription()) != ""}
                 <div class="frame-category-brand">
