@@ -318,10 +318,10 @@ function init_2() {
     });
     $('body').off('click.popover').on('click.popover', function(e) {
         var popovers = '.popover, .buy_prod, .popover_ref';
-        if ($.exists(popovers) && $(e.target).is(popovers) && $(e.target).closest().is(popovers)) {
-            e.stopimmediatepropagation();
+        if ($.exists(popovers) && ($(e.target).is(popovers) || $(e.target).parents().is(popovers)))
+            return;
+        else if (!$(e.target).is(':input'))
             $(popovers).popover('hide');
-        }
     });
     if ($.exists('.buy_prod, .popover_ref')) {
         //alert('init2');
@@ -638,15 +638,15 @@ function autocomplete() {
             minChars: 1,
             source: '/admin/components/run/shop/kits/get_products_list/' + $('#kitMainProductName').val() + '&limit=20',
             select: function(event, ui) {
-                $('#MainProductHidden').attr('value', ui.item.identifier.id);
-                $('#kitMainProductName').attr('value', ui.item.label);
+                $('#MainProductHidden').val(ui.item.identifier.id);
+                setTimeout(function(){$('#kitMainProductName').val(ui.item.label);}, 0);
             }
         });
     }
     if ($.exists('#AttachedProducts')) {
         $('#AttachedProducts').autocomplete({
             minChars: 0,
-            source: '/admin/components/run/shop/kits/get_products_list/' + $('#AttachedProducts').attr('value') + '&limit=20',
+            source: '/admin/components/run/shop/kits/get_products_list/' + $('#AttachedProducts').val() + '&limit=20',
             select: function(event, ui) {
                 var mainDisc = $('#mainDisc').attr('value');
                 $('#forAttached').append('<div id="tpm_row' + ui.item.identifier.id + '" class="m-t_10">' +
@@ -660,7 +660,7 @@ function autocomplete() {
                         '</span>&nbsp;' +
                         '<span class="d-i_b number v-a_b">' +
                         '<span class="help-inline d_b">' + langs.discount + ' %</span>' +
-                        '<input type="text" id="AttachedProductsDisc" name="Discounts[]" value="' + mainDisc + '" class="input-mini" data-max="100" data-rel="tooltip" data-title="?????? ?????"/>' +
+                        '<input type="text" id="AttachedProductsDisc" name="Discounts[]" value="0" class="input-mini" data-max="100" data-rel="tooltip" data-title="?????? ?????"/>' +
                         '</span>&nbsp;' +
                         '<span class="d-i_b v-a_b">' +
                         '<button class="btn btn-danger btn-small del_tmp_row" type="button" data-kid="' + ui.item.identifier.id + '"><i class="icon-trash icon-white"></i></button>' +
@@ -668,7 +668,7 @@ function autocomplete() {
                         '</div>');
             },
             close: function(event, ui) {
-                $('#AttachedProducts').attr('value', '');
+                $('#AttachedProducts').val('');
             }
         });
     }

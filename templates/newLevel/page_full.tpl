@@ -1,14 +1,13 @@
 <div class="frame-crumbs">
     {widget('path')}
 </div>
-            {$CI->load->module('banners')->render($page.id)}
-
 <div class="frame-inside page-text">
     <div class="container">
         <div class="text-left">{load_menu('left_menu')}</div>
         <div class="text-right">
+            <h1>{$page.title}</h1>
+            {$CI->load->module('banners')->render($page.id)}
             <div class="text">
-                <h1>{$page.title}</h1>
                 {$page.full_text}
 
                 {$Comments = $CI->load->module('comments')->init($page)}
