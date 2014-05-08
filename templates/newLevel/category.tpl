@@ -1,6 +1,8 @@
 <div class="frame-crumbs">
     {widget('path')}
 </div>
+            {$CI->load->module('banners')->render($category.id)}
+
 <div class="frame-inside page-text">
     <div class="container">
         <div class="text-left">{load_menu('left_menu')}</div>
