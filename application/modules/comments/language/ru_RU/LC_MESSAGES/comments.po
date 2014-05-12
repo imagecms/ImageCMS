@@ -2,11 +2,11 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-19 02:02+0200\n"
-"PO-Revision-Date: 2014-03-19 02:02+0200\n"
-"Last-Translator:  \n"
-"Language-Team:  \n"
-"Language: ru_RU\n"
+"POT-Creation-Date: 2014-05-12 11:19+0300\n"
+"PO-Revision-Date: 2014-05-12 11:19+0300\n"
+"Last-Translator:  <>\n"
+"Language-Team:  <>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -17,6 +17,11 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/comments/templates/recent_product_comments_form.tpl:11
+#: ./application/modules/comments/templates/edit.tpl:13
+msgid "Save and exit"
+msgstr "Сохранить и выйти"
 
 #: ./application/modules/comments/commentsapi.php:304
 msgid "Wrong code protection"
@@ -39,7 +44,7 @@ msgid "Waiting moderation"
 msgstr "В ожидающие"
 
 # �
-#: ./application/modules/comments/templates/comments_list.tpl:382
+#: ./application/modules/comments/templates/comments_list.tpl:384
 msgid "No data has been found"
 msgstr "Комментарии отсутствуют"
 
@@ -56,7 +61,7 @@ msgid "minutes"
 msgstr "минут"
 
 #: ./application/modules/comments/templates/comments_list.tpl:3
-#: ./application/modules/comments/templates/comments_list.tpl:286
+#: ./application/modules/comments/templates/comments_list.tpl:287
 #: ./application/modules/comments/assets/js/admin.js:30
 msgid "Show answers"
 msgstr "Показать ответы"
@@ -87,15 +92,15 @@ msgstr "Комментарии"
 
 #: ./application/modules/comments/templates/comments_list.tpl:20
 #: ./application/modules/comments/templates/comments_list.tpl:107
-#: ./application/modules/comments/templates/comments_list.tpl:205
-#: ./application/modules/comments/templates/comments_list.tpl:311
+#: ./application/modules/comments/templates/comments_list.tpl:206
+#: ./application/modules/comments/templates/comments_list.tpl:313
 msgid "Into spam"
 msgstr "В спам"
 
 #: ./application/modules/comments/templates/comments_list.tpl:22
 #: ./application/modules/comments/templates/comments_list.tpl:104
-#: ./application/modules/comments/templates/comments_list.tpl:202
-#: ./application/modules/comments/templates/comments_list.tpl:309
+#: ./application/modules/comments/templates/comments_list.tpl:203
+#: ./application/modules/comments/templates/comments_list.tpl:311
 msgid "In approve"
 msgstr "В одобренные"
 
@@ -118,41 +123,33 @@ msgstr "E-mail пользователя"
 #: ./application/modules/comments/templates/settings.tpl:10
 #: ./application/modules/comments/templates/comments_list.tpl:100
 #: ./application/modules/comments/templates/comments_list.tpl:196
-#: ./application/modules/comments/templates/comments_list.tpl:307
+#: ./application/modules/comments/templates/comments_list.tpl:308
 #: ./application/modules/comments/templates/edit.tpl:12
 #: ./application/modules/comments/templates/recent_comments_form.tpl:10
 msgid "Save"
 msgstr "Сохранить"
 
 #: ./application/modules/comments/templates/comments_list.tpl:102
-#: ./application/modules/comments/templates/comments_list.tpl:199
-#: ./application/modules/comments/templates/comments_list.tpl:308
+#: ./application/modules/comments/templates/comments_list.tpl:200
+#: ./application/modules/comments/templates/comments_list.tpl:310
 msgid "Cancel"
 msgstr "Отмена"
 
 #: ./application/modules/comments/templates/comments_list.tpl:25
 #: ./application/modules/comments/templates/comments_list.tpl:111
-#: ./application/modules/comments/templates/comments_list.tpl:209
-#: ./application/modules/comments/templates/comments_list.tpl:315
+#: ./application/modules/comments/templates/comments_list.tpl:210
+#: ./application/modules/comments/templates/comments_list.tpl:317
 msgid "Delete"
 msgstr "Удалить"
 
-#: ./application/modules/comments/templates/comments_list.tpl:207
-#: ./application/modules/comments/templates/comments_list.tpl:313
+#: ./application/modules/comments/templates/comments_list.tpl:208
+#: ./application/modules/comments/templates/comments_list.tpl:315
 msgid "Wait moderation"
 msgstr "Подождите модерацию"
 
 #: ./application/modules/comments/templates/edit.tpl:6
 msgid "Comment editing"
 msgstr "Редактирование комментария"
-
-#: ./application/modules/comments/templates/edit.tpl:11
-msgid "Return"
-msgstr "Назад"
-
-#: ./application/modules/comments/templates/edit.tpl:13
-msgid "Create and exit"
-msgstr "Создать и выйти"
 
 #: ./application/modules/comments/comments.php:241
 #: ./application/modules/comments/assets/comments_api.tpl:3
@@ -241,12 +238,6 @@ msgstr "Оставить комментарий"
 msgid "Widget settings"
 msgstr "Настройки виджета"
 
-#: ./application/modules/comments/templates/recent_product_comments_form.tpl:9
-#: ./application/modules/comments/templates/recent_comments_form.tpl:9
-msgid "Go back"
-msgstr "Назад"
-
-#: ./application/modules/comments/templates/recent_product_comments_form.tpl:11
 #: ./application/modules/comments/templates/recent_comments_form.tpl:11
 msgid "Save and go back"
 msgstr "Сохранить и вернуться"
@@ -265,7 +256,10 @@ msgstr "Максимальное количество символов"
 msgid "Comment settings"
 msgstr "Настройки комментариев"
 
+#: ./application/modules/comments/templates/recent_product_comments_form.tpl:9
 #: ./application/modules/comments/templates/settings.tpl:9
+#: ./application/modules/comments/templates/edit.tpl:11
+#: ./application/modules/comments/templates/recent_comments_form.tpl:9
 msgid "Back"
 msgstr "Вернуться"
 
@@ -450,4 +444,3 @@ msgstr "Настройки сохранены"
 #: ./application/modules/comments/comments_widgets.php:151
 msgid "Number of responses"
 msgstr "Количество ответов"
-
