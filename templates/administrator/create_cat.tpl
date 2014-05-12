@@ -185,7 +185,7 @@
                                                     <label class="control-label" for="per_page">{lang("Posts on page","admin")}:</label>
                                                     <div class="controls">
                                                         <input type="text" name="per_page" value="15" id="per_page"/> 
-                                                        <div class="frame_label no_connection m-t_20">
+                                                        <div class="frame_label no_connection">
                                                             <span class="niceCheck b_n">
                                                                 <input type="checkbox" name="comments_default" value="1" />
                                                             </span>
