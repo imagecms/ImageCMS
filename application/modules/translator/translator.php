@@ -42,6 +42,8 @@ class Translator extends MY_Controller {
 
                     if (isset($translatorSettings['showApiForm']) && $obj->dx_auth->is_admin()) {
                         define('ENABLE_TRANSLATION_API', TRUE);
+                        $lang = new MY_Lang();
+                        $lang->load('translator');
                         \CMSFactory\assetManager::create()->registerScript('translateSingleLang');
                         $obj->template->include_tpl('translationApiForm', './application/modules/translator/assets/');
                     }

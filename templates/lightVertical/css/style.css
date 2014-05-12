@@ -72,7 +72,6 @@ article, .container, .special-proposition > .frame-title{max-width: 980px;}
 .text-left{float: left;width: 227px;}
 .text-right{margin-left: 252px;}
 
-.vertical-layout .frame-complect .content-carousel{width: 600px;}
 .vertical-layout .items-complect  [class*="items"]{max-width: 350px;}
 
 .vertical-menu{width: 225px;float: left;}
@@ -893,10 +892,11 @@ li.clear-pag-item{margin: 0 14px 4px;}
 .frame-complect{margin-bottom: 40px;}
 .frame-complect .content-carousel{margin: 0 auto;}
 .items-complect > li{width: 602px!important;}
+.vertical-layout .items-complect > li{width: 652px!important;}
 .items-complect [class*="items"]{max-width: 416px;width: auto;}
 .complects-carousel{padding: 10px 10px 10px 30px;}
-.vertical-layout .complects-carousel .prev{left: 5px;}
-.vertical-layout .complects-carousel .next{right: 5px;}
+.vertical-layout .complects-carousel .prev{left: 0;}
+.vertical-layout .complects-carousel .next{right: 0;}
 .frame-complect .frame-title, .title-default{overflow: hidden;padding-bottom: 2px;}
 .title-default > .title{padding: 0 20px;}
 .frame-complect .frame-title > .title, .title-default > .title{position: relative;margin-bottom: 0;}
