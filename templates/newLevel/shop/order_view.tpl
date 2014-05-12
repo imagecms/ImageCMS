@@ -432,6 +432,9 @@
                                 </td>
                             </tr>
                         {/if}
+                        {if $model->getGiftCertPrice() > 0} 
+                            {$discount = $discount - $model->getGiftCertPrice()}
+                        {/if}
                         {if $discount}
                             <tr>
                                 <td colspan="3">
@@ -440,9 +443,6 @@
                                         <span>
                                             <span class="text-discount current-discount">
                                                 <span class="price f-w_b">
-                                                    {if $model->getGiftCertPrice() > 0} 
-                                                        {$discount = $discount - $model->getGiftCertPrice()}
-                                                    {/if}
                                                     {echo $discount}
                                                 </span>
                                                 <span class="curr">{$CS}</span>
@@ -458,7 +458,7 @@
                                     <span class="s-t">{lang('Подарочный сертификат','newLevel')}:</span>
                                     <span class="price-item f_r">
                                         <span class="text-discount">
-                                            <span class="price">- {echo ShopCore::app()->SCurrencyHelper->convert($model->getGiftCertPrice())} </span>
+                                            <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($model->getGiftCertPrice())} </span>
                                             <span class="curr">{$CS}</span>
                                         </span>
                                     </span>

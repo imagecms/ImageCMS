@@ -265,3 +265,6 @@
         </div>
     </div>
 </div>
+<script>
+            var _useModeration = {if $use_moderation}{$use_moderation}{else:}0{/if};
+</script>

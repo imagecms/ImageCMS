@@ -135,7 +135,8 @@ class Mod_discount extends \MY_Controller {
                 $this->baseDiscount->cart->discount_info = $discount;
                 $this->baseDiscount->cart->discount_type = $discount['type'];
 
-                if (strstr($this->uri->uri_string(), 'make_order')) {
+                $check = $this->session->flashdata('validation_errors');
+                if (strstr($this->uri->uri_string(), 'make_order') & empty($check)) {
 
                     if ($discount['type'] != 'product') {
                         $this->baseDiscount->updateDiskApply($discount['max_discount']['key']);
@@ -175,9 +176,6 @@ class Mod_discount extends \MY_Controller {
                 $this->baseDiscount->cart->gift_value = $value;
                 $this->baseDiscount->cart->setTotalPrice($this->baseDiscount->cart->getTotalPrice() - $value);
                 $aplyGift = true;
-//                if ($_POST['gift_ord'])
-//                    $this->baseDiscount->updateDiskApply($disc['key'], 'gift');
-
                 break;
             }
 
