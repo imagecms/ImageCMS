@@ -217,7 +217,7 @@
                                 </select>
                             </div>
                             <div class="d-i_b">
-                                <select id="modules_templates" style="display: none" onchange="Selectors.names($(this))">
+                                <select id="modules_templates" style="display: none" class="notchosen" onchange="Selectors.names($(this))">
                                 </select>
                             </div>
                         </div>
