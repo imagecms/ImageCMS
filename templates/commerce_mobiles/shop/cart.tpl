@@ -71,7 +71,7 @@
                 {/if}
                 <br/>
                 {if $discount_val}
-                    {lang('Подарочный сертификат', 'commerce_mobile')}: {echo ShopCore::app()->SCurrencyHelper->convert($discount_val)} {$CS} <br/>
+                    {lang('Скидка', 'commerce_mobile')}: {echo ShopCore::app()->SCurrencyHelper->convert($discount_val)} {$CS} <br/>
                 {/if}
                 <span class="total_pay">{lang('Всего к оплате', 'commerce_mobile')}:</span>
                 <span class="price">

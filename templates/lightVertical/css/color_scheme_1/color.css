@@ -191,7 +191,7 @@ a.c_w:hover{color: #51d2ff !important;}
 .text-proposition-h.text-el{color: #666;}
 .special-proposition > .frame-title{border-bottom-color: #fd7c06;}
 
-.page-main .horizontal-carousel .special-proposition .carousel-js-css, .horizontal-carousel .special-proposition.frame-complect .carousel-js-css,
+.page-main .horizontal-carousel .special-proposition .carousel-js-css, .horizontal-carousel .special-proposition.frame-complect .carousel-js-css{border-color: #dedede;}
 .similar-product .items-carousel {border-color: #dedede;}
 .carousel-category-popular{border-color: #eae5e1;}
 .carousel-category-popular .frame-title:after{box-shadow: 0 1px 1px #ece9e6;}
