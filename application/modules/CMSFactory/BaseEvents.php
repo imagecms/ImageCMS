@@ -41,20 +41,31 @@ abstract class BaseEvents {
      * &emsp;&emsp;\CMSFactory\Events::create()->setListener('myMethod', 'Comments::add');<br/>
      * }
      * </code>
-     * @param string $methodName Indicates the name of the method that will be called in response to a trigger-event. The method will be matched in the class from which the requested binding.
+     * @param string $callback Indicates the name of the method that will be called in response to a trigger-event. The method will be matched in the class from which the requested binding.
      * @param string $alias <b>[optional]</b> The second parameter is optional if you make a call type was given an expected event.
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
-    public function setListener($methodName, $alias = null) {
+    public function setListener($callback, $alias = null) {
         if ($alias !== null && $this->key !== null)
-            throw new \Exception("Can't declarete bouth.");
+            throw new \Exception("Can't declarete both.");
         $alias = ($this->key)? : $alias;
         if ($alias == null)
             throw new \Exception("Bind value can't not be null.");
-        $trace = debug_backtrace();
-        if ($this->holder[$alias][$methodName] != $trace[1]['class']) {
-            $this->holder[$alias][$methodName] = $trace[1]['class'];
-            $this->storage[$alias]['collable'][] = array('collMethod' => $methodName, 'collClass' => $trace[1]['class']);
+
+        if (is_array($callback)) {
+            $method = $callback[1];
+            $class = is_object($callback[0]) ? get_class($callback[0]) : $callback[0];
+        } elseif (is_string($callback)) {
+            $trace = debug_backtrace();
+            $method = $callback;
+            $class = $trace[1]['class'];
+        } else {
+            throw new \Exception("First parameter has wrong type. Array or string only");
+        }
+
+        if ($this->holder[$alias][$method] != $class) {
+            $this->holder[$alias][$method] = $class;
+            $this->storage[$alias]['collable'][] = array('collMethod' => $method, 'collClass' => $class);
         }
     }
 
