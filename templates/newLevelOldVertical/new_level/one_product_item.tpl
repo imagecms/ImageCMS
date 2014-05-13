@@ -83,7 +83,7 @@
                         {$CI->load->module('star_rating')->show_star_rating($p, false)}
                         <a href="{shop_url('product/'.$p->url.'#comment')}" class="count-response">
                             {intval($Comments[$p->getId()])}
-                            {echo SStringHelper::Pluralize($Comments[$p->getId()], array(lang("отзыв","newLevel"),lang("отзыва","newLevel"),lang("отзывов","newLevel")))}
+                            {echo SStringHelper::Pluralize($Comments[$p->getId()], array(lang("отзыв",'newLevel'),lang("отзыва",'newLevel'),lang("отзывов",'newLevel')))}
                         </a>
                     </div>
                 {/if}

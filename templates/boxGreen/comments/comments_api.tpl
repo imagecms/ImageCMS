@@ -32,7 +32,7 @@
                                 </div>
                             {/if}
                             <label>
-                                <span class="title">{lang('Отзыв')}</span>
+                                <span class="title">{lang('Отзыв', 'newLevel')}</span>
                                 <span class="frame-form-field">
                                     <textarea name="comment_text" class="comment_text">{$_POST.comment_text}</textarea>
                                 </span>
@@ -118,7 +118,7 @@
                                     {if $can_comment == 0 OR $is_logged_in}
                                         <div class="btn f_l">
                                             <button type="button" data-rel="cloneAddPaste" data-parid="{$comment['id']}">
-                                                <span class="text-el d_l_3">{lang('Ответить')}</span>
+                                                <span class="text-el d_l_3">{lang('Ответить', 'newLevel')}</span>
                                             </button>
                                         </div>
                                     {/if}

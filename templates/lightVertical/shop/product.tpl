@@ -59,7 +59,7 @@
                                         {$CI->load->module('star_rating')->show_star_rating($model, false)}
                                         <button data-trigger="[data-href='#comment']" data-scroll="true" class="count-response d_i-b v-a_m d_l_1">
                                             {intval($Comments[$model->getId()])}
-                                            {echo SStringHelper::Pluralize($Comments[$model->getId()], array(lang("отзыв","newLevel"),lang("отзыва","newLevel"),lang("отзывов","newLevel")))}
+                                            {echo SStringHelper::Pluralize($Comments[$model->getId()], array(lang("отзыв",'newLevel'),lang("отзыва",'newLevel'),lang("отзывов",'newLevel')))}
                                         </button>
                                     </li>
                                 {else:}

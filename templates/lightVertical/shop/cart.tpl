@@ -69,7 +69,7 @@
                                 <div class="frame-form-field">
                                     {if trim(ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPatternMain('pattern_custom_field_phone')->getOneCustomFieldsByName('addphone','order',$profile.id,'user')->asHtml()) != ''}
                                         <span class="f_r l-h_35">
-                                            <button type="button" class="d_l_black" data-drop=".drop-add-phone" data-overlay-opacity="0" data-place="inherit">Еще один номер</button>
+                                            <button type="button" class="d_l_black" data-drop=".drop-add-phone" data-overlay-opacity="0" data-place="inherit">{lang('Еще один номер', 'newLevel')}</button>
                                         </span>
                                     {/if}
                                     <div class="d_b o_h maskPhoneFrame">
@@ -197,7 +197,7 @@
         <div class="right-cart">
             <div class="frameBask frame-bask frame-bask-order">
                 <div class="frame-title clearfix">
-                    <div class="title f_l">Мой заказ</div>
+                    <div class="title f_l">{lang('Мой заказ', 'newLevel')}</div>
                     <div class="f_r">
                         <button type="button" class="d_l_1 editCart">{lang('Редактировать', 'newLevel')}</button>
                     </div>

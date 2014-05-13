@@ -3,7 +3,7 @@
         <div class="box-1">
             <div class="inside-padd">
                 <div class="c_b f-w_b">© «YorStore»  {echo date('Y')}</div>
-                <div class="s-t">Все права защищены</div>
+                <div class="s-t">{lang('Все права защищены', 'newLevel')}</div>
             </div>
             <div class="social-foot social-NS">
                 {echo $CI->load->module('share')->_make_share_form()}

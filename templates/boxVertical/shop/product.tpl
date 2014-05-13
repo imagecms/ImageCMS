@@ -143,7 +143,7 @@
                                 <div class="frame-star">
                                     {$CI->load->module('star_rating')->show_star_rating($model, false)}
                                     <div class="d_i-b">
-                                        <button data-trigger="[data-href='#comment']" data-scroll="true" class="count-response d_l">{lang('Отзывы')}
+                                        <button data-trigger="[data-href='#comment']" data-scroll="true" class="count-response d_l">{lang('Отзывы', 'newLevel')}
                                             {intval($Comments[$model->getId()])}
                                         </button>
                                     </div>
@@ -603,7 +603,7 @@
                     <span id="cc">
                         {if intval($Comments[$model->getId()][0]) !== 0}
                         {echo intval($Comments[$model->getId()])}
-                        {echo SStringHelper::Pluralize($Comments[$model->getId()], array(lang("отзыв","newLevel"),lang("отзыва","newLevel"),lang("отзывов","newLevel")))}
+                        {echo SStringHelper::Pluralize($Comments[$model->getId()], array(lang("отзыв",'newLevel'),lang("отзыва",'newLevel'),lang("отзывов",'newLevel')))}
                         {else:}
                         {lang('Оставить отзыв','newLevel')}
                         {/if}

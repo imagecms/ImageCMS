@@ -50,9 +50,9 @@
                                         <div class="frame-form-field check-public">
                                             <div class="lineForm">
                                                 <select name="wlTypes" id="wlTypes">
-                                                    <option value="shared">{lang('Коллективный')}</option>
-                                                    <option value="public">{lang('Публичный')}</option>
-                                                    <option value="private">{lang('Приватный')}</option>
+                                                    <option value="shared">{lang('Коллективный', 'newLevel')}</option>
+                                                    <option value="public">{lang('Публичный', 'newLevel')}</option>
+                                                    <option value="private">{lang('Приватный', 'newLevel')}</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -160,13 +160,13 @@
                                             <div class="f_l">
                                                 <b>{lang('Доступность:','newLevel')}</b>
                                                 {if $wishlist[0][access] == 'private'}
-                                                    <span class="s_t">{lang('Приватный')}</span>
+                                                    <span class="s_t">{lang('Приватный', 'newLevel')}</span>
                                                 {/if}
                                                 {if $wishlist[0][access] == 'public'}
-                                                    <span class="s_t">{lang('Публичный')}</span>
+                                                    <span class="s_t">{lang('Публичный', 'newLevel')}</span>
                                                 {/if}
                                                 {if $wishlist[0][access] == 'shared'}
-                                                    <span class="s_t">{lang('Коллективный')}</span>
+                                                    <span class="s_t">{lang('Коллективный', 'newLevel')}</span>
                                                 {/if}
                                             </div>
                                         </div>

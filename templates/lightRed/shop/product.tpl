@@ -120,7 +120,7 @@
                                             {$CI->load->module('star_rating')->show_star_rating($model, false)}
                                             <div class="d_i-b">
                                                 <button data-trigger="[data-href='#comment']" data-scroll="true" class="count-response d_l_1">
-                                                    {lang("Отзывы","newLevel")}
+                                                    {lang("Отзывы",'newLevel')}
                                                     {intval($Comments[$model->getId()])}
                                                 </button>
                                             </div>
@@ -568,7 +568,7 @@
                                 <button type="button" data-href="#comment" onclick="Comments.renderPosts($('#comment .inside-padd'), {literal}{'visibleMainForm': '1'}{/literal})">
                                     <span class="icon_comment-tab"></span>
                                     <span class="text-el">
-                                        {lang("Отзывы","newLevel")}
+                                        {lang("Отзывы",'newLevel')}
                                         <span id="cc">
                                             ({echo intval($Comments[$model->getId()])})
                                         </span>

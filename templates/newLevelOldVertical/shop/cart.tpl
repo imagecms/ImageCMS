@@ -137,7 +137,7 @@
                                 </div>
                             </div>
                             <div class="frame-label">
-                                <span class="title">Адрес доставки:</span>
+                                <span class="title">{lang('Адрес доставки', 'newLevel')}:</span>
                                 <span class="frame-form-field">
                                     {if $isRequired['userInfo[deliverTo]']}
                                         <span class="must">*</span>
@@ -220,9 +220,9 @@
                 <div class="right-cart">
                     <div class="frameBask frame-bask frame-bask-order">
                         <div class="frame-title clearfix">
-                            <div class="title f_l">Мой заказ</div>
+                            <div class="title f_l">{lang('Мой заказ', 'newLevel')}</div>
                             <div class="f_r">
-                                <button type="button" class="d_l_1" onClick="ShopFront.Cart.togglePopup()">Редактировать</button>
+                                <button type="button" class="d_l_1" onClick="ShopFront.Cart.togglePopup()">{lang('Редактировать', 'newLevel')}</button>
                             </div>
                         </div>
                         <div id="orderDetails">
@@ -267,7 +267,7 @@
                                     <td colspan="2">
                                         <div class="f_r btn-toggle-gift">
                                             <button type="button" class="d_l_1" data-drop="#gift" data-place="inherit" data-overlay-opacity="0">
-                                                <span class="text-el">Ввести промо-код</span>
+                                                <span class="text-el">{lang('Ввести промо-код', 'newLevel')}</span>
                                             </button>
                                         </div>
                                         <div id="gift" class="drop o_h">
