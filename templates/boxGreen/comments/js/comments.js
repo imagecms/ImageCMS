@@ -3,6 +3,7 @@
         init: function(options) {
             var settings = $.extend({
                 pasteAfter: $(this),
+                wrapper: $('body'),
                 pasteWhat: $('[data-rel="whoCloneAddPaste"]'),
                 evPaste: 'click',
                 effectIn: 'fadeIn',
@@ -19,6 +20,7 @@
             }, options);
 
             var $this = $(this),
+                    wrapper = settings.wrapper,
                     pasteAfter = settings.pasteAfter,
                     pasteWhat = settings.pasteWhat,
                     evPaste = settings.evPaste,
@@ -44,7 +46,7 @@
                 before($this);
 
                 if (!pasteAfterEL.hasClass('already')) {
-                    pasteAfterEL.after(pasteWhat.clone().hide().find(wherePasteAdd).prepend(whatPasteAdd).end()).addClass('already');
+                    pasteAfterEL.after(wrapper.find(pasteWhat).clone().hide().find(wherePasteAdd).prepend(whatPasteAdd).end()).addClass('already');
                     $(document).trigger({
                         'type': 'comments.beforeshowformreply',
                         'el': pasteAfterEL.next()
@@ -168,9 +170,9 @@ var Comments = {
         $('html, body').scrollTop(drop.offset().top - 20);
         drop.find(':input:first').focus();
     },
-    initComments: function() {
+    initComments: function(wrapper) {
         $(".star-big").starRating({
-            width: 27,
+            width: 26,
             afterClick: function(el, value) {
                 if (el.hasClass("clicktemprate")) {
                     $('.productRate > div.for_comment').css("width", value * 20 + '%');
@@ -179,6 +181,7 @@ var Comments = {
             }
         });
         $('[data-rel="cloneAddPaste"]').cloneAddPaste({
+            wrapper: wrapper,
             pasteAfter: 'parent.parent',
             pasteWhat: $('[data-rel="whoCloneAddPaste"]'),
             evPaste: 'click',
@@ -210,9 +213,6 @@ var Comments = {
                 success: function(obj) {
                     if (obj !== null) {
                         $('.yesholder' + comid).each(function() {
-                            if (+obj.y_count !== 0) {
-                                $(this).removeClass('d_n');
-                            }
                             $(this).html("(" + obj.y_count + ")");
                         });
                     }
@@ -230,9 +230,6 @@ var Comments = {
                 success: function(obj) {
                     if (obj !== null) {
                         $('.noholder' + comid).each(function() {
-                            if (+obj.n_count !== 0) {
-                                $(this).removeClass('d_n');
-                            }
                             $(this).html("(" + obj.n_count + ")");
                         });
                     }
@@ -245,9 +242,9 @@ var Comments = {
         if (data != undefined) {
             dataSend = data;
         }
-        var el = $(el);
+        el = $(el);
         $.ajax({
-            url: "/comments/commentsapi/renderPosts",
+            url: locale + "/comments/commentsapi/renderPosts",
             dataType: "json",
             data: dataSend,
             type: "post",
@@ -262,28 +259,31 @@ var Comments = {
                     el.each(function(i, n) {
                         $(this).append(tpl);
                         if (i + 1 == elL) {
-                            Comments.initComments();
+                            Comments.initComments($(this));
                         }
                     });
                     if (parseInt(obj.commentsCount) != 0) {
                         $('#cc').html('');
                         $('#cc').html(parseInt(obj.commentsCount) + ' ' + pluralStr(parseInt(obj.commentsCount), text.plurComments));
                     }
-                    if (visible == 1) {
-                        $(el).find('label.succ').removeClass('d_n');
+
+                    if (visible && _useModeration) {
+                        visible = isNaN(visible) ? $(visible) : $('[data-place="' + visible + '"]');
+
+                        visible.empty().append($('#useModeration').html());
                         setTimeout(function() {
-                            $(el).find('label.succ').addClass('d_n');
+                            el.find('.usemoderation').hide();
                         }, 3000);
                     }
-                    $(document).trigger({
-                        'type': 'rendercomment.after',
-                        'el': el
-                    });
                 }
+                $(document).trigger({
+                    'type': 'rendercomment.after',
+                    'el': el
+                });
             }
         });
     },
-    post: function(el, data) {
+    post: function(el, data, place) {
         $.ajax({
             url: "/comments/commentsapi/newPost",
             data: $(el).closest('form').serialize() +
@@ -297,16 +297,16 @@ var Comments = {
                 $(el).closest('.forComments').find(preloader).remove();
             },
             success: function(obj) {
+                var form = $(el).closest('form');
                 if (obj.answer === 'sucesfull') {
                     $('.comment_text').each(function() {
                         $(this).val('');
                     });
                     $('.comment_plus').val('');
                     $('.comment_minus').val('');
-                    Comments.renderPosts($(el).closest('.forComments'), data, 1);
+                    Comments.renderPosts($(el).closest('.forComments'), data, place ? place : +form.find('[name="comment_parent"]').val());
                 }
                 else {
-                    var form = $(el).closest('form');
                     form.find('.error_text').remove();
                     form.prepend('<div class="error_text">' + message.error(obj.validation_errors) + '</div>');
                     drawIcons(form.find('.error_text').find(selIcons));
