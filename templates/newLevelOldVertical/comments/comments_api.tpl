@@ -5,7 +5,7 @@
     </button>
 {/if}
 <div class="comments" id="comments">
-    <div class="title-comment">{if $comments_arr}{lang('Отзывы покупателей', 'newLevel')}{/if} {if !$visibleMainForm || $visibleMainForm == NULL}<button class="d_l_1" data-drop=".comments-main-form" data-place="inherit" data-overlay-opacity="0" data-after="Comments.toComment">Оставить свой отзыв</button>{/if}</div>
+    <div class="title-comment">{if $comments_arr}{lang('Отзывы покупателей', 'newLevel')}{/if} {if !$visibleMainForm || $visibleMainForm == NULL}<button class="d_l_1" data-drop=".comments-main-form" data-place="inherit" data-overlay-opacity="0" data-after="Comments.toComment">{lang('Оставить свой отзыв', 'newLevel')}</button>{/if}</div>
     {if $comments_arr}
         <div class="frame-list-comments">
             <ul class="sub-1 product-comment patch-product-view">
@@ -68,7 +68,7 @@
                                     <div class="btn">
                                         <button type="button" data-rel="cloneAddPaste" data-parid="{$comment['id']}">
                                             <span class="icon_comment"></span>
-                                            <span class="text-el d_l_1">{lang('Ответить')}</span>
+                                            <span class="text-el d_l_1">{lang('Ответить', 'newLevel')}</span>
                                         </button>
                                     </div>
                                 {/if}
@@ -185,7 +185,7 @@
                             <div class="frame-label">
                                 <span class="frame-form-field">
                                     <div class="btn-form">
-                                        <input type="submit" value="{lang('Комментировать')}" onclick="Comments.post(this, {literal}{'visibleMainForm': '1'}{/literal})"/>
+                                        <input type="submit" value="{lang('Комментировать', 'newLevel')}" onclick="Comments.post(this, {literal}{'visibleMainForm': '1'}{/literal})"/>
                                     </div>
                                 </span>
                             </div>

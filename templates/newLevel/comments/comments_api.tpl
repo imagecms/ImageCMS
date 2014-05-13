@@ -70,7 +70,7 @@
                                     <div class="btn">
                                         <button type="button" data-rel="cloneAddPaste" data-parid="{$comment['id']}">
                                             <span class="icon_comment"></span>
-                                            <span class="text-el d_l_1">{lang('Ответить')}</span>
+                                            <span class="text-el d_l_1">{lang('Ответить', 'newLevel')}</span>
                                         </button>
                                     </div>
                                 {/if}
@@ -183,7 +183,7 @@
                             <div class="frame-label">
                                 <span class="frame-form-field">
                                     <div class="btn-form">
-                                        <input type="submit" value="{lang('Комментировать')}" onclick="Comments.post(this, {literal}{'visibleMainForm': '1'}{/literal}, '.mainPlace')"/>
+                                        <input type="submit" value="{lang('Комментировать', 'newLevel')}" onclick="Comments.post(this, {literal}{'visibleMainForm': '1'}{/literal}, '.mainPlace')"/>
                                     </div>
                                 </span>
                             </div>

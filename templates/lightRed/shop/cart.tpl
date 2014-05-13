@@ -200,7 +200,7 @@
             <div class="right-cart">
                 <div class="frameBask frame-bask frame-bask-order">
                     <div class="frame-title clearfix">
-                        <div class="title f_l">Мой заказ</div>
+                        <div class="title f_l">{lang('Мой заказ', 'newLevel')}</div>
                         <div class="f_r">
                             <button type="button" class="d_l_1 editCart">{lang('Редактировать', 'newLevel')}</button>
                         </div>

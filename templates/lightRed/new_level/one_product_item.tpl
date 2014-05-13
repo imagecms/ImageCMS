@@ -97,7 +97,7 @@
                         <div class="frame-star f-s_0">
                             {$CI->load->module('star_rating')->show_star_rating($p, false)}
                             <a href="{shop_url('product/'.$p->url.'#comment')}" class="count-response">
-                                {lang("Отзывы","newLevel")}
+                                {lang("Отзывы",'newLevel')}
                                 {intval($Comments[$p->getId()])}
                             </a>
                         </div>

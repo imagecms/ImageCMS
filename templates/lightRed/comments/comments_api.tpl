@@ -65,7 +65,7 @@
                             <div class="frame-label">
                                 <span class="frame-form-field">
                                     <div class="btn-form">
-                                        <input type="submit" value="{lang('Комментировать')}" onclick="Comments.post(this, {literal}{'visibleMainForm': '1'}{/literal}, '.mainPlace')"/>
+                                        <input type="submit" value="{lang('Комментировать', 'newLevel')}" onclick="Comments.post(this, {literal}{'visibleMainForm': '1'}{/literal}, '.mainPlace')"/>
                                     </div>
                                 </span>
                             </div>
@@ -124,7 +124,7 @@
                                     <div class="btn">
                                         <button type="button" data-rel="cloneAddPaste" data-parid="{$comment['id']}">
                                             <span class="icon_comment"></span>
-                                            <span class="text-el d_l_1 f-s_11">{lang('Ответить')}</span>
+                                            <span class="text-el d_l_1 f-s_11">{lang('Ответить', 'newLevel')}</span>
                                         </button>
                                     </div>
                                 {/if}
@@ -139,7 +139,7 @@
                                         <li>
                                             <div class="global-frame-comment-sub2">
                                                 <div class="author-data-comment author-data-comment-sub2">
-                                                    <span class="s-t">Ответ от </span>
+                                                    <span class="s-t">{lang('Ответ от', 'newLevel')} </span>
                                                     <span class="author-comment">{$com_ch.user_name}</span>
                                                     <span class="date-comment">
                                                         <span class="day">{echo date("d", $comment.date)} </span>

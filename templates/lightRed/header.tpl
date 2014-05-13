@@ -45,7 +45,7 @@
                     </div>
                 </div>
                 <div class="head-work">
-                    <span class="c_b">Работаем:</span> <span class="s-t">Пн–Пт 09:00–20:00,<br/>Сб 09:00–17:00, Вс выходной</span>
+                    <span class="c_b">{lang('Работаем', 'newLevel')}:</span> <span class="s-t">{lang('Пн–Пт', 'newLevel')} 09:00–20:00,<br/>{lang('Сб', 'newLevel')} 09:00–17:00, {lang('Вс выходной', 'newLevel')}</span>
                 </div>
                 <!--                End. Contacts block-->
                 <div class="frame-search-cleaner">

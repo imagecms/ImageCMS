@@ -343,7 +343,7 @@
                         <div class="d-i_b">
                             <button data-trigger="[data-href='#comment']" data-scroll="true" class="count-response d_l">
                                 {intval($Comments[$model->getId()])}
-                                {echo SStringHelper::Pluralize($Comments[$model->getId()], array(lang("отзыв","newLevel"),lang("отзыва","newLevel"),lang("отзывов","newLevel")))}
+                                {echo SStringHelper::Pluralize($Comments[$model->getId()], array(lang("отзыв",'newLevel'),lang("отзыва",'newLevel'),lang("отзывов",'newLevel')))}
                             </button>
                         </div>
                     </div>
@@ -614,7 +614,7 @@
                             <span id="cc">
                                 {if intval($Comments[$model->getId()][0]) !== 0}
                                     {echo intval($Comments[$model->getId()])}
-                                    {echo SStringHelper::Pluralize($Comments[$model->getId()], array(lang("отзыв","newLevel"),lang("отзыва","newLevel"),lang("отзывов","newLevel")))}
+                                    {echo SStringHelper::Pluralize($Comments[$model->getId()], array(lang("отзыв",'newLevel'),lang("отзыва",'newLevel'),lang("отзывов",'newLevel')))}
                                 {else:}
                                     {lang('Оставить отзыв','newLevel')}
                                 {/if}
