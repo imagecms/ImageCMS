@@ -30,7 +30,7 @@
         </menu-->
         <!-- (where_show => default, main, product, shop_category, brand, category, page)  -->
         <banners>
-            <banner where_show="main" position="0" active="1" active_to="" >
+            <banner where_show="main" position="0" active="1" active_to="" group="Group">
                 <banner_i18n  name="Баннер" description="Баннер описание" url="banner_url" locale="ru" photo="/uploads/banners/photo1_ru.jpg">
                 </banner_i18n>
                 <banner_i18n  name="Баннер2" description="Баннер описание2" url="banner_url2" locale="ru" photo="/uploads/banners/photo2_ru.jpg">
@@ -38,6 +38,9 @@
                 <banner_i18n  name="Banner" description="Banner description" url="banner_url" locale="en" photo="/uploads/banners/photo1_en.jpg">
                 </banner_i18n>
             </banner>
+            <groups>
+                <group name="Group"/>
+            </groups>
         </banners>
         
     </demodata>
