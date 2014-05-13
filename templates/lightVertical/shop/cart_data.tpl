@@ -26,7 +26,7 @@
             <span class="text-cleaner">
                 <span class="helper"></span>
                 <span>
-                    <span class="ref text-el">{lang('Корзина', 'newLevel')}</span>
+                    <span class="ref text-el">{lang('Корзина', 'lightVertical')}</span>
                     <span class="text-el topCartCount">{echo $count}</span>
                 </span>
             </span>

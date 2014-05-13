@@ -122,15 +122,15 @@
                 </a>
                 <div class="imagecms-buy-license">
                     <a href="http://www.imagecms.net/shop/prices">
-                        <span class="imagecms-text-el">{lang('Купить лицензицю', 'newLevel')}</span>
+                        <span class="imagecms-text-el">{lang('Купить лицензицю', 'newLevelVertical')}</span>
                     </a>
                 </div>
                 <ul class="imagecms-list">
                     <li>
-                        <a href="http://www.imagecms.net" class="imagecms-ref">{lang('Обзор продукта', 'newLevel')}</a>
+                        <a href="http://www.imagecms.net" class="imagecms-ref">{lang('Обзор продукта', 'newLevelVertical')}</a>
                     </li>
                     <li>
-                        <a href="http://www.imagecms.net/kliuchevye-preimushchestva/vozmozhnosti" class="imagecms-ref">{lang('преимущества', 'newLevel')}</a>
+                        <a href="http://www.imagecms.net/kliuchevye-preimushchestva/vozmozhnosti" class="imagecms-ref">{lang('преимущества', 'newLevelVertical')}</a>
                     </li>
                     <li>
                         <div>

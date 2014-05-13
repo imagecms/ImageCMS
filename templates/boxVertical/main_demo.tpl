@@ -1,14 +1,14 @@
 {/*
-/**
-* @main.tpl - template for displaying shop main page
-* Variables
-*   $site_title: variable for insert site title
-*   $canonical: variable for insert canonical
-*   $site_description: variable for insert site description
-*   $THEME: variable for template path
-*   $site_keywords : variable for insert site keywords
-*   $content : variable for insert content of page
-*/}
+    /**
+    * @main.tpl - template for displaying shop main page
+    * Variables
+    *   $site_title: variable for insert site title
+    *   $canonical: variable for insert canonical
+    *   $site_description: variable for insert site description
+    *   $THEME: variable for template path
+    *   $site_keywords : variable for insert site keywords
+    *   $content : variable for insert content of page
+    */}
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,9 +23,9 @@
         <link rel="stylesheet" type="text/css" href="{$THEME}{$colorScheme}/color.css" media="all" />
 
         {if $CI->uri->segment(1) == MY_Controller::getCurrentLocale()}
-            {$lang = '/' . \MY_Controller::getCurrentLocale()} 
+            {$lang = '/' . \MY_Controller::getCurrentLocale()}
         {else:}
-            {$lang = ''} 
+            {$lang = ''}
         {/if}
         {if $CI->uri->segment(2) == 'profile' || $CI->uri->segment(1) == 'wishlist'}
             <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW" />
@@ -49,7 +49,7 @@
                                 cache: true,
                                 complete: function() {
                                     cL++;
-                                    if (cL === scriptsL)
+                                    if (cL == scriptsL)
                                         if (callback) {
                                             eval(callback)();
                                             setTimeout(function() {
@@ -75,10 +75,11 @@
         <!--[if IE 7]>
             <link rel="stylesheet" type="text/css" href="{$THEME}css/ie_7.css" />
             <script src="{$THEME}js/localStorageJSON.js"></script>
-        <![endif]-->
+            <![endif]-->
 
         <link rel="icon" href="{echo siteinfo('siteinfo_favicon_url')}" type="image/x-icon" />
         <link rel="shortcut icon" href="{echo siteinfo('siteinfo_favicon_url')}" type="image/x-icon" />
+
         {literal}
             <style>
                 .imagecms-top-fixed-header{min-width: 960px;height: 0;box-shadow: 0 1px 4px rgba(0,0,0,.2);background-color: #fafafa;border-top: 0 solid #0aae85;position: fixed;top: 0;left: 0;width: 100%;z-index: 1000;font-family: Arial, sans-serif;font-size: 12px;color: #223340;vertical-align: baseline;}
@@ -120,7 +121,7 @@
             </style>
         {/literal}
     </head>
-    <body class="is{echo $agent[0]} not-js {$CI->core->core_data['data_type']}"> 
+    <body class="is{echo $agent[0]} not-js {$CI->core->core_data['data_type']}">
         {include_tpl('language/jsLangsDefine.tpl')}
         {include_tpl('language/jsLangs.tpl')}
         <!-- Start. shop-->
@@ -130,28 +131,28 @@
                         $('.imagecms-top-fixed-header').removeClass('imagecms-active');
                         $(this).hide().next().show();
                         $(window).scroll();">
-                    <span class="imagecms-toggle-close-text imagecms-bar-close-text"><span style="font-size: 14px;">↑</span> {lang('Скрыть', 'newLevel')}</span>
+                    <span class="imagecms-toggle-close-text imagecms-bar-close-text"><span style="font-size: 14px;">↑</span> {lang('Скрыть', 'box')}</span>
                 </button>
                 <button type="button" class="imagecms-close" {if $_COOKIE['condPromoToolbar'] == '0'}style="display: block;"{/if} onclick="setCookie('condPromoToolbar', '1');
                         $('.imagecms-top-fixed-header').addClass('imagecms-active');
                         $(this).hide().prev().show();
                         $(window).scroll();">
-                    <span class="imagecms-toggle-close-text imagecms-bar-show-text"><span style="font-size: 14px;">↓</span> {lang('Показать', 'newLevel')}</span>
+                    <span class="imagecms-toggle-close-text imagecms-bar-show-text"><span style="font-size: 14px;">↓</span> {lang('Показать', 'box')}</span>
                 </button>
                 <div class="imagecms-buy-license">
                     <a href="http://www.imagecms.net/shop/prices" target="_blank" onclick="_gaq.push(['_trackEvent', 'demoshop-front', '/shop/prices']);">
-                        <span class="imagecms-text-el">{lang('Купить лицензию', 'newLevel')}</span>
+                        <span class="imagecms-text-el">{lang('Купить лицензию', 'box')}</span>
                     </a>
                 </div>
                 <ul class="imagecms-list">
                     <li>
-                        <a href="http://www.imagecms.net" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demoshop-front', 'obzor-product-shop']);">{lang('Обзор продукта', 'newLevel')}</a>
+                        <a href="http://www.imagecms.net" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demoshop-front', 'obzor-product-shop']);">{lang('Обзор продукта', 'box')}</a>
                     </li>
                     <li>
-                        <a href="http://www.imagecms.net/kliuchevye-preimushchestva/vozmozhnosti" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demoshop-front', '/kliuchevye-preimushchestva/vozmozhnosti']);">{lang('Преимущества продукта', 'newLevel')}</a>
+                        <a href="http://www.imagecms.net/kliuchevye-preimushchestva/vozmozhnosti" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demoshop-front', '/kliuchevye-preimushchestva/vozmozhnosti']);">{lang('Преимущества продукта', 'box')}</a>
                     </li>
                     <li>
-                        <a href="http://www.imagecms.net/store/category/shoptemplates" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demoshop-front', 'shoptemplates']);">{lang('Шаблоны для Shop', 'newLevel')}</a>
+                        <a href="http://www.imagecms.net/store/category/shoptemplates" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demoshop-front', 'shoptemplates']);">{lang('Шаблоны для Shop', 'box')}</a>
                     </li>
                 </ul>
                 <div class="imagecms-contacts">
@@ -169,11 +170,8 @@
                     <header>
                         {include_tpl('header')}
                     </header>
-                    <div class="frame-menu-main horizontal-menu">
-                        {\Category\RenderMenu::create()->setConfig(array('cache'=>TRUE))->load('category_menu')}
-                    </div>
                 </div>
-                <div class="content">
+                <div class="vertical-layout container">
                     {$content}
                 </div>
                 <div class="h-footer"></div>
@@ -186,7 +184,6 @@
         {/*}Start. delete before upload to server{ */}
         {/*}
         <!-- scripts -->
-        <script type="text/javascript" src="{$THEME}js/raphael-min.js"></script>
         <script type="text/javascript" src="{$THEME}js/_united_side_plugins.js"></script>
         <script type="text/javascript" src="{$THEME}js/_plugins.js"></script>
         <script type="text/javascript" src="{$THEME}js/drop_extend_methods.js"></script>
@@ -195,7 +192,6 @@
         <script type="text/javascript" src="{$THEME}js/_functions.js"></script>
         <script type="text/javascript" src="{$THEME}js/_scripts.js"></script>
         <!-- scripts end -->
-
         {literal}
             <script type="text/javascript">
                 $(window).load(function() {

@@ -46,7 +46,7 @@
             {if $codeArticle}
                 <div class="frame-variant-name-code">
                     {$hasCode = $p->firstVariant->getNumber() == ''}
-                    <span class="frame-variant-code frameVariantCode" {if $hasCode}style="display:none;"{/if}>{lang('Артикул','newLevel')}:
+                    <span class="frame-variant-code frameVariantCode" {if $hasCode}style="display:none;"{/if}>{lang('Артикул','newLevelVertical')}:
                         <span class="code js-code">
                             {if !$hasCode}
                                 {trim($p->firstVariant->getNumber())}
@@ -54,7 +54,7 @@
                         </span>
                     </span>
                     {$hasVariant = $p->firstVariant->getName() == ''}
-                    <span class="frame-variant-name frameVariantName" {if $hasVariant}style="display:none;"{/if}>{lang('Вариант','newLevel')}:
+                    <span class="frame-variant-name frameVariantName" {if $hasVariant}style="display:none;"{/if}>{lang('Вариант','newLevelVertical')}:
                         <span class="code js-code">
                             {if !$hasVariant}
                                 {trim($p->firstVariant->getName())}
@@ -64,7 +64,7 @@
                     {if $brand = $p->getBrand()}
                         {$brand = $brand->getName()}
                         {$hasBrand = trim($brand) != ''}
-                        <span class="frame-item-brand">{lang('Бренд','newLevel')}:
+                        <span class="frame-item-brand">{lang('Бренд','newLevelVertical')}:
                             <span class="code js-code">
                                 {if $hasBrand}
                                     <a href="{shop_url('brand/'.$p->getBrand()->getUrl())}">
@@ -83,7 +83,7 @@
                         {$CI->load->module('star_rating')->show_star_rating($p, false)}
                         <a href="{shop_url('product/'.$p->url.'#comment')}" class="count-response">
                             {intval($Comments[$p->getId()])}
-                            {echo SStringHelper::Pluralize($Comments[$p->getId()], array(lang("отзыв",'newLevel'),lang("отзыва",'newLevel'),lang("отзывов",'newLevel')))}
+                            {echo SStringHelper::Pluralize($Comments[$p->getId()], array(lang("отзыв",'newLevelVertical'),lang("отзыва",'newLevelVertical'),lang("отзывов",'newLevelVertical')))}
                         </a>
                     </div>
                 {/if}
@@ -162,7 +162,7 @@
                         <div class="frame-count-buy js-variant-{echo $pv->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
                             {if !$opi_widget && !$opi_defaultItem}
                                 <div class="frame-count frameCount">
-                                    <div class="number js-number" data-title="{lang('Количество на складе','newLevel')} {echo $pv->getstock()}" data-prodid="{echo $p->getId()}" data-varid="{echo $pv->getId()}">
+                                    <div class="number js-number" data-title="{lang('Количество на складе','newLevelVertical')} {echo $pv->getstock()}" data-prodid="{echo $p->getId()}" data-varid="{echo $pv->getId()}">
                                         <div class="frame-change-count frameChangeCount">
                                             <div class="btn-plus">
                                                 <button type="button">
@@ -175,7 +175,7 @@
                                                 </button>
                                             </div>
                                         </div>
-                                        <input type="text" value="1" class="plusMinus plus-minus iPr" data-title="{lang('Только цифры','newLevel')}" data-min="1" data-max="{echo $pv->getstock()}">
+                                        <input type="text" value="1" class="plusMinus plus-minus iPr" data-title="{lang('Только цифры','newLevelVertical')}" data-min="1" data-max="{echo $pv->getstock()}">
                                     </div>
                                 </div>
 
@@ -206,7 +206,7 @@
                                     data-prodStatus='{json_encode(promoLabelBtn($p->getAction(), $p->getHot(), $p->getHit(), $discount))}'
                                     >
                                     <span class="icon_cleaner icon_cleaner_buy"></span>
-                                    <span class="text-el">{lang('Купить', 'newLevel')}</span>
+                                    <span class="text-el">{lang('Купить', 'newLevelVertical')}</span>
                                 </button>
                             </div>
                         </div>
@@ -233,7 +233,7 @@
                                 data-mediumImage="{echo $pv->getMediumPhoto()}"
                                 >
                                 <span class="icon-but"></span>
-                                <span class="text-el">{lang('Сообщить о появлении','newLevel')}</span>
+                                <span class="text-el">{lang('Сообщить о появлении','newLevelVertical')}</span>
                             </button>
                         </div>
                     {/if}
@@ -260,12 +260,12 @@
                                     <button class="toCompare"
                                             data-prodid="{echo $p->getId()}"
                                             type="button"
-                                            data-title="{lang('В список сравнений','newLevel')}"
-                                            data-firtitle="{lang('В список сравнений','newLevel')}"
-                                            data-sectitle="{lang('В списке сравнений','newLevel')}"
+                                            data-title="{lang('В список сравнений','newLevelVertical')}"
+                                            data-firtitle="{lang('В список сравнений','newLevelVertical')}"
+                                            data-sectitle="{lang('В списке сравнений','newLevelVertical')}"
                                             data-rel="tooltip">
                                         <span class="icon_compare"></span>
-                                        <span class="text-el d_l">{lang('В список сравнений','newLevel')}</span>
+                                        <span class="text-el d_l">{lang('В список сравнений','newLevelVertical')}</span>
                                     </button>
                                 </div>
                                 <!-- End. Compare List button -->

@@ -3,10 +3,10 @@
         <div class="inside-padd">
             <div class="title-news">
                 <div class="frame-title f-s_0">
-                    <div class="title-h1 title">{lang('Новости','newLevel')}</div>
+                    <div class="title-h1 title">{lang('Новости','greyVision')}</div>
                     <span class="s-t m-r_10 m-l_7">/</span>
                     <a href="{site_url('novosti')}">
-                        <span class="text-el">{lang('Архив новостей','newLevel')}</span>
+                        <span class="text-el">{lang('Архив новостей','greyVision')}</span>
                     </a>
                 </div>
             </div>

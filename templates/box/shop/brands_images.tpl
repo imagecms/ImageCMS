@@ -5,7 +5,7 @@
     <div class="container">
         <div class="f-s_0 title-brand without-crumbs">
             <div class="frame-title">
-                <h1 class="title">{lang('Все бренды магазина','newLevel')}</h1>
+                <h1 class="title">{lang('Все бренды магазина','box')}</h1>
             </div>
         </div>
         <ul class="items items-brand-image">
