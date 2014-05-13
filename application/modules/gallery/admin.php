@@ -196,7 +196,7 @@ class Admin extends BaseAdminController {
                 }
 
                 // Check if watermark image exists.
-                if ($_POST['watermark_type'] == 'overlay' AND !file_exists($_POST['watermark_image'])) {
+                if ($_POST['watermark_type'] == 'overlay' AND !file_exists('.' . $_POST['watermark_image'])) {
                     showMessage(lang("Specify the correct path to watermark image", 'gallery'), false, 'r');
                     break;
                 }
@@ -230,7 +230,7 @@ class Admin extends BaseAdminController {
                     'watermark_color' => trim($this->input->post('watermark_color')),
                     'watermark_padding' => trim($this->input->post('watermark_padding')),
                     'watermark_font_path' => trim($this->input->post('watermark_font_path')),
-                    'watermark_image' => trim($this->input->post('watermark_image')),
+                    'watermark_image' => '.' . trim($this->input->post('watermark_image')),
                     'watermark_image_opacity' => trim($this->input->post('watermark_image_opacity')),
                     'watermark_type' => trim($this->input->post('watermark_type')),
                     'order_by' => $this->input->post('order_by'),
