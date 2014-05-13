@@ -22,6 +22,26 @@
     </dependencies>
     -->
     
+    <demodata>
+        <!--menu name="demo_manu" main_title="Demo menu title" description="Demo menu description." tpl="top_menu" expand_level="0">
+            <item type="url" item_image="/image" title="Item1" position="0" description="description">
+                
+            </item>
+        </menu-->
+        <!-- (where_show => default, main, product, shop_category, brand, category, page)  -->
+        <banners>
+            <banner where_show="main" position="0" active="1" active_to="" >
+                <banner_i18n  name="Баннер" description="Баннер описание" url="banner_url" locale="ru" photo="/uploads/banners/photo1_ru.jpg">
+                </banner_i18n>
+                <banner_i18n  name="Баннер2" description="Баннер описание2" url="banner_url2" locale="ru" photo="/uploads/banners/photo2_ru.jpg">
+                </banner_i18n>
+                <banner_i18n  name="Banner" description="Banner description" url="banner_url" locale="en" photo="/uploads/banners/photo1_en.jpg">
+                </banner_i18n>
+            </banner>
+        </banners>
+        
+    </demodata>
+    
     
     <description><!-- КОЖЕН РАЗ ПРИ ЗВЕРНЕННІ -->
         <!-- буде показуватись в інформації про шаблон -->
