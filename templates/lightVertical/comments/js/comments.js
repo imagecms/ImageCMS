@@ -3,6 +3,7 @@
         init: function(options) {
             var settings = $.extend({
                 pasteAfter: $(this),
+                wrapper: $('body'),
                 pasteWhat: $('[data-rel="whoCloneAddPaste"]'),
                 evPaste: 'click',
                 effectIn: 'fadeIn',
@@ -19,16 +20,17 @@
             }, options);
 
             var $this = $(this),
-            pasteAfter = settings.pasteAfter,
-            pasteWhat = settings.pasteWhat,
-            evPaste = settings.evPaste,
-            effectIn = settings.effectIn,
-            effectOff = settings.effectOff,
-            duration = settings.duration,
-            wherePasteAdd = settings.wherePasteAdd,
-            whatPasteAdd = settings.whatPasteAdd,
-            before = settings.before,
-            after = settings.after;
+                    wrapper = settings.wrapper,
+                    pasteAfter = settings.pasteAfter,
+                    pasteWhat = settings.pasteWhat,
+                    evPaste = settings.evPaste,
+                    effectIn = settings.effectIn,
+                    effectOff = settings.effectOff,
+                    duration = settings.duration,
+                    wherePasteAdd = settings.wherePasteAdd,
+                    whatPasteAdd = settings.whatPasteAdd,
+                    before = settings.before,
+                    after = settings.after;
 
             pasteAfter = pasteAfter.split('.');
             $this.unbind(evPaste).bind(evPaste, function() {
@@ -39,14 +41,14 @@
                 });
 
                 var insertedEl = pasteAfter2.next(),
-                pasteAfterEL = pasteAfter2;
+                        pasteAfterEL = pasteAfter2;
 
                 before($this);
 
                 if (!pasteAfterEL.hasClass('already')) {
-                    pasteAfterEL.after(pasteWhat.clone().hide().find(wherePasteAdd).prepend(whatPasteAdd).end()).addClass('already');
+                    pasteAfterEL.after(wrapper.find(pasteWhat).clone().hide().find(wherePasteAdd).prepend(whatPasteAdd).end()).addClass('already');
                     $(document).trigger({
-                        'type': 'comments.beforeshowformreply', 
+                        'type': 'comments.beforeshowformreply',
                         'el': pasteAfterEL.next()
                     });
                     pasteAfterEL.next()[effectIn](duration, function() {
@@ -59,24 +61,24 @@
                 }
                 else if (insertedEl.is(':visible')) {
                     $(document).trigger({
-                        'type': 'comments.beforehideformreply', 
+                        'type': 'comments.beforehideformreply',
                         'el': insertedEl
                     });
                     insertedEl[effectOff](duration, function() {
                         $(document).trigger({
-                            'type': 'comments.hideformreply', 
+                            'type': 'comments.hideformreply',
                             'el': $(this)
                         });
                     });
                 }
                 else if (!insertedEl.is(':visible')) {
                     $(document).trigger({
-                        'type': 'comments.beforeshowformreply', 
+                        'type': 'comments.beforeshowformreply',
                         'el': insertedEl
                     });
                     insertedEl[effectIn](duration, function() {
                         $(document).trigger({
-                            'type': 'comments.showformreply', 
+                            'type': 'comments.showformreply',
                             'el': $(this)
                         });
                     });
@@ -108,42 +110,42 @@
                 var $this = $(this);
                 if (!$this.hasClass('disabled')) {
                     $this.hover(
-                        function() {
-                            $(this).append("<span></span>");
-                        },
-                        function()
-                        {
-                            $(this).find("span").remove();
-                        });
+                            function() {
+                                $(this).append("<span></span>");
+                            },
+                            function()
+                            {
+                                $(this).find("span").remove();
+                            });
 
                     var rating;
 
                     $this.mousemove(
-                        function(e) {
-                            if (!e) {
-                                e = window.event;
-                            }
-                            if (e.pageX) {
-                                x = e.pageX;
-                            } else if (e.clientX) {
-                                x = e.clientX + (document.documentElement.scrollLeft || document.body.scrollLeft) - document.documentElement.clientLeft;
-                            }
-                            var posLeft = 0;
-                            var obj = this;
-                            while (obj.offsetParent)
-                            {
-                                posLeft += obj.offsetLeft;
-                                obj = obj.offsetParent;
-                            }
-                            var offsetX = x - posLeft,
-                            modOffsetX = 5 * offsetX % this.offsetWidth;
-                            rating = parseInt(5 * offsetX / this.offsetWidth);
+                            function(e) {
+                                if (!e) {
+                                    e = window.event;
+                                }
+                                if (e.pageX) {
+                                    x = e.pageX;
+                                } else if (e.clientX) {
+                                    x = e.clientX + (document.documentElement.scrollLeft || document.body.scrollLeft) - document.documentElement.clientLeft;
+                                }
+                                var posLeft = 0;
+                                var obj = this;
+                                while (obj.offsetParent)
+                                {
+                                    posLeft += obj.offsetLeft;
+                                    obj = obj.offsetParent;
+                                }
+                                var offsetX = x - posLeft,
+                                        modOffsetX = 5 * offsetX % this.offsetWidth;
+                                rating = parseInt(5 * offsetX / this.offsetWidth);
 
-                            if (modOffsetX > 0) {
-                                rating += 1;
-                            }
-                            jQuery(this).find("span").eq(0).css("width", rating * width + "px");
-                        });
+                                if (modOffsetX > 0) {
+                                    rating += 1;
+                                }
+                                jQuery(this).find("span").eq(0).css("width", rating * width);
+                            });
 
                     $this.click(function() {
                         settings.afterClick($this, rating);
@@ -164,13 +166,13 @@
     };
 })(jQuery);
 var Comments = {
-    toComment: function(el, drop){
+    toComment: function(el, drop) {
         $('html, body').scrollTop(drop.offset().top - 20);
         drop.find(':input:first').focus();
     },
-    initComments: function () {
+    initComments: function(wrapper) {
         $(".star-big").starRating({
-            width: 23,
+            width: 26,
             afterClick: function(el, value) {
                 if (el.hasClass("clicktemprate")) {
                     $('.productRate > div.for_comment').css("width", value * 20 + '%');
@@ -179,6 +181,7 @@ var Comments = {
             }
         });
         $('[data-rel="cloneAddPaste"]').cloneAddPaste({
+            wrapper: wrapper,
             pasteAfter: 'parent.parent',
             pasteWhat: $('[data-rel="whoCloneAddPaste"]'),
             evPaste: 'click',
@@ -210,7 +213,7 @@ var Comments = {
                 success: function(obj) {
                     if (obj !== null) {
                         $('.yesholder' + comid).each(function() {
-                            $(this).html(obj.y_count);
+                            $(this).html("(" + obj.y_count + ")");
                         });
                     }
                 }
@@ -227,21 +230,21 @@ var Comments = {
                 success: function(obj) {
                     if (obj !== null) {
                         $('.noholder' + comid).each(function() {
-                            $(this).html(obj.n_count);
+                            $(this).html("(" + obj.n_count + ")");
                         });
                     }
                 }
             });
         });
     },
-    renderPosts: function(el, data) {
+    renderPosts: function(el, data, visible) {
         var dataSend = "";
         if (data != undefined) {
             dataSend = data;
         }
-        var el = $(el);
+        el = $(el);
         $.ajax({
-            url: "/comments/commentsapi/renderPosts",
+            url: locale + "/comments/commentsapi/renderPosts",
             dataType: "json",
             data: dataSend,
             type: "post",
@@ -256,44 +259,54 @@ var Comments = {
                     el.each(function(i, n) {
                         $(this).append(tpl);
                         if (i + 1 == elL) {
-                            Comments.initComments();
+                            Comments.initComments($(this));
                         }
                     });
                     if (parseInt(obj.commentsCount) != 0) {
-                        $('#cc').html('('+parseInt(obj.commentsCount)+')');
+                        $('#cc').html('');
+                        $('#cc').html(parseInt(obj.commentsCount) + ' ' + pluralStr(parseInt(obj.commentsCount), text.plurComments));
                     }
-                    $(document).trigger({
-                        'type': 'rendercomment.after', 
-                        'el': el
-                    });
+
+                    if (visible && _useModeration) {
+                        visible = isNaN(visible) ? $(visible) : $('[data-place="' + visible + '"]');
+
+                        visible.empty().append($('#useModeration').html());
+                        setTimeout(function() {
+                            el.find('.usemoderation').hide();
+                        }, 3000);
+                    }
                 }
+                $(document).trigger({
+                    'type': 'rendercomment.after',
+                    'el': el
+                });
             }
         });
     },
-    post: function (el, data) {
+    post: function(el, data, place) {
         $.ajax({
             url: "/comments/commentsapi/newPost",
             data: $(el).closest('form').serialize() +
-            '&action=newPost',
+                    '&action=newPost',
             dataType: "json",
-            beforeSend: function(){
+            beforeSend: function() {
                 $(el).closest('.forComments').append('<div class="preloader"></div>');
             },
             type: "post",
-            complete: function(){
+            complete: function() {
                 $(el).closest('.forComments').find(preloader).remove();
             },
             success: function(obj) {
+                var form = $(el).closest('form');
                 if (obj.answer === 'sucesfull') {
                     $('.comment_text').each(function() {
                         $(this).val('');
                     });
                     $('.comment_plus').val('');
                     $('.comment_minus').val('');
-                    Comments.renderPosts($(el).closest('.forComments'), data);
+                    Comments.renderPosts($(el).closest('.forComments'), data, place ? place : +form.find('[name="comment_parent"]').val());
                 }
                 else {
-                    var form = $(el).closest('form');
                     form.find('.error_text').remove();
                     form.prepend('<div class="error_text">' + message.error(obj.validation_errors) + '</div>');
                     drawIcons(form.find('.error_text').find(selIcons));
@@ -303,6 +316,6 @@ var Comments = {
         });
     }
 };
-$(document).on('scriptDefer', function(){
+$(document).on('scriptDefer', function() {
     Comments.initComments();
 });

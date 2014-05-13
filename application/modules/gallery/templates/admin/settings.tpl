@@ -8,7 +8,7 @@
             <div class="d-i_b">
                 <a href="/admin/components/cp/gallery" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Back", 'admin')}</span></a>
                 <button name="button" class="btn formSubmit btn-primary" data-submit data-form="#gallery_settings_form">{lang("Save", 'gallery')}</button> 
-            </div>
+            </div>z
         </div>
     </div>
     <div class="tab-content">
@@ -263,10 +263,16 @@
                                             <!-- Image settings -->
                                             <div id="image_settings" {if $settings.watermark_type == 'text'}style="display:none;"{/if}>
                                                 <div class="control-group">
-                                                    <label class="control-label" for="watermark_image">{lang("Path to the image", 'gallery')}</label>
                                                     <div class="controls">
-                                                        <input type="text" value="{$settings.watermark_image}" name="watermark_image" id="watermark_image"/>
-                                                        <span class="help-inline">{lang("File has to be located on the server. For example", 'gallery')}: ./uploads/images/logo.png</span>            
+                                                        <div class="pull-right">
+                                                            <button class="btn btn-small" onclick="elFinderPopup('image', 'watermark_image');
+                                                            return false;"><i class="icon-picture"></i>  {lang('Choose an image ','admin')}</button>
+                                                        </div>
+
+                                                        <div class="o_h">
+                                                            <input type="text" value="{$settings.watermark_image}" name="watermark_image" id="watermark_image"/>
+                                                            <span class="help-inline">{lang("File has to be located on the server. For example", 'gallery')}: ./uploads/images/logo.png</span>            
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
@@ -345,6 +351,7 @@
 
     </script>
 {/literal}
+<div id="elFinder"></div>
 
 
 

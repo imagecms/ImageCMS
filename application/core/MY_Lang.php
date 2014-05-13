@@ -132,6 +132,7 @@ class MY_Lang extends MX_Lang {
      * @return	mixed
      */
     public function load($module = 'main') {
+//        var_dumps_exit(getMoFileName('translator'));
 //        if (!$this->gettext)
         $this->_init();
 
@@ -151,25 +152,63 @@ class MY_Lang extends MX_Lang {
             }
         }
 //        $lang = 'ru_RU';
-
+        $this->getMoFileName('newLevel');
         if ($module == 'main') {
             $template_name = \CI_Controller::get_instance()->config->item('template');
-            $this->addDomain('application/language/main/', 'main', $lang);
-            $this->addDomain('templates/' . $template_name . '/language/' . $template_name . '/', $template_name, $lang);
+            $this->addDomain('application/language/main/', getMoFileName('main'), $lang);
+            $this->addDomain('templates/' . $template_name . '/language/' . $template_name . '/', getMoFileName($template_name), $lang);
         } else {
+
             if ($module == 'admin') {
                 if (MAINSITE) {
-                    $this->addDomain(MAINSITE . '/application/language/main/', 'main', $lang);
+                    $this->addDomain(MAINSITE . '/application/language/main/', getMoFileName('main'), $lang);
                 } else {
-                    $this->addDomain('application/language/main/', 'main', $lang);
+                    $this->addDomain('application/language/main/', getMoFileName('main'), $lang);
                 }
             }
             if (MAINSITE) {
-                $this->addDomain(MAINSITE . '/application/modules/' . $module . '/language', $module, $lang);
+                $this->addDomain(MAINSITE . '/application/modules/' . $module . '/language', getMoFileName($module), $lang);
             } else {
-                $this->addDomain('application/modules/' . $module . '/language', $module, $lang);
+                $this->addDomain('application/modules/' . $module . '/language', getMoFileName($module), $lang);
             }
         }
+    }
+
+    private function getMoFileName($domain) {
+        if ($domain) {
+            $currentLocale = MY_Controller::getCurrentLocale();
+            $CI = & get_instance();
+            $language = $CI->db->where('identif', $currentLocale)->get('languages');
+            if ($language) {
+                $language = $language->row_array();
+                $locale = $language['locale'];
+                $name = NULL;
+
+                switch ($domain) {
+                    case 'main':
+                        $searched = glob('./application/language/main/' . $locale . '/LC_MESSAGES/main_*.mo');
+                        if (!empty($searched)) {
+                            $name = str_replace('.mo', '', basename($searched[0]));
+                        }
+                        break;
+                    default :
+                        if (file_exists('./application/modules/' . $domain)) {
+                            $searched = glob('./application/modules/' . $domain . '/language/' . $locale . '/LC_MESSAGES/' . $domain . '_*.mo');
+                            if (!empty($searched)) {
+                                $name = str_replace('.mo', '', basename($searched[0]));
+                            }
+                        } elseif (file_exists('./templates/' . $domain)) {
+                            $searched = glob('./templates/' . $domain . '/language/' . $domain . '/' . $locale . '/LC_MESSAGES/' . $domain . '_*.mo');
+                            if (!empty($searched)) {
+                                $name = str_replace('.mo', '', basename($searched[0]));
+                            }
+                        }
+                        break;
+                }
+                return $name;
+            }
+        }
+        return FALSE;
     }
 
     /**
