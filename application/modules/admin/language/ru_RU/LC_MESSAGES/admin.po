@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-12 05:04+0300\n"
-"PO-Revision-Date: 2014-05-12 05:04+0300\n"
+"POT-Creation-Date: 2014-05-13 10:22+0300\n"
+"PO-Revision-Date: 2014-05-13 10:22+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -7408,3 +7408,7 @@ msgstr "Языки"
 #: ./application/modules/shop/admin/templates/settings/settings.tpl:1301
 msgid "Yandex.Market document"
 msgstr "Яндекс.Маркет документ"
+
+#: tmpLink
+msgid "Digets count after comma in price"
+msgstr "Количество цифр после комы в цене"
