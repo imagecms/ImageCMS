@@ -3,24 +3,24 @@
         <div class="msg layout-highlight layout-highlight-msg">
             <div class="info">
                 <span class="icon_info"></span>
-                <span class="text-el">{lang('Вы ище не совершали покупки','newLevel')}</span>
+                <span class="text-el">{lang('Вы ище не совершали покупки','lightRed')}</span>
             </div>
         </div>
     {else:}
         <table class="table-profile">
             <thead>
                 <tr>
-                    <th>{lang('Заказ #','newLevel')}</th>
-                    <th>{lang('Время покупки','newLevel')}</th>
-                    <th>{lang('Сумма покупки','newLevel')}</th>
-                    <th>{lang('Статус заказа','newLevel')}</th>
-                    <th>{lang('Статус платежа','newLevel')}</th>
+                    <th>{lang('Заказ #','lightRed')}</th>
+                    <th>{lang('Время покупки','lightRed')}</th>
+                    <th>{lang('Сумма покупки','lightRed')}</th>
+                    <th>{lang('Статус заказа','lightRed')}</th>
+                    <th>{lang('Статус платежа','lightRed')}</th>
                 </tr>
             </thead>
             <tbody>
                 {foreach $orders as $order}
                     <tr>
-                        <td><a rel="nofollow" href="{shop_url('cart/view/' . $order->getKey())}">{lang('Заказ #','newLevel')}{echo $order->getId()}</a></td>
+                        <td><a rel="nofollow" href="{shop_url('cart/view/' . $order->getKey())}">{lang('Заказ #','lightRed')}{echo $order->getId()}</a></td>
                         <td>{date("d-m-Y H:i", $order->getDateCreated())}</td>
                         <td>
                             <div class="frame-prices">
@@ -36,7 +36,7 @@
                         </td>
                         </span>
                         <td>{echo $order->getSOrderStatuses()->getName()}</td>
-                        <td>{if $order->getPaid()} {lang('Оплачиваемый','newLevel')} {else:} {lang('Не оплачен','newLevel')}{/if}</td>
+                        <td>{if $order->getPaid()} {lang('Оплачиваемый','lightRed')} {else:} {lang('Не оплачен','lightRed')}{/if}</td>
                     </tr>
                 {/foreach}
             </tbody>

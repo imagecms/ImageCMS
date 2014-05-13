@@ -1,14 +1,14 @@
 {/*
-/**
-* @main.tpl - template for displaying shop main page
-* Variables
-*   $site_title: variable for insert site title
-*   $canonical: variable for insert canonical
-*   $site_description: variable for insert site description
-*   $THEME: variable for template path
-*   $site_keywords : variable for insert site keywords
-*   $content : variable for insert content of page
-*/}
+    /**
+    * @main.tpl - template for displaying shop main page
+    * Variables
+    *   $site_title: variable for insert site title
+    *   $canonical: variable for insert canonical
+    *   $site_description: variable for insert site description
+    *   $THEME: variable for template path
+    *   $site_keywords : variable for insert site keywords
+    *   $content : variable for insert content of page
+    */}
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,9 +23,9 @@
         <link rel="stylesheet" type="text/css" href="{$THEME}{$colorScheme}/color.css" media="all" />
 
         {if $CI->uri->segment(1) == MY_Controller::getCurrentLocale()}
-            {$lang = '/' . \MY_Controller::getCurrentLocale()} 
+            {$lang = '/' . \MY_Controller::getCurrentLocale()}
         {else:}
-            {$lang = ''} 
+            {$lang = ''}
         {/if}
         {if $CI->uri->segment(2) == 'profile' || $CI->uri->segment(1) == 'wishlist'}
             <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW" />
@@ -47,18 +47,15 @@
                                 url: theme + 'js/' + i + '.js',
                                 dataType: "script",
                                 cache: true,
-                                complete: function() {
+                                success: function() {
                                     cL++;
-                                    if (cL === scriptsL)
+                                    if (cL == scriptsL)
                                         if (callback) {
                                             eval(callback)();
-                                            setTimeout(function() {
-                                                $(document).trigger({'type': customEvent});
-                                            }, 0);
+                                            $(document).trigger({'type': customEvent});
                                         }
                                 }
                             });
-
                         })
                     }
                     // Check for browser support of event handling capability
@@ -76,7 +73,7 @@
         <!--[if IE 7]>
             <link rel="stylesheet" type="text/css" href="{$THEME}css/ie_7.css" />
             <script src="{$THEME}js/localStorageJSON.js"></script>
-        <![endif]-->
+            <![endif]-->
 
         <link rel="icon" href="{echo siteinfo('siteinfo_favicon_url')}" type="image/x-icon" />
         <link rel="shortcut icon" href="{echo siteinfo('siteinfo_favicon_url')}" type="image/x-icon" />
@@ -121,7 +118,7 @@
             </style>
         {/literal}
     </head>
-    <body class="is{echo $agent[0]} not-js {$CI->core->core_data['data_type']}">
+    <body class="is{echo $agent[0]} not-js">
         {include_tpl('language/jsLangsDefine.tpl')}
         {include_tpl('language/jsLangs.tpl')}
         <!-- Start. shop-->
@@ -131,28 +128,28 @@
                         $('.imagecms-top-fixed-header').removeClass('imagecms-active');
                         $(this).hide().next().show();
                         $(window).scroll();">
-                    <span class="imagecms-toggle-close-text imagecms-bar-close-text"><span style="font-size: 14px;">↑</span> {lang('Скрыть', 'newLevel')}</span>
+                    <span class="imagecms-toggle-close-text imagecms-bar-close-text"><span style="font-size: 14px;">↑</span> {lang('Скрыть', 'light')}</span>
                 </button>
                 <button type="button" class="imagecms-close" {if $_COOKIE['condPromoToolbar'] == '0'}style="display: block;"{/if} onclick="setCookie('condPromoToolbar', '1');
                         $('.imagecms-top-fixed-header').addClass('imagecms-active');
                         $(this).hide().prev().show();
                         $(window).scroll();">
-                    <span class="imagecms-toggle-close-text imagecms-bar-show-text"><span style="font-size: 14px;">↓</span> {lang('Показать', 'newLevel')}</span>
+                    <span class="imagecms-toggle-close-text imagecms-bar-show-text"><span style="font-size: 14px;">↓</span> {lang('Показать', 'light')}</span>
                 </button>
                 <div class="imagecms-buy-license">
                     <a href="http://www.imagecms.net/shop/prices" target="_blank" onclick="_gaq.push(['_trackEvent', 'demoshop-front', '/shop/prices']);">
-                        <span class="imagecms-text-el">{lang('Купить лицензию', 'newLevel')}</span>
+                        <span class="imagecms-text-el">{lang('Купить лицензию', 'light')}</span>
                     </a>
                 </div>
                 <ul class="imagecms-list">
                     <li>
-                        <a href="http://www.imagecms.net" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demoshop-front', 'obzor-product-shop']);">{lang('Обзор продукта', 'newLevel')}</a>
+                        <a href="http://www.imagecms.net" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demoshop-front', 'obzor-product-shop']);">{lang('Обзор продукта', 'light')}</a>
                     </li>
                     <li>
-                        <a href="http://www.imagecms.net/kliuchevye-preimushchestva/vozmozhnosti" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demoshop-front', '/kliuchevye-preimushchestva/vozmozhnosti']);">{lang('Преимущества продукта', 'newLevel')}</a>
+                        <a href="http://www.imagecms.net/kliuchevye-preimushchestva/vozmozhnosti" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demoshop-front', '/kliuchevye-preimushchestva/vozmozhnosti']);">{lang('Преимущества продукта', 'light')}</a>
                     </li>
                     <li>
-                        <a href="http://www.imagecms.net/store/category/shoptemplates" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demoshop-front', 'shoptemplates']);">{lang('Шаблоны для Shop', 'newLevel')}</a>
+                        <a href="http://www.imagecms.net/store/category/shoptemplates" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demoshop-front', 'shoptemplates']);">{lang('Шаблоны для Shop', 'light')}</a>
                     </li>
                 </ul>
                 <div class="imagecms-contacts">
@@ -169,16 +166,8 @@
                 <header>
                     {include_tpl('header')}
                 </header>
-
-                {if !strpos($CI->uri->uri_string, '/cart')}
-                    <div class="frame-menu-main horizontal-menu">
-                        {\Category\RenderMenu::create()->setConfig(array('cache'=>TRUE))->load('category_menu')}
-                    </div>
-                {else:}
-                    <div class="container menu-border"></div>
-                {/if}
             </div>
-            <div class="content">
+            <div class="vertical-layout container">
                 {$content}
             </div>
             <div class="h-footer"></div>
@@ -189,7 +178,7 @@
         {include_tpl('user_toolbar')}
 
         {/*}Start. delete before upload to server{ */}
-        {/*}
+
         <!-- scripts -->
         <script type="text/javascript" src="{$THEME}js/_united_side_plugins.js"></script>
         <script type="text/javascript" src="{$THEME}js/_plugins.js"></script>
@@ -199,7 +188,7 @@
         <script type="text/javascript" src="{$THEME}js/_functions.js"></script>
         <script type="text/javascript" src="{$THEME}js/_scripts.js"></script>
         <!-- scripts end -->
-
+        
         {literal}
             <script type="text/javascript">
                 $(window).load(function() {
@@ -210,21 +199,22 @@
                 })
             </script>
         {/literal}
-        { */}
+
         {/*}End. delete before upload to server{ */}
         {/*fancybox}
         <link rel="stylesheet" type="text/css" href="{$THEME}js/fancybox/jquery.fancybox-1.3.4.css" media="all" />
         <script type="text/javascript" src="{$THEME}js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
         {end. fancybox*/}
-
-        {/*}uncomment before opload to server and combine and minimize scripts (in comment <!-- scripts -->...<!-- scripts end -->) into united_scripts file{ */}
+        
+        {/*}uncomment before opload to server and combine and minimize scripts (in comment <!-- scripts -->...<!-- scripts end -->) into united_scripts file{ */}   
         {/*} Start. uncoment before development { */}
-
+        {/*}
         <script type="text/javascript">
-            initDownloadScripts(['united_scripts'], 'init', 'scriptDefer');
+            initDownloadScripts(['raphael-min', 'united_scripts'], 'init', 'scriptDefer');
         </script>
-
+        { */}
         {/*} End. uncoment before development { */}
         {include_shop_tpl('js_templates')}
+        <!-- scripts end -->
     </body>
 </html>

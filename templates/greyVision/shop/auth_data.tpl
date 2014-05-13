@@ -8,7 +8,7 @@
                         data-source="{site_url('auth')}"
                         >
                     <span class="icon_enter"></span>
-                    <span class="text-el">{lang('Вход в магазин','newLevel')}</span>
+                    <span class="text-el">{lang('Вход в магазин','greyVision')}</span>
                 </button>
             </li>
             <!--Else show link for personal cabinet -->
@@ -16,7 +16,7 @@
             <li class="btn-personal-area">
                 <a href="{site_url('/shop/profile')}">
                     <span class="icon_enter"></span>
-                    <span class="text-el">{lang('Личный кабинет','newLevel')}</span>
+                    <span class="text-el">{lang('Личный кабинет','greyVision')}</span>
                 </a>
             </li>
             <li class="btn-exit-shop">
@@ -27,7 +27,7 @@
                             }}{/literal});
                         return false;">
                     <span class="icon_exit"></span>
-                    <span class="text-el">{lang('Выход','newLevel')}</span>
+                    <span class="text-el">{lang('Выход','greyVision')}</span>
                 </button>
             </li>
         {/if}

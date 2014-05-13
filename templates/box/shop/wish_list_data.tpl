@@ -4,13 +4,13 @@
         <span class="icon_wish_list"></span>
         <span class="text-wish-list">
             <span class="js-empty empty" {if $count == 0}style="display: inline"{/if}>
-                <span class="text-el">{lang('Список желаний','newLevel')} </span>
+                <span class="text-el">{lang('Список желаний','box')} </span>
                 <span class="text-el">(</span>
                 <span class="text-el wishListCount">0</span>
                 <span class="text-el">)</span>
             </span>
             <span class="js-no-empty no-empty" {if $count != 0}style="display: inline"{/if}>
-                <span class="text-el">{lang('Избранные','newLevel')} </span>
+                <span class="text-el">{lang('Избранные','box')} </span>
                 <span class="text-el">(</span>
                 <span class="text-el wishListCount">{echo $count}</span>
                 <span class="text-el">)</span>
@@ -21,6 +21,6 @@
 <div class="drop drop-info drop-info-wishlist">
     <span class="helper"></span>
     <span class="text-el">
-        {lang('Ваш список', 'newLevel')} <br/>
-        “{lang('Список желаний', 'newLevel')}” {lang('пуст', 'newLevel')}</span>
+        {lang('Ваш список', 'box')} <br/>
+        “{lang('Список желаний', 'box')}” {lang('пуст', 'box')}</span>
 </div>

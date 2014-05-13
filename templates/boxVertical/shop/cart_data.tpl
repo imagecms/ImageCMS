@@ -8,7 +8,7 @@
         <button>
             <span class="icon_cleaner"></span>
             <span class="text-cleaner">
-                <span class="text-el">{lang('Корзина пуста','newLevel')}</span>
+                <span class="text-el">{lang('Корзина пуста','boxVertical')}</span>
             </span>
         </button>
     </div>
@@ -19,7 +19,7 @@
             <span class="text-cleaner">
                 <span class="text-el">{echo $count}</span>
                 <span class="text-el">&nbsp;</span>
-                <span class="text-el">{echo SStringHelper::Pluralize($count, array(lang('товар','newLevel'),lang('товара','newLevel'),lang('товаров','newLevel')))}</span>
+                <span class="text-el">{echo SStringHelper::Pluralize($count, array(lang('товар','boxVertical'),lang('товара','boxVertical'),lang('товаров','boxVertical')))}</span>
                 <span class="d_i-b">
                     <span class="text-el">&nbsp;&nbsp;{echo $price}</span>
                     <span class="text-el">&nbsp;<span class="curr">{$CS}</span></span>

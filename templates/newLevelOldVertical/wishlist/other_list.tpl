@@ -48,7 +48,7 @@
                                     {$price += $p.price;}
                                     {$i++}
                                 {/foreach}
-                                <div class="title-h3 f_l">{lang('Всего','newLevel')} <b class="countProdsWL">{echo $i}</b> {lang('товара на сумму','newLevel')} 
+                                <div class="title-h3 f_l">{lang('Всего','newLevelVertical')} <b class="countProdsWL">{echo $i}</b> {lang('товара на сумму','newLevelVertical')} 
                                     <span class="frame-prices f-s_0">
                                         <span class="current-prices">
                                             <span class="price-new">
@@ -66,7 +66,7 @@
                                         class="btnBuyWishList"
                                         >
                                         <span class="icon_cleaner icon_cleaner_buy"></span>
-                                        <span class="text-el" data-cart="{lang('Просмотреть купленные товары','newLevel')}" data-buy="{lang('Купить все доступные товары','newLevel')}" data-buy-other="{lang('Докупить все доступные товары','newLevel')}">{lang('Купить все доступные товары','newLevel')}</span>
+                                        <span class="text-el" data-cart="{lang('Просмотреть купленные товары','newLevelVertical')}" data-buy="{lang('Купить все доступные товары','newLevelVertical')}" data-buy-other="{lang('Докупить все доступные товары','newLevelVertical')}">{lang('Купить все доступные товары','newLevelVertical')}</span>
                                     </button>
                                 </div>
                             </div>
@@ -76,7 +76,7 @@
                     <div class="msg layout-highlight layout-highlight-msg">
                         <div class="info">
                             <span class="icon_info"></span>
-                            <span class="text-el">{lang('Список пуст','newLevel')}</span>
+                            <span class="text-el">{lang('Список пуст','newLevelVertical')}</span>
                         </div>
                     </div>
                 {/if}
@@ -84,13 +84,13 @@
         {else:}
             <div class="f-s_0 without-crumbs-side">
                 <div class="frame-title">
-                    <h1 class="d_i">{lang('Список желаний','newLevel')}</h1>
+                    <h1 class="d_i">{lang('Список желаний','newLevelVertical')}</h1>
                 </div>
             </div>
             <div class="msg layout-highlight layout-highlight-msg">
                 <div class="info">
                     <span class="icon_info"></span>
-                    <span class="text-el">{lang('Список Желания пуст','newLevel')}</span>
+                    <span class="text-el">{lang('Список Желания пуст','newLevelVertical')}</span>
                 </div>
             </div>
         {/if}

@@ -26,16 +26,16 @@
                     {if $totalProducts != 0}
                     <div class="f-s_0 title-category">
                         <div class="frame-title">
-                            <h1 class="d_i"><span class="s-t">{lang('Результаты поиска','newLevel')}</span> <span class="what-search">«{encode($_GET['text'])}»</span></h1>
+                            <h1 class="d_i"><span class="s-t">{lang('Результаты поиска','lightVertical')}</span> <span class="what-search">«{encode($_GET['text'])}»</span></h1>
                         </div>
-                        <span class="count">({lang('Найдено','newLevel')} {$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang('товар','newLevel'),lang('товара','newLevel'),lang('товаров','newLevel')))})</span>
+                        <span class="count">({lang('Найдено','lightVertical')} {$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang('товар','lightVertical'),lang('товара','lightVertical'),lang('товаров','lightVertical')))})</span>
                     </div>
                     {/if}
                     {if $totalProducts == 0}
                     <div class="msg layout-highlight layout-highlight-msg">
                         <div class="info">
                             <span class="icon_info"></span>
-                            <span class="text-el">{lang('Не найдено товаров','newLevel')}</span>
+                            <span class="text-el">{lang('Не найдено товаров','lightVertical')}</span>
                         </div>
                     </div>
                     {/if}
@@ -63,7 +63,7 @@
                     <div class="frame-category-menu layout-highlight">
                         <div class="title-menu-category">
                             <div class="title-default">
-                                <div class="title-h3 title">{lang('Категории','newLevel')}:</div>
+                                <div class="title-h3 title">{lang('Категории','lightVertical')}:</div>
                             </div>
                         </div>
                         <div class="inside-padd">

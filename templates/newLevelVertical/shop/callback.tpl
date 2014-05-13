@@ -2,7 +2,7 @@
     <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
     <div class="drop-header">
         <div class="title">
-            {lang('Заказать звонок','newLevel')}
+            {lang('Заказать звонок','newLevelVertical')}
         </div>
     </div>
     <div class="drop-content">
@@ -15,21 +15,21 @@
                             }}{/literal});
                                 return false;">
                     <label>
-                        <span class="title">{lang('Имя: ','newLevel')}</span>
+                        <span class="title">{lang('Имя: ','newLevelVertical')}</span>
                         <span class="frame-form-field">
                             <span class="must">*</span>
                             <input type="text" name="Name"/>
                         </span>
                     </label>
                     <label>
-                        <span class="title">{lang('Телефон: ','newLevel')}</span>
+                        <span class="title">{lang('Телефон: ','newLevelVertical')}</span>
                         <span class="frame-form-field">
                             <span class="must">*</span>
                             <input type="text" name="Phone"/>
                         </span>
                     </label>
                     <label>
-                        <span class="title">{lang('Комментарий: ','newLevel')}</span>
+                        <span class="title">{lang('Комментарий: ','newLevelVertical')}</span>
                         <span class="frame-form-field">
                             <textarea name="Comment"></textarea>
                         </span>
@@ -39,7 +39,7 @@
                         <div class="frame-form-field">
                             <div class="btn-form">
                                 <button type="submit">
-                                    <span class="text-el">{lang('Позвоните мне','newLevel')}</span>
+                                    <span class="text-el">{lang('Позвоните мне','newLevelVertical')}</span>
                                 </button>
                             </div>
                         </div>
