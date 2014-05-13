@@ -40,8 +40,8 @@ if (!defined('BASEPATH'))
  */
 if (!function_exists('lang')) {
 
-    function lang($line, $name = "main", $wraper = TRUE) {
-        textdomain($name);
+    function lang($line, $domain = "main", $wraper = TRUE) {
+        textdomain(getMoFileName($domain));
         $CI = & get_instance();
         $line_tmp = $line;
         $line = $CI->lang->line($line);
@@ -49,11 +49,69 @@ if (!function_exists('lang')) {
             $line = $line_tmp;
 
         if ($wraper && defined('ENABLE_TRANSLATION_API')) {
-            $line = "<translate origin='" . $line_tmp . "' domain='" . $name . "'>" . $line . "</translate>";
+            $line = "<translate origin='" . $line_tmp . "' domain='" . $domain . "'>" . $line . "</translate>";
         }
 
-        textdomain('main');
+        textdomain(getMoFileName('main'));
         return $line;
+    }
+
+}
+if (!function_exists('getMoFileName')) {
+
+    function getMoFileName($domain) {
+        if ($domain) {
+            if (isset($GLOBALS['MO_FILE_NAMES'][$domain])) {
+                return $GLOBALS['MO_FILE_NAMES'][$domain];
+            }
+
+            if (!defined('CUR_LOCALE')) {
+                $CI = & get_instance();
+                $currentLocale = MY_Controller::getCurrentLocale();
+
+                if (strstr($_SERVER['REQUEST_URI'], 'install')) {
+                    $ci = & get_instance();
+                    $langs = $ci->config->item('languages');
+
+                    $locale = isset($langs[$language]) ? $langs[$language][1] : 'ru_RU';
+                } else {
+                    $language = $CI->db->where('identif', $currentLocale)->get('languages')->row_array();
+                    $locale = $language['locale'];
+                }
+
+                define('CUR_LOCALE', $language['locale']);
+            } else {
+                $locale = CUR_LOCALE;
+            }
+
+            $name = NULL;
+
+            switch ($domain) {
+                case 'main':
+                    $searched = glob('./application/language/main/' . $locale . '/LC_MESSAGES/main*.mo');
+                    if (!empty($searched)) {
+                        $name = str_replace('.mo', '', basename(array_pop($searched)));
+                    }
+                    break;
+                default :
+                    if (file_exists('./application/modules/' . $domain)) {
+                        $searched = glob('./application/modules/' . $domain . '/language/' . $locale . '/LC_MESSAGES/' . $domain . '*.mo');
+                        if (!empty($searched)) {
+                            $name = str_replace('.mo', '', basename(array_pop($searched)));
+                        }
+                    } elseif (file_exists('./templates/' . $domain)) {
+                        $searched = glob('./templates/' . $domain . '/language/' . $domain . '/' . $locale . '/LC_MESSAGES/' . $domain . '*.mo');
+                        if (!empty($searched)) {
+                            $name = str_replace('.mo', '', basename(array_pop($searched)));
+                        }
+                    }
+                    break;
+            }
+            $GLOBALS['MO_FILE_NAMES'] = $GLOBALS['MO_FILE_NAMES'] ? $GLOBALS['MO_FILE_NAMES'] : array();
+            $GLOBALS['MO_FILE_NAMES'][$domain] = $name;
+            return $name;
+        }
+        return FALSE;
     }
 
 }
