@@ -41,6 +41,9 @@ class Mod_discount extends \MY_Controller {
      */
     public function autoload() {
         if (count($this->db->where('name', 'mod_discount')->get('components')->result_array()) != 0) {
+
+            \CMSFactory\Events::create()->setListener(array($this, 'applyResultDiscount'), 'Cart:MakeOrder');
+
             $this->applyDiscountCartItems();
             $this->applyResultDiscount();
             /** apply Gift */
@@ -135,9 +138,7 @@ class Mod_discount extends \MY_Controller {
                 $this->baseDiscount->cart->discount_info = $discount;
                 $this->baseDiscount->cart->discount_type = $discount['type'];
 
-                $check = $this->session->flashdata('validation_errors');
-                if (strstr($this->uri->uri_string(), 'make_order') & empty($check)) {
-
+                if (strstr($this->uri->uri_string(), 'make_order')) {
                     if ($discount['type'] != 'product') {
                         $this->baseDiscount->updateDiskApply($discount['max_discount']['key']);
                     } else {
@@ -146,7 +147,6 @@ class Mod_discount extends \MY_Controller {
                             if (is_null($item->discountKey)) {
                                 continue;
                             }
-
                             for ($i = 0; $i < $item->quantity; $i++) {
                                 $this->baseDiscount->updateDiskApply($item->discountKey);
                             }
@@ -174,6 +174,9 @@ class Mod_discount extends \MY_Controller {
                 $value = $this->baseDiscount->getDiscountValue($disc, $this->baseDiscount->cart->getTotalPrice());
                 $this->baseDiscount->cart->gift_info = $disc['key'];
                 $this->baseDiscount->cart->gift_value = $value;
+                if (\ShopCore::app()->SSettings->pricePrecision == 0) {
+                    $this->baseDiscount->cart->gift_value = floor($value);
+                }
                 $this->baseDiscount->cart->setTotalPrice($this->baseDiscount->cart->getTotalPrice() - $value);
                 $aplyGift = true;
                 break;
@@ -217,14 +220,6 @@ class Mod_discount extends \MY_Controller {
      */
     public function register_script() {
         \CMSFactory\assetManager::create()->registerScript('main', TRUE);
-    }
-
-    public function test() {
-        $res = \mod_discount\classes\ApplyChecker::getInstance()->getAppliesOverloadDifference();
-        echo '<pre>';
-        var_dump($res);
-        echo '</pre>';
-        exit;
     }
 
 }

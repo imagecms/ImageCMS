@@ -19,7 +19,7 @@
 {$NextCSIdCond = $NextCS != null}
 <div class="frame-inside page-order">
     <div class="container">
-        {if $CI->session->flashdata('makeOrderForTpl') === true}
+        {if $CI->session->flashdata('orderMaked') == true}
             <div class="f-s_0 without-crumbs">
                 <div class="frame-title">
                     <h1 class="title">{lang('Спасибо, ваш заказ принят!', 'newLevel')}<br/>{lang('Наши менеджеры свяжутся с вами.','newLevel')}</h1>
