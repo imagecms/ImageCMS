@@ -30,13 +30,13 @@
                 <div class="frame-title">
                     <h1 class="title">{echo $model->getName()}</h1>
                 </div>
-                <span class="count">({lang('Найдено','newLevel')} {$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang('товар','newLevel'),lang('товара','newLevel'),lang('товаров','newLevel')))})</span>
+                <span class="count">({lang('Найдено','boxGreen')} {$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang('товар','boxGreen'),lang('товара','boxGreen'),lang('товаров','boxGreen')))})</span>
             </div>
             {if $totalProducts == 0}
                 <div class="msg layout-highlight layout-highlight-msg">
                     <div class="info">
                         <span class="icon_info"></span>
-                        <span class="text-el">{lang('По вашему запросу товаров не найдено','newLevel')}</span>
+                        <span class="text-el">{lang('По вашему запросу товаров не найдено','boxGreen')}</span>
                     </div>
                 </div>
             {/if}
@@ -86,7 +86,7 @@
                 <div class="frame-category-menu layout-highlight">
                     <div class="title-menu-category">
                         <div class="title-default">
-                            <div class="title-h3 title">{lang('Найдено в категориях:','newLevel')}</div>
+                            <div class="title-h3 title">{lang('Найдено в категориях:','boxGreen')}</div>
                         </div>
                     </div>
                     <div class="inside-padd">

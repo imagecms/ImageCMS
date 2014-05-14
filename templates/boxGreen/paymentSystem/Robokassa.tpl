@@ -10,6 +10,6 @@
     <input type='hidden' name='IncCurrLabel' value='{$in_curr}'>
     <input type='hidden' name='Culture' value='{$culture}'>
     <div class="btn-cart btn-cart-p">
-        <input type='submit' value='{lang('Оплатить','newLevel')}'>
+        <input type='submit' value='{lang('Оплатить','boxGreen')}'>
     </div>
 </form>

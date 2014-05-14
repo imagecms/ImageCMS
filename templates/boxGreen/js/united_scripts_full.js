@@ -4418,7 +4418,7 @@ function initCarouselJscrollPaneCycle(el) {
                     prev = $this.find('.prev');
 
             if (cycle.find('li').length > 1) {
-                cycle.cycle($.extend({}, optionsCycle, {
+                cycle.cycle('destroy').cycle($.extend({}, optionsCycle, {
                     'next': next,
                     'prev': prev,
                     'pager': $this.find('.pager'),

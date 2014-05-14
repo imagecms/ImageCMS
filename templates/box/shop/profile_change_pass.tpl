@@ -4,19 +4,19 @@
             <form method="post" id="form_change_pass" onsubmit="ImageCMSApi.formAction('{site_url("/auth/authapi/change_password")}', '#form_change_pass', {literal}{hideForm: false, durationHideForm: 1000}{/literal});
                                     return false;">
                 <label>
-                    <span class="title">{lang('Старый пароль','newLevel')}:</span>
+                    <span class="title">{lang('Старый пароль','box')}:</span>
                     <span class="frame-form-field">
                         <input type="password" name="old_password"/>
                     </span>
                 </label>
                 <label>
-                    <span class="title">{lang('Новый пароль','newLevel')}:</span>
+                    <span class="title">{lang('Новый пароль','box')}:</span>
                     <span class="frame-form-field">
                         <input type="password" name="new_password"/>
                     </span>
                 </label>
                 <label>
-                    <span class="title">{lang('Повторите пароль','newLevel')}:</span>
+                    <span class="title">{lang('Повторите пароль','box')}:</span>
                     <span class="frame-form-field">
                         <input type="password" name="confirm_new_password"/>
                     </span>
@@ -25,7 +25,7 @@
                     <span class="title">&nbsp;</span>
                     <span class="frame-form-field">
                         <span class="btn-form">
-                            <input type="submit" value="{lang('Изменить пароль','newLevel')}"/>
+                            <input type="submit" value="{lang('Изменить пароль','box')}"/>
                         </span>
                     </span>
                 </div>

@@ -3999,7 +3999,7 @@ var imageCmsApiDefaults = {
     scs: 'success', //клас
     hideForm: true,
     messagePlace: 'ahead', // behind
-    durationHideForm: 7000,
+    durationHideForm: 3000,
     cMsgPlace: 'after', //place error
     captcha: function(ci) {
         return '<div class="frame-label"><span class="title">' + text.captchaText + '</span>\n\
@@ -4416,7 +4416,7 @@ function initCarouselJscrollPaneCycle(el) {
                     prev = $this.find('.prev');
 
             if (cycle.find('li').length > 1) {
-                cycle.cycle($.extend({}, optionsCycle, {
+                cycle.cycle('destroy').cycle($.extend({}, optionsCycle, {
                     'next': next,
                     'prev': prev,
                     'pager': $this.find('.pager'),

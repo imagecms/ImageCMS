@@ -140,7 +140,7 @@
                 </button>
                 <div class="imagecms-buy-license">
                     <a href="http://www.imagecms.net/shop/prices" target="_blank" onclick="_gaq.push(['_trackEvent', 'demoshop-front', '/shop/prices']);">
-                        <span class="imagecms-text-el">Купить лицензию</span>
+                        <span class="imagecms-text-el">{lang('Купить лицензию', 'newLevel')}</span>
                     </a>
                 </div>
                 <ul class="imagecms-list">
@@ -214,7 +214,7 @@
 
         {/*}uncomment before opload to server and combine and minimize scripts (in comment <!-- scripts -->...<!-- scripts end -->) into united_scripts file{ */}
         {/*} Start. uncoment before development { */}
-
+        
         <script type="text/javascript">
             initDownloadScripts(['raphael-min', 'united_scripts'], 'init', 'scriptDefer');
         </script>

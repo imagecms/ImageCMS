@@ -2,7 +2,7 @@
     <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
     <div class="drop-header">
         <div class="title">
-            {lang('Выбор cписка  желаний','newLevel')}
+            {lang('Выбор cписка  желаний','lightRed')}
         </div>
     </div>
     <div class="drop-content">
@@ -39,7 +39,7 @@
                                     <input type="radio" name="wishlist" value="" data-link='[name="wishListName"]' {if count($wish_lists) == 1 && $wish_list_id || count($wish_lists) == 0 && !$wish_list_id}checked="checked"{/if}>
                                 </span>
                                 <div class="name-count">
-                                    <span class="text-el">{lang('Создать список','newLevel')}</span>
+                                    <span class="text-el">{lang('Создать список','lightRed')}</span>
                                 </div>
                             </div>
                         {/if}
@@ -67,7 +67,7 @@
                                 data-start="WishListFront.validateWishPopup"
                             {/if}
                             >
-                            <span class="text-el">{if $wish_list_id}{lang('Переместить в список','newLevel')}{else:}{lang('Добавить в список','newLevel')}{/if}</span> 
+                            <span class="text-el">{if $wish_list_id}{lang('Переместить в список','lightRed')}{else:}{lang('Добавить в список','lightRed')}{/if}</span> 
                         </button>
                     </div>
                     {form_csrf()}

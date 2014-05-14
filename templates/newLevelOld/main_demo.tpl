@@ -122,15 +122,11 @@
         <div class="imagecms-top-fixed-header">
             <div class="container">
                 <butotn type="button" class="imagecms-close">
-<<<<<<< HEAD:templates/newLevelCart/main_demo.tpl
-                    <img src="{$THEME}icon_close.png"/>
-=======
                     <img src="{$THEME}/icon_close.png"/>
->>>>>>> cdca134cf553966e91ca2de97c20598765048735:templates/newLevelOld/main_demo.tpl
                 </butotn>
                 <div class="imagecms-buy-license">
                     <a href="http://www.imagecms.net/shop/prices" onclick="_gaq.push(['_trackEvent', 'demoshop-front', '/shop/prices']);">
-                        <span class="imagecms-text-el">Купить лицензицю</span>
+                        <span class="imagecms-text-el">{lang('Купить лицензицю', 'newLevel')}</span>
                     </a>
                 </div>
                 <ul class="imagecms-list">
@@ -143,19 +139,11 @@
                 </ul>
                 <div class="imagecms-contacts">
                     <span class="imagecms-phone">
-<<<<<<< HEAD:templates/newLevelCart/main_demo.tpl
-                        <img src="{$THEME}icon_phone.png" class="imagecms-ico-phone"/>
-                        <span class="imagecms-text-el">+7 (499) 703-37-54</span>
-                    </span>
-                    <a href="skype:imagecms_partner" class="imagecms-ref-skype">
-                        <img src="{$THEME}icon_skype.png" class="imagecms-ico-skype"/>
-=======
                         <img src="{$THEME}/icon_phone.png" class="imagecms-ico-phone"/>
                         <span class="imagecms-text-el">+7 (499) 703-37-54</span>
                     </span>
                     <a href="skype:imagecms_partner" class="imagecms-ref-skype">
                         <img src="{$THEME}/icon_skype.png" class="imagecms-ico-skype"/>
->>>>>>> cdca134cf553966e91ca2de97c20598765048735:templates/newLevelOld/main_demo.tpl
                         <span class="imagecms-text-el">imagecms_partner</span>
                     </a>
                 </div>

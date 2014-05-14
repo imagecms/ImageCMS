@@ -9,7 +9,7 @@
                     </div>
                     <span class="s-t m-r_10">/</span>
                     <a href="{shop_url('brand/')}">
-                        <span class="text-el">{lang('Все бренды','newLevel')}</span>
+                        <span class="text-el">{lang('Все бренды','greyVision')}</span>
                     </a>
                 </div>
                 <div class="container">
