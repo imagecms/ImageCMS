@@ -3999,7 +3999,7 @@ var imageCmsApiDefaults = {
     scs: 'success', //клас
     hideForm: true,
     messagePlace: 'ahead', // behind
-    durationHideForm: 7000,
+    durationHideForm: 3000,
     cMsgPlace: 'after', //place error
     captcha: function(ci) {
         return '<div class="frame-label"><span class="title">' + text.captchaText + '</span>\n\
@@ -4416,7 +4416,7 @@ function initCarouselJscrollPaneCycle(el) {
                     prev = $this.find('.prev');
 
             if (cycle.find('li').length > 1) {
-                cycle.cycle($.extend({}, optionsCycle, {
+                cycle.cycle('destroy').cycle($.extend({}, optionsCycle, {
                     'next': next,
                     'prev': prev,
                     'pager': $this.find('.pager'),
@@ -4688,27 +4688,24 @@ function itemUserToolbar() {
             }
         }).not('.activeUT').trigger('click.UT');
         wnd.off('scroll.UT').on('scroll.UT', function() {
-            var btnW = btnUp.show().outerWidth(true),
-                    itemsUTCW = itemsUT.width();
-            btnUp.hide();
-            if ((wnd.width() - itemsUTCW) / 2 > btnW && wnd.scrollTop() > wnd.height())
+            if (wnd.scrollTop() > wnd.height() && !btnUp.hasClass('non-v'))
                 btnUp.fadeIn();
             else
                 btnUp.hide();
-        })
+        });
         return itemsUT;
     }
     , this.resize = function(itemsUT, btnUp) {
         itemsUT = $(itemsUT);
         var btnW = btnUp.show().outerWidth(true),
-                itemsUTCW = itemsUT.width();
+                itemsUTCW = itemsUT.children().width();
         btnUp.hide();
-        if ((wnd.width() - itemsUTCW) / 2 > btnW && wnd.scrollTop() > wnd.height())
-            btnUp.fadeIn();
+        if ((wnd.width() - itemsUTCW) / 2 > btnW)
+            btnUp.show().removeClass('non-v');
         else
-            btnUp.hide();
+            btnUp.hide().addClass('non-v');
         return itemsUT;
-    }
+    };
 }
 function reinitializeScrollPane(el) {
     if ($.exists(selScrollPane)) {

@@ -172,8 +172,10 @@ class Settings extends BaseAdminController {
         }
 
         if (SHOP_INSTALLED) {
+            array_multisort($new_arr_shop);
             return $new_arr_shop;
         } else {
+            array_multisort($new_arr);
             return $new_arr;
         }
     }

@@ -182,7 +182,7 @@
                                                             data-prodStatus='{json_encode(promoLabelBtn($model->getAction(), $model->getHot(), $model->getHit(), $discount))}'
                                                             >
                                                         <span class="icon_cleaner icon_cleaner_buy"></span>
-                                                        <span class="text-el">{lang('Купить')}</span>
+                                                        <span class="text-el">{lang('Купить', 'newLevel')}</span>
                                                     </button>
                                                 </div>
                                             </div>
@@ -298,7 +298,7 @@
                         <div class="d-i_b">
                             <button data-trigger="[data-href='#comment']" data-scroll="true" class="count-response d_l">
                                 {intval($Comments[$model->getId()])}
-                                {echo SStringHelper::Pluralize($Comments[$model->getId()], array(lang("отзыв","newLevel"),lang("отзыва","newLevel"),lang("отзывов","newLevel")))}
+                                {echo SStringHelper::Pluralize($Comments[$model->getId()], array(lang("отзыв",'newLevel'),lang("отзыва",'newLevel'),lang("отзывов",'newLevel')))}
                             </button>
                         </div>
                     </div>
@@ -515,7 +515,7 @@
                                                         data-prodstatus='{json_encode($kitProducts->getKitStatus())}'
                                                         >
                                                     <span class="icon_cleaner icon_cleaner_buy"></span>
-                                                    <span class="text-el">{lang('Купить')}</span>
+                                                    <span class="text-el">{lang('Купить', 'newLevel')}</span>
                                                 </button>
                                             </div>
                                         </div>
@@ -565,7 +565,7 @@
                             <span id="cc">
                                 {if intval($Comments[$model->getId()][0]) !== 0}
                                     {echo intval($Comments[$model->getId()])}
-                                    {echo SStringHelper::Pluralize($Comments[$model->getId()], array(lang("отзыв","newLevel"),lang("отзыва","newLevel"),lang("отзывов","newLevel")))}
+                                    {echo SStringHelper::Pluralize($Comments[$model->getId()], array(lang("отзыв",'newLevel'),lang("отзыва",'newLevel'),lang("отзывов",'newLevel')))}
                                 {else:}
                                     {lang('Оставить отзыв','newLevel')}
                                 {/if}

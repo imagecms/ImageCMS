@@ -22,7 +22,7 @@
         {if $CI->session->flashdata('orderMaked') == true}
             <div class="f-s_0 without-crumbs">
                 <div class="frame-title">
-                    <h1 class="title">{lang('Спасибо, ваш заказ принят!<br/>Наши менеджеры свяжутся с вами.','newLevel')}</h1>
+                    <h1 class="title">{lang('Спасибо, ваш заказ принят!', 'newLevel')}<br/>{lang('Наши менеджеры свяжутся с вами.','newLevel')}</h1>
                 </div>
             </div>
         {/if}
@@ -435,7 +435,7 @@
                         {if $model->getGiftCertPrice() > 0} 
                             {$discount = $discount - $model->getGiftCertPrice()}
                         {/if}
-                        {if $discount}
+                        {if $discount > 0}
                             <tr>
                                 <td colspan="3">
                                     <span class="s-t f_l">{lang('Ваша текущая скидка','newLevel')}:</span>

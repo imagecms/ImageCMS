@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-13 10:22+0300\n"
-"PO-Revision-Date: 2014-05-13 10:22+0300\n"
+"POT-Creation-Date: 2014-05-14 05:28+0300\n"
+"PO-Revision-Date: 2014-05-14 05:28+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -7411,4 +7411,4 @@ msgstr "Яндекс.Маркет документ"
 
 #: tmpLink
 msgid "Digets count after comma in price"
-msgstr "Количество цифр после комы в цене"
+msgstr "Количество цифр после запятой в цене"

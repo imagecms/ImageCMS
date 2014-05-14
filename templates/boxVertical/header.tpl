@@ -24,7 +24,7 @@
                     <div class="btn-order-call v-a_b">
                         <button data-href="#ordercall" data-drop="#ordercall" data-tab="true" data-source="{site_url('shop/callback')}">
                             <span class="icon_order_call"></span>
-                            <span class="text-el ref-2">{lang('Заказать звонок','newLevel')}</span>
+                            <span class="text-el ref-2">{lang('Заказать звонок','boxVertical')}</span>
                         </button>
                     </div>
                 </div>
@@ -51,11 +51,11 @@
                     <div class="p_r">
                         <form name="search" method="get" action="{shop_url('search')}">
                             <span class="btn-search">
-                                <button type="submit"><span class="text-el">{lang('Поиск','newLevel')}</span></button>
+                                <button type="submit"><span class="text-el">{lang('Поиск','boxVertical')}</span></button>
                             </span>
                             <div class="frame-search-input">
                                 <span class="icon_search"></span>
-                                <input type="text" class="input-search" id="inputString" name="text" autocomplete="off" value="{if strpos($CI->uri->uri_string, 'search') !== false}{htmlspecialchars($_GET['text'])}{/if}"  placeholder="{lang('Я ищу', 'newLevel')}"/>
+                                <input type="text" class="input-search" id="inputString" name="text" autocomplete="off" value="{if strpos($CI->uri->uri_string, 'search') !== false}{htmlspecialchars($_GET['text'])}{/if}"  placeholder="{lang('Я ищу', 'boxVertical')}"/>
                                 <div id="suggestions" class="drop drop-search"></div>
                             </div>
                         </form>

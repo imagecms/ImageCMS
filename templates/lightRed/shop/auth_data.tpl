@@ -9,14 +9,14 @@
                         class="ref t-d_n"
                         >
                     <span class="icon_enter"></span>
-                    <span class="text-el">{lang('Вход','newLevel')}</span>
+                    <span class="text-el">{lang('Вход','lightRed')}</span>
                 </button>
             </li>
             <!--Else show link for personal cabinet -->
         {else:}
             <li class="btn-personal-area">
                 <button type="button" data-drop=".drop-profile" data-place="noinherit" data-overlay-opacity="0">
-                    <span class="text-el ref t-d_n">{lang('Личный кабинет','newLevel')}</span>
+                    <span class="text-el ref t-d_n">{lang('Личный кабинет','lightRed')}</span>
                     <span class="icon_arrow_b"></span>
                 </button>
                 <div class="drop drop-style3 drop-profile">
@@ -24,9 +24,9 @@
                         <div class="inside-padd">
                             <nav>
                                 <ul class="nav nav-profile nav-vertical">
-                                    <li><a href="{site_url('/shop/profile/#my_data')}">{lang('Основные данные', 'newLevel')}</a></li>
-                                    <li><a href="{site_url('/shop/profile/#change_pass')}">{lang('Изменить пароль', 'newLevel')}</a></li>
-                                    <li><a href="{site_url('/shop/profile/#history_order')}">{lang('История заказа', 'newLevel')}</a></li>
+                                    <li><a href="{site_url('/shop/profile/#my_data')}">{lang('Основные данные', 'lightRed')}</a></li>
+                                    <li><a href="{site_url('/shop/profile/#change_pass')}">{lang('Изменить пароль', 'lightRed')}</a></li>
+                                    <li><a href="{site_url('/shop/profile/#history_order')}">{lang('История заказа', 'lightRed')}</a></li>
                                     <li>
                                         <button type="button" onclick="ImageCMSApi.formAction('/auth/authapi/logout', '', {literal}{'durationHideForm': 0, callback: function(msg, status, form, DS) {
                                                                     if (status) {
@@ -34,7 +34,7 @@
                                 }
                                                                 }}{/literal});
                                                                     return false;">
-                                            <span class="text-el">{lang('Выйти','newLevel')}</span>
+                                            <span class="text-el">{lang('Выйти','lightRed')}</span>
                                         </button>
                                     </li>
                                 </ul>

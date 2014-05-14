@@ -35,7 +35,7 @@
                         <div class="frame-title">
                             <h1 class="title m-r_5">{echo  ShopCore::encode($model->getName())}</h1>
                             <span class="frame-variant-code frameVariantCode f-s_12" {if !$model->firstVariant->getNumber()}style="display:none;"{/if}>
-                                <span class="text-el s-t">{lang('Артикул','newLevel')}</span>
+                                <span class="text-el s-t">{lang('Артикул','boxVertical')}</span>
                                 <span class="code js-code">
                                     {if $model->firstVariant->getNumber()}
                                     {trim($model->firstVariant->getNumber())}
@@ -48,7 +48,7 @@
                         <span class="frame-variant-name-code">
                             {if count($variants) > 1}
                             <span class="frame-variant-name frameVariantName" {if !$model->firstVariant->getName()}style="display:none;"{/if}>
-                                {lang('Вариант','newLevel')}:
+                                {lang('Вариант','boxVertical')}:
                                 <span class="code js-code">
                                     {if $model->firstVariant->getName()}
                                     {trim($model->firstVariant->getName())}
@@ -59,7 +59,7 @@
                             {if $model->getBrand() != null}
                             {$brand = $model->getBrand()->getName()}
                             {$hasBrand = trim($brand) != ''}
-                            <span class="frame-item-brand">{lang('Бренд','newLevel')}:
+                            <span class="frame-item-brand">{lang('Бренд','boxVertical')}:
                                 <span class="code js-code">
                                     {if $hasBrand}
                                     <a href="{shop_url('brand/'.$model->getBrand()->getUrl())}">
@@ -143,7 +143,7 @@
                                 <div class="frame-star">
                                     {$CI->load->module('star_rating')->show_star_rating($model, false)}
                                     <div class="d_i-b">
-                                        <button data-trigger="[data-href='#comment']" data-scroll="true" class="count-response d_l">{lang('Отзывы')}
+                                        <button data-trigger="[data-href='#comment']" data-scroll="true" class="count-response d_l">{lang('Отзывы', 'boxVertical')}
                                             {intval($Comments[$model->getId()])}
                                         </button>
                                     </div>
@@ -151,7 +151,7 @@
                                 {else:}
                                 <div class="frame-star t-a_j">
                                     <div class="d_i-b">
-                                        <button data-trigger="[data-href='#comment']" data-scroll="true" class="count-null-response d_l">{lang('Оставить отзыв','newLevel')}</button>
+                                        <button data-trigger="[data-href='#comment']" data-scroll="true" class="count-null-response d_l">{lang('Оставить отзыв','boxVertical')}</button>
                                     </div>
                                 </div>
                                 {/if}
@@ -163,7 +163,7 @@
                                     <!-- Start. Check variant-->
                                     {if count($variants) > 1}
                                     <div class="check-variant-product">
-                                        <div class="title s-t">{lang('Вариант','newLevel')}</div>
+                                        <div class="title s-t">{lang('Вариант','boxVertical')}</div>
                                         <div class="lineForm">
                                             <select name="variant" id="variantSwitcher">
                                                 {foreach $variants as $key => $productVariant}
@@ -240,8 +240,8 @@
                                                     <div class="frame-count-buy js-variant-{echo $productVariant->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
                                                         <form method="POST" action="/shop/cart/addProductByVariantId/{echo $productVariant->getId()}">
                                                             <div class="frame-count frameCount">
-                                                                <div class="number js-number" data-title="{lang('Количество на складе','newLevel')} {echo $productVariant->getstock()}">
-                                                                    <input type="text" name="quantity" value="{echo $inCart ? $inCart : 1}" class="plusMinus plus-minus" data-title="{lang('Только цифры','newLevel')}" data-min="1" data-max="{echo $productVariant->getstock()}" {if $inCart}disabled="disabled"{/if}>
+                                                                <div class="number js-number" data-title="{lang('Количество на складе','boxVertical')} {echo $productVariant->getstock()}">
+                                                                    <input type="text" name="quantity" value="{echo $inCart ? $inCart : 1}" class="plusMinus plus-minus" data-title="{lang('Только цифры','boxVertical')}" data-min="1" data-max="{echo $productVariant->getstock()}" {if $inCart}disabled="disabled"{/if}>
                                                                 </div>
                                                             </div>
                                                             <div class="btn-cart-p btn-cart{if !$inCart} d_n{/if}">
@@ -252,7 +252,7 @@
                                                                 class="btnBuy"
                                                                 >
                                                                 <span class="icon_cleaner icon_cleaner_buy"></span>
-                                                                <span class="text-el">{lang('В корзине', 'newLevel')}</span>
+                                                                <span class="text-el">{lang('В корзине', 'boxVertical')}</span>
                                                             </button>
                                                         </div>
                                                         <div class="btn-buy-p btn-buy{if $inCart} d_n{/if}">
@@ -289,7 +289,7 @@
                                                             data-maxcount="{echo $productVariant->getstock()}"
                                                             >
                                                             <span class="icon_cleaner icon_cleaner_buy"></span>
-                                                            <span class="text-el">{lang('В корзину', 'newLevel')}</span>
+                                                            <span class="text-el">{lang('В корзину', 'boxVertical')}</span>
                                                         </button>
                                                     </div>
                                                     {form_csrf()}
@@ -298,7 +298,7 @@
                                             {else:}
                                             <div class="d_i-b v-a_b t-a_c m-r_20">
                                                 <div class="js-variant-{echo $productVariant->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
-                                                    <div class="c_6 f-w_b f-s_12">{lang('Нет в наличии','newLevel')}</div>
+                                                    <div class="c_6 f-w_b f-s_12">{lang('Нет в наличии','boxVertical')}</div>
                                                     <div class="btn-not-avail">
                                                         <button
                                                         type="button"
@@ -336,7 +336,7 @@
                                                         data-url="{echo shop_url('product/'.$model->getUrl())}"
                                                         >
                                                         <span class="icon-but"></span>
-                                                        <span class="text-el">{lang('Сообщить о появлении','newLevel')}</span>
+                                                        <span class="text-el">{lang('Сообщить о появлении','boxVertical')}</span>
                                                     </button>
                                                 </div>
                                             </div>
@@ -351,12 +351,12 @@
                                                 <button class="toCompare"
                                                 data-id="{echo $model->getId()}"
                                                 type="button"
-                                                data-title="{lang('К сравнению','newLevel')}"
-                                                data-firtitle="{lang('К сравнению','newLevel')}"
-                                                data-sectitle="{lang('В сравнении','newLevel')}"
+                                                data-title="{lang('К сравнению','boxVertical')}"
+                                                data-firtitle="{lang('К сравнению','boxVertical')}"
+                                                data-sectitle="{lang('В сравнении','boxVertical')}"
                                                 data-rel="tooltip">
                                                 <span class="icon_compare"></span>
-                                                <span class="text-el d_l">{lang('К сравнению','newLevel')}</span>
+                                                <span class="text-el d_l">{lang('К сравнению','boxVertical')}</span>
                                             </button>
                                         </div>
                                     </div>
@@ -399,7 +399,7 @@
         <div class="container">
             <section class="frame-complect horizontal-carousel">
                 <div class="frame-title">
-                    <div class="title">{lang('Комплект по выгодной цене','newLevel')}</div>
+                    <div class="title">{lang('Комплект по выгодной цене','boxVertical')}</div>
                 </div>
                 <div class="carousel-js-css items-carousel complects-carousel">
                     <div class="content-carousel">
@@ -538,7 +538,7 @@
                                                 class="btnBuy infoBut btnBuyKit"
                                                 >
                                                 <span class="icon_cleaner icon_cleaner_buy"></span>
-                                                <span class="text-el">{lang('В корзине', 'newLevel')}</span>
+                                                <span class="text-el">{lang('В корзине', 'boxVertical')}</span>
                                             </button>
                                         </div>
                                         <div class="btn-buy-p btn-buy{if $inCart} d_n{/if}">
@@ -550,7 +550,7 @@
                                             class="btnBuy infoBut btnBuyKit"
                                             >
                                             <span class="icon_cleaner icon_cleaner_buy"></span>
-                                            <span class="text-el">{lang('Купить', 'newLevel')}</span>
+                                            <span class="text-el">{lang('Купить', 'boxVertical')}</span>
                                         </button>
                                     </div>
                                     {form_csrf()}
@@ -582,17 +582,17 @@
 <div class="f-s_0">
     <ul class="tabs tabs-data tabs-product">
         <li class="active">
-            <button data-href="#view">{lang('Обзор','newLevel')}</button>
+            <button data-href="#view">{lang('Обзор','boxVertical')}</button>
         </li>
         {if $dl_properties = ShopCore::app()->SPropertiesRenderer->renderPropertiesTable($model)}
 
-        <li><button data-href="#first" data-source="{shop_url('product_api/renderProperties')}" data-data='{literal}{"product_id":{/literal} {echo $model->getId()} {literal}}{/literal}' data-selector=".characteristic">{lang('Свойства','newLevel')}</button></li>
+        <li><button data-href="#first" data-source="{shop_url('product_api/renderProperties')}" data-data='{literal}{"product_id":{/literal} {echo $model->getId()} {literal}}{/literal}' data-selector=".characteristic">{lang('Свойства','boxVertical')}</button></li>
         {/if}
         {if $fullDescription = $model->getFullDescription()}
-        <li><button data-href="#second" data-source="{shop_url('product_api/renderFullDescription')}" data-data='{literal}{"product_id":{/literal} {echo $model->getId()}{literal}}{/literal}' data-selector=".inside-padd > .text">{lang('Полное описание','newLevel')}</button></li>
+        <li><button data-href="#second" data-source="{shop_url('product_api/renderFullDescription')}" data-data='{literal}{"product_id":{/literal} {echo $model->getId()}{literal}}{/literal}' data-selector=".inside-padd > .text">{lang('Полное описание','boxVertical')}</button></li>
         {/if}
         {if $accessories}
-        <li><button data-href="#fourth" data-source="{shop_url('product_api/getAccessories')}" data-data='{literal}{"product_id":{/literal} {echo $model->getId()}, "arrayVars": {json_encode(array('opi_defaultItem'=>true))}{literal}}{/literal}' data-selector=".inside-padd > .items">{lang('Аксессуары','newLevel')}</button></li>
+        <li><button data-href="#fourth" data-source="{shop_url('product_api/getAccessories')}" data-data='{literal}{"product_id":{/literal} {echo $model->getId()}, "arrayVars": {json_encode(array('opi_defaultItem'=>true))}{literal}}{/literal}' data-selector=".inside-padd > .items">{lang('Аксессуары','boxVertical')}</button></li>
         {/if}
         <!--Output of the block comments-->
         {if $Comments && $model->enable_comments}
@@ -603,9 +603,9 @@
                     <span id="cc">
                         {if intval($Comments[$model->getId()][0]) !== 0}
                         {echo intval($Comments[$model->getId()])}
-                        {echo SStringHelper::Pluralize($Comments[$model->getId()], array(lang("отзыв","newLevel"),lang("отзыва","newLevel"),lang("отзывов","newLevel")))}
+                        {echo SStringHelper::Pluralize($Comments[$model->getId()], array(lang("отзыв",'boxVertical'),lang("отзыва",'boxVertical'),lang("отзывов",'boxVertical')))}
                         {else:}
-                        {lang('Оставить отзыв','newLevel')}
+                        {lang('Оставить отзыв','boxVertical')}
                         {/if}
                     </span>
                 </span>
@@ -617,14 +617,14 @@
         <div id="view">
             {if $dl_properties}
             <div class="inside-padd">
-                <div class="title-h2">{lang('Свойства','newLevel')}</div>
+                <div class="title-h2">{lang('Свойства','boxVertical')}</div>
                 <div class="characteristic">
                     <div class="product-charac patch-product-view">
                         {echo $dl_properties}
                     </div>
                     <button class="t-d_n f-s_0 s-all-d ref2 d_n_" data-trigger="[data-href='#first']" data-scroll="true">
                         <span class="icon_arrow"></span>
-                        <span class="text-el">{lang('Смотреть все','newLevel')}</span>
+                        <span class="text-el">{lang('Смотреть все','boxVertical')}</span>
                     </button>
                 </div>
             </div>
@@ -634,14 +634,14 @@
                 <!--                        Start. Description block-->
                 <div class="product-descr patch-product-view">
                     <div class="text">
-                        <div class="title-h2">{lang('Описание' , 'newLevel')}</div>
+                        <div class="title-h2">{lang('Описание' , 'boxVertical')}</div>
                         <h2>{echo  ShopCore::encode($model->getName())}</h2>
                         {echo $fullDescription}
                     </div>
                 </div>
                 <button class="t-d_n f-s_0 s-all-d ref2 d_n_" data-trigger="[data-href='#second']" data-scroll="true">
                     <span class="icon_arrow"></span>
-                    <span class="text-el">{lang('Смотреть все','newLevel')}</span>
+                    <span class="text-el">{lang('Смотреть все','boxVertical')}</span>
                 </button>
                 <!--                        End. Description block-->
             </div>
@@ -651,12 +651,12 @@
             <div class="accessories">
                 <div class="frame-title">
                     <div class="title">
-                        <h2 class="d_i">{lang('Аксессуары','newLevel')}</h2>
+                        <h2 class="d_i">{lang('Аксессуары','boxVertical')}</h2>
                     </div>
                     {if count($accessories) > 4}
                     <button class="t-d_n f-s_0 s-all-d ref2 s-all-marg" data-trigger="[data-href='#fourth']" data-scroll="true">
                         <span class="icon_arrow"></span>
-                        <span class="text-el">{lang('Смотреть все','newLevel')}</span>
+                        <span class="text-el">{lang('Смотреть все','boxVertical')}</span>
                     </button>
                     {/if}
                 </div>
@@ -681,7 +681,7 @@
         <!--             Start. Characteristic-->
         <div id="first">
             <div class="inside-padd">
-                <div class="title-h2">{lang('Свойства', 'newLevel')}</div>
+                <div class="title-h2">{lang('Свойства', 'boxVertical')}</div>
                 <div class="characteristic">
                     <div class="preloader"></div>
                 </div>
@@ -690,7 +690,7 @@
         <!--                    End. Characteristic-->
         <div id="second">
             <div class="inside-padd">
-                <div class="title-h2">{lang('Описание' , 'newLevel')}</div>
+                <div class="title-h2">{lang('Описание' , 'boxVertical')}</div>
                 <div class="text">
                     <div class="preloader"></div>
                 </div>
@@ -705,7 +705,7 @@
         {if $accessories}
         <div id="fourth" class="accessories">
             <div class="inside-padd">
-                <h2 class="m-b_30">{lang('С этим товаром покупают','newLevel')}</h2>
+                <h2 class="m-b_30">{lang('С этим товаром покупают','boxVertical')}</h2>
                 <ul class="items items-default">
                     <div class="preloader"></div>
                 </ul>
