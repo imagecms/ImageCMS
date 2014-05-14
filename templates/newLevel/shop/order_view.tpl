@@ -435,7 +435,7 @@
                         {if $model->getGiftCertPrice() > 0} 
                             {$discount = $discount - $model->getGiftCertPrice()}
                         {/if}
-                        {if $discount}
+                        {if $discount > 0}
                             <tr>
                                 <td colspan="3">
                                     <span class="s-t f_l">{lang('Ваша текущая скидка','newLevel')}:</span>
