@@ -21,29 +21,90 @@
         </dependency>
     </dependencies>
     -->
-    
-    <demodata>
-        <!--menu name="demo_manu" main_title="Demo menu title" description="Demo menu description." tpl="top_menu" expand_level="0">
+ <!--menu name="demo_manu" main_title="Demo menu title" description="Demo menu description." tpl="top_menu" expand_level="0">
             <item type="url" item_image="/image" title="Item1" position="0" description="description">
                 
-            </item>
-        </menu-->
-        <!-- (where_show => default, main, product, shop_category, brand, category, page)  -->
+        </item>
+    </menu-->
+    <!-- (where_show => default, main, product, shop_category, brand, category, page)  -->   
+    <!--demodata>
+        <menus>
+            
+            <menu name="menu_1" main_title="Menu main title" tpl_folder="folder_tpl" expand_level="1" description="Menu description">
+                <item image="./uploads/image1.jpg" title="Menu1 item title1" description="" url="/page_url1">
+                    <menu_i18n title="Menu title ru1" locale="ru"/>
+                    <menu_i18n title="Menu title en2" locale="en"/>
+                </item>
+                
+                <item image="./uploads/image2.jpg" title="Menu2 item title2" description="" url="/page_url2">
+                    <menu_i18n title="Menu title2 ru" locale="ru"/>
+                </item>
+                
+                <item image="./uploads/image3.jpg" title="Menu3 item title3" description="" url="/page_url3">
+                    <menu_i18n title="Menu title ru3" locale="ru"/>
+                    
+                    <item image="./uploads/image31.jpg" title="Menu31 item title31" description="" url="/page_url31">
+                        <menu_i18n title="Menu title ru31" locale="ru"/>
+                    </item>
+                    
+                    <item image="./uploads/image32.jpg" title="Menu32 item title32" description="" url="/page_url32">
+                        <menu_i18n title="Menu title ru32" locale="ru"/>
+                        
+                        <item image="./uploads/image321.jpg" title="Menu321 item title321" description="" url="/page_url321">
+                            <menu_i18n title="Menu title ru321" locale="ru"/>
+                            <menu_i18n title="Menu title en321" locale="en"/>
+                        </item>
+                        
+                        <item image="./uploads/image322.jpg" title="Menu322 item title322" description="" url="/page_url322">
+                            <menu_i18n title="Menu title ru322" locale="ru"/>
+                        </item>
+                    </item>
+                    
+                    <item image="./uploads/image33.jpg" title="Menu33 item title33" description="" url="/page_url33">
+                        <menu_i18n title="Menu title ru33" locale="ru"/>
+                    </item>
+                </item>
+                
+                <item image="./uploads/image4.jpg" title="Menu4 item title4" description="" url="/page_url4">
+                    <menu_i18n title="Menu title ru4" locale="ru"/>
+                </item>
+                
+            </menu>
+            
+        </menus>
+        
+        <categoriestemplates>
+            <level_1 template_name="category1level"/>
+            <level_2 template_name="category2level"/>
+        </categoriestemplates>
+        
         <banners>
+            <banner where_show="main" position="0" active="1" active_to="" group="Group, Group2">
+                <banner_i18n  name="Баннер" description="Баннер описание" url="banner_url" locale="ru" photo="/uploads/banners/photo1_ru.jpg"/>
+                <banner_i18n  name="Banner" description="Banner description" url="banner_url" locale="en" photo="/uploads/banners/photo1_en.jpg"/>
+            </banner>
             <banner where_show="main" position="0" active="1" active_to="" group="Group">
-                <banner_i18n  name="Баннер" description="Баннер описание" url="banner_url" locale="ru" photo="/uploads/banners/photo1_ru.jpg">
-                </banner_i18n>
-                <banner_i18n  name="Баннер2" description="Баннер описание2" url="banner_url2" locale="ru" photo="/uploads/banners/photo2_ru.jpg">
-                </banner_i18n>
-                <banner_i18n  name="Banner" description="Banner description" url="banner_url" locale="en" photo="/uploads/banners/photo1_en.jpg">
-                </banner_i18n>
+                <banner_i18n  name="Баннер3" description="Баннер описание" url="banner_url" locale="ru" photo="/uploads/banners/photo1_ru.jpg"/>
+                <banner_i18n  name="Banner" description="Banner description" url="banner_url" locale="en" photo="/uploads/banners/photo1_en.jpg"/>
             </banner>
             <groups>
                 <group name="Group"/>
+                <group name="Group2"/>
             </groups>
         </banners>
         
-    </demodata>
+        <customfields>
+            <field type="text" name="Field1" required="TRUE" active="TRUE" private="FALSE" validators="valid[23]" entity="user" classes="class1">
+                <field_i18n label="Поле" description="Field desc" locale="ru" />
+                <field_i18n label="Field" description="Field desc" locale="en" />
+            </field>
+            <field type="textarea" name="Field2" required="FALSE" active="TRUE" private="FALSE" validators="valid[23]" entity="order" classes="class2">
+                <field_i18n label="Поле2" description="Field desc2" locale="ru" />
+                <field_i18n label="Field2" description="Field desc2" locale="en" />
+            </field>
+        </customfields>
+        
+    </demodata-->
     
     
     <description><!-- КОЖЕН РАЗ ПРИ ЗВЕРНЕННІ -->
