@@ -2,7 +2,7 @@
     <div class="frame-news">
         <div class="title-news">
             <div class="frame-title">
-                <div class="title-h1 d_i title">{lang('Новости','newLevel')}</div>
+                <div class="title-h1 d_i title">{lang('Новости','boxGreen')}</div>
             </div>
         </div>
         <ul class="items items-news">

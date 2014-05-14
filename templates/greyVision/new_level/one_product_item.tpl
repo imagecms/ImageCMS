@@ -131,7 +131,7 @@
                                 <form method="POST" action="/shop/cart/addProductByVariantId/{echo $pv->getId()}">
                                     {if !$opi_widget && !$opi_defaultItem}
                                         <div class="frame-count frameCount">
-                                            <div class="number js-number" data-title="{lang('Количество на складе','newLevel')} {echo $pv->getstock()}">
+                                            <div class="number js-number" data-title="{lang('Количество на складе','greyVision')} {echo $pv->getstock()}">
                                                 <div class="frame-change-count">
                                                     <div class="btn-plus">
                                                         <button type="button"{if $inCart} disabled="disabled"{/if}>
@@ -144,7 +144,7 @@
                                                         </button>
                                                     </div>
                                                 </div>
-                                                <input type="text" name="quantity" value="{echo $inCart ? $inCart : 1}" class="plusMinus plus-minus" data-title="{lang('Только цифры','newLevel')}" data-min="1" data-max="{echo $pv->getstock()}"{if $inCart} disabled="disabled"{/if}>
+                                                <input type="text" name="quantity" value="{echo $inCart ? $inCart : 1}" class="plusMinus plus-minus" data-title="{lang('Только цифры','greyVision')}" data-min="1" data-max="{echo $pv->getstock()}"{if $inCart} disabled="disabled"{/if}>
                                             </div>
                                         </div>
                                     {/if}
@@ -156,7 +156,7 @@
                                             class="btnBuy"
                                             >
                                             <span class="icon_cleaner_buy"></span>
-                                            <span class="text-el">{lang('В корзине', 'newLevel')}</span>
+                                            <span class="text-el">{lang('В корзине', 'greyVision')}</span>
                                         </button>
                                     </div>
                                     <div class="btn-buy{if $inCart} d_n{/if}">
@@ -189,7 +189,7 @@
                                             data-maxcount="{echo $pv->getstock()}"
                                             >
                                             <span class="icon_cleaner_buy"></span>
-                                            <span class="text-el">{lang('Купить', 'newLevel')}</span>
+                                            <span class="text-el">{lang('Купить', 'greyVision')}</span>
                                         </button>
                                     </div>
                                     {form_csrf()}
@@ -228,7 +228,7 @@
                                         data-url="{echo shop_url('product/'.$p->getUrl())}"
                                         >
                                         <span class="icon-but"></span>
-                                        <span class="text-el">{lang('Сообщить о появлении','newLevel')}</span>
+                                        <span class="text-el">{lang('Сообщить о появлении','greyVision')}</span>
                                     </button>
                                 </div>
                             </div>
@@ -256,12 +256,12 @@
                                         <button class="toCompare"
                                                 data-id="{echo $p->getId()}"
                                                 type="button"
-                                                data-title="{lang('В список сравнений','newLevel')}"
-                                                data-firtitle="{lang('В список сравнений','newLevel')}"
-                                                data-sectitle="{lang('В списке сравнений','newLevel')}"
+                                                data-title="{lang('В список сравнений','greyVision')}"
+                                                data-firtitle="{lang('В список сравнений','greyVision')}"
+                                                data-sectitle="{lang('В списке сравнений','greyVision')}"
                                                 data-rel="tooltip">
                                             <span class="icon_compare"></span>
-                                            <span class="text-el d_l">{lang('В список сравнений','newLevel')}</span>
+                                            <span class="text-el d_l">{lang('В список сравнений','greyVision')}</span>
                                         </button>
                                     </div>
                                     <!-- End. Compare List button -->
@@ -319,7 +319,7 @@
                                 data-effect-off="fadeOut"
                                 data-source="{site_url('/wishlist/wishlistApi/deleteItem/'.$p[variant_id].'/'.$p[wish_list_id])}"
                                 data-after="WishListFront.removeItem"
-                                ><span class="icon_remove"></span><span class="text-el d_l_1">{lang('Удалить', 'newLevel')}</span></button>
+                                ><span class="icon_remove"></span><span class="text-el d_l_1">{lang('Удалить', 'greyVision')}</span></button>
                         </div>
                         <div class="btn-move-item-wl">
                             <button
@@ -327,7 +327,7 @@
                                 data-drop="#wishListPopup"
                                 data-source="{site_url('/wishlist/renderPopup/'.$p[variant_id].'/'.$p[wish_list_id])}"
                                 data-always="true"
-                                ><span class="icon_move"></span><span class="text-el d_l_1">{lang('Переместить', 'newLevel')}</span>
+                                ><span class="icon_move"></span><span class="text-el d_l_1">{lang('Переместить', 'greyVision')}</span>
                             </button>
                         </div>
                     </div>

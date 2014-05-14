@@ -1,13 +1,13 @@
 {if $can_comment == 1 AND !$is_logged_in}
-    <span class="title-comment"><b>{sprintf(lang('Пожалуйста, войдите для комментирования', 'newLevel'), site_url($modules.auth))}</b></span>
+    <span class="title-comment"><b>{sprintf(lang('Пожалуйста, войдите для комментирования', 'lightVertical'), site_url($modules.auth))}</b></span>
     <button type="button" data-trigger="#loginButton">
-        <span class="text-el d_l_1">{lang('Войти','newLevel')}</span>
+        <span class="text-el d_l_1">{lang('Войти','lightVertical')}</span>
     </button>
 {/if}
 <div class="comments" id="comments">
     {if $can_comment == 0 OR $is_logged_in}
         {if $comments_arr}
-            <div class="title-comment">{lang('Отзывы покупателей', 'newLevel')} {if $visibleMainForm === false || $visibleMainForm == NULL}<button class="d_l_1" data-drop=".comments-main-form" data-place="inherit" data-overlay-opacity="0" data-after="Comments.toComment">{lang('Оставить свой отзыв', 'newLevel')}</button>{/if}</div>
+            <div class="title-comment">{lang('Отзывы покупателей', 'lightVertical')} {if $visibleMainForm === false || $visibleMainForm == NULL}<button class="d_l_1" data-drop=".comments-main-form" data-place="inherit" data-overlay-opacity="0" data-after="Comments.toComment">{lang('Оставить свой отзыв', 'lightVertical')}</button>{/if}</div>
             {/if}
         <div class="drop comments-main-form {if !$comments_arr}noComments{/if} {if $visibleMainForm || $visibleMainForm == NULL}active inherit{/if}" {if $visibleMainForm}style="display: block;"{/if}>
             <div class="frame-comments layout-highlight">
@@ -18,13 +18,13 @@
                             <div class="mainPlace"></div>
                             {if !$is_logged_in}
                                 <label style="width: 45%;float: left;">
-                                    <span class="title">{lang('Ваше имя','newLevel')}</span>
+                                    <span class="title">{lang('Ваше имя','lightVertical')}</span>
                                     <span class="frame-form-field">
                                         <input type="text" name="comment_author" value="{get_cookie('comment_author')}"/>
                                     </span>
                                 </label>
                                 <label style="width: 45%;margin-left: 10%;float: left;">
-                                    <span class="title">{lang('Ваш email:', 'newLevel')}</span>
+                                    <span class="title">{lang('Ваш email:', 'lightVertical')}</span>
                                     <span class="frame-form-field">
                                         <input type="text" name="comment_email" id="comment_email" value="{get_cookie('comment_email')}"/>
                                     </span>
@@ -38,7 +38,7 @@
                             </label>
                             <!-- Start star reiting -->
                             <div class="frame-label">
-                                <span class="title f_l t-a_l" style="margin-top: 2px;">{lang('Ваша оценка:', 'newLevel')}</span>
+                                <span class="title f_l t-a_l" style="margin-top: 2px;">{lang('Ваша оценка:', 'lightVertical')}</span>
                                 <div class="frame-form-field">
                                     <div class="star">
                                         <div class="productRate star-big clicktemprate">
@@ -66,7 +66,7 @@
                             <div class="frame-label">
                                 <span class="frame-form-field">
                                     <div class="btn-form">
-                                        <input type="submit" value="{lang('Комментировать')}" onclick="Comments.post(this, {literal}{'visibleMainForm': '1'}{/literal}, '.mainPlace')"/>
+                                        <input type="submit" value="{lang('Комментировать', 'lightVertical')}" onclick="Comments.post(this, {literal}{'visibleMainForm': '1'}{/literal}, '.mainPlace')"/>
                                     </div>
                                 </span>
                             </div>
@@ -125,7 +125,7 @@
                                     <div class="btn">
                                         <button type="button" data-rel="cloneAddPaste" data-parid="{$comment['id']}">
                                             <span class="icon_comment"></span>
-                                            <span class="text-el d_l_1 f-s_11">{lang('Ответить')}</span>
+                                            <span class="text-el d_l_1 f-s_11">{lang('Ответить', 'lightVertical')}</span>
                                         </button>
                                     </div>
                                 {/if}
@@ -140,7 +140,7 @@
                                         <li>
                                             <div class="global-frame-comment-sub2">
                                                 <div class="author-data-comment author-data-comment-sub2">
-                                                    <span class="s-t">Ответ от </span>
+                                                    <span class="s-t">{lang('Ответ от', 'lightVertical')} </span>
                                                     <span class="author-comment">{$com_ch.user_name}</span>
                                                     <span class="date-comment">
                                                         <span class="day">{echo date("d", $comment.date)} </span>
@@ -162,13 +162,13 @@
                             </ul>
                         {/if}
                         <div class="btn-all-comments">
-                            <button type="button"><span class="text-el" data-hide='<span class="d_l_1">{lang('Скрыть','newLevel')}</span> ↑' data-show='<span class="d_l_1">{lang('Смотреть все ответы','newLevel')}</span> ↓'></span></button>
+                            <button type="button"><span class="text-el" data-hide='<span class="d_l_1">{lang('Скрыть','lightVertical')}</span> ↑' data-show='<span class="d_l_1">{lang('Смотреть все ответы','lightVertical')}</span> ↓'></span></button>
                         </div>
                     </li>
                 {/foreach}
             </ul>
             <button class="f-s_0 d_n_ d_l_1" data-trigger="[data-href='#comment']" data-scroll="true">
-                <span class="text-el">{lang('Смотреть все ответы','newLevel')}</span>
+                <span class="text-el">{lang('Смотреть все ответы','lightVertical')}</span>
             </button>
         </div>
     {/if}
@@ -176,7 +176,7 @@
     <div class="frame-drop-comment" data-rel="whoCloneAddPaste">
         <div class="form-comment layout-highlight frame-comments">
             <div class="title-default title-comment">
-                <div class="title">{lang('Ваш ответ','newLevel')}</div>
+                <div class="title">{lang('Ваш ответ','lightVertical')}</div>
             </div>
             <div class="inside-padd">
                 <form>
@@ -188,13 +188,13 @@
 
                     {if !$is_logged_in}
                         <label>
-                            <span class="title">{lang('Ваше имя:', 'newLevel')}</span>
+                            <span class="title">{lang('Ваше имя:', 'lightVertical')}</span>
                             <span class="frame-form-field">
                                 <input type="text" name="comment_author" value="{get_cookie('comment_author')}"/>
                             </span>
                         </label>
                         <label>
-                            <span class="title">{lang('Ваш email:', 'newLevel')} </span>
+                            <span class="title">{lang('Ваш email:', 'lightVertical')} </span>
                             <span class="frame-form-field">
                                 <input type="text" name="comment_email" value="{get_cookie('comment_email')}"/>
                             </span>
@@ -203,14 +203,14 @@
                             <span class="frame-form-field">
                                 <div class="msg">
                                     <div class="success">
-                                        {lang('Комментарий будет отправлен на модерацию','newLevel')}
+                                        {lang('Комментарий будет отправлен на модерацию','lightVertical')}
                                     </div>
                                 </div>
                             </span>
                         </label>
                     {/if}
                     <label>
-                        <span class="title">{lang('Текст ответа:','newLevel')}</span>
+                        <span class="title">{lang('Текст ответа:','lightVertical')}</span>
                         <span class="frame-form-field">
                             <textarea class="comment_text" name="comment_text"></textarea>
                         </span>
@@ -219,7 +219,7 @@
                         <span class="frame-form-field">
                             <input type="hidden" id="parent" name="comment_parent" value="">
                             <span class="btn-form">
-                                <input type="submit" value="{lang('Комментировать', 'newLevel')}" onclick="Comments.post(this, {if $visibleMainForm}{literal}{'visibleMainForm': '1'}{/literal}{else:}{literal}{'visibleMainForm': '0'}{/literal}{/if})"/>
+                                <input type="submit" value="{lang('Комментировать', 'lightVertical')}" onclick="Comments.post(this, {if $visibleMainForm}{literal}{'visibleMainForm': '1'}{/literal}{else:}{literal}{'visibleMainForm': '0'}{/literal}{/if})"/>
                             </span>
                         </span>
                     </div>
@@ -233,7 +233,7 @@
     <div class="usemoderation">
         <div class="msg">
             <div class="success">
-                {lang('Ваш комментарий будет опубликован после модерации администратором','newLevel')}
+                {lang('Ваш комментарий будет опубликован после модерации администратором','lightVertical')}
             </div>
         </div>
     </div>
