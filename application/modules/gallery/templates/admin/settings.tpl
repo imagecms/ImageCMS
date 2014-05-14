@@ -38,7 +38,7 @@
                                                     </select>
                                                     <select name="sort_order" class="input-large">
                                                         <option value="desc" {if $settings.sort_order == "desc"} selected="selected" {/if}>{lang("in descending order", 'gallery')}</option> 
-                                                        <option value="asc" {if $settings.sort_order == "asc"} selected="selected" {/if}>{lang("in  ascending order", 'gallery')}</option>    
+                                                        <option value="asc" {if $settings.sort_order == "asc"} selected="selected" {/if}>{lang("in ascending order", 'gallery')}</option>    
                                                     </select>
                                                 </div>
                                             </div>
