@@ -107,26 +107,26 @@
     {literal}
         text = {
         search: function(text) {
-        return '{/literal}{lang("Введите более", "newLevel")} {literal}' + ' ' + text + '{/literal} {lang("символов", "newLevel")}'{literal};
+        return '{/literal}{lang("Введите более", 'light')} {literal}' + ' ' + text + '{/literal} {lang("символов", 'light')}'{literal};
         },
         error: {
-        notLogin: '{/literal}{lang("В список желаний могут добавлять только авторизированные пользователи", "newLevel")}'{literal},
+        notLogin: '{/literal}{lang("В список желаний могут добавлять только авторизированные пользователи", 'light')}'{literal},
         fewsize: function(text) {
-        return '{/literal}{lang("Выберете размер меньше или равно", "newLevel")} {literal}' + ' ' + text + '{/literal} {lang("пикселей", "newLevel")}'{literal};
+        return '{/literal}{lang("Выберете размер меньше или равно", 'light')} {literal}' + ' ' + text + '{/literal} {lang("пикселей", 'light')}'{literal};
         },
-        enterName: '{/literal}{lang("Введите название", "newLevel")}'{literal}
+        enterName: '{/literal}{lang("Введите название", 'light')}'{literal}
         }
         }
     {/literal}
-    text.inCart = '{lang('В корзине','newLevel')}';
-    text.pc = '{lang('шт','newLevel')}.';
-    text.quant = '{lang('Кол-во','newLevel')}:';
-    text.sum = '{lang('Сумма','newLevel')}:';
-    text.toCart = '{lang('Купить','newLevel')}';
+    text.inCart = '{lang('В корзине','light')}';
+    text.pc = '{lang('шт','light')}.';
+    text.quant = '{lang('Кол-во','light')}:';
+    text.sum = '{lang('Сумма','light')}:';
+    text.toCart = '{lang('Купить','light')}';
     text.pcs = '{lang('Количество:')}';
     text.kits = '{lang('Комплектов:')}';
     text.captchaText = '{lang('Код протекции')}';
-    text.plurProd = ['{lang("товар","newLevel")}', '{lang("товара","newLevel")}', '{lang("товаров","newLevel")}'];
-    text.plurKits = ['{lang("набор","newLevel")}', '{lang("набора","newLevel")}', '{lang("наборов","newLevel")}'];
-    text.plurComments = ['{lang("отзыв","newLevel")}', '{lang("отзыва","newLevel")}', '{lang("отзывов","newLevel")}'];
+    text.plurProd = ['{lang("товар",'light')}', '{lang("товара",'light')}', '{lang("товаров",'light')}'];
+    text.plurKits = ['{lang("набор",'light')}', '{lang("набора",'light')}', '{lang("наборов",'light')}'];
+    text.plurComments = ['{lang("отзыв",'light')}', '{lang("отзыва",'light')}', '{lang("отзывов",'light')}'];
 </script>

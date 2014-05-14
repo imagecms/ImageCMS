@@ -11,7 +11,7 @@
         <div class="container">
             <div class="f-s_0 title-brand">
                 <div class="frame-title">
-                    <h1 class="title">{lang('Все бренды магазина','newLevel')}</h1>
+                    <h1 class="title">{lang('Все бренды магазина','boxVertical')}</h1>
                 </div>
             </div>
             <ul class="items items-brand-image">

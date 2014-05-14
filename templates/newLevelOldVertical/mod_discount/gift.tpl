@@ -3,7 +3,7 @@
         <span class="frame-form-field p_r">
             <div class="btn-def f_r">
                 <button type="button" id="giftButton">
-                    <span class="text-el">{lang('Применить','newLevel')}</span>
+                    <span class="text-el">{lang('Применить','newLevelVertical')}</span>
                 </button>
             </div>
             <div class="o_h">

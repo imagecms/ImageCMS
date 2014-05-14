@@ -9,7 +9,7 @@
             <span class="js-empty empty" {if $count == 0}style="display: inline"{/if}>
                 <span class="helper"></span>
                 <span>
-                    <span class="text-el">{lang('Корзина пуста','newLevel')}</span>
+                    <span class="text-el">{lang('Корзина пуста','newLevelVertical')}</span>
                 </span>
             </span>
             <span class="js-no-empty no-empty" {if $count != 0}style="display: inline"{/if}>
@@ -17,7 +17,7 @@
                 <span>
                     <span class="text-el topCartCount">{echo $count}</span>
                     <span class="text-el">&nbsp;</span>
-                    <span class="text-el plurProd">{echo SStringHelper::Pluralize(ShopCore::app()->SCart->totalItems(), array(lang('товар','newLevel'),lang('товара','newLevel'),lang('товаров','newLevel')))}</span>
+                    <span class="text-el plurProd">{echo SStringHelper::Pluralize(ShopCore::app()->SCart->totalItems(), array(lang('товар','newLevelVertical'),lang('товара','newLevelVertical'),lang('товаров','newLevelVertical')))}</span>
                     <span class="divider text-el">&#8226;</span>
                     <span class="d_i-b">
                         <span class="text-el topCartTotalPrice">{echo str_replace(',', '.', ShopCore::app()->SCart->totalPrice())}</span>

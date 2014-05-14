@@ -14,9 +14,9 @@
                             <div class="frame-form-field check-public-drop">
                                 <div class="lineForm">
                                     <select name="access" id="access">
-                                        <option {if $wishlist['0']['access'] == 'shared'}selected="selected"{/if} value="shared">{lang('Коллективный')}</option>
-                                        <option {if $wishlist['0']['access'] == 'private'}selected="selected"{/if} value="private">{lang('Приватный')}</option>
-                                        <option {if $wishlist['0']['access'] == 'public'}selected="selected"{/if} value="public">{lang('Публичный')}</option>
+                                        <option {if $wishlist['0']['access'] == 'shared'}selected="selected"{/if} value="shared">{lang('Коллективный', 'newLevel')}</option>
+                                        <option {if $wishlist['0']['access'] == 'private'}selected="selected"{/if} value="private">{lang('Приватный', 'newLevel')}</option>
+                                        <option {if $wishlist['0']['access'] == 'public'}selected="selected"{/if} value="public">{lang('Публичный', 'newLevel')}</option>
                                     </select>
                                 </div>
                             </div>

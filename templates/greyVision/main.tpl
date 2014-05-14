@@ -36,10 +36,6 @@
         <script type="text/javascript" src="{$THEME}js/jquery-1.8.3.min.js"></script>
         {include_tpl('config.js')}
         {literal}
-            <style>
-                .apn-toolbar{height: 0!important;border: 0!important;}
-                html.html{padding-top: 0!important;border: 0!important;}
-            </style>
             <script type="text/javascript">
                 function initDownloadScripts(scripts, callback, customEvent) {
                     function downloadJSAtOnload(scripts, callback, customEvent) {
@@ -107,7 +103,7 @@
         {include_tpl('user_toolbar')}
 
         {/*}Start. delete before upload to server{ */}
-        
+        {/*}
         <!-- scripts -->
         <script type="text/javascript" src="{$THEME}js/_united_side_plugins.js"></script>
         <script type="text/javascript" src="{$THEME}js/_plugins.js"></script>
@@ -128,7 +124,7 @@
                 })
             </script>
         {/literal}
-        
+        { */}
         {/*}End. delete before upload to server{ */}
 
         {/*fancybox}
@@ -138,11 +134,11 @@
 
         {/*}uncomment before opload to server and combine and minimize scripts (in comment <!-- scripts -->...<!-- scripts end -->) into united_scripts file{ */}
         {/*} Start. uncoment before development { */}
-        {/*}
+        
         <script type="text/javascript">
             initDownloadScripts(['united_scripts'], 'init', 'scriptDefer');
         </script>
-{ */}
+
         {/*} End. uncoment before development { */}
         {include_shop_tpl('js_templates')}
     </body>

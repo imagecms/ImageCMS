@@ -22,7 +22,7 @@
         {if $CI->session->flashdata('orderMaked') == true}
             <div class="f-s_0 without-crumbs">
                 <div class="frame-title">
-                    <h1 class="title">{lang('Спасибо, ваш заказ принят!<br/>Наши менеджеры свяжутся с вами.','newLevel')}</h1>
+                    <h1 class="title">{lang('Спасибо, ваш заказ принят!', 'newLevel')}<br/>{lang('Наши менеджеры свяжутся с вами.','newLevel')}</h1>
                 </div>
             </div>
         {/if}

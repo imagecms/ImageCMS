@@ -49,13 +49,13 @@
         <div>
         <div class="btn-autocomplete">{/literal}
         <a href="{shop_url('search')}?text={literal}<%- items.queryString %>" {/literal} class="f-s_0 t-d_u">
-        <span class="icon_show_all"></span><span class="text-el">{lang('Посмотреть все результаты','newLevel')} →</span>
+        <span class="icon_show_all"></span><span class="text-el">{lang('Посмотреть все результаты','newLevelVertical')} →</span>
         </a>
         </div>{literal}
         <!-- End. Show link  -->
         <% } else {%>    
     {/literal}<div class="msg f-s_0">
-    <div class="info"><span class="icon_info"></span><span class="text-el">{echo ShopCore::t(lang('По Вашему запросу ничего не найдено','newLevel'))}</span></div>
+    <div class="info"><span class="icon_info"></span><span class="text-el">{echo ShopCore::t(lang('По Вашему запросу ничего не найдено','newLevelVertical'))}</span></div>
     </div>{literal}
     <% }%>
     </div>
@@ -109,8 +109,8 @@
     <span class="tooltip"></span>
     <div class="apply">
         <div class="content-apply">
-            <a href="#">{lang('Фильтр','newLevel')}</a>
-            <div class="description">{lang('Найдено','newLevel')} <span class="f-s_0"><span id="apply-count">5</span><span class="text-el">&nbsp;</span><span class="plurProd"></span></span></div>
+            <a href="#">{lang('Фильтр','newLevelVertical')}</a>
+            <div class="description">{lang('Найдено','newLevelVertical')} <span class="f-s_0"><span id="apply-count">5</span><span class="text-el">&nbsp;</span><span class="plurProd"></span></span></div>
         </div>
         <button type="button" class="icon_times_drop icon_times_apply"></button>
     </div>
@@ -126,18 +126,18 @@
 
    <div class="drop drop-style" id="confirm">
         <div class="drop-header">
-            <div class="title">{lang('Удалить список?' , 'newLevel')}</div>
+            <div class="title">{lang('Удалить список?' , 'newLevelVertical')}</div>
         </div>
         <div class="drop-content-confirm">
             <div class="inside-padd cofirm w-s_n-w">
                 <div class="btn-def">
                     <button type="button" data-button-confirm data-modal="true">
-                        <span class="text-el">{lang('Подтвердить' , 'newLevel')}</span>
+                        <span class="text-el">{lang('Подтвердить' , 'newLevelVertical')}</span>
                     </button>
                 </div>
                 <div class="btn-def">
                     <button type="button" data-closed="closed-js">
-                        <span class="text-el">{lang('Отменить' , 'newLevel')}</span>
+                        <span class="text-el">{lang('Отменить' , 'newLevelVertical')}</span>
                     </button>
                 </div>
             </div>
@@ -150,7 +150,7 @@
             <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
             <div class="drop-content t-a_c" style="width: 350px;min-height: 0;">
                 <div class="inside-padd">
-                    {lang('Для того, что бы добавить товар в список желаний, Вам нужно', 'newLevel')} <button type="button" class="d_l_1" data-drop=".drop-enter" data-source="{site_url('auth')}">{lang('авторизоваться', 'newLevel')}</button>
+                    {lang('Для того, что бы добавить товар в список желаний, Вам нужно', 'newLevelVertical')} <button type="button" class="d_l_1" data-drop=".drop-enter" data-source="{site_url('auth')}">{lang('авторизоваться', 'newLevelVertical')}</button>
                 </div>
             </div>
         </div>

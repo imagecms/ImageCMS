@@ -16,13 +16,13 @@
         <div class="box-1">
             <div class="inside-padd">
                 <div class="c_w">{echo siteinfo('siteinfo_companytype')}, {echo date('Y')}</div>
-                <div class="text-el">{lang('Все права защищены','newLevel')}</div>
+                <div class="text-el">{lang('Все права защищены','boxVertical')}</div>
                 {echo $CI->load->module('share')->_make_share_form()}
             </div>
         </div>
         <div class="box-2">
             <div class="inside-padd">
-                <div class="main-title">{lang('Каталог','newLevel')}</div>
+                <div class="main-title">{lang('Каталог','boxVertical')}</div>
                 <ul class="footer-category-menu nav nav-vertical">
                     {\Category\RenderMenu::create()->setConfig(array('cache'=>FALSE))->load('footer_category_menu')}
                 </ul>
@@ -33,7 +33,7 @@
         <!--Start. User menu-->
         <div class="box-3">
             <div class="inside-padd">
-                <div class="main-title">{lang('Информация','newLevel')}</div>
+                <div class="main-title">{lang('Информация','boxVertical')}</div>
                 <ul class="nav nav-vertical">
                     {load_menu('footer_menu')}
                 </ul>
@@ -44,7 +44,7 @@
         <!--Start. Info block-->
         <div class="box-4">
             <div class="inside-padd">
-                <div class="main-title">{lang('Контакты','newLevel')}</div>
+                <div class="main-title">{lang('Контакты','boxVertical')}</div>
                 <ul>
                     <li>
                         <a class="f-s_0" href="mailto:{echo siteinfo('Email')}">

@@ -33,7 +33,7 @@
                 <div class="frame-title">
                     <h1 class="title">{echo $title}</h1>
                 </div>
-                <span class="count">{lang('Найдено', 'newLevel')} {$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang('товар','newLevel'),lang('товара','newLevel'),lang('товаров','newLevel')))}</span>
+                <span class="count">{lang('Найдено', 'boxVertical')} {$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang('товар','boxVertical'),lang('товара','boxVertical'),lang('товаров','boxVertical')))}</span>
             </div>
             <!-- End. Category name and count products in category-->
             {if $totalProducts == 0}
@@ -41,7 +41,7 @@
                 <div class="msg layout-highlight layout-highlight-msg">
                     <div class="info">
                         <span class="icon_info"></span>
-                        <span class="text-el">{lang('Не найдено товаров','newLevel')}</span>
+                        <span class="text-el">{lang('Не найдено товаров','boxVertical')}</span>
                     </div>
                 </div>
                 <!-- End. Empty category-->
@@ -67,7 +67,7 @@
                 <div class="frame-category-menu layout-highlight">
                     <div class="title-menu-category">
                         <div class="title-default">
-                            <div class="title-h3 title">{lang('Категории', 'newLevel')}</div>
+                            <div class="title-h3 title">{lang('Категории', 'boxVertical')}</div>
                         </div>
                     </div>
                     <div class="inside-padd">

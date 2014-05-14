@@ -2,7 +2,7 @@
     <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
     <div class="drop-header">
         <div class="title">
-            {lang('Отправить другу','newLevel')}
+            {lang('Отправить другу','newLevelVertical')}
         </div>
     </div>
     <div class="drop-content">
@@ -10,7 +10,7 @@
             <div class="horizontal-form">
                 <form method="POST" onsubmit="return false;">
                     <label class="frame-label">
-                        <span class="title">{lang('Email друга','newLevel')}:</span>
+                        <span class="title">{lang('Email друга','newLevelVertical')}:</span>
                         <span class="frame-form-field">
                             <input type="text" name = "email" />
                         </span>
@@ -20,7 +20,7 @@
                         <div class="frame-form-field">
                             <div class="btn-form">
                                 <button type="submit" data-modal="true" data-source="{site_url('/wishlist/wishlistApi/send_email')}" data-drop="#notification" onclick="serializeForm(this)">
-                                    <span class="text-el">{lang('Отправить','newLevel')}</span>
+                                    <span class="text-el">{lang('Отправить','newLevelVertical')}</span>
                                 </button>
                             </div>
                         </div>

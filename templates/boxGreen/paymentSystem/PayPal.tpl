@@ -14,7 +14,7 @@
 <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynowCC_LG.gif:NonHostedGuest">
 <input type="hidden" name="on0" value="asdda">asdda<input type="text" name="os0" maxlength="200">
 <div class="btn-cart btn-cart-p">
-    <input type="image" src="https://www.paypalobjects.com/ru_RU/RU/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="{lang('PayPal - более безопасный и легкий способ оплаты через Интернет!','newLevel')}">
+    <input type="image" src="https://www.paypalobjects.com/ru_RU/RU/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="{lang('PayPal - более безопасный и легкий способ оплаты через Интернет!','boxGreen')}">
 </div>
 <img alt="" border="0" src="https://www.paypalobjects.com/ru_RU/i/scr/pixel.gif" width="1" height="1">
 </form>
