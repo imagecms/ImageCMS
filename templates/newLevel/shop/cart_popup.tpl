@@ -1,5 +1,5 @@
 <script type="text/javascript">
-    totalItemsBask = {echo $totalItems}
+    totalItemsBask = {if $totalItems}{echo $totalItems}{else:}0{/if};
 </script>
 <div class="frame-bask frameBask p_r">
     <button type="button" class="icon_times_drop" data-closed="closed-js"></button>

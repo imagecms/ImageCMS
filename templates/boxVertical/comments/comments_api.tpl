@@ -1,12 +1,12 @@
 {if $can_comment == 1 AND !$is_logged_in}
-    <span class="title-comment"><b>{sprintf(lang('Пожалуйста, войдите для комментирования', 'newLevel'), site_url($modules.auth))}</b></span>
+    <span class="title-comment"><b>{sprintf(lang('Пожалуйста, войдите для комментирования', 'boxVertical'), site_url($modules.auth))}</b></span>
     <button type="button" data-trigger="#loginButton">
-        <span class="text-el d_l_1">{lang('Войти','newLevel')}</span>
+        <span class="text-el d_l_1">{lang('Войти','boxVertical')}</span>
     </button>
 {/if}
 <div class="comments" id="comments">
     {$showButton = $visibleMainForm === false || $visibleMainForm == NULL}
-    <div class="title-comment">{lang('Отзывы', 'newLevel')} {if $showButton && $can_comment === 0 || $showButton && $is_logged_in}<button data-drop=".comments-main-form" data-place="inherit" data-overlay-opacity="0" data-after="Comments.toComment" class="m-l_5"><span class="ref2 f-w_b">+</span> <span class="d_l_3">{lang('Добавить отзыв', 'newLevel')}</span></button>{/if}</div>
+    <div class="title-comment">{lang('Отзывы', 'boxVertical')} {if $showButton && $can_comment === 0 || $showButton && $is_logged_in}<button data-drop=".comments-main-form" data-place="inherit" data-overlay-opacity="0" data-after="Comments.toComment" class="m-l_5"><span class="ref2 f-w_b">+</span> <span class="d_l_3">{lang('Добавить отзыв', 'boxVertical')}</span></button>{/if}</div>
             {if $can_comment == 0 OR $is_logged_in}
         <div class="drop comments-main-form {if !$comments_arr}noComments{/if} {if $visibleMainForm || $visibleMainForm == NULL}active inherit{/if}" {if $visibleMainForm}style="display: block;"{/if}>
             <div class="frame-comments layout-highlight horizontal-form">
@@ -18,13 +18,13 @@
                             {if !$is_logged_in}
                                 <div class="clearfix">
                                     <label style="width: 40%;float: left;">
-                                        <span class="title">{lang('Ваше имя','newLevel')}</span>
+                                        <span class="title">{lang('Ваше имя','boxVertical')}</span>
                                         <span class="frame-form-field">
                                             <input type="text" name="comment_author" value="{get_cookie('comment_author')}"/>
                                         </span>
                                     </label>
                                     <label style="width: 60%;float: left;">
-                                        <span class="title t-a_r">{lang('E-mail', 'newLevel')}</span>
+                                        <span class="title t-a_r">{lang('E-mail', 'boxVertical')}</span>
                                         <span class="frame-form-field">
                                             <input type="text" name="comment_email" id="comment_email" value="{get_cookie('comment_email')}"/>
                                         </span>
@@ -32,7 +32,7 @@
                                 </div>
                             {/if}
                             <label>
-                                <span class="title">{lang('Отзыв')}</span>
+                                <span class="title">{lang('Отзыв', 'boxVertical')}</span>
                                 <span class="frame-form-field">
                                     <textarea name="comment_text" class="comment_text">{$_POST.comment_text}</textarea>
                                 </span>
@@ -53,7 +53,7 @@
                             {/if}
                             <!-- Start star reiting -->
                             <div class="frame-label">
-                                <span class="title f_l t-a_l">{lang('Оценка', 'newLevel')}</span>
+                                <span class="title f_l t-a_l">{lang('Оценка', 'boxVertical')}</span>
                                 <div class="frame-form-field">
                                     <div class="star f_l">
                                         <div class="productRate star-big clicktemprate">
@@ -89,7 +89,7 @@
                                 </span>
                                 {if $comment.rate != 0}
                                     <div class="mark-pr">
-                                        <span class="title">{lang('Оценка товара','newLevel')}:</span>
+                                        <span class="title">{lang('Оценка товара','boxVertical')}:</span>
                                         <div class="star-small d_i-b">
                                             <div class="productRate star-small">
                                                 <div style="width: {echo (int)$comment.rate *20}%"></div>
@@ -103,13 +103,13 @@
                                     <p>{$comment.text}</p>
                                     {if $comment.text_plus != Null}
                                         <p>
-                                            <b>{lang('Да', 'newLevel')}</b><br>
+                                            <b>{lang('Да', 'boxVertical')}</b><br>
                                             {$comment.text_plus}
                                         </p>
                                     {/if}
                                     {if $comment.text_minus != Null}
                                         <p>
-                                            <b>{lang('Нет', 'newLevel')}</b><br>
+                                            <b>{lang('Нет', 'boxVertical')}</b><br>
                                             {$comment.text_minus}
                                         </p>
                                     {/if}
@@ -118,23 +118,23 @@
                                     {if $can_comment == 0 OR $is_logged_in}
                                         <div class="btn f_l">
                                             <button type="button" data-rel="cloneAddPaste" data-parid="{$comment['id']}">
-                                                <span class="text-el d_l_3">{lang('Ответить')}</span>
+                                                <span class="text-el d_l_3">{lang('Ответить', 'boxVertical')}</span>
                                             </button>
                                         </div>
                                     {/if}
                                     <div class="frame-mark f_r">
                                         <div class="func-button-comment">
-                                            <span class="s-t">{lang('Отзыв полезен?','newLevel')}</span>
+                                            <span class="s-t">{lang('Отзыв полезен?','boxVertical')}</span>
                                             <span class="btn like">
                                                 <button type="button" class="usefullyes" data-comid="{echo $comment.id}">
                                                     <span class="icon_like"></span>
-                                                    <span class="text-el d_l_3">{lang('Да','newLevel')}<span class="yesholder{$comment.id}{if !$comment.like} d_n{/if}">({echo $comment.like})</span></span>
+                                                    <span class="text-el d_l_3">{lang('Да','boxVertical')}<span class="yesholder{$comment.id}{if !$comment.like} d_n{/if}">({echo $comment.like})</span></span>
                                                 </button>
                                             </span>
                                             <span class="btn dis-like">
                                                 <button type="button" class="usefullno" data-comid="{echo $comment.id}">
                                                     <span class="icon_dislike"></span>
-                                                    <span class="text-el d_l_4">{lang('Нет','newLevel')}<span class="noholder{$comment.id}{if !$comment.disslike} d_n{/if}">({echo $comment.disslike})</span></span>
+                                                    <span class="text-el d_l_4">{lang('Нет','boxVertical')}<span class="noholder{$comment.id}{if !$comment.disslike} d_n{/if}">({echo $comment.disslike})</span></span>
                                                 </button>
                                             </span>
                                         </div>
@@ -172,14 +172,14 @@
                             </ul>
                         {/if}
                         <div class="btn-all-comments">
-                            <button type="button"><span class="text-el" data-hide='<span class="d_l_1">{lang('Скрыть','newLevel')}</span> ↑' data-show='<span class="d_l_1">{lang('Смотреть все ответы','newLevel')}</span> ↓'></span></button>
+                            <button type="button"><span class="text-el" data-hide='<span class="d_l_1">{lang('Скрыть','boxVertical')}</span> ↑' data-show='<span class="d_l_1">{lang('Смотреть все ответы','boxVertical')}</span> ↓'></span></button>
                         </div>
                     </li>
                 {/foreach}
             </ul>
             <button class="t-d_n f-s_0 s-all-d ref2 d_n_" data-trigger="[data-href='#comment']" data-scroll="true">
                 <span class="icon_arrow"></span>
-                <span class="text-el">{lang('Смотреть все ответы','newLevel')}</span>
+                <span class="text-el">{lang('Смотреть все ответы','boxVertical')}</span>
             </button>
         </div>
     {/if}
@@ -196,20 +196,20 @@
 
                     {if !$is_logged_in}
                         <label>
-                            <span class="title">{lang('Ваше имя', 'newLevel')}</span>
+                            <span class="title">{lang('Ваше имя', 'boxVertical')}</span>
                             <span class="frame-form-field">
                                 <input type="text" name="comment_author" value="{get_cookie('comment_author')}"/>
                             </span>
                         </label>
                         <label>
-                            <span class="title">{lang('Email', 'newLevel')} </span>
+                            <span class="title">{lang('Email', 'boxVertical')} </span>
                             <span class="frame-form-field">
                                 <input type="text" name="comment_email" value="{get_cookie('comment_email')}"/>
                             </span>
                         </label>
                     {/if}
                     <label>
-                        <span class="title">{lang('Ответ','newLevel')}</span>
+                        <span class="title">{lang('Ответ','boxVertical')}</span>
                         <span class="frame-form-field">
                             <textarea class="comment_text" name="comment_text"></textarea>
                         </span>
@@ -218,7 +218,7 @@
                         <span class="frame-form-field">
                             <input type="hidden" id="parent" name="comment_parent" value="">
                             <span class="btn-form">
-                                <input type="submit" value="{lang('Комментировать', 'newLevel')}" onclick="Comments.post(this, {if $visibleMainForm}{literal}{'visibleMainForm': '1'}{/literal}{else:}{literal}{'visibleMainForm': '0'}{/literal}{/if})"/>
+                                <input type="submit" value="{lang('Комментировать', 'boxVertical')}" onclick="Comments.post(this, {if $visibleMainForm}{literal}{'visibleMainForm': '1'}{/literal}{else:}{literal}{'visibleMainForm': '0'}{/literal}{/if})"/>
                             </span>
                         </span>
                     </div>
@@ -232,7 +232,7 @@
     <div class="usemoderation">
         <div class="msg">
             <div class="success">
-                {lang('Ваш комментарий будет опубликован после модерации администратором','newLevel')}
+                {lang('Ваш комментарий будет опубликован после модерации администратором','boxVertical')}
             </div>
         </div>
     </div>

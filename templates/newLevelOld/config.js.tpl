@@ -124,14 +124,14 @@
     {literal}
         text = {
             search: function(text) {
-                return '{/literal}{lang("Введите более", "newLevel")} {literal}' + ' ' + text + '{/literal} {lang("символов", "newLevel")}'{literal};
+                return '{/literal}{lang("Введите более", 'newLevel')} {literal}' + ' ' + text + '{/literal} {lang("символов", 'newLevel')}'{literal};
                         },
                         error: {
-                            notLogin: '{/literal}{lang("В список желаний могут добавлять только авторизированные пользователи", "newLevel")}'{literal},
+                            notLogin: '{/literal}{lang("В список желаний могут добавлять только авторизированные пользователи", 'newLevel')}'{literal},
                                         fewsize: function(text) {
-                                            return '{/literal}{lang("Выберите размер меньше или равно", "newLevel")} {literal}' + ' ' + text + '{/literal} {lang("пикселей", "newLevel")}'{literal};
+                                            return '{/literal}{lang("Выберите размер меньше или равно", 'newLevel')} {literal}' + ' ' + text + '{/literal} {lang("пикселей", 'newLevel')}'{literal};
                                                         },
-                                                        enterName: '{/literal}{lang("Введите название", "newLevel")}'{literal}
+                                                        enterName: '{/literal}{lang("Введите название", 'newLevel')}'{literal}
                                                                 }
                                                             }
     {/literal}
@@ -143,7 +143,7 @@
         text.pcs = '{lang('Количество:')}';
         text.kits = '{lang('Комплектов:')}';
         text.captchaText = '{lang('Код протекции')}';
-        text.plurProd = ['{lang("товар","newLevel")}', '{lang("товара","newLevel")}', '{lang("товаров","newLevel")}'];
-        text.plurKits = ['{lang("набор","newLevel")}', '{lang("набора","newLevel")}', '{lang("наборов","newLevel")}'];
-        text.plurComments = ['{lang("отзыв","newLevel")}', '{lang("отзыва","newLevel")}', '{lang("отзывов","newLevel")}'];
+        text.plurProd = ['{lang("товар",'newLevel')}', '{lang("товара",'newLevel')}', '{lang("товаров",'newLevel')}'];
+        text.plurKits = ['{lang("набор",'newLevel')}', '{lang("набора",'newLevel')}', '{lang("наборов",'newLevel')}'];
+        text.plurComments = ['{lang("отзыв",'newLevel')}', '{lang("отзыва",'newLevel')}', '{lang("отзывов",'newLevel')}'];
 </script>

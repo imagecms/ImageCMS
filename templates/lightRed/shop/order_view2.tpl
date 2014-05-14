@@ -22,13 +22,13 @@
         {if $CI->session->flashdata('makeOrder') === true}
             <div class="f-s_0 without-crumbs">
                 <div class="frame-title">
-                    <h1 class="d_i">{lang('Спасибо, ваш заказ принят!<br/>Наши менеджеры свяжутся с вами.','newLevel')}</h1>
+                    <h1 class="title">{lang('Спасибо, ваш заказ принят!', 'lightRed')}<br/>{lang('Наши менеджеры свяжутся с вами.','lightRed')}</h1>
                 </div>
             </div>
         {/if}
         <div class="f-s_0 title-order-view without-crumbs">
             <div class="frame-title">
-                <h1 class="d_i">{lang('Заказ №','newLevel')}:<span class="number-order">{echo $model->getId()}</span></h1>
+                <h1 class="d_i">{lang('Заказ №','lightRed')}:<span class="number-order">{echo $model->getId()}</span></h1>
             </div>
         </div>
         {$total = $model->getTotalPrice()}
@@ -40,12 +40,12 @@
                     <col width="120"/>
                 </colgroup>
                 <tr>
-                    <th>{lang('Имя получателя','newLevel')}:</th>
+                    <th>{lang('Имя получателя','lightRed')}:</th>
                     <td>{echo $model->getUserFullName()}</td>
                 </tr>
                 {if $model->getUserPhone()}
                     <tr>
-                        <th>{lang('Телефон','newLevel')}:</th>
+                        <th>{lang('Телефон','lightRed')}:</th>
                         <td>{echo $model->getUserPhone()}</td>
                     </tr>
                 {/if}
@@ -60,7 +60,7 @@
                 </tr>
                 <!-- Start. Delivery Method name -->
                 <tr>
-                    <th>{lang('Способ доставки','newLevel')}:</th>
+                    <th>{lang('Способ доставки','lightRed')}:</th>
                     <td>
                         {if $model->getDeliveryMethod() > 0}
                             {echo $model->getSDeliveryMethods()->getName()}
@@ -71,19 +71,19 @@
                 {$s_field = ShopCore::app()->CustomFieldsHelper->getOneCustomFieldsByNameArray('city','order', $model->getId())}{echo $s_field.field_data}
                 {if $s_field}
                     <tr>
-                        <th>{lang('Город','newLevel')}:</th>
+                        <th>{lang('Город','lightRed')}:</th>
                         <td>{echo $s_field}</td>
                     </tr>
                 {/if}
                 {if $model->getUserDeliverTo()}
                     <tr>
-                        <th>{lang('Адрес','newLevel')}:</th>
+                        <th>{lang('Адрес','lightRed')}:</th>
                         <td>{echo $model->getUserDeliverTo()}</td>
                     </tr>
                 {/if}
                 {if $model->getUserComment()}
                     <tr>
-                        <th>{lang('Комментарий','newLevel')}:</th>
+                        <th>{lang('Комментарий','lightRed')}:</th>
                         <td>{echo $model->getUserComment()}</td>
                     </tr>
                 {/if}
@@ -96,7 +96,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <th>{lang('Дата заказа','newLevel')}:</th>
+                    <th>{lang('Дата заказа','lightRed')}:</th>
                     <td>{date('d.m.Y, H:i:s.',$model->getDateCreated())} </td>
                 </tr>
                 <!-- Start. Render certificate -->
@@ -117,7 +117,7 @@
 
                 <!-- Start. Render payment button and payment description -->
                 <tr>
-                    <th>{lang('Способ оплаты','newLevel')}:</th>
+                    <th>{lang('Способ оплаты','lightRed')}:</th>
                     <td>
                         {if $model->getPaid() != true && $model->getTotalPriceWithGift() > 0}
                             {if $paymentMethod->getName()}
@@ -128,12 +128,12 @@
                 </tr>
                 <!--                Start. Order status-->
                 <tr>
-                    <th>{lang('Статус оплаты','newLevel')}:</th>
+                    <th>{lang('Статус оплаты','lightRed')}:</th>
                     <td>
                         {if $model->getPaid() == true}
-                            <span class="status-pay paid">{lang('Оплачен','newLevel')}</span>
+                            <span class="status-pay paid">{lang('Оплачен','lightRed')}</span>
                         {else:}
-                            <span class="status-pay not-paid">{lang('Не оплачен','newLevel')}</span>
+                            <span class="status-pay not-paid">{lang('Не оплачен','lightRed')}</span>
                         {/if}
                     </td>
                 </tr>
@@ -183,8 +183,8 @@
                                             </a>
                                             <div class="description">
                                                 <span class="frame-variant-name-code">
-                                                    {if trim(ShopCore::encode($orderProduct->variant_name) != '')}<span class="frame-variant-name frameVariantName">{lang("Вариант",'newLevel')}: <span class="code js-code">{echo ShopCore::encode($orderProduct->variant_name)}</span></span>{/if}
-                                                    {if trim(ShopCore::encode($orderProduct->variant_id) != '')}<span class="frame-variant-code frameVariantCode">{lang("Артикул",'newLevel')}: <span class="code js-code">{echo ShopCore::encode($orderProduct->variant_id)}</span></span>{/if}
+                                                    {if trim(ShopCore::encode($orderProduct->variant_name) != '')}<span class="frame-variant-name frameVariantName">{lang("Вариант",'lightRed')}: <span class="code js-code">{echo ShopCore::encode($orderProduct->variant_name)}</span></span>{/if}
+                                                    {if trim(ShopCore::encode($orderProduct->variant_id) != '')}<span class="frame-variant-code frameVariantCode">{lang("Артикул",'lightRed')}: <span class="code js-code">{echo ShopCore::encode($orderProduct->variant_id)}</span></span>{/if}
                                                 </span>
                                                 {/*}
                                                 <span class="frame-prices">
@@ -209,13 +209,13 @@
                                         </td>
                                         <td>
                                             <div class="gen-sum-row">
-                                                <span class="s-t d_b">{lang('Кол-во','newLevel')}:</span>
+                                                <span class="s-t d_b">{lang('Кол-во','lightRed')}:</span>
                                                 <span class="count">{echo $orderProduct->getQuantity()}</span>
-                                                <span class="s-t">{lang('шт','newLevel')}.</span>
+                                                <span class="s-t">{lang('шт','lightRed')}.</span>
                                             </div>
                                         </td>
                                         <td>
-                                            <span class="s-t d_b">{lang('Сумма','newLevel')}:</span>
+                                            <span class="s-t d_b">{lang('Сумма','lightRed')}:</span>
                                             <span class="frame-prices">
                                                 <span class="current-prices f-s_0">
                                                     <span class="price-new">
@@ -246,7 +246,7 @@
                                 {foreach $model->getOrderKits() as $orderProduct}
                                     <tr class="row-kits rowKits items-order row">
                                         <td class="frame-items frame-items-kit">
-                                            <div class="title-h3 c_9">{lang('Комплект товаров', 'newLevel')}</div>
+                                            <div class="title-h3 c_9">{lang('Комплект товаров', 'lightRed')}</div>
                                             <ul class="items items-bask">
                                                 <li>
                                                     <div class="frame-kit main-product">
@@ -332,13 +332,13 @@
                                         </td>
                                         <td>
                                             <div class="gen-sum-row">
-                                                <span class="s-t d_b">{lang('Кол-во','newLevel')}:</span>
+                                                <span class="s-t d_b">{lang('Кол-во','lightRed')}:</span>
                                                 <span class="count">{echo $orderProduct->getQuantity()}</span>
-                                                <span class="s-t">{lang('шт','newLevel')}.</span>
+                                                <span class="s-t">{lang('шт','lightRed')}.</span>
                                             </div>
                                         </td>
                                         <td>
-                                            <span class="s-t">{lang('Сумма','newLevel')}:</span>
+                                            <span class="s-t">{lang('Сумма','lightRed')}:</span>
                                             <span class="frame-prices">
                                                 <span class="price-discount">
                                                     <span>
@@ -374,7 +374,7 @@
                                 {if $model->getOriginPrice()}
                                     <tr>
                                         <td colspan="2">
-                                            <span class="s-t">{lang('Сумма товаров','newLevel')}</span>
+                                            <span class="s-t">{lang('Сумма товаров','lightRed')}</span>
                                         </td>
                                         <td>
                                             <span class="price-new">
@@ -388,7 +388,7 @@
                                 {/if}
                                 <tr>
                                     <td colspan="2">
-                                        <span class="s-t">{lang('Стоимость доставки','newLevel')}:</span>
+                                        <span class="s-t">{lang('Стоимость доставки','lightRed')}:</span>
                                     </td>
                                     <td>
                                         <span class="price-item">
@@ -404,7 +404,7 @@
                                 {if $discount || $sumKit != 0}
                                     <tr>
                                         <td colspan="2">
-                                            <span class="s-t">{lang('Ваша текущая скидка','newLevel')}:</span>
+                                            <span class="s-t">{lang('Ваша текущая скидка','lightRed')}:</span>
                                         </td>
                                         <td>
                                             <span class="price-item">
@@ -418,7 +418,7 @@
                                 {if $model->getGiftCertPrice() > 0}
                                     <tr>
                                         <td colspan="2">
-                                            <span class="s-t">{lang('Подарочный сертификат','newLevel')}:</span>
+                                            <span class="s-t">{lang('Подарочный сертификат','lightRed')}:</span>
                                         </td>
                                         <td>
                                             <span class="price-item">
@@ -441,7 +441,7 @@
                     <div class="inside-padd">
                         <!-- Start. Price block-->
                         <div class="gen-sum-order clearfix">
-                            <span class="title f_l">{lang('К оплате с учетом доставки','newLevel')}:</span>
+                            <span class="title f_l">{lang('К оплате с учетом доставки','lightRed')}:</span>
                             <span class="frame-prices f-s_0 f_r">
                                 <span class="current-prices f-s_0">
                                     <span class="price-new">

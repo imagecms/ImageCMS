@@ -3,24 +3,24 @@
         <div class="js-empty empty {if count($items) == 0}d_b{/if}">
             <div class="f-s_0 title-cart without-crumbs">
                 <div class="frame-title">
-                    <h1 class="d_i">{lang('Оформление заказа','newLevel')}</h1>
+                    <h1 class="d_i">{lang('Оформление заказа','newLevelVertical')}</h1>
                 </div>
             </div>
             <div class="msg layout-highlight layout-highlight-msg">
                 <div class="info">
                     <span class="icon_info"></span>
-                    <span class="text-el">{lang('Корзина пуста','newLevel')}</span>
+                    <span class="text-el">{lang('Корзина пуста','newLevelVertical')}</span>
                 </div>
             </div>
         </div>
         <div class="js-no-empty no-empty {if count($items) == 0}d_n{/if}">
             <div class="f-s_0 title-cart without-crumbs">
                 <div class="frame-title">
-                    <h1 class="d_i">{lang('Оформление заказа','newLevel')}</h1>
+                    <h1 class="d_i">{lang('Оформление заказа','newLevelVertical')}</h1>
                     {if !$is_logged_in}
                         <span class="old-buyer">
                             <button type="button" data-trigger="#loginButton">
-                                <span class="d_l text-el">{lang('Я уже здесь покупал','newLevel')}</span>
+                                <span class="d_l text-el">{lang('Я уже здесь покупал','newLevelVertical')}</span>
                             </button>
                         </span>
                     {/if}
@@ -41,7 +41,7 @@
                         {/if}
                         <div class="groups-form">
                             <label>
-                                <span class="title">{lang('Имя: ','newLevel')}</span>
+                                <span class="title">{lang('Имя: ','newLevelVertical')}</span>
                                 <span class="frame-form-field">
                                     {if $isRequired['userInfo[fullName]']}
                                         <span class="must">*</span>
@@ -50,11 +50,11 @@
                                 </span>
                             </label>
                             <div class="frame-label">
-                                <span class="title">{lang('Телефон','newLevel')}:</span>
+                                <span class="title">{lang('Телефон','newLevelVertical')}:</span>
                                 <div class="frame-form-field">
                                     {if trim(ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPatternMain('pattern_custom_field_phone')->getOneCustomFieldsByName('addphone','order',$profile.id,'user')->asHtml()) != ''}
                                         <span class="f_r l-h_35">
-                                            <button type="button" class="d_l_1" data-drop=".drop-add-phone" data-overlay-opacity="0" data-place="inherit">{lang('Еще один номер', 'newLevel')}</button>
+                                            <button type="button" class="d_l_1" data-drop=".drop-add-phone" data-overlay-opacity="0" data-place="inherit">{lang('Еще один номер', 'newLevelVertical')}</button>
                                         </span>
                                     {/if}
                                     <div class="d_b o_h maskPhoneFrame">
@@ -69,7 +69,7 @@
                                 </div>
                             </div>
                             <label>
-                                <span class="title">{lang('Email','newLevel')}:</span>
+                                <span class="title">{lang('Email','newLevelVertical')}:</span>
                                 <span class="frame-form-field">
                                     {if $isRequired['userInfo[email]']}
                                         <span class="must">*</span>
@@ -82,7 +82,7 @@
                         </div>
                         <div class="groups-form">
                             <div class="frame-label" id="frameDelivery">
-                                <span class="title">{lang('Доставка:','newLevel')}</span>
+                                <span class="title">{lang('Доставка:','newLevelVertical')}</span>
                                 {$counter = true}
                                 <div class="frame-form-field check-variant-delivery">
                                     { /* <div class="lineForm">
@@ -129,7 +129,7 @@
                                                     {/if}
                                                 </div>
                                                 <div class="help-block">
-                                                    <div>{lang('Стоимость ','newLevel')}: {echo $price} <span class="curr">{$CS}</span></div>
+                                                    <div>{lang('Стоимость ','newLevelVertical')}: {echo $price} <span class="curr">{$CS}</span></div>
                                                 </div>
                                             </div>
                                         {/foreach}
@@ -137,7 +137,7 @@
                                 </div>
                             </div>
                             <div class="frame-label">
-                                <span class="title">Адрес доставки:</span>
+                                <span class="title">{lang('Адрес доставки', 'newLevelVertical')}:</span>
                                 <span class="frame-form-field">
                                     {if $isRequired['userInfo[deliverTo]']}
                                         <span class="must">*</span>
@@ -148,7 +148,7 @@
                             {echo ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPatternMain('pattern_custom_field')->getOneCustomFieldsByName('city','order',$profile.id,'user')->asHtml()}
                             <div class="frame-label">
                                 <div class="frame-form-field">
-                                    <button type="button" class="d_l_1 m-b_5" data-drop=".hidden-comment" data-place="inherit" data-overlay-opacity="0">{lang('Добавить комментарий к заказу', 'newLevel')}</button>
+                                    <button type="button" class="d_l_1 m-b_5" data-drop=".hidden-comment" data-place="inherit" data-overlay-opacity="0">{lang('Добавить комментарий к заказу', 'newLevelVertical')}</button>
                                     <div class="hidden-comment drop">
                                         <textarea name="userInfo[commentText]" ></textarea>
                                     </div>
@@ -156,7 +156,7 @@
                             </div>
                             {if count($paymentMethods)}
                                 <div class="frame-label">
-                                    <span class="title">{lang('Оплата:','newLevel')}</span>
+                                    <span class="title">{lang('Оплата:','newLevelVertical')}</span>
                                     <div class="frame-form-field check-variant-payment p_r">
                                         <div class="paymentMethod">
                                             {$counter = true}
@@ -210,7 +210,7 @@
                                 <span class="title">&nbsp;</span>
                                 <span class="frame-form-field">
                                     <div class="btn-cart btn-cart-p">
-                                        <input type="submit" class="btn btn_cart" value="{lang('Подтвердить заказ','newLevel')}"/>
+                                        <input type="submit" class="btn btn_cart" value="{lang('Подтвердить заказ','newLevelVertical')}"/>
                                     </div>
                                 </span>
                             </div>
@@ -220,9 +220,9 @@
                 <div class="right-cart">
                     <div class="frameBask frame-bask frame-bask-order">
                         <div class="frame-title clearfix">
-                            <div class="title f_l">Мой заказ</div>
+                            <div class="title f_l">{lang('Мой заказ', 'newLevelVertical')}</div>
                             <div class="f_r">
-                                <button type="button" class="d_l_1" onClick="ShopFront.Cart.togglePopup()">Редактировать</button>
+                                <button type="button" class="d_l_1" onClick="ShopFront.Cart.togglePopup()">{lang('Редактировать', 'newLevelVertical')}</button>
                             </div>
                         </div>
                         <div id="orderDetails">
@@ -232,7 +232,7 @@
                             <tfoot class="gen-info-price">
                                 <tr class="frame-gen-discount" id="frameGenSumDiscount">
                                     <td colspan="2">
-                                        <span class="s-t">{lang('Сумма товаров','newLevel')}</span>
+                                        <span class="s-t">{lang('Сумма товаров','newLevelVertical')}</span>
                                     </td>
                                     <td>
                                         <span class="price f-w_b" id="totalPrice">{echo str_replace(',', '.', ShopCore::app()->SCart->totalPrice())}</span>
@@ -241,7 +241,7 @@
                                 </tr>
                                 <tr>
                                     <td colspan="2">
-                                        <span class="s-t">{lang('Стоимость доставки','newLevel')}:</span>
+                                        <span class="s-t">{lang('Стоимость доставки','newLevelVertical')}:</span>
                                     </td>
                                     <td>
                                         <span class="price"><span class="text-el"></span><span class="f-w_b" id="shipping"></span></span>
@@ -250,7 +250,7 @@
                                 </tr>
                                 <tr id="frameGenDiscount" style="display: none;">
                                     <td colspan="2">
-                                        <span class="s-t">{lang('Ваша текущая скидка','newLevel')}:</span>
+                                        <span class="s-t">{lang('Ваша текущая скидка','newLevelVertical')}:</span>
                                     </td>
                                     <td>
                                         <div class="text-discount current-discount frameDiscount">
@@ -262,12 +262,12 @@
                                 </tr>
                                 <tr id="frameGift" style="display: none;">
                                     <td>
-                                        <span class="s-t">{lang('Подарочный сертификат','newLevel')}:</span>
+                                        <span class="s-t">{lang('Подарочный сертификат','newLevelVertical')}:</span>
                                     </td>
                                     <td colspan="2">
                                         <div class="f_r btn-toggle-gift">
                                             <button type="button" class="d_l_1" data-drop="#gift" data-place="inherit" data-overlay-opacity="0">
-                                                <span class="text-el">Ввести промо-код</span>
+                                                <span class="text-el">{lang('Ввести промо-код', 'newLevelVertical')}</span>
                                             </button>
                                         </div>
                                         <div id="gift" class="drop o_h">
@@ -279,7 +279,7 @@
                         </table>
                         <div class="gen-sum-order footer-bask">
                             <div class="inside-padd clearfix">
-                                <span class="title f_l">{lang('К оплате с учетом доставки','newLevel')}:</span>
+                                <span class="title f_l">{lang('К оплате с учетом доставки','newLevelVertical')}:</span>
                                 <span class="frame-prices f_r">
                                     <span class="current-prices f-s_0">
                                         <span class="price-new">
@@ -329,8 +329,8 @@
         <span class="title"><%- item.name %></span>
         </a>
         <div class="description">
-        <%if(item.vname){ %><span class="frame-variant-name frameVariantName">{/literal}{lang('Вариант','newLevel')} {literal} <span class="code js-code">(<%- item.vname%>)</span></span> <% } %>
-        <%if (item.number) { %><span class="frame-variant-code frameVariantCode">{/literal}{lang('Артикул','newLevel')} {literal} <span class="code js-code">(<%-item.number %>)</span></span> <% } %>
+        <%if(item.vname){ %><span class="frame-variant-name frameVariantName">{/literal}{lang('Вариант','newLevelVertical')} {literal} <span class="code js-code">(<%- item.vname%>)</span></span> <% } %>
+        <%if (item.number) { %><span class="frame-variant-code frameVariantCode">{/literal}{lang('Артикул','newLevelVertical')} {literal} <span class="code js-code">(<%-item.number %>)</span></span> <% } %>
         <%/*%>
         <div class="frame-prices f-s_0">
         <%if (item.origprice) { %>
@@ -419,7 +419,7 @@
 
         <tr class="row row-kits rowKits" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-kitId="<%- item.kitId %>" data-id="popupKit_<%- item.kitId %>">
         <td class="frame-items frame-items-kit">
-        <div class="title-h3 c_9">{/literal}{lang('Комплект товаров', 'newLevel')}{literal}</div>
+        <div class="title-h3 c_9">{/literal}{lang('Комплект товаров', 'newLevelVertical')}{literal}</div>
         <ul class="items items-bask">
         <% _.each(prices, function(id){  %>
         <li>
@@ -436,8 +436,8 @@
         <span class="title"><%- names[i] %></span>
         </a>
         <div class="description">
-        <%if(item.vname){ %><span class="frame-variant-name frameVariantName">{/literal}{lang('Вариант','newLevel')} {literal} <span class="code js-code">(<%- item.vname%>)</span></span> <% } %>
-        <%if (item.number) { %><span class="frame-variant-code frameVariantCode">{/literal}{lang('Артикул','newLevel')} {literal} <span class="code js-code">(<%-item.number %>)</span></span> <% } %>
+        <%if(item.vname){ %><span class="frame-variant-name frameVariantName">{/literal}{lang('Вариант','newLevelVertical')} {literal} <span class="code js-code">(<%- item.vname%>)</span></span> <% } %>
+        <%if (item.number) { %><span class="frame-variant-code frameVariantCode">{/literal}{lang('Артикул','newLevelVertical')} {literal} <span class="code js-code">(<%-item.number %>)</span></span> <% } %>
         <%/*%>
         <div class="frame-prices f-s_0">
         <span class="current-prices f-s_0">
@@ -469,8 +469,8 @@
         <span class="title"><%-names[i]%></span>
         </a>
         <div class="description">
-        <%if(item.vname){ %><span class="frame-variant-name frameVariantName">{/literal}{lang('Вариант','newLevel')} {literal} <span class="code js-code">(<%- item.vname%>)</span></span> <% } %>
-        <%if (item.number) { %><span class="frame-variant-code frameVariantCode">{/literal}{lang('Артикул','newLevel')} {literal} <span class="code js-code">(<%-item.number %>)</span></span> <% } %>
+        <%if(item.vname){ %><span class="frame-variant-name frameVariantName">{/literal}{lang('Вариант','newLevelVertical')} {literal} <span class="code js-code">(<%- item.vname%>)</span></span> <% } %>
+        <%if (item.number) { %><span class="frame-variant-code frameVariantCode">{/literal}{lang('Артикул','newLevelVertical')} {literal} <span class="code js-code">(<%-item.number %>)</span></span> <% } %>
         <%/*%>
         <div class="frame-prices f-s_0">
         <span class="price-discount">
@@ -508,7 +508,7 @@
         <div class="frame-frame-count">
         <div class="frame-count frameCount">
         <span class="s-t"><%-text.quant%></span>
-        <div class="js-number" data-title="{/literal}{lang('Количество на складе','newLevel')}{literal} <%-item.maxcount%>">
+        <div class="js-number" data-title="{/literal}{lang('Количество на складе','newLevelVertical')}{literal} <%-item.maxcount%>">
         <div class="frameChangeCount" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-price="<%- item.price %>" data-origprice="<%- item.origprice %>" data-addprice="<%- item.addprice %>" data-kit="<%-item.kit %>"></div>
         <span class="plusMinus"><%- item.count %></span>
         <span><%-text.pc%></span>
@@ -558,12 +558,12 @@
         </div>
         <div class="js-empty empty">
         <div class="drop-header">
-        <div class="title">{/literal}{lang('В вашей корзине','newLevel')}{literal} <span class="add-info">{/literal}{lang('пусто','newLevel')}{literal}</span></div>
+        <div class="title">{/literal}{lang('В вашей корзине','newLevelVertical')}{literal} <span class="add-info">{/literal}{lang('пусто','newLevelVertical')}{literal}</span></div>
         </div>
         <div class="drop-content">
         <div class="inside-padd">
         <div class="msg f-s_0">
-        <div class="success"><span class="icon_info"></span><span class="text-el">{/literal}{lang('Вы удалили все товары из корзины','newLevel')}{literal}</span></div>
+        <div class="success"><span class="icon_info"></span><span class="text-el">{/literal}{lang('Вы удалили все товары из корзины','newLevelVertical')}{literal}</span></div>
         </div>
         </div>
         </div>

@@ -4,7 +4,7 @@
             <div class="inside-padd clearfix">
                 <!-- Start. Order by block -->
                 <div class="frame-sort f_l">
-                    <span class="title s-t f_l">{lang('Сортировать','newLevel')}:</span>
+                    <span class="title s-t f_l">{lang('Сортировать','boxGreen')}:</span>
                     <ul class="nav-sort nav f_l" id="sort" name="order">
                         {$sort =ShopCore::app()->SSettings->getSortingFront()}
                         {foreach $sort as $s}
@@ -19,13 +19,13 @@
                 <nav class="frame-catalog-view f_r">
                     <ul class="tabs groups-buttons tabs-list-table" data-elchange="#items-catalog-main" data-cookie="listtable">
                         <li class="btn-def2 {if $_COOKIE['listtable'] == 'table' || $_COOKIE['listtable'] == NULl}active{/if}">
-                            <button type="button" data-href="table" data-title="{lang('Таблица','newLevel')}" data-rel="tooltip">
-                                <span class="icon_table_cat"></span><span class="text-el">{lang('Таблица','newLevel')}</span>
+                            <button type="button" data-href="table" data-title="{lang('Таблица','boxGreen')}" data-rel="tooltip">
+                                <span class="icon_table_cat"></span><span class="text-el">{lang('Таблица','boxGreen')}</span>
                             </button>
                         </li>
                         <li class="btn-def2 {if $_COOKIE['listtable'] == 'list'}active{/if}">
-                            <button type="button" data-href="list" data-title="{lang('Список','newLevel')}" data-rel="tooltip">
-                                <span class="icon_list_cat"></span><span class="text-el">{lang('Список','newLevel')}</span>
+                            <button type="button" data-href="list" data-title="{lang('Список','boxGreen')}" data-rel="tooltip">
+                                <span class="icon_list_cat"></span><span class="text-el">{lang('Список','boxGreen')}</span>
                             </button>
                         </li>
                     </ul>

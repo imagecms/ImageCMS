@@ -24,7 +24,7 @@
 {else:}
     <div class="inside-padd">
         <div class="msg f-s_0">
-            <div class="info"><span class="icon_info"></span><span class="text-el">{lang('Нет просмотренных товаров','newLevel')}</span></div>
+            <div class="info"><span class="icon_info"></span><span class="text-el">{lang('Нет просмотренных товаров','light')}</span></div>
         </div>
     </div>
 {/if}

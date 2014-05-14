@@ -13,7 +13,7 @@
                     <div class="btn-already-show{if $countSh} pointer{/if}">
                         <button type="button" data-drop=".frame-already-show" data-effect-on="slideDown" data-effect-off="slideUp" data-place="inherit">
                             <span class="text-view-list">
-                                <span class="text-el">{lang("Просмотренные товары",'newLevel')}</span>
+                                <span class="text-el">{lang("Просмотренные товары",'boxVertical')}</span>
                                 <span class="text-el">&nbsp;({echo $countSh})</span>
                             </span>
                         </button>
@@ -23,11 +23,11 @@
                     <div class="btn-toggle-toolbar">
                         <button type="button" data-rel="0" {if $_COOKIE['condUserToolbar'] == 0 && isset($_COOKIE['condUserToolbar'])}style="display: none;"{else:} class="activeUT"{/if}>
                             <span class="icon_arrow_down"></span>
-                            <span class="text-el">{lang('Свернуть','newLevel')}</span>
+                            <span class="text-el">{lang('Свернуть','boxVertical')}</span>
                         </button>
                         <button type="button" data-rel="1" class="show{if $_COOKIE['condUserToolbar'] == 0 || isset($_COOKIE['condUserToolbar'])} activeUT{/if}" {if $_COOKIE['condUserToolbar'] == 1 ||  !isset($_COOKIE['condUserToolbar'])}style="display: none;"{/if}>
                             <span class="icon_arrow_down"></span>
-                            <span class="text-el">{lang('Развернуть','newLevel')}</span>
+                            <span class="text-el">{lang('Развернуть','boxVertical')}</span>
                         </button>
                     </div>
                 </li>
@@ -36,7 +36,7 @@
         <div class="btn-to-up">
             <button type="button">
                 <span class="icon_arrow_p icon_arrow_p2"></span>
-                <span class="text-el ref t-d_n">{lang('Наверх','newLevel')}</span>
+                <span class="text-el ref t-d_n">{lang('Наверх','boxVertical')}</span>
             </button>
         </div>
     </div>

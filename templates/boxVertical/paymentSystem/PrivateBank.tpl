@@ -9,6 +9,6 @@
     <input type="hidden" name="return_url" value="{$SUCCESS_URL}" />
     <input type="hidden" name="server_url" value="{$RESULT_URL}" />
     <div class="btn-cart btn-cart-p">
-        <button type="submit"><span class="text-el">Оплатить</span></button>
+        <button type="submit"><span class="text-el">{lang('Оплатить', 'boxVertical')}</span></button>
     </div>
 </form>

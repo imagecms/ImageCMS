@@ -4,9 +4,9 @@
 <div class="frames-checks-sliders">
     <div class="frame-slider" data-rel="sliders.slider1">
         <div class="inside-padd">
-            <div class="title">{lang('Фильтр по цене', 'newLevel')}</div>
+            <div class="title">{lang('Фильтр по цене', 'boxGreen')}</div>
             <div class="slider-cont">
-                <noscript>{lang('Джаваскрипт не включен', 'newLevel')}</noscript>
+                <noscript>{lang('Джаваскрипт не включен', 'boxGreen')}</noscript>
                 {/*id="slider1" for cleaverfilter that paste frame with count finded products*/}
                 <div class="slider" id="slider1">
                     <a href="#" class="ui-slider-handle left-slider"></a>
@@ -17,10 +17,10 @@
                 <div class="t-a_j">
                     {/*may been delete*/}
                     <label>
-                        <input type="text" class="minCost" data-title="{lang('только цифры', 'newLevel')}" name="lp" value="{echo $curMin}" data-mins="{echo $minPrice}"/>
+                        <input type="text" class="minCost" data-title="{lang('только цифры', 'boxGreen')}" name="lp" value="{echo $curMin}" data-mins="{echo $minPrice}"/>
                     </label>
                     <label>
-                        <input type="text" class="maxCost" data-title="{lang('только цифры', 'newLevel')}" name="rp" value="{echo $curMax}" data-maxs="{echo $maxPrice}"/>
+                        <input type="text" class="maxCost" data-title="{lang('только цифры', 'boxGreen')}" name="rp" value="{echo $curMax}" data-maxs="{echo $maxPrice}"/>
                     </label>
                     <div class="btn-def d_n">
                         <input type="submit" value="ОК"/>
@@ -36,7 +36,7 @@
                     <span class="f-s_0">
                         <span class="icon-arrow"></span>
                         <span class="d_b">
-                            <span class="text-el">{lang('Производитель', 'newLevel')}</span>
+                            <span class="text-el">{lang('Производитель', 'boxGreen')}</span>
                         </span>
                     </span>
                 </div>
@@ -118,7 +118,7 @@
                         {else:}
                             <div class="lineForm">
                                 <select name="p[{echo $prop->property_id}][]" id="p{echo $prop->property_id}" onchange="Filter.changeSelectFilter(this)">
-                                    <option id="none"  value=''>--{lang('Не выбрано', 'newLevel')}--</option>
+                                    <option id="none"  value=''>--{lang('Не выбрано', 'boxGreen')}--</option>
                                     {foreach $prop->possibleValues as $item}
                                         {if is_array(ShopCore::$_GET['p'][$prop->property_id]) && in_array($item.value, ShopCore::$_GET['p'][$prop->property_id])}
                                             {$check = 'selected="selected"'}
@@ -144,7 +144,7 @@
         <div class="inside-padd t-a_c">
             <div class="btn-form">
                 <button type="submit">
-                    <span class="text-el">{lang('Фильтровать', 'newLevel')}</span>
+                    <span class="text-el">{lang('Фильтровать', 'boxGreen')}</span>
                 </button>
             </div>
         </div>

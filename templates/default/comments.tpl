@@ -81,7 +81,7 @@
             {/if}
 
         {/if}
-        <input type="submit" class="submit" value="{lang('Отправить')}" />
+        <input type="submit" class="submit" value="{lang('Отправить', 'newLevel')}" />
 
         {form_csrf()}
     </form>

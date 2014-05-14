@@ -1,20 +1,20 @@
 <script type="text/javascript">
-    totalItemsBask = {echo $totalItems}
+    totalItemsBask = {if $totalItems}{echo $totalItems}{else:}0{/if};
 </script>
 <div class="frame-bask frameBask p_r">
     <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
     {if $totalItems > 0}
         <div class="drop-header">
-            <div class="title bask">{lang('Мой заказ','newLevel')}</div>
+            <div class="title bask">{lang('Мой заказ','lightVertical')}</div>
         </div>
         <div class="drop-content">
             <div class="inside-padd">
                 <table class="table-order">
                     <thead>
                         <tr>
-                            <th colspan="2">{lang('Товар', 'newLevel')}</th>
-                            <th>{lang('Кол-во', 'newLevel')}</th>
-                            <th>{lang('Cумма', 'newLevel')}</th>
+                            <th colspan="2">{lang('Товар', 'lightVertical')}</th>
+                            <th>{lang('Кол-во', 'lightVertical')}</th>
+                            <th>{lang('Cумма', 'lightVertical')}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -36,12 +36,12 @@
                                         <div class="description">
                                             {if $item->getName() && trim($item->getName()) != trim($item->getSProducts()->getName())}
                                                 <span class="frame-variant-name">
-                                                    <span class="text-el">{lang('Вариант','newLevel')}</span>
+                                                    <span class="text-el">{lang('Вариант','lightVertical')}</span>
                                                     <span class="code">({echo trim($item->getName())})</span>
                                                 </span>
                                             {/if}
                                             {if $item->getNumber()}
-                                                <span class="frame-variant-code">{lang('Артикул','newLevel')}  
+                                                <span class="frame-variant-code">{lang('Артикул','lightVertical')}  
                                                     <span class="code">({echo $item->getNumber()})
                                                     </span>
                                                 </span> 
@@ -49,8 +49,8 @@
                                         </div>
                                     </td>
                                     <td class="frame-count frameCount">
-                                        <div class="number js-number" data-title="{lang('Количество на складе','newLevel')} {echo $item->getStock()}">
-                                            <input type="text" value="{echo $item->quantity}" class="plusMinus plus-minus" id="inputChange{echo $item->getId()}" data-id="{echo $item->getId()}" data-title="{lang('Только цифры','newLevel')}" data-min="1" data-max="{echo $item->getStock()}"/>
+                                        <div class="number js-number" data-title="{lang('Количество на складе','lightVertical')} {echo $item->getStock()}">
+                                            <input type="text" value="{echo $item->quantity}" class="plusMinus plus-minus" id="inputChange{echo $item->getId()}" data-id="{echo $item->getId()}" data-title="{lang('Только цифры','lightVertical')}" data-min="1" data-max="{echo $item->getStock()}"/>
                                         </div>
                                     </td>
                                     <td class="frame-cur-sum-price">
@@ -107,13 +107,13 @@
                                                         <div class="description">
                                                             {if $item->getName() && trim($kitItem->getName()) != trim($kitItem->getSProducts()->getName())}
                                                                 <span class="frame-variant-name">
-                                                                    <span class="text-el">{lang('Вариант','newLevel')}</span>
+                                                                    <span class="text-el">{lang('Вариант','lightVertical')}</span>
                                                                     <span class="code">({echo $kitItem->getName()})</span>
                                                                 </span>
                                                             {/if}
                                                             {if $kitItem->getSProducts()->getNumber()}
                                                                 <span class="frame-variant-code">
-                                                                    <span class="text-el">{lang('Артикул','newLevel')}</span>
+                                                                    <span class="text-el">{lang('Артикул','lightVertical')}</span>
                                                                     <span class="code">({echo $kitItem->getSProducts()->getNumber()})</span>
                                                                 </span> 
                                                             {/if}
@@ -124,8 +124,8 @@
                                         </ul>
                                     </td>
                                     <td class="frame-count">
-                                        <div class="number js-number" data-title="{lang('Количество на складе','newLevel')} {echo $item->getStock()}">
-                                            <input type="text" value="{echo $item->quantity}" class="plusMinus plus-minus" id="inputChange{echo $item->getId()}" data-id="{echo $item->getId()}" data-kit="1" data-title="{lang('Только цифры','newLevel')}" data-min="1" data-max="{echo $item->getStock()}"/>
+                                        <div class="number js-number" data-title="{lang('Количество на складе','lightVertical')} {echo $item->getStock()}">
+                                            <input type="text" value="{echo $item->quantity}" class="plusMinus plus-minus" id="inputChange{echo $item->getId()}" data-id="{echo $item->getId()}" data-kit="1" data-title="{lang('Только цифры','lightVertical')}" data-min="1" data-max="{echo $item->getStock()}"/>
                                         </div>
                                     </td>
                                     <td class="frame-cur-sum-price">
@@ -170,16 +170,16 @@
                 <div class="clearfix">
                     {if $discount_val}
                         <span class="frame-discount">
-                            <span class="s-t">{lang('Ваша текущая скидка','newLevel')}:</span>
+                            <span class="s-t">{lang('Ваша текущая скидка','lightVertical')}:</span>
                             <span class="text-discount current-discount"><span class="text-el">{echo ShopCore::app()->SCurrencyHelper->convert($discount_val)}</span> <span class="curr">{$CS}</span></span>
                         </span>
                     {/if}
                     <div class="btn-form f_l isCart">
                         <button type="button" data-closed="closed-js">
-                            <span class="text-el"><span class="f-s_14">←</span> {lang('Вернуться к оформлению','newLevel')}</span>
+                            <span class="text-el"><span class="f-s_14">←</span> {lang('Вернуться к оформлению','lightVertical')}</span>
                         </button>
                     </div>
-                    <span class="s-t">{lang('Всего','newLevel')}:</span>
+                    <span class="s-t">{lang('Всего','lightVertical')}:</span>
                     <span class="frame-cur-sum-price">
                         <span class="frame-prices f-s_0">
                             {if $discount_val}
@@ -215,13 +215,13 @@
                     <div class="btn-form f_l">
                         <button type="button" data-closed="closed-js">
 
-                            <span class="text-el"><span class="f-s_14">←</span> {lang('Вернуться к покупкам','newLevel')}</span>
+                            <span class="text-el"><span class="f-s_14">←</span> {lang('Вернуться к покупкам','lightVertical')}</span>
                         </button>
                     </div>
                     <div class="btn-buy btn-buy-p f_r">
                         <a href="/shop/cart">
                             <span class="icon_cart_p"></span>
-                            <span class="text-el">{lang('Оформить заказ','newLevel')}</span>
+                            <span class="text-el">{lang('Оформить заказ','lightVertical')}</span>
                         </a>
                     </div>
                 </div>
@@ -229,16 +229,16 @@
         </div>
     {else:}
         <div class="drop-header">
-            <div class="title">{lang('Ваша корзина','newLevel')} <span class="add-info">{lang('пуста','newLevel')}</span></div>
+            <div class="title">{lang('Ваша корзина','lightVertical')} <span class="add-info">{lang('пуста','lightVertical')}</span></div>
         </div>
         <div class="drop-content is-empty">
             <div class="inside-padd">
                 <div class="msg f-s_0">
-                    <div class="success"><span class="icon_info"></span><span class="text-el">{lang('Вы удалили все элементы из корзины','newLevel')}</span></div>
+                    <div class="success"><span class="icon_info"></span><span class="text-el">{lang('Вы удалили все элементы из корзины','lightVertical')}</span></div>
                 </div>
                 <div class="btn-form notCart">
                     <button type="button" data-closed="closed-js">
-                        <span class="text-el"><span class="f-s_14">←</span> {lang('Вернуться к покупкам','newLevel')}</span>
+                        <span class="text-el"><span class="f-s_14">←</span> {lang('Вернуться к покупкам','lightVertical')}</span>
                     </button>
                 </div>
             </div>

@@ -179,11 +179,11 @@
         <div class="main_body">
 
             <div class="order_partner_ship frame_ fonds" id="with_out_article">
-                <h1 class="reRegistration">{lang('Сайт в стадии строительства','newLevel')}</h1>                    
-                <h2 class="reRegistrationH3">{lang('Управление сайтом','newLevel')}</h2>   
+                <h1 class="reRegistration">{lang('Сайт в стадии строительства','boxVertical')}</h1>                    
+                <h2 class="reRegistrationH3">{lang('Управление сайтом','boxVertical')}</h2>   
                 <div style="text-align: center; margin:70px;">
                     {$CI->config->load('auth')}
-                    <a href="mailto:{echo $CI->config->item('DX_webmaster_email')}" class="reRegistrationA">{lang('Отправить сообщение','newLevel')}</a>
+                    <a href="mailto:{echo $CI->config->item('DX_webmaster_email')}" class="reRegistrationA">{lang('Отправить сообщение','boxVertical')}</a>
                     <div class="clear" ></div>
                 </div>               
             </div>
@@ -193,8 +193,8 @@
     <footer class="b_c_n">
         <div class="container w_260">
             <div class="d_t_c l_h_17">
-                <span class="l_h_27">© {lang('ООО «Сайт Имидж»','newLevel')}</span>
-                {lang('ImageCMS активно развивается в создание качественных интернет-магазинов','newLevel')}
+                <span class="l_h_27">© {lang('ООО «Сайт Имидж»','boxVertical')}</span>
+                {lang('ImageCMS активно развивается в создание качественных интернет-магазинов','boxVertical')}
             </div>            
         </div>
     </footer>

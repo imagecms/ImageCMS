@@ -3,7 +3,7 @@
     <div class="container">
         <div class="f-s_0 title-cart without-crumbs">
             <div class="frame-title">
-                <h1 class="title">{lang('Список желаний','newLevel')}</h1>
+                <h1 class="title">{lang('Список желаний','boxVertical')}</h1>
             </div>
         </div>
         {if $errors}
@@ -16,12 +16,12 @@
         <ul class="tabs tabs-wishlist" data-cookie="wishlistTabs">
             <li {if $_COOKIE['wishlistTabs'] == "#list-products"}class="active"{/if}>
                 <button type="button" data-href="#list-products">
-                    <span class="text-el d_l_1">{lang('Список товаров','newLevel')}</span>
+                    <span class="text-el d_l_1">{lang('Список товаров','boxVertical')}</span>
                 </button>
             </li>
             <li {if $_COOKIE['wishlistTabs'] == "#data-users"}class="active"{/if}>
                 <button type="button" data-href="#data-users">
-                    <span class="text-el d_l_1">{lang('Дополнительные данные','newLevel')}</span>
+                    <span class="text-el d_l_1">{lang('Дополнительные данные','boxVertical')}</span>
                 </button>
             </li>
         </ul>
@@ -31,14 +31,14 @@
                     <div class="btn-cart">
                         <button type="button" data-drop=".drop-add-wishlist" data-place="inherit" data-overlay-opacity="0" data-effect-on="slideDown" data-effect-off="slideUp">
                             <span class="icon_add_wish"></span>
-                            <span class="text-el">{lang('Создать новый список','newLevel')}</span>
+                            <span class="text-el">{lang('Создать новый список','boxVertical')}</span>
                         </button>
                     </div>
-                    <span class="help-block">{lang('В список избранных вы можете отложить понравившиеся товары, также показать список друзьям', 'newLevel')}</span>
+                    <span class="help-block">{lang('В список избранных вы можете отложить понравившиеся товары, также показать список друзьям', 'boxVertical')}</span>
                 </div>
                 <div class="drop drop-style-2 drop-add-wishlist">
                     <div class="drop-header">
-                        <div class="title">{lang('Создание списка избранных товаров','newLevel')}</div>
+                        <div class="title">{lang('Создание списка избранных товаров','boxVertical')}</div>
                     </div>
                     <div class="drop-content2">
                         <div class="inside-padd">
@@ -46,25 +46,25 @@
                                 <form method="POST" action="{site_url('/wishlist/wishlistApi/createWishList')}">
                                     <input type="hidden" value="{echo $user[id]}" name="user_id"/>
                                     <div class="frame-label">
-                                        <span class="title">{lang('Доступность:','newLevel')}</span>
+                                        <span class="title">{lang('Доступность:','boxVertical')}</span>
                                         <div class="frame-form-field check-public">
                                             <div class="lineForm">
                                                 <select name="wlTypes" id="wlTypes">
-                                                    <option value="shared">{lang('Коллективный')}</option>
-                                                    <option value="public">{lang('Публичный')}</option>
-                                                    <option value="private">{lang('Приватный')}</option>
+                                                    <option value="shared">{lang('Коллективный', 'boxVertical')}</option>
+                                                    <option value="public">{lang('Публичный', 'boxVertical')}</option>
+                                                    <option value="private">{lang('Приватный', 'boxVertical')}</option>
                                                 </select>
                                             </div>
                                         </div>
                                     </div>
                                     <label>
-                                        <span class="title">{lang('Название списка:','newLevel')}</span>
+                                        <span class="title">{lang('Название списка:','boxVertical')}</span>
                                         <span class="frame-form-field">
                                             <input type="text" value="" name="wishListName"/>
                                         </span>
                                     </label>
                                     <label>
-                                        <span class="title">{lang('Описание:','newLevel')}</span>
+                                        <span class="title">{lang('Описание:','boxVertical')}</span>
                                         <span class="frame-form-field">
                                             <textarea name="wlDescription"></textarea>
                                         </span>
@@ -85,7 +85,7 @@
                                                     data-effect-off="fadeOut"
                                                     data-after="WishListFront.createWishList"
                                                     >
-                                                    <span class="text-el">{lang('Создать новый список','newLevel')}</span>
+                                                    <span class="text-el">{lang('Создать новый список','boxVertical')}</span>
                                                 </button>
                                             </div>
                                         </div>
@@ -118,7 +118,7 @@
                                         <div class="msg layout-highlight layout-highlight-msg">
                                             <div class="info">
                                                 <span class="icon_info"></span>
-                                                <span class="text-el">{lang('Список пуст','newLevel')}</span>
+                                                <span class="text-el">{lang('Список пуст','boxVertical')}</span>
                                             </div>
                                         </div>
                                     {/if}
@@ -136,7 +136,7 @@
                                                         data-drop=".drop-edit-wishlist"
                                                         data-always="true"
                                                         >
-                                                        <span class="d_l_1 text-el">{lang('Редактировать список','newLevel')}</span>
+                                                        <span class="d_l_1 text-el">{lang('Редактировать список','boxVertical')}</span>
                                                     </button>
                                                 </div>
                                                 <div class="btn-remove-WL">
@@ -153,27 +153,27 @@
                                                         data-effect-off="fadeOut"
                                                         >
                                                         <span class="icon_remove"></span>
-                                                        <span class="text-el d_l_1">{lang('Удалить список','newLevel')}</span>
+                                                        <span class="text-el d_l_1">{lang('Удалить список','boxVertical')}</span>
                                                     </button>
                                                 </div>
                                             </div>
                                             <div class="f_l">
-                                                <b>{lang('Доступность:','newLevel')}</b>
+                                                <b>{lang('Доступность:','boxVertical')}</b>
                                                 {if $wishlist[0][access] == 'private'}
-                                                    <span class="s_t">{lang('Приватный')}</span>
+                                                    <span class="s_t">{lang('Приватный', 'boxVertical')}</span>
                                                 {/if}
                                                 {if $wishlist[0][access] == 'public'}
-                                                    <span class="s_t">{lang('Публичный')}</span>
+                                                    <span class="s_t">{lang('Публичный', 'boxVertical')}</span>
                                                 {/if}
                                                 {if $wishlist[0][access] == 'shared'}
-                                                    <span class="s_t">{lang('Коллективный')}</span>
+                                                    <span class="s_t">{lang('Коллективный', 'boxVertical')}</span>
                                                 {/if}
                                             </div>
                                         </div>
                                         <div>
                                             {if $wishlist[0]['access'] == 'shared' || $wishlist[0]['access'] == 'public'}
                                                 <div class="btn-form btn-send-wishlist">
-                                                    <button type="button" data-drop=".drop-sendemail" title="{lang('Поделится с другом','newLevel')}" data-source="{echo site_url('wishlist/wishlistApi/renderEmail/' . $wishlist[0][wish_list_id])}">
+                                                    <button type="button" data-drop=".drop-sendemail" title="{lang('Поделится с другом','boxVertical')}" data-source="{echo site_url('wishlist/wishlistApi/renderEmail/' . $wishlist[0][wish_list_id])}">
                                                         <span class="icon_mail"></span>
                                                         <span class="text-el">{lang('Поделиться с другом')}</span>
                                                     </button>
@@ -193,7 +193,7 @@
                     <div class="msg layout-highlight layout-highlight-msg">
                         <div class="info">
                             <span class="icon_info"></span>
-                            <span class="text-el">{lang('Список Желания пуст','newLevel')}</span>
+                            <span class="text-el">{lang('Список Желания пуст','boxVertical')}</span>
                         </div>
                     </div>
                 {/if}
@@ -217,7 +217,7 @@
                                         <label class="btn-edit-photo-wishlist" for="img">
                                             <button type="button" class="p_r hidden">
                                                 <span class="icon_edit"></span>
-                                                <span class="text-el">{lang('Выбрать фото', 'newLevel')}</span>
+                                                <span class="text-el">{lang('Выбрать фото', 'boxVertical')}</span>
                                                 <input id="img" data-wishlist="image" type="file" name="file" size="20" accept="image/gif, image/jpeg, image/png, image/jpg"/>
                                             </button>
                                         </label>
@@ -244,7 +244,7 @@
                                     <div class="overlay"></div>
                                 </div>
                                 <div class="btn-def download-btn disabled">
-                                    <input type="submit" value="{lang('загрузить катринку','newLevel')}" data-wishlist="do_upload" disabled="disabled"/>
+                                    <input type="submit" value="{lang('загрузить катринку','boxVertical')}" data-wishlist="do_upload" disabled="disabled"/>
                                 </div>
                                 {form_csrf()}
                             </form>
@@ -254,7 +254,7 @@
                 <div class="right-wishlist-data">
                     {/*}<div class="btn-edit-WL">
                         <button type="button" data-drop=".form-data" data-place="inherit"  class="d_l_1">
-                            <span class="text-el">{lang('Редактировать','newLevel')}</span>
+                            <span class="text-el">{lang('Редактировать','boxVertical')}</span>
                         </button>
                     </div>
                     { */}
@@ -262,19 +262,19 @@
                         <form>
                             <input type="hidden" value="{echo $user[id]}" name="user_id"/>
                             <label>
-                                <span class="title">{lang('ФИО:','newLevel')}</span>
+                                <span class="title">{lang('ФИО:','boxVertical')}</span>
                                 <span class="frame-form-field">
                                     <input type="text" value="{echo $user[user_name]}" name="user_name"/>
                                 </span>
                             </label>
                             <label>
-                                <span class="title">{lang('Дата рождения:','newLevel')}</span>
+                                <span class="title">{lang('Дата рождения:','boxVertical')}</span>
                                 <span class="frame-form-field">
                                     <input type="text" id='datepicker' onkeypress="return false;" onkeyup="return false;" onkeydown="return false;" autocomplete="off" value="{if $user[user_birthday]}{echo date('Y-m-d', $user[user_birthday])}{/if}" name="user_birthday"/>
                                 </span>
                             </label>
                             <label>
-                                <span class="title">{lang('Дополнительно:','newLevel')}</span>
+                                <span class="title">{lang('Дополнительно:','boxVertical')}</span>
                                 <span class="frame-form-field">
                                     <textarea name="description">{echo $user[description]}</textarea>
                                 </span>
@@ -295,7 +295,7 @@
                                             onclick="serializeForm(this)"
                                             data-after="WishListFront.changeDataWishlist"
                                             >
-                                            <span class="text-el">{lang('Сохранить','newLevel')}</span>
+                                            <span class="text-el">{lang('Сохранить','boxVertical')}</span>
                                         </button>
                                     </div>
                                 </div>

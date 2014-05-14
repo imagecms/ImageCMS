@@ -14,7 +14,6 @@
 <!--End. Top menu and authentication data block-->
 <div class="content-header">
     <div class="container">
-        {load_menu('asdf')}
         <!--        Logo-->
         {if  $CI->uri->uri_string() == ''}
             <span class="logo">
@@ -39,7 +38,7 @@
                     <div class="btn-order-call">
                         <button data-href="#ordercall" data-drop="#ordercall" data-source="{site_url('shop/callback')}">
                             <span class="icon_order_call"></span>
-                            <span class="text-el d_l">{lang('Заказать звонок','newLevel')}</span>
+                            <span class="text-el d_l">{lang('Заказать звонок','greyVision')}</span>
                         </button>
                     </div>
                 </div>
@@ -70,10 +69,10 @@
                     <div class="p_r">
                         <form name="search" method="get" action="{shop_url('search')}">
                             <span class="btn-search">
-                                <button type="submit"><span class="icon_search"></span><span class="text-el">{lang('Найти','newLevel')}</span></button>
+                                <button type="submit"><span class="icon_search"></span><span class="text-el">{lang('Найти','greyVision')}</span></button>
                             </span>
                             <div class="frame-search-input">
-                                <input type="text" class="input-search" id="inputString" name="text" autocomplete="off" value="{if strpos($CI->uri->uri_string, 'search') !== false}{htmlspecialchars($_GET['text'])}{/if}"  placeholder="{lang('Поиск по сайту', 'newLevel')}"/>
+                                <input type="text" class="input-search" id="inputString" name="text" autocomplete="off" value="{if strpos($CI->uri->uri_string, 'search') !== false}{htmlspecialchars($_GET['text'])}{/if}"  placeholder="{lang('Поиск по сайту', 'greyVision')}"/>
                                 <div id="suggestions" class="drop drop-search"></div>
                             </div>
                         </form>

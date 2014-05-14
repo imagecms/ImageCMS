@@ -152,7 +152,6 @@ class MY_Lang extends MX_Lang {
             }
         }
 //        $lang = 'ru_RU';
-        $this->getMoFileName('newLevel');
         if ($module == 'main') {
             $template_name = \CI_Controller::get_instance()->config->item('template');
             $this->addDomain('application/language/main/', getMoFileName('main'), $lang);
@@ -172,43 +171,6 @@ class MY_Lang extends MX_Lang {
                 $this->addDomain('application/modules/' . $module . '/language', getMoFileName($module), $lang);
             }
         }
-    }
-
-    private function getMoFileName($domain) {
-        if ($domain) {
-            $currentLocale = MY_Controller::getCurrentLocale();
-            $CI = & get_instance();
-            $language = $CI->db->where('identif', $currentLocale)->get('languages');
-            if ($language) {
-                $language = $language->row_array();
-                $locale = $language['locale'];
-                $name = NULL;
-
-                switch ($domain) {
-                    case 'main':
-                        $searched = glob('./application/language/main/' . $locale . '/LC_MESSAGES/main_*.mo');
-                        if (!empty($searched)) {
-                            $name = str_replace('.mo', '', basename($searched[0]));
-                        }
-                        break;
-                    default :
-                        if (file_exists('./application/modules/' . $domain)) {
-                            $searched = glob('./application/modules/' . $domain . '/language/' . $locale . '/LC_MESSAGES/' . $domain . '_*.mo');
-                            if (!empty($searched)) {
-                                $name = str_replace('.mo', '', basename($searched[0]));
-                            }
-                        } elseif (file_exists('./templates/' . $domain)) {
-                            $searched = glob('./templates/' . $domain . '/language/' . $domain . '/' . $locale . '/LC_MESSAGES/' . $domain . '_*.mo');
-                            if (!empty($searched)) {
-                                $name = str_replace('.mo', '', basename($searched[0]));
-                            }
-                        }
-                        break;
-                }
-                return $name;
-            }
-        }
-        return FALSE;
     }
 
     /**

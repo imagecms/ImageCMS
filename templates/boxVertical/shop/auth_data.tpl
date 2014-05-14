@@ -4,19 +4,19 @@
             <li class="btn-enter-register">
                 <button type="button" id="loginButton" data-drop=".drop-enter" data-source="{site_url('auth')}">
                     <span class="icon_enter"></span>
-                    <span class="text-el">{lang('Войти', 'newLevel')}</span>
+                    <span class="text-el">{lang('Войти', 'boxVertical')}</span>
                 </button>
             </li>
         {else:}
             <li class="btn-personal-exit">
                 <button type="button" data-drop=".dropPersonalExit" data-place="noinherit" data-overlay-opacity="0" data-placement="top left">
                     <span class="icon_enter"></span>
-                    <span class="text-el">{lang('Личный кабинет', 'newLevel')}</span>
+                    <span class="text-el">{lang('Личный кабинет', 'boxVertical')}</span>
                 </button>
                 <ul class="drop dropPersonalExit drop-auth-refer drop-noinherit">
                     <li class="btn-personal-area">
                         <a href="{site_url('/shop/profile')}">
-                            <span class="text-el">{lang('Личный кабинет','newLevel')}</span>
+                            <span class="text-el">{lang('Личный кабинет','boxVertical')}</span>
                         </a>
                     </li>
                     <li class="btn-exit-shop">
@@ -27,7 +27,7 @@
                             }}{/literal});
                                 return false;">
                             <span class="icon_exit"></span>
-                            <span class="text-el">{lang('Выход','newLevel')}</span>
+                            <span class="text-el">{lang('Выход','boxVertical')}</span>
                         </button>
                     </li>
                 </ul>

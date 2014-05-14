@@ -27,7 +27,7 @@
                 <div class="frame-title">
                     <h1 class="title">{echo $title}</h1>
                 </div>
-                <span class="count">({$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang('товар','newLevel'),lang('товара','newLevel'),lang('товаров','newLevel')))})</span>
+                <span class="count">({$totalProducts} {echo SStringHelper::Pluralize($totalProducts, array(lang('товар','greyVision'),lang('товара','greyVision'),lang('товаров','greyVision')))})</span>
             </div>
             <!-- End. Category name and count products in category-->
             {if $totalProducts == 0}
@@ -35,7 +35,7 @@
                 <div class="msg layout-highlight layout-highlight-msg">
                     <div class="info">
                         <span class="icon_info"></span>
-                        <span class="text-el">{lang('Не найдено товаров','newLevel')}</span>
+                        <span class="text-el">{lang('Не найдено товаров','greyVision')}</span>
                     </div>
                 </div>
                 <!-- End. Empty category-->
@@ -61,7 +61,7 @@
                 <div class="frame-category-menu layout-highlight">
                     <div class="title-menu-category">
                         <div class="title-default">
-                            <div class="title-h3 title">{lang('Категории', 'newLevel')}:</div>
+                            <div class="title-h3 title">{lang('Категории', 'greyVision')}:</div>
                         </div>
                     </div>
                     <div class="inside-padd">

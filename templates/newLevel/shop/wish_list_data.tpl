@@ -21,6 +21,6 @@
 <div class="drop drop-info drop-info-wishlist">
     <span class="helper"></span>
     <span class="text-el">
-        Ваш список <br/>
-        “Список желаний” пуст</span>
+        {lang('Ваш список', 'newLevel')} <br/>
+        “{lang('Список желаний', 'newLevel')}” {lang('пуст', 'newLevel')}</span>
 </div>
