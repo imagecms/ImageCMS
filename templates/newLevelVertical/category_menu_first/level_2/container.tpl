@@ -4,7 +4,7 @@
     </ul>
     <div class="btn-additional-s_c">
         <button type="button">
-            <span class="text-el" data-hide='<span class="d_l">{lang('Скрыть','newLevel')}</span> <span class="f-s_13">↑</span>' data-show='<span class="d_l">{lang('Все категории','newLevel')}</span> <span class="f-s_13">→</span>'></span>
+            <span class="text-el" data-hide='<span class="d_l">{lang('Скрыть','newLevelVertical')}</span> <span class="f-s_13">↑</span>' data-show='<span class="d_l">{lang('Все категории','newLevelVertical')}</span> <span class="f-s_13">→</span>'></span>
         </button>
     </div>
 </div>

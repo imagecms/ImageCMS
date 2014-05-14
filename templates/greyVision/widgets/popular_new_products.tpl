@@ -14,7 +14,7 @@
             {if count($products) > 6}
                 <div class="btn-additional-s_c2">
                     <button type="button">
-                        <span class="f-s_0 text-el" data-hide='<span class="text-el">{lang('Скрыть','newLevel')}</span> <span class="icon_arrow"></span>' data-show='<span class="text-el">{lang('Показать еще ', 'newLevel').(count($products)-6)}</span> <span class="icon_arrow up"></span>'></span>
+                        <span class="f-s_0 text-el" data-hide='<span class="text-el">{lang('Скрыть','greyVision')}</span> <span class="icon_arrow"></span>' data-show='<span class="text-el">{lang('Показать еще ', 'greyVision').(count($products)-6)}</span> <span class="icon_arrow up"></span>'></span>
                     </button>
                 </div>
 

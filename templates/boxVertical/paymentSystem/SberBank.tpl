@@ -2,6 +2,6 @@
     <input type="hidden" value="{$pm}"  name="pm">
     <input type="hidden" value="true"  name="getPdf">
     <div class="btn-cart btn-cart-p">
-        <button type="submit"><span class="text-el">Оплатить</span></button>
+        <button type="submit"><span class="text-el">{lang('Оплатить', 'boxVertical')}</span></button>
     </div>
 </form>

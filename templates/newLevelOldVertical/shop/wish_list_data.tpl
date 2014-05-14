@@ -4,13 +4,13 @@
         <span class="icon_wish_list"></span>
         <span class="text-wish-list">
             <span class="js-empty empty" {if $count == 0}style="display: inline"{/if}>
-                <span class="text-el">{lang('Список желаний','newLevel')} </span>
+                <span class="text-el">{lang('Список желаний','newLevelVertical')} </span>
                 <span class="text-el">(</span>
                 <span class="text-el wishListCount">0</span>
                 <span class="text-el">)</span>
             </span>
             <span class="js-no-empty no-empty" {if $count != 0}style="display: inline"{/if}>
-                <span class="text-el">{lang('Избранные','newLevel')} </span>
+                <span class="text-el">{lang('Избранные','newLevelVertical')} </span>
                 <span class="text-el">(</span>
                 <span class="text-el wishListCount">{echo $count}</span>
                 <span class="text-el">)</span>

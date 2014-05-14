@@ -172,7 +172,7 @@ var Comments = {
     },
     initComments: function(wrapper) {
         $(".star-big").starRating({
-            width: 26,
+            width: 23,
             afterClick: function(el, value) {
                 if (el.hasClass("clicktemprate")) {
                     $('.productRate > div.for_comment').css("width", value * 20 + '%');
@@ -263,8 +263,7 @@ var Comments = {
                         }
                     });
                     if (parseInt(obj.commentsCount) != 0) {
-                        $('#cc').html('');
-                        $('#cc').html(parseInt(obj.commentsCount) + ' ' + pluralStr(parseInt(obj.commentsCount), text.plurComments));
+                        $('#cc').html('('+parseInt(obj.commentsCount)+')');
                     }
 
                     if (visible && _useModeration) {

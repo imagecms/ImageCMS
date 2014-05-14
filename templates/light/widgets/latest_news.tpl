@@ -1,7 +1,7 @@
 {if count($recent_news) > 0}
     <div class="frame-news">
         <div class="frame-title">
-            <div class="title"><a href="{site_url('novosti')}">{lang('Статьи, новости и акции','newLevel')}</a></div>
+            <div class="title"><a href="{site_url('novosti')}">{lang('Статьи, новости и акции','light')}</a></div>
         </div>
         <ul class="items items-news">
             {foreach $recent_news as $item}

@@ -48,7 +48,7 @@
                             <ul>
                                 <li class="frame-variant-code frameVariantCode f_l" {if !$model->firstVariant->getNumber()}style="display:none;"{/if}>
                                     <span class="code f-s_12 js-code">
-                                        {lang('Код','newLevel')}:
+                                        {lang('Код','lightVertical')}:
                                         {if $model->firstVariant->getNumber()}
                                             {trim($model->firstVariant->getNumber())}
                                         {/if}
@@ -59,14 +59,14 @@
                                         {$CI->load->module('star_rating')->show_star_rating($model, false)}
                                         <button data-trigger="[data-href='#comment']" data-scroll="true" class="count-response d_i-b v-a_m d_l_1">
                                             {intval($Comments[$model->getId()])}
-                                            {echo SStringHelper::Pluralize($Comments[$model->getId()], array(lang("отзыв","newLevel"),lang("отзыва","newLevel"),lang("отзывов","newLevel")))}
+                                            {echo SStringHelper::Pluralize($Comments[$model->getId()], array(lang("отзыв",'lightVertical'),lang("отзыва",'lightVertical'),lang("отзывов",'lightVertical')))}
                                         </button>
                                     </li>
                                 {else:}
                                     <li>
                                         <div class="frame-star">
                                             <div class="f_r">
-                                                <button data-trigger="[data-href='#comment']" data-scroll="true" class="count-null-response d_l_1">{lang('Оставить отзыв','newLevel')}</button>
+                                                <button data-trigger="[data-href='#comment']" data-scroll="true" class="count-null-response d_l_1">{lang('Оставить отзыв','lightVertical')}</button>
                                             </div>
                                         </div>
                                     </li>
@@ -76,7 +76,7 @@
                                     <li>
                                         {$brand = $model->getBrand()->getName()}
                                         {$hasBrand = trim($brand) != ''}
-                                        <span class="frame-item-brand f-s_12">{lang('Бренд','newLevel')}:
+                                        <span class="frame-item-brand f-s_12">{lang('Бренд','lightVertical')}:
                                             <span class="code f-s_12 js-code">
                                                 {if $hasBrand}
                                                     <a href="{shop_url('brand/'.$model->getBrand()->getUrl())}">
@@ -95,7 +95,7 @@
                             <!-- Start. Check variant-->
                             {if count($variants) > 1}
                                 <div class="check-variant-product f_l">
-                                    <div class="title">{lang('Вариант','newLevel')}:</div>
+                                    <div class="title">{lang('Вариант','lightVertical')}:</div>
                                     <div class="lineForm">
                                         <select name="variant" id="variantSwitcher">
                                             {foreach $variants as $key => $productVariant}
@@ -175,7 +175,7 @@
                                                         <div class="frame-count-buy js-variant-{echo $productVariant->getId()} js-variant f_l" {if $key != 0}style="display:none"{/if}>
                                                             <form method="POST" action="/shop/cart/addProductByVariantId/{echo $productVariant->getId()}">
                                                                 <div class="frame-count frameCount d_n">
-                                                                    <div class="number js-number" data-title="{lang('Количество на складе','newLevel')} {echo $productVariant->getstock()}">
+                                                                    <div class="number js-number" data-title="{lang('Количество на складе','lightVertical')} {echo $productVariant->getstock()}">
                                                                         <div class="frame-change-count">
                                                                             <div class="btn-plus">
                                                                                 <button type="button" {if $inCart}disabled="disabled"{/if}>
@@ -188,7 +188,7 @@
                                                                                 </button>
                                                                             </div>
                                                                         </div>
-                                                                        <input type="text" name="quantity" value="{echo $inCart ? $inCart : 1}" class="plusMinus plus-minus" data-title="{lang('Только цифры','newLevel')}" data-min="1" data-max="{echo $productVariant->getstock()}" {if $inCart}disabled="disabled"{/if}>
+                                                                        <input type="text" name="quantity" value="{echo $inCart ? $inCart : 1}" class="plusMinus plus-minus" data-title="{lang('Только цифры','lightVertical')}" data-min="1" data-max="{echo $productVariant->getstock()}" {if $inCart}disabled="disabled"{/if}>
                                                                     </div>
                                                                 </div>
                                                                 <div class="btn-buy-p btn-cart{if !$inCart} d_n{/if}">
@@ -198,7 +198,7 @@
 
                                                                         class="btnBuy"
                                                                         >
-                                                                        <span class="text-el">{lang('Уже в корзине', 'newLevel')}</span>
+                                                                        <span class="text-el">{lang('Уже в корзине', 'lightVertical')}</span>
                                                                     </button>
                                                                 </div>
                                                                 <div class="btn-buy-p btn-buy{if $inCart} d_n{/if}">
@@ -234,7 +234,7 @@
                                                                         {/if}"
                                                                         data-maxcount="{echo $productVariant->getstock()}"
                                                                         >
-                                                                        <span class="text-el">{lang('Купить', 'newLevel')}</span>
+                                                                        <span class="text-el">{lang('Купить', 'lightVertical')}</span>
                                                                     </button>
                                                                 </div>
                                                                 {form_csrf()}
@@ -278,7 +278,7 @@
                                                                         data-maxcount="{echo $productVariant->getstock()}"
                                                                         data-url="{echo shop_url('product/'.$model->getUrl())}"
                                                                         >
-                                                                        <span class="text-el d_l_1">{lang('Узнать о появлении','newLevel')}</span>
+                                                                        <span class="text-el d_l_1">{lang('Узнать о появлении','lightVertical')}</span>
                                                                     </button>
                                                                 </div>
                                                             </div>
@@ -302,12 +302,12 @@
                                                     <button class="toCompare"
                                                             data-id="{echo $model->getId()}"
                                                             type="button"
-                                                            data-title="{lang('К сравнению','newLevel')}"
-                                                            data-firtitle="{lang('К сравнению','newLevel')}"
-                                                            data-sectitle="{lang('В сравнении','newLevel')}"
+                                                            data-title="{lang('К сравнению','lightVertical')}"
+                                                            data-firtitle="{lang('К сравнению','lightVertical')}"
+                                                            data-sectitle="{lang('В сравнении','lightVertical')}"
                                                             data-rel="tooltip">
                                                         <span class="icon_compare"></span>
-                                                        <span class="text-el d_l">{lang('К сравнению','newLevel')}</span>
+                                                        <span class="text-el d_l">{lang('К сравнению','lightVertical')}</span>
                                                     </button>
                                                 </div>
                                             </div>
@@ -402,7 +402,7 @@
                         <div class="horizontal-carousel">
                             <section class="frame-complect special-proposition">
                                 <div class="frame-title">
-                                    <div class="title">{lang('В комплекте дешевле','newLevel')}</div>
+                                    <div class="title">{lang('В комплекте дешевле','lightVertical')}</div>
                                 </div>
                                 <div class="carousel-js-css items-carousel complects-carousel">
                                     <div class="content-carousel">
@@ -540,7 +540,7 @@
                                                                         class="btnBuy infoBut btnBuyKit"
                                                                         >
                                                                         <span class="icon_cleaner icon_cleaner_buy"></span>
-                                                                        <span class="text-el">{lang('В корзине', 'newLevel')}</span>
+                                                                        <span class="text-el">{lang('В корзине', 'lightVertical')}</span>
                                                                     </button>
                                                                 </div>
                                                                 <div class="btn-buy-p btn-buy{if $inCart} d_n{/if}">
@@ -552,7 +552,7 @@
                                                                         class="btnBuy infoBut btnBuyKit"
                                                                         >
                                                                         <span class="icon_cleaner icon_cleaner_buy"></span>
-                                                                        <span class="text-el">{lang('Купить', 'newLevel')}</span>
+                                                                        <span class="text-el">{lang('Купить', 'lightVertical')}</span>
                                                                     </button>
                                                                 </div>
                                                                 {form_csrf()}
@@ -582,17 +582,17 @@
                     <!-- Start. Tabs block-->
                     <ul class="tabs tabs-data tabs-product">
                         <li class="active">
-                            <button data-href="#view">{lang('Обзор','newLevel')}</button>
+                            <button data-href="#view">{lang('Обзор','lightVertical')}</button>
                         </li>
                         {if $dl_properties = ShopCore::app()->SPropertiesRenderer->renderPropertiesTableNew($model->getId())}
 
-                            <li><button data-href="#first" data-source="{shop_url('product_api/renderProperties')}" data-data='{literal}{"product_id":{/literal} {echo $model->getId()} {literal}}{/literal}' data-selector=".characteristic">{lang('Свойства','newLevel')}</button></li>
+                            <li><button data-href="#first" data-source="{shop_url('product_api/renderProperties')}" data-data='{literal}{"product_id":{/literal} {echo $model->getId()} {literal}}{/literal}' data-selector=".characteristic">{lang('Свойства','lightVertical')}</button></li>
                             {/if}
                             {if $fullDescription = $model->getFullDescription()}
-                            <li><button data-href="#second" data-source="{shop_url('product_api/renderFullDescription')}" data-data='{literal}{"product_id":{/literal} {echo $model->getId()}{literal}}{/literal}' data-selector=".inside-padd > .text">{lang('Полное описание','newLevel')}</button></li>
+                            <li><button data-href="#second" data-source="{shop_url('product_api/renderFullDescription')}" data-data='{literal}{"product_id":{/literal} {echo $model->getId()}{literal}}{/literal}' data-selector=".inside-padd > .text">{lang('Полное описание','lightVertical')}</button></li>
                             {/if}
                             {if $accessories}
-                            <li><button data-href="#fourth" data-source="{shop_url('product_api/getAccessories')}" data-data='{literal}{"product_id":{/literal} {echo $model->getId()}, "arrayVars": {json_encode(array('opi_defaultItem'=>true))}{literal}}{/literal}' data-selector=".inside-padd > .items">{lang('Аксессуары','newLevel')}</button></li>
+                            <li><button data-href="#fourth" data-source="{shop_url('product_api/getAccessories')}" data-data='{literal}{"product_id":{/literal} {echo $model->getId()}, "arrayVars": {json_encode(array('opi_defaultItem'=>true))}{literal}}{/literal}' data-selector=".inside-padd > .items">{lang('Аксессуары','lightVertical')}</button></li>
                             {/if}
                         <!--Output of the block comments-->
                         {if $Comments && $model->enable_comments}
@@ -602,10 +602,10 @@
                                     <span class="text-el">
                                         <span id="cc">
                                             {if intval($Comments[$model->getId()][0]) !== 0}
-                                                {lang('Отзывы','newLevel')}
+                                                {lang('Отзывы','lightVertical')}
                                                 ({echo intval($Comments[$model->getId()])})
                                             {else:}
-                                                {lang('Отзывы (0)','newLevel')}
+                                                {lang('Отзывы (0)','lightVertical')}
                                             {/if}
                                         </span>
                                     </span>
@@ -617,13 +617,13 @@
                         <div id="view">
                             {if $dl_properties}
                                 <div class="inside-padd">
-                                    <span class="title-h2">{lang('Свойства','newLevel')}</span>
+                                    <span class="title-h2">{lang('Свойства','lightVertical')}</span>
                                     <div class="characteristic">
                                         <div class="product-charac patch-product-view">
                                             {echo $dl_properties}
                                         </div>
                                         <button class="f-s_0 d_n_ d_l_1 d_i-b" data-trigger="[data-href='#first']" data-scroll="true">
-                                            <span class="text-el">{lang('Все свойства','newLevel')}</span>
+                                            <span class="text-el">{lang('Все свойства','lightVertical')}</span>
                                         </button>
                                     </div>
                                 </div>
@@ -633,13 +633,13 @@
                                     <!--                        Start. Description block-->
                                     <div class="product-descr patch-product-view">
                                         <div class="text">
-                                            <div class="title-h2">{lang('Описание' , 'newLevel')}</div>
+                                            <div class="title-h2">{lang('Описание' , 'lightVertical')}</div>
                                             <h2>{echo  ShopCore::encode($model->getName())}</h2>
                                             {echo $fullDescription}
                                         </div>
                                     </div>
                                     <button class="f-s_0 d_n_ d_l_1 d_i-b" data-trigger="[data-href='#second']" data-scroll="true">
-                                        <span class="text-el">{lang('Полное описание','newLevel')}</span>
+                                        <span class="text-el">{lang('Полное описание','lightVertical')}</span>
                                     </button>
                                     <!--                        End. Description block-->
                                 </div>
@@ -649,10 +649,10 @@
                                 <div class="accessories">
                                     <div class="title-default">
                                         <div class="title">
-                                            <h2 class="d_i">{lang('С этим товаром покупают','newLevel')}</h2>
+                                            <h2 class="d_i">{lang('С этим товаром покупают','lightVertical')}</h2>
                                             {if count($accessories) > 3}
                                                 <button class="f-s_0 d_n_ d_l_1 d_i-b s-all-marg" data-trigger="[data-href='#fourth']" data-scroll="true">
-                                                    <span class="text-el">{lang('Все аксессуары','newLevel')}</span>
+                                                    <span class="text-el">{lang('Все аксессуары','lightVertical')}</span>
                                                 </button>
                                             {/if}
                                         </div>
@@ -678,7 +678,7 @@
                         <!--             Start. Characteristic-->
                         <div id="first">
                             <div class="inside-padd">
-                                <div class="title-h2">{lang('Свойства', 'newLevel')}</div>
+                                <div class="title-h2">{lang('Свойства', 'lightVertical')}</div>
                                 <div class="characteristic">
                                     <div class="preloader"></div>
                                 </div>
@@ -687,7 +687,7 @@
                         <!--                    End. Characteristic-->
                         <div id="second">
                             <div class="inside-padd">
-                                <div class="title-h2">{lang('Описание' , 'newLevel')}</div>
+                                <div class="title-h2">{lang('Описание' , 'lightVertical')}</div>
                                 <div class="text">
                                     <div class="preloader"></div>
                                 </div>
@@ -702,7 +702,7 @@
                         {if $accessories}
                             <div id="fourth" class="accessories">
                                 <div class="inside-padd">
-                                    <h2 class="m-b_30">{lang('С этим товаром покупают','newLevel')}</h2>
+                                    <h2 class="m-b_30">{lang('С этим товаром покупают','lightVertical')}</h2>
                                     <ul class="items items-default items-product">
                                         <div class="preloader"></div>
                                     </ul>

@@ -69,14 +69,21 @@ if (!function_exists('getMoFileName')) {
                 $CI = & get_instance();
                 $currentLocale = MY_Controller::getCurrentLocale();
 
-                $language = $CI->db->where('identif', $currentLocale)->get('languages')->row_array();
-                $locale = $language['locale'];
-                
+                if (strstr($_SERVER['REQUEST_URI'], 'install')) {
+                    $ci = & get_instance();
+                    $langs = $ci->config->item('languages');
+
+                    $locale = isset($langs[$language]) ? $langs[$language][1] : 'ru_RU';
+                } else {
+                    $language = $CI->db->where('identif', $currentLocale)->get('languages')->row_array();
+                    $locale = $language['locale'];
+                }
+
                 define('CUR_LOCALE', $language['locale']);
             } else {
                 $locale = CUR_LOCALE;
             }
-            
+
             $name = NULL;
 
             switch ($domain) {
