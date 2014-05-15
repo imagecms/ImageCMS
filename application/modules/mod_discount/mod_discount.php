@@ -42,8 +42,6 @@ class Mod_discount extends \MY_Controller {
     public function autoload() {
         if (count($this->db->where('name', 'mod_discount')->get('components')->result_array()) != 0) {
 
-            \CMSFactory\Events::create()->setListener(array($this, 'applyResultDiscount'), 'Cart:MakeOrder');
-
             $this->applyDiscountCartItems();
             $this->applyResultDiscount();
             /** apply Gift */
@@ -53,7 +51,7 @@ class Mod_discount extends \MY_Controller {
 
             $giftKey = \CI::$APP->session->flashdata('makeOrderGiftKey');
             if (!empty($giftKey)) {
-                $this->baseDiscount->updateDiskApply($giftKey, 'gift');
+                \mod_discount\classes\BaseDiscount::create()->updateDiskApply($giftKey, 'gift');
             }
 
             // to not overload max applies of discounts
@@ -63,6 +61,8 @@ class Mod_discount extends \MY_Controller {
                 \Cart\BaseCart::getInstance()->setTotalPrice($totalPrice + $overload);
                 \mod_discount\classes\ApplyChecker::getInstance()->changeCartItemsOveralPrice();
             }
+
+            \CMSFactory\Events::create()->setListener(array($this, 'updateDiscountsApplies'), 'Cart:OrderValidated');
         }
     }
 
@@ -134,22 +134,41 @@ class Mod_discount extends \MY_Controller {
             }
 
             if ($discount['result_sum_discount'] > 0) {
-                $this->baseDiscount->cart->setTotalPrice($this->baseDiscount->cart->getOriginTotalPrice() - $discount['result_sum_discount']);
+                $cartTotalPrice = $this->baseDiscount->cart->getOriginTotalPrice() - $discount['result_sum_discount'];
+
+                $this->baseDiscount->cart->setTotalPrice($cartTotalPrice > 0 ? $cartTotalPrice : \Cart\BaseCart::MIN_ORDER_PRICE);
                 $this->baseDiscount->cart->discount_info = $discount;
                 $this->baseDiscount->cart->discount_type = $discount['type'];
+            }
+        }
+    }
 
-                if (strstr($this->uri->uri_string(), 'make_order')) {
-                    if ($discount['type'] != 'product') {
-                        $this->baseDiscount->updateDiskApply($discount['max_discount']['key']);
-                    } else {
-                        $cartItems = $this->baseDiscount->cart->getItems();
-                        foreach ($cartItems['data'] as $item) {
-                            if (is_null($item->discountKey)) {
-                                continue;
-                            }
-                            for ($i = 0; $i < $item->quantity; $i++) {
-                                $this->baseDiscount->updateDiskApply($item->discountKey);
-                            }
+    public function updateDiscountsApplies() {
+
+        \mod_discount\classes\BaseDiscount::prepareOption(array('reBuild' => 1));
+        $baseDiscount = \mod_discount\classes\BaseDiscount::create();
+
+        if (\mod_discount\classes\BaseDiscount::checkModuleInstall()) {
+            if ($baseDiscount->discountProductVal > $baseDiscount->discountNoProductVal) {
+                $discount['result_sum_discount'] = $baseDiscount->discountProductVal;
+                $discount['type'] = 'product';
+            } else {
+                $discount['result_sum_discount'] = $baseDiscount->discountNoProductVal;
+                $discount['type'] = 'user';
+            }
+
+            if ($discount['result_sum_discount'] > 0) {
+
+                if ($discount['type'] != 'product') {
+                    $baseDiscount->updateDiskApply($baseDiscount->discountMax['key']);
+                } else {
+                    $cartItems = $baseDiscount->cart->getItems();
+                    foreach ($cartItems['data'] as $item) {
+                        if (is_null($item->discountKey)) {
+                            continue;
+                        }
+                        for ($i = 0; $i < $item->quantity; $i++) {
+                            $baseDiscount->updateDiskApply($item->discountKey);
                         }
                     }
                 }
@@ -172,12 +191,14 @@ class Mod_discount extends \MY_Controller {
         foreach ($this->baseDiscount->discountType['all_order'] as $disc)
             if ($disc['key'] == $key and $disc['is_gift']) {
                 $value = $this->baseDiscount->getDiscountValue($disc, $this->baseDiscount->cart->getTotalPrice());
+
                 $this->baseDiscount->cart->gift_info = $disc['key'];
                 $this->baseDiscount->cart->gift_value = $value;
                 if (\ShopCore::app()->SSettings->pricePrecision == 0) {
                     $this->baseDiscount->cart->gift_value = floor($value);
                 }
-                $this->baseDiscount->cart->setTotalPrice($this->baseDiscount->cart->getTotalPrice() - $value);
+                $cartTotalPrice = $this->baseDiscount->cart->getTotalPrice() - $value;
+                $this->baseDiscount->cart->setTotalPrice($cartTotalPrice > 0 ? $cartTotalPrice : \Cart\BaseCart::MIN_ORDER_PRICE);
                 $aplyGift = true;
                 break;
             }

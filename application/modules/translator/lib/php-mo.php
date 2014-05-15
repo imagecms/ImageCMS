@@ -238,6 +238,12 @@ function phpmo_write_mo_file($hash, $out) {
 
     $directory = dirname($out);
     $current_mo_file_name = array_pop(glob($directory . '/*.mo'));
+    if(!$current_mo_file_name){
+        $current_mo_file_name = array_pop(glob($directory . '\*.mo'));
+        if(!$current_mo_file_name){
+            $current_mo_file_name = $out;
+        }
+    }
 
     $addition_time = time();
     if (!preg_match('/[\d]+/', $current_mo_file_name)) {
