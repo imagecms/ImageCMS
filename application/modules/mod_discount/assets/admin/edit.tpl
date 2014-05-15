@@ -242,7 +242,7 @@
                                                 <label class="hideAfterAutocomlite"> {lang('Current product', 'mod_discount')} :
                                                     <span class="now-active-prod">{echo $discount['product']['productInfo']}</span>
                                                 </label>
-                                                <label> {lang('Name / ID', 'mod_discount')}  :</label>
+                                                <label> {lang('Name / ID / Number', 'mod_discount')}  :</label>
                                                 <input id="productForDiscount" required="required" style="border-color: coral;" type="text" value="" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
                                                 <input id="discountProductId" type="hidden" name="product[product_id]" value="{echo $discount['product']['product_id']}"/>
                                             </div>
