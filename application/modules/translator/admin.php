@@ -598,11 +598,11 @@ class Admin extends BaseAdminController {
      */
     public function getLangaugesNames() {
         $languages = get_language_names();
-        $language = strtolower($this->input->get('term'));
+        $language = mb_strtolower($this->input->get('term'));
         $data = array();
 
         foreach ($languages as $key => $lang) {
-            if (strstr(strtolower($lang), $language) && $language != 'all_languages') {
+            if (strstr(mb_strtolower($lang), $language) && $language != 'all_languages') {
                 $data[] = array('locale' => $key, 'label' => $lang);
             } elseif ($language == 'all_languages') {
                 $data[] = array('locale' => $key, 'label' => $lang);

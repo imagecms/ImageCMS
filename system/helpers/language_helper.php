@@ -69,6 +69,13 @@ if (!function_exists('getMoFileName')) {
                 $CI = & get_instance();
                 $currentLocale = MY_Controller::getCurrentLocale();
 
+                if (strstr(uri_string(), 'admin')) {
+                    $langs = $CI->config->item('languages');
+                    $language = $CI->config->item('language');
+                    $currentLocale = $langs[$language][0];
+                }
+
+
                 if (strstr($_SERVER['REQUEST_URI'], 'install')) {
                     $ci = & get_instance();
                     $langs = $ci->config->item('languages');
