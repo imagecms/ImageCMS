@@ -23,7 +23,7 @@
 .comments .frame-list-comments .btn.active{-moz-box-shadow: none;-webkit-box-shadow: none;box-shadow: none;}
 .comments .icon_comment{background-image: none;width: 0;height: 0;margin-right: 0!important;overflow: hidden;}
 .comments .frame-list-comments li{border-top: 0;padding: 0;}
-.comments .frame-list-comments > .sub-1 > li{margin-top: 29px;border-top: 1px solid #eae5e1;padding-top: 25px;margin-bottom: 0;}
+.comments .frame-list-comments > .sub-1 > li{border-top: 1px solid #eae5e1;padding-top: 25px;margin-bottom: 0;}
 .comments .frame-list-comments > .sub-1 > li:first-child{border-top: 0;padding-top: 0;margin-top: 0;}
 .comments .frame-list-comments.sub-2 + .s-all-comments{margin-left: 33px;}
 .comments .frame-list-comments.sub-2 > li{background-color: #efedea;margin-top: 29px;position: relative;}
@@ -66,4 +66,6 @@
 .comments .comments-main-form.noComments{float: none;}
 .forComments{position: relative;}
 #comment .preloader{top: 15px;}
+
+.usemoderation{margin-top: 20px;}
 /*/comments*/

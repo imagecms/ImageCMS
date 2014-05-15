@@ -4,16 +4,17 @@ $(document).ready(function() {
         source: base_url + 'admin/components/cp/translator/getLangaugesNames',
         select: function(event, ui) {
             $(this).attr('locale', ui.item.locale);
+            $(this).next().next().val(ui.item.locale);
         }
     });
 
     $('.languageSelect').bind('focus', function() {
-        $(this).autocomplete("search", "all_languages");
+        $(this).autocomplete("search", "all_languages")
     });
 
     $('.showAllLanguageList').toggle(function() {
         $(this).prev().focus();
-        $(this).prev().autocomplete("search", "all_languages");
+        $(this).prev().autocomplete("search", "all_languages")
     }, function() {
         $(this).prev().autocomplete("close");
     });
@@ -88,6 +89,25 @@ $(document).ready(function() {
         $(this).text($(this).val());
     });
 
+    $('.createPagePaths option').live('dblclick', function() {
+        $(this).remove();
+    });
+
+    $('.createPagePathsAddInput').live('keyup', function() {
+        $('.createPagePathsAddButton').removeClass('disabled');
+        $('.createPagePathsAddButton').removeAttr('disabled');
+    });
+
+    $('.createPagePathsAddInput').live('blur', function() {
+        if ($(this).val()) {
+            $('.createPagePathsAddButton').removeClass('disabled');
+            $('.createPagePathsAddButton').removeAttr('disabled');
+        } else {
+            $('.createPagePathsAddButton').addClass('disabled');
+            $('.createPagePathsAddButton').attr('disabled', 'disabled');
+        }
+    });
+
 });
 
 var Sort = {
@@ -104,20 +124,19 @@ var Sort = {
         var lang = $('#langs').val();
         var type = $('#types').val();
         var module_template = $('#modules_templates').val();
-        var per_page = $('#per_page').val();
         var url = '';
 
         this.removeSortArrows(curElement);
 
         switch (type) {
             case  'modules':
-                url = '/admin/components/init_window/translator/renderModulePoFile/' + module_template + '/' + type + '/' + lang + '/0/' + per_page;
+                url = '/admin/components/init_window/translator/renderModulePoFile/' + module_template + '/' + type + '/' + lang;
                 break;
             case 'templates':
-                url = '/admin/components/init_window/translator/renderModulePoFile/' + module_template + '/' + type + '/' + lang + '/0/' + per_page;
+                url = '/admin/components/init_window/translator/renderModulePoFile/' + module_template + '/' + type + '/' + lang;
                 break;
             case 'main':
-                url = '/admin/components/init_window/translator/renderModulePoFile/' + type + '/' + type + '/' + lang + '/0/' + per_page;
+                url = '/admin/components/init_window/translator/renderModulePoFile/' + type + '/' + type + '/' + lang;
                 break;
         }
         $.ajax({url: url,
@@ -131,15 +150,15 @@ var Sort = {
     },
     sortOrigins: function(curElement) {
         this.sortType = 'origin';
-        this.sort(this.originsArray, this.translationsArray);
+        this.sort(this.originsArray, this.translationsArray)
     },
     sortTranslations: function(curElement) {
         this.sortType = 'translation';
-        this.sort(this.translationsArray, this.originsArray);
+        this.sort(this.translationsArray, this.originsArray)
     },
     sortComments: function(curElement) {
         this.sortType = 'comment';
-        this.sort(this.originsArray, this.translationsArray);
+        this.sort(this.originsArray, this.translationsArray)
     },
     sortFuzzy: function(curElement) {
         this.init();
@@ -393,7 +412,7 @@ var Search = {
         var all = '';
         $(this.findValues.concat(this.undiscoveredValues)).each(function() {
             all += $(this)[0].outerHTML;
-        });
+        })
         $(this.table).html(all);
 
         var searchObj = this;
@@ -443,14 +462,14 @@ var Search = {
                 if (this.countResults) {
                     showMessage(lang('Message'), lang('Number of searched matches') + ': ' + this.countResults + '.');
                 } else {
-                    showMessage(lang('Message'), lang('Was not found any results'), 'r');
+                    showMessage(lang('Message'), lang('Was not found any results'), 'r')
                 }
                 this.countResults = 0;
             } else {
-                showMessage(lang('Error'), lang('Please, enter more than 1 symbol'), 'r');
+                showMessage(lang('Error'), lang('Please, enter more than 1 symbol'), 'r')
             }
         } else {
-            showMessage(lang('Error'), lang('You did not select search criteria'), 'r');
+            showMessage(lang('Error'), lang('You did not select search criteria'), 'r')
         }
     },
     goOnEnterPress: function() {
@@ -482,8 +501,12 @@ var Selectors = {
         $('.pagination ul').html('');
         $('#per_page').hide();
         $('.pathHolder').html('');
-        $('.pathParseHolder').hide();
+        $('#po_settings_form').hide();
+        $('.poSearchHolder').hide();
         $('.statistic').hide();
+        $('#cancel').attr('disabled', 'disabled');
+        $('#save').attr('disabled', 'disabled');
+        $('#update').attr('disabled', 'disabled');
     },
     langs: function(curElement) {
         this.init(curElement);
@@ -503,11 +526,10 @@ var Selectors = {
             this.clearContent();
         } else {
             if (this.module_tempate || this.type == 'main') {
-                if (this.type == 'main') {
+                if (this.type == 'main')
                     this.module_tempate = 'main';
-                }
 
-                var url = '/admin/components/init_window/translator/renderModulePoFile/' + this.module_tempate + '/' + this.type + '/' + this.lang + '/0/' + this.per_page;
+                var url = '/admin/components/init_window/translator/renderModulePoFile/' + this.module_tempate + '/' + this.type + '/' + this.lang;
                 this.renderTable(url);
             }
         }
@@ -533,7 +555,7 @@ var Selectors = {
                 break;
             case 'main':
                 $(curElement).closest('.poSelectorsHolder').find('#modules_templates').css('display', 'none');
-                var url = '/admin/components/init_window/translator/renderModulePoFile/' + this.type + '/' + this.type + '/' + this.lang + '/0/' + this.per_page;
+                var url = '/admin/components/init_window/translator/renderModulePoFile/' + this.type + '/' + this.type + '/' + this.lang;
                 this.renderTable(url);
                 break;
         }
@@ -546,7 +568,7 @@ var Selectors = {
             return false;
         }
 
-        var url = '/admin/components/init_window/translator/renderModulePoFile/' + this.module_tempate + '/' + this.type + '/' + this.lang + '/0/' + this.per_page;
+        var url = '/admin/components/init_window/translator/renderModulePoFile/' + this.module_tempate + '/' + this.type + '/' + this.lang;
         this.renderTable(url);
 
     },
@@ -620,7 +642,6 @@ var Translator = {
         {
             var respons = $.parseJSON(data);
             if (typeof respons == 'object') {
-
                 var respons = JSON.parse(data);
                 if (respons['error']) {
                     $('#po_table tbody').html('');
@@ -633,7 +654,7 @@ var Translator = {
                     }
                     $('.pathHolder').html('');
                     $('.po_settings').html('');
-                    $('.pathParseHolder').hide();
+                    $('#po_settings_form').hide();
                     return false;
                 }
             }
@@ -642,13 +663,18 @@ var Translator = {
         {
         }
 
-
         $('#cancel').removeAttr('disabled');
+        $('#save').removeAttr('disabled');
+        $('#update').removeAttr('disabled');
         if (!data) {
             $('#po_table tbody').html('');
             $('#po_table').css('display', 'none');
             $('.pagination ul').html('');
-            $('.alert-info').css('display', 'block');
+            $('#po_settings_form').hide();
+            $('.poSearchHolder').hide();
+            $('#cancel').attr('disabled', 'disabled');
+            $('#save').attr('disabled', 'disabled');
+            $('#update').attr('disabled', 'disabled');
 
             return false;
         } else {
@@ -661,24 +687,31 @@ var Translator = {
 
             this.statisticRecount();
 
-            var paths = $('.pathHolderClone').html();
-            $('.pathHolder').html(paths);
-            $('.pathParseHolder').show();
+            var paths = $('.pathHolderClone');
+            $('.pathParseHolder').empty();
+            $('.pathHolderClone').each(function() {
+                $('.pathParseHolder').append("<tr>" + $(this).html() + "</tr>");
+            });
+            $('.pathHolderClone').remove();
+
 
             var po_settings = $('.po_settingsClone').html();
             $('.po_settingsClone').html('');
             $('.po_settings').html(po_settings);
+            $('#po_settings_form').show();
 
             $('#per_page option:selected').removeAttr('selected');
             $($('#per_page option')[0]).attr('selected', 'selected');
 
+            $('.poSearchHolder').show();
             Pagination.generate();
         }
 
 
     },
     setOriginsLang: function(curElement) {
-        var originLang = $(curElement).val();
+        var originLang = $(curElement).attr('locale');
+        console.log(originLang)
         $.ajax({
             type: "POST",
             data: {
@@ -703,16 +736,20 @@ var Translator = {
         this.statisticRecount();
     },
     addNewPath: function(curElement) {
-        var newPath = $(curElement).prev().html();
-        var pathNumber = (parseInt($.trim($($('.pathHolder div b')[$('.pathHolder div b').length - 1]).html())) + 1) + '.';
-        if (pathNumber == 'NaN.') {
-            pathNumber = 2 + '.';
-        }
-        $('.pathHolder').append(newPath);
-        $($('.pathHolder div b')[$('.pathHolder div b').length - 1]).html(pathNumber);
+        var lastTR = $('.po_path_table tr:last').clone();
+        var lastPathNumber = parseInt($.trim($(lastTR).find('.pathNumber').html()));
+        $(lastTR).find('.pathNumber').html(lastPathNumber + 1);
+
+        $(lastTR).find('input').val('');
+        $(lastTR).find('.baseTitle').remove();
+        $(lastTR).find('button').show();
+        $('.po_path_table tbody').append(lastTR);
     },
     deletePath: function(curElement) {
-        $(curElement).parent().remove();
+        $(curElement).closest('tr').remove();
+        $('.po_path_table .pathNumber').each(function(num) {
+            $(this).html(num + 1);
+        });
     },
     checkPaths: function() {
 
@@ -725,7 +762,7 @@ var Translator = {
         } else {
             $('#loading').show();
             $.ajax({
-                url: this.getUrl('updatePoFile'),
+                url: this.getUrl('parse'),
                 type: 'POST',
                 data: {
                     paths: paths
@@ -863,15 +900,17 @@ var Translator = {
         this.init();
 
         var po_array = this.getPoArray();
-        po_array['paths'] = this.getPaths();
-        po_array['po_settings'] = {};
-        po_array['po_settings']['projectName'] = $('input[name=projectName]').val();
-        po_array['po_settings']['translatorEmail'] = $('input[name=translatorEmail]').val();
-        po_array['po_settings']['translatorName'] = $('input[name=translatorName]').val();
-        po_array['po_settings']['langaugeTeamName'] = $('input[name=langaugeTeamName]').val();
-        po_array['po_settings']['langaugeTeamEmail'] = $('input[name=langaugeTeamEmail]').val();
-        po_array['po_settings']['language'] = $('input[name=language]').val();
-        po_array['po_settings']['country'] = $('input[name=country]').val();
+        var paths = this.getPaths();
+        po_array['settings'] = {};
+        po_array['settings']['basepath'] = paths[0];
+        po_array['settings']['paths'] = paths.slice(1);
+        po_array['settings']['projectName'] = $('input[name=projectName]').val();
+        po_array['settings']['translatorEmail'] = $('input[name=translatorEmail]').val();
+        po_array['settings']['translatorName'] = $('input[name=translatorName]').val();
+        po_array['settings']['langaugeTeamName'] = $('input[name=langaugeTeamName]').val();
+        po_array['settings']['langaugeTeamEmail'] = $('input[name=langaugeTeamEmail]').val();
+        po_array['settings']['language'] = $('input[name=language]').val();
+        po_array['settings']['country'] = $('input[name=country]').val();
 
         $.ajax({
             type: 'POST',
@@ -913,7 +952,7 @@ var Translator = {
         }
     },
     getPaths: function() {
-        var pathHorders = $('.pathHolder .path input[name^="path"]');
+        var pathHorders = $('.pathParseHolder input[name^="path"]');
         var paths = [];
 
         $(pathHorders).each(function() {
@@ -933,9 +972,19 @@ var Translator = {
                 paths: this.getPaths()
             },
             success: function(data) {
-                if (data) {
-                    var tableData = data.replace(/<script[\W\w]+<\/script>/, '');
-                    $('#po_table tbody').html(tableData);
+                try
+                {
+                    var response = $.parseJSON(data);
+                    if (response.error) {
+                        showMessage(lang('Error'), response.data, 'r');
+                    }
+                }
+                catch (err)
+                {
+                    if (data) {
+                        var tableData = data.replace(/<script[\W\w]+<\/script>/, '');
+                        $('#po_table tbody').html(tableData);
+                    }
                 }
             }
         });
@@ -1004,7 +1053,7 @@ var Translator = {
     translate: function(curElement, withEmptyTranslation) {
         withEmptyTranslation = withEmptyTranslation || false;
         var YandexApiKey = $.trim($('.YandexApiKey').val());
-        var originLang = $('#originLang').val();
+        var originLang = $('#originLang').attr('locale');
 
         if (!YandexApiKey) {
             showMessage(lang('Error'), lang('You have not specified Yandex Api Key.'), 'r');
@@ -1093,7 +1142,7 @@ var Translator = {
     },
     translateString: function(curElement) {
         var YandexApiKey = $.trim($('.YandexApiKey').val());
-        var originLang = $('#originLang').val();
+        var originLang = $('#originLang').attr('locale');
 
         if (!YandexApiKey) {
             showMessage(lang('Error'), lang('You have not specified Yandex Api Key.'), 'r');
@@ -1121,6 +1170,7 @@ var Translator = {
         $.ajax({
             type: 'POST',
             url: url,
+            dataType: 'json',
             success: function(Answer) {
                 if (Answer.code == '200') {
                     translationTR.find('.translation').val(Answer.text[0]);
@@ -1257,6 +1307,9 @@ var Translator = {
     },
     sourceLanguageAutoselect: function(curElement) {
         var textToTranslate = $.trim($(curElement).closest('.modal_yandex_translate').find('.translation_text').val());
+        var textToTranslate2 = $.trim($('#po_table textarea.origin:first').val());
+        textToTranslate = textToTranslate ? textToTranslate : textToTranslate2;
+
         var text = '&text=' + encodeURI(textToTranslate);
         var YandexApiKey = $.trim($('.YandexApiKey').val());
 
@@ -1285,6 +1338,11 @@ var Translator = {
                                 if (data) {
                                     $(curElement).closest('.modal_yandex_translate').find('.languageFrom').attr('locale', locale);
                                     $(curElement).closest('.modal_yandex_translate').find('.languageFrom').val(data);
+                                    $(curElement).closest('.originLangHolder').find('.languageFrom').attr('locale', locale);
+                                    $(curElement).closest('.originLangHolder').find('.languageFrom').val(data);
+                                    if ($(curElement).closest('.originLangHolder').find('.languageFrom').length) {
+                                        Translator.setOriginsLang($(curElement).closest('.originLangHolder').find('.languageFrom'));
+                                    }
                                 } else {
                                     showMessage(lang('Error'), lang('Can not define language'), 'r');
                                 }
@@ -1303,7 +1361,7 @@ var Pagination = {
             $('.pagination').show();
         }
 
-        var page_number = $('#page_number').val();
+        var page_number = 1;
         var per_page = parseInt($('#per_page').val());
         var rows_count = Math.ceil(($('#po_table tbody tr').length / 2) / per_page);
         if (10 < rows_count) {
@@ -1319,13 +1377,11 @@ var Pagination = {
 
         var i = 2;
         while (i <= to) {
-            if (rows_count == i - 1) {
+            if (rows_count == i - 1)
                 break;
-            }
             var active = '';
-            if (page_number == i) {
+            if (page_number == i)
                 active = 'active';
-            }
 
             pages += "<li class='" + active + "' data-number='" + i + "'><span>" + i + "</span></li>";
             i++;
@@ -1342,9 +1398,8 @@ var Pagination = {
         var offset = (parseInt($(curElement).data('number')) - 1) * per_page;
         var page = parseInt($(curElement).data('number'));
 
-        if (type == 'main') {
+        if (type == 'main')
             module = 'main';
-        }
 
         $('#po_table tbody tr').each(function(iteration) {
             iteration = iteration / 2;
@@ -1410,14 +1465,12 @@ var Pagination = {
             }
         });
 
-        this.generate();
+        this.generate()
     },
     movePrev: function() {
         var activeNum = $('ul.pagination li.active').data('number');
-        console.log(activeNum);
         if (activeNum > 1) {
             if ($('ul.pagination li')[activeNum - 1]) {
-                console.log($($('ul.pagination li')[activeNum - 1]));
                 $($('ul.pagination li')[activeNum - 1]).click();
             }
         }
@@ -1428,13 +1481,13 @@ var Pagination = {
         return false;
     }
 
-};
+}
 
 var CreatePoFile = {
     addPath: function(curElement) {
         var path = $.trim($(curElement).next().val());
         var pathSelector = $(curElement).next().next();
-        $(pathSelector).append('<option selected value="' + path + '">' + path + '</option>');
+        $(pathSelector).append('<option selected value="' + path + '">' + path + '</option>')
         $(curElement).next().val('');
     }
 };
@@ -1450,6 +1503,16 @@ var Exchange = {
         var modules_templatesExchanger = $('.exchanger #modules_templates').val();
         var modules_templatesReceiver = $('.receiver #modules_templates').val();
 
+        if (typeExchanger != 'main' && !modules_templatesExchanger) {
+            showMessage(lang('Error'), lang('Select all paths to files.'), 'r');
+            return;
+        }
+
+        if (typeReceiver != 'main' && !modules_templatesReceiver) {
+            showMessage(lang('Error'), lang('Select all paths to files.'), 'r');
+            return;
+        }
+
         $.ajax({
             type: 'POST',
             data: {
@@ -1463,8 +1526,9 @@ var Exchange = {
             url: '/admin/components/init_window/translator/exchangeTranslation',
             success: function(data) {
                 if (data) {
-                    var tableData = data.replace(/<script[\W\w]+<\/script>/, '');
-                    $('#mainContent').html(tableData);
+//                    var tableData = data.replace(/<script[\W\w]+<\/script>/, '');
+                    $('#mainContent').html(data);
+
                     window.history.pushState({}, "", "/admin/components/init_window/translator");
                 }
             }
@@ -1543,3 +1607,11 @@ function htmlspecialchars_decode(str) {
 
     return str;
 }
+
+
+//window.onerror=function(message, url, linenumber){
+// console.log(message)
+// console.log(url)
+// console.log(linenumber)
+// return true;
+//}

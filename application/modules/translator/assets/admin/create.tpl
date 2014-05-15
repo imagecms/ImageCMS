@@ -47,7 +47,7 @@
                                                 <select id="langs" name="locale" onchange="Selectors.langs($(this))">
                                                     {if $langs}
                                                         <option value="">-- {lang('Choose locale', 'translator')} --</option>
-                                                        {foreach $langs as $locale => $lang}
+                                                        {foreach $langs as $locale}
                                                             <option class="{echo $locale}">{echo $locale}</option>
                                                         {/foreach}
                                                     {else:}
@@ -83,7 +83,7 @@
                                             <input type="text" name="translatorEmail">
                                         </div>
                                     </div>
-                                        
+
                                     <div class="control-group">
                                         <label class="control-label" for="file">{lang('Translator name', 'translator')}:</label>
                                         <div class="controls">
@@ -115,12 +115,13 @@
                                     <div class="control-group">
                                         <label class="control-label" for="file">{lang('Paths', 'translator')}:</label>
                                         <div class="controls">
-                                            <button type="button" onclick="CreatePoFile.addPath($(this))" class="btn btn-small btn-success" style="float: left">
+                                            <button type="button" onclick="CreatePoFile.addPath($(this))" class="createPagePathsAddButton disabled btn btn-small btn-success" style="float: left">
                                                 <i class="icon-plus"></i>
                                                 {lang('Add path', 'translator')}
                                             </button>
-                                            <input type="text" onkeypress="if (event.keyCode == 13) $(this).prev().click()" style="width: 422px; margin-left: 10px; margin-bottom: 10px">
-                                            <select name="paths[]" multiple="true" class="span7" required="">
+                                            <input type="text" class="createPagePathsAddInput" onkeypress="if (event.keyCode == 13)
+                                                            $(this).prev().click()" style="width: 422px; margin-left: 10px; margin-bottom: 10px">
+                                            <select name="paths[]" multiple="true" class="span7 createPagePaths" required="">
                                             </select>
                                         </div>
                                     </div>

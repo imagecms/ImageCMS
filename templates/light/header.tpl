@@ -9,7 +9,7 @@
         <div class="right-header f_r">
             {include_shop_tpl('auth_data')}
         </div>
-        <div class="social-head items f_l">
+        <div class="social-head f_l social-NS">
             {echo $CI->load->module('share')->_make_share_form()}
         </div>
     </div>
@@ -40,12 +40,12 @@
                     <div class="btn-order-call">
                         <button data-tab="true" data-href="#ordercall" data-drop="#ordercall" data-source="{site_url('shop/callback')}">
                             <span class="icon_order_call"></span>
-                            <span class="text-el d_l">{lang('Заказать звонок','newLevel')}</span>
+                            <span class="text-el d_l">{lang('Заказать звонок','light')}</span>
                         </button>
                     </div>
                 </div>
                 <div class="head-work">
-                    <span class="c_b">Работаем:</span> <span class="s-t">Пн–Пт 09:00–20:00,<br/>Сб 09:00–17:00, Вс выходной</span>
+                    <span class="c_b">{lang('Работаем', 'light')}:</span> <span class="s-t">{lang('Пн–Пт', 'light')} 09:00–20:00,<br/>{lang('Сб', 'light')} 09:00–17:00, {lang('Вс выходной', 'light')}</span>
                 </div>
                 <!--                End. Contacts block-->
                 <div class="frame-search-cleaner">
@@ -57,10 +57,10 @@
                         <div class="p_r">
                             <form name="search" method="get" action="{shop_url('search')}">
                                 <span class="btn-search">
-                                    <button type="submit"><span class="icon_search"></span><span class="text-el">{lang('Найти','newLevel')}</span></button>
+                                    <button type="submit"><span class="icon_search"></span><span class="text-el">{lang('Найти','light')}</span></button>
                                 </span>
                                 <div class="frame-search-input">
-                                    <input type="text" class="input-search" id="inputString" name="text" autocomplete="off" value="{if strpos($CI->uri->uri_string, 'search') !== false}{htmlspecialchars($_GET['text'])}{/if}"  placeholder="{lang('Я ищу', 'newLevel')}&hellip;"/>
+                                    <input type="text" class="input-search" id="inputString" name="text" autocomplete="off" value="{if strpos($CI->uri->uri_string, 'search') !== false}{htmlspecialchars($_GET['text'])}{/if}"  placeholder="{lang('Я ищу', 'light')}&hellip;"/>
                                     <div id="suggestions" class="drop drop-search"></div>
                                 </div>
                             </form>

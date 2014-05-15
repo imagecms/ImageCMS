@@ -215,9 +215,9 @@ class Menu extends MY_Controller {
                 //echo $item['item_type'];
                 if ($item['item_type'] == 'url' && strstr($item['link'], 'http://') or $item['item_type'] == 'url' && strstr($item['link'], 'www')) {
                     $href = $item['link'];
-                }
-                else
+                } else {
                     $href = rtrim(site_url($item['link']), '/');
+                }
 
 
                 $this->arranged_menu_array[$arranged_items_count]['link'] = $href;
@@ -227,21 +227,24 @@ class Menu extends MY_Controller {
                 if (!is_array($item['add_data'])) {
                     $item['add_data'] = unserialize($item['add_data']);
                     $item['add_data']['newpage'] == '1' ? $this->arranged_menu_array[$arranged_items_count]['target'] = 'target="_blank"' : $this->arranged_menu_array[$arranged_items_count]['target'] = 'target="_self"';
+                } else {
+                    $item['add_data']['newpage'] == '1' ? $this->arranged_menu_array[$arranged_items_count]['target'] = 'target="_blank"' : $this->arranged_menu_array[$arranged_items_count]['target'] = 'target="_self"';
+                   
                 }
 
-                if (($menu_array[$start_index]['position'] != $item['position']) AND ($menu_array[$end_index]['position'] != $item['position'])) {
+                if (($menu_array[$start_index]['position'] != $item['position']) AND ( $menu_array[$end_index]['position'] != $item['position'])) {
                     $this->arranged_menu_array[$arranged_items_count]['edge'] = "default";
                 }
 
-                if (($menu_array[$start_index]['position'] == $item['position']) AND ($menu_array[$end_index]['position'] != $item['position'])) {
+                if (($menu_array[$start_index]['position'] == $item['position']) AND ( $menu_array[$end_index]['position'] != $item['position'])) {
                     $this->arranged_menu_array[$arranged_items_count]['edge'] = "first";
                 }
 
-                if (($menu_array[$start_index]['position'] != $item['position']) AND ($menu_array[$end_index]['position'] == $item['position'])) {
+                if (($menu_array[$start_index]['position'] != $item['position']) AND ( $menu_array[$end_index]['position'] == $item['position'])) {
                     $this->arranged_menu_array[$arranged_items_count]['edge'] = "last";
                 }
 
-                if (($menu_array[$start_index]['position'] == $item['position']) AND ($menu_array[$end_index]['position'] == $item['position'])) {
+                if (($menu_array[$start_index]['position'] == $item['position']) AND ( $menu_array[$end_index]['position'] == $item['position'])) {
                     $this->arranged_menu_array[$arranged_items_count]['edge'] = "one";
                 }
 
@@ -473,7 +476,7 @@ class Menu extends MY_Controller {
      */
     private function get_expand_items($url) {
         foreach ($this->sub_menu_array as $item) {
-            if (site_url($item['link']) == $url AND $item['parent_id'] != 0 and !empty($item['link'])) {
+            if (site_url($item['link']) == $url AND $item['parent_id'] != 0 and ! empty($item['link'])) {
                 $this->expand[$item['parent_id']] = TRUE;
                 $this->get_expand_items(site_url($this->sub_menu_array[$item['parent_id']]['link']));
             }

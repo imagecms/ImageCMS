@@ -61,7 +61,7 @@
                                             <input class="input-small onlyNumbersInput " id="how-much" type="text" name="max_apply"  disabled='disabled' maxlength="7"/>
                                         </span>
                                         <span class="d-i_b v-a_m">
-                                            <span class="frame_label no_connection m-r_15 spanForNoLimit" >
+                                            <span class="frame_label no_connection m-r_15 spanForNoLimit spanForNoLimitCheckbox" >
                                                 <span class="niceCheck" style="background-position: -46px 0px; ">
                                                     <input type="checkbox" checked="checked" class="noLimitCountCheck">
                                                 </span>
@@ -148,9 +148,9 @@
                                                     </span>
                                                 </div>
                                                 <div class="">
-                                                    <span class="frame_label no_connection m-r_15 spanForNoLimit" >
-                                                        <span class="niceCheck" id="giftSpanCheckbox" style="background-position: -46px 0px; ">
-                                                            <input type="checkbox" name="all_order[is_gift]" value="1" >
+                                                    <span id="giftSpanCheckbox" class="frame_label no_connection m-r_15 spanForNoLimit" >
+                                                        <span class="niceCheck" style="background-position: -46px 0px; ">
+                                                            <input type="checkbox" id="gift_checkbox" name="all_order[is_gift]" value="1" >
                                                         </span>
                                                         {lang('Gift Certificate', 'mod_discount')}
                                                     </span>
@@ -219,7 +219,7 @@
                                                     {foreach $categories as $category}
                                                         <option {if $category->getLevel() == 0}style="font-weight: bold;"{/if} value="{echo $category->getId()}">{str_repeat('-',$category->getLevel())}{echo ShopCore::encode($category->getName())}</option>
                                                     {/foreach}
-                                                </select>
+                                                </select></br>
                                                 <input type="checkbox" name="category[child]" value="1"/>  {lang('Change child category', 'mod_discount')} 
 
                                             </div>

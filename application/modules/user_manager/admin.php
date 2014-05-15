@@ -160,9 +160,7 @@ class Admin extends BaseAdminController {
      */
 
     function create_user() {
-        $this->set_tpl_roles();
-        if (!$this->ajaxRequest)
-            $this->display_tpl('create_user');
+
 
         if ($_POST) {
 
@@ -173,7 +171,7 @@ class Admin extends BaseAdminController {
             $val->set_rules('password', lang('Password', 'user_manager'), 'trim|min_length[' . $this->config->item('DX_login_min_length') . ']|max_length[' . $this->config->item('DX_login_max_length') . ']|required|xss_clean');
             $val->set_rules('password_conf', lang('Confirm the password', 'user_manager'), 'matches[password]|required');
             $val->set_rules('email', lang('E-Mail', 'user_manager'), 'trim|required|xss_clean|valid_email');
-            $val->set_rules('phone', lang('Phone', 'user_manager'), 'trim|numeric');
+            $val->set_rules('phone', lang('Phone', 'user_manager'), 'trim');
 
             ($hook = get_hook('users_create_set_val_rules')) ? eval($hook) : NULL;
 
@@ -217,8 +215,24 @@ class Admin extends BaseAdminController {
                     pjax('/admin/components/init_window/user_manager');
                 }
             } else {
-                showMessage(validation_errors(), '', 'r');
+                $fields = array('username', 'password', 'password_conf', 'email', 'phone');
+                $script = "<script type=\"text/javascript\">";
+                foreach ($fields as $field) {
+                    $error = $val->error($field);
+                    if (!empty($error)) {
+                        $script .= "showError('{$field}','{$error}'); ";
+                    }
+                }
+                $script .= "</script>";
+                echo $script;
             }
+        }
+
+        $this->set_tpl_roles();
+        if (!$this->ajaxRequest) {
+            $this->template->registerJsFile('templates/administrator/js/jquery.maskedinput-1.3.min.js', 'after');
+            $this->template->registerJsFile('application/modules/user_manager/templates/js/create.js', 'after');
+            $this->display_tpl('create_user');
         }
     }
 
@@ -293,13 +307,12 @@ class Admin extends BaseAdminController {
             $query = $this->db->get('users');
 
             if ($query->num_rows() == 0) {
-//                showMessage(lang('User not found', 'user_manager'), '', 'r');
-//                pjax('/admin/components/init_window/user_manager');
+                $this->template->add_array($this->show_edit_prems_tpl($id = 2));
+                $this->template->add_array(array('role_id' => $role));
                 $this->template->assign('users', FALSE);
                 $rezult_table = $this->fetch_tpl('main');
 
                 echo $rezult_table;
-//                exit();
             } else {
                 $users = $query->result_array();
 
@@ -314,17 +327,23 @@ class Admin extends BaseAdminController {
 
                 // recount users
                 if (count($users) == 0) {
-                    showMessage(lang('User not found'), '', 'r');
-                    pjax('/admin/components/init_window/user_manager');
-                    exit();
+                    $this->template->add_array($this->show_edit_prems_tpl($id = 2));
+                    $this->template->add_array(array('role_id' => $role));
+                    $this->template->assign('users', FALSE);
+                    $rezult_table = $this->fetch_tpl('main');
+
+                    echo $rezult_table;
+                } else {
+
+
+
+                    $this->template->assign('users', $users);
+                    $this->template->add_array($this->show_edit_prems_tpl($id = 2));
+                    $this->template->add_array(array('role_id' => $role));
+                    $rezult_table = $this->fetch_tpl('main');
+
+                    echo $rezult_table;
                 }
-
-                $this->template->assign('users', $users);
-                $this->template->add_array($this->show_edit_prems_tpl($id = 2));
-                $this->template->add_array(array('role_id' => $role));
-                $rezult_table = $this->fetch_tpl('main');
-
-                echo $rezult_table;
             }
         } else {
             showMessage(lang('a_bas_filt_pass_not_post'), '', 'r');

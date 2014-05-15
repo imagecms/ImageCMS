@@ -6,8 +6,9 @@
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <a href="/admin/components/cp/gallery" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Back", 'gallery')}</span></a>
-                <button type="button" name="button" class="btn formSubmit btn-success" data-form="#create_album_form" data-submit><i class="icon-plus-sign icon-white"></i>{lang("Create an album", 'gallery')}</button> 
+                <a href="/admin/components/cp/gallery" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Back", 'admin')}</span></a>
+                <button type="button" name="button" class="btn formSubmit btn-success" data-form="#create_album_form" data-submit><i class="icon-plus-sign icon-white"></i>{lang("Create", 'admin')}</button> 
+                <button type="button" name="button" class="btn formSubmit" data-form="#create_album_form" data-submit data-action="exit"><i class="icon-check"></i>{lang("Create and exit", 'admin')}</button> 
             </div>
         </div>
     </div>
