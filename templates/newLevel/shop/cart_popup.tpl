@@ -24,10 +24,10 @@
                                                 <span class="helper"></span>
                                                 <img src="{echo $item->getSmallPhoto()}" alt="{echo $item->getName()}"/>
                                             </span>
-                                            <span class="title">{echo $item->getSProducts()->getName()}</span>
+                                            <span class="title">{echo $item->getSProductsI18n()->getName()}</span>
                                         </a>
                                         <div class="description">
-                                            {if $item->getName() && trim($item->getName()) != trim($item->getSProducts()->getName())}
+                                            {if $item->getName() && trim($item->getName()) != trim($item->getSProductsI18n()->getName())}
                                                 <span class="frame-variant-name">
                                                     <span class="text-el">{lang('Вариант','newLevel')}</span>
                                                     <span class="code">({echo trim($item->getName())})</span>
