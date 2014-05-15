@@ -60,13 +60,10 @@
                             });
                         })
                     }
-                    // Check for browser support of event handling capability
-                    if (window.addEventListener)
-                        window.addEventListener("load", downloadJSAtOnload(scripts, callback, customEvent), false);
-                    else if (window.attachEvent)
-                        window.attachEvent("onload", downloadJSAtOnload(scripts, callback, customEvent));
-                    else
-                        window.onload = downloadJSAtOnload(scripts, callback, customEvent);
+                    ;
+                    $(window).load(function() {
+                        downloadJSAtOnload(scripts, callback, customEvent);
+                    });
                 }
             </script>
         {/literal}
@@ -128,7 +125,7 @@
         {/literal}
         { */}
         {/*}End. delete before upload to server{ */}
-        
+
         {/*fancybox}
         <link rel="stylesheet" type="text/css" href="{$THEME}js/fancybox/jquery.fancybox-1.3.4.css" media="all" />
         <script type="text/javascript" src="{$THEME}js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
@@ -136,11 +133,11 @@
 
         {/*}uncomment before opload to server and combine and minimize scripts (in comment <!-- scripts -->...<!-- scripts end -->) into united_scripts file{ */}
         {/*} Start. uncoment before development { */}
-        
+
         <script type="text/javascript">
             initDownloadScripts(['united_scripts'], 'init', 'scriptDefer');
         </script>
-        
+
         {/*} End. uncoment before development { */}
         {include_shop_tpl('js_templates')}
     </body>
