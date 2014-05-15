@@ -39,6 +39,15 @@ if (!function_exists('getCategoryColumns')) {
 
 }
 
+if (!function_exists('getOpenLevels')) {
+
+    function getOpenLevels() {
+        $tcs = new \template_manager\classes\TComponentShortcut();
+        return $tcs->TMenuColumn->getOpenLevels();
+    }
+
+}
+
 
 
 if (!function_exists('callComponentMethod')) {
@@ -59,7 +68,7 @@ if (!function_exists('callComponentMethod')) {
         }
 
         $arguments = func_get_args();
-        
+
         array_shift($arguments);
         array_shift($arguments);
         return call_user_func(array($component, $methodName), $arguments);

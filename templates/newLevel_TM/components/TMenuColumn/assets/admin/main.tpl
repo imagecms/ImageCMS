@@ -48,37 +48,41 @@
             </tr>
         </thead>
         <tbody>
-            {foreach $categories as $key => $category}
-                {if $category->id && in_array($category->id, $arrId)}
-                    <tr>
-                        <td>
-                            <div class="title lev">
-                                {if $arrHtml[$category->id]}
-                                    <button type="button" class="btn btn-small my_btn_s" data-rel="tooltip" data-placement="top" data-original-title="{lang('Toggle this category', 'newLevel_TM')}" style="display: none;" onclick="hideSubCategory(this)">
-                                        <i class="my_icon icon-minus"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-small my_btn_s btn-primary" data-rel="tooltip" data-placement="top" data-original-title="{lang('Expand Category', 'newLevel_TM')}" onclick="showSubCategory(this)">
-                                        <i class="my_icon icon-plus"></i>
-                                    </button>
-                                {/if}
-                                <a href="/admin/components/run/shop/categories/edit/{$category->id}" class="pjax" data-rel="tooltip" data-placement="top" data-original-title="{lang('Editing category', 'newLevel_TM')}">{echo $arrName[$category->id]}</a>
-                            </div>
+        <select name="openLevels">
+            <option {if $openLevels == 'all'}selected="selected"{/if}value="all">{lang('Open all levels', 'newLevel_TM')}</option>
+            <option {if $openLevels == '2'}selected="selected"{/if} value="2">{lang('Open two levels', 'newLevel_TM')}</option>
+        </select>
+        {foreach $categories as $key => $category}
+            {if $category->id && in_array($category->id, $arrId)}
+                <tr>
+                    <td>
+                        <div class="title lev">
+                            {if $arrHtml[$category->id]}
+                                <button type="button" class="btn btn-small my_btn_s" data-rel="tooltip" data-placement="top" data-original-title="{lang('Toggle this category', 'newLevel_TM')}" style="display: none;" onclick="hideSubCategory(this)">
+                                    <i class="my_icon icon-minus"></i>
+                                </button>
+                                <button type="button" class="btn btn-small my_btn_s btn-primary" data-rel="tooltip" data-placement="top" data-original-title="{lang('Expand Category', 'newLevel_TM')}" onclick="showSubCategory(this)">
+                                    <i class="my_icon icon-plus"></i>
+                                </button>
+                            {/if}
+                            <a href="/admin/components/run/shop/categories/edit/{$category->id}" class="pjax" data-rel="tooltip" data-placement="top" data-original-title="{lang('Editing category', 'newLevel_TM')}">{echo $arrName[$category->id]}</a>
+                        </div>
+                    </td>
+                    <td></td>
+                </tr>
+                {if $arrHtml[$category->id]}
+                    <tr class="frame_level">
+                        <td colspan="2">
+                            <table>
+                                <tbody>
+                                    {echo $arrHtml[$category->id]}
+                                </tbody>
+                            </table>
                         </td>
-                        <td></td>
                     </tr>
-                    {if $arrHtml[$category->id]}
-                        <tr class="frame_level">
-                            <td colspan="2">
-                                <table>
-                                    <tbody>
-                                        {echo $arrHtml[$category->id]}
-                                    </tbody>
-                                </table>
-                            </td>
-                        </tr>
-                    {/if}
                 {/if}
-            {/foreach}
+            {/if}
+        {/foreach}
         </tbody>
     </table>
     {form_csrf()}
@@ -88,11 +92,11 @@
 </button>
 {literal}
     <script>
-        function showSubCategory(el) {
-            $(el).hide().prev().show().end().closest('tr').next().show();
-        }
-        function hideSubCategory(el) {
-            $(el).hide().next().show().end().closest('tr').next().hide();
-        }
+                                    function showSubCategory(el) {
+                                        $(el).hide().prev().show().end().closest('tr').next().show();
+                                    }
+                                    function hideSubCategory(el) {
+                                        $(el).hide().next().show().end().closest('tr').next().hide();
+                                    }
     </script>
 {/literal}
