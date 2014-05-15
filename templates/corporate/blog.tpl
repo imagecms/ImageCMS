@@ -30,7 +30,7 @@
                                     <div class="postinfo">
                                         <a href="{site_url($page.full_url)}#comments">{$Comments[$page.id]}</a> 
                                         &nbsp;&nbsp;
-                                        <a href="{site_url($page.full_url)}">{lang('Читать дальше → ','corporate')}</a>
+                                        <a href="{site_url($page.full_url)}">{lang('Читать дальше','corporate')} → </a>
                                     </div>
 
                                     <div style="border-bottom:1px solid #ECECEC;">
