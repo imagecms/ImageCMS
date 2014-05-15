@@ -9,7 +9,7 @@ class TMenuColumn extends \template_manager\classes\TComponent {
      * Columns names array
      * @var type 
      */
-    private $columns = array(0, 1, 2, 3, 4, 5, 6, 7);
+    private $columns = array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 
     /**
      * Prepare param from xml to save in db
@@ -17,19 +17,12 @@ class TMenuColumn extends \template_manager\classes\TComponent {
      */
     public function select_column_menu($id) {
         $params = $this->getParam('columns');
-        $columns = array();
-        if (isset($params['columns'])) {
-            foreach ($params['columns'] as $column) {
-                $column['values'] = preg_replace('/\s+/', '', $column['values']);
-                $columns[$column['column']] = explode(',', $column['values']);
-            }
-        }
 
-        $select = '<select class="input-mini">';
-        
+        $select = '<select name="categoriesColumns[' . $id . ']" class="input-mini">';
+
         foreach ($this->columns as $i) {
             $selected = '';
-            if ($columns[$i] && in_array($id, $columns[$i]))
+            if ($params['columns'][$id] && $params['columns'][$id] == $i)
                 $selected = 'selected="selected"';
             $select .= "<option value='" . $i . "'" . $selected . ">" . $i . "</option>";
         }
@@ -107,7 +100,9 @@ class TMenuColumn extends \template_manager\classes\TComponent {
     public function renderAdmin() {
         $this->cAssetManager->registerScript('scripts', 'after');
         $this->cAssetManager->display('admin/main', array(
-            'handler' => $this->name)
+            'handler' => $this->name,
+            'openLevels' => $this->getOpenLevels()
+            )
         );
     }
 
@@ -115,17 +110,11 @@ class TMenuColumn extends \template_manager\classes\TComponent {
      * Update component params
      */
     public function updateParams() {
-        if ($_POST['columns']) {
+        if ($_POST['categoriesColumns']) {
             $data = \CI::$APP->input->post();
-            $dataToUpdate = array();
-            foreach ($data['columns'] as $column => $values) {
-                $dataToUpdate['columns'][] = array(
-                    'column' => $column,
-                    'values' => implode(',', $values)
-                );
-            }
 
-            $dataToUpdate['columns'] = serialize($dataToUpdate['columns']);
+            $dataToUpdate['columns'] = serialize($data['categoriesColumns']);
+            $dataToUpdate['openLevels'] = serialize($data['openLevels']);
             if (count($dataToUpdate) > 0)
                 return parent::updateParams($dataToUpdate);
         }
@@ -151,23 +140,23 @@ class TMenuColumn extends \template_manager\classes\TComponent {
         $component_data = $this->getParam('columns');
 
         if (!isset($component_data['columns'])) {
-            return FALSE;
+            return '0';
         }
 
         if ($category_id !== NULL) {
-            $category_columns = array();
-            foreach ($component_data['columns'] as $column) {
-                $values = explode(',', $column['values']);
-                if (in_array($category_id, $values)) {
-                    $category_columns[] = $column['column'];
-                }
-            }
-
-            if (count($category_columns) > 0) {
-                return implode('_', $category_columns);
-            }
+            return $component_data['columns'][$category_id] ? $component_data['columns'][$category_id] : '0';
         }
         return '0';
+    }
+
+    public function getOpenLevels() {
+        $component_data = $this->getParam('openLevels');
+
+        if (!isset($component_data['openLevels'])) {
+            return 'all';
+        } else {
+            return $component_data['openLevels'];
+        }
     }
 
 }
