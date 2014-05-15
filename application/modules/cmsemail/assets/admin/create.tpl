@@ -34,7 +34,7 @@
                                         <div class="control-group">
                                             <label class="control-label" for="comcount">{lang('Template name (only latin)', 'cmsemail')}:</label>
                                             <div class="controls">
-                                                <input id="comcount" type="text" class="required" name="mail_name" value=""/>
+                                                <input id="comcount" type="text" required class="required" name="mail_name" value=""/>
                                             </div>
                                         </div>
 
@@ -55,7 +55,7 @@
                                         <div class="control-group">
                                             <label class="control-label" for="comcount4">{lang('Theme', 'cmsemail')}:</label>
                                             <div class="controls">
-                                                <input id="comcount4" type="text" class="required" name="mail_theme" value=""/>
+                                                <input id="comcount4" type="text" required class="required" name="mail_theme" value=""/>
                                             </div>
                                         </div>
 

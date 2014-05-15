@@ -22,12 +22,12 @@
                         <div class="description">
                             {if $item->getName() && trim($item->getName()) != trim($item->getSProducts()->getName())}
                                 <span class="frame-variant-name">
-                                    <span class="text-el">{lang('Вариант','newLevel')}</span>
+                                    <span class="text-el">{lang('Вариант','newLevelVertical')}</span>
                                     <span class="code">({echo trim($item->getName())})</span>
                                 </span>
                             {/if}
                             {if $item->getNumber()}
-                                <span class="frame-variant-code">{lang('Артикул','newLevel')}  
+                                <span class="frame-variant-code">{lang('Артикул','newLevelVertical')}  
                                     <span class="code">({echo $item->getNumber()})
                                     </span>
                                 </span> 
@@ -37,14 +37,14 @@
                     <td>
                         <div class="frame-frame-count">
                             <div class="frame-count">
-                                <span class="count-or-compl">{lang('Кол-во', 'newLevel')}:</span>
+                                <span class="count-or-compl">{lang('Кол-во', 'newLevelVertical')}:</span>
                                 <span class="plus-minus">{echo $item->quantity}</span>
-                                <span class="text-el">{lang('шт.', 'newLevel')}</span>
+                                <span class="text-el">{lang('шт.', 'newLevelVertical')}</span>
                             </div>
                         </div>
                     </td>
                     <td class="frame-cur-sum-price">
-                        <span class="title">{lang('Сумма','newLevel')}: </span>
+                        <span class="title">{lang('Сумма','newLevelVertical')}: </span>
                         <div class="frame-prices f-s_0">
                             {if ShopCore::app()->SCurrencyHelper->convert($item->originPrice) != ShopCore::app()->SCurrencyHelper->convert($item->price)}
                                 <span class="price-discount">
@@ -79,7 +79,7 @@
                 <!-- Start. Shop kit -->
                 <tr class="row row-kits">
                     <td class="frame-items frame-items-kit">
-                        <div class="title-h3 c_9">{lang('Комплект товаров', 'newLevel')}</div>
+                        <div class="title-h3 c_9">{lang('Комплект товаров', 'newLevelVertical')}</div>
                         <ul class="items items-bask items-product">
                             {foreach $item->items as $k => $kitItem}
                                 <li>
@@ -97,12 +97,12 @@
                                         <div class="description">
                                             {if $kitItem->getName() && trim($kitItem->getName()) != trim($kitItem->getSProducts()->getName())}
                                                 <span class="frame-variant-name">
-                                                    <span class="text-el">{lang('Вариант','newLevel')}</span>
+                                                    <span class="text-el">{lang('Вариант','newLevelVertical')}</span>
                                                     <span class="code">({echo $kitItem->getName()})</span>
                                                 </span>
                                             {/if}
                                             {if $kitItem->getSProducts()->getNumber()}
-                                                <span class="frame-variant-code">{lang('Артикул','newLevel')}  
+                                                <span class="frame-variant-code">{lang('Артикул','newLevelVertical')}  
                                                     <span class="code">({echo $kitItem->getSProducts()->getNumber()})
                                                     </span>
                                                 </span> 
@@ -116,14 +116,14 @@
                     <td>
                         <div class="frame-frame-count">
                             <div class="frame-count">
-                                <span class="count-or-compl">{lang('Кол-во', 'newLevel')}:</span>
+                                <span class="count-or-compl">{lang('Кол-во', 'newLevelVertical')}:</span>
                                 <span class="plus-minus">{echo $item->quantity}</span>
-                                <span class="text-el">{lang('шт.', 'newLevel')}</span>
+                                <span class="text-el">{lang('шт.', 'newLevelVertical')}</span>
                             </div>
                         </div>
                     </td>
                     <td class="frame-cur-sum-price">
-                        <span class="title">{lang('Сумма','newLevel')}: </span>
+                        <span class="title">{lang('Сумма','newLevelVertical')}: </span>
                         <div class="frame-prices f-s_0">
                             {if ShopCore::app()->SCurrencyHelper->convert($item->originPrice) != ShopCore::app()->SCurrencyHelper->convert($item->price)}
                                 <span class="price-discount">
@@ -162,7 +162,7 @@
         {if $discount_val}
             <tr>
                 <td colspan="3">
-                    <span class="s-t f_l">{lang('Начальная стоимость товаров','newLevel')}:</span>
+                    <span class="s-t f_l">{lang('Начальная стоимость товаров','newLevelVertical')}:</span>
                     <div class="f_r">                
                         <span class="price f-w_b">{echo ShopCore::app()->SCurrencyHelper->convert($cartOriginPrice)}</span>
                         <span class="curr"> {$CS}</span>
@@ -172,7 +172,7 @@
         {/if}
         <tr>
             <td colspan="3">
-                <span class="s-t f_l">{lang('Cтоимость товаров','newLevel')}:</span>
+                <span class="s-t f_l">{lang('Cтоимость товаров','newLevelVertical')}:</span>
                 <div class="f_r">
                     <span class="price f-w_b">{echo ShopCore::app()->SCurrencyHelper->convert($cartPrice)}</span>
                     <span class="curr">{$CS}</span>
@@ -182,7 +182,7 @@
         {if $deliveryMethod && $deliveryMethod->getPrice() != 0 || $deliveryMethod && $deliveryMethod->getDeliverySumSpecifiedMessage() != ''}
             <tr>
                 <td colspan="3">
-                    <span class="s-t f_l">{lang('Доставка','newLevel')}:</span>
+                    <span class="s-t f_l">{lang('Доставка','newLevelVertical')}:</span>
                     <div class="f_r">
                         {if !$deliveryMethod->getDeliverySumSpecified()}
                             {$priceDel = $deliveryMethod->getPrice()}
@@ -197,7 +197,7 @@
                                     <span class="curr-add">{$NextCS}</span>)
                                 {/if}
                             {else:}
-                                <span class="text-el s-t">{lang('Бесплатно', 'newLevel')}</span>
+                                <span class="text-el s-t">{lang('Бесплатно', 'newLevelVertical')}</span>
                             {/if}
                         {else:}
                             <span class="text-el s-t">{echo $deliveryMethod->getDeliverySumSpecifiedMessage()}</span>
@@ -209,7 +209,7 @@
         {if $discount_val}
             <tr>
                 <td colspan="3">
-                    <span class="s-t f_l">{lang('Ваша текущая скидка','newLevel')}:</span>
+                    <span class="s-t f_l">{lang('Ваша текущая скидка','newLevelVertical')}:</span>
                     <div class="text-discount current-discount f_r">
                                         <span class="price f-w_b">{echo ShopCore::app()->SCurrencyHelper->convert($discount_val)}</span>
                                     <span class="curr">{$CS}</span>
@@ -221,7 +221,7 @@
         {if $gift_val}
             <tr>
                 <td colspan="3">
-                    <span class="s-t f_l">{lang('Подарочный сертификат','newLevel')}:</span>
+                    <span class="s-t f_l">{lang('Подарочный сертификат','newLevelVertical')}:</span>
                     <div class="text-discount f_r">
                         <span class="price f-w_b">{echo ShopCore::app()->SCurrencyHelper->convert($gift_val)}</span>
                         <span class="curr">{$CS}</span>
@@ -232,26 +232,26 @@
             <tr>
                 <td colspan="3">
                     <div class="clearfix">
-                        <span class="s-t f_l">{lang('Подарочный сертификат','newLevel')}:</span>
+                        <span class="s-t f_l">{lang('Подарочный сертификат','newLevelVertical')}:</span>
                         <div class="frame-gift f_r">
                             {if $gift_error}
                                 <div class="msg">
                                     <div class="error">
                                         <span class="icon_error"></span>
-                                        <span class="text-el">{lang('Неверный код подарочного сертификата', 'newLevel')}</span>
+                                        <span class="text-el">{lang('Неверный код подарочного сертификата', 'newLevelVertical')}</span>
                                     </div>
                                 </div>
                             {else:}
                                 <div class="btn-toggle-gift">
                                     <button type="button" class="d_l_1" data-drop="#gift" data-place="inherit" data-overlay-opacity="0">
-                                        <span class="text-el">{lang('Ввести промо-код', 'newLevel')}</span>
+                                        <span class="text-el">{lang('Ввести промо-код', 'newLevelVertical')}</span>
                                     </button>
                                 </div>
                             {/if}
                             <div id="gift" class="{if !$gift_error}drop{/if} o_h">
                                 <div class="btn-def f_r">
                                     <button type="button" id="giftButton">
-                                        <span class="text-el">{lang('Применить', 'newLevel')}</span>
+                                        <span class="text-el">{lang('Применить', 'newLevelVertical')}</span>
                                     </button>
                                 </div>
                                 <div class="o_h">
@@ -267,7 +267,7 @@
 </table>
 <div class="gen-sum-order footer-bask">
     <div class="inside-padd clearfix">
-        <span class="title f_l">{lang('К оплате с учетом доставки','newLevel')}:</span>
+        <span class="title f_l">{lang('К оплате с учетом доставки','newLevelVertical')}:</span>
         <span class="frame-prices f_r">
             <span class="current-prices f-s_0">
                 <span class="price-new">

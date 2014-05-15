@@ -64,7 +64,7 @@
                                                 <div class="control-group">
                                                     <label class="control-label" for="comcount4">{lang('Theme', 'cmsemail')}:</label>
                                                     <div class="controls">
-                                                        <input id="comcount4" type="text" name="mail_theme" value="{$model['theme']}"/>
+                                                        <input id="comcount4" type="text" name="mail_theme" class="required" required value="{$model['theme']}"/>
                                                     </div>
                                                 </div>
 

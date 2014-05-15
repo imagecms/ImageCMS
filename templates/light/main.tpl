@@ -20,6 +20,7 @@
         <meta name = "format-detection" content = "telephone=no" />
         <link rel="stylesheet" type="text/css" href="{$THEME}css/style.css" media="all" />
         <link rel="stylesheet" type="text/css" href="{$THEME}{$colorScheme}/colorscheme.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="{$THEME}{$colorScheme}/color.css" media="all" />
 
         {if $CI->uri->segment(1) == MY_Controller::getCurrentLocale()}
             {$lang = '/' . \MY_Controller::getCurrentLocale()} 
@@ -45,10 +46,10 @@
                             $.ajax({
                                 url: theme + 'js/' + i + '.js',
                                 dataType: "script",
-                                cache: false,
+                                cache: true,
                                 complete: function() {
                                     cL++;
-                                    if (cL == scriptsL)
+                                    if (cL === scriptsL)
                                         if (callback) {
                                             eval(callback)();
                                             setTimeout(function() {
@@ -60,13 +61,9 @@
                             
                         })
                     }
-                    // Check for browser support of event handling capability
-                    if (window.addEventListener)
-                        window.addEventListener("load", downloadJSAtOnload(scripts, callback, customEvent), false);
-                    else if (window.attachEvent)
-                        window.attachEvent("onload", downloadJSAtOnload(scripts, callback, customEvent));
-                    else
-                        window.onload = downloadJSAtOnload(scripts, callback, customEvent);
+                    $(window).load(function(){
+                        downloadJSAtOnload(scripts, callback, customEvent);
+                    });
                 }
             </script>
         {/literal}
@@ -136,7 +133,7 @@
         <script type="text/javascript" src="{$THEME}js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
         {end. fancybox*/}
 
-        {/*}uncomment before opload to server and combine and minimize scripts (in comment <!-- scripts -->...<!-- scripts end -->) into united_scripts file{ */}
+        {/*}uncomment before opload to server and combine and minimize scripts (in comment <!-- scripts -->...<!-- scripts end -->) into united_scripts file{ */}   
         {/*} Start. uncoment before development { */}
         
         <script type="text/javascript">

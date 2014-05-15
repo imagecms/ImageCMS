@@ -42,10 +42,10 @@
                             $.ajax({
                                 url: theme + 'js/' + i + '.js',
                                 dataType: "script",
-                                cache: false,
+                                cache: true,
                                 complete: function() {
                                     cL++;
-                                    if (cL == scriptsL)
+                                    if (cL === scriptsL)
                                         if (callback) {
                                             eval(callback)();
                                             setTimeout(function() {
@@ -56,13 +56,9 @@
                             });
                         })
                     }
-                    // Check for browser support of event handling capability
-                    if (window.addEventListener)
-                        window.addEventListener("load", downloadJSAtOnload(scripts, callback, customEvent), false);
-                    else if (window.attachEvent)
-                        window.attachEvent("onload", downloadJSAtOnload(scripts, callback, customEvent));
-                    else
-                        window.onload = downloadJSAtOnload(scripts, callback, customEvent);
+                    $(window).load(function(){
+                        downloadJSAtOnload(scripts, callback, customEvent);
+                    });
                 }
             </script>
         {/literal}
@@ -102,7 +98,7 @@
                     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#0eb48e), color-stop(100%,#09a77d)); /* Chrome,Safari4+ */
                     background: -webkit-linear-gradient(top,  #0eb48e 0%,#09a77d 100%); /* Chrome10+,Safari5.1+ */
                     background: -o-linear-gradient(top,  #0eb48e 0%,#09a77d 100%); /* Opera 11.10+ */
-                    background: -ms-linear-gradient(top,  #0eb48e 0%,#09a77d 100%); /* IE10+ */
+                    background: -ms-lпреимуществаinear-gradient(top,  #0eb48e 0%,#09a77d 100%); /* IE10+ */
                     background: linear-gradient(to bottom,  #0eb48e 0%,#09a77d 100%); /* W3C */
                     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0eb48e', endColorstr='#09a77d',GradientType=0 ); /* IE6-9 */
                 }
@@ -122,15 +118,15 @@
                 </a>
                 <div class="imagecms-buy-license">
                     <a href="http://www.imagecms.net/shop/prices">
-                        <span class="imagecms-text-el">Купить лицензицю</span>
+                        <span class="imagecms-text-el">{lang('Купить лицензицю', 'newLevelVertical')}</span>
                     </a>
                 </div>
                 <ul class="imagecms-list">
                     <li>
-                        <a href="http://www.imagecms.net" class="imagecms-ref">Обзор продукта</a>
+                        <a href="http://www.imagecms.net" class="imagecms-ref">{lang('Обзор продукта', 'newLevelVertical')}</a>
                     </li>
                     <li>
-                        <a href="http://www.imagecms.net/kliuchevye-preimushchestva/vozmozhnosti" class="imagecms-ref">преимущества</a>
+                        <a href="http://www.imagecms.net/kliuchevye-preimushchestva/vozmozhnosti" class="imagecms-ref">{lang('преимущества', 'newLevelVertical')}</a>
                     </li>
                     <li>
                         <div>

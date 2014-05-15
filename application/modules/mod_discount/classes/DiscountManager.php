@@ -306,7 +306,7 @@ class DiscountManager extends \MY_Controller {
         if ($result && $discountId)
             return array('success' => true, 'id' => $discountId);
         else
-            return array('success' => false, 'error' => array('wrong query to db'));
+            return array('success' => false, 'error' => array(lang('Error creating discount', 'mod_discount')));
     }
 
     /**

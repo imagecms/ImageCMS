@@ -797,7 +797,9 @@ $(document).ready(function() {
 
         clonedVarTr.attr('id', 'ProductVariantRow_' + countVarRows);
         $('#variantHolder').append(clonedVarTr);
-        $(window).scrollTop($(window).scrollTop() + 59)
+        $(window).scrollTop($(window).scrollTop() + 59);
+        number_tooltip();
+
     });
 
     /*------------------------- IMAGES -------------------------*/
@@ -1387,14 +1389,9 @@ $(document).ready(function() {
         }
     });
 
-
-    // if choose not a font file for watermark text
-    $("input[type='file'][name='watermark[watermark_font_path]']").live("click", function() {
-        oldFontPath = $("input[type='text'][name='watermark[watermark_font_path]']").val();
-    });
-    $("input[type='file'][name='watermark[watermark_font_path]']").live("change", function() {
+    $("input[type='file'][name='watermark_font_path']").live("change", function() {
         var allowedFileExtentions = ['ttf', 'fnt', 'fon', 'otf'];
-        var ext = $(this).val().split('.').pop();
+        var ext = $(this).val().split('.').pop().toLowerCase();
         var extentionIsAllowed = false;
         for (var i = 0; i < allowedFileExtentions.length; i++) {
             if (allowedFileExtentions[i] == ext) {
@@ -1402,11 +1399,12 @@ $(document).ready(function() {
                 break;
             }
         }
+
         if (extentionIsAllowed == false) {
             $(this).removeAttr("value");
-            showMessage("Ошибка", "Можно загружать только изображения", "error");
-            $("input[type='text'][name='watermark[watermark_font_path]']").val(oldFontPath);
-            return;
+            showMessage(langs.error, langs.onlyFontsFilesAllowed, "error");
+        } else {
+            $(".watermark_path_info div").html($(this).val().split('\\').pop());
         }
     });
 
@@ -1521,7 +1519,9 @@ $(document).ready(function() {
         };
 
         reader.readAsDataURL(file);
-        $(img).addClass('img-polaroid');
+        $(img).addClass('img-polaroid').css({
+            'max-height': '100%'
+        });
         $(this).siblings('.controls').html(img);
 
     });
@@ -1661,8 +1661,6 @@ $(document).ready(function() {
             }
         });
     });
-
-
 });
 
 

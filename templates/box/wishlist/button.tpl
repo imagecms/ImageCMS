@@ -4,7 +4,7 @@
         class="toWishlist"
         type="button"
         data-rel="tooltip"
-        data-title="{lang('В желаемое','newLevel')}"
+        data-title="{lang('В желаемое','box')}"
 
         {if $is_logged_in}
             data-drop="#wishListPopup"
@@ -17,10 +17,10 @@
         {/if}
         >
         <span class="icon_wish"></span>
-        <span class="text-el d_l">{lang('В желаемое','newLevel')}</span>
+        <span class="text-el d_l">{lang('В желаемое','box')}</span>
     </button>
-    <button class="inWishlist" type="button" data-rel="tooltip" data-title="{lang('В списке желаний','newLevel')}" {if $condBtn}style="display: none;"{/if}>
+    <button class="inWishlist" type="button" data-rel="tooltip" data-title="{lang('В списке желаний','box')}" {if $condBtn}style="display: none;"{/if}>
         <span class="icon_wish"></span>
-        <span class="text-el d_l">{lang('В списке желания','newLevel')}</span>
+        <span class="text-el d_l">{lang('В списке желания','box')}</span>
     </button>
 </div>

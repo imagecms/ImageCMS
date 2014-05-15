@@ -2,7 +2,7 @@
     <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
     <div class="drop-header">
         <div class="title">
-            {lang('Регистрация','newLevel')}
+            {lang('Регистрация','newLevelVertical')}
         </div>
     </div>
     <div class="drop-content">
@@ -12,7 +12,7 @@
                         return false;">
                     <div class="horizontal-form">
                         <label>
-                            <span class="title">{lang('Ваше имя:','newLevel')}</span>
+                            <span class="title">{lang('Ваше имя:','newLevelVertical')}</span>
                             <div class="frame-form-field">
                                 <input type="text" class="required" maxlength="30" name="username" value="{set_value('username')}" />
                             </div>
@@ -25,14 +25,14 @@
                             </div>
                         </label>
                         <label>
-                            <span class="title">{lang('Пароль:','newLevel')}</span>
+                            <span class="title">{lang('Пароль:','newLevelVertical')}</span>
                             <div class="frame-form-field">
                                 <input type="password" name="password" value="{set_value('password')}" />
                                 <span class="must">*</span>
                             </div>
                         </label>
                         <label>
-                            <span class="title">{lang('Повторите:','newLevel')}</span>
+                            <span class="title">{lang('Повторите:','newLevelVertical')}</span>
                             <div class="frame-form-field">
                                 <input type="password" class="required" name="confirm_password"/>
                                 <span class="must">*</span>
@@ -53,19 +53,19 @@
                             <span class="title">&nbsp;</span>
                             <div class="frame-form-field">
                                 <div class="btn-form m-b_15">
-                                    <input type="submit" value="{lang('Зарегистрироваться','newLevel')}"/>
+                                    <input type="submit" value="{lang('Зарегистрироваться','newLevelVertical')}"/>
                                 </div>
-                                <p class="help-block">{lang('Я уже зарегистрирован','newLevel')}</p>
+                                <p class="help-block">{lang('Я уже зарегистрирован','newLevelVertical')}</p>
                                 <ul class="items items-register-add-ref">
                                     <li>
                                         <button type="button" data-drop=".drop-enter" data-source="{site_url('auth')}">
-                                            <span class="text-el d_l_1">{lang('Войти','newLevel')}</span>
+                                            <span class="text-el d_l_1">{lang('Войти','newLevelVertical')}</span>
                                         </button>
                                     </li>
                                     <li>
                                         <span class="divider">|</span>
                                         <button type="button" data-drop=".drop-forgot" data-source="{site_url('auth/forgot_password')}">
-                                            <span class="text-el d_l_1">{lang('Напомнить пароль','newLevel')}</span>
+                                            <span class="text-el d_l_1">{lang('Напомнить пароль','newLevelVertical')}</span>
                                         </button>
                                     </li>
                             </div>

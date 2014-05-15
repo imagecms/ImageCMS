@@ -45,10 +45,10 @@
                             $.ajax({
                                 url: theme + 'js/' + i + '.js',
                                 dataType: "script",
-                                cache: false,
+                                cache: true,
                                 complete: function() {
                                     cL++;
-                                    if (cL == scriptsL)
+                                    if (cL === scriptsL)
                                         if (callback) {
                                             eval(callback)();
                                             setTimeout(function() {
@@ -59,13 +59,9 @@
                             });
                         })
                     }
-                    // Check for browser support of event handling capability
-                    if (window.addEventListener)
-                        window.addEventListener("load", downloadJSAtOnload(scripts, callback, customEvent), false);
-                    else if (window.attachEvent)
-                        window.attachEvent("onload", downloadJSAtOnload(scripts, callback, customEvent));
-                    else
-                        window.onload = downloadJSAtOnload(scripts, callback, customEvent);
+                    $(window).load(function(){
+                        downloadJSAtOnload(scripts, callback, customEvent);
+                    });
                 }
             </script>
         {/literal}

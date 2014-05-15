@@ -34,3 +34,7 @@ Thumbs.db
 /_tempLangs.php
 /uploadsNewlevel/.tmb/
 /uploads_cur
+/templates/builds/
+/templates/*/node_modules/
+/templates/*/package.json
+/templates/*/Gruntfile.js

@@ -1,0 +1,72 @@
+﻿msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-05-08 11:22+0300\n"
+"PO-Revision-Date: 2014-05-08 11:22+0300\n"
+"Last-Translator:  <>\n"
+"Language-Team:  <>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
+"X-Poedit-Basepath: ../../..\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-Language: \n"
+"X-Poedit-Country: \n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/red_helper/assets/admin/main.tpl:35
+msgid "Your email"
+msgstr "Ваш электронный адрес"
+
+#: ./application/modules/red_helper/assets/admin/main.tpl:39
+msgid "Choose password"
+msgstr "Выберите пароль"
+
+#: ./application/modules/red_helper/assets/admin/main.tpl:48
+msgid "Save changes"
+msgstr "Сохранить изменения"
+
+#: ./application/modules/red_helper/admin.php:27
+msgid "Settings saved"
+msgstr "Настройки сохранены"
+
+#: ./application/modules/red_helper/assets/admin/main.tpl:20
+msgid "Save settings"
+msgstr "Сохранить настройки"
+
+#: ./application/modules/red_helper/assets/admin/main.tpl:59
+msgid "Back"
+msgstr "Назад"
+
+#: ./application/modules/red_helper/assets/admin/main.tpl:4
+#: ./application/modules/red_helper/assets/admin/main.tpl:63
+msgid "Settings"
+msgstr "Параметры"
+
+#: ./application/modules/red_helper/assets/admin/main.tpl:27
+#: ./application/modules/red_helper/assets/admin/main.tpl:66
+msgid "Registration"
+msgstr "Регистрация"
+
+#: ./application/modules/red_helper/module_info.php:6
+#: ./application/modules/red_helper/assets/admin/main.tpl:55
+msgid "Red Helper"
+msgstr ""
+
+#: ./application/modules/red_helper/assets/admin/main.tpl:9
+#: ./application/modules/red_helper/assets/admin/main.tpl:31
+msgid "Your login"
+msgstr "Ваш логин"
+
+#: ./application/modules/red_helper/assets/admin/main.tpl:15
+#: ./application/modules/red_helper/assets/admin/main.tpl:47
+msgid "Close"
+msgstr "Закрыть"
+
+#: tmpLink
+msgid "Registration1"
+msgstr "Registration1wsaasdasd"
