@@ -1522,29 +1522,18 @@ $(document).ready(function() {
         $(img).addClass('img-polaroid').css({
             'max-height': '100%'
         });
-        $(this).siblings('.controls').html(img);
-
+        $(this).closest('.control-group').find('.controls').html(img);
     });
 
     // delete image buttons
-    $(".remove_btn").die('change').live("click", function() {
+    $(".remove_btn").die('click').live("click", function() {
         //$("#site_info_tab").delegate('.remove_btn', "click", function() {
         // setting hidden input value to 1 delete for delete image on saving
         $(this).parents(".control-group").find("input.si_delete_image").val("1");
         // display some message about deleting
-        $(this).parents(".siteinfo_image_container")
+        $(this).parents(".control-group").find(".siteinfo_image_container")
                 .empty()
                 .html("<img class='img-polaroid' src='/templates/administrator/images/select-picture.png' />");
-
-    });
-    // the delete button appears only on image hover
-    $(".siteinfo_image_container").die('change').live("mouseover", function() {
-        //$("#site_info_tab").delegate('.siteinfo_image_container', "mouseover", function() {
-        $(this).find(".remove_btn").show();
-    });
-    $(".siteinfo_image_container").die('change').live("mouseout", function() {
-        //$("#site_info_tab").delegate('.siteinfo_image_container', "mouseout", function() {
-        $(this).find(".remove_btn").hide();
     });
 
     var siteInfoLocalesDataCache = {};
