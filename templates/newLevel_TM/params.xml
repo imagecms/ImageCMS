@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <template label='New Level TM' name='newLevel_TM' type="shop" version="0.1">
+    <author>SiteImage</author>
     <!--
     <dependencies>
         <dependency entityName="module" name="moduleName1" type="required"/>
