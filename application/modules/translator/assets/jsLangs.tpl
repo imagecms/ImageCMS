@@ -35,4 +35,5 @@ langs["You have not specified text to translate."] = '<?php echo lang("You have 
 langs["Can not define language"] = '<?php echo lang("Can not define language", "translator")?>';
 langs["First"] = '<?php echo lang("First", "translator")?>';
 langs["Last "] = '<?php echo lang("Last ", "translator")?>';
+langs["Select all paths to files."] = '<?php echo lang("Select all paths to files.", "translator")?>';
 </script>
