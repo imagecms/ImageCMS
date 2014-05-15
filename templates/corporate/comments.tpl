@@ -29,7 +29,9 @@
     {/if}
 
     {if $can_comment === 1 AND !is_logged_in}
-        <p>{sprintf(lang('Только авторизованные пользователи могут оставлять комментарии. <a href="%s" class="loginAjax">Авторизуйтесь</a>, пожалуйста.','corporate'), site_url($modules.auth))}</p>
+        <p>{lang('Только авторизованные пользователи могут оставлять комментарии.', 'corporate')} 
+<a href="{echo site_url($modules.auth)}" class="loginAjax">{lang('Авторизуйтесь', 'corporate')}</a> 
+{lang('пожалуйста.', 'corporate')} </p>
     {/if}
 
     <form action="" method="post">
