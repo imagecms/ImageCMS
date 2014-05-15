@@ -490,6 +490,7 @@ input.plus-minus{float:right;width: 44px;height: 34px;display: block;text-align:
 /*/tabs*/
 
 /*header*/
+.fon-header{border-top: 2px solid transparent;}
 .left-header > .nav > li.active{background: none;}
 
 .nav-enter-reg .divider{padding: 0 18px;}
@@ -497,7 +498,7 @@ input.plus-minus{float:right;width: 44px;height: 34px;display: block;text-align:
 
 .logo{width: 250px;height: 48px;overflow: hidden;float: left;margin-top: 35px;}
 
-.menu-header{border-bottom: 1px solid transparent;}
+.menu-header{border-bottom: 1px solid transparent;border-top: 1px solid transparent;}
 .menu-header > .container{overflow: hidden;}/*because left-header has right: -1px*/
 
 .frame-search-form{-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;}
