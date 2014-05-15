@@ -89,6 +89,25 @@ $(document).ready(function() {
         $(this).text($(this).val());
     });
 
+    $('.createPagePaths option').live('dblclick', function() {
+        $(this).remove();
+    });
+
+    $('.createPagePathsAddInput').live('keyup', function() {
+        $('.createPagePathsAddButton').removeClass('disabled');
+        $('.createPagePathsAddButton').removeAttr('disabled');
+    });
+
+    $('.createPagePathsAddInput').live('blur', function() {
+        if ($(this).val()) {
+            $('.createPagePathsAddButton').removeClass('disabled');
+            $('.createPagePathsAddButton').removeAttr('disabled');
+        } else {
+            $('.createPagePathsAddButton').addClass('disabled');
+            $('.createPagePathsAddButton').attr('disabled', 'disabled');
+        }
+    });
+
 });
 
 var Sort = {
@@ -953,9 +972,19 @@ var Translator = {
                 paths: this.getPaths()
             },
             success: function(data) {
-                if (data) {
-                    var tableData = data.replace(/<script[\W\w]+<\/script>/, '');
-                    $('#po_table tbody').html(tableData);
+                try
+                {
+                    var response = $.parseJSON(data);
+                    if (response.error) {
+                        showMessage(lang('Error'), response.data, 'r');
+                    }
+                }
+                catch (err)
+                {
+                    if (data) {
+                        var tableData = data.replace(/<script[\W\w]+<\/script>/, '');
+                        $('#po_table tbody').html(tableData);
+                    }
                 }
             }
         });
@@ -1473,6 +1502,16 @@ var Exchange = {
 
         var modules_templatesExchanger = $('.exchanger #modules_templates').val();
         var modules_templatesReceiver = $('.receiver #modules_templates').val();
+
+        if (typeExchanger != 'main' && !modules_templatesExchanger) {
+            showMessage(lang('Error'), lang('Select all paths to files.'), 'r');
+            return;
+        }
+
+        if (typeReceiver != 'main' && !modules_templatesReceiver) {
+            showMessage(lang('Error'), lang('Select all paths to files.'), 'r');
+            return;
+        }
 
         $.ajax({
             type: 'POST',
