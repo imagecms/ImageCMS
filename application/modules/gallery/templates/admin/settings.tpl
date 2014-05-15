@@ -8,7 +8,7 @@
             <div class="d-i_b">
                 <a href="/admin/components/cp/gallery" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Back", 'admin')}</span></a>
                 <button name="button" class="btn formSubmit btn-primary" data-submit data-form="#gallery_settings_form">{lang("Save", 'gallery')}</button> 
-            </div>z
+            </div>
         </div>
     </div>
     <div class="tab-content">

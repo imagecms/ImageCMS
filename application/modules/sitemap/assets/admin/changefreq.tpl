@@ -6,7 +6,7 @@
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <a href="/admin/components/init_window/sitemap/priorities" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Go back", 'sitemap')}</span></a>
+                <a href="/admin/components/init_window/sitemap/priorities" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Go back", 'admin')}</span></a>
                 <button type="button" class="btn btn-small btn-primary formSubmit" data-form="#sitemap_changefreq_form" data-submit><i class="icon-ok icon-white"></i>{lang("Save", 'sitemap')}</button>
                 <div class="p_r d-i_b v-a_m">
                     <button type="button" class="btn btn-small btn-info dropdown-toggle" data-toggle="dropdown">
