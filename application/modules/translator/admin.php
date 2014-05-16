@@ -290,6 +290,11 @@ class Admin extends BaseAdminController {
 
         $result = $this->poFileManager->toArray($module_template, $type, $lang);
         $currentLangs = $result['po_array'];
+//        var_dumps_exit();
+        
+        if(!$currentLangs){
+            return json_encode(array('error' => TRUE, 'data' => lang('Update and save translation file befor this action.', 'translator')));
+        }
 
         foreach ($all_langs as $origin => $paths) {
             if ($currentLangs[$origin]) {
@@ -593,11 +598,11 @@ class Admin extends BaseAdminController {
      */
     public function getLangaugesNames() {
         $languages = get_language_names();
-        $language = strtolower($this->input->get('term'));
+        $language = mb_strtolower($this->input->get('term'));
         $data = array();
 
         foreach ($languages as $key => $lang) {
-            if (strstr(strtolower($lang), $language) && $language != 'all_languages') {
+            if (strstr(mb_strtolower($lang), $language) && $language != 'all_languages') {
                 $data[] = array('locale' => $key, 'label' => $lang);
             } elseif ($language == 'all_languages') {
                 $data[] = array('locale' => $key, 'label' => $lang);

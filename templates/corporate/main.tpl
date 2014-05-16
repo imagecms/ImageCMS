@@ -23,6 +23,8 @@
         <script type="text/javascript" src="{$THEME}js/jquery-1.8.3.min.js"></script>
     </head>
     <body>
+ 	{include_tpl('language/jsLangsDefine.tpl')}
+        {include_tpl('language/jsLangs.tpl')}
         <div class="main-body">
             <div class="fon-header">
                 <header>

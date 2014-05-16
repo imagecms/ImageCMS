@@ -1196,10 +1196,13 @@ function initAdminArea() {
     $('.controls img.img-polaroid').die('click').live('click', function() {
         $(this).closest('.control-group').find('input:file').click();
     });
+    $('.change_btn').die('click').live('click', function() {
+        $($(this).data('file')).click();
+    });    
 
     $('[data-url="file"] input[type="file"]').die('change').live('change', function(e) {
-        $this = $(this);
-        $type_file = $this.val();
+        var $this = $(this);
+        var $type_file = $this.val();
 
         var file = this.files[0];
 
