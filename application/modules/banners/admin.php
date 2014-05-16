@@ -112,8 +112,9 @@ class Admin extends BaseAdminController {
     public function delete() {
         /** Remove Banners by Ids */
         $ids = $this->input->post('id');
-        foreach (json_decode($ids) as $key)
+        foreach (json_decode($ids) as $key) {
             $this->banner_model->del_banner($key);
+        }
     }
 
     /**
