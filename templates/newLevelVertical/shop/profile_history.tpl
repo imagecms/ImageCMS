@@ -20,7 +20,7 @@
             <tbody>
                 {foreach $orders as $order}
                     <tr>
-                        <td><a rel="nofollow" href="{shop_url('cart/view/' . $order->getKey())}">{lang('Заказ #','newLevelVertical')}{echo $order->getId()}</a></td>
+                        <td><a rel="nofollow" href="{shop_url('order/view/' . $order->getKey())}">{lang('Заказ #','newLevelVertical')}{echo $order->getId()}</a></td>
                         <td>{date("d-m-Y H:i", $order->getDateCreated())}</td>
                         <td>
                             <div class="frame-prices">

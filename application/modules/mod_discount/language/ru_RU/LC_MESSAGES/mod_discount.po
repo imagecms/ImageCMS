@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-15 04:47+0300\n"
-"PO-Revision-Date: 2014-05-15 04:47+0300\n"
+"POT-Creation-Date: 2014-05-16 05:46+0300\n"
+"PO-Revision-Date: 2014-05-16 05:46+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -468,3 +468,7 @@ msgstr "Фиксированный"
 #: ./application/modules/mod_discount/assets/discount_order.tpl:10
 msgid "number"
 msgstr "число"
+
+#: tmpLink
+msgid "Create discount"
+msgstr "Создать скидку"
