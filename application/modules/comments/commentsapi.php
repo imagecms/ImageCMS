@@ -188,20 +188,11 @@ class Commentsapi extends Comments {
 
         if (strstr($url, '/product/')) {
             $url = parse_url($url);
-
             /** Check is lang segment and remove it from url path * */
             $urlArraySegments = explode("/", $url["path"]);
-            $langKey = $urlArraySegments[1];
 
-            if (array_key_exists($langKey, $this->core->langs)) {
-                $url['path'] = substr_replace($url['path'], '', 0, strlen($langKey) + 1);
-            }
-
-            $search = array('shop', 'product', '/');
-            $replace = array('', '', '');
-            $url = str_replace($search, $replace, $url['path']);
             $id = $this->db->select('id, enable_comments')
-                    ->where('url', $url)
+                    ->where('url', end($urlArraySegments))
                     ->get('shop_products')
                     ->row();
 
