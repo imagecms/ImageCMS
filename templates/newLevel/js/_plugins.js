@@ -2526,7 +2526,7 @@ function getCookie(c_name)
             scrollTop: null
         };
         this.setParameters = function(options) {
-            $.extend($.drop.dP, options);
+            $.extend(this.dP, options);
         };
         this.setMethods = function(ms) {
             $.extend(methods, ms);

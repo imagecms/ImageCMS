@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-12 11:37+0300\n"
-"PO-Revision-Date: 2014-05-12 11:37+0300\n"
+"POT-Creation-Date: 2014-05-15 09:55+0300\n"
+"PO-Revision-Date: 2014-05-15 09:55+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -17,6 +17,10 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./templates/newLevel/404.tpl:10
+msgid "Приносим свои извинения за доставленные неудобства. Для продолжения работы вы можете перейти к представленным пунктам меню, воспользоваться  поиском по сайту либо перейти на"
+msgstr ""
 
 #: ./templates/newLevel/start_page_category_menu/error.tpl:12
 #: ./templates/newLevel/category_menu_first/error.tpl:12
@@ -71,10 +75,6 @@ msgstr ""
 
 #: ./templates/newLevel/404.tpl:9
 msgid "Эта страница не существует или была удалена."
-msgstr ""
-
-#: ./templates/newLevel/404.tpl:10
-msgid "Приносим свои извинения за доставленные неудобства. Для продолжения работы вы можете перейти к представленным пунктам меню, воспользоваться  поиском по сайту либо перейти на"
 msgstr ""
 
 #: ./templates/newLevel/404.tpl:12

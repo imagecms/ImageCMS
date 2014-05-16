@@ -8,7 +8,7 @@
             <div class="d-i_b">
                 <a href="/admin/components/cp/gallery" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Back", 'admin')}</span></a>
                 <button name="button" class="btn formSubmit btn-primary" data-submit data-form="#gallery_settings_form">{lang("Save", 'gallery')}</button> 
-            </div>z
+            </div>
         </div>
     </div>
     <div class="tab-content">
@@ -38,7 +38,7 @@
                                                     </select>
                                                     <select name="sort_order" class="input-large">
                                                         <option value="desc" {if $settings.sort_order == "desc"} selected="selected" {/if}>{lang("in descending order", 'gallery')}</option> 
-                                                        <option value="asc" {if $settings.sort_order == "asc"} selected="selected" {/if}>{lang("in  ascending order", 'gallery')}</option>    
+                                                        <option value="asc" {if $settings.sort_order == "asc"} selected="selected" {/if}>{lang("in ascending order", 'gallery')}</option>    
                                                     </select>
                                                 </div>
                                             </div>
@@ -311,7 +311,7 @@
                                                 <div class="control-group">
                                                     <label class="control-label" for="watermark_color">{lang("Font colour", 'gallery')}</label>
                                                     <div class="controls">
-                                                        <input type="text" value="{$settings.watermark_color}" class="ColorPicker"  name="watermark_color" id="watermark_color" maxlength="6"/>
+                                                        <input type="text" value="{$settings.watermark_color}" class="ColorPicker"  name="watermark_color" id="watermark_color" maxlength="10"/>
                                                     </div>
                                                 </div>
                                                 <div class="control-group">

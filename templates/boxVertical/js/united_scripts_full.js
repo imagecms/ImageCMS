@@ -4831,7 +4831,7 @@ function init() {
             drop.nStRadio({
                 wrapper: $(".frame-label"),
                 elCheckWrap: '.niceRadio'
-                        //,classRemove: 'b_n'//if not standart
+                        ,classRemove: 'b_n'//if not standart
             });
         }
         if ($.existsN(drop.find('[onsubmit*="ImageCMSApi"]')) || drop.is('#sendMail')) {
