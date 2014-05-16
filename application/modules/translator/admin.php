@@ -290,9 +290,8 @@ class Admin extends BaseAdminController {
 
         $result = $this->poFileManager->toArray($module_template, $type, $lang);
         $currentLangs = $result['po_array'];
-//        var_dumps_exit();
         
-        if(!$currentLangs){
+        if(!$currentLangs && !$returnArray){
             return json_encode(array('error' => TRUE, 'data' => lang('Update and save translation file befor this action.', 'translator')));
         }
 

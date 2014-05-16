@@ -123,6 +123,7 @@
                                                             $(this).prev().click()" style="width: 422px; margin-left: 10px; margin-bottom: 10px">
                                             <select name="paths[]" multiple="true" class="span7 createPagePaths" required="">
                                             </select>
+                                            <span class="help-block">{lang('Double click to deleting', 'translator')}</span>
                                         </div>
                                     </div>
 

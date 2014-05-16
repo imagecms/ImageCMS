@@ -94,12 +94,17 @@ $(document).ready(function() {
     });
 
     $('.createPagePathsAddInput').live('keyup', function() {
-        $('.createPagePathsAddButton').removeClass('disabled');
-        $('.createPagePathsAddButton').removeAttr('disabled');
+        if ($.trim($(this).val())) {
+            $('.createPagePathsAddButton').removeClass('disabled');
+            $('.createPagePathsAddButton').removeAttr('disabled');
+        } else {
+            $('.createPagePathsAddButton').addClass('disabled');
+            $('.createPagePathsAddButton').attr('disabled', 'disabled');
+        }
     });
 
     $('.createPagePathsAddInput').live('blur', function() {
-        if ($(this).val()) {
+        if ($.trim($(this).val())) {
             $('.createPagePathsAddButton').removeClass('disabled');
             $('.createPagePathsAddButton').removeAttr('disabled');
         } else {
@@ -1489,6 +1494,7 @@ var CreatePoFile = {
         var pathSelector = $(curElement).next().next();
         $(pathSelector).append('<option selected value="' + path + '">' + path + '</option>')
         $(curElement).next().val('');
+        $(curElement).addClass('disabled').attr('disabled', 'disabled');
     }
 };
 
