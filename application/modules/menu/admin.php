@@ -821,7 +821,7 @@ class Admin extends BaseAdminController {
         $val = $this->form_validation;
         $val->set_rules('menu_name', lang("Name", 'menu'), 'required|min_length[2]|max_length[25]|alpha_dash');
         $val->set_rules('main_title', lang("Name", 'menu'), 'required|max_length[100]');
-        $val->set_rules('menu_tpl', lang("Template folder", 'menu'), 'required|max_length[255]');
+//        $val->set_rules('menu_tpl', lang("Template folder", 'menu'), 'required|max_length[255]');
         $val->set_rules('menu_desc', lang("Description", 'menu'), 'max_length[500]');
         $val->set_rules('menu_expand_level', lang("Nesting level", 'menu'), 'numeric|max_length[2]');
 
@@ -858,7 +858,7 @@ class Admin extends BaseAdminController {
         $val = $this->form_validation;
         $val->set_rules('menu_name', lang("Name", 'menu'), 'required|min_length[2]|max_length[25]|alpha_dash');
         $val->set_rules('main_title', lang("Name", 'menu'), 'required|max_length[100]');
-        $val->set_rules('menu_tpl', lang("Template folder", 'menu'), 'required|max_length[5000]');
+//        $val->set_rules('menu_tpl', lang("Template folder", 'menu'), 'required|max_length[5000]');
         $val->set_rules('menu_desc', lang("Description", 'menu'), 'max_length[500]');
         $val->set_rules('menu_expand_level', lang("Nesting level", 'menu'), 'numeric|max_length[2]');
 
