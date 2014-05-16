@@ -78,7 +78,16 @@ class Translator extends MY_Controller {
 
     public function getSettings() {
         $settings = getSettings();
-        $settings['curLocale'] = MY_Controller::getCurrentLocale();
+        
+        if (strstr($_SERVER['HTTP_REFERER'], 'admin')) {
+            $langs = $this->config->item('languages');
+            $language = $this->config->item('language');
+            $locale = $langs[$language][0];
+        } else {
+            $locale = MY_Controller::getCurrentLocale();
+        }
+        
+        $settings['curLocale'] = $locale;
         return json_encode($settings);
     }
 

@@ -28,7 +28,7 @@
                     <thead>
                         <tr>
                             <th colspan="6">
-                                {lang('Values', 'translator')}
+                                {lang('Exchange files', 'translator')}
                             </th>
                         </tr>
                     </thead>
