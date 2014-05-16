@@ -142,11 +142,15 @@ class Admin extends BaseAdminController {
                     'locale' => $this->def_locale,
                 );
                 /** Create new banner from data-array */
-                $lid = $this->banner_model->add_banner($data);
+                try {
+                    $lid = $this->banner_model->add_banner($data);
 
-                showMessage(lang('Banner created', 'banners'));
-                /** Show successful message and redirect */
-                pjax('/admin/components/init_window/banners');
+                    showMessage(lang('Banner created', 'banners'));
+                    /** Show successful message and redirect */
+                    pjax('/admin/components/init_window/banners');
+                } catch (Exception $e) {
+                    showMessage($e->getMessage(), '', 'r');
+                }
             } else {
                 /** Show validation error message */
                 showMessage(validation_errors(), false, 'r');
