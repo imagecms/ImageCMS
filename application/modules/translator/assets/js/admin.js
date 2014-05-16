@@ -94,12 +94,17 @@ $(document).ready(function() {
     });
 
     $('.createPagePathsAddInput').live('keyup', function() {
-        $('.createPagePathsAddButton').removeClass('disabled');
-        $('.createPagePathsAddButton').removeAttr('disabled');
+        if ($.trim($(this).val())) {
+            $('.createPagePathsAddButton').removeClass('disabled');
+            $('.createPagePathsAddButton').removeAttr('disabled');
+        } else {
+            $('.createPagePathsAddButton').addClass('disabled');
+            $('.createPagePathsAddButton').attr('disabled', 'disabled');
+        }
     });
 
     $('.createPagePathsAddInput').live('blur', function() {
-        if ($(this).val()) {
+        if ($.trim($(this).val())) {
             $('.createPagePathsAddButton').removeClass('disabled');
             $('.createPagePathsAddButton').removeAttr('disabled');
         } else {
@@ -1489,6 +1494,7 @@ var CreatePoFile = {
         var pathSelector = $(curElement).next().next();
         $(pathSelector).append('<option selected value="' + path + '">' + path + '</option>')
         $(curElement).next().val('');
+        $(curElement).addClass('disabled').attr('disabled', 'disabled');
     }
 };
 
@@ -1542,7 +1548,11 @@ var AceEditor = {
     changeTheme: function(curElement) {
         var theme = $(curElement).val();
         if (theme) {
-            this.editor.setTheme("ace/theme/" + theme);
+            if (navigator.userAgent.toLowerCase().search('linux')) {
+                this.editor.setTheme("ace/theme/" + theme);
+            } else {
+                this.editor.setTheme("ace\\theme\\" + theme);
+            }
             $.ajax({
                 type: "POST",
                 data: {
@@ -1554,17 +1564,29 @@ var AceEditor = {
             });
         }
 
+
     },
     setTheme: function(theme) {
         var curTheme = theme ? theme : $('.editorTheme').val();
         if (curTheme) {
-            this.editor.setTheme("ace/theme/" + curTheme);
+            if (navigator.userAgent.toLowerCase().search('linux')) {
+                this.editor.setTheme("ace/theme/" + curTheme);
+            } else {
+                this.editor.setTheme("ace\\theme\\" + curTheme);
+            }
         }
     },
     init: function() {
         this.editor = ace.edit("fileEdit");
-        this.editor.setTheme("ace/theme/chrome");
-        this.editor.getSession().setMode("ace/mode/xml");
+
+        if (navigator.userAgent.toLowerCase().search('linux')) {
+            this.editor.setTheme("ace/theme/chrome");
+            this.editor.getSession().setMode("ace/mode/xml");
+        } else {
+            this.editor.setTheme("ace\\theme\\chrome");
+            this.editor.getSession().setMode("ace\\mode\\xml");
+        }
+
     },
     render: function(fileContent, selectedLine, fileExtention) {
         this.init();

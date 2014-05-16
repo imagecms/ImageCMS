@@ -1,0 +1,146 @@
+﻿msgid ""
+msgstr ""
+"Project-Id-Version: ImageCms\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-05-16 12:42+0300\n"
+"PO-Revision-Date: 2014-05-16 12:42+0300\n"
+"Last-Translator: mark <shfasdfsdf>\n"
+"Language-Team:  <>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-Country: UKRAINE\n"
+"X-Poedit-SearchPath-0: ../../../\n"
+
+#: /var/www/image.loc/_tempLangs.php:6
+msgid "Contacts"
+msgstr "Contacts"
+
+#: /var/www/image.loc/_tempLangs.php:7
+msgid "Your message has been sent."
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:8
+#: /var/www/image.loc/_tempLangs.php:9
+msgid "Your name"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:10
+#: /var/www/image.loc/_tempLangs.php:11
+msgid "Email"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:12
+#: /var/www/image.loc/_tempLangs.php:13
+msgid "Subject"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:14
+msgid "Message"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:15
+msgid "Message text"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:16
+msgid "Protection code"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:17
+msgid "Enter protection code"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:18
+msgid "Send"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:19
+msgid "Feedback settings"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:20
+msgid "Go back"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:21
+msgid "Save"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:22
+msgid "Properties"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:23
+msgid "E-Mail"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:24
+msgid "Specify the e-mail address for mailing"
+msgstr ""
+
+#: /var/www/image.loc/_tempLangs.php:25
+msgid "Maximum message length"
+msgstr ""
+
+#: ../../..//admin.php:59
+#, fuzzy
+msgid "Settings have been saved"
+msgstr "Settings saved success"
+
+#: ../../..//module_info.php:4
+#: ../../..//feedback.php:58
+msgid "Feedback"
+msgstr ""
+
+#: ../../..//feedback.php:26
+msgid "Field is required"
+msgstr ""
+
+#: ../../..//feedback.php:27
+msgid "Length is less than the minimum"
+msgstr ""
+
+#: ../../..//feedback.php:28
+msgid "Email is not valid"
+msgstr ""
+
+#: ../../..//feedback.php:29
+msgid "Length greater than the maximum"
+msgstr ""
+
+#: ../../..//feedback.php:50
+msgid "Improper protection code"
+msgstr ""
+
+#: ../../..//feedback.php:69
+#: ../../..//feedback.php:83
+#: ../../..//feedback.php:100
+msgid "Name"
+msgstr ""
+
+#: ../../..//feedback.php:71
+#: ../../..//feedback.php:82
+#: ../../..//feedback.php:99
+msgid "Theme"
+msgstr ""
+
+#: ../../..//feedback.php:74
+#: ../../..//feedback.php:76
+msgid "Code protection"
+msgstr ""
+
+#: ../../..//feedback.php:84
+#: ../../..//feedback.php:101
+msgid "E-mail"
+msgstr ""
+
+#: ../../..//feedback.php:92
+msgid "Error"
+msgstr ""

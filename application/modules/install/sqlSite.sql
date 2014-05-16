@@ -2337,6 +2337,41 @@ INSERT INTO `widget_i18n` (`id`, `locale`, `data`) VALUES
 (17, 'ru', '<div class="d_i-b phones-header"><span>8 800 <span class="f-w_b">772-22-22</span></span>\n<p class="phones-info">бесплатно по Украине</p>\n</div>\n<div class="d_i-b phones-header phones-header-last"><span>097 <span class="f-w_b">772-22-22</span></span>\n<p class="phones-info">Мобильный телефон</p>\n</div>'),
 (18, 'ru', '<p>&copy; 2014 Image Robotics - лидер в производстве роботов</p>\n<p>Powered by <a href="http://www.imagecms.net/free-cms-corporate">ImageCMS Corporate</a></p>');
 
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `mod_banner`
+--
+
+DROP TABLE IF EXISTS `mod_banner`;
+CREATE TABLE IF NOT EXISTS `mod_banner` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `active` tinyint(4) NOT NULL,
+  `active_to` int(11) DEFAULT NULL,
+  `where_show` text,
+  `group` text,
+  `position` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `mod_banner_i18n`
+--
+
+DROP TABLE IF EXISTS `mod_banner_i18n`;
+CREATE TABLE IF NOT EXISTS `mod_banner_i18n` (
+  `id` int(11) NOT NULL,
+  `url` text,
+  `locale` varchar(5) NOT NULL,
+  `name` varchar(25) DEFAULT NULL,
+  `description` text,
+  `photo` varchar(255) DEFAULT NULL,
+  KEY `id` (`id`,`locale`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-05 01:33+0300\n"
-"PO-Revision-Date: 2014-05-05 01:33+0300\n"
+"POT-Creation-Date: 2014-05-16 05:57+0300\n"
+"PO-Revision-Date: 2014-05-16 05:57+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -61,7 +61,7 @@ msgstr "Без категории"
 
 #: ./application/modules/cfcm/templates/admin/index.tpl:19
 msgid "Add field"
-msgstr "Добавить поле"
+msgstr "Создать поле"
 
 #: ./application/modules/cfcm/templates/admin/index.tpl:10
 msgid "Fields groups"
