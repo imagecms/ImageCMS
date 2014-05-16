@@ -286,12 +286,20 @@ if (!function_exists('getPoFileAttributes')) {
 
     function getPoFileAttributes($domain) {
         if ($domain) {
-            $currentLocale = MY_Controller::getCurrentLocale();
             $CI = & get_instance();
-            $language = $CI->db->where('identif', $currentLocale)->get('languages');
-            if ($language) {
+
+            if (strstr($_SERVER['HTTP_REFERER'], 'admin')) {
+                $langs = $CI->config->item('languages');
+                $language = $CI->config->item('language');
+                $locale = $langs[$language][1];
+            } else {
+                $currentLocale = MY_Controller::getCurrentLocale();
+                $language = $CI->db->where('identif', $currentLocale)->get('languages');
                 $language = $language->row_array();
                 $locale = $language['locale'];
+            }
+
+            if ($locale) {
                 $attributes = array();
 
                 switch ($domain) {

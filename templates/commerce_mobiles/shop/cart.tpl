@@ -146,9 +146,11 @@
                                     {lang('Не выбран','commerce_mobiles')}
                                 </option>
                                 {foreach $dm->getPaymentMethodss() as $pm}
-                                    <option value="{echo $pm->getId()}">
-                                        {echo $pm->getName()}
-                                    </option>
+                                    {if $pm->getActive()}
+                                        <option value="{echo $pm->getId()}">
+                                            {echo $pm->getName()}
+                                        </option>
+                                    {/if}
                                 {/foreach}
                             </select>
                         {/if}
