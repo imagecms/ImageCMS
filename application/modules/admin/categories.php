@@ -152,10 +152,14 @@ class Categories extends BaseAdminController {
         $this->form_validation->set_rules('page_tpl', lang("Page template", "admin"), 'trim|max_length[50]|callback_tpl_validation');
         $this->form_validation->set_rules('main_tpl', lang("Main template", "admin"), 'trim|max_length[50]|callback_tpl_validation');
         $this->form_validation->set_rules('per_page', lang("Per page", "admin"), 'required|trim|integer|max_length[9]|min_length[1]|is_natural_no_zero');
+        if ($cat_id) {
+            $cat = $this->cms_admin->get_category($cat_id);
+            $groupId = (int) $cat['category_field_group'];
+            $groupId_POST = (int) $this->input->post('category_field_group');
 
-        $groupId = (int) $this->input->post('category_field_group');
-        ($hook = get_hook('cfcm_set_rules')) ? eval($hook) : NULL;
-
+            if ($groupId != -1 && $groupId_POST != -1)
+                ($hook = get_hook('cfcm_set_rules')) ? eval($hook) : NULL;
+        }
         if ($this->form_validation->run($this) == FALSE) {
             ($hook = get_hook('admin_create_cat_val_failed')) ? eval($hook) : NULL;
 
@@ -238,7 +242,6 @@ class Categories extends BaseAdminController {
                     break;
 
                 case 'update':
-                    $cat = $this->cms_admin->get_category($cat_id);
 
                     /** Init Event. Pre Create Category */
                     \CMSFactory\Events::create()->registerEvent(array('pageId' => $cat_id, 'url' => $cat['url']), 'Categories:preUpdate');
