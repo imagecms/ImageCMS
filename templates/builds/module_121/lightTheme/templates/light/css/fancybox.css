@@ -1,0 +1,33 @@
+/*fancybox*/
+#fancybox-loading{position:fixed;top:50%;left:50%;width:40px;height:40px;margin-top:-20px;margin-left:-20px;cursor:pointer;overflow:hidden;z-index:1104;display:none}
+#fancybox-loading div{position:absolute;top:0;left:0;width:40px;height:480px;background-image:url("../images/fancybox.png")}
+#fancybox-overlay{position:absolute;top:0;left:0;width:100%;z-index:1100;display:none}
+#fancybox-tmp{border:0;overflow:auto;display:none;margin:0;padding:0}
+#fancybox-wrap{position:absolute;top:0;left:0;z-index:1101;outline:none;display:none;margin:20px;}
+#fancybox-hide-sel-frame{position:absolute;top:0;left:0;width:100%;height:100%;background:transparent;z-index:1101}
+#fancybox-error{color:#444;font:normal 12px/20px Arial;margin:0;padding:14px}
+#fancybox-img{width:100%;height:100%;border:none;outline:none;line-height:0;vertical-align:top;margin:0;padding:0}
+#fancybox-frame{border:none;width: 100%;height: 100%;}
+#fancybox-left, #fancybox-right{position:absolute;bottom:0;height:100%;width:50px;cursor:pointer;outline:none;z-index:1102;display:none}
+#fancybox-left{left:0}
+#fancybox-right{right:0}
+#fancybox-left:hover, #fancybox-right:hover{visibility:visible}
+.fancybox-bg{position:absolute;border:0;width:20px;height:20px;z-index:1001;margin:0;padding:0}
+#fancybox-title{font-family:Helvetica;font-size:12px;color:#333;text-align:center;padding: 15px 0;font-size: 18px;-moz-box-shadow: 0 1px 1px #ece9e6;-webkit-box-shadow: 0 1px 1px #ece9e6;box-shadow: 0 1px 1px #ece9e6;}
+.fancybox-title-inside{padding-bottom:10px;text-align:center;color:#333;position:relative;margin-left: 0 !important;z-index: 1;}
+.fancybox-title-outside{padding-top:10px;color:#fff}
+.fancybox-title-over{z-index:1102;position:absolute;left:0;bottom: 0;}
+.fancybox-title-float{position:absolute;left:0;bottom:-20px;height:32px}
+#fancybox-title-float-wrap{border:none;border-collapse:collapse;width:auto}
+#fancybox-title-float-wrap td{border:none;white-space:nowrap}
+.fancybox-ie .fancybox-bg{background:transparent!important}
+#fancybox-content{width: 0;height: 0;outline: none;position: relative;overflow: hidden;z-index: 1102;padding: 0;}
+#fancybox-outer {position: relative;width: 100%;height: 100%;overflow: hidden;}
+#fancybox-outer > #fancybox-title{display: none;}
+.wOverlay{position:absolute;left:0;top:0;width:100%;height:100%;background-color: #fff;z-index:2;}
+.fancy-ico{width: 57px;height: 58px;position: absolute;top: 50%;margin-top: 10px;cursor: pointer;z-index: 1102;}
+#fancybox-left-ico{background-position: -300px 0;left: 20px;}
+#fancybox-right-ico{background-position: -360px 0;right: 20px;}
+#fancybox-close{width: 9px;height: 9px;background-position: -440px 0;position: absolute;right: 25px;top: 25px;z-index: 1103;}
+.fancy-footer{background-color: #faf8f6;border-top: 1px solid #eae5e1;position: absolute;left: 0;bottom: 0;width: 100%;z-index: 1103;}
+/*/fancybox*/

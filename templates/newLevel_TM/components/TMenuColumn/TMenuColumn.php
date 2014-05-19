@@ -15,10 +15,14 @@ class TMenuColumn extends \template_manager\classes\TComponent {
      * Prepare param from xml to save in db
      * @param \SimpleXMLElement $nodes
      */
-    public function select_column_menu($id) {
+    public function select_column_menu($id, $disabled) {
         $params = $this->getParam('columns');
 
-        $select = '<select name="categoriesColumns[' . $id . ']" class="input-mini">';
+        $dis = '';
+        if ($disabled)
+            $dis = 'disabled="disabled"';
+
+        $select = '<select name="categoriesColumns[' . $id . ']" class="input-mini"' . $dis . '>';
 
         foreach ($this->columns as $i) {
             $selected = '';
@@ -98,11 +102,39 @@ class TMenuColumn extends \template_manager\classes\TComponent {
      * Render admin template
      */
     public function renderAdmin() {
+        $categories = \ShopCore::app()->SCategoryTree->getTree();
+        $categoriesT = array();
+
+        foreach ($categories as $category) {
+            if ($category->parent_id == 0) {
+                $categoriesT[$category->id]['category'] = $category;
+            }
+        }
+
+        foreach ($categories as $category) {
+            if ($categoriesT[$category->parent_id]) {
+                if (!$categoriesT[$category->parent_id]['children'])
+                    $categoriesT[$category->parent_id]['children'] = array();
+                $categoriesT[$category->parent_id]['children'][$category->id]['category'] = $category;
+            }
+        }
+
+        foreach ($categories as $category) {
+            foreach ($categoriesT as $key => $categoryT) {
+                if (isset($categoryT['children']) && $categoryT['children'][$category->parent_id]) {
+                    if (!$categoriesT[$key]['children'][$category->parent_id]['children'])
+                        $categoriesT[$key]['children'][$category->parent_id]['children'] = array();
+                    $categoriesT[$key]['children'][$category->parent_id]['children'][] = $category;
+                }
+            }
+        }
+
         $this->cAssetManager->registerScript('scripts', 'after');
         $this->cAssetManager->display('admin/main', array(
             'handler' => $this->name,
-            'openLevels' => $this->getOpenLevels()
-            )
+            'openLevels' => $this->getOpenLevels(),
+            'categoriesT' => $categoriesT
+                )
         );
     }
 

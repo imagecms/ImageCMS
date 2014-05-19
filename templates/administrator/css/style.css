@@ -852,3 +852,6 @@ table#backups_list thead th:nth-child(3) {width: 10px;}*/
 .dt_130pxwidth dt {width: 130px !important;}
 .item-accessories{margin-bottom: 5px;overflow: hidden;}
 span.must{color:red;}
+
+.items{font-size: 0;}
+.items > li{display: inline-block;vertical-align: top;}
