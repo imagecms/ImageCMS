@@ -438,7 +438,7 @@ a.jspArrowLeft{background-position: 0 -15px;}
 .cuselText {height: 24px;line-height: 24px;padding-left:10px;cursor: pointer;overflow: hidden;position: relative;z-index: 1;position: absolute;top: 0;left: 0;color: #7a7a7a;}
 .w_50 .cusel .cuselText{padding-left: 7px;}
 .cusel span {display: block;cursor: pointer;white-space: nowrap;padding: 3px 0px 3px 5px;margin-right: -3px;color: #666;}
-.cusel span:hover,.cusel .cuselOptHover {background: #003399;color: #fff;}
+.cusel span:hover, .cusel .cuselOptHover {background: #003399;color: #fff;}
 .cusel .cuselActive {background: #e5e5e5;color: #333;cursor: default;}
 .cuselOpen {z-index: 999;background-position: 0 -49px;}
 .cuselOpen .cuselFrameRight{background-position: 100% -73px;}
