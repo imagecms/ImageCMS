@@ -412,7 +412,7 @@ input.plus-minus{border-color: #d8d8d8;color: #999;}
 .content-apply{color: #333;}
 .horizontal-form .cusel{border-color: #dedede;background-color: #fff;}
 .cusel span{color: #000;}
-.cusel span:hover,.cusel .cuselOptHover {background: #ffe5cd;}
+.cusel span:hover, .cusel .cuselOptHover {background: #ffe5cd;}
 /*/form*/
 
 /*tabs*/

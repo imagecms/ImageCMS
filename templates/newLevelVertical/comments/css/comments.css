@@ -27,7 +27,7 @@
 .comments .frame-list-comments > .sub-1 > li:first-child{border-top: 0;padding-top: 0;margin-top: 0;}
 .comments .frame-list-comments.sub-2 + .s-all-comments{margin-left: 33px;}
 .comments .frame-list-comments.sub-2 > li{background-color: #efedea;margin-top: 29px;position: relative;}
-.comments .frame-list-comments.sub-2 > li:before{content: "";border-width: 10px;border-style: solid;border-color: transparent;border-left-color: #efedea;top: -10px;left: 120px;position: absolute;}
+.comments .frame-list-comments.sub-2 > li:before{content: "";border-width: 10px;border-style: solid;border-left-color: #efedea;top: -10px;left: 120px;position: absolute;}
 .comments .global-frame-comment-sub2{padding: 11px 27px 5px;}
 .comments .funcs-buttons-comment + .frame-list-comments{padding-top: 1px;}
 .comments .like > button span span, .comments .dis-like > button span span{font-weight: normal;}
