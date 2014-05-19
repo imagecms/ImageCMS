@@ -15,10 +15,14 @@ class TMenuColumn extends \template_manager\classes\TComponent {
      * Prepare param from xml to save in db
      * @param \SimpleXMLElement $nodes
      */
-    public function select_column_menu($id) {
+    public function select_column_menu($id, $disabled) {
         $params = $this->getParam('columns');
 
-        $select = '<select name="categoriesColumns[' . $id . ']" class="input-mini">';
+        $dis = '';
+        if ($disabled)
+            $dis = 'disabled="disabled"';
+
+        $select = '<select name="categoriesColumns[' . $id . ']" class="input-mini"' . $dis . '>';
 
         foreach ($this->columns as $i) {
             $selected = '';

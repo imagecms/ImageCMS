@@ -7,6 +7,12 @@
     {$is_logged_in = 0}
     {$countWL = 0}
 {/if}
+{$openLevels = getOpenLevels()}
+{if $openLevels == 'all'}
+    {$menuClass = 'col'}
+{else:}
+    {$menuClass = 'row'}
+{/if}
 {$countSh = getProductViewsCount()}
 <script type="text/javascript">
     {literal}
@@ -62,7 +68,6 @@
             frameNumber: '.frameVariantCode',
             frameVName: '.frameVariantName',
             frameBasks: '.frameBask',
-            
             genSumDiscount: '.genSumDiscount', //сумма скидки
             curDiscount: '.curDiscount', //сумма товаров без скидки
             frameDiscount: '.frameDiscount', //фрейм продуктовой скидки
@@ -115,6 +120,7 @@
                 siteUrl = "{echo site_url()}",
                 colorScheme = "{$colorScheme}",
                 isLogin = "{$is_logged_in}" == '1' ? true : false,
+                typeMenu = "{$menuClass}",
                 selectDeliv = false,
                 selectPayment = true,
                 selIcons = '[class*=icon_]',

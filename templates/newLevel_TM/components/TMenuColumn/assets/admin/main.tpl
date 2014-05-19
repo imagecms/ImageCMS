@@ -1,18 +1,18 @@
 {$categories = \ShopCore::app()->SCategoryTree->getTree();}
 <form method="post" action="{site_url('admin/components/init_window/template_manager/updateComponent')}/{echo $handler}" id="component_{echo $handler}_form"> 
     <input type="hidden" name="handler" value="{echo $handler}">
-    
+
     <table class="frame-level-menu frame_level table table-striped table-bordered table-hover table-condensed products_table">
         <thead>
             <tr>
                 <td>{lang('Category', 'newLevel_TM')}</td>
-                <td class="span3">{lang('Show in column', 'newLevel_TM')}</td>
+                <td class="span2" style="padding-left: 5px;text-align: center;">{lang('Show in column', 'newLevel_TM')}</td>
             </tr>
         </thead>
         <tbody>
         <select name="openLevels">
             <option {if $openLevels == 'all'}selected="selected"{/if}value="all">{lang('Open all levels', 'newLevel_TM')}</option>
-            <option {if $openLevels == '2'}selected="selected"{/if} value="2">{lang('Open two levels', 'newLevel_TM')}</option>
+            <option {if $openLevels == '2'}selected="selected"{/if} value="2">{lang('Open second level', 'newLevel_TM')}</option>
         </select>
 
         {foreach $categoriesT as $key => $category}
@@ -60,7 +60,11 @@
                                                 </a>
                                             </div>
                                         </td>
-                                        <td class="span3 t-a_c">{echo $template->getComponent('TMenuColumn')->select_column_menu($category->id)}</td>
+                                        {$dis = false}
+                                        {if $openLevels == '2'}
+                                            {$dis = true}
+                                        {/if}
+                                        <td class="span2 t-a_c frame-level-2-select" style="padding-left: 0;">{echo $template->getComponent('TMenuColumn')->select_column_menu($category->id, $dis)}</td>
                                     </tr>
                                     {if $children}
                                         <tr class="frame_level">
@@ -76,7 +80,7 @@
                                                                         </a>
                                                                     </div>
                                                                 </td>
-                                                                <td class="span3 t-a_c">{echo $template->getComponent('TMenuColumn')->select_column_menu($category->id)}</td>
+                                                                <td class="span2 t-a_c" style="padding-left: 0;">{echo $template->getComponent('TMenuColumn')->select_column_menu($category->id)}</td>
                                                             </tr>
                                                         {/foreach}
                                                     </tbody>
@@ -100,11 +104,11 @@
 </button>
 {literal}
     <script>
-                                function showSubCategory(el) {
-                                    $(el).hide().prev().show().end().closest('tr').next().show();
-                                }
-                                function hideSubCategory(el) {
-                                    $(el).hide().next().show().end().closest('tr').next().hide();
-                                }
+        function showSubCategory(el) {
+            $(el).hide().prev().show().end().closest('tr').next().show();
+        }
+        function hideSubCategory(el) {
+            $(el).hide().next().show().end().closest('tr').next().hide();
+        }
     </script>
 {/literal}
