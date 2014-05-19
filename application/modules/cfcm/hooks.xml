@@ -44,7 +44,7 @@
                 ->join('content_fields', 'content_fields.field_name = content_fields_groups_relations.field_name')
                 ->get('content_fields_groups_relations')
                 ->result_array();
-        
+    
         foreach ($fields as $field)
         {
             $data = unserialize ($field['data']);
