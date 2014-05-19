@@ -1,9 +1,11 @@
 <div class="clearfix">
-    <button type="button" style=" float: right; margin-top: -15px;" class="btn btn-small action_on formSubmit btn-primary" data-form="#component_{echo $handler}_form" data-action="close">
+    <input type="text" id="prorerties_filter" style="width: 300px;" placeholder="{lang('Start typing property name here','template_manager')}">
+    <button type="button" class="pull-right btn btn-small action_on formSubmit btn-primary" data-form="#component_{echo $handler}_form" data-action="close">
         <i class="icon-ok icon-white"></i>{lang('Save', 'newLevel_TM')}
     </button>
 </div>
 <form method="post" action="{site_url('admin/components/init_window/template_manager/updateComponent')}/{echo $handler}" id="component_{echo $handler}_form"> 
+
     <table class="table table-striped table-bordered table-hover table-condensed">
         <thead>
             <tr>
@@ -20,11 +22,11 @@
         </thead>
         <tbody>
             {foreach $productProperties as $property}
-                <tr>
+                <tr class="property_row">
                     <td>
                         {$property.id}
                     </td>
-                    <td>
+                    <td class="property_name">
                         {$property.name}
                     </td>
                     <td>

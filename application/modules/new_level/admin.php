@@ -13,7 +13,8 @@ class Admin extends BaseAdminController {
         $lang = new MY_Lang();
         $lang->load('new_level');
         $this->load->model('new_level_model');
-        $this->path = TEMPLATES_PATH . 'newLevel';
+        $currentTemplateName = \CI::$APP->db->get('settings')->row()->site_template;
+        $this->path = TEMPLATES_PATH . $currentTemplateName;
     }
 
     /**
@@ -66,7 +67,7 @@ class Admin extends BaseAdminController {
             $settings['thema'] = $_POST['theme'];
             $sql = "update components set settings = '" . serialize($settings) . "' where name = 'new_level'";
             $this->db->query($sql);
-        } 
+        }
     }
 
     /**

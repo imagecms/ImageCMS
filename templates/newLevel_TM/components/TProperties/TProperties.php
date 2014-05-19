@@ -97,6 +97,7 @@ class TProperties extends \template_manager\classes\TComponent {
             $propertiesSorted[$property['property_id']] = explode(',', $property['values']);
         }
 
+        $this->cAssetManager->registerScript('tprop_script');
         $this->cAssetManager->display('admin/main', array(
             'propType' => $this->propType,
             'handler' => $this->name,
