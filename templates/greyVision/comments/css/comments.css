@@ -4,8 +4,7 @@
 .comments .title-comment{font-weight: bold;}
 .comments .main-form-comments .frame-form-field{margin-left: 0;}
 .frame-autor-comment{display: block;}
-.comments .author-comment{color: #000;font-size:12px;font-weight: bold;}
-.comments .date-comment{color: #999;}
+.comments .author-comment{font-size:12px;font-weight: bold;}
 .comments .frame-list-comments > .sub-1{margin: 0;max-height: 400px;}
 .page-text .comments .frame-list-comments > .sub-1{max-height: none;}
 #comment .comments .frame-list-comments > .sub-1{max-height: none;}
@@ -23,18 +22,18 @@
 .comments .frame-list-comments .btn.active{-moz-box-shadow: none;-webkit-box-shadow: none;box-shadow: none;}
 .comments .icon_comment{background-image: none;width: 0;height: 0;margin-right: 0!important;overflow: hidden;}
 .comments .frame-list-comments li{border-top: 0;padding: 0;}
-.comments .frame-list-comments > .sub-1 > li{border-top: 1px solid #eae5e1;padding-top: 25px;margin-bottom: 0;margin-bottom: 15px;}
+.comments .frame-list-comments > .sub-1 > li{border-top-width: 1px;border-style: solid;padding-top: 25px;margin-bottom: 0;}
 .comments .frame-list-comments > .sub-1 > li:first-child{border-top: 0;padding-top: 0;margin-top: 0;}
 .comments .frame-list-comments.sub-2 + .s-all-comments{margin-left: 33px;}
-.comments .frame-list-comments.sub-2 > li{background-color: #efedea;margin-top: 29px;position: relative;}
-.comments .frame-list-comments.sub-2 > li:before{content: "";border-width: 10px;border-style: solid;border-left-color: #efedea;top: -10px;left: 120px;position: absolute;}
+.comments .frame-list-comments.sub-2 > li{margin-top: 29px;position: relative;}
+.comments .frame-list-comments.sub-2 > li:before{content: "";border-width: 10px;border-style: solid;top: -10px;left: 120px;position: absolute;}
 .comments .global-frame-comment-sub2{padding: 11px 27px 5px;}
 .comments .funcs-buttons-comment + .frame-list-comments{padding-top: 1px;}
 .comments .like > button span span, .comments .dis-like > button span span{font-weight: normal;}
 .comments .author-data-comment-sub1 {margin-bottom: 3px;float: left;width: 122px;}
 .comments .s-all-comments{margin-top: 7px;}
 
-.comments .frame-comments{border-bottom: 1px solid #d8d2cb;background-color: #faf8f6;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;-moz-box-shadow: 0 2px 4px #ece9e6;-webkit-box-shadow: 0 2px 4px #ece9e6;box-shadow: 0 2px 4px #ece9e6;}
+.comments .frame-comments{border-bottom-width: 1px;border-style: solid;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;}
 .comments .frame-comments:before{top: -2px;}
 .comments .frame-comments .inside-padd{padding: 0 20px 15px;}
 .comments .btn-form input{padding: 0 33px !important;}
@@ -49,10 +48,9 @@
 .comments .main-form-comments .title{float: none;width: auto;font-weight: bold;}
 .comments .frame-form-field{position: relative;display: block;}
 .comments textarea{height: 134px; padding-top: 5px}
-.comments .btn{display: inline-block;cursor: pointer;color: #555;text-decoration: none;position: relative;}
+.comments .btn{display: inline-block;cursor: pointer;text-decoration: none;position: relative;}
 .comments .btn > *, .comments input.btn{padding: 5px 15px 5px;}
 .comments .btn.active{cursor: default;}
-.comments .btn.active{color: #979797;}
 .comments .like{margin-right: 10px;}
 .comments .like > button, .comments .dis-like > button{font-weight: bold;border-bottom: 0;}
 .comments .frame-form-field{margin-left: 138px;}

@@ -916,7 +916,7 @@ input.input-search{border-color: #cdcdcd;-moz-box-shadow: none;-webkit-box-shado
 .comments .date-comment{color: #999;}
 .comments .frame-list-comments > .sub-1 > li{border-top-color: #eae5e1;}
 .comments .frame-list-comments.sub-2 > li{background-color: #efedea;}
-.comments .frame-list-comments.sub-2 > li:before{border-left-color: #efedea;}
+.comments .frame-list-comments.sub-2 > li:before{border-color: transparent;border-left-color: #efedea;}
 .comments .frame-comments{border-bottom-color: #d8d2cb;background-color: #faf8f6;box-shadow: 0 2px 4px #ece9e6;}
 .comments .btn{color: #555;}
 .comments .btn.active{color: #979797;}
