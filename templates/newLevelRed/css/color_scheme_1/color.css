@@ -1046,7 +1046,7 @@ input[type="radio"]:focus, input[type="checkbox"]:focus, input[type="submit"]:fo
 .comments .date-comment{color: #999;}
 .comments .frame-list-comments > .sub-1 > li{border-top-color: #eae5e1;}
 .comments .frame-list-comments.sub-2 > li{background-color: #efedea;}
-.comments .frame-list-comments.sub-2 > li:before{border-left-color: #efedea;}
+.comments .frame-list-comments.sub-2 > li:before{border-color: transparent;border-left-color: #efedea;}
 .comments .frame-comments{border-bottom-color: #d8d2cb;background-color: #faf8f6;box-shadow: 0 2px 4px #ece9e6;}
 .comments .btn{color: #555;}
 .comments .btn.active{color: #979797;}
