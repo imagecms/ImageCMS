@@ -1,7 +1,7 @@
 <div class="drop drop-style drop-forgot">
     <div class="icon-times-drop" data-closed="closed-js"></div>
     <div class="drop-header">
-        <div class="title">{lang('Забыли Пароль?','corporate')}</div>
+        <div class="title">{lang('Забыли Пароль','corporate')}?</div>
     </div>
     <div class="drop-content">
         <div class="inside-padd">
@@ -37,7 +37,7 @@
                                 </div>
                             </div>
                             <div>
-                                <button class="d_l" data-drop=".drop-enter" data-source="{site_url('auth')}">Вход</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <button class="d_l" data-drop=".drop-enter" data-source="{site_url('auth')}">{lang('Вход','corporate')}</button>&nbsp;&nbsp;&nbsp;&nbsp;
                                 <a href="{site_url('auth/register')}">{lang('Регистрация','corporate')}</a>
                             </div>
                         </div>

@@ -1,5 +1,5 @@
 <div class="frame-side-menu aside-jaw">
-    <div class="title-h3">Продукты</div>
+    <div class="title-h3">{lang('Продукты','corporate')}</div>
     <nav>
         <ul>
             {foreach $recent_news as $item}
