@@ -4,7 +4,7 @@
             <div class="title">{lang('Выбранные фильтры', 'lightVertical')}</div>
             <ul class="list-check-filter">
                 {if $curMin != $minPrice || $curMax != $maxPrice}
-                    <li class="clear-slider" data-rel="sliders.slider1"><button type="button" class="ref"><span class="icon_times icon_remove_filter f_l"></span><span class="name-check-filter">{lang('Цена от', 'lightVertical')} {echo $_GET['lp']} до {echo $_GET['rp']} <span class="cur">{$CS}</span></></button></li>
+                    <li class="clear-slider" data-rel="sliders.slider1"><button type="button" class="ref"><span class="icon_times icon_remove_filter f_l"></span><span class="name-check-filter">{lang('Цена от', 'lightVertical')} {echo $_GET['lp']} {lang('до', 'lightVertical')} {echo $_GET['rp']} <span class="cur">{$CS}</span></></button></li>
                     {/if}
                     {if count($brands) > 0}
                         {foreach $brands as $brand}
