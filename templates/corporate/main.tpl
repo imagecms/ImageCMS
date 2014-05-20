@@ -54,11 +54,6 @@
                     </div>
                 </header>
                 {load_menu('main_menu')}
-                {if $CI->core->core_data['data_type'] == 'main'}
-                    <!-- Start. Show banner on home page. -->
-                    {include_tpl('homebanner')}
-                    <!-- End. Show banner on home page. -->
-                {/if}
             </div>
             {$content}
             <div class="h-footer"></div>

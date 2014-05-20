@@ -278,7 +278,7 @@ $(document).on('scriptDefer', function() {
         WishListFront.processWishPage();
     });
     $('body').on('click.inWish', genObj.inWishlist, function() {
-        document.location.href = '/wishlist';
+        document.location.href = locale + '/wishlist';
     });
     if (!isLogin) {
         $(genObj.toWishlist).data('datas', {
