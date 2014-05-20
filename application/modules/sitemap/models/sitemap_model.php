@@ -1,5 +1,8 @@
 <?php
 
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
+
 /**
  * @property CI_DB_active_record $db
  * @property DX_Auth $dx_auth
