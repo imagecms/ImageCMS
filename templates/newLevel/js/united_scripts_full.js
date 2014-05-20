@@ -1037,13 +1037,14 @@ function getCookie(c_name)
                             otherPage = settings.otherPage,
                             classRemove = settings.classRemove,
                             vertical = settings.vertical;
+
                     if (menuCache && !refresh) {
                         menu.find('a').each(function() {//if start without cache and remove active item
                             var $this = $(this);
                             $this.closest(activeFl.split(' ')[0]).removeClass(aC);
                             $this.removeClass(aC);
                         });
-                        var locHref = location.href,
+                        var locHref = location.origin + location.pathname,
                                 locationHref = otherPage !== undefined ? otherPage : locHref;
                         menu.find('a[href="' + locationHref + '"]').each(function() {
                             var $this = $(this);
@@ -1161,7 +1162,9 @@ function getCookie(c_name)
                         menuItem.find('.helper:first').css('height', sH);
                     menu.removeClass(classRemove);
                     var hoverTO = '';
-                    function closeMenu() {
+                    function closeMenu(el) {
+                        if (el && $.existsN(el.parents(item)))
+                            return false;
                         var $thisDrop = menu.find(drop);
                         if ($thisDrop.length !== 0)
                             menu.removeClass(hM);
@@ -1177,15 +1180,18 @@ function getCookie(c_name)
                         evLF = 'click';
                     if (evLS === 'toggle')
                         evLS = 'click';
-                    menuItem.off(evLF)[evLF](
+
+                    menuItem.off('click').off('hover')[evLF](
                             function(e) {
                                 var $this = $(this);
+                                if (evLF === 'click')
+                                    e.stopPropagation();
                                 if ($this.data("show") === "no" || !$this.data("show")) {
                                     $this.data("show", "yes");
                                     clearTimeout(hoverTO);
-                                    closeMenu();
+                                    closeMenu($this);
                                     var $thisI = $this.index(),
-                                            $thisDrop = $this.find(drop);
+                                            $thisDrop = $this.find(drop).first();
                                     $this.addClass(hM);
                                     if ($thisI === 0)
                                         $this.addClass('firstH');
@@ -1194,8 +1200,6 @@ function getCookie(c_name)
                                     if ($(e.relatedTarget).is(menuItem) || $.existsN($(e.relatedTarget).parents(menuItem)) || $this.data('kk') === 0)
                                         k[$thisI] = true;
                                     if (k[$thisI]) {
-                                        if (evLF === 'click')
-                                            e.stopPropagation();
                                         hoverTO = setTimeout(function() {
                                             $thisDrop[effOn](durationOn, function(e) {
                                                 $this.data('kk', $this.data('kk') + 1);
@@ -1208,7 +1212,7 @@ function getCookie(c_name)
                                                 if (sub2Frame) {
                                                     var listDrop = $thisDrop.children();
                                                     $thisDrop.find(sub2Frame).addClass('is-side');
-                                                    listDrop.children().off(evLS)[evLS](function(e) {
+                                                    listDrop.children().off('click').off('hover')[evLS](function(e) {
                                                         var $this = $(this);
                                                         if (evLS === 'click')
                                                             e.stopPropagation();
@@ -1349,8 +1353,8 @@ function getCookie(c_name)
             });
             return this;
         },
-        refresh: function() {
-            methods.init.call(this, $.extend({}, this.data('options'), {
+        refresh: function(optionsMenu) {
+            methods.init.call(this, $.extend({}, optionsMenu ? optionsMenu : this.data('options'), {
                 refresh: true
             }));
             return this;

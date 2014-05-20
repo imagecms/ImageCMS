@@ -313,7 +313,7 @@
                                     </button>
                                 </div>
                                 <div class="btn-cart btn-cart-p f_r">
-                                    <a href="/shop/cart">
+                                    <a href={/literal}{echo $lang}{literal}"/shop/cart">
                                         <span class="icon_cart_p"></span>
                                         <span class="text-el">{/literal}{lang('Оформить заказ','newLevelVertical')}{literal}</span>
                                     </a>

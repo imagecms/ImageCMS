@@ -1,4 +1,4 @@
-<h3>Последнее с блога</h3>
+<h3>{lang('Последнее с блога','corporate')}</h3>
 <ul class="items items-row items-tiny-blog">
     {foreach $recent_news as $item}
         <li>
