@@ -28,7 +28,8 @@
                                     {$page.prev_text}
 
                                     <div class="postinfo">
-                                        <a href="{site_url($page.full_url)}#comments">{$Comments[$page.id]}</a> 
+                                        {$cC = intval($Comments[$page.id])}
+                                        <a href="{site_url($page.full_url)}#comments">{lang('Комментариев', 'corporate')}: {echo $cC}</a>
                                         &nbsp;&nbsp;
                                         <a href="{site_url($page.full_url)}">{lang('Читать дальше','corporate')} → </a>
                                     </div>
