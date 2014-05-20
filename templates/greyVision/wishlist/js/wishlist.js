@@ -189,7 +189,7 @@ $(document).on('scriptDefer', function() {
         });
     });
     $('body').on('click.inWish', genObj.inWishlist, function() {
-        document.location.href = '/wishlist';
+        document.location.href = locale + '/wishlist';
     });
     if (!isLogin) {
         $(genObj.toWishlist).data('datas', {

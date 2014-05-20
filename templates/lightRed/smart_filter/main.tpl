@@ -28,7 +28,7 @@
                             {/if}
             </ul>
             <div class="foot-check-filter">
-                <button type="button" onclick="location.href = '{site_url($CI->uri->uri_string())}'" class="btn-reset-filter">
+                <button type="button" onclick="location.href = location.origin + location.pathname" class="btn-reset-filter">
                     <span class="text-el d_l_1">{lang('Сбросить все фильтры', 'lightRed')}</span>
                 </button>
             </div>
