@@ -970,7 +970,7 @@ function getCookie(c_name)
                             $this.closest(activeFl.split(' ')[0]).removeClass(aC);
                             $this.removeClass(aC);
                         });
-                        var locHref = location.href,
+                        var locHref = location.origin + location.pathname,
                         locationHref = otherPage !== undefined ? otherPage : locHref;
                         menu.find('a[href="' + locationHref + '"]').each(function() {
                             var $this = $(this);

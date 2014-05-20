@@ -19,8 +19,8 @@
                                     <div class="title-h3"><a href="{site_url($page.full_url)}">{$page.title}</a></div>
                                     <span class="post-pub-info">
                                         {date('d-m-Y', $page.publish_date)} | 
-                                        Раздел: <a href="{site_url($page.cat_url)}">{get_category_name($page.category)}</a>
-                                        {if $tags = page_tags($page.id)} | Теги: {foreach $tags as $tag}
+                                        {lang('Раздел', 'corporate')}: <a href="{site_url($page.cat_url)}">{get_category_name($page.category)}</a>
+                                        {if $tags = page_tags($page.id)} | {lang('Теги', 'corporate')}: {foreach $tags as $tag}
                                                 <a href="{site_url('tags/search/'.$tag.value)}">{$tag.value}</a> 
                                         {/foreach}{/if}
                                     </span>
@@ -44,7 +44,7 @@
                 </div>
                 <div class="right">
                     <div class="aside-jaw">
-                        <h3>Поиск</h3>
+                        <h3>{lang('Поиск', 'corporate')}</h3>
                         <div class="inside-padd">
                             <form action="{site_url('search')}" method="POST">
                                 <div class="f_r m-l_5">
@@ -53,20 +53,20 @@
                                     </div>
                                 </div>
                                 <div class="o_h">
-                                    <input type="text" class="text" name="text" value="" placeholder="Поиск"/>
+                                    <input type="text" class="text" name="text" value="" placeholder="{lang('Поиск', 'corporate')}"/>
                                 </div>
                                 {form_csrf()}
                             </form>                            
                         </div>
                     </div>
                     <div class="aside-jaw">
-                        <h3>Последние комментарии</h3>
+                        <h3>{lang('Последние комментарии', 'corporate')}</h3>
                         <div class="inside-padd">
                             {widget('comments')}
                         </div>
                     </div>
                     <div class="aside-jaw">
-                        <h3>Облако тегов</h3>
+                        <h3>{lang('Облако тегов', 'corporate')}</h3>
                         <div class="inside-padd">
                             {widget('tags')}
                         </div>
