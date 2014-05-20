@@ -146,7 +146,7 @@ $(document).ready(function() {
         //btn.toggleClass('btn-primary active');
     });
 
-    $('.prodFilterSelect').live('change', function(event) {
+    $('.prodFilterSelect').off('change').on('change', function(event) {
         var query_string = $('#filter_form').serialize();
         $.pjax({
             url: '/admin/components/run/shop/search/index/?' + query_string,

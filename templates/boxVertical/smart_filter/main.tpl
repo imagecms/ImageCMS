@@ -1,10 +1,10 @@
 {if $_GET['brand'] != "" || $_GET['p'] != "" || ($_GET['lp'] && $_GET['lp'] != $minPrice) || ($_GET['rp'] && $_GET['rp'] != $maxPrice)}
     <div class="frame-check-filter">
         <div class="inside-padd">
-            <div class="title">{echo count($products)} {echo SStringHelper::Pluralize(count($products), array('товар','товара','товаров'))} {lang('с фильтрами', 'boxVertical')}:</div>
+            <div class="title">{echo count($products)} {echo SStringHelper::Pluralize(count($products), array(lang('товар', 'boxVertical'),lang('товара', 'boxVertical'),lang('товаров', 'boxVertical')))} {lang('с фильтрами', 'boxVertical')}:</div>
             <ul class="list-check-filter">
                 {if $curMin != $minPrice || $curMax != $maxPrice}
-                    <li class="clear-slider" data-rel="sliders.slider1"><button type="button"><span class="icon_times icon_remove_filter f_l"></span><span class="name-check-filter">{lang('Цена от', 'boxVertical')} {echo $_GET['lp']} до {echo $_GET['rp']} <span class="cur">{$CS}</span></></button></li>
+                    <li class="clear-slider" data-rel="sliders.slider1"><button type="button"><span class="icon_times icon_remove_filter f_l"></span><span class="name-check-filter">{lang('Цена от', 'boxVertical')} {echo $_GET['lp']} {lang('до', 'boxVertical')} {echo $_GET['rp']} <span class="cur">{$CS}</span></></button></li>
                     {/if}
                     {if count($brands) > 0}
                         {foreach $brands as $brand}

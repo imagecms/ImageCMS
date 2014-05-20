@@ -651,8 +651,7 @@ function autocomplete() {
                 var mainDisc = $('#mainDisc').attr('value');
                 $('#forAttached').append('<div id="tpm_row' + ui.item.identifier.id + '" class="m-t_10">' +
                         '<span class="d-i_b number v-a_b">' +
-                        '<span class="help-inline d_b">ID</span>' +
-                        '<input type="text" name="AttachedProductsIds[]" value="' + ui.item.identifier.id + '" class="input-mini"/>' +
+                        '<input type="hidden" name="AttachedProductsIds[]" value="' + ui.item.identifier.id + '" class="input-mini"/>' +
                         '</span>&nbsp;' +
                         '<span class="d-i_b v-a_b">' +
                         '<span class="help-inline d_b">' + langs.name + '</span>' +

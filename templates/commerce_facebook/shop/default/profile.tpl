@@ -93,7 +93,7 @@
                 В корзине:
                 <span style="font-weight: bold;">
                     {echo ShopCore::app()->SCart->totalItems()}
-                    {echo SStringHelper::Pluralize(ShopCore::app()->SCart->totalItems(), array('товар','товара','товаров'))}
+                    {echo SStringHelper::Pluralize(ShopCore::app()->SCart->totalItems(), array(lang('товар', 'newLevel'),lang('товара', 'newLevel'),lang('товаров', 'newLevel')))}
                 </span>
                 <table cellspacing="0">
                     <colgroup>
