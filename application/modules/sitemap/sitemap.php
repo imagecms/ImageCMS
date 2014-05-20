@@ -7,8 +7,9 @@ if (!defined('BASEPATH'))
  * Image CMS
  *
  * Sitemap Module
- * @property sitemap_model $sitemap_model
+ * @property Sitemap_model $sitemap_model
  */
+
 class Sitemap extends MY_Controller {
 
     /**
