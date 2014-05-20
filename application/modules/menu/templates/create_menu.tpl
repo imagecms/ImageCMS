@@ -3,7 +3,7 @@
         <div class="frame_title clearfix">
             <div class="pull-left">
                 <span class="help-inline"></span>
-                <span class="title">{lang("Create a menu", "menu")}</span>
+                <span class="title">{lang("Creating menu", "menu")}</span>
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
