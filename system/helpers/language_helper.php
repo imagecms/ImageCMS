@@ -84,7 +84,7 @@ if (!function_exists('getMoFileName')) {
                         $locale = $language['locale'];
                     }
                 }
-
+                
                 define('CUR_LOCALE', $locale);
             } else {
                 $locale = CUR_LOCALE;
