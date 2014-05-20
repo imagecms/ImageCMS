@@ -194,7 +194,7 @@
                             <% } %>
                             <% if ( document.getElementById('orderDetails')) { %>
                             <% if ( Shop.Cart.totalCount  == 0 ) { %>
-                            <% setTimeout("location.href = '/';", 2000); %>
+                            <% setTimeout("location.href = '/' + locale;", 2000); %>
                             <% } %>
                             <td colspan="4" class="t-a_r">
                                 <a href="#"  onclick="renderOrderDetails(); togglePopupCart(); return false;" class="btn btn_cart v-a_m m-r_30">{/literal}{lang('Закрыть','commerce4x')}{literal}</a>

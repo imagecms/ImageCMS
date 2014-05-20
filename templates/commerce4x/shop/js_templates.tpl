@@ -194,7 +194,7 @@
                             <% } %>
                             <% if ( document.getElementById('orderDetails')) { %>
                             <% if ( Shop.Cart.totalCount  == 0 ) { %>
-                            <% setTimeout("location.href = '/';", 2000); %>
+                            <% setTimeout("location.href = '/' + locale;", 2000); %>
                             <% } %>
                             <td colspan="4" class="t-a_r">
                                 <a href="#"  onclick="renderOrderDetails(); togglePopupCart(); return false;" class="btn btn_cart v-a_m m-r_30">{/literal}{lang('Закрыть','commerce4x')}{literal}</a>
@@ -227,158 +227,158 @@
 
 <script type="text/template" id="orderDetailsTemplate">
     {literal}
-    <div class="frame_head_content">
+        <div class="frame_head_content">
         <div class="header_title">Ваш заказ</div>
         <table class="table v-a_bas table_order preview_order">
-            <thead class="v_h">
-                <tr>
-                    <td class="span1"></td>
-                    <td class="span3"></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </thead>
-            <tbody>
-                <% _.each(Shop.Cart.getAllItems(), function(item){ %>
-                <% if (!item.kit) { %>
-                <tr>
-                    <td class="v-a_m">
-                        <a class="photo" href="<%-item.url%>">
-                            <figure>
-                                <img src="<%- item.img %>" alt="<%- '('+item.vname+')'%>">
-                            </figure>
-                        </a>
-                    </td>
-                    <td class="description">
-                        <a href="<%-item.url%>"><%- item.name %></a>
-                        <div>
-                            <%if(item.vname){ %><span class="frame_variant_name">{/literal}{lang(s_variant)} {literal} <span class="code">(<%- item.vname%>)</span></span><% } %>
-                            <%if (item.number) { %><span class="frame_number">{/literal}{lang(s_article)} {literal} <span class="code">(<%-item.number %>)</span></span><% } %>
-                        </div>
-                        <div class="price price_f-s_16">
-                            <span class="first_cash"><span class="f-w_b"><%- parseFloat(item.price).toFixed(pricePrecision) %></span> <%- curr %>.</span>
-                        </div>
-                    </td>
-                    <td>
-                        <span class="c_8a">х</span> <span class="f-w_b f-s_16"><%- item.count %></span> <%- pcs %> =
-                    </td>
-                    <td>
-                        <div class="price price_f-s_16">
-                            <span class="first_cash"><span class="f-w_b priceOrder"><%-  parseFloat( parseInt(item.count)*parseFloat(item.price) ).toFixed(pricePrecision) %></span> <%- curr %></span>
-                        </div>
-                    </td>
-                </tr>
+        <thead class="v_h">
+        <tr>
+        <td class="span1"></td>
+        <td class="span3"></td>
+        <td></td>
+        <td></td>
+        </tr>
+        </thead>
+        <tbody>
+        <% _.each(Shop.Cart.getAllItems(), function(item){ %>
+        <% if (!item.kit) { %>
+        <tr>
+        <td class="v-a_m">
+        <a class="photo" href="<%-item.url%>">
+        <figure>
+        <img src="<%- item.img %>" alt="<%- '('+item.vname+')'%>">
+        </figure>
+        </a>
+        </td>
+        <td class="description">
+        <a href="<%-item.url%>"><%- item.name %></a>
+        <div>
+        <%if(item.vname){ %><span class="frame_variant_name">{/literal}{lang(s_variant)} {literal} <span class="code">(<%- item.vname%>)</span></span><% } %>
+        <%if (item.number) { %><span class="frame_number">{/literal}{lang(s_article)} {literal} <span class="code">(<%-item.number %>)</span></span><% } %>
+        </div>
+        <div class="price price_f-s_16">
+        <span class="first_cash"><span class="f-w_b"><%- parseFloat(item.price).toFixed(pricePrecision) %></span> <%- curr %>.</span>
+        </div>
+        </td>
+        <td>
+        <span class="c_8a">х</span> <span class="f-w_b f-s_16"><%- item.count %></span> <%- pcs %> =
+        </td>
+        <td>
+        <div class="price price_f-s_16">
+        <span class="first_cash"><span class="f-w_b priceOrder"><%-  parseFloat( parseInt(item.count)*parseFloat(item.price) ).toFixed(pricePrecision) %></span> <%- curr %></span>
+        </div>
+        </td>
+        </tr>
 
-                <% } else { %>
-                <!-- for product kit -->
-                <% var i=0 %>
-                <% var names = item.name %>
-                <% var ids = item.id %>
-                <% var prices = item.prices %>
-                <% var images = item.img %>
-                <% var urls = item.url %>
-
-
-                <tr class="cartKit" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>">
-                    <td colspan="4">
-                        <table>
-                            <thead class="v_h">
-                                <tr>
-                                    <td class="span1"></td>
-                                    <td class="span3"></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                                <% _.each(ids, function(id){  %>
-
-                                <% if (0==i) { %>
-
-                                <tr>
-                                    <td>
-                                        <a class="photo" href="<%- urls[i] %>">
-                                            <figure>
-                                                <img src="<%- images[i]%>" alt="<%- '('+item.vname+')'%>">
-                                            </figure>
-                                        </a>
-                                    </td>
-                                    <td class="description">
-                                        <a href="<%- urls[i] %>"><%- names[i] %></a>
-                                        <div>
-                                            <%if(item.vname){ %><span class="frame_variant_name">{/literal}{lang(s_variant)} {literal}<span class="code">(<%- item.vname%>)</span></span> <% } %>
-                                            <%if (item.number) { %><span class="frame_number">{/literal}{lang(s_article)} {literal} <span class="code">(<%-item.number %>)</span></span> <% } %>
-                                        </div>
-                                        <div class="price price_f-s_16">
-                                            <span class="first_cash"><span class="f-w_b"><%-prices[i]%></span> <%-curr%></span>
-                                        </div>
-                                    </td>
-                                    <td rowspan="<%- names.length %>" class="v-a_m">
-                                        <span class="c_8a">х</span> <span class="f-w_b f-s_16"><%- item.count %></span> <%-kits%> =
-                                    </td>
-                                    <td rowspan="<%- names.length %>" class="v-a_m">
-                                        <span>Сумма: </span>
-                                        <div class="price price_f-s_16 d_i-b">
-                                            <span class="first_cash"><span class="f-w_b priceOrder"><%-  parseFloat( parseInt(item.count)*parseFloat(item.price) ).toFixed(pricePrecision) %></span> <%- curr %></span>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <% } else { %> 
-
-                                <tr>
-                                    <td>
-                                        <a class="d_i-b photo" href="<%- urls[i] %>">
-                                            <figure>
-                                                <img src="<%- images[i]%>" alt="<%- '('+item.vname+')'%>">
-                                            </figure>
-                                        </a>
-                                    </td>
-                                    <td class="description">
-                                        <a href="<%- urls[i]%>"><%-names[i]%></a>
-                                        <div>
-                                            <%if(item.vname){ %><span class="frame_variant_name">{/literal}{lang(s_variant)} {literal}<span class="code">(<%- item.vname%>)</span></span> <% } %>
-                                            <%if (item.number) { %><span class="frame_number">{/literal}{lang(s_article)} {literal} <span class="code">(<%-item.number %>)</span></span> <% } %>
-                                        </div>
-                                        <div class="price price_f-s_16">
-                                            <span class="first_cash"><span class="f-w_b"><%-prices[i]%></span> <%-curr%></span>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <% }; i++;  %>
-
-                                <% }) %>
-
-                            </tbody>
-                        </table>
-                    </td>
-                </tr>
+        <% } else { %>
+        <!-- for product kit -->
+        <% var i=0 %>
+        <% var names = item.name %>
+        <% var ids = item.id %>
+        <% var prices = item.prices %>
+        <% var images = item.img %>
+        <% var urls = item.url %>
 
 
-                <% } %>
+        <tr class="cartKit" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>">
+        <td colspan="4">
+        <table>
+        <thead class="v_h">
+        <tr>
+        <td class="span1"></td>
+        <td class="span3"></td>
+        <td></td>
+        <td></td>
+        </tr>
+        </thead>
+        <tbody>
 
+        <% _.each(ids, function(id){  %>
 
-                <% }) %>
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="4">
-                        <div class="f_l">
-                            <span style="height: 36px;" class="helper"></span>
-                            <button class="d_l_b" type="button" onclick="initShopPage();">Редактировать</button>
-                        </div>
-                        <div class="f_r">
-                            <span class="v-a_m">Итого:&nbsp;&nbsp;</span>
-                            <span class="price price_f-s_24 v-a_m d_i-b">
-                                <span class="first_cash"><span class="f-w_b priceOrder"><%- parseFloat( Shop.Cart.getTotalPrice()).toFixed(pricePrecision) %></span> <%- curr %></span>
-                            </span>
-                        </div>
-                    </td>
-                </tr>
-            </tfoot>
+        <% if (0==i) { %>
+
+        <tr>
+        <td>
+        <a class="photo" href="<%- urls[i] %>">
+        <figure>
+        <img src="<%- images[i]%>" alt="<%- '('+item.vname+')'%>">
+        </figure>
+        </a>
+        </td>
+        <td class="description">
+        <a href="<%- urls[i] %>"><%- names[i] %></a>
+        <div>
+        <%if(item.vname){ %><span class="frame_variant_name">{/literal}{lang(s_variant)} {literal}<span class="code">(<%- item.vname%>)</span></span> <% } %>
+        <%if (item.number) { %><span class="frame_number">{/literal}{lang(s_article)} {literal} <span class="code">(<%-item.number %>)</span></span> <% } %>
+        </div>
+        <div class="price price_f-s_16">
+        <span class="first_cash"><span class="f-w_b"><%-prices[i]%></span> <%-curr%></span>
+        </div>
+        </td>
+        <td rowspan="<%- names.length %>" class="v-a_m">
+        <span class="c_8a">х</span> <span class="f-w_b f-s_16"><%- item.count %></span> <%-kits%> =
+        </td>
+        <td rowspan="<%- names.length %>" class="v-a_m">
+        <span>Сумма: </span>
+        <div class="price price_f-s_16 d_i-b">
+        <span class="first_cash"><span class="f-w_b priceOrder"><%-  parseFloat( parseInt(item.count)*parseFloat(item.price) ).toFixed(pricePrecision) %></span> <%- curr %></span>
+        </div>
+        </td>
+        </tr>
+
+        <% } else { %> 
+
+        <tr>
+        <td>
+        <a class="d_i-b photo" href="<%- urls[i] %>">
+        <figure>
+        <img src="<%- images[i]%>" alt="<%- '('+item.vname+')'%>">
+        </figure>
+        </a>
+        </td>
+        <td class="description">
+        <a href="<%- urls[i]%>"><%-names[i]%></a>
+        <div>
+        <%if(item.vname){ %><span class="frame_variant_name">{/literal}{lang(s_variant)} {literal}<span class="code">(<%- item.vname%>)</span></span> <% } %>
+        <%if (item.number) { %><span class="frame_number">{/literal}{lang(s_article)} {literal} <span class="code">(<%-item.number %>)</span></span> <% } %>
+        </div>
+        <div class="price price_f-s_16">
+        <span class="first_cash"><span class="f-w_b"><%-prices[i]%></span> <%-curr%></span>
+        </div>
+        </td>
+        </tr>
+        <% }; i++;  %>
+
+        <% }) %>
+
+        </tbody>
         </table>
-    </div>
+        </td>
+        </tr>
+
+
+        <% } %>
+
+
+        <% }) %>
+        </tbody>
+        <tfoot>
+        <tr>
+        <td colspan="4">
+        <div class="f_l">
+        <span style="height: 36px;" class="helper"></span>
+        <button class="d_l_b" type="button" onclick="initShopPage();">Редактировать</button>
+        </div>
+        <div class="f_r">
+        <span class="v-a_m">Итого:&nbsp;&nbsp;</span>
+        <span class="price price_f-s_24 v-a_m d_i-b">
+        <span class="first_cash"><span class="f-w_b priceOrder"><%- parseFloat( Shop.Cart.getTotalPrice()).toFixed(pricePrecision) %></span> <%- curr %></span>
+        </span>
+        </div>
+        </td>
+        </tr>
+        </tfoot>
+        </table>
+        </div>
     {/literal}
 </script>
 

@@ -150,7 +150,7 @@
                         <tbody>
                             <tr>
                                 {foreach $orders as $order}
-                                    <td><a rel="nofollow" href="{shop_url('cart/view/' . $order->getKey())}">{lang('Заказ','commerce4x')} №{echo $order->getId()}</a></td>
+                                    <td><a rel="nofollow" href="{shop_url('order/view/' . $order->getKey())}">{lang('Заказ','commerce4x')} №{echo $order->getId()}</a></td>
                                     <td>{date("d-m-Y H:i", $order->getDateCreated())}</td>
                                     <td>{date("d-m-Y H:i", $order->getDateUpdated())}</td>
                                     <td>{echo $order->getTotalPrice()} {$CS}</td>
