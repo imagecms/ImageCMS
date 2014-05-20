@@ -768,7 +768,7 @@ function elFinderPopup(type, id, path, onlyMimes)
 function elFinderTPLEd()
 {
     //todo: create diferent browsers (check 'type' variable)
-    eD = $('#elFinderTPLEd').elfinder({
+    var eD = $('#elFinderTPLEd').elfinder({
         url: '/admin/elfinder_init/1',
         height: $(window).height() * 0.6,
         lang: locale.substr(0, 2),
