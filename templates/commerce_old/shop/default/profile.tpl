@@ -116,7 +116,7 @@
             <td>{date("d-m-Y H:i", $order->getDateCreated())}</td>
             <td>{date("d-m-Y H:i", $order->getDateUpdated())}</td>
             <td>{echo ShopCore::app()->SCurrencyHelper->convert($order->getTotalPrice())} {$CS}</td>
-            <td><a rel="nofollow" href="{shop_url('cart/view/' . $order->getKey())}">Просмотреть</a></td>
+            <td><a rel="nofollow" href="{shop_url('order/view/' . $order->getKey())}">Просмотреть</a></td>
         </tr>
         {/foreach}
     </table>

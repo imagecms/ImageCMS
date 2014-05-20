@@ -316,7 +316,7 @@ function init_2() {
             deliverySumSpecifiedMessageBlock.hide();
         }
     });
-    $('body').off('click.popover').on('click.popover', function(e) {
+    $('*').off('click.popover').on('click.popover', function(e) {
         var popovers = '.popover, .buy_prod, .popover_ref';
         if ($.exists(popovers) && ($(e.target).is(popovers) || $(e.target).parents().is(popovers)))
             return;
@@ -388,7 +388,7 @@ function init_2() {
         $('#productNameForOrders').autocomplete({
             source: '/admin/components/run/shop/orders/ajaxGetProductList/?',
             select: function(event, ui) {
-                productName = ui.item.label;
+                productName = ui.item.name;
                 productId = ui.item.id;
                 categoryId = ui.item.category;
             },

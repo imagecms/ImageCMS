@@ -126,6 +126,7 @@ class Admin extends BaseAdminController {
      */
     public function create() {
         if ($this->input->post()) {
+          
             $this->load->library('Form_validation');
             /** Set Validation reles */
             $this->form_validation->set_rules('name', lang('Banner name', 'banners'), 'required|xss_clean|max_length[45]');
@@ -148,7 +149,11 @@ class Admin extends BaseAdminController {
 
                     showMessage(lang('Banner created', 'banners'));
                     /** Show successful message and redirect */
-                    pjax('/admin/components/init_window/banners');
+                    if ($this->input->post('action') == 'tomain') {
+                        pjax('/admin/components/init_window/banners');
+                    } elseif ($this->input->post('action') == 'toedit') {
+                        pjax('/admin/components/init_window/banners/edit/' . $lid);
+                    }
                 } catch (Exception $e) {
                     showMessage($e->getMessage(), '', 'r');
                 }
