@@ -8417,7 +8417,8 @@ INSERT INTO `shop_rbac_privileges` (`id`, `name`, `group_id`) VALUES
 (479, 'Widgets_manager::update_config', 59),
 (480, 'Widgets_manager::delete', 59),
 (482, 'Widgets_manager::edit_html_widget', 59),
-(483, 'Widgets_manager::edit_module_widget', 59);
+(483, 'Widgets_manager::edit_module_widget', 59),
+(485, 'cfcm::form_from_category_group', 43);
 
 -- --------------------------------------------------------
 
@@ -8652,7 +8653,8 @@ INSERT INTO `shop_rbac_privileges_i18n` (`id`, `title`, `description`, `locale`)
 (479, 'Обновление настроек виджета', 'Доступ к обновлению настроек виджета', 'ru'),
 (480, 'Удаление виджета', 'Доступ к удалению виджета', 'ru'),
 (482, 'Редактирование html виджета', 'Доступ к редактированию html виджета', 'ru'),
-(483, 'Редактирование модульного виджета', 'Доступ к редактированию модульного виджета', 'ru');
+(483, 'Редактирование модульного виджета', 'Доступ к редактированию модульного виджета', 'ru'),
+(485, 'cfcm::form_from_category_group', '', 'ru');
 
 -- --------------------------------------------------------
 
@@ -8972,7 +8974,8 @@ INSERT INTO `shop_rbac_roles_privileges` (`id`, `role_id`, `privilege_id`) VALUE
 (607, 3, 215),
 (608, 3, 216),
 (610, 3, 218),
-(611, 3, 219);
+(611, 3, 219),
+(612, 1, 485);
 
 -- --------------------------------------------------------
 

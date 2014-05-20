@@ -13,6 +13,8 @@ class Translator extends MY_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->helper('translator');
+        $lang = new MY_Lang();
+        $lang->load('translator');
     }
 
     public function index() {
