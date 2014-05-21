@@ -44,7 +44,7 @@
                                        return false;">
                                 <span class="helper"></span>
                                 <!--<span class="v-a_m">Купить</span>-->
-                                <span class="v-a_m">В корзину</span>
+                                <span class="v-a_m">{lang('Купить','commerce_mobiles')}</span>
                             </a>
                             <input type="hidden" name="productId" value="{echo $model->getId()}" />
                             <input type="hidden" name="variantId" value="{echo $model->firstVariant->getId()}" />
@@ -55,7 +55,7 @@
                     </div>
                 {else:}
                     <div class="f_l subm_filter">
-                        <input type="submit" value="Нет в наличии" style="width: 190px !important;">
+                        <input type="submit" value="{lang('Нет в наличии','commerce_mobiles')}" style="width: 190px !important;">
                     </div>
                 {/if}
             </div>
@@ -117,7 +117,7 @@
                             </div>
                         {else:}
                             <div class="f_l subm_filter">
-                                <input type="submit" value="Нет в наличии" style="width: 190px !important;">
+                                <input type="submit" value="{lang('Нет в наличии','commerce_mobiles')}" style="width: 190px !important;">
                             </div>
                         {/if}
 

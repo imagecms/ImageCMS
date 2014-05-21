@@ -4,14 +4,14 @@
               <form method="post" id="form_change_info" onsubmit="ImageCMSApi.formAction('{site_url("/shop/profileapi/changeInfo")}', '#form_change_info', {literal}{hideForm: false, durationHideForm: 1000}{/literal});
                 return false;">
                 <label>
-                    <span class="title">{lang('Ваше имя','newLevel')}:</span>
+                    <span class="title">{lang('Ваше имя','newLevelVertical')}:</span>
                     <span class="frame-form-field">
                         <input type="text" value="{echo encode($profile->getName())}" name="name"/>
-                        <span class="help-block">{lang('Не меньше 4-х символов','newLevel')}</span>
+                        <span class="help-block">{lang('Не меньше 4-х символов','newLevelVertical')}</span>
                     </span>
                 </label>
                 <label>
-                    <span class="title">{lang('Телефон','newLevel')}:</span>
+                    <span class="title">{lang('Телефон','newLevelVertical')}:</span>
                     <span class="frame-form-field">
                         <input type="text" value="{echo encode($profile->getPhone())}" name="phone"/>
                     </span>
@@ -21,12 +21,12 @@
                     <span class="frame-form-field">
                         <input type="text" disabled="disabled" value="{echo encode($profile->getUserEmail())}" name="email"/>
                         <input type="hidden" value="{echo encode($profile->getUserEmail())}" name="email"/>
-                        <span class="help-block">{lang('E-mail является логином','newLevel')}</span>
+                        <span class="help-block">{lang('E-mail является логином','newLevelVertical')}</span>
                     </span>
                 </label>
                 {echo ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPatternMain('pattern_custom_field')->getOneCustomFieldsByName('city','user',$profile->getId())->asHtml()}
                 <label>
-                    <span class="title">{lang('Адрес','newLevel')}:</span>
+                    <span class="title">{lang('Адрес','newLevelVertical')}:</span>
                     <span class="frame-form-field">
                         <input type="text" value="{echo encode($profile->getAddress())}" name="address"/>
                     </span>
@@ -35,7 +35,7 @@
                     <span class="title">&nbsp;</span>
                     <span class="frame-form-field">
                         <span class="btn-form">
-                            <input type="submit" value="{lang('Сохранить данные','newLevel')}"/>
+                            <input type="submit" value="{lang('Сохранить данные','newLevelVertical')}"/>
                         </span>
                     </span>
                 </div>
@@ -47,13 +47,13 @@
     {if $discount['user'] or $discount['group_user'] or $discount['comulativ']}
         <div class="layout-highlight info-discount">
             <div class="title-default">
-                <div class="title">{lang('Скидки','newLevel')}</div>
+                <div class="title">{lang('Скидки','newLevelVertical')}</div>
             </div>
             <div class="content">
                 <ul class="items items-info-discount">
                     <li class="inside-padd">
                         <div>
-                            {lang('Товаров на сумму','newLevel')}:
+                            {lang('Товаров на сумму','newLevelVertical')}:
                             <span class="price-item">
                                 <span class="text-discount">
                                     <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($profile->getamout())}</span>
@@ -63,7 +63,7 @@
                         </div>
                         {if $discount['user']}
                             <div>
-                                {lang('Ваша текущая скидка','newLevel')}:
+                                {lang('Ваша текущая скидка','newLevelVertical')}:
                                 <span class="price-item">
                                     <span class="text-discount">{echo $discount['user'][0]['value']}{if $discount['user'][0]['type_value'] == 1}%{else:}{$CS}{/if}</span>
                                 </span>
@@ -71,7 +71,7 @@
                         {/if}
                         {if $discount['group_user']}
                             <div>
-                                {lang('Ваша текущая скидка группы пользователей','newLevel')}:
+                                {lang('Ваша текущая скидка группы пользователей','newLevelVertical')}:
                                 <span class="price-item">
                                     <span class="text-discount">{echo $discount['group_user'][0]['value']}{if  $discount['group_user'][0]['type_value'] == 1}%{else:}{$CS}{/if}</span>
                                 </span>
@@ -87,7 +87,7 @@
                         {/if}
                         {if $discount_comul_curr}
                             <div>
-                                {lang('Ваша текущая скидка','newLevel')}:
+                                {lang('Ваша текущая скидка','newLevelVertical')}:
                                 <span class="price-item">
                                     <span class="text-discount">{echo $discount_comul_curr['value']}{if  $discount_comul_curr['type_value'] == 1}%{else:}{$CS}{/if}</span>
                                 </span>
@@ -98,13 +98,13 @@
 
                     {if $discount_comul_next}
                         <li class="inside-padd">
-                            <div>{lang('Для следующих скидкок','newLevel')} {echo $discount_comul_next['value']}{if  $discount_comul_next['type_value'] == 1}%{else:}{$CS}{/if}</b> {lang('оставить','newLevel')}</div>
-                            <div>{lang('Сделать покупки по ценам','newLevel')}: <b>{echo $discount_comul_next['begin_value'] - $profile->getamout()} {$CS}</b></div>
+                            <div>{lang('Для следующих скидкок','newLevelVertical')} {echo $discount_comul_next['value']}{if  $discount_comul_next['type_value'] == 1}%{else:}{$CS}{/if}</b> {lang('оставить','newLevelVertical')}</div>
+                            <div>{lang('Сделать покупки по ценам','newLevelVertical')}: <b>{echo $discount_comul_next['begin_value'] - $profile->getamout()} {$CS}</b></div>
                         </li>
                     {/if}
                     {if  $discount['comulativ']}
                         <li class="inside-padd">
-                            <button type="button" class="d_l_1" data-drop=".drop-comulativ-discounts" data-place="noinherit" data-placement="top left" data-overlay-opacity= "0">{lang('Посмотреть таблицу скидок','newLevel')}</button>
+                            <button type="button" class="d_l_1" data-drop=".drop-comulativ-discounts" data-place="noinherit" data-placement="top left" data-overlay-opacity= "0">{lang('Посмотреть таблицу скидок','newLevelVertical')}</button>
                         </li>
                     {/if}
                 </ul>
@@ -116,16 +116,16 @@
     <div class="drop-style drop drop-comulativ-discounts">
         <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
         <div class="drop-header">
-            <div class="title">{lang('Накопительные скидки','newLevel')}</div>
+            <div class="title">{lang('Накопительные скидки','newLevelVertical')}</div>
         </div>
         <div class="drop-content">
             <div class="inside-padd characteristic">
                 <table class="">
                     <thead>
                         <tr>
-                            <th>{lang('Размер скидки','newLevel')}</th>
-                            <th>{lang('От','newLevel')}</th>
-                            <th>{lang('До','newLevel')}</th>
+                            <th>{lang('Размер скидки','newLevelVertical')}</th>
+                            <th>{lang('От','newLevelVertical')}</th>
+                            <th>{lang('До','newLevelVertical')}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -133,7 +133,7 @@
                             <tr>
                                 <td class="text-discount">{echo $disc['value']}{if $disc['type_value'] == 1}%{else:}{$CS}{/if}</td>
                                 <td>{echo $disc['begin_value']} {$CS}</td>
-                                <td>{if $disc['end_value']}{echo $disc['end_value']} {$CS}{else:}{lang('Бесконечно','newLevel')}{/if}</td>
+                                <td>{if $disc['end_value']}{echo $disc['end_value']} {$CS}{else:}{lang('Бесконечно','newLevelVertical')}{/if}</td>
                             </tr>
                         {/foreach}
                     </tbody>

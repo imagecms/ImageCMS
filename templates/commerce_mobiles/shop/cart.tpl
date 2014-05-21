@@ -22,9 +22,9 @@
                                 {/if}
                                 <input name="products[{echo $item->quantity}]" type="hidden" value="{echo $item->quantity}"/>
                                 {if ShopCore::app()->SCurrencyHelper->convert($item->originPrice) != ShopCore::app()->SCurrencyHelper->convert($item->price)}
-                                <span class="d_b price" style="color: red; text-decoration: line-through;">
-                                    {echo ShopCore::app()->SCurrencyHelper->convert($item->originPrice)} {$CS}
-                                </span>
+                                    <span class="d_b price" style="color: red; text-decoration: line-through;">
+                                        {echo ShopCore::app()->SCurrencyHelper->convert($item->originPrice)} {$CS}
+                                    </span>
                                 {/if}
                                 <span class="d_b price">{echo ShopCore::app()->SCurrencyHelper->convert($item->price)} {$CS}</span>
                             </span>
@@ -61,7 +61,7 @@
                     <span>{lang('Подарочный сертификат','commerce_mobiles')}:</span>
                     <div class="frame-gift">
                         {if $gift_error}
-                            <span class="text-el" style="color:red;">{lang('Неверный подарочный сертификат', 'commerce_mobiles')}</span><br/>
+                            <span class="text-el" style="color:red;">{lang('Неверный код подарочного сертификата', 'commerce_mobiles')}</span><br/>
                         {/if}
                         <input type="text" name="gift" class="inputGift">
                         <div class="subm_filter submitGiftButton">
@@ -71,9 +71,9 @@
                 {/if}
                 <br/>
                 {if $discount_val}
-                    Скидка: {echo ShopCore::app()->SCurrencyHelper->convert($discount_val)} {$CS} <br/>
+                    {lang('Скидка', 'commerce_mobile')}: {echo ShopCore::app()->SCurrencyHelper->convert($discount_val)} {$CS} <br/>
                 {/if}
-                <span class="total_pay">Всего к оплате:</span>
+                <span class="total_pay">{lang('Всего к оплате', 'commerce_mobile')}:</span>
                 <span class="price">
                     {echo ShopCore::app()->SCurrencyHelper->convert($cartPrice)} {$CS} 
                 </span>
@@ -81,13 +81,13 @@
         </div>
         <div class="main_f_i_f-r"></div>
         <div class="content_head">
-            <h1>Оформление заказа</h1>
-            <p class="alert">Способ оплаты и доставки вы сможете согласовать с менеджером, который свяжется с вами после оформления заказа.</p>
+            <h1>{lang('Оформление заказа', 'commerce_mobile')}</h1>
+            <p class="alert">{lang('Способ оплаты и доставки вы сможете согласовать с менеджером, который свяжется с вами после оформления заказа.', 'commerce_mobile')}</p>
         </div>
         <hr class="head_cle_foot"/>
         <div class="main_frame_inside">
-            {if validation_errors()}
-                <label><span class="red d_b">{validation_errors()}</span></label>
+            {if $errors}
+                <label><span class="red d_b">{echo $errors}</span></label>
                 {/if}
             <label>
                 {lang('Имя','commerce_mobiles')}:<span class="must">*</span>
@@ -98,21 +98,29 @@
                 <input type="text" name="userInfo[email]" value="{$profile.email}"/>
             </label>
             <label>
-                {lang('Телефон','commerce_mobiles')}:
+                {lang('Телефон','commerce_mobiles')}:<span class="must">*</span>
                 <input type="text" name="userInfo[phone]" value="{$profile.phone}" />
             </label>
             <label>
-                {lang('Способ доставки','commerce_mobiles')}
+                {lang('Адрес', 'newLevel')}:
+                <input name="userInfo[deliverTo]" type="text" value="{$profile.address}"/>
+            </label>
+            <label>
+                {lang('Способ доставки', 'commerce_mobiles')}:
                 <select id="method_deliv" name="deliveryMethodId">
+                    {$counter = true}
                     {foreach $deliveryMethods as $deliveryMethod}
-                        {$del_id = $deliveryMethod->getId()}
+                        {if $counter}
+                            <option value="">
+                                {lang('Не выбран','commerce_mobiles')}
+                            </option>
+                            {$counter = false}
+                        {/if}
                         <option
-                            {if $counter} selected="selected"
-                                {$del_id = $deliveryMethod->getId()}
-                                {$counter = false}
-                                {$del_price = ceil($deliveryMethod->getPrice())}
-                                {$del_freefrom = ceil($deliveryMethod->getFreeFrom())}
-                            {/if}
+                            {$del_id = $deliveryMethod->getId()}
+                            {$del_price = ceil($deliveryMethod->getPrice())}
+                            {$del_freefrom = ceil($deliveryMethod->getFreeFrom())}
+
                             name="met_del"
                             class="met_del"
                             value="{echo $del_id}"
@@ -126,22 +134,32 @@
 
             {if count($paymentMethods)}
                 <label>
-                    {lang('Способ оплаты','commerce_mobiles')}
+                    {$counter = true}
+                    {lang('Способ оплаты','commerce_mobiles')}:
+                    <span id="notSelectedPayment">
+                        {lang('Выберите доставку','commerce_mobiles')}
+                    </span>
                     {foreach $deliveryMethods as $dm}
-                        <select id="paymentMethod{echo $dm->getId()}">
-                            {$counter = true}
-                            {foreach $dm->getPaymentMethodss() as $pm}
-                                <option value="{echo $pm->getId()}">
-                                    {echo $pm->getName()}
+                        {if count($dm->getPaymentMethodss()) > 0}
+                            <select id="paymentMethod{echo $dm->getId()}">
+                                <option value="">
+                                    {lang('Не выбран','commerce_mobiles')}
                                 </option>
-                            {/foreach}
-                        </select>
+                                {foreach $dm->getPaymentMethodss() as $pm}
+                                    {if $pm->getActive()}
+                                        <option value="{echo $pm->getId()}">
+                                            {echo $pm->getName()}
+                                        </option>
+                                    {/if}
+                                {/foreach}
+                            </select>
+                        {/if}
                     {/foreach}
                     <input type="hidden" name="paymentMethodId" >
                 </label>
             {/if}
             <label>
-                Коментарий к заказу:
+                {lang('Коментарий к заказу', 'commerce_mobile')}:
                 <textarea name="userInfo[commentText]"></textarea>
             </label>
         </div>
@@ -151,7 +169,7 @@
                 <span class="b_buy_in">
                     <span class="helper"></span>
                     <input type="submit"
-                           value="Оформить заказ"
+                           value="{lang('Оформить заказ', 'commerce_mobile')}"
                            class="v-a_m"/>
                 </span>
             </span>

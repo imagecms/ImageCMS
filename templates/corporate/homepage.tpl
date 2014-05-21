@@ -1,3 +1,6 @@
+<!-- Start. Show banner on home page. -->
+{$CI->load->module('banners')->render()}
+<!-- End. Show banner on home page. -->
 {widget('benefits')}
 <div class="fon-noise">
     <div class="container">
@@ -5,7 +8,7 @@
             <div class="blog-news">
                 {widget('blog')}
                 <div class="btn btn-link-rss ">
-                    <a href="{site_url('/rss')}"><span class="icon-rss"></span>Подписаться  на блог</a>
+                    <a href="{site_url('/rss')}"><span class="icon-rss"></span>{lang('Подписаться  на блог','corporate')}</a>
                 </div>
                 {$Comments = $CI->load->module('comments')->init($page)}
 
@@ -26,4 +29,3 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="{$THEME}js/jquery.cycle.js"></script>

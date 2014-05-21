@@ -13,8 +13,12 @@ class Admin extends BaseAdminController {
         $lang = new MY_Lang();
         $lang->load('new_level');
         $this->load->model('new_level_model');
+<<<<<<< HEAD
         $currentTemplateName = \CI::$APP->db->get('settings')->row()->site_template;
         $this->path = TEMPLATES_PATH . $currentTemplateName;
+=======
+        $this->path = TEMPLATES_PATH . $this->db->get('settings')->row()->site_template;
+>>>>>>> b9c4d95ddd6af09e1a909d3d92f8be7f988bb9c7
     }
 
     /**

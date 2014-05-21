@@ -161,7 +161,7 @@ INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_me
 (4, 'comments', 'comments', 1, 1, 1, 'a:5:{s:18:"max_comment_length";i:550;s:6:"period";i:0;s:11:"can_comment";i:0;s:11:"use_captcha";b:0;s:14:"use_moderation";b:0;}', NULL),
 (7, 'navigation', 'navigation', 0, 0, 1, NULL, NULL),
 (30, 'tags', 'tags', 1, 1, 1, NULL, NULL),
-(92, 'gallery', 'gallery', 1, 0, 1, 'a:26:{s:13:"max_file_size";s:1:"5";s:9:"max_width";s:1:"0";s:10:"max_height";s:1:"0";s:7:"quality";s:3:"100";s:14:"maintain_ratio";b:1;s:19:"maintain_ratio_prev";b:1;s:19:"maintain_ratio_icon";b:1;s:4:"crop";b:0;s:9:"crop_prev";b:0;s:9:"crop_icon";b:1;s:14:"prev_img_width";s:3:"500";s:15:"prev_img_height";s:3:"500";s:11:"thumb_width";s:3:"200";s:12:"thumb_height";s:3:"200";s:14:"watermark_text";s:0:"";s:16:"wm_vrt_alignment";s:6:"bottom";s:16:"wm_hor_alignment";s:4:"left";s:19:"watermark_font_size";s:2:"14";s:15:"watermark_color";s:6:"ffffff";s:17:"watermark_padding";s:2:"-5";s:19:"watermark_font_path";s:20:"./system/fonts/1.ttf";s:15:"watermark_image";s:0:"";s:23:"watermark_image_opacity";s:2:"50";s:14:"watermark_type";s:4:"text";s:8:"order_by";s:4:"date";s:10:"sort_order";s:4:"desc";}', NULL),
+(92, 'gallery', 'gallery', 1, 0, 1, 'a:26:{s:13:"max_file_size";s:1:"5";s:9:"max_width";s:1:"0";s:10:"max_height";s:1:"0";s:7:"quality";s:3:"100";s:14:"maintain_ratio";b:1;s:19:"maintain_ratio_prev";b:1;s:19:"maintain_ratio_icon";b:1;s:4:"crop";b:0;s:9:"crop_prev";b:0;s:9:"crop_icon";b:1;s:14:"prev_img_width";s:3:"500";s:15:"prev_img_height";s:3:"500";s:11:"thumb_width";s:3:"200";s:12:"thumb_height";s:3:"200";s:14:"watermark_text";s:0:"";s:16:"wm_vrt_alignment";s:6:"bottom";s:16:"wm_hor_alignment";s:4:"left";s:19:"watermark_font_size";s:2:"14";s:15:"watermark_color";s:6:"ffffff";s:17:"watermark_padding";s:2:"-5";s:19:"watermark_font_path";s:25:"./uploads/defaultFont.ttf";s:15:"watermark_image";s:0:"";s:23:"watermark_image_opacity";s:2:"50";s:14:"watermark_type";s:4:"text";s:8:"order_by";s:4:"date";s:10:"sort_order";s:4:"desc";}', NULL),
 (55, 'rss', 'rss', 1, 0, 1, 'a:5:{s:5:"title";s:22:"Блог ImageRobotics";s:11:"description";s:64:"Последние тенденции в мире роботов";s:10:"categories";a:7:{i:0;s:2:"56";i:1;s:2:"57";i:2;s:2:"55";i:3;s:2:"58";i:4;s:2:"59";i:5;s:2:"60";i:6;s:2:"61";}s:9:"cache_ttl";i:60;s:11:"pages_count";i:10;}', NULL),
 (60, 'menu', 'menu', 0, 1, 1, NULL, NULL),
 (58, 'sitemap', 'sitemap', 0, 0, 1, 'a:5:{s:12:"robotsStatus";i:0;s:11:"generateXML";i:1;s:11:"sendSiteMap";i:1;s:8:"lastSend";i:0;s:18:"sendWhenUrlChanged";i:0;}', NULL),
@@ -1448,7 +1448,8 @@ INSERT INTO `shop_rbac_privileges` (`id`, `name`, `group_id`) VALUES
 (479, 'Widgets_manager::update_config', 59),
 (480, 'Widgets_manager::delete', 59),
 (482, 'Widgets_manager::edit_html_widget', 59),
-(483, 'Widgets_manager::edit_module_widget', 59);
+(483, 'Widgets_manager::edit_module_widget', 59),
+(485, 'cfcm::form_from_category_group', 43);
 
 -- --------------------------------------------------------
 
@@ -1686,7 +1687,8 @@ INSERT INTO `shop_rbac_privileges_i18n` (`id`, `title`, `description`, `locale`)
 (479, 'Обновление настроек виджета', 'Доступ к обновлению настроек виджета', 'ru'),
 (480, 'Удаление виджета', 'Доступ к удалению виджета', 'ru'),
 (482, 'Редактирование html виджета', 'Доступ к редактированию html виджета', 'ru'),
-(483, 'Редактирование модульного виджета', 'Доступ к редактированию модульного виджета', 'ru');
+(483, 'Редактирование модульного виджета', 'Доступ к редактированию модульного виджета', 'ru'),
+(485, 'Заполнение дополнительных полей', 'Заполнение дополнительных полей', 'ru');
 
 -- --------------------------------------------------------
 
@@ -2008,7 +2010,8 @@ INSERT INTO `shop_rbac_roles_privileges` (`id`, `role_id`, `privilege_id`) VALUE
 (610, 3, 218),
 (611, 3, 219),
 (612, 1, 424),
-(613, 1, 425);
+(613, 1, 425),
+(614, 1, 485);
 
 -- --------------------------------------------------------
 

@@ -1,5 +1,5 @@
-<section class="mini-layout" style="padding-top: 39px;">
-    <div class="frame_title clearfix" style="top: 179px; width: 1168px;">
+<section class="mini-layout">
+    <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
             <span class="title">{lang('Discounts of online store', 'mod_discount')} ({echo count($discountsList)})</span>
@@ -8,7 +8,7 @@
             <div class="d-i_b">
                 <!--        <button title="Фильтровать" type="submit" class="btn btn-small"><i class="icon-filter"></i>Фильтр</button>
                         <a href="/admin/components/run/shop/search/index" title="Сбросить фильтр" type="button" class="btn btn-small pjax"><i class="icon-refresh"></i>Сбросить фильтр</a>-->
-                <a class="btn btn-small btn-success pjax" href="/admin/components/init_window/mod_discount/create"><i class="icon-plus-sign icon-white"></i>{lang('Create', 'mod_discount')}</a>
+                <a class="btn btn-small btn-success pjax" href="/admin/components/init_window/mod_discount/create"><i class="icon-plus-sign icon-white"></i>{lang('Create discount', 'mod_discount')}</a>
             </div>
         </div>
         <div class="pull-right">

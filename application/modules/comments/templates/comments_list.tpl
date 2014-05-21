@@ -90,7 +90,7 @@ langs["Show answers"] = '<?php echo lang("Show answers", "comments")?>';
                                                 </span>
                                             </span>
                                         </td>
-                                        <td>{$item.id}</td>
+                                        <td><a href="{echo site_url('admin/components/cp/comments/edit/')}/{$item.id}" class="pjax">{$item.id}</a></td>
                                         <td>
                                             <span class="time muted">{date('d-m-Y H:i', $item.date)}</span>
                                             <span class="text_comment" id="comment_text_holder{$item.id}">{truncate(htmlspecialchars($item.text), 80, '...')}</span>
@@ -186,7 +186,7 @@ langs["Show answers"] = '<?php echo lang("Show answers", "comments")?>';
                                                                 </span>
                                                             </span>
                                                         </td>
-                                                        <td>{$item.id}</td>
+                                                        <td><a href="{echo site_url('admin/components/cp/comments/edit/')}/{$item.id}" class="pjax">{$item.id}</a></td>
                                                         <td>
                                                             <span class="time muted">{date('d-m-Y H:i', $item.date)}</span>
                                                             <span class="text_comment parent_comment_{$item.id}" id="comment_text_holder{$item.id}">{truncate(htmlspecialchars($item.text), 80, '...')}</span>
@@ -195,6 +195,7 @@ langs["Show answers"] = '<?php echo lang("Show answers", "comments")?>';
                                                                 <span class="js ref comment_update" data-cid="{$item.id}" data-uname="{$item.user_name}" data-uemail="{$item.user_mail}" data-cstatus="{$item.status}">
                                                                     {lang('Save', 'comments')}
                                                                 </span>
+                                                                &nbsp;&nbsp;
                                                                 <span class="js ref comment_update_cancel" data-cid="{$item.id}">
                                                                     {lang('Cancel', 'comments')}
                                                                 </span>
@@ -296,7 +297,7 @@ langs["Show answers"] = '<?php echo lang("Show answers", "comments")?>';
                                                                                     </span>
                                                                                 </span>
                                                                             </td>
-                                                                            <td>{$ic.id}</td>
+                                                                            <td><a href="{echo site_url('admin/components/cp/comments/edit/')}/{$ic.id}" class="pjax">{$ic.id}</a></td>
                                                                             <td>
                                                                                 <span class="simple_tree pull-left">&#8627;</span>
                                                                                 <div class="o_h">
@@ -305,6 +306,7 @@ langs["Show answers"] = '<?php echo lang("Show answers", "comments")?>';
                                                                                     <span class="frame_edit_comment ref_group" id="comment_text_editor{$ic.id}">
                                                                                         <textarea id="edited_com_text{$ic.id}">{$ic.text}</textarea>
                                                                                         <span class="js ref comment_update" data-cid="{$ic.id}" data-uname="{$ic.user_name}" data-uemail="{$ic.user_mail}" data-cstatus="{$ic.status}">{lang('Save', 'comments')}</span>
+                                                                                        &nbsp;&nbsp;
                                                                                         <span class="js ref comment_update_cancel" data-cid="{$ic.id}">{lang('Cancel', 'comments')}</span>
                                                                                     {if $ic.status == 1}<a href="#" class="to_approved" data-id="{$ic.id}">{lang('In approve', 'comments')}</a>{/if}
                                                                                     {if $ic.status != 2}

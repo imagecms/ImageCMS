@@ -185,7 +185,7 @@ INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_me
 (4, 'comments', 'comments', 1, 1, 1, 'a:5:{s:18:"max_comment_length";i:0;s:6:"period";i:0;s:11:"can_comment";i:0;s:11:"use_captcha";b:0;s:14:"use_moderation";b:0;}', 8),
 (7, 'navigation', 'navigation', 0, 0, 0, NULL, 28),
 (30, 'tags', 'tags', 1, 1, 0, NULL, 26),
-(92, 'gallery', 'gallery', 1, 0, 0, 'a:26:{s:13:"max_file_size";s:1:"5";s:9:"max_width";s:1:"0";s:10:"max_height";s:1:"0";s:7:"quality";s:2:"95";s:14:"maintain_ratio";b:1;s:19:"maintain_ratio_prev";b:1;s:19:"maintain_ratio_icon";b:1;s:4:"crop";b:0;s:9:"crop_prev";b:0;s:9:"crop_icon";b:0;s:14:"prev_img_width";s:3:"500";s:15:"prev_img_height";s:3:"500";s:11:"thumb_width";s:3:"100";s:12:"thumb_height";s:3:"100";s:14:"watermark_text";s:0:"";s:16:"wm_vrt_alignment";s:6:"bottom";s:16:"wm_hor_alignment";s:4:"left";s:19:"watermark_font_size";s:2:"14";s:15:"watermark_color";s:6:"ffffff";s:17:"watermark_padding";s:2:"-5";s:19:"watermark_font_path";s:20:"./system/fonts/1.ttf";s:15:"watermark_image";s:0:"";s:23:"watermark_image_opacity";s:2:"50";s:14:"watermark_type";s:4:"text";s:8:"order_by";s:4:"date";s:10:"sort_order";s:4:"desc";}', 12),
+(92, 'gallery', 'gallery', 1, 0, 0, 'a:26:{s:13:"max_file_size";s:1:"5";s:9:"max_width";s:1:"0";s:10:"max_height";s:1:"0";s:7:"quality";s:2:"95";s:14:"maintain_ratio";b:1;s:19:"maintain_ratio_prev";b:1;s:19:"maintain_ratio_icon";b:1;s:4:"crop";b:0;s:9:"crop_prev";b:0;s:9:"crop_icon";b:0;s:14:"prev_img_width";s:3:"500";s:15:"prev_img_height";s:3:"500";s:11:"thumb_width";s:3:"100";s:12:"thumb_height";s:3:"100";s:14:"watermark_text";s:0:"";s:16:"wm_vrt_alignment";s:6:"bottom";s:16:"wm_hor_alignment";s:4:"left";s:19:"watermark_font_size";s:2:"14";s:15:"watermark_color";s:6:"ffffff";s:17:"watermark_padding";s:2:"-5";s:19:"watermark_font_path";s:25:"./uploads/defaultFont.ttf";s:15:"watermark_image";s:0:"";s:23:"watermark_image_opacity";s:2:"50";s:14:"watermark_type";s:4:"text";s:8:"order_by";s:4:"date";s:10:"sort_order";s:4:"desc";}', 12),
 (55, 'rss', 'rss', 1, 0, 0, 'a:5:{s:5:"title";s:9:"Image CMS";s:11:"description";s:35:"Тестируем модуль RSS";s:10:"categories";a:1:{i:0;s:1:"3";}s:9:"cache_ttl";i:60;s:11:"pages_count";i:10;}', 13),
 (60, 'menu', 'menu', 0, 1, 1, NULL, 0),
 (58, 'sitemap', 'sitemap', 1, 1, 1, 'a:6:{s:18:"main_page_priority";b:0;s:13:"cats_priority";b:0;s:14:"pages_priority";b:0;s:20:"main_page_changefreq";b:0;s:21:"categories_changefreq";b:0;s:16:"pages_changefreq";b:0;}', 14),
@@ -206,7 +206,7 @@ INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_me
 (183, 'wishlist', 'wishlist', 1, 1, 0, 'a:10:{s:11:"maxUserName";s:3:"256";s:11:"maxListName";s:3:"254";s:13:"maxListsCount";s:2:"10";s:13:"maxItemsCount";s:3:"100";s:16:"maxCommentLenght";s:3:"500";s:13:"maxDescLenght";s:4:"1000";s:15:"maxWLDescLenght";s:4:"1000";s:13:"maxImageWidth";s:3:"150";s:14:"maxImageHeight";s:3:"150";s:12:"maxImageSize";s:7:"2000000";}" }', 3),
 (188, 'cmsemail', 'cmsemail', 1, 0, 1, 'a:9:{s:4:"from";s:41:"Интернет-магазин ImageShop";s:10:"from_email";s:22:"noreplay@client.com.ua";s:11:"admin_email";s:18:"info@client.com.ua";s:5:"theme";s:41:"Интернет-магазин ImageShop";s:12:"wraper_activ";s:2:"on";s:6:"wraper";s:304:"<h2>Интернет-магазин "ImageShop"</h2>\n<div>$content</div>\n<hr />\n<p>С уважением, Интернет-магазин "ImageShop"</p>\n<p><small>Данное письмо создано автоматически, пожалуйста не отвечайте на него.</small></p>";s:8:"mailpath";s:0:"";s:8:"protocol";s:4:"mail";s:4:"port";s:0:"";}', 4),
 (191, 'mod_discount', 'mod_discount', 1, 1, 1, NULL, 2),
-(253, 'smart_filter', 'smart_filter', 1, 1, 0, NULL, 25),
+(253, 'smart_filter', 'smart_filter', 1, 0, 0, NULL, 25),
 (261, 'trash', 'trash', 0, 1, 1, NULL, 4),
 (264, 'language_switch', 'language_switch', 0, 0, 0, NULL, 22),
 (265, 'star_rating', 'star_rating', 1, 0, 0, NULL, 11),
@@ -869,6 +869,7 @@ CREATE TABLE IF NOT EXISTS `mod_banner` (
   `active` tinyint(4) NOT NULL,
   `active_to` int(11) DEFAULT NULL,
   `where_show` text,
+  `group` text,
   `position` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
@@ -1059,7 +1060,7 @@ INSERT INTO `mod_email_paterns` (`id`, `name`, `patern`, `from`, `from_email`, `
 (5, 'forgot_password', '', '', '', '', 'HTML', 1, 0),
 (6, 'change_password', '', '', '', '', 'HTML', 1, 0),
 (7, 'price_change', '', '', '', '', 'HTML', 1, 0),
-(8, 'wish_list', '', '', '', '', 'HTML', 0, 1),
+(8, 'wish_list', '', '', '', '', 'HTML', 1, 1),
 (9, 'callback', '', '', '', '', 'HTML', 1, 1);
 
 -- --------------------------------------------------------
@@ -1088,8 +1089,8 @@ INSERT INTO `mod_email_paterns_i18n` (`id`, `locale`, `theme`, `user_message`, `
 (1, 'ru', 'Заказ товара', '<p style="font-family: arial; font-size: 13px; margin-top: 10px;">Здравствуйте, $userName$!</p>\n<p style="font-family: arial; font-size: 13px; margin-top: 10px;">Мы благодарны Вам за то, что совершили заказ в нашем магазине.</p>\n<p style="font-family: arial; font-size: 13px; margin-top: 20px;">Вы указали следующие контактные данные:</p>\n<div style="font-family: arial; font-size: 13px; margin-top: 10px;"><span style="color: #666;">Email адрес: </span>$userEmail$</div>\n<div style="font-family: arial; font-size: 13px; margin-top: 10px;"><span style="color: #666;">Номер телефона: </span>$userPhone$</div>\n<div style="font-family: arial; font-size: 13px; margin-top: 10px;"><span style="color: #666;">Адрес доставки: </span>$userDeliver$</div>\n<p style="font-family: arial; font-size: 13px; margin-top: 20px;">Менеджеры нашего магазина вскоре свяжутся с Вами и помогут с оформлением и оплатой товара.</p>\n<p style="font-family: arial; font-size: 13px;">Также, Вы можете всегда посмотреть за статусом Вашего заказа, <a href="$orderLink$" target="_blank">перейдя по ссылке</a>.</p>', '<p>Пользователь&nbsp;$userName$ совершил заказ товара</p>\n<p>Email адрес: $userEmail$</p>\n<p>Номер телефона: $userPhone$</p>\n<p>Адрес доставки: $userDeliver$</p>', '<p><span>Уведомление покупателя о совершении заказа</span></p>', 'a:5:{s:10:"$userName$";s:31:"Имя пользователя";s:11:"$userEmail$";s:30:"Email Пользователя";s:11:"$userPhone$";s:39:"Телефон Пользователя";s:13:"$userDeliver$";s:27:"Адрес доставки";s:11:"$orderLink$";s:28:"Ссылка на заказ";}'),
 (2, 'ru', 'Смена статуса заказа', '<p style="font-family: arial; font-size: 13px; margin-top: 10px;">Здравствуйте, $userName$!</p>\n<p style="font-family: arial; font-size: 13px; margin-top: 10px;">Статус вашего заказа изменен на <strong>$status$</strong></p>\n<p style="font-family: arial; font-size: 13px; margin-top: 20px;">Вы указали следующие контактные данные:</p>\n<div style="font-family: arial; font-size: 13px; margin-top: 10px;"><span style="color: #666;">Email адрес: </span>$userEmail$</div>\n<div style="font-family: arial; font-size: 13px; margin-top: 10px;"><span style="color: #666;">Номер телефона: </span>$userPhone$</div>\n<div style="font-family: arial; font-size: 13px; margin-top: 10px;"><span style="color: #666;">Адрес доставки: </span>$userDeliver$</div>\n<p style="font-family: arial; font-size: 13px; margin-top: 20px;">Менеджеры нашего магазина вскоре свяжутся с Вами и помогут с оформлением и оплатой товара.</p>\n<p style="font-family: arial; font-size: 13px;">Также, Вы можете всегда посмотреть за статусом Вашего заказа, <a href="$orderLink$" target="_blank">перейдя по ссылке</a>.</p>', '', '<p>Смена статуса заказа</p>', 'a:4:{s:10:"$userName$";s:31:"Имя пользователя";s:11:"$userEmail$";s:30:"Email Пользователя";s:11:"$orderLink$";s:28:"Ссылка на заказ";s:8:"$status$";s:25:"Статус заказа";}'),
 (3, 'ru', 'Товар появился на складе!', '<p style="font-family: arial; font-size: 13px; margin-top: 10px;">Здравствуйте, $userName$!</p>\n<p style="font-family: arial; font-size: 13px; margin-top: 10px;">Товар&nbsp;<a href="$productLink$" target="_blank">$productName$</a>&nbsp;появился на складе. Вы можете его заказать.</p>', '', '<p>Уведомление о появлении</p>', 'a:5:{s:10:"$userName$";s:31:"Имя пользователя";s:11:"$userEmail$";s:30:"Email Пользователя";s:13:"$productName$";s:33:"Название продукта";s:8:"$status$";s:12:"Статус";s:13:"$productLink$";s:32:"Ссылка на продукт";}'),
-(4, 'ru', 'Регистрация пользователя', '<p style="font-family: arial; font-size: 13px; margin-top: 10px;">Здравствуйте, $userName$!</p>\n<p style="font-family: arial; font-size: 13px; margin-top: 10px;">Поздравляем! Ваша регистрация прошла успешно.</p>\n<p style="font-family: arial; font-size: 13px; margin-top: 20px;">Данные для входа в магазин:</p>\n<div style="font-family: arial; font-size: 13px; margin-top: 10px;"><span style="color: #666;">Email адрес: </span>$userEmail$</div>\n<div style="font-family: arial; font-size: 13px; margin-top: 10px;"><span style="color: #666;">Пароль: </span>$user_password$</div>', '', '<p>Шаблон письма на создание пользователя</p>', 'a:6:{s:11:"$user_name$";s:31:"Имя пользователя";s:14:"$user_address$";s:35:"Адрес пользователя";s:15:"$user_password$";s:37:"Пароль пользователя";s:12:"$user_phone$";s:39:"Телефон пользователя";s:12:"$user_email$";s:30:"Email пользователя";}'),
-(5, 'ru', 'Восстановление пароля', '<p style="font-family: arial; font-size: 13px; margin-top: 10px;">Запрос на восстановление пароля для Вашего аккаунта</p>\n<p style="font-family: arial; font-size: 13px; margin-top: 20px;">Для завершения процедуры восстановления пароля перейдите по ссылке <a href="$resetPasswordUri$">Подтвердить</a></p>\n<p style="font-family: arial; font-size: 13px; margin-top: 10px;">Ваш новый пароль для входа: $password$</p>\n<p style="font-family: arial; font-size: 13px; margin-top: 10px;">Если это письмо попало к Вам по ошибке просто проигнорируйте его.</p>', '', '<p>Шаблон письма на восстановление пароля</p>', 'a:5:{s:13:"$webSiteName$";s:17:"Имя сайта";s:18:"$resetPasswordUri$";s:57:"Ссилка на восстановления пароля";s:10:"$password$";s:12:"Пароль";s:5:"$key$";s:8:"Ключ";s:16:"$webMasterEmail$";s:52:"Email сотрудникjd службы продаж";}'),
+(4, 'ru', 'Создание пользователя', '<p style="font-family: arial; font-size: 13px; margin-top: 10px;">Здравствуйте, $user_name$!</p>\n<p style="font-family: arial; font-size: 13px; margin-top: 10px;">Поздравляем! Ваша регистрация прошла успешно.</p>\n<p style="font-family: arial; font-size: 13px; margin-top: 20px;">Данные для входа в магазин:</p>\n<div style="font-family: arial; font-size: 13px; margin-top: 10px;"><span style="color: #666;">Email адрес: </span>$user_email$</div>\n<div style="font-family: arial; font-size: 13px; margin-top: 10px;"><span style="color: #666;">Пароль: </span>$user_password$</div>', '<p><span>Создан пользователь $user_name$:</span><br /><span>С паролем: $user_password$</span><br /><span>Адресом: &nbsp;$<span>user_</span>address$</span><br /><span>Email пользователя: $user_email$</span><br /><span>Телефон пользователя: $user_phone$</span></p>', '<p>Шаблон письма на создание пользователя</p>', 'a:5:{s:11:"$user_name$";s:31:"Имя пользователя";s:15:"$user_password$";s:12:"Пароль";s:14:"$user_address$";s:12:"Адресс";s:12:"$user_email$";s:5:"Email";s:12:"$user_phone$";s:14:"Телефон";}'),
+(5, 'ru', 'Восстановление пароля', '<p><span>Здравствуйте!</span><br /><br /><span>На сайте $webSiteName$ создан запрос на восстановление пароля для Вашего аккаунта.</span><br /><br /><span>Для завершения процедуры восстановления пароля перейдите по ссылке $resetPasswordUri$</span><br /><br /><span>Ваш новый пароль для входа: $password$</span><br /><br /><span>Если это письмо попало к Вам по ошибке просто проигнорируйте его.</span><br /><br /><span>При возникновении любых вопросов, обращайтесь по телефонам:</span><br /><br /><span>(012)&nbsp; 345-67-89 , (012)&nbsp; 345-67-89</span><br /><br /><span>---</span><br /><br /><span>С уважением,</span><br /><br /><span>сотрудники службы продаж $webSiteName$</span></p>', '', 'Шаблон письма на  восстановление пароля', 'a:5:{s:13:"$webSiteName$";s:17:"Имя сайта";s:18:"$resetPasswordUri$";s:59:"Ссылка на восстановления пароля";s:10:"$password$";s:12:"Пароль";s:5:"$key$";s:8:"Ключ";s:16:"$webMasterEmail$";s:54:"Email сотрудников службы продаж";}'),
 (6, 'ru', 'Смена пароля', '<p style="font-family: arial; font-size: 13px; margin-top: 10px;">Здравствуйте, $userName$!</p>\n<p style="font-family: arial; font-size: 13px; margin-top: 10px;">Вы успешно изменили пароль</p>\n<p style="font-family: arial; font-size: 13px; margin-top: 20px;">Ваш новый пароль для входа: $password$</p>', '', '<p>Шаблон письма изменения пароля</p>', 'a:2:{s:11:"$user_name$";s:31:"Имя пользователя";s:10:"$password$";s:23:"Новый пароль";}'),
 (7, 'ru', 'Изменение цены', '<p>Цена на $name$ за которым вы следите на сайте $server$ изменилась.</p>\n<p><a title="Посмотреть список слежения" href="$list_url_look$">Посмотреть список слежения</a></p>\n<p><a title="Отписатся от слежения" href="$delete_list_url_look$">Отписатся от слежения</a></p>', '<p>&nbsp;</p>\n<div id="dc_vk_code">&nbsp;</div>', '<p>Изменение цены</p>\n<div id="dc_vk_code" style="display: none;">&nbsp;</div>', ''),
 (7, 'ua', 'Ціна змінилася', '<p>Ціна на $name$ за яким Ви слідкуєте на сайті $server$ змінилася.<br /> <a title="Переглянути список слідкувань" href="$list_url_look$">Переглянути список слідкувань</a><br /> <a title="Відписатися від слідкування" href="$delete_list_url_look$">Відписатися від слідкування</a></p>\n<div id="dc_vk_code"  none;">&nbsp;</div>', '<p>&nbsp;</p>\n<div id="dc_vk_code">&nbsp;</div>', '<p>Слідкування за ціною</p>\n<div id="dc_vk_code" style="display: none;">&nbsp;</div>', ''),
@@ -1424,7 +1425,7 @@ CREATE TABLE IF NOT EXISTS `settings` (
 --
 
 INSERT INTO `settings` (`id`, `s_name`, `create_keywords`, `create_description`, `create_cat_keywords`, `create_cat_description`, `add_site_name`, `add_site_name_to_cat`, `delimiter`, `editor_theme`, `site_template`, `site_offline`, `google_analytics_id`, `main_type`, `main_page_id`, `main_page_cat`, `main_page_module`, `sidepanel`, `lk`, `lang_sel`, `google_webmaster`, `yandex_webmaster`, `yandex_metric`, `ss`, `cat_list`, `text_editor`, `siteinfo`, `update`, `backup`) VALUES
-(2, 'main', 'auto', 'auto', '0', '0', 1, 1, '/', '0', 'newLevel', 'no', '', 'module', 69, '63', 'shop', '', '', 'russian_lang', '', '', '', '', 'yes', 'tinymce', 'a:3:{s:13:"siteinfo_logo";a:1:{s:8:"newLevel";s:8:"logo.png";}s:16:"siteinfo_favicon";a:1:{s:8:"newLevel";s:11:"favicon.ico";}s:2:"ru";a:7:{s:20:"siteinfo_companytype";s:97:"© Интернет-магазин «<a href="http://www.imagecms.net/">ImageCMS Shop</a>», 2013";s:16:"siteinfo_address";s:63:"Улица Шевченка, Буд. 22, офис: 39, Київ";s:18:"siteinfo_mainphone";s:15:"(097) 567-43-21";s:19:"siteinfo_adminemail";s:19:"webmaster@localhost";s:14:"siteinfo_Email";s:20:"partner@imagecms.net";s:14:"siteinfo_Skype";s:8:"imagecms";s:8:"contacts";a:2:{s:5:"Email";s:20:"partner@imagecms.net";s:5:"Skype";s:8:"imagecms";}}}', '', NULL);
+(2, 'main', 'auto', 'auto', '0', '0', 1, 1, '/', '0', 'newLevel', 'no', '', 'module', 69, '63', 'shop', '', '', 'russian_lang', '', '', '', '', 'yes', 'tinymce', 'a:3:{s:13:"siteinfo_logo";a:1:{s:8:"newLevel";s:8:"logo.png";}s:16:"siteinfo_favicon";a:1:{s:8:"newLevel";s:11:"favicon.ico";}s:2:"ru";a:5:{s:20:"siteinfo_companytype";s:97:"© Интернет-магазин «<a href="http://www.imagecms.net/">ImageCMS Shop</a>», 2013";s:16:"siteinfo_address";s:63:"Улица Шевченка, Буд. 22, офис: 39, Київ";s:18:"siteinfo_mainphone";s:15:"(097) 567-43-21";s:19:"siteinfo_adminemail";s:19:"webmaster@localhost";s:8:"contacts";a:2:{s:5:"Skype";s:8:"imagecms";s:5:"Email";s:20:"partner@imagecms.net";}}}', '', NULL);
 
 -- --------------------------------------------------------
 
@@ -2281,7 +2282,7 @@ CREATE TABLE IF NOT EXISTS `shop_currencies` (
   `is_default` tinyint(1) DEFAULT NULL,
   `code` varchar(5) DEFAULT NULL,
   `symbol` varchar(5) DEFAULT NULL,
-  `rate` float(6,3) DEFAULT '1.000',
+  `rate` float(10,4) DEFAULT '1.0000',
   `showOnSite` int(1) DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `shop_currencies_I_1` (`name`),
@@ -2294,8 +2295,8 @@ CREATE TABLE IF NOT EXISTS `shop_currencies` (
 --
 
 INSERT INTO `shop_currencies` (`id`, `name`, `main`, `is_default`, `code`, `symbol`, `rate`, `showOnSite`) VALUES
-(1, 'Dollars', 0, 0, 'USD', '$', 0.031, 1),
-(2, 'Рубль', 1, 1, 'RUR', 'руб', 1.000, 0);
+(1, 'Dollars', 0, 0, 'USD', '$', 0.0310, 1),
+(2, 'Рубль', 1, 1, 'RUR', 'руб', 1.0000, 0);
 
 -- --------------------------------------------------------
 
@@ -2306,8 +2307,8 @@ INSERT INTO `shop_currencies` (`id`, `name`, `main`, `is_default`, `code`, `symb
 DROP TABLE IF EXISTS `shop_delivery_methods`;
 CREATE TABLE IF NOT EXISTS `shop_delivery_methods` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `price` float(10,2) NOT NULL,
-  `free_from` float(10,2) NOT NULL,
+  `price` double(20,5) NOT NULL,
+  `free_from` double(20,5) NOT NULL,
   `enabled` tinyint(1) DEFAULT NULL,
   `is_price_in_percent` tinyint(1) NOT NULL,
   `position` int(11) DEFAULT NULL,
@@ -7711,7 +7712,8 @@ INSERT INTO `shop_rbac_privileges` (`id`, `name`, `group_id`) VALUES
 (479, 'Widgets_manager::update_config', 59),
 (480, 'Widgets_manager::delete', 59),
 (482, 'Widgets_manager::edit_html_widget', 59),
-(483, 'Widgets_manager::edit_module_widget', 59);
+(483, 'Widgets_manager::edit_module_widget', 59),
+(485, 'cfcm::form_from_category_group', 43);
 
 -- --------------------------------------------------------
 
@@ -7949,7 +7951,8 @@ INSERT INTO `shop_rbac_privileges_i18n` (`id`, `title`, `description`, `locale`)
 (479, 'Обновление настроек виджета', 'Доступ к обновлению настроек виджета', 'ru'),
 (480, 'Удаление виджета', 'Доступ к удалению виджета', 'ru'),
 (482, 'Редактирование html виджета', 'Доступ к редактированию html виджета', 'ru'),
-(483, 'Редактирование модульного виджета', 'Доступ к редактированию модульного виджета', 'ru');
+(483, 'Редактирование модульного виджета', 'Доступ к редактированию модульного виджета', 'ru'),
+(485, 'Заполнение дополнительных полей', 'Заполнение дополнительных полей', 'ru');
 
 -- --------------------------------------------------------
 
@@ -8234,7 +8237,8 @@ INSERT INTO `shop_rbac_roles_privileges` (`id`, `role_id`, `privilege_id`) VALUE
 (484, 1, 484),
 (485, 1, 485),
 (612, 1, 424),
-(613, 1, 425);
+(613, 1, 425),
+(614, 1, 485);
 
 -- --------------------------------------------------------
 

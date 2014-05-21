@@ -172,8 +172,10 @@ class Settings extends BaseAdminController {
         }
 
         if (SHOP_INSTALLED) {
+            array_multisort($new_arr_shop);
             return $new_arr_shop;
         } else {
+            array_multisort($new_arr);
             return $new_arr;
         }
     }
@@ -291,7 +293,7 @@ class Settings extends BaseAdminController {
             for ($i = 0; $i < $countKeys; $i++) {
                 if (!empty($siteinfo['siteinfo_contactkey'][$i]) & !empty($siteinfo['siteinfo_contactvalue'][$i])) {
                     $additional[$siteinfo['siteinfo_contactkey'][$i]] = $siteinfo['siteinfo_contactvalue'][$i];
-                    $siteinfo["siteinfo_" . $siteinfo['siteinfo_contactkey'][$i]] = $siteinfo['siteinfo_contactvalue'][$i];
+                    //$siteinfo["siteinfo_" . $siteinfo['siteinfo_contactkey'][$i]] = $siteinfo['siteinfo_contactvalue'][$i];
                 }
             }
         }

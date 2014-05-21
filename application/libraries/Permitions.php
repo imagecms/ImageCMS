@@ -172,7 +172,11 @@ class Permitions {
 //        } else {
 //            $res = !file_exists('./' . $adminClassFile) AND $adminClassFile != './application/modules/admin/.php';
 //        }
+<<<<<<< HEAD
         
+=======
+//        
+>>>>>>> b9c4d95ddd6af09e1a909d3d92f8be7f988bb9c7
 //        if ($res) {
 //            die("Файл " . $adminClassFile . " не найден");
 //        } else {

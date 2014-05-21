@@ -1,10 +1,10 @@
 {if $_GET['brand'] != "" || $_GET['p'] != "" || ($_GET['lp'] && $_GET['lp'] != $minPrice) || ($_GET['rp'] && $_GET['rp'] != $maxPrice)}
     <div class="frame-check-filter">
         <div class="inside-padd">
-            <div class="title">{echo count($products)} {echo SStringHelper::Pluralize(count($products), array('товар','товара','товаров'))} {lang('с фильтрами', 'newLevel')}:</div>
+            <div class="title">{echo count($products)} {echo SStringHelper::Pluralize(count($products), array(lang('товар', 'newLevel'),lang('товара', 'newLevel'),lang('товаров', 'newLevel')))} {lang('с фильтрами', 'newLevel')}:</div>
             <ul class="list-check-filter">
                 {if $curMin != $minPrice || $curMax != $maxPrice}
-                    <li class="clear-slider" data-rel="sliders.slider1"><button type="button"><span class="icon_times icon_remove_filter f_l"></span><span class="name-check-filter">Цена от {echo $_GET['lp']} до {echo $_GET['rp']} <span class="cur">{$CS}</span></></button></li>
+                    <li class="clear-slider" data-rel="sliders.slider1"><button type="button"><span class="icon_times icon_remove_filter f_l"></span><span class="name-check-filter">{lang('Цена от', 'newLevel')} {echo $_GET['lp']} {lang('до', 'newLevel')} {echo $_GET['rp']} <span class="cur">{$CS}</span></></button></li>
                     {/if}
                     {if count($brands) > 0}
                         {foreach $brands as $brand}
@@ -28,7 +28,7 @@
                             {/if}
             </ul>
             <div class="foot-check-filter">
-                <button type="button" onclick="location.href = '{site_url($CI->uri->uri_string())}'" class="btn-reset-filter">
+                <button type="button" onclick="location.href = location.origin + location.pathname" class="btn-reset-filter">
                     <span class="icon_times icon_remove_all_filter f_l"></span>
                     <span class="text-el d_l_r_f">{lang('Сбросить фильтр', 'newLevel')}</span>
                 </button>

@@ -10,7 +10,7 @@
 *   $content : variable for insert content of page
 */}
 <!DOCTYPE html>
-<html>
+<html class="html">
     <head>
         <meta charset="utf-8" />
         <title>{$site_title}</title>
@@ -20,6 +20,7 @@
         <meta name = "format-detection" content = "telephone=no" />
         <link rel="stylesheet" type="text/css" href="{$THEME}css/style.css" media="all" />
         <link rel="stylesheet" type="text/css" href="{$THEME}{$colorScheme}/colorscheme.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="{$THEME}{$colorScheme}/color.css" media="all" />
 
         {if $CI->uri->segment(1) == MY_Controller::getCurrentLocale()}
             {$lang = '/' . \MY_Controller::getCurrentLocale()} 
@@ -34,41 +35,7 @@
         </script>
         <script type="text/javascript" src="{$THEME}js/jquery-1.8.3.min.js"></script>
         {include_tpl('config.js')}
-        {literal}
-            <script type="text/javascript">
-                function initDownloadScripts(scripts, callback, customEvent) {
-                    function downloadJSAtOnload(scripts, callback, customEvent) {
-                        var cL = 0,
-                                scriptsL = scripts.length;
-
-                        $.map(scripts, function(i, n) {
-                            $.ajax({
-                                url: theme + 'js/' + i + '.js',
-                                dataType: "script",
-                                cache: false,
-                                complete: function() {
-                                    cL++;
-                                    if (cL == scriptsL)
-                                        if (callback) {
-                                            eval(callback)();
-                                            setTimeout(function() {
-                                                $(document).trigger({'type': customEvent});
-                                            }, 0);
-                                        }
-                                }
-                            });
-                        })
-                    }
-                    // Check for browser support of event handling capability
-                    if (window.addEventListener)
-                        window.addEventListener("load", downloadJSAtOnload(scripts, callback, customEvent), false);
-                    else if (window.attachEvent)
-                        window.attachEvent("onload", downloadJSAtOnload(scripts, callback, customEvent));
-                    else
-                        window.onload = downloadJSAtOnload(scripts, callback, customEvent);
-                }
-            </script>
-        {/literal}
+        <script type="text/javascript" src="{$THEME}js/settings.js"></script>
         <!--[if lte IE 9]><script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
         <!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="{$THEME}css/lte_ie_8.css" /><![endif]-->
         <!--[if IE 7]>
@@ -79,7 +46,7 @@
         <link rel="icon" href="{echo siteinfo('siteinfo_favicon_url')}" type="image/x-icon" />
         <link rel="shortcut icon" href="{echo siteinfo('siteinfo_favicon_url')}" type="image/x-icon" />
     </head>
-    <body class="is{echo $agent[0]} not-js {$CI->core->core_data['data_type']}"> 
+    <body class="is{echo $agent[0]} not-js {$CI->core->core_data['data_type']}">
         {include_tpl('language/jsLangsDefine.tpl')}
         {include_tpl('language/jsLangs.tpl')}
         <div class="main-body">
@@ -91,14 +58,14 @@
             <div class="vertical-layout container">
                 <div class="frame-menu-main vertical-menu">
                     {\Category\RenderMenu::create()->setConfig(array('cache'=>TRUE))->load('category_menu')}
-                    {widget('latest_news', TRUE)}
+                    {widget('latest_news')}
                 </div>
                 <div class="content">
                     {$content}
                 </div>
             </div>
-            <div class="h-footer"></div>
         </div>
+        <div class="h-footer"></div>
         <footer>
             {include_tpl('footer')}
         </footer>
@@ -116,15 +83,14 @@
         <script type="text/javascript" src="{$THEME}js/_functions.js"></script>
         <script type="text/javascript" src="{$THEME}js/_scripts.js"></script>
         <!-- scripts end -->
-
         {literal}
             <script type="text/javascript">
                 $(window).load(function() {
                     init();
                     setTimeout(function() {
-                        $(document).trigger({type: 'scriptDefer'})
-                    }, 0)
-                })
+                        $(document).trigger({type: 'scriptDefer'});
+                    }, 0);
+                });
             </script>
         {/literal}
         { */}

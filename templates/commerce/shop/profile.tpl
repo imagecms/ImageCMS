@@ -124,7 +124,7 @@
                     <tbody>
                         <tr>
                             {foreach $orders as $order}
-                                <td><a rel="nofollow" href="{shop_url('cart/view/' . $order->getKey())}">{echo $order->getId()}</a></td>
+                                <td><a rel="nofollow" href="{shop_url('order/view/' . $order->getKey())}">{echo $order->getId()}</a></td>
                                 <td>{if $order->getPaid()}{lang("Yes","admin")} {else:} {lang("No","admin")} {/if}</td>
                                 <td>{echo SOrders::getStatusName('Id', $order->getStatus())}</td>
                                 <td>{date("d-m-Y H:i", $order->getDateCreated())}</td>

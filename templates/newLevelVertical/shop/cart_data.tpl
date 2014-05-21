@@ -13,7 +13,7 @@
             <span class="text-cleaner">
                 <span class="helper"></span>
                 <span>
-                    <span class="text-el">{lang('Корзина пуста','newLevel')}</span>
+                    <span class="text-el">{lang('Корзина пуста','newLevelVertical')}</span>
                 </span>
             </span>
         </button>
@@ -30,7 +30,7 @@
                 <span>
                     <span class="text-el">{echo $count}</span>
                     <span class="text-el">&nbsp;</span>
-                    <span class="text-el">{echo SStringHelper::Pluralize($count, array(lang('товар','newLevel'),lang('товара','newLevel'),lang('товаров','newLevel')))}</span>
+                    <span class="text-el">{echo SStringHelper::Pluralize($count, array(lang('товар','newLevelVertical'),lang('товара','newLevelVertical'),lang('товаров','newLevelVertical')))}</span>
                     <span class="divider text-el">&#8226;</span>
                     <span class="d_i-b">
                         <span class="text-el">{echo ShopCore::app()->SCurrencyHelper->convert($price)}</span>

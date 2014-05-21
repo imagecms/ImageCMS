@@ -8,7 +8,7 @@
         <span class="icon_compare_list"></span>
         <span class="text-compare-list">
             <span class="js-empty empty" {if $count == 0}style="display: inline"{/if}>
-                <span class="text-el">{lang('Товары на сравнение','newLevel')} </span>
+                <span class="text-el">{lang('Товары на сравнение','newLevelVertical')} </span>
                 <span class="text-el">(</span>
                 <span class="f-s_0">
                     <span class="text-el compareListCount">0</span>
@@ -16,7 +16,7 @@
                 <span class="text-el">)</span>
             </span>
             <span class="js-no-empty no-empty" {if $count != 0}style="display: inline"{/if}>
-                <span class="text-el">{lang('В сравнение','newLevel')} </span>
+                <span class="text-el">{lang('В сравнение','newLevelVertical')} </span>
                 <span class="text-el">(</span>
                 <span class="f-s_0">
                     <span class="text-el compareListCount"></span>
@@ -29,6 +29,6 @@
 <div class="drop drop-info drop-info-compare">
     <span class="helper"></span>
     <span class="text-el">
-        Ваш список <br/>
-        “Список сравнения” пуст</span>
+        {lang('Ваш список', 'newLevelVertical')} <br/>
+        “{lang('Список сравнения', 'newLevelVertical')}” {lang('пуст', 'newLevelVertical')}</span>
 </div>

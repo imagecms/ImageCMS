@@ -76,7 +76,7 @@
     {if $CI->session->userdata('shopForCompare')}
         <div class="topCompareInfo">
             <a href="{shop_url('compare')}">
-                Добавлено {count($CI->session->userdata('shopForCompare'))} {echo SStringHelper::Pluralize(count($CI->session->userdata('shopForCompare')), array('товар','товара','товаров'))} для сравнения
+                Добавлено {count($CI->session->userdata('shopForCompare'))} {echo SStringHelper::Pluralize(count($CI->session->userdata('shopForCompare')), array(lang('товар', 'newLevel'),lang('товара', 'newLevel'),lang('товаров', 'newLevel')))} для сравнения
             </a>
         </div>
     {/if}

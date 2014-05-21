@@ -2,8 +2,13 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
+<<<<<<< HEAD
 "POT-Creation-Date: 2014-05-19 05:59+0300\n"
 "PO-Revision-Date: 2014-05-19 05:59+0300\n"
+=======
+"POT-Creation-Date: 2014-05-16 03:38+0400\n"
+"PO-Revision-Date: 2014-05-16 03:38+0400\n"
+>>>>>>> b9c4d95ddd6af09e1a909d3d92f8be7f988bb9c7
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: en_GB\n"

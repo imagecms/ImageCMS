@@ -20,10 +20,19 @@
     <div class="tab-content content_big_td" style="font-size: 20px;">                
         <style type="text/css">
             {literal}
+<<<<<<< HEAD
                 .elfinder-contextmenu .elfinder-contextmenu-item span {font-size: 1em;}
             {/literal}
         </style>
         <div id="elFinderTPLEd"></div>
+=======
+                .elfinder-contextmenu .elfinder-contextmenu-item span
+                {font-size: 1em;}
+            {/literal}
+        </style>
+        <div id="elFinderTPLEd"></div>
+
+>>>>>>> b9c4d95ddd6af09e1a909d3d92f8be7f988bb9c7
     </div>
 
 </section>

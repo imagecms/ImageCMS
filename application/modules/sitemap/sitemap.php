@@ -7,8 +7,9 @@ if (!defined('BASEPATH'))
  * Image CMS
  *
  * Sitemap Module
- * @property sitemap_model $sitemap_model
+ * @property Sitemap_model $sitemap_model
  */
+
 class Sitemap extends MY_Controller {
 
     /**
@@ -173,6 +174,11 @@ class Sitemap extends MY_Controller {
             $this->build_xml_map();
             exit();
         }
+        
+        if (uri_string() == 'sitemapRegenerate.xml') {
+            $this->build_xml_map_regenerated();
+            exit();
+        }
     }
 
     /**
@@ -313,11 +319,11 @@ class Sitemap extends MY_Controller {
     /**
      * Create and display sitemap xml
      */
-    public function build_xml_map() {
+    public function build_xml_map($regenerate = FALSE) {
         $settings = $this->sitemap_model->load_settings();
 
         // Generate new or use saved map
-        if ($settings['generateXML']) {
+        if ((int)$settings['generateXML'] || $regenerate) {
             $this->_create_map();
         } else {
             $this->result = file_get_contents($this->sitemap_path);
@@ -328,6 +334,10 @@ class Sitemap extends MY_Controller {
             header("content-type: text/xml");
             echo $this->result;
         }
+    }
+    
+    public function build_xml_map_regenerated(){
+        $this->build_xml_map(TRUE);
     }
 
     /**

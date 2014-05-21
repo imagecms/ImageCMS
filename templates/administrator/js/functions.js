@@ -940,6 +940,7 @@ var orders = new Object({
                     select: function(event, ui) {
                         productName = ui.item.name;
                         pNumber = ui.item.number;
+                        console.log(ui.item);
                         $('#product_id').val(ui.item.value);
                         vKeys = Object.keys(ui.item.variants);
 
@@ -949,6 +950,7 @@ var orders = new Object({
                     },
                     close: function() {
                         $('#product_name').val(productName);
+                        console.log(pNumber);
                         $('#productNumber').val(pNumber);
                     }
 
@@ -1050,7 +1052,7 @@ var orders = new Object({
                     price = parseFloat(productVariants[i]['price']).toFixed(2);
                     $("#variantsForOrders").append($('<option data-stock=' + productVariants[i]['stock'] + ' data-price=' + price + ' data-variantName=\'' + variantName +
                             '\' data-productId=' + productId + ' data-productName=\'' + productName + '\' data-productCurrency=' + curr + ' data-variantId=' + productVariants[i]['id'] +
-                            ' value=' + productVariants[i]['id'] + '>' + variantName + separate + price + ' ' + curr + '</option>'));
+                            ' value=' + productVariants[i]['id'] + ' data-orig_price="'+productVariants[i]['origPrice']+'">' + variantName + separate + price + ' ' + curr + '</option>'));
 
                     $($('#variantsForOrders').find('option')[0]).trigger('click');
                     $('#variantsForOrders').trigger('change');
@@ -1066,7 +1068,12 @@ var orders = new Object({
 
         if (data.variantname != 'noName') {
             variantName = data.variantname;
+            if(!data.variantname){
+                variantName = '-';
+            }
+            
         }
+        
         clonedElement.find('.variantCartName').html(variantName);
         clonedElement.find('.productCartName').html(data.productname);
         clonedElement.find('.productCartPrice').html(parseFloat(data.price).toFixed(2));
@@ -1091,6 +1098,7 @@ var orders = new Object({
     deleteCartProduct: function(element) {
         $(element).closest('tr').remove();
         orders.updateTotalCartSum();
+        $('#addVariantToCart').removeClass('btn-primary').removeAttr('disabled').addClass('btn-success').removeClass('btn-danger disabled').html(langs.addToCart);
     },
     updateQuantityAdmin: function(element) {
         var stock = $(element).data('stock');

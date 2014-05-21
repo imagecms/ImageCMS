@@ -8,7 +8,7 @@
  * @author L.Andriy <l.andriy@siteimage.com.ua>
  * @copyright (c) 2013, ImageCMS
  * @package ImageCMSModule
- * @property Banner_model $banner_model
+ * @property banner_model $banner_model
  */
 class Admin extends BaseAdminController {
 
@@ -70,7 +70,7 @@ class Admin extends BaseAdminController {
     public function index() {
         /** Get all Banners from DB */
         $locale = $this->def_locale;
-        $banners = $this->banner_model->get_all_banner($locale);
+        $banners = $this->banner_model->get_all_banner($locale, 0, FALSE);
 
         /** Show Banners list */
         \CMSFactory\assetManager::create()
@@ -112,8 +112,9 @@ class Admin extends BaseAdminController {
     public function delete() {
         /** Remove Banners by Ids */
         $ids = $this->input->post('id');
-        foreach (json_decode($ids) as $key)
+        foreach (json_decode($ids) as $key) {
             $this->banner_model->del_banner($key);
+        }
     }
 
     /**
@@ -125,6 +126,7 @@ class Admin extends BaseAdminController {
      */
     public function create() {
         if ($this->input->post()) {
+          
             $this->load->library('Form_validation');
             /** Set Validation reles */
             $this->form_validation->set_rules('name', lang('Banner name', 'banners'), 'required|xss_clean|max_length[45]');
@@ -142,11 +144,19 @@ class Admin extends BaseAdminController {
                     'locale' => $this->def_locale,
                 );
                 /** Create new banner from data-array */
-                $lid = $this->banner_model->add_banner($data);
+                try {
+                    $lid = $this->banner_model->add_banner($data);
 
-                showMessage(lang('Banner created', 'banners'));
-                /** Show successful message and redirect */
-                pjax('/admin/components/init_window/banners');
+                    showMessage(lang('Banner created', 'banners'));
+                    /** Show successful message and redirect */
+                    if ($this->input->post('action') == 'tomain') {
+                        pjax('/admin/components/init_window/banners');
+                    } elseif ($this->input->post('action') == 'toedit') {
+                        pjax('/admin/components/init_window/banners/edit/' . $lid);
+                    }
+                } catch (Exception $e) {
+                    showMessage($e->getMessage(), '', 'r');
+                }
             } else {
                 /** Show validation error message */
                 showMessage(validation_errors(), false, 'r');
@@ -211,11 +221,11 @@ class Admin extends BaseAdminController {
 
             $banner = $this->banner_model->get_one_banner($id, $locale);
             $groups = $this->banner_model->getGroups();
-            
+
             if (!isset($banner['id']) OR empty($banner)) {
                 $banner['id'] = $id;
             }
-            
+
             /** Show Banner edit template */
             CMSFactory\assetManager::create()
                     ->registerScript('main')

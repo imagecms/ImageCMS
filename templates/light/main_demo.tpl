@@ -20,6 +20,7 @@
         <meta name = "format-detection" content = "telephone=no" />
         <link rel="stylesheet" type="text/css" href="{$THEME}css/style.css" media="all" />
         <link rel="stylesheet" type="text/css" href="{$THEME}{$colorScheme}/colorscheme.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="{$THEME}{$colorScheme}/color.css" media="all" />
 
         {if $CI->uri->segment(1) == MY_Controller::getCurrentLocale()}
             {$lang = '/' . \MY_Controller::getCurrentLocale()} 
@@ -45,10 +46,10 @@
                             $.ajax({
                                 url: theme + 'js/' + i + '.js',
                                 dataType: "script",
-                                cache: false,
+                                cache: true,
                                 complete: function() {
                                     cL++;
-                                    if (cL == scriptsL)
+                                    if (cL === scriptsL)
                                         if (callback) {
                                             eval(callback)();
                                             setTimeout(function() {
@@ -60,13 +61,9 @@
                             
                         })
                     }
-                    // Check for browser support of event handling capability
-                    if (window.addEventListener)
-                        window.addEventListener("load", downloadJSAtOnload(scripts, callback, customEvent), false);
-                    else if (window.attachEvent)
-                        window.attachEvent("onload", downloadJSAtOnload(scripts, callback, customEvent));
-                    else
-                        window.onload = downloadJSAtOnload(scripts, callback, customEvent);
+                    $(window).load(function(){
+                        downloadJSAtOnload(scripts, callback, customEvent);
+                    });
                 }
             </script>
         {/literal}
@@ -130,28 +127,28 @@
                         $('.imagecms-top-fixed-header').removeClass('imagecms-active');
                         $(this).hide().next().show();
                         $(window).scroll();">
-                    <span class="imagecms-toggle-close-text imagecms-bar-close-text"><span style="font-size: 14px;">↑</span> {lang('Скрыть', 'newLevel')}</span>
+                    <span class="imagecms-toggle-close-text imagecms-bar-close-text"><span style="font-size: 14px;">↑</span> {lang('Скрыть', 'light')}</span>
                 </button>
                 <button type="button" class="imagecms-close" {if $_COOKIE['condPromoToolbar'] == '0'}style="display: block;"{/if} onclick="setCookie('condPromoToolbar', '1');
                         $('.imagecms-top-fixed-header').addClass('imagecms-active');
                         $(this).hide().prev().show();
                         $(window).scroll();">
-                    <span class="imagecms-toggle-close-text imagecms-bar-show-text"><span style="font-size: 14px;">↓</span> {lang('Показать', 'newLevel')}</span>
+                    <span class="imagecms-toggle-close-text imagecms-bar-show-text"><span style="font-size: 14px;">↓</span> {lang('Показать', 'light')}</span>
                 </button>
                 <div class="imagecms-buy-license">
                     <a href="http://www.imagecms.net/shop/prices" target="_blank" onclick="_gaq.push(['_trackEvent', 'demoshop-front', '/shop/prices']);">
-                        <span class="imagecms-text-el">Купить лицензию</span>
+                        <span class="imagecms-text-el">{lang('Купить лицензию', 'light')}</span>
                     </a>
                 </div>
                 <ul class="imagecms-list">
                     <li>
-                        <a href="http://www.imagecms.net" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demoshop-front', 'obzor-product-shop']);">{lang('Обзор продукта', 'newLevel')}</a>
+                        <a href="http://www.imagecms.net" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demoshop-front', 'obzor-product-shop']);">{lang('Обзор продукта', 'light')}</a>
                     </li>
                     <li>
-                        <a href="http://www.imagecms.net/kliuchevye-preimushchestva/vozmozhnosti" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demoshop-front', '/kliuchevye-preimushchestva/vozmozhnosti']);">{lang('Преимущества продукта', 'newLevel')}</a>
+                        <a href="http://www.imagecms.net/kliuchevye-preimushchestva/vozmozhnosti" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demoshop-front', '/kliuchevye-preimushchestva/vozmozhnosti']);">{lang('Преимущества продукта', 'light')}</a>
                     </li>
                     <li>
-                        <a href="http://www.imagecms.net/store/category/shoptemplates" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demoshop-front', 'shoptemplates']);">{lang('Шаблоны для Shop', 'newLevel')}</a>
+                        <a href="http://www.imagecms.net/store/category/shoptemplates" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demoshop-front', 'shoptemplates']);">{lang('Шаблоны для Shop', 'light')}</a>
                     </li>
                 </ul>
                 <div class="imagecms-contacts">
@@ -216,7 +213,7 @@
         <script type="text/javascript" src="{$THEME}js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
         {end. fancybox*/}
 
-        {/*}uncomment before opload to server and combine and minimize scripts (in comment <!-- scripts -->...<!-- scripts end -->) into united_scripts file{ */}
+        {/*}uncomment before opload to server and combine and minimize scripts (in comment <!-- scripts -->...<!-- scripts end -->) into united_scripts file{ */}   
         {/*} Start. uncoment before development { */}
         
         <script type="text/javascript">

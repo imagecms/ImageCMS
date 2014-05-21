@@ -2,11 +2,11 @@
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
-            <span class="title">{lang("Edit the category", 'gallery')}</span>
+            <span class="title">{lang("Category editing", 'gallery')}</span>
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <a href="/admin/components/cp/gallery" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Back", 'gallery')}</span></a>
+                <a href="/admin/components/cp/gallery" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Back", 'admin')}</span></a>
                 <button type="button" class="btn btn-small formSubmit btn-primary" data-form="#create_category_form" data-action="edit" data-submit><i class="icon-ok"></i>{lang("Save", 'gallery')}</button>
                 <button type="button" class="btn btn-small formSubmit" data-form="#create_category_form" data-action="close"><i class="icon-check"></i>{lang("Save and exit", 'gallery')}</button>
                     {echo create_language_select($languages, $locale, "/admin/components/cp/gallery/edit_category/" . $category.id)}

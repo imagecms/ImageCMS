@@ -558,7 +558,33 @@ $(document).ready(function() {
         $('#tpm_row' + id).remove();
     });
 
+
+
     product = new Object;
+
+    product.changeActive = function(bool) {
+        var ids = new Array();
+        $('input[name=ids]:checked').each(function() {
+            ids.push($(this).val());
+        });
+        $.post('/admin/components/run/shop/products/ajaxChangeActive', {
+            ids: ids
+        }, function(data) {
+            $('.notifications').append(data);
+        });
+    };
+
+    product.toHit = function() {
+        var ids = new Array();
+        $('input[name=ids]:checked').each(function() {
+            ids.push($(this).val());
+        });
+        $.post('/admin/components/run/shop/products/ajaxChangeHit', {
+            ids: ids
+        }, function(data) {
+            $('.notifications').append(data);
+        });
+    };
 
     product.toHit = function() {
         var ids = new Array();
@@ -771,7 +797,9 @@ $(document).ready(function() {
 
         clonedVarTr.attr('id', 'ProductVariantRow_' + countVarRows);
         $('#variantHolder').append(clonedVarTr);
-        $(window).scrollTop($(window).scrollTop() + 59)
+        $(window).scrollTop($(window).scrollTop() + 59);
+        number_tooltip();
+
     });
 
     /*------------------------- IMAGES -------------------------*/
@@ -1361,14 +1389,9 @@ $(document).ready(function() {
         }
     });
 
-
-    // if choose not a font file for watermark text
-    $("input[type='file'][name='watermark[watermark_font_path]']").live("click", function() {
-        oldFontPath = $("input[type='text'][name='watermark[watermark_font_path]']").val();
-    });
-    $("input[type='file'][name='watermark[watermark_font_path]']").live("change", function() {
+    $("input[type='file'][name='watermark_font_path']").live("change", function() {
         var allowedFileExtentions = ['ttf', 'fnt', 'fon', 'otf'];
-        var ext = $(this).val().split('.').pop();
+        var ext = $(this).val().split('.').pop().toLowerCase();
         var extentionIsAllowed = false;
         for (var i = 0; i < allowedFileExtentions.length; i++) {
             if (allowedFileExtentions[i] == ext) {
@@ -1376,11 +1399,12 @@ $(document).ready(function() {
                 break;
             }
         }
+
         if (extentionIsAllowed == false) {
             $(this).removeAttr("value");
-            showMessage("Ошибка", "Можно загружать только изображения", "error");
-            $("input[type='text'][name='watermark[watermark_font_path]']").val(oldFontPath);
-            return;
+            showMessage(langs.error, langs.onlyFontsFilesAllowed, "error");
+        } else {
+            $(".watermark_path_info div").html($(this).val().split('\\').pop());
         }
     });
 
@@ -1468,18 +1492,58 @@ $(document).ready(function() {
         }
     });
 
+<<<<<<< HEAD
+=======
+    // prewiew local image
+    $('#site_info_tab input[type="file"]').die('change').live('change', function(e) {
+        // checking if file is image
+        var allowedFileExtentions = ['jpg', 'jpeg', 'png', 'ico', 'gif'];
+        var ext = $(this).val().split('.').pop();
+        var extentionIsAllowed = false;
+        for (var i = 0; i < allowedFileExtentions.length; i++) {
+            if (allowedFileExtentions[i] == ext) {
+                extentionIsAllowed = true;
+                break;
+            }
+        }
+        if (extentionIsAllowed == false) {
+            $(this).removeAttr("value");
+            showMessage("Ошибка", "Можно загружать только изображения", "error");
+            return;
+        }
+
+        // creating image preview
+        var file = this.files[0];
+        var img = document.createElement("img");
+        var reader = new FileReader();
+        reader.onloadend = function() {
+            img.src = reader.result;
+        };
+
+        reader.readAsDataURL(file);
+        $(img).addClass('img-polaroid').css({
+            'max-height': '100%'
+        });
+        $(this).closest('.control-group').find('.controls').html(img);
+    });
+
+>>>>>>> b9c4d95ddd6af09e1a909d3d92f8be7f988bb9c7
     // delete image buttons
-    $(".remove_btn").die('change').live("click", function() {
+    $(".remove_btn").die('click').live("click", function() {
         //$("#site_info_tab").delegate('.remove_btn', "click", function() {
         // setting hidden input value to 1 delete for delete image on saving
         $(this).parents(".control-group").find("input.si_delete_image").val("1");
         // display some message about deleting
-        $(this).parents(".siteinfo_image_container")
+        $(this).parents(".control-group").find(".siteinfo_image_container")
                 .empty()
                 .html("<img class='img-polaroid' src='/templates/administrator/images/select-picture.png' />");
+<<<<<<< HEAD
 
     });
     // the delete button appears only on image hover
+=======
+    });
+>>>>>>> b9c4d95ddd6af09e1a909d3d92f8be7f988bb9c7
 
     var siteInfoLocalesDataCache = {};
     $("#siteinfo_locale").die('change').live("change", function() {
@@ -1595,8 +1659,6 @@ $(document).ready(function() {
             }
         });
     });
-
-
 });
 
 

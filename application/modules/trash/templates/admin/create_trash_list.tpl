@@ -3,7 +3,7 @@
         <div class="frame_title clearfix">
             <div class="pull-left">
                 <span class="help-inline"></span>
-                <span class="title">{lang('New redirect creation', 'trash')}</span>
+                <span class="title">{lang('New redirect list creation', 'trash')}</span>
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
@@ -16,13 +16,13 @@
                             data-form="#mass_create" 
                             data-action="create" 
                             data-submit>
-                        <i class="icon-plus-sign icon-white"></i>{lang("Save", 'trash')}
+                        <i class="icon-plus-sign icon-white"></i>{lang("Create", 'admin')}
                     </button>
                     <button type="button" 
                             class="btn btn-small action_on formSubmit" 
                             data-form="#mass_create" 
                             data-action="exit">
-                        <i class="icon-check"></i>{lang("Save and exit", 'trash')}
+                        <i class="icon-check"></i>{lang("Create and exit", 'admin')}
                     </button>
                 </div>
             </div>                            

@@ -4,7 +4,7 @@
         <div class="frame_title clearfix">
             <div class="pull-left">
                 <span class="help-inline"></span>
-                <span class="title">{lang('Exchange', 'translator')}</span>
+                <span class="title">{lang('Translation exchange', 'translator')}</span>
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
@@ -28,7 +28,7 @@
                     <thead>
                         <tr>
                             <th colspan="6">
-                                {lang('Values', 'translator')}
+                                {lang('Exchange files', 'translator')}
                             </th>
                         </tr>
                     </thead>
@@ -43,7 +43,7 @@
                                                 <select id="langs" name="locale" onchange="Selectors.langs($(this))">
                                                     {if $langs}
                                                         <option value="">-- {lang('Choose locale', 'translator')} --</option>
-                                                        {foreach $langs as $locale => $lang}
+                                                        {foreach $langs as $locale}
                                                             <option class="{echo $locale}">{echo $locale}</option>
                                                         {/foreach}
                                                     {else:}
@@ -65,14 +65,14 @@
                                             </div>
                                         </div>
                                     </div>
-                                   <div class="control-group">
+                                    <div class="control-group">
                                         <label class="control-label" for="file">{lang('Choose file receiver location', 'translator')}:</label>
                                         <div class="controls poSelectorsHolder receiver">
                                             <div class="d-i_b">
                                                 <select id="langs" name="locale" onchange="Selectors.langs($(this))">
                                                     {if $langs}
                                                         <option value="">-- {lang('Choose locale', 'translator')} --</option>
-                                                        {foreach $langs as $locale => $lang}
+                                                        {foreach $langs as $locale}
                                                             <option class="{echo $locale}">{echo $locale}</option>
                                                         {/foreach}
                                                     {else:}

@@ -344,7 +344,7 @@ class Auth extends MY_Controller {
         } else {
 //             ($hook = get_hook('auth_reset_pass_failed')) ? eval($hook) : NULL;
 
-            $data['auth_message'] = lang('Reset failed. Not a valid user name and / or password. Check your email and follow the instructions.', 'auth');
+            $data['auth_message'] = lang('Reset failed. Possible reasons: wrong email, wrong restore url, used restore url', 'auth');
 
             $this->template->assign('auth_message', $data['auth_message']);
             if ($_SERVER['HTTP_X_REQUESTED_WITH'] != 'XMLHttpRequest') {
