@@ -1492,8 +1492,6 @@ $(document).ready(function() {
         }
     });
 
-<<<<<<< HEAD
-=======
     // prewiew local image
     $('#site_info_tab input[type="file"]').die('change').live('change', function(e) {
         // checking if file is image
@@ -1527,7 +1525,6 @@ $(document).ready(function() {
         $(this).closest('.control-group').find('.controls').html(img);
     });
 
->>>>>>> b9c4d95ddd6af09e1a909d3d92f8be7f988bb9c7
     // delete image buttons
     $(".remove_btn").die('click').live("click", function() {
         //$("#site_info_tab").delegate('.remove_btn', "click", function() {
@@ -1537,13 +1534,7 @@ $(document).ready(function() {
         $(this).parents(".control-group").find(".siteinfo_image_container")
                 .empty()
                 .html("<img class='img-polaroid' src='/templates/administrator/images/select-picture.png' />");
-<<<<<<< HEAD
-
     });
-    // the delete button appears only on image hover
-=======
-    });
->>>>>>> b9c4d95ddd6af09e1a909d3d92f8be7f988bb9c7
 
     var siteInfoLocalesDataCache = {};
     $("#siteinfo_locale").die('change').live("change", function() {
