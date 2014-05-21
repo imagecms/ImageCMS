@@ -420,15 +420,14 @@ form .btn-form .text-el, .btn-not-avail .text-el, .btn-form input{font-weight: b
 
 /*product status*/
 .product-status{position: absolute;right: 0;top: 0;}
-.product-status + .product-status{top: 32px;}
-.product-status + .product-status + .product-status{top: 59px;}
-.product-status + .product-status + .product-status + .product-status{top: 86px;}
+.product-status + .product-status{top: 51px;}
+.product-status + .product-status + .product-status{top: 102px;}
 .product-status.discount .text-el{font-size: 12px;font-weight: bold;text-transform: uppercase;font-family: Arial, sans-serif;}
 
-.action{background-position: 0 0;width: 74px;height: 25px;}
-.nowelty{background-position: 0 -30px;width: 50px;height: 50px;}
-.hit{background-position: -60px -30px;width: 50px;height: 50px;}
-.discount{background-position: 0 -90px;width: 74px;height: 25px;line-height: 25px;text-align: center;}
+.action{background-position: 0 0;width: 50px;height: 50px;}
+.nowelty{background-position: -51px 0;width: 50px;height: 50px;}
+.hit{background-position: -102px 0;width: 50px;height: 50px;}
+.discount{background-position: 0 -90px;width: 74px;height: 25px;line-height: 25px;text-align: center;top: 0 !important;right: auto;left: 0;}
 
 .items-bask .product-status{display: none;}
 /*/ product status*/
