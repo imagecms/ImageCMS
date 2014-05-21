@@ -127,7 +127,7 @@
                                 <div class="control-group">
                                     <label class="control-label">{lang('Active until', 'banners')}:</label>
                                     <div class="controls">
-                                        <input class="datepicker" type="text" value="{if $banner['active_to']}{echo date('Y-m-d',$banner['active_to'])}{else:}{echo $date}{/if}" name="active_to" />
+                                        <input class="datepicker" required="required" type="text" value="{if $banner['active_to']}{echo date('Y-m-d',$banner['active_to'])}{else:}{echo $date}{/if}" name="active_to" />
                                     </div>
                                 </div>  
 
@@ -141,7 +141,7 @@
                                                     return false;"><i class="icon-picture"></i>  {lang('Choose an image ', 'banners')}</button>
                                         </div>
                                         <div class="o_h">		            
-                                            <input type="text" name="photo" id="Img" value="{echo $banner['photo'];}">					
+                                            <input type="text" name="photo" id="Img" value="{echo $banner['photo'];}" required="required">					
                                         </div>
                                         <div id="Img-preview" style="width: 400px;" >
                                             {if $banner['photo']}
