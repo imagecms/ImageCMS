@@ -625,7 +625,7 @@
                                     </div>
                                     <div class="inside-padd">
                                         <ul class="items items-default">
-                                            {$CI->load->module('new_level')->OPI($accessories, array('opi_defaultItem'=>true, 'opi_limit'=>3))}
+                                            {getOPI($accessories, array('opi_defaultItem'=>true, 'opi_limit'=>3))}
                                         </ul>
                                     </div>
                                 </div>

@@ -2,7 +2,7 @@
 <form method="post" action="{site_url('admin/components/init_window/template_manager/updateComponent')}/{echo $handler}" id="component_{echo $handler}_form"> 
     <input type="hidden" name="handler" value="{echo $handler}">
 
-    <table class="frame-level-menu frame_level table table-striped table-bordered table-hover table-condensed products_table">
+    <table class="frame-level-menu frame_level table table-bordered table-condensed products_table">
         <thead>
             <tr>
                 <td>{lang('Category', 'newLevel_TM')}</td>
