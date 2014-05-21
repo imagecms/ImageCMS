@@ -35,35 +35,7 @@
         </script>
         <script type="text/javascript" src="{$THEME}js/jquery-1.8.3.min.js"></script>
         {include_tpl('config.js')}
-        {literal}
-            <script type="text/javascript">
-                function initDownloadScripts(scripts, callback, customEvent) {
-                    function downloadJSAtOnload(scripts, callback, customEvent) {
-                        var cL = 0,
-                                scriptsL = scripts.length;
-
-                        $.map(scripts, function(i, n) {
-                            $.ajax({
-                                url: theme + 'js/' + i + '.js',
-                                dataType: "script",
-                                cache: true,
-                                success: function() {
-                                    cL++;
-                                    if (cL == scriptsL)
-                                        if (callback) {
-                                            eval(callback)();
-                                            $(document).trigger({'type': customEvent});
-                                        }
-                                }
-                            });
-                        })
-                    }
-                    $(window).load(function(){
-                        downloadJSAtOnload(scripts, callback, customEvent);
-                    });
-                }
-            </script>
-        {/literal}
+        <script type="text/javascript" src="{$THEME}js/settings.js"></script>
         <!--[if lte IE 9]><script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
         <!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="{$THEME}css/lte_ie_8.css" /><![endif]-->
         <!--[if IE 7]>

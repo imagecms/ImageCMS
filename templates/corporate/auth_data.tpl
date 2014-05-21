@@ -6,7 +6,7 @@
                         data-drop=".drop-enter"
                         data-source="{site_url('auth')}">
                     <span class="icon-enter"></span>
-                    <span>{lang('Вход', 'corporate')}Вход</span>
+                    <span>{lang('Вход', 'corporate')}</span>
                 </button>
             </li>
             <li class="btn-reg user-btn">
