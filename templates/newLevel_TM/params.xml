@@ -75,16 +75,16 @@
         </menus>
         
         <categoriestemplates>
-            <level_1 template_name="category1level"/>
-            <level_2 template_name="category2level"/>
+            <level_1 template_name="category1level11"/>
+            <level_2 template_name="category2level22"/>
         </categoriestemplates>
         
         <banners>
-            <banner where_show="main" position="0" active="1" active_to="" group="Group, Group2">
+            <banner where_show="main" position="0" active="1" group="Group, Group2">
                 <banner_i18n  name="Баннер" description="Баннер описание" url="banner_url" locale="ru" photo="/uploads/banners/photo1_ru.jpg"/>
                 <banner_i18n  name="Banner" description="Banner description" url="banner_url" locale="en" photo="/uploads/banners/photo1_en.jpg"/>
             </banner>
-            <banner where_show="main" position="0" active="1" active_to="" group="Group">
+            <banner where_show="main" position="0" active="1" group="Group">
                 <banner_i18n  name="Баннер3" description="Баннер описание" url="banner_url" locale="ru" photo="/uploads/banners/photo1_ru.jpg"/>
                 <banner_i18n  name="Banner" description="Banner description" url="banner_url" locale="en" photo="/uploads/banners/photo1_en.jpg"/>
             </banner>
@@ -105,7 +105,7 @@
             </field>
         </customfields>
         
-    </demodata-->
+    </demodata!-->
     
     
     <description><!-- КОЖЕН РАЗ ПРИ ЗВЕРНЕННІ -->
