@@ -1,5 +1,4 @@
 <section class="mini-layout">
-
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
