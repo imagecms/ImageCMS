@@ -80,7 +80,7 @@
     <div style="float:left;padding-top:3px;width: 350px;">В корзине:
     <span style="font-weight: bold;">
             {echo ShopCore::app()->SCart->totalItems()}
-            {echo SStringHelper::Pluralize(ShopCore::app()->SCart->totalItems(), array('товар','товара','товаров'))}
+            {echo SStringHelper::Pluralize(ShopCore::app()->SCart->totalItems(), array(lang('товар', 'newLevel'),lang('товара', 'newLevel'),lang('товаров', 'newLevel')))}
     </span></div>
     <div style="padding: 3px 0 3px 25px;float:left;"><a href="{shop_url('cart')}" rel="nofollow" class="items">Просмотреть</a></div>
     <div class="clear"></div>
@@ -88,7 +88,7 @@
     <div style="float:left;padding-top:3px;width: 350px;">В списке желаний:
     <span style="font-weight: bold;">
             {echo ShopCore::app()->SWishList->totalItems()}
-            {echo SStringHelper::Pluralize(ShopCore::app()->SWishList->totalItems(), array('товар','товара','товаров'))}
+            {echo SStringHelper::Pluralize(ShopCore::app()->SWishList->totalItems(), array(lang('товар', 'newLevel'),lang('товара', 'newLevel'),lang('товаров', 'newLevel')))}
     </span></div>
     <div style="padding: 3px 0 3px 25px;float:left;"><a rel="nofollow" href="{shop_url('wish_list')}" class="items">Просмотреть</a></div>
     <div class="clear"></div>
