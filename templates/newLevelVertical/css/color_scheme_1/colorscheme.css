@@ -419,16 +419,15 @@ form .btn-form .text-el, .btn-not-avail .text-el, .btn-form input{font-weight: b
 /*/buttons*/
 
 /*product status*/
-.product-status{position: absolute;right: 0;top: 5px;}
-.product-status + .product-status{top: 32px;}
-.product-status + .product-status + .product-status{top: 59px;}
-.product-status + .product-status + .product-status + .product-status{top: 86px;}
+.product-status{position: absolute;right: 0;top: -1px;}
+.product-status + .product-status{top: 50px;}
+.product-status + .product-status + .product-status{top: 100px;}
 .product-status.discount .text-el{font-size: 12px;font-weight: bold;text-transform: uppercase;font-family: Arial, sans-serif;}
 
-.action{background-position: 0 0;width: 74px;height: 25px;}
-.nowelty{background-position: 0 -40px;width: 86px;height: 25px;}
-.hit{background-position: 0 -80px;width: 105px;height: 25px;}
-.discount{background-position: 0 -120px;width: 48px;height: 30px;line-height: 25px;text-align: center;}
+.action{background-position: 0 0;width: 50px;height: 50px;}
+.nowelty{background-position: -51px 0;width: 50px;height: 50px;}
+.hit{background-position: -102px 0;width: 50px;height: 50px;}
+.discount{background-position: 0 -120px;width: 48px;height: 30px;line-height: 25px;text-align: center;right: auto;left: 0;top: 0 !important;}
 
 .items-bask .product-status{display: none;}
 /*/ product status*/

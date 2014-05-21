@@ -1,5 +1,5 @@
-<section class="mini-layout" style="padding-top: 39px;">
-    <div class="frame_title clearfix" style="top: 179px; width: 1168px;">
+<section class="mini-layout">
+    <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
             <span class="title">{lang('Discounts of online store', 'mod_discount')} ({echo count($discountsList)})</span>
