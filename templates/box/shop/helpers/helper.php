@@ -3,7 +3,7 @@
 if (!function_exists('month')) {
 
     function month($nm) {
-        $month = array(1 => lang('Января', 'newLevel'), 2 => lang('Февраля', 'newLevel'), 3 => lang('Марта', 'newLevel'), 4 => lang('Апреля', 'newLevel'), 5 => lang('Мая', 'newLevel'), 6 => lang('Июня', 'newLevel'), 7 => lang('Июля', 'newLevel'), 8 => lang('Августа', 'newLevel'), 9 => lang('Сентября', 'newLevel'), 10 => lang('Октября', 'newLevel'), 11 => lang('Ноября', 'newLevel'), 12 => lang('Декабря', 'newLevel'));
+        $month = array(1 => lang('Января', 'box'), 2 => lang('Февраля', 'box'), 3 => lang('Марта', 'box'), 4 => lang('Апреля', 'box'), 5 => lang('Мая', 'box'), 6 => lang('Июня', 'box'), 7 => lang('Июля', 'box'), 8 => lang('Августа', 'box'), 9 => lang('Сентября', 'box'), 10 => lang('Октября', 'box'), 11 => lang('Ноября', 'box'), 12 => lang('Декабря', 'box'));
         return $month[$nm];
     }
 

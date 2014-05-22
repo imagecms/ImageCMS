@@ -211,7 +211,7 @@ button[disabled="disabled"], input[type="submit"][disabled="disabled"], input[ty
 
 .frame-group-checks[data-rel*="dropDown"] .icon-arrow{border-left-color: #0c9acb;}
 .frame-group-checks[data-rel*="dropDown"] .f-s_0:hover .icon-arrow{border-left-color: #51d2ff;}
-.frame-group-checks[data-rel*="dropDown"] .f-s_0.valuePD .icon-arrow{border-top-color: #0c9acb;}
+.frame-group-checks[data-rel*="dropDown"] .f-s_0.valuePD .icon-arrow{border-top-color: #0c9acb;border-left-color: transparent;}
 .frame-group-checks[data-rel*="dropDown"] .f-s_0.valuePD:hover .icon-arrow{border-top-color: #51d2ff;}
 
 .apply{border-color: #0c9acb;background-color: #faf8f6;-moz-box-shadow: 5px 5px 4px 0 rgba(0,0,0,0.2);-webkit-box-shadow: 5px 5px 4px 0 rgba(0,0,0,0.2);box-shadow: 5px 5px 4px 0 rgba(0,0,0,0.2);}
@@ -1073,7 +1073,7 @@ input[type="radio"]:focus, input[type="checkbox"]:focus, input[type="submit"]:fo
 .comments .date-comment{color: #999;}
 .comments .frame-list-comments > .sub-1 > li{border-top-color: #eae5e1;}
 .comments .frame-list-comments.sub-2 > li{background-color: #efedea;}
-.comments .frame-list-comments.sub-2 > li:before{border-left-color: #efedea;}
+.comments .frame-list-comments.sub-2 > li:before{border-color: transparent;border-left-color: #efedea;}
 .comments .frame-comments{border-bottom-color: #d8d2cb;background-color: #faf8f6;box-shadow: 0 2px 4px #ece9e6;}
 .comments .btn{color: #555;}
 .comments .btn.active{color: #979797;}
