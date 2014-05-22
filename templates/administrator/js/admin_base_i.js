@@ -1650,6 +1650,15 @@ $(document).ready(function() {
             }
         });
     });
+
+    // autosubmit brands filter-form 
+    var filterChangeTimeout;
+    $('form#brands_filter input').live('keyup', function() {
+        clearTimeout(filterChangeTimeout);
+        filterChangeTimeout = setTimeout(function() {
+            $('form#brands_filter').submit();
+        }, 1000);
+    });
 });
 
 

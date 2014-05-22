@@ -65,7 +65,7 @@
                                             <input class="input-small onlyNumbersInput " id="how-much" type="text" name="max_apply"{if $maxApply}value="{echo $discount['max_apply']}"{/if} {if !$maxApply}  disabled="disabled" {/if} maxlength="7"/>
                                         </span>
                                         <span class="d-i_b v-a_m">
-                                            <span class="frame_label no_connection m-r_15 spanForNoLimit" >
+                                            <span class="frame_label no_connection m-r_15 spanForNoLimit spanForNoLimitCheckbox" >
                                                 <span class="niceCheck" style="background-position: -46px 0px; ">
                                                     <input type="checkbox" {if !$maxApply} checked="checked" {/if} class="noLimitCountCheck">
                                                 </span>
@@ -152,9 +152,9 @@
                                                     </span>
                                                 </div>
                                                 <div class="">
-                                                    <span class="frame_label no_connection m-r_15 spanForNoLimit" >
+                                                    <span id="giftSpanCheckbox" class="frame_label no_connection m-r_15 spanForNoLimit" >
                                                         <span class="niceCheck" id="giftSpanCheckbox" style="background-position: -46px 0px; ">
-                                                            <input type="checkbox" name="all_order[is_gift]" value="1" {if $discount['all_order']['is_gift'] == 1}checked=checked{/if} >
+                                                            <input id="gift_checkbox" type="checkbox" name="all_order[is_gift]" value="1" {if $discount['all_order']['is_gift'] == 1}checked=checked{/if} >
                                                         </span>
                                                         {lang('Gift Certificate', 'mod_discount')}
                                                     </span>
