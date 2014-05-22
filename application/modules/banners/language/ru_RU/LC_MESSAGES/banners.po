@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-21 03:19+0300\n"
-"PO-Revision-Date: 2014-05-21 03:19+0300\n"
+"POT-Creation-Date: 2014-05-22 01:15+0300\n"
+"PO-Revision-Date: 2014-05-22 01:15+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -18,6 +18,11 @@ msgstr ""
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 
+#: ./application/modules/banners/assets/admin/edit.tpl:138
+#: ./application/modules/banners/assets/admin/create.tpl:104
+msgid "Banner permanent"
+msgstr "Постоянный баннер"
+
 #: ./application/modules/banners/assets/admin/list.tpl:40
 msgid "Active to"
 msgstr "Активен до"
@@ -28,7 +33,7 @@ msgid "Active"
 msgstr "Активный"
 
 #: ./application/modules/banners/assets/admin/edit.tpl:128
-#: ./application/modules/banners/assets/admin/create.tpl:99
+#: ./application/modules/banners/assets/admin/create.tpl:95
 msgid "Active until"
 msgstr "Активен до"
 
@@ -162,13 +167,13 @@ msgid "Pages"
 msgstr "Страницы"
 
 #: ./application/modules/banners/admin.php:133
-#: ./application/modules/banners/assets/admin/edit.tpl:136
-#: ./application/modules/banners/assets/admin/create.tpl:107
+#: ./application/modules/banners/assets/admin/edit.tpl:153
+#: ./application/modules/banners/assets/admin/create.tpl:113
 msgid "Image"
 msgstr "Изображение"
 
-#: ./application/modules/banners/assets/admin/edit.tpl:141
-#: ./application/modules/banners/assets/admin/create.tpl:114
+#: ./application/modules/banners/assets/admin/edit.tpl:158
+#: ./application/modules/banners/assets/admin/create.tpl:120
 msgid "Choose an image "
 msgstr "Выберите изображение"
 
