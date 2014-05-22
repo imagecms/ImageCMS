@@ -49,7 +49,6 @@ $(document).ajaxComplete(function(event, XHR, ajaxOptions) {
             dropDownMenu();
             autocomplete();
             init_2();
-            fixed_frame_title();
         }
 
         if ($.exists('#chart'))
@@ -639,7 +638,9 @@ function autocomplete() {
             source: '/admin/components/run/shop/kits/get_products_list/' + $('#kitMainProductName').val() + '&limit=20',
             select: function(event, ui) {
                 $('#MainProductHidden').val(ui.item.identifier.id);
-                setTimeout(function(){$('#kitMainProductName').val(ui.item.label);}, 0);
+                setTimeout(function() {
+                    $('#kitMainProductName').val(ui.item.label);
+                }, 0);
             }
         });
     }
@@ -873,17 +874,18 @@ function getScrollTop() {
     return scrOfY;
 }
 function fixed_frame_title() {
-    fixed_block = $(".frame_title:not(.no_fixed)");
-    mini_layout = $('.mini-layout');
-    container = $('.container');
-    containerW = container.width() - parseInt($('body').css('padding-left')) * 2;
-    frame_zH_frame_title = $('.frame_zH_frame_title');
+    var fixed_block = $(".frame_title:not(.no_fixed)"),
+            mini_layout = $('.mini-layout'),
+            container = $('.container'),
+            containerW = container.width() - parseInt($('body').css('padding-left')) * 2,
+            frame_zH_frame_title = $('.frame_zH_frame_title');
 
     if ($.exists_nabir(fixed_block)) {
-        var fixed_block_top = mini_layout.offset().top;
-        var fixed_block_h = fixed_block.outerHeight(true);
+        var top = mini_layout.offset().top,
+        fixed_block_top = top > 159 ? top : 159,
+                fixed_block_h = fixed_block.outerHeight(true),
+                top = getScrollTop();
 
-        var top = getScrollTop();
         if (top < fixed_block_top) {
             fixed_block.css("top", fixed_block_top - top + 20);
             frame_zH_frame_title.css("top", fixed_block_top - top + 6);
@@ -945,6 +947,8 @@ function what_key(enter_key, event) {
 }
 function initAdminArea() {
     console.log('initialising of administration area started');
+
+    fixed_frame_title();
 
     testNumber("#createUserPhone, #UserPhone, #Phone, #shopOrdersUserPhone", ['(', ')', '+', '-'], 'phone');
     testNumber('.number input', ['.'], 'count');
@@ -1197,7 +1201,7 @@ function initAdminArea() {
     });
     $('.change_btn').die('click').live('click', function() {
         $($(this).data('file')).click();
-    });    
+    });
 
     $('[data-url="file"] input[type="file"]').die('change').live('change', function(e) {
         var $this = $(this);
