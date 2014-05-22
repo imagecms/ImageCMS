@@ -133,9 +133,12 @@
                                                             {if $deliveryMethod->getDeliverySumSpecified()}
                                                                 {echo $deliveryMethod->getDeliverySumSpecifiedMessage()}
                                                             {else:}
-                                                                <div>{lang('Стоимость','newLevel')}: {echo ceil($deliveryMethod->getPrice())} <span class="curr">{$CS}</span></div>
-                                                                <div>{lang('Бесплатно от','newLevel')}: {echo ceil($deliveryMethod->getFreeFrom())} <span class="curr">{$CS}</span></div>
+                                                                {if $deliveryMethod->getPrice() > 0}
+                                                                    <div>{lang('Стоимость','newLevel')}: {echo ceil($deliveryMethod->getPrice())} <span class="curr">{$CS}</span></div>
+                                                                    <div>{lang('Бесплатно от','newLevel')}: {echo ceil($deliveryMethod->getFreeFrom())} <span class="curr">{$CS}</span></div>
+
                                                                 {/if}
+                                                            {/if}
                                                         </div>
                                                     </div>
                                                 {/foreach}

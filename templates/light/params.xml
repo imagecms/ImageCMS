@@ -7,34 +7,31 @@
         <dependency entityName="module" name="moduleName1" type="required"/>
         <dependency entityName="module" name="moduleName2" type="wishful"/>
         <dependency entityName="module" name="moduleName3" type="add"/>
-        <dependency entityName="widget" name="widgetName1" type="required"/>
-        <dependency entityName="widget" name="widgetName1" type="wishful"/>
 		 -->
-        <dependency entityName="widget" name="benefits" type="add" widgetType="html">
+        <dependence entityName="widget" name="benefits2" type="add" widgetType="html">
             <data>
                 <div class="frame-title">
 <div class="title">Почему выбирают нас</div>
 </div>
 <ul class="items items-benefits">
 <li>
-<div class="frame-icon-benefit"><span class="helper"></span> <span class="icon-benefits_1"></span></div>
+<div class="frame-icon-benefit"><span class="helper">&#0160;</span> <span class="icon-benefits_1">&#0160;</span></div>
 <div class="frame-description-benefit f-s_0">
 <div class="title">Бесплатная доставка от 2000 р</div>
 </div>
 </li>
 </ul>
             </data>
-        </dependency>
+        </dependence>
 		
-		<!--
-        <dependency entityName="widget" name="addModuleWidgetName" type="add" widgetType="module" module="widgetModule" method="methodName" description="widget description">
+		
+        <dependence entityName="widget" name="brands2" type="add" widgetType="module" module="shop" method="brands" description="widget description">
             <settings>
-                <setting1>1</setting1>
-                <setting2>2</setting2>
-                <setting3>3</setting3>
+                <brandsCount>4</brandsCount>
+                <title>sadf</title>
             </settings>
-        </dependency>
-		-->
+        </dependence>
+		<!---->
     </dependencies>
     
  <!--menu name="demo_manu" main_title="Demo menu title" description="Demo menu description." tpl="top_menu" expand_level="0">
@@ -42,10 +39,9 @@
                 
         </item>
     </menu-->
-    <!-- (where_show => default, main, product, shop_category, brand, category, page)  -->   
+    
     <!--demodata>
         <menus>
-            
             <menu name="menu_1" main_title="Menu main title" tpl_folder="folder_tpl" expand_level="1" description="Menu description">
                 <item image="./uploads/image1.jpg" title="Menu1 item title1" description="" url="/page_url1">
                     <menu_i18n title="Menu title ru1" locale="ru"/>
@@ -86,49 +82,47 @@
                 </item>
                 
             </menu>
-            
         </menus>
-        
-        <categoriestemplates>
-            <level_1 template_name="category1level11"/>
-            <level_2 template_name="category2level22"/>
-        </categoriestemplates>
-        </demodata!-->
-		<demodata>
+    </demodata!-->
+    <!--demodata>
+    <categoriestemplates>
+        <level_1 template_name="category1level11"/>
+        <level_2 template_name="category2level22"/>
+    </categoriestemplates>
+    </demodata!-->
+    
+    <demodata>
+        <!-- (where_show => default, main, product, shop_category, brand, category, page)-->
         <banners>
             <banner where_show="main" position="0" active="1">
                 <banner_i18n  name="Баннер" description="Баннер описание" url="banner_url" locale="ru" photo="/uploads/shop/banners/center_1.jpg"/>
-                <banner_i18n  name="Banner" description="Banner description" url="banner_url" locale="en" photo="/uploads/shop/banners/center_1.jpg"/>
             </banner>
             <banner where_show="main" position="0" active="1">
                 <banner_i18n  name="Баннер3" description="Баннер описание" url="banner_url" locale="ru" photo="/uploads/shop/banners/center_2.jpg"/>
-                <banner_i18n  name="Banner" description="Banner description" url="banner_url" locale="en" photo="/uploads/shop/banners/center_2.jpg"/>
             </banner>
             <groups>
                 <group name="right-main"/>
             </groups>
-			<banner where_show="main" position="0" active="1" group="right-main">
+            <banner where_show="main" position="0" active="1" group="right-main">
                 <banner_i18n  name="Баннер" description="Баннер описание" url="banner_url" locale="ru" photo="/uploads/shop/banners/2.jpg"/>
-                <banner_i18n  name="Banner" description="Banner description" url="banner_url" locale="en" photo="/uploads/shop/banners/2.jpg"/>
             </banner>
             <banner where_show="main" position="0" active="1" group="right-main">
                 <banner_i18n  name="Баннер3" description="Баннер описание" url="banner_url" locale="ru" photo="/uploads/shop/banners/3.jpg"/>
-                <banner_i18n  name="Banner" description="Banner description" url="banner_url" locale="en" photo="/uploads/shop/banners/3.jpg"/>
             </banner>
         </banners>
-		</demodata>
-        <!--demodata>
-        <customfields>
-            <field type="text" name="Field1" required="TRUE" active="TRUE" private="FALSE" validators="valid[23]" entity="user" classes="class1">
-                <field_i18n label="Поле" description="Field desc" locale="ru" />
-                <field_i18n label="Field" description="Field desc" locale="en" />
-            </field>
-            <field type="textarea" name="Field2" required="FALSE" active="TRUE" private="FALSE" validators="valid[23]" entity="order" classes="class2">
-                <field_i18n label="Поле2" description="Field desc2" locale="ru" />
-                <field_i18n label="Field2" description="Field desc2" locale="en" />
-            </field>
-        </customfields>
-        </demodata!-->
+    </demodata>
+    <!--demodata>
+    <customfields>
+        <field type="text" name="Field1" required="TRUE" active="TRUE" private="FALSE" validators="valid[23]" entity="user" classes="class1">
+            <field_i18n label="Поле" description="Field desc" locale="ru" />
+            <field_i18n label="Field" description="Field desc" locale="en" />
+        </field>
+        <field type="textarea" name="Field2" required="FALSE" active="TRUE" private="FALSE" validators="valid[23]" entity="order" classes="class2">
+            <field_i18n label="Поле2" description="Field desc2" locale="ru" />
+            <field_i18n label="Field2" description="Field desc2" locale="en" />
+        </field>
+    </customfields>
+    </demodata!-->
     
     
     
@@ -139,8 +133,11 @@
     </description>
     
     <screenshots><!-- КОЖЕН РАЗ ПРИ ЗВЕРНЕННІ -->
-        <screenshot url="/templates/newLevel/screenshot.png" main="1" />
-        <screenshot url="/templates/newLevel/screenshot.png" main="0" />
+        <screenshot url="/templates/light/screenshots/1.png" main="1" />
+        <screenshot url="/templates/light/screenshots/2.png" main="0" />
+        <screenshot url="/templates/light/screenshots/Template-catalog_2.png" main="0" />
+        <screenshot url="/templates/light/screenshots/3.png" main="0" />
+        <screenshot url="/templates/light/screenshots/4.png" main="0" />
     </screenshots>
     
     <components><!-- ОДНОРАЗОВО - ПРИ ІНСТАЛЯЦІЇ ТА КОЖЕН РАЗ ПРИ ЗВЕРНЕННІ -->
@@ -160,7 +157,7 @@
         <component handler="TProperties">
             <params name="properties">
                 <param key="68" value="scroll" />
-                <param key="334" value="dropDown, scrol" />
+                <param key="334" value="dropDown, scroll" />
             </params>
         </component>
         
