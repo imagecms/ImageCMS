@@ -91,14 +91,20 @@
 
                                     </div>
                                 </div>
-
-
-
-
                                 <div class="control-group">
                                     <label class="control-label">{lang('Active until', 'banners')}:</label>
                                     <div class="controls">
-                                        <input class="datepicker" type="text" value="" name="active_to" />
+                                        <span class="frame_label">
+                                            <span class="niceCheck b_n" onclick="$('#active_to').fadeToggle()">
+                                                <input required="required" 
+                                                       type="checkbox"
+                                                       name="active_to_permanent"/>
+                                            </span>
+                                        </span>
+                                        {lang('Banner permanent', 'banners')}
+                                    </div>
+                                    <div class="controls">
+                                        <input class="datepicker" id="active_to" type="text" value="" name="active_to" />
                                     </div>
                                 </div>    
 
@@ -117,11 +123,7 @@
                                         <div class="o_h">		            
                                             <input type="text" name="photo" id="Img" value="" required="required">					
                                         </div>
-                                        <div id="Img-preview" style="width: 400px;" >
-
-
-
-                                        </div>
+                                        <div id="Img-preview" style="width: 400px;" ></div>
                                     </div>
                                 </div>
                             </div>
