@@ -126,7 +126,7 @@ class Admin extends BaseAdminController {
      */
     public function create() {
         if ($this->input->post()) {
-          
+
             $this->load->library('Form_validation');
             /** Set Validation reles */
             $this->form_validation->set_rules('name', lang('Banner name', 'banners'), 'required|xss_clean|max_length[45]');
@@ -137,7 +137,7 @@ class Admin extends BaseAdminController {
                     'name' => $this->input->post('name'),
                     'active' => (int) $this->input->post('active'),
                     'description' => $this->input->post('description'),
-                    'active_to' => (int) strtotime($this->input->post('active_to')),
+                    'active_to' => $this->input->post('active_to_permanent') == 'on' ? -1 : (int) strtotime($this->input->post('active_to')),
                     'where_show' => count($this->input->post('data')) ? serialize(array_unique($this->input->post('data'))) : serialize(array()),
                     'photo' => $this->input->post('photo'),
                     'url' => $this->input->post('url'),
@@ -197,7 +197,7 @@ class Admin extends BaseAdminController {
                     'name' => $_POST['name'],
                     'active' => (int) $this->input->post('active'),
                     'description' => $this->input->post('description'),
-                    'active_to' => (int) strtotime($this->input->post('active_to')),
+                    'active_to' => $this->input->post('active_to_permanent') == 'on' ? -1 : (int) strtotime($this->input->post('active_to')),
                     'where_show' => count($_POST['data']) ? serialize(array_unique($this->input->post('data'))) : serialize(array()),
                     'photo' => $this->input->post('photo'),
                     'url' => $this->input->post('url'),
