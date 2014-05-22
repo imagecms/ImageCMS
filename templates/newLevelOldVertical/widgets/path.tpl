@@ -4,7 +4,7 @@
         <ul class="items items-crumbs">
             <li class="btn-crumb">
                 <a href="{site_url()}" typeof="v:Breadcrumb">
-                    <span class="text-el">{lang('Главная', 'newLevel')}<span class="divider">→</span></span>
+                    <span class="text-el">{lang('Главная', 'newLevelVertical')}<span class="divider">→</span></span>
                 </a>
             </li>
             {foreach $navi_cats as $item} {$i++}

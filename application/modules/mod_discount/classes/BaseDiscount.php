@@ -173,6 +173,30 @@ class BaseDiscount {
     }
 
     /**
+     * 
+     * @param string $type short type of discount (en)
+     * @return string full translated name of discount
+     */
+    public static function getDiscountsLabels($type = NULL) {
+        $discounts = array(
+            "all_order" => lang('Order amount of more than', 'mod_discount'),
+            "comulativ" => lang('Cumulative discount', 'mod_discount'),
+            "user" => lang('User', 'mod_discount'),
+            "group_user" => lang('Users group', 'mod_discount'),
+            "category" => lang('Category', 'mod_discount'),
+            "product" => lang('Product', 'mod_discount'),
+            "brand" => lang('Brand', 'mod_discount'),
+        );
+        if (is_null($type)) {
+            return $discounts;
+        }
+        if (isset($discounts[$type])) {
+            return $discounts[$type];
+        }
+        return false;
+    }
+
+    /**
      * get all active discount joined whith his type
      * @access private
      * @author DevImageCms
@@ -410,74 +434,6 @@ class BaseDiscount {
         return (count($allOrderArrNotReg) > 0) ? $this->getMaxDiscount($allOrderArrNotReg, $this->totalPrice) : false;
     }
 
-    /**
-     * Returns the number of uses of discounts (only in cart) (grouped by key of discounts)
-     * @return array array(discountKey => array(productId => quantity in cart))
-     */
-    public function getAppliesCart() {
-        $cartItems = \Cart\BaseCart::getInstance()->getItems('SProducts');
-        $discountQuantities = array();
-        foreach ($cartItems['data'] as $item) {
-            if (!is_null($item->discountKey)) {
-                if (!isset($discountQuantities[$item->discountKey])) {
-                    $discountQuantities[$item->discountKey] = array();
-                }
-                $discountQuantities[$item->discountKey][] = array(
-                    'productId' => $item->id,
-                    'quantity' => $item->quantity,
-                    'price' => $item->price,
-                    'originPrice' => $item->originPrice,
-                );
-            }
-        }
-        return $discountQuantities;
-    }
-
-    /**
-     * 
-     * @param type $discountCounts
-     * @return type
-     */
-    public function getAppliesOverloadDifference($discountCounts) {
-        $dTypes = $this->discountType;
-        $overload = 0;
-        foreach ($dTypes as $typeName => $discounts) {
-            for ($i = 0; $i < count($discounts); $i++) {
-                $key = $discounts[$i]['key'];
-                if (isset($discountCounts[$key]) && $discounts[$i]['max_apply'] > 0) {
-                    $appliesLeftDB = $discounts[$i]['max_apply'] - $discounts[$i]['count_apply'];
-                    $currentDiscountApplies = 0;
-                    $currentDiscountOverload = 0;
-                    foreach ($discountCounts[$key] as $product) {
-                        $currentDiscountApplies += $product['quantity'];
-                        if ($currentDiscountApplies > $appliesLeftDB && $product['originPrice'] > $product['price']) {
-                            $count = $currentDiscountApplies - $appliesLeftDB;
-                            $currentDiscountOverload += ($product['originPrice'] - $product['price']) * $count;
-                            $this->aplyOverloadProducts[] = $product['productId'];
-                        }
-                    }
-                    $overload += $currentDiscountOverload;
-                }
-            }
-        }
-        return $overload;
-    }
-
-    /**
-     * 
-     * @param type $discountCounts
-     * @return int
-     */
-    public function recountPriceAccordApplies($discountCounts = NULL) {
-        if ($discountCounts == NULL) {
-            $discountCounts = $this->getAppliesCart();
-            if (count($discountCounts) == 0) {
-                return 0;
-            }
-        }
-        $difference = $this->getAppliesOverloadDifference($discountCounts);
-        $this->cart->setTotalPrice();
-        return $difference;
-    }
+   
 
 }

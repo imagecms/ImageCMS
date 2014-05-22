@@ -1,5 +1,6 @@
+{if count($payments)}
 <div class="frame-label">
-    <span class="title">{lang('Оплата:','newLevel')}</span>
+    <span class="title">{lang('Оплата:','newLevelVertical')}</span>
     <div class="frame-form-field check-variant-payment">
         {$counter = true}
         <div class="frame-radio">
@@ -26,3 +27,11 @@
         </div>
     </div>
 </div>
+{else:}
+    <div class="frame-label">
+        <span class="title">{lang('Оплата','newLevelVertical')}:</span>
+        <div class="frame-form-field" style="padding-top: 6px;">
+            <div class="help-block">{lang('Нет способов оплаты','newLevelVertical')}</div>
+        </div>
+    </div>
+{/if}

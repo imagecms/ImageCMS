@@ -187,8 +187,8 @@
                                                 <div class="pull-left span6">
                                                     <select name="order_by" id="order_by">
                                                         <option value="publish_date" {if $order_by == "publish_date"} selected="selected" {/if}>{lang('by date', 'admin')}</option>
-                                                        <option value="title" {if $order_by == "title"} selected="selected" {/if}>{lang('By alphabet or in the alphabetic order', 'admin')}</option>
-                                                        <option value="position" {if $order_by == "position"} selected="selected" {/if}>{lang('By position', 'admin')}</option>
+                                                        <option value="title" {if $order_by == "title"} selected="selected" {/if}>{lang('by alphabet', 'admin')}</option>
+                                                        <option value="position" {if $order_by == "position"} selected="selected" {/if}>{lang('by position', 'admin')}</option>
                                                     </select>
                                                 </div>
                                                 <div class="pull-left span6">
@@ -203,9 +203,8 @@
                                         <div class="control-group">
                                             <label class="control-label" for="per_page">{lang('Posts on page', 'admin')}:</label>
                                             <div class="controls">
-
                                                 <input type="text" name="per_page" value="{$per_page}" id="per_page" />
-                                                <div class="frame_label no_connection m-t_20">
+                                                <div class="frame_label no_connection">
                                                     <span class="niceCheck b_n">
                                                         <input type="checkbox" name="comments_default" value="1" {if $comments_default == 1} checked="checked" {/if}  />  
                                                     </span>

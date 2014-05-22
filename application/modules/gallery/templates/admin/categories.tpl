@@ -39,9 +39,9 @@
                                 </span>
                             </span>
                         </td>
-                        <td><a class="pjax" href="/admin/components/init_window/gallery/edit_category/{$category.id}" data-rel="tooltip" data-placement="top" data-original-title="{lang("Edit the category", 'gallery')}">{$category.id}</a></td>
+                        <td>{$category.id}</td>
                         <td class="share_alt">
-                            <a class="pjax" href="/admin/components/init_window/gallery/edit_category/{$category.id}" data-rel="tooltip" data-placement="top" data-original-title="{lang("Edit the category", 'gallery')}">{$category.name}</a>
+                            <a class="pjax" href="/admin/components/init_window/gallery/edit_category/{$category.id}" data-rel="tooltip" data-placement="top" data-original-title="{lang("Edit category", 'gallery')}">{$category.name}</a>
                         </td>
                         <td>
                             {if $cnt = count_albums($category.id)}

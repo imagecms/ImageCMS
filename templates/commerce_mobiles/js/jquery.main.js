@@ -104,6 +104,10 @@ $(document).ready(function() {
     $('#method_deliv').change(function() {
         $('[id*="paymentMethod"]').hide();
         $('#paymentMethod' + $(this).val()).show().change();
+        if ($(this).val())
+            $('#notSelectedPayment').hide();
+        else
+            $('#notSelectedPayment').show();
     }).change();
 
     $('[id*="paymentMethod"]').change(function() {
@@ -113,11 +117,11 @@ $(document).ready(function() {
     if (ltie7) {
         $('.head_cle_foot').replaceWith('<div class="' + $('.head_cle_foot').attr('class') + '"></div>');
     }
-    
-    
+
+
     // Change form url in order to check gift
-    $('#checkGiftButton').on('click',function(){
+    $('#checkGiftButton').on('click', function() {
         var el = $(this);
-        el.closest('form').attr('action','/shop/cart').submit();
+        el.closest('form').attr('action', '/shop/cart').submit();
     });
 });

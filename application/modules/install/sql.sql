@@ -167,7 +167,7 @@ INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_me
 (4, 'comments', 'comments', 1, 1, 1, 'a:5:{s:18:"max_comment_length";i:550;s:6:"period";i:0;s:11:"can_comment";i:0;s:11:"use_captcha";b:0;s:14:"use_moderation";b:0;}', 6),
 (7, 'navigation', 'navigation', 0, 0, 1, NULL, 7),
 (30, 'tags', 'tags', 1, 1, 1, NULL, 8),
-(92, 'gallery', 'gallery', 1, 0, 1, 'a:26:{s:13:"max_file_size";s:1:"5";s:9:"max_width";s:1:"0";s:10:"max_height";s:1:"0";s:7:"quality";s:2:"95";s:14:"maintain_ratio";b:1;s:19:"maintain_ratio_prev";b:1;s:19:"maintain_ratio_icon";b:1;s:4:"crop";b:0;s:9:"crop_prev";b:0;s:9:"crop_icon";b:0;s:14:"prev_img_width";s:3:"500";s:15:"prev_img_height";s:3:"500";s:11:"thumb_width";s:3:"100";s:12:"thumb_height";s:3:"100";s:14:"watermark_text";s:0:"";s:16:"wm_vrt_alignment";s:6:"bottom";s:16:"wm_hor_alignment";s:4:"left";s:19:"watermark_font_size";s:2:"14";s:15:"watermark_color";s:6:"ffffff";s:17:"watermark_padding";s:2:"-5";s:19:"watermark_font_path";s:20:"./system/fonts/1.ttf";s:15:"watermark_image";s:0:"";s:23:"watermark_image_opacity";s:2:"50";s:14:"watermark_type";s:4:"text";s:8:"order_by";s:4:"date";s:10:"sort_order";s:4:"desc";}', 9),
+(92, 'gallery', 'gallery', 1, 0, 1, 'a:26:{s:13:"max_file_size";s:1:"5";s:9:"max_width";s:1:"0";s:10:"max_height";s:1:"0";s:7:"quality";s:2:"95";s:14:"maintain_ratio";b:1;s:19:"maintain_ratio_prev";b:1;s:19:"maintain_ratio_icon";b:1;s:4:"crop";b:0;s:9:"crop_prev";b:0;s:9:"crop_icon";b:0;s:14:"prev_img_width";s:3:"500";s:15:"prev_img_height";s:3:"500";s:11:"thumb_width";s:3:"100";s:12:"thumb_height";s:3:"100";s:14:"watermark_text";s:0:"";s:16:"wm_vrt_alignment";s:6:"bottom";s:16:"wm_hor_alignment";s:4:"left";s:19:"watermark_font_size";s:2:"14";s:15:"watermark_color";s:6:"ffffff";s:17:"watermark_padding";s:2:"-5";s:19:"watermark_font_path";s:25:"./uploads/defaultFont.ttf";s:15:"watermark_image";s:0:"";s:23:"watermark_image_opacity";s:2:"50";s:14:"watermark_type";s:4:"text";s:8:"order_by";s:4:"date";s:10:"sort_order";s:4:"desc";}', 9),
 (55, 'rss', 'rss', 1, 0, 1, 'a:5:{s:5:"title";s:9:"Image CMS";s:11:"description";s:35:"Тестируем модуль RSS";s:10:"categories";a:1:{i:0;s:1:"3";}s:9:"cache_ttl";i:60;s:11:"pages_count";i:10;}', 10),
 (60, 'menu', 'menu', 0, 1, 1, NULL, 11),
 (58, 'sitemap', 'sitemap', 0, 0, 1, 'a:6:{s:18:"main_page_priority";s:1:"1";s:13:"cats_priority";s:3:"0.8";s:14:"pages_priority";s:3:"0.6";s:20:"main_page_changefreq";s:6:"always";s:21:"categories_changefreq";s:6:"hourly";s:16:"pages_changefreq";s:5:"daily";}', 12),
@@ -1279,7 +1279,7 @@ CREATE TABLE IF NOT EXISTS `shop_currencies` (
   `is_default` tinyint(1) DEFAULT NULL,
   `code` varchar(5) DEFAULT NULL,
   `symbol` varchar(5) DEFAULT NULL,
-  `rate` float(6,3) DEFAULT '1.000',
+  `rate` float(10,4) DEFAULT '1.000000',
   PRIMARY KEY (`id`),
   KEY `shop_currencies_I_1` (`name`),
   KEY `shop_currencies_I_2` (`main`),
@@ -1291,8 +1291,8 @@ CREATE TABLE IF NOT EXISTS `shop_currencies` (
 --
 
 INSERT INTO `shop_currencies` (`id`, `name`, `main`, `is_default`, `code`, `symbol`, `rate`) VALUES
-(1, 'Dollars', 0, 0, 'USD', '$', 0.031),
-(2, 'Ruble', 1, 1, 'RUR', 'RUR', 1.000);
+(1, 'Dollars', 0, 0, 'USD', '$', 0.031000),
+(2, 'Ruble', 1, 1, 'RUR', 'RUR', 1.000000);
 
 -- --------------------------------------------------------
 
@@ -8417,7 +8417,8 @@ INSERT INTO `shop_rbac_privileges` (`id`, `name`, `group_id`) VALUES
 (479, 'Widgets_manager::update_config', 59),
 (480, 'Widgets_manager::delete', 59),
 (482, 'Widgets_manager::edit_html_widget', 59),
-(483, 'Widgets_manager::edit_module_widget', 59);
+(483, 'Widgets_manager::edit_module_widget', 59),
+(485, 'cfcm::form_from_category_group', 43);
 
 -- --------------------------------------------------------
 
@@ -8652,7 +8653,8 @@ INSERT INTO `shop_rbac_privileges_i18n` (`id`, `title`, `description`, `locale`)
 (479, 'Обновление настроек виджета', 'Доступ к обновлению настроек виджета', 'ru'),
 (480, 'Удаление виджета', 'Доступ к удалению виджета', 'ru'),
 (482, 'Редактирование html виджета', 'Доступ к редактированию html виджета', 'ru'),
-(483, 'Редактирование модульного виджета', 'Доступ к редактированию модульного виджета', 'ru');
+(483, 'Редактирование модульного виджета', 'Доступ к редактированию модульного виджета', 'ru'),
+(485, 'Заполнение дополнительных полей', 'Заполнение дополнительных полей', 'ru');
 
 -- --------------------------------------------------------
 
@@ -8972,7 +8974,8 @@ INSERT INTO `shop_rbac_roles_privileges` (`id`, `role_id`, `privilege_id`) VALUE
 (607, 3, 215),
 (608, 3, 216),
 (610, 3, 218),
-(611, 3, 219);
+(611, 3, 219),
+(612, 1, 485);
 
 -- --------------------------------------------------------
 
@@ -9417,13 +9420,6 @@ CREATE TABLE IF NOT EXISTS `widget_i18n` (
   KEY `locale` (`locale`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-UPDATE 
-    `mod_email_paterns_i18n` 
-SET `variables` = 'a:5:{s:10:"$userName$";s:31:"Имя пользователя";s:11:"$userEmail$";s:30:"Email Пользователя";s:11:"$orderLink$";s:28:"Ссылка на заказ";s:8:"$status$";s:25:"Статус заказа";s:9:"$comment$";s:38:"Комментарий к заказу";}' 
-WHERE 
-    id = 2 AND 
-    locale = 'ru'
-LIMIT 1;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

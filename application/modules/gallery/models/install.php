@@ -35,7 +35,7 @@ class Install extends CI_Model {
             'watermark_font_size' => '14',
             'watermark_color'     => 'ffffff',
             'watermark_padding'   => '-5',
-            'watermark_font_path' => './system/fonts/1.ttf',
+            'watermark_font_path' => './uploads/defaultFont.ttf',
             'order_by'            => 'date',
             'sort_order'          => 'desc',
             'watermark_type'      => 'text',

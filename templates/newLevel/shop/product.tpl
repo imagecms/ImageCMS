@@ -20,6 +20,7 @@
 </div>
 <div class="frame-inside page-product">
     <div class="container">
+        {$CI->load->module('banners')->render($model->getId())}
         {$inCartFV = getAmountInCart('SProducts', $model->firstVariant->getId())}
         <div class="clearfix item-product globalFrameProduct{if $model->firstVariant->getStock() == 0} not-avail{else:}{if $inCartFV} in-cart{else:} to-cart{/if}{/if}">
             <div class="f-s_0 title-product">
@@ -343,7 +344,7 @@
                         <div class="d-i_b">
                             <button data-trigger="[data-href='#comment']" data-scroll="true" class="count-response d_l">
                                 {intval($Comments[$model->getId()])}
-                                {echo SStringHelper::Pluralize($Comments[$model->getId()], array(lang("отзыв","newLevel"),lang("отзыва","newLevel"),lang("отзывов","newLevel")))}
+                                {echo SStringHelper::Pluralize($Comments[$model->getId()], array(lang("отзыв",'newLevel'),lang("отзыва",'newLevel'),lang("отзывов",'newLevel')))}
                             </button>
                         </div>
                     </div>
@@ -406,9 +407,9 @@
         </div>
     </div>
     <!-- End. benefits block-->
-    <!-- Start. Kit-->
     
-    {if $model->getShopKits()}
+    <!-- Start. Kit-->
+    {if $model->getShopKitsLoggedUsersCheck($CI->dx_auth->is_logged_in())}
         <div class="container">
             <section class="frame-complect horizontal-carousel">
                 <div class="frame-title">
@@ -417,7 +418,7 @@
                 <div class="carousel-js-css items-carousel complects-carousel">
                     <div class="content-carousel">
                         <ul class="items-complect items">
-                            {foreach $model->getShopKits() as $key => $kitProducts}
+                            {foreach $model->getShopKitsLoggedUsersCheck($CI->dx_auth->is_logged_in()) as $key => $kitProducts}
                                 {$inCart = getAmountInCart('ShopKit', $kitProducts->getId())}
                                 <li class="globalFrameProduct{if $inCart} in-cart{else:} to-cart{/if}">
                                     <ul class="items items-bask row-kits rowKits items-product">
@@ -614,7 +615,7 @@
                             <span id="cc">
                                 {if intval($Comments[$model->getId()][0]) !== 0}
                                     {echo intval($Comments[$model->getId()])}
-                                    {echo SStringHelper::Pluralize($Comments[$model->getId()], array(lang("отзыв","newLevel"),lang("отзыва","newLevel"),lang("отзывов","newLevel")))}
+                                    {echo SStringHelper::Pluralize($Comments[$model->getId()], array(lang("отзыв",'newLevel'),lang("отзыва",'newLevel'),lang("отзывов",'newLevel')))}
                                 {else:}
                                     {lang('Оставить отзыв','newLevel')}
                                 {/if}

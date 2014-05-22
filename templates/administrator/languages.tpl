@@ -23,13 +23,15 @@
             <div class="pull-left">
                 <span class="help-inline"></span>
                 <span class="title">{lang('Languages list',"admin")}</span>
-            </div>  
-            <div class="pull-right">
-                <div class="d-i_b">
-                    <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="delete_function.deleteFunction()" id="module_delete"><i class="icon-trash icon-white"></i>{lang("Delete","admin")}</button>
-                    <button type="button" class="btn btn-small btn-success" onclick="window.location.href = '/admin/languages/create_form'" data-submit><i class="icon-plus-sign icon-white"></i>{lang('Create language',"admin")}</button>
-                </div>
             </div>
+            {if end(explode(' ',IMAGECMS_NUMBER)) != 'Professional'}
+                <div class="pull-right">
+                    <div class="d-i_b">
+                        <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="delete_function.deleteFunction()" id="module_delete"><i class="icon-trash icon-white"></i>{lang("Delete","admin")}</button>
+                        <button type="button" class="btn btn-small btn-success" onclick="window.location.href = '/admin/languages/create_form'" data-submit><i class="icon-plus-sign icon-white"></i>{lang('Create language',"admin")}</button>
+                    </div>
+                </div>
+            {/if}
         </div>
         <div class="content_big_td">
             <div class="tab-content">
@@ -48,9 +50,10 @@
                                         </th>
                                         <th>{lang("Language","admin")}</th>
                                         <th>{lang("Identifier","admin")}</th>
+                                        <th>{lang("Locale","admin")}</th>
                                         <th>{lang("Template","admin")}</th>
                                         <th>{lang("Image","admin")}</th>
-                                        <th>{lang("by default","admin")}</th>
+                                        <th class="span2">{lang("By default","admin")}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -75,6 +78,7 @@
                                                 </p>
                                             </td>
                                             <td><p>{$lang.identif}</p></td>
+                                            <td><p>{$lang.locale}</p></td>
                                             <td><p>{if $lang.default == 1}{echo $template_selected}{else:}{$lang.template}{/if}</p></td>
                                             <td><p><img src="{$lang.image}" width="16" height="16" /></p></td>
                                             <td class="t-a_c"><button class="btn btn-small lan_def {if $lang.default == 1} btn-primary active {/if}" data-id="{$lang.id}"><i class="icon-star"></i></button></td>

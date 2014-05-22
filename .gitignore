@@ -34,7 +34,14 @@ Thumbs.db
 /_tempLangs.php
 /uploadsNewlevel/.tmb/
 /uploads_cur
+<<<<<<< HEAD
 /templates/builds
 /templates/*/node_modules/
 /templates/*/Gruntfile.js
 /templates/*/package.json
+=======
+/templates/builds/
+/templates/*/node_modules/
+/templates/*/package.json
+/templates/*/Gruntfile.js
+>>>>>>> b9c4d95ddd6af09e1a909d3d92f8be7f988bb9c7

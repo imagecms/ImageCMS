@@ -65,8 +65,8 @@ class Lib_init {
         if (!defined('DS')) {
             define('DS', DIRECTORY_SEPARATOR);
         }
-        
-        if (SHOP_INSTALLED) {
+
+        if (is_dir(APPPATH . '' . 'modules/shop/')) {
             // Full path to shop module dir with ending slash.
 
             define('SHOP_DIR', APPPATH . '' . 'modules/shop/');
@@ -76,7 +76,7 @@ class Lib_init {
 
             // Register shop autoloader.
             spl_autoload_unregister(array('ShopCore', 'autoload'));
-            spl_autoload_register(array('ShopCore', 'autoload')); 
+            spl_autoload_register(array('ShopCore', 'autoload'));
 
             // Diable CSRF library form web money service
             $CI = & get_instance();
@@ -85,6 +85,10 @@ class Lib_init {
             }
             // Support for robokassa
             if ($CI->uri->segment(1) == 'shop' && $CI->uri->segment(2) == 'cart' && $CI->uri->segment(3) == 'view' && $_GET['getResult'] == 'true') {
+                define('ICMS_DISBALE_CSRF', true);
+            }
+            // Support for privat
+            if ($CI->uri->segment(1) == 'shop' && $CI->uri->segment(2) == 'order' && $CI->uri->segment(3) == 'view' && $_POST) {
                 define('ICMS_DISBALE_CSRF', true);
             }
             if ($CI->uri->segment(1) == 'shop' && $CI->uri->segment(2) == 'cart' && $CI->uri->segment(3) == 'view' && $_GET['succes'] == 'true') {

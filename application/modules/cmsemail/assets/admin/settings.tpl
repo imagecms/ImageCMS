@@ -44,28 +44,28 @@
                                 <div class="control-group">
                                     <label class="control-label" for="settings[from]">{lang('From', 'cmsemail')}:</label>
                                     <div class="controls">
-                                        <input type = "text" name = "settings[from]" class="textbox_short" value="{$settings['from']}" id="from"/>
+                                        <input type = "text" name = "settings[from]" required class="textbox_short required" value="{$settings['from']}" id="from"/>
                                     </div>
                                 </div>
 
                                 <div class="control-group">
                                     <label class="control-label" for="settings[from_email]">{lang('From email', 'cmsemail')}:</label>
                                     <div class="controls">
-                                        <input type = "text" name = "settings[from_email]" class="textbox_short" value="{$settings['from_email']}" id="from_email"/>
+                                        <input type = "text" name = "settings[from_email]" required class="textbox_short required" value="{$settings['from_email']}" id="from_email"/>
                                     </div>
                                 </div>
 
                                 <div class="control-group">
                                     <label class="control-label" for="settings[admin_email]">{lang('Admin email', 'cmsemail')}:</label>
                                     <div class="controls">
-                                        <input type = "text" name = "settings[admin_email]" class="textbox_short" value="{$settings['admin_email']}" id="admin_email"/>
+                                        <input type = "text" name = "settings[admin_email]" required class="textbox_short required" value="{$settings['admin_email']}" id="admin_email"/>
                                     </div>
                                 </div>
 
                                 <div class="control-group">
                                     <label class="control-label" for="settings[theme]">{lang('Theme', 'cmsemail')}:</label>
                                     <div class="controls">
-                                        <input type = "text" name = "settings[theme]" class="textbox_short" value="{$settings['theme']}" id="theme"/>
+                                        <input type = "text" name = "settings[theme]" required class="textbox_short required" value="{$settings['theme']}" id="theme"/>
                                     </div>
                                 </div>
 
@@ -83,7 +83,7 @@
                                 <div class="control-group wraperControlGroup" {if !$settings['wraper_activ']} style="display: none" {/if}>
                                     <label class="control-label" for="settings[wraper]">{lang('Wraper', 'cmsemail')}:</label>
                                     <div class="controls">
-                                        <textarea name='settings[wraper]' class="elRTE"  id="wraper">{$settings['wraper']}</textarea>
+                                        <textarea name='settings[wraper]' class="elRTE required" required  id="wraper">{$settings['wraper']}</textarea>
                                     </div>
                                 </div>
 

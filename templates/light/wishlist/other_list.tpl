@@ -45,7 +45,7 @@
                     <div class="msg layout-highlight layout-highlight-msg">
                         <div class="info">
                             <span class="icon_info"></span>
-                            <span class="text-el">{lang('Список пуст','newLevel')}</span>
+                            <span class="text-el">{lang('Список пуст','light')}</span>
                         </div>
                     </div>
                 {/if}
@@ -53,13 +53,13 @@
         {else:}
             <div class="f-s_0 without-crumbs-side">
                 <div class="frame-title">
-                    <h1 class="title">{lang('Список желаний','newLevel')}</h1>
+                    <h1 class="title">{lang('Список желаний','light')}</h1>
                 </div>
             </div>
             <div class="msg layout-highlight layout-highlight-msg">
                 <div class="info">
                     <span class="icon_info"></span>
-                    <span class="text-el">{lang('Список Желания пуст','newLevel')}</span>
+                    <span class="text-el">{lang('Список Желания пуст','light')}</span>
                 </div>
             </div>
         {/if}

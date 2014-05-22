@@ -230,7 +230,7 @@
                                                 {foreach $categories as $category}
                                                     <option {if $category->getLevel() == 0}style="font-weight: bold;"{/if} value="{echo $category->getId()}" {if $category->getId() == $discount['category']['category_id']}selected=selected{/if}>{str_repeat('-',$category->getLevel())}{echo ShopCore::encode($category->getName())}</option>
                                                 {/foreach}
-                                            </select>
+                                            </select></br>
                                             <input type="checkbox" name="category[child]" value="1"{if $discount['category']['child']}checked="checked"{/if}/>  {lang('Change child category', 'mod_discount')} 
                                         </div>
                                         <!-- End. Show if discount type is category of products-->
@@ -242,7 +242,7 @@
                                                 <label class="hideAfterAutocomlite"> {lang('Current product', 'mod_discount')} :
                                                     <span class="now-active-prod">{echo $discount['product']['productInfo']}</span>
                                                 </label>
-                                                <label> {lang('Name / ID', 'mod_discount')}  :</label>
+                                                <label> {lang('Name / ID / Number', 'mod_discount')}  :</label>
                                                 <input id="productForDiscount" required="required" style="border-color: coral;" type="text" value="" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
                                                 <input id="discountProductId" type="hidden" name="product[product_id]" value="{echo $discount['product']['product_id']}"/>
                                             </div>

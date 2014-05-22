@@ -8,7 +8,7 @@
  * @author DevImageCms
  * @copyright (c) 2013, ImageCMS
  * @package ImageCMSModule
- * @property discount_model_admin $discount_model_admin
+ * @property Discount_model_admin $discount_model_admin
  */
 class Admin extends \ShopAdminController {
 
@@ -20,17 +20,6 @@ class Admin extends \ShopAdminController {
         \CMSFactory\assetManager::create()
                 ->registerStyle('style')
                 ->registerScript('adminScripts');
-    }
-
-    public function test() {
-        $bd = \mod_discount\classes\BaseDiscount::create();
-        $something1 = $bd->getAppliesCart();
-        
-        $something2 = $bd->getAppliesOverloadDifference($something1);
-        echo '<pre>';
-        print_r($something1);
-        echo '</pre>';
-        exit;
     }
 
     /**

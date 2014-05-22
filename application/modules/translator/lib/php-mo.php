@@ -239,7 +239,27 @@ function phpmo_write_mo_file($hash, $out) {
     // strings
     $mo .= $strings;
 
-    file_put_contents($out, $mo);
+    $directory = dirname($out);
+    $current_mo_file_name = array_pop(glob($directory . '/*.mo'));
+    if(!$current_mo_file_name){
+        $current_mo_file_name = array_pop(glob($directory . '\*.mo'));
+        if(!$current_mo_file_name){
+            $current_mo_file_name = $out;
+        }
+    }
+
+    $addition_time = time();
+    if (!preg_match('/[\d]+/', $current_mo_file_name)) {
+        $new_mo_file_name = str_replace('.mo', '_' . $addition_time . '.mo', $current_mo_file_name);
+    } else {
+        $new_mo_file_name = preg_replace('/_[\d]+/', '_' . $addition_time, $current_mo_file_name);
+    }
+
+    rename($current_mo_file_name, $new_mo_file_name);
+
+    file_put_contents($new_mo_file_name, $mo);
+
+    chmod($new_mo_file_name, 0777);
 }
 
 ?>

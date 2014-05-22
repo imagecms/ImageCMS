@@ -7,7 +7,7 @@
             <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
             <div class="no-empty js-no-empty">
                 <div class="drop-header">
-                    <div class="title bask"><span>{/literal}{lang('В корзине','newLevel')}{literal}</span> <span class="add-info"><span class="topCartCount"><%- Shop.Cart.totalCount %></span></span> <span class="plurProd"><%- pluralStr(Shop.Cart.totalCount, text.plurProd) %></span> <span>{/literal}{lang('Сумма','newLevel')}{literal}</span> <span class="add-info"><span class="topCartTotalPrice"><%- parseFloat(Shop.Cart.totalPrice).toFixed(pricePrecision) %></span></span> <%-curr%></div>
+                    <div class="title bask"><span>{/literal}{lang('В корзине','newLevelVertical')}{literal}</span> <span class="add-info"><span class="topCartCount"><%- Shop.Cart.totalCount %></span></span> <span class="plurProd"><%- pluralStr(Shop.Cart.totalCount, text.plurProd) %></span> <span>{/literal}{lang('Сумма','newLevelVertical')}{literal}</span> <span class="add-info"><span class="topCartTotalPrice"><%- parseFloat(Shop.Cart.totalPrice).toFixed(pricePrecision) %></span></span> <%-curr%></div>
                 </div>
                 <div class="drop-content">
                     <div class="no-empty js-no-empty">
@@ -29,8 +29,8 @@
                                                     <span class="title"><%- item.name %></span>
                                                 </a>
                                                 <div class="description">
-                                                    <%if(item.vname){ %><span class="frame-variant-name frameVariantName">{/literal}{lang('Вариант','newLevel')} {literal} <span class="code js-code">(<%- item.vname%>)</span></span> <% } %>
-                                                    <%if (item.number) { %><span class="frame-variant-code frameVariantCode">{/literal}{lang('Артикул','newLevel')} {literal} <span class="code js-code">(<%-item.number %>)</span></span> <% } %>
+                                                    <%if(item.vname){ %><span class="frame-variant-name frameVariantName">{/literal}{lang('Вариант','newLevelVertical')} {literal} <span class="code js-code">(<%- item.vname%>)</span></span> <% } %>
+                                                    <%if (item.number) { %><span class="frame-variant-code frameVariantCode">{/literal}{lang('Артикул','newLevelVertical')} {literal} <span class="code js-code">(<%-item.number %>)</span></span> <% } %>
                                                     <%/*%>
                                                     <div class="frame-prices f-s_0">
                                                         <%if (item.origprice) { %>
@@ -63,7 +63,7 @@
                                             </td>
                                             <td class="frame-count frameCount">
                                                 <span class="countOrCompl"><%-text.pcs%></span>
-                                                <div class="number js-number" data-title="{/literal}{lang('Количество на складе','newLevel')} {literal}<%-' '+item.maxcount%>">
+                                                <div class="number js-number" data-title="{/literal}{lang('Количество на складе','newLevelVertical')} {literal}<%-' '+item.maxcount%>">
                                                     <div class="frame-change-count frameChangeCount" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-price="<%- item.price %>" data-addprice="<%- item.addprice %>" data-origprice="<%- item.origprice %>">
                                                         <div class="btn-plus">
                                                             <button type="button">
@@ -76,11 +76,11 @@
                                                             </button>
                                                         </div>
                                                     </div>
-                                                    <input type="text" value="<%- item.count %>" class="plusMinus plus-minus" data-title="{/literal}{lang('Только цифры','newLevel')}{literal}" data-min="1" <% if (item.maxcount) { %> data-max="<%-item.maxcount%>" <% } %> />
+                                                    <input type="text" value="<%- item.count %>" class="plusMinus plus-minus" data-title="{/literal}{lang('Только цифры','newLevelVertical')}{literal}" data-min="1" <% if (item.maxcount) { %> data-max="<%-item.maxcount%>" <% } %> />
                                                 </div>
                                             </td>
                                             <td class="frame-cur-sum-price">
-                                                <span class="title">{/literal}{lang('Сумма','newLevel')}{literal}: </span>
+                                                <span class="title">{/literal}{lang('Сумма','newLevelVertical')}{literal}: </span>
                                                     <div class="frame-prices f-s_0">
                                                         <%if (item.origprice) { %>
                                                         <span class="price-discount">
@@ -140,8 +140,8 @@
                                                                 <span class="title"><%- names[i] %></span>
                                                             </a>
                                                             <div class="description">
-                                                                <%if(item.vname){ %><span class="frame-variant-name frameVariantName">{/literal}{lang('Вариант','newLevel')} {literal} <span class="code js-code">(<%- item.vname%>)</span></span> <% } %>
-                                                                <%if (item.number) { %><span class="frame-variant-code frameVariantCode">{/literal}{lang('Артикул','newLevel')} {literal} <span class="code js-code">(<%-item.number %>)</span></span> <% } %>
+                                                                <%if(item.vname){ %><span class="frame-variant-name frameVariantName">{/literal}{lang('Вариант','newLevelVertical')} {literal} <span class="code js-code">(<%- item.vname%>)</span></span> <% } %>
+                                                                <%if (item.number) { %><span class="frame-variant-code frameVariantCode">{/literal}{lang('Артикул','newLevelVertical')} {literal} <span class="code js-code">(<%-item.number %>)</span></span> <% } %>
                                                                 <%/*%>
                                                                 <div class="frame-prices f-s_0">
                                                                     <span class="current-prices f-s_0">
@@ -173,8 +173,8 @@
                                                                 <span class="title"><%-names[i]%></span>
                                                             </a>
                                                             <div class="description">
-                                                                <%if(item.vname){ %><span class="frame-variant-name frameVariantName">{/literal}{lang('Вариант','newLevel')} {literal} <span class="code js-code">(<%- item.vname%>)</span></span> <% } %>
-                                                                <%if (item.number) { %><span class="frame-variant-code frameVariantCode">{/literal}{lang('Артикул','newLevel')} {literal} <span class="code js-code">(<%-item.number %>)</span></span> <% } %>
+                                                                <%if(item.vname){ %><span class="frame-variant-name frameVariantName">{/literal}{lang('Вариант','newLevelVertical')} {literal} <span class="code js-code">(<%- item.vname%>)</span></span> <% } %>
+                                                                <%if (item.number) { %><span class="frame-variant-code frameVariantCode">{/literal}{lang('Артикул','newLevelVertical')} {literal} <span class="code js-code">(<%-item.number %>)</span></span> <% } %>
                                                                 <%/*%>
                                                                 <div class="frame-prices f-s_0">
                                                                     <span class="price-discount">
@@ -210,7 +210,7 @@
                                             </td>
                                             <td class="frame-count frameCount">
                                                 <span class="countOrCompl"><%-text.kits%></span>
-                                                <div class="number js-number" data-title="{/literal}{lang('Количество на складе','newLevel')}{literal} <%-' '+item.maxcount%>">
+                                                <div class="number js-number" data-title="{/literal}{lang('Количество на складе','newLevelVertical')}{literal} <%-' '+item.maxcount%>">
                                                     <div class="frame-change-count frameChangeCount" data-prodid="<%- item.id %>" data-varid="<%- item.vId %>" data-price="<%- item.price %>" data-origprice="<%- item.origprice %>" data-addprice="<%- item.addprice %>" data-kit="<%-item.kit %>">
                                                         <div class="btn-plus">
                                                             <button type="button">
@@ -223,11 +223,11 @@
                                                             </button>
                                                         </div>
                                                     </div>
-                                                    <input type="text" value="<%- item.count %>" class="plusMinus plus-minus" data-title="{/literal}{lang('Только цифры','newLevel')}{literal}" data-min="1" <% if (item.maxcount) { %> data-max="<%-item.maxcount%>" <% } %> />
+                                                    <input type="text" value="<%- item.count %>" class="plusMinus plus-minus" data-title="{/literal}{lang('Только цифры','newLevelVertical')}{literal}" data-min="1" <% if (item.maxcount) { %> data-max="<%-item.maxcount%>" <% } %> />
                                                 </div>
                                             </td>
                                             <td class="frame-cur-sum-price">
-                                                <span class="title">{/literal}{lang('Сумма','newLevel')}{literal}: </span>
+                                                <span class="title">{/literal}{lang('Сумма','newLevelVertical')}{literal}: </span>
                                                 <div class="frame-prices f-s_0">
                                                     <span class="price-discount">
                                                         <span>
@@ -266,17 +266,17 @@
                         <div class="inside-padd">
                             <div class="clearfix">
                                 <span class="frame-discount frameDiscount">
-                                    <span class="s-t">{/literal}{lang('Ваша текущая скидка','newLevel')}{literal}:</span>
+                                    <span class="s-t">{/literal}{lang('Ваша текущая скидка','newLevelVertical')}{literal}:</span>
                                     <span class="text-discount current-discount"><span class="curDiscount"></span> <span class="curr"><%-curr%></span></span>
                                 </span>
                                 <% if (orderDetails) { %>
                                 <div class="btn-form f_l">
                                     <button type="button" data-closed="closed-js">
-                                        <span class="text-el"><span class="f-s_14">←</span> {/literal}{lang('Вернуться к оформлению','newLevel')}{literal}</span>
+                                        <span class="text-el"><span class="f-s_14">←</span> {/literal}{lang('Вернуться к оформлению','newLevelVertical')}{literal}</span>
                                     </button>
                                 </div>
                                 <% } %>
-                                <span class="s-t">{/literal}{lang('Всего','newLevel')}{literal}:</span>
+                                <span class="s-t">{/literal}{lang('Всего','newLevelVertical')}{literal}:</span>
                                     <span class="frame-prices f-s_0">
                                         <span class="price-discount">
                                             <span class="frame-discount frameDiscount">
@@ -309,13 +309,13 @@
                                 <div class="btn-form f_l">
                                     <button type="button" data-closed="closed-js">
 
-                                        <span class="text-el"><span class="f-s_14">←</span> {/literal}{lang('Вернуться к покупкам','newLevel')}{literal}</span>
+                                        <span class="text-el"><span class="f-s_14">←</span> {/literal}{lang('Вернуться к покупкам','newLevelVertical')}{literal}</span>
                                     </button>
                                 </div>
                                 <div class="btn-cart btn-cart-p f_r">
-                                    <a href="/shop/cart">
+                                    <a href={/literal}{echo $lang}{literal}"/shop/cart">
                                         <span class="icon_cart_p"></span>
-                                        <span class="text-el">{/literal}{lang('Оформить заказ','newLevel')}{literal}</span>
+                                        <span class="text-el">{/literal}{lang('Оформить заказ','newLevelVertical')}{literal}</span>
                                     </a>
                                 </div>
                             </div>
@@ -325,17 +325,17 @@
             </div>
             <div class="empty js-empty">
                 <div class="drop-header">
-                    <div class="title">{/literal}{lang('Ваша корзина','newLevel')}{literal} <span class="add-info">{/literal}{lang('пуста','newLevel')}{literal}</span></div>
+                    <div class="title">{/literal}{lang('Ваша корзина','newLevelVertical')}{literal} <span class="add-info">{/literal}{lang('пуста','newLevelVertical')}{literal}</span></div>
                 </div>
                 <div class="drop-content">
                     <div class="inside-padd">
                         <div class="msg f-s_0">
-                            <div class="success"><span class="icon_info"></span><span class="text-el">{/literal}{lang('Вы удалили все элементы из корзины','newLevel')}{literal}</span></div>
+                            <div class="success"><span class="icon_info"></span><span class="text-el">{/literal}{lang('Вы удалили все элементы из корзины','newLevelVertical')}{literal}</span></div>
                         </div>
                         <% if (!orderDetails) { %>
                         <div class="btn-form">
                             <button type="button" data-closed="closed-js">
-                                <span class="text-el"><span class="f-s_14">←</span> {/literal}{lang('Вернуться к покупкам','newLevel')}{literal}</span>
+                                <span class="text-el"><span class="f-s_14">←</span> {/literal}{lang('Вернуться к покупкам','newLevelVertical')}{literal}</span>
                             </button>
                         </div>
                         <% } %>
@@ -403,13 +403,13 @@
         <div>
         <div class="btn-autocomplete">{/literal}
         <a href="{shop_url('search')}?text={literal}<%- items.queryString %>" {/literal} class="f-s_0 t-d_u">
-        <span class="icon_show_all"></span><span class="text-el">{lang('Посмотреть все результаты','newLevel')} →</span>
+        <span class="icon_show_all"></span><span class="text-el">{lang('Посмотреть все результаты','newLevelVertical')} →</span>
         </a>
         </div>{literal}
         <!-- End. Show link  -->
         <% } else {%>    
     {/literal}<div class="msg f-s_0">
-    <div class="info"><span class="icon_info"></span><span class="text-el">{echo ShopCore::t(lang('По Вашему запросу ничего не найдено','newLevel'))}</span></div>
+    <div class="info"><span class="icon_info"></span><span class="text-el">{echo ShopCore::t(lang('По Вашему запросу ничего не найдено','newLevelVertical'))}</span></div>
     </div>{literal}
     <% }%>
     </div>
@@ -463,8 +463,8 @@
     <span class="tooltip"></span>
     <div class="apply">
         <div class="content-apply">
-            <a href="#">{lang('Фильтр','newLevel')}</a>
-            <div class="description">{lang('Найдено','newLevel')} <span class="f-s_0"><span id="apply-count">5</span><span class="text-el">&nbsp;</span><span class="plurProd"></span></span></div>
+            <a href="#">{lang('Фильтр','newLevelVertical')}</a>
+            <div class="description">{lang('Найдено','newLevelVertical')} <span class="f-s_0"><span id="apply-count">5</span><span class="text-el">&nbsp;</span><span class="plurProd"></span></span></div>
         </div>
         <button type="button" class="icon_times_drop icon_times_apply"></button>
     </div>
@@ -478,20 +478,20 @@
     </div>
     <button style="display: none;" type="button" data-drop="#notification"  data-modal="true" data-effect-on="fadeIn" data-effect-off="fadeOut" class="trigger"></button>
 
-    <div class="drop drop-style" id="confirm">
+   <div class="drop drop-style" id="confirm">
         <div class="drop-header">
-            <div class="title">{lang('Подтвердите' , 'newLevel')}</div>
+            <div class="title">{lang('Удалить список?' , 'newLevelVertical')}</div>
         </div>
         <div class="drop-content-confirm">
             <div class="inside-padd cofirm w-s_n-w">
                 <div class="btn-def">
                     <button type="button" data-button-confirm data-modal="true">
-                        <span class="text-el">{lang('Подтвердить' , 'newLevel')}</span>
+                        <span class="text-el">{lang('Подтвердить' , 'newLevelVertical')}</span>
                     </button>
                 </div>
-                <div class="btn-cancel">
+                <div class="btn-def">
                     <button type="button" data-closed="closed-js">
-                        <span class="text-el d_l_1">{lang('Отменить' , 'newLevel')}</span>
+                        <span class="text-el">{lang('Отменить' , 'newLevelVertical')}</span>
                     </button>
                 </div>
             </div>
@@ -504,7 +504,7 @@
             <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
             <div class="drop-content t-a_c" style="width: 350px;min-height: 0;">
                 <div class="inside-padd">
-                    {lang('Для того, что бы добавить товар в список желаний, Вам нужно', 'newLevel')} <button type="button" class="d_l_1" data-drop=".drop-enter" data-source="{site_url('auth')}">{lang('авторизоваться', 'newLevel')}</button>
+                    {lang('Для того, что бы добавить товар в список желаний, Вам нужно', 'newLevelVertical')} <button type="button" class="d_l_1" data-drop=".drop-enter" data-source="{site_url('auth')}">{lang('авторизоваться', 'newLevelVertical')}</button>
                 </div>
             </div>
         </div>
