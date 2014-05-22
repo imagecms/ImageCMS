@@ -3,23 +3,41 @@
     <author>SiteImage</author>
     <!--
     <dependencies>
-        <dependency entityName="module" name="moduleName1" type="required"/>
-        <dependency entityName="module" name="moduleName2" type="wishful"/>
-        <dependency entityName="module" name="moduleName3" type="add"/>
-        <dependency entityName="widget" name="widgetName1" type="required"/>
-        <dependency entityName="widget" name="widgetName1" type="wishful"/>
-        <dependency entityName="widget" name="addHTMLWidgetName" type="add" widgetType="html">
-            <data>
-                <div>WidgetText</div>
-            </data>
-        </dependency>
-        <dependency entityName="widget" name="addModuleWidgetName" type="add" widgetType="module" module="widgetModule" method="methodName" description="widget description">
+        <dependence entityName="module" name="moduleName1" type="required"/>
+        <dependence entityName="module" name="moduleName2" type="wishful"/>
+        <dependence entityName="module" name="moduleName3" type="add"/>
+        <dependence entityName="widget" name="widgetName1" type="required"/>
+        <dependence entityName="widget" name="widgetName1" type="wishful"/>
+        -->
+        <!--dependencies>
+          <dependence entityName="widget" name="addHTMLWidgetName" type="add" widgetType="html">
+              <widget_i18n locale="ru">
+                    <data>
+                        <div>WidgetTextRU</div>
+                    </data>
+                </widget_i18n>
+                <widget_i18n locale="en">
+                    <data>
+                        <div>WidgetTextEN</div>
+                    </data>
+                </widget_i18n>
+            </dependence>
+            <dependence entityName="widget" name="latest_news" type="add" widgetType="module" module="core" method="recent_news" description="Последние новости">
+                <settings>
+                    <news_count>1</news_count>
+                    <max_symdols>2</max_symdols>
+                    <display>recent</display>
+                </settings>
+            </dependence>
+        </dependencies-->
+        <!--
+        <dependence entityName="widget" name="addModuleWidgetName" type="add" widgetType="module" module="widgetModule" method="methodName" description="widget description">
             <settings>
                 <setting1>1</setting1>
                 <setting2>2</setting2>
                 <setting3>3</setting3>
             </settings>
-        </dependency>
+        </dependence>
     </dependencies>
     -->
  <!--menu name="demo_manu" main_title="Demo menu title" description="Demo menu description." tpl="top_menu" expand_level="0">
