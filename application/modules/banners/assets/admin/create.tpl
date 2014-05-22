@@ -1,5 +1,4 @@
 <section class="mini-layout">
-
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
@@ -116,7 +115,7 @@
                                             </button>
                                         </div>
                                         <div class="o_h">		            
-                                            <input type="text" name="photo" id="Img" value="">					
+                                            <input type="text" name="photo" id="Img" value="" required="required">					
                                         </div>
                                         <div id="Img-preview" style="width: 400px;" >
 

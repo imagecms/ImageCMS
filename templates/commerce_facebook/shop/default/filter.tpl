@@ -51,7 +51,7 @@
         {if ($_GET['lp'] and $_GET[lp] > $def_price_min) or ($_GET['rp'] and $_GET['rp'] < $def_price_max) or $_GET['f'] or $_GET['brand']}
         <div class="title padding_filter">Подбор по параметрам</div>
         <div class="checked_filter padding_filter">
-            <span class="c_4f">{count($products)} {echo SStringHelper::Pluralize(count($products), array('товар','товара','товаров'))} с фильтрами:</span>
+            <span class="c_4f">{count($products)} {echo SStringHelper::Pluralize(count($products), array(lang('товар', 'newLevel'),lang('товара', 'newLevel'),lang('товаров', 'newLevel')))} с фильтрами:</span>
             <ul>
             {if count($allBrandsInCategory) > 0}
                 {foreach $allBrandsInCategory as $brand}

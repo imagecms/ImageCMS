@@ -61,10 +61,11 @@ $(document).ready(function() {
      */
     $('#selectDiscountType').bind('change', function() {
         var selectElement = $(this);
-        discountType = selectElement.find("option:selected").val();
+        var discountType = selectElement.find("option:selected").val();
 
         $('.forHide').hide();
         $('#' + discountType + 'Block').show();
+        initChosenSelect();
     })
 
     /**

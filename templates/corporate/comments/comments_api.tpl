@@ -1,6 +1,7 @@
 {if $can_comment == 1 AND !$is_logged_in}
     <label>
-        <span class="title__icsi-css">{lang('Only authorized users can leave comments.', 'comments') . sprintf('<a href="%s" class="loginAjax"> ' . lang("log in", "comments") .' </ a>, '  . lang("please", "comments"), site_url($modules.auth))}</span>
+        <span class="title__icsi-css">{lang('Only authorized users can leave comments.', 'comments')}</span>
+        <a href="{site_url('auth')}" class="loginAjax">{lang("log in", "comments")}</a>
     </label>
 {/if}
 <div id="comment__icsi-css" class="comment__icsi-css">

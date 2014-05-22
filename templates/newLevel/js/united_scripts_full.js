@@ -5102,10 +5102,10 @@ function init() {
                 tab = pN.substr(pN.lastIndexOf('/') + 1, pN.length);
             else if (pN.indexOf('product') !== -1)
                 tab = hrefCategoryProduct.substr(hrefCategoryProduct.lastIndexOf('/') + 1, hrefCategoryProduct.length);
-            document.location.href = '/shop/compare#tab_' + tab;
+            document.location.href = locale + '/shop/compare#tab_' + tab;
         }
         else
-            document.location.href = '/shop/compare';
+            document.location.href = locale + '/shop/compare';
     });
     doc.on('compare_list_add', function(e) {
         ShopFront.CompareList.process();
