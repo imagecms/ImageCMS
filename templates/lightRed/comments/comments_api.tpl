@@ -30,7 +30,7 @@
                                 </label>
                             {/if}
                             <label>
-                                <span class="title">{lang('Текст комментария:')}</span>
+                                <span class="title">{lang('Текст комментария', 'lightRed')}:</span>
                                 <span class="frame-form-field">
                                     <textarea name="comment_text" class="comment_text">{$_POST.comment_text}</textarea>
                                 </span>

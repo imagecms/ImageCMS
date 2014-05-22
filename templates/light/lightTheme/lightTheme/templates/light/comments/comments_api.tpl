@@ -1,12 +1,12 @@
 {if $can_comment == 1 AND !$is_logged_in}
-    <span class="title-comment"><b>{sprintf(lang('Пожалуйста, войдите для комментирования', 'newLevel'), site_url($modules.auth))}</b></span>
+    <span class="title-comment"><b>{sprintf(lang('Пожалуйста, войдите для комментирования', 'light'), site_url($modules.auth))}</b></span>
     <button type="button" data-trigger="#loginButton">
-        <span class="text-el d_l_1">{lang('Войти','newLevel')}</span>
+        <span class="text-el d_l_1">{lang('Войти','light')}</span>
     </button>
 {/if}
 <div class="comments" id="comments">
     {if $can_comment == 0 OR $is_logged_in}
-        <div class="title-comment">{lang('Отзывы покупателей', 'newLevel')} {if $visibleMainForm === false || $visibleMainForm == NULL}<button class="d_l_1" data-drop=".comments-main-form" data-place="inherit" data-overlay-opacity="0" data-after="Comments.toComment">{lang('Оставить свой отзыв', 'newLevel')}</button>{/if}</div>
+        <div class="title-comment">{lang('Отзывы покупателей', 'light')} {if $visibleMainForm === false || $visibleMainForm == NULL}<button class="d_l_1" data-drop=".comments-main-form" data-place="inherit" data-overlay-opacity="0" data-after="Comments.toComment">{lang('Оставить свой отзыв', 'light')}</button>{/if}</div>
         <div class="drop comments-main-form {if !$comments_arr}noComments{/if} {if $visibleMainForm || $visibleMainForm == NULL}active inherit{/if}" {if $visibleMainForm}style="display: block;"{/if}>
             <div class="frame-comments layout-highlight">
                 <!-- Start of new comment fild -->
@@ -19,34 +19,34 @@
                                         <span class="frame-form-field">
                                             <div class="msg">
                                                 <div class="success">
-                                                    {lang('Комментарий будет отправлен на модерацию','newLevel')}
+                                                    {lang('Комментарий будет отправлен на модерацию','light')}
                                                 </div>
                                             </div>
                                         </span>
                                     </label>
                                 {/if}
                                 <label style="width: 45%;float: left;">
-                                    <span class="title">{lang('Ваше имя','newLevel')}</span>
+                                    <span class="title">{lang('Ваше имя','light')}</span>
                                     <span class="frame-form-field">
                                         <input type="text" name="comment_author" value="{get_cookie('comment_author')}"/>
                                     </span>
                                 </label>
                                 <label style="width: 45%;margin-left: 10%;float: left;">
-                                    <span class="title">{lang('Ваш email:', 'newLevel')}</span>
+                                    <span class="title">{lang('Ваш email:', 'light')}</span>
                                     <span class="frame-form-field">
                                         <input type="text" name="comment_email" id="comment_email" value="{get_cookie('comment_email')}"/>
                                     </span>
                                 </label>
                             {/if}
                             <label>
-                                <span class="title">{lang('Текст комментария:')}</span>
+                                <span class="title">{lang('Текст комментария', 'light')}:</span>
                                 <span class="frame-form-field">
                                     <textarea name="comment_text" class="comment_text">{$_POST.comment_text}</textarea>
                                 </span>
                             </label>
                             <!-- Start star reiting -->
                             <div class="frame-label">
-                                <span class="title f_l t-a_l" style="margin-top: 2px;">{lang('Ваша оценка:', 'newLevel')}</span>
+                                <span class="title f_l t-a_l" style="margin-top: 2px;">{lang('Ваша оценка:', 'light')}</span>
                                 <div class="frame-form-field">
                                     <div class="star">
                                         <div class="productRate star-big clicktemprate">
@@ -169,13 +169,13 @@
                             </ul>
                         {/if}
                         <div class="btn-all-comments">
-                            <button type="button"><span class="text-el" data-hide='<span class="d_l_1">{lang('Скрыть','newLevel')}</span> ↑' data-show='<span class="d_l_1">{lang('Смотреть все ответы','newLevel')}</span> ↓'></span></button>
+                            <button type="button"><span class="text-el" data-hide='<span class="d_l_1">{lang('Скрыть','light')}</span> ↑' data-show='<span class="d_l_1">{lang('Смотреть все ответы','light')}</span> ↓'></span></button>
                         </div>
                     </li>
                 {/foreach}
             </ul>
             <button class="f-s_0 d_n_ d_l_1" data-trigger="[data-href='#comment']" data-scroll="true">
-                <span class="text-el">{lang('Смотреть все ответы','newLevel')}</span>
+                <span class="text-el">{lang('Смотреть все ответы','light')}</span>
             </button>
         </div>
     {/if}
@@ -183,7 +183,7 @@
     <div class="frame-drop-comment" data-rel="whoCloneAddPaste">
         <div class="form-comment layout-highlight frame-comments">
             <div class="title-default title-comment">
-                <div class="title">{lang('Ваш ответ','newLevel')}</div>
+                <div class="title">{lang('Ваш ответ','light')}</div>
             </div>
             <div class="inside-padd">
                 <form>
@@ -195,13 +195,13 @@
 
                     {if !$is_logged_in}
                         <label>
-                            <span class="title">{lang('Ваше имя:', 'newLevel')}</span>
+                            <span class="title">{lang('Ваше имя:', 'light')}</span>
                             <span class="frame-form-field">
                                 <input type="text" name="comment_author" value="{get_cookie('comment_author')}"/>
                             </span>
                         </label>
                         <label>
-                            <span class="title">{lang('Ваш email:', 'newLevel')} </span>
+                            <span class="title">{lang('Ваш email:', 'light')} </span>
                             <span class="frame-form-field">
                                 <input type="text" name="comment_email" value="{get_cookie('comment_email')}"/>
                             </span>
@@ -210,14 +210,14 @@
                             <span class="frame-form-field">
                                 <div class="msg">
                                     <div class="success">
-                                        {lang('Комментарий будет отправлен на модерацию','newLevel')}
+                                        {lang('Комментарий будет отправлен на модерацию','light')}
                                     </div>
                                 </div>
                             </span>
                         </label>
                     {/if}
                     <label>
-                        <span class="title">{lang('Текст ответа:','newLevel')}</span>
+                        <span class="title">{lang('Текст ответа:','light')}</span>
                         <span class="frame-form-field">
                             <textarea class="comment_text" name="comment_text"></textarea>
                         </span>
@@ -226,7 +226,7 @@
                         <span class="frame-form-field">
                             <input type="hidden" id="parent" name="comment_parent" value="">
                             <span class="btn-form">
-                                <input type="submit" value="{lang('Комментировать', 'newLevel')}" onclick="Comments.post(this)"/>
+                                <input type="submit" value="{lang('Комментировать', 'light')}" onclick="Comments.post(this)"/>
                             </span>
                         </span>
                     </div>

@@ -2,7 +2,7 @@
     <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
     {foreach $wishlists as $key => $wishlist}
         <div class="drop-header">
-            <div class="title">{lang('Редактировать:', 'newLevel')} {echo $wishlist[0]['title']}</div>
+            <div class="title">{lang('Редактировать:', 'light')} {echo $wishlist[0]['title']}</div>
         </div>
         <div class="drop-content">
             <div class="inside-padd">
@@ -10,7 +10,7 @@
                     <form method="POST" action="{site_url('/wishlist/updateWL')}">
                         <input type="hidden" name="WLID" value="{echo $wishlist['0']['wish_list_id']}">
                         <div class="frame-label">
-                            <span class="title">{lang('Доступность:', 'newLevel')}</span>
+                            <span class="title">{lang('Доступность:', 'light')}</span>
                             <div class="frame-form-field check-public-drop">
                                 <div class="lineForm">
                                     <select name="access" id="access">
@@ -22,13 +22,13 @@
                             </div>
                         </div>
                         <label>
-                            <span class="title">{lang('Название списка:', 'newLevel')}</span>
+                            <span class="title">{lang('Название списка:', 'light')}</span>
                             <span class="frame-form-field">
                                 <input type="text" value="{$wishlist['0']['title']}" name="title"/>
                             </span>
                         </label>
                         <label>
-                            <span class="title">{lang('Описание:', 'newLevel')}</span>
+                            <span class="title">{lang('Описание:', 'light')}</span>
                             <span class="frame-form-field">
                                 <textarea name="description">{$wishlist['0']['description']}</textarea>
                             </span>
@@ -37,7 +37,7 @@
                             {foreach $wishlist as $key => $w}
                                 <div class="frame-label">
                                     <div class="title">
-                                        <div>{lang('Коментарий к:', 'newLevel')}</div>
+                                        <div>{lang('Коментарий к:', 'light')}</div>
                                         <a class="f-w_n t-o-e" href="{shop_url('product/'.$w[url])}" title="{$w[name]}">
                                             {$w[name]}
                                         </a>
@@ -52,7 +52,7 @@
                             <div class="title">&nbsp;</div>
                             <div class="frame-form-field">
                                 <div class="btn-def">
-                                    <input type="submit" value="{lang('Сохранить', 'newLevel')}"/>
+                                    <input type="submit" value="{lang('Сохранить', 'light')}"/>
                                 </div>
                             </div>
                         </div>
