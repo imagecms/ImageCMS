@@ -23,15 +23,15 @@
 </ul>
             </data>
         </dependence>
-		
-		
+
         <dependence entityName="widget" name="brands2" type="add" widgetType="module" module="shop" method="brands" description="widget description">
             <settings>
                 <brandsCount>4</brandsCount>
                 <title>sadf</title>
+                <withImages>true</withImages>
+                <subpath>widgets</subpath>
             </settings>
         </dependence>
-		<!---->
     </dependencies>
     
  <!--menu name="demo_manu" main_title="Demo menu title" description="Demo menu description." tpl="top_menu" expand_level="0">
@@ -40,57 +40,56 @@
         </item>
     </menu-->
     
-    <!--demodata>
+    <demodata>
         <menus>
-            <menu name="menu_1" main_title="Menu main title" tpl_folder="folder_tpl" expand_level="1" description="Menu description">
-                <item image="./uploads/image1.jpg" title="Menu1 item title1" description="" url="/page_url1">
-                    <menu_i18n title="Menu title ru1" locale="ru"/>
-                    <menu_i18n title="Menu title en2" locale="en"/>
+            <menu name="top_menu" main_title="top_menu" tpl_folder="top_menu" description="Меню в верхней части шаблона">
+                <item title="О компании" url="/o-magazine">
+                    <menu_i18n title="О компании" locale="ru"/>
                 </item>
-                
-                <item image="./uploads/image2.jpg" title="Menu2 item title2" description="" url="/page_url2">
-                    <menu_i18n title="Menu title2 ru" locale="ru"/>
+                <item title="Доставка и оплата" url="/dostavka">
+                    <menu_i18n title="Доставка и оплата" locale="ru"/>
                 </item>
-                
-                <item image="./uploads/image3.jpg" title="Menu3 item title3" description="" url="/page_url3">
-                    <menu_i18n title="Menu title ru3" locale="ru"/>
-                    
-                    <item image="./uploads/image31.jpg" title="Menu31 item title31" description="" url="/page_url31">
-                        <menu_i18n title="Menu title ru31" locale="ru"/>
-                    </item>
-                    
-                    <item image="./uploads/image32.jpg" title="Menu32 item title32" description="" url="/page_url32">
-                        <menu_i18n title="Menu title ru32" locale="ru"/>
-                        
-                        <item image="./uploads/image321.jpg" title="Menu321 item title321" description="" url="/page_url321">
-                            <menu_i18n title="Menu title ru321" locale="ru"/>
-                            <menu_i18n title="Menu title en321" locale="en"/>
-                        </item>
-                        
-                        <item image="./uploads/image322.jpg" title="Menu322 item title322" description="" url="/page_url322">
-                            <menu_i18n title="Menu title ru322" locale="ru"/>
-                        </item>
-                    </item>
-                    
-                    <item image="./uploads/image33.jpg" title="Menu33 item title33" description="" url="/page_url33">
-                        <menu_i18n title="Menu title ru33" locale="ru"/>
-                    </item>
+                <item title="Гарантии" url="/oplata">
+                    <menu_i18n title="Гарантии" locale="ru"/>
                 </item>
-                
-                <item image="./uploads/image4.jpg" title="Menu4 item title4" description="" url="/page_url4">
-                    <menu_i18n title="Menu title ru4" locale="ru"/>
+                <item title="Новости" url="/novosti">
+                    <menu_i18n title="Новости" locale="ru"/>
                 </item>
-                
+                <item title="Бренды" url="/shop/brand">
+                    <menu_i18n title="Бренды" locale="ru"/>
+                </item>
+                <item title="Контакты" url="/kontakty">
+                    <menu_i18n title="Контакты" locale="ru"/>
+                </item>
+            </menu>
+            <menu name="left_menu" main_title="left_menu" tpl_folder="left_menu" description="Меню в левой части шаблона информационных страниц">
+                <item title="О магазине" url="/o-magazine">
+                    <menu_i18n title="О магазине" locale="ru"/>
+                </item>
+                <item title="Доставка" url="/dostavka">
+                    <menu_i18n title="Доставка" locale="ru"/>
+                </item>
+                <item title="Оплата" url="/oplata">
+                    <menu_i18n title="Оплата" locale="ru"/>
+                </item>
+                <item title="Помощь" url="/pomoshch">
+                    <menu_i18n title="Помощь" locale="ru"/>
+                </item>
+                <item title="Новости" url="/novosti">
+                    <menu_i18n title="Новости" locale="ru"/>
+                </item>
+                <item title="Контакты" url="/kontakty">
+                    <menu_i18n title="Контакты" locale="ru"/>
+                </item>
             </menu>
         </menus>
-    </demodata!-->
-    <!--demodata>
-    <categoriestemplates>
-        <level_1 template_name="category1level11"/>
-        <level_2 template_name="category2level22"/>
-    </categoriestemplates>
-    </demodata!-->
-    
+    </demodata>
+    <demodata>
+        <categoriestemplates>
+            <level_1 template_name="category1level11"/>
+            <level_2 template_name="category2level22"/>
+        </categoriestemplates>
+    </demodata>
     <demodata>
         <!-- (where_show => default, main, product, shop_category, brand, category, page)-->
         <banners>
