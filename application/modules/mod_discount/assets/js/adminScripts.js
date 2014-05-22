@@ -1,4 +1,5 @@
 $(document).ready(function() {
+
     /**
      * set begin discount date to now date
      */
@@ -38,6 +39,7 @@ $(document).ready(function() {
      */
     $('.spanForNoLimit').bind('click', function() {
         var isGift = $('#gift_checkbox').attr('checked') == 'checked';
+        console.log(isGift);
         if (isGift & $(this).hasClass('spanForNoLimitCheckbox')) {
             return false;
         }
@@ -51,7 +53,8 @@ $(document).ready(function() {
             controlBlock.find('input:text').prop('disabled', 'disabled');
             controlBlock.find('input:text').val('');
         }
-    })
+    });
+
 
     /**
      * Show/hide blocks for every type of discount
@@ -199,7 +202,10 @@ $(document).ready(function() {
     /**
      * If is selected use discount as gift
      */
-    $('#giftSpanCheckbox').bind('click', function() {
+    $('#giftSpanCheckbox').bind('click', giftCheckboxCallback);
+
+
+    function giftCheckboxCallback() {
         var countUsesBlock = $('.noLimitC')[0];
         if ($(this).find('input').prop('checked')) {
             $(countUsesBlock).find('#how-much').val('');
@@ -213,7 +219,15 @@ $(document).ready(function() {
             $(countUsesBlock).find('.spanForNoLimit').removeClass('active');
             $(countUsesBlock).find('.niceCheck').css('background-position', '-46px 0px');
         }
-    });
+    }
+
+
+
+
+    var isGift = $('#gift_checkbox').attr('checked') == 'checked';
+    if (isGift) {
+        giftCheckboxCallback();
+    }
 
 
 
