@@ -621,6 +621,7 @@ function autocomplete() {
         $('#usersDatas').autocomplete({
             source: usersDatas
         });
+
     if (window.hasOwnProperty('ordersFilterProduct'))
         $('#ordersFilterProduct').autocomplete({
             source: productsDatas,
@@ -633,20 +634,46 @@ function autocomplete() {
                 $('#ordersFilterProduct').val(prodName);
             }
         });
+
+    function getAutocompleteProducts(request, callback) {
+        var data = {
+            term: request.term,
+            limit: 20,
+            noids: (function() {
+                var noids = [];
+                $('input[name="AttachedProductsIds[]"]').each(function() {
+                    noids.push($(this).val());
+                });
+
+                var mainProductId = $('#MainProductHidden').val();
+                if (mainProductId) {
+                    noids.push(mainProductId);
+                }
+                return noids;
+            })()
+        }
+        $.get('/admin/components/run/shop/kits/get_products_list/', data, function(response) {
+            callback(response);
+        }, 'json');
+    }
+
     if ($.exists('#kitMainProductName')) {
         $('#kitMainProductName').autocomplete({
             minChars: 1,
-            source: '/admin/components/run/shop/kits/get_products_list/' + $('#kitMainProductName').val() + '&limit=20',
+            source: getAutocompleteProducts,
             select: function(event, ui) {
                 $('#MainProductHidden').val(ui.item.identifier.id);
-                setTimeout(function(){$('#kitMainProductName').val(ui.item.label);}, 0);
+                setTimeout(function() {
+                    $('#kitMainProductName').val(ui.item.label);
+                }, 0);
             }
         });
     }
+
     if ($.exists('#AttachedProducts')) {
         $('#AttachedProducts').autocomplete({
             minChars: 0,
-            source: '/admin/components/run/shop/kits/get_products_list/' + $('#AttachedProducts').val() + '&limit=20',
+            source: getAutocompleteProducts,
             select: function(event, ui) {
                 var mainDisc = $('#mainDisc').attr('value');
                 $('#forAttached').append('<div id="tpm_row' + ui.item.identifier.id + '" class="m-t_10">' +
@@ -1197,7 +1224,7 @@ function initAdminArea() {
     });
     $('.change_btn').die('click').live('click', function() {
         $($(this).data('file')).click();
-    });    
+    });
 
     $('[data-url="file"] input[type="file"]').die('change').live('change', function(e) {
         var $this = $(this);
