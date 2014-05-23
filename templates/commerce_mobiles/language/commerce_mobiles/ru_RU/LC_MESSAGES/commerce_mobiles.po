@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-21 11:51+0300\n"
-"PO-Revision-Date: 2014-05-21 11:51+0300\n"
+"POT-Creation-Date: 2014-05-23 04:51+0300\n"
+"PO-Revision-Date: 2014-05-23 04:51+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -17,6 +17,10 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./templates/commerce_mobiles/shop/cart.tpl:187
+msgid "Корзина пуста"
+msgstr ""
 
 #: ./templates/commerce_mobiles/comments.tpl:6
 msgid "login_for_comments"
@@ -165,25 +169,25 @@ msgstr "Способ оплаты"
 msgid "Оплачен"
 msgstr "Оплачен"
 
+#: ./templates/commerce_mobiles/shop/categorysubfirst.tpl:33
+#: ./templates/commerce_mobiles/shop/category.tpl:33
 #: ./templates/commerce_mobiles/shop/order_view.tpl:109
 #: ./templates/commerce_mobiles/shop/cart_setorder.tpl:23
-#: ./templates/commerce_mobiles/shop/category.tpl:33
-#: ./templates/commerce_mobiles/shop/categorysubfirst.tpl:33
-#: ./templates/commerce_mobiles/shop/brand.tpl:26
 #: ./templates/commerce_mobiles/shop/cart.tpl:17
 #: ./templates/commerce_mobiles/shop/product.tpl:21
 #: ./templates/commerce_mobiles/shop/product.tpl:86
+#: ./templates/commerce_mobiles/shop/brand.tpl:26
 msgid "Вариант"
 msgstr "Вариант"
 
+#: ./templates/commerce_mobiles/shop/categorysubfirst.tpl:37
+#: ./templates/commerce_mobiles/shop/category.tpl:37
 #: ./templates/commerce_mobiles/shop/order_view.tpl:113
 #: ./templates/commerce_mobiles/shop/cart_setorder.tpl:27
-#: ./templates/commerce_mobiles/shop/category.tpl:37
-#: ./templates/commerce_mobiles/shop/categorysubfirst.tpl:37
-#: ./templates/commerce_mobiles/shop/brand.tpl:30
 #: ./templates/commerce_mobiles/shop/cart.tpl:21
 #: ./templates/commerce_mobiles/shop/product.tpl:25
 #: ./templates/commerce_mobiles/shop/product.tpl:90
+#: ./templates/commerce_mobiles/shop/brand.tpl:30
 msgid "Артикул"
 msgstr "Артикул"
 
