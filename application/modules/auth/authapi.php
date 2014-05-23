@@ -414,6 +414,19 @@ class Authapi extends MY_Controller {
         $this->min_password = $this->auth->min_password;
     }
 
+    /**
+     * captcha check
+     * @param type $code
+     * @return boolean
+     */
+    function captcha_check($code) {
+        ($hook = get_hook('auth_captcha_check')) ? eval($hook) : NULL;
+
+        if (!$this->dx_auth->captcha_check($code))
+            return FALSE;
+        else
+            return TRUE;
+    }
 }
 
 /* End of file authapi.php */
