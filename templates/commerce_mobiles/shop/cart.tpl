@@ -184,7 +184,7 @@
 {else:}
     <div class="main_frame_inside">
         <div class="gen_sum">
-            <span class="total_pay">{echo ShopCore::t('Корзина пуста')}</span>
+            <span class="total_pay">{lang('Корзина пуста', 'commerce_mobiles')}</span>
         </div>
     </div>
 {/if}

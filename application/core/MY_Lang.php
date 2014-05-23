@@ -132,8 +132,6 @@ class MY_Lang extends MX_Lang {
      * @return	mixed
      */
     public function load($module = 'main') {
-//        var_dumps_exit(getMoFileName('translator'));
-//        if (!$this->gettext)
         $this->_init();
 
         if (strstr(uri_string(), 'admin')) {
@@ -151,10 +149,11 @@ class MY_Lang extends MX_Lang {
                 $lang = $languageFront[1];
             }
         }
-//        $lang = 'ru_RU';
+//        var_dumps_exit($lang);
+
         if ($module == 'main') {
-            $template_name = \CI_Controller::get_instance()->config->item('template');
             $this->addDomain('application/language/main/', getMoFileName('main'), $lang);
+            $template_name = \CI_Controller::get_instance()->config->item('template');
             $this->addDomain('templates/' . $template_name . '/language/' . $template_name . '/', getMoFileName($template_name), $lang);
         } else {
 
