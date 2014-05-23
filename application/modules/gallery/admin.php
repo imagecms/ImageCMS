@@ -48,8 +48,8 @@ class Admin extends BaseAdminController {
         'watermark_font_size' => 16, // Watermark font size.
         'watermark_padding' => '-5', // Watermark padding.
         'watermark_color' => 'ffffff', // Watermark font color.
-        'watermark_min_width' => '250', // Min. image width to draw watermark.
-        'watermark_min_height' => '250', // Min. image height to draw watermark.
+        'watermark_min_width' => '10', // Min. image width to draw watermark.
+        'watermark_min_height' => '10', // Min. image height to draw watermark.
         // Albums
         'order_by' => 'date', // Albums order. Posiible values: date/name/position.
         'sort_order' => 'desc'          // Sort order. Possible values: desc/asc.
