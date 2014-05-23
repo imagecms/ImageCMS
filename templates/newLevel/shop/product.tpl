@@ -14,6 +14,7 @@
 {$variants = $model->getProductVariants()}
 {$sizeAddImg = sizeof($productImages = $model->getSProductAdditionalImages())}
 {$hasDiscounts = $model->hasDiscounts()}
+
 <div class="frame-crumbs">
     <!-- Making bread crumbs -->
     {widget('path')}
