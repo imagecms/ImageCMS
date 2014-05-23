@@ -2466,8 +2466,8 @@ CREATE TABLE IF NOT EXISTS `shop_kit` (
 --
 
 INSERT INTO `shop_kit` (`id`, `product_id`, `active`, `position`, `only_for_logged`) VALUES
-(1, 1104, 1, 0, NULL),
-(2, 1104, 1, 1, NULL);
+(1, 1104, 1, 0, 0),
+(2, 1104, 1, 1, 0);
 
 -- --------------------------------------------------------
 
