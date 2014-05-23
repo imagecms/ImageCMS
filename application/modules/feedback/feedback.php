@@ -30,7 +30,6 @@ class Feedback extends MY_Controller {
         );
         $lang = new MY_Lang();
         $lang->load('feedback');
-        $this->template->registerMeta("ROBOTS", "NOINDEX, NOFOLLOW");
     }
 
     public function autoload() {
@@ -38,10 +37,11 @@ class Feedback extends MY_Controller {
     }
 
     function captcha_check($code) {
-        if (!$this->dx_auth->captcha_check($code))
+        if (!$this->dx_auth->captcha_check($code)) {
             return FALSE;
-        else
+        } else {
             return TRUE;
+        }
     }
 
     function recaptcha_check() {
@@ -55,6 +55,7 @@ class Feedback extends MY_Controller {
 
     // Index function
     public function index() {
+        $this->template->registerMeta("ROBOTS", "NOINDEX, NOFOLLOW");
 
         $this->core->set_meta_tags(lang('Feedback', 'feedback'));
 
