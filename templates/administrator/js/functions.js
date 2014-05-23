@@ -933,7 +933,8 @@ var orders = new Object({
                                 var productIds = [];
                                 $('#productsInCart tbody tr td:first-child a').each(function() {
                                     var pid = $(this).attr('href').split('/').pop();
-                                    productIds.push(pid);
+                                    if (!isNaN(pid))
+                                        productIds.push(pid);
                                 });
                                 return productIds;
                             })()
