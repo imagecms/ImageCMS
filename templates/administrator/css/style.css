@@ -373,6 +373,7 @@ tr.active a.u_ed{display: none;}
 tr.active a.m_ed{display: none;}*/
 .notifications{z-index: 100;}
 .required + .alert-error, [required] + .alert-error{margin-top: 10px;display: block;}
+input.alert-error, input.alert-error:focus{color: #b94a48;border-color: #e9322d !important;-webkit-box-shadow: 0 0 6px #f8b9b7;-moz-box-shadow: 0 0 6px #f8b9b7;box-shadow: 0 0 6px #f8b9b7;}
 
 .form-horizontal .help-block, .form-horizontal .help-inline{margin-top: 4px;}
 .controls > input[type="checkbox"], .controls > input[type="radio"]{margin-top: 6px;}

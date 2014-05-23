@@ -1,6 +1,6 @@
-<!-- Start. Show banner on home page. -->
+<!-- Start. Show banner. -->
 {$CI->load->module('banners')->render()}
-<!-- End. Show banner on home page. -->
+<!-- End. Show banner. -->
 {widget('benefits')}
 <div class="fon-noise">
     <div class="container">

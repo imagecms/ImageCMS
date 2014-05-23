@@ -5,6 +5,9 @@
         </div>
         <div class="clearfix">
             <div class="left">
+                <!-- Start. Show banner. -->
+                {$CI->load->module('banners')->render($category.id)}
+                <!-- End. Show banner. -->
                 {widget('works')}
             </div>
             <div class="right">
