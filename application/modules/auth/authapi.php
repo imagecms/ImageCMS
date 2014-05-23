@@ -129,7 +129,7 @@ class Authapi extends MY_Controller {
             $val = $this->form_validation;
             // Set form validation rules
             $val->set_rules('email', lang("Email", 'auth'), 'trim|required|xss_clean|valid_email|callback_email_check');
-            $val->set_rules('username', lang("Name", 'auth'), 'trim|xss_clean');
+            $val->set_rules('username', lang("Name", 'auth'), 'required|trim|min_length[2]|xss_clean');
             $val->set_rules('password', lang("Password", 'auth'), 'trim|required|xss_clean|min_length[' . $this->min_password . ']|max_length[' . $this->max_password . ']|matches[confirm_password]');
             $val->set_rules('confirm_password', lang("Repeat Password", 'auth'), 'trim|required|xss_clean');
 
@@ -414,6 +414,19 @@ class Authapi extends MY_Controller {
         $this->min_password = $this->auth->min_password;
     }
 
+    /**
+     * captcha check
+     * @param type $code
+     * @return boolean
+     */
+    function captcha_check($code) {
+        ($hook = get_hook('auth_captcha_check')) ? eval($hook) : NULL;
+
+        if (!$this->dx_auth->captcha_check($code))
+            return FALSE;
+        else
+            return TRUE;
+    }
 }
 
 /* End of file authapi.php */

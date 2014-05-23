@@ -1656,9 +1656,11 @@ $(document).ready(function() {
     $('form#brands_filter input').live('keyup', function() {
         clearTimeout(filterChangeTimeout);
         filterChangeTimeout = setTimeout(function() {
-            $('form#brands_filter').submit();
+            var formData = $('form#brands_filter').serialize();
+            $.pjax({url: location.pathname + '?' + formData, container: "#mainContent"});
         }, 1000);
     });
+    
 });
 
 

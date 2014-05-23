@@ -7,7 +7,7 @@
 	<title>Class CMSFactory\BaseEvents | ImageCMS Docs</title>
 
 	<script type="text/javascript" src="resources/combined.js?394153670"></script>
-	<script type="text/javascript" src="elementlist.js?1911533265"></script>
+	<script type="text/javascript" src="elementlist.js?2646255529"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360">
 
 </head>
@@ -296,7 +296,7 @@ href="mailto:dev&#64;imagecms.net">dev&#64;<!-- -->imagecms.net</a>&gt;<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setListener">#</a>
-		<code>setListener( <span>string <var>$methodName</var></span>, <span>string <var>$alias</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code>setListener( <span>string <var>$callback</var></span>, <span>string <var>$alias</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -334,10 +334,10 @@ class="php-quote">'Comments::add'</span>);&lt;br/&gt;
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$methodName</var></dt>
-					<dd><code>string</code><br>$methodName Indicates the name of the method that will be called in response to
-a trigger-event. The method will be matched in the class from which the
-requested binding.</dd>
+					<dt><var>$callback</var></dt>
+					<dd><code>string</code><br>$callback Indicates the name of the method that will be called in response to a
+trigger-event. The method will be matched in the class from which the requested
+binding.</dd>
 					<dt><var>$alias</var></dt>
 					<dd><code>string</code><br>$alias <b>[optional]</b> The second parameter is optional if you make a call
 type was given an expected event.</dd>
