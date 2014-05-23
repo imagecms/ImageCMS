@@ -7,7 +7,7 @@
 	<title>Class template_manager\classes\Template | ImageCMS Docs</title>
 
 	<script type="text/javascript" src="resources/combined.js?394153670"></script>
-	<script type="text/javascript" src="elementlist.js?1911533265"></script>
+	<script type="text/javascript" src="elementlist.js?2646255529"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360">
 
 </head>
@@ -230,7 +230,7 @@ template</p>
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="isValid" id="_isValid">
+	<tr data-order="isTMCompatible" id="_isTMCompatible">
 
 		<td class="attributes"><code>
 			 public 
@@ -240,18 +240,18 @@ template</p>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_isValid">#</a>
-		<code>isValid( )</code>
+		<a class="anchor" href="#_isTMCompatible">#</a>
+		<code>isTMCompatible( )</code>
 
 		<div class="description short">
 			
-<p>Check if template is't broken (has all need files and XML-data)</p>
+<p>Checks if template is compatible with new template_manager module</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Check if template is't broken (has all need files and XML-data)</p>
+<p>Checks if template is compatible with new template_manager module</p>
 
 
 
@@ -260,6 +260,35 @@ template</p>
 				<div class="list">
 					<code>boolean</code><br>
 				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="__get" id="___get">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___get">#</a>
+		<code>__get( <span>mixed <var>$name</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
 
 
 
@@ -378,6 +407,43 @@ template-component</p>
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="getLicenseAgreement" id="_getLicenseAgreement">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getLicenseAgreement">#</a>
+		<code>getLicenseAgreement( )</code>
+
+		<div class="description short">
+			
+<p>Returns license agreement from template, or default agreement</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Returns license agreement from template, or default agreement</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	</table>
 
 
@@ -446,6 +512,101 @@ template-component</p>
 			</div>
 		</div></td>
 	</tr>
+	<tr data-order="PARAMS_FILE" id="PARAMS_FILE">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name"><code>
+<b>PARAMS_FILE</b>		</code></td>
+		<td class="value"><code><span class="php-quote">'params.xml'</span></code></td>
+		<td class="description"><div>
+			<a href="#PARAMS_FILE" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="TYPE_SHOP" id="TYPE_SHOP">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name"><code>
+<b>TYPE_SHOP</b>		</code></td>
+		<td class="value"><code><span class="php-quote">'shop'</span></code></td>
+		<td class="description"><div>
+			<a href="#TYPE_SHOP" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="TYPE_CORPORATE" id="TYPE_CORPORATE">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name"><code>
+<b>TYPE_CORPORATE</b>		</code></td>
+		<td class="value"><code><span class="php-quote">'corporate'</span></code></td>
+		<td class="description"><div>
+			<a href="#TYPE_CORPORATE" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="LICENSE_AGREEMENT_DIR" id="LICENSE_AGREEMENT_DIR">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name"><code>
+<b>LICENSE_AGREEMENT_DIR</b>		</code></td>
+		<td class="value"><code><span class="php-quote">'license_agreement'</span></code></td>
+		<td class="description"><div>
+			<a href="#LICENSE_AGREEMENT_DIR" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="DEFAULT_LICENSE_AGREEMENT_URL" id="DEFAULT_LICENSE_AGREEMENT_URL">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name"><code>
+<b>DEFAULT_LICENSE_AGREEMENT_URL</b>		</code></td>
+		<td class="value"><code><span class="php-quote">&quot;http://localhost/license/&quot;</span></code></td>
+		<td class="description"><div>
+			<a href="#DEFAULT_LICENSE_AGREEMENT_URL" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
 	</table>
 
 
@@ -453,32 +614,6 @@ template-component</p>
 
 	<table class="summary" id="properties">
 	<caption>Properties summary</caption>
-	<tr data-order="xml" id="$xml">
-		<td class="attributes"><code>
-			public  
-			<code><a href="class-SimpleXMLElement.html">SimpleXMLElement</a></code>
-		</code></td>
-
-		<td class="name">
-<var>$xml</var>		</td>
-		<td class="value"><code></code></td>
-		<td class="description"><div>
-			<a href="#$xml" class="anchor">#</a>
-
-			<div class="description short">
-				
-<p>File params.xml</p>
-
-			</div>
-
-			<div class="description detailed hidden">
-				
-<p>File params.xml</p>
-
-
-			</div>
-		</div></td>
-	</tr>
 	<tr data-order="name" id="$name">
 		<td class="attributes"><code>
 			public  
@@ -500,32 +635,6 @@ template-component</p>
 			<div class="description detailed hidden">
 				
 <p>System name of template (shoud match with template folder)</p>
-
-
-			</div>
-		</div></td>
-	</tr>
-	<tr data-order="label" id="$label">
-		<td class="attributes"><code>
-			public  
-			string
-		</code></td>
-
-		<td class="name">
-<var>$label</var>		</td>
-		<td class="value"><code></code></td>
-		<td class="description"><div>
-			<a href="#$label" class="anchor">#</a>
-
-			<div class="description short">
-				
-<p>Name of template for displaing</p>
-
-			</div>
-
-			<div class="description detailed hidden">
-				
-<p>Name of template for displaing</p>
 
 
 			</div>
@@ -557,140 +666,147 @@ template-component</p>
 			</div>
 		</div></td>
 	</tr>
-	<tr data-order="description" id="$description">
+	</table>
+
+
+
+	<table class="summary" id="magicProperties">
+	<caption>Magic properties summary</caption>
+	<tr data-order="description" id="m$description">
 		<td class="attributes"><code>
-			public  
+			public  read-only
 			string
 		</code></td>
 
 		<td class="name">
 <var>$description</var>		</td>
-		<td class="value"><code></code></td>
 		<td class="description"><div>
-			<a href="#$description" class="anchor">#</a>
+			<a href="#m$description" class="anchor">#</a>
 
 			<div class="description short">
 				
-<p>Full description of template</p>
+<p>Description</p>
 
 			</div>
 
 			<div class="description detailed hidden">
 				
-<p>Full description of template</p>
+<p>Description</p>
 
 
 			</div>
 		</div></td>
 	</tr>
-	<tr data-order="mainImage" id="$mainImage">
+	<tr data-order="mainImage" id="m$mainImage">
 		<td class="attributes"><code>
-			public  
+			public  read-only
 			string
 		</code></td>
 
 		<td class="name">
 <var>$mainImage</var>		</td>
-		<td class="value"><code></code></td>
 		<td class="description"><div>
-			<a href="#$mainImage" class="anchor">#</a>
+			<a href="#m$mainImage" class="anchor">#</a>
 
 			<div class="description short">
 				
-<p>Url of main image of template (main thumbnail)</p>
-
 			</div>
 
 			<div class="description detailed hidden">
 				
-<p>Url of main image of template (main thumbnail)</p>
-
 
 			</div>
 		</div></td>
 	</tr>
-	<tr data-order="screenshots" id="$screenshots">
+	<tr data-order="screenshots" id="m$screenshots">
 		<td class="attributes"><code>
-			public  
-			string
+			public  read-only
+			array
 		</code></td>
 
 		<td class="name">
 <var>$screenshots</var>		</td>
-		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>
-			<a href="#$screenshots" class="anchor">#</a>
+			<a href="#m$screenshots" class="anchor">#</a>
 
 			<div class="description short">
 				
-<p>Array of screenshots urls of template</p>
-
 			</div>
 
 			<div class="description detailed hidden">
 				
-<p>Array of screenshots urls of template</p>
-
 
 			</div>
 		</div></td>
 	</tr>
-	<tr data-order="version" id="$version">
+	<tr data-order="version" id="m$version">
 		<td class="attributes"><code>
-			public  
+			public  read-only
 			string
 		</code></td>
 
 		<td class="name">
 <var>$version</var>		</td>
-		<td class="value"><code></code></td>
 		<td class="description"><div>
-			<a href="#$version" class="anchor">#</a>
+			<a href="#m$version" class="anchor">#</a>
 
 			<div class="description short">
 				
-<p>Version of template</p>
-
 			</div>
 
 			<div class="description detailed hidden">
 				
-<p>Version of template</p>
-
 
 			</div>
 		</div></td>
 	</tr>
-	<tr data-order="components" id="$components">
+	<tr data-order="components" id="m$components">
 		<td class="attributes"><code>
-			public  
+			public  read-only
 			array
 		</code></td>
 
 		<td class="name">
 <var>$components</var>		</td>
-		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>
-			<a href="#$components" class="anchor">#</a>
+			<a href="#m$components" class="anchor">#</a>
 
 			<div class="description short">
 				
-<p>All components (core + template)</p>
+<p>array of aviable components</p>
 
 			</div>
 
 			<div class="description detailed hidden">
 				
-<p>All components (core + template)</p>
+<p>array of aviable components</p>
 
 
 			</div>
 		</div></td>
 	</tr>
+	<tr data-order="author" id="m$author">
+		<td class="attributes"><code>
+			public  read-only
+			string
+		</code></td>
+
+		<td class="name">
+<var>$author</var>		</td>
+		<td class="description"><div>
+			<a href="#m$author" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
 	</table>
-
-
-
 
 
 

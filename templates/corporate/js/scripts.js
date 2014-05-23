@@ -85,7 +85,8 @@ $(document).ready(function() {
 
     }
     try {
-        $('.cycle ul').cycle({
+        var cycle = $('.cycle ul');
+        cycle.cycle({
             fx: 'fade',
             timeout: 3500,
             next: '#next_slide',
@@ -94,7 +95,9 @@ $(document).ready(function() {
             pagerAnchorBuilder: function(idx, slide) {
                 return '<a href="#"></a>';
             }
-        })
+        });
+        if (cycle.children().length > 1)
+            $('#prev_slide, #next_slide').fadeIn();
     } catch (e) {
     }
     $('.menu-main').menuCorporate({
@@ -102,7 +105,7 @@ $(document).ready(function() {
         duration: 300,
         drop: '.frame-item-menu > ul',
         dropWidth: 500
-    })
+    });
     $('[data-drop]').drop(optionsDrop);
     $(document).on('drop.click showActivity', function(e) {
         $.fancybox.showActivity();
