@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-22 01:15+0300\n"
-"PO-Revision-Date: 2014-05-22 01:15+0300\n"
+"POT-Creation-Date: 2014-05-23 11:33+0300\n"
+"PO-Revision-Date: 2014-05-23 11:33+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -17,6 +17,10 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/banners/assets/admin/list.tpl:69
+msgid "Permanent"
+msgstr "Постоянный"
 
 #: ./application/modules/banners/assets/admin/edit.tpl:138
 #: ./application/modules/banners/assets/admin/create.tpl:104
@@ -206,11 +210,11 @@ msgstr "ID"
 msgid "Status"
 msgstr "Статус"
 
-#: ./application/modules/banners/assets/admin/list.tpl:67
+#: ./application/modules/banners/assets/admin/list.tpl:73
 msgid "show"
 msgstr "показывать"
 
-#: ./application/modules/banners/assets/admin/list.tpl:79
+#: ./application/modules/banners/assets/admin/list.tpl:85
 msgid "Empty banner list."
 msgstr "Список баннеров пуст."
 
@@ -222,7 +226,7 @@ msgstr "Редактирование баннера"
 msgid "Save and exit"
 msgstr "Сохранить и выйти"
 
-#: ./application/modules/banners/assets/admin/list.tpl:67
+#: ./application/modules/banners/assets/admin/list.tpl:73
 msgid "don't show"
 msgstr "не показывать"
 
