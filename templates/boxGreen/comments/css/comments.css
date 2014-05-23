@@ -39,7 +39,7 @@
 
 .comments .title-comment{margin-bottom: 8px;font-size: 18px;font-weight: normal;}
 .comments label{display: block;}
-#comments .title{width: 55px;text-align: left;padding-left: 0;}
+#comments .title{width: 60px;text-align: left;padding-left: 0;padding-right: 5px;}
 #comments .frame-form-field{position: relative;display: block;margin-left: 65px;}
 .comments textarea{height: 134px; padding-top: 5px}
 .comments .btn{display: inline-block;cursor: pointer;text-decoration: none;position: relative;}

@@ -13,22 +13,10 @@
                 </div>
             {/foreach}
         {/if}
-        <ul class="tabs tabs-wishlist" data-cookie="wishlistTabs">
-            <li {if $_COOKIE['wishlistTabs'] == "#list-products"}class="active"{/if}>
-                <button type="button" data-href="#list-products">
-                    <span class="text-el d_l_1">{lang('Список товаров','boxGreen')}</span>
-                </button>
-            </li>
-            <li {if $_COOKIE['wishlistTabs'] == "#data-users"}class="active"{/if}>
-                <button type="button" data-href="#data-users">
-                    <span class="text-el d_l_1">{lang('Дополнительные данные','boxGreen')}</span>
-                </button>
-            </li>
-        </ul>
         <div class="clearfix frame-tabs-ref">
-            <div id="list-products" {if $_COOKIE['wishlistTabs'] == "#list-products"}style="display: block;"{/if}>
+            <div id="list-products" style="display: block;">
                 <div class="frame-button-add-wish-list">
-                    <div class="btn-cart">
+                    <div class="btn-buy">
                         <button type="button" data-drop=".drop-add-wishlist" data-place="inherit" data-overlay-opacity="0" data-effect-on="slideDown" data-effect-off="slideUp">
                             <span class="icon_add_wish"></span>
                             <span class="text-el">{lang('Создать новый список','boxGreen')}</span>
@@ -128,7 +116,7 @@
                                 <div class="inside-padd clearfix">
                                     <div class="f_l">
                                         <div class="clearfix">
-                                            <div class="funcs-buttons-wishlist f_l">
+                                            <div class="funcs-buttons-wishlist d_i-b">
                                                 <div class="btn-edit-WL">
                                                     <button
                                                         type="button"
@@ -136,7 +124,7 @@
                                                         data-drop=".drop-edit-wishlist"
                                                         data-always="true"
                                                         >
-                                                        <span class="d_l_1 text-el">{lang('Редактировать список','boxGreen')}</span>
+                                                        <span class="d_l_1 text-el">{lang('Редактировать список','box')}</span>
                                                     </button>
                                                 </div>
                                                 <div class="btn-remove-WL">
@@ -153,34 +141,34 @@
                                                         data-effect-off="fadeOut"
                                                         >
                                                         <span class="icon_remove"></span>
-                                                        <span class="text-el d_l_1">{lang('Удалить список','boxGreen')}</span>
+                                                        <span class="text-el d_l_1">{lang('Удалить список','box')}</span>
                                                     </button>
                                                 </div>
                                             </div>
-                                            <div class="f_l">
-                                                <b>{lang('Доступность:','boxGreen')}</b>
+                                            <div class="d_i-b m-r_10">
+                                                <b>{lang('Доступность:','box')}</b>
                                                 {if $wishlist[0][access] == 'private'}
-                                                    <span class="s_t">{lang('Приватный', 'boxGreen')}</span>
+                                                    <span class="s_t">{lang('Приватный', 'box')}</span>
                                                 {/if}
                                                 {if $wishlist[0][access] == 'public'}
-                                                    <span class="s_t">{lang('Публичный', 'boxGreen')}</span>
+                                                    <span class="s_t">{lang('Публичный', 'box')}</span>
                                                 {/if}
                                                 {if $wishlist[0][access] == 'shared'}
-                                                    <span class="s_t">{lang('Коллективный', 'boxGreen')}</span>
+                                                    <span class="s_t">{lang('Коллективный', 'box')}</span>
                                                 {/if}
                                             </div>
-                                        </div>
-                                        <div>
                                             {if $wishlist[0]['access'] == 'shared' || $wishlist[0]['access'] == 'public'}
-                                                <div class="btn-form btn-send-wishlist">
-                                                    <button type="button" data-drop=".drop-sendemail" title="{lang('Поделится с другом','boxGreen')}" data-source="{echo site_url('wishlist/wishlistApi/renderEmail/' . $wishlist[0][wish_list_id])}">
+                                                <div class="btn-form btn-send-wishlist d_i-b m-r_10">
+                                                    <button type="button" data-drop=".drop-sendemail" title="{lang('Поделится с другом','box')}" data-source="{echo site_url('wishlist/wishlistApi/renderEmail/' . $wishlist[0][wish_list_id])}">
                                                         <span class="icon_mail"></span>
                                                         <span class="text-el">{lang('Поделиться с другом')}</span>
                                                     </button>
                                                 </div>
                                             {/if}
                                             {if $wishlist[0]['access'] == 'shared'}
-                                                {echo $CI->load->module('share')->_make_share_form(site_url('wishlist/show/'.$wishlist[0]['hash']))}
+                                                <div class="d_i-b">
+                                                    {echo $CI->load->module('share')->_make_share_form(site_url('wishlist/show/'.$wishlist[0]['hash']))}
+                                                </div>
                                             {/if}
                                         </div>
                                     </div>
@@ -197,112 +185,6 @@
                         </div>
                     </div>
                 {/if}
-            </div>
-            <div id="data-users" {if $_COOKIE['wishlistTabs'] == "#data-users"}style="display: block;"{/if}>
-                <ul class="items items-wish-data left-wishlist-data">
-                    <li class="clearfix">
-                        <div class="frame-photo-title">
-                            <form action="{site_url('/wishlist/do_upload')}" method="post" accept-charset="utf-8" enctype="multipart/form-data">
-                                <input type="hidden" value="{echo $user[id]}" name="userID"/>
-                                <div class="photo-block m-b_5">
-                                    <span class="helper"></span>
-                                    <span id="wishlistphoto" data-width="{echo $settings[maxImageWidth]}" data-height="{echo $settings[maxImageHeight]}">
-                                        {if $user['user_image']!=''}
-                                            <img src="{site_url('uploads/mod_wishlist/'.$user['user_image'])}" alt='pic' data-src="{$THEME}{$colorScheme}/images/nophoto.png"/>
-                                        {else:}
-                                            <img src="{$THEME}{$colorScheme}/images/nophoto.png"/>
-                                        {/if}
-                                    </span>
-                                    <div class="group-buttons f-s_0">
-                                        <label class="btn-edit-photo-wishlist" for="img">
-                                            <button type="button" class="p_r hidden">
-                                                <span class="icon_edit"></span>
-                                                <span class="text-el">{lang('Выбрать фото', 'boxGreen')}</span>
-                                                <input id="img" data-wishlist="image" type="file" name="file" size="20" accept="image/gif, image/jpeg, image/png, image/jpg"/>
-                                            </button>
-                                        </label>
-                                        {if $user['user_image']!=''}
-                                            <div class="btn-remove-photo-wishlist">
-                                                <button
-                                                    type="button"
-                                                    data-source="{site_url('/wishlist/wishlistApi/deleteImage')}"
-                                                    data-modal="true"
-
-                                                    data-drop="#notification"
-                                                    data-data='{literal}{"image": {/literal}"{echo $user[user_image]}"{literal}}{/literal}'
-                                                    data-after="WishListFront.deleteImage"
-                                                    data-wishlist="delete_img"
-
-                                                    data-effect-on="fadeIn"
-                                                    data-effect-off="fadeOut"
-                                                    >
-                                                    <span class="icon_remove"></span>
-                                                </button>
-                                            </div>
-                                        {/if}
-                                    </div>
-                                    <div class="overlay"></div>
-                                </div>
-                                <div class="btn-def download-btn disabled">
-                                    <input type="submit" value="{lang('загрузить катринку','boxGreen')}" data-wishlist="do_upload" disabled="disabled"/>
-                                </div>
-                                {form_csrf()}
-                            </form>
-                        </div>
-                    </li>
-                </ul>
-                <div class="right-wishlist-data">
-                    {/*}<div class="btn-edit-WL">
-                        <button type="button" data-drop=".form-data" data-place="inherit"  class="d_l_1">
-                            <span class="text-el">{lang('Редактировать','boxGreen')}</span>
-                        </button>
-                    </div>
-                    { */}
-                    <div class="form-data horizontal-form big-title">
-                        <form>
-                            <input type="hidden" value="{echo $user[id]}" name="user_id"/>
-                            <label>
-                                <span class="title">{lang('ФИО:','boxGreen')}</span>
-                                <span class="frame-form-field">
-                                    <input type="text" value="{echo $user[user_name]}" name="user_name"/>
-                                </span>
-                            </label>
-                            <label>
-                                <span class="title">{lang('Дата рождения:','boxGreen')}</span>
-                                <span class="frame-form-field">
-                                    <input type="text" id='datepicker' onkeypress="return false;" onkeyup="return false;" onkeydown="return false;" autocomplete="off" value="{if $user[user_birthday]}{echo date('Y-m-d', $user[user_birthday])}{/if}" name="user_birthday"/>
-                                </span>
-                            </label>
-                            <label>
-                                <span class="title">{lang('Дополнительно:','boxGreen')}</span>
-                                <span class="frame-form-field">
-                                    <textarea name="description">{echo $user[description]}</textarea>
-                                </span>
-                            </label>
-                            <div class="frame-label">
-                                <span class="title">&nbsp;</span>
-                                <div class="frame-form-field">
-                                    <div class="btn-def">
-                                        <button
-                                            type="submit"
-                                            data-source="{site_url('/wishlist/wishlistApi/userUpdate')}"
-                                            data-modal="true"
-
-                                            data-effect-on="fadeIn"
-                                            data-effect-off="fadeOut"
-
-                                            data-drop="#notification"
-                                            onclick="serializeForm(this)"
-                                            data-after="WishListFront.changeDataWishlist"
-                                            >
-                                            <span class="text-el">{lang('Сохранить','boxGreen')}</span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
