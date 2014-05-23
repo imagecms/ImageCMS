@@ -1,5 +1,5 @@
 <div class="frame-label">
-    <span class="title">{lang('Оплата:','newLevel')}</span>
+    <span class="title">{lang('Оплата:','light')}</span>
     <div class="frame-form-field check-variant-payment">
         {$counter = true}
         <div class="lineForm">
