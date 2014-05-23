@@ -118,11 +118,11 @@
         }
         }
     {/literal}
-    text.inCart = '{lang('В корзине','newLevel')}';
-    text.pc = '{lang('шт','newLevel')}.';
-    text.quant = '{lang('Кол-во','newLevel')}:';
-    text.sum = '{lang('Сумма','newLevel')}:';
-    text.toCart = '{lang('Купить','newLevel')}';
+    text.inCart = '{lang('В корзине','light')}';
+    text.pc = '{lang('шт','light')}.';
+    text.quant = '{lang('Кол-во','light')}:';
+    text.sum = '{lang('Сумма','light')}:';
+    text.toCart = '{lang('Купить','light')}';
     text.pcs = '{lang('Количество:')}';
     text.kits = '{lang('Комплектов:')}';
     text.captchaText = '{lang('Код протекции')}';
