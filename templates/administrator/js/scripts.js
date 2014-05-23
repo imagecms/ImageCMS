@@ -49,7 +49,6 @@ $(document).ajaxComplete(function(event, XHR, ajaxOptions) {
             dropDownMenu();
             autocomplete();
             init_2();
-            fixed_frame_title();
         }
 
         if ($.exists('#chart'))
@@ -900,17 +899,18 @@ function getScrollTop() {
     return scrOfY;
 }
 function fixed_frame_title() {
-    fixed_block = $(".frame_title:not(.no_fixed)");
-    mini_layout = $('.mini-layout');
-    container = $('.container');
-    containerW = container.width() - parseInt($('body').css('padding-left')) * 2;
-    frame_zH_frame_title = $('.frame_zH_frame_title');
+    var fixed_block = $(".frame_title:not(.no_fixed)"),
+            mini_layout = $('.mini-layout'),
+            container = $('.container'),
+            containerW = container.width() - parseInt($('body').css('padding-left')) * 2,
+            frame_zH_frame_title = $('.frame_zH_frame_title');
 
     if ($.exists_nabir(fixed_block)) {
-        var fixed_block_top = mini_layout.offset().top;
-        var fixed_block_h = fixed_block.outerHeight(true);
+        var top = mini_layout.offset().top,
+        fixed_block_top = top > 159 ? top : 159,
+                fixed_block_h = fixed_block.outerHeight(true),
+                top = getScrollTop();
 
-        var top = getScrollTop();
         if (top < fixed_block_top) {
             fixed_block.css("top", fixed_block_top - top + 20);
             frame_zH_frame_title.css("top", fixed_block_top - top + 6);
@@ -972,6 +972,8 @@ function what_key(enter_key, event) {
 }
 function initAdminArea() {
     console.log('initialising of administration area started');
+
+    fixed_frame_title();
 
     testNumber("#createUserPhone, #UserPhone, #Phone, #shopOrdersUserPhone", ['(', ')', '+', '-'], 'phone');
     testNumber('.number input', ['.'], 'count');
