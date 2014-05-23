@@ -39,7 +39,6 @@ $(document).ready(function() {
      */
     $('.spanForNoLimit').bind('click', function() {
         var isGift = $('#gift_checkbox').attr('checked') == 'checked';
-        console.log(isGift);
         if (isGift & $(this).hasClass('spanForNoLimitCheckbox')) {
             return false;
         }
@@ -204,6 +203,12 @@ $(document).ready(function() {
      * If is selected use discount as gift
      */
     $('#giftSpanCheckbox').bind('click', giftCheckboxCallback);
+    $('#selectDiscountType').bind('change', function() {
+        if ($('#gift_checkbox').attr('checked') == 'checked') {
+            $('#giftSpanCheckbox').trigger('click');
+        }
+    });
+
 
 
     function giftCheckboxCallback() {

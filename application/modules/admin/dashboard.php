@@ -42,7 +42,6 @@ class Dashboard extends BaseAdminController {
                     ->result_array();
             $total_comments = count($comments);
             $comments = array_slice($comments, 0, 5);
-//            $total_comments = $this->db->query('SELECT FOUND_ROWS() as bla')->row();
         } else {
             $total_comments = 0;
         }

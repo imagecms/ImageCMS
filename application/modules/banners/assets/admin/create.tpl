@@ -30,7 +30,7 @@
                                     <div class="control-group">
                                         <label class="control-label" for="Name">{lang('Name', 'banners')} {$translatable}:</label>
                                         <div class="controls">
-                                            <input type="text" name="name" id="Name" value="" />
+                                            <input type="text" name="name" id="Name" value="" required/>
                                         </div>
                                         <div class="controls">
                                             <span class="frame_label no_connection m-r_15">
