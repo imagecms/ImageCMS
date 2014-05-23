@@ -156,21 +156,25 @@ class Update {
      * @param array $files
      */
     public function add_to_ZIP($files = array()) {
-        if (empty($files))
+        if (empty($files)) {
             return FALSE;
+        }
 
         $zip = new ZipArchive();
         $time = time();
         $filename = BACKUPFOLDER . "backup.zip";
 
-        if (file_exists($filename))
+        if (file_exists($filename)) {
             rename($filename, BACKUPFOLDER . "$time.zip");
+        }
 
-        if ($zip->open($filename, ZipArchive::CREATE) !== TRUE)
+        if ($zip->open($filename, ZipArchive::CREATE) !== TRUE) {
             exit("cannot open <$filename>\n");
+        }
 
-        foreach ($files as $key => $value)
+        foreach ($files as $key => $value) {
             $zip->addFile('.' . $key, $key);
+        }
 
 //        echo "numfiles: " . $zip->numFiles . "\n";
 //        echo "status:" . $zip->status . "\n";
@@ -200,7 +204,7 @@ class Update {
      * @param string $file path to zip file
      * @param string $destination path to destination folder
      */
-    public function restoreFromZIP($file, $destination = '.') {
+    public function restoreFromZIP($file, $destination = FCPATH) {
         if (!$file) {
             $file = BACKUPFOLDER . "backup.zip";
         }
@@ -214,8 +218,9 @@ class Update {
         $rez = $zip->extractTo($destination);
         $zip->close();
 
-        if ($rez)
+        if ($rez) {
             $this->db_restore($destination . '/backup.sql');
+        }
 
         return $rez;
     }
@@ -233,16 +238,19 @@ class Update {
         $dir = null === $directory ? realpath('') : $directory;
 
         $handle = opendir($dir);
-        if ($handle)
-            while (FALSE !== ($file = readdir($handle)))
+        if ($handle) {
+            while (FALSE !== ($file = readdir($handle))) {
                 if (!in_array($file, $this->distinctDirs)) {
                     if (is_file($dir . DIRECTORY_SEPARATOR . $file) && !in_array($file, $this->distinctFiles)) {
                         $this->arr_files[str_replace(realpath(''), '', $dir) . DIRECTORY_SEPARATOR . $file] = md5_file($dir . DIRECTORY_SEPARATOR . $file);
                         $this->files_dates[str_replace(realpath(''), '', $dir) . DIRECTORY_SEPARATOR . $file] = filemtime($dir . DIRECTORY_SEPARATOR . $file);
                     }
-                    if (is_dir($dir . DIRECTORY_SEPARATOR . $file))
+                    if (is_dir($dir . DIRECTORY_SEPARATOR . $file)) {
                         $this->parse_md5($dir . DIRECTORY_SEPARATOR . $file);
+                    }
                 }
+            }
+        }
 
         return $this->arr_files;
     }
@@ -267,8 +275,9 @@ class Update {
                     if (!in_array($this->dir_upd . $file, $dont_arr_marge_file)) {
                         unlink($this->dir_curr . $file);
                         copy($this->dir_marge . $file, $this->dir_curr . $file);
-                    } else
+                    } else {
                         copy($this->dir_upd . $file . '_update', $this->dir_curr . $file);
+                    }
                 }
             }
         }
@@ -294,8 +303,9 @@ class Update {
      * @param string $file
      */
     public function db_restore($file) {
-        if (empty($file))
+        if (empty($file)) {
             return FALSE;
+        }
 
         if (is_readable($file)) {
             $restore = file_get_contents($file);
@@ -340,11 +350,14 @@ class Update {
      * @param string $dir - path to directory
      */
     public function removeDirRec($dir) {
-        if ($objs = glob($dir . "/*"))
-            foreach ($objs as $obj)
+        if ($objs = glob($dir . "/*")) {
+            foreach ($objs as $obj) {
                 is_dir($obj) ? $this->removeDirRec($obj) : unlink($obj);
-        if (is_dir($dir))
+            }
+        }
+        if (is_dir($dir)) {
             rmdir($dir);
+        }
     }
 
     /**
@@ -394,10 +407,11 @@ class Update {
                 ->row_array();
         $settings = unserialize($settings['update']);
 
-        if (!$param)
+        if (!$param) {
             return $settings;
-        else
+        } else {
             return $settings[$param];
+        }
     }
 
     /**
@@ -406,8 +420,9 @@ class Update {
      * @return bool
      */
     public function setSettings($settings) {
-        if (!is_array($settings))
+        if (!is_array($settings)) {
             return FALSE;
+        }
         $s = (array) $this->getSettings();
 
         foreach ($settings as $key => $value) {
