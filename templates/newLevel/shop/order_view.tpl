@@ -404,7 +404,7 @@
                             </td>
                         </tr>
                         {$deliveryMethod = $model->getSDeliveryMethods()}
-                        {if $deliveryMethod & $deliveryMethod->getPrice() > 0}
+                        {if $deliveryMethod && $deliveryMethod->getPrice() > 0}
                             <tr>
                                 <td colspan="3">
                                     <span class="s-t f_l">{lang('Доставка','newLevel')}:</span>
