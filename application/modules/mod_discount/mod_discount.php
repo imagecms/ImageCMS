@@ -195,7 +195,7 @@ class Mod_discount extends \MY_Controller {
                 $this->baseDiscount->cart->gift_info = $disc['key'];
                 $this->baseDiscount->cart->gift_value = $value;
                 if (\ShopCore::app()->SSettings->pricePrecision == 0) {
-                    $this->baseDiscount->cart->gift_value = floor($value);
+                    //$this->baseDiscount->cart->gift_value = floor($value);
                 }
                 $cartTotalPrice = $this->baseDiscount->cart->getTotalPrice() - $value;
                 $this->baseDiscount->cart->setTotalPrice($cartTotalPrice > 0 ? $cartTotalPrice : \Cart\BaseCart::MIN_ORDER_PRICE);
