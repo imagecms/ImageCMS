@@ -9,7 +9,8 @@ $(document).ready(function() {
     });
 
     $('.languageSelect').bind('focus', function() {
-        $(this).autocomplete("search", "all_languages")
+        if (!$.trim($(this).val()))
+            $(this).autocomplete("search", "all_languages")
     });
 
     $('.showAllLanguageList').toggle(function() {
@@ -716,7 +717,6 @@ var Translator = {
     },
     setOriginsLang: function(curElement) {
         var originLang = $(curElement).attr('locale');
-        console.log(originLang)
         $.ajax({
             type: "POST",
             data: {
