@@ -13,6 +13,7 @@
                         <span class="title">{lang('Ваше имя:','newLevel')}</span>
                         <div class="frame-form-field">
                             <input type="text" class="required" maxlength="30" name="username" value="{set_value('username')}" autofocus/>
+                            <span class="must">*</span>
                         </div>
                     </label>
                     <label>
