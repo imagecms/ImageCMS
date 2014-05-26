@@ -14,9 +14,9 @@
                     <span class="text-el">{lang('Личный кабинет', 'boxGreen')}</span>
                 </button>
                 <ul class="drop dropPersonalExit drop-auth-refer drop-noinherit">
-                    <li><a href="{site_url('/shop/profile/#my_data')}">{lang('Основные данные', 'light')}</a></li>
-                    <li><a href="{site_url('/shop/profile/#change_pass')}">{lang('Изменить пароль', 'light')}</a></li>
-                    <li><a href="{site_url('/shop/profile/#history_order')}">{lang('История заказа', 'light')}</a></li>
+                    <li><a href="{site_url('/shop/profile/#my_data')}">{lang('Основные данные', 'boxGreen')}</a></li>
+                    <li><a href="{site_url('/shop/profile/#change_pass')}">{lang('Изменить пароль', 'boxGreen')}</a></li>
+                    <li><a href="{site_url('/shop/profile/#history_order')}">{lang('История заказа', 'boxGreen')}</a></li>
                     <li class="btn-exit-shop">
                         <button type="button" class="f-s_0" onclick="ImageCMSApi.formAction('{site_url("/auth/authapi/logout")}', '', {literal}{durationHideForm: 0, callback: function(msg, status, form, DS) {
                                 if (status) {
