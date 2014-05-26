@@ -153,10 +153,12 @@ a, .ref{text-decoration: underline;}
 /*/main-menu*/
 
 /*filter*/
-.filters-content{position: relative;}
-.filters-content:before{content: '';border-top: 1px solid transparent;left: 0;top: -10px;position: absolute;width: 100%;}
+.filters-content, .frames-checks-sliders .title{position: relative;}
+.filters-content:before, .frames-checks-sliders .title:before{content: '';border-top: 1px solid transparent;left: 0;top: -10px;position: absolute;width: 100%;}
+.frames-checks-sliders .title:before{top: 100%;}
 .filter-foot{border-top: 1px solid transparent;}
 .frames-checks-sliders .title{border-bottom: 0;}
+.frames-checks-sliders .title .text-el{font-weight: bold;}
 .frame-group-checks[data-rel*="dropDown"] .title{background-color: transparent;border-bottom: 0;}
 .frame-check-filter{border: 1px solid transparent;border-radius: 2px;}
 .frame-check-filter .title{font-size: 13px;border-bottom: 1px solid transparent;}
@@ -347,8 +349,9 @@ a, .ref{text-decoration: underline;}
 /*/benefits*/
 
 /*text*/
-.text table {border: 1px solid transparent;}
-.text th, .text td{border: 1px solid transparent;}
+.text table {border: 0;width: 100%;table-layout: auto;}
+.text th, .text td{border: 1px solid transparent;padding: 5px 30px 6px 18px;}
+.text td:first-child{padding-left: 15px;}
 hr{border-top: 1px solid transparent;border-bottom: 1px solid transparent;}
 /*/text*/
 
@@ -378,8 +381,6 @@ footer .frame-seo-text{border-bottom: 1px solid transparent;}
 .btn-def2{border-radius: 2px;border: 1px solid transparent;box-shadow: none;}
 .btn-def{border: 1px solid transparent;border-radius: 2px;}
 .btn-def > button, .btn-def > input[type="submit"], .btn-def > a{height: 29px;padding: 0 10px;}
-
-.btn-exit-shop > button .text-el{text-decoration: underline;}
 
 .btn-search > button{height: 100%;width: 100%;}
 .btn-search .text-el{font-size: 11px;text-transform: uppercase;}
@@ -427,11 +428,13 @@ form .btn-form .text-el, .btn-form input{font-size: 13px;}
 .btn-already-show.active:after{content: "";height: 100%;border-width: 1px 0;border-style: solid;width: 100%;position: absolute;left: 0;top: 0;margin-top: -1px;}
 
 .btn-crumb .divider{font-size: 6px;margin-left: 4px;vertical-align: middle;}
-.btn-crumb .text-el{vertical-align: middle;}
+.btn-crumb .text-el{vertical-align: middle;font-size: 11px;}
 
 .btn-compare, .btn-wish, .btn-not-avail{border-radius: 2px;padding: 0 10px;border: 1px solid transparent;}
 
 .btn-compare .text-el, .btn-wish .text-el, .btn-not-avail .text-el{display: none;}
+.item-product .btn-not-avail .text-el{display: inline-block;}
+.item-product .btn-not-avail .icon-but{display: none;}
 .btn-compare > button, .btn-wish > button, .btn-not-avail > button{height: 29px;}
 .btn-comp-in, .btn-wish-in{border: 1px solid transparent;}
 
@@ -580,7 +583,7 @@ header:before{content: '';position: absolute;top: 0;left: 0;width: 100%;height: 
 .drop-search{border-top: 1px solid transparent;}
 
 #notification.drop > .drop-content{min-height: 0;}
-.drop-footer{border-top: 1px solid transparent;}
+.drop-footer, .drop-footer-style{border-top: 1px solid transparent;overflow: hidden;}
 .drop-header{border-bottom: 1px solid transparent;z-index: 1;}
 .drop-header .title{font-size: 14px;}
 .drop-header:before{content: "";position: absolute;top: 100%;width: 100%;left: 0;height: 3px;margin-top: 1px;}
@@ -603,7 +606,7 @@ header:before{content: '';position: absolute;top: 0;left: 0;width: 100%;height: 
 /*/drop*/
 
 /*page profile*/
-.table-profile{border-width: 1px 0 0 1px;border-style: solid;
+.table-profile{border-width: 1px 0 0 1px;border-style: solid;}
 .table-profile td, .table-profile th{border-width: 0 1px 1px 0;border-style: solid;}
 .info-discount{margin-left: 450px;border-bottom: 1px solid transparent;}
 /*/page profile*/
@@ -614,8 +617,8 @@ header:before{content: '';position: absolute;top: 0;left: 0;width: 100%;height: 
 /*/page order*/
 
 /*page 404*/
-.page-404{background: url("images/fon_404.png") repeat;}
-.page-404 .title{font-size: 35px;}
+.page-404 .title{font-size: 21px;text-transform: uppercase;}
+.page-404 hr{margin-bottom: 10px;}
 .page-404:before{content: "";position: absolute;left: -5%;top: -1px;width: 110%;height: 4px;}
 /*/page 404*/
 
@@ -660,7 +663,3 @@ footer [class^="box"] .main-title{text-transform: uppercase;}
 .status-pay{padding: 4px 8px;}
 .table-info-order hr{border: 0;border-top: 1px solid transparent;}
 /*/page order view*/
-
-/*catalogue-header*/
-.frame-sort{border: 1px solid transparent;}
-/*/catalogue-header*/

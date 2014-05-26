@@ -18,7 +18,7 @@
                             {if !$is_logged_in}
                                 <div class="clearfix">
                                     <label style="width: 40%;float: left;">
-                                        <span class="title">{lang('Ваше имя','box')}</span>
+                                        <span class="title">{lang('Имя','box')}</span>
                                         <span class="frame-form-field">
                                             <input type="text" name="comment_author" value="{get_cookie('comment_author')}"/>
                                         </span>
