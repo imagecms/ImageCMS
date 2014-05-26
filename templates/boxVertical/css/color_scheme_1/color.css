@@ -306,23 +306,6 @@ input[type="text"][disabled], input[type="password"][disabled], textarea[disable
 /*/carousels*/
 
 /*navs*/
-.frame-start-page-category-menu{
-    border-top-color: #d5cfc8;
-    background: #0489bc; /* Old browsers */
-    background: -moz-linear-gradient(top,  #0489bc 0%, #0377af 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#0489bc), color-stop(100%,#0377af)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top,  #0489bc 0%,#0377af 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top,  #0489bc 0%,#0377af 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top,  #0489bc 0%,#0377af 100%); /* IE10+ */
-    background: linear-gradient(to bottom,  #0489bc 0%,#0377af 100%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0489bc', endColorstr='#0377af',GradientType=0 ); /* IE6-9 */
-}
-.frame-start-page-category-menu:before{box-shadow: 0 5px 10px rgba(0,79,109,0.3);}
-.start-page-category-menu a{color: #fff;}
-.start-page-category-menu > li .photo-block{box-shadow: 0 1px 4px #005e88;}
-.start-page-category-menu .sub-category > li{color: #fff;}
-.start-page-category-menu .sub-category > li > a{border-bottom-color: #4fa4ca;}
-
 .frame-menu-category-first .title-category-l1{color: #333;}
 .frame-menu-category-first .title-category-l1:hover{color: #51d2ff;}
 

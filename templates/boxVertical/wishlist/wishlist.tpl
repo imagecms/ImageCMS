@@ -113,65 +113,61 @@
                                 </div>
                             </div>
                             <div class="drop-footer2">
-                                <div class="inside-padd clearfix">
-                                    <div class="f_l">
-                                        <div class="clearfix">
-                                            <div class="funcs-buttons-wishlist d_i-b">
-                                                <div class="btn-edit-WL">
-                                                    <button
-                                                        type="button"
-                                                        data-source="{site_url('/wishlist/editWL/'.$wishlist[0][wish_list_id])}"
-                                                        data-drop=".drop-edit-wishlist"
-                                                        data-always="true"
-                                                        >
-                                                        <span class="d_l_1 text-el">{lang('Редактировать список','box')}</span>
-                                                    </button>
-                                                </div>
-                                                <div class="btn-remove-WL">
-                                                    <button
-                                                        type="button"
-                                                        data-source="{site_url('/wishlist/wishlistApi/deleteWL/'.$wishlist[0][wish_list_id])}"
-                                                        data-modal="true"
+                                <div class="inside-padd">
+                                    <div class="funcs-buttons-wishlist d_i-b">
+                                        <div class="btn-edit-WL">
+                                            <button
+                                                type="button"
+                                                data-source="{site_url('/wishlist/editWL/'.$wishlist[0][wish_list_id])}"
+                                                data-drop=".drop-edit-wishlist"
+                                                data-always="true"
+                                                >
+                                                <span class="d_l_1 text-el">{lang('Редактировать список','box')}</span>
+                                            </button>
+                                        </div>
+                                        <div class="btn-remove-WL">
+                                            <button
+                                                type="button"
+                                                data-source="{site_url('/wishlist/wishlistApi/deleteWL/'.$wishlist[0][wish_list_id])}"
+                                                data-modal="true"
 
-                                                        data-drop="#notification"
-                                                        data-after="WishListFront.removeWL"
-                                                        data-confirm="true"
+                                                data-drop="#notification"
+                                                data-after="WishListFront.removeWL"
+                                                data-confirm="true"
 
-                                                        data-effect-on="fadeIn"
-                                                        data-effect-off="fadeOut"
-                                                        >
-                                                        <span class="icon_remove"></span>
-                                                        <span class="text-el d_l_1">{lang('Удалить список','box')}</span>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                            <div class="d_i-b m-r_10">
-                                                <b>{lang('Доступность:','box')}</b>
-                                                {if $wishlist[0][access] == 'private'}
-                                                    <span class="s_t">{lang('Приватный', 'box')}</span>
-                                                {/if}
-                                                {if $wishlist[0][access] == 'public'}
-                                                    <span class="s_t">{lang('Публичный', 'box')}</span>
-                                                {/if}
-                                                {if $wishlist[0][access] == 'shared'}
-                                                    <span class="s_t">{lang('Коллективный', 'box')}</span>
-                                                {/if}
-                                            </div>
-                                            {if $wishlist[0]['access'] == 'shared' || $wishlist[0]['access'] == 'public'}
-                                                <div class="btn-form btn-send-wishlist d_i-b m-r_10">
-                                                    <button type="button" data-drop=".drop-sendemail" title="{lang('Поделится с другом','box')}" data-source="{echo site_url('wishlist/wishlistApi/renderEmail/' . $wishlist[0][wish_list_id])}">
-                                                        <span class="icon_mail"></span>
-                                                        <span class="text-el">{lang('Поделиться с другом')}</span>
-                                                    </button>
-                                                </div>
-                                            {/if}
-                                            {if $wishlist[0]['access'] == 'shared'}
-                                                <div class="d_i-b">
-                                                    {echo $CI->load->module('share')->_make_share_form(site_url('wishlist/show/'.$wishlist[0]['hash']))}
-                                                </div>
-                                            {/if}
+                                                data-effect-on="fadeIn"
+                                                data-effect-off="fadeOut"
+                                                >
+                                                <span class="icon_remove"></span>
+                                                <span class="text-el d_l_1">{lang('Удалить список','box')}</span>
+                                            </button>
                                         </div>
                                     </div>
+                                    <div class="d_i-b m-r_10">
+                                        <b>{lang('Доступность:','box')}</b>
+                                        {if $wishlist[0][access] == 'private'}
+                                            <span class="s_t">{lang('Приватный', 'box')}</span>
+                                        {/if}
+                                        {if $wishlist[0][access] == 'public'}
+                                            <span class="s_t">{lang('Публичный', 'box')}</span>
+                                        {/if}
+                                        {if $wishlist[0][access] == 'shared'}
+                                            <span class="s_t">{lang('Коллективный', 'box')}</span>
+                                        {/if}
+                                    </div>
+                                    {if $wishlist[0]['access'] == 'shared' || $wishlist[0]['access'] == 'public'}
+                                        <div class="btn-form btn-send-wishlist d_i-b m-r_10">
+                                            <button type="button" data-drop=".drop-sendemail" title="{lang('Поделится с другом','box')}" data-source="{echo site_url('wishlist/wishlistApi/renderEmail/' . $wishlist[0][wish_list_id])}">
+                                                <span class="icon_mail"></span>
+                                                <span class="text-el">{lang('Поделиться с другом')}</span>
+                                            </button>
+                                        </div>
+                                    {/if}
+                                    {if $wishlist[0]['access'] == 'shared'}
+                                        <div class="d_i-b">
+                                            {echo $CI->load->module('share')->_make_share_form(site_url('wishlist/show/'.$wishlist[0]['hash']))}
+                                        </div>
+                                    {/if}
                                 </div>
                             </div>
                             {form_csrf()}

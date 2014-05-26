@@ -123,7 +123,7 @@
                 {if !$opi_widget && !$opi_defaultItem}
                     <div class="frame-without-top">
                         <!-- Wish List & Compare List buttons -->
-                        <div class="frame-wish-compare-list">
+                        <div class="frame-wish-compare-list no-vis-table">
                             {if !$opi_compare}
                                 <div class="frame-btn-comp">
                                     <!-- Start. Compare List button -->

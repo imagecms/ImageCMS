@@ -25,7 +25,7 @@
 .btn-edit-photo-wishlist{border-radius: 2px 0 0 2px;margin-right: 2px;}
 .btn-remove-photo-wishlist{border-radius: 0 2px 2px 0;}
 
-.page-wishlist .btn-cart{margin-right: 10px;float: left;}
+.page-wishlist .btn-cart{margin-right: 10px;}
 .page-wishlist .btn-cart .text-el{text-transform: none;font-weight: bold;}
 .frame-button-add-wish-list{overflow: hidden;margin-bottom: 20px;padding: 23px 28px;border-width: 1px;border-style: solid;border-radius: 3px;}
 
@@ -36,7 +36,7 @@
 
 .drop-style-2{margin-bottom: 20px;border-width: 1px;border-style: solid;border-radius: 3px;}
 .drop-style-2 > .drop-content2 > .inside-padd{padding: 30px 60px;}
-.drop-style-2 > .drop-footer2{border-radius: 0 0 3px 3px;}
+.drop-style-2 > .drop-footer2{border-radius: 0 0 3px 3px;border-top-width: 1px;border-top-style: solid;}
 .drop-style-2 > .drop-footer2 > .inside-padd{padding: 20px;}
 .drop-style-2 > .drop-header{border-radius: 3px 3px 0 0;}
 
