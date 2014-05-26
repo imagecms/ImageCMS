@@ -865,6 +865,10 @@ span.must{color:red;}
     text-decoration: underline;
 }
 
+.property_list_order span.thead_name {
+    text-decoration: underline;
+}
+
 .watermark_path_info {
     height: 25px;
 }
