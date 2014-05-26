@@ -15,7 +15,7 @@ class Admin extends BaseAdminController {
      * Path to saved sitemap file
      * @var string
      */
-    private $sitemap_path = './application/modules/sitemap/map/sitemap.xml';
+    private $sitemap_path = './uploads/sitemap.xml';
 
     function __construct() {
         parent::__construct();
