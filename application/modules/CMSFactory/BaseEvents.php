@@ -9,6 +9,7 @@ namespace CMSFactory;
 abstract class BaseEvents {
 
     public $holder = array();
+    protected $storage = array();
 
     /**
      * Returns or creates and returns an BaseEvents instance.
@@ -35,6 +36,26 @@ abstract class BaseEvents {
     }
 
     /**
+     * Run listeners for one event. After runing removes listeners.
+     * @param string $eventAlias
+     */
+    public function raiseEvent($data = array(), $eventAlias) {
+        $this->registerEvent($data, $eventAlias);
+        $this->runFactory($eventAlias, false);
+        return $this;
+    }
+
+    /**
+     * Removes specified event with all listeners
+     * @param string $eventAlias
+     */
+    public function removeEvent($eventAlias) {
+        if (isset($this->storage[$eventAlias])) {
+            unset($this->storage[$eventAlias]);
+        }
+    }
+
+    /**
      * Binds a custom method to the event.
      * <br/><br/><code>
      * public function autoload() {<br/>
@@ -52,21 +73,30 @@ abstract class BaseEvents {
         if ($alias == null)
             throw new \Exception("Bind value can't not be null.");
 
-        if (is_array($callback)) {
-            $method = $callback[1];
-            $class = is_object($callback[0]) ? get_class($callback[0]) : $callback[0];
-        } elseif (is_string($callback)) {
-            $trace = debug_backtrace();
+        $trace = debug_backtrace();
+        $isClosure = false;
+        if (is_string($callback)) {
             $method = $callback;
             $class = $trace[1]['class'];
+        } elseif (is_array($callback)) {
+            $method = $callback[1];
+            $class = is_object($callback[0]) ? get_class($callback[0]) : $callback[0];
+        } elseif ($callback instanceof \Closure) {
+            $method = $callback;
+            $class = $trace[1]['class'];
+            $isClosure = true;
         } else {
-            throw new \Exception("First parameter has wrong type. Array or string only");
+            throw new \Exception("Wrong argument type");
         }
 
-        if ($this->holder[$alias][$method] != $class) {
-            $this->holder[$alias][$method] = $class;
-            $this->storage[$alias]['collable'][] = array('collMethod' => $method, 'collClass' => $class);
+        if ($isClosure == false && isset($this->holder[$alias]) && $this->holder[$alias][$method] == $class) {
+            return;
         }
+        if ($isClosure == false) {
+            $this->holder[$alias][$method] = $class;
+        }
+        $storageData = array('collMethod' => $method, 'collClass' => $class, 'isClosure' => $isClosure);
+        $this->storage[$alias]['collable'][] = $storageData;
     }
 
     /**
@@ -76,13 +106,26 @@ abstract class BaseEvents {
      * @author Kaero
      * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
      */
-    public function runFactory() {
+    public function runFactory($eventAlias = null, $cleanQueue = false) {
         (defined('BASEPATH')) OR exit('No direct script access allowed');
-        foreach (Events::create()->storage as $key => $value) {
-            if (isset($value['run']))
-                if ($value['run'] === TRUE && count($value['collable']))
-                    foreach ($value['collable'] as $run)
-                        call_user_func(array($run['collClass'], $run['collMethod']), $value['params']);
+        foreach (Events::create()->storage as $storageKey => $value) {
+            if (!is_null($eventAlias) && $eventAlias != $storageKey) {
+                continue;
+            }
+            if (isset($value['run'])) {
+                if ($value['run'] === TRUE && isset($value['collable'])) {
+                    foreach ($value['collable'] as $collableKey => $run) {
+                        if ($run['isClosure'] === false) {
+                            call_user_func(array($run['collClass'], $run['collMethod']), $value['params']);
+                        } else {
+                            call_user_func_array($run['collMethod'], $value['params']);
+                        }
+                        if ($cleanQueue === true) {
+                            unset(Events::create()->storage[$storageKey]['collable'][$collableKey]);
+                        }
+                    }
+                }
+            }
         }
 //        \CMSFactory\Events::create()->get();
     }
