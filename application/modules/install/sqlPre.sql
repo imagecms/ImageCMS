@@ -2730,7 +2730,7 @@ CREATE TABLE IF NOT EXISTS `shop_orders` (
   `total_price` float(10,2) DEFAULT NULL,
   `external_id` varchar(255) DEFAULT NULL,
   `gift_cert_key` varchar(25) DEFAULT NULL,
-  `gift_cert_price` int(11) DEFAULT NULL,
+  `gift_cert_price` float(10,2) DEFAULT NULL,
   `comulativ` int(3) DEFAULT NULL,
   `discount` float(10,2) DEFAULT NULL,
   `discount_info` text,
