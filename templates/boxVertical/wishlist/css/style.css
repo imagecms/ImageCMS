@@ -27,18 +27,21 @@
 
 .page-wishlist .btn-cart{margin-right: 10px;float: left;}
 .page-wishlist .btn-cart .text-el{text-transform: none;font-weight: bold;}
-.frame-button-add-wish-list{overflow: hidden;margin-bottom: 20px;padding: 23px 28px;border-width: 1px;border-style: solid;border-radius: 3px;}
+.frame-button-add-wish-list{overflow: hidden;margin-bottom: 20px;padding: 23px 28px;border-width: 1px;border-style: solid;border-radius: 1px;}
 
 .check-public{width: 300px;}
 .check-public-drop{width: 150px;}
 
 .drop-edit-wishlist{width: 500px;}
 
-.drop-style-2{margin-bottom: 20px;border-width: 1px;border-style: solid;border-radius: 3px;}
+.drop-style-2{margin-bottom: 20px;border-width: 1px;border-style: solid;border-radius: 1px;}
+.drop-header2{border-bottom-width: 1px;border-bottom-style: solid;padding: 11px 23px 12px;}
+.drop-header2 h2{font-size: 13px;margin-bottom: 0;font-weight: bold;}
+.drop-style-2 > .drop-content2{border-bottom-style: solid;border-bottom-width: 1px;}
 .drop-style-2 > .drop-content2 > .inside-padd{padding: 30px 20px;}
-.drop-style-2 > .drop-footer2{border-radius: 0 0 3px 3px;}
+.drop-style-2 > .drop-footer2{border-radius: 0 0 1px 1px;}
 .drop-style-2 > .drop-footer2 > .inside-padd{padding: 20px;}
-.drop-style-2 > .drop-header{border-radius: 3px 3px 0 0;}
+.drop-style-2 > .drop-header{border-radius: 1px 1px 0 0;}
 
 .drop-wishlist-items  > .drop-content2 > .inside-padd{padding: 20px;}
 

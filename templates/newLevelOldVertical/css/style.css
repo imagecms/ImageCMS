@@ -710,7 +710,7 @@ li[class*="x"] > .title-category-l1{width: 100%;text-align: center;display: bloc
 .start-page-category-menu > li .sub-category > li{white-space: nowrap;text-overflow: ellipsis;overflow: hidden;width: 100%;}
 
 .sub-category{max-height: 81px;overflow: hidden;padding-left: 1px;}
-.sub-category > li{padding-bottom: 7px;}
+.sub-category > li{padding-bottom: 6px;}
 /*/start_page category*/
 
 /*category-first*/
