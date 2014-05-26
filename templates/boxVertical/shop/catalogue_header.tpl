@@ -4,7 +4,7 @@
         <div class="inside-padd clearfix">
             <!-- Start. Order by block -->
             <div class="frame-sort f-s_0">
-                <span class="title">{lang('Сортировать','boxVertical')}:</span>
+                <span class="title d_b">{lang('Сортировать','boxVertical')}:</span>
                 <div class="lineForm">
                     <select class="sort" id="sort" name="order">
                         {$sort =ShopCore::app()->SSettings->getSortingFront()}
@@ -18,7 +18,7 @@
             <!--         Start. Product per page  -->
             <div class="frame-count-onpage d_i-b">
                 <div class="f-s_0 d_i-b">
-                    <span class="title">{lang('На странице','boxVertical')}:</span>
+                    <span class="title d_b">{lang('На странице','boxVertical')}:</span>
                     {if ShopCore::$_GET['user_per_page'] == null}
                     {ShopCore::$_GET['user_per_page'] =ShopCore::app()->SSettings->frontProductsPerPage;}
                     {/if}
