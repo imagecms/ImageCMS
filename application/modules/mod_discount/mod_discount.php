@@ -16,6 +16,7 @@ class Mod_discount extends \MY_Controller {
     public static $cnt = 0;
     public $no_install = true;
     protected $result_discount = array();
+    public $appliesApplied = false;
 
     /**
      * __construct base object loaded
@@ -54,15 +55,12 @@ class Mod_discount extends \MY_Controller {
                 \mod_discount\classes\BaseDiscount::create()->updateDiskApply($giftKey, 'gift');
             }
 
-            // to not overload max applies of discounts
-            $overload = \mod_discount\classes\ApplyChecker::getInstance()->getAppliesOverloadDifference();
-            if ($overload > 0) {
-                $totalPrice = \Cart\BaseCart::getInstance()->getTotalPrice();
-                \Cart\BaseCart::getInstance()->setTotalPrice($totalPrice + $overload);
-                \mod_discount\classes\ApplyChecker::getInstance()->changeCartItemsOveralPrice();
-            }
-
             \CMSFactory\Events::create()->setListener(array($this, 'updateDiscountsApplies'), 'Cart:OrderValidated');
+
+            // updating
+            \CMSFactory\Events::create()->setListener(function($cartItem) {
+                
+            }, 'orderProduct:beforeSave');
         }
     }
 
@@ -144,7 +142,6 @@ class Mod_discount extends \MY_Controller {
     }
 
     public function updateDiscountsApplies() {
-
         \mod_discount\classes\BaseDiscount::prepareOption(array('reBuild' => 1));
         $baseDiscount = \mod_discount\classes\BaseDiscount::create();
 
@@ -163,13 +160,27 @@ class Mod_discount extends \MY_Controller {
                     $baseDiscount->updateDiskApply($baseDiscount->discountMax['key']);
                 } else {
                     $cartItems = $baseDiscount->cart->getItems();
+                    $diff = 0;
                     foreach ($cartItems['data'] as $item) {
                         if (is_null($item->discountKey)) {
                             continue;
                         }
+                        $appliesLeft = \mod_discount\classes\BaseDiscount::create()->getAppliesLeft($item->discountKey);
                         for ($i = 0; $i < $item->quantity; $i++) {
-                            $baseDiscount->updateDiskApply($item->discountKey);
+                            if ($appliesLeft-- > 0) {
+                                $baseDiscount->updateDiskApply($item->discountKey);
+                            }
                         }
+                        if ($appliesLeft < 0) {
+                            $appliesLeft = abs($appliesLeft);
+                            $diff += ($item->originPrice - $item->price) * $appliesLeft;
+                        }
+                    }
+                    if ($diff > 0) {
+                        \CMSFactory\Events::create()->setListener(function(\SOrders $order, $price) use ($diff) {
+                            $price = $order->getTotalPrice() + $diff;
+                            $order->setTotalPrice($price)->save();
+                        }, 'Cart:MakeOrder');
                     }
                 }
             }
@@ -195,7 +206,7 @@ class Mod_discount extends \MY_Controller {
                 $this->baseDiscount->cart->gift_info = $disc['key'];
                 $this->baseDiscount->cart->gift_value = $value;
                 if (\ShopCore::app()->SSettings->pricePrecision == 0) {
-                    //$this->baseDiscount->cart->gift_value = floor($value);
+                    $this->baseDiscount->cart->gift_value = floor($value);
                 }
                 $cartTotalPrice = $this->baseDiscount->cart->getTotalPrice() - $value;
                 $this->baseDiscount->cart->setTotalPrice($cartTotalPrice > 0 ? $cartTotalPrice : \Cart\BaseCart::MIN_ORDER_PRICE);
