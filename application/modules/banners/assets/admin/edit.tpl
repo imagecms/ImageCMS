@@ -127,7 +127,7 @@
                                 <div class="control-group">
                                     <label class="control-label">{lang('Active until', 'banners')}:</label>
                                     <div class="controls">
-                                        <span class="frame_label">
+                                        <span class="frame_label no_connection">
                                             <span class="niceCheck b_n" onclick="$('#active_to').fadeToggle()">
                                                 <input required="required" 
                                                        type="checkbox"
