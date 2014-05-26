@@ -226,10 +226,10 @@ class Template extends Mabilis {
     /**
      * 
      * @param string $url
-     * @param string $link
+     * @param string $rel
      */
-    public function registerLink($url, $link) {
-        $this->_links[] = "<link href='$url' rel='$link'>";
+    public function registerLink($url, $rel) {
+        $this->_links[] = "<link href='$url' rel='$rel'>";
     }
 
     /**
