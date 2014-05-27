@@ -24,10 +24,9 @@
     <div class="frame-benefits">
         {widget('benefits')}
     </div>
+    {widget('latest_news')}
 </div>
 <div class="content">
-
-
     <div class="frame-inside page-product">
         <div class="container">
             {$inCartFV = getAmountInCart('SProducts', $model->firstVariant->getId())}
@@ -284,15 +283,9 @@
                                                             </div>
 
                                                         {/if}
-
                                                     </div>
-
                                                 {/foreach}
-                                                <div class="social-tell f_r">
-                                                    {echo $CI->load->module('share')->_make_share_form()}
-                                                </div>
                                             </div>
-
                                             <!-- End. Collect information about Variants, for future processing -->
                                         </div>
                                         <!-- Start. Wish List & Compare List buttons -->
@@ -330,11 +323,13 @@
                                             </div>
                                         {/if}
                                         <!--  End. Description -->
-
-
-
-                                        <div class="social-like">
-                                            {echo $CI->load->module('share')->_make_like_buttons()}
+                                        <div class="clearfix">
+                                            <div class="social-like f_l">
+                                                {echo $CI->load->module('share')->_make_like_buttons()}
+                                            </div>
+                                            <div class="social-tell f_r">
+                                                {echo $CI->load->module('share')->_make_share_form()}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -600,13 +595,9 @@
                                 <button type="button" data-href="#comment" onclick="Comments.renderPosts($('#comment .inside-padd'), {literal}{'visibleMainForm': '1'}{/literal})">
                                     <span class="icon_comment-tab"></span>
                                     <span class="text-el">
+                                        {lang("Отзывы",'light')}
                                         <span id="cc">
-                                            {if intval($Comments[$model->getId()][0]) !== 0}
-                                                {lang('Отзывы','lightVertical')}
-                                                ({echo intval($Comments[$model->getId()])})
-                                            {else:}
-                                                {lang('Отзывы (0)','lightVertical')}
-                                            {/if}
+                                            ({echo intval($Comments[$model->getId()])})
                                         </span>
                                     </span>
                                 </button>
@@ -793,3 +784,9 @@
 <script type="text/javascript">
     initDownloadScripts(['cusel-min-2.5', 'cloud-zoom.1.0.3.min', 'product'], 'initPhotoTrEv', 'initPhotoTrEv');
 </script>
+<div style="display: none;">
+    <img src="{echo $model->firstVariant->getLargePhoto()}" alt="{echo ShopCore::encode($model->getName())}" class="vImgPr"/>
+    {foreach $productImages as $key => $image}
+        <img src="{productImageUrl('products/additional/'.$image->getImageName())}" alt="{echo ShopCore::encode($model->getName())} - {echo ++$key}"/>
+    {/foreach}
+</div>

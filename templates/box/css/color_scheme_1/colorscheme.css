@@ -10,7 +10,7 @@ body{background: url("images/fon.png") repeat;}
 
 .f-w_b{font-weight: bold!important;}
 .f-w_n{font-weight: normal!important;}
-.items-brand-image > li > .frame-photo-title > .title, .start-page-category-menu > li .title{font-weight: normal;}
+.items-brand-image > li > .frame-photo-title > .title{font-weight: normal;}
 .text blockquote:before, .text blockquote:after{border-width: 1px 0;border-style: solid;}
 
 [class*="icon_"], [class*="icon-"], .ui-slider-handle, .product-status, .niceCheck, .niceRadio, .cuselFrameRight, .btn-to-up{background: url("images/sprite.png") no-repeat;}
@@ -311,14 +311,6 @@ a, .ref{text-decoration: underline;}
 /*/carousels*/
 
 /*navs*/
-.frame-start-page-category-menu{border-top: 2px solid transparent;}
-.frame-start-page-category-menu:before{content: "";position: absolute;left: 0;top: -2px;width: 120%;height: 2px;}
-.start-page-category-menu > li .title{text-transform: uppercase;filter:progid:DXImageTransform.Microsoft.Alpha(opacity=50);-moz-opacity: 0.5;-khtml-opacity: 0.5;opacity: 0.5;}
-.start-page-category-menu .sub-category > li{padding-left: 1px;}
-.start-page-category-menu .sub-category > li > a{font-weight: bold;border-bottom: 1px solid transparent;}
-.start-page-category-menu > li > .frame-photo-title:hover .title{filter: progid:DXImageTransform.Microsoft.Alpha(opacity=100);-moz-opacity: 1;-khtml-opacity: 1;opacity: 1;border-bottom: 0;}
-.start-page-category-menu .sub-category > li > a:hover{filter: progid:DXImageTransform.Microsoft.Alpha(opacity=50);-moz-opacity: .5;-khtml-opacity: .5;opacity: .5;}
-
 .frame-menu-category-first .title-category-l1{text-decoration: none;}
 .frame-menu-category-first .title-category-l1:hover{text-decoration: underline;}
 

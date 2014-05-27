@@ -43,7 +43,6 @@
     <div class="drop frame-already-show">
         <div class="content-already-show">
             <div id="ViewedProducts">
-                {/*{widget_ajax('ViewedProducts', '#ViewedProducts')}*/}
                 {widget('ViewedProducts')}
             </div>
         </div>
