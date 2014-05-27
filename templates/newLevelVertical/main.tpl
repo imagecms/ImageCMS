@@ -56,10 +56,12 @@
                 </header>
             </div>
             <div class="vertical-layout container">
-                <div class="frame-menu-main vertical-menu">
-                    {\Category\RenderMenu::create()->setConfig(array('cache'=>TRUE))->load('category_menu')}
-                    {widget('latest_news')}
-                </div>
+                {if !strpos($CI->uri->uri_string, '/cart') && !strpos($CI->uri->uri_string, '/order/view')}
+                    <div class="frame-menu-main vertical-menu">
+                        {\Category\RenderMenu::create()->setConfig(array('cache'=>TRUE))->load('category_menu')}
+                        {widget('latest_news')}
+                    </div>
+                {/if}
                 <div class="content">
                     {$content}
                 </div>

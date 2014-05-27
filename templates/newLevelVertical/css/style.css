@@ -59,7 +59,7 @@ article, .container, .special-proposition .title-proposition-h{max-width: 980px;
 
 .left-cart{float: left;width: 45%;margin-bottom: 30px;}
 .right-cart{float: right;width: 52%;margin-bottom: 30px;}
-.vertical-layout .left-cart, .vertical-layout .right-cart{float: none;width: auto;}
+.vertical-layout .left-cart, .vertical-layout .right-cart{width: 48%;}
 
 .left-order{float: left;width: 45%;}
 .right-order{float: right;width: 52%;}
@@ -556,8 +556,8 @@ input.input-search{height: 33px;}
 .pager{position: absolute;bottom: 19px;z-index: 2;width: 100%;text-align: center;}
 
 /*if cycle*/
-.frame-baner-start_page .baner{height: 286px;}
-.frame-baner-catalog .baner{height: 208px;}
+.frame-baner-start_page .baner{height: 225px;}
+.frame-baner-catalog .baner{height: 94px;}
 .frame-baner .content-carousel{position: absolute;height: 100%;width: 100%;}
 .frame-baner-catalog{margin-bottom: 25px;}
 .frame-baner-catalog .baner .prev{left: 0;}

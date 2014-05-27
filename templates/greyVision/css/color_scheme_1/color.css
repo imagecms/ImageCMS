@@ -873,7 +873,7 @@ input.input-search{border-color: #cdcdcd;-moz-box-shadow: none;-webkit-box-shado
 /*/page-profile*/
 
 /*page compare*/
-.compare-characteristic > li.oddC{background-color: #f4eee9;}
+.compare-characteristic > li.oddC{background-color: #f2f2f2;}
 .compare-characteristic > li.hover{background-color: #f8f8df;}
 /*/page compare*/
 
@@ -930,7 +930,7 @@ input.input-search{border-color: #cdcdcd;-moz-box-shadow: none;-webkit-box-shado
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fdfdfd', endColorstr='#e7e7e7',GradientType=0 ); /* IE6-9 */
 }
 .frame-button-add-wish-list{background-color: #ECECEC;border-color: #eae5e1;box-shadow: 0 2px 2px #ece9e6;}
-.drop-style-2{border-color: #eae5e1;box-shadow: 0 2px 2px #ece9e6;}
+.drop-style-2{border-color: #f2f2f2;box-shadow: 0 2px 2px #f2f2f2;}
 .drop-style-2 > .drop-content2{background-color: #ECECEC;}
 .drop-style-2 > .drop-footer2{background-color: #fff;}
 .drop-style-2 > .drop-header{background-color: #fff;}

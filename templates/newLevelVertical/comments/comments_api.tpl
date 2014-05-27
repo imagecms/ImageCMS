@@ -70,7 +70,7 @@
                                     <div class="btn">
                                         <button type="button" data-rel="cloneAddPaste" data-parid="{$comment['id']}">
                                             <span class="icon_comment"></span>
-                                            <span class="text-el d_l_1">{lang('Ответить', 'newLevelVertical')}</span>
+                                            <span class="text-el d_l_1 f-s_11">{lang('Ответить', 'newLevelVertical')}</span>
                                         </button>
                                     </div>
                                 {/if}
