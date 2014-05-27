@@ -23,8 +23,8 @@
 .comments .icon_comment{background-image: none;width: 0;height: 0;margin-right: 0!important;overflow: hidden;}
 .comments .frame-list-comments li{border-top: 0;padding: 0;}
 .comments .frame-list-comments li:before{content: none;}
-.comments .frame-list-comments > .sub-1 > li{margin-top: 29px;margin-bottom: 0;}
-.comments .frame-list-comments > .sub-1 > li:first-child{border-top: 0;padding-top: 0;margin-top: 0;}
+.comments .frame-list-comments > .sub-1 > li{margin-top: 10px;padding-top: 19px;margin-bottom: 0;border-top-width: 1px;border-style: solid;}
+.comments .frame-list-comments > .sub-1 > li:first-child{border-top: 0;padding-top: 0;margin-top: 0;border-top: 0;}
 .comments .frame-list-comments.sub-2 + .btn-all-comments{margin-left: 165px;}
 .comments .frame-list-comments.sub-2 > li{position: relative;}
 .comments .global-frame-comment-sub2{padding: 11px 0 5px;}
