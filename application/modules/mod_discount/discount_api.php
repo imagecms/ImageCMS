@@ -308,7 +308,7 @@ class discount_api extends \MY_Controller {
         );
 
         $manager = new \mod_discount\classes\DiscountManager();
-        var_dump($manager->createBrandDiscount($data));
+        //var_dump($manager->createBrandDiscount($data));
         //var_dump($manager->deleteDiscount(14));
     }
 

@@ -8,7 +8,7 @@
 
 .f-w_b{font-weight: bold!important;}
 .f-w_n{font-weight: normal!important;}
-.items-brand-image > li > .frame-photo-title > .title, .start-page-category-menu > li .title{font-weight: normal;}
+.items-brand-image > li > .frame-photo-title > .title{font-weight: normal;}
 .text blockquote:before, .text blockquote:after{border-width: 1px 0;border-style: solid;}
 
 [class*="icon-"], .title-category-l1.is-sub:after, .title-category-l1.is-sub .ie, .ui-slider-handle, .product-status, .niceCheck, .niceRadio{background: url("images/sprite.png") no-repeat;}
@@ -36,7 +36,7 @@ button[disabled="disabled"], input[type="submit"][disabled="disabled"], input[ty
 /*active*/
 :active{outline: none;}
 :focus{outline: none;}
-input[type="radio"]:focus, input[type="checkbox"]:focus, input[type="submit"]:focus, input[type="button"]:focus, input[type="reset"]:focus, .frame-item-menu > .frame-title > .title:focus, .left-header > .nav > li > a:focus, .btn-enter button:focus, .btn-personal-area a:focus, .start-page-category-menu a:focus, .baner li > a:focus{outline: 1px solid transparent;}
+input[type="radio"]:focus, input[type="checkbox"]:focus, input[type="submit"]:focus, input[type="button"]:focus, input[type="reset"]:focus, .frame-item-menu > .frame-title > .title:focus, .left-header > .nav > li > a:focus, .btn-enter button:focus, .btn-personal-area a:focus, .baner li > a:focus{outline: 1px solid transparent;}
 /*/active*/
 
 /*groups-buttons*/
@@ -69,7 +69,7 @@ a:hover, .selected a, .ref:hover, .nav-static-pages > li > a:hover{text-decorati
 /*for delete*/
 
 /*groups selectors*/
-.phones-header .phone, .start-page-category-menu > li .title, .pagination li > a, .pagination li > span{font-size: 14px;}
+.phones-header .phone, .pagination li > a, .pagination li > span{font-size: 14px;}
 .frame-item-menu > .frame-title .text-el, .frame-drop-menu .title-category-l1 > .text-el, .cusel, .compare-characteristic > li > span, .frame-cur-sum-price .price-new .price, .frame-cur-sum-price .price-discount .price{font-size: 12px;}
 .frame-kit, .items-default > li, .frame-item-menu > .frame-title > .title > .text-el, .tabs-data > li > a, .tabs-data > li > button, .drop-bask .frame-items .price, .drop-bask .frame-items .curr, .frame-bask-order .description > .frame-prices .price, .frame-bask-order .description > .frame-prices .curr, .table-info-order .price-new .price, .table-profile .price-new .price, .nav > li > a, .nav > li > button, .nav > li > span, .nav.nav-vertical ul{font-size: 13px;}
 .table-info-order .price-new .price, .table-profile .price-new .price, .cusel, .characteristic, .table-info-order td{font-weight: normal;}
@@ -286,10 +286,6 @@ footer [class^="box"] .main-title{text-transform: uppercase;}
 /*/footer*/
 
 /*menus*/
-.start-page-category-menu .sub-category > li > a{font-weight: bold;border-bottom: 1px solid transparent;}
-.start-page-category-menu > li .photo-block{-moz-border-radius: 4px;-webkit-border-radius: 4px;border-radius: 4px;}
-.start-page-category-menu > li .title{text-transform: uppercase;}
-.start-page-category-menu .sub-category > li{padding-left: 1px;}
 .frame-menu-category-first .title-category-l1{text-decoration: none;}
 .frame-menu-category-first .title-category-l1:hover{text-decoration: underline;}
 

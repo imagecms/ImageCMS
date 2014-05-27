@@ -123,7 +123,7 @@ class Admin extends BaseAdminController {
 
 //Проверим, хватает ли денег на запланированную рассылку
         $res = $Stat->checkCampaignPrice("testName", "Тестируем отправку смс сообщения через ePochta SMS", $addrbook_id);
-        var_dump($res);
+        //var_dump($res);
         if (isset($res["error"])) {
             die("Ошибка: " . $res["error"] . "<br>");
         } else {
@@ -133,7 +133,7 @@ class Admin extends BaseAdminController {
 //        if ($balance > $cost) {
 //А теперь по созданной адресной книге отправим рассылку
         $res = $Stat->createCampaign("testName", "Тестируем отправку смс сообщения через ePochta SMS", $addrbook_id, "", 0, 0, 0, "");
-        var_dump($res);
+        //var_dump($res);
         if (isset($res["error"])) {
             echo ("Ошибка: " . $res["error"] . "<br>");
         } else {
@@ -145,7 +145,7 @@ class Admin extends BaseAdminController {
 //для обновления статусов, 
 //сохранив $campaign_id и выполнив запрос позже.
         $res = $Stat->getCampaignDeliveryStats($campaign_id);
-        var_dump($res);
+        //var_dump($res);
 //если запрос выполнить сразу, то мы получим JSON 
 //примерно следующего содержания
         /*
