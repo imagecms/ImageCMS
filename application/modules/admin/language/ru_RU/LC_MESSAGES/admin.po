@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-23 12:58+0300\n"
-"PO-Revision-Date: 2014-05-23 12:58+0300\n"
+"POT-Creation-Date: 2014-05-27 02:01+0300\n"
+"PO-Revision-Date: 2014-05-27 02:01+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -7406,3 +7406,7 @@ msgstr "Количество цифр после запятой в цене"
 #: ./application/modules/shop/admin/templates/callbacks/themes_list.tpl:11
 msgid "Create topic"
 msgstr "Создать тему"
+
+#: tmpLink
+msgid "Close or open the site for indexing robots"
+msgstr "Закрыть или открыть сайт для индексации роботами"
