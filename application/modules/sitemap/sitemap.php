@@ -9,7 +9,6 @@ if (!defined('BASEPATH'))
  * Sitemap Module
  * @property Sitemap_model $sitemap_model
  */
-
 class Sitemap extends MY_Controller {
 
     /**
@@ -174,7 +173,7 @@ class Sitemap extends MY_Controller {
             $this->build_xml_map();
             exit();
         }
-        
+
         if (uri_string() == 'sitemapRegenerate.xml') {
             $this->build_xml_map_regenerated();
             exit();
@@ -286,6 +285,7 @@ class Sitemap extends MY_Controller {
      * @return string
      */
     public function sitemap_ul($items = array()) {
+
         $out .= '<ul class="sitemap">';
 
         foreach ($items as $item) {
@@ -323,7 +323,7 @@ class Sitemap extends MY_Controller {
         $settings = $this->sitemap_model->load_settings();
 
         // Generate new or use saved map
-        if ((int)$settings['generateXML'] || $regenerate) {
+        if ((int) $settings['generateXML'] || $regenerate) {
             $this->_create_map();
         } else {
             $this->result = file_get_contents($this->sitemap_path);
@@ -335,8 +335,8 @@ class Sitemap extends MY_Controller {
             echo $this->result;
         }
     }
-    
-    public function build_xml_map_regenerated(){
+
+    public function build_xml_map_regenerated() {
         $this->build_xml_map(TRUE);
     }
 
@@ -370,10 +370,11 @@ class Sitemap extends MY_Controller {
                 }
 
                 if ($this->not_blocked_url($category['path_url'])) {
+                    
                     $this->items[] = array(
-                        'loc' => site_url($category['path_url']),
-                        'changefreq' => $changefreq,
-                        'priority' => $priority
+                    'loc' => site_url($category['path_url']),
+                    'changefreq' => $changefreq,
+                    'priority' => $priority,
                     );
                 }
 
@@ -458,7 +459,6 @@ class Sitemap extends MY_Controller {
 
                         $this->items[] = array(
                             'loc' => site_url($url),
-                            'lastmod' => '',
                             'changefreq' => $changefreq,
                             'priority' => $priority
                         );
@@ -576,7 +576,11 @@ class Sitemap extends MY_Controller {
             next($items);
         }
 
-        return "<\x3Fxml version=\"1.0\" encoding=\"UTF-8\"\x3F>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n" . $data . "\t</urlset>";
+//        $start_memory = memory_get_usage();
+        $result = "<\x3Fxml version=\"1.0\" encoding=\"UTF-8\"\x3F>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n" . $data . "\t</urlset>";
+//        var_dumps_exit((memory_get_usage() - $start_memory) / 1024);
+
+        return $result;
     }
 
     /**
@@ -648,14 +652,14 @@ class Sitemap extends MY_Controller {
             return FALSE;
 
         // Check sending Site map url is change
-        if ($settings['sendWhenUrlChanged']) {
-            if ($ci->updated_url) {
-                if ($ci->updated_url == $data['url']) {
-                    return FALSE;
-                }
-                unset($ci->updated_url);
-            }
-        }
+//        if ($settings['sendWhenUrlChanged']) {
+//            if ($ci->updated_url) {
+//                if ($ci->updated_url == $data['url']) {
+//                    return FALSE;
+//                }
+//                unset($ci->updated_url);
+//            }
+//        }
 
         // Checking time permission(1 hour passed from last send) to send ping
         if ((time() - $settings['lastSend']) / (60 * 60) >= 1) {
