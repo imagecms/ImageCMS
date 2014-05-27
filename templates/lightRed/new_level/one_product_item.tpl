@@ -26,7 +26,7 @@
     {/if}
     {$Comments = $CI->load->module('comments')->init($p)}
     {$inCartFV = getAmountInCart('SProducts', $p->firstVariant->getId())}
-    <li  class="globalFrameProduct{if $p->firstVariant->getStock() == 0} not-avail{else:}{if $inCartFV} in-cart{else:} to-cart{/if}{/if}" data-pos="{if intval(($key+1)/3) - ($key+1)/3 == 0}right{else:}left{/if}">
+    <li  class="globalFrameProduct{if $p->firstVariant->getStock() == 0} not-avail{else:}{if $inCartFV} in-cart{else:} to-cart{/if}{/if}" data-pos="top">
         <!-- Start. Photo & Name product -->
         <a href="{shop_url('product/' . $p->getUrl())}" class="frame-photo-title" title="{echo ShopCore::encode($p->getName())}">
             <span class="photo-block">
@@ -49,7 +49,7 @@
             {if $opi_codeArticle}
                 <div class="frame-variant-name-code">
                     {$hasCode = $p->firstVariant->getNumber() == ''}
-                    <span class="frame-variant-code frameVariantCode" {if $hasCode}style="display:none;"{/if}>{lang('Артикул','lightRed')}:
+                    <span class="frame-variant-code frameVariantCode" {if $hasCode}style="display:none;"{/if}>{lang('Артикул','light')}:
                         <span class="code js-code">
                             {if !$hasCode}
                                 {trim($p->firstVariant->getNumber())}
@@ -58,7 +58,7 @@
                     </span>
                     {if count($variants) > 1}
                         {$hasVariant = $p->firstVariant->getName() == ''}
-                        <span class="frame-variant-name frameVariantName" {if $hasVariant}style="display:none;"{/if}>{lang('Вариант','lightRed')}:
+                        <span class="frame-variant-name frameVariantName" {if $hasVariant}style="display:none;"{/if}>{lang('Вариант','light')}:
                             <span class="code js-code">
                                 {if !$hasVariant}
                                     {trim($p->firstVariant->getName())}
@@ -68,95 +68,6 @@
                     {/if}
                 </div>
             {/if}
-            <!-- Start. Check variant-->
-            <div class="left-product-catalog">
-                {if !$opi_widget && !$opi_defaultItem && !$opi_compare && !$opi_wishListPage}
-                    {if count($variants) > 1}
-                        <div class="check-variant-catalog">
-                            <span class="s-t">{lang('Вариант', 'lightRed')}:</span>
-                            <div class="lineForm">
-                                <select id="сVariantSwitcher_{echo $p->firstVariant->getId()}" name="variant">
-                                    {foreach $variants as $key => $pv}
-                                        {if $pv->getName()}
-                                            {$name = ShopCore::encode($pv->getName())}
-                                        {else:}
-                                            {$name = ShopCore::encode($p->getName())}
-                                        {/if}
-                                        <option value="{echo $pv->getId()}" title="{echo $name}">
-                                            {echo $name}
-                                        </option>
-                                    {/foreach}
-                                </select>
-                            </div>
-                        </div>
-                    {/if}
-                {/if}
-                <!-- End. article & variant name & brand name -->
-                {if !$opi_vertical}
-                    {if $p->enable_comments && intval($Comments[$p->getId()]) !== 0}
-                        <div class="frame-star f-s_0">
-                            {$CI->load->module('star_rating')->show_star_rating($p, false)}
-                            <a href="{shop_url('product/'.$p->url.'#comment')}" class="count-response">
-                                {lang("Отзывы",'lightRed')}
-                                {intval($Comments[$p->getId()])}
-                            </a>
-                        </div>
-                    {/if}
-                {/if}
-                {if !$opi_widget && !$opi_compare && !$opi_defaultItem && !$opi_wishListPage}
-                    <div class="frame-without-top">
-                        <div class="no-vis-table">
-                            <!--Start. Description-->
-                            {if $props = ShopCore::app()->SPropertiesRenderer->renderPropertiesInlineNew($p->getId())}
-                                <div class="short-desc">
-                                    <p>{echo $props}</p>
-                                </div>
-                            {elseif trim($p->getShortDescription()) != ''}
-                                <div class="short-desc">
-                                    {echo strip_tags($p->getShortDescription())}
-                                </div>
-                            {/if}
-                            <!-- End. Description-->
-                        </div>
-                    </div>
-                {/if}
-                {if !$opi_widget && !$opi_defaultItem}
-                    <div class="frame-without-top">
-                        <!-- Wish List & Compare List buttons -->
-                        <div class="frame-wish-compare-list">
-                            {if !$opi_compare}
-                                <div class="frame-btn-comp">
-                                    <!-- Start. Compare List button -->
-                                    <div class="btn-compare">
-                                        <button class="toCompare"
-                                                data-id="{echo $p->getId()}"
-                                                type="button"
-                                                data-title="{lang('В список сравнений','lightRed')}"
-                                                data-firtitle="{lang('В список сравнений','lightRed')}"
-                                                data-sectitle="{lang('В списке сравнений','lightRed')}"
-                                                data-rel="tooltip">
-                                            <span class="icon_compare"></span>
-                                            <span class="text-el d_l">{lang('В список сравнений','lightRed')}</span>
-                                        </button>
-                                    </div>
-                                    <!-- End. Compare List button -->
-                                </div>
-                            {/if}
-                            {if $opi_wishlist}
-                                <!-- Start. Wish list buttons -->
-                                {foreach $variants as $key => $pv}
-                                    <div class="frame-btn-wish js-variant-{echo $pv->getId()} js-variant d_i-b_" {if $key != 0}style="display:none"{/if}>
-                                        {$CI->load->module('wishlist')->renderWLButton($pv->getId())}
-                                    </div>
-                                {/foreach}
-                                <!-- End. wish list buttons -->
-                            {/if}
-                        </div>
-                        <!-- End. Wish List & Compare List buttons -->
-                    </div>
-                {/if}
-                <!-- End. Collect information about Variants, for future processing -->
-            </div>
             <div class="frame-prices-btns">
                 <!-- Start. Prices-->
                 <div class="frame-prices f-s_0">
@@ -224,7 +135,7 @@
                                                 class="btnBuy"
                                                 >
                                                 <span class="icon_cleaner icon_cleaner_buy"></span>
-                                                <span class="text-el">{lang('В корзине', 'lightRed')}</span>
+                                                <span class="text-el">{lang('В корзине', 'light')}</span>
                                             </button>
                                         </div>
                                         <div class="btn-buy{if $inCart} d_n{/if}">
@@ -257,7 +168,7 @@
                                                 data-maxcount="{echo $pv->getstock()}"
                                                 >
                                                 <span class="icon_cleaner icon_cleaner_buy"></span>
-                                                <span class="text-el">{lang('Купить', 'lightRed')}</span>
+                                                <span class="text-el">{lang('Купить', 'light')}</span>
                                             </button>
                                         </div>
                                         {form_csrf()}
@@ -265,7 +176,7 @@
                                 </div>
                             {else:}
                                 <div class="js-variant-{echo $pv->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
-                                    <div class="c_b f-s_12 f-w_b">{lang('Нет в наличии', 'lightRed')}</div>
+                                    <div class="c_b f-s_12 f-w_b">{lang('Нет в наличии', 'light')}</div>
                                     <div class="btn-not-avail">
                                         <button
                                             class="infoBut"
@@ -297,7 +208,7 @@
                                             data-url="{echo shop_url('product/'.$p->getUrl())}"
                                             >
                                             <span class="icon-but"></span>
-                                            <span class="text-el d_l_1">{lang('Сообщить о появлении','lightRed')}</span>
+                                            <span class="text-el d_l_1">{lang('Сообщить о появлении','light')}</span>
                                         </button>
                                     </div>
                                 </div>
@@ -306,6 +217,95 @@
                     </div>
                 {/if}
                 <!-- End. Collect information about Variants, for future processing -->
+            </div>
+            <!-- Start. Check variant-->
+            <div class="left-product-catalog">
+                {if !$opi_widget && !$opi_defaultItem && !$opi_compare && !$opi_wishListPage}
+                    {if count($variants) > 1}
+                        <div class="check-variant-catalog">
+                            <span class="s-t">{lang('Вариант', 'light')}:</span>
+                            <div class="lineForm">
+                                <select id="сVariantSwitcher_{echo $p->firstVariant->getId()}" name="variant">
+                                    {foreach $variants as $key => $pv}
+                                        {if $pv->getName()}
+                                            {$name = ShopCore::encode($pv->getName())}
+                                        {else:}
+                                            {$name = ShopCore::encode($p->getName())}
+                                        {/if}
+                                        <option value="{echo $pv->getId()}" title="{echo $name}">
+                                            {echo $name}
+                                        </option>
+                                    {/foreach}
+                                </select>
+                            </div>
+                        </div>
+                    {/if}
+                {/if}
+                <!-- End. article & variant name & brand name -->
+                {if !$opi_vertical}
+                    {if $p->enable_comments && intval($Comments[$p->getId()]) !== 0}
+                        <div class="frame-star f-s_0">
+                            {$CI->load->module('star_rating')->show_star_rating($p, false)}
+                            <a href="{shop_url('product/'.$p->url.'#comment')}" class="count-response">
+                                {lang("Отзывы",'light')}
+                                {intval($Comments[$p->getId()])}
+                            </a>
+                        </div>
+                    {/if}
+                {/if}
+                {if !$opi_widget && !$opi_defaultItem}
+                    <div class="frame-without-top">
+                        <!-- Wish List & Compare List buttons -->
+                        <div class="frame-wish-compare-list no-vis-table">
+                            {if !$opi_compare}
+                                <div class="frame-btn-comp">
+                                    <!-- Start. Compare List button -->
+                                    <div class="btn-compare">
+                                        <button class="toCompare"
+                                                data-id="{echo $p->getId()}"
+                                                type="button"
+                                                data-title="{lang('В список сравнений','light')}"
+                                                data-firtitle="{lang('В список сравнений','light')}"
+                                                data-sectitle="{lang('В списке сравнений','light')}"
+                                                data-rel="tooltip">
+                                            <span class="icon_compare"></span>
+                                            <span class="text-el d_l">{lang('В список сравнений','light')}</span>
+                                        </button>
+                                    </div>
+                                    <!-- End. Compare List button -->
+                                </div>
+                            {/if}
+                            {if $opi_wishlist}
+                                <!-- Start. Wish list buttons -->
+                                {foreach $variants as $key => $pv}
+                                    <div class="frame-btn-wish js-variant-{echo $pv->getId()} js-variant d_i-b_" {if $key != 0}style="display:none"{/if}>
+                                        {$CI->load->module('wishlist')->renderWLButton($pv->getId())}
+                                    </div>
+                                {/foreach}
+                                <!-- End. wish list buttons -->
+                            {/if}
+                        </div>
+                        <!-- End. Wish List & Compare List buttons -->
+                    </div>
+                {/if}
+                <!-- End. Collect information about Variants, for future processing -->
+                {if !$opi_widget && !$opi_compare && !$opi_defaultItem && !$opi_wishListPage}
+                    <div class="frame-without-top">
+                        <div class="no-vis-table">
+                            <!--Start. Description-->
+                            {if $props = ShopCore::app()->SPropertiesRenderer->renderPropertiesInlineNew($p->getId())}
+                                <div class="short-desc">
+                                    <p>{echo $props}</p>
+                                </div>
+                            {elseif trim($p->getShortDescription()) != ''}
+                                <div class="short-desc">
+                                    {echo strip_tags($p->getShortDescription())}
+                                </div>
+                            {/if}
+                            <!-- End. Description-->
+                        </div>
+                    </div>
+                {/if}
             </div>
         </div>
         <!-- Start. Remove buttons if compare-->
@@ -337,7 +337,7 @@
                             data-effect-off="fadeOut"
                             data-source="{site_url('/wishlist/wishlistApi/deleteItem/'.$p[variant_id].'/'.$p[wish_list_id])}"
                             data-after="WishListFront.removeItem"
-                            ><span class="icon_remove"></span><span class="text-el d_l_1">{lang('Удалить', 'lightRed')}</span></button>
+                            ><span class="icon_remove"></span><span class="text-el d_l_1">{lang('Удалить', 'light')}</span></button>
                     </div>
                     <div class="btn-move-item-wl">
                         <button
@@ -345,13 +345,13 @@
                             data-drop="#wishListPopup"
                             data-source="{site_url('/wishlist/renderPopup/'.$p[variant_id].'/'.$p[wish_list_id])}"
                             data-always="true"
-                            ><span class="icon_move"></span><span class="text-el d_l_1">{lang('Переместить', 'lightRed')}</span>
+                            ><span class="icon_move"></span><span class="text-el d_l_1">{lang('Переместить', 'light')}</span>
                         </button>
                     </div>
                 </div>
             {/if}
         {/if}
         <!-- End. For wishlist page-->
+        <div class="decor-element"></div>
     </li>
-
 {/foreach}

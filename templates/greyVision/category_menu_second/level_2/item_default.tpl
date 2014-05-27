@@ -1,11 +1,13 @@
 <li>
     <a href="{$link}" title="{$title}" class="frame-photo-title">
-        {if $image}
-            <span class="photo-block">
-                <span class="helper"></span>
+        <span class="photo-block">
+            <span class="helper"></span>
+            {if $image}
                 <img src="{$image}" alt="{echo $title}"/>
-            </span>
-        {/if}
+            {else:}
+                <img src="{site_url('uploads/shop/nophoto/nophoto.jpg')}" alt="{lang('Нет фото', 'greyVision')}"/>
+            {/if}
+        </span>
         <span class="text-el">{$title}</span>
     </a>
 </li>
