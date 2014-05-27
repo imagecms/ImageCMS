@@ -75,7 +75,7 @@ article, .container, .special-proposition > .frame-title{max-width: 980px;}
 .vertical-layout .items-complect  [class*="items"]{max-width: 350px;}
 
 .vertical-menu{width: 225px;float: left;}
-.vertical-menu .container{width: auto; padding: 0;}
+.vertical-menu > .container{width: auto; padding: 0;margin-bottom: 20px;}
 .vertical-menu + .content{float: right;width: 732px;}
 .vertical-layout .right-catalog{float: left;width: 66%;}
 .vertical-layout .left-catalog{float: right;width: 225px;}
@@ -334,7 +334,7 @@ input.input-search{height: 33px;padding-right: 14px;}
 .items-news .photo-block{margin-bottom: 7px;margin-right: 13px;width: 62px;height: 62px;border: 1px solid transparent;}
 .items-news .photo-block > img{max-height: 110px;}
 .right-start-page .items-news > li + li{padding-top: 14px;}
-.vertical-layout .items-news > li{width: 346px;padding-right: 20px;}
+.vertical-layout .items-news > li{max-width: 346px;padding-right: 20px;}
 .items-news a{display: block;margin-bottom: 3px;}
 .items-news .date{display: block;margin-bottom: 2px;}
 .items-news .photo-block{float: left;}
@@ -371,7 +371,6 @@ input.input-search{height: 33px;padding-right: 14px;}
 .item-report{margin-bottom: 16px;}
 .item-report .description{padding-top: 0;}
 
-.item-product{padding-bottom: 20px;}
 .item-product .frame-star{margin-bottom: 10px;}
 .item-product .frame-photo-title{display: block;margin-bottom: 10px;}
 .patch-product-view{overflow: hidden;margin-bottom: 10px;}
@@ -508,7 +507,7 @@ input.input-search{height: 33px;padding-right: 14px;}
 .vertical-carousel .jcarousel-clip, .vertical-carousel .content-carousel{max-height: 466px;}
 .carousel-category-popular .frame-title{position: relative;overflow: hidden;}
 
-.frame-brands{margin-top: 20px;}
+.frame-brands{margin-top: 20px;margin-bottom: 20px;}
 .frame-brands .frame-title{position: relative;z-index: 3;}
 .frame-brands .frame-title > .title{position: absolute;top: -14px;left: 13px;}
 
@@ -585,7 +584,7 @@ input.input-search{height: 33px;padding-right: 14px;}
 .frame-drop-menu > ul{position: relative;height: auto !important;overflow: visible !important;}
 .not-js .frame-item-menu:hover .frame-drop-menu{display: block;}
 .menu-row-category .frame-drop-menu > ul > li.hoverM:after{display: block;}
-.menu-row-category .frame-drop-menu > ul > li .title-category-l1 { border-top: 1px solid transparent; margin: 0 16px 0 11px; padding: 5px 22px 5px 8px; display: inline-block; width: 155px; position: relative;}
+.menu-row-category .frame-drop-menu > ul > li .title-category-l1 {border-top: 1px solid transparent; margin: 0 16px 0 0; padding: 5px 22px 5px 8px; display: inline-block; width: 155px; position: relative;}
 .menu-row-category .frame-drop-menu > ul > li:first-child .title-category-l1 {border-top: none;}
 .menu-row-category .frame-drop-menu > ul > li:hover .title-category-l1 {margin-right: 0;padding-right: 38px;}
 .left-drop{right: auto !important;}
@@ -654,7 +653,7 @@ input.input-search{height: 33px;padding-right: 14px;}
 
 .menu-row-category .frame-drop-menu .frame-l2 > ul{padding: 5px 9px;}
 .menu-row-category .frame-l2{display:none;position: absolute;top: 0;}
-.menu-row-category .left-drop .frame-l2, .menu-row-category .frame-l2{left: 212px;height: auto !important;}
+.menu-row-category .left-drop .frame-l2, .menu-row-category .frame-l2{left: 204px;height: auto !important;}
 .menu-row-category .right-drop .frame-l2{right: 200px;left: auto;}
 
 .menu-row-category .frame-drop-menu > ul > li{display: block;position: relative;}
@@ -699,7 +698,7 @@ li[class*="x"] > .title-category-l1{width: 100%;text-align: center;display: bloc
 /*/menu*/
 
 /*benefits*/
-.frame-benefits{position: relative;}
+.frame-benefits{position: relative;margin-bottom: 20px;}
 .frame-benefits-product{margin-bottom: 30px;padding-bottom: 5px;overflow: hidden;}
 .items-benefits{padding: 0 14px;}
 .items-benefits > li{position: relative;width: 100%;}
@@ -722,6 +721,7 @@ li[class*="x"] > .title-category-l1{width: 100%;text-align: center;display: bloc
 /*form*/
 /*cusel plugin style*/
 .check-variant-delivery .lineForm, .check-variant-payment .lineForm{width: 100%;}
+.header-category .lineForm{max-width: 300px;}
 .check-variant-payment .preloader{display: none;z-index: 2;}
 .paymentMethod{position: relative;z-index: 1;}
 .check-variant-product {margin-bottom: 19px;}

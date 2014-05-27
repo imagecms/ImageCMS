@@ -722,6 +722,7 @@ li[class*="x"] > .title-category-l1{width: 100%;text-align: center;display: bloc
 /*form*/
 /*cusel plugin style*/
 .check-variant-delivery .lineForm, .check-variant-payment .lineForm{width: 100%;}
+.header-category .lineForm{max-width: 300px;}
 .check-variant-payment .preloader{display: none;z-index: 2;}
 .paymentMethod{position: relative;z-index: 1;}
 .check-variant-product {margin-bottom: 19px;}

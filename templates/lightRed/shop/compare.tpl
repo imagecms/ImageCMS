@@ -21,7 +21,7 @@
                         <h1 class="d_i title">{lang('Сравнение товаров','lightRed')}</h1>
                     </div>
                     <ul class="tabs groups-buttons tabs-compare-diferent" data-cookie="compare">
-                        <li class="btn-def {if $_COOKIE['compare'] == "#all-params"}active{/if}">
+                        <li class="btn-def {if $_COOKIE['compare'] == "#all-params" || $_COOKIE['compare'] == NULL}active{/if}">
                             <button type="button" data-href="#all-params">
                                 <span class="text-el">{lang('Все параметры','lightRed')}</span>
                             </button>

@@ -62,7 +62,7 @@ a.c_w:hover{color: #51d2ff !important;}
 .horizontal-menu .menu-main td > .frame-item-menu:hover{background-color: #f6f6f6;}
 .vertical-menu .menu-main td > .frame-item-menu:hover{ background: #e46d00; }
 .vertical-menu .menu-main tr:first-child td > .frame-item-menu:hover { border-top-color: #e46d00; }
-.horizontal-menu .menu-main td > .frame-item-menu.active{background-color: #e06e06;}
+.vertical-menu .menu-main td > .frame-item-menu.active{background-color: #e06e06;}
 .menu-main .title-category-l1.active > span {cursor: pointer;color: #c1c1c1 !important;}
 .vertical-menu .frame-item-menu {background: #fd7c06; border-top-color: #ff9a3d;}
 .menu-main tr:first-child .frame-item-menu {border-top-color: #fd7c06;}

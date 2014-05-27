@@ -4,6 +4,7 @@
 
 <div class="frame-menu-main vertical-menu">
     {\Category\RenderMenu::create()->setConfig(array('cache'=>TRUE))->load('category_menu')}
+    {widget('latest_news')}
 </div>
 <div class="content">
 
@@ -24,9 +25,6 @@
             </div>
 
         </div>
-    </div>
-    <div class="container">
-        {widget('latest_news')}
     </div>
     {if trim($category->getDescription()) != ""}
     <div class="frame-seo-text">
