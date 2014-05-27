@@ -750,7 +750,52 @@ $(document).ready(function() {
             container: '#mainContent'
         });
     });
-    ;
+
+// Properties filter start
+    $('.property_list_order').live('click', function() {
+        var column = $(this).attr('data-column');
+        $('input[name=orderMethod]').attr('value', column);
+        if ($('input[name=order]').attr('value') === '') {
+            $('input[name=order]').attr('value', 'ASC');
+        } else {
+            if ($('input[name=order]').attr('value') === 'ASC') {
+                $('input[name=order]').attr('value', 'DESC');
+            } else {
+                $('input[name=order]').attr('value', 'ASC');
+            }
+        }
+        ;
+        var query_string = $('#filter_form').serialize();
+        var url = $('#filter_form').attr('action');
+        $.pjax({
+            url: url + '?' + query_string,
+            container: '#mainContent'
+        });
+    });
+
+    $('.propFilterSelect').off('change').live('change', function(event) {
+        var query_string = $('#filter_form').serialize();
+        var url = $('#filter_form').attr('action');
+        $.pjax({
+            url: url + '?' + query_string,
+            container: '#mainContent'
+        });
+    });
+
+    $('.properties_filter_inputs').find('input').on('keypress', function(event) {
+        var keycode = (event.keyCode ? event.keyCode : event.which);
+        if (keycode == '13') {
+            var query_string = $('#filter_form').serialize();
+            var url = $('#filter_form').attr('action');
+            
+            $.pjax({
+                url: url + '?' + query_string,
+                container: '#mainContent'
+            });
+        }
+    });
+
+    // Properties filter end
 
     $('.move_to_cat').live('click', function() {
         var catId = $('#moveCategoryId').attr('value');
@@ -1660,7 +1705,7 @@ $(document).ready(function() {
             $.pjax({url: location.pathname + '?' + formData, container: "#mainContent"});
         }, 1000);
     });
-    
+
 });
 
 

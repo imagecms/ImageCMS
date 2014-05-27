@@ -11,7 +11,7 @@ body{background: #faf8f6;color: #333;}
 
 .f-w_b{font-weight: bold!important;}
 .f-w_n{font-weight: normal!important;}
-.items-brand-image > li > .frame-photo-title > .title, .start-page-category-menu > li .title{font-weight: normal;}
+.items-brand-image > li > .frame-photo-title > .title{font-weight: normal;}
 .text blockquote:before, .text blockquote:after{border-width: 1px 0;border-style: solid;border-top-color: #e7e2dd;border-bottom-color: #fff;}
 
 [class*="icon-"], .title-category-l1.is-sub:after, .title-category-l1.is-sub .ie, .ui-slider-handle, .product-status, .niceCheck, .niceRadio{background: url("images/sprite.png") no-repeat;}
@@ -124,7 +124,7 @@ a:focus, a:active {color: #51d2ff;}
 /*/fill*/
 
 /*groups selectors*/
-.phones-header .phone, .start-page-category-menu > li .title, .pagination li > a, .pagination li > span{font-size: 14px;}
+.phones-header .phone, .pagination li > a, .pagination li > span{font-size: 14px;}
 .frame-item-menu > .frame-title .text-el, .frame-drop-menu .title-category-l1 > .text-el, .cusel, .compare-characteristic > li > span, .frame-cur-sum-price .price-new .price, .frame-cur-sum-price .price-discount .price{font-size: 12px;}
 .frame-kit, .items-default > li, .frame-item-menu > .frame-title > .title > .text-el, .tabs-data > li > a, .tabs-data > li > button, .drop-bask .frame-items .price, .drop-bask .frame-items .curr, .frame-bask-order .description > .frame-prices .price, .frame-bask-order .description > .frame-prices .curr, .table-info-order .price-new .price, .table-profile .price-new .price, .nav > li > a, .nav > li > span, .nav.nav-vertical ul{font-size: 13px;}
 .table-info-order .price-new .price, .table-profile .price-new .price, .cusel, .characteristic, .table-info-order td{font-weight: normal;}
@@ -519,29 +519,6 @@ footer li a:hover, footer li button:hover{color: #51d2ff;}
 /*/footer*/
 
 /*menus*/
-.frame-start-page-category-menu{
-    border-top: 2px solid #d5cfc8;
-    background: #0489bc; /* Old browsers */
-    background: -moz-linear-gradient(top,  #0489bc 0%, #0377af 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#0489bc), color-stop(100%,#0377af)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top,  #0489bc 0%,#0377af 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top,  #0489bc 0%,#0377af 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top,  #0489bc 0%,#0377af 100%); /* IE10+ */
-    background: linear-gradient(to bottom,  #0489bc 0%,#0377af 100%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0489bc', endColorstr='#0377af',GradientType=0 ); /* IE6-9 */
-}
-.frame-start-page-category-menu:before{
-    content: "";position: absolute;left: 0;top: -2px;width: 120%;height: 2px;
-    -moz-box-shadow: 0 5px 10px rgba(0,79,109,0.3);-webkit-box-shadow: 0 5px 10px rgba(0,79,109,0.3);box-shadow: 0 5px 10px rgba(0,79,109,0.3);
-}
-.start-page-category-menu a{color: #fff;}
-.start-page-category-menu > li .photo-block{-moz-border-radius: 4px;-webkit-border-radius: 4px;border-radius: 4px;-moz-box-shadow: 0 1px 4px #005e88;-webkit-box-shadow: 0 1px 4px #005e88;box-shadow: 0 1px 4px #005e88;}
-.start-page-category-menu > li .title{text-transform: uppercase;filter:progid:DXImageTransform.Microsoft.Alpha(opacity=50);-moz-opacity: 0.5;-khtml-opacity: 0.5;opacity: 0.5;}
-.start-page-category-menu .sub-category > li{color: #fff;padding-left: 1px;}
-.start-page-category-menu .sub-category > li > a{font-weight: bold;border-bottom: 1px solid #4fa4ca;}
-.start-page-category-menu > li > .frame-photo-title:hover .title{filter: progid:DXImageTransform.Microsoft.Alpha(opacity=100);-moz-opacity: 1;-khtml-opacity: 1;opacity: 1;border-bottom: 0;}
-.start-page-category-menu .sub-category > li > a:hover{filter: progid:DXImageTransform.Microsoft.Alpha(opacity=50);-moz-opacity: .5;-khtml-opacity: .5;opacity: .5;}
-
 .frame-menu-category-first .title-category-l1{text-decoration: none;color: #333;}
 .frame-menu-category-first .title-category-l1:hover{text-decoration: underline;color: #51d2ff;}
 /*/menus*/
