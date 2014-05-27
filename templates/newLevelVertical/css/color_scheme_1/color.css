@@ -432,13 +432,6 @@ footer li a:hover, footer li button:hover{color: #51d2ff;}
 /*/footer*/
 
 /*menus*/
-.start-page-category-menu a{color: #fff;}
-.start-page-category-menu > li .photo-block{-moz-box-shadow: 0 1px 4px #005e88;-webkit-box-shadow: 0 1px 4px #005e88;box-shadow: 0 1px 4px #005e88;}
-.start-page-category-menu > li .title{filter:progid:DXImageTransform.Microsoft.Alpha(opacity=50);-moz-opacity: 0.5;-khtml-opacity: 0.5;opacity: 0.5;}
-.start-page-category-menu .sub-category > li{color: #fff;}
-.start-page-category-menu > li > .frame-photo-title:hover .title{filter: progid:DXImageTransform.Microsoft.Alpha(opacity=100);-moz-opacity: 1;-khtml-opacity: 1;opacity: 1;border-bottom: 0;}
-.start-page-category-menu .sub-category > li > a{border-bottom-color: #4fa4ca;}
-.start-page-category-menu .sub-category > li > a:hover{filter: progid:DXImageTransform.Microsoft.Alpha(opacity=50);-moz-opacity: .5;-khtml-opacity: .5;opacity: .5;}
 .frame-menu-category-first .title-category-l1{color: #333;}
 .frame-menu-category-first .title-category-l1:hover{color: #51d2ff;}
 
@@ -1029,7 +1022,6 @@ input.input-search{border-color: #d8d8d8;-moz-box-shadow: inset 0 2px 2px #e8e8e
 
 /*page 404*/
 .page-404 .title{color: #0f9ecd;}
-.page-404:before{-moz-box-shadow: 0 1px 9px rgba(0,0,0,0.1);-webkit-box-shadow: 0 1px 9px rgba(0,0,0,0.1);box-shadow: 0 1px 9px rgba(0,0,0,0.1);}
 .page-404 p{color: #999;}
 .page-404 b{color: #666;}
 /*/page 404*/

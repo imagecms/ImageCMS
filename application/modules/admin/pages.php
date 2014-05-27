@@ -807,8 +807,7 @@ class Pages extends BaseAdminController {
             else if ($action == 'move')
                 showMessage(lang("Successfull moving", "admin"));
             pjax($_SERVER["HTTP_REFERER"]);
-        }
-        else
+        } else
             showMessage(lang("The operation error", "admin"));
     }
 

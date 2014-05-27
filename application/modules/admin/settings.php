@@ -161,7 +161,6 @@ class Settings extends BaseAdminController {
                         if (SHOP_INSTALLED && is_dir(TEMPLATES_PATH . $file . '/shop/')) {
                             $new_arr_shop[$file] = $file;
                         }
-
                         $new_arr[$file] = $file;
                     }
                 }
@@ -438,15 +437,6 @@ class Settings extends BaseAdminController {
             $this->session->set_userdata('language', $lang);
         }
         redirect($_SERVER['HTTP_REFERER'] ? $_SERVER['HTTP_REFERER'] : '/admin/dashboard');
-    }
-
-    /**
-     * Save main page settings
-     *
-     * @access public
-     */
-    function save_main() {
-        
     }
 
 }

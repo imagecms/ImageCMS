@@ -3,7 +3,7 @@
         <div class="msg layout-highlight layout-highlight-msg">
             <div class="info">
                 <span class="icon_info"></span>
-                <span class="text-el">{lang('Вы ище не совершали покупки','lightRed')}</span>
+                <span class="text-el">{lang('Вы еще не совершали покупки','lightRed')}</span>
             </div>
         </div>
     {else:}
