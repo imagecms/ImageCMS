@@ -186,7 +186,7 @@ a:hover, .selected a, .ref:hover, .nav-static-pages > li > a:hover{text-decorati
 .items-search-autocomplete{border-bottom: 1px solid transparent;}
 
 .items-news a{text-decoration: none;}
-.items-news > li .title{font-size: 18px;font-weight: normal;line-height: 1;}
+.items-news > li .title{font-size: 12px;font-weight: normal;line-height: 1;}
 .items-news .description{margin-bottom: 10px;}
 
 .item-product .frame-variant-name{margin-right: 10px;}
@@ -326,7 +326,7 @@ hr{border-top: 1px solid transparent;border-bottom: 1px solid transparent;}
 /*/text*/
 
 /*seo*/
-.frame-seotext-news{padding-top: 45px;position: relative;background: url("images/fon_benefits.png") repeat;}
+.frame-seotext-news{padding-top: 45px;position: relative;}
 .vertical-layout .frame-seotext-news{padding-top: 0;}
 .frame-seotext-news:before{content: "";position: absolute;left: -5%;top: -6px;width: 110%;height: 6px;}
 .vertical-layout .frame-seotext-news:before{content: none;}
@@ -572,9 +572,7 @@ input.input-search{-moz-border-radius: 2px 0 0 2px;-webkit-border-radius: 2px 0 
 /*/page order*/
 
 /*page 404*/
-.page-404{background: url("images/fon_404.png") repeat;}
 .page-404 .title{font-size: 35px;}
-.page-404:before{content: "";position: absolute;left: -5%;top: -1px;width: 110%;height: 4px;}
 /*/page 404*/
 
 /*footer*/
