@@ -4,6 +4,7 @@
         {widget('benefits')}
     </div>
     {widget('brands')}
+    {widget('latest_news', TRUE)}
 </div>
 <div class="content">
     <div class="page-main">
@@ -19,7 +20,6 @@
             {widget('new_products')}
         </div>
         { */}
-        {widget('latest_news', TRUE)}
         <div class="frame-seotext-news">
             <div class="frame-seo-text">
                 <div class="container">
