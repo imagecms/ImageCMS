@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-16 05:46+0300\n"
-"PO-Revision-Date: 2014-05-16 05:46+0300\n"
+"POT-Creation-Date: 2014-05-28 12:39+0300\n"
+"PO-Revision-Date: 2014-05-28 12:39+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -18,13 +18,14 @@ msgstr ""
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:245
+#: ./application/modules/mod_discount/assets/admin/create.tpl:235
+msgid "ID / Name / Number"
+msgstr "ID / Название / Артикул"
+
 #: ./application/modules/mod_discount/classes/DiscountManager.php:309
 msgid "Error creating discount"
 msgstr "Ошибка при создании скидки"
-
-#: ./application/modules/mod_discount/assets/admin/edit.tpl:245
-msgid "Name / ID / Number"
-msgstr "Имя / ID / Артикул"
 
 #: ./application/modules/mod_discount/admin.php:189
 #: ./application/modules/mod_discount/admin.php:197
@@ -41,10 +42,6 @@ msgstr "Скидка не существует"
 msgid "This group of users already have active discount"
 msgstr "У этой группы пользователей уже есть действующая скидка"
 
-#: ./application/modules/mod_discount/assets/admin/create.tpl:235
-msgid "ID / Name"
-msgstr "ID / Имя"
-
 #: ./application/modules/mod_discount/assets/admin/edit.tpl:205
 #: ./application/modules/mod_discount/assets/admin/create.tpl:194
 msgid "ID / Name / E-mail"
@@ -54,7 +51,7 @@ msgstr "ID / Имя / Электронная почта"
 msgid "Active"
 msgstr "Активен"
 
-#: ./application/modules/mod_discount/classes/BaseDiscount.php:188
+#: ./application/modules/mod_discount/classes/BaseDiscount.php:182
 #: ./application/modules/mod_discount/assets/admin/edit.tpl:130
 #: ./application/modules/mod_discount/assets/admin/list.tpl:25
 #: ./application/modules/mod_discount/assets/admin/create.tpl:126
@@ -105,14 +102,14 @@ msgstr "Выберите тип скидки"
 msgid "User group"
 msgstr "Группа пользователей"
 
-#: ./application/modules/mod_discount/classes/BaseDiscount.php:185
+#: ./application/modules/mod_discount/classes/BaseDiscount.php:179
 #: ./application/modules/mod_discount/assets/admin/create.tpl:123
 msgid "Users group"
 msgstr "Группа пользователей"
 
 #: ./application/modules/mod_discount/assets/admin/list.tpl:79
-#: ./application/modules/mod_discount/assets/js/adminScripts.js:235
-#: ./application/modules/mod_discount/assets/js/adminScripts.js:237
+#: ./application/modules/mod_discount/assets/js/adminScripts.js:255
+#: ./application/modules/mod_discount/assets/js/adminScripts.js:257
 msgid "Yes"
 msgstr "Да"
 
@@ -154,7 +151,7 @@ msgstr "Использований"
 msgid "Maximum possible discount is using"
 msgstr "Используется максимально возможная скидка"
 
-#: ./application/modules/mod_discount/classes/BaseDiscount.php:186
+#: ./application/modules/mod_discount/classes/BaseDiscount.php:180
 #: ./application/modules/mod_discount/assets/admin/edit.tpl:128
 #: ./application/modules/mod_discount/assets/admin/list.tpl:23
 #: ./application/modules/mod_discount/assets/admin/create.tpl:124
@@ -231,7 +228,7 @@ msgstr "Название скидки"
 msgid "Discount name"
 msgstr "Название скидки"
 
-#: ./application/modules/mod_discount/classes/BaseDiscount.php:183
+#: ./application/modules/mod_discount/classes/BaseDiscount.php:177
 #: ./application/modules/mod_discount/assets/admin/edit.tpl:125
 #: ./application/modules/mod_discount/assets/admin/list.tpl:20
 #: ./application/modules/mod_discount/assets/admin/create.tpl:121
@@ -273,8 +270,8 @@ msgstr "Неправильный тип скидки"
 
 #: ./application/modules/mod_discount/assets/admin/list.tpl:81
 #: ./application/modules/mod_discount/assets/admin/create.tpl:119
-#: ./application/modules/mod_discount/assets/js/adminScripts.js:228
-#: ./application/modules/mod_discount/assets/js/adminScripts.js:229
+#: ./application/modules/mod_discount/assets/js/adminScripts.js:248
+#: ./application/modules/mod_discount/assets/js/adminScripts.js:249
 msgid "No"
 msgstr "Нет"
 
@@ -293,7 +290,7 @@ msgstr "Период действия скидки от"
 msgid "Gift Certificate"
 msgstr "Подарочный сертификат"
 
-#: ./application/modules/mod_discount/classes/BaseDiscount.php:184
+#: ./application/modules/mod_discount/classes/BaseDiscount.php:178
 #: ./application/modules/mod_discount/assets/admin/edit.tpl:126
 #: ./application/modules/mod_discount/assets/admin/list.tpl:21
 #: ./application/modules/mod_discount/assets/admin/create.tpl:122
@@ -339,7 +336,7 @@ msgstr "Редактировать"
 msgid "Discount not found"
 msgstr "Скидка не найден"
 
-#: ./application/modules/mod_discount/assets/js/adminScripts.js:182
+#: ./application/modules/mod_discount/assets/js/adminScripts.js:185
 msgid "Discount deleted"
 msgstr "Скидка удалена"
 
@@ -356,7 +353,6 @@ msgstr "Скидки интернет-магазина"
 msgid "Discount creating"
 msgstr "Создание скидки"
 
-#: ./application/modules/mod_discount/assets/admin/list.tpl:11
 #: ./application/modules/mod_discount/assets/admin/create.tpl:16
 #: ./application/modules/mod_discount/assets/admin/create.tpl:29
 msgid "Create"
@@ -382,7 +378,7 @@ msgstr "Список скидок пуст"
 msgid "Status changed"
 msgstr "Статус изменен"
 
-#: ./application/modules/mod_discount/classes/BaseDiscount.php:182
+#: ./application/modules/mod_discount/classes/BaseDiscount.php:176
 #: ./application/modules/mod_discount/assets/admin/edit.tpl:124
 #: ./application/modules/mod_discount/assets/admin/list.tpl:19
 #: ./application/modules/mod_discount/assets/admin/create.tpl:120
@@ -424,7 +420,7 @@ msgstr "тип скидки"
 msgid "discount type: product"
 msgstr "тип скидки: наименования"
 
-#: ./application/modules/mod_discount/classes/BaseDiscount.php:187
+#: ./application/modules/mod_discount/classes/BaseDiscount.php:181
 #: ./application/modules/mod_discount/assets/admin/edit.tpl:129
 #: ./application/modules/mod_discount/assets/admin/list.tpl:24
 #: ./application/modules/mod_discount/assets/admin/create.tpl:125
@@ -469,6 +465,6 @@ msgstr "Фиксированный"
 msgid "number"
 msgstr "число"
 
-#: tmpLink
+#: ./application/modules/mod_discount/assets/admin/list.tpl:11
 msgid "Create discount"
 msgstr "Создать скидку"
