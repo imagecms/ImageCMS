@@ -91,6 +91,7 @@ input[type="text"][disabled], input[type="password"][disabled], textarea[disable
 }
 .menu-row-category .frame-drop-menu .frame-l2 > ul, .menu-row-category .frame-drop-menu .frame-l2{background-color: #fafbfc;}
 .menu-row-category .frame-drop-menu > ul > li:after{border-left-color: #e8edef;}
+.menu-col-category .title-category-l1 > .text-el{color: #333;}
 .menu-main td > .frame-item-menu > ul{background-color: #fff;}
 .menu-main td > .frame-item-menu > ul{border-color: #0d6b8d;}
 .frame-item-menu > .frame-title > .title .text-el{color: #fff;}

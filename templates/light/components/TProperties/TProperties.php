@@ -9,7 +9,7 @@ class TProperties extends \template_manager\classes\TComponent {
      * Properties names
      * @var type 
      */
-    private $propType = array('dropDown', 'scroll', 'select');
+    private $propType = array('dropDown', 'scroll');
 
     /**
      * Prepare param from xml to save in db

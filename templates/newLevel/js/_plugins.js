@@ -1100,7 +1100,9 @@ function getCookie(c_name)
                             methods._position(menuW, $thisL, dropW2, $thisDrop, $thisW, countColumn, sub2Frame, direction);
                         }
                         $this.data('kk', 0);
-                    }).css('height', sH);
+                    });
+                    if (!vertical)
+                        menuItem.css('height', sH);
                     if (!vertical)
                         menuItem.find('.helper:first').css('height', sH);
                     menu.removeClass(classRemove);
