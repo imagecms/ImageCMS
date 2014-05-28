@@ -893,7 +893,7 @@ input + .msg{margin-top: 5px;}
 .frame-sort{position: relative;z-index: 1; margin-bottom: 10px;width: 47%;float: left;margin-right: 30px;}
 .frame-sort .lineForm {width: 100%;}
 .frame-catalog-view{text-align: right;}
-.header-category .title{vertical-align: middle;margin-right: 12px;}
+.header-category .title{vertical-align: middle;margin-right: 12px;margin-bottom: 6px;}
 .frame-sort .title {margin-right: 10px;}
 .header-category .groups-buttons, .header-category .lineForm{vertical-align: middle;}
 
