@@ -469,7 +469,7 @@
                     <div class="inside-padd">
                         <!-- Start. Price block-->
                         <div class="gen-sum-order clearfix">
-                            <span class="title f_l">{lang('К оплате с учетом доставки','greyVision')}:</span>
+                            <span class="title f_l">{lang('К оплате','greyVision')}:</span>
                             <span class="frame-prices f-s_0 f_r">
                                 <span class="current-prices f-s_0">
                                     <span class="price-new">

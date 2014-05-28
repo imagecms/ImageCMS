@@ -155,10 +155,22 @@ class Sitemap extends MY_Controller {
     private $sitemap_path = './application/modules/sitemap/map/sitemap.xml';
 
     /**
+     * Path to folder where site_maps files exists
+     * @var type 
+     */
+    private $site_map_folder_path = './uploads/sitemaps';
+
+    /**
      * Sitemap items
      * @var array 
      */
     public $items = array();
+
+    /**
+     * Max url tag count 
+     * @var type 
+     */
+    private $max_url_count = 10;
 
     function __construct() {
         parent::__construct();
@@ -352,7 +364,7 @@ class Sitemap extends MY_Controller {
                 'loc' => site_url(),
                 'changefreq' => $this->main_page_changefreq,
                 'priority' => $this->main_page_priority,
-                'lastmod' =>  $date = date('Y-m-d', time())
+                'lastmod' => $date = date('Y-m-d', time())
             );
         }
 
@@ -492,7 +504,7 @@ class Sitemap extends MY_Controller {
                 $url = site_url('shop/brand/' . $shopbr['url']);
                 if ($this->not_blocked_url('shop/brand/' . $shopbr['url'])) {
                     if (!$this->robotsCheck($url)) {
-                         // create date
+                        // create date
                         if ($shopbr['updated'] > 0) {
                             $date = date('Y-m-d', $shopbr['updated']);
                         } else {
@@ -588,23 +600,52 @@ class Sitemap extends MY_Controller {
     private function generate_xml($items = array()) {
         $data = '';
 
+        $site_maps = array();
+        $url_count = 0;
         while ($item = current($items)) {
-            $data .= "<url>\n";
-            foreach ($item as $k => $v) {
-                if ($v != '') {
-                    $data .= "\t<$k>" . htmlspecialchars($v) . "</$k>\n";
+            if ($url_count < $this->max_url_count) {
+                $data .= "<url>\n";
+                foreach ($item as $k => $v) {
+                    if ($v != '') {
+                        $data .= "\t<$k>" . htmlspecialchars($v) . "</$k>\n";
+                    }
                 }
-            }
-            $data .= "</url>\n";
+                $data .= "</url>\n";
 
-            next($items);
+                next($items);
+            } else {
+                $site_maps[] = "<\x3Fxml version=\"1.0\" encoding=\"UTF-8\"\x3F>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n" . $data . "\t</urlset>";
+                $url_count = 0;
+                $data = '';
+            }
+            $url_count++;
         }
-//        var_dumps_exit($data);
-//        $start_memory = memory_get_usage();
-        $result = "<\x3Fxml version=\"1.0\" encoding=\"UTF-8\"\x3F>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n" . $data . "\t</urlset>";
-//        var_dumps_exit((memory_get_usage() - $start_memory) / 1024);
+        if ($site_maps) {
+            $this->saveSiteMaps($site_maps);
+        } else {
+            $result = "<\x3Fxml version=\"1.0\" encoding=\"UTF-8\"\x3F>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n" . $data . "\t</urlset>";
+        }
+        var_dumps_exit('--------------');
 
         return $result;
+    }
+
+    private function saveSiteMaps($site_maps) {
+        foreach ($site_maps as $site_map) {
+            if ($site_map) {
+                if (!is_dir($this->site_map_folder_path)) {
+                    mkdir($this->site_map_folder_path, 0777);
+                }
+                
+                foreach (glob($this->site_map_folder_path . '/sitemap*') as $site_map_file) {
+                    chmod($site_map_file, 0777);
+                    unlink($site_map_file);
+                }
+
+
+                var_dumps($site_map);
+            }
+        }
     }
 
     /**

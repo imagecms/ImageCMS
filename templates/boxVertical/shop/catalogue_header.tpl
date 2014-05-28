@@ -36,6 +36,7 @@
             <!--         End. Product per page  -->
             <!--        Start. Show products as list or table-->
             <nav class="frame-catalog-view f_r">
+                <span class="title d_b t-a_l">{lang('Вид','boxVertical')}:</span>
                 <ul class="tabs groups-buttons tabs-list-table" data-elchange="#items-catalog-main" data-cookie="listtable">
                     <li class="btn-def2 {if $_COOKIE['listtable'] == 'table' || $_COOKIE['listtable'] == NULl}active{/if}">
                         <button type="button" data-href="table" data-title="{lang('Таблица','boxVertical')}" data-rel="tooltip">
