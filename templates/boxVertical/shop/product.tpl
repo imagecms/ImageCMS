@@ -23,9 +23,9 @@
         {\Category\RenderMenu::create()->setConfig(array('cache'=>TRUE))->load('category_menu')}
     </div>
     <div class="content">
-
         <div class="frame-inside page-product">
             <div class="container">
+                {$CI->load->module('banners')->render($model->getId())}
                 {$inCartFV = getAmountInCart('SProducts', $model->firstVariant->getId())}
                 <div class="clearfix">
                     <div class="f-s_0 title-product">

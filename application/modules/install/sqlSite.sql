@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.10
+-- version 3.4.10.1deb1
 -- http://www.phpmyadmin.net
 --
--- Хост: 127.0.0.1:3306
--- Час створення: Трв 20 2014 р., 13:24
--- Версія сервера: 5.5.35-log
--- Версія PHP: 5.4.22
+-- Host: localhost
+-- Generation Time: May 28, 2014 at 11:46 AM
+-- Server version: 5.5.32
+-- PHP Version: 5.4.25-1+sury.org~precise+2
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -17,15 +17,16 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- База даних: `image`
+-- Database: `imagecms`
 --
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `category`
+-- Table structure for table `category`
 --
 
+DROP TABLE IF EXISTS `category`;
 CREATE TABLE IF NOT EXISTS `category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `parent_id` int(11) NOT NULL DEFAULT '0',
@@ -48,30 +49,33 @@ CREATE TABLE IF NOT EXISTS `category` (
   `field_group` int(11) NOT NULL,
   `category_field_group` int(11) NOT NULL,
   `settings` varchar(10000) DEFAULT NULL,
+  `created` int(11) NOT NULL,
+  `updated` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `name` (`name`),
   KEY `url` (`url`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=62 ;
 
 --
--- Дамп даних таблиці `category`
+-- Dumping data for table `category`
 --
 
-INSERT INTO `category` (`id`, `parent_id`, `position`, `name`, `title`, `short_desc`, `url`, `image`, `keywords`, `description`, `fetch_pages`, `main_tpl`, `tpl`, `page_tpl`, `per_page`, `order_by`, `sort_order`, `comments_default`, `field_group`, `category_field_group`, `settings`) VALUES
-(56, 0, 0, 'Услуги', '', '<p>Помимо разработки и продажи роботов различных конфигураций, наша компания предоставляет также полный спектр услуг связанных с работоспособностью роботов. Со всем списком Вы можете ознакомиться ниже.</p>', 'usluhi', '', '', '', 'b:0;', '', 'category_services', 'page_service', 15, 'position', 'asc', 0, 7, -1, 'a:2:{s:26:"category_apply_for_subcats";b:0;s:17:"apply_for_subcats";b:0;}'),
-(57, 0, 0, 'Новости', '', '<p>В данном разделе Вы можете ознакомиться со списком последних новостей нашей компании, а возможно и с последними галактическими новостями в мире роботехники.</p>', 'novosti', '', '', '', 'b:0;', '', 'news', '', 1, 'publish_date', 'desc', 0, -1, -1, 'a:2:{s:26:"category_apply_for_subcats";b:0;s:17:"apply_for_subcats";b:0;}'),
-(55, 0, 0, 'Продукция', '', '<p>В данном разделе представлена вся продукция компании <strong>ImageRobotics</strong>, раздел постоянно пополняется, мы не стоим на месте и скоро наши роботы смогу еще больше.</p>', 'produktsiia', '', '', '', 'b:0;', '', 'category_products', 'page_product', 1, 'position', 'asc', 0, 7, -1, 'a:2:{s:26:"category_apply_for_subcats";b:0;s:17:"apply_for_subcats";b:0;}'),
-(58, 0, 0, 'Вакансии', '', '<p>В данном разделе собраны вакансии компании ImageRobotics. Ко всем кандидатам очень строгие требования. Для работы в нашей компании, Вам нужно как минимум обладать всеми знаниями нашей Галактики. <strong>"Простым вундеркиндам" просьба не беспокоить!!!</strong></p>\n<p><strong>Все, кто хотят подать свое резюме, должны для начала разгадать номер факса нашего HR отдела, который зашифрован следующим кодом: 8822001112008382288018280444322211081 (подсказка 784).<br /></strong></p>', 'vakansii', '', '', '', 'b:0;', '', 'category_vacancies', 'page_vacancy', 15, 'publish_date', 'desc', 0, -1, -1, 'a:2:{s:26:"category_apply_for_subcats";b:0;s:17:"apply_for_subcats";b:0;}'),
-(59, 0, 0, 'Блог', '', '', 'bloh', '', '', '', 'a:2:{i:0;s:2:"60";i:1;s:2:"61";}', '', 'blog', '', 2, 'publish_date', 'desc', 1, -1, -1, 'a:2:{s:26:"category_apply_for_subcats";b:0;s:17:"apply_for_subcats";b:0;}'),
-(60, 59, 0, 'Кухонные роботы', '', '', 'kuhonnye_roboty', '', '', '', 'b:0;', '', 'blog', '', 15, 'publish_date', 'desc', 1, 7, -1, NULL),
-(61, 59, 0, 'Человеко роботы', '', '', 'cheloveko_roboty', '', '', '', 'b:0;', '', 'blog', '', 15, 'publish_date', 'desc', 1, 7, -1, NULL);
+INSERT INTO `category` (`id`, `parent_id`, `position`, `name`, `title`, `short_desc`, `url`, `image`, `keywords`, `description`, `fetch_pages`, `main_tpl`, `tpl`, `page_tpl`, `per_page`, `order_by`, `sort_order`, `comments_default`, `field_group`, `category_field_group`, `settings`, `created`, `updated`) VALUES
+(56, 0, 0, 'Услуги', '', '<p>Помимо разработки и продажи роботов различных конфигураций, наша компания предоставляет также полный спектр услуг связанных с работоспособностью роботов. Со всем списком Вы можете ознакомиться ниже.</p>', 'usluhi', '', '', '', 'b:0;', '', 'category_services', 'page_service', 15, 'position', 'asc', 0, 7, -1, 'a:2:{s:26:"category_apply_for_subcats";b:0;s:17:"apply_for_subcats";b:0;}', 1401265119, 1401265119),
+(57, 0, 0, 'Новости', '', '<p>В данном разделе Вы можете ознакомиться со списком последних новостей нашей компании, а возможно и с последними галактическими новостями в мире роботехники.</p>', 'novosti', '', '', '', 'b:0;', '', 'news', '', 1, 'publish_date', 'desc', 0, -1, -1, 'a:2:{s:26:"category_apply_for_subcats";b:0;s:17:"apply_for_subcats";b:0;}', 1401265119, 1401265119),
+(55, 0, 0, 'Продукция', '', '<p>В данном разделе представлена вся продукция компании <strong>ImageRobotics</strong>, раздел постоянно пополняется, мы не стоим на месте и скоро наши роботы смогу еще больше.</p>', 'produktsiia', '', '', '', 'b:0;', '', 'category_products', 'page_product', 1, 'position', 'asc', 0, 7, -1, 'a:2:{s:26:"category_apply_for_subcats";b:0;s:17:"apply_for_subcats";b:0;}', 1401265119, 1401265119),
+(58, 0, 0, 'Вакансии', '', '<p>В данном разделе собраны вакансии компании ImageRobotics. Ко всем кандидатам очень строгие требования. Для работы в нашей компании, Вам нужно как минимум обладать всеми знаниями нашей Галактики. <strong>"Простым вундеркиндам" просьба не беспокоить!!!</strong></p>\n<p><strong>Все, кто хотят подать свое резюме, должны для начала разгадать номер факса нашего HR отдела, который зашифрован следующим кодом: 8822001112008382288018280444322211081 (подсказка 784).<br /></strong></p>', 'vakansii', '', '', '', 'b:0;', '', 'category_vacancies', 'page_vacancy', 15, 'publish_date', 'desc', 0, -1, -1, 'a:2:{s:26:"category_apply_for_subcats";b:0;s:17:"apply_for_subcats";b:0;}', 1401265119, 1401265119),
+(59, 0, 0, 'Блог', '', '', 'bloh', '', '', '', 'a:2:{i:0;s:2:"60";i:1;s:2:"61";}', '', 'blog', '', 2, 'publish_date', 'desc', 1, -1, -1, 'a:2:{s:26:"category_apply_for_subcats";b:0;s:17:"apply_for_subcats";b:0;}', 1401265119, 1401265119),
+(60, 59, 0, 'Кухонные роботы', '', '', 'kuhonnye_roboty', '', '', '', 'b:0;', '', 'blog', '', 15, 'publish_date', 'desc', 1, 7, -1, NULL, 1401265119, 1401265119),
+(61, 59, 0, 'Человеко роботы', '', '', 'cheloveko_roboty', '', '', '', 'b:0;', '', 'blog', '', 15, 'publish_date', 'desc', 1, 7, -1, NULL, 1401265119, 1401265119);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `category_translate`
+-- Table structure for table `category_translate`
 --
 
+DROP TABLE IF EXISTS `category_translate`;
 CREATE TABLE IF NOT EXISTS `category_translate` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `alias` int(11) NOT NULL,
@@ -89,9 +93,10 @@ CREATE TABLE IF NOT EXISTS `category_translate` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `comments`
+-- Table structure for table `comments`
 --
 
+DROP TABLE IF EXISTS `comments`;
 CREATE TABLE IF NOT EXISTS `comments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `module` varchar(25) NOT NULL DEFAULT 'core',
@@ -118,7 +123,7 @@ CREATE TABLE IF NOT EXISTS `comments` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=68 ;
 
 --
--- Дамп даних таблиці `comments`
+-- Dumping data for table `comments`
 --
 
 INSERT INTO `comments` (`id`, `module`, `user_id`, `user_name`, `user_mail`, `user_site`, `item_id`, `text`, `date`, `status`, `agent`, `user_ip`, `rate`, `text_plus`, `text_minus`, `like`, `disslike`, `parent`) VALUES
@@ -129,9 +134,10 @@ INSERT INTO `comments` (`id`, `module`, `user_id`, `user_name`, `user_mail`, `us
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `components`
+-- Table structure for table `components`
 --
 
+DROP TABLE IF EXISTS `components`;
 CREATE TABLE IF NOT EXISTS `components` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
@@ -149,7 +155,7 @@ CREATE TABLE IF NOT EXISTS `components` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=270 ;
 
 --
--- Дамп даних таблиці `components`
+-- Dumping data for table `components`
 --
 
 INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_menu`, `settings`, `position`) VALUES
@@ -181,9 +187,10 @@ INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_me
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `content`
+-- Table structure for table `content`
 --
 
+DROP TABLE IF EXISTS `content`;
 CREATE TABLE IF NOT EXISTS `content` (
   `id` bigint(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(500) NOT NULL,
@@ -220,7 +227,7 @@ CREATE TABLE IF NOT EXISTS `content` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=84 ;
 
 --
--- Дамп даних таблиці `content`
+-- Dumping data for table `content`
 --
 
 INSERT INTO `content` (`id`, `title`, `meta_title`, `url`, `cat_url`, `keywords`, `description`, `prev_text`, `full_text`, `category`, `full_tpl`, `main_tpl`, `position`, `comments_status`, `comments_count`, `post_status`, `author`, `publish_date`, `created`, `updated`, `showed`, `lang`, `lang_alias`) VALUES
@@ -248,9 +255,10 @@ INSERT INTO `content` (`id`, `title`, `meta_title`, `url`, `cat_url`, `keywords`
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `content_fields`
+-- Table structure for table `content_fields`
 --
 
+DROP TABLE IF EXISTS `content_fields`;
 CREATE TABLE IF NOT EXISTS `content_fields` (
   `field_name` varchar(255) NOT NULL,
   `type` varchar(255) NOT NULL,
@@ -265,7 +273,7 @@ CREATE TABLE IF NOT EXISTS `content_fields` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `content_fields`
+-- Dumping data for table `content_fields`
 --
 
 INSERT INTO `content_fields` (`field_name`, `type`, `label`, `data`, `weight`, `in_search`) VALUES
@@ -274,9 +282,10 @@ INSERT INTO `content_fields` (`field_name`, `type`, `label`, `data`, `weight`, `
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `content_fields_data`
+-- Table structure for table `content_fields_data`
 --
 
+DROP TABLE IF EXISTS `content_fields_data`;
 CREATE TABLE IF NOT EXISTS `content_fields_data` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `item_id` int(11) NOT NULL,
@@ -290,7 +299,7 @@ CREATE TABLE IF NOT EXISTS `content_fields_data` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
 
 --
--- Дамп даних таблиці `content_fields_data`
+-- Dumping data for table `content_fields_data`
 --
 
 INSERT INTO `content_fields_data` (`id`, `item_id`, `item_type`, `field_name`, `data`) VALUES
@@ -308,16 +317,17 @@ INSERT INTO `content_fields_data` (`id`, `item_id`, `item_type`, `field_name`, `
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `content_fields_groups_relations`
+-- Table structure for table `content_fields_groups_relations`
 --
 
+DROP TABLE IF EXISTS `content_fields_groups_relations`;
 CREATE TABLE IF NOT EXISTS `content_fields_groups_relations` (
   `field_name` varchar(64) NOT NULL,
   `group_id` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Дамп даних таблиці `content_fields_groups_relations`
+-- Dumping data for table `content_fields_groups_relations`
 --
 
 INSERT INTO `content_fields_groups_relations` (`field_name`, `group_id`) VALUES
@@ -327,9 +337,10 @@ INSERT INTO `content_fields_groups_relations` (`field_name`, `group_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `content_field_groups`
+-- Table structure for table `content_field_groups`
 --
 
+DROP TABLE IF EXISTS `content_field_groups`;
 CREATE TABLE IF NOT EXISTS `content_field_groups` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -339,7 +350,7 @@ CREATE TABLE IF NOT EXISTS `content_field_groups` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 --
--- Дамп даних таблиці `content_field_groups`
+-- Dumping data for table `content_field_groups`
 --
 
 INSERT INTO `content_field_groups` (`id`, `name`, `description`) VALUES
@@ -348,9 +359,10 @@ INSERT INTO `content_field_groups` (`id`, `name`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `content_permissions`
+-- Table structure for table `content_permissions`
 --
 
+DROP TABLE IF EXISTS `content_permissions`;
 CREATE TABLE IF NOT EXISTS `content_permissions` (
   `id` bigint(11) NOT NULL AUTO_INCREMENT,
   `page_id` bigint(11) NOT NULL,
@@ -360,7 +372,7 @@ CREATE TABLE IF NOT EXISTS `content_permissions` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
--- Дамп даних таблиці `content_permissions`
+-- Dumping data for table `content_permissions`
 --
 
 INSERT INTO `content_permissions` (`id`, `page_id`, `data`) VALUES
@@ -369,9 +381,10 @@ INSERT INTO `content_permissions` (`id`, `page_id`, `data`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `content_tags`
+-- Table structure for table `content_tags`
 --
 
+DROP TABLE IF EXISTS `content_tags`;
 CREATE TABLE IF NOT EXISTS `content_tags` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `page_id` int(11) NOT NULL,
@@ -382,7 +395,7 @@ CREATE TABLE IF NOT EXISTS `content_tags` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=127 ;
 
 --
--- Дамп даних таблиці `content_tags`
+-- Dumping data for table `content_tags`
 --
 
 INSERT INTO `content_tags` (`id`, `page_id`, `tag_id`) VALUES
@@ -398,9 +411,10 @@ INSERT INTO `content_tags` (`id`, `page_id`, `tag_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `custom_fields`
+-- Table structure for table `custom_fields`
 --
 
+DROP TABLE IF EXISTS `custom_fields`;
 CREATE TABLE IF NOT EXISTS `custom_fields` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `field_type_id` int(11) NOT NULL,
@@ -419,9 +433,10 @@ CREATE TABLE IF NOT EXISTS `custom_fields` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `custom_fields_data`
+-- Table structure for table `custom_fields_data`
 --
 
+DROP TABLE IF EXISTS `custom_fields_data`;
 CREATE TABLE IF NOT EXISTS `custom_fields_data` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `field_id` int(11) NOT NULL,
@@ -434,9 +449,10 @@ CREATE TABLE IF NOT EXISTS `custom_fields_data` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `custom_fields_i18n`
+-- Table structure for table `custom_fields_i18n`
 --
 
+DROP TABLE IF EXISTS `custom_fields_i18n`;
 CREATE TABLE IF NOT EXISTS `custom_fields_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(4) NOT NULL,
@@ -449,9 +465,10 @@ CREATE TABLE IF NOT EXISTS `custom_fields_i18n` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `gallery_albums`
+-- Table structure for table `gallery_albums`
 --
 
+DROP TABLE IF EXISTS `gallery_albums`;
 CREATE TABLE IF NOT EXISTS `gallery_albums` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `category_id` int(11) DEFAULT NULL,
@@ -468,7 +485,7 @@ CREATE TABLE IF NOT EXISTS `gallery_albums` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
--- Дамп даних таблиці `gallery_albums`
+-- Dumping data for table `gallery_albums`
 --
 
 INSERT INTO `gallery_albums` (`id`, `category_id`, `name`, `description`, `cover_id`, `position`, `created`, `updated`, `tpl_file`) VALUES
@@ -479,9 +496,10 @@ INSERT INTO `gallery_albums` (`id`, `category_id`, `name`, `description`, `cover
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `gallery_albums_i18n`
+-- Table structure for table `gallery_albums_i18n`
 --
 
+DROP TABLE IF EXISTS `gallery_albums_i18n`;
 CREATE TABLE IF NOT EXISTS `gallery_albums_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -491,7 +509,7 @@ CREATE TABLE IF NOT EXISTS `gallery_albums_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `gallery_albums_i18n`
+-- Dumping data for table `gallery_albums_i18n`
 --
 
 INSERT INTO `gallery_albums_i18n` (`id`, `locale`, `description`, `name`) VALUES
@@ -502,9 +520,10 @@ INSERT INTO `gallery_albums_i18n` (`id`, `locale`, `description`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `gallery_category`
+-- Table structure for table `gallery_category`
 --
 
+DROP TABLE IF EXISTS `gallery_category`;
 CREATE TABLE IF NOT EXISTS `gallery_category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(250) DEFAULT NULL,
@@ -518,7 +537,7 @@ CREATE TABLE IF NOT EXISTS `gallery_category` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
--- Дамп даних таблиці `gallery_category`
+-- Dumping data for table `gallery_category`
 --
 
 INSERT INTO `gallery_category` (`id`, `name`, `description`, `cover_id`, `position`, `created`) VALUES
@@ -527,9 +546,10 @@ INSERT INTO `gallery_category` (`id`, `name`, `description`, `cover_id`, `positi
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `gallery_category_i18n`
+-- Table structure for table `gallery_category_i18n`
 --
 
+DROP TABLE IF EXISTS `gallery_category_i18n`;
 CREATE TABLE IF NOT EXISTS `gallery_category_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -539,7 +559,7 @@ CREATE TABLE IF NOT EXISTS `gallery_category_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `gallery_category_i18n`
+-- Dumping data for table `gallery_category_i18n`
 --
 
 INSERT INTO `gallery_category_i18n` (`id`, `locale`, `description`, `name`) VALUES
@@ -548,9 +568,10 @@ INSERT INTO `gallery_category_i18n` (`id`, `locale`, `description`, `name`) VALU
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `gallery_images`
+-- Table structure for table `gallery_images`
 --
 
+DROP TABLE IF EXISTS `gallery_images`;
 CREATE TABLE IF NOT EXISTS `gallery_images` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `album_id` int(11) DEFAULT NULL,
@@ -569,7 +590,7 @@ CREATE TABLE IF NOT EXISTS `gallery_images` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=93 ;
 
 --
--- Дамп даних таблиці `gallery_images`
+-- Dumping data for table `gallery_images`
 --
 
 INSERT INTO `gallery_images` (`id`, `album_id`, `file_name`, `file_ext`, `file_size`, `position`, `width`, `height`, `description`, `uploaded`, `views`) VALUES
@@ -595,9 +616,10 @@ INSERT INTO `gallery_images` (`id`, `album_id`, `file_name`, `file_ext`, `file_s
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `gallery_images_i18n`
+-- Table structure for table `gallery_images_i18n`
 --
 
+DROP TABLE IF EXISTS `gallery_images_i18n`;
 CREATE TABLE IF NOT EXISTS `gallery_images_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -608,9 +630,10 @@ CREATE TABLE IF NOT EXISTS `gallery_images_i18n` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `languages`
+-- Table structure for table `languages`
 --
 
+DROP TABLE IF EXISTS `languages`;
 CREATE TABLE IF NOT EXISTS `languages` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `lang_name` varchar(100) NOT NULL,
@@ -626,7 +649,7 @@ CREATE TABLE IF NOT EXISTS `languages` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=31 ;
 
 --
--- Дамп даних таблиці `languages`
+-- Dumping data for table `languages`
 --
 
 INSERT INTO `languages` (`id`, `lang_name`, `identif`, `image`, `folder`, `template`, `default`, `locale`) VALUES
@@ -635,9 +658,10 @@ INSERT INTO `languages` (`id`, `lang_name`, `identif`, `image`, `folder`, `templ
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `login_attempts`
+-- Table structure for table `login_attempts`
 --
 
+DROP TABLE IF EXISTS `login_attempts`;
 CREATE TABLE IF NOT EXISTS `login_attempts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `ip_address` varchar(40) NOT NULL,
@@ -650,9 +674,10 @@ CREATE TABLE IF NOT EXISTS `login_attempts` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `logs`
+-- Table structure for table `logs`
 --
 
+DROP TABLE IF EXISTS `logs`;
 CREATE TABLE IF NOT EXISTS `logs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
@@ -666,9 +691,10 @@ CREATE TABLE IF NOT EXISTS `logs` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `mail`
+-- Table structure for table `mail`
 --
 
+DROP TABLE IF EXISTS `mail`;
 CREATE TABLE IF NOT EXISTS `mail` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(255) DEFAULT NULL,
@@ -679,9 +705,10 @@ CREATE TABLE IF NOT EXISTS `mail` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `menus`
+-- Table structure for table `menus`
 --
 
+DROP TABLE IF EXISTS `menus`;
 CREATE TABLE IF NOT EXISTS `menus` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(250) NOT NULL,
@@ -695,7 +722,7 @@ CREATE TABLE IF NOT EXISTS `menus` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
--- Дамп даних таблиці `menus`
+-- Dumping data for table `menus`
 --
 
 INSERT INTO `menus` (`id`, `name`, `main_title`, `tpl`, `expand_level`, `description`, `created`) VALUES
@@ -706,9 +733,10 @@ INSERT INTO `menus` (`id`, `name`, `main_title`, `tpl`, `expand_level`, `descrip
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `menus_data`
+-- Table structure for table `menus_data`
 --
 
+DROP TABLE IF EXISTS `menus_data`;
 CREATE TABLE IF NOT EXISTS `menus_data` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `menu_id` int(9) NOT NULL,
@@ -728,7 +756,7 @@ CREATE TABLE IF NOT EXISTS `menus_data` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=33 ;
 
 --
--- Дамп даних таблиці `menus_data`
+-- Dumping data for table `menus_data`
 --
 
 INSERT INTO `menus_data` (`id`, `menu_id`, `item_id`, `item_type`, `item_image`, `roles`, `hidden`, `title`, `parent_id`, `position`, `description`, `add_data`) VALUES
@@ -759,9 +787,10 @@ INSERT INTO `menus_data` (`id`, `menu_id`, `item_id`, `item_type`, `item_image`,
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `menu_translate`
+-- Table structure for table `menu_translate`
 --
 
+DROP TABLE IF EXISTS `menu_translate`;
 CREATE TABLE IF NOT EXISTS `menu_translate` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `item_id` int(11) NOT NULL,
@@ -775,9 +804,10 @@ CREATE TABLE IF NOT EXISTS `menu_translate` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `mod_banner`
+-- Table structure for table `mod_banner`
 --
 
+DROP TABLE IF EXISTS `mod_banner`;
 CREATE TABLE IF NOT EXISTS `mod_banner` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `active` tinyint(4) NOT NULL,
@@ -789,7 +819,7 @@ CREATE TABLE IF NOT EXISTS `mod_banner` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
--- Дамп даних таблиці `mod_banner`
+-- Dumping data for table `mod_banner`
 --
 
 INSERT INTO `mod_banner` (`id`, `active`, `active_to`, `where_show`, `group`, `position`) VALUES
@@ -799,9 +829,10 @@ INSERT INTO `mod_banner` (`id`, `active`, `active_to`, `where_show`, `group`, `p
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `mod_banner_groups`
+-- Table structure for table `mod_banner_groups`
 --
 
+DROP TABLE IF EXISTS `mod_banner_groups`;
 CREATE TABLE IF NOT EXISTS `mod_banner_groups` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
@@ -811,9 +842,10 @@ CREATE TABLE IF NOT EXISTS `mod_banner_groups` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `mod_banner_i18n`
+-- Table structure for table `mod_banner_i18n`
 --
 
+DROP TABLE IF EXISTS `mod_banner_i18n`;
 CREATE TABLE IF NOT EXISTS `mod_banner_i18n` (
   `id` int(11) NOT NULL,
   `url` text,
@@ -825,7 +857,7 @@ CREATE TABLE IF NOT EXISTS `mod_banner_i18n` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `mod_banner_i18n`
+-- Dumping data for table `mod_banner_i18n`
 --
 
 INSERT INTO `mod_banner_i18n` (`id`, `url`, `locale`, `name`, `description`, `photo`) VALUES
@@ -835,9 +867,10 @@ INSERT INTO `mod_banner_i18n` (`id`, `url`, `locale`, `name`, `description`, `ph
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `mod_email_paterns`
+-- Table structure for table `mod_email_paterns`
 --
 
+DROP TABLE IF EXISTS `mod_email_paterns`;
 CREATE TABLE IF NOT EXISTS `mod_email_paterns` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(256) NOT NULL,
@@ -852,7 +885,7 @@ CREATE TABLE IF NOT EXISTS `mod_email_paterns` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
 
 --
--- Дамп даних таблиці `mod_email_paterns`
+-- Dumping data for table `mod_email_paterns`
 --
 
 INSERT INTO `mod_email_paterns` (`id`, `name`, `patern`, `from`, `from_email`, `admin_email`, `type`, `user_message_active`, `admin_message_active`) VALUES
@@ -863,9 +896,10 @@ INSERT INTO `mod_email_paterns` (`id`, `name`, `patern`, `from`, `from_email`, `
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `mod_email_paterns_i18n`
+-- Table structure for table `mod_email_paterns_i18n`
 --
 
+DROP TABLE IF EXISTS `mod_email_paterns_i18n`;
 CREATE TABLE IF NOT EXISTS `mod_email_paterns_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -878,7 +912,7 @@ CREATE TABLE IF NOT EXISTS `mod_email_paterns_i18n` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `mod_email_paterns_i18n`
+-- Dumping data for table `mod_email_paterns_i18n`
 --
 
 INSERT INTO `mod_email_paterns_i18n` (`id`, `locale`, `theme`, `user_message`, `admin_message`, `description`, `variables`) VALUES
@@ -889,9 +923,10 @@ INSERT INTO `mod_email_paterns_i18n` (`id`, `locale`, `theme`, `user_message`, `
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `mod_sample_settings`
+-- Table structure for table `mod_sample_settings`
 --
 
+DROP TABLE IF EXISTS `mod_sample_settings`;
 CREATE TABLE IF NOT EXISTS `mod_sample_settings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
@@ -900,7 +935,7 @@ CREATE TABLE IF NOT EXISTS `mod_sample_settings` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- Дамп даних таблиці `mod_sample_settings`
+-- Dumping data for table `mod_sample_settings`
 --
 
 INSERT INTO `mod_sample_settings` (`id`, `name`, `value`) VALUES
@@ -911,9 +946,10 @@ INSERT INTO `mod_sample_settings` (`id`, `name`, `value`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `permissions`
+-- Table structure for table `permissions`
 --
 
+DROP TABLE IF EXISTS `permissions`;
 CREATE TABLE IF NOT EXISTS `permissions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `role_id` int(11) NOT NULL,
@@ -923,7 +959,7 @@ CREATE TABLE IF NOT EXISTS `permissions` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=5 ;
 
 --
--- Дамп даних таблиці `permissions`
+-- Dumping data for table `permissions`
 --
 
 INSERT INTO `permissions` (`id`, `role_id`, `data`) VALUES
@@ -932,15 +968,16 @@ INSERT INTO `permissions` (`id`, `role_id`, `data`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `propel_migration`
+-- Table structure for table `propel_migration`
 --
 
+DROP TABLE IF EXISTS `propel_migration`;
 CREATE TABLE IF NOT EXISTS `propel_migration` (
   `version` int(11) DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `propel_migration`
+-- Dumping data for table `propel_migration`
 --
 
 INSERT INTO `propel_migration` (`version`) VALUES
@@ -949,9 +986,10 @@ INSERT INTO `propel_migration` (`version`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `rating`
+-- Table structure for table `rating`
 --
 
+DROP TABLE IF EXISTS `rating`;
 CREATE TABLE IF NOT EXISTS `rating` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_type` varchar(25) DEFAULT NULL,
@@ -964,9 +1002,10 @@ CREATE TABLE IF NOT EXISTS `rating` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `roles`
+-- Table structure for table `roles`
 --
 
+DROP TABLE IF EXISTS `roles`;
 CREATE TABLE IF NOT EXISTS `roles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `parent_id` int(11) NOT NULL DEFAULT '0',
@@ -979,7 +1018,7 @@ CREATE TABLE IF NOT EXISTS `roles` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=19 ;
 
 --
--- Дамп даних таблиці `roles`
+-- Dumping data for table `roles`
 --
 
 INSERT INTO `roles` (`id`, `parent_id`, `name`, `alt_name`, `desc`) VALUES
@@ -989,9 +1028,10 @@ INSERT INTO `roles` (`id`, `parent_id`, `name`, `alt_name`, `desc`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `search`
+-- Table structure for table `search`
 --
 
+DROP TABLE IF EXISTS `search`;
 CREATE TABLE IF NOT EXISTS `search` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `hash` varchar(264) DEFAULT NULL,
@@ -1012,9 +1052,10 @@ CREATE TABLE IF NOT EXISTS `search` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `settings`
+-- Table structure for table `settings`
 --
 
+DROP TABLE IF EXISTS `settings`;
 CREATE TABLE IF NOT EXISTS `settings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `s_name` varchar(50) NOT NULL,
@@ -1051,18 +1092,19 @@ CREATE TABLE IF NOT EXISTS `settings` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
--- Дамп даних таблиці `settings`
+-- Dumping data for table `settings`
 --
 
-INSERT INTO `settings` (`id`, `s_name`, `create_keywords`, `create_description`, `create_cat_keywords`, `create_cat_description`, `add_site_name`, `add_site_name_to_cat`, `delimiter`, `editor_theme`, `site_template`, `site_offline`, `google_analytics_id`, `main_type`, `main_page_id`, `main_page_cat`, `main_page_module`, `sidepanel`, `lk`, `lang_sel`, `google_webmaster`, `yandex_webmaster`, `yandex_metric`, `ss`, `cat_list`, `text_editor`, `siteinfo`, `update`, `backup`) VALUES
+INSERT INTO `settings` (`id`, `s_name`, `create_keywords`, `create_description`, `create_cat_keywords`, `create_cat_description`, `add_site_name`, `add_site_name_to_cat`, `delimiter`, `editor_theme`, `site_template`, `site_offline`, `google_analytics_id`, `main_type`, `main_page_id`, `main_page_cat`, `main_page_module`, `sidepanel`, `lk`, `lang_sel`, `google_webmaster`, `yandex_webmaster`, `yandex_metric`, `ss`, `cat_list`, `text_editor`, `siteinfo`, `update`, `backup`, `robots_status`) VALUES
 (2, 'main', 'auto', 'auto', '0', '0', 1, 1, '/', '0', 'corporate', 'no', '', 'page', 83, '56', 'user_manager', '', '', 'russian_lang', '', '', '', '', 'yes', 'tinymce', 'a:3:{s:13:"siteinfo_logo";a:1:{s:8:"newLevel";s:8:"logo.png";}s:16:"siteinfo_favicon";a:1:{s:8:"newLevel";s:11:"favicon.ico";}s:2:"ru";a:5:{s:20:"siteinfo_companytype";s:97:"© Интернет-магазин «<a href="http://www.imagecms.net/">ImageCMS Shop</a>», 2013";s:16:"siteinfo_address";s:63:"Улица Шевченка, Буд. 22, офис: 39, Київ";s:18:"siteinfo_mainphone";s:15:"(097) 567-43-21";s:19:"siteinfo_adminemail";s:19:"webmaster@localhost";s:8:"contacts";a:2:{s:5:"Skype";s:8:"imagecms";s:5:"Email";s:20:"partner@imagecms.net";}}}', NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `settings_i18n`
+-- Table structure for table `settings_i18n`
 --
 
+DROP TABLE IF EXISTS `settings_i18n`;
 CREATE TABLE IF NOT EXISTS `settings_i18n` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `lang_ident` int(11) NOT NULL,
@@ -1074,7 +1116,7 @@ CREATE TABLE IF NOT EXISTS `settings_i18n` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
--- Дамп даних таблиці `settings_i18n`
+-- Dumping data for table `settings_i18n`
 --
 
 INSERT INTO `settings_i18n` (`id`, `lang_ident`, `name`, `short_name`, `description`, `keywords`) VALUES
@@ -1083,9 +1125,10 @@ INSERT INTO `settings_i18n` (`id`, `lang_ident`, `name`, `short_name`, `descript
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_rbac_group`
+-- Table structure for table `shop_rbac_group`
 --
 
+DROP TABLE IF EXISTS `shop_rbac_group`;
 CREATE TABLE IF NOT EXISTS `shop_rbac_group` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(10) NOT NULL,
@@ -1095,7 +1138,7 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_group` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=60 ;
 
 --
--- Дамп даних таблиці `shop_rbac_group`
+-- Dumping data for table `shop_rbac_group`
 --
 
 INSERT INTO `shop_rbac_group` (`id`, `type`, `name`, `description`) VALUES
@@ -1160,9 +1203,10 @@ INSERT INTO `shop_rbac_group` (`id`, `type`, `name`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_rbac_group_i18n`
+-- Table structure for table `shop_rbac_group_i18n`
 --
 
+DROP TABLE IF EXISTS `shop_rbac_group_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_rbac_group_i18n` (
   `id` int(11) NOT NULL,
   `description` varchar(200) DEFAULT NULL,
@@ -1171,7 +1215,7 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_group_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_rbac_group_i18n`
+-- Dumping data for table `shop_rbac_group_i18n`
 --
 
 INSERT INTO `shop_rbac_group_i18n` (`id`, `description`, `locale`) VALUES
@@ -1209,9 +1253,10 @@ INSERT INTO `shop_rbac_group_i18n` (`id`, `description`, `locale`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_rbac_privileges`
+-- Table structure for table `shop_rbac_privileges`
 --
 
+DROP TABLE IF EXISTS `shop_rbac_privileges`;
 CREATE TABLE IF NOT EXISTS `shop_rbac_privileges` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
@@ -1219,10 +1264,10 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_privileges` (
   PRIMARY KEY (`id`),
   KEY `shop_rbac_privileges_I_1` (`name`),
   KEY `shop_rbac_privileges_FI_1` (`group_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=485 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=486 ;
 
 --
--- Дамп даних таблиці `shop_rbac_privileges`
+-- Dumping data for table `shop_rbac_privileges`
 --
 
 INSERT INTO `shop_rbac_privileges` (`id`, `name`, `group_id`) VALUES
@@ -1448,9 +1493,10 @@ INSERT INTO `shop_rbac_privileges` (`id`, `name`, `group_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_rbac_privileges_i18n`
+-- Table structure for table `shop_rbac_privileges_i18n`
 --
 
+DROP TABLE IF EXISTS `shop_rbac_privileges_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_rbac_privileges_i18n` (
   `id` int(11) NOT NULL,
   `title` varchar(45) NOT NULL,
@@ -1460,7 +1506,7 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_privileges_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_rbac_privileges_i18n`
+-- Dumping data for table `shop_rbac_privileges_i18n`
 --
 
 INSERT INTO `shop_rbac_privileges_i18n` (`id`, `title`, `description`, `locale`) VALUES
@@ -1683,13 +1729,13 @@ INSERT INTO `shop_rbac_privileges_i18n` (`id`, `title`, `description`, `locale`)
 (483, 'Редактирование модульного виджета', 'Доступ к редактированию модульного виджета', 'ru'),
 (485, 'Заполнение дополнительных полей', 'Заполнение дополнительных полей', 'ru');
 
-
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_rbac_roles`
+-- Table structure for table `shop_rbac_roles`
 --
 
+DROP TABLE IF EXISTS `shop_rbac_roles`;
 CREATE TABLE IF NOT EXISTS `shop_rbac_roles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -1699,7 +1745,7 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_roles` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- Дамп даних таблиці `shop_rbac_roles`
+-- Dumping data for table `shop_rbac_roles`
 --
 
 INSERT INTO `shop_rbac_roles` (`id`, `name`, `importance`) VALUES
@@ -1710,9 +1756,10 @@ INSERT INTO `shop_rbac_roles` (`id`, `name`, `importance`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_rbac_roles_i18n`
+-- Table structure for table `shop_rbac_roles_i18n`
 --
 
+DROP TABLE IF EXISTS `shop_rbac_roles_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_rbac_roles_i18n` (
   `id` int(11) NOT NULL,
   `alt_name` varchar(45) DEFAULT NULL,
@@ -1722,7 +1769,7 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_roles_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_rbac_roles_i18n`
+-- Dumping data for table `shop_rbac_roles_i18n`
 --
 
 INSERT INTO `shop_rbac_roles_i18n` (`id`, `alt_name`, `locale`, `description`) VALUES
@@ -1733,19 +1780,20 @@ INSERT INTO `shop_rbac_roles_i18n` (`id`, `alt_name`, `locale`, `description`) V
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_rbac_roles_privileges`
+-- Table structure for table `shop_rbac_roles_privileges`
 --
 
+DROP TABLE IF EXISTS `shop_rbac_roles_privileges`;
 CREATE TABLE IF NOT EXISTS `shop_rbac_roles_privileges` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `role_id` int(11) NOT NULL,
   `privilege_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `rolepriv` (`role_id`,`privilege_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=614 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=615 ;
 
 --
--- Дамп даних таблиці `shop_rbac_roles_privileges`
+-- Dumping data for table `shop_rbac_roles_privileges`
 --
 
 INSERT INTO `shop_rbac_roles_privileges` (`id`, `role_id`, `privilege_id`) VALUES
@@ -2007,9 +2055,10 @@ INSERT INTO `shop_rbac_roles_privileges` (`id`, `role_id`, `privilege_id`) VALUE
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `support_comments`
+-- Table structure for table `support_comments`
 --
 
+DROP TABLE IF EXISTS `support_comments`;
 CREATE TABLE IF NOT EXISTS `support_comments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `ticket_id` int(11) NOT NULL,
@@ -2022,7 +2071,7 @@ CREATE TABLE IF NOT EXISTS `support_comments` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
--- Дамп даних таблиці `support_comments`
+-- Dumping data for table `support_comments`
 --
 
 INSERT INTO `support_comments` (`id`, `ticket_id`, `user_id`, `user_status`, `user_name`, `text`, `date`) VALUES
@@ -2031,9 +2080,10 @@ INSERT INTO `support_comments` (`id`, `ticket_id`, `user_id`, `user_status`, `us
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `support_departments`
+-- Table structure for table `support_departments`
 --
 
+DROP TABLE IF EXISTS `support_departments`;
 CREATE TABLE IF NOT EXISTS `support_departments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
@@ -2041,7 +2091,7 @@ CREATE TABLE IF NOT EXISTS `support_departments` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
--- Дамп даних таблиці `support_departments`
+-- Dumping data for table `support_departments`
 --
 
 INSERT INTO `support_departments` (`id`, `name`) VALUES
@@ -2050,9 +2100,10 @@ INSERT INTO `support_departments` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `support_tickets`
+-- Table structure for table `support_tickets`
 --
 
+DROP TABLE IF EXISTS `support_tickets`;
 CREATE TABLE IF NOT EXISTS `support_tickets` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
@@ -2068,7 +2119,7 @@ CREATE TABLE IF NOT EXISTS `support_tickets` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
--- Дамп даних таблиці `support_tickets`
+-- Dumping data for table `support_tickets`
 --
 
 INSERT INTO `support_tickets` (`id`, `user_id`, `last_comment_author`, `text`, `theme`, `department`, `status`, `priority`, `date`, `updated`) VALUES
@@ -2077,9 +2128,10 @@ INSERT INTO `support_tickets` (`id`, `user_id`, `last_comment_author`, `text`, `
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `tags`
+-- Table structure for table `tags`
 --
 
+DROP TABLE IF EXISTS `tags`;
 CREATE TABLE IF NOT EXISTS `tags` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `value` varchar(255) NOT NULL,
@@ -2088,7 +2140,7 @@ CREATE TABLE IF NOT EXISTS `tags` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=30 ;
 
 --
--- Дамп даних таблиці `tags`
+-- Dumping data for table `tags`
 --
 
 INSERT INTO `tags` (`id`, `value`) VALUES
@@ -2101,9 +2153,10 @@ INSERT INTO `tags` (`id`, `value`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `users`
+-- Table structure for table `users`
 --
 
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `role_id` int(11) DEFAULT NULL,
@@ -2134,9 +2187,10 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `user_autologin`
+-- Table structure for table `user_autologin`
 --
 
+DROP TABLE IF EXISTS `user_autologin`;
 CREATE TABLE IF NOT EXISTS `user_autologin` (
   `key_id` char(32) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `user_id` mediumint(8) NOT NULL DEFAULT '0',
@@ -2150,9 +2204,10 @@ CREATE TABLE IF NOT EXISTS `user_autologin` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `user_temp`
+-- Table structure for table `user_temp`
 --
 
+DROP TABLE IF EXISTS `user_temp`;
 CREATE TABLE IF NOT EXISTS `user_temp` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) NOT NULL,
@@ -2167,9 +2222,10 @@ CREATE TABLE IF NOT EXISTS `user_temp` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `widgets`
+-- Table structure for table `widgets`
 --
 
+DROP TABLE IF EXISTS `widgets`;
 CREATE TABLE IF NOT EXISTS `widgets` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
@@ -2185,7 +2241,7 @@ CREATE TABLE IF NOT EXISTS `widgets` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=19 ;
 
 --
--- Дамп даних таблиці `widgets`
+-- Dumping data for table `widgets`
 --
 
 INSERT INTO `widgets` (`id`, `name`, `type`, `data`, `method`, `settings`, `description`, `roles`, `created`) VALUES
@@ -2209,9 +2265,10 @@ INSERT INTO `widgets` (`id`, `name`, `type`, `data`, `method`, `settings`, `desc
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `widget_i18n`
+-- Table structure for table `widget_i18n`
 --
 
+DROP TABLE IF EXISTS `widget_i18n`;
 CREATE TABLE IF NOT EXISTS `widget_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(11) NOT NULL,
@@ -2221,7 +2278,7 @@ CREATE TABLE IF NOT EXISTS `widget_i18n` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `widget_i18n`
+-- Dumping data for table `widget_i18n`
 --
 
 INSERT INTO `widget_i18n` (`id`, `locale`, `data`) VALUES
