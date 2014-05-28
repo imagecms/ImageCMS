@@ -577,7 +577,8 @@ input.input-search{height: 33px;padding-right: 14px;}
 .vertical-menu .frame-item-menu > .frame-title > .title{padding-right: 14px;}
 .frame-drop-menu{display: none;margin-left: 0 !important;position: absolute;text-align: left;z-index: 1;}
 .horizontal-menu .frame-drop-menu{max-width: 100%;top: 100%;margin-top: -2px !important;left: 0;}
-.vertical-menu .frame-drop-menu{left: 100% !important;right: auto !important;height: auto !important;width: auto !important;overflow: visible !important;}
+.vertical-menu .frame-drop-menu{left: 100% !important;right: auto !important;height: auto !important;overflow: visible !important;}
+.vertical-menu .menu-row-category .frame-drop-menu{width: auto !important;}
 .vertical-menu .frame-item-menu{position: relative;border-top: 1px solid transparent;}
 .vertical-menu .menu-main tr:first-child .frame-drop-menu {top:-1px;}
 .vertical-menu .menu-main td{text-align: left;}
@@ -612,7 +613,7 @@ input.input-search{height: 33px;padding-right: 14px;}
 .menu-row-category .frame-drop-menu .frame-l2 > ul > li{display: inline-block;}
 
 .menu-col-category .frame-drop-menu > ul{padding: 5px 15px 0;}
-.menu-col-category .frame-drop-menu > ul > li{width: 176px;padding-right: 8px;padding-bottom: 10px;}
+.menu-col-category .frame-drop-menu > ul > li{width: 176px;padding-bottom: 10px;}
 .is-side > ul > li{width: 100%;}
 
 .is-side.x1{width: 200px !important;}

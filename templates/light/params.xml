@@ -3,41 +3,25 @@
     <author>SiteImage</author>
     
     <dependencies>
-<<<<<<< HEAD
-	<!--
-        <dependency entityName="module" name="moduleName1" type="required"/>
-        <dependency entityName="module" name="moduleName2" type="wishful"/>
-        <dependency entityName="module" name="moduleName3" type="add"/>
-		 -->
-        <dependence entityName="widget" name="benefits2" type="add" widgetType="html">
-             <widget_i18n locale="ru">
-                    <data>
-                <div class="frame-title">
-=======
         <dependence entityName="widget" name="benefits" type="add" widgetType="html">
-		<widget_i18n locale="ru">
-                    <data>
-					<div>
-                        <div class="frame-title">
->>>>>>> 0257c6b5f1d6d03380010657bbca51bf0bf51040
-<div class="title">Почему выбирают нас</div>
-</div>
-<ul class="items items-benefits">
-<li>
-<div class="frame-icon-benefit"><span class="helper">&#0160;</span> <span class="icon-benefits_1">&#0160;</span></div>
-<div class="frame-description-benefit f-s_0">
-<div class="title">Бесплатная доставка от 2000 р</div>
-</div>
-<<<<<<< HEAD
-    </li>
-    </ul>
-=======
-</li>
-</ul>
-</div>
->>>>>>> 0257c6b5f1d6d03380010657bbca51bf0bf51040
-                    </data>
-                </widget_i18n>
+            <widget_i18n locale="ru">
+                <data>
+                    <div class="frame-title">
+                        <div class="title">Почему выбирают нас</div>
+                    </div>
+                    <ul class="items items-benefits">
+                        <li>
+                            <div class="frame-icon-benefit">
+                                <span class="helper">&#0160;</span> 
+                                <span class="icon-benefits_1">&#0160;</span>
+                            </div>
+                            <div class="frame-description-benefit f-s_0">
+                                <div class="title">Бесплатная доставка от 2000 р</div>
+                            </div>
+                        </li>
+                    </ul>
+                </data>
+            </widget_i18n>
         </dependence>
 
         <dependence entityName="widget" name="brands" type="add" widgetType="module" module="shop" method="brands" description="widget description">
@@ -49,7 +33,7 @@
             </settings>
         </dependence>
     </dependencies>
-     <demodata>
+    <demodata>
         <menus>
             <menu name="top_menu" main_title="top_menu" tpl_folder="top_menu" description="Меню в верхней части шаблона">
                 <item title="О компании" url="/o-magazine">
@@ -148,15 +132,301 @@
         
         <component handler="TMenuColumn">
             <params name="columns">
-                <param key="1" value="927, 931" />
-                <param key="2" value="933, 935" />
+                <param key="1" value="927, 928, 3013, 930, 931, 932, 935, 936" />
+                <param key="2" value="933, 2583, 937, 938" />
+                <param key="3" value="2597" />
             </params>
         </component>
         
         <component handler="TProperties">
             <params name="properties">
+                <param key="20" value="scroll" />
+                <param key="22" value="scroll" />
+                <param key="23" value="scroll" />
+                <param key="24" value="scroll" />
+                <param key="25" value="scroll" />
+                <param key="26" value="scroll" />
+                <param key="28" value="scroll" />
+                <param key="31" value="scroll" />
+                <param key="34" value="scroll" />
+                <param key="35" value="scroll" />
+                <param key="36" value="scroll" />
+                <param key="37" value="scroll" />
+                <param key="39" value="scroll" />
+                <param key="41" value="scroll" />
+                <param key="42" value="scroll" />
+                <param key="46" value="scroll" />
+                <param key="50" value="scroll" />
+                <param key="51" value="scroll" />
+                <param key="52" value="scroll" />
+                <param key="53" value="scroll" />
+                <param key="57" value="scroll" />
+                <param key="58" value="scroll" />
+                <param key="59" value="scroll" />
+                <param key="60" value="scroll" />
+                <param key="62" value="scroll" />
+                <param key="64" value="scroll" />
+                <param key="66" value="scroll" />
+                <param key="67" value="scroll" />
                 <param key="68" value="scroll" />
-                <param key="334" value="dropDown, scroll" />
+                <param key="70" value="scroll" />
+                <param key="73" value="scroll" />
+                <param key="74" value="scroll" />
+                <param key="75" value="scroll" />
+                <param key="76" value="scroll" />
+                <param key="77" value="scroll" />
+                <param key="78" value="scroll" />
+                <param key="79" value="scroll" />
+                <param key="84" value="scroll" />
+                <param key="86" value="scroll" />
+                <param key="89" value="scroll" />
+                <param key="90" value="scroll" />
+                <param key="91" value="scroll" />
+                <param key="92" value="scroll" />
+                <param key="93" value="scroll" />
+                <param key="95" value="scroll" />
+                <param key="96" value="scroll" />
+                <param key="97" value="scroll" />
+                <param key="98" value="scroll" />
+                <param key="99" value="scroll" />
+                <param key="100" value="scroll" />
+                <param key="101" value="scroll" />
+                <param key="102" value="scroll" />
+                <param key="103" value="scroll" />
+                <param key="104" value="scroll" />
+                <param key="105" value="scroll" />
+                <param key="107" value="scroll" />
+                <param key="108" value="scroll" />
+                <param key="110" value="scroll" />
+                <param key="111" value="scroll" />
+                <param key="112" value="scroll" />
+                <param key="113" value="scroll" />
+                <param key="114" value="scroll" />
+                <param key="115" value="scroll" />
+                <param key="116" value="scroll" />
+                <param key="117" value="scroll" />
+                <param key="118" value="scroll" />
+                <param key="119" value="scroll" />
+                <param key="120" value="scroll" />
+                <param key="121" value="scroll" />
+                <param key="122" value="scroll" />
+                <param key="123" value="scroll" />
+                <param key="124" value="scroll" />
+                <param key="125" value="scroll" />
+                <param key="127" value="scroll" />
+                <param key="131" value="scroll" />
+                <param key="133" value="scroll" />
+                <param key="134" value="scroll" />
+                <param key="135" value="scroll" />
+                <param key="137" value="scroll" />
+                <param key="138" value="scroll" />
+                <param key="139" value="scroll" />
+                <param key="140" value="scroll" />
+                <param key="141" value="scroll" />
+                <param key="142" value="scroll" />
+                <param key="143" value="scroll" />
+                <param key="144" value="scroll" />
+                <param key="145" value="scroll" />
+                <param key="146" value="scroll" />
+                <param key="152" value="scroll" />
+                <param key="154" value="scroll" />
+                <param key="155" value="scroll" />
+                <param key="156" value="scroll" />
+                <param key="157" value="scroll" />
+                <param key="158" value="scroll" />
+                <param key="159" value="scroll" />
+                <param key="160" value="dropDown" />
+                <param key="161" value="dropDown" />
+                <param key="162" value="dropDown" />
+                <param key="163" value="dropDown" />
+                <param key="164" value="dropDown" />
+                <param key="165" value="dropDown" />
+                <param key="166" value="dropDown" />
+                <param key="167" value="dropDown" />
+                <param key="168" value="dropDown" />
+                <param key="169" value="dropDown" />
+                <param key="170" value="dropDown" />
+                <param key="171" value="dropDown" />
+                <param key="172" value="dropDown" />
+                <param key="173" value="dropDown" />
+                <param key="174" value="dropDown" />
+                <param key="176" value="dropDown" />
+                <param key="177" value="dropDown" />
+                <param key="178" value="dropDown" />
+                <param key="179" value="dropDown" />
+                <param key="180" value="dropDown" />
+                <param key="181" value="dropDown" />
+                <param key="182" value="dropDown" />
+                <param key="183" value="dropDown" />
+                <param key="184" value="dropDown" />
+                <param key="185" value="dropDown" />
+                <param key="186" value="dropDown" />
+                <param key="187" value="dropDown" />
+                <param key="188" value="dropDown" />
+                <param key="189" value="dropDown" />
+                <param key="190" value="dropDown" />
+                <param key="191" value="dropDown" />
+                <param key="192" value="dropDown" />
+                <param key="193" value="dropDown" />
+                <param key="194" value="dropDown" />
+                <param key="197" value="dropDown" />
+                <param key="198" value="dropDown" />
+                <param key="199" value="dropDown" />
+                <param key="200" value="dropDown" />
+                <param key="201" value="dropDown" />
+                <param key="202" value="dropDown" />
+                <param key="203" value="dropDown" />
+                <param key="204" value="dropDown" />
+                <param key="206" value="dropDown" />
+                <param key="207" value="dropDown" />
+                <param key="208" value="dropDown" />
+                <param key="209" value="dropDown" />
+                <param key="210" value="dropDown" />
+                <param key="211" value="dropDown" />
+                <param key="212" value="dropDown" />
+                <param key="213" value="dropDown" />
+                <param key="214" value="dropDown" />
+                <param key="215" value="dropDown" />
+                <param key="216" value="dropDown" />
+                <param key="217" value="dropDown" />
+                <param key="218" value="dropDown" />
+                <param key="219" value="dropDown" />
+                <param key="220" value="dropDown" />
+                <param key="221" value="dropDown" />
+                <param key="222" value="dropDown" />
+                <param key="223" value="dropDown" />
+                <param key="224" value="dropDown" />
+                <param key="225" value="dropDown" />
+                <param key="226" value="dropDown" />
+                <param key="227" value="dropDown" />
+                <param key="228" value="dropDown" />
+                <param key="229" value="dropDown" />
+                <param key="230" value="dropDown" />
+                <param key="231" value="dropDown" />
+                <param key="232" value="dropDown" />
+                <param key="233" value="dropDown" />
+                <param key="234" value="dropDown" />
+                <param key="235" value="dropDown" />
+                <param key="236" value="dropDown" />
+                <param key="237" value="dropDown" />
+                <param key="238" value="dropDown" />
+                <param key="239" value="dropDown" />
+                <param key="240" value="dropDown" />
+                <param key="241" value="dropDown" />
+                <param key="242" value="dropDown" />
+                <param key="243" value="dropDown" />
+                <param key="244" value="dropDown" />
+                <param key="246" value="dropDown" />
+                <param key="247" value="dropDown" />
+                <param key="248" value="dropDown" />
+                <param key="249" value="dropDown" />
+                <param key="250" value="dropDown" />
+                <param key="251" value="dropDown" />
+                <param key="252" value="dropDown" />
+                <param key="253" value="dropDown" />
+                <param key="254" value="dropDown" />
+                <param key="255" value="dropDown" />
+                <param key="256" value="dropDown" />
+                <param key="257" value="dropDown" />
+                <param key="258" value="dropDown" />
+                <param key="260" value="dropDown" />
+                <param key="261" value="dropDown" /> 
+                <param key="262" value="scroll, dropDown" />
+                <param key="263" value="scroll, dropDown" />
+                <param key="264" value="scroll, dropDown" />
+                <param key="265" value="scroll, dropDown" />
+                <param key="266" value="scroll, dropDown" />
+                <param key="267" value="scroll, dropDown" />
+                <param key="268" value="scroll, dropDown" />
+                <param key="269" value="scroll, dropDown" />
+                <param key="270" value="scroll, dropDown" />
+                <param key="272" value="scroll, dropDown" />
+                <param key="273" value="scroll, dropDown" />
+                <param key="275" value="scroll, dropDown" />
+                <param key="276" value="scroll, dropDown" />
+                <param key="277" value="scroll, dropDown" />
+                <param key="278" value="scroll, dropDown" />
+                <param key="279" value="scroll, dropDown" />
+                <param key="280" value="scroll, dropDown" />
+                <param key="281" value="scroll, dropDown" />
+                <param key="282" value="scroll, dropDown" />
+                <param key="283" value="scroll, dropDown" />
+                <param key="284" value="scroll, dropDown" />
+                <param key="285" value="scroll, dropDown" />
+                <param key="286" value="scroll, dropDown" />
+                <param key="287" value="scroll, dropDown" />
+                <param key="288" value="scroll, dropDown" />
+                <param key="289" value="scroll, dropDown" />
+                <param key="290" value="scroll, dropDown" />
+                <param key="291" value="scroll, dropDown" />
+                <param key="292" value="scroll, dropDown" />
+                <param key="293" value="scroll, dropDown" />
+                <param key="295" value="scroll, dropDown" />
+                <param key="296" value="scroll, dropDown" />
+                <param key="297" value="scroll, dropDown" />
+                <param key="298" value="scroll, dropDown" />
+                <param key="299" value="scroll, dropDown" />
+                <param key="300" value="scroll, dropDown" />
+                <param key="301" value="scroll, dropDown" />
+                <param key="303" value="scroll, dropDown" />
+                <param key="304" value="scroll, dropDown" />
+                <param key="305" value="scroll, dropDown" />
+                <param key="306" value="scroll, dropDown" />
+                <param key="307" value="scroll, dropDown" />
+                <param key="308" value="scroll, dropDown" />
+                <param key="309" value="scroll, dropDown" />
+                <param key="310" value="scroll, dropDown" />
+                <param key="311" value="scroll, dropDown" />
+                <param key="312" value="scroll, dropDown" />
+                <param key="313" value="scroll, dropDown" />
+                <param key="314" value="scroll, dropDown" />
+                <param key="315" value="scroll, dropDown" />
+                <param key="316" value="scroll, dropDown" />
+                <param key="317" value="scroll, dropDown" />
+                <param key="318" value="scroll, dropDown" />
+                <param key="319" value="scroll, dropDown" />
+                <param key="320" value="scroll, dropDown" />
+                <param key="321" value="scroll, dropDown" />
+                <param key="322" value="scroll, dropDown" />
+                <param key="323" value="scroll, dropDown" />
+                <param key="324" value="scroll, dropDown" />
+                <param key="325" value="scroll, dropDown" />
+                <param key="326" value="scroll, dropDown" />
+                <param key="327" value="scroll, dropDown" />
+                <param key="328" value="scroll, dropDown" />
+                <param key="329" value="scroll, dropDown" />
+                <param key="330" value="scroll, dropDown" />
+                <param key="331" value="scroll, dropDown" />
+                <param key="332" value="scroll, dropDown" />
+                <param key="333" value="scroll, dropDown" />
+                <param key="334" value="scroll, dropDown" />
+                <param key="335" value="scroll, dropDown" />
+                <param key="336" value="scroll, dropDown" />
+                <param key="337" value="scroll, dropDown" />
+                <param key="338" value="scroll, dropDown" />
+                <param key="339" value="scroll, dropDown" />
+                <param key="340" value="scroll, dropDown" />
+                <param key="341" value="scroll, dropDown" />
+                <param key="342" value="scroll, dropDown" />
+                <param key="343" value="scroll, dropDown" />
+                <param key="344" value="scroll, dropDown" />
+                <param key="345" value="scroll, dropDown" />
+                <param key="346" value="scroll, dropDown" />
+                <param key="347" value="scroll, dropDown" />
+                <param key="348" value="scroll, dropDown" />
+                <param key="349" value="scroll, dropDown" />
+                <param key="350" value="scroll, dropDown" />
+                <param key="351" value="scroll, dropDown" />
+                <param key="352" value="scroll, dropDown" />
+                <param key="353" value="scroll, dropDown" />
+                <param key="354" value="scroll, dropDown" />
+                <param key="355" value="scroll, dropDown" />
+                <param key="356" value="scroll, dropDown" />
+                <param key="357" value="scroll, dropDown" />
+                <param key="358" value="scroll, dropDown" />
+                <param key="359" value="scroll, dropDown" />
+                <param key="360" value="scroll, dropDown" />
+                <param key="361" value="scroll, dropDown" /> 
             </params>
         </component>
         
