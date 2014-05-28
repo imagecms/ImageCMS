@@ -378,8 +378,8 @@ hr{border-top: 1px solid transparent;border-bottom: 1px solid transparent;}
 .btn-buy-p > button, .btn-buy-p > a, .btn-buy-p > input{padding: 0 50px;}
 .btn-buy .text-el, .btn-buy > input{font-size: 14px;font-weight: bold;}
 
-.btn-cart{border-radius: 2px;border: 1px solid transparent;}
-.btn-cart > button, .btn-cart > a, .btn-cart > input{height: 33px;line-height: 33px;padding: 0 30px;}
+.btn-cart, .frame-payment input[type="submit"], .frame-payment button[type="submit"]{border-radius: 2px;border: 1px solid transparent;}
+.btn-cart > button, .btn-cart > a, .btn-cart > input, .frame-payment input[type="submit"], .frame-payment button[type="submit"]{height: 33px;line-height: 33px;padding: 0 30px;}
 .btn-cart .text-el, .btn-cart > input{font-size: 12px;}
 
 .btn-cart-p .text-el, .btn-cart-p > input{font-size: 18px;}
