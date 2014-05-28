@@ -53,7 +53,7 @@
                 {if $p.stock > 0}
                     <div class="frame-count-buy js-variant-{echo $p.variant_id} js-variant">
                         <div class="frame-count frameCount">
-                            <div class="number js-number" data-title="{lang('количество на складе', 'newLevel')} {echo $p.stock}" data-prodid="{echo $p.id}" data-varid="{echo $p.variant_id}">
+                            <div class="number js-number" data-title="{lang('количество на складе', 'newLevelVertical')} {echo $p.stock}" data-prodid="{echo $p.id}" data-varid="{echo $p.variant_id}">
                                 <div class="frame-change-count frameChangeCount">
                                     <div class="btn-plus">
                                         <button type="button">
@@ -66,7 +66,7 @@
                                         </button>
                                     </div>
                                 </div>
-                                <input type="text" value="1" class="plusMinus plus-minus iPr" data-title="{lang('только цифры', 'newLevel')}" data-min="1" data-max="{echo $p.stock}">
+                                <input type="text" value="1" class="plusMinus plus-minus iPr" data-title="{lang('только цифры', 'newLevelVertical')}" data-min="1" data-max="{echo $p.stock}">
                             </div>
                         </div>
                         <div class="btn-buy">
@@ -89,7 +89,7 @@
                                 data-prodStatus='{json_encode(promoLabelBtn($p.action, $p.hot, $p.hit))}'
                                 >
                                 <span class="icon_cleaner icon_cleaner_buy"></span>
-                                <span class="text-el">{lang('Купить','newLevel')}</span>
+                                <span class="text-el">{lang('Купить','newLevelVertical')}</span>
                             </button>
                         </div>
                     </div>
@@ -114,7 +114,7 @@
                             data-url="{echo shop_url('product/'.$p.url)}"
                             >
                             <span class="icon-but"></span>
-                            <span class="text-el">{lang('Сообщить о появлении','newLevel')}</span>
+                            <span class="text-el">{lang('Сообщить о появлении','newLevelVertical')}</span>
                         </button>
                     </div>
                 {/if}
@@ -141,7 +141,7 @@
                         data-effect-off="fadeOut"
                         data-source="{site_url('/wishlist/wishlistApi/deleteItem/'.$p[variant_id].'/'.$p[wish_list_id])}"
                         data-after="WishListFront.removeItem"
-                        ><span class="icon_remove"></span><span class="text-el d_l_1">{lang('Удалить', 'newLevel')}</span></button>
+                        ><span class="icon_remove"></span><span class="text-el d_l_1">{lang('Удалить', 'newLevelVertical')}</span></button>
                 </div>
                 <div class="btn-move-item-wl">
                     <button
@@ -149,7 +149,7 @@
                         data-drop="#wishListPopup"
                         data-source="{site_url('/wishlist/renderPopup/'.$p[variant_id].'/'.$p[wish_list_id])}"
                         data-always="true"
-                        ><span class="icon_move"></span><span class="text-el d_l_1">{lang('Переместить', 'newLevel')}</span>
+                        ><span class="icon_move"></span><span class="text-el d_l_1">{lang('Переместить', 'newLevelVertical')}</span>
                     </button>
                 </div>
             </div>

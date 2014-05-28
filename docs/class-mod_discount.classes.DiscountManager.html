@@ -7,7 +7,7 @@
 	<title>Class mod_discount\classes\DiscountManager | ImageCMS Docs</title>
 
 	<script type="text/javascript" src="resources/combined.js?394153670"></script>
-	<script type="text/javascript" src="elementlist.js?639510069"></script>
+	<script type="text/javascript" src="elementlist.js?2646255529"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360">
 
 </head>
@@ -80,6 +80,18 @@
 						</li>
 				<li><a href="namespace-Search.html">Search</a>
 						</li>
+				<li><a href="namespace-template_manager.html">template_manager<span></span></a>
+						<ul>
+				<li><a href="namespace-template_manager.classes.html">classes</a>
+						</li>
+				<li><a href="namespace-template_manager.installer.html">installer</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-translator.html">translator<span></span></a>
+						<ul>
+				<li><a href="namespace-translator.classes.html">classes</a>
+						</li>
+							</ul></li>
 				<li><a href="namespace-wishlist.html">wishlist<span></span></a>
 						<ul>
 				<li><a href="namespace-wishlist.classes.html">classes</a>
@@ -94,6 +106,7 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
+				<li><a href="class-mod_discount.classes.ApplyChecker.html">ApplyChecker</a></li>
 				<li><a href="class-mod_discount.classes.BaseDiscount.html">BaseDiscount</a></li>
 				<li class="active"><a href="class-mod_discount.classes.DiscountManager.html">DiscountManager</a></li>
 			</ul>
@@ -728,7 +741,7 @@ of error<br>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_validation">#</a>
-		<code>validation( <span>array <var>$postArray</var></span>, <span>mixed <var>$id</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code>validation( <span>array <var>$postArray</var></span>, <span>integer <var>$id</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -745,9 +758,9 @@ of error<br>
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$postArray</var></dt>
-					<dd><code>array</code><br>$postArray input params:</dd>
+					<dd><code>array</code><br>$postArray</dd>
 					<dt><var>$id</var></dt>
-					<dd></dd>
+					<dd><code>integer</code><br>$id (optional) need to be specified on discount editing</dd>
 				</dl></div>
 
 
@@ -895,7 +908,7 @@ of error<br>
 	<tr data-order="discount_model_admin" id="m$discount_model_admin">
 		<td class="attributes"><code>
 			public  
-			<code><a href="class-discount_model_admin.html">discount_model_admin</a></code>
+			discount_model_admin
 		</code></td>
 
 		<td class="name">

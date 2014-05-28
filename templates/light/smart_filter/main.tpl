@@ -1,10 +1,10 @@
 {if $_GET['brand'] != "" || $_GET['p'] != "" || ($_GET['lp'] && $_GET['lp'] != $minPrice) || ($_GET['rp'] && $_GET['rp'] != $maxPrice)}
     <div class="frame-check-filter">
         <div class="inside-padd">
-            <div class="title">{lang('Выбранные фильтры', 'newLevel')}</div>
+            <div class="title">{lang('Выбранные фильтры', 'light')}</div>
             <ul class="list-check-filter">
                 {if $curMin != $minPrice || $curMax != $maxPrice}
-                    <li class="clear-slider" data-rel="sliders.slider1"><button type="button" class="ref"><span class="icon_times icon_remove_filter f_l"></span><span class="name-check-filter">Цена от {echo $_GET['lp']} до {echo $_GET['rp']} <span class="cur">{$CS}</span></></button></li>
+                    <li class="clear-slider" data-rel="sliders.slider1"><button type="button" class="ref"><span class="icon_times icon_remove_filter f_l"></span><span class="name-check-filter">{lang('Цена от', 'light')} {echo $_GET['lp']} {lang('до', 'light')} {echo $_GET['rp']} <span class="cur">{$CS}</span></></button></li>
                     {/if}
                     {if count($brands) > 0}
                         {foreach $brands as $brand}
@@ -28,8 +28,8 @@
                             {/if}
             </ul>
             <div class="foot-check-filter">
-                <button type="button" onclick="location.href = '{site_url($CI->uri->uri_string())}'" class="btn-reset-filter">
-                    <span class="text-el d_l_1">{lang('Сбросить все фильтры', 'newLevel')}</span>
+                <button type="button" onclick="location.href = location.origin + location.pathname" class="btn-reset-filter">
+                    <span class="text-el d_l_1">{lang('Сбросить все фильтры', 'light')}</span>
                 </button>
             </div>
         </div>
@@ -41,7 +41,7 @@
     <div class="frame-category-menu layout-highlight">
         <div class="title-menu-category">
             <div class="title-default">
-                <div class="title-h3 title">{lang('Категории', 'newLevel')}:</div>
+                <div class="title-h3 title">{lang('Категории', 'light')}:</div>
             </div>
         </div>
         <div class="inside-padd">

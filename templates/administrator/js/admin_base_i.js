@@ -750,7 +750,52 @@ $(document).ready(function() {
             container: '#mainContent'
         });
     });
-    ;
+
+// Properties filter start
+    $('.property_list_order').live('click', function() {
+        var column = $(this).attr('data-column');
+        $('input[name=orderMethod]').attr('value', column);
+        if ($('input[name=order]').attr('value') === '') {
+            $('input[name=order]').attr('value', 'ASC');
+        } else {
+            if ($('input[name=order]').attr('value') === 'ASC') {
+                $('input[name=order]').attr('value', 'DESC');
+            } else {
+                $('input[name=order]').attr('value', 'ASC');
+            }
+        }
+        ;
+        var query_string = $('#filter_form').serialize();
+        var url = $('#filter_form').attr('action');
+        $.pjax({
+            url: url + '?' + query_string,
+            container: '#mainContent'
+        });
+    });
+
+    $('.propFilterSelect').off('change').live('change', function(event) {
+        var query_string = $('#filter_form').serialize();
+        var url = $('#filter_form').attr('action');
+        $.pjax({
+            url: url + '?' + query_string,
+            container: '#mainContent'
+        });
+    });
+
+    $('.properties_filter_inputs').find('input').on('keypress', function(event) {
+        var keycode = (event.keyCode ? event.keyCode : event.which);
+        if (keycode == '13') {
+            var query_string = $('#filter_form').serialize();
+            var url = $('#filter_form').attr('action');
+            
+            $.pjax({
+                url: url + '?' + query_string,
+                container: '#mainContent'
+            });
+        }
+    });
+
+    // Properties filter end
 
     $('.move_to_cat').live('click', function() {
         var catId = $('#moveCategoryId').attr('value');
@@ -1391,7 +1436,7 @@ $(document).ready(function() {
 
     $("input[type='file'][name='watermark_font_path']").live("change", function() {
         var allowedFileExtentions = ['ttf', 'fnt', 'fon', 'otf'];
-        var ext = $(this).val().split('.').pop();
+        var ext = $(this).val().split('.').pop().toLowerCase();
         var extentionIsAllowed = false;
         for (var i = 0; i < allowedFileExtentions.length; i++) {
             if (allowedFileExtentions[i] == ext) {
@@ -1522,29 +1567,18 @@ $(document).ready(function() {
         $(img).addClass('img-polaroid').css({
             'max-height': '100%'
         });
-        $(this).siblings('.controls').html(img);
-
+        $(this).closest('.control-group').find('.controls').html(img);
     });
 
     // delete image buttons
-    $(".remove_btn").die('change').live("click", function() {
+    $(".remove_btn").die('click').live("click", function() {
         //$("#site_info_tab").delegate('.remove_btn', "click", function() {
         // setting hidden input value to 1 delete for delete image on saving
         $(this).parents(".control-group").find("input.si_delete_image").val("1");
         // display some message about deleting
-        $(this).parents(".siteinfo_image_container")
+        $(this).parents(".control-group").find(".siteinfo_image_container")
                 .empty()
                 .html("<img class='img-polaroid' src='/templates/administrator/images/select-picture.png' />");
-
-    });
-    // the delete button appears only on image hover
-    $(".siteinfo_image_container").die('change').live("mouseover", function() {
-        //$("#site_info_tab").delegate('.siteinfo_image_container', "mouseover", function() {
-        $(this).find(".remove_btn").show();
-    });
-    $(".siteinfo_image_container").die('change').live("mouseout", function() {
-        //$("#site_info_tab").delegate('.siteinfo_image_container', "mouseout", function() {
-        $(this).find(".remove_btn").hide();
     });
 
     var siteInfoLocalesDataCache = {};
@@ -1661,46 +1695,17 @@ $(document).ready(function() {
             }
         });
     });
-    getChar = function(e) {
-        if (e.which == null) {  // IE
-            if (e.keyCode < 32)
-                return null;
-            return String.fromCharCode(e.keyCode)
-        }
 
-        if (e.which != 0 && e.charCode != 0) { // non IE
-            if (e.which < 32)
-                return null;
-            return String.fromCharCode(e.which);
-        }
+    // autosubmit brands filter-form 
+    var filterChangeTimeout;
+    $('form#brands_filter input').live('keyup', function() {
+        clearTimeout(filterChangeTimeout);
+        filterChangeTimeout = setTimeout(function() {
+            var formData = $('form#brands_filter').serialize();
+            $.pjax({url: location.pathname + '?' + formData, container: "#mainContent"});
+        }, 1000);
+    });
 
-        return null;
-    }
-    $.fn.testNumber = function(add) {
-        $(this).off('keypress.testNumber').on('keypress.testNumber', function(e) {
-            var $this = $(this);
-            if (e.ctrlKey || e.altKey || e.metaKey)
-                return;
-            var chr = getChar(e);
-            if (chr == null)
-                return;
-            if (!isNaN(parseFloat(chr)) || $.inArray(chr, add) != -1) {
-                $this.trigger({
-                    type: 'testNumber',
-                    'res': true
-                });
-                return true;
-            }
-            else {
-                $this.trigger({
-                    type: 'testNumber',
-                    'res': false
-                });
-                return false;
-            }
-        });
-    };
-    $("#createUserPhone, #UserPhone, #Phone").testNumber(['(', ')', '+', '-']);
 });
 
 

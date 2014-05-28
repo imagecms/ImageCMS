@@ -132,7 +132,6 @@ class MY_Lang extends MX_Lang {
      * @return	mixed
      */
     public function load($module = 'main') {
-//        if (!$this->gettext)
         $this->_init();
 
         if (strstr(uri_string(), 'admin')) {
@@ -150,24 +149,25 @@ class MY_Lang extends MX_Lang {
                 $lang = $languageFront[1];
             }
         }
-//        $lang = 'ru_RU';
+//        var_dumps_exit($lang);
 
         if ($module == 'main') {
+            $this->addDomain('application/language/main/', getMoFileName('main'), $lang);
             $template_name = \CI_Controller::get_instance()->config->item('template');
-            $this->addDomain('application/language/main/', 'main', $lang);
-            $this->addDomain('templates/' . $template_name . '/language/' . $template_name . '/', $template_name, $lang);
+            $this->addDomain('templates/' . $template_name . '/language/' . $template_name . '/', getMoFileName($template_name), $lang);
         } else {
+
             if ($module == 'admin') {
                 if (MAINSITE) {
-                    $this->addDomain(MAINSITE . '/application/language/main/', 'main', $lang);
+                    $this->addDomain(MAINSITE . '/application/language/main/', getMoFileName('main'), $lang);
                 } else {
-                    $this->addDomain('application/language/main/', 'main', $lang);
+                    $this->addDomain('application/language/main/', getMoFileName('main'), $lang);
                 }
             }
             if (MAINSITE) {
-                $this->addDomain(MAINSITE . '/application/modules/' . $module . '/language', $module, $lang);
+                $this->addDomain(MAINSITE . '/application/modules/' . $module . '/language', getMoFileName($module), $lang);
             } else {
-                $this->addDomain('application/modules/' . $module . '/language', $module, $lang);
+                $this->addDomain('application/modules/' . $module . '/language', getMoFileName($module), $lang);
             }
         }
     }

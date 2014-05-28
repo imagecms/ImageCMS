@@ -115,14 +115,15 @@
                                     <div class="control-group">
                                         <label class="control-label" for="file">{lang('Paths', 'translator')}:</label>
                                         <div class="controls">
-                                            <button type="button" onclick="CreatePoFile.addPath($(this))" class="btn btn-small btn-success" style="float: left">
+                                            <button type="button" onclick="CreatePoFile.addPath($(this))" class="createPagePathsAddButton disabled btn btn-small btn-success" style="float: left">
                                                 <i class="icon-plus"></i>
                                                 {lang('Add path', 'translator')}
                                             </button>
-                                            <input type="text" onkeypress="if (event.keyCode == 13)
+                                            <input type="text" class="createPagePathsAddInput" onkeypress="if (event.keyCode == 13)
                                                             $(this).prev().click()" style="width: 422px; margin-left: 10px; margin-bottom: 10px">
-                                            <select name="paths[]" multiple="true" class="span7" required="">
+                                            <select name="paths[]" multiple="true" class="span7 createPagePaths" required="">
                                             </select>
+                                            <span class="help-block">{lang('Double click to deleting', 'translator')}</span>
                                         </div>
                                     </div>
 

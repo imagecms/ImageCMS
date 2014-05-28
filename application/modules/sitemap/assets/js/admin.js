@@ -27,6 +27,7 @@ var SiteMap = {
             url: '/admin/components/init_window/sitemap/saveSiteMap',
             success: function(data) {
                 $('.notifications.top-right').append(data);
+                setTimeout(function(){window.location.reload()}, '300');
             }
         });
     },

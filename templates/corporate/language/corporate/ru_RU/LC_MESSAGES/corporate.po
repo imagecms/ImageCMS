@@ -1,0 +1,212 @@
+﻿msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-05-15 09:43+0300\n"
+"PO-Revision-Date: 2014-05-15 09:43+0300\n"
+"Last-Translator:  <>\n"
+"Language-Team:  <>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
+"X-Poedit-Basepath: ../../../..\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-Language: \n"
+"X-Poedit-Country: \n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: ./templates/corporate/blog.tpl:33
+msgid "Читать дальше"
+msgstr ""
+
+#: ./templates/corporate/comments.tpl:32
+msgid "Только авторизованные пользователи могут оставлять комментарии."
+msgstr ""
+
+#: ./templates/corporate/comments.tpl:33
+msgid "Авторизуйтесь"
+msgstr ""
+
+#: ./templates/corporate/comments.tpl:34
+msgid "пожалуйста."
+msgstr ""
+
+#: ./templates/corporate/gallery/latest_fotos_form.tpl:5
+msgid "Настройки виджета"
+msgstr ""
+
+#: ./templates/corporate/error.tpl:8
+#: ./templates/corporate/gallery/latest_fotos_form.tpl:9
+msgid "Назад"
+msgstr ""
+
+#: ./templates/corporate/gallery/latest_fotos_form.tpl:11
+msgid "Сохранить и выйти"
+msgstr ""
+
+#: ./templates/corporate/gallery/latest_fotos_form.tpl:20
+msgid "Настройки"
+msgstr ""
+
+#: ./templates/corporate/gallery/latest_fotos_form.tpl:28
+msgid "Лимит изображений"
+msgstr ""
+
+#: ./templates/corporate/gallery/latest_fotos_form.tpl:34
+msgid "Алгоритм"
+msgstr ""
+
+#: ./templates/corporate/gallery/latest_fotos_form.tpl:37
+msgid "Последние изображения"
+msgstr ""
+
+#: ./templates/corporate/gallery/latest_fotos_form.tpl:38
+msgid "Случайные изображения"
+msgstr ""
+
+#: ./templates/corporate/search.tpl:9
+msgid "Ничего не найдено"
+msgstr ""
+
+#: ./templates/corporate/comments.tpl:42
+msgid "Вы вошли как"
+msgstr ""
+
+#: ./templates/corporate/forgot_password.tpl:26
+#: ./templates/corporate/register.tpl:18
+msgid "E-mail"
+msgstr ""
+
+#: ./templates/corporate/register.tpl:24
+msgid "ФИО"
+msgstr ""
+
+#: ./templates/corporate/register.tpl:36
+msgid "Повторите Пароль"
+msgstr ""
+
+#: ./templates/corporate/comments/comments_api.tpl:3
+msgid "log in"
+msgstr ""
+
+#: ./templates/corporate/comments/comments_api.tpl:3
+msgid "please"
+msgstr ""
+
+#: ./templates/corporate/comments/comments_api.tpl:3
+msgid "Only authorized users can leave comments."
+msgstr ""
+
+#: ./templates/corporate/comments/comments_api.tpl:8
+msgid "Customer comments"
+msgstr ""
+
+#: ./templates/corporate/comments/comments_api.tpl:28
+#: ./templates/corporate/comments/comments_api.tpl:162
+msgid "Pluses"
+msgstr ""
+
+#: ./templates/corporate/comments/comments_api.tpl:34
+#: ./templates/corporate/comments/comments_api.tpl:168
+msgid "Minuses"
+msgstr ""
+
+#: ./templates/corporate/comments/comments_api.tpl:45
+msgid "Answer"
+msgstr ""
+
+#: ./templates/corporate/comments/comments_api.tpl:57
+msgid "Like review"
+msgstr ""
+
+#: ./templates/corporate/comments/comments_api.tpl:64
+msgid "Do not like it"
+msgstr ""
+
+#: ./templates/corporate/comments/comments_api.tpl:97
+msgid "Write your comment"
+msgstr ""
+
+#: ./templates/corporate/comments/comments_api.tpl:109
+msgid "Your rating"
+msgstr ""
+
+#: ./templates/corporate/comments/comments_api.tpl:126
+#: ./templates/corporate/comments/comments_api.tpl:225
+msgid "The comment will be sent for moderation"
+msgstr ""
+
+#: ./templates/corporate/comments/comments_api.tpl:133
+#: ./templates/corporate/comments/comments_api.tpl:209
+msgid "Your name"
+msgstr ""
+
+#: ./templates/corporate/comments/comments_api.tpl:146
+msgid "Site"
+msgstr ""
+
+#: ./templates/corporate/comments/comments_api.tpl:155
+#: ./templates/corporate/comments/comments_api.tpl:233
+msgid "Comment"
+msgstr ""
+
+#: ./templates/corporate/comments/comments_api.tpl:176
+msgid "Code protection"
+msgstr ""
+
+#: ./templates/corporate/comments/comments_api.tpl:187
+#: ./templates/corporate/comments/comments_api.tpl:242
+msgid "Leave comment"
+msgstr ""
+
+#: ./templates/corporate/comments.tpl:75
+msgid "Написать &rarr;"
+msgstr ""
+
+#: ./templates/corporate/main_demo.tpl:89
+msgid "Скрыть"
+msgstr ""
+
+#: ./templates/corporate/register.tpl:30
+msgid "Пароль"
+msgstr ""
+
+#: ./templates/corporate/login_popup.tpl:32
+#: ./templates/corporate/forgot_password.tpl:4
+#: ./templates/corporate/register.tpl:58
+msgid "Забыли Пароль?"
+msgstr ""
+
+#: ./templates/corporate/forgot_password.tpl:41
+#: ./templates/corporate/register.tpl:3
+msgid "Регистрация"
+msgstr ""
+
+#: ./templates/corporate/comments.tpl:42
+msgid "Выход"
+msgstr ""
+
+#: ./templates/corporate/comments/comments_api.tpl:139
+#: ./templates/corporate/comments/comments_api.tpl:215
+msgid "Email"
+msgstr ""
+
+#: ./templates/corporate/forgot_password.tpl:36
+#: ./templates/corporate/register.tpl:54
+msgid "Отправить"
+msgstr ""
+
+#: ./templates/corporate/gallery/latest_fotos_form.tpl:10
+msgid "Сохранить"
+msgstr ""
+
+#: ./templates/corporate/main_demo.tpl:95
+msgid "Показать"
+msgstr ""
+
+#: ./templates/corporate/comments.tpl:20
+msgid "Оставить комментарий"
+msgstr ""

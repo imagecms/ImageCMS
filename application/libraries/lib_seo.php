@@ -150,6 +150,7 @@ class Lib_seo {
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
   ga('create', '" . $GAid['google_analytics_id'] . "', '" . str_replace('www.', '', $_SERVER['HTTP_HOST']) . "');
+  ga('require', 'displayfeatures');
   ga('send', 'pageview');
   
   ga('require', 'ecommerce', 'ecommerce.js');
@@ -172,6 +173,7 @@ class Lib_seo {
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
   ga('create', '" . $GAid['google_analytics_id'] . "', '" . str_replace('www.', '', $_SERVER['HTTP_HOST']) . "');
+  ga('require', 'displayfeatures');
   ga('send', 'pageview');
   
   ga('require', 'ecommerce', 'ecommerce.js');
@@ -202,7 +204,6 @@ class Lib_seo {
                             break;
                         }
                     }
-                    var_dump($Variant->getNumber());
                     $ga .="ga('ecommerce:addItem', {
     'id': '" . $model->getId() . "',
     'name': '" . encode($product->getName()) . " " . encode($item->getVariantName()) . "',

@@ -1,23 +1,29 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.9deb0.1
+-- version 3.4.10.1deb1
 -- http://www.phpmyadmin.net
 --
--- Хост: localhost
--- Час створення: Бер 19 2014 р., 12:28
--- Версія сервера: 5.5.35-0ubuntu0.13.10.2
--- Версія PHP: 5.5.9-1+sury.org~saucy+1
+-- Host: localhost
+-- Generation Time: May 28, 2014 at 11:43 AM
+-- Server version: 5.5.32
+-- PHP Version: 5.4.25-1+sury.org~precise+2
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
 --
--- База даних: `newtest`
+-- Database: `imagecms`
 --
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `answer_notifications`
+-- Table structure for table `answer_notifications`
 --
 
 DROP TABLE IF EXISTS `answer_notifications`;
@@ -30,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `answer_notifications` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
--- Дамп даних таблиці `answer_notifications`
+-- Dumping data for table `answer_notifications`
 --
 
 INSERT INTO `answer_notifications` (`id`, `locale`, `name`, `message`) VALUES
@@ -44,7 +50,7 @@ INSERT INTO `answer_notifications` (`id`, `locale`, `name`, `message`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `category`
+-- Table structure for table `category`
 --
 
 DROP TABLE IF EXISTS `category`;
@@ -70,22 +76,24 @@ CREATE TABLE IF NOT EXISTS `category` (
   `field_group` int(11) NOT NULL,
   `category_field_group` int(11) NOT NULL,
   `settings` varchar(10000) DEFAULT NULL,
+  `created` int(11) DEFAULT NULL,
+  `updated` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `name` (`name`),
   KEY `url` (`url`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=72 ;
 
 --
--- Дамп даних таблиці `category`
+-- Dumping data for table `category`
 --
 
-INSERT INTO `category` (`id`, `parent_id`, `position`, `name`, `title`, `short_desc`, `url`, `image`, `keywords`, `description`, `fetch_pages`, `main_tpl`, `tpl`, `page_tpl`, `per_page`, `order_by`, `sort_order`, `comments_default`, `field_group`, `category_field_group`, `settings`) VALUES
-(69, 0, 1, 'Новости', '', '', 'novosti', '', '', '', 'a:1:{i:0;s:2:"69";}', '', '', '', 15, 'publish_date', 'desc', 0, 13, -1, 'a:2:{s:26:"category_apply_for_subcats";b:0;s:17:"apply_for_subcats";b:0;}');
+INSERT INTO `category` (`id`, `parent_id`, `position`, `name`, `title`, `short_desc`, `url`, `image`, `keywords`, `description`, `fetch_pages`, `main_tpl`, `tpl`, `page_tpl`, `per_page`, `order_by`, `sort_order`, `comments_default`, `field_group`, `category_field_group`, `settings`, `created`, `updated`) VALUES
+(69, 0, 1, 'Новости', '', '', 'novosti', '', '', '', 'a:1:{i:0;s:2:"69";}', '', '', '', 15, 'publish_date', 'desc', 0, 13, -1, 'a:2:{s:26:"category_apply_for_subcats";b:0;s:17:"apply_for_subcats";b:0;}', NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `category_translate`
+-- Table structure for table `category_translate`
 --
 
 DROP TABLE IF EXISTS `category_translate`;
@@ -106,7 +114,7 @@ CREATE TABLE IF NOT EXISTS `category_translate` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `comments`
+-- Table structure for table `comments`
 --
 
 DROP TABLE IF EXISTS `comments`;
@@ -136,7 +144,7 @@ CREATE TABLE IF NOT EXISTS `comments` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=93 ;
 
 --
--- Дамп даних таблиці `comments`
+-- Dumping data for table `comments`
 --
 
 INSERT INTO `comments` (`id`, `module`, `user_id`, `user_name`, `user_mail`, `user_site`, `item_id`, `text`, `date`, `status`, `agent`, `user_ip`, `rate`, `text_plus`, `text_minus`, `like`, `disslike`, `parent`) VALUES
@@ -155,7 +163,7 @@ INSERT INTO `comments` (`id`, `module`, `user_id`, `user_name`, `user_mail`, `us
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `components`
+-- Table structure for table `components`
 --
 
 DROP TABLE IF EXISTS `components`;
@@ -176,7 +184,7 @@ CREATE TABLE IF NOT EXISTS `components` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=272 ;
 
 --
--- Дамп даних таблиці `components`
+-- Dumping data for table `components`
 --
 
 INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_menu`, `settings`, `position`) VALUES
@@ -185,7 +193,7 @@ INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_me
 (4, 'comments', 'comments', 1, 1, 1, 'a:5:{s:18:"max_comment_length";i:0;s:6:"period";i:0;s:11:"can_comment";i:0;s:11:"use_captcha";b:0;s:14:"use_moderation";b:0;}', 8),
 (7, 'navigation', 'navigation', 0, 0, 0, NULL, 28),
 (30, 'tags', 'tags', 1, 1, 0, NULL, 26),
-(92, 'gallery', 'gallery', 1, 0, 0, 'a:26:{s:13:"max_file_size";s:1:"5";s:9:"max_width";s:1:"0";s:10:"max_height";s:1:"0";s:7:"quality";s:2:"95";s:14:"maintain_ratio";b:1;s:19:"maintain_ratio_prev";b:1;s:19:"maintain_ratio_icon";b:1;s:4:"crop";b:0;s:9:"crop_prev";b:0;s:9:"crop_icon";b:0;s:14:"prev_img_width";s:3:"500";s:15:"prev_img_height";s:3:"500";s:11:"thumb_width";s:3:"100";s:12:"thumb_height";s:3:"100";s:14:"watermark_text";s:0:"";s:16:"wm_vrt_alignment";s:6:"bottom";s:16:"wm_hor_alignment";s:4:"left";s:19:"watermark_font_size";s:2:"14";s:15:"watermark_color";s:6:"ffffff";s:17:"watermark_padding";s:2:"-5";s:19:"watermark_font_path";s:20:"./system/fonts/1.ttf";s:15:"watermark_image";s:0:"";s:23:"watermark_image_opacity";s:2:"50";s:14:"watermark_type";s:4:"text";s:8:"order_by";s:4:"date";s:10:"sort_order";s:4:"desc";}', 12),
+(92, 'gallery', 'gallery', 1, 0, 0, 'a:26:{s:13:"max_file_size";s:1:"5";s:9:"max_width";s:1:"0";s:10:"max_height";s:1:"0";s:7:"quality";s:2:"95";s:14:"maintain_ratio";b:1;s:19:"maintain_ratio_prev";b:1;s:19:"maintain_ratio_icon";b:1;s:4:"crop";b:0;s:9:"crop_prev";b:0;s:9:"crop_icon";b:0;s:14:"prev_img_width";s:3:"500";s:15:"prev_img_height";s:3:"500";s:11:"thumb_width";s:3:"100";s:12:"thumb_height";s:3:"100";s:14:"watermark_text";s:0:"";s:16:"wm_vrt_alignment";s:6:"bottom";s:16:"wm_hor_alignment";s:4:"left";s:19:"watermark_font_size";s:2:"14";s:15:"watermark_color";s:6:"ffffff";s:17:"watermark_padding";s:2:"-5";s:19:"watermark_font_path";s:25:"./uploads/defaultFont.ttf";s:15:"watermark_image";s:0:"";s:23:"watermark_image_opacity";s:2:"50";s:14:"watermark_type";s:4:"text";s:8:"order_by";s:4:"date";s:10:"sort_order";s:4:"desc";}', 12),
 (55, 'rss', 'rss', 1, 0, 0, 'a:5:{s:5:"title";s:9:"Image CMS";s:11:"description";s:35:"Тестируем модуль RSS";s:10:"categories";a:1:{i:0;s:1:"3";}s:9:"cache_ttl";i:60;s:11:"pages_count";i:10;}', 13),
 (60, 'menu', 'menu', 0, 1, 1, NULL, 0),
 (58, 'sitemap', 'sitemap', 1, 1, 1, 'a:6:{s:18:"main_page_priority";b:0;s:13:"cats_priority";b:0;s:14:"pages_priority";b:0;s:20:"main_page_changefreq";b:0;s:21:"categories_changefreq";b:0;s:16:"pages_changefreq";b:0;}', 14),
@@ -217,7 +225,7 @@ INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_me
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `content`
+-- Table structure for table `content`
 --
 
 DROP TABLE IF EXISTS `content`;
@@ -257,7 +265,7 @@ CREATE TABLE IF NOT EXISTS `content` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=97 ;
 
 --
--- Дамп даних таблиці `content`
+-- Dumping data for table `content`
 --
 
 INSERT INTO `content` (`id`, `title`, `meta_title`, `url`, `cat_url`, `keywords`, `description`, `prev_text`, `full_text`, `category`, `full_tpl`, `main_tpl`, `position`, `comments_status`, `comments_count`, `post_status`, `author`, `publish_date`, `created`, `updated`, `showed`, `lang`, `lang_alias`) VALUES
@@ -282,7 +290,7 @@ INSERT INTO `content` (`id`, `title`, `meta_title`, `url`, `cat_url`, `keywords`
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `content_fields`
+-- Table structure for table `content_fields`
 --
 
 DROP TABLE IF EXISTS `content_fields`;
@@ -300,7 +308,7 @@ CREATE TABLE IF NOT EXISTS `content_fields` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `content_fields`
+-- Dumping data for table `content_fields`
 --
 
 INSERT INTO `content_fields` (`field_name`, `type`, `label`, `data`, `weight`, `in_search`) VALUES
@@ -309,7 +317,7 @@ INSERT INTO `content_fields` (`field_name`, `type`, `label`, `data`, `weight`, `
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `content_fields_data`
+-- Table structure for table `content_fields_data`
 --
 
 DROP TABLE IF EXISTS `content_fields_data`;
@@ -326,7 +334,7 @@ CREATE TABLE IF NOT EXISTS `content_fields_data` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=25 ;
 
 --
--- Дамп даних таблиці `content_fields_data`
+-- Dumping data for table `content_fields_data`
 --
 
 INSERT INTO `content_fields_data` (`id`, `item_id`, `item_type`, `field_name`, `data`) VALUES
@@ -335,7 +343,7 @@ INSERT INTO `content_fields_data` (`id`, `item_id`, `item_type`, `field_name`, `
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `content_fields_groups_relations`
+-- Table structure for table `content_fields_groups_relations`
 --
 
 DROP TABLE IF EXISTS `content_fields_groups_relations`;
@@ -345,7 +353,7 @@ CREATE TABLE IF NOT EXISTS `content_fields_groups_relations` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Дамп даних таблиці `content_fields_groups_relations`
+-- Dumping data for table `content_fields_groups_relations`
 --
 
 INSERT INTO `content_fields_groups_relations` (`field_name`, `group_id`) VALUES
@@ -359,7 +367,7 @@ INSERT INTO `content_fields_groups_relations` (`field_name`, `group_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `content_field_groups`
+-- Table structure for table `content_field_groups`
 --
 
 DROP TABLE IF EXISTS `content_field_groups`;
@@ -372,7 +380,7 @@ CREATE TABLE IF NOT EXISTS `content_field_groups` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
 
 --
--- Дамп даних таблиці `content_field_groups`
+-- Dumping data for table `content_field_groups`
 --
 
 INSERT INTO `content_field_groups` (`id`, `name`, `description`) VALUES
@@ -381,7 +389,7 @@ INSERT INTO `content_field_groups` (`id`, `name`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `content_permissions`
+-- Table structure for table `content_permissions`
 --
 
 DROP TABLE IF EXISTS `content_permissions`;
@@ -394,7 +402,7 @@ CREATE TABLE IF NOT EXISTS `content_permissions` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=24 ;
 
 --
--- Дамп даних таблиці `content_permissions`
+-- Dumping data for table `content_permissions`
 --
 
 INSERT INTO `content_permissions` (`id`, `page_id`, `data`) VALUES
@@ -403,7 +411,7 @@ INSERT INTO `content_permissions` (`id`, `page_id`, `data`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `content_tags`
+-- Table structure for table `content_tags`
 --
 
 DROP TABLE IF EXISTS `content_tags`;
@@ -419,7 +427,7 @@ CREATE TABLE IF NOT EXISTS `content_tags` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `custom_fields`
+-- Table structure for table `custom_fields`
 --
 
 DROP TABLE IF EXISTS `custom_fields`;
@@ -439,7 +447,7 @@ CREATE TABLE IF NOT EXISTS `custom_fields` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=100 ;
 
 --
--- Дамп даних таблиці `custom_fields`
+-- Dumping data for table `custom_fields`
 --
 
 INSERT INTO `custom_fields` (`id`, `field_type_id`, `field_name`, `is_required`, `is_active`, `is_private`, `validators`, `entity`, `options`, `classes`, `position`) VALUES
@@ -451,7 +459,7 @@ INSERT INTO `custom_fields` (`id`, `field_type_id`, `field_name`, `is_required`,
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `custom_fields_data`
+-- Table structure for table `custom_fields_data`
 --
 
 DROP TABLE IF EXISTS `custom_fields_data`;
@@ -465,7 +473,7 @@ CREATE TABLE IF NOT EXISTS `custom_fields_data` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=516 ;
 
 --
--- Дамп даних таблиці `custom_fields_data`
+-- Dumping data for table `custom_fields_data`
 --
 
 INSERT INTO `custom_fields_data` (`id`, `field_id`, `entity_id`, `field_data`, `locale`) VALUES
@@ -475,7 +483,7 @@ INSERT INTO `custom_fields_data` (`id`, `field_id`, `entity_id`, `field_data`, `
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `custom_fields_i18n`
+-- Table structure for table `custom_fields_i18n`
 --
 
 DROP TABLE IF EXISTS `custom_fields_i18n`;
@@ -489,7 +497,7 @@ CREATE TABLE IF NOT EXISTS `custom_fields_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `custom_fields_i18n`
+-- Dumping data for table `custom_fields_i18n`
 --
 
 INSERT INTO `custom_fields_i18n` (`id`, `locale`, `field_label`, `field_description`, `possible_values`) VALUES
@@ -501,7 +509,7 @@ INSERT INTO `custom_fields_i18n` (`id`, `locale`, `field_label`, `field_descript
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `emails`
+-- Table structure for table `emails`
 --
 
 DROP TABLE IF EXISTS `emails`;
@@ -514,7 +522,7 @@ CREATE TABLE IF NOT EXISTS `emails` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Дамп даних таблиці `emails`
+-- Dumping data for table `emails`
 --
 
 INSERT INTO `emails` (`name`, `template`, `settings`, `locale`, `description`) VALUES
@@ -540,7 +548,7 @@ INSERT INTO `emails` (`name`, `template`, `settings`, `locale`, `description`) V
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `gallery_albums`
+-- Table structure for table `gallery_albums`
 --
 
 DROP TABLE IF EXISTS `gallery_albums`;
@@ -560,7 +568,7 @@ CREATE TABLE IF NOT EXISTS `gallery_albums` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `gallery_albums_i18n`
+-- Table structure for table `gallery_albums_i18n`
 --
 
 DROP TABLE IF EXISTS `gallery_albums_i18n`;
@@ -575,7 +583,7 @@ CREATE TABLE IF NOT EXISTS `gallery_albums_i18n` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `gallery_category`
+-- Table structure for table `gallery_category`
 --
 
 DROP TABLE IF EXISTS `gallery_category`;
@@ -590,7 +598,7 @@ CREATE TABLE IF NOT EXISTS `gallery_category` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `gallery_category_i18n`
+-- Table structure for table `gallery_category_i18n`
 --
 
 DROP TABLE IF EXISTS `gallery_category_i18n`;
@@ -605,7 +613,7 @@ CREATE TABLE IF NOT EXISTS `gallery_category_i18n` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `gallery_images`
+-- Table structure for table `gallery_images`
 --
 
 DROP TABLE IF EXISTS `gallery_images`;
@@ -626,7 +634,7 @@ CREATE TABLE IF NOT EXISTS `gallery_images` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `gallery_images_i18n`
+-- Table structure for table `gallery_images_i18n`
 --
 
 DROP TABLE IF EXISTS `gallery_images_i18n`;
@@ -640,7 +648,7 @@ CREATE TABLE IF NOT EXISTS `gallery_images_i18n` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `languages`
+-- Table structure for table `languages`
 --
 
 DROP TABLE IF EXISTS `languages`;
@@ -659,7 +667,7 @@ CREATE TABLE IF NOT EXISTS `languages` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=31 ;
 
 --
--- Дамп даних таблиці `languages`
+-- Dumping data for table `languages`
 --
 
 INSERT INTO `languages` (`id`, `lang_name`, `identif`, `image`, `folder`, `template`, `default`, `locale`) VALUES
@@ -668,7 +676,7 @@ INSERT INTO `languages` (`id`, `lang_name`, `identif`, `image`, `folder`, `templ
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `login_attempts`
+-- Table structure for table `login_attempts`
 --
 
 DROP TABLE IF EXISTS `login_attempts`;
@@ -684,7 +692,7 @@ CREATE TABLE IF NOT EXISTS `login_attempts` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `logs`
+-- Table structure for table `logs`
 --
 
 DROP TABLE IF EXISTS `logs`;
@@ -701,7 +709,7 @@ CREATE TABLE IF NOT EXISTS `logs` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `mail`
+-- Table structure for table `mail`
 --
 
 DROP TABLE IF EXISTS `mail`;
@@ -715,7 +723,7 @@ CREATE TABLE IF NOT EXISTS `mail` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `menus`
+-- Table structure for table `menus`
 --
 
 DROP TABLE IF EXISTS `menus`;
@@ -732,7 +740,7 @@ CREATE TABLE IF NOT EXISTS `menus` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 --
--- Дамп даних таблиці `menus`
+-- Dumping data for table `menus`
 --
 
 INSERT INTO `menus` (`id`, `name`, `main_title`, `tpl`, `expand_level`, `description`, `created`) VALUES
@@ -743,7 +751,7 @@ INSERT INTO `menus` (`id`, `name`, `main_title`, `tpl`, `expand_level`, `descrip
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `menus_data`
+-- Table structure for table `menus_data`
 --
 
 DROP TABLE IF EXISTS `menus_data`;
@@ -766,7 +774,7 @@ CREATE TABLE IF NOT EXISTS `menus_data` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=47 ;
 
 --
--- Дамп даних таблиці `menus_data`
+-- Dumping data for table `menus_data`
 --
 
 INSERT INTO `menus_data` (`id`, `menu_id`, `item_id`, `item_type`, `item_image`, `roles`, `hidden`, `title`, `parent_id`, `position`, `description`, `add_data`) VALUES
@@ -797,7 +805,7 @@ INSERT INTO `menus_data` (`id`, `menu_id`, `item_id`, `item_type`, `item_image`,
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `menu_translate`
+-- Table structure for table `menu_translate`
 --
 
 DROP TABLE IF EXISTS `menu_translate`;
@@ -812,7 +820,7 @@ CREATE TABLE IF NOT EXISTS `menu_translate` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=52 ;
 
 --
--- Дамп даних таблиці `menu_translate`
+-- Dumping data for table `menu_translate`
 --
 
 INSERT INTO `menu_translate` (`id`, `item_id`, `lang_id`, `title`) VALUES
@@ -860,7 +868,7 @@ INSERT INTO `menu_translate` (`id`, `item_id`, `lang_id`, `title`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `mod_banner`
+-- Table structure for table `mod_banner`
 --
 
 DROP TABLE IF EXISTS `mod_banner`;
@@ -869,22 +877,23 @@ CREATE TABLE IF NOT EXISTS `mod_banner` (
   `active` tinyint(4) NOT NULL,
   `active_to` int(11) DEFAULT NULL,
   `where_show` text,
+  `group` text,
   `position` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- Дамп даних таблиці `mod_banner`
+-- Dumping data for table `mod_banner`
 --
 
-INSERT INTO `mod_banner` (`id`, `active`, `active_to`, `where_show`, `position`) VALUES
-(1, 1, 1512158400, 'a:1:{i:0;s:6:"main_0";}', 1),
-(2, 1, 1572465600, 'a:2:{i:0;s:6:"main_0";i:1;s:8:"brand_26";}', 0);
+INSERT INTO `mod_banner` (`id`, `active`, `active_to`, `where_show`, `group`, `position`) VALUES
+(1, 1, 1512158400, 'a:1:{i:0;s:6:"main_0";}', NULL, 1),
+(2, 1, 1572465600, 'a:2:{i:0;s:6:"main_0";i:1;s:8:"brand_26";}', NULL, 0);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `mod_banner_i18n`
+-- Table structure for table `mod_banner_i18n`
 --
 
 DROP TABLE IF EXISTS `mod_banner_i18n`;
@@ -899,7 +908,7 @@ CREATE TABLE IF NOT EXISTS `mod_banner_i18n` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `mod_banner_i18n`
+-- Dumping data for table `mod_banner_i18n`
 --
 
 INSERT INTO `mod_banner_i18n` (`id`, `url`, `locale`, `name`, `description`, `photo`) VALUES
@@ -909,7 +918,7 @@ INSERT INTO `mod_banner_i18n` (`id`, `url`, `locale`, `name`, `description`, `ph
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `mod_discount_all_order`
+-- Table structure for table `mod_discount_all_order`
 --
 
 DROP TABLE IF EXISTS `mod_discount_all_order`;
@@ -926,7 +935,7 @@ CREATE TABLE IF NOT EXISTS `mod_discount_all_order` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `mod_discount_brand`
+-- Table structure for table `mod_discount_brand`
 --
 
 DROP TABLE IF EXISTS `mod_discount_brand`;
@@ -942,7 +951,7 @@ CREATE TABLE IF NOT EXISTS `mod_discount_brand` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `mod_discount_category`
+-- Table structure for table `mod_discount_category`
 --
 
 DROP TABLE IF EXISTS `mod_discount_category`;
@@ -959,7 +968,7 @@ CREATE TABLE IF NOT EXISTS `mod_discount_category` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `mod_discount_comulativ`
+-- Table structure for table `mod_discount_comulativ`
 --
 
 DROP TABLE IF EXISTS `mod_discount_comulativ`;
@@ -975,7 +984,7 @@ CREATE TABLE IF NOT EXISTS `mod_discount_comulativ` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `mod_discount_group_user`
+-- Table structure for table `mod_discount_group_user`
 --
 
 DROP TABLE IF EXISTS `mod_discount_group_user`;
@@ -991,7 +1000,7 @@ CREATE TABLE IF NOT EXISTS `mod_discount_group_user` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `mod_discount_product`
+-- Table structure for table `mod_discount_product`
 --
 
 DROP TABLE IF EXISTS `mod_discount_product`;
@@ -1007,7 +1016,7 @@ CREATE TABLE IF NOT EXISTS `mod_discount_product` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `mod_discount_user`
+-- Table structure for table `mod_discount_user`
 --
 
 DROP TABLE IF EXISTS `mod_discount_user`;
@@ -1021,7 +1030,7 @@ CREATE TABLE IF NOT EXISTS `mod_discount_user` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
--- Дамп даних таблиці `mod_discount_user`
+-- Dumping data for table `mod_discount_user`
 --
 
 INSERT INTO `mod_discount_user` (`id`, `user_id`, `discount_id`) VALUES
@@ -1030,7 +1039,7 @@ INSERT INTO `mod_discount_user` (`id`, `user_id`, `discount_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `mod_email_paterns`
+-- Table structure for table `mod_email_paterns`
 --
 
 DROP TABLE IF EXISTS `mod_email_paterns`;
@@ -1048,7 +1057,7 @@ CREATE TABLE IF NOT EXISTS `mod_email_paterns` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 --
--- Дамп даних таблиці `mod_email_paterns`
+-- Dumping data for table `mod_email_paterns`
 --
 
 INSERT INTO `mod_email_paterns` (`id`, `name`, `patern`, `from`, `from_email`, `admin_email`, `type`, `user_message_active`, `admin_message_active`) VALUES
@@ -1065,7 +1074,7 @@ INSERT INTO `mod_email_paterns` (`id`, `name`, `patern`, `from`, `from_email`, `
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `mod_email_paterns_i18n`
+-- Table structure for table `mod_email_paterns_i18n`
 --
 
 DROP TABLE IF EXISTS `mod_email_paterns_i18n`;
@@ -1081,7 +1090,7 @@ CREATE TABLE IF NOT EXISTS `mod_email_paterns_i18n` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `mod_email_paterns_i18n`
+-- Dumping data for table `mod_email_paterns_i18n`
 --
 
 INSERT INTO `mod_email_paterns_i18n` (`id`, `locale`, `theme`, `user_message`, `admin_message`, `description`, `variables`) VALUES
@@ -1099,7 +1108,7 @@ INSERT INTO `mod_email_paterns_i18n` (`id`, `locale`, `theme`, `user_message`, `
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `mod_new_level_columns`
+-- Table structure for table `mod_new_level_columns`
 --
 
 DROP TABLE IF EXISTS `mod_new_level_columns`;
@@ -1111,7 +1120,7 @@ CREATE TABLE IF NOT EXISTS `mod_new_level_columns` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `mod_new_level_product_properties_types`
+-- Table structure for table `mod_new_level_product_properties_types`
 --
 
 DROP TABLE IF EXISTS `mod_new_level_product_properties_types`;
@@ -1124,7 +1133,7 @@ CREATE TABLE IF NOT EXISTS `mod_new_level_product_properties_types` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
--- Дамп даних таблиці `mod_new_level_product_properties_types`
+-- Dumping data for table `mod_new_level_product_properties_types`
 --
 
 INSERT INTO `mod_new_level_product_properties_types` (`id`, `property_id`, `name`, `type`) VALUES
@@ -1134,7 +1143,7 @@ INSERT INTO `mod_new_level_product_properties_types` (`id`, `property_id`, `name
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `mod_sample_settings`
+-- Table structure for table `mod_sample_settings`
 --
 
 DROP TABLE IF EXISTS `mod_sample_settings`;
@@ -1146,7 +1155,7 @@ CREATE TABLE IF NOT EXISTS `mod_sample_settings` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- Дамп даних таблиці `mod_sample_settings`
+-- Dumping data for table `mod_sample_settings`
 --
 
 INSERT INTO `mod_sample_settings` (`id`, `name`, `value`) VALUES
@@ -1157,7 +1166,7 @@ INSERT INTO `mod_sample_settings` (`id`, `name`, `value`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `mod_shop_discounts`
+-- Table structure for table `mod_shop_discounts`
 --
 
 DROP TABLE IF EXISTS `mod_shop_discounts`;
@@ -1180,7 +1189,7 @@ CREATE TABLE IF NOT EXISTS `mod_shop_discounts` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `mod_shop_discounts_i18n`
+-- Table structure for table `mod_shop_discounts_i18n`
 --
 
 DROP TABLE IF EXISTS `mod_shop_discounts_i18n`;
@@ -1194,7 +1203,7 @@ CREATE TABLE IF NOT EXISTS `mod_shop_discounts_i18n` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `mod_shop_news`
+-- Table structure for table `mod_shop_news`
 --
 
 DROP TABLE IF EXISTS `mod_shop_news`;
@@ -1206,7 +1215,7 @@ CREATE TABLE IF NOT EXISTS `mod_shop_news` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `mod_sitemap_blocked_urls`
+-- Table structure for table `mod_sitemap_blocked_urls`
 --
 
 DROP TABLE IF EXISTS `mod_sitemap_blocked_urls`;
@@ -1220,7 +1229,7 @@ CREATE TABLE IF NOT EXISTS `mod_sitemap_blocked_urls` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `mod_sitemap_changefreq`
+-- Table structure for table `mod_sitemap_changefreq`
 --
 
 DROP TABLE IF EXISTS `mod_sitemap_changefreq`;
@@ -1238,7 +1247,7 @@ CREATE TABLE IF NOT EXISTS `mod_sitemap_changefreq` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
--- Дамп даних таблиці `mod_sitemap_changefreq`
+-- Dumping data for table `mod_sitemap_changefreq`
 --
 
 INSERT INTO `mod_sitemap_changefreq` (`id`, `main_page_changefreq`, `pages_changefreq`, `product_changefreq`, `categories_changefreq`, `products_categories_changefreq`, `products_sub_categories_changefreq`, `brands_changefreq`, `sub_categories_changefreq`) VALUES
@@ -1247,7 +1256,7 @@ INSERT INTO `mod_sitemap_changefreq` (`id`, `main_page_changefreq`, `pages_chang
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `mod_sitemap_priorities`
+-- Table structure for table `mod_sitemap_priorities`
 --
 
 DROP TABLE IF EXISTS `mod_sitemap_priorities`;
@@ -1265,7 +1274,7 @@ CREATE TABLE IF NOT EXISTS `mod_sitemap_priorities` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
--- Дамп даних таблиці `mod_sitemap_priorities`
+-- Dumping data for table `mod_sitemap_priorities`
 --
 
 INSERT INTO `mod_sitemap_priorities` (`id`, `main_page_priority`, `cats_priority`, `pages_priority`, `sub_cats_priority`, `products_priority`, `products_categories_priority`, `products_sub_categories_priority`, `brands_priority`) VALUES
@@ -1274,7 +1283,7 @@ INSERT INTO `mod_sitemap_priorities` (`id`, `main_page_priority`, `cats_priority
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `mod_wish_list`
+-- Table structure for table `mod_wish_list`
 --
 
 DROP TABLE IF EXISTS `mod_wish_list`;
@@ -1292,7 +1301,7 @@ CREATE TABLE IF NOT EXISTS `mod_wish_list` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `mod_wish_list_products`
+-- Table structure for table `mod_wish_list_products`
 --
 
 DROP TABLE IF EXISTS `mod_wish_list_products`;
@@ -1307,7 +1316,7 @@ CREATE TABLE IF NOT EXISTS `mod_wish_list_products` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `mod_wish_list_users`
+-- Table structure for table `mod_wish_list_users`
 --
 
 DROP TABLE IF EXISTS `mod_wish_list_users`;
@@ -1323,7 +1332,7 @@ CREATE TABLE IF NOT EXISTS `mod_wish_list_users` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `propel_migration`
+-- Table structure for table `propel_migration`
 --
 
 DROP TABLE IF EXISTS `propel_migration`;
@@ -1332,16 +1341,16 @@ CREATE TABLE IF NOT EXISTS `propel_migration` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `propel_migration`
+-- Dumping data for table `propel_migration`
 --
 
 INSERT INTO `propel_migration` (`version`) VALUES
-(1363604832);
+(1401266475);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `rating`
+-- Table structure for table `rating`
 --
 
 DROP TABLE IF EXISTS `rating`;
@@ -1357,7 +1366,7 @@ CREATE TABLE IF NOT EXISTS `rating` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `search`
+-- Table structure for table `search`
 --
 
 DROP TABLE IF EXISTS `search`;
@@ -1381,7 +1390,7 @@ CREATE TABLE IF NOT EXISTS `search` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `settings`
+-- Table structure for table `settings`
 --
 
 DROP TABLE IF EXISTS `settings`;
@@ -1415,21 +1424,22 @@ CREATE TABLE IF NOT EXISTS `settings` (
   `siteinfo` text NOT NULL,
   `update` text,
   `backup` text,
+  `robots_status` int(1) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `s_name` (`s_name`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
--- Дамп даних таблиці `settings`
+-- Dumping data for table `settings`
 --
 
-INSERT INTO `settings` (`id`, `s_name`, `create_keywords`, `create_description`, `create_cat_keywords`, `create_cat_description`, `add_site_name`, `add_site_name_to_cat`, `delimiter`, `editor_theme`, `site_template`, `site_offline`, `google_analytics_id`, `main_type`, `main_page_id`, `main_page_cat`, `main_page_module`, `sidepanel`, `lk`, `lang_sel`, `google_webmaster`, `yandex_webmaster`, `yandex_metric`, `ss`, `cat_list`, `text_editor`, `siteinfo`, `update`, `backup`) VALUES
-(2, 'main', 'auto', 'auto', '0', '0', 1, 1, '/', '0', 'newLevel', 'no', '', 'module', 69, '63', 'shop', '', '', 'russian_lang', '', '', '', '', 'yes', 'tinymce', 'a:3:{s:13:"siteinfo_logo";a:1:{s:8:"newLevel";s:8:"logo.png";}s:16:"siteinfo_favicon";a:1:{s:8:"newLevel";s:11:"favicon.ico";}s:2:"ru";a:5:{s:20:"siteinfo_companytype";s:97:"© Интернет-магазин «<a href="http://www.imagecms.net/">ImageCMS Shop</a>», 2013";s:16:"siteinfo_address";s:63:"Улица Шевченка, Буд. 22, офис: 39, Київ";s:18:"siteinfo_mainphone";s:15:"(097) 567-43-21";s:19:"siteinfo_adminemail";s:19:"webmaster@localhost";s:8:"contacts";a:2:{s:5:"Skype";s:8:"imagecms";s:5:"Email";s:20:"partner@imagecms.net";}}}', '', NULL);
+INSERT INTO `settings` (`id`, `s_name`, `create_keywords`, `create_description`, `create_cat_keywords`, `create_cat_description`, `add_site_name`, `add_site_name_to_cat`, `delimiter`, `editor_theme`, `site_template`, `site_offline`, `google_analytics_id`, `main_type`, `main_page_id`, `main_page_cat`, `main_page_module`, `sidepanel`, `lk`, `lang_sel`, `google_webmaster`, `yandex_webmaster`, `yandex_metric`, `ss`, `cat_list`, `text_editor`, `siteinfo`, `update`, `backup`, `robots_status`) VALUES
+(2, 'main', 'auto', 'auto', '0', '0', 1, 1, '/', '0', 'newLevel', 'no', '', 'module', 69, '63', 'shop', '', '', 'russian_lang', '', '', '', '', 'yes', 'tinymce', 'a:3:{s:13:"siteinfo_logo";a:1:{s:8:"newLevel";s:8:"logo.png";}s:16:"siteinfo_favicon";a:1:{s:8:"newLevel";s:11:"favicon.ico";}s:2:"ru";a:5:{s:20:"siteinfo_companytype";s:97:"© Интернет-магазин «<a href="http://www.imagecms.net/">ImageCMS Shop</a>», 2013";s:16:"siteinfo_address";s:63:"Улица Шевченка, Буд. 22, офис: 39, Київ";s:18:"siteinfo_mainphone";s:15:"(097) 567-43-21";s:19:"siteinfo_adminemail";s:19:"webmaster@localhost";s:8:"contacts";a:2:{s:5:"Skype";s:8:"imagecms";s:5:"Email";s:20:"partner@imagecms.net";}}}', '', NULL, 0);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `settings_i18n`
+-- Table structure for table `settings_i18n`
 --
 
 DROP TABLE IF EXISTS `settings_i18n`;
@@ -1444,7 +1454,7 @@ CREATE TABLE IF NOT EXISTS `settings_i18n` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
--- Дамп даних таблиці `settings_i18n`
+-- Dumping data for table `settings_i18n`
 --
 
 INSERT INTO `settings_i18n` (`id`, `lang_ident`, `name`, `short_name`, `description`, `keywords`) VALUES
@@ -1453,7 +1463,7 @@ INSERT INTO `settings_i18n` (`id`, `lang_ident`, `name`, `short_name`, `descript
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_banners`
+-- Table structure for table `shop_banners`
 --
 
 DROP TABLE IF EXISTS `shop_banners`;
@@ -1469,7 +1479,7 @@ CREATE TABLE IF NOT EXISTS `shop_banners` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
 --
--- Дамп даних таблиці `shop_banners`
+-- Dumping data for table `shop_banners`
 --
 
 INSERT INTO `shop_banners` (`id`, `position`, `active`, `categories`, `on_main`, `espdate`) VALUES
@@ -1480,7 +1490,7 @@ INSERT INTO `shop_banners` (`id`, `position`, `active`, `categories`, `on_main`,
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_banners_i18n`
+-- Table structure for table `shop_banners_i18n`
 --
 
 DROP TABLE IF EXISTS `shop_banners_i18n`;
@@ -1495,7 +1505,7 @@ CREATE TABLE IF NOT EXISTS `shop_banners_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_banners_i18n`
+-- Dumping data for table `shop_banners_i18n`
 --
 
 INSERT INTO `shop_banners_i18n` (`id`, `locale`, `name`, `text`, `url`, `image`) VALUES
@@ -1506,7 +1516,7 @@ INSERT INTO `shop_banners_i18n` (`id`, `locale`, `name`, `text`, `url`, `image`)
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_brands`
+-- Table structure for table `shop_brands`
 --
 
 DROP TABLE IF EXISTS `shop_brands`;
@@ -1515,261 +1525,263 @@ CREATE TABLE IF NOT EXISTS `shop_brands` (
   `url` varchar(255) NOT NULL,
   `image` varchar(255) DEFAULT NULL,
   `position` smallint(6) NOT NULL,
+  `created` int(11) NOT NULL,
+  `updated` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `shop_brands_I_2` (`url`),
   KEY `shop_brands_I_1` (`url`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=275 ;
 
 --
--- Дамп даних таблиці `shop_brands`
+-- Dumping data for table `shop_brands`
 --
 
-INSERT INTO `shop_brands` (`id`, `url`, `image`, `position`) VALUES
-(30, 'pioneer', 'pioneer.png', 0),
-(39, 'motorola', NULL, 0),
-(26, 'sony', 'sony.png', 0),
-(27, 'apple', 'apple.png', 0),
-(28, 'samsung', 'samsung.png', 0),
-(29, 'panasonic', 'panasonic.jpg', 0),
-(34, 'canon', NULL, 0),
-(35, 'lg', 'lg.png', 0),
-(36, 'yamaha', 'yamaha.png', 0),
-(37, 'epson', NULL, 0),
-(38, 'plantronics', NULL, 0),
-(41, 'asus', 'asus.png', 0),
-(42, 'nokia', 'nokia.png', 0),
-(43, 'Dell', NULL, 0),
-(44, 'acer', NULL, 0),
-(45, 'fujitsu', NULL, 0),
-(46, 'hp-hewlett-packard', NULL, 0),
-(47, 'lenovo', NULL, 0),
-(48, 'msi', NULL, 0),
-(49, 'packard-bell', NULL, 0),
-(50, 'toshiba', NULL, 0),
-(51, 'aeg', NULL, 0),
-(52, 'ardo', NULL, 0),
-(53, 'atlant', NULL, 0),
-(54, 'beko', NULL, 0),
-(55, 'bosch', NULL, 0),
-(56, 'candy', NULL, 0),
-(57, 'daewoo', NULL, 0),
-(58, 'delfa', NULL, 0),
-(59, 'electrolux', NULL, 0),
-(60, 'gorenje', NULL, 0),
-(61, 'hitachi', NULL, 0),
-(62, 'hotpoint-ariston', NULL, 0),
-(63, 'indesit', NULL, 0),
-(76, 'amf', 'amf.gif', 0),
-(65, 'kaiser', NULL, 0),
-(67, 'liebherr', NULL, 0),
-(68, 'nord', NULL, 0),
-(69, 'sharp', NULL, 0),
-(70, 'siemens', NULL, 0),
-(71, 'smeg', NULL, 0),
-(72, 'snaige', NULL, 0),
-(73, 'swizer', NULL, 0),
-(74, 'whirlpool', NULL, 0),
-(75, 'zanussi', NULL, 0),
-(77, 'philsps', NULL, 0),
-(78, 'clatronic', NULL, 0),
-(79, 'dex', NULL, 0),
-(80, 'liberton', NULL, 0),
-(81, 'mystery', NULL, 0),
-(82, 'saturn', NULL, 0),
-(83, 'ves-electric', NULL, 0),
-(84, 'illuminati', 'illuminati.jpg', 0),
-(85, 'binatone', NULL, 0),
-(86, 'braun', NULL, 0),
-(87, 'maxwell', NULL, 0),
-(88, 'moulinex', NULL, 0),
-(89, 'vitek', NULL, 0),
-(90, 'zelmer', NULL, 0),
-(91, 'easy-camp', 'easy-camp.gif', 0),
-(92, 'beco', 'beco.jpg', 0),
-(93, 'atemi', 'atemi.jpg', 0),
-(94, 'huawei', NULL, 0),
-(95, 'aoc', NULL, 0),
-(96, 'philips', NULL, 0),
-(97, 'viewsonic', NULL, 0),
-(98, 'babolat', 'babolat.jpg', 0),
-(99, 'donic', 'donic.jpg', 0),
-(100, 'abizal', 'abizal.jpg', 0),
-(101, 'donic', NULL, 0),
-(102, 'donic-schildkrot', 'donic-schildkrot.jpg', 0),
-(103, 'fischer', 'fischer.jpg', 0),
-(104, 'giant-dragon', 'giant-dragon.jpg', 0),
-(105, 'outwell', 'outwell.jpg', 0),
-(106, 'axl', 'axl.jpg', 0),
-(107, 'bcrich', 'bcrich.jpg', 0),
-(108, 'tefal', NULL, 0),
-(109, 'TEXET', 'TEXET.jpg', 0),
-(110, 'SportBaby', 'SportBaby.png', 0),
-(111, 'brd', NULL, 0),
-(112, 'HTC', 'HTC.jpg', 0),
-(113, 'Assistant', NULL, 0),
-(114, 'Kingston', 'Kingston.jpg', 0),
-(115, 'delonghi', NULL, 0),
-(116, 'dune', NULL, 0),
-(117, 'nakamichi', NULL, 0),
-(156, 'logitech', NULL, 0),
-(119, 'fly', NULL, 0),
-(120, '4232', NULL, 0),
-(121, 'onkyo', NULL, 0),
-(122, 'popcorn-hour', NULL, 0),
-(123, 'acme-made', NULL, 0),
-(124, 'case-logic', NULL, 0),
-(125, 'thule', NULL, 0),
-(126, 'x-digital', NULL, 0),
-(127, 'continent', NULL, 0),
-(128, 'sumdex', NULL, 0),
-(129, 'trust', NULL, 0),
-(130, 'hobby-engine', NULL, 0),
-(131, 'digi', NULL, 0),
-(132, 'Alcatel', 'Alcatel.jpg', 0),
-(133, 'tarti', NULL, 0),
-(134, 'viara', 'viara.jpg', 0),
-(135, 'wish', 'wish.jpg', 0),
-(136, 'vestfrost', NULL, 0),
-(137, 'tiny-love', NULL, 0),
-(138, 'Redox', 'Redox.jpg', 0),
-(139, 'iron-body', NULL, 0),
-(140, 'machuka', NULL, 0),
-(141, 'winner', NULL, 0),
-(142, 'Jabra', 'Jabra.jpg', 0),
-(143, 'bbk', NULL, 0),
-(144, 'horizont', NULL, 0),
-(145, 'bcrich', NULL, 0),
-(146, 'asrock', NULL, 0),
-(147, 'biostar', NULL, 0),
-(148, 'elitegroup', NULL, 0),
-(149, 'yashima', NULL, 0),
-(150, 'ufo', NULL, 0),
-(151, 'behringer', 'behringer.jpg', 0),
-(152, 'iriver', NULL, 0),
-(153, 'transcend', NULL, 0),
-(154, 'ergo', 'ergo.jpg', 0),
-(155, 'iriver', 'iriver.jpg', 0),
-(157, 'genius', NULL, 0),
-(158, 'ariston', NULL, 0),
-(159, 'hotpoin-ariston', NULL, 0),
-(160, 'schildkrot', NULL, 0),
-(161, 'robens', NULL, 0),
-(162, 'apache', 'apache.jpg', 0),
-(163, 'albertilivio', 'albertilivio.jpg', 0),
-(164, 'exit', NULL, 0),
-(165, 'jungle-gym', NULL, 0),
-(166, 'space-scooter', NULL, 0),
-(167, '4SeasonsOutdoor', '4SeasonsOutdoor.png', 0),
-(168, 'koss', 'koss.jpg', 0),
-(169, 'tm-katinka', NULL, 0),
-(170, 'tramp', NULL, 0),
-(171, 'sol', NULL, 0),
-(172, 'totem', NULL, 0),
-(173, 'destroyer', NULL, 0),
-(176, 'famiche-darte-fl', ' ', 0),
-(177, 'Eglo', 'Eglo.png', 0),
-(178, 'stilars', 'stilars.jpg', 0),
-(179, 'daniels-di-elisabetta-zucconi', NULL, 0),
-(180, 'euromarchi-srl', NULL, 0),
-(181, 'franco-srl', NULL, 0),
-(182, 'binatone', NULL, 0),
-(183, 'thomas', NULL, 0),
-(184, 'rowenta', NULL, 0),
-(185, 'elektrostatyk', NULL, 0),
-(186, 'rock-empire', NULL, 0),
-(187, 'kovea', NULL, 0),
-(188, 'silicon-power', NULL, 0),
-(189, 'pqi', NULL, 0),
-(190, 'verbatim', NULL, 0),
-(191, 'orgaz', NULL, 0),
-(192, 'gzwm', NULL, 0),
-(193, 'goodram', 'goodram.jpg', 0),
-(194, 'sandisk', 'sandisk.jpg', 0),
-(195, 'silicon-power', 'silicon-power.jpg', 0),
-(196, 'orion', NULL, 0),
-(197, 'supra', NULL, 0),
-(198, 'x-digital', 'x-digital.gif', 0),
-(199, 'tenex', 'tenex.jpg', 0),
-(200, 'kapok', NULL, 0),
-(201, 'multi-pulti', NULL, 0),
-(202, 'ice-age-4', NULL, 0),
-(203, 'ice-age-3', NULL, 0),
-(204, 'grand', NULL, 0),
-(205, 'lava', NULL, 0),
-(206, 'shrek', NULL, 0),
-(207, 'auldey', NULL, 0),
-(208, 'bburago', NULL, 0),
-(209, 'tehnopark', NULL, 0),
-(210, 'tmnt', NULL, 0),
-(211, 'sport-tech', NULL, 0),
-(212, 'edison', NULL, 0),
-(213, 'karapuz-govoriashchie-kukly', NULL, 0),
-(214, 'penbo', NULL, 0),
-(215, 'zapf', NULL, 0),
-(216, 'lalaloopsy', NULL, 0),
-(217, 'bratz', NULL, 0),
-(218, 'mell', NULL, 0),
-(219, 'moxie', NULL, 0),
-(220, 'emotion-pets', NULL, 0),
-(221, 'zvukovye-i-govoriashchie-plakaty', NULL, 0),
-(222, 'startright', NULL, 0),
-(223, 'caring-corners', NULL, 0),
-(224, 'vtech', NULL, 0),
-(225, 'lexibook', NULL, 0),
-(226, 'znatok', NULL, 0),
-(227, 'kiddisvit', NULL, 0),
-(228, 'playpad', NULL, 0),
-(229, 'flip-force', NULL, 0),
-(230, 'little-inu', NULL, 0),
-(231, 'legend-of-nara', NULL, 0),
-(232, 'pleo', NULL, 0),
-(233, 'roadbot', NULL, 0),
-(234, 'x-bot', NULL, 0),
-(235, 'v-create', NULL, 0),
-(236, 'igraem-vmeste', NULL, 0),
-(237, 'ses', NULL, 0),
-(238, 'aqua-doodle', NULL, 0),
-(239, 'quercetti', NULL, 0),
-(240, 'billwin', NULL, 0),
-(241, 'little-tikes', NULL, 0),
-(242, 'dulcop', NULL, 0),
-(243, 'mondo', NULL, 0),
-(244, 'battat', NULL, 0),
-(245, 'lil-woodzeez', NULL, 0),
-(246, 'taf-toys', NULL, 0),
-(247, 'kiddieland-preschool', NULL, 0),
-(248, 'kiddieland-chudomobili', NULL, 0),
-(249, 'ouaps', NULL, 0),
-(250, 'faro', NULL, 0),
-(251, 'henes', NULL, 0),
-(252, 'litsenzionnye-detskie-velosipedy', NULL, 0),
-(253, 'litsenzionnye-skutery', NULL, 0),
-(254, 'jolly-ride', NULL, 0),
-(255, 'nixor-sports', NULL, 0),
-(256, 'kidy-land-modnye-shtuchki', NULL, 0),
-(257, 'hilco', NULL, 0),
-(258, 'walden', NULL, 0),
-(259, 'hotpoint-ariston', NULL, 0),
-(260, 'nils', NULL, 0),
-(261, 'hms', NULL, 0),
-(262, 'stimul', NULL, 0),
-(263, 'moulinex', NULL, 0),
-(264, 'magio', NULL, 0),
-(265, 'scarlett', NULL, 0),
-(266, 'ariete', NULL, 0),
-(267, 'aurora', NULL, 0),
-(268, 'russell-hobbs', NULL, 0),
-(269, 'zanuss', NULL, 0),
-(270, 'hoover', NULL, 0),
-(271, 'kenwood', NULL, 0),
-(272, 'sennheiser', NULL, 0),
-(273, 'jvc', NULL, 0),
-(274, 'pleomax', NULL, 0);
+INSERT INTO `shop_brands` (`id`, `url`, `image`, `position`, `created`, `updated`) VALUES
+(30, 'pioneer', 'pioneer.png', 0, 1401265119, 1401265119),
+(39, 'motorola', NULL, 0, 1401265119, 1401265119),
+(26, 'sony', 'sony.png', 0, 1401265119, 1401265119),
+(27, 'apple', 'apple.png', 0, 1401265119, 1401265119),
+(28, 'samsung', 'samsung.png', 0, 1401265119, 1401265119),
+(29, 'panasonic', 'panasonic.jpg', 0, 1401265119, 1401265119),
+(34, 'canon', NULL, 0, 1401265119, 1401265119),
+(35, 'lg', 'lg.png', 0, 1401265119, 1401265119),
+(36, 'yamaha', 'yamaha.png', 0, 1401265119, 1401265119),
+(37, 'epson', NULL, 0, 1401265119, 1401265119),
+(38, 'plantronics', NULL, 0, 1401265119, 1401265119),
+(41, 'asus', 'asus.png', 0, 1401265119, 1401265119),
+(42, 'nokia', 'nokia.png', 0, 1401265119, 1401265119),
+(43, 'Dell', NULL, 0, 1401265119, 1401265119),
+(44, 'acer', NULL, 0, 1401265119, 1401265119),
+(45, 'fujitsu', NULL, 0, 1401265119, 1401265119),
+(46, 'hp-hewlett-packard', NULL, 0, 1401265119, 1401265119),
+(47, 'lenovo', NULL, 0, 1401265119, 1401265119),
+(48, 'msi', NULL, 0, 1401265119, 1401265119),
+(49, 'packard-bell', NULL, 0, 1401265119, 1401265119),
+(50, 'toshiba', NULL, 0, 1401265119, 1401265119),
+(51, 'aeg', NULL, 0, 1401265119, 1401265119),
+(52, 'ardo', NULL, 0, 1401265119, 1401265119),
+(53, 'atlant', NULL, 0, 1401265119, 1401265119),
+(54, 'beko', NULL, 0, 1401265119, 1401265119),
+(55, 'bosch', NULL, 0, 1401265119, 1401265119),
+(56, 'candy', NULL, 0, 1401265119, 1401265119),
+(57, 'daewoo', NULL, 0, 1401265119, 1401265119),
+(58, 'delfa', NULL, 0, 1401265119, 1401265119),
+(59, 'electrolux', NULL, 0, 1401265119, 1401265119),
+(60, 'gorenje', NULL, 0, 1401265119, 1401265119),
+(61, 'hitachi', NULL, 0, 1401265119, 1401265119),
+(62, 'hotpoint-ariston', NULL, 0, 1401265119, 1401265119),
+(63, 'indesit', NULL, 0, 1401265119, 1401265119),
+(76, 'amf', 'amf.gif', 0, 1401265119, 1401265119),
+(65, 'kaiser', NULL, 0, 1401265119, 1401265119),
+(67, 'liebherr', NULL, 0, 1401265119, 1401265119),
+(68, 'nord', NULL, 0, 1401265119, 1401265119),
+(69, 'sharp', NULL, 0, 1401265119, 1401265119),
+(70, 'siemens', NULL, 0, 1401265119, 1401265119),
+(71, 'smeg', NULL, 0, 1401265119, 1401265119),
+(72, 'snaige', NULL, 0, 1401265119, 1401265119),
+(73, 'swizer', NULL, 0, 1401265119, 1401265119),
+(74, 'whirlpool', NULL, 0, 1401265119, 1401265119),
+(75, 'zanussi', NULL, 0, 1401265119, 1401265119),
+(77, 'philsps', NULL, 0, 1401265119, 1401265119),
+(78, 'clatronic', NULL, 0, 1401265119, 1401265119),
+(79, 'dex', NULL, 0, 1401265119, 1401265119),
+(80, 'liberton', NULL, 0, 1401265119, 1401265119),
+(81, 'mystery', NULL, 0, 1401265119, 1401265119),
+(82, 'saturn', NULL, 0, 1401265119, 1401265119),
+(83, 'ves-electric', NULL, 0, 1401265119, 1401265119),
+(84, 'illuminati', 'illuminati.jpg', 0, 1401265119, 1401265119),
+(85, 'binatone', NULL, 0, 1401265119, 1401265119),
+(86, 'braun', NULL, 0, 1401265119, 1401265119),
+(87, 'maxwell', NULL, 0, 1401265119, 1401265119),
+(88, 'moulinex', NULL, 0, 1401265119, 1401265119),
+(89, 'vitek', NULL, 0, 1401265119, 1401265119),
+(90, 'zelmer', NULL, 0, 1401265119, 1401265119),
+(91, 'easy-camp', 'easy-camp.gif', 0, 1401265119, 1401265119),
+(92, 'beco', 'beco.jpg', 0, 1401265119, 1401265119),
+(93, 'atemi', 'atemi.jpg', 0, 1401265119, 1401265119),
+(94, 'huawei', NULL, 0, 1401265119, 1401265119),
+(95, 'aoc', NULL, 0, 1401265119, 1401265119),
+(96, 'philips', NULL, 0, 1401265119, 1401265119),
+(97, 'viewsonic', NULL, 0, 1401265119, 1401265119),
+(98, 'babolat', 'babolat.jpg', 0, 1401265119, 1401265119),
+(99, 'donic', 'donic.jpg', 0, 1401265119, 1401265119),
+(100, 'abizal', 'abizal.jpg', 0, 1401265119, 1401265119),
+(101, 'donic', NULL, 0, 1401265119, 1401265119),
+(102, 'donic-schildkrot', 'donic-schildkrot.jpg', 0, 1401265119, 1401265119),
+(103, 'fischer', 'fischer.jpg', 0, 1401265119, 1401265119),
+(104, 'giant-dragon', 'giant-dragon.jpg', 0, 1401265119, 1401265119),
+(105, 'outwell', 'outwell.jpg', 0, 1401265119, 1401265119),
+(106, 'axl', 'axl.jpg', 0, 1401265119, 1401265119),
+(107, 'bcrich', 'bcrich.jpg', 0, 1401265119, 1401265119),
+(108, 'tefal', NULL, 0, 1401265119, 1401265119),
+(109, 'TEXET', 'TEXET.jpg', 0, 1401265119, 1401265119),
+(110, 'SportBaby', 'SportBaby.png', 0, 1401265119, 1401265119),
+(111, 'brd', NULL, 0, 1401265119, 1401265119),
+(112, 'HTC', 'HTC.jpg', 0, 1401265119, 1401265119),
+(113, 'Assistant', NULL, 0, 1401265119, 1401265119),
+(114, 'Kingston', 'Kingston.jpg', 0, 1401265119, 1401265119),
+(115, 'delonghi', NULL, 0, 1401265119, 1401265119),
+(116, 'dune', NULL, 0, 1401265119, 1401265119),
+(117, 'nakamichi', NULL, 0, 1401265119, 1401265119),
+(156, 'logitech', NULL, 0, 1401265119, 1401265119),
+(119, 'fly', NULL, 0, 1401265119, 1401265119),
+(120, '4232', NULL, 0, 1401265119, 1401265119),
+(121, 'onkyo', NULL, 0, 1401265119, 1401265119),
+(122, 'popcorn-hour', NULL, 0, 1401265119, 1401265119),
+(123, 'acme-made', NULL, 0, 1401265119, 1401265119),
+(124, 'case-logic', NULL, 0, 1401265119, 1401265119),
+(125, 'thule', NULL, 0, 1401265119, 1401265119),
+(126, 'x-digital', NULL, 0, 1401265119, 1401265119),
+(127, 'continent', NULL, 0, 1401265119, 1401265119),
+(128, 'sumdex', NULL, 0, 1401265119, 1401265119),
+(129, 'trust', NULL, 0, 1401265119, 1401265119),
+(130, 'hobby-engine', NULL, 0, 1401265119, 1401265119),
+(131, 'digi', NULL, 0, 1401265119, 1401265119),
+(132, 'Alcatel', 'Alcatel.jpg', 0, 1401265119, 1401265119),
+(133, 'tarti', NULL, 0, 1401265119, 1401265119),
+(134, 'viara', 'viara.jpg', 0, 1401265119, 1401265119),
+(135, 'wish', 'wish.jpg', 0, 1401265119, 1401265119),
+(136, 'vestfrost', NULL, 0, 1401265119, 1401265119),
+(137, 'tiny-love', NULL, 0, 1401265119, 1401265119),
+(138, 'Redox', 'Redox.jpg', 0, 1401265119, 1401265119),
+(139, 'iron-body', NULL, 0, 1401265119, 1401265119),
+(140, 'machuka', NULL, 0, 1401265119, 1401265119),
+(141, 'winner', NULL, 0, 1401265119, 1401265119),
+(142, 'Jabra', 'Jabra.jpg', 0, 1401265119, 1401265119),
+(143, 'bbk', NULL, 0, 1401265119, 1401265119),
+(144, 'horizont', NULL, 0, 1401265119, 1401265119),
+(145, 'bcrich', NULL, 0, 1401265119, 1401265119),
+(146, 'asrock', NULL, 0, 1401265119, 1401265119),
+(147, 'biostar', NULL, 0, 1401265119, 1401265119),
+(148, 'elitegroup', NULL, 0, 1401265119, 1401265119),
+(149, 'yashima', NULL, 0, 1401265119, 1401265119),
+(150, 'ufo', NULL, 0, 1401265119, 1401265119),
+(151, 'behringer', 'behringer.jpg', 0, 1401265119, 1401265119),
+(152, 'iriver', NULL, 0, 1401265119, 1401265119),
+(153, 'transcend', NULL, 0, 1401265119, 1401265119),
+(154, 'ergo', 'ergo.jpg', 0, 1401265119, 1401265119),
+(155, 'iriver', 'iriver.jpg', 0, 1401265119, 1401265119),
+(157, 'genius', NULL, 0, 1401265119, 1401265119),
+(158, 'ariston', NULL, 0, 1401265119, 1401265119),
+(159, 'hotpoin-ariston', NULL, 0, 1401265119, 1401265119),
+(160, 'schildkrot', NULL, 0, 1401265119, 1401265119),
+(161, 'robens', NULL, 0, 1401265119, 1401265119),
+(162, 'apache', 'apache.jpg', 0, 1401265119, 1401265119),
+(163, 'albertilivio', 'albertilivio.jpg', 0, 1401265119, 1401265119),
+(164, 'exit', NULL, 0, 1401265119, 1401265119),
+(165, 'jungle-gym', NULL, 0, 1401265119, 1401265119),
+(166, 'space-scooter', NULL, 0, 1401265119, 1401265119),
+(167, '4SeasonsOutdoor', '4SeasonsOutdoor.png', 0, 1401265119, 1401265119),
+(168, 'koss', 'koss.jpg', 0, 1401265119, 1401265119),
+(169, 'tm-katinka', NULL, 0, 1401265119, 1401265119),
+(170, 'tramp', NULL, 0, 1401265119, 1401265119),
+(171, 'sol', NULL, 0, 1401265119, 1401265119),
+(172, 'totem', NULL, 0, 1401265119, 1401265119),
+(173, 'destroyer', NULL, 0, 1401265119, 1401265119),
+(176, 'famiche-darte-fl', ' ', 0, 1401265119, 1401265119),
+(177, 'Eglo', 'Eglo.png', 0, 1401265119, 1401265119),
+(178, 'stilars', 'stilars.jpg', 0, 1401265119, 1401265119),
+(179, 'daniels-di-elisabetta-zucconi', NULL, 0, 1401265119, 1401265119),
+(180, 'euromarchi-srl', NULL, 0, 1401265119, 1401265119),
+(181, 'franco-srl', NULL, 0, 1401265119, 1401265119),
+(182, 'binatone', NULL, 0, 1401265119, 1401265119),
+(183, 'thomas', NULL, 0, 1401265119, 1401265119),
+(184, 'rowenta', NULL, 0, 1401265119, 1401265119),
+(185, 'elektrostatyk', NULL, 0, 1401265119, 1401265119),
+(186, 'rock-empire', NULL, 0, 1401265119, 1401265119),
+(187, 'kovea', NULL, 0, 1401265119, 1401265119),
+(188, 'silicon-power', NULL, 0, 1401265119, 1401265119),
+(189, 'pqi', NULL, 0, 1401265119, 1401265119),
+(190, 'verbatim', NULL, 0, 1401265119, 1401265119),
+(191, 'orgaz', NULL, 0, 1401265119, 1401265119),
+(192, 'gzwm', NULL, 0, 1401265119, 1401265119),
+(193, 'goodram', 'goodram.jpg', 0, 1401265119, 1401265119),
+(194, 'sandisk', 'sandisk.jpg', 0, 1401265119, 1401265119),
+(195, 'silicon-power', 'silicon-power.jpg', 0, 1401265119, 1401265119),
+(196, 'orion', NULL, 0, 1401265119, 1401265119),
+(197, 'supra', NULL, 0, 1401265119, 1401265119),
+(198, 'x-digital', 'x-digital.gif', 0, 1401265119, 1401265119),
+(199, 'tenex', 'tenex.jpg', 0, 1401265119, 1401265119),
+(200, 'kapok', NULL, 0, 1401265119, 1401265119),
+(201, 'multi-pulti', NULL, 0, 1401265119, 1401265119),
+(202, 'ice-age-4', NULL, 0, 1401265119, 1401265119),
+(203, 'ice-age-3', NULL, 0, 1401265119, 1401265119),
+(204, 'grand', NULL, 0, 1401265119, 1401265119),
+(205, 'lava', NULL, 0, 1401265119, 1401265119),
+(206, 'shrek', NULL, 0, 1401265119, 1401265119),
+(207, 'auldey', NULL, 0, 1401265119, 1401265119),
+(208, 'bburago', NULL, 0, 1401265119, 1401265119),
+(209, 'tehnopark', NULL, 0, 1401265119, 1401265119),
+(210, 'tmnt', NULL, 0, 1401265119, 1401265119),
+(211, 'sport-tech', NULL, 0, 1401265119, 1401265119),
+(212, 'edison', NULL, 0, 1401265119, 1401265119),
+(213, 'karapuz-govoriashchie-kukly', NULL, 0, 1401265119, 1401265119),
+(214, 'penbo', NULL, 0, 1401265119, 1401265119),
+(215, 'zapf', NULL, 0, 1401265119, 1401265119),
+(216, 'lalaloopsy', NULL, 0, 1401265119, 1401265119),
+(217, 'bratz', NULL, 0, 1401265119, 1401265119),
+(218, 'mell', NULL, 0, 1401265119, 1401265119),
+(219, 'moxie', NULL, 0, 1401265119, 1401265119),
+(220, 'emotion-pets', NULL, 0, 1401265119, 1401265119),
+(221, 'zvukovye-i-govoriashchie-plakaty', NULL, 0, 1401265119, 1401265119),
+(222, 'startright', NULL, 0, 1401265119, 1401265119),
+(223, 'caring-corners', NULL, 0, 1401265119, 1401265119),
+(224, 'vtech', NULL, 0, 1401265119, 1401265119),
+(225, 'lexibook', NULL, 0, 1401265119, 1401265119),
+(226, 'znatok', NULL, 0, 1401265119, 1401265119),
+(227, 'kiddisvit', NULL, 0, 1401265119, 1401265119),
+(228, 'playpad', NULL, 0, 1401265119, 1401265119),
+(229, 'flip-force', NULL, 0, 1401265119, 1401265119),
+(230, 'little-inu', NULL, 0, 1401265119, 1401265119),
+(231, 'legend-of-nara', NULL, 0, 1401265119, 1401265119),
+(232, 'pleo', NULL, 0, 1401265119, 1401265119),
+(233, 'roadbot', NULL, 0, 1401265119, 1401265119),
+(234, 'x-bot', NULL, 0, 1401265119, 1401265119),
+(235, 'v-create', NULL, 0, 1401265119, 1401265119),
+(236, 'igraem-vmeste', NULL, 0, 1401265119, 1401265119),
+(237, 'ses', NULL, 0, 1401265119, 1401265119),
+(238, 'aqua-doodle', NULL, 0, 1401265119, 1401265119),
+(239, 'quercetti', NULL, 0, 1401265119, 1401265119),
+(240, 'billwin', NULL, 0, 1401265119, 1401265119),
+(241, 'little-tikes', NULL, 0, 1401265119, 1401265119),
+(242, 'dulcop', NULL, 0, 1401265119, 1401265119),
+(243, 'mondo', NULL, 0, 1401265119, 1401265119),
+(244, 'battat', NULL, 0, 1401265119, 1401265119),
+(245, 'lil-woodzeez', NULL, 0, 1401265119, 1401265119),
+(246, 'taf-toys', NULL, 0, 1401265119, 1401265119),
+(247, 'kiddieland-preschool', NULL, 0, 1401265119, 1401265119),
+(248, 'kiddieland-chudomobili', NULL, 0, 1401265119, 1401265119),
+(249, 'ouaps', NULL, 0, 1401265119, 1401265119),
+(250, 'faro', NULL, 0, 1401265119, 1401265119),
+(251, 'henes', NULL, 0, 1401265119, 1401265119),
+(252, 'litsenzionnye-detskie-velosipedy', NULL, 0, 1401265119, 1401265119),
+(253, 'litsenzionnye-skutery', NULL, 0, 1401265119, 1401265119),
+(254, 'jolly-ride', NULL, 0, 1401265119, 1401265119),
+(255, 'nixor-sports', NULL, 0, 1401265119, 1401265119),
+(256, 'kidy-land-modnye-shtuchki', NULL, 0, 1401265119, 1401265119),
+(257, 'hilco', NULL, 0, 1401265119, 1401265119),
+(258, 'walden', NULL, 0, 1401265119, 1401265119),
+(259, 'hotpoint-ariston', NULL, 0, 1401265119, 1401265119),
+(260, 'nils', NULL, 0, 1401265119, 1401265119),
+(261, 'hms', NULL, 0, 1401265119, 1401265119),
+(262, 'stimul', NULL, 0, 1401265119, 1401265119),
+(263, 'moulinex', NULL, 0, 1401265119, 1401265119),
+(264, 'magio', NULL, 0, 1401265119, 1401265119),
+(265, 'scarlett', NULL, 0, 1401265119, 1401265119),
+(266, 'ariete', NULL, 0, 1401265119, 1401265119),
+(267, 'aurora', NULL, 0, 1401265119, 1401265119),
+(268, 'russell-hobbs', NULL, 0, 1401265119, 1401265119),
+(269, 'zanuss', NULL, 0, 1401265119, 1401265119),
+(270, 'hoover', NULL, 0, 1401265119, 1401265119),
+(271, 'kenwood', NULL, 0, 1401265119, 1401265119),
+(272, 'sennheiser', NULL, 0, 1401265119, 1401265119),
+(273, 'jvc', NULL, 0, 1401265119, 1401265119),
+(274, 'pleomax', NULL, 0, 1401265119, 1401265119);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_brands_i18n`
+-- Table structure for table `shop_brands_i18n`
 --
 
 DROP TABLE IF EXISTS `shop_brands_i18n`;
@@ -1786,7 +1798,7 @@ CREATE TABLE IF NOT EXISTS `shop_brands_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_brands_i18n`
+-- Dumping data for table `shop_brands_i18n`
 --
 
 INSERT INTO `shop_brands_i18n` (`id`, `locale`, `name`, `description`, `meta_title`, `meta_description`, `meta_keywords`) VALUES
@@ -2039,7 +2051,7 @@ INSERT INTO `shop_brands_i18n` (`id`, `locale`, `name`, `description`, `meta_tit
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_callbacks`
+-- Table structure for table `shop_callbacks`
 --
 
 DROP TABLE IF EXISTS `shop_callbacks`;
@@ -2062,7 +2074,7 @@ CREATE TABLE IF NOT EXISTS `shop_callbacks` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_callbacks_statuses`
+-- Table structure for table `shop_callbacks_statuses`
 --
 
 DROP TABLE IF EXISTS `shop_callbacks_statuses`;
@@ -2073,7 +2085,7 @@ CREATE TABLE IF NOT EXISTS `shop_callbacks_statuses` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
--- Дамп даних таблиці `shop_callbacks_statuses`
+-- Dumping data for table `shop_callbacks_statuses`
 --
 
 INSERT INTO `shop_callbacks_statuses` (`id`, `is_default`) VALUES
@@ -2083,7 +2095,7 @@ INSERT INTO `shop_callbacks_statuses` (`id`, `is_default`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_callbacks_statuses_i18n`
+-- Table structure for table `shop_callbacks_statuses_i18n`
 --
 
 DROP TABLE IF EXISTS `shop_callbacks_statuses_i18n`;
@@ -2096,7 +2108,7 @@ CREATE TABLE IF NOT EXISTS `shop_callbacks_statuses_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_callbacks_statuses_i18n`
+-- Dumping data for table `shop_callbacks_statuses_i18n`
 --
 
 INSERT INTO `shop_callbacks_statuses_i18n` (`id`, `locale`, `text`) VALUES
@@ -2106,7 +2118,7 @@ INSERT INTO `shop_callbacks_statuses_i18n` (`id`, `locale`, `text`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_callbacks_themes`
+-- Table structure for table `shop_callbacks_themes`
 --
 
 DROP TABLE IF EXISTS `shop_callbacks_themes`;
@@ -2117,7 +2129,7 @@ CREATE TABLE IF NOT EXISTS `shop_callbacks_themes` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 --
--- Дамп даних таблиці `shop_callbacks_themes`
+-- Dumping data for table `shop_callbacks_themes`
 --
 
 INSERT INTO `shop_callbacks_themes` (`id`, `position`) VALUES
@@ -2126,7 +2138,7 @@ INSERT INTO `shop_callbacks_themes` (`id`, `position`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_callbacks_themes_i18n`
+-- Table structure for table `shop_callbacks_themes_i18n`
 --
 
 DROP TABLE IF EXISTS `shop_callbacks_themes_i18n`;
@@ -2139,7 +2151,7 @@ CREATE TABLE IF NOT EXISTS `shop_callbacks_themes_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_callbacks_themes_i18n`
+-- Dumping data for table `shop_callbacks_themes_i18n`
 --
 
 INSERT INTO `shop_callbacks_themes_i18n` (`id`, `locale`, `text`) VALUES
@@ -2149,7 +2161,7 @@ INSERT INTO `shop_callbacks_themes_i18n` (`id`, `locale`, `text`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_category`
+-- Table structure for table `shop_category`
 --
 
 DROP TABLE IF EXISTS `shop_category`;
@@ -2166,7 +2178,8 @@ CREATE TABLE IF NOT EXISTS `shop_category` (
   `tpl` varchar(250) DEFAULT NULL,
   `order_method` int(11) DEFAULT NULL,
   `showsitetitle` int(11) DEFAULT NULL,
-  `column` int(11) DEFAULT NULL,
+  `created` int(11) NOT NULL,
+  `updated` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `shop_category_I_2` (`url`),
   KEY `shop_category_I_3` (`active`),
@@ -2176,36 +2189,36 @@ CREATE TABLE IF NOT EXISTS `shop_category` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3014 ;
 
 --
--- Дамп даних таблиці `shop_category`
+-- Dumping data for table `shop_category`
 --
 
-INSERT INTO `shop_category` (`id`, `url`, `parent_id`, `position`, `full_path`, `full_path_ids`, `active`, `external_id`, `image`, `tpl`, `order_method`, `showsitetitle`, `column`) VALUES
-(1, 'aktivnyi-otdyh-i-turizm', 0, 251, 'aktivnyi-otdyh-i-turizm', 'a:0:{}', 1, NULL, '/uploads/shop/categories/Aktivniy otdih/Logoaktivniy turizm.jpg', '', 0, 0, NULL),
-(3, 'detskie-tovary', 0, 212, 'detskie-tovary', 'a:0:{}', 1, NULL, '/uploads/shop/categories/15687_main_origin.jpg', '', 0, 0, NULL),
-(7, 'muzykalnye-instrumenty', 0, 348, 'muzykalnye-instrumenty', 'a:0:{}', 1, NULL, '/uploads/shop/categories/music/clasic gitar.jpeg', '', 0, 0, NULL),
-(8, 'telefoniia-pleery-gps', 0, 1, 'telefoniia-pleery-gps', 'a:0:{}', 1, NULL, '/uploads/shop/categories/21.jpg', 'categorysubfirst', 0, NULL, NULL),
-(9, 'domashnee-video', 0, 21, 'domashnee-video', 'a:0:{}', 1, NULL, '/uploads/shop/categories/7f43598622805660e8ab4f6c12514588.jpg', '', 0, 0, NULL),
-(927, 'telefony', 8, 2, 'telefoniia-pleery-gps/telefony', 'a:1:{i:0;i:8;}', 1, NULL, '/uploads/shop/categories/21.jpg', 'categorysubsecond', 0, NULL, NULL),
-(928, 'mp3-mp4-pleery', 8, 14, 'telefoniia-pleery-gps/mp3-mp4-pleery', 'a:1:{i:0;i:8;}', 1, NULL, '/uploads/shop/categories/19324_sony_nwz-a816_6.jpg', 'categorysubsecond', 0, NULL, NULL),
-(930, 'mobilnye-telefony', 927, 3, 'telefoniia-pleery-gps/telefony/mobilnye-telefony', 'a:2:{i:0;i:8;i:1;i:927;}', 1, NULL, '/uploads/shop/categories/nokia-200-asha-graphite.jpg', NULL, 0, NULL, NULL),
-(931, 'smartfony', 927, 4, 'telefoniia-pleery-gps/telefony/smartfony', 'a:2:{i:0;i:8;i:1;i:927;}', 1, NULL, '/uploads/shop/categories/elko_1129847_425_0_425NULL.jpg_62013.jpg', NULL, 0, NULL, NULL),
-(932, 'bluetooth-garnitury', 927, 6, 'telefoniia-pleery-gps/telefony/bluetooth-garnitury', 'a:2:{i:0;i:8;i:1;i:927;}', 1, NULL, '/uploads/shop/categories/Plantronics_Marque_2_M165_Bluetooth_Mono_Headset_Black_BTM165BK_M_1.jpg', NULL, 0, NULL, NULL),
-(933, 'provodnye-garnitury', 927, 7, 'telefoniia-pleery-gps/telefony/provodnye-garnitury', 'a:2:{i:0;i:8;i:1;i:927;}', 1, NULL, '/uploads/shop/categories/20809-500x500.jpg', NULL, 0, NULL, NULL),
-(935, 'akkumuliatory', 3013, 8, 'telefoniia-pleery-gps/aksessuary/akkumuliatory', 'a:2:{i:0;i:8;i:1;i:3013;}', 1, NULL, '/uploads/shop/categories/555.jpg', '', 0, 0, NULL),
-(936, 'zariadnye-ustroistva', 3013, 9, 'telefoniia-pleery-gps/aksessuary/zariadnye-ustroistva', 'a:2:{i:0;i:8;i:1;i:3013;}', 1, NULL, '/uploads/shop/categories/b500b45636b51ecaefa5c0c5de5e53a0_600.jpg', '', 0, 0, NULL),
-(937, 'karty-pamiati', 3013, 10, 'telefoniia-pleery-gps/aksessuary/karty-pamiati', 'a:2:{i:0;i:8;i:1;i:3013;}', 1, NULL, '/uploads/shop/categories/apacer-microsdhc_class_10_8_gb_plus_sd_adapter-g68121b.jpg', '', 0, 0, NULL),
-(938, 'zashchitnye-plenki', 3013, 11, 'telefoniia-pleery-gps/aksessuary/zashchitnye-plenki', 'a:2:{i:0;i:8;i:1;i:3013;}', 1, NULL, '/uploads/shop/categories/121130080029710763.jpg', '', 0, 0, NULL),
-(939, 'apple-ipod-i-aksessuary', 928, 15, 'telefoniia-pleery-gps/mp3-mp4-pleery/apple-ipod-i-aksessuary', 'a:2:{i:0;i:8;i:1;i:928;}', 1, NULL, '/uploads/shop/categories/28_tn3.jpg', NULL, 0, NULL, NULL),
-(940, 'mp3--i-mediapleery', 928, 16, 'telefoniia-pleery-gps/mp3-mp4-pleery/mp3--i-mediapleery', 'a:2:{i:0;i:8;i:1;i:928;}', 1, NULL, '/uploads/shop/categories/777.jpg', NULL, 0, NULL, NULL),
-(942, 'naushniki', 928, 18, 'telefoniia-pleery-gps/mp3-mp4-pleery/naushniki', 'a:2:{i:0;i:8;i:1;i:928;}', 1, NULL, '/uploads/shop/categories/hn715.jpg', NULL, 0, NULL, NULL),
-(2597, 'aksessuary-dlia-telefonov', 3013, 12, 'telefoniia-pleery-gps/aksessuary/aksessuary-dlia-telefonov', 'a:2:{i:0;i:8;i:1;i:3013;}', 1, NULL, '/uploads/shop/categories/aksessuary-dlia-telefonov.jpg', '', 0, 0, NULL),
-(2583, 'chehly-dlia-telefonov', 927, 5, 'telefoniia-pleery-gps/telefony/chehly-dlia-telefonov', 'a:2:{i:0;i:8;i:1;i:927;}', 1, NULL, '/uploads/shop/categories/chehly-dlia-telefonov.jpg', NULL, 0, NULL, NULL),
-(3013, 'aksessuary', 8, 13, 'telefoniia-pleery-gps/aksessuary', 'a:1:{i:0;i:8;}', 1, NULL, '/uploads/shop/categories/1956.jpeg', 'categorysubsecond', 0, 0, NULL);
+INSERT INTO `shop_category` (`id`, `url`, `parent_id`, `position`, `full_path`, `full_path_ids`, `active`, `external_id`, `image`, `tpl`, `order_method`, `showsitetitle`, `created`, `updated`) VALUES
+(1, 'aktivnyi-otdyh-i-turizm', 0, 251, 'aktivnyi-otdyh-i-turizm', 'a:0:{}', 1, NULL, '/uploads/shop/categories/Aktivniy otdih/Logoaktivniy turizm.jpg', '', 0, 0, 1401265119, 1401265119),
+(3, 'detskie-tovary', 0, 212, 'detskie-tovary', 'a:0:{}', 1, NULL, '/uploads/shop/categories/15687_main_origin.jpg', '', 0, 0, 1401265119, 1401265119),
+(7, 'muzykalnye-instrumenty', 0, 348, 'muzykalnye-instrumenty', 'a:0:{}', 1, NULL, '/uploads/shop/categories/music/clasic gitar.jpeg', '', 0, 0, 1401265119, 1401265119),
+(8, 'telefoniia-pleery-gps', 0, 1, 'telefoniia-pleery-gps', 'a:0:{}', 1, NULL, '/uploads/shop/categories/21.jpg', 'categorysubfirst', 0, NULL, 1401265119, 1401265119),
+(9, 'domashnee-video', 0, 21, 'domashnee-video', 'a:0:{}', 1, NULL, '/uploads/shop/categories/7f43598622805660e8ab4f6c12514588.jpg', '', 0, 0, 1401265119, 1401265119),
+(927, 'telefony', 8, 2, 'telefoniia-pleery-gps/telefony', 'a:1:{i:0;i:8;}', 1, NULL, '/uploads/shop/categories/21.jpg', 'categorysubsecond', 0, NULL, 1401265119, 1401265119),
+(928, 'mp3-mp4-pleery', 8, 14, 'telefoniia-pleery-gps/mp3-mp4-pleery', 'a:1:{i:0;i:8;}', 1, NULL, '/uploads/shop/categories/19324_sony_nwz-a816_6.jpg', 'categorysubsecond', 0, NULL, 1401265119, 1401265119),
+(930, 'mobilnye-telefony', 927, 3, 'telefoniia-pleery-gps/telefony/mobilnye-telefony', 'a:2:{i:0;i:8;i:1;i:927;}', 1, NULL, '/uploads/shop/categories/nokia-200-asha-graphite.jpg', NULL, 0, NULL, 1401265119, 1401265119),
+(931, 'smartfony', 927, 4, 'telefoniia-pleery-gps/telefony/smartfony', 'a:2:{i:0;i:8;i:1;i:927;}', 1, NULL, '/uploads/shop/categories/elko_1129847_425_0_425NULL.jpg_62013.jpg', NULL, 0, NULL, 1401265119, 1401265119),
+(932, 'bluetooth-garnitury', 927, 6, 'telefoniia-pleery-gps/telefony/bluetooth-garnitury', 'a:2:{i:0;i:8;i:1;i:927;}', 1, NULL, '/uploads/shop/categories/Plantronics_Marque_2_M165_Bluetooth_Mono_Headset_Black_BTM165BK_M_1.jpg', NULL, 0, NULL, 1401265119, 1401265119),
+(933, 'provodnye-garnitury', 927, 7, 'telefoniia-pleery-gps/telefony/provodnye-garnitury', 'a:2:{i:0;i:8;i:1;i:927;}', 1, NULL, '/uploads/shop/categories/20809-500x500.jpg', NULL, 0, NULL, 1401265119, 1401265119),
+(935, 'akkumuliatory', 3013, 8, 'telefoniia-pleery-gps/aksessuary/akkumuliatory', 'a:2:{i:0;i:8;i:1;i:3013;}', 1, NULL, '/uploads/shop/categories/555.jpg', '', 0, 0, 1401265119, 1401265119),
+(936, 'zariadnye-ustroistva', 3013, 9, 'telefoniia-pleery-gps/aksessuary/zariadnye-ustroistva', 'a:2:{i:0;i:8;i:1;i:3013;}', 1, NULL, '/uploads/shop/categories/b500b45636b51ecaefa5c0c5de5e53a0_600.jpg', '', 0, 0, 1401265119, 1401265119),
+(937, 'karty-pamiati', 3013, 10, 'telefoniia-pleery-gps/aksessuary/karty-pamiati', 'a:2:{i:0;i:8;i:1;i:3013;}', 1, NULL, '/uploads/shop/categories/apacer-microsdhc_class_10_8_gb_plus_sd_adapter-g68121b.jpg', '', 0, 0, 1401265119, 1401265119),
+(938, 'zashchitnye-plenki', 3013, 11, 'telefoniia-pleery-gps/aksessuary/zashchitnye-plenki', 'a:2:{i:0;i:8;i:1;i:3013;}', 1, NULL, '/uploads/shop/categories/121130080029710763.jpg', '', 0, 0, 1401265119, 1401265119),
+(939, 'apple-ipod-i-aksessuary', 928, 15, 'telefoniia-pleery-gps/mp3-mp4-pleery/apple-ipod-i-aksessuary', 'a:2:{i:0;i:8;i:1;i:928;}', 1, NULL, '/uploads/shop/categories/28_tn3.jpg', NULL, 0, NULL, 1401265119, 1401265119),
+(940, 'mp3--i-mediapleery', 928, 16, 'telefoniia-pleery-gps/mp3-mp4-pleery/mp3--i-mediapleery', 'a:2:{i:0;i:8;i:1;i:928;}', 1, NULL, '/uploads/shop/categories/777.jpg', NULL, 0, NULL, 1401265119, 1401265119),
+(942, 'naushniki', 928, 18, 'telefoniia-pleery-gps/mp3-mp4-pleery/naushniki', 'a:2:{i:0;i:8;i:1;i:928;}', 1, NULL, '/uploads/shop/categories/hn715.jpg', NULL, 0, NULL, 1401265119, 1401265119),
+(2597, 'aksessuary-dlia-telefonov', 3013, 12, 'telefoniia-pleery-gps/aksessuary/aksessuary-dlia-telefonov', 'a:2:{i:0;i:8;i:1;i:3013;}', 1, NULL, '/uploads/shop/categories/aksessuary-dlia-telefonov.jpg', '', 0, 0, 1401265119, 1401265119),
+(2583, 'chehly-dlia-telefonov', 927, 5, 'telefoniia-pleery-gps/telefony/chehly-dlia-telefonov', 'a:2:{i:0;i:8;i:1;i:927;}', 1, NULL, '/uploads/shop/categories/chehly-dlia-telefonov.jpg', NULL, 0, NULL, 1401265119, 1401265119),
+(3013, 'aksessuary', 8, 13, 'telefoniia-pleery-gps/aksessuary', 'a:1:{i:0;i:8;}', 1, NULL, '/uploads/shop/categories/1956.jpeg', 'categorysubsecond', 0, 0, 1401265119, 1401265119);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_category_i18n`
+-- Table structure for table `shop_category_i18n`
 --
 
 DROP TABLE IF EXISTS `shop_category_i18n`;
@@ -2223,7 +2236,7 @@ CREATE TABLE IF NOT EXISTS `shop_category_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_category_i18n`
+-- Dumping data for table `shop_category_i18n`
 --
 
 INSERT INTO `shop_category_i18n` (`id`, `locale`, `name`, `h1`, `description`, `meta_desc`, `meta_title`, `meta_keywords`) VALUES
@@ -2252,7 +2265,7 @@ INSERT INTO `shop_category_i18n` (`id`, `locale`, `name`, `h1`, `description`, `
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_comulativ_discount`
+-- Table structure for table `shop_comulativ_discount`
 --
 
 DROP TABLE IF EXISTS `shop_comulativ_discount`;
@@ -2270,7 +2283,7 @@ CREATE TABLE IF NOT EXISTS `shop_comulativ_discount` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_currencies`
+-- Table structure for table `shop_currencies`
 --
 
 DROP TABLE IF EXISTS `shop_currencies`;
@@ -2290,7 +2303,7 @@ CREATE TABLE IF NOT EXISTS `shop_currencies` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- Дамп даних таблиці `shop_currencies`
+-- Dumping data for table `shop_currencies`
 --
 
 INSERT INTO `shop_currencies` (`id`, `name`, `main`, `is_default`, `code`, `symbol`, `rate`, `showOnSite`) VALUES
@@ -2300,14 +2313,14 @@ INSERT INTO `shop_currencies` (`id`, `name`, `main`, `is_default`, `code`, `symb
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_delivery_methods`
+-- Table structure for table `shop_delivery_methods`
 --
 
 DROP TABLE IF EXISTS `shop_delivery_methods`;
 CREATE TABLE IF NOT EXISTS `shop_delivery_methods` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `price` float(10,2) NOT NULL,
-  `free_from` float(10,2) NOT NULL,
+  `price` double(20,5) NOT NULL,
+  `free_from` double(20,5) NOT NULL,
   `enabled` tinyint(1) DEFAULT NULL,
   `is_price_in_percent` tinyint(1) NOT NULL,
   `position` int(11) DEFAULT NULL,
@@ -2318,17 +2331,17 @@ CREATE TABLE IF NOT EXISTS `shop_delivery_methods` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=63 ;
 
 --
--- Дамп даних таблиці `shop_delivery_methods`
+-- Dumping data for table `shop_delivery_methods`
 --
 
 INSERT INTO `shop_delivery_methods` (`id`, `price`, `free_from`, `enabled`, `is_price_in_percent`, `position`, `delivery_sum_specified`) VALUES
-(5, 80.00, 5000.00, 1, 0, NULL, 0),
-(6, 0.00, 0.00, 1, 0, NULL, 1);
+(5, 80.00000, 5000.00000, 1, 0, NULL, 0),
+(6, 0.00000, 0.00000, 1, 0, NULL, 1);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_delivery_methods_i18n`
+-- Table structure for table `shop_delivery_methods_i18n`
 --
 
 DROP TABLE IF EXISTS `shop_delivery_methods_i18n`;
@@ -2344,7 +2357,7 @@ CREATE TABLE IF NOT EXISTS `shop_delivery_methods_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_delivery_methods_i18n`
+-- Dumping data for table `shop_delivery_methods_i18n`
 --
 
 INSERT INTO `shop_delivery_methods_i18n` (`id`, `locale`, `name`, `description`, `pricedescription`, `delivery_sum_specified_message`) VALUES
@@ -2354,7 +2367,7 @@ INSERT INTO `shop_delivery_methods_i18n` (`id`, `locale`, `name`, `description`,
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_delivery_methods_systems`
+-- Table structure for table `shop_delivery_methods_systems`
 --
 
 DROP TABLE IF EXISTS `shop_delivery_methods_systems`;
@@ -2366,7 +2379,7 @@ CREATE TABLE IF NOT EXISTS `shop_delivery_methods_systems` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_delivery_methods_systems`
+-- Dumping data for table `shop_delivery_methods_systems`
 --
 
 INSERT INTO `shop_delivery_methods_systems` (`delivery_method_id`, `payment_method_id`) VALUES
@@ -2397,7 +2410,7 @@ INSERT INTO `shop_delivery_methods_systems` (`delivery_method_id`, `payment_meth
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_discounts`
+-- Table structure for table `shop_discounts`
 --
 
 DROP TABLE IF EXISTS `shop_discounts`;
@@ -2420,7 +2433,7 @@ CREATE TABLE IF NOT EXISTS `shop_discounts` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_gifts`
+-- Table structure for table `shop_gifts`
 --
 
 DROP TABLE IF EXISTS `shop_gifts`;
@@ -2435,7 +2448,7 @@ CREATE TABLE IF NOT EXISTS `shop_gifts` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- Дамп даних таблиці `shop_gifts`
+-- Dumping data for table `shop_gifts`
 --
 
 INSERT INTO `shop_gifts` (`id`, `key`, `active`, `price`, `created`, `espdate`) VALUES
@@ -2446,7 +2459,7 @@ INSERT INTO `shop_gifts` (`id`, `key`, `active`, `price`, `created`, `espdate`) 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_kit`
+-- Table structure for table `shop_kit`
 --
 
 DROP TABLE IF EXISTS `shop_kit`;
@@ -2455,23 +2468,23 @@ CREATE TABLE IF NOT EXISTS `shop_kit` (
   `product_id` int(11) DEFAULT NULL,
   `active` tinyint(1) NOT NULL DEFAULT '1',
   `position` smallint(6) NOT NULL,
-  `only_for_logged` tinyint(1) DEFAULT NULL,
+  `only_for_logged` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `shop_kit_FI_1` (`product_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
--- Дамп даних таблиці `shop_kit`
+-- Dumping data for table `shop_kit`
 --
 
 INSERT INTO `shop_kit` (`id`, `product_id`, `active`, `position`, `only_for_logged`) VALUES
-(1, 1104, 1, 0, NULL),
-(2, 1104, 1, 1, NULL);
+(1, 1104, 1, 0, 0),
+(2, 1104, 1, 1, 0);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_kit_product`
+-- Table structure for table `shop_kit_product`
 --
 
 DROP TABLE IF EXISTS `shop_kit_product`;
@@ -2484,7 +2497,7 @@ CREATE TABLE IF NOT EXISTS `shop_kit_product` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_kit_product`
+-- Dumping data for table `shop_kit_product`
 --
 
 INSERT INTO `shop_kit_product` (`product_id`, `kit_id`, `discount`) VALUES
@@ -2496,7 +2509,7 @@ INSERT INTO `shop_kit_product` (`product_id`, `kit_id`, `discount`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_notifications`
+-- Table structure for table `shop_notifications`
 --
 
 DROP TABLE IF EXISTS `shop_notifications`;
@@ -2526,7 +2539,7 @@ CREATE TABLE IF NOT EXISTS `shop_notifications` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_notification_statuses`
+-- Table structure for table `shop_notification_statuses`
 --
 
 DROP TABLE IF EXISTS `shop_notification_statuses`;
@@ -2539,7 +2552,7 @@ CREATE TABLE IF NOT EXISTS `shop_notification_statuses` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
--- Дамп даних таблиці `shop_notification_statuses`
+-- Dumping data for table `shop_notification_statuses`
 --
 
 INSERT INTO `shop_notification_statuses` (`id`, `position`) VALUES
@@ -2549,7 +2562,7 @@ INSERT INTO `shop_notification_statuses` (`id`, `position`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_notification_statuses_i18n`
+-- Table structure for table `shop_notification_statuses_i18n`
 --
 
 DROP TABLE IF EXISTS `shop_notification_statuses_i18n`;
@@ -2562,7 +2575,7 @@ CREATE TABLE IF NOT EXISTS `shop_notification_statuses_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_notification_statuses_i18n`
+-- Dumping data for table `shop_notification_statuses_i18n`
 --
 
 INSERT INTO `shop_notification_statuses_i18n` (`id`, `locale`, `name`) VALUES
@@ -2572,7 +2585,7 @@ INSERT INTO `shop_notification_statuses_i18n` (`id`, `locale`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_orders`
+-- Table structure for table `shop_orders`
 --
 
 DROP TABLE IF EXISTS `shop_orders`;
@@ -2596,12 +2609,12 @@ CREATE TABLE IF NOT EXISTS `shop_orders` (
   `total_price` float(10,2) DEFAULT NULL,
   `external_id` varchar(255) DEFAULT NULL,
   `gift_cert_key` varchar(25) DEFAULT NULL,
-  `gift_cert_price` int(11) DEFAULT NULL,
-  `comulativ` int(3) DEFAULT NULL,
+  `gift_cert_price` float(10,2) DEFAULT NULL,
   `discount` float(10,2) DEFAULT NULL,
   `discount_info` text,
   `origin_price` float(10,2) DEFAULT NULL,
   `user_surname` varchar(255) DEFAULT NULL,
+  `comulativ` float(10,2) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `shop_orders_I_1` (`key`),
   KEY `shop_orders_I_2` (`status`),
@@ -2613,7 +2626,7 @@ CREATE TABLE IF NOT EXISTS `shop_orders` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_orders_products`
+-- Table structure for table `shop_orders_products`
 --
 
 DROP TABLE IF EXISTS `shop_orders_products`;
@@ -2631,13 +2644,14 @@ CREATE TABLE IF NOT EXISTS `shop_orders_products` (
   `is_main` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `shop_orders_products_I_1` (`order_id`),
-  KEY `shop_orders_products_FI_1` (`product_id`)
+  KEY `shop_orders_products_FI_1` (`product_id`),
+  KEY `shop_orders_products_FI_2` (`variant_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=74 ;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_orders_status_history`
+-- Table structure for table `shop_orders_status_history`
 --
 
 DROP TABLE IF EXISTS `shop_orders_status_history`;
@@ -2656,7 +2670,7 @@ CREATE TABLE IF NOT EXISTS `shop_orders_status_history` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_order_statuses`
+-- Table structure for table `shop_order_statuses`
 --
 
 DROP TABLE IF EXISTS `shop_order_statuses`;
@@ -2671,7 +2685,7 @@ CREATE TABLE IF NOT EXISTS `shop_order_statuses` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 --
--- Дамп даних таблиці `shop_order_statuses`
+-- Dumping data for table `shop_order_statuses`
 --
 
 INSERT INTO `shop_order_statuses` (`id`, `position`, `color`, `fontcolor`) VALUES
@@ -2681,7 +2695,7 @@ INSERT INTO `shop_order_statuses` (`id`, `position`, `color`, `fontcolor`) VALUE
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_order_statuses_i18n`
+-- Table structure for table `shop_order_statuses_i18n`
 --
 
 DROP TABLE IF EXISTS `shop_order_statuses_i18n`;
@@ -2694,7 +2708,7 @@ CREATE TABLE IF NOT EXISTS `shop_order_statuses_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_order_statuses_i18n`
+-- Dumping data for table `shop_order_statuses_i18n`
 --
 
 INSERT INTO `shop_order_statuses_i18n` (`id`, `locale`, `name`) VALUES
@@ -2704,7 +2718,7 @@ INSERT INTO `shop_order_statuses_i18n` (`id`, `locale`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_payment_methods`
+-- Table structure for table `shop_payment_methods`
 --
 
 DROP TABLE IF EXISTS `shop_payment_methods`;
@@ -2721,7 +2735,7 @@ CREATE TABLE IF NOT EXISTS `shop_payment_methods` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 --
--- Дамп даних таблиці `shop_payment_methods`
+-- Dumping data for table `shop_payment_methods`
 --
 
 INSERT INTO `shop_payment_methods` (`id`, `active`, `currency_id`, `position`, `payment_system_name`) VALUES
@@ -2735,7 +2749,7 @@ INSERT INTO `shop_payment_methods` (`id`, `active`, `currency_id`, `position`, `
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_payment_methods_i18n`
+-- Table structure for table `shop_payment_methods_i18n`
 --
 
 DROP TABLE IF EXISTS `shop_payment_methods_i18n`;
@@ -2749,7 +2763,7 @@ CREATE TABLE IF NOT EXISTS `shop_payment_methods_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_payment_methods_i18n`
+-- Dumping data for table `shop_payment_methods_i18n`
 --
 
 INSERT INTO `shop_payment_methods_i18n` (`id`, `locale`, `name`, `description`) VALUES
@@ -2766,7 +2780,7 @@ INSERT INTO `shop_payment_methods_i18n` (`id`, `locale`, `name`, `description`) 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_products`
+-- Table structure for table `shop_products`
 --
 
 DROP TABLE IF EXISTS `shop_products`;
@@ -2778,8 +2792,6 @@ CREATE TABLE IF NOT EXISTS `shop_products` (
   `brand_id` int(11) DEFAULT NULL,
   `category_id` int(11) NOT NULL,
   `related_products` varchar(255) DEFAULT NULL,
-  `mainImage` varchar(255) DEFAULT NULL,
-  `smallImage` varchar(255) DEFAULT NULL,
   `created` int(11) NOT NULL,
   `updated` int(11) NOT NULL,
   `old_price` float(10,2) DEFAULT NULL,
@@ -2789,8 +2801,6 @@ CREATE TABLE IF NOT EXISTS `shop_products` (
   `added_to_cart_count` int(11) DEFAULT NULL,
   `enable_comments` tinyint(1) DEFAULT '1',
   `external_id` varchar(255) DEFAULT NULL,
-  `mainModImage` varchar(255) DEFAULT NULL,
-  `smallModImage` varchar(255) DEFAULT NULL,
   `tpl` varchar(250) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -2801,260 +2811,259 @@ CREATE TABLE IF NOT EXISTS `shop_products` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17193 ;
 
 --
--- Дамп даних таблиці `shop_products`
+-- Dumping data for table `shop_products`
 --
 
-INSERT INTO `shop_products` (`id`, `url`, `active`, `hit`, `brand_id`, `category_id`, `related_products`, `mainImage`, `smallImage`, `created`, `updated`, `old_price`, `views`, `hot`, `action`, `added_to_cart_count`, `enable_comments`, `external_id`, `mainModImage`, `smallModImage`, `tpl`, `user_id`) VALUES
-(1019, 'htc-one-sv-white', 1, 1, 112, 931, '', '1019_main.jpg', '1019_small.jpg', 1364500800, 1368877440, 0.00, 66, 0, NULL, 2, 1, NULL, '1019_mainMod.jpg', '1019_smallMod.jpg', '', NULL),
-(937, '3d-led-televizor-samsung-ue65es8007uxua', 1, 0, 28, 9, '', '937_main.jpg', '937_small.jpg', 1364241600, 1364475954, 45424.00, 44, 0, 1, NULL, 1, NULL, '937_mainMod.jpg', '937_smallMod.jpg', '', NULL),
-(945, '3d-led-televizor-samsung-ue50es6907-uxua', 1, 1, 96, 9, '', '945_main.jpg', '945_small.jpg', 1364241600, 1367068373, 16780.00, 40, 0, 0, NULL, 1, NULL, '945_mainMod.jpg', '945_smallMod.jpg', '', NULL),
-(949, 'televizory-kakoi-vybrat', 1, 0, 96, 9, '', '949_main.jpg', '949_small.jpg', 1364328000, 1367068585, 0.00, 25, 1, 0, NULL, 1, NULL, '949_mainMod.jpg', '949_smallMod.jpg', '', NULL),
-(955, '3d-ochkii-besprovodnoe-ustroistvo-samsungssg-4100gb-ru', 1, 0, 28, 9, '', '955_main.jpg', '955_small.jpg', 1364328000, 1367068741, 199.00, 41, 1, 0, NULL, 1, NULL, '955_mainMod.jpg', '955_smallMod.jpg', '', NULL),
-(956, 'samsung-domashni-kinoteatr-ht-e330k-ru', 1, NULL, 28, 9, '', '956_main.jpg', '956_small.jpg', 1364328000, 1369922383, 0.00, 19, NULL, NULL, NULL, 1, NULL, '956_mainMod.jpg', '956_smallMod.jpg', '', NULL),
-(957, 'plazmennyi-televizor-samsung-ps-51e497', 1, NULL, 28, 9, '', '957_main.jpg', '957_small.jpg', 1364328000, 1369922717, 8999.00, 25, NULL, NULL, NULL, 1, NULL, '957_mainMod.jpg', '957_smallMod.jpg', '', NULL),
-(959, 'mp3-mp4-pleera-texet-t-930hd-8gb', 1, 1, 109, 940, '', '959_main.jpg', '959_small.jpg', 1364328000, 1364406869, 0.00, 36, 0, NULL, NULL, 1, NULL, '959_mainMod.jpg', '959_smallMod.jpg', '', NULL),
-(1022, 'assistant-am-09404-4gb', 1, NULL, 113, 928, '', '1022_main.jpg', '1022_small.jpg', 1364500800, 1364509881, 0.00, 18, 0, NULL, NULL, 1, NULL, '1022_mainMod.jpg', '1022_smallMod.jpg', '', NULL),
-(1006, 'mp3-mp4-pleer-apple-ipod-touch-5g-32gb-black', 1, 0, 27, 939, '', '1006_main.jpg', '1006_small.jpg', 1364500800, 1364504349, 0.00, 25, 0, NULL, NULL, 1, NULL, '1006_mainMod.jpg', '1006_smallMod.jpg', '', NULL),
-(1018, 'mp3-mp4-pleer-texet-t-979hd-4gb', 1, 0, 109, 928, '', '1018_main.jpg', '1018_small.jpg', 1364500800, 1364506291, 0.00, 21, NULL, NULL, NULL, 1, NULL, '1018_mainMod.jpg', '1018_smallMod.jpg', '', NULL),
-(1021, 'mp3-mp4-pleer-sony-walkman-nwz-b172-2gb-black', 1, NULL, 26, 928, '', '1021_main.jpg', '1021_small.jpg', 1364500800, 1364508747, 0.00, 19, 0, NULL, NULL, 1, NULL, '1021_mainMod.jpg', '1021_smallMod.jpg', '', NULL),
-(1015, 'mp3-mp4-pleer-apple-ipod-touch-4-gen-8-gb', 1, NULL, 27, 928, '', '1015_main.jpg', '1015_small.jpg', 1364500800, 1364505410, 1500.00, 44, NULL, 0, NULL, 1, NULL, '1015_mainMod.jpg', '1015_smallMod.jpg', '', NULL),
-(1023, 'nokia-asha-302-white', 1, 0, 42, 930, '', '1023_main.jpg', '1023_small.jpg', 1364500800, 1368270832, 0.00, 82, 0, NULL, 1, 1, NULL, '1023_mainMod.jpg', '1023_smallMod.jpg', '', NULL),
-(1024, 'garnitura-nokia-bh-108', 1, NULL, 42, 932, '', '1024_main.jpg', '1024_small.jpg', 1364500800, 1364748383, 0.00, 15, 0, NULL, NULL, 1, NULL, '1024_mainMod.jpg', '1024_smallMod.jpg', '', NULL),
-(1025, 'garnitura-samsung-ehs62asn-white', 1, NULL, 28, 933, '', '1025_main.jpg', '1025_small.jpg', 1364500800, 1364748482, 0.00, 22, 0, NULL, NULL, 1, NULL, '1025_mainMod.jpg', '1025_smallMod.jpg', '', NULL),
-(1096, 'mobilnyi-telefon-samsung-galaxy-grand-duos-i9082-elegant-white', 1, 1, 28, 931, '', '1096_main.jpg', '1096_small.jpg', 1364673600, 1368876800, 0.00, 31, NULL, NULL, NULL, 1, NULL, '1096_mainMod.jpg', '1096_smallMod.jpg', '', NULL),
-(1099, 'mobilnyi-telefon-sony-xperia-z-c6603-black', 1, NULL, 26, 931, '', '1099_main.jpg', '1099_small.jpg', 1364673600, 1368876582, 0.00, 19, 1, NULL, NULL, 1, NULL, '1099_mainMod.jpg', '1099_smallMod.jpg', '', NULL),
-(1104, 'mobilnyi-telefon-sony-xperia-v-lt25i-black', 1, 1, 26, 931, '13893,13897,13902,13904,6199,6201,6204,6193,6194,5775', '1104_main.jpg', '1104_small.jpg', 1364760000, 1395052529, 5400.00, 31, NULL, NULL, 7, 1, NULL, '1104_mainMod.jpg', '1104_smallMod.jpg', '', NULL),
-(1105, 'mobilnyi-telefon-lg-nexus-4-e960-black', 1, 1, 35, 931, NULL, '1105_main.jpg', '1105_small.jpg', 1364760000, 1395055056, 6000.00, 0, NULL, NULL, 0, 1, NULL, '1105_mainMod.jpg', '1105_smallMod.jpg', '', NULL),
-(1107, 'akkumuliator-k-telefonu-nokia-bl-4c', 1, NULL, 42, 935, '', '1107_main.jpg', '1107_small.jpg', 1364760000, 1367087224, 0.00, 16, NULL, NULL, NULL, 1, NULL, '1107_mainMod.jpg', '1107_smallMod.jpg', '', NULL),
-(1108, 'nokia-lumia-920-white', 1, 0, 42, 931, '', '1108_main.jpg', '1108_small.jpg', 1364760000, 1368876641, 0.00, 36, 1, NULL, NULL, 1, NULL, '1108_mainMod.jpg', '1108_smallMod.jpg', '', NULL),
-(1109, 'karta-pamiati-kingston-microsd-16-gb-sdc4-16gb', 1, 1, 114, 937, '', '1109_main.jpg', '1109_small.jpg', 1364760000, 1364764440, 0.00, 17, 0, NULL, NULL, 1, NULL, '1109_mainMod.jpg', '1109_smallMod.jpg', '', NULL),
-(1110, 'zariadnoe-ustroistvo-setevoi-adapter-apple-mb707-white', 1, NULL, 27, 939, '', '1110_main.jpg', '1110_small.jpg', 1364760000, 1367087111, 0.00, 14, NULL, NULL, NULL, 1, NULL, '1110_mainMod.jpg', '1110_smallMod.jpg', '', NULL),
-(1111, 'zariadnoe-ustroistvo-nokia-ac-4e', 1, NULL, 42, 936, '', '1111_main.jpg', '1111_small.jpg', 1364760000, 1364764446, 0.00, 14, NULL, 1, NULL, 1, NULL, '1111_mainMod.jpg', '1111_smallMod.jpg', '', NULL),
-(1112, 'garnitura-nokia-bh-505', 1, NULL, 42, 932, '', '1112_main.jpg', '1112_small.jpg', 1364760000, 1364764812, NULL, 14, NULL, 1, NULL, 1, NULL, '1112_mainMod.jpg', '1112_smallMod.jpg', '', NULL),
-(1113, 'naushniki-panasonic-rp-hje120e-g-green', 1, 0, 29, 942, '', '1113_main.jpg', '1113_small.jpg', 1364760000, 1368375958, 81.00, 22, NULL, 1, NULL, 1, NULL, '1113_mainMod.jpg', '1113_smallMod.jpg', '', NULL),
-(1114, 'garnitura-samsung-p1000-ehs-60-black', 1, NULL, 28, 933, '', '1114_main.jpg', '1114_small.jpg', 1364760000, 1364765048, 0.00, 16, NULL, 1, NULL, 1, NULL, '1114_mainMod.jpg', '1114_smallMod.jpg', '', NULL),
-(1115, 'garnitura-samsung-bhm1100-black', 1, 1, 28, 932, '', '1115_main.jpg', '1115_small.jpg', 1364760000, 1364765488, 0.00, 17, NULL, NULL, 3, 1, NULL, '1115_mainMod.jpg', '1115_smallMod.jpg', '', NULL),
-(1117, 'garnitura-samsung-bhs6000-ebecsek', 1, NULL, 28, 933, '', '1117_main.jpg', '1117_small.jpg', 1364760000, 1364765823, 0.00, 27, 1, NULL, NULL, 1, NULL, '1117_mainMod.jpg', '1117_smallMod.jpg', '', NULL),
-(4016, 'kolesnyi-pogruzchik-na-radioupravlenii', 1, NULL, 169, 3, '', '4016_main.jpg', '4016_small.jpg', 1366209446, 1369147608, 1.00, 14, NULL, NULL, NULL, 1, NULL, '4016_mainMod.jpg', '4016_smallMod.jpg', '', NULL),
-(4018, 'gusenichnii-kran-na-radiokeruvanni', 1, NULL, 169, 3, '', '4018_main.jpg', '4018_small.jpg', 1366210573, 1368859997, 1.00, 23, NULL, NULL, NULL, 1, NULL, '4018_mainMod.jpg', '4018_smallMod.jpg', '', NULL),
-(4020, 'karernii-samoskid-na-radiokeruvanni', 1, NULL, 169, 3, NULL, '', NULL, 1366210573, 1368628979, 1.00, 14, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL),
-(4021, 'mashina-z-pidiomnim-kranom-na-radiokeruvanni', 1, NULL, 169, 3, '', '4021_main.jpg', '4021_small.jpg', 1366210573, 1369147697, 1.00, 11, NULL, NULL, NULL, 1, NULL, '4021_mainMod.jpg', '4021_smallMod.jpg', '', NULL),
-(12045, 'smartfon-samsung-gt-s7562-galaxy-s-duos-zka-black', 1, NULL, 28, 931, '', '12045_main.jpg', '12045_small.jpg', 1368874834, 1379865332, 0.00, 8, NULL, NULL, NULL, 1, NULL, '12045_mainMod.jpg', '12045_smallMod.jpg', '', NULL),
-(12043, 'smartfon-samsung-gt-s7530-omnia-m-eaa-deep-grey', 1, NULL, 28, 931, NULL, '12043_main.jpg', '12043_small.jpg', 1368874834, 1368874834, NULL, 3, NULL, NULL, NULL, 1, NULL, '12043_mainMod.jpg', '12043_smallMod.jpg', NULL, NULL),
-(12042, 'smartfon-samsung-gt-s7500-cwa-galaxy-ace-plus-chic-white', 1, NULL, 28, 931, NULL, '12042_main.jpg', '12042_small.jpg', 1368874833, 1368874833, NULL, 3, NULL, NULL, NULL, 1, NULL, '12042_mainMod.jpg', '12042_smallMod.jpg', NULL, NULL),
-(12041, 'smartfon-samsung-gt-s7500-aba-galaxy-ace-plus-dark-blue', 1, NULL, 28, 931, NULL, '12041_main.jpg', '12041_small.jpg', 1368874833, 1368874833, NULL, 3, NULL, NULL, NULL, 1, NULL, '12041_mainMod.jpg', '12041_smallMod.jpg', NULL, NULL),
-(12040, 'smartfon-samsung-gt-s6810-galaxy-fame-pure-white', 1, NULL, 28, 931, NULL, '12040_main.jpg', '12040_small.jpg', 1368874833, 1368874833, NULL, 7, NULL, NULL, NULL, 1, NULL, '12040_mainMod.jpg', '12040_smallMod.jpg', NULL, NULL),
-(12039, 'smartfon-samsung-gt-s6810-galaxy-fame-metallic-blue', 1, NULL, 28, 931, NULL, '12039_main.jpg', '12039_small.jpg', 1368874833, 1368874833, NULL, 4, NULL, NULL, NULL, 1, NULL, '12039_mainMod.jpg', '12039_smallMod.jpg', NULL, NULL),
-(12038, 'smartfon-samsung-gt-s6802-zya-galaxy-ace-duos-yellow', 1, NULL, 28, 931, NULL, '12038_main.jpg', '12038_small.jpg', 1368874833, 1368874833, NULL, 4, NULL, NULL, NULL, 1, NULL, '12038_mainMod.jpg', '12038_smallMod.jpg', NULL, NULL),
-(12036, 'smartfon-samsung-gt-s6802-zia-galaxy-ace-duos-pink', 1, NULL, 28, 931, NULL, '12036_main.jpg', '12036_small.jpg', 1368874833, 1368874833, NULL, 3, NULL, NULL, NULL, 1, NULL, '12036_mainMod.jpg', '12036_smallMod.jpg', NULL, NULL),
-(12035, 'smartfon-samsung-gt-s6802-tiz-galaxy-ace-duos-romantic-pink-la-fleur', 1, NULL, 28, 931, NULL, '12035_main.jpg', '12035_small.jpg', 1368874833, 1368874833, NULL, 3, NULL, NULL, NULL, 1, NULL, '12035_mainMod.jpg', '12035_smallMod.jpg', NULL, NULL),
-(12034, 'smartfon-samsung-gt-s6802-galaxy-ace-duos-zka-black', 1, NULL, 28, 931, NULL, '12034_main.jpg', '12034_small.jpg', 1368874833, 1368874833, NULL, 4, NULL, NULL, NULL, 1, NULL, '12034_mainMod.jpg', '12034_smallMod.jpg', NULL, NULL),
-(12033, 'smartfon-samsung-gt-s6802-cwa-galaxy-ace-duos-shic-white', 1, NULL, 28, 931, NULL, '12033_main.jpg', '12033_small.jpg', 1368874833, 1368874833, NULL, 1, NULL, NULL, NULL, 1, NULL, '12033_mainMod.jpg', '12033_smallMod.jpg', NULL, NULL),
-(12032, 'smartfon-samsung-gt-s6802-aka-galaxy-ace-duos-metallic-black', 1, NULL, 28, 931, NULL, '12032_main.jpg', '12032_small.jpg', 1368874833, 1368874833, NULL, NULL, NULL, NULL, NULL, 1, NULL, '12032_mainMod.jpg', '12032_smallMod.jpg', NULL, NULL),
-(12031, 'smartfon-samsung-gt-s6500-galaxy-mini-2-zyd-yellow', 1, NULL, 28, 931, NULL, '12031_main.jpg', '12031_small.jpg', 1368874833, 1368874833, NULL, 4, NULL, NULL, NULL, 1, NULL, '12031_mainMod.jpg', '12031_smallMod.jpg', NULL, NULL),
-(12030, 'smartfon-samsung-gt-s6500-galaxy-mini-2-rwd-ceramic-white', 1, NULL, 28, 931, NULL, '12030_main.jpg', '12030_small.jpg', 1368874833, 1368874833, NULL, 4, NULL, NULL, NULL, 1, NULL, '12030_mainMod.jpg', '12030_smallMod.jpg', NULL, NULL),
-(5596, 'mobilnyi-telefon-alcatel-ds-1060-dual-sim', 1, NULL, 132, 930, '', '5596_main.jpg', '5596_small.jpg', 1366890244, 1368270406, 0.00, 8, NULL, NULL, NULL, 1, NULL, '5596_mainMod.jpg', '5596_smallMod.jpg', '', NULL),
-(13389, 'zashchitnaia-plenka-htc-p840-dlia-desire', 1, NULL, 112, 938, '', '13389_main.jpg', '13389_small.jpg', 1369512000, 1369596264, 0.00, 10, NULL, NULL, NULL, 1, NULL, '13389_mainMod.jpg', '13389_smallMod.jpg', '', NULL),
-(13388, 'zashchitnaia-plenka-htc-p870-dlia-wp-8x', 1, NULL, 112, 938, '', '13388_main.jpg', '13388_small.jpg', 1369512000, 1369595946, 0.00, 5, NULL, NULL, NULL, 1, NULL, '13388_mainMod.jpg', '13388_smallMod.jpg', '', NULL),
-(13387, 'zashchitnaia-plenka-htc-sp-p890-dlia-wp8s-2sht', 1, NULL, 112, 938, '', '13387_main.jpg', '13387_small.jpg', 1369512000, 1369595664, NULL, 7, NULL, NULL, NULL, 1, NULL, '13387_mainMod.jpg', '13387_smallMod.jpg', '', NULL),
-(13386, 'zashchitnaia-plenka-htc-sp-p900-dlia-one-sv-2sht', 1, NULL, 112, 938, '', '13386_main.jpg', '13386_small.jpg', 1369512000, 1369595172, NULL, 3, NULL, NULL, NULL, 1, NULL, '13386_mainMod.jpg', '13386_smallMod.jpg', '', NULL),
-(13385, 'zashchitnaia-plenka-nokia-302', 1, NULL, 42, 938, '', '13385_main.jpg', NULL, 1369512000, 1369594706, NULL, 7, NULL, NULL, NULL, 1, NULL, '13385_mainMod.jpg', '13385_smallMod.jpg', '', NULL),
-(13384, 'zashchitnaia-plenka-nokia-asha-311', 1, NULL, 42, 938, '', '13384_main.jpg', '13384_small.jpg', 1369512000, 1369594429, NULL, 8, NULL, NULL, NULL, 1, NULL, '13384_mainMod.jpg', '13384_smallMod.jpg', '', NULL),
-(13383, 'zashchitnaia-plenka-samsung-n7100', 1, NULL, 28, 938, '', '13383_main.jpg', '13383_small.jpg', 1369512000, 1369594125, NULL, 5, NULL, NULL, NULL, 1, NULL, '13383_mainMod.jpg', '13383_smallMod.jpg', '', NULL),
-(13382, 'zashchitnaia-plenka-samsung-wave-y-s5380', 1, NULL, 28, 938, '', '13382_main.jpg', '13382_small.jpg', 1369512000, 1369593881, 0.00, 12, NULL, NULL, NULL, 1, NULL, '13382_mainMod.jpg', '13382_smallMod.jpg', '', NULL),
-(13381, 'zashchitnaia-plenka-samsung-s7562', 1, NULL, 28, 938, '', '13381_main.jpg', '13381_small.jpg', 1369512000, 1369593239, NULL, 9, NULL, NULL, NULL, 1, NULL, '13381_mainMod.jpg', '13381_smallMod.jpg', '', NULL),
-(13380, 'zashchitnaia-plenka-samsung-i8160', 1, NULL, 28, 938, '', '13380_main.jpg', '13380_small.jpg', 1369512000, 1369592935, NULL, 5, NULL, NULL, NULL, 1, NULL, '13380_mainMod.jpg', '13380_smallMod.jpg', '', NULL),
-(13379, 'zashchitnaia-plenka-dlia-samsung-i9300', 1, NULL, 28, 938, '', '13379_main.jpg', '13379_small.jpg', 1369512000, 1369592679, 0.00, 4, NULL, NULL, NULL, 1, NULL, '13379_mainMod.jpg', '13379_smallMod.jpg', '', NULL),
-(4796, 'igrashka-poprigunchik-tiny-smarts-jumpy', 1, NULL, 169, 3, '', '4796_main.jpg', '4796_small.jpg', 1366711637, 1368866912, 96.00, 15, NULL, NULL, NULL, 1, NULL, '4796_mainMod.jpg', '4796_smallMod.jpg', '', NULL),
-(4960, 'elektrogitara-seriyi-badwater-as820ckbk', 1, NULL, 258, 7, NULL, '', '4960_small.jpg', 1366728448, 1395068747, 0.00, 0, NULL, NULL, 0, 1, NULL, '4960_mainMod.jpg', '4960_smallMod.jpg', '', NULL),
-(4959, 'elektrogitara-seriyi-badwater-as820br', 1, NULL, 258, 7, NULL, '4959_main.jpg', '4959_small.jpg', 1366728448, 1395068743, 0.00, 0, NULL, NULL, 0, 1, NULL, '4959_mainMod.jpg', '4959_smallMod.jpg', '', NULL),
-(4958, 'elektrogitara-seriyi-badwater-as1120wo', 1, NULL, 258, 7, NULL, '4958_main.jpg', '4958_small.jpg', 1366728448, 1395068738, 0.00, 0, NULL, NULL, 0, 1, NULL, '4958_mainMod.jpg', '4958_smallMod.jpg', '', NULL),
-(4957, 'elektrogitara-seriyi-badwater-as1120br', 1, NULL, 258, 7, NULL, '4957_main.jpg', '4957_small.jpg', 1366728448, 1395068733, 0.00, 0, NULL, NULL, 0, 1, NULL, '4957_mainMod.jpg', '4957_smallMod.jpg', '', NULL),
-(4955, 'elektrogitara-seriyi-badwater-al820ckbw', 1, NULL, 106, 7, NULL, '4955_main.jpg', '4955_small.jpg', 1366728448, 1395068706, 0.00, 0, NULL, NULL, 0, 1, NULL, '4955_mainMod.jpg', '4955_smallMod.jpg', '', NULL),
-(4950, 'elektrogitara-seriyi-badwater-al790ms', 1, NULL, 258, 7, NULL, '4950_main.jpg', '4950_small.jpg', 1366728448, 1395068692, 0.00, 0, NULL, NULL, 0, 1, NULL, '4950_mainMod.jpg', '4950_smallMod.jpg', '', NULL),
-(5634, 'mobilnyi-telefon-fly-ezzy-flip-dual-sim-black', 1, NULL, 119, 930, '', '5634_main.jpg', '5634_small.jpg', 1366892811, 1368270427, 0.00, 3, NULL, NULL, NULL, 1, NULL, '5634_mainMod.jpg', '5634_smallMod.jpg', '', NULL),
-(5633, 'mobilnyi-telefon-fly-ezzy-black', 1, NULL, 119, 930, '', '5633_main.jpg', '5633_small.jpg', 1366892811, 1368270447, 0.00, 4, NULL, NULL, NULL, 1, NULL, '5633_mainMod.jpg', '5633_smallMod.jpg', '', NULL),
-(5632, 'mobilnyi-telefon-fly-e210-shrome', 1, NULL, 119, 930, '', '5632_main.jpg', '5632_small.jpg', 1366892811, 1368270478, 0.00, 14, NULL, NULL, NULL, 1, NULL, '5632_mainMod.jpg', '5632_smallMod.jpg', '', NULL),
-(5631, 'mobilnyi-telefon-fly-e200-duos-metalic', 1, NULL, 119, 930, '', '5631_main.jpg', '5631_small.jpg', 1366892811, 1368270512, 0.00, 3, NULL, NULL, NULL, 1, NULL, '5631_mainMod.jpg', '5631_smallMod.jpg', '', NULL),
-(5630, 'mobilnyi-telefon-fly-e190-duos-wi-fi-black', 1, NULL, 119, 930, '', '5630_main.jpg', '5630_small.jpg', 1366892811, 1368270530, 0.00, 2, NULL, NULL, NULL, 1, NULL, '5630_mainMod.jpg', '5630_smallMod.jpg', '', NULL),
-(5629, 'mobilnyi-telefon-fly-e171-duos-high-glossy-black', 1, NULL, 119, 930, '', '5629_main.jpg', '5629_small.jpg', 1366892811, 1368270563, 0.00, 3, NULL, NULL, NULL, 1, NULL, '5629_mainMod.jpg', '5629_smallMod.jpg', '', NULL),
-(5628, 'mobilnyi-telefon-fly-e154-dual-sim-silver', 1, NULL, 119, 930, '', '5628_main.jpg', '5628_small.jpg', 1366892811, 1368270592, 0.00, 8, NULL, NULL, NULL, 1, NULL, '5628_mainMod.jpg', '5628_smallMod.jpg', '', NULL),
-(5627, 'mobilnyi-telefon-fly-e154-dual-sim-black', 1, NULL, 119, 930, '', '5627_main.jpg', '5627_small.jpg', 1366892811, 1368270675, 0.00, 3, NULL, NULL, NULL, 1, NULL, '5627_mainMod.jpg', '5627_smallMod.jpg', '', NULL),
-(5626, 'mobilnyi-telefon-fly-e145-tv-dual-sim-white', 1, NULL, 119, 930, '', '5626_main.jpg', '5626_small.jpg', 1366892811, 1368270888, 0.00, 3, NULL, NULL, NULL, 1, NULL, '5626_mainMod.jpg', '5626_smallMod.jpg', '', NULL),
-(5625, 'mobilnyi-telefon-fly-e145-tv-dual-sim-black', 1, NULL, 119, 930, '', '5625_main.jpg', '5625_small.jpg', 1366892811, 1368270904, 0.00, 5, NULL, NULL, NULL, 1, NULL, '5625_mainMod.jpg', '5625_smallMod.jpg', '', NULL),
-(5624, 'mobilnyi-telefon-fly-e141-tv-dual-sim-white', 1, NULL, 119, 930, NULL, '5624_main.jpg', '5624_small.jpg', 1366892811, 1366893240, NULL, 24, NULL, NULL, NULL, 1, NULL, '5624_mainMod.jpg', '5624_smallMod.jpg', NULL, NULL),
-(5623, 'mobilnyi-telefon-fly-e141-tv-dual-sim-black', 1, NULL, 119, 930, NULL, '5623_main.jpg', '5623_small.jpg', 1366892811, 1366893240, NULL, 10, NULL, NULL, NULL, 1, NULL, '5623_mainMod.jpg', '5623_smallMod.jpg', NULL, NULL),
-(5622, 'mobilnyi-telefon-fly-e133-duos-white', 1, NULL, 119, 930, '', '5622_main.jpg', '5622_small.jpg', 1366892811, 1368270931, 0.00, 3, NULL, NULL, NULL, 1, NULL, '5622_mainMod.jpg', '5622_smallMod.jpg', '', NULL),
-(5602, 'mobilnyi-telefon-fly-ds103d-duos-black', 1, NULL, 119, 930, '', '5602_main.jpg', '5602_small.jpg', 1366892810, 1368270951, 0.00, 4, NULL, NULL, NULL, 1, NULL, '5602_mainMod.jpg', '5602_smallMod.jpg', '', NULL),
-(5603, 'mobilnyi-telefon-fly-b300-duos-grey', 1, NULL, 119, 930, '', '5603_main.jpg', '5603_small.jpg', 1366892810, 1368270971, 0.00, 4, NULL, NULL, NULL, 1, NULL, '5603_mainMod.jpg', '5603_smallMod.jpg', '', NULL),
-(5604, 'mobilnyi-telefon-fly-ds103-duos-grey', 1, NULL, 119, 930, '', '5604_main.jpg', '5604_small.jpg', 1366892811, 1368270996, 0.00, 4, NULL, NULL, NULL, 1, NULL, '5604_mainMod.jpg', '5604_smallMod.jpg', '', NULL),
-(5605, 'mobilnyi-telefon-fly-e185-black-bronze', 1, NULL, 119, 930, '', '5605_main.jpg', '5605_small.jpg', 1366892811, 1368271009, 0.00, 3, NULL, NULL, NULL, 1, NULL, '5605_mainMod.jpg', '5605_smallMod.jpg', '', NULL),
-(5606, 'mobilnyi-telefon-fly-e176-duos-silver', 1, NULL, 119, 930, '', '5606_main.jpg', '5606_small.jpg', 1366892811, 1368271026, 0.00, 5, NULL, NULL, NULL, 1, NULL, '5606_mainMod.jpg', '5606_smallMod.jpg', '', NULL),
-(5775, 'mobilnyi-telefon-samsung-gt-s5610-msa-metallic-silver', 1, NULL, 28, 935, '', '5775_main.jpg', '5775_small.jpg', 1366892816, 1368280824, 0.00, 8, NULL, NULL, NULL, 1, NULL, '5775_mainMod.jpg', '5775_smallMod.jpg', '', NULL),
-(6194, 'akkumuliator-samsung-eb-l1f2hvucstd-black-i9250', 1, NULL, 28, 935, '', '6194_main.jpg', '6194_small.jpg', 1366983383, 1368280837, 0.00, 10, NULL, NULL, NULL, 1, NULL, '6194_mainMod.jpg', '6194_smallMod.jpg', '', NULL),
-(6195, 'akkumuliator-samsung-eb-l1g6llucstd-i9300-black', 1, NULL, 28, 935, NULL, '6195_main.jpg', '6195_small.jpg', 1366983383, 1366983508, NULL, 9, NULL, NULL, NULL, 1, NULL, '6195_mainMod.jpg', '6195_smallMod.jpg', NULL, NULL),
-(6196, 'akkumuliator-samsung-eb595675lucstd-n7100-black', 1, NULL, 28, 935, '', '6196_main.jpg', '6196_small.jpg', 1366983383, 1368280852, 0.00, 10, NULL, NULL, NULL, 1, NULL, '6196_mainMod.jpg', '6196_smallMod.jpg', '', NULL),
-(6197, 'akkumuliator-samsung-eb615268vucstd-black-n7000', 1, NULL, 28, 935, '', '6197_main.jpg', '6197_small.jpg', 1366983383, 1368280872, 0.00, 8, NULL, NULL, NULL, 1, NULL, '6197_mainMod.jpg', '6197_smallMod.jpg', '', NULL),
-(6198, 'vneshnii-akkumuliator-samsung-eeb-ei1cwegstd-white', 1, NULL, 28, 936, '', '6198_main.jpg', '6198_small.jpg', 1366983383, 1368280953, 0.00, 34, NULL, NULL, NULL, 1, NULL, '6198_mainMod.jpg', '6198_smallMod.jpg', '', NULL),
-(6193, 'akkumuliator-samsung-eb-k1a2ewegstd-white', 1, NULL, 28, 935, NULL, '6193_main.jpg', '6193_small.jpg', 1366983383, 1395071557, 0.00, 0, NULL, NULL, 0, 1, NULL, '6193_mainMod.jpg', '6193_smallMod.jpg', '', NULL),
-(6192, 'akkumuliator-samsung-eb-k1a2ebegstd-black', 1, NULL, 28, 935, '', '6192_main.jpg', '6192_small.jpg', 1366983383, 1368280921, 0.00, 10, NULL, NULL, NULL, 1, NULL, '6192_mainMod.jpg', '6192_smallMod.jpg', '', NULL),
-(6199, 'zariadnoe-ustroistvo-samsung-eca-u16cbegstd-n7000-black', 1, NULL, 28, 936, '', '6199_main.jpg', '6199_small.jpg', 1366983580, 1368280974, 0.00, 16, NULL, NULL, NULL, 1, NULL, '6199_mainMod.jpg', '6199_smallMod.jpg', '', NULL),
-(6200, 'zariadnoe-ustroistvo-samsung-eta-p11ebegstd-galaxy-p3100-p5100-n8000-black', 1, NULL, 28, 936, NULL, '6200_main.jpg', '6200_small.jpg', 1366983580, 1366983580, NULL, 16, NULL, NULL, NULL, 1, NULL, '6200_mainMod.jpg', '6200_smallMod.jpg', NULL, NULL),
-(6201, 'zariadnoe-ustroistvo-samsung-eta-u90ebegstd-n7100-black', 1, NULL, 28, 936, '', '6201_main.jpg', '6201_small.jpg', 1366983580, 1368281005, 0.00, 29, NULL, NULL, NULL, 1, NULL, '6201_mainMod.jpg', '6201_smallMod.jpg', '', NULL),
-(6202, 'zariadnoe-ustroistvo-samsung-eta-u90ewegstd-n7100-white', 1, NULL, 28, 936, NULL, '6202_main.jpg', '6202_small.jpg', 1366983580, 1366983580, NULL, 7, NULL, NULL, NULL, 1, NULL, '6202_mainMod.jpg', '6202_smallMod.jpg', NULL, NULL),
-(6203, 'zariadnoe-ustroistvo-samsung-eta0u10ebecstd-black', 1, NULL, 28, 936, '', '6203_main.jpg', '6203_small.jpg', 1366983580, 1368281020, 0.00, 22, NULL, NULL, NULL, 1, NULL, '6203_mainMod.jpg', '6203_smallMod.jpg', '', NULL),
-(6204, 'zariadnoe-ustroistvo-samsung-eta0u80ebegstd-black-n7000', 1, NULL, 28, 936, '', '6204_main.jpg', '6204_small.jpg', 1366983580, 1368281035, 0.00, 8, NULL, NULL, NULL, 1, NULL, '6204_mainMod.jpg', '6204_smallMod.jpg', '', NULL),
-(6205, 'zariadnoe-ustroistvo-ufo-ec-004-5v-2-adaptora-nokia-kit', 1, NULL, 150, 936, '', '6205_main.jpg', '6205_small.jpg', 1366983580, 1368281057, 0.00, 8, NULL, NULL, NULL, 1, NULL, '6205_mainMod.jpg', '6205_smallMod.jpg', '', NULL),
-(6206, 'zariadnoe-ustroistvo-podstavka-samsung-edd-d100wegstd-tab-tab2-desktop-dock-white', 1, NULL, 28, 936, '', '6206_main.jpg', '6206_small.jpg', 1366983580, 1368281074, 0.00, 9, NULL, NULL, NULL, 1, NULL, '6206_mainMod.jpg', '6206_smallMod.jpg', '', NULL),
-(6207, 'podstavka-s-zariadnym-ustroistvom-samsung-ebh1a2usbecstd-black', 1, NULL, 28, 936, '', '6207_main.jpg', '6207_small.jpg', 1366983580, 1368281087, 0.00, 9, NULL, NULL, NULL, 1, NULL, '6207_mainMod.jpg', '6207_smallMod.jpg', '', NULL),
-(6208, 'podstavka-derzhatel-samsung-eb-h1j9vnegstd-n7100-white-akkumuliator', 1, NULL, 28, 936, '', '6208_main.jpg', '6208_small.jpg', 1366983580, 1368388734, 0.00, 12, NULL, NULL, NULL, 1, NULL, '6208_mainMod.jpg', '6208_smallMod.jpg', '', NULL),
-(6211, 'garnitura-htc-rc-e240-black', 1, NULL, 112, 933, '', '6211_main.jpg', '6211_small.jpg', 1366983848, 1368277928, 0.00, 9, NULL, NULL, NULL, 1, NULL, '6211_mainMod.jpg', '6211_smallMod.jpg', '', NULL),
-(6212, 'garnitura-htc-rc-e240-white', 1, NULL, 112, 933, '', '6212_main.jpg', '6212_small.jpg', 1366983848, 1368277947, 0.00, 10, NULL, NULL, NULL, 1, NULL, '6212_mainMod.jpg', '6212_smallMod.jpg', '', NULL),
-(6215, 'garnitura-samsung-ehs60annbecstd-black', 1, NULL, 28, 933, '', '6215_main.jpg', '6215_small.jpg', 1366983848, 1368277960, 0.00, 10, NULL, NULL, NULL, 1, NULL, '6215_mainMod.jpg', '6215_smallMod.jpg', '', NULL),
-(6216, 'garnitura-samsung-ehs60annwecstd-white', 1, NULL, 28, 933, '', '6216_main.jpg', '6216_small.jpg', 1366983848, 1368277979, 0.00, 8, NULL, NULL, NULL, 1, NULL, '6216_mainMod.jpg', '6216_smallMod.jpg', '', NULL),
-(6217, 'garnitura-samsung-ehs60ennbecstd-black', 1, NULL, 28, 933, '', '6217_main.jpg', '6217_small.jpg', 1366983848, 1368277995, 0.00, 8, NULL, NULL, NULL, 1, NULL, '6217_mainMod.jpg', '6217_smallMod.jpg', '', NULL),
-(6218, 'garnitura-samsung-ehs60ennwecstd-white', 1, NULL, 28, 933, '', '6218_main.jpg', '6218_small.jpg', 1366983848, 1368278015, 0.00, 11, NULL, NULL, NULL, 1, NULL, '6218_mainMod.jpg', '6218_smallMod.jpg', '', NULL),
-(6219, 'garnitura-samsung-ehs62asnkecstd-blue', 1, NULL, 28, 933, '', '6219_main.jpg', '6219_small.jpg', 1366983848, 1369941720, 0.00, 12, NULL, NULL, NULL, 1, NULL, '6219_mainMod.jpg', '6219_smallMod.jpg', '', NULL),
-(6220, 'garnitura-samsung-ehs62asnpecstd-pink', 1, NULL, 28, 933, '', '6220_main.jpg', '6220_small.jpg', 1366983848, 1368278045, 0.00, 8, NULL, NULL, NULL, 1, NULL, '6220_mainMod.jpg', '6220_smallMod.jpg', '', NULL),
-(6221, 'garnitura-samsung-ehs62asnwecstd-white', 1, NULL, 28, 933, '', '6221_main.jpg', '6221_small.jpg', 1366983848, 1368278059, 0.00, 9, NULL, NULL, NULL, 1, NULL, '6221_mainMod.jpg', '6221_smallMod.jpg', '', NULL),
-(6222, 'garnitura-samsung-ehs63asnbecstd-black', 1, NULL, 28, 933, '', '6222_main.jpg', '6222_small.jpg', 1366983848, 1368278075, 0.00, 10, NULL, NULL, NULL, 1, NULL, '6222_mainMod.jpg', '6222_smallMod.jpg', '', NULL),
-(6223, 'garnitura-samsung-ehs64asfwecstd-white', 1, NULL, 28, 933, '', '6223_main.jpg', '6223_small.jpg', 1366983848, 1369941759, 0.00, 11, NULL, NULL, NULL, 1, NULL, '6223_mainMod.jpg', '6223_smallMod.jpg', '', NULL),
-(6224, 'komplekt-svobodnye-ruki-jabra-bluetooth-headset-bt-2015', 1, NULL, 142, 932, '', '6224_main.jpg', '6224_small.jpg', 1366983848, 1369938078, 0.00, 8, NULL, NULL, NULL, 1, NULL, '6224_mainMod.jpg', '6224_smallMod.jpg', '', NULL),
-(6225, 'komplekt-svobodnye-ruki-jabra-bluetooth-headset-bt-2070', 1, NULL, 142, 932, '', '6225_main.jpg', '6225_small.jpg', 1366983848, 1369938128, 0.00, 7, NULL, NULL, 3, 1, NULL, '6225_mainMod.jpg', '6225_smallMod.jpg', '', NULL),
-(6226, 'komplekt-svobodnye-ruki-nokia-bluetooth-headset-bh-104-black', 1, NULL, 42, 932, '', '6226_main.jpg', '6226_small.jpg', 1366983848, 1369938195, 0.00, 8, NULL, NULL, NULL, 1, NULL, '6226_mainMod.jpg', '6226_smallMod.jpg', '', NULL),
-(6227, 'komplekt-svobodnye-ruki-nokia-headset-bluetooth-bh-110-black', 1, NULL, 42, 932, '', '6227_main.jpg', '6227_small.jpg', 1366983848, 1369940214, 0.00, 8, NULL, NULL, NULL, 1, NULL, '6227_mainMod.jpg', '6227_smallMod.jpg', '', NULL),
-(6228, 'komplekt-svobodnye-ruki-nokia-headset-bluetooth-bh-110-white', 1, NULL, 42, 932, '', '6228_main.jpg', '6228_small.jpg', 1366983848, 1369938234, 0.00, 7, NULL, NULL, NULL, 1, NULL, '6228_mainMod.jpg', '6228_smallMod.jpg', '', NULL),
-(6229, 'komplekt-svobodnye-ruki-samsung-awep460ebegsek-black-bluetooth-headset', 1, NULL, 28, 932, '', '6229_main.jpg', '6229_small.jpg', 1366983848, 1369938315, 0.00, 9, NULL, NULL, NULL, 1, NULL, '6229_mainMod.jpg', '6229_smallMod.jpg', '', NULL),
-(6230, 'komplekt-svobodnye-ruki-samsung-bhm1200ebegsek-black', 1, NULL, 28, 932, '', '6230_main.jpg', '6230_small.jpg', 1366983848, 1369938273, 0.00, 9, NULL, NULL, NULL, 1, NULL, '6230_mainMod.jpg', '6230_smallMod.jpg', '', NULL),
-(6843, 'dok-stantsiia-samsung-edd-d1e1begstd-black', 1, NULL, 28, 2597, '', '6843_main.jpg', '6843_small.jpg', 1367044666, 1368860874, 0.00, 7, NULL, NULL, NULL, 1, NULL, '6843_mainMod.jpg', '6843_smallMod.jpg', '', NULL),
-(6844, 'dok-stantsiia-samsung-edd-h1f2begstd-black-i9250', 1, NULL, 28, 2597, '', '6844_main.jpg', '6844_small.jpg', 1367044666, 1368860874, 0.00, 6, NULL, NULL, NULL, 1, NULL, '6844_mainMod.jpg', '6844_smallMod.jpg', '', NULL),
-(7974, 'mp3-flesh-pleer-ergo-zen-basic-4-gb-blue', 1, NULL, 154, 940, NULL, '7974_main.jpg', '7974_small.jpg', 1367067047, 1367067047, NULL, 7, NULL, NULL, NULL, 1, NULL, '7974_mainMod.jpg', '7974_smallMod.jpg', NULL, NULL),
-(7975, 'mp3-flesh-pleer-ergo-zen-basic-4-gb-white', 1, NULL, 154, 940, NULL, '7975_main.jpg', '7975_small.jpg', 1367067047, 1367067047, NULL, 8, NULL, NULL, NULL, 1, NULL, '7975_mainMod.jpg', '7975_smallMod.jpg', NULL, NULL),
-(7976, 'mp3-flesh-pleer-ergo-zen-basic-8-gb-black', 1, NULL, 154, 940, NULL, '7976_main.jpg', '7976_small.jpg', 1367067047, 1367067047, NULL, 8, NULL, NULL, NULL, 1, NULL, '7976_mainMod.jpg', '7976_smallMod.jpg', NULL, NULL),
-(7977, 'mp3-flesh-pleer-ergo-zen-modern-2-gb-black', 1, NULL, 154, 940, NULL, '7977_main.jpg', '7977_small.jpg', 1367067047, 1367067047, NULL, 14, NULL, NULL, NULL, 1, NULL, '7977_mainMod.jpg', '7977_smallMod.jpg', NULL, NULL),
-(7978, 'mp3-flesh-pleer-ergo-zen-modern-2-gb-red', 1, NULL, 154, 940, NULL, '7978_main.jpg', '7978_small.jpg', 1367067047, 1367067047, NULL, 18, NULL, NULL, NULL, 1, NULL, '7978_mainMod.jpg', '7978_smallMod.jpg', NULL, NULL),
-(7979, 'mp3-flesh-pleer-ergo-zen-modern-4-gb-black', 1, NULL, 154, 940, NULL, '7979_main.jpg', '7979_small.jpg', 1367067047, 1367067047, NULL, 11, NULL, NULL, NULL, 1, NULL, '7979_mainMod.jpg', '7979_smallMod.jpg', NULL, NULL),
-(7980, 'mp3-flesh-pleer-ergo-zen-modern-4-gb-blue', 1, NULL, 154, 940, NULL, '7980_main.jpg', '7980_small.jpg', 1367067047, 1367067047, NULL, 9, NULL, NULL, NULL, 1, NULL, '7980_mainMod.jpg', '7980_smallMod.jpg', NULL, NULL),
-(7981, 'mp3-flesh-pleer-ergo-zen-modern-4-gb-red', 1, NULL, 154, 940, NULL, '7981_main.jpg', '7981_small.jpg', 1367067047, 1367067047, NULL, 10, NULL, NULL, NULL, 1, NULL, '7981_mainMod.jpg', '7981_smallMod.jpg', NULL, NULL),
-(7982, 'mp3-flesh-pleer-ergo-zen-modern-8-gb-black', 1, NULL, 154, 940, NULL, '7982_main.jpg', '7982_small.jpg', 1367067047, 1367067047, NULL, 11, NULL, NULL, NULL, 1, NULL, '7982_mainMod.jpg', '7982_smallMod.jpg', NULL, NULL),
-(7983, 'mp3-flesh-pleer-ergo-zen-modern-8-gb-red', 1, NULL, 154, 940, NULL, '7983_main.jpg', '7983_small.jpg', 1367067047, 1367067047, NULL, 6, NULL, NULL, NULL, 1, NULL, '7983_mainMod.jpg', '7983_smallMod.jpg', NULL, NULL),
-(7984, 'mp3-flesh-pleer-ergo-zen-style-4-gb', 1, NULL, 154, 940, NULL, '7984_main.jpg', '7984_small.jpg', 1367067047, 1367067047, NULL, 12, NULL, NULL, NULL, 1, NULL, '7984_mainMod.jpg', '7984_smallMod.jpg', NULL, NULL),
-(7985, 'mp3-flesh-pleer-ergo-zen-style-8-gb', 1, NULL, 154, 940, NULL, '7985_main.jpg', '7985_small.jpg', 1367067047, 1367067047, NULL, 8, NULL, NULL, NULL, 1, NULL, '7985_mainMod.jpg', '7985_smallMod.jpg', NULL, NULL),
-(7986, 'mr3-flesh-pleer-ergo-zen-little-2-gb-blue', 1, NULL, 154, 940, NULL, '7986_main.jpg', '7986_small.jpg', 1367067047, 1367067047, NULL, 11, NULL, NULL, NULL, 1, NULL, '7986_mainMod.jpg', '7986_smallMod.jpg', NULL, NULL),
-(7987, 'mr3-flesh-pleer-ergo-zen-clip-2-gb-black', 1, NULL, 154, 940, NULL, '7987_main.jpg', '7987_small.jpg', 1367067047, 1367067047, NULL, 7, NULL, NULL, NULL, 1, NULL, '7987_mainMod.jpg', '7987_smallMod.jpg', NULL, NULL),
-(7988, 'mp3-flesh-pleer-ergo-zen-volume-4-gb-black', 1, NULL, 154, 940, NULL, '7988_main.jpg', '7988_small.jpg', 1367067047, 1367067047, NULL, 6, NULL, NULL, NULL, 1, NULL, '7988_mainMod.jpg', '7988_smallMod.jpg', NULL, NULL),
-(7989, 'mp3-flesh-pleer-ergo-zen-volume-4-gb-white', 1, NULL, 154, 940, NULL, '7989_main.jpg', '7989_small.jpg', 1367067047, 1367067047, NULL, 6, NULL, NULL, NULL, 1, NULL, '7989_mainMod.jpg', '7989_smallMod.jpg', NULL, NULL),
-(7990, 'mp3-flesh-pleer-ergo-zen-volume-8-gb-black', 1, NULL, 154, 940, NULL, '7990_main.jpg', '7990_small.jpg', 1367067047, 1367067047, NULL, 5, NULL, NULL, NULL, 1, NULL, '7990_mainMod.jpg', '7990_smallMod.jpg', NULL, NULL),
-(7991, 'mp3-flesh-pleer-ergo-zen-volume-8-gb-white', 1, NULL, 154, 940, NULL, '7991_main.jpg', '7991_small.jpg', 1367067047, 1367067047, NULL, 5, NULL, NULL, NULL, 1, NULL, '7991_mainMod.jpg', '7991_smallMod.jpg', NULL, NULL),
-(7992, 'mp3-flesh-pleer-iriver-e-40-4-gb-dark-gray', 1, NULL, 152, 940, NULL, '7992_main.jpg', '7992_small.jpg', 1367067047, 1367067047, NULL, 8, NULL, NULL, NULL, 1, NULL, '7992_mainMod.jpg', '7992_smallMod.jpg', NULL, NULL),
-(8430, 'vkladysh-dlia-spalnogo-meshka-easy-camp-cotton-travel-sheet-mummy', 1, NULL, 91, 1, NULL, '8430_main.jpg', '8430_small.jpg', 1367073923, 1371131273, NULL, 9, NULL, NULL, NULL, 1, NULL, '8430_mainMod.jpg', '8430_smallMod.jpg', NULL, NULL),
-(8431, 'vkladysh-dlia-spalnogo-meshka-easy-camp-cotton-travel-sheet-rectangular', 1, NULL, 91, 1, NULL, '8431_main.jpg', '8431_small.jpg', 1367073923, 1371131273, NULL, 11, NULL, NULL, NULL, 1, NULL, '8431_mainMod.jpg', '8431_smallMod.jpg', NULL, NULL),
-(8432, 'spalnyi-meshok-easy-camp-atlanta-plus', 1, NULL, 91, 1, NULL, '8432_main.jpg', '8432_small.jpg', 1367073923, 1371131273, NULL, 10, NULL, NULL, NULL, 1, NULL, '8432_mainMod.jpg', '8432_smallMod.jpg', NULL, NULL),
-(8433, 'spalnyi-meshok-easy-camp-chakra-black', 1, NULL, 91, 1, NULL, '8433_main.jpg', '8433_small.jpg', 1367073923, 1395068540, 0.00, 0, NULL, NULL, 0, 1, NULL, '8433_mainMod.jpg', '8433_smallMod.jpg', '', NULL),
-(8434, 'spalnyi-meshok-easy-camp-chakra-pink', 1, NULL, 91, 1, NULL, '8434_main.jpg', '8434_small.jpg', 1367073923, 1395068561, 0.00, 0, NULL, NULL, 0, 1, NULL, '8434_mainMod.jpg', '8434_smallMod.jpg', '', NULL),
-(11216, 'zashchitnaia-plenka-samsung-etc-p1g5cegstd-p3100-p3110', 1, NULL, 28, 938, '', '11216_main.jpg', '11216_small.jpg', 1368860874, 1368861018, 0.00, 3, NULL, NULL, NULL, 1, NULL, '11216_mainMod.jpg', '11216_smallMod.jpg', '', NULL),
-(10179, 'naushniki-koss-the-plug', 1, 0, 168, 942, '', '10179_main.jpg', '10179_small.jpg', 1368302400, 1368372037, 0.00, 12, NULL, NULL, NULL, 1, NULL, '10179_mainMod.jpg', '10179_smallMod.jpg', '', NULL),
-(10180, 'naushniki-koss-porta-pro', 1, 0, 168, 942, '', '10180_main.jpg', '10180_small.jpg', 1368302400, 1373278481, 0.00, 17, NULL, NULL, NULL, 1, NULL, '10180_mainMod.jpg', '10180_smallMod.jpg', '', NULL),
-(10181, 'naushniki-koss-kebdz-twinz-ke7', 1, NULL, 168, 942, '', '10181_main.jpg', '10181_small.jpg', 1368302400, 1368374085, 8.00, 12, NULL, 0, 29, 1, NULL, '10181_mainMod.jpg', '10181_smallMod.jpg', '', NULL),
-(10182, 'naushniki-sony-mdr-ex10lp-black', 1, NULL, 26, 942, '', '10182_main.jpg', '10182_small.jpg', 1368302400, 1368374914, 0.00, 38, 0, NULL, NULL, 1, NULL, '10182_mainMod.jpg', '10182_smallMod.jpg', '', NULL),
-(10183, 'naushniki-panasonic-rp-hje120e-k', 1, NULL, 29, 942, '', '10183_main.jpg', '10183_small.jpg', 1368302400, 1373278482, 0.00, 9, NULL, NULL, NULL, 1, NULL, '10183_mainMod.jpg', '10183_smallMod.jpg', '', NULL),
-(10184, 'naushnik-a4tech-mk-690-v', 1, NULL, 0, 942, '', '10184_main.jpg', '10184_small.jpg', 1368302400, 1368375854, NULL, 7, NULL, NULL, NULL, 1, NULL, '10184_mainMod.jpg', '10184_smallMod.jpg', '', NULL),
-(10734, 'chehol-htc-hc-v841', 1, NULL, 112, 2583, NULL, '10734_main.jpg', '10734_small.jpg', 1368802373, 1368878508, NULL, 5, NULL, NULL, NULL, 1, NULL, '10734_mainMod.jpg', '10734_smallMod.jpg', NULL, NULL),
-(12162, 'chehol-samsung-efc-1g6ppecstd-i9300-pink', 1, NULL, 28, 2583, NULL, '12162_main.jpg', '12162_small.jpg', 1368878509, 1368878509, NULL, 4, NULL, NULL, NULL, 1, NULL, '12162_mainMod.jpg', '12162_smallMod.jpg', NULL, NULL),
-(12163, 'chehol-samsung-efc-1g6swecstd-i9300-white', 1, NULL, 28, 2583, NULL, '12163_main.jpg', '12163_small.jpg', 1368878509, 1368878509, NULL, 5, NULL, NULL, NULL, 1, NULL, '12163_mainMod.jpg', '12163_smallMod.jpg', NULL, NULL),
-(12164, 'chehol-samsung-efc-1g6wbecstd-blue', 1, NULL, 28, 2583, NULL, '12164_main.jpg', '12164_small.jpg', 1368878509, 1368878509, NULL, 1, NULL, NULL, NULL, 1, NULL, '12164_mainMod.jpg', '12164_smallMod.jpg', NULL, NULL),
-(12165, 'chehol-samsung-efc-1g6wpecstd-i9300-pink', 1, NULL, 28, 2583, NULL, '12165_main.jpg', '12165_small.jpg', 1368878509, 1368878509, NULL, 5, NULL, NULL, NULL, 1, NULL, '12165_mainMod.jpg', '12165_smallMod.jpg', NULL, NULL),
-(12166, 'chehol-samsung-efc-1g6wwecstd-white', 1, NULL, 28, 2583, NULL, '1404815.jpg', NULL, 1368878509, 1368878509, NULL, 3, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL),
-(12167, 'chehol-samsung-efc-1h8ngecstd-p5100-p5110', 1, NULL, 28, 2583, NULL, '12167_main.jpg', '12167_small.jpg', 1368878509, 1368878509, NULL, 1, NULL, NULL, NULL, 1, NULL, '12167_mainMod.jpg', '12167_smallMod.jpg', NULL, NULL),
-(12168, 'chehol-samsung-efc-1j9bbegstd-n7100-black', 1, NULL, 28, 2583, NULL, '12168_main.jpg', '12168_small.jpg', 1368878509, 1368878509, NULL, NULL, NULL, NULL, NULL, 1, NULL, '12168_mainMod.jpg', '12168_smallMod.jpg', NULL, NULL),
-(12169, 'chehol-samsung-efc-1j9bpegstd-n7100-pink', 1, NULL, 28, 2583, NULL, '12169_main.jpg', '12169_small.jpg', 1368878509, 1368878509, NULL, 1, NULL, NULL, NULL, 1, NULL, '12169_mainMod.jpg', '12169_smallMod.jpg', NULL, NULL),
-(12170, 'chehol-samsung-efc-1j9bwegstd-n7100-white', 1, NULL, 28, 2583, NULL, '12170_main.jpg', '12170_small.jpg', 1368878509, 1368878509, NULL, 1, NULL, NULL, 3, 1, NULL, '12170_mainMod.jpg', '12170_smallMod.jpg', NULL, NULL),
-(12171, 'chehol-knizhka-samsung-efc-1g2naecstd-amber-brown', 1, NULL, 28, 2583, NULL, '12171_main.jpg', '12171_small.jpg', 1368878509, 1368878509, NULL, 1, NULL, NULL, NULL, 1, NULL, '12171_mainMod.jpg', '12171_smallMod.jpg', NULL, NULL),
-(12172, 'chehol-knizhka-samsung-efc-1g2ngecstd-dark-gray', 1, NULL, 28, 2583, NULL, '12172_main.jpg', '12172_small.jpg', 1368878509, 1368878509, NULL, NULL, NULL, NULL, NULL, 1, NULL, '12172_mainMod.jpg', '12172_smallMod.jpg', NULL, NULL),
-(12173, 'chehol-knizhka-samsung-efc-1g2nlecstd-light-blue', 1, NULL, 28, 2583, NULL, '12173_main.jpg', '12173_small.jpg', 1368878509, 1368878509, NULL, NULL, NULL, NULL, NULL, 1, NULL, '12173_mainMod.jpg', '12173_smallMod.jpg', NULL, NULL),
-(12174, 'chehol-knizhka-samsung-efc-1g2nrecstd-garnet-red', 1, NULL, 28, 2583, NULL, '12174_main.jpg', '12174_small.jpg', 1368878509, 1368878509, NULL, 1, NULL, NULL, NULL, 1, NULL, '12174_mainMod.jpg', '12174_smallMod.jpg', NULL, NULL),
-(12175, 'chehol-knizhka-samsung-efc-1g5ngecstd-p3100-p3110-black', 1, NULL, 28, 2583, NULL, '12175_main.jpg', '12175_small.jpg', 1368878509, 1368878509, NULL, NULL, NULL, NULL, NULL, 1, NULL, '12175_mainMod.jpg', '12175_smallMod.jpg', NULL, NULL),
-(12176, 'chehol-knizhka-samsung-efc-1g5sgecstd-p3100-p3110-dark-gray', 1, NULL, 28, 2583, NULL, '12176_main.jpg', '12176_small.jpg', 1368878509, 1368878509, NULL, NULL, NULL, NULL, NULL, 1, NULL, '12176_mainMod.jpg', '12176_smallMod.jpg', NULL, NULL),
-(12177, 'chehol-knizhka-samsung-efc-1g6fbecstd-i9300-pebble-blue', 1, NULL, 28, 2583, NULL, '12177_main.jpg', '12177_small.jpg', 1368878509, 1368878509, NULL, NULL, NULL, NULL, NULL, 1, NULL, '12177_mainMod.jpg', '12177_smallMod.jpg', NULL, NULL),
-(12178, 'chehol-knizhka-samsung-efc-1g6fgecstd-i9300-titanium-silver', 1, NULL, 28, 2583, NULL, '12178_main.jpg', '12178_small.jpg', 1368878509, 1368878509, NULL, 1, NULL, NULL, NULL, 1, NULL, '12178_mainMod.jpg', '12178_smallMod.jpg', NULL, NULL),
-(12179, 'chehol-knizhka-samsung-efc-1g6flecstd-i9300-light-blue', 1, NULL, 28, 2583, NULL, '12179_main.jpg', '12179_small.jpg', 1368878509, 1368878509, NULL, 2, NULL, NULL, NULL, 1, NULL, '12179_mainMod.jpg', '12179_smallMod.jpg', NULL, NULL),
-(12215, 'chehol-futliar-samsung-efc-1j9ldegstd-n7100-dark-brown', 1, NULL, 28, 2583, NULL, '12215_main.jpg', '12215_small.jpg', 1368878510, 1368878510, NULL, NULL, NULL, NULL, NULL, 1, NULL, '12215_mainMod.jpg', '12215_smallMod.jpg', NULL, NULL),
-(11210, 'usb-kabel-htc-dc-m410', 1, NULL, 112, 2597, NULL, '11210_main.jpg', '11210_small.jpg', 1368860873, 1368860873, NULL, 4, NULL, NULL, NULL, 1, NULL, '11210_mainMod.jpg', '11210_smallMod.jpg', NULL, NULL),
-(11211, 'zashchitnaia-plenka-htc-sp-p910', 1, NULL, 112, 938, '', '11211_main.jpg', '11211_small.jpg', 1368860873, 1368861094, 0.00, 2, NULL, NULL, NULL, 1, NULL, '11211_mainMod.jpg', '11211_smallMod.jpg', '', NULL),
-(11212, 'multimediinyi-modul-htc-dg-h200', 1, NULL, 112, 2597, NULL, '11212_main.jpg', '11212_small.jpg', 1368860874, 1368860874, NULL, 4, NULL, NULL, NULL, 1, NULL, '11212_mainMod.jpg', '11212_smallMod.jpg', NULL, NULL),
-(11213, 'ctilus-i-ruchka-chehol-samsung-et-s110ebegstd-black', 1, NULL, 28, 2597, NULL, '11213_main.jpg', '11213_small.jpg', 1368860874, 1368860874, NULL, 3, NULL, NULL, NULL, 1, NULL, '11213_mainMod.jpg', '11213_smallMod.jpg', NULL, NULL),
-(11214, 'usb-adapter-samsung-epl-1pl0begstd-black', 1, NULL, 28, 2597, NULL, '11214_main.jpg', '11214_small.jpg', 1368860874, 1368860874, NULL, 2, NULL, NULL, NULL, 1, NULL, '11214_mainMod.jpg', '11214_smallMod.jpg', NULL, NULL),
-(11215, 'data-kabel-samsung-ecc1dp0ubecstd-black', 1, NULL, 28, 2597, NULL, '11215_main.jpg', '11215_small.jpg', 1368860874, 1368860874, NULL, 2, NULL, NULL, NULL, 1, NULL, '11215_mainMod.jpg', '11215_smallMod.jpg', NULL, NULL),
-(11217, 'kabel-dlia-podkliucheniia-k-televizoru-samsung-epl-3fhubegstd-black', 1, NULL, 28, 2597, NULL, '11217_main.jpg', '11217_small.jpg', 1368860874, 1368860874, NULL, 2, NULL, NULL, NULL, 1, NULL, '11217_mainMod.jpg', '11217_smallMod.jpg', NULL, NULL),
-(11218, 'klaviatura-samsung-ekd-k11rwegser-p3100-p3110-black', 1, NULL, 28, 2597, NULL, '11218_main.jpg', '11218_small.jpg', 1368860874, 1368860874, NULL, 4, NULL, NULL, NULL, 1, NULL, '11218_mainMod.jpg', '11218_smallMod.jpg', NULL, NULL),
-(11219, 'klaviatura-samsung-ekd-k12rwegser-p5100-p5110-black', 1, NULL, 28, 2597, NULL, '11219_main.jpg', '11219_small.jpg', 1368860874, 1368860874, NULL, 5, NULL, NULL, NULL, 1, NULL, '11219_mainMod.jpg', '11219_smallMod.jpg', NULL, NULL),
-(11220, 'podstavka-samsung-edd-d1c9begstd-black', 1, NULL, 28, 2597, NULL, '11220_main.jpg', '11220_small.jpg', 1368860874, 1368860874, NULL, 2, NULL, NULL, NULL, 1, NULL, '11220_mainMod.jpg', '11220_smallMod.jpg', NULL, NULL),
-(11221, 'podstavka-derzhatel-samsung-ebh-1e1sbegstd-black', 1, NULL, 28, 2597, NULL, '11221_main.jpg', '11221_small.jpg', 1368860874, 1368860874, NULL, 3, NULL, NULL, NULL, 1, NULL, '11221_mainMod.jpg', '11221_smallMod.jpg', NULL, NULL),
-(11222, 'stilus-samsung-et-s100ebegstd-black', 1, NULL, 28, 2597, NULL, '11222_main.jpg', '11222_small.jpg', 1368860874, 1368860874, NULL, 1, NULL, NULL, NULL, 1, NULL, '11222_mainMod.jpg', '11222_smallMod.jpg', NULL, NULL),
-(11223, 'stilus-samsung-etc-s10csegstd-i9300-silver', 1, NULL, 28, 2597, NULL, '11223_main.jpg', '11223_small.jpg', 1368860874, 1368860874, NULL, 3, NULL, NULL, NULL, 1, NULL, '11223_mainMod.jpg', '11223_smallMod.jpg', NULL, NULL),
-(11224, 'stilus-samsung-etc-s1j9segstd-n7100-dark-silver', 1, NULL, 28, 2597, NULL, '11224_main.jpg', '11224_small.jpg', 1368860874, 1368860874, NULL, NULL, NULL, NULL, NULL, 1, NULL, '11224_mainMod.jpg', '11224_smallMod.jpg', NULL, NULL),
-(11225, 'stilus-samsung-etc-s1j9wegstd-n7100-white', 1, NULL, 28, 2597, NULL, '11225_main.jpg', '11225_small.jpg', 1368860874, 1368860874, NULL, NULL, NULL, NULL, NULL, 1, NULL, '11225_mainMod.jpg', '11225_smallMod.jpg', NULL, NULL),
-(11226, 'universalnaia-podstavka-samsung-edd-d100begstd-black', 1, NULL, 28, 2597, NULL, '11226_main.jpg', '11226_small.jpg', 1368860874, 1368860874, NULL, NULL, NULL, NULL, NULL, 1, NULL, '11226_mainMod.jpg', '11226_smallMod.jpg', NULL, NULL),
-(11227, 'universalnaia-podstavka-samsung-edd-d200begstd-black', 1, NULL, 28, 2597, NULL, '11227_main.jpg', '11227_small.jpg', 1368860874, 1368860874, NULL, 2, NULL, NULL, NULL, 1, NULL, '11227_mainMod.jpg', '11227_smallMod.jpg', NULL, NULL),
-(12737, 'zhk-televizor-bbk-lem2249hd-black', 1, NULL, 143, 9, NULL, '12737_main.jpg', '12737_small.jpg', 1369060816, 1369060998, NULL, 18, NULL, NULL, NULL, 1, NULL, '12737_mainMod.jpg', '12737_smallMod.jpg', NULL, NULL),
-(13377, 'zashchitnaia-plenka-screen-ward-samsung-s5660', 1, NULL, 28, 938, '', '13377_main.jpg', '13377_small.jpg', 1369512000, 1369583657, 0.00, 7, NULL, NULL, NULL, 1, NULL, '13377_mainMod.jpg', '13377_smallMod.jpg', '', NULL),
-(13378, 'zashchitnaia-plenka-samsung-i9300-matovaia', 1, NULL, 28, 938, '', '13378_main.jpg', '13378_small.jpg', 1369512000, 1369584252, 0.00, 6, NULL, NULL, NULL, 1, NULL, '13378_mainMod.jpg', '13378_smallMod.jpg', '', NULL),
-(13376, 'zashchitnaia-plenka-screen-ward-samsung-s6102', 1, NULL, 28, 938, '', '13376_main.jpg', '13376_small.jpg', 1369512000, 1369582570, 0.00, 7, NULL, NULL, NULL, 1, NULL, '13376_mainMod.jpg', '13376_smallMod.jpg', '', NULL),
-(13392, 'zashchitnaia-plenka-drobak-samsung-s7562', 1, NULL, 28, 938, '', '13392_main.jpg', NULL, 1369512000, 1369597151, NULL, 7, NULL, NULL, NULL, 1, NULL, '13392_mainMod.jpg', '13392_smallMod.jpg', '', NULL),
-(13391, 'zashchitnaia-plenka-drobak-sony-xperia-j-st26', 1, NULL, 26, 938, '', '13391_main.jpg', '13391_small.jpg', 1369512000, 1369596889, NULL, 6, NULL, NULL, NULL, 1, NULL, '13391_mainMod.jpg', '13391_smallMod.jpg', '', NULL),
-(13390, 'zashchitnaia-plenka-htc-p730-dlia-one-x', 1, NULL, 112, 938, '', '13390_main.jpg', '13390_small.jpg', 1369512000, 1369596543, NULL, 7, NULL, NULL, NULL, 1, NULL, '13390_mainMod.jpg', '13390_smallMod.jpg', '', NULL),
-(13393, 'zashchitnaia-plenka-drobak-samsung-i9070', 1, NULL, 28, 938, '', '13393_main.jpg', '13393_small.jpg', 1369512000, 1369597391, NULL, 4, NULL, NULL, NULL, 1, NULL, '13393_mainMod.jpg', '13393_smallMod.jpg', '', NULL),
-(13889, 'karta-pamiati-transcend-microsdhc-16-gb-class-10-uhs-i-ultimate-x600-adapter', 1, NULL, 153, 937, NULL, '13889_main.jpg', '13889_small.jpg', 1369839017, 1369910831, NULL, 2, NULL, NULL, NULL, 1, NULL, '13889_mainMod.jpg', '13889_smallMod.jpg', NULL, NULL),
-(13890, 'karta-pamiati-transcend-microsdhc-32-gb-class-10-uhs-i-ultimate-x600-adapter', 1, NULL, 153, 937, NULL, '13890_main.jpg', '13890_small.jpg', 1369839018, 1369910831, NULL, 2, NULL, NULL, NULL, 1, NULL, '13890_mainMod.jpg', '13890_smallMod.jpg', NULL, NULL),
-(13891, 'karta-pamiati-goodram-microsd-2-gb-adapter-retail-10', 1, NULL, 193, 937, NULL, '13891_main.jpg', '13891_small.jpg', 1369839018, 1369910831, NULL, 5, NULL, NULL, NULL, 1, NULL, '13891_mainMod.jpg', '13891_smallMod.jpg', NULL, NULL),
-(13892, 'karta-pamiati-goodram-microsd-2-gb-retail-9-adapter', 1, NULL, 193, 937, NULL, '13892_main.jpg', '13892_small.jpg', 1369839018, 1369910832, NULL, 3, NULL, NULL, NULL, 1, NULL, '13892_mainMod.jpg', '13892_smallMod.jpg', NULL, NULL),
-(13893, 'karta-pamiati-goodram-microsd-4-gb-adapter-i-usb-kadtrider', 1, NULL, 193, 937, NULL, '13893_main.jpg', '13893_small.jpg', 1369839018, 1369910832, NULL, 4, NULL, NULL, NULL, 1, NULL, '13893_mainMod.jpg', '13893_smallMod.jpg', NULL, NULL),
-(13894, 'karta-pamiati-goodram-microsd-8-gb-adapter-i-usb-kadtrider', 1, NULL, 193, 937, NULL, '13894_main.jpg', '13894_small.jpg', 1369839018, 1369910832, NULL, 4, NULL, NULL, NULL, 1, NULL, '13894_mainMod.jpg', '13894_smallMod.jpg', NULL, NULL),
-(13895, 'karta-pamiati-goodram-microsdhc-16-gb-class-10-adapter-retail-10', 1, NULL, 193, 937, NULL, '13895_main.jpg', '13895_small.jpg', 1369839018, 1369910832, NULL, 6, NULL, NULL, NULL, 1, NULL, '13895_mainMod.jpg', '13895_smallMod.jpg', NULL, NULL),
-(13896, 'karta-pamiati-goodram-microsdhc-16-gb-class-10-adapter', 1, NULL, 193, 937, NULL, '13896_main.jpg', '13896_small.jpg', 1369839018, 1369910832, NULL, 2, NULL, NULL, NULL, 1, NULL, '13896_mainMod.jpg', '13896_smallMod.jpg', NULL, NULL),
-(13897, 'karta-pamiati-goodram-microsdhc-16-gb-class-10-uhs-i-adapter-retail-10', 1, NULL, 193, 937, NULL, '13897_main.jpg', '13897_small.jpg', 1369839018, 1369910832, NULL, 6, NULL, NULL, NULL, 1, NULL, '13897_mainMod.jpg', '13897_smallMod.jpg', NULL, NULL),
-(13898, 'karta-pamiati-goodram-microsdhc-16-gb-class-4-adapter', 1, NULL, 193, 937, NULL, '13898_main.jpg', '13898_small.jpg', 1369839018, 1369910832, NULL, 7, NULL, NULL, NULL, 1, NULL, '13898_mainMod.jpg', '13898_smallMod.jpg', NULL, NULL),
-(13899, 'karta-pamiati-goodram-microsdhc-32-gb-class-10-adapter-retail-10', 1, NULL, 193, 937, NULL, '13899_main.jpg', '13899_small.jpg', 1369839018, 1369910832, NULL, 6, NULL, NULL, NULL, 1, NULL, '13899_mainMod.jpg', '13899_smallMod.jpg', NULL, NULL),
-(13900, 'karta-pamiati-goodram-microsdhc-32-gb-class-10-adapter', 1, NULL, 193, 937, NULL, '13900_main.jpg', '13900_small.jpg', 1369839018, 1369910832, NULL, 3, NULL, NULL, NULL, 1, NULL, '13900_mainMod.jpg', '13900_smallMod.jpg', NULL, NULL),
-(13901, 'karta-pamiati-goodram-microsdhc-32-gb-class-10-uhs-i-adapter-retail-10', 1, NULL, 193, 937, NULL, '13901_main.jpg', '13901_small.jpg', 1369839018, 1369910832, NULL, 7, NULL, NULL, NULL, 1, NULL, '13901_mainMod.jpg', '13901_smallMod.jpg', NULL, NULL),
-(13902, 'karta-pamiati-goodram-microsdhc-32-gb-class-4-adapter', 1, NULL, 193, 937, NULL, '13902_main.jpg', '13902_small.jpg', 1369839018, 1369910832, NULL, 7, NULL, NULL, NULL, 1, NULL, '13902_mainMod.jpg', '13902_smallMod.jpg', NULL, NULL),
-(13903, 'karta-pamiati-goodram-microsdhc-4-gb-class-4-adapter-retail-10', 1, NULL, 193, 937, NULL, '13903_main.jpg', '13903_small.jpg', 1369839018, 1369910832, NULL, 5, NULL, NULL, NULL, 1, NULL, '13903_mainMod.jpg', '13903_smallMod.jpg', NULL, NULL),
-(13904, 'karta-pamiati-goodram-microsdhc-4-gb-class-4-retail-9-adapter', 1, NULL, 193, 937, NULL, '13904_main.jpg', '13904_small.jpg', 1369839018, 1395071590, 0.00, 0, NULL, NULL, 0, 1, NULL, '13904_mainMod.jpg', '13904_smallMod.jpg', '', NULL),
-(13905, 'karta-pamiati-goodram-microsdhc-8-gb-class-10-adapter-retail-10', 1, NULL, 193, 937, NULL, '13905_main.jpg', '13905_small.jpg', 1369839018, 1369910832, NULL, 7, NULL, NULL, NULL, 1, NULL, '13905_mainMod.jpg', '13905_smallMod.jpg', NULL, NULL),
-(13906, 'karta-pamiati-goodram-microsdhc-8-gb-class-10-adapter', 1, NULL, 193, 937, NULL, '13906_main.jpg', '13906_small.jpg', 1369839018, 1369910832, NULL, 4, NULL, NULL, NULL, 1, NULL, '13906_mainMod.jpg', '13906_smallMod.jpg', NULL, NULL),
-(13907, 'karta-pamiati-goodram-microsdhc-8-gb-class-4-adapter-retail-10', 1, NULL, 193, 937, NULL, '13907_main.jpg', '13907_small.jpg', 1369839018, 1369910832, NULL, 7, NULL, NULL, NULL, 1, NULL, '13907_mainMod.jpg', '13907_smallMod.jpg', NULL, NULL),
-(14190, 'garnitura-samsung-bhm-1200-black', 1, NULL, 28, 932, '', '14190_main.jpg', '14190_small.jpg', 1369857600, 1369921931, 0.00, 12, NULL, NULL, NULL, 1, NULL, '14190_mainMod.jpg', '14190_smallMod.jpg', '', NULL),
-(14192, 'bluetooth-garnitura-nokia-bh-806', 1, NULL, 28, 932, '', '14192_main.jpg', '14192_small.jpg', 1369857600, 1369938293, 0.00, 8, NULL, NULL, NULL, 1, NULL, '14192_mainMod.jpg', '14192_smallMod.jpg', '', NULL);
-INSERT INTO `shop_products` (`id`, `url`, `active`, `hit`, `brand_id`, `category_id`, `related_products`, `mainImage`, `smallImage`, `created`, `updated`, `old_price`, `views`, `hot`, `action`, `added_to_cart_count`, `enable_comments`, `external_id`, `mainModImage`, `smallModImage`, `tpl`, `user_id`) VALUES
-(14194, 'garnitura-nokia-bh-108-ice', 1, NULL, 28, 932, '', '14194_main.jpg', '14194_small.jpg', 1369857600, 1369923308, 0.00, 5, NULL, NULL, NULL, 1, NULL, '14194_mainMod.jpg', '14194_smallMod.jpg', '', NULL),
-(14196, 'garnitura-jabra-easy-call', 1, NULL, 142, 932, '', '14196_main.jpg', '14196_small.jpg', 1369857600, 1369924423, 0.00, 6, NULL, NULL, NULL, 1, NULL, '14196_mainMod.jpg', '14196_smallMod.jpg', '', NULL),
-(14198, 'garnitura-jabra-bt2045', 1, NULL, 142, 932, '', '14198_main.jpg', '14198_small.jpg', 1369857600, 1369925784, 0.00, 5, NULL, NULL, NULL, 1, NULL, '14198_mainMod.jpg', '14198_smallMod.jpg', '', NULL),
-(14199, 'garnitura-bluetooth-nokia-bh-111-black', 1, NULL, 42, 932, '', '14199_main.jpg', '14199_small.jpg', 1369857600, 1369938866, 0.00, 8, NULL, NULL, NULL, 1, NULL, '14199_mainMod.jpg', '14199_smallMod.jpg', '', NULL),
-(14200, 'garnitura-jabra-easygo', 1, NULL, 142, 932, '', '14200_main.jpg', '14200_small.jpg', 1369857600, 1369939245, 0.00, 7, NULL, NULL, NULL, 1, NULL, '14200_mainMod.jpg', '14200_smallMod.jpg', '', NULL),
-(14201, 'garnitura-nokia-bh-220-black', 1, NULL, 42, 932, '', '14201_main.jpg', '14201_small.jpg', 1369857600, 1369939815, 0.00, 4, NULL, NULL, NULL, 1, NULL, '14201_mainMod.jpg', '14201_smallMod.jpg', '', NULL),
-(14202, 'garnitura-nokia-bh-112-black', 1, NULL, 42, 932, '', '14202_main.jpg', '14202_small.jpg', 1369857600, 1369940065, 0.00, 7, NULL, NULL, NULL, 1, NULL, '14202_mainMod.jpg', '14202_smallMod.jpg', '', NULL),
-(14203, 'garnitura-nokia-hs-47-vakuumnaia', 1, NULL, 42, 933, '', '14203_main.jpg', '14203_small.jpg', 1369857600, 1369940564, NULL, 10, NULL, NULL, NULL, 1, NULL, '14203_mainMod.jpg', '14203_smallMod.jpg', '', NULL),
-(14204, 'garnitura-nokia-wh-701', 1, NULL, 42, 933, '', '14204_main.jpg', '14204_small.jpg', 1369857600, 1369942105, 0.00, 8, NULL, NULL, NULL, 1, NULL, '14204_mainMod.jpg', '14204_smallMod.jpg', '', NULL),
-(14205, 'garnitura-nokia-wh-205-stereo', 1, NULL, 42, 933, '', '14205_main.jpg', '14205_small.jpg', 1369857600, 1369941669, NULL, 6, NULL, NULL, NULL, 1, NULL, '14205_mainMod.jpg', '14205_smallMod.jpg', '', NULL),
-(14206, 'garnitura-htc-rc-e190-black', 1, NULL, 112, 933, '', '14206_main.jpg', '14206_small.jpg', 1369857600, 1369941982, NULL, 6, NULL, NULL, NULL, 1, NULL, '14206_mainMod.jpg', '14206_smallMod.jpg', '', NULL),
-(16825, 'naushniki-ergo-vd-290-white', 1, NULL, 154, 942, NULL, '16825_main.jpg', '16825_small.jpg', 1373276911, 1373278480, NULL, NULL, NULL, NULL, NULL, 1, NULL, '16825_mainMod.jpg', '16825_smallMod.jpg', NULL, NULL),
-(14775, 'gps-pioneer-e-800', 1, NULL, 154, 942, '', '14775_main.jpg', '14775_small.jpg', 1370721600, 1373278480, 0.00, 9, NULL, NULL, NULL, 1, NULL, '14775_mainMod.jpg', '14775_smallMod.jpg', '', NULL),
-(16826, 'naushniki-ergo-vd-390-gold', 1, NULL, 154, 942, NULL, '16826_main.jpg', '16826_small.jpg', 1373276912, 1373278480, NULL, NULL, NULL, NULL, NULL, 1, NULL, '16826_mainMod.jpg', '16826_smallMod.jpg', NULL, NULL),
-(16827, 'naushniki-ergo-vd-390-grey', 1, NULL, 154, 942, NULL, '16827_main.jpg', '16827_small.jpg', 1373276912, 1373278480, NULL, NULL, NULL, NULL, NULL, 1, NULL, '16827_mainMod.jpg', '16827_smallMod.jpg', NULL, NULL),
-(16828, 'naushniki-ergo-vd-390-red', 1, NULL, 154, 942, NULL, '16828_main.jpg', '16828_small.jpg', 1373276912, 1373278480, NULL, NULL, NULL, NULL, NULL, 1, NULL, '16828_mainMod.jpg', '16828_smallMod.jpg', NULL, NULL),
-(16829, 'garnitura-vnutrikanalnogo-tipa-ergo-vm-901-black', 1, NULL, 154, 942, NULL, '16829_main.jpg', '16829_small.jpg', 1373276912, 1373278480, NULL, NULL, NULL, NULL, NULL, 1, NULL, '16829_mainMod.jpg', '16829_smallMod.jpg', NULL, NULL),
-(16830, 'multimediinaia-garnitura-ergo-vm-280-black', 1, NULL, 154, 942, NULL, '16830_main.jpg', '16830_small.jpg', 1373276912, 1373278480, NULL, NULL, NULL, NULL, NULL, 1, NULL, '16830_mainMod.jpg', '16830_smallMod.jpg', NULL, NULL),
-(16831, 'multimediinaia-garnitura-ergo-vm-280-green', 1, NULL, 154, 942, NULL, '16831_main.jpg', '16831_small.jpg', 1373276912, 1373278480, NULL, NULL, NULL, NULL, NULL, 1, NULL, '16831_mainMod.jpg', '16831_smallMod.jpg', NULL, NULL),
-(16832, 'nabor-zapasnyh-nakladnyh-ambushiur-koss-porta-sporta-pro6-sht', 1, NULL, 168, 942, NULL, '16832_main.jpg', '16832_small.jpg', 1373276912, 1373278480, NULL, NULL, NULL, NULL, NULL, 1, NULL, '16832_mainMod.jpg', '16832_smallMod.jpg', NULL, NULL),
-(16833, 'naushniki-sennheiser-ie-8i', 1, NULL, 272, 942, NULL, '16833_main.jpg', '16833_small.jpg', 1373276912, 1373278480, NULL, NULL, NULL, NULL, NULL, 1, NULL, '16833_mainMod.jpg', '16833_smallMod.jpg', NULL, NULL),
-(16834, 'naushniki-ergo-ear-vt11', 1, NULL, 154, 942, NULL, '16834_main.jpg', '16834_small.jpg', 1373276912, 1373278480, NULL, NULL, NULL, NULL, NULL, 1, NULL, '16834_mainMod.jpg', '16834_smallMod.jpg', NULL, NULL),
-(16835, 'naushniki-ergo-ear-vt12', 1, NULL, 154, 942, NULL, '16835_main.jpg', '16835_small.jpg', 1373276912, 1373278480, NULL, NULL, NULL, NULL, NULL, 1, NULL, '16835_mainMod.jpg', '16835_smallMod.jpg', NULL, NULL),
-(16836, 'naushniki-jvc-ha-s200-b', 1, NULL, 273, 942, NULL, '16836_main.jpg', '16836_small.jpg', 1373276912, 1373278480, NULL, NULL, NULL, NULL, NULL, 1, NULL, '16836_mainMod.jpg', '16836_smallMod.jpg', NULL, NULL);
+INSERT INTO `shop_products` (`id`, `url`, `active`, `hit`, `brand_id`, `category_id`, `related_products`, `created`, `updated`, `old_price`, `views`, `hot`, `action`, `added_to_cart_count`, `enable_comments`, `external_id`, `tpl`, `user_id`) VALUES
+(1019, 'htc-one-sv-white', 1, 1, 112, 931, '', 1364500800, 1368877440, 0.00, 66, 0, NULL, 2, 1, NULL, '', NULL),
+(937, '3d-led-televizor-samsung-ue65es8007uxua', 1, 0, 28, 9, '', 1364241600, 1364475954, 45424.00, 44, 0, 1, NULL, 1, NULL, '', NULL),
+(945, '3d-led-televizor-samsung-ue50es6907-uxua', 1, 1, 96, 9, '', 1364241600, 1367068373, 16780.00, 40, 0, 0, NULL, 1, NULL, '', NULL),
+(949, 'televizory-kakoi-vybrat', 1, 0, 96, 9, '', 1364328000, 1367068585, 0.00, 25, 1, 0, NULL, 1, NULL, '', NULL),
+(955, '3d-ochkii-besprovodnoe-ustroistvo-samsungssg-4100gb-ru', 1, 0, 28, 9, '', 1364328000, 1367068741, 199.00, 41, 1, 0, NULL, 1, NULL, '', NULL),
+(956, 'samsung-domashni-kinoteatr-ht-e330k-ru', 1, NULL, 28, 9, '', 1364328000, 1369922383, 0.00, 19, NULL, NULL, NULL, 1, NULL, '', NULL),
+(957, 'plazmennyi-televizor-samsung-ps-51e497', 1, NULL, 28, 9, '', 1364328000, 1369922717, 8999.00, 25, NULL, NULL, NULL, 1, NULL, '', NULL),
+(959, 'mp3-mp4-pleera-texet-t-930hd-8gb', 1, 1, 109, 940, '', 1364328000, 1364406869, 0.00, 36, 0, NULL, NULL, 1, NULL, '', NULL),
+(1022, 'assistant-am-09404-4gb', 1, NULL, 113, 928, '', 1364500800, 1364509881, 0.00, 18, 0, NULL, NULL, 1, NULL, '', NULL),
+(1006, 'mp3-mp4-pleer-apple-ipod-touch-5g-32gb-black', 1, 0, 27, 939, '', 1364500800, 1364504349, 0.00, 25, 0, NULL, NULL, 1, NULL, '', NULL),
+(1018, 'mp3-mp4-pleer-texet-t-979hd-4gb', 1, 0, 109, 928, '', 1364500800, 1364506291, 0.00, 21, NULL, NULL, NULL, 1, NULL, '', NULL),
+(1021, 'mp3-mp4-pleer-sony-walkman-nwz-b172-2gb-black', 1, NULL, 26, 928, '', 1364500800, 1364508747, 0.00, 19, 0, NULL, NULL, 1, NULL, '', NULL),
+(1015, 'mp3-mp4-pleer-apple-ipod-touch-4-gen-8-gb', 1, NULL, 27, 928, '', 1364500800, 1364505410, 1500.00, 44, NULL, 0, NULL, 1, NULL, '', NULL),
+(1023, 'nokia-asha-302-white', 1, 0, 42, 930, '', 1364500800, 1368270832, 0.00, 82, 0, NULL, 1, 1, NULL, '', NULL),
+(1024, 'garnitura-nokia-bh-108', 1, NULL, 42, 932, '', 1364500800, 1364748383, 0.00, 15, 0, NULL, NULL, 1, NULL, '', NULL),
+(1025, 'garnitura-samsung-ehs62asn-white', 1, NULL, 28, 933, '', 1364500800, 1364748482, 0.00, 22, 0, NULL, NULL, 1, NULL, '', NULL),
+(1096, 'mobilnyi-telefon-samsung-galaxy-grand-duos-i9082-elegant-white', 1, 1, 28, 931, '', 1364673600, 1368876800, 0.00, 31, NULL, NULL, NULL, 1, NULL, '', NULL),
+(1099, 'mobilnyi-telefon-sony-xperia-z-c6603-black', 1, NULL, 26, 931, '', 1364673600, 1368876582, 0.00, 19, 1, NULL, NULL, 1, NULL, '', NULL),
+(1104, 'mobilnyi-telefon-sony-xperia-v-lt25i-black', 1, 1, 26, 931, '13893,13897,13902,13904,6199,6201,6204,6193,6194,5775', 1364760000, 1395052529, 5400.00, 31, NULL, NULL, 7, 1, NULL, '', NULL),
+(1105, 'mobilnyi-telefon-lg-nexus-4-e960-black', 1, 1, 35, 931, NULL, 1364760000, 1395055056, 6000.00, 0, NULL, NULL, 0, 1, NULL, '', NULL),
+(1107, 'akkumuliator-k-telefonu-nokia-bl-4c', 1, NULL, 42, 935, '', 1364760000, 1367087224, 0.00, 16, NULL, NULL, NULL, 1, NULL, '', NULL),
+(1108, 'nokia-lumia-920-white', 1, 0, 42, 931, '', 1364760000, 1368876641, 0.00, 36, 1, NULL, NULL, 1, NULL, '', NULL),
+(1109, 'karta-pamiati-kingston-microsd-16-gb-sdc4-16gb', 1, 1, 114, 937, '', 1364760000, 1364764440, 0.00, 17, 0, NULL, NULL, 1, NULL, '', NULL),
+(1110, 'zariadnoe-ustroistvo-setevoi-adapter-apple-mb707-white', 1, NULL, 27, 939, '', 1364760000, 1367087111, 0.00, 14, NULL, NULL, NULL, 1, NULL, '', NULL),
+(1111, 'zariadnoe-ustroistvo-nokia-ac-4e', 1, NULL, 42, 936, '', 1364760000, 1364764446, 0.00, 14, NULL, 1, NULL, 1, NULL, '', NULL),
+(1112, 'garnitura-nokia-bh-505', 1, NULL, 42, 932, '', 1364760000, 1364764812, NULL, 14, NULL, 1, NULL, 1, NULL, '', NULL),
+(1113, 'naushniki-panasonic-rp-hje120e-g-green', 1, 0, 29, 942, '', 1364760000, 1368375958, 81.00, 22, NULL, 1, NULL, 1, NULL, '', NULL),
+(1114, 'garnitura-samsung-p1000-ehs-60-black', 1, NULL, 28, 933, '', 1364760000, 1364765048, 0.00, 16, NULL, 1, NULL, 1, NULL, '', NULL),
+(1115, 'garnitura-samsung-bhm1100-black', 1, 1, 28, 932, '', 1364760000, 1364765488, 0.00, 17, NULL, NULL, 3, 1, NULL, '', NULL),
+(1117, 'garnitura-samsung-bhs6000-ebecsek', 1, NULL, 28, 933, '', 1364760000, 1364765823, 0.00, 27, 1, NULL, NULL, 1, NULL, '', NULL),
+(4016, 'kolesnyi-pogruzchik-na-radioupravlenii', 1, NULL, 169, 3, '', 1366209446, 1369147608, 1.00, 14, NULL, NULL, NULL, 1, NULL, '', NULL),
+(4018, 'gusenichnii-kran-na-radiokeruvanni', 1, NULL, 169, 3, '', 1366210573, 1368859997, 1.00, 23, NULL, NULL, NULL, 1, NULL, '', NULL),
+(4020, 'karernii-samoskid-na-radiokeruvanni', 1, NULL, 169, 3, NULL, 1366210573, 1368628979, 1.00, 14, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(4021, 'mashina-z-pidiomnim-kranom-na-radiokeruvanni', 1, NULL, 169, 3, '', 1366210573, 1369147697, 1.00, 11, NULL, NULL, NULL, 1, NULL, '', NULL),
+(12045, 'smartfon-samsung-gt-s7562-galaxy-s-duos-zka-black', 1, NULL, 28, 931, '', 1368874834, 1379865332, 0.00, 8, NULL, NULL, NULL, 1, NULL, '', NULL),
+(12043, 'smartfon-samsung-gt-s7530-omnia-m-eaa-deep-grey', 1, NULL, 28, 931, NULL, 1368874834, 1368874834, NULL, 3, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(12042, 'smartfon-samsung-gt-s7500-cwa-galaxy-ace-plus-chic-white', 1, NULL, 28, 931, NULL, 1368874833, 1368874833, NULL, 3, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(12041, 'smartfon-samsung-gt-s7500-aba-galaxy-ace-plus-dark-blue', 1, NULL, 28, 931, NULL, 1368874833, 1368874833, NULL, 3, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(12040, 'smartfon-samsung-gt-s6810-galaxy-fame-pure-white', 1, NULL, 28, 931, NULL, 1368874833, 1368874833, NULL, 7, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(12039, 'smartfon-samsung-gt-s6810-galaxy-fame-metallic-blue', 1, NULL, 28, 931, NULL, 1368874833, 1368874833, NULL, 4, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(12038, 'smartfon-samsung-gt-s6802-zya-galaxy-ace-duos-yellow', 1, NULL, 28, 931, NULL, 1368874833, 1368874833, NULL, 4, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(12036, 'smartfon-samsung-gt-s6802-zia-galaxy-ace-duos-pink', 1, NULL, 28, 931, NULL, 1368874833, 1368874833, NULL, 3, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(12035, 'smartfon-samsung-gt-s6802-tiz-galaxy-ace-duos-romantic-pink-la-fleur', 1, NULL, 28, 931, NULL, 1368874833, 1368874833, NULL, 3, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(12034, 'smartfon-samsung-gt-s6802-galaxy-ace-duos-zka-black', 1, NULL, 28, 931, NULL, 1368874833, 1368874833, NULL, 4, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(12033, 'smartfon-samsung-gt-s6802-cwa-galaxy-ace-duos-shic-white', 1, NULL, 28, 931, NULL, 1368874833, 1368874833, NULL, 1, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(12032, 'smartfon-samsung-gt-s6802-aka-galaxy-ace-duos-metallic-black', 1, NULL, 28, 931, NULL, 1368874833, 1368874833, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(12031, 'smartfon-samsung-gt-s6500-galaxy-mini-2-zyd-yellow', 1, NULL, 28, 931, NULL, 1368874833, 1368874833, NULL, 4, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(12030, 'smartfon-samsung-gt-s6500-galaxy-mini-2-rwd-ceramic-white', 1, NULL, 28, 931, NULL, 1368874833, 1368874833, NULL, 4, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(5596, 'mobilnyi-telefon-alcatel-ds-1060-dual-sim', 1, NULL, 132, 930, '', 1366890244, 1368270406, 0.00, 8, NULL, NULL, NULL, 1, NULL, '', NULL),
+(13389, 'zashchitnaia-plenka-htc-p840-dlia-desire', 1, NULL, 112, 938, '', 1369512000, 1369596264, 0.00, 10, NULL, NULL, NULL, 1, NULL, '', NULL),
+(13388, 'zashchitnaia-plenka-htc-p870-dlia-wp-8x', 1, NULL, 112, 938, '', 1369512000, 1369595946, 0.00, 5, NULL, NULL, NULL, 1, NULL, '', NULL),
+(13387, 'zashchitnaia-plenka-htc-sp-p890-dlia-wp8s-2sht', 1, NULL, 112, 938, '', 1369512000, 1369595664, NULL, 7, NULL, NULL, NULL, 1, NULL, '', NULL),
+(13386, 'zashchitnaia-plenka-htc-sp-p900-dlia-one-sv-2sht', 1, NULL, 112, 938, '', 1369512000, 1369595172, NULL, 3, NULL, NULL, NULL, 1, NULL, '', NULL),
+(13385, 'zashchitnaia-plenka-nokia-302', 1, NULL, 42, 938, '', 1369512000, 1369594706, NULL, 7, NULL, NULL, NULL, 1, NULL, '', NULL),
+(13384, 'zashchitnaia-plenka-nokia-asha-311', 1, NULL, 42, 938, '', 1369512000, 1369594429, NULL, 8, NULL, NULL, NULL, 1, NULL, '', NULL),
+(13383, 'zashchitnaia-plenka-samsung-n7100', 1, NULL, 28, 938, '', 1369512000, 1369594125, NULL, 5, NULL, NULL, NULL, 1, NULL, '', NULL),
+(13382, 'zashchitnaia-plenka-samsung-wave-y-s5380', 1, NULL, 28, 938, '', 1369512000, 1369593881, 0.00, 12, NULL, NULL, NULL, 1, NULL, '', NULL),
+(13381, 'zashchitnaia-plenka-samsung-s7562', 1, NULL, 28, 938, '', 1369512000, 1369593239, NULL, 9, NULL, NULL, NULL, 1, NULL, '', NULL),
+(13380, 'zashchitnaia-plenka-samsung-i8160', 1, NULL, 28, 938, '', 1369512000, 1369592935, NULL, 5, NULL, NULL, NULL, 1, NULL, '', NULL),
+(13379, 'zashchitnaia-plenka-dlia-samsung-i9300', 1, NULL, 28, 938, '', 1369512000, 1369592679, 0.00, 4, NULL, NULL, NULL, 1, NULL, '', NULL),
+(4796, 'igrashka-poprigunchik-tiny-smarts-jumpy', 1, NULL, 169, 3, '', 1366711637, 1368866912, 96.00, 15, NULL, NULL, NULL, 1, NULL, '', NULL),
+(4960, 'elektrogitara-seriyi-badwater-as820ckbk', 1, NULL, 258, 7, NULL, 1366728448, 1395068747, 0.00, 0, NULL, NULL, 0, 1, NULL, '', NULL),
+(4959, 'elektrogitara-seriyi-badwater-as820br', 1, NULL, 258, 7, NULL, 1366728448, 1395068743, 0.00, 0, NULL, NULL, 0, 1, NULL, '', NULL),
+(4958, 'elektrogitara-seriyi-badwater-as1120wo', 1, NULL, 258, 7, NULL, 1366728448, 1395068738, 0.00, 0, NULL, NULL, 0, 1, NULL, '', NULL),
+(4957, 'elektrogitara-seriyi-badwater-as1120br', 1, NULL, 258, 7, NULL, 1366728448, 1395068733, 0.00, 0, NULL, NULL, 0, 1, NULL, '', NULL),
+(4955, 'elektrogitara-seriyi-badwater-al820ckbw', 1, NULL, 106, 7, NULL, 1366728448, 1395068706, 0.00, 0, NULL, NULL, 0, 1, NULL, '', NULL),
+(4950, 'elektrogitara-seriyi-badwater-al790ms', 1, NULL, 258, 7, NULL, 1366728448, 1395068692, 0.00, 0, NULL, NULL, 0, 1, NULL, '', NULL),
+(5634, 'mobilnyi-telefon-fly-ezzy-flip-dual-sim-black', 1, NULL, 119, 930, '', 1366892811, 1368270427, 0.00, 3, NULL, NULL, NULL, 1, NULL, '', NULL),
+(5633, 'mobilnyi-telefon-fly-ezzy-black', 1, NULL, 119, 930, '', 1366892811, 1368270447, 0.00, 4, NULL, NULL, NULL, 1, NULL, '', NULL),
+(5632, 'mobilnyi-telefon-fly-e210-shrome', 1, NULL, 119, 930, '', 1366892811, 1368270478, 0.00, 14, NULL, NULL, NULL, 1, NULL, '', NULL),
+(5631, 'mobilnyi-telefon-fly-e200-duos-metalic', 1, NULL, 119, 930, '', 1366892811, 1368270512, 0.00, 3, NULL, NULL, NULL, 1, NULL, '', NULL),
+(5630, 'mobilnyi-telefon-fly-e190-duos-wi-fi-black', 1, NULL, 119, 930, '', 1366892811, 1368270530, 0.00, 2, NULL, NULL, NULL, 1, NULL, '', NULL),
+(5629, 'mobilnyi-telefon-fly-e171-duos-high-glossy-black', 1, NULL, 119, 930, '', 1366892811, 1368270563, 0.00, 3, NULL, NULL, NULL, 1, NULL, '', NULL),
+(5628, 'mobilnyi-telefon-fly-e154-dual-sim-silver', 1, NULL, 119, 930, '', 1366892811, 1368270592, 0.00, 8, NULL, NULL, NULL, 1, NULL, '', NULL),
+(5627, 'mobilnyi-telefon-fly-e154-dual-sim-black', 1, NULL, 119, 930, '', 1366892811, 1368270675, 0.00, 3, NULL, NULL, NULL, 1, NULL, '', NULL),
+(5626, 'mobilnyi-telefon-fly-e145-tv-dual-sim-white', 1, NULL, 119, 930, '', 1366892811, 1368270888, 0.00, 3, NULL, NULL, NULL, 1, NULL, '', NULL),
+(5625, 'mobilnyi-telefon-fly-e145-tv-dual-sim-black', 1, NULL, 119, 930, '', 1366892811, 1368270904, 0.00, 5, NULL, NULL, NULL, 1, NULL, '', NULL),
+(5624, 'mobilnyi-telefon-fly-e141-tv-dual-sim-white', 1, NULL, 119, 930, NULL, 1366892811, 1366893240, NULL, 24, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(5623, 'mobilnyi-telefon-fly-e141-tv-dual-sim-black', 1, NULL, 119, 930, NULL, 1366892811, 1366893240, NULL, 10, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(5622, 'mobilnyi-telefon-fly-e133-duos-white', 1, NULL, 119, 930, '', 1366892811, 1368270931, 0.00, 3, NULL, NULL, NULL, 1, NULL, '', NULL),
+(5602, 'mobilnyi-telefon-fly-ds103d-duos-black', 1, NULL, 119, 930, '', 1366892810, 1368270951, 0.00, 4, NULL, NULL, NULL, 1, NULL, '', NULL),
+(5603, 'mobilnyi-telefon-fly-b300-duos-grey', 1, NULL, 119, 930, '', 1366892810, 1368270971, 0.00, 4, NULL, NULL, NULL, 1, NULL, '', NULL),
+(5604, 'mobilnyi-telefon-fly-ds103-duos-grey', 1, NULL, 119, 930, '', 1366892811, 1368270996, 0.00, 4, NULL, NULL, NULL, 1, NULL, '', NULL),
+(5605, 'mobilnyi-telefon-fly-e185-black-bronze', 1, NULL, 119, 930, '', 1366892811, 1368271009, 0.00, 3, NULL, NULL, NULL, 1, NULL, '', NULL),
+(5606, 'mobilnyi-telefon-fly-e176-duos-silver', 1, NULL, 119, 930, '', 1366892811, 1368271026, 0.00, 5, NULL, NULL, NULL, 1, NULL, '', NULL),
+(5775, 'mobilnyi-telefon-samsung-gt-s5610-msa-metallic-silver', 1, NULL, 28, 935, '', 1366892816, 1368280824, 0.00, 8, NULL, NULL, NULL, 1, NULL, '', NULL),
+(6194, 'akkumuliator-samsung-eb-l1f2hvucstd-black-i9250', 1, NULL, 28, 935, '', 1366983383, 1368280837, 0.00, 10, NULL, NULL, NULL, 1, NULL, '', NULL),
+(6195, 'akkumuliator-samsung-eb-l1g6llucstd-i9300-black', 1, NULL, 28, 935, NULL, 1366983383, 1366983508, NULL, 9, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(6196, 'akkumuliator-samsung-eb595675lucstd-n7100-black', 1, NULL, 28, 935, '', 1366983383, 1368280852, 0.00, 10, NULL, NULL, NULL, 1, NULL, '', NULL),
+(6197, 'akkumuliator-samsung-eb615268vucstd-black-n7000', 1, NULL, 28, 935, '', 1366983383, 1368280872, 0.00, 8, NULL, NULL, NULL, 1, NULL, '', NULL),
+(6198, 'vneshnii-akkumuliator-samsung-eeb-ei1cwegstd-white', 1, NULL, 28, 936, '', 1366983383, 1368280953, 0.00, 34, NULL, NULL, NULL, 1, NULL, '', NULL),
+(6193, 'akkumuliator-samsung-eb-k1a2ewegstd-white', 1, NULL, 28, 935, NULL, 1366983383, 1395071557, 0.00, 0, NULL, NULL, 0, 1, NULL, '', NULL),
+(6192, 'akkumuliator-samsung-eb-k1a2ebegstd-black', 1, NULL, 28, 935, '', 1366983383, 1368280921, 0.00, 10, NULL, NULL, NULL, 1, NULL, '', NULL),
+(6199, 'zariadnoe-ustroistvo-samsung-eca-u16cbegstd-n7000-black', 1, NULL, 28, 936, '', 1366983580, 1368280974, 0.00, 16, NULL, NULL, NULL, 1, NULL, '', NULL),
+(6200, 'zariadnoe-ustroistvo-samsung-eta-p11ebegstd-galaxy-p3100-p5100-n8000-black', 1, NULL, 28, 936, NULL, 1366983580, 1366983580, NULL, 16, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(6201, 'zariadnoe-ustroistvo-samsung-eta-u90ebegstd-n7100-black', 1, NULL, 28, 936, '', 1366983580, 1368281005, 0.00, 29, NULL, NULL, NULL, 1, NULL, '', NULL),
+(6202, 'zariadnoe-ustroistvo-samsung-eta-u90ewegstd-n7100-white', 1, NULL, 28, 936, NULL, 1366983580, 1366983580, NULL, 7, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(6203, 'zariadnoe-ustroistvo-samsung-eta0u10ebecstd-black', 1, NULL, 28, 936, '', 1366983580, 1368281020, 0.00, 22, NULL, NULL, NULL, 1, NULL, '', NULL),
+(6204, 'zariadnoe-ustroistvo-samsung-eta0u80ebegstd-black-n7000', 1, NULL, 28, 936, '', 1366983580, 1368281035, 0.00, 8, NULL, NULL, NULL, 1, NULL, '', NULL),
+(6205, 'zariadnoe-ustroistvo-ufo-ec-004-5v-2-adaptora-nokia-kit', 1, NULL, 150, 936, '', 1366983580, 1368281057, 0.00, 8, NULL, NULL, NULL, 1, NULL, '', NULL),
+(6206, 'zariadnoe-ustroistvo-podstavka-samsung-edd-d100wegstd-tab-tab2-desktop-dock-white', 1, NULL, 28, 936, '', 1366983580, 1368281074, 0.00, 9, NULL, NULL, NULL, 1, NULL, '', NULL),
+(6207, 'podstavka-s-zariadnym-ustroistvom-samsung-ebh1a2usbecstd-black', 1, NULL, 28, 936, '', 1366983580, 1368281087, 0.00, 9, NULL, NULL, NULL, 1, NULL, '', NULL),
+(6208, 'podstavka-derzhatel-samsung-eb-h1j9vnegstd-n7100-white-akkumuliator', 1, NULL, 28, 936, '', 1366983580, 1368388734, 0.00, 12, NULL, NULL, NULL, 1, NULL, '', NULL),
+(6211, 'garnitura-htc-rc-e240-black', 1, NULL, 112, 933, '', 1366983848, 1368277928, 0.00, 9, NULL, NULL, NULL, 1, NULL, '', NULL),
+(6212, 'garnitura-htc-rc-e240-white', 1, NULL, 112, 933, '', 1366983848, 1368277947, 0.00, 10, NULL, NULL, NULL, 1, NULL, '', NULL),
+(6215, 'garnitura-samsung-ehs60annbecstd-black', 1, NULL, 28, 933, '', 1366983848, 1368277960, 0.00, 10, NULL, NULL, NULL, 1, NULL, '', NULL),
+(6216, 'garnitura-samsung-ehs60annwecstd-white', 1, NULL, 28, 933, '', 1366983848, 1368277979, 0.00, 8, NULL, NULL, NULL, 1, NULL, '', NULL),
+(6217, 'garnitura-samsung-ehs60ennbecstd-black', 1, NULL, 28, 933, '', 1366983848, 1368277995, 0.00, 8, NULL, NULL, NULL, 1, NULL, '', NULL),
+(6218, 'garnitura-samsung-ehs60ennwecstd-white', 1, NULL, 28, 933, '', 1366983848, 1368278015, 0.00, 11, NULL, NULL, NULL, 1, NULL, '', NULL),
+(6219, 'garnitura-samsung-ehs62asnkecstd-blue', 1, NULL, 28, 933, '', 1366983848, 1369941720, 0.00, 12, NULL, NULL, NULL, 1, NULL, '', NULL),
+(6220, 'garnitura-samsung-ehs62asnpecstd-pink', 1, NULL, 28, 933, '', 1366983848, 1368278045, 0.00, 8, NULL, NULL, NULL, 1, NULL, '', NULL),
+(6221, 'garnitura-samsung-ehs62asnwecstd-white', 1, NULL, 28, 933, '', 1366983848, 1368278059, 0.00, 9, NULL, NULL, NULL, 1, NULL, '', NULL),
+(6222, 'garnitura-samsung-ehs63asnbecstd-black', 1, NULL, 28, 933, '', 1366983848, 1368278075, 0.00, 10, NULL, NULL, NULL, 1, NULL, '', NULL),
+(6223, 'garnitura-samsung-ehs64asfwecstd-white', 1, NULL, 28, 933, '', 1366983848, 1369941759, 0.00, 11, NULL, NULL, NULL, 1, NULL, '', NULL),
+(6224, 'komplekt-svobodnye-ruki-jabra-bluetooth-headset-bt-2015', 1, NULL, 142, 932, '', 1366983848, 1369938078, 0.00, 8, NULL, NULL, NULL, 1, NULL, '', NULL),
+(6225, 'komplekt-svobodnye-ruki-jabra-bluetooth-headset-bt-2070', 1, NULL, 142, 932, '', 1366983848, 1369938128, 0.00, 7, NULL, NULL, 3, 1, NULL, '', NULL),
+(6226, 'komplekt-svobodnye-ruki-nokia-bluetooth-headset-bh-104-black', 1, NULL, 42, 932, '', 1366983848, 1369938195, 0.00, 8, NULL, NULL, NULL, 1, NULL, '', NULL),
+(6227, 'komplekt-svobodnye-ruki-nokia-headset-bluetooth-bh-110-black', 1, NULL, 42, 932, '', 1366983848, 1369940214, 0.00, 8, NULL, NULL, NULL, 1, NULL, '', NULL),
+(6228, 'komplekt-svobodnye-ruki-nokia-headset-bluetooth-bh-110-white', 1, NULL, 42, 932, '', 1366983848, 1369938234, 0.00, 7, NULL, NULL, NULL, 1, NULL, '', NULL),
+(6229, 'komplekt-svobodnye-ruki-samsung-awep460ebegsek-black-bluetooth-headset', 1, NULL, 28, 932, '', 1366983848, 1369938315, 0.00, 9, NULL, NULL, NULL, 1, NULL, '', NULL),
+(6230, 'komplekt-svobodnye-ruki-samsung-bhm1200ebegsek-black', 1, NULL, 28, 932, '', 1366983848, 1369938273, 0.00, 9, NULL, NULL, NULL, 1, NULL, '', NULL),
+(6843, 'dok-stantsiia-samsung-edd-d1e1begstd-black', 1, NULL, 28, 2597, '', 1367044666, 1368860874, 0.00, 7, NULL, NULL, NULL, 1, NULL, '', NULL),
+(6844, 'dok-stantsiia-samsung-edd-h1f2begstd-black-i9250', 1, NULL, 28, 2597, '', 1367044666, 1368860874, 0.00, 6, NULL, NULL, NULL, 1, NULL, '', NULL),
+(7974, 'mp3-flesh-pleer-ergo-zen-basic-4-gb-blue', 1, NULL, 154, 940, NULL, 1367067047, 1367067047, NULL, 7, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(7975, 'mp3-flesh-pleer-ergo-zen-basic-4-gb-white', 1, NULL, 154, 940, NULL, 1367067047, 1367067047, NULL, 8, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(7976, 'mp3-flesh-pleer-ergo-zen-basic-8-gb-black', 1, NULL, 154, 940, NULL, 1367067047, 1367067047, NULL, 8, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(7977, 'mp3-flesh-pleer-ergo-zen-modern-2-gb-black', 1, NULL, 154, 940, NULL, 1367067047, 1367067047, NULL, 14, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(7978, 'mp3-flesh-pleer-ergo-zen-modern-2-gb-red', 1, NULL, 154, 940, NULL, 1367067047, 1367067047, NULL, 18, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(7979, 'mp3-flesh-pleer-ergo-zen-modern-4-gb-black', 1, NULL, 154, 940, NULL, 1367067047, 1367067047, NULL, 11, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(7980, 'mp3-flesh-pleer-ergo-zen-modern-4-gb-blue', 1, NULL, 154, 940, NULL, 1367067047, 1367067047, NULL, 9, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(7981, 'mp3-flesh-pleer-ergo-zen-modern-4-gb-red', 1, NULL, 154, 940, NULL, 1367067047, 1367067047, NULL, 10, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(7982, 'mp3-flesh-pleer-ergo-zen-modern-8-gb-black', 1, NULL, 154, 940, NULL, 1367067047, 1367067047, NULL, 11, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(7983, 'mp3-flesh-pleer-ergo-zen-modern-8-gb-red', 1, NULL, 154, 940, NULL, 1367067047, 1367067047, NULL, 6, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(7984, 'mp3-flesh-pleer-ergo-zen-style-4-gb', 1, NULL, 154, 940, NULL, 1367067047, 1367067047, NULL, 12, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(7985, 'mp3-flesh-pleer-ergo-zen-style-8-gb', 1, NULL, 154, 940, NULL, 1367067047, 1367067047, NULL, 8, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(7986, 'mr3-flesh-pleer-ergo-zen-little-2-gb-blue', 1, NULL, 154, 940, NULL, 1367067047, 1367067047, NULL, 11, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(7987, 'mr3-flesh-pleer-ergo-zen-clip-2-gb-black', 1, NULL, 154, 940, NULL, 1367067047, 1367067047, NULL, 7, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(7988, 'mp3-flesh-pleer-ergo-zen-volume-4-gb-black', 1, NULL, 154, 940, NULL, 1367067047, 1367067047, NULL, 6, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(7989, 'mp3-flesh-pleer-ergo-zen-volume-4-gb-white', 1, NULL, 154, 940, NULL, 1367067047, 1367067047, NULL, 6, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(7990, 'mp3-flesh-pleer-ergo-zen-volume-8-gb-black', 1, NULL, 154, 940, NULL, 1367067047, 1367067047, NULL, 5, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(7991, 'mp3-flesh-pleer-ergo-zen-volume-8-gb-white', 1, NULL, 154, 940, NULL, 1367067047, 1367067047, NULL, 5, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(7992, 'mp3-flesh-pleer-iriver-e-40-4-gb-dark-gray', 1, NULL, 152, 940, NULL, 1367067047, 1367067047, NULL, 8, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(8430, 'vkladysh-dlia-spalnogo-meshka-easy-camp-cotton-travel-sheet-mummy', 1, NULL, 91, 1, NULL, 1367073923, 1371131273, NULL, 9, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(8431, 'vkladysh-dlia-spalnogo-meshka-easy-camp-cotton-travel-sheet-rectangular', 1, NULL, 91, 1, NULL, 1367073923, 1371131273, NULL, 11, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(8432, 'spalnyi-meshok-easy-camp-atlanta-plus', 1, NULL, 91, 1, NULL, 1367073923, 1371131273, NULL, 10, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(8433, 'spalnyi-meshok-easy-camp-chakra-black', 1, NULL, 91, 1, NULL, 1367073923, 1395068540, 0.00, 0, NULL, NULL, 0, 1, NULL, '', NULL),
+(8434, 'spalnyi-meshok-easy-camp-chakra-pink', 1, NULL, 91, 1, NULL, 1367073923, 1395068561, 0.00, 0, NULL, NULL, 0, 1, NULL, '', NULL),
+(11216, 'zashchitnaia-plenka-samsung-etc-p1g5cegstd-p3100-p3110', 1, NULL, 28, 938, '', 1368860874, 1368861018, 0.00, 3, NULL, NULL, NULL, 1, NULL, '', NULL),
+(10179, 'naushniki-koss-the-plug', 1, 0, 168, 942, '', 1368302400, 1368372037, 0.00, 12, NULL, NULL, NULL, 1, NULL, '', NULL),
+(10180, 'naushniki-koss-porta-pro', 1, 0, 168, 942, '', 1368302400, 1373278481, 0.00, 17, NULL, NULL, NULL, 1, NULL, '', NULL),
+(10181, 'naushniki-koss-kebdz-twinz-ke7', 1, NULL, 168, 942, '', 1368302400, 1368374085, 8.00, 12, NULL, 0, 29, 1, NULL, '', NULL),
+(10182, 'naushniki-sony-mdr-ex10lp-black', 1, NULL, 26, 942, '', 1368302400, 1368374914, 0.00, 38, 0, NULL, NULL, 1, NULL, '', NULL),
+(10183, 'naushniki-panasonic-rp-hje120e-k', 1, NULL, 29, 942, '', 1368302400, 1373278482, 0.00, 9, NULL, NULL, NULL, 1, NULL, '', NULL),
+(10184, 'naushnik-a4tech-mk-690-v', 1, NULL, 0, 942, '', 1368302400, 1368375854, NULL, 7, NULL, NULL, NULL, 1, NULL, '', NULL),
+(10734, 'chehol-htc-hc-v841', 1, NULL, 112, 2583, NULL, 1368802373, 1368878508, NULL, 5, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(12162, 'chehol-samsung-efc-1g6ppecstd-i9300-pink', 1, NULL, 28, 2583, NULL, 1368878509, 1368878509, NULL, 4, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(12163, 'chehol-samsung-efc-1g6swecstd-i9300-white', 1, NULL, 28, 2583, NULL, 1368878509, 1368878509, NULL, 5, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(12164, 'chehol-samsung-efc-1g6wbecstd-blue', 1, NULL, 28, 2583, NULL, 1368878509, 1368878509, NULL, 1, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(12165, 'chehol-samsung-efc-1g6wpecstd-i9300-pink', 1, NULL, 28, 2583, NULL, 1368878509, 1368878509, NULL, 5, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(12166, 'chehol-samsung-efc-1g6wwecstd-white', 1, NULL, 28, 2583, NULL, 1368878509, 1368878509, NULL, 3, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(12167, 'chehol-samsung-efc-1h8ngecstd-p5100-p5110', 1, NULL, 28, 2583, NULL, 1368878509, 1368878509, NULL, 1, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(12168, 'chehol-samsung-efc-1j9bbegstd-n7100-black', 1, NULL, 28, 2583, NULL, 1368878509, 1368878509, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(12169, 'chehol-samsung-efc-1j9bpegstd-n7100-pink', 1, NULL, 28, 2583, NULL, 1368878509, 1368878509, NULL, 1, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(12170, 'chehol-samsung-efc-1j9bwegstd-n7100-white', 1, NULL, 28, 2583, NULL, 1368878509, 1368878509, NULL, 1, NULL, NULL, 3, 1, NULL, NULL, NULL),
+(12171, 'chehol-knizhka-samsung-efc-1g2naecstd-amber-brown', 1, NULL, 28, 2583, NULL, 1368878509, 1368878509, NULL, 1, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(12172, 'chehol-knizhka-samsung-efc-1g2ngecstd-dark-gray', 1, NULL, 28, 2583, NULL, 1368878509, 1368878509, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(12173, 'chehol-knizhka-samsung-efc-1g2nlecstd-light-blue', 1, NULL, 28, 2583, NULL, 1368878509, 1368878509, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(12174, 'chehol-knizhka-samsung-efc-1g2nrecstd-garnet-red', 1, NULL, 28, 2583, NULL, 1368878509, 1368878509, NULL, 1, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(12175, 'chehol-knizhka-samsung-efc-1g5ngecstd-p3100-p3110-black', 1, NULL, 28, 2583, NULL, 1368878509, 1368878509, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(12176, 'chehol-knizhka-samsung-efc-1g5sgecstd-p3100-p3110-dark-gray', 1, NULL, 28, 2583, NULL, 1368878509, 1368878509, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(12177, 'chehol-knizhka-samsung-efc-1g6fbecstd-i9300-pebble-blue', 1, NULL, 28, 2583, NULL, 1368878509, 1368878509, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(12178, 'chehol-knizhka-samsung-efc-1g6fgecstd-i9300-titanium-silver', 1, NULL, 28, 2583, NULL, 1368878509, 1368878509, NULL, 1, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(12179, 'chehol-knizhka-samsung-efc-1g6flecstd-i9300-light-blue', 1, NULL, 28, 2583, NULL, 1368878509, 1368878509, NULL, 2, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(12215, 'chehol-futliar-samsung-efc-1j9ldegstd-n7100-dark-brown', 1, NULL, 28, 2583, NULL, 1368878510, 1368878510, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(11210, 'usb-kabel-htc-dc-m410', 1, NULL, 112, 2597, NULL, 1368860873, 1368860873, NULL, 4, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(11211, 'zashchitnaia-plenka-htc-sp-p910', 1, NULL, 112, 938, '', 1368860873, 1368861094, 0.00, 2, NULL, NULL, NULL, 1, NULL, '', NULL),
+(11212, 'multimediinyi-modul-htc-dg-h200', 1, NULL, 112, 2597, NULL, 1368860874, 1368860874, NULL, 4, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(11213, 'ctilus-i-ruchka-chehol-samsung-et-s110ebegstd-black', 1, NULL, 28, 2597, NULL, 1368860874, 1368860874, NULL, 3, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(11214, 'usb-adapter-samsung-epl-1pl0begstd-black', 1, NULL, 28, 2597, NULL, 1368860874, 1368860874, NULL, 2, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(11215, 'data-kabel-samsung-ecc1dp0ubecstd-black', 1, NULL, 28, 2597, NULL, 1368860874, 1368860874, NULL, 2, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(11217, 'kabel-dlia-podkliucheniia-k-televizoru-samsung-epl-3fhubegstd-black', 1, NULL, 28, 2597, NULL, 1368860874, 1368860874, NULL, 2, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(11218, 'klaviatura-samsung-ekd-k11rwegser-p3100-p3110-black', 1, NULL, 28, 2597, NULL, 1368860874, 1368860874, NULL, 4, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(11219, 'klaviatura-samsung-ekd-k12rwegser-p5100-p5110-black', 1, NULL, 28, 2597, NULL, 1368860874, 1368860874, NULL, 5, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(11220, 'podstavka-samsung-edd-d1c9begstd-black', 1, NULL, 28, 2597, NULL, 1368860874, 1368860874, NULL, 2, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(11221, 'podstavka-derzhatel-samsung-ebh-1e1sbegstd-black', 1, NULL, 28, 2597, NULL, 1368860874, 1368860874, NULL, 3, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(11222, 'stilus-samsung-et-s100ebegstd-black', 1, NULL, 28, 2597, NULL, 1368860874, 1368860874, NULL, 1, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(11223, 'stilus-samsung-etc-s10csegstd-i9300-silver', 1, NULL, 28, 2597, NULL, 1368860874, 1368860874, NULL, 3, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(11224, 'stilus-samsung-etc-s1j9segstd-n7100-dark-silver', 1, NULL, 28, 2597, NULL, 1368860874, 1368860874, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(11225, 'stilus-samsung-etc-s1j9wegstd-n7100-white', 1, NULL, 28, 2597, NULL, 1368860874, 1368860874, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(11226, 'universalnaia-podstavka-samsung-edd-d100begstd-black', 1, NULL, 28, 2597, NULL, 1368860874, 1368860874, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(11227, 'universalnaia-podstavka-samsung-edd-d200begstd-black', 1, NULL, 28, 2597, NULL, 1368860874, 1368860874, NULL, 2, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(12737, 'zhk-televizor-bbk-lem2249hd-black', 1, NULL, 143, 9, NULL, 1369060816, 1369060998, NULL, 18, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(13377, 'zashchitnaia-plenka-screen-ward-samsung-s5660', 1, NULL, 28, 938, '', 1369512000, 1369583657, 0.00, 7, NULL, NULL, NULL, 1, NULL, '', NULL),
+(13378, 'zashchitnaia-plenka-samsung-i9300-matovaia', 1, NULL, 28, 938, '', 1369512000, 1369584252, 0.00, 6, NULL, NULL, NULL, 1, NULL, '', NULL),
+(13376, 'zashchitnaia-plenka-screen-ward-samsung-s6102', 1, NULL, 28, 938, '', 1369512000, 1369582570, 0.00, 7, NULL, NULL, NULL, 1, NULL, '', NULL),
+(13392, 'zashchitnaia-plenka-drobak-samsung-s7562', 1, NULL, 28, 938, '', 1369512000, 1369597151, NULL, 7, NULL, NULL, NULL, 1, NULL, '', NULL),
+(13391, 'zashchitnaia-plenka-drobak-sony-xperia-j-st26', 1, NULL, 26, 938, '', 1369512000, 1369596889, NULL, 6, NULL, NULL, NULL, 1, NULL, '', NULL),
+(13390, 'zashchitnaia-plenka-htc-p730-dlia-one-x', 1, NULL, 112, 938, '', 1369512000, 1369596543, NULL, 7, NULL, NULL, NULL, 1, NULL, '', NULL),
+(13393, 'zashchitnaia-plenka-drobak-samsung-i9070', 1, NULL, 28, 938, '', 1369512000, 1369597391, NULL, 4, NULL, NULL, NULL, 1, NULL, '', NULL),
+(13889, 'karta-pamiati-transcend-microsdhc-16-gb-class-10-uhs-i-ultimate-x600-adapter', 1, NULL, 153, 937, NULL, 1369839017, 1369910831, NULL, 2, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(13890, 'karta-pamiati-transcend-microsdhc-32-gb-class-10-uhs-i-ultimate-x600-adapter', 1, NULL, 153, 937, NULL, 1369839018, 1369910831, NULL, 2, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(13891, 'karta-pamiati-goodram-microsd-2-gb-adapter-retail-10', 1, NULL, 193, 937, NULL, 1369839018, 1369910831, NULL, 5, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(13892, 'karta-pamiati-goodram-microsd-2-gb-retail-9-adapter', 1, NULL, 193, 937, NULL, 1369839018, 1369910832, NULL, 3, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(13893, 'karta-pamiati-goodram-microsd-4-gb-adapter-i-usb-kadtrider', 1, NULL, 193, 937, NULL, 1369839018, 1369910832, NULL, 4, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(13894, 'karta-pamiati-goodram-microsd-8-gb-adapter-i-usb-kadtrider', 1, NULL, 193, 937, NULL, 1369839018, 1369910832, NULL, 4, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(13895, 'karta-pamiati-goodram-microsdhc-16-gb-class-10-adapter-retail-10', 1, NULL, 193, 937, NULL, 1369839018, 1369910832, NULL, 6, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(13896, 'karta-pamiati-goodram-microsdhc-16-gb-class-10-adapter', 1, NULL, 193, 937, NULL, 1369839018, 1369910832, NULL, 2, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(13897, 'karta-pamiati-goodram-microsdhc-16-gb-class-10-uhs-i-adapter-retail-10', 1, NULL, 193, 937, NULL, 1369839018, 1369910832, NULL, 6, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(13898, 'karta-pamiati-goodram-microsdhc-16-gb-class-4-adapter', 1, NULL, 193, 937, NULL, 1369839018, 1369910832, NULL, 7, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(13899, 'karta-pamiati-goodram-microsdhc-32-gb-class-10-adapter-retail-10', 1, NULL, 193, 937, NULL, 1369839018, 1369910832, NULL, 6, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(13900, 'karta-pamiati-goodram-microsdhc-32-gb-class-10-adapter', 1, NULL, 193, 937, NULL, 1369839018, 1369910832, NULL, 3, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(13901, 'karta-pamiati-goodram-microsdhc-32-gb-class-10-uhs-i-adapter-retail-10', 1, NULL, 193, 937, NULL, 1369839018, 1369910832, NULL, 7, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(13902, 'karta-pamiati-goodram-microsdhc-32-gb-class-4-adapter', 1, NULL, 193, 937, NULL, 1369839018, 1369910832, NULL, 7, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(13903, 'karta-pamiati-goodram-microsdhc-4-gb-class-4-adapter-retail-10', 1, NULL, 193, 937, NULL, 1369839018, 1369910832, NULL, 5, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(13904, 'karta-pamiati-goodram-microsdhc-4-gb-class-4-retail-9-adapter', 1, NULL, 193, 937, NULL, 1369839018, 1395071590, 0.00, 0, NULL, NULL, 0, 1, NULL, '', NULL),
+(13905, 'karta-pamiati-goodram-microsdhc-8-gb-class-10-adapter-retail-10', 1, NULL, 193, 937, NULL, 1369839018, 1369910832, NULL, 7, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(13906, 'karta-pamiati-goodram-microsdhc-8-gb-class-10-adapter', 1, NULL, 193, 937, NULL, 1369839018, 1369910832, NULL, 4, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(13907, 'karta-pamiati-goodram-microsdhc-8-gb-class-4-adapter-retail-10', 1, NULL, 193, 937, NULL, 1369839018, 1369910832, NULL, 7, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(14190, 'garnitura-samsung-bhm-1200-black', 1, NULL, 28, 932, '', 1369857600, 1369921931, 0.00, 12, NULL, NULL, NULL, 1, NULL, '', NULL),
+(14192, 'bluetooth-garnitura-nokia-bh-806', 1, NULL, 28, 932, '', 1369857600, 1369938293, 0.00, 8, NULL, NULL, NULL, 1, NULL, '', NULL),
+(14194, 'garnitura-nokia-bh-108-ice', 1, NULL, 28, 932, '', 1369857600, 1369923308, 0.00, 5, NULL, NULL, NULL, 1, NULL, '', NULL),
+(14196, 'garnitura-jabra-easy-call', 1, NULL, 142, 932, '', 1369857600, 1369924423, 0.00, 6, NULL, NULL, NULL, 1, NULL, '', NULL),
+(14198, 'garnitura-jabra-bt2045', 1, NULL, 142, 932, '', 1369857600, 1369925784, 0.00, 5, NULL, NULL, NULL, 1, NULL, '', NULL),
+(14199, 'garnitura-bluetooth-nokia-bh-111-black', 1, NULL, 42, 932, '', 1369857600, 1369938866, 0.00, 8, NULL, NULL, NULL, 1, NULL, '', NULL),
+(14200, 'garnitura-jabra-easygo', 1, NULL, 142, 932, '', 1369857600, 1369939245, 0.00, 7, NULL, NULL, NULL, 1, NULL, '', NULL),
+(14201, 'garnitura-nokia-bh-220-black', 1, NULL, 42, 932, '', 1369857600, 1369939815, 0.00, 4, NULL, NULL, NULL, 1, NULL, '', NULL),
+(14202, 'garnitura-nokia-bh-112-black', 1, NULL, 42, 932, '', 1369857600, 1369940065, 0.00, 7, NULL, NULL, NULL, 1, NULL, '', NULL),
+(14203, 'garnitura-nokia-hs-47-vakuumnaia', 1, NULL, 42, 933, '', 1369857600, 1369940564, NULL, 10, NULL, NULL, NULL, 1, NULL, '', NULL),
+(14204, 'garnitura-nokia-wh-701', 1, NULL, 42, 933, '', 1369857600, 1369942105, 0.00, 8, NULL, NULL, NULL, 1, NULL, '', NULL),
+(14205, 'garnitura-nokia-wh-205-stereo', 1, NULL, 42, 933, '', 1369857600, 1369941669, NULL, 6, NULL, NULL, NULL, 1, NULL, '', NULL),
+(14206, 'garnitura-htc-rc-e190-black', 1, NULL, 112, 933, '', 1369857600, 1369941982, NULL, 6, NULL, NULL, NULL, 1, NULL, '', NULL),
+(16825, 'naushniki-ergo-vd-290-white', 1, NULL, 154, 942, NULL, 1373276911, 1373278480, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(14775, 'gps-pioneer-e-800', 1, NULL, 154, 942, '', 1370721600, 1373278480, 0.00, 9, NULL, NULL, NULL, 1, NULL, '', NULL),
+(16826, 'naushniki-ergo-vd-390-gold', 1, NULL, 154, 942, NULL, 1373276912, 1373278480, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(16827, 'naushniki-ergo-vd-390-grey', 1, NULL, 154, 942, NULL, 1373276912, 1373278480, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(16828, 'naushniki-ergo-vd-390-red', 1, NULL, 154, 942, NULL, 1373276912, 1373278480, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(16829, 'garnitura-vnutrikanalnogo-tipa-ergo-vm-901-black', 1, NULL, 154, 942, NULL, 1373276912, 1373278480, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(16830, 'multimediinaia-garnitura-ergo-vm-280-black', 1, NULL, 154, 942, NULL, 1373276912, 1373278480, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(16831, 'multimediinaia-garnitura-ergo-vm-280-green', 1, NULL, 154, 942, NULL, 1373276912, 1373278480, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(16832, 'nabor-zapasnyh-nakladnyh-ambushiur-koss-porta-sporta-pro6-sht', 1, NULL, 168, 942, NULL, 1373276912, 1373278480, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(16833, 'naushniki-sennheiser-ie-8i', 1, NULL, 272, 942, NULL, 1373276912, 1373278480, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(16834, 'naushniki-ergo-ear-vt11', 1, NULL, 154, 942, NULL, 1373276912, 1373278480, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(16835, 'naushniki-ergo-ear-vt12', 1, NULL, 154, 942, NULL, 1373276912, 1373278480, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL),
+(16836, 'naushniki-jvc-ha-s200-b', 1, NULL, 273, 942, NULL, 1373276912, 1373278480, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_products_i18n`
+-- Table structure for table `shop_products_i18n`
 --
 
 DROP TABLE IF EXISTS `shop_products_i18n`;
@@ -3072,7 +3081,7 @@ CREATE TABLE IF NOT EXISTS `shop_products_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_products_i18n`
+-- Dumping data for table `shop_products_i18n`
 --
 
 INSERT INTO `shop_products_i18n` (`id`, `locale`, `name`, `short_description`, `full_description`, `meta_title`, `meta_description`, `meta_keywords`) VALUES
@@ -3331,7 +3340,7 @@ INSERT INTO `shop_products_i18n` (`id`, `locale`, `name`, `short_description`, `
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_products_rating`
+-- Table structure for table `shop_products_rating`
 --
 
 DROP TABLE IF EXISTS `shop_products_rating`;
@@ -3343,7 +3352,7 @@ CREATE TABLE IF NOT EXISTS `shop_products_rating` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_products_rating`
+-- Dumping data for table `shop_products_rating`
 --
 
 INSERT INTO `shop_products_rating` (`product_id`, `votes`, `rating`) VALUES
@@ -3366,7 +3375,7 @@ INSERT INTO `shop_products_rating` (`product_id`, `votes`, `rating`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_product_categories`
+-- Table structure for table `shop_product_categories`
 --
 
 DROP TABLE IF EXISTS `shop_product_categories`;
@@ -3378,7 +3387,7 @@ CREATE TABLE IF NOT EXISTS `shop_product_categories` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_product_categories`
+-- Dumping data for table `shop_product_categories`
 --
 
 INSERT INTO `shop_product_categories` (`product_id`, `category_id`) VALUES
@@ -3991,7 +4000,7 @@ INSERT INTO `shop_product_categories` (`product_id`, `category_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_product_images`
+-- Table structure for table `shop_product_images`
 --
 
 DROP TABLE IF EXISTS `shop_product_images`;
@@ -4004,7 +4013,7 @@ CREATE TABLE IF NOT EXISTS `shop_product_images` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_product_images`
+-- Dumping data for table `shop_product_images`
 --
 
 INSERT INTO `shop_product_images` (`product_id`, `image_name`, `position`) VALUES
@@ -4239,7 +4248,7 @@ INSERT INTO `shop_product_images` (`product_id`, `image_name`, `position`) VALUE
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_product_properties`
+-- Table structure for table `shop_product_properties`
 --
 
 DROP TABLE IF EXISTS `shop_product_properties`;
@@ -4264,7 +4273,7 @@ CREATE TABLE IF NOT EXISTS `shop_product_properties` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=362 ;
 
 --
--- Дамп даних таблиці `shop_product_properties`
+-- Dumping data for table `shop_product_properties`
 --
 
 INSERT INTO `shop_product_properties` (`id`, `csv_name`, `active`, `show_in_compare`, `position`, `show_on_site`, `multiple`, `external_id`, `show_in_filter`, `main_property`, `show_faq`) VALUES
@@ -4559,7 +4568,7 @@ INSERT INTO `shop_product_properties` (`id`, `csv_name`, `active`, `show_in_comp
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_product_properties_categories`
+-- Table structure for table `shop_product_properties_categories`
 --
 
 DROP TABLE IF EXISTS `shop_product_properties_categories`;
@@ -4571,7 +4580,7 @@ CREATE TABLE IF NOT EXISTS `shop_product_properties_categories` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_product_properties_categories`
+-- Dumping data for table `shop_product_properties_categories`
 --
 
 INSERT INTO `shop_product_properties_categories` (`property_id`, `category_id`) VALUES
@@ -4862,7 +4871,7 @@ INSERT INTO `shop_product_properties_categories` (`property_id`, `category_id`) 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_product_properties_data`
+-- Table structure for table `shop_product_properties_data`
 --
 
 DROP TABLE IF EXISTS `shop_product_properties_data`;
@@ -4879,7 +4888,7 @@ CREATE TABLE IF NOT EXISTS `shop_product_properties_data` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=86194 ;
 
 --
--- Дамп даних таблиці `shop_product_properties_data`
+-- Dumping data for table `shop_product_properties_data`
 --
 
 INSERT INTO `shop_product_properties_data` (`id`, `property_id`, `product_id`, `value`, `locale`) VALUES
@@ -6451,7 +6460,7 @@ INSERT INTO `shop_product_properties_data` (`id`, `property_id`, `product_id`, `
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_product_properties_data_i18n`
+-- Table structure for table `shop_product_properties_data_i18n`
 --
 
 DROP TABLE IF EXISTS `shop_product_properties_data_i18n`;
@@ -6466,7 +6475,7 @@ CREATE TABLE IF NOT EXISTS `shop_product_properties_data_i18n` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_product_properties_i18n`
+-- Table structure for table `shop_product_properties_i18n`
 --
 
 DROP TABLE IF EXISTS `shop_product_properties_i18n`;
@@ -6482,7 +6491,7 @@ CREATE TABLE IF NOT EXISTS `shop_product_properties_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_product_properties_i18n`
+-- Dumping data for table `shop_product_properties_i18n`
 --
 
 INSERT INTO `shop_product_properties_i18n` (`id`, `name`, `locale`, `data`, `description`) VALUES
@@ -6786,7 +6795,7 @@ INSERT INTO `shop_product_properties_i18n` (`id`, `name`, `locale`, `data`, `des
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_product_variants`
+-- Table structure for table `shop_product_variants`
 --
 
 DROP TABLE IF EXISTS `shop_product_variants`;
@@ -6798,7 +6807,6 @@ CREATE TABLE IF NOT EXISTS `shop_product_variants` (
   `stock` int(11) DEFAULT NULL,
   `position` int(11) DEFAULT NULL,
   `mainImage` varchar(255) DEFAULT NULL,
-  `smallImage` varchar(255) DEFAULT NULL,
   `external_id` varchar(255) DEFAULT NULL,
   `currency` int(11) DEFAULT NULL,
   `price_in_main` double(20,5) NOT NULL,
@@ -6812,269 +6820,269 @@ CREATE TABLE IF NOT EXISTS `shop_product_variants` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17894 ;
 
 --
--- Дамп даних таблиці `shop_product_variants`
+-- Dumping data for table `shop_product_variants`
 --
 
-INSERT INTO `shop_product_variants` (`id`, `product_id`, `price`, `number`, `stock`, `position`, `mainImage`, `smallImage`, `external_id`, `currency`, `price_in_main`) VALUES
-(4227, 4020, 38709.67742, '700203', 10, 0, '', NULL, NULL, 1, 1200.00000),
-(4225, 4018, 20967.74194, '700201', 10, 0, '4018_main_origin.jpg', NULL, NULL, 1, 650.00000),
-(1106, 1019, 114903.22581, '20011', 21, 0, '1019_main_origin.jpg', NULL, NULL, 1, 3562.00000),
-(1035, 937, 1064129.03226, '30 001', 1, 0, '937_main_origin.jpg', NULL, NULL, 1, 32988.00000),
-(1043, 945, 2065.00000, '30002', 10, 0, '945_main_origin.jpg', NULL, NULL, 2, 2065.00000),
-(1047, 949, 1762.00000, '30003', 10, 0, '949_main_origin.jpg', NULL, NULL, 2, 1762.00000),
-(1057, 955, 765.00000, '30004', 10, 0, '955_main_origin.jpg', NULL, NULL, 2, 765.00000),
-(1058, 956, 724258.06452, '30006', 1, 0, '956_main_origin.jpg', NULL, NULL, 1, 22452.00000),
-(1059, 957, 223000.00000, '30005', 1, 0, '957_main_origin.jpg', NULL, NULL, 1, 6913.00000),
-(1061, 959, 17387.09677, '20003', 35, 0, '959_main_origin.jpg', NULL, NULL, 1, 539.00000),
-(1092, 1006, 90161.29032, '20004', 12, 0, '1006_main_origin.jpg', NULL, NULL, 1, 2795.00000),
-(1100, 1006, 89903.22581, '20007', 34, 3, '1006_main_origin.jpg', NULL, NULL, 1, 2787.00000),
-(1099, 1006, 90096.77419, '20006', 18, 2, '1006_main_origin.jpg', NULL, NULL, 1, 2793.00000),
-(1098, 1006, 90000.00000, '20005', 24, 1, '1006_main_origin.jpg', NULL, NULL, 1, 2790.00000),
-(1103, 1015, 37096.77419, '20009', 54, 0, '1015_main_origin.jpg', NULL, NULL, 1, 1150.00000),
-(1102, 1006, 89870.96774, '20008', 6, 4, '1006_main_origin.jpg', NULL, NULL, 1, 2786.00000),
-(1105, 1018, 12838.70968, '20010', 32, 0, '1018_main_origin.jpg', NULL, NULL, 1, 398.00000),
-(1107, 1021, 15322.58065, '20012', 19, 0, '1021_main_origin.jpg', NULL, NULL, 1, 475.00000),
-(1108, 1022, 7354.83871, '20013', 25, 0, '1022_main_origin.jpg', NULL, NULL, 1, 228.00000),
-(1109, 1023, 32580.64516, '20014', 1, 0, '1023_main_origin.jpg', NULL, NULL, 1, 1010.00000),
-(1110, 1024, 5000.00000, '20015', 1, 0, '1024_main_origin.jpg', NULL, NULL, 1, 155.00000),
-(1111, 1025, 3193.54839, '20016', 55, 0, '1025_main_origin.jpg', NULL, NULL, 1, 99.00000),
-(1213, 1096, 117064.51613, '20018', 10, 0, '1096_main_origin.jpg', NULL, NULL, 1, 3629.00000),
-(1216, 1099, 245000.00000, '20019', 10, 0, '1099_main_origin.jpg', NULL, NULL, 1, 7595.00000),
-(1221, 1104, 4999.00000, '20020', 10, NULL, '1104_main_origin.jpg', NULL, NULL, 2, 4999.00000),
-(1222, 1105, 5295.00000, '20021', 21, NULL, '1105_main_origin.jpg', NULL, NULL, 2, 5295.00000),
-(1224, 1107, 1580.64516, '200332', 12, 0, '1107_main_origin.jpg', NULL, NULL, 1, 49.00000),
-(1225, 1108, 175645.16129, '20023', 17, 0, '1108_main_origin.jpg', NULL, NULL, 1, 5445.00000),
-(1226, 1109, 4354.83871, '20025', 35, 0, '1109_main_origin.jpg', NULL, NULL, 1, 135.00000),
-(1227, 1110, 2225.80645, '20024', 4, 0, '1110_main_origin.jpg', NULL, NULL, 1, 69.00000),
-(1228, 1111, 1258.06452, '20026', 2, 0, '1111_main_origin.jpg', NULL, NULL, 1, 39.00000),
-(1229, 1112, 15709.67742, '2008', 20, 0, '1112_main_origin.jpg', NULL, NULL, 1, 487.00000),
-(1230, 1113, 2387.09677, '20027', 1, 0, '1113_main_origin.jpg', NULL, NULL, 1, 74.00000),
-(1231, 1114, 1451.61290, '20029', 3, 0, '1114_main_origin.jpg', NULL, NULL, 1, 45.00000),
-(1232, 1115, 6064.51613, '20030', 4, 0, '1115_main_origin.jpg', NULL, NULL, 1, 188.00000),
-(1234, 1117, 29000.00000, '20032', 5, 0, '1117_main_origin.jpg', NULL, NULL, 1, 899.00000),
-(8365, 7983, 40.00000, '200530', 1, 0, '7983_main_origin.jpg', NULL, NULL, 2, 40.00000),
-(8364, 7982, 40.00000, '200529', 1, 0, '7982_main_origin.jpg', NULL, NULL, 2, 40.00000),
-(8361, 7979, 100.00000, '200526', 1, 0, '7979_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(8359, 7977, 100.00000, '200524', 1, 0, '7977_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(8357, 7975, 25.00000, '200522', 1, 0, '7975_main_origin.jpg', NULL, NULL, 2, 25.00000),
-(4223, 4016, 3645.16129, '700200', 10, 0, '4016_main_origin.jpg', NULL, NULL, 1, 113.00000),
-(4228, 4021, 2903.22581, '700204', 10, 0, '4021_main_origin.jpg', NULL, NULL, 1, 90.00000),
-(13993, 13393, 2032.25806, '200638', 0, 0, '13393_main_origin.jpg', NULL, NULL, 1, 63.00000),
-(13992, 13392, 2096.77419, '200637', 1, 0, '13392_main_origin.jpg', NULL, NULL, 1, 65.00000),
-(13991, 13391, 1935.48387, '200636', 1, 0, '13391_main_origin.jpg', NULL, NULL, 1, 60.00000),
-(13990, 13390, 1612.90323, '200635', 1, 0, '13390_main_origin.jpg', NULL, NULL, 1, 50.00000),
-(13989, 13389, 6129.03226, '200634', 1, 0, '13389_main_origin.jpg', NULL, NULL, 1, 190.00000),
-(13988, 13388, 1612.90323, '200633', 0, 0, '13388_main_origin.jpg', NULL, NULL, 1, 50.00000),
-(13987, 13387, 2064.51613, '200632', 1, 0, '13387_main_origin.jpg', NULL, NULL, 1, 64.00000),
-(13986, 13386, 4129.03226, '200631', 0, 0, '13386_main_origin.jpg', NULL, NULL, 1, 128.00000),
-(13985, 13385, 1387.09677, '200630', 1, 0, '13385_main_origin.jpg', NULL, NULL, 1, 43.00000),
-(13984, 13384, 2225.80645, '200629', 1, 0, '13384_main_origin.jpg', NULL, NULL, 1, 69.00000),
-(5001, 4796, 19322.58065, '700300', 10, 0, '4796_main_origin.jpg', NULL, NULL, 1, 599.00000),
-(5166, 4960, 59419.35484, '70036', 10, NULL, '', NULL, NULL, 1, 1842.00000),
-(5165, 4959, 78258.06452, '70035', 10, NULL, '4959_main_origin.jpg', NULL, NULL, 1, 2426.00000),
-(5164, 4958, 78258.06452, '70034', 10, NULL, '4958_main_origin.jpg', NULL, NULL, 1, 2426.00000),
-(5163, 4957, 59419.35484, '70033', 10, NULL, '4957_main_origin.jpg', NULL, NULL, 1, 1842.00000),
-(5161, 4955, 60064.51613, '70031', 10, NULL, '4955_main_origin.jpg', NULL, NULL, 1, 1862.00000),
-(5156, 4950, 66967.74194, '70026', 10, NULL, '4950_main_origin.jpg', NULL, NULL, 1, 2076.00000),
-(5854, 5624, 55.00000, '200237', 1, 0, '5624_main_origin.jpg', NULL, NULL, 2, 55.00000),
-(5836, 5606, 100.00000, '200219', 0, 0, '5606_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(5855, 5625, 100.00000, '200238', 0, 0, '5625_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(5852, 5622, 100.00000, '200235', 0, 0, '5622_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(5853, 5623, 55.00000, '200236', 1, 0, '5623_main_origin.jpg', NULL, NULL, 2, 55.00000),
-(5835, 5605, 100.00000, '200218', 0, 0, '5605_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(5834, 5604, 100.00000, '200217', 0, 0, '5604_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(5833, 5603, 100.00000, '200216', 0, 0, '5603_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(5827, 5596, 100.00000, '200206', 0, 0, '5596_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(5832, 5602, 100.00000, '200211', 0, 0, '5602_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(5856, 5626, 100.00000, '200239', 0, 0, '5626_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(5857, 5627, 100.00000, '200240', 0, 0, '5627_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(5858, 5628, 100.00000, '200241', 0, 0, '5628_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(5859, 5629, 100.00000, '200242', 0, 0, '5629_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(5860, 5630, 100.00000, '200243', 0, 0, '5630_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(5861, 5631, 100.00000, '200244', 0, 0, '5631_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(5862, 5632, 100.00000, '200245', 0, 0, '5632_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(5863, 5633, 100.00000, '200246', 0, 0, '5633_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(5864, 5634, 100.00000, '200247', 0, 0, '5634_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(6005, 5775, 100.00000, '200388', 0, 0, '5775_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(6512, 6192, 100.00000, '200389', 0, 0, '6192_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(6513, 6193, 100.00000, '200390', 10, NULL, '6193_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(6514, 6194, 100.00000, '200391', 0, 0, '6194_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(6515, 6195, 19.00000, '200392', 1, 0, '6195_main_origin.jpg', NULL, NULL, 2, 19.00000),
-(6516, 6196, 100.00000, '200393', 0, 0, '6196_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(6517, 6197, 100.00000, '200394', 0, 0, '6197_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(6518, 6198, 100.00000, '200395', 0, 0, '6198_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(6519, 6199, 100.00000, '200396', 0, 0, '6199_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(6520, 6200, 100.00000, '200397', 1, 0, '6200_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(6521, 6201, 100.00000, '200398', 0, 0, '6201_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(6522, 6202, 17.00000, '200399', 1, 0, '6202_main_origin.jpg', NULL, NULL, 2, 17.00000),
-(6523, 6203, 100.00000, '200400', 0, 0, '6203_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(6524, 6204, 100.00000, '200401', 0, 0, '6204_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(6525, 6205, 100.00000, '200402', 0, 0, '6205_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(6526, 6206, 100.00000, '200403', 0, 0, '6206_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(6527, 6207, 100.00000, '200404', 0, 0, '6207_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(6528, 6208, 12.00000, '200405', 1, 0, '6208_main_origin.jpg', NULL, NULL, 2, 12.00000),
-(6531, 6211, 100.00000, '200408', 0, 0, '6211_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(6532, 6212, 100.00000, '200409', 0, 0, '6212_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(6535, 6215, 100.00000, '200412', 0, 0, '6215_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(6536, 6216, 100.00000, '200413', 0, 0, '6216_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(6537, 6217, 100.00000, '200414', 0, 0, '6217_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(6538, 6218, 100.00000, '200415', 0, 0, '6218_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(6539, 6219, 3290.32258, '200416', 1, 0, '6219_main_origin.jpg', NULL, NULL, 1, 102.00000),
-(6540, 6220, 100.00000, '200417', 0, 0, '6220_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(6541, 6221, 100.00000, '200418', 0, 0, '6221_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(6542, 6222, 100.00000, '200419', 0, 0, '6222_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(6543, 6223, 5806.45161, '200420', 1, 0, '6223_main_origin.jpg', NULL, NULL, 1, 180.00000),
-(6544, 6224, 100.00000, '200421', 0, 0, '6224_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(6545, 6225, 100.00000, '200422', 0, 0, '6225_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(6546, 6226, 100.00000, '200423', 0, 0, '6226_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(6547, 6227, 6419.35484, '200424', 1, 0, '6227_main_origin.jpg', NULL, NULL, 1, 199.00000),
-(6548, 6228, 100.00000, '200425', 0, 0, '6228_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(6549, 6229, 100.00000, '200426', 0, 0, '6229_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(6550, 6230, 100.00000, '200427', 0, 0, '6230_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(7187, 6843, 100.00000, '200434', 0, 0, '6843_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(7188, 6844, 100.00000, '200435', 0, 0, '6844_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(8363, 7981, 100.00000, '200528', 1, 0, '7981_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(8366, 7984, 100.00000, '200531', 1, 0, '7984_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(8362, 7980, 100.00000, '200527', 1, 0, '7980_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(8360, 7978, 100.00000, '200525', 1, 0, '7978_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(8358, 7976, 30.00000, '200523', 1, 0, '7976_main_origin.jpg', NULL, NULL, 2, 30.00000),
-(8356, 7974, 25.00000, '200521', 1, 0, '7974_main_origin.jpg', NULL, NULL, 2, 25.00000),
-(8367, 7985, 100.00000, '200532', 1, 0, '7985_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(8368, 7986, 100.00000, '200533', 1, 0, '7986_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(8369, 7987, 100.00000, '200534', 1, 0, '7987_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(8370, 7988, 30.00000, '200535', 1, 0, '7988_main_origin.jpg', NULL, NULL, 2, 30.00000),
-(8371, 7989, 30.00000, '200536', 1, 0, '7989_main_origin.jpg', NULL, NULL, 2, 30.00000),
-(8372, 7990, 36.00000, '200537', 1, 0, '7990_main_origin.jpg', NULL, NULL, 2, 36.00000),
-(8373, 7991, 36.00000, '200538', 1, 0, '7991_main_origin.jpg', NULL, NULL, 2, 36.00000),
-(8374, 7992, 100.00000, '200539', 1, 0, '7992_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(8837, 8430, 5129.03226, '90300', 5, 0, '8430_main_origin.jpg', NULL, NULL, 1, 159.00000),
-(8838, 8431, 5129.03226, '90301', 5, 0, '8431_main_origin.jpg', NULL, NULL, 1, 159.00000),
-(8839, 8432, 21258.06452, '90302', 5, 0, '8432_main_origin.jpg', NULL, NULL, 1, 659.00000),
-(8840, 8433, 9645.16129, '90303', 5, NULL, '8433_main_origin.jpg', NULL, NULL, 1, 299.00000),
-(8841, 8434, 9645.16129, '90304', 5, NULL, '8434_main_origin.jpg', NULL, NULL, 1, 299.00000),
-(10637, 10179, 16.85000, '200609', 1, 0, '10179_main_origin.jpg', NULL, NULL, 2, 16.85000),
-(10638, 10180, 35.00000, '200610', 1, 0, '10180_main_origin.jpg', NULL, NULL, 2, 35.00000),
-(10639, 10181, 8.89000, '200611', 1, 0, '10181_main_origin.jpg', NULL, NULL, 2, 8.89000),
-(10640, 10182, 15.00000, '200612', 1, 0, '10182_main_origin.jpg', NULL, NULL, 2, 15.00000),
-(10641, 10182, 14.00000, '200613', 1, 1, '10182_main_origin.jpg', '10182_vS10641.jpg', NULL, 2, 14.00000),
-(10642, 10183, 10.00000, '200614', 1, 0, '10183_main_origin.jpg', NULL, NULL, 2, 10.00000),
-(10643, 10183, 10.00000, '200615', 1, 1, '10183_main_origin.jpg', '10183_vS10643.jpg', NULL, 2, 10.00000),
-(10644, 10183, 10.00000, '200616', 1, 2, '10183_main_origin.jpg', '10183_vS10644.jpg', NULL, 2, 10.00000),
-(10645, 10183, 10.00000, '200618', 1, 3, '10183_main_origin.jpg', NULL, NULL, 2, 10.00000),
-(10646, 10184, 9.00000, '200619', 1, 0, '10184_main_origin.jpg', NULL, NULL, 2, 9.00000),
-(11193, 10734, 100.00000, '200448', 0, 0, '10734_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(12774, 12179, 100.00000, '200484', 0, 0, '12179_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(12773, 12178, 100.00000, '200483', 0, 0, '12178_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(12772, 12177, 100.00000, '200482', 0, 0, '12177_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(12771, 12176, 100.00000, '200481', 0, 0, '12176_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(12770, 12175, 100.00000, '200480', 0, 0, '12175_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(12769, 12174, 100.00000, '200479', 0, 0, '12174_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(12768, 12173, 100.00000, '200478', 0, 0, '12173_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(12767, 12172, 100.00000, '200477', 0, 0, '12172_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(12766, 12171, 100.00000, '200476', 0, 0, '12171_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(12765, 12170, 100.00000, '200475', 0, 0, '12170_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(12764, 12169, 100.00000, '200474', 0, 0, '12169_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(12763, 12168, 100.00000, '200473', 0, 0, '12168_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(12762, 12167, 100.00000, '200472', 0, 0, '12167_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(12761, 12166, 100.00000, '200471', 0, 0, '1404815.jpg', NULL, NULL, 2, 100.00000),
-(12760, 12165, 7.00000, '200470', 1, 0, '12165_main_origin.jpg', NULL, NULL, 2, 7.00000),
-(12759, 12164, 100.00000, '200469', 0, 0, '12164_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(12758, 12163, 7.00000, '200468', 1, 0, '12163_main_origin.jpg', NULL, NULL, 2, 7.00000),
-(12757, 12162, 7.00000, '200467', 1, 0, '12162_main_origin.jpg', NULL, NULL, 2, 7.00000),
-(11667, 11210, 100.00000, '200428', 0, 0, '11210_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(11668, 11211, 100.00000, '200429', 0, 0, '11211_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(11669, 11212, 100.00000, '200430', 0, 0, '11212_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(11670, 11213, 100.00000, '200431', 0, 0, '11213_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(11671, 11214, 100.00000, '200432', 0, 0, '11214_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(11672, 11215, 100.00000, '200433', 0, 0, '11215_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(11673, 11216, 100.00000, '200436', 0, 0, '11216_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(11674, 11217, 100.00000, '200437', 0, 0, '11217_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(11675, 11218, 100.00000, '200438', 0, 0, '11218_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(11676, 11219, 100.00000, '200439', 0, 0, '11219_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(11677, 11220, 100.00000, '200440', 0, 0, '11220_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(11678, 11221, 100.00000, '200441', 0, 0, '11221_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(11679, 11222, 100.00000, '200442', 0, 0, '11222_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(11680, 11223, 100.00000, '200443', 0, 0, '11223_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(11681, 11224, 100.00000, '200444', 0, 0, '11224_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(11682, 11225, 100.00000, '200445', 0, 0, '11225_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(11683, 11226, 100.00000, '200446', 0, 0, '11226_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(11684, 11227, 100.00000, '200447', 0, 0, '11227_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(12810, 12215, 100.00000, '200520', 0, 0, '12215_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(12625, 12030, 156.00000, '20190', 1, 0, '12030_main_origin.jpg', NULL, NULL, 2, 156.00000),
-(12626, 12031, 156.00000, '20191', 1, 0, '12031_main_origin.jpg', NULL, NULL, 2, 156.00000),
-(12627, 12032, 100.00000, '20192', 0, 0, '12032_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(12628, 12033, 100.00000, '20193', 0, 0, '12033_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(12629, 12034, 210.00000, '20194', 1, 0, '12034_main_origin.jpg', NULL, NULL, 2, 210.00000),
-(12630, 12035, 210.00000, '20195', 1, 0, '12035_main_origin.jpg', NULL, NULL, 2, 210.00000),
-(12631, 12036, 210.00000, '20196', 1, 0, '12036_main_origin.jpg', NULL, NULL, 2, 210.00000),
-(12633, 12038, 210.00000, '20198', 1, 0, '12038_main_origin.jpg', NULL, NULL, 2, 210.00000),
-(12634, 12039, 215.00000, '20199', 1, 0, '12039_main_origin.jpg', NULL, NULL, 2, 215.00000),
-(12635, 12040, 215.00000, '20200', 1, 0, '12040_main_origin.jpg', NULL, NULL, 2, 215.00000),
-(12636, 12041, 212.00000, '20201', 1, 0, '12041_main_origin.jpg', NULL, NULL, 2, 212.00000),
-(12637, 12042, 285.00000, '20202', 1, 0, '12042_main_origin.jpg', NULL, NULL, 2, 285.00000),
-(12638, 12043, 100.00000, '20203', 0, 0, '12043_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(12640, 12045, 285.00000, '20205', 1, 0, '12045_main_origin.jpg', NULL, NULL, 2, 285.00000),
-(13330, 12737, 196.00000, '30319', 10, 0, '12737_main_origin.jpg', NULL, NULL, 2, 196.00000),
-(13982, 13382, 1451.61290, '200627', 1, 0, '13382_main_origin.jpg', NULL, NULL, 1, 45.00000),
-(13981, 13381, 1612.90323, '200626', 1, 0, '13381_main_origin.jpg', NULL, NULL, 1, 50.00000),
-(13980, 13380, 1290.32258, '200625', 1, 0, '13380_main_origin.jpg', NULL, NULL, 1, 40.00000),
-(13979, 13379, 1612.90323, '200624', 1, 0, '13379_main_origin.jpg', NULL, NULL, 1, 50.00000),
-(13978, 13378, 5.00000, '200623', 1, 0, '13378_main_origin.jpg', NULL, NULL, 2, 5.00000),
-(13977, 13377, 1451.61290, '200622', 1, 0, '13377_main_origin.jpg', NULL, NULL, 1, 45.00000),
-(13976, 13376, 4.00000, '200621', 1, 0, '13376_main_origin.jpg', NULL, NULL, 2, 4.00000),
-(13983, 13383, 4806.45161, '200628', 1, 0, '13383_main_origin.jpg', NULL, NULL, 1, 149.00000),
-(14487, 13889, 100.00000, '200647', 0, 0, '13889_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(14488, 13890, 100.00000, '200648', 0, 0, '13890_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(14489, 13891, 4.00000, '200649', 1, 0, '13891_main_origin.jpg', NULL, NULL, 2, 4.00000),
-(14490, 13892, 100.00000, '200650', 0, 0, '13892_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(14491, 13893, 100.00000, '200651', 0, 0, '13893_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(14492, 13894, 100.00000, '200652', 0, 0, '13894_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(14493, 13895, 14.00000, '200653', 1, 0, '13895_main_origin.jpg', NULL, NULL, 2, 14.00000),
-(14494, 13896, 100.00000, '200654', 0, 0, '13896_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(14495, 13897, 15.00000, '200655', 1, 0, '13897_main_origin.jpg', NULL, NULL, 2, 15.00000),
-(14496, 13898, 12.00000, '200656', 1, 0, '13898_main_origin.jpg', NULL, NULL, 2, 12.00000),
-(14497, 13899, 29.00000, '200657', 1, 0, '13899_main_origin.jpg', NULL, NULL, 2, 29.00000),
-(14498, 13900, 100.00000, '200658', 0, 0, '13900_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(14499, 13901, 31.00000, '200659', 1, 0, '13901_main_origin.jpg', NULL, NULL, 2, 31.00000),
-(14500, 13902, 25.00000, '200660', 1, 0, '13902_main_origin.jpg', NULL, NULL, 2, 25.00000),
-(14501, 13903, 5.00000, '200661', 1, 0, '13903_main_origin.jpg', NULL, NULL, 2, 5.00000),
-(14502, 13904, 100.00000, '200662', 10, NULL, '13904_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(14503, 13905, 9.00000, '200663', 1, 0, '13905_main_origin.jpg', NULL, NULL, 2, 9.00000),
-(14504, 13906, 100.00000, '200664', 0, 0, '13906_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(14505, 13907, 6.00000, '200665', 1, 0, '13907_main_origin.jpg', NULL, NULL, 2, 6.00000),
-(14788, 14190, 21.60000, '200931', 1, 0, '14190_main_origin.jpg', NULL, NULL, 2, 21.60000),
-(14790, 14192, 95.00000, '200932', 1, 0, '14192_main_origin.jpg', NULL, NULL, 2, 95.00000),
-(14792, 14194, 23.00000, '200933', 1, 0, '14194_main_origin.jpg', NULL, NULL, 2, 23.00000),
-(14794, 14196, 36.90000, '200934', 1, 0, '14196_main_origin.jpg', NULL, NULL, 2, 36.90000),
-(14796, 14198, 6290.32258, '200935', 1, 0, '14198_main_origin.jpg', NULL, NULL, 1, 195.00000),
-(14797, 14199, 9645.16129, '200936', 1, 0, '14199_main_origin.jpg', NULL, NULL, 1, 299.00000),
-(14798, 14200, 9741.93548, '200937', 1, 0, '14200_main_origin.jpg', NULL, NULL, 1, 302.00000),
-(14799, 14201, 19193.54839, '200938', 1, 0, '14201_main_origin.jpg', NULL, NULL, 1, 595.00000),
-(14800, 14202, 6741.93548, '200939', 1, 0, '14202_main_origin.jpg', NULL, NULL, 1, 209.00000),
-(14801, 14203, 1451.61290, '200940', 1, 0, '14203_main_origin.jpg', NULL, NULL, 1, 45.00000),
-(14802, 14204, 1935.48387, '200941', 1, 0, '14204_main_origin.jpg', NULL, NULL, 1, 60.00000),
-(14803, 14205, 1451.61290, '200942', 1, 0, '14205_main_origin.jpg', NULL, NULL, 1, 45.00000),
-(14804, 14206, 5129.03226, '200943', 1, 0, '14206_main_origin.jpg', NULL, NULL, 1, 159.00000),
-(15425, 14775, 15.00000, '200958', 1, 0, '14775_main_origin.jpg', NULL, NULL, 2, 15.00000),
-(17521, 16825, 15.00000, '200959', 1, 0, '16825_main_origin.jpg', NULL, NULL, 2, 15.00000),
-(17522, 16826, 15.00000, '200960', 1, 0, '16826_main_origin.jpg', NULL, NULL, 2, 15.00000),
-(17523, 16827, 15.00000, '200961', 1, 0, '16827_main_origin.jpg', NULL, NULL, 2, 15.00000),
-(17524, 16828, 15.00000, '200962', 1, 0, '16828_main_origin.jpg', NULL, NULL, 2, 15.00000),
-(17525, 16829, 10.00000, '200963', 1, 0, '16829_main_origin.jpg', NULL, NULL, 2, 10.00000),
-(17526, 16830, 15.00000, '200964', 1, 0, '16830_main_origin.jpg', NULL, NULL, 2, 15.00000),
-(17527, 16831, 15.00000, '200965', 1, 0, '16831_main_origin.jpg', NULL, NULL, 2, 15.00000),
-(17528, 16832, 100.00000, '200966', 0, 0, '16832_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(17529, 16833, 100.00000, '200967', 10, 0, '16833_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(17530, 16834, 8.00000, '200968', 1, 0, '16834_main_origin.jpg', NULL, NULL, 2, 8.00000),
-(17531, 16835, 9.00000, '200969', 1, 0, '16835_main_origin.jpg', NULL, NULL, 2, 9.00000),
-(17532, 16836, 100.00000, '200970', 0, 0, '16836_main_origin.jpg', NULL, NULL, 2, 100.00000),
-(17590, 10180, 52.00000, '201028', 1, 0, '10180_main_origin.jpg', NULL, NULL, 2, 52.00000),
-(17617, 10183, 13.00000, '201055', 1, 0, '10183_main_origin.jpg', NULL, NULL, 2, 13.00000);
+INSERT INTO `shop_product_variants` (`id`, `product_id`, `price`, `number`, `stock`, `position`, `mainImage`, `external_id`, `currency`, `price_in_main`) VALUES
+(4227, 4020, 38709.67742, '700203', 10, 0, '', NULL, 1, 1200.00000),
+(4225, 4018, 20967.74194, '700201', 10, 0, '4018_main_origin.jpg', NULL, 1, 650.00000),
+(1106, 1019, 114903.22581, '20011', 21, 0, '1019_main_origin.jpg', NULL, 1, 3562.00000),
+(1035, 937, 1064129.03226, '30 001', 1, 0, '937_main_origin.jpg', NULL, 1, 32988.00000),
+(1043, 945, 2065.00000, '30002', 10, 0, '945_main_origin.jpg', NULL, 2, 2065.00000),
+(1047, 949, 1762.00000, '30003', 10, 0, '949_main_origin.jpg', NULL, 2, 1762.00000),
+(1057, 955, 765.00000, '30004', 10, 0, '955_main_origin.jpg', NULL, 2, 765.00000),
+(1058, 956, 724258.06452, '30006', 1, 0, '956_main_origin.jpg', NULL, 1, 22452.00000),
+(1059, 957, 223000.00000, '30005', 1, 0, '957_main_origin.jpg', NULL, 1, 6913.00000),
+(1061, 959, 17387.09677, '20003', 35, 0, '959_main_origin.jpg', NULL, 1, 539.00000),
+(1092, 1006, 90161.29032, '20004', 12, 0, '1006_main_origin.jpg', NULL, 1, 2795.00000),
+(1100, 1006, 89903.22581, '20007', 34, 3, '1006_main_origin.jpg', NULL, 1, 2787.00000),
+(1099, 1006, 90096.77419, '20006', 18, 2, '1006_main_origin.jpg', NULL, 1, 2793.00000),
+(1098, 1006, 90000.00000, '20005', 24, 1, '1006_main_origin.jpg', NULL, 1, 2790.00000),
+(1103, 1015, 37096.77419, '20009', 54, 0, '1015_main_origin.jpg', NULL, 1, 1150.00000),
+(1102, 1006, 89870.96774, '20008', 6, 4, '1006_main_origin.jpg', NULL, 1, 2786.00000),
+(1105, 1018, 12838.70968, '20010', 32, 0, '1018_main_origin.jpg', NULL, 1, 398.00000),
+(1107, 1021, 15322.58065, '20012', 19, 0, '1021_main_origin.jpg', NULL, 1, 475.00000),
+(1108, 1022, 7354.83871, '20013', 25, 0, '1022_main_origin.jpg', NULL, 1, 228.00000),
+(1109, 1023, 32580.64516, '20014', 1, 0, '1023_main_origin.jpg', NULL, 1, 1010.00000),
+(1110, 1024, 5000.00000, '20015', 1, 0, '1024_main_origin.jpg', NULL, 1, 155.00000),
+(1111, 1025, 3193.54839, '20016', 55, 0, '1025_main_origin.jpg', NULL, 1, 99.00000),
+(1213, 1096, 117064.51613, '20018', 10, 0, '1096_main_origin.jpg', NULL, 1, 3629.00000),
+(1216, 1099, 245000.00000, '20019', 10, 0, '1099_main_origin.jpg', NULL, 1, 7595.00000),
+(1221, 1104, 4999.00000, '20020', 10, NULL, '1104_main_origin.jpg', NULL, 2, 4999.00000),
+(1222, 1105, 5295.00000, '20021', 21, NULL, '1105_main_origin.jpg', NULL, 2, 5295.00000),
+(1224, 1107, 1580.64516, '200332', 12, 0, '1107_main_origin.jpg', NULL, 1, 49.00000),
+(1225, 1108, 175645.16129, '20023', 17, 0, '1108_main_origin.jpg', NULL, 1, 5445.00000),
+(1226, 1109, 4354.83871, '20025', 35, 0, '1109_main_origin.jpg', NULL, 1, 135.00000),
+(1227, 1110, 2225.80645, '20024', 4, 0, '1110_main_origin.jpg', NULL, 1, 69.00000),
+(1228, 1111, 1258.06452, '20026', 2, 0, '1111_main_origin.jpg', NULL, 1, 39.00000),
+(1229, 1112, 15709.67742, '2008', 20, 0, '1112_main_origin.jpg', NULL, 1, 487.00000),
+(1230, 1113, 2387.09677, '20027', 1, 0, '1113_main_origin.jpg', NULL, 1, 74.00000),
+(1231, 1114, 1451.61290, '20029', 3, 0, '1114_main_origin.jpg', NULL, 1, 45.00000),
+(1232, 1115, 6064.51613, '20030', 4, 0, '1115_main_origin.jpg', NULL, 1, 188.00000),
+(1234, 1117, 29000.00000, '20032', 5, 0, '1117_main_origin.jpg', NULL, 1, 899.00000),
+(8365, 7983, 40.00000, '200530', 1, 0, '7983_main_origin.jpg', NULL, 2, 40.00000),
+(8364, 7982, 40.00000, '200529', 1, 0, '7982_main_origin.jpg', NULL, 2, 40.00000),
+(8361, 7979, 100.00000, '200526', 1, 0, '7979_main_origin.jpg', NULL, 2, 100.00000),
+(8359, 7977, 100.00000, '200524', 1, 0, '7977_main_origin.jpg', NULL, 2, 100.00000),
+(8357, 7975, 25.00000, '200522', 1, 0, '7975_main_origin.jpg', NULL, 2, 25.00000),
+(4223, 4016, 3645.16129, '700200', 10, 0, '4016_main_origin.jpg', NULL, 1, 113.00000),
+(4228, 4021, 2903.22581, '700204', 10, 0, '4021_main_origin.jpg', NULL, 1, 90.00000),
+(13993, 13393, 2032.25806, '200638', 0, 0, '13393_main_origin.jpg', NULL, 1, 63.00000),
+(13992, 13392, 2096.77419, '200637', 1, 0, '13392_main_origin.jpg', NULL, 1, 65.00000),
+(13991, 13391, 1935.48387, '200636', 1, 0, '13391_main_origin.jpg', NULL, 1, 60.00000),
+(13990, 13390, 1612.90323, '200635', 1, 0, '13390_main_origin.jpg', NULL, 1, 50.00000),
+(13989, 13389, 6129.03226, '200634', 1, 0, '13389_main_origin.jpg', NULL, 1, 190.00000),
+(13988, 13388, 1612.90323, '200633', 0, 0, '13388_main_origin.jpg', NULL, 1, 50.00000),
+(13987, 13387, 2064.51613, '200632', 1, 0, '13387_main_origin.jpg', NULL, 1, 64.00000),
+(13986, 13386, 4129.03226, '200631', 0, 0, '13386_main_origin.jpg', NULL, 1, 128.00000),
+(13985, 13385, 1387.09677, '200630', 1, 0, '13385_main_origin.jpg', NULL, 1, 43.00000),
+(13984, 13384, 2225.80645, '200629', 1, 0, '13384_main_origin.jpg', NULL, 1, 69.00000),
+(5001, 4796, 19322.58065, '700300', 10, 0, '4796_main_origin.jpg', NULL, 1, 599.00000),
+(5166, 4960, 59419.35484, '70036', 10, NULL, '', NULL, 1, 1842.00000),
+(5165, 4959, 78258.06452, '70035', 10, NULL, '4959_main_origin.jpg', NULL, 1, 2426.00000),
+(5164, 4958, 78258.06452, '70034', 10, NULL, '4958_main_origin.jpg', NULL, 1, 2426.00000),
+(5163, 4957, 59419.35484, '70033', 10, NULL, '4957_main_origin.jpg', NULL, 1, 1842.00000),
+(5161, 4955, 60064.51613, '70031', 10, NULL, '4955_main_origin.jpg', NULL, 1, 1862.00000),
+(5156, 4950, 66967.74194, '70026', 10, NULL, '4950_main_origin.jpg', NULL, 1, 2076.00000),
+(5854, 5624, 55.00000, '200237', 1, 0, '5624_main_origin.jpg', NULL, 2, 55.00000),
+(5836, 5606, 100.00000, '200219', 0, 0, '5606_main_origin.jpg', NULL, 2, 100.00000),
+(5855, 5625, 100.00000, '200238', 0, 0, '5625_main_origin.jpg', NULL, 2, 100.00000),
+(5852, 5622, 100.00000, '200235', 0, 0, '5622_main_origin.jpg', NULL, 2, 100.00000),
+(5853, 5623, 55.00000, '200236', 1, 0, '5623_main_origin.jpg', NULL, 2, 55.00000),
+(5835, 5605, 100.00000, '200218', 0, 0, '5605_main_origin.jpg', NULL, 2, 100.00000),
+(5834, 5604, 100.00000, '200217', 0, 0, '5604_main_origin.jpg', NULL, 2, 100.00000),
+(5833, 5603, 100.00000, '200216', 0, 0, '5603_main_origin.jpg', NULL, 2, 100.00000),
+(5827, 5596, 100.00000, '200206', 0, 0, '5596_main_origin.jpg', NULL, 2, 100.00000),
+(5832, 5602, 100.00000, '200211', 0, 0, '5602_main_origin.jpg', NULL, 2, 100.00000),
+(5856, 5626, 100.00000, '200239', 0, 0, '5626_main_origin.jpg', NULL, 2, 100.00000),
+(5857, 5627, 100.00000, '200240', 0, 0, '5627_main_origin.jpg', NULL, 2, 100.00000),
+(5858, 5628, 100.00000, '200241', 0, 0, '5628_main_origin.jpg', NULL, 2, 100.00000),
+(5859, 5629, 100.00000, '200242', 0, 0, '5629_main_origin.jpg', NULL, 2, 100.00000),
+(5860, 5630, 100.00000, '200243', 0, 0, '5630_main_origin.jpg', NULL, 2, 100.00000),
+(5861, 5631, 100.00000, '200244', 0, 0, '5631_main_origin.jpg', NULL, 2, 100.00000),
+(5862, 5632, 100.00000, '200245', 0, 0, '5632_main_origin.jpg', NULL, 2, 100.00000),
+(5863, 5633, 100.00000, '200246', 0, 0, '5633_main_origin.jpg', NULL, 2, 100.00000),
+(5864, 5634, 100.00000, '200247', 0, 0, '5634_main_origin.jpg', NULL, 2, 100.00000),
+(6005, 5775, 100.00000, '200388', 0, 0, '5775_main_origin.jpg', NULL, 2, 100.00000),
+(6512, 6192, 100.00000, '200389', 0, 0, '6192_main_origin.jpg', NULL, 2, 100.00000),
+(6513, 6193, 100.00000, '200390', 10, NULL, '6193_main_origin.jpg', NULL, 2, 100.00000),
+(6514, 6194, 100.00000, '200391', 0, 0, '6194_main_origin.jpg', NULL, 2, 100.00000),
+(6515, 6195, 19.00000, '200392', 1, 0, '6195_main_origin.jpg', NULL, 2, 19.00000),
+(6516, 6196, 100.00000, '200393', 0, 0, '6196_main_origin.jpg', NULL, 2, 100.00000),
+(6517, 6197, 100.00000, '200394', 0, 0, '6197_main_origin.jpg', NULL, 2, 100.00000),
+(6518, 6198, 100.00000, '200395', 0, 0, '6198_main_origin.jpg', NULL, 2, 100.00000),
+(6519, 6199, 100.00000, '200396', 0, 0, '6199_main_origin.jpg', NULL, 2, 100.00000),
+(6520, 6200, 100.00000, '200397', 1, 0, '6200_main_origin.jpg', NULL, 2, 100.00000),
+(6521, 6201, 100.00000, '200398', 0, 0, '6201_main_origin.jpg', NULL, 2, 100.00000),
+(6522, 6202, 17.00000, '200399', 1, 0, '6202_main_origin.jpg', NULL, 2, 17.00000),
+(6523, 6203, 100.00000, '200400', 0, 0, '6203_main_origin.jpg', NULL, 2, 100.00000),
+(6524, 6204, 100.00000, '200401', 0, 0, '6204_main_origin.jpg', NULL, 2, 100.00000),
+(6525, 6205, 100.00000, '200402', 0, 0, '6205_main_origin.jpg', NULL, 2, 100.00000),
+(6526, 6206, 100.00000, '200403', 0, 0, '6206_main_origin.jpg', NULL, 2, 100.00000),
+(6527, 6207, 100.00000, '200404', 0, 0, '6207_main_origin.jpg', NULL, 2, 100.00000),
+(6528, 6208, 12.00000, '200405', 1, 0, '6208_main_origin.jpg', NULL, 2, 12.00000),
+(6531, 6211, 100.00000, '200408', 0, 0, '6211_main_origin.jpg', NULL, 2, 100.00000),
+(6532, 6212, 100.00000, '200409', 0, 0, '6212_main_origin.jpg', NULL, 2, 100.00000),
+(6535, 6215, 100.00000, '200412', 0, 0, '6215_main_origin.jpg', NULL, 2, 100.00000),
+(6536, 6216, 100.00000, '200413', 0, 0, '6216_main_origin.jpg', NULL, 2, 100.00000),
+(6537, 6217, 100.00000, '200414', 0, 0, '6217_main_origin.jpg', NULL, 2, 100.00000),
+(6538, 6218, 100.00000, '200415', 0, 0, '6218_main_origin.jpg', NULL, 2, 100.00000),
+(6539, 6219, 3290.32258, '200416', 1, 0, '6219_main_origin.jpg', NULL, 1, 102.00000),
+(6540, 6220, 100.00000, '200417', 0, 0, '6220_main_origin.jpg', NULL, 2, 100.00000),
+(6541, 6221, 100.00000, '200418', 0, 0, '6221_main_origin.jpg', NULL, 2, 100.00000),
+(6542, 6222, 100.00000, '200419', 0, 0, '6222_main_origin.jpg', NULL, 2, 100.00000),
+(6543, 6223, 5806.45161, '200420', 1, 0, '6223_main_origin.jpg', NULL, 1, 180.00000),
+(6544, 6224, 100.00000, '200421', 0, 0, '6224_main_origin.jpg', NULL, 2, 100.00000),
+(6545, 6225, 100.00000, '200422', 0, 0, '6225_main_origin.jpg', NULL, 2, 100.00000),
+(6546, 6226, 100.00000, '200423', 0, 0, '6226_main_origin.jpg', NULL, 2, 100.00000),
+(6547, 6227, 6419.35484, '200424', 1, 0, '6227_main_origin.jpg', NULL, 1, 199.00000),
+(6548, 6228, 100.00000, '200425', 0, 0, '6228_main_origin.jpg', NULL, 2, 100.00000),
+(6549, 6229, 100.00000, '200426', 0, 0, '6229_main_origin.jpg', NULL, 2, 100.00000),
+(6550, 6230, 100.00000, '200427', 0, 0, '6230_main_origin.jpg', NULL, 2, 100.00000),
+(7187, 6843, 100.00000, '200434', 0, 0, '6843_main_origin.jpg', NULL, 2, 100.00000),
+(7188, 6844, 100.00000, '200435', 0, 0, '6844_main_origin.jpg', NULL, 2, 100.00000),
+(8363, 7981, 100.00000, '200528', 1, 0, '7981_main_origin.jpg', NULL, 2, 100.00000),
+(8366, 7984, 100.00000, '200531', 1, 0, '7984_main_origin.jpg', NULL, 2, 100.00000),
+(8362, 7980, 100.00000, '200527', 1, 0, '7980_main_origin.jpg', NULL, 2, 100.00000),
+(8360, 7978, 100.00000, '200525', 1, 0, '7978_main_origin.jpg', NULL, 2, 100.00000),
+(8358, 7976, 30.00000, '200523', 1, 0, '7976_main_origin.jpg', NULL, 2, 30.00000),
+(8356, 7974, 25.00000, '200521', 1, 0, '7974_main_origin.jpg', NULL, 2, 25.00000),
+(8367, 7985, 100.00000, '200532', 1, 0, '7985_main_origin.jpg', NULL, 2, 100.00000),
+(8368, 7986, 100.00000, '200533', 1, 0, '7986_main_origin.jpg', NULL, 2, 100.00000),
+(8369, 7987, 100.00000, '200534', 1, 0, '7987_main_origin.jpg', NULL, 2, 100.00000),
+(8370, 7988, 30.00000, '200535', 1, 0, '7988_main_origin.jpg', NULL, 2, 30.00000),
+(8371, 7989, 30.00000, '200536', 1, 0, '7989_main_origin.jpg', NULL, 2, 30.00000),
+(8372, 7990, 36.00000, '200537', 1, 0, '7990_main_origin.jpg', NULL, 2, 36.00000),
+(8373, 7991, 36.00000, '200538', 1, 0, '7991_main_origin.jpg', NULL, 2, 36.00000),
+(8374, 7992, 100.00000, '200539', 1, 0, '7992_main_origin.jpg', NULL, 2, 100.00000),
+(8837, 8430, 5129.03226, '90300', 5, 0, '8430_main_origin.jpg', NULL, 1, 159.00000),
+(8838, 8431, 5129.03226, '90301', 5, 0, '8431_main_origin.jpg', NULL, 1, 159.00000),
+(8839, 8432, 21258.06452, '90302', 5, 0, '8432_main_origin.jpg', NULL, 1, 659.00000),
+(8840, 8433, 9645.16129, '90303', 5, NULL, '8433_main_origin.jpg', NULL, 1, 299.00000),
+(8841, 8434, 9645.16129, '90304', 5, NULL, '8434_main_origin.jpg', NULL, 1, 299.00000),
+(10637, 10179, 16.85000, '200609', 1, 0, '10179_main_origin.jpg', NULL, 2, 16.85000),
+(10638, 10180, 35.00000, '200610', 1, 0, '10180_main_origin.jpg', NULL, 2, 35.00000),
+(10639, 10181, 8.89000, '200611', 1, 0, '10181_main_origin.jpg', NULL, 2, 8.89000),
+(10640, 10182, 15.00000, '200612', 1, 0, '10182_main_origin.jpg', NULL, 2, 15.00000),
+(10641, 10182, 14.00000, '200613', 1, 1, '10182_main_origin.jpg', NULL, 2, 14.00000),
+(10642, 10183, 10.00000, '200614', 1, 0, '10183_main_origin.jpg', NULL, 2, 10.00000),
+(10643, 10183, 10.00000, '200615', 1, 1, '10183_main_origin.jpg', NULL, 2, 10.00000),
+(10644, 10183, 10.00000, '200616', 1, 2, '10183_main_origin.jpg', NULL, 2, 10.00000),
+(10645, 10183, 10.00000, '200618', 1, 3, '10183_main_origin.jpg', NULL, 2, 10.00000),
+(10646, 10184, 9.00000, '200619', 1, 0, '10184_main_origin.jpg', NULL, 2, 9.00000),
+(11193, 10734, 100.00000, '200448', 0, 0, '10734_main_origin.jpg', NULL, 2, 100.00000),
+(12774, 12179, 100.00000, '200484', 0, 0, '12179_main_origin.jpg', NULL, 2, 100.00000),
+(12773, 12178, 100.00000, '200483', 0, 0, '12178_main_origin.jpg', NULL, 2, 100.00000),
+(12772, 12177, 100.00000, '200482', 0, 0, '12177_main_origin.jpg', NULL, 2, 100.00000),
+(12771, 12176, 100.00000, '200481', 0, 0, '12176_main_origin.jpg', NULL, 2, 100.00000),
+(12770, 12175, 100.00000, '200480', 0, 0, '12175_main_origin.jpg', NULL, 2, 100.00000),
+(12769, 12174, 100.00000, '200479', 0, 0, '12174_main_origin.jpg', NULL, 2, 100.00000),
+(12768, 12173, 100.00000, '200478', 0, 0, '12173_main_origin.jpg', NULL, 2, 100.00000),
+(12767, 12172, 100.00000, '200477', 0, 0, '12172_main_origin.jpg', NULL, 2, 100.00000),
+(12766, 12171, 100.00000, '200476', 0, 0, '12171_main_origin.jpg', NULL, 2, 100.00000),
+(12765, 12170, 100.00000, '200475', 0, 0, '12170_main_origin.jpg', NULL, 2, 100.00000),
+(12764, 12169, 100.00000, '200474', 0, 0, '12169_main_origin.jpg', NULL, 2, 100.00000),
+(12763, 12168, 100.00000, '200473', 0, 0, '12168_main_origin.jpg', NULL, 2, 100.00000),
+(12762, 12167, 100.00000, '200472', 0, 0, '12167_main_origin.jpg', NULL, 2, 100.00000),
+(12761, 12166, 100.00000, '200471', 0, 0, '1404815.jpg', NULL, 2, 100.00000),
+(12760, 12165, 7.00000, '200470', 1, 0, '12165_main_origin.jpg', NULL, 2, 7.00000),
+(12759, 12164, 100.00000, '200469', 0, 0, '12164_main_origin.jpg', NULL, 2, 100.00000),
+(12758, 12163, 7.00000, '200468', 1, 0, '12163_main_origin.jpg', NULL, 2, 7.00000),
+(12757, 12162, 7.00000, '200467', 1, 0, '12162_main_origin.jpg', NULL, 2, 7.00000),
+(11667, 11210, 100.00000, '200428', 0, 0, '11210_main_origin.jpg', NULL, 2, 100.00000),
+(11668, 11211, 100.00000, '200429', 0, 0, '11211_main_origin.jpg', NULL, 2, 100.00000),
+(11669, 11212, 100.00000, '200430', 0, 0, '11212_main_origin.jpg', NULL, 2, 100.00000),
+(11670, 11213, 100.00000, '200431', 0, 0, '11213_main_origin.jpg', NULL, 2, 100.00000),
+(11671, 11214, 100.00000, '200432', 0, 0, '11214_main_origin.jpg', NULL, 2, 100.00000),
+(11672, 11215, 100.00000, '200433', 0, 0, '11215_main_origin.jpg', NULL, 2, 100.00000),
+(11673, 11216, 100.00000, '200436', 0, 0, '11216_main_origin.jpg', NULL, 2, 100.00000),
+(11674, 11217, 100.00000, '200437', 0, 0, '11217_main_origin.jpg', NULL, 2, 100.00000),
+(11675, 11218, 100.00000, '200438', 0, 0, '11218_main_origin.jpg', NULL, 2, 100.00000),
+(11676, 11219, 100.00000, '200439', 0, 0, '11219_main_origin.jpg', NULL, 2, 100.00000),
+(11677, 11220, 100.00000, '200440', 0, 0, '11220_main_origin.jpg', NULL, 2, 100.00000),
+(11678, 11221, 100.00000, '200441', 0, 0, '11221_main_origin.jpg', NULL, 2, 100.00000),
+(11679, 11222, 100.00000, '200442', 0, 0, '11222_main_origin.jpg', NULL, 2, 100.00000),
+(11680, 11223, 100.00000, '200443', 0, 0, '11223_main_origin.jpg', NULL, 2, 100.00000),
+(11681, 11224, 100.00000, '200444', 0, 0, '11224_main_origin.jpg', NULL, 2, 100.00000),
+(11682, 11225, 100.00000, '200445', 0, 0, '11225_main_origin.jpg', NULL, 2, 100.00000),
+(11683, 11226, 100.00000, '200446', 0, 0, '11226_main_origin.jpg', NULL, 2, 100.00000),
+(11684, 11227, 100.00000, '200447', 0, 0, '11227_main_origin.jpg', NULL, 2, 100.00000),
+(12810, 12215, 100.00000, '200520', 0, 0, '12215_main_origin.jpg', NULL, 2, 100.00000),
+(12625, 12030, 156.00000, '20190', 1, 0, '12030_main_origin.jpg', NULL, 2, 156.00000),
+(12626, 12031, 156.00000, '20191', 1, 0, '12031_main_origin.jpg', NULL, 2, 156.00000),
+(12627, 12032, 100.00000, '20192', 0, 0, '12032_main_origin.jpg', NULL, 2, 100.00000),
+(12628, 12033, 100.00000, '20193', 0, 0, '12033_main_origin.jpg', NULL, 2, 100.00000),
+(12629, 12034, 210.00000, '20194', 1, 0, '12034_main_origin.jpg', NULL, 2, 210.00000),
+(12630, 12035, 210.00000, '20195', 1, 0, '12035_main_origin.jpg', NULL, 2, 210.00000),
+(12631, 12036, 210.00000, '20196', 1, 0, '12036_main_origin.jpg', NULL, 2, 210.00000),
+(12633, 12038, 210.00000, '20198', 1, 0, '12038_main_origin.jpg', NULL, 2, 210.00000),
+(12634, 12039, 215.00000, '20199', 1, 0, '12039_main_origin.jpg', NULL, 2, 215.00000),
+(12635, 12040, 215.00000, '20200', 1, 0, '12040_main_origin.jpg', NULL, 2, 215.00000),
+(12636, 12041, 212.00000, '20201', 1, 0, '12041_main_origin.jpg', NULL, 2, 212.00000),
+(12637, 12042, 285.00000, '20202', 1, 0, '12042_main_origin.jpg', NULL, 2, 285.00000),
+(12638, 12043, 100.00000, '20203', 0, 0, '12043_main_origin.jpg', NULL, 2, 100.00000),
+(12640, 12045, 285.00000, '20205', 1, 0, '12045_main_origin.jpg', NULL, 2, 285.00000),
+(13330, 12737, 196.00000, '30319', 10, 0, '12737_main_origin.jpg', NULL, 2, 196.00000),
+(13982, 13382, 1451.61290, '200627', 1, 0, '13382_main_origin.jpg', NULL, 1, 45.00000),
+(13981, 13381, 1612.90323, '200626', 1, 0, '13381_main_origin.jpg', NULL, 1, 50.00000),
+(13980, 13380, 1290.32258, '200625', 1, 0, '13380_main_origin.jpg', NULL, 1, 40.00000),
+(13979, 13379, 1612.90323, '200624', 1, 0, '13379_main_origin.jpg', NULL, 1, 50.00000),
+(13978, 13378, 5.00000, '200623', 1, 0, '13378_main_origin.jpg', NULL, 2, 5.00000),
+(13977, 13377, 1451.61290, '200622', 1, 0, '13377_main_origin.jpg', NULL, 1, 45.00000),
+(13976, 13376, 4.00000, '200621', 1, 0, '13376_main_origin.jpg', NULL, 2, 4.00000),
+(13983, 13383, 4806.45161, '200628', 1, 0, '13383_main_origin.jpg', NULL, 1, 149.00000),
+(14487, 13889, 100.00000, '200647', 0, 0, '13889_main_origin.jpg', NULL, 2, 100.00000),
+(14488, 13890, 100.00000, '200648', 0, 0, '13890_main_origin.jpg', NULL, 2, 100.00000),
+(14489, 13891, 4.00000, '200649', 1, 0, '13891_main_origin.jpg', NULL, 2, 4.00000),
+(14490, 13892, 100.00000, '200650', 0, 0, '13892_main_origin.jpg', NULL, 2, 100.00000),
+(14491, 13893, 100.00000, '200651', 0, 0, '13893_main_origin.jpg', NULL, 2, 100.00000),
+(14492, 13894, 100.00000, '200652', 0, 0, '13894_main_origin.jpg', NULL, 2, 100.00000),
+(14493, 13895, 14.00000, '200653', 1, 0, '13895_main_origin.jpg', NULL, 2, 14.00000),
+(14494, 13896, 100.00000, '200654', 0, 0, '13896_main_origin.jpg', NULL, 2, 100.00000),
+(14495, 13897, 15.00000, '200655', 1, 0, '13897_main_origin.jpg', NULL, 2, 15.00000),
+(14496, 13898, 12.00000, '200656', 1, 0, '13898_main_origin.jpg', NULL, 2, 12.00000),
+(14497, 13899, 29.00000, '200657', 1, 0, '13899_main_origin.jpg', NULL, 2, 29.00000),
+(14498, 13900, 100.00000, '200658', 0, 0, '13900_main_origin.jpg', NULL, 2, 100.00000),
+(14499, 13901, 31.00000, '200659', 1, 0, '13901_main_origin.jpg', NULL, 2, 31.00000),
+(14500, 13902, 25.00000, '200660', 1, 0, '13902_main_origin.jpg', NULL, 2, 25.00000),
+(14501, 13903, 5.00000, '200661', 1, 0, '13903_main_origin.jpg', NULL, 2, 5.00000),
+(14502, 13904, 100.00000, '200662', 10, NULL, '13904_main_origin.jpg', NULL, 2, 100.00000),
+(14503, 13905, 9.00000, '200663', 1, 0, '13905_main_origin.jpg', NULL, 2, 9.00000),
+(14504, 13906, 100.00000, '200664', 0, 0, '13906_main_origin.jpg', NULL, 2, 100.00000),
+(14505, 13907, 6.00000, '200665', 1, 0, '13907_main_origin.jpg', NULL, 2, 6.00000),
+(14788, 14190, 21.60000, '200931', 1, 0, '14190_main_origin.jpg', NULL, 2, 21.60000),
+(14790, 14192, 95.00000, '200932', 1, 0, '14192_main_origin.jpg', NULL, 2, 95.00000),
+(14792, 14194, 23.00000, '200933', 1, 0, '14194_main_origin.jpg', NULL, 2, 23.00000),
+(14794, 14196, 36.90000, '200934', 1, 0, '14196_main_origin.jpg', NULL, 2, 36.90000),
+(14796, 14198, 6290.32258, '200935', 1, 0, '14198_main_origin.jpg', NULL, 1, 195.00000),
+(14797, 14199, 9645.16129, '200936', 1, 0, '14199_main_origin.jpg', NULL, 1, 299.00000),
+(14798, 14200, 9741.93548, '200937', 1, 0, '14200_main_origin.jpg', NULL, 1, 302.00000),
+(14799, 14201, 19193.54839, '200938', 1, 0, '14201_main_origin.jpg', NULL, 1, 595.00000),
+(14800, 14202, 6741.93548, '200939', 1, 0, '14202_main_origin.jpg', NULL, 1, 209.00000),
+(14801, 14203, 1451.61290, '200940', 1, 0, '14203_main_origin.jpg', NULL, 1, 45.00000),
+(14802, 14204, 1935.48387, '200941', 1, 0, '14204_main_origin.jpg', NULL, 1, 60.00000),
+(14803, 14205, 1451.61290, '200942', 1, 0, '14205_main_origin.jpg', NULL, 1, 45.00000),
+(14804, 14206, 5129.03226, '200943', 1, 0, '14206_main_origin.jpg', NULL, 1, 159.00000),
+(15425, 14775, 15.00000, '200958', 1, 0, '14775_main_origin.jpg', NULL, 2, 15.00000),
+(17521, 16825, 15.00000, '200959', 1, 0, '16825_main_origin.jpg', NULL, 2, 15.00000),
+(17522, 16826, 15.00000, '200960', 1, 0, '16826_main_origin.jpg', NULL, 2, 15.00000),
+(17523, 16827, 15.00000, '200961', 1, 0, '16827_main_origin.jpg', NULL, 2, 15.00000),
+(17524, 16828, 15.00000, '200962', 1, 0, '16828_main_origin.jpg', NULL, 2, 15.00000),
+(17525, 16829, 10.00000, '200963', 1, 0, '16829_main_origin.jpg', NULL, 2, 10.00000),
+(17526, 16830, 15.00000, '200964', 1, 0, '16830_main_origin.jpg', NULL, 2, 15.00000),
+(17527, 16831, 15.00000, '200965', 1, 0, '16831_main_origin.jpg', NULL, 2, 15.00000),
+(17528, 16832, 100.00000, '200966', 0, 0, '16832_main_origin.jpg', NULL, 2, 100.00000),
+(17529, 16833, 100.00000, '200967', 10, 0, '16833_main_origin.jpg', NULL, 2, 100.00000),
+(17530, 16834, 8.00000, '200968', 1, 0, '16834_main_origin.jpg', NULL, 2, 8.00000),
+(17531, 16835, 9.00000, '200969', 1, 0, '16835_main_origin.jpg', NULL, 2, 9.00000),
+(17532, 16836, 100.00000, '200970', 0, 0, '16836_main_origin.jpg', NULL, 2, 100.00000),
+(17590, 10180, 52.00000, '201028', 1, 0, '10180_main_origin.jpg', NULL, 2, 52.00000),
+(17617, 10183, 13.00000, '201055', 1, 0, '10183_main_origin.jpg', NULL, 2, 13.00000);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_product_variants_i18n`
+-- Table structure for table `shop_product_variants_i18n`
 --
 
 DROP TABLE IF EXISTS `shop_product_variants_i18n`;
@@ -7087,7 +7095,7 @@ CREATE TABLE IF NOT EXISTS `shop_product_variants_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_product_variants_i18n`
+-- Dumping data for table `shop_product_variants_i18n`
 --
 
 INSERT INTO `shop_product_variants_i18n` (`id`, `locale`, `name`) VALUES
@@ -7349,7 +7357,7 @@ INSERT INTO `shop_product_variants_i18n` (`id`, `locale`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_rbac_group`
+-- Table structure for table `shop_rbac_group`
 --
 
 DROP TABLE IF EXISTS `shop_rbac_group`;
@@ -7362,7 +7370,7 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_group` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=60 ;
 
 --
--- Дамп даних таблиці `shop_rbac_group`
+-- Dumping data for table `shop_rbac_group`
 --
 
 INSERT INTO `shop_rbac_group` (`id`, `type`, `name`, `description`) VALUES
@@ -7427,7 +7435,7 @@ INSERT INTO `shop_rbac_group` (`id`, `type`, `name`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_rbac_group_i18n`
+-- Table structure for table `shop_rbac_group_i18n`
 --
 
 DROP TABLE IF EXISTS `shop_rbac_group_i18n`;
@@ -7439,7 +7447,7 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_group_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_rbac_group_i18n`
+-- Dumping data for table `shop_rbac_group_i18n`
 --
 
 INSERT INTO `shop_rbac_group_i18n` (`id`, `description`, `locale`) VALUES
@@ -7477,7 +7485,7 @@ INSERT INTO `shop_rbac_group_i18n` (`id`, `description`, `locale`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_rbac_privileges`
+-- Table structure for table `shop_rbac_privileges`
 --
 
 DROP TABLE IF EXISTS `shop_rbac_privileges`;
@@ -7488,10 +7496,10 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_privileges` (
   PRIMARY KEY (`id`),
   KEY `shop_rbac_privileges_I_1` (`name`),
   KEY `shop_rbac_privileges_FI_1` (`group_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=485 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=486 ;
 
 --
--- Дамп даних таблиці `shop_rbac_privileges`
+-- Dumping data for table `shop_rbac_privileges`
 --
 
 INSERT INTO `shop_rbac_privileges` (`id`, `name`, `group_id`) VALUES
@@ -7711,12 +7719,13 @@ INSERT INTO `shop_rbac_privileges` (`id`, `name`, `group_id`) VALUES
 (479, 'Widgets_manager::update_config', 59),
 (480, 'Widgets_manager::delete', 59),
 (482, 'Widgets_manager::edit_html_widget', 59),
-(483, 'Widgets_manager::edit_module_widget', 59);
+(483, 'Widgets_manager::edit_module_widget', 59),
+(485, 'cfcm::form_from_category_group', 43);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_rbac_privileges_i18n`
+-- Table structure for table `shop_rbac_privileges_i18n`
 --
 
 DROP TABLE IF EXISTS `shop_rbac_privileges_i18n`;
@@ -7729,7 +7738,7 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_privileges_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_rbac_privileges_i18n`
+-- Dumping data for table `shop_rbac_privileges_i18n`
 --
 
 INSERT INTO `shop_rbac_privileges_i18n` (`id`, `title`, `description`, `locale`) VALUES
@@ -7949,12 +7958,13 @@ INSERT INTO `shop_rbac_privileges_i18n` (`id`, `title`, `description`, `locale`)
 (479, 'Обновление настроек виджета', 'Доступ к обновлению настроек виджета', 'ru'),
 (480, 'Удаление виджета', 'Доступ к удалению виджета', 'ru'),
 (482, 'Редактирование html виджета', 'Доступ к редактированию html виджета', 'ru'),
-(483, 'Редактирование модульного виджета', 'Доступ к редактированию модульного виджета', 'ru');
+(483, 'Редактирование модульного виджета', 'Доступ к редактированию модульного виджета', 'ru'),
+(485, 'Заполнение дополнительных полей', 'Заполнение дополнительных полей', 'ru');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_rbac_roles`
+-- Table structure for table `shop_rbac_roles`
 --
 
 DROP TABLE IF EXISTS `shop_rbac_roles`;
@@ -7967,7 +7977,7 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_roles` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- Дамп даних таблиці `shop_rbac_roles`
+-- Dumping data for table `shop_rbac_roles`
 --
 
 INSERT INTO `shop_rbac_roles` (`id`, `name`, `importance`) VALUES
@@ -7976,7 +7986,7 @@ INSERT INTO `shop_rbac_roles` (`id`, `name`, `importance`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_rbac_roles_i18n`
+-- Table structure for table `shop_rbac_roles_i18n`
 --
 
 DROP TABLE IF EXISTS `shop_rbac_roles_i18n`;
@@ -7989,7 +7999,7 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_roles_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_rbac_roles_i18n`
+-- Dumping data for table `shop_rbac_roles_i18n`
 --
 
 INSERT INTO `shop_rbac_roles_i18n` (`id`, `alt_name`, `locale`, `description`) VALUES
@@ -7998,7 +8008,7 @@ INSERT INTO `shop_rbac_roles_i18n` (`id`, `alt_name`, `locale`, `description`) V
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_rbac_roles_privileges`
+-- Table structure for table `shop_rbac_roles_privileges`
 --
 
 DROP TABLE IF EXISTS `shop_rbac_roles_privileges`;
@@ -8011,7 +8021,7 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_roles_privileges` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=614 ;
 
 --
--- Дамп даних таблиці `shop_rbac_roles_privileges`
+-- Dumping data for table `shop_rbac_roles_privileges`
 --
 
 INSERT INTO `shop_rbac_roles_privileges` (`id`, `role_id`, `privilege_id`) VALUES
@@ -8239,7 +8249,7 @@ INSERT INTO `shop_rbac_roles_privileges` (`id`, `role_id`, `privilege_id`) VALUE
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_settings`
+-- Table structure for table `shop_settings`
 --
 
 DROP TABLE IF EXISTS `shop_settings`;
@@ -8251,7 +8261,7 @@ CREATE TABLE IF NOT EXISTS `shop_settings` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `shop_settings`
+-- Dumping data for table `shop_settings`
 --
 
 INSERT INTO `shop_settings` (`name`, `value`, `locale`) VALUES
@@ -8406,7 +8416,7 @@ INSERT INTO `shop_settings` (`name`, `value`, `locale`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_sorting`
+-- Table structure for table `shop_sorting`
 --
 
 DROP TABLE IF EXISTS `shop_sorting`;
@@ -8415,29 +8425,32 @@ CREATE TABLE IF NOT EXISTS `shop_sorting` (
   `pos` int(11) DEFAULT NULL,
   `get` varchar(25) NOT NULL,
   `active` tinyint(1) DEFAULT NULL,
+  `name` varchar(50) NOT NULL,
+  `name_front` varchar(50) DEFAULT NULL,
+  `tooltip` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
 
 --
--- Дамп даних таблиці `shop_sorting`
+-- Dumping data for table `shop_sorting`
 --
 
-INSERT INTO `shop_sorting` (`id`, `pos`, `get`, `active`) VALUES
-(1, 4, 'rating', 1),
-(2, 1, 'price', 1),
-(3, 2, 'price_desc', 1),
-(4, 3, 'hit', 1),
-(5, 5, 'hot', 1),
-(6, 0, 'action', 1),
-(7, 8, 'name', 1),
-(8, 9, 'name_desc', 0),
-(9, 6, 'views', 1),
-(10, 7, 'topsales', 0);
+INSERT INTO `shop_sorting` (`id`, `pos`, `get`, `active`, `name`, `name_front`, `tooltip`) VALUES
+(1, 4, 'rating', 1, '', NULL, NULL),
+(2, 1, 'price', 1, '', NULL, NULL),
+(3, 2, 'price_desc', 1, '', NULL, NULL),
+(4, 3, 'hit', 1, '', NULL, NULL),
+(5, 5, 'hot', 1, '', NULL, NULL),
+(6, 0, 'action', 1, '', NULL, NULL),
+(7, 8, 'name', 1, '', NULL, NULL),
+(8, 9, 'name_desc', 0, '', NULL, NULL),
+(9, 6, 'views', 1, '', NULL, NULL),
+(10, 7, 'topsales', 0, '', NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_sorting_i18n`
+-- Table structure for table `shop_sorting_i18n`
 --
 
 DROP TABLE IF EXISTS `shop_sorting_i18n`;
@@ -8451,7 +8464,7 @@ CREATE TABLE IF NOT EXISTS `shop_sorting_i18n` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=26 ;
 
 --
--- Дамп даних таблиці `shop_sorting_i18n`
+-- Dumping data for table `shop_sorting_i18n`
 --
 
 INSERT INTO `shop_sorting_i18n` (`id`, `locale`, `name`, `name_front`, `tooltip`) VALUES
@@ -8470,7 +8483,7 @@ INSERT INTO `shop_sorting_i18n` (`id`, `locale`, `name`, `name_front`, `tooltip`
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_spy`
+-- Table structure for table `shop_spy`
 --
 
 DROP TABLE IF EXISTS `shop_spy`;
@@ -8487,7 +8500,7 @@ CREATE TABLE IF NOT EXISTS `shop_spy` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
--- Дамп даних таблиці `shop_spy`
+-- Dumping data for table `shop_spy`
 --
 
 INSERT INTO `shop_spy` (`id`, `user_id`, `product_id`, `price`, `variant_id`, `key`, `email`, `old_price`) VALUES
@@ -8496,7 +8509,7 @@ INSERT INTO `shop_spy` (`id`, `user_id`, `product_id`, `price`, `variant_id`, `k
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_warehouse`
+-- Table structure for table `shop_warehouse`
 --
 
 DROP TABLE IF EXISTS `shop_warehouse`;
@@ -8511,7 +8524,7 @@ CREATE TABLE IF NOT EXISTS `shop_warehouse` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
--- Дамп даних таблиці `shop_warehouse`
+-- Dumping data for table `shop_warehouse`
 --
 
 INSERT INTO `shop_warehouse` (`id`, `name`, `address`, `phone`, `description`) VALUES
@@ -8521,7 +8534,7 @@ INSERT INTO `shop_warehouse` (`id`, `name`, `address`, `phone`, `description`) V
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `shop_warehouse_data`
+-- Table structure for table `shop_warehouse_data`
 --
 
 DROP TABLE IF EXISTS `shop_warehouse_data`;
@@ -8536,7 +8549,7 @@ CREATE TABLE IF NOT EXISTS `shop_warehouse_data` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=38 ;
 
 --
--- Дамп даних таблиці `shop_warehouse_data`
+-- Dumping data for table `shop_warehouse_data`
 --
 
 INSERT INTO `shop_warehouse_data` (`id`, `product_id`, `warehouse_id`, `count`) VALUES
@@ -8547,7 +8560,7 @@ INSERT INTO `shop_warehouse_data` (`id`, `product_id`, `warehouse_id`, `count`) 
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `tags`
+-- Table structure for table `tags`
 --
 
 DROP TABLE IF EXISTS `tags`;
@@ -8561,7 +8574,7 @@ CREATE TABLE IF NOT EXISTS `tags` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `trash`
+-- Table structure for table `trash`
 --
 
 DROP TABLE IF EXISTS `trash`;
@@ -8578,7 +8591,7 @@ CREATE TABLE IF NOT EXISTS `trash` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `users`
+-- Table structure for table `users`
 --
 
 DROP TABLE IF EXISTS `users`;
@@ -8611,7 +8624,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `user_autologin`
+-- Table structure for table `user_autologin`
 --
 
 DROP TABLE IF EXISTS `user_autologin`;
@@ -8628,7 +8641,7 @@ CREATE TABLE IF NOT EXISTS `user_autologin` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `user_temp`
+-- Table structure for table `user_temp`
 --
 
 DROP TABLE IF EXISTS `user_temp`;
@@ -8646,7 +8659,7 @@ CREATE TABLE IF NOT EXISTS `user_temp` (
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `widgets`
+-- Table structure for table `widgets`
 --
 
 DROP TABLE IF EXISTS `widgets`;
@@ -8665,7 +8678,7 @@ CREATE TABLE IF NOT EXISTS `widgets` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=29 ;
 
 --
--- Дамп даних таблиці `widgets`
+-- Dumping data for table `widgets`
 --
 
 INSERT INTO `widgets` (`id`, `name`, `type`, `data`, `method`, `settings`, `description`, `roles`, `created`) VALUES
@@ -8687,7 +8700,7 @@ INSERT INTO `widgets` (`id`, `name`, `type`, `data`, `method`, `settings`, `desc
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `widget_i18n`
+-- Table structure for table `widget_i18n`
 --
 
 DROP TABLE IF EXISTS `widget_i18n`;
@@ -8700,10 +8713,14 @@ CREATE TABLE IF NOT EXISTS `widget_i18n` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Дамп даних таблиці `widget_i18n`
+-- Dumping data for table `widget_i18n`
 --
 
 INSERT INTO `widget_i18n` (`id`, `locale`, `data`) VALUES
 (16, 'ru', '<div class="container">\n<ul class="items items-benefits">\n<li>\n<div class="frame-icon-benefit"><span class="helper">&nbsp;</span> <span class="icon-benefits_1">&nbsp;</span></div>\n<div class="frame-description-benefit f-s_0"><span class="helper">&nbsp;</span>\n<div>\n<div class="title">Бесплатная</div>\n<p>доставка</p>\n</div>\n</div>\n</li>\n<li>\n<div class="frame-icon-benefit"><span class="helper">&nbsp;</span> <span class="icon-benefits_2">&nbsp;</span></div>\n<div class="frame-description-benefit f-s_0"><span class="helper">&nbsp;</span>\n<div>\n<div class="title">Гибкая система</div>\n<p>скидок</p>\n</div>\n</div>\n</li>\n<li>\n<div class="frame-icon-benefit"><span class="helper">&nbsp;</span> <span class="icon-benefits_3">&nbsp;</span></div>\n<div class="frame-description-benefit f-s_0"><span class="helper">&nbsp;</span>\n<div>\n<div class="title">Индивидуальный</div>\n<p>подход</p>\n</div>\n</div>\n</li>\n<li>\n<div class="frame-icon-benefit"><span class="helper">&nbsp;</span> <span class="icon-benefits_4">&nbsp;</span></div>\n<div class="frame-description-benefit f-s_0"><span class="helper">&nbsp;</span>\n<div>\n<div class="title">высокий уровень</div>\n<p>сервиса</p>\n</div>\n</div>\n</li>\n</ul>\n</div>'),
 (17, 'ru', '<div class="frame-delivery-payment"><dl><dt class="title f-s_0"><span class="icon_delivery">&nbsp;</span><span class="text-el">Доставка</span></dt><dd class="frame-list-delivery">\n<ul class="list-style-1">\n<li>Новая Почта</li>\n<li>Другие транспортные службы</li>\n<li>Курьером по Киеву</li>\n<li>Самовывоз</li>\n</ul>\n</dd><dt class="title f-s_0"><span class="icon_payment">&nbsp;</span><span class="text-el">Оплата</span></dt><dd class="frame-list-payment">\n<ul class="list-style-1">\n<li>Наличными при получении</li>\n<li>Безналичный перевод</li>\n<li>Приват 24</li>\n<li>WebMoney</li>\n</ul>\n</dd></dl></div>\n<div class="frame-phone-product">\n<div class="title f-s_0"><span class="icon_phone_product">&nbsp;</span><span class="text-el">Заказы по телефонах</span></div>\n<ul class="list-style-1">\n<li>(097) <span class="d_n">&minus;</span>567-43-21</li>\n<li>(097) <span class="d_n">&minus;</span>567-43-22</li>\n</ul>\n</div>'),
 (20, 'ru', '<h1>Интернет-магазин</h1>\n<p>Интернет-магазин &mdash; сайт, торгующий товарами в интернете. Позволяет пользователям сформировать заказ на покупку, выбрать способ оплаты и доставки заказа в сети Интернет.</p>\n<h2>Заголовок второго уровня</h2>\n<h3>Заголовок третьего уровня</h3>\n<p>Выбрав необходимые товары или услуги, пользователь обычно имеет возможность тут же на сайте выбрать метод оплаты и доставки.</p>\n<p>Совокупность отобранных товаров, способ оплаты и доставки представляют собой законченный заказ, который оформляется на сайте путем сообщения минимально необходимой информации о покупателе.</p>\n<h3>Заголовок третьего уровня</h3>\n<p><strong>Основные способы оплаты покупок в интернет-магазине:</strong></p>\n<ul>\n<li>наличный расчет &mdash; товар оплачивается курьеру наличными деньгами при получении покупателем товара, наличный расчет &mdash; товар оплачивается курьеру наличными деньгами при получении покупателем товара;</li>\n<li>электронные деньги &mdash; безналичный вид расчёта;</li>\n<li>терминалы моментальной оплаты &mdash; оплата производится в уличных платёжных терминалах;</li>\n</ul>\n<h4>Заголовок четвертого уровня</h4>\n<p>электронные кассы &mdash; вид расчета, объединяющий практически все перечисленные выше способы оплаты.</p>\n<table>\n<tbody>\n<tr>\n<td>название</td>\n<td>размер</td>\n<td>цена</td>\n</tr>\n<tr>\n<td>длинна трубы</td>\n<td>10 метров</td>\n<td>145 уе</td>\n</tr>\n<tr>\n<td>ширина трубы</td>\n<td>2 метра</td>\n<td>134 уе</td>\n</tr>\n</tbody>\n</table>\n<p>При выборе такого способа оплаты пользователю предлагается на выбор наиболее удобный способ перевода денег от пластиковой карточки до терминала и мобильного телефона.</p>\n<p>Основные способы оплаты покупок в интернет-магазине:</p>\n<ol>\n<li>наличный расчет &mdash; товар оплачивается курьеру наличными деньгами при получении покупателем товара, наличный расчет &mdash; товар оплачивается курьеру наличными деньгами при получении покупателем товара;</li>\n<li>электронные деньги &mdash; безналичный вид расчёта;</li>\n<li>терминалы моментальной оплаты &mdash; оплата производится в уличных платёжных терминалах;</li>\n</ol>\n<p>электронные кассы &mdash; вид расчета, объединяющий практически все перечисленные выше способы оплаты.</p>');
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

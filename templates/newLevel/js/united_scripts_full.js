@@ -1037,13 +1037,14 @@ function getCookie(c_name)
                             otherPage = settings.otherPage,
                             classRemove = settings.classRemove,
                             vertical = settings.vertical;
+
                     if (menuCache && !refresh) {
                         menu.find('a').each(function() {//if start without cache and remove active item
                             var $this = $(this);
                             $this.closest(activeFl.split(' ')[0]).removeClass(aC);
                             $this.removeClass(aC);
                         });
-                        var locHref = location.href,
+                        var locHref = location.origin + location.pathname,
                                 locationHref = otherPage !== undefined ? otherPage : locHref;
                         menu.find('a[href="' + locationHref + '"]').each(function() {
                             var $this = $(this);
@@ -1161,7 +1162,9 @@ function getCookie(c_name)
                         menuItem.find('.helper:first').css('height', sH);
                     menu.removeClass(classRemove);
                     var hoverTO = '';
-                    function closeMenu() {
+                    function closeMenu(el) {
+                        if (el && $.existsN(el.parents(item)))
+                            return false;
                         var $thisDrop = menu.find(drop);
                         if ($thisDrop.length !== 0)
                             menu.removeClass(hM);
@@ -1177,15 +1180,18 @@ function getCookie(c_name)
                         evLF = 'click';
                     if (evLS === 'toggle')
                         evLS = 'click';
-                    menuItem.off(evLF)[evLF](
+
+                    menuItem.off('click').off('hover')[evLF](
                             function(e) {
                                 var $this = $(this);
+                                if (evLF === 'click')
+                                    e.stopPropagation();
                                 if ($this.data("show") === "no" || !$this.data("show")) {
                                     $this.data("show", "yes");
                                     clearTimeout(hoverTO);
-                                    closeMenu();
+                                    closeMenu($this);
                                     var $thisI = $this.index(),
-                                            $thisDrop = $this.find(drop);
+                                            $thisDrop = $this.find(drop).first();
                                     $this.addClass(hM);
                                     if ($thisI === 0)
                                         $this.addClass('firstH');
@@ -1194,8 +1200,6 @@ function getCookie(c_name)
                                     if ($(e.relatedTarget).is(menuItem) || $.existsN($(e.relatedTarget).parents(menuItem)) || $this.data('kk') === 0)
                                         k[$thisI] = true;
                                     if (k[$thisI]) {
-                                        if (evLF === 'click')
-                                            e.stopPropagation();
                                         hoverTO = setTimeout(function() {
                                             $thisDrop[effOn](durationOn, function(e) {
                                                 $this.data('kk', $this.data('kk') + 1);
@@ -1208,7 +1212,7 @@ function getCookie(c_name)
                                                 if (sub2Frame) {
                                                     var listDrop = $thisDrop.children();
                                                     $thisDrop.find(sub2Frame).addClass('is-side');
-                                                    listDrop.children().off(evLS)[evLS](function(e) {
+                                                    listDrop.children().off('click').off('hover')[evLS](function(e) {
                                                         var $this = $(this);
                                                         if (evLS === 'click')
                                                             e.stopPropagation();
@@ -1349,8 +1353,8 @@ function getCookie(c_name)
             });
             return this;
         },
-        refresh: function() {
-            methods.init.call(this, $.extend({}, this.data('options'), {
+        refresh: function(optionsMenu) {
+            methods.init.call(this, $.extend({}, optionsMenu ? optionsMenu : this.data('options'), {
                 refresh: true
             }));
             return this;
@@ -1683,8 +1687,11 @@ function getCookie(c_name)
                         trigger = methods._checkProp(elSet, options, 'trigger'),
                         triggerOn = methods._checkProp(elSet, options, 'triggerOn'),
                         triggerOff = methods._checkProp(elSet, options, 'triggerOff'),
-                        condTrigger = methods._checkProp(elSet, options, 'condTrigger');
-                methods._modalTrigger(elSet, options);
+                        condTrigger = methods._checkProp(elSet, options, 'condTrigger'),
+                        modal = methods._checkProp(elSet, options, 'modal');
+                if (modal)
+                    methods._modalTrigger(el, elSet, options);
+
                 var rel = this.rel;
                 if (rel) {
                     rel = rel.replace(methods._reg(), '');
@@ -1788,7 +1795,7 @@ function getCookie(c_name)
                     url: source,
                     beforeSend: function() {
                         if (!methods._checkProp(elSet, set, 'moreOne'))
-                            methods._closeMoreOne(el);
+                            methods._closeMoreOne();
 
                         $.drop.showActivity();
                     },
@@ -1852,6 +1859,7 @@ function getCookie(c_name)
                         else
                             $this = $('[data-drop="' + modalBtnDrop + '"]');
                         $this.data('datas', datas);
+                        methods._modalTrigger($this, $this.data(), opt);
                     }
                     else {
                         var sourcePref = opt.source.replace(methods._reg(), ''),
@@ -1901,7 +1909,7 @@ function getCookie(c_name)
 
                 if (!$this.parent().hasClass(aC)) {
                     if (!moreOne && !start)
-                        methods._closeMoreOne($this);
+                        methods._closeMoreOne();
 
                     if (!$this.is(':disabled')) {
                         var confirm = methods._checkProp(elSet, opt, 'confirm'),
@@ -1989,16 +1997,16 @@ function getCookie(c_name)
                                             drpV = $.extend({}, $this.data('drp'));
                                         }
                                     });
-                                    
-                                    if (!drpV)
-                                        body.removeClass('isScroll').css({
-                                            'overflow': '',
-                                            'margin-right': ''
-                                        });
-                                    if (drpV && drpV.place !== 'inherit' && drpV.overlayOpacity !== 0 && !isTouch)
+
+                                    if (drpV && drpV.overlayOpacity !== 0 && !isTouch)
                                         body.addClass('isScroll').css({
                                             'overflow': 'hidden',
                                             'margin-right': $.drop.widthScroll
+                                        });
+                                    else
+                                        body.removeClass('isScroll').css({
+                                            'overflow': '',
+                                            'margin-right': ''
                                         });
 
                                     if (set.dropOver && !f)
@@ -2080,6 +2088,7 @@ function getCookie(c_name)
         },
         _resetStyleDrop: function(drop) {
             return drop.css({
+                'z-index': '',
                 'width': '',
                 'height': '',
                 'top': '',
@@ -2102,15 +2111,13 @@ function getCookie(c_name)
                 return elSet[prop] || (opt[prop] ? opt[prop] : false) || $.drop.dP[prop];
             return this;
         },
-        _closeMoreOne: function($this) {
-            if ($.existsN($this.closest('[data-elrun]')) && !$this.data('modal'))
-                methods.close($this.closest('[data-elrun]'));
+        _closeMoreOne: function() {
             if ($.exists('[data-elrun].center:visible, [data-elrun].noinherit:visible'))
                 methods.close($('[data-elrun].center:visible, [data-elrun].noinherit:visible'));
             return this;
         },
-        _modalTrigger: function(elSet, set) {
-            $(document).off('successJson.' + $.drop.nS).on('successJson.' + $.drop.nS, function(e) {
+        _modalTrigger: function(el, elSet, set) {
+            el.off('successJson.' + $.drop.nS).on('successJson.' + $.drop.nS, function(e) {
                 if (e.datas) {
                     if (e.datas.answer === "success")
                         e.el.find(methods._checkProp(elSet, set, 'modalPlace')).empty().append(methods._checkProp(elSet, set, 'message').success(e.datas.data));
@@ -2126,9 +2133,8 @@ function getCookie(c_name)
             var elSet = el.data(),
                     drop = $(elSet.drop);
             datas = datas || el.data('datas');
-            methods._modalTrigger(elSet, set);
             methods._pasteDrop($.extend({}, $.drop.dP, set, elSet), drop, null, rel);
-            $(document).trigger({
+            el.trigger({
                 type: 'successJson.' + $.drop.nS,
                 el: drop,
                 datas: datas
@@ -2267,8 +2273,9 @@ function getCookie(c_name)
                 if (isTouch)
                     forCenter.css('height', '').css('height', $(document).height());
                 drop.data('drp').forCenter = forCenter;
-                forCenter.add(drop).css('z-index', overlays.length + 1104);
+                forCenter.css('z-index', overlays.length + 1104);
             }
+            drop.css('z-index', overlays.length + 1104);
 
             methods._pasteContent($this, drop, opt);
 
@@ -2580,7 +2587,7 @@ function getCookie(c_name)
             scrollTop: null
         };
         this.setParameters = function(options) {
-            $.extend($.drop.dP, options);
+            $.extend(this.dP, options);
         };
         this.setMethods = function(ms) {
             $.extend(methods, ms);
@@ -3969,7 +3976,7 @@ var optionsDrop = {
     closeEsc: true,
     position: 'absolute',
     confirmBtnDrop: '#confirm',
-    limitSize: false,
+    limitSize: true,
     limitContentSize: true,
     scrollContent: true,
     keyNavigate: true,
@@ -4442,7 +4449,7 @@ function initCarouselJscrollPaneCycle(el) {
                     prev = $this.find('.prev');
 
             if (cycle.find('li').length > 1) {
-                cycle.cycle($.extend({}, optionsCycle, {
+                cycle.cycle('destroy').cycle($.extend({}, optionsCycle, {
                     'next': next,
                     'prev': prev,
                     'pager': $this.find('.pager'),
@@ -4741,27 +4748,24 @@ function itemUserToolbar() {
             }
         }).not('.activeUT').trigger('click.UT');
         wnd.off('scroll.UT').on('scroll.UT', function() {
-            var btnW = btnUp.show().outerWidth(true),
-                    itemsUTCW = itemsUT.width();
-            btnUp.hide();
-            if ((wnd.width() - itemsUTCW) / 2 > btnW && wnd.scrollTop() > wnd.height())
+            if (wnd.scrollTop() > wnd.height() && !btnUp.hasClass('non-v'))
                 btnUp.fadeIn();
             else
                 btnUp.hide();
-        })
+        });
         return itemsUT;
     }
     , this.resize = function(itemsUT, btnUp) {
         itemsUT = $(itemsUT);
         var btnW = btnUp.show().outerWidth(true),
-                itemsUTCW = itemsUT.width();
+                itemsUTCW = itemsUT.children().width();
         btnUp.hide();
-        if ((wnd.width() - itemsUTCW) / 2 > btnW && wnd.scrollTop() > wnd.height())
-            btnUp.fadeIn();
+        if ((wnd.width() - itemsUTCW) / 2 > btnW)
+            btnUp.show().removeClass('non-v');
         else
-            btnUp.hide();
+            btnUp.hide().addClass('non-v');
         return itemsUT;
-    }
+    };
 }
 function reinitializeScrollPane(el) {
     if ($.exists(selScrollPane)) {
@@ -5098,10 +5102,10 @@ function init() {
                 tab = pN.substr(pN.lastIndexOf('/') + 1, pN.length);
             else if (pN.indexOf('product') !== -1)
                 tab = hrefCategoryProduct.substr(hrefCategoryProduct.lastIndexOf('/') + 1, hrefCategoryProduct.length);
-            document.location.href = '/shop/compare#tab_' + tab;
+            document.location.href = locale + '/shop/compare#tab_' + tab;
         }
         else
-            document.location.href = '/shop/compare';
+            document.location.href = locale + '/shop/compare';
     });
     doc.on('compare_list_add', function(e) {
         ShopFront.CompareList.process();

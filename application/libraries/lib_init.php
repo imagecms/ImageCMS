@@ -88,10 +88,9 @@ class Lib_init {
                 define('ICMS_DISBALE_CSRF', true);
             }
             // Support for privat
-		if ($CI->uri->segment(1)=='shop' && $CI->uri->segment(2)=='order' && $CI->uri->segment(3)=='view' && $_POST)
-{
-    define('ICMS_DISBALE_CSRF',true);
-}
+            if ($CI->uri->segment(1) == 'shop' && $CI->uri->segment(2) == 'order' && $CI->uri->segment(3) == 'view' && $_POST) {
+                define('ICMS_DISBALE_CSRF', true);
+            }
             if ($CI->uri->segment(1) == 'shop' && $CI->uri->segment(2) == 'cart' && $CI->uri->segment(3) == 'view' && $_GET['succes'] == 'true') {
                 define('ICMS_DISBALE_CSRF', true);
             }

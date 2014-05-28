@@ -1,0 +1,247 @@
+﻿msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-05-23 04:51+0300\n"
+"PO-Revision-Date: 2014-05-23 04:51+0300\n"
+"Last-Translator:  <>\n"
+"Language-Team:  <>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
+"X-Poedit-Basepath: ../../../..\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-Language: \n"
+"X-Poedit-Country: \n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: ./templates/commerce_mobiles/shop/cart.tpl:187
+msgid "Корзина пуста"
+msgstr ""
+
+#: ./templates/commerce_mobiles/comments.tpl:6
+msgid "login_for_comments"
+msgstr "login_for_comments"
+
+#: ./templates/commerce_mobiles/comments.tpl:12
+msgid "lang_logged_in_as"
+msgstr "lang_logged_in_as"
+
+#: ./templates/commerce_mobiles/comments.tpl:27
+#: ./templates/commerce_mobiles/comments.tpl:152
+msgid "lang_comment_author"
+msgstr "lang_comment_author"
+
+#: ./templates/commerce_mobiles/comments.tpl:32
+#: ./templates/commerce_mobiles/comments.tpl:155
+msgid "lang_comment_email"
+msgstr "lang_comment_email"
+
+#: ./templates/commerce_mobiles/comments.tpl:37
+msgid "lang_comment_site"
+msgstr "lang_comment_site"
+
+#: ./templates/commerce_mobiles/comments.tpl:65
+#: ./templates/commerce_mobiles/comments.tpl:159
+msgid "lang_comment_text"
+msgstr "lang_comment_text"
+
+#: ./templates/commerce_mobiles/comments.tpl:81
+#: ./templates/commerce_mobiles/comments.tpl:168
+msgid "Code protection"
+msgstr "Код защиты"
+
+#: ./templates/commerce_mobiles/shop/default/category.tpl:22
+msgid "On"
+msgstr "На"
+
+#: ./templates/commerce_mobiles/shop/default/category.tpl:22
+msgid "Rating"
+msgstr "Рейтинг"
+
+#: ./templates/commerce_mobiles/shop/default/category.tpl:23
+msgid "From cheap to expensive"
+msgstr "От дешевых до дорогих"
+
+#: ./templates/commerce_mobiles/shop/default/category.tpl:24
+msgid "From expensive to cheap"
+msgstr "От дорогих до дешевых"
+
+#: ./templates/commerce_mobiles/shop/default/category.tpl:25
+msgid "Popular"
+msgstr "Популярные"
+
+#: ./templates/commerce_mobiles/shop/default/category.tpl:26
+msgid "New"
+msgstr "Новый"
+
+#: ./templates/commerce_mobiles/shop/default/category.tpl:27
+msgid "Action"
+msgstr "Действие"
+
+#: ./templates/commerce_mobiles/shop/default/product.tpl:21
+msgid "Buy"
+msgstr "Купить"
+
+#: ./templates/commerce_mobiles/shop/order_view.tpl:10
+msgid "Спасибо за Ваш заказ"
+msgstr "Спасибо за Ваш заказ"
+
+#: ./templates/commerce_mobiles/shop/order_view.tpl:15
+msgid "Заказ"
+msgstr "Заказ"
+
+#: ./templates/commerce_mobiles/shop/order_view.tpl:29
+msgid "Статус"
+msgstr "Статус"
+
+#: ./templates/commerce_mobiles/shop/order_view.tpl:46
+msgid "Подарочний сертификат"
+msgstr "Подарочний сертификат"
+
+#: ./templates/commerce_mobiles/shop/order_view.tpl:124
+#: ./templates/commerce_mobiles/shop/cart.tpl:76
+msgid "Всего к оплате"
+msgstr "Всего к оплате"
+
+#: ./templates/commerce_mobiles/shop/category.tpl:20
+msgid "Подбор по параметрам"
+msgstr "Подбор по параметрам"
+
+#: ./templates/commerce_mobiles/shop/cart.tpl:4
+msgid "Ваш заказ"
+msgstr "Ваш заказ"
+
+#: ./templates/commerce_mobiles/shop/cart.tpl:74
+msgid "Скидка"
+msgstr "Скидка"
+
+#: ./templates/commerce_mobiles/shop/cart.tpl:85
+msgid "Способ оплаты и доставки вы сможете согласовать с менеджером, который свяжется с вами после оформления заказа."
+msgstr "Способ оплаты и доставки вы сможете согласовать с менеджером, который свяжется с вами после оформления заказа."
+
+#: ./templates/commerce_mobiles/shop/cart.tpl:93
+msgid "Имя"
+msgstr "Имя"
+
+#: ./templates/commerce_mobiles/shop/cart.tpl:97
+msgid "Е-mail"
+msgstr "Е-mail"
+
+#: ./templates/commerce_mobiles/shop/cart.tpl:115
+#: ./templates/commerce_mobiles/shop/cart.tpl:146
+msgid "Не выбран"
+msgstr "Не выбран"
+
+#: ./templates/commerce_mobiles/shop/cart.tpl:162
+msgid "Коментарий к заказу"
+msgstr "Коментарий к заказу"
+
+#: ./templates/commerce_mobiles/shop/product.tpl:70
+msgid "Другие варианты товара"
+msgstr "Другие варианты товара"
+
+#: ./templates/commerce_mobiles/shop/cart.tpl:101
+msgid "Телефон"
+msgstr "Телефон"
+
+#: ./templates/commerce_mobiles/shop/order_view.tpl:37
+#: ./templates/commerce_mobiles/shop/cart.tpl:105
+msgid "Адрес"
+msgstr "Адрес"
+
+#: ./templates/commerce_mobiles/shop/order_view.tpl:53
+msgid "Ваша текущая скидка"
+msgstr "Ваша текущая скидка"
+
+#: ./templates/commerce_mobiles/shop/cart.tpl:109
+msgid "Способ доставки"
+msgstr "Способ доставки"
+
+#: ./templates/commerce_mobiles/shop/cart.tpl:138
+msgid "Способ оплаты"
+msgstr "Способ оплаты"
+
+#: ./templates/commerce_mobiles/shop/order_view.tpl:22
+msgid "Оплачен"
+msgstr "Оплачен"
+
+#: ./templates/commerce_mobiles/shop/categorysubfirst.tpl:33
+#: ./templates/commerce_mobiles/shop/category.tpl:33
+#: ./templates/commerce_mobiles/shop/order_view.tpl:109
+#: ./templates/commerce_mobiles/shop/cart_setorder.tpl:23
+#: ./templates/commerce_mobiles/shop/cart.tpl:17
+#: ./templates/commerce_mobiles/shop/product.tpl:21
+#: ./templates/commerce_mobiles/shop/product.tpl:86
+#: ./templates/commerce_mobiles/shop/brand.tpl:26
+msgid "Вариант"
+msgstr "Вариант"
+
+#: ./templates/commerce_mobiles/shop/categorysubfirst.tpl:37
+#: ./templates/commerce_mobiles/shop/category.tpl:37
+#: ./templates/commerce_mobiles/shop/order_view.tpl:113
+#: ./templates/commerce_mobiles/shop/cart_setorder.tpl:27
+#: ./templates/commerce_mobiles/shop/cart.tpl:21
+#: ./templates/commerce_mobiles/shop/product.tpl:25
+#: ./templates/commerce_mobiles/shop/product.tpl:90
+#: ./templates/commerce_mobiles/shop/brand.tpl:30
+msgid "Артикул"
+msgstr "Артикул"
+
+#: ./templates/commerce_mobiles/shop/order_view.tpl:63
+msgid "Доставка"
+msgstr "Доставка"
+
+#: ./templates/commerce_mobiles/shop/cart.tpl:54
+#: ./templates/commerce_mobiles/shop/cart.tpl:61
+msgid "Подарочный сертификат"
+msgstr "Подарочный сертификат"
+
+#: ./templates/commerce_mobiles/shop/cart.tpl:84
+msgid "Оформление заказа"
+msgstr "Оформление заказа"
+
+#: ./templates/commerce_mobiles/shop/cart.tpl:140
+msgid "Выберите доставку"
+msgstr "Выберите доставку"
+
+#: ./templates/commerce_mobiles/shop/product.tpl:47
+#: ./templates/commerce_mobiles/shop/product.tpl:109
+msgid "Купить"
+msgstr "Купить"
+
+#: ./templates/commerce_mobiles/shop/product.tpl:58
+#: ./templates/commerce_mobiles/shop/product.tpl:120
+msgid "Нет в наличии"
+msgstr "Нет в наличии"
+
+#: ./templates/commerce_mobiles/shop/product.tpl:132
+msgid "Свойства"
+msgstr "Свойства"
+
+#: ./templates/commerce_mobiles/shop/product.tpl:144
+msgid "Описание"
+msgstr "Описание"
+
+#: ./templates/commerce_mobiles/shop/cart.tpl:172
+msgid "Оформить заказ"
+msgstr "Оформить заказ"
+
+#: ./templates/commerce_mobiles/shop/cart.tpl:64
+msgid "Неверный код подарочного сертификата"
+msgstr "Неверный код подарочного сертификата"
+
+#: ./templates/commerce_mobiles/shop/cart.tpl:68
+msgid "Применить"
+msgstr "Применить"
+
+#: ./templates/commerce_mobiles/shop/order_view.tpl:23
+msgid "Да"
+msgstr "Да"
+
+#: ./templates/commerce_mobiles/shop/order_view.tpl:23
+msgid "Нет"
+msgstr "Нет"

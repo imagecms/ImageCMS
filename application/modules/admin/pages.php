@@ -158,9 +158,9 @@ class Pages extends BaseAdminController {
 
         $this->form_validation->set_rules('main_tpl', lang("Main page template", "admin"), 'trim|max_length[50]|min_length[2]|callback_tpl_validation');
 
-        $groupId = (int) $this->input->post('cfcm_use_group');
-
-        ($hook = get_hook('cfcm_set_rules')) ? eval($hook) : NULL;
+//        $groupId = (int) $this->input->post('cfcm_use_group');
+//
+//        ($hook = get_hook('cfcm_set_rules')) ? eval($hook) : NULL;
 
         if ($this->form_validation->run($this) == FALSE) {
             ($hook = get_hook('admin_page_add_val_failed')) ? eval($hook) : NULL;
@@ -501,10 +501,12 @@ class Pages extends BaseAdminController {
         $this->form_validation->set_rules('publish_time', lang("Publication time", "admin"), 'required|valid_time');
 
         ($hook = get_hook('admin_page_update_set_rules')) ? eval($hook) : NULL;
+        $page_category = $this->cms_admin->get_category($data['category']);
+        if ($page_category['field_group'] != -1) {
+            $groupId = $page_category['field_group'];
 
-        $groupId = (int) $this->input->post('cfcm_use_group');
-
-        ($hook = get_hook('cfcm_set_rules')) ? eval($hook) : NULL;
+            ($hook = get_hook('cfcm_set_rules')) ? eval($hook) : NULL;
+        }
 
         if ($this->form_validation->run($this) == FALSE) {
             ($hook = get_hook('admin_page_update_val_failed')) ? eval($hook) : NULL;
@@ -805,8 +807,7 @@ class Pages extends BaseAdminController {
             else if ($action == 'move')
                 showMessage(lang("Successfull moving", "admin"));
             pjax($_SERVER["HTTP_REFERER"]);
-        }
-        else
+        } else
             showMessage(lang("The operation error", "admin"));
     }
 

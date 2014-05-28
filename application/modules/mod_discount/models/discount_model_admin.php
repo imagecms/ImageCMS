@@ -10,7 +10,7 @@ if (!defined('BASEPATH'))
  * @copyright (c) 2013, ImageCMS
  * @package ImageCMSModule
  */
-class discount_model_admin extends CI_Model {
+class Discount_model_admin extends CI_Model {
 
     public function __construct() {
         parent::__construct();
@@ -139,19 +139,21 @@ class discount_model_admin extends CI_Model {
     public function getProductsByIdNameNumber($term, $limit = 7) {
         $locale = MY_Controller::getCurrentLocale();
         $query = $this->db
-                ->select('id, name')
-                ->from('shop_products_i18n')
+                ->select('shop_products_i18n.id, name, number')
+                ->join('shop_product_variants','shop_product_variants.product_id=shop_products_i18n.id')
                 ->where('locale', $locale)
-                ->like('id', $term)
+                ->like('shop_products_i18n.id', $term)
                 ->or_like('name', $term)
+                ->or_like('number', $term)
                 ->limit($limit)
-                ->get()
+                ->get('shop_products_i18n')
                 ->result_array();
 
-        if ($query)
+        if ($query) {
             return $query;
-        else
+        } else {
             return false;
+        }
     }
 
     /**

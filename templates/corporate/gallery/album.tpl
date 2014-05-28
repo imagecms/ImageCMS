@@ -13,9 +13,9 @@
             </ul>
         </div>
         { /* }
-            <div class="comments w_50">
-                {$comments}
-            </div>
+        <div class="comments w_50">
+            {$comments}
+        </div>
         { */ }
     </div>
 </div>
@@ -23,9 +23,7 @@
 <script type="text/javascript" src="{$THEME}js/jquery.fancybox-1.3.4.pack.js"></script>
 {literal}
     <script type="text/javascript">
-        function formatTitle(title, currentArray, currentIndex, currentOpts) {
-            return '<div id="fancybox-title-over">' + (title && title.length ? title : '') + 'Картинка ' + (currentIndex + 1) + ' из ' + currentArray.length + '</div>';
-        }
+
         $(function() {
             $('[rel="group"]').fancybox({
                 'margin': 0,
@@ -33,7 +31,9 @@
                 'transitionIn': 'none',
                 'transitionOut': 'none',
                 'titlePosition': 'over',
-                'titleFormat': formatTitle
+                'titleFormat': function(title, currentArray, currentIndex, currentOpts) {
+                    return '<div id="fancybox-title-over">' + (title && title.length ? title : '') + '{/literal}{lang('Картинка','corporate')}{literal} ' + (currentIndex + 1) + ' из ' + currentArray.length + '</div>';
+                }
             });
         })
     </script>

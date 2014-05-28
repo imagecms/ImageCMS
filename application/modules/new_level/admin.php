@@ -13,7 +13,7 @@ class Admin extends BaseAdminController {
         $lang = new MY_Lang();
         $lang->load('new_level');
         $this->load->model('new_level_model');
-        $this->path = TEMPLATES_PATH . 'newLevel';
+        $this->path = TEMPLATES_PATH . $this->db->get('settings')->row()->site_template;
     }
 
     /**

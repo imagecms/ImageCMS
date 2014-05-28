@@ -14,7 +14,7 @@ class Template extends Mabilis {
     public $template_vars = array();
 
     public function __construct() {
-        
+
         $this->load();
         if (file_exists('templates/' . $this->CI->config->item('template') . '/shop/helpers/helper.php'))
             require_once 'templates/' . $this->CI->config->item('template') . '/shop/helpers/helper.php';
@@ -40,6 +40,7 @@ class Template extends Mabilis {
         $this->assign('JS_URL', base_url() . 'js');
         /** URL to template folder */
         $this->assign('THEME', base_url() . 'templates/' . $tpl . '/');
+        $this->assign('TEMPLATE', $tpl);
         $this->assign('CI', $this->CI);
     }
 
@@ -163,6 +164,7 @@ class Template extends Mabilis {
     /////////////////////////////////////////////////////////////////////////////////////////
     private $_css_files = array();
     private $_js_files = array();
+    private $_links = array();
     private $_js_code = array();
     private $_css_code = array();
     private $_css_str = array();
@@ -222,6 +224,15 @@ class Template extends Mabilis {
     }
 
     /**
+     * 
+     * @param string $url
+     * @param string $rel
+     */
+    public function registerLink($url, $rel) {
+        $this->_links[] = "<link href='$url' rel='$rel'>";
+    }
+
+    /**
      * Place canonical code before /head
      * @param type $url canonical url
      */
@@ -235,8 +246,9 @@ class Template extends Mabilis {
      * @return string
      */
     private function _check_postion($position) {
-        if ($position != 'before' AND $position != 'after')
+        if ($position != 'before' AND $position != 'after') {
             return $position = 'before';
+        }
         return $position;
     }
 
@@ -360,8 +372,17 @@ class Template extends Mabilis {
                 }
             }
         }
+
         if (sizeof($this->_canonicals) > 0) {
             foreach ($this->_canonicals as $code) {
+                if (!strstr(self::$result_before, $code)) {
+                    self::$result_before .= "$code\n";
+                }
+            }
+        }
+        
+        if (sizeof($this->_links) > 0) {
+            foreach ($this->_links as $code) {
                 if (!strstr(self::$result_before, $code)) {
                     self::$result_before .= "$code\n";
                 }
@@ -372,19 +393,23 @@ class Template extends Mabilis {
 //        $js_tpl_end = " });";
 
 
-        if (self::$result_before)
-            if ($this->CI->input->is_ajax_request())
+        if (self::$result_before) {
+            if ($this->CI->input->is_ajax_request()) {
                 $tpl = self::$result_before . $tpl;
-            else
-            if (!strstr($tpl, self::$result_before))
+            } else
+            if (!strstr($tpl, self::$result_before)) {
                 $tpl = preg_replace('/\<\/head\>/', self::$result_before . '</head>' . "\n", $tpl, 1);
+            }
+        }
 
-        if (self::$result_after)
-            if ($this->CI->input->is_ajax_request())
+        if (self::$result_after) {
+            if ($this->CI->input->is_ajax_request()) {
                 $tpl .= self::$result_after;
-            else
-            if (!strstr($tpl, self::$result_after))
+            } else
+            if (!strstr($tpl, self::$result_after)) {
                 $tpl = preg_replace('/(\<\/body>(\s*|\n)<\/html>)(\s*|\n)$/', self::$result_after . "</body></html>", $tpl, 1);
+            }
+        }
 
 //
 //        if ($result_js_before) {

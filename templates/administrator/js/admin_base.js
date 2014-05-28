@@ -689,7 +689,27 @@ $(document).ready(function() {
             container: '#mainContent'
         });
     });
-    ;
+    
+    $('.property_list_order').live('click', function() {
+        var column = $(this).attr('data-column');
+        $('input[name=orderMethod]').attr('value', column);
+        if ($('input[name=order]').attr('value') === '') {
+            $('input[name=order]').attr('value', 'ASC');
+        } else {
+            if ($('input[name=order]').attr('value') === 'ASC') {
+                $('input[name=order]').attr('value', 'DESC');
+            } else {
+                $('input[name=order]').attr('value', 'ASC');
+            }
+        }
+        ;
+        var query_string = $('#filter_form').serialize();
+        $.pjax({
+            url: '/admin/components/run/shop/properties/index/?' + query_string,
+            container: '#mainContent'
+        });
+    });
+    
 
     $('.move_to_cat').live('click', function() {
         var catId = $('#moveCategoryId').attr('value');
@@ -1346,7 +1366,7 @@ $(document).ready(function() {
         //btn.toggleClass('btn-primary active');
     });
 
-    $('.prodFilterSelect').live('change', function(event) {
+    $('.prodFilterSelect').off('change').on('change', function(event) {
         var query_string = $('#filter_form').serialize();
         $.pjax({
             url: '/admin/components/run/shop/search/index/?' + query_string,

@@ -49,7 +49,7 @@
                 {foreach $variants as $key => $pv}
                     {if $pv->getStock() == 0}
                         <div class="m-b_5    js-variant-{echo $pv->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
-                            <span class="c_6 f-w_b">{lang('Нет в наличии', 'newLevel')}</span>
+                            <span class="c_6 f-w_b">{lang('Нет в наличии', 'box')}</span>
                         </div>
                     {/if}
                 {/foreach}

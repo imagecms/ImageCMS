@@ -235,7 +235,7 @@
                                     {foreach $baseMenu as $li}
                                         <li class="{$li.class} {if $li.subMenu} dropdown{/if}">
                                             {if $li.subMenu}
-                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="{$li.icon}"></i>{echo (bool)lang($li.text)?lang($li.text):$li.text}<b class="caret"></b></a>
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="{$li.icon}"></i>{echo (bool)$li.text?$li.text:$li.text}<b class="caret"></b></a>
                                                 <ul class="dropdown-menu">
                                                     {foreach $li.subMenu as $sli}
                                                         {if $sli.menusList}
@@ -265,7 +265,7 @@
                                                                     {if $sli.id} id="{$sli.id}" {/if}
                                                                     {if $sli.pjax !== FALSE} class="pjax" {/if}
                                                                     >
-                                                                    {echo (bool)$sli.text?lang($sli.text):$sli.text}
+                                                                    {echo (bool)$sli.text?$sli.text:$sli.text}
                                                                 </a>
                                                             {else:}
                                                                 {echo (bool)$sli.text ? $sli.text : $sli.text}
@@ -299,7 +299,7 @@
                                     {foreach $shopMenu as $li}
                                         <li class="{$li.class} {if $li.subMenu} dropdown{/if}">
                                             {if $li.subMenu}
-                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="{$li.icon}"></i>{echo (bool)lang($li.text)?lang($li.text):$li.text}<b class="caret"></b></a>
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="{$li.icon}"></i>{echo (bool)$li.text?$li.text:$li.text}<b class="caret"></b></a>
                                                 <ul class="dropdown-menu">
                                                     {foreach $li.subMenu as $sli}
                                                         <li {if $sli.divider} class="divider"{/if}{if $sli.header} class="nav-header"{/if}>
@@ -308,10 +308,10 @@
                                                                     {if $sli.link} href="{site_url($sli.link)}" {/if}
                                                                     {if $sli.id} id="{$sli.id}" {/if}
                                                                     {if $sli.pjax !== FALSE} class="pjax" {/if}>
-                                                                    {echo (bool)$sli.text?lang($sli.text):$sli.text}
+                                                                    {echo (bool)$sli.text?$sli.text:$sli.text}
                                                                 </a>
                                                             {else:}
-                                                                {echo $sli.text?lang($sli.text):$sli.text}
+                                                                {echo $sli.text?$sli.text:$sli.text}
                                                             {/if}
 
                                                         </li>
@@ -418,8 +418,6 @@
         <script async="async" src="{$THEME}js/bootstrap-notify.js" type="text/javascript"></script>
         <script src="{$THEME}js/jquery.form.js" type="text/javascript"></script>
 
-        <script src="{$THEME}js/jquery.maskedinput-1.3.min" type="text/javascript"></script>
-
         <script async="async" src="{$THEME}js/jquery-validate/jquery.validate.min.js" type="text/javascript"></script>
         <script async="async" src="{$THEME}js/jquery-validate/jquery.validate.i18n.js" type="text/javascript"></script>
 
@@ -518,6 +516,7 @@
                     prod_on_off();
                 })
                 base_url = '{/literal}{$BASE_URL}';
+                theme_url = '{$THEME}';
 
                     var elfToken = '{echo $CI->lib_csrf->get_token()}';
             </script>

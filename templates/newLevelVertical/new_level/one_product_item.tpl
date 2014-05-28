@@ -47,7 +47,7 @@
             {if $opi_codeArticle}
                 <div class="frame-variant-name-code">
                     {$hasCode = $p->firstVariant->getNumber() == ''}
-                    <span class="frame-variant-code frameVariantCode" {if $hasCode}style="display:none;"{/if}>{lang('Артикул','newLevel')}:
+                    <span class="frame-variant-code frameVariantCode" {if $hasCode}style="display:none;"{/if}>{lang('Артикул','newLevelVertical')}:
                         <span class="code js-code">
                             {if !$hasCode}
                                 {trim($p->firstVariant->getNumber())}
@@ -56,7 +56,7 @@
                     </span>
                     {if count($variants) > 1}
                         {$hasVariant = $p->firstVariant->getName() == ''}
-                        <span class="frame-variant-name frameVariantName" {if $hasVariant}style="display:none;"{/if}>{lang('Вариант','newLevel')}:
+                        <span class="frame-variant-name frameVariantName" {if $hasVariant}style="display:none;"{/if}>{lang('Вариант','newLevelVertical')}:
                             <span class="code js-code">
                                 {if !$hasVariant}
                                     {trim($p->firstVariant->getName())}
@@ -67,7 +67,7 @@
                     {if $brand = $p->getBrand()}
                         {$brand = $brand->getName()}
                         {$hasBrand = trim($brand) != ''}
-                        <span class="frame-item-brand">{lang('Бренд','newLevel')}:
+                        <span class="frame-item-brand">{lang('Бренд','newLevelVertical')}:
                             <span class="code js-code">
                                 {if $hasBrand}
                                     <a href="{shop_url('brand/'.$p->getBrand()->getUrl())}">
@@ -86,7 +86,7 @@
                         {$CI->load->module('star_rating')->show_star_rating($p, false)}
                         <a href="{shop_url('product/'.$p->url.'#comment')}" class="count-response">
                             {intval($Comments[$p->getId()])}
-                            {echo SStringHelper::Pluralize($Comments[$p->getId()], array(lang("отзыв","newLevel"),lang("отзыва","newLevel"),lang("отзывов","newLevel")))}
+                            {echo SStringHelper::Pluralize($Comments[$p->getId()], array(lang("отзыв",'newLevelVertical'),lang("отзыва",'newLevelVertical'),lang("отзывов",'newLevelVertical')))}
                         </a>
                     </div>
                 {/if}
@@ -171,7 +171,7 @@
                             <form method="POST" action="/shop/cart/addProductByVariantId/{echo $pv->getId()}">
                                 {if !$opi_widget && !$opi_defaultItem}
                                     <div class="frame-count frameCount">
-                                        <div class="number js-number" data-title="{lang('Количество на складе','newLevel')} {echo $pv->getstock()}">
+                                        <div class="number js-number" data-title="{lang('Количество на складе','newLevelVertical')} {echo $pv->getstock()}">
                                             <div class="frame-change-count">
                                                 <div class="btn-plus">
                                                     <button type="button"{if $inCart} disabled="disabled"{/if}>
@@ -184,7 +184,7 @@
                                                     </button>
                                                 </div>
                                             </div>
-                                            <input type="text" name="quantity" value="{echo $inCart ? $inCart : 1}" class="plusMinus plus-minus" data-title="{lang('Только цифры','newLevel')}" data-min="1" data-max="{echo $pv->getstock()}"{if $inCart} disabled="disabled"{/if}>
+                                            <input type="text" name="quantity" value="{echo $inCart ? $inCart : 1}" class="plusMinus plus-minus" data-title="{lang('Только цифры','newLevelVertical')}" data-min="1" data-max="{echo $pv->getstock()}"{if $inCart} disabled="disabled"{/if}>
                                         </div>
                                     </div>
                                 {/if}
@@ -196,7 +196,7 @@
                                         class="btnBuy"
                                         >
                                         <span class="icon_cleaner_buy"></span>
-                                        <span class="text-el">{lang('В корзине', 'newLevel')}</span>
+                                        <span class="text-el">{lang('В корзине', 'newLevelVertical')}</span>
                                     </button>
                                 </div>
                                 <div class="btn-buy{if $inCart} d_n{/if}">
@@ -229,7 +229,7 @@
                                         data-maxcount="{echo $pv->getstock()}"
                                         >
                                         <span class="icon_cleaner_buy"></span>
-                                        <span class="text-el">{lang('Купить', 'newLevel')}</span>
+                                        <span class="text-el">{lang('Купить', 'newLevelVertical')}</span>
                                     </button>
                                 </div>
                                 {form_csrf()}
@@ -268,7 +268,7 @@
                                     data-url="{echo shop_url('product/'.$p->getUrl())}"
                                     >
                                     <span class="icon-but"></span>
-                                    <span class="text-el">{lang('Сообщить о появлении','newLevel')}</span>
+                                    <span class="text-el">{lang('Сообщить о появлении','newLevelVertical')}</span>
                                 </button>
                             </div>
                         </div>
@@ -296,12 +296,12 @@
                                     <button class="toCompare"
                                             data-id="{echo $p->getId()}"
                                             type="button"
-                                            data-title="{lang('В список сравнений','newLevel')}"
-                                            data-firtitle="{lang('В список сравнений','newLevel')}"
-                                            data-sectitle="{lang('В списке сравнений','newLevel')}"
+                                            data-title="{lang('В список сравнений','newLevelVertical')}"
+                                            data-firtitle="{lang('В список сравнений','newLevelVertical')}"
+                                            data-sectitle="{lang('В списке сравнений','newLevelVertical')}"
                                             data-rel="tooltip">
                                         <span class="icon_compare"></span>
-                                        <span class="text-el d_l">{lang('В список сравнений','newLevel')}</span>
+                                        <span class="text-el d_l">{lang('В список сравнений','newLevelVertical')}</span>
                                     </button>
                                 </div>
                                 <!-- End. Compare List button -->
@@ -337,7 +337,7 @@
         <!-- End. Remove buttons if compare-->
 
         <!-- Start. For wishlist page-->
-        {if $opi_wishListPage}
+        {if $opi_wishListPage && !$opi_widget}
             {$p = $pArray}
             {if trim($p[comment]) != ''}
                 <p>
@@ -359,7 +359,7 @@
                             data-effect-off="fadeOut"
                             data-source="{site_url('/wishlist/wishlistApi/deleteItem/'.$p[variant_id].'/'.$p[wish_list_id])}"
                             data-after="WishListFront.removeItem"
-                            ><span class="icon_remove"></span><span class="text-el d_l_1">{lang('Удалить', 'newLevel')}</span></button>
+                            ><span class="icon_remove"></span><span class="text-el d_l_1">{lang('Удалить', 'newLevelVertical')}</span></button>
                     </div>
                     <div class="btn-move-item-wl">
                         <button
@@ -367,7 +367,7 @@
                             data-drop="#wishListPopup"
                             data-source="{site_url('/wishlist/renderPopup/'.$p[variant_id].'/'.$p[wish_list_id])}"
                             data-always="true"
-                            ><span class="icon_move"></span><span class="text-el d_l_1">{lang('Переместить', 'newLevel')}</span>
+                            ><span class="icon_move"></span><span class="text-el d_l_1">{lang('Переместить', 'newLevelVertical')}</span>
                         </button>
                     </div>
                 </div>

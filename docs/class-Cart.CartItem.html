@@ -7,7 +7,7 @@
 	<title>Class Cart\CartItem | ImageCMS Docs</title>
 
 	<script type="text/javascript" src="resources/combined.js?394153670"></script>
-	<script type="text/javascript" src="elementlist.js?639510069"></script>
+	<script type="text/javascript" src="elementlist.js?2646255529"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360">
 
 </head>
@@ -80,6 +80,18 @@
 						</li>
 				<li><a href="namespace-Search.html">Search</a>
 						</li>
+				<li><a href="namespace-template_manager.html">template_manager<span></span></a>
+						<ul>
+				<li><a href="namespace-template_manager.classes.html">classes</a>
+						</li>
+				<li><a href="namespace-template_manager.installer.html">installer</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-translator.html">translator<span></span></a>
+						<ul>
+				<li><a href="namespace-translator.classes.html">classes</a>
+						</li>
+							</ul></li>
 				<li><a href="namespace-wishlist.html">wishlist<span></span></a>
 						<ul>
 				<li><a href="namespace-wishlist.classes.html">classes</a>
@@ -260,6 +272,35 @@ will be returned, and vice versa.</p>
 				<div class="list">
 					<code>string|integer</code><br>instance (string) or type<br>
 				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="updateOverallPrice" id="_updateOverallPrice">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_updateOverallPrice">#</a>
+		<code>updateOverallPrice( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
 
 
 
@@ -531,11 +572,11 @@ will be returned, and vice versa.</p>
 		<td class="name">
 <var>$data</var>		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>(
-    <span class="php-quote">'instance'</span> =&gt; <span class="php-keyword1">NULL</span>,
-    <span class="php-quote">'id'</span> =&gt; <span class="php-keyword1">NULL</span>,
-    <span class="php-quote">'quantity'</span> =&gt; <span class="php-keyword1">NULL</span>,
-    <span class="php-quote">'price'</span> =&gt; <span class="php-keyword1">NULL</span>,
-    <span class="php-quote">'originPrice'</span> =&gt; <span class="php-keyword1">NULL</span>,
+    <span class="php-quote">'instance'</span> =&gt; <span class="php-keyword1">NULL</span>, <span class="php-comment">// SProducts|ShopKit</span>
+    <span class="php-quote">'id'</span> =&gt; <span class="php-keyword1">NULL</span>, <span class="php-comment">// id of variant</span>
+    <span class="php-quote">'quantity'</span> =&gt; <span class="php-keyword1">NULL</span>, <span class="php-comment">// quantity in cart</span>
+    <span class="php-quote">'price'</span> =&gt; <span class="php-keyword1">NULL</span>, <span class="php-comment">// changed price (may be because discount, or some else module)</span>
+    <span class="php-quote">'originPrice'</span> =&gt; <span class="php-keyword1">NULL</span>, <span class="php-comment">// original price from DB</span>
 )</code></td>
 		<td class="description"><div>
 			<a href="#$data" class="anchor">#</a>

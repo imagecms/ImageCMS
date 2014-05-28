@@ -6,7 +6,7 @@
  * Image CMS
  * Module Frame
  */
-class Smart_filter extends \Category\BaseCategory {
+class Smart_filter extends \MY_Controller {
 
     public function __construct() {
         if ($this->uri->segments[2] == 'category' || $this->uri->segments[3] == 'category' || $this->uri->segments[2] == 'filter' || $this->uri->segments[3] == 'filter' || $this->uri->segments[2] == 'pre_filter' || $this->uri->segments[3] == 'pre_filter') {
@@ -16,7 +16,7 @@ class Smart_filter extends \Category\BaseCategory {
         }
     }
 
-    public function index() {
+        public function index() {
         //parent::index();
         //parent::__CMSCore__();
         return true;
@@ -38,36 +38,33 @@ class Smart_filter extends \Category\BaseCategory {
 
     public function filter() {
 
-        $this->set_price();
+        $category = new \Category\BaseCategory();
 
-
+        $this->set_price($category->data['priceRange']);
 
         return \CMSFactory\assetManager::create()
-                        ->setData($this->data)
+                        ->setData($category->data)
                         ->render('filter', true);
     }
 
-    public function set_price() {
-        $minPrice = (int) $this->data['priceRange']['minCost'];
-        $maxPrice = (int) $this->data['priceRange']['maxCost'];
+    public function set_price($priceRange = null) {
+
+        if (null === $priceRange)
+          $priceRange = \ShopCore::app()->SFilter->getPricerange();
+        
+        $minPrice = (int) $priceRange['minCost'];
+        $maxPrice = (int) $priceRange['maxCost'];
 
         $curMin = $_GET['lp'] ? (int) $_GET['lp'] : $minPrice;
         $curMax = $_GET['rp'] ? (int) $_GET['rp'] : $maxPrice;
 
 
         \CMSFactory\assetManager::create()->setData(array(
-            'minPrice' => (int) $this->data['priceRange']['minCost'],
-            'maxPrice' => (int) $this->data['priceRange']['maxCost'],
+            'minPrice' => (int) $priceRange['minCost'],
+            'maxPrice' => (int) $priceRange['maxCost'],
             'curMax' => $curMax,
             'curMin' => $curMin
         ));
-    }
-    
-    
-    public function pre_filter(){
-        $property = $this->data['propertiesInCat'];
-        $brand = $this->data['brands'];
-        echo json_encode(array('prop' =>$property, 'brand' => $brand));
     }
 
 //    public function ()

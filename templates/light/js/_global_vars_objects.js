@@ -1,5 +1,4 @@
-var
-        isTouch = 'ontouchstart' in document.documentElement,
+var isTouch = 'ontouchstart' in document.documentElement,
         wnd = $(window),
         body = $('body'),
         ie = $.browser.msie,
@@ -14,11 +13,7 @@ var optionsMenu = {
     duration: 200,
     drop: '.frame-item-menu > .frame-drop-menu',
     //direction: 'left', //when menu place left and drop go to right (if vertical menu)
-    countColumn: 5, //if not drop-side
-
-    //sub2Frame: '.frame-l2', //if drop-side
-    //dropWidth: 475, //if not define than will be actual width needs when drop-side
-
+    //
     //if need column partition level 2
     columnPart: true,
     columnClassPref: 'column_',
@@ -47,6 +42,12 @@ var optionsMenu = {
 
     vertical: false
 };
+if (typeMenu === 'col')
+    optionsMenu.countColumn = 5; //if not drop-side
+if (typeMenu === 'row') {
+    optionsMenu.sub2Frame = '.frame-l2'; //if drop-side
+    optionsMenu.dropWidth = 475; //if not define than will be actual width needs when drop-side
+}
 var scrollPane = {
     animateScroll: true,
     showArrows: true,
@@ -74,7 +75,7 @@ var optionsDrop = {
     overlayOpacity: 0.6,
     place: 'center', //noinherit(default) || inherit(ex. for ViewedProducts)
     durationOn: 500,
-    durationOff: 200,
+    durationOff: 300,
     dropContent: '.drop-content',
     dropFooter: '.drop-footer',
     dropHeader: '.drop-header',

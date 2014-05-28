@@ -230,9 +230,9 @@
                 <div class="right-cart">
                     <div class="frameBask frame-bask frame-bask-order">
                         <div class="frame-title clearfix">
-                            <div class="title f_l">Мой заказ</div>
+                            <div class="title f_l">{lang('Мой заказ', 'newLevel')}</div>
                             <div class="f_r">
-                                <button type="button" class="d_l_1" onClick="ShopFront.Cart.togglePopup()">Редактировать</button>
+                                <button type="button" class="d_l_1" onClick="ShopFront.Cart.togglePopup()">{lang('Редактировать', 'newLevel')}</button>
                             </div>
                         </div>
                         <div id="orderDetails">
@@ -277,7 +277,7 @@
                                     <td colspan="2">
                                         <div class="f_r btn-toggle-gift">
                                             <button type="button" class="d_l_1" data-drop="#gift" data-place="inherit" data-overlay-opacity="0">
-                                                <span class="text-el">Ввести промо-код</span>
+                                                <span class="text-el">{lang('Ввести промо-код', 'newLevel')}</span>
                                             </button>
                                         </div>
                                         <div id="gift" class="drop o_h">
@@ -289,7 +289,7 @@
                         </table>
                         <div class="gen-sum-order footer-bask">
                             <div class="inside-padd clearfix">
-                                <span class="title f_l">{lang('К оплате с учетом доставки','newLevel')}:</span>
+                                <span class="title f_l">{lang('К оплате','newLevel')}:</span>
                                 <span class="frame-prices f_r">
                                     <span class="current-prices f-s_0">
                                         <span class="price-new">

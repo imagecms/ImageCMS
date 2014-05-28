@@ -219,7 +219,7 @@
                                                     {foreach $categories as $category}
                                                         <option {if $category->getLevel() == 0}style="font-weight: bold;"{/if} value="{echo $category->getId()}">{str_repeat('-',$category->getLevel())}{echo ShopCore::encode($category->getName())}</option>
                                                     {/foreach}
-                                                </select>
+                                                </select></br>
                                                 <input type="checkbox" name="category[child]" value="1"/>  {lang('Change child category', 'mod_discount')} 
 
                                             </div>
@@ -232,7 +232,7 @@
                                                     <label class="hideAfterAutocomlite"> {lang('Current product', 'mod_discount')} :
                                                         <span class="now-active-prod"></span>
                                                     </label>
-                                                    <label> {lang('ID / Name', 'mod_discount')} :</label>
+                                                    <label> {lang('ID / Name / Number', 'mod_discount')} :</label>
                                                     <input id="productForDiscount" required="required" style="border-color: coral;" type="text" value="" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
                                                     <input id="discountProductId" type="hidden" name="product[product_id]" value=""/>
                                                 </div>

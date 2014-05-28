@@ -29,7 +29,9 @@
     {/if}
 
     {if $can_comment === 1 AND !is_logged_in}
-        <p>{sprintf(lang('Только авторизованные пользователи могут оставлять комментарии. <a href="%s" class="loginAjax">Авторизуйтесь</a>, пожалуйста.','corporate'), site_url($modules.auth))}</p>
+        <p>{lang('Только авторизованные пользователи могут оставлять комментарии.', 'corporate')} 
+<a href="{echo site_url($modules.auth)}" class="loginAjax">{lang('Авторизуйтесь', 'corporate')}</a> 
+{lang('пожалуйста.', 'corporate')} </p>
     {/if}
 
     <form action="" method="post">
@@ -40,7 +42,7 @@
             <p>{lang('Вы вошли как','corporate')} {$username}. <a href="{site_url('auth/logout')}">{lang('Выход','corporate')}</a></p>         
             {else:}
             <label>
-                <span class="title">Имя</span>
+                <span class="title">{lang('Имя', 'corporate')}</span>
                 <span class="frame-form-field">
                     <input type="text" name="comment_author" id="comment_author"  value="{if $_POST['comment_author']}{$_POST['comment_author']}{/if}"/>
                 </span>
@@ -52,7 +54,7 @@
                 </span>
             </label>
             <label>
-                <span class="title">Текст комментария</span>
+                <span class="title">{lang('Текст комментария', 'corporate')}</span>
                 <span class="frame-form-field">
                     <textarea name="comment_text" id="comment_text" rows="10" cols="50"></textarea>
                 </span>
@@ -61,7 +63,7 @@
         {if !$is_logged_in} 
             {if $use_captcha}
                 <label>
-                    <span class="title">Код протекции</span>
+                    <span class="title">{lang('Код протекции', 'corporate')}</span>
                     <span class="frame-form-field">
                         <input type="text" name="captcha" id="captcha"/>
                     </span>
@@ -70,7 +72,7 @@
             {/if}
         {/if}
         <div class="btn">
-            <input type="submit" class="submit" value="{lang('Написать &rarr;','corporate')}"/>
+            <input type="submit" class="submit" value="{lang('Написать','corporate')} &rarr;"/>
         </div>
         {form_csrf()}
     </form>

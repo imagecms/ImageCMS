@@ -37,11 +37,11 @@
                         <div class="inside_padd span9">
 
                             <div class="control-group">
-                                <label class="control-label" for="comcount">{lang("Site Map", 'sitemap')}:</label>
+                                <label class="control-label" for="comcount">{lang("Return sitemap parameter", 'sitemap')}:</label>
                                 <div class="controls number">
-                                    <select name="settings[generateXML]" onchange="SiteMap.showHideSavedInformation($(this))">
-                                        <option value="1" {if $settings.generateXML}selected="selected"{/if}>{lang('Generate new', 'sitemap')}</option>
-                                        <option value="0" {if !$settings.generateXML}selected="checked"{/if}>{lang('Use saved', 'sitemap')}</option>
+                                    <select style="width: 350px" name="settings[generateXML]" onchange="SiteMap.showHideSavedInformation($(this))">
+                                        <option value="1" {if $settings.generateXML}selected="selected"{/if}>{lang('Generate an updated map at the entrance to the robot', 'sitemap')}</option>
+                                        <option value="0" {if !$settings.generateXML}selected="checked"{/if}>{lang('Give robots a saved version of the map', 'sitemap')}</option>
                                     </select>
                                     <br/>
                                     <br/>
@@ -72,7 +72,7 @@
                                 </div>
                             </div>
 
-                            <div class="control-group">
+                            <!--div class="control-group">
                                 <label class="control-label" for="comcount">{lang("Turn ON/OFF robots", 'sitemap')}:</label>
                                 <div class="controls">
                                     <div class="frame_prod-on_off">
@@ -80,7 +80,7 @@
                                         <input type="hidden" name="settings[robotsStatus]" value="{if $settings.robotsStatus}1{else:}0{/if}" data-val-on="1" data-val-off="0">
                                     </div>
                                 </div>
-                            </div>
+                            </div-->
 
                             <div class="control-group">
                                 <label class="control-label" for="comcount">{lang("Send/Not send Site Map", 'sitemap')}:</label>
@@ -92,7 +92,7 @@
                                 </div>
                             </div>
 
-                            <div class="control-group">
+                            <!--div class="control-group">
                                 <label class="control-label" for="comcount">{lang("Send Site Map only when page url is changed", 'sitemap')}:</label>
                                 <div class="controls">
                                     <div class="frame_prod-on_off">
@@ -100,7 +100,7 @@
                                         <input type="hidden" name="settings[sendWhenUrlChanged]" value="{if $settings.sendWhenUrlChanged}1{else:}0{/if}" data-val-on="1" data-val-off="0">
                                     </div>
                                 </div>
-                            </div>
+                            </div-->
 
                             {if $settings.lastSend}
                                 <div class="control-group">

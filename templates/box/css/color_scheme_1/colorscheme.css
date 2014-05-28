@@ -10,7 +10,7 @@ body{background: url("images/fon.png") repeat;}
 
 .f-w_b{font-weight: bold!important;}
 .f-w_n{font-weight: normal!important;}
-.items-brand-image > li > .frame-photo-title > .title, .start-page-category-menu > li .title{font-weight: normal;}
+.items-brand-image > li > .frame-photo-title > .title{font-weight: normal;}
 .text blockquote:before, .text blockquote:after{border-width: 1px 0;border-style: solid;}
 
 [class*="icon_"], [class*="icon-"], .ui-slider-handle, .product-status, .niceCheck, .niceRadio, .cuselFrameRight, .btn-to-up{background: url("images/sprite.png") no-repeat;}
@@ -41,7 +41,7 @@ input[type="text"][disabled], input[type="password"][disabled], textarea[disable
 .list-style-1 li:before{content: "\25cf";position: absolute;left: 1px;top: 50%;margin-top: -6px;font-size: 9px;}
 
 /*active*/
-:acitve{outline: none;} :focus{outline: none;}
+:active{outline: none;} :focus{outline: none;}
 button:focus{outline: none;}
 button[disabled="disabled"], input[type="submit"][disabled="disabled"], input[type="reset"][disabled="disabled"], input[type="button"][disabled="disabled"], .disabled, .disabled > *, .divider{cursor: default;}
 .active > span, .active > a, .active > button{cursor: default;}
@@ -139,6 +139,7 @@ a, .ref{text-decoration: underline;}
 /*main-menu*/
 .frame-menu-main{border-bottom: 1px solid transparent;box-shadow: 0 2px 3px rgba(0, 0, 0, .1);}
 .menu-row-category .frame-drop-menu > ul > li:after{border-left: 1px solid transparent;}
+.menu-col-category .title-category-l1 > .text-el{font-weight: bold;}
 .menu-main td > .frame-item-menu > ul{border: 3px solid transparent;}
 .frame-item-menu > .frame-title > .title{white-space: nowrap;}
 .frame-item-menu > .frame-title > .title .text-el{white-space: normal;cursor: pointer;text-transform: uppercase;}
@@ -158,10 +159,12 @@ a, .ref{text-decoration: underline;}
 /*/main-menu*/
 
 /*filter*/
-.filters-content{position: relative;}
-.filters-content:before{content: '';border-top: 1px solid transparent;left: 0;top: -10px;position: absolute;width: 100%;}
+.filters-content, .frames-checks-sliders .title{position: relative;}
+.filters-content:before, .frames-checks-sliders .title:before{content: '';border-top: 1px solid transparent;left: 0;top: -10px;position: absolute;width: 100%;}
+.frames-checks-sliders .title:before{top: 100%;}
 .filter-foot{border-top: 1px solid transparent;}
 .frames-checks-sliders .title{border-bottom: 0;}
+.frames-checks-sliders .title .text-el{font-weight: bold;}
 .frame-group-checks[data-rel*="dropDown"] .title{background-color: transparent;border-bottom: 0;}
 .frame-check-filter{border: 1px solid transparent;border-radius: 2px;}
 .frame-check-filter .title{font-size: 13px;border-bottom: 1px solid transparent;}
@@ -309,14 +312,6 @@ a, .ref{text-decoration: underline;}
 /*/carousels*/
 
 /*navs*/
-.frame-start-page-category-menu{border-top: 2px solid transparent;}
-.frame-start-page-category-menu:before{content: "";position: absolute;left: 0;top: -2px;width: 120%;height: 2px;}
-.start-page-category-menu > li .title{text-transform: uppercase;filter:progid:DXImageTransform.Microsoft.Alpha(opacity=50);-moz-opacity: 0.5;-khtml-opacity: 0.5;opacity: 0.5;}
-.start-page-category-menu .sub-category > li{padding-left: 1px;}
-.start-page-category-menu .sub-category > li > a{font-weight: bold;border-bottom: 1px solid transparent;}
-.start-page-category-menu > li > .frame-photo-title:hover .title{filter: progid:DXImageTransform.Microsoft.Alpha(opacity=100);-moz-opacity: 1;-khtml-opacity: 1;opacity: 1;border-bottom: 0;}
-.start-page-category-menu .sub-category > li > a:hover{filter: progid:DXImageTransform.Microsoft.Alpha(opacity=50);-moz-opacity: .5;-khtml-opacity: .5;opacity: .5;}
-
 .frame-menu-category-first .title-category-l1{text-decoration: none;}
 .frame-menu-category-first .title-category-l1:hover{text-decoration: underline;}
 
@@ -333,7 +328,7 @@ a, .ref{text-decoration: underline;}
 .nav-category > li:first-child > *{border-top: 0;}
 
 .nav-top-menu > li{border-left: 1px solid transparent;line-height: 1.3;}
-.nav-top-menu{border-right: 1px solid transparent;margin-right: 13px;}
+.nav-top-menu{border-right: 1px solid transparent;margin-right: 13px;height: 15px;}
 .nav-top-menu > li:first-child{border-left: 0;}
 .nav-top-menu > li > *{padding: 0 10px;}
 /*/navs*/
@@ -353,8 +348,9 @@ a, .ref{text-decoration: underline;}
 /*/benefits*/
 
 /*text*/
-.text table {border: 1px solid transparent;}
-.text th, .text td{border: 1px solid transparent;}
+.text table {border: 0;width: 100%;table-layout: auto;}
+.text th, .text td{border: 1px solid transparent;padding: 5px 30px 6px 18px;}
+.text td:first-child{padding-left: 15px;}
 hr{border-top: 1px solid transparent;border-bottom: 1px solid transparent;}
 /*/text*/
 
@@ -384,8 +380,6 @@ footer .frame-seo-text{border-bottom: 1px solid transparent;}
 .btn-def2{border-radius: 2px;border: 1px solid transparent;box-shadow: none;}
 .btn-def{border: 1px solid transparent;border-radius: 2px;}
 .btn-def > button, .btn-def > input[type="submit"], .btn-def > a{height: 29px;padding: 0 10px;}
-
-.btn-exit-shop > button .text-el{text-decoration: underline;}
 
 .btn-search > button{height: 100%;width: 100%;}
 .btn-search .text-el{font-size: 11px;text-transform: uppercase;}
@@ -433,11 +427,13 @@ form .btn-form .text-el, .btn-form input{font-size: 13px;}
 .btn-already-show.active:after{content: "";height: 100%;border-width: 1px 0;border-style: solid;width: 100%;position: absolute;left: 0;top: 0;margin-top: -1px;}
 
 .btn-crumb .divider{font-size: 6px;margin-left: 4px;vertical-align: middle;}
-.btn-crumb .text-el{vertical-align: middle;}
+.btn-crumb .text-el{vertical-align: middle;font-size: 11px;}
 
 .btn-compare, .btn-wish, .btn-not-avail{border-radius: 2px;padding: 0 10px;border: 1px solid transparent;}
 
 .btn-compare .text-el, .btn-wish .text-el, .btn-not-avail .text-el{display: none;}
+.item-product .btn-not-avail .text-el{display: inline-block;}
+.item-product .btn-not-avail .icon-but{display: none;}
 .btn-compare > button, .btn-wish > button, .btn-not-avail > button{height: 29px;}
 .btn-comp-in, .btn-wish-in{border: 1px solid transparent;}
 
@@ -498,7 +494,7 @@ form .btn-form .text-el, .btn-form input{font-size: 13px;}
 .right-slider{background-position: -540px 0;}
 .cusel .jScrollPaneContainer{border-width: 0 1px 1px 1px;border-style: solid;}
 
-.msg > .error{border-radius: 4px;}
+.msg > .error{border-radius: 4px;border: 1px solid transparent;}
 .msg > .error .text-el{font-weight: normal;}
 .msg > .success{border: 1px solid transparent;border-radius: 4px;}
 .msg > .success .text-el{font-weight: normal;}
@@ -509,6 +505,7 @@ span.plus-minus{font-size: 15px;}
 #slider{border: 1px solid transparent;}
 .cuselFrameRight{background-position: -920px 0;}
 .cusel span{font-size: 12px;}
+.cusel{border: 1px solid transparent;}
 /*/form*/
 
 /*tabs*/
@@ -585,7 +582,7 @@ header:before{content: '';position: absolute;top: 0;left: 0;width: 100%;height: 
 .drop-search{border-top: 1px solid transparent;}
 
 #notification.drop > .drop-content{min-height: 0;}
-.drop-footer{border-top: 1px solid transparent;}
+.drop-footer, .drop-footer-style{border-top: 1px solid transparent;overflow: hidden;}
 .drop-header{border-bottom: 1px solid transparent;z-index: 1;}
 .drop-header .title{font-size: 14px;}
 .drop-header:before{content: "";position: absolute;top: 100%;width: 100%;left: 0;height: 3px;margin-top: 1px;}
@@ -608,19 +605,19 @@ header:before{content: '';position: absolute;top: 0;left: 0;width: 100%;height: 
 /*/drop*/
 
 /*page profile*/
-.table-profile{border-width: 1px 0 0 1px;border-style: solid;
+.table-profile{border-width: 1px 0 0 1px;border-style: solid;}
 .table-profile td, .table-profile th{border-width: 0 1px 1px 0;border-style: solid;}
 .info-discount{margin-left: 450px;border-bottom: 1px solid transparent;}
 /*/page profile*/
 
 /*page order*/
-.frame-payment button, .frame-payment input[type="submit"]{font-size: 18px !important;}
+.frame-payment button, .frame-payment input[type="submit"]{font-size: 12px !important;}
 .frame-payment [class*="btn"] input[type="submit"], .frame-payment [class*="btn"] button, .frame-payment [class*="btn"] input[type="submit"]:active, .frame-payment [class*="btn"] button:active{background: none;border: 0;}
 /*/page order*/
 
 /*page 404*/
-.page-404{background: url("images/fon_404.png") repeat;}
-.page-404 .title{font-size: 35px;}
+.page-404 .title{font-size: 21px;text-transform: uppercase;}
+.page-404 hr{margin-bottom: 10px;}
 .page-404:before{content: "";position: absolute;left: -5%;top: -1px;width: 110%;height: 4px;}
 /*/page 404*/
 

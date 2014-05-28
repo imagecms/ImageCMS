@@ -48,8 +48,8 @@ class Admin extends BaseAdminController {
         'watermark_font_size' => 16, // Watermark font size.
         'watermark_padding' => '-5', // Watermark padding.
         'watermark_color' => 'ffffff', // Watermark font color.
-        'watermark_min_width' => '250', // Min. image width to draw watermark.
-        'watermark_min_height' => '250', // Min. image height to draw watermark.
+        'watermark_min_width' => '10', // Min. image width to draw watermark.
+        'watermark_min_height' => '10', // Min. image height to draw watermark.
         // Albums
         'order_by' => 'date', // Albums order. Posiible values: date/name/position.
         'sort_order' => 'desc'          // Sort order. Possible values: desc/asc.
@@ -166,6 +166,8 @@ class Admin extends BaseAdminController {
     public function settings($action = 'show') {
         switch ($action) {
             case 'show':
+                $this->template->registerCssFile('/templates/administrator/js/colorpicker/css/colorpicker.css', 'after');
+                $this->template->registerJsFile('/templates/administrator/js/colorpicker/js/colorpicker.js', 'after');
                 $this->template->assign('settings', $this->gallery_m->load_settings());
 
                 $this->display_tpl('settings');
@@ -176,7 +178,7 @@ class Admin extends BaseAdminController {
                 $this->load->library('Form_validation');
                 $val = $this->form_validation;
 
-                $val->set_rules('max_file_size', lang("File size", 'gallery'), 'required|is_natural');
+                $val->set_rules('max_image_size', lang("File size", 'gallery'), 'required|is_natural');
                 $val->set_rules('max_width', lang("Maximum width", 'gallery'), 'required|is_natural');
                 $val->set_rules('max_height', lang("Maximum height", 'gallery'), 'required|is_natural');
                 $val->set_rules('quality', lang("Quality", 'gallery'), 'required|is_natural');
@@ -190,23 +192,18 @@ class Admin extends BaseAdminController {
 
                 if ($this->form_validation->run($this) == FALSE) {
                     showMessage(validation_errors(), false, 'r');
-                    return FALSE;
+                    break;
                 }
 
                 // Check if watermark image exists.
-                if ($_POST['watermark_type'] == 'overlay' AND !file_exists($_POST['watermark_image'])) {
+                if ($_POST['watermark_type'] == 'overlay' AND !file_exists('.' . $_POST['watermark_image'])) {
                     showMessage(lang("Specify the correct path to watermark image", 'gallery'), false, 'r');
-                    return FALSE;
+                    break;
                 }
 
                 // Check if watermark font exists.
-                if ($_POST['watermark_type'] == 'text' AND !file_exists($_POST['watermark_font_path'])) {
-                    showMessage(lang("Specify the correct path to font", 'gallery'), false, 'r');
-                    return FALSE;
-                }
-
                 $params = array(
-                    'max_file_size' => $this->input->post('max_file_size'),
+                    'max_image_size' => $this->input->post('max_image_size'),
                     'max_width' => $this->input->post('max_width'),
                     'max_height' => $this->input->post('max_height'),
                     'quality' => $this->input->post('quality'),
@@ -227,13 +224,48 @@ class Admin extends BaseAdminController {
                     'watermark_font_size' => trim($this->input->post('watermark_font_size')),
                     'watermark_color' => trim($this->input->post('watermark_color')),
                     'watermark_padding' => trim($this->input->post('watermark_padding')),
-                    'watermark_font_path' => trim($this->input->post('watermark_font_path')),
-                    'watermark_image' => trim($this->input->post('watermark_image')),
+                    'watermark_image' => '.' . trim($this->input->post('watermark_image')),
                     'watermark_image_opacity' => trim($this->input->post('watermark_image_opacity')),
                     'watermark_type' => trim($this->input->post('watermark_type')),
                     'order_by' => $this->input->post('order_by'),
                     'sort_order' => $this->input->post('sort_order'),
                 );
+                $uploadPath = './uploads/';
+                $this->load->library('upload', array(
+                    'upload_path' => $uploadPath,
+                    'max_size' => 1024 * 1024 * 2, //2 Mb
+                    //'allowed_types' => 'ttf|fnt|fon|otf'
+                    'allowed_types' => '*'
+                ));
+                // saving font file, if specified
+                if (isset($_FILES['watermark_font_path'])) {
+                    $uploadPath = './uploads/';
+                    // TODO: there are no mime-types for fonts in application/config/mimes.php 
+                    $allowedTypes = array('ttf', 'fnt', 'fon', 'otf');
+                    $ext = pathinfo($_FILES['watermark_font_path']['name'], PATHINFO_EXTENSION);
+                    if (in_array($ext, $allowedTypes)) {
+                        if (!$this->upload->do_upload('watermark_font_path')) {
+                            $this->upload->display_errors('', '');
+                        } else {
+                            $udata = $this->upload->data();
+                            // changing value in the DB
+                            $params['watermark_font_path'] = $uploadPath . $udata['file_name'];
+                        }
+                    }
+                } else {
+                     $params['watermark_font_path'] = trim($this->input->post('watermark_font_path_tmp'));
+                }
+
+                if ($_POST['watermark']['delete_watermark_font_path'] == 1) {
+                    $path= trim($this->input->post('watermark_font_path_tmp'));
+                    if(file_exists($path) && !is_dir($path)){
+                        chmod($path, 0777);
+                        unlink($path);
+                    }
+                    
+                    $params['watermark_font_path'] = '';
+                }
+
 
 
                 $this->db->where('name', 'gallery');
@@ -282,7 +314,6 @@ class Admin extends BaseAdminController {
 
             if ($action == 'exit')
                 pjax('/admin/components/cp/gallery/category/' . $album['category_id']);
-
         }
     }
 
@@ -795,7 +826,7 @@ class Admin extends BaseAdminController {
             $config['upload_path'] = $this->conf['upload_path'];
 
             $config['allowed_types'] = $this->conf['allowed_types'];
-            $config['max_size'] = 1024 * 1024 * $this->max_file_size;
+            $config['max_size'] = 1024 * 1024 * $this->max_image_size;
 
             // init Upload
             $this->load->library('upload', $config);
@@ -1113,8 +1144,8 @@ class Admin extends BaseAdminController {
      * Watermarking an Image if watermark_text is not empty
      */
     private function make_watermark($file_path) {
-        if ($this->conf['watermark_font_path'] == '') {
-            $this->conf['watermark_font_path'] = './system/fonts/1.ttf';
+        if (!$this->conf['watermark_font_path']) {
+            $this->conf['watermark_font_path'] = './uploads/defaultFont.ttf';
         }
 
         $config = array();

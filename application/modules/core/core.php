@@ -972,7 +972,7 @@ class Core extends MY_Controller {
             }
 
             if ($description != '') {
-                if ($page_number != '') {
+                if ($page_number > 1 && $page_number != '') {
                     $description = "$page_number - $description {$this->settings['delimiter']} {$this->settings['site_short_title']}";
                 } else {
                     $description = "$description {$this->settings['delimiter']} {$this->settings['site_short_title']}";
