@@ -95,9 +95,6 @@ button[disabled="disabled"], input[type="submit"][disabled="disabled"], input[ty
     background: linear-gradient(to bottom,  #18acd5 0%,#0882bb 100%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#18acd5', endColorstr='#0882bb',GradientType=0 ); /* IE6-9 */
 }
-.vertical-menu .frame-item-menu{
-    background: #1299d3; /* Old browsers */
-}
 .menu-main td > .frame-item-menu > ul{background-color: #fff;}
 .menu-main td > .frame-item-menu > ul{-moz-box-shadow: 0 2px 13px 0 #333;-webkit-box-shadow: 0 2px 13px 0 #333;box-shadow: 0 2px 13px 0 #333;border-color: #0d6b8d;}
 .frame-item-menu > .frame-title > .title > .text-el{color: #fff;text-shadow: 0 1px #098bc1;}
@@ -112,16 +109,6 @@ button[disabled="disabled"], input[type="submit"][disabled="disabled"], input[ty
     background: linear-gradient(to bottom,  #22c7e4 0%,#1297ce 100%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#22c7e4', endColorstr='#1297ce',GradientType=0 ); /* IE6-9 */
 }
-.vertical-menu .menu-main td > .frame-item-menu:hover{
-    background: #1eade8; /* Old browsers */
-    background: -moz-linear-gradient(top,  #1eade8 0%, #17a3e5 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#1eade8), color-stop(100%,#17a3e5)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top,  #1eade8 0%,#17a3e5 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top,  #1eade8 0%,#17a3e5 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top,  #1eade8 0%,#17a3e5 100%); /* IE10+ */
-    background: linear-gradient(to bottom,  #1eade8 0%,#17a3e5 100%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1eade8', endColorstr='#17a3e5',GradientType=0 ); /* IE6-9 */
-}
 .horizontal-menu .menu-main td > .frame-item-menu.active{
     -moz-box-shadow: inset 0 2px 7px #005aa7;-webkit-box-shadow: inset 0 2px 7px #005aa7;box-shadow: inset 0 2px 7px #005aa7;
     background: #026eab; /* Old browsers */
@@ -133,17 +120,6 @@ button[disabled="disabled"], input[type="submit"][disabled="disabled"], input[ty
     background: linear-gradient(to bottom,  #026eab 0%,#0287bb 100%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#026eab', endColorstr='#0287bb',GradientType=0 ); /* IE6-9 */
 }
-.vertical-menu .menu-main td > .frame-item-menu.active{
-    background: #1187bc; /* Old browsers */
-    background: -moz-linear-gradient(top,  #1187bc 0%, #148cbf 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#1187bc), color-stop(100%,#148cbf)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top,  #1187bc 0%,#148cbf 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top,  #1187bc 0%,#148cbf 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top,  #1187bc 0%,#148cbf 100%); /* IE10+ */
-    background: linear-gradient(to bottom,  #1187bc 0%,#148cbf 100%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1187bc', endColorstr='#148cbf',GradientType=0 ); /* IE6-9 */
-}
-.vertical-menu .frame-item-menu > .frame-title.is-sub:after{filter:none;}
 
 .frame-item-menu > .frame-title:before{
     background: #30b4d9; /* Old browsers */
@@ -165,8 +141,6 @@ button[disabled="disabled"], input[type="submit"][disabled="disabled"], input[ty
     background: linear-gradient(to bottom,  #1184ac 0%,#06669a 100%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1184ac', endColorstr='#06669a',GradientType=0 ); /* IE6-9 */
 }
-.vertical-menu .frame-item-menu:before{border-bottom-color: #0688c0;}
-.vertical-menu .frame-item-menu > .frame-title:before{filter:none;background: none;border-top-color: #14a1de;}
 
 .frame-drop-menu{-moz-box-shadow: 5px 5px 4px rgba(0,0,0,0.2);-webkit-box-shadow: 5px 5px 4px rgba(0,0,0,0.2);box-shadow: 5px 5px 4px rgba(0,0,0,0.2);}
 .frame-drop-menu > ul{background-color: #fff;border-color: #0c9acb;}
@@ -311,8 +285,6 @@ button[disabled="disabled"], input[type="submit"][disabled="disabled"], input[ty
 .items-v-carousel > li:before{border-top-color: #eae5e1;}
 
 .horizontal-carousel .frame-thumbs .group-button-carousel .arrow{background: none;-moz-box-shadow: none;-webkit-box-shadow: none;box-shadow: none;}
-
-.vertical-layout .group-button-carousel{background-color: #faf8f6;}
 
 .title-proposition-h .frame-title > .title{background-color: #faf8f6;}
 
