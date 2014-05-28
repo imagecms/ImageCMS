@@ -1,9 +1,12 @@
-<div style="margin:0 auto; padding:5px; width:450px; border:1px solid #ddd; background:#fff; border-radius: 7px; -webkit-border-radius: 7px; -moz-border-radius: 7px; font:normal 14px/14px Geneva,Verdana,Arial,Helvetica,Tahoma,sans-serif;">
-	<form action="http://w.qiwi.ru/setInetBill.do" method="get" accept-charset="windows-1251" onSubmit="return checkSubmit();">
+<div style="margin:0 auto; position:relative;z-index:999; padding:5px; width:450px; border:1px solid #ddd; background:#fff; border-radius: 7px; -webkit-border-radius: 7px; -moz-border-radius: 7px; font:normal 14px/14px Geneva,Verdana,Arial,Helvetica,Tahoma,sans-serif;">
+	<form action="https://w.qiwi.com/order/external/create.action" method="get" accept-charset="windows-1251" onSubmit="return checkSubmit();">
 	
 		<input type="hidden" name="from" value="{$QiWiId}"/>
 		<input type="hidden" name="lifetime" value="{$QiWiTime}"/>
 		<input type="hidden" name="check_agt" value="true"/>
+		<input type="hidden" name="currency" value="{$ISOCode}"/>
+		<input type="hidden" name="successUrl" value="{$successUrl}"/>
+
 		
 		<!-- используйте это поле для передачи уникального идентификатора заказа/платежа в вашей системе -->
     	<!-- <input type="hidden" name="txn_id" value=""/> -->
@@ -21,8 +24,10 @@
 			<tr>
 				<td style="color:#a3b52d; padding:10px 0px; width:45%; text-align:center;">{lang('Сумма','newLevel')}</td>
 				<td style="padding:10px">
-					<input type="text" name="amount_rub" value="{$out_summ[0]}" maxlength="5" style="width:50px; text-align:right;  border: 1px inset #555;" /> {lang('руб.','newLevel')} 
-					<input type="text" name="amount_kop" value="{$out_summ[1]}" maxlength="2" size="2" style="text-align:right; border: 1px inset #555;"/> {lang('коп.','newLevel')}.
+					<!-- <input type="text" name="amount_rub" value="{$out_summ[0]}" maxlength="5" style="width:50px; text-align:right;  border: 1px inset #555;" /> {lang('руб.','newLevel')}  -->
+					<!-- <input type="text" name="amount_kop" value="{$out_summ[1]}" maxlength="2" size="2" style="text-align:right; border: 1px inset #555;"/> {lang('коп.','newLevel')}. -->
+					 <input type="text" name="summ" value="{$out_summ}" maxlength="5" style="width:50px; text-align:right;  border: 1px inset #555;" /> {lang('руб.','newLevel')} 
+				
 				</td>
 			</tr>
 			<tr style="background:#f1f5fa;">
@@ -31,7 +36,8 @@
 			</tr>
 		</table>
 		<div class="btn-cart btn-cart-p">
-                    <input type="submit" value="{lang('Выставить счёт за покупку','newLevel')}" style=" padding:10px 0;border:none; background:url(https://ishop.qiwi.ru/img/button/superBtBlue.jpg) no-repeat 0 50%; color:#fff; width:300px;"/>
+                    <input type="submit" value="{lang('Выставить счёт за покупку','newLevel')}" />
                 </div>
 	</form>
+
 </div>
