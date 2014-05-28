@@ -20,6 +20,7 @@
 </div>
 <div class="frame-inside page-product">
     <div class="container">
+        {$CI->load->module('banners')->render($model->getId())}
         {$inCartFV = getAmountInCart('SProducts', $model->firstVariant->getId())}
         <div class="clearfix">
             <div class="f-s_0 title-product">

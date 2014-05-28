@@ -18,9 +18,9 @@
     <!-- Making bread crumbs -->
     {widget('path')}
 </div>
-{$CI->load->module('banners')->render($model->getId())}
 <div class="frame-inside page-product">
     <div class="container">
+        {$CI->load->module('banners')->render($model->getId())}
         {$inCartFV = getAmountInCart('SProducts', $model->firstVariant->getId())}
         <div class="clearfix item-product globalFrameProduct{if $model->firstVariant->getStock() == 0} not-avail{else:}{if $inCartFV} in-cart{else:} to-cart{/if}{/if}">
             <div class="f-s_0 title-product">
