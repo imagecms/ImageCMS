@@ -25,7 +25,7 @@ var optionsMenu = {
     //if need column partition level 3
     columnPart2: true,
     columnClassPref2: 'column2_',
-    maxC: 5,
+    maxC: 4,
     effectOn: 'slideDown',
     effectOff: 'slideUp',
     effectOnS: 'fadeIn',
@@ -45,7 +45,7 @@ var optionsMenu = {
     parentTl: '.frame-l2', //prev a level 2
     otherPage: hrefCategoryProduct, //for product [undefined or value not other]
 
-    vertical: false
+    vertical: true
 };
 var scrollPane = {
     animateScroll: true,

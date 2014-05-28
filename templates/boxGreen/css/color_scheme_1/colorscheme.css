@@ -141,6 +141,7 @@ a, .ref{text-decoration: underline;}
 /*main-menu*/
 .frame-menu-main{border-bottom: 1px solid transparent;box-shadow: 0 2px 3px rgba(0, 0, 0, .1);}
 .menu-row-category .frame-drop-menu > ul > li:after{border-left: 1px solid transparent;}
+.menu-col-category .title-category-l1 > .text-el{font-weight: bold;}
 .menu-main td > .frame-item-menu > ul{border: 3px solid transparent;}
 .frame-item-menu > .frame-title > .title{white-space: nowrap;}
 .frame-item-menu > .frame-title > .title .text-el{white-space: normal;cursor: pointer;text-transform: uppercase;}
