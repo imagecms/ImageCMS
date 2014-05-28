@@ -611,7 +611,7 @@ header:before{content: '';position: absolute;top: 0;left: 0;width: 100%;height: 
 /*/page profile*/
 
 /*page order*/
-.frame-payment button, .frame-payment input[type="submit"]{font-size: 18px !important;}
+.frame-payment button, .frame-payment input[type="submit"]{font-size: 12px !important;}
 .frame-payment [class*="btn"] input[type="submit"], .frame-payment [class*="btn"] button, .frame-payment [class*="btn"] input[type="submit"]:active, .frame-payment [class*="btn"] button:active{background: none;border: 0;}
 /*/page order*/
 

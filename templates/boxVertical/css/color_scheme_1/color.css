@@ -82,7 +82,6 @@ input[type="text"][disabled], input[type="password"][disabled], textarea[disable
 .frame-item-menu > .frame-title > .title .text-el{color: #fff;}
 .horizontal-menu .menu-main td > .frame-item-menu:hover > .frame-title:after{background-color: #0c4776;}
 .frame-item-menu > .frame-title > .title .text-el{color: #fff;}
-.frame-item-menu.active > .frame-title > .title .text-el{color: #96df9e;}
 .menu-main .title-category-l1.active > span {color: #c5c5c5;}
 .horizontal-menu .menu-main td > .frame-item-menu:hover{background-color: #053d6b;}
 .horizontal-menu .menu-main td > .frame-item-menu:hover > .frame-title:before{background-color: #0c4776;}
