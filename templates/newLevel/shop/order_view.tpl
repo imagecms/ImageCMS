@@ -19,10 +19,10 @@
 {$NextCSIdCond = $NextCS != null}
 <div class="frame-inside page-order">
     <div class="container">
-        {if $CI->session->flashdata('makeOrderForTpl') === true}
+        {if $CI->session->flashdata('orderMaked') == true}
             <div class="f-s_0 without-crumbs">
                 <div class="frame-title">
-                    <h1 class="title">{lang('Спасибо, ваш заказ принят!<br/>Наши менеджеры свяжутся с вами.','newLevel')}</h1>
+                    <h1 class="title">{lang('Спасибо, ваш заказ принят!', 'newLevel')}<br/>{lang('Наши менеджеры свяжутся с вами.','newLevel')}</h1>
                 </div>
             </div>
         {/if}
@@ -404,7 +404,7 @@
                             </td>
                         </tr>
                         {$deliveryMethod = $model->getSDeliveryMethods()}
-                        {if $deliveryMethod}
+                        {if $deliveryMethod && $deliveryMethod->getPrice() > 0}
                             <tr>
                                 <td colspan="3">
                                     <span class="s-t f_l">{lang('Доставка','newLevel')}:</span>
@@ -432,7 +432,10 @@
                                 </td>
                             </tr>
                         {/if}
-                        {if $discount}
+                        {if $model->getGiftCertPrice() > 0} 
+                            {$discount = $discount - $model->getGiftCertPrice()}
+                        {/if}
+                        {if $discount > 0}
                             <tr>
                                 <td colspan="3">
                                     <span class="s-t f_l">{lang('Ваша текущая скидка','newLevel')}:</span>
@@ -440,9 +443,6 @@
                                         <span>
                                             <span class="text-discount current-discount">
                                                 <span class="price f-w_b">
-                                                    {if $model->getGiftCertPrice() > 0} 
-                                                        {$discount = $discount - $model->getGiftCertPrice()}
-                                                    {/if}
                                                     {echo $discount}
                                                 </span>
                                                 <span class="curr">{$CS}</span>
@@ -458,7 +458,7 @@
                                     <span class="s-t">{lang('Подарочный сертификат','newLevel')}:</span>
                                     <span class="price-item f_r">
                                         <span class="text-discount">
-                                            <span class="price">- {echo ShopCore::app()->SCurrencyHelper->convert($model->getGiftCertPrice())} </span>
+                                            <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($model->getGiftCertPrice())} </span>
                                             <span class="curr">{$CS}</span>
                                         </span>
                                     </span>
@@ -476,7 +476,7 @@
             <div class="inside-padd">
                 <!-- Start. Price block-->
                 <div class="gen-sum-order clearfix">
-                    <span class="title f_l">{lang('К оплате с учетом доставки','newLevel')}:</span>
+                    <span class="title f_l">{lang('К оплате','newLevel')}:</span>
                     <span class="frame-prices f-s_0 f_r">
                         <span class="current-prices f-s_0">
                             <span class="price-new">

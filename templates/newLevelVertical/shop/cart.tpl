@@ -3,13 +3,13 @@
         <div class="js-empty empty {if count($items) == 0}d_b{/if}">
             <div class="f-s_0 title-cart without-crumbs">
                 <div class="frame-title">
-                    <h1 class="title">{lang('Оформление заказа','newLevel')}</h1>
+                    <h1 class="title">{lang('Оформление заказа','newLevelVertical')}</h1>
                 </div>
             </div>
             <div class="msg layout-highlight layout-highlight-msg">
                 <div class="info">
                     <span class="icon_info"></span>
-                    <span class="text-el">{lang('Корзина пуста','newLevel')}</span>
+                    <span class="text-el">{lang('Корзина пуста','newLevelVertical')}</span>
                 </div>
             </div>
         </div>
@@ -17,11 +17,11 @@
             <div class="js-no-empty no-empty">
                 <div class="f-s_0 title-cart without-crumbs">
                     <div class="frame-title">
-                        <h1 class="title">{lang('Оформление заказа','newLevel')}</h1>
+                        <h1 class="title">{lang('Оформление заказа','newLevelVertical')}</h1>
                         {if !$is_logged_in}
                             <span class="old-buyer">
                                 <button type="button" data-trigger="#loginButton">
-                                    <span class="d_l text-el">{lang('Я уже здесь покупал','newLevel')}</span>
+                                    <span class="d_l text-el">{lang('Я уже здесь покупал','newLevelVertical')}</span>
                                 </button>
                             </span>
                         {/if}
@@ -32,9 +32,9 @@
                     <div class="right-cart">
                         <div class="frame-bask frame-bask-order">
                             <div class="frame-title clearfix">
-                                <div class="title f_l">{lang('Мой заказ', 'newLevel')}</div>
+                                <div class="title f_l">{lang('Мой заказ', 'newLevelVertical')}</div>
                                 <div class="f_r">
-                                    <button type="button" class="d_l_1 editCart">{lang('Редактировать', 'newLevel')}</button>
+                                    <button type="button" class="d_l_1 editCart">{lang('Редактировать', 'newLevelVertical')}</button>
                                 </div>
                             </div>
 
@@ -57,7 +57,7 @@
                             {/if}
                             <div class="groups-form">
                                 <label>
-                                    <span class="title">{lang('Имя: ','newLevel')}</span>
+                                    <span class="title">{lang('Имя: ','newLevelVertical')}</span>
                                     <span class="frame-form-field">
                                         {if $isRequired['userInfo[fullName]']}
                                             <span class="must">*</span>
@@ -66,11 +66,11 @@
                                     </span>
                                 </label>
                                 <div class="frame-label">
-                                    <span class="title">{lang('Телефон','newLevel')}:</span>
+                                    <span class="title">{lang('Телефон','newLevelVertical')}:</span>
                                     <div class="frame-form-field">
                                         {if trim(ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPatternMain('pattern_custom_field_phone')->getOneCustomFieldsByName('addphone','order',$profile.id,'user')->asHtml()) != ''}
                                             <span class="f_r l-h_35">
-                                                <button type="button" class="d_l_1" data-drop=".drop-add-phone" data-overlay-opacity="0" data-place="inherit">{lang('Еще один номер', 'newLevel')}</button>
+                                                <button type="button" class="d_l_1" data-drop=".drop-add-phone" data-overlay-opacity="0" data-place="inherit">{lang('Еще один номер', 'newLevelVertical')}</button>
                                             </span>
                                         {/if}
                                         <div class="d_b o_h maskPhoneFrame">
@@ -85,7 +85,7 @@
                                     </div>
                                 </div>
                                 <label>
-                                    <span class="title">{lang('Email','newLevel')}:</span>
+                                    <span class="title">{lang('Email','newLevelVertical')}:</span>
                                     <span class="frame-form-field">
                                         {if $isRequired['userInfo[email]']}
                                             <span class="must">*</span>
@@ -100,11 +100,11 @@
                                 {if count($deliveryMethods) > 0}
                                     <!-- Start. Delivery methods block -->
                                     <div class="frame-label" id="frameDelivery">
-                                        <span class="title">{lang('Доставка:','newLevel')}</span>
+                                        <span class="title">{lang('Доставка:','newLevelVertical')}</span>
                                         <div class="frame-form-field check-variant-delivery">
                                             {/* <div class="lineForm">
                                             <select id="method_deliv" name="deliveryMethodId">
-                                                <option value="">{lang('--Выбирете способ доставки--', 'newLevel')}</option>
+                                                <option value="">{lang('--Выбирете способ доставки--', 'newLevelVertical')}</option>
                                             {foreach $deliveryMethods as $deliveryMethod}
                                             <option
                                                 name="met_del"
@@ -133,8 +133,8 @@
                                                             {if $deliveryMethod->getDeliverySumSpecified()}
                                                                 {echo $deliveryMethod->getDeliverySumSpecifiedMessage()}
                                                             {else:}
-                                                                <div>{lang('Стоимость','newLevel')}: {echo ceil($deliveryMethod->getPrice())} <span class="curr">{$CS}</span></div>
-                                                                <div>{lang('Бесплатно от','newLevel')}: {echo ceil($deliveryMethod->getFreeFrom())} <span class="curr">{$CS}</span></div>
+                                                                <div>{lang('Стоимость','newLevelVertical')}: {echo ceil($deliveryMethod->getPrice())} <span class="curr">{$CS}</span></div>
+                                                                <div>{lang('Бесплатно от','newLevelVertical')}: {echo ceil($deliveryMethod->getFreeFrom())} <span class="curr">{$CS}</span></div>
                                                                 {/if}
                                                         </div>
                                                     </div>
@@ -146,7 +146,7 @@
                                     <!-- Start. Delivery  address block and comment-->
                                 {/if}
                                 <div class="frame-label">
-                                    <span class="title">{lang('Адрес доставки', 'newLevel')}:</span>
+                                    <span class="title">{lang('Адрес доставки', 'newLevelVertical')}:</span>
                                     <span class="frame-form-field">
                                         {if $isRequired['userInfo[deliverTo]']}
                                             <span class="must">*</span>
@@ -160,7 +160,7 @@
 
                                 <div class="frame-label">
                                     <div class="frame-form-field">
-                                        <button type="button" class="m-b_5 t-a_l" data-drop=".hidden-comment" data-place="inherit" data-overlay-opacity="0"><span class="d_l_1">{lang('Добавить комментарий к заказу', 'newLevel')}</span></button>
+                                        <button type="button" class="m-b_5 t-a_l" data-drop=".hidden-comment" data-place="inherit" data-overlay-opacity="0"><span class="d_l_1">{lang('Добавить комментарий к заказу', 'newLevelVertical')}</span></button>
                                         <div class="hidden-comment drop">
                                             <textarea name="userInfo[commentText]" ></textarea>
                                         </div>
@@ -171,9 +171,9 @@
                                     <div class="frame-payment p_r">
                                         <div id="framePaymentMethod">
                                             <div class="frame-label">
-                                                <span class="title">{lang('Оплата','newLevel')}:</span>
+                                                <span class="title">{lang('Оплата','newLevelVertical')}:</span>
                                                 <div class="frame-form-field" style="padding-top: 6px;">
-                                                    <div class="help-block">{lang('Выберите доставку', 'newLevel')}</div>
+                                                    <div class="help-block">{lang('Выберите доставку', 'newLevelVertical')}</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -187,7 +187,7 @@
                                     <span class="title">&nbsp;</span>
                                     <span class="frame-form-field">
                                         <div class="btn-cart btn-cart-p">
-                                            <input type="submit" value="{lang('Подтвердить заказ','newLevel')}" id="submitOrder"/>
+                                            <input type="submit" value="{lang('Подтвердить заказ','newLevelVertical')}" id="submitOrder"/>
                                         </div>
                                     </span>
                                 </div>

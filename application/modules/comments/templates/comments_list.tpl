@@ -234,13 +234,13 @@ langs["Show answers"] = '<?php echo lang("Show answers", "comments")?>';
                                                             </div>
                                                         </td>
                                                         <td>
-                                                            <a href="#" class="u_ed">{$item.user_name}</a>
+                                                            <a href="#" class="u_ed text_comment">{$item.user_name}</a>
                                                             <span class="frame_edit_comment ref_group u_ed">
                                                                 <input type="text" value="{$item.user_name}" name="user_name" id="u_ed{$item.id}">
                                                             </span>
                                                         </td>
                                                         <td>
-                                                            <a href="#" class="m_ed">{$item.user_mail}</a>
+                                                            <a href="#" class="m_ed text_comment">{$item.user_mail}</a>
                                                             <span class="frame_edit_comment ref_group m_ed">
                                                                 <input type="text" value="{$item.user_mail}" name="user_mail" id="m_ed{$item.id}">
                                                             </span>
@@ -338,13 +338,13 @@ langs["Show answers"] = '<?php echo lang("Show answers", "comments")?>';
                                                                             </div>
                                                                         </td>
                                                                         <td>
-                                                                            <a href="#" class="u_ed">{$ic.user_name}</a>
+                                                                            <a href="#" class="u_ed text_comment">{$ic.user_name}</a>
                                                                             <span class="frame_edit_comment ref_group u_ed">
                                                                                 <input type="text" value="{$ic.user_name}" name="user_name" id="u_ed{$ic.id}">
                                                                             </span>
                                                                         </td>
                                                                         <td>
-                                                                            <a href="#" class="m_ed">{$ic.user_mail}</a>
+                                                                            <a href="#" class="m_ed text_comment">{$ic.user_mail}</a>
                                                                             <span class="frame_edit_comment ref_group m_ed">
                                                                                 <input type="text" value="{$ic.user_mail}" name="user_mail" id="m_ed{$ic.id}">
                                                                             </span>

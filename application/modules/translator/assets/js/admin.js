@@ -4,14 +4,13 @@ $(document).ready(function() {
         source: base_url + 'admin/components/cp/translator/getLangaugesNames',
         select: function(event, ui) {
             $(this).attr('locale', ui.item.locale);
-            if ($(this).closest('.originLangHolder').length) {
-                Translator.setOriginsLang($(this));
-            }
+            $(this).next().next().val(ui.item.locale);
         }
     });
 
     $('.languageSelect').bind('focus', function() {
-        $(this).autocomplete("search", "all_languages")
+        if (!$.trim($(this).val()))
+            $(this).autocomplete("search", "all_languages")
     });
 
     $('.showAllLanguageList').toggle(function() {
@@ -89,6 +88,30 @@ $(document).ready(function() {
 
     $('.comment').on('blur', function() {
         $(this).text($(this).val());
+    });
+
+    $('.createPagePaths option').live('dblclick', function() {
+        $(this).remove();
+    });
+
+    $('.createPagePathsAddInput').live('keyup', function() {
+        if ($.trim($(this).val())) {
+            $('.createPagePathsAddButton').removeClass('disabled');
+            $('.createPagePathsAddButton').removeAttr('disabled');
+        } else {
+            $('.createPagePathsAddButton').addClass('disabled');
+            $('.createPagePathsAddButton').attr('disabled', 'disabled');
+        }
+    });
+
+    $('.createPagePathsAddInput').live('blur', function() {
+        if ($.trim($(this).val())) {
+            $('.createPagePathsAddButton').removeClass('disabled');
+            $('.createPagePathsAddButton').removeAttr('disabled');
+        } else {
+            $('.createPagePathsAddButton').addClass('disabled');
+            $('.createPagePathsAddButton').attr('disabled', 'disabled');
+        }
     });
 
 });
@@ -694,7 +717,6 @@ var Translator = {
     },
     setOriginsLang: function(curElement) {
         var originLang = $(curElement).attr('locale');
-        console.log(originLang)
         $.ajax({
             type: "POST",
             data: {
@@ -955,9 +977,19 @@ var Translator = {
                 paths: this.getPaths()
             },
             success: function(data) {
-                if (data) {
-                    var tableData = data.replace(/<script[\W\w]+<\/script>/, '');
-                    $('#po_table tbody').html(tableData);
+                try
+                {
+                    var response = $.parseJSON(data);
+                    if (response.error) {
+                        showMessage(lang('Error'), response.data, 'r');
+                    }
+                }
+                catch (err)
+                {
+                    if (data) {
+                        var tableData = data.replace(/<script[\W\w]+<\/script>/, '');
+                        $('#po_table tbody').html(tableData);
+                    }
                 }
             }
         });
@@ -1462,6 +1494,7 @@ var CreatePoFile = {
         var pathSelector = $(curElement).next().next();
         $(pathSelector).append('<option selected value="' + path + '">' + path + '</option>')
         $(curElement).next().val('');
+        $(curElement).addClass('disabled').attr('disabled', 'disabled');
     }
 };
 
@@ -1475,6 +1508,16 @@ var Exchange = {
 
         var modules_templatesExchanger = $('.exchanger #modules_templates').val();
         var modules_templatesReceiver = $('.receiver #modules_templates').val();
+
+        if (typeExchanger != 'main' && !modules_templatesExchanger) {
+            showMessage(lang('Error'), lang('Select all paths to files.'), 'r');
+            return;
+        }
+
+        if (typeReceiver != 'main' && !modules_templatesReceiver) {
+            showMessage(lang('Error'), lang('Select all paths to files.'), 'r');
+            return;
+        }
 
         $.ajax({
             type: 'POST',
@@ -1491,7 +1534,7 @@ var Exchange = {
                 if (data) {
 //                    var tableData = data.replace(/<script[\W\w]+<\/script>/, '');
                     $('#mainContent').html(data);
-                   
+
                     window.history.pushState({}, "", "/admin/components/init_window/translator");
                 }
             }
@@ -1505,7 +1548,11 @@ var AceEditor = {
     changeTheme: function(curElement) {
         var theme = $(curElement).val();
         if (theme) {
-            this.editor.setTheme("ace/theme/" + theme);
+            if (navigator.userAgent.toLowerCase().search('linux')) {
+                this.editor.setTheme("ace/theme/" + theme);
+            } else {
+                this.editor.setTheme("ace\\theme\\" + theme);
+            }
             $.ajax({
                 type: "POST",
                 data: {
@@ -1517,17 +1564,29 @@ var AceEditor = {
             });
         }
 
+
     },
     setTheme: function(theme) {
         var curTheme = theme ? theme : $('.editorTheme').val();
         if (curTheme) {
-            this.editor.setTheme("ace/theme/" + curTheme);
+            if (navigator.userAgent.toLowerCase().search('linux')) {
+                this.editor.setTheme("ace/theme/" + curTheme);
+            } else {
+                this.editor.setTheme("ace\\theme\\" + curTheme);
+            }
         }
     },
     init: function() {
         this.editor = ace.edit("fileEdit");
-        this.editor.setTheme("ace/theme/chrome");
-        this.editor.getSession().setMode("ace/mode/xml");
+
+        if (navigator.userAgent.toLowerCase().search('linux')) {
+            this.editor.setTheme("ace/theme/chrome");
+            this.editor.getSession().setMode("ace/mode/xml");
+        } else {
+            this.editor.setTheme("ace\\theme\\chrome");
+            this.editor.getSession().setMode("ace\\mode\\xml");
+        }
+
     },
     render: function(fileContent, selectedLine, fileExtention) {
         this.init();

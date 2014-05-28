@@ -8,16 +8,16 @@
                         data-source="{site_url('auth')}"
                         >
                     <span class="icon_enter"></span>
-                    <span class="text-el">{lang('Вход','newLevel')}</span>
+                    <span class="text-el">{lang('Вход','newLevelVertical')}</span>
                 </button>
             </li>
             <li class="f-s_0 divider">
-                <span class="text-el">{lang('или','newLevel')}</span>
+                <span class="text-el">{lang('или','newLevelVertical')}</span>
             </li>
             <li class="btn-register">
                 <a href="{site_url('/auth/register')}" rel=”nofollow”>
                     <span class="icon_reg"></span>
-                    <span class="text-el">{lang('Регистрация','newLevel')}</span>
+                    <span class="text-el">{lang('Регистрация','newLevelVertical')}</span>
                 </a>
             </li>
             <!--Else show link for personal cabinet -->
@@ -25,7 +25,7 @@
             <li class="btn-personal-area">
                 <a href="{site_url('/shop/profile')}">
                     <span class="icon_enter"></span>
-                    <span class="text-el">{lang('Личный кабинет','newLevel')}</span>
+                    <span class="text-el">{lang('Личный кабинет','newLevelVertical')}</span>
                 </a>
             </li>
             <li class="btn-exit-shop">
@@ -36,7 +36,7 @@
                             }}{/literal});
                         return false;">
                     <span class="icon_exit"></span>
-                    <span class="text-el">{lang('Выход','newLevel')}</span>
+                    <span class="text-el">{lang('Выход','newLevelVertical')}</span>
                 </button>
             </li>
         {/if}

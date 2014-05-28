@@ -14,7 +14,7 @@
                         <button type="button" data-drop=".frame-already-show" data-effect-on="slideDown" data-effect-off="slideUp" data-place="inherit" data-drop-filter="parents(.frame-user-toolbar).children(.frame-already-show)">
                             <span class="icon_arrow_down"></span>
                             <span class="text-view-list">
-                                <span class="text-el d_l_1">{lang("Просмотренные товары",'newLevel')}</span>
+                                <span class="text-el d_l_1">{lang("Просмотренные товары",'newLevelVertical')}</span>
                                 <span class="text-el">&nbsp;({echo $countSh})</span>
                             </span>
                         </button>
@@ -23,11 +23,11 @@
                 <li class="box-4">
                     <div class="btn-toggle-toolbar">
                         <button type="button" data-rel="0" {if $_COOKIE['condUserToolbar'] == 0 && isset($_COOKIE['condUserToolbar'])}style="display: none;"{else:} class="activeUT"{/if}>
-                            <span class="text-el">{lang('Свернуть','newLevel')}</span>
+                            <span class="text-el">{lang('Свернуть','newLevelVertical')}</span>
                         </button>
                         <button type="button" data-rel="1" class="show{if $_COOKIE['condUserToolbar'] == 0 || isset($_COOKIE['condUserToolbar'])} activeUT{/if}" {if $_COOKIE['condUserToolbar'] == 1 ||  !isset($_COOKIE['condUserToolbar'])}style="display: none;"{/if}>
                             <span class="icon_arrow_down"></span>
-                            <span class="text-el">{lang('Развернуть','newLevel')}</span>
+                            <span class="text-el">{lang('Развернуть','newLevelVertical')}</span>
                         </button>
                     </div>
                 </li>
@@ -36,14 +36,13 @@
         <div class="btn-to-up">
             <button type="button">
                 <span class="icon_arrow_p icon_arrow_p2"></span>
-                <span class="text-el ref t-d_n">{lang('Наверх','newLevel')}</span>
+                <span class="text-el ref t-d_n">{lang('Наверх','newLevelVertical')}</span>
             </button>
         </div>
     </div>
     <div class="drop frame-already-show">
         <div class="content-already-show">
             <div id="ViewedProducts">
-                {/*{widget_ajax('ViewedProducts', '#ViewedProducts')}*/}
                 {widget('ViewedProducts')}
             </div>
         </div>

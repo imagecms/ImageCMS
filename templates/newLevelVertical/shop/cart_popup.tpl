@@ -1,11 +1,11 @@
 <script type="text/javascript">
-    totalItemsBask = {echo $totalItems}
+    totalItemsBask = {if $totalItems}{echo $totalItems}{else:}0{/if};
 </script>
 <div class="frame-bask frameBask p_r">
     <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
     {if $totalItems > 0}
         <div class="drop-header">
-            <div class="title bask"><span>{lang('В корзине','newLevel')}</span><span class="add-info"><span class="topCartCount"> {echo $totalItems}</span></span> <span class="plurProd">{echo SStringHelper::Pluralize($totalItems, array(lang('товар','newLevel'),lang('товара','newLevel'),lang('товаров','newLevel')))}</span> <span>{lang('Сумма','newLevel')}</span> <span class="add-info"><span class="topCartTotalPrice">{echo ShopCore::app()->SCurrencyHelper->convert($cartPrice)}</span></span> <span class="curr">{$CS}</span></div>
+            <div class="title bask"><span>{lang('В корзине','newLevelVertical')}</span><span class="add-info"><span class="topCartCount"> {echo $totalItems}</span></span> <span class="plurProd">{echo SStringHelper::Pluralize($totalItems, array(lang('товар','newLevelVertical'),lang('товара','newLevelVertical'),lang('товаров','newLevelVertical')))}</span> <span>{lang('Сумма','newLevelVertical')}</span> <span class="add-info"><span class="topCartTotalPrice">{echo ShopCore::app()->SCurrencyHelper->convert($cartPrice)}</span></span> <span class="curr">{$CS}</span></div>
         </div>
         <div class="drop-content">
             <div class="inside-padd">
@@ -29,12 +29,12 @@
                                         <div class="description">
                                             {if $item->getName() && trim($item->getName()) != trim($item->getSProducts()->getName())}
                                                 <span class="frame-variant-name">
-                                                    <span class="text-el">{lang('Вариант','newLevel')}</span>
+                                                    <span class="text-el">{lang('Вариант','newLevelVertical')}</span>
                                                     <span class="code">({echo trim($item->getName())})</span>
                                                 </span>
                                             {/if}
                                             {if $item->getNumber()}
-                                                <span class="frame-variant-code">{lang('Артикул','newLevel')}  
+                                                <span class="frame-variant-code">{lang('Артикул','newLevelVertical')}  
                                                     <span class="code">({echo $item->getNumber()})
                                                     </span>
                                                 </span> 
@@ -42,8 +42,8 @@
                                         </div>
                                     </td>
                                     <td class="frame-count frameCount">
-                                        <span class="count-or-compl">{lang('Количество', 'newLevel')}:</span>
-                                        <div class="number js-number" data-title="{lang('Количество на складе','newLevel')} {echo $item->getStock()}">
+                                        <span class="count-or-compl">{lang('Количество', 'newLevelVertical')}:</span>
+                                        <div class="number js-number" data-title="{lang('Количество на складе','newLevelVertical')} {echo $item->getStock()}">
                                             <div class="frame-change-count" data-id="{echo $item->getId()}">
                                                 <div class="btn-plus">
                                                     <button type="button">
@@ -56,11 +56,11 @@
                                                     </button>
                                                 </div>
                                             </div>
-                                            <input type="text" value="{echo $item->quantity}" class="plusMinus plus-minus" id="inputChange{echo $item->getId()}" data-id="{echo $item->getId()}" data-title="{lang('Только цифры','newLevel')}" data-min="1" data-max="{echo $item->getStock()}"/>
+                                            <input type="text" value="{echo $item->quantity}" class="plusMinus plus-minus" id="inputChange{echo $item->getId()}" data-id="{echo $item->getId()}" data-title="{lang('Только цифры','newLevelVertical')}" data-min="1" data-max="{echo $item->getStock()}"/>
                                         </div>
                                     </td>
                                     <td class="frame-cur-sum-price">
-                                        <span class="title">{lang('Сумма','newLevel')}: </span>
+                                        <span class="title">{lang('Сумма','newLevelVertical')}: </span>
                                         <div class="frame-prices f-s_0">
                                             {if ShopCore::app()->SCurrencyHelper->convert($item->originPrice) != ShopCore::app()->SCurrencyHelper->convert($item->price)}
                                                 <span class="price-discount">
@@ -114,13 +114,13 @@
                                                         <div class="description">
                                                             {if $item->getName() && trim($kitItem->getName()) != trim($kitItem->getSProducts()->getName())}
                                                                 <span class="frame-variant-name">
-                                                                    <span class="text-el">{lang('Вариант','newLevel')}</span>
+                                                                    <span class="text-el">{lang('Вариант','newLevelVertical')}</span>
                                                                     <span class="code">({echo $kitItem->getName()})</span>
                                                                 </span>
                                                             {/if}
                                                             {if $kitItem->getSProducts()->getNumber()}
                                                                 <span class="frame-variant-code">
-                                                                    <span class="text-el">{lang('Артикул','newLevel')}</span>
+                                                                    <span class="text-el">{lang('Артикул','newLevelVertical')}</span>
                                                                     <span class="code">({echo $kitItem->getSProducts()->getNumber()})</span>
                                                                 </span> 
                                                             {/if}
@@ -131,8 +131,8 @@
                                         </ul>
                                     </td>
                                     <td class="frame-count">
-                                        <span class="count-or-compl">{lang('Количество', 'newLevel')}:</span>
-                                        <div class="number js-number" data-title="{lang('Количество на складе','newLevel')} {echo $item->getStock()}">
+                                        <span class="count-or-compl">{lang('Количество', 'newLevelVertical')}:</span>
+                                        <div class="number js-number" data-title="{lang('Количество на складе','newLevelVertical')} {echo $item->getStock()}">
                                             <div class="frame-change-count" data-id="{echo $item->getId()}">
                                                 <div class="btn-plus">
                                                     <button type="button">
@@ -145,11 +145,11 @@
                                                     </button>
                                                 </div>
                                             </div>
-                                            <input type="text" value="{echo $item->quantity}" class="plusMinus plus-minus" id="inputChange{echo $item->getId()}" data-id="{echo $item->getId()}" data-kit="1" data-title="{lang('Только цифры','newLevel')}" data-min="1" data-max="{echo $item->getStock()}"/>
+                                            <input type="text" value="{echo $item->quantity}" class="plusMinus plus-minus" id="inputChange{echo $item->getId()}" data-id="{echo $item->getId()}" data-kit="1" data-title="{lang('Только цифры','newLevelVertical')}" data-min="1" data-max="{echo $item->getStock()}"/>
                                         </div>
                                     </td>
                                     <td class="frame-cur-sum-price">
-                                        <span class="title">{lang('Сумма','newLevel')}: </span>
+                                        <span class="title">{lang('Сумма','newLevelVertical')}: </span>
                                         <div class="frame-prices f-s_0">
                                             {if ShopCore::app()->SCurrencyHelper->convert($item->originPrice) != ShopCore::app()->SCurrencyHelper->convert($item->price)}
                                                 <span class="price-discount">
@@ -191,16 +191,16 @@
                 <div class="clearfix">
                     {if $discount_val}
                         <span class="frame-discount">
-                            <span class="s-t">{lang('Ваша текущая скидка','newLevel')}:</span>
+                            <span class="s-t">{lang('Ваша текущая скидка','newLevelVertical')}:</span>
                             <span class="text-discount current-discount"><span class="text-el">{echo ShopCore::app()->SCurrencyHelper->convert($discount_val)}</span> <span class="curr">{$CS}</span></span>
                         </span>
                     {/if}      
                     <div class="btn-form f_l isCart">
                         <button type="button" data-closed="closed-js">
-                            <span class="text-el"><span class="f-s_14">←</span> {lang('Вернуться к оформлению','newLevel')}</span>
+                            <span class="text-el"><span class="f-s_14">←</span> {lang('Вернуться к оформлению','newLevelVertical')}</span>
                         </button>
                     </div>
-                    <span class="s-t">{lang('Всего','newLevel')}:</span>
+                    <span class="s-t">{lang('Всего','newLevelVertical')}:</span>
                     <span class="frame-prices f-s_0">
                         {if $discount_val}
                             <span class="price-discount">
@@ -230,7 +230,7 @@
                     <br />
                     {if $overloadedDiscounts}
                         <span class="s-t">
-                            {lang('Для некоторых скидок превышено их максимальное количество использования','newLevel')}
+                            {lang('Для некоторых скидок превышено их максимальное количество использования','newLevelVertical')}
                         </span>
                     {/if}
                 </div>
@@ -239,13 +239,13 @@
                 <div class="clearfix inside-padd">
                     <div class="btn-form f_l">
                         <button type="button" data-closed="closed-js">
-                            <span class="text-el"><span class="f-s_14">←</span> {lang('Вернуться к покупкам','newLevel')}</span>
+                            <span class="text-el"><span class="f-s_14">←</span> {lang('Вернуться к покупкам','newLevelVertical')}</span>
                         </button>
                     </div>
                     <div class="btn-cart btn-cart-p f_r">
-                        <a href="/shop/cart">
+                        <a href={shop_url('cart')}>
                             <span class="icon_cart_p"></span>
-                            <span class="text-el">{lang('Оформить заказ','newLevel')}</span>
+                            <span class="text-el">{lang('Оформить заказ','newLevelVertical')}</span>
                         </a>
                     </div>
                 </div>
@@ -253,16 +253,16 @@
         </div>
     {else:}
         <div class="drop-header">
-            <div class="title">{lang('Ваша корзина','newLevel')} <span class="add-info">{lang('пуста','newLevel')}</span></div>
+            <div class="title">{lang('Ваша корзина','newLevelVertical')} <span class="add-info">{lang('пуста','newLevelVertical')}</span></div>
         </div>
         <div class="drop-content is-empty">
             <div class="inside-padd">
                 <div class="msg f-s_0">
-                    <div class="success"><span class="icon_info"></span><span class="text-el">{lang('Вы удалили все элементы из корзины','newLevel')}</span></div>
+                    <div class="success"><span class="icon_info"></span><span class="text-el">{lang('Вы удалили все элементы из корзины','newLevelVertical')}</span></div>
                 </div>
                 <div class="btn-form notCart">
                     <button type="button" data-closed="closed-js">
-                        <span class="text-el"><span class="f-s_14">←</span> {lang('Вернуться к покупкам','newLevel')}</span>
+                        <span class="text-el"><span class="f-s_14">←</span> {lang('Вернуться к покупкам','newLevelVertical')}</span>
                     </button>
                 </div>
             </div>

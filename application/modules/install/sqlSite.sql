@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 3.2.4
+-- version 3.4.10.1deb1
 -- http://www.phpmyadmin.net
 --
--- Хост: localhost
--- Время создания: Дек 26 2013 г., 17:10
--- Версия сервера: 5.1.41
--- Версия PHP: 5.3.1
+-- Host: localhost
+-- Generation Time: May 28, 2014 at 11:46 AM
+-- Server version: 5.5.32
+-- PHP Version: 5.4.25-1+sury.org~precise+2
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -16,15 +17,16 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 /*!40101 SET NAMES utf8 */;
 
 --
--- База данных: `imagedemoshop`
+-- Database: `imagecms`
 --
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `category`
+-- Table structure for table `category`
 --
 
+DROP TABLE IF EXISTS `category`;
 CREATE TABLE IF NOT EXISTS `category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `parent_id` int(11) NOT NULL DEFAULT '0',
@@ -47,30 +49,33 @@ CREATE TABLE IF NOT EXISTS `category` (
   `field_group` int(11) NOT NULL,
   `category_field_group` int(11) NOT NULL,
   `settings` varchar(10000) DEFAULT NULL,
+  `created` int(11) NOT NULL,
+  `updated` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `name` (`name`),
   KEY `url` (`url`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=62 ;
 
 --
--- Дамп данных таблицы `category`
+-- Dumping data for table `category`
 --
 
-INSERT INTO `category` (`id`, `parent_id`, `position`, `name`, `title`, `short_desc`, `url`, `image`, `keywords`, `description`, `fetch_pages`, `main_tpl`, `tpl`, `page_tpl`, `per_page`, `order_by`, `sort_order`, `comments_default`, `field_group`, `category_field_group`, `settings`) VALUES
-(56, 0, 0, 'Услуги', '', '<p>Помимо разработки и продажи роботов различных конфигураций, наша компания предоставляет также полный спектр услуг связанных с работоспособностью роботов. Со всем списком Вы можете ознакомиться ниже.</p>', 'usluhi', '', '', '', 'b:0;', '', 'category_services', 'page_service', 15, 'position', 'asc', 0, 7, -1, 'a:2:{s:26:"category_apply_for_subcats";b:0;s:17:"apply_for_subcats";b:0;}'),
-(57, 0, 0, 'Новости', '', '<p>В данном разделе Вы можете ознакомиться со списком последних новостей нашей компании, а возможно и с последними галактическими новостями в мире роботехники.</p>', 'novosti', '', '', '', 'b:0;', '', 'news', '', 1, 'publish_date', 'desc', 0, -1, -1, 'a:2:{s:26:"category_apply_for_subcats";b:0;s:17:"apply_for_subcats";b:0;}'),
-(55, 0, 0, 'Продукция', '', '<p>В данном разделе представлена вся продукция компании <strong>ImageRobotics</strong>, раздел постоянно пополняется, мы не стоим на месте и скоро наши роботы смогу еще больше.</p>', 'produktsiia', '', '', '', 'b:0;', '', 'category_products', 'page_product', 1, 'position', 'asc', 0, 7, -1, 'a:2:{s:26:"category_apply_for_subcats";b:0;s:17:"apply_for_subcats";b:0;}'),
-(58, 0, 0, 'Вакансии', '', '<p>В данном разделе собраны вакансии компании ImageRobotics. Ко всем кандидатам очень строгие требования. Для работы в нашей компании, Вам нужно как минимум обладать всеми знаниями нашей Галактики. <strong>"Простым вундеркиндам" просьба не беспокоить!!!</strong></p>\n<p><strong>Все, кто хотят подать свое резюме, должны для начала разгадать номер факса нашего HR отдела, который зашифрован следующим кодом: 8822001112008382288018280444322211081 (подсказка 784).<br /></strong></p>', 'vakansii', '', '', '', 'b:0;', '', 'category_vacancies', 'page_vacancy', 15, 'publish_date', 'desc', 0, -1, -1, 'a:2:{s:26:"category_apply_for_subcats";b:0;s:17:"apply_for_subcats";b:0;}'),
-(59, 0, 0, 'Блог', '', '', 'bloh', '', '', '', 'a:2:{i:0;s:2:"60";i:1;s:2:"61";}', '', 'blog', '', 2, 'publish_date', 'desc', 1, -1, -1, 'a:2:{s:26:"category_apply_for_subcats";b:0;s:17:"apply_for_subcats";b:0;}'),
-(60, 59, 0, 'Кухонные роботы', '', '', 'kuhonnye_roboty', '', '', '', 'b:0;', '', 'blog', '', 15, 'publish_date', 'desc', 1, 7, -1, NULL),
-(61, 59, 0, 'Человеко роботы', '', '', 'cheloveko_roboty', '', '', '', 'b:0;', '', 'blog', '', 15, 'publish_date', 'desc', 1, 7, -1, NULL);
+INSERT INTO `category` (`id`, `parent_id`, `position`, `name`, `title`, `short_desc`, `url`, `image`, `keywords`, `description`, `fetch_pages`, `main_tpl`, `tpl`, `page_tpl`, `per_page`, `order_by`, `sort_order`, `comments_default`, `field_group`, `category_field_group`, `settings`, `created`, `updated`) VALUES
+(56, 0, 0, 'Услуги', '', '<p>Помимо разработки и продажи роботов различных конфигураций, наша компания предоставляет также полный спектр услуг связанных с работоспособностью роботов. Со всем списком Вы можете ознакомиться ниже.</p>', 'usluhi', '', '', '', 'b:0;', '', 'category_services', 'page_service', 15, 'position', 'asc', 0, 7, -1, 'a:2:{s:26:"category_apply_for_subcats";b:0;s:17:"apply_for_subcats";b:0;}', 1401265119, 1401265119),
+(57, 0, 0, 'Новости', '', '<p>В данном разделе Вы можете ознакомиться со списком последних новостей нашей компании, а возможно и с последними галактическими новостями в мире роботехники.</p>', 'novosti', '', '', '', 'b:0;', '', 'news', '', 1, 'publish_date', 'desc', 0, -1, -1, 'a:2:{s:26:"category_apply_for_subcats";b:0;s:17:"apply_for_subcats";b:0;}', 1401265119, 1401265119),
+(55, 0, 0, 'Продукция', '', '<p>В данном разделе представлена вся продукция компании <strong>ImageRobotics</strong>, раздел постоянно пополняется, мы не стоим на месте и скоро наши роботы смогу еще больше.</p>', 'produktsiia', '', '', '', 'b:0;', '', 'category_products', 'page_product', 1, 'position', 'asc', 0, 7, -1, 'a:2:{s:26:"category_apply_for_subcats";b:0;s:17:"apply_for_subcats";b:0;}', 1401265119, 1401265119),
+(58, 0, 0, 'Вакансии', '', '<p>В данном разделе собраны вакансии компании ImageRobotics. Ко всем кандидатам очень строгие требования. Для работы в нашей компании, Вам нужно как минимум обладать всеми знаниями нашей Галактики. <strong>"Простым вундеркиндам" просьба не беспокоить!!!</strong></p>\n<p><strong>Все, кто хотят подать свое резюме, должны для начала разгадать номер факса нашего HR отдела, который зашифрован следующим кодом: 8822001112008382288018280444322211081 (подсказка 784).<br /></strong></p>', 'vakansii', '', '', '', 'b:0;', '', 'category_vacancies', 'page_vacancy', 15, 'publish_date', 'desc', 0, -1, -1, 'a:2:{s:26:"category_apply_for_subcats";b:0;s:17:"apply_for_subcats";b:0;}', 1401265119, 1401265119),
+(59, 0, 0, 'Блог', '', '', 'bloh', '', '', '', 'a:2:{i:0;s:2:"60";i:1;s:2:"61";}', '', 'blog', '', 2, 'publish_date', 'desc', 1, -1, -1, 'a:2:{s:26:"category_apply_for_subcats";b:0;s:17:"apply_for_subcats";b:0;}', 1401265119, 1401265119),
+(60, 59, 0, 'Кухонные роботы', '', '', 'kuhonnye_roboty', '', '', '', 'b:0;', '', 'blog', '', 15, 'publish_date', 'desc', 1, 7, -1, NULL, 1401265119, 1401265119),
+(61, 59, 0, 'Человеко роботы', '', '', 'cheloveko_roboty', '', '', '', 'b:0;', '', 'blog', '', 15, 'publish_date', 'desc', 1, 7, -1, NULL, 1401265119, 1401265119);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `category_translate`
+-- Table structure for table `category_translate`
 --
 
+DROP TABLE IF EXISTS `category_translate`;
 CREATE TABLE IF NOT EXISTS `category_translate` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `alias` int(11) NOT NULL,
@@ -85,17 +90,13 @@ CREATE TABLE IF NOT EXISTS `category_translate` (
   KEY `name` (`name`,`lang`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
---
--- Дамп данных таблицы `category_translate`
---
-
-
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `comments`
+-- Table structure for table `comments`
 --
 
+DROP TABLE IF EXISTS `comments`;
 CREATE TABLE IF NOT EXISTS `comments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `module` varchar(25) NOT NULL DEFAULT 'core',
@@ -122,7 +123,7 @@ CREATE TABLE IF NOT EXISTS `comments` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=68 ;
 
 --
--- Дамп данных таблицы `comments`
+-- Dumping data for table `comments`
 --
 
 INSERT INTO `comments` (`id`, `module`, `user_id`, `user_name`, `user_mail`, `user_site`, `item_id`, `text`, `date`, `status`, `agent`, `user_ip`, `rate`, `text_plus`, `text_minus`, `like`, `disslike`, `parent`) VALUES
@@ -133,7 +134,7 @@ INSERT INTO `comments` (`id`, `module`, `user_id`, `user_name`, `user_mail`, `us
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `components`
+-- Table structure for table `components`
 --
 
 DROP TABLE IF EXISTS `components`;
@@ -154,7 +155,7 @@ CREATE TABLE IF NOT EXISTS `components` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=270 ;
 
 --
--- Дамп даних таблиці `components`
+-- Dumping data for table `components`
 --
 
 INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_menu`, `settings`, `position`) VALUES
@@ -163,7 +164,7 @@ INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_me
 (4, 'comments', 'comments', 1, 1, 1, 'a:5:{s:18:"max_comment_length";i:0;s:6:"period";i:0;s:11:"can_comment";i:0;s:11:"use_captcha";b:0;s:14:"use_moderation";b:0;}', 9),
 (7, 'navigation', 'navigation', 0, 0, 0, NULL, 29),
 (30, 'tags', 'tags', 1, 1, 0, NULL, 27),
-(92, 'gallery', 'gallery', 1, 0, 0, 'a:26:{s:13:"max_file_size";s:1:"5";s:9:"max_width";s:1:"0";s:10:"max_height";s:1:"0";s:7:"quality";s:2:"95";s:14:"maintain_ratio";b:1;s:19:"maintain_ratio_prev";b:1;s:19:"maintain_ratio_icon";b:1;s:4:"crop";b:0;s:9:"crop_prev";b:0;s:9:"crop_icon";b:0;s:14:"prev_img_width";s:3:"500";s:15:"prev_img_height";s:3:"500";s:11:"thumb_width";s:3:"100";s:12:"thumb_height";s:3:"100";s:14:"watermark_text";s:0:"";s:16:"wm_vrt_alignment";s:6:"bottom";s:16:"wm_hor_alignment";s:4:"left";s:19:"watermark_font_size";s:2:"14";s:15:"watermark_color";s:6:"ffffff";s:17:"watermark_padding";s:2:"-5";s:19:"watermark_font_path";s:20:"./system/fonts/1.ttf";s:15:"watermark_image";s:0:"";s:23:"watermark_image_opacity";s:2:"50";s:14:"watermark_type";s:4:"text";s:8:"order_by";s:4:"date";s:10:"sort_order";s:4:"desc";}', 13),
+(92, 'gallery', 'gallery', 1, 0, 0, 'a:26:{s:13:"max_file_size";s:1:"5";s:9:"max_width";s:1:"0";s:10:"max_height";s:1:"0";s:7:"quality";s:2:"95";s:14:"maintain_ratio";b:1;s:19:"maintain_ratio_prev";b:1;s:19:"maintain_ratio_icon";b:1;s:4:"crop";b:0;s:9:"crop_prev";b:0;s:9:"crop_icon";b:0;s:14:"prev_img_width";s:3:"500";s:15:"prev_img_height";s:3:"500";s:11:"thumb_width";s:3:"100";s:12:"thumb_height";s:3:"100";s:14:"watermark_text";s:0:"";s:16:"wm_vrt_alignment";s:6:"bottom";s:16:"wm_hor_alignment";s:4:"left";s:19:"watermark_font_size";s:2:"14";s:15:"watermark_color";s:6:"ffffff";s:17:"watermark_padding";s:2:"-5";s:19:"watermark_font_path";s:25:"./uploads/defaultFont.ttf";s:15:"watermark_image";s:0:"";s:23:"watermark_image_opacity";s:2:"50";s:14:"watermark_type";s:4:"text";s:8:"order_by";s:4:"date";s:10:"sort_order";s:4:"desc";}', 13),
 (55, 'rss', 'rss', 1, 0, 0, 'a:5:{s:5:"title";s:9:"Image CMS";s:11:"description";s:35:"Тестируем модуль RSS";s:10:"categories";a:1:{i:0;s:1:"3";}s:9:"cache_ttl";i:60;s:11:"pages_count";i:10;}', 14),
 (60, 'menu', 'menu', 0, 1, 1, NULL, 0),
 (58, 'sitemap', 'sitemap', 1, 1, 0, 'a:6:{s:18:"main_page_priority";b:0;s:13:"cats_priority";b:0;s:14:"pages_priority";b:0;s:20:"main_page_changefreq";b:0;s:21:"categories_changefreq";b:0;s:16:"pages_changefreq";b:0;}', 15),
@@ -186,9 +187,10 @@ INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_me
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `content`
+-- Table structure for table `content`
 --
 
+DROP TABLE IF EXISTS `content`;
 CREATE TABLE IF NOT EXISTS `content` (
   `id` bigint(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(500) NOT NULL,
@@ -225,16 +227,16 @@ CREATE TABLE IF NOT EXISTS `content` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=84 ;
 
 --
--- Дамп данных таблицы `content`
+-- Dumping data for table `content`
 --
 
 INSERT INTO `content` (`id`, `title`, `meta_title`, `url`, `cat_url`, `keywords`, `description`, `prev_text`, `full_text`, `category`, `full_tpl`, `main_tpl`, `position`, `comments_status`, `comments_count`, `post_status`, `author`, `publish_date`, `created`, `updated`, `showed`, `lang`, `lang_alias`) VALUES
 (35, 'Приветствуем на сайте ImageRobotics', 'ImageRobotics - Лидер в производстве роботов', 'privetstvuem_na_saite_imagerobitics', '', 'это, базовый, шаблон, imagecms, котором, релизованы, следующие, функции, вывод, фотогалереи, статической, статьи, блога', 'Мы разрабатываем и усовершенствуем такие виды роботов: человеко роботы, боевые роботы, космические роботы, кухонные роботы, рабочие роботы.Наши службы по ремонту , прокату и апгрейду роботов всегда рады приветствовать любого клиента.Мы систематически расш', '<p>Мы разрабатываем и усовершенствуем такие виды роботов: человеко роботы, боевые роботы, космические роботы, кухонные роботы, рабочие роботы.<br /><br />Наши службы по ремонту , прокату и апгрейду роботов всегда рады приветствовать любого клиента.<br /><br />Мы систематически расширяемся и захватываем все новые сегменты рынка, потому постоянно пополняем наши ряды новыми сотрудниками.<br /><br />Мы рады представлять вам все новые виды робототехники, которые Вы можете приобрести в кредит. Для этого \nнужен только мульти паспорт!<br /><br />Будем рады, если вы станете нашим постоянным клиентом и надеемся, наш сайт поможет в информировании о деятельности компании!</p>', '', 0, 'homepage', '', 0, 0, 0, 'publish', 'admin', 1267203253, 1267203328, 1291735384, 7, 3, 0),
-(63, 'О компании', '', 'o_kompanii', '', 'компания, image, robotics, создана, высокой, цели, ndash, продавать, роботов, всегда, заботимся, качестве, нашей, продукции, безопасности, нашего, товара, существуем, рынке, начала, времен, потому, опыт, накопленный, время, дает, нам, право, считаться, лучшими', 'Компания Image Robotics создана для высокой цели – продавать роботов!  Мы всегда заботимся о качестве нашей продукции и безопасности нашего товара.  Мы существуем на рынке еще с начала времен. Потому опыт, накопленный за это время, дает нам право счи', '<p><strong>Компания Image Robotics создана для высокой цели &ndash; продавать роботов!</strong></p>\n<p><img style="float: right; margin-left: 10px;" src="/uploads/images/o-kompanii.jpg" alt="" width="210" height="158" /></p>\n<ul>\n<li>Мы всегда заботимся о качестве нашей продукции и&nbsp; безопасности нашего товара. </li>\n<li>Мы существуем на рынке еще с начала времен. Потому опыт, накопленный за это время, дает нам право считаться лучшими в своей сфере.</\nli>\n<li>Мы можем в любое время вернуть вам всю сумму, оплаченную за товар, если он еще не привык к Вам и Вашей семье!</li>\n<li>Мы заботимся не только о правах человека, но и о правах роботов, согласно галактического законодательства.</li>\n<li>Мы боремся с теми, кто выгоняет роботов на улицу и согласны на бесплатную утилизацию ввиду отсутствия интереса к таковому.</li>\n</ul>', '', 0, '', '', 0, 0, 0, 'publish', 'admin', 1291378533, 1291378992, 1291721377, 235, 3, 0),
+(63, 'О компании', '', 'o_kompanii', '', 'компания, image, robotics, создана, высокой, цели, ndash, продавать, роботов, всегда, заботимся, качестве, нашей, продукции, безопасности, нашего, товара, существуем, рынке, начала, времен, потому, опыт, накопленный, время, дает, нам, право, считаться, лучшими', 'Компания Image Robotics создана для высокой цели – продавать роботов!  Мы всегда заботимся о качестве нашей продукции и безопасности нашего товара.  Мы существуем на рынке еще с начала времен. Потому опыт, накопленный за это время, дает нам право счи', '<p><strong>Компания Image Robotics создана для высокой цели &ndash; продавать роботов!</strong></p>\n<p><img style="float: right; margin-left: 10px;" src="/uploads/images/o-kompanii.jpg" alt="" width="210" height="158" /></p>\n<ul>\n<li>Мы всегда заботимся о качестве нашей продукции и&nbsp; безопасности нашего товара. </li>\n<li>Мы существуем на рынке еще с начала времен. Потому опыт, накопленный за это время, дает нам право считаться лучшими в своей сфере.</\nli>\n<li>Мы можем в любое время вернуть вам всю сумму, оплаченную за товар, если он еще не привык к Вам и Вашей семье!</li>\n<li>Мы заботимся не только о правах человека, но и о правах роботов, согласно галактического законодательства.</li>\n<li>Мы боремся с теми, кто выгоняет роботов на улицу и согласны на бесплатную утилизацию ввиду отсутствия интереса к таковому.</li>\n</ul>', '', 0, '', '', 0, 0, 0, 'publish', 'admin', 1291378533, 1291378992, 1291721377, 236, 3, 0),
 (64, 'Человеко роботы', '', 'cheloveko_roboty', 'produktsiia/', 'вам, надоели, ваши, друзья, подруги, достало, ваше, окружение, закажите, человеко, робота, нас, получите, чего, хватало, надоедливых, людей, роботы, работают, законам, которые, укажите, схожи, людьми, тоже, время, обладают, механизмом, управления, подчинения', 'Вам надоели ваши друзья и подруги? Вас достало ваше окружение? Закажите человеко робота у нас, и вы получите все, чего вам не хватало от надоедливых людей! Человеко роботы работают по законам, которые укажите вы. Они схожи с людьми, но в тоже время облада', '<p><img style="float: left; margin-right: 10px; margin-top:2px" src="/uploads/images/cheloveko-roboty.jpg" alt="" width="190" height="143" />Вам надоели ваши друзья и подруги? Вас достало ваше окружение? Закажите человеко робота у нас, и вы получите все, чего вам не хватало от надоедливых людей!</p>\r\n<p>Человеко роботы работают&nbsp; по законам, которые укажите вы. Они схожи с людьми, но в тоже время обладают механизмом управления \nи подчинения вашим приказам.</p>\r\n<p>Наши новые человеко роботы обладают инновационными разговорными функциями. Они могут оказывать полноценную психологическую поддержку, вести беседу обо всем, быть хорошими советчиками и пунктами необходимых&nbsp; знаний!</p>\r\n<p>Любого человеко робота можно взять в кредит и вернуть, если он вас не устроит.</p>', '', 55, '', '', 0, 0, 0, 'publish', 'admin', 1291379033, 1291379069, 1291634370, 59, 3, 0),
 (65, 'Боевые роботы', '', 'boevye_roboty', 'produktsiia/', 'если, нужна, настоящая, мощная, защита, ndash, боевые, роботы, нужно, наши, обладают, различными, комплектациями, вооружения, кроме, базового, оружия, возможна, установка, плазменной, ультрафиолетовой, лазерной, лептонной, пушки, важно, перед, покупкой, получить, форму, galaxy', 'Если вам нужна настоящая и мощная защита – боевые роботы это то, что вам нужно! Наши боевые роботы обладают различными комплектациями вооружения. Кроме базового оружия возможна установка плазменной, ультрафиолетовой, лазерной или лептонной пушки. ВАЖ', '<p><img style="float: left; margin-right: 10px; margin-top:2px" src="/uploads/images/boeviye-roboty.jpg" alt="" width="300" height="268" />Если вам нужна настоящая и мощная защита &ndash; боевые роботы это то, что вам нужно!</p>\r\n<p>Наши боевые роботы обладают различными комплектациями вооружения. Кроме базового оружия возможна установка плазменной, ультрафиолетовой, лазерной или лептонной пушки.</p>\r\n<p>ВАЖНО! Перед \nпокупкой Вам нужно получить форму GALAXY-837,&nbsp; для удостоверения психологической уравновешенности, не судимости и т.п. Приходите в наш отдел с данной формой и мульти паспортом, мы продадим вам боевого робота, который будет служить лучше, чем любая сторожевая собака или телохранитель высшего ранга.</p>', '', 55, '', '', 0, 0, 0, 'publish', 'admin', 1291379073, 1291379097, 1291634533, 21, 3, 0),
 (66, 'Космические роботы', '', 'kosmicheskie_roboty', 'produktsiia/', 'image, robotics, выпускает, лучших, космических, роботов, нашей, галактике, дальность, полетов, составляет, более, световых, лет, скорость, полета, близка, скорости, света, космические, роботы, могут, перевозить, довольно, большие, объемы, грузов, удаленно, выполнять, различные', 'Image Robotics выпускает лучших космических роботов в нашей галактике. Их дальность полетов составляет более 10 световых лет, а скорость полета близка к скорости света. Космические роботы могут перевозить довольно большие объемы грузов, удаленно выполнять', '<p><img style="float: left; margin-right: 10px; margin-top:2px" src="/uploads/images/kosmicheskie-roboty.jpg" alt="" width="298" height="293" />Image Robotics выпускает лучших космических роботов в нашей галактике. Их дальность полетов составляет более 10 световых лет, а скорость полета близка к скорости света.</p>\r\n<p>Космические роботы могут перевозить довольно большие объемы грузов, удаленно выполнять \nразличные задания на ближних планетах.</p>\r\n<p>Если вы купите более трех роботов или приведете к нам двух своих друзей , которые станут клиентами, Ваш робот будет оборудован дополнительным сверхмощным телескопом!</p>\r\n<p>С нашей инновационной продукцией Вам подчинится космос!</p>', '', 55, '', '', 0, 0, 0, 'publish', 'admin', 1291379102, 1291379142, 1291634589, 21, 3, 0),
-(67, 'Кухонные роботы', '', 'kuhonnye_roboty', 'produktsiia/', 'наши, кухонные, роботы, сделают, всю, грязную, работу, image, robotics, заставляет, людей, забыть, мытье, посуды, уборке, кухне, готовке, закажите, блюдо, робот, сам, найдет, ингредиенты, взвесит, измельчит, продолжит, крутиться, вашего, блага, кроме', 'Наши кухонные роботы сделают всю грязную работу за Вас! Image Robotics заставляет людей забыть о мытье посуды, уборке на кухне и даже готовке. Закажите блюдо. Робот сам найдет ингредиенты, взвесит, измельчит и продолжит крутиться на кухне для вашего блага', '<p><img style="float: left; margin-right: 10px; margin-top:5px" src="/uploads/images/kuhonniye-roboty.jpg" alt="" width="280" height="236" />Наши кухонные роботы сделают всю грязную работу за Вас! Image Robotics заставляет людей забыть о мытье посуды, уборке на кухне и даже готовке.</p>\r\n<p>Закажите блюдо. Робот сам найдет ингредиенты,&nbsp; взвесит, измельчит и продолжит крутиться на кухне для вашего блага.</p>\r\n<p>Наши роботы кроме \nстандартных функций обладают мощными программами&nbsp; обучения своему мастерству. То есть, ели вы любите готовить сами, робот станет учителем и партнером.</p>\r\n<p>Если вы знаете уникальный рецепт, научите робота этому! Любая модель легко воспринимает материал и учиться на лету.</p>', '', 55, '', '', 0, 0, 1, 'publish', 'admin', 1291379159, 1291379184, 1291634767, 28, 3, 0),
+(67, 'Кухонные роботы', '', 'kuhonnye_roboty', 'produktsiia/', 'наши, кухонные, роботы, сделают, всю, грязную, работу, image, robotics, заставляет, людей, забыть, мытье, посуды, уборке, кухне, готовке, закажите, блюдо, робот, сам, найдет, ингредиенты, взвесит, измельчит, продолжит, крутиться, вашего, блага, кроме', 'Наши кухонные роботы сделают всю грязную работу за Вас! Image Robotics заставляет людей забыть о мытье посуды, уборке на кухне и даже готовке. Закажите блюдо. Робот сам найдет ингредиенты, взвесит, измельчит и продолжит крутиться на кухне для вашего блага', '<p><img style="float: left; margin-right: 10px; margin-top:5px" src="/uploads/images/kuhonniye-roboty.jpg" alt="" width="280" height="236" />Наши кухонные роботы сделают всю грязную работу за Вас! Image Robotics заставляет людей забыть о мытье посуды, уборке на кухне и даже готовке.</p>\r\n<p>Закажите блюдо. Робот сам найдет ингредиенты,&nbsp; взвесит, измельчит и продолжит крутиться на кухне для вашего блага.</p>\r\n<p>Наши роботы кроме \nстандартных функций обладают мощными программами&nbsp; обучения своему мастерству. То есть, ели вы любите готовить сами, робот станет учителем и партнером.</p>\r\n<p>Если вы знаете уникальный рецепт, научите робота этому! Любая модель легко воспринимает материал и учиться на лету.</p>', '', 55, '', '', 0, 0, 1, 'publish', 'admin', 1291379159, 1291379184, 1291634767, 29, 3, 0),
 (68, 'Рабочие роботы', '', 'rabochie_roboty', 'produktsiia/', 'наши, рабочие, роботы, работают, лучше, любого, рабочего, просто, слова, нужно, вынести, мусор, перетащить, шкаф, позвольте, мужу, отдохнуть, сами, избавьте, себя, сложностей, купите, робота, который, возложит, всевозможные, функции, тяжкие, мучения, человечества', 'Наши рабочие роботы, работают лучше любого рабочего! И это не просто слова. Нужно вынести мусор? Перетащить шкаф? Позвольте мужу отдохнуть или сами избавьте себя от сложностей. Купите рабочего робота, который возложит на себя всевозможные функции и тяжкие', '<p><img style="float: left; margin-right: 10px; margin-top:5px" src="/uploads/images/rabochiye-roboty.jpg" alt="" width="200" height="160" />Наши рабочие роботы, работают лучше любого рабочего! И это не просто слова.</p>\r\n<p>Нужно вынести мусор? Перетащить шкаф? Позвольте мужу отдохнуть или сами избавьте себя от сложностей. Купите рабочего робота, который возложит на себя всевозможные функции и тяжкие мучения человечества.</p>\r\nn<p>Каждая наша продукция обладает исключительными характеристиками. Рабочие роботы не остались без внимания. Функция таджикский&nbsp; гастарбайтер поможет на автопилоте проводить строительные работы, тратя на это малое количество энергии. Таким образом, вы экономите огромное количество средств.</p>\r\n<p>С Image Robotics легко сделать жизнь проще!</p>', '', 55, '', '', 0, 0, 0, 'publish', 'admin', 1291379213, 1291379236, 1291634846, 15, 3, 0),
 (69, 'Ремонт роботов', '', 'remont_robotov', 'usluhi/', 'даже, лучшие, роботы, иногда, выходят, строя, такое, случилось, гарантийный, срок, починим, робота, любого, класса, бесплатно, приобрели, нас, гарантии, вышел, предоставим, сервис, высшего, уровня, некоторое, маленькое, вознаграждение, диагностика, проблемы, ремонт, роботов', 'Даже лучшие роботы иногда выходят из строя. И если такое случилось в гарантийный срок, мы починим робота любого класса бесплатно! Если вы приобрели робота у нас, но срок гарантии вышел, мы предоставим сервис высшего уровня за некоторое маленькое вознаграж', '<p><img style="float:left;margin-right:10px;margin-top:5px" src="/uploads/images/remont-robotov.jpg" height="216" width="150">Даже лучшие роботы иногда выходят из строя.&nbsp; И если такое случилось в гарантийный срок, мы починим робота любого класса бесплатно!</p>\n<p>Если вы приобрели робота у нас, но срок гарантии вышел, мы предоставим сервис высшего уровня за некоторое маленькое вознаграждение.</p><p>\nn</p><p>Диагностика проблемы и ремонт роботов&nbsp; проходит под средством нано техники от&nbsp; Image Robotics. Ее нельзя приобрети на свободном рынке, такие возможности есть только у нас.</p>\n<p>Диагностика любой проблемы занимает несколько секунд, а ремонт составляет не более десяти минут с момента обнаружения проблемы. Если на складе есть ресурсы.</p>', '', 56, '', '', 0, 1, 1, 'publish', 'admin', 1291379278, 1291379309, 1363612852, 80, 3, 0),
 (70, 'Апгрейд роботов', '', 'aphreid_robotov', 'usluhi/', 'нам, систематически, обращаются, постоянные, клиенты, просьбой, усовершенствовать, робота, помогаем, только, своим, работая, клиентами, других, компаний, латаем, дыры, которые, привели, неудобству, проблемам, наша, модернизация, помогает, всегда, быть, пике, науки, инновационных, технологий', 'К нам систематически обращаются постоянные клиенты с просьбой усовершенствовать их робота. Мы помогаем не только своим. Работая с клиентами других компаний, мы латаем дыры, которые привели к неудобству и проблемам. Наша модернизация помогает всегда быть н', '<p><img style="float: left; margin-right: 10px; margin-top:5px" src="/uploads/images/apgreyder-robotov.jpg" alt="" width="260" height="186" />К нам систематически обращаются постоянные клиенты с просьбой усовершенствовать их робота.</p>\r\n<p>Мы помогаем не только своим. Работая с клиентами других компаний, мы латаем дыры, которые привели к неудобству и проблемам. Наша модернизация помогает всегда быть на \nпике науки и инновационных технологий.</p>\r\n<p>Любой робот может быть усовершенствован, как программно , так и технически.</p>\r\n<p>Не бойтесь становиться лучше вместе со своим помощником! Сразу после апгрейда вы смело можете говорить, что стоите на вершине технологического прогресса и ликвидировали свое отставание! Это модно и продуктивно. И пусть остальные завидуют вашему роботу, у которого такой отличный собственник.</p>', '', 56, '', '', 0, 0, 0, 'publish', 'admin', 1291379312, 1291379338, 1291635033, 19, 3, 0),
@@ -253,9 +255,10 @@ INSERT INTO `content` (`id`, `title`, `meta_title`, `url`, `cat_url`, `keywords`
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `content_fields`
+-- Table structure for table `content_fields`
 --
 
+DROP TABLE IF EXISTS `content_fields`;
 CREATE TABLE IF NOT EXISTS `content_fields` (
   `field_name` varchar(255) NOT NULL,
   `type` varchar(255) NOT NULL,
@@ -270,7 +273,7 @@ CREATE TABLE IF NOT EXISTS `content_fields` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `content_fields`
+-- Dumping data for table `content_fields`
 --
 
 INSERT INTO `content_fields` (`field_name`, `type`, `label`, `data`, `weight`, `in_search`) VALUES
@@ -279,9 +282,10 @@ INSERT INTO `content_fields` (`field_name`, `type`, `label`, `data`, `weight`, `
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `content_fields_data`
+-- Table structure for table `content_fields_data`
 --
 
+DROP TABLE IF EXISTS `content_fields_data`;
 CREATE TABLE IF NOT EXISTS `content_fields_data` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `item_id` int(11) NOT NULL,
@@ -295,7 +299,7 @@ CREATE TABLE IF NOT EXISTS `content_fields_data` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
 
 --
--- Дамп данных таблицы `content_fields_data`
+-- Dumping data for table `content_fields_data`
 --
 
 INSERT INTO `content_fields_data` (`id`, `item_id`, `item_type`, `field_name`, `data`) VALUES
@@ -313,16 +317,17 @@ INSERT INTO `content_fields_data` (`id`, `item_id`, `item_type`, `field_name`, `
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `content_fields_groups_relations`
+-- Table structure for table `content_fields_groups_relations`
 --
 
+DROP TABLE IF EXISTS `content_fields_groups_relations`;
 CREATE TABLE IF NOT EXISTS `content_fields_groups_relations` (
   `field_name` varchar(64) NOT NULL,
   `group_id` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Дамп данных таблицы `content_fields_groups_relations`
+-- Dumping data for table `content_fields_groups_relations`
 --
 
 INSERT INTO `content_fields_groups_relations` (`field_name`, `group_id`) VALUES
@@ -332,9 +337,10 @@ INSERT INTO `content_fields_groups_relations` (`field_name`, `group_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `content_field_groups`
+-- Table structure for table `content_field_groups`
 --
 
+DROP TABLE IF EXISTS `content_field_groups`;
 CREATE TABLE IF NOT EXISTS `content_field_groups` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -344,7 +350,7 @@ CREATE TABLE IF NOT EXISTS `content_field_groups` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 --
--- Дамп данных таблицы `content_field_groups`
+-- Dumping data for table `content_field_groups`
 --
 
 INSERT INTO `content_field_groups` (`id`, `name`, `description`) VALUES
@@ -353,9 +359,10 @@ INSERT INTO `content_field_groups` (`id`, `name`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `content_permissions`
+-- Table structure for table `content_permissions`
 --
 
+DROP TABLE IF EXISTS `content_permissions`;
 CREATE TABLE IF NOT EXISTS `content_permissions` (
   `id` bigint(11) NOT NULL AUTO_INCREMENT,
   `page_id` bigint(11) NOT NULL,
@@ -365,7 +372,7 @@ CREATE TABLE IF NOT EXISTS `content_permissions` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
--- Дамп данных таблицы `content_permissions`
+-- Dumping data for table `content_permissions`
 --
 
 INSERT INTO `content_permissions` (`id`, `page_id`, `data`) VALUES
@@ -374,9 +381,10 @@ INSERT INTO `content_permissions` (`id`, `page_id`, `data`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `content_tags`
+-- Table structure for table `content_tags`
 --
 
+DROP TABLE IF EXISTS `content_tags`;
 CREATE TABLE IF NOT EXISTS `content_tags` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `page_id` int(11) NOT NULL,
@@ -387,7 +395,7 @@ CREATE TABLE IF NOT EXISTS `content_tags` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=127 ;
 
 --
--- Дамп данных таблицы `content_tags`
+-- Dumping data for table `content_tags`
 --
 
 INSERT INTO `content_tags` (`id`, `page_id`, `tag_id`) VALUES
@@ -403,9 +411,10 @@ INSERT INTO `content_tags` (`id`, `page_id`, `tag_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `custom_fields`
+-- Table structure for table `custom_fields`
 --
 
+DROP TABLE IF EXISTS `custom_fields`;
 CREATE TABLE IF NOT EXISTS `custom_fields` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `field_type_id` int(11) NOT NULL,
@@ -421,17 +430,13 @@ CREATE TABLE IF NOT EXISTS `custom_fields` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=96 ;
 
---
--- Дамп данных таблицы `custom_fields`
---
-
-
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `custom_fields_data`
+-- Table structure for table `custom_fields_data`
 --
 
+DROP TABLE IF EXISTS `custom_fields_data`;
 CREATE TABLE IF NOT EXISTS `custom_fields_data` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `field_id` int(11) NOT NULL,
@@ -441,17 +446,13 @@ CREATE TABLE IF NOT EXISTS `custom_fields_data` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=514 ;
 
---
--- Дамп данных таблицы `custom_fields_data`
---
-
-
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `custom_fields_i18n`
+-- Table structure for table `custom_fields_i18n`
 --
 
+DROP TABLE IF EXISTS `custom_fields_i18n`;
 CREATE TABLE IF NOT EXISTS `custom_fields_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(4) NOT NULL,
@@ -461,17 +462,13 @@ CREATE TABLE IF NOT EXISTS `custom_fields_i18n` (
   PRIMARY KEY (`id`,`locale`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
---
--- Дамп данных таблицы `custom_fields_i18n`
---
-
-
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `gallery_albums`
+-- Table structure for table `gallery_albums`
 --
 
+DROP TABLE IF EXISTS `gallery_albums`;
 CREATE TABLE IF NOT EXISTS `gallery_albums` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `category_id` int(11) DEFAULT NULL,
@@ -488,7 +485,7 @@ CREATE TABLE IF NOT EXISTS `gallery_albums` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
--- Дамп данных таблицы `gallery_albums`
+-- Dumping data for table `gallery_albums`
 --
 
 INSERT INTO `gallery_albums` (`id`, `category_id`, `name`, `description`, `cover_id`, `position`, `created`, `updated`, `tpl_file`) VALUES
@@ -499,9 +496,10 @@ INSERT INTO `gallery_albums` (`id`, `category_id`, `name`, `description`, `cover
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `gallery_albums_i18n`
+-- Table structure for table `gallery_albums_i18n`
 --
 
+DROP TABLE IF EXISTS `gallery_albums_i18n`;
 CREATE TABLE IF NOT EXISTS `gallery_albums_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -511,7 +509,7 @@ CREATE TABLE IF NOT EXISTS `gallery_albums_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `gallery_albums_i18n`
+-- Dumping data for table `gallery_albums_i18n`
 --
 
 INSERT INTO `gallery_albums_i18n` (`id`, `locale`, `description`, `name`) VALUES
@@ -522,9 +520,10 @@ INSERT INTO `gallery_albums_i18n` (`id`, `locale`, `description`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `gallery_category`
+-- Table structure for table `gallery_category`
 --
 
+DROP TABLE IF EXISTS `gallery_category`;
 CREATE TABLE IF NOT EXISTS `gallery_category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(250) DEFAULT NULL,
@@ -538,7 +537,7 @@ CREATE TABLE IF NOT EXISTS `gallery_category` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
--- Дамп данных таблицы `gallery_category`
+-- Dumping data for table `gallery_category`
 --
 
 INSERT INTO `gallery_category` (`id`, `name`, `description`, `cover_id`, `position`, `created`) VALUES
@@ -547,9 +546,10 @@ INSERT INTO `gallery_category` (`id`, `name`, `description`, `cover_id`, `positi
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `gallery_category_i18n`
+-- Table structure for table `gallery_category_i18n`
 --
 
+DROP TABLE IF EXISTS `gallery_category_i18n`;
 CREATE TABLE IF NOT EXISTS `gallery_category_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -559,7 +559,7 @@ CREATE TABLE IF NOT EXISTS `gallery_category_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `gallery_category_i18n`
+-- Dumping data for table `gallery_category_i18n`
 --
 
 INSERT INTO `gallery_category_i18n` (`id`, `locale`, `description`, `name`) VALUES
@@ -568,9 +568,10 @@ INSERT INTO `gallery_category_i18n` (`id`, `locale`, `description`, `name`) VALU
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `gallery_images`
+-- Table structure for table `gallery_images`
 --
 
+DROP TABLE IF EXISTS `gallery_images`;
 CREATE TABLE IF NOT EXISTS `gallery_images` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `album_id` int(11) DEFAULT NULL,
@@ -589,7 +590,7 @@ CREATE TABLE IF NOT EXISTS `gallery_images` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=93 ;
 
 --
--- Дамп данных таблицы `gallery_images`
+-- Dumping data for table `gallery_images`
 --
 
 INSERT INTO `gallery_images` (`id`, `album_id`, `file_name`, `file_ext`, `file_size`, `position`, `width`, `height`, `description`, `uploaded`, `views`) VALUES
@@ -609,15 +610,16 @@ INSERT INTO `gallery_images` (`id`, `album_id`, `file_name`, `file_ext`, `file_s
 (91, 3, 'o-kompanii', '.jpg', '47.4 Кб', 48, 495, 372, NULL, 1291656658, 0),
 (90, 3, 'novoe-v-mire-boevih-robotov', '.jpg', '82.0 Кб', 47, 750, 500, NULL, 1291656653, 5),
 (80, 4, 'apgreyder-robotov', '.jpg', '95.5 Кб', 37, 800, 573, NULL, 1291656573, 9),
-(87, 3, 'kuhonniye-roboty', '.jpg', '29.1 Кб', 44, 450, 380, NULL, 1291656641, 13),
+(87, 3, 'kuhonniye-roboty', '.jpg', '29.1 Кб', 44, 450, 380, NULL, 1291656641, 18),
 (74, 2, 'rabochiye-roboty', '.jpg', '34.9 Кб', 32, 500, 400, NULL, 1291655886, 4);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `gallery_images_i18n`
+-- Table structure for table `gallery_images_i18n`
 --
 
+DROP TABLE IF EXISTS `gallery_images_i18n`;
 CREATE TABLE IF NOT EXISTS `gallery_images_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -625,17 +627,13 @@ CREATE TABLE IF NOT EXISTS `gallery_images_i18n` (
   PRIMARY KEY (`id`,`locale`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Дамп данных таблицы `gallery_images_i18n`
---
-
-
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `languages`
+-- Table structure for table `languages`
 --
 
+DROP TABLE IF EXISTS `languages`;
 CREATE TABLE IF NOT EXISTS `languages` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `lang_name` varchar(100) NOT NULL,
@@ -651,7 +649,7 @@ CREATE TABLE IF NOT EXISTS `languages` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=31 ;
 
 --
--- Дамп данных таблицы `languages`
+-- Dumping data for table `languages`
 --
 
 INSERT INTO `languages` (`id`, `lang_name`, `identif`, `image`, `folder`, `template`, `default`, `locale`) VALUES
@@ -660,9 +658,10 @@ INSERT INTO `languages` (`id`, `lang_name`, `identif`, `image`, `folder`, `templ
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `login_attempts`
+-- Table structure for table `login_attempts`
 --
 
+DROP TABLE IF EXISTS `login_attempts`;
 CREATE TABLE IF NOT EXISTS `login_attempts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `ip_address` varchar(40) NOT NULL,
@@ -670,19 +669,15 @@ CREATE TABLE IF NOT EXISTS `login_attempts` (
   PRIMARY KEY (`id`),
   KEY `ip_address` (`ip_address`),
   KEY `time` (`time`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=43 ;
-
---
--- Дамп данных таблицы `login_attempts`
---
-
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=44 ;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `logs`
+-- Table structure for table `logs`
 --
 
+DROP TABLE IF EXISTS `logs`;
 CREATE TABLE IF NOT EXISTS `logs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
@@ -691,69 +686,15 @@ CREATE TABLE IF NOT EXISTS `logs` (
   `date` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `date` (`date`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=120 ;
-
---
--- Дамп данных таблицы `logs`
---
-
-INSERT INTO `logs` (`id`, `user_id`, `username`, `message`, `date`) VALUES
-(71, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1354803269),
-(72, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1354803292),
-(73, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1354803298),
-(74, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1354803387),
-(75, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1354803425),
-(76, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1354803462),
-(77, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1354803469),
-(78, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1354803478),
-(79, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1354803627),
-(80, 1, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1354803658),
-(81, 1, 'admin', 'Очистил кеш', 1363612492),
-(82, 1, 'admin', 'Изменил страницу<a href="http://www.t1.loc/admin/pages/edit/69">Ремонт роботов</a>', 1363612852),
-(83, 1, 'admin', 'Установил модуль star_rating', 1363613907),
-(84, 1, 'admin', 'Очистил кеш', 1363613941),
-(85, 1, 'admin', 'Очистил кеш', 1363614943),
-(86, 1, 'admin', 'Очистил кеш', 1363615660),
-(87, 1, 'admin', 'Вышел из панели управления', 1363616351),
-(88, 1, 'admin', 'Вышел из панели управления', 1363627112),
-(89, 47, 'admin', 'Вышел из панели управления', 1368175091),
-(90, 47, 'admin', 'Вошел в панель управления IP 127.0.0.1', 1368175220),
-(91, 47, 'admin', 'Очистил кеш', 1368175375),
-(92, 48, 'admin', 'Введен IP панели управления 127.0.0.1', 1388066597),
-(93, 48, 'admin', 'Сиджетов создан benefits', 1388066812),
-(94, 48, 'admin', 'Сиджетов создан works_all', 1388066955),
-(95, 48, 'admin', 'Сиджетов создан header', 1388066997),
-(96, 48, 'admin', 'Сиджетов создан footer', 1388067026),
-(97, 48, 'admin', 'Виджет изменен ', 1388067093),
-(98, 48, 'admin', 'Виджет изменен ', 1388067174),
-(99, 48, 'admin', 'Кэш очищен', 1388067191),
-(100, 48, 'admin', 'Кэш очищен', 1388067252),
-(101, 48, 'admin', 'Кэш очищен', 1388067302),
-(102, 48, 'admin', 'Настройки сайта изменены', 1388067330),
-(103, 48, 'admin', 'Кэш очищен', 1388067492),
-(104, 48, 'admin', 'Настройки сайта изменены', 1388067638),
-(105, 48, 'admin', 'Создал страницу <a href="http://image.loc/admin/pages/edit/83">homepage</a>', 1388067888),
-(106, 48, 'admin', 'Кэш очищен', 1388067900),
-(107, 48, 'admin', 'Настройки сайта изменены', 1388067925),
-(108, 48, 'admin', 'Категория изменена <a href="/admin/categories/edit/56"> Услуги</a>', 1388068012),
-(109, 48, 'admin', 'Категория изменена <a href="/admin/categories/edit/55"> Продукция</a>', 1388068039),
-(110, 48, 'admin', 'Категория изменена <a href="/admin/categories/edit/58"> Вакансии</a>', 1388068056),
-(111, 48, 'admin', 'Кэш очищен', 1388068383),
-(112, 48, 'admin', 'Введен IP панели управления 127.0.0.1', 1388069553),
-(113, 48, 'admin', 'Кэш очищен', 1388069559),
-(114, 48, 'admin', 'Кэш очищен', 1388069559),
-(115, 48, 'admin', 'Категория изменена <a href="/admin/categories/edit/57"> Новости</a>', 1388069644),
-(116, 48, 'admin', 'Категория изменена <a href="/admin/categories/edit/55"> Продукция</a>', 1388069820),
-(117, 48, 'admin', 'Кэш очищен', 1388069844),
-(118, 48, 'admin', 'Категория изменена <a href="/admin/categories/edit/59"> Блог</a>', 1388069914),
-(119, 48, 'admin', 'Кэш очищен', 1388069957);
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=124 ;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `mail`
+-- Table structure for table `mail`
 --
 
+DROP TABLE IF EXISTS `mail`;
 CREATE TABLE IF NOT EXISTS `mail` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(255) DEFAULT NULL,
@@ -761,17 +702,13 @@ CREATE TABLE IF NOT EXISTS `mail` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
---
--- Дамп данных таблицы `mail`
---
-
-
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `menus`
+-- Table structure for table `menus`
 --
 
+DROP TABLE IF EXISTS `menus`;
 CREATE TABLE IF NOT EXISTS `menus` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(250) NOT NULL,
@@ -785,7 +722,7 @@ CREATE TABLE IF NOT EXISTS `menus` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
--- Дамп данных таблицы `menus`
+-- Dumping data for table `menus`
 --
 
 INSERT INTO `menus` (`id`, `name`, `main_title`, `tpl`, `expand_level`, `description`, `created`) VALUES
@@ -796,9 +733,10 @@ INSERT INTO `menus` (`id`, `name`, `main_title`, `tpl`, `expand_level`, `descrip
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `menus_data`
+-- Table structure for table `menus_data`
 --
 
+DROP TABLE IF EXISTS `menus_data`;
 CREATE TABLE IF NOT EXISTS `menus_data` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `menu_id` int(9) NOT NULL,
@@ -818,7 +756,7 @@ CREATE TABLE IF NOT EXISTS `menus_data` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=33 ;
 
 --
--- Дамп данных таблицы `menus_data`
+-- Dumping data for table `menus_data`
 --
 
 INSERT INTO `menus_data` (`id`, `menu_id`, `item_id`, `item_type`, `item_image`, `roles`, `hidden`, `title`, `parent_id`, `position`, `description`, `add_data`) VALUES
@@ -849,9 +787,10 @@ INSERT INTO `menus_data` (`id`, `menu_id`, `item_id`, `item_type`, `item_image`,
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `menu_translate`
+-- Table structure for table `menu_translate`
 --
 
+DROP TABLE IF EXISTS `menu_translate`;
 CREATE TABLE IF NOT EXISTS `menu_translate` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `item_id` int(11) NOT NULL,
@@ -862,17 +801,76 @@ CREATE TABLE IF NOT EXISTS `menu_translate` (
   KEY `lang_id` (`lang_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+-- --------------------------------------------------------
+
 --
--- Дамп данных таблицы `menu_translate`
+-- Table structure for table `mod_banner`
 --
 
+DROP TABLE IF EXISTS `mod_banner`;
+CREATE TABLE IF NOT EXISTS `mod_banner` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `active` tinyint(4) NOT NULL,
+  `active_to` int(11) DEFAULT NULL,
+  `where_show` text,
+  `group` text,
+  `position` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `mod_banner`
+--
+
+INSERT INTO `mod_banner` (`id`, `active`, `active_to`, `where_show`, `group`, `position`) VALUES
+(4, 1, 1422648000, 'a:1:{i:0;s:6:"main_0";}', NULL, 0),
+(5, 1, 1422648000, 'a:1:{i:0;s:6:"main_0";}', NULL, 0);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `mod_email_paterns`
+-- Table structure for table `mod_banner_groups`
 --
 
+DROP TABLE IF EXISTS `mod_banner_groups`;
+CREATE TABLE IF NOT EXISTS `mod_banner_groups` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mod_banner_i18n`
+--
+
+DROP TABLE IF EXISTS `mod_banner_i18n`;
+CREATE TABLE IF NOT EXISTS `mod_banner_i18n` (
+  `id` int(11) NOT NULL,
+  `url` text,
+  `locale` varchar(5) NOT NULL,
+  `name` varchar(25) DEFAULT NULL,
+  `description` text,
+  `photo` varchar(255) DEFAULT NULL,
+  KEY `id` (`id`,`locale`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `mod_banner_i18n`
+--
+
+INSERT INTO `mod_banner_i18n` (`id`, `url`, `locale`, `name`, `description`, `photo`) VALUES
+(4, '', 'ru', 'corporate1', '', '/uploads/images/banners/boeviye-roboty.jpg'),
+(5, '', 'ru', 'corporate2', '', '/uploads/images/banners/boeviye-roboty2.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mod_email_paterns`
+--
+
+DROP TABLE IF EXISTS `mod_email_paterns`;
 CREATE TABLE IF NOT EXISTS `mod_email_paterns` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(256) NOT NULL,
@@ -887,7 +885,7 @@ CREATE TABLE IF NOT EXISTS `mod_email_paterns` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
 
 --
--- Дамп данных таблицы `mod_email_paterns`
+-- Dumping data for table `mod_email_paterns`
 --
 
 INSERT INTO `mod_email_paterns` (`id`, `name`, `patern`, `from`, `from_email`, `admin_email`, `type`, `user_message_active`, `admin_message_active`) VALUES
@@ -898,9 +896,10 @@ INSERT INTO `mod_email_paterns` (`id`, `name`, `patern`, `from`, `from_email`, `
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `mod_email_paterns_i18n`
+-- Table structure for table `mod_email_paterns_i18n`
 --
 
+DROP TABLE IF EXISTS `mod_email_paterns_i18n`;
 CREATE TABLE IF NOT EXISTS `mod_email_paterns_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
@@ -913,18 +912,20 @@ CREATE TABLE IF NOT EXISTS `mod_email_paterns_i18n` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `mod_email_paterns_i18n`
+-- Dumping data for table `mod_email_paterns_i18n`
 --
 
 INSERT INTO `mod_email_paterns_i18n` (`id`, `locale`, `theme`, `user_message`, `admin_message`, `description`, `variables`) VALUES
-(4, 'ru', 'Создание пользователя', '<p><span>Успешно пройдена реєстрация $user_name$&nbsp;</span></p>\n<p>Ваши данние:<br /><span>Пароль: $user_password$</span><br /><span>Адрес: &nbsp;$user_address$</span><br /><span>Email: $user_email$</span><br /><span>Телефон: $user_phone$</span></p>', '<p><span>Создан пользователь $user_name$:</span><br /><span>С паролем: $user_password$</span><br /><span>Адресом: &nbsp;$<span>user_</span>address$</span><br /><span>Email пользователя: $user_email$</span><br /><span>Телефон пользователя: $user_phone$</span></p>', '<p>Шаблон письма на создание пользователя</p>', 'a:6:{s:11:"$user_name$";s:31:"Имя пользователя";s:14:"$user_address$";s:35:"Адрес пользователя";s:15:"$user_password$";s:37:"Пароль пользователя";s:12:"$user_phone$";s:39:"Телефон пользователя";s:12:"$user_email$";s:30:"Email пользователя";}'),
-(5, 'ru', 'Восстановление пароля', '<p><span>Здравствуйте!</span><br /><br /><span>На сайте $webSiteName$ создан запрос на восстановление пароля для Вашего аккаунта.</span><br /><br /><span>Для завершения процедуры восстановления пароля перейдите по ссылке $resetPasswordUri$</span><br /><br /><span>Ваш новый пароль для входа: $password$</span><br /><br /><span>Если это письмо попало к Вам по ошибке просто проигнорируйте его.</span><br /><br /><span>При возникновении любых вопросов, обращайтесь по телефонам:</span><br /><br /><span>(012)&nbsp; 345-67-89 , (012)&nbsp; 345-67-89</span><br /><br /><span>---</span><br /><br /><span>С уважением,</span><br /><br /><span>сотрудники службы продаж $webSiteName$</span></p>', '', 'Шаблон письма на  восстановление пароля', 'a:5:{s:13:"$webSiteName$";s:17:"Имя сайта";s:18:"$resetPasswordUri$";s:57:"Ссилка на восстановления пароля";s:10:"$password$";s:12:"Пароль";s:5:"$key$";s:8:"Ключ";s:16:"$webMasterEmail$";s:52:"Email сотрудникjd службы продаж";}'),
+(4, 'ru', 'Создание пользователя', '<p style="font-family: arial; font-size: 13px; margin-top: 10px;">Здравствуйте, $user_name$!</p>\n<p style="font-family: arial; font-size: 13px; margin-top: 10px;">Поздравляем! Ваша регистрация прошла успешно.</p>\n<p style="font-family: arial; font-size: 13px; margin-top: 20px;">Данные для входа в магазин:</p>\n<div style="font-family: arial; font-size: 13px; margin-top: 10px;"><span style="color: #666;">Email адрес: </span>$user_email$</div>\n<div style="font-family: arial; font-size: 13px; margin-top: 10px;"><span style="color: #666;">Пароль: </span>$user_password$</div>', '<p><span>Создан пользователь $user_name$:</span><br /><span>С паролем: $user_password$</span><br /><span>Адресом: &nbsp;$<span>user_</span>address$</span><br /><span>Email пользователя: $user_email$</span><br /><span>Телефон пользователя: $user_phone$</span></p>', '<p>Шаблон письма на создание пользователя</p>', 'a:5:{s:11:"$user_name$";s:31:"Имя пользователя";s:15:"$user_password$";s:12:"Пароль";s:14:"$user_address$";s:12:"Адресс";s:12:"$user_email$";s:5:"Email";s:12:"$user_phone$";s:14:"Телефон";}'),
+(5, 'ru', 'Восстановление пароля', '<p><span>Здравствуйте!</span><br /><br /><span>На сайте $webSiteName$ создан запрос на восстановление пароля для Вашего аккаунта.</span><br /><br /><span>Для завершения процедуры восстановления пароля перейдите по ссылке $resetPasswordUri$</span><br /><br /><span>Ваш новый пароль для входа: $password$</span><br /><br /><span>Если это письмо попало к Вам по ошибке просто проигнорируйте его.</span><br /><br /><span>При возникновении любых вопросов, обращайтесь по телефонам:</span><br /><br /><span>(012)&nbsp; 345-67-89 , (012)&nbsp; 345-67-89</span><br /><br /><span>---</span><br /><br /><span>С уважением,</span><br /><br /><span>сотрудники службы продаж $webSiteName$</span></p>', '', 'Шаблон письма на  восстановление пароля', 'a:5:{s:13:"$webSiteName$";s:17:"Имя сайта";s:18:"$resetPasswordUri$";s:59:"Ссылка на восстановления пароля";s:10:"$password$";s:12:"Пароль";s:5:"$key$";s:8:"Ключ";s:16:"$webMasterEmail$";s:54:"Email сотрудников службы продаж";}'),
 (6, 'ru', 'Смена пароля', '<p><span>Здравствуйте $user_name$!</span><br /><br /><span>Ваш новый пароль для входа: $password$</span><br /><br /><span>Если это письмо попало к Вам по ошибке просто проигнорируйте его.</span><br /><br /><span><br /></span></p>', '', '<p>Шаблон письма изменения пароля</p>', 'a:2:{s:11:"$user_name$";s:31:"Имя пользователя";s:10:"$password$";s:23:"новый пароль";}');
+
 -- --------------------------------------------------------
 
 --
--- Структура таблиці `mod_sample_settings`
+-- Table structure for table `mod_sample_settings`
 --
+
 DROP TABLE IF EXISTS `mod_sample_settings`;
 CREATE TABLE IF NOT EXISTS `mod_sample_settings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -934,19 +935,21 @@ CREATE TABLE IF NOT EXISTS `mod_sample_settings` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- Дамп даних таблиці `mod_sample_settings`
+-- Dumping data for table `mod_sample_settings`
 --
 
 INSERT INTO `mod_sample_settings` (`id`, `name`, `value`) VALUES
 (1, 'mailTo', 'admin@site.com'),
 (2, 'useEmailNotification', 'TRUE'),
 (3, 'key', 'UUUsssTTTeee');
+
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `permissions`
+-- Table structure for table `permissions`
 --
 
+DROP TABLE IF EXISTS `permissions`;
 CREATE TABLE IF NOT EXISTS `permissions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `role_id` int(11) NOT NULL,
@@ -956,7 +959,7 @@ CREATE TABLE IF NOT EXISTS `permissions` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=5 ;
 
 --
--- Дамп данных таблицы `permissions`
+-- Dumping data for table `permissions`
 --
 
 INSERT INTO `permissions` (`id`, `role_id`, `data`) VALUES
@@ -965,15 +968,16 @@ INSERT INTO `permissions` (`id`, `role_id`, `data`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `propel_migration`
+-- Table structure for table `propel_migration`
 --
 
+DROP TABLE IF EXISTS `propel_migration`;
 CREATE TABLE IF NOT EXISTS `propel_migration` (
   `version` int(11) DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `propel_migration`
+-- Dumping data for table `propel_migration`
 --
 
 INSERT INTO `propel_migration` (`version`) VALUES
@@ -982,9 +986,10 @@ INSERT INTO `propel_migration` (`version`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `rating`
+-- Table structure for table `rating`
 --
 
+DROP TABLE IF EXISTS `rating`;
 CREATE TABLE IF NOT EXISTS `rating` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_type` varchar(25) DEFAULT NULL,
@@ -994,17 +999,13 @@ CREATE TABLE IF NOT EXISTS `rating` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
---
--- Дамп данных таблицы `rating`
---
-
-
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `roles`
+-- Table structure for table `roles`
 --
 
+DROP TABLE IF EXISTS `roles`;
 CREATE TABLE IF NOT EXISTS `roles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `parent_id` int(11) NOT NULL DEFAULT '0',
@@ -1017,7 +1018,7 @@ CREATE TABLE IF NOT EXISTS `roles` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=19 ;
 
 --
--- Дамп данных таблицы `roles`
+-- Dumping data for table `roles`
 --
 
 INSERT INTO `roles` (`id`, `parent_id`, `name`, `alt_name`, `desc`) VALUES
@@ -1027,9 +1028,10 @@ INSERT INTO `roles` (`id`, `parent_id`, `name`, `alt_name`, `desc`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `search`
+-- Table structure for table `search`
 --
 
+DROP TABLE IF EXISTS `search`;
 CREATE TABLE IF NOT EXISTS `search` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `hash` varchar(264) DEFAULT NULL,
@@ -1047,17 +1049,13 @@ CREATE TABLE IF NOT EXISTS `search` (
   KEY `datetime` (`datetime`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
---
--- Дамп данных таблицы `search`
---
-
-
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `settings`
+-- Table structure for table `settings`
 --
 
+DROP TABLE IF EXISTS `settings`;
 CREATE TABLE IF NOT EXISTS `settings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `s_name` varchar(50) NOT NULL,
@@ -1088,23 +1086,25 @@ CREATE TABLE IF NOT EXISTS `settings` (
   `siteinfo` text NOT NULL,
   `update` text,
   `backup` text,
+  `robots_status` int(1) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `s_name` (`s_name`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
--- Дамп данных таблицы `settings`
+-- Dumping data for table `settings`
 --
 
-INSERT INTO `settings` (`id`, `s_name`, `create_keywords`, `create_description`, `create_cat_keywords`, `create_cat_description`, `add_site_name`, `add_site_name_to_cat`, `delimiter`, `editor_theme`, `site_template`, `site_offline`, `google_analytics_id`, `main_type`, `main_page_id`, `main_page_cat`, `main_page_module`, `sidepanel`, `lk`, `lang_sel`, `google_webmaster`, `yandex_webmaster`, `yandex_metric`, `ss`, `cat_list`, `text_editor`, `siteinfo`, `update`, `backup`) VALUES
-(2, 'main', 'auto', 'auto', '0', '0', 1, 1, '/', '0', 'corporate', 'no', '', 'page', 83, '56', 'user_manager', '', '', 'russian_lang', '', '', '', '', 'yes', 'tinymce', 'a:3:{s:13:"siteinfo_logo";a:1:{s:8:"newLevel";s:8:"logo.png";}s:16:"siteinfo_favicon";a:1:{s:8:"newLevel";s:11:"favicon.ico";}s:2:"ru";a:5:{s:20:"siteinfo_companytype";s:97:"© Интернет-магазин «<a href="http://www.imagecms.net/">ImageCMS Shop</a>», 2013";s:16:"siteinfo_address";s:63:"Улица Шевченка, Буд. 22, офис: 39, Київ";s:18:"siteinfo_mainphone";s:15:"(097) 567-43-21";s:19:"siteinfo_adminemail";s:19:"webmaster@localhost";s:8:"contacts";a:2:{s:5:"Skype";s:8:"imagecms";s:5:"Email";s:20:"partner@imagecms.net";}}}', NULL, NULL);
+INSERT INTO `settings` (`id`, `s_name`, `create_keywords`, `create_description`, `create_cat_keywords`, `create_cat_description`, `add_site_name`, `add_site_name_to_cat`, `delimiter`, `editor_theme`, `site_template`, `site_offline`, `google_analytics_id`, `main_type`, `main_page_id`, `main_page_cat`, `main_page_module`, `sidepanel`, `lk`, `lang_sel`, `google_webmaster`, `yandex_webmaster`, `yandex_metric`, `ss`, `cat_list`, `text_editor`, `siteinfo`, `update`, `backup`, `robots_status`) VALUES
+(2, 'main', 'auto', 'auto', '0', '0', 1, 1, '/', '0', 'corporate', 'no', '', 'page', 83, '56', 'user_manager', '', '', 'russian_lang', '', '', '', '', 'yes', 'tinymce', 'a:3:{s:13:"siteinfo_logo";a:1:{s:8:"newLevel";s:8:"logo.png";}s:16:"siteinfo_favicon";a:1:{s:8:"newLevel";s:11:"favicon.ico";}s:2:"ru";a:5:{s:20:"siteinfo_companytype";s:97:"© Интернет-магазин «<a href="http://www.imagecms.net/">ImageCMS Shop</a>», 2013";s:16:"siteinfo_address";s:63:"Улица Шевченка, Буд. 22, офис: 39, Київ";s:18:"siteinfo_mainphone";s:15:"(097) 567-43-21";s:19:"siteinfo_adminemail";s:19:"webmaster@localhost";s:8:"contacts";a:2:{s:5:"Skype";s:8:"imagecms";s:5:"Email";s:20:"partner@imagecms.net";}}}', NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `settings_i18n`
+-- Table structure for table `settings_i18n`
 --
 
+DROP TABLE IF EXISTS `settings_i18n`;
 CREATE TABLE IF NOT EXISTS `settings_i18n` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `lang_ident` int(11) NOT NULL,
@@ -1116,7 +1116,7 @@ CREATE TABLE IF NOT EXISTS `settings_i18n` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
--- Дамп данных таблицы `settings_i18n`
+-- Dumping data for table `settings_i18n`
 --
 
 INSERT INTO `settings_i18n` (`id`, `lang_ident`, `name`, `short_name`, `description`, `keywords`) VALUES
@@ -1125,9 +1125,10 @@ INSERT INTO `settings_i18n` (`id`, `lang_ident`, `name`, `short_name`, `descript
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_rbac_group`
+-- Table structure for table `shop_rbac_group`
 --
 
+DROP TABLE IF EXISTS `shop_rbac_group`;
 CREATE TABLE IF NOT EXISTS `shop_rbac_group` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(10) NOT NULL,
@@ -1137,7 +1138,7 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_group` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=60 ;
 
 --
--- Дамп данных таблицы `shop_rbac_group`
+-- Dumping data for table `shop_rbac_group`
 --
 
 INSERT INTO `shop_rbac_group` (`id`, `type`, `name`, `description`) VALUES
@@ -1202,9 +1203,10 @@ INSERT INTO `shop_rbac_group` (`id`, `type`, `name`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_rbac_group_i18n`
+-- Table structure for table `shop_rbac_group_i18n`
 --
 
+DROP TABLE IF EXISTS `shop_rbac_group_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_rbac_group_i18n` (
   `id` int(11) NOT NULL,
   `description` varchar(200) DEFAULT NULL,
@@ -1213,7 +1215,7 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_group_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `shop_rbac_group_i18n`
+-- Dumping data for table `shop_rbac_group_i18n`
 --
 
 INSERT INTO `shop_rbac_group_i18n` (`id`, `description`, `locale`) VALUES
@@ -1251,9 +1253,10 @@ INSERT INTO `shop_rbac_group_i18n` (`id`, `description`, `locale`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_rbac_privileges`
+-- Table structure for table `shop_rbac_privileges`
 --
 
+DROP TABLE IF EXISTS `shop_rbac_privileges`;
 CREATE TABLE IF NOT EXISTS `shop_rbac_privileges` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
@@ -1261,10 +1264,10 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_privileges` (
   PRIMARY KEY (`id`),
   KEY `shop_rbac_privileges_I_1` (`name`),
   KEY `shop_rbac_privileges_FI_1` (`group_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=485 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=486 ;
 
 --
--- Дамп данных таблицы `shop_rbac_privileges`
+-- Dumping data for table `shop_rbac_privileges`
 --
 
 INSERT INTO `shop_rbac_privileges` (`id`, `name`, `group_id`) VALUES
@@ -1484,14 +1487,16 @@ INSERT INTO `shop_rbac_privileges` (`id`, `name`, `group_id`) VALUES
 (479, 'Widgets_manager::update_config', 59),
 (480, 'Widgets_manager::delete', 59),
 (482, 'Widgets_manager::edit_html_widget', 59),
-(483, 'Widgets_manager::edit_module_widget', 59);
+(483, 'Widgets_manager::edit_module_widget', 59),
+(485, 'cfcm::form_from_category_group', 43);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_rbac_privileges_i18n`
+-- Table structure for table `shop_rbac_privileges_i18n`
 --
 
+DROP TABLE IF EXISTS `shop_rbac_privileges_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_rbac_privileges_i18n` (
   `id` int(11) NOT NULL,
   `title` varchar(45) NOT NULL,
@@ -1501,7 +1506,7 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_privileges_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `shop_rbac_privileges_i18n`
+-- Dumping data for table `shop_rbac_privileges_i18n`
 --
 
 INSERT INTO `shop_rbac_privileges_i18n` (`id`, `title`, `description`, `locale`) VALUES
@@ -1721,14 +1726,16 @@ INSERT INTO `shop_rbac_privileges_i18n` (`id`, `title`, `description`, `locale`)
 (479, 'Обновление настроек виджета', 'Доступ к обновлению настроек виджета', 'ru'),
 (480, 'Удаление виджета', 'Доступ к удалению виджета', 'ru'),
 (482, 'Редактирование html виджета', 'Доступ к редактированию html виджета', 'ru'),
-(483, 'Редактирование модульного виджета', 'Доступ к редактированию модульного виджета', 'ru');
+(483, 'Редактирование модульного виджета', 'Доступ к редактированию модульного виджета', 'ru'),
+(485, 'Заполнение дополнительных полей', 'Заполнение дополнительных полей', 'ru');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_rbac_roles`
+-- Table structure for table `shop_rbac_roles`
 --
 
+DROP TABLE IF EXISTS `shop_rbac_roles`;
 CREATE TABLE IF NOT EXISTS `shop_rbac_roles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -1738,7 +1745,7 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_roles` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- Дамп данных таблицы `shop_rbac_roles`
+-- Dumping data for table `shop_rbac_roles`
 --
 
 INSERT INTO `shop_rbac_roles` (`id`, `name`, `importance`) VALUES
@@ -1749,9 +1756,10 @@ INSERT INTO `shop_rbac_roles` (`id`, `name`, `importance`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_rbac_roles_i18n`
+-- Table structure for table `shop_rbac_roles_i18n`
 --
 
+DROP TABLE IF EXISTS `shop_rbac_roles_i18n`;
 CREATE TABLE IF NOT EXISTS `shop_rbac_roles_i18n` (
   `id` int(11) NOT NULL,
   `alt_name` varchar(45) DEFAULT NULL,
@@ -1761,7 +1769,7 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_roles_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `shop_rbac_roles_i18n`
+-- Dumping data for table `shop_rbac_roles_i18n`
 --
 
 INSERT INTO `shop_rbac_roles_i18n` (`id`, `alt_name`, `locale`, `description`) VALUES
@@ -1772,19 +1780,20 @@ INSERT INTO `shop_rbac_roles_i18n` (`id`, `alt_name`, `locale`, `description`) V
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_rbac_roles_privileges`
+-- Table structure for table `shop_rbac_roles_privileges`
 --
 
+DROP TABLE IF EXISTS `shop_rbac_roles_privileges`;
 CREATE TABLE IF NOT EXISTS `shop_rbac_roles_privileges` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `role_id` int(11) NOT NULL,
   `privilege_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `rolepriv` (`role_id`,`privilege_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=614 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=615 ;
 
 --
--- Дамп данных таблицы `shop_rbac_roles_privileges`
+-- Dumping data for table `shop_rbac_roles_privileges`
 --
 
 INSERT INTO `shop_rbac_roles_privileges` (`id`, `role_id`, `privilege_id`) VALUES
@@ -2040,14 +2049,16 @@ INSERT INTO `shop_rbac_roles_privileges` (`id`, `role_id`, `privilege_id`) VALUE
 (610, 3, 218),
 (611, 3, 219),
 (612, 1, 424),
-(613, 1, 425);
+(613, 1, 425),
+(614, 1, 485);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `support_comments`
+-- Table structure for table `support_comments`
 --
 
+DROP TABLE IF EXISTS `support_comments`;
 CREATE TABLE IF NOT EXISTS `support_comments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `ticket_id` int(11) NOT NULL,
@@ -2060,7 +2071,7 @@ CREATE TABLE IF NOT EXISTS `support_comments` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
--- Дамп данных таблицы `support_comments`
+-- Dumping data for table `support_comments`
 --
 
 INSERT INTO `support_comments` (`id`, `ticket_id`, `user_id`, `user_status`, `user_name`, `text`, `date`) VALUES
@@ -2069,9 +2080,10 @@ INSERT INTO `support_comments` (`id`, `ticket_id`, `user_id`, `user_status`, `us
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `support_departments`
+-- Table structure for table `support_departments`
 --
 
+DROP TABLE IF EXISTS `support_departments`;
 CREATE TABLE IF NOT EXISTS `support_departments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
@@ -2079,7 +2091,7 @@ CREATE TABLE IF NOT EXISTS `support_departments` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
--- Дамп данных таблицы `support_departments`
+-- Dumping data for table `support_departments`
 --
 
 INSERT INTO `support_departments` (`id`, `name`) VALUES
@@ -2088,9 +2100,10 @@ INSERT INTO `support_departments` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `support_tickets`
+-- Table structure for table `support_tickets`
 --
 
+DROP TABLE IF EXISTS `support_tickets`;
 CREATE TABLE IF NOT EXISTS `support_tickets` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
@@ -2106,7 +2119,7 @@ CREATE TABLE IF NOT EXISTS `support_tickets` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
--- Дамп данных таблицы `support_tickets`
+-- Dumping data for table `support_tickets`
 --
 
 INSERT INTO `support_tickets` (`id`, `user_id`, `last_comment_author`, `text`, `theme`, `department`, `status`, `priority`, `date`, `updated`) VALUES
@@ -2115,9 +2128,10 @@ INSERT INTO `support_tickets` (`id`, `user_id`, `last_comment_author`, `text`, `
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `tags`
+-- Table structure for table `tags`
 --
 
+DROP TABLE IF EXISTS `tags`;
 CREATE TABLE IF NOT EXISTS `tags` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `value` varchar(255) NOT NULL,
@@ -2126,7 +2140,7 @@ CREATE TABLE IF NOT EXISTS `tags` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=30 ;
 
 --
--- Дамп данных таблицы `tags`
+-- Dumping data for table `tags`
 --
 
 INSERT INTO `tags` (`id`, `value`) VALUES
@@ -2139,9 +2153,10 @@ INSERT INTO `tags` (`id`, `value`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `users`
+-- Table structure for table `users`
 --
 
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `role_id` int(11) DEFAULT NULL,
@@ -2167,19 +2182,15 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id`),
   KEY `role_id` (`role_id`),
   KEY `users_I_1` (`key`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=52 ;
-
---
--- Дамп данных таблицы `users`
---
-
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=53 ;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `user_autologin`
+-- Table structure for table `user_autologin`
 --
 
+DROP TABLE IF EXISTS `user_autologin`;
 CREATE TABLE IF NOT EXISTS `user_autologin` (
   `key_id` char(32) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `user_id` mediumint(8) NOT NULL DEFAULT '0',
@@ -2190,20 +2201,13 @@ CREATE TABLE IF NOT EXISTS `user_autologin` (
   KEY `last_ip` (`last_ip`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
---
--- Дамп данных таблицы `user_autologin`
---
-
-INSERT INTO `user_autologin` (`key_id`, `user_id`, `user_agent`, `last_ip`, `last_login`) VALUES
-('30df947aef7a96d843520de63d029ef2', 1, 'Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11', '127.0.0.1', '2012-12-06 16:20:34'),
-('59ea4feb0c17861aade71622ef6e850f', 51, 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.110 Safari/537.36', '127.0.0.1', '2013-12-26 15:55:57');
-
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `user_temp`
+-- Table structure for table `user_temp`
 --
 
+DROP TABLE IF EXISTS `user_temp`;
 CREATE TABLE IF NOT EXISTS `user_temp` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) NOT NULL,
@@ -2215,17 +2219,13 @@ CREATE TABLE IF NOT EXISTS `user_temp` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=1 ;
 
---
--- Дамп данных таблицы `user_temp`
---
-
-
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `widgets`
+-- Table structure for table `widgets`
 --
 
+DROP TABLE IF EXISTS `widgets`;
 CREATE TABLE IF NOT EXISTS `widgets` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
@@ -2241,7 +2241,7 @@ CREATE TABLE IF NOT EXISTS `widgets` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=19 ;
 
 --
--- Дамп данных таблицы `widgets`
+-- Dumping data for table `widgets`
 --
 
 INSERT INTO `widgets` (`id`, `name`, `type`, `data`, `method`, `settings`, `description`, `roles`, `created`) VALUES
@@ -2265,58 +2265,8 @@ INSERT INTO `widgets` (`id`, `name`, `type`, `data`, `method`, `settings`, `desc
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `widget_i18n`
+-- Table structure for table `widget_i18n`
 --
-
-DROP TABLE IF EXISTS `mod_email_paterns`;
-CREATE TABLE IF NOT EXISTS `mod_email_paterns` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(256) NOT NULL,
-  `patern` text,
-  `from` varchar(256) NOT NULL,
-  `from_email` varchar(256) NOT NULL,
-  `admin_email` varchar(256) NOT NULL,
-  `type` enum('HTML','Text') NOT NULL DEFAULT 'HTML',
-  `user_message_active` tinyint(1) NOT NULL,
-  `admin_message_active` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
-
---
--- Дамп даних таблиці `mod_email_paterns`
---
-
-INSERT INTO `mod_email_paterns` (`id`, `name`, `patern`, `from`, `from_email`, `admin_email`, `type`, `user_message_active`, `admin_message_active`) VALUES
-(4, 'create_user', '', 'Admin', 'no-replay@shop.com', '', 'HTML', 1, 1),
-(5, 'forgot_password', '', 'Администрация сайта', 'no-replay@shop.com', '', 'HTML', 1, 0),
-(6, 'change_password', '', 'Администрация сайта', 'no-replay@shop.com', '', 'HTML', 1, 0);
-
--- --------------------------------------------------------
-
---
--- Структура таблиці `mod_email_paterns_i18n`
---
-
-DROP TABLE IF EXISTS `mod_email_paterns_i18n`;
-CREATE TABLE IF NOT EXISTS `mod_email_paterns_i18n` (
-  `id` int(11) NOT NULL,
-  `locale` varchar(5) NOT NULL,
-  `theme` varchar(256) NOT NULL,
-  `user_message` text NOT NULL,
-  `admin_message` text NOT NULL,
-  `description` text NOT NULL,
-  `variables` text NOT NULL,
-  PRIMARY KEY (`id`,`locale`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Дамп даних таблиці `mod_email_paterns_i18n`
---
-
-INSERT INTO `mod_email_paterns_i18n` (`id`, `locale`, `theme`, `user_message`, `admin_message`, `description`, `variables`) VALUES
-(4, 'ru', 'Создание пользователя', '<p style="font-family: arial; font-size: 13px; margin-top: 10px;">Здравствуйте, $user_name$!</p>\n<p style="font-family: arial; font-size: 13px; margin-top: 10px;">Поздравляем! Ваша регистрация прошла успешно.</p>\n<p style="font-family: arial; font-size: 13px; margin-top: 20px;">Данные для входа в магазин:</p>\n<div style="font-family: arial; font-size: 13px; margin-top: 10px;"><span style="color: #666;">Email адрес: </span>$user_email$</div>\n<div style="font-family: arial; font-size: 13px; margin-top: 10px;"><span style="color: #666;">Пароль: </span>$user_password$</div>', '<p><span>Создан пользователь $user_name$:</span><br /><span>С паролем: $user_password$</span><br /><span>Адресом: &nbsp;$<span>user_</span>address$</span><br /><span>Email пользователя: $user_email$</span><br /><span>Телефон пользователя: $user_phone$</span></p>', '<p>Шаблон письма на создание пользователя</p>', 'a:5:{s:11:"$user_name$";s:31:"Имя пользователя";s:15:"$user_password$";s:12:"Пароль";s:14:"$user_address$";s:12:"Адресс";s:12:"$user_email$";s:5:"Email";s:12:"$user_phone$";s:14:"Телефон";}'),
-(5, 'ru', 'Восстановление пароля', '<p><span>Здравствуйте!</span><br /><br /><span>На сайте $webSiteName$ создан запрос на восстановление пароля для Вашего аккаунта.</span><br /><br /><span>Для завершения процедуры восстановления пароля перейдите по ссылке $resetPasswordUri$</span><br /><br /><span>Ваш новый пароль для входа: $password$</span><br /><br /><span>Если это письмо попало к Вам по ошибке просто проигнорируйте его.</span><br /><br /><span>При возникновении любых вопросов, обращайтесь по телефонам:</span><br /><br /><span>(012)&nbsp; 345-67-89 , (012)&nbsp; 345-67-89</span><br /><br /><span>---</span><br /><br /><span>С уважением,</span><br /><br /><span>сотрудники службы продаж $webSiteName$</span></p>', '', 'Шаблон письма на  восстановление пароля', 'a:5:{s:13:"$webSiteName$";s:17:"Имя сайта";s:18:"$resetPasswordUri$";s:59:"Ссылка на восстановления пароля";s:10:"$password$";s:12:"Пароль";s:5:"$key$";s:8:"Ключ";s:16:"$webMasterEmail$";s:54:"Email сотрудников службы продаж";}');
-(6, 'ru', 'Смена пароля', '<p><span>Здравствуйте $user_name$!</span><br /><br /><span>Ваш новый пароль для входа: $password$</span><br /><br /><span>Если это письмо попало к Вам по ошибке просто проигнорируйте его.</span><br /><br /><span><br /></span></p>', '', '<p>Шаблон письма изменения пароля</p>', 'a:2:{s:11:"$user_name$";s:31:"Имя пользователя";s:10:"$password$";s:23:"новый пароль";}');
 
 DROP TABLE IF EXISTS `widget_i18n`;
 CREATE TABLE IF NOT EXISTS `widget_i18n` (
@@ -2328,7 +2278,7 @@ CREATE TABLE IF NOT EXISTS `widget_i18n` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `widget_i18n`
+-- Dumping data for table `widget_i18n`
 --
 
 INSERT INTO `widget_i18n` (`id`, `locale`, `data`) VALUES
@@ -2336,14 +2286,6 @@ INSERT INTO `widget_i18n` (`id`, `locale`, `data`) VALUES
 (15, 'ru', '<div class="frame-benefits">\n<div class="container">\n<ul class="items items-benefits">\n<li class="d_i-b">\n<div class="photo-block"><span class="helper">&nbsp;</span><img src="/uploads/images/benefits/benef1.jpg" alt="Предоставление сервиса" /></div>\n<h3>Предоставление сервиса</h3>\n<p>Если вы приобрели робота у нас, но срок гарантии вышел, мы предоставим сервис высшего уровня за некоторое маленькое вознаграждение.</p>\n</li>\n<li class="d_i-b">\n<div class="photo-block"><span class="helper">&nbsp;</span><img src="/uploads/images/benefits/benef2.jpg" alt="Нано технология" /></div>\n<h3>Нано технология</h3>\n<p>Диагностика проблемы и ремонт роботов проходит под средством нано техники от Image Robotics. Ее нельзя приобрети на свободном рынке, такие возможности есть только у нас.</p>\n</li>\n<li class="d_i-b">\n<div class="photo-block"><span class="helper">&nbsp;</span><img src="/uploads/images/benefits/benef3.jpg" alt="Предоставление сервиса" /></div>\n<h3>Диагностика</h3>\n<p>Диагностика любой проблемы занимает несколько секунд, а ремонт составляет не более десяти минут с момента обнаружения проблемы. Если на складе есть ресурсы.</p>\n</li>\n</ul>\n</div>\n</div>'),
 (17, 'ru', '<div class="d_i-b phones-header"><span>8 800 <span class="f-w_b">772-22-22</span></span>\n<p class="phones-info">бесплатно по Украине</p>\n</div>\n<div class="d_i-b phones-header phones-header-last"><span>097 <span class="f-w_b">772-22-22</span></span>\n<p class="phones-info">Мобильный телефон</p>\n</div>'),
 (18, 'ru', '<p>&copy; 2014 Image Robotics - лидер в производстве роботов</p>\n<p>Powered by <a href="http://www.imagecms.net/free-cms-corporate">ImageCMS Corporate</a></p>');
-
-UPDATE 
-    `mod_email_paterns_i18n` 
-SET `variables` = 'a:5:{s:10:"$userName$";s:31:"Имя пользователя";s:11:"$userEmail$";s:30:"Email Пользователя";s:11:"$orderLink$";s:28:"Ссылка на заказ";s:8:"$status$";s:25:"статус заказа";s:9:"$comment$";s:38:"Комментарий к заказу";}' 
-WHERE 
-    id = 2 AND 
-    locale = 'ru'
-LIMIT 1;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

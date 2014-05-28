@@ -3,7 +3,7 @@
         <div class="frame_title clearfix">
             <div class="pull-left">
                 <span class="help-inline"></span>
-                <span class="title">{lang("Create a menu", "menu")}</span>
+                <span class="title">{lang("Creating menu", "menu")}</span>
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
@@ -49,7 +49,7 @@
                                         <div class="control-group">
                                             <label class="control-label" for="menu_tpl">{lang("Template folder", "menu")}:</label>
                                             <div class="controls">
-                                                <input type="text" class="textbox required" required="required" name="menu_tpl" id="menu_tpl" value="{$tpl}" />
+                                                <input type="text" class="textbox" name="menu_tpl" id="menu_tpl" value="{$tpl}" />
                                             </div>
                                         </div>
                                         <div class="control-group">

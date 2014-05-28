@@ -14,7 +14,7 @@
     <div class="tab-content">
         <div class="tab-pane active" id="modules">
             <div class="row-fluid">
-                <form method="post" action="{site_url('admin/components/cp/gallery/settings/update')}" id="gallery_settings_form">
+                <form method="post" enctype="multipart/form-data" action="{site_url('admin/components/cp/gallery/settings/update')}" id="gallery_settings_form">
                     <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
                         <thead>
                             <tr>
@@ -38,7 +38,7 @@
                                                     </select>
                                                     <select name="sort_order" class="input-large">
                                                         <option value="desc" {if $settings.sort_order == "desc"} selected="selected" {/if}>{lang("in descending order", 'gallery')}</option> 
-                                                        <option value="asc" {if $settings.sort_order == "asc"} selected="selected" {/if}>{lang("in  ascending order", 'gallery')}</option>    
+                                                        <option value="asc" {if $settings.sort_order == "asc"} selected="selected" {/if}>{lang("in ascending order", 'gallery')}</option>    
                                                     </select>
                                                 </div>
                                             </div>
@@ -62,11 +62,11 @@
                                     <div class="inside_padd span9">
                                         <div class="row-fluid">
                                             <div class="control-group">
-                                                <label class="control-label" for="max_file_size">{lang("maximum file size", 'gallery')}</label>
+                                                <label class="control-label" for="max_image_size">{lang("maximum file size", 'gallery')}</label>
                                                 <div class="controls">
                                                     <div class="pull-right help-block">&nbsp;&nbsp;{lang("In megabites", 'gallery')}</div>
                                                     <div class="o_h number">
-                                                        <input type="text" value="{$settings.max_file_size}" name="max_file_size" id="max_file_size"/> 
+                                                        <input type="text" value="{$settings.max_image_size}" name="max_image_size" id="max_file_size"/> 
                                                     </div>
                                                 </div>
                                             </div>
@@ -263,10 +263,16 @@
                                             <!-- Image settings -->
                                             <div id="image_settings" {if $settings.watermark_type == 'text'}style="display:none;"{/if}>
                                                 <div class="control-group">
-                                                    <label class="control-label" for="watermark_image">{lang("Path to the image", 'gallery')}</label>
                                                     <div class="controls">
-                                                        <input type="text" value="{$settings.watermark_image}" name="watermark_image" id="watermark_image"/>
-                                                        <span class="help-inline">{lang("File has to be located on the server. For example", 'gallery')}: ./uploads/images/logo.png</span>            
+                                                        <div class="pull-right">
+                                                            <button class="btn btn-small" onclick="elFinderPopup('image', 'watermark_image');
+                                                            return false;"><i class="icon-picture"></i>  {lang('Choose an image ','admin')}</button>
+                                                        </div>
+
+                                                        <div class="o_h">
+                                                            <input type="text" value="{$settings.watermark_image}" name="watermark_image" id="watermark_image"/>
+                                                            <span class="help-inline">{lang("File has to be located on the server. For example", 'gallery')}: ./uploads/images/logo.png</span>            
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
@@ -305,7 +311,7 @@
                                                 <div class="control-group">
                                                     <label class="control-label" for="watermark_color">{lang("Font colour", 'gallery')}</label>
                                                     <div class="controls">
-                                                        <input type="text" value="{$settings.watermark_color}" name="watermark_color" id="watermark_color" maxlength="6"/>
+                                                        <input type="text" value="{$settings.watermark_color}" class="ColorPicker"  name="watermark_color" id="watermark_color" maxlength="10"/>
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
@@ -317,10 +323,31 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                
                                                 <div class="control-group">
-                                                    <label class="control-label" for="watermark_font_path">{lang("Path to font", 'gallery')}</label>
+                                                    <label class="control-label">{lang('Path to font ','admin')}:</label>
                                                     <div class="controls">
-                                                        <input type="text" value="{$settings.watermark_font_path}" name="watermark_font_path" id="watermark_font_path"/>
+                                                        <div>
+                                                            <span class="btn btn-small p_r pull-right">
+                                                                <i class="icon-folder-open"></i>&nbsp;&nbsp;{lang('Upload','admin')}
+                                                                <input type="file" value="" name="watermark_font_path"/>
+                                                                <input type="hidden" value="{echo $settings.watermark_font_path}" name="watermark_font_path_tmp"/>
+                                                            </span>
+                                                            <div class="o_h watermark_path_info">
+                                                                <div>
+                                                                    {if empty($settings.watermark_font_path)}
+                                                                        {lang('Font is not uploaded','admin')}
+                                                                    {else:}
+                                                                        <a href="{site_url(str_replace('./','',$settings.watermark_font_path))}">{$settings.watermark_font_path}</a>
+                                                                        <a href="javascript:$('#delete_watermark_font_path').val(1); $('.watermark_path_info div').html(langs.fontNotUploaded)"><i class="icon-remove"></i></a>
+                                                                        {/if}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <input id="delete_watermark_font_path" type="hidden" value='0' name="watermark[delete_watermark_font_path]" />
+                                                        <span class="help-block">
+                                                            <b>{lang('Font file must support all characters you need.','admin')}</b>
+                                                        </span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -338,13 +365,14 @@
 </section>
 {literal}
     <script type="text/javascript">
-                                                        function show_watermark_block()
-                                                        {
-                                                            $('#text_settings, #image_settings').toggle();
-                                                        }
+        function show_watermark_block()
+        {
+        $('#text_settings, #image_settings').toggle();
+        }
 
     </script>
 {/literal}
+<div id="elFinder"></div>
 
 
 

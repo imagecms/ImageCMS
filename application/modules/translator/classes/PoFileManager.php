@@ -217,6 +217,119 @@ class PoFileManager {
         }
     }
 
+    public function update($name, $type, $lang, $data) {
+        $po_data = $this->toArray($name, $type, $lang);
+        
+        if ($po_data && key_exists('po_array', $po_data)) {
+            foreach ($data as $origin => $values) {
+                if (isset($po_data['po_array'][$origin])) {
+                    if ($values['translation'])
+                        $po_data['po_array'][$origin]['translation'] = $values['translation'];
+                    if ($values['comment'])
+                        $po_data['po_array'][$origin]['comment'] = $values['comment'];
+                }else {
+                    if ($values['translation']) {
+                        $po_data['po_array'][$origin] = array(
+                            'translation' => $values['translation'],
+                            'cooment' => $values['comment'] ? $values['comment'] : '',
+                            'links' => $values['links'] ? $values['links'] : array('tmpLink'),
+                            'fuzzy' => FALSE
+                        );
+                    }
+                }
+            }
+
+            if (isset($po_data['settings'])) {
+                $data = $po_data['po_array'];
+                $data['settings'] = $this->prepareUpdateSettings($po_data['settings']);
+                return $this->save($name, $type, $lang, $data);
+            }
+        }
+        return FALSE;
+    }
+
+    private function prepareUpdateSettings($data) {
+        if (!isset($data['Project-Id-Version']) || !$data['Project-Id-Version']) {
+            $data['projectName'] = '';
+        } else {
+            $data['projectName'] = $data['Project-Id-Version'];
+        }
+
+        unset($data['Project-Id-Version']);
+
+        if (!isset($data['Last-Translator-Name']) || !$data['Last-Translator-Name']) {
+            $data['translatorName'] = '';
+        } else {
+            $data['translatorName'] = $data['Last-Translator-Name'];
+        }
+
+        unset($data['Last-Translator-Name']);
+
+        if (!isset($data['Last-Translator-Email']) || !$data['Last-Translator-Email']) {
+            $data['translatorEmail'] = '';
+        } else {
+            $data['translatorEmail'] = $data['Last-Translator-Email'];
+        }
+
+        unset($data['Last-Translator-Email']);
+
+        if (!isset($data['Language-Team-Name']) || !$data['Language-Team-Name']) {
+            $data['langaugeTeamName'] = '';
+        } else {
+            $data['langaugeTeamName'] = $data['Language-Team-Name'];
+        }
+
+        unset($data['Language-Team-Name']);
+
+        if (!isset($data['Language-Team-Email']) || !$data['Language-Team-Email']) {
+            $data['langaugeTeamEmail'] = '';
+        } else {
+            $data['langaugeTeamEmail'] = $data['Language-Team-Email'];
+        }
+
+        unset($data['Language-Team-Email']);
+
+        if (!isset($data['lang']) || !$data['lang']) {
+            $data['lang'] = '';
+        }
+
+        if (!isset($data['Basepath']) || !$data['Basepath']) {
+            $data['basepath'] = '';
+        } else {
+            $data['basepath'] = $data['Basepath'];
+        }
+
+        unset($data['Basepath']);
+
+        if (!isset($data['SearchPath']) || !$data['SearchPath']) {
+            $data['paths'][] = '.';
+        } else {
+            foreach ($data['SearchPath'] as $path) {
+                $data['paths'][] = $path;
+            }
+        }
+
+        unset($data['SearchPath']);
+
+        if (!isset($data['X-Poedit-Language']) || !$data['X-Poedit-Language']) {
+            $data['language'] = '';
+        } else {
+            $data['language'] = $data['X-Poedit-Language'];
+        }
+
+        unset($data['X-Poedit-Language']);
+
+        if (!isset($data['X-Poedit-Country']) || !$data['X-Poedit-Country']) {
+            $data['country'] = '';
+        } else {
+            $data['country'] = $data['X-Poedit-Country'];
+        }
+
+        unset($data['X-Poedit-Country']);
+
+        return $data;
+    }
+
     /**
      * Save po-file from array
      * @param string $name - module or template name
@@ -241,7 +354,7 @@ class PoFileManager {
 
         $settings = $this->makePoFileSettings((array) $data['settings']);
         unset($data['settings']);
-        
+
         $po_file_data = $this->makePoFileData($data);
         $po_file_content = b"\xEF\xBB\xBF" . $settings . "\n\n" . $po_file_data;
 
@@ -338,6 +451,8 @@ class PoFileManager {
         $path = $this->getPoFileUrl($name, $type, $lang);
 
         if (!FileOperator::getInstatce()->checkFile($path)) {
+            $error = FileOperator::getInstatce()->getErrors();
+            $this->setError($error['error']);
             return FALSE;
         } else {
             $po = file($path);

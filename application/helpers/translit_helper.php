@@ -77,7 +77,7 @@ function translit($str) {
         "ї" => "yi",
         "і" => "i",
         "є" => "e",
-        " " => "-",
+        " " => " ",
         "." => "",
         ":" => "",
         ";" => "",
@@ -89,6 +89,7 @@ function translit($str) {
 
 function translit_url($urlstr) {
     if (preg_match('/[^A-Za-z0-9_\-]/', $urlstr)) {
+        $urlstr = str_replace(' ', '-', $urlstr);
         $urlstr = translit($urlstr);
         $urlstr = preg_replace('/[^A-Za-z0-9_\-]/', '', $urlstr);
     }

@@ -169,8 +169,8 @@
                                                         <div class="pull-left span6 p-r_10">
                                                             <select name="order_by" id="order_by">
                                                                 <option value="publish_date" selected="selected">{lang("by date","admin")}</option>    
-                                                                <option value="title">{lang("By alphabet or in the alphabetic order","admin")}</option>    
-                                                                <option value="position">{lang("By position","admin")}</option>    
+                                                                <option value="title">{lang("by alphabet","admin")}</option>    
+                                                                <option value="position">{lang("by position","admin")}</option>    
                                                             </select>
                                                         </div>
                                                         <div class="pull-left span6 p-l_10">
@@ -185,7 +185,7 @@
                                                     <label class="control-label" for="per_page">{lang("Posts on page","admin")}:</label>
                                                     <div class="controls">
                                                         <input type="text" name="per_page" value="15" id="per_page"/> 
-                                                        <div class="frame_label no_connection m-t_20">
+                                                        <div class="frame_label no_connection">
                                                             <span class="niceCheck b_n">
                                                                 <input type="checkbox" name="comments_default" value="1" />
                                                             </span>

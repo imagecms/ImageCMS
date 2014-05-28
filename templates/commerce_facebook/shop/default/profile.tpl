@@ -93,7 +93,7 @@
                 В корзине:
                 <span style="font-weight: bold;">
                     {echo ShopCore::app()->SCart->totalItems()}
-                    {echo SStringHelper::Pluralize(ShopCore::app()->SCart->totalItems(), array('товар','товара','товаров'))}
+                    {echo SStringHelper::Pluralize(ShopCore::app()->SCart->totalItems(), array(lang('товар', 'newLevel'),lang('товара', 'newLevel'),lang('товаров', 'newLevel')))}
                 </span>
                 <table cellspacing="0">
                     <colgroup>
@@ -117,7 +117,7 @@
                     <tbody>
                         <tr>
                             {foreach $orders as $order}
-                            <td><a rel="nofollow" href="{shop_url('cart/view/' . $order->getKey())}">{echo $order->getId()}</a></td>
+                            <td><a rel="nofollow" href="{shop_url('order/view/' . $order->getKey())}">{echo $order->getId()}</a></td>
                             <td>{if $order->getPaid()} Да {else:} Нет {/if}</td>
                             <td>{echo SOrders::getStatusName('Id', $order->getStatus())}</td>
                             <td>{date("d-m-Y H:i", $order->getDateCreated())}</td>

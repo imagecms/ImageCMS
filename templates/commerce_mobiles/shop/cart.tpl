@@ -71,7 +71,7 @@
                 {/if}
                 <br/>
                 {if $discount_val}
-                    {lang('Подарочный сертификат', 'commerce_mobile')}: {echo ShopCore::app()->SCurrencyHelper->convert($discount_val)} {$CS} <br/>
+                    {lang('Скидка', 'commerce_mobile')}: {echo ShopCore::app()->SCurrencyHelper->convert($discount_val)} {$CS} <br/>
                 {/if}
                 <span class="total_pay">{lang('Всего к оплате', 'commerce_mobile')}:</span>
                 <span class="price">
@@ -102,7 +102,7 @@
                 <input type="text" name="userInfo[phone]" value="{$profile.phone}" />
             </label>
             <label>
-                {lang('Адрес', 'newLevel')}
+                {lang('Адрес', 'newLevel')}:
                 <input name="userInfo[deliverTo]" type="text" value="{$profile.address}"/>
             </label>
             <label>
@@ -146,9 +146,11 @@
                                     {lang('Не выбран','commerce_mobiles')}
                                 </option>
                                 {foreach $dm->getPaymentMethodss() as $pm}
-                                    <option value="{echo $pm->getId()}">
-                                        {echo $pm->getName()}
-                                    </option>
+                                    {if $pm->getActive()}
+                                        <option value="{echo $pm->getId()}">
+                                            {echo $pm->getName()}
+                                        </option>
+                                    {/if}
                                 {/foreach}
                             </select>
                         {/if}
@@ -182,7 +184,7 @@
 {else:}
     <div class="main_frame_inside">
         <div class="gen_sum">
-            <span class="total_pay">{echo ShopCore::t('Корзина пуста')}</span>
+            <span class="total_pay">{lang('Корзина пуста', 'commerce_mobiles')}</span>
         </div>
     </div>
 {/if}

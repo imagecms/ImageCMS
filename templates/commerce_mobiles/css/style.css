@@ -21,7 +21,7 @@ label, .frame_label{text-shadow: 0 1px #fff;margin-bottom: 26px;line-height: 1.2
 input[type="reset"], input[type="submit"], label, select, .pointer, button, .frame_label{cursor:pointer;}
 input[type="text"], input[type="password"], textarea, select{padding: 0 5px;width: 100%;border: 1px solid;color: #333;-webkit-border-radius: 2px;border-radius: 2px;vertical-align: middle;background-color: #fff;}
 select{padding-right: 0;}
-input[type="text"], input[type="password"], select{line-height: 39px;font-size: 24px;}
+input[type="text"], input[type="password"], select{height: 34px;font-size: 24px;}
 textarea{overflow: auto;max-width: 100%;}
 input[disabled], select[disabled], textarea[disabled], input[readonly], select[readonly], textarea[readonly]{-webkit-opacity: 0.5;-moz-opacity: 0.5;opacity: 0.5;cursor: not-allowed;}
 .errors{background-color: #ffe8e8;border: 1px solid #f27676;color: #e42e2e;text-align: left;padding: 5px;margin-bottom: 10px;}

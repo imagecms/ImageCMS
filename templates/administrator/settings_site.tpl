@@ -93,6 +93,15 @@
                                                                 </select>
                                                             </div>
                                                         </div>
+                                                        <div class="control-group">
+                                                            <label class="control-label" for="comcount">{lang("Close or open the site for indexing robots", 'admin')}:</label>
+                                                            <div class="controls">
+                                                                <div class="robotsChecker frame_prod-on_off">
+                                                                    <span class="prod-on_off{if !$robots_status} disable_tovar{/if}"></span>
+                                                                    <input type="hidden" name="robots_status" value="{if $robots_status}1{else:}0{/if}" data-val-on="1" data-val-off="0">
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>

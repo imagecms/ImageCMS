@@ -46,7 +46,7 @@
                                     <div class="control-group">
                                         <label class="control-label" for="Name">{lang('Name', 'banners')} {$translatable}:</label>
                                         <div class="controls">
-                                            <input type="text" name="name" id="Name" value="{echo $banner['name']}" />
+                                            <input type="text" name="name" id="Name" value="{echo $banner['name']}" required/>
                                         </div>
                                         <div class="controls">
                                             <span class="frame_label no_connection m-r_15">
@@ -127,7 +127,24 @@
                                 <div class="control-group">
                                     <label class="control-label">{lang('Active until', 'banners')}:</label>
                                     <div class="controls">
-                                        <input class="datepicker" type="text" value="{if $banner['active_to']}{echo date('Y-m-d',$banner['active_to'])}{else:}{echo $date}{/if}" name="active_to" />
+                                        <span class="frame_label no_connection">
+                                            <span class="niceCheck b_n" onclick="$('#active_to').fadeToggle()">
+                                                <input required="required" 
+                                                       type="checkbox"
+                                                       {if $banner['active_to'] == -1}checked="checked"{/if}
+                                                       name="active_to_permanent"/>
+                                            </span>
+                                        </span>
+                                        {lang('Banner permanent', 'banners')}
+                                    </div>
+                                    <div class="controls">
+                                        <input class="datepicker" 
+                                               id="active_to" 
+                                               required="required" 
+                                               type="text" 
+                                               {if $banner['active_to'] == -1}style="display: none"{/if}
+                                               value="{if $banner['active_to']}{echo date('Y-m-d',$banner['active_to'])}{else:}{echo $date}{/if}" 
+                                               name="active_to" />
                                     </div>
                                 </div>  
 
@@ -141,18 +158,16 @@
                                                     return false;"><i class="icon-picture"></i>  {lang('Choose an image ', 'banners')}</button>
                                         </div>
                                         <div class="o_h">		            
-                                            <input type="text" name="photo" id="Img" value="{echo $banner['photo'];}">					
+                                            <input type="text" name="photo" id="Img" value="{echo $banner['photo'];}" required="required">					
                                         </div>
                                         <div id="Img-preview" style="width: 400px;" >
                                             {if $banner['photo']}
-                                                <img src="{echo $banner['photo']}" class="img-polaroid" style="width: 100px;">
+                                                <img src="{echo $banner['photo']}" class="img-polaroid" style="width: 400px;">
                                             {/if}
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
-
                         </div>
                     </td>
                 </tr>

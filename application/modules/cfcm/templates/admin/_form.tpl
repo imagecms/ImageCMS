@@ -8,7 +8,7 @@
             <span class="help-inline"></span>
             <div class="d-i_b">
                 <a href="/admin/components/cp/cfcm/index{if $form->type == "group"}#fields_groups{else:}#additional_fields{/if}" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Back", 'admin')}</span></a>
-                <button type="button" class="btn btn-small action_on formSubmit btn-success"  data-action="edit" data-form="#{echo $f_id = uniqid()}"><i class="icon-ok icon-white"></i>{if $CI->uri->segment(5) == 'create_field'}{lang("Create", 'admin')}{else:}{lang("Save", 'cfcm')}{/if}</button>
+                <button type="button" class="btn btn-small action_on formSubmit btn-primary"  data-action="edit" data-form="#{echo $f_id = uniqid()}"><i class="icon-ok icon-white"></i>{if $CI->uri->segment(5) == 'create_field'}{lang("Create", 'admin')}{else:}{lang("Save", 'cfcm')}{/if}</button>
                 <button type="button" class="btn btn-small action_on formSubmit btn-default" data-action="close" data-form="#{echo $f_id}"><i class="icon-check"></i>{if $CI->uri->segment(5) == 'create_field'}{lang('Create and exit', 'admin')}{else:}{lang("Save and exit", 'cfcm')}{/if}</button>
             </div>
         </div>                            

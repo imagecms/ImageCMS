@@ -1,5 +1,5 @@
 <script type="text/javascript">
-    totalItemsBask = {echo $totalItems}
+    totalItemsBask = {if $totalItems}{echo $totalItems}{else:}0{/if};
 </script>
 <div class="frame-bask frameBask p_r">
     <button type="button" class="icon_times_drop" data-closed="closed-js"></button>
@@ -24,10 +24,10 @@
                                                 <span class="helper"></span>
                                                 <img src="{echo $item->getSmallPhoto()}" alt="{echo $item->getName()}"/>
                                             </span>
-                                            <span class="title">{echo $item->getSProducts()->getName()}</span>
+                                            <span class="title">{echo $item->getSProductsI18n()->getName()}</span>
                                         </a>
                                         <div class="description">
-                                            {if $item->getName() && trim($item->getName()) != trim($item->getSProducts()->getName())}
+                                            {if $item->getName() && trim($item->getName()) != trim($item->getSProductsI18n()->getName())}
                                                 <span class="frame-variant-name">
                                                     <span class="text-el">{lang('Вариант','newLevel')}</span>
                                                     <span class="code">({echo trim($item->getName())})</span>
@@ -73,7 +73,7 @@
                                             <span class="current-prices f-s_0">
                                                 <span class="price-new">
                                                     <span>
-                                                        <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($item->price * $item->quantity)}</span>
+                                                        <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($item->overallPrice)}</span>
                                                         <span class="curr">{$CS}</span>
                                                     </span>
                                                 </span>
@@ -227,12 +227,6 @@
                             {/if}
                         </span>
                     </span>
-                    <br />
-                    {if $overloadedDiscounts}
-                        <span class="s-t">
-                            {lang('Для некоторых скидок превышено их максимальное количество использования','newLevel')}
-                        </span>
-                    {/if}
                 </div>
             </div>
             <div class="content-frame-foot notCart">
@@ -243,7 +237,7 @@
                         </button>
                     </div>
                     <div class="btn-cart btn-cart-p f_r">
-                        <a href="/shop/cart">
+                        <a href={shop_url('cart')}>
                             <span class="icon_cart_p"></span>
                             <span class="text-el">{lang('Оформить заказ','newLevel')}</span>
                         </a>

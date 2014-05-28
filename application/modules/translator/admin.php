@@ -67,6 +67,25 @@ class Admin extends BaseAdminController {
         return updateSettings($settings);
     }
 
+    public function settings() {
+        if ($_POST) {
+            $settings = $this->input->post('settings');
+            updateSettings($settings);
+            showMessage(lang('Settings was successfully updated', 'translator', FALSE));
+
+            if ($this->input->post('action') == 'exit') {
+                pjax(site_url('admin/components/init_window/translator'));
+            }
+        } else {
+            \CMSFactory\assetManager::create()
+                    ->registerScript('admin')
+                    ->registerStyle('admin')
+                    ->setData('settings', getSettings())
+                    ->setData('languages_names', get_language_names())
+                    ->renderAdmin('settings');
+        }
+    }
+
     public function index($isExchange = FALSE) {
         $translation = $this->session->userdata('translation');
         $po_table = '';
@@ -271,6 +290,10 @@ class Admin extends BaseAdminController {
 
         $result = $this->poFileManager->toArray($module_template, $type, $lang);
         $currentLangs = $result['po_array'];
+        
+        if(!$currentLangs && !$returnArray){
+            return json_encode(array('error' => TRUE, 'data' => lang('Update and save translation file befor this action.', 'translator')));
+        }
 
         foreach ($all_langs as $origin => $paths) {
             if ($currentLangs[$origin]) {
@@ -574,11 +597,11 @@ class Admin extends BaseAdminController {
      */
     public function getLangaugesNames() {
         $languages = get_language_names();
-        $language = strtolower($this->input->get('term'));
+        $language = mb_strtolower($this->input->get('term'));
         $data = array();
 
         foreach ($languages as $key => $lang) {
-            if (strstr(strtolower($lang), $language) && $language != 'all_languages') {
+            if (strstr(mb_strtolower($lang), $language) && $language != 'all_languages') {
                 $data[] = array('locale' => $key, 'label' => $lang);
             } elseif ($language == 'all_languages') {
                 $data[] = array('locale' => $key, 'label' => $lang);
