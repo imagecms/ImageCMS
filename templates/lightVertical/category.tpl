@@ -4,8 +4,9 @@
 <div class="frame-inside page-text">
     <div class="container">
         <div class="text-left">{load_menu('left_menu')}</div>
+        <h1>{echo encode($category.name)}</h1>
+        {$CI->load->module('banners')->render($category.id)}
         <div class="text-right">
-            <h1>{echo encode($category.name)}</h1>
             {if $pages == NULL}
                 {lang('Категория на стадии разработки', 'lightVertical')}
             {else:}

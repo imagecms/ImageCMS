@@ -4,6 +4,7 @@
 <div class="frame-inside page-text">
     <div class="container">
         <h1>{echo encode($category.name)}</h1>
+        {$CI->load->module('banners')->render($category.id)}
         {if $pages == NULL}
             {lang('Категория на стадии разработки', 'newLevelVertical')}
         {else:}

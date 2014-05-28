@@ -21,6 +21,7 @@
 <div class="frame-inside page-product">
     <div class="container">
         {$inCartFV = getAmountInCart('SProducts', $model->firstVariant->getId())}
+        {$CI->load->module('banners')->render($model->getId())}
         <div class="clearfix">
             <div class="frame-left-product">
                 <div class="clearfix">

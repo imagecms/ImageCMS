@@ -201,6 +201,7 @@ class Categories extends BaseAdminController {
                 'comments_default' => $this->lib_admin->db_post('comments_default'),
                 'fetch_pages' => $fetch_pages,
                 'settings' => serialize($settings),
+                'updated' => time()
             );
 
             $parent = $this->lib_category->get_category($data['parent_id']);
@@ -217,6 +218,7 @@ class Categories extends BaseAdminController {
 
             switch ($action) {
                 case 'new':
+                    $data['created'] = time();
                     ($hook = get_hook('admin_create_category')) ? eval($hook) : NULL;
 
                     $id = $this->cms_admin->create_category($data);

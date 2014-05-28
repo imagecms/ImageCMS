@@ -3,14 +3,23 @@
     <author>SiteImage</author>
     
     <dependencies>
+<<<<<<< HEAD
 	<!--
         <dependency entityName="module" name="moduleName1" type="required"/>
         <dependency entityName="module" name="moduleName2" type="wishful"/>
         <dependency entityName="module" name="moduleName3" type="add"/>
 		 -->
         <dependence entityName="widget" name="benefits2" type="add" widgetType="html">
-            <data>
+             <widget_i18n locale="ru">
+                    <data>
                 <div class="frame-title">
+=======
+        <dependence entityName="widget" name="benefits" type="add" widgetType="html">
+		<widget_i18n locale="ru">
+                    <data>
+					<div>
+                        <div class="frame-title">
+>>>>>>> 0257c6b5f1d6d03380010657bbca51bf0bf51040
 <div class="title">Почему выбирают нас</div>
 </div>
 <ul class="items items-benefits">
@@ -19,12 +28,19 @@
 <div class="frame-description-benefit f-s_0">
 <div class="title">Бесплатная доставка от 2000 р</div>
 </div>
+<<<<<<< HEAD
+    </li>
+    </ul>
+=======
 </li>
 </ul>
-            </data>
+</div>
+>>>>>>> 0257c6b5f1d6d03380010657bbca51bf0bf51040
+                    </data>
+                </widget_i18n>
         </dependence>
 
-        <dependence entityName="widget" name="brands2" type="add" widgetType="module" module="shop" method="brands" description="widget description">
+        <dependence entityName="widget" name="brands" type="add" widgetType="module" module="shop" method="brands" description="widget description">
             <settings>
                 <brandsCount>4</brandsCount>
                 <title>sadf</title>
@@ -33,14 +49,7 @@
             </settings>
         </dependence>
     </dependencies>
-    
- <!--menu name="demo_manu" main_title="Demo menu title" description="Demo menu description." tpl="top_menu" expand_level="0">
-            <item type="url" item_image="/image" title="Item1" position="0" description="description">
-                
-        </item>
-    </menu-->
-    
-    <demodata>
+     <demodata>
         <menus>
             <menu name="top_menu" main_title="top_menu" tpl_folder="top_menu" description="Меню в верхней части шаблона">
                 <item title="О компании" url="/o-magazine">
@@ -83,30 +92,28 @@
                 </item>
             </menu>
         </menus>
-    </demodata>
-    <demodata>
+    
         <categoriestemplates>
-            <level_1 template_name="category1level11"/>
-            <level_2 template_name="category2level22"/>
+            <level_1 template_name="categorysubfirst"/>
+            <level_2 template_name="categorysubsecond"/>
         </categoriestemplates>
-    </demodata>
-    <demodata>
+    
         <!-- (where_show => default, main, product, shop_category, brand, category, page)-->
         <banners>
             <banner where_show="main" position="0" active="1">
-                <banner_i18n  name="Баннер" description="Баннер описание" url="banner_url" locale="ru" photo="/uploads/shop/banners/center_1.jpg"/>
+                <banner_i18n  name="Первый баннер на главной странице" description="" url="" locale="ru" photo="/uploads/shop/banners/center_1.jpg"/>
             </banner>
-            <banner where_show="main" position="0" active="1">
-                <banner_i18n  name="Баннер3" description="Баннер описание" url="banner_url" locale="ru" photo="/uploads/shop/banners/center_2.jpg"/>
+            <banner where_show="main" position="1" active="1">
+                <banner_i18n  name="Второй баннер на главной странице" description="" url="" locale="ru" photo="/uploads/shop/banners/center_2.jpg"/>
             </banner>
             <groups>
                 <group name="right-main"/>
             </groups>
-            <banner where_show="main" position="0" active="1" group="right-main">
-                <banner_i18n  name="Баннер" description="Баннер описание" url="banner_url" locale="ru" photo="/uploads/shop/banners/2.jpg"/>
+            <banner position="2" active="1" group="right-main">
+                <banner_i18n  name="Третий баннер на главной странице справа" description="" url="" locale="ru" photo="/uploads/shop/banners/2.jpg"/>
             </banner>
-            <banner where_show="main" position="0" active="1" group="right-main">
-                <banner_i18n  name="Баннер3" description="Баннер описание" url="banner_url" locale="ru" photo="/uploads/shop/banners/3.jpg"/>
+            <banner position="3" active="1" group="right-main">
+                <banner_i18n  name="Четвертый баннер на главной странице справа" description="" url="" locale="ru" photo="/uploads/shop/banners/3.jpg"/>
             </banner>
         </banners>
     </demodata>
@@ -123,15 +130,10 @@
     </customfields>
     </demodata!-->
     
-    
-    
-    <description><!-- КОЖЕН РАЗ ПРИ ЗВЕРНЕННІ -->
-        <!-- буде показуватись в інформації про шаблон -->
-        Опис шаблону
-        Цей шаблон тра-ля-ля і бє-бє-бє
+    <description>
     </description>
     
-    <screenshots><!-- КОЖЕН РАЗ ПРИ ЗВЕРНЕННІ -->
+    <screenshots>
         <screenshot url="/templates/light/screenshots/1.png" main="1" />
         <screenshot url="/templates/light/screenshots/2.png" main="0" />
         <screenshot url="/templates/light/screenshots/Template-catalog_2.png" main="0" />
@@ -139,9 +141,7 @@
         <screenshot url="/templates/light/screenshots/4.png" main="0" />
     </screenshots>
     
-    <components><!-- ОДНОРАЗОВО - ПРИ ІНСТАЛЯЦІЇ ТА КОЖЕН РАЗ ПРИ ЗВЕРНЕННІ -->
-        <!-- початкові параметри для компонентів шаблону -->
-        
+    <components>        
         <component handler='TColorScheme'>
             <param name="color_scheme" value="color_scheme_1" />
         </component>
@@ -164,5 +164,4 @@
         </component>
         
     </components>
-
 </template>

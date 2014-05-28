@@ -351,7 +351,8 @@ class Sitemap extends MY_Controller {
             $this->items[] = array(
                 'loc' => site_url(),
                 'changefreq' => $this->main_page_changefreq,
-                'priority' => $this->main_page_priority
+                'priority' => $this->main_page_priority,
+                'lastmod' =>  $date = date('Y-m-d', time())
             );
         }
 
@@ -369,12 +370,20 @@ class Sitemap extends MY_Controller {
                     $priority = $this->cats_priority;
                 }
 
+                // create date
+                if ($category['updated'] > 0) {
+                    $date = date('Y-m-d', $category['updated']);
+                } else {
+                    $date = date('Y-m-d', $category['created']);
+                }
+
                 if ($this->not_blocked_url($category['path_url'])) {
-                    
+
                     $this->items[] = array(
-                    'loc' => site_url($category['path_url']),
-                    'changefreq' => $changefreq,
-                    'priority' => $priority,
+                        'loc' => site_url($category['path_url']),
+                        'changefreq' => $changefreq,
+                        'priority' => $priority,
+                        'lastmod' => $date
                     );
                 }
 
@@ -386,7 +395,8 @@ class Sitemap extends MY_Controller {
                             $this->items[] = array(
                                 'loc' => site_url($url),
                                 'changefreq' => $changefreq,
-                                'priority' => $priority
+                                'priority' => $priority,
+                                'lastmod' => $date
                             );
                         }
                     }
@@ -457,10 +467,18 @@ class Sitemap extends MY_Controller {
                             $priority = $this->products_categories_priority;
                         }
 
+                        // create date
+                        if ($shopcat['updated'] > 0) {
+                            $date = date('Y-m-d', $shopcat['updated']);
+                        } else {
+                            $date = date('Y-m-d', $shopcat['created']);
+                        }
+
                         $this->items[] = array(
                             'loc' => site_url($url),
                             'changefreq' => $changefreq,
-                            'priority' => $priority
+                            'priority' => $priority,
+                            'lastmod' => $date,
                         );
                     }
                 }
@@ -474,9 +492,15 @@ class Sitemap extends MY_Controller {
                 $url = site_url('shop/brand/' . $shopbr['url']);
                 if ($this->not_blocked_url('shop/brand/' . $shopbr['url'])) {
                     if (!$this->robotsCheck($url)) {
+                         // create date
+                        if ($shopbr['updated'] > 0) {
+                            $date = date('Y-m-d', $shopbr['updated']);
+                        } else {
+                            $date = date('Y-m-d', $shopbr['created']);
+                        }
                         $this->items[] = array(
                             'loc' => $url,
-                            'lastmod' => '',
+                            'lastmod' => $date,
                             'changefreq' => $this->brands_changefreq,
                             'priority' => $this->brands_priority,
                         );
@@ -575,7 +599,7 @@ class Sitemap extends MY_Controller {
 
             next($items);
         }
-
+//        var_dumps_exit($data);
 //        $start_memory = memory_get_usage();
         $result = "<\x3Fxml version=\"1.0\" encoding=\"UTF-8\"\x3F>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n" . $data . "\t</urlset>";
 //        var_dumps_exit((memory_get_usage() - $start_memory) / 1024);
@@ -660,7 +684,6 @@ class Sitemap extends MY_Controller {
 //                unset($ci->updated_url);
 //            }
 //        }
-
         // Checking time permission(1 hour passed from last send) to send ping
         if ((time() - $settings['lastSend']) / (60 * 60) >= 1) {
 
