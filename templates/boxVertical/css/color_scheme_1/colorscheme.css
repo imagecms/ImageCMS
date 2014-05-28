@@ -14,7 +14,7 @@ body{background: url("images/fon.png") repeat;}
 .text blockquote:before, .text blockquote:after{border-width: 1px 0;border-style: solid;}
 
 [class*="icon_"], [class*="icon-"], .ui-slider-handle, .product-status, .niceCheck, .niceRadio, .cuselFrameRight, .btn-to-up, .vertical-menu .frame-title.is-sub > a:before,
-.vertical-menu .title-category-l1.is-sub:before {background: url("images/sprite.png") no-repeat;}
+.vertical-menu .menu-row-category .title-category-l1.is-sub:before {background: url("images/sprite.png") no-repeat;}
 .icon-plus{width: 10px;height: 10px;background-position: -260px 0;}
 .icon-minus{width: 10px;height: 2px;background-position: -280px 0;}
 /*.buti, .buti > button, .buti > a, .buti > input{background: url("images/buttons.png") no-repeat;}

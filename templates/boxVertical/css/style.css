@@ -598,7 +598,8 @@ input.input-search{height: 31px;padding-left: 34px;}
 .vertical-menu .frame-item-menu > .frame-title > .title{padding: 8px 0;}
 .frame-drop-menu{display: none;margin-left: 0 !important;position: absolute;text-align: left;z-index: 1;}
 .horizontal-menu .frame-drop-menu{max-width: 100%;top: 100%;margin-top: -1px !important;left: 0;}
-.vertical-menu .frame-drop-menu{top: -1px;left: 100% !important;right: auto !important;border: 3px solid transparent;width: auto !important;height: auto !important;overflow: visible !important;}
+.vertical-menu .frame-drop-menu{top: -1px;left: 100% !important;right: auto !important;border: 3px solid transparent;height: auto !important;overflow: visible !important;}
+.vertical-menu .menu-row-category .frame-drop-menu{width: auto !important;}
 .vertical-menu .frame-item-menu{position: relative;}
 .vertical-menu .menu-main td{text-align: left;}
 .vertical-menu tr + tr .frame-item-menu {position: relative;border-top: 1px solid transparent;}
@@ -622,7 +623,6 @@ input.input-search{height: 31px;padding-left: 34px;}
 .frame-l2 [data-column] > ul, .menu-main .frame-l2.is-side, .menu-main .is-side > ul > li > ul{padding-left: 0;}
 .menu-main .frame-l2 > ul, .menu-main [class*="x"] > ul{font-size: 0;}
 .frame-l2 > ul > li[data-column], .menu-main [class*="x"] > ul > li{display: inline-block;font-size: 12px;}
-.frame-l2 > ul > li[data-column]{padding-right: 10px;}
 [class*="x0"] > ul > li, .menu-main [class*="x1"] > ul > li, .frame-drop-menu > ul > li{display: block;}
 .frame-l2 > ul, .menu-main [class*="x"] > ul{overflow: hidden;}
 [class*="x0"] > ul, [class*="x1"] > ul{overflow: auto;}
@@ -630,7 +630,6 @@ input.input-search{height: 31px;padding-left: 34px;}
 .menu-row-category .frame-l2{min-width: 230px;}
 .frame-drop-menu a{display: inline-block;}
 .frame-drop-menu a:first-letter{text-transform: capitalize;}
-.frame-drop-menu .frame-l2 li li{padding-top: 4px;padding-bottom: 4px;}
 .menu-col-category .frame-drop-menu .frame-l2 > ul > li{width: 100%;}
 .menu-row-category .frame-drop-menu .frame-l2 > ul > li{display: block;}
 .menu-row-category .frame-drop-menu .frame-l2 > ul > li{display: inline-block;}
