@@ -351,7 +351,8 @@ class Sitemap extends MY_Controller {
             $this->items[] = array(
                 'loc' => site_url(),
                 'changefreq' => $this->main_page_changefreq,
-                'priority' => $this->main_page_priority
+                'priority' => $this->main_page_priority,
+                'lastmod' =>  $date = date('Y-m-d', time())
             );
         }
 
