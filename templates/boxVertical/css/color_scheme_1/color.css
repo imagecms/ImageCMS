@@ -98,9 +98,10 @@ input[type="text"][disabled], input[type="password"][disabled], textarea[disable
 .vertical-menu .frame-drop-menu {border-color: #3baf48;}
 .frame-drop-menu > ul{background-color: #fff;}
 .frame-drop-menu .frame-l2 li li{border-top-color: #c9cacb;}
-.frame-drop-menu .frame-l2 > ul > li > a, .frame-drop-menu .frame-l2 > ul > li > ul > li > a{color: #fff;}
+.frame-drop-menu .menu-row-category .frame-l2 > ul > li a{color: #fff;}
 .frame-drop-menu .frame-l2 > ul > li > a.active, .frame-drop-menu .frame-l2 > ul > li > ul > li > a.active{color: #c5c5c5;}
-.menu-main .frame-l2 > ul > li > a:hover, .menu-main .frame-l2 > ul > li > ul > li > a:hover{background-color: #40cc50;}
+.menu-main .frame-l2 > ul > li > a:hover, .menu-main .frame-l2 > ul > li > ul > li > a:hover{background-color: #40cc50;color: #fff;}
+.menu-main.menu-row-category .frame-l2 > ul a{color: #fff;}
 .menu-row-category li > .title-category-l1{border-top-color: #e5e5e5; color: #3baf48;}
 .menu-row-category li:hover > .title-category-l1{background-color: #3baf48; border-top-color: #3baf48;color: #fff;}
 /*/main-menu*/

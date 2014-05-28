@@ -1152,7 +1152,9 @@ function getCookie(c_name)
                             methods._position(menuW, $thisL, dropW2, $thisDrop, $thisW, countColumn, sub2Frame, direction);
                         }
                         $this.data('kk', 0);
-                    }).css('height', sH);
+                    });
+                    if (!vertical)
+                        menuItem.css('height', sH);
                     if (!vertical)
                         menuItem.find('.helper:first').css('height', sH);
                     menu.removeClass(classRemove);
@@ -3922,7 +3924,7 @@ var optionsMenu = {
     //if need column partition level 3
     columnPart2: true,
     columnClassPref2: 'column2_',
-    maxC: 5,
+    maxC: 3,
     effectOn: 'slideDown',
     effectOff: 'slideUp',
     effectOnS: 'fadeIn',
@@ -3942,7 +3944,7 @@ var optionsMenu = {
     parentTl: '.frame-l2', //prev a level 2
     otherPage: hrefCategoryProduct, //for product [undefined or value not other]
 
-    vertical: false
+    vertical: true
 };
 var scrollPane = {
     animateScroll: true,
