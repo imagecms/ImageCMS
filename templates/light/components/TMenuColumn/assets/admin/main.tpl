@@ -29,7 +29,7 @@
                                 <i class="my_icon icon-plus"></i>
                             </button>
                         {/if}
-                        <a href="/admin/components/run/shop/categories/edit/{$category->id}" class="pjax" data-rel="tooltip" data-placement="top" data-original-title="{lang('Editing category', 'newLevel_TM')}">
+                        <a href="/admin/components/run/shop/categories/edit/{echo $category->id}" class="pjax" data-rel="tooltip" data-placement="top" data-original-title="{lang('Editing category', 'newLevel_TM')}">
                             {echo $category->name}
                         </a>
                     </div>
@@ -55,7 +55,7 @@
                                                         <i class="my_icon icon-plus"></i>
                                                     </button>
                                                 {/if}
-                                                <a href="/admin/components/run/shop/categories/edit/{$category->id}" class="pjax" data-rel="tooltip" data-placement="top" data-original-title="{lang('Editing category', 'newLevel_TM')}">
+                                                <a href="/admin/components/run/shop/categories/edit/{echo $category->id}" class="pjax" data-rel="tooltip" data-placement="top" data-original-title="{lang('Editing category', 'newLevel_TM')}">
                                                     {echo $category->name}
                                                 </a>
                                             </div>
@@ -75,7 +75,7 @@
                                                             <tr>
                                                                 <td>
                                                                     <div class="title lev">
-                                                                        <a href="/admin/components/run/shop/categories/edit/{$category->id}" class="pjax" data-rel="tooltip" data-placement="top" data-original-title="{lang('Editing category', 'newLevel_TM')}">
+                                                                        <a href="/admin/components/run/shop/categories/edit/{echo $category->id}" class="pjax" data-rel="tooltip" data-placement="top" data-original-title="{lang('Editing category', 'newLevel_TM')}">
                                                                             {echo $category->name}
                                                                         </a>
                                                                     </div>

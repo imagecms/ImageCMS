@@ -3,23 +3,12 @@
     <author>SiteImage</author>
     
     <dependencies>
-<<<<<<< HEAD
-	<!--
-        <dependency entityName="module" name="moduleName1" type="required"/>
-        <dependency entityName="module" name="moduleName2" type="wishful"/>
-        <dependency entityName="module" name="moduleName3" type="add"/>
-		 -->
-        <dependence entityName="widget" name="benefits2" type="add" widgetType="html">
-             <widget_i18n locale="ru">
-                    <data>
-                <div class="frame-title">
-=======
         <dependence entityName="widget" name="benefits" type="add" widgetType="html">
 		<widget_i18n locale="ru">
                     <data>
 					<div>
                         <div class="frame-title">
->>>>>>> 0257c6b5f1d6d03380010657bbca51bf0bf51040
+
 <div class="title">Почему выбирают нас</div>
 </div>
 <ul class="items items-benefits">
@@ -28,14 +17,9 @@
 <div class="frame-description-benefit f-s_0">
 <div class="title">Бесплатная доставка от 2000 р</div>
 </div>
-<<<<<<< HEAD
-    </li>
-    </ul>
-=======
 </li>
 </ul>
 </div>
->>>>>>> 0257c6b5f1d6d03380010657bbca51bf0bf51040
                     </data>
                 </widget_i18n>
         </dependence>
@@ -150,6 +134,7 @@
             <params name="columns">
                 <param key="1" value="927, 931" />
                 <param key="2" value="933, 935" />
+                <param key="3" value="934" />
             </params>
         </component>
         
