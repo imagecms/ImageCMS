@@ -9,7 +9,8 @@
         <dependency entityName="module" name="moduleName3" type="add"/>
 		 -->
         <dependence entityName="widget" name="benefits2" type="add" widgetType="html">
-            <data>
+             <widget_i18n locale="ru">
+                    <data>
                 <div class="frame-title">
 <div class="title">Почему выбирают нас</div>
 </div>
@@ -19,9 +20,10 @@
 <div class="frame-description-benefit f-s_0">
 <div class="title">Бесплатная доставка от 2000 р</div>
 </div>
-</li>
-</ul>
-            </data>
+    </li>
+    </ul>
+                    </data>
+                </widget_i18n>
         </dependence>
 
         <dependence entityName="widget" name="brands2" type="add" widgetType="module" module="shop" method="brands" description="widget description">
