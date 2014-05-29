@@ -88,12 +88,12 @@
                                 </div>
                             </td>
                             <td>
-                    <u class="removeDiscountLink" style="cursor: pointer;">
-                        {lang('Delete', 'mod_discount')}
-                    </u>
-                    </td>
-                    </tr>
-                {/foreach}
+                                <button class="btn removeDiscountLink btn-small btn-danger">
+                                    <i class="icon-trash icon-white"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    {/foreach}
                 </tbody>
             </table>
         {else:}
