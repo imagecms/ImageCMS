@@ -11,7 +11,7 @@
                     {/*frame-scroll-pane || carousel-js-css || ''*/}
                     <div class="content-carousel container">
                         <ul class="items items-default items-default-h items-v-carousel">
-                            {$CI->load->module('new_level')->OPI($simProduct, array('opi_widget'=>true), 'similar')}
+                            {getOPI($simProduct, array('opi_widget'=>true), 'similar')}
                         </ul>
                     </div>
                 </div>

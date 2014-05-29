@@ -14,6 +14,12 @@
     {/foreach}
 {/if}
 {$countSh = getProductViewsCount()}
+{$openLevels = getOpenLevels()}
+{if $openLevels == 'all'}
+    {$menuClass = 'col'}
+{else:}
+    {$menuClass = 'row'}
+{/if}
 <script type="text/javascript">
     {if $comp = $CI->session->userdata('shopForCompare')}
         {$cnt_comp = count($comp)}
@@ -33,7 +39,8 @@
             siteUrl = "{echo site_url()}",
             colorScheme = "{$colorScheme}",
             isLogin = "{$is_logged_in}" === '1' ? true : false,
-            typePage = "{$CI->core->core_data['data_type']}";
+            typePage = "{$CI->core->core_data['data_type']}",
+            typeMenu = "{$menuClass}";
 
     {literal}
         text = {

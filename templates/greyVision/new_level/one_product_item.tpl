@@ -46,9 +46,7 @@
             <div class="description">
                 {if !$opi_vertical}
                     <div class="frame-star f-s_0">
-                        {if $p->enable_comments && intval($Comments[$p->getId()]) !== 0}
-                            {$CI->load->module('star_rating')->show_star_rating($p, false)}
-                        {/if}
+                        {$CI->load->module('star_rating')->show_star_rating($p, false)}
                     </div>
                 {/if}
                 <!-- Start. Prices-->

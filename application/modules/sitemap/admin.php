@@ -15,7 +15,13 @@ class Admin extends BaseAdminController {
      * Path to saved sitemap file
      * @var string
      */
-    private $sitemap_path = './uploads/sitemap.xml';
+    private $sitemap_path = './uploads/sitemaps/sitemap.xml';
+
+    /**
+     * Path to folder where site_maps files exists
+     * @var type 
+     */
+    private $site_map_folder_path = './uploads/sitemaps';
 
     function __construct() {
         parent::__construct();
@@ -91,8 +97,17 @@ class Admin extends BaseAdminController {
         // Get Site Map Data
         $sitemap = file_get_contents(site_url('sitemapRegenerate.xml'));
         if ($sitemap) {
+            if (!is_dir($this->site_map_folder_path)) {
+                mkdir($this->site_map_folder_path, 0777);
+            }
+
+            foreach (glob($this->site_map_folder_path . '/sitemap*') as $site_map_file) {
+                chmod($site_map_file, 0777);
+                unlink($site_map_file);
+            }
             // Create file and puts Site Map data 
             if (file_put_contents($this->sitemap_path, $sitemap)) {
+                chmod($this->sitemap_path, 0777);
                 showMessage(lang("Site map have been saved", 'sitemap'), lang("Message", "sitemap"));
             } else {
                 showMessage(lang("Site map have not been saved. Set writing permissions on module folder.", 'sitemap'), lang("Error", "sitemap"), 'r');
@@ -350,9 +365,9 @@ class Admin extends BaseAdminController {
             } else {
                 $robots[$key] = trim($robot) . PHP_EOL;
             }
-            
-            if(!$data){
-                if(strstr($robot, 'Disallow:') && $key > 1){
+
+            if (!$data) {
+                if (strstr($robot, 'Disallow:') && $key > 1) {
                     unset($robots[$key]);
                 }
             }
