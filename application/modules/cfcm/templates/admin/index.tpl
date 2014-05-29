@@ -35,7 +35,7 @@
                                 {foreach $fields as $f}
                                     <tr>
                                         <td>
-                                            <a href="/admin/components/cp/cfcm/edit_field/{$f.field_name}" class="pjax" data-rel="tooltip" data-title="{lang("Editing", 'cfcm')}">{$f.label}</a>
+                                            <a href="/admin/components/cp/cfcm/edit_field/{$f.field_name}" class="pjax" data-rel="tooltip" data-title="{lang("Edit custom field", 'cfcm')}">{$f.label}</a>
                                         </td>
                                         <td>{$f.field_name}</td>
                                         <td>{$f.type}</td>
