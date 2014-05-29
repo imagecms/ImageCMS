@@ -432,9 +432,6 @@
                                         </td>
                                     </tr>
                                 {/if}
-                                {if $model->getGiftCertPrice() > 0} 
-                                    {$discount = $discount - $model->getGiftCertPrice()}
-                                {/if}
                                 {if $discount > 0}
                                     <tr>
                                         <td colspan="3">
@@ -476,7 +473,7 @@
                     <div class="inside-padd">
                         <!-- Start. Price block-->
                         <div class="gen-sum-order clearfix">
-                            <span class="title f_l">{lang('К оплате с учетом доставки','newLevel')}:</span>
+                            <span class="title f_l">{lang('К оплате','newLevel')}:</span>
                             <span class="frame-prices f-s_0 f_r">
                                 <span class="current-prices f-s_0">
                                     <span class="price-new">
@@ -492,44 +489,7 @@
                                                 <span class="curr-add">{$NextCS}</span>)
                                             </span>
                                         </span>
-
                                     {/if}
-
-                                    </span>
-                                </td>
-                            </tr>
-              
-                        {if $model->getGiftCertPrice() > 0}
-                            <tr>
-                                <td colspan="3">
-                                    <span class="s-t">{lang('Подарочный сертификат','newLevel')}:</span>
-                                    <span class="price-item f_r">
-                                        <span class="text-discount">
-                                            <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($model->getGiftCertPrice())} </span>
-                                            <span class="curr">{$CS}</span>
-                                        </span>
-                                    </span>
-                                </td>
-                            </tr>
-                        {/if}
-                    </tfoot>
-
-                    <!-- End. Render Ordered kit products  -->
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="footer-bask">
-            <div class="inside-padd">
-                <!-- Start. Price block-->
-                <div class="gen-sum-order clearfix">
-                    <span class="title f_l">{lang('К оплате','newLevel')}:</span>
-                    <span class="frame-prices f-s_0 f_r">
-                        <span class="current-prices f-s_0">
-                            <span class="price-new">
-                                <span>
-                                    <span class="price">{echo $cartPrice}</span>
-                                    <span class="curr">{$CS}</span>
                                 </span>
                             </span>
                         </div>
