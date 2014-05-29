@@ -242,8 +242,8 @@ footer .b-share-icon_gplus{background-position: -240px -60px !important;}
 .frame-baner-catalog .icon_arrow_n{background-position: -320px -80px;}
 
 .jspHorizontalBar .jspTrack, .jspVerticalBar .jspTrack{border-radius: 4px;}
-.jspVerticalBar .sjspDrag, .jspHorizontalBar .jspDrag{border-radius: 8px;}
-.jspHorizontalBar .jspDrag:after{width: 11px;height: 9px;left: 50%;margin-left: -5px;top: 50%;margin-top: -4px;}
+.jspVerticalBar .jspDrag, .jspHorizontalBar .jspDrag{border-radius: 8px;border: 1px solid transparent;}
+.jspHorizontalBar .jspDrag:after{width: 11px;height: 9px;left: 50%;margin-left: -5px;top: 50%;margin-top: -5px;}
 .jspVerticalBar .jspDrag:after{width: 7px;height: 8px;left: 50%;margin-left: -4px;top: 50%;margin-top: -4px;}
 
 .jspArrow{position: relative;}
