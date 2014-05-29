@@ -146,16 +146,12 @@ a:hover, .selected a, .ref:hover, .nav-static-pages > li > a:hover{text-decorati
 .menu-row-category .title-category-l1.is-sub:after, .menu-row-category .title-category-l1.is-sub .ie{content: "";position: absolute;top: 50%;margin-top: -4px;width: 6px;height: 8px;}
 .frame-drop-menu{-moz-border-radius: 0 0 5px 5px;-webkit-border-radius: 0 0 5px 5px;border-radius: 0 0 5px 5px;}
 .frame-drop-menu > ul{-moz-border-radius: 0 0 5px 5px;-webkit-border-radius: 0 0 5px 5px;border-radius: 0 0 5px 5px;border: 2px solid transparent;}
-.vertical-menu .frame-drop-menu > ul{-moz-border-radius: 0 5px 5px 0;-webkit-border-radius: 0 5px 5px 0;border-radius: 0 5px 5px 0;}
 .frame-l2 > ul > li > a, .frame-l2 > ul > li > ul > li > a{line-height: 1.2;}
 .menu-col-category .title-category-l1 > .text-el{font-weight: bold;}
-.vertical-menu .frame-item-menu > .frame-title.is-sub:after{width: 9px;height: 13px;top: 50%;margin-top: -7px;left: auto;right: 11px;background-image: url("images/arrow_menu.png");}
 .menu-row-category .title-category-l1.is-sub:after, .menu-row-category .frame-drop-menu.left-drop .title-category-l1.is-sub:after{right: 7px;background-position: -220px 0;}
 .menu-row-category .frame-drop-menu.right-drop .title-category-l1.is-sub:after{right: 7px;background-position: -220px -20px;}
 .menu-row-category .frame-drop-menu.left-drop li:hover .title-category-l1.is-sub:after{background-position: -240px 0;}
 .menu-row-category .frame-drop-menu.right-drop li:hover .title-category-l1.is-sub:after{background-position: -240px -20px;}
-.vertical-menu .frame-item-menu:before{border-bottom: 1px solid transparent;bottom: 0;position: absolute;content: '';width: 100%;left: 0;}
-.vertical-menu .frame-item-menu > .frame-title:before{border-top: 1px solid transparent;top: 0;}
 .menu-main td > .frame-item-menu > ul{border: 3px solid transparent;}
 /*/main-menu*/
 
@@ -254,7 +250,6 @@ a:hover, .selected a, .ref:hover, .nav-static-pages > li > a:hover{text-decorati
 .frame-brands .frame-title > .title{padding: 0 15px;font-size: 18px;}
 
 .frame-baner-start_page{background: url("images/fon_b.png") repeat;}
-.vertical-layout .frame-baner-start_page{background: none;}
 .frame-baner-start_page .content-carousel{border: 5px solid transparent;-moz-border-radius: 8px;-webkit-border-radius: 8px;border-radius: 8px;}
 .frame-baner-start_page:before{content: "";position: absolute;left: -5%;top: -2px;width: 110%;height: 2px;}
 .frame-baner-catalog .content-carousel{-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;}
@@ -327,9 +322,7 @@ hr{border-top: 1px solid transparent;border-bottom: 1px solid transparent;}
 
 /*seo*/
 .frame-seotext-news{padding-top: 45px;position: relative;background: url("images/fon_benefits.png") repeat;}
-.vertical-layout .frame-seotext-news{padding-top: 0;}
 .frame-seotext-news:before{content: "";position: absolute;left: -5%;top: -6px;width: 110%;height: 6px;}
-.vertical-layout .frame-seotext-news:before{content: none;}
 
 .seo-text{margin-bottom: 50px;}
 /*/seo*/

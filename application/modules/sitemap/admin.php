@@ -15,7 +15,13 @@ class Admin extends BaseAdminController {
      * Path to saved sitemap file
      * @var string
      */
-    private $sitemap_path = './uploads/sitemap.xml';
+    private $sitemap_path = './uploads/sitemaps/sitemap.xml';
+
+    /**
+     * Path to folder where site_maps files exists
+     * @var type 
+     */
+    private $site_map_folder_path = './uploads/sitemaps';
 
     function __construct() {
         parent::__construct();
@@ -56,9 +62,9 @@ class Admin extends BaseAdminController {
 
             /** Update settings */
             if ($this->sitemap_model->updateSettings($data)) {
-                if (!$this->replaceRobots($data['robotsStatus'])) {
-                    showMessage(lang("Can not write in robots.txt. Check write permissions.", 'sitemap'), lang("Error", "sitemap"), 'r');
-                }
+//                if (!$this->replaceRobots($data['robotsStatus'])) {
+//                    showMessage(lang("Can not write in robots.txt. Check write permissions.", 'sitemap'), lang("Error", "sitemap"), 'r');
+//                }
                 showMessage(lang("Changes have been saved", 'sitemap'), lang("Message", "sitemap"));
             } else {
                 showMessage(lang("Changes have not been saved", 'sitemap'), lang("Error", "sitemap"), 'r');
@@ -91,8 +97,17 @@ class Admin extends BaseAdminController {
         // Get Site Map Data
         $sitemap = file_get_contents(site_url('sitemapRegenerate.xml'));
         if ($sitemap) {
+            if (!is_dir($this->site_map_folder_path)) {
+                mkdir($this->site_map_folder_path, 0777);
+            }
+
+            foreach (glob($this->site_map_folder_path . '/sitemap*') as $site_map_file) {
+                chmod($site_map_file, 0777);
+                unlink($site_map_file);
+            }
             // Create file and puts Site Map data 
             if (file_put_contents($this->sitemap_path, $sitemap)) {
+                chmod($this->sitemap_path, 0777);
                 showMessage(lang("Site map have been saved", 'sitemap'), lang("Message", "sitemap"));
             } else {
                 showMessage(lang("Site map have not been saved. Set writing permissions on module folder.", 'sitemap'), lang("Error", "sitemap"), 'r');
@@ -114,55 +129,6 @@ class Admin extends BaseAdminController {
         } else {
             redirect(site_url('admin/components/init_window/sitemap/settings'));
         }
-    }
-
-    /**
-     * Replace robots
-     * @param int $robotsStatus - robots status(turn on - 1, turn off - 0)
-     * @return int
-     */
-    public function replaceRobots($robotsStatus = 0) {
-        $robots = file('robots.txt');
-
-        if ((int) $robotsStatus) {
-            // Turn on robots
-            $turnOnRobot = TRUE;
-
-            foreach ($robots as $key => $robot) {
-                if (trim($robot) == 'Disallow: /') {
-                    $turnOnRobot = FALSE;
-                    break;
-                }
-
-                if (trim($robot) == 'Disallow:') {
-                    unset($robots[$key]);
-                }
-            }
-
-            if ($turnOnRobot) {
-                array_splice($robots, 1, 0, 'Disallow: /' . PHP_EOL);
-            }
-        } else {
-            // Turn off robots
-            $turnOffRobot = TRUE;
-
-            foreach ($robots as $key => $robot) {
-                if (trim($robot) == 'Disallow:') {
-                    $turnOffRobot = FALSE;
-                    break;
-                }
-
-                if (trim($robot) == 'Disallow: /') {
-                    unset($robots[$key]);
-                }
-            }
-
-            if ($turnOffRobot) {
-                array_splice($robots, 1, 0, 'Disallow:' . PHP_EOL);
-            }
-        }
-
-        return file_put_contents('robots.txt', $robots);
     }
 
     /**
@@ -300,7 +266,6 @@ class Admin extends BaseAdminController {
             $hide_urls = $this->input->post('hide_urls');
             $robots_check = $this->input->post('robots_check');
 
-//            var_dumps_exit($robots_check);
             if ($hide_urls) {
                 foreach ($hide_urls as $key => $url) {
                     if ($url) {
@@ -329,12 +294,31 @@ class Admin extends BaseAdminController {
 
             $this->_viewSiteMap();
         } else {
+
             $blockedUrls = $this->sitemap_model->getBlockedUrls();
             \CMSFactory\assetManager::create()
                     ->registerScript('admin')
-                    ->setData('hide_urls', $blockedUrls)
+                    ->setData('hide_urls', $this->prepareUrls($blockedUrls))
                     ->renderAdmin('blocked_urls');
         }
+    }
+
+    private function prepareUrls($blockedUrls) {
+        $robots = file('robots.txt');
+
+        $existingUrls = array();
+        foreach ($blockedUrls as $url) {
+            $existingUrls[$url['url']] = $url['url'];
+        }
+
+        foreach ($robots as $line) {
+            if (strstr($line, 'Disallow:') && trim($line) != 'Disallow:') {
+                preg_match('/\/((.?){1,})/', $line, $url);
+                if (!$existingUrls[$url[1]] && trim($url[1]))
+                    $blockedUrls[] = array('robots_check' => 1, 'url' => $url[1], 'id' => '');
+            }
+        }
+        return $blockedUrls;
     }
 
     /**
@@ -350,7 +334,8 @@ class Admin extends BaseAdminController {
                 $putUrl = TRUE;
 
                 foreach ($robots as $robot) {
-                    if (strstr($robot, $url['url'])) {
+                    preg_match('/\/((.?){1,})/', $robot, $robotUrl);
+                    if ($robotUrl[1] === $url['url']) {
                         $putUrl = FALSE;
                         break;
                     }
@@ -358,14 +343,15 @@ class Admin extends BaseAdminController {
 
                 if ($putUrl == TRUE) {
                     if (mb_strpos($url['url'], '/') === 0) {
-                        $robots[] = 'Disallow: ' . $url['url'] . PHP_EOL;
+                        $robots[] = PHP_EOL . 'Disallow: ' . $url['url'];
                     } else {
-                        $robots[] = 'Disallow: /' . $url['url'] . PHP_EOL;
+                        $robots[] = PHP_EOL . 'Disallow: /' . $url['url'];
                     }
                 }
             } else {
                 foreach ($robots as $key => $robot) {
-                    if (strstr($robot, $url['url'])) {
+                    preg_match('/\/((.?){1,})/', $robot, $robotUrl);
+                    if ($robotUrl[1] === $url['url']) {
                         unset($robots[$key]);
                         break;
                     }
@@ -376,6 +362,14 @@ class Admin extends BaseAdminController {
         foreach ($robots as $key => $robot) {
             if (!trim($robot)) {
                 unset($robots[$key]);
+            } else {
+                $robots[$key] = trim($robot) . PHP_EOL;
+            }
+
+            if (!$data) {
+                if (strstr($robot, 'Disallow:') && $key > 1) {
+                    unset($robots[$key]);
+                }
             }
         }
 

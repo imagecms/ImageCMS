@@ -55,14 +55,14 @@ $categoryPagination['num_links'] = 3;
  * Config for brand page pagination
  */
 $brandPagination['page_query_string'] = true;
-$brandPagination['first_link'] = 1;
+$brandPagination['first_link'] = '1';
 $brandPagination['num_links'] = 3;
 
 /**
  *Config for search page pagination 
  */
 $searchPagination['page_query_string'] = true;
-$searchPagination['first_link'] = 1;
+$searchPagination['first_link'] = '1';
 $searchPagination['num_links'] = 3;
 $searchPagination['next_tag_open'] = '<li>';
 $searchPagination['next_tag_close'] = '</li>';

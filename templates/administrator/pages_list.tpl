@@ -181,8 +181,8 @@
                                     </td>
                                     <td><span>{$page.id}</span></td>
                                     <td class="share_alt">
-                                        <a href="{$BASE_URL}{$page.cat_url}{$page.url}" target="_blank" class="go_to_site pull-right btn btn-small" data-rel="tooltip" data-placement="top" data-original-title="{lang("go to site","admin")}"><i class="icon-share-alt"></i></a>
-                                        <a href="{$BASE_URL}admin/pages/edit/{$page.id}" class="title pjax" data-rel="tooltip" data-original-title="{lang("Editing","admin")}">{$page.title}</a>
+                                        <a href="{$BASE_URL}{$page.cat_url}{$page.url}" target="_blank" class="go_to_site pull-right btn btn-small" data-rel="tooltip" data-placement="top" data-original-title="{lang("Show on site","admin")}"><i class="icon-share-alt"></i></a>
+                                        <a href="{$BASE_URL}admin/pages/edit/{$page.id}" class="title pjax" data-rel="tooltip" data-original-title="{lang("Edit page","admin")}">{$page.title}</a>
                                     </td>
                                     <td><span>{truncate($page.url, 40, '...')}</span></td>
                                     {if $show_cat_list != 'yes'}
