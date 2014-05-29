@@ -200,7 +200,7 @@ class Admin extends BaseAdminController {
             $js_content = '<script>' . PHP_EOL;
             foreach ($langs as $langArray) {
                 foreach ($langArray as $origin) {
-                    $js_content .='langs["' . mb_ereg_replace('([\s]+{.*?})', "<?php echo '\\0'?>", $origin) . '"] = \'<?php echo lang("' . $origin . '", "' . $domain . '")?>\';' . PHP_EOL;
+                    $js_content .='langs["' . mb_ereg_replace('([\s]+{.*?})', "<?php echo '\\0'?>", $origin) . '"] = \'<?php echo lang("' . $origin . '", "' . $domain . ', FALSE")?>\';' . PHP_EOL;
                 }
             }
             $js_content .='</script>';

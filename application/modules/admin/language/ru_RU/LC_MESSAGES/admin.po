@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-29 11:04+0300\n"
-"PO-Revision-Date: 2014-05-29 11:04+0300\n"
+"POT-Creation-Date: 2014-05-29 11:38+0300\n"
+"PO-Revision-Date: 2014-05-29 11:38+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -4593,7 +4593,7 @@ msgstr "Просмотр сайта"
 #: ./application/modules/shop/admin/templates/search/list.tpl:359
 #: ./application/modules/shop/admin/templates/kits/index.tpl:68
 msgid "go to the website"
-msgstr "просмотр сайта"
+msgstr "Просмотр на сайте"
 
 #: ./application/modules/shop/admin/templates/properties/list.tpl:27
 msgid "Properties list review"
