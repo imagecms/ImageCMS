@@ -10,7 +10,7 @@
                 <div class="carousel-js-css items-carousel">
                     <div class="content-carousel container">
                         <ul class="items items-catalog items-h-carousel">
-                            {getOPI($products, array('opi_widget'=>true))}
+                            {$CI->load->module('new_level')->OPI($products, array('opi_widget'=>true))}
                         </ul>
                     </div>
                     <div class="group-button-carousel">

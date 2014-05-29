@@ -64,7 +64,7 @@
             </dl>
             <form method="post" action="{site_url('admin/components/run/gallery/update_info/' . $image.id . '/' . $locale )}" id="change_img_desc" class="form-horizontal">
                 <label>
-                    <input type="checkbox" name="cover" value="1" {if $image.id == $album['cover_id']} checked="checked" {/if}/>{lang("Preview", 'gallery')}
+                    <input type="checkbox" name="cover" value="1" {if $image.id == $album['cover_id']} checked="checked" {/if}/>{lang("Cover", 'gallery')}
                 </label>
                 <label class="number">
                     {lang("Position", 'gallery')}<input type="text" value="{$image.position}" name="position" />
