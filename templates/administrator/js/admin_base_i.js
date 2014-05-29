@@ -787,7 +787,7 @@ $(document).ready(function() {
         if (keycode == '13') {
             var query_string = $('#filter_form').serialize();
             var url = $('#filter_form').attr('action');
-            
+
             $.pjax({
                 url: url + '?' + query_string,
                 container: '#mainContent'
@@ -1706,8 +1706,66 @@ $(document).ready(function() {
         }, 1000);
     });
 
+
+
 });
 
+
+
+
+
+MainMenu = (function() {
+
+    // getting all links from main menu
+    var links = [];
+    $('.frame_nav ul.nav a').each(function() {
+        var url = $(this).attr('href');
+        if (url == '#') {
+            return;
+        }
+        links.push({
+            url: url,
+            node: this,
+            active: $(this).parent('li').hasClass('active')
+        });
+    });
+
+    return {
+        getLinks: function() {
+            return links;
+        },
+        getSupposedActive: function() {
+            // searching for full match (rare case, but stable)
+            for (var i = 0; i < links.length; i++) {
+                if (links[i].url == location.url) {
+                    return links[i];
+                }
+            }
+            // by regular expression (with hash or get params)
+            
+            
+        },
+        getActive: function() {
+            for (var i = 0; i < links.length; i++) {
+                if (links[i].active == true) {
+                    return links[i];
+                }
+            }
+            return false;
+        },
+        makeLinkActive: function(link) {
+            $(link).parent('li').addClass('active');
+        }
+
+
+    }
+})();
+
+
+
+$(document).on('pjax:success', function() {
+    console.log(arguments);
+});
 
 
 
