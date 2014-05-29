@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-16 05:57+0300\n"
-"PO-Revision-Date: 2014-05-16 05:57+0300\n"
+"POT-Creation-Date: 2014-05-29 04:20+0300\n"
+"PO-Revision-Date: 2014-05-29 04:20+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -17,6 +17,15 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/cfcm/templates/admin/index.tpl:105
+#: ./application/modules/cfcm/templates/admin/group_list.tpl:65
+msgid "Edit custom group"
+msgstr "Редактировать группу полей"
+
+#: ./application/modules/cfcm/admin.php:117
+msgid "Select another  name"
+msgstr "Выберите другое имя"
 
 #: ./application/modules/cfcm/templates/admin/_form.tpl:10
 msgid "Back"
@@ -37,10 +46,6 @@ msgstr "Создание поля"
 #: ./application/modules/cfcm/cfcm_forms.php:108
 msgid "Checked"
 msgstr "Отмечен"
-
-#: ./application/modules/cfcm/admin.php:117
-msgid "Select another  name"
-msgstr ""
 
 #: ./application/modules/cfcm/admin.php:158
 #: ./application/modules/cfcm/admin.php:224
@@ -139,10 +144,6 @@ msgstr "Категории"
 #: ./application/modules/cfcm/templates/admin/group_list.tpl:73
 msgid "Delete"
 msgstr "Удалить"
-
-#: ./application/modules/cfcm/templates/admin/index.tpl:38
-msgid "Editing"
-msgstr "Редактирование"
 
 #: ./application/modules/cfcm/templates/admin/index.tpl:87
 msgid "No groups"
@@ -350,3 +351,7 @@ msgstr "Конструктор полей"
 #: ./application/modules/cfcm/module_info.php:5
 msgid "Allows you to create additional fields in ImageCMS Corporate"
 msgstr "Позволяет создавать дополнительные поля в ImageCMS Corporate"
+
+#: ./application/modules/cfcm/templates/admin/index.tpl:38
+msgid "Edit custom field"
+msgstr "Редактировать дополнительное поле"
