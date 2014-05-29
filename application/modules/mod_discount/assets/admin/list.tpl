@@ -46,7 +46,7 @@
                     {foreach $discountsList as $discount}
                         <tr data-id="{echo $discount['id']}">
                             <td>
-                                <a href="/admin/components/init_window/mod_discount/edit/{echo $discount['id']}" class="pjax" >{echo $discount['key']}</a>
+                                <a data-rel="tooltip" data-title="{lang("Edit discount", 'mod_discount')}" href="/admin/components/init_window/mod_discount/edit/{echo $discount['id']}" class="pjax" >{echo $discount['key']}</a>
                             </td>
                             <td>
                                 <p>{echo $discount['name']}</p>
