@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-29 11:00+0300\n"
-"PO-Revision-Date: 2014-05-29 11:00+0300\n"
+"POT-Creation-Date: 2014-05-29 11:04+0300\n"
+"PO-Revision-Date: 2014-05-29 11:04+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -7421,3 +7421,7 @@ msgstr "Закрыть или открыть сайт для индексаци�
 #: tmpLink
 msgid "Show on site"
 msgstr "Просмотр на сайте"
+
+#: tmpLink
+msgid "Edit property"
+msgstr "Редактировать свойство"
