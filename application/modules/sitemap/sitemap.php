@@ -9,7 +9,6 @@ if (!defined('BASEPATH'))
  * Sitemap Module
  * @property Sitemap_model $sitemap_model
  */
-
 class Sitemap extends MY_Controller {
 
     /**
@@ -153,13 +152,25 @@ class Sitemap extends MY_Controller {
      * Path to saved sitemap file
      * @var string
      */
-    private $sitemap_path = './application/modules/sitemap/map/sitemap.xml';
+    private $sitemap_path = './uploads/sitemaps/sitemap.xml';
+
+    /**
+     * Path to folder where site_maps files exists
+     * @var type 
+     */
+    private $site_map_folder_path = './uploads/sitemaps';
 
     /**
      * Sitemap items
      * @var array 
      */
     public $items = array();
+
+    /**
+     * Max url tag count 
+     * @var type 
+     */
+    private $max_url_count = 30000;
 
     function __construct() {
         parent::__construct();
@@ -174,7 +185,7 @@ class Sitemap extends MY_Controller {
             $this->build_xml_map();
             exit();
         }
-        
+
         if (uri_string() == 'sitemapRegenerate.xml') {
             $this->build_xml_map_regenerated();
             exit();
@@ -286,6 +297,7 @@ class Sitemap extends MY_Controller {
      * @return string
      */
     public function sitemap_ul($items = array()) {
+
         $out .= '<ul class="sitemap">';
 
         foreach ($items as $item) {
@@ -323,7 +335,7 @@ class Sitemap extends MY_Controller {
         $settings = $this->sitemap_model->load_settings();
 
         // Generate new or use saved map
-        if ((int)$settings['generateXML'] || $regenerate) {
+        if ((int) $settings['generateXML'] || $regenerate) {
             $this->_create_map();
         } else {
             $this->result = file_get_contents($this->sitemap_path);
@@ -335,8 +347,8 @@ class Sitemap extends MY_Controller {
             echo $this->result;
         }
     }
-    
-    public function build_xml_map_regenerated(){
+
+    public function build_xml_map_regenerated() {
         $this->build_xml_map(TRUE);
     }
 
@@ -351,7 +363,8 @@ class Sitemap extends MY_Controller {
             $this->items[] = array(
                 'loc' => site_url(),
                 'changefreq' => $this->main_page_changefreq,
-                'priority' => $this->main_page_priority
+                'priority' => $this->main_page_priority,
+                'lastmod' => $date = date('Y-m-d', time())
             );
         }
 
@@ -369,11 +382,20 @@ class Sitemap extends MY_Controller {
                     $priority = $this->cats_priority;
                 }
 
+                // create date
+                if ($category['updated'] > 0) {
+                    $date = date('Y-m-d', $category['updated']);
+                } else {
+                    $date = date('Y-m-d', $category['created']);
+                }
+
                 if ($this->not_blocked_url($category['path_url'])) {
+
                     $this->items[] = array(
                         'loc' => site_url($category['path_url']),
                         'changefreq' => $changefreq,
-                        'priority' => $priority
+                        'priority' => $priority,
+                        'lastmod' => $date
                     );
                 }
 
@@ -385,7 +407,8 @@ class Sitemap extends MY_Controller {
                             $this->items[] = array(
                                 'loc' => site_url($url),
                                 'changefreq' => $changefreq,
-                                'priority' => $priority
+                                'priority' => $priority,
+                                'lastmod' => $date
                             );
                         }
                     }
@@ -428,9 +451,9 @@ class Sitemap extends MY_Controller {
                 if ($this->not_blocked_url($url_page)) {
                     $this->items[] = array(
                         'loc' => $url,
-                        'lastmod' => $date,
                         'changefreq' => $this->pages_changefreq,
-                        'priority' => $c_priority
+                        'priority' => $c_priority,
+                        'lastmod' => $date
                     );
                 }
             }
@@ -456,11 +479,18 @@ class Sitemap extends MY_Controller {
                             $priority = $this->products_categories_priority;
                         }
 
+                        // create date
+                        if ($shopcat['updated'] > 0) {
+                            $date = date('Y-m-d', $shopcat['updated']);
+                        } else {
+                            $date = date('Y-m-d', $shopcat['created']);
+                        }
+
                         $this->items[] = array(
                             'loc' => site_url($url),
-                            'lastmod' => '',
                             'changefreq' => $changefreq,
-                            'priority' => $priority
+                            'priority' => $priority,
+                            'lastmod' => $date,
                         );
                     }
                 }
@@ -474,11 +504,17 @@ class Sitemap extends MY_Controller {
                 $url = site_url('shop/brand/' . $shopbr['url']);
                 if ($this->not_blocked_url('shop/brand/' . $shopbr['url'])) {
                     if (!$this->robotsCheck($url)) {
+                        // create date
+                        if ($shopbr['updated'] > 0) {
+                            $date = date('Y-m-d', $shopbr['updated']);
+                        } else {
+                            $date = date('Y-m-d', $shopbr['created']);
+                        }
                         $this->items[] = array(
                             'loc' => $url,
-                            'lastmod' => '',
                             'changefreq' => $this->brands_changefreq,
                             'priority' => $this->brands_priority,
+                            'lastmod' => $date
                         );
                     }
                 }
@@ -499,9 +535,9 @@ class Sitemap extends MY_Controller {
                         }
                         $this->items[] = array(
                             'loc' => $url,
-                            'lastmod' => $date,
                             'changefreq' => $this->products_changefreq,
                             'priority' => $this->products_priority,
+                            'lastmod' => $date
                         );
                     }
                 }
@@ -564,19 +600,81 @@ class Sitemap extends MY_Controller {
     private function generate_xml($items = array()) {
         $data = '';
 
+        $site_maps = array();
+        $url_count = 0;
         while ($item = current($items)) {
-            $data .= "<url>\n";
-            foreach ($item as $k => $v) {
-                if ($v != '') {
-                    $data .= "\t<$k>" . htmlspecialchars($v) . "</$k>\n";
+            if ($url_count < $this->max_url_count) {
+                $data .= "<url>\n";
+                foreach ($item as $k => $v) {
+                    if ($v != '') {
+                        $data .= "\t<$k>" . htmlspecialchars($v) . "</$k>\n";
+                    }
                 }
-            }
-            $data .= "</url>\n";
+                $data .= "</url>\n";
 
-            next($items);
+                next($items);
+            } else {
+                $site_maps[] = "<\x3Fxml version=\"1.0\" encoding=\"UTF-8\"\x3F>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n" . $data . "\t</urlset>";
+                $url_count = 0;
+                $data = '';
+            }
+            $url_count++;
         }
 
-        return "<\x3Fxml version=\"1.0\" encoding=\"UTF-8\"\x3F>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n" . $data . "\t</urlset>";
+        if ($data && $site_maps) {
+            $site_maps[] = "<\x3Fxml version=\"1.0\" encoding=\"UTF-8\"\x3F>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n" . $data . "\t</urlset>";
+        }
+
+        if ($site_maps) {
+            $this->saveSiteMaps($site_maps);
+            $result = $this->createMainSitemap($site_maps);
+        } else {
+            $result = "<\x3Fxml version=\"1.0\" encoding=\"UTF-8\"\x3F>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n" . $data . "\t</urlset>";
+        }
+
+        return $result;
+    }
+
+    /**
+     * Create main sitemap file
+     * @param array $site_maps - array of sitemaps data
+     */
+    private function createMainSitemap($site_maps) {
+        foreach ($site_maps as $number => $site_map) {
+            $number++;
+            $site_map_url = site_url(str_replace('./', '', $this->site_map_folder_path . "/sitemap{$number}.xml"));
+            $data .= '<sitemap><loc>' . $site_map_url . '</loc></sitemap>';
+        }
+
+        $result = '<?xml version="1.0" encoding="UTF-8"?><sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . $data . '</sitemapindex>';
+
+        file_put_contents($this->site_map_folder_path . "/sitemap.xml", $result);
+        chmod($this->site_map_folder_path . "/sitemap.xml", 0777);
+        return $result;
+    }
+
+    /**
+     * Save several sitemaps files
+     * @param array $site_maps - array of sitemaps data
+     */
+    private function saveSiteMaps($site_maps) {
+        if (!is_dir($this->site_map_folder_path)) {
+            mkdir($this->site_map_folder_path, 0777);
+        }
+
+        foreach (glob($this->site_map_folder_path . '/sitemap*') as $site_map_file) {
+            chmod($site_map_file, 0777);
+            unlink($site_map_file);
+        }
+
+        foreach ($site_maps as $number => $site_map) {
+            if ($site_map) {
+                $number++;
+                $site_map_path = $this->site_map_folder_path . "/sitemap{$number}.xml";
+                file_put_contents($site_map_path, $site_map);
+                chmod($site_map_path, 0777);
+            }
+        }
     }
 
     /**
@@ -648,15 +746,14 @@ class Sitemap extends MY_Controller {
             return FALSE;
 
         // Check sending Site map url is change
-        if ($settings['sendWhenUrlChanged']) {
-            if ($ci->updated_url) {
-                if ($ci->updated_url == $data['url']) {
-                    return FALSE;
-                }
-                unset($ci->updated_url);
-            }
-        }
-
+//        if ($settings['sendWhenUrlChanged']) {
+//            if ($ci->updated_url) {
+//                if ($ci->updated_url == $data['url']) {
+//                    return FALSE;
+//                }
+//                unset($ci->updated_url);
+//            }
+//        }
         // Checking time permission(1 hour passed from last send) to send ping
         if ((time() - $settings['lastSend']) / (60 * 60) >= 1) {
 

@@ -30,12 +30,12 @@
                                     <div class="control-group">
                                         <label class="control-label" for="Name">{lang('Name', 'banners')} {$translatable}:</label>
                                         <div class="controls">
-                                            <input type="text" name="name" id="Name" value="" required/>
+                                            <input type="text" name="name" class="input-long" id="Name" value="" required/>
                                         </div>
                                         <div class="controls">
                                             <span class="frame_label no_connection m-r_15">
                                                 <span class="niceCheck" style="background-position: -46px 0px; ">
-                                                    <input type="checkbox" name="active" value="1" >
+                                                    <input type="checkbox" name="active" value="1" checked="checked">
                                                 </span>
                                                 {lang('Active', 'banners')}
                                             </span>
@@ -55,9 +55,6 @@
                                         <input type="text" name="url" id="Url" value=""/>
                                     </div>
                                 </div>
-
-
-
 
                                 <div class="control-group">
                                     <label class="control-label" for="data">{lang('Selected items', 'banners')}:</label>
@@ -98,13 +95,14 @@
                                             <span class="niceCheck b_n no_connection" onclick="$('#active_to').fadeToggle()">
                                                 <input required="required" 
                                                        type="checkbox"
+                                                       checked="checked"
                                                        name="active_to_permanent"/>
                                             </span>
                                         </span>
                                         {lang('Banner permanent', 'banners')}
                                     </div>
                                     <div class="controls">
-                                        <input class="datepicker" id="active_to" type="text" value="" name="active_to" />
+                                        <input class="datepicker" id="active_to" type="text" value="" name="active_to" style="display: none"/>
                                     </div>
                                 </div>    
 
@@ -127,8 +125,6 @@
                                     </div>
                                 </div>
                             </div>
-
-
                         </div>
                     </td>
                 </tr>

@@ -1022,7 +1022,6 @@ input.input-search{border-color: #d8d8d8;-moz-box-shadow: inset 0 2px 2px #e8e8e
 
 /*page 404*/
 .page-404 .title{color: #0f9ecd;}
-.page-404:before{-moz-box-shadow: 0 1px 9px rgba(0,0,0,0.1);-webkit-box-shadow: 0 1px 9px rgba(0,0,0,0.1);box-shadow: 0 1px 9px rgba(0,0,0,0.1);}
 .page-404 p{color: #999;}
 .page-404 b{color: #666;}
 /*/page 404*/

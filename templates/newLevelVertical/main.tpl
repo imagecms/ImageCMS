@@ -56,10 +56,12 @@
                 </header>
             </div>
             <div class="vertical-layout container">
-                <div class="frame-menu-main vertical-menu">
-                    {\Category\RenderMenu::create()->setConfig(array('cache'=>TRUE))->load('category_menu')}
-                    {widget('latest_news')}
-                </div>
+                {if !strpos($CI->uri->uri_string, '/cart') && !strpos($CI->uri->uri_string, '/order/view')}
+                    <div class="frame-menu-main vertical-menu">
+                        {\Category\RenderMenu::create()->setConfig(array('cache'=>TRUE))->load('category_menu')}
+                        {widget('latest_news')}
+                    </div>
+                {/if}
                 <div class="content">
                     {$content}
                 </div>
@@ -72,7 +74,7 @@
         {include_tpl('user_toolbar')}
 
         {/*}Start. delete before upload to server{ */}
-        {/*}
+        
         <!-- scripts -->
         <script type="text/javascript" src="{$THEME}js/raphael-min.js"></script>
         <script type="text/javascript" src="{$THEME}js/_united_side_plugins.js"></script>
@@ -93,7 +95,7 @@
                 });
             </script>
         {/literal}
-        { */}
+        
         {/*}End. delete before upload to server{ */}
 
         {/*fancybox}
@@ -103,11 +105,11 @@
 
         {/*}uncomment before opload to server and combine and minimize scripts (in comment <!-- scripts -->...<!-- scripts end -->) into united_scripts file{ */}
         {/*} Start. uncoment before development { */}
-
+        {/*}
         <script type="text/javascript">
             initDownloadScripts(['raphael-min', 'united_scripts'], 'init', 'scriptDefer');
         </script>
-
+        { */}
         {/*} End. uncoment before development { */}
         {include_shop_tpl('js_templates')}
     </body>

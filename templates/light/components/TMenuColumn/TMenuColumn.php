@@ -35,6 +35,7 @@ class TMenuColumn extends \template_manager\classes\TComponent {
     }
 
     public function setParamsXml(\SimpleXMLElement $component) {
+        
         $data = array();
         foreach ($component as $item) {
             switch ($item->getName()) {
@@ -42,16 +43,18 @@ class TMenuColumn extends \template_manager\classes\TComponent {
                     $params_attributes = $item->attributes();
                     foreach ($item as $param) {
                         $param_attributes = $param->attributes();
-                        $data[(string) $params_attributes->name][] = array(
-                            'column' => (string) $param_attributes->key,
-                            'values' => (string) $param_attributes->value
-                        );
+                        $categories_ids = explode(',', (string) $param_attributes->value);
+                        foreach ($categories_ids as $category_id){
+                            $data[(string) $params_attributes->name][(int)trim($category_id)] = (int) $param_attributes->key;
+                        }
                     }
+                    
                     $data[(string) $params_attributes->name] = serialize($data[(string) $params_attributes->name]);
                     break;
             }
         }
 
+        
         if (count($data) > 0)
             $this->setParams($data);
     }

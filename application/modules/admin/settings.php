@@ -179,7 +179,6 @@ class Settings extends BaseAdminController {
         }
     }
 
-
     /**
      * Save site settings
      *
@@ -241,8 +240,11 @@ class Settings extends BaseAdminController {
             'yandex_metric' => $this->input->post('yandex_metric'),
             'lang_sel' => $this->input->post('lang_sel'),
             'text_editor' => $this->input->post('text_editor'),
+            'robots_status' => (int) $this->input->post('robots_status')
                 //'siteinfo' => serialize($siData)
         );
+
+        $this->replaceRobots($data_m['robots_status']);
 
         /** Save template path for shop * */
         if ($this->db->table_exists('shop_settings')) {
@@ -263,6 +265,55 @@ class Settings extends BaseAdminController {
         echo "<script>var textEditor = '{$data_m['text_editor']}';</script>";
         if (!validation_errors())
             showMessage(lang("Settings have been saved", "admin"));
+    }
+
+    /**
+     * Replace robots
+     * @param int $robotsStatus - robots status(turn on - 1, turn off - 0)
+     * @return int
+     */
+    private function replaceRobots($robotsStatus = 0) {
+        $robots = file('robots.txt');
+
+        if ((int) $robotsStatus) {
+            // Turn on robots
+            $turnOnRobot = TRUE;
+
+            foreach ($robots as $key => $robot) {
+                if (trim($robot) == 'Disallow: /') {
+                    $turnOnRobot = FALSE;
+                    break;
+                }
+
+                if (trim($robot) == 'Disallow:') {
+                    unset($robots[$key]);
+                }
+            }
+
+            if ($turnOnRobot) {
+                array_splice($robots, 1, 0, 'Disallow: /' . PHP_EOL);
+            }
+        } else {
+            // Turn off robots
+            $turnOffRobot = TRUE;
+
+            foreach ($robots as $key => $robot) {
+                if (trim($robot) == 'Disallow:') {
+                    $turnOffRobot = FALSE;
+                    break;
+                }
+
+                if (trim($robot) == 'Disallow: /') {
+                    unset($robots[$key]);
+                }
+            }
+
+            if ($turnOffRobot) {
+                array_splice($robots, 1, 0, 'Disallow:' . PHP_EOL);
+            }
+        }
+
+        return file_put_contents('robots.txt', $robots);
     }
 
     /**
