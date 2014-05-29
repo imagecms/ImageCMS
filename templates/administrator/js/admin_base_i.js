@@ -1716,36 +1716,54 @@ $(document).ready(function() {
 
 MainMenu = (function() {
 
-    // getting all links from main menu
-    var links = [];
-    $('.frame_nav ul.nav a').each(function() {
-        var url = $(this).attr('href');
-        if (url == '#') {
-            return;
-        }
-        links.push({
-            url: url,
-            node: this,
-            active: $(this).parent('li').hasClass('active')
+    var getLinks = function() {
+        var links = [];
+        $('.frame_nav ul.nav a').each(function() {
+            var url = $(this).attr('href');
+            if (url == '#' || url == undefined) {
+                return;
+            }
+            links.push({
+                url: url,
+                node: this,
+                active: $(this).parent('li').hasClass('active')
+            });
         });
-    });
+        return links;
+    }
+
+    var popPathname = function(pathname_) {
+        var path = pathname_.split('/');
+        path.pop();
+        return path.join('/');
+    }
 
     return {
         getLinks: function() {
-            return links;
+            return getLinks();
         },
         getSupposedActive: function() {
+            var links = getLinks();
             // searching for full match (rare case, but stable)
             for (var i = 0; i < links.length; i++) {
-                if (links[i].url == location.url) {
+                if (links[i].url == location.href || links[i].url == location.pathname) {
                     return links[i];
                 }
             }
-            // by regular expression (with hash or get params)
-            
-            
+            var pathname_ = location.pathname.toString();
+            do {
+                pathname_ = popPathname(pathname_);
+                for (var i = 0; i < links.length; i++) {
+                    if (links[i].url.indexOf(pathname_) != -1) {
+                        return links[i];
+                    }
+                }
+            } while (pathname_.length > 1);
+
+            return false;
         },
         getActive: function() {
+            var links = getLinks();
             for (var i = 0; i < links.length; i++) {
                 if (links[i].active == true) {
                     return links[i];
@@ -1754,18 +1772,50 @@ MainMenu = (function() {
             return false;
         },
         makeLinkActive: function(link) {
-            $(link).parent('li').addClass('active');
+            // make all unactive
+            var links = getLinks();
+            var parentUl;
+            var parentLi;
+            for (var i = 0; i < links.length; i++) {
+                parentLi = $(links[i].node).parent('li');
+                $(parentLi).removeClass('active');
+                parentUl = $(parentLi).parent('ul');
+                if ($(parentUl).hasClass('dropdown-menu')) {
+                    $(parentUl).parent('li.dropdown.active').removeClass('active');
+                }
+            }
+
+            // make one active
+            $(link.node).parent('li').addClass('active');
+            var newParentUl = $(link.node).parent('li').parent('ul');
+            if ($(newParentUl).hasClass('dropdown-menu')) {
+                $(newParentUl).parent('li.dropdown').addClass('active');
+            }
         }
-
-
     }
 })();
 
 
+function delayedMenuSelect() {
+    var suposedActive = MainMenu.getSupposedActive();
+    console.log(suposedActive);
+    if (suposedActive === false) {
+        return;
+    }
+    if (suposedActive.active == false) {
+        MainMenu.makeLinkActive(suposedActive);
+    }
+}
 
-$(document).on('pjax:success', function() {
-    console.log(arguments);
+$(document).ready(function() {
+    delayedMenuSelect();
 });
 
+$(document).on('pjax:success', delayedMenuSelect);
 
 
+//
+//
+//$('.brands_goto_site').tooltip({
+//    title: 'Show on site'
+//});

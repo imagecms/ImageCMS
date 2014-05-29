@@ -27,7 +27,7 @@
         <dependence entityName="widget" name="brands" type="add" widgetType="module" module="shop" method="brands" description="widget description">
             <settings>
                 <brandsCount>4</brandsCount>
-                <title>sadf</title>
+                <title>sadfrrrrrrrr</title>
                 <withImages>true</withImages>
                 <subpath>widgets</subpath>
             </settings>

@@ -21,7 +21,7 @@
                     <div class="frame-button-brand t-a_c">
                         <span class="show-all-brands btn-def">
                             <a href="{shop_url('brand/')}" class="t-d_n f-s_0">
-                                <span class="text-el">{lang('Все бренды','light')}</span>
+                                <span class="text-el">{lang('Все бренды','lightRed')}</span>
                             </a>
                         </span>
                     </div>
