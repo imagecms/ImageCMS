@@ -3,7 +3,7 @@
     {widget('action_products', TRUE)}
     {widget('popular_new_products', TRUE)}
 
-    {widget('brands')}
+    {/*widget('brands')*/}
     <div class="frame-seotext-news">
         <div class="container">
             {widget('latest_news', TRUE)}

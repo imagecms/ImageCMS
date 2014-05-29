@@ -251,11 +251,14 @@ footer .b-share-icon_gplus{background-position: -240px -60px !important;}
 .jspHorizontalBar .jspDrag:after{background-position: 0 0;}
 .jspVerticalBar .jspDrag:after{background-position: -27px 0;}
 .jspHorizontalBar .jspArrow{width: 33px;height: 38px;}
-.jspHorizontalBar .jspArrowLeft, .jspHorizontalBar .jspArrowRight{}
-.jspHorizontalBar .jspArrowLeft.jspDisabled{background-position: -40px 0;}
-.jspHorizontalBar .jspArrowRight.jspDisabled{background-position: -80px 0;}
 .jspHorizontalBar .jspArrowLeft{background-position: -40px -40px;}
 .jspHorizontalBar .jspArrowRight{background-position: -80px -40px;}
+.jspHorizontalBar .jspArrowLeft:hover{background-position: -40px -80px;}
+.jspHorizontalBar .jspArrowRight:hover{background-position: -80px -80px;}
+.jspHorizontalBar .jspArrowLeft:active{background-position: -40px -120px;}
+.jspHorizontalBar .jspArrowRight:active{background-position: -80px -120px;}
+.jspHorizontalBar .jspArrowLeft.jspDisabled{background-position: -40px 0;}
+.jspHorizontalBar .jspArrowRight.jspDisabled{background-position: -80px 0;}
 .jspArrowLeft{}
 /*/carousels*/
 
@@ -401,6 +404,11 @@ form .btn-form .text-el, .btn-not-avail .text-el, .btn-form input{font-size: 13p
 .nowelty{background-position: 0 -40px;width: 86px;height: 25px;}
 .hit{background-position: 0 -80px;width: 105px;height: 25px;}
 .discount{background-position: 0 -120px;width: 48px;height: 30px;line-height: 25px;text-align: center;}
+
+.items-default .product-status{right: auto;left: 4px;}
+.items-default .nowelty{background-position: -280px -100px;width: 55px;height: 18px;}
+.items-default .hit{background-position: -280px -120px;width: 45px;height: 18px;}
+.items-default .action{background-position: -340px -100px;width: 44px;height: 18px;}
 
 .items-bask .product-status{display: none;}
 /*/ product status*/
