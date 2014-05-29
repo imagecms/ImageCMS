@@ -34,7 +34,13 @@
         <dependence entityName="widget" name="addModuleWidgetName" type="add" widgetType="module" module="widgetModule" method="methodName" description="widget description">
             <settings>
                 <setting1>1</setting1>
-                <setting2>2</setting2>
+                <setting2>
+                    <settings>
+                        <number1>1</number1>
+                        <setting2>2</setting2>
+                        <number3>3</number3>
+                    </settings>
+                </setting2>
                 <setting3>3</setting3>
             </settings>
         </dependence>
