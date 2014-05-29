@@ -16,7 +16,6 @@ class Sys_update extends BaseAdminController {
             showMessage(lang('PHP SOAP extension is not installed'), '', 'r');
             pjax('/admin');
         }
-
         parent::__construct();
         $this->update = new Update();
 
@@ -26,8 +25,9 @@ class Sys_update extends BaseAdminController {
     }
 
     public function index() {
-        if (!file_exists('md5.txt'))
+        if (!file_exists('md5.txt')) {
             write_file('md5.txt', json_encode($this->update->parse_md5()));
+        }
 
         if (extension_loaded('soap')) {
             $array = $this->update->getStatus();
@@ -65,7 +65,7 @@ class Sys_update extends BaseAdminController {
         $status = $this->update->getStatus();
         $result = $this->update->getHashSum();
 
-        if (!$result['error'])
+        if (!$result['error']) {
             $data = array(
                 'filesCount' => count($result),
                 'sort_by' => $sort_by,
@@ -75,7 +75,7 @@ class Sys_update extends BaseAdminController {
                 'restore_files' => $this->sort($this->update->restore_files_list(), $sort_by, $order),
                 'new_version' => $status ? TRUE : FALSE
             );
-        else {
+        } else {
             $data = array(
                 'restore_files' => $this->sort($this->update->restore_files_list(), $sort_by, $order),
                 'error' => $result['error']
@@ -91,18 +91,20 @@ class Sys_update extends BaseAdminController {
 
     public function renderFile() {
         $file_path = $this->input->post('file_path');
-        if (file_exists('.' . $file_path))
+        if (file_exists('.' . $file_path)) {
             echo htmlspecialchars(file_get_contents('.' . $file_path));
-        else
+        } else {
             echo '';
+        }
     }
 
     public function properties() {
         if ($this->input->post("careKey")) {
-            if ($this->update->setSettings(array("careKey" => trim($this->input->post("careKey")))))
+            if ($this->update->setSettings(array("careKey" => trim($this->input->post("careKey"))))) {
                 showMessage(lang('Changes saved', 'admin'));
-            else
+            } else {
                 showMessage(lang('Changes not saved', 'admin'), lang('Error', 'admin'), 'r');
+            }
         } else {
             $data = array(
                 'careKey' => $this->update->getSettings('careKey')
@@ -112,10 +114,11 @@ class Sys_update extends BaseAdminController {
     }
 
     public function get_license() {
-        if (file_exists('application/modules/shop/license.key'))
+        if (file_exists('application/modules/shop/license.key')) {
             echo file_get_contents('application/modules/shop/license.key');
-        else
+        } else {
             echo 0;
+        }
     }
 
     public function backup() {
