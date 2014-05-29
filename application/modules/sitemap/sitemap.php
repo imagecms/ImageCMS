@@ -152,7 +152,7 @@ class Sitemap extends MY_Controller {
      * Path to saved sitemap file
      * @var string
      */
-    private $sitemap_path = './application/modules/sitemap/map/sitemap.xml';
+    private $sitemap_path = './uploads/sitemaps/sitemap.xml';
 
     /**
      * Path to folder where site_maps files exists
@@ -170,7 +170,7 @@ class Sitemap extends MY_Controller {
      * Max url tag count 
      * @var type 
      */
-    private $max_url_count = 10;
+    private $max_url_count = 30000;
 
     function __construct() {
         parent::__construct();
@@ -451,9 +451,9 @@ class Sitemap extends MY_Controller {
                 if ($this->not_blocked_url($url_page)) {
                     $this->items[] = array(
                         'loc' => $url,
-                        'lastmod' => $date,
                         'changefreq' => $this->pages_changefreq,
-                        'priority' => $c_priority
+                        'priority' => $c_priority,
+                        'lastmod' => $date
                     );
                 }
             }
@@ -512,9 +512,9 @@ class Sitemap extends MY_Controller {
                         }
                         $this->items[] = array(
                             'loc' => $url,
-                            'lastmod' => $date,
                             'changefreq' => $this->brands_changefreq,
                             'priority' => $this->brands_priority,
+                            'lastmod' => $date
                         );
                     }
                 }
@@ -535,9 +535,9 @@ class Sitemap extends MY_Controller {
                         }
                         $this->items[] = array(
                             'loc' => $url,
-                            'lastmod' => $date,
                             'changefreq' => $this->products_changefreq,
                             'priority' => $this->products_priority,
+                            'lastmod' => $date
                         );
                     }
                 }
@@ -620,30 +620,59 @@ class Sitemap extends MY_Controller {
             }
             $url_count++;
         }
+
+        if ($data && $site_maps) {
+            $site_maps[] = "<\x3Fxml version=\"1.0\" encoding=\"UTF-8\"\x3F>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n" . $data . "\t</urlset>";
+        }
+
         if ($site_maps) {
             $this->saveSiteMaps($site_maps);
+            $result = $this->createMainSitemap($site_maps);
         } else {
             $result = "<\x3Fxml version=\"1.0\" encoding=\"UTF-8\"\x3F>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n" . $data . "\t</urlset>";
         }
-        var_dumps_exit('--------------');
 
         return $result;
     }
 
+    /**
+     * Create main sitemap file
+     * @param array $site_maps - array of sitemaps data
+     */
+    private function createMainSitemap($site_maps) {
+        foreach ($site_maps as $number => $site_map) {
+            $number++;
+            $site_map_url = site_url(str_replace('./', '', $this->site_map_folder_path . "/sitemap{$number}.xml"));
+            $data .= '<sitemap><loc>' . $site_map_url . '</loc></sitemap>';
+        }
+
+        $result = '<?xml version="1.0" encoding="UTF-8"?><sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . $data . '</sitemapindex>';
+
+        file_put_contents($this->site_map_folder_path . "/sitemap.xml", $result);
+        chmod($this->site_map_folder_path . "/sitemap.xml", 0777);
+        return $result;
+    }
+
+    /**
+     * Save several sitemaps files
+     * @param array $site_maps - array of sitemaps data
+     */
     private function saveSiteMaps($site_maps) {
-        foreach ($site_maps as $site_map) {
+        if (!is_dir($this->site_map_folder_path)) {
+            mkdir($this->site_map_folder_path, 0777);
+        }
+
+        foreach (glob($this->site_map_folder_path . '/sitemap*') as $site_map_file) {
+            chmod($site_map_file, 0777);
+            unlink($site_map_file);
+        }
+
+        foreach ($site_maps as $number => $site_map) {
             if ($site_map) {
-                if (!is_dir($this->site_map_folder_path)) {
-                    mkdir($this->site_map_folder_path, 0777);
-                }
-                
-                foreach (glob($this->site_map_folder_path . '/sitemap*') as $site_map_file) {
-                    chmod($site_map_file, 0777);
-                    unlink($site_map_file);
-                }
-
-
-                var_dumps($site_map);
+                $number++;
+                $site_map_path = $this->site_map_folder_path . "/sitemap{$number}.xml";
+                file_put_contents($site_map_path, $site_map);
+                chmod($site_map_path, 0777);
             }
         }
     }
