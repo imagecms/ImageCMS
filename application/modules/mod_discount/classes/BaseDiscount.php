@@ -325,7 +325,11 @@ class BaseDiscount {
                 ->where(array('key' => $key))
                 ->get('mod_shop_discounts')
                 ->row_array();
-       
+
+        if (is_null($result['max_apply'])) {
+            return null;
+        }
+
         if ($result) {
             return (int) $result['max_apply'] - (int) $result['count_apply'];
         }

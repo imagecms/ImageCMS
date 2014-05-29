@@ -38,14 +38,15 @@ class Gallery extends MY_Controller {
      * List categories and get albums from first category
      */
     function index() {
-        $this->core->set_meta_tags(lang('Gallery'));
+        $this->core->set_meta_tags(lang('Gallery', 'gallery'));
 
         $categories = $this->gallery_m->get_categories($this->settings['order_by'], $this->settings['sort_order']);
         $albums = $this->gallery_m->get_albums($this->settings['order_by'], $this->settings['sort_order']);
-
+        var_dump($categories);
+        var_dump($albums);
         $data = array(
-                'gallery_category' => $categories,
-                'total' => $this->gallery_m->getTotalImages()
+            'gallery_category' => $categories,
+            'total' => $this->gallery_m->getTotalImages()
         );
 
         // Get covers
