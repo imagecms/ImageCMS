@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-29 11:38+0300\n"
-"PO-Revision-Date: 2014-05-29 11:38+0300\n"
+"POT-Creation-Date: 2014-05-29 05:02+0300\n"
+"PO-Revision-Date: 2014-05-29 05:02+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -4871,7 +4871,7 @@ msgstr "Редактировать заказ"
 
 #: ./templates/administrator/_catlistitem.tpl:25
 msgid "edit category"
-msgstr "редактировать категорию"
+msgstr "Редактировать категорию"
 
 #: ./application/modules/shop/admin/templates/dashboard/dashboard.tpl:181
 msgid "Edit comment"
@@ -5744,7 +5744,7 @@ msgstr "Список виджетов"
 
 #: ./application/modules/shop/admin/templates/brands/list.tpl:96
 msgid "Brands list is empty."
-msgstr "Список виджетов пуст"
+msgstr "Список брендов пуст"
 
 #: ./templates/administrator/groups.tpl:2
 msgid "Group list"

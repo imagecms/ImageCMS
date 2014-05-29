@@ -102,7 +102,7 @@
                                         <tr>
                                             <td>{$g.id}</td>
                                             <td>
-                                                <a href="/admin/components/cp/cfcm/edit_group/{$g.id}" class="pjax">{$g.name}</a>
+                                                <a data-rel="tooltip" data-title="{lang("Edit custom group", 'cfcm')}" href="/admin/components/cp/cfcm/edit_group/{$g.id}" class="pjax">{$g.name}</a>
                                             </td>
                                             <td>{truncate($g.description, 35)}</td>
                                             <td>
