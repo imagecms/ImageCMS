@@ -166,6 +166,9 @@ class Mod_discount extends \MY_Controller {
                             continue;
                         }
                         $appliesLeft = \mod_discount\classes\BaseDiscount::create()->getAppliesLeft($item->discountKey);
+                        if ($appliesLeft === null) {
+                            continue;
+                        }
                         for ($i = 0; $i < $item->quantity; $i++) {
                             if ($appliesLeft-- > 0) {
                                 $baseDiscount->updateDiskApply($item->discountKey);

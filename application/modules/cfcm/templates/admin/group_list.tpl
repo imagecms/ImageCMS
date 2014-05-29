@@ -62,7 +62,7 @@
             <tr>
                 <td>{$g.id}</td>
                 <td>
-                    <a href="javascript:ajax_div('page', base_url + 'admin/components/cp/cfcm/edit_group/{$g.id}');">{$g.name}</a>
+                    <a  data-rel="tooltip" data-title="{lang("Edit custom group", 'cfcm')}" href="javascript:ajax_div('page', base_url + 'admin/components/cp/cfcm/edit_group/{$g.id}');">{$g.name}</a>
                 </td>
                 <td>{truncate($g.description, 35)}</td>
                 <td>
