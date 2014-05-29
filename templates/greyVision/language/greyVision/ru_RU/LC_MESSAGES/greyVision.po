@@ -1,0 +1,1484 @@
+﻿msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-05-29 07:43+0400\n"
+"PO-Revision-Date: 2014-05-29 07:43+0400\n"
+"Last-Translator:  <>\n"
+"Language-Team:  <>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
+"X-Poedit-Basepath: ../../../..\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-Language: \n"
+"X-Poedit-Country: \n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: ./templates/greyVision/category_menu_first/level_1/item_default.tpl:8
+#: ./templates/greyVision/category_menu_first/level_1/item_default_active.tpl:9
+#: ./templates/greyVision/category_menu_second/level_2/item_default.tpl:8
+msgid "Нет фото"
+msgstr ""
+
+#: ./templates/greyVision/comments/comments_api.tpl:151
+msgid "Текст комментария"
+msgstr ""
+
+#: ./templates/greyVision/footer.tpl:60
+msgid "Мы в социальных сетях"
+msgstr ""
+
+#: ./templates/greyVision/shop/auth_data.tpl:11
+msgid "Вход в магазин"
+msgstr ""
+
+#: ./templates/greyVision/shop/cart_data.tpl:10
+msgid "Ваша Корзина пуста"
+msgstr ""
+
+#: ./templates/greyVision/shop/cart_order.tpl:270
+#: ./templates/greyVision/shop/order_view.tpl:472
+msgid "К оплате"
+msgstr ""
+
+#: ./templates/greyVision/shop/product.tpl:77
+msgid "Выбор варианта"
+msgstr ""
+
+#: ./templates/greyVision/smart_filter/main.tpl:7
+msgid "до"
+msgstr ""
+
+#: ./templates/greyVision/widgets/brands.tpl:12
+msgid "Все бренды"
+msgstr ""
+
+#: ./templates/greyVision/widgets/latest_news.tpl:9
+msgid "Архив новостей"
+msgstr ""
+
+#: ./templates/greyVision/widgets/popular_new_products.tpl:17
+msgid "Показать еще "
+msgstr ""
+
+#: ./templates/greyVision/main_demo.tpl:139
+msgid "Купить лицензию"
+msgstr ""
+
+#: ./templates/greyVision/shop/order_view.tpl:25
+msgid "Спасибо, ваш заказ принят!"
+msgstr ""
+
+#: ./templates/greyVision/shop/order_view.tpl:25
+msgid "Наши менеджеры свяжутся с вами."
+msgstr ""
+
+#: ./templates/greyVision/shop/compare_data.tpl:32
+#: ./templates/greyVision/shop/wish_list_data.tpl:24
+msgid "Ваш список"
+msgstr ""
+
+#: ./templates/greyVision/shop/compare_data.tpl:33
+msgid "Список сравнения"
+msgstr ""
+
+#: ./templates/greyVision/shop/compare_data.tpl:33
+#: ./templates/greyVision/shop/wish_list_data.tpl:25
+msgid "пуст"
+msgstr ""
+
+#: ./templates/greyVision/smart_filter/filter.tpl:7
+msgid "Цена"
+msgstr ""
+
+#: ./templates/greyVision/smart_filter/main.tpl:7
+msgid "Цена от"
+msgstr ""
+
+#: ./templates/greyVision/404.tpl:10
+msgid "Приносим свои извинения за доставленные неудобства. Для продолжения работы вы можете перейти к представленным пунктам меню, воспользоваться  поиском по сайту либо перейти на"
+msgstr ""
+
+#: ./templates/greyVision/category_menu/error.tpl:12
+#: ./templates/greyVision/category_menu_first/error.tpl:12
+#: ./templates/greyVision/category_menu_second/error.tpl:12
+#: ./templates/greyVision/footer_category_menu/error.tpl:12
+#: ./templates/greyVision/left_menu/error.tpl:12
+#: ./templates/greyVision/top_menu/error.tpl:12
+msgid "Внимание"
+msgstr ""
+
+#: ./templates/greyVision/category_menu_first/error.tpl:13
+#: ./templates/greyVision/category_menu_second/error.tpl:13
+#: ./templates/greyVision/top_menu/error.tpl:13
+msgid "Не обнаружен необходимый файл шаблона для меню"
+msgstr ""
+
+#: ./templates/greyVision/category_menu/error.tpl:21
+#: ./templates/greyVision/category_menu_first/error.tpl:21
+#: ./templates/greyVision/category_menu_second/error.tpl:21
+#: ./templates/greyVision/footer_category_menu/error.tpl:21
+#: ./templates/greyVision/left_menu/error.tpl:21
+#: ./templates/greyVision/top_menu/error.tpl:21
+msgid "Проверьте наличие файла или измените настройки меню"
+msgstr ""
+
+#: ./templates/greyVision/category_menu/error.tpl:23
+#: ./templates/greyVision/category_menu_first/error.tpl:23
+#: ./templates/greyVision/category_menu_second/error.tpl:23
+#: ./templates/greyVision/footer_category_menu/error.tpl:23
+#: ./templates/greyVision/left_menu/error.tpl:23
+msgid "Переустановите модуль меню "
+msgstr ""
+
+#: ./templates/greyVision/category_menu_first/level_2/container.tpl:7
+#: ./templates/greyVision/comments/comments_api.tpl:110
+#: ./templates/greyVision/main_demo.tpl:129
+#: ./templates/greyVision/widgets/popular_new_products.tpl:17
+msgid "Скрыть"
+msgstr ""
+
+#: ./templates/greyVision/404.tpl:8
+msgid "Страница не найдена"
+msgstr ""
+
+#: ./templates/greyVision/404.tpl:9
+msgid "Эта страница не существует или была удалена."
+msgstr ""
+
+#: ./templates/greyVision/404.tpl:12
+msgid "Перейти на главную страницу"
+msgstr ""
+
+#: ./templates/greyVision/category.tpl:11
+msgid "Категория на стадии разработки"
+msgstr ""
+
+#: ./templates/greyVision/footer.tpl:39
+#: ./templates/greyVision/footer.tpl:39
+#: ./templates/greyVision/login.tpl:5
+msgid "Вход"
+msgstr ""
+
+#: ./templates/greyVision/login.tpl:12
+#: ./templates/greyVision/login_popup.tpl:19
+msgid "Почта"
+msgstr ""
+
+#: ./templates/greyVision/login.tpl:19
+#: ./templates/greyVision/login_popup.tpl:26
+msgid "Пароль"
+msgstr ""
+
+#: ./templates/greyVision/comments/comments_api.tpl:4
+#: ./templates/greyVision/login.tpl:36
+#: ./templates/greyVision/login_popup.tpl:43
+#: ./templates/greyVision/register.tpl:65
+#: ./templates/greyVision/register_popup.tpl:62
+msgid "Войти"
+msgstr ""
+
+#: ./templates/greyVision/forgot_password.tpl:5
+#: ./templates/greyVision/login.tpl:41
+#: ./templates/greyVision/login_popup.tpl:48
+msgid "Забыли Пароль?"
+msgstr ""
+
+#: ./templates/greyVision/forgot_password.tpl:40
+#: ./templates/greyVision/login.tpl:49
+#: ./templates/greyVision/login_popup.tpl:56
+msgid "Я еще не зарегистрирован"
+msgstr ""
+
+#: ./templates/greyVision/forgot_password.tpl:41
+#: ./templates/greyVision/login.tpl:50
+#: ./templates/greyVision/login_popup.tpl:57
+msgid "Перейти к регистрации"
+msgstr ""
+
+#: ./templates/greyVision/shop/brands_images.tpl:8
+#: ./templates/greyVision/shop/brands_list.tpl:8
+msgid "Все бренды магазина"
+msgstr ""
+
+#: ./templates/greyVision/header.tpl:41
+#: ./templates/greyVision/shop/callback.tpl:5
+msgid "Заказать звонок"
+msgstr ""
+
+#: ./templates/greyVision/shop/callback.tpl:18
+#: ./templates/greyVision/shop/cart.tpl:60
+msgid "Имя: "
+msgstr ""
+
+#: ./templates/greyVision/shop/callback.tpl:25
+msgid "Телефон: "
+msgstr ""
+
+#: ./templates/greyVision/shop/callback.tpl:32
+msgid "Комментарий: "
+msgstr ""
+
+#: ./templates/greyVision/shop/callback.tpl:42
+msgid "Позвоните мне"
+msgstr ""
+
+#: ./templates/greyVision/comments/comments_api.tpl:137
+#: ./templates/greyVision/shop/profile_data.tpl:7
+msgid "Ваше имя"
+msgstr ""
+
+#: ./templates/greyVision/shop/profile_data.tpl:10
+msgid "Не меньше 4-х символов"
+msgstr ""
+
+#: ./templates/greyVision/shop/cart.tpl:69
+#: ./templates/greyVision/shop/order_view.tpl:48
+#: ./templates/greyVision/shop/profile_data.tpl:14
+msgid "Телефон"
+msgstr ""
+
+#: ./templates/greyVision/shop/profile_data.tpl:24
+msgid "E-mail является логином"
+msgstr ""
+
+#: ./templates/greyVision/shop/order_view.tpl:89
+#: ./templates/greyVision/shop/profile_data.tpl:29
+msgid "Адрес"
+msgstr ""
+
+#: ./templates/greyVision/shop/profile_data.tpl:38
+msgid "Сохранить данные"
+msgstr ""
+
+#: ./templates/greyVision/shop/profile_data.tpl:54
+msgid "Скидки"
+msgstr ""
+
+#: ./templates/greyVision/shop/profile_data.tpl:60
+msgid "Товаров на сумму"
+msgstr ""
+
+#: ./templates/greyVision/shop/cart_order.tpl:212
+#: ./templates/greyVision/shop/cart_popup.tpl:194
+#: ./templates/greyVision/shop/order_view.tpl:436
+#: ./templates/greyVision/shop/profile_data.tpl:70
+#: ./templates/greyVision/shop/profile_data.tpl:94
+msgid "Ваша текущая скидка"
+msgstr ""
+
+#: ./templates/greyVision/shop/profile_data.tpl:78
+msgid "Ваша текущая скидка группы пользователей"
+msgstr ""
+
+#: ./templates/greyVision/shop/profile_data.tpl:105
+msgid "Для следующей скидки"
+msgstr ""
+
+#: ./templates/greyVision/shop/profile_data.tpl:105
+msgid "осталось"
+msgstr ""
+
+#: ./templates/greyVision/shop/profile_data.tpl:106
+msgid "cделать покупки на сумму"
+msgstr ""
+
+#: ./templates/greyVision/shop/profile_data.tpl:111
+msgid "Посмотреть таблицу скидок"
+msgstr ""
+
+#: ./templates/greyVision/shop/profile_data.tpl:123
+msgid "Накопительные скидки"
+msgstr ""
+
+#: ./templates/greyVision/shop/profile_data.tpl:130
+msgid "Размер скидки"
+msgstr ""
+
+#: ./templates/greyVision/shop/profile_data.tpl:131
+msgid "От"
+msgstr ""
+
+#: ./templates/greyVision/shop/profile_data.tpl:132
+msgid "До"
+msgstr ""
+
+#: ./templates/greyVision/shop/profile_data.tpl:140
+msgid "Бесконечно"
+msgstr ""
+
+#: ./templates/greyVision/shop/cart.tpl:12
+msgid "Корзина пуста"
+msgstr ""
+
+#: ./templates/greyVision/config.js.tpl:60
+#: ./templates/greyVision/shop/brand.tpl:33
+#: ./templates/greyVision/shop/cart_data.tpl:19
+#: ./templates/greyVision/shop/cart_popup.tpl:8
+#: ./templates/greyVision/shop/category.tpl:30
+#: ./templates/greyVision/shop/search.tpl:25
+#: ./templates/greyVision/smart_filter/main.tpl:4
+msgid "товар"
+msgstr ""
+
+#: ./templates/greyVision/config.js.tpl:60
+#: ./templates/greyVision/shop/brand.tpl:33
+#: ./templates/greyVision/shop/cart_data.tpl:19
+#: ./templates/greyVision/shop/cart_popup.tpl:8
+#: ./templates/greyVision/shop/category.tpl:30
+#: ./templates/greyVision/shop/search.tpl:25
+#: ./templates/greyVision/smart_filter/main.tpl:4
+msgid "товара"
+msgstr ""
+
+#: ./templates/greyVision/config.js.tpl:60
+#: ./templates/greyVision/shop/brand.tpl:33
+#: ./templates/greyVision/shop/cart_data.tpl:19
+#: ./templates/greyVision/shop/cart_popup.tpl:8
+#: ./templates/greyVision/shop/category.tpl:30
+#: ./templates/greyVision/shop/search.tpl:25
+#: ./templates/greyVision/smart_filter/main.tpl:4
+msgid "товаров"
+msgstr ""
+
+#: ./templates/greyVision/shop/category.tpl:38
+#: ./templates/greyVision/shop/search.tpl:32
+msgid "Не найдено товаров"
+msgstr ""
+
+#: ./templates/greyVision/shop/category.tpl:64
+#: ./templates/greyVision/shop/search.tpl:60
+msgid "Категории"
+msgstr ""
+
+#: ./templates/greyVision/footer.tpl:35
+#: ./templates/greyVision/footer.tpl:35
+#: ./templates/greyVision/shop/wish_list_data.tpl:7
+#: ./templates/greyVision/shop/wish_list_data.tpl:25
+#: ./templates/greyVision/wishlist/other_list.tpl:56
+#: ./templates/greyVision/wishlist/wishlist.tpl:6
+msgid "Список желаний"
+msgstr ""
+
+#: ./templates/greyVision/shop/wish_list_data.tpl:13
+msgid "Избранные"
+msgstr ""
+
+#: ./templates/greyVision/shop/payments/default.tpl:3
+#: ./templates/greyVision/shop/payments/radio.tpl:3
+msgid "Оплата:"
+msgstr ""
+
+#: ./templates/greyVision/shop/cart.tpl:174
+#: ./templates/greyVision/shop/payments/default.tpl:27
+#: ./templates/greyVision/shop/payments/radio.tpl:32
+msgid "Оплата"
+msgstr ""
+
+#: ./templates/greyVision/shop/payments/default.tpl:29
+#: ./templates/greyVision/shop/payments/radio.tpl:34
+msgid "Нет способов оплаты"
+msgstr ""
+
+#: ./templates/greyVision/shop/order_view.tpl:31
+msgid "Заказ №"
+msgstr ""
+
+#: ./templates/greyVision/shop/order_view.tpl:43
+msgid "Имя получателя"
+msgstr ""
+
+#: ./templates/greyVision/shop/order_view.tpl:55
+msgid "Дополнительный телефон"
+msgstr ""
+
+#: ./templates/greyVision/shop/order_view.tpl:71
+msgid "Способ доставки"
+msgstr ""
+
+#: ./templates/greyVision/shop/order_view.tpl:83
+msgid "Город"
+msgstr ""
+
+#: ./templates/greyVision/paymentSystem/QIWI.tpl:29
+#: ./templates/greyVision/shop/order_view.tpl:95
+msgid "Комментарий"
+msgstr ""
+
+#: ./templates/greyVision/shop/order_view.tpl:108
+msgid "Дата заказа"
+msgstr ""
+
+#: ./templates/greyVision/shop/order_view.tpl:115
+msgid "Способ оплаты"
+msgstr ""
+
+#: ./templates/greyVision/shop/order_view.tpl:125
+msgid "Статус оплаты"
+msgstr ""
+
+#: ./templates/greyVision/shop/order_view.tpl:128
+#: ./templates/greyVision/shop/profile_history.tpl:39
+msgid "Оплачен"
+msgstr ""
+
+#: ./templates/greyVision/shop/order_view.tpl:130
+#: ./templates/greyVision/shop/profile_history.tpl:39
+msgid "Не оплачен"
+msgstr ""
+
+#: ./templates/greyVision/shop/cart_order.tpl:25
+#: ./templates/greyVision/shop/cart_order.tpl:100
+#: ./templates/greyVision/shop/cart_popup.tpl:32
+#: ./templates/greyVision/shop/cart_popup.tpl:117
+#: ./templates/greyVision/shop/order_view.tpl:182
+#: ./templates/greyVision/shop/product.tpl:44
+msgid "Вариант"
+msgstr ""
+
+#: ./templates/greyVision/shop/cart_order.tpl:30
+#: ./templates/greyVision/shop/cart_order.tpl:105
+#: ./templates/greyVision/shop/cart_popup.tpl:37
+#: ./templates/greyVision/shop/cart_popup.tpl:123
+#: ./templates/greyVision/shop/order_view.tpl:183
+#: ./templates/greyVision/shop/product.tpl:35
+msgid "Артикул"
+msgstr ""
+
+#: ./templates/greyVision/config.js.tpl:54
+#: ./templates/greyVision/shop/cart_order.tpl:40
+#: ./templates/greyVision/shop/cart_order.tpl:119
+#: ./templates/greyVision/shop/order_view.tpl:208
+#: ./templates/greyVision/shop/order_view.tpl:336
+msgid "Кол-во"
+msgstr ""
+
+#: ./templates/greyVision/config.js.tpl:53
+#: ./templates/greyVision/shop/order_view.tpl:210
+#: ./templates/greyVision/shop/order_view.tpl:338
+msgid "шт"
+msgstr ""
+
+#: ./templates/greyVision/config.js.tpl:55
+#: ./templates/greyVision/paymentSystem/QIWI.tpl:22
+#: ./templates/greyVision/shop/cart_order.tpl:47
+#: ./templates/greyVision/shop/cart_order.tpl:126
+#: ./templates/greyVision/shop/cart_popup.tpl:8
+#: ./templates/greyVision/shop/cart_popup.tpl:63
+#: ./templates/greyVision/shop/cart_popup.tpl:152
+#: ./templates/greyVision/shop/order_view.tpl:213
+#: ./templates/greyVision/shop/order_view.tpl:341
+msgid "Сумма"
+msgstr ""
+
+#: ./templates/greyVision/shop/cart_order.tpl:82
+#: ./templates/greyVision/shop/order_view.tpl:251
+msgid "Комплект товаров"
+msgstr ""
+
+#: ./templates/greyVision/shop/cart_order.tpl:165
+#: ./templates/greyVision/shop/order_view.tpl:379
+msgid "Начальная стоимость товаров"
+msgstr ""
+
+#: ./templates/greyVision/shop/cart_order.tpl:175
+#: ./templates/greyVision/shop/order_view.tpl:393
+msgid "Cтоимость товаров"
+msgstr ""
+
+#: ./templates/greyVision/shop/cart_order.tpl:185
+#: ./templates/greyVision/shop/order_view.tpl:408
+msgid "Доставка"
+msgstr ""
+
+#: ./templates/greyVision/shop/cart_order.tpl:200
+#: ./templates/greyVision/shop/order_view.tpl:424
+msgid "Бесплатно"
+msgstr ""
+
+#: ./templates/greyVision/shop/cart_order.tpl:224
+#: ./templates/greyVision/shop/cart_order.tpl:235
+#: ./templates/greyVision/shop/order_view.tpl:451
+msgid "Подарочный сертификат"
+msgstr ""
+
+#: ./templates/greyVision/shop/compare_data.tpl:11
+msgid "Товары на сравнение"
+msgstr ""
+
+#: ./templates/greyVision/shop/compare_data.tpl:19
+msgid "В сравнение"
+msgstr ""
+
+#: ./templates/greyVision/footer.tpl:42
+#: ./templates/greyVision/footer.tpl:42
+#: ./templates/greyVision/register.tpl:5
+#: ./templates/greyVision/register_popup.tpl:5
+msgid "Регистрация"
+msgstr ""
+
+#: ./templates/greyVision/footer.tpl:32
+#: ./templates/greyVision/footer.tpl:32
+#: ./templates/greyVision/shop/auth_data.tpl:19
+msgid "Личный кабинет"
+msgstr ""
+
+#: ./templates/greyVision/footer.tpl:29
+#: ./templates/greyVision/footer.tpl:29
+#: ./templates/greyVision/shop/auth_data.tpl:30
+msgid "Выход"
+msgstr ""
+
+#: ./templates/greyVision/shop/profile_change_pass.tpl:7
+msgid "Старый пароль"
+msgstr ""
+
+#: ./templates/greyVision/shop/profile_change_pass.tpl:13
+msgid "Новый пароль"
+msgstr ""
+
+#: ./templates/greyVision/shop/profile_change_pass.tpl:19
+msgid "Повторите пароль"
+msgstr ""
+
+#: ./templates/greyVision/shop/profile.tpl:12
+#: ./templates/greyVision/shop/profile_change_pass.tpl:28
+msgid "Изменить пароль"
+msgstr ""
+
+#: ./templates/greyVision/shop/profile.tpl:6
+msgid "Добро пожаловать!"
+msgstr ""
+
+#: ./templates/greyVision/shop/profile.tpl:11
+msgid "Основные данные"
+msgstr ""
+
+#: ./templates/greyVision/shop/profile.tpl:13
+msgid "История заказа"
+msgstr ""
+
+#: ./templates/greyVision/shop/cart.tpl:6
+#: ./templates/greyVision/shop/cart.tpl:20
+msgid "Оформление заказа"
+msgstr ""
+
+#: ./templates/greyVision/shop/cart.tpl:24
+msgid "Я уже здесь покупал"
+msgstr ""
+
+#: ./templates/greyVision/shop/cart.tpl:35
+msgid "Мой заказ"
+msgstr ""
+
+#: ./templates/greyVision/shop/cart.tpl:37
+msgid "Редактировать"
+msgstr ""
+
+#: ./templates/greyVision/shop/cart.tpl:73
+msgid "Еще один номер"
+msgstr ""
+
+#: ./templates/greyVision/shop/cart.tpl:88
+msgid "Email"
+msgstr ""
+
+#: ./templates/greyVision/shop/cart.tpl:103
+msgid "Доставка:"
+msgstr ""
+
+#: ./templates/greyVision/shop/cart.tpl:107
+msgid "--Выбирете способ доставки--"
+msgstr ""
+
+#: ./templates/greyVision/shop/cart.tpl:136
+msgid "Стоимость"
+msgstr ""
+
+#: ./templates/greyVision/shop/cart.tpl:137
+msgid "Бесплатно от"
+msgstr ""
+
+#: ./templates/greyVision/shop/cart.tpl:149
+msgid "Адрес доставки"
+msgstr ""
+
+#: ./templates/greyVision/shop/cart.tpl:163
+msgid "Добавить комментарий к заказу"
+msgstr ""
+
+#: ./templates/greyVision/shop/cart.tpl:176
+msgid "Выберите доставку"
+msgstr ""
+
+#: ./templates/greyVision/shop/cart.tpl:190
+msgid "Подтвердить заказ"
+msgstr ""
+
+#: ./templates/greyVision/shop/js_templates.tpl:52
+msgid "Посмотреть все результаты"
+msgstr ""
+
+#: ./templates/greyVision/shop/js_templates.tpl:58
+msgid "По Вашему запросу ничего не найдено"
+msgstr ""
+
+#: ./templates/greyVision/shop/js_templates.tpl:112
+msgid "Фильтр"
+msgstr ""
+
+#: ./templates/greyVision/shop/brand.tpl:33
+#: ./templates/greyVision/shop/js_templates.tpl:113
+#: ./templates/greyVision/shop/search.tpl:25
+msgid "Найдено"
+msgstr ""
+
+#: ./templates/greyVision/shop/js_templates.tpl:129
+msgid "Удалить список?"
+msgstr ""
+
+#: ./templates/greyVision/shop/js_templates.tpl:135
+msgid "Подтвердить"
+msgstr ""
+
+#: ./templates/greyVision/shop/js_templates.tpl:140
+msgid "Отменить"
+msgstr ""
+
+#: ./templates/greyVision/shop/js_templates.tpl:153
+msgid "Для того, что бы добавить товар в список желаний, Вам нужно"
+msgstr ""
+
+#: ./templates/greyVision/shop/js_templates.tpl:153
+msgid "авторизоваться"
+msgstr ""
+
+#: ./templates/greyVision/shop/profile_history.tpl:6
+msgid "Вы еще не совершали покупки"
+msgstr ""
+
+#: ./templates/greyVision/shop/profile_history.tpl:13
+#: ./templates/greyVision/shop/profile_history.tpl:23
+msgid "Заказ #"
+msgstr ""
+
+#: ./templates/greyVision/shop/profile_history.tpl:14
+msgid "Время покупки"
+msgstr ""
+
+#: ./templates/greyVision/shop/profile_history.tpl:15
+msgid "Сумма покупки"
+msgstr ""
+
+#: ./templates/greyVision/shop/profile_history.tpl:16
+msgid "Статус заказа"
+msgstr ""
+
+#: ./templates/greyVision/shop/profile_history.tpl:17
+msgid "Статус платежа"
+msgstr ""
+
+#: ./templates/greyVision/shop/search.tpl:23
+msgid "Результаты поиска"
+msgstr ""
+
+#: ./templates/greyVision/shop/catalogue_header.tpl:7
+msgid "Показывать"
+msgstr ""
+
+#: ./templates/greyVision/shop/catalogue_header.tpl:22
+msgid "На странице"
+msgstr ""
+
+#: ./templates/greyVision/shop/catalogue_header.tpl:40
+msgid "Смотреть"
+msgstr ""
+
+#: ./templates/greyVision/shop/catalogue_header.tpl:43
+#: ./templates/greyVision/shop/catalogue_header.tpl:44
+msgid "Таблица"
+msgstr ""
+
+#: ./templates/greyVision/shop/catalogue_header.tpl:48
+#: ./templates/greyVision/shop/catalogue_header.tpl:49
+msgid "Список"
+msgstr ""
+
+#: ./templates/greyVision/new_level/one_product_item.tpl:229
+#: ./templates/greyVision/shop/product.tpl:261
+#: ./templates/greyVision/shop/report_appearance.tpl:4
+msgid "Сообщить о появлении"
+msgstr ""
+
+#: ./templates/greyVision/comments/comments_api.tpl:213
+#: ./templates/greyVision/register.tpl:13
+#: ./templates/greyVision/register_popup.tpl:15
+#: ./templates/greyVision/shop/report_appearance.tpl:22
+msgid "Ваше имя:"
+msgstr ""
+
+#: ./templates/greyVision/shop/report_appearance.tpl:33
+msgid "Вы получите письмо, когда товар будет доступен"
+msgstr ""
+
+#: ./templates/greyVision/shop/report_appearance.tpl:37
+msgid "Телефон:"
+msgstr ""
+
+#: ./templates/greyVision/shop/report_appearance.tpl:43
+msgid "Комментарий:"
+msgstr ""
+
+#: ./templates/greyVision/forgot_password.tpl:32
+#: ./templates/greyVision/shop/report_appearance.tpl:51
+#: ./templates/greyVision/wishlist/sendEmail.tpl:23
+msgid "Отправить"
+msgstr ""
+
+#: ./templates/greyVision/shop/product.tpl:55
+msgid "Бренд"
+msgstr ""
+
+#: ./templates/greyVision/new_level/one_product_item.tpl:132
+#: ./templates/greyVision/shop/cart_popup.tpl:46
+#: ./templates/greyVision/shop/cart_popup.tpl:135
+#: ./templates/greyVision/shop/product.tpl:153
+msgid "Количество на складе"
+msgstr ""
+
+#: ./templates/greyVision/new_level/one_product_item.tpl:145
+#: ./templates/greyVision/shop/cart_popup.tpl:59
+#: ./templates/greyVision/shop/cart_popup.tpl:148
+#: ./templates/greyVision/shop/product.tpl:166
+msgid "Только цифры"
+msgstr ""
+
+#: ./templates/greyVision/config.js.tpl:52
+#: ./templates/greyVision/new_level/one_product_item.tpl:157
+#: ./templates/greyVision/shop/cart_popup.tpl:8
+#: ./templates/greyVision/shop/product.tpl:177
+#: ./templates/greyVision/shop/product.tpl:544
+msgid "В корзине"
+msgstr ""
+
+#: ./templates/greyVision/config.js.tpl:56
+#: ./templates/greyVision/new_level/one_product_item.tpl:190
+#: ./templates/greyVision/shop/product.tpl:214
+#: ./templates/greyVision/shop/product.tpl:556
+msgid "Купить"
+msgstr ""
+
+#: ./templates/greyVision/shop/product.tpl:223
+msgid "Нет в наличии"
+msgstr ""
+
+#: ./templates/greyVision/shop/product.tpl:283
+#: ./templates/greyVision/shop/product.tpl:284
+#: ./templates/greyVision/shop/product.tpl:288
+msgid "К сравнению"
+msgstr ""
+
+#: ./templates/greyVision/shop/product.tpl:285
+msgid "В сравнении"
+msgstr ""
+
+#: ./templates/greyVision/shop/product.tpl:309
+msgid "Рассказать друзьям:"
+msgstr ""
+
+#: ./templates/greyVision/config.js.tpl:62
+#: ./templates/greyVision/shop/product.tpl:344
+#: ./templates/greyVision/shop/product.tpl:608
+msgid "отзыв"
+msgstr ""
+
+#: ./templates/greyVision/config.js.tpl:62
+#: ./templates/greyVision/shop/product.tpl:344
+#: ./templates/greyVision/shop/product.tpl:608
+msgid "отзыва"
+msgstr ""
+
+#: ./templates/greyVision/config.js.tpl:62
+#: ./templates/greyVision/shop/product.tpl:344
+#: ./templates/greyVision/shop/product.tpl:608
+msgid "отзывов"
+msgstr ""
+
+#: ./templates/greyVision/shop/product.tpl:351
+#: ./templates/greyVision/shop/product.tpl:610
+msgid "Оставить отзыв"
+msgstr ""
+
+#: ./templates/greyVision/shop/product.tpl:406
+msgid "Вместе дешевле"
+msgstr ""
+
+#: ./templates/greyVision/shop/product.tpl:587
+msgid "Обзор"
+msgstr ""
+
+#: ./templates/greyVision/shop/product.tpl:591
+#: ./templates/greyVision/shop/product.tpl:622
+#: ./templates/greyVision/shop/product.tpl:686
+msgid "Свойства"
+msgstr ""
+
+#: ./templates/greyVision/shop/product.tpl:594
+#: ./templates/greyVision/shop/product.tpl:646
+msgid "Полное описание"
+msgstr ""
+
+#: ./templates/greyVision/shop/product.tpl:597
+msgid "Аксессуары"
+msgstr ""
+
+#: ./templates/greyVision/shop/product.tpl:629
+msgid "Просмотреть все спецификации"
+msgstr ""
+
+#: ./templates/greyVision/shop/product.tpl:639
+#: ./templates/greyVision/shop/product.tpl:695
+msgid "Описание"
+msgstr ""
+
+#: ./templates/greyVision/shop/product.tpl:656
+#: ./templates/greyVision/shop/product.tpl:710
+msgid "С этим товаром покупают"
+msgstr ""
+
+#: ./templates/greyVision/shop/product.tpl:660
+msgid "Смотреть все аксессуары"
+msgstr ""
+
+#: ./templates/greyVision/shop/cart_popup.tpl:45
+#: ./templates/greyVision/shop/cart_popup.tpl:134
+msgid "Количество"
+msgstr ""
+
+#: ./templates/greyVision/shop/cart_popup.tpl:200
+msgid "Вернуться к оформлению"
+msgstr ""
+
+#: ./templates/greyVision/shop/cart_popup.tpl:203
+msgid "Всего"
+msgstr ""
+
+#: ./templates/greyVision/shop/cart_popup.tpl:236
+#: ./templates/greyVision/shop/cart_popup.tpl:259
+msgid "Вернуться к покупкам"
+msgstr ""
+
+#: ./templates/greyVision/shop/cart_popup.tpl:242
+msgid "Оформить заказ"
+msgstr ""
+
+#: ./templates/greyVision/shop/cart_popup.tpl:250
+msgid "Ваша корзина"
+msgstr ""
+
+#: ./templates/greyVision/shop/cart_popup.tpl:250
+msgid "пуста"
+msgstr ""
+
+#: ./templates/greyVision/shop/cart_popup.tpl:255
+msgid "Вы удалили все элементы из корзины"
+msgstr ""
+
+#: ./templates/greyVision/shop/helpers/helper.php:6
+msgid "Января"
+msgstr ""
+
+#: ./templates/greyVision/shop/helpers/helper.php:6
+msgid "Февраля"
+msgstr ""
+
+#: ./templates/greyVision/shop/helpers/helper.php:6
+msgid "Марта"
+msgstr ""
+
+#: ./templates/greyVision/shop/helpers/helper.php:6
+msgid "Апреля"
+msgstr ""
+
+#: ./templates/greyVision/shop/helpers/helper.php:6
+msgid "Мая"
+msgstr ""
+
+#: ./templates/greyVision/shop/helpers/helper.php:6
+msgid "Июня"
+msgstr ""
+
+#: ./templates/greyVision/shop/helpers/helper.php:6
+msgid "Июля"
+msgstr ""
+
+#: ./templates/greyVision/shop/helpers/helper.php:6
+msgid "Августа"
+msgstr ""
+
+#: ./templates/greyVision/shop/helpers/helper.php:6
+msgid "Сентября"
+msgstr ""
+
+#: ./templates/greyVision/shop/helpers/helper.php:6
+msgid "Октября"
+msgstr ""
+
+#: ./templates/greyVision/shop/helpers/helper.php:6
+msgid "Ноября"
+msgstr ""
+
+#: ./templates/greyVision/shop/helpers/helper.php:6
+msgid "Декабря"
+msgstr ""
+
+#: ./templates/greyVision/shop/cart_order.tpl:42
+#: ./templates/greyVision/shop/cart_order.tpl:121
+msgid "шт."
+msgstr ""
+
+#: ./templates/greyVision/shop/cart_order.tpl:241
+msgid "Неверный код подарочного сертификата"
+msgstr ""
+
+#: ./templates/greyVision/shop/cart_order.tpl:247
+msgid "Ввести промо-код"
+msgstr ""
+
+#: ./templates/greyVision/shop/cart_order.tpl:254
+msgid "Применить"
+msgstr ""
+
+#: ./templates/greyVision/shop/compare.tpl:21
+#: ./templates/greyVision/shop/compare.tpl:152
+msgid "Сравнение товаров"
+msgstr ""
+
+#: ./templates/greyVision/shop/compare.tpl:26
+msgid "Все параметры"
+msgstr ""
+
+#: ./templates/greyVision/shop/compare.tpl:31
+msgid "Только Различия"
+msgstr ""
+
+#: ./templates/greyVision/shop/compare.tpl:127
+msgid "Категория"
+msgstr ""
+
+#: ./templates/greyVision/shop/compare.tpl:158
+msgid "Вы удалили все товары из сравнения"
+msgstr ""
+
+#: ./templates/greyVision/shop/compare.tpl:166
+msgid "Cравнения товаров"
+msgstr ""
+
+#: ./templates/greyVision/shop/compare.tpl:172
+msgid "Список сравнения пуст"
+msgstr ""
+
+#: ./templates/greyVision/shop/brand.tpl:39
+msgid "По вашему запросу товаров не найдено"
+msgstr ""
+
+#: ./templates/greyVision/shop/brand.tpl:85
+msgid "Найдено в категориях:"
+msgstr ""
+
+#: ./templates/greyVision/category_menu_first/level_2/container.tpl:7
+msgid "Все категории"
+msgstr ""
+
+#: ./templates/greyVision/paymentSystem/LiqPay.tpl:5
+#: ./templates/greyVision/paymentSystem/PrivateBank.tpl:12
+#: ./templates/greyVision/paymentSystem/Robokassa.tpl:13
+#: ./templates/greyVision/paymentSystem/SberBank.tpl:5
+msgid "Оплатить"
+msgstr ""
+
+#: ./templates/greyVision/paymentSystem/QIWI.tpl:11
+#: ./templates/greyVision/paymentSystem/QIWI.tpl:34
+msgid "Выставить счёт за покупку"
+msgstr ""
+
+#: ./templates/greyVision/paymentSystem/QIWI.tpl:14
+msgid "Мобильный телефон"
+msgstr ""
+
+#: ./templates/greyVision/paymentSystem/QIWI.tpl:24
+msgid "руб."
+msgstr ""
+
+#: ./templates/greyVision/paymentSystem/QIWI.tpl:25
+msgid "коп."
+msgstr ""
+
+#: ./templates/greyVision/paymentSystem/PayPal.tpl:17
+msgid "PayPal - более безопасный и легкий способ оплаты через Интернет!"
+msgstr ""
+
+#: ./templates/greyVision/wishlist/other_list.tpl:48
+#: ./templates/greyVision/wishlist/wishlist.tpl:107
+msgid "Список пуст"
+msgstr ""
+
+#: ./templates/greyVision/wishlist/other_list.tpl:62
+#: ./templates/greyVision/wishlist/wishlist.tpl:183
+msgid "Список Желания пуст"
+msgstr ""
+
+#: ./templates/greyVision/wishlist/wishlistEdit.tpl:5
+msgid "Редактировать:"
+msgstr ""
+
+#: ./templates/greyVision/wishlist/wishlist.tpl:35
+#: ./templates/greyVision/wishlist/wishlist.tpl:148
+#: ./templates/greyVision/wishlist/wishlistEdit.tpl:13
+msgid "Доступность:"
+msgstr ""
+
+#: ./templates/greyVision/wishlist/wishlist.tpl:39
+#: ./templates/greyVision/wishlist/wishlist.tpl:156
+#: ./templates/greyVision/wishlist/wishlistEdit.tpl:17
+msgid "Коллективный"
+msgstr ""
+
+#: ./templates/greyVision/wishlist/wishlist.tpl:41
+#: ./templates/greyVision/wishlist/wishlist.tpl:150
+#: ./templates/greyVision/wishlist/wishlistEdit.tpl:18
+msgid "Приватный"
+msgstr ""
+
+#: ./templates/greyVision/wishlist/wishlist.tpl:40
+#: ./templates/greyVision/wishlist/wishlist.tpl:153
+#: ./templates/greyVision/wishlist/wishlistEdit.tpl:19
+msgid "Публичный"
+msgstr ""
+
+#: ./templates/greyVision/wishlist/wishlist.tpl:47
+#: ./templates/greyVision/wishlist/wishlistEdit.tpl:25
+msgid "Название списка:"
+msgstr ""
+
+#: ./templates/greyVision/wishlist/wishlist.tpl:53
+#: ./templates/greyVision/wishlist/wishlistEdit.tpl:31
+msgid "Описание:"
+msgstr ""
+
+#: ./templates/greyVision/wishlist/wishlistEdit.tpl:40
+msgid "Коментарий к:"
+msgstr ""
+
+#: ./templates/greyVision/wishlist/wishlistEdit.tpl:55
+msgid "Сохранить"
+msgstr ""
+
+#: ./templates/greyVision/wishlist/sendEmail.tpl:5
+msgid "Отправить другу"
+msgstr ""
+
+#: ./templates/greyVision/wishlist/sendEmail.tpl:13
+msgid "Email друга"
+msgstr ""
+
+#: ./templates/greyVision/wishlist/button.tpl:7
+msgid "В список желаний"
+msgstr ""
+
+#: ./templates/greyVision/wishlist/button.tpl:20
+msgid "В список желания"
+msgstr ""
+
+#: ./templates/greyVision/wishlist/button.tpl:22
+msgid "В списке желаний"
+msgstr ""
+
+#: ./templates/greyVision/wishlist/button.tpl:24
+msgid "В списке желания"
+msgstr ""
+
+#: ./templates/greyVision/wishlist/wishlist.tpl:20
+#: ./templates/greyVision/wishlist/wishlist.tpl:74
+msgid "Создать новый список"
+msgstr ""
+
+#: ./templates/greyVision/wishlist/wishlist.tpl:23
+msgid "В список избранных вы можете отложить понравившиеся товары, также показать список друзьям"
+msgstr ""
+
+#: ./templates/greyVision/wishlist/wishlist.tpl:27
+msgid "Создание списка избранных товаров"
+msgstr ""
+
+#: ./templates/greyVision/wishlist/wishlist.tpl:125
+msgid "Редактировать список"
+msgstr ""
+
+#: ./templates/greyVision/wishlist/wishlist.tpl:143
+msgid "Удалить список"
+msgstr ""
+
+#: ./templates/greyVision/wishlist/wishlist.tpl:163
+msgid "Поделится с другом"
+msgstr ""
+
+#: ./templates/greyVision/wishlist/wishlist.tpl:165
+msgid "Поделиться с другом"
+msgstr ""
+
+#: ./templates/greyVision/wishlist/wishPopup.tpl:5
+msgid "Выбор cписка  желаний"
+msgstr ""
+
+#: ./templates/greyVision/wishlist/wishPopup.tpl:42
+msgid "Создать список"
+msgstr ""
+
+#: ./templates/greyVision/wishlist/wishPopup.tpl:70
+msgid "Переместить в список"
+msgstr ""
+
+#: ./templates/greyVision/wishlist/wishPopup.tpl:70
+msgid "Добавить в список"
+msgstr ""
+
+#: ./templates/greyVision/user_toolbar.tpl:17
+msgid "Просмотренные товары"
+msgstr ""
+
+#: ./templates/greyVision/user_toolbar.tpl:26
+msgid "Свернуть"
+msgstr ""
+
+#: ./templates/greyVision/user_toolbar.tpl:30
+msgid "Развернуть"
+msgstr ""
+
+#: ./templates/greyVision/user_toolbar.tpl:39
+msgid "Наверх"
+msgstr ""
+
+#: ./templates/greyVision/smart_filter/main.tpl:4
+msgid "с фильтрами"
+msgstr ""
+
+#: ./templates/greyVision/smart_filter/main.tpl:33
+msgid "Сбросить фильтр"
+msgstr ""
+
+#: ./templates/greyVision/smart_filter/filter.tpl:9
+msgid "Джаваскрипт не включен"
+msgstr ""
+
+#: ./templates/greyVision/smart_filter/filter.tpl:20
+#: ./templates/greyVision/smart_filter/filter.tpl:23
+msgid "только цифры"
+msgstr ""
+
+#: ./templates/greyVision/smart_filter/filter.tpl:39
+msgid "Производитель"
+msgstr ""
+
+#: ./templates/greyVision/smart_filter/filter.tpl:119
+msgid "Не выбрано"
+msgstr ""
+
+#: ./templates/greyVision/smart_filter/filter.tpl:145
+msgid "Фильтровать"
+msgstr ""
+
+#: ./templates/greyVision/widgets/latest_news.tpl:6
+msgid "Новости"
+msgstr ""
+
+#: ./templates/greyVision/widgets/ViewedProducts.tpl:27
+msgid "Нет просмотренных товаров"
+msgstr ""
+
+#: ./templates/greyVision/widgets/path.tpl:7
+msgid "Главная"
+msgstr ""
+
+#: ./templates/greyVision/footer.tpl:6
+msgid "Сайт"
+msgstr ""
+
+#: ./templates/greyVision/footer.tpl:14
+msgid "Продукция"
+msgstr ""
+
+#: ./templates/greyVision/footer.tpl:25
+msgid "Пользователь"
+msgstr ""
+
+#: ./templates/greyVision/footer.tpl:48
+#: ./templates/greyVision/footer.tpl:48
+msgid "Список сравнений"
+msgstr ""
+
+#: ./templates/greyVision/footer.tpl:51
+#: ./templates/greyVision/footer.tpl:51
+msgid "Обратный звонок"
+msgstr ""
+
+#: ./templates/greyVision/footer.tpl:76
+msgid "Мобильная версия"
+msgstr ""
+
+#: ./templates/greyVision/main_demo.tpl:135
+msgid "Показать"
+msgstr ""
+
+#: ./templates/greyVision/main_demo.tpl:144
+msgid "Обзор продукта"
+msgstr ""
+
+#: ./templates/greyVision/main_demo.tpl:147
+msgid "Преимущества продукта"
+msgstr ""
+
+#: ./templates/greyVision/main_demo.tpl:150
+msgid "Шаблоны для Shop"
+msgstr ""
+
+#: ./templates/greyVision/patterns/widgets/view_product.tpl:27
+msgid "No viewed products"
+msgstr ""
+
+#: ./templates/greyVision/patterns/widgets/brands.tpl:39
+msgid "Show all"
+msgstr ""
+
+#: ./templates/greyVision/config.js.tpl:41
+msgid "Введите более"
+msgstr ""
+
+#: ./templates/greyVision/config.js.tpl:41
+msgid "символов"
+msgstr ""
+
+#: ./templates/greyVision/config.js.tpl:44
+msgid "В список желаний могут добавлять только авторизированные пользователи"
+msgstr ""
+
+#: ./templates/greyVision/config.js.tpl:46
+msgid "Выберите размер меньше или равно"
+msgstr ""
+
+#: ./templates/greyVision/config.js.tpl:46
+msgid "пикселей"
+msgstr ""
+
+#: ./templates/greyVision/config.js.tpl:48
+msgid "Введите название"
+msgstr ""
+
+#: ./templates/greyVision/config.js.tpl:57
+msgid "Количество:"
+msgstr ""
+
+#: ./templates/greyVision/config.js.tpl:58
+msgid "Комплектов:"
+msgstr ""
+
+#: ./templates/greyVision/config.js.tpl:59
+msgid "Код протекции"
+msgstr ""
+
+#: ./templates/greyVision/config.js.tpl:61
+msgid "набор"
+msgstr ""
+
+#: ./templates/greyVision/config.js.tpl:61
+msgid "набора"
+msgstr ""
+
+#: ./templates/greyVision/config.js.tpl:61
+msgid "наборов"
+msgstr ""
+
+#: ./templates/greyVision/offline.tpl:181
+msgid "Сайт в стадии строительства"
+msgstr ""
+
+#: ./templates/greyVision/offline.tpl:182
+msgid "Управление сайтом"
+msgstr ""
+
+#: ./templates/greyVision/offline.tpl:185
+msgid "Отправить сообщение"
+msgstr ""
+
+#: ./templates/greyVision/offline.tpl:194
+msgid "ООО «Сайт Имидж»"
+msgstr ""
+
+#: ./templates/greyVision/offline.tpl:195
+msgid "ImageCMS активно развивается в создание качественных интернет-магазинов"
+msgstr ""
+
+#: ./templates/greyVision/category_menu/error.tpl:13
+#: ./templates/greyVision/footer_category_menu/error.tpl:13
+#: ./templates/greyVision/left_menu/error.tpl:13
+msgid "Не обнаружен необходимый файл шаблона для меню "
+msgstr ""
+
+#: ./templates/greyVision/category_menu_second/level_2/container.tpl:6
+msgid "Hide"
+msgstr ""
+
+#: ./templates/greyVision/category_menu_second/level_2/container.tpl:6
+msgid "All categoties"
+msgstr ""
+
+#: ./templates/greyVision/login_popup.tpl:10
+msgid "Авторизация"
+msgstr ""
+
+#: ./templates/greyVision/top_menu/error.tpl:23
+msgid "Переустановите модуль меню"
+msgstr ""
+
+#: ./templates/greyVision/forgot_password.tpl:22
+msgid "Пароль будет выслан на e-mail "
+msgstr ""
+
+#: ./templates/greyVision/register.tpl:26
+#: ./templates/greyVision/register_popup.tpl:28
+msgid "Пароль:"
+msgstr ""
+
+#: ./templates/greyVision/register.tpl:33
+#: ./templates/greyVision/register_popup.tpl:35
+msgid "Повторите:"
+msgstr ""
+
+#: ./templates/greyVision/register.tpl:59
+#: ./templates/greyVision/register_popup.tpl:56
+msgid "Зарегистрироваться"
+msgstr ""
+
+#: ./templates/greyVision/register.tpl:61
+#: ./templates/greyVision/register_popup.tpl:58
+msgid "Я уже зарегистрирован"
+msgstr ""
+
+#: ./templates/greyVision/register.tpl:71
+#: ./templates/greyVision/register_popup.tpl:68
+msgid "Напомнить пароль"
+msgstr ""
+
+#: ./templates/greyVision/new_level/one_product_item.tpl:257
+#: ./templates/greyVision/new_level/one_product_item.tpl:258
+#: ./templates/greyVision/new_level/one_product_item.tpl:262
+msgid "В список сравнений"
+msgstr ""
+
+#: ./templates/greyVision/new_level/one_product_item.tpl:259
+msgid "В списке сравнений"
+msgstr ""
+
+#: ./templates/greyVision/new_level/one_product_item.tpl:320
+msgid "Удалить"
+msgstr ""
+
+#: ./templates/greyVision/new_level/one_product_item.tpl:328
+msgid "Переместить"
+msgstr ""
+
+#: ./templates/greyVision/header.tpl:72
+msgid "Найти"
+msgstr ""
+
+#: ./templates/greyVision/header.tpl:75
+msgid "Поиск по сайту"
+msgstr ""
+
+#: ./templates/greyVision/comments/comments_api.tpl:2
+msgid "Пожалуйста, войдите для комментирования"
+msgstr ""
+
+#: ./templates/greyVision/comments/comments_api.tpl:9
+msgid "Отзывы покупателей"
+msgstr ""
+
+#: ./templates/greyVision/comments/comments_api.tpl:9
+msgid "Оставить свой отзыв"
+msgstr ""
+
+#: ./templates/greyVision/comments/comments_api.tpl:28
+msgid "Оценка товара"
+msgstr ""
+
+#: ./templates/greyVision/comments/comments_api.tpl:37
+msgid "Отзыв полезен?"
+msgstr ""
+
+#: ./templates/greyVision/comments/comments_api.tpl:41
+#: ./templates/greyVision/comments/comments_api.tpl:57
+msgid "Да"
+msgstr ""
+
+#: ./templates/greyVision/comments/comments_api.tpl:47
+#: ./templates/greyVision/comments/comments_api.tpl:63
+msgid "Нет"
+msgstr ""
+
+#: ./templates/greyVision/comments/comments_api.tpl:73
+msgid "Ответить"
+msgstr ""
+
+#: ./templates/greyVision/comments/comments_api.tpl:110
+#: ./templates/greyVision/comments/comments_api.tpl:118
+msgid "Смотреть все ответы"
+msgstr ""
+
+#: ./templates/greyVision/comments/comments_api.tpl:127
+msgid "Оставить комментарий"
+msgstr ""
+
+#: ./templates/greyVision/comments/comments_api.tpl:143
+#: ./templates/greyVision/comments/comments_api.tpl:219
+msgid "Ваш email:"
+msgstr ""
+
+#: ./templates/greyVision/comments/comments_api.tpl:158
+msgid "Ваша оценка:"
+msgstr ""
+
+#: ./templates/greyVision/comments/comments_api.tpl:171
+#: ./templates/greyVision/comments/comments_api.tpl:235
+msgid "Код защиты"
+msgstr ""
+
+#: ./templates/greyVision/comments/comments_api.tpl:186
+#: ./templates/greyVision/comments/comments_api.tpl:250
+msgid "Комментировать"
+msgstr ""
+
+#: ./templates/greyVision/comments/comments_api.tpl:201
+msgid "Ваш ответ"
+msgstr ""
+
+#: ./templates/greyVision/comments/comments_api.tpl:227
+msgid "Текст ответа:"
+msgstr ""
+
+#: ./templates/greyVision/comments/comments_api.tpl:263
+msgid "Ваш комментарий будет опубликован после модерации администратором"
+msgstr ""
+
+#: ./templates/greyVision/star_rating/star_rating.tpl:9
+#: ./templates/greyVision/star_rating/star_rating.tpl:18
+msgid "Leav"
+msgstr ""
+
+#: ./templates/greyVision/star_rating/star_rating.tpl:9
+#: ./templates/greyVision/star_rating/star_rating.tpl:19
+msgid "people(s)"
+msgstr ""
