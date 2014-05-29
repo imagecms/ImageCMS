@@ -1,16 +1,17 @@
 {if count($products) > 0}
-    <div class="vertical-carousel carousel-category-popular">
+    <div class="horizontal-carousel">
         <section class="special-proposition">
             <div class="frame-title">
                 <div class="title">
-                    <span class="text-el text-proposition-v" title="{$title}">{$title}</span>
+                    <span class="text-el text-proposition-h">{$title}</span>
                 </div>
             </div>
             <div class="big-container">
-                <div class="carousel-js-css items-carousel">
+                <div class="items-carousel carousel-js-css">
+                    {/*frame-scroll-pane || carousel-js-css*/}
                     <div class="content-carousel container">
-                        <ul class="items items-default items-v-carousel">
-                            {$CI->load->module('new_level')->OPI($products, array('opi_widget'=>true, 'opi_vertical' => true, 'opi_defaultItem'=> true))}
+                        <ul class="items items-catalog items-h-carousel">
+                            {$CI->load->module('new_level')->OPI($products, array('opi_widget'=>true))}
                         </ul>
                     </div>
                     <div class="group-button-carousel">
