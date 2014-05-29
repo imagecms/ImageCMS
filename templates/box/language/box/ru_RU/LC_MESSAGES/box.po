@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-29 06:40+0400\n"
-"PO-Revision-Date: 2014-05-29 06:40+0400\n"
+"POT-Creation-Date: 2014-05-29 07:41+0400\n"
+"PO-Revision-Date: 2014-05-29 07:41+0400\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -17,6 +17,80 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./templates/box/components/TColorScheme/assets/admin/main.tpl:6
+msgid "Colour scheme"
+msgstr ""
+
+#: ./templates/box/components/TColorScheme/assets/admin/main.tpl:21
+#: ./templates/box/components/TMenuColumn/assets/admin/main.tpl:103
+#: ./templates/box/components/TProperties/assets/admin/main.tpl:4
+msgid "Save"
+msgstr ""
+
+#: ./templates/box/components/TColorScheme/TColorScheme.php:94
+msgid "Color scheme"
+msgstr ""
+
+#: ./templates/box/components/TMenuColumn/assets/admin/main.tpl:8
+msgid "Category"
+msgstr ""
+
+#: ./templates/box/components/TMenuColumn/assets/admin/main.tpl:9
+msgid "Show in column"
+msgstr ""
+
+#: ./templates/box/components/TMenuColumn/assets/admin/main.tpl:14
+msgid "Open second level"
+msgstr ""
+
+#: ./templates/box/components/TMenuColumn/assets/admin/main.tpl:15
+msgid "Open all levels"
+msgstr ""
+
+#: ./templates/box/components/TMenuColumn/assets/admin/main.tpl:25
+#: ./templates/box/components/TMenuColumn/assets/admin/main.tpl:51
+msgid "Toggle this category"
+msgstr ""
+
+#: ./templates/box/components/TMenuColumn/assets/admin/main.tpl:28
+#: ./templates/box/components/TMenuColumn/assets/admin/main.tpl:54
+msgid "Expand Category"
+msgstr ""
+
+#: ./templates/box/components/TMenuColumn/assets/admin/main.tpl:32
+#: ./templates/box/components/TMenuColumn/assets/admin/main.tpl:58
+#: ./templates/box/components/TMenuColumn/assets/admin/main.tpl:78
+msgid "Editing category"
+msgstr ""
+
+#: ./templates/box/components/TMenuColumn/TMenuColumn.php:163
+msgid "Menu Column"
+msgstr ""
+
+#: ./templates/box/components/TOpi/TOpi.php:45
+msgid "One Product Item component"
+msgstr ""
+
+#: ./templates/box/components/TProperties/assets/admin/main.tpl:2
+msgid "Start typing property name here"
+msgstr ""
+
+#: ./templates/box/components/TProperties/assets/admin/main.tpl:13
+msgid "Id"
+msgstr ""
+
+#: ./templates/box/components/TProperties/assets/admin/main.tpl:16
+msgid "Name"
+msgstr ""
+
+#: ./templates/box/components/TProperties/assets/admin/main.tpl:19
+msgid "Type"
+msgstr ""
+
+#: ./templates/box/components/TProperties/TProperties.php:123
+msgid "Properties"
+msgstr ""
 
 #: ./templates/box/404.tpl:7
 msgid "404 / Страница не найдена"
@@ -37,7 +111,7 @@ msgid "Нет фото"
 msgstr ""
 
 #: ./templates/box/comments/comments_api.tpl:9
-#: ./templates/box/new_level/one_product_item.tpl:97
+#: ./templates/box/components/TOpi/assets/one_product_item.tpl:97
 #: ./templates/box/shop/product.tpl:140
 msgid "Отзывы"
 msgstr ""
@@ -88,15 +162,15 @@ msgstr ""
 msgid "Для новых покупателей нашего магазина"
 msgstr ""
 
-#: ./templates/box/new_level/one_product_item.tpl:218
+#: ./templates/box/components/TOpi/assets/one_product_item.tpl:218
 msgid "Уже в корзине"
 msgstr ""
 
-#: ./templates/box/new_level/one_product_item.tpl:231
+#: ./templates/box/components/TOpi/assets/one_product_item.tpl:231
 msgid "Добавить в корзину"
 msgstr ""
 
-#: ./templates/box/new_level/one_product_item.tpl:267
+#: ./templates/box/components/TOpi/assets/one_product_item.tpl:267
 msgid "Узнать о наличии"
 msgstr ""
 
@@ -391,7 +465,7 @@ msgstr ""
 msgid "Корзина пуста"
 msgstr ""
 
-#: ./templates/box/config.js.tpl:60
+#: ./templates/box/config.js.tpl:67
 #: ./templates/box/shop/brand.tpl:33
 #: ./templates/box/shop/cart_data.tpl:22
 #: ./templates/box/shop/category.tpl:30
@@ -400,7 +474,7 @@ msgstr ""
 msgid "товар"
 msgstr ""
 
-#: ./templates/box/config.js.tpl:60
+#: ./templates/box/config.js.tpl:67
 #: ./templates/box/shop/brand.tpl:33
 #: ./templates/box/shop/cart_data.tpl:22
 #: ./templates/box/shop/category.tpl:30
@@ -409,7 +483,7 @@ msgstr ""
 msgid "товара"
 msgstr ""
 
-#: ./templates/box/config.js.tpl:60
+#: ./templates/box/config.js.tpl:67
 #: ./templates/box/shop/brand.tpl:33
 #: ./templates/box/shop/cart_data.tpl:22
 #: ./templates/box/shop/category.tpl:30
@@ -504,8 +578,8 @@ msgstr ""
 msgid "Не оплачен"
 msgstr ""
 
-#: ./templates/box/new_level/one_product_item.tpl:68
-#: ./templates/box/new_level/one_product_item.tpl:107
+#: ./templates/box/components/TOpi/assets/one_product_item.tpl:68
+#: ./templates/box/components/TOpi/assets/one_product_item.tpl:107
 #: ./templates/box/shop/cart_order.tpl:25
 #: ./templates/box/shop/cart_order.tpl:97
 #: ./templates/box/shop/cart_popup.tpl:32
@@ -516,7 +590,7 @@ msgstr ""
 msgid "Вариант"
 msgstr ""
 
-#: ./templates/box/new_level/one_product_item.tpl:59
+#: ./templates/box/components/TOpi/assets/one_product_item.tpl:59
 #: ./templates/box/shop/cart_order.tpl:30
 #: ./templates/box/shop/cart_order.tpl:102
 #: ./templates/box/shop/order_view.tpl:183
@@ -524,17 +598,17 @@ msgstr ""
 msgid "Артикул"
 msgstr ""
 
-#: ./templates/box/config.js.tpl:54
+#: ./templates/box/config.js.tpl:61
 msgid "Кол-во"
 msgstr ""
 
-#: ./templates/box/config.js.tpl:53
+#: ./templates/box/config.js.tpl:60
 #: ./templates/box/shop/order_view.tpl:209
 #: ./templates/box/shop/order_view.tpl:337
 msgid "шт"
 msgstr ""
 
-#: ./templates/box/config.js.tpl:55
+#: ./templates/box/config.js.tpl:62
 #: ./templates/box/paymentSystem/QIWI.tpl:22
 msgid "Сумма"
 msgstr ""
@@ -733,7 +807,7 @@ msgstr ""
 msgid "Список"
 msgstr ""
 
-#: ./templates/box/new_level/one_product_item.tpl:297
+#: ./templates/box/components/TOpi/assets/one_product_item.tpl:297
 #: ./templates/box/shop/product.tpl:333
 #: ./templates/box/shop/report_appearance.tpl:4
 msgid "Сообщить о появлении"
@@ -754,7 +828,7 @@ msgstr ""
 msgid "Отправить"
 msgstr ""
 
-#: ./templates/box/new_level/one_product_item.tpl:79
+#: ./templates/box/components/TOpi/assets/one_product_item.tpl:79
 #: ./templates/box/shop/product.tpl:55
 msgid "Бренд"
 msgstr ""
@@ -771,21 +845,21 @@ msgstr ""
 msgid "Только цифры"
 msgstr ""
 
-#: ./templates/box/config.js.tpl:52
-#: ./templates/box/new_level/one_product_item.tpl:221
+#: ./templates/box/components/TOpi/assets/one_product_item.tpl:221
+#: ./templates/box/config.js.tpl:59
 #: ./templates/box/shop/product.tpl:249
 #: ./templates/box/shop/product.tpl:535
 msgid "В корзине"
 msgstr ""
 
-#: ./templates/box/config.js.tpl:56
-#: ./templates/box/new_level/one_product_item.tpl:256
+#: ./templates/box/components/TOpi/assets/one_product_item.tpl:256
+#: ./templates/box/config.js.tpl:63
 #: ./templates/box/shop/product.tpl:547
 msgid "Купить"
 msgstr ""
 
-#: ./templates/box/new_level/one_product_item.tpl:149
-#: ./templates/box/new_level/similar.tpl:52
+#: ./templates/box/components/TOpi/assets/one_product_item.tpl:149
+#: ./templates/box/components/TOpi/assets/similar.tpl:52
 #: ./templates/box/shop/product.tpl:295
 msgid "Нет в наличии"
 msgstr ""
@@ -800,17 +874,17 @@ msgstr ""
 msgid "В сравнении"
 msgstr ""
 
-#: ./templates/box/config.js.tpl:62
+#: ./templates/box/config.js.tpl:69
 #: ./templates/box/shop/product.tpl:599
 msgid "отзыв"
 msgstr ""
 
-#: ./templates/box/config.js.tpl:62
+#: ./templates/box/config.js.tpl:69
 #: ./templates/box/shop/product.tpl:599
 msgid "отзыва"
 msgstr ""
 
-#: ./templates/box/config.js.tpl:62
+#: ./templates/box/config.js.tpl:69
 #: ./templates/box/shop/product.tpl:599
 msgid "отзывов"
 msgstr ""
@@ -1213,51 +1287,51 @@ msgstr ""
 msgid "Show all"
 msgstr ""
 
-#: ./templates/box/config.js.tpl:41
+#: ./templates/box/config.js.tpl:48
 msgid "Введите более"
 msgstr ""
 
-#: ./templates/box/config.js.tpl:41
+#: ./templates/box/config.js.tpl:48
 msgid "символов"
 msgstr ""
 
-#: ./templates/box/config.js.tpl:44
+#: ./templates/box/config.js.tpl:51
 msgid "В список желаний могут добавлять только авторизированные пользователи"
 msgstr ""
 
-#: ./templates/box/config.js.tpl:46
+#: ./templates/box/config.js.tpl:53
 msgid "Выберите размер меньше или равно"
 msgstr ""
 
-#: ./templates/box/config.js.tpl:46
+#: ./templates/box/config.js.tpl:53
 msgid "пикселей"
 msgstr ""
 
-#: ./templates/box/config.js.tpl:48
+#: ./templates/box/config.js.tpl:55
 msgid "Введите название"
 msgstr ""
 
-#: ./templates/box/config.js.tpl:57
+#: ./templates/box/config.js.tpl:64
 msgid "Количество:"
 msgstr ""
 
-#: ./templates/box/config.js.tpl:58
+#: ./templates/box/config.js.tpl:65
 msgid "Комплектов:"
 msgstr ""
 
-#: ./templates/box/config.js.tpl:59
+#: ./templates/box/config.js.tpl:66
 msgid "Код протекции"
 msgstr ""
 
-#: ./templates/box/config.js.tpl:61
+#: ./templates/box/config.js.tpl:68
 msgid "набор"
 msgstr ""
 
-#: ./templates/box/config.js.tpl:61
+#: ./templates/box/config.js.tpl:68
 msgid "набора"
 msgstr ""
 
-#: ./templates/box/config.js.tpl:61
+#: ./templates/box/config.js.tpl:68
 msgid "наборов"
 msgstr ""
 
@@ -1334,21 +1408,21 @@ msgstr ""
 msgid "Напомнить пароль"
 msgstr ""
 
-#: ./templates/box/new_level/one_product_item.tpl:314
-#: ./templates/box/new_level/one_product_item.tpl:316
-#: ./templates/box/new_level/one_product_item.tpl:319
+#: ./templates/box/components/TOpi/assets/one_product_item.tpl:314
+#: ./templates/box/components/TOpi/assets/one_product_item.tpl:316
+#: ./templates/box/components/TOpi/assets/one_product_item.tpl:319
 msgid "В список сравнений"
 msgstr ""
 
-#: ./templates/box/new_level/one_product_item.tpl:315
+#: ./templates/box/components/TOpi/assets/one_product_item.tpl:315
 msgid "В списке сравнений"
 msgstr ""
 
-#: ./templates/box/new_level/one_product_item.tpl:370
+#: ./templates/box/components/TOpi/assets/one_product_item.tpl:370
 msgid "Удалить"
 msgstr ""
 
-#: ./templates/box/new_level/one_product_item.tpl:378
+#: ./templates/box/components/TOpi/assets/one_product_item.tpl:378
 msgid "Переместить"
 msgstr ""
 
