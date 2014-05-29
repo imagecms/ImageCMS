@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-28 05:42+0300\n"
-"PO-Revision-Date: 2014-05-28 05:42+0300\n"
+"POT-Creation-Date: 2014-05-29 11:00+0300\n"
+"PO-Revision-Date: 2014-05-29 11:00+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -4772,7 +4772,7 @@ msgstr "Редактирование дополнительного поля"
 
 #: ./application/modules/shop/admin/templates/categories/_listItem.tpl:34
 msgid "Edit category"
-msgstr "Редактирование категории"
+msgstr "Редактировать категорию"
 
 #: ./application/modules/shop/admin/templates/categories/edit.tpl:5
 msgid "Edit category ID"
@@ -7417,3 +7417,7 @@ msgstr "Создать тему"
 #: ./templates/administrator/settings_site.tpl:97
 msgid "Close or open the site for indexing robots"
 msgstr "Закрыть или открыть сайт для индексации роботами"
+
+#: tmpLink
+msgid "Show on site"
+msgstr "Просмотр на сайте"
