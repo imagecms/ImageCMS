@@ -1037,6 +1037,7 @@ function getCookie(c_name)
                             otherPage = settings.otherPage,
                             classRemove = settings.classRemove,
                             vertical = settings.vertical;
+
                     if (menuCache && !refresh) {
                         menu.find('a').each(function() {//if start without cache and remove active item
                             var $this = $(this);
@@ -1156,12 +1157,16 @@ function getCookie(c_name)
                             methods._position(menuW, $thisL, dropW2, $thisDrop, $thisW, countColumn, sub2Frame, direction);
                         }
                         $this.data('kk', 0);
-                    }).css('height', sH);
+                    });
+                    if (!vertical)
+                        menuItem.css('height', sH);
                     if (!vertical)
                         menuItem.find('.helper:first').css('height', sH);
                     menu.removeClass(classRemove);
                     var hoverTO = '';
-                    function closeMenu() {
+                    function closeMenu(el) {
+                        if (el && $.existsN(el.parents(item)))
+                            return false;
                         var $thisDrop = menu.find(drop);
                         if ($thisDrop.length !== 0)
                             menu.removeClass(hM);
@@ -1177,15 +1182,18 @@ function getCookie(c_name)
                         evLF = 'click';
                     if (evLS === 'toggle')
                         evLS = 'click';
-                    menuItem.off(evLF)[evLF](
+
+                    menuItem.off('click').off('hover')[evLF](
                             function(e) {
                                 var $this = $(this);
+                                if (evLF === 'click')
+                                    e.stopPropagation();
                                 if ($this.data("show") === "no" || !$this.data("show")) {
                                     $this.data("show", "yes");
                                     clearTimeout(hoverTO);
-                                    closeMenu();
+                                    closeMenu($this);
                                     var $thisI = $this.index(),
-                                            $thisDrop = $this.find(drop);
+                                            $thisDrop = $this.find(drop).first();
                                     $this.addClass(hM);
                                     if ($thisI === 0)
                                         $this.addClass('firstH');
@@ -1194,8 +1202,6 @@ function getCookie(c_name)
                                     if ($(e.relatedTarget).is(menuItem) || $.existsN($(e.relatedTarget).parents(menuItem)) || $this.data('kk') === 0)
                                         k[$thisI] = true;
                                     if (k[$thisI]) {
-                                        if (evLF === 'click')
-                                            e.stopPropagation();
                                         hoverTO = setTimeout(function() {
                                             $thisDrop[effOn](durationOn, function(e) {
                                                 $this.data('kk', $this.data('kk') + 1);
@@ -1208,7 +1214,7 @@ function getCookie(c_name)
                                                 if (sub2Frame) {
                                                     var listDrop = $thisDrop.children();
                                                     $thisDrop.find(sub2Frame).addClass('is-side');
-                                                    listDrop.children().off(evLS)[evLS](function(e) {
+                                                    listDrop.children().off('click').off('hover')[evLS](function(e) {
                                                         var $this = $(this);
                                                         if (evLS === 'click')
                                                             e.stopPropagation();
@@ -1349,8 +1355,8 @@ function getCookie(c_name)
             });
             return this;
         },
-        refresh: function() {
-            methods.init.call(this, $.extend({}, this.data('options'), {
+        refresh: function(optionsMenu) {
+            methods.init.call(this, $.extend({}, optionsMenu ? optionsMenu : this.data('options'), {
                 refresh: true
             }));
             return this;
@@ -3900,10 +3906,6 @@ var optionsMenu = {
     duration: 200,
     drop: '.frame-item-menu > .frame-drop-menu',
     //direction: 'left', //when menu place left and drop go to right (if vertical menu)
-    countColumn: 5, //if not drop-side
-
-    sub2Frame: '.frame-l2', //if drop-side
-    dropWidth: 475, //if not define than will be actual width needs when drop-side
 
     //if need column partition level 2
     columnPart: true,
@@ -3933,6 +3935,12 @@ var optionsMenu = {
 
     vertical: false
 };
+if (typeMenu === 'col')
+    optionsMenu.countColumn = 5; //if not drop-side
+if (typeMenu === 'row') {
+    optionsMenu.sub2Frame = '.frame-l2'; //if drop-side
+    optionsMenu.dropWidth = 475; //if not define than will be actual width needs when drop-side
+}
 var scrollPane = {
     animateScroll: true,
     showArrows: true,
@@ -4006,7 +4014,7 @@ var imageCmsApiDefaults = {
         form.find('[for="' + name + '"]').remove();
         return '<label for="' + name + '" class="for_validations ' + classN + '">' + text + '</label>';
     }
-// callback (callback accept (msg, status, form, DS)) where DS - imageCmsApiDefaults and "any other" ex. report_appereance has drop:".drop-report" if callback return true form hide 
+// callback (callback accept (msg, status, form, DS)) where DS - imageCmsApiDefaults and "any other" ex. report_appereance has drop:".drop-report" if callback return true form hide
 // any other
 };
 var icons = {

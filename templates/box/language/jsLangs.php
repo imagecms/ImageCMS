@@ -1,4 +1,4 @@
-<?php
+ <?php
 /*
 /var/www/image.loc/templates/newLevel/js/jquery.equalhorizcell.min.js
 /var/www/image.loc/templates/newLevel/js/css3-mediaqueries.min.js

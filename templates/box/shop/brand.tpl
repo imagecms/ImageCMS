@@ -40,7 +40,7 @@
                     </div>
                 </div>
             {/if}
-            
+
             <!--Start. Banners block-->
             {$CI->load->module('banners')->render($model->getId())}
             <!--End. Banners-->
@@ -72,7 +72,7 @@
 
             {if $totalProducts > 0}
                 <ul class="animateListItems items items-catalog {if $_COOKIE['listtable'] == 'table' || $_COOKIE['listtable'] == NULL} table{else:} list{/if}" id="items-catalog-main">
-                    {$CI->load->module('new_level')->OPI($products, array('opi_wishlist'=>true))}
+                    {getOPI($products, array('opi_wishlist'=>true))}
                 </ul>
             {/if}
             {$pagination}
@@ -102,14 +102,14 @@
                                                 <span>{echo $subItem['name']}</span>
                                             {else:}
                                             <li>
-                                                <a rel="nofollow" data-id="{echo $subItem['id']}" 
+                                                <a rel="nofollow" data-id="{echo $subItem['id']}"
                                                    {if $_SERVER['QUERY_STRING']}
                                                         href="{shop_url('brand/'. strtolower($model->getUrl()).'/'.$subItem['id'].'?'.$_SERVER['QUERY_STRING'])}"
                                                    {else:}
                                                         href="{shop_url('brand/'. strtolower($model->getUrl()).'/'.$subItem['id'])}"
                                                    {/if}
                                                  >
-                                                        <span class="text-el">{echo $subItem['name']}</span> 
+                                                        <span class="text-el">{echo $subItem['name']}</span>
                                                         <span class="count">({echo $subItem['count']})</span>
                                                 </a>
                                             {/if}
