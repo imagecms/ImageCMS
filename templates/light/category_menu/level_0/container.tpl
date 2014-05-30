@@ -1,6 +1,10 @@
 {$openLevels = getOpenLevels()}
-{if $openLevels == 'all'}
-    {$menuClass = 'menu-col-category'}
+{if $openLevels}
+    {if $openLevels == 'all'}
+        {$menuClass = 'menu-col-category'}
+    {else:}
+        {$menuClass = 'menu-row-category'}
+    {/if}
 {else:}
     {$menuClass = 'menu-row-category'}
 {/if}
