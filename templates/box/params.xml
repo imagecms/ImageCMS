@@ -163,14 +163,14 @@
 
         <dependence entityName="widget" name="popular_products" type="add" widgetType="module" module="shop" method="products" description="Популярные товары">
             <settings>
-                <productsType>popular,hot</productsType>
+                <productsType>popular,hit</productsType>
                 <title>Новинки</title>
                 <productsCount>10</productsCount>
                 <subpath>widgets</subpath>
             </settings>
         </dependence>
 
-        <dependence entityName="widget" name="popular_products" type="add" widgetType="module" module="shop" method="products" description="Популярные товары">
+        <dependence entityName="widget" name="new_products" type="add" widgetType="module" module="shop" method="products" description="Новые товары">
             <settings>
                 <productsType>popular,hot</productsType>
                 <title>Новинки</title>
@@ -194,13 +194,6 @@
                 <title>Популярная категория товара</title>
                 <productsCount>10</productsCount>
                 <subpath>widgets</subpath>
-            </settings>
-        </dependence>
-
-        <dependence entityName="widget" name="recent_product_comments" type="add" widgetType="module" module="comments" method="recent_product_comments" description="Последние комментарии продукта">
-            <settings>
-                <comments_count>5</comments_count>
-                <symbols_count>0</symbols_count>
             </settings>
         </dependence>
 
