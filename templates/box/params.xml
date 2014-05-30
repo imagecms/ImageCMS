@@ -164,7 +164,7 @@
         <dependence entityName="widget" name="popular_products" type="add" widgetType="module" module="shop" method="products" description="Популярные товары">
             <settings>
                 <productsType>popular,hit</productsType>
-                <title>Новинки</title>
+                <title>Популярные товары</title>
                 <productsCount>10</productsCount>
                 <subpath>widgets</subpath>
             </settings>
@@ -216,6 +216,7 @@
             <settings>
                 <title>Похожие товары</title>
                 <productsCount>5</productsCount>
+                <subpath>widgets</subpath>
             </settings>
         </dependence>
 
@@ -223,6 +224,7 @@
             <settings>
                 <title>ViewedProducts</title>
                 <productsCount>10</productsCount>
+                <subpath>widgets</subpath>
             </settings>
         </dependence>
 
@@ -413,40 +415,40 @@
                 <param key="42" value="scroll" />
                 <param key="46" value="scroll" />
                 <param key="50" value="scroll" />
-                <param key="51" value="scroll" />
-                <param key="52" value="scroll" />
-                <param key="53" value="scroll" />
-                <param key="57" value="scroll" />
-                <param key="58" value="scroll" />
-                <param key="59" value="scroll" />
-                <param key="60" value="scroll" />
-                <param key="62" value="scroll" />
-                <param key="64" value="scroll" />
-                <param key="66" value="scroll" />
-                <param key="67" value="scroll" />
-                <param key="68" value="scroll" />
-                <param key="70" value="scroll" />
-                <param key="73" value="scroll" />
-                <param key="74" value="scroll" />
-                <param key="75" value="scroll" />
-                <param key="76" value="scroll" />
-                <param key="77" value="scroll" />
-                <param key="78" value="scroll" />
-                <param key="79" value="scroll" />
-                <param key="84" value="scroll" />
-                <param key="86" value="scroll" />
-                <param key="89" value="scroll" />
-                <param key="90" value="scroll" />
-                <param key="91" value="scroll" />
-                <param key="92" value="scroll" />
-                <param key="93" value="scroll" />
-                <param key="95" value="scroll" />
-                <param key="96" value="scroll" />
-                <param key="97" value="scroll" />
-                <param key="98" value="scroll" />
-                <param key="99" value="scroll" />
-                <param key="100" value="scroll" />
-                <param key="101" value="scroll" />
+                <param key="51" value="dropDown" />
+                <param key="52" value="dropDown" />
+                <param key="53" value="dropDown" />
+                <param key="57" value="dropDown" />
+                <param key="58" value="dropDown" />
+                <param key="59" value="dropDown" />
+                <param key="60" value="dropDown" />
+                <param key="62" value="dropDown" />
+                <param key="64" value="dropDown" />
+                <param key="66" value="dropDown" />
+                <param key="67" value="dropDown" />
+                <param key="68" value="dropDown" />
+                <param key="70" value="dropDown" />
+                <param key="73" value="dropDown" />
+                <param key="74" value="dropDown" />
+                <param key="75" value="dropDown" />
+                <param key="76" value="dropDown" />
+                <param key="77" value="scroll,dropDown" />
+                <param key="78" value="scroll,dropDown" />
+                <param key="79" value="scroll,dropDown" />
+                <param key="84" value="scroll,dropDown" />
+                <param key="86" value="scroll,dropDown" />
+                <param key="89" value="scroll,dropDown" />
+                <param key="90" value="scroll,dropDown" />
+                <param key="91" value="scroll,dropDown" />
+                <param key="92" value="scroll,dropDown" />
+                <param key="93" value="scroll,dropDown" />
+                <param key="95" value="scroll,dropDown" />
+                <param key="96" value="scroll,dropDown" />
+                <param key="97" value="scroll,dropDown" />
+                <param key="98" value="scroll,dropDown" />
+                <param key="99" value="scroll,dropDown" />
+                <param key="100" value="scroll,dropDown" />
+                <param key="101" value="scroll,dropDown" />
             </params>
         </component>
 
