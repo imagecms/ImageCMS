@@ -160,7 +160,7 @@ class TMenuColumn extends \template_manager\classes\TComponent {
      * @return string
      */
     public function getLabel() {
-        return lang('Menu Column', 'newLevel_TM');
+        return lang('Menu Column', 'boxGreen');
     }
 
     /**
