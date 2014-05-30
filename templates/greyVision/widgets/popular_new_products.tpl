@@ -9,7 +9,7 @@
     <section class="special-proposition">
         <div class="container">
             <ul class="items items-default items-product items-default m-h_268">
-                {$CI->load->module('new_level')->OPI($products, array('opi_widget'=>true), 'one_product_item_mini')}
+                {getOPI($products, array('opi_widget'=>true), 'one_product_item_mini')}
             </ul>
             {if count($products) > 6}
                 <div class="btn-additional-s_c2">

@@ -7,8 +7,8 @@ $(document).ready(function() {
                 login: $("#login").val(),
                 password: $("#pass").val(),
                 email: $("#email").val(),
-                contactfio: 'qweew',
-                contactphone: '879465465',
+                contactfio: $("#name").val(),
+                contactphone: $("#phone").val(), 
                 locale: 'en',
                 ref: 1 // partner id
             },
