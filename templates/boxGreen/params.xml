@@ -14,453 +14,394 @@
                     <div class="container">
                         <ul class="items items-benefits">
                             <li>
-                                <div class="frame-icon-benefit">
-                                    <span class="helper">&#160;</span>
-                                    <span class="icon-benefits_1">&#160;</span>
+                                <div class="frame-icon-benefit"><span class="helper">&#160;</span> <span class="icon-benefits_1">&#160;</span></div>
+                                <div class="frame-description-benefit f-s_0"><span class="helper">&#160;</span>
+                                <div>
+                                    <div class="title">Быстрая доставка</div>
+                                    <p>Кратчайшие сроки доставки</p>
                                 </div>
-                                <div class="frame-description-benefit f-s_0">
-                                    <span class="helper">&#160;</span>
-                                    <div>
-                                        <div class="title">Быстрая доставка</div>
-                                        <p>Кратчайшие сроки доставки</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="frame-icon-benefit">
-                                    <span class="helper">&#160;</span>
-                                    <span class="icon-benefits_2">&#160;</span>
-                                </div>
-                                <div class="frame-description-benefit f-s_0">
-                                    <span class="helper">&#160;</span>
-                                    <div>
-                                        <div class="title">Гибкая система скидок</div>
-                                        <p>Для постоянных покупателей</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="frame-icon-benefit">
-                                    <span class="helper">&#160;</span>
-                                    <span class="icon-benefits_3">&#160;</span>
-                                </div>
-                                <div class="frame-description-benefit f-s_0">
-                                    <span class="helper">&#160;</span>
-                                    <div>
-                                        <div class="title">Полезная консультация</div>
-                                        <p>Выбор оптимальных решений</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="frame-icon-benefit">
-                                    <span class="helper">&#160;</span>
-                                    <span class="icon-benefits_4">&#160;</span>
-                                </div>
-                                <div class="frame-description-benefit f-s_0">
-                                    <span class="helper">&#160;</span>
-                                    <div>
-                                        <div class="title">Качественный сервис</div>
-                                        <p>Быстрая обработка заказа</p>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="frame-icon-benefit"><span class="helper">&#160;</span> <span class="icon-benefits_2">&#160;</span></div>
+                            <div class="frame-description-benefit f-s_0"><span class="helper">&#160;</span>
+                            <div>
+                                <div class="title">Гибкая система скидок</div>
+                                <p>Для постоянных покупателей</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="frame-icon-benefit"><span class="helper">&#160;</span> <span class="icon-benefits_3">&#160;</span></div>
+                        <div class="frame-description-benefit f-s_0"><span class="helper">&#160;</span>
+                        <div>
+                            <div class="title">Полезная консультация</div>
+                            <p>Выбор оптимальных решений</p>
+                        </div>
                     </div>
-                </data>
-            </widget_i18n>
-        </dependence>
-
-        <dependence entityName="widget" name="payments_delivery_methods_info" type="add" widgetType="html">
-            <widget_i18n locale="ru">
-                <data>
-                    <div class="frame-delivery-payment">
-                        <dl>
-                            <dt class="title">Доставка и оплата</dt>
-                            <dd class="frame-list-delivery">
-                                <ul class="list-delivery">
-                                    <li class="f-s_0">
-                                        <span class="frame-ico">
-                                            <span class="icon_d_p1">&#160;</span>
-                                        </span>
-                                        <div class="descr">
-                                            <span class="text-el">Самовывоз</span>
-                                            <span class="d_b s-t">Со склада магазина</span>
-                                        </div>
-                                    </li>
-                                    <li class="f-s_0">
-                                        <span class="frame-ico">
-                                            <span class="icon_d_p2">&#160;</span>
-                                        </span>
-                                        <div class="descr">
-                                            <span class="text-el">Курьерской службой </span>
-                                            <span class="d_b s-t">Новая почта и другие</span>
-                                        </div>
-                                    </li>
-                                    <li class="f-s_0">
-                                        <span class="frame-ico">
-                                            <span class="icon_d_p3">&#160;</span>
-                                        </span>
-                                        <div class="descr">
-                                            <span class="text-el">Оплата наличными</span>
-                                            <span class="d_b s-t">Курьеру при получении</span>
-                                        </div>
-                                    </li>
-                                    <li class="f-s_0">
-                                        <span class="frame-ico">
-                                            <span class="icon_d_p4">&#160;</span>
-                                        </span>
-                                        <div class="descr">
-                                            <span class="text-el">Безналичный платеж</span>
-                                            <span class="d_b s-t">Master Card, Visa; Приват 24</span>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </dd>
-                        </dl>
+                </li>
+                <li>
+                    <div class="frame-icon-benefit"><span class="helper">&#160;</span> <span class="icon-benefits_4">&#160;</span></div>
+                    <div class="frame-description-benefit f-s_0"><span class="helper">&#160;</span>
+                    <div>
+                        <div class="title">Качественный сервис</div>
+                        <p>Быстрая обработка заказа</p>
                     </div>
-                    <div class="frame-delivery-payment">
-                        <dl>
-                            <dt class="title">Нужна помощь?</dt>
-                            <dd class="frame-list-delivery">
-                                <span class="s-t">Наши менеджеры ответят на ваши вопросы и помогут с выбором:</span>
-                                <ul class="list-style-1 list-phone-number">
-                                    <li class="f-s_15">(093) <span class="d_n">&#8722;</span>169-36-98</li>
-                                    <li class="f-s_15">(093) <span class="d_n">&#8722;</span>169-36-98</li>
-                                </ul>
-                            </dd>
-                        </dl>
-                    </div>
-                </data>
-            </widget_i18n>
-        </dependence>
+                </div>
+            </li>
+        </ul>
+    </div>
+</data>
+</widget_i18n>
+</dependence>
 
-        <dependence entityName="widget" name="start_page_seo_text" type="add" widgetType="html">
-            <widget_i18n locale="ru">
-                <data>
-                    <h1>Интернет-магазин бытовой техники</h1>
-                    <p>Существует два основных вида данного предмета зимнего гардероба. Длинные модели прекрасно защитят своих обладательниц от мороза и снегопада. Любительницам спорта, шопинга и вождения автомобилей следует купить пухловики небольшого размера, которые также называют &#171;короткими&#187;. Кроме длинных и коротких моделей существуют так называемые универсальные варианты пуховиков. Под такой одеждой располагается специальная прокладка, отстегнув которую можно изменить размеры пуховика. Качественные и удобные пуховики можно в большом ассортименте приобрести в любом магазине зимней одежды. Чтобы найти такие магазины достаточно ввести в поиск купить пуховики киев и в результате посмотреть информацию о расположении предприятий.</p>
-                </data>
-            </widget_i18n>
-        </dependence>
+<dependence entityName="widget" name="payments_delivery_methods_info" type="add" widgetType="html">
+    <widget_i18n locale="ru">
+        <data>
+            <div class="frame-delivery-payment"><dl><dt class="title">Доставка и оплата</dt><dd class="frame-list-delivery">
+            <ul class="list-delivery">
+                <li class="f-s_0"><span class="frame-ico"><span class="icon_d_p1">&#160;</span></span>
+                <div class="descr"><span class="text-el">Самовывоз</span><span class="d_b s-t">Со склада магазина</span></div>
+            </li>
+            <li class="f-s_0"><span class="frame-ico"><span class="icon_d_p2">&#160;</span></span>
+            <div class="descr"><span class="text-el">Курьерской службой </span><span class="d_b s-t">Новая почта и другие</span></div>
+        </li>
+        <li class="f-s_0"><span class="frame-ico"><span class="icon_d_p3">&#160;</span></span>
+        <div class="descr"><span class="text-el">Оплата наличными</span><span class="d_b s-t">Курьеру при получении</span></div>
+    </li>
+    <li class="f-s_0"><span class="frame-ico"><span class="icon_d_p4">&#160;</span></span>
+    <div class="descr"><span class="text-el">Безналичный платеж</span><span class="d_b s-t">Master Card, Visa; Приват 24</span></div>
+</li>
+</ul>
+</dd></dl></div>
+<div class="frame-delivery-payment"><dl><dt class="title">Нужна помощь?</dt><dd class="frame-list-delivery"><span class="s-t">Наши менеджеры ответят на ваши вопросы и помогут с выбором:</span>
+<ul class="list-style-1 list-phone-number">
+    <li class="f-s_15">(093) <span class="d_n">&#8722;</span>169-36-98</li>
+    <li class="f-s_15">(093) <span class="d_n">&#8722;</span>169-36-98</li>
+</ul>
+</dd></dl></div>
+</data>
+</widget_i18n>
+</dependence>
 
-        <!-- HTML widgets end -->
+<dependence entityName="widget" name="start_page_seo_text" type="add" widgetType="html">
+    <widget_i18n locale="ru">
+        <data>
+            <h1>Интернет-магазин бытовой техники</h1>
+            <p>Существует два основных вида данного предмета зимнего гардероба. Длинные модели прекрасно защитят своих обладательниц от мороза и снегопада. Любительницам спорта, шопинга и вождения автомобилей следует купить пухловики небольшого размера, которые также называют &#171;короткими&#187;. Кроме длинных и коротких моделей существуют так называемые универсальные варианты пуховиков. Под такой одеждой располагается специальная прокладка, отстегнув которую можно изменить размеры пуховика. Качественные и удобные пуховики можно в большом ассортименте приобрести в любом магазине зимней одежды. Чтобы найти такие магазины достаточно ввести в поиск купить пуховики киев и в результате посмотреть информацию о расположении предприятий.</p>
+        </data>
+    </widget_i18n>
+</dependence>
 
-        <!-- Module widgets start -->
+<!-- HTML widgets end -->
 
-        <dependence entityName="widget" name="latest_news" type="add" widgetType="module" module="core" method="recent_news" description="Последние новости">
+<!-- Module widgets start -->
+
+<dependence entityName="widget" name="latest_news" type="add" widgetType="module" module="core" method="recent_news" description="Последние новости">
+    <settings>
+        <display>recent</display>
+        <categories>
             <settings>
-                <display>recent</display>
-                <categories>
-                    <settings>
-                        <number0>69</number0>
-                    </settings>
-                </categories>
-                <news_count>3</news_count>
-                <max_symdols>150</max_symdols>
+                <number0>69</number0>
             </settings>
-        </dependence>
+        </categories>
+        <news_count>3</news_count>
+        <max_symdols>150</max_symdols>
+    </settings>
+</dependence>
 
-        <dependence entityName="widget" name="popular_products" type="add" widgetType="module" module="shop" method="products" description="Популярные товары">
-            <settings>
-                <productsType>popular,hot</productsType>
-                <title>Новинки</title>
-                <productsCount>10</productsCount>
-                <subpath>widgets</subpath>
-            </settings>
-        </dependence>
+<dependence entityName="widget" name="popular_products" type="add" widgetType="module" module="shop" method="products" description="Популярные товары">
+    <settings>
+        <productsType>popular,hit</productsType>
+        <title>Популярные товары</title>
+        <productsCount>10</productsCount>
+        <subpath>widgets</subpath>
+    </settings>
+</dependence>
 
-        <dependence entityName="widget" name="popular_products" type="add" widgetType="module" module="shop" method="products" description="Популярные товары">
-            <settings>
-                <productsType>popular,hot</productsType>
-                <title>Новинки</title>
-                <productsCount>10</productsCount>
-                <subpath>widgets</subpath>
-            </settings>
-        </dependence>
+<dependence entityName="widget" name="new_products" type="add" widgetType="module" module="shop" method="products" description="Новые товары">
+    <settings>
+        <productsType>popular,hot</productsType>
+        <title>Новинки</title>
+        <productsCount>10</productsCount>
+        <subpath>widgets</subpath>
+    </settings>
+</dependence>
 
-        <dependence entityName="widget" name="action_products" type="add" widgetType="module" module="shop" method="products" description="Акционные товары">
-            <settings>
-                <productsType>popular,action</productsType>
-                <title>Акционные товары</title>
-                <productsCount>10</productsCount>
-                <subpath>widgets</subpath>
-            </settings>
-        </dependence>
+<dependence entityName="widget" name="action_products" type="add" widgetType="module" module="shop" method="products" description="Акционные товары">
+    <settings>
+        <productsType>popular,action</productsType>
+        <title>Акционные товары</title>
+        <productsCount>10</productsCount>
+        <subpath>widgets</subpath>
+    </settings>
+</dependence>
 
-        <dependence entityName="widget" name="popular_products_category" type="add" widgetType="module" module="shop" method="products" description="Популярная категория товара">
-            <settings>
-                <productsType>date,hit,category</productsType>
-                <title>Популярная категория товара</title>
-                <productsCount>10</productsCount>
-                <subpath>widgets</subpath>
-            </settings>
-        </dependence>
+<dependence entityName="widget" name="popular_products_category" type="add" widgetType="module" module="shop" method="products" description="Популярная категория товара">
+    <settings>
+        <productsType>date,hit,category</productsType>
+        <title>Популярная категория товара</title>
+        <productsCount>10</productsCount>
+        <subpath>widgets</subpath>
+    </settings>
+</dependence>
 
-        <dependence entityName="widget" name="recent_product_comments" type="add" widgetType="module" module="comments" method="recent_product_comments" description="Последние комментарии продукта">
-            <settings>
-                <comments_count>5</comments_count>
-                <symbols_count>0</symbols_count>
-            </settings>
-        </dependence>
+<dependence entityName="widget" name="tags" type="add" widgetType="module" module="tags" method="tags_cloud" description="Теги">
+</dependence>
 
-        <dependence entityName="widget" name="tags" type="add" widgetType="module" module="tags" method="tags_cloud" description="Теги">
-        </dependence>
+<dependence entityName="widget" name="path" type="add" widgetType="module" module="navigation" method="widget_navigation" description="Виджет навигации">
+</dependence>
 
-        <dependence entityName="widget" name="path" type="add" widgetType="module" module="navigation" method="widget_navigation" description="Виджет навигации">
-        </dependence>
+<dependence entityName="widget" name="brands" type="add" widgetType="module" module="shop" method="brands" description="Бренды">
+    <settings>
+        <withImages>true</withImages>
+        <brandsCount>15</brandsCount>
+        <title>Лучшие производители</title>
+        <subpath>widgets</subpath>
+    </settings>
+</dependence>
 
-        <dependence entityName="widget" name="brands" type="add" widgetType="module" module="shop" method="brands" description="Бренды">
-            <settings>
-                <withImages>true</withImages>
-                <brandsCount>15</brandsCount>
-                <title>Лучшие производители</title>
-                <subpath>widgets</subpath>
-            </settings>
-        </dependence>
+<dependence entityName="widget" name="similar" type="add" widgetType="module" module="shop" method="similar_products" description="Похожие товары">
+    <settings>
+        <title>Похожие товары</title>
+        <productsCount>5</productsCount>
+    </settings>
+</dependence>
 
-        <dependence entityName="widget" name="similar" type="add" widgetType="module" module="shop" method="similar_products" description="Похожие товары">
-            <settings>
-                <title>Похожие товары</title>
-                <productsCount>5</productsCount>
-            </settings>
-        </dependence>
+<dependence entityName="widget" name="ViewedProducts" type="add" widgetType="module" module="shop" method="view_product" description="Просмотренные товары">
+    <settings>
+        <title>ViewedProducts</title>
+        <productsCount>10</productsCount>
+    </settings>
+</dependence>
 
-        <dependence entityName="widget" name="ViewedProducts" type="add" widgetType="module" module="shop" method="view_product" description="Просмотренные товары">
-            <settings>
-                <title>ViewedProducts</title>
-                <productsCount>10</productsCount>
-            </settings>
-        </dependence>
+<!-- Module widgets end -->
 
-        <!-- Module widgets end -->
+</dependencies>
 
-    </dependencies>
+<!-- Widgets end -->
 
-    <!-- Widgets end -->
+<demodata>
 
-    <demodata>
+    <!-- Banners start -->
 
-        <!-- Banners start -->
+    <!-- (where_show => default, main, product, shop_category, brand, category, page)-->
+    <banners>
+        <banner where_show="main" position="0" active="1">
+            <banner_i18n  name="Наушники Beats в подарок" description="Наушники Beats в подарок" url="/shop/product/mobilnyi-telefon-sony-xperia-v-lt25i-black" locale="ru" photo="/uploads/shop/banners/template-imageshop-banner-1.jpg"/>
+        </banner>
+        <banner where_show="main" position="1" active="1">
+            <banner_i18n  name="50% скидки на телефон" description="50% скидки на телефон" url="/shop/product/nokia-lumia-920-white" locale="ru" photo="/uploads/shop/banners/template-imageshop-banner-2.jpg"/>
+        </banner>
+        <banner where_show="main" position="2" active="1">
+            <banner_i18n  name="Бесплатаня доставка" description="Бесплатаня доставка" url="/dostavka" locale="ru" photo="/uploads/shop/banners/template-imageshop-banner-3.jpg"/>
+        </banner>
+    </banners>
 
-        <!-- (where_show => default, main, product, shop_category, brand, category, page)-->
-        <banners>
-            <banner where_show="main" position="0" active="1">
-                <banner_i18n  name="Наушники Beats в подарок" description="Наушники Beats в подарок" url="/shop/product/mobilnyi-telefon-sony-xperia-v-lt25i-black" locale="ru" photo="/uploads/shop/banners/template-imageshop-banner-1.jpg"/>
-            </banner>
-            <banner where_show="main" position="1" active="1">
-                <banner_i18n  name="50% скидки на телефон" description="50% скидки на телефон" url="/shop/product/nokia-lumia-920-white" locale="ru" photo="/uploads/shop/banners/template-imageshop-banner-2.jpg"/>
-            </banner>
-            <banner where_show="main" position="2" active="1">
-                <banner_i18n  name="Бесплатаня доставка" description="Бесплатаня доставка" url="/dostavka" locale="ru" photo="/uploads/shop/banners/template-imageshop-banner-3.jpg"/>
-            </banner>
-        </banners>
+    <!-- Banners end -->
 
-        <!-- Banners end -->
+    <!-- Categories templates start -->
 
-        <!-- Categories templates start -->
+    <categoriestemplates>
+        <level_1 template_name="categorysubfirst"/>
+        <level_2 template_name="categorysubsecond"/>
+    </categoriestemplates>
 
-        <categoriestemplates>
-            <level_1 template_name="categorysubfirst"/>
-            <level_2 template_name="categorysubsecond"/>
-        </categoriestemplates>
+    <!-- Categories templates end -->
 
-        <!-- Categories templates end -->
+    <!-- Menus start -->
 
-        <!-- Menus start -->
+    <menus>
 
-        <menus>
+        <menu name="top_menu" main_title="top_menu" tpl_folder="top_menu" expand_level="1" description="Меню в верхней части шаблона">
+            <item title="Магазин" url="#">
+                <menu_i18n title="Магазин" locale="ru"/>
 
-            <menu name="top_menu" main_title="top_menu" tpl_folder="top_menu" expand_level="1" description="Меню в верхней части шаблона">
-                <item title="Магазин" url="#">
-                    <menu_i18n title="Магазин" locale="ru"/>
-
-                    <item title="О компании" url="/o-magazine">
-                        <menu_i18n title="О компании" locale="ru"/>
-                    </item>
-                    <item title="Гарантии" url="/pomoshch">
-                        <menu_i18n title="Гарантии" locale="ru"/>
-                    </item>
-                    <item title="Бренды" url="/shop/brand">
-                        <menu_i18n title="Бренды" locale="ru"/>
-                    </item>
-                    <item title="Возврат товара" url="/vozvrat-tovara">
-                        <menu_i18n title="Возврат товара" locale="ru"/>
-                    </item>
-
-                </item>
-                <item title="Доставка и оплата" url="/dostavka">
-                    <menu_i18n title="Доставка и оплата" locale="ru"/>
-                </item>
-                <item title="Контакты" url="/kontakty">
-                    <menu_i18n title="Контакты" locale="ru"/>
-                </item>
-            </menu>
-
-            <menu name="left_menu" main_title="left_menu" tpl_folder="left_menu" expand_level="0" description="Меню в левой части шаблона">
-                <item title="О магазине" url="/o-magazine">
-                    <menu_i18n title="О магазине" locale="ru"/>
-                </item>
-                <item title="Доставка" url="/dostavka">
-                    <menu_i18n title="Доставка" locale="ru"/>
-                </item>
-                <item title="Оплата" url="/oplata">
-                    <menu_i18n title="Оплата" locale="ru"/>
-                </item>
-                <item title="Помощь" url="/pomoshch">
-                    <menu_i18n title="Помощь" locale="ru"/>
-                </item>
-                <item title="Новости" url="/novosti">
-                    <menu_i18n title="Новости" locale="ru"/>
-                </item>
-                <item title="Контакты" url="/kontakty">
-                    <menu_i18n title="Контакты" locale="ru"/>
-                </item>
-            </menu>
-
-            <menu name="footer_menu" main_title="footer_menu" tpl_folder="footer_menu" expand_level="0" description="Меню в нижней части магазина">
                 <item title="О компании" url="/o-magazine">
                     <menu_i18n title="О компании" locale="ru"/>
-                </item>
-                <item title="Оптовым покупателям" url="/optovym-pokupateliam">
-                    <menu_i18n title="Оптовым покупателям" locale="ru"/>
-                </item>
-                <item title="Доставка и оплата" url="/dostavka">
-                    <menu_i18n title="Доставка и оплата" locale="ru"/>
                 </item>
                 <item title="Гарантии" url="/pomoshch">
                     <menu_i18n title="Гарантии" locale="ru"/>
                 </item>
-                <item title="Новости" url="/novosti">
-                    <menu_i18n title="Новости" locale="ru"/>
-                </item>
                 <item title="Бренды" url="/shop/brand">
                     <menu_i18n title="Бренды" locale="ru"/>
                 </item>
-                <item title="Контакты" url="/kontakty">
-                    <menu_i18n title="Контакты" locale="ru"/>
+                <item title="Возврат товара" url="/vozvrat-tovara">
+                    <menu_i18n title="Возврат товара" locale="ru"/>
                 </item>
-            </menu>
 
-        </menus>
+            </item>
+            <item title="Доставка и оплата" url="/dostavka">
+                <menu_i18n title="Доставка и оплата" locale="ru"/>
+            </item>
+            <item title="Контакты" url="/kontakty">
+                <menu_i18n title="Контакты" locale="ru"/>
+            </item>
+        </menu>
 
-        <!-- Menus end -->
+        <menu name="left_menu" main_title="left_menu" tpl_folder="left_menu" expand_level="0" description="Меню в левой части шаблона">
+            <item title="О магазине" url="/o-magazine">
+                <menu_i18n title="О магазине" locale="ru"/>
+            </item>
+            <item title="Доставка" url="/dostavka">
+                <menu_i18n title="Доставка" locale="ru"/>
+            </item>
+            <item title="Оплата" url="/oplata">
+                <menu_i18n title="Оплата" locale="ru"/>
+            </item>
+            <item title="Помощь" url="/pomoshch">
+                <menu_i18n title="Помощь" locale="ru"/>
+            </item>
+            <item title="Новости" url="/novosti">
+                <menu_i18n title="Новости" locale="ru"/>
+            </item>
+            <item title="Контакты" url="/kontakty">
+                <menu_i18n title="Контакты" locale="ru"/>
+            </item>
+        </menu>
 
-        <!-- Custom fields start -->
+        <menu name="footer_menu" main_title="footer_menu" tpl_folder="footer_menu" expand_level="0" description="Меню в нижней части магазина">
+            <item title="О компании" url="/o-magazine">
+                <menu_i18n title="О компании" locale="ru"/>
+            </item>
+            <item title="Оптовым покупателям" url="/optovym-pokupateliam">
+                <menu_i18n title="Оптовым покупателям" locale="ru"/>
+            </item>
+            <item title="Доставка и оплата" url="/dostavka">
+                <menu_i18n title="Доставка и оплата" locale="ru"/>
+            </item>
+            <item title="Гарантии" url="/pomoshch">
+                <menu_i18n title="Гарантии" locale="ru"/>
+            </item>
+            <item title="Новости" url="/novosti">
+                <menu_i18n title="Новости" locale="ru"/>
+            </item>
+            <item title="Бренды" url="/shop/brand">
+                <menu_i18n title="Бренды" locale="ru"/>
+            </item>
+            <item title="Контакты" url="/kontakty">
+                <menu_i18n title="Контакты" locale="ru"/>
+            </item>
+        </menu>
 
-        <customfields>
-            <field type="text" name="city" required="FALSE" active="TRUE" private="FALSE" entity="user">
-                <field_i18n label="Город" locale="ru" />
-            </field>
-            <field type="text" name="city" required="FALSE" active="TRUE" private="FALSE" entity="order">
-                <field_i18n label="Город" locale="ru" />
-            </field>
-            <field type="text" name="addphone" required="FALSE" active="TRUE" private="FALSE" entity="user">
-                <field_i18n label="Доп. телефон" locale="ru" />
-            </field>
-            <field type="text" name="addphone" required="FALSE" active="TRUE" private="FALSE" entity="order">
-                <field_i18n label="Доп. телефон" locale="ru" />
-            </field>
-        </customfields>
+    </menus>
 
-        <!-- Custom fields end -->
+    <!-- Menus end -->
 
-    </demodata>
+    <!-- Custom fields start -->
 
-    <!-- Screenshots start -->
+    <customfields>
+        <field type="text" name="city" required="FALSE" active="TRUE" private="FALSE" entity="user">
+            <field_i18n label="Город" locale="ru" />
+        </field>
+        <field type="text" name="city" required="FALSE" active="TRUE" private="FALSE" entity="order">
+            <field_i18n label="Город" locale="ru" />
+        </field>
+        <field type="text" name="addphone" required="FALSE" active="TRUE" private="FALSE" entity="user">
+            <field_i18n label="Доп. телефон" locale="ru" />
+        </field>
+        <field type="text" name="addphone" required="FALSE" active="TRUE" private="FALSE" entity="order">
+            <field_i18n label="Доп. телефон" locale="ru" />
+        </field>
+    </customfields>
 
-    <screenshots>
-        <screenshot url="/templates/box/screenshots/1.png" main="1" />
-        <screenshot url="/templates/box/screenshots/2.png" main="0" />
-        <screenshot url="/templates/box/screenshots/3.png" main="0" />
-        <screenshot url="/templates/box/screenshots/4.png" main="0" />
-        <screenshot url="/templates/box/screenshots/5.png" main="0" />
-    </screenshots>
+    <!-- Custom fields end -->
 
-    <!-- Screenshots end -->
+</demodata>
 
-    <description>
-    </description>
+<!-- Screenshots start -->
 
-    <components>
+<screenshots>
+    <screenshot url="/templates/boxGreen/screenshots/1.jpg" main="1" />
+    <screenshot url="/templates/boxGreen/screenshots/2.jpg" main="0" />
+    <screenshot url="/templates/boxGreen/screenshots/3.jpg" main="0" />
+    <screenshot url="/templates/boxGreen/screenshots/4.jpg" main="0" />
+</screenshots>
 
-        <!-- Color scheme start -->
+<!-- Screenshots end -->
 
-        <component handler='TColorScheme'>
-            <param name="color_scheme" value="color_scheme_1" />
-        </component>
+<description>
+</description>
 
-        <!-- Color scheme end -->
+<components>
 
-        <!-- Menu colums start -->
+    <!-- Color scheme start -->
 
-        <component handler="TMenuColumn">
-        </component>
+    <component handler='TColorScheme'>
+        <param name="color_scheme" value="color_scheme_1" />
+    </component>
 
-        <!-- Menu colums end -->
+    <!-- Color scheme end -->
 
-        <!-- Properties start -->
+    <!-- Menu colums start -->
 
-        <component handler="TProperties">
-            <params name="properties">
-                <param key="20" value="dropDown" />
-                <param key="22" value="scroll" />
-                <param key="23" value="scroll" />
-                <param key="24" value="scroll" />
-                <param key="25" value="scroll" />
-                <param key="26" value="scroll" />
-                <param key="28" value="scroll" />
-                <param key="31" value="scroll" />
-                <param key="34" value="scroll" />
-                <param key="35" value="scroll" />
-                <param key="36" value="scroll" />
-                <param key="37" value="scroll" />
-                <param key="39" value="scroll" />
-                <param key="41" value="scroll" />
-                <param key="42" value="scroll" />
-                <param key="46" value="scroll" />
-                <param key="50" value="scroll" />
-                <param key="51" value="scroll" />
-                <param key="52" value="scroll" />
-                <param key="53" value="scroll" />
-                <param key="57" value="scroll" />
-                <param key="58" value="scroll" />
-                <param key="59" value="scroll" />
-                <param key="60" value="scroll" />
-                <param key="62" value="scroll" />
-                <param key="64" value="scroll" />
-                <param key="66" value="scroll" />
-                <param key="67" value="scroll" />
-                <param key="68" value="scroll" />
-                <param key="70" value="scroll" />
-                <param key="73" value="scroll" />
-                <param key="74" value="scroll" />
-                <param key="75" value="scroll" />
-                <param key="76" value="scroll" />
-                <param key="77" value="scroll" />
-                <param key="78" value="scroll" />
-                <param key="79" value="scroll" />
-                <param key="84" value="scroll" />
-                <param key="86" value="scroll" />
-                <param key="89" value="scroll" />
-                <param key="90" value="scroll" />
-                <param key="91" value="scroll" />
-                <param key="92" value="scroll" />
-                <param key="93" value="scroll" />
-                <param key="95" value="scroll" />
-                <param key="96" value="scroll" />
-                <param key="97" value="scroll" />
-                <param key="98" value="scroll" />
-                <param key="99" value="scroll" />
-                <param key="100" value="scroll" />
-                <param key="101" value="scroll" />
-            </params>
-        </component>
+    <component handler="TMenuColumn">
+    </component>
 
-        <!-- Properties end -->
+    <!-- Menu colums end -->
 
-        <component handler="TOpi">
-        </component>
+    <!-- Properties start -->
 
-    </components>
+    <component handler="TProperties">
+        <params name="properties">
+            <param key="20" value="dropDown" />
+            <param key="22" value="scroll" />
+            <param key="23" value="scroll" />
+            <param key="24" value="scroll" />
+            <param key="25" value="scroll" />
+            <param key="26" value="scroll" />
+            <param key="28" value="scroll" />
+            <param key="31" value="scroll" />
+            <param key="34" value="scroll" />
+            <param key="35" value="scroll" />
+            <param key="36" value="scroll" />
+            <param key="37" value="scroll" />
+            <param key="39" value="scroll" />
+            <param key="41" value="scroll" />
+            <param key="42" value="scroll" />
+            <param key="46" value="scroll" />
+            <param key="50" value="scroll" />
+            <param key="51" value="scroll" />
+            <param key="52" value="scroll" />
+            <param key="53" value="scroll" />
+            <param key="57" value="scroll" />
+            <param key="58" value="scroll" />
+            <param key="59" value="scroll" />
+            <param key="60" value="scroll" />
+            <param key="62" value="scroll" />
+            <param key="64" value="scroll" />
+            <param key="66" value="scroll" />
+            <param key="67" value="scroll" />
+            <param key="68" value="scroll" />
+            <param key="70" value="scroll" />
+            <param key="73" value="scroll" />
+            <param key="74" value="scroll" />
+            <param key="75" value="scroll" />
+            <param key="76" value="scroll" />
+            <param key="77" value="scroll" />
+            <param key="78" value="scroll" />
+            <param key="79" value="scroll" />
+            <param key="84" value="scroll" />
+            <param key="86" value="scroll" />
+            <param key="89" value="scroll" />
+            <param key="90" value="scroll" />
+            <param key="91" value="scroll" />
+            <param key="92" value="scroll" />
+            <param key="93" value="scroll" />
+            <param key="95" value="scroll" />
+            <param key="96" value="scroll" />
+            <param key="97" value="scroll" />
+            <param key="98" value="scroll" />
+            <param key="99" value="scroll" />
+            <param key="100" value="scroll" />
+            <param key="101" value="scroll" />
+        </params>
+    </component>
+
+    <!-- Properties end -->
+
+    <component handler="TOpi">
+    </component>
+
+</components>
 </template>
