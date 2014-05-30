@@ -1,9 +1,13 @@
 <!--    menu-row-category || menu-col-category-->
 {$openLevels = getOpenLevels()}
-{if $openLevels == 'all'}
-{$menuClass = 'menu-col-category'}
+{if $openLevels}
+    {if $openLevels == 'all'}
+        {$menuClass = 'menu-col-category'}
+    {else:}
+        {$menuClass = 'menu-row-category'}
+    {/if}
 {else:}
-{$menuClass = 'menu-row-category'}
+    {$menuClass = 'menu-row-category'}
 {/if}
 <div class="menu-main not-js {$menuClass}">
   <nav>
