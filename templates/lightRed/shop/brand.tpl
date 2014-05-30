@@ -68,7 +68,7 @@
 
             {if $totalProducts > 0}
                 <ul class="animateListItems items items-catalog {if $_COOKIE['listtable'] == 'table' || $_COOKIE['listtable'] == NULL} table{else:} list{/if}" id="items-catalog-main">
-                    {$CI->load->module('new_level')->OPI($products, array('opi_wishlist'=>true))}
+                    {getOPI($products, array('opi_wishlist'=>true))}
                 </ul>
             {/if}
             {$pagination}
