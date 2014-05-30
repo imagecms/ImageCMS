@@ -42,9 +42,9 @@
             {/if}
 
             {include_tpl('catalogue_header')}
-            
+
             {$CI->load->module('banners')->render($model->getId())}
-            
+
             <!--Start. Show brand description if $CI->uri->segment(2) == "brand" and description is not empty-->
             {if $model->getImage() && trim($model->getDescription()) != ""}
                 <div class="frame-category-brand">
@@ -70,7 +70,7 @@
 
             {if $totalProducts > 0}
                 <ul class="animateListItems items items-catalog items-product {if $_COOKIE['listtable'] == 'table' || $_COOKIE['listtable'] == NULL} table{else:} list{/if}" id="items-catalog-main">
-                    {$CI->load->module('new_level')->OPI($products, array('opi_wishlist'=>true, 'opi_codeArticle' => true))}
+                    {getOPI($products, array('opi_wishlist'=>true, 'opi_codeArticle' => true))}
                 </ul>
             {/if}
             {$pagination}
@@ -100,14 +100,14 @@
                                                 <span>{echo $subItem['name']}</span>
                                             {else:}
                                             <li>
-                                                <a rel="nofollow" data-id="{echo $subItem['id']}" 
+                                                <a rel="nofollow" data-id="{echo $subItem['id']}"
                                                    {if $_SERVER['QUERY_STRING']}
                                                         href="{shop_url('brand/'. strtolower($model->getUrl()).'/'.$subItem['id'].'?'.$_SERVER['QUERY_STRING'])}"
                                                    {else:}
                                                         href="{shop_url('brand/'. strtolower($model->getUrl()).'/'.$subItem['id'])}"
                                                    {/if}
                                                  >
-                                                        <span class="text-el">{echo $subItem['name']}</span> 
+                                                        <span class="text-el">{echo $subItem['name']}</span>
                                                         <span class="count">({echo $subItem['count']})</span>
                                                 </a>
                                             {/if}
