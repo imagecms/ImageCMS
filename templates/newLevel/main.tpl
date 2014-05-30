@@ -24,9 +24,9 @@
         <link rel="stylesheet" type="text/css" href="{$THEME}{$colorScheme}/{echo \MY_Controller::getCurrentLocale()}/locale.css" media="all" />
 
         {if $CI->uri->segment(1) == MY_Controller::getCurrentLocale()}
-            {$lang = '/' . \MY_Controller::getCurrentLocale()} 
+            {$lang = '/' . \MY_Controller::getCurrentLocale()}
         {else:}
-            {$lang = ''} 
+            {$lang = ''}
         {/if}
         {if $CI->uri->segment(2) == 'profile' || $CI->uri->segment(1) == 'wishlist'}
             <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW" />
@@ -70,7 +70,7 @@
         {include_tpl('user_toolbar')}
 
         {/*}Start. delete before upload to server{ */}
-        
+
         <!-- scripts -->
         <script type="text/javascript" src="{$THEME}js/raphael-min.js"></script>
         <script type="text/javascript" src="{$THEME}js/_united_side_plugins.js"></script>
@@ -91,7 +91,7 @@
                 });
             </script>
         {/literal}
-        
+
         {/*}End. delete before upload to server{ */}
 
         {/*fancybox}
