@@ -182,7 +182,8 @@ INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_me
 (265, 'star_rating', 'star_rating', 1, 0, 0, NULL, 12),
 (267, 'translator', 'translator', 1, 1, 1, 'a:2:{s:11:"originsLang";s:2:"en";s:11:"editorTheme";s:6:"chrome";}', 11),
 (268, 'imagebox', 'imagebox', 0, 1, 0, NULL, 18),
-(269, 'sample_module', 'sample_module', 1, 1, 0, NULL, NULL);
+(269, 'sample_module', 'sample_module', 1, 1, 0, NULL, NULL),
+(272, 'template_manager', 'template_manager', 1, 1, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -2286,6 +2287,19 @@ INSERT INTO `widget_i18n` (`id`, `locale`, `data`) VALUES
 (15, 'ru', '<div class="frame-benefits">\n<div class="container">\n<ul class="items items-benefits">\n<li class="d_i-b">\n<div class="photo-block"><span class="helper">&nbsp;</span><img src="/uploads/images/benefits/benef1.jpg" alt="Предоставление сервиса" /></div>\n<h3>Предоставление сервиса</h3>\n<p>Если вы приобрели робота у нас, но срок гарантии вышел, мы предоставим сервис высшего уровня за некоторое маленькое вознаграждение.</p>\n</li>\n<li class="d_i-b">\n<div class="photo-block"><span class="helper">&nbsp;</span><img src="/uploads/images/benefits/benef2.jpg" alt="Нано технология" /></div>\n<h3>Нано технология</h3>\n<p>Диагностика проблемы и ремонт роботов проходит под средством нано техники от Image Robotics. Ее нельзя приобрети на свободном рынке, такие возможности есть только у нас.</p>\n</li>\n<li class="d_i-b">\n<div class="photo-block"><span class="helper">&nbsp;</span><img src="/uploads/images/benefits/benef3.jpg" alt="Предоставление сервиса" /></div>\n<h3>Диагностика</h3>\n<p>Диагностика любой проблемы занимает несколько секунд, а ремонт составляет не более десяти минут с момента обнаружения проблемы. Если на складе есть ресурсы.</p>\n</li>\n</ul>\n</div>\n</div>'),
 (17, 'ru', '<div class="d_i-b phones-header"><span>8 800 <span class="f-w_b">772-22-22</span></span>\n<p class="phones-info">бесплатно по Украине</p>\n</div>\n<div class="d_i-b phones-header phones-header-last"><span>097 <span class="f-w_b">772-22-22</span></span>\n<p class="phones-info">Мобильный телефон</p>\n</div>'),
 (18, 'ru', '<p>&copy; 2014 Image Robotics - лидер в производстве роботов</p>\n<p>Powered by <a href="http://www.imagecms.net/free-cms-corporate">ImageCMS Corporate</a></p>');
+
+--
+-- Структура таблиці `template_settings`
+--
+
+DROP TABLE IF EXISTS `template_settings`;
+CREATE TABLE IF NOT EXISTS `template_settings` (
+`id` int(11) NOT NULL,
+  `component` varchar(255) NOT NULL,
+  `key` text,
+  `data` text
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
