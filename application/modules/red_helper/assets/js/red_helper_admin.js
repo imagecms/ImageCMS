@@ -2,13 +2,13 @@ $(document).ready(function() {
     $('#go').click(function() {
         $("#result").text("please wait...");
         $.ajax({
-            url: 'http://redhelper.ru/my/register',
+            url: '/red_helper/validate',
             data: {
                 login: $("#login").val(),
                 password: $("#pass").val(),
                 email: $("#email").val(),
-                contactfio: 'qweew',
-                contactphone: '879465465',
+                contactfio: $("#name").val(),
+                contactphone: $("#phone").val(), 
                 locale: 'en',
                 ref: 1 // partner id
             },
@@ -22,3 +22,4 @@ $(document).ready(function() {
                 });
     });
 })
+
