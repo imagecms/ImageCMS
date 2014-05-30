@@ -1,0 +1,1491 @@
+﻿msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-05-29 07:44+0400\n"
+"PO-Revision-Date: 2014-05-29 07:44+0400\n"
+"Last-Translator:  <>\n"
+"Language-Team:  <>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
+"X-Poedit-Basepath: ../../../..\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-Language: \n"
+"X-Poedit-Country: \n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: ./templates/lightRed/404.tpl:7
+msgid "404 / Страница не найдена"
+msgstr ""
+
+#: ./templates/lightRed/404.tpl:8
+msgid "Эта страница не существует или была удалена."
+msgstr ""
+
+#: ./templates/lightRed/404.tpl:10
+msgid "Приносим свои извинения за доставленные неудобства. Для продолжения работы вы можете перейти к представленным пунктам меню, воспользоваться поиском по сайту либо перейти на главную страницу"
+msgstr ""
+
+#: ./templates/lightRed/404.tpl:12
+msgid "Главная страница"
+msgstr ""
+
+#: ./templates/lightRed/category.tpl:11
+msgid "Категория на стадии разработки"
+msgstr ""
+
+#: ./templates/lightRed/category_menu/error.tpl:12
+#: ./templates/lightRed/category_menu_first/error.tpl:12
+#: ./templates/lightRed/category_menu_second/error.tpl:12
+#: ./templates/lightRed/footer_category_menu/error.tpl:12
+#: ./templates/lightRed/left_menu/error.tpl:12
+#: ./templates/lightRed/top_menu/error.tpl:12
+msgid "Внимание"
+msgstr ""
+
+#: ./templates/lightRed/category_menu/error.tpl:13
+#: ./templates/lightRed/footer_category_menu/error.tpl:13
+#: ./templates/lightRed/left_menu/error.tpl:13
+msgid "Не обнаружен необходимый файл шаблона для меню "
+msgstr ""
+
+#: ./templates/lightRed/category_menu/error.tpl:21
+#: ./templates/lightRed/category_menu_first/error.tpl:21
+#: ./templates/lightRed/category_menu_second/error.tpl:21
+#: ./templates/lightRed/footer_category_menu/error.tpl:21
+#: ./templates/lightRed/left_menu/error.tpl:21
+#: ./templates/lightRed/top_menu/error.tpl:21
+msgid "Проверьте наличие файла или измените настройки меню"
+msgstr ""
+
+#: ./templates/lightRed/category_menu/error.tpl:23
+#: ./templates/lightRed/category_menu_first/error.tpl:23
+#: ./templates/lightRed/category_menu_second/error.tpl:23
+#: ./templates/lightRed/footer_category_menu/error.tpl:23
+#: ./templates/lightRed/left_menu/error.tpl:23
+msgid "Переустановите модуль меню "
+msgstr ""
+
+#: ./templates/lightRed/category_menu_first/error.tpl:13
+#: ./templates/lightRed/category_menu_second/error.tpl:13
+#: ./templates/lightRed/top_menu/error.tpl:13
+msgid "Не обнаружен необходимый файл шаблона для меню"
+msgstr ""
+
+#: ./templates/lightRed/category_menu_first/level_1/item_default.tpl:8
+#: ./templates/lightRed/category_menu_first/level_1/item_default_active.tpl:9
+#: ./templates/lightRed/category_menu_second/level_2/item_default.tpl:8
+msgid "Нет фото"
+msgstr ""
+
+#: ./templates/lightRed/category_menu_first/level_2/container.tpl:7
+#: ./templates/lightRed/comments/comments_api.tpl:164
+#: ./templates/lightRed/main_demo.tpl:130
+msgid "Скрыть"
+msgstr ""
+
+#: ./templates/lightRed/category_menu_first/level_2/container.tpl:7
+msgid "Все категории"
+msgstr ""
+
+#: ./templates/lightRed/category_menu_second/level_2/container.tpl:6
+msgid "Hide"
+msgstr ""
+
+#: ./templates/lightRed/category_menu_second/level_2/container.tpl:6
+msgid "All categoties"
+msgstr ""
+
+#: ./templates/lightRed/comments/comments_api.tpl:2
+msgid "Пожалуйста, войдите для комментирования"
+msgstr ""
+
+#: ./templates/lightRed/comments/comments_api.tpl:4
+#: ./templates/lightRed/login.tpl:36
+#: ./templates/lightRed/login_popup.tpl:43
+#: ./templates/lightRed/register.tpl:65
+#: ./templates/lightRed/register_popup.tpl:62
+#: ./templates/lightRed/reset_password.tpl:5
+msgid "Войти"
+msgstr ""
+
+#: ./templates/lightRed/comments/comments_api.tpl:10
+msgid "Отзывы покупателей"
+msgstr ""
+
+#: ./templates/lightRed/comments/comments_api.tpl:10
+msgid "Оставить свой отзыв"
+msgstr ""
+
+#: ./templates/lightRed/comments/comments_api.tpl:20
+#: ./templates/lightRed/shop/profile_data.tpl:7
+msgid "Ваше имя"
+msgstr ""
+
+#: ./templates/lightRed/comments/comments_api.tpl:26
+#: ./templates/lightRed/comments/comments_api.tpl:196
+msgid "Ваш email:"
+msgstr ""
+
+#: ./templates/lightRed/comments/comments_api.tpl:33
+msgid "Текст комментария"
+msgstr ""
+
+#: ./templates/lightRed/comments/comments_api.tpl:40
+msgid "Ваша оценка:"
+msgstr ""
+
+#: ./templates/lightRed/comments/comments_api.tpl:53
+msgid "Код защиты"
+msgstr ""
+
+#: ./templates/lightRed/comments/comments_api.tpl:68
+#: ./templates/lightRed/comments/comments_api.tpl:212
+msgid "Комментировать"
+msgstr ""
+
+#: ./templates/lightRed/comments/comments_api.tpl:127
+msgid "Ответить"
+msgstr ""
+
+#: ./templates/lightRed/comments/comments_api.tpl:142
+msgid "Ответ от"
+msgstr ""
+
+#: ./templates/lightRed/comments/comments_api.tpl:164
+#: ./templates/lightRed/comments/comments_api.tpl:170
+msgid "Смотреть все ответы"
+msgstr ""
+
+#: ./templates/lightRed/comments/comments_api.tpl:178
+msgid "Ваш ответ"
+msgstr ""
+
+#: ./templates/lightRed/comments/comments_api.tpl:190
+#: ./templates/lightRed/register.tpl:13
+#: ./templates/lightRed/register_popup.tpl:15
+#: ./templates/lightRed/shop/report_appearance.tpl:22
+msgid "Ваше имя:"
+msgstr ""
+
+#: ./templates/lightRed/comments/comments_api.tpl:203
+msgid "Текст ответа:"
+msgstr ""
+
+#: ./templates/lightRed/comments/comments_api.tpl:226
+msgid "Ваш комментарий будет опубликован после модерации администратором"
+msgstr ""
+
+#: ./templates/lightRed/config.js.tpl:41
+msgid "Введите более"
+msgstr ""
+
+#: ./templates/lightRed/config.js.tpl:41
+msgid "символов"
+msgstr ""
+
+#: ./templates/lightRed/config.js.tpl:44
+msgid "В список желаний могут добавлять только авторизированные пользователи"
+msgstr ""
+
+#: ./templates/lightRed/config.js.tpl:46
+msgid "Выберете размер меньше или равно"
+msgstr ""
+
+#: ./templates/lightRed/config.js.tpl:46
+msgid "пикселей"
+msgstr ""
+
+#: ./templates/lightRed/config.js.tpl:48
+msgid "Введите название"
+msgstr ""
+
+#: ./templates/lightRed/config.js.tpl:52
+#: ./templates/lightRed/new_level/one_product_item.tpl:138
+#: ./templates/lightRed/shop/product.tpl:227
+#: ./templates/lightRed/shop/product.tpl:511
+msgid "В корзине"
+msgstr ""
+
+#: ./templates/lightRed/config.js.tpl:53
+#: ./templates/lightRed/shop/order_view.tpl:219
+#: ./templates/lightRed/shop/order_view.tpl:337
+#: ./templates/lightRed/shop/order_view2.tpl:214
+#: ./templates/lightRed/shop/order_view2.tpl:337
+msgid "шт"
+msgstr ""
+
+#: ./templates/lightRed/config.js.tpl:54
+#: ./templates/lightRed/shop/cart_order.tpl:12
+#: ./templates/lightRed/shop/cart_popup.tpl:16
+#: ./templates/lightRed/shop/order_view.tpl:167
+#: ./templates/lightRed/shop/order_view2.tpl:212
+#: ./templates/lightRed/shop/order_view2.tpl:335
+msgid "Кол-во"
+msgstr ""
+
+#: ./templates/lightRed/config.js.tpl:55
+#: ./templates/lightRed/paymentSystem/QIWI.tpl:22
+#: ./templates/lightRed/shop/order_view2.tpl:218
+#: ./templates/lightRed/shop/order_view2.tpl:341
+msgid "Сумма"
+msgstr ""
+
+#: ./templates/lightRed/config.js.tpl:56
+#: ./templates/lightRed/new_level/one_product_item.tpl:171
+#: ./templates/lightRed/shop/product.tpl:264
+#: ./templates/lightRed/shop/product.tpl:523
+msgid "Купить"
+msgstr ""
+
+#: ./templates/lightRed/config.js.tpl:57
+msgid "Количество:"
+msgstr ""
+
+#: ./templates/lightRed/config.js.tpl:58
+msgid "Комплектов:"
+msgstr ""
+
+#: ./templates/lightRed/config.js.tpl:59
+msgid "Код протекции"
+msgstr ""
+
+#: ./templates/lightRed/config.js.tpl:60
+#: ./templates/lightRed/shop/brand.tpl:33
+#: ./templates/lightRed/shop/category.tpl:30
+#: ./templates/lightRed/shop/search.tpl:25
+msgid "товар"
+msgstr ""
+
+#: ./templates/lightRed/config.js.tpl:60
+#: ./templates/lightRed/shop/brand.tpl:33
+#: ./templates/lightRed/shop/category.tpl:30
+#: ./templates/lightRed/shop/search.tpl:25
+msgid "товара"
+msgstr ""
+
+#: ./templates/lightRed/config.js.tpl:60
+#: ./templates/lightRed/shop/brand.tpl:33
+#: ./templates/lightRed/shop/category.tpl:30
+#: ./templates/lightRed/shop/search.tpl:25
+msgid "товаров"
+msgstr ""
+
+#: ./templates/lightRed/config.js.tpl:61
+msgid "набор"
+msgstr ""
+
+#: ./templates/lightRed/config.js.tpl:61
+msgid "набора"
+msgstr ""
+
+#: ./templates/lightRed/config.js.tpl:61
+msgid "наборов"
+msgstr ""
+
+#: ./templates/lightRed/config.js.tpl:62
+msgid "отзыв"
+msgstr ""
+
+#: ./templates/lightRed/config.js.tpl:62
+msgid "отзыва"
+msgstr ""
+
+#: ./templates/lightRed/config.js.tpl:62
+msgid "отзывов"
+msgstr ""
+
+#: ./templates/lightRed/footer.tpl:6
+msgid "Все права защищены"
+msgstr ""
+
+#: ./templates/lightRed/footer.tpl:14
+msgid "Наши контакты"
+msgstr ""
+
+#: ./templates/lightRed/footer.tpl:30
+msgid "Сайт"
+msgstr ""
+
+#: ./templates/lightRed/footer.tpl:38
+msgid "Продукция"
+msgstr ""
+
+#: ./templates/lightRed/footer.tpl:46
+msgid "Пользователь"
+msgstr ""
+
+#: ./templates/lightRed/footer.tpl:50
+#: ./templates/lightRed/footer.tpl:50
+msgid "Выход"
+msgstr ""
+
+#: ./templates/lightRed/footer.tpl:53
+#: ./templates/lightRed/footer.tpl:53
+#: ./templates/lightRed/shop/auth_data.tpl:19
+msgid "Личный кабинет"
+msgstr ""
+
+#: ./templates/lightRed/footer.tpl:56
+#: ./templates/lightRed/footer.tpl:56
+#: ./templates/lightRed/shop/wish_list_data.tpl:7
+#: ./templates/lightRed/shop/wish_list_data.tpl:13
+#: ./templates/lightRed/shop/wish_list_data.tpl:25
+#: ./templates/lightRed/wishlist/other_list.tpl:56
+#: ./templates/lightRed/wishlist/wishlist.tpl:6
+msgid "Список желаний"
+msgstr ""
+
+#: ./templates/lightRed/footer.tpl:60
+#: ./templates/lightRed/footer.tpl:60
+#: ./templates/lightRed/login.tpl:5
+#: ./templates/lightRed/shop/auth_data.tpl:12
+msgid "Вход"
+msgstr ""
+
+#: ./templates/lightRed/footer.tpl:63
+#: ./templates/lightRed/footer.tpl:63
+#: ./templates/lightRed/register.tpl:5
+#: ./templates/lightRed/register_popup.tpl:5
+msgid "Регистрация"
+msgstr ""
+
+#: ./templates/lightRed/footer.tpl:69
+#: ./templates/lightRed/footer.tpl:69
+msgid "Список сравнений"
+msgstr ""
+
+#: ./templates/lightRed/footer.tpl:72
+#: ./templates/lightRed/footer.tpl:72
+msgid "Обратный звонок"
+msgstr ""
+
+#: ./templates/lightRed/forgot_password.tpl:5
+#: ./templates/lightRed/login.tpl:41
+#: ./templates/lightRed/login_popup.tpl:48
+msgid "Забыли Пароль?"
+msgstr ""
+
+#: ./templates/lightRed/forgot_password.tpl:22
+msgid "Пароль будет выслан на e-mail "
+msgstr ""
+
+#: ./templates/lightRed/forgot_password.tpl:32
+#: ./templates/lightRed/shop/report_appearance.tpl:51
+#: ./templates/lightRed/wishlist/sendEmail.tpl:23
+msgid "Отправить"
+msgstr ""
+
+#: ./templates/lightRed/forgot_password.tpl:40
+#: ./templates/lightRed/login.tpl:49
+#: ./templates/lightRed/login_popup.tpl:56
+msgid "Я еще не зарегистрирован"
+msgstr ""
+
+#: ./templates/lightRed/forgot_password.tpl:41
+#: ./templates/lightRed/login.tpl:50
+#: ./templates/lightRed/login_popup.tpl:57
+msgid "Перейти к регистрации"
+msgstr ""
+
+#: ./templates/lightRed/header.tpl:43
+#: ./templates/lightRed/shop/callback.tpl:5
+msgid "Заказать звонок"
+msgstr ""
+
+#: ./templates/lightRed/header.tpl:48
+msgid "Работаем"
+msgstr ""
+
+#: ./templates/lightRed/header.tpl:48
+msgid "Пн–Пт"
+msgstr ""
+
+#: ./templates/lightRed/header.tpl:48
+msgid "Сб"
+msgstr ""
+
+#: ./templates/lightRed/header.tpl:48
+msgid "Вс выходной"
+msgstr ""
+
+#: ./templates/lightRed/header.tpl:60
+msgid "Найти"
+msgstr ""
+
+#: ./templates/lightRed/header.tpl:63
+msgid "Я ищу"
+msgstr ""
+
+#: ./templates/lightRed/login.tpl:12
+#: ./templates/lightRed/login_popup.tpl:19
+msgid "Почта"
+msgstr ""
+
+#: ./templates/lightRed/login.tpl:19
+#: ./templates/lightRed/login_popup.tpl:26
+msgid "Пароль"
+msgstr ""
+
+#: ./templates/lightRed/login_popup.tpl:10
+msgid "Авторизация"
+msgstr ""
+
+#: ./templates/lightRed/main_demo.tpl:136
+#: ./templates/lightRed/shop/js_templates.tpl:121
+msgid "Показать"
+msgstr ""
+
+#: ./templates/lightRed/main_demo.tpl:140
+msgid "Купить лицензию"
+msgstr ""
+
+#: ./templates/lightRed/main_demo.tpl:145
+msgid "Обзор продукта"
+msgstr ""
+
+#: ./templates/lightRed/main_demo.tpl:148
+msgid "Преимущества продукта"
+msgstr ""
+
+#: ./templates/lightRed/main_demo.tpl:151
+msgid "Шаблоны для Shop"
+msgstr ""
+
+#: ./templates/lightRed/new_level/one_product_item.tpl:52
+#: ./templates/lightRed/shop/cart_order.tpl:37
+#: ./templates/lightRed/shop/cart_order.tpl:109
+#: ./templates/lightRed/shop/cart_popup.tpl:44
+#: ./templates/lightRed/shop/cart_popup.tpl:116
+#: ./templates/lightRed/shop/order_view.tpl:193
+#: ./templates/lightRed/shop/order_view2.tpl:187
+#: ./templates/lightRed/shop/product.tpl:100
+msgid "Артикул"
+msgstr ""
+
+#: ./templates/lightRed/new_level/one_product_item.tpl:61
+#: ./templates/lightRed/new_level/one_product_item.tpl:226
+#: ./templates/lightRed/shop/cart_order.tpl:32
+#: ./templates/lightRed/shop/cart_order.tpl:104
+#: ./templates/lightRed/shop/cart_popup.tpl:39
+#: ./templates/lightRed/shop/cart_popup.tpl:110
+#: ./templates/lightRed/shop/order_view.tpl:192
+#: ./templates/lightRed/shop/order_view2.tpl:186
+#: ./templates/lightRed/shop/product.tpl:108
+#: ./templates/lightRed/shop/product.tpl:143
+msgid "Вариант"
+msgstr ""
+
+#: ./templates/lightRed/new_level/one_product_item.tpl:179
+#: ./templates/lightRed/shop/product.tpl:273
+msgid "Нет в наличии"
+msgstr ""
+
+#: ./templates/lightRed/new_level/one_product_item.tpl:211
+#: ./templates/lightRed/shop/product.tpl:311
+#: ./templates/lightRed/shop/report_appearance.tpl:4
+msgid "Сообщить о появлении"
+msgstr ""
+
+#: ./templates/lightRed/new_level/one_product_item.tpl:250
+#: ./templates/lightRed/shop/product.tpl:124
+#: ./templates/lightRed/shop/product.tpl:572
+msgid "Отзывы"
+msgstr ""
+
+#: ./templates/lightRed/new_level/one_product_item.tpl:267
+#: ./templates/lightRed/new_level/one_product_item.tpl:268
+#: ./templates/lightRed/new_level/one_product_item.tpl:272
+msgid "В список сравнений"
+msgstr ""
+
+#: ./templates/lightRed/new_level/one_product_item.tpl:269
+msgid "В списке сравнений"
+msgstr ""
+
+#: ./templates/lightRed/new_level/one_product_item.tpl:340
+msgid "Удалить"
+msgstr ""
+
+#: ./templates/lightRed/new_level/one_product_item.tpl:348
+msgid "Переместить"
+msgstr ""
+
+#: ./templates/lightRed/offline.tpl:182
+msgid "Сайт в стадии строительства"
+msgstr ""
+
+#: ./templates/lightRed/offline.tpl:183
+msgid "Управление сайтом"
+msgstr ""
+
+#: ./templates/lightRed/offline.tpl:186
+msgid "Отправить сообщение"
+msgstr ""
+
+#: ./templates/lightRed/offline.tpl:196
+msgid "ООО «Сайт Имидж»"
+msgstr ""
+
+#: ./templates/lightRed/offline.tpl:197
+msgid "ImageCMS активно развивается в создание качественных интернет-магазинов"
+msgstr ""
+
+#: ./templates/lightRed/patterns/widgets/brands.tpl:41
+msgid "Show all"
+msgstr ""
+
+#: ./templates/lightRed/patterns/widgets/view_product.tpl:27
+msgid "No viewed products"
+msgstr ""
+
+#: ./templates/lightRed/paymentSystem/LiqPay.tpl:5
+#: ./templates/lightRed/paymentSystem/PrivateBank.tpl:12
+#: ./templates/lightRed/paymentSystem/Robokassa.tpl:13
+#: ./templates/lightRed/paymentSystem/SberBank.tpl:5
+msgid "Оплатить"
+msgstr ""
+
+#: ./templates/lightRed/paymentSystem/PayPal.tpl:17
+msgid "PayPal - более безопасный и легкий способ оплаты через Интернет!"
+msgstr ""
+
+#: ./templates/lightRed/paymentSystem/QIWI.tpl:11
+#: ./templates/lightRed/paymentSystem/QIWI.tpl:34
+msgid "Выставить счёт за покупку"
+msgstr ""
+
+#: ./templates/lightRed/paymentSystem/QIWI.tpl:14
+msgid "Мобильный телефон"
+msgstr ""
+
+#: ./templates/lightRed/paymentSystem/QIWI.tpl:24
+msgid "руб."
+msgstr ""
+
+#: ./templates/lightRed/paymentSystem/QIWI.tpl:25
+msgid "коп."
+msgstr ""
+
+#: ./templates/lightRed/paymentSystem/QIWI.tpl:29
+#: ./templates/lightRed/shop/order_view.tpl:95
+#: ./templates/lightRed/shop/order_view2.tpl:86
+msgid "Комментарий"
+msgstr ""
+
+#: ./templates/lightRed/register.tpl:26
+#: ./templates/lightRed/register_popup.tpl:28
+msgid "Пароль:"
+msgstr ""
+
+#: ./templates/lightRed/register.tpl:33
+#: ./templates/lightRed/register_popup.tpl:35
+msgid "Повторите:"
+msgstr ""
+
+#: ./templates/lightRed/register.tpl:59
+#: ./templates/lightRed/register_popup.tpl:56
+msgid "Зарегистрироваться"
+msgstr ""
+
+#: ./templates/lightRed/register.tpl:61
+#: ./templates/lightRed/register_popup.tpl:58
+msgid "Я уже зарегистрирован"
+msgstr ""
+
+#: ./templates/lightRed/register.tpl:71
+#: ./templates/lightRed/register_popup.tpl:68
+msgid "Напомнить пароль"
+msgstr ""
+
+#: ./templates/lightRed/reset_password.tpl:5
+msgid "Войти в магазин"
+msgstr ""
+
+#: ./templates/lightRed/shop/auth_data.tpl:27
+#: ./templates/lightRed/shop/profile.tpl:11
+msgid "Основные данные"
+msgstr ""
+
+#: ./templates/lightRed/shop/auth_data.tpl:28
+#: ./templates/lightRed/shop/profile.tpl:12
+#: ./templates/lightRed/shop/profile_change_pass.tpl:28
+msgid "Изменить пароль"
+msgstr ""
+
+#: ./templates/lightRed/shop/auth_data.tpl:29
+#: ./templates/lightRed/shop/profile.tpl:13
+msgid "История заказа"
+msgstr ""
+
+#: ./templates/lightRed/shop/auth_data.tpl:37
+msgid "Выйти"
+msgstr ""
+
+#: ./templates/lightRed/shop/brand.tpl:33
+#: ./templates/lightRed/shop/js_templates.tpl:121
+#: ./templates/lightRed/shop/search.tpl:25
+msgid "Найдено"
+msgstr ""
+
+#: ./templates/lightRed/shop/brand.tpl:39
+msgid "По вашему запросу товаров не найдено"
+msgstr ""
+
+#: ./templates/lightRed/shop/brand.tpl:85
+msgid "Найдено в категориях:"
+msgstr ""
+
+#: ./templates/lightRed/shop/brands_images.tpl:8
+#: ./templates/lightRed/shop/brands_images_1.tpl:8
+#: ./templates/lightRed/shop/brands_list.tpl:8
+msgid "Все бренды магазина"
+msgstr ""
+
+#: ./templates/lightRed/shop/callback.tpl:18
+#: ./templates/lightRed/shop/cart.tpl:59
+msgid "Имя: "
+msgstr ""
+
+#: ./templates/lightRed/shop/callback.tpl:25
+msgid "Телефон: "
+msgstr ""
+
+#: ./templates/lightRed/shop/callback.tpl:32
+msgid "Комментарий: "
+msgstr ""
+
+#: ./templates/lightRed/shop/callback.tpl:42
+msgid "Позвоните мне"
+msgstr ""
+
+#: ./templates/lightRed/shop/cart.tpl:7
+#: ./templates/lightRed/shop/cart.tpl:24
+msgid "Оформление заказа"
+msgstr ""
+
+#: ./templates/lightRed/shop/cart.tpl:13
+msgid "Корзина пуста"
+msgstr ""
+
+#: ./templates/lightRed/shop/cart.tpl:28
+msgid "Я уже здесь покупал"
+msgstr ""
+
+#: ./templates/lightRed/shop/cart.tpl:68
+#: ./templates/lightRed/shop/order_view.tpl:48
+#: ./templates/lightRed/shop/order_view2.tpl:48
+#: ./templates/lightRed/shop/profile_data.tpl:14
+msgid "Телефон"
+msgstr ""
+
+#: ./templates/lightRed/shop/cart.tpl:72
+msgid "Еще один номер"
+msgstr ""
+
+#: ./templates/lightRed/shop/cart.tpl:87
+msgid "Email"
+msgstr ""
+
+#: ./templates/lightRed/shop/cart.tpl:104
+msgid "Доставка:"
+msgstr ""
+
+#: ./templates/lightRed/shop/cart.tpl:108
+msgid "--Выбирете способ доставки--"
+msgstr ""
+
+#: ./templates/lightRed/shop/cart.tpl:137
+msgid "Стоимость"
+msgstr ""
+
+#: ./templates/lightRed/shop/cart.tpl:138
+msgid "Бесплатно от"
+msgstr ""
+
+#: ./templates/lightRed/shop/cart.tpl:153
+msgid "Адрес доставки"
+msgstr ""
+
+#: ./templates/lightRed/shop/cart.tpl:163
+msgid "Добавить комментарий к заказу"
+msgstr ""
+
+#: ./templates/lightRed/shop/cart.tpl:175
+#: ./templates/lightRed/shop/payments/default.tpl:27
+#: ./templates/lightRed/shop/payments/radio.tpl:32
+msgid "Оплата"
+msgstr ""
+
+#: ./templates/lightRed/shop/cart.tpl:177
+msgid "Выберите доставку"
+msgstr ""
+
+#: ./templates/lightRed/shop/cart.tpl:191
+#: ./templates/lightRed/shop/cart_popup.tpl:224
+msgid "Оформить заказ"
+msgstr ""
+
+#: ./templates/lightRed/shop/cart.tpl:203
+#: ./templates/lightRed/shop/cart_popup.tpl:8
+#: ./templates/lightRed/shop/order_view.tpl:157
+msgid "Мой заказ"
+msgstr ""
+
+#: ./templates/lightRed/shop/cart.tpl:205
+msgid "Редактировать"
+msgstr ""
+
+#: ./templates/lightRed/shop/cart_data.tpl:29
+msgid "Корзина"
+msgstr ""
+
+#: ./templates/lightRed/shop/cart_order.tpl:11
+#: ./templates/lightRed/shop/cart_popup.tpl:15
+#: ./templates/lightRed/shop/order_view.tpl:166
+msgid "Товар"
+msgstr ""
+
+#: ./templates/lightRed/shop/cart_order.tpl:13
+#: ./templates/lightRed/shop/cart_popup.tpl:17
+#: ./templates/lightRed/shop/order_view.tpl:168
+msgid "Cумма"
+msgstr ""
+
+#: ./templates/lightRed/shop/cart_order.tpl:86
+#: ./templates/lightRed/shop/order_view.tpl:251
+#: ./templates/lightRed/shop/order_view2.tpl:249
+msgid "Комплект товаров"
+msgstr ""
+
+#: ./templates/lightRed/shop/cart_order.tpl:166
+#: ./templates/lightRed/shop/order_view.tpl:377
+msgid "Начальная стоимость товаров"
+msgstr ""
+
+#: ./templates/lightRed/shop/cart_order.tpl:176
+#: ./templates/lightRed/shop/order_view.tpl:389
+msgid "Cтоимость товаров"
+msgstr ""
+
+#: ./templates/lightRed/shop/cart_order.tpl:186
+#: ./templates/lightRed/shop/order_view.tpl:404
+msgid "Доставка"
+msgstr ""
+
+#: ./templates/lightRed/shop/cart_order.tpl:202
+#: ./templates/lightRed/shop/order_view.tpl:420
+msgid "Бесплатно"
+msgstr ""
+
+#: ./templates/lightRed/shop/cart_order.tpl:214
+#: ./templates/lightRed/shop/cart_popup.tpl:173
+#: ./templates/lightRed/shop/order_view.tpl:432
+#: ./templates/lightRed/shop/order_view2.tpl:407
+#: ./templates/lightRed/shop/profile_data.tpl:69
+#: ./templates/lightRed/shop/profile_data.tpl:93
+msgid "Ваша текущая скидка"
+msgstr ""
+
+#: ./templates/lightRed/shop/cart_order.tpl:225
+#: ./templates/lightRed/shop/cart_order.tpl:236
+#: ./templates/lightRed/shop/order_view.tpl:447
+#: ./templates/lightRed/shop/order_view2.tpl:421
+msgid "Подарочный сертификат"
+msgstr ""
+
+#: ./templates/lightRed/shop/cart_order.tpl:242
+msgid "Неверный код подарочного сертификата"
+msgstr ""
+
+#: ./templates/lightRed/shop/cart_order.tpl:248
+msgid "Ввести промо-код"
+msgstr ""
+
+#: ./templates/lightRed/shop/cart_order.tpl:255
+msgid "Применить"
+msgstr ""
+
+#: ./templates/lightRed/shop/cart_order.tpl:271
+#: ./templates/lightRed/shop/order_view.tpl:468
+#: ./templates/lightRed/shop/order_view2.tpl:444
+msgid "К оплате"
+msgstr ""
+
+#: ./templates/lightRed/shop/cart_popup.tpl:52
+#: ./templates/lightRed/shop/cart_popup.tpl:127
+msgid "Количество на складе"
+msgstr ""
+
+#: ./templates/lightRed/shop/cart_popup.tpl:53
+#: ./templates/lightRed/shop/cart_popup.tpl:128
+msgid "Только цифры"
+msgstr ""
+
+#: ./templates/lightRed/shop/cart_popup.tpl:179
+msgid "Вернуться к оформлению"
+msgstr ""
+
+#: ./templates/lightRed/shop/cart_popup.tpl:182
+msgid "Всего"
+msgstr ""
+
+#: ./templates/lightRed/shop/cart_popup.tpl:218
+#: ./templates/lightRed/shop/cart_popup.tpl:241
+msgid "Вернуться к покупкам"
+msgstr ""
+
+#: ./templates/lightRed/shop/cart_popup.tpl:232
+msgid "Ваша корзина"
+msgstr ""
+
+#: ./templates/lightRed/shop/cart_popup.tpl:232
+msgid "пуста"
+msgstr ""
+
+#: ./templates/lightRed/shop/cart_popup.tpl:237
+msgid "Вы удалили все элементы из корзины"
+msgstr ""
+
+#: ./templates/lightRed/shop/catalogue_header.tpl:7
+msgid "Выводить сначала"
+msgstr ""
+
+#: ./templates/lightRed/shop/catalogue_header.tpl:21
+msgid "На странице"
+msgstr ""
+
+#: ./templates/lightRed/shop/catalogue_header.tpl:39
+msgid "Вывод"
+msgstr ""
+
+#: ./templates/lightRed/shop/catalogue_header.tpl:42
+#: ./templates/lightRed/shop/catalogue_header.tpl:43
+msgid "Таблица"
+msgstr ""
+
+#: ./templates/lightRed/shop/catalogue_header.tpl:47
+#: ./templates/lightRed/shop/catalogue_header.tpl:48
+msgid "Список"
+msgstr ""
+
+#: ./templates/lightRed/shop/category.tpl:38
+#: ./templates/lightRed/shop/search.tpl:32
+msgid "Не найдено товаров"
+msgstr ""
+
+#: ./templates/lightRed/shop/compare.tpl:21
+#: ./templates/lightRed/shop/compare.tpl:152
+msgid "Сравнение товаров"
+msgstr ""
+
+#: ./templates/lightRed/shop/compare.tpl:26
+msgid "Все параметры"
+msgstr ""
+
+#: ./templates/lightRed/shop/compare.tpl:31
+msgid "Только Различия"
+msgstr ""
+
+#: ./templates/lightRed/shop/compare.tpl:127
+msgid "Категория"
+msgstr ""
+
+#: ./templates/lightRed/shop/compare.tpl:158
+msgid "Вы удалили все товары из сравнения"
+msgstr ""
+
+#: ./templates/lightRed/shop/compare.tpl:166
+msgid "Cравнения товаров"
+msgstr ""
+
+#: ./templates/lightRed/shop/compare.tpl:172
+msgid "Список сравнения пуст"
+msgstr ""
+
+#: ./templates/lightRed/shop/compare_data.tpl:11
+#: ./templates/lightRed/shop/compare_data.tpl:19
+msgid "Товары на сравнение"
+msgstr ""
+
+#: ./templates/lightRed/shop/compare_data.tpl:32
+#: ./templates/lightRed/shop/wish_list_data.tpl:24
+msgid "Ваш список"
+msgstr ""
+
+#: ./templates/lightRed/shop/compare_data.tpl:33
+msgid "Список сравнения"
+msgstr ""
+
+#: ./templates/lightRed/shop/compare_data.tpl:33
+#: ./templates/lightRed/shop/wish_list_data.tpl:25
+msgid "пуст"
+msgstr ""
+
+#: ./templates/lightRed/shop/helpers/helper.php:6
+msgid "Января"
+msgstr ""
+
+#: ./templates/lightRed/shop/helpers/helper.php:6
+msgid "Февраля"
+msgstr ""
+
+#: ./templates/lightRed/shop/helpers/helper.php:6
+msgid "Марта"
+msgstr ""
+
+#: ./templates/lightRed/shop/helpers/helper.php:6
+msgid "Апреля"
+msgstr ""
+
+#: ./templates/lightRed/shop/helpers/helper.php:6
+msgid "Мая"
+msgstr ""
+
+#: ./templates/lightRed/shop/helpers/helper.php:6
+msgid "Июня"
+msgstr ""
+
+#: ./templates/lightRed/shop/helpers/helper.php:6
+msgid "Июля"
+msgstr ""
+
+#: ./templates/lightRed/shop/helpers/helper.php:6
+msgid "Августа"
+msgstr ""
+
+#: ./templates/lightRed/shop/helpers/helper.php:6
+msgid "Сентября"
+msgstr ""
+
+#: ./templates/lightRed/shop/helpers/helper.php:6
+msgid "Октября"
+msgstr ""
+
+#: ./templates/lightRed/shop/helpers/helper.php:6
+msgid "Ноября"
+msgstr ""
+
+#: ./templates/lightRed/shop/helpers/helper.php:6
+msgid "Декабря"
+msgstr ""
+
+#: ./templates/lightRed/shop/js_templates.tpl:61
+msgid "Посмотреть все результаты"
+msgstr ""
+
+#: ./templates/lightRed/shop/js_templates.tpl:67
+msgid "По Вашему запросу ничего не найдено"
+msgstr ""
+
+#: ./templates/lightRed/shop/js_templates.tpl:137
+msgid "Подтвердите"
+msgstr ""
+
+#: ./templates/lightRed/shop/js_templates.tpl:143
+msgid "Подтвердить"
+msgstr ""
+
+#: ./templates/lightRed/shop/js_templates.tpl:148
+msgid "Отменить"
+msgstr ""
+
+#: ./templates/lightRed/shop/js_templates.tpl:160
+msgid "Авторизуйтесь"
+msgstr ""
+
+#: ./templates/lightRed/shop/js_templates.tpl:169
+msgid "Для того, что бы добавить товар в список желаний, Вам нужно"
+msgstr ""
+
+#: ./templates/lightRed/shop/js_templates.tpl:169
+msgid "авторизоваться"
+msgstr ""
+
+#: ./templates/lightRed/shop/order_view.tpl:25
+#: ./templates/lightRed/shop/order_view2.tpl:25
+msgid "Спасибо, ваш заказ принят!"
+msgstr ""
+
+#: ./templates/lightRed/shop/order_view.tpl:25
+#: ./templates/lightRed/shop/order_view2.tpl:25
+msgid "Наши менеджеры свяжутся с вами."
+msgstr ""
+
+#: ./templates/lightRed/shop/order_view.tpl:31
+#: ./templates/lightRed/shop/order_view2.tpl:31
+msgid "Заказ №"
+msgstr ""
+
+#: ./templates/lightRed/shop/order_view.tpl:43
+#: ./templates/lightRed/shop/order_view2.tpl:43
+msgid "Имя получателя"
+msgstr ""
+
+#: ./templates/lightRed/shop/order_view.tpl:55
+msgid "Дополнительный телефон"
+msgstr ""
+
+#: ./templates/lightRed/shop/order_view.tpl:71
+#: ./templates/lightRed/shop/order_view2.tpl:63
+msgid "Способ доставки"
+msgstr ""
+
+#: ./templates/lightRed/shop/order_view.tpl:83
+#: ./templates/lightRed/shop/order_view2.tpl:74
+msgid "Город"
+msgstr ""
+
+#: ./templates/lightRed/shop/order_view.tpl:89
+#: ./templates/lightRed/shop/order_view2.tpl:80
+#: ./templates/lightRed/shop/profile_data.tpl:29
+msgid "Адрес"
+msgstr ""
+
+#: ./templates/lightRed/shop/order_view.tpl:108
+#: ./templates/lightRed/shop/order_view2.tpl:99
+msgid "Дата заказа"
+msgstr ""
+
+#: ./templates/lightRed/shop/order_view.tpl:115
+#: ./templates/lightRed/shop/order_view2.tpl:120
+msgid "Способ оплаты"
+msgstr ""
+
+#: ./templates/lightRed/shop/order_view.tpl:125
+#: ./templates/lightRed/shop/order_view2.tpl:131
+msgid "Статус оплаты"
+msgstr ""
+
+#: ./templates/lightRed/shop/order_view.tpl:128
+#: ./templates/lightRed/shop/order_view2.tpl:134
+msgid "Оплачен"
+msgstr ""
+
+#: ./templates/lightRed/shop/order_view.tpl:130
+#: ./templates/lightRed/shop/order_view2.tpl:136
+#: ./templates/lightRed/shop/profile_history.tpl:39
+msgid "Не оплачен"
+msgstr ""
+
+#: ./templates/lightRed/shop/order_view2.tpl:377
+msgid "Сумма товаров"
+msgstr ""
+
+#: ./templates/lightRed/shop/order_view2.tpl:391
+msgid "Стоимость доставки"
+msgstr ""
+
+#: ./templates/lightRed/shop/payments/default.tpl:3
+#: ./templates/lightRed/shop/payments/radio.tpl:3
+msgid "Оплата:"
+msgstr ""
+
+#: ./templates/lightRed/shop/payments/default.tpl:29
+#: ./templates/lightRed/shop/payments/radio.tpl:34
+msgid "Нет способов оплаты"
+msgstr ""
+
+#: ./templates/lightRed/shop/product.tpl:132
+msgid "Оставить отзыв"
+msgstr ""
+
+#: ./templates/lightRed/shop/product.tpl:329
+#: ./templates/lightRed/shop/product.tpl:330
+#: ./templates/lightRed/shop/product.tpl:334
+msgid "К сравнению"
+msgstr ""
+
+#: ./templates/lightRed/shop/product.tpl:331
+msgid "В сравнении"
+msgstr ""
+
+#: ./templates/lightRed/shop/product.tpl:373
+msgid "В комплекте дешевле"
+msgstr ""
+
+#: ./templates/lightRed/shop/product.tpl:554
+msgid "Обзор"
+msgstr ""
+
+#: ./templates/lightRed/shop/product.tpl:558
+#: ./templates/lightRed/shop/product.tpl:650
+msgid "Свойства"
+msgstr ""
+
+#: ./templates/lightRed/shop/product.tpl:561
+#: ./templates/lightRed/shop/product.tpl:608
+msgid "Полное описание"
+msgstr ""
+
+#: ./templates/lightRed/shop/product.tpl:564
+msgid "Аксессуары"
+msgstr ""
+
+#: ./templates/lightRed/shop/product.tpl:585
+msgid "Характеристики"
+msgstr ""
+
+#: ./templates/lightRed/shop/product.tpl:591
+msgid "Просмотреть все спецификации"
+msgstr ""
+
+#: ./templates/lightRed/shop/product.tpl:602
+#: ./templates/lightRed/shop/product.tpl:659
+msgid "Описание"
+msgstr ""
+
+#: ./templates/lightRed/shop/product.tpl:619
+#: ./templates/lightRed/shop/product.tpl:674
+msgid "С этим товаром покупают"
+msgstr ""
+
+#: ./templates/lightRed/shop/product.tpl:622
+msgid "Все аксессуары"
+msgstr ""
+
+#: ./templates/lightRed/shop/product.tpl:693
+msgid "Рассказать друзьям"
+msgstr ""
+
+#: ./templates/lightRed/shop/profile.tpl:6
+msgid "Добро пожаловать!"
+msgstr ""
+
+#: ./templates/lightRed/shop/profile_change_pass.tpl:7
+msgid "Старый пароль"
+msgstr ""
+
+#: ./templates/lightRed/shop/profile_change_pass.tpl:13
+msgid "Новый пароль"
+msgstr ""
+
+#: ./templates/lightRed/shop/profile_change_pass.tpl:19
+msgid "Повторите пароль"
+msgstr ""
+
+#: ./templates/lightRed/shop/profile_data.tpl:10
+msgid "Не меньше 4-х символов"
+msgstr ""
+
+#: ./templates/lightRed/shop/profile_data.tpl:24
+msgid "E-mail является логином"
+msgstr ""
+
+#: ./templates/lightRed/shop/profile_data.tpl:38
+msgid "Сохранить данные"
+msgstr ""
+
+#: ./templates/lightRed/shop/profile_data.tpl:53
+msgid "Скидки"
+msgstr ""
+
+#: ./templates/lightRed/shop/profile_data.tpl:59
+msgid "Товаров на сумму"
+msgstr ""
+
+#: ./templates/lightRed/shop/profile_data.tpl:77
+msgid "Ваша текущая скидка группы пользователей"
+msgstr ""
+
+#: ./templates/lightRed/shop/profile_data.tpl:104
+msgid "Для следующей скидки"
+msgstr ""
+
+#: ./templates/lightRed/shop/profile_data.tpl:104
+msgid "осталось"
+msgstr ""
+
+#: ./templates/lightRed/shop/profile_data.tpl:105
+msgid "cделать покупки на сумму"
+msgstr ""
+
+#: ./templates/lightRed/shop/profile_data.tpl:110
+msgid "Посмотреть таблицу скидок"
+msgstr ""
+
+#: ./templates/lightRed/shop/profile_data.tpl:122
+msgid "Накопительные скидки"
+msgstr ""
+
+#: ./templates/lightRed/shop/profile_data.tpl:129
+msgid "Размер скидки"
+msgstr ""
+
+#: ./templates/lightRed/shop/profile_data.tpl:130
+msgid "От"
+msgstr ""
+
+#: ./templates/lightRed/shop/profile_data.tpl:131
+msgid "До"
+msgstr ""
+
+#: ./templates/lightRed/shop/profile_data.tpl:139
+msgid "Бесконечно"
+msgstr ""
+
+#: ./templates/lightRed/shop/profile_history.tpl:6
+msgid "Вы еще не совершали покупки"
+msgstr ""
+
+#: ./templates/lightRed/shop/profile_history.tpl:13
+#: ./templates/lightRed/shop/profile_history.tpl:23
+msgid "Заказ #"
+msgstr ""
+
+#: ./templates/lightRed/shop/profile_history.tpl:14
+msgid "Время покупки"
+msgstr ""
+
+#: ./templates/lightRed/shop/profile_history.tpl:15
+msgid "Сумма покупки"
+msgstr ""
+
+#: ./templates/lightRed/shop/profile_history.tpl:16
+msgid "Статус заказа"
+msgstr ""
+
+#: ./templates/lightRed/shop/profile_history.tpl:17
+msgid "Статус платежа"
+msgstr ""
+
+#: ./templates/lightRed/shop/profile_history.tpl:39
+msgid "Оплачиваемый"
+msgstr ""
+
+#: ./templates/lightRed/shop/report_appearance.tpl:33
+msgid "Вы получите письмо, когда товар будет доступен"
+msgstr ""
+
+#: ./templates/lightRed/shop/report_appearance.tpl:37
+msgid "Телефон:"
+msgstr ""
+
+#: ./templates/lightRed/shop/report_appearance.tpl:43
+msgid "Комментарий:"
+msgstr ""
+
+#: ./templates/lightRed/shop/search.tpl:23
+msgid "Результаты поиска"
+msgstr ""
+
+#: ./templates/lightRed/shop/search.tpl:60
+#: ./templates/lightRed/smart_filter/main.tpl:44
+msgid "Категории"
+msgstr ""
+
+#: ./templates/lightRed/smart_filter/filter.tpl:6
+msgid "Цена"
+msgstr ""
+
+#: ./templates/lightRed/smart_filter/filter.tpl:8
+msgid "Джаваскрипт не включен"
+msgstr ""
+
+#: ./templates/lightRed/smart_filter/filter.tpl:19
+#: ./templates/lightRed/smart_filter/filter.tpl:22
+msgid "только цифры"
+msgstr ""
+
+#: ./templates/lightRed/smart_filter/filter.tpl:35
+msgid "Производитель"
+msgstr ""
+
+#: ./templates/lightRed/smart_filter/filter.tpl:115
+msgid "Не выбрано"
+msgstr ""
+
+#: ./templates/lightRed/smart_filter/filter.tpl:141
+msgid "Фильтровать"
+msgstr ""
+
+#: ./templates/lightRed/smart_filter/main.tpl:4
+msgid "Выбранные фильтры"
+msgstr ""
+
+#: ./templates/lightRed/smart_filter/main.tpl:7
+msgid "Цена от"
+msgstr ""
+
+#: ./templates/lightRed/smart_filter/main.tpl:7
+msgid "до"
+msgstr ""
+
+#: ./templates/lightRed/smart_filter/main.tpl:32
+msgid "Сбросить все фильтры"
+msgstr ""
+
+#: ./templates/lightRed/star_rating/star_rating.tpl:9
+#: ./templates/lightRed/star_rating/star_rating.tpl:18
+msgid "Leav"
+msgstr ""
+
+#: ./templates/lightRed/star_rating/star_rating.tpl:9
+#: ./templates/lightRed/star_rating/star_rating.tpl:19
+msgid "people(s)"
+msgstr ""
+
+#: ./templates/lightRed/top_menu/error.tpl:23
+msgid "Переустановите модуль меню"
+msgstr ""
+
+#: ./templates/lightRed/user_toolbar.tpl:11
+msgid "Просмотренные товары"
+msgstr ""
+
+#: ./templates/lightRed/user_toolbar.tpl:26
+msgid "Свернуть"
+msgstr ""
+
+#: ./templates/lightRed/user_toolbar.tpl:30
+msgid "Развернуть"
+msgstr ""
+
+#: ./templates/lightRed/user_toolbar.tpl:39
+msgid "Наверх"
+msgstr ""
+
+#: ./templates/lightRed/widgets/brands.tpl:24
+msgid "Все бренды"
+msgstr ""
+
+#: ./templates/lightRed/widgets/latest_news.tpl:4
+msgid "Статьи, новости и акции"
+msgstr ""
+
+#: ./templates/lightRed/widgets/path.tpl:7
+msgid "Главная"
+msgstr ""
+
+#: ./templates/lightRed/widgets/ViewedProducts.tpl:27
+msgid "Нет просмотренных товаров"
+msgstr ""
+
+#: ./templates/lightRed/wishlist/button.tpl:7
+msgid "В список желаний"
+msgstr ""
+
+#: ./templates/lightRed/wishlist/button.tpl:20
+msgid "В список желания"
+msgstr ""
+
+#: ./templates/lightRed/wishlist/button.tpl:22
+msgid "В списке желаний"
+msgstr ""
+
+#: ./templates/lightRed/wishlist/button.tpl:24
+msgid "В списке желания"
+msgstr ""
+
+#: ./templates/lightRed/wishlist/other_list.tpl:48
+#: ./templates/lightRed/wishlist/wishlist.tpl:109
+msgid "Список пуст"
+msgstr ""
+
+#: ./templates/lightRed/wishlist/other_list.tpl:62
+#: ./templates/lightRed/wishlist/wishlist.tpl:180
+msgid "Список Желания пуст"
+msgstr ""
+
+#: ./templates/lightRed/wishlist/sendEmail.tpl:5
+msgid "Отправить другу"
+msgstr ""
+
+#: ./templates/lightRed/wishlist/sendEmail.tpl:13
+msgid "Email друга"
+msgstr ""
+
+#: ./templates/lightRed/wishlist/wishlist.tpl:22
+#: ./templates/lightRed/wishlist/wishlist.tpl:76
+msgid "Создать новый список"
+msgstr ""
+
+#: ./templates/lightRed/wishlist/wishlist.tpl:25
+msgid "В список избранных вы можете отложить понравившиеся товары, также показать список друзьям"
+msgstr ""
+
+#: ./templates/lightRed/wishlist/wishlist.tpl:29
+msgid "Создание списка избранных товаров"
+msgstr ""
+
+#: ./templates/lightRed/wishlist/wishlist.tpl:37
+#: ./templates/lightRed/wishlist/wishlist.tpl:147
+#: ./templates/lightRed/wishlist/wishlistEdit.tpl:13
+msgid "Доступность:"
+msgstr ""
+
+#: ./templates/lightRed/wishlist/wishlist.tpl:41
+#: ./templates/lightRed/wishlist/wishlist.tpl:155
+#: ./templates/lightRed/wishlist/wishlistEdit.tpl:17
+msgid "Коллективный"
+msgstr ""
+
+#: ./templates/lightRed/wishlist/wishlist.tpl:42
+#: ./templates/lightRed/wishlist/wishlist.tpl:152
+#: ./templates/lightRed/wishlist/wishlistEdit.tpl:19
+msgid "Публичный"
+msgstr ""
+
+#: ./templates/lightRed/wishlist/wishlist.tpl:43
+#: ./templates/lightRed/wishlist/wishlist.tpl:149
+#: ./templates/lightRed/wishlist/wishlistEdit.tpl:18
+msgid "Приватный"
+msgstr ""
+
+#: ./templates/lightRed/wishlist/wishlist.tpl:49
+#: ./templates/lightRed/wishlist/wishlistEdit.tpl:25
+msgid "Название списка:"
+msgstr ""
+
+#: ./templates/lightRed/wishlist/wishlist.tpl:55
+#: ./templates/lightRed/wishlist/wishlistEdit.tpl:31
+msgid "Описание:"
+msgstr ""
+
+#: ./templates/lightRed/wishlist/wishlist.tpl:125
+msgid "Редактировать список"
+msgstr ""
+
+#: ./templates/lightRed/wishlist/wishlist.tpl:142
+msgid "Удалить список"
+msgstr ""
+
+#: ./templates/lightRed/wishlist/wishlist.tpl:160
+msgid "Поделится с другом"
+msgstr ""
+
+#: ./templates/lightRed/wishlist/wishlist.tpl:162
+msgid "Поделиться с другом"
+msgstr ""
+
+#: ./templates/lightRed/wishlist/wishlistEdit.tpl:5
+msgid "Редактировать:"
+msgstr ""
+
+#: ./templates/lightRed/wishlist/wishlistEdit.tpl:40
+msgid "Коментарий к:"
+msgstr ""
+
+#: ./templates/lightRed/wishlist/wishlistEdit.tpl:55
+msgid "Сохранить"
+msgstr ""
+
+#: ./templates/lightRed/wishlist/wishPopup.tpl:5
+msgid "Выбор cписка  желаний"
+msgstr ""
+
+#: ./templates/lightRed/wishlist/wishPopup.tpl:42
+msgid "Создать список"
+msgstr ""
+
+#: ./templates/lightRed/wishlist/wishPopup.tpl:70
+msgid "Переместить в список"
+msgstr ""
+
+#: ./templates/lightRed/wishlist/wishPopup.tpl:70
+msgid "Добавить в список"
+msgstr ""
