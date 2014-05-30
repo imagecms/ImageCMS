@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-29 11:13+0300\n"
-"PO-Revision-Date: 2014-05-29 11:13+0300\n"
+"POT-Creation-Date: 2014-05-29 07:24+0300\n"
+"PO-Revision-Date: 2014-05-29 07:24+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -18,19 +18,47 @@ msgstr ""
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: ./application/modules/red_helper/assets/admin/main.tpl:35
+#: ./application/modules/red_helper/assets/admin/main.tpl:54
+msgid "Your contact phone number."
+msgstr "Ваш контактный телефон."
+
+#: ./application/modules/red_helper/assets/admin/main.tpl:34
+msgid "Create your own unique login. Username can only consist of letters and numbers, login itself must be at least 3 characters."
+msgstr "Придумайте свой уникальный логин. Логин может состоять только из латинских букв и цифр, сам логин должен быть не короче 3 символов."
+
+#: ./application/modules/red_helper/assets/admin/main.tpl:39
+msgid "Use a password to connect service RedHelper. For security reasons, the password should be different from the password ImageCMS."
+msgstr "Придумайте пароль для подключения сервиса RedHelper. В целях безопасности пароль должен отличаться от пароля ImageCMS."
+
+#: ./application/modules/red_helper/assets/admin/main.tpl:44
+msgid "Enter your email address to be used for communication with you."
+msgstr "Введите адрес электронной почты, который будет использоваться для связи с Вами."
+
+#: ./application/modules/red_helper/assets/admin/main.tpl:47
+msgid "Your name"
+msgstr "Ваше имя"
+
+#: ./application/modules/red_helper/assets/admin/main.tpl:49
+msgid "Enter your name."
+msgstr "Введите Ваше ФИО по-русски."
+
+#: ./application/modules/red_helper/assets/admin/main.tpl:52
+msgid "Your phone"
+msgstr "Ваш телефон"
+
+#: ./application/modules/red_helper/assets/admin/main.tpl:56
+msgid "* - Fields are required"
+msgstr "* - Поля обязательны для заполнения"
+
+#: ./application/modules/red_helper/assets/admin/main.tpl:42
 msgid "Your email"
 msgstr "Ваш электронный адрес"
 
-#: ./application/modules/red_helper/assets/admin/main.tpl:39
+#: ./application/modules/red_helper/assets/admin/main.tpl:37
 msgid "Choose password"
 msgstr "Выберите пароль"
 
-#: ./application/modules/red_helper/assets/admin/main.tpl:48
-msgid "Save changes"
-msgstr "Сохранить изменения"
-
-#: ./application/modules/red_helper/admin.php:27
+#: ./application/modules/red_helper/admin.php:29
 msgid "Settings saved"
 msgstr "Настройки сохранены"
 
@@ -38,35 +66,32 @@ msgstr "Настройки сохранены"
 msgid "Save settings"
 msgstr "Сохранить настройки"
 
-#: ./application/modules/red_helper/assets/admin/main.tpl:59
+#: ./application/modules/red_helper/assets/admin/main.tpl:78
 msgid "Back"
 msgstr "Назад"
 
 #: ./application/modules/red_helper/assets/admin/main.tpl:4
-#: ./application/modules/red_helper/assets/admin/main.tpl:63
+#: ./application/modules/red_helper/assets/admin/main.tpl:82
 msgid "Settings"
 msgstr "Параметры"
 
-#: ./application/modules/red_helper/assets/admin/main.tpl:27
-#: ./application/modules/red_helper/assets/admin/main.tpl:66
+#: ./application/modules/red_helper/assets/admin/main.tpl:28
+#: ./application/modules/red_helper/assets/admin/main.tpl:63
+#: ./application/modules/red_helper/assets/admin/main.tpl:85
 msgid "Registration"
 msgstr "Регистрация"
 
 #: ./application/modules/red_helper/module_info.php:6
-#: ./application/modules/red_helper/assets/admin/main.tpl:55
+#: ./application/modules/red_helper/assets/admin/main.tpl:70
 msgid "Red Helper"
 msgstr ""
 
 #: ./application/modules/red_helper/assets/admin/main.tpl:9
-#: ./application/modules/red_helper/assets/admin/main.tpl:31
+#: ./application/modules/red_helper/assets/admin/main.tpl:32
 msgid "Your login"
 msgstr "Ваш логин"
 
 #: ./application/modules/red_helper/assets/admin/main.tpl:15
-#: ./application/modules/red_helper/assets/admin/main.tpl:47
+#: ./application/modules/red_helper/assets/admin/main.tpl:62
 msgid "Close"
 msgstr "Закрыть"
-
-#: tmpLink
-msgid "Registration1"
-msgstr "Registration1wsaasdasd"

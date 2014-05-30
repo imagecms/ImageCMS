@@ -334,9 +334,8 @@ input.input-search{height: 33px;}
 .items-h-carousel .frame-photo-title .title, .items-catalog.table .frame-photo-title .title, .items-compare .frame-photo-title .title, .items-wish-list .frame-photo-title .title{height: 57px;overflow: hidden;display: block;margin-bottom: 2px;}
 .items-catalog > li .icon_times_order{position: absolute; left:10px; top:10px;}
 .items-catalog .frame-photo-title{display: block;}
-.items-catalog .photo-block{width: 200px;height: 216px;}
+.items-catalog .photo-block{width: 205px;height: 216px;}
 .items-catalog.table .photo-block{margin: auto;margin-bottom: 10px;display: block;}
-.items-h-carousel .photo-block, .items-compare .photo-block, .items-wish-list .photo-block{width: 100%;}
 .items-catalog.list .description{padding-right: 20px;}
 .items-catalog.list .photo-block{float: left;margin-right: 10px;height: 170px;padding: 15px 0;}
 .items-catalog.list .frame-photo-title > .title{margin-bottom: 5px;display: block;margin-top: 10px;}
