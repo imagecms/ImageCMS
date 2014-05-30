@@ -155,7 +155,8 @@ function phpmo_parse_po_file($in) {
             $v = phpmo_clean_helper($v);
             if ($v === FALSE) {
                 // parse error
-                return FALSE;
+                continue;
+//                return FALSE;
             }
         }
         $hash[$entry['msgid']] = $entry;
