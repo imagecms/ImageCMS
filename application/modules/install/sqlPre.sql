@@ -224,7 +224,8 @@ INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_me
 (265, 'star_rating', 'star_rating', 1, 0, 0, NULL, 15),
 (267, 'translator', 'translator', 1, 1, 1, 'a:2:{s:11:"originsLang";s:2:"en";s:11:"editorTheme";s:6:"chrome";}', 14),
 (268, 'imagebox', 'imagebox', 0, 1, 0, NULL, 21),
-(269, 'sample_module', 'sample_module', 1, 1, 0, NULL, 7);
+(269, 'sample_module', 'sample_module', 1, 1, 0, NULL, 7),
+(272, 'template_manager', 'template_manager', 1, 1, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -9635,6 +9636,20 @@ INSERT INTO `widget_i18n` (`id`, `locale`, `data`) VALUES
 (16, 'ru', '<div class="container">\n<ul class="items items-benefits">\n<li>\n<div class="frame-icon-benefit"><span class="helper">&nbsp;</span> <span class="icon-benefits_1">&nbsp;</span></div>\n<div class="frame-description-benefit f-s_0"><span class="helper">&nbsp;</span>\n<div>\n<div class="title">Бесплатная</div>\n<p>доставка</p>\n</div>\n</div>\n</li>\n<li>\n<div class="frame-icon-benefit"><span class="helper">&nbsp;</span> <span class="icon-benefits_2">&nbsp;</span></div>\n<div class="frame-description-benefit f-s_0"><span class="helper">&nbsp;</span>\n<div>\n<div class="title">Гибкая система</div>\n<p>скидок</p>\n</div>\n</div>\n</li>\n<li>\n<div class="frame-icon-benefit"><span class="helper">&nbsp;</span> <span class="icon-benefits_3">&nbsp;</span></div>\n<div class="frame-description-benefit f-s_0"><span class="helper">&nbsp;</span>\n<div>\n<div class="title">Индивидуальный</div>\n<p>подход</p>\n</div>\n</div>\n</li>\n<li>\n<div class="frame-icon-benefit"><span class="helper">&nbsp;</span> <span class="icon-benefits_4">&nbsp;</span></div>\n<div class="frame-description-benefit f-s_0"><span class="helper">&nbsp;</span>\n<div>\n<div class="title">высокий уровень</div>\n<p>сервиса</p>\n</div>\n</div>\n</li>\n</ul>\n</div>'),
 (17, 'ru', '<div class="frame-delivery-payment"><dl><dt class="title f-s_0"><span class="icon_delivery">&nbsp;</span><span class="text-el">Доставка</span></dt><dd class="frame-list-delivery">\n<ul class="list-style-1">\n<li>Новая Почта</li>\n<li>Другие транспортные службы</li>\n<li>Курьером по Киеву</li>\n<li>Самовывоз</li>\n</ul>\n</dd><dt class="title f-s_0"><span class="icon_payment">&nbsp;</span><span class="text-el">Оплата</span></dt><dd class="frame-list-payment">\n<ul class="list-style-1">\n<li>Наличными при получении</li>\n<li>Безналичный перевод</li>\n<li>Приват 24</li>\n<li>WebMoney</li>\n</ul>\n</dd></dl></div>\n<div class="frame-phone-product">\n<div class="title f-s_0"><span class="icon_phone_product">&nbsp;</span><span class="text-el">Заказы по телефонах</span></div>\n<ul class="list-style-1">\n<li>(097) <span class="d_n">&minus;</span>567-43-21</li>\n<li>(097) <span class="d_n">&minus;</span>567-43-22</li>\n</ul>\n</div>'),
 (20, 'ru', '<h1>Интернет-магазин</h1>\n<p>Интернет-магазин &mdash; сайт, торгующий товарами в интернете. Позволяет пользователям сформировать заказ на покупку, выбрать способ оплаты и доставки заказа в сети Интернет.</p>\n<h2>Заголовок второго уровня</h2>\n<h3>Заголовок третьего уровня</h3>\n<p>Выбрав необходимые товары или услуги, пользователь обычно имеет возможность тут же на сайте выбрать метод оплаты и доставки.</p>\n<p>Совокупность отобранных товаров, способ оплаты и доставки представляют собой законченный заказ, который оформляется на сайте путем сообщения минимально необходимой информации о покупателе.</p>\n<h3>Заголовок третьего уровня</h3>\n<p><strong>Основные способы оплаты покупок в интернет-магазине:</strong></p>\n<ul>\n<li>наличный расчет &mdash; товар оплачивается курьеру наличными деньгами при получении покупателем товара, наличный расчет &mdash; товар оплачивается курьеру наличными деньгами при получении покупателем товара;</li>\n<li>электронные деньги &mdash; безналичный вид расчёта;</li>\n<li>терминалы моментальной оплаты &mdash; оплата производится в уличных платёжных терминалах;</li>\n</ul>\n<h4>Заголовок четвертого уровня</h4>\n<p>электронные кассы &mdash; вид расчета, объединяющий практически все перечисленные выше способы оплаты.</p>\n<table>\n<tbody>\n<tr>\n<td>название</td>\n<td>размер</td>\n<td>цена</td>\n</tr>\n<tr>\n<td>длинна трубы</td>\n<td>10 метров</td>\n<td>145 уе</td>\n</tr>\n<tr>\n<td>ширина трубы</td>\n<td>2 метра</td>\n<td>134 уе</td>\n</tr>\n</tbody>\n</table>\n<p>При выборе такого способа оплаты пользователю предлагается на выбор наиболее удобный способ перевода денег от пластиковой карточки до терминала и мобильного телефона.</p>\n<p>Основные способы оплаты покупок в интернет-магазине:</p>\n<ol>\n<li>наличный расчет &mdash; товар оплачивается курьеру наличными деньгами при получении покупателем товара, наличный расчет &mdash; товар оплачивается курьеру наличными деньгами при получении покупателем товара;</li>\n<li>электронные деньги &mdash; безналичный вид расчёта;</li>\n<li>терминалы моментальной оплаты &mdash; оплата производится в уличных платёжных терминалах;</li>\n</ol>\n<p>электронные кассы &mdash; вид расчета, объединяющий практически все перечисленные выше способы оплаты.</p>');
+
+
+--
+-- Структура таблиці `template_settings`
+--
+
+DROP TABLE IF EXISTS `template_settings`;
+CREATE TABLE IF NOT EXISTS `template_settings` (
+`id` int(11) NOT NULL,
+  `component` varchar(255) NOT NULL,
+  `key` text,
+  `data` text
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
