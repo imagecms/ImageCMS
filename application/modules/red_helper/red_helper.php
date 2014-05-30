@@ -24,7 +24,7 @@ class Red_helper extends MY_Controller {
         $this->load->library('form_validation');
         $config = array(
                array(
-                     'field'   => 'login', 
+                     'field'   => 'login1', 
                      'label'   => 'login', 
                      'rules'   => 'required|min_length[3]'
                   ),   
@@ -36,6 +36,7 @@ class Red_helper extends MY_Controller {
             );
        $this->form_validation->set_rules($config);
        $this->form_validation->run();
+       $this->form_validation->set_error_delimiters('', ''); 
        echo (validation_errors());
        }
     
