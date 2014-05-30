@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<template label='Box' name='box' type="shop" version="0.1">
+<template label='BoxGreen' name='boxGreen' type="shop" version="0.1">
     <author>SiteImage</author>
 
     <!-- Widgets start -->
