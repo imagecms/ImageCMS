@@ -14,10 +14,6 @@ var optionsMenu = {
     duration: 200,
     drop: '.frame-item-menu > .frame-drop-menu',
     //direction: 'left', //when menu place left and drop go to right (if vertical menu)
-    //countColumn: 5, //if not drop-side
-
-    sub2Frame: '.frame-l2', //if drop-side
-    dropWidth: 430, //if not define than will be actual width needs when drop-side
 
     //if need column partition level 2
     columnPart: true,
@@ -47,6 +43,12 @@ var optionsMenu = {
 
     vertical: true
 };
+if (typeMenu === 'col')
+    optionsMenu.countColumn = 5; //if not drop-side
+if (typeMenu === 'row') {
+    optionsMenu.sub2Frame = '.frame-l2'; //if drop-side
+    optionsMenu.dropWidth = 475; //if not define than will be actual width needs when drop-side
+}
 var scrollPane = {
     animateScroll: true,
     showArrows: true,
