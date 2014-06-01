@@ -460,7 +460,7 @@ input.plus-minus{float:right;width: 44px;height: 34px;display: block;text-align:
 .tabs-data > li.active{-moz-border-radius: 0;-webkit-border-radius: 0;border-radius: 0;}
 .tabs-data > li.active:last-child{-moz-box-shadow: none;-webkit-box-shadow: none;box-shadow: none;}
 
-.tabs-compare-category > li{float: none;margin-bottom: 3px;}
+.tabs-compare-category > li{float: none;margin-bottom: 3px;max-width: 188px;}
 .tabs-compare-category > li > button{padding: 2px 40px 3px 5px;text-align: left;}
 .tabs-compare-category > .active > button{position: relative;}
 .tabs-compare-category > .active > button:after{content: "";position: absolute;left: 100%;top: 0;border-width: 12px 9px;border-style: solid;border-color: transparent;}
