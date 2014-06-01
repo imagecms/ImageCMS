@@ -6,7 +6,7 @@
     <div class="drop-content">
         <div class="inside-padd">
             <div class="horizontal-form">
-                <form method="post" id="login_form" onsubmit="ImageCMSApi.formAction('/auth/authapi/login', '#login_form');
+                <form method="post" id="login_form" onsubmit="ImageCMSApi.formAction('{site_url('/auth/authapi/login')}', '#login_form');
                         return false;">
                     <label>
                         <span class="title">E-mail</span>

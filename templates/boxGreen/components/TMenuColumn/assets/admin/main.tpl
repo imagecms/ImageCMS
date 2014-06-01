@@ -1,18 +1,18 @@
 {$categories = \ShopCore::app()->SCategoryTree->getTree();}
-<form method="post" action="{site_url('admin/components/init_window/template_manager/updateComponent')}/{echo $handler}" id="component_{echo $handler}_form"> 
+<form method="post" action="{site_url('admin/components/init_window/template_manager/updateComponent')}/{echo $handler}" id="component_{echo $handler}_form">
     <input type="hidden" name="handler" value="{echo $handler}">
 
     <table class="frame-level-menu frame_level table table-bordered table-condensed products_table">
         <thead>
             <tr>
-                <td>{lang('Category', 'newLevel_TM')}</td>
-                <td class="span2" style="padding-left: 5px;text-align: center;">{lang('Show in column', 'newLevel_TM')}</td>
+                <td>{lang('Category', 'boxGreen')}</td>
+                <td class="span2" style="padding-left: 5px;text-align: center;">{lang('Show in column', 'boxGreen')}</td>
             </tr>
         </thead>
         <tbody>
         <select name="openLevels">
-            <option {if $openLevels == 'all'}selected="selected"{/if}value="all">{lang('Open all levels', 'newLevel_TM')}</option>
-            <option {if $openLevels == '2'}selected="selected"{/if} value="2">{lang('Open second level', 'newLevel_TM')}</option>
+            <option {if $openLevels == '2'}selected="selected"{/if} value="2">{lang('Open second level', 'boxGreen')}</option>
+            <option {if $openLevels == 'all'}selected="selected"{/if}value="all">{lang('Open all levels', 'boxGreen')}</option>
         </select>
 
         {foreach $categoriesT as $key => $category}
@@ -22,14 +22,14 @@
                 <td>
                     <div class="title lev">
                         {if $children}
-                            <button type="button" class="btn btn-small my_btn_s" data-rel="tooltip" data-placement="top" data-original-title="{lang('Toggle this category', 'newLevel_TM')}" style="display: none;" onclick="hideSubCategory(this)">
+                            <button type="button" class="btn btn-small my_btn_s" data-rel="tooltip" data-placement="top" data-original-title="{lang('Toggle this category', 'boxGreen')}" style="display: none;" onclick="hideSubCategory(this)">
                                 <i class="my_icon icon-minus"></i>
                             </button>
-                            <button type="button" class="btn btn-small my_btn_s btn-primary" data-rel="tooltip" data-placement="top" data-original-title="{lang('Expand Category', 'newLevel_TM')}" onclick="showSubCategory(this)">
+                            <button type="button" class="btn btn-small my_btn_s btn-primary" data-rel="tooltip" data-placement="top" data-original-title="{lang('Expand Category', 'boxGreen')}" onclick="showSubCategory(this)">
                                 <i class="my_icon icon-plus"></i>
                             </button>
                         {/if}
-                        <a href="/admin/components/run/shop/categories/edit/{echo $category->id}" class="pjax" data-rel="tooltip" data-placement="top" data-original-title="{lang('Editing category', 'newLevel_TM')}">
+                        <a href="/admin/components/run/shop/categories/edit/{echo $category->id}" class="pjax" data-rel="tooltip" data-placement="top" data-original-title="{lang('Editing category', 'boxGreen')}">
                             {echo $category->name}
                         </a>
                     </div>
@@ -48,14 +48,14 @@
                                         <td>
                                             <div class="title lev">
                                                 {if $children}
-                                                    <button type="button" class="btn btn-small my_btn_s" data-rel="tooltip" data-placement="top" data-original-title="{lang('Toggle this category', 'newLevel_TM')}" style="display: none;" onclick="hideSubCategory(this)">
+                                                    <button type="button" class="btn btn-small my_btn_s" data-rel="tooltip" data-placement="top" data-original-title="{lang('Toggle this category', 'boxGreen')}" style="display: none;" onclick="hideSubCategory(this)">
                                                         <i class="my_icon icon-minus"></i>
                                                     </button>
-                                                    <button type="button" class="btn btn-small my_btn_s btn-primary" data-rel="tooltip" data-placement="top" data-original-title="{lang('Expand Category', 'newLevel_TM')}" onclick="showSubCategory(this)">
+                                                    <button type="button" class="btn btn-small my_btn_s btn-primary" data-rel="tooltip" data-placement="top" data-original-title="{lang('Expand Category', 'boxGreen')}" onclick="showSubCategory(this)">
                                                         <i class="my_icon icon-plus"></i>
                                                     </button>
                                                 {/if}
-                                                <a href="/admin/components/run/shop/categories/edit/{echo $category->id}" class="pjax" data-rel="tooltip" data-placement="top" data-original-title="{lang('Editing category', 'newLevel_TM')}">
+                                                <a href="/admin/components/run/shop/categories/edit/{echo $category->id}" class="pjax" data-rel="tooltip" data-placement="top" data-original-title="{lang('Editing category', 'boxGreen')}">
                                                     {echo $category->name}
                                                 </a>
                                             </div>
@@ -75,7 +75,7 @@
                                                             <tr>
                                                                 <td>
                                                                     <div class="title lev">
-                                                                        <a href="/admin/components/run/shop/categories/edit/{echo $category->id}" class="pjax" data-rel="tooltip" data-placement="top" data-original-title="{lang('Editing category', 'newLevel_TM')}">
+                                                                        <a href="/admin/components/run/shop/categories/edit/{echo $category->id}" class="pjax" data-rel="tooltip" data-placement="top" data-original-title="{lang('Editing category', 'boxGreen')}">
                                                                             {echo $category->name}
                                                                         </a>
                                                                     </div>
@@ -100,7 +100,7 @@
     {form_csrf()}
 </form>
 <button type="button" class="btn btn-small action_on formSubmit btn-primary cattegoryColumnSaveButtonMod" data-form="#component_{echo $handler}_form" data-action="close">
-    <i class="icon-ok icon-white"></i>{lang('Save', 'newLevel_TM')}
+    <i class="icon-ok icon-white"></i>{lang('Save', 'boxGreen')}
 </button>
 {literal}
     <script>

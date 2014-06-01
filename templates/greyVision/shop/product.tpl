@@ -167,7 +167,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="btn-buy-p btn-cart{if !$inCart} d_n{/if}">
-                                                        <button 
+                                                        <button
                                                             type="button"
                                                             data-id="{echo $productVariant->getId()}"
 
@@ -178,7 +178,7 @@
                                                         </button>
                                                     </div>
                                                     <div class="btn-buy-p btn-buy{if $inCart} d_n{/if}">
-                                                        <button 
+                                                        <button
                                                             type="button"
 
                                                             onclick='Shop.Cart.add($(this).closest("form").serialize(), "{echo $productVariant->getId()}")'
@@ -534,7 +534,7 @@
                                             </div>
                                             <form method="POST" action="/shop/cart/addKit/{echo $kitProducts->getId()}">
                                                 <div class="btn-buy-p btn-cart{if !$inCart} d_n{/if}">
-                                                    <button 
+                                                    <button
                                                         type="button"
                                                         data-id="{echo $kitProducts->getId()}"
 
@@ -545,7 +545,7 @@
                                                     </button>
                                                 </div>
                                                 <div class="btn-buy-p btn-buy{if $inCart} d_n{/if}">
-                                                    <button 
+                                                    <button
                                                         type="button"
                                                         data-id="{echo $kitProducts->getId()}"
 
@@ -664,7 +664,7 @@
                         </div>
                         <div class="inside-padd">
                             <ul class="items items-default items-product">
-                                {$CI->load->module('new_level')->OPI($accessories, array('opi_defaultItem'=>true, 'opi_limit'=>4), 'one_product_item_mini')}
+                                {getOPI($accessories, array('opi_defaultItem'=>true, 'opi_limit'=>4), 'one_product_item_mini')}
                             </ul>
                         </div>
                     </div>

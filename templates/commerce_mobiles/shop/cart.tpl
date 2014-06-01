@@ -71,9 +71,9 @@
                 {/if}
                 <br/>
                 {if $discount_val}
-                    {lang('Скидка', 'commerce_mobile')}: {echo ShopCore::app()->SCurrencyHelper->convert($discount_val)} {$CS} <br/>
+                    {lang('Скидка', 'commerce_mobiles')}: {echo ShopCore::app()->SCurrencyHelper->convert($discount_val)} {$CS} <br/>
                 {/if}
-                <span class="total_pay">{lang('Всего к оплате', 'commerce_mobile')}:</span>
+                <span class="total_pay">{lang('Всего к оплате', 'commerce_mobiles')}:</span>
                 <span class="price">
                     {echo ShopCore::app()->SCurrencyHelper->convert($cartPrice)} {$CS} 
                 </span>
@@ -81,8 +81,8 @@
         </div>
         <div class="main_f_i_f-r"></div>
         <div class="content_head">
-            <h1>{lang('Оформление заказа', 'commerce_mobile')}</h1>
-            <p class="alert">{lang('Способ оплаты и доставки вы сможете согласовать с менеджером, который свяжется с вами после оформления заказа.', 'commerce_mobile')}</p>
+            <h1>{lang('Оформление заказа', 'commerce_mobiles')}</h1>
+            <p class="alert">{lang('Способ оплаты и доставки вы сможете согласовать с менеджером, который свяжется с вами после оформления заказа.', 'commerce_mobiles')}</p>
         </div>
         <hr class="head_cle_foot"/>
         <div class="main_frame_inside">
@@ -159,7 +159,7 @@
                 </label>
             {/if}
             <label>
-                {lang('Коментарий к заказу', 'commerce_mobile')}:
+                {lang('Коментарий к заказу', 'commerce_mobiles')}:
                 <textarea name="userInfo[commentText]"></textarea>
             </label>
         </div>
@@ -169,7 +169,7 @@
                 <span class="b_buy_in">
                     <span class="helper"></span>
                     <input type="submit"
-                           value="{lang('Оформить заказ', 'commerce_mobile')}"
+                           value="{lang('Оформить заказ', 'commerce_mobiles')}"
                            class="v-a_m"/>
                 </span>
             </span>
