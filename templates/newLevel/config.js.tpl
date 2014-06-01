@@ -14,9 +14,21 @@
     {/foreach}
 {/if}
 {$countSh = getProductViewsCount()}
+{$openLevels = getOpenLevels()}
+{if $openLevels == 'all'}
+    {if $openLevels}
+        {if $openLevels == 'all'}
+            {$menuClass = 'col'}
+        {else:}
+            {$menuClass = 'row'}
+        {/if}
+    {else:}
+        {$menuClass = 'col'}
+    {/if}
+{/if}
 <script type="text/javascript">
     {literal}
-        
+
     {/literal}
     {if $comp = $CI->session->userdata('shopForCompare')}
         {$cnt_comp = count($comp)}
@@ -24,43 +36,44 @@
         {$cnt_comp = 0}
     {/if}
         var curr = '{$CS}',
-        cartItemsProductsId = {echo json_encode($arrCartId)},
-        nextCs = '{echo $NextCS}',
-        nextCsCond = nextCs == '' ? false : true,
-        pricePrecision = parseInt('{echo ShopCore::app()->SSettings->pricePrecision}'),
-        checkProdStock = "{echo ShopCore::app()->SSettings->ordersCheckStocks}", //use in plugin plus minus
-        inServerCompare = parseInt("{$cnt_comp}"),
-        inServerWishList = parseInt("{$countWL}"),
-        countViewProd = parseInt("{$countSh}"),
-        theme = "{$THEME}",
-        siteUrl = "{echo site_url()}",
-        colorScheme = "{$colorScheme}",
-        isLogin = "{$is_logged_in}" === '1' ? true : false,
-        typePage = "{$CI->core->core_data['data_type']}";
+                cartItemsProductsId = {echo json_encode($arrCartId)},
+                nextCs = '{echo $NextCS}',
+                nextCsCond = nextCs == '' ? false : true,
+                pricePrecision = parseInt('{echo ShopCore::app()->SSettings->pricePrecision}'),
+                checkProdStock = "{echo ShopCore::app()->SSettings->ordersCheckStocks}", //use in plugin plus minus
+                inServerCompare = parseInt("{$cnt_comp}"),
+                inServerWishList = parseInt("{$countWL}"),
+                countViewProd = parseInt("{$countSh}"),
+                theme = "{$THEME}",
+                siteUrl = "{echo site_url()}",
+                colorScheme = "{$colorScheme}",
+                isLogin = "{$is_logged_in}" === '1' ? true : false,
+                typePage = "{$CI->core->core_data['data_type']}",
+                typeMenu = "{$menuClass}";
 
     {literal}
         text = {
-        search: function(text) {
-        return '{/literal}{lang("Введите более", 'newLevel')} {literal}' + ' ' + text + '{/literal} {lang("символов", 'newLevel')}'{literal};
-        },
-        error: {
-        notLogin: '{/literal}{lang("В список желаний могут добавлять только авторизированные пользователи", 'newLevel')}'{literal},
-        fewsize: function(text) {
-        return '{/literal}{lang("Выберите размер меньше или равно", 'newLevel')} {literal}' + ' ' + text + '{/literal} {lang("пикселей", 'newLevel')}'{literal};
-        },
-        enterName: '{/literal}{lang("Введите название", 'newLevel')}'{literal}
-        }
-        }
+            search: function(text) {
+                return '{/literal}{lang("Введите более", 'newLevel')} {literal}' + ' ' + text + '{/literal} {lang("символов", 'newLevel')}'{literal};
+                        },
+                        error: {
+                            notLogin: '{/literal}{lang("В список желаний могут добавлять только авторизированные пользователи", 'newLevel')}'{literal},
+                                        fewsize: function(text) {
+                                            return '{/literal}{lang("Выберите размер меньше или равно", 'newLevel')} {literal}' + ' ' + text + '{/literal} {lang("пикселей", 'newLevel')}'{literal};
+                                                        },
+                                                        enterName: '{/literal}{lang("Введите название", 'newLevel')}'{literal}
+                                                                }
+                                                            }
     {/literal}
-    text.inCart = '{lang('В корзине','newLevel')}';
-    text.pc = '{lang('шт','newLevel')}.';
-    text.quant = '{lang('Кол-во','newLevel')}:';
-    text.sum = '{lang('Сумма','newLevel')}:';
-    text.toCart = '{lang('Купить','newLevel')}';
-    text.pcs = '{lang('Количество:')}';
-    text.kits = '{lang('Комплектов:')}';
-    text.captchaText = '{lang('Код протекции')}';
-    text.plurProd = ['{lang("товар",'newLevel')}', '{lang("товара",'newLevel')}', '{lang("товаров",'newLevel')}'];
-    text.plurKits = ['{lang("набор",'newLevel')}', '{lang("набора",'newLevel')}', '{lang("наборов",'newLevel')}'];
-    text.plurComments = ['{lang("отзыв",'newLevel')}', '{lang("отзыва",'newLevel')}', '{lang("отзывов",'newLevel')}'];
+        text.inCart = '{lang('В корзине','newLevel')}';
+        text.pc = '{lang('шт','newLevel')}.';
+        text.quant = '{lang('Кол-во','newLevel')}:';
+        text.sum = '{lang('Сумма','newLevel')}:';
+        text.toCart = '{lang('Купить','newLevel')}';
+        text.pcs = '{lang('Количество:')}';
+        text.kits = '{lang('Комплектов:')}';
+        text.captchaText = '{lang('Код протекции')}';
+        text.plurProd = ['{lang("товар",'newLevel')}', '{lang("товара",'newLevel')}', '{lang("товаров",'newLevel')}'];
+        text.plurKits = ['{lang("набор",'newLevel')}', '{lang("набора",'newLevel')}', '{lang("наборов",'newLevel')}'];
+        text.plurComments = ['{lang("отзыв",'newLevel')}', '{lang("отзыва",'newLevel')}', '{lang("отзывов",'newLevel')}'];
 </script>

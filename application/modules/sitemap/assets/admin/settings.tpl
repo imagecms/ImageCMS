@@ -83,7 +83,7 @@
                             </div-->
 
                             <div class="control-group">
-                                <label class="control-label" for="comcount">{lang("Send/Not send Site Map", 'sitemap')}:</label>
+                                <label class="control-label" for="comcount">{lang("Report changes in the site map to search engines", 'sitemap')}:</label>
                                 <div class="controls">
                                     <div class="frame_prod-on_off">
                                         <span class="prod-on_off{if !$settings.sendSiteMap} disable_tovar{/if}"></span>

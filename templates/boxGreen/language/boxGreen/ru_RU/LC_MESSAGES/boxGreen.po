@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-29 07:42+0400\n"
-"PO-Revision-Date: 2014-05-29 07:42+0400\n"
+"POT-Creation-Date: 2014-05-30 07:02+0400\n"
+"PO-Revision-Date: 2014-05-30 07:02+0400\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -17,56 +17,58 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: .\n"
+"X-Poedit-SearchPath-2: .\n"
+
+#: ./templates/boxGreen/components/TMenuColumn/TMenuColumn.php:163
+msgid "Menu Column"
+msgstr "Колонки меню"
 
 #: ./templates/boxGreen/components/TColorScheme/assets/admin/main.tpl:6
 msgid "Colour scheme"
-msgstr ""
+msgstr "Цветная схема"
 
 #: ./templates/boxGreen/components/TColorScheme/assets/admin/main.tpl:21
 #: ./templates/boxGreen/components/TMenuColumn/assets/admin/main.tpl:103
 #: ./templates/boxGreen/components/TProperties/assets/admin/main.tpl:4
 msgid "Save"
-msgstr ""
+msgstr "Сохранить"
 
 #: ./templates/boxGreen/components/TColorScheme/TColorScheme.php:94
 msgid "Color scheme"
-msgstr ""
+msgstr "Цветная схема"
 
 #: ./templates/boxGreen/components/TMenuColumn/assets/admin/main.tpl:8
 msgid "Category"
-msgstr ""
+msgstr "Категория"
 
 #: ./templates/boxGreen/components/TMenuColumn/assets/admin/main.tpl:9
 msgid "Show in column"
-msgstr ""
+msgstr "Отображать в колонке"
 
 #: ./templates/boxGreen/components/TMenuColumn/assets/admin/main.tpl:14
 msgid "Open all levels"
-msgstr ""
+msgstr "Открытые все уровни"
 
 #: ./templates/boxGreen/components/TMenuColumn/assets/admin/main.tpl:15
 msgid "Open second level"
-msgstr ""
+msgstr "Открыт второй уровень"
 
 #: ./templates/boxGreen/components/TMenuColumn/assets/admin/main.tpl:25
 #: ./templates/boxGreen/components/TMenuColumn/assets/admin/main.tpl:51
 msgid "Toggle this category"
-msgstr ""
+msgstr "Скрыть подкатегории"
 
 #: ./templates/boxGreen/components/TMenuColumn/assets/admin/main.tpl:28
 #: ./templates/boxGreen/components/TMenuColumn/assets/admin/main.tpl:54
 msgid "Expand Category"
-msgstr ""
+msgstr "Показать подкатегории"
 
 #: ./templates/boxGreen/components/TMenuColumn/assets/admin/main.tpl:32
 #: ./templates/boxGreen/components/TMenuColumn/assets/admin/main.tpl:58
 #: ./templates/boxGreen/components/TMenuColumn/assets/admin/main.tpl:78
 msgid "Editing category"
-msgstr ""
-
-#: ./templates/boxGreen/components/TMenuColumn/TMenuColumn.php:163
-msgid "Menu Column"
-msgstr ""
+msgstr "Редактирование категории"
 
 #: ./templates/boxGreen/components/TOpi/TOpi.php:45
 msgid "One Product Item component"
@@ -74,7 +76,7 @@ msgstr ""
 
 #: ./templates/boxGreen/components/TProperties/assets/admin/main.tpl:2
 msgid "Start typing property name here"
-msgstr ""
+msgstr "Начните вводить имя свойства здесь"
 
 #: ./templates/boxGreen/components/TProperties/assets/admin/main.tpl:13
 msgid "Id"
@@ -82,15 +84,15 @@ msgstr ""
 
 #: ./templates/boxGreen/components/TProperties/assets/admin/main.tpl:16
 msgid "Name"
-msgstr ""
+msgstr "Имя"
 
 #: ./templates/boxGreen/components/TProperties/assets/admin/main.tpl:19
 msgid "Type"
-msgstr ""
+msgstr "Тип"
 
 #: ./templates/boxGreen/components/TProperties/TProperties.php:123
 msgid "Properties"
-msgstr ""
+msgstr "Свойства"
 
 #: ./templates/boxGreen/shop/js_templates.tpl:127
 msgid "Подтвердите"
@@ -1181,7 +1183,7 @@ msgid "Поделиться с другом"
 msgstr ""
 
 #: ./templates/boxGreen/wishlist/wishPopup.tpl:5
-msgid "Выбор cписка  желаний"
+msgid "Выбор cписка желаний"
 msgstr ""
 
 #: ./templates/boxGreen/wishlist/wishPopup.tpl:42
@@ -1367,7 +1369,7 @@ msgstr ""
 
 #: ./templates/boxGreen/category_menu_second/level_2/container.tpl:6
 msgid "All categoties"
-msgstr ""
+msgstr "Все категории"
 
 #: ./templates/boxGreen/login_popup.tpl:10
 msgid "Авторизация"
