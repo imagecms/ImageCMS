@@ -200,7 +200,7 @@ function init() {
             drawIcons(tinyBask.find(selIcons));
         }
     });
-    body.on('click', genObj.btnBask + ',' + genObj.btnInCart + ' ' + genObj.btnBuy + ',' + genObj.editCart, function(e) {
+    body.on('click.getPopup', genObj.btnBask + ',' + genObj.btnInCart + ' ' + genObj.btnBuy + ',' + genObj.editCart, function(e) {
         Shop.Cart.getTpl({
             ignoreWrap: '1',
             template: 'cart_popup'
@@ -242,12 +242,20 @@ function init() {
     });
     doc.on('remove.Cart сhange.Cart', function(e) {
         if ($.exists(genObj.orderDetails))
-            Shop.Cart.getTpl({
-                ignoreWrap: '1',
-                template: 'cart_order'
-            }, {
-                type: e.type
-            });
+             Shop.Cart.getTpl({
+                 ignoreWrap: '1',
+                 template: 'cart_order',
+                 gift: $(genObj.gift).val(),
+                 deliveryMethodId: function() {
+                     if (selectDeliv)
+                         return $(genObj.dM).val();
+                     else
+                         return $(genObj.dM).filter(':checked').val();
+                 }
+             }, {
+                 type: e.type
+             });
+
         Shop.Cart.getTpl({
             ignoreWrap: '1',
             template: 'cart_popup'
