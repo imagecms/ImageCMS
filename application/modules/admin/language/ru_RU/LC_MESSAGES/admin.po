@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-02 06:15+0400\n"
-"PO-Revision-Date: 2014-06-02 06:15+0400\n"
+"POT-Creation-Date: 2014-06-02 07:22+0400\n"
+"PO-Revision-Date: 2014-06-02 07:22+0400\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -27,11 +27,11 @@ msgstr "Редактировать статус уведомления"
 
 #: ./application/modules/shop/admin/templates/brands/list.tpl:84
 msgid "Edit brand"
-msgstr ""
+msgstr "Редактировать бренд"
 
 #: ./application/modules/shop/admin/templates/properties/list.tpl:157
 msgid "Edit property"
-msgstr ""
+msgstr "Редактировать свойство"
 
 #: ./application/modules/shop/admin/templates/products/create.tpl:213
 #: ./application/modules/shop/admin/templates/products/default_edit.tpl:274
@@ -362,8 +362,8 @@ msgstr "Meta title"
 msgid "Off manually entered"
 msgstr "Off введенные вручную"
 
-#: ./templates/administrator/js/admin_base_i.js:1185
-#: ./templates/administrator/js/admin_base_i.js:1333
+#: ./templates/administrator/js/admin_base_i.js:1184
+#: ./templates/administrator/js/admin_base_i.js:1332
 msgid "PHP GD library is not installed"
 msgstr "PHP GD библиотека не установлена"
 
@@ -376,12 +376,12 @@ msgid "profiler_"
 msgstr "profiler_"
 
 #: ./application/modules/admin/pages.php:197
-#: ./application/modules/admin/pages.php:540
+#: ./application/modules/admin/pages.php:541
 msgid "Reserved of the same name category"
 msgstr "Reserved одного и того же названия категории"
 
 #: ./application/modules/admin/pages.php:188
-#: ./application/modules/admin/pages.php:531
+#: ./application/modules/admin/pages.php:532
 msgid "Reserved the same name module"
 msgstr "Reserved одноименным модулем"
 
@@ -748,8 +748,8 @@ msgstr "Будет ли отображаться название сайта в 
 msgid "Will be recalculated prices of products in accordance to the default currency"
 msgstr "Будут пересчитаны цены на продукцию в соответствии с валютой по умолчанию"
 
-#: ./application/modules/admin/pages.php:937
-#: ./application/modules/admin/pages.php:948
+#: ./application/modules/admin/pages.php:938
+#: ./application/modules/admin/pages.php:949
 msgid "Has been published"
 msgstr "Был опубликован"
 
@@ -767,7 +767,7 @@ msgstr "Бэкап и Обновление"
 msgid "in"
 msgstr "в"
 
-#: ./application/modules/admin/pages.php:554
+#: ./application/modules/admin/pages.php:555
 msgid "in ID category"
 msgstr "в ID категории"
 
@@ -779,7 +779,7 @@ msgstr "В категориях"
 msgid "In the cart"
 msgstr "В корзине"
 
-#: ./application/modules/admin/pages.php:915
+#: ./application/modules/admin/pages.php:916
 msgid "Pending approval"
 msgstr "В ожидании утверждения"
 
@@ -1135,7 +1135,7 @@ msgid "Password recovery"
 msgstr "Восстановление пароля"
 
 #: ./application/modules/admin/admin_logs.php:48
-#: ./application/modules/admin/pages.php:1021
+#: ./application/modules/admin/pages.php:1022
 msgid "Next"
 msgstr "Вперед"
 
@@ -2635,7 +2635,7 @@ msgstr "Конструктор поля"
 msgid "Contacts"
 msgstr "Контакты"
 
-#: ./application/modules/admin/pages.php:626
+#: ./application/modules/admin/pages.php:627
 msgid "Page contents have been updated"
 msgstr "Контент страницы был обновлен"
 
@@ -2912,7 +2912,7 @@ msgid "Produkts kits"
 msgstr "Наборы товаров"
 
 #: ./application/modules/admin/admin_logs.php:49
-#: ./application/modules/admin/pages.php:1022
+#: ./application/modules/admin/pages.php:1023
 msgid "Prev"
 msgstr "Назад"
 
@@ -3158,7 +3158,7 @@ msgstr "не найдены"
 msgid "Not paid"
 msgstr "Не оплачен"
 
-#: ./application/modules/admin/pages.php:927
+#: ./application/modules/admin/pages.php:928
 msgid "Has not been published"
 msgstr "Не опубликовано"
 
@@ -3940,11 +3940,11 @@ msgstr "Ошибка: не найдено информации модуля"
 msgid "Error: Wrong path to the root directory."
 msgstr "Ошибка: Неправильный путь к корневому каталогу."
 
-#: ./application/modules/admin/pages.php:645
+#: ./application/modules/admin/pages.php:646
 msgid "Error: Generic page can not be deleted."
 msgstr "Ошибка: Общая страница не может быть удалена."
 
-#: ./application/modules/admin/pages.php:811
+#: ./application/modules/admin/pages.php:812
 msgid "The operation error"
 msgstr "Ошибки в операции"
 
@@ -4018,10 +4018,6 @@ msgstr "Перевод категории обновлен"
 #: ./templates/administrator/search.tpl:41
 msgid "Go to site"
 msgstr "Перейти на сайт"
-
-#: ./templates/administrator/_catlistitem.tpl:29
-msgid "go to site"
-msgstr "перейти на сайт"
 
 #: ./application/modules/shop/admin/templates/search/advanced.tpl:168
 #: ./application/modules/shop/admin/templates/search/list.tpl:421
@@ -4293,7 +4289,7 @@ msgstr "Показывать на странице товаров"
 #: ./application/modules/shop/admin/templates/users/edit.tpl:36
 #: ./application/modules/shop/admin/templates/users/list.tpl:64
 msgid "Purchase price"
-msgstr "Покупная цена"
+msgstr "Сумма покупок"
 
 #: ./application/modules/shop/admin/templates/customfields/list.tpl:54
 msgid "Field"
@@ -4590,16 +4586,7 @@ msgstr "Просмотр на карте"
 msgid "View a site"
 msgstr "Просмотр сайта"
 
-#: ./application/modules/shop/admin/templates/categories/_listItem.tpl:12
-#: ./application/modules/shop/admin/templates/categories/_listItem.tpl:39
-#: ./application/modules/shop/admin/templates/kits/index.tpl:68
-#: ./application/modules/shop/admin/templates/search/advanced.tpl:51
-#: ./application/modules/shop/admin/templates/search/advanced.tpl:55
-#: ./application/modules/shop/admin/templates/search/advanced.tpl:115
-#: ./application/modules/shop/admin/templates/search/list.tpl:237
-#: ./application/modules/shop/admin/templates/search/list.tpl:253
-#: ./application/modules/shop/admin/templates/search/list.tpl:343
-#: ./application/modules/shop/admin/templates/search/list.tpl:359
+#: ./templates/administrator/_catlistitem.tpl:29
 msgid "go to the website"
 msgstr "Просмотр на сайте"
 
@@ -6045,7 +6032,7 @@ msgstr "Статус"
 msgid "Status set for all new requests. "
 msgstr "Статус будет назначен всем новым запросам."
 
-#: ./application/modules/admin/pages.php:952
+#: ./application/modules/admin/pages.php:953
 msgid "Status change success"
 msgstr "Статус был изменен"
 
@@ -6162,7 +6149,7 @@ msgstr "страница"
 msgid "Page has been created"
 msgstr "Страница была создана"
 
-#: ./application/modules/admin/pages.php:616
+#: ./application/modules/admin/pages.php:617
 msgid "Changed the page"
 msgstr "Страница изменена"
 
@@ -6170,16 +6157,16 @@ msgstr "Страница изменена"
 msgid "Page has not been found"
 msgstr "Страница не найдена"
 
-#: ./application/modules/admin/pages.php:554
+#: ./application/modules/admin/pages.php:555
 msgid "Page with URL"
 msgstr "Страница с URL"
 
-#: ./application/modules/admin/pages.php:806
+#: ./application/modules/admin/pages.php:807
 msgid "Page successfuly copied"
 msgstr "Страница скопирована успешно"
 
-#: ./application/modules/admin/pages.php:663
-#: ./application/modules/admin/pages.php:680
+#: ./application/modules/admin/pages.php:664
+#: ./application/modules/admin/pages.php:681
 msgid "Page has been deleted."
 msgstr "Страница удалена."
 
@@ -6210,7 +6197,7 @@ msgstr "Страницы обновлены"
 msgid "Page with the same URL has been created yet. Specify or select another URL"
 msgstr "Страницы с таким же URL еще не создано. Укажите или выберите другой URL"
 
-#: ./application/modules/admin/pages.php:864
+#: ./application/modules/admin/pages.php:865
 msgid "Zero-length string"
 msgstr "Строка нулевой длины"
 
@@ -6940,7 +6927,7 @@ msgstr "Удалить язык"
 msgid "Hold down Shift to select multiple images"
 msgstr "Удерживайте Shift, чтобы выбрать несколько изображений"
 
-#: ./application/modules/admin/pages.php:554
+#: ./application/modules/admin/pages.php:555
 msgid " already exists. Specify or select another URL"
 msgstr "уже существует. Укажите или выберите другой URL"
 
@@ -6996,11 +6983,11 @@ msgstr "Успешно"
 msgid "refreshed successfully"
 msgstr "успешно обновлено"
 
-#: ./application/modules/admin/pages.php:808
+#: ./application/modules/admin/pages.php:809
 msgid "Successfull moving"
 msgstr "Успешное перемещение"
 
-#: ./application/modules/admin/pages.php:725
+#: ./application/modules/admin/pages.php:726
 msgid "Successful delete"
 msgstr "Успешное удаление"
 

@@ -292,7 +292,7 @@ class Update {
             $filePath = \libraries\Backup::create()->createBackup("sql", "backup", TRUE);
             return pathinfo($filePath, PATHINFO_BASENAME);
         } else {
-            showMessage(langf('Невозможно создать снимок базы, проверте папку {0} на возможность записи', 'admin', array(BACKUPFOLDER)));
+            showMessage(langf('Can not create a database snapshot, Check the folder {0} on the ability to record', 'admin', array(BACKUPFOLDER)));
         }
 
         return $name;
