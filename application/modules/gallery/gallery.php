@@ -150,10 +150,20 @@ class Gallery extends MY_Controller {
             if ($album['tpl_file']) {
                 \CMSFactory\assetManager::create()
                         ->setData($data)
+                        ->registerStyle('jquery.fancybox-1.3.4', FAlSE)
+                        ->registerStyle('style', FAlSE)
+                        ->registerScript('jquery.fancybox-1.3.4.pack', TRUE)
+                        ->registerScript('jquery.easing-1.3.pack', TRUE)
+                        ->registerScript('jquery.mousewheel-3.0.4.pack', TRUE)
                         ->render($album['tpl_file']);
             } else {
                 \CMSFactory\assetManager::create()
                         ->setData($data)
+                        ->registerStyle('jquery.fancybox-1.3.4', FAlSE)
+                        ->registerStyle('style', FAlSE)
+                        ->registerScript('jquery.fancybox-1.3.4.pack', TRUE)
+                        ->registerScript('jquery.easing-1.3.pack', TRUE)
+                        ->registerScript('jquery.mousewheel-3.0.4.pack', TRUE)
                         ->render('album');
             }
         }
