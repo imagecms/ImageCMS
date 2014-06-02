@@ -3,7 +3,7 @@
     <div class="form-vertical">
         <div class="row-fluid">
             <div class="control-group">
-                <label class="control-label" for="template">{lang('Colour scheme', 'greyVision')}:</label>
+                <label class="control-label" for="template">{lang('Color scheme', 'greyVision')}:</label>
                 <div class="controls">                                         
                     <select onchange="changethema(this)" style="width:25% !important" name="color_scheme" id="template">
                         {foreach $shemes as $sheme => $shemePath}
