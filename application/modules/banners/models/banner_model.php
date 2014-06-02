@@ -96,7 +96,7 @@ class Banner_model extends CI_Model {
                         unset($query[$key]);
                     }
 
-                    if ($banner['active_to'] && $banner['active_to'] < time()) {
+                    if ($banner['active_to'] != -1 && $banner['active_to'] < time()) {
                         unset($query[$key]);
                     }
                 }
