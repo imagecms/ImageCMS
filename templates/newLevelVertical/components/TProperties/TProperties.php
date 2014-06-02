@@ -120,7 +120,7 @@ class TProperties extends \template_manager\classes\TComponent {
      * @return string
      */
     public function getLabel() {
-        return lang('Properties', 'newLevel_TM');
+        return lang('Properties', 'newLevelVertical');
     }
 
     /**

@@ -3,12 +3,29 @@ var isTouch = 'ontouchstart' in document.documentElement,
         clonedC = 'cloned';
 var wnd = $(window),
         body = $('body');
+var returnMsg = function(msg) {
+    if (window.console) {
+        console.log(msg);
+    }
+};
 $.exists = function(selector) {
     return ($(selector).length > 0);
 }
 $.existsN = function(nabir) {
     return (nabir.length > 0);
 }
+$.fn.setCursorPosition = function(pos) {
+    if (!isTouch)
+        this.each(function() {
+            this.select();
+            try {
+                this.setSelectionRange(pos, pos);
+            } catch (err) {
+            }
+
+        });
+    return this;
+};
 var ie = $.browser.msie,
         ieV = $.browser.version,
         ltie7 = ie && (ieV <= 7),
@@ -18,7 +35,7 @@ function ieInput(els) {
     els = $('input[type="text"], textarea, input[type="password"]');
 
     els.not(':hidden').not('.visited').not('.notvis').each(function() {
-        $this = $(this);
+        var $this = $(this);
         $this.css('width', '100%').css({
             'width': function() {
                 return 2 * $this.width() - $this.outerWidth();
@@ -320,7 +337,7 @@ function setcookie(name, value, expires, path, domain, secure) {
                         methods.dropCenter(elSetSource)
                     }, 300)
                 });
-                
+
                 if (condOverlay) {
                     optionsDrop.dropOver.show().unbind('click.drop').on('click.drop', function(e) {
                         e.stopPropagation();
@@ -514,83 +531,112 @@ var ImageCMSApi = {
     defSet: function() {
         return imageCmsApiDefaults;
     },
-    returnMsg: function(msg) {
-        if (window.console) {
-            console.log(msg);
-        }
-    },
     formAction: function(url, selector, obj) {
         //collect data from form
-        var DS = $.extend($.extend({}, this.defSet()), obj)
+        var DS = $.extend($.extend({}, this.defSet()), obj);
         if (selector !== '')
             var dataSend = this.collectFormData(selector);
         //send api request to api controller
-        $(document).trigger({'type': 'showActivity'});
+        $(document).trigger({
+            'type': 'showActivity'
+        });
         $.ajax({
-            type: "post",
+            type: "POST",
             data: dataSend,
             url: url,
             dataType: "json",
             beforeSend: function() {
-                ImageCMSApi.returnMsg("=== Sending api request to " + url + "... ===");
+                returnMsg("=== Sending api request to " + url + "... ===");
             },
             success: function(obj) {
-                $(document).trigger({'type': 'hideActivity'});
-                console.log(obj)
+                $(document).trigger({
+                    'type': 'hideActivity'
+                });
+                $(document).trigger({
+                    'type': 'imageapi.success',
+                    'obj': DS,
+                    'el': form,
+                    'message': obj
+                });
                 if (obj !== null) {
                     var form = $(selector);
-                    ImageCMSApi.returnMsg("[status]:" + obj.status);
-                    ImageCMSApi.returnMsg("[message]: " + obj.msg);
-                    console.log(obj)
-                    if ((obj.refresh == true || obj.refresh == 'true') && (obj.redirect == false || obj.redirect == 'false'))
-                        location.reload();
-                    if ((obj.refresh == 'false' || obj.refresh == false) && (obj.redirect == true || obj.redirect != ''))
-                        location.href = obj.redirect;
-                    if ((obj.refresh == false || obj.refresh == 'false') && (obj.redirect == false || obj.redirect == 'false')) {
-                        if (typeof DS.callback == 'function')
-                            DS.callback(obj.msg, obj.status, form, DS);
-                        else
-                            setTimeout((function() {
-                                form.parent().find(genObj.msgF).fadeOut(function() {
-                                    $(this).remove();
-                                });
-                                if (DS.hideForm)
-                                    form.show();
-                            }), DS.durationHideForm);
-                    }
-                    if (obj.status == true) {
+                    returnMsg("[status]:" + obj.status);
+                    returnMsg("[message]: " + obj.msg);
+
+                    obj.refresh = obj.refresh != undefined ? obj.refresh.toString() : obj.refresh;
+                    obj.redirect = obj.redirect != undefined ? obj.redirect.toString() : obj.redirect;
+
+                    var cond = (obj.refresh && obj.refresh === 'true' && obj.redirect === 'false') || (obj.redirect && obj.redirect !== 'false' && obj.redirect !== '');
+                    if (cond)
+                        $(document).trigger({
+                            'type': 'imageapi.before_refresh_reload',
+                            'el': form,
+                            'obj': DS,
+                            'message': obj
+                        });
+                    if (typeof DS.callback === 'function')
+                        DS.callback(obj.msg, obj.status, form, DS);
+                    else if (obj.status === true && !cond)
+                        setTimeout((function() {
+                            form.parent().find(DS.msgF).fadeOut(function() {
+                                $(this).remove();
+                            });
+                            if (DS.hideForm)
+                                form.show();
+                        }), DS.durationHideForm);
+
+                    setTimeout(function() {
+                        if (obj.refresh === 'true' && obj.redirect === 'false')
+                            location.reload();
+                        if (obj.refresh === 'false' && obj.redirect !== '' && obj.redirect !== 'false')
+                            location.href = obj.redirect;
+                    }, DS.durationHideForm);
+
+                    if ($.trim(obj.msg) !== '' && obj.validations === undefined) {
                         if (DS.hideForm)
                             form.hide();
-                        if (DS.messagePlace == 'ahead')
-                            $(message.success(obj.msg)).prependTo(form.parent());
-                        if (DS.messagePlace == 'behind')
-                            $(message.success(obj.msg)).appendTo(form.parent());
-                        $(document).trigger({'type': 'imageapi.pastemsg', 'el': form.parent()})
+                        var type = obj.status === true ? 'success' : 'error';
+                        if (DS.messagePlace === 'ahead')
+                            $(message[type](obj.msg)).prependTo(form.parent());
+                        if (DS.messagePlace === 'behind')
+                            $(message[type](obj.msg)).appendTo(form.parent());
+                        $(document).trigger({
+                            'type': 'imageapi.pastemsg',
+                            'el': form,
+                            'obj': DS,
+                            'message': obj
+                        });
                     }
-                    if (obj.cap_image != 'undefined' && obj.cap_image != null) {
+                    if (obj.cap_image) {
                         ImageCMSApi.addCaptcha(obj.cap_image, DS);
                     }
-                    if (obj.validations != 'undefined' && obj.validations != null) {
-                        ImageCMSApi.sendValidations(obj.validations, selector, DS);
+                    if (obj.validations) {
+                        ImageCMSApi.sendValidations(obj.validations, form, DS, obj);
                     }
-                    $(form).find(':input').unbind('input.imageapi').on('input.imageapi', function() {
+                    $(form).find(':input').off('input.imageapi').on('input.imageapi', function() {
                         var $this = $(this),
                                 form = $this.closest('form'),
                                 $thisТ = $this.attr('name'),
                                 elMsg = form.find('[for=' + $thisТ + ']');
                         if ($.exists(elMsg)) {
-                            $this.removeClass(genObj.err + ' ' + genObj.scs);
-                            elMsg.hide();
-                            $(document).trigger({'type': 'imageapi.hidemsg', 'el': form})
+                            $this.removeClass(DS.err + ' ' + DS.scs);
+                            elMsg.remove();
+                            $(document).trigger({
+                                'type': 'imageapi.hidemsg',
+                                'el': form,
+                                'obj': DS,
+                                'message': obj
+                            });
+                            $this.focus();
                         }
                     });
                 }
                 return this;
             }
         }).done(function() {
-            ImageCMSApi.returnMsg("=== Api request success!!! ===");
+            returnMsg("=== Api request success!!! ===");
         }).fail(function() {
-            ImageCMSApi.returnMsg("=== Api request breake with error!!! ===");
+            returnMsg("=== Api request breake with error!!! ===");
         });
         return;
     },
@@ -600,36 +646,44 @@ var ImageCMSApi = {
         var queryString = findSelector.serialize();
         return queryString;
     },
-    /**
-     * for displaying validation messages 
-     * in the form, which needs validation, for each validate input
-     * 
-     * */
-    sendValidations: function(validations, selector, DS) {
-        var thisSelector = $(selector);
+    sendValidations: function(validations, selector, DS, obj) {
+        /**
+         * for displaying validation messages 
+         * in the form, which needs validation, for each validate input
+         * 
+         * */
+        var sel = $(selector);
         if (typeof validations === 'object') {
             var i = 1;
             for (var key in validations) {
-                if (validations[key] != "") {
-                    var input = thisSelector.find('[name=' + key + ']');
-                    input.addClass(genObj.err);
-                    input[DS.cMsgPlace](DS.cMsg(key, validations[key], genObj.err, thisSelector));
-                    thisSelector.find(':input.' + genObj.err + ':first').focus();
+                if (validations[key] !== "") {
+                    var input = sel.find('[name=' + key + ']');
+                    input.addClass(DS.err);
+                    input[DS.cMsgPlace](DS.cMsg(key, validations[key], DS.err, sel));
                 }
-                if (i == Object.keys(validations).length)
-                    $(document).trigger({'type': 'imageapi.pastemsg', 'el': thisSelector})
+                if (i === Object.keys(validations).length) {
+                    $(document).trigger({
+                        'type': 'imageapi.pastemsg',
+                        'el': sel,
+                        'obj': DS,
+                        'message': obj
+                    });
+                    var finput = sel.find(':input.' + DS.err + ':first');
+                    console.log(':input.' + DS.err + ':first')
+                    finput.setCursorPosition(finput.val().length);
+                }
                 i++;
             }
         } else {
             return false;
         }
     },
-    /**
-     * add captcha block if needed
-     * @param {type} captcha_image
-     */
     addCaptcha: function(cI, DS) {
+        /**
+         * add captcha block if needed
+         * @param {type} captcha_image
+         */
         DS.captchaBlock.html(DS.captcha(cI));
         return false;
     }
-}
+};

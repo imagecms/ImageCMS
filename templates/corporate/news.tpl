@@ -5,6 +5,9 @@
         </div>
         <h1>{$category.name}</h1>
         <div class="text">
+            <!-- Start. Show banner. -->
+            {$CI->load->module('banners')->render($category.id)}
+            <!-- End. Show banner. -->
             {if $no_pages}
                 <p>{$no_pages}</p>
             {else:}

@@ -1320,6 +1320,8 @@ function initAdminArea() {
     });
     if ($.fn.chosen)
         initChosenSelect();
+    
+    fixed_frame_title();
 
     console.log('initialising of administration area ended');
     console.log('script execution time:' + (Date.now() - startExecTime) / 1000 + " sec.");

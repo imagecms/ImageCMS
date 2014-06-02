@@ -16,7 +16,7 @@
                         </div>
                     </div>
                 {/if}
-                <form  method="post" id="forgot_password_form" onsubmit="ImageCMSApi.formAction('/auth/authapi/forgot_password', '#forgot_password_form', {literal}{drop: '.drop-forgot', callback: function(msg, status, form, DS) {
+                <form  method="post" id="forgot_password_form" onsubmit="ImageCMSApi.formAction('{site_url('/auth/authapi/forgot_password')}', '#forgot_password_form', {literal}{drop: '.drop-forgot', callback: function(msg, status, form, DS) {
                                 if (status) {
                                     hideDrop(DS.drop, form, DS.durationHideForm);
                                 }

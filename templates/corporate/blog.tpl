@@ -9,6 +9,9 @@
             <div class="clearfix">
                 <div class="left">
                     <div class="text">
+                        <!-- Start. Show banner. -->
+                        {$CI->load->module('banners')->render($category.id)}
+                        <!-- End. Show banner. -->
                         {$category.short_desc}
                         {if $no_pages}
                             <p>{$no_pages}</p>
