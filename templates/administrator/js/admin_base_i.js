@@ -921,7 +921,6 @@ $(document).ready(function() {
             $("#image_search_result").empty();
         }
         var value = $("#url_image").val();
-        //modalBodyMsg("Загрузка...");
         var loadingImg = '<img src="/templates/administrator/images/loader-2.gif" alt="Loading..."/>';
         modalBodyMsg(loadingImg);
         $.post("/admin/components/run/shop/products/get_images/search", {
