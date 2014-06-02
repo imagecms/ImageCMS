@@ -502,7 +502,8 @@ class Pages extends BaseAdminController {
 
         ($hook = get_hook('admin_page_update_set_rules')) ? eval($hook) : NULL;
         $page_category = $this->cms_admin->get_category($data['category']);
-        if ($page_category['field_group'] != -1) {
+        
+        if ($page_category['field_group'] != -1 && $page_category) {
             $groupId = $page_category['field_group'];
 
             ($hook = get_hook('cfcm_set_rules')) ? eval($hook) : NULL;
