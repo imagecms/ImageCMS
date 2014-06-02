@@ -1,7 +1,7 @@
 <div class="clearfix">
     <input type="text" id="prorerties_filter" style="width: 300px;" placeholder="{lang('Start typing property name here','template_manager')}">
     <button type="button" class="pull-right btn btn-small action_on formSubmit btn-primary" data-form="#component_{echo $handler}_form" data-action="close">
-        <i class="icon-ok icon-white"></i>{lang('Save', 'newLevel_TM')}
+        <i class="icon-ok icon-white"></i>{lang('Save', 'newLevelVertical')}
     </button>
 </div>
 <form method="post" action="{site_url('admin/components/init_window/template_manager/updateComponent')}/{echo $handler}" id="component_{echo $handler}_form"> 
@@ -10,13 +10,13 @@
         <thead>
             <tr>
                 <th class="span1">
-                    {lang('Id', 'newLevel_TM')}
+                    {lang('Id', 'newLevelVertical')}
                 </th>
                 <th class="span5">
-                    {lang('Name', 'newLevel_TM')}
+                    {lang('Name', 'newLevelVertical')}
                 </th>
                 <th class="span5">
-                    {lang('Type', 'newLevel_TM')}
+                    {lang('Type', 'newLevelVertical')}
                 </th>                               
             </tr>
         </thead>

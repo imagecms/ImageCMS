@@ -12,7 +12,7 @@
                     </div>
                 </div>
             {/if}
-            <form id="register-form" onsubmit="ImageCMSApi.formAction('/auth/authapi/register', '#register-form');
+            <form id="register-form" onsubmit="ImageCMSApi.formAction('{site_url('/auth/authapi/register')}', '#register-form');
                     return false;">
                 <label>
                     <span class="title">{lang('E-mail','corporate')}</span>

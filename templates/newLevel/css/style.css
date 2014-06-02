@@ -998,7 +998,7 @@ td.frame-cur-sum-price {vertical-align: middle;padding-left: 10px;padding-right:
 .right-compare .group-button-carousel > .next{right: -50px;}
 .right-compare .content-carousel{overflow: hidden;}
 .tabs-compare-diferent{margin-left: 250px;display: block;}
-.tabs-compare-category{display: block;height: 80%;overflow: auto;}
+.tabs-compare-category{display: block;height: 80%;overflow: hidden;overflow-y: auto;}
 .frame-tabs-compare{overflow: visible;}
 .frame-tabs-compare > div{padding-bottom: 20px;}
 .frame-tabs-compare > div:first-child{display: none;}
