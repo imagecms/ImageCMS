@@ -42,8 +42,7 @@ class Gallery extends MY_Controller {
 
         $categories = $this->gallery_m->get_categories($this->settings['order_by'], $this->settings['sort_order']);
         $albums = $this->gallery_m->get_albums($this->settings['order_by'], $this->settings['sort_order']);
-        var_dump($categories);
-        var_dump($albums);
+
         $data = array(
             'gallery_category' => $categories,
             'total' => $this->gallery_m->getTotalImages()
