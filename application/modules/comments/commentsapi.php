@@ -381,10 +381,27 @@ class Commentsapi extends Comments {
                         )
                 );
             } else {
+
+
+                if ($this->dx_auth->use_recaptcha)
+                    $field_name = 'recaptcha_response_field';
+                else
+                    $field_name = 'captcha';
+
+                if ($this->form_validation->error($field_name)) {
+                    $this->dx_auth->captcha();
+                    $cap_image = $this->dx_auth->get_captcha_image();
+                }
+
+//                if ($this->use_captcha == TRUE && !$this->dx_auth->is_admin()) {
+//                    $this->dx_auth->captcha();
+//                    $data['cap_image'] = $this->dx_auth->get_captcha_image();
+//                }
                 echo json_encode(
                         array(
                             'answer' => 'error',
-                            'validation_errors' => validation_errors()
+                            'validation_errors' => validation_errors(),
+                            'cap_image' => $cap_image
                         )
                 );
             }
