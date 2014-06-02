@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-30 07:04+0400\n"
-"PO-Revision-Date: 2014-05-30 07:04+0400\n"
+"POT-Creation-Date: 2014-06-02 05:00+0300\n"
+"PO-Revision-Date: 2014-06-02 05:00+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -19,6 +19,14 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPath-1: .\n"
 "X-Poedit-SearchPath-2: .\n"
+
+#: ./templates/lightRed/components/TColorScheme/TColorScheme.php:94
+msgid "Color scheme"
+msgstr "Цветовая схема"
+
+#: ./templates/lightRed/components/TColorScheme/assets/admin/main.tpl:6
+msgid "Colour scheme"
+msgstr "Цветовая схема"
 
 #: ./templates/lightRed/components/TMenuColumn/TMenuColumn.php:163
 msgid "Menu Column"
@@ -47,14 +55,6 @@ msgstr "Все категории"
 #: ./templates/lightRed/components/TMenuColumn/assets/admin/main.tpl:8
 msgid "Category"
 msgstr "Категория"
-
-#: ./templates/lightRed/components/TColorScheme/TColorScheme.php:94
-msgid "Color scheme"
-msgstr "Цветная схема"
-
-#: ./templates/lightRed/components/TColorScheme/assets/admin/main.tpl:6
-msgid "Colour scheme"
-msgstr "Цветная схема"
 
 #: ./templates/lightRed/shop/profile_data.tpl:105
 msgid "cделать покупки на сумму"
