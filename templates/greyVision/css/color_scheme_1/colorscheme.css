@@ -394,21 +394,19 @@ form .btn-form .text-el, .btn-not-avail .text-el, .btn-form input{font-size: 13p
 /*/buttons*/
 
 /*product status*/
-.product-status{position: absolute;right: 0;top: 5px;}
-.product-status + .product-status{top: 32px;}
-.product-status + .product-status + .product-status{top: 59px;}
-.product-status + .product-status + .product-status + .product-status{top: 86px;}
+.product-status{position: absolute;right: 0;top: 5px;width: 50px;height: 50px;}
+.product-status.discount{right: auto;left: 0;}
 .product-status.discount .text-el{font-size: 12px;font-weight: bold;text-transform: uppercase;font-family: Arial, sans-serif;}
 
-.action{background-position: 0 0;width: 74px;height: 25px;}
-.nowelty{background-position: 0 -40px;width: 86px;height: 25px;}
-.hit{background-position: 0 -80px;width: 105px;height: 25px;}
+.hit{background-position: 0 0;}
+.nowelty{background-position: -51px 0;}
+.action{background-position: 0 -51px;}
 .discount{background-position: 0 -120px;width: 48px;height: 30px;line-height: 25px;text-align: center;}
 
-.items-default .product-status{right: auto;left: 4px;}
-.items-default .nowelty{background-position: -280px -100px;width: 55px;height: 18px;}
-.items-default .hit{background-position: -280px -120px;width: 45px;height: 18px;}
-.items-default .action{background-position: -340px -100px;width: 44px;height: 18px;}
+.items-default .product-status{width: 35px;height: 35px;top: 0;right: 0;}
+.items-default .nowelty{background-position: -51px -87px;}
+.items-default .hit{background-position: -51px -51px;}
+.items-default .action{background-position: -51px -124px;}
 
 .items-bask .product-status{display: none;}
 /*/ product status*/
