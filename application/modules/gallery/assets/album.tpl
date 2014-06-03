@@ -8,8 +8,13 @@
             </li>
             <li class="btn-crumb">
                 <a href="{site_url('gallery')}" typeof="v:Breadcrumb">
-                    <span class="text-el">{lang('Галерея', 'gallery')}</span>
+                    <span class="text-el">{lang('Галерея', 'gallery')}<span class="divider">→</span></span>
                 </a>
+            </li>
+            <li class="btn-crumb">
+                <button href="{site_url('gallery')}" typeof="v:Breadcrumb" disabled="disabled">
+                    <span class="text-el">{$album.name}</span>
+                </button>
             </li>
         </ul>
     </div>
@@ -21,9 +26,12 @@
             <ul class="items items-photo-galery">
                 {foreach $album.images as $image}
                     <li>
-                        <a href="{site_url($album_url . $image.full_name)}" title="{strip_tags($image.description)}" class="photo-block" rel="group">
+                        <a href="{site_url($album_url . $image.full_name)}" class="photo-block" rel="group">
                             <img src="{site_url($thumb_url . $image.full_name)}" alt="{strip_tags($image.description)}" />
                         </a>
+                        {if trim($image.description) != ''}
+                            <div class="description">{$image.description}</div>
+                        {/if}
                     </li>
                 {/foreach}
             </ul>

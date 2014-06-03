@@ -65,7 +65,7 @@
                 <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
                     <thead>
                     <th>
-                       {lang("Title","admin")}
+                        {lang("Title","admin")}
                     </th>
                     {if count($latest)>0}
                         <th>{lang("Categories","admin")}</th>
@@ -122,7 +122,7 @@
                                 <p>
                                     {lang("Version","admin")}: {$cms_number} <br />
                                     <a class="pjax" href="/admin/sys_update">
-                                            {lang('Check version update' , 'admin')}
+                                        {lang('Check version update' , 'admin')}
                                     </a>
                                     <br/>
                                     <a href="/admin/sys_info" class="pjax">{lang("Information","admin")}</a>
@@ -191,5 +191,10 @@
             </div>
         </div>
         {include_tpl('modules_additions')}
+        {if !SHOP_INSTALLED}
+            <a href="http://www.imagecms.net/kliuchevye-preimushchestva/vozmozhnosti?utm_source=imagecmscorporate&utm_medium=admin&utm_campaign=shopview" target="_blank">
+                <img src="{$THEME}images/image.png"/>
+            </a>
+            {/if}
     </section>
 </div>

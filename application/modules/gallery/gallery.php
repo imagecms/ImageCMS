@@ -53,6 +53,7 @@ class Gallery extends MY_Controller {
 
         \CMSFactory\assetManager::create()
                 ->setData($data)
+                ->registerStyle('style', FAlSE)
                 ->render('albums');
     }
 
