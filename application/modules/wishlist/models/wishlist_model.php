@@ -505,10 +505,10 @@ class Wishlist_model extends CI_Model {
             'title' => $listName,
             'user_id' => $user_id,
             'description' => $description,
-            'hash' => random_string('unique', 16),
+            'hash' => random_string('alpha', 16),
             'access' => $access
         );
-
+        
         \cmsemail\email::getInstance()->sendEmail($this->dx_auth->get_user_email(), 'wish_list', array(
             'wishListViews' => '',
             'userName' => $this->dx_auth->get_username(),

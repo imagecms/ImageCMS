@@ -682,11 +682,11 @@ class ParentWishlist extends \MY_Controller {
             $phone = $db_user['phone'] ? $db_user['phone'] : '(---) --- --- --- ';
 
             $user_variables = array(
-                '$userName$' => $name,
-                '$userPhone$' => $phone,
-                '$wishName$' => $wish_list['title'],
-                '$wishLink$' => site_url('wishlist/show/' . $wish_list['hash']),
-                '$wishListViews$' => $wish_list['hash']['review_count'],
+                'userName' => $name,
+                'userPhone' => $phone,
+                'wishName' => $wish_list['title'],
+                'wishLink' => site_url('wishlist/show/' . $wish_list['hash']),
+                'wishListViews' => $wish_list['hash']['review_count'],
             );
 
             \cmsemail\email::getInstance()->sendEmail($email, 'wish_list', $user_variables);
