@@ -795,8 +795,9 @@ li[class*="x"] > .title-category-l1{width: 100%;text-align: center;display: bloc
 .help-block p{margin-bottom: 0;}
 .must{position: absolute;left: 100%;top: 5px;margin-left: 2px;}
 form .f_r + .o_h, form .f_l + .o_h{position: relative;}
-form .f_r + .o_h{padding-right: 5px;}
+form .f_r + .o_h{padding-right: 8px;}
 form .f_l + .o_h{padding-left: 5px;}
+form .f_r + .o_h .must{margin-left: -8px;}
 
 .layout-highlight{margin-bottom: 20px;position: relative;}
 .msg{margin-bottom: 15px;overflow: hidden;text-align: left;}

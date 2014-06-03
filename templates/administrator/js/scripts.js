@@ -887,12 +887,12 @@ function getScrollTop() {
         scrOfY = window.pageYOffset;
     } else if (document.body
             && (document.body.scrollLeft
-            || document.body.scrollTop)) {
+                    || document.body.scrollTop)) {
         //DOM compliant
         scrOfY = document.body.scrollTop;
     } else if (document.documentElement
             && (document.documentElement.scrollLeft
-            || document.documentElement.scrollTop)) {
+                    || document.documentElement.scrollTop)) {
         //IE6 Strict
         scrOfY = document.documentElement.scrollTop;
     }
@@ -1283,8 +1283,8 @@ function initAdminArea() {
 
     })
             .on('pjax:end', function() {
-        $('#loading').fadeOut(300);
-    });
+                $('#loading').fadeOut(300);
+            });
 
     //add arrows to orders list
     if (window.hasOwnProperty('orderField'))
@@ -1320,7 +1320,7 @@ function initAdminArea() {
     });
     if ($.fn.chosen)
         initChosenSelect();
-    
+
     fixed_frame_title();
 
     console.log('initialising of administration area ended');
@@ -1979,6 +1979,10 @@ var Update = {
 
 /** Users mail chimp settings**/
 $(document).ready(function() {
+    $('body').on('keyup', 'input.email', function() {
+        if (/[а-яёы]/gi.test($(this).val()))
+            $(this).val($(this).val().replace(/[а-яёы]/gi, ""));
+    });
     if ($.exists('.mailChimpSettings')) {
         $('.mailChimpSettings button').on('click', function() {
             var mailChimpKey = $('input[name="messages[monkey]"]').val();
@@ -2009,7 +2013,6 @@ $(document).ready(function() {
             }
         });
     }
-
     $('.robotsChecker.frame_prod-on_off').off('click').off('click').on('click', function() {
         var input = $(this).find('input'),
                 val = input.val(),
