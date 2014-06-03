@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-30 01:30+0300\n"
-"PO-Revision-Date: 2014-05-30 01:30+0300\n"
+"POT-Creation-Date: 2014-06-03 10:35+0300\n"
+"PO-Revision-Date: 2014-06-03 10:35+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -61,11 +61,11 @@ msgstr "будет блокировать этот url"
 
 #: ./application/modules/sitemap/assets/admin/blocked_urls.tpl:48
 msgid "blocked all urls than starts with"
-msgstr "заблокированы все адреса, которие начинаются с"
+msgstr "заблокированы все адреса, которые начинаются с"
 
 #: ./application/modules/sitemap/assets/admin/blocked_urls.tpl:49
 msgid "blocked all urls than ends with"
-msgstr "заблокированы все адреса, которие с окончанием"
+msgstr "заблокированы все адреса, которые с окончанием"
 
 #: ./application/modules/sitemap/assets/admin/blocked_urls.tpl:73
 #: ./application/modules/sitemap/assets/admin/blocked_urls.tpl:94
