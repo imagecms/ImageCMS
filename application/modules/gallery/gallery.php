@@ -42,8 +42,7 @@ class Gallery extends MY_Controller {
 
         $categories = $this->gallery_m->get_categories($this->settings['order_by'], $this->settings['sort_order']);
         $albums = $this->gallery_m->get_albums($this->settings['order_by'], $this->settings['sort_order']);
-        var_dump($categories);
-        var_dump($albums);
+
         $data = array(
             'gallery_category' => $categories,
             'total' => $this->gallery_m->getTotalImages()
@@ -54,6 +53,7 @@ class Gallery extends MY_Controller {
 
         \CMSFactory\assetManager::create()
                 ->setData($data)
+                ->registerStyle('style', FAlSE)
                 ->render('albums');
     }
 
@@ -151,10 +151,20 @@ class Gallery extends MY_Controller {
             if ($album['tpl_file']) {
                 \CMSFactory\assetManager::create()
                         ->setData($data)
+                        ->registerStyle('jquery.fancybox-1.3.4', FAlSE)
+                        ->registerStyle('style', FAlSE)
+                        ->registerScript('jquery.fancybox-1.3.4.pack', TRUE)
+                        ->registerScript('jquery.easing-1.3.pack', TRUE)
+                        ->registerScript('jquery.mousewheel-3.0.4.pack', TRUE)
                         ->render($album['tpl_file']);
             } else {
                 \CMSFactory\assetManager::create()
                         ->setData($data)
+                        ->registerStyle('jquery.fancybox-1.3.4', FAlSE)
+                        ->registerStyle('style', FAlSE)
+                        ->registerScript('jquery.fancybox-1.3.4.pack', TRUE)
+                        ->registerScript('jquery.easing-1.3.pack', TRUE)
+                        ->registerScript('jquery.mousewheel-3.0.4.pack', TRUE)
                         ->render('album');
             }
         }

@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-29 07:42+0400\n"
-"PO-Revision-Date: 2014-05-29 07:42+0400\n"
+"POT-Creation-Date: 2014-06-02 05:02+0300\n"
+"PO-Revision-Date: 2014-06-02 05:02+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -17,6 +17,89 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: .\n"
+"X-Poedit-SearchPath-2: .\n"
+"X-Poedit-SearchPath-3: .\n"
+"X-Poedit-SearchPath-4: .\n"
+"X-Poedit-SearchPath-5: .\n"
+"X-Poedit-SearchPath-6: .\n"
+"X-Poedit-SearchPath-7: .\n"
+"X-Poedit-SearchPath-8: .\n"
+
+#: ./templates/boxVertical/wishlist/wishPopup.tpl:5
+msgid "Выбор cписка  желаний"
+msgstr ""
+
+#: ./templates/boxVertical/components/TColorScheme/TColorScheme.php:94
+#: ./templates/boxVertical/components/TColorScheme/assets/admin/main.tpl:6
+msgid "Color scheme"
+msgstr "Цветовая схема"
+
+#: ./templates/boxVertical/components/TMenuColumn/assets/admin/main.tpl:103
+#: ./templates/boxVertical/components/TColorScheme/assets/admin/main.tpl:21
+#: ./templates/boxVertical/components/TProperties/assets/admin/main.tpl:4
+msgid "Save"
+msgstr "Сохранить"
+
+#: ./templates/boxVertical/components/TMenuColumn/assets/admin/main.tpl:8
+msgid "Category"
+msgstr "Категория"
+
+#: ./templates/boxVertical/components/TMenuColumn/assets/admin/main.tpl:9
+msgid "Show in column"
+msgstr "Отображать в колонке"
+
+#: ./templates/boxVertical/components/TMenuColumn/assets/admin/main.tpl:14
+msgid "Open second level"
+msgstr "Открыт второй уровень"
+
+#: ./templates/boxVertical/components/TMenuColumn/assets/admin/main.tpl:15
+msgid "Open all levels"
+msgstr "Открытые все уровни"
+
+#: ./templates/boxVertical/components/TMenuColumn/assets/admin/main.tpl:25
+#: ./templates/boxVertical/components/TMenuColumn/assets/admin/main.tpl:51
+msgid "Toggle this category"
+msgstr "Скрыть подкатегории"
+
+#: ./templates/boxVertical/components/TMenuColumn/assets/admin/main.tpl:28
+#: ./templates/boxVertical/components/TMenuColumn/assets/admin/main.tpl:54
+msgid "Expand Category"
+msgstr "Показать подкатегории"
+
+#: ./templates/boxVertical/components/TMenuColumn/assets/admin/main.tpl:32
+#: ./templates/boxVertical/components/TMenuColumn/assets/admin/main.tpl:58
+#: ./templates/boxVertical/components/TMenuColumn/assets/admin/main.tpl:78
+msgid "Editing category"
+msgstr "Редактирование категории"
+
+#: ./templates/boxVertical/components/TMenuColumn/TMenuColumn.php:163
+msgid "Menu Column"
+msgstr "Колонки меню"
+
+#: ./templates/boxVertical/components/TOpi/TOpi.php:45
+msgid "One Product Item component"
+msgstr ""
+
+#: ./templates/boxVertical/components/TProperties/assets/admin/main.tpl:2
+msgid "Start typing property name here"
+msgstr "Начните вводить имя свойства здесь"
+
+#: ./templates/boxVertical/components/TProperties/assets/admin/main.tpl:13
+msgid "Id"
+msgstr ""
+
+#: ./templates/boxVertical/components/TProperties/assets/admin/main.tpl:16
+msgid "Name"
+msgstr "Имя"
+
+#: ./templates/boxVertical/components/TProperties/assets/admin/main.tpl:19
+msgid "Type"
+msgstr "Тип"
+
+#: ./templates/boxVertical/components/TProperties/TProperties.php:123
+msgid "Properties"
+msgstr "Свойства"
 
 #: ./templates/boxVertical/shop/cart_order.tpl:235
 msgid "Неверный подарочный сертификат"
@@ -46,15 +129,15 @@ msgstr ""
 msgid "Главная страница"
 msgstr ""
 
+#: ./templates/boxVertical/category_menu_second/level_2/item_default.tpl:8
 #: ./templates/boxVertical/category_menu_first/level_1/item_default.tpl:8
 #: ./templates/boxVertical/category_menu_first/level_1/item_default_active.tpl:9
-#: ./templates/boxVertical/category_menu_second/level_2/item_default.tpl:8
 msgid "Нет фото"
 msgstr ""
 
-#: ./templates/boxVertical/comments/comments_api.tpl:9
-#: ./templates/boxVertical/new_level/one_product_item.tpl:97
 #: ./templates/boxVertical/shop/product.tpl:144
+#: ./templates/boxVertical/components/TOpi/assets/one_product_item.tpl:97
+#: ./templates/boxVertical/comments/comments_api.tpl:9
 msgid "Отзывы"
 msgstr ""
 
@@ -62,8 +145,8 @@ msgstr ""
 msgid "Добавить отзыв"
 msgstr ""
 
-#: ./templates/boxVertical/shop/callback.tpl:18
 #: ./templates/boxVertical/shop/report_appearance.tpl:22
+#: ./templates/boxVertical/shop/callback.tpl:18
 msgid "Имя"
 msgstr ""
 
@@ -103,15 +186,15 @@ msgstr ""
 msgid "Для новых покупателей нашего магазина"
 msgstr ""
 
-#: ./templates/boxVertical/new_level/one_product_item.tpl:216
+#: ./templates/boxVertical/components/TOpi/assets/one_product_item.tpl:216
 msgid "Уже в корзине"
 msgstr ""
 
-#: ./templates/boxVertical/new_level/one_product_item.tpl:229
+#: ./templates/boxVertical/components/TOpi/assets/one_product_item.tpl:229
 msgid "Добавить в корзину"
 msgstr ""
 
-#: ./templates/boxVertical/new_level/one_product_item.tpl:265
+#: ./templates/boxVertical/components/TOpi/assets/one_product_item.tpl:265
 msgid "Узнать о наличии"
 msgstr ""
 
@@ -119,8 +202,8 @@ msgstr ""
 msgid "Войти в магазин"
 msgstr ""
 
-#: ./templates/boxVertical/shop/callback.tpl:32
 #: ./templates/boxVertical/shop/report_appearance.tpl:43
+#: ./templates/boxVertical/shop/callback.tpl:32
 msgid "Текст"
 msgstr ""
 
@@ -128,8 +211,8 @@ msgstr ""
 msgid "Я уже тут покупал"
 msgstr ""
 
-#: ./templates/boxVertical/shop/cart_order.tpl:264
 #: ./templates/boxVertical/shop/order_view.tpl:472
+#: ./templates/boxVertical/shop/cart_order.tpl:264
 msgid "Всего к оплате"
 msgstr ""
 
@@ -217,44 +300,44 @@ msgstr ""
 msgid "Цена от"
 msgstr ""
 
-#: ./templates/boxVertical/category_menu/error.tpl:12
-#: ./templates/boxVertical/category_menu_first/error.tpl:12
 #: ./templates/boxVertical/category_menu_second/error.tpl:12
-#: ./templates/boxVertical/footer_category_menu/error.tpl:12
-#: ./templates/boxVertical/footer_menu/error.tpl:12
 #: ./templates/boxVertical/left_menu/error.tpl:12
+#: ./templates/boxVertical/category_menu/error.tpl:12
+#: ./templates/boxVertical/footer_category_menu/error.tpl:12
 #: ./templates/boxVertical/top_menu/error.tpl:12
+#: ./templates/boxVertical/category_menu_first/error.tpl:12
+#: ./templates/boxVertical/footer_menu/error.tpl:12
 msgid "Внимание"
 msgstr ""
 
-#: ./templates/boxVertical/category_menu_first/error.tpl:13
 #: ./templates/boxVertical/category_menu_second/error.tpl:13
-#: ./templates/boxVertical/footer_menu/error.tpl:13
 #: ./templates/boxVertical/top_menu/error.tpl:13
+#: ./templates/boxVertical/category_menu_first/error.tpl:13
+#: ./templates/boxVertical/footer_menu/error.tpl:13
 msgid "Не обнаружен необходимый файл шаблона для меню"
 msgstr ""
 
-#: ./templates/boxVertical/category_menu/error.tpl:21
-#: ./templates/boxVertical/category_menu_first/error.tpl:21
 #: ./templates/boxVertical/category_menu_second/error.tpl:21
-#: ./templates/boxVertical/footer_category_menu/error.tpl:21
-#: ./templates/boxVertical/footer_menu/error.tpl:21
 #: ./templates/boxVertical/left_menu/error.tpl:21
+#: ./templates/boxVertical/category_menu/error.tpl:21
+#: ./templates/boxVertical/footer_category_menu/error.tpl:21
 #: ./templates/boxVertical/top_menu/error.tpl:21
+#: ./templates/boxVertical/category_menu_first/error.tpl:21
+#: ./templates/boxVertical/footer_menu/error.tpl:21
 msgid "Проверьте наличие файла или измените настройки меню"
 msgstr ""
 
-#: ./templates/boxVertical/category_menu/error.tpl:23
-#: ./templates/boxVertical/category_menu_first/error.tpl:23
 #: ./templates/boxVertical/category_menu_second/error.tpl:23
-#: ./templates/boxVertical/footer_category_menu/error.tpl:23
 #: ./templates/boxVertical/left_menu/error.tpl:23
+#: ./templates/boxVertical/category_menu/error.tpl:23
+#: ./templates/boxVertical/footer_category_menu/error.tpl:23
+#: ./templates/boxVertical/category_menu_first/error.tpl:23
 msgid "Переустановите модуль меню "
 msgstr ""
 
+#: ./templates/boxVertical/main_demo.tpl:130
 #: ./templates/boxVertical/category_menu_first/level_2/container.tpl:7
 #: ./templates/boxVertical/comments/comments_api.tpl:175
-#: ./templates/boxVertical/main_demo.tpl:130
 msgid "Скрыть"
 msgstr ""
 
@@ -270,23 +353,23 @@ msgstr ""
 msgid "Вход"
 msgstr ""
 
-#: ./templates/boxVertical/login.tpl:12
 #: ./templates/boxVertical/login_popup.tpl:19
+#: ./templates/boxVertical/login.tpl:12
 msgid "Почта"
 msgstr ""
 
-#: ./templates/boxVertical/login.tpl:19
 #: ./templates/boxVertical/login_popup.tpl:26
+#: ./templates/boxVertical/login.tpl:19
 msgid "Пароль"
 msgstr ""
 
-#: ./templates/boxVertical/comments/comments_api.tpl:4
-#: ./templates/boxVertical/login.tpl:36
-#: ./templates/boxVertical/login_popup.tpl:43
 #: ./templates/boxVertical/register.tpl:65
-#: ./templates/boxVertical/register_popup.tpl:62
 #: ./templates/boxVertical/reset_password.tpl:5
+#: ./templates/boxVertical/register_popup.tpl:62
+#: ./templates/boxVertical/login_popup.tpl:43
 #: ./templates/boxVertical/shop/auth_data.tpl:7
+#: ./templates/boxVertical/login.tpl:36
+#: ./templates/boxVertical/comments/comments_api.tpl:4
 msgid "Войти"
 msgstr ""
 
@@ -319,9 +402,9 @@ msgstr ""
 msgid "Позвоните мне"
 msgstr ""
 
+#: ./templates/boxVertical/shop/profile_data.tpl:7
 #: ./templates/boxVertical/comments/comments_api.tpl:21
 #: ./templates/boxVertical/comments/comments_api.tpl:199
-#: ./templates/boxVertical/shop/profile_data.tpl:7
 msgid "Ваше имя"
 msgstr ""
 
@@ -329,11 +412,11 @@ msgstr ""
 msgid "Не меньше 4-х символов"
 msgstr ""
 
-#: ./templates/boxVertical/shop/callback.tpl:25
-#: ./templates/boxVertical/shop/cart.tpl:54
 #: ./templates/boxVertical/shop/order_view.tpl:48
 #: ./templates/boxVertical/shop/profile_data.tpl:14
 #: ./templates/boxVertical/shop/report_appearance.tpl:37
+#: ./templates/boxVertical/shop/callback.tpl:25
+#: ./templates/boxVertical/shop/cart.tpl:54
 msgid "Телефон"
 msgstr ""
 
@@ -341,9 +424,9 @@ msgstr ""
 msgid "E-mail является логином"
 msgstr ""
 
-#: ./templates/boxVertical/shop/cart.tpl:131
 #: ./templates/boxVertical/shop/order_view.tpl:89
 #: ./templates/boxVertical/shop/profile_data.tpl:29
+#: ./templates/boxVertical/shop/cart.tpl:131
 msgid "Адрес"
 msgstr ""
 
@@ -359,8 +442,8 @@ msgstr ""
 msgid "Товаров на сумму"
 msgstr ""
 
-#: ./templates/boxVertical/shop/cart_order.tpl:207
 #: ./templates/boxVertical/shop/order_view.tpl:436
+#: ./templates/boxVertical/shop/cart_order.tpl:207
 #: ./templates/boxVertical/shop/profile_data.tpl:68
 #: ./templates/boxVertical/shop/profile_data.tpl:92
 msgid "Ваша текущая скидка"
@@ -402,52 +485,52 @@ msgstr ""
 msgid "Бесконечно"
 msgstr ""
 
-#: ./templates/boxVertical/shop/cart.tpl:12
 #: ./templates/boxVertical/shop/cart_data.tpl:11
+#: ./templates/boxVertical/shop/cart.tpl:12
 msgid "Корзина пуста"
 msgstr ""
 
-#: ./templates/boxVertical/config.js.tpl:60
-#: ./templates/boxVertical/shop/brand.tpl:39
+#: ./templates/boxVertical/config.js.tpl:71
+#: ./templates/boxVertical/shop/search.tpl:31
 #: ./templates/boxVertical/shop/cart_data.tpl:22
 #: ./templates/boxVertical/shop/category.tpl:36
-#: ./templates/boxVertical/shop/search.tpl:31
+#: ./templates/boxVertical/shop/brand.tpl:39
 #: ./templates/boxVertical/smart_filter/main.tpl:4
 msgid "товар"
 msgstr ""
 
-#: ./templates/boxVertical/config.js.tpl:60
-#: ./templates/boxVertical/shop/brand.tpl:39
+#: ./templates/boxVertical/config.js.tpl:71
+#: ./templates/boxVertical/shop/search.tpl:31
 #: ./templates/boxVertical/shop/cart_data.tpl:22
 #: ./templates/boxVertical/shop/category.tpl:36
-#: ./templates/boxVertical/shop/search.tpl:31
+#: ./templates/boxVertical/shop/brand.tpl:39
 #: ./templates/boxVertical/smart_filter/main.tpl:4
 msgid "товара"
 msgstr ""
 
-#: ./templates/boxVertical/config.js.tpl:60
-#: ./templates/boxVertical/shop/brand.tpl:39
+#: ./templates/boxVertical/config.js.tpl:71
+#: ./templates/boxVertical/shop/search.tpl:31
 #: ./templates/boxVertical/shop/cart_data.tpl:22
 #: ./templates/boxVertical/shop/category.tpl:36
-#: ./templates/boxVertical/shop/search.tpl:31
+#: ./templates/boxVertical/shop/brand.tpl:39
 #: ./templates/boxVertical/smart_filter/main.tpl:4
 msgid "товаров"
 msgstr ""
 
-#: ./templates/boxVertical/shop/category.tpl:44
 #: ./templates/boxVertical/shop/search.tpl:38
+#: ./templates/boxVertical/shop/category.tpl:44
 msgid "Не найдено товаров"
 msgstr ""
 
-#: ./templates/boxVertical/shop/category.tpl:70
 #: ./templates/boxVertical/shop/search.tpl:66
+#: ./templates/boxVertical/shop/category.tpl:70
 msgid "Категории"
 msgstr ""
 
-#: ./templates/boxVertical/shop/wish_list_data.tpl:7
-#: ./templates/boxVertical/shop/wish_list_data.tpl:25
 #: ./templates/boxVertical/wishlist/other_list.tpl:56
 #: ./templates/boxVertical/wishlist/wishlist.tpl:6
+#: ./templates/boxVertical/shop/wish_list_data.tpl:7
+#: ./templates/boxVertical/shop/wish_list_data.tpl:25
 msgid "Список желаний"
 msgstr ""
 
@@ -455,8 +538,8 @@ msgstr ""
 msgid "Избранные"
 msgstr ""
 
-#: ./templates/boxVertical/shop/payments/default.tpl:2
 #: ./templates/boxVertical/shop/payments/radio.tpl:2
+#: ./templates/boxVertical/shop/payments/default.tpl:2
 msgid "Оплата:"
 msgstr ""
 
@@ -468,8 +551,8 @@ msgstr ""
 msgid "Заказ №"
 msgstr ""
 
-#: ./templates/boxVertical/shop/cart.tpl:45
 #: ./templates/boxVertical/shop/order_view.tpl:43
+#: ./templates/boxVertical/shop/cart.tpl:45
 msgid "Имя получателя"
 msgstr ""
 
@@ -477,8 +560,8 @@ msgstr ""
 msgid "Дополнительный телефон"
 msgstr ""
 
-#: ./templates/boxVertical/shop/cart.tpl:87
 #: ./templates/boxVertical/shop/order_view.tpl:71
+#: ./templates/boxVertical/shop/cart.tpl:87
 msgid "Способ доставки"
 msgstr ""
 
@@ -513,70 +596,70 @@ msgstr ""
 msgid "Не оплачен"
 msgstr ""
 
-#: ./templates/boxVertical/new_level/one_product_item.tpl:68
-#: ./templates/boxVertical/new_level/one_product_item.tpl:107
-#: ./templates/boxVertical/shop/cart_order.tpl:25
-#: ./templates/boxVertical/shop/cart_order.tpl:97
 #: ./templates/boxVertical/shop/cart_popup.tpl:32
 #: ./templates/boxVertical/shop/cart_popup.tpl:99
 #: ./templates/boxVertical/shop/order_view.tpl:182
+#: ./templates/boxVertical/shop/cart_order.tpl:25
+#: ./templates/boxVertical/shop/cart_order.tpl:97
 #: ./templates/boxVertical/shop/product.tpl:49
 #: ./templates/boxVertical/shop/product.tpl:164
+#: ./templates/boxVertical/components/TOpi/assets/one_product_item.tpl:68
+#: ./templates/boxVertical/components/TOpi/assets/one_product_item.tpl:107
 msgid "Вариант"
 msgstr ""
 
-#: ./templates/boxVertical/new_level/one_product_item.tpl:59
+#: ./templates/boxVertical/shop/order_view.tpl:183
 #: ./templates/boxVertical/shop/cart_order.tpl:30
 #: ./templates/boxVertical/shop/cart_order.tpl:102
-#: ./templates/boxVertical/shop/order_view.tpl:183
 #: ./templates/boxVertical/shop/product.tpl:36
+#: ./templates/boxVertical/components/TOpi/assets/one_product_item.tpl:59
 msgid "Артикул"
 msgstr ""
 
-#: ./templates/boxVertical/config.js.tpl:54
+#: ./templates/boxVertical/config.js.tpl:65
 msgid "Кол-во"
 msgstr ""
 
-#: ./templates/boxVertical/config.js.tpl:53
+#: ./templates/boxVertical/config.js.tpl:64
 #: ./templates/boxVertical/shop/order_view.tpl:209
 #: ./templates/boxVertical/shop/order_view.tpl:337
 msgid "шт"
 msgstr ""
 
-#: ./templates/boxVertical/config.js.tpl:55
+#: ./templates/boxVertical/config.js.tpl:66
 #: ./templates/boxVertical/paymentSystem/QIWI.tpl:22
 msgid "Сумма"
 msgstr ""
 
-#: ./templates/boxVertical/shop/cart_order.tpl:79
 #: ./templates/boxVertical/shop/cart_popup.tpl:81
 #: ./templates/boxVertical/shop/order_view.tpl:249
+#: ./templates/boxVertical/shop/cart_order.tpl:79
 msgid "Комплект товаров"
 msgstr ""
 
-#: ./templates/boxVertical/shop/cart_order.tpl:159
 #: ./templates/boxVertical/shop/order_view.tpl:379
+#: ./templates/boxVertical/shop/cart_order.tpl:159
 msgid "Начальная стоимость товаров"
 msgstr ""
 
-#: ./templates/boxVertical/shop/cart_order.tpl:169
 #: ./templates/boxVertical/shop/order_view.tpl:393
+#: ./templates/boxVertical/shop/cart_order.tpl:169
 msgid "Cтоимость товаров"
 msgstr ""
 
-#: ./templates/boxVertical/shop/cart_order.tpl:179
 #: ./templates/boxVertical/shop/order_view.tpl:408
+#: ./templates/boxVertical/shop/cart_order.tpl:179
 msgid "Доставка"
 msgstr ""
 
-#: ./templates/boxVertical/shop/cart_order.tpl:195
 #: ./templates/boxVertical/shop/order_view.tpl:424
+#: ./templates/boxVertical/shop/cart_order.tpl:195
 msgid "Бесплатно"
 msgstr ""
 
+#: ./templates/boxVertical/shop/order_view.tpl:451
 #: ./templates/boxVertical/shop/cart_order.tpl:218
 #: ./templates/boxVertical/shop/cart_order.tpl:229
-#: ./templates/boxVertical/shop/order_view.tpl:451
 msgid "Подарочный сертификат"
 msgstr ""
 
@@ -588,9 +671,9 @@ msgstr ""
 msgid "В сравнение"
 msgstr ""
 
-#: ./templates/boxVertical/login_popup.tpl:61
 #: ./templates/boxVertical/register.tpl:5
 #: ./templates/boxVertical/register_popup.tpl:5
+#: ./templates/boxVertical/login_popup.tpl:61
 msgid "Регистрация"
 msgstr ""
 
@@ -614,9 +697,9 @@ msgstr ""
 msgid "Повторите пароль"
 msgstr ""
 
-#: ./templates/boxVertical/shop/auth_data.tpl:18
 #: ./templates/boxVertical/shop/profile.tpl:17
 #: ./templates/boxVertical/shop/profile_change_pass.tpl:28
+#: ./templates/boxVertical/shop/auth_data.tpl:18
 msgid "Изменить пароль"
 msgstr ""
 
@@ -624,13 +707,13 @@ msgstr ""
 msgid "Добро пожаловать!"
 msgstr ""
 
-#: ./templates/boxVertical/shop/auth_data.tpl:17
 #: ./templates/boxVertical/shop/profile.tpl:16
+#: ./templates/boxVertical/shop/auth_data.tpl:17
 msgid "Основные данные"
 msgstr ""
 
-#: ./templates/boxVertical/shop/auth_data.tpl:19
 #: ./templates/boxVertical/shop/profile.tpl:18
+#: ./templates/boxVertical/shop/auth_data.tpl:19
 msgid "История заказа"
 msgstr ""
 
@@ -651,8 +734,8 @@ msgstr ""
 msgid "Еще один номер"
 msgstr ""
 
-#: ./templates/boxVertical/comments/comments_api.tpl:205
 #: ./templates/boxVertical/shop/cart.tpl:73
+#: ./templates/boxVertical/comments/comments_api.tpl:205
 msgid "Email"
 msgstr ""
 
@@ -676,10 +759,10 @@ msgstr ""
 msgid "По Вашему запросу ничего не найдено"
 msgstr ""
 
-#: ./templates/boxVertical/shop/brand.tpl:39
-#: ./templates/boxVertical/shop/category.tpl:36
-#: ./templates/boxVertical/shop/js_templates.tpl:112
 #: ./templates/boxVertical/shop/search.tpl:31
+#: ./templates/boxVertical/shop/js_templates.tpl:112
+#: ./templates/boxVertical/shop/category.tpl:36
+#: ./templates/boxVertical/shop/brand.tpl:39
 msgid "Найдено"
 msgstr ""
 
@@ -738,9 +821,9 @@ msgstr ""
 msgid "Список"
 msgstr ""
 
-#: ./templates/boxVertical/new_level/one_product_item.tpl:295
-#: ./templates/boxVertical/shop/product.tpl:337
 #: ./templates/boxVertical/shop/report_appearance.tpl:4
+#: ./templates/boxVertical/shop/product.tpl:337
+#: ./templates/boxVertical/components/TOpi/assets/one_product_item.tpl:295
 msgid "Сообщить о появлении"
 msgstr ""
 
@@ -753,14 +836,14 @@ msgstr ""
 msgid "Вы получите письмо, когда товар будет доступен"
 msgstr ""
 
+#: ./templates/boxVertical/wishlist/sendEmail.tpl:23
 #: ./templates/boxVertical/forgot_password.tpl:32
 #: ./templates/boxVertical/shop/report_appearance.tpl:51
-#: ./templates/boxVertical/wishlist/sendEmail.tpl:23
 msgid "Отправить"
 msgstr ""
 
-#: ./templates/boxVertical/new_level/one_product_item.tpl:79
 #: ./templates/boxVertical/shop/product.tpl:60
+#: ./templates/boxVertical/components/TOpi/assets/one_product_item.tpl:79
 msgid "Бренд"
 msgstr ""
 
@@ -776,22 +859,22 @@ msgstr ""
 msgid "Только цифры"
 msgstr ""
 
-#: ./templates/boxVertical/config.js.tpl:52
-#: ./templates/boxVertical/new_level/one_product_item.tpl:219
+#: ./templates/boxVertical/config.js.tpl:63
 #: ./templates/boxVertical/shop/product.tpl:253
 #: ./templates/boxVertical/shop/product.tpl:539
+#: ./templates/boxVertical/components/TOpi/assets/one_product_item.tpl:219
 msgid "В корзине"
 msgstr ""
 
-#: ./templates/boxVertical/config.js.tpl:56
-#: ./templates/boxVertical/new_level/one_product_item.tpl:254
+#: ./templates/boxVertical/config.js.tpl:67
 #: ./templates/boxVertical/shop/product.tpl:551
+#: ./templates/boxVertical/components/TOpi/assets/one_product_item.tpl:254
 msgid "Купить"
 msgstr ""
 
-#: ./templates/boxVertical/new_level/one_product_item.tpl:149
-#: ./templates/boxVertical/new_level/similar.tpl:52
 #: ./templates/boxVertical/shop/product.tpl:299
+#: ./templates/boxVertical/components/TOpi/assets/similar.tpl:52
+#: ./templates/boxVertical/components/TOpi/assets/one_product_item.tpl:149
 msgid "Нет в наличии"
 msgstr ""
 
@@ -805,24 +888,24 @@ msgstr ""
 msgid "В сравнении"
 msgstr ""
 
-#: ./templates/boxVertical/config.js.tpl:62
+#: ./templates/boxVertical/config.js.tpl:73
 #: ./templates/boxVertical/shop/product.tpl:604
 msgid "отзыв"
 msgstr ""
 
-#: ./templates/boxVertical/config.js.tpl:62
+#: ./templates/boxVertical/config.js.tpl:73
 #: ./templates/boxVertical/shop/product.tpl:604
 msgid "отзыва"
 msgstr ""
 
-#: ./templates/boxVertical/config.js.tpl:62
+#: ./templates/boxVertical/config.js.tpl:73
 #: ./templates/boxVertical/shop/product.tpl:604
 msgid "отзывов"
 msgstr ""
 
-#: ./templates/boxVertical/comments/comments_api.tpl:65
 #: ./templates/boxVertical/shop/product.tpl:152
 #: ./templates/boxVertical/shop/product.tpl:606
+#: ./templates/boxVertical/comments/comments_api.tpl:65
 msgid "Оставить отзыв"
 msgstr ""
 
@@ -922,10 +1005,10 @@ msgstr ""
 msgid "Декабря"
 msgstr ""
 
-#: ./templates/boxVertical/shop/cart_order.tpl:40
-#: ./templates/boxVertical/shop/cart_order.tpl:116
 #: ./templates/boxVertical/shop/cart_popup.tpl:42
 #: ./templates/boxVertical/shop/cart_popup.tpl:113
+#: ./templates/boxVertical/shop/cart_order.tpl:40
+#: ./templates/boxVertical/shop/cart_order.tpl:116
 msgid "шт."
 msgstr ""
 
@@ -979,9 +1062,9 @@ msgid "Все категории"
 msgstr ""
 
 #: ./templates/boxVertical/paymentSystem/LiqPay.tpl:5
+#: ./templates/boxVertical/paymentSystem/SberBank.tpl:5
 #: ./templates/boxVertical/paymentSystem/PrivateBank.tpl:12
 #: ./templates/boxVertical/paymentSystem/Robokassa.tpl:13
-#: ./templates/boxVertical/paymentSystem/SberBank.tpl:5
 msgid "Оплатить"
 msgstr ""
 
@@ -1020,37 +1103,37 @@ msgstr ""
 msgid "Редактировать:"
 msgstr ""
 
+#: ./templates/boxVertical/wishlist/wishlistEdit.tpl:13
 #: ./templates/boxVertical/wishlist/wishlist.tpl:37
 #: ./templates/boxVertical/wishlist/wishlist.tpl:147
-#: ./templates/boxVertical/wishlist/wishlistEdit.tpl:13
 msgid "Доступность:"
 msgstr ""
 
+#: ./templates/boxVertical/wishlist/wishlistEdit.tpl:17
 #: ./templates/boxVertical/wishlist/wishlist.tpl:41
 #: ./templates/boxVertical/wishlist/wishlist.tpl:155
-#: ./templates/boxVertical/wishlist/wishlistEdit.tpl:17
 msgid "Коллективный"
 msgstr ""
 
+#: ./templates/boxVertical/wishlist/wishlistEdit.tpl:18
 #: ./templates/boxVertical/wishlist/wishlist.tpl:43
 #: ./templates/boxVertical/wishlist/wishlist.tpl:149
-#: ./templates/boxVertical/wishlist/wishlistEdit.tpl:18
 msgid "Приватный"
 msgstr ""
 
+#: ./templates/boxVertical/wishlist/wishlistEdit.tpl:19
 #: ./templates/boxVertical/wishlist/wishlist.tpl:42
 #: ./templates/boxVertical/wishlist/wishlist.tpl:152
-#: ./templates/boxVertical/wishlist/wishlistEdit.tpl:19
 msgid "Публичный"
 msgstr ""
 
-#: ./templates/boxVertical/wishlist/wishlist.tpl:49
 #: ./templates/boxVertical/wishlist/wishlistEdit.tpl:25
+#: ./templates/boxVertical/wishlist/wishlist.tpl:49
 msgid "Название списка:"
 msgstr ""
 
-#: ./templates/boxVertical/wishlist/wishlist.tpl:55
 #: ./templates/boxVertical/wishlist/wishlistEdit.tpl:31
+#: ./templates/boxVertical/wishlist/wishlist.tpl:55
 msgid "Описание:"
 msgstr ""
 
@@ -1105,10 +1188,6 @@ msgstr ""
 
 #: ./templates/boxVertical/wishlist/wishlist.tpl:162
 msgid "Поделиться с другом"
-msgstr ""
-
-#: ./templates/boxVertical/wishlist/wishPopup.tpl:5
-msgid "Выбор cписка  желаний"
 msgstr ""
 
 #: ./templates/boxVertical/wishlist/wishPopup.tpl:42
@@ -1214,51 +1293,51 @@ msgstr ""
 msgid "Show all"
 msgstr ""
 
-#: ./templates/boxVertical/config.js.tpl:41
+#: ./templates/boxVertical/config.js.tpl:52
 msgid "Введите более"
 msgstr ""
 
-#: ./templates/boxVertical/config.js.tpl:41
+#: ./templates/boxVertical/config.js.tpl:52
 msgid "символов"
 msgstr ""
 
-#: ./templates/boxVertical/config.js.tpl:44
+#: ./templates/boxVertical/config.js.tpl:55
 msgid "В список желаний могут добавлять только авторизированные пользователи"
 msgstr ""
 
-#: ./templates/boxVertical/config.js.tpl:46
+#: ./templates/boxVertical/config.js.tpl:57
 msgid "Выберите размер меньше или равно"
 msgstr ""
 
-#: ./templates/boxVertical/config.js.tpl:46
+#: ./templates/boxVertical/config.js.tpl:57
 msgid "пикселей"
 msgstr ""
 
-#: ./templates/boxVertical/config.js.tpl:48
+#: ./templates/boxVertical/config.js.tpl:59
 msgid "Введите название"
 msgstr ""
 
-#: ./templates/boxVertical/config.js.tpl:57
+#: ./templates/boxVertical/config.js.tpl:68
 msgid "Количество:"
 msgstr ""
 
-#: ./templates/boxVertical/config.js.tpl:58
+#: ./templates/boxVertical/config.js.tpl:69
 msgid "Комплектов:"
 msgstr ""
 
-#: ./templates/boxVertical/config.js.tpl:59
+#: ./templates/boxVertical/config.js.tpl:70
 msgid "Код протекции"
 msgstr ""
 
-#: ./templates/boxVertical/config.js.tpl:61
+#: ./templates/boxVertical/config.js.tpl:72
 msgid "набор"
 msgstr ""
 
-#: ./templates/boxVertical/config.js.tpl:61
+#: ./templates/boxVertical/config.js.tpl:72
 msgid "набора"
 msgstr ""
 
-#: ./templates/boxVertical/config.js.tpl:61
+#: ./templates/boxVertical/config.js.tpl:72
 msgid "наборов"
 msgstr ""
 
@@ -1282,9 +1361,9 @@ msgstr ""
 msgid "ImageCMS активно развивается в создание качественных интернет-магазинов"
 msgstr ""
 
+#: ./templates/boxVertical/left_menu/error.tpl:13
 #: ./templates/boxVertical/category_menu/error.tpl:13
 #: ./templates/boxVertical/footer_category_menu/error.tpl:13
-#: ./templates/boxVertical/left_menu/error.tpl:13
 msgid "Не обнаружен необходимый файл шаблона для меню "
 msgstr ""
 
@@ -1294,14 +1373,14 @@ msgstr ""
 
 #: ./templates/boxVertical/category_menu_second/level_2/container.tpl:6
 msgid "All categoties"
-msgstr ""
+msgstr "Все категории"
 
 #: ./templates/boxVertical/login_popup.tpl:10
 msgid "Авторизация"
 msgstr ""
 
-#: ./templates/boxVertical/footer_menu/error.tpl:23
 #: ./templates/boxVertical/top_menu/error.tpl:23
+#: ./templates/boxVertical/footer_menu/error.tpl:23
 msgid "Переустановите модуль меню"
 msgstr ""
 
@@ -1329,27 +1408,27 @@ msgstr ""
 msgid "Я уже зарегистрирован"
 msgstr ""
 
-#: ./templates/boxVertical/login_popup.tpl:48
 #: ./templates/boxVertical/register.tpl:71
 #: ./templates/boxVertical/register_popup.tpl:68
+#: ./templates/boxVertical/login_popup.tpl:48
 msgid "Напомнить пароль"
 msgstr ""
 
-#: ./templates/boxVertical/new_level/one_product_item.tpl:312
-#: ./templates/boxVertical/new_level/one_product_item.tpl:314
-#: ./templates/boxVertical/new_level/one_product_item.tpl:317
+#: ./templates/boxVertical/components/TOpi/assets/one_product_item.tpl:312
+#: ./templates/boxVertical/components/TOpi/assets/one_product_item.tpl:314
+#: ./templates/boxVertical/components/TOpi/assets/one_product_item.tpl:317
 msgid "В список сравнений"
 msgstr ""
 
-#: ./templates/boxVertical/new_level/one_product_item.tpl:313
+#: ./templates/boxVertical/components/TOpi/assets/one_product_item.tpl:313
 msgid "В списке сравнений"
 msgstr ""
 
-#: ./templates/boxVertical/new_level/one_product_item.tpl:371
+#: ./templates/boxVertical/components/TOpi/assets/one_product_item.tpl:371
 msgid "Удалить"
 msgstr ""
 
-#: ./templates/boxVertical/new_level/one_product_item.tpl:379
+#: ./templates/boxVertical/components/TOpi/assets/one_product_item.tpl:379
 msgid "Переместить"
 msgstr ""
 

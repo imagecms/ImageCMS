@@ -15,10 +15,14 @@
 {/if}
 {$countSh = getProductViewsCount()}
 {$openLevels = getOpenLevels()}
-{if $openLevels == 'all'}
-{$menuClass = 'col'}
+{if $openLevels}
+    {if $openLevels == 'all'}
+        {$menuClass = 'col'}
+    {else:}
+        {$menuClass = 'row'}
+    {/if}
 {else:}
-{$menuClass = 'row'}
+    {$menuClass = 'row'}
 {/if}
 <script type="text/javascript">
 {if $comp = $CI->session->userdata('shopForCompare')}

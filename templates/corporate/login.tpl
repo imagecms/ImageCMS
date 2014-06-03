@@ -2,7 +2,7 @@
     <div class="container">
         <h1>{lang('Вход','corporate')}</h1>
         <div class="vertical-form w_50">
-            <form method="post" id="login_form" onsubmit="ImageCMSApi.formAction('/auth/authapi/login', '#login_form');
+            <form method="post" id="login_form" onsubmit="ImageCMSApi.formAction('{site_url('/auth/authapi/login')}', '#login_form');
             return false;">
                 <label>
                     <span class="title">E-mail</span>

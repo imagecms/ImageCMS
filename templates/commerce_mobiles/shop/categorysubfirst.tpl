@@ -17,7 +17,7 @@
     {else:}
         {$full_url = $_SERVER["REQUEST_URI"] . '?filtermobile=1'}
     {/if}
-    <a href="{echo $full_url}" class="check_filter h_f"><span class="helper"></span><span class="v-a_m"><span class="check_filter_ico icon"></span><span class="title">Подбор по параметрам</span></span></a>
+    <a href="{echo $full_url}" class="check_filter h_f"><span class="helper"></span><span class="v-a_m"><span class="check_filter_ico icon"></span><span class="title">{lang('Подбор по параметрам','commerce_mobiles')}</span></span></a>
 </div>
 <ul class="catalog">
     {foreach $products as $product}
