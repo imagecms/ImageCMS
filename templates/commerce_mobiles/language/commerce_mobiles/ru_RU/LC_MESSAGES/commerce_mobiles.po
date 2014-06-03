@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-23 04:51+0300\n"
-"PO-Revision-Date: 2014-05-23 04:51+0300\n"
+"POT-Creation-Date: 2014-06-03 01:30+0400\n"
+"PO-Revision-Date: 2014-06-03 01:30+0400\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -18,78 +18,242 @@ msgstr ""
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: ./templates/commerce_mobiles/shop/cart.tpl:187
-msgid "Корзина пуста"
+#: ./templates/commerce_mobiles/404.tpl:6
+msgid "Страница не найдена"
+msgstr ""
+
+#: ./templates/commerce_mobiles/404.tpl:9
+msgid "К сожалению, такой страницы не существует. Вероятно, она была удалена автором с сервера, либо её здесь никогда не было. Предлагаем вам ознакомиться подробнее с нашим сайтом, возможно вы найдете то, что искали."
+msgstr ""
+
+#: ./templates/commerce_mobiles/404.tpl:15
+msgid "Перейти на главную"
+msgstr ""
+
+#: ./templates/commerce_mobiles/category_menu/error.tpl:12
+#: ./templates/commerce_mobiles/footer_menu/error.tpl:12
+msgid "Внимание"
+msgstr ""
+
+#: ./templates/commerce_mobiles/category_menu/error.tpl:13
+#: ./templates/commerce_mobiles/footer_menu/error.tpl:13
+msgid "Не обнаружен необходимый файл шаблона для меню"
+msgstr ""
+
+#: ./templates/commerce_mobiles/category_menu/error.tpl:21
+#: ./templates/commerce_mobiles/footer_menu/error.tpl:21
+msgid "Проверьте наличие файла или измените настройки меню"
+msgstr ""
+
+#: ./templates/commerce_mobiles/category_menu/error.tpl:23
+#: ./templates/commerce_mobiles/footer_menu/error.tpl:23
+msgid "Переустановите модуль меню"
 msgstr ""
 
 #: ./templates/commerce_mobiles/comments.tpl:6
-msgid "login_for_comments"
-msgstr "login_for_comments"
+msgid "Авторизуйтесь для комментирования"
+msgstr ""
+
+#: ./templates/commerce_mobiles/comments.tpl:10
+#: ./templates/commerce_mobiles/comments.tpl:175
+msgid "Оставить отзыв"
+msgstr ""
 
 #: ./templates/commerce_mobiles/comments.tpl:12
-msgid "lang_logged_in_as"
-msgstr "lang_logged_in_as"
+msgid "Вы вошли как"
+msgstr ""
 
-#: ./templates/commerce_mobiles/comments.tpl:27
+#: ./templates/commerce_mobiles/comments.tpl:14
+msgid "Для того, чтобы оставить комментарий, Вы должны"
+msgstr ""
+
+#: ./templates/commerce_mobiles/comments.tpl:14
+msgid "авторизироваться"
+msgstr ""
+
+#: ./templates/commerce_mobiles/comments.tpl:14
+msgid "на сайте"
+msgstr ""
+
+#: ./templates/commerce_mobiles/comments.tpl:29
 #: ./templates/commerce_mobiles/comments.tpl:152
-msgid "lang_comment_author"
-msgstr "lang_comment_author"
+msgid "Email"
+msgstr ""
 
 #: ./templates/commerce_mobiles/comments.tpl:32
-#: ./templates/commerce_mobiles/comments.tpl:155
-msgid "lang_comment_email"
-msgstr "lang_comment_email"
+msgid "Сайт"
+msgstr ""
 
 #: ./templates/commerce_mobiles/comments.tpl:37
-msgid "lang_comment_site"
-msgstr "lang_comment_site"
+msgid "Ваш рейтинг"
+msgstr ""
 
-#: ./templates/commerce_mobiles/comments.tpl:65
-#: ./templates/commerce_mobiles/comments.tpl:159
-msgid "lang_comment_text"
-msgstr "lang_comment_text"
+#: ./templates/commerce_mobiles/comments.tpl:60
+#: ./templates/commerce_mobiles/comments.tpl:156
+msgid "Текст комментария"
+msgstr ""
 
-#: ./templates/commerce_mobiles/comments.tpl:81
-#: ./templates/commerce_mobiles/comments.tpl:168
-msgid "Code protection"
-msgstr "Код защиты"
+#: ./templates/commerce_mobiles/comments.tpl:66
+#: ./templates/commerce_mobiles/comments.tpl:129
+msgid "Плюсы"
+msgstr ""
+
+#: ./templates/commerce_mobiles/comments.tpl:71
+#: ./templates/commerce_mobiles/comments.tpl:133
+msgid "Минусы"
+msgstr ""
+
+#: ./templates/commerce_mobiles/comments.tpl:78
+#: ./templates/commerce_mobiles/comments.tpl:165
+msgid "Защитный код"
+msgstr ""
+
+#: ./templates/commerce_mobiles/comments.tpl:126
+#: ./templates/commerce_mobiles/comments.tpl:185
+msgid "Оставлен"
+msgstr ""
+
+#: ./templates/commerce_mobiles/comments.tpl:138
+msgid "Ответить"
+msgstr ""
+
+#: ./templates/commerce_mobiles/comments.tpl:139
+msgid "Отзыв был полезен"
+msgstr ""
+
+#: ./templates/commerce_mobiles/login.tpl:2
+#: ./templates/commerce_mobiles/shop/auth_data.tpl:4
+msgid "Вход"
+msgstr ""
+
+#: ./templates/commerce_mobiles/login.tpl:13
+msgid "Логин"
+msgstr ""
+
+#: ./templates/commerce_mobiles/login.tpl:17
+msgid "Пароль"
+msgstr ""
+
+#: ./templates/commerce_mobiles/main.tpl:34
+msgid "Поиск"
+msgstr ""
+
+#: ./templates/commerce_mobiles/main.tpl:57
+msgid "Мобильная версия"
+msgstr ""
+
+#: ./templates/commerce_mobiles/main.tpl:62
+msgid "Полная версия"
+msgstr ""
+
+#: ./templates/commerce_mobiles/paymentSystem/PrivateBank.tpl:11
+#: ./templates/commerce_mobiles/paymentSystem/Robokassa.tpl:11
+#: ./templates/commerce_mobiles/paymentSystem/SberBank.tpl:4
+#: ./templates/commerce_mobiles/paymentSystem/WebMoney.tpl:9
+msgid "Оплатить"
+msgstr ""
+
+#: ./templates/commerce_mobiles/paymentSystem/QIWI.tpl:11
+#: ./templates/commerce_mobiles/paymentSystem/QIWI.tpl:33
+msgid "Выставить счёт за покупку"
+msgstr ""
+
+#: ./templates/commerce_mobiles/paymentSystem/QIWI.tpl:14
+msgid "Мобильный телефон"
+msgstr ""
+
+#: ./templates/commerce_mobiles/paymentSystem/QIWI.tpl:22
+msgid "Сумма"
+msgstr ""
+
+#: ./templates/commerce_mobiles/paymentSystem/QIWI.tpl:24
+msgid "руб"
+msgstr ""
+
+#: ./templates/commerce_mobiles/paymentSystem/QIWI.tpl:25
+msgid "коп"
+msgstr ""
+
+#: ./templates/commerce_mobiles/paymentSystem/QIWI.tpl:29
+msgid "Комментарий"
+msgstr ""
+
+#: ./templates/commerce_mobiles/shop/auth_data.tpl:9
+msgid "Выход"
+msgstr ""
+
+#: ./templates/commerce_mobiles/shop/cart.tpl:33
+#: ./templates/commerce_mobiles/shop/cart_setorder.tpl:38
+msgid "Удалить"
+msgstr ""
+
+#: ./templates/commerce_mobiles/shop/cart.tpl:43
+#: ./templates/commerce_mobiles/shop/cart_setorder.tpl:36
+msgid "шт"
+msgstr ""
+
+#: ./templates/commerce_mobiles/shop/cart_data.tpl:4
+#: ./templates/commerce_mobiles/shop/cart_setorder.tpl:2
+msgid "Корзина"
+msgstr ""
 
 #: ./templates/commerce_mobiles/shop/default/category.tpl:22
-msgid "On"
-msgstr "На"
-
-#: ./templates/commerce_mobiles/shop/default/category.tpl:22
-msgid "Rating"
-msgstr "Рейтинг"
+msgid "По рейтенгу"
+msgstr ""
 
 #: ./templates/commerce_mobiles/shop/default/category.tpl:23
-msgid "From cheap to expensive"
-msgstr "От дешевых до дорогих"
+msgid "От дешевых к дорогим"
+msgstr ""
 
 #: ./templates/commerce_mobiles/shop/default/category.tpl:24
-msgid "From expensive to cheap"
-msgstr "От дорогих до дешевых"
+msgid "От дорогих к дешевым"
+msgstr ""
 
 #: ./templates/commerce_mobiles/shop/default/category.tpl:25
-msgid "Popular"
-msgstr "Популярные"
+msgid "Популярные"
+msgstr ""
 
 #: ./templates/commerce_mobiles/shop/default/category.tpl:26
-msgid "New"
-msgstr "Новый"
+msgid "Новые"
+msgstr ""
 
 #: ./templates/commerce_mobiles/shop/default/category.tpl:27
-msgid "Action"
-msgstr "Действие"
+msgid "Акционные"
+msgstr ""
 
-#: ./templates/commerce_mobiles/shop/default/product.tpl:21
-msgid "Buy"
-msgstr "Купить"
+#: ./templates/commerce_mobiles/shop/filter.tpl:10
+msgid "Цена"
+msgstr ""
+
+#: ./templates/commerce_mobiles/shop/filter.tpl:13
+msgid "от"
+msgstr ""
+
+#: ./templates/commerce_mobiles/shop/filter.tpl:19
+msgid "до"
+msgstr ""
+
+#: ./templates/commerce_mobiles/shop/filter.tpl:28
+msgid "Производитель"
+msgstr ""
+
+#: ./templates/commerce_mobiles/shop/search.tpl:41
+msgid "Вы искали"
+msgstr ""
+
+#: ./templates/commerce_mobiles/widgets/path.tpl:4
+msgid "На главную"
+msgstr ""
+
+#: ./templates/commerce_mobiles/shop/cart.tpl:187
+msgid "Корзина пуста"
+msgstr ""
 
 #: ./templates/commerce_mobiles/shop/order_view.tpl:10
 msgid "Спасибо за Ваш заказ"
 msgstr "Спасибо за Ваш заказ"
 
+#: ./templates/commerce_mobiles/shop/order_view.tpl:9
 #: ./templates/commerce_mobiles/shop/order_view.tpl:15
 msgid "Заказ"
 msgstr "Заказ"
@@ -102,12 +266,16 @@ msgstr "Статус"
 msgid "Подарочний сертификат"
 msgstr "Подарочний сертификат"
 
-#: ./templates/commerce_mobiles/shop/order_view.tpl:124
 #: ./templates/commerce_mobiles/shop/cart.tpl:76
+#: ./templates/commerce_mobiles/shop/cart_setorder.tpl:49
+#: ./templates/commerce_mobiles/shop/order_view.tpl:124
 msgid "Всего к оплате"
 msgstr "Всего к оплате"
 
 #: ./templates/commerce_mobiles/shop/category.tpl:20
+#: ./templates/commerce_mobiles/shop/categorysubfirst.tpl:20
+#: ./templates/commerce_mobiles/shop/default/category.tpl:16
+#: ./templates/commerce_mobiles/shop/filter.tpl:4
 msgid "Подбор по параметрам"
 msgstr "Подбор по параметрам"
 
@@ -123,6 +291,8 @@ msgstr "Скидка"
 msgid "Способ оплаты и доставки вы сможете согласовать с менеджером, который свяжется с вами после оформления заказа."
 msgstr "Способ оплаты и доставки вы сможете согласовать с менеджером, который свяжется с вами после оформления заказа."
 
+#: ./templates/commerce_mobiles/comments.tpl:26
+#: ./templates/commerce_mobiles/comments.tpl:149
 #: ./templates/commerce_mobiles/shop/cart.tpl:93
 msgid "Имя"
 msgstr "Имя"
@@ -140,7 +310,7 @@ msgstr "Не выбран"
 msgid "Коментарий к заказу"
 msgstr "Коментарий к заказу"
 
-#: ./templates/commerce_mobiles/shop/product.tpl:70
+#: ./templates/commerce_mobiles/shop/product.tpl:69
 msgid "Другие варианты товара"
 msgstr "Другие варианты товара"
 
@@ -148,8 +318,8 @@ msgstr "Другие варианты товара"
 msgid "Телефон"
 msgstr "Телефон"
 
-#: ./templates/commerce_mobiles/shop/order_view.tpl:37
 #: ./templates/commerce_mobiles/shop/cart.tpl:105
+#: ./templates/commerce_mobiles/shop/order_view.tpl:37
 msgid "Адрес"
 msgstr "Адрес"
 
@@ -169,25 +339,25 @@ msgstr "Способ оплаты"
 msgid "Оплачен"
 msgstr "Оплачен"
 
-#: ./templates/commerce_mobiles/shop/categorysubfirst.tpl:33
-#: ./templates/commerce_mobiles/shop/category.tpl:33
-#: ./templates/commerce_mobiles/shop/order_view.tpl:109
-#: ./templates/commerce_mobiles/shop/cart_setorder.tpl:23
-#: ./templates/commerce_mobiles/shop/cart.tpl:17
-#: ./templates/commerce_mobiles/shop/product.tpl:21
-#: ./templates/commerce_mobiles/shop/product.tpl:86
 #: ./templates/commerce_mobiles/shop/brand.tpl:26
+#: ./templates/commerce_mobiles/shop/cart.tpl:17
+#: ./templates/commerce_mobiles/shop/cart_setorder.tpl:23
+#: ./templates/commerce_mobiles/shop/category.tpl:33
+#: ./templates/commerce_mobiles/shop/categorysubfirst.tpl:33
+#: ./templates/commerce_mobiles/shop/order_view.tpl:109
+#: ./templates/commerce_mobiles/shop/product.tpl:21
+#: ./templates/commerce_mobiles/shop/product.tpl:85
 msgid "Вариант"
 msgstr "Вариант"
 
-#: ./templates/commerce_mobiles/shop/categorysubfirst.tpl:37
-#: ./templates/commerce_mobiles/shop/category.tpl:37
-#: ./templates/commerce_mobiles/shop/order_view.tpl:113
-#: ./templates/commerce_mobiles/shop/cart_setorder.tpl:27
-#: ./templates/commerce_mobiles/shop/cart.tpl:21
-#: ./templates/commerce_mobiles/shop/product.tpl:25
-#: ./templates/commerce_mobiles/shop/product.tpl:90
 #: ./templates/commerce_mobiles/shop/brand.tpl:30
+#: ./templates/commerce_mobiles/shop/cart.tpl:21
+#: ./templates/commerce_mobiles/shop/cart_setorder.tpl:27
+#: ./templates/commerce_mobiles/shop/category.tpl:37
+#: ./templates/commerce_mobiles/shop/categorysubfirst.tpl:37
+#: ./templates/commerce_mobiles/shop/order_view.tpl:113
+#: ./templates/commerce_mobiles/shop/product.tpl:25
+#: ./templates/commerce_mobiles/shop/product.tpl:89
 msgid "Артикул"
 msgstr "Артикул"
 
@@ -208,21 +378,22 @@ msgstr "Оформление заказа"
 msgid "Выберите доставку"
 msgstr "Выберите доставку"
 
-#: ./templates/commerce_mobiles/shop/product.tpl:47
-#: ./templates/commerce_mobiles/shop/product.tpl:109
+#: ./templates/commerce_mobiles/shop/default/product.tpl:21
+#: ./templates/commerce_mobiles/shop/product.tpl:46
+#: ./templates/commerce_mobiles/shop/product.tpl:108
 msgid "Купить"
 msgstr "Купить"
 
-#: ./templates/commerce_mobiles/shop/product.tpl:58
-#: ./templates/commerce_mobiles/shop/product.tpl:120
+#: ./templates/commerce_mobiles/shop/product.tpl:57
+#: ./templates/commerce_mobiles/shop/product.tpl:119
 msgid "Нет в наличии"
 msgstr "Нет в наличии"
 
-#: ./templates/commerce_mobiles/shop/product.tpl:132
+#: ./templates/commerce_mobiles/shop/product.tpl:131
 msgid "Свойства"
 msgstr "Свойства"
 
-#: ./templates/commerce_mobiles/shop/product.tpl:144
+#: ./templates/commerce_mobiles/shop/product.tpl:143
 msgid "Описание"
 msgstr "Описание"
 
@@ -238,10 +409,12 @@ msgstr "Неверный код подарочного сертификата"
 msgid "Применить"
 msgstr "Применить"
 
+#: ./templates/commerce_mobiles/comments.tpl:141
 #: ./templates/commerce_mobiles/shop/order_view.tpl:23
 msgid "Да"
 msgstr "Да"
 
+#: ./templates/commerce_mobiles/comments.tpl:142
 #: ./templates/commerce_mobiles/shop/order_view.tpl:23
 msgid "Нет"
 msgstr "Нет"

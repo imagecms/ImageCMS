@@ -1,5 +1,5 @@
 <div class="content_head">
-    <h1>Вход</h1>
+    <h1>{lang('Вход','commerce_mobiles')}</h1>
 </div>
 <form id="form" method="post">
     <div class="main_frame_inside">
@@ -10,11 +10,11 @@
         </div>
         {/if}
         <label>
-            Логин:<span class="must">*</span>
+            {lang('Логин','commerce_mobiles')}:<span class="must">*</span>
             <input type="text" name="email" />
         </label>
         <label>
-            Пароль:<span class="must">*</span>
+            {lang('Пароль','commerce_mobiles')}:<span class="must">*</span>
             <input name="password" type="password"/>
         </label>
         <div class="t-a_l">
