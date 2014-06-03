@@ -11,7 +11,7 @@ html, body{height: 100%;}
 body{padding: 0;overflow-y: scroll;}
 html{background-image: url("../img/fon_document.png");}
 .hfooter{height: 70px;}
-footer{height:50px; margin: -70px auto 0;}
+footer{height:50px; margin: -70px auto 0;position: relative;}
 footer .container{padding-top: 20px;}
 .text{clear: both;}
 .text p{margin: 15px 0 15px;}
