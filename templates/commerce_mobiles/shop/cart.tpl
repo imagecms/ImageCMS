@@ -30,7 +30,7 @@
                             </span>
                         </a>
                         <span class="descr">
-                            <a href="{shop_url('cart/removeProductByVariantId/'.$item->id)}" class="remove_ref red"><span>×</span> Удалить</a>
+                            <a href="{shop_url('cart/removeProductByVariantId/'.$item->id)}" class="remove_ref red"><span>×</span> {lang('Удалить','commerce_mobiles')}</a>
                             <input type="text"
                                    name="products[{echo $item->quantity}]"
                                    price="{echo $item->price}"
@@ -40,7 +40,7 @@
                                    onblur=""/>
                             <span class="frame_count">
                                 <span class="refresh_price"></span>
-                                <span class="count">шт.</span>
+                                <span class="count">{lang('шт','commerce_mobiles')}.</span>
                             </span>
 
                         </span>
