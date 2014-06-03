@@ -219,7 +219,6 @@ class Settings extends BaseAdminController {
                 break;
         }
 
-
         $res = $this->processSiteInfo();
 
         $data_m = array(
@@ -254,9 +253,11 @@ class Settings extends BaseAdminController {
 
         $this->translate_meta();
 
-        ($hook = get_hook('admin_save_settings')) ? eval($hook) : NULL;
+        //($hook = get_hook('admin_save_settings')) ? eval($hook) : NULL;
+
 
         $this->cms_admin->save_settings($data_m);
+
 
         $this->cache->delete_all();
 
@@ -437,6 +438,17 @@ class Settings extends BaseAdminController {
             $this->session->set_userdata('language', $lang);
         }
         redirect($_SERVER['HTTP_REFERER'] ? $_SERVER['HTTP_REFERER'] : '/admin/dashboard');
+    }
+
+    /**
+     * Returns license agreement from template, or default agreement
+     * @return string 
+     */
+    public function license_agreement() {
+        header('Content-Type: text/plain; charset=utf-8');
+        $template = new \template_manager\classes\Template($_GET['template_name']);
+        $filePath = $template->getLicenseAgreementFilepath();
+        echo file_get_contents($filePath);
     }
 
 }

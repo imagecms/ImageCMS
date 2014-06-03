@@ -62,7 +62,7 @@
                                         {if $isRequired['userInfo[fullName]']}
                                             <span class="must">*</span>
                                         {/if}
-                                        <input type="text" value="{$profile.name}" name="userInfo[fullName]">
+                                        <input type="text" value="{if isset($formData['fullName'])}{$formData['fullName']}{else:}{$profile.name}{/if}" name="userInfo[fullName]">
                                     </span>
                                 </label>
                                 <div class="frame-label">
@@ -77,7 +77,7 @@
                                             {if $isRequired['userInfo[phone]']}
                                                 <span class="must">*</span>
                                             {/if}
-                                            <input type="text" name="userInfo[phone]" value="{$profile.phone}" class="m-b_5">
+                                            <input type="text" name="userInfo[phone]" value="{if isset($formData['phone'])}{$formData['phone']}{else:}{$profile.phone}{/if}" class="m-b_5">
                                             <div class="drop drop-add-phone">
                                                 {echo ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPatternMain('pattern_custom_field_phone')->getOneCustomFieldsByName('addphone','order',$profile.id,'user')->asHtml()}
                                             </div>
@@ -90,7 +90,7 @@
                                         {if $isRequired['userInfo[email]']}
                                             <span class="must">*</span>
                                         {/if}
-                                        <input type="text" value="{$profile.email}" name="userInfo[email]">
+                                        <input type="text" value="{if isset($formData['email'])}{$formData['email']}{else:}{$profile.email}{/if}" name="userInfo[email]">
                                     </span>
                                 </label>
                                 {echo ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPatternMain('pattern_custom_field')->getOneCustomFieldsByName('country','order',$profile.id,'user')->asHtml()}
@@ -121,6 +121,7 @@
                                                             <input type="radio"
                                                                    name="deliveryMethodId"
                                                                    value="{echo $deliveryMethod->getId()}"
+                                                                   {if isset($formData['deliveryMethodId']) && $formData['deliveryMethodId'] == $deliveryMethod->getId()} checked="checked"{/if}
                                                                    />
                                                         </span>
                                                         <div class="name-count">
@@ -154,7 +155,7 @@
                                         {if $isRequired['userInfo[deliverTo]']}
                                             <span class="must">*</span>
                                         {/if}
-                                        <input name="userInfo[deliverTo]" type="text" value="{$profile.address}"/>
+                                        <input name="userInfo[deliverTo]" type="text" value="{if isset($formData['deliverTo'])}{$formData['deliverTo']}{else:}{$profile.deliverTo}{/if}"/>
                                     </span>
                                 </div>
                                 <!-- End. Delivery  address block and comment-->

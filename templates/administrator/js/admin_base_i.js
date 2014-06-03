@@ -1812,10 +1812,3 @@ $(document).ready(function() {
 });
 
 $(document).on('pjax:success', delayedMenuSelect);
-
-
-//
-//
-//$('.brands_goto_site').tooltip({
-//    title: 'Show on site'
-//});
