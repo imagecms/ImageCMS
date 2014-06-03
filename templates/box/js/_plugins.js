@@ -536,61 +536,70 @@ function getCookie(c_name)
             var settings = $.extend({
                 item: 'ul > li',
                 duration: 300,
+                delay: 600,
                 searchPath: "/shop/search/ac" + locale,
                 inputString: $('#inputString'),
                 minValue: 3,
                 underscoreLayout: '#searchResultsTemplate',
                 blockEnter: true
             }, options);
+            var searchXhr = {};
             function postSearch() {
                 $(document).trigger({
                     'type': 'autocomplete.before',
                     'el': inputString
                 });
-                $.post(searchPath, {
-                    queryString: inputString.val()
-                }, function(data) {
-                    try {
-                        var dataObj = JSON.parse(data),
-                                html = _.template($(underscoreLayout).html(), {
-                                    'items': dataObj
-                                });
-                    } catch (e) {
-                        var html = e.toString();
-                    }
-                    $thisS.html(html);
-                    $thisS.fadeIn(durationA, function() {
-                        $(document).trigger({
-                            'type': 'autocomplete.after',
-                            'el': $thisS,
-                            'input': inputString
-                        });
-                        $thisS.off('click.autocomplete').on('click.autocomplete', function(e) {
-                            e.stopImmediatePropagation();
-                        });
-                        body.off('click.autocomplete').on('click.autocomplete', function(event) {
-                            closeFrame();
-                        }).off('keydown.autocomplete').on('keydown.autocomplete', function(e) {
-                            if (!e)
-                                var e = window.event;
-                            if (e.keyCode === 27) {
+                if (searchXhr['search'])
+                    searchXhr['search'].abort();
+                searchXhr['search'] = $.ajax({
+                    'type': 'post',
+                    'url': searchPath,
+                    'data': {
+                        queryString: inputString.val()
+                    },
+                    'success': function(data) {
+                        try {
+                            var dataObj = JSON.parse(data),
+                                    html = _.template($(underscoreLayout).html(), {
+                                        'items': dataObj
+                                    });
+                        } catch (e) {
+                            var html = e.toString();
+                        }
+                        $thisS.html(html);
+                        $thisS.fadeIn(durationA, function() {
+                            $(document).trigger({
+                                'type': 'autocomplete.after',
+                                'el': $thisS,
+                                'input': inputString
+                            });
+                            $thisS.off('click.autocomplete').on('click.autocomplete', function(e) {
+                                e.stopImmediatePropagation();
+                            });
+                            body.off('click.autocomplete').on('click.autocomplete', function(event) {
                                 closeFrame();
-                            }
+                            }).off('keydown.autocomplete').on('keydown.autocomplete', function(e) {
+                                if (!e)
+                                    var e = window.event;
+                                if (e.keyCode === 27) {
+                                    closeFrame();
+                                }
+                            });
                         });
-                    });
-                    if (inputString.val().length === 0)
-                        closeFrame();
-                    selectorPosition = -1;
-                    var itemserch = $thisS.find(itemA);
-                    itemserch.mouseover(function() {
-                        var $this = $(this);
-                        $this.addClass('selected');
-                        selectorPosition = $this.index();
+                        if (inputString.val().length === 0)
+                            closeFrame();
+                        selectorPosition = -1;
+                        var itemserch = $thisS.find(itemA);
+                        itemserch.mouseover(function() {
+                            var $this = $(this);
+                            $this.addClass('selected');
+                            selectorPosition = $this.index();
+                            lookup(itemserch, selectorPosition);
+                        }).mouseleave(function() {
+                            $(this).removeClass('selected');
+                        });
                         lookup(itemserch, selectorPosition);
-                    }).mouseleave(function() {
-                        $(this).removeClass('selected');
-                    });
-                    lookup(itemserch, selectorPosition);
+                    }
                 });
             }
             function lookup(itemserch, selectorPosition) {
@@ -650,9 +659,11 @@ function getCookie(c_name)
             }
 
             var $thisS = this,
+                    postTime,
                     blockEnter = settings.blockEnter,
                     itemA = settings.item,
                     durationA = settings.duration,
+                    delay = settings.delay,
                     searchPath = settings.searchPath,
                     selectorPosition = -1,
                     inputString = settings.inputString,
@@ -670,6 +681,8 @@ function getCookie(c_name)
                     });
                 });
             inputString.keyup(function(event) {
+                if (postTime)
+                    clearTimeout(postTime);
                 var $this = $(this);
                 var inputValL = $this.val().length;
                 if (!event)
@@ -677,8 +690,9 @@ function getCookie(c_name)
                 var code = event.keyCode;
                 if (inputValL > minValue) {
                     $this.tooltip('remove');
-                    if (code !== 27 && code !== 40 && code !== 38 && code !== 39 && code !== 37 && code !== 13 && inputValL !== 0 && $.trim($this.val()) !== "")
-                        postSearch();
+                    if (code !== 27 && code !== 40 && code !== 38 && code !== 39 && code !== 37 && code !== 13 && inputValL !== 0 && $.trim($this.val()) !== "") {
+                        postTime = setTimeout(postSearch, delay);
+                    }
                     else if (inputValL === 0)
                         closeFrame();
                 }
