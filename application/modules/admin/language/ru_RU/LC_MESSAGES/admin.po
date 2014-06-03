@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-03 03:23+0300\n"
-"PO-Revision-Date: 2014-06-03 03:23+0300\n"
+"POT-Creation-Date: 2014-06-03 04:14+0300\n"
+"PO-Revision-Date: 2014-06-03 04:14+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -81,7 +81,7 @@ msgstr "Тип скидки"
 #: ./application/modules/shop/admin/templates/customfields/list.tpl:53
 #: ./application/modules/shop/admin/templates/customfields/edit.tpl:69
 msgid "Field required"
-msgstr "Поле необходимое"
+msgstr "Поле обязательное"
 
 #: ./application/modules/shop/admin/templates/customfields/create.tpl:81
 #: ./application/modules/shop/admin/templates/customfields/list.tpl:52
