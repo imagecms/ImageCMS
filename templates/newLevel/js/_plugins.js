@@ -527,6 +527,7 @@ function getCookie(c_name)
             var settings = $.extend({
                 item: 'ul > li',
                 duration: 300,
+                delay: 600,
                 searchPath: "/shop/search/ac" + locale,
                 inputString: $('#inputString'),
                 minValue: 3,
@@ -649,9 +650,11 @@ function getCookie(c_name)
             }
 
             var $thisS = this,
+                    postTime,
                     blockEnter = settings.blockEnter,
                     itemA = settings.item,
                     durationA = settings.duration,
+                    delay = settings.delay,
                     searchPath = settings.searchPath,
                     selectorPosition = -1,
                     inputString = settings.inputString,
@@ -669,6 +672,8 @@ function getCookie(c_name)
                     });
                 });
             inputString.keyup(function(event) {
+                if (postTime)
+                    clearTimeout(postTime);
                 var $this = $(this);
                 var inputValL = $this.val().length;
                 if (!event)
@@ -676,8 +681,9 @@ function getCookie(c_name)
                 var code = event.keyCode;
                 if (inputValL > minValue) {
                     $this.tooltip('remove');
-                    if (code !== 27 && code !== 40 && code !== 38 && code !== 39 && code !== 37 && code !== 13 && inputValL !== 0 && $.trim($this.val()) !== "")
-                        postSearch();
+                    if (code !== 27 && code !== 40 && code !== 38 && code !== 39 && code !== 37 && code !== 13 && inputValL !== 0 && $.trim($this.val()) !== "") {
+                        postTime = setTimeout(postSearch, delay);
+                    }
                     else if (inputValL === 0)
                         closeFrame();
                 }
