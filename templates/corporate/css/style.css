@@ -362,7 +362,7 @@ input[type="text"].error, input[type="password"].error, textarea.error, select.e
 .cycle{position: relative;height: 287px;padding: 0;max-width: 922px;overflow: hidden;}
 .category-cycle, .page-cycle{height: 215px;}
 .cycle ul{position: relative;z-index: 1;height: 100%;padding: 0}
-.contain-cycle .cycle li{height: 100%;list-style: none;margin-bottom: 0;}
+.contain-cycle .cycle li{height: 100%;list-style: none;margin-bottom: 0;width: 100% !important;}
 .cycle li > span, .cycle li > a{display: block;text-align: center;}
 .cycle img{margin: 0;}
 .pager{text-align: center;display: inline-block;z-index: 2;top: -31px; position: absolute; width: 100%; top:100%; margin-top:-36px;}
