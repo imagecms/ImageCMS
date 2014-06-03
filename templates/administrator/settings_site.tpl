@@ -66,12 +66,21 @@
                                                         <div class="control-group">
                                                             <label class="control-label" for="template">{lang('Template', 'admin')}:</label>
                                                             <div class="controls">
-                                                                <select name="template" id="template">
+                                                                <select name="template" id="template" onchange="$('#license_agreement_link').attr('href', '/admin/settings/license_agreement?template_name=' + $(this).val())">
                                                                     {foreach $templates as $k => $v}
                                                                         <option value="{$k}" {if $template_selected == $k} selected="selected" {/if} >{$k}</option>
                                                                     {/foreach}
                                                                 </select>
+                                                                {if class_exists('\\template_manager\\classes\\Template')}
+                                                                    <span class="help-block" id='license_link'>
+                                                                        {lang('Installing the template you agree to the', 'admin')}
+                                                                        <a target="_blank" href="/admin/settings/license_agreement?template_name={$template_selected}" id="license_agreement_link">
+                                                                            {lang('license agreement', 'admin')}
+                                                                        </a>
+                                                                    </span>
+                                                                {/if}
                                                             </div>
+
                                                         </div>
                                                         <div class="control-group">
                                                             <label class="control-label" for="cat_list">{lang('Display category tree in the content','admin')}:</label>
