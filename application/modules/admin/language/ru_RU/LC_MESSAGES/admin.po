@@ -5234,7 +5234,7 @@ msgstr "Содержимое"
 
 #: ./templates/administrator/pages_list.tpl:62
 msgid "Create copy"
-msgstr "Создайте копию"
+msgstr "Создать копию"
 
 #: ./application/modules/admin/pages.php:275
 msgid "Created a page"
