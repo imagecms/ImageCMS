@@ -31,14 +31,14 @@
                     <li>
                         <a href="{mobile_url('search')}" tabindex="1">
                             <span class="icon search_icon"></span><br/>
-                            Поиск
+                            {lang('Поиск','commerce_mobiles')}
                         </a>
                     </li>
                     <li>
                         {include_tpl('shop/cart_data')}
                     </li>
                 </ul>
-                <a href="/" class="f_l logo">
+                <a href="{site_url()}" class="f_l logo">
                     <span class="helper"></span>
                     <img src="{$THEME}images/logo.png" class="v-a_m"/>
                 </a>
@@ -54,12 +54,12 @@
                     <div class="h_f"></div>
                     <span class="mobile frame_version">
                         <span class="icon phone"></span>
-                        <span class="title">Мобильная версия</span>
+                        <span class="title">{lang('Мобильная версия','commerce_mobiles')}</span>
                     </span>
                     <a href="http://{echo str_replace('http://', '', $settings[MobileVersionSite])}" class="desctop frame_version">
                         <span class="frame_desctop">
                             <span class="icon comp"></span>
-                            <span class="title">Полная версия</span>
+                            <span class="title">{lang('Полная версия','commerce_mobiles')}</span>
                         </span>
                     </a>
                 </div>

@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-29 07:44+0400\n"
-"PO-Revision-Date: 2014-05-29 07:44+0400\n"
+"POT-Creation-Date: 2014-06-02 05:05+0300\n"
+"PO-Revision-Date: 2014-06-02 05:05+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -17,6 +17,89 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: .\n"
+"X-Poedit-SearchPath-2: .\n"
+"X-Poedit-SearchPath-3: .\n"
+"X-Poedit-SearchPath-4: .\n"
+"X-Poedit-SearchPath-5: .\n"
+"X-Poedit-SearchPath-6: .\n"
+"X-Poedit-SearchPath-7: .\n"
+"X-Poedit-SearchPath-8: .\n"
+
+#: ./templates/lightVertical/components/TColorScheme/TColorScheme.php:94
+#: ./templates/lightVertical/components/TColorScheme/assets/admin/main.tpl:6
+msgid "Color scheme"
+msgstr "Цветовая схема"
+
+#: ./templates/lightVertical/wishlist/wishPopup.tpl:5
+msgid "Выбор cписка желаний"
+msgstr ""
+
+#: ./templates/lightVertical/components/TMenuColumn/assets/admin/main.tpl:103
+#: ./templates/lightVertical/components/TColorScheme/assets/admin/main.tpl:21
+#: ./templates/lightVertical/components/TProperties/assets/admin/main.tpl:4
+msgid "Save"
+msgstr "Сохранить"
+
+#: ./templates/lightVertical/components/TMenuColumn/assets/admin/main.tpl:8
+msgid "Category"
+msgstr "Категория"
+
+#: ./templates/lightVertical/components/TMenuColumn/assets/admin/main.tpl:9
+msgid "Show in column"
+msgstr "Отображать в колонке"
+
+#: ./templates/lightVertical/components/TMenuColumn/assets/admin/main.tpl:14
+msgid "Open second level"
+msgstr "Открыт второй уровень"
+
+#: ./templates/lightVertical/components/TMenuColumn/assets/admin/main.tpl:15
+msgid "Open all levels"
+msgstr "Открытые все уровни"
+
+#: ./templates/lightVertical/components/TMenuColumn/assets/admin/main.tpl:25
+#: ./templates/lightVertical/components/TMenuColumn/assets/admin/main.tpl:51
+msgid "Toggle this category"
+msgstr "Скрыть подкатегории"
+
+#: ./templates/lightVertical/components/TMenuColumn/assets/admin/main.tpl:28
+#: ./templates/lightVertical/components/TMenuColumn/assets/admin/main.tpl:54
+msgid "Expand Category"
+msgstr "Показать подкатегории"
+
+#: ./templates/lightVertical/components/TMenuColumn/assets/admin/main.tpl:32
+#: ./templates/lightVertical/components/TMenuColumn/assets/admin/main.tpl:58
+#: ./templates/lightVertical/components/TMenuColumn/assets/admin/main.tpl:78
+msgid "Editing category"
+msgstr "Редактирование категории"
+
+#: ./templates/lightVertical/components/TMenuColumn/TMenuColumn.php:163
+msgid "Menu Column"
+msgstr "Колонки меню"
+
+#: ./templates/lightVertical/components/TOpi/TOpi.php:45
+msgid "One Product Item component"
+msgstr ""
+
+#: ./templates/lightVertical/components/TProperties/assets/admin/main.tpl:2
+msgid "Start typing property name here"
+msgstr "Начните вводить имя свойства здесь"
+
+#: ./templates/lightVertical/components/TProperties/assets/admin/main.tpl:13
+msgid "Id"
+msgstr ""
+
+#: ./templates/lightVertical/components/TProperties/assets/admin/main.tpl:16
+msgid "Name"
+msgstr "Имя"
+
+#: ./templates/lightVertical/components/TProperties/assets/admin/main.tpl:19
+msgid "Type"
+msgstr "Тип"
+
+#: ./templates/lightVertical/components/TProperties/TProperties.php:123
+msgid "Properties"
+msgstr "Свойства"
 
 #: ./templates/lightVertical/404.tpl:7
 msgid "404 / Страница не найдена"
@@ -34,9 +117,9 @@ msgstr ""
 msgid "Категория на стадии разработки"
 msgstr ""
 
+#: ./templates/lightVertical/category_menu_second/level_2/item_default.tpl:8
 #: ./templates/lightVertical/category_menu_first/level_1/item_default.tpl:8
 #: ./templates/lightVertical/category_menu_first/level_1/item_default_active.tpl:9
-#: ./templates/lightVertical/category_menu_second/level_2/item_default.tpl:8
 msgid "Нет фото"
 msgstr ""
 
@@ -56,20 +139,20 @@ msgstr ""
 msgid "Ваш комментарий будет опубликован после модерации администратором"
 msgstr ""
 
-#: ./templates/lightVertical/config.js.tpl:41
+#: ./templates/lightVertical/config.js.tpl:53
 msgid "Введите более"
 msgstr ""
 
-#: ./templates/lightVertical/config.js.tpl:53
+#: ./templates/lightVertical/config.js.tpl:65
 #: ./templates/lightVertical/shop/order_view.tpl:219
 #: ./templates/lightVertical/shop/order_view.tpl:337
 msgid "шт"
 msgstr ""
 
-#: ./templates/lightVertical/config.js.tpl:54
-#: ./templates/lightVertical/shop/cart_order.tpl:12
+#: ./templates/lightVertical/config.js.tpl:66
 #: ./templates/lightVertical/shop/cart_popup.tpl:16
 #: ./templates/lightVertical/shop/order_view.tpl:167
+#: ./templates/lightVertical/shop/cart_order.tpl:12
 msgid "Кол-во"
 msgstr ""
 
@@ -118,8 +201,8 @@ msgstr ""
 msgid "Шаблоны для Shop"
 msgstr ""
 
-#: ./templates/lightVertical/new_level/one_product_item.tpl:250
 #: ./templates/lightVertical/shop/product.tpl:599
+#: ./templates/lightVertical/components/TOpi/assets/one_product_item.tpl:250
 msgid "Отзывы"
 msgstr ""
 
@@ -167,9 +250,9 @@ msgstr ""
 msgid "Выберите доставку"
 msgstr ""
 
-#: ./templates/lightVertical/shop/cart.tpl:200
 #: ./templates/lightVertical/shop/cart_popup.tpl:8
 #: ./templates/lightVertical/shop/order_view.tpl:157
+#: ./templates/lightVertical/shop/cart.tpl:200
 msgid "Мой заказ"
 msgstr ""
 
@@ -177,40 +260,40 @@ msgstr ""
 msgid "Корзина"
 msgstr ""
 
-#: ./templates/lightVertical/shop/cart_order.tpl:11
 #: ./templates/lightVertical/shop/cart_popup.tpl:15
 #: ./templates/lightVertical/shop/order_view.tpl:166
+#: ./templates/lightVertical/shop/cart_order.tpl:11
 msgid "Товар"
 msgstr ""
 
-#: ./templates/lightVertical/shop/cart_order.tpl:13
 #: ./templates/lightVertical/shop/cart_popup.tpl:17
 #: ./templates/lightVertical/shop/order_view.tpl:168
+#: ./templates/lightVertical/shop/cart_order.tpl:13
 msgid "Cумма"
 msgstr ""
 
-#: ./templates/lightVertical/shop/cart_order.tpl:86
 #: ./templates/lightVertical/shop/order_view.tpl:251
+#: ./templates/lightVertical/shop/cart_order.tpl:86
 msgid "Комплект товаров"
 msgstr ""
 
-#: ./templates/lightVertical/shop/cart_order.tpl:166
 #: ./templates/lightVertical/shop/order_view.tpl:377
+#: ./templates/lightVertical/shop/cart_order.tpl:166
 msgid "Начальная стоимость товаров"
 msgstr ""
 
-#: ./templates/lightVertical/shop/cart_order.tpl:176
 #: ./templates/lightVertical/shop/order_view.tpl:389
+#: ./templates/lightVertical/shop/cart_order.tpl:176
 msgid "Cтоимость товаров"
 msgstr ""
 
-#: ./templates/lightVertical/shop/cart_order.tpl:186
 #: ./templates/lightVertical/shop/order_view.tpl:404
+#: ./templates/lightVertical/shop/cart_order.tpl:186
 msgid "Доставка"
 msgstr ""
 
-#: ./templates/lightVertical/shop/cart_order.tpl:202
 #: ./templates/lightVertical/shop/order_view.tpl:420
+#: ./templates/lightVertical/shop/cart_order.tpl:202
 msgid "Бесплатно"
 msgstr ""
 
@@ -366,21 +449,21 @@ msgstr ""
 msgid "Нет просмотренных товаров"
 msgstr ""
 
+#: ./templates/lightVertical/wishlist/wishlistEdit.tpl:17
 #: ./templates/lightVertical/wishlist/wishlist.tpl:41
 #: ./templates/lightVertical/wishlist/wishlist.tpl:155
-#: ./templates/lightVertical/wishlist/wishlistEdit.tpl:17
 msgid "Коллективный"
 msgstr ""
 
+#: ./templates/lightVertical/wishlist/wishlistEdit.tpl:19
 #: ./templates/lightVertical/wishlist/wishlist.tpl:42
 #: ./templates/lightVertical/wishlist/wishlist.tpl:152
-#: ./templates/lightVertical/wishlist/wishlistEdit.tpl:19
 msgid "Публичный"
 msgstr ""
 
+#: ./templates/lightVertical/wishlist/wishlistEdit.tpl:18
 #: ./templates/lightVertical/wishlist/wishlist.tpl:43
 #: ./templates/lightVertical/wishlist/wishlist.tpl:149
-#: ./templates/lightVertical/wishlist/wishlistEdit.tpl:18
 msgid "Приватный"
 msgstr ""
 
@@ -388,31 +471,27 @@ msgstr ""
 msgid "Поделиться с другом"
 msgstr ""
 
-#: ./templates/lightVertical/wishlist/wishPopup.tpl:5
-msgid "Выбор cписка  желаний"
-msgstr ""
-
-#: ./templates/lightVertical/config.js.tpl:41
+#: ./templates/lightVertical/config.js.tpl:53
 msgid "символов"
 msgstr ""
 
-#: ./templates/lightVertical/config.js.tpl:44
+#: ./templates/lightVertical/config.js.tpl:56
 msgid "В список желаний могут добавлять только авторизированные пользователи"
 msgstr ""
 
-#: ./templates/lightVertical/config.js.tpl:46
+#: ./templates/lightVertical/config.js.tpl:58
 msgid "Выберете размер меньше или равно"
 msgstr ""
 
-#: ./templates/lightVertical/config.js.tpl:48
+#: ./templates/lightVertical/config.js.tpl:60
 msgid "Введите название"
 msgstr ""
 
-#: ./templates/lightVertical/config.js.tpl:57
+#: ./templates/lightVertical/config.js.tpl:69
 msgid "Количество:"
 msgstr ""
 
-#: ./templates/lightVertical/config.js.tpl:58
+#: ./templates/lightVertical/config.js.tpl:70
 msgid "Комплектов:"
 msgstr ""
 
@@ -424,9 +503,9 @@ msgstr ""
 msgid "Бренд"
 msgstr ""
 
+#: ./templates/lightVertical/main_demo.tpl:127
 #: ./templates/lightVertical/category_menu_first/level_2/container.tpl:7
 #: ./templates/lightVertical/comments/comments_api.tpl:165
-#: ./templates/lightVertical/main_demo.tpl:127
 msgid "Скрыть"
 msgstr ""
 
@@ -492,14 +571,14 @@ msgstr ""
 msgid "Вернуться к покупкам"
 msgstr ""
 
-#: ./templates/lightVertical/shop/cart.tpl:188
 #: ./templates/lightVertical/shop/cart_popup.tpl:224
+#: ./templates/lightVertical/shop/cart.tpl:188
 msgid "Оформить заказ"
 msgstr ""
 
 #: ./templates/lightVertical/shop/brands_images.tpl:14
-#: ./templates/lightVertical/shop/brands_images_1.tpl:8
 #: ./templates/lightVertical/shop/brands_list.tpl:8
+#: ./templates/lightVertical/shop/brands_images_1.tpl:8
 msgid "Все бренды магазина"
 msgstr ""
 
@@ -544,8 +623,8 @@ msgstr ""
 msgid "Доставка:"
 msgstr ""
 
-#: ./templates/lightVertical/shop/payments/default.tpl:2
 #: ./templates/lightVertical/shop/payments/radio.tpl:2
+#: ./templates/lightVertical/shop/payments/default.tpl:2
 msgid "Оплата:"
 msgstr ""
 
@@ -651,26 +730,26 @@ msgstr ""
 msgid "Выход"
 msgstr ""
 
-#: ./templates/lightVertical/footer.tpl:56
-#: ./templates/lightVertical/footer.tpl:56
-#: ./templates/lightVertical/shop/wish_list_data.tpl:7
-#: ./templates/lightVertical/shop/wish_list_data.tpl:13
 #: ./templates/lightVertical/wishlist/other_list.tpl:56
 #: ./templates/lightVertical/wishlist/wishlist.tpl:6
+#: ./templates/lightVertical/shop/wish_list_data.tpl:7
+#: ./templates/lightVertical/shop/wish_list_data.tpl:13
+#: ./templates/lightVertical/footer.tpl:56
+#: ./templates/lightVertical/footer.tpl:56
 msgid "Список желаний"
 msgstr ""
 
+#: ./templates/lightVertical/shop/auth_data.tpl:12
 #: ./templates/lightVertical/footer.tpl:60
 #: ./templates/lightVertical/footer.tpl:60
 #: ./templates/lightVertical/login.tpl:5
-#: ./templates/lightVertical/shop/auth_data.tpl:12
 msgid "Вход"
 msgstr ""
 
-#: ./templates/lightVertical/footer.tpl:63
-#: ./templates/lightVertical/footer.tpl:63
 #: ./templates/lightVertical/register.tpl:5
 #: ./templates/lightVertical/register_popup.tpl:5
+#: ./templates/lightVertical/footer.tpl:63
+#: ./templates/lightVertical/footer.tpl:63
 msgid "Регистрация"
 msgstr ""
 
@@ -688,10 +767,10 @@ msgstr ""
 msgid "Все права защищены"
 msgstr ""
 
-#: ./templates/lightVertical/config.js.tpl:56
-#: ./templates/lightVertical/new_level/one_product_item.tpl:171
+#: ./templates/lightVertical/config.js.tpl:68
 #: ./templates/lightVertical/shop/product.tpl:237
 #: ./templates/lightVertical/shop/product.tpl:551
+#: ./templates/lightVertical/components/TOpi/assets/one_product_item.tpl:171
 msgid "Купить"
 msgstr ""
 
@@ -715,13 +794,13 @@ msgstr ""
 msgid "Оставить отзыв"
 msgstr ""
 
-#: ./templates/lightVertical/comments/comments_api.tpl:21
 #: ./templates/lightVertical/shop/profile_data.tpl:7
+#: ./templates/lightVertical/comments/comments_api.tpl:21
 msgid "Ваше имя"
 msgstr ""
 
-#: ./templates/lightVertical/login.tpl:12
 #: ./templates/lightVertical/login_popup.tpl:19
+#: ./templates/lightVertical/login.tpl:12
 msgid "Почта"
 msgstr ""
 
@@ -730,7 +809,7 @@ msgstr ""
 msgid "Комментарий"
 msgstr ""
 
-#: ./templates/lightVertical/config.js.tpl:59
+#: ./templates/lightVertical/config.js.tpl:71
 msgid "Код протекции"
 msgstr ""
 
@@ -742,35 +821,35 @@ msgstr ""
 msgid "Авторизация"
 msgstr ""
 
-#: ./templates/lightVertical/login.tpl:19
 #: ./templates/lightVertical/login_popup.tpl:26
+#: ./templates/lightVertical/login.tpl:19
 msgid "Пароль"
 msgstr ""
 
-#: ./templates/lightVertical/comments/comments_api.tpl:4
-#: ./templates/lightVertical/login.tpl:36
-#: ./templates/lightVertical/login_popup.tpl:43
 #: ./templates/lightVertical/register.tpl:65
-#: ./templates/lightVertical/register_popup.tpl:62
 #: ./templates/lightVertical/reset_password.tpl:5
+#: ./templates/lightVertical/register_popup.tpl:62
+#: ./templates/lightVertical/login_popup.tpl:43
+#: ./templates/lightVertical/login.tpl:36
+#: ./templates/lightVertical/comments/comments_api.tpl:4
 msgid "Войти"
 msgstr ""
 
+#: ./templates/lightVertical/login_popup.tpl:48
 #: ./templates/lightVertical/forgot_password.tpl:5
 #: ./templates/lightVertical/login.tpl:41
-#: ./templates/lightVertical/login_popup.tpl:48
 msgid "Забыли Пароль?"
 msgstr ""
 
+#: ./templates/lightVertical/login_popup.tpl:56
 #: ./templates/lightVertical/forgot_password.tpl:40
 #: ./templates/lightVertical/login.tpl:49
-#: ./templates/lightVertical/login_popup.tpl:56
 msgid "Я еще не зарегистрирован"
 msgstr ""
 
+#: ./templates/lightVertical/login_popup.tpl:57
 #: ./templates/lightVertical/forgot_password.tpl:41
 #: ./templates/lightVertical/login.tpl:50
-#: ./templates/lightVertical/login_popup.tpl:57
 msgid "Перейти к регистрации"
 msgstr ""
 
@@ -778,9 +857,9 @@ msgstr ""
 msgid "Пароль будет выслан на e-mail "
 msgstr ""
 
+#: ./templates/lightVertical/wishlist/sendEmail.tpl:23
 #: ./templates/lightVertical/forgot_password.tpl:32
 #: ./templates/lightVertical/shop/report_appearance.tpl:51
-#: ./templates/lightVertical/wishlist/sendEmail.tpl:23
 msgid "Отправить"
 msgstr ""
 
@@ -789,10 +868,10 @@ msgstr ""
 msgid "Зарегистрироваться"
 msgstr ""
 
-#: ./templates/lightVertical/comments/comments_api.tpl:191
 #: ./templates/lightVertical/register.tpl:13
 #: ./templates/lightVertical/register_popup.tpl:15
 #: ./templates/lightVertical/shop/report_appearance.tpl:22
+#: ./templates/lightVertical/comments/comments_api.tpl:191
 msgid "Ваше имя:"
 msgstr ""
 
@@ -825,82 +904,82 @@ msgstr ""
 msgid "Найти"
 msgstr ""
 
-#: ./templates/lightVertical/category_menu/error.tpl:12
-#: ./templates/lightVertical/category_menu_first/error.tpl:12
 #: ./templates/lightVertical/category_menu_second/error.tpl:12
-#: ./templates/lightVertical/footer_category_menu/error.tpl:12
 #: ./templates/lightVertical/left_menu/error.tpl:12
+#: ./templates/lightVertical/category_menu/error.tpl:12
+#: ./templates/lightVertical/footer_category_menu/error.tpl:12
 #: ./templates/lightVertical/top_menu/error.tpl:12
+#: ./templates/lightVertical/category_menu_first/error.tpl:12
 msgid "Внимание"
 msgstr ""
 
-#: ./templates/lightVertical/category_menu_first/error.tpl:13
 #: ./templates/lightVertical/category_menu_second/error.tpl:13
 #: ./templates/lightVertical/top_menu/error.tpl:13
+#: ./templates/lightVertical/category_menu_first/error.tpl:13
 msgid "Не обнаружен необходимый файл шаблона для меню"
 msgstr ""
 
-#: ./templates/lightVertical/category_menu/error.tpl:21
-#: ./templates/lightVertical/category_menu_first/error.tpl:21
 #: ./templates/lightVertical/category_menu_second/error.tpl:21
-#: ./templates/lightVertical/footer_category_menu/error.tpl:21
 #: ./templates/lightVertical/left_menu/error.tpl:21
+#: ./templates/lightVertical/category_menu/error.tpl:21
+#: ./templates/lightVertical/footer_category_menu/error.tpl:21
 #: ./templates/lightVertical/top_menu/error.tpl:21
+#: ./templates/lightVertical/category_menu_first/error.tpl:21
 msgid "Проверьте наличие файла или измените настройки меню"
 msgstr ""
 
-#: ./templates/lightVertical/category_menu/error.tpl:23
-#: ./templates/lightVertical/category_menu_first/error.tpl:23
 #: ./templates/lightVertical/category_menu_second/error.tpl:23
-#: ./templates/lightVertical/footer_category_menu/error.tpl:23
 #: ./templates/lightVertical/left_menu/error.tpl:23
+#: ./templates/lightVertical/category_menu/error.tpl:23
+#: ./templates/lightVertical/footer_category_menu/error.tpl:23
+#: ./templates/lightVertical/category_menu_first/error.tpl:23
 msgid "Переустановите модуль меню "
 msgstr ""
 
-#: ./templates/lightVertical/config.js.tpl:60
-#: ./templates/lightVertical/shop/brand.tpl:39
-#: ./templates/lightVertical/shop/category.tpl:36
+#: ./templates/lightVertical/config.js.tpl:72
 #: ./templates/lightVertical/shop/search.tpl:31
+#: ./templates/lightVertical/shop/category.tpl:36
+#: ./templates/lightVertical/shop/brand.tpl:39
 msgid "товар"
 msgstr ""
 
-#: ./templates/lightVertical/config.js.tpl:60
-#: ./templates/lightVertical/shop/brand.tpl:39
-#: ./templates/lightVertical/shop/category.tpl:36
+#: ./templates/lightVertical/config.js.tpl:72
 #: ./templates/lightVertical/shop/search.tpl:31
+#: ./templates/lightVertical/shop/category.tpl:36
+#: ./templates/lightVertical/shop/brand.tpl:39
 msgid "товара"
 msgstr ""
 
-#: ./templates/lightVertical/config.js.tpl:60
-#: ./templates/lightVertical/shop/brand.tpl:39
-#: ./templates/lightVertical/shop/category.tpl:36
+#: ./templates/lightVertical/config.js.tpl:72
 #: ./templates/lightVertical/shop/search.tpl:31
+#: ./templates/lightVertical/shop/category.tpl:36
+#: ./templates/lightVertical/shop/brand.tpl:39
 msgid "товаров"
 msgstr ""
 
-#: ./templates/lightVertical/config.js.tpl:61
+#: ./templates/lightVertical/config.js.tpl:73
 msgid "набор"
 msgstr ""
 
-#: ./templates/lightVertical/config.js.tpl:61
+#: ./templates/lightVertical/config.js.tpl:73
 msgid "набора"
 msgstr ""
 
-#: ./templates/lightVertical/config.js.tpl:61
+#: ./templates/lightVertical/config.js.tpl:73
 msgid "наборов"
 msgstr ""
 
-#: ./templates/lightVertical/config.js.tpl:62
+#: ./templates/lightVertical/config.js.tpl:74
 #: ./templates/lightVertical/shop/product.tpl:62
 msgid "отзыв"
 msgstr ""
 
-#: ./templates/lightVertical/config.js.tpl:62
+#: ./templates/lightVertical/config.js.tpl:74
 #: ./templates/lightVertical/shop/product.tpl:62
 msgid "отзыва"
 msgstr ""
 
-#: ./templates/lightVertical/config.js.tpl:62
+#: ./templates/lightVertical/config.js.tpl:74
 #: ./templates/lightVertical/shop/product.tpl:62
 msgid "отзывов"
 msgstr ""
@@ -930,9 +1009,9 @@ msgstr ""
 msgid "Не меньше 4-х символов"
 msgstr ""
 
-#: ./templates/lightVertical/shop/cart.tpl:68
 #: ./templates/lightVertical/shop/order_view.tpl:48
 #: ./templates/lightVertical/shop/profile_data.tpl:14
+#: ./templates/lightVertical/shop/cart.tpl:68
 msgid "Телефон"
 msgstr ""
 
@@ -957,9 +1036,9 @@ msgstr ""
 msgid "Товаров на сумму"
 msgstr ""
 
-#: ./templates/lightVertical/shop/cart_order.tpl:214
 #: ./templates/lightVertical/shop/cart_popup.tpl:173
 #: ./templates/lightVertical/shop/order_view.tpl:432
+#: ./templates/lightVertical/shop/cart_order.tpl:214
 #: ./templates/lightVertical/shop/profile_data.tpl:69
 #: ./templates/lightVertical/shop/profile_data.tpl:93
 msgid "Ваша текущая скидка"
@@ -985,8 +1064,8 @@ msgstr ""
 msgid "Корзина пуста"
 msgstr ""
 
-#: ./templates/lightVertical/shop/category.tpl:44
 #: ./templates/lightVertical/shop/search.tpl:38
+#: ./templates/lightVertical/shop/category.tpl:44
 msgid "Не найдено товаров"
 msgstr ""
 
@@ -998,8 +1077,8 @@ msgstr ""
 msgid "Дата заказа"
 msgstr ""
 
-#: ./templates/lightVertical/shop/cart_order.tpl:271
 #: ./templates/lightVertical/shop/order_view.tpl:468
+#: ./templates/lightVertical/shop/cart_order.tpl:271
 msgid "К оплате"
 msgstr ""
 
@@ -1015,14 +1094,14 @@ msgstr ""
 msgid "Телефон:"
 msgstr ""
 
-#: ./templates/lightVertical/config.js.tpl:55
+#: ./templates/lightVertical/config.js.tpl:67
 #: ./templates/lightVertical/paymentSystem/QIWI.tpl:22
 msgid "Сумма"
 msgstr ""
 
+#: ./templates/lightVertical/shop/order_view.tpl:447
 #: ./templates/lightVertical/shop/cart_order.tpl:225
 #: ./templates/lightVertical/shop/cart_order.tpl:236
-#: ./templates/lightVertical/shop/order_view.tpl:447
 msgid "Подарочный сертификат"
 msgstr ""
 
@@ -1030,9 +1109,9 @@ msgstr ""
 msgid "Список сравнения"
 msgstr ""
 
-#: ./templates/lightVertical/footer.tpl:53
-#: ./templates/lightVertical/footer.tpl:53
 #: ./templates/lightVertical/shop/auth_data.tpl:19
+#: ./templates/lightVertical/footer.tpl:53
+#: ./templates/lightVertical/footer.tpl:53
 msgid "Личный кабинет"
 msgstr ""
 
@@ -1048,9 +1127,9 @@ msgstr ""
 msgid "Повторите пароль"
 msgstr ""
 
-#: ./templates/lightVertical/shop/auth_data.tpl:28
 #: ./templates/lightVertical/shop/profile.tpl:17
 #: ./templates/lightVertical/shop/profile_change_pass.tpl:28
+#: ./templates/lightVertical/shop/auth_data.tpl:28
 msgid "Изменить пароль"
 msgstr ""
 
@@ -1058,13 +1137,13 @@ msgstr ""
 msgid "Добро пожаловать!"
 msgstr ""
 
-#: ./templates/lightVertical/shop/auth_data.tpl:27
 #: ./templates/lightVertical/shop/profile.tpl:16
+#: ./templates/lightVertical/shop/auth_data.tpl:27
 msgid "Основные данные"
 msgstr ""
 
-#: ./templates/lightVertical/shop/auth_data.tpl:29
 #: ./templates/lightVertical/shop/profile.tpl:18
+#: ./templates/lightVertical/shop/auth_data.tpl:29
 msgid "История заказа"
 msgstr ""
 
@@ -1077,29 +1156,29 @@ msgstr ""
 msgid "Город"
 msgstr ""
 
-#: ./templates/lightVertical/config.js.tpl:52
-#: ./templates/lightVertical/new_level/one_product_item.tpl:138
+#: ./templates/lightVertical/config.js.tpl:64
 #: ./templates/lightVertical/shop/product.tpl:539
+#: ./templates/lightVertical/components/TOpi/assets/one_product_item.tpl:138
 msgid "В корзине"
 msgstr ""
 
-#: ./templates/lightVertical/new_level/one_product_item.tpl:61
-#: ./templates/lightVertical/new_level/one_product_item.tpl:226
-#: ./templates/lightVertical/shop/cart_order.tpl:32
-#: ./templates/lightVertical/shop/cart_order.tpl:104
 #: ./templates/lightVertical/shop/cart_popup.tpl:39
 #: ./templates/lightVertical/shop/cart_popup.tpl:110
 #: ./templates/lightVertical/shop/order_view.tpl:192
+#: ./templates/lightVertical/shop/cart_order.tpl:32
+#: ./templates/lightVertical/shop/cart_order.tpl:104
 #: ./templates/lightVertical/shop/product.tpl:98
+#: ./templates/lightVertical/components/TOpi/assets/one_product_item.tpl:61
+#: ./templates/lightVertical/components/TOpi/assets/one_product_item.tpl:226
 msgid "Вариант"
 msgstr ""
 
-#: ./templates/lightVertical/new_level/one_product_item.tpl:52
-#: ./templates/lightVertical/shop/cart_order.tpl:37
-#: ./templates/lightVertical/shop/cart_order.tpl:109
 #: ./templates/lightVertical/shop/cart_popup.tpl:44
 #: ./templates/lightVertical/shop/cart_popup.tpl:116
 #: ./templates/lightVertical/shop/order_view.tpl:193
+#: ./templates/lightVertical/shop/cart_order.tpl:37
+#: ./templates/lightVertical/shop/cart_order.tpl:109
+#: ./templates/lightVertical/components/TOpi/assets/one_product_item.tpl:52
 msgid "Артикул"
 msgstr ""
 
@@ -1139,9 +1218,9 @@ msgstr ""
 msgid "По Вашему запросу ничего не найдено"
 msgstr ""
 
-#: ./templates/lightVertical/shop/brand.tpl:39
-#: ./templates/lightVertical/shop/js_templates.tpl:121
 #: ./templates/lightVertical/shop/search.tpl:31
+#: ./templates/lightVertical/shop/js_templates.tpl:121
+#: ./templates/lightVertical/shop/brand.tpl:39
 msgid "Найдено"
 msgstr ""
 
@@ -1201,8 +1280,8 @@ msgstr ""
 msgid "На странице"
 msgstr ""
 
-#: ./templates/lightVertical/new_level/one_product_item.tpl:211
 #: ./templates/lightVertical/shop/report_appearance.tpl:4
+#: ./templates/lightVertical/components/TOpi/assets/one_product_item.tpl:211
 msgid "Сообщить о появлении"
 msgstr ""
 
@@ -1210,7 +1289,7 @@ msgstr ""
 msgid "Вы получите письмо, когда товар будет доступен"
 msgstr ""
 
-#: ./templates/lightVertical/new_level/one_product_item.tpl:179
+#: ./templates/lightVertical/components/TOpi/assets/one_product_item.tpl:179
 msgid "Нет в наличии"
 msgstr ""
 
@@ -1290,19 +1369,19 @@ msgstr ""
 msgid "Редактировать:"
 msgstr ""
 
+#: ./templates/lightVertical/wishlist/wishlistEdit.tpl:13
 #: ./templates/lightVertical/wishlist/wishlist.tpl:37
 #: ./templates/lightVertical/wishlist/wishlist.tpl:147
-#: ./templates/lightVertical/wishlist/wishlistEdit.tpl:13
 msgid "Доступность:"
 msgstr ""
 
-#: ./templates/lightVertical/wishlist/wishlist.tpl:49
 #: ./templates/lightVertical/wishlist/wishlistEdit.tpl:25
+#: ./templates/lightVertical/wishlist/wishlist.tpl:49
 msgid "Название списка:"
 msgstr ""
 
-#: ./templates/lightVertical/wishlist/wishlist.tpl:55
 #: ./templates/lightVertical/wishlist/wishlistEdit.tpl:31
+#: ./templates/lightVertical/wishlist/wishlist.tpl:55
 msgid "Описание:"
 msgstr ""
 
@@ -1322,7 +1401,7 @@ msgstr ""
 msgid "В списке желания"
 msgstr ""
 
-#: ./templates/lightVertical/config.js.tpl:46
+#: ./templates/lightVertical/config.js.tpl:58
 msgid "пикселей"
 msgstr ""
 
@@ -1351,20 +1430,20 @@ msgstr ""
 msgid "No viewed products"
 msgstr ""
 
+#: ./templates/lightVertical/left_menu/error.tpl:13
 #: ./templates/lightVertical/category_menu/error.tpl:13
 #: ./templates/lightVertical/footer_category_menu/error.tpl:13
-#: ./templates/lightVertical/left_menu/error.tpl:13
 msgid "Не обнаружен необходимый файл шаблона для меню "
 msgstr ""
 
 #: ./templates/lightVertical/category_menu_second/level_2/container.tpl:6
 msgid "All categoties"
-msgstr ""
+msgstr "Все категории"
 
 #: ./templates/lightVertical/paymentSystem/LiqPay.tpl:5
+#: ./templates/lightVertical/paymentSystem/SberBank.tpl:5
 #: ./templates/lightVertical/paymentSystem/PrivateBank.tpl:12
 #: ./templates/lightVertical/paymentSystem/Robokassa.tpl:13
-#: ./templates/lightVertical/paymentSystem/SberBank.tpl:5
 msgid "Оплатить"
 msgstr ""
 
@@ -1393,13 +1472,13 @@ msgstr ""
 msgid "Переустановите модуль меню"
 msgstr ""
 
-#: ./templates/lightVertical/new_level/one_product_item.tpl:267
-#: ./templates/lightVertical/new_level/one_product_item.tpl:268
-#: ./templates/lightVertical/new_level/one_product_item.tpl:272
+#: ./templates/lightVertical/components/TOpi/assets/one_product_item.tpl:267
+#: ./templates/lightVertical/components/TOpi/assets/one_product_item.tpl:268
+#: ./templates/lightVertical/components/TOpi/assets/one_product_item.tpl:272
 msgid "В список сравнений"
 msgstr ""
 
-#: ./templates/lightVertical/new_level/one_product_item.tpl:269
+#: ./templates/lightVertical/components/TOpi/assets/one_product_item.tpl:269
 msgid "В списке сравнений"
 msgstr ""
 
@@ -1408,11 +1487,11 @@ msgstr ""
 msgid "только цифры"
 msgstr ""
 
-#: ./templates/lightVertical/new_level/one_product_item.tpl:340
+#: ./templates/lightVertical/components/TOpi/assets/one_product_item.tpl:340
 msgid "Удалить"
 msgstr ""
 
-#: ./templates/lightVertical/new_level/one_product_item.tpl:348
+#: ./templates/lightVertical/components/TOpi/assets/one_product_item.tpl:348
 msgid "Переместить"
 msgstr ""
 

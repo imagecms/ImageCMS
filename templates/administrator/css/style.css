@@ -11,7 +11,7 @@ html, body{height: 100%;}
 body{padding: 0;overflow-y: scroll;}
 html{background-image: url("../img/fon_document.png");}
 .hfooter{height: 70px;}
-footer{height:50px; margin: -70px auto 0;}
+footer{height:50px; margin: -70px auto 0;position: relative;}
 footer .container{padding-top: 20px;}
 .text{clear: both;}
 .text p{margin: 15px 0 15px;}
@@ -169,7 +169,7 @@ table label{margin-bottom: 5px;clear: both;}
 .frame_price .btn{position: absolute;right: 0;top: 0;display: none;}
 a.go_to_site{visibility: hidden;}
 .share_alt{position: relative;}
-.share_alt > .title{display: block;overflow: hidden;margin-right: 40px;}
+.share_alt > .title{display: inline;overflow: hidden;margin-right: 40px;}
 .head_body td{background: #daf5ff !important;border-color: #DDD !important;color: #333;}
 .js{border-bottom: 1px dashed #0088cc;text-decoration: none;}
 .t-d_n{text-decoration: none !important;}

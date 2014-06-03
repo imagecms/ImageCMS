@@ -3,7 +3,7 @@
     <div class="form-vertical">
         <div class="row-fluid">
             <div class="control-group">
-                <label class="control-label" for="template">{lang('Colour scheme', 'newLevel_TM')}:</label>
+                <label class="control-label" for="template">{lang('Color scheme', 'box')}:</label>
                 <div class="controls">                                         
                     <select onchange="changethema(this)" style="width:25% !important" name="color_scheme" id="template">
                         {foreach $shemes as $sheme => $shemePath}
@@ -18,7 +18,7 @@
                 </div>
             </div>
             <button type="button" class="btn btn-small action_on formSubmit btn-primary m-t_20" data-form="#component_{echo $handler}_form" data-action="close">
-                <i class="icon-ok icon-white"></i>{lang('Save', 'newLevel_TM')}
+                <i class="icon-ok icon-white"></i>{lang('Save', 'box')}
             </button>
         </div>
     </div>

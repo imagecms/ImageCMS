@@ -1,9 +1,8 @@
 {$i=0}
 <div class="crumbs" xmlns:v="http://rdf.data-vocabulary.org/#">
     <span typeof="v:Breadcrumb">
-        <a rel="v:url" property="v:title" href="{site_url()}">На главную</a>
+        <a rel="v:url" property="v:title" href="{site_url()}">{lang('На главную','commerce_mobiles')}</a>
     </span> /
-
     {foreach $navi_cats as $item}
         {$i++}
         {if $i < count($navi_cats)}

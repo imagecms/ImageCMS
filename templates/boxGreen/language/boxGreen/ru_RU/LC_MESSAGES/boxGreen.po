@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-29 07:42+0400\n"
-"PO-Revision-Date: 2014-05-29 07:42+0400\n"
+"POT-Creation-Date: 2014-06-02 05:03+0300\n"
+"PO-Revision-Date: 2014-06-02 05:03+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -17,56 +17,59 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: .\n"
+"X-Poedit-SearchPath-2: .\n"
 
-#: ./templates/boxGreen/components/TColorScheme/assets/admin/main.tpl:6
-msgid "Colour scheme"
-msgstr ""
-
-#: ./templates/boxGreen/components/TColorScheme/assets/admin/main.tpl:21
-#: ./templates/boxGreen/components/TMenuColumn/assets/admin/main.tpl:103
-#: ./templates/boxGreen/components/TProperties/assets/admin/main.tpl:4
-msgid "Save"
+#: ./templates/boxGreen/wishlist/wishPopup.tpl:5
+msgid "Выбор cписка  желаний"
 msgstr ""
 
 #: ./templates/boxGreen/components/TColorScheme/TColorScheme.php:94
+#: ./templates/boxGreen/components/TColorScheme/assets/admin/main.tpl:6
 msgid "Color scheme"
-msgstr ""
+msgstr "Цветовая схема"
+
+#: ./templates/boxGreen/components/TMenuColumn/TMenuColumn.php:163
+msgid "Menu Column"
+msgstr "Колонки меню"
+
+#: ./templates/boxGreen/components/TMenuColumn/assets/admin/main.tpl:103
+#: ./templates/boxGreen/components/TColorScheme/assets/admin/main.tpl:21
+#: ./templates/boxGreen/components/TProperties/assets/admin/main.tpl:4
+msgid "Save"
+msgstr "Сохранить"
 
 #: ./templates/boxGreen/components/TMenuColumn/assets/admin/main.tpl:8
 msgid "Category"
-msgstr ""
+msgstr "Категория"
 
 #: ./templates/boxGreen/components/TMenuColumn/assets/admin/main.tpl:9
 msgid "Show in column"
-msgstr ""
-
-#: ./templates/boxGreen/components/TMenuColumn/assets/admin/main.tpl:14
-msgid "Open all levels"
-msgstr ""
+msgstr "Отображать в колонке"
 
 #: ./templates/boxGreen/components/TMenuColumn/assets/admin/main.tpl:15
+msgid "Open all levels"
+msgstr "Открытые все уровни"
+
+#: ./templates/boxGreen/components/TMenuColumn/assets/admin/main.tpl:14
 msgid "Open second level"
-msgstr ""
+msgstr "Открыт второй уровень"
 
 #: ./templates/boxGreen/components/TMenuColumn/assets/admin/main.tpl:25
 #: ./templates/boxGreen/components/TMenuColumn/assets/admin/main.tpl:51
 msgid "Toggle this category"
-msgstr ""
+msgstr "Скрыть подкатегории"
 
 #: ./templates/boxGreen/components/TMenuColumn/assets/admin/main.tpl:28
 #: ./templates/boxGreen/components/TMenuColumn/assets/admin/main.tpl:54
 msgid "Expand Category"
-msgstr ""
+msgstr "Показать подкатегории"
 
 #: ./templates/boxGreen/components/TMenuColumn/assets/admin/main.tpl:32
 #: ./templates/boxGreen/components/TMenuColumn/assets/admin/main.tpl:58
 #: ./templates/boxGreen/components/TMenuColumn/assets/admin/main.tpl:78
 msgid "Editing category"
-msgstr ""
-
-#: ./templates/boxGreen/components/TMenuColumn/TMenuColumn.php:163
-msgid "Menu Column"
-msgstr ""
+msgstr "Редактирование категории"
 
 #: ./templates/boxGreen/components/TOpi/TOpi.php:45
 msgid "One Product Item component"
@@ -74,7 +77,7 @@ msgstr ""
 
 #: ./templates/boxGreen/components/TProperties/assets/admin/main.tpl:2
 msgid "Start typing property name here"
-msgstr ""
+msgstr "Начните вводить имя свойства здесь"
 
 #: ./templates/boxGreen/components/TProperties/assets/admin/main.tpl:13
 msgid "Id"
@@ -82,15 +85,15 @@ msgstr ""
 
 #: ./templates/boxGreen/components/TProperties/assets/admin/main.tpl:16
 msgid "Name"
-msgstr ""
+msgstr "Имя"
 
 #: ./templates/boxGreen/components/TProperties/assets/admin/main.tpl:19
 msgid "Type"
-msgstr ""
+msgstr "Тип"
 
 #: ./templates/boxGreen/components/TProperties/TProperties.php:123
 msgid "Properties"
-msgstr ""
+msgstr "Свойства"
 
 #: ./templates/boxGreen/shop/js_templates.tpl:127
 msgid "Подтвердите"
@@ -108,15 +111,15 @@ msgstr ""
 msgid "Главная страница"
 msgstr ""
 
+#: ./templates/boxGreen/category_menu_second/level_2/item_default.tpl:8
 #: ./templates/boxGreen/category_menu_first/level_1/item_default.tpl:8
 #: ./templates/boxGreen/category_menu_first/level_1/item_default_active.tpl:9
-#: ./templates/boxGreen/category_menu_second/level_2/item_default.tpl:8
 msgid "Нет фото"
 msgstr ""
 
-#: ./templates/boxGreen/comments/comments_api.tpl:9
-#: ./templates/boxGreen/components/TOpi/assets/one_product_item.tpl:97
 #: ./templates/boxGreen/shop/product.tpl:140
+#: ./templates/boxGreen/components/TOpi/assets/one_product_item.tpl:97
+#: ./templates/boxGreen/comments/comments_api.tpl:9
 msgid "Отзывы"
 msgstr ""
 
@@ -124,8 +127,8 @@ msgstr ""
 msgid "Добавить отзыв"
 msgstr ""
 
-#: ./templates/boxGreen/shop/callback.tpl:18
 #: ./templates/boxGreen/shop/report_appearance.tpl:22
+#: ./templates/boxGreen/shop/callback.tpl:18
 msgid "Имя"
 msgstr ""
 
@@ -181,8 +184,8 @@ msgstr ""
 msgid "Войти в магазин"
 msgstr ""
 
-#: ./templates/boxGreen/shop/callback.tpl:32
 #: ./templates/boxGreen/shop/report_appearance.tpl:43
+#: ./templates/boxGreen/shop/callback.tpl:32
 msgid "Текст"
 msgstr ""
 
@@ -190,8 +193,8 @@ msgstr ""
 msgid "Я уже тут покупал"
 msgstr ""
 
-#: ./templates/boxGreen/shop/cart_order.tpl:264
 #: ./templates/boxGreen/shop/order_view.tpl:472
+#: ./templates/boxGreen/shop/cart_order.tpl:264
 msgid "Всего к оплате"
 msgstr ""
 
@@ -279,44 +282,44 @@ msgstr ""
 msgid "Цена от"
 msgstr ""
 
-#: ./templates/boxGreen/category_menu/error.tpl:12
-#: ./templates/boxGreen/category_menu_first/error.tpl:12
 #: ./templates/boxGreen/category_menu_second/error.tpl:12
-#: ./templates/boxGreen/footer_category_menu/error.tpl:12
-#: ./templates/boxGreen/footer_menu/error.tpl:12
 #: ./templates/boxGreen/left_menu/error.tpl:12
+#: ./templates/boxGreen/category_menu/error.tpl:12
+#: ./templates/boxGreen/footer_category_menu/error.tpl:12
 #: ./templates/boxGreen/top_menu/error.tpl:12
+#: ./templates/boxGreen/category_menu_first/error.tpl:12
+#: ./templates/boxGreen/footer_menu/error.tpl:12
 msgid "Внимание"
 msgstr ""
 
-#: ./templates/boxGreen/category_menu_first/error.tpl:13
 #: ./templates/boxGreen/category_menu_second/error.tpl:13
-#: ./templates/boxGreen/footer_menu/error.tpl:13
 #: ./templates/boxGreen/top_menu/error.tpl:13
+#: ./templates/boxGreen/category_menu_first/error.tpl:13
+#: ./templates/boxGreen/footer_menu/error.tpl:13
 msgid "Не обнаружен необходимый файл шаблона для меню"
 msgstr ""
 
-#: ./templates/boxGreen/category_menu/error.tpl:21
-#: ./templates/boxGreen/category_menu_first/error.tpl:21
 #: ./templates/boxGreen/category_menu_second/error.tpl:21
-#: ./templates/boxGreen/footer_category_menu/error.tpl:21
-#: ./templates/boxGreen/footer_menu/error.tpl:21
 #: ./templates/boxGreen/left_menu/error.tpl:21
+#: ./templates/boxGreen/category_menu/error.tpl:21
+#: ./templates/boxGreen/footer_category_menu/error.tpl:21
 #: ./templates/boxGreen/top_menu/error.tpl:21
+#: ./templates/boxGreen/category_menu_first/error.tpl:21
+#: ./templates/boxGreen/footer_menu/error.tpl:21
 msgid "Проверьте наличие файла или измените настройки меню"
 msgstr ""
 
-#: ./templates/boxGreen/category_menu/error.tpl:23
-#: ./templates/boxGreen/category_menu_first/error.tpl:23
 #: ./templates/boxGreen/category_menu_second/error.tpl:23
-#: ./templates/boxGreen/footer_category_menu/error.tpl:23
 #: ./templates/boxGreen/left_menu/error.tpl:23
+#: ./templates/boxGreen/category_menu/error.tpl:23
+#: ./templates/boxGreen/footer_category_menu/error.tpl:23
+#: ./templates/boxGreen/category_menu_first/error.tpl:23
 msgid "Переустановите модуль меню "
 msgstr ""
 
+#: ./templates/boxGreen/main_demo.tpl:129
 #: ./templates/boxGreen/category_menu_first/level_2/container.tpl:7
 #: ./templates/boxGreen/comments/comments_api.tpl:175
-#: ./templates/boxGreen/main_demo.tpl:129
 msgid "Скрыть"
 msgstr ""
 
@@ -332,23 +335,23 @@ msgstr ""
 msgid "Вход"
 msgstr ""
 
-#: ./templates/boxGreen/login.tpl:12
 #: ./templates/boxGreen/login_popup.tpl:19
+#: ./templates/boxGreen/login.tpl:12
 msgid "Почта"
 msgstr ""
 
-#: ./templates/boxGreen/login.tpl:19
 #: ./templates/boxGreen/login_popup.tpl:26
+#: ./templates/boxGreen/login.tpl:19
 msgid "Пароль"
 msgstr ""
 
-#: ./templates/boxGreen/comments/comments_api.tpl:4
-#: ./templates/boxGreen/login.tpl:36
-#: ./templates/boxGreen/login_popup.tpl:43
 #: ./templates/boxGreen/register.tpl:65
-#: ./templates/boxGreen/register_popup.tpl:62
 #: ./templates/boxGreen/reset_password.tpl:5
+#: ./templates/boxGreen/register_popup.tpl:62
+#: ./templates/boxGreen/login_popup.tpl:43
 #: ./templates/boxGreen/shop/auth_data.tpl:7
+#: ./templates/boxGreen/login.tpl:36
+#: ./templates/boxGreen/comments/comments_api.tpl:4
 msgid "Войти"
 msgstr ""
 
@@ -381,9 +384,9 @@ msgstr ""
 msgid "Позвоните мне"
 msgstr ""
 
+#: ./templates/boxGreen/shop/profile_data.tpl:7
 #: ./templates/boxGreen/comments/comments_api.tpl:21
 #: ./templates/boxGreen/comments/comments_api.tpl:199
-#: ./templates/boxGreen/shop/profile_data.tpl:7
 msgid "Ваше имя"
 msgstr ""
 
@@ -391,11 +394,11 @@ msgstr ""
 msgid "Не меньше 4-х символов"
 msgstr ""
 
-#: ./templates/boxGreen/shop/callback.tpl:25
-#: ./templates/boxGreen/shop/cart.tpl:54
 #: ./templates/boxGreen/shop/order_view.tpl:48
 #: ./templates/boxGreen/shop/profile_data.tpl:14
 #: ./templates/boxGreen/shop/report_appearance.tpl:37
+#: ./templates/boxGreen/shop/callback.tpl:25
+#: ./templates/boxGreen/shop/cart.tpl:54
 msgid "Телефон"
 msgstr ""
 
@@ -403,9 +406,9 @@ msgstr ""
 msgid "E-mail является логином"
 msgstr ""
 
-#: ./templates/boxGreen/shop/cart.tpl:133
 #: ./templates/boxGreen/shop/order_view.tpl:89
 #: ./templates/boxGreen/shop/profile_data.tpl:29
+#: ./templates/boxGreen/shop/cart.tpl:133
 msgid "Адрес"
 msgstr ""
 
@@ -421,8 +424,8 @@ msgstr ""
 msgid "Товаров на сумму"
 msgstr ""
 
-#: ./templates/boxGreen/shop/cart_order.tpl:207
 #: ./templates/boxGreen/shop/order_view.tpl:436
+#: ./templates/boxGreen/shop/cart_order.tpl:207
 #: ./templates/boxGreen/shop/profile_data.tpl:68
 #: ./templates/boxGreen/shop/profile_data.tpl:92
 msgid "Ваша текущая скидка"
@@ -464,52 +467,52 @@ msgstr ""
 msgid "Бесконечно"
 msgstr ""
 
-#: ./templates/boxGreen/shop/cart.tpl:12
 #: ./templates/boxGreen/shop/cart_data.tpl:11
+#: ./templates/boxGreen/shop/cart.tpl:12
 msgid "Корзина пуста"
 msgstr ""
 
-#: ./templates/boxGreen/config.js.tpl:60
-#: ./templates/boxGreen/shop/brand.tpl:33
+#: ./templates/boxGreen/config.js.tpl:71
+#: ./templates/boxGreen/shop/search.tpl:25
 #: ./templates/boxGreen/shop/cart_data.tpl:22
 #: ./templates/boxGreen/shop/category.tpl:30
-#: ./templates/boxGreen/shop/search.tpl:25
+#: ./templates/boxGreen/shop/brand.tpl:33
 #: ./templates/boxGreen/smart_filter/main.tpl:4
 msgid "товар"
 msgstr ""
 
-#: ./templates/boxGreen/config.js.tpl:60
-#: ./templates/boxGreen/shop/brand.tpl:33
+#: ./templates/boxGreen/config.js.tpl:71
+#: ./templates/boxGreen/shop/search.tpl:25
 #: ./templates/boxGreen/shop/cart_data.tpl:22
 #: ./templates/boxGreen/shop/category.tpl:30
-#: ./templates/boxGreen/shop/search.tpl:25
+#: ./templates/boxGreen/shop/brand.tpl:33
 #: ./templates/boxGreen/smart_filter/main.tpl:4
 msgid "товара"
 msgstr ""
 
-#: ./templates/boxGreen/config.js.tpl:60
-#: ./templates/boxGreen/shop/brand.tpl:33
+#: ./templates/boxGreen/config.js.tpl:71
+#: ./templates/boxGreen/shop/search.tpl:25
 #: ./templates/boxGreen/shop/cart_data.tpl:22
 #: ./templates/boxGreen/shop/category.tpl:30
-#: ./templates/boxGreen/shop/search.tpl:25
+#: ./templates/boxGreen/shop/brand.tpl:33
 #: ./templates/boxGreen/smart_filter/main.tpl:4
 msgid "товаров"
 msgstr ""
 
-#: ./templates/boxGreen/shop/category.tpl:38
 #: ./templates/boxGreen/shop/search.tpl:32
+#: ./templates/boxGreen/shop/category.tpl:38
 msgid "Не найдено товаров"
 msgstr ""
 
-#: ./templates/boxGreen/shop/category.tpl:64
 #: ./templates/boxGreen/shop/search.tpl:60
+#: ./templates/boxGreen/shop/category.tpl:64
 msgid "Категории"
 msgstr ""
 
-#: ./templates/boxGreen/shop/wish_list_data.tpl:7
-#: ./templates/boxGreen/shop/wish_list_data.tpl:25
 #: ./templates/boxGreen/wishlist/other_list.tpl:56
 #: ./templates/boxGreen/wishlist/wishlist.tpl:6
+#: ./templates/boxGreen/shop/wish_list_data.tpl:7
+#: ./templates/boxGreen/shop/wish_list_data.tpl:25
 msgid "Список желаний"
 msgstr ""
 
@@ -517,19 +520,19 @@ msgstr ""
 msgid "Избранные"
 msgstr ""
 
-#: ./templates/boxGreen/shop/payments/default.tpl:3
 #: ./templates/boxGreen/shop/payments/radio.tpl:3
+#: ./templates/boxGreen/shop/payments/default.tpl:3
 msgid "Оплата:"
 msgstr ""
 
-#: ./templates/boxGreen/shop/cart.tpl:158
-#: ./templates/boxGreen/shop/payments/default.tpl:27
 #: ./templates/boxGreen/shop/payments/radio.tpl:32
+#: ./templates/boxGreen/shop/payments/default.tpl:27
+#: ./templates/boxGreen/shop/cart.tpl:158
 msgid "Оплата"
 msgstr ""
 
-#: ./templates/boxGreen/shop/payments/default.tpl:29
 #: ./templates/boxGreen/shop/payments/radio.tpl:34
+#: ./templates/boxGreen/shop/payments/default.tpl:29
 msgid "Нет способов оплаты"
 msgstr ""
 
@@ -537,8 +540,8 @@ msgstr ""
 msgid "Заказ №"
 msgstr ""
 
-#: ./templates/boxGreen/shop/cart.tpl:45
 #: ./templates/boxGreen/shop/order_view.tpl:43
+#: ./templates/boxGreen/shop/cart.tpl:45
 msgid "Имя получателя"
 msgstr ""
 
@@ -546,8 +549,8 @@ msgstr ""
 msgid "Дополнительный телефон"
 msgstr ""
 
-#: ./templates/boxGreen/shop/cart.tpl:88
 #: ./templates/boxGreen/shop/order_view.tpl:71
+#: ./templates/boxGreen/shop/cart.tpl:88
 msgid "Способ доставки"
 msgstr ""
 
@@ -582,70 +585,70 @@ msgstr ""
 msgid "Не оплачен"
 msgstr ""
 
-#: ./templates/boxGreen/components/TOpi/assets/one_product_item.tpl:68
-#: ./templates/boxGreen/components/TOpi/assets/one_product_item.tpl:107
-#: ./templates/boxGreen/shop/cart_order.tpl:25
-#: ./templates/boxGreen/shop/cart_order.tpl:97
 #: ./templates/boxGreen/shop/cart_popup.tpl:32
 #: ./templates/boxGreen/shop/cart_popup.tpl:99
 #: ./templates/boxGreen/shop/order_view.tpl:182
+#: ./templates/boxGreen/shop/cart_order.tpl:25
+#: ./templates/boxGreen/shop/cart_order.tpl:97
 #: ./templates/boxGreen/shop/product.tpl:44
 #: ./templates/boxGreen/shop/product.tpl:160
+#: ./templates/boxGreen/components/TOpi/assets/one_product_item.tpl:68
+#: ./templates/boxGreen/components/TOpi/assets/one_product_item.tpl:107
 msgid "Вариант"
 msgstr ""
 
-#: ./templates/boxGreen/components/TOpi/assets/one_product_item.tpl:59
+#: ./templates/boxGreen/shop/order_view.tpl:183
 #: ./templates/boxGreen/shop/cart_order.tpl:30
 #: ./templates/boxGreen/shop/cart_order.tpl:102
-#: ./templates/boxGreen/shop/order_view.tpl:183
 #: ./templates/boxGreen/shop/product.tpl:31
+#: ./templates/boxGreen/components/TOpi/assets/one_product_item.tpl:59
 msgid "Артикул"
 msgstr ""
 
-#: ./templates/boxGreen/config.js.tpl:54
+#: ./templates/boxGreen/config.js.tpl:65
 msgid "Кол-во"
 msgstr ""
 
-#: ./templates/boxGreen/config.js.tpl:53
+#: ./templates/boxGreen/config.js.tpl:64
 #: ./templates/boxGreen/shop/order_view.tpl:209
 #: ./templates/boxGreen/shop/order_view.tpl:337
 msgid "шт"
 msgstr ""
 
-#: ./templates/boxGreen/config.js.tpl:55
+#: ./templates/boxGreen/config.js.tpl:66
 #: ./templates/boxGreen/paymentSystem/QIWI.tpl:22
 msgid "Сумма"
 msgstr ""
 
-#: ./templates/boxGreen/shop/cart_order.tpl:79
 #: ./templates/boxGreen/shop/cart_popup.tpl:81
 #: ./templates/boxGreen/shop/order_view.tpl:249
+#: ./templates/boxGreen/shop/cart_order.tpl:79
 msgid "Комплект товаров"
 msgstr ""
 
-#: ./templates/boxGreen/shop/cart_order.tpl:159
 #: ./templates/boxGreen/shop/order_view.tpl:379
+#: ./templates/boxGreen/shop/cart_order.tpl:159
 msgid "Начальная стоимость товаров"
 msgstr ""
 
-#: ./templates/boxGreen/shop/cart_order.tpl:169
 #: ./templates/boxGreen/shop/order_view.tpl:393
+#: ./templates/boxGreen/shop/cart_order.tpl:169
 msgid "Cтоимость товаров"
 msgstr ""
 
-#: ./templates/boxGreen/shop/cart_order.tpl:179
 #: ./templates/boxGreen/shop/order_view.tpl:408
+#: ./templates/boxGreen/shop/cart_order.tpl:179
 msgid "Доставка"
 msgstr ""
 
-#: ./templates/boxGreen/shop/cart_order.tpl:195
 #: ./templates/boxGreen/shop/order_view.tpl:424
+#: ./templates/boxGreen/shop/cart_order.tpl:195
 msgid "Бесплатно"
 msgstr ""
 
+#: ./templates/boxGreen/shop/order_view.tpl:451
 #: ./templates/boxGreen/shop/cart_order.tpl:218
 #: ./templates/boxGreen/shop/cart_order.tpl:229
-#: ./templates/boxGreen/shop/order_view.tpl:451
 msgid "Подарочный сертификат"
 msgstr ""
 
@@ -657,9 +660,9 @@ msgstr ""
 msgid "В сравнение"
 msgstr ""
 
-#: ./templates/boxGreen/login_popup.tpl:61
 #: ./templates/boxGreen/register.tpl:5
 #: ./templates/boxGreen/register_popup.tpl:5
+#: ./templates/boxGreen/login_popup.tpl:61
 msgid "Регистрация"
 msgstr ""
 
@@ -683,9 +686,9 @@ msgstr ""
 msgid "Повторите пароль"
 msgstr ""
 
-#: ./templates/boxGreen/shop/auth_data.tpl:18
 #: ./templates/boxGreen/shop/profile.tpl:12
 #: ./templates/boxGreen/shop/profile_change_pass.tpl:28
+#: ./templates/boxGreen/shop/auth_data.tpl:18
 msgid "Изменить пароль"
 msgstr ""
 
@@ -693,13 +696,13 @@ msgstr ""
 msgid "Добро пожаловать!"
 msgstr ""
 
-#: ./templates/boxGreen/shop/auth_data.tpl:17
 #: ./templates/boxGreen/shop/profile.tpl:11
+#: ./templates/boxGreen/shop/auth_data.tpl:17
 msgid "Основные данные"
 msgstr ""
 
-#: ./templates/boxGreen/shop/auth_data.tpl:19
 #: ./templates/boxGreen/shop/profile.tpl:13
+#: ./templates/boxGreen/shop/auth_data.tpl:19
 msgid "История заказа"
 msgstr ""
 
@@ -720,8 +723,8 @@ msgstr ""
 msgid "Еще один номер"
 msgstr ""
 
-#: ./templates/boxGreen/comments/comments_api.tpl:205
 #: ./templates/boxGreen/shop/cart.tpl:73
+#: ./templates/boxGreen/comments/comments_api.tpl:205
 msgid "Email"
 msgstr ""
 
@@ -745,10 +748,10 @@ msgstr ""
 msgid "По Вашему запросу ничего не найдено"
 msgstr ""
 
-#: ./templates/boxGreen/shop/brand.tpl:33
-#: ./templates/boxGreen/shop/category.tpl:30
-#: ./templates/boxGreen/shop/js_templates.tpl:112
 #: ./templates/boxGreen/shop/search.tpl:25
+#: ./templates/boxGreen/shop/js_templates.tpl:112
+#: ./templates/boxGreen/shop/category.tpl:30
+#: ./templates/boxGreen/shop/brand.tpl:33
 msgid "Найдено"
 msgstr ""
 
@@ -807,9 +810,9 @@ msgstr ""
 msgid "Список"
 msgstr ""
 
-#: ./templates/boxGreen/components/TOpi/assets/one_product_item.tpl:297
-#: ./templates/boxGreen/shop/product.tpl:333
 #: ./templates/boxGreen/shop/report_appearance.tpl:4
+#: ./templates/boxGreen/shop/product.tpl:333
+#: ./templates/boxGreen/components/TOpi/assets/one_product_item.tpl:297
 msgid "Сообщить о появлении"
 msgstr ""
 
@@ -822,14 +825,14 @@ msgstr ""
 msgid "Вы получите письмо, когда товар будет доступен"
 msgstr ""
 
+#: ./templates/boxGreen/wishlist/sendEmail.tpl:23
 #: ./templates/boxGreen/forgot_password.tpl:32
 #: ./templates/boxGreen/shop/report_appearance.tpl:51
-#: ./templates/boxGreen/wishlist/sendEmail.tpl:23
 msgid "Отправить"
 msgstr ""
 
-#: ./templates/boxGreen/components/TOpi/assets/one_product_item.tpl:79
 #: ./templates/boxGreen/shop/product.tpl:55
+#: ./templates/boxGreen/components/TOpi/assets/one_product_item.tpl:79
 msgid "Бренд"
 msgstr ""
 
@@ -845,22 +848,22 @@ msgstr ""
 msgid "Только цифры"
 msgstr ""
 
-#: ./templates/boxGreen/components/TOpi/assets/one_product_item.tpl:221
-#: ./templates/boxGreen/config.js.tpl:52
+#: ./templates/boxGreen/config.js.tpl:63
 #: ./templates/boxGreen/shop/product.tpl:249
 #: ./templates/boxGreen/shop/product.tpl:535
+#: ./templates/boxGreen/components/TOpi/assets/one_product_item.tpl:221
 msgid "В корзине"
 msgstr ""
 
-#: ./templates/boxGreen/components/TOpi/assets/one_product_item.tpl:256
-#: ./templates/boxGreen/config.js.tpl:56
+#: ./templates/boxGreen/config.js.tpl:67
 #: ./templates/boxGreen/shop/product.tpl:547
+#: ./templates/boxGreen/components/TOpi/assets/one_product_item.tpl:256
 msgid "Купить"
 msgstr ""
 
-#: ./templates/boxGreen/components/TOpi/assets/one_product_item.tpl:149
-#: ./templates/boxGreen/components/TOpi/assets/similar.tpl:52
 #: ./templates/boxGreen/shop/product.tpl:295
+#: ./templates/boxGreen/components/TOpi/assets/similar.tpl:52
+#: ./templates/boxGreen/components/TOpi/assets/one_product_item.tpl:149
 msgid "Нет в наличии"
 msgstr ""
 
@@ -874,24 +877,24 @@ msgstr ""
 msgid "В сравнении"
 msgstr ""
 
-#: ./templates/boxGreen/config.js.tpl:62
+#: ./templates/boxGreen/config.js.tpl:73
 #: ./templates/boxGreen/shop/product.tpl:599
 msgid "отзыв"
 msgstr ""
 
-#: ./templates/boxGreen/config.js.tpl:62
+#: ./templates/boxGreen/config.js.tpl:73
 #: ./templates/boxGreen/shop/product.tpl:599
 msgid "отзыва"
 msgstr ""
 
-#: ./templates/boxGreen/config.js.tpl:62
+#: ./templates/boxGreen/config.js.tpl:73
 #: ./templates/boxGreen/shop/product.tpl:599
 msgid "отзывов"
 msgstr ""
 
-#: ./templates/boxGreen/comments/comments_api.tpl:65
 #: ./templates/boxGreen/shop/product.tpl:148
 #: ./templates/boxGreen/shop/product.tpl:601
+#: ./templates/boxGreen/comments/comments_api.tpl:65
 msgid "Оставить отзыв"
 msgstr ""
 
@@ -991,10 +994,10 @@ msgstr ""
 msgid "Декабря"
 msgstr ""
 
-#: ./templates/boxGreen/shop/cart_order.tpl:40
-#: ./templates/boxGreen/shop/cart_order.tpl:116
 #: ./templates/boxGreen/shop/cart_popup.tpl:42
 #: ./templates/boxGreen/shop/cart_popup.tpl:113
+#: ./templates/boxGreen/shop/cart_order.tpl:40
+#: ./templates/boxGreen/shop/cart_order.tpl:116
 msgid "шт."
 msgstr ""
 
@@ -1052,9 +1055,9 @@ msgid "Все категории"
 msgstr ""
 
 #: ./templates/boxGreen/paymentSystem/LiqPay.tpl:5
+#: ./templates/boxGreen/paymentSystem/SberBank.tpl:5
 #: ./templates/boxGreen/paymentSystem/PrivateBank.tpl:12
 #: ./templates/boxGreen/paymentSystem/Robokassa.tpl:13
-#: ./templates/boxGreen/paymentSystem/SberBank.tpl:5
 msgid "Оплатить"
 msgstr ""
 
@@ -1093,37 +1096,37 @@ msgstr ""
 msgid "Редактировать:"
 msgstr ""
 
+#: ./templates/boxGreen/wishlist/wishlistEdit.tpl:13
 #: ./templates/boxGreen/wishlist/wishlist.tpl:37
 #: ./templates/boxGreen/wishlist/wishlist.tpl:147
-#: ./templates/boxGreen/wishlist/wishlistEdit.tpl:13
 msgid "Доступность:"
 msgstr ""
 
+#: ./templates/boxGreen/wishlist/wishlistEdit.tpl:17
 #: ./templates/boxGreen/wishlist/wishlist.tpl:41
 #: ./templates/boxGreen/wishlist/wishlist.tpl:155
-#: ./templates/boxGreen/wishlist/wishlistEdit.tpl:17
 msgid "Коллективный"
 msgstr ""
 
+#: ./templates/boxGreen/wishlist/wishlistEdit.tpl:18
 #: ./templates/boxGreen/wishlist/wishlist.tpl:43
 #: ./templates/boxGreen/wishlist/wishlist.tpl:149
-#: ./templates/boxGreen/wishlist/wishlistEdit.tpl:18
 msgid "Приватный"
 msgstr ""
 
+#: ./templates/boxGreen/wishlist/wishlistEdit.tpl:19
 #: ./templates/boxGreen/wishlist/wishlist.tpl:42
 #: ./templates/boxGreen/wishlist/wishlist.tpl:152
-#: ./templates/boxGreen/wishlist/wishlistEdit.tpl:19
 msgid "Публичный"
 msgstr ""
 
-#: ./templates/boxGreen/wishlist/wishlist.tpl:49
 #: ./templates/boxGreen/wishlist/wishlistEdit.tpl:25
+#: ./templates/boxGreen/wishlist/wishlist.tpl:49
 msgid "Название списка:"
 msgstr ""
 
-#: ./templates/boxGreen/wishlist/wishlist.tpl:55
 #: ./templates/boxGreen/wishlist/wishlistEdit.tpl:31
+#: ./templates/boxGreen/wishlist/wishlist.tpl:55
 msgid "Описание:"
 msgstr ""
 
@@ -1178,10 +1181,6 @@ msgstr ""
 
 #: ./templates/boxGreen/wishlist/wishlist.tpl:162
 msgid "Поделиться с другом"
-msgstr ""
-
-#: ./templates/boxGreen/wishlist/wishPopup.tpl:5
-msgid "Выбор cписка  желаний"
 msgstr ""
 
 #: ./templates/boxGreen/wishlist/wishPopup.tpl:42
@@ -1287,51 +1286,51 @@ msgstr ""
 msgid "Show all"
 msgstr ""
 
-#: ./templates/boxGreen/config.js.tpl:41
+#: ./templates/boxGreen/config.js.tpl:52
 msgid "Введите более"
 msgstr ""
 
-#: ./templates/boxGreen/config.js.tpl:41
+#: ./templates/boxGreen/config.js.tpl:52
 msgid "символов"
 msgstr ""
 
-#: ./templates/boxGreen/config.js.tpl:44
+#: ./templates/boxGreen/config.js.tpl:55
 msgid "В список желаний могут добавлять только авторизированные пользователи"
 msgstr ""
 
-#: ./templates/boxGreen/config.js.tpl:46
+#: ./templates/boxGreen/config.js.tpl:57
 msgid "Выберите размер меньше или равно"
 msgstr ""
 
-#: ./templates/boxGreen/config.js.tpl:46
+#: ./templates/boxGreen/config.js.tpl:57
 msgid "пикселей"
 msgstr ""
 
-#: ./templates/boxGreen/config.js.tpl:48
+#: ./templates/boxGreen/config.js.tpl:59
 msgid "Введите название"
 msgstr ""
 
-#: ./templates/boxGreen/config.js.tpl:57
+#: ./templates/boxGreen/config.js.tpl:68
 msgid "Количество:"
 msgstr ""
 
-#: ./templates/boxGreen/config.js.tpl:58
+#: ./templates/boxGreen/config.js.tpl:69
 msgid "Комплектов:"
 msgstr ""
 
-#: ./templates/boxGreen/config.js.tpl:59
+#: ./templates/boxGreen/config.js.tpl:70
 msgid "Код протекции"
 msgstr ""
 
-#: ./templates/boxGreen/config.js.tpl:61
+#: ./templates/boxGreen/config.js.tpl:72
 msgid "набор"
 msgstr ""
 
-#: ./templates/boxGreen/config.js.tpl:61
+#: ./templates/boxGreen/config.js.tpl:72
 msgid "набора"
 msgstr ""
 
-#: ./templates/boxGreen/config.js.tpl:61
+#: ./templates/boxGreen/config.js.tpl:72
 msgid "наборов"
 msgstr ""
 
@@ -1355,9 +1354,9 @@ msgstr ""
 msgid "ImageCMS активно развивается в создание качественных интернет-магазинов"
 msgstr ""
 
+#: ./templates/boxGreen/left_menu/error.tpl:13
 #: ./templates/boxGreen/category_menu/error.tpl:13
 #: ./templates/boxGreen/footer_category_menu/error.tpl:13
-#: ./templates/boxGreen/left_menu/error.tpl:13
 msgid "Не обнаружен необходимый файл шаблона для меню "
 msgstr ""
 
@@ -1367,14 +1366,14 @@ msgstr ""
 
 #: ./templates/boxGreen/category_menu_second/level_2/container.tpl:6
 msgid "All categoties"
-msgstr ""
+msgstr "Все категории"
 
 #: ./templates/boxGreen/login_popup.tpl:10
 msgid "Авторизация"
 msgstr ""
 
-#: ./templates/boxGreen/footer_menu/error.tpl:23
 #: ./templates/boxGreen/top_menu/error.tpl:23
+#: ./templates/boxGreen/footer_menu/error.tpl:23
 msgid "Переустановите модуль меню"
 msgstr ""
 
@@ -1402,9 +1401,9 @@ msgstr ""
 msgid "Я уже зарегистрирован"
 msgstr ""
 
-#: ./templates/boxGreen/login_popup.tpl:48
 #: ./templates/boxGreen/register.tpl:71
 #: ./templates/boxGreen/register_popup.tpl:68
+#: ./templates/boxGreen/login_popup.tpl:48
 msgid "Напомнить пароль"
 msgstr ""
 
