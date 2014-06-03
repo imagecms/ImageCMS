@@ -8,5 +8,5 @@
     <input type='hidden' name='Shp_pmId' value='{$shp_payment_id}'>
     <input type='hidden' name='IncCurrLabel' value='{$in_curr}'>
     <input type='hidden' name='Culture' value='{$culture}'>
-    <button type="submit" class="btn btn_buy psPay">Оплатить</button>
+    <button type="submit" class="btn btn_buy psPay">{lang('Оплатить','commerce_mobiles')}</button>
 </form>

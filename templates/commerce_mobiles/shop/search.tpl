@@ -38,7 +38,7 @@
                 </div>
             </form>
         </div>
-        <div class="content_head"><div class="crumbs"><h1>Вы искали: "{encode($_GET['text'])}"</h1>{/if}
+        <div class="content_head"><div class="crumbs"><h1>{lang('Вы искали','commerce_mobiles')}: "{encode($_GET['text'])}"</h1>{/if}
                 {if $totalProducts > 0}
                 </div></div>
             <ul class="catalog">
