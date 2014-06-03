@@ -13,6 +13,7 @@ if (!defined('BASEPATH'))
  */
 class Mod_discount extends \MY_Controller {
 
+    public static $orderPassOverloadControl = false;
     public static $cnt = 0;
     public $no_install = true;
     protected $result_discount = array();
@@ -51,6 +52,7 @@ class Mod_discount extends \MY_Controller {
         if (count($this->db->where('name', 'mod_discount')->get('components')->result_array()) != 0) {
 
             $this->applyDiscountCartItems();
+
             $this->applyResultDiscount();
             /** apply Gift */
             if ($this->input->post('gift')) {
@@ -63,6 +65,33 @@ class Mod_discount extends \MY_Controller {
             }
 
             \CMSFactory\Events::create()->setListener(array($this, 'updateDiscountsApplies'), 'Cart:OrderValidated');
+
+            $cartItems = \Cart\BaseCart::getInstance()->getItems();
+            $diff = 0;
+            foreach ($cartItems['data'] as $item) {
+                if (is_null($item->discountKey)) {
+                    continue;
+                }
+                $appliesLeft = \mod_discount\classes\BaseDiscount::create()->getAppliesLeft($item->discountKey);
+                if ($appliesLeft === null) {
+                    continue;
+                }
+                for ($i = 0; $i < $item->quantity; $i++) {
+                    if ($appliesLeft-- > 0) {
+                        
+                    }
+                }
+                if ($appliesLeft < 0) {
+                    $appliesLeft = abs($appliesLeft);
+                    $diff += ($item->originPrice - $item->price) * $appliesLeft;
+                }
+            }
+
+            if ($diff > 0) {
+                $cartPrice = \Cart\BaseCart::getInstance()->getTotalPrice();
+                $cartPrice += $diff;
+                \Cart\BaseCart::getInstance()->setTotalPrice($cartPrice);
+            }
         }
     }
 
@@ -130,12 +159,6 @@ class Mod_discount extends \MY_Controller {
                 }
             }
         }
-
-        if ($this->overload > 0) {
-            $cartPrice = \Cart\BaseCart::getInstance()->getTotalPrice();
-            $cartPrice -= $this->overload;
-            \Cart\BaseCart::getInstance()->setTotalPrice($cartPrice);
-        }
     }
 
     /**
@@ -190,7 +213,7 @@ class Mod_discount extends \MY_Controller {
                 if ($discount['type'] != 'product') {
                     $baseDiscount->updateDiskApply($baseDiscount->discountMax['key']);
                 } else {
-                    $cartItems = $baseDiscount->cart->getItems();
+                    $cartItems = \Cart\BaseCart::getInstance()->getItems();
                     $diff = 0;
                     foreach ($cartItems['data'] as $item) {
                         if (is_null($item->discountKey)) {
@@ -202,7 +225,7 @@ class Mod_discount extends \MY_Controller {
                         }
                         for ($i = 0; $i < $item->quantity; $i++) {
                             if ($appliesLeft-- > 0) {
-                                $baseDiscount->updateDiskApply($item->discountKey);
+                                \mod_discount\classes\BaseDiscount::create()->updateDiskApply($item->discountKey);
                             }
                         }
                         if ($appliesLeft < 0) {
@@ -212,12 +235,15 @@ class Mod_discount extends \MY_Controller {
                     }
                     if ($diff > 0) {
                         \CMSFactory\Events::create()->setListener(function(\SOrders $order, $price) use ($diff) {
-                            $price = $order->getTotalPrice() + $diff;
-                            //$discount = $order->getDiscount() - $diff;
-                            $order
-                                    //->setDiscount($discount)
-                                    ->setTotalPrice($price)
-                                    ->save();
+                            if (Mod_discount::$orderPassOverloadControl == false) {
+                                $price = $order->getTotalPrice() + $diff;
+                                $discount = $order->getDiscount() - $diff;
+                                $order
+                                        //->setDiscount($discount)
+                                        ->setTotalPrice($price)
+                                        ->save();
+                                Mod_discount::$orderPassOverloadControl = true;
+                            }
                         }, 'Cart:MakeOrder');
                     }
                 }
