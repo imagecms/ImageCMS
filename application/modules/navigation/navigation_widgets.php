@@ -68,30 +68,30 @@ class Navigation_Widgets extends MY_Controller {
                                     ->join('shop_brands_i18n', 'shop_brands_i18n.id=shop_brands.id')
                                     ->limit(1)
                                     ->get('shop_brands')->row_array();
-                    $navi_cats[] = array('path_url' => 'shop/brand/', 'name' => lang('Brands'));
+                    $navi_cats[] = array('path_url' => 'shop/brand/', 'name' => lang('Brands', 'navigation'));
                     $navi_cats[] = array('path_url' => $brand['url'], 'name' => $brand['name']);
                     $tpl_data = array('navi_cats' => $navi_cats);
                     return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
                 } else {
                     if ($data_type == 'brand') {
-                        $navi_cats[] = array('path_url' => 'shop/brand/', 'name' => lang('Brands'));
+                        $navi_cats[] = array('path_url' => 'shop/brand/', 'name' => lang('Brands', 'navigation'));
                         $tpl_data = array('navi_cats' => $navi_cats);
                         return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
                     }
                 }
                 break;
             case 'compare';
-                $navi_cats[] = array('path_url' => 'shop/compare/', 'name' => lang('Compare'));
+                $navi_cats[] = array('path_url' => 'shop/compare/', 'name' => lang('Compare', 'navigation'));
                 $tpl_data = array('navi_cats' => $navi_cats);
                 return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
                 break;
             case 'wish_list':
-                $navi_cats[] = array('path_url' => 'shop/wish_list/', 'name' => lang('Wish_list'));
+                $navi_cats[] = array('path_url' => 'shop/wish_list/', 'name' => lang('Wish list', 'navigation'));
                 $tpl_data = array('navi_cats' => $navi_cats);
                 return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
                 break;
             case 'profile':
-                $navi_cats[] = array('path_url' => 'shop/profile/', 'name' => lang('Profile'));
+                $navi_cats[] = array('path_url' => 'shop/profile/', 'name' => lang('Profile', 'navigation'));
                 $tpl_data = array('navi_cats' => $navi_cats);
                 return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
                 break;
@@ -101,7 +101,7 @@ class Navigation_Widgets extends MY_Controller {
                 return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
                 break;
             case 'cart':
-                $navi_cats[] = array('path_url' => 'shop/cart/', 'name' => lang('Cart'));
+                $navi_cats[] = array('path_url' => 'shop/cart/', 'name' => lang('Cart', 'navigation'));
                 $tpl_data = array('navi_cats' => $navi_cats);
                 return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
                 break;
