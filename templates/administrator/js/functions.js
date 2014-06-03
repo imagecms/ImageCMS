@@ -268,19 +268,24 @@ function ajax_div(target, url)
 }
 
 //submit form
-$('.formSubmit').live('click', function() {
+$('form input[type="submit"], form button[type="submit"]').off('click.validate').on('click.validate', function(e) {
+    var form = $(this).closest('form');
+
+    form.validate();
+    if (!form.valid())
+        e.preventDefault();
+});
+$('.formSubmit').off('click.validate').on('click.validate', function() {
 
     //        collectMCEData();
     //update content in textareas with elRTE
-    $this = $(this);
+    var $this = $(this);
 
     if ($('.workzone textarea.elRTE').length)
         $('.workzone textarea.elRTE').elrte('updateSource');
 
-    var btn = this;
-
-    var selector = $(this).attr('data-form');
-    var action = $(this).data('action');
+    var selector = $this.attr('data-form');
+    var action = $this.data('action');
     $(selector).validate()
     if ($(selector).valid())
     {
@@ -300,14 +305,14 @@ $('.formSubmit').live('click', function() {
                 resp.innerHTML = data;
                 $(resp).find('p').remove();
                 $('.notifications').append(resp);
-                $(btn).removeClass('disabled').attr('disabled', false);
+                $this.removeClass('disabled').attr('disabled', false);
                 return true;
             }
         };
         $(selector).ajaxSubmit(options);
     }
     else
-        $(this).removeClass('disabled').attr('disabled', false);
+        $this.removeClass('disabled').attr('disabled', false);
     return false;
 });
 
