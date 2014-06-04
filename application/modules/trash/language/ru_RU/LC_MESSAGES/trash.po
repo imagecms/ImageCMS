@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-12 05:03+0300\n"
-"PO-Revision-Date: 2014-05-12 05:03+0300\n"
+"POT-Creation-Date: 2014-06-04 01:21+0300\n"
+"PO-Revision-Date: 2014-06-04 01:21+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -17,6 +17,14 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/trash/templates/admin/edit_trash.tpl:5
+msgid "Link editing"
+msgstr "Редактирование редиректа"
+
+#: ./application/modules/trash/templates/admin/main.tpl:67
+msgid "Editing"
+msgstr "Редактировать"
 
 #: ./application/modules/trash/templates/admin/main.tpl:25
 #: ./application/modules/trash/templates/admin/create_trash.tpl:10
@@ -48,17 +56,9 @@ msgstr "Ошибка"
 msgid "Redirect"
 msgstr "Список редиректов"
 
-#: ./application/modules/trash/templates/admin/edit_trash.tpl:5
-msgid "Link editing"
-msgstr "Редактирование редиректа"
-
 #: ./application/modules/trash/templates/admin/edit_trash.tpl:19
 msgid "Link edit"
 msgstr "Редактирование редиректа"
-
-#: ./application/modules/trash/templates/admin/main.tpl:67
-msgid "Editing"
-msgstr "Редактирование"
 
 #: ./application/modules/trash/templates/admin/create_trash.tpl:65
 #: ./application/modules/trash/templates/admin/edit_trash.tpl:67

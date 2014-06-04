@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-29 11:10+0300\n"
-"PO-Revision-Date: 2014-05-29 11:10+0300\n"
+"POT-Creation-Date: 2014-06-04 02:44+0300\n"
+"PO-Revision-Date: 2014-06-04 02:44+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -19,74 +19,72 @@ msgstr ""
 
 #: ./application/modules/sample_mail/templates/admin/list.tpl:30
 msgid "Back"
-msgstr ""
+msgstr "Назад"
 
 #: ./application/modules/sample_mail/templates/admin/list.tpl:36
 msgid "Delete"
-msgstr ""
+msgstr "Удалить"
 
 #: ./application/modules/sample_mail/templates/admin/create.tpl:9
 #: ./application/modules/sample_mail/templates/admin/edit.tpl:9
 msgid "Go back"
-msgstr ""
+msgstr "Вернуться"
 
 #: ./application/modules/sample_mail/templates/admin/create.tpl:10
 #: ./application/modules/sample_mail/templates/admin/edit.tpl:10
 msgid "Save"
-msgstr ""
+msgstr "Сохранить"
 
 #: ./application/modules/sample_mail/templates/admin/create.tpl:11
 #: ./application/modules/sample_mail/templates/admin/edit.tpl:11
 msgid "Save and go back"
-msgstr ""
+msgstr "Сохранить и вернуться"
 
 #: ./application/modules/sample_mail/templates/admin/create.tpl:20
 #: ./application/modules/sample_mail/templates/admin/edit.tpl:21
 msgid "Settings"
-msgstr ""
+msgstr "Параметры"
 
 #: ./application/modules/sample_mail/admin.php:35
 #: ./application/modules/sample_mail/admin.php:78
 msgid "Template name"
-msgstr ""
+msgstr "Имя шаблона"
 
 #: ./application/modules/sample_mail/admin.php:36
 #: ./application/modules/sample_mail/admin.php:79
 msgid "Tempalate theme"
-msgstr ""
+msgstr "Tempalate тема"
 
 #: ./application/modules/sample_mail/admin.php:37
 #: ./application/modules/sample_mail/admin.php:80
 msgid "From"
-msgstr ""
+msgstr "От"
 
 #: ./application/modules/sample_mail/admin.php:38
 #: ./application/modules/sample_mail/admin.php:81
 msgid "From (email)"
-msgstr ""
+msgstr "Из (email)"
 
 #: ./application/modules/sample_mail/admin.php:39
 #: ./application/modules/sample_mail/admin.php:82
-#, fuzzy
 msgid "Message template"
-msgstr "Создать категорию"
+msgstr "Шаблон сообщения"
 
 #: ./application/modules/sample_mail/admin.php:53
-#, fuzzy
 msgid "Template created"
-msgstr "Настр"
+msgstr "Шаблон, созданный"
 
 #: ./application/modules/sample_mail/admin.php:97
 msgid "Template successfully edited"
-msgstr ""
+msgstr "Шаблон успешно отредактировано"
 
 #: ./application/modules/sample_mail/admin.php:126
 msgid "Templates deleted"
-msgstr ""
+msgstr "Шаблоны удаленных"
 
 #: ./application/modules/sample_mail/module_info.php:4
 #: ./application/modules/sample_mail/module_info.php:5
 #: ./application/modules/sample_mail/module_info.php~:4
 #: ./application/modules/sample_mail/module_info.php~:5
 msgid "Email managing module"
-msgstr ""
+msgstr "Модуль управления емейлами"

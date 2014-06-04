@@ -21,7 +21,7 @@
             <span class="but_buy inp">
                 <span class="b_buy_in">
                     <span class="helper"></span>
-                    <input type="submit" value="Войти" class="v-a_m"/>
+                    <input type="submit" value="{lang('Войти','commerce_mobiles')}" class="v-a_m"/>
                 </span>
             </span>
         </div>

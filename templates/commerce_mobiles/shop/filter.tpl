@@ -84,7 +84,7 @@
         {/if}
 
         <div class="f_l subm_filter">
-            <input type="submit" value="Подобрать"/>
+            <input type="submit" value="{lang('Подобрать','commerce_mobiles')}"/>
         </div>
     </div>
     <div class="main_f_i_f-r"></div>
