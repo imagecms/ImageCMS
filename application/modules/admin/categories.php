@@ -550,7 +550,7 @@ class Categories extends BaseAdminController {
 //if (0)
 //{
             if ($this->db->get('category')->num_rows() == 1) {
-                showMessage(lang("Category deletion error", "admin"), lang("Error", "admin"), 'r');
+                showMessage(lang("You can not delete the last category from the list", "admin"), lang("Error", "admin"), 'r');
                 exit;
             }
 
