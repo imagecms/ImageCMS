@@ -275,7 +275,7 @@ $('form input[type="submit"], form button[type="submit"]').off('click.validate')
     if (!form.valid())
         e.preventDefault();
 });
-$('.formSubmit').off('click.validate').on('click.validate', function() {
+$('body').off('click.validate').on('click.validate', '.formSubmit', function() {
 
     //        collectMCEData();
     //update content in textareas with elRTE

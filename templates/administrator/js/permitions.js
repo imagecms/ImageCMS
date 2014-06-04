@@ -4,11 +4,11 @@ function denyPermitions() {
     }
 
     if ($.exists('.formSubmit')) {
-        $('.formSubmit').off('click');
+        $('body').off('click.permitions');
         if ($.exists('.permition_deny')) {
-            $('.formSubmit').on('click', function() {
+            $('body').on('click.permitions', '.formSubmit', function() {
                 $('.permition_deny').modal();
-            })
+            });
         }
     }
 
