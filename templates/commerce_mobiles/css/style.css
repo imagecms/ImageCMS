@@ -197,16 +197,16 @@ span.top_frame_tov .title{color:#333;}
 .main_f_i_f-r {height: 6px;background-position: 0 -179px;font-size: 0;}
 .filter{padding: 0;}
 .range_price{border-bottom: 1px solid #999;overflow: hidden;padding-right: 30px;}
-.range_price label{width: 25%;margin: 0 0 10px 30px;}
-.range_price .frame_input{margin-left: 30px;display: block;}
+.range_price label{margin: 0 0 10px 30px;float: left;}
+.range_price .frame_input{float: left;margin-left: 10px;}
 .range_price input{margin-top: 0;}
 .subm_filter{background-position: 0 -195px;margin: 0 9px 26px 30px;}
 .subm_filter input{background-position: 100% -238px;height: 43px;line-height: 43px;color: #fff;text-shadow: 0 -1px #2479cc;margin: 0 -9px 0 0;padding: 0 10px;font-size: 22px;}
 .check_frame{border-top: 1px solid #fff;padding: 0 30px 26px;text-align: left;}
 .check_frame .title{padding-left: 0;}
-.check_frame label, .check_frame .frame_label{display: inline-block;vertical-align: top;width: 180px;padding: 13px 5px 13px 0;margin-bottom: 0;white-space: nowrap;}
+.check_frame label, .check_frame .frame_label{display: inline-block;vertical-align: top;width: 180px;padding: 13px 5px 13px 0;margin-bottom: 0;}
 .must{color: red;}
-.neigh_r-o_c-k{display: inline-block;max-width: 157px;vertical-align: top;white-space: normal;}
+.neigh_r-o_c-k{display: block;white-space: normal;}
 .frame_search{height: 95px;background-color: #f2f2f2;padding: 40px 10px 0;}
 .frame_frame_input{margin-right: 115px;position: relative;top: 2px;}
 .frame_search .frame_input{height: 44px;position: relative;padding: 0 20px;}
@@ -217,7 +217,7 @@ span.top_frame_tov .title{color:#333;}
 .search_button{background-position: 0 -283px;height: 47px;line-height: 47px;color: #343434;font-size: 22px;width: 100px;text-align: center;}
 .map .figure{max-width: 100%;}
 
-.niceCheck{width: 22px;height: 22px;cursor: pointer;margin-right: 9px;display: inline-block;position: relative;top: -2px;}
+.niceCheck{width: 22px;height: 22px;cursor: pointer;margin-right: 9px;position: relative;top: -2px;float: left;}
 .niceCheck input{display: none;}
 .b_n.niceCheck{background: none;}
 .b_n.niceCheck input {display: block;}
