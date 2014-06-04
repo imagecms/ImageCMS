@@ -247,7 +247,7 @@
                                                 <div class="control-group">
                                                     <label class="control-label" for="banner_type">{lang('List name', 'wishlist')}:</label>
                                                     <div class="controls">
-                                                        <input type="text" required="required" class="wishListName" value="" name="wishListName"/>
+                                                        <input type="text" class="wishListName" value="" name="wishListName" class="required"/>
                                                     </div>
                                                 </div>
                                                 <div class="control-group">

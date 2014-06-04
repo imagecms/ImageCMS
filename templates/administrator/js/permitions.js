@@ -4,9 +4,9 @@ function denyPermitions() {
     }
 
     if ($.exists('.formSubmit')) {
-        $('.formSubmit').die('click').unbind('click');
+        $('.formSubmit').off('click');
         if ($.exists('.permition_deny')) {
-            $('.formSubmit').bind('click', function() {
+            $('.formSubmit').on('click', function() {
                 $('.permition_deny').modal();
             })
         }
