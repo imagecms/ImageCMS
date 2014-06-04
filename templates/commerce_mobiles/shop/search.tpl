@@ -11,8 +11,8 @@
 {# Display sidebar.tpl #}
 {if !isset($_GET['text'])}
     <div class="frame_search">
-        <form method="get" action="/mobile/search">
-            <input type="submit" class="f_r search_button" value="Искать"/>
+        <form method="get" action="{site_url('mobile/search')}">
+            <input type="submit" class="f_r search_button" value="{lang('Искать','commerce_mobiles')}"/>
             <div class="frame_frame_input">
                 <span class="icon search_ico"></span>
                 <div class="frame_input">
@@ -26,8 +26,8 @@
 {else:}
     {if !empty(ShopCore::$_GET['text'])}
         <div class="frame_search">
-            <form method="get" action="/mobile/search">
-                <input type="submit" class="f_r search_button" value="Искать"/>
+            <form method="get" action="{site_url('mobile/search')}">
+                <input type="submit" class="f_r search_button" value="{lang('Искать','commerce_mobiles')}"/>
                 <div class="frame_frame_input">
                     <span class="icon search_ico"></span>
                     <div class="frame_input">

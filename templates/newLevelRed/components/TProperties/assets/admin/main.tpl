@@ -1,5 +1,5 @@
 <div class="clearfix">
-    <input type="text" id="prorerties_filter" style="width: 300px;" placeholder="{lang('Start typing property name here','template_manager')}">
+    <input type="text" id="prorerties_filter" style="width: 300px;" placeholder="{lang('Start typing property name here','newLevel')}">
     <button type="button" class="pull-right btn btn-small action_on formSubmit btn-primary" data-form="#component_{echo $handler}_form" data-action="close">
         <i class="icon-ok icon-white"></i>{lang('Save', 'newLevel')}
     </button>

@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-02 05:00+0300\n"
-"PO-Revision-Date: 2014-06-02 05:00+0300\n"
+"POT-Creation-Date: 2014-06-04 12:59+0400\n"
+"PO-Revision-Date: 2014-06-04 12:59+0400\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -20,12 +20,13 @@ msgstr ""
 "X-Poedit-SearchPath-1: .\n"
 "X-Poedit-SearchPath-2: .\n"
 
-#: ./templates/lightRed/components/TColorScheme/TColorScheme.php:94
-msgid "Color scheme"
-msgstr "Цветовая схема"
+#: ./templates/lightRed/wishlist/wishPopup.tpl:5
+msgid "Выбор cписка  желаний"
+msgstr ""
 
 #: ./templates/lightRed/components/TColorScheme/assets/admin/main.tpl:6
-msgid "Colour scheme"
+#: ./templates/lightRed/components/TColorScheme/TColorScheme.php:94
+msgid "Color scheme"
 msgstr "Цветовая схема"
 
 #: ./templates/lightRed/components/TMenuColumn/TMenuColumn.php:163
@@ -230,7 +231,7 @@ msgid "В комплекте дешевле"
 msgstr ""
 
 #: ./templates/lightRed/components/TOpi/assets/one_product_item.tpl:138
-#: ./templates/lightRed/config.js.tpl:60
+#: ./templates/lightRed/config.js.tpl:64
 #: ./templates/lightRed/shop/product.tpl:227
 #: ./templates/lightRed/shop/product.tpl:511
 msgid "В корзине"
@@ -252,7 +253,7 @@ msgstr ""
 msgid "В список желаний"
 msgstr ""
 
-#: ./templates/lightRed/config.js.tpl:52
+#: ./templates/lightRed/config.js.tpl:56
 msgid "В список желаний могут добавлять только авторизированные пользователи"
 msgstr ""
 
@@ -338,11 +339,11 @@ msgstr ""
 msgid "Ваше имя:"
 msgstr ""
 
-#: ./templates/lightRed/config.js.tpl:49
+#: ./templates/lightRed/config.js.tpl:53
 msgid "Введите более"
 msgstr ""
 
-#: ./templates/lightRed/config.js.tpl:56
+#: ./templates/lightRed/config.js.tpl:60
 msgid "Введите название"
 msgstr ""
 
@@ -442,16 +443,12 @@ msgstr ""
 msgid "Вы удалили все элементы из корзины"
 msgstr ""
 
-#: ./templates/lightRed/config.js.tpl:54
+#: ./templates/lightRed/config.js.tpl:58
 msgid "Выберете размер меньше или равно"
 msgstr ""
 
 #: ./templates/lightRed/shop/cart.tpl:177
 msgid "Выберите доставку"
-msgstr ""
-
-#: ./templates/lightRed/wishlist/wishPopup.tpl:5
-msgid "Выбор cписка желаний"
 msgstr ""
 
 #: ./templates/lightRed/smart_filter/main.tpl:4
@@ -641,11 +638,11 @@ msgstr ""
 msgid "Код защиты"
 msgstr ""
 
-#: ./templates/lightRed/config.js.tpl:67
+#: ./templates/lightRed/config.js.tpl:71
 msgid "Код протекции"
 msgstr ""
 
-#: ./templates/lightRed/config.js.tpl:62
+#: ./templates/lightRed/config.js.tpl:66
 #: ./templates/lightRed/shop/cart_order.tpl:12
 #: ./templates/lightRed/shop/cart_popup.tpl:16
 #: ./templates/lightRed/shop/order_view.tpl:167
@@ -659,7 +656,7 @@ msgstr ""
 msgid "Количество на складе"
 msgstr ""
 
-#: ./templates/lightRed/config.js.tpl:65
+#: ./templates/lightRed/config.js.tpl:69
 msgid "Количество:"
 msgstr ""
 
@@ -698,7 +695,7 @@ msgstr ""
 msgid "Комплект товаров"
 msgstr ""
 
-#: ./templates/lightRed/config.js.tpl:66
+#: ./templates/lightRed/config.js.tpl:70
 msgid "Комплектов:"
 msgstr ""
 
@@ -715,7 +712,7 @@ msgid "Корзина пуста"
 msgstr ""
 
 #: ./templates/lightRed/components/TOpi/assets/one_product_item.tpl:171
-#: ./templates/lightRed/config.js.tpl:64
+#: ./templates/lightRed/config.js.tpl:68
 #: ./templates/lightRed/shop/product.tpl:264
 #: ./templates/lightRed/shop/product.tpl:523
 msgid "Купить"
@@ -753,15 +750,15 @@ msgstr ""
 msgid "На странице"
 msgstr ""
 
-#: ./templates/lightRed/config.js.tpl:69
+#: ./templates/lightRed/config.js.tpl:73
 msgid "набор"
 msgstr ""
 
-#: ./templates/lightRed/config.js.tpl:69
+#: ./templates/lightRed/config.js.tpl:73
 msgid "набора"
 msgstr ""
 
-#: ./templates/lightRed/config.js.tpl:69
+#: ./templates/lightRed/config.js.tpl:73
 msgid "наборов"
 msgstr ""
 
@@ -961,15 +958,15 @@ msgstr ""
 msgid "Ответить"
 msgstr ""
 
-#: ./templates/lightRed/config.js.tpl:70
+#: ./templates/lightRed/config.js.tpl:74
 msgid "отзыв"
 msgstr ""
 
-#: ./templates/lightRed/config.js.tpl:70
+#: ./templates/lightRed/config.js.tpl:74
 msgid "отзыва"
 msgstr ""
 
-#: ./templates/lightRed/config.js.tpl:70
+#: ./templates/lightRed/config.js.tpl:74
 msgid "отзывов"
 msgstr ""
 
@@ -1051,7 +1048,7 @@ msgstr ""
 msgid "Переустановите модуль меню"
 msgstr ""
 
-#: ./templates/lightRed/config.js.tpl:54
+#: ./templates/lightRed/config.js.tpl:58
 msgid "пикселей"
 msgstr ""
 
@@ -1269,7 +1266,7 @@ msgstr ""
 msgid "Сентября"
 msgstr ""
 
-#: ./templates/lightRed/config.js.tpl:49
+#: ./templates/lightRed/config.js.tpl:53
 msgid "символов"
 msgstr ""
 
@@ -1402,7 +1399,7 @@ msgstr ""
 msgid "Стоимость доставки"
 msgstr ""
 
-#: ./templates/lightRed/config.js.tpl:63
+#: ./templates/lightRed/config.js.tpl:67
 #: ./templates/lightRed/paymentSystem/QIWI.tpl:22
 #: ./templates/lightRed/shop/order_view2.tpl:218
 #: ./templates/lightRed/shop/order_view2.tpl:341
@@ -1445,7 +1442,7 @@ msgstr ""
 msgid "Телефон: "
 msgstr ""
 
-#: ./templates/lightRed/config.js.tpl:68
+#: ./templates/lightRed/config.js.tpl:72
 #: ./templates/lightRed/shop/brand.tpl:33
 #: ./templates/lightRed/shop/category.tpl:30
 #: ./templates/lightRed/shop/search.tpl:25
@@ -1458,14 +1455,14 @@ msgstr ""
 msgid "Товар"
 msgstr ""
 
-#: ./templates/lightRed/config.js.tpl:68
+#: ./templates/lightRed/config.js.tpl:72
 #: ./templates/lightRed/shop/brand.tpl:33
 #: ./templates/lightRed/shop/category.tpl:30
 #: ./templates/lightRed/shop/search.tpl:25
 msgid "товара"
 msgstr ""
 
-#: ./templates/lightRed/config.js.tpl:68
+#: ./templates/lightRed/config.js.tpl:72
 #: ./templates/lightRed/shop/brand.tpl:33
 #: ./templates/lightRed/shop/category.tpl:30
 #: ./templates/lightRed/shop/search.tpl:25
@@ -1531,7 +1528,7 @@ msgstr ""
 msgid "Шаблоны для Shop"
 msgstr ""
 
-#: ./templates/lightRed/config.js.tpl:61
+#: ./templates/lightRed/config.js.tpl:65
 #: ./templates/lightRed/shop/order_view.tpl:219
 #: ./templates/lightRed/shop/order_view.tpl:337
 #: ./templates/lightRed/shop/order_view2.tpl:214
