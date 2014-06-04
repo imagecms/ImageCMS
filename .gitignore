@@ -38,3 +38,4 @@ Thumbs.db
 /templates/*/node_modules/
 /templates/*/package.json
 /templates/*/Gruntfile.js
+/templates/petstore/
