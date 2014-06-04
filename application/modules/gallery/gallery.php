@@ -8,6 +8,7 @@ if (!defined('BASEPATH'))
  *
  * Gallery module
  * Need Imagebox module
+ * @property Gallery_m $gallery_m 
  */
 class Gallery extends MY_Controller {
 
