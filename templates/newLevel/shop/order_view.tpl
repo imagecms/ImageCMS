@@ -376,7 +376,7 @@
                                 {if $discount}
                                     <tr>
                                         <td colspan="3">
-                                            <span class="s-t f_l">{lang('Начальная стоимость товаров','newLevel')}</span>
+                                            <span class="s-t f_l">{lang('Начальная стоимость товаров','newLevel')}:</span>
                                             <div class="f_r">
                                                 <span class="price-new">
                                                     <span>
@@ -392,7 +392,7 @@
                                 {/if}
                                 <tr>
                                     <td colspan="3">
-                                        <span class="s-t f_l">{lang('Cтоимость товаров','newLevel')}</span>
+                                        <span class="s-t f_l">{lang('Cтоимость товаров','newLevel')}:</span>
                                         <div class="f_r">
                                             <span class="price-new">
                                                 <span>
