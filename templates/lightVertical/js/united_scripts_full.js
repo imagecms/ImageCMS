@@ -589,55 +589,63 @@ function getCookie(c_name)
                 underscoreLayout: '#searchResultsTemplate',
                 blockEnter: true
             }, options);
+            var searchXhr = {};
             function postSearch() {
                 $(document).trigger({
                     'type': 'autocomplete.before',
                     'el': inputString
                 });
-                $.post(searchPath, {
-                    queryString: inputString.val()
-                }, function(data) {
-                    try {
-                        var dataObj = JSON.parse(data),
-                                html = _.template($(underscoreLayout).html(), {
-                                    'items': dataObj
-                                });
-                    } catch (e) {
-                        var html = e.toString();
-                    }
-                    $thisS.html(html);
-                    $thisS.fadeIn(durationA, function() {
-                        $(document).trigger({
-                            'type': 'autocomplete.after',
-                            'el': $thisS,
-                            'input': inputString
-                        });
-                        $thisS.off('click.autocomplete').on('click.autocomplete', function(e) {
-                            e.stopImmediatePropagation();
-                        });
-                        body.off('click.autocomplete').on('click.autocomplete', function(event) {
-                            closeFrame();
-                        }).off('keydown.autocomplete').on('keydown.autocomplete', function(e) {
-                            if (!e)
-                                var e = window.event;
-                            if (e.keyCode === 27) {
+                if (searchXhr['search'])
+                    searchXhr['search'].abort();
+                searchXhr['search'] = $.ajax({
+                    'type': 'post',
+                    'url': searchPath,
+                    'data': {
+                        queryString: inputString.val()
+                    },
+                    'success': function(data) {
+                        try {
+                            var dataObj = JSON.parse(data),
+                                    html = _.template($(underscoreLayout).html(), {
+                                        'items': dataObj
+                                    });
+                        } catch (e) {
+                            var html = e.toString();
+                        }
+                        $thisS.html(html);
+                        $thisS.fadeIn(durationA, function() {
+                            $(document).trigger({
+                                'type': 'autocomplete.after',
+                                'el': $thisS,
+                                'input': inputString
+                            });
+                            $thisS.off('click.autocomplete').on('click.autocomplete', function(e) {
+                                e.stopImmediatePropagation();
+                            });
+                            body.off('click.autocomplete').on('click.autocomplete', function(event) {
                                 closeFrame();
-                            }
+                            }).off('keydown.autocomplete').on('keydown.autocomplete', function(e) {
+                                if (!e)
+                                    var e = window.event;
+                                if (e.keyCode === 27) {
+                                    closeFrame();
+                                }
+                            });
                         });
-                    });
-                    if (inputString.val().length === 0)
-                        closeFrame();
-                    selectorPosition = -1;
-                    var itemserch = $thisS.find(itemA);
-                    itemserch.mouseover(function() {
-                        var $this = $(this);
-                        $this.addClass('selected');
-                        selectorPosition = $this.index();
+                        if (inputString.val().length === 0)
+                            closeFrame();
+                        selectorPosition = -1;
+                        var itemserch = $thisS.find(itemA);
+                        itemserch.mouseover(function() {
+                            var $this = $(this);
+                            $this.addClass('selected');
+                            selectorPosition = $this.index();
+                            lookup(itemserch, selectorPosition);
+                        }).mouseleave(function() {
+                            $(this).removeClass('selected');
+                        });
                         lookup(itemserch, selectorPosition);
-                    }).mouseleave(function() {
-                        $(this).removeClass('selected');
-                    });
-                    lookup(itemserch, selectorPosition);
+                    }
                 });
             }
             function lookup(itemserch, selectorPosition) {
