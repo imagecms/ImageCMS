@@ -286,19 +286,16 @@ $('body').off('click.validate').on('click.validate', '.formSubmit', function() {
 
     var selector = $this.attr('data-form');
     var action = $this.data('action');
+    var data = $this.data('adddata');
+
     $(selector).validate()
     if ($(selector).valid())
     {
         $('#loading').fadeIn(100);
         var options = {
-            //                target: '.notifications',
-            beforeSubmit: function(formData) {
-                formData.push({
-                    name: "action",
-                    value: action
-                });
-
-            },
+            data: $.extend({
+                "action": action
+            }, eval('(' + data + ')')),
             success: function(data) {
                 $('#loading').fadeOut(100);
                 var resp = document.createElement('div');
