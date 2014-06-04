@@ -49,7 +49,7 @@
             {if $opi_codeArticle}
                 <div class="frame-variant-name-code">
                     {$hasCode = $p->firstVariant->getNumber() == ''}
-                    <span class="frame-variant-code frameVariantCode" {if $hasCode}style="display:none;"{/if}>{lang('Артикул','light')}:
+                    <span class="frame-variant-code frameVariantCode" {if $hasCode}style="display:none;"{/if}>{lang('Артикул','lightVertical')}:
                         <span class="code js-code">
                             {if !$hasCode}
                                 {trim($p->firstVariant->getNumber())}
@@ -58,7 +58,7 @@
                     </span>
                     {if count($variants) > 1}
                         {$hasVariant = $p->firstVariant->getName() == ''}
-                        <span class="frame-variant-name frameVariantName" {if $hasVariant}style="display:none;"{/if}>{lang('Вариант','light')}:
+                        <span class="frame-variant-name frameVariantName" {if $hasVariant}style="display:none;"{/if}>{lang('Вариант','lightVertical')}:
                             <span class="code js-code">
                                 {if !$hasVariant}
                                     {trim($p->firstVariant->getName())}
@@ -135,7 +135,7 @@
                                                 class="btnBuy"
                                                 >
                                                 <span class="icon_cleaner icon_cleaner_buy"></span>
-                                                <span class="text-el">{lang('В корзине', 'light')}</span>
+                                                <span class="text-el">{lang('В корзине', 'lightVertical')}</span>
                                             </button>
                                         </div>
                                         <div class="btn-buy{if $inCart} d_n{/if}">
@@ -168,7 +168,7 @@
                                                 data-maxcount="{echo $pv->getstock()}"
                                                 >
                                                 <span class="icon_cleaner icon_cleaner_buy"></span>
-                                                <span class="text-el">{lang('Купить', 'light')}</span>
+                                                <span class="text-el">{lang('Купить', 'lightVertical')}</span>
                                             </button>
                                         </div>
                                         {form_csrf()}
@@ -176,7 +176,7 @@
                                 </div>
                             {else:}
                                 <div class="js-variant-{echo $pv->getId()} js-variant" {if $key != 0}style="display:none"{/if}>
-                                    <div class="c_b f-s_12 f-w_b">{lang('Нет в наличии', 'light')}</div>
+                                    <div class="c_b f-s_12 f-w_b">{lang('Нет в наличии', 'lightVertical')}</div>
                                     <div class="btn-not-avail">
                                         <button
                                             class="infoBut"
@@ -208,7 +208,7 @@
                                             data-url="{echo shop_url('product/'.$p->getUrl())}"
                                             >
                                             <span class="icon-but"></span>
-                                            <span class="text-el d_l_1">{lang('Сообщить о появлении','light')}</span>
+                                            <span class="text-el d_l_1">{lang('Сообщить о появлении','lightVertical')}</span>
                                         </button>
                                     </div>
                                 </div>
@@ -223,7 +223,7 @@
                 {if !$opi_widget && !$opi_defaultItem && !$opi_compare && !$opi_wishListPage}
                     {if count($variants) > 1}
                         <div class="check-variant-catalog">
-                            <span class="s-t">{lang('Вариант', 'light')}:</span>
+                            <span class="s-t">{lang('Вариант', 'lightVertical')}:</span>
                             <div class="lineForm">
                                 <select id="сVariantSwitcher_{echo $p->firstVariant->getId()}" name="variant">
                                     {foreach $variants as $key => $pv}
@@ -247,7 +247,7 @@
                         <div class="frame-star f-s_0">
                             {$CI->load->module('star_rating')->show_star_rating($p, false)}
                             <a href="{shop_url('product/'.$p->url.'#comment')}" class="count-response">
-                                {lang("Отзывы",'light')}
+                                {lang("Отзывы",'lightVertical')}
                                 {intval($Comments[$p->getId()])}
                             </a>
                         </div>
@@ -264,12 +264,12 @@
                                         <button class="toCompare"
                                                 data-id="{echo $p->getId()}"
                                                 type="button"
-                                                data-title="{lang('В список сравнений','light')}"
-                                                data-firtitle="{lang('В список сравнений','light')}"
-                                                data-sectitle="{lang('В списке сравнений','light')}"
+                                                data-title="{lang('В список сравнений','lightVertical')}"
+                                                data-firtitle="{lang('В список сравнений','lightVertical')}"
+                                                data-sectitle="{lang('В списке сравнений','lightVertical')}"
                                                 data-rel="tooltip">
                                             <span class="icon_compare"></span>
-                                            <span class="text-el d_l">{lang('В список сравнений','light')}</span>
+                                            <span class="text-el d_l">{lang('В список сравнений','lightVertical')}</span>
                                         </button>
                                     </div>
                                     <!-- End. Compare List button -->
@@ -337,7 +337,7 @@
                             data-effect-off="fadeOut"
                             data-source="{site_url('/wishlist/wishlistApi/deleteItem/'.$p[variant_id].'/'.$p[wish_list_id])}"
                             data-after="WishListFront.removeItem"
-                            ><span class="icon_remove"></span><span class="text-el d_l_1">{lang('Удалить', 'light')}</span></button>
+                            ><span class="icon_remove"></span><span class="text-el d_l_1">{lang('Удалить', 'lightVertical')}</span></button>
                     </div>
                     <div class="btn-move-item-wl">
                         <button
@@ -345,7 +345,7 @@
                             data-drop="#wishListPopup"
                             data-source="{site_url('/wishlist/renderPopup/'.$p[variant_id].'/'.$p[wish_list_id])}"
                             data-always="true"
-                            ><span class="icon_move"></span><span class="text-el d_l_1">{lang('Переместить', 'light')}</span>
+                            ><span class="icon_move"></span><span class="text-el d_l_1">{lang('Переместить', 'lightVertical')}</span>
                         </button>
                     </div>
                 </div>
