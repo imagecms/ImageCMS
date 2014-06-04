@@ -1613,7 +1613,7 @@ $(document).ready(function() {
         siteInfoLocalesDataCache[params.locale] = params;
     }
 
-    $('button.formSubmit').off('click.cache').on('click.cache', function() {
+    $('body').off('click.cache').on('click.cache', 'button.formSubmit', function() {
         delete(siteInfoLocalesDataCache);
         siteInfoLocalesDataCache = {};
     });

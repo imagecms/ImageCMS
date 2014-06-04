@@ -1261,7 +1261,7 @@ function initAdminArea() {
     });
 
 
-    $('#mainContent a.pjax').unbind('click').die('click').on('click', function(event) {
+    $('#mainContent').off('click.pjax').on('click.pjax', 'a.pjax', function(event) {
         event.preventDefault();
         $('#loading').fadeIn(100);
         $.pjax({
@@ -1373,7 +1373,7 @@ $(document).ready(
             var txt_val = $('.now-active-prod').text();
             $('.discount-out #productForDiscount').attr('value', txt_val);
 
-            $('a.pjax').unbind('click').die('click').on('click', function(event) {
+            $('body').off('click.pjax').on('click.pjax', 'a.pjax', function(event) {
                 event.preventDefault();
                 $('#loading').fadeIn(100);
                 $.pjax({
