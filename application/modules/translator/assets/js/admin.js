@@ -1060,6 +1060,7 @@ var Translator = {
         var YandexApiKey = $.trim($('.YandexApiKey').val());
         var originLang = $('#originLang').attr('locale');
 
+        lang = window.lang;
         if (!YandexApiKey) {
             showMessage(lang('Error'), lang('You have not specified Yandex Api Key.'), 'r');
             return false;
