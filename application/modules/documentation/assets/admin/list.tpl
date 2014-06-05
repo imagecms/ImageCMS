@@ -138,7 +138,9 @@
                                             <td><span>{$page.id}</span></td>
                                             <td class="share_alt">
                                                 <a href="{$BASE_URL}{$page.cat_url}{$page.url}" target="_blank" class="go_to_site pull-right btn btn-small" data-rel="tooltip" data-placement="top" data-original-title="{lang("go to site",'documentation')}"><i class="icon-share-alt"></i></a>
-                                                <a href="{$BASE_URL}admin/components/cp/documentation/history/{$page.id}" class="title pjax" data-rel="tooltip" data-original-title="{lang("Editing",'documentation')}">{$page.title}</a>
+                                                <div class="o_h">
+                                                    <a href="{$BASE_URL}admin/components/cp/documentation/history/{$page.id}" class="title pjax" data-rel="tooltip" data-original-title="{lang("Editing",'documentation')}">{$page.title}</a>
+                                                </div>
                                             </td>
                                             <td>
                                                 {date('d-m-Y H:i', $page.created)}
