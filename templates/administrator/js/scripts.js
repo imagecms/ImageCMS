@@ -1297,138 +1297,6 @@ function initAdminArea() {
 
     fixed_frame_title();
 
-
-
-//    (function() {
-//
-//        var getLinks = function() {
-//            var links = [];
-//            $('.frame_nav ul.nav a').each(function() {
-//                var url = $(this).attr('href');
-//                if (url == '#' || url == undefined) {
-//                    return;
-//                }
-//                links.push({
-//                    url: url,
-//                    node: this,
-//                    active: $(this).parent('li').hasClass('active')
-//                });
-//            });
-//            return links;
-//        }
-//
-//        var popPathname = function(pathname_) {
-//            var path = pathname_.split('/');
-//            path.pop();
-//            return path.join('/');
-//        }
-//
-//        var getSupposedActive = function(href) {
-//            href = href || location.href;
-//            var links = getLinks();
-//            var incComp = checkIncorrectCompliance(href, links);
-//            if (incComp !== false) {
-//                return incComp;
-//            }
-//            var pathname_ = href.toString();
-//            do {
-//                pathname_ = popPathname(pathname_);
-//                console.log(pathname_);
-//                for (var i = 0; i < links.length; i++) {
-//                    if (links[i].url.indexOf(pathname_) != -1) {
-//                        return links[i];
-//                    }
-//                }
-//            } while (pathname_.length > 1);
-//
-//            return false;
-//        }
-//
-//
-//        /**
-//         * Hard coded url exceptions
-//         * @param {type} href
-//         * @param {type} links
-//         * @returns {Boolean|initAdminArea._L1328.checkIncorrectCompliance.links}
-//         */
-//        var checkIncorrectCompliance = function(href, links) {
-//            if (href.indexOf('dashboard') != -1) {
-//                return links[0];
-//            }
-//
-//            if (href.indexOf('/admin/components/run/shop/products/') != -1) {
-//                return links[9];
-//            }
-//
-//            return false;
-//        }
-//
-//        var getActive = function() {
-//            var links = [];
-//            $('.frame_nav ul.nav a').each(function() {
-//                var url = $(this).attr('href');
-//                if (url == '#' || url == undefined) {
-//                    return;
-//                }
-//                links.push({
-//                    url: url,
-//                    node: this,
-//                    active: $(this).parent('li').hasClass('active')
-//                });
-//            });
-//            for (var i = 0; i < links.length; i++) {
-//                if (links[i].active == true) {
-//                    return links[i];
-//                }
-//            }
-//            return false;
-//        }
-//
-//        var makeLinkActive = function(link) {
-//            // make all unactive
-//            var links = getLinks();
-//            var parentUl;
-//            var parentLi;
-//            for (var i = 0; i < links.length; i++) {
-//                parentLi = $(links[i].node).parent('li');
-//                $(parentLi).removeClass('active');
-//                parentUl = $(parentLi).parent('ul');
-//                if ($(parentUl).hasClass('dropdown-menu')) {
-//                    $(parentUl).parent('li.dropdown.active').removeClass('active');
-//                }
-//            }
-//
-//            // make one active
-//            $(link.node).parent('li').addClass('active');
-//            var newParentUl = $(link.node).parent('li').parent('ul');
-//            if ($(newParentUl).hasClass('dropdown-menu')) {
-//                $(newParentUl).parent('li.dropdown').addClass('active');
-//            }
-//        }
-//
-//        var menuSelect = function(href) {
-//            var suposedActive = getSupposedActive(href);
-//            if (suposedActive === false) {
-//                return;
-//            }
-//            if (suposedActive.active == false) {
-//                makeLinkActive(suposedActive);
-//            }
-//        }
-//
-//        $('#mainContent .pjax').off('click.newpjax').on('click.newpjax', function() {
-//            var href = $(this).attr('href');
-//            menuSelect(href);
-//        });
-//
-//        // if there is no active menu, then trying to select the right one
-//        var activeMenuItem = getActive();
-//        if (activeMenuItem === false) {
-//            menuSelect();
-//        }
-//
-//    })();
-
     console.log('initialising of administration area ended');
     console.log('script execution time:' + (Date.now() - startExecTime) / 1000 + " sec.");
 }
@@ -2110,13 +1978,11 @@ function checkMenu() {
             subs = li.children('ul');
             lis = lis.add(li);
         }
-        setMenu(lis.reverse());
+        setMenu(lis);
     }
 }
 /** Users mail chimp settings**/
 $(document).ready(function() {
-    $.fn.reverse = [].reverse;
-    
     $('.frame_nav').off('click.pjax').on('click.pjax', 'a.pjax', function(event) {
         event.preventDefault();
 
