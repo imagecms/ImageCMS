@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-04 07:03+0300\n"
-"PO-Revision-Date: 2014-06-04 07:03+0300\n"
+"POT-Creation-Date: 2014-06-05 10:32+0300\n"
+"PO-Revision-Date: 2014-06-05 10:32+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -20,6 +20,15 @@ msgstr ""
 "X-Poedit-SearchPath-1: ../../../templates/administrator\n"
 "X-Poedit-SearchPath-2: ../../modules/shop/admin\n"
 "X-Poedit-SearchPath-3: ../../../application/modules/shop/models/build/classes\n"
+
+#: ./application/modules/shop/admin/templates/products/_edit.tpl:457
+#: ./application/modules/shop/admin/templates/products/default_edit.tpl:335
+#: ./application/modules/shop/admin/templates/products/_create.tpl:414
+#: ./application/modules/shop/admin/templates/products/create.tpl:241
+#: ./application/modules/shop/admin/templates/categories/edit.tpl:191
+#: ./application/modules/shop/admin/templates/categories/create.tpl:168
+msgid "Meta data"
+msgstr "Мета-данные"
 
 #: ./application/modules/admin/categories.php:553
 msgid "You can not delete the last category from the list"
@@ -2520,15 +2529,6 @@ msgstr "Ключ, чтобы просмотреть заказ"
 #: ./application/modules/admin/categories.php:148
 #: ./application/modules/admin/categories.php:447
 msgid "Keywords"
-msgstr "Ключевые слова"
-
-#: ./application/modules/shop/admin/templates/products/_edit.tpl:457
-#: ./application/modules/shop/admin/templates/products/default_edit.tpl:335
-#: ./application/modules/shop/admin/templates/products/_create.tpl:414
-#: ./application/modules/shop/admin/templates/products/create.tpl:241
-#: ./application/modules/shop/admin/templates/categories/edit.tpl:191
-#: ./application/modules/shop/admin/templates/categories/create.tpl:168
-msgid "Meta data"
 msgstr "Ключевые слова"
 
 #: ./application/modules/shop/admin/gifts.php:48
