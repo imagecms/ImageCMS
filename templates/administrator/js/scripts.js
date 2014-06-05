@@ -1821,15 +1821,7 @@ $(document).on('pjax:start', function() {
 
 }).on('pjax:end', function() {
     $('#loading').fadeOut(300);
-
     checkMenu();
-
-    //console.log($(this).attr('href').indexOf(location.href));
-
-//    if ($(this).closest('.frame_nav').length > 0) {
-//        $('.frame_nav nav li').removeClass('active');
-//        $(this).closest('li').addClass('active').closest('li.dropdown').addClass('active').removeClass('open');
-//    }
 });
 
 var Update = {
@@ -1968,7 +1960,7 @@ function checkMenu() {
             active = true;
         }
     });
-    
+
     if (!active) {
         var levels = JSON.parse(localStorage.getItem('levels'));
         var subs = $('.frame_nav').find('ul:first');
@@ -1992,7 +1984,7 @@ $(document).ready(function() {
         setMenu(lis);
     });
     checkMenu();
-    
+
     $('body').on('keyup', 'input.email', function() {
         if (/[а-яёы]/gi.test($(this).val()))
             $(this).val($(this).val().replace(/[а-яёы]/gi, ""));
