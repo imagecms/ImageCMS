@@ -10,7 +10,7 @@ $com_info = array(
     'window_type' => 'xhr',
     'w' => 600,
     'h' => 550,
-    'version' => '1.3.1',
+    'version' => '1.4',
     'author' => 'a.gula@imagecms.net'
 );
 
