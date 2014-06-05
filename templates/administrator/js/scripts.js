@@ -1349,17 +1349,13 @@ function initAdminArea() {
             return path.join('/');
         }
 
-        var getSupposedActive = function() {
+        var getSupposedActive = function(href) {
+            href = href || location.href;
             var links = getLinks();
-            // searching for full match (rare case, but stable)
-            for (var i = 0; i < links.length; i++) {
-                if (links[i].url == location.href || links[i].url == location.pathname) {
-                    return links[i];
-                }
-            }
-            var pathname_ = location.pathname.toString();
+            var pathname_ = href.toString();
             do {
                 pathname_ = popPathname(pathname_);
+                console.log(pathname_);
                 for (var i = 0; i < links.length; i++) {
                     if (links[i].url.indexOf(pathname_) != -1) {
                         return links[i];
@@ -1367,6 +1363,27 @@ function initAdminArea() {
                 }
             } while (pathname_.length > 1);
 
+            return false;
+        }
+
+        var getActive = function() {
+            var links = [];
+            $('.frame_nav ul.nav a').each(function() {
+                var url = $(this).attr('href');
+                if (url == '#' || url == undefined) {
+                    return;
+                }
+                links.push({
+                    url: url,
+                    node: this,
+                    active: $(this).parent('li').hasClass('active')
+                });
+            });
+            for (var i = 0; i < links.length; i++) {
+                if (links[i].active == true) {
+                    return links[i];
+                }
+            }
             return false;
         }
 
@@ -1392,8 +1409,8 @@ function initAdminArea() {
             }
         }
 
-        var menuSelect = function() {
-            var suposedActive = getSupposedActive();
+        var menuSelect = function(href) {
+            var suposedActive = getSupposedActive(href);
             if (suposedActive === false) {
                 return;
             }
@@ -1403,10 +1420,16 @@ function initAdminArea() {
         }
 
         $('#mainContent .pjax').off('click.newpjax').on('click.newpjax', function() {
-            menuSelect();         
+            var href = $(this).attr('href');
+            menuSelect(href);
         });
 
-        
+        // if there is no active menu, then trying to select the right one
+        var activeMenuItem = getActive();
+        if (activeMenuItem === false) {
+            menuSelect();
+        }
+
     })();
 
     console.log('initialising of administration area ended');
