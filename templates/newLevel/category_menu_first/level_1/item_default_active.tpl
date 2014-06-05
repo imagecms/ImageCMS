@@ -6,7 +6,7 @@
             {if $image}
                 <img src="{$image}" alt="{echo $title}"/>
             {else:}
-                <img src="{site_url('uploads/shop/nophoto/nophoto.jpg')}" alt="{lang('Нет фото', 'light')}"/>
+                <img src="{site_url('uploads/shop/nophoto/nophoto.jpg')}" alt="{lang('Нет фото', 'newLevel')}"/>
             {/if}
         </span>
     </span>
