@@ -27,6 +27,7 @@ class Discount_model_admin extends CI_Model {
         $locale = \MY_Controller::getCurrentLocale();
         $query = $this->db->select("*, mod_shop_discounts.id as id")->join('mod_shop_discounts_i18n', "mod_shop_discounts_i18n.id = mod_shop_discounts.id and mod_shop_discounts_i18n.locale = '" . $locale . "'", 'left')
                         //->where("mod_shop_discounts_i18n.locale " , $locale )
+                        ->join('mod_discount_all_order', "mod_discount_all_order.discount_id = mod_shop_discounts.id", 'left')
                         ->order_by('mod_shop_discounts.active', 'desc')->order_by('mod_shop_discounts.id', 'desc');
         if ($discountType != null) {
             $query = $query->where('mod_shop_discounts.type_discount', $discountType);
