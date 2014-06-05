@@ -309,6 +309,7 @@ var Comments = {
                 else {
                     if(obj.cap_image){
                         $('.captcha_image').html(obj.cap_image);
+                        $('#captcha').val('');
                     }
                     
                     form.find('.error_text').remove();
