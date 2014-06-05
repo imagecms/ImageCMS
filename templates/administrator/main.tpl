@@ -224,7 +224,6 @@
 
                 </section>
             </header>
-
             {if $CI->dx_auth->is_logged_in()}
                 <div class="frame_nav">
                     {include('templates/administrator/inc/menus.php');}
