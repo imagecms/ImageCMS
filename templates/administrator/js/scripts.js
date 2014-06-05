@@ -1352,6 +1352,10 @@ function initAdminArea() {
         var getSupposedActive = function(href) {
             href = href || location.href;
             var links = getLinks();
+            var incComp = checkIncorrectCompliance(href, links);
+            if (incComp !== false) {
+                return incComp;
+            }
             var pathname_ = href.toString();
             do {
                 pathname_ = popPathname(pathname_);
@@ -1362,6 +1366,25 @@ function initAdminArea() {
                     }
                 }
             } while (pathname_.length > 1);
+
+            return false;
+        }
+
+
+        /**
+         * Hard coded url exceptions
+         * @param {type} href
+         * @param {type} links
+         * @returns {Boolean|initAdminArea._L1328.checkIncorrectCompliance.links}
+         */
+        var checkIncorrectCompliance = function(href, links) {
+            if (href.indexOf('dashboard') != -1) {
+                return links[0];
+            }
+
+            if (href.indexOf('/admin/components/run/shop/products/') != -1) {
+                return links[9];
+            }
 
             return false;
         }
