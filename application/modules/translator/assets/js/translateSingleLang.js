@@ -34,6 +34,7 @@ $(document).ready(function() {
 
     function showTranslationForm(curentElement, e) {
         if (e.ctrlKey && e.altKey) {
+            window.TranslationTag = $(curentElement);
             var currentMousePos = {x: -1, y: -1};
             currentMousePos.x = event.pageX - $('#trabslateForm').width() / 2;
             currentMousePos.y = event.pageY + 20;
@@ -83,22 +84,25 @@ $(document).ready(function() {
                 data = JSON.parse(data);
                 if (data.success) {
                     $('#trabslateForm').find('.succ').find('.success').html('');
-                    $('#trabslateForm').find('.succ').find('.success').append('<p>' + data.message + '</p>');
+                    $('#trabslateForm').find('.succ').find('.success').html('<p style="color: green;">' + lang(data.message) + '</p>');
                     $('#trabslateForm').find('.succ').show();
+                    $('#trabslateForm').find('.error_text').hide();
+                    $(window.TranslationTag).text(translation);
                 } else {
                     if (data.errors) {
                         var messageText = '';
                         if ($.isArray(data.message)) {
-                            for(var message in data.message){
-                                messageText += '<p>' + data.message[message] + '</p>';
+                            for (var message in data.message) {
+                                messageText += '<p style="color: rgb(194, 13, 13)">' + lang(data.message[message]) + '</p>';
                             }
                         } else {
-                            messageText = '<p>' + data.message+ '</p>';
+                            messageText = '<p style="color: rgb(194, 13, 13)">' + lang(data.message) + '</p>';
                         }
 
                         $('#trabslateForm').find('.error_text .text-el').html('');
-                        $('#trabslateForm').find('.error_text .text-el').append(messageText);
+                        $('#trabslateForm').find('.error_text .text-el').html(messageText);
                         $('#trabslateForm').find('.error_text').show();
+                        $('#trabslateForm').find('.succ').hide();
                     }
                 }
             }
@@ -120,20 +124,23 @@ $(document).ready(function() {
                             if (Answer.code == '200') {
                                 $('#trabslateForm').find('#translation').val(Answer.text[0]);
                                 $('#trabslateForm').find('.succ').find('.success').html('');
-                                $('#trabslateForm').find('.succ').find('.success').append('<p>' + lang('Successfully translated.') + '</p>');
+                                $('#trabslateForm').find('.succ').find('.success').html('<p style="color: green">' + lang('Successfully translated.') + '</p>');
                                 $('#trabslateForm').find('.succ').show();
+                                $('#trabslateForm').find('.error_text').hide();
                             } else {
                                 var error = getAnswerCodeMessage(Answer.code);
                                 $('#trabslateForm').find('.error_text .text-el').html('');
-                                $('#trabslateForm').find('.error_text .text-el').append('<p>' + error + '</p>');
+                                $('#trabslateForm').find('.error_text .text-el').html('<p style="color: rgb(194, 13, 13)">' + error + '</p>');
                                 $('#trabslateForm').find('.error_text').show();
+                                $('#trabslateForm').find('.succ').hide();
                             }
                         }
                     });
                 } else {
                     $('#trabslateForm').find('.error_text .text-el').html('');
-                    $('#trabslateForm').find('.error_text .text-el').append('<p>' + lang('You did not specified Yandex Api Key. Please set it in translator module settins.') + '</p>');
+                    $('#trabslateForm').find('.error_text .text-el').html('<p style="color: rgb(194, 13, 13)">' + lang('You did not specified Yandex Api Key. Please set it in translator module settins.') + '</p>');
                     $('#trabslateForm').find('.error_text').show();
+                    $('#trabslateForm').find('.succ').hide();
                 }
             }
         });
