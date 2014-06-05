@@ -113,7 +113,7 @@
                         <span class="code">{lang('Артикул', 'commerce_mobiles')}: {echo $variant->getNumber()}</span>
                     {/if}
                     <span class="d_b price">{echo $item->getPrice()} {$CS}</span>
-                    <span class="count">{echo $item->getQuantity()} шт.</span>
+                    <span class="count">{echo $item->getQuantity()} {lang('шт.', 'commerce_mobiles')}</span>
                 </span>
             </div>
         </li>
