@@ -388,10 +388,10 @@ class Commentsapi extends Comments {
                 else
                     $field_name = 'captcha';
 
-                if ($this->form_validation->error($field_name)) {
+//                if ($this->form_validation->error($field_name)) {
                     $this->dx_auth->captcha();
                     $cap_image = $this->dx_auth->get_captcha_image();
-                }
+//                }
 
 //                if ($this->use_captcha == TRUE && !$this->dx_auth->is_admin()) {
 //                    $this->dx_auth->captcha();
