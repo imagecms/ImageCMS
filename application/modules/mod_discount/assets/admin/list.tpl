@@ -55,7 +55,7 @@
                                 {if $discount['max_apply'] != 0}
                                     {echo $discount['max_apply']}
                                 {else:} 
-                                    {lang('Unlimited', 'mod_discount')}
+                                    {if !$discount['max_apply'] && $discount['is_gift']}1{else:}{lang('Unlimited', 'mod_discount')}{/if}
                                 {/if}
                             </td>
                             <td>
