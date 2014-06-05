@@ -183,7 +183,7 @@ INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_me
 (267, 'translator', 'translator', 1, 1, 1, 'a:2:{s:11:"originsLang";s:2:"en";s:11:"editorTheme";s:6:"chrome";}', 11),
 (268, 'imagebox', 'imagebox', 0, 1, 0, NULL, 18),
 (269, 'sample_module', 'sample_module', 1, 1, 0, NULL, NULL),
-(272, 'template_manager', 'template_manager', 1, 1, 0, NULL, NULL);
+(272, 'template_manager', 'template_manager', 1, 1, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 

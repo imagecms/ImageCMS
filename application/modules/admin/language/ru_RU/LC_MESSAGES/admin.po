@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-05 11:36+0300\n"
-"PO-Revision-Date: 2014-06-05 11:36+0300\n"
+"POT-Creation-Date: 2014-06-05 05:01+0300\n"
+"PO-Revision-Date: 2014-06-05 05:01+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -20,6 +20,14 @@ msgstr ""
 "X-Poedit-SearchPath-1: ../../../templates/administrator\n"
 "X-Poedit-SearchPath-2: ../../modules/shop/admin\n"
 "X-Poedit-SearchPath-3: ../../../application/modules/shop/models/build/classes\n"
+
+#: ./templates/administrator/js/chosen.js:12
+msgid "Select Some Options"
+msgstr "Выберите категории"
+
+#: ./application/modules/shop/admin/templates/products/default_edit.tpl:196
+msgid "Chose additional categories"
+msgstr "Выберите дополнительные категории"
 
 #: ./application/modules/admin/pages.php:197
 msgid "Category or page with such url already exist"
@@ -174,10 +182,6 @@ msgstr "Не оплачен"
 #: ./templates/administrator/settings_site.tpl:509
 msgid "Logo"
 msgstr "Логотип"
-
-#: ./templates/administrator/js/chosen.js:12
-msgid "Select Some Options"
-msgstr "Выберите дополнительные категории"
 
 #: ./templates/administrator/js/chosen.js:12
 msgid "No results match"
@@ -1349,10 +1353,6 @@ msgstr "выберите дату"
 #: ./templates/administrator/edit_page.tpl:296
 msgid "choose date"
 msgstr "выберите дату"
-
-#: ./application/modules/shop/admin/templates/products/default_edit.tpl:196
-msgid "Chose additional categories"
-msgstr "Выберите дополнительные категории"
 
 #: ./templates/administrator/category_edit.tpl:145
 #: ./templates/administrator/create_cat.tpl:125
