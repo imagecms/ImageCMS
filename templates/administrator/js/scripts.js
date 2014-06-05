@@ -998,7 +998,7 @@ function initAdminArea() {
     var startExecTime = Date.now();
 
     //gistogram
-    $('[name="date"]').die('change').live('change', function() {
+    $('#wrapper_gistogram [name="date"]').die('change').live('change', function() {
         $('#loading').stop().fadeIn(100);
         $.pjax({
             'url': '/admin/components/run/shop/charts/byDate/' + $(this).val(),
@@ -1571,17 +1571,6 @@ $(document).ready(
                 $('.listFilterSubmitButton').removeAttr('disabled').removeClass('disabled');
             });
 
-            /* menu */
-            var found = false;
-            $('#mainAdminMenu a').each(function() {
-                if ($(this).attr('href').match(window.location.pathname) && !found)
-                {
-                    $(this).closest('li').addClass('active');
-                    $('li.active').closest('ul').closest('li').addClass('active');
-                    found = true;
-                }
-            });
-
             /**/
             $('[data-remove]').live('click', function() {
                 $(this).closest('tr').remove();
@@ -1958,17 +1947,14 @@ $('body').off('click.pjax').on('click.pjax', 'a.pjax', function(event) {
 
     });
 });
-$('.frame_nav').off('click.pjax').on('click.pjax', 'a.pjax', function(event) {
-    event.preventDefault();
-    $('.frame_nav nav li').removeClass('active');
-    $(this).closest('li').addClass('active').closest('li.dropdown').addClass('active').removeClass('open');
-});
 
 $(document).on('pjax:start', function() {
     $('#loading').fadeIn(100);
 
 }).on('pjax:end', function() {
     $('#loading').fadeOut(300);
+
+    checkMenu();
 
     //console.log($(this).attr('href').indexOf(location.href));
 
@@ -2095,8 +2081,52 @@ var Update = {
     }
 };
 
+function setMenu(els) {
+    $('.frame_nav li').removeClass('active');
+    var levels = {};
+    els.each(function(ind) {
+        levels[ind] = $(this).index();
+    });
+    localStorage.setItem('levels', JSON.stringify(levels));
+    return els.addClass('active');
+}
+function checkMenu() {
+    var active = false;
+
+    $('.frame_nav a').each(function() {
+        if (location.href.indexOf($(this).attr('href')) !== -1) {
+            var li = $(this).closest('li');
+            setMenu(li.add(li.parents('li')));
+            active = true;
+        }
+    });
+    
+    if (!active) {
+        var levels = JSON.parse(localStorage.getItem('levels'));
+        var subs = $('.frame_nav').find('ul:first');
+        var lis = $([]);
+        for (var i in levels) {
+            var li = subs.children().eq(levels[i]);
+            subs = li.children('ul');
+            lis = lis.add(li);
+        }
+        setMenu(lis.reverse());
+    }
+}
 /** Users mail chimp settings**/
 $(document).ready(function() {
+    $.fn.reverse = [].reverse;
+    
+    $('.frame_nav').off('click.pjax').on('click.pjax', 'a.pjax', function(event) {
+        event.preventDefault();
+
+        var li = $(this).closest('li');
+        var lis = li.add(li.closest('li.dropdown'));
+        li.closest('li.dropdown').removeClass('open');
+        setMenu(lis);
+    });
+    checkMenu();
+    
     $('body').on('keyup', 'input.email', function() {
         if (/[а-яёы]/gi.test($(this).val()))
             $(this).val($(this).val().replace(/[а-яёы]/gi, ""));
