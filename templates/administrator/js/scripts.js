@@ -1260,32 +1260,6 @@ function initAdminArea() {
 
     });
 
-
-    $('#mainContent').off('click.pjax').on('click.pjax', 'a.pjax', function(event) {
-        event.preventDefault();
-        $('#loading').fadeIn(100);
-        $.pjax({
-            url: $(this).attr('href'),
-            container: '#mainContent',
-            timeout: 0
-
-        });
-        return false;
-    });
-
-    $('#mainContent button.pjax').unbind('click').die('click').on('click', function(event) {
-        $('#loading').fadeIn(100);
-        return false;
-    });
-
-    $(document).on('pjax:start', function() {
-        $('#loading').fadeIn(100);
-
-    })
-            .on('pjax:end', function() {
-                $('#loading').fadeOut(300);
-            });
-
     //add arrows to orders list
     if (window.hasOwnProperty('orderField'))
         if (orderField != "")
@@ -1483,9 +1457,8 @@ function change_per_page(el) {
 
 $(document).ready(
         function() {
-
             $('ul.auto_search li').live('click', function() {
-                tex = $('[name=Products]').val();
+                var tex = $('[name=Products]').val();
                 if (tex == '')
                     tex = $(this).attr('data-id');
                 else
@@ -1504,21 +1477,6 @@ $(document).ready(
 
             var txt_val = $('.now-active-prod').text();
             $('.discount-out #productForDiscount').attr('value', txt_val);
-
-            $('body').off('click.pjax').on('click.pjax', 'a.pjax', function(event) {
-                event.preventDefault();
-                $('#loading').fadeIn(100);
-                $.pjax({
-                    url: $(this).attr('href'),
-                    container: '#mainContent',
-                    timeout: 3000
-                });
-                $('.frame_nav nav li').removeClass('active');
-                if ($(this).closest('.frame_nav').length > 0)
-                    $(this).closest('li').addClass('active').closest('li.dropdown').addClass('active').removeClass('open');
-                return false;
-            });
-
 
             $('.main_body').append('<div class="overlay"></div>');
 
@@ -1990,6 +1948,34 @@ $('.orderMethodsRefresh').live('click', function() {
             showMessage('Сообщение', 'Метод сортировки обновлен');
         }
     });
+});
+$('body').off('click.pjax').on('click.pjax', 'a.pjax', function(event) {
+    event.preventDefault();
+    $.pjax({
+        url: $(this).attr('href'),
+        container: '#mainContent',
+        timeout: 0
+
+    });
+});
+$('.frame_nav').off('click.pjax').on('click.pjax', 'a.pjax', function(event) {
+    event.preventDefault();
+    $('.frame_nav nav li').removeClass('active');
+    $(this).closest('li').addClass('active').closest('li.dropdown').addClass('active').removeClass('open');
+});
+
+$(document).on('pjax:start', function() {
+    $('#loading').fadeIn(100);
+
+}).on('pjax:end', function() {
+    $('#loading').fadeOut(300);
+
+    //console.log($(this).attr('href').indexOf(location.href));
+
+//    if ($(this).closest('.frame_nav').length > 0) {
+//        $('.frame_nav nav li').removeClass('active');
+//        $(this).closest('li').addClass('active').closest('li.dropdown').addClass('active').removeClass('open');
+//    }
 });
 
 var Update = {
