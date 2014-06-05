@@ -447,8 +447,25 @@ class Settings extends BaseAdminController {
     public function license_agreement() {
         header('Content-Type: text/plain; charset=utf-8');
         $template = new \template_manager\classes\Template($_GET['template_name']);
-        $filePath = $template->getLicenseAgreementFilepath();
-        echo file_get_contents($filePath);
+        echo $template->getLicenseAgreement();
+    }
+
+    public function template_has_license($templateName = null) {
+        if (is_null($templateName)) {
+            $templateName = $_GET['template_name'];
+        }
+
+        if (empty($templateName)) {
+            echo 0;
+            return;
+        }
+        if (false == class_exists('\\template_manager\\classes\\Template')) {
+            echo 0;
+            return;
+        }
+        $template = new \template_manager\classes\Template($templateName);
+        $license = $template->getLicenseAgreement();
+        echo empty($license) ? 0 : 1;
     }
 
 }
