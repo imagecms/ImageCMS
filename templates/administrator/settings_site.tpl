@@ -71,14 +71,14 @@
                                                                         <option value="{$k}" {if $template_selected == $k} selected="selected" {/if} >{$k}</option>
                                                                     {/foreach}
                                                                 </select>
-                                                                {if class_exists('\\template_manager\\classes\\Template')}
-                                                                    <span class="help-block" id='license_link'>
-                                                                        {lang('Installing the template you agree to the', 'admin')}
-                                                                        <a target="_blank" href="/admin/settings/license_agreement?template_name={$template_selected}" id="license_agreement_link">
-                                                                            {lang('license agreement', 'admin')}
-                                                                        </a>
-                                                                    </span>
-                                                                {/if}
+
+                                                                <span class="help-block" id='license_link' style="display: none">
+                                                                    {lang('Installing the template you agree to the', 'admin')}
+                                                                    <a target="_blank" href="/admin/settings/license_agreement?template_name={$template_selected}" id="license_agreement_link">
+                                                                        {lang('license agreement', 'admin')}
+                                                                    </a>
+                                                                </span>
+
                                                             </div>
 
                                                         </div>

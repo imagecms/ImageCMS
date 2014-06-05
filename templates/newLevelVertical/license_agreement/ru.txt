@@ -1,1 +1,1 @@
-Ліцензія на newLevel vertical
+Ліцензія на {template_name}
