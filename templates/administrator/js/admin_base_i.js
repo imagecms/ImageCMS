@@ -1706,8 +1706,22 @@ $(document).ready(function() {
     });
 
 
+    $('select#template').live('change', function() {
+        $.get(base_url + 'admin/settings/template_has_license', {template_name: $(this).val()}, function(response) {
+            $('#license_link').hide();
+            if (response == 1) {
+                $('#license_link').show();
+            } else {
+                $('#license_link').hide();
+            }
+        })
+    });
+
 
 });
 
-
-
+/*
+ 
+ 
+ 
+ */
