@@ -234,7 +234,7 @@
                         <div class="frame-label m-b_10">
                             <span class="title">{lang('Код защиты')}:</span>
                             <div class="clearfix">
-                                <div class="m-b_10 m-t_5 f_l">
+                                <div class="m-b_10 m-t_5 f_l captcha_image">
                                     {$cap_image}
                                 </div>
                                 <div class="frame-form-field o_h">
