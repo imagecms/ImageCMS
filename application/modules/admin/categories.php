@@ -218,6 +218,12 @@ class Categories extends BaseAdminController {
 
             switch ($action) {
                 case 'new':
+
+                    $pages_with_category_url = $this->db->where('url', $data['url'])->get('content');
+                    if ($pages_with_category_url->num_rows()) {
+                        $data['url'] .= time();
+                    }
+
                     $data['created'] = time();
                     ($hook = get_hook('admin_create_category')) ? eval($hook) : NULL;
 
