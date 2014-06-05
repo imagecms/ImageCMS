@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-03 01:30+0400\n"
-"PO-Revision-Date: 2014-06-03 01:30+0400\n"
+"POT-Creation-Date: 2014-06-05 02:17+0400\n"
+"PO-Revision-Date: 2014-06-05 02:17+0400\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -17,6 +17,23 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./templates/commerce_mobiles/login.tpl:24
+msgid "Войти"
+msgstr ""
+
+#: ./templates/commerce_mobiles/shop/filter.tpl:87
+msgid "Подобрать"
+msgstr ""
+
+#: ./templates/commerce_mobiles/shop/order_view.tpl:116
+msgid "шт."
+msgstr ""
+
+#: ./templates/commerce_mobiles/shop/search.tpl:15
+#: ./templates/commerce_mobiles/shop/search.tpl:29
+msgid "Искать"
+msgstr ""
 
 #: ./templates/commerce_mobiles/404.tpl:6
 msgid "Страница не найдена"
@@ -237,7 +254,7 @@ msgstr ""
 msgid "Производитель"
 msgstr ""
 
-#: ./templates/commerce_mobiles/shop/search.tpl:41
+#: ./templates/commerce_mobiles/shop/search.tpl:42
 msgid "Вы искали"
 msgstr ""
 
