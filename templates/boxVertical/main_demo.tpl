@@ -35,37 +35,7 @@
         </script>
         <script type="text/javascript" src="{$THEME}js/jquery-1.8.3.min.js"></script>
         {include_tpl('config.js')}
-        {literal}
-            <script type="text/javascript">
-                function initDownloadScripts(scripts, callback, customEvent) {
-                    function downloadJSAtOnload(scripts, callback, customEvent) {
-                        var cL = 0,
-                                scriptsL = scripts.length;
-
-                        $.map(scripts, function(i, n) {
-                            $.ajax({
-                                url: theme + 'js/' + i + '.js',
-                                dataType: "script",
-                                cache: true,
-                                complete: function() {
-                                    cL++;
-                                    if (cL == scriptsL)
-                                        if (callback) {
-                                            eval(callback)();
-                                            setTimeout(function() {
-                                                $(document).trigger({'type': customEvent});
-                                            }, 0);
-                                        }
-                                }
-                            });
-                        })
-                    }
-                    $(window).load(function(){
-                        downloadJSAtOnload(scripts, callback, customEvent);
-                    });
-                }
-            </script>
-        {/literal}
+        <script type="text/javascript" src="{$THEME}js/settings.js"></script>
         <!--[if lte IE 9]><script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
         <!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="{$THEME}css/lte_ie_8.css" /><![endif]-->
         <!--[if IE 7]>
@@ -75,7 +45,6 @@
 
         <link rel="icon" href="{echo siteinfo('siteinfo_favicon_url')}" type="image/x-icon" />
         <link rel="shortcut icon" href="{echo siteinfo('siteinfo_favicon_url')}" type="image/x-icon" />
-
         {literal}
             <style>
                 .imagecms-top-fixed-header{min-width: 960px;height: 0;box-shadow: 0 1px 4px rgba(0,0,0,.2);background-color: #fafafa;border-top: 0 solid #0aae85;position: fixed;top: 0;left: 0;width: 100%;z-index: 1000;font-family: Arial, sans-serif;font-size: 12px;color: #223340;vertical-align: baseline;}
