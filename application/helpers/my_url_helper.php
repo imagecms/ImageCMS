@@ -19,7 +19,12 @@ if (!function_exists('media_url')) {
             $index_page = '';
         }
 
-        $return = $config->slash_item('static_base_url') . $index_page . preg_replace("|^/*(.+?)/*$|", "\\1", $url);
+        if (MAINSITE) {
+            $return = 'http://' . str_replace('../', '', MAINSITE) . '/' . $index_page . preg_replace("|^/*(.+?)/*$|", "\\1", $url);
+        } else {
+            $return = $config->slash_item('static_base_url') . $index_page . preg_replace("|^/*(.+?)/*$|", "\\1", $url);
+        }
+
         return $return;
     }
 
