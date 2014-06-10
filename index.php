@@ -60,7 +60,7 @@ switch (ENVIRONMENT) {
  * DISPLAY OR NO INFORMATION ABOUT PROFILING
  * ---------------------------------------------------------------
  */
-define('ENABLE_PROFILER', TRUE);
+define('ENABLE_PROFILER', false);
 
 /*
  * ---------------------------------------------------------------
