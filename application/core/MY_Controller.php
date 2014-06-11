@@ -62,6 +62,13 @@ class MY_Controller extends MX_Controller {
     public function __construct() {
         parent::__construct();
 
+        // output profiler information if it is enabled, and it is not an ajax request
+        if (ENABLE_PROFILER === TRUE) {
+            if (!isset($_SERVER['HTTP_X_PJAX']) && $_SERVER['HTTP_X_PJAX'] == FALSE && $this->input->is_ajax_request() == FALSE) {
+                \CI::$APP->load->library('profiler');
+                echo \CI::$APP->profiler->run();
+            }
+        }
 
 //        $settings = $this->cms_base->get_settings();
 //        $path_helper = 'templates/' . $settings['site_template'] . '/shop/helper.php';
@@ -92,8 +99,7 @@ class MY_Controller extends MX_Controller {
             $this->db->cache_off();
 
             return (bool) count($res);
-        }
-        else
+        } else
             return false;
     }
 
@@ -122,8 +128,7 @@ class MY_Controller extends MX_Controller {
                 $defaultLanguage = self::getDefaultLanguage();
                 self::$currentLocale = $defaultLanguage['identif'];
             }
-        }
-        else
+        } else
             self::$currentLocale = chose_language();
 
         return self::$currentLocale;
