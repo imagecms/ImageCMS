@@ -15,16 +15,14 @@
 {/if}
 {$countSh = getProductViewsCount()}
 {$openLevels = getOpenLevels()}
-{if $openLevels == 'all'}
-    {if $openLevels}
-        {if $openLevels == 'all'}
-            {$menuClass = 'col'}
-        {else:}
-            {$menuClass = 'row'}
-        {/if}
-    {else:}
+{if $openLevels}
+    {if $openLevels == 'all'}
         {$menuClass = 'col'}
+    {else:}
+        {$menuClass = 'row'}
     {/if}
+{else:}
+    {$menuClass = 'col'}
 {/if}
 <script type="text/javascript">
     {literal}
