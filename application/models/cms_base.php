@@ -69,6 +69,7 @@ class Cms_base extends CI_Model {
         $this->db->cache_on();
         $query = $this->db
                 ->select('id, name, identif, autoload, enabled')
+                ->order_by('position')
                 ->get('components');
         $this->db->cache_off();
 

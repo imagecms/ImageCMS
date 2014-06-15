@@ -40,3 +40,6 @@ Thumbs.db
 /templates/*/Gruntfile.js
 /templates/petstore/
 /templates/technostore/
+/application/modules/novaposhta/
+/application/modules/sendsms/
+/application/modules/parce_opencart/

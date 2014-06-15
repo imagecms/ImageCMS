@@ -54,6 +54,14 @@ switch (ENVIRONMENT) {
         header('HTTP/1.1 503 Service Unavailable.', TRUE, 503);
         exit('The application environment is not set correctly.');
 }
+
+/*
+ * ---------------------------------------------------------------
+ * DISPLAY OR NO INFORMATION ABOUT PROFILING
+ * ---------------------------------------------------------------
+ */
+define('ENABLE_PROFILER', false);
+
 /*
  * ---------------------------------------------------------------
  * SYSTEM FOLDER NAME
