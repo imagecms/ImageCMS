@@ -14,17 +14,15 @@
                     <span class="text-el">{lang('Личный кабинет', 'box')}</span>
                 </button>
                 <ul class="drop dropPersonalExit drop-auth-refer drop-noinherit">
-                    <li class="btn-personal-area">
-                        <a href="{site_url('/shop/profile')}">
-                            <span class="text-el">{lang('Личный кабинет','box')}</span>
-                        </a>
-                    </li>
+                    <li><a href="{site_url('/shop/profile/#my_data')}">{lang('Основные данные', 'box')}</a></li>
+                    <li><a href="{site_url('/shop/profile/#change_pass')}">{lang('Изменить пароль', 'box')}</a></li>
+                    <li><a href="{site_url('/shop/profile/#history_order')}">{lang('История заказа', 'box')}</a></li>
                     <li class="btn-exit-shop">
                         <button type="button" class="f-s_0" onclick="ImageCMSApi.formAction('{site_url("/auth/authapi/logout")}', '', {literal}{durationHideForm: 0, callback: function(msg, status, form, DS) {
-                                if (status) {
-                                    localStorage.removeItem('wishList');
-                                }
-                            }}{/literal});
+                                        if (status) {
+                                            localStorage.removeItem('wishList');
+                                        }
+                                    }}{/literal});
                                 return false;">
                             <span class="icon_exit"></span>
                             <span class="text-el">{lang('Выход','box')}</span>

@@ -20,10 +20,10 @@ class Admin extends BaseAdminController {
 
     public function index() {
         $query = $this->db->get('trash');
-        $this->template->add_array(array('model' => $query->result()));
-        if (!$this->ajaxRequest) {
-            $this->display_tpl('main');
-        }
+        
+        \CMSFactory\assetManager::create()
+                ->setData('model', $query->result())
+                ->renderAdmin('main');
     }
 
     /**
@@ -177,10 +177,12 @@ class Admin extends BaseAdminController {
                 $this->db->insert('trash');
                 $lastId = $this->db->insert_id();
 
-                if ($this->input->post('action') == 'create')
+                if ($this->input->post('action') == 'create') {
                     pjax('/admin/components/init_window/trash/edit_trash/' . $lastId);
-                if ($this->input->post('action') == 'exit')
+                }
+                if ($this->input->post('action') == 'exit') {
                     pjax('/admin/components/init_window/trash');
+                }
             }
         }
     }

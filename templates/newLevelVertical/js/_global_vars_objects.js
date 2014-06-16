@@ -14,10 +14,6 @@ var optionsMenu = {
     duration: 200,
     drop: '.frame-item-menu > .frame-drop-menu',
     //direction: 'left', //when menu place left and drop go to right (if vertical menu)
-    countColumn: 5, //if not drop-side
-
-    //sub2Frame: '.frame-l2', //if drop-side
-    //dropWidth: 475, //if not define than will be actual width needs when drop-side
 
     //if need column partition level 2
     columnPart: true,
@@ -25,7 +21,7 @@ var optionsMenu = {
     //if need column partition level 3
     columnPart2: true,
     columnClassPref2: 'column2_',
-    maxC: 5,
+    maxC: 3,
     effectOn: 'slideDown',
     effectOff: 'slideUp',
     effectOnS: 'fadeIn',
@@ -45,8 +41,14 @@ var optionsMenu = {
     parentTl: '.frame-l2', //prev a level 2
     otherPage: hrefCategoryProduct, //for product [undefined or value not other]
 
-    vertical: false
+    vertical: true
 };
+if (typeMenu === 'col')
+    optionsMenu.countColumn = 5; //if not drop-side
+if (typeMenu === 'row') {
+    optionsMenu.sub2Frame = '.frame-l2'; //if drop-side
+    optionsMenu.dropWidth = 475; //if not define than will be actual width needs when drop-side
+}
 var scrollPane = {
     animateScroll: true,
     showArrows: true,
@@ -120,7 +122,7 @@ var imageCmsApiDefaults = {
         form.find('[for="' + name + '"]').remove();
         return '<label for="' + name + '" class="for_validations ' + classN + '">' + text + '</label>';
     }
-// callback (callback accept (msg, status, form, DS)) where DS - imageCmsApiDefaults and "any other" ex. report_appereance has drop:".drop-report" if callback return true form hide 
+// callback (callback accept (msg, status, form, DS)) where DS - imageCmsApiDefaults and "any other" ex. report_appereance has drop:".drop-report" if callback return true form hide
 // any other
 };
 var icons = {

@@ -182,7 +182,7 @@ function ChangeSortActive(el, sortId)
         sortId: sortId,
         status: currentActiveStatus
     }, function(data) {
-        
+
         $('.notifications').append(data)
         if (currentActiveStatus == 'true')
         {
@@ -217,8 +217,8 @@ function translite_title(from, to)
     var url = base_url + 'admin/pages/ajax_translit/';
     $.post(
             url, {
-        'str': $(from).val()
-    }, function(data)
+                'str': $(from).val()
+            }, function(data)
 
     {
         $(to).val(data);
@@ -233,8 +233,8 @@ function create_description(from, to)
 
     $.post(
             base_url + 'admin/pages/ajax_create_description/', {
-        'text': $(from).val()
-    },
+                'text': $(from).val()
+            },
     function(data) {
         $(to).val(data);
     }
@@ -268,46 +268,48 @@ function ajax_div(target, url)
 }
 
 //submit form
-$('.formSubmit').live('click', function() {
+$('form input[type="submit"], form button[type="submit"]').off('click.validate').on('click.validate', function(e) {
+    var form = $(this).closest('form');
+
+    form.validate();
+    if (!form.valid())
+        e.preventDefault();
+});
+$('body').off('click.validate').on('click.validate', '.formSubmit', function() {
 
     //        collectMCEData();
     //update content in textareas with elRTE
-    $this = $(this);
+    var $this = $(this);
 
     if ($('.workzone textarea.elRTE').length)
         $('.workzone textarea.elRTE').elrte('updateSource');
 
-    var btn = this;
+    var selector = $this.attr('data-form');
+    var action = $this.data('action');
+    var data = $this.data('adddata');
 
-    var selector = $(this).attr('data-form');
-    var action = $(this).data('action');
     $(selector).validate()
     if ($(selector).valid())
     {
         $('#loading').fadeIn(100);
         var options = {
-            //                target: '.notifications',
-            beforeSubmit: function(formData) {
-                formData.push({
-                    name: "action",
-                    value: action
-                });
-
-            },
+            data: $.extend({
+                "action": action
+            }, eval('(' + data + ')')),
             success: function(data) {
                 $('#loading').fadeOut(100);
                 var resp = document.createElement('div');
                 resp.innerHTML = data;
                 $(resp).find('p').remove();
                 $('.notifications').append(resp);
-                $(btn).removeClass('disabled').attr('disabled', false);
+                $this.removeClass('disabled').attr('disabled', false);
                 return true;
             }
         };
         $(selector).ajaxSubmit(options);
     }
     else
-        $(this).removeClass('disabled').attr('disabled', false);
+        $this.removeClass('disabled').attr('disabled', false);
     return false;
 });
 
@@ -923,9 +925,26 @@ var orders = new Object({
             });
 
             if ($.exists('#productNumber')) {
+
                 $('#productNumber').autocomplete({
-                    minChars: 0,
-                    source: '/admin/components/run/shop/orders/ajaxGetProductList/number' + $('#productNumber').val(),
+                    minChars: 1,
+                    source: function(request, callback) {
+                        var data = {
+                            term: request.term,
+                            noids: (function() {
+                                var productIds = [];
+                                $('#productsInCart tbody tr td:first-child a').each(function() {
+                                    var pid = $(this).attr('href').split('/').pop();
+                                    if (!isNaN(pid))
+                                        productIds.push(pid);
+                                });
+                                return productIds;
+                            })()
+                        };
+                        $.get('/admin/components/run/shop/orders/ajaxGetProductList/number', data, function(response) {
+                            callback(response);
+                        }, 'json');
+                    },
                     select: function(event, ui) {
                         productName = ui.item.name;
                         pNumber = ui.item.number;
@@ -970,7 +989,7 @@ var orders = new Object({
             });
         });
         $('.modal').modal('show');
-        $('#addToCartConfirm').live('click', function() {
+        $('#addToCartConfirm').on('click', function() {
             if ($('.modal form').valid())
                 $('.modal').modal('hide');
         });
@@ -981,7 +1000,7 @@ var orders = new Object({
     },
     refreshTotalPrice: function(dmId)
     {
-        deliveryPrice = deliveryPrices[dmId];
+        var deliveryPrice = deliveryPrices[dmId];
         if (deliveryPrice === undefined)
             deliveryPrice = 0;
         var totalPrice = deliveryPrice + productsAmount - giftPrice;
@@ -1041,7 +1060,7 @@ var orders = new Object({
                     price = parseFloat(productVariants[i]['price']).toFixed(2);
                     $("#variantsForOrders").append($('<option data-stock=' + productVariants[i]['stock'] + ' data-price=' + price + ' data-variantName=\'' + variantName +
                             '\' data-productId=' + productId + ' data-productName=\'' + productName + '\' data-productCurrency=' + curr + ' data-variantId=' + productVariants[i]['id'] +
-                            ' value=' + productVariants[i]['id'] + ' data-orig_price="'+productVariants[i]['origPrice']+'">' + variantName + separate + price + ' ' + curr + '</option>'));
+                            ' value=' + productVariants[i]['id'] + ' data-orig_price="' + productVariants[i]['origPrice'] + '">' + variantName + separate + price + ' ' + curr + '</option>'));
 
                     $($('#variantsForOrders').find('option')[0]).trigger('click');
                     $('#variantsForOrders').trigger('change');
@@ -1057,12 +1076,12 @@ var orders = new Object({
 
         if (data.variantname != 'noName') {
             variantName = data.variantname;
-            if(!data.variantname){
+            if (!data.variantname) {
                 variantName = '-';
             }
-            
+
         }
-        
+
         clonedElement.find('.variantCartName').html(variantName);
         clonedElement.find('.productCartName').html(data.productname);
         clonedElement.find('.productCartPrice').html(parseFloat(data.price).toFixed(2));

@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-12 11:19+0300\n"
-"PO-Revision-Date: 2014-05-12 11:19+0300\n"
+"POT-Creation-Date: 2014-05-16 05:14+0300\n"
+"PO-Revision-Date: 2014-05-16 05:14+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -17,6 +17,10 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/comments/assets/comments_api.tpl:8
+msgid "Customer comments"
+msgstr "Комментарии пользователей"
 
 #: ./application/modules/comments/templates/recent_product_comments_form.tpl:11
 #: ./application/modules/comments/templates/edit.tpl:13
@@ -155,10 +159,6 @@ msgstr "Редактирование комментария"
 #: ./application/modules/comments/assets/comments_api.tpl:3
 msgid "Only authorized users can leave comments."
 msgstr "Только авторизованные пользователи могут оставлять комментарии"
-
-#: ./application/modules/comments/assets/comments_api.tpl:8
-msgid "Customer comments"
-msgstr "Отзывы пользователя"
 
 #: ./application/modules/comments/assets/comments_api.tpl:28
 #: ./application/modules/comments/assets/comments_api.tpl:163

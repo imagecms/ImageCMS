@@ -200,7 +200,7 @@ class Admin extends BaseAdminController {
             $js_content = '<script>' . PHP_EOL;
             foreach ($langs as $langArray) {
                 foreach ($langArray as $origin) {
-                    $js_content .='langs["' . mb_ereg_replace('([\s]+{.*?})', "<?php echo '\\0'?>", $origin) . '"] = \'<?php echo lang("' . $origin . '", "' . $domain . '")?>\';' . PHP_EOL;
+                    $js_content .='langs["' . mb_ereg_replace('([\s]+{.*?})', "<?php echo '\\0'?>", $origin) . '"] = \'<?php echo lang("' . $origin . '", "' . $domain . '", FALSE)?>\';' . PHP_EOL;
                 }
             }
             $js_content .='</script>';
@@ -290,9 +290,8 @@ class Admin extends BaseAdminController {
 
         $result = $this->poFileManager->toArray($module_template, $type, $lang);
         $currentLangs = $result['po_array'];
-//        var_dumps_exit();
         
-        if(!$currentLangs){
+        if(!$currentLangs && !$returnArray){
             return json_encode(array('error' => TRUE, 'data' => lang('Update and save translation file befor this action.', 'translator')));
         }
 
@@ -598,11 +597,11 @@ class Admin extends BaseAdminController {
      */
     public function getLangaugesNames() {
         $languages = get_language_names();
-        $language = strtolower($this->input->get('term'));
+        $language = mb_strtolower($this->input->get('term'));
         $data = array();
 
         foreach ($languages as $key => $lang) {
-            if (strstr(strtolower($lang), $language) && $language != 'all_languages') {
+            if (strstr(mb_strtolower($lang), $language) && $language != 'all_languages') {
                 $data[] = array('locale' => $key, 'label' => $lang);
             } elseif ($language == 'all_languages') {
                 $data[] = array('locale' => $key, 'label' => $lang);

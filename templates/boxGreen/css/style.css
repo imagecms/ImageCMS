@@ -383,7 +383,7 @@ input.input-search{height: 31px;padding-left: 34px;}
 .title-product{margin-bottom: 16px;}
 .title-product .frame-title{margin-right: 15px;}
 .items-thumbs.items > li > a{display: block;font-size: 0;}
-.items-thumbs .photo-block{width: 62px;height: 60px;}
+.items-thumbs .photo-block{width: 62px;height: 58px;}
 .fancy-gallery{max-width: 320px;margin: 0 auto;}
 .fancy-gallery .items-thumbs{margin: auto;overflow: hidden;width: auto;display: inline-block;height: 60px;}
 
@@ -395,9 +395,8 @@ input.input-search{height: 31px;padding-left: 34px;}
 .horizontal-carousel .frame-thumbs .group-button-carousel .next{right: -25px;}
 .horizontal-carousel .frame-thumbs .group-button-carousel .prev{left: -25px;}
 .items-thumbs{margin: auto;text-align: left !important;}
-.items-thumbs.items li{width: 64px !important;height: 60px !important;margin-left: 0;}
+.items-thumbs.items li{width: 64px !important;height: 58px !important;margin-left: 5px;}
 .items-thumbs.items{margin-left: -5px;}
-.items-thumbs.items li{margin-left: 5px;}
 .carousel-js-css .items-thumbs.items{margin-left: 0;}
 .carousel-js-css .items-thumbs.items li{margin: 1px 0;}
 /*/if carousel*/
@@ -684,18 +683,8 @@ input.input-search{height: 31px;padding-left: 34px;}
 li[class*="x"] > .title-category-l1{width: 100%;text-align: center;display: block;}
 
 /*start_page category*/
-.frame-start-page-category-menu{position: relative;z-index: 1;overflow: hidden;margin-bottom: 28px;}
-.start-page-category-menu{margin-left: -20px;padding: 24px 0 15px;}
-.start-page-category-menu > li{margin-bottom: 20px;}
-.start-page-category-menu a{text-decoration: none;}
-.start-page-category-menu > li > a{display: block;margin-bottom: 6px;}
-.start-page-category-menu > li .photo-block{display: block;margin:0;width: 95px;height: 77px;padding: 5px;margin-bottom: 15px;}
-.start-page-category-menu > li .title{padding-left: 1px;border-bottom: 0;}
-.start-page-category-menu > li{width: 180px;margin-left: 20px;}
-.start-page-category-menu > li .sub-category > li{white-space: nowrap;text-overflow: ellipsis;overflow: hidden;width: 100%;}
-
 .sub-category{max-height: 81px;overflow: hidden;padding-left: 1px;}
-.sub-category > li{padding-bottom: 7px;}
+.sub-category > li{padding-bottom: 6px;}
 /*/start_page category*/
 
 /*category-first*/
@@ -792,8 +781,9 @@ li[class*="x"] > .title-category-l1{width: 100%;text-align: center;display: bloc
 .help-block p{margin-bottom: 0;}
 .must{position: absolute;left: 100%;top: 5px;margin-left: 2px;}
 form .f_r + .o_h, form .f_l + .o_h{position: relative;}
-form .f_r + .o_h{padding-right: 5px;}
+form .f_r + .o_h{padding-right: 8px;}
 form .f_l + .o_h{padding-left: 5px;}
+form .f_r + .o_h .must{margin-left: -8px;}
 
 .layout-highlight{margin-bottom: 20px;}
 .msg{margin-bottom: 15px;overflow: hidden;text-align: left;}
@@ -860,7 +850,7 @@ input + .msg{margin-top: 5px;}
 .frames-checks-sliders .title{padding: 6px 12px 9px;}
 .frame-slider .title{margin-right: -15px;margin-left: -11px;}
 
-.slider-cont{margin: 31px 0 19px;position: relative;}
+.slider-cont{margin: 31px 0 19px 10px;position: relative;}
 .slider {position: relative;height: 5px;}
 .left-slider{margin-left: -11px;}
 .right-slider{margin-left: -11px;}
@@ -1046,7 +1036,7 @@ td.frame-cur-sum-price {vertical-align: middle;padding-left: 10px;padding-right:
 .right-compare .group-button-carousel > .next{right: -50px;}
 .right-compare .content-carousel{overflow: hidden;}
 .tabs-compare-diferent{margin-left: 250px;display: block;}
-.tabs-compare-category{display: block;height: 80%;overflow: auto;}
+.tabs-compare-category{display: block;height: 80%;overflow: hidden;overflow-y: auto;}
 .frame-tabs-compare{overflow: visible;}
 .frame-tabs-compare > div{padding-bottom: 20px;}
 .frame-tabs-compare > div:first-child{display: none;}
@@ -1122,7 +1112,10 @@ footer .box-5{max-width: 179px;}
 
 .drop-content .inside-padd{padding: 22px 43px 17px 10px;}
 .drop-enter .drop-content .inside-padd, .drop-order-call .drop-content .inside-padd, .drop-report .drop-content .inside-padd{padding: 22px 43px 7px 10px;}
+.drop-enter .drop-content .inside-padd{padding-bottom: 0;}
 .drop-footer .inside-padd{padding: 9px 23px 9px 10px;}
+.drop-footer-style{margin: 0 -43px 0 -10px;}
+.drop-footer-style .inside-padd{padding-top: 17px !important;}
 .drop-content-notification .inside-padd.notification{padding: 12px 24px 1px 24px;}
 .drop-content-confirm .inside-padd{padding: 15px 35px;}
 .drop-content-confirm [class*="btn-"]:first-child{margin-right: 10px;}

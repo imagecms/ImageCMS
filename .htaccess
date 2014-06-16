@@ -25,7 +25,7 @@ ExpiresByType text/html "access 1 year"
 </IfModule>
 
 RewriteRule ^(.*)\.tpl$ [R=404]
-RewriteRule ^(.*)\.zip$ [R=404]
+RewriteRule ^(.*)backups(.*)\.zip$ [R=404]
 
 RewriteCond $1 !^(index\.php|user_guide|uploads/.*|favicon\.ico|docs|favicon\.png|captcha/.*|application/modules/.*/templates|application/modules/.*/assets/js|application/modules/.*/assets/css|application/modules/.*/assets/images|CHANGELOG.xml|templates|js|robots\.txt)
 RewriteRule ^(.*)$ /index.php/$1 [L]

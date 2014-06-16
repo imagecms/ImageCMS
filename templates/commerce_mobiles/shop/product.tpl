@@ -43,7 +43,6 @@
                                onclick="$(this).closest('form').submit();
                                        return false;">
                                 <span class="helper"></span>
-                                <!--<span class="v-a_m">Купить</span>-->
                                 <span class="v-a_m">{lang('Купить','commerce_mobiles')}</span>
                             </a>
                             <input type="hidden" name="productId" value="{echo $model->getId()}" />

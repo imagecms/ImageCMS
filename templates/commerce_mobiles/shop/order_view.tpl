@@ -6,7 +6,7 @@
 {$cartPrice = $model->gettotalprice()}
 {$discount = ShopCore::app()->SCurrencyHelper->convert($model->getdiscount())}
 <div class="content_head">
-    <h1>Заказ №{echo $model->getId()}</h1>
+    <h1>{lang('Заказ','commerce_mobiles')} №{echo $model->getId()}</h1>
     {if $CI->session->flashdata('makeOrder') === true}<h2>{lang('Спасибо за Ваш заказ','commerce_mobiles')}.</h2>{/if}
 </div>
 <table class="tableOrderData">
@@ -113,7 +113,7 @@
                         <span class="code">{lang('Артикул', 'commerce_mobiles')}: {echo $variant->getNumber()}</span>
                     {/if}
                     <span class="d_b price">{echo $item->getPrice()} {$CS}</span>
-                    <span class="count">{echo $item->getQuantity()} шт.</span>
+                    <span class="count">{echo $item->getQuantity()} {lang('шт.', 'commerce_mobiles')}</span>
                 </span>
             </div>
         </li>

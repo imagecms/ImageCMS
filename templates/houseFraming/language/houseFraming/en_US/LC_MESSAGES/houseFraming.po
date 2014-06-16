@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-21 05:41+0400\n"
-"PO-Revision-Date: 2014-01-21 05:41+0400\n"
+"POT-Creation-Date: 2014-06-05 11:24+0300\n"
+"PO-Revision-Date: 2014-06-05 11:24+0300\n"
 "Last-Translator:  \n"
 "Language-Team:  \n"
 "Language: en_US\n"
@@ -11,132 +11,9 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
-"X-Poedit-Basepath: ../../..\n"
+"X-Poedit-Basepath: ../../../..\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Generator: Poedit 1.5.7\n"
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
-"X-Poedit-SearchPath-1: ..\n"
-
-#: ./templates/houseFraming./404.tpl:7
-msgid "Error 404"
-msgstr ""
-
-#: ./templates/houseFraming./404.tpl:8
-msgid "Page not found"
-msgstr ""
-
-#: ./templates/houseFraming./category.tpl:12
-#: ./templates/houseFraming./services.tpl:16
-msgid "More Info"
-msgstr ""
-
-#: ./templates/houseFraming./feedback/feedback.tpl:7
-#: ./templates/houseFraming./main.tpl:75
-msgid "Contact Us"
-msgstr ""
-
-#: ./templates/houseFraming./feedback/feedback.tpl:15
-msgid "Name"
-msgstr ""
-
-#: ./templates/houseFraming./feedback/feedback.tpl:19
-#: ./templates/houseFraming./forgot_password.tpl:12
-#: ./templates/houseFraming./login.tpl:12
-msgid "E-mail"
-msgstr ""
-
-#: ./templates/houseFraming./feedback/feedback.tpl:23
-msgid "Subject"
-msgstr ""
-
-#: ./templates/houseFraming./feedback/feedback.tpl:28
-msgid "Protection code"
-msgstr ""
-
-#: ./templates/houseFraming./feedback/feedback.tpl:33
-#: ./templates/houseFraming./forgot_password.tpl:16
-msgid "Send"
-msgstr ""
-
-#: ./templates/houseFraming./feedback/feedback.tpl:41
-msgid "Find Us Here"
-msgstr ""
-
-#: ./templates/houseFraming./forgot_password.tpl:4
-msgid "Forgot Password"
-msgstr ""
-
-#: ./templates/houseFraming./login.tpl:4
-#: ./templates/houseFraming./login.tpl:20
-msgid "Log in"
-msgstr ""
-
-#: ./templates/houseFraming./login.tpl:16
-#: ./templates/houseFraming./register.tpl:20
-#: ./templates/houseFraming./sidebars/sidebar_form.tpl:21
-msgid "Password"
-msgstr ""
-
-#: ./templates/houseFraming./register.tpl:4
-msgid "Register"
-msgstr ""
-
-#: ./templates/houseFraming./register.tpl:12
-#: ./templates/houseFraming./sidebars/sidebar_form.tpl:17
-msgid "User E-mail"
-msgstr ""
-
-#: ./templates/houseFraming./register.tpl:16
-msgid "User Name"
-msgstr ""
-
-#: ./templates/houseFraming./register.tpl:24
-msgid "Confirm Password"
-msgstr ""
-
-#: ./templates/houseFraming./sidebars/sidebar_form.tpl:6
-msgid "Member Profile"
-msgstr ""
-
-#: ./templates/houseFraming./sidebars/sidebar_form.tpl:8
-msgid "Member Login"
-msgstr ""
-
-#: ./templates/houseFraming./sidebars/sidebar_form.tpl:12
-msgid "Hello,"
-msgstr ""
-
-#: ./templates/houseFraming./sidebars/sidebar_form.tpl:13
-msgid "Log Out"
-msgstr ""
-
-#: ./templates/houseFraming./sidebars/sidebar_form.tpl:27
-msgid "Forgot Password ?"
-msgstr ""
-
-#: ./templates/houseFraming./sidebars/sidebar_form.tpl:30
-msgid "Free registration"
-msgstr ""
-
-#: ./templates/houseFraming./sidebars/sidebar_form.tpl:30
-msgid "Click here"
-msgstr ""
-
-#: ./templates/houseFraming./sidebars/sidebar_menu.tpl:3
-msgid "Services"
-msgstr ""
-
-#: ./templates/houseFraming./widgets/last_images.tpl:2
-msgid "Projects"
-msgstr ""
-
-#: ./templates/houseFraming./feedback/feedback.tpl:30
-msgid "Your message has been sent."
-msgstr ""
-
-#: ./templates/houseFraming./main.tpl:59
-msgid "Location"
-msgstr ""
-

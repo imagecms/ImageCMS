@@ -1,5 +1,8 @@
 <?php
 
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
+
 /**
  * @property CI_DB_active_record $db
  * @property DX_Auth $dx_auth
@@ -133,7 +136,7 @@ class Sitemap_model extends CI_Model {
      * @return array
      */
     public function get_shop_categories() {
-        $this->db->select('full_path, parent_id');
+//        $this->db->select('full_path, parent_id');
         $this->db->where('active', 1);
         $result = $this->db->get('shop_category');
 
@@ -145,7 +148,7 @@ class Sitemap_model extends CI_Model {
      * @return array
      */
     public function get_shop_brands() {
-        $this->db->select('url');
+//        $this->db->select('url');
         $result = $this->db->get('shop_brands');
 
         return $this->returnData($result);

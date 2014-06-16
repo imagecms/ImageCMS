@@ -1,12 +1,22 @@
 <!--    menu-row-category || menu-col-category-->
-<div class="menu-main not-js menu-row-category">
-    <nav>
-        <table>
-            <tbody>
-                <tr>
-                    {$wrapper}
-                </tr>
-            </tbody>
-        </table>
-    </nav>
+{$openLevels = getOpenLevels()}
+{if $openLevels}
+    {if $openLevels == 'all'}
+        {$menuClass = 'menu-col-category'}
+    {else:}
+        {$menuClass = 'menu-row-category'}
+    {/if}
+{else:}
+    {$menuClass = 'menu-row-category'}
+{/if}
+<div class="menu-main not-js {$menuClass}">
+  <nav>
+    <table>
+      <tbody>
+        <tr>
+          {$wrapper}
+       </tr>
+    </tbody>
+ </table>
+</nav>
 </div>

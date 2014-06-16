@@ -1,0 +1,1575 @@
+﻿msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-06-04 12:59+0400\n"
+"PO-Revision-Date: 2014-06-04 12:59+0400\n"
+"Last-Translator:  <>\n"
+"Language-Team:  <>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
+"X-Poedit-Basepath: ../../../..\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-Language: \n"
+"X-Poedit-Country: \n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: .\n"
+"X-Poedit-SearchPath-2: .\n"
+"X-Poedit-SearchPath-3: .\n"
+"X-Poedit-SearchPath-4: .\n"
+
+#: ./templates/newLevelVertical/404.tpl:10
+msgid "Приносим свои извинения за доставленные неудобства. Для продолжения работы вы можете перейти к представленным пунктам меню, воспользоваться  поиском по сайту либо перейти на"
+msgstr ""
+
+#: ./templates/newLevelVertical/wishlist/wishPopup.tpl:5
+msgid "Выбор cписка  желаний"
+msgstr ""
+
+#: ./templates/newLevelVertical/components/TColorScheme/assets/admin/main.tpl:6
+#: ./templates/newLevelVertical/components/TColorScheme/TColorScheme.php:94
+msgid "Color scheme"
+msgstr "Цветовая схема"
+
+#: ./templates/newLevelVertical/components/TColorScheme/assets/admin/main.tpl:21
+#: ./templates/newLevelVertical/components/TMenuColumn/assets/admin/main.tpl:103
+#: ./templates/newLevelVertical/components/TProperties/assets/admin/main.tpl:4
+msgid "Save"
+msgstr "Сохранить"
+
+#: ./templates/newLevelVertical/components/TMenuColumn/assets/admin/main.tpl:8
+msgid "Category"
+msgstr "Категория"
+
+#: ./templates/newLevelVertical/components/TMenuColumn/assets/admin/main.tpl:9
+msgid "Show in column"
+msgstr "Отображать в колонке"
+
+#: ./templates/newLevelVertical/components/TMenuColumn/assets/admin/main.tpl:14
+msgid "Open second level"
+msgstr "Открыт второй уровень"
+
+#: ./templates/newLevelVertical/components/TMenuColumn/assets/admin/main.tpl:15
+msgid "Open all levels"
+msgstr "Открытые все уровни"
+
+#: ./templates/newLevelVertical/components/TMenuColumn/assets/admin/main.tpl:25
+#: ./templates/newLevelVertical/components/TMenuColumn/assets/admin/main.tpl:51
+msgid "Toggle this category"
+msgstr "Скрыть подкатегории"
+
+#: ./templates/newLevelVertical/components/TMenuColumn/assets/admin/main.tpl:28
+#: ./templates/newLevelVertical/components/TMenuColumn/assets/admin/main.tpl:54
+msgid "Expand Category"
+msgstr "Показать подкатегории"
+
+#: ./templates/newLevelVertical/components/TMenuColumn/assets/admin/main.tpl:32
+#: ./templates/newLevelVertical/components/TMenuColumn/assets/admin/main.tpl:58
+#: ./templates/newLevelVertical/components/TMenuColumn/assets/admin/main.tpl:78
+msgid "Editing category"
+msgstr "Редактирование категории"
+
+#: ./templates/newLevelVertical/components/TMenuColumn/TMenuColumn.php:163
+msgid "Menu Column"
+msgstr "Колонки меню"
+
+#: ./templates/newLevelVertical/components/TOpi/TOpi.php:45
+msgid "One Product Item component"
+msgstr ""
+
+#: ./templates/newLevelVertical/components/TProperties/assets/admin/main.tpl:2
+msgid "Start typing property name here"
+msgstr "Начните вводить имя свойства здесь"
+
+#: ./templates/newLevelVertical/components/TProperties/assets/admin/main.tpl:13
+msgid "Id"
+msgstr ""
+
+#: ./templates/newLevelVertical/components/TProperties/assets/admin/main.tpl:16
+msgid "Name"
+msgstr "Имя"
+
+#: ./templates/newLevelVertical/components/TProperties/assets/admin/main.tpl:19
+msgid "Type"
+msgstr "Тип"
+
+#: ./templates/newLevelVertical/components/TProperties/TProperties.php:123
+msgid "Properties"
+msgstr "Свойства"
+
+#: ./templates/newLevelVertical/category_menu_first/level_1/item_default.tpl:8
+#: ./templates/newLevelVertical/category_menu_first/level_1/item_default_active.tpl:9
+#: ./templates/newLevelVertical/category_menu_second/level_2/item_default.tpl:8
+msgid "Нет фото"
+msgstr ""
+
+#: ./templates/newLevelVertical/comments/comments_api.tpl:151
+msgid "Текст комментария"
+msgstr ""
+
+#: ./templates/newLevelVertical/main_demo.tpl:139
+msgid "Купить лицензию"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/cart_order.tpl:270
+#: ./templates/newLevelVertical/shop/order_view.tpl:479
+msgid "К оплате"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/cart_popup.tpl:233
+msgid "Для некоторых скидок превышено их максимальное количество использования"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/compare_data.tpl:32
+#: ./templates/newLevelVertical/shop/wish_list_data.tpl:24
+msgid "Ваш список"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/compare_data.tpl:33
+msgid "Список сравнения"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/compare_data.tpl:33
+#: ./templates/newLevelVertical/shop/wish_list_data.tpl:25
+msgid "пуст"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/order_view.tpl:25
+msgid "Спасибо, ваш заказ принят!"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/order_view.tpl:25
+msgid "Наши менеджеры свяжутся с вами."
+msgstr ""
+
+#: ./templates/newLevelVertical/smart_filter/filter.tpl:7
+msgid "Цена"
+msgstr ""
+
+#: ./templates/newLevelVertical/smart_filter/main.tpl:7
+msgid "Цена от"
+msgstr ""
+
+#: ./templates/newLevelVertical/smart_filter/main.tpl:7
+msgid "до"
+msgstr ""
+
+#: ./templates/newLevelVertical/category_menu/error.tpl:12
+#: ./templates/newLevelVertical/category_menu_first/error.tpl:12
+#: ./templates/newLevelVertical/category_menu_second/error.tpl:12
+#: ./templates/newLevelVertical/footer_category_menu/error.tpl:12
+#: ./templates/newLevelVertical/left_menu/error.tpl:12
+#: ./templates/newLevelVertical/top_menu/error.tpl:12
+msgid "Внимание"
+msgstr ""
+
+#: ./templates/newLevelVertical/category_menu_first/error.tpl:13
+#: ./templates/newLevelVertical/category_menu_second/error.tpl:13
+#: ./templates/newLevelVertical/top_menu/error.tpl:13
+msgid "Не обнаружен необходимый файл шаблона для меню"
+msgstr ""
+
+#: ./templates/newLevelVertical/category_menu/error.tpl:21
+#: ./templates/newLevelVertical/category_menu_first/error.tpl:21
+#: ./templates/newLevelVertical/category_menu_second/error.tpl:21
+#: ./templates/newLevelVertical/footer_category_menu/error.tpl:21
+#: ./templates/newLevelVertical/left_menu/error.tpl:21
+#: ./templates/newLevelVertical/top_menu/error.tpl:21
+msgid "Проверьте наличие файла или измените настройки меню"
+msgstr ""
+
+#: ./templates/newLevelVertical/category_menu/error.tpl:23
+#: ./templates/newLevelVertical/category_menu_first/error.tpl:23
+#: ./templates/newLevelVertical/category_menu_second/error.tpl:23
+#: ./templates/newLevelVertical/footer_category_menu/error.tpl:23
+#: ./templates/newLevelVertical/left_menu/error.tpl:23
+msgid "Переустановите модуль меню "
+msgstr ""
+
+#: ./templates/newLevelVertical/category_menu_first/level_2/container.tpl:7
+#: ./templates/newLevelVertical/comments/comments_api.tpl:110
+#: ./templates/newLevelVertical/main_demo.tpl:129
+msgid "Скрыть"
+msgstr ""
+
+#: ./templates/newLevelVertical/404.tpl:8
+msgid "Страница не найдена"
+msgstr ""
+
+#: ./templates/newLevelVertical/404.tpl:9
+msgid "Эта страница не существует или была удалена."
+msgstr ""
+
+#: ./templates/newLevelVertical/404.tpl:12
+msgid "Перейти на главную страницу"
+msgstr ""
+
+#: ./templates/newLevelVertical/category.tpl:9
+msgid "Категория на стадии разработки"
+msgstr ""
+
+#: ./templates/newLevelVertical/footer.tpl:39
+#: ./templates/newLevelVertical/footer.tpl:39
+#: ./templates/newLevelVertical/login.tpl:5
+#: ./templates/newLevelVertical/shop/auth_data.tpl:11
+msgid "Вход"
+msgstr ""
+
+#: ./templates/newLevelVertical/login.tpl:12
+#: ./templates/newLevelVertical/login_popup.tpl:19
+msgid "Почта"
+msgstr ""
+
+#: ./templates/newLevelVertical/login.tpl:19
+#: ./templates/newLevelVertical/login_popup.tpl:26
+msgid "Пароль"
+msgstr ""
+
+#: ./templates/newLevelVertical/comments/comments_api.tpl:4
+#: ./templates/newLevelVertical/login.tpl:36
+#: ./templates/newLevelVertical/login_popup.tpl:43
+#: ./templates/newLevelVertical/register.tpl:65
+#: ./templates/newLevelVertical/register_popup.tpl:62
+msgid "Войти"
+msgstr ""
+
+#: ./templates/newLevelVertical/forgot_password.tpl:5
+#: ./templates/newLevelVertical/login.tpl:41
+#: ./templates/newLevelVertical/login_popup.tpl:48
+msgid "Забыли Пароль?"
+msgstr ""
+
+#: ./templates/newLevelVertical/forgot_password.tpl:40
+#: ./templates/newLevelVertical/login.tpl:49
+#: ./templates/newLevelVertical/login_popup.tpl:56
+msgid "Я еще не зарегистрирован"
+msgstr ""
+
+#: ./templates/newLevelVertical/forgot_password.tpl:41
+#: ./templates/newLevelVertical/login.tpl:50
+#: ./templates/newLevelVertical/login_popup.tpl:57
+msgid "Перейти к регистрации"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/brands_images.tpl:8
+#: ./templates/newLevelVertical/shop/brands_list.tpl:8
+msgid "Все бренды магазина"
+msgstr ""
+
+#: ./templates/newLevelVertical/header.tpl:41
+#: ./templates/newLevelVertical/shop/callback.tpl:5
+msgid "Заказать звонок"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/callback.tpl:18
+#: ./templates/newLevelVertical/shop/cart.tpl:60
+msgid "Имя: "
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/callback.tpl:25
+msgid "Телефон: "
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/callback.tpl:32
+msgid "Комментарий: "
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/callback.tpl:42
+msgid "Позвоните мне"
+msgstr ""
+
+#: ./templates/newLevelVertical/comments/comments_api.tpl:137
+#: ./templates/newLevelVertical/shop/profile_data.tpl:7
+msgid "Ваше имя"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/profile_data.tpl:10
+msgid "Не меньше 4-х символов"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/cart.tpl:69
+#: ./templates/newLevelVertical/shop/order_view.tpl:48
+#: ./templates/newLevelVertical/shop/profile_data.tpl:14
+msgid "Телефон"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/profile_data.tpl:24
+msgid "E-mail является логином"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/order_view.tpl:89
+#: ./templates/newLevelVertical/shop/profile_data.tpl:29
+msgid "Адрес"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/profile_data.tpl:38
+msgid "Сохранить данные"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/profile_data.tpl:54
+msgid "Скидки"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/profile_data.tpl:60
+msgid "Товаров на сумму"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/cart_order.tpl:212
+#: ./templates/newLevelVertical/shop/cart_popup.tpl:194
+#: ./templates/newLevelVertical/shop/order_view.tpl:438
+#: ./templates/newLevelVertical/shop/profile_data.tpl:70
+#: ./templates/newLevelVertical/shop/profile_data.tpl:94
+msgid "Ваша текущая скидка"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/profile_data.tpl:78
+msgid "Ваша текущая скидка группы пользователей"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/profile_data.tpl:105
+msgid "Для следующей скидки"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/profile_data.tpl:105
+msgid "осталось"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/profile_data.tpl:106
+msgid "cделать покупки на сумму"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/profile_data.tpl:111
+msgid "Посмотреть таблицу скидок"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/profile_data.tpl:123
+msgid "Накопительные скидки"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/profile_data.tpl:130
+msgid "Размер скидки"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/profile_data.tpl:131
+msgid "От"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/profile_data.tpl:132
+msgid "До"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/profile_data.tpl:140
+msgid "Бесконечно"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/cart.tpl:12
+#: ./templates/newLevelVertical/shop/cart_data.tpl:16
+msgid "Корзина пуста"
+msgstr ""
+
+#: ./templates/newLevelVertical/config.js.tpl:71
+#: ./templates/newLevelVertical/shop/brand.tpl:33
+#: ./templates/newLevelVertical/shop/cart_data.tpl:33
+#: ./templates/newLevelVertical/shop/cart_popup.tpl:8
+#: ./templates/newLevelVertical/shop/category.tpl:30
+#: ./templates/newLevelVertical/shop/search.tpl:25
+#: ./templates/newLevelVertical/smart_filter/main.tpl:4
+msgid "товар"
+msgstr ""
+
+#: ./templates/newLevelVertical/config.js.tpl:71
+#: ./templates/newLevelVertical/shop/brand.tpl:33
+#: ./templates/newLevelVertical/shop/cart_data.tpl:33
+#: ./templates/newLevelVertical/shop/cart_popup.tpl:8
+#: ./templates/newLevelVertical/shop/category.tpl:30
+#: ./templates/newLevelVertical/shop/search.tpl:25
+#: ./templates/newLevelVertical/smart_filter/main.tpl:4
+msgid "товара"
+msgstr ""
+
+#: ./templates/newLevelVertical/config.js.tpl:71
+#: ./templates/newLevelVertical/shop/brand.tpl:33
+#: ./templates/newLevelVertical/shop/cart_data.tpl:33
+#: ./templates/newLevelVertical/shop/cart_popup.tpl:8
+#: ./templates/newLevelVertical/shop/category.tpl:30
+#: ./templates/newLevelVertical/shop/search.tpl:25
+#: ./templates/newLevelVertical/smart_filter/main.tpl:4
+msgid "товаров"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/category.tpl:38
+#: ./templates/newLevelVertical/shop/search.tpl:32
+msgid "Не найдено товаров"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/category.tpl:64
+#: ./templates/newLevelVertical/shop/search.tpl:60
+msgid "Категории"
+msgstr ""
+
+#: ./templates/newLevelVertical/footer.tpl:35
+#: ./templates/newLevelVertical/footer.tpl:35
+#: ./templates/newLevelVertical/shop/wish_list_data.tpl:7
+#: ./templates/newLevelVertical/shop/wish_list_data.tpl:25
+#: ./templates/newLevelVertical/wishlist/other_list.tpl:56
+#: ./templates/newLevelVertical/wishlist/wishlist.tpl:6
+msgid "Список желаний"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/wish_list_data.tpl:13
+msgid "Избранные"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/payments/default.tpl:3
+#: ./templates/newLevelVertical/shop/payments/radio.tpl:3
+msgid "Оплата:"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/cart.tpl:174
+#: ./templates/newLevelVertical/shop/payments/default.tpl:27
+#: ./templates/newLevelVertical/shop/payments/radio.tpl:32
+msgid "Оплата"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/payments/default.tpl:29
+#: ./templates/newLevelVertical/shop/payments/radio.tpl:34
+msgid "Нет способов оплаты"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/order_view.tpl:31
+msgid "Заказ №"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/order_view.tpl:43
+msgid "Имя получателя"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/order_view.tpl:55
+msgid "Дополнительный телефон"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/order_view.tpl:71
+msgid "Способ доставки"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/order_view.tpl:83
+msgid "Город"
+msgstr ""
+
+#: ./templates/newLevelVertical/paymentSystem/QIWI.tpl:29
+#: ./templates/newLevelVertical/shop/order_view.tpl:95
+msgid "Комментарий"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/order_view.tpl:108
+msgid "Дата заказа"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/order_view.tpl:115
+msgid "Способ оплаты"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/order_view.tpl:125
+msgid "Статус оплаты"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/order_view.tpl:128
+#: ./templates/newLevelVertical/shop/profile_history.tpl:39
+msgid "Оплачен"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/order_view.tpl:130
+#: ./templates/newLevelVertical/shop/profile_history.tpl:39
+msgid "Не оплачен"
+msgstr ""
+
+#: ./templates/newLevelVertical/components/TOpi/assets/one_product_item.tpl:59
+#: ./templates/newLevelVertical/shop/cart_order.tpl:25
+#: ./templates/newLevelVertical/shop/cart_order.tpl:100
+#: ./templates/newLevelVertical/shop/cart_popup.tpl:32
+#: ./templates/newLevelVertical/shop/cart_popup.tpl:117
+#: ./templates/newLevelVertical/shop/order_view.tpl:182
+#: ./templates/newLevelVertical/shop/product.tpl:44
+msgid "Вариант"
+msgstr ""
+
+#: ./templates/newLevelVertical/components/TOpi/assets/one_product_item.tpl:50
+#: ./templates/newLevelVertical/shop/cart_order.tpl:30
+#: ./templates/newLevelVertical/shop/cart_order.tpl:105
+#: ./templates/newLevelVertical/shop/cart_popup.tpl:37
+#: ./templates/newLevelVertical/shop/cart_popup.tpl:123
+#: ./templates/newLevelVertical/shop/order_view.tpl:183
+#: ./templates/newLevelVertical/shop/product.tpl:35
+msgid "Артикул"
+msgstr ""
+
+#: ./templates/newLevelVertical/config.js.tpl:65
+#: ./templates/newLevelVertical/shop/cart_order.tpl:40
+#: ./templates/newLevelVertical/shop/cart_order.tpl:119
+#: ./templates/newLevelVertical/shop/order_view.tpl:208
+#: ./templates/newLevelVertical/shop/order_view.tpl:336
+msgid "Кол-во"
+msgstr ""
+
+#: ./templates/newLevelVertical/config.js.tpl:64
+#: ./templates/newLevelVertical/shop/order_view.tpl:210
+#: ./templates/newLevelVertical/shop/order_view.tpl:338
+msgid "шт"
+msgstr ""
+
+#: ./templates/newLevelVertical/config.js.tpl:66
+#: ./templates/newLevelVertical/paymentSystem/QIWI.tpl:22
+#: ./templates/newLevelVertical/shop/cart_order.tpl:47
+#: ./templates/newLevelVertical/shop/cart_order.tpl:126
+#: ./templates/newLevelVertical/shop/cart_popup.tpl:8
+#: ./templates/newLevelVertical/shop/cart_popup.tpl:63
+#: ./templates/newLevelVertical/shop/cart_popup.tpl:152
+#: ./templates/newLevelVertical/shop/order_view.tpl:213
+#: ./templates/newLevelVertical/shop/order_view.tpl:341
+msgid "Сумма"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/cart_order.tpl:82
+#: ./templates/newLevelVertical/shop/order_view.tpl:251
+msgid "Комплект товаров"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/cart_order.tpl:165
+#: ./templates/newLevelVertical/shop/order_view.tpl:379
+msgid "Начальная стоимость товаров"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/cart_order.tpl:175
+#: ./templates/newLevelVertical/shop/order_view.tpl:395
+msgid "Cтоимость товаров"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/cart_order.tpl:185
+#: ./templates/newLevelVertical/shop/order_view.tpl:410
+msgid "Доставка"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/cart_order.tpl:200
+#: ./templates/newLevelVertical/shop/order_view.tpl:426
+msgid "Бесплатно"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/cart_order.tpl:224
+#: ./templates/newLevelVertical/shop/cart_order.tpl:235
+#: ./templates/newLevelVertical/shop/order_view.tpl:458
+msgid "Подарочный сертификат"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/compare_data.tpl:11
+msgid "Товары на сравнение"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/compare_data.tpl:19
+msgid "В сравнение"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/auth_data.tpl:15
+msgid "или"
+msgstr ""
+
+#: ./templates/newLevelVertical/footer.tpl:42
+#: ./templates/newLevelVertical/footer.tpl:42
+#: ./templates/newLevelVertical/register.tpl:5
+#: ./templates/newLevelVertical/register_popup.tpl:5
+#: ./templates/newLevelVertical/shop/auth_data.tpl:20
+msgid "Регистрация"
+msgstr ""
+
+#: ./templates/newLevelVertical/footer.tpl:32
+#: ./templates/newLevelVertical/footer.tpl:32
+#: ./templates/newLevelVertical/shop/auth_data.tpl:28
+msgid "Личный кабинет"
+msgstr ""
+
+#: ./templates/newLevelVertical/footer.tpl:29
+#: ./templates/newLevelVertical/footer.tpl:29
+#: ./templates/newLevelVertical/shop/auth_data.tpl:39
+msgid "Выход"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/profile_change_pass.tpl:7
+msgid "Старый пароль"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/profile_change_pass.tpl:13
+msgid "Новый пароль"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/profile_change_pass.tpl:19
+msgid "Повторите пароль"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/profile.tpl:12
+#: ./templates/newLevelVertical/shop/profile_change_pass.tpl:28
+msgid "Изменить пароль"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/profile.tpl:6
+msgid "Добро пожаловать!"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/profile.tpl:11
+msgid "Основные данные"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/profile.tpl:13
+msgid "История заказа"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/cart.tpl:6
+#: ./templates/newLevelVertical/shop/cart.tpl:20
+msgid "Оформление заказа"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/cart.tpl:24
+msgid "Я уже здесь покупал"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/cart.tpl:35
+msgid "Мой заказ"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/cart.tpl:37
+msgid "Редактировать"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/cart.tpl:73
+msgid "Еще один номер"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/cart.tpl:88
+msgid "Email"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/cart.tpl:103
+msgid "Доставка:"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/cart.tpl:107
+msgid "--Выбирете способ доставки--"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/cart.tpl:136
+msgid "Стоимость"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/cart.tpl:137
+msgid "Бесплатно от"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/cart.tpl:149
+msgid "Адрес доставки"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/cart.tpl:163
+msgid "Добавить комментарий к заказу"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/cart.tpl:176
+msgid "Выберите доставку"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/cart.tpl:190
+msgid "Подтвердить заказ"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/js_templates.tpl:52
+msgid "Посмотреть все результаты"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/js_templates.tpl:58
+msgid "По Вашему запросу ничего не найдено"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/js_templates.tpl:112
+msgid "Фильтр"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/brand.tpl:33
+#: ./templates/newLevelVertical/shop/js_templates.tpl:113
+#: ./templates/newLevelVertical/shop/search.tpl:25
+msgid "Найдено"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/js_templates.tpl:129
+msgid "Удалить список?"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/js_templates.tpl:135
+msgid "Подтвердить"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/js_templates.tpl:140
+msgid "Отменить"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/js_templates.tpl:153
+msgid "Для того, что бы добавить товар в список желаний, Вам нужно"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/js_templates.tpl:153
+msgid "авторизоваться"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/profile_history.tpl:6
+msgid "Вы еще не совершали покупки"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/profile_history.tpl:13
+#: ./templates/newLevelVertical/shop/profile_history.tpl:23
+msgid "Заказ #"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/profile_history.tpl:14
+msgid "Время покупки"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/profile_history.tpl:15
+msgid "Сумма покупки"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/profile_history.tpl:16
+msgid "Статус заказа"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/profile_history.tpl:17
+msgid "Статус платежа"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/search.tpl:23
+msgid "Результаты поиска"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/catalogue_header.tpl:7
+msgid "Показывать"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/catalogue_header.tpl:22
+msgid "На странице"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/catalogue_header.tpl:40
+msgid "Смотреть"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/catalogue_header.tpl:43
+#: ./templates/newLevelVertical/shop/catalogue_header.tpl:44
+msgid "Таблица"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/catalogue_header.tpl:48
+#: ./templates/newLevelVertical/shop/catalogue_header.tpl:49
+msgid "Список"
+msgstr ""
+
+#: ./templates/newLevelVertical/components/TOpi/assets/one_product_item.tpl:271
+#: ./templates/newLevelVertical/shop/product.tpl:261
+#: ./templates/newLevelVertical/shop/report_appearance.tpl:4
+msgid "Сообщить о появлении"
+msgstr ""
+
+#: ./templates/newLevelVertical/comments/comments_api.tpl:213
+#: ./templates/newLevelVertical/register.tpl:13
+#: ./templates/newLevelVertical/register_popup.tpl:15
+#: ./templates/newLevelVertical/shop/report_appearance.tpl:22
+msgid "Ваше имя:"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/report_appearance.tpl:33
+msgid "Вы получите письмо, когда товар будет доступен"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/report_appearance.tpl:37
+msgid "Телефон:"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/report_appearance.tpl:43
+msgid "Комментарий:"
+msgstr ""
+
+#: ./templates/newLevelVertical/forgot_password.tpl:32
+#: ./templates/newLevelVertical/shop/report_appearance.tpl:51
+#: ./templates/newLevelVertical/wishlist/sendEmail.tpl:23
+msgid "Отправить"
+msgstr ""
+
+#: ./templates/newLevelVertical/components/TOpi/assets/one_product_item.tpl:70
+#: ./templates/newLevelVertical/shop/product.tpl:55
+msgid "Бренд"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/product.tpl:77
+msgid "Выберите вариант"
+msgstr ""
+
+#: ./templates/newLevelVertical/components/TOpi/assets/one_product_item.tpl:174
+#: ./templates/newLevelVertical/shop/cart_popup.tpl:46
+#: ./templates/newLevelVertical/shop/cart_popup.tpl:135
+#: ./templates/newLevelVertical/shop/product.tpl:153
+msgid "Количество на складе"
+msgstr ""
+
+#: ./templates/newLevelVertical/components/TOpi/assets/one_product_item.tpl:187
+#: ./templates/newLevelVertical/shop/cart_popup.tpl:59
+#: ./templates/newLevelVertical/shop/cart_popup.tpl:148
+#: ./templates/newLevelVertical/shop/product.tpl:166
+msgid "Только цифры"
+msgstr ""
+
+#: ./templates/newLevelVertical/components/TOpi/assets/one_product_item.tpl:199
+#: ./templates/newLevelVertical/config.js.tpl:63
+#: ./templates/newLevelVertical/shop/cart_popup.tpl:8
+#: ./templates/newLevelVertical/shop/product.tpl:177
+#: ./templates/newLevelVertical/shop/product.tpl:554
+msgid "В корзине"
+msgstr ""
+
+#: ./templates/newLevelVertical/components/TOpi/assets/one_product_item.tpl:232
+#: ./templates/newLevelVertical/config.js.tpl:67
+#: ./templates/newLevelVertical/shop/product.tpl:214
+#: ./templates/newLevelVertical/shop/product.tpl:566
+msgid "Купить"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/product.tpl:223
+msgid "Нет в наличии"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/product.tpl:283
+#: ./templates/newLevelVertical/shop/product.tpl:284
+#: ./templates/newLevelVertical/shop/product.tpl:288
+msgid "К сравнению"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/product.tpl:285
+msgid "В сравнении"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/product.tpl:309
+msgid "Понравился товар?"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/product.tpl:313
+msgid "Рассказать друзьям:"
+msgstr ""
+
+#: ./templates/newLevelVertical/components/TOpi/assets/one_product_item.tpl:89
+#: ./templates/newLevelVertical/config.js.tpl:73
+#: ./templates/newLevelVertical/shop/product.tpl:347
+#: ./templates/newLevelVertical/shop/product.tpl:618
+msgid "отзыв"
+msgstr ""
+
+#: ./templates/newLevelVertical/components/TOpi/assets/one_product_item.tpl:89
+#: ./templates/newLevelVertical/config.js.tpl:73
+#: ./templates/newLevelVertical/shop/product.tpl:347
+#: ./templates/newLevelVertical/shop/product.tpl:618
+msgid "отзыва"
+msgstr ""
+
+#: ./templates/newLevelVertical/components/TOpi/assets/one_product_item.tpl:89
+#: ./templates/newLevelVertical/config.js.tpl:73
+#: ./templates/newLevelVertical/shop/product.tpl:347
+#: ./templates/newLevelVertical/shop/product.tpl:618
+msgid "отзывов"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/product.tpl:354
+#: ./templates/newLevelVertical/shop/product.tpl:620
+msgid "Оставить отзыв"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/product.tpl:416
+msgid "Вместе дешевле"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/product.tpl:597
+msgid "Обзор"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/product.tpl:601
+#: ./templates/newLevelVertical/shop/product.tpl:632
+#: ./templates/newLevelVertical/shop/product.tpl:696
+msgid "Свойства"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/product.tpl:604
+#: ./templates/newLevelVertical/shop/product.tpl:656
+msgid "Полное описание"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/product.tpl:607
+msgid "Аксессуары"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/product.tpl:639
+msgid "Просмотреть все спецификации"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/product.tpl:649
+#: ./templates/newLevelVertical/shop/product.tpl:705
+msgid "Описание"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/product.tpl:666
+#: ./templates/newLevelVertical/shop/product.tpl:720
+msgid "С этим товаром покупают"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/product.tpl:670
+msgid "Смотреть все аксессуары"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/cart_popup.tpl:45
+#: ./templates/newLevelVertical/shop/cart_popup.tpl:134
+msgid "Количество"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/cart_popup.tpl:200
+msgid "Вернуться к оформлению"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/cart_popup.tpl:203
+msgid "Всего"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/cart_popup.tpl:242
+#: ./templates/newLevelVertical/shop/cart_popup.tpl:265
+msgid "Вернуться к покупкам"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/cart_popup.tpl:248
+msgid "Оформить заказ"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/cart_popup.tpl:256
+msgid "Ваша корзина"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/cart_popup.tpl:256
+msgid "пуста"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/cart_popup.tpl:261
+msgid "Вы удалили все элементы из корзины"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/helpers/helper.php:6
+msgid "Января"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/helpers/helper.php:6
+msgid "Февраля"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/helpers/helper.php:6
+msgid "Марта"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/helpers/helper.php:6
+msgid "Апреля"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/helpers/helper.php:6
+msgid "Мая"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/helpers/helper.php:6
+msgid "Июня"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/helpers/helper.php:6
+msgid "Июля"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/helpers/helper.php:6
+msgid "Августа"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/helpers/helper.php:6
+msgid "Сентября"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/helpers/helper.php:6
+msgid "Октября"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/helpers/helper.php:6
+msgid "Ноября"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/helpers/helper.php:6
+msgid "Декабря"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/cart_order.tpl:42
+#: ./templates/newLevelVertical/shop/cart_order.tpl:121
+msgid "шт."
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/cart_order.tpl:241
+msgid "Неверный код подарочного сертификата"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/cart_order.tpl:247
+msgid "Ввести промо-код"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/cart_order.tpl:254
+msgid "Применить"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/compare.tpl:21
+#: ./templates/newLevelVertical/shop/compare.tpl:152
+msgid "Сравнение товаров"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/compare.tpl:26
+msgid "Все параметры"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/compare.tpl:31
+msgid "Только Различия"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/compare.tpl:127
+msgid "Категория"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/compare.tpl:158
+msgid "Вы удалили все товары из сравнения"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/compare.tpl:166
+msgid "Cравнения товаров"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/compare.tpl:172
+msgid "Список сравнения пуст"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/brand.tpl:39
+msgid "По вашему запросу товаров не найдено"
+msgstr ""
+
+#: ./templates/newLevelVertical/shop/brand.tpl:85
+msgid "Найдено в категориях:"
+msgstr ""
+
+#: ./templates/newLevelVertical/category_menu_first/level_2/container.tpl:7
+msgid "Все категории"
+msgstr ""
+
+#: ./templates/newLevelVertical/paymentSystem/LiqPay.tpl:5
+#: ./templates/newLevelVertical/paymentSystem/PrivateBank.tpl:12
+#: ./templates/newLevelVertical/paymentSystem/Robokassa.tpl:13
+#: ./templates/newLevelVertical/paymentSystem/SberBank.tpl:5
+msgid "Оплатить"
+msgstr ""
+
+#: ./templates/newLevelVertical/paymentSystem/QIWI.tpl:11
+#: ./templates/newLevelVertical/paymentSystem/QIWI.tpl:34
+msgid "Выставить счёт за покупку"
+msgstr ""
+
+#: ./templates/newLevelVertical/paymentSystem/QIWI.tpl:14
+msgid "Мобильный телефон"
+msgstr ""
+
+#: ./templates/newLevelVertical/paymentSystem/QIWI.tpl:24
+msgid "руб."
+msgstr ""
+
+#: ./templates/newLevelVertical/paymentSystem/QIWI.tpl:25
+msgid "коп."
+msgstr ""
+
+#: ./templates/newLevelVertical/paymentSystem/PayPal.tpl:17
+msgid "PayPal - более безопасный и легкий способ оплаты через Интернет!"
+msgstr ""
+
+#: ./templates/newLevelVertical/wishlist/other_list.tpl:48
+#: ./templates/newLevelVertical/wishlist/wishlist.tpl:109
+msgid "Список пуст"
+msgstr ""
+
+#: ./templates/newLevelVertical/wishlist/other_list.tpl:62
+#: ./templates/newLevelVertical/wishlist/wishlist.tpl:185
+msgid "Список Желания пуст"
+msgstr ""
+
+#: ./templates/newLevelVertical/wishlist/wishlistEdit.tpl:5
+msgid "Редактировать:"
+msgstr ""
+
+#: ./templates/newLevelVertical/wishlist/wishlist.tpl:37
+#: ./templates/newLevelVertical/wishlist/wishlist.tpl:150
+#: ./templates/newLevelVertical/wishlist/wishlistEdit.tpl:13
+msgid "Доступность:"
+msgstr ""
+
+#: ./templates/newLevelVertical/wishlist/wishlist.tpl:41
+#: ./templates/newLevelVertical/wishlist/wishlist.tpl:158
+#: ./templates/newLevelVertical/wishlist/wishlistEdit.tpl:17
+msgid "Коллективный"
+msgstr ""
+
+#: ./templates/newLevelVertical/wishlist/wishlist.tpl:43
+#: ./templates/newLevelVertical/wishlist/wishlist.tpl:152
+#: ./templates/newLevelVertical/wishlist/wishlistEdit.tpl:18
+msgid "Приватный"
+msgstr ""
+
+#: ./templates/newLevelVertical/wishlist/wishlist.tpl:42
+#: ./templates/newLevelVertical/wishlist/wishlist.tpl:155
+#: ./templates/newLevelVertical/wishlist/wishlistEdit.tpl:19
+msgid "Публичный"
+msgstr ""
+
+#: ./templates/newLevelVertical/wishlist/wishlist.tpl:49
+#: ./templates/newLevelVertical/wishlist/wishlistEdit.tpl:25
+msgid "Название списка:"
+msgstr ""
+
+#: ./templates/newLevelVertical/wishlist/wishlist.tpl:55
+#: ./templates/newLevelVertical/wishlist/wishlistEdit.tpl:31
+msgid "Описание:"
+msgstr ""
+
+#: ./templates/newLevelVertical/wishlist/wishlistEdit.tpl:40
+msgid "Коментарий к:"
+msgstr ""
+
+#: ./templates/newLevelVertical/wishlist/wishlistEdit.tpl:55
+msgid "Сохранить"
+msgstr ""
+
+#: ./templates/newLevelVertical/wishlist/sendEmail.tpl:5
+msgid "Отправить другу"
+msgstr ""
+
+#: ./templates/newLevelVertical/wishlist/sendEmail.tpl:13
+msgid "Email друга"
+msgstr ""
+
+#: ./templates/newLevelVertical/wishlist/button.tpl:7
+msgid "В список желаний"
+msgstr ""
+
+#: ./templates/newLevelVertical/wishlist/button.tpl:20
+msgid "В список желания"
+msgstr ""
+
+#: ./templates/newLevelVertical/wishlist/button.tpl:22
+msgid "В списке желаний"
+msgstr ""
+
+#: ./templates/newLevelVertical/wishlist/button.tpl:24
+msgid "В списке желания"
+msgstr ""
+
+#: ./templates/newLevelVertical/wishlist/wishlist.tpl:22
+#: ./templates/newLevelVertical/wishlist/wishlist.tpl:76
+msgid "Создать новый список"
+msgstr ""
+
+#: ./templates/newLevelVertical/wishlist/wishlist.tpl:25
+msgid "В список избранных вы можете отложить понравившиеся товары, также показать список друзьям"
+msgstr ""
+
+#: ./templates/newLevelVertical/wishlist/wishlist.tpl:29
+msgid "Создание списка избранных товаров"
+msgstr ""
+
+#: ./templates/newLevelVertical/wishlist/wishlist.tpl:127
+msgid "Редактировать список"
+msgstr ""
+
+#: ./templates/newLevelVertical/wishlist/wishlist.tpl:145
+msgid "Удалить список"
+msgstr ""
+
+#: ./templates/newLevelVertical/wishlist/wishlist.tpl:165
+msgid "Поделится с другом"
+msgstr ""
+
+#: ./templates/newLevelVertical/wishlist/wishlist.tpl:167
+msgid "Поделиться с другом"
+msgstr ""
+
+#: ./templates/newLevelVertical/wishlist/wishPopup.tpl:42
+msgid "Создать список"
+msgstr ""
+
+#: ./templates/newLevelVertical/wishlist/wishPopup.tpl:70
+msgid "Переместить в список"
+msgstr ""
+
+#: ./templates/newLevelVertical/wishlist/wishPopup.tpl:70
+msgid "Добавить в список"
+msgstr ""
+
+#: ./templates/newLevelVertical/user_toolbar.tpl:17
+msgid "Просмотренные товары"
+msgstr ""
+
+#: ./templates/newLevelVertical/user_toolbar.tpl:26
+msgid "Свернуть"
+msgstr ""
+
+#: ./templates/newLevelVertical/user_toolbar.tpl:30
+msgid "Развернуть"
+msgstr ""
+
+#: ./templates/newLevelVertical/user_toolbar.tpl:39
+msgid "Наверх"
+msgstr ""
+
+#: ./templates/newLevelVertical/smart_filter/main.tpl:4
+msgid "с фильтрами"
+msgstr ""
+
+#: ./templates/newLevelVertical/smart_filter/main.tpl:33
+msgid "Сбросить фильтр"
+msgstr ""
+
+#: ./templates/newLevelVertical/smart_filter/filter.tpl:9
+msgid "Джаваскрипт не включен"
+msgstr ""
+
+#: ./templates/newLevelVertical/smart_filter/filter.tpl:20
+#: ./templates/newLevelVertical/smart_filter/filter.tpl:23
+msgid "только цифры"
+msgstr ""
+
+#: ./templates/newLevelVertical/smart_filter/filter.tpl:39
+msgid "Производитель"
+msgstr ""
+
+#: ./templates/newLevelVertical/smart_filter/filter.tpl:119
+msgid "Не выбрано"
+msgstr ""
+
+#: ./templates/newLevelVertical/smart_filter/filter.tpl:145
+msgid "Фильтровать"
+msgstr ""
+
+#: ./templates/newLevelVertical/widgets/brands.tpl:41
+msgid "Смотреть все"
+msgstr ""
+
+#: ./templates/newLevelVertical/widgets/latest_news.tpl:6
+msgid "Новости"
+msgstr ""
+
+#: ./templates/newLevelVertical/widgets/latest_news.tpl:8
+msgid "Остальные новости"
+msgstr ""
+
+#: ./templates/newLevelVertical/widgets/ViewedProducts.tpl:27
+msgid "Нет просмотренных товаров"
+msgstr ""
+
+#: ./templates/newLevelVertical/widgets/path.tpl:7
+msgid "Главная"
+msgstr ""
+
+#: ./templates/newLevelVertical/footer.tpl:6
+msgid "Сайт"
+msgstr ""
+
+#: ./templates/newLevelVertical/footer.tpl:14
+msgid "Продукция"
+msgstr ""
+
+#: ./templates/newLevelVertical/footer.tpl:25
+msgid "Пользователь"
+msgstr ""
+
+#: ./templates/newLevelVertical/footer.tpl:48
+#: ./templates/newLevelVertical/footer.tpl:48
+msgid "Список сравнений"
+msgstr ""
+
+#: ./templates/newLevelVertical/footer.tpl:51
+#: ./templates/newLevelVertical/footer.tpl:51
+msgid "Обратный звонок"
+msgstr ""
+
+#: ./templates/newLevelVertical/footer.tpl:60
+msgid "Контакты"
+msgstr ""
+
+#: ./templates/newLevelVertical/footer.tpl:63
+msgid "Главный офис"
+msgstr ""
+
+#: ./templates/newLevelVertical/footer.tpl:81
+msgid "Все права защищены"
+msgstr ""
+
+#: ./templates/newLevelVertical/footer.tpl:87
+msgid "Мобильная версия"
+msgstr ""
+
+#: ./templates/newLevelVertical/main_demo.tpl:135
+msgid "Показать"
+msgstr ""
+
+#: ./templates/newLevelVertical/main_demo.tpl:144
+msgid "Обзор продукта"
+msgstr ""
+
+#: ./templates/newLevelVertical/main_demo.tpl:147
+msgid "Преимущества продукта"
+msgstr ""
+
+#: ./templates/newLevelVertical/main_demo.tpl:150
+msgid "Шаблоны для Shop"
+msgstr ""
+
+#: ./templates/newLevelVertical/patterns/widgets/view_product.tpl:27
+msgid "No viewed products"
+msgstr ""
+
+#: ./templates/newLevelVertical/patterns/widgets/brands.tpl:39
+msgid "Show all"
+msgstr ""
+
+#: ./templates/newLevelVertical/config.js.tpl:52
+msgid "Введите более"
+msgstr ""
+
+#: ./templates/newLevelVertical/config.js.tpl:52
+msgid "символов"
+msgstr ""
+
+#: ./templates/newLevelVertical/config.js.tpl:55
+msgid "В список желаний могут добавлять только авторизированные пользователи"
+msgstr ""
+
+#: ./templates/newLevelVertical/config.js.tpl:57
+msgid "Выберите размер меньше или равно"
+msgstr ""
+
+#: ./templates/newLevelVertical/config.js.tpl:57
+msgid "пикселей"
+msgstr ""
+
+#: ./templates/newLevelVertical/config.js.tpl:59
+msgid "Введите название"
+msgstr ""
+
+#: ./templates/newLevelVertical/config.js.tpl:68
+msgid "Количество:"
+msgstr ""
+
+#: ./templates/newLevelVertical/config.js.tpl:69
+msgid "Комплектов:"
+msgstr ""
+
+#: ./templates/newLevelVertical/config.js.tpl:70
+msgid "Код протекции"
+msgstr ""
+
+#: ./templates/newLevelVertical/config.js.tpl:72
+msgid "набор"
+msgstr ""
+
+#: ./templates/newLevelVertical/config.js.tpl:72
+msgid "набора"
+msgstr ""
+
+#: ./templates/newLevelVertical/config.js.tpl:72
+msgid "наборов"
+msgstr ""
+
+#: ./templates/newLevelVertical/offline.tpl:181
+msgid "Сайт в стадии строительства"
+msgstr ""
+
+#: ./templates/newLevelVertical/offline.tpl:182
+msgid "Управление сайтом"
+msgstr ""
+
+#: ./templates/newLevelVertical/offline.tpl:185
+msgid "Отправить сообщение"
+msgstr ""
+
+#: ./templates/newLevelVertical/offline.tpl:194
+msgid "ООО «Сайт Имидж»"
+msgstr ""
+
+#: ./templates/newLevelVertical/offline.tpl:195
+msgid "ImageCMS активно развивается в создание качественных интернет-магазинов"
+msgstr ""
+
+#: ./templates/newLevelVertical/category_menu/error.tpl:13
+#: ./templates/newLevelVertical/footer_category_menu/error.tpl:13
+#: ./templates/newLevelVertical/left_menu/error.tpl:13
+msgid "Не обнаружен необходимый файл шаблона для меню "
+msgstr ""
+
+#: ./templates/newLevelVertical/category_menu_second/level_2/container.tpl:6
+msgid "Hide"
+msgstr ""
+
+#: ./templates/newLevelVertical/category_menu_second/level_2/container.tpl:6
+msgid "All categoties"
+msgstr "Все категории"
+
+#: ./templates/newLevelVertical/login_popup.tpl:10
+msgid "Авторизация"
+msgstr ""
+
+#: ./templates/newLevelVertical/top_menu/error.tpl:23
+msgid "Переустановите модуль меню"
+msgstr ""
+
+#: ./templates/newLevelVertical/forgot_password.tpl:22
+msgid "Пароль будет выслан на e-mail "
+msgstr ""
+
+#: ./templates/newLevelVertical/register.tpl:26
+#: ./templates/newLevelVertical/register_popup.tpl:28
+msgid "Пароль:"
+msgstr ""
+
+#: ./templates/newLevelVertical/register.tpl:33
+#: ./templates/newLevelVertical/register_popup.tpl:35
+msgid "Повторите:"
+msgstr ""
+
+#: ./templates/newLevelVertical/register.tpl:59
+#: ./templates/newLevelVertical/register_popup.tpl:56
+msgid "Зарегистрироваться"
+msgstr ""
+
+#: ./templates/newLevelVertical/register.tpl:61
+#: ./templates/newLevelVertical/register_popup.tpl:58
+msgid "Я уже зарегистрирован"
+msgstr ""
+
+#: ./templates/newLevelVertical/register.tpl:71
+#: ./templates/newLevelVertical/register_popup.tpl:68
+msgid "Напомнить пароль"
+msgstr ""
+
+#: ./templates/newLevelVertical/components/TOpi/assets/one_product_item.tpl:299
+#: ./templates/newLevelVertical/components/TOpi/assets/one_product_item.tpl:300
+#: ./templates/newLevelVertical/components/TOpi/assets/one_product_item.tpl:304
+msgid "В список сравнений"
+msgstr ""
+
+#: ./templates/newLevelVertical/components/TOpi/assets/one_product_item.tpl:301
+msgid "В списке сравнений"
+msgstr ""
+
+#: ./templates/newLevelVertical/components/TOpi/assets/one_product_item.tpl:362
+msgid "Удалить"
+msgstr ""
+
+#: ./templates/newLevelVertical/components/TOpi/assets/one_product_item.tpl:370
+msgid "Переместить"
+msgstr ""
+
+#: ./templates/newLevelVertical/header.tpl:66
+msgid "Найти"
+msgstr ""
+
+#: ./templates/newLevelVertical/header.tpl:69
+msgid "Поиск по сайту"
+msgstr ""
+
+#: ./templates/newLevelVertical/comments/comments_api.tpl:2
+msgid "Пожалуйста, войдите для комментирования"
+msgstr ""
+
+#: ./templates/newLevelVertical/comments/comments_api.tpl:9
+msgid "Отзывы покупателей"
+msgstr ""
+
+#: ./templates/newLevelVertical/comments/comments_api.tpl:9
+msgid "Оставить свой отзыв"
+msgstr ""
+
+#: ./templates/newLevelVertical/comments/comments_api.tpl:28
+msgid "Оценка товара"
+msgstr ""
+
+#: ./templates/newLevelVertical/comments/comments_api.tpl:37
+msgid "Отзыв полезен?"
+msgstr ""
+
+#: ./templates/newLevelVertical/comments/comments_api.tpl:41
+#: ./templates/newLevelVertical/comments/comments_api.tpl:57
+msgid "Да"
+msgstr ""
+
+#: ./templates/newLevelVertical/comments/comments_api.tpl:47
+#: ./templates/newLevelVertical/comments/comments_api.tpl:63
+msgid "Нет"
+msgstr ""
+
+#: ./templates/newLevelVertical/comments/comments_api.tpl:73
+msgid "Ответить"
+msgstr ""
+
+#: ./templates/newLevelVertical/comments/comments_api.tpl:110
+#: ./templates/newLevelVertical/comments/comments_api.tpl:118
+msgid "Смотреть все ответы"
+msgstr ""
+
+#: ./templates/newLevelVertical/comments/comments_api.tpl:127
+msgid "Оставить комментарий"
+msgstr ""
+
+#: ./templates/newLevelVertical/comments/comments_api.tpl:143
+#: ./templates/newLevelVertical/comments/comments_api.tpl:219
+msgid "Ваш email:"
+msgstr ""
+
+#: ./templates/newLevelVertical/comments/comments_api.tpl:158
+msgid "Ваша оценка:"
+msgstr ""
+
+#: ./templates/newLevelVertical/comments/comments_api.tpl:171
+#: ./templates/newLevelVertical/comments/comments_api.tpl:235
+msgid "Код защиты"
+msgstr ""
+
+#: ./templates/newLevelVertical/comments/comments_api.tpl:186
+#: ./templates/newLevelVertical/comments/comments_api.tpl:250
+msgid "Комментировать"
+msgstr ""
+
+#: ./templates/newLevelVertical/comments/comments_api.tpl:201
+msgid "Ваш ответ"
+msgstr ""
+
+#: ./templates/newLevelVertical/comments/comments_api.tpl:227
+msgid "Текст ответа:"
+msgstr ""
+
+#: ./templates/newLevelVertical/comments/comments_api.tpl:263
+msgid "Ваш комментарий будет опубликован после модерации администратором"
+msgstr ""
+
+#: ./templates/newLevelVertical/star_rating/star_rating.tpl:9
+#: ./templates/newLevelVertical/star_rating/star_rating.tpl:18
+msgid "Leav"
+msgstr ""
+
+#: ./templates/newLevelVertical/star_rating/star_rating.tpl:9
+#: ./templates/newLevelVertical/star_rating/star_rating.tpl:19
+msgid "people(s)"
+msgstr ""

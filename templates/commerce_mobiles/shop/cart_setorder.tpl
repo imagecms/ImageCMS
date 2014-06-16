@@ -1,5 +1,5 @@
 <div class="content_head">
-    <h1>Корзина</h1>
+    <h1>{lang('Корзина','commerce_mobiles')}</h1>
 </div>
 {if count($items) > 0}
     <form id="form" method="POST" action="{shop_url('cart')}">
@@ -33,9 +33,9 @@
                             <input name="products[{$key}]" type="text" price="{echo $item.price}" value="{$item.quantity}" onblur=""/>
                             <span class="frame_count">
                                 <span class="refresh_price"></span>
-                                <span class="count">шт.</span>
+                                <span class="count">{lang('шт','commerce_mobiles')}.</span>
                             </span>
-                            <a href="{shop_url('cart/delete/'.$key)}" class="remove_ref red"><span>×</span> Удалить</a>
+                            <a href="{shop_url('cart/delete/'.$key)}" class="remove_ref red"><span>×</span> {lang('Удалить','commerce_mobiles')}</a>
                         </span>
                     </div>
                 </li>
@@ -46,7 +46,7 @@
         </ul>
         <div class="main_frame_inside">
             <div class="gen_sum">
-                <span class="total_pay">Всего к оплате:</span>
+                <span class="total_pay">{lang('Всего к оплате','commerce_mobiles')}:</span>
                 <span class="price">
                     {if $total < $item.delivery_free_from}
                         {$total += $item.delivery_price}

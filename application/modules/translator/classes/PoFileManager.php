@@ -219,7 +219,8 @@ class PoFileManager {
 
     public function update($name, $type, $lang, $data) {
         $po_data = $this->toArray($name, $type, $lang);
-        if ($po_data && isset($po_data['po_array'])) {
+        
+        if ($po_data && key_exists('po_array', $po_data)) {
             foreach ($data as $origin => $values) {
                 if (isset($po_data['po_array'][$origin])) {
                     if ($values['translation'])

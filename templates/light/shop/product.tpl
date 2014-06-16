@@ -21,6 +21,7 @@
 <div class="frame-inside page-product">
     <div class="container">
         {$inCartFV = getAmountInCart('SProducts', $model->firstVariant->getId())}
+        {$CI->load->module('banners')->render($model->getId())}
         <div class="clearfix">
             <div class="frame-left-product">
                 <div class="clearfix">
@@ -625,7 +626,7 @@
                                     </div>
                                     <div class="inside-padd">
                                         <ul class="items items-default">
-                                            {$CI->load->module('new_level')->OPI($accessories, array('opi_defaultItem'=>true, 'opi_limit'=>3))}
+                                            {getOPI($accessories, array('opi_defaultItem'=>true, 'opi_limit'=>3))}
                                         </ul>
                                     </div>
                                 </div>

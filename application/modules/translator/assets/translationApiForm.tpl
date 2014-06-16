@@ -1,3 +1,10 @@
+{literal}
+    <style type="text/css">
+        #trabslateForm button:hover{
+            background-color: rgb(190, 196, 231)!important;
+        }
+    </style> 
+{/literal}
 <form id="trabslateForm" style="display: none; position: absolute;top: 60px;left: 100px;z-index: 100;background-color: rgba(218, 219, 223, 0.951961);padding: 20px;min-width: 350px;border-radius: 5px;border: 4px solid;border-color: rgb(138, 147, 177);">
     <div class="error_text" style="display: none">
         <div class="msg js-msg">

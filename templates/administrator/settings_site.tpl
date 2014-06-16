@@ -66,12 +66,21 @@
                                                         <div class="control-group">
                                                             <label class="control-label" for="template">{lang('Template', 'admin')}:</label>
                                                             <div class="controls">
-                                                                <select name="template" id="template">
+                                                                <select name="template" id="template" onchange="$('#license_agreement_link').attr('href', '/admin/settings/license_agreement?template_name=' + $(this).val())">
                                                                     {foreach $templates as $k => $v}
                                                                         <option value="{$k}" {if $template_selected == $k} selected="selected" {/if} >{$k}</option>
                                                                     {/foreach}
                                                                 </select>
+
+                                                                <span class="help-block" id='license_link' style="display: none">
+                                                                    {lang('Installing the template you agree to the', 'admin')}
+                                                                    <a target="_blank" href="/admin/settings/license_agreement?template_name={$template_selected}" id="license_agreement_link">
+                                                                        {lang('license agreement', 'admin')}
+                                                                    </a>
+                                                                </span>
+
                                                             </div>
+
                                                         </div>
                                                         <div class="control-group">
                                                             <label class="control-label" for="cat_list">{lang('Display category tree in the content','admin')}:</label>
@@ -91,6 +100,15 @@
                                                                     <option value="elrte" {if $text_editor == 'elrte'} selected="selected" {/if} >elRTE</option>
                                                                     <option value="none" {if $text_editor == 'none'} selected="selected" {/if} >Native textarea</option>
                                                                 </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="control-group">
+                                                            <label class="control-label" for="comcount">{lang("Close or open the site for indexing robots", 'admin')}:</label>
+                                                            <div class="controls">
+                                                                <div class="robotsChecker frame_prod-on_off">
+                                                                    <span class="prod-on_off{if !$robots_status} disable_tovar{/if}"></span>
+                                                                    <input type="hidden" name="robots_status" value="{if $robots_status}1{else:}0{/if}" data-val-on="1" data-val-off="0">
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>

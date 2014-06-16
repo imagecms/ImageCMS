@@ -19,13 +19,11 @@
         <link rel="stylesheet" type="text/css" href="{$THEME}css/jquery/custom-theme/jquery-ui-1.8.16.custom.css">
         <link rel="stylesheet" type="text/css" href="{$THEME}css/jquery/custom-theme/jquery.ui.1.8.16.ie.css">
 
-        <link rel="stylesheet" type="text/css" href="{if MAINSITE}{echo 'http://' . ltrim(MAINSITE,'../')}{/if}/js/elfinder-2.0/css/Aristo/css/Aristo/Aristo.css" media="screen" charset="utf-8">
-        <link rel="stylesheet" type="text/css" href="{if MAINSITE}{echo 'http://' . ltrim(MAINSITE,'../')}{/if}/js/elrte-1.3/css/elrte.min.css" media="screen" charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="{$JS_URL}/elfinder-2.0/css/Aristo/css/Aristo/Aristo.css" media="screen" charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="{$JS_URL}/elrte-1.3/css/elrte.min.css" media="screen" charset="utf-8">
 
-        <link rel="stylesheet" type="text/css" href="{if MAINSITE}{echo 'http://' . ltrim(MAINSITE,'../')}{/if}/js/elfinder-2.0/css/elfinder.min.css" media="screen" charset="utf-8">
-        <link rel="stylesheet" type="text/css" href="{if MAINSITE}{echo 'http://' . ltrim(MAINSITE,'../')}{/if}/js/elfinder-2.0/css/theme.css" media="screen" charset="utf-8">
-
-
+        <link rel="stylesheet" type="text/css" href="{$JS_URL}/elfinder-2.0/css/elfinder.min.css" media="screen" charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="{$JS_URL}/elfinder-2.0/css/theme.css" media="screen" charset="utf-8">
     </head>
     <body>
         {literal}
@@ -224,10 +222,13 @@
 
                 </section>
             </header>
-
             {if $CI->dx_auth->is_logged_in()}
                 <div class="frame_nav">
-                    {include('templates/administrator/inc/menus.php');}
+                    {if MAINSITE}
+                        {include(MAINSITE.'/templates/administrator/inc/menus.php');}
+                    {else:}
+                        {include('templates/administrator/inc/menus.php');}
+                    {/if}
                     {if !SHOP_INSTALLED}
                         <div class="container" id="baseAdminMenu">
                             <nav class="navbar navbar-inverse">
@@ -401,6 +402,7 @@
         <script>
             {$settings = $CI->cms_admin->get_settings();}
             var textEditor = '{$settings.text_editor}';
+            var textEditor = '{$settings.text_editor}';
             {if $CI->dx_auth->is_logged_in()}
             var userLogined = true;
             {else:}
@@ -426,27 +428,22 @@
         <script src="{$THEME}js/functions.js" type="text/javascript"></script>
         <script src="{$THEME}js/scripts.js" type="text/javascript"></script>
 
-        <script type="text/javascript" src="{if MAINSITE}{echo 'http://' . ltrim(MAINSITE,'../')}{/if}/js/elrte-1.3/js/elrte.min.js"></script>
-        <script type="text/javascript" src="{if MAINSITE}{echo 'http://' . ltrim(MAINSITE,'../')}{/if}/js/elfinder-2.0/js/elfinder.min.js"></script>
+        <script type="text/javascript" src="{$JS_URL}/elrte-1.3/js/elrte.min.js"></script>
+        <script type="text/javascript" src="{$JS_URL}/elfinder-2.0/js/elfinder.min.js"></script>
 
 
         {if $this->CI->config->item('language') == 'russian'}
             <script async="async" src="{$THEME}js/jquery-validate/messages_ru.js" type="text/javascript"></script>
-            <script type="text/javascript" src="{if MAINSITE}{echo 'http://' . ltrim(MAINSITE,'../')}{/if}/js/elrte-1.3/js/i18n/elrte.ru.js"></script>
-            <script type="text/javascript" src="{if MAINSITE}{echo 'http://' . ltrim(MAINSITE,'../')}{/if}/js/elfinder-2.0/js/i18n/elfinder.ru.js"></script>
+            <script type="text/javascript" src="{$JS_URL}/elrte-1.3/js/i18n/elrte.ru.js"></script>
+            <script type="text/javascript" src="{$JS_URL}/elfinder-2.0/js/i18n/elfinder.ru.js"></script>
         {/if}
-
-
-        <!--
-        <script src="{$THEME}js/admin_base.min.js" type="text/javascript"></script>
-        -->
 
         <script src="{$THEME}js/admin_base_i.js" type="text/javascript"></script>
         <script src="{$THEME}js/admin_base_m.js" type="text/javascript"></script>
         <script src="{$THEME}js/admin_base_r.js" type="text/javascript"></script>
         <script src="{$THEME}js/admin_base_v.js" type="text/javascript"></script>
         <script src="{$THEME}js/admin_base_y.js" type="text/javascript"></script>
-        <script type="text/javascript" src="{if MAINSITE}{echo 'http://' . ltrim(MAINSITE,'../')}{/if}/js/tiny_mce/jquery.tinymce.js"></script>
+        <script type="text/javascript" src="{$JS_URL}/tiny_mce/jquery.tinymce.js"></script>
         <script src="{$THEME}js/autosearch.js" type="text/javascript"></script>
 
         <script>
@@ -516,7 +513,7 @@
                     prod_on_off();
                 })
                 base_url = '{/literal}{$BASE_URL}';
-                theme_url = '{$THEME}';
+                    theme_url = '{$THEME}';
 
                     var elfToken = '{echo $CI->lib_csrf->get_token()}';
             </script>

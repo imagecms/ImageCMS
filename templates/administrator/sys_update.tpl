@@ -28,15 +28,15 @@
             </div>
         </div>
 
-    {if $error}
-        <div class="span3 pull-right"style="padding-top: 20px;">
-            <div class="alert alert-error alert-block">
-                <button type="button" class="close" data-dismiss="alert">X</button>
-                <h4>{lang('Error', 'admin')}!</h4>
-                {echo $error}
+        {if $error}
+            <div class="span3 pull-right"style="padding-top: 20px;">
+                <div class="alert alert-error alert-block">
+                    <button type="button" class="close" data-dismiss="alert">X</button>
+                    <h4>{lang('Error', 'admin')}!</h4>
+                    {echo $error}
+                </div>
             </div>
-        </div>
-    {/if}
+        {/if}
 
         <div class="progressDB" style="display: none;">
             <div class="progress progress-info progress-striped active">
@@ -133,7 +133,7 @@
                                                 <span class="f-s_14">↑</span>
                                             {/if}
                                         {else:}
-                                            <a class="pjax" href="/admin/sys_update/update/create_date/asc#restore">{lang('Creation date', 'admin')}</a>
+                                            <a class="pjax" href=/update/create_date/asc#restore">{lang('Creation date', 'admin')}</a>
                                         {/if}
                                     <th>{lang('Restore', 'admin')}</th>
                                     <th>{lang('Deleting', 'admin')}</th>
@@ -154,7 +154,7 @@
                                         <td class="span2">
                                             <button class="btn btn-small btn-success pjax"
                                                     type="button"
-                                                    onclick="Update.restore('{echo BACKUPFOLDER.$file_inf['name']}')">
+                                                    onclick="Update.restore('{ echo str_replace('\\', '/', BACKUPFOLDER . $file_inf.name)}')">
                                                 <i class="icon-refresh"></i>
                                                 {lang('Restore', 'admin')}
                                             </button>

@@ -1,7 +1,7 @@
 {$i=0} 
 <div class="crumbs" xmlns:v="http://rdf.data-vocabulary.org/#">
     <span typeof="v:Breadcrumb">
-        <a rel="v:url" property="v:title" href="{site_url()}">Главная</a> 
+        <a rel="v:url" property="v:title" href="{site_url()}">{lang('Главная','corporate')}</a> 
     </span>/
     {foreach $navi_cats as $item}         
         {$i++}

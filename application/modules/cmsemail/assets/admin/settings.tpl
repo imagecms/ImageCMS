@@ -106,9 +106,24 @@
                                 </div>
 
                                 <div class="control-group portControlGroup span4" {if $settings['protocol'] != "SMTP"} style="display: none"  {/if} >
+                                    <label class="control-label" for="settings[smtp_host]">{lang('Host', 'cmsemail')}:</label>
+                                    <div class="controls ">
+                                        <input type = "text" name = "settings[smtp_host]" class=""  value="{$settings['smtp_host']}"  id="smtp_host"/>
+                                    </div>
+                                    <br>
+                                    <label class="control-label" for="settings[smtp_user]">{lang('User', 'cmsemail')}:</label>
+                                    <div class="controls ">
+                                        <input type = "text" name = "settings[smtp_user]" class=""  value="{$settings['smtp_user']}"  id="smtp_user"/>
+                                    </div>
+                                    <br>
+                                    <label class="control-label" for="settings[smtp_pass]">{lang('Password', 'cmsemail')}:</label>
+                                    <div class="controls ">
+                                        <input type = "text" name = "settings[smtp_pass]" class=""  value="{$settings['smtp_pass']}"  id="smtp_pass"/>
+                                    </div>
+                                    <br>
                                     <label class="control-label" for="settings[port]">{lang('Port', 'cmsemail')}:</label>
                                     <div class="controls ">
-                                        <input type = "text" name = "settings[port]" class=" textbox_short portSettings"  value="{$settings['port']}"  id="port"/>
+                                        <input type = "text" name = "settings[port]" class="portSettings"  value="{$settings['port']}"  id="port"/>
                                     </div>
                                 </div>
 

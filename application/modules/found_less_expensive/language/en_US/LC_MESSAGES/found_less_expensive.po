@@ -1,146 +1,19 @@
-msgid ""
+﻿msgid ""
 msgstr ""
-"Project-Id-Version: mark\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-11 13:24+0300\n"
-"PO-Revision-Date: \n"
-"Last-Translator: mark <shfasdfsdf>\n"
-"Language-Team: \n"
-"Language: English\n"
+"POT-Creation-Date: 2014-06-05 11:24+0300\n"
+"PO-Revision-Date: 2014-06-05 11:24+0300\n"
+"Last-Translator:  \n"
+"Language-Team:  \n"
+"Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
+"X-Poedit-Basepath: ../../..\n"
+"X-Poedit-SourceCharset: utf-8\n"
 "X-Generator: Poedit 1.5.7\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-Basepath: .\n"
-"X-Poedit-Language: English\n"
-"X-Poedit-SearchPath-0: ../../..\n"
-
-#: /var/www/image.loc/_tempLangs.php:8
-#: /var/www/image.loc/_tempLangs.php:9
-msgid "Found less cheaper"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:10
-msgid "Your name"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:11
-msgid "Phone number"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:12
-#: /var/www/image.loc/_tempLangs.php:26
-msgid "Product link"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:13
-#: /var/www/image.loc/_tempLangs.php:25
-msgid "Question"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:14
-msgid "Send"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:15
-msgid "Fill in required fields!"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:16
-msgid "Invalid email!"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:17
-msgid "Sent! Thanks for the notification!"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:18
-msgid "Found less expensive"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:19
-#: /var/www/image.loc/_tempLangs.php:33
-msgid "Settings"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:20
-msgid "All"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:21
-#: /var/www/image.loc/_tempLangs.php:30
-msgid "New"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:22
-#: /var/www/image.loc/_tempLangs.php:31
-msgid "Processed"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:23
-msgid "ID"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:24
-msgid "Contact information"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:27
-msgid "Page"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:28
-msgid "Status"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:29
-msgid "Date"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:32
-msgid "No data has been found"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:34
-msgid "Back"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:35
-msgid "Save"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:36
-msgid "Properties"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:37
-msgid "Mail to receive notifications"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:38
-msgid "Mail to which send the notification"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:39
-msgid "Message theme"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:40
-msgid "Message template"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:41
-msgid "You can use following variables"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:42
-msgid "page reference on which the notice was left"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:43
-msgid "link to found cheaper product"
-msgstr ""
-
-#~ msgid "Site configuration"
-#~ msgstr "Настр1"
+"X-Poedit-Language: \n"
+"X-Poedit-Country: \n"
+"X-Poedit-SearchPath-0: .\n"

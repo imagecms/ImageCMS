@@ -1,67 +1,19 @@
-msgid ""
+﻿msgid ""
 msgstr ""
-"Project-Id-Version: mark\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-11 13:31+0300\n"
-"PO-Revision-Date: \n"
-"Last-Translator: mark <shfasdfsdf>\n"
-"Language-Team: \n"
-"Language: English\n"
+"POT-Creation-Date: 2014-06-05 11:24+0300\n"
+"PO-Revision-Date: 2014-06-05 11:24+0300\n"
+"Last-Translator:  \n"
+"Language-Team:  \n"
+"Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
+"X-Poedit-Basepath: ../../..\n"
+"X-Poedit-SourceCharset: utf-8\n"
 "X-Generator: Poedit 1.5.7\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-Basepath: .\n"
-"X-Poedit-Language: English\n"
-"X-Poedit-SearchPath-0: ../../..\n"
-
-#: /var/www/image.loc/_tempLangs.php:8
-msgid "List of users subscribed to the products"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:9
-msgid "Back"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:10
-msgid "User"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:11
-#: /var/www/image.loc/_tempLangs.php:16
-#: /var/www/image.loc/_tempLangs.php:17
-#: /var/www/image.loc/_tempLangs.php:22
-msgid "Unsubscribe"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:12
-#: /var/www/image.loc/_tempLangs.php:18
-msgid "Product"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:13
-#: /var/www/image.loc/_tempLangs.php:19
-msgid "New price"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:14
-#: /var/www/image.loc/_tempLangs.php:20
-msgid "Old price"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:15
-#: /var/www/image.loc/_tempLangs.php:21
-msgid "Percentage of price reduction"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:23
-msgid "Watch list is empty"
-msgstr ""
-
-#: /var/www/image.loc/_tempLangs.php:24
-msgid "Already in tracking"
-msgstr ""
-
-#~ msgid "Site configuration"
-#~ msgstr "Настр1"
+"X-Poedit-Language: \n"
+"X-Poedit-Country: \n"
+"X-Poedit-SearchPath-0: .\n"

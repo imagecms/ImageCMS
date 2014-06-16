@@ -1,0 +1,1528 @@
+﻿msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-06-04 12:59+0400\n"
+"PO-Revision-Date: 2014-06-04 12:59+0400\n"
+"Last-Translator:  <>\n"
+"Language-Team:  <>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
+"X-Poedit-Basepath: ../../../..\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-Language: \n"
+"X-Poedit-Country: \n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: .\n"
+
+#: ./templates/light/wishlist/wishPopup.tpl:5
+msgid "Выбор cписка  желаний"
+msgstr ""
+
+#: ./templates/light/components/TColorScheme/assets/admin/main.tpl:6
+#: ./templates/light/components/TColorScheme/TColorScheme.php:94
+msgid "Color scheme"
+msgstr "Цветовая схема"
+
+#: ./templates/light/components/TMenuColumn/TMenuColumn.php:163
+msgid "Menu Column"
+msgstr "Колонки меню"
+
+#: ./templates/light/components/TMenuColumn/assets/admin/main.tpl:25
+#: ./templates/light/components/TMenuColumn/assets/admin/main.tpl:51
+msgid "Toggle this category"
+msgstr "Скрыть подкатегории"
+
+#: ./templates/light/components/TMenuColumn/assets/admin/main.tpl:8
+msgid "Category"
+msgstr "Категория"
+
+#: ./templates/light/components/TMenuColumn/assets/admin/main.tpl:32
+#: ./templates/light/components/TMenuColumn/assets/admin/main.tpl:58
+#: ./templates/light/components/TMenuColumn/assets/admin/main.tpl:78
+msgid "Editing category"
+msgstr "Редактирование категории"
+
+#: ./templates/light/components/TMenuColumn/assets/admin/main.tpl:28
+#: ./templates/light/components/TMenuColumn/assets/admin/main.tpl:54
+msgid "Expand Category"
+msgstr "Показать подкатегории"
+
+#: ./templates/light/components/TMenuColumn/assets/admin/main.tpl:15
+msgid "Open all levels"
+msgstr "Открытые все уровни"
+
+#: ./templates/light/components/TProperties/assets/admin/main.tpl:2
+msgid "Start typing property name here"
+msgstr "Начните вводить имя свойства здесь"
+
+#: ./templates/light/components/TMenuColumn/assets/admin/main.tpl:9
+msgid "Show in column"
+msgstr "Отображать в колонке"
+
+#: ./templates/light/components/TProperties/TProperties.php:123
+msgid "Properties"
+msgstr "Свойства"
+
+#: ./templates/light/components/TMenuColumn/assets/admin/main.tpl:14
+msgid "Open second level"
+msgstr "Открыт второй уровень"
+
+#: ./templates/light/components/TProperties/assets/admin/main.tpl:19
+msgid "Type"
+msgstr "Тип"
+
+#: ./templates/light/components/TProperties/assets/admin/main.tpl:16
+msgid "Name"
+msgstr "Имя"
+
+#: ./templates/light/components/TColorScheme/assets/admin/main.tpl:21
+#: ./templates/light/components/TMenuColumn/assets/admin/main.tpl:103
+#: ./templates/light/components/TProperties/assets/admin/main.tpl:4
+msgid "Save"
+msgstr "Сохранить"
+
+#: ./templates/light/shop/cart.tpl:108
+msgid "--Выбирете способ доставки--"
+msgstr ""
+
+#: ./templates/light/404.tpl:7
+msgid "404 / Страница не найдена"
+msgstr ""
+
+#: ./templates/light/category_menu_second/level_2/container.tpl:6
+msgid "All categoties"
+msgstr "Все категории"
+
+#: ./templates/light/shop/profile_data.tpl:105
+msgid "cделать покупки на сумму"
+msgstr ""
+
+#: ./templates/light/shop/compare.tpl:166
+msgid "Cравнения товаров"
+msgstr ""
+
+#: ./templates/light/shop/cart_order.tpl:176
+#: ./templates/light/shop/order_view.tpl:389
+msgid "Cтоимость товаров"
+msgstr ""
+
+#: ./templates/light/shop/cart_order.tpl:13
+#: ./templates/light/shop/cart_popup.tpl:17
+#: ./templates/light/shop/order_view.tpl:168
+msgid "Cумма"
+msgstr ""
+
+#: ./templates/light/shop/profile_data.tpl:24
+msgid "E-mail является логином"
+msgstr ""
+
+#: ./templates/light/shop/cart.tpl:87
+msgid "Email"
+msgstr ""
+
+#: ./templates/light/wishlist/sendEmail.tpl:13
+msgid "Email друга"
+msgstr ""
+
+#: ./templates/light/category_menu_second/level_2/container.tpl:6
+msgid "Hide"
+msgstr ""
+
+#: ./templates/light/components/TProperties/assets/admin/main.tpl:13
+msgid "Id"
+msgstr ""
+
+#: ./templates/light/offline.tpl:197
+msgid "ImageCMS активно развивается в создание качественных интернет-магазинов"
+msgstr ""
+
+#: ./templates/light/star_rating/star_rating.tpl:9
+#: ./templates/light/star_rating/star_rating.tpl:18
+msgid "Leav"
+msgstr ""
+
+#: ./templates/light/patterns/widgets/view_product.tpl:27
+msgid "No viewed products"
+msgstr ""
+
+#: ./templates/light/components/TOpi/TOpi.php:45
+msgid "One Product Item component"
+msgstr ""
+
+#: ./templates/light/paymentSystem/PayPal.tpl:17
+msgid "PayPal - более безопасный и легкий способ оплаты через Интернет!"
+msgstr ""
+
+#: ./templates/light/star_rating/star_rating.tpl:9
+#: ./templates/light/star_rating/star_rating.tpl:19
+msgid "people(s)"
+msgstr ""
+
+#: ./templates/light/patterns/widgets/brands.tpl:41
+msgid "Show all"
+msgstr ""
+
+#: ./templates/light/shop/helpers/helper.php:6
+msgid "Августа"
+msgstr ""
+
+#: ./templates/light/login_popup.tpl:10
+msgid "Авторизация"
+msgstr ""
+
+#: ./templates/light/shop/js_templates.tpl:169
+msgid "авторизоваться"
+msgstr ""
+
+#: ./templates/light/shop/js_templates.tpl:160
+msgid "Авторизуйтесь"
+msgstr ""
+
+#: ./templates/light/shop/order_view.tpl:89
+#: ./templates/light/shop/profile_data.tpl:29
+msgid "Адрес"
+msgstr ""
+
+#: ./templates/light/shop/cart.tpl:153
+msgid "Адрес доставки"
+msgstr ""
+
+#: ./templates/light/shop/product.tpl:564
+msgid "Аксессуары"
+msgstr ""
+
+#: ./templates/light/shop/helpers/helper.php:6
+msgid "Апреля"
+msgstr ""
+
+#: ./templates/light/components/TOpi/assets/one_product_item.tpl:52
+#: ./templates/light/shop/cart_order.tpl:37
+#: ./templates/light/shop/cart_order.tpl:109
+#: ./templates/light/shop/cart_popup.tpl:44
+#: ./templates/light/shop/cart_popup.tpl:116
+#: ./templates/light/shop/order_view.tpl:193
+#: ./templates/light/shop/product.tpl:100
+msgid "Артикул"
+msgstr ""
+
+#: ./templates/light/shop/profile_data.tpl:139
+msgid "Бесконечно"
+msgstr ""
+
+#: ./templates/light/shop/cart_order.tpl:202
+#: ./templates/light/shop/order_view.tpl:420
+msgid "Бесплатно"
+msgstr ""
+
+#: ./templates/light/shop/cart.tpl:138
+msgid "Бесплатно от"
+msgstr ""
+
+#: ./templates/light/shop/product.tpl:373
+msgid "В комплекте дешевле"
+msgstr ""
+
+#: ./templates/light/components/TOpi/assets/one_product_item.tpl:138
+#: ./templates/light/config.js.tpl:63
+#: ./templates/light/shop/product.tpl:227
+#: ./templates/light/shop/product.tpl:511
+msgid "В корзине"
+msgstr ""
+
+#: ./templates/light/wishlist/button.tpl:22
+msgid "В списке желаний"
+msgstr ""
+
+#: ./templates/light/wishlist/button.tpl:24
+msgid "В списке желания"
+msgstr ""
+
+#: ./templates/light/components/TOpi/assets/one_product_item.tpl:269
+msgid "В списке сравнений"
+msgstr ""
+
+#: ./templates/light/wishlist/button.tpl:7
+msgid "В список желаний"
+msgstr ""
+
+#: ./templates/light/config.js.tpl:55
+msgid "В список желаний могут добавлять только авторизированные пользователи"
+msgstr ""
+
+#: ./templates/light/wishlist/button.tpl:20
+msgid "В список желания"
+msgstr ""
+
+#: ./templates/light/wishlist/wishlist.tpl:25
+msgid "В список избранных вы можете отложить понравившиеся товары, также показать список друзьям"
+msgstr ""
+
+#: ./templates/light/components/TOpi/assets/one_product_item.tpl:267
+#: ./templates/light/components/TOpi/assets/one_product_item.tpl:268
+#: ./templates/light/components/TOpi/assets/one_product_item.tpl:272
+msgid "В список сравнений"
+msgstr ""
+
+#: ./templates/light/shop/product.tpl:331
+msgid "В сравнении"
+msgstr ""
+
+#: ./templates/light/components/TOpi/assets/one_product_item.tpl:61
+#: ./templates/light/components/TOpi/assets/one_product_item.tpl:226
+#: ./templates/light/shop/cart_order.tpl:32
+#: ./templates/light/shop/cart_order.tpl:104
+#: ./templates/light/shop/cart_popup.tpl:39
+#: ./templates/light/shop/cart_popup.tpl:110
+#: ./templates/light/shop/order_view.tpl:192
+#: ./templates/light/shop/product.tpl:108
+#: ./templates/light/shop/product.tpl:143
+msgid "Вариант"
+msgstr ""
+
+#: ./templates/light/comments/comments_api.tpl:26
+#: ./templates/light/comments/comments_api.tpl:196
+msgid "Ваш email:"
+msgstr ""
+
+#: ./templates/light/comments/comments_api.tpl:226
+msgid "Ваш комментарий будет опубликован после модерации администратором"
+msgstr ""
+
+#: ./templates/light/comments/comments_api.tpl:178
+msgid "Ваш ответ"
+msgstr ""
+
+#: ./templates/light/shop/compare_data.tpl:32
+#: ./templates/light/shop/wish_list_data.tpl:24
+msgid "Ваш список"
+msgstr ""
+
+#: ./templates/light/shop/cart_popup.tpl:232
+msgid "Ваша корзина"
+msgstr ""
+
+#: ./templates/light/comments/comments_api.tpl:40
+msgid "Ваша оценка:"
+msgstr ""
+
+#: ./templates/light/shop/cart_order.tpl:214
+#: ./templates/light/shop/cart_popup.tpl:173
+#: ./templates/light/shop/order_view.tpl:432
+#: ./templates/light/shop/profile_data.tpl:69
+#: ./templates/light/shop/profile_data.tpl:93
+msgid "Ваша текущая скидка"
+msgstr ""
+
+#: ./templates/light/shop/profile_data.tpl:77
+msgid "Ваша текущая скидка группы пользователей"
+msgstr ""
+
+#: ./templates/light/comments/comments_api.tpl:20
+#: ./templates/light/shop/profile_data.tpl:7
+msgid "Ваше имя"
+msgstr ""
+
+#: ./templates/light/comments/comments_api.tpl:190
+#: ./templates/light/register.tpl:13
+#: ./templates/light/register_popup.tpl:15
+#: ./templates/light/shop/report_appearance.tpl:22
+msgid "Ваше имя:"
+msgstr ""
+
+#: ./templates/light/config.js.tpl:52
+msgid "Введите более"
+msgstr ""
+
+#: ./templates/light/config.js.tpl:59
+msgid "Введите название"
+msgstr ""
+
+#: ./templates/light/shop/cart_order.tpl:248
+msgid "Ввести промо-код"
+msgstr ""
+
+#: ./templates/light/shop/cart_popup.tpl:179
+msgid "Вернуться к оформлению"
+msgstr ""
+
+#: ./templates/light/shop/cart_popup.tpl:218
+#: ./templates/light/shop/cart_popup.tpl:241
+msgid "Вернуться к покупкам"
+msgstr ""
+
+#: ./templates/light/category_menu/error.tpl:12
+#: ./templates/light/category_menu_first/error.tpl:12
+#: ./templates/light/category_menu_second/error.tpl:12
+#: ./templates/light/footer_category_menu/error.tpl:12
+#: ./templates/light/left_menu/error.tpl:12
+#: ./templates/light/top_menu/error.tpl:12
+msgid "Внимание"
+msgstr ""
+
+#: ./templates/light/comments/comments_api.tpl:4
+#: ./templates/light/login.tpl:36
+#: ./templates/light/login_popup.tpl:43
+#: ./templates/light/register.tpl:65
+#: ./templates/light/register_popup.tpl:62
+#: ./templates/light/reset_password.tpl:5
+msgid "Войти"
+msgstr ""
+
+#: ./templates/light/reset_password.tpl:5
+msgid "Войти в магазин"
+msgstr ""
+
+#: ./templates/light/shop/profile_history.tpl:14
+msgid "Время покупки"
+msgstr ""
+
+#: ./templates/light/header.tpl:48
+msgid "Вс выходной"
+msgstr ""
+
+#: ./templates/light/shop/product.tpl:622
+msgid "Все аксессуары"
+msgstr ""
+
+#: ./templates/light/widgets/brands.tpl:24
+msgid "Все бренды"
+msgstr ""
+
+#: ./templates/light/shop/brands_images.tpl:8
+#: ./templates/light/shop/brands_list.tpl:8
+msgid "Все бренды магазина"
+msgstr ""
+
+#: ./templates/light/category_menu_first/level_2/container.tpl:7
+msgid "Все категории"
+msgstr ""
+
+#: ./templates/light/shop/compare.tpl:26
+msgid "Все параметры"
+msgstr ""
+
+#: ./templates/light/footer.tpl:6
+msgid "Все права защищены"
+msgstr ""
+
+#: ./templates/light/shop/cart_popup.tpl:182
+msgid "Всего"
+msgstr ""
+
+#: ./templates/light/footer.tpl:60
+#: ./templates/light/footer.tpl:60
+#: ./templates/light/login.tpl:5
+#: ./templates/light/shop/auth_data.tpl:12
+msgid "Вход"
+msgstr ""
+
+#: ./templates/light/shop/profile_history.tpl:6
+msgid "Вы еще не совершали покупки"
+msgstr ""
+
+#: ./templates/light/shop/report_appearance.tpl:33
+msgid "Вы получите письмо, когда товар будет доступен"
+msgstr ""
+
+#: ./templates/light/shop/compare.tpl:158
+msgid "Вы удалили все товары из сравнения"
+msgstr ""
+
+#: ./templates/light/shop/cart_popup.tpl:237
+msgid "Вы удалили все элементы из корзины"
+msgstr ""
+
+#: ./templates/light/config.js.tpl:57
+msgid "Выберете размер меньше или равно"
+msgstr ""
+
+#: ./templates/light/shop/cart.tpl:177
+msgid "Выберите доставку"
+msgstr ""
+
+#: ./templates/light/smart_filter/main.tpl:4
+msgid "Выбранные фильтры"
+msgstr ""
+
+#: ./templates/light/shop/catalogue_header.tpl:39
+msgid "Вывод"
+msgstr ""
+
+#: ./templates/light/shop/catalogue_header.tpl:7
+msgid "Выводить сначала"
+msgstr ""
+
+#: ./templates/light/shop/auth_data.tpl:37
+msgid "Выйти"
+msgstr ""
+
+#: ./templates/light/paymentSystem/QIWI.tpl:11
+#: ./templates/light/paymentSystem/QIWI.tpl:34
+msgid "Выставить счёт за покупку"
+msgstr ""
+
+#: ./templates/light/footer.tpl:50
+#: ./templates/light/footer.tpl:50
+msgid "Выход"
+msgstr ""
+
+#: ./templates/light/widgets/path.tpl:7
+msgid "Главная"
+msgstr ""
+
+#: ./templates/light/404.tpl:12
+msgid "Главная страница"
+msgstr ""
+
+#: ./templates/light/shop/order_view.tpl:83
+msgid "Город"
+msgstr ""
+
+#: ./templates/light/shop/order_view.tpl:108
+msgid "Дата заказа"
+msgstr ""
+
+#: ./templates/light/shop/helpers/helper.php:6
+msgid "Декабря"
+msgstr ""
+
+#: ./templates/light/smart_filter/filter.tpl:8
+msgid "Джаваскрипт не включен"
+msgstr ""
+
+#: ./templates/light/shop/profile_data.tpl:104
+msgid "Для следующей скидки"
+msgstr ""
+
+#: ./templates/light/shop/js_templates.tpl:169
+msgid "Для того, что бы добавить товар в список желаний, Вам нужно"
+msgstr ""
+
+#: ./templates/light/smart_filter/main.tpl:7
+msgid "до"
+msgstr ""
+
+#: ./templates/light/shop/profile_data.tpl:131
+msgid "До"
+msgstr ""
+
+#: ./templates/light/wishlist/wishPopup.tpl:70
+msgid "Добавить в список"
+msgstr ""
+
+#: ./templates/light/shop/cart.tpl:163
+msgid "Добавить комментарий к заказу"
+msgstr ""
+
+#: ./templates/light/shop/profile.tpl:6
+msgid "Добро пожаловать!"
+msgstr ""
+
+#: ./templates/light/shop/order_view.tpl:55
+msgid "Дополнительный телефон"
+msgstr ""
+
+#: ./templates/light/shop/cart_order.tpl:186
+#: ./templates/light/shop/order_view.tpl:404
+msgid "Доставка"
+msgstr ""
+
+#: ./templates/light/shop/cart.tpl:104
+msgid "Доставка:"
+msgstr ""
+
+#: ./templates/light/wishlist/wishlist.tpl:37
+#: ./templates/light/wishlist/wishlist.tpl:147
+#: ./templates/light/wishlist/wishlistEdit.tpl:13
+msgid "Доступность:"
+msgstr ""
+
+#: ./templates/light/shop/cart.tpl:72
+msgid "Еще один номер"
+msgstr ""
+
+#: ./templates/light/forgot_password.tpl:5
+#: ./templates/light/login.tpl:41
+#: ./templates/light/login_popup.tpl:48
+msgid "Забыли Пароль?"
+msgstr ""
+
+#: ./templates/light/shop/profile_history.tpl:13
+#: ./templates/light/shop/profile_history.tpl:23
+msgid "Заказ #"
+msgstr ""
+
+#: ./templates/light/shop/order_view.tpl:31
+msgid "Заказ №"
+msgstr ""
+
+#: ./templates/light/header.tpl:43
+#: ./templates/light/shop/callback.tpl:5
+msgid "Заказать звонок"
+msgstr ""
+
+#: ./templates/light/register.tpl:59
+#: ./templates/light/register_popup.tpl:56
+msgid "Зарегистрироваться"
+msgstr ""
+
+#: ./templates/light/shop/auth_data.tpl:28
+#: ./templates/light/shop/profile.tpl:12
+#: ./templates/light/shop/profile_change_pass.tpl:28
+msgid "Изменить пароль"
+msgstr ""
+
+#: ./templates/light/shop/order_view.tpl:43
+msgid "Имя получателя"
+msgstr ""
+
+#: ./templates/light/shop/callback.tpl:18
+#: ./templates/light/shop/cart.tpl:59
+msgid "Имя: "
+msgstr ""
+
+#: ./templates/light/shop/auth_data.tpl:29
+#: ./templates/light/shop/profile.tpl:13
+msgid "История заказа"
+msgstr ""
+
+#: ./templates/light/shop/helpers/helper.php:6
+msgid "Июля"
+msgstr ""
+
+#: ./templates/light/shop/helpers/helper.php:6
+msgid "Июня"
+msgstr ""
+
+#: ./templates/light/shop/cart_order.tpl:271
+#: ./templates/light/shop/order_view.tpl:468
+msgid "К оплате"
+msgstr ""
+
+#: ./templates/light/shop/product.tpl:329
+#: ./templates/light/shop/product.tpl:330
+#: ./templates/light/shop/product.tpl:334
+msgid "К сравнению"
+msgstr ""
+
+#: ./templates/light/shop/search.tpl:60
+#: ./templates/light/smart_filter/main.tpl:44
+msgid "Категории"
+msgstr ""
+
+#: ./templates/light/shop/compare.tpl:127
+msgid "Категория"
+msgstr ""
+
+#: ./templates/light/category.tpl:11
+msgid "Категория на стадии разработки"
+msgstr ""
+
+#: ./templates/light/comments/comments_api.tpl:53
+msgid "Код защиты"
+msgstr ""
+
+#: ./templates/light/config.js.tpl:70
+msgid "Код протекции"
+msgstr ""
+
+#: ./templates/light/config.js.tpl:65
+#: ./templates/light/shop/cart_order.tpl:12
+#: ./templates/light/shop/cart_popup.tpl:16
+#: ./templates/light/shop/order_view.tpl:167
+msgid "Кол-во"
+msgstr ""
+
+#: ./templates/light/shop/cart_popup.tpl:52
+#: ./templates/light/shop/cart_popup.tpl:127
+msgid "Количество на складе"
+msgstr ""
+
+#: ./templates/light/config.js.tpl:68
+msgid "Количество:"
+msgstr ""
+
+#: ./templates/light/wishlist/wishlist.tpl:41
+#: ./templates/light/wishlist/wishlist.tpl:155
+#: ./templates/light/wishlist/wishlistEdit.tpl:17
+msgid "Коллективный"
+msgstr ""
+
+#: ./templates/light/wishlist/wishlistEdit.tpl:40
+msgid "Коментарий к:"
+msgstr ""
+
+#: ./templates/light/paymentSystem/QIWI.tpl:29
+#: ./templates/light/shop/order_view.tpl:95
+msgid "Комментарий"
+msgstr ""
+
+#: ./templates/light/shop/callback.tpl:32
+msgid "Комментарий: "
+msgstr ""
+
+#: ./templates/light/shop/report_appearance.tpl:43
+msgid "Комментарий:"
+msgstr ""
+
+#: ./templates/light/comments/comments_api.tpl:68
+#: ./templates/light/comments/comments_api.tpl:212
+msgid "Комментировать"
+msgstr ""
+
+#: ./templates/light/shop/cart_order.tpl:86
+#: ./templates/light/shop/order_view.tpl:251
+msgid "Комплект товаров"
+msgstr ""
+
+#: ./templates/light/config.js.tpl:69
+msgid "Комплектов:"
+msgstr ""
+
+#: ./templates/light/paymentSystem/QIWI.tpl:25
+msgid "коп."
+msgstr ""
+
+#: ./templates/light/shop/cart_data.tpl:29
+msgid "Корзина"
+msgstr ""
+
+#: ./templates/light/shop/cart.tpl:13
+msgid "Корзина пуста"
+msgstr ""
+
+#: ./templates/light/components/TOpi/assets/one_product_item.tpl:171
+#: ./templates/light/config.js.tpl:67
+#: ./templates/light/shop/product.tpl:264
+#: ./templates/light/shop/product.tpl:523
+msgid "Купить"
+msgstr ""
+
+#: ./templates/light/main_demo.tpl:140
+msgid "Купить лицензию"
+msgstr ""
+
+#: ./templates/light/footer.tpl:53
+#: ./templates/light/footer.tpl:53
+#: ./templates/light/shop/auth_data.tpl:19
+msgid "Личный кабинет"
+msgstr ""
+
+#: ./templates/light/shop/helpers/helper.php:6
+msgid "Марта"
+msgstr ""
+
+#: ./templates/light/shop/helpers/helper.php:6
+msgid "Мая"
+msgstr ""
+
+#: ./templates/light/paymentSystem/QIWI.tpl:14
+msgid "Мобильный телефон"
+msgstr ""
+
+#: ./templates/light/shop/cart.tpl:203
+#: ./templates/light/shop/cart_popup.tpl:8
+#: ./templates/light/shop/order_view.tpl:157
+msgid "Мой заказ"
+msgstr ""
+
+#: ./templates/light/shop/catalogue_header.tpl:21
+msgid "На странице"
+msgstr ""
+
+#: ./templates/light/config.js.tpl:72
+msgid "набор"
+msgstr ""
+
+#: ./templates/light/config.js.tpl:72
+msgid "набора"
+msgstr ""
+
+#: ./templates/light/config.js.tpl:72
+msgid "наборов"
+msgstr ""
+
+#: ./templates/light/user_toolbar.tpl:39
+msgid "Наверх"
+msgstr ""
+
+#: ./templates/light/wishlist/wishlist.tpl:49
+#: ./templates/light/wishlist/wishlistEdit.tpl:25
+msgid "Название списка:"
+msgstr ""
+
+#: ./templates/light/shop/brand.tpl:33
+#: ./templates/light/shop/js_templates.tpl:121
+#: ./templates/light/shop/search.tpl:25
+msgid "Найдено"
+msgstr ""
+
+#: ./templates/light/shop/brand.tpl:85
+msgid "Найдено в категориях:"
+msgstr ""
+
+#: ./templates/light/header.tpl:60
+msgid "Найти"
+msgstr ""
+
+#: ./templates/light/shop/profile_data.tpl:122
+msgid "Накопительные скидки"
+msgstr ""
+
+#: ./templates/light/register.tpl:71
+#: ./templates/light/register_popup.tpl:68
+msgid "Напомнить пароль"
+msgstr ""
+
+#: ./templates/light/shop/cart_order.tpl:166
+#: ./templates/light/shop/order_view.tpl:377
+msgid "Начальная стоимость товаров"
+msgstr ""
+
+#: ./templates/light/footer.tpl:14
+msgid "Наши контакты"
+msgstr ""
+
+#: ./templates/light/shop/order_view.tpl:25
+msgid "Наши менеджеры свяжутся с вами."
+msgstr ""
+
+#: ./templates/light/smart_filter/filter.tpl:115
+msgid "Не выбрано"
+msgstr ""
+
+#: ./templates/light/shop/profile_data.tpl:10
+msgid "Не меньше 4-х символов"
+msgstr ""
+
+#: ./templates/light/shop/category.tpl:38
+#: ./templates/light/shop/search.tpl:32
+msgid "Не найдено товаров"
+msgstr ""
+
+#: ./templates/light/category_menu_first/error.tpl:13
+#: ./templates/light/category_menu_second/error.tpl:13
+#: ./templates/light/top_menu/error.tpl:13
+msgid "Не обнаружен необходимый файл шаблона для меню"
+msgstr ""
+
+#: ./templates/light/category_menu/error.tpl:13
+#: ./templates/light/footer_category_menu/error.tpl:13
+#: ./templates/light/left_menu/error.tpl:13
+msgid "Не обнаружен необходимый файл шаблона для меню "
+msgstr ""
+
+#: ./templates/light/shop/order_view.tpl:130
+#: ./templates/light/shop/profile_history.tpl:39
+msgid "Не оплачен"
+msgstr ""
+
+#: ./templates/light/shop/cart_order.tpl:242
+msgid "Неверный код подарочного сертификата"
+msgstr ""
+
+#: ./templates/light/components/TOpi/assets/one_product_item.tpl:179
+#: ./templates/light/shop/product.tpl:273
+msgid "Нет в наличии"
+msgstr ""
+
+#: ./templates/light/widgets/ViewedProducts.tpl:27
+msgid "Нет просмотренных товаров"
+msgstr ""
+
+#: ./templates/light/shop/payments/default.tpl:29
+#: ./templates/light/shop/payments/radio.tpl:34
+msgid "Нет способов оплаты"
+msgstr ""
+
+#: ./templates/light/category_menu_first/level_1/item_default.tpl:8
+#: ./templates/light/category_menu_first/level_1/item_default_active.tpl:9
+#: ./templates/light/category_menu_second/level_2/item_default.tpl:8
+msgid "Нет фото"
+msgstr ""
+
+#: ./templates/light/shop/profile_change_pass.tpl:13
+msgid "Новый пароль"
+msgstr ""
+
+#: ./templates/light/shop/helpers/helper.php:6
+msgid "Ноября"
+msgstr ""
+
+#: ./templates/light/shop/product.tpl:554
+msgid "Обзор"
+msgstr ""
+
+#: ./templates/light/main_demo.tpl:145
+msgid "Обзор продукта"
+msgstr ""
+
+#: ./templates/light/footer.tpl:72
+#: ./templates/light/footer.tpl:72
+msgid "Обратный звонок"
+msgstr ""
+
+#: ./templates/light/shop/helpers/helper.php:6
+msgid "Октября"
+msgstr ""
+
+#: ./templates/light/offline.tpl:196
+msgid "ООО «Сайт Имидж»"
+msgstr ""
+
+#: ./templates/light/shop/product.tpl:602
+#: ./templates/light/shop/product.tpl:659
+msgid "Описание"
+msgstr ""
+
+#: ./templates/light/wishlist/wishlist.tpl:55
+#: ./templates/light/wishlist/wishlistEdit.tpl:31
+msgid "Описание:"
+msgstr ""
+
+#: ./templates/light/shop/cart.tpl:175
+#: ./templates/light/shop/payments/default.tpl:27
+#: ./templates/light/shop/payments/radio.tpl:32
+msgid "Оплата"
+msgstr ""
+
+#: ./templates/light/shop/payments/default.tpl:3
+#: ./templates/light/shop/payments/radio.tpl:3
+msgid "Оплата:"
+msgstr ""
+
+#: ./templates/light/paymentSystem/LiqPay.tpl:5
+#: ./templates/light/paymentSystem/PrivateBank.tpl:12
+#: ./templates/light/paymentSystem/Robokassa.tpl:13
+#: ./templates/light/paymentSystem/SberBank.tpl:5
+msgid "Оплатить"
+msgstr ""
+
+#: ./templates/light/shop/order_view.tpl:128
+msgid "Оплачен"
+msgstr ""
+
+#: ./templates/light/shop/profile_history.tpl:39
+msgid "Оплачиваемый"
+msgstr ""
+
+#: ./templates/light/shop/auth_data.tpl:27
+#: ./templates/light/shop/profile.tpl:11
+msgid "Основные данные"
+msgstr ""
+
+#: ./templates/light/shop/product.tpl:132
+msgid "Оставить отзыв"
+msgstr ""
+
+#: ./templates/light/comments/comments_api.tpl:10
+msgid "Оставить свой отзыв"
+msgstr ""
+
+#: ./templates/light/shop/profile_data.tpl:104
+msgid "осталось"
+msgstr ""
+
+#: ./templates/light/shop/profile_data.tpl:130
+msgid "От"
+msgstr ""
+
+#: ./templates/light/comments/comments_api.tpl:142
+msgid "Ответ от"
+msgstr ""
+
+#: ./templates/light/comments/comments_api.tpl:127
+msgid "Ответить"
+msgstr ""
+
+#: ./templates/light/config.js.tpl:73
+msgid "отзыв"
+msgstr ""
+
+#: ./templates/light/config.js.tpl:73
+msgid "отзыва"
+msgstr ""
+
+#: ./templates/light/config.js.tpl:73
+msgid "отзывов"
+msgstr ""
+
+#: ./templates/light/components/TOpi/assets/one_product_item.tpl:250
+#: ./templates/light/shop/product.tpl:124
+#: ./templates/light/shop/product.tpl:572
+msgid "Отзывы"
+msgstr ""
+
+#: ./templates/light/comments/comments_api.tpl:10
+msgid "Отзывы покупателей"
+msgstr ""
+
+#: ./templates/light/shop/js_templates.tpl:148
+msgid "Отменить"
+msgstr ""
+
+#: ./templates/light/forgot_password.tpl:32
+#: ./templates/light/shop/report_appearance.tpl:51
+#: ./templates/light/wishlist/sendEmail.tpl:23
+msgid "Отправить"
+msgstr ""
+
+#: ./templates/light/wishlist/sendEmail.tpl:5
+msgid "Отправить другу"
+msgstr ""
+
+#: ./templates/light/offline.tpl:186
+msgid "Отправить сообщение"
+msgstr ""
+
+#: ./templates/light/shop/cart.tpl:191
+#: ./templates/light/shop/cart_popup.tpl:224
+msgid "Оформить заказ"
+msgstr ""
+
+#: ./templates/light/shop/cart.tpl:7
+#: ./templates/light/shop/cart.tpl:24
+msgid "Оформление заказа"
+msgstr ""
+
+#: ./templates/light/login.tpl:19
+#: ./templates/light/login_popup.tpl:26
+msgid "Пароль"
+msgstr ""
+
+#: ./templates/light/forgot_password.tpl:22
+msgid "Пароль будет выслан на e-mail "
+msgstr ""
+
+#: ./templates/light/register.tpl:26
+#: ./templates/light/register_popup.tpl:28
+msgid "Пароль:"
+msgstr ""
+
+#: ./templates/light/forgot_password.tpl:41
+#: ./templates/light/login.tpl:50
+#: ./templates/light/login_popup.tpl:57
+msgid "Перейти к регистрации"
+msgstr ""
+
+#: ./templates/light/components/TOpi/assets/one_product_item.tpl:348
+msgid "Переместить"
+msgstr ""
+
+#: ./templates/light/wishlist/wishPopup.tpl:70
+msgid "Переместить в список"
+msgstr ""
+
+#: ./templates/light/category_menu/error.tpl:23
+#: ./templates/light/category_menu_first/error.tpl:23
+#: ./templates/light/category_menu_second/error.tpl:23
+#: ./templates/light/footer_category_menu/error.tpl:23
+#: ./templates/light/left_menu/error.tpl:23
+msgid "Переустановите модуль меню "
+msgstr ""
+
+#: ./templates/light/top_menu/error.tpl:23
+msgid "Переустановите модуль меню"
+msgstr ""
+
+#: ./templates/light/config.js.tpl:57
+msgid "пикселей"
+msgstr ""
+
+#: ./templates/light/header.tpl:48
+msgid "Пн–Пт"
+msgstr ""
+
+#: ./templates/light/shop/js_templates.tpl:67
+msgid "По Вашему запросу ничего не найдено"
+msgstr ""
+
+#: ./templates/light/shop/brand.tpl:39
+msgid "По вашему запросу товаров не найдено"
+msgstr ""
+
+#: ./templates/light/shop/profile_change_pass.tpl:19
+msgid "Повторите пароль"
+msgstr ""
+
+#: ./templates/light/register.tpl:33
+#: ./templates/light/register_popup.tpl:35
+msgid "Повторите:"
+msgstr ""
+
+#: ./templates/light/shop/cart_order.tpl:225
+#: ./templates/light/shop/cart_order.tpl:236
+#: ./templates/light/shop/order_view.tpl:447
+msgid "Подарочный сертификат"
+msgstr ""
+
+#: ./templates/light/wishlist/wishlist.tpl:160
+msgid "Поделится с другом"
+msgstr ""
+
+#: ./templates/light/wishlist/wishlist.tpl:162
+msgid "Поделиться с другом"
+msgstr ""
+
+#: ./templates/light/shop/js_templates.tpl:143
+msgid "Подтвердить"
+msgstr ""
+
+#: ./templates/light/comments/comments_api.tpl:2
+msgid "Пожалуйста, войдите для комментирования"
+msgstr ""
+
+#: ./templates/light/shop/callback.tpl:42
+msgid "Позвоните мне"
+msgstr ""
+
+#: ./templates/light/main_demo.tpl:136
+#: ./templates/light/shop/js_templates.tpl:121
+msgid "Показать"
+msgstr ""
+
+#: ./templates/light/shop/product.tpl:561
+#: ./templates/light/shop/product.tpl:608
+msgid "Полное описание"
+msgstr ""
+
+#: ./templates/light/footer.tpl:46
+msgid "Пользователь"
+msgstr ""
+
+#: ./templates/light/shop/js_templates.tpl:61
+msgid "Посмотреть все результаты"
+msgstr ""
+
+#: ./templates/light/shop/profile_data.tpl:110
+msgid "Посмотреть таблицу скидок"
+msgstr ""
+
+#: ./templates/light/login.tpl:12
+#: ./templates/light/login_popup.tpl:19
+msgid "Почта"
+msgstr ""
+
+#: ./templates/light/main_demo.tpl:148
+msgid "Преимущества продукта"
+msgstr ""
+
+#: ./templates/light/wishlist/wishlist.tpl:43
+#: ./templates/light/wishlist/wishlist.tpl:149
+#: ./templates/light/wishlist/wishlistEdit.tpl:18
+msgid "Приватный"
+msgstr ""
+
+#: ./templates/light/shop/cart_order.tpl:255
+msgid "Применить"
+msgstr ""
+
+#: ./templates/light/404.tpl:10
+msgid "Приносим свои извинения за доставленные неудобства. Для продолжения работы вы можете перейти к представленным пунктам меню, воспользоваться поиском по сайту либо перейти на главную страницу"
+msgstr ""
+
+#: ./templates/light/category_menu/error.tpl:21
+#: ./templates/light/category_menu_first/error.tpl:21
+#: ./templates/light/category_menu_second/error.tpl:21
+#: ./templates/light/footer_category_menu/error.tpl:21
+#: ./templates/light/left_menu/error.tpl:21
+#: ./templates/light/top_menu/error.tpl:21
+msgid "Проверьте наличие файла или измените настройки меню"
+msgstr ""
+
+#: ./templates/light/footer.tpl:38
+msgid "Продукция"
+msgstr ""
+
+#: ./templates/light/smart_filter/filter.tpl:35
+msgid "Производитель"
+msgstr ""
+
+#: ./templates/light/user_toolbar.tpl:11
+msgid "Просмотренные товары"
+msgstr ""
+
+#: ./templates/light/shop/product.tpl:591
+msgid "Просмотреть все спецификации"
+msgstr ""
+
+#: ./templates/light/wishlist/wishlist.tpl:42
+#: ./templates/light/wishlist/wishlist.tpl:152
+#: ./templates/light/wishlist/wishlistEdit.tpl:19
+msgid "Публичный"
+msgstr ""
+
+#: ./templates/light/shop/compare_data.tpl:33
+#: ./templates/light/shop/wish_list_data.tpl:25
+msgid "пуст"
+msgstr ""
+
+#: ./templates/light/shop/cart_popup.tpl:232
+msgid "пуста"
+msgstr ""
+
+#: ./templates/light/header.tpl:48
+msgid "Работаем"
+msgstr ""
+
+#: ./templates/light/user_toolbar.tpl:30
+msgid "Развернуть"
+msgstr ""
+
+#: ./templates/light/shop/profile_data.tpl:129
+msgid "Размер скидки"
+msgstr ""
+
+#: ./templates/light/shop/product.tpl:693
+msgid "Рассказать друзьям"
+msgstr ""
+
+#: ./templates/light/footer.tpl:63
+#: ./templates/light/footer.tpl:63
+#: ./templates/light/register.tpl:5
+#: ./templates/light/register_popup.tpl:5
+msgid "Регистрация"
+msgstr ""
+
+#: ./templates/light/shop/cart.tpl:205
+msgid "Редактировать"
+msgstr ""
+
+#: ./templates/light/wishlist/wishlist.tpl:125
+msgid "Редактировать список"
+msgstr ""
+
+#: ./templates/light/wishlist/wishlistEdit.tpl:5
+msgid "Редактировать:"
+msgstr ""
+
+#: ./templates/light/shop/search.tpl:23
+msgid "Результаты поиска"
+msgstr ""
+
+#: ./templates/light/paymentSystem/QIWI.tpl:24
+msgid "руб."
+msgstr ""
+
+#: ./templates/light/shop/product.tpl:619
+#: ./templates/light/shop/product.tpl:674
+msgid "С этим товаром покупают"
+msgstr ""
+
+#: ./templates/light/footer.tpl:30
+msgid "Сайт"
+msgstr ""
+
+#: ./templates/light/offline.tpl:182
+msgid "Сайт в стадии строительства"
+msgstr ""
+
+#: ./templates/light/header.tpl:48
+msgid "Сб"
+msgstr ""
+
+#: ./templates/light/smart_filter/main.tpl:32
+msgid "Сбросить все фильтры"
+msgstr ""
+
+#: ./templates/light/user_toolbar.tpl:26
+msgid "Свернуть"
+msgstr ""
+
+#: ./templates/light/shop/product.tpl:558
+#: ./templates/light/shop/product.tpl:650
+msgid "Свойства"
+msgstr ""
+
+#: ./templates/light/shop/helpers/helper.php:6
+msgid "Сентября"
+msgstr ""
+
+#: ./templates/light/config.js.tpl:52
+msgid "символов"
+msgstr ""
+
+#: ./templates/light/shop/profile_data.tpl:53
+msgid "Скидки"
+msgstr ""
+
+#: ./templates/light/category_menu_first/level_2/container.tpl:7
+#: ./templates/light/comments/comments_api.tpl:164
+#: ./templates/light/main_demo.tpl:130
+msgid "Скрыть"
+msgstr ""
+
+#: ./templates/light/comments/comments_api.tpl:164
+#: ./templates/light/comments/comments_api.tpl:170
+msgid "Смотреть все ответы"
+msgstr ""
+
+#: ./templates/light/wishlist/wishlist.tpl:29
+msgid "Создание списка избранных товаров"
+msgstr ""
+
+#: ./templates/light/wishlist/wishlist.tpl:22
+#: ./templates/light/wishlist/wishlist.tpl:76
+msgid "Создать новый список"
+msgstr ""
+
+#: ./templates/light/wishlist/wishPopup.tpl:42
+msgid "Создать список"
+msgstr ""
+
+#: ./templates/light/components/TOpi/assets/one_product_item.tpl:211
+#: ./templates/light/shop/product.tpl:311
+#: ./templates/light/shop/report_appearance.tpl:4
+msgid "Сообщить о появлении"
+msgstr ""
+
+#: ./templates/light/wishlist/wishlistEdit.tpl:55
+msgid "Сохранить"
+msgstr ""
+
+#: ./templates/light/shop/profile_data.tpl:38
+msgid "Сохранить данные"
+msgstr ""
+
+#: ./templates/light/shop/order_view.tpl:25
+msgid "Спасибо, ваш заказ принят!"
+msgstr ""
+
+#: ./templates/light/shop/catalogue_header.tpl:47
+#: ./templates/light/shop/catalogue_header.tpl:48
+msgid "Список"
+msgstr ""
+
+#: ./templates/light/footer.tpl:56
+#: ./templates/light/footer.tpl:56
+#: ./templates/light/shop/wish_list_data.tpl:7
+#: ./templates/light/shop/wish_list_data.tpl:13
+#: ./templates/light/shop/wish_list_data.tpl:25
+#: ./templates/light/wishlist/other_list.tpl:56
+#: ./templates/light/wishlist/wishlist.tpl:6
+msgid "Список желаний"
+msgstr ""
+
+#: ./templates/light/wishlist/other_list.tpl:62
+#: ./templates/light/wishlist/wishlist.tpl:180
+msgid "Список Желания пуст"
+msgstr ""
+
+#: ./templates/light/wishlist/other_list.tpl:48
+#: ./templates/light/wishlist/wishlist.tpl:109
+msgid "Список пуст"
+msgstr ""
+
+#: ./templates/light/footer.tpl:69
+#: ./templates/light/footer.tpl:69
+msgid "Список сравнений"
+msgstr ""
+
+#: ./templates/light/shop/compare_data.tpl:33
+msgid "Список сравнения"
+msgstr ""
+
+#: ./templates/light/shop/compare.tpl:172
+msgid "Список сравнения пуст"
+msgstr ""
+
+#: ./templates/light/shop/order_view.tpl:71
+msgid "Способ доставки"
+msgstr ""
+
+#: ./templates/light/shop/order_view.tpl:115
+msgid "Способ оплаты"
+msgstr ""
+
+#: ./templates/light/shop/compare.tpl:21
+#: ./templates/light/shop/compare.tpl:152
+msgid "Сравнение товаров"
+msgstr ""
+
+#: ./templates/light/shop/profile_change_pass.tpl:7
+msgid "Старый пароль"
+msgstr ""
+
+#: ./templates/light/shop/profile_history.tpl:16
+msgid "Статус заказа"
+msgstr ""
+
+#: ./templates/light/shop/order_view.tpl:125
+msgid "Статус оплаты"
+msgstr ""
+
+#: ./templates/light/shop/profile_history.tpl:17
+msgid "Статус платежа"
+msgstr ""
+
+#: ./templates/light/widgets/latest_news.tpl:4
+msgid "Статьи, новости и акции"
+msgstr ""
+
+#: ./templates/light/shop/cart.tpl:137
+msgid "Стоимость"
+msgstr ""
+
+#: ./templates/light/config.js.tpl:66
+#: ./templates/light/paymentSystem/QIWI.tpl:22
+msgid "Сумма"
+msgstr ""
+
+#: ./templates/light/shop/profile_history.tpl:15
+msgid "Сумма покупки"
+msgstr ""
+
+#: ./templates/light/shop/catalogue_header.tpl:42
+#: ./templates/light/shop/catalogue_header.tpl:43
+msgid "Таблица"
+msgstr ""
+
+#: ./templates/light/comments/comments_api.tpl:33
+msgid "Текст комментария"
+msgstr ""
+
+#: ./templates/light/comments/comments_api.tpl:203
+msgid "Текст ответа:"
+msgstr ""
+
+#: ./templates/light/shop/cart.tpl:68
+#: ./templates/light/shop/order_view.tpl:48
+#: ./templates/light/shop/profile_data.tpl:14
+msgid "Телефон"
+msgstr ""
+
+#: ./templates/light/shop/callback.tpl:25
+msgid "Телефон: "
+msgstr ""
+
+#: ./templates/light/shop/report_appearance.tpl:37
+msgid "Телефон:"
+msgstr ""
+
+#: ./templates/light/config.js.tpl:71
+#: ./templates/light/shop/brand.tpl:33
+#: ./templates/light/shop/category.tpl:30
+#: ./templates/light/shop/search.tpl:25
+msgid "товар"
+msgstr ""
+
+#: ./templates/light/shop/cart_order.tpl:11
+#: ./templates/light/shop/cart_popup.tpl:15
+#: ./templates/light/shop/order_view.tpl:166
+msgid "Товар"
+msgstr ""
+
+#: ./templates/light/config.js.tpl:71
+#: ./templates/light/shop/brand.tpl:33
+#: ./templates/light/shop/category.tpl:30
+#: ./templates/light/shop/search.tpl:25
+msgid "товара"
+msgstr ""
+
+#: ./templates/light/config.js.tpl:71
+#: ./templates/light/shop/brand.tpl:33
+#: ./templates/light/shop/category.tpl:30
+#: ./templates/light/shop/search.tpl:25
+msgid "товаров"
+msgstr ""
+
+#: ./templates/light/shop/profile_data.tpl:59
+msgid "Товаров на сумму"
+msgstr ""
+
+#: ./templates/light/shop/compare_data.tpl:11
+#: ./templates/light/shop/compare_data.tpl:19
+msgid "Товары на сравнение"
+msgstr ""
+
+#: ./templates/light/shop/compare.tpl:31
+msgid "Только Различия"
+msgstr ""
+
+#: ./templates/light/smart_filter/filter.tpl:19
+#: ./templates/light/smart_filter/filter.tpl:22
+msgid "только цифры"
+msgstr ""
+
+#: ./templates/light/shop/cart_popup.tpl:53
+#: ./templates/light/shop/cart_popup.tpl:128
+msgid "Только цифры"
+msgstr ""
+
+#: ./templates/light/components/TOpi/assets/one_product_item.tpl:340
+msgid "Удалить"
+msgstr ""
+
+#: ./templates/light/wishlist/wishlist.tpl:142
+msgid "Удалить список"
+msgstr ""
+
+#: ./templates/light/shop/js_templates.tpl:137
+msgid "Удалить список?"
+msgstr ""
+
+#: ./templates/light/offline.tpl:183
+msgid "Управление сайтом"
+msgstr ""
+
+#: ./templates/light/shop/helpers/helper.php:6
+msgid "Февраля"
+msgstr ""
+
+#: ./templates/light/smart_filter/filter.tpl:141
+msgid "Фильтровать"
+msgstr ""
+
+#: ./templates/light/shop/product.tpl:585
+msgid "Характеристики"
+msgstr ""
+
+#: ./templates/light/smart_filter/filter.tpl:6
+msgid "Цена"
+msgstr ""
+
+#: ./templates/light/smart_filter/main.tpl:7
+msgid "Цена от"
+msgstr ""
+
+#: ./templates/light/main_demo.tpl:151
+msgid "Шаблоны для Shop"
+msgstr ""
+
+#: ./templates/light/config.js.tpl:64
+#: ./templates/light/shop/order_view.tpl:219
+#: ./templates/light/shop/order_view.tpl:337
+msgid "шт"
+msgstr ""
+
+#: ./templates/light/404.tpl:8
+msgid "Эта страница не существует или была удалена."
+msgstr ""
+
+#: ./templates/light/forgot_password.tpl:40
+#: ./templates/light/login.tpl:49
+#: ./templates/light/login_popup.tpl:56
+msgid "Я еще не зарегистрирован"
+msgstr ""
+
+#: ./templates/light/header.tpl:63
+msgid "Я ищу"
+msgstr ""
+
+#: ./templates/light/register.tpl:61
+#: ./templates/light/register_popup.tpl:58
+msgid "Я уже зарегистрирован"
+msgstr ""
+
+#: ./templates/light/shop/cart.tpl:28
+msgid "Я уже здесь покупал"
+msgstr ""
+
+#: ./templates/light/shop/helpers/helper.php:6
+msgid "Января"
+msgstr ""

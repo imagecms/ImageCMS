@@ -279,7 +279,7 @@
                         </table>
                         <div class="gen-sum-order footer-bask">
                             <div class="inside-padd clearfix">
-                                <span class="title f_l">{lang('К оплате с учетом доставки','newLevelVertical')}:</span>
+                                <span class="title f_l">{lang('К оплате','newLevelVertical')}:</span>
                                 <span class="frame-prices f_r">
                                     <span class="current-prices f-s_0">
                                         <span class="price-new">

@@ -161,7 +161,6 @@ class Settings extends BaseAdminController {
                         if (SHOP_INSTALLED && is_dir(TEMPLATES_PATH . $file . '/shop/')) {
                             $new_arr_shop[$file] = $file;
                         }
-
                         $new_arr[$file] = $file;
                     }
                 }
@@ -179,7 +178,6 @@ class Settings extends BaseAdminController {
             return $new_arr;
         }
     }
-
 
     /**
      * Save site settings
@@ -221,7 +219,6 @@ class Settings extends BaseAdminController {
                 break;
         }
 
-
         $res = $this->processSiteInfo();
 
         $data_m = array(
@@ -242,8 +239,11 @@ class Settings extends BaseAdminController {
             'yandex_metric' => $this->input->post('yandex_metric'),
             'lang_sel' => $this->input->post('lang_sel'),
             'text_editor' => $this->input->post('text_editor'),
+            'robots_status' => (int) $this->input->post('robots_status')
                 //'siteinfo' => serialize($siData)
         );
+
+        $this->replaceRobots($data_m['robots_status']);
 
         /** Save template path for shop * */
         if ($this->db->table_exists('shop_settings')) {
@@ -253,9 +253,11 @@ class Settings extends BaseAdminController {
 
         $this->translate_meta();
 
-        ($hook = get_hook('admin_save_settings')) ? eval($hook) : NULL;
+        //($hook = get_hook('admin_save_settings')) ? eval($hook) : NULL;
+
 
         $this->cms_admin->save_settings($data_m);
+
 
         $this->cache->delete_all();
 
@@ -264,6 +266,55 @@ class Settings extends BaseAdminController {
         echo "<script>var textEditor = '{$data_m['text_editor']}';</script>";
         if (!validation_errors())
             showMessage(lang("Settings have been saved", "admin"));
+    }
+
+    /**
+     * Replace robots
+     * @param int $robotsStatus - robots status(turn on - 1, turn off - 0)
+     * @return int
+     */
+    private function replaceRobots($robotsStatus = 0) {
+        $robots = file('robots.txt');
+
+        if ((int) $robotsStatus) {
+            // Turn on robots
+            $turnOnRobot = TRUE;
+
+            foreach ($robots as $key => $robot) {
+                if (trim($robot) == 'Disallow: /') {
+                    $turnOnRobot = FALSE;
+                    break;
+                }
+
+                if (trim($robot) == 'Disallow:') {
+                    unset($robots[$key]);
+                }
+            }
+
+            if ($turnOnRobot) {
+                array_splice($robots, 1, 0, 'Disallow: /' . PHP_EOL);
+            }
+        } else {
+            // Turn off robots
+            $turnOffRobot = TRUE;
+
+            foreach ($robots as $key => $robot) {
+                if (trim($robot) == 'Disallow:') {
+                    $turnOffRobot = FALSE;
+                    break;
+                }
+
+                if (trim($robot) == 'Disallow: /') {
+                    unset($robots[$key]);
+                }
+            }
+
+            if ($turnOffRobot) {
+                array_splice($robots, 1, 0, 'Disallow:' . PHP_EOL);
+            }
+        }
+
+        return file_put_contents('robots.txt', $robots);
     }
 
     /**
@@ -291,7 +342,7 @@ class Settings extends BaseAdminController {
         $countValues = count($siteinfo['siteinfo_contactvalue']);
         if ($countKeys == $countValues & $countValues > 0) {
             for ($i = 0; $i < $countKeys; $i++) {
-                if (!empty($siteinfo['siteinfo_contactkey'][$i]) & !empty($siteinfo['siteinfo_contactvalue'][$i])) {
+                if (!empty($siteinfo['siteinfo_contactkey'][$i])) {
                     $additional[$siteinfo['siteinfo_contactkey'][$i]] = $siteinfo['siteinfo_contactvalue'][$i];
                     //$siteinfo["siteinfo_" . $siteinfo['siteinfo_contactkey'][$i]] = $siteinfo['siteinfo_contactvalue'][$i];
                 }
@@ -390,12 +441,31 @@ class Settings extends BaseAdminController {
     }
 
     /**
-     * Save main page settings
-     *
-     * @access public
+     * Returns license agreement from template, or default agreement
+     * @return string 
      */
-    function save_main() {
-        
+    public function license_agreement() {
+        header('Content-Type: text/plain; charset=utf-8');
+        $template = new \template_manager\classes\Template($_GET['template_name']);
+        echo $template->getLicenseAgreement();
+    }
+
+    public function template_has_license($templateName = null) {
+        if (is_null($templateName)) {
+            $templateName = $_GET['template_name'];
+        }
+
+        if (empty($templateName)) {
+            echo 0;
+            return;
+        }
+        if (false == class_exists('\\template_manager\\classes\\Template')) {
+            echo 0;
+            return;
+        }
+        $template = new \template_manager\classes\Template($templateName);
+        $license = $template->getLicenseAgreement();
+        echo empty($license) ? 0 : 1;
     }
 
 }

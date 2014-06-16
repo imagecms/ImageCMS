@@ -56,7 +56,7 @@
                                                     </div>
                                                 {/if}
                                                 <div class="controls">
-                                                    <img src="{site_url('./uploads/mod_wishlist/'.$user['user_image'])}"
+                                                    <img src="{site_url('uploads/mod_wishlist/'.$user['user_image'])}"
                                                          class="img-polaroid"
                                                          alt='{lang('Ava', 'wishlist')}'
                                                          width="{echo $settings[maxImageWidth]}"
@@ -247,8 +247,7 @@
                                                 <div class="control-group">
                                                     <label class="control-label" for="banner_type">{lang('List name', 'wishlist')}:</label>
                                                     <div class="controls">
-                                                        <input type="text" class="alert alert-error wishListName" value="" name="wishListName"/>
-                                                        <div class="alert alert-error" style="display: none">{lang('This field is required', 'admin')}</div>
+                                                        <input type="text" class="wishListName" value="" name="wishListName" class="required"/>
                                                     </div>
                                                 </div>
                                                 <div class="control-group">

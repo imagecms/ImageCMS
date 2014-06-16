@@ -12,7 +12,7 @@
                     </div>
                 </div>
             {/if}
-            <form id="register-form" onsubmit="ImageCMSApi.formAction('/auth/authapi/register', '#register-form');
+            <form id="register-form" onsubmit="ImageCMSApi.formAction('{site_url('/auth/authapi/register')}', '#register-form');
                     return false;">
                 <label>
                     <span class="title">{lang('E-mail','corporate')}</span>
@@ -56,7 +56,7 @@
                     </span>
                 </div>
                 <button class="d_l" data-drop=".drop-forgot" data-source="{site_url('auth/forgot_password')}">{lang('Забыли Пароль?','corporate')}</button>&nbsp;&nbsp;&nbsp;&nbsp;
-                <button class="d_l" data-drop=".drop-enter" data-source="{site_url('auth')}">Вход</button>
+                <button class="d_l" data-drop=".drop-enter" data-source="{site_url('auth')}">{lang('Вход', 'corporate')}</button>
                 <input type="hidden" name="refresh" value="false"/>
                 <input type="hidden" name="redirect" value="{site_url('/')}"/>
                 {form_csrf()}

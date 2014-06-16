@@ -3,7 +3,7 @@
         <div class="msg layout-highlight layout-highlight-msg">
             <div class="info">
                 <span class="icon_info"></span>
-                <span class="text-el">{lang('Вы ище не совершали покупки','lightRed')}</span>
+                <span class="text-el">{lang('Вы еще не совершали покупки','lightRed')}</span>
             </div>
         </div>
     {else:}
@@ -20,7 +20,7 @@
             <tbody>
                 {foreach $orders as $order}
                     <tr>
-                        <td><a rel="nofollow" href="{shop_url('cart/view/' . $order->getKey())}">{lang('Заказ #','lightRed')}{echo $order->getId()}</a></td>
+                        <td><a rel="nofollow" href="{shop_url('order/view/' . $order->getKey())}">{lang('Заказ #','lightRed')}{echo $order->getId()}</a></td>
                         <td>{date("d-m-Y H:i", $order->getDateCreated())}</td>
                         <td>
                             <div class="frame-prices">

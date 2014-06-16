@@ -54,6 +54,14 @@ switch (ENVIRONMENT) {
         header('HTTP/1.1 503 Service Unavailable.', TRUE, 503);
         exit('The application environment is not set correctly.');
 }
+
+/*
+ * ---------------------------------------------------------------
+ * DISPLAY OR NO INFORMATION ABOUT PROFILING
+ * ---------------------------------------------------------------
+ */
+define('ENABLE_PROFILER', false);
+
 /*
  * ---------------------------------------------------------------
  * SYSTEM FOLDER NAME
@@ -198,11 +206,11 @@ if (is_dir($application_folder)) {
 
 define('IMAGECMS_NUMBER', '4.6.1 Premium');
 
-define('IMAGECMS_VERSION', '20140508');
+define('IMAGECMS_VERSION', '20140604');
 
 define('IMAGECMS_BUILD_ID', '');
 
-define('BUILD_ID', '461.829');
+define('BUILD_ID', '461.832');
 
 define('IMAGECMS_PUBLIC_ID', '51035d2a96a227c54d0dea3ff415ced6d39266c3');
 /*

@@ -57,7 +57,7 @@ class Banners extends MY_Controller {
             foreach ($banners as $banner) {
                 $data = unserialize($banner['where_show']);
 
-                if ((in_array($painting, $data) || in_array($type . '_0', $data)) && $banner['active'] && time() < $banner['active_to']) {
+                if ((in_array($painting, $data) || in_array($type . '_0', $data)) && $banner['active'] && (time() < $banner['active_to'] or $banner['active_to'] == '-1')) {
                     $ban[] = $banner;
                 }
             }

@@ -35,37 +35,7 @@
         </script>
         <script type="text/javascript" src="{$THEME}js/jquery-1.8.3.min.js"></script>
         {include_tpl('config.js')}
-        {literal}
-            <script type="text/javascript">
-                function initDownloadScripts(scripts, callback, customEvent) {
-                    function downloadJSAtOnload(scripts, callback, customEvent) {
-                        var cL = 0,
-                                scriptsL = scripts.length;
-
-                        $.map(scripts, function(i, n) {
-                            $.ajax({
-                                url: theme + 'js/' + i + '.js',
-                                dataType: "script",
-                                cache: true,
-                                complete: function() {
-                                    cL++;
-                                    if (cL === scriptsL)
-                                        if (callback) {
-                                            eval(callback)();
-                                            setTimeout(function() {
-                                                $(document).trigger({'type': customEvent});
-                                            }, 0);
-                                        }
-                                }
-                            });
-                        })
-                    }
-                    $(window).load(function(){
-                        downloadJSAtOnload(scripts, callback, customEvent);
-                    });
-                }
-            </script>
-        {/literal}
+        <script type="text/javascript" src="{$THEME}js/settings.js"></script>
         <!--[if lte IE 9]><script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
         <!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="{$THEME}css/lte_ie_8.css" /><![endif]-->
         <!--[if IE 7]>
@@ -126,28 +96,28 @@
                         $('.imagecms-top-fixed-header').removeClass('imagecms-active');
                         $(this).hide().next().show();
                         $(window).scroll();">
-                    <span class="imagecms-toggle-close-text imagecms-bar-close-text"><span style="font-size: 14px;">↑</span> {lang('Скрыть', 'box')}</span>
+                    <span class="imagecms-toggle-close-text imagecms-bar-close-text"><span style="font-size: 14px;">↑</span> {lang('Скрыть', 'boxGreen')}</span>
                 </button>
                 <button type="button" class="imagecms-close" {if $_COOKIE['condPromoToolbar'] == '0'}style="display: block;"{/if} onclick="setCookie('condPromoToolbar', '1');
                         $('.imagecms-top-fixed-header').addClass('imagecms-active');
                         $(this).hide().prev().show();
                         $(window).scroll();">
-                    <span class="imagecms-toggle-close-text imagecms-bar-show-text"><span style="font-size: 14px;">↓</span> {lang('Показать', 'box')}</span>
+                    <span class="imagecms-toggle-close-text imagecms-bar-show-text"><span style="font-size: 14px;">↓</span> {lang('Показать', 'boxGreen')}</span>
                 </button>
                 <div class="imagecms-buy-license">
                     <a href="http://www.imagecms.net/shop/prices" target="_blank" onclick="_gaq.push(['_trackEvent', 'demoshop-front', '/shop/prices']);">
-                        <span class="imagecms-text-el">{lang('Купить лицензию', 'box')}</span>
+                        <span class="imagecms-text-el">{lang('Купить лицензию', 'boxGreen')}</span>
                     </a>
                 </div>
                 <ul class="imagecms-list">
                     <li>
-                        <a href="http://www.imagecms.net" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demoshop-front', 'obzor-product-shop']);">{lang('Обзор продукта', 'box')}</a>
+                        <a href="http://www.imagecms.net" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demoshop-front', 'obzor-product-shop']);">{lang('Обзор продукта', 'boxGreen')}</a>
                     </li>
                     <li>
-                        <a href="http://www.imagecms.net/kliuchevye-preimushchestva/vozmozhnosti" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demoshop-front', '/kliuchevye-preimushchestva/vozmozhnosti']);">{lang('Преимущества продукта', 'box')}</a>
+                        <a href="http://www.imagecms.net/kliuchevye-preimushchestva/vozmozhnosti" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demoshop-front', '/kliuchevye-preimushchestva/vozmozhnosti']);">{lang('Преимущества продукта', 'boxGreen')}</a>
                     </li>
                     <li>
-                        <a href="http://www.imagecms.net/store/category/shoptemplates" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demoshop-front', 'shoptemplates']);">{lang('Шаблоны для Shop', 'box')}</a>
+                        <a href="http://www.imagecms.net/store/category/shoptemplates" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demoshop-front', 'shoptemplates']);">{lang('Шаблоны для Shop', 'boxGreen')}</a>
                     </li>
                 </ul>
                 <div class="imagecms-contacts">
@@ -204,7 +174,7 @@
         {/literal}
         { */}
         {/*}End. delete before upload to server{ */}
-        
+
         {/*fancybox}
         <link rel="stylesheet" type="text/css" href="{$THEME}js/fancybox/jquery.fancybox-1.3.4.css" media="all" />
         <script type="text/javascript" src="{$THEME}js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
@@ -212,11 +182,11 @@
 
         {/*}uncomment before opload to server and combine and minimize scripts (in comment <!-- scripts -->...<!-- scripts end -->) into united_scripts file{ */}
         {/*} Start. uncoment before development { */}
-        
+
         <script type="text/javascript">
             initDownloadScripts(['united_scripts'], 'init', 'scriptDefer');
         </script>
-        
+
         {/*} End. uncoment before development { */}
         {include_shop_tpl('js_templates')}
     </body>

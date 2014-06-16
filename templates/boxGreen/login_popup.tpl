@@ -51,20 +51,20 @@
                         </div>
                     </div>
                     {form_csrf()}
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="drop-footer">
-        <div class="inside-padd">
-            <div class="horizontal-form">
-                <div class="frame-label">
-                    <span class="title">&nbsp;</span>
-                    <div class="frame-form-field">
-                        <div class="help-block">{lang('Для новых покупателей нашего магазина','boxGreen')}:</div>
-                        <a href="/auth/register">{lang('Регистрация','boxGreen')}</a>
+                    <div class="drop-footer-style">
+                        <div class="inside-padd">
+                            <div class="horizontal-form">
+                                <div class="frame-label">
+                                    <span class="title">&nbsp;</span>
+                                    <div class="frame-form-field">
+                                        <div class="help-block">{lang('Для новых покупателей нашего магазина','boxGreen')}:</div>
+                                        <a href="/auth/register">{lang('Регистрация','boxGreen')}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>

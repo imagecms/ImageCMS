@@ -30,7 +30,7 @@
                             </span>
                         </a>
                         <span class="descr">
-                            <a href="{shop_url('cart/removeProductByVariantId/'.$item->id)}" class="remove_ref red"><span>×</span> Удалить</a>
+                            <a href="{shop_url('cart/removeProductByVariantId/'.$item->id)}" class="remove_ref red"><span>×</span> {lang('Удалить','commerce_mobiles')}</a>
                             <input type="text"
                                    name="products[{echo $item->quantity}]"
                                    price="{echo $item->price}"
@@ -40,7 +40,7 @@
                                    onblur=""/>
                             <span class="frame_count">
                                 <span class="refresh_price"></span>
-                                <span class="count">шт.</span>
+                                <span class="count">{lang('шт','commerce_mobiles')}.</span>
                             </span>
 
                         </span>
@@ -71,9 +71,9 @@
                 {/if}
                 <br/>
                 {if $discount_val}
-                    {lang('Скидка', 'commerce_mobile')}: {echo ShopCore::app()->SCurrencyHelper->convert($discount_val)} {$CS} <br/>
+                    {lang('Скидка', 'commerce_mobiles')}: {echo ShopCore::app()->SCurrencyHelper->convert($discount_val)} {$CS} <br/>
                 {/if}
-                <span class="total_pay">{lang('Всего к оплате', 'commerce_mobile')}:</span>
+                <span class="total_pay">{lang('Всего к оплате', 'commerce_mobiles')}:</span>
                 <span class="price">
                     {echo ShopCore::app()->SCurrencyHelper->convert($cartPrice)} {$CS} 
                 </span>
@@ -81,8 +81,8 @@
         </div>
         <div class="main_f_i_f-r"></div>
         <div class="content_head">
-            <h1>{lang('Оформление заказа', 'commerce_mobile')}</h1>
-            <p class="alert">{lang('Способ оплаты и доставки вы сможете согласовать с менеджером, который свяжется с вами после оформления заказа.', 'commerce_mobile')}</p>
+            <h1>{lang('Оформление заказа', 'commerce_mobiles')}</h1>
+            <p class="alert">{lang('Способ оплаты и доставки вы сможете согласовать с менеджером, который свяжется с вами после оформления заказа.', 'commerce_mobiles')}</p>
         </div>
         <hr class="head_cle_foot"/>
         <div class="main_frame_inside">
@@ -146,9 +146,11 @@
                                     {lang('Не выбран','commerce_mobiles')}
                                 </option>
                                 {foreach $dm->getPaymentMethodss() as $pm}
-                                    <option value="{echo $pm->getId()}">
-                                        {echo $pm->getName()}
-                                    </option>
+                                    {if $pm->getActive()}
+                                        <option value="{echo $pm->getId()}">
+                                            {echo $pm->getName()}
+                                        </option>
+                                    {/if}
                                 {/foreach}
                             </select>
                         {/if}
@@ -157,7 +159,7 @@
                 </label>
             {/if}
             <label>
-                {lang('Коментарий к заказу', 'commerce_mobile')}:
+                {lang('Коментарий к заказу', 'commerce_mobiles')}:
                 <textarea name="userInfo[commentText]"></textarea>
             </label>
         </div>
@@ -167,7 +169,7 @@
                 <span class="b_buy_in">
                     <span class="helper"></span>
                     <input type="submit"
-                           value="{lang('Оформить заказ', 'commerce_mobile')}"
+                           value="{lang('Оформить заказ', 'commerce_mobiles')}"
                            class="v-a_m"/>
                 </span>
             </span>
@@ -182,7 +184,7 @@
 {else:}
     <div class="main_frame_inside">
         <div class="gen_sum">
-            <span class="total_pay">{echo ShopCore::t('Корзина пуста')}</span>
+            <span class="total_pay">{lang('Корзина пуста', 'commerce_mobiles')}</span>
         </div>
     </div>
 {/if}

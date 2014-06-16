@@ -359,11 +359,14 @@ input[type="text"].error, input[type="password"].error, textarea.error, select.e
 
 /*cycle*/
 .contain-cycle{padding-bottom: 23px;position: relative;z-index: 1;}
-.cycle{position: relative;height: 287px;padding: 0;width: 922px;overflow: hidden;}
-.cycle ul{position: relative;z-index: 1;height: 100%;}
-.cycle li{height: 100%;}
+.cycle{position: relative;height: 287px;padding: 0;max-width: 922px;overflow: hidden;}
+.category-cycle, .page-cycle{height: 215px;}
+.cycle ul{position: relative;z-index: 1;height: 100%;padding: 0}
+.contain-cycle .cycle li{height: 100%;list-style: none;margin-bottom: 0;width: 100% !important;}
+.cycle li > span, .cycle li > a{display: block;text-align: center;}
+.cycle img{margin: 0;}
 .pager{text-align: center;display: inline-block;z-index: 2;top: -31px; position: absolute; width: 100%; top:100%; margin-top:-36px;}
-#next_slide, #prev_slide {width: 43px; height:40px; position: absolute; cursor:pointer; top:50%; z-index: 3; margin-top: -20px;}
+#next_slide, #prev_slide {width: 43px; height:40px; position: absolute; cursor:pointer; top:50%; z-index: 3; margin-top: -20px;display: none;}
 #prev_slide {left: 0; background-position: -60px 0; margin-left:13px;}
 #prev_slide:hover {background-position: -60px -60px;}
 #next_slide {right: 0; background-position: -120px 0px; margin-right:9px;}

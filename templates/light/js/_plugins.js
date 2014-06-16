@@ -526,61 +526,70 @@ function getCookie(c_name)
             var settings = $.extend({
                 item: 'ul > li',
                 duration: 300,
+                delay: 600,
                 searchPath: "/shop/search/ac" + locale,
                 inputString: $('#inputString'),
                 minValue: 3,
                 underscoreLayout: '#searchResultsTemplate',
                 blockEnter: true
             }, options);
+            var searchXhr = {};
             function postSearch() {
                 $(document).trigger({
                     'type': 'autocomplete.before',
                     'el': inputString
                 });
-                $.post(searchPath, {
-                    queryString: inputString.val()
-                }, function(data) {
-                    try {
-                        var dataObj = JSON.parse(data),
-                                html = _.template($(underscoreLayout).html(), {
-                                    'items': dataObj
-                                });
-                    } catch (e) {
-                        var html = e.toString();
-                    }
-                    $thisS.html(html);
-                    $thisS.fadeIn(durationA, function() {
-                        $(document).trigger({
-                            'type': 'autocomplete.after',
-                            'el': $thisS,
-                            'input': inputString
-                        });
-                        $thisS.off('click.autocomplete').on('click.autocomplete', function(e) {
-                            e.stopImmediatePropagation();
-                        });
-                        body.off('click.autocomplete').on('click.autocomplete', function(event) {
-                            closeFrame();
-                        }).off('keydown.autocomplete').on('keydown.autocomplete', function(e) {
-                            if (!e)
-                                var e = window.event;
-                            if (e.keyCode === 27) {
+                if (searchXhr['search'])
+                    searchXhr['search'].abort();
+                searchXhr['search'] = $.ajax({
+                    'type': 'post',
+                    'url': searchPath,
+                    'data': {
+                        queryString: inputString.val()
+                    },
+                    'success': function(data) {
+                        try {
+                            var dataObj = JSON.parse(data),
+                                    html = _.template($(underscoreLayout).html(), {
+                                        'items': dataObj
+                                    });
+                        } catch (e) {
+                            var html = e.toString();
+                        }
+                        $thisS.html(html);
+                        $thisS.fadeIn(durationA, function() {
+                            $(document).trigger({
+                                'type': 'autocomplete.after',
+                                'el': $thisS,
+                                'input': inputString
+                            });
+                            $thisS.off('click.autocomplete').on('click.autocomplete', function(e) {
+                                e.stopImmediatePropagation();
+                            });
+                            body.off('click.autocomplete').on('click.autocomplete', function(event) {
                                 closeFrame();
-                            }
+                            }).off('keydown.autocomplete').on('keydown.autocomplete', function(e) {
+                                if (!e)
+                                    var e = window.event;
+                                if (e.keyCode === 27) {
+                                    closeFrame();
+                                }
+                            });
                         });
-                    });
-                    if (inputString.val().length === 0)
-                        closeFrame();
-                    selectorPosition = -1;
-                    var itemserch = $thisS.find(itemA);
-                    itemserch.mouseover(function() {
-                        var $this = $(this);
-                        $this.addClass('selected');
-                        selectorPosition = $this.index();
+                        if (inputString.val().length === 0)
+                            closeFrame();
+                        selectorPosition = -1;
+                        var itemserch = $thisS.find(itemA);
+                        itemserch.mouseover(function() {
+                            var $this = $(this);
+                            $this.addClass('selected');
+                            selectorPosition = $this.index();
+                            lookup(itemserch, selectorPosition);
+                        }).mouseleave(function() {
+                            $(this).removeClass('selected');
+                        });
                         lookup(itemserch, selectorPosition);
-                    }).mouseleave(function() {
-                        $(this).removeClass('selected');
-                    });
-                    lookup(itemserch, selectorPosition);
+                    }
                 });
             }
             function lookup(itemserch, selectorPosition) {
@@ -640,9 +649,11 @@ function getCookie(c_name)
             }
 
             var $thisS = this,
+                    postTime,
                     blockEnter = settings.blockEnter,
                     itemA = settings.item,
                     durationA = settings.duration,
+                    delay = settings.delay,
                     searchPath = settings.searchPath,
                     selectorPosition = -1,
                     inputString = settings.inputString,
@@ -660,6 +671,8 @@ function getCookie(c_name)
                     });
                 });
             inputString.keyup(function(event) {
+                if (postTime)
+                    clearTimeout(postTime);
                 var $this = $(this);
                 var inputValL = $this.val().length;
                 if (!event)
@@ -667,8 +680,9 @@ function getCookie(c_name)
                 var code = event.keyCode;
                 if (inputValL > minValue) {
                     $this.tooltip('remove');
-                    if (code !== 27 && code !== 40 && code !== 38 && code !== 39 && code !== 37 && code !== 13 && inputValL !== 0 && $.trim($this.val()) !== "")
-                        postSearch();
+                    if (code !== 27 && code !== 40 && code !== 38 && code !== 39 && code !== 37 && code !== 13 && inputValL !== 0 && $.trim($this.val()) !== "") {
+                        postTime = setTimeout(postSearch, delay);
+                    }
                     else if (inputValL === 0)
                         closeFrame();
                 }
@@ -975,13 +989,14 @@ function getCookie(c_name)
                             otherPage = settings.otherPage,
                             classRemove = settings.classRemove,
                             vertical = settings.vertical;
+
                     if (menuCache && !refresh) {
                         menu.find('a').each(function() {//if start without cache and remove active item
                             var $this = $(this);
                             $this.closest(activeFl.split(' ')[0]).removeClass(aC);
                             $this.removeClass(aC);
                         });
-                        var locHref = location.href,
+                        var locHref = location.origin + location.pathname,
                                 locationHref = otherPage !== undefined ? otherPage : locHref;
                         menu.find('a[href="' + locationHref + '"]').each(function() {
                             var $this = $(this);
@@ -1090,16 +1105,20 @@ function getCookie(c_name)
                                 menu.css('overflow', '');
                             }
                             else
-                                var dropW2 = dropW;
+                                dropW2 = dropW;
                             methods._position(menuW, $thisL, dropW2, $thisDrop, $thisW, countColumn, sub2Frame, direction);
                         }
                         $this.data('kk', 0);
-                    }).css('height', sH);
+                    });
+                    if (!vertical)
+                        menuItem.css('height', sH);
                     if (!vertical)
                         menuItem.find('.helper:first').css('height', sH);
                     menu.removeClass(classRemove);
                     var hoverTO = '';
-                    function closeMenu() {
+                    function closeMenu(el) {
+                        if (el && $.existsN(el.parents(item)))
+                            return false;
                         var $thisDrop = menu.find(drop);
                         if ($thisDrop.length !== 0)
                             menu.removeClass(hM);
@@ -1115,15 +1134,18 @@ function getCookie(c_name)
                         evLF = 'click';
                     if (evLS === 'toggle')
                         evLS = 'click';
-                    menuItem.off(evLF)[evLF](
+
+                    menuItem.off('click').off('hover')[evLF](
                             function(e) {
                                 var $this = $(this);
+                                if (evLF === 'click')
+                                    e.stopPropagation();
                                 if ($this.data("show") === "no" || !$this.data("show")) {
                                     $this.data("show", "yes");
                                     clearTimeout(hoverTO);
-                                    closeMenu();
+                                    closeMenu($this);
                                     var $thisI = $this.index(),
-                                            $thisDrop = $this.find(drop);
+                                            $thisDrop = $this.find(drop).first();
                                     $this.addClass(hM);
                                     if ($thisI === 0)
                                         $this.addClass('firstH');
@@ -1132,8 +1154,6 @@ function getCookie(c_name)
                                     if ($(e.relatedTarget).is(menuItem) || $.existsN($(e.relatedTarget).parents(menuItem)) || $this.data('kk') === 0)
                                         k[$thisI] = true;
                                     if (k[$thisI]) {
-                                        if (evLF === 'click')
-                                            e.stopPropagation();
                                         hoverTO = setTimeout(function() {
                                             $thisDrop[effOn](durationOn, function(e) {
                                                 $this.data('kk', $this.data('kk') + 1);
@@ -1146,7 +1166,7 @@ function getCookie(c_name)
                                                 if (sub2Frame) {
                                                     var listDrop = $thisDrop.children();
                                                     $thisDrop.find(sub2Frame).addClass('is-side');
-                                                    listDrop.children().off(evLS)[evLS](function(e) {
+                                                    listDrop.children().off('click').off('hover')[evLS](function(e) {
                                                         var $this = $(this);
                                                         if (evLS === 'click')
                                                             e.stopPropagation();
@@ -1287,8 +1307,8 @@ function getCookie(c_name)
             });
             return this;
         },
-        refresh: function() {
-            methods.init.call(this, $.extend({}, this.data('options'), {
+        refresh: function(optionsMenu) {
+            methods.init.call(this, $.extend({}, optionsMenu ? optionsMenu : this.data('options'), {
                 refresh: true
             }));
             return this;

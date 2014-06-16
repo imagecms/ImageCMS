@@ -750,7 +750,52 @@ $(document).ready(function() {
             container: '#mainContent'
         });
     });
-    ;
+
+// Properties filter start
+    $('.property_list_order').live('click', function() {
+        var column = $(this).attr('data-column');
+        $('input[name=orderMethod]').attr('value', column);
+        if ($('input[name=order]').attr('value') === '') {
+            $('input[name=order]').attr('value', 'ASC');
+        } else {
+            if ($('input[name=order]').attr('value') === 'ASC') {
+                $('input[name=order]').attr('value', 'DESC');
+            } else {
+                $('input[name=order]').attr('value', 'ASC');
+            }
+        }
+        ;
+        var query_string = $('#filter_form').serialize();
+        var url = $('#filter_form').attr('action');
+        $.pjax({
+            url: url + '?' + query_string,
+            container: '#mainContent'
+        });
+    });
+
+    $('.propFilterSelect').off('change').live('change', function(event) {
+        var query_string = $('#filter_form').serialize();
+        var url = $('#filter_form').attr('action');
+        $.pjax({
+            url: url + '?' + query_string,
+            container: '#mainContent'
+        });
+    });
+
+    $('.properties_filter_inputs').find('input').on('keypress', function(event) {
+        var keycode = (event.keyCode ? event.keyCode : event.which);
+        if (keycode == '13') {
+            var query_string = $('#filter_form').serialize();
+            var url = $('#filter_form').attr('action');
+
+            $.pjax({
+                url: url + '?' + query_string,
+                container: '#mainContent'
+            });
+        }
+    });
+
+    // Properties filter end
 
     $('.move_to_cat').live('click', function() {
         var catId = $('#moveCategoryId').attr('value');
@@ -876,7 +921,6 @@ $(document).ready(function() {
             $("#image_search_result").empty();
         }
         var value = $("#url_image").val();
-        //modalBodyMsg("Загрузка...");
         var loadingImg = '<img src="/templates/administrator/images/loader-2.gif" alt="Loading..."/>';
         modalBodyMsg(loadingImg);
         $.post("/admin/components/run/shop/products/get_images/search", {
@@ -1522,29 +1566,18 @@ $(document).ready(function() {
         $(img).addClass('img-polaroid').css({
             'max-height': '100%'
         });
-        $(this).siblings('.controls').html(img);
-
+        $(this).closest('.control-group').find('.controls').html(img);
     });
 
     // delete image buttons
-    $(".remove_btn").die('change').live("click", function() {
+    $(".remove_btn").die('click').live("click", function() {
         //$("#site_info_tab").delegate('.remove_btn', "click", function() {
         // setting hidden input value to 1 delete for delete image on saving
         $(this).parents(".control-group").find("input.si_delete_image").val("1");
         // display some message about deleting
-        $(this).parents(".siteinfo_image_container")
+        $(this).parents(".control-group").find(".siteinfo_image_container")
                 .empty()
                 .html("<img class='img-polaroid' src='/templates/administrator/images/select-picture.png' />");
-
-    });
-    // the delete button appears only on image hover
-    $(".siteinfo_image_container").die('change').live("mouseover", function() {
-        //$("#site_info_tab").delegate('.siteinfo_image_container', "mouseover", function() {
-        $(this).find(".remove_btn").show();
-    });
-    $(".siteinfo_image_container").die('change').live("mouseout", function() {
-        //$("#site_info_tab").delegate('.siteinfo_image_container', "mouseout", function() {
-        $(this).find(".remove_btn").hide();
     });
 
     var siteInfoLocalesDataCache = {};
@@ -1580,7 +1613,7 @@ $(document).ready(function() {
         siteInfoLocalesDataCache[params.locale] = params;
     }
 
-    $('button.formSubmit').die('click').live('click', function() {
+    $('body').off('click.cache').on('click.cache', 'button.formSubmit', function() {
         delete(siteInfoLocalesDataCache);
         siteInfoLocalesDataCache = {};
     });
@@ -1661,8 +1694,34 @@ $(document).ready(function() {
             }
         });
     });
+
+    // autosubmit brands filter-form 
+    var filterChangeTimeout;
+    $('form#brands_filter input').live('keyup', function() {
+        clearTimeout(filterChangeTimeout);
+        filterChangeTimeout = setTimeout(function() {
+            var formData = $('form#brands_filter').serialize();
+            $.pjax({url: location.pathname + '?' + formData, container: "#mainContent"});
+        }, 1000);
+    });
+
+
+    $('select#template').live('change', function() {
+        $.get(base_url + 'admin/settings/template_has_license', {template_name: $(this).val()}, function(response) {
+            $('#license_link').hide();
+            if (response == 1) {
+                $('#license_link').show();
+            } else {
+                $('#license_link').hide();
+            }
+        })
+    });
+
+
 });
 
-
-
-
+/*
+ 
+ 
+ 
+ */

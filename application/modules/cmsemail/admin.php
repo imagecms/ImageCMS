@@ -46,7 +46,7 @@ class Admin extends BaseAdminController {
                 if ($this->input->post('action') == 'tomain') {
                     pjax('/admin/components/cp/cmsemail/index');
                 } else {
-                    pjax('/admin/components/cp/cmsemail/edit/'.$id);
+                    pjax('/admin/components/cp/cmsemail/edit/'.$id . '#settings');
                 }
             } else {
                 showMessage($this->email->errors, '', 'r');
