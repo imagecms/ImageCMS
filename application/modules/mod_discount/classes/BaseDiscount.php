@@ -19,6 +19,7 @@ class BaseDiscount {
     private static $reBuild;
     private static $ignoreCart;
     private static $userId;
+    private static $moduleInstalled;
 
     /**
      * check_module_install
@@ -29,7 +30,10 @@ class BaseDiscount {
      */
     public static function checkModuleInstall() {
         $ci = &get_instance();
-        return (count($ci->db->where('name', 'mod_discount')->get('components')->result_array()) == 0) ? false : true;
+        if (is_null(self::$moduleInstalled)) {
+            self::$moduleInstalled = (count($ci->db->where('name', 'mod_discount')->get('components')->result_array()) == 0) ? false : true;
+        }
+        return self::$moduleInstalled;
     }
 
     /**
