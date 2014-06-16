@@ -88,9 +88,10 @@ class Lib_init {
                 define('ICMS_DISBALE_CSRF', true);
             }
             // Support for privat
-            if ($CI->uri->segment(1) == 'shop' && $CI->uri->segment(2) == 'order' && $CI->uri->segment(3) == 'view' && $_POST) {
-                define('ICMS_DISBALE_CSRF', true);
-            }
+		if ($CI->uri->segment(1)=='shop' && $CI->uri->segment(2)=='order' && $CI->uri->segment(3)=='view' && $_POST)
+{
+    define('ICMS_DISBALE_CSRF',true);
+}
             if ($CI->uri->segment(1) == 'shop' && $CI->uri->segment(2) == 'cart' && $CI->uri->segment(3) == 'view' && $_GET['succes'] == 'true') {
                 define('ICMS_DISBALE_CSRF', true);
             }
@@ -100,6 +101,13 @@ class Lib_init {
             if (isset($_SERVER['HTTP_REFERER']) AND strpos($_SERVER['HTTP_REFERER'] . "", 'facebook.com')) {
                 define('ICMS_DISBALE_CSRF', true);
             }
+            // Support for privat
+			if ($CI->uri->segment(1)=='shop' && $CI->uri->segment(2)=='order' && $CI->uri->segment(3)=='view')
+			{
+				define('ICMS_DISBALE_CSRF',true);
+			}
+			
+
         }
     }
 

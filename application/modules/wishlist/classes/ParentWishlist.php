@@ -292,7 +292,7 @@ class ParentWishlist extends \MY_Controller {
             }
             $this->wishlist_model->createWishList($listName, $user_id, $wlType, $wlDescription);
         } else {
-            $this->errors['name'] = lang('Wish List name can not be empty!', 'wishlist');
+            $this->errors[] = lang('Wish List name can not be empty!', 'wishlist');
         }
 
         if (count($this->errors))
@@ -682,11 +682,11 @@ class ParentWishlist extends \MY_Controller {
             $phone = $db_user['phone'] ? $db_user['phone'] : '(---) --- --- --- ';
 
             $user_variables = array(
-                '$userName$' => $name,
-                '$userPhone$' => $phone,
-                '$wishName$' => $wish_list['title'],
-                '$wishLink$' => site_url('wishlist/show/' . $wish_list['hash']),
-                '$wishListViews$' => $wish_list['hash']['review_count'],
+                'userName' => $name,
+                'userPhone' => $phone,
+                'wishName' => $wish_list['title'],
+                'wishLink' => site_url('wishlist/show/' . $wish_list['hash']),
+                'wishListViews' => $wish_list['hash']['review_count'],
             );
 
             \cmsemail\email::getInstance()->sendEmail($email, 'wish_list', $user_variables);

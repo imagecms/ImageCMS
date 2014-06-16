@@ -1,0 +1,6 @@
+.items-galleries{margin-left: -20px;}
+.items-galleries > li{width: 150px;margin-left: 20px;margin-bottom: 20px;}
+.items-galleries > li .photo-block{max-width: 100%;}
+.items-photo-galery{margin-left: -15px;}
+.items-photo-galery > li{width: 150px;margin-left: 15px;margin-bottom: 15px;}
+.items-photo-galery > li .photo-block{max-width: 100%;}

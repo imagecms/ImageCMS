@@ -8,7 +8,7 @@
 
 .f-w_b{font-weight: bold!important;}
 .f-w_n{font-weight: normal!important;}
-.items-brand-image > li > .frame-photo-title > .title, .start-page-category-menu > li .title{font-weight: normal;}
+.items-brand-image > li > .frame-photo-title > .title{font-weight: normal;}
 .text blockquote:before, .text blockquote:after{border-width: 1px 0;border-style: solid;}
 
 [class*="icon-"], .title-category-l1.is-sub:after, .title-category-l1.is-sub .ie, .ui-slider-handle, .product-status, .niceCheck, .niceRadio{background: url("images/sprite.png") no-repeat;}
@@ -36,7 +36,7 @@ button[disabled="disabled"], input[type="submit"][disabled="disabled"], input[ty
 /*active*/
 :active{outline: none;}
 :focus{outline: none;}
-input[type="radio"]:focus, input[type="checkbox"]:focus, input[type="submit"]:focus, input[type="button"]:focus, input[type="reset"]:focus, .frame-item-menu > .frame-title > .title:focus, .left-header > .nav > li > a:focus, .btn-enter button:focus, .btn-personal-area a:focus, .start-page-category-menu a:focus, .baner li > a:focus{outline: 1px solid transparent;}
+input[type="radio"]:focus, input[type="checkbox"]:focus, input[type="submit"]:focus, input[type="button"]:focus, input[type="reset"]:focus, .frame-item-menu > .frame-title > .title:focus, .left-header > .nav > li > a:focus, .btn-enter button:focus, .btn-personal-area a:focus, .baner li > a:focus{outline: 1px solid transparent;}
 /*/active*/
 
 /*groups-buttons*/
@@ -69,7 +69,7 @@ a:hover, .selected a, .ref:hover, .nav-static-pages > li > a:hover{text-decorati
 /*for delete*/
 
 /*groups selectors*/
-.phones-header .phone, .start-page-category-menu > li .title, .pagination li > a, .pagination li > span{font-size: 14px;}
+.phones-header .phone, .pagination li > a, .pagination li > span{font-size: 14px;}
 .frame-item-menu > .frame-title .text-el, .frame-drop-menu .title-category-l1 > .text-el, .cusel, .compare-characteristic > li > span, .frame-cur-sum-price .price-new .price, .frame-cur-sum-price .price-discount .price{font-size: 12px;}
 .frame-kit, .items-default > li, .frame-item-menu > .frame-title > .title > .text-el, .tabs-data > li > a, .tabs-data > li > button, .drop-bask .frame-items .price, .drop-bask .frame-items .curr, .frame-bask-order .description > .frame-prices .price, .frame-bask-order .description > .frame-prices .curr, .table-info-order .price-new .price, .table-profile .price-new .price, .nav > li > a, .nav > li > button, .nav > li > span, .nav.nav-vertical ul{font-size: 13px;}
 .table-info-order .price-new .price, .table-profile .price-new .price, .cusel, .characteristic, .table-info-order td{font-weight: normal;}
@@ -146,16 +146,12 @@ a:hover, .selected a, .ref:hover, .nav-static-pages > li > a:hover{text-decorati
 .menu-row-category .title-category-l1.is-sub:after, .menu-row-category .title-category-l1.is-sub .ie{content: "";position: absolute;top: 50%;margin-top: -4px;width: 6px;height: 8px;}
 .frame-drop-menu{-moz-border-radius: 0 0 5px 5px;-webkit-border-radius: 0 0 5px 5px;border-radius: 0 0 5px 5px;}
 .frame-drop-menu > ul{-moz-border-radius: 0 0 5px 5px;-webkit-border-radius: 0 0 5px 5px;border-radius: 0 0 5px 5px;border: 2px solid transparent;}
-.vertical-menu .frame-drop-menu > ul{-moz-border-radius: 0 5px 5px 0;-webkit-border-radius: 0 5px 5px 0;border-radius: 0 5px 5px 0;}
 .frame-l2 > ul > li > a, .frame-l2 > ul > li > ul > li > a{line-height: 1.2;}
 .menu-col-category .title-category-l1 > .text-el{font-weight: bold;}
-.vertical-menu .frame-item-menu > .frame-title.is-sub:after{width: 9px;height: 13px;top: 50%;margin-top: -7px;left: auto;right: 11px;background-image: url("images/arrow_menu.png");}
 .menu-row-category .title-category-l1.is-sub:after, .menu-row-category .frame-drop-menu.left-drop .title-category-l1.is-sub:after{right: 7px;background-position: -220px 0;}
 .menu-row-category .frame-drop-menu.right-drop .title-category-l1.is-sub:after{right: 7px;background-position: -220px -20px;}
 .menu-row-category .frame-drop-menu.left-drop li:hover .title-category-l1.is-sub:after{background-position: -240px 0;}
 .menu-row-category .frame-drop-menu.right-drop li:hover .title-category-l1.is-sub:after{background-position: -240px -20px;}
-.vertical-menu .frame-item-menu:before{border-bottom: 1px solid transparent;bottom: 0;position: absolute;content: '';width: 100%;left: 0;}
-.vertical-menu .frame-item-menu > .frame-title:before{border-top: 1px solid transparent;top: 0;}
 .menu-main td > .frame-item-menu > ul{border: 3px solid transparent;}
 /*/main-menu*/
 
@@ -254,7 +250,6 @@ a:hover, .selected a, .ref:hover, .nav-static-pages > li > a:hover{text-decorati
 .frame-brands .frame-title > .title{padding: 0 15px;font-size: 18px;}
 
 .frame-baner-start_page{background: url("images/fon_b.png") repeat;}
-.vertical-layout .frame-baner-start_page{background: none;}
 .frame-baner-start_page .content-carousel{border: 5px solid transparent;-moz-border-radius: 8px;-webkit-border-radius: 8px;border-radius: 8px;}
 .frame-baner-start_page:before{content: "";position: absolute;left: -5%;top: -2px;width: 110%;height: 2px;}
 .frame-baner-catalog .content-carousel{-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;}
@@ -286,10 +281,6 @@ footer [class^="box"] .main-title{text-transform: uppercase;}
 /*/footer*/
 
 /*menus*/
-.start-page-category-menu .sub-category > li > a{font-weight: bold;border-bottom: 1px solid transparent;}
-.start-page-category-menu > li .photo-block{-moz-border-radius: 4px;-webkit-border-radius: 4px;border-radius: 4px;}
-.start-page-category-menu > li .title{text-transform: uppercase;}
-.start-page-category-menu .sub-category > li{padding-left: 1px;}
 .frame-menu-category-first .title-category-l1{text-decoration: none;}
 .frame-menu-category-first .title-category-l1:hover{text-decoration: underline;}
 
@@ -331,9 +322,7 @@ hr{border-top: 1px solid transparent;border-bottom: 1px solid transparent;}
 
 /*seo*/
 .frame-seotext-news{padding-top: 45px;position: relative;background: url("images/fon_benefits.png") repeat;}
-.vertical-layout .frame-seotext-news{padding-top: 0;}
 .frame-seotext-news:before{content: "";position: absolute;left: -5%;top: -6px;width: 110%;height: 6px;}
-.vertical-layout .frame-seotext-news:before{content: none;}
 
 .seo-text{margin-bottom: 50px;}
 /*/seo*/
@@ -419,16 +408,15 @@ form .btn-form .text-el, .btn-not-avail .text-el, .btn-form input{font-weight: b
 /*/buttons*/
 
 /*product status*/
-.product-status{position: absolute;right: 0;top: 5px;}
-.product-status + .product-status{top: 32px;}
-.product-status + .product-status + .product-status{top: 59px;}
-.product-status + .product-status + .product-status + .product-status{top: 86px;}
+.product-status{position: absolute;right: 0;top: -1px;}
+.product-status + .product-status{top: 50px;}
+.product-status + .product-status + .product-status{top: 100px;}
 .product-status.discount .text-el{font-size: 12px;font-weight: bold;text-transform: uppercase;font-family: Arial, sans-serif;}
 
-.action{background-position: 0 0;width: 74px;height: 25px;}
-.nowelty{background-position: 0 -40px;width: 86px;height: 25px;}
-.hit{background-position: 0 -80px;width: 105px;height: 25px;}
-.discount{background-position: 0 -120px;width: 48px;height: 30px;line-height: 25px;text-align: center;}
+.action{background-position: 0 0;width: 50px;height: 50px;}
+.nowelty{background-position: -51px 0;width: 50px;height: 50px;}
+.hit{background-position: -102px 0;width: 50px;height: 50px;}
+.discount{background-position: 0 -50px;width: 48px;height: 30px;line-height: 25px;text-align: center;right: auto;left: 0;top: 0 !important;}
 
 .items-bask .product-status{display: none;}
 /*/ product status*/
@@ -481,7 +469,7 @@ input.plus-minus{float:right;width: 44px;height: 34px;display: block;text-align:
 .tabs-data > li.active{-moz-border-radius: 0;-webkit-border-radius: 0;border-radius: 0;}
 .tabs-data > li.active:last-child{-moz-box-shadow: none;-webkit-box-shadow: none;box-shadow: none;}
 
-.tabs-compare-category > li{float: none;margin-bottom: 3px;}
+.tabs-compare-category > li{float: none;margin-bottom: 3px;max-width: 188px;}
 .tabs-compare-category > li > button{padding: 2px 40px 3px 5px;text-align: left;}
 .tabs-compare-category > .active > button{position: relative;}
 .tabs-compare-category > .active > button:after{content: "";position: absolute;left: 100%;top: 0;border-width: 12px 9px;border-style: solid;border-color: transparent;}

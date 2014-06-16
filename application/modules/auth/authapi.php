@@ -79,7 +79,7 @@ class Authapi extends MY_Controller {
             $jsonResponse['refresh'] = false;
             $jsonResponse['redirect'] = false;
             $jsonResponse['status'] = false;
-            $jsonResponse['msg'] = 'User is already logged in';
+            $jsonResponse['msg'] = lang('User is already logged in', 'auth');
         }
 
         /** return JSON Data */
@@ -108,7 +108,7 @@ class Authapi extends MY_Controller {
             $jsonResponse['redirect'] = FALSE;
         } else {
             /** Preprate response */
-            $jsonResponse['msg'] = 'You are not loggin to make loggout';
+            $jsonResponse['msg'] = lang('You are not loggin to make loggout', 'auth');
             $jsonResponse['status'] = false;
         }
 
@@ -129,7 +129,7 @@ class Authapi extends MY_Controller {
             $val = $this->form_validation;
             // Set form validation rules
             $val->set_rules('email', lang("Email", 'auth'), 'trim|required|xss_clean|valid_email|callback_email_check');
-            $val->set_rules('username', lang("Name", 'auth'), 'trim|xss_clean');
+            $val->set_rules('username', ' ', 'required|trim|min_length[2]|xss_clean');
             $val->set_rules('password', lang("Password", 'auth'), 'trim|required|xss_clean|min_length[' . $this->min_password . ']|max_length[' . $this->max_password . ']|matches[confirm_password]');
             $val->set_rules('confirm_password', lang("Repeat Password", 'auth'), 'trim|required|xss_clean');
 
@@ -191,12 +191,12 @@ class Authapi extends MY_Controller {
         } elseif (!$this->dx_auth->allow_registration) {
             $json = array();
             //$json['additional_info']['allow_registration'] = false;
-            $json['msg'] = 'Registration is not allowed';
+            $json['msg'] = lang('Registration is not allowed', 'auth');
             $json['status'] = false;
             echo json_encode($json);
         } else {
             $json = array();
-            $json['msg'] = 'User is logged in';
+            $json['msg'] = lang('User is logged in', 'auth');
             $json['status'] = false;
             echo json_encode($json);
         }
@@ -253,13 +253,13 @@ class Authapi extends MY_Controller {
                 ));
             } else {
                 echo json_encode(array(
-                    'msg' => 'Reset password failed',
+                    'msg' => lang('Reset password failed', 'auth'),
                     'status' => false,
                 ));
             }
         } else {
             echo json_encode(array(
-                'msg' => 'You have to be logged in to reset password',
+                'msg' => lang('You have to be logged in to reset password', 'auth'),
                 'status' => false,
             ));
         }
@@ -362,7 +362,7 @@ class Authapi extends MY_Controller {
         echo json_encode(array(
             'msg' => lang('Your account has been blocked.', 'auth') . $this->ban_reason,
             'status' => false,
-            'refresh' => false,
+            'refresh' => true,
             'redirect' => false
         ));
     }
@@ -414,6 +414,19 @@ class Authapi extends MY_Controller {
         $this->min_password = $this->auth->min_password;
     }
 
+    /**
+     * captcha check
+     * @param type $code
+     * @return boolean
+     */
+    function captcha_check($code) {
+        ($hook = get_hook('auth_captcha_check')) ? eval($hook) : NULL;
+
+        if (!$this->dx_auth->captcha_check($code))
+            return FALSE;
+        else
+            return TRUE;
+    }
 }
 
 /* End of file authapi.php */

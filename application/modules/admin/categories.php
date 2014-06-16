@@ -152,10 +152,14 @@ class Categories extends BaseAdminController {
         $this->form_validation->set_rules('page_tpl', lang("Page template", "admin"), 'trim|max_length[50]|callback_tpl_validation');
         $this->form_validation->set_rules('main_tpl', lang("Main template", "admin"), 'trim|max_length[50]|callback_tpl_validation');
         $this->form_validation->set_rules('per_page', lang("Per page", "admin"), 'required|trim|integer|max_length[9]|min_length[1]|is_natural_no_zero');
+        if ($cat_id) {
+            $cat = $this->cms_admin->get_category($cat_id);
+            $groupId = (int) $cat['category_field_group'];
+            $groupId_POST = (int) $this->input->post('category_field_group');
 
-        $groupId = (int) $this->input->post('category_field_group');
-        ($hook = get_hook('cfcm_set_rules')) ? eval($hook) : NULL;
-
+            if ($groupId != -1 && $groupId_POST != -1)
+                ($hook = get_hook('cfcm_set_rules')) ? eval($hook) : NULL;
+        }
         if ($this->form_validation->run($this) == FALSE) {
             ($hook = get_hook('admin_create_cat_val_failed')) ? eval($hook) : NULL;
 
@@ -197,6 +201,7 @@ class Categories extends BaseAdminController {
                 'comments_default' => $this->lib_admin->db_post('comments_default'),
                 'fetch_pages' => $fetch_pages,
                 'settings' => serialize($settings),
+                'updated' => time()
             );
 
             $parent = $this->lib_category->get_category($data['parent_id']);
@@ -213,6 +218,13 @@ class Categories extends BaseAdminController {
 
             switch ($action) {
                 case 'new':
+
+                    $pages_with_category_url = $this->db->where('url', $data['url'])->get('content');
+                    if ($pages_with_category_url->num_rows()) {
+                        $data['url'] .= time();
+                    }
+
+                    $data['created'] = time();
                     ($hook = get_hook('admin_create_category')) ? eval($hook) : NULL;
 
                     $id = $this->cms_admin->create_category($data);
@@ -238,7 +250,6 @@ class Categories extends BaseAdminController {
                     break;
 
                 case 'update':
-                    $cat = $this->cms_admin->get_category($cat_id);
 
                     /** Init Event. Pre Create Category */
                     \CMSFactory\Events::create()->registerEvent(array('pageId' => $cat_id, 'url' => $cat['url']), 'Categories:preUpdate');
@@ -545,7 +556,7 @@ class Categories extends BaseAdminController {
 //if (0)
 //{
             if ($this->db->get('category')->num_rows() == 1) {
-                showMessage(lang("Category deletion error", "admin"), lang("Error", "admin"), 'r');
+                showMessage(lang("You can not delete the last category from the list", "admin"), lang("Error", "admin"), 'r');
                 exit;
             }
 

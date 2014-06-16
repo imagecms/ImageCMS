@@ -1,5 +1,4 @@
 <section class="mini-layout">
-
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
@@ -8,7 +7,8 @@
         <div class="pull-right">
             <div class="d-i_b">
                 <a href="/admin/components/init_window/banners" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Back', 'banners')}</span></a>
-                <button onclick="selects()" type="button" class="btn btn-small btn-primary formSubmit" data-form="#image_upload_form" data-submit><i class="icon-ok icon-white"></i>{lang('Create', 'banners')}</button>
+                <button onclick="selects()" type="button" class="btn btn-small btn-success formSubmit" data-form="#image_upload_form" data-submit data-action="toedit"><i class="icon-ok icon-white"></i>{lang('Create', 'admin')}</button>
+                <button onclick="selects()" type="button" class="btn btn-small action_on formSubmit" data-form="#image_upload_form" data-action="tomain"><i class="icon-check"></i>{lang('Create and exit', 'admin')}</button>
             </div>
         </div>                            
     </div>
@@ -30,12 +30,12 @@
                                     <div class="control-group">
                                         <label class="control-label" for="Name">{lang('Name', 'banners')} {$translatable}:</label>
                                         <div class="controls">
-                                            <input type="text" name="name" id="Name" value="" />
+                                            <input type="text" name="name" class="input-long" id="Name" value="" required/>
                                         </div>
                                         <div class="controls">
                                             <span class="frame_label no_connection m-r_15">
                                                 <span class="niceCheck" style="background-position: -46px 0px; ">
-                                                    <input type="checkbox" name="active" value="1" >
+                                                    <input type="checkbox" name="active" value="1" checked="checked">
                                                 </span>
                                                 {lang('Active', 'banners')}
                                             </span>
@@ -55,9 +55,6 @@
                                         <input type="text" name="url" id="Url" value=""/>
                                     </div>
                                 </div>
-
-
-
 
                                 <div class="control-group">
                                     <label class="control-label" for="data">{lang('Selected items', 'banners')}:</label>
@@ -91,14 +88,21 @@
 
                                     </div>
                                 </div>
-
-
-
-
                                 <div class="control-group">
                                     <label class="control-label">{lang('Active until', 'banners')}:</label>
                                     <div class="controls">
-                                        <input class="datepicker" type="text" value="" name="active_to" />
+                                        <span class="frame_label no_connection">
+                                            <span class="niceCheck b_n no_connection" onclick="$('#active_to').fadeToggle()">
+                                                <input required="required" 
+                                                       type="checkbox"
+                                                       checked="checked"
+                                                       name="active_to_permanent"/>
+                                            </span>
+                                        </span>
+                                        {lang('Banner permanent', 'banners')}
+                                    </div>
+                                    <div class="controls">
+                                        <input class="datepicker" id="active_to" type="text" value="" name="active_to" style="display: none"/>
                                     </div>
                                 </div>    
 
@@ -109,24 +113,18 @@
                                     <div class="controls">
                                         <div class="group_icon pull-right">            
                                             <button type="button" class="btn btn-small" onclick="elFinderPopup('image', 'Img');
-                        return false;">
+                                                    return false;">
                                                 <i class="icon-picture"></i>
                                                 {lang('Choose an image ', 'banners')}
                                             </button>
                                         </div>
                                         <div class="o_h">		            
-                                            <input type="text" name="photo" id="Img" value="">					
+                                            <input type="text" name="photo" id="Img" value="" required="required">					
                                         </div>
-                                        <div id="Img-preview" style="width: 400px;" >
-
-
-
-                                        </div>
+                                        <div id="Img-preview" style="width: 400px;" ></div>
                                     </div>
                                 </div>
                             </div>
-
-
                         </div>
                     </td>
                 </tr>

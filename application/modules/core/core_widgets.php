@@ -17,7 +17,7 @@ class Core_Widgets extends MY_Controller {
     public function __construct() {
         parent::__construct();
         $obj = new MY_Lang();
-        $obj->load('core'); 
+        $obj->load('core');
     }
 
     // Display recent or popular news
@@ -71,8 +71,9 @@ class Core_Widgets extends MY_Controller {
 
     // Configure form
     public function recent_news_configure($action = 'show_settings', $widget_data = array()) {
-        if ($this->dx_auth->is_admin() == FALSE)
+        if ($this->dx_auth->is_admin() == FALSE) {
             exit;
+        }
 
         switch ($action) {
             case 'show_settings':
@@ -101,11 +102,12 @@ class Core_Widgets extends MY_Controller {
 
                     showMessage(lang("Settings have been saved", 'core'));
 
-                    if($_POST['action'] == 'tomain')
+                    if ($_POST['action'] == 'tomain') {
                         pjax('/admin/widgets_manager/index');
+                    }
                 }
                 break;
-            
+
             case 'install_defaults':
                 $this->load->module('admin/widgets_manager')->update_config($widget_data['id'], $this->defaults);
                 break;
@@ -129,8 +131,9 @@ class Core_Widgets extends MY_Controller {
             if (!empty($titleParts)) {
                 foreach ($titleParts as $key => $text) {
                     $text = trim($text);
-                    if ($text != '')
+                    if ($text != '') {
                         $sql[] = "title LIKE '%$text%'";
+                    }
                 }
 
                 if (!empty($sql)) {
@@ -172,16 +175,11 @@ class Core_Widgets extends MY_Controller {
     }
 
     public function render($viewName, array $data = array(), $return = false) {
-        if (!empty($data))
+        if (!empty($data)) {
             $this->template->add_array($data);
+        }
 
-        $this->template->show('file:' . 'application/modules/core/templates/' . $viewName);
-        exit;
-
-        if ($return === false)
-            $this->template->show('file:' . 'application/modules/core/templates/' . $viewName);
-        else
-            return $this->template->fetch('file:' . 'application/modules/core/templates/' . $viewName);
+        $this->template->show('file:' . APPPATH . 'modules/core/templates/' . $viewName);
     }
 
 }

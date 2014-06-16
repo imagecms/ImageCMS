@@ -112,8 +112,9 @@ class Admin extends BaseAdminController {
     public function delete() {
         /** Remove Banners by Ids */
         $ids = $this->input->post('id');
-        foreach (json_decode($ids) as $key)
+        foreach (json_decode($ids) as $key) {
             $this->banner_model->del_banner($key);
+        }
     }
 
     /**
@@ -125,6 +126,7 @@ class Admin extends BaseAdminController {
      */
     public function create() {
         if ($this->input->post()) {
+
             $this->load->library('Form_validation');
             /** Set Validation reles */
             $this->form_validation->set_rules('name', lang('Banner name', 'banners'), 'required|xss_clean|max_length[45]');
@@ -135,18 +137,26 @@ class Admin extends BaseAdminController {
                     'name' => $this->input->post('name'),
                     'active' => (int) $this->input->post('active'),
                     'description' => $this->input->post('description'),
-                    'active_to' => (int) strtotime($this->input->post('active_to')),
+                    'active_to' => $this->input->post('active_to_permanent') == 'on' ? -1 : (int) strtotime($this->input->post('active_to')),
                     'where_show' => count($this->input->post('data')) ? serialize(array_unique($this->input->post('data'))) : serialize(array()),
                     'photo' => $this->input->post('photo'),
                     'url' => $this->input->post('url'),
                     'locale' => $this->def_locale,
                 );
                 /** Create new banner from data-array */
-                $lid = $this->banner_model->add_banner($data);
+                try {
+                    $lid = $this->banner_model->add_banner($data);
 
-                showMessage(lang('Banner created', 'banners'));
-                /** Show successful message and redirect */
-                pjax('/admin/components/init_window/banners');
+                    showMessage(lang('Banner created', 'banners'));
+                    /** Show successful message and redirect */
+                    if ($this->input->post('action') == 'tomain') {
+                        pjax('/admin/components/init_window/banners');
+                    } elseif ($this->input->post('action') == 'toedit') {
+                        pjax('/admin/components/init_window/banners/edit/' . $lid);
+                    }
+                } catch (Exception $e) {
+                    showMessage($e->getMessage(), '', 'r');
+                }
             } else {
                 /** Show validation error message */
                 showMessage(validation_errors(), false, 'r');
@@ -187,7 +197,7 @@ class Admin extends BaseAdminController {
                     'name' => $_POST['name'],
                     'active' => (int) $this->input->post('active'),
                     'description' => $this->input->post('description'),
-                    'active_to' => (int) strtotime($this->input->post('active_to')),
+                    'active_to' => $this->input->post('active_to_permanent') == 'on' ? -1 : (int) strtotime($this->input->post('active_to')),
                     'where_show' => count($_POST['data']) ? serialize(array_unique($this->input->post('data'))) : serialize(array()),
                     'photo' => $this->input->post('photo'),
                     'url' => $this->input->post('url'),

@@ -70,7 +70,7 @@
                                     <div class="btn">
                                         <button type="button" data-rel="cloneAddPaste" data-parid="{$comment['id']}">
                                             <span class="icon_comment"></span>
-                                            <span class="text-el d_l_1">{lang('Ответить', 'newLevelVertical')}</span>
+                                            <span class="text-el d_l_1 f-s_11">{lang('Ответить', 'newLevelVertical')}</span>
                                         </button>
                                     </div>
                                 {/if}
@@ -148,7 +148,7 @@
                                 </div>
                             {/if}
                             <label>
-                                <span class="title">{lang('Текст комментария:')}</span>
+                                <span class="title">{lang('Текст комментария', 'newLevel')}:</span>
                                 <span class="frame-form-field">
                                     <textarea name="comment_text" class="comment_text">{$_POST.comment_text}</textarea>
                                 </span>

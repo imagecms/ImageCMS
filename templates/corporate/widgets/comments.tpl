@@ -8,7 +8,7 @@
             <div class="comment-text">
                 {$comment.text}
             </div>
-                <a href="{site_url($comment.url)}#comment_{$comment.id}">Смотреть</a>
+                <a href="{site_url($comment.url)}#comment_{$comment.id}">{lang('Смотреть','corporate')}</a>
         </li>     
     {/foreach}
 </ul>

@@ -14,119 +14,62 @@
     {/foreach}
 {/if}
 {$countSh = getProductViewsCount()}
+
+{$openLevels = getOpenLevels()}
+{if $openLevels}
+    {if $openLevels == 'all'}
+        {$menuClass = 'col'}
+    {else:}
+        {$menuClass = 'row'}
+    {/if}
+{else:}
+    {$menuClass = 'row'}
+{/if}
 <script type="text/javascript">
-    {literal}
-        var genObj = {
-        submitOrder: '#submitOrder',
-        frameDelivery: '#frameDelivery',
-        framePaymentMethod: '#framePaymentMethod',
-        dM: '[name = "deliveryMethodId"]',
-        pM: '#paymentMethod',
-        gift: '[name="gift"]',
-        giftButton: '#giftButton',
-        parentBtnBuy: '.globalFrameProduct',
-        loginButton: '#loginButton',
-        tinyCompareList: '.tinyCompareList',
-        countTinyCompareList: '.compareListCount',
-        toCompare: 'toCompare',
-        inCompare: 'inCompare',
-        tinyWishList: '.tinyWishList',
-        countTinyWishList: '.wishListCount',
-        btnWish: '.btnWish',
-        toWishlist: '.toWishlist',
-        inWishlist: '.inWishlist',
-        plurProd: '.plurProd',
-        popupCart: '#popupCart',
-        showCartPopup: '#showCartPopup',
-        editCart: '.editCart',
-        btnBask: '.btnBask',
-        tinyBask: '#tinyBask',
-        btnBuyKit: '.btnBuyKit',
-        btnBuy: '.btnBuy',
-        btnToCart: '.btn-buy',
-        btnInCart: '.btn-cart',
-        priceVariant: '.priceVariant',
-        priceOrigVariant: '.priceOrigVariant',
-        priceAddPrice: '.addCurrPrice',
-        photoProduct: '#photoProduct',
-        mainThumb: '#mainThumb',
-        plusMinus: '.plusMinus',
-        imgVC: '.vImg',
-        imgVP: '.vImgPr',
-        infoBut: '.infoBut',
-        frameCount: '.frameCount',
-        frameNumber: '.frameVariantCode',
-        frameVName: '.frameVariantName',
-        err: 'error',
-        scs: 'success',
-        info: 'info',
-        prefV: ".js-variant-",
-        selVariant: '.js-variant',
-        blockEmpty: '.js-empty',
-        blockNoEmpty: '.js-no-empty',
-        code: '.js-code',
-        numberC: '.js-number',
-        msgF: '.js-msg',
-        compareIn: 'btn-comp-in',
-        wishIn: 'btn-wish-in',
-        isAvail: 'pointer',
-        inCart: 'in-cart',
-        toCart: 'to-cart',
-        notAvail: 'not-avail',
-        textEl: '.text-el',
-        changeVariantCategory: '[id ^= сVariantSwitcher_]',
-        changeVariantProduct: '#variantSwitcher',
-        orderDetails: '#orderDetails'
-        };
-    {/literal}
     {if $comp = $CI->session->userdata('shopForCompare')}
         {$cnt_comp = count($comp)}
     {else:}
         {$cnt_comp = 0}
     {/if}
-        var curr = '{$CS}',
-        cartItemsProductsId = {echo json_encode($arrCartId)},
-        nextCs = '{echo $NextCS}',
-        nextCsCond = nextCs == '' ? false : true,
-        pricePrecision = parseInt('{echo ShopCore::app()->SSettings->pricePrecision}'),
-        checkProdStock = "{echo ShopCore::app()->SSettings->ordersCheckStocks}", //use in plugin plus minus
-        inServerCompare = parseInt("{$cnt_comp}"),
-        inServerWishList = parseInt("{$countWL}"),
-        countViewProd = parseInt("{$countSh}"),
-        theme = "{$THEME}",
-        siteUrl = "{echo site_url()}",
-        colorScheme = "{$colorScheme}",
-        isLogin = "{$is_logged_in}" === '1' ? true : false,
-        selectDeliv = false,
-        selectPayment = true,
-        selIcons = '[class*=icon_]',
-        preloader = '.preloader',
-        typePage = "{$CI->core->core_data['data_type']}",
-        selScrollPane = '.frame-scroll-pane .content-carousel';
+    var curr = '{$CS}',
+            cartItemsProductsId = {echo json_encode($arrCartId)},
+            nextCs = '{echo $NextCS}',
+            nextCsCond = nextCs == '' ? false : true,
+            pricePrecision = parseInt('{echo ShopCore::app()->SSettings->pricePrecision}'),
+            checkProdStock = "{echo ShopCore::app()->SSettings->ordersCheckStocks}", //use in plugin plus minus
+            inServerCompare = parseInt("{$cnt_comp}"),
+            inServerWishList = parseInt("{$countWL}"),
+            countViewProd = parseInt("{$countSh}"),
+            theme = "{$THEME}",
+            siteUrl = "{echo site_url()}",
+            colorScheme = "{$colorScheme}",
+            isLogin = "{$is_logged_in}" === '1' ? true : false,
+            typePage = "{$CI->core->core_data['data_type']}",
+            typeMenu = "{$menuClass}";
 
     {literal}
         text = {
-        search: function(text) {
-        return '{/literal}{lang("Введите более", 'lightVertical')} {literal}' + ' ' + text + '{/literal} {lang("символов", 'lightVertical')}'{literal};
-        },
-        error: {
-        notLogin: '{/literal}{lang("В список желаний могут добавлять только авторизированные пользователи", 'lightVertical')}'{literal},
-        fewsize: function(text) {
-        return '{/literal}{lang("Выберете размер меньше или равно", 'lightVertical')} {literal}' + ' ' + text + '{/literal} {lang("пикселей", 'lightVertical')}'{literal};
-        },
-        enterName: '{/literal}{lang("Введите название", 'lightVertical')}'{literal}
-        }
-        }
+            search: function(text) {
+                return '{/literal}{lang("Введите более", 'lightVertical')} {literal}' + ' ' + text + '{/literal} {lang("символов", 'lightVertical')}'{literal};
+                        },
+                        error: {
+                            notLogin: '{/literal}{lang("В список желаний могут добавлять только авторизированные пользователи", 'lightVertical')}'{literal},
+                                        fewsize: function(text) {
+                                            return '{/literal}{lang("Выберете размер меньше или равно", 'lightVertical')} {literal}' + ' ' + text + '{/literal} {lang("пикселей", 'lightVertical')}'{literal};
+                                                        },
+                                                        enterName: '{/literal}{lang("Введите название", 'lightVertical')}'{literal}
+                                                                }
+                                                            }
     {/literal}
-    text.inCart = '{lang('В корзине','lightVertical')}';
-    text.pc = '{lang('шт','lightVertical')}.';
-    text.quant = '{lang('Кол-во','lightVertical')}:';
-    text.sum = '{lang('Сумма','lightVertical')}:';
-    text.toCart = '{lang('Купить','lightVertical')}';
-    text.pcs = '{lang('Количество:')}';
-    text.kits = '{lang('Комплектов:')}';
-    text.captchaText = '{lang('Код протекции')}';
-    text.plurProd = ['{lang("товар",'lightVertical')}', '{lang("товара",'lightVertical')}', '{lang("товаров",'lightVertical')}'];
-    text.plurKits = ['{lang("набор",'lightVertical')}', '{lang("набора",'lightVertical')}', '{lang("наборов",'lightVertical')}'];
-    text.plurComments = ['{lang("отзыв",'lightVertical')}', '{lang("отзыва",'lightVertical')}', '{lang("отзывов",'lightVertical')}'];
+        text.inCart = '{lang('В корзине','lightVertical')}';
+        text.pc = '{lang('шт','lightVertical')}.';
+        text.quant = '{lang('Кол-во','lightVertical')}:';
+        text.sum = '{lang('Сумма','lightVertical')}:';
+        text.toCart = '{lang('Купить','lightVertical')}';
+        text.pcs = '{lang('Количество:')}';
+        text.kits = '{lang('Комплектов:')}';
+        text.captchaText = '{lang('Код протекции')}';
+        text.plurProd = ['{lang("товар",'lightVertical')}', '{lang("товара",'lightVertical')}', '{lang("товаров",'lightVertical')}'];
+        text.plurKits = ['{lang("набор",'lightVertical')}', '{lang("набора",'lightVertical')}', '{lang("наборов",'lightVertical')}'];
+        text.plurComments = ['{lang("отзыв",'lightVertical')}', '{lang("отзыва",'lightVertical')}', '{lang("отзывов",'lightVertical')}'];
 </script>

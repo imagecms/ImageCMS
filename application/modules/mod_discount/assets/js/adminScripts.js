@@ -1,4 +1,5 @@
 $(document).ready(function() {
+
     /**
      * set begin discount date to now date
      */
@@ -51,17 +52,19 @@ $(document).ready(function() {
             controlBlock.find('input:text').prop('disabled', 'disabled');
             controlBlock.find('input:text').val('');
         }
-    })
+    });
+
 
     /**
      * Show/hide blocks for every type of discount
      */
     $('#selectDiscountType').bind('change', function() {
         var selectElement = $(this);
-        discountType = selectElement.find("option:selected").val();
+        var discountType = selectElement.find("option:selected").val();
 
         $('.forHide').hide();
         $('#' + discountType + 'Block').show();
+        initChosenSelect();
     })
 
     /**
@@ -199,7 +202,16 @@ $(document).ready(function() {
     /**
      * If is selected use discount as gift
      */
-    $('#giftSpanCheckbox').bind('click', function() {
+    $('#giftSpanCheckbox').bind('click', giftCheckboxCallback);
+    $('#selectDiscountType').bind('change', function() {
+        if ($('#gift_checkbox').attr('checked') == 'checked') {
+            $('#giftSpanCheckbox').trigger('click');
+        }
+    });
+
+
+
+    function giftCheckboxCallback() {
         var countUsesBlock = $('.noLimitC')[0];
         if ($(this).find('input').prop('checked')) {
             $(countUsesBlock).find('#how-much').val('');
@@ -213,7 +225,15 @@ $(document).ready(function() {
             $(countUsesBlock).find('.spanForNoLimit').removeClass('active');
             $(countUsesBlock).find('.niceCheck').css('background-position', '-46px 0px');
         }
-    });
+    }
+
+
+
+
+    var isGift = $('#gift_checkbox').attr('checked') == 'checked';
+    if (isGift) {
+        giftCheckboxCallback();
+    }
 
 
 

@@ -155,7 +155,13 @@ class ParentEmail extends \MY_Controller {
         }
         $default_settings['type'] = strtolower($patern_settings['type']);
         $patern_settings['protocol'] = $default_settings['protocol'];
-        
+        if (strtolower($default_settings['protocol']) == strtolower("SMTP")) {
+            $patern_settings['port'] = $default_settings['port'];
+            $patern_settings['smtp_host'] = $default_settings['smtp_host'];
+            $patern_settings['smtp_user'] = $default_settings['smtp_user'];
+            $patern_settings['smtp_pass'] = $default_settings['smtp_pass'];
+        }
+
         //Initializing library settings
         $this->_set_config($patern_settings);
 
@@ -357,11 +363,14 @@ class ParentEmail extends \MY_Controller {
 
         if (strtolower($settings['protocol']) == strtolower("SMTP")) {
             $config['smtp_port'] = $settings['port'];
+            $config['smtp_host'] = $settings['smtp_host'];
+            $config['smtp_user'] = $settings['smtp_user'];
+            $config['smtp_pass'] = $settings['smtp_pass'];
         }
 
         $config['mailtype'] = strtolower($settings['type']);
         $config['mailpath'] = $settings['mailpath'];
-
+        
         return $this->email->initialize($config);
     }
 

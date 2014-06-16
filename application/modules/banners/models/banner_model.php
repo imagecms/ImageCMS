@@ -12,9 +12,17 @@ class Banner_model extends CI_Model {
     public function add_banner($data) {
         $sql = "insert into mod_banner(active,active_to,where_show) values('" . $data['active'] . "','" . $data['active_to'] . "','" . $data['where_show'] . "')";
         $this->db->query($sql);
+        if ($this->db->_error_message()) {
+            throw new Exception($this->db->_error_message());
+        }
+
         $lid = $this->db->insert_id();
         $sql = "insert into mod_banner_i18n(url,id,locale,name,description,photo) values('" . $data['url'] . "','" . $lid . "','" . $data['locale'] . "','" . $data['name'] . "','" . $data['description'] . "','" . $data['photo'] . "')";
         $this->db->query($sql);
+        if ($this->db->_error_message()) {
+            throw new Exception($this->db->_error_message());
+        }
+
         return $lid;
     }
 
@@ -88,7 +96,7 @@ class Banner_model extends CI_Model {
                         unset($query[$key]);
                     }
 
-                    if ($banner['active_to'] && $banner['active_to'] < time()) {
+                    if ($banner['active_to'] != -1 && $banner['active_to'] < time()) {
                         unset($query[$key]);
                     }
                 }

@@ -19,12 +19,7 @@ class BaseDiscount {
     private static $reBuild;
     private static $ignoreCart;
     private static $userId;
-
-    /**
-     * Information about each product which quantity was more then max applies
-     * @var array
-     */
-    public $aplyOverloadProducts = array();
+    private static $moduleInstalled;
 
     /**
      * check_module_install
@@ -35,7 +30,10 @@ class BaseDiscount {
      */
     public static function checkModuleInstall() {
         $ci = &get_instance();
-        return (count($ci->db->where('name', 'mod_discount')->get('components')->result_array()) == 0) ? false : true;
+        if (is_null(self::$moduleInstalled)) {
+            self::$moduleInstalled = (count($ci->db->where('name', 'mod_discount')->get('components')->result_array()) == 0) ? false : true;
+        }
+        return self::$moduleInstalled;
     }
 
     /**
@@ -286,8 +284,8 @@ class BaseDiscount {
     public function getMaxDiscount($discount, $price) {
         $discount = array_filter(
                 $discount, function($el) {
-                    return !empty($el);
-                });
+            return !empty($el);
+        });
         $maxDiscount = 0;
         foreach ($discount as $key => $disc) {
             $discountValue = $this->getDiscountValue($disc, $price);
@@ -323,6 +321,22 @@ class BaseDiscount {
     public function updateDiskApply($key, $gift = null) {
 
         return $this->ci->discount_model_front->updateApply($key, $gift);
+    }
+
+    public function getAppliesLeft($key) {
+        $result = \CI::$APP->db
+                ->select(array('max_apply', 'count_apply'))
+                ->where(array('key' => $key))
+                ->get('mod_shop_discounts')
+                ->row_array();
+
+        if (is_null($result['max_apply'])) {
+            return null;
+        }
+
+        if ($result) {
+            return (int) $result['max_apply'] - (int) $result['count_apply'];
+        }
     }
 
     /**
@@ -373,7 +387,7 @@ class BaseDiscount {
 
         $discountComulativ = array();
         foreach ($this->discountType['comulativ'] as $disc)
-            if (($disc['begin_value'] <= (float) $this->amoutUser and $disc['end_value'] > (float) $this->amoutUser ) or ($disc['begin_value'] <= (float) $this->amoutUser and !$disc['end_value']))
+            if (($disc['begin_value'] <= (float) $this->amoutUser and $disc['end_value'] > (float) $this->amoutUser ) or ( $disc['begin_value'] <= (float) $this->amoutUser and ! $disc['end_value']))
                 $discountComulativ[] = $disc;
 
         return (count($discountComulativ) > 0) ? $this->getMaxDiscount($discountComulativ, $this->totalPrice) : false;
@@ -428,12 +442,10 @@ class BaseDiscount {
         $allOrderArrNotReg = array();
         foreach ($this->discountType['all_order'] as $disc)
             if (!$disc['is_gift'])
-                if ($disc['begin_value'] <= $this->totalPrice and !$disc['for_autorized'])
+                if ($disc['begin_value'] <= $this->totalPrice and ! $disc['for_autorized'])
                     $allOrderArrNotReg[] = $disc;
 
         return (count($allOrderArrNotReg) > 0) ? $this->getMaxDiscount($allOrderArrNotReg, $this->totalPrice) : false;
     }
-
-   
 
 }

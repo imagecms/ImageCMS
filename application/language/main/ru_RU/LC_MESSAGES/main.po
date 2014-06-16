@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-08 05:42+0300\n"
-"PO-Revision-Date: 2014-05-08 05:42+0300\n"
+"POT-Creation-Date: 2014-06-04 06:18+0300\n"
+"PO-Revision-Date: 2014-06-04 06:18+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -28,201 +28,129 @@ msgstr ""
 "X-Poedit-SearchPath-9: ../../../../../system/language/upload\n"
 "X-Poedit-SearchPath-10: ../../../../../system/libraries\n"
 "X-Poedit-SearchPath-11: ../../../../../templates/administrator/js/jquery-validate\n"
+"X-Poedit-SearchPath-12: ../../../../../application/modules/shop/widgets\n"
 
-#: ./application/modules/shop/classes/Profile/BaseProfile.php:81
-msgid "Name"
-msgstr "Имя"
+#: ./application/modules/shop/widgets/shop_widgets.php:194
+#: ./application/modules/shop/widgets/shop_widgets.php:265
+#: ./application/modules/shop/widgets/shop_widgets.php:324
+msgid "Number of items to display"
+msgstr "Количество элементов для отображения"
 
-#: ./application/libraries/DX_Auth.php:1229
-#: ./application/libraries/DX_Auth.php:1234
-#: ./application/libraries/DX_Auth.php:1237
-msgid "Improper protection code"
-msgstr "Неверный код защиты"
+#: ./application/modules/shop/widgets/shop_widgets.php:135
+#: ./application/modules/shop/widgets/shop_widgets.php:208
+#: ./application/modules/shop/widgets/shop_widgets.php:276
+#: ./application/modules/shop/widgets/shop_widgets.php:334
+msgid "Successfully saved"
+msgstr "Успешно сохранено"
 
-#: ./application/modules/shop/classes/Profile/BaseProfile.php:84
-msgid "Phone"
-msgstr "Телефон"
+#: ./application/modules/shop/classes/PaymentSystems/YandexMoney/YandexMoneySystem.php:121
+msgid "Redirect url, HTTP:"
+msgstr "Redirect url, HTTP:"
 
-#: ./application/modules/shop/classes/Products/ProductApi.php:604
-msgid "The Main tpl field can only contain Latin alpha-numeric characters"
-msgstr "Поле Главный шаблон может содержать только латинские алфавитно-цифровые символы"
+#: ./application/modules/shop/widgets/shop_widgets.php:123
+#: ./application/modules/shop/widgets/shop_widgets.php:193
+msgid "Widget title"
+msgstr "Заголовок виджета"
 
-#: ./application/modules/shop/classes/Category/CategoryApi.php:592
-msgid "The tpl field can only contain Latin alpha-numeric characters"
-msgstr "Поле Шаблон категории может содержать только латинские алфавитно-цифровые символы"
+#: ./application/modules/shop/widgets/templates/similar_products.tpl:71
+#: ./application/modules/shop/widgets/templates/view_product.tpl:70
+#: ./application/modules/shop/widgets/templates/products.tpl:84
+msgid "Report message"
+msgstr "Сообщить о появлении"
 
-#: ./application/modules/shop/classes/Category/CategoryApi.php:521
-#: ./application/modules/shop/classes/Products/ProductApi.php:430
-msgid "Invalid url"
-msgstr "Недопустимый url-адрес"
+#: ./application/modules/shop/classes/PaymentSystems/YandexMoney/YandexMoneySystem.php:140
+msgid "Notification_secret"
+msgstr "Notification_secret"
 
-#: ./system/language/form_validation/form_validation.php:18
-msgid "alpha_numeric"
-msgstr "Поле %s может содержать только латинские алфавитно-цифровые символы."
+#: ./application/modules/shop/classes/PaymentSystems/Interkassa/InterkassaSystem.php:141
+msgid "Secret Key"
+msgstr "Секретный Ключ"
 
-#: ./application/modules/shop/classes/Category/CategoryApi.php:598
-msgid "Invalid file type."
-msgstr "Неверный формат файла."
+#: ./application/modules/shop/classes/PaymentSystems/Interkassa/InterkassaSystem.php:135
+msgid "Kassa number"
+msgstr "Kassa number"
 
-#: ./application/modules/shop/classes/Category/CategoryApi.php:588
-msgid "The tpl field legth must be smaler than 250 symbols."
-msgstr "Длина поля Шаблон должна быть менше чем 250 символов."
+#: ./application/modules/shop/classes/PaymentSystems/YandexMoney/YandexMoneySystem.php:154
+msgid "Get link for Received token "
+msgstr "Получить ссылку для Received token "
 
-#: ./application/modules/shop/classes/Products/ProductApi.php:493
-msgid "not specified product_name"
-msgstr "product_name не указан"
+#: ./application/modules/shop/classes/PaymentSystems/YandexMoney/YandexMoneySystem.php:165
+msgid "Received token"
+msgstr "Received token"
 
-#: ./application/modules/shop/classes/Category/CategoryApi.php:556
+#: ./application/modules/shop/classes/PaymentSystems/YandexMoney/YandexMoneySystem.php:159
+msgid "Follow the link to get Received token:"
+msgstr "Перейдите по ссылке, чтобы получить Received token:"
+
+#: ./application/modules/shop/classes/PaymentSystems/YandexMoney/YandexMoneySystem.php:146
+msgid "OAuth2 client_secret"
+msgstr "OAuth2 client_secret"
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:598
+msgid "action not 1 or 0"
+msgstr "action должно бить 1 или 0"
+
+#: ./application/modules/shop/classes/Category/CategoryApi.php:559
 #: ./application/modules/shop/classes/Products/ProductApi.php:465
 msgid "active not 1 or 0"
 msgstr "active должно бить 1 или 0"
 
-#: ./application/modules/shop/classes/Category/CategoryApi.php:580
-msgid "Invalid parent_id"
-msgstr "Неверное значение parent_id"
+#: ./application/modules/shop/classes/Products/ProductApi.php:517
+msgid "category_id not specified"
+msgstr "category_id не указан"
+
+#: ./application/modules/shop/classes/PaymentSystems/YandexMoney/YandexMoneySystem.php:134
+msgid "Client_ID"
+msgstr "Client_ID"
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:501
+msgid "currency not exist"
+msgstr "currency не существует"
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:497
+msgid "currency not specified"
+msgstr "currency не указан"
+
+#: ./application/modules/shop/classes/Profile/BaseProfile.php:82
+msgid "Email"
+msgstr "E-mail"
 
 #: ./application/modules/shop/classes/Products/ProductApi.php:473
 #: ./application/modules/shop/classes/Products/ProductApi.php:592
 msgid "hit not 1 or 0"
 msgstr "hit должно бить 1 или 0"
 
-#: ./application/modules/shop/classes/Products/ProductApi.php:481
-msgid "Invalid stock"
-msgstr "Неверное значение stock"
+#: ./application/modules/shop/classes/Products/ProductApi.php:586
+msgid "hot not 1 or 0"
+msgstr "hot должно бить 1 или 0"
 
-#: ./application/modules/shop/classes/Products/ProductApi.php:489
-msgid "Invalid brand_id"
-msgstr "Неверное значение brand_id"
+#: ./application/modules/shop/classes/PaymentSystems/YandexMoney/YandexMoneySystem.php:119
+msgid "https://sp-money.yandex.ru/myservices/new.xml"
+msgstr "https://sp-money.yandex.ru/myservices/new.xml"
 
-#: ./application/modules/shop/classes/Products/ProductApi.php:497
-msgid "currency not specified"
-msgstr "currency не указан"
+#: ./application/modules/shop/classes/PaymentSystems/YandexMoney/YandexMoneySystem.php:120
+msgid "https://sp-money.yandex.ru/myservices/online.xml"
+msgstr "https://sp-money.yandex.ru/myservices/online.xml"
 
-#: ./application/modules/shop/classes/Products/ProductApi.php:501
-msgid "currency not exist"
-msgstr "currency не существует"
-
-#: ./application/modules/shop/classes/Products/ProductApi.php:505
-msgid "price_in_main not specified"
-msgstr "price_in_main не указан"
+#: ./system/libraries/Migration.php:223
+msgid "migration_none_found"
+msgstr "migration_none_found"
 
 #: ./application/modules/shop/classes/Products/ProductApi.php:509
 msgid "price_in_main not float"
 msgstr "price_in_main не float"
 
-#: ./application/modules/shop/classes/Products/ProductApi.php:514
-msgid "Invalid category_id"
-msgstr "Неверное значение category_id"
+#: ./application/modules/shop/classes/Products/ProductApi.php:505
+msgid "price_in_main not specified"
+msgstr "price_in_main не указан"
 
-#: ./application/modules/shop/classes/Products/ProductApi.php:517
-msgid "category_id not specified"
-msgstr "category_id не указан"
+#: ./application/modules/shop/classes/Products/ProductApi.php:493
+msgid "not specified product_name"
+msgstr "product_name не указан"
 
-#: ./application/modules/shop/classes/Products/ProductApi.php:530
-msgid "Invalid related_products"
-msgstr "Неверное значение related_products"
-
-#: ./application/modules/shop/classes/Products/ProductApi.php:534
-msgid "Invalid created"
-msgstr "Неверное значение created"
-
-#: ./application/modules/shop/classes/Products/ProductApi.php:542
-msgid "Invalid updated"
-msgstr "Неверное значение updated"
-
-#: ./application/modules/shop/classes/Products/ProductApi.php:549
-msgid "Invalid old_price"
-msgstr "Неверное значение old_price"
-
-#: ./application/modules/shop/classes/Products/ProductApi.php:557
-msgid "Invalid views"
-msgstr "Неверное значение views"
-
-#: ./application/modules/shop/classes/Products/ProductApi.php:569
-msgid "Invalid added_to_cart_count"
-msgstr "Неверное значение added_to_cart_count"
-
-#: ./application/modules/shop/classes/Products/ProductApi.php:578
-msgid "Invalid external_id"
-msgstr "Неверное значение external_id"
-
-#: ./application/modules/shop/classes/Products/ProductApi.php:586
-msgid "hot not 1 or 0"
-msgstr "hot должно бить 1 или 0"
-
-#: ./application/modules/shop/classes/Products/ProductApi.php:598
-msgid "action not 1 or 0"
-msgstr "action должно бить 1 или 0"
-
-#: ./application/modules/shop/classes/Category/CategoryApi.php:149
-#: ./application/modules/shop/classes/Category/CategoryApi.php:189
-#: ./application/modules/shop/classes/Category/CategoryApi.php:249
-#: ./application/modules/shop/classes/Category/CategoryApi.php:331
-msgid "Category(ies) id(s) not specified"
-msgstr "Идентификатор категории(й) не указан"
-
-#: ./application/modules/shop/classes/Category/CategoryApi.php:229
-msgid "Category with such ID not exist"
-msgstr "Категория с таким идентификатором не существует"
-
-#: ./application/modules/shop/classes/Category/CategoryApi.php:318
-msgid "Category(ies) was not found"
-msgstr "Категория(и) не найдена"
-
-#: ./application/modules/shop/classes/Category/CategoryApi.php:408
-msgid "Category(ies) not exists"
-msgstr "Категория(и) не существует(ют)"
-
-#: ./application/modules/shop/classes/Category/CategoryApi.php:564
+#: ./application/modules/shop/classes/Category/CategoryApi.php:567
 msgid "showsitetitle not 1 or 0"
 msgstr "showsitetitle не 1 или 0"
-
-#: ./application/modules/shop/classes/Category/CategoryApi.php:572
-msgid "Invalid order method"
-msgstr "Невалидное значение метода доставки"
-
-#: ./application/modules/shop/classes/Category/CategoryApi.php:622
-msgid "Can not buid category tree"
-msgstr "Не возможно построить дерево категорий"
-
-#: ./application/modules/shop/classes/Category/CategoryApi.php:534
-#: ./application/modules/shop/classes/Category/CategoryApi.php:548
-#: ./application/modules/shop/classes/Products/ProductApi.php:443
-#: ./application/modules/shop/classes/Products/ProductApi.php:457
-msgid "This URL is already in use!"
-msgstr "Этот URL-адрес уже используется!"
-
-#: ./application/modules/shop/classes/Products/ProductApi.php:916
-msgid "Product that you specified does not exist"
-msgstr "Продукт, который указан не существует"
-
-#: ./application/modules/shop/classes/Products/ProductApi.php:1032
-msgid "Additional categories ids must be array"
-msgstr "Идентификаторы дополнительных категорий должны быть в массиве"
-
-#: ./application/modules/shop/classes/Products/ProductApi.php:904
-msgid "Product category does not exists"
-msgstr "Продукт категория не существует"
-
-#: ./application/modules/shop/classes/Products/ProductApi.php:1064
-msgid "You did not specified image position"
-msgstr "Вы не уточнил, положение изображения"
-
-#: ./application/modules/shop/classes/Products/ProductApi.php:910
-msgid "Product has no properties"
-msgstr "Продукт не имеет свойств"
-
-#: ./application/modules/shop/classes/Products/ProductApi.php:1059
-msgid "You did not specified image name"
-msgstr "Вы не уточнил название изображения"
-
-#: ./application/modules/shop/classes/Profile/BaseProfile.php:82
-msgid "Email"
-msgstr "E-mail"
-
-#: ./system/libraries/Migration.php:223
-msgid "migration_none_found"
-msgstr "migration_none_found"
 
 #: ./application/modules/shop/classes/Profile/BaseProfile.php:83
 msgid "Address"
@@ -253,7 +181,7 @@ msgstr "Ваше сообщение успешно отправлено"
 msgid "Enter a valid email address."
 msgstr "Введите действительный адрес электронной почты."
 
-#: ./application/helpers/rules_helper.php:93
+#: ./application/helpers/rules_helper.php:96
 msgid "Widgets"
 msgstr "Виджеты"
 
@@ -265,7 +193,7 @@ msgstr "Возникла проблема при попытке перемест
 msgid "upload_no_temp_directory"
 msgstr "Временная папка отсутствует."
 
-#: ./application/modules/shop/classes/PaymentSystems/QiWi/QiWiSystem.php:123
+#: ./application/modules/shop/classes/PaymentSystems/QiWi/QiWiSystem.php:134
 msgid "The lifetime of the account"
 msgstr "Время жизни счета"
 
@@ -274,9 +202,9 @@ msgid "All result"
 msgstr "Все результаты"
 
 #: ./application/modules/shop/classes/Category/CategoryApi.php:109
-#: ./application/modules/shop/classes/Category/CategoryApi.php:157
-#: ./application/modules/shop/classes/Category/CategoryApi.php:197
-#: ./application/modules/shop/classes/Category/CategoryApi.php:257
+#: ./application/modules/shop/classes/Category/CategoryApi.php:159
+#: ./application/modules/shop/classes/Category/CategoryApi.php:199
+#: ./application/modules/shop/classes/Category/CategoryApi.php:260
 #: ./application/modules/shop/classes/Products/ProductApi.php:112
 #: ./application/modules/shop/classes/Products/ProductApi.php:259
 #: ./application/modules/shop/classes/Products/ProductApi.php:311
@@ -297,21 +225,21 @@ msgstr "Вы не указали id варианта продукта"
 #: ./application/modules/shop/classes/Products/ProductApi.php:303
 #: ./application/modules/shop/classes/Products/ProductApi.php:347
 #: ./application/modules/shop/classes/Products/ProductApi.php:747
-#: ./application/modules/shop/classes/Products/ProductApi.php:760
-#: ./application/modules/shop/classes/Products/ProductApi.php:788
-#: ./application/modules/shop/classes/Products/ProductApi.php:809
-#: ./application/modules/shop/classes/Products/ProductApi.php:842
-#: ./application/modules/shop/classes/Products/ProductApi.php:862
-#: ./application/modules/shop/classes/Products/ProductApi.php:883
-#: ./application/modules/shop/classes/Products/ProductApi.php:1054
-#: ./application/modules/shop/classes/Products/ProductApi.php:1110
+#: ./application/modules/shop/classes/Products/ProductApi.php:789
+#: ./application/modules/shop/classes/Products/ProductApi.php:801
+#: ./application/modules/shop/classes/Products/ProductApi.php:822
+#: ./application/modules/shop/classes/Products/ProductApi.php:855
+#: ./application/modules/shop/classes/Products/ProductApi.php:875
+#: ./application/modules/shop/classes/Products/ProductApi.php:896
+#: ./application/modules/shop/classes/Products/ProductApi.php:1067
+#: ./application/modules/shop/classes/Products/ProductApi.php:1123
 msgid "You did not specified product id"
 msgstr "Вы не указали код продукта"
 
 #: ./application/modules/shop/classes/Category/CategoryApi.php:105
-#: ./application/modules/shop/classes/Category/CategoryApi.php:153
-#: ./application/modules/shop/classes/Category/CategoryApi.php:193
-#: ./application/modules/shop/classes/Category/CategoryApi.php:253
+#: ./application/modules/shop/classes/Category/CategoryApi.php:155
+#: ./application/modules/shop/classes/Category/CategoryApi.php:195
+#: ./application/modules/shop/classes/Category/CategoryApi.php:256
 #: ./application/modules/shop/classes/Products/ProductApi.php:108
 #: ./application/modules/shop/classes/Products/ProductApi.php:255
 #: ./application/modules/shop/classes/Products/ProductApi.php:307
@@ -324,13 +252,21 @@ msgstr "Вы не указали массив данных"
 msgid "upload_no_file_types"
 msgstr "Вы не указали разрешенные типы файлов."
 
-#: ./application/modules/shop/classes/Products/ProductApi.php:1041
+#: ./application/modules/shop/classes/Products/ProductApi.php:1054
 msgid "You did not specified categories array"
 msgstr "Вы не указан массив категорий"
 
-#: ./application/modules/shop/classes/Products/ProductApi.php:1037
+#: ./application/modules/shop/classes/Products/ProductApi.php:1050
 msgid "You did not specified product model"
 msgstr "Вы не уточнил модель продукта"
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:1072
+msgid "You did not specified image name"
+msgstr "Вы не уточнил название изображения"
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:1077
+msgid "You did not specified image position"
+msgstr "Вы не уточнил, положение изображения"
 
 #: ./application/modules/shop/helpers/shop_helper.php:244
 #: ./application/modules/shop/helpers/shop_helper.php:285
@@ -338,7 +274,7 @@ msgstr "Вы не уточнил модель продукта"
 msgid "Home"
 msgstr "Главная"
 
-#: ./application/helpers/rules_helper.php:96
+#: ./application/helpers/rules_helper.php:99
 msgid "Group"
 msgstr "Группа"
 
@@ -346,29 +282,33 @@ msgstr "Группа"
 msgid "Data is saved"
 msgstr "Данные сохраняются"
 
-#: ./application/modules/shop/classes/OschadBankInvoiceSystem.php:306
-msgid "Money sign"
-msgstr "Денежный знак"
-
 #: ./application/modules/shop/classes/PaymentSystems/SberBankInvoice/SberBankInvoiceSystem.php:239
 msgid "Bank notes"
 msgstr "Денежный знак"
 
-#: ./application/libraries/BaseAdminController.php:19
+#: ./application/modules/shop/classes/PaymentSystems/OschadBankInvoice/OschadBankInvoiceSystem.php:308
+msgid "Money sign"
+msgstr "Денежный знак"
+
+#: ./application/modules/shop/classes/Category/CategoryApi.php:591
+msgid "The tpl field legth must be smaler than 250 symbols."
+msgstr "Длина поля Шаблон должна быть менше чем 250 символов."
+
+#: ./application/libraries/BaseAdminController.php:21
 #: ./application/libraries/gettext_php/Gettext_extension.php:44
 #: ./application/libraries/gettext_php/Gettext_extension.php:49
 msgid "To improve performance set php_gettext.dll extension"
 msgstr "Для повышения эффективности установите расширение php_gettext.dll"
 
-#: ./application/helpers/rules_helper.php:132
+#: ./application/helpers/rules_helper.php:135
 msgid "Access to the widget settings"
 msgstr "Доступ к настройкам виджета"
 
-#: ./application/helpers/rules_helper.php:113
+#: ./application/helpers/rules_helper.php:116
 msgid "Access Control Panel"
 msgstr "Доступ к панели управления"
 
-#: ./application/helpers/rules_helper.php:146
+#: ./application/helpers/rules_helper.php:149
 msgid "Access to the file editor"
 msgstr "Доступ к файлу редактору"
 
@@ -376,7 +316,7 @@ msgstr "Доступ к файлу редактору"
 msgid "auth not activated"
 msgstr "Доступ не активирован"
 
-#: ./application/helpers/rules_helper.php:97
+#: ./application/helpers/rules_helper.php:100
 msgid "Logs"
 msgstr "Журналы"
 
@@ -388,7 +328,7 @@ msgstr "Загруженный файл превышает максимальн�
 msgid "upload_stopped_by_extension"
 msgstr "Загрузка файлов был остановлен по расширению."
 
-#: ./application/libraries/DX_Auth.php:1007
+#: ./application/libraries/DX_Auth.php:1008
 msgid "auth request sent"
 msgstr "Запрос отправленно"
 
@@ -396,22 +336,33 @@ msgstr "Запрос отправленно"
 msgid "Requests to the database"
 msgstr "Запросов к базе"
 
-#: ./application/modules/shop/classes/OschadBankInvoiceSystem.php:281
+#: ./application/modules/shop/classes/Category/CategoryApi.php:151
+#: ./application/modules/shop/classes/Category/CategoryApi.php:191
+#: ./application/modules/shop/classes/Category/CategoryApi.php:252
+#: ./application/modules/shop/classes/Category/CategoryApi.php:334
+msgid "Category(ies) id(s) not specified"
+msgstr "Идентификатор категории(й) не указан"
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:1045
+msgid "Additional categories ids must be array"
+msgstr "Идентификаторы дополнительных категорий должны быть в массиве"
+
+#: ./application/modules/shop/classes/PaymentSystems/OschadBankInvoice/OschadBankInvoiceSystem.php:283
 msgid "Identifier code"
 msgstr "Идентификационный код"
 
-#: ./application/helpers/rules_helper.php:119
+#: ./application/helpers/rules_helper.php:122
 msgid "Changing site settings"
 msgstr "Изменение настроек сайта"
 
-#: ./application/helpers/rules_helper.php:117
+#: ./application/helpers/rules_helper.php:120
 msgid "Changing the language"
 msgstr "Изменение языка"
 
-#: ./application/libraries/Permitions.php:481
-#: ./application/libraries/Permitions.php:552
-#: ./application/libraries/Permitions.php:615
-#: ./application/libraries/Permitions.php:798
+#: ./application/libraries/Permitions.php:509
+#: ./application/libraries/Permitions.php:583
+#: ./application/libraries/Permitions.php:647
+#: ./application/libraries/Permitions.php:836
 msgid "Changes have been saved"
 msgstr "Изменения сохранены"
 
@@ -419,11 +370,15 @@ msgstr "Изменения сохранены"
 msgid "upload_invalid_dimensions"
 msgstr "Изображение, которое вы пытаетесь загрузить превышает максимальную высоту или ширину."
 
+#: ./application/modules/shop/classes/Profile/BaseProfile.php:81
+msgid "Name"
+msgstr "Имя"
+
 #: ./application/modules/shop/classes/PaymentSystems/SberBankInvoice/SberBankInvoiceSystem.php:195
 msgid "Name of recipient"
 msgstr "Имя получателя"
 
-#: ./application/libraries/DX_Auth.php:1010
+#: ./application/libraries/DX_Auth.php:1011
 msgid "auth username or email not exist"
 msgstr "Имя пользователя или e-mail не существует"
 
@@ -439,13 +394,29 @@ msgstr "Имя файла, который Вы представили уже с�
 msgid "TIN address"
 msgstr "ИНН Получателя"
 
-#: ./application/modules/shop/classes/PaymentSystems/PayPal/PayPalSystem.php:148
+#: ./application/modules/shop/classes/PaymentSystems/PayPal/PayPalSystem.php:122
 msgid "Information about transaction"
 msgstr "Информация о трансакции"
 
-#: ./application/helpers/rules_helper.php:91
+#: ./application/helpers/rules_helper.php:94
 msgid "Categories"
 msgstr "Категории"
+
+#: ./application/modules/shop/classes/Category/CategoryApi.php:232
+msgid "Category with such ID not exist"
+msgstr "Категория с таким идентификатором не существует"
+
+#: ./application/modules/shop/classes/Category/CategoryApi.php:321
+msgid "Category(ies) was not found"
+msgstr "Категория(и) не найдена"
+
+#: ./application/modules/shop/classes/Category/CategoryApi.php:411
+msgid "Category(ies) not exists"
+msgstr "Категория(и) не существует(ют)"
+
+#: ./application/modules/shop/classes/PaymentSystems/YandexMoney/YandexMoneySystem.php:128
+msgid "Client"
+msgstr "Клиент"
 
 #: ./system/libraries/Pagination.php:75
 msgid "Last"
@@ -463,14 +434,13 @@ msgstr "Корзина"
 msgid "Correspondent account"
 msgstr "Корреспондентский Счет"
 
-#: ./application/modules/shop/classes/PaymentSystems/WebMoney/WebMoneySystem.php:164
+#: ./application/modules/shop/classes/PaymentSystems/WebMoney/WebMoneySystem.php:171
 msgid "Trick seller"
 msgstr "Кошелек продавца Trick seller"
 
-#: ./application/modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:159
-#: ./application/modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:166
-#: ./application/modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:173
-#: ./application/modules/shop/classes/PaymentSystems/WebMoney/WebMoneySystem.php:167
+#: ./application/modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:161
+#: ./application/modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:168
+#: ./application/modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:175
 msgid "Trick seller to which the customer has to make a payment. Format - letter and 12 digits."
 msgstr "Кошелек продавца, на который покупатель должен произвести оплату. Формат - буква и 12 цифр."
 
@@ -479,7 +449,7 @@ msgstr "Кошелек продавца, на который покупател�
 msgid "Buy"
 msgstr "Купить"
 
-#: ./application/helpers/rules_helper.php:89
+#: ./application/helpers/rules_helper.php:92
 msgid "Cache"
 msgstr "Кэш"
 
@@ -487,48 +457,43 @@ msgstr "Кэш"
 msgid "Login"
 msgstr "Логин"
 
-#: ./application/helpers/rules_helper.php:94
+#: ./application/helpers/rules_helper.php:97
 msgid "Menu"
 msgstr "Меню"
 
-#: ./application/modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:156
-#: ./application/modules/shop/classes/PaymentSystems/LiqPay/LiqPaySystem.php:133
+#: ./application/modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:158
 msgid "Merchant id"
 msgstr "Мерчант ID"
 
-#: ./application/modules/shop/classes/PaymentSystems/YandexMoney/YandexMoneySystem.php:129
-#: ./application/modules/shop/classes/PaymentSystems/PayPal/PayPalSystem.php:158
 #: ./application/modules/shop/classes/PaymentSystems/Robokassa/RobokassaSystem.php:155
-#: ./application/modules/shop/classes/PaymentSystems/QiWi/QiWiSystem.php:133
-#: ./application/modules/shop/classes/PaymentSystems/LiqPay/LiqPaySystem.php:149
+#: ./application/modules/shop/classes/PaymentSystems/PayPal/PayPalSystem.php:132
+#: ./application/modules/shop/classes/PaymentSystems/YandexMoney/src/lib/YandexMoneySystem.php:127
 msgid "The method of sending data for all requests: GET"
 msgstr "Метод отсылки данных для всех запросов: GET"
 
-#: ./application/helpers/rules_helper.php:129
+#: ./application/helpers/rules_helper.php:132
 msgid "Administration module"
 msgstr "Модуль администрирования"
 
-#: ./application/helpers/rules_helper.php:92
+#: ./application/helpers/rules_helper.php:95
 msgid "Modules"
 msgstr "Модулі"
 
-#: ./application/modules/shop/classes/OschadBankInvoiceSystem.php:297
+#: ./application/modules/shop/classes/PaymentSystems/OschadBankInvoice/OschadBankInvoiceSystem.php:299
 msgid "Bank MFI"
 msgstr "МФО банку"
 
-#: ./application/helpers/rules_helper.php:115
+#: ./application/helpers/rules_helper.php:118
 msgid "Find pages in the control panel"
 msgstr "Найти страницы на панели управления"
 
-#: ./application/modules/shop/classes/OschadBankInvoiceSystem.php:309
+#: ./application/modules/shop/classes/PaymentSystems/OschadBankInvoice/OschadBankInvoiceSystem.php:311
 msgid "For example: rub"
 msgstr "Например: руб"
 
-#: ./application/modules/shop/classes/PaymentSystems/YandexMoney/YandexMoneySystem.php:125
-#: ./application/modules/shop/classes/PaymentSystems/PayPal/PayPalSystem.php:154
 #: ./application/modules/shop/classes/PaymentSystems/Robokassa/RobokassaSystem.php:150
-#: ./application/modules/shop/classes/PaymentSystems/QiWi/QiWiSystem.php:129
-#: ./application/modules/shop/classes/PaymentSystems/LiqPay/LiqPaySystem.php:145
+#: ./application/modules/shop/classes/PaymentSystems/PayPal/PayPalSystem.php:128
+#: ./application/modules/shop/classes/PaymentSystems/YandexMoney/src/lib/YandexMoneySystem.php:123
 msgid "Merchant settings"
 msgstr "Настройки мерчанта"
 
@@ -545,18 +510,76 @@ msgstr "Не верний тип файла, который вы пытаете�
 msgid "upload_no_filepath"
 msgstr "Не верный путь загрузки файла."
 
-#: ./application/modules/shop/classes/Products/ProductApi.php:981
-#: ./application/modules/shop/classes/Products/ProductApi.php:1001
+#: ./application/modules/shop/classes/Category/CategoryApi.php:625
+msgid "Can not buid category tree"
+msgstr "Не возможно построить дерево категорий"
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:994
+#: ./application/modules/shop/classes/Products/ProductApi.php:1014
 msgid "Not valid arguments passed to the method"
 msgstr "Не действительных аргументов, передаваемых методу"
 
-#: ./application/modules/shop/classes/Products/ProductApi.php:962
+#: ./application/modules/shop/classes/Products/ProductApi.php:975
 msgid "Not multiple property cant set few values"
 msgstr "Не несколько собственности не могу задать несколько значений"
 
 #: ./system/language/upload/upload_validation.php:9
 msgid "upload_userfile_not_set"
 msgstr "Не удается найти переменную UserFile."
+
+#: ./application/modules/shop/classes/Category/CategoryApi.php:575
+msgid "Invalid order method"
+msgstr "Невалидное значение метода доставки"
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:569
+msgid "Invalid added_to_cart_count"
+msgstr "Неверное значение added_to_cart_count"
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:489
+msgid "Invalid brand_id"
+msgstr "Неверное значение brand_id"
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:514
+msgid "Invalid category_id"
+msgstr "Неверное значение category_id"
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:534
+msgid "Invalid created"
+msgstr "Неверное значение created"
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:578
+msgid "Invalid external_id"
+msgstr "Неверное значение external_id"
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:549
+msgid "Invalid old_price"
+msgstr "Неверное значение old_price"
+
+#: ./application/modules/shop/classes/Category/CategoryApi.php:583
+msgid "Invalid parent_id"
+msgstr "Неверное значение parent_id"
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:530
+msgid "Invalid related_products"
+msgstr "Неверное значение related_products"
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:481
+msgid "Invalid stock"
+msgstr "Неверное значение stock"
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:542
+msgid "Invalid updated"
+msgstr "Неверное значение updated"
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:557
+msgid "Invalid views"
+msgstr "Неверное значение views"
+
+#: ./application/libraries/DX_Auth.php:1229
+#: ./application/libraries/DX_Auth.php:1234
+#: ./application/libraries/DX_Auth.php:1237
+msgid "Improper protection code"
+msgstr "Неверный код защиты"
 
 #: ./application/libraries/DX_Auth.php:813
 msgid "auth login incorrect password"
@@ -566,33 +589,50 @@ msgstr "Неверный пароль"
 msgid "auth incorrect old password"
 msgstr "Неверный старый пароль"
 
+#: ./application/modules/shop/classes/Category/CategoryApi.php:601
+msgid "Invalid file type."
+msgstr "Неверный формат файла."
+
+#: ./application/libraries/Update.php:295
+msgid "Can not create a database snapshot, Check the folder {0} on the ability to record"
+msgstr "Невозможно создать снимок базы, проверте папку {0} на возможность записи"
+
+#: ./application/modules/shop/classes/Category/CategoryApi.php:524
+#: ./application/modules/shop/classes/Products/ProductApi.php:430
+msgid "Invalid url"
+msgstr "Недопустимый url-адрес"
+
 #: ./application/modules/shop/classes/Profile/BaseProfile.php:113
 msgid "wrong"
 msgstr "неправильный"
 
-#: ./application/modules/shop/classes/MediaManager/Image.php:544
-#: ./application/modules/shop/classes/MediaManager/Image.php:572
+#: ./application/modules/shop/classes/MediaManager/Image.php:547
+#: ./application/modules/shop/classes/MediaManager/Image.php:575
 msgid "Wrong variant id"
 msgstr "Неправильный вариант id"
+
+#: ./application/modules/shop/classes/SPropertiesRenderer.php:22
+msgid "none"
+msgstr "нет"
 
 #: ./application/helpers/category_helper.php:86
 msgid "No category"
 msgstr "Нет категории"
 
-#: ./application/helpers/rules_helper.php:45
+#: ./application/helpers/rules_helper.php:48
 msgid "No rights for"
 msgstr "Нет прав для"
 
-#: ./application/modules/shop/classes/PaymentSystems/QiWi/QiWiSystem.php:117
+#: ./application/modules/shop/classes/PaymentSystems/QiWi/QiWiSystem.php:128
 msgid "Account number"
 msgstr "Номер счета"
 
-#: ./application/helpers/rules_helper.php:114
+#: ./application/helpers/rules_helper.php:117
 msgid "System update"
 msgstr "Обновление системы"
 
-#: ./application/modules/shop/classes/MediaManager/Image.php:536
-#: ./application/modules/shop/classes/MediaManager/Image.php:563
+#: ./application/modules/shop/classes/MediaManager/Image.php:539
+#: ./application/modules/shop/classes/MediaManager/Image.php:566
 msgid "Image wasnt loaded"
 msgstr "Образ был загружен"
 
@@ -600,7 +640,7 @@ msgstr "Образ был загружен"
 msgid "Announce a"
 msgstr "Объявить"
 
-#: ./application/helpers/rules_helper.php:120
+#: ./application/helpers/rules_helper.php:123
 msgid "Clearing the cache"
 msgstr "Очистка кэша"
 
@@ -608,11 +648,11 @@ msgstr "Очистка кэша"
 msgid "Error"
 msgstr "Ошибка"
 
-#: ./application/helpers/rules_helper.php:57
+#: ./application/helpers/rules_helper.php:60
 msgid "Error checking permissions"
 msgstr "Ошибка проверки прав"
 
-#: ./application/helpers/rules_helper.php:87
+#: ./application/helpers/rules_helper.php:90
 msgid "Operation panel"
 msgstr "Панель управления"
 
@@ -620,15 +660,15 @@ msgstr "Панель управления"
 msgid "upload_not_writable"
 msgstr "Папка назначения загрузки не доступна для записи."
 
-#: ./application/modules/shop/classes/PaymentSystems/Robokassa/RobokassaSystem.php:135
-#: ./application/modules/shop/classes/PaymentSystems/Robokassa/RobokassaSystem.php:142
 #: ./application/modules/shop/classes/Profile/BaseProfile.php:106
 #: ./application/modules/shop/classes/Profile/BaseProfile.php:113
 #: ./application/modules/shop/classes/Profile/BaseProfile.php:115
+#: ./application/modules/shop/classes/PaymentSystems/Robokassa/RobokassaSystem.php:135
+#: ./application/modules/shop/classes/PaymentSystems/Robokassa/RobokassaSystem.php:142
 msgid "Password"
 msgstr "Пароль"
 
-#: ./application/modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:163
+#: ./application/modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:165
 msgid "Merchant password"
 msgstr "Пароль Мерчанта"
 
@@ -636,18 +676,14 @@ msgstr "Пароль Мерчанта"
 msgid "auth incorrect password"
 msgstr "Пароль Мерчанта"
 
-#: ./application/modules/shop/classes/ShopAdminController.php:58
-#: ./application/modules/shop/classes/ShopAdminController.php:59
+#: ./application/modules/shop/classes/ShopAdminController.php:87
+#: ./application/modules/shop/classes/ShopAdminController.php:88
 msgid "Translated field"
 msgstr "Переводимое поле"
 
 #: ./application/helpers/javascript_helper.php:47
 msgid "Redirecting"
 msgstr "Перенаправление"
-
-#: ./application/modules/shop/classes/PaymentSystems/LiqPay/LiqPaySystem.php:139
-msgid "Signature"
-msgstr "Подпись"
 
 #: ./application/modules/shop/classes/Profile/BaseProfile.php:107
 msgid "Confirm password"
@@ -753,12 +789,12 @@ msgstr "Поле %s должно содержать только латинск�
 msgid "is_natural"
 msgstr "Поле %s должно содержать только положительные числа."
 
-#: ./system/language/form_validation/form_validation.php:21
-msgid "is_numeric"
-msgstr "Поле %s должно содержать только цифры."
-
 #: ./system/language/form_validation/form_validation.php:20
 msgid "numeric"
+msgstr "Поле %s должно содержать только цифры."
+
+#: ./system/language/form_validation/form_validation.php:21
+msgid "is_numeric"
 msgstr "Поле %s должно содержать только цифры."
 
 #: ./system/language/form_validation/form_validation.php:25
@@ -785,6 +821,10 @@ msgstr "Поле %s должно содержать число, большее, 
 msgid "alpha"
 msgstr "Поле %s может содержать только буквы латинского алфавита."
 
+#: ./system/language/form_validation/form_validation.php:18
+msgid "alpha_numeric"
+msgstr "Поле %s может содержать только латинские алфавитно-цифровые символы."
+
 #: ./system/language/form_validation/form_validation.php:23
 msgid "regex_match"
 msgstr "Поле %s не в правильном формате."
@@ -801,11 +841,19 @@ msgstr "Поле %s не совпадает с полем %s."
 msgid "required"
 msgstr "Поле %s является обязательным."
 
-#: ./application/modules/shop/classes/OschadBankInvoiceSystem.php:274
+#: ./application/modules/shop/classes/Products/ProductApi.php:604
+msgid "The Main tpl field can only contain Latin alpha-numeric characters"
+msgstr "Поле Главный шаблон может содержать только латинские алфавитно-цифровые символы"
+
+#: ./application/modules/shop/classes/Category/CategoryApi.php:595
+msgid "The tpl field can only contain Latin alpha-numeric characters"
+msgstr "Поле Шаблон категории может содержать только латинские алфавитно-цифровые символы"
+
+#: ./application/modules/shop/classes/PaymentSystems/OschadBankInvoice/OschadBankInvoiceSystem.php:276
 msgid "Recipient"
 msgstr "Получатель"
 
-#: ./application/helpers/rules_helper.php:95
+#: ./application/helpers/rules_helper.php:98
 msgid "Members"
 msgstr "Пользователи"
 
@@ -817,27 +865,39 @@ msgstr "Порядок <br/> формулирования"
 msgid "Formulation order"
 msgstr "Порядок формулирования"
 
-#: ./application/libraries/Permitions.php:787
+#: ./application/modules/shop/classes/PaymentSystems/LiqPay/LiqPaySystem.php:159
+msgid "Private key"
+msgstr "Приватный ключ"
+
+#: ./application/libraries/Permitions.php:824
 msgid "The privilege is not found"
 msgstr "Привилегия не найдена"
 
-#: ./application/libraries/Permitions.php:749
+#: ./application/libraries/Permitions.php:786
 msgid "Privilege created"
 msgstr "Привилегия создана"
 
-#: ./application/modules/shop/classes/Products/ProductApi.php:913
+#: ./application/modules/shop/classes/Products/ProductApi.php:917
+msgid "Product category does not exists"
+msgstr "Продукт категория не существует"
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:926
 msgid "Product has no category"
 msgstr "Продукт не имеет категории"
 
-#: ./application/modules/shop/classes/Products/ProductApi.php:316
-msgid "Product not found"
-msgstr "Продукт не найден"
+#: ./application/modules/shop/classes/Products/ProductApi.php:923
+msgid "Product has no properties"
+msgstr "Продукт не имеет свойств"
 
 #: ./application/modules/shop/classes/Products/ProductApi.php:275
 msgid "Product with such ID not exist"
 msgstr "Продукт с таким ID не существует"
 
-#: ./application/helpers/rules_helper.php:144
+#: ./application/modules/shop/classes/Products/ProductApi.php:929
+msgid "Product that you specified does not exist"
+msgstr "Продукт, который указан не существует"
+
+#: ./application/helpers/rules_helper.php:147
 msgid "View Log"
 msgstr "Просмотр журнала"
 
@@ -845,7 +905,7 @@ msgstr "Просмотр журнала"
 msgid "Order view"
 msgstr "Просмотр заказа"
 
-#: ./application/helpers/rules_helper.php:140
+#: ./application/helpers/rules_helper.php:143
 msgid "Viewing member"
 msgstr "Просмотр пользователя"
 
@@ -857,101 +917,105 @@ msgstr "Профиль"
 msgid "User profile successfully changed"
 msgstr "Профиль пользователя успешно изменен"
 
+#: ./application/modules/shop/classes/PaymentSystems/LiqPay/LiqPaySystem.php:153
+msgid "Public key"
+msgstr "Публичный ключ"
+
 #: ./system/language/upload/upload_validation.php:10
 msgid "upload_file_exceeds_limit"
 msgstr "Размер загружаемого файла превышает максимально допустимый размер в конфигурационном файле PHP."
 
-#: ./application/helpers/rules_helper.php:142
+#: ./application/helpers/rules_helper.php:145
 msgid "Editing Groups"
 msgstr "Редактирование групп"
 
-#: ./application/helpers/rules_helper.php:125
+#: ./application/helpers/rules_helper.php:128
 msgid "Edit Categories"
 msgstr "Редактирование категорий"
 
-#: ./application/helpers/rules_helper.php:134
+#: ./application/helpers/rules_helper.php:137
 msgid "Edit menu"
 msgstr "Редактирование меню"
 
-#: ./application/helpers/rules_helper.php:149
+#: ./application/helpers/rules_helper.php:152
 msgid "Edit Folders"
 msgstr "Редактирование папок"
 
-#: ./application/helpers/rules_helper.php:138
+#: ./application/helpers/rules_helper.php:141
 msgid "Edit Users"
 msgstr "Редактирование пользователей"
 
-#: ./application/helpers/rules_helper.php:122
+#: ./application/helpers/rules_helper.php:125
 msgid "Editing pages"
 msgstr "Редактирование страниц"
 
-#: ./application/helpers/rules_helper.php:148
+#: ./application/helpers/rules_helper.php:151
 msgid "Editing Files"
 msgstr "Редактирование файлов"
 
-#: ./application/helpers/rules_helper.php:99
+#: ./application/helpers/rules_helper.php:102
 msgid "File Editor"
 msgstr "Редактор файлов"
 
-#: ./application/helpers/rules_helper.php:145
-msgid "Backing up"
-msgstr "Резервное копирование"
-
-#: ./application/helpers/rules_helper.php:98
+#: ./application/helpers/rules_helper.php:101
 msgid "Backup copying"
 msgstr "Резервное копирование"
 
-#: ./application/libraries/Permitions.php:585
+#: ./application/helpers/rules_helper.php:148
+msgid "Backing up"
+msgstr "Резервное копирование"
+
+#: ./application/libraries/Permitions.php:616
 msgid "Role not found"
 msgstr "Роль не найдена"
 
-#: ./application/modules/shop/classes/Products/ProductApi.php:977
+#: ./application/modules/shop/classes/Products/ProductApi.php:990
 msgid "Property that you specified does not exist"
 msgstr "Свойство, которое вы указали не существует"
 
-#: ./application/modules/shop/classes/PaymentSystems/WebMoney/WebMoneySystem.php:174
+#: ./application/modules/shop/classes/PaymentSystems/WebMoney/WebMoneySystem.php:180
 msgid "Secret Key:"
 msgstr "Секретный ключ:"
 
-#: ./application/helpers/rules_helper.php:147
+#: ./application/helpers/rules_helper.php:150
 msgid "Download files"
 msgstr "Скачать файлы"
 
-#: ./application/libraries/BaseAdminController.php:19
+#: ./application/libraries/BaseAdminController.php:21
 #: ./application/libraries/gettext_php/Gettext_extension.php:44
 #: ./application/libraries/gettext_php/Gettext_extension.php:49
 msgid "Advice"
 msgstr "Совет"
 
-#: ./application/helpers/rules_helper.php:130
+#: ./application/helpers/rules_helper.php:133
 msgid "Creating widgets"
 msgstr "Создание виджетов"
 
-#: ./application/helpers/rules_helper.php:141
+#: ./application/helpers/rules_helper.php:144
 msgid "Creating Groups"
 msgstr "Создание групп"
 
-#: ./application/helpers/rules_helper.php:124
+#: ./application/helpers/rules_helper.php:127
 msgid "Creating categories"
 msgstr "Создание категорий"
 
-#: ./application/helpers/rules_helper.php:121
+#: ./application/helpers/rules_helper.php:124
 msgid "Creating pages"
 msgstr "Создание страниц"
 
-#: ./application/helpers/rules_helper.php:116
+#: ./application/helpers/rules_helper.php:119
 msgid "Creating a language"
 msgstr "Создание языка"
 
-#: ./application/helpers/rules_helper.php:133
+#: ./application/helpers/rules_helper.php:136
 msgid "Create a menu"
 msgstr "Создать меню"
 
-#: ./application/helpers/rules_helper.php:137
+#: ./application/helpers/rules_helper.php:140
 msgid "Create users of all groups"
 msgstr "Создать пользователей всех групп"
 
-#: ./application/helpers/rules_helper.php:136
+#: ./application/helpers/rules_helper.php:139
 msgid "Create users of their group"
 msgstr "Создать пользователей их группы"
 
@@ -963,56 +1027,64 @@ msgstr "Сообщение"
 msgid "Compare list"
 msgstr "Список сравнения"
 
+#: ./application/modules/shop/classes/PaymentSystems/YandexMoney/YandexMoneySystem.php:118
+msgid "Links to create application:"
+msgstr "Ссылки для создания приложений:"
+
 #: ./application/modules/shop/classes/Profile/BaseProfile.php:105
 msgid "Old password"
 msgstr "Старый пароль"
 
-#: ./application/helpers/rules_helper.php:90
+#: ./application/helpers/rules_helper.php:93
 msgid "Pages"
 msgstr "Страницы"
 
-#: ./application/modules/shop/classes/PaymentSystems/YandexMoney/YandexMoneySystem.php:119
 #: ./application/modules/shop/classes/PaymentSystems/SberBankInvoice/SberBankInvoiceSystem.php:216
+#: ./application/modules/shop/classes/PaymentSystems/YandexMoney/src/lib/YandexMoneySystem.php:117
 msgid "Recipient account"
 msgstr "Счет получателя"
 
-#: ./application/modules/shop/classes/OschadBankInvoiceSystem.php:289
+#: ./application/modules/shop/classes/PaymentSystems/OschadBankInvoice/OschadBankInvoiceSystem.php:291
 msgid "Current account"
 msgstr "Текущий акаунт"
+
+#: ./application/modules/shop/classes/Profile/BaseProfile.php:84
+msgid "Phone"
+msgstr "Телефон"
 
 #: ./application/libraries/DX_Auth.php:921
 msgid "auth account subject"
 msgstr "Тема акаунта"
 
-#: ./application/helpers/rules_helper.php:131
+#: ./application/helpers/rules_helper.php:134
 msgid "Removing widgets"
 msgstr "Удаление виджетов"
 
-#: ./application/helpers/rules_helper.php:143
+#: ./application/helpers/rules_helper.php:146
 msgid "Deleting Groups"
 msgstr "Удаление групп"
 
-#: ./application/helpers/rules_helper.php:135
+#: ./application/helpers/rules_helper.php:138
 msgid "Menu deleting"
 msgstr "Удаление меню"
 
-#: ./application/helpers/rules_helper.php:128
+#: ./application/helpers/rules_helper.php:131
 msgid "Removing Modules"
 msgstr "Удаление модулей"
 
-#: ./application/helpers/rules_helper.php:139
+#: ./application/helpers/rules_helper.php:142
 msgid "Remove Users"
 msgstr "Удаление пользователей"
 
-#: ./application/helpers/rules_helper.php:123
+#: ./application/helpers/rules_helper.php:126
 msgid "Delete pages"
 msgstr "Удаление страниц"
 
-#: ./application/helpers/rules_helper.php:126
+#: ./application/helpers/rules_helper.php:129
 msgid "Category delete"
 msgstr "Удалить категорию"
 
-#: ./application/helpers/rules_helper.php:118
+#: ./application/helpers/rules_helper.php:121
 msgid "Remove languages"
 msgstr "Удалить языках"
 
@@ -1024,7 +1096,7 @@ msgstr "Успех"
 msgid "successfully saved."
 msgstr "успешно сохранены."
 
-#: ./application/helpers/rules_helper.php:127
+#: ./application/helpers/rules_helper.php:130
 msgid "Install Modules"
 msgstr "Установка модулей"
 
@@ -1040,19 +1112,19 @@ msgstr "Файл не может быть записан на диск."
 msgid "upload_invalid_filesize"
 msgstr "Файл, который вы пытаетесь загрузить больше, чем это допускается."
 
-#: ./application/modules/shop/classes/OschadBankInvoiceSystem.php:284
+#: ./application/modules/shop/classes/PaymentSystems/OschadBankInvoice/OschadBankInvoiceSystem.php:286
 msgid "Integer. The maximum length of 10 characters."
 msgstr "Целое число. Максимальная длина 10 символов"
 
-#: ./application/modules/shop/classes/OschadBankInvoiceSystem.php:292
+#: ./application/modules/shop/classes/PaymentSystems/OschadBankInvoice/OschadBankInvoiceSystem.php:294
 msgid "Integer. The maximum length of 14 characters."
 msgstr "Целое число. Максимальная длина 14 символов"
 
-#: ./application/modules/shop/classes/OschadBankInvoiceSystem.php:300
+#: ./application/modules/shop/classes/PaymentSystems/OschadBankInvoice/OschadBankInvoiceSystem.php:302
 msgid "Integer. The maximum length of 6 characters."
 msgstr "Целое число. Максимальная длина 6 символов."
 
-#: ./application/modules/shop/classes/PaymentSystems/PayPal/PayPalSystem.php:142
+#: ./application/modules/shop/classes/PaymentSystems/PayPal/PayPalSystem.php:116
 msgid "E-mail"
 msgstr "Электронная почта"
 
@@ -1060,6 +1132,13 @@ msgstr "Электронная почта"
 msgid "This field is required"
 msgstr "Это поле обязательно для заполнения"
 
-#: ./application/helpers/rules_helper.php:88
+#: ./application/modules/shop/classes/Category/CategoryApi.php:537
+#: ./application/modules/shop/classes/Category/CategoryApi.php:551
+#: ./application/modules/shop/classes/Products/ProductApi.php:443
+#: ./application/modules/shop/classes/Products/ProductApi.php:457
+msgid "This URL is already in use!"
+msgstr "Этот URL-адрес уже используется!"
+
+#: ./application/helpers/rules_helper.php:91
 msgid "Languages"
 msgstr "Языки"

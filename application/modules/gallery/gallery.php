@@ -8,6 +8,7 @@ if (!defined('BASEPATH'))
  *
  * Gallery module
  * Need Imagebox module
+ * @property Gallery_m $gallery_m 
  */
 class Gallery extends MY_Controller {
 
@@ -38,14 +39,14 @@ class Gallery extends MY_Controller {
      * List categories and get albums from first category
      */
     function index() {
-        $this->core->set_meta_tags(lang('Gallery'));
+        $this->core->set_meta_tags(lang('Gallery', 'gallery'));
 
         $categories = $this->gallery_m->get_categories($this->settings['order_by'], $this->settings['sort_order']);
         $albums = $this->gallery_m->get_albums($this->settings['order_by'], $this->settings['sort_order']);
 
         $data = array(
-                'gallery_category' => $categories,
-                'total' => $this->gallery_m->getTotalImages()
+            'gallery_category' => $categories,
+            'total' => $this->gallery_m->getTotalImages()
         );
 
         // Get covers
@@ -53,6 +54,7 @@ class Gallery extends MY_Controller {
 
         \CMSFactory\assetManager::create()
                 ->setData($data)
+                ->registerStyle('style', FAlSE)
                 ->render('albums');
     }
 
@@ -150,10 +152,20 @@ class Gallery extends MY_Controller {
             if ($album['tpl_file']) {
                 \CMSFactory\assetManager::create()
                         ->setData($data)
+                        ->registerStyle('jquery.fancybox-1.3.4', FAlSE)
+                        ->registerStyle('style', FAlSE)
+                        ->registerScript('jquery.fancybox-1.3.4.pack', TRUE)
+                        ->registerScript('jquery.easing-1.3.pack', TRUE)
+                        ->registerScript('jquery.mousewheel-3.0.4.pack', TRUE)
                         ->render($album['tpl_file']);
             } else {
                 \CMSFactory\assetManager::create()
                         ->setData($data)
+                        ->registerStyle('jquery.fancybox-1.3.4', FAlSE)
+                        ->registerStyle('style', FAlSE)
+                        ->registerScript('jquery.fancybox-1.3.4.pack', TRUE)
+                        ->registerScript('jquery.easing-1.3.pack', TRUE)
+                        ->registerScript('jquery.mousewheel-3.0.4.pack', TRUE)
                         ->render('album');
             }
         }

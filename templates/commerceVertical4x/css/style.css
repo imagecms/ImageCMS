@@ -818,7 +818,7 @@ a.activeSlide{background-position: -66px 0;}
 .cuselFrameRight {position: absolute;z-index: 2;top: 0;right: 0;height: 100%;width: 23px;background-position: 100% -30px;}
 .cuselText {height: 30px;line-height: 30px;padding-left:10px;cursor: pointer;overflow: hidden;z-index: 1;position: absolute;top: 0;left: 0;font-size: 12px;}
 .cusel span {display: block;cursor: pointer;white-space: nowrap;padding: 3px 0px 3px 5px;margin-right: -3px;color: #666;font-size: 11px;text-overflow: ellipsis;overflow: hidden;}
-.cusel span:hover,.cusel .cuselOptHover {background: #003399;color: #fff;}
+.cusel span:hover, .cusel .cuselOptHover {background: #003399;color: #fff;}
 .cusel .cuselActive {background: #e5e5e5;color: #333;cursor: default;}
 /*.cuselOpen {z-index: 999;background-position: 0 -224px;}
 .cuselOpen .cuselFrameRight{background-position: 100% -252px;}*/

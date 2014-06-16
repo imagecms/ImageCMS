@@ -17,9 +17,29 @@ class Red_helper extends MY_Controller {
     }
 
     public function index() {
-        
     }
-
+    
+    public function validate() {
+        
+        $this->load->library('form_validation');
+        $config = array(
+               array(
+                     'field'   => 'login1', 
+                     'label'   => 'login', 
+                     'rules'   => 'required|min_length[3]'
+                  ),   
+               array(
+                     'field'   => 'phone', 
+                     'label'   => 'phone', 
+                     'rules'   => 'required|numeric'
+                  )
+            );
+       $this->form_validation->set_rules($config);
+       $this->form_validation->run();
+       $this->form_validation->set_error_delimiters('', ''); 
+       echo (validation_errors());
+       }
+    
     public function autoload() {
         $set = $this->red_helper_model->getSettings();
         if ($set['login']) {

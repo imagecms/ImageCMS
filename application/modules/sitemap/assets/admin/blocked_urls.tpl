@@ -36,13 +36,19 @@
                     <td>
                         <br/>
                         <div class="control-group">
+
                             <div class="controls">
-                                <button type="button" style="margin-left: -20px" class="icon-info-sign" data-toggle="popover" data-placement="right" data-title="{lang('Example:', 'sitemap')}" data-content="
-                                        <span class='s-t'>{site_url()}</span>shop/product/123 - {lang('will blocked this url', 'sitemap')}<br/>
-                                        <span class='s-t'>{site_url()}</span>shop/product*/123 - {lang('blocked all urls than starts with', 'sitemap')} shop/product<br/>
-                                        <span class='s-t'>{site_url()}</span>*shop/product - {lang('blocked all urls than ends with', 'sitemap')} shop/product"
-                                        ></button>
                                 <div class="input-prepend">
+                                    <span class="span4" style="float: left; margin-right: -285px;">
+                                        <span data-title="{lang('Example:', 'sitemap')}" class="popover_ref" data-original-title="">
+                                            <i class="icon-info-sign" style="margin-left: -20px"></i>
+                                        </span>
+                                        <div class="d_n">
+                                            <b><span class='s-t'>{site_url()}</span>shop/product/123</b> - {lang('will blocked this url', 'sitemap')}<br/>
+                                            <b><span class='s-t'>{site_url()}</span>shop/product*</b> - {lang('blocked all urls than starts with', 'sitemap')} shop/product<br/>
+                                            <b><span class='s-t'>{site_url()}</span>*shop/product</b> - {lang('blocked all urls than ends with', 'sitemap')} shop/product<br/>
+                                        </div>
+                                    </span>
                                     <span class="add-on" style="height: 17px;">{site_url()}</span>
                                     <input id="hide_url" onkeypress="var keycode = (event.keyCode ? event.keyCode : event.which);
                                             if (keycode == '13')
@@ -56,7 +62,7 @@
                             <div class="controls">
                                 <div class="input-prepend">
                                     <span class="add-on" style="height: 17px;">{site_url()}</span>
-                                    <input class="hide_url" class="span2" type="text">
+                                    <input class="hide_url" type="text">
                                     <button type="button" onclick="SiteMap.removeHidenUrl($(this))" class="btn btn-small btn-default"><i class="icon-trash"></i></button>
                                 </div>
                                 <div>
@@ -77,7 +83,7 @@
                                     <div class="controls">
                                         <div class="input-prepend">
                                             <span class="add-on" style="height: 17px;">{site_url()}</span>
-                                            <input class="hide_url span2" name="hide_urls[]" type="text" value="{echo $url['url']}">
+                                            <input class="hide_url" name="hide_urls[]" type="text" value="{echo $url['url']}">
                                             <button type="button" onclick="SiteMap.removeHidenUrl($(this))" class="btn btn-small btn-default"><i class="icon-trash"></i></button>
                                         </div>
                                         <div>

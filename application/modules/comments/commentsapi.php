@@ -188,20 +188,11 @@ class Commentsapi extends Comments {
 
         if (strstr($url, '/product/')) {
             $url = parse_url($url);
-
             /** Check is lang segment and remove it from url path * */
             $urlArraySegments = explode("/", $url["path"]);
-            $langKey = $urlArraySegments[1];
 
-            if (array_key_exists($langKey, $this->core->langs)) {
-                $url['path'] = substr_replace($url['path'], '', 0, strlen($langKey) + 1);
-            }
-
-            $search = array('shop', 'product', '/');
-            $replace = array('', '', '');
-            $url = str_replace($search, $replace, $url['path']);
             $id = $this->db->select('id, enable_comments')
-                    ->where('url', $url)
+                    ->where('url', end($urlArraySegments))
                     ->get('shop_products')
                     ->row();
 
@@ -390,10 +381,27 @@ class Commentsapi extends Comments {
                         )
                 );
             } else {
+
+
+                if ($this->dx_auth->use_recaptcha)
+                    $field_name = 'recaptcha_response_field';
+                else
+                    $field_name = 'captcha';
+
+//                if ($this->form_validation->error($field_name)) {
+                    $this->dx_auth->captcha();
+                    $cap_image = $this->dx_auth->get_captcha_image();
+//                }
+
+//                if ($this->use_captcha == TRUE && !$this->dx_auth->is_admin()) {
+//                    $this->dx_auth->captcha();
+//                    $data['cap_image'] = $this->dx_auth->get_captcha_image();
+//                }
                 echo json_encode(
                         array(
                             'answer' => 'error',
-                            'validation_errors' => validation_errors()
+                            'validation_errors' => validation_errors(),
+                            'cap_image' => $cap_image
                         )
                 );
             }

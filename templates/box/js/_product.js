@@ -56,7 +56,7 @@ Product = {
 
             if (productPhotoCZoom) {
                 $('.mousetrap').remove();
-                $('.cloud-zoom, .cloud-zoom-gallery').CloudZoom();
+                $('.cloud-zoom, .cloud-zoom-gallery').CloudZoom({showTitle: false});
             }
         });
         /*/Variants in Product*/
@@ -260,7 +260,7 @@ function initPhoto() {
     }
 
     if (productPhotoCZoom) {
-        $('.cloud-zoom, .cloud-zoom-gallery').CloudZoom();
+        $('.cloud-zoom, .cloud-zoom-gallery').CloudZoom({showTitle: false});
         body.append('<style id="forCloudZomm"></style>');
         margZoomLens();
         $(genObj.photoProduct).find('img').load(function() {

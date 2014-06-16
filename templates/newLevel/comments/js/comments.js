@@ -307,6 +307,11 @@ var Comments = {
                     Comments.renderPosts($(el).closest('.forComments'), data, place ? place : +form.find('[name="comment_parent"]').val());
                 }
                 else {
+                    if(obj.cap_image){
+                        $('.captcha_image').html(obj.cap_image);
+                        $('#captcha').val('');
+                    }
+                    
                     form.find('.error_text').remove();
                     form.prepend('<div class="error_text">' + message.error(obj.validation_errors) + '</div>');
                     drawIcons(form.find('.error_text').find(selIcons));

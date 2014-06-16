@@ -21,7 +21,7 @@
                         <h1 class="d_i title">{lang('Сравнение товаров','light')}</h1>
                     </div>
                     <ul class="tabs groups-buttons tabs-compare-diferent" data-cookie="compare">
-                        <li class="btn-def {if $_COOKIE['compare'] == "#all-params"}active{/if}">
+                        <li class="btn-def {if $_COOKIE['compare'] == "#all-params" || $_COOKIE['compare'] == NULL}active{/if}">
                             <button type="button" data-href="#all-params">
                                 <span class="text-el">{lang('Все параметры','light')}</span>
                             </button>
@@ -66,7 +66,7 @@
                                                         <li class="compare_product_{echo $p->getId()}">
                                                             <!--                                                Start. Include product template-->
                                                             <ul class="items items-catalog table">
-                                                                {$CI->load->module('new_level')->OPI(array($p), array('opi_compare'=>true, 'opi_wishlist'=>true))}
+                                                                {getOPI(array($p), array('opi_compare'=>true, 'opi_wishlist'=>true))}
                                                             </ul>
                                                             <!--                                                End. Include product template-->
                                                             <!--Start. Product characteristics -->

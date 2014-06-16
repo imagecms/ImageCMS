@@ -49,7 +49,6 @@ $(document).ajaxComplete(function(event, XHR, ajaxOptions) {
             dropDownMenu();
             autocomplete();
             init_2();
-            fixed_frame_title();
         }
 
         if ($.exists('#chart'))
@@ -316,7 +315,7 @@ function init_2() {
             deliverySumSpecifiedMessageBlock.hide();
         }
     });
-    $('body').off('click.popover').on('click.popover', function(e) {
+    $('*').off('click.popover').on('click.popover', function(e) {
         var popovers = '.popover, .buy_prod, .popover_ref';
         if ($.exists(popovers) && ($(e.target).is(popovers) || $(e.target).parents().is(popovers)))
             return;
@@ -388,7 +387,7 @@ function init_2() {
         $('#productNameForOrders').autocomplete({
             source: '/admin/components/run/shop/orders/ajaxGetProductList/?',
             select: function(event, ui) {
-                productName = ui.item.label;
+                productName = ui.item.name;
                 productId = ui.item.id;
                 categoryId = ui.item.category;
             },
@@ -621,6 +620,7 @@ function autocomplete() {
         $('#usersDatas').autocomplete({
             source: usersDatas
         });
+
     if (window.hasOwnProperty('ordersFilterProduct'))
         $('#ordersFilterProduct').autocomplete({
             source: productsDatas,
@@ -633,26 +633,51 @@ function autocomplete() {
                 $('#ordersFilterProduct').val(prodName);
             }
         });
+
+    function getAutocompleteProducts(request, callback) {
+        var data = {
+            term: request.term,
+            limit: 20,
+            noids: (function() {
+                var noids = [];
+                $('input[name="AttachedProductsIds[]"]').each(function() {
+                    noids.push($(this).val());
+                });
+
+                var mainProductId = $('#MainProductHidden').val();
+                if (mainProductId) {
+                    noids.push(mainProductId);
+                }
+                return noids;
+            })()
+        }
+        $.get('/admin/components/run/shop/kits/get_products_list/', data, function(response) {
+            callback(response);
+        }, 'json');
+    }
+
     if ($.exists('#kitMainProductName')) {
         $('#kitMainProductName').autocomplete({
             minChars: 1,
-            source: '/admin/components/run/shop/kits/get_products_list/' + $('#kitMainProductName').val() + '&limit=20',
+            source: getAutocompleteProducts,
             select: function(event, ui) {
                 $('#MainProductHidden').val(ui.item.identifier.id);
-                setTimeout(function(){$('#kitMainProductName').val(ui.item.label);}, 0);
+                setTimeout(function() {
+                    $('#kitMainProductName').val(ui.item.label);
+                }, 0);
             }
         });
     }
+
     if ($.exists('#AttachedProducts')) {
         $('#AttachedProducts').autocomplete({
             minChars: 0,
-            source: '/admin/components/run/shop/kits/get_products_list/' + $('#AttachedProducts').val() + '&limit=20',
+            source: getAutocompleteProducts,
             select: function(event, ui) {
                 var mainDisc = $('#mainDisc').attr('value');
                 $('#forAttached').append('<div id="tpm_row' + ui.item.identifier.id + '" class="m-t_10">' +
                         '<span class="d-i_b number v-a_b">' +
-                        '<span class="help-inline d_b">ID</span>' +
-                        '<input type="text" name="AttachedProductsIds[]" value="' + ui.item.identifier.id + '" class="input-mini"/>' +
+                        '<input type="hidden" name="AttachedProductsIds[]" value="' + ui.item.identifier.id + '" class="input-mini"/>' +
                         '</span>&nbsp;' +
                         '<span class="d-i_b v-a_b">' +
                         '<span class="help-inline d_b">' + langs.name + '</span>' +
@@ -874,17 +899,18 @@ function getScrollTop() {
     return scrOfY;
 }
 function fixed_frame_title() {
-    fixed_block = $(".frame_title:not(.no_fixed)");
-    mini_layout = $('.mini-layout');
-    container = $('.container');
-    containerW = container.width() - parseInt($('body').css('padding-left')) * 2;
-    frame_zH_frame_title = $('.frame_zH_frame_title');
+    var fixed_block = $(".frame_title:not(.no_fixed)"),
+            mini_layout = $('.mini-layout'),
+            container = $('.container'),
+            containerW = container.width() - parseInt($('body').css('padding-left')) * 2,
+            frame_zH_frame_title = $('.frame_zH_frame_title');
 
     if ($.exists_nabir(fixed_block)) {
-        var fixed_block_top = mini_layout.offset().top;
-        var fixed_block_h = fixed_block.outerHeight(true);
+        var top = mini_layout.offset().top,
+                fixed_block_top = top > 159 ? top : 159,
+                fixed_block_h = fixed_block.outerHeight(true),
+                top = getScrollTop();
 
-        var top = getScrollTop();
         if (top < fixed_block_top) {
             fixed_block.css("top", fixed_block_top - top + 20);
             frame_zH_frame_title.css("top", fixed_block_top - top + 6);
@@ -947,6 +973,8 @@ function what_key(enter_key, event) {
 function initAdminArea() {
     console.log('initialising of administration area started');
 
+    fixed_frame_title();
+
     testNumber("#createUserPhone, #UserPhone, #Phone, #shopOrdersUserPhone", ['(', ')', '+', '-'], 'phone');
     testNumber('.number input', ['.'], 'count');
 
@@ -970,7 +998,7 @@ function initAdminArea() {
     var startExecTime = Date.now();
 
     //gistogram
-    $('[name="date"]').die('change').live('change', function() {
+    $('#wrapper_gistogram [name="date"]').die('change').live('change', function() {
         $('#loading').stop().fadeIn(100);
         $.pjax({
             'url': '/admin/components/run/shop/charts/byDate/' + $(this).val(),
@@ -1196,10 +1224,13 @@ function initAdminArea() {
     $('.controls img.img-polaroid').die('click').live('click', function() {
         $(this).closest('.control-group').find('input:file').click();
     });
+    $('.change_btn').die('click').live('click', function() {
+        $($(this).data('file')).click();
+    });
 
     $('[data-url="file"] input[type="file"]').die('change').live('change', function(e) {
-        $this = $(this);
-        $type_file = $this.val();
+        var $this = $(this);
+        var $type_file = $this.val();
 
         var file = this.files[0];
 
@@ -1228,32 +1259,6 @@ function initAdminArea() {
 //        console.log($(img));
 
     });
-
-
-    $('#mainContent a.pjax').unbind('click').die('click').on('click', function(event) {
-        event.preventDefault();
-        $('#loading').fadeIn(100);
-        $.pjax({
-            url: $(this).attr('href'),
-            container: '#mainContent',
-            timeout: 0
-
-        });
-        return false;
-    });
-
-    $('#mainContent button.pjax').unbind('click').die('click').on('click', function(event) {
-        $('#loading').fadeIn(100);
-        return false;
-    });
-
-    $(document).on('pjax:start', function() {
-        $('#loading').fadeIn(100);
-
-    })
-            .on('pjax:end', function() {
-                $('#loading').fadeOut(300);
-            });
 
     //add arrows to orders list
     if (window.hasOwnProperty('orderField'))
@@ -1290,6 +1295,8 @@ function initAdminArea() {
     if ($.fn.chosen)
         initChosenSelect();
 
+    fixed_frame_title();
+
     console.log('initialising of administration area ended');
     console.log('script execution time:' + (Date.now() - startExecTime) / 1000 + " sec.");
 }
@@ -1318,9 +1325,8 @@ function change_per_page(el) {
 
 $(document).ready(
         function() {
-
             $('ul.auto_search li').live('click', function() {
-                tex = $('[name=Products]').val();
+                var tex = $('[name=Products]').val();
                 if (tex == '')
                     tex = $(this).attr('data-id');
                 else
@@ -1339,21 +1345,6 @@ $(document).ready(
 
             var txt_val = $('.now-active-prod').text();
             $('.discount-out #productForDiscount').attr('value', txt_val);
-
-            $('a.pjax').unbind('click').die('click').on('click', function(event) {
-                event.preventDefault();
-                $('#loading').fadeIn(100);
-                $.pjax({
-                    url: $(this).attr('href'),
-                    container: '#mainContent',
-                    timeout: 3000
-                });
-                $('.frame_nav nav li').removeClass('active');
-                if ($(this).closest('.frame_nav').length > 0)
-                    $(this).closest('li').addClass('active').closest('li.dropdown').addClass('active').removeClass('open');
-                return false;
-            });
-
 
             $('.main_body').append('<div class="overlay"></div>');
 
@@ -1446,17 +1437,6 @@ $(document).ready(
 
             $('.listFilterForm input.datepicker').die('change').live('change', function(event) {
                 $('.listFilterSubmitButton').removeAttr('disabled').removeClass('disabled');
-            });
-
-            /* menu */
-            var found = false;
-            $('#mainAdminMenu a').each(function() {
-                if ($(this).attr('href').match(window.location.pathname) && !found)
-                {
-                    $(this).closest('li').addClass('active');
-                    $('li.active').closest('ul').closest('li').addClass('active');
-                    found = true;
-                }
             });
 
             /**/
@@ -1826,6 +1806,23 @@ $('.orderMethodsRefresh').live('click', function() {
         }
     });
 });
+$('body').off('click.pjax').on('click.pjax', 'a.pjax', function(event) {
+    event.preventDefault();
+    $.pjax({
+        url: $(this).attr('href'),
+        container: '#mainContent',
+        timeout: 0
+
+    });
+});
+
+$(document).on('pjax:start', function() {
+    $('#loading').fadeIn(100);
+
+}).on('pjax:end', function() {
+    $('#loading').fadeOut(300);
+    checkMenu();
+});
 
 var Update = {
     processBackup: function() {
@@ -1944,8 +1941,54 @@ var Update = {
     }
 };
 
+function setMenu(els) {
+    $('.frame_nav li').removeClass('active');
+    var levels = {};
+    els.each(function(ind) {
+        levels[ind] = $(this).index();
+    });
+    localStorage.setItem('levels', JSON.stringify(levels));
+    return els.addClass('active');
+}
+function checkMenu() {
+    var active = false;
+
+    $('.frame_nav a').each(function() {
+        if (location.href.indexOf($(this).attr('href')) !== -1) {
+            var li = $(this).closest('li');
+            setMenu(li.add(li.parents('li')));
+            active = true;
+        }
+    });
+
+    if (!active) {
+        var levels = JSON.parse(localStorage.getItem('levels'));
+        var subs = $('.frame_nav').find('ul:first');
+        var lis = $([]);
+        for (var i in levels) {
+            var li = subs.children().eq(levels[i]);
+            subs = li.children('ul');
+            lis = lis.add(li);
+        }
+        setMenu(lis);
+    }
+}
 /** Users mail chimp settings**/
 $(document).ready(function() {
+    $('.frame_nav').off('click.pjax').on('click.pjax', 'a.pjax', function(event) {
+        event.preventDefault();
+
+        var li = $(this).closest('li');
+        var lis = li.add(li.closest('li.dropdown'));
+        li.closest('li.dropdown').removeClass('open');
+        setMenu(lis);
+    });
+    checkMenu();
+
+    $('body').on('keyup', 'input.email', function() {
+        if (/[а-яёы]/gi.test($(this).val()))
+            $(this).val($(this).val().replace(/[а-яёы]/gi, ""));
+    });
     if ($.exists('.mailChimpSettings')) {
         $('.mailChimpSettings button').on('click', function() {
             var mailChimpKey = $('input[name="messages[monkey]"]').val();
@@ -1976,4 +2019,16 @@ $(document).ready(function() {
             }
         });
     }
+    $('.robotsChecker.frame_prod-on_off').off('click').off('click').on('click', function() {
+        var input = $(this).find('input'),
+                val = input.val(),
+                valOn = input.data('valOn'),
+                valOff = input.data('valOff');
+
+        if (val == valOn)
+            input.val(valOff);
+        else
+            input.val(valOn);
+    });
+
 });

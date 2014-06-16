@@ -1,25 +1,40 @@
-<div id="titleExt"><h5>{widget('path')}<span class="ext">{lang('Gallery', 'gallery')}</span></h5></div>
-{if $gallery_category[0]}
-<div>
-    <h1>{echo $gallery_category[0]['name']}</h1>
-    <p>{echo $gallery_category[0]['description']}</p>
-</div>
-{/if}
-{if is_array($albums)}
-    <ul class="products">
-        {$counter = 1}
-        {foreach $albums as $album}
-            <li {if $counter == 3} class="last" {$counter = 0}{/if}>
-                <a href="{site_url('gallery/album/' . $album.id)}" class="image"><img src="{$album.cover_url}" border="0" /></a>
-                <h3 class="name"><a href="{site_url('gallery/album/' . $album.id)}">{$album.name}</a></h3>
-                <p>{$album.description}</p>
-                    {//$album.count}
+<div class="crumbs" xmlns:v="http://rdf.data-vocabulary.org/#">
+    <div class="container">
+        <ul class="items items-crumbs">
+            <li class="btn-crumb">
+                <a href="{site_url()}" typeof="v:Breadcrumb">
+                    <span class="text-el">{lang('Главная', 'gallery')}</span>
+                </a>
             </li>
-            {$counter++}
-        {/foreach}
-        {//$total}
-    </ul>
-
-{else:}
-    {lang('Albums not found', 'gallery')}.
-{/if}
+        </ul>
+    </div>
+</div>
+<div class="frame-inside without-crumbs">
+    <div class="container">
+        <h1>{lang('Галерея','gallery')}</h1>
+        {if is_array($albums)}
+            <ul class="items items-galleries">
+                {foreach $albums as $album}     
+                    <li>
+                        <a href="{site_url('gallery/album/' . $album.id)}" class="frame-photo-title">
+                            <span class="photo-block"><img src="{$album.cover_url}"/></span>
+                            <span class="frame-title d_b"><span class="s-t">{lang('Альбом','gallery')}:</span> <span class="title">{$album.name}</span></span>
+                        </a>
+                        {if trim($album.description) != ''}
+                            <div class="description">
+                                <span class="s-t">{lang('Описание','gallery')}:</span>
+                                {$album.description}
+                            </div>
+                        {/if}
+                    </li>
+                {/foreach}
+            </ul>
+        {else:}
+            <div class="msg">
+                <div class="info">
+                    {lang('Альбомов не найдено','gallery')}.
+                </div>
+            </div>
+        {/if}
+    </div>
+</div>
