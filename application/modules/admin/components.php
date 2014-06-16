@@ -73,6 +73,11 @@ class Components extends BaseAdminController {
             }
         }
 
+        if (MAINSITE != '') {
+            $this->not_permited = array();
+            list($db_modules, $not_installed) = $this->isPermitedModules($db_modules, $not_installed);
+        }
+
         \CMSFactory\Events::create()->registerEvent(array(
             'installed' => $db_modules,
             'not_installed' => $not_installed
@@ -81,6 +86,24 @@ class Components extends BaseAdminController {
         $this->template->assign('installed', $db_modules);
         $this->template->assign('not_installed', $not_installed);
         $this->template->show('module_table', FALSE);
+    }
+
+    private function isNotPermited($moduleName) {
+        return in_array($moduleName, $this->not_permited);
+    }
+
+    private function isPermitedModules($db_modules, $not_installed) {
+        foreach ($db_modules as $key => $db_module) {
+            if ($this->isNotPermited($db_module['name'])) {
+                unset($db_modules[$key]);
+            }
+        }
+        foreach ($not_installed as $key => $db_module) {
+            if ($this->isNotPermited($db_module['com_name'])) {
+                unset($not_installed[$key]);
+            }
+        }
+        return array($db_modules, $not_installed);
     }
 
     private function setInstalled() {
@@ -316,8 +339,12 @@ class Components extends BaseAdminController {
 
     // Load component admin class in iframe/xhr
     function init_window($module) {
+        if ($this->isNotPermited($module)) {
+            return;
+        }
         $lang = new MY_Lang();
         $lang->load($module);
+
         // buildWindow($id,$title,$contentURL,$width,$height,$method = 'iframe')
         //$module = $this->input->post('component');
         $info_file = realpath(APPPATH . 'modules/' . $module) . '/module_info.php';
