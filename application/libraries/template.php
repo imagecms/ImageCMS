@@ -110,6 +110,13 @@ class Template extends Mabilis {
 
         $result = $this->splitTplFiles($result);
         echo $result;
+        
+        if (ENABLE_PROFILER === TRUE) {
+            if (!isset($_SERVER['HTTP_X_PJAX']) && $_SERVER['HTTP_X_PJAX'] == FALSE && \CI::$APP->input->is_ajax_request() == FALSE) {
+                \CI::$APP->load->library('profiler');
+                echo \CI::$APP->profiler->run();
+            }
+        }
     }
 
     public function clear_all_assign() {

@@ -49,7 +49,7 @@ class Mod_discount extends \MY_Controller {
      * @copyright (c) 2013, ImageCMS
      */
     public function autoload() {
-        if (count($this->db->where('name', 'mod_discount')->get('components')->result_array()) != 0) {
+        if (\mod_discount\classes\BaseDiscount::checkModuleInstall()) {
 
             $this->applyDiscountCartItems();
 
