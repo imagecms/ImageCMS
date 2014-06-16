@@ -118,7 +118,7 @@ abstract class BaseEvents {
                         if ($run['isClosure'] === false) {
                             call_user_func(array($run['collClass'], $run['collMethod']), $value['params']);
                         } else {
-                            call_user_func_array($run['collMethod'], $value['params']);
+                            call_user_func($run['collMethod'], $value['params']);
                         }
                         if ($cleanQueue === true) {
                             unset(Events::create()->storage[$storageKey]['collable'][$collableKey]);
@@ -531,7 +531,16 @@ abstract class BaseEvents {
         $this->key = 'ShopAdminBrands:preCreate';
         return $this;
     }
-
+    /**
+     * <p>The possible returned elements from <b>setListener</b> are as follows:</p>
+     * @return BehaviorFactory
+     * @author a.gula
+     * @copyright ImageCMS (c) 2014, a.gula <a.gula@imagecms.net>
+     */
+    public function onAdminModulesTable() {
+        $this->key = 'Components:modules_table';
+        return $this;
+    }
 }
 
 /* End of file /application/modules/CMSFactory/BaseEvents.php */
