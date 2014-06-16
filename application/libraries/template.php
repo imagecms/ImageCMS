@@ -24,22 +24,40 @@ class Template extends Mabilis {
         $this->CI = & get_instance();
         $this->modules_template_dir = TEMPLATES_PATH . 'modules/';
         $tpl = $this->CI->config->item('template');
-        $config = array(
-            'tpl_path' => TEMPLATES_PATH . $tpl . '/',
-            'compile_path' => $this->CI->config->item('tpl_compile_path'),
-            'force_compile' => $this->CI->config->item('tpl_force_compile'),
-            'compiled_ttl' => $this->CI->config->item('tpl_compiled_ttl'),
-            'compress_output' => $this->CI->config->item('tpl_compress_output'),
-            'use_filemtime' => $this->CI->config->item('tpl_use_filemtime')
-        );
+
+        if (MAINSITE and $tpl == 'administrator' and !is_dir(TEMPLATES_PATH . 'administrator')) {
+            $config = array(
+                'tpl_path' => str_replace('system/', '', BASEPATH) . 'templates/' . $tpl . '/',
+                'compile_path' => $this->CI->config->item('tpl_compile_path'),
+                'force_compile' => $this->CI->config->item('tpl_force_compile'),
+                'compiled_ttl' => $this->CI->config->item('tpl_compiled_ttl'),
+                'compress_output' => $this->CI->config->item('tpl_compress_output'),
+                'use_filemtime' => $this->CI->config->item('tpl_use_filemtime')
+            );
+            
+            /** URL to template folder */
+            $this->assign('THEME', 'http://' . ltrim(MAINSITE, '../') . '/templates/' . $tpl . '/');
+            $this->assign('JS_URL', 'http://' . ltrim(MAINSITE, '../') . '/js');
+        } else {
+            $config = array(
+                'tpl_path' => TEMPLATES_PATH . $tpl . '/',
+                'compile_path' => $this->CI->config->item('tpl_compile_path'),
+                'force_compile' => $this->CI->config->item('tpl_force_compile'),
+                'compiled_ttl' => $this->CI->config->item('tpl_compiled_ttl'),
+                'compress_output' => $this->CI->config->item('tpl_compress_output'),
+                'use_filemtime' => $this->CI->config->item('tpl_use_filemtime')
+            );
+            
+            /** URL to template folder */
+            $this->assign('THEME', base_url() . 'templates/' . $tpl . '/');
+            $this->assign('JS_URL', base_url() . 'js');
+        }
+
         $this->load_config($config);
 
         $this->template_dir = $config['tpl_path'];
 
         /** URL to JS folder */
-        $this->assign('JS_URL', base_url() . 'js');
-        /** URL to template folder */
-        $this->assign('THEME', base_url() . 'templates/' . $tpl . '/');
         $this->assign('TEMPLATE', $tpl);
         $this->assign('CI', $this->CI);
     }
@@ -387,7 +405,7 @@ class Template extends Mabilis {
                 }
             }
         }
-        
+
         if (sizeof($this->_links) > 0) {
             foreach ($this->_links as $code) {
                 if (!strstr(self::$result_before, $code)) {

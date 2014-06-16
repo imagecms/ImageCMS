@@ -400,6 +400,7 @@ class assetManager {
         } else {
             $url = sprintf('%smodules/%s/assets/css/%s.css', APPPATH, $this->getTrace(), $tpl);
         }
+
         return str_replace(MAINSITE, '', $url);
     }
 

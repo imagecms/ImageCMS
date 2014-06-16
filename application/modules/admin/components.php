@@ -1,13 +1,20 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /**
  * Image CMS
  * Components Class
  */
 class Components extends BaseAdminController {
+
+    /**
+     * array of installed modules
+     * @var array
+     */
+    private $installed = array();
 
     function __construct() {
         parent::__construct();
@@ -17,6 +24,7 @@ class Components extends BaseAdminController {
 
         $this->load->library('lib_admin');
         $this->lib_admin->init_settings();
+        $this->setInstalled();
     }
 
     function index() {
@@ -65,14 +73,26 @@ class Components extends BaseAdminController {
             }
         }
 
+        \CMSFactory\Events::create()->registerEvent(array(
+            'installed' => $db_modules,
+            'not_installed' => $not_installed
+                ), 'Components:modules_table')->runFactory();
 
         $this->template->assign('installed', $db_modules);
         $this->template->assign('not_installed', $not_installed);
         $this->template->show('module_table', FALSE);
     }
 
+    private function setInstalled() {
+        $installed = $this->db->select('name')->get('components')->result_array();
+        array_walk($installed, function(&$item, $key) {
+            $item = $item['name'];
+        });
+        $this->installed = $installed;
+    }
+
     function is_installed($mod_name) {
-        return $this->db->get_where('components', array('name' => $mod_name), 1)->num_rows();
+        return in_array($mod_name, $this->installed);
     }
 
     function install($module = '') {
@@ -177,10 +197,11 @@ class Components extends BaseAdminController {
                     if (file_exists($info_file)) {
                         include ($info_file);
 
-                        if (file_exists($com_file_admin))
+                        if (file_exists($com_file_admin)) {
                             $admin_file = 1;
-                        else
+                        } else {
                             $admin_file = 0;
+                        }
 
                         $ins = FALSE;
 
@@ -286,7 +307,6 @@ class Components extends BaseAdminController {
             $this->db->update('components', $data);
 
             $this->lib_admin->log(lang("Changed the module settings", "admin") . " " . $com['name']);
-
         } else {
             // Error, module not found
         }
@@ -324,8 +344,9 @@ class Components extends BaseAdminController {
     function cp($module) {
         $func = $this->uri->segment(5);
 
-        if ($func == FALSE)
+        if ($func == FALSE) {
             $func = 'index';
+        }
 
         //($hook = get_hook('admin_run_module_panel')) ? eval($hook) : NULL;
 
@@ -360,8 +381,9 @@ class Components extends BaseAdminController {
 
     function run($module) {
         $func = $this->uri->segment(5);
-        if ($func == FALSE)
+        if ($func == FALSE) {
             $func = 'index';
+        }
 
         ($hook = get_hook('admin_run_module_admin')) ? eval($hook) : NULL;
 
@@ -403,14 +425,15 @@ class Components extends BaseAdminController {
             $row = $this->db->where('id', $mid)->get('components')->row();
             if (count($row) > 0) {
                 $autoload = $row->autoload;
-                if ($autoload)
+                if ($autoload) {
                     $autoload = 0;
-                else
+                } else {
                     $autoload = 1;
+                }
                 $this->db->where('id', $mid)->set('autoload', $autoload)->update('components');
                 $row->autoload = $autoload;
                 echo json_encode(array('result' => $row));
-            }else {
+            } else {
                 $result = false;
                 echo json_encode(array('result' => $result));
             }
@@ -423,14 +446,15 @@ class Components extends BaseAdminController {
             $row = $this->db->where('id', $mid)->get('components')->row();
             if (count($row) > 0) {
                 $enabled = $row->enabled;
-                if ($enabled)
+                if ($enabled) {
                     $enabled = 0;
-                else
+                } else {
                     $enabled = 1;
+                }
                 $this->db->where('id', $mid)->set('enabled', $enabled)->update('components');
                 $row->enabled = $enabled;
                 echo json_encode(array('result' => $row));
-            }else {
+            } else {
                 $result = false;
                 echo json_encode(array('result' => $result));
             }
@@ -447,10 +471,11 @@ class Components extends BaseAdminController {
                     $result = false;
                 }
             }
-            if ($result)
+            if ($result) {
                 showMessage(lang("Positions updated", "admin"));
-            else
+            } else {
                 showMessage(lang("Fail", "admin"));
+            }
         }
     }
 
@@ -459,10 +484,11 @@ class Components extends BaseAdminController {
         $row = $this->db->where('id', (int) $id)->get('components')->row();
         if (count($row) > 0) {
             $in_menu = $row->in_menu;
-            if ($in_menu == 1)
+            if ($in_menu == 1) {
                 $in_menu = 0;
-            else
+            } else {
                 $in_menu = 1;
+            }
             if ($this->db->where('id', (int) $id)->set('in_menu', $in_menu)->update('components')) {
                 showMessage(lang("Changes saved", "admin"));
             }
