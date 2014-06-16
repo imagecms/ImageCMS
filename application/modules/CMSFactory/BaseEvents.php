@@ -531,7 +531,16 @@ abstract class BaseEvents {
         $this->key = 'ShopAdminBrands:preCreate';
         return $this;
     }
-
+    /**
+     * <p>The possible returned elements from <b>setListener</b> are as follows:</p>
+     * @return BehaviorFactory
+     * @author a.gula
+     * @copyright ImageCMS (c) 2014, a.gula <a.gula@imagecms.net>
+     */
+    public function onAdminModulesTable() {
+        $this->key = 'Components:modules_table';
+        return $this;
+    }
 }
 
 /* End of file /application/modules/CMSFactory/BaseEvents.php */
