@@ -118,7 +118,7 @@ abstract class BaseEvents {
                         if ($run['isClosure'] === false) {
                             call_user_func(array($run['collClass'], $run['collMethod']), $value['params']);
                         } else {
-                            call_user_func_array($run['collMethod'], $value['params']);
+                            call_user_func($run['collMethod'], $value['params']);
                         }
                         if ($cleanQueue === true) {
                             unset(Events::create()->storage[$storageKey]['collable'][$collableKey]);
