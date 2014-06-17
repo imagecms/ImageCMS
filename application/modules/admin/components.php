@@ -25,6 +25,7 @@ class Components extends BaseAdminController {
         $this->load->library('lib_admin');
         $this->lib_admin->init_settings();
         $this->setInstalled();
+        $this->setNotPermited();
     }
 
     function index() {
@@ -74,7 +75,6 @@ class Components extends BaseAdminController {
         }
 
         if (MAINSITE != '') {
-            $this->not_permited = array();
             list($db_modules, $not_installed) = $this->isPermitedModules($db_modules, $not_installed);
         }
 
@@ -112,6 +112,12 @@ class Components extends BaseAdminController {
             $item = $item['name'];
         });
         $this->installed = $installed;
+    }
+
+    private function setNotPermited() {
+        if (MAINSITE != '' and $this->load->module('saas')) {
+            $this->not_permited = $this->load->module('saas')->getNotPermited();
+        }
     }
 
     function is_installed($mod_name) {

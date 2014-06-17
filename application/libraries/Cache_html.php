@@ -5,7 +5,11 @@ if (!defined('BASEPATH'))
 
 class Cache_html {
 
-    public static $path = 'system/cache/templates_c/HTML/';
+    private static $path;
+
+    public function __construct() {
+        self::$path = PUBPATH . 'system/cache/templates_c/HTML/';
+    }
 
     public static function set_html($html, $file) {
 
