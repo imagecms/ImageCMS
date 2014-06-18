@@ -203,7 +203,6 @@ if (is_dir($application_folder)) {
     define('APPPATH', BASEPATH . $application_folder . '/');
 }
 
-
 define('IMAGECMS_NUMBER', '4.6.1 Premium');
 
 define('IMAGECMS_VERSION', '20140604');
