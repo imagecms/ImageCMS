@@ -15,6 +15,7 @@ class Components extends BaseAdminController {
      * @var array
      */
     private $installed = array();
+    private $not_permited = array();
 
     function __construct() {
         parent::__construct();
@@ -343,11 +344,18 @@ class Components extends BaseAdminController {
         jsCode("ajax_div('modules_table',base_url + 'admin/components/modules_table/');");
     }
 
+    private function checkPerm($module) {
+        if ($this->isNotPermited($module)) {
+            $msg = lang("Error checking permissions");
+//            $this->template->assign('content', $msg);
+//            $msg = $this->template->fetch('main');
+            die($msg);
+        }
+    }
+
     // Load component admin class in iframe/xhr
     function init_window($module) {
-        if ($this->isNotPermited($module)) {
-            return;
-        }
+        $this->checkPerm($module);
         $lang = new MY_Lang();
         $lang->load($module);
 
@@ -413,6 +421,8 @@ class Components extends BaseAdminController {
 //    }
 
     function run($module) {
+        $this->checkPerm($module);
+        
         $func = $this->uri->segment(5);
         if ($func == FALSE) {
             $func = 'index';
