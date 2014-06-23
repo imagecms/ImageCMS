@@ -15,6 +15,7 @@ class Components extends BaseAdminController {
      * @var array
      */
     private $installed = array();
+    private $not_permited = array();
 
     function __construct() {
         parent::__construct();
@@ -25,6 +26,7 @@ class Components extends BaseAdminController {
         $this->load->library('lib_admin');
         $this->lib_admin->init_settings();
         $this->setInstalled();
+        $this->setNotPermited();
     }
 
     function index() {
@@ -74,7 +76,6 @@ class Components extends BaseAdminController {
         }
 
         if (MAINSITE != '') {
-            $this->not_permited = array();
             list($db_modules, $not_installed) = $this->isPermitedModules($db_modules, $not_installed);
         }
 
@@ -112,6 +113,12 @@ class Components extends BaseAdminController {
             $item = $item['name'];
         });
         $this->installed = $installed;
+    }
+
+    private function setNotPermited() {
+        if (MAINSITE != '' and $this->load->module('saas')) {
+            $this->not_permited = $this->load->module('saas')->getNotPermited();
+        }
     }
 
     function is_installed($mod_name) {
@@ -337,11 +344,18 @@ class Components extends BaseAdminController {
         jsCode("ajax_div('modules_table',base_url + 'admin/components/modules_table/');");
     }
 
+    private function checkPerm($module) {
+        if ($this->isNotPermited($module)) {
+            $msg = lang("Error checking permissions");
+//            $this->template->assign('content', $msg);
+//            $msg = $this->template->fetch('main');
+            die($msg);
+        }
+    }
+
     // Load component admin class in iframe/xhr
     function init_window($module) {
-        if ($this->isNotPermited($module)) {
-            return;
-        }
+        $this->checkPerm($module);
         $lang = new MY_Lang();
         $lang->load($module);
 
@@ -407,6 +421,8 @@ class Components extends BaseAdminController {
 //    }
 
     function run($module) {
+        $this->checkPerm($module);
+        
         $func = $this->uri->segment(5);
         if ($func == FALSE) {
             $func = 'index';
