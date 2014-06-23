@@ -7,10 +7,12 @@
             </ul>
         </nav>
         <div class="right-header f_r">
+            {widget('lang')}
             {include_shop_tpl('auth_data')}
         </div>
     </div>
 </div>
+{widget('asdf')}
 <!--End. Top menu and authentication data block-->
 <div class="content-header">
     <div class="container">
