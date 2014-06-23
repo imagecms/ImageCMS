@@ -62,7 +62,6 @@ class MY_Controller extends MX_Controller {
     public function __construct() {
         parent::__construct();
 
-
 //        $settings = $this->cms_base->get_settings();
 //        $path_helper = 'templates/' . $settings['site_template'] . '/shop/helper.php';
 //        if (file_exists($path_helper))
@@ -92,8 +91,7 @@ class MY_Controller extends MX_Controller {
             $this->db->cache_off();
 
             return (bool) count($res);
-        }
-        else
+        } else
             return false;
     }
 
@@ -122,8 +120,7 @@ class MY_Controller extends MX_Controller {
                 $defaultLanguage = self::getDefaultLanguage();
                 self::$currentLocale = $defaultLanguage['identif'];
             }
-        }
-        else
+        } else
             self::$currentLocale = chose_language();
 
         return self::$currentLocale;

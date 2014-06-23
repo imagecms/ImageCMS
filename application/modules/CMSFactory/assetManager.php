@@ -363,7 +363,18 @@ class assetManager {
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
     private function buildAdminTemplatePath($tpl) {
-        return sprintf('%smodules/%s/assets/admin/%s', APPPATH, $this->getTrace(), $tpl);
+        $path = sprintf('%smodules/%s/assets/admin/%s', APPPATH, $this->getTrace(), $tpl);
+        if (file_exists($path . '.tpl'))
+            return $path;
+        else {
+            $modulName = \CI::$APP->uri->segment(4);
+            $path = sprintf('%smodules/%s/assets/admin/%s', APPPATH, $modulName, $tpl);
+            if (file_exists($path . '.tpl'))
+                return $path; 
+        }
+        
+        return $path;
+        
     }
 
     /**
@@ -374,12 +385,17 @@ class assetManager {
      */
     private function buildScriptPath($tpl) {
         $this->template = \CI_Controller::get_instance()->config->item('template');
-
+        
         if (file_exists('templates/' . $this->template . '/' . $this->getTrace() . '/js/' . $tpl . '.js')) {
             $url = sprintf('templates/%s/%s/js/%s.js', $this->template, $this->getTrace(), $tpl);
-        } else {
+        } elseif (file_exists(sprintf('%smodules/%s/assets/js/%s.js', APPPATH, $this->getTrace(), $tpl))) {
             $url = sprintf('%smodules/%s/assets/js/%s.js', APPPATH, $this->getTrace(), $tpl);
+        } elseif (file_exists(sprintf('%smodules/%s/assets/js/%s.js', APPPATH, \CI::$APP->uri->segment(4), $tpl))){
+            $url = sprintf('%smodules/%s/assets/js/%s.js', APPPATH, \CI::$APP->uri->segment(4), $tpl);
+            
         }
+        
+        
 
         return str_replace(MAINSITE, '', $url);
     }
@@ -397,9 +413,13 @@ class assetManager {
 
         if (file_exists('templates/' . $this->template . '/' . $this->getTrace() . '/css/' . $tpl . '.css')) {
             $url = sprintf('templates/%s/%s/css/%s.css', $this->template, $this->getTrace(), $tpl);
-        } else {
+        } elseif (file_exists(sprintf('%smodules/%s/assets/css/%s.css', APPPATH, $this->getTrace(), $tpl))) {
             $url = sprintf('%smodules/%s/assets/css/%s.css', APPPATH, $this->getTrace(), $tpl);
+        } elseif (file_exists(sprintf('%smodules/%s/assets/css/%s.css', APPPATH, \CI::$APP->uri->segment(4), $tpl))){
+            $url = sprintf('%smodules/%s/assets/css/%s.css', APPPATH, \CI::$APP->uri->segment(4), $tpl);
+            
         }
+
         return str_replace(MAINSITE, '', $url);
     }
 

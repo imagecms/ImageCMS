@@ -35,35 +35,7 @@
         </script>
         <script type="text/javascript" src="{$THEME}js/jquery-1.8.3.min.js"></script>
         {include_tpl('config.js')}
-        {literal}
-            <script type="text/javascript">
-                function initDownloadScripts(scripts, callback, customEvent) {
-                    function downloadJSAtOnload(scripts, callback, customEvent) {
-                        var cL = 0,
-                                scriptsL = scripts.length;
-
-                        $.map(scripts, function(i, n) {
-                            $.ajax({
-                                url: theme + 'js/' + i + '.js',
-                                dataType: "script",
-                                cache: true,
-                                success: function() {
-                                    cL++;
-                                    if (cL == scriptsL)
-                                        if (callback) {
-                                            eval(callback)();
-                                            $(document).trigger({'type': customEvent});
-                                        }
-                                }
-                            });
-                        })
-                    }
-                    $(window).load(function(){
-                        downloadJSAtOnload(scripts, callback, customEvent);
-                    });
-                }
-            </script>
-        {/literal}
+        <script type="text/javascript" src="{$THEME}js/settings.js"></script>
         <!--[if lte IE 9]><script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
         <!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="{$THEME}css/lte_ie_8.css" /><![endif]-->
         <!--[if IE 7]>
@@ -174,7 +146,7 @@
         {include_tpl('user_toolbar')}
 
         {/*}Start. delete before upload to server{ */}
-
+        {/*}
         <!-- scripts -->
         <script type="text/javascript" src="{$THEME}js/_united_side_plugins.js"></script>
         <script type="text/javascript" src="{$THEME}js/_plugins.js"></script>
@@ -184,7 +156,7 @@
         <script type="text/javascript" src="{$THEME}js/_functions.js"></script>
         <script type="text/javascript" src="{$THEME}js/_scripts.js"></script>
         <!-- scripts end -->
-        
+
         {literal}
             <script type="text/javascript">
                 $(window).load(function() {
@@ -195,20 +167,20 @@
                 })
             </script>
         {/literal}
-
+        { */}
         {/*}End. delete before upload to server{ */}
         {/*fancybox}
         <link rel="stylesheet" type="text/css" href="{$THEME}js/fancybox/jquery.fancybox-1.3.4.css" media="all" />
         <script type="text/javascript" src="{$THEME}js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
         {end. fancybox*/}
-        
+
         {/*}uncomment before opload to server and combine and minimize scripts (in comment <!-- scripts -->...<!-- scripts end -->) into united_scripts file{ */}   
         {/*} Start. uncoment before development { */}
-        {/*}
+
         <script type="text/javascript">
             initDownloadScripts(['raphael-min', 'united_scripts'], 'init', 'scriptDefer');
         </script>
-        { */}
+
         {/*} End. uncoment before development { */}
         {include_shop_tpl('js_templates')}
         <!-- scripts end -->

@@ -989,7 +989,7 @@ var orders = new Object({
             });
         });
         $('.modal').modal('show');
-        $('#addToCartConfirm').live('click', function() {
+        $('#addToCartConfirm').on('click', function() {
             if ($('.modal form').valid())
                 $('.modal').modal('hide');
         });
@@ -1000,7 +1000,7 @@ var orders = new Object({
     },
     refreshTotalPrice: function(dmId)
     {
-        deliveryPrice = deliveryPrices[dmId];
+        var deliveryPrice = deliveryPrices[dmId];
         if (deliveryPrice === undefined)
             deliveryPrice = 0;
         var totalPrice = deliveryPrice + productsAmount - giftPrice;

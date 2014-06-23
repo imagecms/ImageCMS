@@ -21,7 +21,6 @@
         <link rel="stylesheet" type="text/css" href="{$THEME}css/style.css" media="all" />
         <link rel="stylesheet" type="text/css" href="{$THEME}{$colorScheme}/colorscheme.css" media="all" />
         <link rel="stylesheet" type="text/css" href="{$THEME}{$colorScheme}/color.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="{$THEME}{$colorScheme}/{echo \MY_Controller::getCurrentLocale()}/locale.css" media="all" />
 
         {if $CI->uri->segment(1) == MY_Controller::getCurrentLocale()}
             {$lang = '/' . \MY_Controller::getCurrentLocale()}
