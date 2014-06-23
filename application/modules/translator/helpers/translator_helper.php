@@ -333,4 +333,82 @@ if (!function_exists('getPoFileAttributes')) {
     }
 
 }
+//________________________________________________________
+if (!function_exists('get_mainsite_url')) {
+
+
+    function get_mainsite_url($url) {
+        $true_path = preg_replace('/\/language(.*)/', '', $url);
+        
+        if (strstr($true_path, './templates/')) {
+            return $url;
+        }
+
+        if (MAINSITE) {
+            $url_mainsite = MAINSITE . str_replace('./', '/', $true_path);
+            if (is_dir($url_mainsite) || file_exists($url_mainsite)) {
+                $url = MAINSITE . str_replace('./', '/', $url);
+            }
+        }
+
+        return $url;
+    }
+
+}
+
+if (!function_exists('is_client_module')) {
+
+    function is_client_module($module_name) {
+        if (is_dir('./application/modules/' . $module_name) && !is_dir(MAINSITE . '/application/modules/' . $module_name)) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+
+}
+
+if (!function_exists('can_edit_file')) {
+
+    function can_edit_file($module_name, $entity_type) {
+        if (!MAINSITE)
+            return TRUE;
+
+        if ((!is_client_module($module_name) && $entity_type == 'modules') || (MAINSITE && $entity_type == 'main')) {
+            $can_edit_file = FALSE;
+        } else {
+            $can_edit_file = TRUE;
+        }
+        return $can_edit_file;
+    }
+
+}
+
+if (!function_exists('get_file_name')) {
+
+    function get_file_name($name, $type) {
+        switch ($type) {
+            case 'modules':
+                $module_info = (MAINSITE ? MAINSITE : '.') . "/application/modules/{$name}/module_info.php";
+                include($module_info);
+                $lang = new MY_Lang();
+                $lang->load($name);
+
+                return lang('Module', 'translator') . ' - ' . $com_info['menu_name'];
+                break;
+            case 'templates':
+                return lang('Template', 'translator') . ' - ' . $name;
+                break;
+            case 'main':
+                return lang('Main file', 'translator');
+                break;
+            default:
+                return '';
+                break;
+        }
+    }
+
+}
+
+//________________________________________________________
 ?>

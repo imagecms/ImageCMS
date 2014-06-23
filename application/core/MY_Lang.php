@@ -50,11 +50,11 @@ class MY_Lang extends MX_Lang {
         }
     }
 
-    public function getLangCode($language) {
+    public function getAdminLocale() {
         $this->ci = & get_instance();
-        $langs = $this->ci->config->item('languages');
+        $locale = $this->ci->config->item('language');
 
-        return isset($langs[$language]) ? $langs[$language] : array('ru', 'ru_RU');
+        return $locale ? $locale : 'ru_RU';
     }
 
     public function getDBFrontLanguages() {
@@ -62,6 +62,7 @@ class MY_Lang extends MX_Lang {
             $this->ci = & get_instance();
 
         $languages = $this->ci->db->select('lang_name, identif, locale')->get('languages');
+
         if ($languages) {
             return $languages->result_array();
         }
@@ -88,16 +89,16 @@ class MY_Lang extends MX_Lang {
                 echo $error->show_error('DB Error', 'Unable to connect to the database', 'error_db');
                 exit;
             }
+
             $sett = $this->ci->db->where('s_name', 'main')->get('settings')->row();
             if ($sett->lang_sel) {
                 $this->ci->config->set_item('language', str_replace('_lang', '', $sett->lang_sel));
             }
             $this->gettext_language = $this->ci->config->item('language');
+//            var_dumps_exit($this->gettext_language);
         } else {
-            $this->gettext_language = $this->ci->session->userdata('language');
-            if (!$this->gettext_language) {
-                $this->gettext_language = 'russian';
-                $this->ci->session->set_userdata('language', 'russian');
+            if (!$this->ci->session->userdata('language')) {
+                $this->ci->session->set_userdata('language', 'ru_RU');
             }
         }
 
@@ -135,40 +136,37 @@ class MY_Lang extends MX_Lang {
         $this->_init();
 
         if (strstr(uri_string(), 'admin')) {
-            $languageAdmin = $this->getLangCode($this->gettext_language);
-            $lang = $languageAdmin[1];
+            $lang = $this->getAdminLocale();
             if (!$module) {
                 $module = 'admin';
             }
         } else {
             if (strstr($_SERVER['REQUEST_URI'], 'install')) {
-                $langInstall = $this->getLangCode($this->gettext_language);
-                $lang = $langInstall[1];
+                $lang = $this->ci->session->userdata('language');
             } else {
                 $languageFront = $this->getFrontLangCode(MY_Controller::getCurrentLocale());
                 $lang = $languageFront[1];
             }
         }
 //        var_dumps_exit($lang);
-
+//        $lang = 'de_DE';
+//        $module = 'translator';
         if ($module == 'main') {
-            $this->addDomain('application/language/main/', getMoFileName('main'), $lang);
+            $this->addDomain(correctUrl('./application/language/main/' . $lang), getMoFileName('main'), $lang);
             $template_name = \CI_Controller::get_instance()->config->item('template');
             $this->addDomain('templates/' . $template_name . '/language/' . $template_name . '/', getMoFileName($template_name), $lang);
         } else {
 
             if ($module == 'admin') {
-                if (MAINSITE) {
-                    $this->addDomain(MAINSITE . '/application/language/main/', getMoFileName('main'), $lang);
-                } else {
-                    $this->addDomain('application/language/main/', getMoFileName('main'), $lang);
-                }
+                $this->addDomain(correctUrl('./application/language/main/' . $lang), getMoFileName('main'), $lang);
             }
-            if (MAINSITE) {
-                $this->addDomain(MAINSITE . '/application/modules/' . $module . '/language', getMoFileName($module), $lang);
-            } else {
-                $this->addDomain('application/modules/' . $module . '/language', getMoFileName($module), $lang);
-            }
+//            if (MAINSITE && $module == 'admin') {
+//                $this->addDomain(MAINSITE . '/application/modules/' . $module . '/language', getMoFileName($module), $lang);
+//            } else {
+//            var_dumps_exit(getMoFileName($module));
+//            var_dumps_exit(correctUrl('./application/modules/' . $module . '/language/' . $lang));
+            $this->addDomain(correctUrl('./application/modules/' . $module . '/language/' . $lang), getMoFileName($module), $lang);
+//            }
         }
     }
 
@@ -179,6 +177,7 @@ class MY_Lang extends MX_Lang {
      * @return mixed|void
      */
     public function addDomain($directory, $domain, $locale) {
+//        var_dumps_exit($locale);
         if (!setlocale(LC_ALL, $locale . '.utf8', $locale . '.utf-8', $locale . '.UTF8', $locale . '.UTF-8', $locale . '.utf-8', $locale . '.UTF-8', $locale)) {
             // Set current locale
             setlocale(LC_ALL, '');
