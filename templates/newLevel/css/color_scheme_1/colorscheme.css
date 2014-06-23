@@ -416,7 +416,7 @@ form .btn-form .text-el, .btn-not-avail .text-el, .btn-form input{font-weight: b
 .action{background-position: 0 0;width: 50px;height: 50px;}
 .nowelty{background-position: -51px 0;width: 50px;height: 50px;}
 .hit{background-position: -102px 0;width: 50px;height: 50px;}
-.discount{background-position: 0 -120px;width: 48px;height: 30px;line-height: 25px;text-align: center;right: auto;left: 0;top: 0 !important;}
+.discount{background-position: 0 -50px;width: 48px;height: 30px;line-height: 25px;text-align: center;right: auto;left: 0;top: 0 !important;}
 
 .items-bask .product-status{display: none;}
 /*/ product status*/
