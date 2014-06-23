@@ -30,10 +30,11 @@ function showMessage($message, $title = FALSE, $class = '', $ret = false) {
     $message = str_replace("\n", '<br/>', $message);
     $message = str_replace("<p>", '', $message);
     $message = str_replace("</p>", '', $message);
-    if (!$ret)
+    if (!$ret) {
         echo "<script type=\"text/javascript\"> showMessage('" . $title . "','" . $message . "','" . $class . "'); </script>";
-    else
+    } else {
         return "<script type=\"text/javascript\"> showMessage('" . $title . "','" . $message . "','" . $class . "'); </script>";
+    }
 }
 
 function pjax($url, $selector = '#mainContent') {
