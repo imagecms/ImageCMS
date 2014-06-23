@@ -1,36 +1,4 @@
 <script src="/application/modules/translator/assets/js/src-min/ace.js" type="text/javascript" charset="utf-8"></script>
-<div class="modal hide fade modal_file_edit">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h3>{lang('File editing', 'translator')}</h3>
-        {if $editorStyles}
-            <div>
-                <h5>{lang('Editor theme', 'translator')}:</h5>
-                <select class="editorTheme" onchange="AceEditor.changeTheme($(this))">
-                    {foreach $editorStyles as $style}
-                        <option {if $settings['editorTheme'] == $style}selected="selected"{/if} value="{echo $style}">{echo $style}</option>
-                    {/foreach}
-                </select>
-            </div>
-        {/if}
-    </div>
-    <div class="modal-body">
-        <div id="fileEdit" class="fileEdit"></div>
-    </div>
-    <div class="modal-footer">
-        <div class="pull-left" style="text-align: left">
-            <span><b>{lang('Origin string', 'translator')}:</b></span>
-            <a onclick="AceEditor.goToLang($(this))"><span class="originStringInFileEdit"></span></a>
-            <br>
-            <span><b>{lang('Line number', 'translator')}:</b></span>
-            <a onclick="AceEditor.goToLang($(this))"><span class="originStringLineInFileEdit"></span></a>
-        </div>
-        <div class="pull-right">
-            <a class="btn btn-primary" onclick="Translator.saveEditingFile($(this))" >{lang('Save', 'translator')}</a>
-            <a class="btn" onclick="$('.modal').modal('hide');">{lang('Cancel', 'translator')}</a>
-        </div>
-    </div>
-</div>
 
 <div class="modal hide fade modal_yandex_translate">
     <div class="modal-header">
@@ -156,6 +124,10 @@
                             <li><a class="pjax" style="text-decoration: none" href="/admin/components/init_window/translator/settings">{lang('Settings', 'translator')}</a></li>
                             <li class="divider"></li>
                             <li><a onclick="Translator.cancel()">{lang('Clear translator memory', 'translator')}</a></li>
+                                {if $SAAS}
+                                <li class="divider"></li>
+                                <li><a class="pjax" style="text-decoration: none" href="/admin/components/init_window/translator/saas_updates">{lang('Saas files updates', 'translator')}</a></li>
+                                {/if}
                         </ul>
                     </span>
                 </div>

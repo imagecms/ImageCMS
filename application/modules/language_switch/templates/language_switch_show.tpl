@@ -1,5 +1,11 @@
 <div class="lang-switch">
-{foreach $languages as $lang}
-    <a href="/{echo $lang.identif . $current_address}"><img src="{echo $lang['image']}" class="flag" alt="{$lang.lang_name}" />{$lang.lang_name}</a>
-{/foreach}
+    <ul class="items">
+        {foreach $languages as $lang}
+            <li>
+                <a href="/{echo $lang.identif . $current_address}">
+                    {if $lang['image']}<img src="{echo $lang['image']}" class="flag" alt="{$lang.lang_name}" style="height: 16px;"/>{/if}{$lang.lang_name}
+                </a>
+            </li>
+        {/foreach}
+    </ul>
 </div>

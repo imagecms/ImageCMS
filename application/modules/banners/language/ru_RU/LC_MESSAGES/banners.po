@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-29 11:10+0300\n"
-"PO-Revision-Date: 2014-05-29 11:10+0300\n"
+"POT-Creation-Date: 2014-06-23 01:11+0300\n"
+"PO-Revision-Date: 2014-06-23 01:11+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -22,8 +22,8 @@ msgstr ""
 msgid "Permanent"
 msgstr "Постоянный"
 
+#: ./application/modules/banners/assets/admin/create.tpl:102
 #: ./application/modules/banners/assets/admin/edit.tpl:138
-#: ./application/modules/banners/assets/admin/create.tpl:104
 msgid "Banner permanent"
 msgstr "Постоянный баннер"
 
@@ -31,13 +31,13 @@ msgstr "Постоянный баннер"
 msgid "Active to"
 msgstr "Активен до"
 
-#: ./application/modules/banners/assets/admin/edit.tpl:56
 #: ./application/modules/banners/assets/admin/create.tpl:40
+#: ./application/modules/banners/assets/admin/edit.tpl:56
 msgid "Active"
 msgstr "Активный"
 
+#: ./application/modules/banners/assets/admin/create.tpl:92
 #: ./application/modules/banners/assets/admin/edit.tpl:128
-#: ./application/modules/banners/assets/admin/create.tpl:95
 msgid "Active until"
 msgstr "Активен до"
 
@@ -45,8 +45,8 @@ msgstr "Активен до"
 msgid "Create and exit"
 msgstr "Создать и выйти"
 
-#: ./application/modules/banners/assets/admin/edit.tpl:24
 #: ./application/modules/banners/assets/admin/create.tpl:9
+#: ./application/modules/banners/assets/admin/edit.tpl:24
 msgid "Back"
 msgstr "Вернуться"
 
@@ -75,8 +75,8 @@ msgstr "Создать группу"
 msgid "Group name"
 msgstr "Имя группы"
 
-#: ./application/modules/banners/assets/admin/edit.tpl:12
 #: ./application/modules/banners/assets/admin/create.tpl:10
+#: ./application/modules/banners/assets/admin/edit.tpl:12
 msgid "Create"
 msgstr "Создать"
 
@@ -96,93 +96,93 @@ msgstr "Создание баннера"
 msgid "Save"
 msgstr "Сохранить"
 
-#: ./application/modules/banners/assets/admin/edit.tpl:36
 #: ./application/modules/banners/assets/admin/create.tpl:20
+#: ./application/modules/banners/assets/admin/edit.tpl:36
 msgid "Options"
 msgstr "Опции"
 
-#: ./application/modules/banners/assets/admin/edit.tpl:47
-#: ./application/modules/banners/assets/admin/list.tpl:38
 #: ./application/modules/banners/assets/admin/create.tpl:31
+#: ./application/modules/banners/assets/admin/list.tpl:38
+#: ./application/modules/banners/assets/admin/edit.tpl:47
 msgid "Name"
 msgstr "Название"
 
-#: ./application/modules/banners/assets/admin/edit.tpl:63
 #: ./application/modules/banners/assets/admin/create.tpl:47
+#: ./application/modules/banners/assets/admin/edit.tpl:63
 msgid "Text banner"
 msgstr "Текст баннера"
 
-#: ./application/modules/banners/assets/admin/edit.tpl:69
 #: ./application/modules/banners/assets/admin/create.tpl:53
+#: ./application/modules/banners/assets/admin/edit.tpl:69
 msgid "URL"
 msgstr "URL"
 
+#: ./application/modules/banners/assets/admin/create.tpl:60
 #: ./application/modules/banners/assets/admin/edit.tpl:97
-#: ./application/modules/banners/assets/admin/create.tpl:63
 msgid "Selected items"
 msgstr "Выбранные элементы"
 
+#: ./application/modules/banners/assets/admin/create.tpl:66
 #: ./application/modules/banners/assets/admin/edit.tpl:92
 #: ./application/modules/banners/assets/admin/edit.tpl:104
-#: ./application/modules/banners/assets/admin/create.tpl:69
 msgid "Double click to deleting"
 msgstr "Дважды щелкните для удаления"
 
+#: ./application/modules/banners/assets/admin/create.tpl:71
 #: ./application/modules/banners/assets/admin/edit.tpl:109
-#: ./application/modules/banners/assets/admin/create.tpl:74
 msgid "Show in categories (select items)"
 msgstr "Показать в категориях (выбранные элементы)"
 
+#: ./application/modules/banners/assets/admin/create.tpl:74
 #: ./application/modules/banners/assets/admin/edit.tpl:112
-#: ./application/modules/banners/assets/admin/create.tpl:77
 msgid "select essence"
 msgstr "выберите сущность"
 
 #: ./application/modules/banners/admin.php:268
-#: ./application/modules/banners/helpers/banners_helper.php:54
+#: ./application/modules/banners/assets/admin/create.tpl:75
 #: ./application/modules/banners/assets/admin/edit.tpl:113
-#: ./application/modules/banners/assets/admin/create.tpl:78
+#: ./application/modules/banners/helpers/banners_helper.php:54
 msgid "Main"
 msgstr "Главная"
 
+#: ./application/modules/banners/assets/admin/create.tpl:77
 #: ./application/modules/banners/assets/admin/edit.tpl:115
-#: ./application/modules/banners/assets/admin/create.tpl:80
 msgid "Product"
 msgstr "Товар"
 
+#: ./application/modules/banners/assets/admin/create.tpl:78
 #: ./application/modules/banners/assets/admin/edit.tpl:116
-#: ./application/modules/banners/assets/admin/create.tpl:81
 msgid "Product category"
 msgstr "Категория товара"
 
+#: ./application/modules/banners/assets/admin/create.tpl:79
 #: ./application/modules/banners/assets/admin/edit.tpl:117
-#: ./application/modules/banners/assets/admin/create.tpl:82
 msgid "Brand"
 msgstr "Бренд"
 
+#: ./application/modules/banners/assets/admin/create.tpl:81
 #: ./application/modules/banners/assets/admin/edit.tpl:119
-#: ./application/modules/banners/assets/admin/create.tpl:84
 msgid "Pages categories"
 msgstr "Категории страниц"
 
+#: ./application/modules/banners/assets/admin/create.tpl:82
 #: ./application/modules/banners/assets/admin/edit.tpl:120
-#: ./application/modules/banners/assets/admin/create.tpl:85
 msgid "Pages"
 msgstr "Страницы"
 
 #: ./application/modules/banners/admin.php:133
+#: ./application/modules/banners/assets/admin/create.tpl:111
 #: ./application/modules/banners/assets/admin/edit.tpl:153
-#: ./application/modules/banners/assets/admin/create.tpl:113
 msgid "Image"
 msgstr "Изображение"
 
-#: ./application/modules/banners/assets/admin/edit.tpl:158
-#: ./application/modules/banners/assets/admin/create.tpl:120
+#: ./application/modules/banners/assets/admin/create.tpl:118
+#: ./application/modules/banners/assets/admin/edit.tpl:159
 msgid "Choose an image "
 msgstr "Выберите изображение"
 
-#: ./application/modules/banners/module_info.php:4
 #: ./application/modules/banners/assets/admin/list.tpl:6
+#: ./application/modules/banners/module_info.php:4
 msgid "Banners management"
 msgstr "Управление баннерами"
 
