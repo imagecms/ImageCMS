@@ -135,7 +135,7 @@ $config['url_suffix'] = "";
 | than english.
 |
 */
-$config['language']	= "russian";
+$config['language']	= "ru_RU";
 
 /*
 |--------------------------------------------------------------------------

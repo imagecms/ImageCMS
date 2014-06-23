@@ -27,6 +27,7 @@
  * The main .po to .mo function
  */
 function phpmo_convert($input, $output = false) {
+//    var_dumps_exit($input);
     if (!$output)
         $output = str_replace('.po', '.mo', $input);
 
