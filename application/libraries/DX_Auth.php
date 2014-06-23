@@ -622,7 +622,7 @@ class DX_Auth {
             return '';
         }
     }
-
+    
     // Get user role id
     function get_role_id() {
         return $this->ci->session->userdata('DX_role_id');
