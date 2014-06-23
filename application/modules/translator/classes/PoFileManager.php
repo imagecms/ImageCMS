@@ -46,6 +46,7 @@ class PoFileManager {
         'X-Poedit-Country',
         'SearchPath'
     );
+    private static $SAAS_URL = '';
 
     public function __construct() {
         ;
@@ -66,6 +67,14 @@ class PoFileManager {
      */
     public function getErrors() {
         return self::$ERRORS;
+    }
+
+    public function setSaasUrl($url) {
+        if ($url) {
+            self::$SAAS_URL = $url;
+        } else {
+            self::$SAAS_URL = '';
+        }
     }
 
     /**
@@ -89,6 +98,11 @@ class PoFileManager {
             default :
                 $url = '';
         }
+
+        if (self::$SAAS_URL) {
+            $url = str_replace('./', self::$SAAS_URL . '/', $url);
+        }
+//        var_dumps($url);
         return $url;
     }
 
@@ -217,21 +231,102 @@ class PoFileManager {
         }
     }
 
+    public function update_saas($name, $type, $lang, $mode) {
+        if ($name == 'admin')
+            return FALSE;
+
+        if ($mode) {
+            /**
+             * Update modules
+             */
+            $modules = new \DirectoryIterator(self::MODULES_PATH);
+            foreach ($modules as $module) {
+                if ($module->isDir() && !$module->isDot()) {
+                    $name = $module->getFilename();
+                    $type = 'modules';
+                    $this->saas_update_one($name, $type, $lang);
+                }
+            }
+
+
+            /**
+             * Update main
+             */
+            $name = 'main';
+            $type = 'main';
+            $this->saas_update_one($name, $type, $lang);
+        } else {
+            $this->saas_update_one($name, $type, $lang);
+        }
+    }
+
+    public function getModules() {
+        $modules = new \DirectoryIterator(self::MODULES_PATH);
+        $data = array();
+        foreach ($modules as $module) {
+            if ($module->isDir() && !$module->isDot()) {
+                if ($module->getFilename() != 'admin' && $module->getFilename() != 'shop') {
+                    $lang = new \MY_Lang();
+                    $lang->load($module->getFilename());
+
+                    include(self::MODULES_PATH . $module->getFilename() . '/module_info.php');
+                    $name = isset($com_info['menu_name']) ? $com_info['menu_name'] : $module->getFilename();
+                    $data[$module->getFilename()] = $name;
+                }
+            }
+        }
+
+        return $data;
+    }
+
+    public function saas_update_one($name, $type, $lang) {
+        $saas_file = $this->toArray($name, $type, $lang);
+
+        if (isset($saas_file['po_array'])) {
+            $domains = new \DirectoryIterator('../');
+            foreach ($domains as $domain) {
+                if (!$domain->isDot() && $domain->isDir() && strstr($domain->getFilename(), '.') && strstr($domain->getFilename(), 'premium')) {
+                    $this->setSaasUrl($domain->getPathname());
+                    $user_file = $this->toArray($name, $type, $lang);
+
+                    if ($user_file) {
+                        $updation = array();
+                        foreach ($saas_file['po_array'] as $origin => $value) {
+                            if (!isset($user_file['po_array'][$origin])) {
+                                $updation[$origin] = $value;
+                            }
+                        }
+
+                        if ($updation) {
+                            $this->update($name, $type, $lang, $updation);
+                        }
+                    }
+                    $this->setSaasUrl('');
+                }
+            }
+        }
+        return TRUE;
+    }
+
     public function update($name, $type, $lang, $data) {
         $po_data = $this->toArray($name, $type, $lang);
-        
+
         if ($po_data && key_exists('po_array', $po_data)) {
             foreach ($data as $origin => $values) {
+
                 if (isset($po_data['po_array'][$origin])) {
+
                     if ($values['translation'])
                         $po_data['po_array'][$origin]['translation'] = $values['translation'];
+
                     if ($values['comment'])
                         $po_data['po_array'][$origin]['comment'] = $values['comment'];
                 }else {
+
                     if ($values['translation']) {
                         $po_data['po_array'][$origin] = array(
                             'translation' => $values['translation'],
-                            'cooment' => $values['comment'] ? $values['comment'] : '',
+                            'comment' => $values['comment'] ? $values['comment'] : '',
                             'links' => $values['links'] ? $values['links'] : array('tmpLink'),
                             'fuzzy' => FALSE
                         );
@@ -242,6 +337,7 @@ class PoFileManager {
             if (isset($po_data['settings'])) {
                 $data = $po_data['po_array'];
                 $data['settings'] = $this->prepareUpdateSettings($po_data['settings']);
+
                 return $this->save($name, $type, $lang, $data);
             }
         }
@@ -459,6 +555,7 @@ class PoFileManager {
         }
 
         $origin = null;
+        $this->po_settings = array();
         foreach ($po as $key => $line) {
 
             if (!($key > 2 && $origin))
