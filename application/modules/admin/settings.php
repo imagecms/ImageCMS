@@ -33,8 +33,8 @@ class Settings extends BaseAdminController {
     }
 
     function index() {
-
-        $this->cms_admin->get_langs();
+        
+//        $this->cms_admin->get_langs();
         //cp_check_perm('cp_site_settings');
 
         $settings = $this->cms_admin->get_settings();
@@ -73,6 +73,7 @@ class Settings extends BaseAdminController {
             else
                 $lang_meta[$lang['id']] = null;
         }
+        
         $this->template->assign('langs', $langs);
 
         $this->template->assign('meta_langs', $lang_meta);
@@ -425,15 +426,8 @@ class Settings extends BaseAdminController {
     }
 
     public function switch_admin_lang($lang) {
-        $langs = Array(
-            'english',
-            'russian',
-            'german',
-            'ukrain'
-        );
-
-        if (in_array($lang, $langs) && $this->config->item('language') != $lang) {
-            $this->db->set('lang_sel', $lang . '_lang')
+        if ($lang) {
+            $this->db->set('lang_sel', $lang)
                     ->update('settings');
             $this->session->set_userdata('language', $lang);
         }

@@ -1,7 +1,6 @@
 <?php
 
 (defined('BASEPATH')) OR exit('No direct script access allowed');
-
 $com_info = array(
     'menu_name' => lang('Translator', 'translator'), // Menu name
     'description' => lang('Module for work with po-files translations', 'translator'),            // Module Description

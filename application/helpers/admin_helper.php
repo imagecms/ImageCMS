@@ -69,6 +69,42 @@ if (!function_exists('check_admin_redirect')) {
         return $html;
     }
 
+    function create_admin_language_select() {
+
+        $CI = & get_instance();
+        $languages = $CI->db->select('lang_name, locale')->get('languages')->result_array();
+        $current_locale = $CI->config->item('language');
+        $current_language = lang('English', 'admin');
+
+        if (count($languages)) {
+            $html = '';
+
+            $english_exists = FALSE;
+            foreach ($languages as $language) {
+                $html .= '<li><a href="/admin/settings/switch_admin_lang/' . $language['locale'] . '">' . $language['lang_name'] . '</a></li>';
+                if ($current_locale == $language['locale']) {
+                    $current_language = $language['lang_name'];
+                }
+
+                if (!$english_exists && strstr($language['locale'], 'en')) {
+                    $english_exists = TRUE;
+                }
+            }
+
+            if (!$english_exists) {
+                $html = '<li><a href="/admin/settings/switch_admin_lang/en_US">' . lang('English', 'admin') . '</a></li>' . $html;
+            }
+
+            $html = '<div class="dropup d-i_b"><button type="button" class="btn dropdown-toggle" data-toggle="dropdown">' .
+                    $current_language . '<span class="caret"></span></button>
+                            <ul class="dropdown-menu">' .
+                    $html .
+                    '</ul>
+                        </div>';
+        }
+        return $html;
+    }
+
     function build_cats_tree($cats, $selected_cats = array()) {
         if (is_array($cats))
             foreach ($cats as $cat) {
@@ -111,4 +147,4 @@ if (!function_exists('check_admin_redirect')) {
 
 }
 
-
+    
