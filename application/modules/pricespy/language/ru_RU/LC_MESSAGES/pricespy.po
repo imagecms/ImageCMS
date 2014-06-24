@@ -2,11 +2,11 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-26 01:47+0200\n"
-"PO-Revision-Date: 2013-12-26 01:47+0200\n"
-"Last-Translator:  \n"
-"Language-Team:  \n"
-"Language: ru_RU\n"
+"POT-Creation-Date: 2014-06-25 12:16+0400\n"
+"PO-Revision-Date: 2014-06-25 12:16+0400\n"
+"Last-Translator:  <>\n"
+"Language-Team:  <>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -30,30 +30,30 @@ msgstr "Назад"
 msgid "User"
 msgstr "Пользователь"
 
-#: ./application/modules/pricespy/templates/admin/list.tpl:18
-#: ./application/modules/pricespy/templates/admin/list.tpl:33
 #: ./application/modules/pricespy/assets/spys.tpl:7
 #: ./application/modules/pricespy/assets/spys.tpl:22
+#: ./application/modules/pricespy/templates/admin/list.tpl:18
+#: ./application/modules/pricespy/templates/admin/list.tpl:33
 msgid "Unsubscribe"
 msgstr "Отписаться"
 
-#: ./application/modules/pricespy/templates/admin/list.tpl:19
 #: ./application/modules/pricespy/assets/spys.tpl:8
+#: ./application/modules/pricespy/templates/admin/list.tpl:19
 msgid "Product"
 msgstr "Товар"
 
-#: ./application/modules/pricespy/templates/admin/list.tpl:20
 #: ./application/modules/pricespy/assets/spys.tpl:9
+#: ./application/modules/pricespy/templates/admin/list.tpl:20
 msgid "New price"
 msgstr "Новая цена"
 
-#: ./application/modules/pricespy/templates/admin/list.tpl:21
 #: ./application/modules/pricespy/assets/spys.tpl:10
+#: ./application/modules/pricespy/templates/admin/list.tpl:21
 msgid "Old price"
 msgstr "Старая цена"
 
-#: ./application/modules/pricespy/templates/admin/list.tpl:22
 #: ./application/modules/pricespy/assets/spys.tpl:11
+#: ./application/modules/pricespy/templates/admin/list.tpl:22
 msgid "Percentage of price reduction"
 msgstr "Процент снижения цен"
 
@@ -61,8 +61,8 @@ msgstr "Процент снижения цен"
 msgid "Watch list is empty"
 msgstr "Список пуст"
 
-#: ./application/modules/pricespy/pricespy.php:213
 #: ./application/modules/pricespy/assets/js/spy.js:9
+#: ./application/modules/pricespy/pricespy.php:213
 msgid "Already in tracking"
 msgstr "Уже в отслеживании"
 
@@ -74,21 +74,21 @@ msgstr "Изменения цены"
 msgid "Price on"
 msgstr "Цены на"
 
-#: ./application/modules/pricespy/pricespy.php:57
+#: ./application/modules/pricespy/pricespy.php:56
 msgid "for which you watch on site"
 msgstr "для которых вы смотрели на сайте"
 
-#: ./application/modules/pricespy/pricespy.php:58
+#: ./application/modules/pricespy/pricespy.php:56
 msgid "changed"
 msgstr "изменены"
 
 #: ./application/modules/pricespy/pricespy.php:57
-#: ./application/modules/pricespy/pricespy.php:58
+#: ./application/modules/pricespy/pricespy.php:57
 msgid "View watch list"
 msgstr "Просмотреть список просмотров"
 
 #: ./application/modules/pricespy/pricespy.php:58
-#: ./application/modules/pricespy/pricespy.php:59
+#: ./application/modules/pricespy/pricespy.php:58
 msgid "Unsubscribe tracking"
 msgstr "Отказаться отслеживания"
 
@@ -103,4 +103,3 @@ msgstr "Отслеживание цен"
 #: ./application/modules/pricespy/module_info.php:8
 msgid "Tracking for price module"
 msgstr "Модуль слежения за ценами"
-
