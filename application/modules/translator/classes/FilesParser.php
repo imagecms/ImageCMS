@@ -15,19 +15,17 @@ class FilesParser {
     /**
      * Modules folder path
      */
-
-    const MODULES_PATH = "./application/modules/";
+    private static $MODULES_PATH = '';
 
     /**
      * Templates folder path
      */
-    const TEMPLATES_PATH = "./templates/";
+    private static $TEMPLATES_PATH = '';
 
     /**
      * Main language folder path
      */
-    const MAIN_PATH = "./application/language/main/";
-
+    private static $MAIN_PATH = '';
     private static $ALLOW_EXTENSIONS = array('php', 'tpl', 'js');
 
     /**
@@ -58,7 +56,9 @@ class FilesParser {
     private static $PARSED_PATHS = array();
 
     private function __construct() {
-        
+        self::$MODULES_PATH = './application/modules/';
+        self::$TEMPLATES_PATH = './templates/';
+        self::$MAIN_PATH = './application/language/main/';
     }
 
     /**
@@ -78,17 +78,27 @@ class FilesParser {
      */
     public function parseModules() {
         try {
-            $modules = new \DirectoryIterator(self::MODULES_PATH);
+// _______________________________________________
+            if (!is_dir(self::$MODULES_PATH))
+                return array();
+// _______________________________________________
+            $modules = new \DirectoryIterator(self::$MODULES_PATH);
             foreach ($modules as $module) {
-                if ($module->isDir() && !$module->isDot() && is_dir(self::MODULES_PATH . $module->getBasename() . '/language')) {
-                    $module_dir = self::MODULES_PATH . $module->getBasename();
+                if ($module->isDir() && !$module->isDot() && is_dir(self::$MODULES_PATH . $module->getBasename() . '/language')) {
+                    $module_dir = self::$MODULES_PATH . $module->getBasename();
                     $language_dir = $module_dir . '/language/';
                     $locales = new \DirectoryIterator($language_dir);
                     foreach ($locales as $locale) {
                         if ($locale->isDir() && !$locale->isDot() && is_dir($language_dir . $locale->getBasename()) && isLocale($locale->getBasename())) {
                             $objLang = new \MY_Lang();
                             $objLang->load($module->getBasename());
-                            include($module_dir . '/module_info.php');
+//___________________________
+                            $module_info = $module_dir . '/module_info.php';
+                            $module_info = \get_mainsite_url($module_info);
+//___________________________                            
+
+
+                            include($module_info);
                             $menu_name = $com_info['menu_name'] ? $com_info['menu_name'] : $module->getBasename();
                             self::$MODULES_LOCALES[$locale->getBasename()][] = array(
                                 'module' => $module->getBasename(),
@@ -111,10 +121,14 @@ class FilesParser {
      */
     public function parseTemplates() {
         try {
-            $templates = new \DirectoryIterator(self::TEMPLATES_PATH);
+// _______________________________________________
+            if (!is_dir(self::$TEMPLATES_PATH))
+                return array();
+// _______________________________________________
+            $templates = new \DirectoryIterator(self::$TEMPLATES_PATH);
             foreach ($templates as $template) {
-                if ($template->isDir() && !$template->isDot() && is_dir(self::TEMPLATES_PATH . $template->getBasename() . '/language/' . $template->getBasename())) {
-                    $language_dir = self::TEMPLATES_PATH . $template->getBasename() . '/language/' . $template->getBasename() . '/';
+                if ($template->isDir() && !$template->isDot() && is_dir(self::$TEMPLATES_PATH . $template->getBasename() . '/language/' . $template->getBasename())) {
+                    $language_dir = self::$TEMPLATES_PATH . $template->getBasename() . '/language/' . $template->getBasename() . '/';
                     $locales = new \DirectoryIterator($language_dir);
                     foreach ($locales as $locale) {
                         if ($locale->isDir() && !$locale->isDot() && is_dir($language_dir . $locale->getBasename()) && isLocale($locale->getBasename())) {
@@ -137,9 +151,13 @@ class FilesParser {
      */
     public function parseMain() {
         try {
-            $main = new \DirectoryIterator(self::MAIN_PATH);
+// _______________________________________________            
+            if (!is_dir(self::$MAIN_PATH))
+                return array();
+// _______________________________________________
+            $main = new \DirectoryIterator(self::$MAIN_PATH);
             foreach ($main as $locale) {
-                if ($locale->isDir() && !$locale->isDot() && is_dir(self::MAIN_PATH . $locale->getBasename()) && isLocale($locale->getBasename())) {
+                if ($locale->isDir() && !$locale->isDot() && is_dir(self::$MAIN_PATH . $locale->getBasename()) && isLocale($locale->getBasename())) {
                     self::$MAIN_LOCALES[$locale->getBasename()][] = array(
                         'main' => 'main'
                     );
@@ -153,6 +171,7 @@ class FilesParser {
 
     public function findLangs($dir = '') {
         if (!in_array($dir, self::$PARSED_PATHS)) {
+
             $baseDir = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($dir));
             foreach ($baseDir as $file) {
                 if ($file->isFile()) {

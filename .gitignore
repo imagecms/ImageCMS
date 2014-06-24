@@ -3,7 +3,7 @@
 /logs/*
 /application/logs
 /captcha
-/uploads
+/uploads/*
 /gitpush
 /application/backups
 /application/config/*/

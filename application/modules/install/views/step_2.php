@@ -19,8 +19,8 @@ if ($other_errors) {
     <div class="form_text"><?php echo lang('Language of the administrative part', 'install') ?></div>
     <div class="form_input">
         <select name="lang_sel">
-            <option value="russian_lang" ><?php echo lang('Russian', 'install') ?></option>
-            <option value="english_lang" ><?php echo lang('English (beta)', 'install') ?></option>
+            <option value="ru_RU" ><?php echo lang('Russian', 'install') ?></option>
+            <option value="en_US" ><?php echo lang('English', 'install') ?></option>
         </select>
     </div>
     <div class="form_overflow"></div>

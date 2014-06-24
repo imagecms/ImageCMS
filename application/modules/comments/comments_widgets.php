@@ -75,7 +75,7 @@ class Comments_Widgets extends MY_Controller {
         switch ($action) {
             case 'show_settings':
                 //$this->display_tpl('recent_comments_form', array('widget' => $widget_data));
-                $this->render('recent_comments_form', array('widget' => $widget_data));
+                \CMSFactory\assetManager::create()->setData('widget', $widget_data)->renderAdmin('recent_comments_form');
                 break;
 
             case 'update_settings':
@@ -143,8 +143,7 @@ class Comments_Widgets extends MY_Controller {
 
         switch ($action) {
             case 'show_settings':
-                //$this->display_tpl('recent_product_comments_form', array('widget' => $widget_data));
-                $this->render('recent_product_comments_form', array('widget' => $widget_data));
+                \CMSFactory\assetManager::create()->setData('widget', $widget_data)->renderAdmin('recent_product_comments_form');
                 break;
 
             case 'update_settings':
@@ -161,8 +160,9 @@ class Comments_Widgets extends MY_Controller {
 
                     $this->load->module('admin/widgets_manager')->update_config($widget_data['id'], $data);
                     showMessage(lang("Settings have been saved", 'comments'));
-                    if ($_POST['action'] == 'tomain')
+                    if ($_POST['action'] == 'tomain') {
                         pjax('/admin/widgets_manager/index');
+                    }
                 }
                 break;
 
