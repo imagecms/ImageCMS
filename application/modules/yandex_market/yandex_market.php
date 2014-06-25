@@ -45,64 +45,103 @@ class Yandex_market extends ShopController {
         return $a;
     }
 
-    public function genreYML() {
+    public function genreYML($market = null) {
         header('content-type: text/xml');
         $ci = ShopCore::$ci;
         $pictureBaseUrl = base_url() . "uploads/shop/products/main/";
-
-        /* @var $p SProducts */
-        foreach ($this->getProducts() as $p) {
-            /* @var $v SProductVariants */
-            foreach ($p->getProductVariants() as $v) {
-                if (!$v->getPrice()) {
-                    continue;
-                }
-                $unique_id = $p->getId() . $v->getId();
-                $param = ShopCore::app()->SPropertiesRenderer->renderPropertiesArray($p);
-                $this->offers[$unique_id]['url'] = ShopCore::$ci->config->item('base_url') . '/shop/product/' . $p->url;
-                $this->offers[$unique_id]['price'] = $v->getPrice();
-                $this->offers[$unique_id]['currencyId'] = $this->currencyCode;
-                $this->offers[$unique_id]['categoryId'] = $p->getCategoryId();
-                $this->offers[$unique_id]['picture'] = $pictureBaseUrl . $v->getMainImage();
-                $images = null;
-                $images = $p->getSProductImagess();
-                if (count($images) > 0) {
-                    foreach ($images as $key => $image) {
-                        $this->offers[$unique_id]['picture' . $key] = productImageUrl('products/additional/' . $image->getImageName());
+        
+        if($market == 'yandex'){
+            /* @var $p SProducts */
+            foreach ($this->getProducts() as $p) {
+                /* @var $v SProductVariants */
+                foreach ($p->getProductVariants() as $v) {
+                    if (!$v->getPrice()) {
+                        continue;
                     }
-                }
+                    $unique_id = $p->getId() . $v->getId();
+                    $param = ShopCore::app()->SPropertiesRenderer->renderPropertiesArray($p);
+                    $this->offers[$unique_id]['url'] = ShopCore::$ci->config->item('base_url') . '/shop/product/' . $p->url;
+                    $this->offers[$unique_id]['price'] = $v->getPrice();
+                    $this->offers[$unique_id]['currencyId'] = $this->currencyCode;
+                    $this->offers[$unique_id]['categoryId'] = $p->getCategoryId();
+                    $this->offers[$unique_id]['picture'] = $pictureBaseUrl . $v->getMainImage();
+                    $images = null;
+                    $images = $p->getSProductImagess();
+                    if (count($images) > 0) {
+                        foreach ($images as $key => $image) {
+                            $this->offers[$unique_id]['picture' . $key] = productImageUrl('products/additional/' . $image->getImageName());
+                        }
+                    }
 
-                $this->offers[$unique_id]['name'] = $this->forName($p->getName(), $v->getName());
-                $this->offers[$unique_id]['vendor'] = $p->getBrand() ? htmlspecialchars($p->getBrand()->getName()) : '';
-                $this->offers[$unique_id]['vendorCode'] = $v->getNumber() ? htmlspecialchars($v->getNumber()) : '';
-                $this->offers[$unique_id]['description'] = htmlspecialchars($p->getFullDescription());
-                if ($this->adult) {
-                    $this->offers[$unique_id]['adult'] = 'true';
+                    $this->offers[$unique_id]['name'] = $this->forName($p->getName(), $v->getName());
+                    $this->offers[$unique_id]['vendor'] = $p->getBrand() ? htmlspecialchars($p->getBrand()->getName()) : '';
+                    $this->offers[$unique_id]['vendorCode'] = $v->getNumber() ? htmlspecialchars($v->getNumber()) : '';
+                    $this->offers[$unique_id]['description'] = htmlspecialchars($p->getFullDescription());
+                    if ($this->adult) {
+                        $this->offers[$unique_id]['adult'] = 'true';
+                    }
+                    $this->offers[$unique_id]['param'] = $param;
                 }
-                $this->offers[$unique_id]['param'] = $param;
             }
+
+            echo '<?xml version="1.0" encoding="utf-8"?>
+                            <!DOCTYPE yml_catalog SYSTEM "shops.dtd">
+                            <yml_catalog date="' . date('Y-m-d H:i') . '">
+                            <shop>
+                            <name>' . $this->settings['site_short_title'] . '</name>
+                            <company>' . $this->settings['site_title'] . '</company>
+                            <url>' . $ci->config->item('base_url') . '</url>
+                            <platform>ImageCMS</platform>
+                            <version>' . IMAGECMS_NUMBER . '</version>
+                            <email>' . siteinfo('siteinfo_adminemail') . '</email>';
+
+            echo "\n\n";
+
+            echo '<currencies>
+                            <currency id="' . $this->currencyCode . '" rate="1"/>
+                    </currencies>' . "\n\n";
+            echo $this->renderCategories();
+            echo $this->renderOffers();
+            echo "</shop>\n";
+            echo "</yml_catalog>";
+        }else{
+             /* @var $p SProducts */
+            foreach ($this->getProducts() as $p) {
+                /* @var $v SProductVariants */
+                foreach ($p->getProductVariants() as $v) {
+                    if (!$v->getPrice()) {
+                        continue;
+                    }
+                    $unique_id = $p->getId() . $v->getId();
+                    $param = ShopCore::app()->SPropertiesRenderer->renderPropertiesArray($p);
+                    $this->offers[$unique_id]['url'] = ShopCore::$ci->config->item('base_url') . '/shop/product/' . $p->url;
+                    $this->offers[$unique_id]['priceRUAH'] = $v->getPrice();
+                    $this->offers[$unique_id]['categoryId'] = $p->getCategoryId();
+                    $this->offers[$unique_id]['image'] = $pictureBaseUrl . $v->getMainImage();
+                    $this->offers[$unique_id]['name'] = $this->forName($p->getName(), $v->getName());
+                    $this->offers[$unique_id]['vendor'] = $p->getBrand() ? htmlspecialchars($p->getBrand()->getName()) : '';
+                    $this->offers[$unique_id]['code'] = $v->getNumber() ? htmlspecialchars($v->getNumber()) : '';
+                    $this->offers[$unique_id]['description'] = htmlspecialchars($p->getFullDescription());
+                    if((int)$v->getStock() > 0){$this->offers[$unique_id]['stock'] = 'На складе';}
+                              
+
+                }
+            }
+
+            echo '<?xml version="1.0" encoding="utf-8"?>
+                            <price>
+                            <date>' . date('Y-m-d H:i') . '</date>
+                            <firmName>' . $this->settings['site_title'] . '</firmName>
+                            <firmId>1234</firmId>
+                            <rate>8.12</rate>';
+
+            echo "\n\n";
+            echo $this->renderCategoriesHotline();
+            echo $this->renderOffersHotline();
+            echo "</price>\n";
+            
+            
         }
-
-        echo '<?xml version="1.0" encoding="utf-8"?>
-			<!DOCTYPE yml_catalog SYSTEM "shops.dtd">
-			<yml_catalog date="' . date('Y-m-d H:i') . '">
-			<shop>
-			<name>' . $this->settings['site_short_title'] . '</name>
-			<company>' . $this->settings['site_title'] . '</company>
-			<url>' . $ci->config->item('base_url') . '</url>
-                        <platform>ImageCMS</platform>
-			<version>' . IMAGECMS_NUMBER . '</version>
-			<email>' . siteinfo('siteinfo_adminemail') . '</email>';
-
-        echo "\n\n";
-
-        echo '<currencies>
-			<currency id="' . $this->currencyCode . '" rate="1"/>
-		</currencies>' . "\n\n";
-        echo $this->renderCategories();
-        echo $this->renderOffers();
-        echo "</shop>\n";
-        echo "</yml_catalog>";
     }
 
     private function forName($productName, $variantName) {
@@ -128,7 +167,20 @@ class Yandex_market extends ShopController {
         }
         echo "</categories>";
     }
+    public function renderCategoriesHotline() {
+        $categories = SCategoryQuery::create()->filterById(ShopCore::app()->SSettings->getSelectedCats())
+                ->find();
 
+        echo "<categories>";
+        foreach ($categories as $c) {
+            $parent = '';
+            if ($c->getParentId() > 0) {
+                $parent = '<parentId>' . $c->getParentId() . '</parentId>';
+            }
+            echo '<category><id>' . $c->getId() . '</id>' . $parent . '<name>' . encode($c->getName()) . '</name></category>' . "\n";
+        }
+        echo "</categories>";
+    }
     protected function renderOffers() {
         echo '<offers>';
         foreach ($this->offers as $id => $offer) {
@@ -138,7 +190,16 @@ class Yandex_market extends ShopController {
         }
         echo '</offers>';
     }
-
+    protected function renderOffersHotline() {
+        echo '<items>';
+        foreach ($this->offers as $id => $offer) {
+            echo "<item>\n\n";
+            echo "\n<id>$id</id>\n";
+            echo "" . $this->arrayToXmlHotline($offer);
+            echo "</item>\n\n";
+        }
+        echo '</items>';
+    }
     protected function arrayToXml($array) {
         foreach ($array as $k => $v) {
             if ($k == 'param') {
@@ -152,7 +213,12 @@ class Yandex_market extends ShopController {
             }
         }
     }
-
+    protected function arrayToXmlHotline($array) {
+        foreach ($array as $k => $v) {
+                echo "\t<$k>" . $v . "</$k>\n";
+       
+        }
+    }
     public function getProducts() {
         $Ids = $this->db
                 ->select('id')
