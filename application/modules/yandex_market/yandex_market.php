@@ -123,16 +123,17 @@ class Yandex_market extends ShopController {
                     $this->offers[$unique_id]['code'] = $v->getNumber() ? htmlspecialchars($v->getNumber()) : '';
                     $this->offers[$unique_id]['description'] = htmlspecialchars($p->getFullDescription());
                     if((int)$v->getStock() > 0){$this->offers[$unique_id]['stock'] = 'На складе';}
-                              
+                            
 
                 }
             }
-
+            $model = ShopSettingsQuery::create() ->filterByName('shopNumber') ->findOne();
+            $shop = $model->getValue();
             echo '<?xml version="1.0" encoding="utf-8"?>
                             <price>
                             <date>' . date('Y-m-d H:i') . '</date>
                             <firmName>' . $this->settings['site_title'] . '</firmName>
-                            <firmId>1234</firmId>
+                            <firmId>'. $shop . '</firmId>
                             <rate>8.12</rate>';
 
             echo "\n\n";
