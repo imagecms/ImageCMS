@@ -1,3 +1,4 @@
+<form id="settings_form" action="/admin/components/cp/yandex_market/update" method="post">
 <div class="container">
                     <section class="mini-layout">
                         <div class="frame_title clearfix">
@@ -7,17 +8,8 @@
                             </div>
                             <div class="pull-right">
                                 <div class="d-i_b">
-
-                                    <span style="position: relative">
-                                        <a href="#" onclick="$(this).next().slideToggle();
-                                                return false" class="btn btn-small">{lang('Template settings', 'banners')}</a>
-                                        <div style="position: absolute; display: none; background-color: white; padding: 8px; margin-top: 5px; border-radius: 5px; width: 335px;">
-                                            <input {if $show_tpl}checked='checked'{/if}type="checkbox" onclick="chckTplParam(this);" /> {lang('Use different templates for different pages', 'banners')}
-                                        </div>
-                                    </span>
-
-                                    <a href="/admin/components/init_window/banners/create" class="btn btn-small btn-success pjax"><i class="icon-plus-sign icon-white"></i>{lang('Create a banner', 'banners')}</a>
-                                    <button type="button" class="btn btn-small btn-danger disabled action_on" id="banner_del" onclick="DeleteSliderBanner()"><i class="icon-trash icon-white"></i>{lang('Delete', 'banners')}</button>
+                                    <button type="button" class="btn btn-small btn-primary action_on formSubmit" data-form="#settings_form"><i class="icon-ok"></i>{lang('Save','admin')}</button>
+                                        {echo create_language_select(ShopCore::$ci->cms_admin->get_langs(true), $locale, "/admin/components/run/shop/settings/index")}
                                 </div>
                             </div>
                         </div>
@@ -51,6 +43,7 @@
                                                     <div class="controls">
                                                         <span class="frame_label no_connection">
                                                             <span class="niceCheck b_n">
+                                                                {$isAdult = ShopCore::app()->SSettings->getIsAdult()}
                                                                 <input type="checkbox" name="yandex[isAdult]" value="1"{if $isAdult == 1}checked="checked"{/if} id="yandex[isAdult]" />
                                                             </span>
                                                             {lang('Adult products','admin')}
@@ -70,8 +63,15 @@
                                     <tr>
                                         <td>
                                             <div class="inside_padd">
+                                                 <span class="frame_label no_connection"><span  class="niceCheck b_n">
+                                                   <lable><input type="checkbox" name="yandex" value="0" id="yandex" checked="checked" />
+                                                </span> Yandex Market</span>
+                                                <br />
+                                                <span class="frame_label no_connection"><span class="niceCheck b_n">
+                                                    <input type="checkbox" name="hotline" value="0" id="hotline" />
+                                                </span> Hotline</span>
                                                 <div class="control-group">
-                                                    <a href="{site_url('shop/yandex_market/genreyml')}" target="_blank">{lang('XML document','admin')}</a>
+                                                    <a href="{site_url('yandex_market/genreyml/yandex')}" target="_blank">{lang('XML document','admin')}</a>
                                                 </div>
                                             </div>
                                         </td>
@@ -81,3 +81,4 @@
                         </div>            
     </section>
 </div>
+</form>
