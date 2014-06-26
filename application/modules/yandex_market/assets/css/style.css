@@ -1,0 +1,13 @@
+.f_l{float: left}
+.f_r{float: right}
+.clearfix:after{visibility: hidden;display: block;font-size: 0;content: ".";clear: both;height: 0;}
+.main_content{margin: auto; width: 800px}
+.desc {width: 300px}
+.image img {border: 1px solid #c0c0c0; padding: 5px; width: 450px}
+#data option:selected, #data ::-moz-selection {
+    background: red;   
+}
+.finder{
+    height: 135px!important;
+    border-bottom: 1px dotted gray;
+}

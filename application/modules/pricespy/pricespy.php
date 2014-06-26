@@ -135,7 +135,7 @@ class Pricespy extends MY_Controller {
      * @param type $varId variant ID
      */
     public function spy($id, $varId) {
-        $product = $this->pricespy_model->getProductById($id);
+        $product = $this->pricespy_model->getProductById($varId);
 
         if ($this->pricespy_model->setSpy($id, $varId, $product->price))
             echo json_encode(array(
