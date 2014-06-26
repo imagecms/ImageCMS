@@ -1,0 +1,95 @@
+{
+    "event": "suiteStart",
+    "suite": "acceptance",
+    "tests": 2
+}{
+    "event": "testStart",
+    "suite": "acceptance",
+    "test": "log in as regular user (SignCept)"
+}{
+    "event": "test",
+    "suite": "acceptance",
+    "test": "log in as regular user (SignCept)",
+    "status": "fail",
+    "time": 8.9015090465546,
+    "trace": [
+        {
+            "file": "C:\\OpenServer\\domains\\imagecms.loc\\codeception\\tests\\acceptance\\AcceptanceTester.php",
+            "line": 2219,
+            "function": "runStep",
+            "class": "Codeception\\Scenario",
+            "type": "->",
+            "args": [
+                {
+                    "executed": true
+                }
+            ]
+        },
+        {
+            "file": "C:\\OpenServer\\domains\\imagecms.loc\\codeception\\tests\\acceptance\\SignCept.php",
+            "line": 8,
+            "function": "appendField",
+            "class": "AcceptanceTester",
+            "type": "->",
+            "args": [
+                "login",
+                "ad@min.com1"
+            ]
+        },
+        {
+            "file": "C:\\OpenServer\\domains\\imagecms.loc\\codeception\\codecept.phar",
+            "line": 7,
+            "args": [
+                "phar:\/\/C:\/OpenServer\/domains\/imagecms.loc\/codeception\/codecept.phar\/codecept"
+            ],
+            "function": "require_once"
+        }
+    ],
+    "message": "Field by name, label, CSS or XPath 'login' was not found on page.",
+    "output": ""
+}{
+    "event": "testStart",
+    "suite": "acceptance",
+    "test": "log in as regular user (SigninCept)"
+}{
+    "event": "test",
+    "suite": "acceptance",
+    "test": "log in as regular user (SigninCept)",
+    "status": "fail",
+    "time": 8.7054979801178,
+    "trace": [
+        {
+            "file": "C:\\OpenServer\\domains\\imagecms.loc\\codeception\\tests\\acceptance\\AcceptanceTester.php",
+            "line": 2219,
+            "function": "runStep",
+            "class": "Codeception\\Scenario",
+            "type": "->",
+            "args": [
+                {
+                    "executed": true
+                }
+            ]
+        },
+        {
+            "file": "C:\\OpenServer\\domains\\imagecms.loc\\codeception\\tests\\acceptance\\SigninCept.php",
+            "line": 8,
+            "function": "appendField",
+            "class": "AcceptanceTester",
+            "type": "->",
+            "args": [
+                "login",
+                "ad@min.com"
+            ]
+        },
+        {
+            "file": "C:\\OpenServer\\domains\\imagecms.loc\\codeception\\codecept.phar",
+            "line": 7,
+            "args": [
+                "phar:\/\/C:\/OpenServer\/domains\/imagecms.loc\/codeception\/codecept.phar\/codecept"
+            ],
+            "function": "require_once"
+        }
+    ],
+    "message": "Field by name, label, CSS or XPath 'login' was not found on page.",
+    "output": ""
+}
