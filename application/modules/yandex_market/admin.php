@@ -16,6 +16,7 @@ class Admin extends BaseAdminController {
             parent::__construct();
         }
         public function index() {
+
             $model = ShopSettingsQuery::create()
             ->filterByName('selectedProductCatsHotline')
             ->findOne();
@@ -40,6 +41,7 @@ class Admin extends BaseAdminController {
             /** Get all Banners from DB */
             /** Show Banners list */
             \CMSFactory\assetManager::create()
+                    ->registerScript('main')
                     ->renderAdmin('list');
             
             
@@ -63,9 +65,30 @@ class Admin extends BaseAdminController {
                 ShopCore::app()->SSettings->set('shopNumber', $this->input->post('shopNumber'));
         }
 
-                    
+      
 
    }
+      public function getCatalogues() {
+          $categoryId = $_POST['category'];
+          $categoryId = (int)($categoryId[0]);
+          
+          $categoryModel = SCategoryQuery::create()->findPk((int) $categoryId);
+          $properties = SPropertiesQuery::create()->joinWithI18n('ru')->filterByPropertyCategory($categoryModel)->orderByPosition()->find();
+
+          //$properties = ShopProductPropertiesCategoriesQuery::create()->joinWith('SProperties')->joinWithI18n('ru')->filterByPropertyCategory($categoryModel)->orderByPosition()->find();
+          //var_dumps_exit($properties);
+          var_dump($properties);
+          $properties1 = "<ul id='sortable'>";
+          
+          foreach ($properties as $key => $value) {
+              $properties1 .= '<li>' . $value->getName()  .'<i class="icon-remove-circle"></i></li>';
+           }
+          $properties1 .= "</ul>";        
+
+          return $properties1;
+      }
+           
+
 }
 
 
