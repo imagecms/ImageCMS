@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="acceptance" tests="1" assertions="1" failures="0" errors="0" time="1.674095">
+    <testcase name="Signin" file="C:\OpenServer\domains\selenium.loc\codeception\tests\acceptance\SigninCept.php" feature="log in as regular user" assertions="1" time="1.674095"/>
+  </testsuite>
+</testsuites>
