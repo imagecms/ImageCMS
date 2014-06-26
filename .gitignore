@@ -16,6 +16,12 @@
 /application/modules/exchange/
 /application/modules/template_manager/
 /application/modules/mod_stats/
+/codeception/tests/acceptance.suite.yml
+codeception/tests/acceptance.suite.yml
+\codeception\tests\acceptance.suite.yml
+codeception\tests\acceptance.suite.yml
+/codeception/tests/_output/*
+codeception/tests/_output/*
 /templates/fluid/
 .tmp_staging
 /tests/tests/_log/*
