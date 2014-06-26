@@ -1,0 +1,8 @@
+TAP version 13
+not ok 1 - Failure: log in as regular user (SignCept)
+  ---
+  message: 'Failed asserting that ''/admin/login/'' contains "/components/run/shop/dashboard".'
+  severity: fail
+  ...
+ok 2 - log in as regular user (SigninCept)
+1..2

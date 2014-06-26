@@ -1,0 +1,64 @@
+{
+    "event": "suiteStart",
+    "suite": "acceptance",
+    "tests": 2
+}{
+    "event": "testStart",
+    "suite": "acceptance",
+    "test": "log in as regular user (SignCept)"
+}{
+    "event": "test",
+    "suite": "acceptance",
+    "test": "log in as regular user (SignCept)",
+    "status": "fail",
+    "time": 2.1341218948364,
+    "trace": [
+        {
+            "file": "C:\\OpenServer\\domains\\selenium.loc\\codeception\\tests\\acceptance\\AcceptanceTester.php",
+            "line": 403,
+            "function": "runStep",
+            "class": "Codeception\\Scenario",
+            "type": "->",
+            "args": [
+                {
+                    "executed": true
+                }
+            ]
+        },
+        {
+            "file": "C:\\OpenServer\\domains\\selenium.loc\\codeception\\tests\\acceptance\\SignCept.php",
+            "line": 11,
+            "function": "seeInCurrentUrl",
+            "class": "AcceptanceTester",
+            "type": "->",
+            "args": [
+                "\/components\/run\/shop\/dashboard"
+            ]
+        },
+        {
+            "file": "C:\\OpenServer\\domains\\selenium.loc\\codeception\\codecept.phar",
+            "line": 7,
+            "args": [
+                "phar:\/\/C:\/OpenServer\/domains\/selenium.loc\/codeception\/codecept.phar\/codecept"
+            ],
+            "function": "require_once"
+        }
+    ],
+    "message": "Failed asserting that '\/admin\/login\/' contains \"\/components\/run\/shop\/dashboard\".",
+    "output": ""
+}{
+    "event": "testStart",
+    "suite": "acceptance",
+    "test": "log in as regular user (SigninCept)"
+}{
+    "event": "test",
+    "suite": "acceptance",
+    "test": "log in as regular user (SigninCept)",
+    "status": "pass",
+    "time": 3.7862169742584,
+    "trace": [
+
+    ],
+    "message": "",
+    "output": ""
+}
