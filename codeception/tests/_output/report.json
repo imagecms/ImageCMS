@@ -1,0 +1,20 @@
+{
+    "event": "suiteStart",
+    "suite": "acceptance",
+    "tests": 1
+}{
+    "event": "testStart",
+    "suite": "acceptance",
+    "test": "log in as regular user (SignCept)"
+}{
+    "event": "test",
+    "suite": "acceptance",
+    "test": "log in as regular user (SignCept)",
+    "status": "pass",
+    "time": 6.6243789196014,
+    "trace": [
+
+    ],
+    "message": "",
+    "output": ""
+}
