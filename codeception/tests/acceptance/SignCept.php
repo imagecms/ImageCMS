@@ -1,6 +1,6 @@
 <?php
 
-$userName = 'ad@min.com1';
+$userName = 'ad@min.com';
 
 $I = new AcceptanceTester($scenario);
 $I->wantTo('log in as regular user');
