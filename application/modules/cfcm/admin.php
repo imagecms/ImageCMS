@@ -258,11 +258,11 @@ class Admin extends BaseAdminController {
                     $this->db->insert_batch('content_fields_groups_relations', $toInsert);
                 }
                 showMessage(lang("Field has been updated", 'cfcm'));
-                
-                if($this->input->post('action') == 'close'){
+
+                if ($this->input->post('action') == 'close') {
                     pjax('/admin/components/cp/cfcm/index#additional_fields');
                 }
-            }else {
+            } else {
                 $this->template->registerJsFile('./application/modules/cfcm/templates/scripts/admin.js', 'after');
                 $this->template->add_array(array(
                     'form' => $form,
@@ -395,88 +395,7 @@ class Admin extends BaseAdminController {
     // Create form from category field group
     // on add/edit page tpl.
     public function form_from_category_group($category_id = FALSE, $item_id = FALSE, $item_type = FALSE) {
-        if ('page' === $category_id) {
-            $item_type = 'page';
-            $item_id = 0;
-            $category_id = 0;
-        }
-
-        if ($item_id === 'page') {
-            $item_type = 'page';
-            $item_id = $category_id;
-            $category_id = 0;
-        }
-
-        $category = (object) $this->lib_category->get_category($category_id);
-
-        if ($item_type == 'category')
-            $category->field_group = $category->category_field_group;
-
-        if ($category_id == '0')
-            $category->field_group = -1;
-
-        if ($category->field_group != '0') {
-            // Get group
-            $group = $this->db->get_where('content_field_groups', array('id' => $category->field_group))->row();
-
-            // Get all fields in group
-            $fg = (int) $category->field_group;
-            $query = $this->db->select('*')
-                    ->from('content_fields')
-                    ->join('content_fields_groups_relations', 'content_fields_groups_relations.field_name = content_fields.field_name')
-                    ->where("content_fields_groups_relations.group_id = $category->field_group")
-                    ->order_by('weight', 'ASC')
-                    ->get();
-
-            if ($query->num_rows() > 0) {
-                $form_fields = array();
-                $fields = $query->result_array();
-
-                foreach ($fields as $field) {
-                    $f_data = unserialize($field['data']);
-                    if ($f_data == FALSE)
-                        $f_data = array();
-
-                    $form_fields[$field['field_name']] = array(
-                        'type' => $field['type'],
-                        'label' => encode($field['label']),
-                    );
-
-                    $form_fields[$field['field_name']] = array_merge($form_fields[$field['field_name']], $f_data);
-                }
-
-                $form = $this->forms->add_fields($form_fields);
-
-                // Set form attributes
-                if ($item_id != FALSE AND $item_type != FALSE) {
-
-                    $attributes = $this->get_form_attributes($fields, $item_id, $item_type);
-
-                    if (count($attributes) > 0 AND is_array($attributes)) {
-                        $form->setAttributes($attributes);
-                    }
-                }
-                $form->title = $group->name;
-
-                $gid = isset($group->id) ? $group->id : -1;
-
-                $hiddenField = '<input type="hidden" name="cfcm_use_group" value="' . $gid . '" />';
-                $this->template->add_array(array(
-                    'form' => $form,
-                    'hf' => $hiddenField
-                ));
-
-                $this->display_tpl('_onpage_form');
-            } else {
-                echo '<div class="alert alert-info" style="margin-bottom: 18px; margin-top: 18px;">'
-                . lang("Group without any fields", 'cfcm') .
-                '</div>';
-            }
-        } else {
-            echo '<div class="alert alert-info" style="margin-bottom: 18px; margin-top: 18px;"> '
-            . lang("For category", 'cfcm') . " " . $category->name . " " . lang("Field group has not been selected", 'cfcm') .
-            ' </div>';
-        }
+        $this->load->module('cfcm')->get_form($category_id, $item_id, $item_type);
     }
 
     public function get_form_attributes($fields, $item_id, $item_type) {
