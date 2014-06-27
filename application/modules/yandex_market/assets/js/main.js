@@ -123,3 +123,47 @@ function groupDel() {
         }
     });
 }
+
+
+$(document).ready(function() {
+    
+$('#categories').on('click', function() {
+
+ var msg = $(this).val();
+ $('.controls1').html("<p style='margin-left:20px;'>please wait...</p>");
+        $.ajax({
+          type: 'POST',
+          url: '/admin/components/cp/yandex_market/getCatalogues',
+          data: {category:msg},
+          success: function(data) {
+           $('.controls1').html(data);   
+          
+              $('#sortable').sortable({
+                axis: 'y',
+                update: function (event, ui) {
+
+                    var data1 = $(this).sortable('toArray');;
+                    
+                    $('.mmm').on('click', function() {
+                                       
+                           $.ajax({
+                               data: {data1:data1},
+                               type: 'POST',
+                               url: '/admin/components/cp/yandex_market/setCatalogues'
+                           });  
+                    });                    
+
+                }
+            });
+
+              
+            $('.controls1 .icon-remove-circle').on('click', function() {
+                $(this).parent().remove();
+            });
+          }
+        });
+
+});
+})
+
+
