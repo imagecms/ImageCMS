@@ -14,6 +14,7 @@ class Admin extends BaseAdminController {
 
         function __construct() {
             parent::__construct();
+           $total_catalogues = array();
         }
         public function index() {
 
@@ -24,9 +25,9 @@ class Admin extends BaseAdminController {
             if($model == null){   
             $model = new ShopSettings;
             $model->setName('selectedProductCatsHotline')
-            ->setValue(serialize($this->input->post('displayedCatsHotline')))
             ->save();
             }
+            
             $model = ShopSettingsQuery::create()
             ->filterByName('shopNumber')
             ->findOne();
@@ -34,10 +35,10 @@ class Admin extends BaseAdminController {
            if($model == null){   
             $model = new ShopSettings;
             $model->setName('shopNumber')
-            ->setValue($this->input->post('shopNumber'))
             ->save();
             }
             
+
             /** Get all Banners from DB */
             /** Show Banners list */
             \CMSFactory\assetManager::create()
@@ -64,30 +65,58 @@ class Admin extends BaseAdminController {
         if($_POST['shopNumber']){
                 ShopCore::app()->SSettings->set('shopNumber', $this->input->post('shopNumber'));
         }
-
-      
-
    }
       public function getCatalogues() {
-          $categoryId = $_POST['category'];
+          $categoryId = $this->input->post('category');
           $categoryId = (int)($categoryId[0]);
           
           $categoryModel = SCategoryQuery::create()->findPk((int) $categoryId);
           $properties = SPropertiesQuery::create()->joinWithI18n('ru')->filterByPropertyCategory($categoryModel)->orderByPosition()->find();
-
-          //$properties = ShopProductPropertiesCategoriesQuery::create()->joinWith('SProperties')->joinWithI18n('ru')->filterByPropertyCategory($categoryModel)->orderByPosition()->find();
-          //var_dumps_exit($properties);
-          var_dump($properties);
+         // var_dump($properties); exit;
+          if (count($properties)>0){
           $properties1 = "<ul id='sortable'>";
-          
+          $i = 0;
           foreach ($properties as $key => $value) {
-              $properties1 .= '<li>' . $value->getName()  .'<i class="icon-remove-circle"></i></li>';
-           }
-          $properties1 .= "</ul>";        
-
-          return $properties1;
+              $properties1 .= '<li id= \''. $value->getName() .'\'>' . $value->getName()  .' <i class="icon-remove-circle"></i></li>';
+              $i++;
+          }
+          $properties1 .= "</ul><button style='margin-left:10px;' type='button' class='btn btn-small btn-primary action_on  mmm' ><i class='icon-ok'></i>Save</button>
+            ";
+              return $properties1; 
+          }
+          else{
+              echo "<p style='margin-left:20px;'>is empty!</p";
+              }
+         
       }
-           
+      public function setCatalogues() {
+            
+          
+            $model = ShopSettingsQuery::create()
+            ->filterByName('selectedCatsHotline')
+            ->findOne();
+                        
+            if($model == null){   
+            $model1 = new ShopSettings;
+            $model1->setName('selectedCatsHotline')
+            ->save();
+            }
+            
+            if($model->getValue() != null){
+               
+               // $total_catalogues = unserialize($model->getValue());
+                
+               // array_push($total_catalogues, $this->input->post('data1'));
+                
+                
+            }
+            
+            
+            ShopCore::app()->SSettings->set('selectedCatsHotline',  serialize(array_push($total_catalogues, $this->input->post('data1'))), false);
+            
+         
+          
+      }     
 
 }
 

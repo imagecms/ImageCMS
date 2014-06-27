@@ -34,8 +34,8 @@
                                 <tbody>
                                     <tr>
                                         <td colspan="6">
-                                            <div class="inside_padd">
-                                                <div class="control-group">
+                                            <div class="inside_padd" >
+                                                <div class="control-group" >
                                                     <label class="control-label">{lang('Displayed categories selection','admin')}:</label>
                                                     {$holder = ShopCore::app()->SSettings->getSelectedCats()}
                                                     {$categories = ShopCore::app()->SCategoryTree->getTree()}
@@ -129,13 +129,13 @@
                                                             <span class="must">*</span>
                                                         </label>
                                                        {$model = ShopSettingsQuery::create() ->filterByName('shopNumber') ->findOne()}
-                                                        <div class="controls">
+                                                        <div class="controls" style="overflow:hidden;">
                                                             <input type="text" value="{echo $model->getValue()}" name="shopNumber" class="input-small" required="required" data-form="#settings_form1"  >
                                                             <span class="help-inline"></span>
                                                         </div>
                                                     </div>
-
-                                                    <div class="controls_total" style="overflow:hidden; padding-bottom:20px; border:1px solid red;">
+                        </form>
+                                                    <div class="controls_total" style="overflow:hidden; padding-bottom:20px;">
                                                             <div class="controls" style="float:left;">
                                                             <select  id="categories" name="categories[]" multiple="multiple" size="20">
                                                                     <option value="8">Телефония, МР3-плееры, GPS</option>
@@ -162,8 +162,11 @@
                                                             </controls>
 
                                                             </div>
-                                                             <div class="controls1" style="float:left;">
-                                                            </div> 
+                                                                <div class="controls1" style="float:left;">
+                                                                    
+                                                                </div> 
+      
+                                                        
                                                     </div>
                                                 </div>
                                             </div>
@@ -188,7 +191,7 @@
                                 </tbody>
                             </table>
                         </div>   
-                        </form>
+
                         </div>
     </section>
 </form>                                               
