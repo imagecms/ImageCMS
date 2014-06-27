@@ -47,14 +47,16 @@
     
         foreach ($fields as $field)
         {
-            $data = unserialize ($field['data']);
-            $str = '';
-            if ($data['required'])
-                $str .= 'required|';
-            if ($data['validation'])
-                $str .= $data['validation'];
+            if($groupId == $field['group_id']){
+                $data = unserialize ($field['data']);
+                $str = '';
+                if ($data['required'])
+                    $str .= 'required|';
+                if ($data['validation'])
+                    $str .= $data['validation'];
                 
-            $this->form_validation->set_rules($field['field_name'], $data['label'], $str);
+                $this->form_validation->set_rules($field['field_name'], $data['label'], $str);
+            }
         }
     ]]>
 </hook>
