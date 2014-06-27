@@ -1,5 +1,4 @@
-
-   
+ 
 <div class="container">
                     <section class="mini-layout">
                         <div class="frame_title clearfix">
@@ -35,8 +34,8 @@
                                 <tbody>
                                     <tr>
                                         <td colspan="6">
-                                            <div class="inside_padd">
-                                                <div class="control-group">
+                                            <div class="inside_padd" >
+                                                <div class="control-group" >
                                                     <label class="control-label">{lang('Displayed categories selection','admin')}:</label>
                                                     {$holder = ShopCore::app()->SSettings->getSelectedCats()}
                                                     {$categories = ShopCore::app()->SCategoryTree->getTree()}
@@ -130,19 +129,45 @@
                                                             <span class="must">*</span>
                                                         </label>
                                                        {$model = ShopSettingsQuery::create() ->filterByName('shopNumber') ->findOne()}
-                                                        <div class="controls">
+                                                        <div class="controls" style="overflow:hidden;">
                                                             <input type="text" value="{echo $model->getValue()}" name="shopNumber" class="input-small" required="required" data-form="#settings_form1"  >
                                                             <span class="help-inline"></span>
                                                         </div>
                                                     </div>
-                                                            <select multiple="multiple" size="all">
-                                                                <option>1</option>
-                                                                <option>2</option>
-                                                                <option>3</option>
-                                                                <option>4</option>
-                                                                <option>5</option>
-                                                              </select>
-                                                </div>
+                        </form>
+                                                    <div class="controls_total" style="overflow:hidden; padding-bottom:20px;">
+                                                            <div class="controls" style="float:left;">
+                                                            <select  id="categories" name="categories[]" multiple="multiple" size="20">
+                                                                    <option value="8">Телефония, МР3-плееры, GPS</option>
+                                                                    <option value="927">Телефоны</option>
+                                                                    <option value="930">Мобильные телефоны</option>
+                                                                    <option value="931">Смартфоны</option>
+                                                                    <option value="2583">Чехлы для телефонов</option>
+                                                                    <option value="932">Bluetooth гарнитуры</option>
+                                                                    <option value="933">Проводные гарнитуры</option>
+                                                                    <option value="935">Аккумуляторы</option>
+                                                                    <option value="936">Зарядные устройства</option>
+                                                                    <option value="937">Карты памяти</option>
+                                                                    <option value="938">Защитные пленки</option>
+                                                                    <option value="2597">Аксессуары для телефонов</option>
+                                                                    <option value="3013">Аксессуары</option>
+                                                                    <option value="928">MP3-MP4 плееры</option>
+                                                                    <option value="939">Apple iPod и аксессуары</option>
+                                                                    <option value="940">MP3- и медиаплееры</option>
+                                                                    <option value="942">Наушники</option>
+                                                                    <option value="9">Домашнее видео</option>
+                                                                    <option value="3">Детские товары</option>
+                                                                    <option value="1">Активный отдых и туризм</option>
+                                                            </select>
+                                                            </controls>
+
+                                                            </div>
+                                                                <div class="controls1" style="float:left;">
+                                                                    
+                                                                </div> 
+      
+                                                        
+                                                    </div>
                                                 </div>
                                             </div>
                                         </td>
@@ -166,8 +191,10 @@
                                 </tbody>
                             </table>
                         </div>   
-                        </form>
+
                         </div>
     </section>
 </form>                                               
 </div>
+                                                    
+
