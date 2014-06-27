@@ -45,12 +45,11 @@ class Yandex_market extends ShopController {
         return $a;
     }
 
-    public function genreYML($market = null) {
+    public function genreYML() {
         header('content-type: text/xml');
         $ci = ShopCore::$ci;
         $pictureBaseUrl = base_url() . "uploads/shop/products/main/";
         
-        if($market == 'yandex'){
             /* @var $p SProducts */
             foreach ($this->getProducts() as $p) {
                 /* @var $v SProductVariants */
@@ -104,45 +103,7 @@ class Yandex_market extends ShopController {
             echo $this->renderOffers();
             echo "</shop>\n";
             echo "</yml_catalog>";
-        }else{
-             /* @var $p SProducts */
-            foreach ($this->getProducts() as $p) {
-                /* @var $v SProductVariants */
-                foreach ($p->getProductVariants() as $v) {
-                    if (!$v->getPrice()) {
-                        continue;
-                    }
-                    $unique_id = $p->getId() . $v->getId();
-                    $param = ShopCore::app()->SPropertiesRenderer->renderPropertiesArray($p);
-                    $this->offers[$unique_id]['url'] = ShopCore::$ci->config->item('base_url') . '/shop/product/' . $p->url;
-                    $this->offers[$unique_id]['priceRUAH'] = $v->getPrice();
-                    $this->offers[$unique_id]['categoryId'] = $p->getCategoryId();
-                    $this->offers[$unique_id]['image'] = $pictureBaseUrl . $v->getMainImage();
-                    $this->offers[$unique_id]['name'] = $this->forName($p->getName(), $v->getName());
-                    $this->offers[$unique_id]['vendor'] = $p->getBrand() ? htmlspecialchars($p->getBrand()->getName()) : '';
-                    $this->offers[$unique_id]['code'] = $v->getNumber() ? htmlspecialchars($v->getNumber()) : '';
-                    $this->offers[$unique_id]['description'] = htmlspecialchars($p->getFullDescription());
-                    if((int)$v->getStock() > 0){$this->offers[$unique_id]['stock'] = 'На складе';}
-                            
 
-                }
-            }
-            $model = ShopSettingsQuery::create() ->filterByName('shopNumber') ->findOne();
-            $shop = $model->getValue();
-            echo '<?xml version="1.0" encoding="utf-8"?>
-                            <price>
-                            <date>' . date('Y-m-d H:i') . '</date>
-                            <firmName>' . $this->settings['site_title'] . '</firmName>
-                            <firmId>'. $shop . '</firmId>
-                            <rate>8.12</rate>';
-
-            echo "\n\n";
-            echo $this->renderCategoriesHotline();
-            echo $this->renderOffersHotline();
-            echo "</price>\n";
-            
-            
-        }
     }
 
     private function forName($productName, $variantName) {
@@ -191,16 +152,6 @@ class Yandex_market extends ShopController {
         }
         echo '</offers>';
     }
-    protected function renderOffersHotline() {
-        echo '<items>';
-        foreach ($this->offers as $id => $offer) {
-            echo "<item>\n\n";
-            echo "\n<id>$id</id>\n";
-            echo "" . $this->arrayToXmlHotline($offer);
-            echo "</item>\n\n";
-        }
-        echo '</items>';
-    }
     protected function arrayToXml($array) {
         foreach ($array as $k => $v) {
             if ($k == 'param') {
@@ -212,12 +163,6 @@ class Yandex_market extends ShopController {
             } else {
                 echo "\t<$k>" . $v . "</$k>\n";
             }
-        }
-    }
-    protected function arrayToXmlHotline($array) {
-        foreach ($array as $k => $v) {
-                echo "\t<$k>" . $v . "</$k>\n";
-       
         }
     }
     public function getProducts() {

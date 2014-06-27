@@ -11,4 +11,3 @@ initTest::login($I);
 //$I->appendField('password', $password);
 //$I->click('.btn.btn-info');
 //$I->seeInCurrentUrl('/components/run/shop/dashboard');
-//$I->s
