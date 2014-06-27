@@ -8,7 +8,7 @@ $com_info = array(
         'w'           => 600,                 // Window width
 	'h'           => 550,                 // Window height
 	'version'     => '1.0',               // Module version
-	'author'      => 'a.skavronskiy@imagecms.net', // Author info Andriy Skavronskiy
+	'author'      => 'a.skavronskiy@imagecms.net', // Author info Andriy Skavronskyy
         'type' => 'shop'                // CMS version
 );
 
