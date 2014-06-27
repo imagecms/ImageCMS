@@ -286,9 +286,9 @@ html* {
 }
 /* BEGIN SIDEBAR */
 #sidebar {
-	float:left;
+	float:right;
 	width:230px;
-	margin-left:32px;
+	margin-right: 20px;
 }
 #sidebar .box {
 	border:1px solid #dfdfdf;
@@ -396,7 +396,7 @@ color:#999999;
 
 
 #content{
-	float:left;
+	float:right;
 	width:662px;
 }
 
