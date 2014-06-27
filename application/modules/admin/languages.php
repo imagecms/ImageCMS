@@ -105,7 +105,7 @@ class Languages extends BaseAdminController {
         }
     }
 
-    function getPoFileSettingsText($lang = '', $type = '') {
+    function getPoFileSettingsText($lang = '', $type = '', $module = NULL) {
         $content =
                 b"\xEF\xBB\xBF" .
                 'msgid ""' . PHP_EOL .
@@ -155,13 +155,28 @@ class Languages extends BaseAdminController {
                 break;
             case 'module':
 
-                $content .=
-                        '"X-Poedit-Basepath: ../../..\n"' . PHP_EOL .
-                        '"X-Poedit-SourceCharset: utf-8\n"' . PHP_EOL .
-                        '"X-Generator: Poedit 1.5.7\n"' . PHP_EOL .
-                        '"X-Poedit-Language: \n"' . PHP_EOL .
-                        '"X-Poedit-Country: \n"' . PHP_EOL .
-                        '"X-Poedit-SearchPath-0: .\n"' . PHP_EOL;
+                if ($module == 'admin') {
+                    $content .=
+                            '"X-Poedit-Basepath: ../../..\n"' . PHP_EOL .
+                            '"X-Poedit-SourceCharset: utf-8\n"' . PHP_EOL .
+                            '"X-Generator: Poedit 1.5.7\n"' . PHP_EOL .
+                            '"X-Poedit-Language: \n"' . PHP_EOL .
+                            '"X-Poedit-Country: \n"' . PHP_EOL .
+                            '"X-Poedit-SearchPath-0: .\n"' . PHP_EOL .
+                            '"X-Poedit-SearchPath-1: ../../../templates/administrator\n"' . PHP_EOL .
+                            '"X-Poedit-SearchPath-2: ../../modules/shop/admin\n"' . PHP_EOL .
+                            'X-Poedit-SearchPath-3: ../../../application/modules/shop/models/build/classes\n' . PHP_EOL;
+                } else {
+                    $content .=
+                            '"X-Poedit-Basepath: ../../..\n"' . PHP_EOL .
+                            '"X-Poedit-SourceCharset: utf-8\n"' . PHP_EOL .
+                            '"X-Generator: Poedit 1.5.7\n"' . PHP_EOL .
+                            '"X-Poedit-Language: \n"' . PHP_EOL .
+                            '"X-Poedit-Country: \n"' . PHP_EOL .
+                            '"X-Poedit-SearchPath-0: .\n"' . PHP_EOL;
+                }
+
+
                 break;
             case 'template':
                 $content .=
@@ -184,7 +199,7 @@ class Languages extends BaseAdminController {
         $templates_dir = './templates';
         $main_dir = './application/language/main';
         $modules_dir = './application/modules';
-        $module_content = $this->getPoFileSettingsText($lang, 'module');
+//        $module_content = $this->getPoFileSettingsText($lang, 'module');
         $template_content = $this->getPoFileSettingsText($lang, 'template');
         $main_content = $this->getPoFileSettingsText($lang, 'main');
         if (is_dir($templates_dir)) {
@@ -215,6 +230,7 @@ class Languages extends BaseAdminController {
                     if (!is_dir($modules_dir . '/' . $module . '/language/' . $lang)) {
                         mkdir($modules_dir . '/' . $module . '/language/' . $lang, 0777);
                         mkdir($modules_dir . '/' . $module . '/language/' . $lang . '/LC_MESSAGES', 0777);
+                        $module_content = $this->getPoFileSettingsText($lang, 'module', $module);
                         file_put_contents($modules_dir . '/' . $module . '/language/' . $lang . '/LC_MESSAGES/' . $module . '.po', $module_content);
                         // to delete lang folders
 //                         system("rm -rf " . escapeshellarg($modules_dir . '/' . $module . '/language/de_DE'));

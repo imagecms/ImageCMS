@@ -1,5 +1,15 @@
 $(document).ready(function() {
 
+    $('#update_mode').live('change', function() {
+        if (!parseInt($(this).val())) {
+            $('.one_file_mode').show();
+            $('.all_file_mode').hide();
+        } else {
+            $('.all_file_mode').show();
+            $('.one_file_mode').hide();
+        }
+    });
+
     $('.languageSelect').autocomplete({
         source: base_url + 'admin/components/cp/translator/getLangaugesNames',
         select: function(event, ui) {
@@ -80,9 +90,10 @@ $(document).ready(function() {
         Translator.statisticRecount();
     });
 
-    $('.translation').on('blur', function() {
+    $('.translation').live('blur', function() {
         $(this).next().val($(this).val());
         $(this).text($(this).val());
+
         Translator.statisticRecount();
     });
 
@@ -616,6 +627,18 @@ var Translator = {
                 break;
         }
     },
+    addUpdatedString: function(po_array) {
+        $.ajax({
+            url: base_url + 'admin/components/init_window/translator/addUpdatedString',
+            type: 'POST',
+            data: {
+                po_array: JSON.stringify(po_array)
+            },
+            success: function(response) {
+
+            }
+        });
+    },
     statisticRecount: function() {
         var totalStrings = $('textarea.origin').length;
         var fuzzyCount = $('.fuzzyTD .btn-danger').length;
@@ -1098,7 +1121,7 @@ var Translator = {
         var translations = [];
         for (var value in values) {
             var text = values[value].replace("undefined", "");
-            ;
+
             var url = 'https://translate.yandex.net/api/v1.5/tr.json/translate?key=' + YandexApiKey + text + '&lang=' + originLang + '-' + lang + '&format=plain';
             $.ajax({
                 crossDomain: true,
@@ -1180,6 +1203,9 @@ var Translator = {
             success: function(Answer) {
                 if (Answer.code == '200') {
                     translationTR.find('.translation').val(Answer.text[0]);
+                    var po_array = {};
+                    po_array[word] = Answer.text[0];
+                    Translator.addUpdatedString(po_array);
                     Translator.statisticRecount();
                 }
                 Translator.getAnswerCodeMessage(Answer.code);
@@ -1630,6 +1656,133 @@ function htmlspecialchars_decode(str) {
 
     return str;
 }
+
+var SAAS_UPDATES = {
+    update: function(curElement) {
+        var mode = parseInt($('#update_mode').val());
+        var locale = $('.langs').val();
+        var locale_one_mode = $('.langs_one_mode').val();
+        var type = $('#types').val();
+        var module_template = $('#modules_templates').val();
+
+        var data = {};
+
+        if (mode) {
+
+            data = {
+                mode: mode,
+                locale: locale
+            };
+
+            $.ajax({
+                type: "POST",
+                data: data,
+                url: '/admin/components/init_window/translator/saas_updates',
+                success: function(data) {
+                    var response = JSON.parse(data);
+                    if (response.error) {
+                        showMessage(lang('Error'), response.data, 'r');
+                    }
+
+                    if (response.success) {
+                        var modules = response.data.modules;
+                        var countAll = Object.keys(modules).length + 1;
+                        var done = 1;
+                        $('.all_file_mode_progress').fadeIn(100);
+                        for (var module in modules) {
+                            var data = {
+                                name: module,
+                                locale: locale,
+                                type: 'modules'
+                            };
+
+                            var modules_names = new Array();
+
+                            for (var key in modules) {
+                                modules_names.push(modules[key]);
+                            }
+
+                            $('#progressLabel').html('<br/>' + lang('Items to update') + ': ' + countAll + '  (' + langs.processed + ' : ' + done + ' ). ' + lang('Module') + ' ' + modules_names[done] + ' ' + lang('is updating...'));
+                            $.ajax({
+                                type: "POST",
+                                async: true,
+                                data: data,
+                                url: '/admin/components/init_window/translator/update_one_module',
+                                success: function(data) {
+
+                                    $('.bar').css('width', ((done / countAll) * 100) + '%');
+                                    $('.bar').text(parseInt((done / countAll) * 100) + '%');
+
+                                    if (done < countAll - 1)
+                                        $('#progressLabel').html('<br/>' + lang('Items to update') + ': ' + countAll + '  (' + langs.processed + ' : ' + done + ' ). ' + lang('Module') + ' ' + modules_names[done] + ' ' + lang('is updating...'));
+
+                                    done += 1;
+
+                                    if (done == countAll) {
+                                        var data = {
+                                            name: 'main',
+                                            locale: locale,
+                                            type: 'main'
+                                        };
+
+                                        $.ajax({
+                                            type: "POST",
+                                            async: true,
+                                            data: data,
+                                            url: '/admin/components/init_window/translator/update_one_module',
+                                            success: function(data) {
+                                                $('.bar').css('width', ((done / countAll) * 100) + '%');
+                                                $('.bar').text(parseInt((done / countAll) * 100) + '%');
+
+                                                if (done < countAll)
+                                                    $('#progressLabel').html('<br/>' + lang('Items to update') + ': ' + countAll + '  (' + langs.processed + ' : ' + done + ' ). ' + lang('Main file is updating...'));
+
+                                                if (done == countAll) {
+                                                    $('#progressLabel').html('<br/>' + lang('Items to update') + ': ' + countAll + '  (' + langs.processed + ' : ' + done + ' ). ' + lang('Updated all.'));
+                                                    $('.all_file_mode_progress').fadeOut(1000);
+                                                }
+                                                showMessage(lang('Message'), lang('Successfully updated'));
+                                            }
+                                        });
+                                    }
+
+                                }
+                            });
+
+                        }
+
+
+                    }
+                }
+            });
+
+        } else {
+            data = {
+                mode: mode,
+                locale: locale_one_mode,
+                name: module_template,
+                type: type
+            };
+
+            $.ajax({
+                type: "POST",
+                async: true,
+                data: data,
+                url: '/admin/components/init_window/translator/update_one_module',
+                success: function(data) {
+                    var response = JSON.parse(data);
+                    if (response.success) {
+                        showMessage(lang('Message'), response.data);
+                    } else {
+                        showMessage(lang('Error'), response.data, 'r');
+                    }
+                }
+            });
+        }
+
+
+    }
+};
 
 
 //window.onerror=function(message, url, linenumber){

@@ -15,6 +15,7 @@ class Components extends BaseAdminController {
      * @var array
      */
     private $installed = array();
+    private $permited = array();
 
     function __construct() {
         parent::__construct();
@@ -89,7 +90,11 @@ class Components extends BaseAdminController {
     }
 
     private function isNotPermited($moduleName) {
-        return in_array($moduleName, $this->not_permited);
+        if (MAINSITE != '') {
+            return !in_array($moduleName, $this->permited);
+        }  else {
+            return FALSE;    
+        }
     }
 
     private function isPermitedModules($db_modules, $not_installed) {
@@ -116,7 +121,7 @@ class Components extends BaseAdminController {
 
     private function setNotPermited() {
         if (MAINSITE != '' and $this->load->module('saas')) {
-            $this->not_permited = $this->load->module('saas')->getNotPermited();
+            $this->permited = $this->load->module('saas')->getPermited();
         }
     }
 
@@ -343,11 +348,18 @@ class Components extends BaseAdminController {
         jsCode("ajax_div('modules_table',base_url + 'admin/components/modules_table/');");
     }
 
+    private function checkPerm($module) {
+        if ($this->isNotPermited($module)) {
+            $msg = lang("Error checking permissions");
+//            $this->template->assign('content', $msg);
+//            $msg = $this->template->fetch('main');
+            die($msg);
+        }
+    }
+
     // Load component admin class in iframe/xhr
     function init_window($module) {
-        if ($this->isNotPermited($module)) {
-            return;
-        }
+        $this->checkPerm($module);
         $lang = new MY_Lang();
         $lang->load($module);
 
@@ -375,6 +387,7 @@ class Components extends BaseAdminController {
     }
 
     function cp($module) {
+        $this->checkPerm($module);
         $func = $this->uri->segment(5);
 
         if ($func == FALSE) {
@@ -413,6 +426,8 @@ class Components extends BaseAdminController {
 //    }
 
     function run($module) {
+        $this->checkPerm($module);
+        
         $func = $this->uri->segment(5);
         if ($func == FALSE) {
             $func = 'index';

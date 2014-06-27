@@ -58,8 +58,9 @@
                                                             <label class="control-label" for="lang_sel">{lang('Select admin language', "admin")}:</label>
                                                             <div class="controls">
                                                                 <select name="lang_sel" id="lang_sel">
-                                                                    <option value="english_lang" {if strstr($lang_sel, 'english')}selected="selected"{/if}> {lang('English', 'admin')}</option>
-                                                                    <option value="russian_lang" {if strstr($lang_sel, 'russian')}selected="selected"{/if}> {lang('Russian', 'admin')}</option>
+                                                                    {foreach $langs as $language}
+                                                                        <option value="{echo $language['locale']}" {if $lang_sel == $language['locale']}selected="selected"{/if}> {echo $language['lang_name']}</option>
+                                                                    {/foreach}
                                                                 </select>
                                                             </div>
                                                         </div>

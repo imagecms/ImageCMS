@@ -23,7 +23,7 @@
                                    onclick="unspy('{$product[hash]}')"/>
                         </td>
                         <td>
-                            <a href="{shop_url($product[url])}" 
+                            <a href="{shop_url('product/' . $product[url])}" 
                                title="{$product[name]}">
                                 {$product[name]}
                             </a>
