@@ -25,7 +25,7 @@ foreach ($a as $value) {
     
 }
 $I->seeInPageSource('mainContent');
-$I->seeInPageSource('Насвание');
+$I->seeInPageSource('Название');
 $I->wait(5);
 //$I = new AcceptanceTester($scenario);
 //$I->wantTo('log in as regular user');
