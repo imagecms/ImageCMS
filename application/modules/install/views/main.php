@@ -144,8 +144,8 @@
                             <section class="mini-layout">
                                 <form action="/install/change_language" method="POST">
                                     <select name="language" onchange="this.form.submit()" style="float: right; width: 100px;">
-                                        <option value="russian" <?php if ($_SESSION['language'] == 'russian') echo 'selected'; ?>><?php echo lang('Russian', 'install')?></option>
-                                        <option value="english" <?php if ($_SESSION['language'] == 'english' || !$_SESSION['language']) echo 'selected'; ?>><?php echo lang('English', 'install')?></option>
+                                        <option value="ru_RU" <?php if ($_SESSION['language'] == 'ru_RU') echo 'selected'; ?>><?php echo lang('Russian', 'install')?></option>
+                                        <option value="en_US" <?php if ($_SESSION['language'] == 'en_US' || !$_SESSION['language']) echo 'selected'; ?>><?php echo lang('English', 'install')?></option>
                                     </select>
                                     <div style="text-align: right; font-size: 17px; float: right; margin-right: 10px; margin-top: 5px"><b><?php echo lang('Language', 'install') ?>:</b></div>
                                     <?php echo form_csrf() ?>

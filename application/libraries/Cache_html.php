@@ -7,21 +7,21 @@ class Cache_html {
 
     private static $path;
 
-    public function __construct() {
-        self::$path = PUBPATH . 'system/cache/templates_c/HTML/';
-    }
-
     public static function set_html($html, $file) {
+        self::$path = PUBPATH . 'system/cache/templates_c/HTML/';
 
         if (!is_dir('system/cache/templates_c/HTML/')) {
             mkdir('system/cache/templates_c/HTML/', 0777);
         }
 
         $file = $file . MY_Controller::getCurrentLocale();
+
         file_put_contents(self::$path . md5($file) . '.html', $html);
     }
 
     public static function get_html($file) {
+        self::$path = PUBPATH . 'system/cache/templates_c/HTML/';
+        
         if (!\CI_Controller::get_instance()->config->item('tpl_force_compile')) {
             $file = $file . MY_Controller::getCurrentLocale();
             $file = self::$path . md5($file) . '.html';

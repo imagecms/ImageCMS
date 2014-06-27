@@ -43,7 +43,7 @@ class Pricespy_model extends CI_Model {
      * @param type $id
      * @return type
      */
-    public function getProductById($id) {
+    public function getProductById($varId) {
         return $product = $this->db
                 ->where('id', $varId)
                 ->get('shop_product_variants')

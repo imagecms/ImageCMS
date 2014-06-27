@@ -36,4 +36,10 @@ langs["Can not define language"] = '<?php echo lang("Can not define language", "
 langs["First"] = '<?php echo lang("First", "translator", FALSE)?>';
 langs["Last "] = '<?php echo lang("Last ", "translator", FALSE)?>';
 langs["Select all paths to files."] = '<?php echo lang("Select all paths to files.", "translator", FALSE)?>';
+langs["Items to update"] = '<?php echo lang("Items to update", "translator", FALSE)?>';
+langs["Module"] = '<?php echo lang("Module", "translator", FALSE)?>';
+langs["is updating..."] = '<?php echo lang("is updating...", "translator", FALSE)?>';
+langs["Main file is updating..."] = '<?php echo lang("Main file is updating...", "translator", FALSE)?>';
+langs["Updated all."] = '<?php echo lang("Updated all.", "translator", FALSE)?>';
+langs["Successfully updated"] = '<?php echo lang("Successfully updated", "translator", FALSE)?>';
 </script>

@@ -29,7 +29,7 @@
                     <td>{echo $product->username}</td>
                     <td>
                         <input type="submit" 
-                               class="btn my_btn_s btn-small pull-left btn-danger m-r_5" 
+                               class="btn btn-small pull-left btn-danger m-r_5" 
                                value="{lang('Unsubscribe', 'pricespy')}"
                                onclick="unspy('{echo $product->hash}')"/>
                     </td>
