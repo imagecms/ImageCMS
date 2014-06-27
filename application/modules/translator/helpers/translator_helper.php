@@ -291,7 +291,7 @@ if (!function_exists('getPoFileAttributes')) {
             if (strstr($_SERVER['HTTP_REFERER'], 'admin')) {
                 $langs = $CI->config->item('languages');
                 $language = $CI->config->item('language');
-                $locale = $langs[$language][1];
+                $locale = $language;
             } else {
                 $currentLocale = MY_Controller::getCurrentLocale();
                 $language = $CI->db->where('identif', $currentLocale)->get('languages');
