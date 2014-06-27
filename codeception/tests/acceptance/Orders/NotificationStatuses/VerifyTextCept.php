@@ -1,6 +1,6 @@
 <?php
 
-$I = new AcceptanceTester($Ostap);
+initTest::login($I);
 $I->wantTo('Verify Text Present in Notification Statuses');
 $I->amOnPage('/admin');
 //открытие страницы Статусы уведомлений.
