@@ -23,5 +23,5 @@ $I->seeInCurrentUrl('/components/run/shop/dashboard');
 //
 //sleep('5');
 
-
+$I->see
 ?>
