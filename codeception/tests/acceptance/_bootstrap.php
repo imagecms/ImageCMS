@@ -1,6 +1,6 @@
 <?php
 // Here you can initialize variables that will be available to your tests
-class initTest{
+class InitTest{
     public function login($I) {
         $userName = 'ad@min.com';
         $password = 'admin';
