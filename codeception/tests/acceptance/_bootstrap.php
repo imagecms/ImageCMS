@@ -3,7 +3,7 @@
 class initTest{
     public function login($I) {
         $userName = 'ad@min.com';
-        $password = "admin";
+        $password = 'admin';
         $I->wantTo('log in as admin');
         $I->amOnPage('/admin/login');
         $I->appendField('login', $userName);
