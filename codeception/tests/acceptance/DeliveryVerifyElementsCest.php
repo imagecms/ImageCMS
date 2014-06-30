@@ -18,8 +18,13 @@ class DeliveryVerifyElementsCest
     public function DeliveryListElements(AcceptanceTester $I)
     {
         $I->see("Список способов доставки","span.title");
-        $I->see("Создать способ доставки",  DeliveryPage::$ListCreateButton);
+        $gi = $I->see("Создать способ доставки",  DeliveryPage::$ListCreateButton);
+        
+        var_dump($gi);
         $I->checkOption(DeliveryPage::ListCheckboxLine(1));
+        $text = $I->grabTextFrom(DeliveryPage::ListPriceLine(1));
+        if ($text)  $I->comment($text);
+        
         
     }
 //    public function DeliveryCreateElements(AcceptanceTester $I)
