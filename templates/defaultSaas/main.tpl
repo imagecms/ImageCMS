@@ -107,20 +107,10 @@
                 <!-- START SIDEBAR -->
                 <div id="sidebar">
                     <a href="{site_url('saas/support')}">{lang('Техническая поддержка', 'defaultSaas')}</a>
-                    <br><br>
-                    <div class="box">
-                        <h4 class="title"><span>Новости компании</span></h4>
-                        <div class="content">
-                            {widget('news')}
-                        </div>
-                    </div>
-                    <div class="box">
-                        <h4 class="title"><span>Последнее из блога</span></h4>
-                        <div class="content">
-                            {widget('blog')}
-                        </div>
-                    </div>
-                    <div class="box"><a href="/rss" class="button1">Подписаться на блог</a></div>
+                    </br>
+                    </br>
+                    <a href="{site_url('additional-services/order')}">{lang('Дополнительные услуги', 'defaultSaas')}</a>
+                    </br>
                 </div>
                 <!-- END SIDEBAR -->
 
