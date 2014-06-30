@@ -1,9 +1,4 @@
 <?php
-class NavBarPage
-{
-
-
-}
 use \AcceptanceTester;
 class DeliveryVerifyElementsCest
 {
@@ -20,7 +15,20 @@ class DeliveryVerifyElementsCest
     }
 
     // tests
-    public function tryToTest(AcceptanceTester $I)
+    public function DeliveryListElements(AcceptanceTester $I)
     {
-    }
+        $I->see("Список способов доставки","span.title");
+        $I->see("Создать способ доставки",  DeliveryPage::$ListCreateButton);
+        }
+    public function DeliveryCreateElements(AcceptanceTester $I)
+    {
+        $I->see("Список способов доставки","span.title");
+        $I->see("Создать способ доставки",  DeliveryPage::$ListCreateButton);
+        }
+        
+    public function DeliveryEditElements(AcceptanceTester $I)
+    {
+        $I->see("Список способов доставки","span.title");
+        $I->see("Создать способ доставки",  DeliveryPage::$ListCreateButton);
+        }
 }
