@@ -10,7 +10,7 @@ if (!defined('BASEPATH'))
  * @copyright (c) 2014, ImageCMS
  * @package ImageCMSModule
  */
-class Yandex_market extends ShopController {
+class Hotline extends ShopController {
 
     protected $offers = array();
     protected $categories = array();
