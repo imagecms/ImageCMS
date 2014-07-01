@@ -148,20 +148,24 @@ $('#categories').on('click', function() {
                         url: '/admin/components/cp/hotline/getProperties/empty',
                         success: function(data) {
                             $('.controls11 .but_clear').before(data);
+                                        $('.controls1 .del_item').on('click', function() {
+                $(this).parent().parent().remove();
+            });
                         }
                 });          
                 
             });
                 $(' .save_btn').on('click', function() {
                 var str = $("#settings_form_properties").serialize();
+                var msg2 = $( "#categories option:selected" ).val();
                 $.ajax({
                     type: 'POST',
                     url: '/admin/components/cp/hotline/setProperties',
-                    data: {settings_form_properties:str},
+                    data: {settings_form_properties:str, category:msg2},
                         });
                  });                 
-            $('.controls1 .icon-remove-circle').on('click', function() {
-                $(this).parent().remove();
+            $('.controls1 .del_item').on('click', function() {
+                $(this).parent().parent().remove();
             });
           }
         });
