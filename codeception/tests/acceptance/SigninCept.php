@@ -9,7 +9,6 @@ $I->appendField('login', $userName);
 $I->appendField('password', 'admin');
 $I->click('Войти');
 $I->seeInCurrentUrl('/components/run/shop/dashboard');
-
 //$I->amOnPage('/admin/');
 //$I->click('//nav/ul/li[3]/a');
 //$I->click('//nav/ul/li[3]/ul/li[1]/a');
@@ -23,5 +22,5 @@ $I->seeInCurrentUrl('/components/run/shop/dashboard');
 //
 //sleep('5');
 
-
+$I->see
 ?>
