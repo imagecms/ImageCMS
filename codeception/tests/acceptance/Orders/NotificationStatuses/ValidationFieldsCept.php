@@ -1,0 +1,3 @@
+<?php
+InitTest::login($I);
+
