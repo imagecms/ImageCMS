@@ -1,17 +1,14 @@
 <?php
 use \AcceptanceTester;
-
 class DeliveryVerifyElementsCest
 {
 //    public function _before(AcceptanceTester $I)
 //    {
 //    }
-//
 //    public function _after()
 //    {
 //    }
 
-    // tests
     /**
      * @group verify
      */
@@ -37,13 +34,10 @@ class DeliveryVerifyElementsCest
         $I->see("Цена", DeliveryPage::$ListPriceHeader);
         $I->see("Бесплатен от",  DeliveryPage::$ListFreeFromHeader);
         $I->see("Активный", DeliveryPage::$ListActiveButton);
-        //$I->executeJS("document.getElementsByTagName('tbody')[0].getElementsByTagName('tr').length");
-        $I->executeInSelenium(function(\WebDriver $wd){
-            //$wd->;
-        });
+        
     }
     /**
-     * @group verifyi
+     * @group verify
      */
 
     public function DeliveryDeleteWindow (AcceptanceTester $I){
@@ -58,18 +52,20 @@ class DeliveryVerifyElementsCest
     }
     
     /**
-     * @group verifyi
+     * @group verify
      */
     public function DeliveryCreateElements(AcceptanceTester $I)
     {
         $I->wantTo("Verifyy all elements in Delivery Create page");
         //InitTest::ClearAllCach($I);
+        $I->wait('1');
         $I->click(DeliveryPage::$ListCreateButton);
         $I->waitForText("Создание способа доставки",'30','.title');
         $I->see("Создание способа доставки",'.title');
         $I->see("Создание способа доставки","//thead/tr/th");
-        
-        }
+        $I->see("Название: *", DeliveryCreate::$FieldNameLabel);
+        $I->see("Описание",  DeliveryCreate::$FieldDescriptionLabel);
+    }
     /**
      *@group verifyi
      */    
