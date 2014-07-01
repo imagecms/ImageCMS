@@ -400,6 +400,7 @@ class Languages extends BaseAdminController {
             /* Rename languages folders */
             if (($lang['locale'] !== $post_locale) && $post_locale) {
                 $this->renameLocaleFolders($lang['locale'], $post_locale);
+                $this->createLanguageFolders($post_locale);
             }
 //            $this->deleteLanguageFolders2($post_locale);
 
