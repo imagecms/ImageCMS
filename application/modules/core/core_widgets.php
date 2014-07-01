@@ -56,7 +56,7 @@ class Core_Widgets extends MY_Controller {
 
                 // Truncate text
                 if ($settings['max_symdols'] > 0 AND mb_strlen($news[$i]['prev_text'], 'utf-8') > $settings['max_symdols']) {
-                    $news[$i]['prev_text'] = strip_tags(mb_substr($news[$i]['prev_text'], 0, $settings['max_symdols'], 'utf-8')) . '...';
+                    $news[$i]['prev_text'] = mb_substr(strip_tags($news[$i]['prev_text']), 0, $settings['max_symdols'], 'utf-8') . '...';
                 }
             }
 
