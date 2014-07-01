@@ -57,14 +57,16 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {foreach $langs as $lang}                                  
+                                    {foreach $langs as $key => $lang}                                  
                                         <tr class="simple_tr">
                                             <td class="t-a_c">
-                                                <span class="frame_label">
-                                                    <span class="niceCheck b_n">
-                                                        <input type="checkbox" name="ids" value="{$lang.id}"/>
+                                                {if $key > 1}
+                                                    <span class="frame_label">
+                                                        <span class="niceCheck b_n">
+                                                            <input type="checkbox" name="ids" value="{$lang.id}"/>
+                                                        </span>
                                                     </span>
-                                                </span>
+                                                {/if}
                                             </td>
                                             <td>
                                                 <p>

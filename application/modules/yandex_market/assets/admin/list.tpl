@@ -27,7 +27,8 @@
                                             <div class="inside_padd" >
                                                 <div class="control-group" >
                                                     <label class="control-label">{lang('Displayed categories selection','admin')}:</label>
-                                                    {$holder = ShopCore::app()->SSettings->getSelectedCats()}
+                                                    {$hold = new Admin()}
+                                                    {$holder = $hold->getSelectedCats()}
                                                     {$categories = ShopCore::app()->SCategoryTree->getTree()}
                                                     <div class="controls">
                                                         <select name="displayedCats[]" multiple="multiple" style="width:285px;height:129px;">
@@ -38,16 +39,17 @@
                                                             {/foreach}
                                                         </select>
                                                     </div>
-
                                                     <div class="controls">
                                                         <span class="frame_label no_connection">
                                                             <span class="niceCheck b_n">
-                                                                {$isAdult = ShopCore::app()->SSettings->getIsAdult()}
-                                                                <input type="checkbox" name="yandex[isAdult]" value="1"{if $isAdult == 1}checked="checked"{/if} id="yandex[isAdult]" />
+                                                                {$adult = new Admin()}
+                                                                {$isAdult = $adult->IsAdult()} 
+                                                                <input type="checkbox" name="yandex[isAdult]" value="1"{if $isAdult['value'] == 1}checked="checked"{/if} id="yandex[isAdult]" />
                                                             </span>
                                                             {lang('Adult products','admin')}
                                                         </span>
                                                     </div>
+
                                                 </div>
                                             </div>
                                         </td>
@@ -71,7 +73,6 @@
                                 </tbody>
                             </table>
                             </form>
- 
     </section>
                                                 
 </form>                                               

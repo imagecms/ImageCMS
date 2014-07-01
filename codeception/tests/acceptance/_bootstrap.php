@@ -1,9 +1,9 @@
 <?php
 // Here you can initialize variables that will be available to your tests
-class initTest{
-    public function login($I) {
+class InitTest{
+    public static function login($I) {
         $userName = 'ad@min.com';
-        $password = "admin";
+        $password = 'admin';
         $I->wantTo('log in as admin');
         $I->amOnPage('/admin/login');
         $I->appendField('login', $userName);
@@ -15,3 +15,4 @@ class initTest{
     } 
     
 }
+\Codeception\Util\Autoload::registerSuffix('Page', __DIR__.DIRECTORY_SEPARATOR.'_pages');

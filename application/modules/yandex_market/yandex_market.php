@@ -16,20 +16,12 @@ class Yandex_market extends ShopController {
     protected $categories = array();
     protected $currencyCode;
     protected $settings;
-    protected $adult = FALSE;
 
     public function __construct() {
         $this->currencyCode = SCurrenciesQuery::create()->filterByIsDefault(true)->findOne()->getCode();
         $this->settings = $this->cms_base->get_settings();
 
-        try {
-            if (!is_callable('SSettings::getIsAdult')) {
-                throw new Exception;
-            }
-            $this->adult = ShopCore::app()->SSettings->getIsAdult();
-        } catch (Exception $exc) {
-            $this->adult = FALSE;
-        }
+
 
         parent::__construct();
     }
@@ -46,6 +38,7 @@ class Yandex_market extends ShopController {
     }
 
     public function genreYML() {
+        
         header('content-type: text/xml');
         $ci = ShopCore::$ci;
         $pictureBaseUrl = base_url() . "uploads/shop/products/main/";
@@ -73,12 +66,16 @@ class Yandex_market extends ShopController {
                     }
 
                     $this->offers[$unique_id]['name'] = $this->forName($p->getName(), $v->getName());
-                    $this->offers[$unique_id]['vendor'] = $p->getBrand() ? htmlspecialchars($p->getBrand()->getName()) : '';
-                    $this->offers[$unique_id]['vendorCode'] = $v->getNumber() ? htmlspecialchars($v->getNumber()) : '';
+                    $this->offers[$unique_id]['vendor'] = $p->getBrand() ? htmlspecialchars($p->getBrand()->getName()) : ' ';
+                    $this->offers[$unique_id]['vendorCode'] = $v->getNumber() ? htmlspecialchars($v->getNumber()) : ' ';
                     $this->offers[$unique_id]['description'] = htmlspecialchars($p->getFullDescription());
-                    if ($this->adult) {
-                        $this->offers[$unique_id]['adult'] = 'true';
-                    }
+                    
+                    $this->db->select('value');
+                    $this->db->where('id', 1); 
+                    $query = $this->db->get('mod_yandex_market_adalt');
+                    $adalt = $query->row_array();
+                        if($adalt['value'] == 1){
+                        $this->offers[$unique_id]['adult'] = 'true';}
                     $this->offers[$unique_id]['param'] = $param;
                 }
             }
@@ -116,30 +113,15 @@ class Yandex_market extends ShopController {
     }
 
     public function renderCategories() {
-        $categories = SCategoryQuery::create()->filterById(ShopCore::app()->SSettings->getSelectedCats())
-                ->find();
 
+           
         echo "<categories>";
-        foreach ($categories as $c) {
+        foreach ($this->categories as $c) {
             $parent = '';
-            if ($c->getParentId() > 0) {
-                $parent = ' parentId="' . $c->getParentId() . '"';
+            if ($c['parent_id'] > 0) {
+                $parent = ' parentId="' . $c['parent_id'] . '"';
             }
-            echo '<category id="' . $c->getId() . '"' . $parent . '>' . encode($c->getName()) . '</category>' . "\n";
-        }
-        echo "</categories>";
-    }
-    public function renderCategoriesHotline() {
-        $categories = SCategoryQuery::create()->filterById(ShopCore::app()->SSettings->getSelectedCats())
-                ->find();
-
-        echo "<categories>";
-        foreach ($categories as $c) {
-            $parent = '';
-            if ($c->getParentId() > 0) {
-                $parent = '<parentId>' . $c->getParentId() . '</parentId>';
-            }
-            echo '<category><id>' . $c->getId() . '</id>' . $parent . '<name>' . encode($c->getName()) . '</name></category>' . "\n";
+            echo '<category id="' . $c['id'] . '"' . $parent . '>' . encode($c['name']) . '</category>' . "\n";
         }
         echo "</categories>";
     }
@@ -166,9 +148,24 @@ class Yandex_market extends ShopController {
         }
     }
     public function getProducts() {
+        $this->db->select('value');
+        $this->db->where('id', 1); 
+        $query = $this->db->get('mod_yandex_market');
+        $arr = $query->row_array();
+        $arr = unserialize($arr['value']); 
+        $names = array(implode($arr, ','));
+          
+                       $query = $this->db->query("
+                           SELECT shop_category.id, shop_category.parent_id, shop_category_i18n.name  FROM shop_category
+                           LEFT JOIN shop_category_i18n ON (shop_category_i18n.id = shop_category.id)
+                           WHERE shop_category.id IN (" . $names[0] ." ) AND shop_category_i18n.locale = 'ru'
+                        ");
+                        
+                       $this->categories = $query->result_array();
+                                       
         $Ids = $this->db
                 ->select('id')
-                ->where_in('category_id', ShopCore::app()->SSettings->getSelectedCats())
+                ->where_in('category_id', $arr)
                 ->get('shop_products')
                 ->result_array();
 
