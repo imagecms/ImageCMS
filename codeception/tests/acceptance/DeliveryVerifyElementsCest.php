@@ -4,10 +4,6 @@ class DeliveryVerifyElementsCest
 {
 //    public function _before(AcceptanceTester $I)
 //    {
-//        InitTest::login($I);
-//        $I->click(NavigationBarPage::$Settings);
-//        $I->click(NavigationBarPage::$SettingsDelivery);
-//        $I->waitForText("Список способов доставки");
 //    }
 //
 //    public function _after()
@@ -15,13 +11,22 @@ class DeliveryVerifyElementsCest
 //    }
 
     // tests
-    public function DeliveryListElements(AcceptanceTester $I)
-    {
+    /**
+     * @group verify
+     */
+    public function Autorization(AcceptanceTester $I){
         //Login & go to page DeliveryList
         InitTest::login($I);
         $I->click(NavigationBarPage::$Settings);
         $I->click(NavigationBarPage::$SettingsDelivery);
         $I->waitForText("Список способов доставки");
+    }
+    /**
+     * @group verify
+     */
+    public function DeliveryListElements(AcceptanceTester $I)
+    {
+        
         //Verification
         $I->wantTo("Verify all elements in Delivery list landing page");
         $I->see("Список способов доставки","span.title");
@@ -35,16 +40,23 @@ class DeliveryVerifyElementsCest
         $I->see("Активный", DeliveryPage::$ListActiveButton);
 
     }
+    
+    /**
+     * @group verify
+     */
     public function DeliveryCreateElements(AcceptanceTester $I)
     {
         $I->wantTo("Verifyy all elements in Delivery Create page");
-        //$I->click(DeliveryPage::$ListCreateButton);
         InitTest::ClearAllCach($I);
+        $I->click(DeliveryPage::$ListCreateButton);
+        $I->waitForText("Создание способа доставки",'30','.title');
+
         }
-        
-//    public function DeliveryEditElements(AcceptanceTester $I)
-//    {
-//        $I->see("Список способов доставки","span.title");
-//        $I->see("Создать способ доставки",  DeliveryPage::$ListCreateButton);
-//        }
+    /**
+     *@group verify 
+     */    
+    public function DeliveryEditElements(AcceptanceTester $I)
+    {
+        $I->see("");
+    }
 }
