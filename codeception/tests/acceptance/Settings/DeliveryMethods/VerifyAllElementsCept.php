@@ -1,8 +1,4 @@
 <?php
-class NavButtons{
-    public static $NavSettings = "//nav/ul/li[8]/a";
-    public static $NavSettingsDelivery = "//nav/ul/li[8]/ul/li[3]/a";
-}
 class DeliveryListElements{
     public static $listPage = 'http://cmsprem.loc/admin/components/run/shop/deliverymethods/index';
     public static $listCreateButton = '.btn.btn-small.btn-success.pjax';
