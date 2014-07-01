@@ -50,42 +50,45 @@
         }
     {/literal}
 </style>
-{$result = $CI->session->flashdata('result');}
+{if $form}
+    {$result = $CI->session->flashdata('result');}
 
-<form action="{site_url('saas/additional_services_order')}" method="post" enctype="multipart/form-data">
-    {if $result}
-        {if $result['errors']}
-            <div class="errors">
-                {echo $result['errors']}
-            </div>
+    <form action="{site_url('saas/additional_services_order')}" method="post" enctype="multipart/form-data">
+        {if $result}
+            {if $result['errors']}
+                <div class="errors">
+                    {echo $result['errors']}
+                </div>
+            {/if}
+
+            {if $result['success']}
+                <div class="success">
+                    {echo $result['success']}
+                </div>
+            {/if}
         {/if}
 
-        {if $result['success']}
-            <div class="success">
-                {echo $result['success']}
+        <div class="items">
+
+            {foreach $form->asArray() as $f}
+                <div class="item {echo $f.info.type}">
+                    {$f.label}
+                    <div>
+
+                    {$f.field} {if $f.info.type == 'checkbox'} {echo strip_tags($f.info.initial)}{/if}
+
+                    {$f.help_text}
+                </div>
             </div>
-        {/if}
-    {/if}
 
-    <div class="items">
-
-        {foreach $form->asArray() as $f}
-            <div class="item {echo $f.info.type}">
-                {$f.label}
-                <div>
-
-                {$f.field} {if $f.info.type == 'checkbox'} {echo strip_tags($f.info.initial)}{/if}
-
-                {$f.help_text}
-            </div>
-        </div>
-
-    {/foreach}
-    {$hf}
-    {form_csrf()}
-    <input type="file" name="attachment">
-    <input type="submit" value="{echo lang('Отправить', 'saas')}">
-</div>
+        {/foreach}
+        {$hf}
+        {form_csrf()}
+        <input type="file" name="attachment">
+        <input type="submit" value="{echo lang('Отправить', 'saas')}">
+    </div>
 </form>
-
+{else:}
+    {lang('Empty page.', 'saas')}
+{/if}
 
