@@ -8,7 +8,7 @@ class DeliveryPage
      * and functions which returns element locator in current line
      */
     //Variables
-    public static $ListCreateButton = ".btn.btn-small.btn-success.pjax";
+    public static $ListCreateButton = "//*[@id='mainContent']/div/section/div[1]/div[2]/div/a";
     public static $ListDeleteButton = ".btn.btn-small.btn-danger.action_on";
     public static $ListCheckboxHeader = "//table/thead/tr/th[1]/span/span";
     public static $ListIDHeader = "//table/thead/tr/th[2]";
@@ -47,7 +47,6 @@ class DeliveryPage
         return $ListActiveButton;
     }
 }
-<<<<<<< HEAD
 class DeliveryCreate
 {
     public static $FieldNameLabel = "//*[@id='createDelivery']/div[1]/label";
@@ -66,10 +65,9 @@ class DeliveryCreate
     public static $CheckboxPriceSpecified = "//*[@id='deliverySumSpecifiedSpan']";
     public static $PaymentLabel = "//*[@id='mainContent']/div/section/div[2]/table/tbody/tr/td/div/div/div[3]/div[1]";
     public static function PaymentMethodLabel($row){
-        $Payment = $row;
+        $Payment = "//tbody/tr/td/div/div/div[3]/div[2]/div[$row]/button";
         return $Payment;
     }
          
 }
-=======
->>>>>>> 89ec5b858602c8328f1a0bcfc092e96daa4b8266
+
