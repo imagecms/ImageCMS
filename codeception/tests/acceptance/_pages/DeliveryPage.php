@@ -16,6 +16,11 @@ class DeliveryPage
     public static $ListPriceHeader = "//table/thead/tr/th[4]";
     public static $ListFreeFromHeader = "//table/thead/tr/th[5]";
     public static $ListActiveButton = "//table/thead/tr/th[6]";
+    //Delete Window
+    public static $Deletewindow = ".modal.hide.fade.modal_del.in";
+    public static $DeleteWindowDelete = ".btn.btn-primary";
+    public static $DeleteWindowBack = ".//*[@id='mainContent']/div/div[1]/div[3]/a[2]";
+    public static $DeleteWindowX = ".close";
     //Functions
     public static function ListCheckboxLine($row){
         $ListCheckboxLine  = "//table/tbody/tr[$row]/td[1]/span/span";
@@ -41,4 +46,27 @@ class DeliveryPage
         $ListActiveButton = "//table/tbody/tr[$row]/td[6]/div/span";
         return $ListActiveButton;
     }
+}
+class DeliveryCreate
+{
+    public static $FieldNameLabel = "//*[@id='createDelivery']/div[1]/label";
+    public static $FieldName = ".//*[@id='Name']";
+    public static $CheckboxActiveLabel = "//form[@id='createDelivery']/div[2]/div[2]/span";
+    public static $CheckboxActive = "//*[@id='createDelivery']/div[2]/div[2]/span/span";
+    public static $FieldDescriptionLabel = "//*[@id='createDelivery']/div[3]/label";
+    public static $FieldDescription = ".//*[@id='Description']";
+    public static $FieldDescriptionPriceLabel = ".//*[@id='createDelivery']/div[4]/label";
+    public static $FieldDescriptionPrice = "//*[@id='priceDescription']";
+    public static $FieldPriceLabel = "//*[@id='deliveryPriceDisableBlock']/div[1]/label";
+    public static $FieldPrice = "//*[@id='Price']";
+    public static $FieldFreeFromLabel = "//*[@id='deliveryPriceDisableBlock']/div[2]/label";
+    public static $FieldFreeFrom = "//*[@id='FreeFrom']";
+    public static $CheckboxPriceSpecifiedLabel = "//*[@id='deliveryPriceDisableBlock']/div[2]/div[2]/span";
+    public static $CheckboxPriceSpecified = "//*[@id='deliverySumSpecifiedSpan']";
+    public static $PaymentLabel = "//*[@id='mainContent']/div/section/div[2]/table/tbody/tr/td/div/div/div[3]/div[1]";
+    public static function PaymentMethodLabel($row){
+        $Payment = $row;
+        return $Payment;
+    }
+         
 }
