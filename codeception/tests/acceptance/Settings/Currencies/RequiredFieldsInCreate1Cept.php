@@ -8,3 +8,5 @@ $I->see('Это поле обязательное.', './/*[@id="cur_cr_form"]/ta
 $I->see('Это поле обязательное.', './/*[@id="cur_cr_form"]/table/tbody/tr/td/div/div[2]/div/label');
 $I->see('Это поле обязательное.', './/*[@id="cur_cr_form"]/table/tbody/tr/td/div/div[3]/div/label');
 $I->see('Это поле обязательное.', './/*[@id="mod_name"]/div/label');
+$I->click('.//*[@id="mainContent"]/section/div[1]/div[2]/div/a/span[2]');
+$I->waitForText('Список валют');

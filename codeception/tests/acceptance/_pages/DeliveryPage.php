@@ -47,6 +47,7 @@ class DeliveryPage
         return $ListActiveButton;
     }
 }
+<<<<<<< HEAD
 class DeliveryCreate
 {
     public static $FieldNameLabel = "//*[@id='createDelivery']/div[1]/label";
@@ -70,3 +71,5 @@ class DeliveryCreate
     }
          
 }
+=======
+>>>>>>> 89ec5b858602c8328f1a0bcfc092e96daa4b8266
