@@ -6,6 +6,7 @@ class NavigationBarPage
     //Настройки
     public static $Settings = "//nav/ul/li[8]/a";
     public static $SettingsDelivery = "//nav/ul/li[8]/ul/li[3]/a";
+
     //Заказы
     public static $Orders = "//nav/ul/li[2]/a";
     public static $OrdersList = "//ul/li[2]/ul/li[2]/a";
