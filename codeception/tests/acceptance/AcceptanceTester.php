@@ -1,5 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 <?php //[STAMP] 11c42ab51e090ed41039b4b0e479d97d
+
 
 
 
@@ -1530,6 +1532,17 @@ class AcceptanceTester extends \Codeception\Actor
      */
     public function dontSeeInTitle($title) {
         return $this->scenario->runStep(new \Codeception\Step\Assertion('dontSeeInTitle', func_get_args()));
+    }
+
+ 
+    /**
+     * [!] Method is generated. Documentation taken from corresponding module.
+     *
+     *
+     * @see \Codeception\Module\AcceptanceHelper::grabTagCount()
+     */
+    public function grabTagCount($I, $tags, $position = null) {
+        return $this->scenario->runStep(new \Codeception\Step\Action('grabTagCount', func_get_args()));
     }
 
  

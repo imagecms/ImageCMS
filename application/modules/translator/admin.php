@@ -69,6 +69,7 @@ class Admin extends BaseAdminController {
     }
 
     public function settings() {
+        
         if ($_POST) {
             $settings = $this->input->post('settings');
             updateSettings($settings);
