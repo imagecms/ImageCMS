@@ -18,9 +18,12 @@ class DeliveryVerifyElementsCest
         $I->click(NavigationBarPage::$Settings);
         $I->click(NavigationBarPage::$SettingsDelivery);
         $I->waitForText("Список способов доставки");
+        //
+        //InitTest::a($I, "tbody", "tr");
+        $I->comment(InitTest::TagCount($I,"tbody tr"));
     }
     /**
-     * @group verify
+     * @group verifyi
      */
     public function DeliveryListElements(AcceptanceTester $I)
     {
@@ -37,7 +40,7 @@ class DeliveryVerifyElementsCest
         
     }
     /**
-     * @group verify
+     * @group verifyi
      */
 
     public function DeliveryDeleteWindow (AcceptanceTester $I){
@@ -52,7 +55,7 @@ class DeliveryVerifyElementsCest
     }
     
     /**
-     * @group verify
+     * @group verifyi
      */
     public function DeliveryCreateElements(AcceptanceTester $I)
     {
@@ -63,14 +66,40 @@ class DeliveryVerifyElementsCest
         $I->waitForText("Создание способа доставки",'30','.title');
         $I->see("Создание способа доставки",'.title');
         $I->see("Создание способа доставки","//thead/tr/th");
-        $I->see("Название: *", DeliveryCreate::$FieldNameLabel);
-        $I->see("Описание",  DeliveryCreate::$FieldDescriptionLabel);
+        $I->see("Название: *", DeliveryCreatePage::$FieldNameLabel);
+        $I->see("Описание",  DeliveryCreatePage::$FieldDescriptionLabel);
+        $I->see("Описание цены доставки", DeliveryCreatePage::$FieldDescriptionPriceLabel);
+        $I->see("Цена доставки",DeliveryCreatePage::$FieldPriceLabel);
+        $I->see("Бесплатен от", DeliveryCreatePage::$FieldFreeFromLabel);
+        $I->see("Цена уточняется", DeliveryCreatePage::$CheckboxPriceSpecifiedLabel);
+        $I->click(DeliveryCreatePage::$CheckboxPriceSpecified);
+        $I->waitForElementVisible(DeliveryCreatePage::$FieldPriceSpecified);
+        $I->see("Сообщение про уточнение цены:",  DeliveryCreatePage::$FieldPriceSpecifiedLabel);
+        $I->see("Создать и выйти",DeliveryCreatePage::$ButtonCreateExit);
+        $I->see("Создать",DeliveryCreatePage::$ButtonCreate);
+        $I->see("Вернуться",DeliveryCreatePage::$ButtonBack);
+        $I->click(DeliveryCreatePage::$ButtonBack);
+        $I->waitForText("Список способов доставки");
     }
     /**
      *@group verifyi
      */    
     public function DeliveryEditElements(AcceptanceTester $I)
     {
-        $I->see("");
+        $I->wantTo("Verifyy all elements in Delivery Edit page");
+        $I->wait("1");
+        $method = $I->grabTextFrom(DeliveryPage::ListMethodLine(1));
+        $I->comment("Selected method is: $method");
+        $I->click($method);
+        $I->waitForText("Редактирование способа доставки: $method");
+
     }
-}
+}/*
+        $I->executeJS("var container = document.createElement('input');
+	container.id = 'length';
+	container.value = document.getElementsByTagName(\"tbody\")[0].getElementsByTagName(\"tr\").length;
+	document.body.insertBefore(container, document.body.firstChild)");
+        $I->wait("3");
+        $lines = $I->grabValueFrom('#length');
+        $I->comment((string)$lines);
+*/
