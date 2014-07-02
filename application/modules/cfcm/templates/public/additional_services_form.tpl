@@ -1,55 +1,3 @@
-<style>
-    {literal}
-        .item:nth-child(odd){
-            float: left;
-            clear: both;
-        }
-        .item:nth-child(even){
-            float: right;
-        }
-        div.items{
-            width: 80%;
-            margin-top: 28px;
-            padding-right: 120px;
-            padding-left: 20px;
-            height: 340px;
-            background-color: #f8f8f8;
-        }
-        div.item.textarea{
-            clear: both;
-            top: 40px;
-            position: relative;
-            width: 100%;
-        }
-        div.item.textarea  textarea{
-            width: 100%;
-            margin-top: 10px;
-            min-height: 100px;
-            border-color: gray;
-        }
-
-        input[type="submit"]{
-            float: left;
-            clear: both;
-            margin-top: 20px;
-        }
-
-        input[type="file"]{
-            float: left;
-            margin-top: 60px;
-        }
-
-        form > div.errors, form > div.success{
-            padding-left: 20px;
-            padding-top: 1px;
-        }
-
-        form > div.success{
-            color: green;
-            padding-top: 10px;
-        }
-    {/literal}
-</style>
 {if $form}
     {$result = $CI->session->flashdata('result');}
 
@@ -68,27 +16,40 @@
             {/if}
         {/if}
 
-        <div class="items">
-
+        <div class="group-checkboxes default-patch m-b_10 clearfix">
             {foreach $form->asArray() as $f}
-                <div class="item {echo $f.info.type}">
-                    {$f.label}
-                    <div>
+                {if $f.info.type == 'checkbox'}
+                    <div class="frame-checkbox">
+                        <input type="checkbox" id="{echo $f.name}" name="{echo $f.name}" value="{echo strip_tags($f.info.initial)}"/>
+                        <label for="{echo $f.name}">
+                            <span class="title">{$f.info.label},</span> 
+                            <span class="price">
+                                {if $f.info.type == 'checkbox'}
+                                    {echo strip_tags($f.info.initial)}
+                                {/if}
+                            </span>
+                        </label>
+                    </div>
+                {/if}
 
-                    {$f.field} {if $f.info.type == 'checkbox'} {echo strip_tags($f.info.initial)}{/if}
-
-                    {$f.help_text}
-                </div>
-            </div>
-
-        {/foreach}
+                {if $f.info.type == 'textarea'}
+                    <textarea id="{echo $f.name}" name="{echo $f.name}" placeholder="{echo $f.info.label}&hellip;" class="m-b_15">{echo strip_tags($f.info.initial)}</textarea>
+                {/if}
+            {/foreach}
+        </div>
         {$hf}
         {form_csrf()}
-        <input type="file" name="attachment">
-        <input type="submit" value="{echo lang('Отправить', 'saas')}">
-    </div>
-</form>
+        <div class="footer-panel clearfix">
+            <button type="submit" class="btn btn-primary f_l">
+                <span class="text-el">Отправить</span>
+            </button>
+            <div class="hidden-type-file f_r btn-attach-file2 btn">
+                <span class="icon-attach"></span>
+                <span class="text-el">Прикрепить</span>
+                <input type="file" name="attachment" title="Выберете файл"/>
+            </div>
+        </div>
+    </form>
 {else:}
     {lang('Empty page.', 'saas')}
 {/if}
-
