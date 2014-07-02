@@ -56,8 +56,8 @@
                                                         </select>
                                                     </div>
                                                     <form id="settings_form_properties" name="settings_form_properties" action="/admin/components/cp/hotline/update" method="post">
-                                                    <div class="controls1" style="float:left; width:400px;margin-left:20px;">
-                                                        <div class="controls11" style="border:1px solid red;overflow:hidden;">
+                                                    <div class="controls1" style="float:left; width:480px;margin-left:20px;">
+                                                        <div class="controls11" style="overflow:hidden;">
         
                                                         </div> 
                                                         
@@ -81,7 +81,7 @@
                                         <td>
                                             <div class="inside_padd">
                                                 <div class="control-group">
-                                                    <a href="{site_url('yandex_market/genreyml')}" target="_blank">{lang('XML document','admin')}</a>
+                                                    <a href="{site_url('hotline/genreyml')}" target="_blank">{lang('XML document','admin')}</a>
                                                 </div>
                                             </div>
                                         </td>
