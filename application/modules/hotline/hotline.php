@@ -38,8 +38,7 @@ class Hotline extends ShopController {
     }
 
     public function genreYML($indicator = null) {
-        
-        header('content-type: text/xml');
+       header('content-type: text/xml');
         $ci = ShopCore::$ci;
         $pictureBaseUrl = base_url() . "uploads/shop/products/main/";
         
@@ -60,13 +59,20 @@ class Hotline extends ShopController {
                     if ($indicator == 1){
                         $vendor = $p->getBrand() ? htmlspecialchars($p->getBrand()->getName()) : ' ';
                         $name = $this->forName($p->getName(), $v->getName());
-                        
-                                    $this->db->select('property_id');
-                                    $this->db->where('category_id', $p->getCategoryId()); 
-                                    $query = $this->db->get('mod_hotline_categories');
-                                    $arr = $query->result_array();
-                        
-                        $this->offers[$unique_id]['name'] = $vendor .' '. $name;
+                           $query = $this->db->query("
+                           SELECT shop_product_properties_data.value  FROM mod_hotline_properties
+                           LEFT JOIN shop_product_properties_data ON (mod_hotline_properties.property_id = shop_product_properties_data.property_id)
+                           WHERE shop_product_properties_data.product_id = " . $p->getId() ."  and category_id = " . $p->getCategoryId() ." 
+                        ");
+
+                        $arr = $query->result_array();
+                        $properties ='';
+                        foreach ($arr as $value) {
+                            $properties .= $value['value']. ' ';
+                            
+                        }
+                    
+                        $this->offers[$unique_id]['name'] = $vendor .' '. $p->getName() .' '. $v->getNumber() . ' ' .$properties;
                     }
                     $this->offers[$unique_id]['vendor'] = $p->getBrand() ? htmlspecialchars($p->getBrand()->getName()) : ' ';
                     $this->offers[$unique_id]['code'] = $v->getNumber() ? htmlspecialchars($v->getNumber()) : ' ';

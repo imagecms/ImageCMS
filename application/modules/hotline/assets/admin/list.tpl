@@ -3,11 +3,11 @@
                         <div class="frame_title clearfix">
                             <div class="pull-left">
                                 <span class="help-inline"></span>
-                                <span class="title">{lang('Hotline management', 'admin')}</span>
+                                <span class="title">{lang('Hotline management', 'hotline')}</span>
                             </div>
                             <div class="pull-right">
                                 <div class="d-i_b">
-                                    <button type="button" class="btn btn-small btn-primary action_on formSubmit" data-form="#settings_form"><i class="icon-ok"></i>{lang('Save','admin')}</button>
+                                    <button type="button" class="btn btn-small btn-primary action_on formSubmit" data-form="#settings_form"><i class="icon-ok"></i>{lang('Save','hotline')}</button>
                                         {echo create_language_select(ShopCore::$ci->cms_admin->get_langs(true), $locale, "/admin/components/run/shop/settings/index")}
                                 </div>
                             </div>                            
@@ -17,7 +17,7 @@
                                 <thead>
                                     <tr>
                                         <th colspan="6">
-                                            {lang('Settings Hotline','admin')}
+                                            {lang('Settings Hotline','hotline')}
                                         </th>
                                     </tr>
                                 </thead>
@@ -26,7 +26,7 @@
                                         <td colspan="6">
                                             <div class="inside_padd" >
                                                 <div class="control-group" >
-                                                    <label class="control-label">{lang('Displayed categories selection','admin')}:</label>
+                                                    <label class="control-label">{lang('Displayed categories selection','hotline')}:</label>
                                                     {$hold = new Admin()}
                                                     {$holder = $hold->getSelectedCats()}
                                                     {$categories = ShopCore::app()->SCategoryTree->getTree()}
@@ -42,7 +42,7 @@
                                                 </div>
                           </form> 
                                                 <div class="controls_total" style="overflow:hidden; padding-bottom:20px;">
-                                                    <label class="control-label">{lang('Selected categories','admin')}:</label>
+                                                    <label class="control-label">{lang('Selected categories','hotline')}:</label>
                                                     {$hold = new Admin()}
                                                     {$holder = $hold->getSelectedCats()}
                                                     {$categories = ShopCore::app()->SCategoryTree->getTree()}
@@ -74,14 +74,14 @@
                                                         
                             <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
                                 <thead>
-                                <th>{lang('Hotline document','admin')}</th>
+                                <th>{lang('Hotline document','hotline')}</th>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td>
                                             <div class="inside_padd">
                                                 <div class="control-group">
-                                                    <a href="{site_url('hotline/genreyml')}" target="_blank">{lang('XML document','admin')}</a>
+                                                    <a href="{site_url('hotline/genreyml')}" target="_blank">{lang('XML document','hotline')}</a>
                                                 </div>
                                             </div>
                                         </td>
