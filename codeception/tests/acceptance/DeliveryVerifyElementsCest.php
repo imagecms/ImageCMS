@@ -20,7 +20,9 @@ class DeliveryVerifyElementsCest
         $I->waitForText("Список способов доставки");
         //
         //InitTest::a($I, "tbody", "tr");
-        $I->comment(InitTest::TagCount($I,"tbody tr"));
+       // $I->comment(InitTest::TagCount($I,"tbody tr"));
+        $count = $I->grabTagCount($I,"tbody tr");
+        $I->comment($count);
     }
     /**
      * @group verifyi
