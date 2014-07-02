@@ -21,9 +21,6 @@ class Admin extends BaseAdminController {
                 $this->install(); 
                 $this->installProperties();
                 $this->installedProperties = true;}
-                
-
-
             
             /** Get all Banners from DB */
             /** Show Banners list */
@@ -49,7 +46,6 @@ class Admin extends BaseAdminController {
    
 
    }
-   
         private function install() {
             $this->load->dbforge();
             $field['value'] = array(
@@ -105,7 +101,7 @@ class Admin extends BaseAdminController {
                 $query = $this->db->get('mod_hotline_properties');
                 $arr = $query->result_array();
                 
-                if (count($properties) == 0){ echo "<p style='margin-left:20px;'>no properties!</p"; exit;}              
+                if (count($properties) == 0){ echo "<p style='margin-left:20px;'>".lang('no properties','hotline')."</p>"; exit;}              
                 if (count($arr)>0){
                     $properties1 = '';
                     foreach ($arr as $key => $value1) {
@@ -123,7 +119,7 @@ class Admin extends BaseAdminController {
                                     }            
                         $properties1 .= "</select><button   type='button' class='btn btn-small btn-danger del_item'><i class='icon-trash icon-white'></i></button></div></div>"; 
                     }
-                    $properties1 .= "<div class='but_clear' style='clear:both; height:10px;'></div><button type='button' class='btn btn-small btn-success empty'><i class='icon-plus-sign icon-white'></i> Add property</button><br /><button style='margin-top:5px;' data-form='#settings_form_properties' type='button' class='btn btn-small btn-primary save_btn'><i class='icon-ok'></i> Сохранить</button>";
+                    $properties1 .= "<div class='but_clear' style='clear:both; height:10px;'></div><button type='button' class='btn btn-small btn-success empty'><i class='icon-plus-sign icon-white'></i> ".lang('Add property','hotline')."</button><br /><button style='margin-top:5px;' data-form='#settings_form_properties' type='button' class='btn btn-small btn-primary save_btn'><i class='icon-ok'></i> Сохранить</button>";
                 
                     return $properties1; 
                 }else{
@@ -134,7 +130,7 @@ class Admin extends BaseAdminController {
                         $properties1 .= "<option value=".  $value->getId(). ">" . $value->getName()  ."</option>";
                     }            
                     $properties1 .= "</select><button   type='button' class='btn btn-small btn-danger del_item'><i class='icon-trash icon-white'></i></button></div></div>"; 
-                    $properties1 .= "<div class='but_clear' style='clear:both; height:10px;'></div><button type='button' class='btn btn-small btn-success empty'><i class='icon-plus-sign icon-white'></i> Add property</button><br /><button style='margin-top:5px;' data-form='#settings_form_properties' type='button' class='btn btn-small btn-primary save_btn'><i class='icon-ok'></i> Сохранить</button>";
+                    $properties1 .= "<div class='but_clear' style='clear:both; height:10px;'></div><button type='button' class='btn btn-small btn-success empty'><i class='icon-plus-sign icon-white'></i> ".lang('Add property','hotline')."</button><br /><button style='margin-top:5px;' data-form='#settings_form_properties' type='button' class='btn btn-small btn-primary save_btn'><i class='icon-ok'></i> Сохранить</button>";
                 return $properties1; 
                 }
 
@@ -155,7 +151,7 @@ class Admin extends BaseAdminController {
                     return $properties1; 
                 }
                 else{
-                    echo "<p style='margin-left:20px;'>is empty!</p";
+                    echo "<p style='margin-left:20px;'>".lang('is empty!','hotline')."</p";
                 }
             }
         }        
