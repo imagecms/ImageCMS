@@ -8,11 +8,10 @@ class DeliveryPage
      * and functions which returns element locator in current line
      */
     //Variables
-<<<<<<< HEAD
-    public static $ListCreateButton = ".btn.btn-small.btn-success.pjax";
-=======
+
     public static $ListCreateButton = "//*[@id='mainContent']/div/section/div[1]/div[2]/div/a";
->>>>>>> ef42d0598b50218c8224834e7b11c1baec589e2f
+
+
     public static $ListDeleteButton = ".btn.btn-small.btn-danger.action_on";
     public static $ListCheckboxHeader = "//table/thead/tr/th[1]/span/span";
     public static $ListIDHeader = "//table/thead/tr/th[2]";
@@ -20,14 +19,13 @@ class DeliveryPage
     public static $ListPriceHeader = "//table/thead/tr/th[4]";
     public static $ListFreeFromHeader = "//table/thead/tr/th[5]";
     public static $ListActiveButton = "//table/thead/tr/th[6]";
-<<<<<<< HEAD
-=======
+     
     //Delete Window
     public static $Deletewindow = ".modal.hide.fade.modal_del.in";
     public static $DeleteWindowDelete = ".btn.btn-primary";
     public static $DeleteWindowBack = ".//*[@id='mainContent']/div/div[1]/div[3]/a[2]";
     public static $DeleteWindowX = ".close";
->>>>>>> ef42d0598b50218c8224834e7b11c1baec589e2f
+
     //Functions
     public static function ListCheckboxLine($row){
         $ListCheckboxLine  = "//table/tbody/tr[$row]/td[1]/span/span";
