@@ -16,7 +16,11 @@ class Admin extends BaseAdminController {
             parent::__construct();
         }
         public function index() {
-                if($this->installedProperties == false){$this->install(); $this->installedProperties = true;}
+            
+                if($this->installedProperties == false){
+                $this->install(); 
+                $this->installProperties();
+                $this->installedProperties = true;}
                 
 
 
@@ -87,10 +91,7 @@ class Admin extends BaseAdminController {
                 return $arr;
         } 
         public function getProperties($empty = null) {
-            if($this->installedProperties == false){
-               $this->installProperties();
-               $this->installedProperties = true;
-            }
+
             if($empty == null){
                 $categoryId = $this->input->post('category');
                 $categoryId = (int)($categoryId[0]);
@@ -159,6 +160,12 @@ class Admin extends BaseAdminController {
             }
         }        
         public function setProperties() {
+            
+            if($this->input->post('settings_form_properties') == ''){
+                  $this->db->where('category_id', $this->input->post('category'));
+                  $this->db->delete('mod_hotline_properties'); 
+                  return;
+            }
   
             if($this->input->post('settings_form_properties')){
                            
@@ -193,7 +200,6 @@ class Admin extends BaseAdminController {
                   $this->db->delete('mod_hotline_properties'); 
                   $this->db->insert_batch('mod_hotline_properties', $total_array); 
 
-                // var_dump($properties_name); exit;
             }
                                 
         }
