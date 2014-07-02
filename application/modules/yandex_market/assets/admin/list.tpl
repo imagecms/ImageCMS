@@ -3,11 +3,11 @@
                         <div class="frame_title clearfix">
                             <div class="pull-left">
                                 <span class="help-inline"></span>
-                                <span class="title">{lang('Yandex Market management', 'banners')}</span>
+                                <span class="title">{lang('Yandex Market management', 'yandex_market')}</span>
                             </div>
                             <div class="pull-right">
                                 <div class="d-i_b">
-                                    <button type="button" class="btn btn-small btn-primary action_on formSubmit" data-form="#settings_form"><i class="icon-ok"></i>{lang('Save','admin')}</button>
+                                    <button type="button" class="btn btn-small btn-primary action_on formSubmit" data-form="#settings_form"><i class="icon-ok"></i>{lang('Save','yandex_market')}</button>
                                         {echo create_language_select(ShopCore::$ci->cms_admin->get_langs(true), $locale, "/admin/components/run/shop/settings/index")}
                                 </div>
                             </div>                            
@@ -17,7 +17,7 @@
                                 <thead>
                                     <tr>
                                         <th colspan="6">
-                                            {lang('Settings Yandex.Market','admin')}
+                                            {lang('Settings Yandex.Market','yandex_market')}
                                         </th>
                                     </tr>
                                 </thead>
@@ -26,7 +26,7 @@
                                         <td colspan="6">
                                             <div class="inside_padd" >
                                                 <div class="control-group" >
-                                                    <label class="control-label">{lang('Displayed categories selection','admin')}:</label>
+                                                    <label class="control-label">{lang('Displayed categories selection','yandex_market')}:</label>
                                                     {$hold = new Admin()}
                                                     {$holder = $hold->getSelectedCats()}
                                                     {$categories = ShopCore::app()->SCategoryTree->getTree()}
@@ -46,7 +46,7 @@
                                                                 {$isAdult = $adult->IsAdult()} 
                                                                 <input type="checkbox" name="yandex[isAdult]" value="1"{if $isAdult['value'] == 1}checked="checked"{/if} id="yandex[isAdult]" />
                                                             </span>
-                                                            {lang('Adult products','admin')}
+                                                            {lang('Adult products','yandex_market')}
                                                         </span>
                                                     </div>
 
@@ -58,14 +58,14 @@
                             </table>
                             <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
                                 <thead>
-                                <th>{lang('Yandex.Market document','admin')}</th>
+                                <th>{lang('Yandex.Market document','yandex_market')}</th>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td>
                                             <div class="inside_padd">
                                                 <div class="control-group">
-                                                    <a href="{site_url('yandex_market/genreyml')}" target="_blank">{lang('XML document','admin')}</a>
+                                                    <a href="{site_url('yandex_market/genreyml')}" target="_blank">{lang('XML document','yandex_market')}</a>
                                                 </div>
                                             </div>
                                         </td>

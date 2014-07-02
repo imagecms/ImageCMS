@@ -38,11 +38,7 @@ class Hotline extends ShopController {
     }
 
     public function genreYML($indicator = null) {
-
-        
-        
-        
-        header('content-type: text/xml');
+       header('content-type: text/xml');
         $ci = ShopCore::$ci;
         $pictureBaseUrl = base_url() . "uploads/shop/products/main/";
         
