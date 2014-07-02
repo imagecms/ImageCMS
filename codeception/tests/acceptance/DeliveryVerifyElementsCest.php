@@ -5,12 +5,10 @@ class DeliveryVerifyElementsCest
 //    public function _before(AcceptanceTester $I)
 //    {
 //    }
-//
 //    public function _after()
 //    {
 //    }
 
-    // tests
     /**
      * @group verify
      */
@@ -26,8 +24,6 @@ class DeliveryVerifyElementsCest
      */
     public function DeliveryListElements(AcceptanceTester $I)
     {
-        
-        //Verification
         $I->wantTo("Verify all elements in Delivery list landing page");
         $I->see("Список способов доставки","span.title");
         $I->see("Создать способ доставки",  DeliveryPage::$ListCreateButton);
@@ -38,7 +34,21 @@ class DeliveryVerifyElementsCest
         $I->see("Цена", DeliveryPage::$ListPriceHeader);
         $I->see("Бесплатен от",  DeliveryPage::$ListFreeFromHeader);
         $I->see("Активный", DeliveryPage::$ListActiveButton);
+        
+    }
+    /**
+     * @group verify
+     */
 
+    public function DeliveryDeleteWindow (AcceptanceTester $I){
+        $I->click(DeliveryPage::$ListCheckboxHeader);
+        $I->click(DeliveryPage::$ListDeleteButton);
+        $I->waitForText("Удаление способов доставки", "30", "//*[@id='mainContent']/div/div[1]/div[1]/h3");
+        $I->seeElement(DeliveryPage::$Deletewindow);
+        $I->see("Удалить", DeliveryPage::$DeleteWindowDelete);
+        $I->see("Отменить", DeliveryPage::$DeleteWindowBack);
+        $I->seeElement(DeliveryPage::$DeleteWindowX);
+        $I->click(DeliveryPage::$DeleteWindowX);
     }
     
     /**
@@ -47,13 +57,17 @@ class DeliveryVerifyElementsCest
     public function DeliveryCreateElements(AcceptanceTester $I)
     {
         $I->wantTo("Verifyy all elements in Delivery Create page");
-        InitTest::ClearAllCach($I);
+        //InitTest::ClearAllCach($I);
+        $I->wait('1');
         $I->click(DeliveryPage::$ListCreateButton);
         $I->waitForText("Создание способа доставки",'30','.title');
-
-        }
+        $I->see("Создание способа доставки",'.title');
+        $I->see("Создание способа доставки","//thead/tr/th");
+        $I->see("Название: *", DeliveryCreate::$FieldNameLabel);
+        $I->see("Описание",  DeliveryCreate::$FieldDescriptionLabel);
+    }
     /**
-     *@group verify 
+     *@group verifyi
      */    
     public function DeliveryEditElements(AcceptanceTester $I)
     {
