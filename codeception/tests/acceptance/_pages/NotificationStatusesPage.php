@@ -8,7 +8,9 @@ class NotificationStatusesPage
     public static $ListMainCheckBox = "//div[2]/table/thead/tr/th[1]/span/span";
     public static $ListFirstCheckBox = ".//*[@id='mainContent']/div/div[3]/section/div[2]/table/tbody/tr[1]/td[1]/span/span";
     public static $ListSecondCheckBox = "//div[2]/table/tbody/tr[2]/td[1]/span/span";
-    public static $ListDeleteButton = "//div[1]/div[2]/div/button";   
+    public static $ListThirdCheckBox = "//div[2]/table/tbody/tr[3]/td[1]/span/span";    
+    public static $ListDeleteButton = "//div[1]/div[2]/div/button";
+    public static $DeleteWindowDeleteButton = "//div[3]/a";
     public static $CreatePageUrl = "components/run/shop/notificationstatuses/create";
     public static $CreationCreateButton = ".btn.btn-small.btn-success.action_on.formSubmit";
     public static $CreationBackButton = ".t-d_u";

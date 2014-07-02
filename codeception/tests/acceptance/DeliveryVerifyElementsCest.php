@@ -2,37 +2,46 @@
 use \AcceptanceTester;
 class DeliveryVerifyElementsCest
 {
-    public function _before(AcceptanceTester $I)
-    {
-        InitTest::login($I);
-        $I->click(NavigationBarPage::$Settings);
-        $I->click(NavigationBarPage::$SettingsDelivery);
-        $I->waitForText("Список способов доставки");
-    }
-
-    public function _after()
-    {
-    }
+//    public function _before(AcceptanceTester $I)
+//    {
+//        InitTest::login($I);
+//        $I->click(NavigationBarPage::$Settings);
+//        $I->click(NavigationBarPage::$SettingsDelivery);
+//        $I->waitForText("Список способов доставки");
+//    }
+//
+//    public function _after()
+//    {
+//    }
 
     // tests
     public function DeliveryListElements(AcceptanceTester $I)
     {
+        //Login & go to page DeliveryList
+        InitTest::login($I);
+        $I->click(NavigationBarPage::$Settings);
+        $I->click(NavigationBarPage::$SettingsDelivery);
+        $I->waitForText("Список способов доставки");
+        //Verification
+        $I->wantTo("Verify all elements in Delivery list landing page");
         $I->see("Список способов доставки","span.title");
-        $gi = $I->see("Создать способ доставки",  DeliveryPage::$ListCreateButton);
-        
-        var_dump($gi);
-        $I->checkOption(DeliveryPage::ListCheckboxLine(1));
-        $text = $I->grabTextFrom(DeliveryPage::ListPriceLine(1));
-        if ($text)  $I->comment($text);
-        
-        
+        $I->see("Создать способ доставки",  DeliveryPage::$ListCreateButton);
+        $I->see("Удалить",DeliveryPage::$ListDeleteButton);
+        $I->seeElement(DeliveryPage::$ListCheckboxHeader);
+        $I->see("ID", DeliveryPage::$ListIDHeader);
+        $I->see("Способ", DeliveryPage::$ListMethodHEader);
+        $I->see("Цена", DeliveryPage::$ListPriceHeader);
+        $I->see("Бесплатен от",  DeliveryPage::$ListFreeFromHeader);
+        $I->see("Активный", DeliveryPage::$ListActiveButton);
+
     }
-//    public function DeliveryCreateElements(AcceptanceTester $I)
-//    {
-//        $I->see("Список способов доставки","span.title");
-//        $I->see("Создать способ доставки",  DeliveryPage::$ListCreateButton);
-//        }
-//        
+    public function DeliveryCreateElements(AcceptanceTester $I)
+    {
+        $I->wantTo("Verifyy all elements in Delivery Create page");
+        //$I->click(DeliveryPage::$ListCreateButton);
+        InitTest::ClearAllCach($I);
+        }
+        
 //    public function DeliveryEditElements(AcceptanceTester $I)
 //    {
 //        $I->see("Список способов доставки","span.title");
