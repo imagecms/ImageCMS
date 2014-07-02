@@ -19,8 +19,4 @@ class NavigationBarPage
     public static $CallbackThemes  = "//ul/li[2]/ul/li[7]/a";
     public static $NotificationsList = "//ul/li[2]/ul/li[9]/a";
     public static $NotificationStatuses = "//nav/ul/li[2]/ul/li[10]/a";
-
-    //Система
-    public static $System = "//nav/ul/li[9]/a";
-    public static $SystemClearAllCach = "#clearAllCache";
 }
