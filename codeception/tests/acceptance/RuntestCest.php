@@ -30,6 +30,5 @@ class RuntestCest
         $I->comment((string)$j);
         $I->click(DeliveryPage::ListCheckboxLine($j));
         $I->wait("4");
-        $I->assertEquals("1","2");
         }
 }
