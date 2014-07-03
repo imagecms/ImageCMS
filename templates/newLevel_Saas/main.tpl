@@ -17,17 +17,23 @@
     </head>
     <body>
         <div class="main-body">
-            <header>
+            <header {if strstr($CI->uri->uri_string(), 'support/ticket/')}class="fixed"{/if}>
 
             </header>
             <div class="container">
                 <div class="left">
+                    <a href="{site_url('saas/support')}">{lang('Техническая поддержка', 'defaultSaas')}</a>
+                    </br>
+                    <a href="{site_url('additional-services/order')}">{lang('Дополнительные услуги', 'defaultSaas')}</a>
+                    </br>
+                    <a href="{site_url('tutorial')}">{lang('Тур по системе', 'defaultSaas')}</a>
                 </div>
                 <!--                content-->
                 <div class="content">
                     {echo $content}
                 </div>
                 <script type="text/javascript" src="{$THEME}js/cusel-min-2.5.js"></script>
+                <script type="text/javascript" src="{$THEME}js/tabs.js"></script>
                 <!--                content-->
 
             </div>
