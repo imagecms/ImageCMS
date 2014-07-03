@@ -27,14 +27,14 @@ class DeliveryVerifyElementsCest
     {
         $I->wantTo("Verify all elements in Delivery list landing page");
         $I->see("Список способов доставки","span.title");
-        $I->see("Создать способ доставки",  DeliveryPage::$ListCreateButton);
-        $I->see("Удалить",DeliveryPage::$ListDeleteButton);
-        $I->seeElement(DeliveryPage::$ListCheckboxHeader);
-        $I->see("ID", DeliveryPage::$ListIDHeader);
-        $I->see("Способ", DeliveryPage::$ListMethodHEader);
-        $I->see("Цена", DeliveryPage::$ListPriceHeader);
-        $I->see("Бесплатен от",  DeliveryPage::$ListFreeFromHeader);
-        $I->see("Активный", DeliveryPage::$ListActiveButton);
+        $I->see("Создать способ доставки",  DeliveryPage::$CreateButton);
+        $I->see("Удалить",DeliveryPage::$DeleteButton);
+        $I->seeElement(DeliveryPage::$CheckboxHeader);
+        $I->see("ID", DeliveryPage::$IDHeader);
+        $I->see("Способ", DeliveryPage::$MethodHEader);
+        $I->see("Цена", DeliveryPage::$PriceHeader);
+        $I->see("Бесплатен от",  DeliveryPage::$FreeFromHeader);
+        $I->see("Активный", DeliveryPage::$ActiveButton);
         
     }
     /**
@@ -42,8 +42,8 @@ class DeliveryVerifyElementsCest
      */
 
     public function DeliveryDeleteWindow (AcceptanceTester $I){
-        $I->click(DeliveryPage::$ListCheckboxHeader);
-        $I->click(DeliveryPage::$ListDeleteButton);
+        $I->click(DeliveryPage::$CheckboxHeader);
+        $I->click(DeliveryPage::$DeleteButton);
         $I->waitForText("Удаление способов доставки", "30", "//*[@id='mainContent']/div/div[1]/div[1]/h3");
         $I->seeElement(DeliveryPage::$Deletewindow);
         $I->see("Удалить", DeliveryPage::$DeleteWindowDelete);
@@ -60,7 +60,7 @@ class DeliveryVerifyElementsCest
         $I->wantTo("Verifyy all elements in Delivery Create page");
         //InitTest::ClearAllCach($I);
         $I->wait('1');
-        $I->click(DeliveryPage::$ListCreateButton);
+        $I->click(DeliveryPage::$CreateButton);
         $I->waitForText("Создание способа доставки",'30','.title');
         $I->see("Создание способа доставки",'.title');
         $I->see("Создание способа доставки","//thead/tr/th");
