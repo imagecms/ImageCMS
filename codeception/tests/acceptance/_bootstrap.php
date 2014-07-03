@@ -15,12 +15,14 @@ class InitTest{
         
     }
     public static function ClearAllCach ($I){
-       // $I = new AcceptanceTester(($scenario));//Don't uncoment
+
+        //$I = new AcceptanceTester(($scenario));//Don't uncoment
+
         $I->amOnSubdomain("/admin");
         $I->click(NavigationBarPage::$System);
         $I->click(NavigationBarPage::$SystemClearAllCach);
         $I->waitForElement(".alert.in.fade.alert-error", '30');
         
     }
-    
+
 }
