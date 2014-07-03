@@ -23,4 +23,4 @@ $I->see('Главная', '//*[@id="mainContent"]/section/div[2]/div/form/table/
 $I->see('Дополнительная валюта', '//*[@id="mainContent"]/section/div[2]/div/form/table/thead/tr/th[6]');
 $I->see('Удалить', '//*[@id="mainContent"]/section/div[2]/div/form/table/thead/tr/th[7]');
 $I->see('Проверить цены', './/*[@id="mainContent"]/section/div[1]/div[2]/div/button');
-$I->see('Создать валюту', './/*[@id="mainContent"]/section/div[1]/div[2]/div/a');
+$I->see('Создать валюту', CurrenciesPage::$CreateCurrencyButton);
