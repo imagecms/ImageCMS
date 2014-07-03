@@ -29,7 +29,7 @@ class RuntestCest
         $I->comment($togleclass);
         $I->comment((string)$j);
         $I->click(DeliveryPage::ListCheckboxLine($j));
-        $text = $I->;
         $I->wait("4");
-    }
+        $I->assertEquals("1","2");
+        }
 }
