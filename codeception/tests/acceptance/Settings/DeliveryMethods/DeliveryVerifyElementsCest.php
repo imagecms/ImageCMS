@@ -1,5 +1,6 @@
 <?php
 use \AcceptanceTester;
+
 class DeliveryVerifyElementsCest
 {
 //    public function _before(AcceptanceTester $I)
@@ -18,12 +19,9 @@ class DeliveryVerifyElementsCest
         $I->click(NavigationBarPage::$Settings);
         $I->click(NavigationBarPage::$SettingsDelivery);
         $I->waitForText("Список способов доставки");
-        //
-        //InitTest::a($I, "tbody", "tr");
-        $I->comment(InitTest::TagCount($I,"tbody tr"));
     }
     /**
-     * @group verifyi
+     * @group verify
      */
     public function DeliveryListElements(AcceptanceTester $I)
     {
@@ -40,7 +38,7 @@ class DeliveryVerifyElementsCest
         
     }
     /**
-     * @group verifyi
+     * @group verify
      */
 
     public function DeliveryDeleteWindow (AcceptanceTester $I){
@@ -55,7 +53,7 @@ class DeliveryVerifyElementsCest
     }
     
     /**
-     * @group verifyi
+     * @group verify
      */
     public function DeliveryCreateElements(AcceptanceTester $I)
     {
@@ -82,7 +80,7 @@ class DeliveryVerifyElementsCest
         $I->waitForText("Список способов доставки");
     }
     /**
-     *@group verifyi
+     *@group verify
      */    
     public function DeliveryEditElements(AcceptanceTester $I)
     {
@@ -92,9 +90,26 @@ class DeliveryVerifyElementsCest
         $I->comment("Selected method is: $method");
         $I->click($method);
         $I->waitForText("Редактирование способа доставки: $method");
+        $I->see("Редактирование способа доставки: $method",'.title');
+        $I->see("Редактирование способа доставки","//thead/tr/th");
+        $I->see("Название: *", DeliveryEditPage::$FieldNameLabel);
+        $I->see("Описание", DeliveryEditPage::$FieldDescriptionLabel);
+        $I->see("Описание цены доставки", DeliveryEditPage::$FieldDescriptionPriceLabel);
+        $I->See("Цена:",DeliveryEditPage::$FieldPriceLabel);
+        $I->see("Бесплатен от", DeliveryEditPage::$FieldFreeFromLabel);
+        $I->see("Цена уточняется", DeliveryEditPage::$CheckboxPriceSpecifiedLabel);
+        $I->click(DeliveryEditPage::$CheckboxPriceSpecified);
+        $I->waitForElementVisible(DeliveryCreatePage::$FieldPriceSpecified);
+        $I->see("Сообщение про уточнение цены:",  DeliveryEditPage::$FieldPriceSpecifiedLabel);
+        $I->see("Сохранить и выйти",DeliveryEditPage::$ButtonSaveExit);
+        $I->see("Сохранить",DeliveryEditPage::$ButtonSave);
+        $I->see("Вернуться",DeliveryEditPage::$ButtonBack);
+        $I->click(DeliveryEditPage::$ButtonBack);
+        $I->waitForText("Список способов доставки");
 
     }
-}/*
+}
+/*
         $I->executeJS("var container = document.createElement('input');
 	container.id = 'length';
 	container.value = document.getElementsByTagName(\"tbody\")[0].getElementsByTagName(\"tr\").length;
