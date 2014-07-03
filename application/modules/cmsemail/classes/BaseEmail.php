@@ -74,8 +74,8 @@ class BaseEmail extends ParentEmail {
      * @param type $variables
      * @return boolean
      */
-    public function sendEmail($send_to, $patern_name, $variables) {
-        if (parent::sendEmail($send_to, $patern_name, $variables)) {
+    public function sendEmail($send_to, $patern_name, $variables, $attachment = FALSE) {
+        if (parent::sendEmail($send_to, $patern_name, $variables, $attachment)) {
             return TRUE;
         } else {
             return $this->errors;
