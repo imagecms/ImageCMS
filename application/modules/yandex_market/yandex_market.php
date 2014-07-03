@@ -20,25 +20,10 @@ class Yandex_market extends ShopController {
     public function __construct() {
         $this->currencyCode = SCurrenciesQuery::create()->filterByIsDefault(true)->findOne()->getCode();
         $this->settings = $this->cms_base->get_settings();
-
-
-
         parent::__construct();
     }
 
-    public function allCatId($arg) {
-        $query = $this->db->get_where('shop_product_categories', array('product_id' => $arg));
-        $row = $query->row();
-
-        foreach ($query->result() as $row) {
-            $a = $row->category_id;
-        }
-
-        return $a;
-    }
-
     public function genreYML() {
-        
         header('content-type: text/xml');
         $ci = ShopCore::$ci;
         $pictureBaseUrl = base_url() . "uploads/shop/products/main/";
@@ -113,8 +98,6 @@ class Yandex_market extends ShopController {
     }
 
     public function renderCategories() {
-
-           
         echo "<categories>";
         foreach ($this->categories as $c) {
             $parent = '';
@@ -125,6 +108,7 @@ class Yandex_market extends ShopController {
         }
         echo "</categories>";
     }
+    
     protected function renderOffers() {
         echo '<offers>';
         foreach ($this->offers as $id => $offer) {
@@ -134,6 +118,7 @@ class Yandex_market extends ShopController {
         }
         echo '</offers>';
     }
+    
     protected function arrayToXml($array) {
         foreach ($array as $k => $v) {
             if ($k == 'param') {
@@ -147,18 +132,19 @@ class Yandex_market extends ShopController {
             }
         }
     }
+    
     public function getProducts() {
         $this->db->select('value');
         $this->db->where('id', 1); 
         $query = $this->db->get('mod_yandex_market');
         $arr = $query->row_array();
         $arr = unserialize($arr['value']); 
-        $names = array(implode($arr, ','));
+        $Idss = array(implode($arr, ','));
           
                        $query = $this->db->query("
                            SELECT shop_category.id, shop_category.parent_id, shop_category_i18n.name  FROM shop_category
                            LEFT JOIN shop_category_i18n ON (shop_category_i18n.id = shop_category.id)
-                           WHERE shop_category.id IN (" . $names[0] ." ) AND shop_category_i18n.locale = 'ru'
+                           WHERE shop_category.id IN (" . $Idss[0] ." ) AND shop_category_i18n.locale = 'ru'
                         ");
                         
                        $this->categories = $query->result_array();
@@ -187,24 +173,19 @@ class Yandex_market extends ShopController {
         return $products;
     }
 
-    protected static function prep_desc($var, $chars = 0, $end = '...') {
-        if ($chars > 0 AND mb_strlen($var, 'utf-8') >= $chars) {
-            $result = mb_substr($var, 0, $chars, 'utf-8') . $end;
-        } else {
-            $result = $var;
-        }
-
-        $result = str_replace('&ndash;', '', $result);
-        $result = str_replace('&nbsp;', '', $result);
-        $result = str_replace('&quot;', '', $result);
-        $result = str_replace('&mdash;', '', $result);
-        $result = str_replace('&laquo;', '', $result);
-        $result = str_replace('&raquo;', '', $result);
-        $result = str_replace('&ldquo;', '', $result);
-        $result = str_replace('&rdquo;', '', $result);
-        return $result;
+    // Install
+    function _install() {
+        if ($this->dx_auth->is_admin() == FALSE)
+            exit;
+        $this->load->model('install')->make_install();
     }
 
+    // Delete module
+    function _deinstall() {
+        if ($this->dx_auth->is_admin() == FALSE)
+            exit;
+        $this->load->model('install')->deinstall();
+    }
 }
 
 /* End of file banners.php */
