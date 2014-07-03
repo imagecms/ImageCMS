@@ -17,4 +17,7 @@ class AcceptanceHelper extends \Codeception\Module
         $lines = $I->grabValueFrom('#length');
         return $lines;
     }
+    public function assertEquals($expected, $actual, $message = '') {
+        parent::assertEquals($expected, $actual, $message);
+    }
 }
