@@ -1,55 +1,32 @@
-<style>
-    {literal}
-        #tutorial_list{
-            background-color: #f8f8f8; 
-            border: 1px solid lightgray;
-        }
-
-        #tutorial_list > li{
-            display: inline-block;
-            padding: 15px;
-            padding-left: 20px;
-            border-right: 1px solid lightgray;
-            padding-right: 20px;
-            margin-left: -4px!important;
-            margin-bottom: 0px!important;
-            cursor: pointer;
-        }
-    {/literal}
-</style>
-
-<script>
-    {literal}
-        $('#tutorial_list > li').live('click', function() {
-            var tabId = $(this).data('hash');
-            $('.tabs > .tab').each(function(){
-                $(this).hide();
-            });
-            $(tabId).show();
-        })
-    {/literal}
-</script>
-
-<ul id="tutorial_list">
-    {foreach $pages as $number => $page}
-        <li data-hash="#{echo $page.url}">
-            <a href="#{echo $page.url}">{echo ++$number}</a>
-        </li>
-    {/foreach}
-</ul>
-
-<div class="tabs">
-    {foreach $pages as $number => $page}
-        <div id="{echo $page.url}" class="tab" data-hash="{echo $page.url}" style="{if $number}display:none;{/if}">
-            {if $page.full_text}
-                {echo $page.full_text}
-            {else:}
-                {echo $page.prev_text}
-            {/if}
+<div class="panel-form">
+    {if !$pages}
+        <h3>
+            <center>
+                {lang('Нет страниц', 'template')}
+            </center>
+        </h3>
+    {else:}
+        <ul class="tabs tabs-tour" data-rel="tabs">
+            {foreach $pages as $number => $page}
+                <li>
+                    <a href="#t{echo ++$number}">
+                        <span class="text-el">{echo $number}</span>
+                    </a>
+                </li>
+            {/foreach}
+        </ul>
+        <div class="frame-tabs-ref frame-tabs-ref-tour">
+            {foreach $pages as $number => $page}
+                <div id="t{echo ++$number}">
+                    <div class="inside-padd text">
+                        {if $page.full_text}
+                            {echo $page.full_text}
+                        {else:}
+                            {echo $page.prev_text}
+                        {/if}
+                    </div>
+                </div>
+            {/foreach}
         </div>
-    {/foreach}
-</div>
-
-<div class="pagination" align="center">
-    {$pagination}
+    {/if} 
 </div>

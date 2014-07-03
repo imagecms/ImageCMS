@@ -20,7 +20,7 @@
             {foreach $form->asArray() as $f}
                 {if $f.info.type == 'checkbox'}
                     <div class="frame-checkbox">
-                        <input type="checkbox" id="{echo $f.name}" name="{echo $f.name}" value="{echo strip_tags($f.info.initial)}"/>
+                        <input type="checkbox" id="{echo $f.name}" {if $result['errors'] && $result['POST'][$f.name]}checked="checked"{/if} name="{echo $f.name}" value="{echo strip_tags($f.info.initial)}"/>
                         <label for="{echo $f.name}">
                             <span class="title">{$f.info.label},</span> 
                             <span class="price">
@@ -33,7 +33,7 @@
                 {/if}
 
                 {if $f.info.type == 'textarea'}
-                    <textarea id="{echo $f.name}" name="{echo $f.name}" placeholder="{echo $f.info.label}&hellip;" class="m-b_15">{echo strip_tags($f.info.initial)}</textarea>
+                    <textarea id="{echo $f.name}" name="{echo $f.name}" placeholder="{echo $f.info.label}&hellip;" class="m-b_15">{if $result['errors'] && $result['POST'][$f.name]}{echo $result['POST'][$f.name]}{/if}</textarea>
                 {/if}
             {/foreach}
         </div>

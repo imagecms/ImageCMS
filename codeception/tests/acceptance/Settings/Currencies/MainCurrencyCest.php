@@ -10,75 +10,111 @@ class MainCurrencyCest
 //    public function _after()
 //    {
 //    }
+    private $j, $butActiveClass, $disable, $atribCheck, $rows;
+    
     public function Autorization(AcceptanceTester $I)
     {
         InitTest::Login($I);
         $I->amOnPage("/admin/components/run/shop/currencies");
         $I->waitForText("Список валют", "10", "//*[@id='mainContent']/section/div[1]/div[1]/span[2]");
-    }    
+    }   
+    
     public function VerifyButtons(AcceptanceTester $I)
     {
-        $rows = $I->grabTagCount($I,"tbody tr");
-        $I->comment((string)$rows);
-        //Searching main currencie line
-        for ($j=1;$j<$rows;++$j){
-            //grab arrtibute checked from radiobutton
-            $atribCheck = $I->grabAttributeFrom("//tbody/tr[$j]/td[5]/input","checked");
-            if($atribCheck == TRUE){
+        $this->rows = $I->grabTagCount($I,"tbody tr");
+        $I->comment((string)$this->rows);
+        //Определение строчки главной валюты
+        for ($this->j=1;$this->j<$this->rows;++$this->j){
+            //Поиск атрибута checked для радиоточки
+            $this->atribCheck = $I->grabAttributeFrom("//tbody/tr[$this->j]/td[5]/input","checked");
+                if($this->atribCheck == TRUE){
                 break;
             }
         }
-        //grab class from active button
-        $butActiveClass = $I->grabAttributeFrom(CurrenciesPage::ActiveButtonLine($j), "class");
-        $I->comment("$butActiveClass");
-        $disabled = $I->grabAttributeFrom(CurrenciesPage::DeleteButtonLine($j), "disabled");
-        codecept_debug($disabled);
-        if($disabled != TRUE){
-            $I->comment("ERROR Button Active");
-        }
-        else {
-            $I->comment("PASSED Button Disabled");
-        }
-        
-        if($butActiveClass == 'prod-on_off disable_tovar'){
+        //Определяем класс кнопки-переключателя у главной валюты
 
-            $I->click(CurrenciesPage::ActiveButtonLine($j));
-            $butActiveClass = $I->grabAttributeFrom(CurrenciesPage::ActiveButtonLine($j), "class");
-            $I->comment("$butActiveClass");
-            if($butActiveClass == 'prod-on_off'){
-                $I->comment("ERROR Additional Main Currency");
-            }
-            else {
-                $I->comment("PASSED Not Additional Main Currency");
-            }
+        $this->butActiveClass = $I->grabAttributeFrom(CurrenciesPage::ActiveButtonLine($this->j), "class");
+        $I->comment("$this->butActiveClass");
+        //Проверяем активность кнопки удаления напротив главной валюты
+        $this->disabled = $I->grabAttributeFrom(CurrenciesPage::DeleteButtonLine($this->j), "disabled");
+        codecept_debug($this->disabled);
+               $I->assertEquals($this->disabled, 'true');  
+    }
+    
+    public function DeleteMainCur(AcceptanceTester $I)
+    {
+        $I->click(CurrenciesPage::DeleteButtonLine($this->j));
+        $I->wait('3');
+        $I->dontSeeElement(".//div[@class='modal hide fade in']");  
+    }
+    
+      public function VerifyCheckAdditCur(AcceptanceTester $I)
+    {
+         
+        //Проверяем возможность отметить дополнительную валюту напротив главной
+        $I->assertEquals($this->butActiveClass, 'prod-on_off disable_tovar');
+
+        {   $I->click(CurrenciesPage::ActiveButtonLine($this->j));
+            $this->butActiveClass = $I->grabAttributeFrom(CurrenciesPage::ActiveButtonLine($this->j), "class");
+            $I->comment("$this->butActiveClass");
+            $I->assertEquals($this->butActiveClass, 'prod-on_off disable_tovar');
+
+        //Проверяем активность кнопки удаления после нажатия на кнопку-переключатель
+        $this->disabled = $I->grabAttributeFrom(CurrenciesPage::DeleteButtonLine($this->j), "disabled");
+        $I->assertEquals($this->disabled, 'true');
+        } 
+    }
+                
+    public function VerifyCheckMainCur(AcceptanceTester $I)
+    {
+        //Проверка снятия отметки главной валюты
+        $I->click(CurrenciesPage::RadioButtonLine($this->j));
+        $this->atribCheck = $I->grabAttributeFrom("//tbody/tr[$this->j]/td[5]/input","checked");
+        $I->assertEquals($this->atribCheck, 'true');
+
+        //Проверка переключения главной валюты и проверка количества отметок главных валют
+        if($this->j<$this->rows){
+            $this->j++;
+            $I->click(CurrenciesPage::RadioButtonLine($this->j));
         }
-        $disabled = $I->grabAttributeFrom(CurrenciesPage::DeleteButtonLine($j), "disabled");
-        if($disabled != TRUE){
-            $I->comment("ERROR Button Active");
+        else{
+            $this->j--;
+            $I->click(CurrenciesPage::RadioButtonLine($this->j));
         }
-        else {
-            $I->comment("PASSED Button Disabled");
-        }
-        
-        $I->click(CurrenciesPage::RadioButtonLine($j));
-        $atribCheck = $I->grabAttributeFrom("//tbody/tr[$j]/td[5]/input","checked");
-        if ($atribCheck != TRUE ){
-            $I->comment("ERROR");
-        }
-        else {
-            $I->comment ("Passed");
-        }    
-        $j<$rows?$I->click(CurrenciesPage::RadioButtonLine($j+1)):$I->click(CurrenciesPage::RadioButtonLine($j-1));
         $true = 0;
-        for ($k=1;$k<=$rows;++$k){
+        for ($k=1;$k<=$this->rows;++$k)
+        {
             $grabbedAttrib = $I->grabAttributeFrom(CurrenciesPage::RadioButtonLine($k), "checked"); 
             $I->comment("$grabbedAttrib");
             if($grabbedAttrib == "true"){
                  $true++;
             }
         }
-        $true == 1?$I->comment("PASSED tr: $true\n"):$I->comment("ERROR tr: $true\n");
-        
+        $I->assertEquals($true, '1');
+    }
+    
+    public function VerifyCheckMainAdditCur(AcceptanceTester $I)
+    {   //Проверяем возможность отметить главную валюту напротив дополнительной
+        if ($this->j<$this->rows){
+            $this->j++;
+            $I->click(CurrenciesPage::ActiveButtonLine($this->j));
         }
-
+        else{
+            $this->j--;
+            $I->click(CurrenciesPage::ActiveButtonLine($this->j));
+        }
+        $this->butActiveClass = $I->grabAttributeFrom(CurrenciesPage::ActiveButtonLine($this->j), "class");
+        $I->comment("$this->butActiveClass");
+        $I->assertEquals($this->butActiveClass, 'prod-on_off');
+        $I->click(CurrenciesPage::RadioButtonLine($this->j));
+        $I->wait('1');
+        $this->butActiveClass = $I->grabAttributeFrom(CurrenciesPage::ActiveButtonLine($this->j), "class");
+        $I->comment("$this->butActiveClass");
+        $I->assertEquals($this->butActiveClass, 'prod-on_off disable_tovar');        
+    }
+    
 }
+    
+    
+    
+
