@@ -9,16 +9,16 @@ class DeliveryPage
      */
     //Variables
 
-    public static $ListCreateButton = "//*[@id='mainContent']/div/section/div[1]/div[2]/div/a";
+    public static $CreateButton = "//*[@id='mainContent']/div/section/div[1]/div[2]/div/a";
 
 
-    public static $ListDeleteButton = ".btn.btn-small.btn-danger.action_on";
-    public static $ListCheckboxHeader = "//table/thead/tr/th[1]/span/span";
-    public static $ListIDHeader = "//table/thead/tr/th[2]";
-    public static $ListMethodHEader = "//table/thead/tr/th[3]";
-    public static $ListPriceHeader = "//table/thead/tr/th[4]";
-    public static $ListFreeFromHeader = "//table/thead/tr/th[5]";
-    public static $ListActiveButton = "//table/thead/tr/th[6]";
+    public static $DeleteButton = ".btn.btn-small.btn-danger.action_on";
+    public static $CheckboxHeader = "//table/thead/tr/th[1]/span/span";
+    public static $IDHeader = "//table/thead/tr/th[2]";
+    public static $MethodHEader = "//table/thead/tr/th[3]";
+    public static $PriceHeader = "//table/thead/tr/th[4]";
+    public static $FreeFromHeader = "//table/thead/tr/th[5]";
+    public static $ActiveButton = "//table/thead/tr/th[6]";
      
     //Delete Window
     public static $Deletewindow = ".modal.hide.fade.modal_del.in";
