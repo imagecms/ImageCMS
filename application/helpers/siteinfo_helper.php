@@ -28,7 +28,7 @@ if (!function_exists('siteinfo')) {
             $name = 'siteinfo_' . $name;
         }
 
-        $siteinfo = CI::$APP->load->library("SiteInfo");
+        $siteinfo = new SiteInfo();
         // next code is only for compatibility with older versions of library, 
         // so in the future needed to be removed (with funciton processOldVersions() too)
         if (FALSE !== $data = siteInfoAdditionalManipulations($name)) {
@@ -63,7 +63,8 @@ if (!function_exists('siteInfoAdditionalManipulations')) {
         if (FALSE !== strpos($name, '_url')) {
             $name = str_replace('_url', '', $name);
         }
-        $siteinfo = CI::$APP->load->library("SiteInfo");
+
+        $siteinfo = new SiteInfo();
         $value = $siteinfo->getSiteInfo($name);
         switch ($name) {
             case 'siteinfo_favicon':
