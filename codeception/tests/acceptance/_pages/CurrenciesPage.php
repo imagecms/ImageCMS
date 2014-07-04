@@ -15,5 +15,17 @@ class CurrenciesPage
     public static $NameCurrencyEdit  = './/*[@id="cur_ed_form"]/table/tbody/tr/td/div/div[1]/div/input';
     public static $IsoCodEdit  = './/*[@id="cur_ed_form"]/table/tbody/tr/td/div/div[2]/div/input';
     public static $SymbolEdit  = './/*[@id="cur_ed_form"]/table/tbody/tr/td/div/div[3]/div/input';
-   
+    //Кнопки в списку
+    public static function ActiveButtonLine($row){
+        $ActiveBut = "//tbody/tr[$row]/td[6]/div/span";
+        return $ActiveBut;
+    }
+    public static function DeleteButtonLine($row){
+        $DeleteBut = "//tbody/tr[$row]/td[7]/button";
+        return $DeleteBut;
+    }
+    public static function RadioButtonLine($row){
+        $RadioBut = "//tbody//tr[$row]//td[5]/input";
+        return $RadioBut;
+    }
 }
