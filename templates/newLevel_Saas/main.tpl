@@ -29,70 +29,7 @@
 
         <div class="main-body">
             <header {if strstr($CI->uri->uri_string(), 'support/ticket/')}class="fixed"{/if}>
-                <div class="container">
-                    <div class="logo">
-                        <img src="{$THEME}img/logo.jpg" alt="Логотип"/>
-                    </div>
-                    <ul class="right-header items">
-                        <li class="item-profile">
-                            <button type="button" class="btn-profile btn">
-                                <span class="frame-ico">
-                                    <span class="helper"></span>
-                                    <span class="icon-person"></span>
-                                </span>
-                                <span class="d_i-b">
-                                    <span class="text-el">Профиль</span>
-                                    <span class="icon-arrow"></span>
-                                </span>
-                            </button>
-                            <ul class="drop nav">
-                                <li>
-                                    <a href="#">
-                                        <span class="text-el">Личные данные</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span class="text-el">Выход</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="btn-shop btn">
-                                <span class="frame-ico">
-                                    <span class="helper"></span>
-                                    <span class="icon-bask"></span>
-                                </span>
-                                <span class="text-el">Магазин</span>
-                            </a>
-                        </li>
-                        <li>
-                            <span class="divider"></span>
-                        </li>
-                        <li>
-                            <a href="{site_url('')}" class="btn-admin btn">
-                                <span class="text-el">Админчасть</span>
-                            </a>
-                        </li>
-                    </ul>
-                    <div class="content-header">
-                        <a href="#" class="header-out-info-lost">
-                            Осталось 
-                            <span style="font-size: 22px;">14</span>
-                            дней 
-                        </a>
-                        <div class="info-header">
-                            <span class="info-text-phone">
-                                Незнаете с чего начать?
-                                <span class="d_i-b">{echo siteinfo('siteinfo_mainphone')}</span>
-                            </span>
-                            <a href="#consult" class="btn-consultation fancybox">
-                                <span class="text-el">Консультация</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                {include_tpl('header.tpl')}
             </header>
             <div class="container">
                 <div class="left">
@@ -115,7 +52,6 @@
                                     Тур по системе
                                 </div>
                             </div>
-                            {// var_dumps(category_pages(81,11))}
                             <ol class="items-refers-vertical">
                                 {$tutorial_pages = category_pages(81,11);}
                                 {foreach $tutorial_pages as $number => $page}
@@ -158,36 +94,9 @@
         <script type="text/javascript" src="{$THEME}js/scripts.js"></script>
         <link rel="stylesheet" type="text/css" href="{$THEME}js/fancybox/jquery.fancybox-1.3.4.css" media="all" />
         <script type="text/javascript" src="{$THEME}js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+        
         <div class="d_n">
-            <div style="max-width: 530px;" id="consult" class="fancy">
-                <div class="panel-default">
-                    <div class="title-default-out">
-                        <div class="title">
-                            Консультация
-                        </div>
-                    </div>
-                    <div class="footer-panel">
-                        <div class="inside-padd">
-                            <span class="s-t">Ваш запрос обработает менеджер и отправит ответ в ближайшие сроки</span>
-                        </div>
-                    </div>
-                    <form method="post" action="#">
-                        <div class="content-panel">
-                            <textarea placeholder="Введите Ваше сообщение&hellip;" style="padding-left: 27px;"></textarea>
-                        </div>
-                        <div class="footer-panel clearfix">
-                            <button type="submit" class="btn btn-primary f_l" style="margin: 11px 28px;">
-                                <span class="text-el">Отправить</span>
-                            </button>
-                            <div class="hidden-type-file f_r btn-attach-file btn">
-                                <span class="icon-attach"></span>
-                                <span class="text-el">Прикрепить</span>
-                                <input type="file" title="Выберете файл"/>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+            {include_tpl('consult.tpl')}
         </div>
     </body>
 </html>
