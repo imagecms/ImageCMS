@@ -94,7 +94,7 @@ class MainCurrencyCest
     }
     
     public function VerifyCheckMainAdditCur(AcceptanceTester $I)
-    {   //Проверяем возможность отметить главную валюту напротив дополнительной
+    {   //Проверяем возможность отметить главную валюту напротив дополнительной и проверка отметки дополнительной валюты напротив не главной
         if ($this->j<$this->rows){
             $this->j++;
             $I->click(CurrenciesPage::ActiveButtonLine($this->j));
@@ -111,6 +111,58 @@ class MainCurrencyCest
         $this->butActiveClass = $I->grabAttributeFrom(CurrenciesPage::ActiveButtonLine($this->j), "class");
         $I->comment("$this->butActiveClass");
         $I->assertEquals($this->butActiveClass, 'prod-on_off disable_tovar');        
+    }
+    
+    public function VerifyAdditCurOff(AcceptanceTester $I)
+    {   //Проверяем возможность снятия отметки дополнительной валюты
+        if ($this->j<$this->rows){
+            $this->j++;
+            $I->click(CurrenciesPage::ActiveButtonLine($this->j));
+        }
+        else{
+            $this->j--;
+            $I->click(CurrenciesPage::ActiveButtonLine($this->j));
+        }
+        $this->butActiveClass = $I->grabAttributeFrom(CurrenciesPage::ActiveButtonLine($this->j), "class");
+        $I->comment("$this->butActiveClass");
+        $I->assertEquals($this->butActiveClass, 'prod-on_off');
+        $I->click(CurrenciesPage::ActiveButtonLine($this->j));
+        $I->wait('1');
+        $this->butActiveClass = $I->grabAttributeFrom(CurrenciesPage::ActiveButtonLine($this->j), "class");
+        $I->comment("$this->butActiveClass");
+        $I->assertEquals($this->butActiveClass, 'prod-on_off disable_tovar');
+        InitTest::ClearAllCach($I);
+        $I->wait('1');
+    }
+    
+    public function DeleteAdditCur(AcceptanceTester $I)
+    {   //Проверяем возможность снятия отметки дополнительной валюты
+        $I->comment("$this->j");
+        $I->wait('5');
+        if ($this->j<$this->rows){
+            $this->j++;
+            $I->click(CurrenciesPage::ActiveButtonLine($this->j));
+        }
+        else{
+            $this->j--;
+            $I->click(CurrenciesPage::ActiveButtonLine($this->j));
+        }
+        $this->butActiveClass = $I->grabAttributeFrom(CurrenciesPage::ActiveButtonLine($this->j), "class");
+        $I->comment("$this->butActiveClass");
+        $I->assertEquals($this->butActiveClass, 'prod-on_off');
+        $I->click(CurrenciesPage::DeleteButtonLine($this->j));      
+        $I->waitForElement(".//div[@class='modal hide fade in']");
+        $I->see('Удалить валюту');
+        $I->see('Удалить выбранную валюту?');
+        $I->see('Удалить', './/*[@id="first"]/div[3]/a[1]');
+        $I->see('Отменить', './/*[@id="first"]/div[3]/a[2]');
+        $I->click('.//*[@id="first"]/div[3]/a[1]');
+        $I->waitForElementVisible('.alert.in.fade.alert-success');
+        $I->see('Валюта успешно удалена');
+        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
+        $rowsBeforeDel = $I->grabTagCount($I,"tbody tr");
+        $I->comment((string)$rowsBeforeDel);
+        
     }
     
 }
