@@ -109,12 +109,3 @@ class DeliveryVerifyElementsCest
 
     }
 }
-/*
-        $I->executeJS("var container = document.createElement('input');
-	container.id = 'length';
-	container.value = document.getElementsByTagName(\"tbody\")[0].getElementsByTagName(\"tr\").length;
-	document.body.insertBefore(container, document.body.firstChild)");
-        $I->wait("3");
-        $lines = $I->grabValueFrom('#length');
-        $I->comment((string)$lines);
-*/
