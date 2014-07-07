@@ -66,7 +66,7 @@
                             <div class="footer-panel">
                                 <div class="inside-padd">
                                     <a href="{site_url('tutorial')}" class="btn btn-primary">
-                                        <span class="text-el">Полная документация</span>
+                                        <span class="text-el">{echo lang('Полная документация', 'premmerce')}</span>
                                     </a>
                                 </div>
                             </div>
@@ -74,7 +74,7 @@
                         <div class="panel-default out-adding-service">
                             <div class="title-default-out">
                                 <div class="title">
-                                    Дополнительные услуги
+                                    {echo lang('Дополнительные услуги', 'premmerce')}
                                 </div>
                             </div>
                             {$CI->load->module('cfcm')->get_form(80, 97, 'page', 'additional_services_form_min')}
@@ -94,7 +94,7 @@
         <script type="text/javascript" src="{$THEME}js/scripts.js"></script>
         <link rel="stylesheet" type="text/css" href="{$THEME}js/fancybox/jquery.fancybox-1.3.4.css" media="all" />
         <script type="text/javascript" src="{$THEME}js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
-        
+
         <div class="d_n">
             {include_tpl('consult.tpl')}
         </div>
