@@ -2,7 +2,7 @@
     {if !$pages}
         <h3>
             <center>
-                {lang('Нет страниц', 'template')}
+                {lang('Нет страниц', 'premmerce')}
             </center>
         </h3>
     {else:}

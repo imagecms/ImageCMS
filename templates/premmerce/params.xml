@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<template label='New Level Saasiska' name='newLevel_Saas' type="shop" version="0.1">
+<template label='Premmerce' name='premmerce' type="shop" version="0.1">
     <author>SiteImage</author>
 
     <!-- Widgets start -->
