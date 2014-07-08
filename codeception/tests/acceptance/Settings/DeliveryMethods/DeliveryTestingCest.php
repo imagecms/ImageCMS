@@ -116,7 +116,6 @@ class DeliveryTesting {
      */
     public function Verify(AcceptanceTester $I) {
         $this->VerifyFront($I);
- 
     }
 
 
@@ -223,9 +222,12 @@ class DeliveryTesting {
         }
     }
     protected function VerifyFront(AcceptanceTester $I) {
-        $I->amOnPage("/shop/product/mobilnyi-telefon-fly-e141-tv-dual-sim-black");
-        $I->waitForElement('.btnBuy');
-        $I->click('.btnBuy');//edit
+        $I->amOnPage('/shop/product/mobilnyi-telefon-sony-xperia-v-lt25i-black');
+        $buy = "//div[@class='frame-prices-buy f-s_0']//form/div[3]";
+        $basket = "//div[@class='frame-prices-buy f-s_0']//form/div[2]";
+        $Attribute1 = $I->grabAttributeFrom($buy,'class');
+        //$Attribute2 = $I->grabAttributeFrom($basket,'class');
+        $Attribute1 == 'btn-buy-p btn-buy'?$I->click($buy):$I->click($basket);
         $I->waitForElementVisible("//*[@id='popupCart']");
         $I->click(".btn-cart.btn-cart-p.f_r");
         $I->waitForText('Оформление заказа');
