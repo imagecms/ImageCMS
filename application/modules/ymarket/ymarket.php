@@ -16,10 +16,10 @@ class Ymarket extends ShopController {
     public function __construct() {
         parent::__construct();
         $lang = new MY_Lang();
-        $lang->load('Ymarket');
+        $lang->load('ymarket');
         $this->currencyCode = SCurrenciesQuery::create()->filterByIsDefault(true)->findOne()->getCode();
         $this->settings = $this->cms_base->get_settings();
-        $this->adult = ShopCore::app()->SSettings->getIsAdult();
+        $this->adult = ShopCore::$ci->db->where('name','adult')->select('value')->get('mod_ymarket')->row()->value;
         parent::__construct();
     }
 
@@ -28,16 +28,13 @@ class Ymarket extends ShopController {
     public function allCatId($arg) {
         $query = $this->db->get_where('shop_product_categories', array('product_id' => $arg));
         $row = $query->row();
-
         foreach ($query->result() as $row) {
             $a = $row->category_id;
         }
-
         return $a;
     }
 
     public function index() {
-        header('content-type: text/xml');
         $ci = ShopCore::$ci;
         $pictureBaseUrl = base_url() . "uploads/shop/products/main/";
 
@@ -73,7 +70,8 @@ class Ymarket extends ShopController {
                 $this->offers[$unique_id]['param'] = $param;
             }
         }
-
+        
+        header('content-type: text/xml');
         echo '<?xml version="1.0" encoding="utf-8"?>
 			<!DOCTYPE yml_catalog SYSTEM "shops.dtd">
 			<yml_catalog date="' . date('Y-m-d H:i') . '">
@@ -106,7 +104,13 @@ class Ymarket extends ShopController {
     }
 
     public function renderCategories() {
-        $categories = SCategoryQuery::create()->filterById(ShopCore::app()->SSettings->getSelectedCats())
+        $unserCats = unserialize(ShopCore::$ci->db->where('name','categories')
+                ->select('value')
+                ->get('mod_ymarket')
+                ->row()
+                ->value);
+        
+        $categories = SCategoryQuery::create()->filterById($unserCats)
                 ->find();
 
         echo "<categories>";
@@ -145,9 +149,15 @@ class Ymarket extends ShopController {
     }
 
     public function getProducts() {
+        $unserCats = unserialize(ShopCore::$ci->db->where('name','categories')
+                ->select('value')
+                ->get('mod_ymarket')
+                ->row()
+                ->value);
+        
         $Ids = $this->db
                 ->select('id')
-                ->where_in('category_id', ShopCore::app()->SSettings->getSelectedCats())
+                ->where_in('category_id', $unserCats)
                 ->get('shop_products')
                 ->result_array();
 
@@ -192,32 +202,30 @@ class Ymarket extends ShopController {
     }
 
     public function _install() {
+        
         /** We recomend to use http://ellislab.com/codeigniter/user-guide/database/forge.html */
-        /**
+        
           $this->load->dbforge();
-
           $fields = array(
           'id' => array('type' => 'INT', 'constraint' => 11, 'auto_increment' => TRUE,),
-          'name' => array('type' => 'VARCHAR', 'constraint' => 50,),
-          'value' => array('type' => 'VARCHAR', 'constraint' => 100,)
+          'name' => array('type' => 'TEXT',),
+          'value' => array('type' => 'TEXT',)
           );
-
           $this->dbforge->add_key('id', TRUE);
           $this->dbforge->add_field($fields);
-          $this->dbforge->create_table('mod_empty', TRUE);
-         */
+          $this->dbforge->create_table('mod_ymarket', TRUE);         
         
           $this->db->where('name', 'ymarket')
-          ->update('components', array('autoload' => '1', 'enabled' => '1'));
+          ->update('components', array('enabled' => '1'));
+          
+          $this->db->insert('mod_ymarket', array('name'=>'categories', 'value' => ''));
+          $this->db->insert('mod_ymarket', array('name'=>'adult', 'value' => ''));
         
     }
 
-    public function _deinstall() {
-        /**
+    public function _deinstall() {        
           $this->load->dbforge();
-          $this->dbforge->drop_table('mod_empty');
-         *
-         */
+          $this->dbforge->drop_table('mod_ymarket');          
     }
 
 }
