@@ -3,6 +3,11 @@
 use \AcceptanceTester;
 
 class DeliveryTesting {
+    public function _after(AcceptanceTester $I) {
+        $I->amOnPage("/admin/components/run/shop/deliverymethods/index");
+        $I->click(DeliveryPage::$CreateButton);
+        $I->waitForText("Создание способа доставки", NULL, '.title');
+    }
     /**
      * @group create
      */
@@ -11,14 +16,11 @@ class DeliveryTesting {
         $I->amOnPage("/admin/components/run/shop/deliverymethods/index");
         $I->waitForText("Список способов доставки", "1", ".title");
     }
-
-//------------------------------------------FIELD NAME TESTS----------------------------------------------------------------------------------------------------
+//-----------------------FIELD NAME TESTS---------------------------------------
     /**
      * @group createa
      */
     public function NameEmpty(AcceptanceTester $I) {
-        $I->click(DeliveryPage::$CreateButton);
-        $I->waitForText("Создание способа доставки", '10', '.title');
         $I->click(DeliveryCreatePage::$ButtonCreate);
         $I->waitForElementVisible('//label[@generated="true"]');
         $I->see('Это поле обязательное.', 'label.alert.alert-error');
@@ -30,36 +32,34 @@ class DeliveryTesting {
      * @group createa
      */
     public function Name250(AcceptanceTester $I) {
-        $I->click(DeliveryPage::$CreateButton);
-        $I->waitForText("Создание способа доставки", '10', '.title');
-        $this->CreateDelivery($I, InitTest::$text250);
+        $name = InitTest::$text250;
+        $this->CreateDelivery($I, $name);
         $I->waitForElementVisible(".alert.in.fade.alert-success");
         $I->waitForElementNotVisible(".alert.in.fade.alert-success");
         $I->click(DeliveryCreatePage::$ButtonBack);
         $I->wait('2');
-        $this->VerifyList($I, InitTest::$text250);
+        $this->VerifyList($I, $name);
+        $this->VerifyFront($I, $name);
     }
 
     /**
      * @group createa
      */
     public function Name500(AcceptanceTester $I) {
-        $I->click(DeliveryPage::$CreateButton);
-        $I->waitForText("Создание способа доставки", '10', '.title');
-        $this->CreateDelivery($I, InitTest::$text500);
+        $name = InitTest::$text500;
+        $this->CreateDelivery($I, $name);
         $I->waitForElementVisible(".alert.in.fade.alert-success");
         $I->waitForElementNotVisible(".alert.in.fade.alert-success");
         $I->click(DeliveryCreatePage::$ButtonBack);
         $I->wait('2');
-        $this->VerifyList($I, InitTest::$text500);
+        $this->VerifyList($I, $name);
+        $this->VerifyFront($I, $name);
     }
 
         /**
          * @group createa
          */
     public function Name501(AcceptanceTester $I) {
-        $I->click(DeliveryPage::$CreateButton);
-        $I->waitForText("Создание способа доставки", '10', '.title');
         $this->CreateDelivery($I, InitTest::$text501);
         $I->waitForElementVisible('.alert.in.fade.alert-error');
         $I->waitForText("Поле Название не может превышать 500 символов в длину.",null, '.alert.in.fade.alert-error');
@@ -72,56 +72,54 @@ class DeliveryTesting {
      * @group createa
      */
     public function NameSymbols(AcceptanceTester $I){
-        $I->click(DeliveryPage::$CreateButton);
-        $I->waitForText("Создание способа доставки", '10', '.title');
-        $this->CreateDelivery($I, InitTest::$textSymbols);
+        $name = InitTest::$textSymbols;
+        $this->CreateDelivery($I, $name);
         $I->click(DeliveryCreatePage::$ButtonBack);
-        $this->VerifyList($I, InitTest::$textSymbols);
+        $this->VerifyList($I, $name);
+        $this->VerifyFront($I, $name);
     }
-    //---------------------------CHECKBOX ACTIVE TESTS--------------------------------------------------------------------------------
+//-----------------------CHECKBOX ACTIVE TESTS----------------------------------
     /**
-     * @group createa
+     * @group createaa
      */
     public function ActiveCheck(AcceptanceTester $I){
-        $I->click(DeliveryPage::$CreateButton);
-        $I->waitForText("Создание способа доставки", '10', '.title');
         $name = "Доставка актив";
         $this->CreateDelivery($I, $name, 'on');
         $this->VerifyList($I, $name,'on');
+        $this->VerifyFront($I, $name);
     }
     /**
-     * @group createa
+     * @group createaa
      */
     public function ActiveUnCheck(AcceptanceTester $I) {
-        $I->click(DeliveryPage::$CreateButton);
-        $I->waitForText("Создание способа доставки", '10', '.title');
         $name = "Доставка неактив";
         $this->CreateDelivery($I, $name, 'off');
         $this->VerifyList($I, $name,'off');
     }
+//-----------------------FIELD DESCRIPTION TESTS--------------------------------
     /**
      * @group createa
      */
     public function Description(AcceptanceTester $I) {
-        $I->click(DeliveryPage::$CreateButton);
-        $I->waitForText("Создание способа доставки", '10', '.title');
         $name = "Доставка Описание";
         $description = 
-        $descriptionprice = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЬЫЪЭЮЯЇЄІабвгдеёжзийклмнопрстуфхцчшщьыъэюяїєі,<.>?\/|~`!@#$%^&*(){}[]\'";:';
+        $descriptionprice = InitTest::$textSymbols;
         $this->CreateDelivery($I, $name, 'on', $description, $descriptionprice);
+        $this->VerifyFront($I,$name,$description);
         
     }
+//-----------------------FIELDS PRICE & FREE FROM TESTS-------------------------
     /**
      * @group create
      */
-    public function Verify(AcceptanceTester $I) {
-        $this->VerifyFront($I);
+    public function PriceFreeFromSymb(AcceptanceTester $I) {
+        $this->VerifyFront($I, "Доставка1");
     }
 
 
 
 
-//-------------------------------------------------PROTECTED FUNCTIONS---------------------------------------------------------------------------------------------------------------------
+//-----------------------PROTECTED FUNCTIONS------------------------------------
     /**
      * function create Delivery with specified parrameters
      * if you wont to skip some field type off
@@ -192,6 +190,10 @@ class DeliveryTesting {
         $I->click(DeliveryCreatePage::$ButtonCreate);
         $I->wait("3");
     }
+    /*
+     * function checking current parameters in Delivery List page 
+     * if you want to skip verifying of some parameters type null
+     */
     protected function VerifyList(AcceptanceTester $I,$name,$active=null){
         $I->amOnPage('/admin/components/run/shop/deliverymethods/index');
         $rows  = $I->grabTagCount($I,"tbody tr");
@@ -221,7 +223,14 @@ class DeliveryTesting {
             }
         }
     }
-    protected function VerifyFront(AcceptanceTester $I) {
+    /*
+     * function checking current parameters in frontend 
+     * if you want to skip verifying of some parameters type null
+     */
+    protected function VerifyFront(AcceptanceTester $I,$name,$description=null) {
+        static $WasCalled  = FALSE;
+        if(!$WasCalled){
+        $I->comment("$WasCalled");
         $I->amOnPage('/shop/product/mobilnyi-telefon-sony-xperia-v-lt25i-black');
         $buy = "//div[@class='frame-prices-buy f-s_0']//form/div[3]";
         $basket = "//div[@class='frame-prices-buy f-s_0']//form/div[2]";
@@ -230,8 +239,30 @@ class DeliveryTesting {
         $Attribute1 == 'btn-buy-p btn-buy'?$I->click($buy):$I->click($basket);
         $I->waitForElementVisible("//*[@id='popupCart']");
         $I->click(".btn-cart.btn-cart-p.f_r");
+        }  
+        else {
+        $I->amOnPage("/shop/cart");    
+        }
+        $WasCalled = TRUE;
         $I->waitForText('Оформление заказа');
-        
+        $ClassCount = $I->grabClassCount($I, 'name-count');
+        for ($j=1;$j<=$ClassCount;++$j){
+            $CName = $I->grabTextFrom("//div[@class='frame-radio']/div[$j]//span[@class='text-el']");
+            if ($CName == $name){
+                $I->assertEquals($name, $CName);
+                break;
+            }
+        }
+        if ($description){
+            $Cdescription = $I->grabAttributeFrom("//div[@class='frame-radio']/div[$j]//span[@class='icon_ask']", 'data-title');
+            $I->assertEquals($Cdescription,$description);
+        }
     }    
+//    protected function called(AcceptanceTester $I) {
+//        static $wascalled = FALSE;
+//        if (!$wascalled){
+//        $I->comment("$wascalled");}
+//        $wascalled = TRUE;
+//    }
 
 }
