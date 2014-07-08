@@ -41,12 +41,12 @@
         {form_csrf()}
         <div class="footer-panel clearfix">
             <button type="submit" class="btn btn-primary f_l">
-                <span class="text-el">Отправить</span>
+                <span class="text-el">{echo lang('Send', 'cfcm')}</span>
             </button>
             <div class="hidden-type-file f_r btn-attach-file2 btn">
                 <span class="icon-attach"></span>
-                <span class="text-el">Прикрепить</span>
-                <input type="file" name="attachment" title="Выберете файл"/>
+                <span class="text-el">{echo lang('Attach', 'cfcm')}</span>
+                <input type="file" name="attachment" title="{echo lang('Choose file', 'cfcm')}"/>
             </div>
         </div>
     </form>
