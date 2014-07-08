@@ -23,7 +23,7 @@ class InitTest{
         //$I->amOnSubdomain("/admin");
         $I->click(NavigationBarPage::$System);
         $I->click(NavigationBarPage::$SystemClearAllCach);
-        $I->waitForElement(".alert.in.fade.alert-error", '30');
+//        $I->waitForElement(".alert.in.fade.alert-error", '30');
         
     }
 
