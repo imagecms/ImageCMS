@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 ﻿msgid ""
 msgstr ""
+=======
+﻿msgid ""
+msgstr ""
+>>>>>>> 479c7ac00400f4dbb99066652b678fe42a8c373b
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-12-26 01:45+0200\n"
