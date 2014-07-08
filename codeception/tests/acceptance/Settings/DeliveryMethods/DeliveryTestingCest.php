@@ -32,12 +32,12 @@ class DeliveryTesting {
     public function Name250(AcceptanceTester $I) {
         $I->click(DeliveryPage::$CreateButton);
         $I->waitForText("Создание способа доставки", '10', '.title');
-        $this->CreateDelivery($I, InitTest::$name250);
+        $this->CreateDelivery($I, InitTest::$text250);
         $I->waitForElementVisible(".alert.in.fade.alert-success");
         $I->waitForElementNotVisible(".alert.in.fade.alert-success");
         $I->click(DeliveryCreatePage::$ButtonBack);
         $I->wait('2');
-        $this->VerifyList($I, InitTest::$name250);
+        $this->VerifyList($I, InitTest::$text250);
     }
 
     /**
@@ -46,12 +46,12 @@ class DeliveryTesting {
     public function Name500(AcceptanceTester $I) {
         $I->click(DeliveryPage::$CreateButton);
         $I->waitForText("Создание способа доставки", '10', '.title');
-        $this->CreateDelivery($I, InitTest::$name500);
+        $this->CreateDelivery($I, InitTest::$text500);
         $I->waitForElementVisible(".alert.in.fade.alert-success");
         $I->waitForElementNotVisible(".alert.in.fade.alert-success");
         $I->click(DeliveryCreatePage::$ButtonBack);
         $I->wait('2');
-        $this->VerifyList($I, InitTest::$name500);
+        $this->VerifyList($I, InitTest::$text500);
     }
 
         /**
@@ -60,7 +60,7 @@ class DeliveryTesting {
     public function Name501(AcceptanceTester $I) {
         $I->click(DeliveryPage::$CreateButton);
         $I->waitForText("Создание способа доставки", '10', '.title');
-        $this->CreateDelivery($I, InitTest::$name501);
+        $this->CreateDelivery($I, InitTest::$text501);
         $I->waitForElementVisible('.alert.in.fade.alert-error');
         $I->waitForText("Поле Название не может превышать 500 символов в длину.",null, '.alert.in.fade.alert-error');
         $I->waitForElementNotVisible('.alert.in.fade.alert-error');
@@ -74,9 +74,9 @@ class DeliveryTesting {
     public function NameSymbols(AcceptanceTester $I){
         $I->click(DeliveryPage::$CreateButton);
         $I->waitForText("Создание способа доставки", '10', '.title');
-        $this->CreateDelivery($I, InitTest::$nameSymbols);
+        $this->CreateDelivery($I, InitTest::$textSymbols);
         $I->click(DeliveryCreatePage::$ButtonBack);
-        $this->VerifyList($I, InitTest::$nameSymbols);
+        $this->VerifyList($I, InitTest::$textSymbols);
     }
     //---------------------------CHECKBOX ACTIVE TESTS--------------------------------------------------------------------------------
     /**
