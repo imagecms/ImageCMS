@@ -2,25 +2,18 @@
 use \AcceptanceTester;
 class TextElementCest
 {
-//   public function _before(AcceptanceTester $I)
-//   {
-//   }
- 
     /**
-     * @group validd
+     * @group Verify
      */
     // Авторизация
-    public function Login(AcceptanceTester $I)
-    {
+    public function Login(AcceptanceTester $I){
         InitTest::Login($I);
     }
-    
     /**
-     * @group validd
+     * @group Verify
      */
     // Проверка URL и ссылок на страницы "Список, Создание, Редактирование".
-    public function VerifyLinkNotfStatuses (AcceptanceTester $I)
-    {
+    public function VerifyLinkNotfStatuses (AcceptanceTester $I){
         $I->click(NavigationBarPage::$Orders);
         $I->click(NavigationBarPage::$NotificationStatuses);   
         $I->seeInCurrentUrl(NotificationStatusesPage::$ListPageURL);
@@ -37,15 +30,13 @@ class TextElementCest
         $I->click('button.close');
         $I->click(NotificationStatusesPage::$ListButtonDelete);
         $I->click('//div[3]/a[2]');
-     
     }
     
     /**
-     * @group validqq
+     * @group Verify
      */
      // Проверка текста и элементов на странице "Статусы уведомлений".
-    public function VerifyTextListPage (AcceptanceTester $I)
-    {
+    public function VerifyTextListPage (AcceptanceTester $I){
         $I->amOnPage(NotificationStatusesPage::$ListPageURL);
         $I->see('Статусы уведомлений о появлении', NotificationStatusesPage::$ListTitle );
         $I->see('Создать статус', NotificationStatusesPage::$ListButtonCreate);
@@ -57,12 +48,20 @@ class TextElementCest
         $I->see('Позиция',  NotificationStatusesPage::$ListNameThirdCollum);
     }
     
-//    /**
-//     * @group validd
-//     */
+    // Проверка мини сообщения при фокусировке мыши на названии статуса.
+    public function VerifyTextMessage (AcceptanceTester $I){
+        $I->amOnPage(NotificationStatusesPage::$ListPageURL);
+        $I->moveMouseOver(NotificationStatusesPage::$ListLinkEditing);
+        $I->waitForText('Редактировать статус уведомления');
+        $I->see('Редактировать статус уведомления', 'div.tooltip-inner');
+        $I->moveMouseOver(NotificationStatusesPage::$ListButtonCreate);
+    }
+
+    /**
+     * @group Verify
+     */
     // Проверка текста и элементов в окне "Удаление статуса".
-    public function VerifyTextDeleteWindow (AcceptanceTester $I)
-    {
+    public function VerifyTextDeleteWindow (AcceptanceTester $I){
         $I->amOnPage(NotificationStatusesPage::$ListPageURL);
         $I->click(NotificationStatusesPage::$ListHeaderCheckBox);
         $I->click(NotificationStatusesPage::$ListButtonDelete);
@@ -72,10 +71,11 @@ class TextElementCest
         $I->seeInPageSource('Отменить', NotificationStatusesPage::$DeleteWindowButtonCancel);
         $I->seeInPageSource('×', NotificationStatusesPage::$DeleteWindowButtonX);   
     }
-    
+    /**
+     * @group Verify
+     */
     // Проверка текста и элементов на странице "Создание статуса".
-    public function VerifyTextCreatePage (AcceptanceTester $I)
-    {
+    public function VerifyTextCreatePage (AcceptanceTester $I){
         $I->amOnPage(NotificationStatusesPage::$CreatePageUrl);
         $I->see('Создание статуса уведомления о появлении', NotificationStatusesPage::$CreationNameTitle);
         $I->see('Вернуться', NotificationStatusesPage::$CreationButtonBack );
@@ -84,10 +84,11 @@ class TextElementCest
         $I->see('Общая информация',  NotificationStatusesPage::$CreationNameBlock);        
         $I->see('Название',  NotificationStatusesPage::$CreationNameFild);        
     }
-    
+    /**
+     * @group Verify
+     */
     // Проверка текста и элементов на странице "Редактирование статуса".
-    public function VerifyTextEditPage (AcceptanceTester $I)
-    {
+    public function VerifyTextEditPage (AcceptanceTester $I){
         $I->amOnPage(NotificationStatusesPage::$EditingPageURL);
         $I->see('Редактирование статуса уведомления о появлении',  NotificationStatusesPage::$EditingNameTitle);
         $I->see('Вернуться',  NotificationStatusesPage::$EditingButtonBack);
@@ -96,30 +97,31 @@ class TextElementCest
         $I->see('Данные статуса уведомления о появлении',  NotificationStatusesPage::$EditingNameBlock);
         $I->see('Название',  NotificationStatusesPage::$EditingNameFild);
     }
-    
-    
+    /**
+     * @group Verify
+     */    
     // Проверка текста и элемента сообщения об обязательности заполнения поля на странице "Создание статуса".
-    public function VerifyTextAlertMessageCreatingPage (AcceptanceTester $I)
-    {
+    public function VerifyTextAlertMessageCreatingPage (AcceptanceTester $I){
         $I->amOnPage(NotificationStatusesPage::$CreatePageUrl);
         $I->click('Создать');
         $I->seeElement(NotificationStatusesPage::$CreationAlertMessage);    
     }
-    
-
-    
+    /**
+     * @group Verify
+     */    
     // Проверка текста и элемента сообщения о создании на странице "Создание статуса".
-    public function VerifyTextCreateMessageCreatingPage (AcceptanceTester $I)
-    {
+    public function VerifyTextCreateMessageCreatingPage (AcceptanceTester $I){
         $I->amOnPage(NotificationStatusesPage::$CreatePageUrl);
         $I->fillField(NotificationStatusesPage::$CreationFildInput,'qwe 123 !@# ЯЧС');
         $I->click(NotificationStatusesPage::$CreationButtonCreate);
         $I->see('Сообщение',NotificationStatusesPage::$CreationCreateMessage); 
         $I->wait('1');
     }
-        // Проверка текста и элемента сообщения об обязательности заполнения поля на странице "Редактирование статуса".
-        public function VerifyTextAlertMessageEdictingPage (AcceptanceTester $I)
-    {
+    /**
+     * @group Verify
+     */
+    // Проверка текста и элемента сообщения об обязательности заполнения поля на странице "Редактирование статуса".
+    public function VerifyTextAlertMessageEdictingPage (AcceptanceTester $I){
         $I->amOnPage(NotificationStatusesPage::$ListPageURL);
         $I->waitForElement(NotificationStatusesPage::$ListLinkForEditing);
         $I->click(NotificationStatusesPage::$ListLinkForEditing);
@@ -127,11 +129,11 @@ class TextElementCest
         $I->click('//button[1]');
         $I->seeElement(NotificationStatusesPage::$CreationAlertMessage);    
     }
-    
-    
+    /**
+     * @group Verify
+     */    
     // Проверка текста и элемента сообщения о редактировании на странице "Редактирование статуса".
-     public function VerifyTextEdicttMessageEdictingPage (AcceptanceTester $I)
-    {
+     public function VerifyTextEdicttMessageEdictingPage (AcceptanceTester $I){
         $I->amOnPage(NotificationStatusesPage::$ListPageURL);
         $I->waitForElement(NotificationStatusesPage::$ListLinkForEditing);
         $I->click(NotificationStatusesPage::$ListLinkForEditing);
@@ -140,10 +142,11 @@ class TextElementCest
         $I->see('Сообщение',NotificationStatusesPage::$EdictingEdictMessage);
         $I->wait('1');
     }
-    
+    /**
+     * @group Verify
+     */
     // Проверка текста и элемента сообщения о удалении в окне "Удаления статуса".
-    public function VerifyTextMessageDeletingStatus (AcceptanceTester $I)
-    {
+    public function VerifyTextMessageDeletingStatus (AcceptanceTester $I){
         $I->amOnPage(NotificationStatusesPage::$ListPageURL);
         $I->waitForElement(NotificationStatusesPage::$ListHeaderCheckBox);
         $I->click(NotificationStatusesPage::$ListHeaderCheckBox);
@@ -152,9 +155,8 @@ class TextElementCest
         $I->click(NotificationStatusesPage::$ListButtonDelete); 
         $I->click(NotificationStatusesPage::$DeleteWindowButtonDelete);
         $I->waitForText('Статус удален');
-        InitTest::ClearAllCach($I);
-      
-    }     
+        InitTest::ClearAllCach($I);      
+    } 
   
     
 }
