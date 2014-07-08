@@ -113,9 +113,9 @@ class DeliveryTesting {
      * @group create
      */
     public function PriceFreeFromSymb(AcceptanceTester $I) {
-        $price = $freefrom = '123456.0';//InitTest::$textSymbols;
+        $price = $freefrom = "1234565";//InitTest::$textSymbols;
         $name = 'ДоставкаЦена';
-        $this->CreateDelivery($I, $name, 'on', 'off', 'off', $price, $freefrom);
+        //$this->CreateDelivery($I, $name, 'on', 'off', 'off', $price, $freefrom);
         $this->VerifyList($I, $name, NULL, $price, $freefrom);
         //$this->VerifyFront($I, $name, null, $price, $freefrom);
     }
@@ -230,12 +230,14 @@ class DeliveryTesting {
         }
         ////do this normal
         if($price){
-            $text = $I->grabTextFrom(DeliveryPage::ListPriceLine($j));
-            $I->assertEquals(preg_replace('/[^0-9.]*/u', '', $text),$price.".00000");
+            $Cprice = $I->grabTextFrom(DeliveryPage::ListPriceLine($j));
+            $price = number_format($price, 5,".","");
+            $I->assertEquals(preg_replace('/[^0-9.]*/u', '', $Cprice),$price);
         }
         if($freefrom){
-            $text = $I->grabTextFrom(DeliveryPage::ListFreeFromLine($j));
-            $I->assertEquals(preg_replace('/[^0-9.]*/u', '', $text), $freefrom.".00000");
+            $Cfreefrom = $I->grabTextFrom(DeliveryPage::ListFreeFromLine($j));
+            $freefrom = number_format($freefrom, 5,".","");
+            $I->assertEquals(preg_replace('/[^0-9.]*/u', '', $Cfreefrom), $freefrom);
         }
     }
     /*
