@@ -3,7 +3,6 @@
 use \AcceptanceTester;
 
 class DeliveryTesting {
-
     /**
      * @group create
      */
@@ -13,6 +12,7 @@ class DeliveryTesting {
         $I->waitForText("Список способов доставки", "1", ".title");
     }
 
+//------------------------------------------FIELD NAME TESTS----------------------------------------------------------------------------------------------------
     /**
      * @group createa
      */
@@ -37,14 +37,9 @@ class DeliveryTesting {
         $I->waitForElementNotVisible(".alert.in.fade.alert-success");
         $I->click(DeliveryCreatePage::$ButtonBack);
         $I->wait('2');
+        $this->VerifyList($I, InitTest::$name250);
     }
 
-    /**
-     * @group createa
-     */    
-    public function Name250ListPresent(AcceptanceTester $I){
-        $this->VerifyDeliveryPresentInList($I, InitTest::$name250);
-    }
     /**
      * @group createa
      */
@@ -56,17 +51,12 @@ class DeliveryTesting {
         $I->waitForElementNotVisible(".alert.in.fade.alert-success");
         $I->click(DeliveryCreatePage::$ButtonBack);
         $I->wait('2');
-    }
-    /**
-     * @group create
-     */
-    public function Name500ListPresent(AcceptanceTester $I){
-        $this->VerifyDeliveryPresentInList($I, InitTest::$name500);
+        $this->VerifyList($I, InitTest::$name500);
     }
 
-    /**
-     * @group createa
-     */
+        /**
+         * @group createa
+         */
     public function Name501(AcceptanceTester $I) {
         $I->click(DeliveryPage::$CreateButton);
         $I->waitForText("Создание способа доставки", '10', '.title');
@@ -78,7 +68,61 @@ class DeliveryTesting {
         $I->click(DeliveryCreatePage::$ButtonBack);
         $I->wait('5');
     }
+    /**
+     * @group createa
+     */
+    public function NameSymbols(AcceptanceTester $I){
+        $I->click(DeliveryPage::$CreateButton);
+        $I->waitForText("Создание способа доставки", '10', '.title');
+        $this->CreateDelivery($I, InitTest::$nameSymbols);
+        $I->click(DeliveryCreatePage::$ButtonBack);
+        $this->VerifyList($I, InitTest::$nameSymbols);
+    }
+    //---------------------------CHECKBOX ACTIVE TESTS--------------------------------------------------------------------------------
+    /**
+     * @group createa
+     */
+    public function ActiveCheck(AcceptanceTester $I){
+        $I->click(DeliveryPage::$CreateButton);
+        $I->waitForText("Создание способа доставки", '10', '.title');
+        $name = "Доставка актив";
+        $this->CreateDelivery($I, $name, 'on');
+        $this->VerifyList($I, $name,'on');
+    }
+    /**
+     * @group createa
+     */
+    public function ActiveUnCheck(AcceptanceTester $I) {
+        $I->click(DeliveryPage::$CreateButton);
+        $I->waitForText("Создание способа доставки", '10', '.title');
+        $name = "Доставка неактив";
+        $this->CreateDelivery($I, $name, 'off');
+        $this->VerifyList($I, $name,'off');
+    }
+    /**
+     * @group createa
+     */
+    public function Description(AcceptanceTester $I) {
+        $I->click(DeliveryPage::$CreateButton);
+        $I->waitForText("Создание способа доставки", '10', '.title');
+        $name = "Доставка Описание";
+        $description = 
+        $descriptionprice = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЬЫЪЭЮЯЇЄІабвгдеёжзийклмнопрстуфхцчшщьыъэюяїєі,<.>?\/|~`!@#$%^&*(){}[]\'";:';
+        $this->CreateDelivery($I, $name, 'on', $description, $descriptionprice);
+        
+    }
+    /**
+     * @group create
+     */
+    public function Verify(AcceptanceTester $I) {
+        $this->VerifyFront($I);
+ 
+    }
 
+
+
+
+//-------------------------------------------------PROTECTED FUNCTIONS---------------------------------------------------------------------------------------------------------------------
     /**
      * function create Delivery with specified parrameters
      * if you wont to skip some field type off
@@ -149,7 +193,7 @@ class DeliveryTesting {
         $I->click(DeliveryCreatePage::$ButtonCreate);
         $I->wait("3");
     }
-    protected function VerifyDeliveryPresentInList(AcceptanceTester $I,$name){
+    protected function VerifyList(AcceptanceTester $I,$name,$active=null){
         $I->amOnPage('/admin/components/run/shop/deliverymethods/index');
         $rows  = $I->grabTagCount($I,"tbody tr");
         $I->comment($rows);
@@ -164,8 +208,28 @@ class DeliveryTesting {
                 }
             }
         }
-        $I->comment("results: \n row: $j\n Method: $method\n Present: $present\n");
+        $I->comment("results: \n Method: \t$method Present: $present in row: $j\n");
         $present>0?$I->assertEquals($method,$name):$I->fail("Method wasn't created");
+        if($active){
+            $attribute = $I->grabAttributeFrom(DeliveryPage::ListActiveButtonLine($j),"class");
+            switch ($active){
+                case 'on':
+                    $I->assertEquals("prod-on_off ", $attribute);
+                    break;
+                case 'off':
+                    $I->assertEquals("prod-on_off disable_tovar", $attribute);
+                    break;
+            }
+        }
     }
+    protected function VerifyFront(AcceptanceTester $I) {
+        $I->amOnPage("/shop/product/mobilnyi-telefon-fly-e141-tv-dual-sim-black");
+        $I->waitForElement('.btnBuy');
+        $I->click('.btnBuy');//edit
+        $I->waitForElementVisible("//*[@id='popupCart']");
+        $I->click(".btn-cart.btn-cart-p.f_r");
+        $I->waitForText('Оформление заказа');
+        
+    }    
 
 }
