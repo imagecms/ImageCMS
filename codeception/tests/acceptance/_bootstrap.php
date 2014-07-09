@@ -2,7 +2,7 @@
 // Here you can initialize variables that will be available to your tests
 \Codeception\Util\Autoload::registerSuffix('Page', __DIR__.DIRECTORY_SEPARATOR.'_pages');
 class InitTest{
-    protected static $LoggedIn = FALSE;
+    protected static $LoggedIn;
 
     public static
     $text250 = "Существуют разнообразные системы управления сайтом, среди которых встречаются платные и бесплатные, построенные по разным технологиям. Каждый сайт имеет панель управления, которая является только частью всей программы, достаточной для управления сайт",
