@@ -10,5 +10,5 @@ $I->see('Темы обратных звонков', 'span.title');
 $I->see('ID', '//form[@id="orderStatusesList"]/section/div[2]/div/table/thead/tr/th[1]');
 $I->see('Название', '//form[@id="orderStatusesList"]/section/div[2]/div/table/thead/tr/th[2]');
 $I->see('Удалить', '//form[@id="orderStatusesList"]/section/div[2]/div/table/thead/tr/th[3]');
-$I->see('Создать тему', './/*[@id="orderStatusesList"]/section/div[1]/div[2]/div/a');
+$I->see('Создать тему', CallbacksPage::$CreateThemeButton);
 
