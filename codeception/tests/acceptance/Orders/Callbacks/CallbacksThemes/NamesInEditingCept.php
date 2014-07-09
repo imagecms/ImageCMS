@@ -11,7 +11,7 @@ $I->waitForText('Редактирование темы обратного зво
 $I->see('Редактирование темы обратного звонка', 'span.title.w-s_n');
 $I->see('Информация', '.table.table-striped.table-bordered.table-hover.table-condensed.content_big_td>thead>tr>th');
 $I->see('Имя:', './/*[@id="addCallbackStatusForm"]/div/label');
-$I->see('Вернуться', './/*[@id="mainContent"]/section/div[1]/div[2]/div/a/span[2]');
-$I->see('Сохранить', './/*[@id="mainContent"]/section/div[1]/div[2]/div/button[1]');
-$I->see('Сохранить и выйти', './/*[@id="mainContent"]/section/div[1]/div[2]/div/button[2]');
+$I->see('Вернуться', CallbacksPage::$GoBackButton);
+$I->see('Сохранить', CallbacksPage::$SaveButton);
+$I->see('Сохранить и выйти', CallbacksPage::$SaveAndExitButton);
 
