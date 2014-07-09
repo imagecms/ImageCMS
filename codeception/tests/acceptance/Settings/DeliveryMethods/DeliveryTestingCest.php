@@ -3,10 +3,14 @@
 use \AcceptanceTester;
 
 class DeliveryTesting {
-    public function _after(AcceptanceTester $I) {
+    public function _before(AcceptanceTester $I) {
+        static $callCount;
+        if($callCount){
         $I->amOnPage("/admin/components/run/shop/deliverymethods/index");
         $I->click(DeliveryPage::$CreateButton);
         $I->waitForText("Создание способа доставки", NULL, '.title');
+        }
+        $callCount = true;
     }
     /**
      * @group create
@@ -128,7 +132,7 @@ class DeliveryTesting {
         $this->CheckInFrontEnd($I, $name, null, $price, $freefrom);
     }
     /**
-     * @group create
+     * @group createa
      */
     public function PriceFreeFrom15num(AcceptanceTester $I) {
         $price = $freefrom = '9999999999.999';
@@ -138,7 +142,41 @@ class DeliveryTesting {
         $this->CheckInList($I, $name, NULL, $price, $freefrom);
         $this->CheckInFrontEnd($I, $name, null, $price, $freefrom);
     }
-    
+    //---------------------CHECKBOX PRICE SPECIFIED & FIELD PRICE SPECIFIED-----
+    /**
+     * @group createa
+     */
+    public function CheckPriseSpecified(AcceptanceTester $I) {
+        $I->checkOption(DeliveryCreatePage::$CheckboxPriceSpecified);
+        $I->waitForElementVisible(DeliveryCreatePage::$FieldPriceSpecified);
+        $a = $I->grabAttributeFrom(DeliveryCreatePage::$FieldPrice, 'disabled');
+        $b = $I->grabAttributeFrom(DeliveryCreatePage::$FieldPrice, 'disabled');
+        if($a&&$b){
+            $I->assertEquals($a, 'true');
+            $I->assertEquals($b, 'true');
+        }
+        else {
+            $I->fail("Lields are editable");
+        }
+    }
+    /**
+     * @group createa
+     */
+    public function FieldPriseSpecifiedEmpty(AcceptanceTester $I) {
+        $name = "УточнениеЦеныПусто";
+        $this->CreateDelivery($I, $name, 'on', 'off', 'off', 'off', 'off', "");
+        $this->CheckForAlertPresent($I, 'success');
+    }
+    /**
+     * @group createa
+     */
+    public function FieldPriseSpecified250(AcceptanceTester $I) {
+        $name = 'УточнениеЦены250';
+        $message = InitTest::$text250;
+        $this->CreateDelivery($I, $name, 'on', 'off', 'off', 'off', 'off', $message);
+        $this->CheckForAlertPresent($I, 'success');
+        $this->CheckInFrontEnd($I, $name, NULL, NULL, NULL, $message);
+    }
 
 
 
@@ -263,7 +301,7 @@ class DeliveryTesting {
      * function checking current parameters in frontend 
      * if you want to skip verifying of some parameters type null
      */
-    protected function CheckInFrontEnd(AcceptanceTester $I,$name,$description=null,$price=null,$freefrom=null) {
+    protected function CheckInFrontEnd(AcceptanceTester $I,$name,$description=null,$price=null,$freefrom=null,$message=null) {
         static $WasCalled  = FALSE;
         if(!$WasCalled){
         $I->comment("$WasCalled");
@@ -309,6 +347,11 @@ class DeliveryTesting {
             $freefrom = ceil($freefrom);
             $I->assertEquals($Cfreefrom, $freefrom);
          }
+         if($message){
+             $Cmessage = $I->grabTextFrom("//div[@class='frame-radio']/div[$j]/div[@class='help-block']");
+             $I->comment($Cmessage);
+             $I->assertEquals($Cmessage, $message);
+         }
     }
     protected function CheckForAlertPresent(AcceptanceTester $I,$type,$field=null) {
         switch ($type){
@@ -318,20 +361,20 @@ class DeliveryTesting {
                     $I->waitForText("Поле Название не может превышать 500 символов в длину.",null, '.alert.in.fade.alert-error');
                     $I->waitForElementNotVisible('.alert.in.fade.alert-error');
                     $I->see("Создание способа доставки", '.title');
-                break;
+                    break;
             case 'success':
                     $I->comment("I want to see that success alert is present");
                     $I->waitForElementVisible('.alert.in.fade.alert-success');
                     $I->see('Доставка создана','.alert.in.fade.alert-success');
                     $I->waitForElementNotVisible('.alert.in.fade.alert-success');
-                break;
+                    break;
             //Checking required field (red color(class alert) & message 
             case 'required':
                     $I->comment("I want to see that field is required");
                     $I->waitForElementVisible('//label[@generated="true"]');
                     $I->see('Это поле обязательное.', 'label.alert.alert-error');
                     $I->assertEquals($I->grabAttributeFrom($field, 'class'), "alert alert-error");
-                break;
+                    break;
         }
 }
 }
