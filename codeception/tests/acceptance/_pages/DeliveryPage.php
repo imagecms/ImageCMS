@@ -55,7 +55,7 @@ class DeliveryPage
 class DeliveryCreatePage
 {
     public static $FieldNameLabel = "//*[@id='createDelivery']/div[1]/label";
-    public static $FieldName = ".//*[@id='Name']";
+    public static $FieldName = "//*[@id='Name']";
     public static $CheckboxActiveLabel = "//form[@id='createDelivery']/div[2]/div[2]/span";
     public static $CheckboxActive = "//*[@id='createDelivery']/div[2]/div[2]/span/span";
     public static $FieldDescriptionLabel = "//*[@id='createDelivery']/div[3]/label";

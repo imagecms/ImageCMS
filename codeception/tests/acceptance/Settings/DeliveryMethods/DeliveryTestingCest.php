@@ -16,16 +16,13 @@ class DeliveryTesting {
         $I->amOnPage("/admin/components/run/shop/deliverymethods/index");
         $I->waitForText("Список способов доставки", "1", ".title");
     }
-//-----------------------FIELD NAME TESTS---------------------------------------
+    //-----------------------FIELD NAME TESTS-----------------------------------
     /**
      * @group createa
      */
     public function NameEmpty(AcceptanceTester $I) {
         $I->click(DeliveryCreatePage::$ButtonCreate);
-        $I->waitForElementVisible('//label[@generated="true"]');
-        $I->see('Это поле обязательное.', 'label.alert.alert-error');
-        $I->click(DeliveryCreatePage::$ButtonBack);
-        $I->wait('2');
+        $this->CheckForAlertPresent($I,'required',  DeliveryCreatePage::$FieldName);
     }
 
     /**
@@ -34,12 +31,9 @@ class DeliveryTesting {
     public function Name250(AcceptanceTester $I) {
         $name = InitTest::$text250;
         $this->CreateDelivery($I, $name);
-        $I->waitForElementVisible(".alert.in.fade.alert-success");
-        $I->waitForElementNotVisible(".alert.in.fade.alert-success");
-        $I->click(DeliveryCreatePage::$ButtonBack);
-        $I->wait('2');
-        $this->VerifyList($I, $name);
-        $this->VerifyFront($I, $name);
+        $this->CheckForAlertPresent($I, 'success');
+        $this->CheckInList($I, $name);
+        $this->CheckInFrontEnd($I, $name);
     }
 
     /**
@@ -48,45 +42,36 @@ class DeliveryTesting {
     public function Name500(AcceptanceTester $I) {
         $name = InitTest::$text500;
         $this->CreateDelivery($I, $name);
-        $I->waitForElementVisible(".alert.in.fade.alert-success");
-        $I->waitForElementNotVisible(".alert.in.fade.alert-success");
-        $I->click(DeliveryCreatePage::$ButtonBack);
-        $I->wait('2');
-        $this->VerifyList($I, $name);
-        $this->VerifyFront($I, $name);
-    }
-
-        /**
-         * @group createa
-         */
-    public function Name501(AcceptanceTester $I) {
-        $this->CreateDelivery($I, InitTest::$text501);
-        $I->waitForElementVisible('.alert.in.fade.alert-error');
-        $I->waitForText("Поле Название не может превышать 500 символов в длину.",null, '.alert.in.fade.alert-error');
-        $I->waitForElementNotVisible('.alert.in.fade.alert-error');
-        $I->see("Создание способа доставки", '.title');
-        $I->click(DeliveryCreatePage::$ButtonBack);
-        $I->wait('5');
+        $this->CheckForAlertPresent($I, 'success');
+        $this->CheckInList($I, $name);
+        $this->CheckInFrontEnd($I, $name);
     }
     /**
      * @group createa
      */
+    public function Name501(AcceptanceTester $I) {
+        $this->CreateDelivery($I, InitTest::$text501);
+        $this->CheckForAlertPresent($I, "error");
+    }
+    /**
+     * @group create
+     */
     public function NameSymbols(AcceptanceTester $I){
         $name = InitTest::$textSymbols;
         $this->CreateDelivery($I, $name);
-        $I->click(DeliveryCreatePage::$ButtonBack);
-        $this->VerifyList($I, $name);
-        $this->VerifyFront($I, $name);
+        $this->CheckForAlertPresent($I, "success");
+        $this->CheckInList($I, $name);
+        $this->CheckInFrontEnd($I, $name);
     }
-//-----------------------CHECKBOX ACTIVE TESTS----------------------------------
+    //-----------------------CHECKBOX ACTIVE TESTS------------------------------
     /**
      * @group createa
      */
     public function ActiveCheck(AcceptanceTester $I){
         $name = "Доставка актив";
         $this->CreateDelivery($I, $name, 'on');
-        $this->VerifyList($I, $name,'on');
-        $this->VerifyFront($I, $name);
+        $this->CheckInList($I, $name,'on');
+        $this->CheckInFrontEnd($I, $name);
     }
     /**
      * @group createa
@@ -94,30 +79,31 @@ class DeliveryTesting {
     public function ActiveUnCheck(AcceptanceTester $I) {
         $name = "Доставка неактив";
         $this->CreateDelivery($I, $name, 'off');
-        $this->VerifyList($I, $name,'off');
+        $this->CheckInList($I, $name,'off');
     }
-//-----------------------FIELD DESCRIPTION TESTS--------------------------------
+    //-----------------------FIELD DESCRIPTION TESTS----------------------------
     /**
      * @group createa
      */
     public function Description(AcceptanceTester $I) {
         $name = "Доставка Описание";
-        $description = 
-        $descriptionprice = InitTest::$textSymbols;
+        $description = $descriptionprice = InitTest::$textSymbols;
         $this->CreateDelivery($I, $name, 'on', $description, $descriptionprice);
-        $this->VerifyFront($I,$name,$description);
+        $this->CheckForAlertPresent($I, 'success');
+        $this->CheckInFrontEnd($I,$name,$description);
         
     }
-//-----------------------FIELDS PRICE & FREE FROM TESTS-------------------------
+    //-----------------------FIELDS PRICE & FREE FROM TESTS---------------------
     /**
      * @group create
      */
     public function PriceFreeFromSymb(AcceptanceTester $I) {
-        $price = $freefrom = "1234565";//InitTest::$textSymbols;
-        $name = 'ДоставкаЦена';
-        //$this->CreateDelivery($I, $name, 'on', 'off', 'off', $price, $freefrom);
-        $this->VerifyList($I, $name, NULL, $price, $freefrom);
-        //$this->VerifyFront($I, $name, null, $price, $freefrom);
+        $price = $freefrom = //InitTest::$textSymbols;
+        $name = 'ДоставкаЦенаСимволи';
+        $this->CreateDelivery($I, $name, 'on', 'off', 'off', $price, $freefrom);
+        $this->CheckForAlertPresent($I, 'success');
+        $this->CheckInList($I, $name, NULL, $price, $freefrom);
+        $this->CheckInFrontEnd($I, $name, null, $price, $freefrom);
     }
 
 
@@ -171,7 +157,6 @@ class DeliveryTesting {
                 break;
             default :
                 $I->fillField(DeliveryCreatePage::$FieldFreeFrom, $freefrom);
-                $I->wait("5");
                 break;
         }
         switch ($message) {
@@ -199,7 +184,7 @@ class DeliveryTesting {
      * function checking current parameters in Delivery List page 
      * if you want to skip verifying of some parameters type null
      */
-    protected function VerifyList(AcceptanceTester $I,$name,$active=null,$price=null,$freefrom=null){
+    protected function CheckInList(AcceptanceTester $I,$name,$active=null,$price=null,$freefrom=null){
         $I->amOnPage('/admin/components/run/shop/deliverymethods/index');
         $rows  = $I->grabTagCount($I,"tbody tr");
         $I->comment($rows);
@@ -244,7 +229,7 @@ class DeliveryTesting {
      * function checking current parameters in frontend 
      * if you want to skip verifying of some parameters type null
      */
-    protected function VerifyFront(AcceptanceTester $I,$name,$description=null,$price=null,$freefrom=null) {
+    protected function CheckInFrontEnd(AcceptanceTester $I,$name,$description=null,$price=null,$freefrom=null) {
         static $WasCalled  = FALSE;
         if(!$WasCalled){
         $I->comment("$WasCalled");
@@ -290,6 +275,29 @@ class DeliveryTesting {
             $freefrom = ceil($freefrom);
             $I->assertEquals($Cfreefrom, $freefrom);
          }
-        //div[@class='frame-radio']/div[$j]/div[@class='help-block']/div[2]
-    }    
+    }
+    protected function CheckForAlertPresent(AcceptanceTester $I,$type,$field=null) {
+        switch ($type){
+            case 'error':
+                    $I->comment("I want to see that error alert is present");
+                    $I->waitForElementVisible('.alert.in.fade.alert-error');
+                    $I->waitForText("Поле Название не может превышать 500 символов в длину.",null, '.alert.in.fade.alert-error');
+                    $I->waitForElementNotVisible('.alert.in.fade.alert-error');
+                    $I->see("Создание способа доставки", '.title');
+                break;
+            case 'success':
+                    $I->comment("I want to see that success alert is present");
+                    $I->waitForElementVisible('.alert.in.fade.alert-success');
+                    $I->see('Доставка создана','.alert.in.fade.alert-success');
+                    $I->waitForElementNotVisible('.alert.in.fade.alert-success');
+                break;
+            //Checking required field (red color(class alert) & message 
+            case 'required':
+                    $I->comment("I want to see that field is required");
+                    $I->waitForElementVisible('//label[@generated="true"]');
+                    $I->see('Это поле обязательное.', 'label.alert.alert-error');
+                    $I->assertEquals($I->grabAttributeFrom($field, 'class'), "alert alert-error");
+                break;
+        }
+}
 }
