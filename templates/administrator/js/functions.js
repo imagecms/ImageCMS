@@ -526,7 +526,7 @@ function initTinyMCE()
         // Location of TinyMCE script
         height: 300,
         language: locale.substr(0, 2),
-        script_url: '/js/tiny_mce/tiny_mce.js',
+        script_url: MAINSITE.replace('../','http://')+'/js/tiny_mce/tiny_mce.js',
         // General options
         theme: "advanced",
         //skin: "o2k7",

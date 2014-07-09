@@ -33,6 +33,12 @@ class ParentEmail extends \MY_Controller {
     protected $send_to;
 
     /**
+     * Attachment file
+     * @var type 
+     */
+    protected $attachment;
+
+    /**
      * Email theme
      * @var string
      */
@@ -135,7 +141,7 @@ class ParentEmail extends \MY_Controller {
      *   $variables = array('$user$' => 'UserName')
      * @return bool
      */
-    public function sendEmail($send_to, $patern_name, $variables) {
+    public function sendEmail($send_to, $patern_name, $variables, $attachment = FALSE) {
         //loading CodeIgniter Email library 
         $this->load->library('email');
 
@@ -202,6 +208,7 @@ class ParentEmail extends \MY_Controller {
 
             $this->theme = $patern_settings['theme'];
             $this->message = $this->replaceVariables($patern_settings['admin_message'], $variables);
+            $this->attachment = $attachment;
 
             if (!$this->_sendEmail()) {
                 $this->errors[] = lang('User message doesnt send', 'cmsemail');
@@ -349,6 +356,11 @@ class ParentEmail extends \MY_Controller {
         $this->email->to($this->send_to);
         $this->email->subject($this->theme);
         $this->email->message($this->message);
+
+        if ($this->attachment && file_exists($this->attachment)) {
+            $this->email->attach($this->attachment);
+        }
+
         return $this->email->send();
     }
 
@@ -370,7 +382,7 @@ class ParentEmail extends \MY_Controller {
 
         $config['mailtype'] = strtolower($settings['type']);
         $config['mailpath'] = $settings['mailpath'];
-        
+
         return $this->email->initialize($config);
     }
 
