@@ -13,15 +13,20 @@ class Admin extends BaseAdminController {
         $lang = new MY_Lang();
         $lang->load('module_ymarket');
     }
-
+    
+    /**
+     * Connects the module template in the administrative part of the site
+     */
     public function index() {
         \CMSFactory\assetManager::create()
                 ->renderAdmin('list');
     }
-
+    
+    /**
+     * Saves the selected user categories in the table
+     */
     public function save() {
         if ($_POST && $_SESSION['DX_role_id'] == 1) {
-
             if (count($_POST['displayedCats']) > 0){
                 $this->db->where('name', 'categories')
                         ->update('mod_ymarket', array('value' => serialize($_POST['displayedCats'])));
@@ -34,11 +39,13 @@ class Admin extends BaseAdminController {
                 $this->db->where('name', 'adult')
                         ->update('mod_ymarket', array('value' => '0'));
             }
-
-//            var_dump($_POST);
         }
     }
-
+    
+    /**
+     * Check for flag adult
+     * @return int 0 or 1
+     */
     public function IsAdult() {
         return $this->db->where('name', 'adult')
                 ->select('value')
@@ -46,7 +53,12 @@ class Admin extends BaseAdminController {
                 ->row()
                 ->value;
     }
-
+    
+    
+    /**
+     * Selecting categories to generate xml
+     * @return array ids category
+     */
     public function getSelectedCats() {
         return unserialize($this->db->where('name', 'categories')
                         ->select('value')
