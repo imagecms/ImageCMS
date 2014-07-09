@@ -17,6 +17,7 @@ class NotificationStatusesPage
     public static $ListNameFirstCollum = "//th[2]";
     public static $ListNameSecondCollum = "//th[3]";
     public static $ListNameThirdCollum = "//th[4]";
+    public static $ListTable = "//div/div[3]/section/div[2]";
     public static $DeleteWindowButtonDelete = "//div[3]/a";
     public static $DeleteWindowTitle = "//div[@id='mainContent']/div/div/div/h3";
     public static $DeleteWindowMassege = "//p";
