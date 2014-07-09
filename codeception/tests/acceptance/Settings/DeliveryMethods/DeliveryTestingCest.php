@@ -80,7 +80,7 @@ class DeliveryTesting {
     }
 //-----------------------CHECKBOX ACTIVE TESTS----------------------------------
     /**
-     * @group createaa
+     * @group createa
      */
     public function ActiveCheck(AcceptanceTester $I){
         $name = "Доставка актив";
@@ -89,7 +89,7 @@ class DeliveryTesting {
         $this->VerifyFront($I, $name);
     }
     /**
-     * @group createaa
+     * @group createa
      */
     public function ActiveUnCheck(AcceptanceTester $I) {
         $name = "Доставка неактив";
@@ -113,7 +113,11 @@ class DeliveryTesting {
      * @group create
      */
     public function PriceFreeFromSymb(AcceptanceTester $I) {
-        $this->VerifyFront($I, "Доставка1");
+        $price = $freefrom = "1234565";//InitTest::$textSymbols;
+        $name = 'ДоставкаЦена';
+        //$this->CreateDelivery($I, $name, 'on', 'off', 'off', $price, $freefrom);
+        $this->VerifyList($I, $name, NULL, $price, $freefrom);
+        //$this->VerifyFront($I, $name, null, $price, $freefrom);
     }
 
 
@@ -167,6 +171,7 @@ class DeliveryTesting {
                 break;
             default :
                 $I->fillField(DeliveryCreatePage::$FieldFreeFrom, $freefrom);
+                $I->wait("5");
                 break;
         }
         switch ($message) {
@@ -194,23 +199,24 @@ class DeliveryTesting {
      * function checking current parameters in Delivery List page 
      * if you want to skip verifying of some parameters type null
      */
-    protected function VerifyList(AcceptanceTester $I,$name,$active=null){
+    protected function VerifyList(AcceptanceTester $I,$name,$active=null,$price=null,$freefrom=null){
         $I->amOnPage('/admin/components/run/shop/deliverymethods/index');
         $rows  = $I->grabTagCount($I,"tbody tr");
         $I->comment($rows);
-        $present = 0;
+        $present = FALSE;
         if($rows>0){
             for ($j=1;$j<=$rows;++$j){
                 $method = $I->grabTextFrom(DeliveryPage::ListMethodLine($j));
                 $I->comment($method);
                 if ($method == $name){
-                    $present++;
+                    $present = TRUE;
                     break;
                 }
             }
         }
         $I->comment("results: \n Method: \t$method Present: $present in row: $j\n");
-        $present>0?$I->assertEquals($method,$name):$I->fail("Method wasn't created");
+        //Error when method isn't present in delivery list page
+        $present?$I->assertEquals($method,$name):$I->fail("Method wasn't created");
         if($active){
             $attribute = $I->grabAttributeFrom(DeliveryPage::ListActiveButtonLine($j),"class");
             switch ($active){
@@ -222,12 +228,23 @@ class DeliveryTesting {
                     break;
             }
         }
+        ////do this normal
+        if($price){
+            $Cprice = $I->grabTextFrom(DeliveryPage::ListPriceLine($j));
+            $price = number_format($price, 5,".","");
+            $I->assertEquals(preg_replace('/[^0-9.]*/u', '', $Cprice),$price);
+        }
+        if($freefrom){
+            $Cfreefrom = $I->grabTextFrom(DeliveryPage::ListFreeFromLine($j));
+            $freefrom = number_format($freefrom, 5,".","");
+            $I->assertEquals(preg_replace('/[^0-9.]*/u', '', $Cfreefrom), $freefrom);
+        }
     }
     /*
      * function checking current parameters in frontend 
      * if you want to skip verifying of some parameters type null
      */
-    protected function VerifyFront(AcceptanceTester $I,$name,$description=null) {
+    protected function VerifyFront(AcceptanceTester $I,$name,$description=null,$price=null,$freefrom=null) {
         static $WasCalled  = FALSE;
         if(!$WasCalled){
         $I->comment("$WasCalled");
@@ -244,25 +261,35 @@ class DeliveryTesting {
         $I->amOnPage("/shop/cart");    
         }
         $WasCalled = TRUE;
+        $present = false;
         $I->waitForText('Оформление заказа');
         $ClassCount = $I->grabClassCount($I, 'name-count');
         for ($j=1;$j<=$ClassCount;++$j){
             $CName = $I->grabTextFrom("//div[@class='frame-radio']/div[$j]//span[@class='text-el']");
             if ($CName == $name){
-                $I->assertEquals($name, $CName);
+                $present = TRUE;
                 break;
             }
         }
+        //Error when method isn't present in delivery list page
+        $present?$I->assertEquals($name, $CName):$I->fail("Delivery method isn't present in front end");
         if ($description){
             $Cdescription = $I->grabAttributeFrom("//div[@class='frame-radio']/div[$j]//span[@class='icon_ask']", 'data-title');
             $I->assertEquals($Cdescription,$description);
         }
+        if($price){
+            $Cprice = $I->grabTextFrom("//div[@class='frame-radio']/div[$j]/div[@class='help-block']/div[1]");
+            //$I->assertEquals(preg_replace('/[^0-9].*/', '',$price), $Cprice);
+            $Cprice = preg_replace('/[^0-9.]*/u', '', $Cprice);
+            $price  = ceil($price);
+            $I->assertEquals($Cprice, $price);
+        }
+        if($freefrom){
+            $Cfreefrom = $I->grabTextFrom("//div[@class='frame-radio']/div[$j]/div[@class='help-block']/div[2]");
+            $Cfreefrom = preg_replace('/[^0-9.]*/u', '', $Cfreefrom);
+            $freefrom = ceil($freefrom);
+            $I->assertEquals($Cfreefrom, $freefrom);
+         }
+        //div[@class='frame-radio']/div[$j]/div[@class='help-block']/div[2]
     }    
-//    protected function called(AcceptanceTester $I) {
-//        static $wascalled = FALSE;
-//        if (!$wascalled){
-//        $I->comment("$wascalled");}
-//        $wascalled = TRUE;
-//    }
-
 }
