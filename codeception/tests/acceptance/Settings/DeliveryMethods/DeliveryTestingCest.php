@@ -54,7 +54,7 @@ class DeliveryTesting {
         $this->CheckForAlertPresent($I, "error");
     }
     /**
-     * @group create
+     * @group createa
      */
     public function NameSymbols(AcceptanceTester $I){
         $name = InitTest::$textSymbols;
@@ -95,16 +95,50 @@ class DeliveryTesting {
     }
     //-----------------------FIELDS PRICE & FREE FROM TESTS---------------------
     /**
-     * @group create
+     * @group createa
      */
     public function PriceFreeFromSymb(AcceptanceTester $I) {
-        $price = $freefrom = //InitTest::$textSymbols;
+        $price = $freefrom = InitTest::$textSymbols;
         $name = 'ДоставкаЦенаСимволи';
         $this->CreateDelivery($I, $name, 'on', 'off', 'off', $price, $freefrom);
         $this->CheckForAlertPresent($I, 'success');
         $this->CheckInList($I, $name, NULL, $price, $freefrom);
         $this->CheckInFrontEnd($I, $name, null, $price, $freefrom);
     }
+    /**
+     * @group createa
+     */
+    public function PriceFreeFrom1num(AcceptanceTester $I) {
+        $price = $freefrom = '1';
+        $name = 'ДоставкаЦена1Цифра';
+        $this->CreateDelivery($I, $name, 'on', 'off', 'off', $price, $freefrom);
+        $this->CheckForAlertPresent($I, 'success');
+        $this->CheckInList($I, $name, NULL, $price, $freefrom);
+        $this->CheckInFrontEnd($I, $name, null, $price, $freefrom);
+    }
+    /**
+     * @group createa
+     */
+    public function PriceFreeFrom10num(AcceptanceTester $I) {
+        $price = $freefrom = '55555.55555';
+        $name = 'ДоставкаЦена10Цифр';
+        $this->CreateDelivery($I, $name, 'on', 'off', 'off', $price, $freefrom);
+        $this->CheckForAlertPresent($I, 'success');
+        $this->CheckInList($I, $name, NULL, $price, $freefrom);
+        $this->CheckInFrontEnd($I, $name, null, $price, $freefrom);
+    }
+    /**
+     * @group create
+     */
+    public function PriceFreeFrom15num(AcceptanceTester $I) {
+        $price = $freefrom = '9999999999.999';
+        $name = 'ДоставкаЦена20Цифр';
+        $this->CreateDelivery($I, $name, 'on', 'off', 'off', $price, $freefrom);
+        $this->CheckForAlertPresent($I, 'success');
+        $this->CheckInList($I, $name, NULL, $price, $freefrom);
+        $this->CheckInFrontEnd($I, $name, null, $price, $freefrom);
+    }
+    
 
 
 
@@ -213,7 +247,7 @@ class DeliveryTesting {
                     break;
             }
         }
-        ////do this normal
+        
         if($price){
             $Cprice = $I->grabTextFrom(DeliveryPage::ListPriceLine($j));
             $price = number_format($price, 5,".","");
