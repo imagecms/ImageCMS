@@ -1,0 +1,37 @@
+<?php
+
+$I = new AcceptanceTester($scenario);
+initTest::login($I);
+$I->amOnPage('/admin/components/run/shop/currencies');
+$I->click('.//*[@id="currency_tr1"]/td[2]/a');
+$I->waitForElement('.//*[@id="mod_name"]/label');
+$I->fillField(CurrenciesPage::$NameCurrencyEdit, 'qййййй1234');
+$I->fillField(CurrenciesPage::$IsoCodEdit, 'qййййй1234');
+$I->fillField(CurrenciesPage::$SymbolEdit, 'qййййй1234');
+$I->fillField(CurrenciesPage::$Rate, '105236.2354');
+$I->click(CurrenciesPage::$SaveButton);
+$I->waitForElementVisible('.alert.in.fade.alert-error');
+$I->see('Поле Iso Код не может превышать 5 символов в длину.');
+$I->see('Поле Символ не может превышать 5 символов в длину.');
+$I->waitForElementNotVisible('.alert.in.fade.alert-error');
+$I->fillField(CurrenciesPage::$IsoCodEdit, 'qйййй');
+$I->click(CurrenciesPage::$SaveButton);
+$I->waitForElementVisible('.alert.in.fade.alert-error');
+$I->see('Поле Символ не может превышать 5 символов в длину.');
+$I->waitForElementNotVisible('.alert.in.fade.alert-error');
+$I->fillField(CurrenciesPage::$IsoCodEdit, 'qййййй1234');
+$I->fillField(CurrenciesPage::$SymbolEdit, 'qйййй');
+$I->click(CurrenciesPage::$SaveButton);
+$I->waitForElementVisible('.alert.in.fade.alert-error');
+$I->see('Поле Iso Код не может превышать 5 символов в длину.');
+$I->waitForElementNotVisible('.alert.in.fade.alert-error');
+$I->fillField(CurrenciesPage::$IsoCodEdit, 'qйййй');
+$I->click(CurrenciesPage::$SaveButton);
+$I->waitForElementVisible('.alert.in.fade.alert-success');
+$I->see('Изменения сохранены');
+$I->waitForElementNotVisible('.alert.in.fade.alert-success');
+$I->waitForText('Редактирование валют');
+$I->seeInField(CurrenciesPage::$NameCurrencyEdit, 'qййййй1234');
+$I->seeInField(CurrenciesPage::$IsoCodEdit, 'qйййй');
+$I->seeInField(CurrenciesPage::$SymbolEdit, 'qйййй');
+$I->seeInField(CurrenciesPage::$Rate, '105236.2354');      
