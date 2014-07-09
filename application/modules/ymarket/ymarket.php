@@ -16,17 +16,17 @@ class Ymarket extends ShopController {
     public function __construct() {
         parent::__construct();
         $lang = new MY_Lang();
-        $lang->load('ymarket');
-        $this->currencyCode = SCurrenciesQuery::create()->filterByIsDefault(true)->findOne()->getCode();
-        $this->settings = $this->cms_base->get_settings();
-        $this->adult = ShopCore::$ci->db->where('name','adult')->select('value')->get('mod_ymarket')->row()->value;
-        parent::__construct();
+        $lang->load('ymarket');        
     }
     
 /**
  * Generates an array of data to create a body xml  * 
  */
     public function index() {
+        $this->currencyCode = SCurrenciesQuery::create()->filterByIsDefault(true)->findOne()->getCode();
+        $this->settings = $this->cms_base->get_settings();
+        $this->adult = ShopCore::$ci->db->where('name','adult')->select('value')->get('mod_ymarket')->row()->value;
+        
         $ci = ShopCore::$ci;
         $pictureBaseUrl = base_url() . "uploads/shop/products/main/";
 
@@ -147,7 +147,7 @@ class Ymarket extends ShopController {
     }
     
     /**
-     * 
+     * autoload
      */
     public function autoload() {
         
@@ -157,25 +157,21 @@ class Ymarket extends ShopController {
      * Install
      */
     public function _install() {
-        
-        /** We recomend to use http://ellislab.com/codeigniter/user-guide/database/forge.html */
-        
           $this->load->dbforge();
           $fields = array(
-          'id' => array('type' => 'INT', 'constraint' => 11, 'auto_increment' => TRUE,),
-          'name' => array('type' => 'TEXT',),
-          'value' => array('type' => 'TEXT',)
+          'id' => array('type' => 'INT', 'constraint' => 11, 'auto_increment' => TRUE),
+          'name' => array('type' => 'TEXT'),
+          'value' => array('type' => 'TEXT')
           );
           $this->dbforge->add_key('id', TRUE);
           $this->dbforge->add_field($fields);
           $this->dbforge->create_table('mod_ymarket', TRUE);         
         
           $this->db->where('name', 'ymarket')
-          ->update('components', array('enabled' => '1'));
+          ->update('components', array('autoload' => '1', 'enabled' => '1'));
           
           $this->db->insert('mod_ymarket', array('name'=>'categories', 'value' => ''));
-          $this->db->insert('mod_ymarket', array('name'=>'adult', 'value' => ''));
-        
+          $this->db->insert('mod_ymarket', array('name'=>'adult', 'value' => ''));        
     }
     /**
      * Deinstall
