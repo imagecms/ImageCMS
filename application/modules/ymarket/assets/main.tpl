@@ -20,16 +20,22 @@
             <category id="{echo $c->getId()}" {echo $parent}>{echo encode($c->getName())}</category>        
         {/foreach}
         </categories>
-    <offers>
+    <offers>        
         {foreach $infoXml['offers'] as $id => $offer}
             <offer id="{echo $id}" available="true">
+            {$i=0}
             {foreach $offer as $k => $v}
                 {if $k == 'param'}
                     {foreach $v as $prop} 
                         <param name="{echo str_replace(':', '', $prop['Name'])}">{echo $prop['Value']}</param>
                     {/foreach}
                 {elseif strstr($k, 'picture')}
+                    {if $i > 9}
+                        {continue}                        
+                    {/if}
+                    {$i++}
                     <picture>{echo $v}</picture>
+                    
                 {else:}
                     <{echo $k}>{echo $v}</{echo $k}>
                 {/if}
