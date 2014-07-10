@@ -11,7 +11,8 @@ class Admin extends BaseAdminController {
     public function __construct() {
         parent::__construct();
         $lang = new MY_Lang();
-        $lang->load('module_ymarket');
+        $lang->load('ymarket');
+        $this->load->model('ymarket_model');
     }
     
     /**
@@ -40,31 +41,17 @@ class Admin extends BaseAdminController {
                         ->update('mod_ymarket', array('value' => '0'));
             }
         }
-    }
-    
-    /**
-     * Check for flag adult
-     * @return int 0 or 1
-     */
-    public function IsAdult() {
-        return $this->db->where('name', 'adult')
-                ->select('value')
-                ->get('mod_ymarket')
-                ->row()
-                ->value;
-    }
-    
+    }   
     
     /**
      * Selecting categories to generate xml
-     * @return array ids category
+     * @return obj category, check adult and ids selectet category
      */
     public function getSelectedCats() {
-        return unserialize($this->db->where('name', 'categories')
-                        ->select('value')
-                        ->get('mod_ymarket')
-                        ->row()
-                ->value);         
+        $data->categories = ShopCore::app()->SCategoryTree->getTree();
+        $data->ymarket_model = $this->ymarket_model->init();
+//        var_dump($data);
+        return $data;      
     }
 
 }

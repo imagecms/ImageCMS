@@ -12,56 +12,45 @@ class Ymarket extends ShopController {
     protected $categories = array();
     protected $currencyCode;
     protected $settings;
-    protected $adult = FALSE;
 
     public function __construct() {
         parent::__construct();
         $lang = new MY_Lang();
         $lang->load('ymarket');
+        $this->load->model('ymarket_model');
     }
 
     /**
-     * Generates an array of data to create a body xml  *
-     * @todo new Method, named as Init
-     * @todo line:39 use productImageUrl
-     * @todo renderPropertiesArray use on Product level
+     * Generates an array of data to create a body xml
      */
     public function index() {
-        $this->currencyCode = SCurrenciesQuery::create()->filterByIsDefault(true)->findOne()->getCode();
-        $this->settings = $this->cms_base->get_settings();
-        $this->settings['adult'] = ShopCore::$ci->db->where('name', 'adult')->select('value')->get('mod_ymarket')->row()->value;
-        $this->settings['unserCats'] = unserialize(ShopCore::$ci->db->where('name', 'categories')
-                        ->select('value')
-                        ->get('mod_ymarket')
-                        ->row()
-                ->value);
-
         $ci = ShopCore::$ci;
-        $pictureBaseUrl = base_url() . "uploads/shop/products/main/";
+        
+        $this->settings = $this->ymarket_model->init();
+        $this->currencyCode = SCurrenciesQuery::create()->filterByIsDefault(true)->findOne()->getCode();
+        $categories = \Category\CategoryApi::getInstance()->getCategory($this->settings['unserCats']);
 
         /* @var $p SProducts */
-        foreach ($this->getProducts() as $p)
+        foreach ($this->ymarket_model->getProducts($this->settings['unserCats']) as $p)
         {
+            $param = ShopCore::app()->SPropertiesRenderer->renderPropertiesArray($p);
             /* @var $v SProductVariants */
             foreach ($p->getProductVariants() as $v)
             {
-                if (!$v->getPrice())
-                {
+                if (!$v->getPrice()){
                     continue;
                 }
-                $param = ShopCore::app()->SPropertiesRenderer->renderPropertiesArray($p);
                 $unique_id += $p->getId() . '.' . $v->getId();
-                $this->offers[$unique_id]['url'] = ShopCore::$ci->config->item('base_url') . '/shop/product/' . $p->url;
+                $this->offers[$unique_id]['url'] = $ci->config->item('base_url') . '/shop/product/' . $p->url;
                 $this->offers[$unique_id]['price'] = $v->getPrice();
                 $this->offers[$unique_id]['currencyId'] = $this->currencyCode;
                 $this->offers[$unique_id]['categoryId'] = $p->getCategoryId();
-                $this->offers[$unique_id]['picture'] = $pictureBaseUrl . $v->getMainImage();
+                $this->offers[$unique_id]['picture'] = productImageUrl('products/main/') . $v->getMainImage();
+                
                 $images = null;
                 $images = $p->getSProductImagess();
-                if (count($images) > 0)
-                {
-                    foreach ($images as $key => $image)
-                    {
+                if (count($images) > 0){
+                    foreach ($images as $key => $image){
                         $this->offers[$unique_id]['picture' . $key] = productImageUrl('products/additional/' . $image->getImageName());
                     }
                 }
@@ -70,14 +59,15 @@ class Ymarket extends ShopController {
                 $this->offers[$unique_id]['vendor'] = $p->getBrand() ? htmlspecialchars($p->getBrand()->getName()) : '';
                 $this->offers[$unique_id]['vendorCode'] = $v->getNumber() ? $v->getNumber() : '';
                 $this->offers[$unique_id]['description'] = htmlspecialchars($p->getFullDescription());
-                if ($this->adult)
-                {
-                    $this->offers[$unique_id]['adult'] = 'true';
-                }
                 $this->offers[$unique_id]['param'] = $param;
+                
+                if ($this->settings['adult']){
+                    $this->offers[$unique_id]['adult'] = 'true';
+                }                
             }
         }
-        $infoXml['categories'] = $this->renderCategories();
+        
+        $infoXml['categories'] = $categories;
         $infoXml['offers'] = $this->offers;
         $infoXml['site_short_title'] = $this->settings['site_short_title'];
         $infoXml['site_title'] = $this->settings['site_title'];
@@ -112,64 +102,6 @@ class Ymarket extends ShopController {
     }
 
     /**
-     * Selects the category assigned by the user
-     * @return object Information about the selected category
-     * @todo see getProducts()
-     * @todo User API $categories = \Category\CategoryApi::getInstance()->getCategory($this->settings['unserCats']); (no model)
-     */
-    public function renderCategories() {
-//        $unserCats = unserialize(ShopCore::$ci->db->where('name', 'categories')
-//                        ->select('value')
-//                        ->get('mod_ymarket')
-//                        ->row()
-//                ->value);
-//
-//        $categories = SCategoryQuery::create()
-//                ->filterById($unserCats)
-//                ->find();
-
-        $categories = \Category\CategoryApi::getInstance()->getCategory($this->settings['unserCats']);        
-        return $categories;
-    }
-
-    /**
-     * Selection of products in the categories specified by the user
-     * @return array Product and products variants
-     * @todo Use ->filterByCategoryId($unserCats), but not use                 ->filterById($productsIds)->leftJoin('ProductVariant')
-     * @todo write this as Model
-     */
-    public function getProducts() {
-        $unserCats = unserialize(ShopCore::$ci->db->where('name', 'categories')
-                        ->select('value')
-                        ->get('mod_ymarket')
-                        ->row()
-                ->value);
-
-        $Ids = $this->db
-                ->select('id')
-                ->where_in('category_id', $unserCats)
-                ->get('shop_products')
-                ->result_array();
-
-        foreach ($Ids as $id)
-        {
-            $productsIds[] = $id['id'];
-        }
-
-        $products = SProductsQuery::create()
-                ->distinct()
-                ->filterById($productsIds)
-                ->leftJoin('ProductVariant')
-                ->useProductVariantQuery()
-                    ->filterByStock(array('min' => 1))
-                ->endUse()
-                ->filterByActive(true)
-                ->find();
-        $products->populateRelation('ProductVariant');
-        return $products;
-    }
-
-    /**
      * autoload
      */
     public function autoload() {
@@ -178,13 +110,12 @@ class Ymarket extends ShopController {
 
     /**
      * Install
-     * @TODO name field set as VARCHAR 100
      */
     public function _install() {
         $this->load->dbforge();
         $fields = array(
             'id' => array('type' => 'INT', 'constraint' => 11, 'auto_increment' => TRUE),
-            'name' => array('type' => 'TEXT'),
+            'name' => array('type' => 'VARCHAR', 'constraint' => 100),
             'value' => array('type' => 'TEXT')
         );
         $this->dbforge->add_key('id', TRUE);
