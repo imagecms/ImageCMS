@@ -34,7 +34,13 @@ class CallbacksPage
         return $DeleteBut;
     }
     public static function CheckBoxButtonLine($row){
-        $CheckBox = ".//*[@id='callbacks_all']/table/tbody/tr[$row]/td[1]/span/span";
+        $CheckBox = ".//*[@id='callbacks_all']/table/tbody/tr[$row]/td[1]/span/span/input"; //CallbacksList
         return $CheckBox;
+    }
+    
+    //CallbacksStatuses
+    public static function DeleteStatusButtonLine($row){
+        $DeleteStatusBut = ".//*[@id='orderStatusesList']/section/div[2]/div/table/tbody/tr[$row]/td[4]/a"; //CallbacksStatuses
+        return $DeleteStatusBut;
     }
 }
