@@ -1,12 +1,16 @@
-<?php
+﻿<?php
 
 use \AcceptanceTester;
 
 class DeliveryTesting {
-    public function _after(AcceptanceTester $I) {
+    public function _before(AcceptanceTester $I) {
+        static $callCount;
+        if($callCount){
         $I->amOnPage("/admin/components/run/shop/deliverymethods/index");
         $I->click(DeliveryPage::$CreateButton);
         $I->waitForText("Создание способа доставки", NULL, '.title');
+        }
+        $callCount = true;
     }
     /**
      * @group create
@@ -18,15 +22,17 @@ class DeliveryTesting {
     }
     //-----------------------FIELD NAME TESTS-----------------------------------
     /**
-     * @group createa
+     * @group create
      */
     public function NameEmpty(AcceptanceTester $I) {
         $I->click(DeliveryCreatePage::$ButtonCreate);
-        $this->CheckForAlertPresent($I,'required',  DeliveryCreatePage::$FieldName);
+
+        $this->CheckForAlertPresent($I,'required',NULL,  DeliveryCreatePage::$FieldName);
+
     }
 
     /**
-     * @group createa
+     * @group create
      */
     public function Name250(AcceptanceTester $I) {
         $name = InitTest::$text250;
@@ -37,7 +43,7 @@ class DeliveryTesting {
     }
 
     /**
-     * @group createa
+     * @group create
      */
     public function Name500(AcceptanceTester $I) {
         $name = InitTest::$text500;
@@ -47,14 +53,15 @@ class DeliveryTesting {
         $this->CheckInFrontEnd($I, $name);
     }
     /**
-     * @group createa
+     * @group create
      */
     public function Name501(AcceptanceTester $I) {
         $this->CreateDelivery($I, InitTest::$text501);
-        $this->CheckForAlertPresent($I, "error");
+        $this->CheckForAlertPresent($I, 'error', 'Поле Название не может превышать 500 символов в длину.');
     }
+
     /**
-     * @group createa
+     * @group create
      */
     public function NameSymbols(AcceptanceTester $I){
         $name = InitTest::$textSymbols;
@@ -65,7 +72,7 @@ class DeliveryTesting {
     }
     //-----------------------CHECKBOX ACTIVE TESTS------------------------------
     /**
-     * @group createa
+     * @group create
      */
     public function ActiveCheck(AcceptanceTester $I){
         $name = "Доставка актив";
@@ -74,7 +81,7 @@ class DeliveryTesting {
         $this->CheckInFrontEnd($I, $name);
     }
     /**
-     * @group createa
+     * @group create
      */
     public function ActiveUnCheck(AcceptanceTester $I) {
         $name = "Доставка неактив";
@@ -83,7 +90,7 @@ class DeliveryTesting {
     }
     //-----------------------FIELD DESCRIPTION TESTS----------------------------
     /**
-     * @group createa
+     * @group create
      */
     public function Description(AcceptanceTester $I) {
         $name = "Доставка Описание";
@@ -128,6 +135,75 @@ class DeliveryTesting {
         $this->CheckInFrontEnd($I, $name, null, $price, $freefrom);
     }
     /**
+     * @group createa
+     */
+    public function PriceFreeFrom15num(AcceptanceTester $I) {
+        $price = $freefrom = '9999999999.999';
+        $name = 'ДоставкаЦена20Цифр';
+        $this->CreateDelivery($I, $name, 'on', 'off', 'off', $price, $freefrom);
+        $this->CheckForAlertPresent($I, 'success');
+        $this->CheckInList($I, $name, NULL, $price, $freefrom);
+        $this->CheckInFrontEnd($I, $name, null, $price, $freefrom);
+    }
+    //---------------------CHECKBOX PRICE SPECIFIED & FIELD PRICE SPECIFIED-----
+    /**
+     * @group createa
+     */
+    public function CheckPriseSpecified(AcceptanceTester $I) {
+        $I->checkOption(DeliveryCreatePage::$CheckboxPriceSpecified);
+        $I->waitForElementVisible(DeliveryCreatePage::$FieldPriceSpecified);
+        $a = $I->grabAttributeFrom(DeliveryCreatePage::$FieldPrice, 'disabled');
+        $b = $I->grabAttributeFrom(DeliveryCreatePage::$FieldPrice, 'disabled');
+        if($a&&$b){
+            $I->assertEquals($a, 'true');
+            $I->assertEquals($b, 'true');
+        }
+        else {
+            $I->fail("Lields are editable");
+        }
+    }
+    /**
+     * @group createa
+     */
+    public function FieldPriseSpecifiedEmpty(AcceptanceTester $I) {
+        $name = "УточнениеЦеныПусто";
+        $this->CreateDelivery($I, $name, 'on', 'off', 'off', 'off', 'off', "");
+        $this->CheckForAlertPresent($I, 'success');
+    }
+    /**
+     * @group createa
+     */
+    public function PriceFreeFromSymb(AcceptanceTester $I) {
+        $price = $freefrom = InitTest::$textSymbols;
+        $name = 'ДоставкаЦенаСимволи';
+        $this->CreateDelivery($I, $name, 'on', 'off', 'off', $price, $freefrom);
+        $this->CheckForAlertPresent($I, 'success');
+        $this->CheckInList($I, $name, NULL, $price, $freefrom);
+        $this->CheckInFrontEnd($I, $name, null, $price, $freefrom);
+    }
+    /**
+     * @group create
+     */
+    public function PriceFreeFrom1num(AcceptanceTester $I) {
+        $price = $freefrom = '1';
+        $name = 'ДоставкаЦена1Цифра';
+        $this->CreateDelivery($I, $name, 'on', 'off', 'off', $price, $freefrom);
+        $this->CheckForAlertPresent($I, 'success');
+        $this->CheckInList($I, $name, NULL, $price, $freefrom);
+        $this->CheckInFrontEnd($I, $name, null, $price, $freefrom);
+    }
+    /**
+     * @group create
+     */
+    public function PriceFreeFrom10num(AcceptanceTester $I) {
+        $price = $freefrom = '55555.55555';
+        $name = 'ДоставкаЦена10Цифр';
+        $this->CreateDelivery($I, $name, 'on', 'off', 'off', $price, $freefrom);
+        $this->CheckForAlertPresent($I, 'success');
+        $this->CheckInList($I, $name, NULL, $price, $freefrom);
+        $this->CheckInFrontEnd($I, $name, null, $price, $freefrom);
+    }
+    /**
      * @group create
      */
     public function PriceFreeFrom15num(AcceptanceTester $I) {
@@ -138,10 +214,60 @@ class DeliveryTesting {
         $this->CheckInList($I, $name, NULL, $price, $freefrom);
         $this->CheckInFrontEnd($I, $name, null, $price, $freefrom);
     }
-    
-
-
-
+    //---------------------CHECKBOX PRICE SPECIFIED & FIELD PRICE SPECIFIED-----
+    /**
+     * @group create
+     */
+    public function CheckPriseSpecified(AcceptanceTester $I) {
+        $I->checkOption(DeliveryCreatePage::$CheckboxPriceSpecified);
+        $I->waitForElementVisible(DeliveryCreatePage::$FieldPriceSpecified);
+        $a = $I->grabAttributeFrom(DeliveryCreatePage::$FieldPrice, 'disabled');
+        $b = $I->grabAttributeFrom(DeliveryCreatePage::$FieldPrice, 'disabled');
+        if($a&&$b){
+            $I->assertEquals($a, 'true');
+            $I->assertEquals($b, 'true');
+        }
+        else {
+            $I->fail("Lields are editable");
+        }
+    }
+    /**
+     * @group create
+     */
+    public function FieldPriseSpecifiedEmpty(AcceptanceTester $I) {
+        $name = "УточнениеЦеныПусто";
+        $this->CreateDelivery($I, $name, 'on', 'off', 'off', 'off', 'off', "");
+        $this->CheckForAlertPresent($I, 'success');
+    }
+    /**
+     * @group create
+     */
+    public function FieldPriseSpecified250(AcceptanceTester $I) {
+        $name = 'УточнениеЦены250';
+        $message = InitTest::$text250;
+        $this->CreateDelivery($I, $name, 'on', 'off', 'off', 'off', 'off', $message);
+        $this->CheckForAlertPresent($I, 'success');
+        $this->CheckInFrontEnd($I, $name, NULL, NULL, NULL, $message);
+    }
+    /**
+     * @group create
+     */
+    public function FieldPriseSpecified500(AcceptanceTester $I) {
+        $name = 'УточнениеЦены500';
+        $message = InitTest::$text500;
+        $this->CreateDelivery($I, $name, 'on', 'off', 'off', 'off', 'off', $message);
+        $this->CheckForAlertPresent($I, 'success');
+        $this->CheckInFrontEnd($I, $name, NULL, NULL, NULL, $message);
+    }
+    /**
+     * @group create
+     */
+    public function FieldPriseSpecified501(AcceptanceTester $I) {
+        $name = 'УточнениеЦены501';
+        $message = InitTest::$text501;
+        $this->CreateDelivery($I, $name, 'on', 'off', 'off', 'off', 'off', $message);
+        $this->CheckForAlertPresent($I, 'error');
+    }
 
 //-----------------------PROTECTED FUNCTIONS------------------------------------
     /**
@@ -162,7 +288,6 @@ class DeliveryTesting {
                 break;
             case 'on' :
                 $I->checkOption(DeliveryCreatePage::$CheckboxActive);
-                //$I->click(DeliveryCreatePage::$CheckboxActive);
                 break;
         }
         switch ($description) {
@@ -204,7 +329,6 @@ class DeliveryTesting {
             case 'off':
                 break;
             default :
-                //$len = $I->grabClassCount($I, 'focus frame_label no_connection');
                 $pay = explode("_", $pay);
                 foreach ($pay as $value) {
                     $I->click($value);
@@ -263,7 +387,7 @@ class DeliveryTesting {
      * function checking current parameters in frontend 
      * if you want to skip verifying of some parameters type null
      */
-    protected function CheckInFrontEnd(AcceptanceTester $I,$name,$description=null,$price=null,$freefrom=null) {
+    protected function CheckInFrontEnd(AcceptanceTester $I,$name,$description=null,$price=null,$freefrom=null,$message=null) {
         static $WasCalled  = FALSE;
         if(!$WasCalled){
         $I->comment("$WasCalled");
@@ -309,29 +433,36 @@ class DeliveryTesting {
             $freefrom = ceil($freefrom);
             $I->assertEquals($Cfreefrom, $freefrom);
          }
+         if($message){
+             $Cmessage = $I->grabTextFrom("//div[@class='frame-radio']/div[$j]/div[@class='help-block']");
+             $I->comment($Cmessage);
+             $I->assertEquals($Cmessage, $message);
+         }
     }
-    protected function CheckForAlertPresent(AcceptanceTester $I,$type,$field=null) {
+
+    protected function CheckForAlertPresent(AcceptanceTester $I,$type,$errorMessage = null,$field=null) {
+
         switch ($type){
             case 'error':
                     $I->comment("I want to see that error alert is present");
                     $I->waitForElementVisible('.alert.in.fade.alert-error');
-                    $I->waitForText("Поле Название не может превышать 500 символов в длину.",null, '.alert.in.fade.alert-error');
+                    $errorMessage?$I->see($errorMessage, '.alert.in.fade.alert-error'):$I->seeElement('.alert.in.fade.alert-error');
                     $I->waitForElementNotVisible('.alert.in.fade.alert-error');
                     $I->see("Создание способа доставки", '.title');
-                break;
+                    break;
             case 'success':
                     $I->comment("I want to see that success alert is present");
                     $I->waitForElementVisible('.alert.in.fade.alert-success');
                     $I->see('Доставка создана','.alert.in.fade.alert-success');
                     $I->waitForElementNotVisible('.alert.in.fade.alert-success');
-                break;
+                    break;
             //Checking required field (red color(class alert) & message 
             case 'required':
                     $I->comment("I want to see that field is required");
                     $I->waitForElementVisible('//label[@generated="true"]');
                     $I->see('Это поле обязательное.', 'label.alert.alert-error');
                     $I->assertEquals($I->grabAttributeFrom($field, 'class'), "alert alert-error");
-                break;
+                    break;
         }
-}
+    }
 }
