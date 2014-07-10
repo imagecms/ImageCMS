@@ -12,4 +12,4 @@ $I->see('Тема', './/*[@id="callbacks_all"]/table/thead/tr/th[5]');
 $I->see('Статус', './/*[@id="callbacks_all"]/table/thead/tr/th[6]');
 $I->see('Дата', './/*[@id="callbacks_all"]/table/thead/tr/th[7]');
 $I->see('Удалить', './/*[@id="callbacks_all"]/table/thead/tr/th[8]');
-$I->see('Удалить', './/*[@id="mainContent"]/div[1]/form/section/div[1]/div[2]/div/button');
+$I->see('Удалить', CallbacksPage::$DeleteCallback);

@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 use \AcceptanceTester;
 
@@ -99,7 +99,7 @@ class DeliveryTesting {
     }
     //-----------------------FIELDS PRICE & FREE FROM TESTS---------------------
     /**
-     * @group create
+     * @group createa
      */
     public function PriceFreeFromSymb(AcceptanceTester $I) {
         $price = $freefrom = InitTest::$textSymbols;
