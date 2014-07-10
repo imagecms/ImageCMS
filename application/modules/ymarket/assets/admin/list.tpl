@@ -29,11 +29,10 @@
                                                     <label class="control-label">{lang('Displayed categories selection','yandex_market')}:</label>
                                                     {$hold = new Admin()}
                                                     {$holder = $hold->getSelectedCats()}
-                                                    {$categories = ShopCore::app()->SCategoryTree->getTree()}
                                                     <div class="controls">
                                                         <select name="displayedCats[]" multiple="multiple" style="width:285px;height:129px;">
-                                                            {foreach $categories as $category}
-                                                                <option value="{echo $category->getId()}"{if @in_array($category->getId(), $holder)}selected="selected"{/if}>
+                                                            {foreach $holder->categories as $category}
+                                                                <option value="{echo $category->getId()}"{if @in_array($category->getId(), $holder->ymarket_model['unserCats'])}selected="selected"{/if}>
                                                                     {str_repeat('-',$category->getLevel())} {echo ShopCore::encode($category->getName())}
                                                                 </option>
                                                             {/foreach}
@@ -42,7 +41,7 @@
                                                     <div class="controls">
                                                         <span class="frame_label no_connection">
                                                             <span class="niceCheck b_n">
-                                                                {$isAdult = $hold->IsAdult()} 
+                                                                {$isAdult = $holder->ymarket_model['adult']} 
                                                                 <input type="checkbox" name="adult" value="1"{if $isAdult == 1}checked="checked"{/if} id="yandex[isAdult]" />
                                                             </span>
                                                             {lang('Adult products','yandex_market')}
