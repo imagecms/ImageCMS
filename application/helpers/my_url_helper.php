@@ -18,7 +18,7 @@ if (!function_exists('media_url')) {
         if ($index_page === '/') {
             $index_page = '';
         }
-//        var_dump($config->item('template'));
+
         if (MAINSITE and $config->item('template') == 'administrator') {
             $return = 'http://' . str_replace('../', '', MAINSITE) . '/' . $index_page . preg_replace("|^/*(.+?)/*$|", "\\1", $url);
         } else {
