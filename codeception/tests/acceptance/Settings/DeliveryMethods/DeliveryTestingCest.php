@@ -13,7 +13,7 @@ class DeliveryTesting {
         $callCount = true;
     }
     /**
-     * @group create
+     * @group current
      */
     public function Authorization(AcceptanceTester $I) {
         InitTest::Login($I);
@@ -196,8 +196,52 @@ class DeliveryTesting {
         $this->CreateDelivery($I, $name, 'on', 'off', 'off', 'off', 'off', $message);
         $this->CheckForAlertPresent($I, 'error');
     }
-    
-
+    /**
+     * @group create
+     */
+    public function FieldPriseSpecifiedSymbols(AcceptanceTester $I) {
+        $name = 'УточнениеЦеныСимволы';
+        $message = InitTest::$textSymbols;
+        $this->CreateDelivery($I, $name, 'on', 'off', 'off', 'off', 'off', $message);
+        $this->CheckForAlertPresent($I, 'succes');
+        $this->CheckInFrontEnd($I, $name, null, null, null, $message);
+    }
+    //---------------------PAYMENT METHODS FIELD--------------------------------
+    /**
+     * @group create
+     */
+    public function DeliveryPaymentVerify(AcceptanceTester $I) {
+        //$I->comment($I->grabTextFrom(DeliveryCreatePage::PaymentMethodLabel(1)));
+        $PaymentMethods = $this->GrabAllCreatedPayments($I);
+        $I->amOnPage(DeliveryCreatePage::$URL);
+        //$I->waitForText("Создание способа доставки", NULL, '.title');
+        $row = 1;
+        $I->comment("I want to Verify created Pay Methods with Create Page Pay Methods");
+        foreach ($PaymentMethods as $Currentpay) {
+            $I->comment($Currentpay);
+            $CreatePagePay = $I->grabTextFrom(DeliveryCreatePage::PaymentMethodLabel($row));
+            $I->assertEquals($CreatePagePay, $Currentpay);
+            $row++;
+        }
+    }
+    /**
+     * @group current
+     */
+//    public function DeliveryPaymentEmpty(AcceptanceTester $I) {
+//        $name = "ДоставкаоплатаНет";
+//    }
+    /**
+     * @group current
+     */
+    public function DeliveryPaymentCheckedAll(AcceptanceTester $I) {
+        $name = "ДоставкаоплатаВсе";
+        $pay = $this->GrabAllCreatedPayments($I);
+        $pay?$pay = implode("_", $pay):$I->fail("There are no created payment methods");
+        //$I->amOnPage(DeliveryCreatePage::$URL);
+        //$this->CreateDelivery($I, $name, 'on', 'off', 'off', 'off', 'off', 'off', $pay);
+        $this->CheckInFrontEnd($I, $name, null, null, null, null, $pay);
+        
+    }
 
 
 //-----------------------PROTECTED FUNCTIONS------------------------------------
@@ -318,7 +362,7 @@ class DeliveryTesting {
      * function checking current parameters in frontend 
      * if you want to skip verifying of some parameters type null
      */
-    protected function CheckInFrontEnd(AcceptanceTester $I,$name,$description=null,$price=null,$freefrom=null,$message=null) {
+    protected function CheckInFrontEnd(AcceptanceTester $I,$name,$description=null,$price=null,$freefrom=null,$message=null,$pay=null) {
         static $WasCalled  = FALSE;
         if(!$WasCalled){
         $I->comment("$WasCalled");
@@ -369,7 +413,31 @@ class DeliveryTesting {
              $I->comment($Cmessage);
              $I->assertEquals($Cmessage, $message);
          }
+         if($pay){
+             
+            $I->click("//div[@class='frame-radio']/div[$j]//span[@class='text-el']");
+            //$I->wait('5');
+            $script1 = "$('body').animate({'scrollTop':$('body').height()},'slow')";
+            $script2 = "$('html').animate({'scrollTop':$('body').height()},'slow')";
+            $I->executeJS($script1);
+            $I->executeJS($script2);
+            if ($pay == 'off'){
+                $I->dontSeeElement("#cuselFrame-paymentMethod");
+            }
+            else {
+                $I->waitForElementVisible("#cuselFrame-paymentMethod");
+                $I->click(".cuselText");
+                $pay = explode("_", $pay);
+                $j=1;
+                foreach ($pay as $value) {
+                    $Cpay = $I->grabTextFrom("//div[@id='cusel-scroll-paymentMethod']/span[$j]");
+                    $I->assertEquals($Cpay, $value);
+                    $j++;
+                    }
+            }
+         }
     }
+    //function is checking that alerts is present after clicking create button 
     protected function CheckForAlertPresent(AcceptanceTester $I,$type,$errorMessage = null,$field=null) {
         switch ($type){
             case 'error':
@@ -393,5 +461,22 @@ class DeliveryTesting {
                     $I->assertEquals($I->grabAttributeFrom($field, 'class'), "alert alert-error");
                     break;
         }
+    }
+    //function grab all payments from payment methods list page and record them to array $PaymentMethods
+    protected function GrabAllCreatedPayments(AcceptanceTester $I) {
+        $I->amOnPage(PaymentPage::$URL);
+        $I->waitForText("Список способов оплаты", NULL, ".title");
+        //Count of table rows
+        $rows = $I->grabClassCount($I, 'niceCheck')-1;
+        if ($rows != 0){
+            $I->comment("I want to read and remember all created payment methods");
+            for ($row = 1;$row<=$rows;++$row){
+                $PaymentMethods[$row] = $I->grabTextFrom (PaymentPage::ListMethodLine($row));
+            }
+        }
+        else {
+            $PaymentMethods = null;
+        }
+        return $PaymentMethods;
     }
 }

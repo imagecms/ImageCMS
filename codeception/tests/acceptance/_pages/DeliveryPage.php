@@ -8,7 +8,7 @@ class DeliveryPage
      * and functions which returns element locator in current line
      */
     //Variables
-
+    static $URL = "/admin/components/run/shop/deliverymethods/index"; 
     public static $CreateButton = "//*[@id='mainContent']/div/section/div[1]/div[2]/div/a";
 
 
@@ -54,6 +54,7 @@ class DeliveryPage
 }
 class DeliveryCreatePage
 {
+    static $URL = "/admin/components/run/shop/deliverymethods/create";
     public static $FieldNameLabel = "//*[@id='createDelivery']/div[1]/label";
     public static $FieldName = "//*[@id='Name']";
     public static $CheckboxActiveLabel = "//form[@id='createDelivery']/div[2]/div[2]/span";
