@@ -4,7 +4,7 @@
 
 /**
  * Image CMS 
- * Sample Module Admin
+ * Sample ymarket Admin
  */
 class Admin extends BaseAdminController {
 
@@ -19,29 +19,12 @@ class Admin extends BaseAdminController {
      * Connects the module template in the administrative part of the site
      */
     public function index() {
+        $item = $this->getSelectedCats();
+        
         \CMSFactory\assetManager::create()
+                ->setData('hold',$item)
                 ->renderAdmin('list');
     }
-    
-    /**
-     * Saves the selected user categories in the table
-     */
-    public function save() {
-        if ($_POST && $_SESSION['DX_role_id'] == 1) {
-            if (count($_POST['displayedCats']) > 0){
-                $this->db->where('name', 'categories')
-                        ->update('mod_ymarket', array('value' => serialize($_POST['displayedCats'])));
-            }
-            if ($_POST['adult']){
-                $this->db->where('name', 'adult')
-                        ->update('mod_ymarket', array('value' => mysql_real_escape_string($_POST['adult'])));
-            }
-            if (!$_POST['adult']){
-                $this->db->where('name', 'adult')
-                        ->update('mod_ymarket', array('value' => '0'));
-            }
-        }
-    }   
     
     /**
      * Selecting categories to generate xml
@@ -50,8 +33,14 @@ class Admin extends BaseAdminController {
     public function getSelectedCats() {
         $data->categories = ShopCore::app()->SCategoryTree->getTree();
         $data->ymarket_model = $this->ymarket_model->init();
-//        var_dump($data);
         return $data;      
     }
-
+    
+    /**
+     * Saves the selected user categories in the table
+     */
+    public function save() {
+        if(isset($_POST) && $this->dx_auth->is_admin())
+            $this->ymarket_model->setCategories();
+    } 
 }

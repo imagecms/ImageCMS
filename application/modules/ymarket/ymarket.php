@@ -25,19 +25,21 @@ class Ymarket extends ShopController {
      */
     public function index() {
         $ci = ShopCore::$ci;
-        
+
         $this->settings = $this->ymarket_model->init();
-        $this->currencyCode = SCurrenciesQuery::create()->filterByIsDefault(true)->findOne()->getCode();
+        $this->currencyCode = ShopCore::app()->SCurrencyHelper->current->code;
         $categories = \Category\CategoryApi::getInstance()->getCategory($this->settings['unserCats']);
 
         /* @var $p SProducts */
         foreach ($this->ymarket_model->getProducts($this->settings['unserCats']) as $p)
         {
             $param = ShopCore::app()->SPropertiesRenderer->renderPropertiesArray($p);
+            $additionalImages = $this->getAdditionalImages($p);
             /* @var $v SProductVariants */
             foreach ($p->getProductVariants() as $v)
             {
-                if (!$v->getPrice()){
+                if (!$v->getPrice())
+                {
                     continue;
                 }
                 $unique_id += $p->getId() . '.' . $v->getId();
@@ -45,28 +47,21 @@ class Ymarket extends ShopController {
                 $this->offers[$unique_id]['price'] = $v->getPrice();
                 $this->offers[$unique_id]['currencyId'] = $this->currencyCode;
                 $this->offers[$unique_id]['categoryId'] = $p->getCategoryId();
-                $this->offers[$unique_id]['picture'] = productImageUrl('products/main/') . $v->getMainImage();
-                
-                $images = null;
-                $images = $p->getSProductImagess();
-                if (count($images) > 0){
-                    foreach ($images as $key => $image){
-                        $this->offers[$unique_id]['picture' . $key] = productImageUrl('products/additional/' . $image->getImageName());
-                    }
-                }
-
+                $this->offers[$unique_id]['picture'] = array_merge(array(productImageUrl('products/main/' . $v->getMainImage())), $additionalImages);
                 $this->offers[$unique_id]['name'] = $this->forName($p->getName(), $v->getName());
                 $this->offers[$unique_id]['vendor'] = $p->getBrand() ? htmlspecialchars($p->getBrand()->getName()) : '';
                 $this->offers[$unique_id]['vendorCode'] = $v->getNumber() ? $v->getNumber() : '';
                 $this->offers[$unique_id]['description'] = htmlspecialchars($p->getFullDescription());
-                $this->offers[$unique_id]['param'] = $param;
-                
-                if ($this->settings['adult']){
+
+                if ($this->settings['adult'])
+                {
                     $this->offers[$unique_id]['adult'] = 'true';
-                }                
+                }
+
+                $this->offers[$unique_id]['param'] = $param;
             }
         }
-        
+
         $infoXml['categories'] = $categories;
         $infoXml['offers'] = $this->offers;
         $infoXml['site_short_title'] = $this->settings['site_short_title'];
@@ -76,7 +71,6 @@ class Ymarket extends ShopController {
         $infoXml['siteinfo_adminemail'] = siteinfo('siteinfo_adminemail');
         $infoXml['currencyCode'] = $this->currencyCode;
 
-        header('content-type: text/xml');
         \CMSFactory\assetManager::create()
                 ->setData('infoXml', $infoXml)
                 ->render('main', true);
@@ -102,6 +96,26 @@ class Ymarket extends ShopController {
     }
 
     /**
+     *
+     * @param SProducts $product
+     * @return array
+     */
+    private function getAdditionalImages(SProducts $product) {
+
+        $offers = array();
+        $images = $iterator = $offers = null;
+        $images = $product->getSProductImagess();
+        if (count($images) > 0 && ++$iterator < 9)
+        {
+            foreach ($images as $key => $image)
+            {
+                $offers[] = productImageUrl('products/additional/' . $image->getImageName());
+            }
+        }
+        return $offers;
+    }
+
+    /**
      * autoload
      */
     public function autoload() {
@@ -115,18 +129,17 @@ class Ymarket extends ShopController {
         $this->load->dbforge();
         $fields = array(
             'id' => array('type' => 'INT', 'constraint' => 11, 'auto_increment' => TRUE),
-            'name' => array('type' => 'VARCHAR', 'constraint' => 100),
-            'value' => array('type' => 'TEXT')
+            'categories' => array('type' => 'TEXT'),
+            'adult' => array('type' => 'VARCHAR', 'constraint' => 100)
         );
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->add_field($fields);
         $this->dbforge->create_table('mod_ymarket', TRUE);
 
         $this->db->where('name', 'ymarket')
-                ->update('components', array('autoload' => '1', 'enabled' => '1'));
+                ->update('components', array('enabled' => '1'));
 
-        $this->db->insert('mod_ymarket', array('name' => 'categories', 'value' => ''));
-        $this->db->insert('mod_ymarket', array('name' => 'adult', 'value' => ''));
+        $this->db->insert('mod_ymarket', array('categories' => '', 'adult' => ''));
     }
 
     /**
