@@ -31,8 +31,13 @@ article, .container, .special-proposition .title-proposition-h{margin: 0 auto;cl
 .frame-inside{position: relative;z-index: 1;padding-bottom: 40px;}
 /*/base scaffolding*/
 
-body{min-width: 960px;color: #333;background: #fff url(../img/left_fon.png) repeat-y;}
+body{
+    min-width: 960px;
+    color: #333;
+    background: #fff url(../img/left_fon.png) repeat-y;
+}
 .container{max-width: 100%;}
+
 
 .nav > li > a{text-decoration: none;}
 .nav > li{font-size: 0;}
