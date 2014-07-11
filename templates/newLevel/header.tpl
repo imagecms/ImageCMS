@@ -7,7 +7,6 @@
             </ul>
         </nav>
         <div class="right-header f_r">
-            {widget('lang')}
             {include_shop_tpl('auth_data')}
         </div>
     </div>
@@ -28,6 +27,7 @@
         {/if}
         <div class="left-content-header">
             <div class="header-left-content-header">
+                {widget('langauge_switch_pemmerce')}
                 <!--                Start. contacts block-->
                 <div class="phones-header">
                     <div class="f-s_0 d_i-b">
