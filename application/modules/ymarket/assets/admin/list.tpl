@@ -1,3 +1,6 @@
+{$hold = new Admin()}
+{$holder = $hold->getSelectedCats()}
+{$isAdult = $holder->ymarket_model['adult']} 
 <div class="container">
                     <section class="mini-layout">
                         <div class="frame_title clearfix">
@@ -27,8 +30,6 @@
                                             <div class="inside_padd" >
                                                 <div class="control-group" >
                                                     <label class="control-label">{lang('Displayed categories selection','ymarket')}:</label>
-                                                    {$hold = new Admin()}
-                                                    {$holder = $hold->getSelectedCats()}
                                                     <div class="controls">
                                                         <select name="displayedCats[]" multiple="multiple" style="width:285px;height:129px;">
                                                             {foreach $holder->categories as $category}
@@ -41,7 +42,6 @@
                                                     <div class="controls">
                                                         <span class="frame_label no_connection">
                                                             <span class="niceCheck b_n">
-                                                                {$isAdult = $holder->ymarket_model['adult']} 
                                                                 <input type="checkbox" name="adult" value="1"{if $isAdult == 1}checked="checked"{/if} id="yandex[isAdult]" />
                                                             </span>
                                                             {lang('Adult products','ymarket')}
