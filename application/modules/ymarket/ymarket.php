@@ -59,11 +59,12 @@ class Ymarket extends ShopController {
                 $this->offers[$unique_id]['vendor'] = $p->getBrand() ? htmlspecialchars($p->getBrand()->getName()) : '';
                 $this->offers[$unique_id]['vendorCode'] = $v->getNumber() ? $v->getNumber() : '';
                 $this->offers[$unique_id]['description'] = htmlspecialchars($p->getFullDescription());
-                $this->offers[$unique_id]['param'] = $param;
                 
                 if ($this->settings['adult']){
                     $this->offers[$unique_id]['adult'] = 'true';
                 }                
+                
+                $this->offers[$unique_id]['param'] = $param;
             }
         }
         
@@ -123,7 +124,7 @@ class Ymarket extends ShopController {
         $this->dbforge->create_table('mod_ymarket', TRUE);
 
         $this->db->where('name', 'ymarket')
-                ->update('components', array('autoload' => '1', 'enabled' => '1'));
+                ->update('components', array('enabled' => '1'));
 
         $this->db->insert('mod_ymarket', array('name' => 'categories', 'value' => ''));
         $this->db->insert('mod_ymarket', array('name' => 'adult', 'value' => ''));
