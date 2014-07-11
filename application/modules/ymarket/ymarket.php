@@ -22,13 +22,12 @@ class Ymarket extends ShopController {
 
     /**
      * Generates an array of data to create a body xml
-     * @todo Use ShopCore::app()->SCurrencyHelper->current->code for CurrencyCode
      */
     public function index() {
         $ci = ShopCore::$ci;
 
         $this->settings = $this->ymarket_model->init();
-        $this->currencyCode = SCurrenciesQuery::create()->filterByIsDefault(true)->findOne()->getCode();
+        $this->currencyCode = ShopCore::app()->SCurrencyHelper->current->code;
         $categories = \Category\CategoryApi::getInstance()->getCategory($this->settings['unserCats']);
 
         /* @var $p SProducts */
@@ -130,8 +129,8 @@ class Ymarket extends ShopController {
         $this->load->dbforge();
         $fields = array(
             'id' => array('type' => 'INT', 'constraint' => 11, 'auto_increment' => TRUE),
-            'name' => array('type' => 'VARCHAR', 'constraint' => 100),
-            'value' => array('type' => 'TEXT')
+            'categories' => array('type' => 'TEXT'),
+            'adult' => array('type' => 'VARCHAR', 'constraint' => 100)
         );
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->add_field($fields);
@@ -140,8 +139,7 @@ class Ymarket extends ShopController {
         $this->db->where('name', 'ymarket')
                 ->update('components', array('enabled' => '1'));
 
-        $this->db->insert('mod_ymarket', array('name' => 'categories', 'value' => ''));
-        $this->db->insert('mod_ymarket', array('name' => 'adult', 'value' => ''));
+        $this->db->insert('mod_ymarket', array('categories' => '', 'adult' => ''));
     }
 
     /**
