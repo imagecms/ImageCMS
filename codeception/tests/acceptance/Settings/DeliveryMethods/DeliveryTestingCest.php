@@ -211,10 +211,9 @@ class DeliveryTesting {
      * @group create
      */
     public function DeliveryPaymentVerify(AcceptanceTester $I) {
-        //$I->comment($I->grabTextFrom(DeliveryCreatePage::PaymentMethodLabel(1)));
         $PaymentMethods = $this->GrabAllCreatedPayments($I);
         $I->amOnPage(DeliveryCreatePage::$URL);
-        //$I->waitForText("Создание способа доставки", NULL, '.title');
+        $I->waitForText("Создание способа доставки", NULL, '.title');
         $row = 1;
         $I->comment("I want to Verify created Pay Methods with Create Page Pay Methods");
         foreach ($PaymentMethods as $Currentpay) {
@@ -225,32 +224,45 @@ class DeliveryTesting {
         }
     }
     /**
-     * @group current
+     * @group create
      */
-//    public function DeliveryPaymentEmpty(AcceptanceTester $I) {
-//        $name = "ДоставкаоплатаНет";
-//    }
+    public function DeliveryPaymentEmpty(AcceptanceTester $I) {
+        $name = "ДоставкаОплатаНет";
+        $I->amOnPage(DeliveryCreatePage::$URL);
+        $this->CreateDelivery($I, $name, 'on', 'off', 'off', 'off', 'off', 'off', 'off');
+        $this->CheckInFrontEnd($I, $name, null, null, null, null, 'off');
+    }
     /**
      * @group current
      */
     public function DeliveryPaymentCheckedAll(AcceptanceTester $I) {
-        $name = "ДоставкаоплатаВсе";
+        $name = "ДоставкаОплатаВсе";
         $pay = $this->GrabAllCreatedPayments($I);
-        $pay?$pay = implode("_", $pay):$I->fail("There are no created payment methods");
-        //$I->amOnPage(DeliveryCreatePage::$URL);
-        //$this->CreateDelivery($I, $name, 'on', 'off', 'off', 'off', 'off', 'off', $pay);
+        //$pay?$pay = implode("_", $pay):$I->fail("There are no created payment methods");
+        $pay = implode("_", $pay);
+        $I->amOnPage(DeliveryCreatePage::$URL);
+        $this->CreateDelivery($I, $name, 'on', 'off', 'off', 'off', 'off', 'off', $pay);
         $this->CheckInFrontEnd($I, $name, null, null, null, null, $pay);
-        
     }
 
 
 //-----------------------PROTECTED FUNCTIONS------------------------------------
     /**
-     * function create Delivery with specified parrameters
+     * Create Delivery with specified parrameters
      * if you wont to skip some field type off
      * if you want to select several Payment methods type "method1_method2_met hod3"
+     * @param object $I Controller
+     * @param string $name Delivery name type off to skip
+     * @param sting $active Active Checkbox on - enabled| off - disabled
+     * @param string $description Method description type off to skip
+     * @param string $descriptionprice Method price description type off to skip
+     * @param int|float|string $price Delivery price type off to skip
+     * @param int|float|string $freefrom Delivery free from type off to skip
+     * @param string $message Delivery sum specified message type off to skip
+     * @param string $pay Payment methods "_" - delimiter for few methods
+     * @return void
      */
-    protected function CreateDelivery(AcceptanceTester $I, $name = "off", $active = "on", $description = "off", $descriptionprice = "off", $price = "off", $freefrom = "off", $message = "off", $pay = "off") {
+    protected function CreateDelivery($I, $name = "off", $active = "on", $description = "off", $descriptionprice = "off", $price = "off", $freefrom = "off", $message = "off", $pay = "off") {
         switch ($name) {
             case 'off':
                 break;
@@ -313,9 +325,24 @@ class DeliveryTesting {
         $I->click(DeliveryCreatePage::$ButtonCreate);
         $I->wait("3");
     }
-    /*
-     * function checking current parameters in Delivery List page 
+    /**
+<<<<<<< HEAD
+=======
+     * @todo EditDelivery protected Method
+     */
+    protected function EditDelivery($param) {
+        
+    }
+    /**
+>>>>>>> 47df183049b19e05a43f0ade4b6243ae2007dbc5
+     * Checking current parameters in Delivery List page 
      * if you want to skip verifying of some parameters type null
+     * @param object $I Controller
+     * @param sring $name Delivery name
+     * @param string $active Active checkbox on - enabled |off - disabled 
+     * @param int|string|float $price Delivery price
+     * @param int|string|float $freefrom Delivery free from
+     * @return void
      */
     protected function CheckInList(AcceptanceTester $I,$name,$active=null,$price=null,$freefrom=null){
         $I->amOnPage('/admin/components/run/shop/deliverymethods/index');
@@ -358,9 +385,17 @@ class DeliveryTesting {
             $I->assertEquals(preg_replace('/[^0-9.]*/u', '', $Cfreefrom), $freefrom);
         }
     }
-    /*
-     * function checking current parameters in frontend 
+    /**
+     * Checking current parameters in frontend 
      * if you want to skip verifying of some parameters type null
+     * @param object $I Controller
+     * @param string $name Delivery name
+     * @param string $description = null Description
+     * @param float|int|string $price = null Delivery price
+     * @param float|int|string $freefrom = null Delivery free from
+     * @param string $message = null Delivery sum specified message
+     * @param string $pay = null Delivery Payment meshods which will included "_" - delimiter for few methods 
+     * @return void
      */
     protected function CheckInFrontEnd(AcceptanceTester $I,$name,$description=null,$price=null,$freefrom=null,$message=null,$pay=null) {
         static $WasCalled  = FALSE;
@@ -375,11 +410,17 @@ class DeliveryTesting {
         $I->waitForElementVisible("//*[@id='popupCart']");
         $I->click(".btn-cart.btn-cart-p.f_r");
         }  
+<<<<<<< HEAD
         else {
         $I->amOnPage("/shop/cart");    
         }
         $WasCalled = TRUE;
         $present = false;
+=======
+        else { $I->amOnPage("/shop/cart"); }
+        $WasCalled = TRUE;
+        $present = FALSE;
+>>>>>>> 47df183049b19e05a43f0ade4b6243ae2007dbc5
         $I->waitForText('Оформление заказа');
         $ClassCount = $I->grabClassCount($I, 'name-count');
         for ($j=1;$j<=$ClassCount;++$j){
@@ -416,13 +457,17 @@ class DeliveryTesting {
          if($pay){
              
             $I->click("//div[@class='frame-radio']/div[$j]//span[@class='text-el']");
+<<<<<<< HEAD
             //$I->wait('5');
+=======
+>>>>>>> 47df183049b19e05a43f0ade4b6243ae2007dbc5
             $script1 = "$('body').animate({'scrollTop':$('body').height()},'slow')";
             $script2 = "$('html').animate({'scrollTop':$('body').height()},'slow')";
             $I->executeJS($script1);
             $I->executeJS($script2);
             if ($pay == 'off'){
-                $I->dontSeeElement("#cuselFrame-paymentMethod");
+                $I->waitForText('Нет способов оплаты', NULL, '//div[@class="frame-form-field"]/div[@class="help-block"]');
+                $I->see('Нет способов оплаты', '//div[@class="frame-form-field"]/div[@class="help-block"]');
             }
             else {
                 $I->waitForElementVisible("#cuselFrame-paymentMethod");
@@ -437,7 +482,13 @@ class DeliveryTesting {
             }
          }
     }
-    //function is checking that alerts is present after clicking create button 
+    /**
+     * Checking that alerts is present after clicking create button
+     * @param object $I Controller 
+     * @param string $errorMessaege=null Message which you want to check in current element
+     * @param CssXpathRegEx $field selector of field which you want to check
+     * @return void
+     */
     protected function CheckForAlertPresent(AcceptanceTester $I,$type,$errorMessage = null,$field=null) {
         switch ($type){
             case 'error':
@@ -460,23 +511,44 @@ class DeliveryTesting {
                     $I->see('Это поле обязательное.', 'label.alert.alert-error');
                     $I->assertEquals($I->grabAttributeFrom($field, 'class'), "alert alert-error");
                     break;
+<<<<<<< HEAD
+                    $this->GrabAllCreatedPayments($I);
+=======
+>>>>>>> 47df183049b19e05a43f0ade4b6243ae2007dbc5
         }
     }
-    //function grab all payments from payment methods list page and record them to array $PaymentMethods
+    /**
+     * Grab all payments from payment methods list page and record them to array $PaymentMethods
+     * @param object AcceptanceTester $I
+     * @return array $PaymentMethods
+     */
     protected function GrabAllCreatedPayments(AcceptanceTester $I) {
         $I->amOnPage(PaymentPage::$URL);
         $I->waitForText("Список способов оплаты", NULL, ".title");
-        //Count of table rows
+<<<<<<< HEAD
+        //$rows = Count of table rows
         $rows = $I->grabClassCount($I, 'niceCheck')-1;
-        if ($rows != 0){
+        if ($rows > 0){//was !=0
             $I->comment("I want to read and remember all created payment methods");
             for ($row = 1;$row<=$rows;++$row){
                 $PaymentMethods[$row] = $I->grabTextFrom (PaymentPage::ListMethodLine($row));
             }
         }
         else {
-            $PaymentMethods = null;
+            $I->fail("there are no created payments");
+//            $PaymentMethods = null;
         }
+=======
+        /**
+         * @var int $rows Count of table rows
+         */
+        $rows = $I->grabClassCount($I, 'niceCheck')-1;
+        if ($rows > 0){//was !=0
+            $I->comment("I want to read and remember all created payment methods");
+            for ($row = 1;$row<=$rows;++$row) { $PaymentMethods[$row] = $I->grabTextFrom (PaymentPage::ListMethodLine($row)); }
+        }
+        else { $I->fail( "there are no created payments" ); }
+>>>>>>> 47df183049b19e05a43f0ade4b6243ae2007dbc5
         return $PaymentMethods;
     }
 }
