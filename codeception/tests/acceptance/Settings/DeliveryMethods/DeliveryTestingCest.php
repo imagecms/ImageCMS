@@ -326,12 +326,15 @@ class DeliveryTesting {
         $I->wait("3");
     }
     /**
+<<<<<<< HEAD
+=======
      * @todo EditDelivery protected Method
      */
     protected function EditDelivery($param) {
         
     }
     /**
+>>>>>>> 47df183049b19e05a43f0ade4b6243ae2007dbc5
      * Checking current parameters in Delivery List page 
      * if you want to skip verifying of some parameters type null
      * @param object $I Controller
@@ -407,9 +410,17 @@ class DeliveryTesting {
         $I->waitForElementVisible("//*[@id='popupCart']");
         $I->click(".btn-cart.btn-cart-p.f_r");
         }  
+<<<<<<< HEAD
+        else {
+        $I->amOnPage("/shop/cart");    
+        }
+        $WasCalled = TRUE;
+        $present = false;
+=======
         else { $I->amOnPage("/shop/cart"); }
         $WasCalled = TRUE;
         $present = FALSE;
+>>>>>>> 47df183049b19e05a43f0ade4b6243ae2007dbc5
         $I->waitForText('Оформление заказа');
         $ClassCount = $I->grabClassCount($I, 'name-count');
         for ($j=1;$j<=$ClassCount;++$j){
@@ -446,6 +457,10 @@ class DeliveryTesting {
          if($pay){
              
             $I->click("//div[@class='frame-radio']/div[$j]//span[@class='text-el']");
+<<<<<<< HEAD
+            //$I->wait('5');
+=======
+>>>>>>> 47df183049b19e05a43f0ade4b6243ae2007dbc5
             $script1 = "$('body').animate({'scrollTop':$('body').height()},'slow')";
             $script2 = "$('html').animate({'scrollTop':$('body').height()},'slow')";
             $I->executeJS($script1);
@@ -496,6 +511,10 @@ class DeliveryTesting {
                     $I->see('Это поле обязательное.', 'label.alert.alert-error');
                     $I->assertEquals($I->grabAttributeFrom($field, 'class'), "alert alert-error");
                     break;
+<<<<<<< HEAD
+                    $this->GrabAllCreatedPayments($I);
+=======
+>>>>>>> 47df183049b19e05a43f0ade4b6243ae2007dbc5
         }
     }
     /**
@@ -506,6 +525,20 @@ class DeliveryTesting {
     protected function GrabAllCreatedPayments(AcceptanceTester $I) {
         $I->amOnPage(PaymentPage::$URL);
         $I->waitForText("Список способов оплаты", NULL, ".title");
+<<<<<<< HEAD
+        //$rows = Count of table rows
+        $rows = $I->grabClassCount($I, 'niceCheck')-1;
+        if ($rows > 0){//was !=0
+            $I->comment("I want to read and remember all created payment methods");
+            for ($row = 1;$row<=$rows;++$row){
+                $PaymentMethods[$row] = $I->grabTextFrom (PaymentPage::ListMethodLine($row));
+            }
+        }
+        else {
+            $I->fail("there are no created payments");
+//            $PaymentMethods = null;
+        }
+=======
         /**
          * @var int $rows Count of table rows
          */
@@ -515,6 +548,7 @@ class DeliveryTesting {
             for ($row = 1;$row<=$rows;++$row) { $PaymentMethods[$row] = $I->grabTextFrom (PaymentPage::ListMethodLine($row)); }
         }
         else { $I->fail( "there are no created payments" ); }
+>>>>>>> 47df183049b19e05a43f0ade4b6243ae2007dbc5
         return $PaymentMethods;
     }
 }
