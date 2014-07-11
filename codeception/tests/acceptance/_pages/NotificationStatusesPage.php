@@ -42,5 +42,6 @@ class NotificationStatusesPage
     public static $EditingNameTitle = "//div/section/div/div/span[2]";
     public static $EditingNameBlock = "//th";
     public static $EditingNameFild = "//label";
+    public static $DeleteWindow = ".modal.hide.fade";
     
 }
