@@ -25,8 +25,10 @@ class Admin extends BaseAdminController {
     
     /**
      * Saves the selected user categories in the table
+     * @todo use $this->dx_auth->is_admin()
+     * @todo to Model
      */
-    public function save() {
+    public function save() {        
         if ($_POST && $_SESSION['DX_role_id'] == 1) {
             if (count($_POST['displayedCats']) > 0){
                 $this->db->where('name', 'categories')
