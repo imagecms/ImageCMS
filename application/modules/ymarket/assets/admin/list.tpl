@@ -1,13 +1,16 @@
+{$hold = new Admin()}
+{$holder = $hold->getSelectedCats()}
+{$isAdult = $holder->ymarket_model['adult']} 
 <div class="container">
                     <section class="mini-layout">
                         <div class="frame_title clearfix">
                             <div class="pull-left">
                                 <span class="help-inline"></span>
-                                <span class="title">{lang('Yandex Market management', 'yandex_market')}</span>
+                                <span class="title">{lang('Yandex Market management', 'ymarket')}</span>
                             </div>
                             <div class="pull-right">
                                 <div class="d-i_b">
-                                    <button type="button" class="btn btn-small btn-primary action_on formSubmit" data-form="#settings_form"><i class="icon-ok"></i>{lang('Save','yandex_market')}</button>
+                                    <button type="button" class="btn btn-small btn-primary action_on formSubmit" data-form="#settings_form"><i class="icon-ok"></i>{lang('Save','ymarket')}</button>
                                         {echo create_language_select(ShopCore::$ci->cms_admin->get_langs(true), $locale, "/admin/components/run/shop/settings/index")}
                                 </div>
                             </div>                            
@@ -17,7 +20,7 @@
                                 <thead>
                                     <tr>
                                         <th colspan="6">
-                                            {lang('Settings Yandex.Market','yandex_market')}
+                                            {lang('Settings Yandex.Market','ymarket')}
                                         </th>
                                     </tr>
                                 </thead>
@@ -26,9 +29,7 @@
                                         <td colspan="6">
                                             <div class="inside_padd" >
                                                 <div class="control-group" >
-                                                    <label class="control-label">{lang('Displayed categories selection','yandex_market')}:</label>
-                                                    {$hold = new Admin()}
-                                                    {$holder = $hold->getSelectedCats()}
+                                                    <label class="control-label">{lang('Displayed categories selection','ymarket')}:</label>
                                                     <div class="controls">
                                                         <select name="displayedCats[]" multiple="multiple" style="width:285px;height:129px;">
                                                             {foreach $holder->categories as $category}
@@ -41,10 +42,9 @@
                                                     <div class="controls">
                                                         <span class="frame_label no_connection">
                                                             <span class="niceCheck b_n">
-                                                                {$isAdult = $holder->ymarket_model['adult']} 
                                                                 <input type="checkbox" name="adult" value="1"{if $isAdult == 1}checked="checked"{/if} id="yandex[isAdult]" />
                                                             </span>
-                                                            {lang('Adult products','yandex_market')}
+                                                            {lang('Adult products','ymarket')}
                                                         </span>
                                                     </div>
 
@@ -56,14 +56,14 @@
                             </table>
                             <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
                                 <thead>
-                                <th>{lang('Yandex.Market document','yandex_market')}</th>
+                                <th>{lang('Yandex.Market document','ymarket')}</th>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td>
                                             <div class="inside_padd">
                                                 <div class="control-group">
-                                                    <a href="{site_url('ymarket')}" target="_blank">{lang('XML document','yandex_market')}</a>
+                                                    <a href="{site_url('ymarket')}" target="_blank">{lang('XML document','ymarket')}</a>
                                                 </div>
                                             </div>
                                         </td>
