@@ -18,12 +18,12 @@
             </button>
             <ul class="drop nav">
                 <li>
-                    <a href="#">
+                    <a href="/saas/profile">
                         <span class="text-el">{echo lang('Личные данные', 'premmerce')}</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="/auth/logout">
                         <span class="text-el">{echo lang('Выход', 'premmerce')}</span>
                     </a>
                 </li>
