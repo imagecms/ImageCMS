@@ -34,7 +34,7 @@ article, .container, .special-proposition .title-proposition-h{margin: 0 auto;cl
 body{
     min-width: 960px;
     color: #333;
-    /*background: #fff url(../img/left_fon.png) repeat-y;*/
+    background: #fff url(../img/left_fon.png) repeat-y;
 }
 .container{max-width: 100%;}
 
