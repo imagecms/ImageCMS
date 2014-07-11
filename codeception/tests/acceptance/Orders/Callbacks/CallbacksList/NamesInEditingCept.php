@@ -13,6 +13,6 @@ $I->see('Имя пользователя:', './/*[@id="editCallbackForm"]/div[3]
 $I->see('Телефон:', './/*[@id="editCallbackForm"]/div[4]/label');
 $I->see('Комментарий:', './/*[@id="editCallbackForm"]/div[5]/label');
 $I->see('Дата создания:', './/*[@id="editCallbackForm"]/div[6]/label');
-$I->see('Вернуться', './/*[@id="mainContent"]/section/div[1]/div[2]/div/a/span[2]');
-$I->see('Сохранить', './/*[@id="mainContent"]/section/div[1]/div[2]/div/button[1]');
-$I->see('Сохранить и выйти', './/*[@id="mainContent"]/section/div[1]/div[2]/div/button[2]');
+$I->see('Вернуться', CallbacksPage::$GoBackButton);
+$I->see('Сохранить', CallbacksPage::$SaveButton);
+$I->see('Сохранить и выйти', CallbacksPage::$SaveAndExitButton);
