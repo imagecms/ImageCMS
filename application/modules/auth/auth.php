@@ -26,7 +26,7 @@ class Auth extends MY_Controller {
         $this->load->language('auth');
         $this->load->helper('url');
         $this->load->library('Form_validation');
-        
+
         $lang = new MY_Lang();
         $lang->load('auth');
 //        $this->form_validation->this = & $this;
@@ -100,7 +100,7 @@ class Auth extends MY_Controller {
 
     function login() {
 //         ($hook = get_hook('auth_on_login')) ? eval($hook) : NULL;
-            $this->core->set_meta_tags(lang('Authorization', 'auth'));
+        $this->core->set_meta_tags(lang('Authorization', 'auth'));
         if (!$this->dx_auth->is_logged_in()) {
             $val = $this->form_validation;
 
@@ -231,7 +231,8 @@ class Auth extends MY_Controller {
 //                 ($hook = get_hook('auth_show_success_message')) ? eval($hook) : NULL;
                 // Load registration success page
                 if ($_SERVER['HTTP_X_REQUESTED_WITH'] != 'XMLHttpRequest') {
-                    $this->template->show('register_success');exit;
+                    $this->template->show('register_success');
+                    exit;
                 } else {
                     $this->template->display('register_popup', array('succes' => TRUE));
                 }

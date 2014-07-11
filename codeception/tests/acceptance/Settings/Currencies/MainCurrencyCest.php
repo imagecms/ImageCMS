@@ -160,8 +160,8 @@ class MainCurrencyCest
         $I->waitForElementVisible('.alert.in.fade.alert-success');
         $I->see('Валюта успешно удалена');
         $I->waitForElementNotVisible('.alert.in.fade.alert-success');
-        $rowsBeforeDel = $I->grabTagCount($I,"tbody tr");
-        $I->comment((string)$rowsBeforeDel);
+        $rowsAfterDel = $I->grabTagCount($I,"tbody tr");
+        $I->comment((string)$rowsAfterDel);
         
     }
     

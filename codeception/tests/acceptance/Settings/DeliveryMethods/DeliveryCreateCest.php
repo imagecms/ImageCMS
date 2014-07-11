@@ -300,15 +300,15 @@ class DeliveryCreateCest {
      * Create Delivery with specified parrameters
      * if you wont to skip some field type off
      * if you want to select several Payment methods type "method1_method2_met hod3"
-     * @param AcceptanceTester $I Controller
-     * @param string $name Delivery name type off to skip
-     * @param sting $active Active Checkbox on - enabled| off - disabled
-     * @param string $description Method description type off to skip
-     * @param string $descriptionprice Method price description type off to skip
-     * @param int|float|string $price Delivery price type off to skip
-     * @param int|float|string $freefrom Delivery free from type off to skip
-     * @param string $message Delivery sum specified message type off to skip
-     * @param string $pay Payment methods "_" - delimiter for few methods
+     * @param AcceptanceTester  $I                  Controller
+     * @param string            $name               Delivery name type off to skip
+     * @param sting             $active             Active Checkbox on - enabled| off - disabled
+     * @param string            $description        Method description type off to skip
+     * @param string            $descriptionprice   Method price description type off to skip
+     * @param int|float|string  $price              Delivery price type off to skip
+     * @param int|float|string  $freefrom           Delivery free from type off to skip
+     * @param string            $message            Delivery sum specified message type off to skip
+     * @param string            $pay                Payment methods "_" - delimiter for few methods
      * @return void
      */
     protected function CreateDelivery(AcceptanceTester $I, $name = "off", $active = "on", $description = "off", $descriptionprice = "off", $price = "off", $freefrom = "off", $message = "off", $pay = "off") {
@@ -378,11 +378,11 @@ class DeliveryCreateCest {
     /**
      * Checking current parameters in Delivery List page 
      * if you want to skip verifying of some parameters type null
-     * @param AcceptanceTester $I Controller
-     * @param sring $name Delivery name
-     * @param string $active Active checkbox on - enabled |off - disabled 
-     * @param int|string|float $price Delivery price
-     * @param int|string|float $freefrom Delivery free from
+     * @param AcceptanceTester  $I          Controller
+     * @param sring             $name       Delivery name
+     * @param string            $active     Active checkbox on - enabled |off - disabled 
+     * @param int|string|float  $price      Delivery price
+     * @param int|string|float  $freefrom   Delivery free from
      * @return void
      */
     protected function CheckInList(AcceptanceTester $I,$name,$active=null,$price=null,$freefrom=null){
@@ -435,13 +435,13 @@ class DeliveryCreateCest {
     /**
      * Checking current parameters in frontend 
      * if you want to skip verifying of some parameters type null
-     * @param AcceptanceTester $I Controller
-     * @param string $name Delivery name
-     * @param string $description = null Description
-     * @param float|int|string $price = null Delivery price
-     * @param float|int|string $freefrom = null Delivery free from
-     * @param string $message = null Delivery sum specified message
-     * @param string $pay = null Delivery Payment meshods which will included "_" - delimiter for few methods 
+     * @param AcceptanceTester      $I              Controller
+     * @param string                $name           Delivery name
+     * @param string                $description    Description
+     * @param float|int|string      $price          Delivery price
+     * @param float|int|string      $freefrom       Delivery free from
+     * @param string                $message        Delivery sum specified message
+     * @param string                $pay            Delivery Payment meshods which will included "_" - delimiter for few methods 
      * @return void
      */
     protected function CheckInFrontEnd(AcceptanceTester $I,$name,$description=null,$price=null,$freefrom=null,$message=null,$pay=null) {
@@ -503,8 +503,10 @@ class DeliveryCreateCest {
          
          if($pay){
             $I->click("//div[@class='frame-radio']/div[$j]//span[@class='text-el']");
+
             $script1 = "$('body').animate({'scrollTop':$('body').height()},'slow')";
             $script2 = "$('html').animate({'scrollTop':$('body').height()},'slow')";
+            
             $I->executeJS($script1);
             $I->executeJS($script2);
             
@@ -529,9 +531,9 @@ class DeliveryCreateCest {
     
     /**
      * Checking that alerts is present after clicking create button
-     * @param AcceptanceTester  $I Controller 
-     * @param string            $errorMessaege=null Message which you want to check in current element
-     * @param CssXpathRegEx     $field selector of field which you want to check
+     * @param AcceptanceTester  $I              Controller 
+     * @param string            $errorMessaege  Message which you want to check in current element
+     * @param CssXpathRegEx     $field          Selector of field which you want to check
      * @return void
      */
     protected function CheckForAlertPresent(AcceptanceTester $I,$type,$errorMessage = null,$field=null) {
