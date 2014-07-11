@@ -28,7 +28,7 @@ class Ymarket_model extends CI_Model {
     
     /**
      * Selection of products in the categories specified by the user
-     * @return array Product and products variants         
+     * @return array Products and products variants         
      */
     public function getProducts($idsCat) {
         $products = SProductsQuery::create()
