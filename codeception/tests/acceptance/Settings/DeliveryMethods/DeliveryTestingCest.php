@@ -262,7 +262,7 @@ class DeliveryTesting {
      * @param string $pay Payment methods "_" - delimiter for few methods
      * @return void
      */
-    protected function CreateDelivery(AcceptanceTester $I, $name = "off", $active = "on", $description = "off", $descriptionprice = "off", $price = "off", $freefrom = "off", $message = "off", $pay = "off") {
+    protected function CreateDelivery($I, $name = "off", $active = "on", $description = "off", $descriptionprice = "off", $price = "off", $freefrom = "off", $message = "off", $pay = "off") {
         switch ($name) {
             case 'off':
                 break;
@@ -324,6 +324,12 @@ class DeliveryTesting {
         }
         $I->click(DeliveryCreatePage::$ButtonCreate);
         $I->wait("3");
+    }
+    /**
+     * @todo EditDelivery protected Method
+     */
+    protected function EditDelivery($param) {
+        
     }
     /**
      * Checking current parameters in Delivery List page 
@@ -401,11 +407,9 @@ class DeliveryTesting {
         $I->waitForElementVisible("//*[@id='popupCart']");
         $I->click(".btn-cart.btn-cart-p.f_r");
         }  
-        else {
-        $I->amOnPage("/shop/cart");    
-        }
+        else { $I->amOnPage("/shop/cart"); }
         $WasCalled = TRUE;
-        $present = false;
+        $present = FALSE;
         $I->waitForText('Оформление заказа');
         $ClassCount = $I->grabClassCount($I, 'name-count');
         for ($j=1;$j<=$ClassCount;++$j){
@@ -442,7 +446,6 @@ class DeliveryTesting {
          if($pay){
              
             $I->click("//div[@class='frame-radio']/div[$j]//span[@class='text-el']");
-            //$I->wait('5');
             $script1 = "$('body').animate({'scrollTop':$('body').height()},'slow')";
             $script2 = "$('html').animate({'scrollTop':$('body').height()},'slow')";
             $I->executeJS($script1);
@@ -493,7 +496,6 @@ class DeliveryTesting {
                     $I->see('Это поле обязательное.', 'label.alert.alert-error');
                     $I->assertEquals($I->grabAttributeFrom($field, 'class'), "alert alert-error");
                     break;
-                    $this->GrabAllCreatedPayments($I);
         }
     }
     /**
@@ -504,18 +506,15 @@ class DeliveryTesting {
     protected function GrabAllCreatedPayments(AcceptanceTester $I) {
         $I->amOnPage(PaymentPage::$URL);
         $I->waitForText("Список способов оплаты", NULL, ".title");
-        //$rows = Count of table rows
+        /**
+         * @var int $rows Count of table rows
+         */
         $rows = $I->grabClassCount($I, 'niceCheck')-1;
         if ($rows > 0){//was !=0
             $I->comment("I want to read and remember all created payment methods");
-            for ($row = 1;$row<=$rows;++$row){
-                $PaymentMethods[$row] = $I->grabTextFrom (PaymentPage::ListMethodLine($row));
-            }
+            for ($row = 1;$row<=$rows;++$row) { $PaymentMethods[$row] = $I->grabTextFrom (PaymentPage::ListMethodLine($row)); }
         }
-        else {
-            $I->fail("there are no created payments");
-//            $PaymentMethods = null;
-        }
+        else { $I->fail( "there are no created payments" ); }
         return $PaymentMethods;
     }
 }
