@@ -12,6 +12,11 @@ class assetManager {
     protected $callMapp = null;
     protected $useCompress = false;
     protected $module_js = 'jsLangs';
+
+    /**
+     *
+     * @var Template
+     */
     protected $template;
     protected $ci;
 
@@ -24,6 +29,21 @@ class assetManager {
     }
 
     /**
+     * Changing main layout file
+     * @param string $mainLayout
+     * @return \CMSFactory\assetManager
+     */
+    public function setMainLayout($mainLayout) {
+        try {
+            \CI_Controller::get_instance()->template->set_main_layout($mainLayout);
+        } catch (\Exception $exc) {
+            log_message('error', $exc->getMessage());
+            show_error($exc->getMessage(), 500, 'An Template Error Was Encountered');
+        }
+        return $this;
+    }
+
+    /**
      * @param array $data Fetch data to template
      * @return assetManager
      * @access public
@@ -31,7 +51,7 @@ class assetManager {
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
     public function setData($item, $value = null) {
-        if ($value != null AND !is_array($item)) {
+        if ($value != null AND ! is_array($item)) {
             $data[$item] = $value;
         } else {
             $data = $item;
@@ -370,11 +390,10 @@ class assetManager {
             $modulName = \CI::$APP->uri->segment(4);
             $path = sprintf('%smodules/%s/assets/admin/%s', APPPATH, $modulName, $tpl);
             if (file_exists($path . '.tpl'))
-                return $path; 
+                return $path;
         }
-        
+
         return $path;
-        
     }
 
     /**
@@ -385,17 +404,16 @@ class assetManager {
      */
     private function buildScriptPath($tpl) {
         $this->template = \CI_Controller::get_instance()->config->item('template');
-        
+
         if (file_exists('templates/' . $this->template . '/' . $this->getTrace() . '/js/' . $tpl . '.js')) {
             $url = sprintf('templates/%s/%s/js/%s.js', $this->template, $this->getTrace(), $tpl);
         } elseif (file_exists(sprintf('%smodules/%s/assets/js/%s.js', APPPATH, $this->getTrace(), $tpl))) {
             $url = sprintf('%smodules/%s/assets/js/%s.js', APPPATH, $this->getTrace(), $tpl);
-        } elseif (file_exists(sprintf('%smodules/%s/assets/js/%s.js', APPPATH, \CI::$APP->uri->segment(4), $tpl))){
+        } elseif (file_exists(sprintf('%smodules/%s/assets/js/%s.js', APPPATH, \CI::$APP->uri->segment(4), $tpl))) {
             $url = sprintf('%smodules/%s/assets/js/%s.js', APPPATH, \CI::$APP->uri->segment(4), $tpl);
-            
         }
-        
-        
+
+
 
         return str_replace(MAINSITE, '', $url);
     }
@@ -415,9 +433,8 @@ class assetManager {
             $url = sprintf('templates/%s/%s/css/%s.css', $this->template, $this->getTrace(), $tpl);
         } elseif (file_exists(sprintf('%smodules/%s/assets/css/%s.css', APPPATH, $this->getTrace(), $tpl))) {
             $url = sprintf('%smodules/%s/assets/css/%s.css', APPPATH, $this->getTrace(), $tpl);
-        } elseif (file_exists(sprintf('%smodules/%s/assets/css/%s.css', APPPATH, \CI::$APP->uri->segment(4), $tpl))){
+        } elseif (file_exists(sprintf('%smodules/%s/assets/css/%s.css', APPPATH, \CI::$APP->uri->segment(4), $tpl))) {
             $url = sprintf('%smodules/%s/assets/css/%s.css', APPPATH, \CI::$APP->uri->segment(4), $tpl);
-            
         }
 
         return str_replace(MAINSITE, '', $url);
