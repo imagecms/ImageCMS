@@ -11,6 +11,6 @@ $I->see('ID', './/*[@id="orderStatusesList"]/section/div[2]/div/table/thead/tr/t
 $I->see('Имя', './/*[@id="orderStatusesList"]/section/div[2]/div/table/thead/tr/th[2]');
 $I->see('По умолчанию', './/*[@id="orderStatusesList"]/section/div[2]/div/table/thead/tr/th[3]');
 $I->see('Удалить', './/*[@id="orderStatusesList"]/section/div[2]/div/table/thead/tr/th[4]');
-$I->see('Создать статус', './/*[@id="orderStatusesList"]/section/div[1]/div[2]/div/a');
+$I->see('Создать статус', CallbacksPage::$CreateStatusButton);
 
 

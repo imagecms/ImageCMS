@@ -13,7 +13,7 @@ $I->see('Информация', './/*[@id="mainContent"]/section/div[2]/table/th
 $I->see('Имя:', './/*[@id="addCallbackStatusForm"]/div[1]/label');
 $I->see('По умолчанию', 'span.frame_label.no_connection');
 $I->see('Статус будет назначен всем новым запросам.', 'div.help-block');
-$I->see('Вернуться', './/*[@id="mainContent"]/section/div[1]/div[2]/div/a/span[2]');
-$I->see('Сохранить', './/*[@id="mainContent"]/section/div[1]/div[2]/div/button[1]');
-$I->see('Сохранить и выйти', './/*[@id="mainContent"]/section/div[1]/div[2]/div/button[2]');
+$I->see('Вернуться', CallbacksPage::$GoBackButton);
+$I->see('Сохранить', CallbacksPage::$SaveButton);
+$I->see('Сохранить и выйти', CallbacksPage::$SaveAndExitButton);
 
