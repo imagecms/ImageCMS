@@ -18,9 +18,8 @@
         <meta name="keywords" content="{$site_keywords}" />
         <meta name="generator" content="ImageCMS" />
         <meta name = "format-detection" content = "telephone=no" />
+        <link href='http://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" type="text/css" href="{$THEME}css/style.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="{$THEME}{$colorScheme}/colorscheme.css" media="all" />
-        <link rel="stylesheet" type="text/css" href="{$THEME}{$colorScheme}/color.css" media="all" />
 
         {if $CI->uri->segment(1) == MY_Controller::getCurrentLocale()}
             {$lang = '/' . \MY_Controller::getCurrentLocale()}
@@ -34,8 +33,6 @@
             var locale = "{echo $lang}";
         </script>
         <script type="text/javascript" src="{$THEME}js/jquery-1.8.3.min.js"></script>
-        {include_tpl('config.js')}
-        <script type="text/javascript" src="{$THEME}js/settings.js"></script>
         <!--[if lte IE 9]><script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
         <!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="{$THEME}css/lte_ie_8.css" /><![endif]-->
         <!--[if IE 7]>
@@ -50,62 +47,19 @@
         {include_tpl('language/jsLangsDefine.tpl')}
         {include_tpl('language/jsLangs.tpl')}
         <div class="main-body">
-            <div class="fon-header">
-                <header>
-                    {include_tpl('header')}
-                </header>
-                <div class="frame-menu-main horizontal-menu">
-                    {\Category\RenderMenu::create()->setConfig(array('cache'=>TRUE))->load('category_menu')}
-                </div>
-            </div>
+
             <div class="content">
                 {$content}
             </div>
             <div class="h-footer"></div>
         </div>
-        <footer>
-            {include_tpl('footer')}
-        </footer>
-        {include_tpl('user_toolbar')}
-
-        {/*}Start. delete before upload to server{ */}
-        {/*}
-        <!-- scripts -->
-        <script type="text/javascript" src="{$THEME}js/raphael-min.js"></script>
-        <script type="text/javascript" src="{$THEME}js/_united_side_plugins.js"></script>
-        <script type="text/javascript" src="{$THEME}js/_plugins.js"></script>
-        <script type="text/javascript" src="{$THEME}js/drop_extend_methods.js"></script>
-        <script type="text/javascript" src="{$THEME}js/_shop.js"></script>
-        <script type="text/javascript" src="{$THEME}js/_global_vars_objects.js"></script>
-        <script type="text/javascript" src="{$THEME}js/_functions.js"></script>
-        <script type="text/javascript" src="{$THEME}js/_scripts.js"></script>
-        <!-- scripts end -->
-        {literal}
-            <script type="text/javascript">
-                $(window).load(function() {
-                    init();
-                    setTimeout(function() {
-                        $(document).trigger({type: 'scriptDefer'});
-                    }, 0);
-                });
-            </script>
-        {/literal}
-        { */}
-        {/*}End. delete before upload to server{ */}
 
         {/*fancybox}
         <link rel="stylesheet" type="text/css" href="{$THEME}js/fancybox/jquery.fancybox-1.3.4.css" media="all" />
         <script type="text/javascript" src="{$THEME}js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
         {end. fancybox*/}
-
-        {/*}uncomment before opload to server and combine and minimize scripts (in comment <!-- scripts -->...<!-- scripts end -->) into united_scripts file{ */}
-        {/*} Start. uncoment before development { */}
-
-        <script type="text/javascript">
-            initDownloadScripts(['raphael-min', 'united_scripts'], 'init', 'scriptDefer');
-        </script>
-
-        {/*} End. uncoment before development { */}
-        {include_shop_tpl('js_templates')}
+        
+        <script type="text/javascript" src="{$THEME}js/plugins.js"></script>
+        <script type="text/javascript" src="{$THEME}js/scripts.js"></script>
     </body>
 </html>
