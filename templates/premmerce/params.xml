@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template label='Premmerce' name='premmerce' type="shop" version="0.1">
+    <author>SiteImage</author>
+
+    <!-- Widgets start -->
+
+    <dependencies>
+
+        <!-- HTML widgets start -->
+
+        <dependence entityName="widget" name="benefits" type="add" widgetType="html">
+            <widget_i18n locale="ru">
+                <data>
+                    <div class="container">
+                        <ul class="items items-benefits">
+                            <li>
+                                <div class="frame-icon-benefit"><span class="helper">&#160;</span> <span class="icon-benefits_1">&#160;</span></div>
+                                <div class="frame-description-benefit f-s_0"><span class="helper">&#160;</span>
+                                <div>
+                                    <div class="title">Бесплатная</div>
+                                    <p>доставка</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="frame-icon-benefit"><span class="helper">&#160;</span> <span class="icon-benefits_2">&#160;</span></div>
+                            <div class="frame-description-benefit f-s_0"><span class="helper">&#160;</span>
+                            <div>
+                                <div class="title">Гибкая система</div>
+                                <p>скидок</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="frame-icon-benefit"><span class="helper">&#160;</span> <span class="icon-benefits_3">&#160;</span></div>
+                        <div class="frame-description-benefit f-s_0"><span class="helper">&#160;</span>
+                        <div>
+                            <div class="title">Индивидуальный</div>
+                            <p>подход</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="frame-icon-benefit"><span class="helper">&#160;</span> <span class="icon-benefits_4">&#160;</span></div>
+                    <div class="frame-description-benefit f-s_0"><span class="helper">&#160;</span>
+                    <div>
+                        <div class="title">высокий уровень</div>
+                        <p>сервиса</p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</data>
+</widget_i18n>
+</dependence>
+
+<dependence entityName="widget" name="payments_delivery_methods_info" type="add" widgetType="html">
+    <widget_i18n locale="ru">
+        <data>
+            <div class="frame-delivery-payment"><dl><dt class="title f-s_0"><span class="icon_delivery">&#160;</span><span class="text-el">Доставка</span></dt><dd class="frame-list-delivery">
+            <ul class="list-style-1">
+                <li>Новая Почта</li>
+                <li>Другие транспортные службы</li>
+                <li>Курьером по Киеву</li>
+                <li>Самовывоз</li>
+            </ul>
+        </dd><dt class="title f-s_0"><span class="icon_payment">&#160;</span><span class="text-el">Оплата</span></dt><dd class="frame-list-payment">
+        <ul class="list-style-1">
+            <li>Наличными при получении</li>
+            <li>Безналичный перевод</li>
+            <li>Приват 24</li>
+            <li>WebMoney</li>
+        </ul>
+    </dd></dl></div>
+    <div class="frame-phone-product">
+        <div class="title f-s_0"><span class="icon_phone_product">&#160;</span><span class="text-el">Заказы по телефонах</span></div>
+        <ul class="list-style-1">
+            <li>(097) <span class="d_n">&#8722;</span>567-43-21</li>
+            <li>(097) <span class="d_n">&#8722;</span>567-43-22</li>
+        </ul>
+    </div>
+</data>
+</widget_i18n>
+</dependence>
+
+<dependence entityName="widget" name="start_page_seo_text" type="add" widgetType="html">
+    <widget_i18n locale="ru">
+        <data>
+            <h1>Интернет-магазин электронной техники</h1>
+            <p>Интернет-магазин &#8211; это интерактивный сайт с каталогом, в котором представляются товары и услуги, а также корзиной для формирования заказа. В правильном интернет-магазине обязательно должны присутствовать : рекламируемые товары и услуги, контактная информация, предложения различных вариантов оплаты, предоставление счета. Работа интернет-магазина похожа на работу простого магазина. Клиент, просматривая каталог, помещает интересующую его позицию в корзину.</p>        </data>
+        </widget_i18n>
+    </dependence>
+
+    <!-- HTML widgets end -->
+
+    <!-- Module widgets start -->
+
+    <dependence entityName="widget" name="latest_news" type="add" widgetType="module" module="core" method="recent_news" description="Последние новости">
+        <settings>
+            <display>recent</display>
+            <categories>
+                <settings>
+                    <number0>69</number0>
+                </settings>
+            </categories>
+            <news_count>3</news_count>
+            <max_symdols>150</max_symdols>
+        </settings>
+    </dependence>
+
+    <dependence entityName="widget" name="popular_products" type="add" widgetType="module" module="shop" method="products" description="Популярные товары">
+        <settings>
+            <productsType>popular,hit</productsType>
+            <title>Популярные товары</title>
+            <productsCount>10</productsCount>
+            <subpath>widgets</subpath>
+        </settings>
+    </dependence>
+
+    <dependence entityName="widget" name="new_products" type="add" widgetType="module" module="shop" method="products" description="Новые товары">
+        <settings>
+            <productsType>popular,hot</productsType>
+            <title>Новинки</title>
+            <productsCount>10</productsCount>
+            <subpath>widgets</subpath>
+        </settings>
+    </dependence>
+
+    <dependence entityName="widget" name="action_products" type="add" widgetType="module" module="shop" method="products" description="Акционные товары">
+        <settings>
+            <productsType>popular,action</productsType>
+            <title>Акционные товары</title>
+            <productsCount>10</productsCount>
+            <subpath>widgets</subpath>
+        </settings>
+    </dependence>
+
+    <dependence entityName="widget" name="popular_products_category" type="add" widgetType="module" module="shop" method="products" description="Популярная категория товара">
+        <settings>
+            <productsType>date,hit,category</productsType>
+            <title>Популярная категория товара</title>
+            <productsCount>10</productsCount>
+            <subpath>widgets</subpath>
+        </settings>
+    </dependence>
+
+    <dependence entityName="widget" name="tags" type="add" widgetType="module" module="tags" method="tags_cloud" description="Теги">
+    </dependence>
+
+    <dependence entityName="widget" name="path" type="add" widgetType="module" module="navigation" method="widget_navigation" description="Виджет навигации">
+    </dependence>
+
+    <dependence entityName="widget" name="brands" type="add" widgetType="module" module="shop" method="brands" description="Бренды">
+        <settings>
+            <withImages>true</withImages>
+            <brandsCount>15</brandsCount>
+            <title>Лучшие производители</title>
+            <subpath>widgets</subpath>
+        </settings>
+    </dependence>
+
+    <dependence entityName="widget" name="similar" type="add" widgetType="module" module="shop" method="similar_products" description="Похожие товары">
+        <settings>
+            <title>Похожие товары</title>
+            <productsCount>5</productsCount>
+            <subpath>widgets</subpath>
+        </settings>
+    </dependence>
+
+    <dependence entityName="widget" name="ViewedProducts" type="add" widgetType="module" module="shop" method="view_product" description="Просмотренные товары">
+        <settings>
+            <title>ViewedProducts</title>
+            <productsCount>10</productsCount>
+            <subpath>widgets</subpath>
+        </settings>
+    </dependence>
+
+    <!-- Module widgets end -->
+
+</dependencies>
+
+<!-- Widgets end -->
+
+<demodata>
+
+    <!-- Banners start -->
+
+    <!-- (where_show => default, main, product, shop_category, brand, category, page)-->
+    <banners>
+        <banner where_show="main" position="0" active="1">
+            <banner_i18n  name="Sony" description="Sony" url="/shop/brand/sony" locale="ru" photo="/uploads/shop/banners/template-imageshop-banner-1.jpg"/>
+        </banner>
+        <banner where_show="main" position="1" active="1">
+            <banner_i18n  name="Epson" description="Epsons" url="shop/brand/epson" locale="ru" photo="/uploads/shop/banners/template-imageshop-banner-2.jpg"/>
+        </banner>
+    </banners>
+
+    <!-- Banners end -->
+
+    <!-- Categories templates start -->
+
+    <categoriestemplates>
+        <level_1 template_name="categorysubfirst"/>
+        <level_2 template_name="categorysubsecond"/>
+    </categoriestemplates>
+
+    <!-- Categories templates end -->
+
+    <!-- Menus start -->
+
+    <menus>
+
+        <menu name="top_menu" main_title="top_menu" tpl_folder="top_menu" expand_level="1" description="Меню в верхней части шаблона">
+            <item title="Главная" url="#">
+                <menu_i18n title="Главная" locale="ru"/>
+            </item>
+            <item title="О магазине" url="/o-magazine">
+                <menu_i18n title="О магазине" locale="ru"/>
+            </item>
+            <item title="Доставка и оплата" url="/dostavka">
+                <menu_i18n title="Доставка и оплата" locale="ru"/>
+            </item>
+            <item title="Акции" url="/oplata">
+                <menu_i18n title="Акции" locale="ru"/>
+            </item>
+            <item title="Новости" url="/novosti">
+                <menu_i18n title="Новости" locale="ru"/>
+            </item>
+            <item title="Гарантия" url="/pomoshch">
+                <menu_i18n title="Гарантия" locale="ru"/>
+            </item>
+            <item title="Контакты" url="/kontakty">
+                <menu_i18n title="Контакты" locale="ru"/>
+            </item>
+        </menu>
+
+        <menu name="left_menu" main_title="left_menu" tpl_folder="left_menu" expand_level="0" description="Меню в левой части шаблона">
+            <item title="О магазине" url="/o-magazine">
+                <menu_i18n title="О магазине" locale="ru"/>
+            </item>
+            <item title="Доставка и оплата" url="/dostavka">
+                <menu_i18n title="Доставка и оплата" locale="ru"/>
+            </item>
+            <item title="Акции" url="/oplata">
+                <menu_i18n title="Акции" locale="ru"/>
+            </item>
+            <item title="Новости" url="/novosti">
+                <menu_i18n title="Новости" locale="ru"/>
+            </item>
+            <item title="Гарантия" url="/pomoshch">
+                <menu_i18n title="Гарантия" locale="ru"/>
+            </item>
+            <item title="Контакты" url="/kontakty">
+                <menu_i18n title="Контакты" locale="ru"/>
+            </item>
+        </menu>
+
+        <menu name="footer_menu" main_title="footer_menu" tpl_folder="footer_menu" expand_level="0" description="Меню в нижней части магазина">
+            <item title="Главная" url="#">
+                <menu_i18n title="Главная" locale="ru"/>
+            </item>
+            <item title="О магазине" url="/o-magazine">
+                <menu_i18n title="О магазине" locale="ru"/>
+            </item>
+            <item title="Доставка и оплата" url="/dostavka">
+                <menu_i18n title="Доставка и оплата" locale="ru"/>
+            </item>
+            <item title="Акции" url="/oplata">
+                <menu_i18n title="Акции" locale="ru"/>
+            </item>
+            <item title="Новости" url="/novosti">
+                <menu_i18n title="Новости" locale="ru"/>
+            </item>
+            <item title="Гарантия" url="/pomoshch">
+                <menu_i18n title="Гарантия" locale="ru"/>
+            </item>
+            <item title="Контакты" url="/kontakty">
+                <menu_i18n title="Контакты" locale="ru"/>
+            </item>
+        </menu>
+
+    </menus>
+
+    <!-- Menus end -->
+
+    <!-- Custom fields start -->
+
+    <customfields>
+        <field type="text" name="city" required="FALSE" active="TRUE" private="FALSE" entity="user">
+            <field_i18n label="Город" locale="ru" />
+        </field>
+        <field type="text" name="city" required="FALSE" active="TRUE" private="FALSE" entity="order">
+            <field_i18n label="Город" locale="ru" />
+        </field>
+        <field type="text" name="addphone" required="FALSE" active="TRUE" private="FALSE" entity="user">
+            <field_i18n label="Доп. телефон" locale="ru" />
+        </field>
+        <field type="text" name="addphone" required="FALSE" active="TRUE" private="FALSE" entity="order">
+            <field_i18n label="Доп. телефон" locale="ru" />
+        </field>
+    </customfields>
+
+    <!-- Custom fields end -->
+
+</demodata>
+
+<!-- Screenshots start -->
+
+<screenshots>
+    <screenshot url="/templates/newLevel/screenshots/1.png" main="1" />
+    <screenshot url="/templates/newLevel/screenshots/2.png" main="0" />
+    <screenshot url="/templates/newLevel/screenshots/3.png" main="0" />
+    <screenshot url="/templates/newLevel/screenshots/4.png" main="0" />
+    <screenshot url="/templates/newLevel/screenshots/5.png" main="0" />
+</screenshots>
+
+<!-- Screenshots end -->
+
+<description>
+</description>
+
+<components>
+
+    <!-- Color scheme start -->
+
+    <component handler='TColorScheme'>
+        <param name="color_scheme" value="color_scheme_1" />
+    </component>
+
+    <!-- Color scheme end -->
+
+    <!-- Menu colums start -->
+
+    <component handler="TMenuColumn">
+    </component>
+
+    <!-- Menu colums end -->
+
+    <!-- Properties start -->
+
+    <component handler="TProperties">
+        <params name="properties">
+            <param key="20" value="dropDown" />
+            <param key="22" value="scroll" />
+            <param key="23" value="scroll" />
+            <param key="24" value="scroll" />
+            <param key="25" value="scroll" />
+            <param key="26" value="scroll" />
+            <param key="28" value="scroll" />
+            <param key="31" value="scroll" />
+            <param key="34" value="scroll" />
+            <param key="35" value="scroll" />
+            <param key="36" value="scroll" />
+            <param key="37" value="scroll" />
+            <param key="39" value="scroll" />
+            <param key="41" value="scroll" />
+            <param key="42" value="scroll" />
+            <param key="46" value="scroll" />
+            <param key="50" value="scroll" />
+            <param key="51" value="dropDown" />
+            <param key="52" value="dropDown" />
+            <param key="53" value="dropDown" />
+            <param key="57" value="dropDown" />
+            <param key="58" value="dropDown" />
+            <param key="59" value="dropDown" />
+            <param key="60" value="dropDown" />
+            <param key="62" value="dropDown" />
+            <param key="64" value="dropDown" />
+            <param key="66" value="dropDown" />
+            <param key="67" value="dropDown" />
+            <param key="68" value="dropDown" />
+            <param key="70" value="dropDown" />
+            <param key="73" value="dropDown" />
+            <param key="74" value="dropDown" />
+            <param key="75" value="dropDown" />
+            <param key="76" value="dropDown" />
+            <param key="77" value="scroll,dropDown" />
+            <param key="78" value="scroll,dropDown" />
+            <param key="79" value="scroll,dropDown" />
+            <param key="84" value="scroll,dropDown" />
+            <param key="86" value="scroll,dropDown" />
+            <param key="89" value="scroll,dropDown" />
+            <param key="90" value="scroll,dropDown" />
+            <param key="91" value="scroll,dropDown" />
+            <param key="92" value="scroll,dropDown" />
+            <param key="93" value="scroll,dropDown" />
+            <param key="95" value="scroll,dropDown" />
+            <param key="96" value="scroll,dropDown" />
+            <param key="97" value="scroll,dropDown" />
+            <param key="98" value="scroll,dropDown" />
+            <param key="99" value="scroll,dropDown" />
+            <param key="100" value="scroll,dropDown" />
+            <param key="101" value="scroll,dropDown" />
+        </params>
+    </component>
+
+    <!-- Properties end -->
+
+    <component handler="TOpi">
+    </component>
+
+</components>
+</template>

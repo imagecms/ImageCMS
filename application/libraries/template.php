@@ -11,13 +11,25 @@ require 'mabilis/Mabilis.class.php';
 
 class Template extends Mabilis {
 
+    protected $main_layout = 'main';
     public $template_vars = array();
 
     public function __construct() {
-
         $this->load();
         if (file_exists('templates/' . $this->CI->config->item('template') . '/shop/helpers/helper.php'))
             require_once 'templates/' . $this->CI->config->item('template') . '/shop/helpers/helper.php';
+    }
+
+    /**
+     * 
+     * @param string $main_layout
+     */
+    public function set_main_layout($main_layout) {
+        $layoutPath = 'templates/' . $this->CI->config->item('template') . "/{$main_layout}.tpl";
+        if (!is_string($main_layout) || !file_exists($layoutPath)) {
+            throw new \Exception(lang('Main layout file don\'t exist', 'main'));
+        }
+        $this->main_layout = $main_layout;
     }
 
     public function load() {
@@ -25,7 +37,7 @@ class Template extends Mabilis {
         $this->modules_template_dir = TEMPLATES_PATH . 'modules/';
         $tpl = $this->CI->config->item('template');
 
-        if (MAINSITE and $tpl == 'administrator' and !is_dir(TEMPLATES_PATH . 'administrator')) {
+        if (MAINSITE and $tpl == 'administrator' and ! is_dir(TEMPLATES_PATH . 'administrator')) {
             $config = array(
                 'tpl_path' => str_replace('system/', '', BASEPATH) . 'templates/' . $tpl . '/',
                 'compile_path' => $this->CI->config->item('tpl_compile_path'),
@@ -34,7 +46,7 @@ class Template extends Mabilis {
                 'compress_output' => $this->CI->config->item('tpl_compress_output'),
                 'use_filemtime' => $this->CI->config->item('tpl_use_filemtime')
             );
-            
+
             /** URL to template folder */
             $this->assign('THEME', 'http://' . ltrim(MAINSITE, '../') . '/templates/' . $tpl . '/');
             $this->assign('JS_URL', 'http://' . ltrim(MAINSITE, '../') . '/js');
@@ -47,7 +59,7 @@ class Template extends Mabilis {
                 'compress_output' => $this->CI->config->item('tpl_compress_output'),
                 'use_filemtime' => $this->CI->config->item('tpl_use_filemtime')
             );
-            
+
             /** URL to template folder */
             $this->assign('THEME', base_url() . 'templates/' . $tpl . '/');
             $this->assign('JS_URL', base_url() . 'js');
@@ -104,13 +116,13 @@ class Template extends Mabilis {
 
 
         ob_start();
-        $load_main == TRUE ? $this->view('main.tpl', $this->template_vars) : $this->view($file . '.tpl', $this->template_vars);
+        $load_main == TRUE ? $this->view($this->main_layout . '.tpl', $this->template_vars) : $this->view($file . '.tpl', $this->template_vars);
         $result = ob_get_contents();
         ob_end_clean();
 
         $result = $this->splitTplFiles($result);
         echo $result;
-        
+
         if (ENABLE_PROFILER === TRUE) {
             if (!isset($_SERVER['HTTP_X_PJAX']) && $_SERVER['HTTP_X_PJAX'] == FALSE && \CI::$APP->input->is_ajax_request() == FALSE) {
                 \CI::$APP->load->library('profiler');
@@ -125,6 +137,10 @@ class Template extends Mabilis {
 
     public function get_var($var) {
         return isset($this->template_vars[$var]) ? $this->template_vars[$var] : false;
+    }
+
+    public function get_vars() {
+        return $this->template_vars ? $this->template_vars : array();
     }
 
     public function run_info() {
