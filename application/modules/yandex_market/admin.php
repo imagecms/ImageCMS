@@ -15,15 +15,7 @@ class Admin extends BaseAdminController {
             parent::__construct();
         }
         public function index() {
-                if($this->db->get('mod_yandex_market') == false){
-                    $this->install();
-                }
-                if($this->db->get('mod_yandex_market_adalt') == false){
-                    $this->installAdalt();
-                }
-            
-            /** Get all Banners from DB */
-            /** Show Banners list */
+         
             \CMSFactory\assetManager::create()
                      ->renderAdmin('list');
         }
@@ -53,34 +45,14 @@ class Admin extends BaseAdminController {
         }
    }
    
-        private function install() {
-            $this->load->dbforge();
-            $field['value'] = array(
-                'type' => 'text',
-            );
-            $this->dbforge->add_field('id');
-            $this->dbforge->add_field($field);
-            $this->dbforge->create_table('mod_yandex_market'); 
-            $this->db->set('value', '');
-            $this->db->insert('mod_yandex_market'); 
-        } 
-        private function installAdalt() {
-            $this->load->dbforge();
-            $field['value'] = array(
-                'type' => 'text',
-            );
-            $this->dbforge->add_field('id');
-            $this->dbforge->add_field($field);
-            $this->dbforge->create_table('mod_yandex_market_adalt'); 
-            $this->db->set('value', '');
-            $this->db->insert('mod_yandex_market_adalt'); 
-        } 
+
         public function IsAdult() {
             $this->db->select('value');
             $this->db->where('id', 1); 
             $query = $this->db->get('mod_yandex_market_adalt');
                 return $query->row_array();
-        }   
+        } 
+        
         public function getSelectedCats()
         {
             $this->db->select('value');

@@ -17,10 +17,10 @@ class Admin extends BaseAdminController {
         }
         public function index() {
             
-                if($this->db->get('mod_hotline_categories') == false){
-                    $this->install();
-                }
-
+                if($this->installedProperties == false){
+                $this->install(); 
+                $this->installProperties();
+                $this->installedProperties = true;}
             
             /** Get all Banners from DB */
             /** Show Banners list */
@@ -41,10 +41,11 @@ class Admin extends BaseAdminController {
                 $this->db->where('id', 1);
                 $this->db->update('mod_hotline_categories'); 
         }
+       
+        pjax( site_url() . 'admin/components/cp/hotline');
    
 
    }
-   
         private function install() {
             $this->load->dbforge();
             $field['value'] = array(
@@ -86,10 +87,7 @@ class Admin extends BaseAdminController {
                 return $arr;
         } 
         public function getProperties($empty = null) {
-            if($this->installedProperties == false){
-               $this->installProperties();
-               $this->installedProperties = true;
-            }
+
             if($empty == null){
                 $categoryId = $this->input->post('category');
                 $categoryId = (int)($categoryId[0]);
@@ -102,14 +100,14 @@ class Admin extends BaseAdminController {
                 $this->db->order_by('property_order', 'asc'); 
                 $query = $this->db->get('mod_hotline_properties');
                 $arr = $query->result_array();
-
                 
+                if (count($properties) == 0){ echo "<p style='margin-left:20px;'>".lang('no properties','hotline')."</p>"; exit;}              
                 if (count($arr)>0){
                     $properties1 = '';
                     foreach ($arr as $key => $value1) {
                         $properties1 .= "<div class='over' style='padding-bottom:10px; overflow:hidden; clear:both'><div  style='float:left;width:180px;'><input name='name_properties' value='" .  $value1['value'] . "' type='text' class='form-control'></div>";
                         $properties1 .= "<div  style='float:right; width:280px;'>";
-                        $properties1 .= "<button style='float:right;'  type='button' class='btn btn-small btn-danger del_item'><i class='icon-trash icon-white'></i></button><select  name='displayedProperties'>";
+                        $properties1 .= "<select style='width:200px; margin-right:10px;' name='displayedProperties'>";
                             $selected = '';
                            
                                 foreach ($properties as $key => $value) {
@@ -119,52 +117,51 @@ class Admin extends BaseAdminController {
                                     $properties1 .= "<option " . $selected . " value=".  $value->getId(). ">" . $value->getName()  ."</option>";
                                     $selected = '';
                                     }            
-                        $properties1 .= "</select></div></div>"; 
+                        $properties1 .= "</select><button   type='button' class='btn btn-small btn-danger del_item'><i class='icon-trash icon-white'></i></button></div></div>"; 
                     }
-                    $properties1 .= "<div class='but_clear' style='clear:both; height:10px;'></div><button type='button' class='btn btn-small btn-success empty'><i class='icon-plus-sign icon-white'></i> Add property</button><br /><button style='margin-top:5px;' data-form='#settings_form_properties' type='button' class='btn btn-small btn-primary save_btn'><i class='icon-ok'></i> Сохранить</button>";
+                    $properties1 .= "<div class='but_clear' style='clear:both; height:10px;'></div><button type='button' class='btn btn-small btn-success empty'><i class='icon-plus-sign icon-white'></i> ".lang('Add property','hotline')."</button><br /><button style='margin-top:5px;' data-form='#settings_form_properties' type='button' class='btn btn-small btn-primary save_btn'><i class='icon-ok'></i> Сохранить</button>";
                 
                     return $properties1; 
-                }                
-                if (count($properties)>888){
-                    
+                }else{
                     $properties1 = "<div class='over' style='padding-bottom:10px; overflow:hidden; clear:both'><div  style='float:left;width:180px;'><input name='name_properties' value='' type='text' class='form-control'></div>";
                     $properties1 .= "<div  style='float:right; width:280px;'>";
-                        $properties1 .= "<button style='float:right;'  type='button' class='btn btn-small btn-danger del_item'><i class='icon-trash icon-white'></i></button><select  name='displayedProperties'>";
-                    
-                    $properties1 .= "<select  name='displayedProperties'>";
+                    $properties1 .= "<select style='width:200px; margin-right:10px;' name='displayedProperties'>";
                     foreach ($properties as $key => $value) {
                         $properties1 .= "<option value=".  $value->getId(). ">" . $value->getName()  ."</option>";
                     }            
-                    $properties1 .= "</select></div></div>"; 
-                    $properties1 .= "<div class='but_clear' style='clear:both; height:10px;'></div><button type='button' class='btn btn-small btn-success empty'><i class='icon-plus-sign icon-white'></i> Add property</button><br /><button style='margin-top:5px;' data-form='#settings_form_properties' type='button' class='btn btn-small btn-primary save_btn'><i class='icon-ok'></i> Сохранить</button>";
+                    $properties1 .= "</select><button   type='button' class='btn btn-small btn-danger del_item'><i class='icon-trash icon-white'></i></button></div></div>"; 
+                    $properties1 .= "<div class='but_clear' style='clear:both; height:10px;'></div><button type='button' class='btn btn-small btn-success empty'><i class='icon-plus-sign icon-white'></i> ".lang('Add property','hotline')."</button><br /><button style='margin-top:5px;' data-form='#settings_form_properties' type='button' class='btn btn-small btn-primary save_btn'><i class='icon-ok'></i> Сохранить</button>";
                 return $properties1; 
                 }
-                else{
-                    echo "<p style='margin-left:20px;'>is empty!</p";
-                    }
+
             }else{
                 
                 $categoryId = $this->input->post('category');
                 $categoryModel = SCategoryQuery::create()->findPk((int) $categoryId);
                 $properties = SPropertiesQuery::create()->joinWithI18n('ru')->filterByPropertyCategory($categoryModel)->orderByPosition()->find();
+            
                 if (count($properties)>0){
                     $properties1 = "<div class='over' style='padding-bottom:10px; overflow:hidden; clear:both'><div  style='float:left;width:180px;'><input value='' name='name_properties' type='text' class='form-control'></div>";
                     $properties1 .= "<div  style='float:right; width:280px;'>";
-                    $properties1 .= "<button style='float:right;'  type='button' class='btn btn-small btn-danger del_item'><i class='icon-trash icon-white'></i></button>";
-                    $properties1 .= "<select  name='displayedProperties'>";
+                    $properties1 .= "<select style='width:200px; margin-right:10px;' name='displayedProperties'>";
                 foreach ($properties as $key => $value) {
                     $properties1 .= "<option value=".  $value->getId(). ">" . $value->getName()  ."</option>";
                       }            
-                $properties1 .= "</select></div></div>"; 
+                $properties1 .= "</select><button   type='button' class='btn btn-small btn-danger del_item'><i class='icon-trash icon-white'></i></button></div></div>"; 
                     return $properties1; 
                 }
                 else{
-                    echo "<p style='margin-left:20px;'>is empty!</p";
-                    }
-
+                    echo "<p style='margin-left:20px;'>".lang('is empty!','hotline')."</p";
+                }
             }
         }        
         public function setProperties() {
+            
+            if($this->input->post('settings_form_properties') == ''){
+                  $this->db->where('category_id', $this->input->post('category'));
+                  $this->db->delete('mod_hotline_properties'); 
+                  return;
+            }
   
             if($this->input->post('settings_form_properties')){
                            
@@ -199,7 +196,6 @@ class Admin extends BaseAdminController {
                   $this->db->delete('mod_hotline_properties'); 
                   $this->db->insert_batch('mod_hotline_properties', $total_array); 
 
-                // var_dump($properties_name); exit;
             }
                                 
         }

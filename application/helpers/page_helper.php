@@ -20,7 +20,8 @@ if (!function_exists('get_page')) {
         if ($lang_identif == $ci->uri->segment(1)) {
             $ci->db->where('lang_alias', $id);
             $ci->db->where('lang', $lang_id);
-        } else
+        }
+        else
             $ci->db->where('id', $id);
         $query = $ci->db->get('content');
 
@@ -63,7 +64,11 @@ if (!function_exists('category_pages')) {
 
         $query = $ci->db->get('content');
 
-        return $query->result_array();
+        if ($query->num_rows()) {
+            return $query->result_array();
+        } else {
+            return array();
+        }
     }
 
 }
