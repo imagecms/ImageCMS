@@ -81,11 +81,11 @@
                         </div>
                     </div>
                 {/if}
-                <!--                content-->
+                <!-- content-->
                 <div class="content">
                     {echo $content}
                 </div>
-                <!--                content-->
+                <!-- content-->
 
             </div>
         </div>
