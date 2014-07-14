@@ -212,9 +212,37 @@ class DeliveryEditCest extends DeliveryTestHelpers{
     /**
      * @group current
      */
-    public function functionName($param) {
+    public function EditCheckPriseSpecified(AcceptanceTester $I) {
+        $class = $I->grabAttributeFrom(DeliveryEditPage::$CheckboxPriceSpecified.'/..', 'class');
+        $I->comment($class);
+        $class == 'frame_label no_connection active'? $I->click(DeliveryEditPage::$CheckboxPriceSpecified):print"";
+        $class = $I->grabAttributeFrom(DeliveryEditPage::$CheckboxPriceSpecified.'/..', 'class');
+        if ($class == 'frame_label no_connection'){
+            $diabledPrice = $I->grabAttributeFrom(DeliveryEditPage::$FieldPrice, 'disabled');
+            $diabledFreefrom = $I->grabAttributeFrom(DeliveryEditPage::$FieldFreeFrom, 'disabled');
+            $I->assertEquals($diabledPrice, NULL);
+            $I->assertEquals($diabledFreefrom, NULL);
+        }else $I->fail ('wrong class of checkbox sum specified');
         
+        $I->click(DeliveryCreatePage::$CheckboxPriceSpecified);
+        $class = $I->grabAttributeFrom(DeliveryEditPage::$CheckboxPriceSpecified.'/..', 'class');
+        
+        if ($class == 'frame_label no_connection active'){
+            $diabledPrice = $I->grabAttributeFrom(DeliveryEditPage::$FieldPrice, 'disabled');
+            $diabledFreefrom = $I->grabAttributeFrom(DeliveryEditPage::$FieldFreeFrom, 'disabled');
+            $I->assertEquals($diabledPrice, "true");
+            $I->assertEquals($diabledFreefrom, "true");
+        }else $I->fail ('wrong class of checkbox sum specified');
     }
+    
+    /**
+     * @group edit
+     */
+    public function EditFieldPriseSpecifiedEmpty(AcceptanceTester $I) {
+        $this->EditDelivery($I, ['message' => ""]);
+        $this->CheckForAlertPresent($I, 'success', NULL, NULL, 'edit');
+    }
+    
     //-------------PROTECTED FUNCTIONS------------------------------------------
     
     /**
@@ -252,22 +280,19 @@ class DeliveryEditCest extends DeliveryTestHelpers{
             elseif  ($active == "off" && $Cactive)   { $I->click(DeliveryEditPage::$CheckboxActive); }
         }
         
-        if(isset($description)){
-            $I->fillField(DeliveryEditPage::$FieldDescription, $description);
+        if(isset($description))         { $I->fillField(DeliveryEditPage::$FieldDescription, $description); }
+        if(isset($descriptionprice))    { $I->fillField(DeliveryEditPage::$FieldDescriptionPrice, $descriptionprice); }
+        if(isset($price))               { 
+            $I->grabAttributeFrom(DeliveryEditPage::$FieldPrice, 'disabled')== 'true'?$I->click(DeliveryEditPage::$CheckboxPriceSpecified):  print '';
+            $I->fillField(DeliveryEditPage::$FieldPrice,$price); }
+        if(isset($freefrom))            { 
+            $I->grabAttributeFrom(DeliveryEditPage::$FieldPrice, 'disabled')== 'true'?$I->click(DeliveryEditPage::$CheckboxPriceSpecified):  print '';
+            $I->fillField(DeliveryEditPage::$FieldFreeFrom, $freefrom); }
+        if(isset($message))             { 
+            $class = $I->grabAttributeFrom(DeliveryEditPage::$CheckboxPriceSpecified.'/..', 'class');
+            $class == 'frame_label no_connection'?$I->click(DeliveryEditPage::$CheckboxPriceSpecified):$I->comment('already marked');
+            $I->fillField(DeliveryEditPage::$FieldPriceSpecified, $message);
         }
-        
-        if(isset($descriptionprice)) {
-            $I->fillField(DeliveryEditPage::$FieldDescriptionPrice, $descriptionprice);
-        }
-        
-        if(isset($price)){
-            $I->fillField(DeliveryEditPage::$FieldPrice,$price);
-        }
-        
-        if(isset($freefrom)){
-            $I->fillField(DeliveryEditPage::$FieldFreeFrom, $freefrom);
-        }
-        
         $I->click(DeliveryEditPage::$ButtonSave);
         
     }
