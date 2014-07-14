@@ -5,14 +5,14 @@ class TextElementCest
     /**
      * @group Verify
      */
-    // Авторизация
+//---------------------------AUTORIZATION---------------------------------------
     public function Login(AcceptanceTester $I){
         InitTest::Login($I);
     }
     /**
      * @group Verify
      */
-    // Проверка URL и ссылок на страницы "Список, Создание, Редактирование".
+//-----------------------VERIFY LINKS BUTTONS-----------------------------------
     public function VerifyLinkNotfStatuses (AcceptanceTester $I){
         $I->click(NavigationBarPage::$Orders);
         $I->click(NavigationBarPage::$NotificationStatuses);   
@@ -30,12 +30,11 @@ class TextElementCest
         $I->click('button.close');
         $I->click(NotificationStatusesPage::$ListButtonDelete);
         $I->click('//div[3]/a[2]');
-    }
-    
+    }    
     /**
      * @group Verify
      */
-     // Проверка текста и элементов на странице "Статусы уведомлений".
+//-----------------------VERIFY TEXT LIST PAGE----------------------------------
     public function VerifyTextListPage (AcceptanceTester $I){
         $I->amOnPage(NotificationStatusesPage::$ListPageURL);
         $I->see('Статусы уведомлений о появлении', NotificationStatusesPage::$ListTitle );
@@ -46,9 +45,8 @@ class TextElementCest
         $I->see('ID',  NotificationStatusesPage::$ListNameFirstCollum);
         $I->see('Имя', NotificationStatusesPage::$ListNameSecondCollum);
         $I->see('Позиция',  NotificationStatusesPage::$ListNameThirdCollum);
-    }
-    
-    // Проверка мини сообщения при фокусировке мыши на названии статуса.
+    }    
+//-----------------------VERIFY TEXT MESSAGE LIST PAGE--------------------------
     public function VerifyTextMessage (AcceptanceTester $I){
         $I->amOnPage(NotificationStatusesPage::$ListPageURL);
         $I->moveMouseOver(NotificationStatusesPage::$ListLinkEditing);
@@ -56,25 +54,26 @@ class TextElementCest
         $I->see('Редактировать статус уведомления', 'div.tooltip-inner');
         $I->moveMouseOver(NotificationStatusesPage::$ListButtonCreate);
     }
-
     /**
      * @group Verify
      */
-    // Проверка текста и элементов в окне "Удаление статуса".
+//-----------------------VERIFY TEXT DELETE WINDOW------------------------------
     public function VerifyTextDeleteWindow (AcceptanceTester $I){
         $I->amOnPage(NotificationStatusesPage::$ListPageURL);
         $I->click(NotificationStatusesPage::$ListHeaderCheckBox);
         $I->click(NotificationStatusesPage::$ListButtonDelete);
-        $I->seeInPageSource('Удаление статуса','//h3');
-        $I->seeInPageSource('Удалить ваш статус?');
-        $I->seeInPageSource('Удалить', NotificationStatusesPage::$DeleteWindowButtonDelete);
-        $I->seeInPageSource('Отменить', NotificationStatusesPage::$DeleteWindowButtonCancel);
-        $I->seeInPageSource('×', NotificationStatusesPage::$DeleteWindowButtonX);   
+        $I->waitForText('Удаление статуса', '5', NotificationStatusesPage::$DeleteWindowTitle);
+        $I->seeElement(NotificationStatusesPage::$DeleteWindow);
+        $I->see('Удаление статуса',  NotificationStatusesPage::$DeleteWindowTitle);
+        $I->see('Удалить ваш статус?', NotificationStatusesPage::$DeleteWindowMassege);
+        $I->see('Удалить', NotificationStatusesPage::$DeleteWindowButtonDelete);
+        $I->see('Отменить', NotificationStatusesPage::$DeleteWindowButtonCancel);
+        $I->see('×', NotificationStatusesPage::$DeleteWindowButtonX);   
     }
     /**
      * @group Verify
      */
-    // Проверка текста и элементов на странице "Создание статуса".
+//-----------------------VERIFY TEXT CREATING PAGE------------------------------
     public function VerifyTextCreatePage (AcceptanceTester $I){
         $I->amOnPage(NotificationStatusesPage::$CreatePageUrl);
         $I->see('Создание статуса уведомления о появлении', NotificationStatusesPage::$CreationNameTitle);
@@ -87,7 +86,7 @@ class TextElementCest
     /**
      * @group Verify
      */
-    // Проверка текста и элементов на странице "Редактирование статуса".
+//-----------------------VERIFY TEXT EDITING PAGE-------------------------------
     public function VerifyTextEditPage (AcceptanceTester $I){
         $I->amOnPage(NotificationStatusesPage::$EditingPageURL);
         $I->see('Редактирование статуса уведомления о появлении',  NotificationStatusesPage::$EditingNameTitle);
@@ -100,7 +99,7 @@ class TextElementCest
     /**
      * @group Verify
      */    
-    // Проверка текста и элемента сообщения об обязательности заполнения поля на странице "Создание статуса".
+//-------------VERIFY TEXT ALERT MESSAGE CREATING PAGE--------------------------
     public function VerifyTextAlertMessageCreatingPage (AcceptanceTester $I){
         $I->amOnPage(NotificationStatusesPage::$CreatePageUrl);
         $I->click('Создать');
@@ -109,7 +108,7 @@ class TextElementCest
     /**
      * @group Verify
      */    
-    // Проверка текста и элемента сообщения о создании на странице "Создание статуса".
+//-----------------------VERIFY TEXT CREATE MESSAGE-----------------------------
     public function VerifyTextCreateMessageCreatingPage (AcceptanceTester $I){
         $I->amOnPage(NotificationStatusesPage::$CreatePageUrl);
         $I->fillField(NotificationStatusesPage::$CreationFildInput,'qwe 123 !@# ЯЧС');
@@ -120,7 +119,7 @@ class TextElementCest
     /**
      * @group Verify
      */
-    // Проверка текста и элемента сообщения об обязательности заполнения поля на странице "Редактирование статуса".
+//--------------VERIFY TEXT ALERT MESSAGE EDITING PAGE--------------------------
     public function VerifyTextAlertMessageEdictingPage (AcceptanceTester $I){
         $I->amOnPage(NotificationStatusesPage::$ListPageURL);
         $I->waitForElement(NotificationStatusesPage::$ListLinkForEditing);
@@ -132,7 +131,7 @@ class TextElementCest
     /**
      * @group Verify
      */    
-    // Проверка текста и элемента сообщения о редактировании на странице "Редактирование статуса".
+//-----------------------VERIFY TEXT EDITING MESSAGE----------------------------
      public function VerifyTextEdicttMessageEdictingPage (AcceptanceTester $I){
         $I->amOnPage(NotificationStatusesPage::$ListPageURL);
         $I->waitForElement(NotificationStatusesPage::$ListLinkForEditing);
@@ -145,7 +144,7 @@ class TextElementCest
     /**
      * @group Verify
      */
-    // Проверка текста и элемента сообщения о удалении в окне "Удаления статуса".
+//------------VERIFY TEXT DELETING MESSAGE LIST PAGE----------------------------
     public function VerifyTextMessageDeletingStatus (AcceptanceTester $I){
         $I->amOnPage(NotificationStatusesPage::$ListPageURL);
         $I->waitForElement(NotificationStatusesPage::$ListHeaderCheckBox);
@@ -156,50 +155,5 @@ class TextElementCest
         $I->click(NotificationStatusesPage::$DeleteWindowButtonDelete);
         $I->waitForText('Статус удален');
         InitTest::ClearAllCach($I);      
-    } 
-  
-    
+    }     
 }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-

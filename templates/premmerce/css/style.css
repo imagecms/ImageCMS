@@ -277,7 +277,7 @@ header.fixed + .container{padding-top: 64px;}
 .right-header{float: right;width: 360px;padding-top: 12px;margin-right: 16px;}
 .right-header > li{vertical-align: middle;position: relative;}
 .right-header .frame-ico{
-    vertical-align: middle;display: inline-block;width: 34px;height: 34px;text-align: center;border-radius: 17px;margin-right: 10px;
+    vertical-align: middle;display: inline-block;width: 34px;height: 34px;text-align: center;border-radius: 19px;margin-right: 10px;
     border: 2px solid #0eb759;
 }
 .right-header .frame-ico [class*="icon-"]{vertical-align: middle;}
@@ -294,7 +294,7 @@ header.fixed + .container{padding-top: 64px;}
 .left > nav{overflow: auto;}
 .right{width: 530px;float: right;padding-top: 23px;padding-right: 29px;padding-left: 26px;background-color: #e4e8e9;}
 .content{margin-right: 560px;margin-left: 250px;min-width: 480px;}
-.left + .content{margin-right: 0;}
+.left + .content{margin-right: 0;overflow: hidden;}
 .content > .inside-padd{padding: 16px 63px 16px 33px;}
 
 .nav-sidebar ul{display: none;list-style-type: decimal;list-style-position: outside;padding: 7px 0 5px 45px;border-bottom: 1px solid #516272;}
