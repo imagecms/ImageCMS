@@ -8,6 +8,11 @@
  * CheckForAlertPresent
  * GrabAllCreatedPayments
  * 
+ * @todo Improve Create Delivery (default value = null)
+ * @todo Make order in AlertPresent method 
+ * @todo Add create simple payment methods for testing
+ * @todo Add create simple product category and product for testing
+ * 
  * @author Cray
  */
 
@@ -303,4 +308,5 @@ class DeliveryTestHelpers {
         else { $I->fail( "there are no created payments" ); }
         return $PaymentMethods;
     }
+    
 }
