@@ -36,6 +36,7 @@ class DeliveryEditCest extends DeliveryTestHelpers{
                 $I->click(DeliveryPage::$CreateButton);
                 $I->waitForText("Создание способа доставки", NULL, '.title');
                 $this->CreateDelivery($I, $this->name);
+                $this->CheckForAlertPresent($I, 'success');
                 $methodCreated = true;
             }
             $I->waitForText("Редактирование способа доставки: $this->name", NULL, ".title");
@@ -100,7 +101,7 @@ class DeliveryEditCest extends DeliveryTestHelpers{
     }
     
     /**
-     * @group current
+     * @group edit
      */
     public function EditActiveCheck(AcceptanceTester $I) {
         $active = 'on';
@@ -109,8 +110,111 @@ class DeliveryEditCest extends DeliveryTestHelpers{
         $this->CheckInList($I, $this->name, $active);
     }
     
+    /**
+     * @group edit
+     */
+    public function EditActiveUnCheck(AcceptanceTester $I) {
+        $active = 'off';
+        $this->EditDelivery($I, ['active' => $active]);
+        $this->CheckForAlertPresent($I, 'success', null, null, 'edit');
+        $this->CheckInList($I, $this->name, $active);
+    }
     
+    /**
+     * @group edit
+     */
+    public function EditDescriptionDescriptionPrice(AcceptanceTester $I) {
+        $description = InitTest::$textSymbols;
+        $this->EditDelivery($I, ['description'      => $description,
+                                 'descriptionprice' => $description,
+                                 'active'           => 'on',
+                                ]);
+        $I->seeInField(DeliveryEditPage::$FieldDescription, $description);
+        $I->seeInField(DeliveryEditPage::$FieldDescriptionPrice, $description);
+        $this->CheckInFrontEnd($I, $this->name, $description);
+    }
+
+    /**
+     * @group edit
+     */
+    public function EditPriceSymbols(AcceptanceTester $I) {
+        $price = InitTest::$textSymbols;
+        $this->EditDelivery($I, ['price' => $price]);
+        $price = '1234567890';
+        $this->CheckInList($I, $this->name, NULL, $price);
+    }
     
+    /**
+     * @group edit
+     */
+        public function EditFreeFromSymbols(AcceptanceTester $I) {
+        $freefrom = InitTest::$textSymbols;
+        $this->EditDelivery($I, ['freefrom' => $freefrom]);
+        $this->CheckForAlertPresent($I, 'success');
+        $freefrom = '1234567890';
+        $this->CheckInList($I, $this->name, null, null, $freefrom);
+    }
+    
+    /**
+     * @group edit
+     */
+    public function EditPrice15Num(AcceptanceTester $I) {
+        $price = 9999999999.999;
+        $this->EditDelivery($I, ['price' => $price]);
+        $this->CheckInList($I, $this->name, NULL, $price);
+    }
+    
+    /**
+     * @group edit
+     */
+    public function EditPrice1Num(AcceptanceTester $I){
+        $price = 1;
+        $this->EditDelivery($I, ['price' => "$price"]);
+        $this->CheckInList($I, $this->name, NULL, $price);
+    }
+
+    /**
+     * @group edit
+     */
+    public function EditPrice10Num(AcceptanceTester $I) {
+        $price = 55555.55555;
+        $this->EditDelivery($I, ['price' => $price]);
+        $this->CheckInList($I, $this->name, NULL, $price);
+    }
+
+    /**
+     * @group edit
+     */
+        public function EditFreeFrom1Num(AcceptanceTester $I) {
+        $freefrom = 1;
+        $this->EditDelivery($I, ['freefrom' => $freefrom]);
+        $this->CheckInList($I, $this->name, null, null, $freefrom);
+    }
+    
+    /**
+     * @group edit
+     */
+        public function EditFreeFrom10Num(AcceptanceTester $I) {
+        $freefrom = 55555.55555;
+        $this->EditDelivery($I, ['freefrom' => $freefrom]);
+        $this->CheckInList($I, $this->name, null, null, $freefrom);
+    }
+    
+    /**
+     * @group edit
+     */
+        public function EditFreeFrom15Num(AcceptanceTester $I) {
+        $freefrom = 9999999999.999;
+        $this->EditDelivery($I, ['freefrom' => $freefrom]);
+        $this->CheckInList($I, $this->name, null, null, $freefrom);
+    }
+    
+    /**
+     * @group current
+     */
+    public function functionName($param) {
+        
+    }
     //-------------PROTECTED FUNCTIONS------------------------------------------
     
     /**
@@ -151,9 +255,19 @@ class DeliveryEditCest extends DeliveryTestHelpers{
         if(isset($description)){
             $I->fillField(DeliveryEditPage::$FieldDescription, $description);
         }
+        
         if(isset($descriptionprice)) {
             $I->fillField(DeliveryEditPage::$FieldDescriptionPrice, $descriptionprice);
         }
+        
+        if(isset($price)){
+            $I->fillField(DeliveryEditPage::$FieldPrice,$price);
+        }
+        
+        if(isset($freefrom)){
+            $I->fillField(DeliveryEditPage::$FieldFreeFrom, $freefrom);
+        }
+        
         $I->click(DeliveryEditPage::$ButtonSave);
         
     }
