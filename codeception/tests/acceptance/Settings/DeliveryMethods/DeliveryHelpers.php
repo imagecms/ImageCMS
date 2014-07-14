@@ -279,7 +279,7 @@ class DeliveryTestHelpers {
                     elseif  ($module=='edit')   { $I->assertEquals($I->grabAttributeFrom($field, 'class'), "required alert alert-error");}
                     break;
                 default :
-                    $I->fail("unknown type of error");
+                    $I->fail("unknown type of error entered");
         }
     }
     
