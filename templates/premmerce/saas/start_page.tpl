@@ -64,10 +64,10 @@
                     Вместимоть
                 </th>
                 <td colspan="2">
-                    <span class="important-text">{$serverData['quotaUsed']} Mb</span> / {$tariff['disk_limit']} Mb
+                    <span class="important-text">{$serverData['quotaUsed']} Mb</span> / 1024 Mb
                     <div class="out-range">
-                        {$spacePercent = ceil(($serverData['quotaUsed'] / $tariff['proddisklimit']) * 100)}
-                        <div class="range" style="width: {$spacePercen}%;"></div>
+                        {$spacePercent = ceil(($serverData['quotaUsed'] / 1024 * 100))}
+                        <div class="range" style="width: {$spacePercent}%;"></div>
                     </div>
                 </td>
             </tr>
