@@ -1,6 +1,6 @@
 <?php
 use \AcceptanceTester;
-class TextElementCest
+class TextElementNLCest
 {
 //---------------------------AUTORIZATION---------------------------------------    
     public function Login(AcceptanceTester $I){

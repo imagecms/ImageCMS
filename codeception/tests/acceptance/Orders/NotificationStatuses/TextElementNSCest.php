@@ -1,6 +1,6 @@
 <?php
 use \AcceptanceTester;
-class TextElementCest
+class TextElementNSCest
 {
     /**
      * @group Verify

@@ -1,6 +1,6 @@
 <?php
 use \AcceptanceTester;
-class VerifyCreatingFrontCest
+class CreatingFrontCest
 {
 //---------------------------AUTORIZATION---------------------------------------
     public function Login(AcceptanceTester $I){
