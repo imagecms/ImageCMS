@@ -6,7 +6,7 @@ class DeliveryVerifyElementsCest {
     /**
      * @group verify
      */
-    public function Autorization(AcceptanceTester $I){
+    public function Authorization(AcceptanceTester $I){
         //Login & go to page DeliveryList
         InitTest::login($I);
         $I->click(NavigationBarPage::$Settings);
