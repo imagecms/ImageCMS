@@ -8,10 +8,16 @@
  * CheckForAlertPresent
  * GrabAllCreatedPayments
  * 
+ * @todo Improve Create Delivery (default value = null)
+ * @todo Make order in AlertPresent method 
+ * @todo Add create simple payment methods for testing
+ * @todo Add create simple product category and product for testing
+ * 
  * @author Cray
  */
+
 class DeliveryTestHelpers {
-    //put your code here
+    
     //-----------------------PROTECTED METHODS----------------------------------
     /**
      * Create Delivery with specified parrameters
@@ -190,7 +196,7 @@ class DeliveryTestHelpers {
             }
         }
         
-        //Error when method isn't present in delivery list page
+        //Error when method isn't present in front end
         $present?$I->assertEquals($name, $CName):$I->fail("Delivery method isn't present in front end");
         if ($description){
             $Cdescription = $I->grabAttributeFrom("//div[@class='frame-radio']/div[$j]//span[@class='icon_ask']", 'data-title');
@@ -259,12 +265,14 @@ class DeliveryTestHelpers {
                     $I->waitForElementVisible('.alert.in.fade.alert-error');
                     $errorMessage?$I->see($errorMessage, '.alert.in.fade.alert-error'):$I->seeElement('.alert.in.fade.alert-error');
                     $I->waitForElementNotVisible('.alert.in.fade.alert-error');
-                    $I->see("Создание способа доставки", '.title');
+                    ///edit or create
+                    //$I->see("Создание способа доставки", '.title');
                     break;
             case 'success':
                     $I->comment("I want to see that success alert is present");
                     $I->waitForElementVisible('.alert.in.fade.alert-success');
-                    $I->see('Доставка создана','.alert.in.fade.alert-success');
+                    if      ($module == 'create')   { $I->see('Доставка создана','.alert.in.fade.alert-success'); }
+                    elseif  ($module == 'edit')     { $I->see('Изменения сохранены','.alert.in.fade.alert-success'); }
                     $I->waitForElementNotVisible('.alert.in.fade.alert-success');
                     break;
             //Checking required field (red color(class alert) & message 
@@ -272,9 +280,11 @@ class DeliveryTestHelpers {
                     $I->comment("I want to see that field is required");
                     $I->waitForElementVisible('//label[@generated="true"]');
                     $I->see('Это поле обязательное.', 'label.alert.alert-error');
-                    if ($module=='create') { $I->assertEquals($I->grabAttributeFrom($field, 'class'), "alert alert-error");}
-                    elseif ($module=='edit') { $I->assertEquals($I->grabAttributeFrom($field, 'class'), "required alert alert-error");}
+                    if      ($module=='create') { $I->assertEquals($I->grabAttributeFrom($field, 'class'), "alert alert-error");}
+                    elseif  ($module=='edit')   { $I->assertEquals($I->grabAttributeFrom($field, 'class'), "required alert alert-error");}
                     break;
+                default :
+                    $I->fail("unknown type of error entered");
         }
     }
     
@@ -288,6 +298,7 @@ class DeliveryTestHelpers {
         $I->waitForText("Список способов оплаты", NULL, ".title");
         /**
          * @var int $rows Count of table rows
+         * @var int $row Current row in table 
          */
         $rows = $I->grabClassCount($I, 'niceCheck')-1;
         if ($rows > 0){//was !=0
@@ -297,4 +308,5 @@ class DeliveryTestHelpers {
         else { $I->fail( "there are no created payments" ); }
         return $PaymentMethods;
     }
+    
 }
