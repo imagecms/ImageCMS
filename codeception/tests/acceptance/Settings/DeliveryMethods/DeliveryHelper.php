@@ -16,7 +16,7 @@
  * @author Cray
  */
 
-class DeliveryTestHelpers {
+class DeliveryTestHelper {
     
     //-----------------------PROTECTED METHODS----------------------------------
     /**
@@ -164,7 +164,7 @@ class DeliveryTestHelpers {
      * @param float|int|string  $price          Delivery price
      * @param float|int|string  $freefrom       Delivery free from
      * @param string            $message        Delivery sum specified message
-     * @param string            $pay            Delivery Payment meshods which will included "_" - delimiter for few methods 
+     * @param string|array      $pay            Delivery Payment methods, which will included, if passed string : "_" - delimiter for few methods 
      * @return void
      */
     protected function CheckInFrontEnd(AcceptanceTester $I,$name,$description=null,$price=null,$freefrom=null,$message=null,$pay=null) {
@@ -239,7 +239,7 @@ class DeliveryTestHelpers {
             else {
                 $I->waitForElementVisible("#cuselFrame-paymentMethod");
                 $I->click(".cuselText");
-                $pay = explode("_", $pay);
+                is_string($pay)?$pay = explode("_", $pay):print "";
                 $j=1;
                 foreach ($pay as $value) {
                     $Cpay = $I->grabTextFrom("//div[@id='cusel-scroll-paymentMethod']/span[$j]");

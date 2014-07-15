@@ -1,12 +1,12 @@
 <?php
 use \AcceptanceTester;
 
-include_once 'C:\OpenServer\domains\imagecms.loc\codeception\tests\acceptance\Settings\DeliveryMethods\DeliveryHelpers.php';
+include_once __DIR__.'\DeliveryHelper.php';
 
-class DeliveryEditCest extends DeliveryTestHelpers{
+class DeliveryEditCest extends DeliveryTestHelper{
         
     public $name = "ДоставкаРедактирование";
-
+    
     /**
      * Works after Autorization
      * @staticvar int $callCount 0 - first time didn't work, 
@@ -50,7 +50,8 @@ class DeliveryEditCest extends DeliveryTestHelpers{
     public function Authorization(AcceptanceTester $I) {
         InitTest::Login($I);
     }
-    
+ 
+    //-----------------------FIELD NAME TESTS-----------------------------------    
     /**
      * @group edit
      */
@@ -79,6 +80,7 @@ class DeliveryEditCest extends DeliveryTestHelpers{
         $this->EditDelivery ($I, ['name' => $name]);
         $this->CheckForAlertPresent($I, 'success',null, null, "edit");
         $this->CheckInList($I, $name);
+        $this->name = $name;
     }
     /**
      * @group edit
@@ -100,6 +102,18 @@ class DeliveryEditCest extends DeliveryTestHelpers{
         $this->CheckInList($I, $name);
     }
     
+     /**
+     * @group edit
+     */
+    public function ENameNormal(AcceptanceTester $I) {
+        $name = "ДоставкаРедактирование";
+        $this->EditDelivery($I, ['name' => $name]);
+        $this->CheckForAlertPresent($I, 'success', null, null, 'edit');
+        $this->CheckInList($I, $name);
+    }
+    
+    //-----------------------CHECKBOX ACTIVE TESTS------------------------------
+    
     /**
      * @group edit
      */
@@ -120,6 +134,8 @@ class DeliveryEditCest extends DeliveryTestHelpers{
         $this->CheckInList($I, $this->name, $active);
     }
     
+    //-----------------------FIELD DESCRIPTION TESTS----------------------------
+    
     /**
      * @group edit
      */
@@ -133,6 +149,8 @@ class DeliveryEditCest extends DeliveryTestHelpers{
         $I->seeInField(DeliveryEditPage::$FieldDescriptionPrice, $description);
         $this->CheckInFrontEnd($I, $this->name, $description);
     }
+    
+    //-----------------------FIELDS PRICE & FREE FROM TESTS---------------------
 
     /**
      * @group edit
@@ -209,6 +227,8 @@ class DeliveryEditCest extends DeliveryTestHelpers{
         $this->CheckInList($I, $this->name, null, null, $freefrom);
     }
     
+    //---------------------CHECKBOX PRICE SPECIFIED & FIELD PRICE SPECIFIED-----
+    
     /**
      * @group edit
      */
@@ -282,33 +302,45 @@ class DeliveryEditCest extends DeliveryTestHelpers{
         $this->CheckInFrontEnd($I, $this->name, null, null, null, $message);
     }
     
+    //---------------------PAYMENT METHODS FIELD--------------------------------
+    
     /**
      * @group current
-     * @todo Add click for each $pay
      */
     public function EDeliveryPaymentVerify(AcceptanceTester $I){
-//        $pay = $this->GrabAllCreatedPayments($I);
-//        $this->_before($I);
-        $I->wait(3);
-        $grabTextFrom = $I->grabTextFrom("//*[@id='deliveryUpdate']/div[5]/div[3]/div[2]/span[1]");
-        $I->comment("$grabTextFrom");
-        $I->click($grabTextFrom);
-//        $I->click("Webmoney");
-//        $this->EditDelivery($I, ['pay' => $pay]);
+        $pay = $this->GrabAllCreatedPayments($I);
+        $row = 1;
+        
+        $this->_before($I);
+        
+        foreach ($pay as $Currentpay) {
+            $I->comment($Currentpay);
+            $CreatePagePay = $I->grabTextFrom(DeliveryEditPage::PaymentMethodLabel($row));
+            $I->assertEquals($CreatePagePay, $Currentpay);
+            $row++;
+        }
     }
+    
     /**
-     * @group currents
+     * @group edit
      */
     public function EDeliveryPaymentEmpty(AcceptanceTester $I){
-//        $I->amOnPage("/admin/components/run/shop/deliverymethods/index");
-//        $I->click(DeliveryPage::$CreateButton);
-//        $I->waitForText("Создание способа доставки", NULL, '.title');
-//        $this->CreateDelivery($I, 'Дост', 'on', 'off', 'off', 'off', 'off', 'off', 'Наличными курьеру');
+        $pay = $this->GrabAllCreatedPayments($I);
+        $this->_before($I);
+        $this->EditDelivery($I, ['payoff' => $pay]);
+        $this->CheckForAlertPresent($I, 'success', null, null, 'edit');
+        $this->CheckInFrontEnd($I, $this->name, NULL, null, null, null, 'off');
     }
+    
     /**
-     * @group currenta
+     * @group edit
      */
     public function EDeliveryPaymentAll(AcceptanceTester $I){
+        $pay = $this->GrabAllCreatedPayments($I);
+        $this->_before($I);
+        $this->EditDelivery($I, ['pay' => $pay]);
+        $this->CheckForAlertPresent($I, 'success', null, null, 'edit');
+        $this->CheckInFrontEnd($I, $this->name, NULL, null, null, null, $pay);
         
     }
     
@@ -325,7 +357,8 @@ class DeliveryEditCest extends DeliveryTestHelpers{
      * @param array $params price               => 'Delivery price',
      * @param array $params freefrom            => 'Delivery freefrom',
      * @param array $params message             => 'Delivery sum specified message',
-     * @param array $params pay                 => 'Payment methods, array or sring '_' - delimiter for few methods',
+     * @param array $params pay                 => 'Select payment methods, array or sring '_' - delimiter for few methods',
+     * @param array $params payoff              => 'Unselect payment methods, array or sring '_' - delimiter for few methods',
      */
     protected function EditDelivery(AcceptanceTester $I,$params) {
         $default_params =[  'name'              => NULL,
@@ -335,7 +368,8 @@ class DeliveryEditCest extends DeliveryTestHelpers{
                             'price'             => NULL,
                             'freefrom'          => NULL,
                             'message'           => NULL,
-                            'pay'               => NULL 
+                            'pay'               => NULL,
+                            'payoff'            => NULL,
         ];
         $params = array_merge($default_params,$params);
         extract($params);
@@ -370,15 +404,34 @@ class DeliveryEditCest extends DeliveryTestHelpers{
             $I->fillField(DeliveryEditPage::$FieldPriceSpecified, $message);
         }
         if(isset($pay))                 {
-            if(is_string($pay)){
-                $pay = implode("_", $pay);
-                $I->comment('string');
-            }
-            if (is_array($pay)) {
-                $I->comment('array');
+            if (is_string($pay)) { $pay = explode("_", $pay); }
+            if (is_array($pay))  {
+                $row = 1;
                 foreach ($pay as $value) {
-                    $I->wait(5);
-                    $I->click($value);
+                    $Cclass = $I->grabAttributeFrom(DeliveryEditPage::PaymentMethodLabel($row), 'class');
+                    $row++;
+                    
+                    if($Cclass == 'frame_label no_connection d_b'){
+                        $I->click("//span[contains(.,\"$value\")]");
+                    }
+                    
+                }
+            }  
+            else { $I->fail("Unknown type"); }
+        }
+        
+        if(isset($payoff))                 {
+            if (is_string($payoff)) { $pay = explode("_", $pay); }
+            if (is_array($payoff))  {
+                $row = 1;
+                foreach ($payoff as $value) {
+                    $Cclass = $I->grabAttributeFrom(DeliveryEditPage::PaymentMethodLabel($row), 'class');
+                    $row++;
+                    
+                    if($Cclass == 'frame_label no_connection d_b active'){
+                        $I->click("//span[contains(.,\"$value\")]");
+                    }
+                    
                 }
             }  
             else { $I->fail("Unknown type"); }
