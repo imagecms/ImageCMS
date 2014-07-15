@@ -1,6 +1,6 @@
 <?php
 use \AcceptanceTester;
-class IntegrationCreateEditDeleteCest
+class IntegrationNSCest
 {
     /**
      * @group Integration
