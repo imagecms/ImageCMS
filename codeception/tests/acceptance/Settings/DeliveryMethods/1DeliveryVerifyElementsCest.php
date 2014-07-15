@@ -1,15 +1,8 @@
 <?php
 use \AcceptanceTester;
 
-class DeliveryVerifyElementsCest
-{
-//    public function _before(AcceptanceTester $I)
-//    {
-//    }
-//    public function _after()
-//    {
-//    }
-
+class DeliveryVerifyElementsCest {
+    
     /**
      * @group verify
      */
@@ -20,6 +13,7 @@ class DeliveryVerifyElementsCest
         $I->click(NavigationBarPage::$SettingsDelivery);
         $I->waitForText("Список способов доставки");
     }
+    
     /**
      * @group verify
      */
@@ -37,10 +31,10 @@ class DeliveryVerifyElementsCest
         $I->see("Активный", DeliveryPage::$ActiveButton);
         
     }
+    
     /**
      * @group verify
      */
-
     public function DeliveryDeleteWindow (AcceptanceTester $I){
         $I->click(DeliveryPage::$CheckboxHeader);
         $I->click(DeliveryPage::$DeleteButton);
@@ -79,6 +73,7 @@ class DeliveryVerifyElementsCest
         $I->click(DeliveryCreatePage::$ButtonBack);
         $I->waitForText("Список способов доставки");
     }
+    
     /**
      *@group verify
      */    

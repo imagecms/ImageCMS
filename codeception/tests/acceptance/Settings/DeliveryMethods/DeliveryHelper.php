@@ -1,17 +1,25 @@
 <?php
 
 /**
- * METHODS
+ * Basic class for testing delivery methods
+ * 
+ * METHODS:
  * CreateDelivery
  * CheckInList
  * CheckInFrontEnd
  * CheckForAlertPresent
  * GrabAllCreatedPayments
+ * EditDelivery
+ * 
+ * @todo Improve Create Delivery (default value = null)
+ * @todo Make order in AlertPresent method 
+ * @todo Add create simple payment methods for testing
+ * @todo Add create simple product category and product for testing
  * 
  * @author Cray
  */
 
-class DeliveryTestHelpers {
+class DeliveryTestHelper {
     
     //-----------------------PROTECTED METHODS----------------------------------
     /**
@@ -152,6 +160,7 @@ class DeliveryTestHelpers {
     
     /**
      * Checking current parameters in frontend 
+     * first time goes "processing order" page by clicking, other times goes to "processing order" page immediately
      * if you want to skip verifying of some parameters type null
      * @param object            $I              Controller
      * @param string            $name           Delivery name
@@ -159,7 +168,7 @@ class DeliveryTestHelpers {
      * @param float|int|string  $price          Delivery price
      * @param float|int|string  $freefrom       Delivery free from
      * @param string            $message        Delivery sum specified message
-     * @param string            $pay            Delivery Payment meshods which will included "_" - delimiter for few methods 
+     * @param string|array      $pay            Delivery Payment methods, which will included, if passed string : "_" - delimiter for few methods 
      * @return void
      */
     protected function CheckInFrontEnd(AcceptanceTester $I,$name,$description=null,$price=null,$freefrom=null,$message=null,$pay=null) {
@@ -167,8 +176,14 @@ class DeliveryTestHelpers {
         if(!$WasCalled){
         $I->comment("$WasCalled");
         $I->amOnPage('/shop/product/mobilnyi-telefon-sony-xperia-v-lt25i-black');
-        $buy = "//div[@class='frame-prices-buy f-s_0']//form/div[3]";
-        $basket = "//div[@class='frame-prices-buy f-s_0']//form/div[2]";
+        
+        /**
+         * @var string buy          button "buy"
+         * @var string basket       button "into basket"
+         * @var string $Attribute1  class of "buy" button
+         */
+        $buy        = "//div[@class='frame-prices-buy f-s_0']//form/div[3]";
+        $basket     = "//div[@class='frame-prices-buy f-s_0']//form/div[2]";
         $Attribute1 = $I->grabAttributeFrom($buy,'class');
         //$Attribute2 = $I->grabAttributeFrom($basket,'class');
         $Attribute1 == 'btn-buy-p btn-buy'?$I->click($buy):$I->click($basket);
@@ -200,7 +215,6 @@ class DeliveryTestHelpers {
         
         if($price){
             $Cprice = $I->grabTextFrom("//div[@class='frame-radio']/div[$j]/div[@class='help-block']/div[1]");
-            //$I->assertEquals(preg_replace('/[^0-9].*/', '',$price), $Cprice);
             $Cprice = preg_replace('/[^0-9.]*/u', '', $Cprice);
             $price  = ceil($price);
             $I->assertEquals($Cprice, $price);
@@ -234,7 +248,7 @@ class DeliveryTestHelpers {
             else {
                 $I->waitForElementVisible("#cuselFrame-paymentMethod");
                 $I->click(".cuselText");
-                $pay = explode("_", $pay);
+                is_string($pay)?$pay = explode("_", $pay):print "";
                 $j=1;
                 foreach ($pay as $value) {
                     $Cpay = $I->grabTextFrom("//div[@id='cusel-scroll-paymentMethod']/span[$j]");
@@ -242,8 +256,10 @@ class DeliveryTestHelpers {
                     $j++;
                     }
             }
+            
          }
     }
+    
     
     /**
      * Checking that alerts is present after clicking create button
@@ -279,7 +295,7 @@ class DeliveryTestHelpers {
                     elseif  ($module=='edit')   { $I->assertEquals($I->grabAttributeFrom($field, 'class'), "required alert alert-error");}
                     break;
                 default :
-                    $I->fail("unknown type of error");
+                    $I->fail("unknown type of error entered");
         }
     }
     
@@ -302,5 +318,92 @@ class DeliveryTestHelpers {
         }
         else { $I->fail( "there are no created payments" ); }
         return $PaymentMethods;
+    }
+    
+     
+    
+    //------------------------FOR EDIT------------------------------------------
+    
+    /**
+     * Edit delivery method by specifying parameters, 
+     * must be on delivery edit page before calling
+     * 
+     * @param array $params name                => 'Deliveryname',
+     * @param array $params active              => 'off - disabled | on - enabled',
+     * @param array $params description         => 'Delivery description',
+     * @param array $params descriptionprice    => 'Delivery price description',
+     * @param array $params price               => 'Delivery price',
+     * @param array $params freefrom            => 'Delivery freefrom',
+     * @param array $params message             => 'Delivery sum specified message',
+     * @param array $params pay                 => 'Select payment methods, array or sring '_' - delimiter for few methods',
+     * @param array $params payoff              => 'Unselect payment methods, array or sring '_' - delimiter for few methods',
+     */
+    protected function EditDelivery(AcceptanceTester $I,$params) {
+        $default_params =[  'name'              => NULL,
+                            'active'            => NULL,
+                            'description'       => NULL,
+                            'descriptionprice'  => NULL,
+                            'price'             => NULL,
+                            'freefrom'          => NULL,
+                            'message'           => NULL,
+                            'pay'               => NULL,
+                            'payoff'            => NULL,
+        ];
+        
+        $params = array_merge($default_params,$params);
+        extract($params);
+        
+        if(isset($name)) { $I->fillField(DeliveryEditPage::$FieldName, $name); }
+        if(isset($active)) {
+            $Cactive = $I->grabAttributeFrom("//*[@id='deliveryUpdate']/div[2]/div[2]/span", 'class');
+            $Cactive == 'frame_label no_connection active'?$Cactive = TRUE:$Cactive = FALSE;
+            if      ($active == "on" && !$Cactive)   { $I->click(DeliveryEditPage::$CheckboxActive); }
+            elseif  ($active == "off" && $Cactive)   { $I->click(DeliveryEditPage::$CheckboxActive); }
+        }
+        if(isset($description))         { $I->fillField(DeliveryEditPage::$FieldDescription, $description); }
+        if(isset($descriptionprice))    { $I->fillField(DeliveryEditPage::$FieldDescriptionPrice, $descriptionprice); }
+        if(isset($price))               { 
+            $I->grabAttributeFrom(DeliveryEditPage::$FieldPrice, 'disabled')== 'true'?$I->click(DeliveryEditPage::$CheckboxPriceSpecified):  print '';
+            $I->fillField(DeliveryEditPage::$FieldPrice,$price);
+        }
+        if(isset($freefrom))            { 
+            $I->grabAttributeFrom(DeliveryEditPage::$FieldPrice, 'disabled')== 'true'?$I->click(DeliveryEditPage::$CheckboxPriceSpecified):  print '';
+            $I->fillField(DeliveryEditPage::$FieldFreeFrom, $freefrom);
+        }
+        if(isset($message))             { 
+            $class = $I->grabAttributeFrom(DeliveryEditPage::$CheckboxPriceSpecified.'/..', 'class');
+            $class == 'frame_label no_connection'?$I->click(DeliveryEditPage::$CheckboxPriceSpecified):$I->comment('already marked');
+            $I->fillField(DeliveryEditPage::$FieldPriceSpecified, $message);
+        }
+        if(isset($pay))                 {
+            if (is_string($pay)) { $pay = explode("_", $pay); }
+            if (is_array($pay))  {
+                $row = 1;
+                foreach ($pay as $value) {
+                    $Cclass = $I->grabAttributeFrom(DeliveryEditPage::PaymentMethodLabel($row), 'class');
+                    $row++;
+                    
+                    if($Cclass == 'frame_label no_connection d_b'){
+                        $I->click("//span[contains(.,\"$value\")]");
+                    }
+                }
+            }  
+            else { $I->fail("Unknown type"); }
+        }
+        if(isset($payoff))                 {
+            if (is_string($payoff)) { $pay = explode("_", $pay); }
+            if (is_array($payoff))  {
+                $row = 1;
+                foreach ($payoff as $value) {
+                    $Cclass = $I->grabAttributeFrom(DeliveryEditPage::PaymentMethodLabel($row), 'class');
+                    $row++;
+                    if($Cclass == 'frame_label no_connection d_b active'){
+                        $I->click("//span[contains(.,\"$value\")]");
+                    }
+                }
+            }  
+            else { $I->fail("Unknown type"); }
+        }
+        $I->click(DeliveryEditPage::$ButtonSave);
     }
 }
