@@ -309,4 +309,102 @@ class DeliveryTestHelper {
         return $PaymentMethods;
     }
     
+     
+    
+    //------------------------FOR EDIT------------------------------------------
+    
+    /**
+     * 
+     * @todo EditDelivery protected Method
+     * @param array $params name                => 'Deliveryname',
+     * @param array $params active              => 'off - disabled | on - enabled',
+     * @param array $params description         => 'Delivery description',
+     * @param array $params descriptionprice    => 'Delivery price description',
+     * @param array $params price               => 'Delivery price',
+     * @param array $params freefrom            => 'Delivery freefrom',
+     * @param array $params message             => 'Delivery sum specified message',
+     * @param array $params pay                 => 'Select payment methods, array or sring '_' - delimiter for few methods',
+     * @param array $params payoff              => 'Unselect payment methods, array or sring '_' - delimiter for few methods',
+     */
+    protected function EditDelivery(AcceptanceTester $I,$params) {
+        $default_params =[  'name'              => NULL,
+                            'active'            => NULL,
+                            'description'       => NULL,
+                            'descriptionprice'  => NULL,
+                            'price'             => NULL,
+                            'freefrom'          => NULL,
+                            'message'           => NULL,
+                            'pay'               => NULL,
+                            'payoff'            => NULL,
+        ];
+        $params = array_merge($default_params,$params);
+        extract($params);
+        if(isset($name)){
+            $I->fillField(DeliveryEditPage::$FieldName, $name);
+        }
+        
+        if(isset($active)) {
+            $Cactive = $I->grabAttributeFrom("//*[@id='deliveryUpdate']/div[2]/div[2]/span", 'class');
+            $Cactive == 'frame_label no_connection active'?$Cactive = TRUE:$Cactive = FALSE;
+            if      ($active == "on" && !$Cactive)   { $I->click(DeliveryEditPage::$CheckboxActive); }
+            elseif  ($active == "off" && $Cactive)   { $I->click(DeliveryEditPage::$CheckboxActive); }
+        }
+        
+        if(isset($description))         { $I->fillField(DeliveryEditPage::$FieldDescription, $description); }
+        
+        if(isset($descriptionprice))    { $I->fillField(DeliveryEditPage::$FieldDescriptionPrice, $descriptionprice); }
+        
+        if(isset($price))               { 
+            $I->grabAttributeFrom(DeliveryEditPage::$FieldPrice, 'disabled')== 'true'?$I->click(DeliveryEditPage::$CheckboxPriceSpecified):  print '';
+            $I->fillField(DeliveryEditPage::$FieldPrice,$price);
+        }
+        
+        if(isset($freefrom))            { 
+            $I->grabAttributeFrom(DeliveryEditPage::$FieldPrice, 'disabled')== 'true'?$I->click(DeliveryEditPage::$CheckboxPriceSpecified):  print '';
+            $I->fillField(DeliveryEditPage::$FieldFreeFrom, $freefrom);
+        }
+        
+        if(isset($message))             { 
+            $class = $I->grabAttributeFrom(DeliveryEditPage::$CheckboxPriceSpecified.'/..', 'class');
+            $class == 'frame_label no_connection'?$I->click(DeliveryEditPage::$CheckboxPriceSpecified):$I->comment('already marked');
+            $I->fillField(DeliveryEditPage::$FieldPriceSpecified, $message);
+        }
+        if(isset($pay))                 {
+            if (is_string($pay)) { $pay = explode("_", $pay); }
+            if (is_array($pay))  {
+                $row = 1;
+                foreach ($pay as $value) {
+                    $Cclass = $I->grabAttributeFrom(DeliveryEditPage::PaymentMethodLabel($row), 'class');
+                    $row++;
+                    
+                    if($Cclass == 'frame_label no_connection d_b'){
+                        $I->click("//span[contains(.,\"$value\")]");
+                    }
+                    
+                }
+            }  
+            else { $I->fail("Unknown type"); }
+        }
+        
+        if(isset($payoff))                 {
+            if (is_string($payoff)) { $pay = explode("_", $pay); }
+            if (is_array($payoff))  {
+                $row = 1;
+                foreach ($payoff as $value) {
+                    $Cclass = $I->grabAttributeFrom(DeliveryEditPage::PaymentMethodLabel($row), 'class');
+                    $row++;
+                    
+                    if($Cclass == 'frame_label no_connection d_b active'){
+                        $I->click("//span[contains(.,\"$value\")]");
+                    }
+                    
+                }
+            }  
+            else { $I->fail("Unknown type"); }
+        }
+        
+        $I->click(DeliveryEditPage::$ButtonSave);
+        
+    }
+    
 }
