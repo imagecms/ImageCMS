@@ -1,12 +1,15 @@
 <?php
 
 /**
- * METHODS
+ * Basic class for testing delivery methods
+ * 
+ * METHODS:
  * CreateDelivery
  * CheckInList
  * CheckInFrontEnd
  * CheckForAlertPresent
  * GrabAllCreatedPayments
+ * EditDelivery
  * 
  * @todo Improve Create Delivery (default value = null)
  * @todo Make order in AlertPresent method 
@@ -157,6 +160,7 @@ class DeliveryTestHelper {
     
     /**
      * Checking current parameters in frontend 
+     * first time goes "processing order" page by clicking, other times goes to "processing order" page immediately
      * if you want to skip verifying of some parameters type null
      * @param object            $I              Controller
      * @param string            $name           Delivery name
@@ -172,8 +176,14 @@ class DeliveryTestHelper {
         if(!$WasCalled){
         $I->comment("$WasCalled");
         $I->amOnPage('/shop/product/mobilnyi-telefon-sony-xperia-v-lt25i-black');
-        $buy = "//div[@class='frame-prices-buy f-s_0']//form/div[3]";
-        $basket = "//div[@class='frame-prices-buy f-s_0']//form/div[2]";
+        
+        /**
+         * @var string buy          button "buy"
+         * @var string basket       button "into basket"
+         * @var string $Attribute1  class of "buy" button
+         */
+        $buy        = "//div[@class='frame-prices-buy f-s_0']//form/div[3]";
+        $basket     = "//div[@class='frame-prices-buy f-s_0']//form/div[2]";
         $Attribute1 = $I->grabAttributeFrom($buy,'class');
         //$Attribute2 = $I->grabAttributeFrom($basket,'class');
         $Attribute1 == 'btn-buy-p btn-buy'?$I->click($buy):$I->click($basket);
@@ -205,7 +215,6 @@ class DeliveryTestHelper {
         
         if($price){
             $Cprice = $I->grabTextFrom("//div[@class='frame-radio']/div[$j]/div[@class='help-block']/div[1]");
-            //$I->assertEquals(preg_replace('/[^0-9].*/', '',$price), $Cprice);
             $Cprice = preg_replace('/[^0-9.]*/u', '', $Cprice);
             $price  = ceil($price);
             $I->assertEquals($Cprice, $price);
@@ -247,8 +256,10 @@ class DeliveryTestHelper {
                     $j++;
                     }
             }
+            
          }
     }
+    
     
     /**
      * Checking that alerts is present after clicking create button
@@ -314,8 +325,9 @@ class DeliveryTestHelper {
     //------------------------FOR EDIT------------------------------------------
     
     /**
+     * Edit delivery method by specifying parameters, 
+     * must be on delivery edit page before calling
      * 
-     * @todo EditDelivery protected Method
      * @param array $params name                => 'Deliveryname',
      * @param array $params active              => 'off - disabled | on - enabled',
      * @param array $params description         => 'Delivery description',
@@ -337,33 +349,27 @@ class DeliveryTestHelper {
                             'pay'               => NULL,
                             'payoff'            => NULL,
         ];
+        
         $params = array_merge($default_params,$params);
         extract($params);
-        if(isset($name)){
-            $I->fillField(DeliveryEditPage::$FieldName, $name);
-        }
         
+        if(isset($name)) { $I->fillField(DeliveryEditPage::$FieldName, $name); }
         if(isset($active)) {
             $Cactive = $I->grabAttributeFrom("//*[@id='deliveryUpdate']/div[2]/div[2]/span", 'class');
             $Cactive == 'frame_label no_connection active'?$Cactive = TRUE:$Cactive = FALSE;
             if      ($active == "on" && !$Cactive)   { $I->click(DeliveryEditPage::$CheckboxActive); }
             elseif  ($active == "off" && $Cactive)   { $I->click(DeliveryEditPage::$CheckboxActive); }
         }
-        
         if(isset($description))         { $I->fillField(DeliveryEditPage::$FieldDescription, $description); }
-        
         if(isset($descriptionprice))    { $I->fillField(DeliveryEditPage::$FieldDescriptionPrice, $descriptionprice); }
-        
         if(isset($price))               { 
             $I->grabAttributeFrom(DeliveryEditPage::$FieldPrice, 'disabled')== 'true'?$I->click(DeliveryEditPage::$CheckboxPriceSpecified):  print '';
             $I->fillField(DeliveryEditPage::$FieldPrice,$price);
         }
-        
         if(isset($freefrom))            { 
             $I->grabAttributeFrom(DeliveryEditPage::$FieldPrice, 'disabled')== 'true'?$I->click(DeliveryEditPage::$CheckboxPriceSpecified):  print '';
             $I->fillField(DeliveryEditPage::$FieldFreeFrom, $freefrom);
         }
-        
         if(isset($message))             { 
             $class = $I->grabAttributeFrom(DeliveryEditPage::$CheckboxPriceSpecified.'/..', 'class');
             $class == 'frame_label no_connection'?$I->click(DeliveryEditPage::$CheckboxPriceSpecified):$I->comment('already marked');
@@ -380,12 +386,10 @@ class DeliveryTestHelper {
                     if($Cclass == 'frame_label no_connection d_b'){
                         $I->click("//span[contains(.,\"$value\")]");
                     }
-                    
                 }
             }  
             else { $I->fail("Unknown type"); }
         }
-        
         if(isset($payoff))                 {
             if (is_string($payoff)) { $pay = explode("_", $pay); }
             if (is_array($payoff))  {
@@ -393,18 +397,13 @@ class DeliveryTestHelper {
                 foreach ($payoff as $value) {
                     $Cclass = $I->grabAttributeFrom(DeliveryEditPage::PaymentMethodLabel($row), 'class');
                     $row++;
-                    
                     if($Cclass == 'frame_label no_connection d_b active'){
                         $I->click("//span[contains(.,\"$value\")]");
                     }
-                    
                 }
             }  
             else { $I->fail("Unknown type"); }
         }
-        
         $I->click(DeliveryEditPage::$ButtonSave);
-        
     }
-    
 }
