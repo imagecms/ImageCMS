@@ -5,19 +5,19 @@
                 <tbody>
                     <tr>
                         <th>
-                            Сайт
+                            {lang('Сайт','prem')}
                         </th>
                         <td>
-                            <a href="#">www.mystore.imagego.com</a> 
+                            <a href="http:\\{echo $user->saasUser->domain}">{echo $user->saasUser->domain}</a> 
                         </td>
                     </tr>
                     <tr>
                         <th>
-                            Админчасть
+                            {lang('Админчасть','prem')}
                         </th>
                         <td>
-                            <a href="#">www.mystore.imagego.com/admin</a>
-                            <div class="help-block">Логин и пароль те, что в личный кабинет</div>
+                            <a href="http:\\{echo $user->saasUser->domain}/admin">{echo $user->saasUser->domain}/admin</a> 
+                            <div class="help-block">{lang('Логин и пароль те, что в личный кабинет','prem')}</div>
                         </td>
                     </tr>
                     <tr>
