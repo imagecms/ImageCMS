@@ -9,22 +9,36 @@ class TextElementNLCest
 
 //---------------------------CREATE NOTIFI FRONT--------------------------------    
     public function CreateNotificationFront(AcceptanceTester $I){
-      $I->amOnPage('/shop/category/telefoniia-pleery-gps/telefony/smartfony?per_page=12');
-      $I->click('//div[3]/div/div/button');
-      $I->click('//span[2]/div/button'); 
-      $I->amOnPage('/admin');
+      $I->amOnPage(NotificationCreateFrontPage::$PageURL);
+        $I->scrollToElement($I, '.infoBut.isDrop');
+        $I->click(NotificationCreateFrontPage::$ButtonOnPage);
+        $I->waitForText('Сообщить о появлении');
+        $I->click(NotificationCreateFrontPage::$ButtonSendPresent);
     }
 //----------------------BUTTON LIST---------------------------------------------
     public function VerifyButtonList(AcceptanceTester $I){
+      $I->amOnPage('/admin');
       $I->click(NavigationBarPage::$Orders);
       $I->click(NavigationBarPage::$NotificationsList);
       $I->seeInCurrentUrl(NotificationListPage::$ListPageURL);
+      $I->waitForElement(NotificationListPage::$ListButtonNew);
       $I->click(NotificationListPage::$ListButtonNew);
+      $I->wait('1');
+//      $I->waitForElement(NotificationListPage::$ListButtonMade);
       $I->click(NotificationListPage::$ListButtonMade);
+      $I->wait('1');
+//      $I->waitForElement(NotificationListPage::$ListButtonAll);
       $I->click(NotificationListPage::$ListButtonAll);
+      $I->wait('1');
       $I->click(NotificationListPage::$ListMainCheckBox);
+      $I->wait('1');
+//      $I->waitForElementVisible(NotificationListPage::$ListButtonFilter);
       $I->click(NotificationListPage::$ListButtonFilter);
+      $I->wait('1');
+//      $I->waitForElement(NotificationListPage::$ListButtonCancelFilter);
       $I->click(NotificationListPage::$ListButtonCancelFilter);
+      $I->wait('1');
+//      $I->waitForElement(NotificationListPage::$ListMainCheckBox);
       $I->dontSeeCheckboxIsChecked(NotificationListPage::$ListMainCheckBox);
       }
 //-------------------TEXT ELEMENT LIST PAGE-------------------------------------
@@ -63,6 +77,7 @@ class TextElementNLCest
     public function VerifyTextElementList(AcceptanceTester $I){
       $I->amOnPage(NotificationListPage::$ListPageURL);
       $I->moveMouseOver(NotificationListPage::$ListLinkEditting);
+      $I->waitForText('Редактировать уведомление');
       $I->see('Редактировать уведомление', NotificationListPage::$ListMouseMessage);
       $I->moveMouseOver(NotificationListPage::$ListSelectMain);
       $I->waitForElementNotVisible(NotificationListPage::$ListMouseMessage);
@@ -125,6 +140,7 @@ class TextElementNLCest
       $I->click(NotificationListPage::$EditingButtonBack);
       $I->click(NotificationListPage::$ListLinkEditting);
       $I->click(NotificationListPage::$EditingButtonSave);
+      $I->wait('1');
       $I->click(NotificationListPage::$EditingButtonSaveAndGoBack);
     }
 //-------------------LINK IMG EDITING PAGE--------------------------------------
@@ -146,7 +162,9 @@ class TextElementNLCest
       $I->amOnPage(NotificationListPage::$ListPageURL);
       $I->click(NotificationListPage::$ListLinkEditting);
       $I->click(NotificationListPage::$EditingButtonSave);
+      $I->waitForText('Уведомление обновлено');
       $I->see('Уведомление обновлено', '.alert.in.fade.alert-success');
+      $I->wait('1'); 
       $I->click(NotificationListPage::$EditingButtonSaveAndGoBack);
       $I->see('Уведомление обновлено', '.alert.in.fade.alert-success');
     }
@@ -155,8 +173,11 @@ class TextElementNLCest
       $I->amOnPage(NotificationListPage::$ListPageURL);  
       $I->click(NotificationListPage::$ListMainCheckBox);
       $I->click(NotificationListPage::$ListButtonDelete);
+      $I->wait('1');
       $I->click(NotificationListPage::$DeleteWindowButtonX);
+      $I->wait('1');
       $I->click(NotificationListPage::$ListButtonDelete);
+      $I->wait('1');
       $I->click(NotificationListPage::$DeleteWindowButtonCancel);
     }
 //-------------------TEXT DELETING NOTIFY LIST PAGE-----------------------------
@@ -164,7 +185,9 @@ class TextElementNLCest
       $I->amOnPage(NotificationListPage::$ListPageURL);
       $I->click(NotificationListPage::$ListMainCheckBox);
       $I->click(NotificationListPage::$ListButtonDelete);
+      $I->wait('1');
       $I->click(NotificationListPage::$DeleteWindowButtonDelete);
+      $I->waitForText('Удаление');
       $I->see('Удаление', '.alert.in.fade.alert-success');
       }
 }
