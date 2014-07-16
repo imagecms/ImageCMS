@@ -26,7 +26,7 @@ class OrderStatusesPage
     public static $DeleteButtonX = "button.close";
     public static $DeleteButtonDelete = "//div[@id='mainContent']/div[2]/div[3]/a";
     public static $DeleteButtonCancel = "//div[@id='mainContent']/div[2]/div[3]/a[2]";
-    public static $DeleteWindow = ".modal.hide.fade.in";
+    public static $DeleteWindow = ".//*[@id='mainContent']/div[2]";//".modal.hide.fade.in";
     public static $DeleteMessageDeleting = ".alert.in.fade.alert-success";
     
     

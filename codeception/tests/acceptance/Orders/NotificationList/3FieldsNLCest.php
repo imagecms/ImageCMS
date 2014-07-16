@@ -8,27 +8,32 @@ class FieldsNLCest
     }
 //---------------------------CREATE NOTIFI FRONT--------------------------------    
     public function CreateNotificationFront(AcceptanceTester $I){
-      $I->amOnPage('/shop/category/telefoniia-pleery-gps/telefony/smartfony?per_page=12');
-      $I->click('//div[3]/div/div/button');
-      $I->click('//span[2]/div/button'); 
-      $I->amOnPage('/admin');
+      $I->amOnPage(NotificationCreateFrontPage::$PageURL);
+        $I->scrollToElement($I, '.infoBut.isDrop');
+        $I->click(NotificationCreateFrontPage::$ButtonOnPage);
+        $I->waitForText('Сообщить о появлении');
+        $I->click(NotificationCreateFrontPage::$ButtonSendPresent);
     }
 //-------------------------MESSAGE INPUT FIELD ID LIST--------------------------
     public function MessageInputFieldIDList (AcceptanceTester $I){
        $I->amOnPage(NotificationListPage::$ListPageURL);
        $I->fillField(NotificationListPage::$ListFildId, 'q');
        $I->see('только цифры', NotificationListPage::$ListMessageID);
-       $I->fillField(NotificationListPage::$ListFildId, '1');
+       $I->fillField(NotificationListPage::$ListFildId, '');
        $I->fillField(NotificationListPage::$ListFildId, '@');
+       $I->waitForText('только цифры');
        $I->see('только цифры', NotificationListPage::$ListMessageID);
-       $I->fillField(NotificationListPage::$ListFildId, '2');
+       $I->fillField(NotificationListPage::$ListFildId, '');
        $I->fillField(NotificationListPage::$ListFildId, 'Ы');
+       $I->waitForText('только цифры');
        $I->see('только цифры', NotificationListPage::$ListMessageID);
-       $I->fillField(NotificationListPage::$ListFildId, '3');
+       $I->fillField(NotificationListPage::$ListFildId, '');
        $I->fillField(NotificationListPage::$ListFildId, 'ї');
+       $I->waitForText('только цифры');
        $I->see('только цифры', NotificationListPage::$ListMessageID);
-       $I->fillField(NotificationListPage::$ListFildId, '4');
+       $I->fillField(NotificationListPage::$ListFildId, '');
        $I->fillField(NotificationListPage::$ListFildId, ' ');
+       $I->waitForText('только цифры');
        $I->see('только цифры', NotificationListPage::$ListMessageID);
     } 
 //-------------------------INPUT FIELD ID LIST----------------------------------
@@ -167,10 +172,12 @@ class FieldsNLCest
           $I->amOnPage(NotificationListPage::$ListPageURL);
           $I->click(NotificationListPage::$ListLinkEditting);
           $I->appendField(NotificationListPage::$EditingFildName, '123 QWE !@# їзщ');
-          $I->click(NotificationListPage::$EditingButtonSave); 
+          $I->click(NotificationListPage::$EditingButtonSave);
+          $I->wait('1');
           $I->seeInField(NotificationListPage::$EditingFildName, 'Administrator');
           $I->fillField(NotificationListPage::$EditingFildName, '');
           $I->click(NotificationListPage::$EditingButtonSave);
+          $I->wait('1');
           $I->seeInField(NotificationListPage::$EditingFildName, 'Administrator');          
       }
 //--------------------NOT SAVED INPUT FIELD EMEIL EDITING-----------------------
@@ -179,9 +186,11 @@ class FieldsNLCest
           $I->click(NotificationListPage::$ListLinkEditting);
           $I->appendField(NotificationListPage::$EditingFildEmail, '123 QWE !@# їзщ');
           $I->click(NotificationListPage::$EditingButtonSave); 
+          $I->wait('1');
           $I->seeInField(NotificationListPage::$EditingFildEmail, 'ad@min.com');
           $I->fillField(NotificationListPage::$EditingFildEmail, '');
           $I->click(NotificationListPage::$EditingButtonSave);
+          $I->wait('1');
           $I->seeInField(NotificationListPage::$EditingFildEmail, 'ad@min.com');          
       }
 //-----------------------SAVED INPUT FIELD PHONE EDITING------------------------
@@ -190,9 +199,11 @@ class FieldsNLCest
           $I->click(NotificationListPage::$ListLinkEditting);
           $I->fillField(NotificationListPage::$EditingFildPhone, 'QWE 123 !@# ячс');
           $I->click(NotificationListPage::$EditingButtonSave);
+          $I->wait('1');
           $I->seeInField(NotificationListPage::$EditingFildPhone, 'QWE 123 !@# ячс');
           $I->fillField(NotificationListPage::$EditingFildPhone, '');
           $I->click(NotificationListPage::$EditingButtonSave);
+          $I->wait('1');
           $I->seeInField(NotificationListPage::$EditingFildPhone, '');
       }
 //-----------------------SAVED INPUT FIELD COMMENT EDITING----------------------
@@ -201,9 +212,11 @@ class FieldsNLCest
           $I->click(NotificationListPage::$ListLinkEditting);
           $I->fillField(NotificationListPage::$EditingFildComment, 'QWE 123 !@# ячс');
           $I->click(NotificationListPage::$EditingButtonSave);
+          $I->wait('1');
           $I->seeInField(NotificationListPage::$EditingFildComment, 'QWE 123 !@# ячс');
           $I->fillField(NotificationListPage::$EditingFildComment, '');
           $I->click(NotificationListPage::$EditingButtonSave);
+          $I->wait('1');
           $I->seeInField(NotificationListPage::$EditingFildComment, '');
       }
 //------------------------------CLEARING----------------------------------------
@@ -211,7 +224,9 @@ class FieldsNLCest
       $I->amOnPage(NotificationListPage::$ListPageURL);
       $I->click(NotificationListPage::$ListMainCheckBox);
       $I->click(NotificationListPage::$ListButtonDelete);
+      $I->wait('1');
       $I->click(NotificationListPage::$DeleteWindowButtonDelete);
+      $I->wait('1');
       InitTest::ClearAllCach($I);
     }
 }
