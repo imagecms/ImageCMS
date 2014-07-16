@@ -120,14 +120,11 @@ class DeliveryListCest extends DeliveryTestHelper{
         $I->see("Список способов доставки",null,".title");
         }
         
-    /**
-     * @group list
-     * @todo Try to drag&drop if can't , write Jquery Helper for this
-     */
-      public function DragDrop (AcceptanceTester $I){
-          $CSSelement = ".btn.dropdown-toggle";
-          $I->scrollToElement($I,$CSSelement);
-          $I->wait(5);
-      }
-    
+        /**
+         * @group list
+         */
+        public function DeleteCreatedMethods(AcceptanceTester $I) {
+            $Methods = $this->name;
+            $this->DeleteDeliveryMethods($I, $Methods);
+        }
 }
