@@ -43,19 +43,19 @@
                                     <span class="icon-person"></span>
                                 </span>
                                 <span class="d_i-b">
-                                    <span class="text-el">{echo lang('Профиль', 'premmerce')}</span>
+                                    <span class="text-el">{echo lang('Профиль', 'prem')}</span>
                                     <span class="icon-arrow"></span>
                                 </span>
                             </button>
                             <ul class="drop nav">
                                 <li>
                                     <a href="/saas/profile">
-                                        <span class="text-el">{echo lang('Личные данные', 'premmerce')}</span>
+                                        <span class="text-el">{echo lang('Личные данные', 'prem')}</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="/auth/logout">
-                                        <span class="text-el">{echo lang('Выход', 'premmerce')}</span>
+                                        <span class="text-el">{echo lang('Выход', 'prem')}</span>
                                     </a>
                                 </li>
                             </ul>
@@ -66,7 +66,7 @@
                                     <span class="helper"></span>
                                     <span class="icon-bask"></span>
                                 </span>
-                                <span class="text-el">{echo lang('Магазин', 'premmerce')}</span>
+                                <span class="text-el">{echo lang('Магазин', 'prem')}</span>
                             </a>
                         </li>
                         <li>
@@ -74,15 +74,15 @@
                         </li>
                         <li>
                             <a href="{site_url('')}" class="btn-admin btn">
-                                <span class="text-el">{echo lang('Админчасть', 'premmerce')}</span>
+                                <span class="text-el">{echo lang('Админчасть', 'prem')}</span>
                             </a>
                         </li>
                     </ul>
                     <div class="content-header">
                         <a href="#" class="header-out-info-lost">
-                            {echo lang('Осталось', 'premmerce')} 
-                            <span style="font-size: 22px;">14</span>
-                            {echo lang('дней', 'premmerce')}
+                            {echo lang('Осталось', 'prem')} 
+                            <span style="font-size: 22px;">{echo $days}</span>
+                            {echo lang('дней', 'prem')}
                         </a>
                         <div class="info-header">
                             <span class="info-text-phone">
@@ -90,7 +90,7 @@
                                 <span class="d_i-b">{echo siteinfo('siteinfo_mainphone')}</span>
                             </span>
                             <a href="#consult" class="btn-consultation fancybox">
-                                <span class="text-el">{echo lang('Консультация', 'premmerce')}</span>
+                                <span class="text-el">{echo lang('Консультация', 'prem')}</span>
                             </a>
                         </div>
                     </div>
@@ -131,7 +131,7 @@
                             <div class="footer-panel">
                                 <div class="inside-padd">
                                     <a href="{site_url('tutorial')}" class="btn btn-primary">
-                                        <span class="text-el">{echo lang('Полная документация', 'premmerce')}</span>
+                                        <span class="text-el">{echo lang('Полная документация', 'prem')}</span>
                                     </a>
                                 </div>
                             </div>
@@ -139,7 +139,7 @@
                         <div class="panel-default out-adding-service">
                             <div class="title-default-out">
                                 <div class="title">
-                                    {echo lang('Дополнительные услуги', 'premmerce')}
+                                    {echo lang('Дополнительные услуги', 'prem')}
                                 </div>
                             </div>
                             {$CI->load->module('cfcm')->get_form(80, 97, 'page', 'additional_services_form_min')}
@@ -165,26 +165,26 @@
                 <div class="panel-default">
                     <div class="title-default-out">
                         <div class="title">
-                            {echo lang('Консультация', 'premmerce')}
+                            {echo lang('Консультация', 'prem')}
                         </div>
                     </div>
                     <div class="footer-panel">
                         <div class="inside-padd">
-                            <span class="s-t">{echo lang('Ваш запрос обработает менеджер и отправит ответ в ближайшие сроки', 'premmerce')}</span>
+                            <span class="s-t">{echo lang('Ваш запрос обработает менеджер и отправит ответ в ближайшие сроки', 'prem')}</span>
                         </div>
                     </div>
                     <form method="post" action="{site_url('saas/support/create_fast_ticket')}" enctype="multipart/form-data">
                         <div class="content-panel">
-                            <textarea name="ticket[text]" placeholder="{echo lang('Введите Ваше сообщение', 'premmerce')}&hellip;" style="padding-left: 27px;"></textarea>
+                            <textarea name="ticket[text]" placeholder="{echo lang('Введите Ваше сообщение', 'prem')}&hellip;" style="padding-left: 27px;"></textarea>
                         </div>
                         <div class="footer-panel clearfix">
                             <button type="submit" class="btn btn-primary f_l" style="margin: 11px 28px;">
-                                <span class="text-el">{echo lang('Отправить', 'premmerce')}</span>
+                                <span class="text-el">{echo lang('Отправить', 'prem')}</span>
                             </button>
                             <div class="hidden-type-file f_r btn-attach-file btn">
                                 <span class="icon-attach"></span>
-                                <span class="text-el">{echo lang('Прикрепить', 'premmerce')}</span>
-                                <input type="file" title="{echo lang('Выберете файл', 'premmerce')}" name="attachment"/>
+                                <span class="text-el">{echo lang('Прикрепить', 'prem')}</span>
+                                <input type="file" title="{echo lang('Выберете файл', 'prem')}" name="attachment"/>
                             </div>
                         </div>
                         {form_csrf()}
