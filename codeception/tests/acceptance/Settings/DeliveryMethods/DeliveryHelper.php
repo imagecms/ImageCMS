@@ -478,4 +478,42 @@ class DeliveryTestHelper {
         }
         return $missing;
     }
+    
+    
+         /**
+         * @param AcceptanceTester  $I          controller
+         * @param array             $Methods    Names of delivery methods which you want to delete         
+         */
+        protected function DeleteDeliveryMethods (AcceptanceTester $I,$Methods) {
+            $AllMethodsCount = $I->grabClassCount($I, "niceCheck")-1;
+            for ($row = 1;$row <= $AllMethodsCount;++$row){
+                $CurrentRowMethod = $I->grabTextFrom(DeliveryPage::ListMethodLine($row));
+                if(is_array($Methods)){
+                    foreach ($Methods as $value) {
+                        if($CurrentRowMethod == $value){
+                            $I->click (DeliveryPage::ListCheckboxLine ($row));
+                            $I->click(DeliveryPage::$DeleteButton);
+                            $I->waitForText("Удаление способов доставки", NULL, "//*[@id='mainContent']/div/div[1]/div[1]/h3");
+                            $I->click(DeliveryPage::$DeleteWindowDelete);
+                            $this->CheckForAlertPresent($I, 'success', null, null, 'delete');
+                            $AllMethodsCount--;
+                            $row--;
+                        }        
+                    }
+                }
+                else {
+                    if($CurrentRowMethod == $Methods){
+                            $I->click (DeliveryPage::ListCheckboxLine ($row));
+                            $I->click(DeliveryPage::$DeleteButton);
+                            $I->waitForText("Удаление способов доставки", NULL, "//*[@id='mainContent']/div/div[1]/div[1]/h3");
+                            $I->click(DeliveryPage::$DeleteWindowDelete);
+                            $this->CheckForAlertPresent($I, 'success', null, null, 'delete');
+                            $AllMethodsCount--;
+                            $row--;
+                        }        
+                
+                    
+                }   
+            }
+        }    
 }
