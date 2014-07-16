@@ -22,18 +22,18 @@
                     </tr>
                     <tr>
                         <th>
-                            Тариф
+                            {lang('Тариф','prem')}
                         </th>
                         <td>
-                            Standart
+                            {$user_tariff.tname}
                         </td>
                     </tr>
                     <tr>
                         <th>
-                            Стоимость
+                            {lang('Стоимость','prem')}
                         </th>
                         <td colspan="2">
-                            20$ / мес
+                            {$user_tariff.price}$ / {lang('мес','prem')}
                         </td>
                     </tr>
                 </tbody>
@@ -44,33 +44,37 @@
                 <tbody>
                     <tr>
                         <th>
-                            Наполнение
+                            {lang('Наполнение','prem')}
                         </th>
                         <td>
-                            <span class="important-text">45 товаров</span>  / 1000 товаров
+                            <span class="important-text">
+                                {$stat[$user_tariff['server_username']]['productsCount']} {lang('товаров','prem')}
+                            </span>  / {$user_tariff.prod_limit} {lang('товаров','prem')}
                             <div class="out-range">
-                                <div class="range" style="width: 20%;"></div>
+                                <div class="range" 
+                                     style="width: {echo round(($stat[$user_tariff['server_username']]['productsCount']*100)/$user_tariff.prod_limit)}%;">
+                                </div>
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <th>
-                            Вместимоть
+                            {lang('Вместимоть','prem')}
                         </th>
                         <td>
-                            <span class="important-text">0.3 Gb</span> / 4 gb
+                            <span class="important-text">{echo $stat[$user_tariff['server_username']]['quotaUsed']/1000} Gb</span> / {$user_tariff.disk_limit} Gb
                             <div class="out-range">
-                                <div class="range" style="width: 20%;"></div>
+                                <div class="range" style="width: {echo round((($stat[$user_tariff['server_username']]['quotaUsed']/1000)*100)/$user_tariff.disk_limit)}%;"></div>
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <th>
-                            Оплачен до
+                            {lang('Оплачен до','prem')}
                         </th>
                         <td>
-                            <span class="help-block">Бесплатная пробная версия до</span>
-                            <span class="important-text">12 января 2015</span>
+                            <!--span class="help-block">Бесплатная пробная версия до</span-->
+                            <span class="important-text">{data_translate(time() + ((int)($user_tariff['balance'] / ($user_tariff['price'] / 30)) * 60 * 60 * 24))}</span>
                         </td>
                     </tr>
                 <tbody>
