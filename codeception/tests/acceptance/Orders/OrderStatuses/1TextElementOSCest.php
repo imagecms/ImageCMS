@@ -41,6 +41,7 @@ class TextElementOSCest
     public function  MouseMessage (AcceptanceTester $I){
         $I->amOnPage(OrderStatusesPage::$ListURL);
         $I->moveMouseOver(OrderStatusesPage::$ListLinkStstusTr1);
+        $I->wait(1);
         $I->see('Редактировать статус', OrderStatusesPage::$ListMessageMouseFocuse);
         $I->moveMouseOver(OrderStatusesPage::$ListaButtonCreateStatuse);
         $I->waitForElementNotVisible(OrderStatusesPage::$ListMessageMouseFocuse);
@@ -119,6 +120,7 @@ class TextElementOSCest
         $I->amOnPage(OrderStatusesPage::$ListURL);
         $I->click(OrderStatusesPage::$ListLinkStatusTr2);
         $I->click(OrderStatusesPage::$EditButtonSaveAndGoBack);
+        $I->wait(1);
         $I->see('Изменения сохранены', OrderStatusesPage::$EditMessageEditingStatus);
     }  
 //---------------TEXT ELEMENT PRESENCE DELETING PAGE----------------------------
@@ -137,15 +139,23 @@ class TextElementOSCest
     public function ButtonDeletingWindow(AcceptanceTester $I){
         $I->amOnPage(OrderStatusesPage::$ListURL);
         $I->click(OrderStatusesPage::$ListButtonDelete);
+        $I->wait(1);
+        $I->seeElement(OrderStatusesPage::$DeleteWindow);
         $I->click(OrderStatusesPage::$DeleteButtonCancel);
+        $I->wait(1);
+        $I->dontSeeElement(OrderStatusesPage::$DeleteWindow);
         $I->click(OrderStatusesPage::$ListButtonDelete);
+        $I->wait(1);
+        $I->seeElement(OrderStatusesPage::$DeleteWindow);
         $I->click(OrderStatusesPage::$DeleteButtonX);
     }
 //---------------------MESSAGE DELETING STATUS WINDOW---------------------------
     public function MessageDeletingStatusWindow(AcceptanceTester $I){
         $I->amOnPage(OrderStatusesPage::$ListURL);
         $I->click(OrderStatusesPage::$ListButtonDelete);
+        $I->wait(1);
         $I->click(OrderStatusesPage::$DeleteButtonDelete);
+        $I->wait(1);
         $I->see('Статус удален', OrderStatusesPage::$DeleteMessageDeleting);
     }   
 } 

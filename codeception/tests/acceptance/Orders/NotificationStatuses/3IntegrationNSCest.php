@@ -1,6 +1,6 @@
 <?php
 use \AcceptanceTester;
-class IntegrationCreateEditDeleteCest
+class IntegrationNSCest
 {
     /**
      * @group Integration
@@ -13,8 +13,12 @@ class IntegrationCreateEditDeleteCest
 //---------------------------CREATE NOTIFI FRONT--------------------------------    
     public function CreateNotificationFront(AcceptanceTester $I){
       $I->amOnPage('/shop/category/telefoniia-pleery-gps/telefony/smartfony?per_page=12');
-      $I->click('//div[3]/div/div/button');
-      $I->click('//span[2]/div/button');   
+      $I->wait('1');
+      $I->scrollToElement($I, '.infoBut.isDrop');
+      $I->wait('1');
+      $I->click('.infoBut.isDrop');
+      $I->wait('1');
+      $I->click('//span[2]/div/button');
     }        
     /**
      * @group Integration
@@ -24,6 +28,7 @@ class IntegrationCreateEditDeleteCest
     $I->amOnPage(NotificationStatusesPage::$CreatePageUrl);
     $I->fillField(NotificationStatusesPage::$CreationFildInput, '123 qwe !@# ЯЧС');
     $I->click(NotificationStatusesPage::$CreationButtonCreateAndGoBack);
+    $I->waitForText('Статусы уведомлений о появлении');
     $I->See('123 qwe !@# ЯЧС', '//div[3]/section/div[2]');
     }
     /**
@@ -35,6 +40,7 @@ class IntegrationCreateEditDeleteCest
      $I->see('123 qwe !@# ЯЧС',  NotificationListPage::$ListSelectMain);
      $I->selectOption(NotificationListPage::$ListSelectFirst, '123 qwe !@# ЯЧС');
      $I->click(NotificationListPage::$ListButtonCreatedStatus);
+     $I->wait('1');
      $I->click(NotificationListPage::$ListLinkEdittingCreateStatusButton);
      $I->seeOptionIsSelected(NotificationListPage::$EditingSelectStatus, '123 qwe !@# ЯЧС');
     } 
@@ -47,6 +53,7 @@ class IntegrationCreateEditDeleteCest
     $I->click(NotificationStatusesPage::$ListLinkForEditing);
     $I->fillField(NotificationStatusesPage::$EditingFildInput, 'Гидрокарбонат');
     $I->click(NotificationStatusesPage::$EditingButtonSaveAndGoBack);
+    $I->waitForText('Статусы уведомлений о появлении');
     $I->See('Гидрокарбонат', '//div[3]/section/div[2]');
     }   
     /**
@@ -57,7 +64,8 @@ class IntegrationCreateEditDeleteCest
          $I->amOnPage(NotificationListPage::$ListPageURL);   
          $I->see('Гидрокарбонат',  NotificationListPage::$ListSelectMain);   
          $I->selectOption(NotificationListPage::$ListSelectFirst, 'Гидрокарбонат');    
-         $I->click(NotificationListPage::$ListButtonCreatedStatus);  
+         $I->click(NotificationListPage::$ListButtonCreatedStatus);
+         $I->wait('1');
          $I->click(NotificationListPage::$ListLinkEdittingCreateStatusButton);
          $I->seeOptionIsSelected(NotificationListPage::$EditingSelectStatus, 'Гидрокарбонат');
          }   
@@ -71,8 +79,9 @@ class IntegrationCreateEditDeleteCest
             $I->click(NotificationStatusesPage::$ListCheckBoxFirst);
             $I->click(NotificationStatusesPage::$ListCheckBoxSecond);
             $I->click(NotificationStatusesPage::$ListButtonDelete);
+            $I->wait('1');
             $I->click(NotificationStatusesPage::$DeleteWindowButtonDelete);
-            $I->waitForElementNotVisible('Гидрокарбонат');
+            $I->wait('1');
             $I->dontSeeLink('Гидрокарбонат');   
             }
     /**
@@ -98,7 +107,9 @@ class IntegrationCreateEditDeleteCest
     $I->amOnPage(NotificationListPage::$ListPageURL);
     $I->click(NotificationListPage::$ListMainCheckBox);
     $I->click(NotificationListPage::$ListButtonDelete);
+    $I->wait('1');
     $I->click(NotificationListPage::$DeleteWindowButtonDelete);
+    $I->wait('1');
     InitTest::ClearAllCach($I);
     }    
 }    

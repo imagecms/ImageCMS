@@ -1,6 +1,6 @@
 <?php
 use \AcceptanceTester;
-class TextElementCest
+class TextElementNSCest
 {
     /**
      * @group Verify
@@ -17,18 +17,26 @@ class TextElementCest
         $I->click(NavigationBarPage::$Orders);
         $I->click(NavigationBarPage::$NotificationStatuses);   
         $I->seeInCurrentUrl(NotificationStatusesPage::$ListPageURL);
+        $I->waitForElement(NotificationStatusesPage::$ListButtonCreate);
         $I->click(NotificationStatusesPage::$ListButtonCreate);
         $I->seeInCurrentUrl(NotificationStatusesPage::$CreatePageUrl);
+        $I->waitForElement(NotificationStatusesPage::$CreationButtonBack);
         $I->click(NotificationStatusesPage::$CreationButtonBack);
         $I->seeInCurrentUrl(NotificationStatusesPage::$ListPageURL);
+        $I->waitForElement(NotificationStatusesPage::$ListLinkEditing);
         $I->click(NotificationStatusesPage::$ListLinkEditing);
         $I->seeInCurrentUrl(NotificationStatusesPage::$EditingPageURL);
+        $I->waitForElement(NotificationStatusesPage::$EditingButtonBack);
         $I->click(NotificationStatusesPage::$EditingButtonBack);
         $I->seeInCurrentUrl(NotificationStatusesPage::$ListPageURL);
+        $I->waitForElement(NotificationStatusesPage::$ListHeaderCheckBox);
         $I->click(NotificationStatusesPage::$ListHeaderCheckBox);
         $I->click(NotificationStatusesPage::$ListButtonDelete);
+        $I->waitForText('Удаление статуса');
         $I->click('button.close');
-        $I->click(NotificationStatusesPage::$ListButtonDelete);
+        $I->wait(1);
+        $I->click('.btn.btn-small.btn-danger.action_on');
+        $I->wait(1);
         $I->click('//div[3]/a[2]');
     }    
     /**
@@ -113,8 +121,9 @@ class TextElementCest
         $I->amOnPage(NotificationStatusesPage::$CreatePageUrl);
         $I->fillField(NotificationStatusesPage::$CreationFildInput,'qwe 123 !@# ЯЧС');
         $I->click(NotificationStatusesPage::$CreationButtonCreate);
-        $I->see('Сообщение',NotificationStatusesPage::$CreationCreateMessage); 
-        $I->wait('1');
+        $I->waitForElement(NotificationStatusesPage::$CreationCreateMessage);
+        $I->see('Статус ожидания создан',NotificationStatusesPage::$CreationCreateMessage); 
+//        $I->wait('1');
     }
     /**
      * @group Verify
@@ -128,9 +137,9 @@ class TextElementCest
         $I->click('//button[1]');
         $I->seeElement(NotificationStatusesPage::$CreationAlertMessage);    
     }
-    /**
-     * @group Verify
-     */    
+//    /**
+//     * @group Verify
+//     */    
 //-----------------------VERIFY TEXT EDITING MESSAGE----------------------------
      public function VerifyTextEdicttMessageEdictingPage (AcceptanceTester $I){
         $I->amOnPage(NotificationStatusesPage::$ListPageURL);
@@ -138,7 +147,8 @@ class TextElementCest
         $I->click(NotificationStatusesPage::$ListLinkForEditing);
         $I->fillField(NotificationStatusesPage::$EditingFildInput,'ХоЛеСтеРИннн 123123123');
         $I->click(NotificationStatusesPage::$EditingButtonSave);
-        $I->see('Сообщение',NotificationStatusesPage::$EdictingEdictMessage);
+        $I->wait('1');
+        $I->see('Изменения сохранены',NotificationStatusesPage::$EdictingEdictMessage);
         $I->wait('1');
     }
     /**
@@ -152,6 +162,7 @@ class TextElementCest
         $I->click(NotificationStatusesPage::$ListCheckBoxFirst);
         $I->click(NotificationStatusesPage::$ListCheckBoxSecond); 
         $I->click(NotificationStatusesPage::$ListButtonDelete); 
+        $I->wait(1);
         $I->click(NotificationStatusesPage::$DeleteWindowButtonDelete);
         $I->waitForText('Статус удален');
         InitTest::ClearAllCach($I);      

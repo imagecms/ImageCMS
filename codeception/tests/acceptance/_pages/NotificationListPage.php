@@ -2,7 +2,7 @@
 
 class NotificationListPage
 {   
-    //   Notification List     Header.tooltip-inner
+    //   Notification List     
     
     public static $ListPageURL = "/admin/components/run/shop/notifications";
     public static $ListTitle = "span.title";

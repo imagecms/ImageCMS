@@ -1,7 +1,7 @@
 <?php
 
 class NotificationStatusesPage
-{   
+{   // List Page
     public static $ListPageURL = "admin/components/run/shop/notificationstatuses";
     public static $ListButtonCreate = ".btn.btn-small.btn-success.pjax"; 
     public static $ListLinkEditing = "//td[3]/a";
@@ -18,11 +18,13 @@ class NotificationStatusesPage
     public static $ListNameSecondCollum = "//th[3]";
     public static $ListNameThirdCollum = "//th[4]";
     public static $ListTable = "//div/div[3]/section/div[2]";
-    public static $DeleteWindowButtonDelete = "//div[3]/a";
+    // Delete Window
+    public static $DeleteWindowButtonDelete = ".//*[@id='mainContent']/div/div[1]/div[3]/a[1]";
     public static $DeleteWindowTitle = "//div[@id='mainContent']/div/div/div/h3";
     public static $DeleteWindowMassege = "//p";
     public static $DeleteWindowButtonX = "//div/div/button";
     public static $DeleteWindowButtonCancel = "//div[3]/a[2]";
+    // Create Page
     public static $CreatePageUrl = "admin/components/run/shop/notificationstatuses/create";
     public static $CreationButtonCreate = "//div[2]/div/button[1]";
     public static $CreationButtonBack = "//a/span[2]";
@@ -33,6 +35,7 @@ class NotificationStatusesPage
     public static $CreationNameFild =  "//label";
     public static $CreationAlertMessage =  "//div/div/div/label";
     public static $CreationCreateMessage =  "//div[2]/div[2]";
+    // Edit Page
     public static $EditingPageURL = "/admin/components/run/shop/notificationstatuses/edit/1";
     public static $EditingButtonBack = "//a/span[2]";
     public static $EditingButtonSave = "//div[2]/div/button[1]";
