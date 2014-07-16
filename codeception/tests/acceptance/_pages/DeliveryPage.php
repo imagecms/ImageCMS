@@ -100,7 +100,7 @@ class DeliveryEditPage
     public static $FieldPriceSpecifiedLabel = "//*[@id='deliverySumSpecifiedMessageSpan']/label";
     public static $PaymentLabel = "//*[@id='deliveryUpdate']/div[5]/div[3]/div[1]";
     public static function PaymentMethodLabel($row){
-        $Payment = "//div[5]/div[3]/div[2]/span[1]";
+        $Payment = "//div[5]/div[3]/div[2]/span[$row]";
         return $Payment;
     }
     Public static $ButtonSaveExit = ".btn.btn-small.action_on.formSubmit";
