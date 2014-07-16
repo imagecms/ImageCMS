@@ -10,7 +10,8 @@
  * CheckForAlertPresent
  * GrabAllCreatedPayments
  * EditDelivery
- * 
+ *
+ * @todo Write Killing Method ,for Array of Delivery Methods 
  * @todo Improve Create Delivery (default value = null)
  * @todo Make order in AlertPresent method 
  * @todo Add create simple payment methods for testing
@@ -234,11 +235,12 @@ class DeliveryTestHelper {
          }
          
          if($pay){
+            $JQScrollToclick = "$('html,body').animate({scrollTop:$('div.frame-radio>div:nth-child($j)').offset().top});";
+            $I->executeJS($JQScrollToclick);
+            $I->wait(5);
             $I->click("//div[@class='frame-radio']/div[$j]//span[@class='text-el']");
-            $script1 = "$('body').animate({'scrollTop':$('body').height()},'slow')";
-            $script2 = "$('html').animate({'scrollTop':$('body').height()},'slow')";
-            $I->executeJS($script1);
-            $I->executeJS($script2);
+            $sc = "$('html,body').animate({scrollTop:$('#submitOrder').offset().top},'fast');";
+            $I->executeJS($sc);
             
             if ($pay == 'off'){
                 $I->waitForText('Нет способов оплаты', NULL, '//div[@class="frame-form-field"]/div[@class="help-block"]');
@@ -266,7 +268,7 @@ class DeliveryTestHelper {
      * @param object        $I Controller 
      * @param string        $errorMessaege      Message which you want to check in current element error|succes|required
      * @param CssXpathRegEx $field              selector of field which you want to check
-     * @param string        $module             create|edit
+     * @param string        $module             create|edit|delete
      * @return void
      */
     protected function CheckForAlertPresent(AcceptanceTester $I,$type,$errorMessage = null,$field=null,$module = 'create') {
@@ -284,6 +286,7 @@ class DeliveryTestHelper {
                     $I->waitForElementVisible('.alert.in.fade.alert-success');
                     if      ($module == 'create')   { $I->see('Доставка создана','.alert.in.fade.alert-success'); }
                     elseif  ($module == 'edit')     { $I->see('Изменения сохранены','.alert.in.fade.alert-success'); }
+                    elseif  ($module == 'delete')   { $I->see('Способ доставки удален','.alert.in.fade.alert-success'); }
                     $I->waitForElementNotVisible('.alert.in.fade.alert-success');
                     break;
             //Checking required field (red color(class alert) & message 
@@ -319,10 +322,6 @@ class DeliveryTestHelper {
         else { $I->fail( "there are no created payments" ); }
         return $PaymentMethods;
     }
-    
-     
-    
-    //------------------------FOR EDIT------------------------------------------
     
     /**
      * Edit delivery method by specifying parameters, 
@@ -405,5 +404,27 @@ class DeliveryTestHelper {
             else { $I->fail("Unknown type"); }
         }
         $I->click(DeliveryEditPage::$ButtonSave);
+    }
+    
+     /**
+     * Search of delivery method in list and return his row or false if not present
+     * 
+     * @param   AcceptanceTester    $I          controller
+     * @param   type                $methodname name of delivery method which you want to search
+     * @return  int|boolean         if Delivery Method is present return method row else return false
+     */
+    protected function SearchDeliveryMethod(AcceptanceTester $I,$methodname){
+        $rows = $I->grabClassCount($I, 'niceCheck')-1;
+        $present = FALSE;
+        for($row = 1;$row <= $rows; ++$row){
+            $CMethod = $I->grabTextFrom(DeliveryPage::ListMethodLine($row));
+            
+            if($CMethod == $methodname){
+                $present = TRUE;
+                break;
+            }
+        }
+        if ($present == 'true') { return $row; }
+        else { return $present; }
     }
 }
