@@ -4,7 +4,7 @@ use \AcceptanceTester;
 include_once __DIR__.'\DeliveryHelper.php';
 
 class DeliveryListCest extends DeliveryTestHelper{
-    public $name = "ДоставкаУдалить";
+    public $name = "ДоставкаСписокТест";
     
     public function _before(AcceptanceTester $I){
         static $callcount=0;
@@ -23,7 +23,7 @@ class DeliveryListCest extends DeliveryTestHelper{
     }
 
     /**
-     * @group list0
+     * @group list
      */
     public function Initialization(AcceptanceTester $I) {
         if(!$this->SearchDeliveryMethod($I, $this->name)) { 
@@ -75,11 +75,20 @@ class DeliveryListCest extends DeliveryTestHelper{
     }
     
     /**
-     * @group list
-     * @todo Verify that unactive method isn't present at frontend
+     * Verify that unactive method isn't present at frontend
+     * @group list0
      */
       public function ToggleUnActive (AcceptanceTester $I){
-          
+          $row = $this->SearchDeliveryMethod($I, $this->name);
+          if($row) {
+              $ActiveButtonClass = $I->grabAttributeFrom (DeliveryPage::ListActiveButtonLine($row), 'class');
+              $I->comment($ActiveButtonClass);
+              if( $ActiveButtonClass == 'prod-on_off ') $I->click(DeliveryPage::ListActiveButtonLine($row));
+              $missing = $this->CheckMethodNotPresentInFrontEnd($I, $this->name);
+              if(!$missing)     $I->fail ('Unactive Method is present in front end');
+              elseif ($missing) $I->assertEquals(true, true, "Unactive Method is missing in front end");
+          }
+              else $I->fail('There are no method $this->name for testing ToggleUnActive, create it before test');
       }
     
     /**
@@ -112,11 +121,13 @@ class DeliveryListCest extends DeliveryTestHelper{
         }
         
     /**
-     * @group list0
+     * @group list
      * @todo Try to drag&drop if can't , write Jquery Helper for this
      */
       public function DragDrop (AcceptanceTester $I){
-          
+          $CSSelement = ".btn.dropdown-toggle";
+          $I->scrollToElement($I,$CSSelement);
+          $I->wait(5);
       }
     
 }
