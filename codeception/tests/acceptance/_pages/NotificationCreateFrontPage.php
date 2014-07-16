@@ -3,7 +3,7 @@
 class NotificationCreateFrontPage
 {
     public static $PageURL = "/shop/category/telefoniia-pleery-gps/telefony/smartfony?per_page=12";
-    public static $ButtonOnPage = "button.infoBut.isDrop";
+    public static $ButtonOnPage = ".infoBut.isDrop";
     public static $ButtonX = "//div[9]/div/button";
     public static $Img = "//div[9]/div/div[2]/div/div/div/ul/li/a/span/img";
     public static $LinkNameProduct = "//div[9]/div/div[2]/div/div/div/ul/li/a/span[2]";
@@ -19,7 +19,7 @@ class NotificationCreateFrontPage
     public static $FildUserStar = "//label/span[2]/span";
     public static $FildEmeilStar = "//label[2]/span[2]/span";
     public static $FildUserPresent = "//span[2]/input";
-    public static $FildEmeilPresent = "//label[2]/span[2]/input";
+    public static $FildEmeilPresent = "input[name='UserEmail']";
     public static $FildPhonePresent = "//label[3]/span[2]/input";
     public static $FildCommentPresent = "//textarea";
     public static $ButtonSendPresent = "//span[2]/div/button";
