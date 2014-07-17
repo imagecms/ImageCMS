@@ -11,8 +11,8 @@ class PaymentListPage
     static $Title   = '.title';
     
     //buttons
-    static $CreateButton = ".btn.btn-small.btn-success.pjax";
-    static $DeleteBytton = "#del_sel_pm";
+    static $ButtonCreate = ".btn.btn-small.btn-success.pjax";
+    static $ButtonDelete = "#del_sel_pm";
 
     //table header
     static $CheckboxHeader          = '.t-a_c.span1 .niceCheck';
@@ -60,7 +60,7 @@ class PaymentListPage
  * Locators of elements at "payment create" page
  */
 class PaymentCreatePage{
-    static $URL = 'http://cmsprem.loc/admin/components/run/shop/paymentmethods/create';
+    public static $PageURL = '/admin/components/run/shop/paymentmethods/create';
     
     static $Title       = '.title';
     static $TitleHead   = '//thead//th';
@@ -132,5 +132,7 @@ class PaymentEditPage{
         $system = "//select[@name='PaymentSystemName']/option[$row]";
         return $row;
     }
+    
+    //additional fields
     
 }
