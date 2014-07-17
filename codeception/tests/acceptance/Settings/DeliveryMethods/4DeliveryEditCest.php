@@ -4,7 +4,9 @@ use \AcceptanceTester;
 include_once __DIR__.'\DeliveryHelper.php';
 
 class DeliveryEditCest extends DeliveryTestHelper{
-        
+    //For For deleting
+    protected $CreatedMethods = [];
+    
     public $name = "ДоставкаРедактирование";
     
     /**
@@ -67,6 +69,9 @@ class DeliveryEditCest extends DeliveryTestHelper{
     public function EName250(AcceptanceTester $I)
     {
         $name = InitTest::$text250;
+                //For deleting
+        $this->CreatedMethods[]=$name;
+        
         $this->EditDelivery($I, ['name' => $name]);
         $this->CheckForAlertPresent($I, "success",NULL,NULL,'edit');
         $this->CheckInList($I, $name);
@@ -77,6 +82,9 @@ class DeliveryEditCest extends DeliveryTestHelper{
      */
     public function EName500(AcceptanceTester $I) {
         $name = InitTest::$text500;
+                //For deleting
+        $this->CreatedMethods[]=$name;
+        
         $this->EditDelivery ($I, ['name' => $name]);
         $this->CheckForAlertPresent($I, 'success',null, null, "edit");
         $this->CheckInList($I, $name);
@@ -87,6 +95,9 @@ class DeliveryEditCest extends DeliveryTestHelper{
      */
     public function EName501(AcceptanceTester $I) {
         $name = InitTest::$text501;
+                //For deleting
+        $this->CreatedMethods[]=$name;
+        
         $this->EditDelivery($I, ['name'=>$name]);
         $this->CheckForAlertPresent($I, 'error', NULL, NULL, 'edit');
         $I->see("Редактирование способа доставки: ".$this->name,'.title');
@@ -97,6 +108,9 @@ class DeliveryEditCest extends DeliveryTestHelper{
      */
     public function ENameSymbols(AcceptanceTester $I) {
         $name = InitTest::$textSymbols;
+                //For deleting
+        $this->CreatedMethods[]=$name;
+        
         $this->EditDelivery($I, ['name' => $name]);
         $this->CheckForAlertPresent($I, 'success', null, null, 'edit');
         $this->CheckInList($I, $name);
@@ -107,6 +121,8 @@ class DeliveryEditCest extends DeliveryTestHelper{
      */
     public function ENameNormal(AcceptanceTester $I) {
         $name = "ДоставкаРедактирование";
+                //For deleting
+        $this->CreatedMethods[]=$name;
         $this->EditDelivery($I, ['name' => $name]);
         $this->CheckForAlertPresent($I, 'success', null, null, 'edit');
         $this->CheckInList($I, $name);
@@ -150,7 +166,7 @@ class DeliveryEditCest extends DeliveryTestHelper{
         $this->CheckInFrontEnd($I, $this->name, $description);
     }
     
-    //-----------------------FIELDS PRICE & FREE FROM TESTS---------------------
+    //-----------------------FIELDS PRICE--------------------------------------- 
 
     /**
      * @group edit
@@ -200,6 +216,8 @@ class DeliveryEditCest extends DeliveryTestHelper{
         $this->CheckInList($I, $this->name, NULL, $price);
     }
 
+    //-----------------------FREE FROM TESTS------------------------------------
+    
     /**
      * @group edit
      */
@@ -342,5 +360,15 @@ class DeliveryEditCest extends DeliveryTestHelper{
         $this->CheckForAlertPresent($I, 'success', null, null, 'edit');
         $this->CheckInFrontEnd($I, $this->name, NULL, null, null, null, $pay);
         
+    }
+    
+     /**
+     * @group edit
+     */
+    public function DeleteAllCreatedMethods(AcceptanceTester $I) {
+        $I->amOnPage(DeliveryPage::$URL);
+        //Deleting
+        $this->DeleteDeliveryMethods($I, $this->CreatedMethods);
+        unset($this->CreatedMethods);
     }
 }
