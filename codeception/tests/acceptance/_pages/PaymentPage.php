@@ -101,4 +101,36 @@ class PaymentCreatePage{
  */
 class PaymentEditPage{
     
+    static $Title       = '.title';
+    static $TitleHead   = '//thead//th';
+    
+    //Buttons
+    static $ButtonBack          = '.t-d_u';
+    static $ButtonSave          = '.btn.btn-small.btn-primary.formSubmit';
+    static $ButtonSaveExit      = '.btn.btn-small.formSubmit:nth-child(3)';
+
+    //Labels
+    static $NameLabel           = "//form/div[1]/div[1]/label";
+    static $CurrencyLabel       = "//form/div[1]/div[2]/label";
+    static $Activelabel         = '//form/div[1]/div[3]/div[2]/span';
+    static $DescriptionLable    = '//form/div[2]/label';
+    static $PaymentSystemLabel  = '//form/div[3]/div[1]/label"]';
+    
+    //Fields
+    static $FieldName           = '//input[@name="Name"]';
+    static $FieldDescription    = '//textarea[@name="Description"]';
+    
+    //Selects
+    static $SelectCurrency      = '//select[@name="CurrencyId"]';
+    static function SelectCurrency($row) {
+        $currency = "//select[@name='CurrencyId']/option[2]";
+        return $currency;
+    }
+    
+    static $SelectPaymentSystem = '//select[@name="PaymentSystemName"]';
+    static function SelectPaymentSystem($row){
+        $system = "//select[@name='PaymentSystemName']/option[$row]";
+        return $row;
+    }
+    
 }
