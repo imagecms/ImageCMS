@@ -22,7 +22,7 @@
             <form method="post" id="register-form">
                 <div class="vertical-form inside-padd">
                     <label class="form-create-shop2">
-                        <input type="text" name="domain" value="{echo isset($domain) ? $domain : set_value('domain')}" placeholder="{lang('Название магазина', 'newLevel')}" autofocus/>
+                        <input type="text" name="domain" value="{echo isset($_POST['domain']) ? $_POST['domain'] : set_value('domain')}" placeholder="{lang('Название магазина', 'newLevel')}" autofocus/>
                         <span class="addon d_i-b">
                             .premmerce.com
                         </span>
