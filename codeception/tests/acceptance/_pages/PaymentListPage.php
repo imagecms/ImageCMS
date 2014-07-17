@@ -65,17 +65,20 @@ class PaymentCreatePage{
     static $Title       = '.title';
     static $TitleHead   = '//thead//th';
     
+    static $CheckboxActive = ".niceCheck";
+
+
     //Buttons
     static $ButtonBack          = '.t-d_u';
     static $ButtonCreate        = '.btn.btn-small.btn-success.formSubmit';
     static $ButtonCreateExit    = '.btn.btn-small.formSubmit:nth-child(3)';
 
     //Labels
-    static $NameLabel           = "//label[@for='Name']";
-    static $CurrencyLabel       = "//label[@for='CurrencyId']";
-    static $Activelabel         = '.frame_label.active';
-    static $DescriptionLable    = '//label[@for="Description"]';
-    static $PaymentSystemLabel  = '//label[@for="inputRecCount"]';
+    static $LabelName           = "//label[@for='Name']";
+    static $LabelCurrency       = "//label[@for='CurrencyId']";
+    static $LabelActive         = '.frame_label.active';
+    static $LableDescription    = '//label[@for="Description"]';
+    static $LabelPaymentSystem  = '//label[@for="inputRecCount"]';
     
     //Fields
     static $FieldName           = '#Name';
