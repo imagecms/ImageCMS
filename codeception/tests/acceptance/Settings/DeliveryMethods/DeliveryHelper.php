@@ -310,7 +310,7 @@ class DeliveryTestHelper {
      * @return  array               $PaymentMethods
      */
     protected function GrabAllCreatedPayments(AcceptanceTester $I) {
-        $I->amOnPage(PaymentPage::$URL);
+        $I->amOnPage(PaymentListPage::$URL);
         $I->waitForText("Список способов оплаты", NULL, ".title");
         /**
          * @var int $rows Count of table rows
@@ -319,7 +319,7 @@ class DeliveryTestHelper {
         $rows = $I->grabClassCount($I, 'niceCheck')-1;
         if ($rows > 0){//was !=0
             $I->comment("I want to read and remember all created payment methods");
-            for ($row = 1;$row<=$rows;++$row) { $PaymentMethods[$row] = $I->grabTextFrom (PaymentPage::ListMethodLine($row)); }
+            for ($row = 1;$row<=$rows;++$row) { $PaymentMethods[$row] = $I->grabTextFrom (PaymentListPage::MethodNameLine($row)); }
         }
         else { $I->fail( "there are no created payments" ); }
         return $PaymentMethods;
