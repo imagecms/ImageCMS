@@ -86,8 +86,7 @@ class MY_Controller extends MX_Controller {
             $this->db->cache_off();
 
             return (bool) count($res);
-        }
-        else
+        } else
             return false;
     }
 
@@ -116,8 +115,7 @@ class MY_Controller extends MX_Controller {
                 $defaultLanguage = self::getDefaultLanguage();
                 self::$currentLocale = $defaultLanguage['identif'];
             }
-        }
-        else
+        } else
             self::$currentLocale = chose_language();
 
         return self::$currentLocale;
