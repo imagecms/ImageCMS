@@ -408,7 +408,9 @@ class DeliveryTestHelper {
         $I->click(DeliveryEditPage::$ButtonSave);
     }
     
-     /**
+    /**
+     * Delivery searching
+     * 
      * Search of delivery method in list and return his row or false if not present
      * 
      * @param   AcceptanceTester    $I          controller
@@ -431,7 +433,10 @@ class DeliveryTestHelper {
     }
     
     /**
+     * FrontEnd present
+     * 
      * Check that delivery method is not present in processing order  page of Front End
+     * 
      * @staticvar boolean $WasCalled
      * @param AcceptanceTester $I controller
      * @param type $name Delivery Method name
@@ -492,28 +497,18 @@ class DeliveryTestHelper {
                     foreach ($Methods as $value) {
                         if($CurrentRowMethod == $value){
                             $I->click (DeliveryPage::ListCheckboxLine ($row));
-                            $I->click(DeliveryPage::$DeleteButton);
-                            $I->waitForText("Удаление способов доставки", NULL, "//*[@id='mainContent']/div/div[1]/div[1]/h3");
-                            $I->click(DeliveryPage::$DeleteWindowDelete);
-                            $this->CheckForAlertPresent($I, 'success', null, null, 'delete');
-                            $AllMethodsCount--;
-                            $row--;
-                        }        
+                        }
                     }
                 }
                 else {
                     if($CurrentRowMethod == $Methods){
                             $I->click (DeliveryPage::ListCheckboxLine ($row));
-                            $I->click(DeliveryPage::$DeleteButton);
-                            $I->waitForText("Удаление способов доставки", NULL, "//*[@id='mainContent']/div/div[1]/div[1]/h3");
-                            $I->click(DeliveryPage::$DeleteWindowDelete);
-                            $this->CheckForAlertPresent($I, 'success', null, null, 'delete');
-                            $AllMethodsCount--;
-                            $row--;
                         }        
-                
-                    
                 }   
             }
+            $I->click(DeliveryPage::$DeleteButton);
+            $I->waitForText("Удаление способов доставки", NULL, "//*[@id='mainContent']/div/div[1]/div[1]/h3");
+            $I->click(DeliveryPage::$DeleteWindowDelete);
+            $this->CheckForAlertPresent($I, 'success', null, null, 'delete');
         }    
 }
