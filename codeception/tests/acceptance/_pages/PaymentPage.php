@@ -62,6 +62,38 @@ class PaymentListPage
 class PaymentCreatePage{
     static $URL = 'http://cmsprem.loc/admin/components/run/shop/paymentmethods/create';
     
+    static $Title       = '.title';
+    static $TitleHead   = '//thead//th';
+    
+    //Buttons
+    static $ButtonBack          = '.t-d_u';
+    static $ButtonCreate        = '.btn.btn-small.btn-success.formSubmit';
+    static $ButtonCreateExit    = '.btn.btn-small.formSubmit:nth-child(3)';
+
+    //Labels
+    static $NameLabel           = "//label[@for='Name']";
+    static $CurrencyLabel       = "//label[@for='CurrencyId']";
+    static $Activelabel         = '.frame_label.active';
+    static $DescriptionLable    = '//label[@for="Description"]';
+    static $PaymentSystemLabel  = '//label[@for="inputRecCount"]';
+    
+    //Fields
+    static $FieldName           = '#Name';
+    static $FieldDescription    = '#Description';
+    
+    //Selects
+    static $SelectCurrency      = '#CurrencyId';
+    static function SelectCurrency($row) {
+        $currency = "//select[@id='CurrencyId']/option[$row]";
+        return $currency;
+    }
+    
+    static $SelectPaymentSystem = '//select[@name="PaymentSystemName"]';
+    static function SelectPaymentSystem($row){
+        $system = "//select[@name='PaymentSystemName']/option[$row]";
+        return $row;
+    }
+     
 }
 
 /**
