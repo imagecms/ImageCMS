@@ -56,88 +56,10 @@ class PaymentListPage
     }
 }
 
-/**
- * Locators of elements at "payment create" page
- */
-class PaymentCreatePage{
-    public static $PageURL = '/admin/components/run/shop/paymentmethods/create';
-    
-    static $Title       = '.title';
-    static $TitleHead   = '//thead//th';
-    
-    static $CheckboxActive = ".niceCheck";
-
-
-    //Buttons
-    static $ButtonBack          = '.t-d_u';
-    static $ButtonCreate        = '.btn.btn-small.btn-success.formSubmit';
-    static $ButtonCreateExit    = '.btn.btn-small.formSubmit:nth-child(3)';
-
-    //Labels
-    static $LabelName           = "//label[@for='Name']";
-    static $LabelCurrency       = "//label[@for='CurrencyId']";
-    static $LabelActive         = '.frame_label.active';
-    static $LableDescription    = '//label[@for="Description"]';
-    static $LabelPaymentSystem  = '//label[@for="inputRecCount"]';
-    
-    //Fields
-    static $FieldName           = '#Name';
-    static $FieldDescription    = '#Description';
-    
-    //Selects
-    static $SelectCurrency      = '#CurrencyId';
-    static function SelectCurrency($row) {
-        $currency = "//select[@id='CurrencyId']/option[$row]";
-        return $currency;
-    }
-    
-    static $SelectPaymentSystem = '//select[@name="PaymentSystemName"]';
-    static function SelectPaymentSystem($row){
-        $system = "//select[@name='PaymentSystemName']/option[$row]";
-        return $row;
-    }
-     
-}
-
-/**
- * Locators of elements at "payment edit" page
- */
-class PaymentEditPage{
-    
-    static $Title       = '.title';
-    static $TitleHead   = '//thead//th';
-    
-    static $CheckboxActive = ".niceCheck";
-    
-    //Buttons
-    static $ButtonBack          = '.t-d_u';
-    static $ButtonSave          = '.btn.btn-small.btn-primary.formSubmit';
-    static $ButtonSaveExit      = '.btn.btn-small.formSubmit:nth-child(3)';
-
-    //Labels
-    static $NameLabel           = "//form/div[1]/div[1]/label";
-    static $CurrencyLabel       = "//form/div[1]/div[2]/label";
-    static $Activelabel         = '//form/div[1]/div[3]/div[2]/span';
-    static $DescriptionLable    = '//form/div[2]/label';
-    static $PaymentSystemLabel  = '//form/div[3]/div[1]/label';
-    
-    //Fields
-    static $FieldName           = '//input[@name="Name"]';
-    static $FieldDescription    = '//textarea[@name="Description"]';
-    
-    //Selects
-    static $SelectCurrency      = '//select[@name="CurrencyId"]';
-    static function SelectCurrency($row) {
-        $currency = "//select[@name='CurrencyId']/option[2]";
-        return $currency;
-    }
-    
-    static $SelectPaymentSystem = '//select[@name="PaymentSystemName"]';
-    static function SelectPaymentSystem($row){
-        $system = "//select[@name='PaymentSystemName']/option[$row]";
-        return $row;
-    }
-    
-    //additional fields
-    
-}
+//class PaymentAlertsPage {
+//    //allerts
+//    public static $AlertError       = 'alert in fade alert-error';      //max symbols
+//    public static $AlertSuccess     = 'alert in fade alert-success';    //suxess changes or creating
+//    public static $AlertRequiredLabel   = 'label.alert.alert-error';    //required field message under field
+//    public static $AlertRequiredField   = 'input.alert.alert-error';    //required field class
+//}
