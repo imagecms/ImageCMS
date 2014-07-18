@@ -107,6 +107,8 @@ class PaymentEditPage{
     static $Title       = '.title';
     static $TitleHead   = '//thead//th';
     
+    static $CheckboxActive = ".niceCheck";
+    
     //Buttons
     static $ButtonBack          = '.t-d_u';
     static $ButtonSave          = '.btn.btn-small.btn-primary.formSubmit';
@@ -117,7 +119,7 @@ class PaymentEditPage{
     static $CurrencyLabel       = "//form/div[1]/div[2]/label";
     static $Activelabel         = '//form/div[1]/div[3]/div[2]/span';
     static $DescriptionLable    = '//form/div[2]/label';
-    static $PaymentSystemLabel  = '//form/div[3]/div[1]/label"]';
+    static $PaymentSystemLabel  = '//form/div[3]/div[1]/label';
     
     //Fields
     static $FieldName           = '//input[@name="Name"]';
