@@ -5,57 +5,111 @@
  *
  * @author kolia
  */
-class Premmerce extends MY_Controller {
+final class Premmerce extends MY_Controller {
 
-    const EXC_ERROR = 1;
-    const EXC_SUCCESS = 2;
+    const EXCEPTION_ERROR = 1;
+    const EXCEPTION_SUCCESS = 2;
 
-    public function __construct() {
-        parent::__construct();
-        $this->load->library('form_validation');
-    }
+    private $email;
+    private $token;
 
     public function index() {
         try {
 
-            $this->form_validation->set_rules('email', 'Email', 'trim|required|xss_clean|valid_email');
-            $this->form_validation->set_rules('token', 'Token', 'trim|required|xss_clean|valid_email');
 
-            if ($this->form_validation->run($this) !== false) {
-                throw new \Exception(validation_errors(), self::EXC_ERROR);
-            }
-
-            $email = $this->input->get('email');
-            $token = $this->input->get('token');
-
-            // перевірка чи прийшов саме із premmerce.com
-            // @TODO треба буде зробити якусь нормальну перевірку
-            if (isset($_SERVER['HTTP_REFERER']) && strpos($_SERVER['HTTP_REFERER'], 'premmerce') !== false) {
-                
-            }
 
             if ($this->dx_auth->is_logged_in()) {
-                throw new \Exception('');
+                throw new \Exception('Already logged in', self::EXCEPTION_SUCCESS);
             }
 
-            $userEmail = strip_tags(trim($_POST['email']));
-            $userEmail = htmlspecialchars($userEmail);
-            $userEmail = mysql_escape_string($userEmail);
-
-            $result = $this->db
-                    ->select('id')
-                    ->where('email', $userEmail)
-                    ->limit(1)
-                    ->get();
-
-            if (!$result) {
-                throw new \Exception;
+            if (!isset($_GET['email']) || !isset($_GET['token'])) {
+                throw new \Exception('No params', self::EXCEPTION_ERROR);
             }
 
-            $status = (int) $this->dx_auth->_create_autologin($result->row()->id);
+
+            $this->email = $_GET['email'];
+
+            $this->token = $_GET['token'];
+          
+            //$this->checkReferer();
+            $this->checkInputParams();
+
+            $userId = $this->getUserId();
+
+            $status = $this->dx_auth->_create_autologin($userId);
+
+            if ($status == TRUE) {
+                throw new \Exception('Succesfully logged in', self::EXCEPTION_SUCCESS);
+            } else {
+                throw new \Exception('Error', self::EXCEPTION_ERROR);
+            }
         } catch (\Exception $ex) {
-            \CMSFactory\assetManager::registerJsScript('window.close();');
+
+            // Please forgive me gods of code - I know that html in controller is bad. I'm sinner...
+
+            $clr = $ex->getCode() == self::EXCEPTION_SUCCESS ? 'green' : 'red';
+            $msg = $ex->getMessage();
+
+            echo "<div style='color:{$clr}'>{$msg}</div>";
+            echo "<script>setTimeout(function(){window.close();},1000);</script>";
         }
+    }
+
+    
+
+    /**
+     * Перевірка чи прийшов саме із premmerce.com та із свого аккаунту
+     * @throws \Exception
+     */
+    private function checkReferer() {
+        // @TODO треба буде зробити якусь нормальну перевірку
+        if (!isset($_SERVER['HTTP_REFERER'])) {
+            throw new \Exception('No referer', self::EXCEPTION_ERROR);
+        }
+        if (strpos($_SERVER['HTTP_REFERER'], 'premmerce') !== false) {
+            throw new \Exception('Wrong referer', self::EXCEPTION_ERROR);
+        }
+    }
+
+    /**
+     * Перевірка чи співпадає емейл і токен
+     * @throws \Exception
+     */
+    private function checkInputParams() {
+        $encKey = \CI::$APP->config->item('encryption_key');
+
+        // тута має використовуватись такий самий алгоритм створення токену 
+        // як на біллінгу
+        $token = md5($this->email . $encKey . 'lead me to the light');
+
+        if ($token !== $this->token) {
+            throw new \Exception('Invalid input data 1', self::EXCEPTION_ERROR);
+        }
+    }
+
+    /**
+     * Повертає ід користувача 
+     * (логування йде за ід)
+     * + перевірка чи він має роль адміна
+     * @throws \Exception
+     */
+    private function getUserId() {
+
+        $email = strip_tags($this->email);
+        $email = htmlspecialchars($email);
+        $email = mysql_real_escape_string($email);
+
+        $result = $this->db
+                ->select(array('id', 'role_id'))
+                ->where('email', $email)
+                ->limit(1)
+                ->get('users');
+               
+        if (!$result) {
+            throw new \Exception('Invalid input data 2', self::EXCEPTION_ERROR);
+        }
+
+        return $result->row()->id;
     }
 
 }
