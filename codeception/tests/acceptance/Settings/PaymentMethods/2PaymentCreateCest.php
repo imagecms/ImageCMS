@@ -3,8 +3,8 @@ use \AcceptanceTester;
 
 class PaymentCreateCest
 {
-    protected $Createdmethods = []; 
-    protected static $logged = false;
+    protected $Createdmethods   = []; 
+    protected static $logged    = false;
     
     public function _before(AcceptanceTester $I){
         if(self::$logged) $I->amOnPage(PaymentCreatePage::$URL);
@@ -31,7 +31,9 @@ class PaymentCreateCest
      * @group create
      */
     public function NameNoramal(AcceptanceTester $I){
-        $name = "ОплатаТест";
+        $name                   = "ОплатаТест";
+        $this->Createdmethods[] = $name;
+        
         $this->PaymentCreate($I, $name);
         $this->CheckForAlertPresent($I, 'success');
     }
@@ -40,7 +42,9 @@ class PaymentCreateCest
      * @group create
      */
     public function Name250(AcceptanceTester $I){
-        $name = InitTest::$text250;
+        $name                   = InitTest::$text250;
+        $this->Createdmethods[] = $name;
+        
         $this->PaymentCreate($I, $name);
         $this->CheckForAlertPresent($I, 'success');
     }
@@ -49,7 +53,9 @@ class PaymentCreateCest
      * @group create
      */
     public function Name251(AcceptanceTester $I){
-        $name = InitTest::$text251;
+        $name                   = InitTest::$text251;
+        $this->Createdmethods[] = $name;
+        
         $this->PaymentCreate($I, $name);
         $this->CheckForAlertPresent($I, 'error');
     }
@@ -78,6 +84,7 @@ class PaymentCreateCest
     
     //-----------------------PROTECTED METHODS----------------------------------
     /**
+     * Create payment method with specified parameters
      * 
      * @param AcceptanceTester $I   Controller
      * @param string $name          Fill field "Name"
@@ -128,6 +135,7 @@ class PaymentCreateCest
     }
     
     /**
+     * Checks that selected  Alert is present in the page
      * 
      * @param AcceptanceTester  $I      controller
      * @param string            $type   success|error|required
@@ -150,6 +158,18 @@ class PaymentCreateCest
                 $I->fail('passed incorrect variable: "$type" to method');
         }
     }
+    /**
+     * @todo Complete methods specified below
+     */
+    protected function DeletePayments(AcceptanceTester $I) {
+        
+    }
+    protected function CreateCurrencies(AcceptanceTester $I) {
+        
+    }    
+    protected function CrabAllCreatedCurrencies(AcceptanceTester $I) {
+        
+    } 
     protected function CheckInListPresent(AcceptanceTester $I) {
         
     }
