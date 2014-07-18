@@ -30,6 +30,11 @@ class PaymentListPage
     static $DeleteWindowButtonBack      = '.modal-footer a.btn:nth-child(2)';
     static $DeleteWindowButtonXClose    = '.close';
 
+    //allerts for all pages?
+    public static $AlertError       = '.alert.in.fade.alert-error';      //max symbols
+    public static $AlertSuccess     = '.alert.in.fade.alert-success';    //suxess changes or creating
+    public static $AlertRequiredLabel   = 'label.alert.alert-error';    //required field message under field
+    public static $AlertRequiredField   = 'input.alert.alert-error';    //required field class
 
     //table rows
     static function CheckboxLine($row){
@@ -56,10 +61,4 @@ class PaymentListPage
     }
 }
 
-//class PaymentAlertsPage {
-//    //allerts
-//    public static $AlertError       = 'alert in fade alert-error';      //max symbols
-//    public static $AlertSuccess     = 'alert in fade alert-success';    //suxess changes or creating
-//    public static $AlertRequiredLabel   = 'label.alert.alert-error';    //required field message under field
-//    public static $AlertRequiredField   = 'input.alert.alert-error';    //required field class
-//}
+
