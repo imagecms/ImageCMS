@@ -11,7 +11,7 @@
     </div>
 {else:}
     <div class="btn-enter">
-        <a href="{site_url('/shop/profile')}">
+        <a href="{site_url('/saas/profile')}">
             <span class="icon_enter"></span>
             <span class="text-el">{lang('Кабинет','newLevel')}</span>
         </a>
