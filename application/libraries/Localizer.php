@@ -4,11 +4,11 @@
  * @property CI $CI
  */
 class Localizer {
+
     /**
      * System locale
      * @var string 
      */
-
     const SYSTEM_LOCALE = 'en';
 
     /**
@@ -40,7 +40,7 @@ class Localizer {
         $this->CI->load->config('localizer');
 
         self::$LOCALIZER_SETTINGS = $this->CI->config->item('localizer');
-        self::$DOMAIN_LOCALE = $this->getDomainTL();
+        self::$DOMAIN_LOCALE = $this->get1LevelDomainName();
         self::$DOMAIN_SETTINGS = isset(self::$LOCALIZER_SETTINGS[self::$DOMAIN_LOCALE]) ? self::$LOCALIZER_SETTINGS[self::$DOMAIN_LOCALE] : self::$LOCALIZER_SETTINGS[self::SYSTEM_LOCALE];
     }
 
@@ -85,10 +85,10 @@ class Localizer {
     }
 
     /**
-     * Get domain top level name
+     * Get first-level domain name
      * @return string
      */
-    private function getDomainTL() {
+    public function get1LevelDomainName() {
         $domain = $_SERVER['HTTP_HOST'];
         $domain_locale = array_pop(explode('.', $domain));
 

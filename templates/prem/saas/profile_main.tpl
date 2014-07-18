@@ -100,7 +100,8 @@
                 <div class="left">
                     {load_menu('saas_left_menu')}
                 </div>
-                {if $CI->core->core_data['data_type'] == 'main'}
+                {var_dump($CI->core->core_data['data_type'])}
+                {if $CI->uri->uri_string() == 'saas/profile'}
                     <div class="right"
                          data-mq-elem-pool=".main-body"
                          data-mq-prop-pool="height"

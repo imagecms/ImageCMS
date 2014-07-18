@@ -59,10 +59,10 @@
                     </tr>
                     <tr>
                         <th>
-                            {lang('Вместимоть','prem')}
+                            {lang('Вместимоcть','prem')}
                         </th>
                         <td>
-                            <span class="important-text">{echo $stat[$user_tariff['server_username']]['quotaUsed']/1000} Gb</span> / {$user_tariff.disk_limit} Gb
+                            <span class="important-text">{echo $stat[$user_tariff['server_username']]['quotaUsed']} Mb</span> / {$user_tariff.disk_limit} Mb
                             <div class="out-range">
                                 <div class="range" style="width: {echo round((($stat[$user_tariff['server_username']]['quotaUsed']/1000)*100)/$user_tariff.disk_limit)}%;"></div>
                             </div>
