@@ -5,7 +5,7 @@ class PaymentElementsCest
 {
 
     /**
-     * @group current
+     * @group verify
      */
     public function Authorization(AcceptanceTester $I)
     {
@@ -43,12 +43,12 @@ class PaymentElementsCest
     }
     
     /**
-     * @group current
+     * @group verify
      */
     public function PaymentCreateElements(AcceptanceTester $I) {
         $I->click(PaymentListPage::$ButtonCreate);
-        $I->waitForText("Создание способа оплаты", NULL, PaymentCreatePage::$Title);
-        $I->see("Создание способа оплаты", PaymentCreatePage::$TitleHead);
+        $I->waitForText('Создание способа оплаты', NULL, PaymentCreatePage::$Title);
+        $I->see('Создание способа оплаты', PaymentCreatePage::$TitleHead);
         $I->see('Вернуться',        PaymentCreatePage::$ButtonBack);
         $I->see('Создать',          PaymentCreatePage::$ButtonCreate);
         $I->see('Создать и выйти',  PaymentCreatePage::$ButtonCreateExit);
@@ -62,12 +62,32 @@ class PaymentElementsCest
         $I->seeElement(PaymentCreatePage::$FieldDescription);
         $I->see('Система оплаты:', PaymentCreatePage::$LabelPaymentSystem);
         $I->seeElement(PaymentCreatePage::$SelectPaymentSystem);
+        $I->click(PaymentCreatePage::$ButtonBack);
+        $I->waitForText("Список способов оплаты",NULL, PaymentListPage::$Title);
     }
     
     /**
-     * @group current
+     * @group verify
      */
     public function PaymentEditElements(AcceptanceTester $I) {
+        $I->click("//tbody//tr[1]//a");
+        $I->waitForText('Редактирование способа оплаты', NULL, PaymentEditPage::$Title);
+        $I->see('Редактирование способа оплаты', PaymentEditPage::$TitleHead);
+        $I->see('Вернуться',        PaymentEditPage::$ButtonBack);
+        $I->see('Сохранить',          PaymentEditPage::$ButtonSave);
+        $I->see('Сохранить и выйти',  PaymentEditPage::$ButtonSaveExit);
+        $I->see('Название: *', PaymentEditPage::$NameLabel);
+        $I->seeElement(PaymentEditPage::$FieldName);
+        $I->see('Валюта:', PaymentEditPage::$CurrencyLabel);
+        $I->seeElement(PaymentEditPage::$SelectCurrency);
+        $I->see("Активный", PaymentEditPage::$Activelabel);
+        $I->seeElement(PaymentEditPage::$CheckboxActive);
+        $I->see('Описание:', PaymentEditPage::$DescriptionLable);
+        $I->seeElement(PaymentEditPage::$FieldDescription);
+        $I->see('Система оплаты:', PaymentEditPage::$PaymentSystemLabel);
+        $I->seeElement(PaymentEditPage::$SelectPaymentSystem);
+        $I->click(PaymentEditPage::$ButtonBack);
+        $I->waitForText("Список способов оплаты",NULL, PaymentListPage::$Title);        
         
     }
 }
