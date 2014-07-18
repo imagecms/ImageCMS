@@ -21,7 +21,7 @@ class PaymentCreatePage
     static $Title       = '.title';
     static $TitleHead   = '//thead//th';
     
-    static $CheckboxActive = ".niceCheck";
+    static $CheckboxActive = "//span[@class='niceCheck']";
 
 
     //Buttons
