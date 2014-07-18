@@ -44,7 +44,7 @@ class CustomCache {
      * @param Closure $dataSourceCallback function that returns actual data
      * @throws \Exception
      */
-    public function __construct($interval, $cacheFilename, Closure $dataSourceCallback) {
+    public function __construct($interval = 0, $cacheFilename, Closure $dataSourceCallback) {
         if (is_numeric($interval)) {
             $this->interval = $interval;
         } elseif (ENVIRONMENT == 'development') {
