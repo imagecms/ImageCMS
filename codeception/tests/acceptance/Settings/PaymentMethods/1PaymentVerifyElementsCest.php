@@ -40,6 +40,7 @@ class PaymentElementsCest
         $I->see('Отменить', PaymentListPage::$DeleteWindowButtonBack);
         $I->see('×',PaymentListPage::$DeleteWindowButtonXClose);
         $I->click(PaymentListPage::$DeleteWindowButtonXClose);
+        $I->waitForElementNotVisible(PaymentListPage::$DeleteWindowTitle);
     }
     
     /**
@@ -88,6 +89,5 @@ class PaymentElementsCest
         $I->seeElement(PaymentEditPage::$SelectPaymentSystem);
         $I->click(PaymentEditPage::$ButtonBack);
         $I->waitForText("Список способов оплаты",NULL, PaymentListPage::$Title);        
-        
     }
 }
