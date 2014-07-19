@@ -212,10 +212,6 @@ define('BUILD_ID', '461.832');
 
 define('IMAGECMS_PUBLIC_ID', '51035d2a96a227c54d0dea3ff415ced6d39266c3');
 
-/**
- * Saas
- */
-define('SAAS', false);
 /*
  * --------------------------------------------------------------------
  * LOAD THE BOOTSTRAP FILE
