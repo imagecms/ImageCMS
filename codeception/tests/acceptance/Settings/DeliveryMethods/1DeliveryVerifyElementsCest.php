@@ -93,7 +93,9 @@ class DeliveryVerifyElementsCest {
         $I->See("Цена:",DeliveryEditPage::$FieldPriceLabel);
         $I->see("Бесплатен от", DeliveryEditPage::$FieldFreeFromLabel);
         $I->see("Цена уточняется", DeliveryEditPage::$CheckboxPriceSpecifiedLabel);
-        $I->click(DeliveryEditPage::$CheckboxPriceSpecified);
+        if($I->grabAttributeFrom(DeliveryEditPage::$CheckboxPriceSpecified.'/..', 'class')== 'frame_label no_connection'){
+            $I->click(DeliveryEditPage::$CheckboxPriceSpecified);
+        }
         $I->waitForElementVisible(DeliveryCreatePage::$FieldPriceSpecified);
         $I->see("Сообщение про уточнение цены:",  DeliveryEditPage::$FieldPriceSpecifiedLabel);
         $I->see("Сохранить и выйти",DeliveryEditPage::$ButtonSaveExit);

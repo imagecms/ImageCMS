@@ -4,27 +4,23 @@ use \AcceptanceTester;
 
 include_once __DIR__.'\DeliveryHelper.php';
 
-/**
- * @todo try to include DeliveryHelpers.php
- */
-
 class DeliveryCreateCest extends DeliveryTestHelper{
-    //mb
-    public $CreatedMethods;
+    //For deleting
+    protected $CreatedMethods = [];
 
 
     public function _before(AcceptanceTester $I) {
-        static $callCount;
-        if($callCount){
+        static $called = false;
+        if($called){
         $I->amOnPage("/admin/components/run/shop/deliverymethods/index");
         $I->click(DeliveryPage::$CreateButton);
         $I->waitForText("Создание способа доставки", NULL, '.title');
         }
-        $callCount = true;
+        $called = true;
     }
     
     /**
-     * @group createa
+     * @group create
      */
     public function Authorization(AcceptanceTester $I) {
         InitTest::Login($I);
@@ -35,7 +31,7 @@ class DeliveryCreateCest extends DeliveryTestHelper{
     //-----------------------FIELD NAME TESTS-----------------------------------
     
     /**
-     * @group createa
+     * @group create
      */
     public function NameEmpty(AcceptanceTester $I) {
         $I->click(DeliveryCreatePage::$ButtonCreate);
@@ -43,35 +39,35 @@ class DeliveryCreateCest extends DeliveryTestHelper{
     }
 
     /**
-     * @group createa
+     * @group create
      */
     public function Name250(AcceptanceTester $I) {
         $name = InitTest::$text250;
-        
+        //For deleting
+        $this->CreatedMethods[]=$name;
+
         $this->CreateDelivery($I, $name);
         $this->CheckForAlertPresent($I, 'success');
         $this->CheckInList($I, $name);
         $this->CheckInFrontEnd($I, $name);
-        //mb
-        $this->CreatedMethods[]=$name;
     }
 
     /**
-     * @group createa
+     * @group create
      */
     public function Name500(AcceptanceTester $I) {
         $name = InitTest::$text500;
+        //For deleting
+        $this->CreatedMethods[]=$name;
         
         $this->CreateDelivery($I, $name);
         $this->CheckForAlertPresent($I, 'success');
         $this->CheckInList($I, $name);
         $this->CheckInFrontEnd($I, $name);
-                //mb
-        $this->CreatedMethods[]=$name;
     }
     
     /**
-     * @group createa
+     * @group create
      */
     public function Name501(AcceptanceTester $I) {
         $this->CreateDelivery($I, InitTest::$text501);
@@ -79,123 +75,123 @@ class DeliveryCreateCest extends DeliveryTestHelper{
     }
     
     /**
-     * @group createa
+     * @group create
      */
     public function NameSymbols(AcceptanceTester $I){
         $name = InitTest::$textSymbols;
+        //For deleting
+        $this->CreatedMethods[]=$name;
         
         $this->CreateDelivery($I, $name);
         $this->CheckForAlertPresent($I, "success");
         $this->CheckInList($I, $name);
         $this->CheckInFrontEnd($I, $name);
-                //mb
-        $this->CreatedMethods[]=$name;
     }
     
     //-----------------------CHECKBOX ACTIVE TESTS------------------------------
     
     /**
-     * @group createa
+     * @group create
      */
     public function ActiveCheck(AcceptanceTester $I){
         $name = "Доставка актив";
+        //For deleting
+        $this->CreatedMethods[]=$name;
         
         $this->CreateDelivery($I, $name, 'on');
         $this->CheckInList($I, $name,'on');
         $this->CheckInFrontEnd($I, $name);
-                        //mb
-        $this->CreatedMethods[]=$name;
     }
     
     /**
-     * @group createa
+     * @group create
      */
     public function ActiveUnCheck(AcceptanceTester $I) {
         $name = "Доставка неактив";
+        //For deleting
+        $this->CreatedMethods[]=$name;
         
         $this->CreateDelivery($I, $name, 'off');
         $this->CheckInList($I, $name,'off');
-                        //mb
-        $this->CreatedMethods[]=$name;
     }
     
     //-----------------------FIELD DESCRIPTION TESTS----------------------------
     
     /**
-     * @group createa
+     * @group create
      */
     public function Description(AcceptanceTester $I) {
         $name        = "Доставка Описание";
+        //For deleting
+        $this->CreatedMethods[]=$name;
         $description = $descriptionprice = InitTest::$textSymbols;
         
         $this->CreateDelivery($I, $name, 'on', $description, $descriptionprice);
         $this->CheckForAlertPresent($I, 'success');
         $this->CheckInFrontEnd($I,$name,$description);
-                        //mb
-        $this->CreatedMethods[]=$name;
         
     }
     
     //-----------------------FIELDS PRICE & FREE FROM TESTS---------------------
     
     /**
-     * @group createa
+     * @group create
      */
     public function PriceFreeFromSymb(AcceptanceTester $I) {
         $price = $freefrom = InitTest::$textSymbols;
         $name  = 'ДоставкаЦенаСимволи';
+        //For deleting
+        $this->CreatedMethods[]=$name;
         
         $this->CreateDelivery($I, $name, 'on', 'off', 'off', $price, $freefrom);
         $this->CheckForAlertPresent($I, 'success');
         $this->CheckInList($I, $name, NULL, $price, $freefrom);
         $this->CheckInFrontEnd($I, $name, null, $price, $freefrom);
-                        //mb
-        $this->CreatedMethods[]=$name;
     }
     
     /**
-     * @group createa
+     * @group create
      */
     public function PriceFreeFrom1num(AcceptanceTester $I) {
         $price = $freefrom = '1';
         $name  = 'ДоставкаЦена1Цифра';
+        //For deleting
+        $this->CreatedMethods[]=$name;
         
         $this->CreateDelivery($I, $name, 'on', 'off', 'off', $price, $freefrom);
         $this->CheckForAlertPresent($I, 'success');
         $this->CheckInList($I, $name, NULL, $price, $freefrom);
         $this->CheckInFrontEnd($I, $name, null, $price, $freefrom);
-                        //mb
-        $this->CreatedMethods[]=$name;
     }
     
     /**
-     * @group createa
+     * @group create
      */
     public function PriceFreeFrom10num(AcceptanceTester $I) {
         $price = $freefrom = '55555.55555';
         $name = 'ДоставкаЦена10Цифр';
+        //For deleting
+        $this->CreatedMethods[]=$name;
         
         $this->CreateDelivery($I, $name, 'on', 'off', 'off', $price, $freefrom);
         $this->CheckForAlertPresent($I, 'success');
         $this->CheckInList($I, $name, NULL, $price, $freefrom);
         $this->CheckInFrontEnd($I, $name, null, $price, $freefrom);
-                        //mb
-        $this->CreatedMethods[]=$name;
     }
     
     /**
-     * @group createa
+     * @group create
      */
     public function PriceFreeFrom15num(AcceptanceTester $I) {
         $price = $freefrom = '9999999999.999';
         $name = 'ДоставкаЦена20Цифр';
+        //For deleting
+        $this->CreatedMethods[]=$name;
         
         $this->CreateDelivery($I, $name, 'on', 'off', 'off', $price, $freefrom);
         $this->CheckForAlertPresent($I, 'success');
         $this->CheckInList($I, $name, NULL, $price, $freefrom);
         $this->CheckInFrontEnd($I, $name, null, $price, $freefrom);
-                        //mb
-        $this->CreatedMethods[]=$name;
     }
     
     //---------------------CHECKBOX PRICE SPECIFIED & FIELD PRICE SPECIFIED-----
@@ -218,43 +214,43 @@ class DeliveryCreateCest extends DeliveryTestHelper{
     }
     
     /**
-     * @group createa
+     * @group create
      */
     public function FieldPriseSpecifiedEmpty(AcceptanceTester $I) {
         $name = "УточнениеЦеныПусто";
+        //For deleting
+        $this->CreatedMethods[]=$name;
         
         $this->CreateDelivery($I, $name, 'on', 'off', 'off', 'off', 'off', "");
         $this->CheckForAlertPresent($I, 'success');
-                        //mb
-        $this->CreatedMethods[]=$name;
     }
     
     /**
-     * @group createa
+     * @group create
      */
     public function FieldPriseSpecified250(AcceptanceTester $I) {
         $name = 'УточнениеЦены250';
         $message = InitTest::$text250;
+        //For deleting
+        $this->CreatedMethods[]=$name;
         
         $this->CreateDelivery($I, $name, 'on', 'off', 'off', 'off', 'off', $message);
         $this->CheckForAlertPresent($I, 'success');
         $this->CheckInFrontEnd($I, $name, NULL, NULL, NULL, $message);
-                        //mb
-        $this->CreatedMethods[]=$name;
     }
     
     /**
-     * @group createa
+     * @group create
      */
     public function FieldPriseSpecified500(AcceptanceTester $I) {
         $name = 'УточнениеЦены500';
         $message = InitTest::$text500;
+        //For deleting
+        $this->CreatedMethods[]=$name;
         
         $this->CreateDelivery($I, $name, 'on', 'off', 'off', 'off', 'off', $message);
         $this->CheckForAlertPresent($I, 'success');
         $this->CheckInFrontEnd($I, $name, NULL, NULL, NULL, $message);
-                        //mb
-        $this->CreatedMethods[]=$name;
     }
     
     /**
@@ -263,6 +259,8 @@ class DeliveryCreateCest extends DeliveryTestHelper{
     public function FieldPriseSpecified501(AcceptanceTester $I) {
         $name = 'УточнениеЦены501';
         $message = InitTest::$text501;
+        //For deleting
+        $this->CreatedMethods[]=$name;
         
         $this->CreateDelivery($I, $name, 'on', 'off', 'off', 'off', 'off', $message);
         $this->CheckForAlertPresent($I, 'error');
@@ -274,6 +272,8 @@ class DeliveryCreateCest extends DeliveryTestHelper{
     public function FieldPriseSpecifiedSymbols(AcceptanceTester $I) {
         $name = 'УточнениеЦеныСимволы';
         $message = InitTest::$textSymbols;
+        //For deleting
+        $this->CreatedMethods[]=$name;
         
         $this->CreateDelivery($I, $name, 'on', 'off', 'off', 'off', 'off', $message);
         $this->CheckForAlertPresent($I, 'success');
@@ -306,10 +306,12 @@ class DeliveryCreateCest extends DeliveryTestHelper{
      */
     public function DeliveryPaymentEmpty(AcceptanceTester $I) {
         $name = "ДоставкаОплатаНет";
+        //For deleting
+        $this->CreatedMethods[]=$name;
         
         $I->amOnPage(DeliveryCreatePage::$URL);
         $this->CreateDelivery($I, $name, 'on', 'off', 'off', 'off', 'off', 'off', 'off');
-        $this->CheckInFrontEnd($I, $name, null, null, null, null, 'off');
+        $this->CheckInFrontEnd($I, $name, null, null, null, null, 'off');        
     }
     
     /**
@@ -317,6 +319,9 @@ class DeliveryCreateCest extends DeliveryTestHelper{
      */
     public function DeliveryPaymentCheckedAll(AcceptanceTester $I) {
         $name = "ДоставкаОплатаВсе";
+        //For deleting
+        $this->CreatedMethods[]=$name;
+        
         $pay  = $this->GrabAllCreatedPayments($I);
         $pay  = implode("_", $pay);
         
@@ -326,10 +331,12 @@ class DeliveryCreateCest extends DeliveryTestHelper{
     }
     
     /**
-     * @group createa
+     * @group create
      */
     public function DeleteAllCreatedMethods(AcceptanceTester $I) {
         $I->amOnPage(DeliveryPage::$URL);
+        //Deleting
         $this->DeleteDeliveryMethods($I, $this->CreatedMethods);
+        unset($this->CreatedMethods);
     }
 }
