@@ -12,23 +12,38 @@ class DeleteStatusCest
 //    }
 
     // tests
-    private $j, $rows, $nameStatus;
+    private $j, $rows, $nameStatus, $sum, $AllNamesStatus, $rowsSt;
     public function Autorization(AcceptanceTester $I)
     {
         InitTest::Login($I);
         $I->amOnPage("/admin/components/run/shop/callbacks/statuses");
         $I->waitForText("Статусы обратных звонков");
-    }   
+    } 
+    
+    
+    public function NamesInListLanding(AcceptanceTester $I)
+    {
+        $I->click('html/body/div[1]/div[3]/div/nav/ul/li[2]/a');
+        $I->waitForElement('html/body/div[1]/div[3]/div/nav/ul/li[2]/ul');
+        $I->click('html/body/div[1]/div[3]/div/nav/ul/li[2]/ul/li[6]/a');
+        $I->waitForElementNotVisible('html/body/div[1]/div[3]/div/nav/ul/li[2]/ul');
+        $I->see('Статусы обратных звонков', 'span.title');
+        $I->see('ID', './/*[@id="orderStatusesList"]/section/div[2]/div/table/thead/tr/th[1]');
+        $I->see('Имя', './/*[@id="orderStatusesList"]/section/div[2]/div/table/thead/tr/th[2]');
+        $I->see('По умолчанию', './/*[@id="orderStatusesList"]/section/div[2]/div/table/thead/tr/th[3]');
+        $I->see('Удалить', './/*[@id="orderStatusesList"]/section/div[2]/div/table/thead/tr/th[4]');
+        $I->see('Создать статус', CallbacksPage::$CreateStatusButton);
+    }
     
     
     public function VerifyDefaultStatus(AcceptanceTester $I)
     {
-        //РџСЂРѕРІРµСЂРєР° РЅР°Р»РёС‡РёСЏ РѕРґРЅРѕРіРѕ СЃС‚Р°С‚СѓСЃР° РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
+        //Проверяем наличие статуса отмеченного по умолчанию в списке и только одного
         $this->rows = $I->grabTagCount($I,"tbody tr");
-        $I->comment((string)$rows);
+        $I->comment((string)$this->rows);
         $true=0;
         for ($this->j=1;$this->j<=$this->rows;$this->j++){            
-            //РџРѕРёСЃРє Р°С‚СЂРёР±СѓС‚Р° checked РґР»СЏ СЂР°РґРёРѕС‚РѕС‡РєРё
+            //Считываем значение класса у всех статусов в списке
             $atribActiveClass = $I->grabAttributeFrom(CallbacksPage::ActiveButtonLine($this->j),"class");
             $I->comment($atribActiveClass);
             //$I->assertEquals($atribActiveClass, 'prod-on_off ');
@@ -37,13 +52,13 @@ class DeleteStatusCest
             }
         }
         $I->assertEquals($true, '1');
+        InitTest::ClearAllCach($I);
     }   
     
     
     public function DeleteDefaultStatus(AcceptanceTester $I)
     {
-//        $rows = $I->grabTagCount($I,"tbody tr");
-//        $I->comment((string)$rows);
+        //Проверка возможности удаления статуса по умолчанию
         for ($this->j=1;$this->j<=$this->rows;$this->j++){            
             //
             $atribActiveClass = $I->grabAttributeFrom(".//*[@id='orderStatusesList']/section/div[2]/div/table/tbody/tr[$this->j]/td[3]/div/span","class");
@@ -61,12 +76,13 @@ class DeleteStatusCest
         $defaultId=$I->grabTextFrom(".//*[@id='orderStatusesList']/section/div[2]/div/table/tbody/tr[$this->j]/td[1]");
         $DelButAct=$I->grabAttributeFrom(CallbacksPage::DeleteStatusButtonLine($this->j), "disabled");
         $I->assertEquals($DelButAct, 'true');
-        $I->assertEquals($id,$defaultId);   
+        $I->assertEquals($id,$defaultId);
     }   
    
     
     public function DefaultStatusOff(AcceptanceTester $I)
     {
+        //Проверка возможности отключения статуса по умолчанию
         $I->click(CallbacksPage::ActiveButtonLine($this->j));
         $I->dontSeeElement("//*[@class='alert.in.fade.alert-success']/a");
         $I->dontSee("Статус по умолчанию изменен");
@@ -76,12 +92,14 @@ class DeleteStatusCest
         $ActButOn=$I->grabAttributeFrom(CallbacksPage::ActiveButtonLine($this->j), "class");
         $I->assertEquals($ActButOn, "prod-on_off");
         $DelButAct=$I->grabAttributeFrom(CallbacksPage::DeleteStatusButtonLine($this->j), "disabled");
-        $I->assertEquals($DelButAct, 'true');       
+        $I->assertEquals($DelButAct, 'true'); 
+        InitTest::ClearAllCach($I);
     }
     
     
      public function ChangeDefaultStatus(AcceptanceTester $I)
     {
+        //Изменение статуса по умолчанию
         if($this->j<$this->rows){
             $this->j++;
             $I->click(CallbacksPage::ActiveButtonLine($this->j));
@@ -109,12 +127,13 @@ class DeleteStatusCest
                  $true++;
             }
         }
-        $I->assertEquals($true, '1');       
+        $I->assertEquals($true, '1');
     }
     
     
     public function AssigningDefaultStatusToNewCallback(AcceptanceTester $I)
     {
+        //Присвоение новому колбеку статуса по умолчанию
         $I->amOnPage('/');
         $I->waitForText('Заказать звонок');
         $I->click(CallbacksPage::$OrderCallButton);
@@ -163,11 +182,77 @@ class DeleteStatusCest
             $I->comment($nameStatEdit);
             $I->assertEquals($nameStatEdit, $this->nameStatus);            
         }
+        InitTest::ClearAllCach($I);
     }
     
     
+    public function ValuesOfAllStatusesInSelectMenuAndButtonsListLsndingCallback(AcceptanceTester $I)
+    {
+        //Проверка наличия всех названий созданных статусов колбеков в селект меню и кнопках на странице "Список обратных звонков"
+        $I->amOnPage('/admin');
+        $I->click('html/body/div[1]/div[3]/div/nav/ul/li[2]/a');
+        $I->waitForElement('html/body/div[1]/div[3]/div/nav/ul/li[2]/ul');
+        $I->click('html/body/div[1]/div[3]/div/nav/ul/li[2]/ul/li[5]/a');
+        $I->waitForElementNotVisible('html/body/div[1]/div[3]/div/nav/ul/li[2]/ul');
+        $I->wait('2');        
+        $I->click(".//*[@id='callbacks_all']/table/tbody/tr[1]/td[6]/div/select");
+        $this->sum=$I->grabTagCount($I, "select option", 3);
+        $I->comment($this->sum);        
+        $n=1;
+        for ($n=1; $n<=$this->sum; $n++){
+            $nameSel[$n]=$I->grabTextFrom(".//*[@id='callbacks_all']/table/tbody/tr/td[6]/div/select/option[$n]");
+            $I->comment("$nameSel[$n]");
+        }
+        $this->AllNamesStatus = implode(" ", $nameSel);
+        $I->comment("$this->AllNamesStatus");
+        $kil1=$this->sum+1;
+        $I->comment("$kil1");
+        for ($k=2; $k<=$kil1; $k++){
+            $nameBut[$k]=$I->grabTextFrom(".//*[@id='mainContent']/div[1]/form/section/div[2]/div/a[$k]");
+            $I->comment("$nameBut[$k]");
+        }
+        $NamesStatusButton = implode(" ", $nameBut);
+        $I->comment("$NamesStatusButton");
+        $I->assertEquals($NamesStatusButton, $this->AllNamesStatus);
+    }    
+    
+    
+    public function ValuesOfAllStatusesInSelectMenuEditCallback(AcceptanceTester $I)
+    {    
+        //Проверка наличия всех названий созданных статусов колбеков в селект меню на странице редактирования колбека
+        $I->click(".//*[@id='callbacks_all']/table/tbody/tr/td[3]/a");
+        $I->waitForText("Редактирование обратного звонка");
+        for ($i=1; $i<=$this->sum; $i++){
+            $nameEdit[$i]=$I->grabTextFrom(".//*[@id='editCallbackForm']/div[1]/div/select/option[$i]");
+            $I->comment("$nameEdit[$i]");
+        }
+        $NamesStatusEdit = implode(" ", $nameEdit);
+        $I->comment($NamesStatusEdit);
+        $I->assertEquals($NamesStatusEdit, $this->AllNamesStatus);
+        InitTest::ClearAllCach($I);
+    }
+    
+    
+    public function ValuesOfAllStatusesInListLandingStatuses(AcceptanceTester $I)
+    {    
+        //Проверка наличия всех названий созданных статусов колбеков на странице "Статусы обратных звонков"
+        $I->amOnPage('/admin/components/run/shop/callbacks/statuses');
+        $rowsSt=$I->grabTagCount($I, "tbody tr");
+        $I->comment($rowsSt);
+        for ($j=1; $j<=$rowsSt; $j++){
+            $name[$j]=$I->grabTextFrom(".//*[@id='orderStatusesList']/section/div[2]/div/table/tbody/tr[$j]/td[2]/a");//           
+            $I->comment("$name[$j]");            
+        }
+        $nameImp = implode(" ", $name);
+        $I->comment("$nameImp");
+        $I->assertEquals($nameImp, $this->AllNamesStatus);
+        $I->assertEquals($this->sum, $rowsSt);
+    }    
+                
+    
     public function DeleteNotDefaultStatus(AcceptanceTester $I)
     {
+        //Удаление статуса не отмеченного по умолчанию
         if($this->j<$this->rows){
             $this->j++;
             $idDeleteStatus=$I->grabTextFrom(".//*[@id='orderStatusesList']/section/div[2]/div/table/tbody/tr[$this->j]/td[1]");
@@ -194,6 +279,7 @@ class DeleteStatusCest
                     break;
                     }   
         }
+        InitTest::ClearAllCach($I);
     }
     
     
