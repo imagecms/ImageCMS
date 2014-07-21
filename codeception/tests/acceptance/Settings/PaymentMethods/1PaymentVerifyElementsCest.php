@@ -5,7 +5,7 @@ class PaymentElementsCest
 {
 
     /**
-     * @group verify
+     * @group current
      */
     public function Authorization(AcceptanceTester $I)
     {
@@ -89,5 +89,11 @@ class PaymentElementsCest
         $I->seeElement(PaymentEditPage::$SelectPaymentSystem);
         $I->click(PaymentEditPage::$ButtonBack);
         $I->waitForText("Список способов оплаты",NULL, PaymentListPage::$Title);        
+    }
+    /**
+     * @group current
+     */
+    public function miniMessage(AcceptanceTester $I) {
+        
     }
 }
