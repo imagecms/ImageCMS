@@ -66,7 +66,7 @@ class OrderStatusesPage
     public static $EditTitle = "span.title.w-s_n";
     public static $EditButtonBack = "span.t-d_u";
     public static $EditButtonSave = "//div[2]/div/button[1]";
-    public static $EditButtonSaveAndGoBack = "//button[2]";
+    public static $EditButtonSaveAndGoBack = "//section/div[1]/div[2]/div/button[2]";
     public static $EditNameBlock = "//th";
     public static $EditNameFieldName = "label.control-label";
     public static $EditNameFieldColor = "//div[2]/label";
