@@ -46,7 +46,7 @@ class PaymentListPage
         return $ID;
     }
     static function MethodNameLine($row) {
-        $ListMethodLine = "//table//tbody//tr[$row]/td[3]";
+        $ListMethodLine = "//table//tbody//tr[$row]/td[3]/a";
         return $ListMethodLine;
     }
     static function CurrencyNameLine($row) {
@@ -55,9 +55,11 @@ class PaymentListPage
     }
     static function CurrencySymbolLine($row) {
         $Symbol = "//tbody/tr[$row]/td[5]/p";
+        return $Symbol;
     }
     static function ActiveLine($row) {
         $Active = "//tbody/tr[$row]/td[6]/div/span";
+        return $Active;
     }
 }
 

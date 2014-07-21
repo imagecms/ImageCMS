@@ -2,6 +2,9 @@
 
 class CurrenciesPage
 {
+    //URL of currencies list page
+    public static $URL = '/admin/components/run/shop/currencies';
+
     //Кнопки
     public static $CreateCurrencyButton  = './/*[@id="mainContent"]/section/div[1]/div[2]/div/a';
     public static $GoBackButton  = './/*[@id="mainContent"]/section/div[1]/div[2]/div/a/span[2]';
@@ -27,5 +30,10 @@ class CurrenciesPage
     public static function RadioButtonLine($row){
         $RadioBut = "//tbody//tr[$row]//td[5]/input";
         return $RadioBut;
+    }
+    //Currency name in table
+    public static function CuccencyNameLine($row) {
+        $CurrencyLine = "//tbody/tr[$row]/td[2]/a";
+        return $CurrencyLine;
     }
 }

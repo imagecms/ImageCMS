@@ -2,25 +2,38 @@
 use \AcceptanceTester;
 class TextElementOLCest
 {
-//---------------------------AUTORIZATION---------------------------------------    
+//---------------------------AUTORIZATION--------------------------------------- 
+    
     public function Login(AcceptanceTester $I){
         InitTest::Login($I);
     }
+    
+    
 //---------------------------ORDER LIST PAGE WAY--------------------------------
+    
+    
     public function  WayListOL (AcceptanceTester $I){       
         $I->click(NavigationBarPage::$Orders);
         $I->click(NavigationBarPage::$OrdersList);
         $I->wait('3');
         $I->seeInCurrentUrl('/admin/components/run/shop/orders/index');
     }
+    
+    
 //---------------------------ORDER CREATE PAGE WAY------------------------------
+    
+    
     public function WayCreatePage (AcceptanceTester $I){
         $I->amOnPage(OrdersListPage::$ListURLorders);
         $I->click(OrdersListPage::$ListButtCreateOrder);
         $I->seeInCurrentUrl(OrdersListPage::$CrtPURL);
         $I->wait('1');
     }
+    
+    
 //---------------------TEXT ELEMENT LIST PAGE-----------------------------------
+    
+    
     public function VerufyTextListPage (AcceptanceTester $I){
         $I->amOnPage(OrdersListPage::$ListURLorders);
         $I->seeInPageSource('Список заказов');
@@ -39,7 +52,12 @@ class TextElementOLCest
         $I->see('Статус оплаты', OrdersListPage::$ListHeaderPlaymentStatus);
         $I->see('Заказов на странице', OrdersListPage::$ListPagiNameSelect);
     }
+    
+    
+    
 //---------------------------TEXT ELEMENT LIST PAGE-----------------------------
+    
+    
     public function VerufyElementListPage (AcceptanceTester $I){
         $I->amOnPage(OrdersListPage::$ListURLorders);
         $I->seeElement(OrdersListPage::$ListHeaderCheckBox);
@@ -54,7 +72,12 @@ class TextElementOLCest
         $I->seeElement(OrdersListPage::$ListFieldPlaymentStatus);
         $I->seeElement(OrdersListPage::$ListPagiSelect);
     }
+    
+    
+    
 //------------------TEXT ELEMENT CREATING PAGE----------------------------------
+    
+    
     public function VerufyTextCreatePPage (AcceptanceTester $I){
          $I->amOnPage(OrdersListPage::$CrtPURL);
          $I->see('Создание заказа', OrdersListPage::$CrtPTitle); 
@@ -76,7 +99,12 @@ class TextElementOLCest
          $I->see('Общая цена', OrdersListPage::$CrtPNameColTotalPrice); 
          $I->see('Удалить', OrdersListPage::$CrtPNameColDelete); 
     }
+    
+    
+    
 //------------------TEXT ELEMENT CREATING PAGE----------------------------------
+    
+    
     public function VerufyTextCreateUPage (AcceptanceTester $I){
          $I->amOnPage(OrdersListPage::$CrtPURL);  
          $I->click(OrdersListPage:: $CrtPButtUser);
@@ -93,5 +121,8 @@ class TextElementOLCest
          $I->see('Поиск:', OrdersListPage::$CrtUNameBlockSearch);
          $I->see('ID / Имя / E-mail', OrdersListPage::$CrtUFieldIDNameEmeil);
     }
+    
+    
+   
    
 }
