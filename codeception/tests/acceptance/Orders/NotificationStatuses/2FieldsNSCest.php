@@ -2,14 +2,16 @@
 use \AcceptanceTester;
 class FieldsNSCest
 {
-//---------------------------AUTORIZATION---------------------------------------    
+//---------------------------AUTORIZATION--------------------------------------- 
+    
     public function Login(AcceptanceTester $I){
         InitTest::Login($I);
     }
-    /**
-     * @group Fields
-     */
+    
+
 //----------------INPUT SAVE PRESENCE 1 SYMVOL CREATE--------------------------- 
+    
+    
     public function CreatingStatus1Symbol(AcceptanceTester $I){
       $I->amOnPage(NotificationStatusesPage::$CreatePageUrl);
       $I->fillField(NotificationStatusesPage::$CreationFildInput, '1');
@@ -17,10 +19,12 @@ class FieldsNSCest
       $I->waitForText('Статусы уведомлений о появлении');
       $I->see('1', NotificationStatusesPage::$ListTable);
     }   
-    /**
-     * @group Fields
-     */
+
+    
+    
 //--------------------INPUT SAVE PRESENCE 500 SYMVOL CREATE---------------------
+    
+    
     public function CreatingStatus500Symbol(AcceptanceTester $I){
       $I->amOnPage(NotificationStatusesPage::$CreatePageUrl);
       $I->fillField(NotificationStatusesPage::$CreationFildInput,  InitTest::$text500);
@@ -28,10 +32,12 @@ class FieldsNSCest
       $I->waitForText('Статусы уведомлений о появлении');
       $I->See(InitTest::$text500, NotificationStatusesPage::$ListTable);
       }
-    /**
-     * @group Fields
-     */
+
+      
+      
 //----------------INPUT SAVE PRESENCE 501 SYMVOL CREATE-------------------------
+      
+      
     public function CreatingStatus501Symbol(AcceptanceTester $I){
       $I->amOnPage(NotificationStatusesPage::$CreatePageUrl);
       $I->fillField(NotificationStatusesPage::$CreationFildInput, InitTest::$text501);
@@ -48,10 +54,12 @@ class FieldsNSCest
       $I->wait(1);
       InitTest::ClearAllCach($I);
     }   
-    /**
-     * @group Fields
-     */
+
+    
+    
 //-------------------INPUT SAVE PRESENCE 1 SYMVOL EDIT-------------------------- 
+    
+    
     public function EdictingStatus1Symbol(AcceptanceTester $I){
       $I->amOnPage(NotificationStatusesPage::$ListPageURL);
       $I->click(NotificationStatusesPage::$ListLinkForEditing);
@@ -60,10 +68,12 @@ class FieldsNSCest
       $I->waitForText('Статусы уведомлений о появлении');      
       $I->see('1', NotificationStatusesPage::$ListTable);
     }
-    /**
-     * @group Fields
-     */
+
+    
+    
 //-----------------INPUT SAVE PRESENCE 500 SYMVOL EDIT-------------------------- 
+    
+    
     public function EdictingStatus500Symbol(AcceptanceTester $I){
       $I->amOnPage(NotificationStatusesPage::$ListPageURL);
       $I->click(NotificationStatusesPage::$ListLinkForEditing);
@@ -72,10 +82,12 @@ class FieldsNSCest
       $I->waitForText('Статусы уведомлений о появлении'); 
       $I->see(InitTest::$text500, NotificationStatusesPage::$ListTable);
     }
-    /**
-     * @group Fields
-     */
+
+    
+    
 //----------------INPUT SAVE PRESENCE 501 SYMVOL EDIT--------------------------- 
+    
+    
     public function EdictingStatus501Symbol(AcceptanceTester $I){
       $I->amOnPage(NotificationStatusesPage::$ListPageURL);
       $I->click(NotificationStatusesPage::$ListLinkForEditing);
@@ -85,7 +97,12 @@ class FieldsNSCest
       $I->dontSee(InitTest::$text501, NotificationStatusesPage::$ListTable);
       $I->See(InitTest::$text500, NotificationStatusesPage::$ListTable);
       }
+      
+      
+      
 //---------------------------CLEARING-------------------------------------------
+      
+      
     public function CLEARING(AcceptanceTester $I){
       $I->amOnPage(NotificationStatusesPage::$ListPageURL);
       $I->click(NotificationStatusesPage::$ListHeaderCheckBox);
@@ -97,10 +114,12 @@ class FieldsNSCest
       $I->wait('1');
       InitTest::ClearAllCach($I);
     }
-    /**
-     * @group Fields
-     */
+
+    
+    
 //---------------INPUT SAVE PRESENCE VALID SYMVOL CREATE------------------------
+    
+    
     public function CreatingSymvol(AcceptanceTester $I){
       $I->amOnPage(NotificationStatusesPage::$CreatePageUrl);
       $I->fillField(NotificationStatusesPage::$CreationFildInput, InitTest::$textSymbols);
@@ -108,10 +127,12 @@ class FieldsNSCest
       $I->waitForText('Статусы уведомлений о появлении'); 
       $I->see(InitTest::$textSymbols, NotificationStatusesPage::$ListTable);  
     }
-    /**
-     * @group Fields
-     */
+
+    
+    
 //-----------------INPUT SAVE PRESENCE VALID SYMVOL EDIT------------------------ 
+    
+    
     public function EdictingSymvol(AcceptanceTester $I){
       $I->amOnPage(NotificationStatusesPage::$ListPageURL);
       $I->click(NotificationStatusesPage::$ListLinkForEditing);
@@ -120,7 +141,12 @@ class FieldsNSCest
       $I->waitForText('Статусы уведомлений о появлении'); 
       $I->see(InitTest::$textSymbols, NotificationStatusesPage::$ListTable);
       }
-//---------------------------CLEARING-------------------------------------------         
+      
+      
+      
+//---------------------------CLEARING-------------------------------------------  
+      
+      
     public function DELETING(AcceptanceTester $I){
       $I->amOnPage(NotificationStatusesPage::$ListPageURL);
       $I->click(NotificationStatusesPage::$ListHeaderCheckBox);
@@ -132,5 +158,8 @@ class FieldsNSCest
       $I->wait('1');
       $I->dontSee(InitTest::$textSymbols);
       InitTest::ClearAllCach($I);
-    }    
+    }   
+    
+    
+    
 }
