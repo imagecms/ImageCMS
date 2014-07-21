@@ -3,11 +3,11 @@ use \AcceptanceTester;
 
 class PaymentCreateCest
 {
-    protected $Createdmethods   = []; 
-    protected static $logged    = false;
+    protected $CreatedMethods   = []; 
+    protected static $Logged    = false;
     
     public function _before(AcceptanceTester $I){
-        if(self::$logged) $I->amOnPage(PaymentCreatePage::$URL);
+        if(self::$Logged) $I->amOnPage(PaymentCreatePage::$URL);
     }
     
     /**
@@ -15,7 +15,7 @@ class PaymentCreateCest
      */
     public function Authorization(AcceptanceTester $I) {
         InitTest::Login($I);
-        self::$logged=TRUE;
+        self::$Logged=TRUE;
     }
 
     /**
@@ -32,7 +32,7 @@ class PaymentCreateCest
      */
     public function NameNoramal(AcceptanceTester $I){
         $name                   = "ОплатаТест";
-        $this->Createdmethods[] = $name;
+        $this->CreatedMethods[] = $name;
         
         $this->PaymentCreate($I, $name);
         $this->CheckForAlertPresent($I, 'success');
@@ -43,7 +43,7 @@ class PaymentCreateCest
      */
     public function Name250(AcceptanceTester $I){
         $name                   = InitTest::$text250;
-        $this->Createdmethods[] = $name;
+        $this->CreatedMethods[] = $name;
         
         $this->PaymentCreate($I, $name);
         $this->CheckForAlertPresent($I, 'success');
@@ -54,14 +54,14 @@ class PaymentCreateCest
      */
     public function Name251(AcceptanceTester $I){
         $name                   = InitTest::$text251;
-        $this->Createdmethods[] = $name;
+        $this->CreatedMethods[] = $name;
         
         $this->PaymentCreate($I, $name);
         $this->CheckForAlertPresent($I, 'error');
     }
     
     /**
-     * @group current
+     * @group create
      */
     public function Test(AcceptanceTester $I) {
         $name = 'TEST';
