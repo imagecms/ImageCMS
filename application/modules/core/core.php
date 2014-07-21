@@ -124,7 +124,7 @@ class Core extends MY_Controller {
             }
         }
 
-        if (($this->uri->segment(1) == $this->def_lang[0]['identif']) && !defined('SAAS')) {
+        if ($this->uri->segment(1) == $this->def_lang[0]['identif']) {
             $url = implode('/', array_slice($this->uri->segment_array(), 1));
             header('Location:/' . $url);
         }

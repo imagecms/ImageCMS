@@ -34,7 +34,7 @@ class DeliveryListCest extends DeliveryTestHelper{
     }
 
     /**
-     * @group list0
+     * @group list
      */
     public function CheckBoxTitle(AcceptanceTester $I) {
         $I->click(DeliveryPage::$CheckboxHeader);
@@ -49,7 +49,7 @@ class DeliveryListCest extends DeliveryTestHelper{
     }
     
     /**
-     * @group list0
+     * @group list
      */
     public function CheckBoxLine(AcceptanceTester $I) {
         $I->click(DeliveryPage::ListCheckboxLine(1));
@@ -60,12 +60,12 @@ class DeliveryListCest extends DeliveryTestHelper{
     }
     
     /**
-     * @group list0
+     * @group list
      */
     public function ToggleActive(AcceptanceTester $I) {
         $I->comment("$this->name");
         $row = $this->SearchDeliveryMethod($I, $this->name);
-        $I->click(DeliveryPage::ListCheckboxLine($row));
+//        $I->click(DeliveryPage::ListCheckboxLine($row));
         $class = $I->grabAttributeFrom(DeliveryPage::ListActiveButtonLine($row), 'class');
         
         If ($class == 'prod-on_off disable_tovar') { 
@@ -76,7 +76,7 @@ class DeliveryListCest extends DeliveryTestHelper{
     
     /**
      * Verify that unactive method isn't present at frontend
-     * @group list0
+     * @group list
      */
       public function ToggleUnActive (AcceptanceTester $I){
           $row = $this->SearchDeliveryMethod($I, $this->name);
@@ -91,20 +91,9 @@ class DeliveryListCest extends DeliveryTestHelper{
               else $I->fail('There are no method $this->name for testing ToggleUnActive, create it before test');
       }
     
-    /**
-     * @group list0
-     */
-    public function ButtonDelete(AcceptanceTester $I) {
-        $row = $this->SearchDeliveryMethod($I, $this->name);
-        $I->click(DeliveryPage::ListCheckboxLine($row));
-        $I->click(DeliveryPage::$DeleteButton);
-        $I->waitForText("Удаление способов доставки", NULL, "//*[@id='mainContent']/div/div[1]/div[1]/h3");
-        $I->click(DeliveryPage::$DeleteWindowDelete);
-        $this->CheckForAlertPresent($I, 'success', null, null, 'delete');
-    }
     
     /**
-     * @group list0
+     * @group list
      */
     public function WindowButtonCancelX(AcceptanceTester $I) {
         $row = $this->SearchDeliveryMethod($I, $this->name);
@@ -122,12 +111,24 @@ class DeliveryListCest extends DeliveryTestHelper{
         
     /**
      * @group list
-     * @todo Try to drag&drop if can't , write Jquery Helper for this
      */
-      public function DragDrop (AcceptanceTester $I){
-          $CSSelement = ".btn.dropdown-toggle";
-          $I->scrollToElement($I,$CSSelement);
-          $I->wait(5);
-      }
+    public function ButtonDelete(AcceptanceTester $I) {
+        $row = $this->SearchDeliveryMethod($I, $this->name);
+        $I->click(DeliveryPage::ListCheckboxLine($row));
+        $I->click(DeliveryPage::$DeleteButton);
+        $I->waitForText("Удаление способов доставки", NULL, "//*[@id='mainContent']/div/div[1]/div[1]/h3");
+        $I->click(DeliveryPage::$DeleteWindowDelete);
+        $this->CheckForAlertPresent($I, 'success', null, null, 'delete');
+    }
+        
+        /**
+         * @group list
+         */
     
+         /**
+        public function DeleteCreatedMethods(AcceptanceTester $I) {
+            $Methods = $this->name;
+            $this->DeleteDeliveryMethods($I, $Methods);
+        }
+        */
 }
