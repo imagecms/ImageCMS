@@ -3,11 +3,39 @@ use \AcceptanceTester;
 
 class PaymentCreateCest
 {
-    protected $Createdmethods   = []; 
-    protected static $logged    = false;
+    //_______________________________________________________________________________EXAMPLE
+       
+    /**
+     * @group example
+     */
+    public function EXAMPLECreateFull(AcceptanceTester $I) {
+        $name = 'TEST';
+        $currency = 'qwe';
+        $I->click(PaymentCreatePage::$CheckboxActive);
+        $I->wait(3);
+        $this->PaymentCreate($I, $name, $currency,'off',"описание",'WebMoney');
+    }
+    
+     /**
+     * @group example
+     */
+    public function ExampleCreateAndDeleteMany(AcceptanceTester $I){
+        $names = ['name','name2','name3','name4','name5'];
+        foreach ($names as $name) {
+            $I->amOnPage(PaymentCreatePage::$URL);
+            $this->PaymentCreate($I, $name);
+//            $this->CheckForAlertPresent($I, 'success');
+        }
+        $this->DeletePayments($I,$names);
+        $this->CheckForAlertPresent($I, 'success');
+    }
+    //_______________________________________________________________________________EXAMPLE
+    
+    protected $CreatedMethods   = []; 
+    protected static $Logged    = false;
     
     public function _before(AcceptanceTester $I){
-        if(self::$logged) $I->amOnPage(PaymentCreatePage::$URL);
+        if(self::$Logged) $I->amOnPage(PaymentCreatePage::$URL);
     }
     
     /**
@@ -15,7 +43,7 @@ class PaymentCreateCest
      */
     public function Authorization(AcceptanceTester $I) {
         InitTest::Login($I);
-        self::$logged=TRUE;
+        self::$Logged=TRUE;
     }
 
     /**
@@ -32,7 +60,7 @@ class PaymentCreateCest
      */
     public function NameNoramal(AcceptanceTester $I){
         $name                   = "ОплатаТест";
-        $this->Createdmethods[] = $name;
+        $this->CreatedMethods[] = $name;
         
         $this->PaymentCreate($I, $name);
         $this->CheckForAlertPresent($I, 'success');
@@ -43,7 +71,7 @@ class PaymentCreateCest
      */
     public function Name250(AcceptanceTester $I){
         $name                   = InitTest::$text250;
-        $this->Createdmethods[] = $name;
+        $this->CreatedMethods[] = $name;
         
         $this->PaymentCreate($I, $name);
         $this->CheckForAlertPresent($I, 'success');
@@ -54,22 +82,54 @@ class PaymentCreateCest
      */
     public function Name251(AcceptanceTester $I){
         $name                   = InitTest::$text251;
-        $this->Createdmethods[] = $name;
+        $this->CreatedMethods[] = $name;
         
         $this->PaymentCreate($I, $name);
         $this->CheckForAlertPresent($I, 'error');
     }
     
     /**
+     * @group create
+     */
+    public function NameSymbols(AcceptanceTester $I){
+        $name                   = InitTest::$textSymbols;
+        $this->CreatedMethods[] = $name;
+        
+        $this->PaymentCreate($I, $name);
+        $this->CheckForAlertPresent($I, 'success');
+    }
+    
+    /**
+     * Check thet all created currencies present is select menu
+     * 
+     * @todo comparison
      * @group current
      */
-    public function Test(AcceptanceTester $I) {
-        $name = 'TEST';
-        $currency = 'qwe';
-        $I->click(PaymentCreatePage::$CheckboxActive);
-        $I->wait(3);
-        $this->PaymentCreate($I, $name, $currency,'off',"описание",'WebMoney');
+    public function CurenciesCheck(AcceptanceTester $I) {
+        $CreatedCurrencies = $this->CrabAllCreatedCurrencies($I);
+        foreach ($CreatedCurrencies as $cur){
+            $I->comment("$cur");
+        }
+        $I->amOnPage(PaymentCreatePage::$URL);
+        $OptionsAmount = $I->grabTagCount($I, 'select option', 0);
+        $I->comment("$OptionsAmount");
+        for($row=1;$row<=$OptionsAmount;++$row){
+            $Options[$row] = $I->grabTextFrom(PaymentCreatePage::SelectCurrency($row));
+            /**
+             * explode a string $Options[$row] by "(" delimiter, 
+             * take the first element of array, 
+             * trim white spaces, 
+             * to get only name of currency
+             */
+            $Options[$row] = trim(array_shift(explode('(',$Options[$row])));
+            $I->comment("$Options[$row]");
+        }
+//        foreach ($CreatedCurrencies as $Currency) {
+//            $I->comment("$Currency");
+//        }
     }
+    
+
     
     
     
@@ -97,11 +157,9 @@ class PaymentCreateCest
         if(isset($name)){
             $I->fillField(PaymentCreatePage::$FieldName, $name);
         }
-        
         if(isset($currency)){
             $I->selectOption(PaymentCreatePage::$SelectPaymentSystem, $currency);
         }
-        
         if(isset($active)){
             $Class = $I->grabAttributeFrom('//form/div[1]/div[3]/div[2]/span', 'class');
             
@@ -120,14 +178,9 @@ class PaymentCreateCest
                     break;
             }
         }
-        
-        
         if(isset($description)){
             $I->fillField(PaymentCreatePage::$FieldDescription, $description);
-            
         }
-        
-        
         if(isset($paymentsystem)){
             $I->selectOption(PaymentCreatePage::$SelectPaymentSystem, $paymentsystem);
         }
@@ -158,18 +211,50 @@ class PaymentCreateCest
                 $I->fail('passed incorrect variable: "$type" to method');
         }
     }
+    
+    /**
+     * Delete Payments
+     * 
+     * Delete all payment methods with names from array, 
+     * or all methods with current name if passed string
+     * 
+     * @param AcceptanceTester $I controller
+     * @param array|string $paymethods Names of payment methods witch you want to delete
+     */
+    protected function DeletePayments(AcceptanceTester $I,$paymethods) {
+        $I->amOnPage(PaymentListPage::$URL);
+        $MethodsAmount = $I->grabClassCount($I, 'niceCheck')-1;
+        for($row=1;$row<=$MethodsAmount;++$row){
+            $MethodName = $I->grabTextFrom(PaymentListPage::MethodNameLine($row));
+            if(is_array($paymethods)){
+                foreach ($paymethods as $paymethod){
+                    if($paymethod == $MethodName){ 
+                        $I->click(PaymentListPage::CheckboxLine($row));
+                    }
+                }
+            }elseif(is_string($paymethods)){
+                if($paymethods == $MethodName){ $I->click(PaymentListPage::CheckboxLine($row)); }
+            }
+        }
+        $I->click(PaymentListPage::$ButtonDelete);
+        $I->waitForElementVisible(PaymentListPage::$DeleteWindowQuestion);
+        $I->click(PaymentListPage::$DeleteWindowButtonDelete);
+        $I->waitForElementNotVisible(PaymentListPage::$DeleteWindowQuestion);
+    }
+    
     /**
      * @todo Complete methods specified below
      */
-    protected function DeletePayments(AcceptanceTester $I) {
-        
-    }
-    protected function CreateCurrencies(AcceptanceTester $I) {
-        
-    }    
     protected function CrabAllCreatedCurrencies(AcceptanceTester $I) {
-        
-    } 
+        $Currencies = [];
+        $I->amOnPage(CurrenciesPage::$URL);
+        $CurrenciesAmount = $I->grabClassCount($I, 'mainCurrency');
+        for($row = 1; $row <= $CurrenciesAmount; ++$row){
+            $Currencies[] = $I->grabTextFrom(CurrenciesPage::CuccencyNameLine($row));
+        }
+        return $Currencies;
+    }
+    
     protected function CheckInListPresent(AcceptanceTester $I) {
         
     }

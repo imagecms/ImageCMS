@@ -2,15 +2,15 @@
 use \AcceptanceTester;
 class IntegrationNSCest
 {
-    /**
-     * @group Integration
-     */
 //---------------------------AUTORIZATION---------------------------------------
 
     public function Login(AcceptanceTester $I){
         InitTest::Login($I);
     }
-//---------------------------CREATE NOTIFI FRONT--------------------------------    
+    
+//---------------------------CREATE NOTIFI FRONT--------------------------------  
+    
+    
     public function CreateNotificationFront(AcceptanceTester $I){
       $I->amOnPage('/shop/category/telefoniia-pleery-gps/telefony/smartfony?per_page=12');
       $I->wait('1');
@@ -20,10 +20,12 @@ class IntegrationNSCest
       $I->wait('1');
       $I->click('//span[2]/div/button');
     }        
-    /**
-     * @group Integration
-     */
-//---------------------------CREATE STATUS--------------------------------------    
+
+    
+    
+//---------------------------CREATE STATUS--------------------------------------  
+    
+    
     public function VerifySavedCreateStatus (AcceptanceTester $I){    
     $I->amOnPage(NotificationStatusesPage::$CreatePageUrl);
     $I->fillField(NotificationStatusesPage::$CreationFildInput, '123 qwe !@# ЯЧС');
@@ -31,10 +33,12 @@ class IntegrationNSCest
     $I->waitForText('Статусы уведомлений о появлении');
     $I->See('123 qwe !@# ЯЧС', '//div[3]/section/div[2]');
     }
-    /**
-     * @group Integration
-     */
+
+    
+    
 //---------------------------PRESENCE CREATED STATUS----------------------------    
+    
+    
     public function CreatingStatusMappingOnThePageNotificationList (AcceptanceTester $I){
      $I->amOnPage(NotificationListPage::$ListPageURL);
      $I->see('123 qwe !@# ЯЧС',  NotificationListPage::$ListSelectMain);
@@ -44,10 +48,12 @@ class IntegrationNSCest
      $I->click(NotificationListPage::$ListLinkEdittingCreateStatusButton);
      $I->seeOptionIsSelected(NotificationListPage::$EditingSelectStatus, '123 qwe !@# ЯЧС');
     } 
-    /**
-    * @group Integration
-    */
-//---------------------------EDICTING STATUS------------------------------------    
+
+    
+    
+//---------------------------EDICTING STATUS------------------------------------   
+    
+    
     public function VerifySavedEditStatus (AcceptanceTester $I){
     $I->amOnPage(NotificationStatusesPage::$ListPageURL);
     $I->click(NotificationStatusesPage::$ListLinkForEditing);
@@ -55,11 +61,12 @@ class IntegrationNSCest
     $I->click(NotificationStatusesPage::$EditingButtonSaveAndGoBack);
     $I->waitForText('Статусы уведомлений о появлении');
     $I->See('Гидрокарбонат', '//div[3]/section/div[2]');
-    }   
-    /**
-     * @group Integration
-     */
+    }
+    
+    
 //---------------------------PRESENCE EDICTING STATUS---------------------------       
+    
+    
     public function EditingStatusMappingOnThePageNotificationList (AcceptanceTester $I){
          $I->amOnPage(NotificationListPage::$ListPageURL);   
          $I->see('Гидрокарбонат',  NotificationListPage::$ListSelectMain);   
@@ -69,10 +76,12 @@ class IntegrationNSCest
          $I->click(NotificationListPage::$ListLinkEdittingCreateStatusButton);
          $I->seeOptionIsSelected(NotificationListPage::$EditingSelectStatus, 'Гидрокарбонат');
          }   
-    /**
-     * @group Integration
-     */
+
+         
+         
 //---------------------------DELETE STATUS--------------------------------------
+         
+         
     public function VerifyDeletedEditingStatus(AcceptanceTester $I){
             $I->amOnPage(NotificationStatusesPage::$ListPageURL);
             $I->click(NotificationStatusesPage::$ListHeaderCheckBox);
@@ -84,10 +93,12 @@ class IntegrationNSCest
             $I->wait('1');
             $I->dontSeeLink('Гидрокарбонат');   
             }
-    /**
-     * @group Integration
-     */
-//---------------------------NOT PRESENCE DELETING STATUS-----------------------            
+
+            
+            
+//---------------------------NOT PRESENCE DELETING STATUS-----------------------  
+            
+            
     public function DeletingStatusMappingOnThePageNotificationList(AcceptanceTester $I){
     $I->amOnPage(NotificationListPage::$ListPageURL);
     $I->dontsee('Гидрокарбонат',  NotificationListPage::$ListSelectMain); 
@@ -99,10 +110,10 @@ class IntegrationNSCest
     $I->dontseeOptionIsSelected(NotificationListPage::$EditingSelectStatus, '123 qwe !@# ЯЧС');             
     }
     
-    /**
-     * @group Integration
-     */
-//---------------------------CLEARING-------------------------------------------         
+
+//---------------------------CLEARING-------------------------------------------    
+    
+    
     public function DeleteNotification(AcceptanceTester $I){
     $I->amOnPage(NotificationListPage::$ListPageURL);
     $I->click(NotificationListPage::$ListMainCheckBox);
@@ -111,6 +122,9 @@ class IntegrationNSCest
     $I->click(NotificationListPage::$DeleteWindowButtonDelete);
     $I->wait('1');
     InitTest::ClearAllCach($I);
-    }    
+    } 
+    
+    
+    
 }    
 

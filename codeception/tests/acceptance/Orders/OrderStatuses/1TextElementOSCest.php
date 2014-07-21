@@ -2,33 +2,47 @@
 use \AcceptanceTester;
 class TextElementOSCest
 {
-//---------------------------AUTORIZATION---------------------------------------    
+//---------------------------AUTORIZATION---------------------------------------   
+    
     public function Login(AcceptanceTester $I){
         InitTest::Login($I);
     }
+    
+    
 //---------------------------ORDER STATUS CREATE PAGE WAY-----------------------
+    
     public function  WayCreateOS (AcceptanceTester $I){       
         $I->amOnPage(OrderStatusesPage::$ListURL);
         $I->click(OrderStatusesPage::$ListaButtonCreateStatuse);
         $I->seeInCurrentUrl(OrderStatusesPage::$CreateURL);
         $I->amOnPage(OrderStatusesPage::$ListURL);
     }
+    
+    
+    
 //---------------------------ORDER STATUS EDIT PAGE WAY-------------------------
+    
     public function  WayEditOS (AcceptanceTester $I){       
         $I->amOnPage(OrderStatusesPage::$ListURL);
         $I->click(OrderStatusesPage::$ListLinkStstusTr1);
         $I->see('Редактирование статуса заказа', OrderStatusesPage::$EditTitle);
     }
+    
+    
 //---------------------------ORDER STATUS LIST PAGE WAY-------------------------
+    
     public function  WayListOS (AcceptanceTester $I){       
         $I->click(NavigationBarPage::$Orders);
         $I->click(NavigationBarPage::$OrderStatuses);
         $I->seeInCurrentUrl(OrderStatusesPage::$ListURL);
     } 
+    
+    
 //---------------------------TEXT PRESENCE LIST PAGE----------------------------
+    
+    
     public function  TextPresenceList (AcceptanceTester $I){       
         $I->amOnPage(OrderStatusesPage::$ListURL);
-//        $I->wait('3');
         $I->see('Статусы заказов', OrderStatusesPage::$ListTitle);
         $I->see('Создать статус', OrderStatusesPage::$ListaButtonCreateStatuse);
         $I->see('ID', OrderStatusesPage::$ListColumnID);
@@ -37,7 +51,11 @@ class TextElementOSCest
         $I->see('Цвет шрифта', OrderStatusesPage::$ListCollumFontColor);
         $I->see('Удалить', OrderStatusesPage::$ListColumnDelete);
     }
+    
+    
 //-------------------TEXT MESSAGE MOUSE FOCUS LIST PAGE-------------------------
+    
+    
     public function  MouseMessage (AcceptanceTester $I){
         $I->amOnPage(OrderStatusesPage::$ListURL);
         $I->moveMouseOver(OrderStatusesPage::$ListLinkStstusTr1);
@@ -47,7 +65,12 @@ class TextElementOSCest
         $I->waitForElementNotVisible(OrderStatusesPage::$ListMessageMouseFocuse);
         $I->dontSeeElement(OrderStatusesPage::$ListMessageMouseFocuse);
     }
+    
+    
+    
 //--------------------TEXT PRESENCE CREATING PAGE-------------------------------
+    
+    
     public function TextPresenceCrate(AcceptanceTester $I){
         $I->amOnPage(OrderStatusesPage::$CreateURL);
         $I->see('Создание статуса заказа', OrderStatusesPage::$CreateTitle);
@@ -59,14 +82,24 @@ class TextElementOSCest
         $I->see('Цвет фона', OrderStatusesPage::$CreateNameFieldColor);
         $I->see('Цвет шрифта', OrderStatusesPage::$CreateNameFieldColorFont);
     }
+    
+    
+    
 //--------------------ELEMENT PRESENCE CREATING PAGE----------------------------
+    
+    
     public function ElementPresenceCreate(AcceptanceTester $I){
         $I->amOnPage(OrderStatusesPage::$CreateURL);        
         $I->seeElement(OrderStatusesPage::$CreateFieldName);
         $I->seeElement(OrderStatusesPage::$CreateNameFieldColor);
         $I->seeElement(OrderStatusesPage::$CreateNameFieldColorFont);
     }
-//---------------ALERT MESSAGE PRESENCE CREATING PAGE----------------------------
+    
+    
+    
+//---------------ALERT MESSAGE PRESENCE CREATING PAGE---------------------------
+    
+    
     public function AlertMessageCreate(AcceptanceTester $I){
         $I->amOnPage(OrderStatusesPage::$CreateURL);        
         $I->fillField(OrderStatusesPage::$CreateFieldName, '');
@@ -75,15 +108,23 @@ class TextElementOSCest
         $I->fillField(OrderStatusesPage::$CreateFieldName, '123');
         $I->dontSeeElement(OrderStatusesPage::$EditNessageAlert);        
     } 
-//---------------------MESSAGE CREATE STATUS------------------------------------
+    
+    
+//---------------------MESSAGE CREATING STATUS----------------------------------
+    
+    
     public function MessageCreateStatus(AcceptanceTester $I){
         $I->amOnPage(OrderStatusesPage::$CreateURL);
         $I->fillField(OrderStatusesPage::$CreateFieldName, 'ZavorotkiShock');
         $I->click(OrderStatusesPage::$CreateButtonCreate);
         $I->waitForElement(OrderStatusesPage::$CreateMessageCreatingStatus);
         $I->see('Статус заказа создан', OrderStatusesPage::$CreateMessageCreatingStatus);
-    }                                     
+    }   
+    
+    
 //------------------TEXT PRESENCE EDITING PAGE----------------------------------
+    
+    
     public function TextPresenceEdit(AcceptanceTester $I){
         $I->amOnPage(OrderStatusesPage::$ListURL);
         $I->amOnPage(OrderStatusesPage::$ListURL);
@@ -97,7 +138,12 @@ class TextElementOSCest
         $I->see('Цвет фона', OrderStatusesPage::$EditNameFieldColor);
         $I->see('Цвет шрифта', OrderStatusesPage::$EditNameFieldColorFont);
     }
+    
+    
+    
 //---------------ELEMENT PRESENCE EDITING PAGE----------------------------------
+    
+    
     public function ElementPresenceEdit(AcceptanceTester $I){
         $I->amOnPage(OrderStatusesPage::$ListURL);
         $I->click(OrderStatusesPage::$ListLinkStstusTr1);
@@ -105,7 +151,11 @@ class TextElementOSCest
         $I->seeElement(OrderStatusesPage::$EditFieldColor);
         $I->seeElement(OrderStatusesPage::$EditNameFieldColorFont);
     }
+    
+    
 //---------------ALERT MESSAGE PRESENCE EDITING PAGE----------------------------
+    
+    
     public function AlertMessageEdit(AcceptanceTester $I){
         $I->amOnPage(OrderStatusesPage::$ListURL);
         $I->click(OrderStatusesPage::$EditLinkEditing);
@@ -114,17 +164,25 @@ class TextElementOSCest
         $I->seeElement(OrderStatusesPage::$EditNessageAlert);        
         $I->fillField(OrderStatusesPage::$EditFieldName, '123');
         $I->dontSeeElement(OrderStatusesPage::$EditNessageAlert);        
-    }    
-//---------------ALERT MESSAGE PRESENCE EDITING PAGE----------------------------
+    } 
+    
+    
+//---------------ALERT MESSAGE FOR EDITING STATUS-------------------------------
+    
+    
     public function EditingMessageEdit(AcceptanceTester $I){
         $I->amOnPage(OrderStatusesPage::$ListURL);
         $I->click(OrderStatusesPage::$ListLinkStatusTr2);
         $I->click(OrderStatusesPage::$EditButtonSaveAndGoBack);
         $I->wait(1);
         $I->see('Изменения сохранены', OrderStatusesPage::$EditMessageEditingStatus);
-    }  
+    }
+    
+    
 //---------------TEXT ELEMENT PRESENCE DELETING PAGE----------------------------
-    public function TextElementDeleting(AcceptanceTester $I){
+    
+    
+    public function TextElementDeletingWindow(AcceptanceTester $I){
         $I->amOnPage(OrderStatusesPage::$ListURL);
         $I->click(OrderStatusesPage::$ListButtonDelete);
         $I->waitForText('Удаление статуса заказа', '3', OrderStatusesPage::$DeleteTitle);
@@ -135,7 +193,11 @@ class TextElementOSCest
         $I->see('Отменить', OrderStatusesPage::$DeleteButtonCancel);
         $I->see('×', OrderStatusesPage::$DeleteButtonX);
     }
+    
+    
 //---------------------BUTTON DELETING WINDOW-----------------------------------
+    
+    
     public function ButtonDeletingWindow(AcceptanceTester $I){
         $I->amOnPage(OrderStatusesPage::$ListURL);
         $I->click(OrderStatusesPage::$ListButtonDelete);
@@ -149,7 +211,12 @@ class TextElementOSCest
         $I->seeElement(OrderStatusesPage::$DeleteWindow);
         $I->click(OrderStatusesPage::$DeleteButtonX);
     }
-//---------------------MESSAGE DELETING STATUS WINDOW---------------------------
+    
+    
+    
+//---------------------MESSAGE FOR DELETING STATUS------------------------------
+    
+    
     public function MessageDeletingStatusWindow(AcceptanceTester $I){
         $I->amOnPage(OrderStatusesPage::$ListURL);
         $I->click(OrderStatusesPage::$ListButtonDelete);
@@ -157,5 +224,8 @@ class TextElementOSCest
         $I->click(OrderStatusesPage::$DeleteButtonDelete);
         $I->wait(1);
         $I->see('Статус удален', OrderStatusesPage::$DeleteMessageDeleting);
-    }   
+    } 
+    
+    
+    
 } 
