@@ -3,34 +3,6 @@ use \AcceptanceTester;
 
 class PaymentCreateCest
 {
-    //_______________________________________________________________________________EXAMPLE
-       
-    /**
-     * @group example
-     */
-    public function EXAMPLECreateFull(AcceptanceTester $I) {
-        $name = 'TEST';
-        $currency = 'qwe';
-        $I->click(PaymentCreatePage::$CheckboxActive);
-        $I->wait(3);
-        $this->CreatePayment($I, $name, $currency,'off',"описание",'WebMoney');
-    }
-    
-     /**
-     * @group example
-     */
-    public function ExampleCreateAndDeleteMany(AcceptanceTester $I){
-        $names = ['name','name2','name3','name4','name5'];
-        foreach ($names as $name) {
-            $I->amOnPage(PaymentCreatePage::$URL);
-            $this->CreatePayment($I, $name);
-//            $this->CheckForAlertPresent($I, 'success');
-        }
-        $this->DeletePayments($I,$names);
-        $this->CheckForAlertPresent($I, 'success');
-    }
-    //_______________________________________________________________________________EXAMPLE
-    
     protected $CreatedMethods       = []; 
     protected $CreatedCurrencies    = [];
     protected static $Logged        = false;
@@ -131,17 +103,14 @@ class PaymentCreateCest
             $this->CreatedMethods []    = $PaymentName;
             $CurrencyName               = 'Pounds';
             $this->CreatedCurrencies [] = $CurrencyName; 
-            
             $this->CreateCurrency($I, $CurrencyName);
-            
             $I->amOnPage(PaymentCreatePage::$URL);
             $this->CreatePayment($I, $PaymentName, $CurrencyName);
-            
             $this->CheckInList($I, $PaymentName, $CurrencyName);
         }
         
         /**
-         * @group current
+         * @group create
          */
         public function CheckboxActiveOn(AcceptanceTester $I) {
             $pay                    = 'ОплатаАктив';
@@ -151,32 +120,30 @@ class PaymentCreateCest
             $this->CreatePayment($I, $pay,NULL,'on');
             $this->CreateDelivery($I, $delivery, 'on', null, null, null, null, null, $pay);
             $this->CheckInFrontEnd($I, $delivery, null, null, null, null, $pay);
-            
         }
+        
         /**
-         * @group current
+         * @group create
          */
         public function CheckboxActiveOff(AcceptanceTester $I) {
             $pay                    = 'ОплатаНеАктив';
             $this->CreatedMethods[] = $pay;
-            $delivery               = 'ДоставкаОплатанеактив';
+            $delivery               = 'ДоставкаОплатаНеактив';
             
             $this->CreatePayment($I, $pay,NULL,'off');
             $this->CreateDelivery($I, $delivery, 'on', null, null, null, null, null, $pay);
             $this->CheckInFrontEnd($I, $delivery, null, null, null, null, 'off');
+        }
+
+        
+        
+        
+        /**
+         * @group current
+         */
+        public function NEXT($param) {
             
         }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
         /**
          * @group current 
@@ -184,7 +151,6 @@ class PaymentCreateCest
         public function DeleteAllCreatedPaymentsAndCurrencies(AcceptanceTester $I) {
             $this->DeletePayments($I, $this->CreatedMethods);
             $this->GrabAllCreatedCurrenciesOrDelete($I, $this->CreatedCurrencies);
-            
         }
 
     
