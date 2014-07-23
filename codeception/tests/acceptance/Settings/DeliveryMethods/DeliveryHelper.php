@@ -28,6 +28,9 @@ class DeliveryTestHelper {
      * Create Delivery with specified parrameters
      * if you wont to skip some field type off
      * if you want to select several Payment methods type "method1_method2_met hod3"
+     * 
+     * @version 1.0
+     * 
      * @param object            $I                  Controller
      * @param string            $name               Delivery name type off to skip
      * @param sting             $active             Active Checkbox on - enabled| off - disabled
@@ -164,6 +167,9 @@ class DeliveryTestHelper {
      * Checking current parameters in frontend 
      * first time goes "processing order" page by clicking, other times goes to "processing order" page immediately
      * if you want to skip verifying of some parameters type null
+     * 
+     * @version 1.0
+     * 
      * @param object            $I              Controller
      * @param string            $DeliveryName           Delivery name
      * @param string            $description    Description
