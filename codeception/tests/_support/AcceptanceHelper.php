@@ -57,5 +57,33 @@ class AcceptanceHelper extends \Codeception\Module
         $script = "$('html,body').animate({scrollTop:$('$CSSelement').offset().top});";
         $I->executeJS($script);
     }
+    
+    
+    /**
+     * Grab text from all elements which select with JQUERY
+     * and write them to array
+     * 
+     * @todo normalize 
+     * 
+     * @param \AcceptanceTester $I
+     * @param type $JQuerySelector
+     * @return array
+     */
+    public function grabTextFromAllElements(\AcceptanceTester $I,$JQuerySelector) {
+        $delimiter = 'DELIMIT';
+        $script =<<<HERE
+        el = $('$JQuerySelector');
+        rl = el.length;
+        tex = '';
+        for(i=0;i<rl;i++){
+        tex+='$delimiter'+el.eq(i).text();
+        };
+        $('<p id='GRABTEXTFROMALL'></p>').text(tex).appendTo('body');
+HERE;
+        $I->executeJS($script);
+        $text = $I->grabTextFrom('p#GRABTEXTFROMALL');
+        $text = explode($delimiter, $text);
+        return $text;
+     
+    }
 }
-//document.getElementsByClassName('frame_label no_connection d_b').length
