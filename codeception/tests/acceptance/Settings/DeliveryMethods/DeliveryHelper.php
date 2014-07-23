@@ -165,7 +165,7 @@ class DeliveryTestHelper {
      * first time goes "processing order" page by clicking, other times goes to "processing order" page immediately
      * if you want to skip verifying of some parameters type null
      * @param object            $I              Controller
-     * @param string            $name           Delivery name
+     * @param string            $DeliveryName           Delivery name
      * @param string            $description    Description
      * @param float|int|string  $price          Delivery price
      * @param float|int|string  $freefrom       Delivery free from
@@ -173,7 +173,7 @@ class DeliveryTestHelper {
      * @param string|array      $pay            Delivery Payment methods, which will included, if passed string : "_" - delimiter for few methods 
      * @return void
      */
-    protected function CheckInFrontEnd(AcceptanceTester $I,$name,$description=null,$price=null,$freefrom=null,$message=null,$pay=null) {
+    protected function CheckInFrontEnd(AcceptanceTester $I,$DeliveryName,$description=null,$price=null,$freefrom=null,$message=null,$pay=null) {
         static $WasCalled  = FALSE;
         if(!$WasCalled){
         $I->comment("$WasCalled");
@@ -202,14 +202,14 @@ class DeliveryTestHelper {
         for ($j=1;$j<=$ClassCount;++$j){
             $CName = $I->grabTextFrom("//div[@class='frame-radio']/div[$j]//span[@class='text-el']");
             
-            if ($CName == $name){
+            if ($CName == $DeliveryName){
                 $present = TRUE;
                 break;
             }
         }
         
         //Error when method isn't present in front end
-        $present?$I->assertEquals($name, $CName):$I->fail("Delivery method isn't present in front end");
+        $present?$I->assertEquals($DeliveryName, $CName):$I->fail("Delivery method isn't present in front end");
         if ($description){
             $Cdescription = $I->grabAttributeFrom("//div[@class='frame-radio']/div[$j]//span[@class='icon_ask']", 'data-title');
             $I->assertEquals($Cdescription,$description);
