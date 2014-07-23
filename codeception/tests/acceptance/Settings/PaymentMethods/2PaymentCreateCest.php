@@ -143,13 +143,27 @@ class PaymentCreateCest
         /**
          * @group current
          */
-        public function TEST(AcceptanceTester $I) {
-            $pay = 'ОплатаТЕСТ';
-            $delivery = 'ДОСТАВКА ПРОВЕРКА ОПЛАТА';
+        public function CheckboxActiveOn(AcceptanceTester $I) {
+            $pay                    = 'ОплатаАктив';
+            $this->CreatedMethods[] = $pay;
+            $delivery               = 'ДоставкаоплатаАктив';
             
-            $this->CreatePayment($I, $pay);
+            $this->CreatePayment($I, $pay,NULL,'on');
             $this->CreateDelivery($I, $delivery, 'on', null, null, null, null, null, $pay);
             $this->CheckInFrontEnd($I, $delivery, null, null, null, null, $pay);
+            
+        }
+        /**
+         * @group current
+         */
+        public function CheckboxActiveOff(AcceptanceTester $I) {
+            $pay                    = 'ОплатаНеАктив';
+            $this->CreatedMethods[] = $pay;
+            $delivery               = 'ДоставкаОплатанеактив';
+            
+            $this->CreatePayment($I, $pay,NULL,'off');
+            $this->CreateDelivery($I, $delivery, 'on', null, null, null, null, null, $pay);
+            $this->CheckInFrontEnd($I, $delivery, null, null, null, null, 'off');
             
         }
         
@@ -364,24 +378,30 @@ class PaymentCreateCest
      * @param array|string $paymethods Names of payment methods witch you want to delete
      */
     protected function DeletePayments(AcceptanceTester $I,$paymethods) {
+        $haveSomethingToRemove = false;
         $I->amOnPage(PaymentListPage::$URL);
         $MethodsAmount = $I->grabClassCount($I, 'niceCheck')-1;
         for($row=1;$row<=$MethodsAmount;++$row){
             $MethodName = $I->grabTextFrom(PaymentListPage::MethodNameLine($row));
             if(is_array($paymethods)){
-                foreach ($paymethods as $paymethod){
-                    if($paymethod == $MethodName){ 
+                if(in_array($MethodName, $paymethods)){
                         $I->click(PaymentListPage::CheckboxLine($row));
-                    }
+                        $haveSomethingToRemove = true;
                 }
             }elseif(is_string($paymethods)){
-                if($paymethods == $MethodName){ $I->click(PaymentListPage::CheckboxLine($row)); }
+                if($paymethods == $MethodName){ 
+                    $I->click(PaymentListPage::CheckboxLine($row)); 
+                    $haveSomethingToRemove = true;
+                }
             }
         }
-        $I->click(PaymentListPage::$ButtonDelete);
-        $I->waitForElementVisible(PaymentListPage::$DeleteWindowQuestion);
-        $I->click(PaymentListPage::$DeleteWindowButtonDelete);
-        $I->waitForElementNotVisible(PaymentListPage::$DeleteWindowQuestion);
+        if($haveSomethingToRemove){
+            $I->click(PaymentListPage::$ButtonDelete);
+            $I->waitForElementVisible(PaymentListPage::$DeleteWindowQuestion);
+            $I->click(PaymentListPage::$DeleteWindowButtonDelete);
+            $I->waitForElementNotVisible(PaymentListPage::$DeleteWindowQuestion);
+        }  else { $I->comment('nothing to delete'); }
+        return $haveSomethingToRemove;
     }
     
     /**
@@ -412,7 +432,6 @@ class PaymentCreateCest
                 $CurrenciesAmount--;
             }else{
                 $Currencies[] = $findedCur;
-                
             }
         }
         return $Currencies;
