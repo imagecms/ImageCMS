@@ -143,12 +143,14 @@ class PaymentCreateCest
          */
         public function NEXT(AcceptanceTester $I) {
             $I->amOnPage('/admin/components/run/shop/categories/index');
-            $I->wait(3);
-            $I->clickAllElements($I,".btn.expandButton",3);
-            $tex = $I->grabTextFromAllElements($I, "div.body_category div.row-category div.share_alt a.pjax");
-            foreach ($tex as $value) {
-                $I->comment("$value");
-            }
+//            $I->wait(3);
+//            $I->clickAllElements($I,".btn.expandButton",3);
+//            $tex = $I->grabTextFromAllElements($I, "div.body_category div.row-category div.share_alt a.pjax");
+//            foreach ($tex as $value) {
+//                $I->comment("$value");
+//                
+//            }
+        $I->comment((string)$I->grabCCSAmount($I, "a"));
         }
         
         

@@ -110,4 +110,18 @@ SCRIPT;
         }
     }
     
+    /**
+     * Grab amount of el-ts selected by JQuery
+     * 
+     * @param   AcceptanceTester    $I
+     * @param   string              $JQerySelector
+     * @return  string              Amount of elements
+     */
+    public function grabCCSAmount(\AcceptanceTester $I,$JQerySelector){
+        $script = "$('<p id=uniqueidunique></p>').text($('$JQerySelector').length).appendTo('body')";
+        $I->executeJS($script);
+        $amount = $I->grabTextFrom("#uniqueidunique");
+        return $amount;
+    }
+    
 }
