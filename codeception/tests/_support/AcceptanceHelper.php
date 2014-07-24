@@ -8,10 +8,10 @@ class AcceptanceHelper extends \Codeception\Module
 {
     /**Counting specified tags on page 
      * 
-     * @param type $I           controller
-     * @param type $tags        "tag1 tag2"   
-     * @param type $position    first element position
-     * @return type
+     * @param   AcceptanceTester  $I           controller
+     * @param   string            $tags        "tag1 tag2"   
+     * @param   int               $position    first element position
+     * @return  null
      */
     public function grabTagCount ($I,$tags,$position='0'){
         $tag = explode(" ",$tags);
@@ -33,9 +33,9 @@ class AcceptanceHelper extends \Codeception\Module
     
     /**Counting elements with specified class
      * 
-     * @param type $I       controller
-     * @param type $class   class wich you want to count
-     * @return type         count
+     * @param   AcceptanceTester    $I       controller
+     * @param   string              $class   class wich you want to count
+     * @return  type                Amount
      */
     public function grabClassCount ($I,$class){
         $I->executeJS("var container = document.createElement('input');
@@ -50,8 +50,8 @@ class AcceptanceHelper extends \Codeception\Module
     
     /**Scrolling  page to specified element
      * 
-     * @param \AcceptanceTester $I controller
-     * @param type $CSSelement CSS selector
+     * @param \AcceptanceTester $I          controller
+     * @param string            $CSSelement CSS selector
      */
     public function scrollToElement(\AcceptanceTester $I,$CSSelement) {
         $script = "$('html,body').animate({scrollTop:$('$CSSelement').offset().top});";
@@ -60,30 +60,54 @@ class AcceptanceHelper extends \Codeception\Module
     
     
     /**
-     * Grab text from all elements which select with JQUERY
+     * Grab text from all elements selected with JQUERY
      * and write them to array
      * 
      * @todo normalize 
      * 
-     * @param \AcceptanceTester $I
-     * @param type $JQuerySelector
-     * @return array
+     * @param   AcceptanceTester    $I                  controller
+     * @param   string              $JQuerySelector     JQueryCssSelector     
+     * @return  array               Texts from elements
+     * 
+     * div.body_category div.row-category div.share_alt a.pjax
      */
     public function grabTextFromAllElements(\AcceptanceTester $I,$JQuerySelector) {
-        $delimiter = 'DELIMIT';
+        $delimiter = '--D_E_L--';
         $script =<<<HERE
-        el = $('$JQuerySelector');
-        rl = el.length;
-        tex = '';
-        for(i=0;i<rl;i++){
-        tex+='$delimiter'+el.eq(i).text();
-        };
-        $('<p id='GRABTEXTFROMALL'></p>').text(tex).appendTo('body');
+            element = $('$JQuerySelector');
+            var tex = [];
+            for(i=0;i<element.length;i++){
+                tex += '$delimiter'+element.eq(i).text();
+            };
+            $('<p id="GRABTEXTFROMALL"></p>').text(tex).appendTo('body');
 HERE;
         $I->executeJS($script);
-        $text = $I->grabTextFrom('p#GRABTEXTFROMALL');
+        $text = $I->grabTextFrom('#GRABTEXTFROMALL');
         $text = explode($delimiter, $text);
+        array_shift($text);
         return $text;
-     
     }
+    /**
+     * click all finded buttons together
+     * can click n times if pased $clicktimes
+     * can set the wait between clicks
+     * 
+     * @param AcceptanceTester  $I              controller
+     * @param string            $JQeryElements  JQ_CSS_Slecector  
+     * @param int               $clickTimes     times
+     * @param int               $deelay         pause between clicks
+     * @return null null
+     * 
+     * .btn.expandButton
+     */
+    public function clickAllElements(\AcceptanceTester $I,$JQeryElements,$clickTimes=1,$deelay=3) {
+        $script =<<<SCRIPT
+          $('$JQeryElements:visible').click();
+SCRIPT;
+        for($j=0;$j<$clickTimes;++$j){
+            $I->executeJS($script);
+            $I->wait($deelay);
+        }
+    }
+    
 }
