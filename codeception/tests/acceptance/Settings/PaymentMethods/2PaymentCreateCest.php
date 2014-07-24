@@ -3,9 +3,9 @@ use \AcceptanceTester;
 
 class PaymentCreateCest
 {
-    protected $CreatedMethods       = []; 
-    protected $CreatedCurrencies    = [];
-    protected static $Logged        = false;
+    protected $CreatedPaymentMethods    = []; 
+    protected $CreatedCurrencies        = [];
+    protected static $Logged            = false;
     
     public function _before(AcceptanceTester $I){
         if(self::$Logged) $I->amOnPage(PaymentCreatePage::$URL);
@@ -18,6 +18,9 @@ class PaymentCreateCest
         InitTest::Login($I);
         self::$Logged=TRUE;
     }
+    
+    
+    //__________________________________________________________________________FIELD NAME
 
     /**
      * @group create
@@ -33,7 +36,7 @@ class PaymentCreateCest
      */
     public function NameNoramal(AcceptanceTester $I){
         $name                   = "ОплатаТест";
-        $this->CreatedMethods[] = $name;
+        $this->CreatedPaymentMethods[] = $name;
         
         $this->CreatePayment($I, $name);
         $this->CheckForAlertPresent($I, 'success');
@@ -44,7 +47,7 @@ class PaymentCreateCest
      */
     public function Name250(AcceptanceTester $I){
         $name                   = InitTest::$text250;
-        $this->CreatedMethods[] = $name;
+        $this->CreatedPaymentMethods[] = $name;
         
         $this->CreatePayment($I, $name);
         $this->CheckForAlertPresent($I, 'success');
@@ -55,7 +58,7 @@ class PaymentCreateCest
      */
     public function Name251(AcceptanceTester $I){
         $name                   = InitTest::$text251;
-        $this->CreatedMethods[] = $name;
+        $this->CreatedPaymentMethods[] = $name;
         
         $this->CreatePayment($I, $name);
         $this->CheckForAlertPresent($I, 'error');
@@ -66,11 +69,13 @@ class PaymentCreateCest
      */
     public function NameSymbols(AcceptanceTester $I){
         $name                   = InitTest::$textSymbols;
-        $this->CreatedMethods[] = $name;
+        $this->CreatedPaymentMethods[] = $name;
         
         $this->CreatePayment($I, $name);
         $this->CheckForAlertPresent($I, 'success');
     }
+    
+    //__________________________________________________________________________CURRENCY SELECTION
     
     /**
      * Check that all created currencies present is select menu
@@ -100,7 +105,7 @@ class PaymentCreateCest
          */
         public function CurrencySelection(AcceptanceTester $I){
             $PaymentName                = 'ОплатаВалюта';
-            $this->CreatedMethods []    = $PaymentName;
+            $this->CreatedPaymentMethods []    = $PaymentName;
             $CurrencyName               = 'Pounds';
             $this->CreatedCurrencies [] = $CurrencyName; 
             $this->CreateCurrency($I, $CurrencyName);
@@ -108,13 +113,15 @@ class PaymentCreateCest
             $this->CreatePayment($I, $PaymentName, $CurrencyName);
             $this->CheckInList($I, $PaymentName, $CurrencyName);
         }
+        //______________________________________________________________________FIELD DESCRIPTION
         
+        //______________________________________________________________________ACTIVE CHECKBOX
         /**
          * @group create
          */
         public function CheckboxActiveOn(AcceptanceTester $I) {
             $pay                    = 'ОплатаАктив';
-            $this->CreatedMethods[] = $pay;
+            $this->CreatedPaymentMethods[] = $pay;
             $delivery               = 'ДоставкаоплатаАктив';
             
             $this->CreatePayment($I, $pay,NULL,'on');
@@ -127,42 +134,171 @@ class PaymentCreateCest
          */
         public function CheckboxActiveOff(AcceptanceTester $I) {
             $pay                    = 'ОплатаНеАктив';
-            $this->CreatedMethods[] = $pay;
+            $this->CreatedPaymentMethods[] = $pay;
             $delivery               = 'ДоставкаОплатаНеактив';
             
             $this->CreatePayment($I, $pay,NULL,'off');
             $this->CreateDelivery($I, $delivery, 'on', null, null, null, null, null, $pay);
             $this->CheckInFrontEnd($I, $delivery, null, null, null, null, 'off');
         }
-
         
+        
+        //______________________________________________________________________PAY SYSTEMS
+        //OR ONE TEST FOR ALL
+
+        /**
+         * Create Payment methods for each payment system
+         * @group current
+         */
+        public function FastAllPaymentSystems(AcceptanceTester $I){
+            $prefix         = 'Оплата';//for name of payment name = $prefix.$paymentsystem
+            $PaymentSystems = [
+                'WebMoney',
+                'ОщадБанк Украины',
+                'СберБанк России',
+                'Robokassa',
+                'LiqPay',
+                'YandexMoney',
+                'QiWi',
+                'PayPal',
+                'ПриватБанк',
+                'Interkassa'
+                ];
+            
+                foreach ($PaymentSystems as $paymentsystem) {
+                    $I->amOnPage(PaymentCreatePage::$URL);
+                    $this->CreatedPaymentMethods[]  = $prefix.$paymentsystem;
+                    $this->CreatePayment($I, $prefix.$paymentsystem, 'Dollars', 'on', null, $paymentsystem);
+                    $this->CheckInList($I, $prefix.$paymentsystem);
+                }
+        }
+        
+        /**
+         * @todo try to catch exeption
+         */
+          public function EXEPTION(AcceptanceTester $I) {
+              
+          }  
+        
+        
+//        /**
+//         * @group create
+//         */
+//        public function WebMoneySystem(AcceptanceTester $I) {
+//            $paymentsystem                  = 'WebMoney';
+//            $name                           = "ОПЛАТА".$paymentsystem;
+//            $this->CreatedPaymentMethods[]  = $name;
+//
+//            $this->CreatePayment($I, $name, null, 'on', null, $paymentsystem);
+//        }
+//        
+//        /**
+//         * @group create
+//         */
+//        public function OschadBankInvoiceSystem(AcceptanceTester $I) {
+//            $paymentsystem                  = 'ОщадБанк Украины';
+//            $name                           = "ОПЛАТА".$paymentsystem;
+//            $this->CreatedPaymentMethods[]  = $name;
+//            
+//            $this->CreatePayment($I, $name, null, 'on', null, $paymentsystem);
+//        }
+//        
+//        /**
+//         * @group create
+//         */
+//        public function SberBankInvoiceSystem(AcceptanceTester $I) {
+//            $paymentsystem                  = 'СберБанк России';
+//            $name                           = "ОПЛАТА".$paymentsystem;
+//            $this->CreatedPaymentMethods[]  = $name;
+//            
+//            $this->CreatePayment($I, $name, null, 'on', null, $paymentsystem);
+//        }
+//        
+//        /**
+//         * @group create
+//         */
+//        public function RobokassaSystem(AcceptanceTester $I) {
+//            $paymentsystem                  = 'Robokassa';
+//            $name                           = "ОПЛАТА".$paymentsystem;
+//            $this->CreatedPaymentMethods[]  = $name;
+//            
+//            $this->CreatePayment($I, $name, null, 'on', null, $paymentsystem);
+//        }
+//        
+//        /**
+//         * @group create
+//         */
+//        public function LiqPaySystem(AcceptanceTester $I) {
+//            $paymentsystem                  = 'LiqPay';
+//            $name                           = "ОПЛАТА".$paymentsystem;
+//            $this->CreatedPaymentMethods[]  = $name;
+//            
+//            $this->CreatePayment($I, $name, null, 'on', null, $paymentsystem);
+//        }
+//        
+//        /**
+//         * @group create
+//         */
+//        public function YandexMoneySystem(AcceptanceTester $I) {
+//            $paymentsystem                  = 'YandexMoney';
+//            $name                           = "ОПЛАТА".$paymentsystem;
+//            $this->CreatedPaymentMethods[]  = $name;
+//
+//            $this->CreatePayment($I, $name, null, 'on', null, $paymentsystem);
+//        }
+//        
+//        /**
+//         * @group create
+//         */
+//        public function QiWiSystem(AcceptanceTester $I) {
+//            $paymentsystem                  = 'QiWi';
+//            $name                           = "ОПЛАТА".$paymentsystem;
+//            $this->CreatedPaymentMethods[]  = $name;
+//            
+//            $this->CreatePayment($I, $name, null, 'on', null, $paymentsystem);
+//        }
+//        
+//        /**
+//         * @group create
+//         */
+//        public function PayPalSystem(AcceptanceTester $I) {
+//            $paymentsystem                  = 'PayPal';
+//            $name                           = "ОПЛАТА".$paymentsystem;
+//            $this->CreatedPaymentMethods[]  = $name;
+//            
+//            $this->CreatePayment($I, $name, null, 'on', null, $paymentsystem);
+//        }
+//        
+//        
+//        /**
+//         * @group create
+//         */
+//        public function PrivateBankSystem(AcceptanceTester $I) {
+//            $paymentsystem                  = 'ПриватБанк';
+//            $name                           = "ОПЛАТА".$paymentsystem;
+//            $this->CreatedPaymentMethods[]  = $name;
+//            
+//            $this->CreatePayment($I, $name, null, 'on', null, $paymentsystem);
+//        }
+//        
+//        /**
+//         * @group create
+//         */
+//        public function InterkassaSystem(AcceptanceTester $I) {
+//            $paymentsystem                  = 'Interkassa';
+//            $name                           = "ОПЛАТА".$paymentsystem;
+//            $this->CreatedPaymentMethods[]  = $name;
+//
+//            $this->CreatePayment($I, $name, null, 'on', null, $paymentsystem);
+//        }
+
         
         
         /**
          * @group current
          */
-        public function NEXT(AcceptanceTester $I) {
-            $I->amOnPage('/admin/components/run/shop/categories/index');
-//            $I->wait(3);
-//            $I->clickAllElements($I,".btn.expandButton",3);
-//            $tex = $I->grabTextFromAllElements($I, "div.body_category div.row-category div.share_alt a.pjax");
-//            foreach ($tex as $value) {
-//                $I->comment("$value");
-//                
-//            }
-        $I->comment((string)$I->grabCCSAmount($I, "a"));
-        }
-        
-        
-        
-        
-        
-        
-        /**
-         * @group create
-         */
         public function DeleteAllCreatedPaymentsAndCurrencies(AcceptanceTester $I) {
-            $this->DeletePayments($I, $this->CreatedMethods);
+            $this->DeletePayments($I, $this->CreatedPaymentMethods);
             $this->GrabAllCreatedCurrenciesOrDelete($I, $this->CreatedCurrencies);
         }
 
@@ -170,17 +306,7 @@ class PaymentCreateCest
 
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    //-----------------------PROTECTED METHODS----------------------------------
+    //__________________________________________________________________________PROTECTED METHODS
     /**
      * Create payment method with specified parameters
      * 
