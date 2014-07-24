@@ -148,7 +148,7 @@ class PaymentCreateCest
 
         /**
          * Create Payment methods for each payment system
-         * @group current
+         * @group create
          */
         public function FastAllPaymentSystems(AcceptanceTester $I){
             $prefix         = 'Оплата';//for name of payment name = $prefix.$paymentsystem
@@ -167,17 +167,26 @@ class PaymentCreateCest
             
                 foreach ($PaymentSystems as $paymentsystem) {
                     $I->amOnPage(PaymentCreatePage::$URL);
-                    $this->CreatedPaymentMethods[]  = $prefix.$paymentsystem;
-                    $this->CreatePayment($I, $prefix.$paymentsystem, 'Dollars', 'on', null, $paymentsystem);
-                    $this->CheckInList($I, $prefix.$paymentsystem);
+                    $this->CreatedPaymentMethods[] = $name = $prefix.$paymentsystem;
+                    //$this->CreatePayment($I, $name, 'Dollars', 'on', null, $paymentsystem);
+                    //$this->CheckInList($I, $name);
+                    //$this->CreateDelivery($I, 'Доставка'.$name, 'on', null, null, null, null, null, $paymentsystem);
+                    $this->CheckInFrontEnd($I, 'Доставка'.$name, null, null, null, null, null, $name);
                 }
         }
         
         /**
          * @todo try to catch exeption
+         * @group current
+         * CATCHEDDDDDDDDDDDDDDDD!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
          */
-          public function EXEPTION(AcceptanceTester $I) {
-              
+          public function EXEPTIONt(AcceptanceTester $I) {
+              try {
+                  $I->click('button#pkpk');
+              }
+               catch (\PHPUnit_Framework_Exception $e){
+                   $I->comment("exeption catched");
+               }
           }  
         
         
@@ -295,7 +304,7 @@ class PaymentCreateCest
         
         
         /**
-         * @group current
+         * @group currents
          */
         public function DeleteAllCreatedPaymentsAndCurrencies(AcceptanceTester $I) {
             $this->DeletePayments($I, $this->CreatedPaymentMethods);
@@ -621,7 +630,8 @@ class PaymentCreateCest
      * @param float|int|string  $price          Delivery price
      * @param float|int|string  $freefrom       Delivery free from
      * @param string            $message        Delivery sum specified message
-     * @param string|array      $pays           Delivery Payment methods, which will included, if passed string : "_" - delimiter for few methods 
+     * @param string|array      $pays           Delivery Payment methods, which will included, if passed string : "_" - delimiter for few methods
+     * @param string            $selectpay      Pass to select method, confirm the order and verify payment
      * @return void
      */
     protected function CheckInFrontEnd(AcceptanceTester $I,
@@ -630,7 +640,8 @@ class PaymentCreateCest
             $price=null,
             $freefrom=null,
             $message=null,
-            $pays=null) {
+            $pays=null,
+            $selectpay=null) {
         
         
         static $WasCalled  = FALSE;
@@ -697,7 +708,7 @@ class PaymentCreateCest
          }
          
          if($pays){
-            $JQScrollToclick = "$('html,body').animate({scrollTop:$('div.frame-radio>div:nth-child($j)').offset().top});";
+//            $JQScrollToclick = "$('html,body').animate({scrollTop:$('div.frame-radio>div:nth-child($j)').offset().top});";
             $I->scrollToElement($I, "div[class=\'frame-radio\'] div:nth-child(1) span[class=\'text-el\']");//scroll for click
             $I->wait(5);
             $I->click("//div[@class='frame-radio']/div[$j]//span[@class='text-el']");
@@ -716,6 +727,19 @@ class PaymentCreateCest
                     $I->assertEquals($GrabbedPay, $pay);
                 }
             }
+        }
+        if(isset($selectpay)){
+            //$JQScrollToclick = "$('html,body').animate({scrollTop:$('div.frame-radio>div:nth-child($j)').offset().top});";
+            $I->scrollToElement($I, "div[class=\'frame-radio\'] div:nth-child(1) span[class=\'text-el\']");//scroll for click
+            $I->wait(5);
+            $I->click("//div[@class='frame-radio']/div[$j]//span[@class='text-el']");
+            $I->scrollToElement($I, '.frame-payment.p_r');
+            $I->wait(5);
+            $I->click("#cuselFrame-paymentMethod");
+            //White spaces added to method in "select" 
+            //Read text ,trim then verify , if true click
+            $I->click($selectpay);
+            $I->wait(5);
         }
     }     
     
