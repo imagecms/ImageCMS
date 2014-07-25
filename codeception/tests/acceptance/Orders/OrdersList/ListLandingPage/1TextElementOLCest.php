@@ -15,7 +15,7 @@ class TextElementOLCest
     public function  WayListOL (AcceptanceTester $I){       
         $I->click(NavigationBarPage::$Orders);
         $I->click(NavigationBarPage::$OrdersList);
-        $I->wait('3');
+        $I->wait('1');
         $I->seeInCurrentUrl('/admin/components/run/shop/orders/index');
     }
     
@@ -126,3 +126,4 @@ class TextElementOLCest
    
    
 }
+
