@@ -6,7 +6,7 @@ class FieldsOCACest
      
     
     /**
-     * @group a
+     * @group q
      */
     public function Login(AcceptanceTester $I){
         InitTest::Login($I);
@@ -15,7 +15,7 @@ class FieldsOCACest
     
     
     /**
-     * @group q
+     * @group a
      */
     public function VerifyCategoryPresenceInSelectMenu (AcceptanceTester $I){
        $AllOptions =[]; 
@@ -49,11 +49,23 @@ class FieldsOCACest
     /**
      * @group a
      */
-    public function VerifySearchNameMinProduct (AcceptanceTester $I){
-        $this->SearchNameProduct($I, $typeName);
+    public function VerifySearchProductNameMin (AcceptanceTester $I) {
+        $this->SearchNameProduct($I, $typeName = '......');
     }
-
     
+    
+    /**
+     * @group q
+     */
+
+    public function VerifySearchProductNameMax(AcceptanceTester $I) {
+        $this->SearchNameProduct($I, $typeName = 'qwertyuioasdfghjklzxcvbnmйцукенгшщзхъфывапролдджэячсмиттьбюQWERTYUIOPASDFGHJKLZXCVBNMЙЦУКЕННГШГШЩЗФЫВАПРОЛДЖЭЯЧСМИТЬБЮqwertyuioasdfghjklzxcvbnmйцукенгшщзхъфывапролдджэячсмиттьбюQWERTYUIOPASDFGHJKLZXCVBNMЙЦУКЕННГШГШЩЗФЫВАПРОЛДЖЭЯЧСМИТЬБЮqwertyuioasdfghjklzxcvbnmйцукенгшщзхъфывапролдджэячсмиттьбюQWERTYUIOPASDFGHJKLZXCVBNMЙЦУКЕННГШГШЩЗФЫВАПРОЛДЖЭЯЧСМИТЬБЮqwertyuioasdfghjklzxcvbnmйцукенгшщзхъфывапролдджэячсмиттьбюQWERTYUIOPASDFGHJKLZXCVBNMЙЦУКЕННГШГШЩЗФЫВАПРОЛДЖЭЯЧСМИТЬБЮQWEQWEQWEQWEQWEASDASDZXCASDQ');
+    }
+    
+    
+    public function VerifySearchProductArticleMin(AcceptanceTester $I) {
+        $this->SearchArticleProduct($I, $typeName = '', $articleProduct = '');
+    }
     
     
     
@@ -70,7 +82,7 @@ class FieldsOCACest
             $I->click(OrdersListPage::$CrtPButtProduct);    
             $I->fillField('#productNameForOrders', $typeName);
             $I->wait('1');
-            $I->see($typeName,'//body/ul[2]/li[2]/a');
+            $I->see($typeName,'//body/ul[2]/li[1]/a');
             $I->click('//body/ul[2]/li[1]/a');
             $I->wait('1');
             $I->see("Товар: $typeName", '//tbody/tr[1]/td[2]/div/div[2]/span[1]/b'); 
@@ -89,7 +101,7 @@ class FieldsOCACest
             $I->click(OrdersListPage::$CrtPButtProduct);    
             $I->fillField('#productNameForOrders', $typeName);
             $I->wait('1');
-            $I->see($typeName,'//body/ul[2]/li[2]/a');
+            $I->see($typeName,'//body/ul[2]/li[1]/a');
             $I->click('//body/ul[2]/li[1]/a');
             $I->wait('1');
             $I->see("Товар: $typeName", '//tbody/tr[1]/td[2]/div/div[2]/span[1]/b'); 
@@ -119,7 +131,7 @@ class FieldsOCACest
            $I->click(OrdersListPage::$CrtPButtProduct);
            $I->fillField('#productNameForOrders', $articleProduct);
            $I->wait('1');
-           $I->see($articleProduct, '//body/ul[2]/li[2]/a');           
+           $I->see($articleProduct, '//body/ul[2]/li[1]/a');           
         }
     }
     
@@ -130,7 +142,7 @@ class FieldsOCACest
             $I->click(OrdersListPage::$CrtPButtProduct);    
             $I->fillField('#productNameForOrders', $typeName);
             $I->wait('1');
-            $I->see($typeName,'//body/ul[2]/li[2]/a');
+            $I->see($typeName,'//body/ul[2]/li[1]/a');
             $I->click('//body/ul[2]/li[1]/a');
             $I->wait('1');
             $I->see("Товар: $typeName", '//tbody/tr[1]/td[2]/div/div[2]/span[1]/b'); 
