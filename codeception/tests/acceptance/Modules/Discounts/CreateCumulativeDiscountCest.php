@@ -82,7 +82,7 @@ class CreateCumulativeDiscountCest
     }
     
     
-    public function OneSymbolsInCreate(AcceptanceTester $I)
+    public function OneSymbolsInCreateLimitPercent(AcceptanceTester $I)
     {
         $I->amOnPage("/admin/components/init_window/mod_discount/create");        
         $I->fillField(DiscountsPage::$NameDiscountCreate, 'OneSymbolsCumulativeDiscountLimitPercent');        
@@ -108,33 +108,77 @@ class CreateCumulativeDiscountCest
     }
     
     
-    public function SymbolsInCreate(AcceptanceTester $I)
+    public function Symbols4InCreateLimitPercent(AcceptanceTester $I)
     {
         $I->amOnPage("/admin/components/init_window/mod_discount/create");        
-        $I->fillField(DiscountsPage::$NameDiscountCreate, 'OneSymbolsCumulativeDiscountLimitPercent');        
+        $I->fillField(DiscountsPage::$NameDiscountCreate, '4SymbolsCumulativeDiscountLimitPercent');        
         $I->click(DiscountsPage::$UnlimitedCheckboxCreate);
         $I->fillField(DiscountsPage::$AmountOfUse, '3');
         $I->fillField(DiscountsPage::$ValueDiscount, '20');
         $I->click(DiscountsPage::$SelectTypeDiscount);
         $I->click(DiscountsPage::$SelectTypeDiscount.'/option[3]');
         $I->fillField(DiscountsPage::$BeginValue, '1000');
-        $I->fillField(DiscountsPage::$EndValue, '2000');
+        $I->fillField(DiscountsPage::$EndValue, '4000');
         $I->click(DiscountsPage::$OnDateCreate);
         $I->click(".//*[@id='ui-datepicker-div']/table/tbody/tr[4]/td/a");        
-        $date=$I->grabValueFrom(DiscountsPage::$OnDateCreate);
-        $I->comment($date);
         $I->click(DiscountsPage::$SaveButton);
         $I->waitForText("Редактирование скидки");        
-        $I->seeInField(DiscountsPage::$NameDiscountEdit, 'OneSymbolsCumulativeDiscountLimitPercent');
+        $I->seeInField(DiscountsPage::$NameDiscountEdit, '4SymbolsCumulativeDiscountLimitPercent');
         $I->seeInField(DiscountsPage::$AmountOfUse, '3');
         $I->seeInField(DiscountsPage::$ValueDiscount, '20');
         $I->seeInField(DiscountsPage::$BeginValue, '1000');
-        $I->seeInField(DiscountsPage::$EndValue, '2000');
-        $I->seeInField(DiscountsPage::$OnDateEdit, "$date");
+        $I->seeInField(DiscountsPage::$EndValue, '4000');
     }
     
     
-    
+    public function Symbols9InCreateUnlimitPercent(AcceptanceTester $I)
+    {
+        $I->amOnPage("/admin/components/init_window/mod_discount/create");        
+        $I->fillField(DiscountsPage::$NameDiscountCreate, '9SymbolsCumulativeDiscountUnlimitPercent');        
+        $I->fillField(DiscountsPage::$ValueDiscount, '20');
+        $I->click(DiscountsPage::$SelectTypeDiscount);
+        $I->click(DiscountsPage::$SelectTypeDiscount.'/option[3]');
+        $I->fillField(DiscountsPage::$BeginValue, '2000');
+        $I->fillField(DiscountsPage::$EndValue, '3000');
+        $I->click(DiscountsPage::$OnDateCreate);
+        $I->click(".//*[@id='ui-datepicker-div']/table/tbody/tr[4]/td/a");        
+        $I->click(DiscountsPage::$SaveButton);
+        $I->waitForElementVisible(".alert.in.fade.alert-error");
+        $I->see("Уже создана накопительная скидка с таким значением", ".alert.in.fade.alert-error");
+        $I->waitForElementNotVisible(".alert.in.fade.alert-error");
+        $I->fillField(DiscountsPage::$BeginValue, '1000');
+        $I->fillField(DiscountsPage::$EndValue, '3000');
+        $I->click(DiscountsPage::$SaveButton);
+        $I->waitForElementVisible(".alert.in.fade.alert-error");
+        $I->see("Уже создана накопительная скидка с таким значением", ".alert.in.fade.alert-error");
+        $I->waitForElementNotVisible(".alert.in.fade.alert-error");
+        $I->fillField(DiscountsPage::$BeginValue, '500');
+        $I->fillField(DiscountsPage::$EndValue, '5000');
+        $I->click(DiscountsPage::$SaveButton);
+        $I->waitForElementVisible(".alert.in.fade.alert-error");
+        $I->see("Уже создана накопительная скидка с таким значением", ".alert.in.fade.alert-error");
+        $I->waitForElementNotVisible(".alert.in.fade.alert-error");
+        $I->fillField(DiscountsPage::$BeginValue, '2000');
+        $I->fillField(DiscountsPage::$EndValue, '5000');
+        $I->click(DiscountsPage::$SaveButton);
+        $I->waitForElementVisible(".alert.in.fade.alert-error");
+        $I->see("Уже создана накопительная скидка с таким значением", ".alert.in.fade.alert-error");
+        $I->waitForElementNotVisible(".alert.in.fade.alert-error");
+        $I->fillField(DiscountsPage::$BeginValue, '4000');
+        $I->fillField(DiscountsPage::$EndValue, '5000');
+        $I->click(DiscountsPage::$SaveButton);
+        $I->waitForElementVisible(".alert.in.fade.alert-error");
+        $I->see("Уже создана накопительная скидка с таким значением", ".alert.in.fade.alert-error");
+        $I->waitForElementNotVisible(".alert.in.fade.alert-error");
+        $I->fillField(DiscountsPage::$BeginValue, '100000000');
+        $I->fillField(DiscountsPage::$EndValue, '300000000');
+        $I->click(DiscountsPage::$SaveButton);        
+        $I->waitForText("Редактирование скидки");        
+        $I->seeInField(DiscountsPage::$NameDiscountEdit, '9SymbolsCumulativeDiscountUnlimitPercent');        
+        $I->seeInField(DiscountsPage::$ValueDiscount, '20');
+        $I->seeInField(DiscountsPage::$BeginValue, '100000000');
+        $I->seeInField(DiscountsPage::$EndValue, '300000000');
+    }
     
     
     
