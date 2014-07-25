@@ -2,7 +2,7 @@
 
 use \AcceptanceTester;
 
-include_once __DIR__.'\DeliveryHelper.php';
+require_once 'DeliveryHelper.php';
 
 class DeliveryCreateCest extends DeliveryTestHelper{
     //For deleting
