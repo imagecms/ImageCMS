@@ -6,7 +6,7 @@ class FieldsOCACest
      
     
     /**
-     * @group q
+     * @group a
      */
     public function Login(AcceptanceTester $I){
         InitTest::Login($I);
@@ -14,61 +14,97 @@ class FieldsOCACest
     
     
     
+//    /**
+//     * @group a
+//     */
+//    public function VerifyCategoryPresenceInSelectMenu (AcceptanceTester $I){
+//       $AllOptions =[]; 
+//       $I->amOnPage('/admin/components/run/shop/products/create');
+//       $AllProductOptions = $I->grabTagCount($I, 'select option', 2);
+//       $MakeVisible1 = "$('select:eq(2)').css({'display':'block'})";
+//       $I->executeJS($MakeVisible1);
+//       for($row = 1; $row <= $AllProductOptions; ++$row){
+//           $AllOptions[$row] = $I->grabTextFrom("//div[@class = 'control-group'][2]//div//select/option[$row]");
+//       }
+//       
+//       
+//       $I->amOnPage('/admin/components/run/shop/orders/create');
+//       $OrderCategoriesLength = $I->grabTagCount($I, 'select option');
+//       
+//       $MakeVisible2 = "$('select:eq(0)').css({'display':'block'})";
+//       $I->executeJS($MakeVisible2);
+//       
+//       for($row = 1; $row <= $OrderCategoriesLength; ++$row){
+//           $AllOrderOptions[$row] = $I->grabTextFrom("//select[1]/option[$row]");
+//       }
+//       foreach ($AllOptions as $key => $AllOptionNow) {
+//           $I->assertEquals(str_replace([' ','-'],'',$AllOptionNow), str_replace([' ','-'],'',$AllOrderOptions[$key]));
+//       }
+//    }  
+    
+    
+    
     /**
      * @group a
      */
-    public function VerifyCategoryPresenceInSelectMenu (AcceptanceTester $I){
-       $AllOptions =[]; 
-       $I->amOnPage('/admin/components/run/shop/products/create');
-       $AllProductOptions = $I->grabTagCount($I, 'select option', 2);
-       $MakeVisible1 = "$('select:eq(2)').css({'display':'block'})";
-       $I->executeJS($MakeVisible1);
-       for($row = 1; $row <= $AllProductOptions; ++$row){
-           $AllOptions[$row] = $I->grabTextFrom("//div[@class = 'control-group'][2]//div//select/option[$row]");
-       }
-       
-       
-       $I->amOnPage('/admin/components/run/shop/orders/create');
-       $OrderCategoriesLength = $I->grabTagCount($I, 'select option');
-       
-       $MakeVisible2 = "$('select:eq(0)').css({'display':'block'})";
-       $I->executeJS($MakeVisible2);
-       
-       for($row = 1; $row <= $OrderCategoriesLength; ++$row){
-           $AllOrderOptions[$row] = $I->grabTextFrom("//select[1]/option[$row]");
-       }
-       foreach ($AllOptions as $key => $AllOptionNow) {
-           $I->assertEquals(str_replace([' ','-'],'',$AllOptionNow), str_replace([' ','-'],'',$AllOrderOptions[$key]));
-       }
-    }  
-    
-    
-    
-    
-    
-    /**
-     * @group a
-     */
-    public function VerifySearchProductNameMin (AcceptanceTester $I) {
-        $this->SearchNameProduct($I, $typeName = '......');
+    public function SearchProductNameMin (AcceptanceTester $I){
+        $this->SearchNameProduct($I, $typeName = OrdersListPage::$CrtPrdNameMin);
     }
-    
-    
     /**
-     * @group q
+     * @group a
      */
+    public function SearchProductNameMax (AcceptanceTester $I){
+        $this->SearchNameProduct($I, $typeName = OrdersListPage::$CrtPrdNameMax);
+    }
+    /**
+     * @group a
+     */
+    public function SearchProductPriceMin (AcceptanceTester $I){
+        $this->SearchPriceProduct($I, $typeName = 'Минимальная Цена Товара', $typePrice = OrdersListPage::$CrtPrdPriceMin);
+    }
+    /**
+     * @group a
+     */
+    public function SearchProductPriceMax (AcceptanceTester $I){
+        $this->SearchPriceProduct($I, $typeName = 'Максимальная Цена Товара', $typePrice = OrdersListPage::$CrtPrdPriceMax);
+    }
+    /**
+     * @group a
+     */
+    public function SearchProductArticleMin (AcceptanceTester $I){
+        $this->SearchArticleProduct($I, $articleProduct = OrdersListPage::$CrtPrdArticleMin);
+    }
+    /**
+     * @group a
+     */
+    public function SearchProductArticleMax (AcceptanceTester $I){
+        $this->SearchArticleProduct($I, $articleProduct = OrdersListPage::$CrtPrdArticleMax);
+    }
+    /**
+     * @group a
+     */
+    public function SearchProductAmountMin (AcceptanceTester $I){
+        $this->SearchAmountProduct($I,  $typeName = 'Минимальное Количество Товара',
+                                        $amountProduct = OrdersListPage::$CrtPrdAmountMin);
+    }
+    /**
+     * @group a
+     */
+    public function SearchProductAmountMax (AcceptanceTester $I){
+        $this->SearchAmountProduct($I,  $typeName = 'Максимальное Количество Товара',
+                                        $amountProduct = OrdersListPage::$CrtPrdAmountMax);
+    }
 
-    public function VerifySearchProductNameMax(AcceptanceTester $I) {
-        $this->SearchNameProduct($I, $typeName = 'qwertyuioasdfghjklzxcvbnmйцукенгшщзхъфывапролдджэячсмиттьбюQWERTYUIOPASDFGHJKLZXCVBNMЙЦУКЕННГШГШЩЗФЫВАПРОЛДЖЭЯЧСМИТЬБЮqwertyuioasdfghjklzxcvbnmйцукенгшщзхъфывапролдджэячсмиттьбюQWERTYUIOPASDFGHJKLZXCVBNMЙЦУКЕННГШГШЩЗФЫВАПРОЛДЖЭЯЧСМИТЬБЮqwertyuioasdfghjklzxcvbnmйцукенгшщзхъфывапролдджэячсмиттьбюQWERTYUIOPASDFGHJKLZXCVBNMЙЦУКЕННГШГШЩЗФЫВАПРОЛДЖЭЯЧСМИТЬБЮqwertyuioasdfghjklzxcvbnmйцукенгшщзхъфывапролдджэячсмиттьбюQWERTYUIOPASDFGHJKLZXCVBNMЙЦУКЕННГШГШЩЗФЫВАПРОЛДЖЭЯЧСМИТЬБЮQWEQWEQWEQWEQWEASDASDZXCASDQ');
-    }
-    
-    
-    public function VerifySearchProductArticleMin(AcceptanceTester $I) {
-        $this->SearchArticleProduct($I, $typeName = '', $articleProduct = '');
-    }
-    
-    
-    
+
+
+
+
+
+
+
+
+
+
 ////////////////////////////////////////////////////////////////////////////////
 //                                                                            //
 //------------------------PROTECTED________FUNCTIONS----------------------------
@@ -125,7 +161,7 @@ class FieldsOCACest
     
     
     
-    protected function SearchArticleProduct (AcceptanceTester $I, $typeName = NULL, $articleProduct = NULL) {        
+    protected function SearchArticleProduct (AcceptanceTester $I, $articleProduct = NULL) {        
         $I->amOnPage(OrdersListPage::$CrtPURL);
         if(isset($articleProduct)){            
            $I->click(OrdersListPage::$CrtPButtProduct);
@@ -139,7 +175,7 @@ class FieldsOCACest
     
     protected function SearchAmountProduct (AcceptanceTester $I, $typeName = NULL, $amountProduct = NULL) {        
         if(isset($typeName)){            
-            $I->click(OrdersListPage::$CrtPButtProduct);    
+            $I->amOnPage(OrdersListPage::$CrtPURL); 
             $I->fillField('#productNameForOrders', $typeName);
             $I->wait('1');
             $I->see($typeName,'//body/ul[2]/li[1]/a');

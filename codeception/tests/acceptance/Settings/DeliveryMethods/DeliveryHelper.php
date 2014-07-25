@@ -12,12 +12,6 @@
  * EditDelivery
  * SearchDeliveryMethod
  *
- * @todo Write Killing Method ,for Array of Delivery Methods 
- * @todo Improve Create Delivery (default value = null)
- * @todo Make order in AlertPresent method 
- * @todo Add create simple payment methods for testing
- * @todo Add create simple product category and product for testing
- * 
  * @author Cray
  */
 

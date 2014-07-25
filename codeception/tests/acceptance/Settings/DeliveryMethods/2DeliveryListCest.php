@@ -1,7 +1,7 @@
 <?php
 use \AcceptanceTester;
 
-include_once __DIR__.'\DeliveryHelper.php';
+require_once 'DeliveryHelper.php';
 
 class DeliveryListCest extends DeliveryTestHelper{
     public $name = "ДоставкаСписокТест";
@@ -17,7 +17,7 @@ class DeliveryListCest extends DeliveryTestHelper{
     /**
      * @group list
      */
-    public function Authorization(AcceptanceTester $I) {
+    public function authorization(AcceptanceTester $I) {
         InitTest::Login($I);
         $I->amOnPage(DeliveryPage::$URL);
     }
@@ -25,7 +25,7 @@ class DeliveryListCest extends DeliveryTestHelper{
     /**
      * @group list
      */
-    public function Initialization(AcceptanceTester $I) {
+    public function initialization(AcceptanceTester $I) {
         if(!$this->SearchDeliveryMethod($I, $this->name)) { 
             $I->amOnPage(DeliveryCreatePage::$URL);
             $this->CreateDelivery($I, $this->name); 
@@ -36,7 +36,7 @@ class DeliveryListCest extends DeliveryTestHelper{
     /**
      * @group list
      */
-    public function CheckBoxTitle(AcceptanceTester $I) {
+    public function checkBoxTitle(AcceptanceTester $I) {
         $I->click(DeliveryPage::$CheckboxHeader);
         $Rowcount = $I->grabClassCount($I, 'niceCheck')-1;
         for($row = 1;$row <= $Rowcount;++$row){
@@ -51,7 +51,7 @@ class DeliveryListCest extends DeliveryTestHelper{
     /**
      * @group list
      */
-    public function CheckBoxLine(AcceptanceTester $I) {
+    public function checkBoxLine(AcceptanceTester $I) {
         $I->click(DeliveryPage::ListCheckboxLine(1));
         $Activity = $I->grabAttributeFrom("//tbody//tr[1]", 'class');
         $I->assertEquals("active", $Activity);
@@ -62,7 +62,7 @@ class DeliveryListCest extends DeliveryTestHelper{
     /**
      * @group list
      */
-    public function ToggleActive(AcceptanceTester $I) {
+    public function toggleActive(AcceptanceTester $I) {
         $I->comment("$this->name");
         $row = $this->SearchDeliveryMethod($I, $this->name);
 //        $I->click(DeliveryPage::ListCheckboxLine($row));
@@ -78,24 +78,24 @@ class DeliveryListCest extends DeliveryTestHelper{
      * Verify that unactive method isn't present at frontend
      * @group list
      */
-      public function ToggleUnActive (AcceptanceTester $I){
+      public function toggleUnActive (AcceptanceTester $I){
           $row = $this->SearchDeliveryMethod($I, $this->name);
           if($row) {
               $ActiveButtonClass = $I->grabAttributeFrom (DeliveryPage::ListActiveButtonLine($row), 'class');
               $I->comment($ActiveButtonClass);
-              if( $ActiveButtonClass == 'prod-on_off ') $I->click(DeliveryPage::ListActiveButtonLine($row));
+              if( $ActiveButtonClass == 'prod-on_off ') { $I->click(DeliveryPage::ListActiveButtonLine($row)); }
               $missing = $this->CheckMethodNotPresentInFrontEnd($I, $this->name);
-              if(!$missing)     $I->fail ('Unactive Method is present in front end');
-              elseif ($missing) $I->assertEquals(true, true, "Unactive Method is missing in front end");
+              if(!$missing)     { $I->fail ('Unactive Method is present in front end'); }
+              elseif ($missing) { $I->assertEquals(true, true, "Unactive Method is missing in front end"); }
           }
-              else $I->fail('There are no method $this->name for testing ToggleUnActive, create it before test');
+              else { $I->fail('There are no method $this->name for testing ToggleUnActive, create it before test'); }
       }
     
     
     /**
      * @group list
      */
-    public function WindowButtonCancelX(AcceptanceTester $I) {
+    public function windowButtonCancelX(AcceptanceTester $I) {
         $row = $this->SearchDeliveryMethod($I, $this->name);
         $I->click(DeliveryPage::ListCheckboxLine($row));
         $I->click(DeliveryPage::$DeleteButton);
@@ -112,7 +112,7 @@ class DeliveryListCest extends DeliveryTestHelper{
     /**
      * @group list
      */
-    public function ButtonDelete(AcceptanceTester $I) {
+    public function buttonDelete(AcceptanceTester $I) {
         $row = $this->SearchDeliveryMethod($I, $this->name);
         $I->click(DeliveryPage::ListCheckboxLine($row));
         $I->click(DeliveryPage::$DeleteButton);
