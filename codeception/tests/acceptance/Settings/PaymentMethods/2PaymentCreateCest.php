@@ -17,8 +17,15 @@ class PaymentCreateCest extends PaymentTestHelper{
      * @group current
      */
     public function authorization(AcceptanceTester $I) {
-        $I->runShellCommand("cd c:\OpenServer\modules\database\MySQL-5.5.35\bin && mysqldump.exe -u root cmsprem >C:\cmsprem.sql");
-        InitTest::Login($I);
+//        $thispath   = __DIR__;
+//        $mysqlPath  = '..\..\..\..\..\..\..\modules\database\MySQL-5.5.35\bin';
+//        $I->runShellCommand("cd $thispath && cd $mysqlPath && mysqldump.exe -u root cmsprem > C:\OpenServer\domains\imagecms.loc\codeception\tests\_data\cmsprem.sql");
+                
+
+        InitTest::dataBaseDump($I);
+        InitTest::dataBaseBackUp($I);
+//       InitTest::DbBackUp($I);
+//        InitTest::Login($I);
         self::$Logged=TRUE;
     }
     
@@ -151,7 +158,7 @@ class PaymentCreateCest extends PaymentTestHelper{
 
         /**
          * Create Payment methods for each payment system
-         * @group current
+         * @group create
          */
         public function fastAllPaymentSystems(AcceptanceTester $I){
             $prefix         = 'Оплата';//for name of payment name = $prefix.$paymentsystem
@@ -178,13 +185,12 @@ class PaymentCreateCest extends PaymentTestHelper{
         }
         
         /**
-         * @group current
+         * @group currents
          * 
          * experimental
          */
-          public function dump(AcceptanceTester $I) {
+          public function qwewqe(AcceptanceTester $I) {
                    
-                   $I->runShellCommand("cd c:\OpenServer\modules\database\MySQL-5.5.35\bin && mysql.exe -u root cmsprem < C:\cmsprem.sql");
                    
                    /*Microsoft Windows [Version 6.1.7601]
 
