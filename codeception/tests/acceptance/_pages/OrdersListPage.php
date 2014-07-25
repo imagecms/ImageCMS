@@ -191,4 +191,31 @@ class OrdersListPage
        
        
        
+    //Defolt Values For Created Category
+       
+       public static $CrtCatName1 = "Основная КаТеГоРиЯ";
+       public static $CrtCatName2= "First Дочерная";
+       public static $CrtCatName3 = "Second ДоЧеРнАя";
+       public static $CrtCatName1ForSearch = "Основ";
+       public static $CrtCatName2ForSearch = "-First";
+       public static $CrtCatName3ForSearch = "--Second";
+       
+    //Defolt Values For Created Category
+       
+    public static $CrtPrdNameMin = "....."; 
+    public static $CrtPrdNameMax = "qwertyuioasdfghjklzxcvbnmйцукенгшщзхъфывапролдджэячсмиттьбюQWERTYUIOPASDFGHJKLZXCVBNMЙЦУКЕННГШГШЩЗФЫВАПРОЛДЖЭЯЧСМИТЬБЮqwertyuioasdfghjklzxcvbnmйцукенгшщзхъфывапролдджэячсмиттьбюQWERTYUIOPASDFGHJKLZXCVBNMЙЦУКЕННГШГШЩЗФЫВАПРОЛДЖЭЯЧСМИТЬБЮqwertyuioasdfghjklzxcvbnmйцукенгшщзхъфывапролдджэячсмиттьбюQWERTYUIOPASDFGHJKLZXCVBNMЙЦУКЕННГШГШЩЗФЫВАПРОЛДЖЭЯЧСМИТЬБЮqwertyuioasdfghjklzxcvbnmйцукенгшщзхъфывапролдджэячсмиттьбюQWERTYUIOPASDFGHJKLZXCVBNMЙЦУКЕННГШГШЩЗФЫВАПРОЛДЖЭЯЧСМИТЬБЮQWEQWEQWEQWEQWEASDASDZXCASDQ"; 
+    public static $CrtPrdPriceMin = "1"; 
+    public static $CrtPrdPriceMax = "10000000000000"; 
+    public static $CrtPrdArticleMin = "R2D2"; 
+    public static $CrtPrdArticleMax = "АааРррТттИииКккУууЛллМммАааКккСссАааРррТттИииКккУууЛллМммАааКккСссАааРррТттИииКккУууЛллМммАааКккСссАааРррТттИииКккУууЛллМммАааКккСссАааРррТттИииКккУууЛллМммАааКккСссАааРррТттИииКккУууЛллМммАааКккСссАааРррТттИииКккУууЛллМммАааКккСссАааРррТттИииКккУууЛллМмм123123"; 
+    public static $CrtPrdAmountMin = "0"; 
+    public static $CrtPrdAmountMax = "2147483649"; 
+    public static $CrtVarNameMin = "VoP"; 
+    public static $CrtVarNameMax = "фффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффф"; 
+    public static $CrtVarPriceMin = "1"; 
+    public static $CrtVarPriceMax = "10000000000000"; 
+    public static $CrtVarArticleMin = "D3R3"; 
+    public static $CrtVarArticleMax = "АааРррТттИииКккУууЛллМммАааКккСссАааРррТттИииКккУууЛллМммАааКккСссАааРррТттИииКккУууЛллМммАааКккСссАааРррТттИииКккУууЛллМммАааКккСссАааРррТттИииКккУууЛллМммАааКккСссАааРррТттИииКккУууЛллМммАааКккСссАааРррТттИииКккУууЛллМммАааКккСссАааРррТттИииКккУууЛллМмм123123"; 
+    public static $CrtVarAmountMin = "0"; 
+    public static $CrtVarAmountMax = "2147483649"; 
 }

@@ -6,7 +6,7 @@ class CategoryAndProductOCACest
      
     
     /**
-     * @group q
+     * @group a
      */
     public function Login(AcceptanceTester $I){
         InitTest::Login($I);
@@ -21,7 +21,8 @@ class CategoryAndProductOCACest
      * @group a
      */
     public function CreateParentMainCategory (AcceptanceTester $I){
-    $this->CreateCategory($I, $createNameCategory = 'Основная КаТеГоРиЯ', null);
+    $this->CreateCategory($I,$createNameCategory = OrdersListPage::$CrtCatName1,
+                            $addParentCategory = null);
     }
     
     
@@ -30,7 +31,8 @@ class CategoryAndProductOCACest
      * @group a
      */
     public function CreateFirstChildCategory (AcceptanceTester $I){
-        $this->CreateCategory($I, 'First Дочерная','Осно');
+        $this->CreateCategory($I,$createNameCategory = OrdersListPage::$CrtCatName2,
+                                $addParentCategory = OrdersListPage::$CrtCatName1ForSearch);
     }
     
     
@@ -39,8 +41,14 @@ class CategoryAndProductOCACest
      * @group a
      */
     public function CreateSecondChildCategory (AcceptanceTester $I){
-        $this->CreateCategory($I, 'Second ДоЧеРнАя', 'First');
+        $this->CreateCategory($I,$createNameCategory = OrdersListPage::$CrtCatName3,
+                                $addParentCategory = OrdersListPage::$CrtCatName2ForSearch);
     }
+    
+    
+    
+    
+    
     
     
     
@@ -48,86 +56,87 @@ class CategoryAndProductOCACest
 
 //-------------------------Create Products--------------------------------------
     
-     
-    
-    
-    
+
     
     /**
      * @group a
      */
-    public function CreateProductMainNameMin (AcceptanceTester $I){
-        $this->CreateProduct($I, $nameProduct = '......', $priceProduct = '1', $articleProduct = NULL,
-                            $amountProduct = NULL, $categoryProduct = 'Основ', $variantProduct = NULL,
-                            $variantPrice = NULL, $variantArticle = NULL, $variantAmount = NULL);
+    public function CreateProductNameMin (AcceptanceTester $I){
+        $this->CreateProduct($I,$nameProduct = OrdersListPage::$CrtPrdNameMin,
+                                $priceProduct = OrdersListPage::$CrtPrdPriceMin,
+                                $articleProduct = NULL,
+                                $amountProduct = NULL,
+                                $categoryProduct = OrdersListPage::$CrtCatName1ForSearch);
     }
     
      /**
      * @group a
      */
-    public function CreateProductMainNameMax (AcceptanceTester $I){
-        $this->CreateProduct($I, $nameProduct = 'qwertyuioasdfghjklzxcvbnmйцукенгшщзхъфывапролдджэячсмиттьбю QWERTYUIOPASDFGHJKLZXCVBNMЙЦУКЕННГШГШЩЗФЫВАПРОЛДЖЭЯЧСМИТЬБЮqwertyuioasdfghj klzxcvbnmйцукенгшщзхъфывапролдджэячсмиттьбюQWERTYUIOPASDFGHJKLZXCVB NMЙЦУКЕННГШГШЩЗФЫВАПРОЛДЖЭЯЧСМИТЬБЮqwertyuioasdfgh jklzxcvbnmйцукенгшщзхъфывапролдджэячсмиттьбюQWERTYUIOPASDFGHJKLZXCVBNMЙЦУКЕННГШГШЩЗФЫВАПРОЛДЖЭЯ ЧСМИТЬБЮqwertyuioasdfghjklzxcvbnmйцукенгшщзхъфывапролдджэячсмиттьбюQWERTYUIOP ASDFGHJKLZXCVBNMЙЦУКЕННГШГШЩЗФЫВАПРОЛДЖЭЯЧСМИТЬБЮQWEQWEQWEQWEQWEASDASDZXCASDQQ',
-                                $priceProduct = 1, $articleProduct = NULL, $amountProduct = NULL,
-                                $categoryProduct = 'Основ', $variantProduct = NULL, $variantPrice = NULL, $variantArticle = NULL, $variantAmount = NULL);
+    public function CreateProductNameMax (AcceptanceTester $I){
+        $this->CreateProduct($I,$nameProduct = OrdersListPage::$CrtPrdNameMax,
+                                $priceProduct = OrdersListPage::$CrtPrdPriceMin,
+                                $articleProduct = NULL,    
+                                $amountProduct = NULL,
+                                $categoryProduct = OrdersListPage::$CrtCatName1ForSearch);
+    }
+    
+    
+        /**
+     * @group a
+     */
+    public function CreateProductPriceMin (AcceptanceTester $I){
+        $this->CreateProduct($I,$nameProduct = 'Минимальная Цена Товара',
+                                $priceProduct = OrdersListPage::$CrtPrdPriceMin,
+                                $articleProduct = NULL,
+                                $amountProduct = NULL,
+                                $categoryProduct = OrdersListPage::$CrtCatName1ForSearch);
     }
     
     
     /**
      * @group a
      */
-    public function CreateProductMainArticleMin (AcceptanceTester $I){
-        $this->CreateProduct($I, $nameProduct = 'Артикул МиН', $priceProduct = 123, $articleProduct = 'R2D2',
-                            $amountProduct = NULL, $categoryProduct = 'Основ', $variantProduct = null, $variantPrice = NULL, $variantArticle = null, $variantAmount = NULL);
+    public function CreateProductPriceMax (AcceptanceTester $I){
+        $this->CreateProduct($I,$nameProduct = 'Максимальная Цена Товара',
+                                $priceProduct = OrdersListPage::$CrtPrdPriceMax,
+                                $articleProduct = NULL,
+                                $amountProduct = NULL,
+                                $categoryProduct = OrdersListPage::$CrtCatName1ForSearch);
+    }
+    
+    /**
+     * @group a
+     */
+    public function CreateProductArticleMin (AcceptanceTester $I){
+        $this->CreateProduct($I,$nameProduct = 'Минимальний Арикул Товара',
+                                $priceProduct = OrdersListPage::$CrtPrdPriceMin,
+                                $articleProduct = OrdersListPage::$CrtPrdArticleMin,
+                                $amountProduct = NULL,
+                                $categoryProduct = OrdersListPage::$CrtCatName1ForSearch);
     }
     
     
     /**
      * @group a
      */
-    public function CreateProductMainArticleMax (AcceptanceTester $I){
-        $this->CreateProduct($I, $nameProduct = 'Артикул МаХ', $priceProduct = 456, $articleProduct = 'АааРррТттИииКккУууЛллМммАааКккСссАааРррТттИииКккУууЛллМммАааКккСссАааРррТт тИииКккУууЛллМммАааКккСссАааРррТттИииКккУууЛллМммАаа КккСссАааРррТттИииКккУууЛллМммАааКккСссАааРррТттИи иКккУууЛллМммАааКккСссАааРррТттИииКккУууЛллМм мАааКккСссАааРррТттИииКккУууЛллМмм123123',
-                                                NULL, $categoryProduct = 'Основ', NULL, NULL, NULL, $variantAmount = NULL);
+    public function CreateProductArticleMax (AcceptanceTester $I){
+        $this->CreateProduct($I,$nameProduct = 'Максимальний Артикул Товара',
+                                $priceProduct = OrdersListPage::$CrtPrdPriceMin,
+                                $articleProduct = OrdersListPage::$CrtPrdArticleMax,
+                                $amountProduct = NULL,
+                                $categoryProduct = OrdersListPage::$CrtCatName2ForSearch);
     }
 
     
     /**
      * @group a
      */
-    public function CreateProductMainPriceMin (AcceptanceTester $I){
-    $this->CreateProduct($I, 'Цена МиН', 1, NULL, NULL, 'Осно', NULL, NULL, NULL, NULL);
-    }
-    
-    
-    /**
-     * @group a
-     */
-    public function CreateProductMainPriceMax (AcceptanceTester $I){
-        $this->CreateProduct($I, 'Цена МаХ', 10000000000000, NULL, NULL, '-First', NULL, NULL, NULL, NULL);
-    }
-    
-    
-    /**
-     * @group a
-     */
-    public function CreateProductVariantMin (AcceptanceTester $I){
-        $this->CreateProduct($I, 'Вариант МиН', 11, NULL, NULL, '-First', 'V', 1, NULL, NULL);
-    }
-    
-    
-    /**
-     * @group a
-     */
-    public function CreateProductVariantMax (AcceptanceTester $I){
-        $this->CreateProduct($I, 'Вариант МаХ', 45.23, NULL, NULL, '-First', 'ффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффф',
-                                                                            33.55, NULL, NULL);
-    }
-    
-    
-    /**
-     * @group a
-     */
     public function CreateProductAmountMin (AcceptanceTester $I){
-    $this->CreateProduct($I, 'Количество МиН', 645.987, NULL, 0, '-First', NULL, NULL, NULL, NULL);
+        $this->CreateProduct($I,$nameProduct = 'Минимальное Количество Товара',
+                                $priceProduct = OrdersListPage::$CrtPrdPriceMin,
+                                $articleProduct = NULL,
+                                $amountProduct = OrdersListPage::$CrtVarAmountMin,
+                                $categoryProduct = OrdersListPage::$CrtCatName2ForSearch);
     }
     
     
@@ -135,46 +144,133 @@ class CategoryAndProductOCACest
      * @group a
      */
     public function CeateProductAmountMax (AcceptanceTester $I){
-        $this->CreateProduct($I, 'КоЛиЧеСтВо МаХ', 9.9, NULL, 2147483649 , '-First', NULL, NULL, NULL, NULL);
+        $this->CreateProduct($I,$nameProduct = 'Максимальное Количество Товара',
+                                $priceProduct = OrdersListPage::$CrtPrdPriceMin,
+                                $articleProduct = NULL,
+                                $amountProduct = OrdersListPage::$CrtVarAmountMax,
+                                $categoryProduct = OrdersListPage::$CrtCatName2ForSearch);
     }
     
     /**
      * @group a
-     */    
-    public function CreateVariantName (AcceptanceTester $I){
-        $this->CreateProduct($I, 'ВаРиАнТ НаЗвАнИъЭ', 874, NULL, NULL, '--Second', 'NamE VaRиАнТ ПрОдУcT', 123345, NULL, NULL);
+     */
+    public function CreateVariantNameMin (AcceptanceTester $I){
+        $this->CreateProduct($I,$nameProduct = 'Минимальное Название Варианта ',
+                                $priceProduct = OrdersListPage::$CrtPrdPriceMin,
+                                $articleProduct = NULL,
+                                $amountProduct = NULL,
+                                $categoryProduct = OrdersListPage::$CrtCatName2ForSearch,
+                                $variantProduct = OrdersListPage::$CrtVarNameMin,
+                                $variantPrice = OrdersListPage::$CrtVarPriceMin);
     }
     
     
     /**
      * @group a
      */
-    public function CreateVariantArticle (AcceptanceTester $I){
-        $this->CreateProduct($I, 'ВаРиииАнТТ АрТиКла', 777, NULL, NULL, '--Second', 'VaRiiiAAnnnTTt ARTIKAAA', 909, '989 -*+ qwe ЇЗХ', NULL);
+    public function CreateVariantNameMax (AcceptanceTester $I){
+        $this->CreateProduct($I,$nameProduct = 'Максимальное Название Варианта',
+                                $priceProduct = OrdersListPage::$CrtVarPriceMin,
+                                $articleProduct = NULL,
+                                $amountProduct = NULL,
+                                $categoryProduct = OrdersListPage::$CrtCatName2ForSearch,
+                                $variantProduct = OrdersListPage::$CrtVarNameMax,
+                                $variantPrice = OrdersListPage::$CrtVarPriceMin);
     }
+    
+    
+    /**
+     * @group a
+     */
+    public function CreateVariantPriceMin (AcceptanceTester $I){
+        $this->CreateProduct($I,$nameProduct = 'Минимальная Цена Варианта',
+                                $priceProduct = OrdersListPage::$CrtVarPriceMin,
+                                $articleProduct = NULL,
+                                $amountProduct = NULL,
+                                $categoryProduct = OrdersListPage::$CrtCatName3ForSearch,
+                                $variantProduct = OrdersListPage::$CrtVarNameMin,
+                                $variantPrice = OrdersListPage::$CrtVarPriceMin);
+    }
+    
+    
+    /**
+     * @group a
+     */
+    public function CreateVariantPriceMax (AcceptanceTester $I){
+        $this->CreateProduct($I,$nameProduct = 'Максимальная Цена Варианта',
+                                $priceProduct = OrdersListPage::$CrtVarPriceMin,
+                                $articleProduct = NULL,
+                                $amountProduct = NULL,
+                                $categoryProduct = OrdersListPage::$CrtCatName3ForSearch,
+                                $variantProduct = OrdersListPage::$CrtVarNameMin,
+                                $variantPrice = OrdersListPage::$CrtVarPriceMax);
+    }
+    
+    /**
+     * @group a
+     */
+    public function CreateVariantArticleMin (AcceptanceTester $I){
+        $this->CreateProduct($I,$nameProduct = 'Минимальний Артикул Варианта',
+                                $priceProduct = OrdersListPage::$CrtVarPriceMin,
+                                $articleProduct = NULL,
+                                $amountProduct = NULL,
+                                $categoryProduct = OrdersListPage::$CrtCatName3ForSearch,
+                                $variantProduct = OrdersListPage::$CrtVarNameMin,
+                                $variantPrice = OrdersListPage::$CrtVarPriceMin,
+                                $variantArticle = OrdersListPage::$CrtVarArticleMin);
+    }
+    
+    
+    /**
+     * @group a
+     */
+    public function CreateVariantArticleMax (AcceptanceTester $I){
+        $this->CreateProduct($I,$nameProduct = 'Максимальний Артикул Варианта',
+                                $priceProduct = OrdersListPage::$CrtVarPriceMin,
+                                $articleProduct = NULL,
+                                $amountProduct = NULL,
+                                $categoryProduct = OrdersListPage::$CrtCatName3ForSearch,
+                                $variantProduct = OrdersListPage::$CrtVarNameMin,
+                                $variantPrice = OrdersListPage::$CrtVarPriceMin,
+                                $variantArticle = OrdersListPage::$CrtVarArticleMax);
+    }
+    
+    
+    /**
+     * @group a
+     */
+    public function CreateVariantAmountMin (AcceptanceTester $I){
+        $this->CreateProduct($I,$nameProduct = 'Минимальное Количество Варианта',
+                                $priceProduct = OrdersListPage::$CrtVarPriceMin,
+                                $articleProduct = NULL,
+                                $amountProduct = NULL,
+                                $categoryProduct = OrdersListPage::$CrtCatName3ForSearch,
+                                $variantProduct = OrdersListPage::$CrtVarNameMin,
+                                $variantPrice = OrdersListPage::$CrtVarPriceMin,
+                                $variantArticle = NULL,
+                                $variantAmount = OrdersListPage::$CrtVarAmountMin);
+    }
+    
+    
+    
+    /**
+     * @group a
+     */
+    public function CreateVariantAmountMax (AcceptanceTester $I){
+        $this->CreateProduct($I,$nameProduct = 'Максимальное Количество Варианта',
+                                $priceProduct = OrdersListPage::$CrtVarPriceMin,
+                                $articleProduct = NULL,
+                                $amountProduct = NULL,
+                                $categoryProduct = OrdersListPage::$CrtCatName3ForSearch,
+                                $variantProduct = OrdersListPage::$CrtVarNameMin,
+                                $variantPrice = OrdersListPage::$CrtVarPriceMin,
+                                $variantArticle = NULL,
+                                $variantAmount = OrdersListPage::$CrtVarAmountMax);
+    }
+    
 
-    
-    /**
-     * @group a
-     */
-    public function CreateVariantPrice (AcceptanceTester $I){
-        $this->CreateProduct($I, 'ВаРиАнТТ ЦенА', 111, NULL, NULL, '--Second', 'Afrika BoomBaaTaa', 9875.6541, NULL, NULL);
-    }
 
-    
-     /**
-     * @group a
-     */
-     public function CreateVariantAmountMin (AcceptanceTester $I){
-         $this->CreateProduct($I, 'ВариаНтиКККссс КОЛ минимализмикс', 1, NULL, NULL, '--Second', 'SaPuTO КОЛ минимал биток', 1, NULL, 0);
-     }
-     
-      /**
-     * @group a
-     */
-      public function CreateVariantAmountMax (AcceptanceTester $I){
-          $this->CreateProduct($I, 'ВаР ХаЙ лвл КОЛИЧЕСТВО', 2, NULL, NULL, '--Second', 'ZuRgOdZuP КОЛ МАКС', 2, NULL, 2147483649);
-      }
+
 
 
 
@@ -194,18 +290,30 @@ class CategoryAndProductOCACest
                                                             $addParentCategory = null){
         $I->amOnPage(OrdersListPage::$CrtCategoryPageURL);                                                                                                                                     
         if(isset($createNameCategory)){
-        $I->fillField(OrdersListPage::$CrtCategoryFieldName, $createNameCategory);                                                                                              
+            $I->fillField(OrdersListPage::$CrtCategoryFieldName, $createNameCategory);                                                                                              
         }if(isset($addParentCategory)){            
-        $I->click(OrdersListPage::$CrtCategorySelectMenu);                                                                                                                        
-        $I->fillField(OrdersListPage::$CrtCategorySelectMenuInput, $addParentCategory);                                                                                              
-        $I->click(OrdersListPage::$CrtCategorySelectMenuSetSearch);                                                                                                                            
-        }$I->click(OrdersListPage::$CrtCategoryButtonSaveandBack);                                                                                                                                  
+            $I->click(OrdersListPage::$CrtCategorySelectMenu);                                                                                                                        
+            $I->fillField(OrdersListPage::$CrtCategorySelectMenuInput,$addParentCategory);                                                                                              
+            $I->click(OrdersListPage::$CrtCategorySelectMenuSetSearch);
+        }$I->click(OrdersListPage::$CrtCategoryButtonSaveandBack); 
     }
+    
+    
+    
+    
 
     
     
 
-    protected function CreateProduct (AcceptanceTester $I, $nameProduct = NULL , $priceProduct = NULL, $articleProduct = NULL, $amountProduct = NULL, $categoryProduct = NULL, $variantProduct = NULL, $variantPrice = NULL, $variantArticle = NULL, $variantAmount = NULL){
+    protected function CreateProduct (AcceptanceTester $I,  $nameProduct = NULL,
+                                                            $priceProduct = NULL,
+                                                            $articleProduct = NULL,
+                                                            $amountProduct = NULL,
+                                                            $categoryProduct = NULL,
+                                                            $variantProduct = NULL,
+                                                            $variantPrice = NULL,
+                                                            $variantArticle = NULL,
+                                                            $variantAmount = NULL){
         $I->amOnPage(OrdersListPage::$CrtProductPageURL);                                                                                                     
         if (isset($nameProduct)) {
             $I->fillField(OrdersListPage::$CrtProductNameProduct, $nameProduct);                                          

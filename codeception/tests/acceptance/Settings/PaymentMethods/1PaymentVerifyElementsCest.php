@@ -46,6 +46,51 @@ class PaymentElementsCest
     /**
      * @group verify
      */
+    public function miniMessageEdit(AcceptanceTester $I) {
+        $I->moveMouseOver(PaymentListPage::MethodNameLine(1));
+        $I->waitForElementVisible('.tooltip.fade.top.in');
+        $I->see("Редактировать",'.tooltip.fade.top.in');
+        $I->moveMouseOver('//tbody//tr[3]//td');
+        $I->waitForElementNotVisible('.tooltip.fade.top.in');
+    }
+    
+    /**
+     * @group verify
+     */
+    public function miniMessagesActive(AcceptanceTester $I) {
+        $Class = $I->grabAttributeFrom(PaymentListPage::ActiveLine(1), 'class');
+        $I->comment($Class);
+        //BUG HERE------------------------------------------------------------------------------------------
+//        $I->click(PaymentListPage::ActiveLine(1));                                //BUG HERE inscription ACTIVE
+        //--------------------------------------------------------------------------------------------------
+        $I->wait(1);
+        $I->moveMouseOver(PaymentListPage::ActiveLine(1));
+        $I->waitForElementVisible('.tooltip-inner');
+        if ($Class == 'prod-on_off')
+            $I->see ('показать', '.tooltip-inner');
+        else {
+            $I->see ('не показывать', '.tooltip-inner');
+        }
+        
+        
+        
+        $I->click(PaymentListPage::ActiveLine(1));
+        $I->moveMouseOver('//tbody//tr[3]');
+        $Class = $I->grabAttributeFrom(PaymentListPage::ActiveLine(1), 'class');
+        $I->comment($Class);
+        $I->moveMouseOver(PaymentListPage::ActiveLine(1));
+        if ($Class == 'prod-on_off')
+            $I->see ('показать', '.tooltip-inner');
+        else {
+            $I->see ('не показывать', '.tooltip-inner');
+        }
+        
+    }
+    
+    
+    /**
+     * @group verify
+     */
     public function PaymentCreateElements(AcceptanceTester $I) {
         $I->click(PaymentListPage::$ButtonCreate);
         $I->waitForText('Создание способа оплаты', NULL, PaymentCreatePage::$Title);
@@ -89,11 +134,5 @@ class PaymentElementsCest
         $I->seeElement(PaymentEditPage::$SelectPaymentSystem);
         $I->click(PaymentEditPage::$ButtonBack);
         $I->waitForText("Список способов оплаты",NULL, PaymentListPage::$Title);        
-    }
-    /**
-     * @group current
-     */
-    public function miniMessage(AcceptanceTester $I) {
-        
     }
 }
