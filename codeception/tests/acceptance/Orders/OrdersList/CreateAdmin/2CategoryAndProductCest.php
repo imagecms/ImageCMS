@@ -32,7 +32,7 @@ class CategoryAndProductOCACest
      */
     public function CreateFirstChildCategory (AcceptanceTester $I){
         $this->CreateCategory($I,$createNameCategory = OrdersListPage::$CrtCatName2,
-                                $addParentCategory = OrdersListPage::$CrtCatName1ForSearch);
+                                $addParentCategory = 'Основ');
     }
     
     
@@ -42,7 +42,7 @@ class CategoryAndProductOCACest
      */
     public function CreateSecondChildCategory (AcceptanceTester $I){
         $this->CreateCategory($I,$createNameCategory = OrdersListPage::$CrtCatName3,
-                                $addParentCategory = OrdersListPage::$CrtCatName2ForSearch);
+                                $addParentCategory = 'First');
     }
     
     
