@@ -62,5 +62,39 @@ class InitTest{
         $I->click(NavigationBarPage::$SystemClearAllCach);
 //        $I->waitForElement(".alert.in.fade.alert-error", '30');
     }
+    
+    //__________________________________________________________________________DATABASE
+    const THIS_DATA_DIR     = '\..\_data';
+    const OPEN_SERVER_DIR   = '..\..\..\..\..\..';
+    const MY_SQL_DIR        = '\modules\database\MySQL-5.5.35\bin';
+    
+    public static function dataBaseDump(AcceptanceTester $I,$username = 'root', $databasename = 'cmsprem'){
+        /**
+         * $mysqldump command do this: 
+         * "cd C:\OpenServer\modules\database\MySQL-5.5.35\bin && mysqldump.exe -u root cmsprem > C:\OpenServer\cmsprem.sql"
+         */
+        $mysqldump =    'cd ' . __DIR__ .
+                        self::OPEN_SERVER_DIR .
+                        self::MY_SQL_DIR .
+                        " && " .
+                        "mysqldump.exe -u $username $databasename > " .
+                         __DIR__ . self::THIS_DATA_DIR . "\cmsprem.sql";                                                   
+        
+        $I->runShellCommand($mysqldump);
+        
 
+    }
+    public static function dataBaseBackUp(AcceptanceTester $I,$username = 'root', $databasename = 'cmsprem'){
+        /**
+         * $mysqlbackup command do this:
+         * "cd c:\OpenServer\modules\database\MySQL-5.5.35\bin && mysql.exe -u root cmsprem < C:\OpenServer\cmsprem.sql"
+         */
+        $mysqlbackup =    'cd ' . __DIR__ .
+                    self::OPEN_SERVER_DIR .
+                    self::MY_SQL_DIR .
+                    " && " .
+                    "mysql.exe -u $username $databasename < ".
+                    __DIR__ . self::THIS_DATA_DIR . "\cmsprem.sql";
+        $I->runShellCommand($mysqlbackup);
+    }        
 }

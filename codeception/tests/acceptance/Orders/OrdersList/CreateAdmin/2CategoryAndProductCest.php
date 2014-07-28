@@ -6,7 +6,7 @@ class CategoryAndProductOCACest
      
     
     /**
-     * @group a
+     * @group q
      */
     public function Login(AcceptanceTester $I){
         InitTest::Login($I);
@@ -112,7 +112,7 @@ class CategoryAndProductOCACest
                                 $priceProduct = OrdersListPage::$CrtPrdPriceMin,
                                 $articleProduct = OrdersListPage::$CrtPrdArticleMin,
                                 $amountProduct = NULL,
-                                $categoryProduct = OrdersListPage::$CrtCatName1ForSearch);
+                                $categoryProduct = OrdersListPage::$CrtCatName2ForSearch);
     }
     
     
@@ -148,126 +148,50 @@ class CategoryAndProductOCACest
                                 $priceProduct = OrdersListPage::$CrtPrdPriceMin,
                                 $articleProduct = NULL,
                                 $amountProduct = OrdersListPage::$CrtVarAmountMax,
-                                $categoryProduct = OrdersListPage::$CrtCatName2ForSearch);
-    }
-    
-    /**
-     * @group a
-     */
-    public function CreateVariantNameMin (AcceptanceTester $I){
-        $this->CreateProduct($I,$nameProduct = 'Минимальное Название Варианта ',
-                                $priceProduct = OrdersListPage::$CrtPrdPriceMin,
-                                $articleProduct = NULL,
-                                $amountProduct = NULL,
-                                $categoryProduct = OrdersListPage::$CrtCatName2ForSearch,
-                                $variantProduct = OrdersListPage::$CrtVarNameMin,
-                                $variantPrice = OrdersListPage::$CrtVarPriceMin);
+                                $categoryProduct = OrdersListPage::$CrtCatName3ForSearch);
     }
     
     
-    /**
-     * @group a
-     */
-    public function CreateVariantNameMax (AcceptanceTester $I){
-        $this->CreateProduct($I,$nameProduct = 'Максимальное Название Варианта',
-                                $priceProduct = OrdersListPage::$CrtVarPriceMin,
-                                $articleProduct = NULL,
-                                $amountProduct = NULL,
-                                $categoryProduct = OrdersListPage::$CrtCatName2ForSearch,
-                                $variantProduct = OrdersListPage::$CrtVarNameMax,
-                                $variantPrice = OrdersListPage::$CrtVarPriceMin);
-    }
     
     
     /**
-     * @group a
+     * @group q
      */
-    public function CreateVariantPriceMin (AcceptanceTester $I){
-        $this->CreateProduct($I,$nameProduct = 'Минимальная Цена Варианта',
-                                $priceProduct = OrdersListPage::$CrtVarPriceMin,
+    public function CreateProductPrice1AfterPoint (AcceptanceTester $I){
+        $this->CreateProduct($I,$nameProduct = 'Товар с ценой 1 после точки',
+                                $priceProduct = '0.1',
                                 $articleProduct = NULL,
                                 $amountProduct = NULL,
-                                $categoryProduct = OrdersListPage::$CrtCatName3ForSearch,
-                                $variantProduct = OrdersListPage::$CrtVarNameMin,
-                                $variantPrice = OrdersListPage::$CrtVarPriceMin);
-    }
-    
-    
-    /**
-     * @group a
-     */
-    public function CreateVariantPriceMax (AcceptanceTester $I){
-        $this->CreateProduct($I,$nameProduct = 'Максимальная Цена Варианта',
-                                $priceProduct = OrdersListPage::$CrtVarPriceMin,
-                                $articleProduct = NULL,
-                                $amountProduct = NULL,
-                                $categoryProduct = OrdersListPage::$CrtCatName3ForSearch,
-                                $variantProduct = OrdersListPage::$CrtVarNameMin,
-                                $variantPrice = OrdersListPage::$CrtVarPriceMax);
-    }
-    
-    /**
-     * @group a
-     */
-    public function CreateVariantArticleMin (AcceptanceTester $I){
-        $this->CreateProduct($I,$nameProduct = 'Минимальний Артикул Варианта',
-                                $priceProduct = OrdersListPage::$CrtVarPriceMin,
-                                $articleProduct = NULL,
-                                $amountProduct = NULL,
-                                $categoryProduct = OrdersListPage::$CrtCatName3ForSearch,
-                                $variantProduct = OrdersListPage::$CrtVarNameMin,
-                                $variantPrice = OrdersListPage::$CrtVarPriceMin,
-                                $variantArticle = OrdersListPage::$CrtVarArticleMin);
-    }
-    
-    
-    /**
-     * @group a
-     */
-    public function CreateVariantArticleMax (AcceptanceTester $I){
-        $this->CreateProduct($I,$nameProduct = 'Максимальний Артикул Варианта',
-                                $priceProduct = OrdersListPage::$CrtVarPriceMin,
-                                $articleProduct = NULL,
-                                $amountProduct = NULL,
-                                $categoryProduct = OrdersListPage::$CrtCatName3ForSearch,
-                                $variantProduct = OrdersListPage::$CrtVarNameMin,
-                                $variantPrice = OrdersListPage::$CrtVarPriceMin,
-                                $variantArticle = OrdersListPage::$CrtVarArticleMax);
-    }
-    
-    
-    /**
-     * @group a
-     */
-    public function CreateVariantAmountMin (AcceptanceTester $I){
-        $this->CreateProduct($I,$nameProduct = 'Минимальное Количество Варианта',
-                                $priceProduct = OrdersListPage::$CrtVarPriceMin,
-                                $articleProduct = NULL,
-                                $amountProduct = NULL,
-                                $categoryProduct = OrdersListPage::$CrtCatName3ForSearch,
-                                $variantProduct = OrdersListPage::$CrtVarNameMin,
-                                $variantPrice = OrdersListPage::$CrtVarPriceMin,
-                                $variantArticle = NULL,
-                                $variantAmount = OrdersListPage::$CrtVarAmountMin);
+                                $categoryProduct = OrdersListPage::$CrtCatName3ForSearch);
     }
     
     
     
     /**
-     * @group a
+     * @group q
      */
-    public function CreateVariantAmountMax (AcceptanceTester $I){
-        $this->CreateProduct($I,$nameProduct = 'Максимальное Количество Варианта',
-                                $priceProduct = OrdersListPage::$CrtVarPriceMin,
+    public function CreateProductPrice2AfterPoint (AcceptanceTester $I){
+        $this->CreateProduct($I,$nameProduct = 'Товар с ценой 2 после точки',
+                                $priceProduct = '0.11',
                                 $articleProduct = NULL,
                                 $amountProduct = NULL,
-                                $categoryProduct = OrdersListPage::$CrtCatName3ForSearch,
-                                $variantProduct = OrdersListPage::$CrtVarNameMin,
-                                $variantPrice = OrdersListPage::$CrtVarPriceMin,
-                                $variantArticle = NULL,
-                                $variantAmount = OrdersListPage::$CrtVarAmountMax);
+                                $categoryProduct = OrdersListPage::$CrtCatName3ForSearch);
     }
     
+    /**
+     * @group q
+     */
+    public function CreateProductPriceMaxAfterPoint (AcceptanceTester $I){
+        $this->CreateProduct($I,$nameProduct = 'Товар с ценой Макс после точки',
+                                $priceProduct = '0.99',
+                                $articleProduct = NULL,
+                                $amountProduct = NULL,
+                                $categoryProduct = OrdersListPage::$CrtCatName3ForSearch);
+    }
+    
+    
+//    
+
 
 
 

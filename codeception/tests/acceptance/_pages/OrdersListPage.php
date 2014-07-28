@@ -102,6 +102,14 @@ class OrdersListPage
        public static $CrtPNameColTotalPrice = ".//*[@id='productsInCart']/thead/tr/th[5]";
        public static $CrtPNameColDelete = ".//*[@id='productsInCart']/thead/tr/th[6]";
        
+       
+       //Creating Order Fields "Product"
+       
+       public static $CrtPFieldAmount = "//section/form/div/div[1]/div/table[2]/tbody/tr/td[4]/div/input";
+       public static $CrtPFieldTotalPrice = "//section/form/div/div[1]/div/table[2]/tbody/tr/td[5]/span[1]";
+       public static $CrtPFieldCommon = "//section/form/div/div[1]/div/table[2]/tfoot/tr/td[3]/span";
+       
+       
        //Creating Order Name Element "User"
        
        public static $CrtUNameBlockUser = "//thead/tr/th[1]";
