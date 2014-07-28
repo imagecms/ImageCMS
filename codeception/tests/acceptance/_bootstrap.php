@@ -68,33 +68,66 @@ class InitTest{
     const OPEN_SERVER_DIR   = '..\..\..\..\..\..';
     const MY_SQL_DIR        = '\modules\database\MySQL-5.5.35\bin';
     
-    public static function dataBaseDump(AcceptanceTester $I,$username = 'root', $databasename = 'cmsprem'){
+    
+    /**
+     * create dump of database
+     * 
+     * @param AcceptanceTester  $I              controller
+     * @param string            $username       Db username
+     * @param string            $databasename   Db name
+     */
+    public static function dataBaseDump(AcceptanceTester $I,$username = null, $databasename = null){
         /**
          * $mysqldump command do this: 
          * "cd C:\OpenServer\modules\database\MySQL-5.5.35\bin && mysqldump.exe -u root cmsprem > C:\OpenServer\cmsprem.sql"
          */
-        $mysqldump =    'cd ' . __DIR__ .
-                        self::OPEN_SERVER_DIR .
-                        self::MY_SQL_DIR .
-                        " && " .
-                        "mysqldump.exe -u $username $databasename > " .
-                         __DIR__ . self::THIS_DATA_DIR . "\cmsprem.sql";                                                   
+        $mysqldump          =   'cd ' . __DIR__ . self::OPEN_SERVER_DIR . self::MY_SQL_DIR .    //Open MySQL-5.5.35\bin directory  
+                                " && " . "mysqldump.exe -u $username $databasename > " .        //Create database dump
+                                __DIR__ . self::THIS_DATA_DIR . "\cmsprem.sql";                 //Save it to codeception\tests\_data\cmsprem.sql
         
-        $I->runShellCommand($mysqldump);
-        
-
+        try{
+            $I->comment("I make database dump");
+            $I->runShellCommand($mysqldump);
+        }
+        catch (Exception $e){                                                                   //IF !DUMP TRY TO CHANGE USER && DATABASE
+            $I->comment("I сatched exception, trying to change username & database and connect once more");
+            $username       = 'root';                                                           //Change UserName
+            $databasename   = 'cmsprem';                                                        //Change Database
+            $mysqldump      =   'cd ' . __DIR__ . self::OPEN_SERVER_DIR . self::MY_SQL_DIR .    //Open MySQL-5.5.35\bin directory
+                                " && " . "mysqldump.exe -u $username $databasename > " .        //Create database dump
+                                __DIR__ . self::THIS_DATA_DIR . "\cmsprem.sql";                 //Save it to codeception\tests\_data\cmsprem.sql
+            
+            $I->runShellCommand($mysqldump);
+        }
     }
-    public static function dataBaseBackUp(AcceptanceTester $I,$username = 'root', $databasename = 'cmsprem'){
+    
+    /**
+     * restore database
+     * 
+     * @param AcceptanceTester  $I              controller
+     * @param string            $username       Db username
+     * @param string            $databasename   Db name
+     */
+    public static function dataBaseBackUp(AcceptanceTester $I,$username = null, $databasename = null){
         /**
          * $mysqlbackup command do this:
          * "cd c:\OpenServer\modules\database\MySQL-5.5.35\bin && mysql.exe -u root cmsprem < C:\OpenServer\cmsprem.sql"
          */
-        $mysqlbackup =    'cd ' . __DIR__ .
-                    self::OPEN_SERVER_DIR .
-                    self::MY_SQL_DIR .
-                    " && " .
-                    "mysql.exe -u $username $databasename < ".
-                    __DIR__ . self::THIS_DATA_DIR . "\cmsprem.sql";
-        $I->runShellCommand($mysqlbackup);
-    }        
+        $mysqlbackup =      'cd ' . __DIR__ .self::OPEN_SERVER_DIR . self::MY_SQL_DIR .         //Open MySQL-5.5.35\bin directory
+                            " && " . "mysql.exe -u $username $databasename < ".                 //Restore database
+                            __DIR__ . self::THIS_DATA_DIR . "\cmsprem.sql";                     //From codeception\tests\_data\cmsprem.sql
+        try{
+            $I->comment("I am restoring the database");
+            $I->runShellCommand($mysqlbackup);
+        }
+        catch(Exception $e){                                                                    //IF !BACKUP TRY TO CHANGE USER && DATABASE
+            $I->comment("I сatched exception, trying to change username & database and connect once more");
+            $username       = 'root';                                                           //Change UserName
+            $databasename   = 'cmsprem';                                                        //Change Database
+            $mysqlbackup    =   'cd ' . __DIR__ . self::OPEN_SERVER_DIR . self::MY_SQL_DIR .    //Open MySQL-5.5.35\bin directory
+                                " && " . "mysql.exe -u $username $databasename < ".             //Restore database
+                                __DIR__ . self::THIS_DATA_DIR . "\cmsprem.sql";                 //From codeception\tests\_data\cmsprem.sql
+            $I->runShellCommand($mysqlbackup);
+        }
+    }  
 }

@@ -24,8 +24,6 @@ class PaymentCreateCest extends PaymentTestHelper{
 
         InitTest::dataBaseDump($I);
         InitTest::dataBaseBackUp($I);
-//       InitTest::DbBackUp($I);
-//        InitTest::Login($I);
         self::$Logged=TRUE;
     }
     
