@@ -5,18 +5,18 @@ class PaymentElementsCest
 {
 
     /**
-     * @group current
+     * @group verify
      */
     public function Authorization(AcceptanceTester $I)
     {
         InitTest::Login($I);
-        $I->amOnPage(PaymentListPage::$URL);
     }
     
     /**
      * @group verify
      */
     public function PaymentListElements(AcceptanceTester $I) {
+        $I->amOnPage(PaymentListPage::$URL);
         $I->see("Список способов оплаты", PaymentListPage::$Title);
         $I->seeElement(PaymentListPage::$ActiveHeader);
         $I->see('ID', PaymentListPage::$IDHeader);
