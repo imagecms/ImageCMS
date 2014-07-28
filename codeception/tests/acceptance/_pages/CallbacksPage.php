@@ -8,7 +8,7 @@ class CallbacksPage
     public static $SaveButton  = './/*[@id="mainContent"]/section/div[1]/div[2]/div/button[1]';
     public static $SaveAndExitButton  = './/*[@id="mainContent"]/section/div[1]/div[2]/div/button[2]';
     public static $CallMeButton  = '.btn-form>button'; //CallbacksList
-    public static $OrderCallButton  = '.isDrop'; //CallbacksList
+    public static $OrderCallButton  = 'html/body/div[1]/div[1]/header/div[2]/div/div/div[1]/div/div[2]/button'; //CallbacksList
     public static $CreateStatusButton  = './/*[@id="orderStatusesList"]/section/div[1]/div[2]/div/a'; //CallbacksStatuses
     public static $CreateThemeButton  = './/*[@id="orderStatusesList"]/section/div[1]/div[2]/div/a'; //CallbacksThemes
     //Поля
@@ -16,7 +16,7 @@ class CallbacksPage
     public static $TelephoneCreate  = './/*[@id="data-callback"]/label[2]/span[2]/input'; //CallbacksList
     public static $CommentCreate  = './/*[@id="data-callback"]/label[3]/span[2]/textarea'; //CallbacksList
     public static $StatusSelEdit  = './/*[@id="editCallbackForm"]/div[1]/div/select/option[@selected="selected"]'; //CallbacksList
-    public static $ThemeSelEdit  = './/*[@id="editCallbackForm"]/div[2]/div/select'; //CallbacksList
+    public static $ThemeSelEdit  = './/*[@id="editCallbackForm"]/div[2]/div/select/option[@selected="selected"]'; //CallbacksList
     public static $UserNameEdit  = './/*[@id="editCallbackForm"]/div[3]/div/input'; //CallbacksList
     public static $TelephoneEdit  = './/*[@id="editCallbackForm"]/div[4]/div/input'; //CallbacksList
     public static $CommentEdit  = './/*[@id="editCallbackForm"]/div[5]/div/textarea'; //CallbacksList
@@ -36,7 +36,7 @@ class CallbacksPage
         return $DeleteBut;
     }
     public static function CheckBoxButtonLine($row){
-        $CheckBox = ".//*[@id='callbacks_all']/table/tbody/tr[$row]/td[1]/span/span/input"; //CallbacksList
+        $CheckBox = ".//*[@id='callbacks_all']/table/tbody/tr[$row]/td[1]/span/span"; //CallbacksList
         return $CheckBox;
     }
     public static function StatusSelListLandingLine($row){
@@ -44,7 +44,7 @@ class CallbacksPage
         return $StatusSelList;
     }
     public static function ThemeSelListLandingLine($row){
-        $ThemeSelList = ".//*[@id='callbacks_all']/table/tbody/tr[$row]/td[5]/div/select"; //CallbacksList
+        $ThemeSelList = ".//*[@id='callbacks_all']/table/tbody/tr[$row]/td[5]/div/select/option[@selected='selected']"; //CallbacksList
         return $ThemeSelList;
     }
     

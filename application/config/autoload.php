@@ -7,7 +7,7 @@
   | -------------------------------------------------------------------
  */
 
-$autoload['libraries'] = array('lib_init', 'lib_category', 'lib_csrf', 'Localizer');
+$autoload['libraries'] = array('lib_init', 'lib_category', 'lib_csrf');
 
 
 /*
