@@ -7,6 +7,7 @@ class CurrenciesPage
 
     //Кнопки
     public static $CreateCurrencyButton  = './/*[@id="mainContent"]/section/div[1]/div[2]/div/a';
+    public static $VerifyPrices  = './/*[@id="mainContent"]/section/div[1]/div[2]/div/button';
     public static $GoBackButton  = './/*[@id="mainContent"]/section/div[1]/div[2]/div/a/span[2]';
     public static $SaveButton  = './/*[@id="mainContent"]/section/div[1]/div[2]/div/button[1]';
     public static $SaveAndExitButton  = './/*[@id="mainContent"]/section/div[1]/div[2]/div/button[2]';
@@ -32,7 +33,7 @@ class CurrenciesPage
         return $RadioBut;
     }
     //Currency name in table
-    public static function CuccencyNameLine($row) {
+    public static function CurrencyNameLine($row) {
         $CurrencyLine = "//tbody/tr[$row]/td[2]/a";
         return $CurrencyLine;
     }
