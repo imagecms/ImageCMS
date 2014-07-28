@@ -3,7 +3,9 @@ use \AcceptanceTester;
 class TextElementOCACest
 {
 //---------------------------AUTORIZATION--------------------------------------- 
-    
+    /**
+     * @group q
+     */
     public function Login(AcceptanceTester $I){
         InitTest::Login($I);
     }
@@ -11,7 +13,9 @@ class TextElementOCACest
     
 //---------------------------ORDER CREATE PAGE WAY------------------------------
     
-    
+    /**
+     * @group a
+     */
     public function WayCreatePage (AcceptanceTester $I){
         $I->amOnPage(OrdersListPage::$ListURLorders);
         $I->click(OrdersListPage::$ListButtCreateOrder);
@@ -21,7 +25,9 @@ class TextElementOCACest
     
 //------------------TEXT ELEMENT CREATING PAGE PRODUCT--------------------------
     
-    
+    /**
+     * @group a
+     */
     public function VerifyTextCreateProductPage (AcceptanceTester $I){
          $I->amOnPage(OrdersListPage::$CrtPURL);
          $I->see('Создание заказа', OrdersListPage::$CrtPTitle); 
@@ -48,7 +54,9 @@ class TextElementOCACest
     
 //------------------TEXT ELEMENT CREATING PAGE USER-----------------------------
     
-    
+    /**
+     * @group a
+     */
     public function VerifyTextCreateUserPage (AcceptanceTester $I){
          $I->amOnPage(OrdersListPage::$CrtPURL);  
          $I->click(OrdersListPage:: $CrtPButtUser);
@@ -67,7 +75,11 @@ class TextElementOCACest
     }
     
 
-//------------------TEXT ELEMENT CREATING PAGE ORDER----------------------------    
+//------------------TEXT ELEMENT CREATING PAGE ORDER----------------------------   
+    
+    /**
+     * @group a
+     */
     public function VerifyTextCreateOrderPage (AcceptanceTester $I){
         $I->amOnPage(OrdersListPage::$CrtPURL);
         $I->click(OrdersListPage::$CrtPButtOrder);
@@ -92,6 +104,10 @@ class TextElementOCACest
     
     
 //------------------VERIFY TEXT MESSAGE PRESENCE--------------------------------
+    
+    /**
+     * @group a
+     */
     public function VerifyTextMessagePresence (AcceptanceTester $I){
         $I->amOnPage(OrdersListPage::$CrtPURL);
         $I->click(OrdersListPage::$CrtPButtOrder);
@@ -103,7 +119,180 @@ class TextElementOCACest
         $I->dontSee('только цифры', '//body/div[5]/div[2]');
     }
     
-   
+//------------------VERIFY BUTTON ADD TO BASKET---------------------------------   
     
+    /**
+     * @group a
+     */
+    public function VerifyButtonAddToBasket(AcceptanceTester $I){
+        $I->amOnPage(OrdersListPage::$CrtPURL);
+        $I->click(OrdersListPage::$CrtPButtProduct);
+        $I->fillField('#productNameForOrders', OrdersListPage::$CrtPrdNameMin);
+            $I->wait('1');
+            $I->see(OrdersListPage::$CrtPrdNameMin,'//body/ul[2]/li[1]/a');
+            $I->click('//body/ul[2]/li[1]/a');
+            $I->wait('1');
+            $I->see('Добавить в корзину', OrdersListPage::$CrtPButtAddToCart);
+            $I->click(OrdersListPage::$CrtPButtAddToCart);
+            $I->see('В корзине', OrdersListPage::$CrtPButtInBasket);
+            $I->click(OrdersListPage::$CrtPButtDeleteTr1);
+            $I->see('Добавить в корзину', OrdersListPage::$CrtPButtAddToCart);
+            $I->click(OrdersListPage::$CrtPButtAddToCart);
+            $I->see('В корзине', OrdersListPage::$CrtPButtInBasket);            
+       
+    }
+    
+  //--------------------VERIFY BUTTON OUT STOCK--------------------------------- 
+    
+    /**
+     * @group a
+     */
+    public function VerifyButtonOutStock(AcceptanceTester $I){
+        $I->amOnPage(OrdersListPage::$CrtPURL);
+        $I->click(OrdersListPage::$CrtPButtProduct);
+        $I->fillField('#productNameForOrders', 'Минимальное Количество Товара');
+            $I->wait('1');
+            $I->see('Минимальное Количество Товара','//body/ul[2]/li[1]/a');
+            $I->click('//body/ul[2]/li[1]/a');
+            $I->wait('1');
+            $I->see('Нет на складе', OrdersListPage::$CrtPButtOutStock);
+            $I->click(OrdersListPage::$CrtPButtOutStock);
+            $I->see('В корзине', OrdersListPage::$CrtPButtInBasket);
+            $I->click(OrdersListPage::$CrtPButtDeleteTr1);
+            $I->see('Добавить в корзину', OrdersListPage::$CrtPButtAddToCart);
+            $I->click(OrdersListPage::$CrtPButtAddToCart);
+            $I->see('В корзине', OrdersListPage::$CrtPButtInBasket);            
+       
+    }
+    
+    
+   //-----------------------VERIFY FIELD AMOUNT IN BASKET-----------------------    
+    
+    
+    /**
+     * @group a
+     */
+    public function VerifyFieldDefoltAmountInBasket(AcceptanceTester $I){
+        $I->amOnPage(OrdersListPage::$CrtPURL);
+        $I->click(OrdersListPage::$CrtPButtProduct);
+        $I->fillField('#productNameForOrders', OrdersListPage::$CrtPrdNameMin);
+        $I->wait('1');
+        $I->click('//body/ul[2]/li[1]/a');
+        $I->wait('1');
+        $I->click(OrdersListPage::$CrtPButtAddToCart);
+        $I->seeInField(OrdersListPage::$CrtPFieldAmount, '1');
+        $I->see( '1.00', OrdersListPage::$CrtPFieldTotalPrice);
+        $I->see('1.00', OrdersListPage::$CrtPFieldCommon);
+        $I->click(OrdersListPage::$CrtPButtOrder);
+        $I->click(OrdersListPage::$CrtOButtUpdate);
+        $I->seeInField(OrdersListPage::$CrtOFieldTotalPrice, '1.00');
+       
+    }
+    
+    
+    
+    
+    /**
+     * @group a
+     */
+    public function VerifyFieldtAmount1ValueAfterPoint(AcceptanceTester $I){
+        $I->amOnPage(OrdersListPage::$CrtPURL);
+        $I->click(OrdersListPage::$CrtPButtProduct);
+        $I->fillField('#productNameForOrders', 'Товар с ценой 1 после точки');
+        $I->wait('1');
+        $I->click('//body/ul[2]/li[1]/a');
+        $I->wait('1');
+        $I->click(OrdersListPage::$CrtPButtAddToCart);
+        $I->seeInField(OrdersListPage::$CrtPFieldAmount, '1');
+        $I->see( '0.1', OrdersListPage::$CrtPFieldTotalPrice);
+        $I->see('0.1', OrdersListPage::$CrtPFieldCommon);
+        $I->click(OrdersListPage::$CrtPButtOrder);
+        $I->click(OrdersListPage::$CrtOButtUpdate);
+        $I->seeInField(OrdersListPage::$CrtOFieldTotalPrice, '0.1');
+       
+    }
+    
+    
+    
+    /**
+     * @group a
+     */
+    public function VerifyFieldtAmount2ValueAfterPoint(AcceptanceTester $I){
+        $I->amOnPage(OrdersListPage::$CrtPURL);
+        $I->click(OrdersListPage::$CrtPButtProduct);
+        $I->fillField('#productNameForOrders', 'Товар с ценой 2 после точки');
+        $I->wait('1');
+        $I->click('//body/ul[2]/li[1]/a');
+        $I->wait('1');
+        $I->click(OrdersListPage::$CrtPButtAddToCart);
+        $I->seeInField(OrdersListPage::$CrtPFieldAmount, '1');
+        $I->see( '0.11', OrdersListPage::$CrtPFieldTotalPrice);
+        $I->see('0.11', OrdersListPage::$CrtPFieldCommon);
+        $I->click(OrdersListPage::$CrtPButtOrder);
+        $I->click(OrdersListPage::$CrtOButtUpdate);
+        $I->seeInField(OrdersListPage::$CrtOFieldTotalPrice, '0.11');
+       
+    }
+    
+    
+    /**
+     * @group a
+     */
+    public function VerifyFieldtAmountMaxValueAfterPoint(AcceptanceTester $I){
+        $I->amOnPage(OrdersListPage::$CrtPURL);
+        $I->click(OrdersListPage::$CrtPButtProduct);
+        $I->fillField('#productNameForOrders', 'Товар с ценой Макс после точки');
+        $I->wait('1');
+        $I->click('//body/ul[2]/li[1]/a');
+        $I->wait('1');
+        $I->click(OrdersListPage::$CrtPButtAddToCart);
+        $I->seeInField(OrdersListPage::$CrtPFieldAmount, '1');
+        $I->see( '0.99', OrdersListPage::$CrtPFieldTotalPrice);
+        $I->see('0.99', OrdersListPage::$CrtPFieldCommon);
+        $I->click(OrdersListPage::$CrtPButtOrder);
+        $I->click(OrdersListPage::$CrtOButtUpdate);
+        $I->seeInField(OrdersListPage::$CrtOFieldTotalPrice, '0.99');
+       
+    }
+    
+    
+    
+    /**
+     * @group q
+     */
+    public function VerifyTotalPriceAddInFieldAmount(AcceptanceTester $I){
+        for($j = 1;$j <  2147483647;$j = $j + 88998899){
+            $I->amOnPage(OrdersListPage::$CrtPURL);
+            $I->click(OrdersListPage::$CrtPButtProduct);
+            $I->fillField('#productNameForOrders', OrdersListPage::$CrtPrdNameMin);
+            $I->wait('1');
+            $I->click('//body/ul[2]/li[1]/a');
+            $I->wait('1');
+            $I->click(OrdersListPage::$CrtPButtAddToCart);
+            $I->click(OrdersListPage::$CrtPButtProduct);
+            $I->wait('1');
+            $a = $I->grabValueFrom(OrdersListPage::$CrtPFieldAmount);
+            $I->comment("Количество товара в корзине ($a)");
+            $I->fillField(OrdersListPage::$CrtPFieldAmount, "$j");
+            $I->wait('5');
+            $I->see( "$j", OrdersListPage::$CrtPFieldTotalPrice);
+            $I->see("$j", OrdersListPage::$CrtPFieldCommon);
+            $I->scrollToElement($I, '#addProduct>thead>tr>th');
+            InitTest::ClearAllCach($I);
+            $I->wait('5');
+            $I->click(OrdersListPage::$CrtPButtOrder);
+            $I->wait('1');
+            $I->click(OrdersListPage::$CrtOButtUpdate);
+            $I->wait('1');
+            $I->seeInField(OrdersListPage::$CrtOFieldTotalPrice, "$j");
+            $I->wait('1');
+        }
+       
+    }
+    
+    
+    
+    
+
     
 }

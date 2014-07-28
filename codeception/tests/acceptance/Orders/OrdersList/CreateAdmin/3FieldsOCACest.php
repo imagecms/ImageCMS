@@ -14,36 +14,41 @@ class FieldsOCACest
     
     
     
-//    /**
-//     * @group a
-//     */
-//    public function VerifyCategoryPresenceInSelectMenu (AcceptanceTester $I){
-//       $AllOptions =[]; 
-//       $I->amOnPage('/admin/components/run/shop/products/create');
-//       $AllProductOptions = $I->grabTagCount($I, 'select option', 2);
-//       $MakeVisible1 = "$('select:eq(2)').css({'display':'block'})";
-//       $I->executeJS($MakeVisible1);
-//       for($row = 1; $row <= $AllProductOptions; ++$row){
-//           $AllOptions[$row] = $I->grabTextFrom("//div[@class = 'control-group'][2]//div//select/option[$row]");
-//       }
-//       
-//       
-//       $I->amOnPage('/admin/components/run/shop/orders/create');
-//       $OrderCategoriesLength = $I->grabTagCount($I, 'select option');
-//       
-//       $MakeVisible2 = "$('select:eq(0)').css({'display':'block'})";
-//       $I->executeJS($MakeVisible2);
-//       
-//       for($row = 1; $row <= $OrderCategoriesLength; ++$row){
-//           $AllOrderOptions[$row] = $I->grabTextFrom("//select[1]/option[$row]");
-//       }
-//       foreach ($AllOptions as $key => $AllOptionNow) {
-//           $I->assertEquals(str_replace([' ','-'],'',$AllOptionNow), str_replace([' ','-'],'',$AllOrderOptions[$key]));
-//       }
-//    }  
+    /**
+     * @group a
+     */
+    public function VerifyCategoryPresenceInSelectMenu (AcceptanceTester $I){
+       $AllOptions =[]; 
+       $I->amOnPage('/admin/components/run/shop/products/create');
+       $AllProductOptions = $I->grabTagCount($I, 'select option', 2);
+       $MakeVisible1 = "$('select:eq(2)').css({'display':'block'})";
+       $I->executeJS($MakeVisible1);
+       for($row = 1; $row <= $AllProductOptions; ++$row){
+           $AllOptions[$row] = $I->grabTextFrom("//div[@class = 'control-group'][2]//div//select/option[$row]");
+       }
+       
+       
+       $I->amOnPage('/admin/components/run/shop/orders/create');
+       $OrderCategoriesLength = $I->grabTagCount($I, 'select option');
+       
+       $MakeVisible2 = "$('select:eq(0)').css({'display':'block'})";
+       $I->executeJS($MakeVisible2);
+       
+       for($row = 1; $row <= $OrderCategoriesLength; ++$row){
+           $AllOrderOptions[$row] = $I->grabTextFrom("//select[1]/option[$row]");
+       }
+       foreach ($AllOptions as $key => $AllOptionNow) {
+           $I->assertEquals(str_replace([' ','-'],'',$AllOptionNow), str_replace([' ','-'],'',$AllOrderOptions[$key]));
+       }
+    }
     
     
     
+    
+    
+//------------Verify Products Presence (in field: ID/Название/Артикул-----------
+    
+        
     /**
      * @group a
      */
@@ -97,9 +102,7 @@ class FieldsOCACest
 
 
 
-
-
-
+//-----Verify Products Presence (in fields: "Категория", "Товар", "Ваиант".)----
 
 
 
@@ -192,128 +195,6 @@ class FieldsOCACest
             $I->seeInField('//table[2]/tbody/tr/td[4]/div/input', '1');
         }
     }
-    
-    
-    
-    
-//    protected function SearchVariantName(AcceptanceTester $I, $typeVariant = NULL){
-//        if(isset($typeVariant)){            
-//            $I->click(OrdersListPage::$CrtPButtProduct);
-//            //$I->wait('5');
-//            $I->see("Вариант: $typeVariant", '#productText');
-//            $I->see($typeVariant, '//form/div/div[1]/div/table[2]/tbody/tr/td[2]');
-//            $I->see($typeVariant, '//tbody/tr[2]/td[3]/select');
-//            
-//        }
-//        
-//    }
-
-    
-    
-    
-//    protected function SearchVariantPrice (AcceptanceTester $I, $typeVariant = NULL, $variantPrice = NULL) {
-//        
-//        if(isset($typeVariant)){            
-//            $I->click(OrdersListPage::$CrtPButtProduct);
-//            //$I->wait('5');
-//            $I->see("Вариант: $typeVariant", '#productText');
-//            $I->see($typeVariant, '//form/div/div[1]/div/table[2]/tbody/tr/td[2]');
-//            $I->see($typeVariant, '//tbody/tr[2]/td[3]/select');
-//            
-//        }if(isset($variantPrice)){
-//            
-//        }
-//    }
-    
-    
-    
-//    protected function SearchVariantArticle (AcceptanceTester $I, $typeVariant = NULL, $variantArticle = NULL) {
-//        
-//        if(isset($typeVariant)){            
-//            $I->click(OrdersListPage::$CrtPButtProduct);
-//            //$I->wait('5');
-//            $I->see("Вариант: $typeVariant", '#productText');
-//            $I->see($typeVariant, '//form/div/div[1]/div/table[2]/tbody/tr/td[2]');
-//            $I->see($typeVariant, '//tbody/tr[2]/td[3]/select');
-//            
-//        }if(isset($variantArticle)){
-//            
-//        }
-//    }
-
-    
-    
-    
-//    protected function SearchVariantAmount (AcceptanceTester $I, $typeVariant = NULL, $variantAmount = NULL) {
-//        
-//        if(isset($typeVariant)){            
-//            $I->click(OrdersListPage::$CrtPButtProduct);
-//            //$I->wait('5');
-//            $I->see("Вариант: $typeVariant", '#productText');
-//            $I->see($typeVariant, '//form/div/div[1]/div/table[2]/tbody/tr/td[2]');
-//            $I->see($typeVariant, '//tbody/tr[2]/td[3]/select');
-//            
-//        }if(isset($variantAmount)){
-//            
-//        }
-//    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

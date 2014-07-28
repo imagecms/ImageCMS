@@ -5,7 +5,7 @@ class PaymentElementsCest
 {
 
     /**
-     * @group current
+     * @group verify
      */
     public function Authorization(AcceptanceTester $I)
     {
