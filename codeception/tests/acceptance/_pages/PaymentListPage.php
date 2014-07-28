@@ -30,6 +30,11 @@ class PaymentListPage
     static $DeleteWindowButtonBack      = '.modal-footer a.btn:nth-child(2)';
     static $DeleteWindowButtonXClose    = '.close';
 
+    //allerts for all pages?
+    public static $AlertError       = '.alert.in.fade.alert-error';      //max symbols
+    public static $AlertSuccess     = '.alert.in.fade.alert-success';    //suxess changes or creating
+    public static $AlertRequiredLabel   = 'label.alert.alert-error';    //required field message under field
+    public static $AlertRequiredField   = 'input.alert.alert-error';    //required field class
 
     //table rows
     static function CheckboxLine($row){
@@ -41,7 +46,7 @@ class PaymentListPage
         return $ID;
     }
     static function MethodNameLine($row) {
-        $ListMethodLine = "//table//tbody//tr[$row]/td[3]";
+        $ListMethodLine = "//table//tbody//tr[$row]/td[3]/a";
         return $ListMethodLine;
     }
     static function CurrencyNameLine($row) {
@@ -50,16 +55,12 @@ class PaymentListPage
     }
     static function CurrencySymbolLine($row) {
         $Symbol = "//tbody/tr[$row]/td[5]/p";
+        return $Symbol;
     }
     static function ActiveLine($row) {
         $Active = "//tbody/tr[$row]/td[6]/div/span";
+        return $Active;
     }
 }
 
-//class PaymentAlertsPage {
-//    //allerts
-//    public static $AlertError       = 'alert in fade alert-error';      //max symbols
-//    public static $AlertSuccess     = 'alert in fade alert-success';    //suxess changes or creating
-//    public static $AlertRequiredLabel   = 'label.alert.alert-error';    //required field message under field
-//    public static $AlertRequiredField   = 'input.alert.alert-error';    //required field class
-//}
+

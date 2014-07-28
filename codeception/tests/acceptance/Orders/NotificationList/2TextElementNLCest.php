@@ -2,12 +2,18 @@
 use \AcceptanceTester;
 class TextElementNLCest
 {
-//---------------------------AUTORIZATION---------------------------------------    
+//---------------------------AUTORIZATION---------------------------------------  
+    
+    
     public function Login(AcceptanceTester $I){
         InitTest::Login($I);
     }
+    
+    
 
-//---------------------------CREATE NOTIFI FRONT--------------------------------    
+//---------------------------CREATE NOTIFI FRONT--------------------------------   
+    
+    
     public function CreateNotificationFront(AcceptanceTester $I){
       $I->amOnPage(NotificationCreateFrontPage::$PageURL);
         $I->scrollToElement($I, '.infoBut.isDrop');
@@ -15,7 +21,12 @@ class TextElementNLCest
         $I->waitForText('Сообщить о появлении');
         $I->click(NotificationCreateFrontPage::$ButtonSendPresent);
     }
+    
+    
+    
 //----------------------BUTTON LIST---------------------------------------------
+    
+    
     public function VerifyButtonList(AcceptanceTester $I){
       $I->amOnPage('/admin');
       $I->click(NavigationBarPage::$Orders);
@@ -41,7 +52,12 @@ class TextElementNLCest
 //      $I->waitForElement(NotificationListPage::$ListMainCheckBox);
       $I->dontSeeCheckboxIsChecked(NotificationListPage::$ListMainCheckBox);
       }
+      
+      
+      
 //-------------------TEXT ELEMENT LIST PAGE-------------------------------------
+      
+      
     public function VerifyTextElementLlist(AcceptanceTester $I){
       $I->amOnPage(NotificationListPage::$ListPageURL);
       $I->see('Уведомления о появлении', NotificationListPage::$ListTitle);
@@ -60,8 +76,13 @@ class TextElementNLCest
       $I->see('Статус', NotificationListPage::$ListColumnStatus);
       $I->see('Товар', NotificationListPage::$ListColumnProduct);
       $I->see('Уведомления', NotificationListPage::$ListColumnNotifi);
-    }    
+    }  
+    
+    
+    
 //-------------------ELEMENT PRESENCE LIST PAGE---------------------------------
+    
+    
     public function VerifyElementPresenceList(AcceptanceTester $I){
       $I->amOnPage(NotificationListPage::$ListPageURL);
       $I->seeElement(NotificationListPage::$ListFildId);
@@ -73,7 +94,12 @@ class TextElementNLCest
       $I->seeElement(NotificationListPage::$ListSelectMain);
       $I->seeElement(NotificationListPage::$ListSelectFirst);
     }
+    
+    
+    
 //-------------------MOUSE FOCUS TEXT MESSAGE LIST PAGE-------------------------
+    
+    
     public function VerifyTextElementList(AcceptanceTester $I){
       $I->amOnPage(NotificationListPage::$ListPageURL);
       $I->moveMouseOver(NotificationListPage::$ListLinkEditting);
@@ -83,7 +109,12 @@ class TextElementNLCest
       $I->waitForElementNotVisible(NotificationListPage::$ListMouseMessage);
       $I->dontSee('Редактировать уведомление');
     }
-        //-------------------TEXT ELEMENT DELETE WINDOW---------------------------------
+    
+    
+    
+//-------------------TEXT ELEMENT DELETE WINDOW---------------------------------
+    
+    
     public function VerifyTextElementDeleteWindow(AcceptanceTester $I){
       $I->amOnPage(NotificationListPage::$ListPageURL);
       $I->click(NotificationListPage::$ListMainCheckBox);
@@ -96,7 +127,12 @@ class TextElementNLCest
       $I->see('Отменить', NotificationListPage::$DeleteWindowButtonCancel);
       $I->see('×', NotificationListPage::$DeleteWindowButtonX);      
     }
+    
+    
+    
 //-------------------TEXT ELEMENT EDITING PAGE----------------------------------
+    
+    
     public function VerifyTextElementEditing(AcceptanceTester $I){
       $I->amOnPage(NotificationListPage::$ListPageURL);
       $I->click(NotificationListPage::$ListLinkEditting);
@@ -118,7 +154,12 @@ class TextElementNLCest
       $I->see('Телефон:', NotificationListPage::$EditingNameFieldPhone);
       $I->see('Комментарий:', NotificationListPage::$EditingNameFieldComment);      
     }
+    
+    
+    
 //-------------------ELEMENT PRESENCE EDITING PAGE------------------------------
+    
+    
     public function VerifyElementPresenceEditing(AcceptanceTester $I){
       $I->amOnPage(NotificationListPage::$ListPageURL);
       $I->click(NotificationListPage::$ListLinkEditting);
@@ -133,7 +174,12 @@ class TextElementNLCest
       $I->seeElement(NotificationListPage::$EditingFildComment);
       $I->seeElement(NotificationListPage::$EditingButtonNotifi);
     }
+    
+    
+    
 //-------------------- BUTTON EDITING PAGE-------------------------------------- 
+    
+    
     public function VerifyButtonEditing(AcceptanceTester $I){
       $I->amOnPage(NotificationListPage::$ListPageURL); 
       $I->click(NotificationListPage::$ListLinkEditting);
@@ -143,21 +189,36 @@ class TextElementNLCest
       $I->wait('1');
       $I->click(NotificationListPage::$EditingButtonSaveAndGoBack);
     }
+    
+    
+    
 //-------------------LINK IMG EDITING PAGE--------------------------------------
+    
+    
     public function VerifyLinkImgEditingProduct(AcceptanceTester $I){
       $I->amOnPage(NotificationListPage::$ListPageURL); 
       $I->click(NotificationListPage::$ListLinkEditting);
       $I->click(NotificationListPage::$EditingLinkImg);
       $I->see('Смартфон Samsung GT-S7530 Omnia M EAA Deep Grey');
      }
+     
+     
+     
 //-------------------LINK PRODUCT NAME EDITING PAGE-----------------------------
+     
+     
     public function VerifyLinkProductNameEditingProduct(AcceptanceTester $I){
       $I->amOnPage(NotificationListPage::$ListPageURL); 
       $I->click(NotificationListPage::$ListLinkEditting);
       $I->click(NotificationListPage::$EditingLinkProduct);
       $I->see('Смартфон Samsung GT-S7530 Omnia M EAA Deep Grey');
      }
+     
+     
+     
 //-------------------TEXT MESSAGE EDIT PAGE-------------------------------------
+     
+     
     public function TextMessageEditNotifi(AcceptanceTester $I){
       $I->amOnPage(NotificationListPage::$ListPageURL);
       $I->click(NotificationListPage::$ListLinkEditting);
@@ -168,7 +229,12 @@ class TextElementNLCest
       $I->click(NotificationListPage::$EditingButtonSaveAndGoBack);
       $I->see('Уведомление обновлено', '.alert.in.fade.alert-success');
     }
+    
+    
+    
 //-------------------BUTTON DELETE WINDOW---------------------------------------
+    
+    
     public function VerifyButtonDelete(AcceptanceTester $I){
       $I->amOnPage(NotificationListPage::$ListPageURL);  
       $I->click(NotificationListPage::$ListMainCheckBox);
@@ -180,7 +246,12 @@ class TextElementNLCest
       $I->wait('1');
       $I->click(NotificationListPage::$DeleteWindowButtonCancel);
     }
+    
+    
+    
 //-------------------TEXT DELETING NOTIFY LIST PAGE-----------------------------
+    
+    
     public function TextDeletingNotifi(AcceptanceTester $I){
       $I->amOnPage(NotificationListPage::$ListPageURL);
       $I->click(NotificationListPage::$ListMainCheckBox);
@@ -190,4 +261,7 @@ class TextElementNLCest
       $I->waitForText('Удаление');
       $I->see('Удаление', '.alert.in.fade.alert-success');
       }
+      
+      
+      
 }
