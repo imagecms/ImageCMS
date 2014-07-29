@@ -76,7 +76,7 @@ class DeleteStatusCest
         $defaultId=$I->grabTextFrom(".//*[@id='orderStatusesList']/section/div[2]/div/table/tbody/tr[$this->j]/td[1]");
         $DelButAct=$I->grabAttributeFrom(CallbacksPage::DeleteStatusButtonLine($this->j), "disabled");
         $I->assertEquals($DelButAct, 'true');
-        $I->assertEquals($id,$defaultId);
+        $I->assertEquals($id, $defaultId);
     }   
    
     
