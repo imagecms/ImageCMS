@@ -198,9 +198,48 @@ class TextElementOCACest
         $I->click(OrdersListPage::$CrtPButtUser);
         $I->click(OrdersListPage::$CrtULinkCreate);
         $I->click(OrdersListPage::$CrtUButtCreate);
-        $I->see($text, $selector);
-        
-        
+        $I->see('×ОшибкаПроверьте введенные данные и заполните все обязательные поля', OrdersListPage::$CrtUMessageAlertPresence);        
+    }
+    /**
+     * @group a
+     */
+    public function VerifyTextMessageAddUser2 (AcceptanceTester $I) {
+        $I->amOnPage(OrdersListPage::$CrtPURL);
+        $I->click(OrdersListPage::$CrtPButtUser);
+        $I->click(OrdersListPage::$CrtULinkCreate);
+        $I->fillField(a, $value);
+        $I->click(OrdersListPage::$CrtUButtCreate);
+        $I->see('×ОшибкаПроверьте введенные данные и заполните все обязательные поля', OrdersListPage::$CrtUMessageAlertPresence);        
+    }
+    /**
+     * @group a
+     */
+    public function VerifyTextMessageAddUser3 (AcceptanceTester $I) {
+        $I->amOnPage(OrdersListPage::$CrtPURL);
+        $I->click(OrdersListPage::$CrtPButtUser);
+        $I->click(OrdersListPage::$CrtULinkCreate);
+        $I->click(OrdersListPage::$CrtUButtCreate);
+        $I->see('×ОшибкаПроверьте введенные данные и заполните все обязательные поля', OrdersListPage::$CrtUMessageAlertPresence);        
+    }
+    /**
+     * @group a
+     */
+    public function VerifyTextMessageAddUser4 (AcceptanceTester $I) {
+        $I->amOnPage(OrdersListPage::$CrtPURL);
+        $I->click(OrdersListPage::$CrtPButtUser);
+        $I->click(OrdersListPage::$CrtULinkCreate);
+        $I->click(OrdersListPage::$CrtUButtCreate);
+        $I->see('×ОшибкаПроверьте введенные данные и заполните все обязательные поля', OrdersListPage::$CrtUMessageAlertPresence);        
+    }
+    /**
+     * @group a
+     */
+    public function VerifyTextMessageAddUser5 (AcceptanceTester $I) {
+        $I->amOnPage(OrdersListPage::$CrtPURL);
+        $I->click(OrdersListPage::$CrtPButtUser);
+        $I->click(OrdersListPage::$CrtULinkCreate);
+        $I->click(OrdersListPage::$CrtUButtCreate);
+        $I->see('×ОшибкаПроверьте введенные данные и заполните все обязательные поля', OrdersListPage::$CrtUMessageAlertPresence);        
     }
 
 
