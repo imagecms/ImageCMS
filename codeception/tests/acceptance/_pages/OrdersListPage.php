@@ -129,6 +129,8 @@ class OrdersListPage
        public static $CrtUNameColUser = "//div[@id='tab2']/div/table[2]/thead/tr/th[3]";
        public static $CrtUNameColAddress = "//div[@id='tab2']/div/table[2]/thead/tr/th[4]";
        public static $CrtUNameColPhone = "//div[@id='tab2']/div/table[2]/thead/tr/th[5]";
+       public static $CrtUMessageAlertPresence = "//div[2]/div";
+//       public static $CrtUMessageAlertText = "";
        
        //Creating Order Fields "User"
        
