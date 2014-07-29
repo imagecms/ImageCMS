@@ -46,7 +46,7 @@ class FieldsOCACest
     
     
     
-//------------Verify Products Presence (in field: ID/Название/Артикул-----------
+//------------Verify Products Presence (in field: ID/Название/Артикул)----------
     
         
     /**
@@ -55,12 +55,12 @@ class FieldsOCACest
     public function SearchProductNameMin (AcceptanceTester $I){
         $this->SearchNameProduct($I, $typeName = OrdersListPage::$CrtPrdNameMin);
     }
-    /**
-     * @group a
-     */
-    public function SearchProductNameMax (AcceptanceTester $I){
-        $this->SearchNameProduct($I, $typeName = OrdersListPage::$CrtPrdNameMax);
-    }
+//    /**
+//     * @group a
+//     */
+//    public function SearchProductNameMax (AcceptanceTester $I){
+//        $this->SearchNameProduct($I, $typeName = OrdersListPage::$CrtPrdNameMax);
+//    }
     /**
      * @group a
      */
@@ -102,7 +102,194 @@ class FieldsOCACest
 
 
 
-//-----Verify Products Presence (in fields: "Категория", "Товар", "Ваиант".)----
+//---------------------Verify Field Amount--------------------------------------
+    /**
+     * @group a
+     */
+    public function VerifyFieldtAmount1ValueAfterPoint(AcceptanceTester $I){
+        $I->amOnPage(OrdersListPage::$CrtPURL);
+        $I->click(OrdersListPage::$CrtPButtProduct);
+        $I->fillField('#productNameForOrders', 'Товар с ценой 1 после точки');
+        $I->wait('1');
+        $I->click('//body/ul[2]/li[1]/a');
+        $I->wait('1');
+        $I->click(OrdersListPage::$CrtPButtAddToCart);
+        $I->seeInField(OrdersListPage::$CrtPFieldAmount, '1');
+        $I->see( '0.1', OrdersListPage::$CrtPFieldTotalPrice);
+        $I->see('0.1', OrdersListPage::$CrtPFieldCommon);
+        $I->click(OrdersListPage::$CrtPButtOrder);
+        $I->click(OrdersListPage::$CrtOButtUpdate);
+        $I->seeInField(OrdersListPage::$CrtOFieldTotalPrice, '0.1');
+       
+    }
+    
+    
+    
+    /**
+     * @group a
+     */
+    public function VerifyFieldtAmount2ValueAfterPoint(AcceptanceTester $I){
+        $I->amOnPage(OrdersListPage::$CrtPURL);
+        $I->click(OrdersListPage::$CrtPButtProduct);
+        $I->fillField('#productNameForOrders', 'Товар с ценой 2 после точки');
+        $I->wait('1');
+        $I->click('//body/ul[2]/li[1]/a');
+        $I->wait('1');
+        $I->click(OrdersListPage::$CrtPButtAddToCart);
+        $I->seeInField(OrdersListPage::$CrtPFieldAmount, '1');
+        $I->see( '0.11', OrdersListPage::$CrtPFieldTotalPrice);
+        $I->see('0.11', OrdersListPage::$CrtPFieldCommon);
+        $I->click(OrdersListPage::$CrtPButtOrder);
+        $I->click(OrdersListPage::$CrtOButtUpdate);
+        $I->seeInField(OrdersListPage::$CrtOFieldTotalPrice, '0.11');
+       
+    }
+    
+    
+    /**
+     * @group a
+     */
+    public function VerifyFieldtAmountMaxValueAfterPoint(AcceptanceTester $I){
+        $I->amOnPage(OrdersListPage::$CrtPURL);
+        $I->click(OrdersListPage::$CrtPButtProduct);
+        $I->fillField('#productNameForOrders', 'Товар с ценой Макс после точки');
+        $I->wait('1');
+        $I->click('//body/ul[2]/li[1]/a');
+        $I->wait('1');
+        $I->click(OrdersListPage::$CrtPButtAddToCart);
+        $I->seeInField(OrdersListPage::$CrtPFieldAmount, '1');
+        $I->see( '0.99', OrdersListPage::$CrtPFieldTotalPrice);
+        $I->see('0.99', OrdersListPage::$CrtPFieldCommon);
+        $I->click(OrdersListPage::$CrtPButtOrder);
+        $I->click(OrdersListPage::$CrtOButtUpdate);
+        $I->seeInField(OrdersListPage::$CrtOFieldTotalPrice, '0.99');
+       
+    }
+    /**
+     * @group a
+     */
+    public function VerifyFieldAmountInputSymbols(AcceptanceTester $I) {
+        $I->amOnPage(OrdersListPage::$CrtPURL);
+        $I->fillField('#productNameForOrders', OrdersListPage::$CrtPrdNameMin);
+        $I->wait('1');
+        $I->click('//body/ul[2]/li[1]/a');
+        $I->wait('1');
+        $I->click(OrdersListPage::$CrtPButtAddToCart);
+        $I->fillField(OrdersListPage::$CrtPFieldAmount, ' ');
+        $I->dontSeeInField(OrdersListPage::$CrtPFieldAmount, ' ');
+        $I->fillField(OrdersListPage::$CrtPFieldAmount, InitTest::$textSymbols);
+        $I->dontSeeInField(OrdersListPage::$CrtPFieldAmount, InitTest::$textSymbols);
+        $I->seeInField(OrdersListPage::$CrtPFieldAmount, '1234567890.');       
+    }
+    
+    
+     /**
+     * @group a
+     */
+    public function VerifyFieldAmountInputInvalidValues1 (AcceptanceTester $I) {
+        $I->amOnPage(OrdersListPage::$CrtPURL);
+        $I->fillField('#productNameForOrders', OrdersListPage::$CrtPrdNameMin);
+        $I->wait('1');
+        $I->click('//body/ul[2]/li[1]/a');
+        $I->wait('1');
+        $I->click(OrdersListPage::$CrtPButtAddToCart);
+        $I->fillField(OrdersListPage::$CrtPFieldAmount, '1.1.');
+        $I->SeeInField(OrdersListPage::$CrtPFieldAmount, '1.1.');
+        $I->see('NaN', OrdersListPage::$CrtPFieldCommon);
+        $I->see('NaN', OrdersListPage::$CrtPFieldTotalPrice);      
+    }
+    
+    /**
+     * @group a
+     */
+    public function VerifyFieldAmountInputInvalidValues2 (AcceptanceTester $I) {
+        $I->amOnPage(OrdersListPage::$CrtPURL);
+        $I->fillField('#productNameForOrders', OrdersListPage::$CrtPrdNameMin);
+        $I->wait('1');
+        $I->click('//body/ul[2]/li[1]/a');
+        $I->wait('1');
+        $I->click(OrdersListPage::$CrtPButtAddToCart);
+        $I->fillField(OrdersListPage::$CrtPFieldAmount, '..');
+        $I->SeeInField(OrdersListPage::$CrtPFieldAmount, '..');
+        $I->see('NaN', OrdersListPage::$CrtPFieldCommon);
+        $I->see('NaN', OrdersListPage::$CrtPFieldTotalPrice);      
+    }
+    
+    /**
+     * @group a
+     */
+    public function VerifyFieldAmountInputInvalidValues3 (AcceptanceTester $I) {
+        $I->amOnPage(OrdersListPage::$CrtPURL);
+        $I->fillField('#productNameForOrders', OrdersListPage::$CrtPrdNameMin);
+        $I->wait('1');
+        $I->click('//body/ul[2]/li[1]/a');
+        $I->wait('1');
+        $I->click(OrdersListPage::$CrtPButtAddToCart);
+        $I->fillField(OrdersListPage::$CrtPFieldAmount, '.1.1');
+        $I->SeeInField(OrdersListPage::$CrtPFieldAmount, '.1.1');
+        $I->see('NaN', OrdersListPage::$CrtPFieldCommon);
+        $I->see('NaN', OrdersListPage::$CrtPFieldTotalPrice);      
+    }
+    
+    /**
+     * @group a
+     */
+    public function VerifyFieldAmountInputInvalidValues4 (AcceptanceTester $I) {
+        $I->amOnPage(OrdersListPage::$CrtPURL);
+        $I->fillField('#productNameForOrders', OrdersListPage::$CrtPrdNameMin);
+        $I->wait('1');
+        $I->click('//body/ul[2]/li[1]/a');
+        $I->wait('1');
+        $I->click(OrdersListPage::$CrtPButtAddToCart);
+        $I->fillField(OrdersListPage::$CrtPFieldAmount, '123654..1');
+        $I->SeeInField(OrdersListPage::$CrtPFieldAmount, '123654..1');
+        $I->see('NaN', OrdersListPage::$CrtPFieldCommon);
+        $I->see('NaN', OrdersListPage::$CrtPFieldTotalPrice);      
+    }
+    
+    /**
+     * @group a
+     */
+    public function VerifyFieldAmountInputInvalidValues5 (AcceptanceTester $I) {
+        $I->amOnPage(OrdersListPage::$CrtPURL);
+        $I->fillField('#productNameForOrders', OrdersListPage::$CrtPrdNameMin);
+        $I->wait('1');
+        $I->click('//body/ul[2]/li[1]/a');
+        $I->wait('1');
+        $I->click(OrdersListPage::$CrtPButtAddToCart);
+        $I->fillField(OrdersListPage::$CrtPFieldAmount, '1.123.');
+        $I->SeeInField(OrdersListPage::$CrtPFieldAmount, '1.123.');
+        $I->see('NaN', OrdersListPage::$CrtPFieldCommon);
+        $I->see('NaN', OrdersListPage::$CrtPFieldTotalPrice);      
+    }
+    
+    
+    
+    
+    /**
+     * @group a
+     */
+    public function VerifyTotalPriceAddInFieldAmount(AcceptanceTester $I){
+        $I->amOnPage(OrdersListPage::$CrtPURL);
+        $I->fillField('#productNameForOrders', OrdersListPage::$CrtPrdNameMin);
+        $I->wait('1');
+        $I->click('//body/ul[2]/li[1]/a');
+        $I->wait('1');
+        $I->click(OrdersListPage::$CrtPButtAddToCart);
+        for($j = 1;$j <  2147483647;$j = $j + 88998899){
+            $I->click(OrdersListPage::$CrtPButtProduct);
+            $I->wait('1');
+            $a = $I->grabValueFrom(OrdersListPage::$CrtPFieldAmount);
+            $I->comment("Количество товара в корзине ($a)");
+            $I->fillField(OrdersListPage::$CrtPFieldAmount, "$j");
+            $I->wait('1');
+            $I->see( "$j", OrdersListPage::$CrtPFieldTotalPrice);
+            $I->see("$j", OrdersListPage::$CrtPFieldCommon);
+            $I->click(OrdersListPage::$CrtPButtOrder);
+            $I->click(OrdersListPage::$CrtOButtUpdate);
+            $I->seeInField(OrdersListPage::$CrtOFieldTotalPrice, "$j");
+        }       
+    }
 
 
 
