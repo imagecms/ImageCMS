@@ -244,8 +244,9 @@ class MainCurrencyCest
     
     public function ChangeMainAndAdditCurInProductFront(AcceptanceTester $I)
     {  
-        //
+        //Проверяем отображение цены товара на странице сайта после смены главной и дополнительной валюты (смены местами)
         $I->amOnPage("/admin/components/run/shop/currencies");
+        InitTest::ClearAllCach($I);
         $I->click(CurrenciesPage::RadioButtonLine($this->ROWADDIT));
         $I->click(CurrenciesPage::CurrencyNameLine($this->ROWADDIT));
         $I->waitForText('Редактирование валют');
@@ -302,7 +303,7 @@ class MainCurrencyCest
         $I->wait('1');
         $this->butActiveClass = $I->grabAttributeFrom(CurrenciesPage::ActiveButtonLine($this->j), "class");
         $I->comment("$this->butActiveClass");
-        $I->assertEquals($this->butActiveClass, 'prod-on_off  disable_tovar');
+        $I->assertEquals($this->butActiveClass, 'prod-on_off disable_tovar');
         InitTest::ClearAllCach($I);
         $I->wait('1');
     }
@@ -335,7 +336,8 @@ class MainCurrencyCest
         $I->see('Валюта успешно удалена');
         $I->waitForElementNotVisible('.alert.in.fade.alert-success');
         $rowsAfterDel = $I->grabTagCount($I,"tbody tr");
-        $I->comment((string)$rowsAfterDel);        
+        $I->comment((string)$rowsAfterDel);
+        InitTest::ClearAllCach($I);
     }
     
     
