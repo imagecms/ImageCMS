@@ -6,7 +6,7 @@ class CategoryAndProductOCACest
      
     
     /**
-     * @group q
+     * @group a
      */
     public function Login(AcceptanceTester $I){
         InitTest::Login($I);
