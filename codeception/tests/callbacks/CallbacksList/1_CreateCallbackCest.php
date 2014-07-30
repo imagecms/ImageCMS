@@ -1,5 +1,5 @@
 <?php
-use \AcceptanceTester;
+use \CallbacksTester;
 
 class CreateCallbackCest
 {
@@ -12,7 +12,7 @@ class CreateCallbackCest
 //    }
 
     // tests
-    public function Autorization(AcceptanceTester $I)
+    public function Autorization(CallbacksTester $I)
     {
         InitTest::Login($I);
         $I->amOnPage("/");
@@ -20,7 +20,7 @@ class CreateCallbackCest
     }
     
     
-    public function NamesInCreate(AcceptanceTester $I)
+    public function NamesInCreate(CallbacksTester $I)
     {
         $I->amOnPage('/');
         $I->waitForText('Заказать звонок');
@@ -35,7 +35,7 @@ class CreateCallbackCest
     }
     
     
-    public function RequiredFieldsInCreate(AcceptanceTester $I)
+    public function RequiredFieldsInCreate(CallbacksTester $I)
     {
         $I->amOnPage('/');
         $I->waitForText('Заказать звонок');
@@ -51,7 +51,7 @@ class CreateCallbackCest
     }
     
     
-    public function ClosedWindowButton(AcceptanceTester $I)
+    public function ClosedWindowButton(CallbacksTester $I)
     {
         $I->amOnPage('/');
         $I->waitForText('Заказать звонок');
@@ -63,7 +63,7 @@ class CreateCallbackCest
     }
     
     
-    public function TypesOfSymbolsInCreate(AcceptanceTester $I)
+    public function TypesOfSymbolsInCreate(CallbacksTester $I)
     {
         $I->amOnPage('/');
         $I->waitForText('Заказать звонок');
@@ -114,7 +114,7 @@ class CreateCallbackCest
     }
     
     
-     public function OneSymbolsCreate(AcceptanceTester $I)
+     public function OneSymbolsCreate(CallbacksTester $I)
     {
         InitTest::Loguot($I);
         $I->amOnPage('/');
@@ -157,7 +157,7 @@ class CreateCallbackCest
     }
     
     
-    public function Symbols128Create(AcceptanceTester $I)
+    public function Symbols128Create(CallbacksTester $I)
     {
         $I->amOnPage('/');
         $I->waitForText('Заказать звонок');
@@ -175,7 +175,7 @@ class CreateCallbackCest
     }
     
     
-    public function Symbols255Create(AcceptanceTester $I)
+    public function Symbols255Create(CallbacksTester $I)
     {
         $I->amOnPage('/');
         $I->waitForText('Заказать звонок');
@@ -189,7 +189,7 @@ class CreateCallbackCest
     }
     
     
-    public function Symbols256Create(AcceptanceTester $I)
+    public function Symbols256Create(CallbacksTester $I)
     {
         $I->amOnPage('/');
         $I->waitForText('Заказать звонок');
@@ -205,7 +205,7 @@ class CreateCallbackCest
     }
     
     
-    public function Symbols10000Create(AcceptanceTester $I)
+    public function Symbols10000Create(CallbacksTester $I)
     {
         $I->amOnPage('/');
         $I->waitForText('Заказать звонок');

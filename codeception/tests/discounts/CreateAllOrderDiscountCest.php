@@ -1,5 +1,5 @@
 <?php
-use \AcceptanceTester;
+use \DiscountsTester;
 
 class CreateAllOrderDiscountCest
 {
@@ -12,7 +12,7 @@ class CreateAllOrderDiscountCest
 //    }
 
     // tests
-    public function Autorization(AcceptanceTester $I)
+    public function Autorization(DiscountsTester $I)
     {
         InitTest::Login($I);
         $I->amOnPage("/admin/components/cp/mod_discount");
@@ -20,7 +20,7 @@ class CreateAllOrderDiscountCest
     }
     
     
-    public function NameInCreateDiscount(AcceptanceTester $I)
+    public function NameInCreateDiscount(DiscountsTester $I)
     {
         $I->amOnPage("/admin/components/init_window/mod_discount/create");        
         $I->see('Создание скидки', ".//*[@id='mainContent']/section/div[1]/div[1]/span[2]");
@@ -98,7 +98,7 @@ class CreateAllOrderDiscountCest
     }
     
     
-    public function RequiredFieldsInCreateSaveButton(AcceptanceTester $I)
+    public function RequiredFieldsInCreateSaveButton(DiscountsTester $I)
     {
         $I->amOnPage("/admin");
         $I->click('html/body/div[1]/div[3]/div/nav/ul/li[6]/a');
@@ -136,7 +136,7 @@ class CreateAllOrderDiscountCest
     }
     
     
-    public function RequiredFieldsInCreateSaveAndExitButton(AcceptanceTester $I)
+    public function RequiredFieldsInCreateSaveAndExitButton(DiscountsTester $I)
     {
         $I->amOnPage("/admin/components/init_window/mod_discount/create");        
         $I->click(DiscountsPage::$SaveAndExitButton);
@@ -155,7 +155,7 @@ class CreateAllOrderDiscountCest
     }   
     
     
-    public function TypesOfSymbolsInCreate(AcceptanceTester $I)
+    public function TypesOfSymbolsInCreate(DiscountsTester $I)
     {
         $I->amOnPage("/admin/components/init_window/mod_discount/create");        
         $I->fillField(DiscountsPage::$NameDiscountCreate, 'qwerrQEQE12345!#@$#%%^&*()_+|}{:>?<,./;][\\=-0ёцвцаымпУКП');
@@ -216,7 +216,7 @@ class CreateAllOrderDiscountCest
     }
     
     
-    public function OneSymbolsInCreate(AcceptanceTester $I)
+    public function OneSymbolsInCreate(DiscountsTester $I)
     {
         $I->amOnPage("/admin/components/init_window/mod_discount/create");        
         $I->fillField(DiscountsPage::$NameDiscountCreate, 'a');        
@@ -243,7 +243,7 @@ class CreateAllOrderDiscountCest
     }
     
     
-    public function Symbols3InCreate(AcceptanceTester $I)
+    public function Symbols3InCreate(DiscountsTester $I)
     {
         $I->amOnPage("/admin/components/init_window/mod_discount/create");        
         $I->fillField(DiscountsPage::$NameDiscountCreate, 'alo');        
@@ -266,7 +266,7 @@ class CreateAllOrderDiscountCest
         $I->seeInField(DiscountsPage::$BeginValueDiscount, '666');
     }
     
-    public function Symbols4InCreate(AcceptanceTester $I)
+    public function Symbols4InCreate(DiscountsTester $I)
     {
         $I->amOnPage("/admin/components/init_window/mod_discount/create");        
         $I->fillField(DiscountsPage::$NameDiscountCreate, 'Alor');        
@@ -290,7 +290,7 @@ class CreateAllOrderDiscountCest
     }
     
     
-    public function Symbols7InCreate(AcceptanceTester $I)
+    public function Symbols7InCreate(DiscountsTester $I)
     {
         $I->amOnPage("/admin/components/init_window/mod_discount/create");        
         $I->fillField(DiscountsPage::$NameDiscountCreate, 'AllOrdr');        
@@ -314,7 +314,7 @@ class CreateAllOrderDiscountCest
     }
     
     
-    public function Symbols9InCreate(AcceptanceTester $I)
+    public function Symbols9InCreate(DiscountsTester $I)
     {
         $I->amOnPage("/admin/components/init_window/mod_discount/create");        
         $I->fillField(DiscountsPage::$NameDiscountCreate, 'OrderAll9');        
@@ -338,7 +338,7 @@ class CreateAllOrderDiscountCest
     }
     
     
-    public function Symbols10InCreate(AcceptanceTester $I)
+    public function Symbols10InCreate(DiscountsTester $I)
     {
         $I->amOnPage("/admin/components/init_window/mod_discount/create");        
         $I->fillField(DiscountsPage::$NameDiscountCreate, 'OrderAll10');        
@@ -362,7 +362,7 @@ class CreateAllOrderDiscountCest
     }
     
     
-    public function Symbols150InCreate(AcceptanceTester $I)
+    public function Symbols150InCreate(DiscountsTester $I)
     {
         $I->amOnPage("/admin/components/init_window/mod_discount/create");        
         $I->fillField(DiscountsPage::$NameDiscountCreate, '150SymbolsInCreate AllOrdersDiscount 150SymbolsInCreateAllOrdersDiscount 150SymbolsInCreateAllOrdersDiscount 150SymbolsInCreateAllOrdersDiscountProcen');        
@@ -386,7 +386,7 @@ class CreateAllOrderDiscountCest
     }
     
     
-    public function Symbols151InCreate(AcceptanceTester $I)
+    public function Symbols151InCreate(DiscountsTester $I)
     {
         $I->amOnPage("/admin/components/init_window/mod_discount/create");        
         $I->fillField(DiscountsPage::$NameDiscountCreate, '151SymbolsInCreate AllOrdersDiscount 151SymbolsInCreate AllOrdersDiscount 151SymbolsInCreate AllOrdersDiscount 151SymbolsInCreate AllOrdersDiscountProc');        
@@ -410,7 +410,7 @@ class CreateAllOrderDiscountCest
     }
     
     
-    public function OneSymbolsFixMethodInCreate(AcceptanceTester $I)
+    public function OneSymbolsFixMethodInCreate(DiscountsTester $I)
     {
         $I->amOnPage("/admin/components/init_window/mod_discount/create");        
         $I->fillField(DiscountsPage::$NameDiscountCreate, 'o');        
@@ -439,7 +439,7 @@ class CreateAllOrderDiscountCest
     }
     
     
-    public function Symbols5FixMethodInCreate(AcceptanceTester $I)
+    public function Symbols5FixMethodInCreate(DiscountsTester $I)
     {
         $I->amOnPage("/admin/components/init_window/mod_discount/create");        
         $I->fillField(DiscountsPage::$NameDiscountCreate, '5SymbolsFixMethodDiscount AllOrders + NoLimitDiscount');       
@@ -479,7 +479,7 @@ class CreateAllOrderDiscountCest
     }
     
     
-    public function Symbols9FixMethodInCreate(AcceptanceTester $I)
+    public function Symbols9FixMethodInCreate(DiscountsTester $I)
     {
         $I->amOnPage("/admin/components/init_window/mod_discount/create");        
         $I->fillField(DiscountsPage::$NameDiscountCreate, '9SymbolsFixMethodDiscount + LimitDiscount');        
@@ -521,7 +521,7 @@ class CreateAllOrderDiscountCest
     }
     
     
-    public function Symbols10FixMethodInCreate(AcceptanceTester $I)
+    public function Symbols10FixMethodInCreate(DiscountsTester $I)
     {
         $I->amOnPage("/admin/components/init_window/mod_discount/create");        
         $I->fillField(DiscountsPage::$NameDiscountCreate, '10SymbolsFixMethodAllOrdersDiscount');        
