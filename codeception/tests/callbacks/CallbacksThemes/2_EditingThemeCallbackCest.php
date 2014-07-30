@@ -1,5 +1,5 @@
 <?php
-use \AcceptanceTester;
+use \CallbacksTester;
 
 class EditingThemeCallbackCest
 {
@@ -12,7 +12,7 @@ class EditingThemeCallbackCest
 //    }
 
     // tests
-    public function Autorization(AcceptanceTester $I)
+    public function Autorization(CallbacksTester $I)
     {
         InitTest::Login($I);
         $I->amOnPage("/admin/components/run/shop/callbacks/themes");
@@ -20,7 +20,7 @@ class EditingThemeCallbackCest
     }
     
     
-    public function NamesInEditing(AcceptanceTester $I)
+    public function NamesInEditing(CallbacksTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/callbacks/themes');
         $I->moveMouseOver('.//*[@id="orderStatusesList"]/section/div[2]/div/table/tbody/tr/td[2]/a');
@@ -38,7 +38,7 @@ class EditingThemeCallbackCest
     }
     
     
-    public function RequiredFieldsInEditingSaveButton(AcceptanceTester $I)
+    public function RequiredFieldsInEditingSaveButton(CallbacksTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/callbacks/themes');
         $I->click('.//*[@id="orderStatusesList"]/section/div[2]/div/table/tbody/tr/td[2]/a');
@@ -51,7 +51,7 @@ class EditingThemeCallbackCest
     }
     
     
-    public function RequiredFieldsInEditingSaveAndExitButton(AcceptanceTester $I)
+    public function RequiredFieldsInEditingSaveAndExitButton(CallbacksTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/callbacks/themes');
         $I->click('.//*[@id="orderStatusesList"]/section/div[2]/div/table/tbody/tr/td[2]/a');
@@ -65,7 +65,7 @@ class EditingThemeCallbackCest
     }
     
     
-    public function TypesOfSymbolsInEditing(AcceptanceTester $I)
+    public function TypesOfSymbolsInEditing(CallbacksTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/callbacks/themes');
         $I->click('.//*[@id="orderStatusesList"]/section/div[2]/div/table/tbody/tr/td[2]/a');
@@ -80,7 +80,7 @@ class EditingThemeCallbackCest
     }
     
     
-    public function OneSymbolsEditing(AcceptanceTester $I)
+    public function OneSymbolsEditing(CallbacksTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/callbacks/themes');
         $I->click('.//*[@id="orderStatusesList"]/section/div[2]/div/table/tbody/tr/td[2]/a');
@@ -95,7 +95,7 @@ class EditingThemeCallbackCest
     }
     
     
-    public function Symbols128Editing(AcceptanceTester $I)
+    public function Symbols128Editing(CallbacksTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/callbacks/themes');
         $I->click('.//*[@id="orderStatusesList"]/section/div[2]/div/table/tbody/tr/td[2]/a');
@@ -110,7 +110,7 @@ class EditingThemeCallbackCest
     }
     
     
-    public function Symbols255Editing(AcceptanceTester $I)
+    public function Symbols255Editing(CallbacksTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/callbacks/themes');
         $I->click('.//*[@id="orderStatusesList"]/section/div[2]/div/table/tbody/tr/td[2]/a');
@@ -125,7 +125,7 @@ class EditingThemeCallbackCest
     }
     
     
-    public function Symbols256Editing(AcceptanceTester $I)
+    public function Symbols256Editing(CallbacksTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/callbacks/themes');
         $I->click('.//*[@id="orderStatusesList"]/section/div[2]/div/table/tbody/tr/td[2]/a');
@@ -140,7 +140,7 @@ class EditingThemeCallbackCest
     }
     
     
-    public function SaveAndExitButton(AcceptanceTester $I)
+    public function SaveAndExitButton(CallbacksTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/callbacks/themes');
         $I->click('.//*[@id="orderStatusesList"]/section/div[2]/div/table/tbody/tr/td[2]/a');

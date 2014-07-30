@@ -1,5 +1,5 @@
 <?php
-use \AcceptanceTester;
+use \DiscountsTester;
 
 class CreateCumulativeDiscountCest
 {
@@ -11,7 +11,7 @@ class CreateCumulativeDiscountCest
 //    {
 //    }
 
-    public function Autorization(AcceptanceTester $I)
+    public function Autorization(DiscountsTester $I)
     {
         InitTest::Login($I);
         $I->amOnPage("/admin/components/cp/mod_discount");
@@ -19,7 +19,7 @@ class CreateCumulativeDiscountCest
     }
     
     
-    public function NamesAndValuesInCreate(AcceptanceTester $I)
+    public function NamesAndValuesInCreate(DiscountsTester $I)
     {
         $I->amOnPage("/admin/components/init_window/mod_discount/create");
         $I->click(DiscountsPage::$SelectTypeDiscount);
@@ -35,7 +35,7 @@ class CreateCumulativeDiscountCest
     }
     
     
-    public function RequiredFieldsInCreateSaveButton(AcceptanceTester $I)
+    public function RequiredFieldsInCreateSaveButton(DiscountsTester $I)
     {
         $I->amOnPage("/admin/components/init_window/mod_discount/create");
         $I->click(DiscountsPage::$SelectTypeDiscount);
@@ -50,7 +50,7 @@ class CreateCumulativeDiscountCest
     }
     
     
-    public function RequiredFieldsInCreateSaveAndExitButton(AcceptanceTester $I)
+    public function RequiredFieldsInCreateSaveAndExitButton(DiscountsTester $I)
     {
         $I->amOnPage("/admin/components/init_window/mod_discount/create");
         $I->click(DiscountsPage::$SelectTypeDiscount);
@@ -65,7 +65,7 @@ class CreateCumulativeDiscountCest
     }
     
     
-    public function TypesOfSymbolsInCreate(AcceptanceTester $I)
+    public function TypesOfSymbolsInCreate(DiscountsTester $I)
     {
         $I->amOnPage("/admin/components/init_window/mod_discount/create");        
         $I->click(DiscountsPage::$SelectTypeDiscount);
@@ -82,7 +82,7 @@ class CreateCumulativeDiscountCest
     }
     
     
-    public function OneSymbolsInCreateLimitPercent(AcceptanceTester $I)
+    public function OneSymbolsInCreateLimitPercent(DiscountsTester $I)
     {
         $I->amOnPage("/admin/components/init_window/mod_discount/create");        
         $I->fillField(DiscountsPage::$NameDiscountCreate, 'OneSymbolsCumulativeDiscountLimitPercent');        
@@ -108,7 +108,7 @@ class CreateCumulativeDiscountCest
     }
     
     
-    public function Symbols4InCreateLimitPercent(AcceptanceTester $I)
+    public function Symbols4InCreateLimitPercent(DiscountsTester $I)
     {
         $I->amOnPage("/admin/components/init_window/mod_discount/create");        
         $I->fillField(DiscountsPage::$NameDiscountCreate, '4SymbolsCumulativeDiscountLimitPercent');        
@@ -131,7 +131,7 @@ class CreateCumulativeDiscountCest
     }
     
     
-    public function Symbols9InCreateUnlimitPercent(AcceptanceTester $I)
+    public function Symbols9InCreateUnlimitPercent(DiscountsTester $I)
     {
         $I->amOnPage("/admin/components/init_window/mod_discount/create");        
         $I->fillField(DiscountsPage::$NameDiscountCreate, '9SymbolsCumulativeDiscountUnlimitPercent');        

@@ -1,5 +1,5 @@
 <?php
-use \AcceptanceTester;
+use \CallbacksTester;
 
 class CreateThemeCallbackCest
 {
@@ -12,7 +12,7 @@ class CreateThemeCallbackCest
 //    }
 
     // tests
-    public function Autorization(AcceptanceTester $I)
+    public function Autorization(CallbacksTester $I)
     {
         InitTest::Login($I);
         $I->amOnPage("/admin/components/run/shop/callbacks/themes");
@@ -20,7 +20,7 @@ class CreateThemeCallbackCest
     }
     
     
-    public function NamesInCreate(AcceptanceTester $I)
+    public function NamesInCreate(CallbacksTester $I)
     {
         $I->click('html/body/div[1]/div[3]/div/nav/ul/li[2]/a');
         $I->waitForElement('html/body/div[1]/div[3]/div/nav/ul/li[2]/ul');
@@ -38,7 +38,7 @@ class CreateThemeCallbackCest
     }
     
     
-    public function RequiredFieldsInCreateSaveButton(AcceptanceTester $I)
+    public function RequiredFieldsInCreateSaveButton(CallbacksTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/callbacks/createTheme');
         $I->click(CallbacksPage::$SaveButton);
@@ -49,7 +49,7 @@ class CreateThemeCallbackCest
     }
     
     
-    public function RequiredFieldsInCreateSaveAndExitButton(AcceptanceTester $I)
+    public function RequiredFieldsInCreateSaveAndExitButton(CallbacksTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/callbacks/createTheme');
         $I->click(CallbacksPage::$SaveAndExitButton);
@@ -59,7 +59,7 @@ class CreateThemeCallbackCest
     }
     
     
-    public function TypesOfSymbolsInCreate(AcceptanceTester $I)
+    public function TypesOfSymbolsInCreate(CallbacksTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/callbacks/createTheme');
         $I->fillField(CallbacksPage::$NameTheme, 'qwerrQEQE12345!#@$#%%^&*()_+|}{:>?<,./;][\\=-0ёцвцаымпУКП');
@@ -73,7 +73,7 @@ class CreateThemeCallbackCest
     }
     
     
-    public function OneSymbolsCreate(AcceptanceTester $I)
+    public function OneSymbolsCreate(CallbacksTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/callbacks/createTheme');
         $I->fillField(CallbacksPage::$NameTheme, 'q');
@@ -85,7 +85,7 @@ class CreateThemeCallbackCest
     }
     
     
-    public function Symbols128Create(AcceptanceTester $I)
+    public function Symbols128Create(CallbacksTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/callbacks/createTheme');
         $I->fillField(CallbacksPage::$NameTheme, '12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцу');
@@ -98,7 +98,7 @@ class CreateThemeCallbackCest
     }
     
     
-    public function Symbols255Create(AcceptanceTester $I)
+    public function Symbols255Create(CallbacksTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/callbacks/createTheme');
         $I->fillField(CallbacksPage::$NameTheme, '12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345');
@@ -111,7 +111,7 @@ class CreateThemeCallbackCest
     }
     
     
-    public function Symbols256Create(AcceptanceTester $I)
+    public function Symbols256Create(CallbacksTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/callbacks/createTheme');
         $I->fillField(CallbacksPage::$NameTheme, '12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке123456');
@@ -124,7 +124,7 @@ class CreateThemeCallbackCest
     }
     
     
-    public function CreateAndExit(AcceptanceTester $I)
+    public function CreateAndExit(CallbacksTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/callbacks/createTheme');
         $I->fillField(CallbacksPage::$NameTheme, 'ййй');

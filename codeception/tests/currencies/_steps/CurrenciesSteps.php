@@ -1,9 +1,9 @@
 <?php
-namespace AcceptanceTester;
+namespace CurrenciesTester;
 
-class CurrenciesSteps extends \AcceptanceTester
+class CurrenciesSteps extends \CurrenciesTester
 {
-    function CreateCurrency(AcceptanceTester $I,$name,$isocode,$symbol,$rate)
+    function CreateCurrency(CurrenciesTester $I,$name,$isocode,$symbol,$rate)
     {
         $I->$this;
         $I->amOnPage('/admin/components/run/shop/currencies/create');
@@ -14,7 +14,7 @@ class CurrenciesSteps extends \AcceptanceTester
         $I->click(\CurrenciesPage::$SaveButton);        
     }    
     
-    function EditCurrency(AcceptanceTester $I,$name,$isocode,$symbol,$rate1,$rate)
+    function EditCurrency(CurrenciesTester $I,$name,$isocode,$symbol,$rate1,$rate)
     {
         $I = $this;
         $I->amOnPage('/admin/components/run/shop/currencies');
