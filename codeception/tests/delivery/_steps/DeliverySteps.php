@@ -103,7 +103,7 @@ class DeliverySteps extends \DeliveryTester {
     function CheckInFrontEnd($DeliveryName, $description = null, $price = null, $freefrom = null, $message = null, $pay = null) {
         $I = $this;
 
-        static $WasCalled = FALSE;
+        static $WasCalled = true;//FALSE;///////////////////////////////////////////////_______________REPLACE
         if (!$WasCalled) {
             $I->amOnPage('/shop/product/mobilnyi-telefon-sony-xperia-v-lt25i-black');
 
@@ -115,10 +115,11 @@ class DeliverySteps extends \DeliveryTester {
             $buy = "//div[@class='frame-prices-buy f-s_0']//form/div[3]";
             $basket = "//div[@class='frame-prices-buy f-s_0']//form/div[2]";
 
-            $I->wait(10);
+            $I->wait(5);
             try {
                 $I->click($buy);
             } catch (\Exception $exc) {
+                $I->wait(5);
                 $I->click($basket);
             }
             $I->waitForElementVisible("//*[@id='popupCart']", 10);
@@ -137,7 +138,9 @@ class DeliverySteps extends \DeliveryTester {
 
         for ($j = 1; $j <= $ClassCount; ++$j) {
             $CName = $I->grabTextFrom("//div[@class='frame-radio']/div[$j]//span[@class='text-el']");
-
+            $I->comment($CName);
+            $I->comment($DeliveryName);
+            
             if ($CName == $DeliveryName) {
                 $present = TRUE;
                 break;
@@ -314,6 +317,62 @@ class DeliverySteps extends \DeliveryTester {
                     break;
                 default :
                     $I->fail("unknown type of error entered");
+        }
+    }
+    /**
+     * Checking current parameters in Delivery List page 
+     * if you want to skip verifying of some parameters type null
+     * @param sring             $name       Delivery name
+     * @param string            $active     Active checkbox on - enabled |off - disabled 
+     * @param int|string|float  $price      Delivery price
+     * @param int|string|float  $freefrom   Delivery free from
+     * @return void
+     */
+    function CheckInList($name,$active=null,$price=null,$freefrom=null){
+        $I = $this;
+        $I->amOnPage(\DeliveryPage::$URL);
+        $rows  = $I->grabTagCount($I,"tbody tr");
+        $I->comment($rows);
+        $present = FALSE;
+        if($rows>0){
+            
+            for ($j=1;$j<=$rows;++$j){
+                $method = $I->grabTextFrom(\DeliveryPage::ListMethodLine($j));
+                $I->comment($method);
+                
+                if ($method == $name){
+                    $present = TRUE;
+                    break;
+                }
+            }
+        }
+        $I->comment("results: \n Method: \n$method Present: $present in row: $j\n");
+        //Error when method isn't present in delivery list page
+        $present?$I->assertEquals($method,$name):$I->fail("Method wasn't created");
+        
+        if($active){
+            $attribute = $I->grabAttributeFrom(\DeliveryPage::ListActiveButtonLine($j),"class");
+            
+            switch ($active){
+                case 'on':
+                    $I->assertEquals("prod-on_off ", $attribute);
+                    break;
+                case 'off':
+                    $I->assertEquals("prod-on_off disable_tovar", $attribute);
+                    break;
+            }
+        }
+        
+        if($price){
+            $Cprice = $I->grabTextFrom(\DeliveryPage::ListPriceLine($j));
+            $price = number_format($price, 5,".","");
+            $I->assertEquals(preg_replace('/[^0-9.]*/u', '', $Cprice),$price);
+        }
+        
+        if($freefrom){
+            $Cfreefrom = $I->grabTextFrom(\DeliveryPage::ListFreeFromLine($j));
+            $freefrom = number_format($freefrom, 5,".","");
+            $I->assertEquals(preg_replace('/[^0-9.]*/u', '', $Cfreefrom), $freefrom);
         }
     }
 
