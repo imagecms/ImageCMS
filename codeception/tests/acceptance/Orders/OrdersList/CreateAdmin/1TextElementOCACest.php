@@ -170,7 +170,7 @@ class TextElementOCACest
     
     
     /**
-     * @group a
+     * @group q
      */
     public function VerifyFieldDefoltAmountInBasket(AcceptanceTester $I){
         $I->amOnPage(OrdersListPage::$CrtPURL);
@@ -191,10 +191,10 @@ class TextElementOCACest
     
     
     /**
-     * @group q
+     * @group a
      */
     public function VerifyTextMessageAddUser1 (AcceptanceTester $I) {
-        $I->amOnPage(OrdersListPage::$CrtPURL);
+        $I->amOnPage("/admin/components/run/shop/orders/create");
         $I->click(OrdersListPage::$CrtPButtUser);
         $I->click(OrdersListPage::$CrtULinkCreate);
         $I->click(OrdersListPage::$CrtUButtCreate);
