@@ -72,7 +72,7 @@ class OrdersListPage
        
        // Creating Order Product Page
        
-       public static $CrtPURL = "/admin/components/run/shop/orders/create";
+//       public static $CrtPURL = "/admin/components/run/shop/orders/create";
        public static $CrtPTitle = "span.title.w-s_n";
        
        //Creating Order Button "Product"
