@@ -1,5 +1,5 @@
 <?php
-use \AcceptanceTester;
+use \CurrenciesTester;
 
 class EditingCurrenciesCest
 {
@@ -11,7 +11,7 @@ class EditingCurrenciesCest
 //    {
 //    }
 
-    public function Autorization(AcceptanceTester $I)
+    public function Autorization(CurrenciesTester $I)
     {
         InitTest::Login($I);
         $I->amOnPage("/admin/components/run/shop/currencies");
@@ -19,7 +19,7 @@ class EditingCurrenciesCest
     }
     
     
-    public function NamesInEditing(AcceptanceTester $I)
+    public function NamesInEditing(CurrenciesTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/currencies');
         $rows = $I->grabTagCount($I,"tbody tr");
@@ -50,7 +50,7 @@ class EditingCurrenciesCest
     }
     
     
-    public function RequiredFieldsSaveButtonInEditing(AcceptanceTester $I)
+    public function RequiredFieldsSaveButtonInEditing(CurrenciesTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/currencies');
         $I->click('.//*[@id="currency_tr1"]/td[2]/a');
@@ -68,7 +68,7 @@ class EditingCurrenciesCest
     }
     
     
-    public function RequiredFieldsSaveAndExitButtonInEditing(AcceptanceTester $I)
+    public function RequiredFieldsSaveAndExitButtonInEditing(CurrenciesTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/currencies');
         $I->click('.//*[@id="currency_tr1"]/td[2]/a');
@@ -85,7 +85,7 @@ class EditingCurrenciesCest
     }
     
     
-    public function TypesOfSymbolsInEditing(AcceptanceTester $I)
+    public function TypesOfSymbolsInEditing(CurrenciesTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/currencies');
         $I->click('.//*[@id="currency_tr1"]/td[2]/a');
@@ -101,7 +101,7 @@ class EditingCurrenciesCest
     }
     
     
-    public function OneAnd2SymbolsEditing(AcceptanceTester $I)
+    public function OneAnd2SymbolsEditing(CurrenciesTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/currencies');
         $I->click('.//*[@id="currency_tr1"]/td[2]/a');
@@ -128,7 +128,7 @@ class EditingCurrenciesCest
     }
     
     
-    public function Symbols5Editing(AcceptanceTester $I)
+    public function Symbols5Editing(CurrenciesTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/currencies');
         $I->click('.//*[@id="currency_tr1"]/td[2]/a');
@@ -153,7 +153,7 @@ class EditingCurrenciesCest
     }
     
     
-    public function Symbols6Editing(AcceptanceTester $I)
+    public function Symbols6Editing(CurrenciesTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/currencies');
         $I->click('.//*[@id="currency_tr1"]/td[2]/a');
@@ -192,7 +192,7 @@ class EditingCurrenciesCest
     }
     
     
-    public function Symbols10Editing(AcceptanceTester $I)
+    public function Symbols10Editing(CurrenciesTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/currencies');
         $I->click('.//*[@id="currency_tr1"]/td[2]/a');
@@ -230,7 +230,7 @@ class EditingCurrenciesCest
     }
     
     
-    public function Symbols255Editing(AcceptanceTester $I)
+    public function Symbols255Editing(CurrenciesTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/currencies');
         $I->click('.//*[@id="currency_tr1"]/td[2]/a');
@@ -251,7 +251,7 @@ class EditingCurrenciesCest
     }
     
     
-    public function Symbols256Editing(AcceptanceTester $I)
+    public function Symbols256Editing(CurrenciesTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/currencies');
         $I->click('.//*[@id="currency_tr1"]/td[2]/a');
@@ -271,7 +271,7 @@ class EditingCurrenciesCest
     }
     
     
-    public function SaveAndExitButton(AcceptanceTester $I)
+    public function SaveAndExitButton(CurrenciesTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/currencies');
         $I->click('.//*[@id="currency_tr1"]/td[2]/a');

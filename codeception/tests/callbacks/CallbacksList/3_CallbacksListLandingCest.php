@@ -1,5 +1,5 @@
 <?php
-use \AcceptanceTester;
+use \CallbacksTester;
 
 class DeleteCallbackByButtonCest
 {
@@ -12,7 +12,7 @@ class DeleteCallbackByButtonCest
 //    }
 
     // tests
-    public function Autorization(AcceptanceTester $I)
+    public function Autorization(CallbacksTester $I)
     {
         InitTest::Login($I);
         $I->amOnPage("/admin/components/run/shop/callbacks");
@@ -20,7 +20,7 @@ class DeleteCallbackByButtonCest
     }   
        
     
-    public function NamesInListLanding(AcceptanceTester $I)
+    public function NamesInListLanding(CallbacksTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/callbacks');
         $I->see('Список обратных звонков', 'span.title');
@@ -36,7 +36,7 @@ class DeleteCallbackByButtonCest
     }
     
     
-    public function DeleteButton(AcceptanceTester $I)
+    public function DeleteButton(CallbacksTester $I)
     {
         //Удаление одного колбека с помощью кнопки удаления напротив этого колбека
         $rowMax=14;     
@@ -114,7 +114,7 @@ class DeleteCallbackByButtonCest
     }
     
     
-    public function DeleteCheckBoxButton(AcceptanceTester $I)
+    public function DeleteCheckBoxButton(CallbacksTester $I)
     { 
         //Удаление одного колбека с помощью чекбокса и кнопки "Удалить"
         $rowMax=14;     
@@ -193,7 +193,7 @@ class DeleteCallbackByButtonCest
     }
     
     
-    public function DeleteFewCheckBoxButton(AcceptanceTester $I)
+    public function DeleteFewCheckBoxButton(CallbacksTester $I)
     { 
         //Удаление нескольких колбеков с помощью чекбоксов и кнопки "Удалить"
         $rowMax=14;     
@@ -295,7 +295,7 @@ class DeleteCallbackByButtonCest
     }
     
     
-    public function ActiveCheckBox(AcceptanceTester $I)
+    public function ActiveCheckBox(CallbacksTester $I)
     {
         //Проверка активности чекбоксов при первом переходе на страницу
         $rowMax=14;     
@@ -353,7 +353,7 @@ class DeleteCallbackByButtonCest
     }
     
     
-    public function DeleteAllCheckBoxButton(AcceptanceTester $I)
+    public function DeleteAllCheckBoxButton(CallbacksTester $I)
     {
         //Удаление всех колбеков из списка
         $rowMax=14;     

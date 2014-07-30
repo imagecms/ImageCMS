@@ -1,5 +1,5 @@
 <?php
-use \AcceptanceTester;
+use \CallbacksTester;
 
 class DeleteThemeCest
 {
@@ -13,7 +13,7 @@ class DeleteThemeCest
 
     // tests
     protected $rows;
-    public function Autorization(AcceptanceTester $I)
+    public function Autorization(CallbacksTester $I)
     {
         InitTest::Login($I);
         $I->amOnPage("/admin/components/run/shop/callbacks/themes");
@@ -21,7 +21,7 @@ class DeleteThemeCest
     }
     
     
-    public function NamesInListLanding(AcceptanceTester $I)
+    public function NamesInListLanding(CallbacksTester $I)
     {
         $I->click('html/body/div[1]/div[3]/div/nav/ul/li[2]/a');
         $I->waitForElement('html/body/div[1]/div[3]/div/nav/ul/li[2]/ul');
@@ -35,7 +35,7 @@ class DeleteThemeCest
     }
     
     
-    public function DeleteOneTheme(AcceptanceTester $I)
+    public function DeleteOneTheme(CallbacksTester $I)
     {
         //Удаление одной темы колбеков
         $idDeleteTheme=$I->grabTextFrom('.//*[@id="orderStatusesList"]/section/div[2]/div/table/tbody/tr[1]/td[1]');
@@ -59,7 +59,7 @@ class DeleteThemeCest
         InitTest::ClearAllCach($I);
     }
     
-    public function DeleteAllThemes(AcceptanceTester $I)
+    public function DeleteAllThemes(CallbacksTester $I)
     {
         //Удаление всех тем колбеков
         $I->comment("$this->rows");
@@ -76,7 +76,7 @@ class DeleteThemeCest
     }
     
     
-    public function CreateCallbackWithoutThemes(AcceptanceTester $I)
+    public function CreateCallbackWithoutThemes(CallbacksTester $I)
     {
         //Проверка возможности отправки колбека без созданных тем колбеков
         $I->amOnPage('/');

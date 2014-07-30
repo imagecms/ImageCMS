@@ -1,5 +1,5 @@
 <?php
-use \AcceptanceTester;
+use \CallbacksTester;
 
 class EditingCallbackCest
 {
@@ -11,7 +11,7 @@ class EditingCallbackCest
 //    {
 //    }
 
-   public function Autorization(AcceptanceTester $I)
+   public function Autorization(CallbacksTester $I)
     {
         InitTest::Login($I);
         $I->amOnPage("/admin/components/run/shop/callbacks");
@@ -19,7 +19,7 @@ class EditingCallbackCest
     } 
     
     
-    public function NamesInEditing(AcceptanceTester $I)
+    public function NamesInEditing(CallbacksTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/callbacks');
         $I->click('.//*[@id="callbacks_all"]/table/tbody/tr[1]/td[3]/a');
@@ -38,7 +38,7 @@ class EditingCallbackCest
     } 
     
     
-    public function RequiredFieldsInEditingAndSaveButton(AcceptanceTester $I)
+    public function RequiredFieldsInEditingAndSaveButton(CallbacksTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/callbacks');
         $I->click('.//*[@id="callbacks_all"]/table/tbody/tr[1]/td[3]/a');
@@ -58,7 +58,7 @@ class EditingCallbackCest
     } 
     
     
-    public function RequiredFieldsInEditingAndSaveAndExitButton(AcceptanceTester $I)
+    public function RequiredFieldsInEditingAndSaveAndExitButton(CallbacksTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/callbacks');
         $I->click('.//*[@id="callbacks_all"]/table/tbody/tr[1]/td[3]/a');
@@ -73,7 +73,7 @@ class EditingCallbackCest
     } 
     
     
-    public function TypesOfSymbolsInEditing(AcceptanceTester $I)
+    public function TypesOfSymbolsInEditing(CallbacksTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/callbacks');
         $I->click('.//*[@id="callbacks_all"]/table/tbody/tr[1]/td[3]/a');
@@ -116,7 +116,7 @@ class EditingCallbackCest
     } 
     
     
-    public function OneSymbolsEditing(AcceptanceTester $I)
+    public function OneSymbolsEditing(CallbacksTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/callbacks');
         $I->click('.//*[@id="callbacks_all"]/table/tbody/tr[1]/td[3]/a');
@@ -134,7 +134,7 @@ class EditingCallbackCest
     } 
     
     
-    public function Symbols128Editing(AcceptanceTester $I)
+    public function Symbols128Editing(CallbacksTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/callbacks');
         $I->click('.//*[@id="callbacks_all"]/table/tbody/tr[1]/td[3]/a');
@@ -180,7 +180,7 @@ class EditingCallbackCest
     } 
     
     
-    public function Symbols255Editing(AcceptanceTester $I)
+    public function Symbols255Editing(CallbacksTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/callbacks');
         $I->click('.//*[@id="callbacks_all"]/table/tbody/tr[1]/td[3]/a');
@@ -198,7 +198,7 @@ class EditingCallbackCest
     } 
     
     
-    public function Symbols256Editing(AcceptanceTester $I)
+    public function Symbols256Editing(CallbacksTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/callbacks');
         $I->click('.//*[@id="callbacks_all"]/table/tbody/tr[1]/td[3]/a');
@@ -217,7 +217,7 @@ class EditingCallbackCest
     } 
     
     
-    public function Symbols10000Editing(AcceptanceTester $I)
+    public function Symbols10000Editing(CallbacksTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/callbacks');
         $I->click('.//*[@id="callbacks_all"]/table/tbody/tr[1]/td[3]/a');
@@ -235,7 +235,7 @@ class EditingCallbackCest
     }
     
     
-    public function SaveAndExitButton(AcceptanceTester $I)
+    public function SaveAndExitButton(CallbacksTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/callbacks');
         $I->click('.//*[@id="callbacks_all"]/table/tbody/tr[1]/td[3]/a');
