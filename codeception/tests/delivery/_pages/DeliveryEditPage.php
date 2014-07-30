@@ -23,6 +23,10 @@ class DeliveryEditPage
         $Payment = "//div[5]/div[3]/div[2]/span[$row]";
         return $Payment;
     }
+    public static function PaymentMethodCheckbox($row) {
+        return "//form/div[5]/div[3]/div[2]/span[$row]/span";
+        
+    }
     Public static $ButtonSaveExit = ".btn.btn-small.action_on.formSubmit";
     Public static $ButtonSave = ".btn.btn-small.btn-primary.formSubmit";
     Public static $ButtonBack = ".t-d_u";
