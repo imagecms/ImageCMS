@@ -1,5 +1,5 @@
 <?php
-use \AcceptanceTester;
+use \DiscountsTester;
 
 class CreateGiftSertificateCest
 {
@@ -11,7 +11,7 @@ class CreateGiftSertificateCest
 //    {
 //    }
 
-    public function Autorization(AcceptanceTester $I)
+    public function Autorization(DiscountsTester $I)
     {
         InitTest::Login($I);
         $I->amOnPage("/admin/components/cp/mod_discount");
@@ -19,7 +19,7 @@ class CreateGiftSertificateCest
     }
     
     
-    public function GiftFixMethodInCreate(AcceptanceTester $I)
+    public function GiftFixMethodInCreate(DiscountsTester $I)
     {
         $I->amOnPage("/admin/components/init_window/mod_discount/create");        
         $I->fillField(DiscountsPage::$NameDiscountCreate, 'GiftFixDiscount');       
@@ -63,7 +63,7 @@ class CreateGiftSertificateCest
     }
     
     
-    public function GiftPercentMethodInCreate(AcceptanceTester $I)
+    public function GiftPercentMethodInCreate(DiscountsTester $I)
     {
         $I->amOnPage("/admin/components/init_window/mod_discount/create");        
         $I->fillField(DiscountsPage::$NameDiscountCreate, 'GiftPercentDiscount');        

@@ -1,5 +1,5 @@
 <?php
-use \AcceptanceTester;
+use \DiscountsTester;
 
 class CreateUserDiscountCest
 {
@@ -11,7 +11,7 @@ class CreateUserDiscountCest
 //    {
 //    }
 
-    public function Autorization(AcceptanceTester $I)
+    public function Autorization(DiscountsTester $I)
     {
         InitTest::Login($I);
         $I->amOnPage("/admin/components/cp/mod_discount");
@@ -19,7 +19,7 @@ class CreateUserDiscountCest
     }
     
     
-    public function NamesAndValuesInCreate(AcceptanceTester $I)
+    public function NamesAndValuesInCreate(DiscountsTester $I)
     {
         $I->amOnPage("/admin/components/init_window/mod_discount/create");
         $I->click(DiscountsPage::$SelectTypeDiscount);
@@ -29,7 +29,7 @@ class CreateUserDiscountCest
     }
     
     
-    public function RequiredFieldsInCreateSaveButton(AcceptanceTester $I)
+    public function RequiredFieldsInCreateSaveButton(DiscountsTester $I)
     {
         $I->amOnPage("/admin/components/init_window/mod_discount/create");
         $I->click(DiscountsPage::$SelectTypeDiscount);
@@ -42,7 +42,7 @@ class CreateUserDiscountCest
     }
     
     
-    public function RequiredFieldsInCreateSaveAndExitButton(AcceptanceTester $I)
+    public function RequiredFieldsInCreateSaveAndExitButton(DiscountsTester $I)
     {
         $I->amOnPage("/admin/components/init_window/mod_discount/create");
         $I->click(DiscountsPage::$SelectTypeDiscount);
@@ -55,7 +55,7 @@ class CreateUserDiscountCest
     }
     
     
-    public function TypesOfSymbolsInCreate(AcceptanceTester $I)
+    public function TypesOfSymbolsInCreate(DiscountsTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/users/create');        
         $I->fillField(".//*[@id='UserEmail']", 'a@a.aa');
