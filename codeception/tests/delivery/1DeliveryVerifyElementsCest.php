@@ -1,12 +1,12 @@
-<?php
-use \AcceptanceTester;
+<?php 
+use \DeliveryTester;
 
 class DeliveryVerifyElementsCest {
     
     /**
      * @group verify
      */
-    public function Authorization(AcceptanceTester $I){
+    public function Authorization(DeliveryTester $I){
         //Login & go to page DeliveryList
         InitTest::login($I);
         $I->click(NavigationBarPage::$Settings);
@@ -17,7 +17,7 @@ class DeliveryVerifyElementsCest {
     /**
      * @group verify
      */
-    public function DeliveryListElements(AcceptanceTester $I)
+    public function DeliveryListElements(DeliveryTester $I)
     {
         $I->wantTo("Verify all elements in Delivery list landing page");
         $I->see("Список способов доставки","span.title");
@@ -35,7 +35,7 @@ class DeliveryVerifyElementsCest {
     /**
      * @group verify
      */
-    public function DeliveryDeleteWindow (AcceptanceTester $I){
+    public function DeliveryDeleteWindow (DeliveryTester $I){
         $I->click(DeliveryPage::$CheckboxHeader);
         $I->click(DeliveryPage::$DeleteButton);
         $I->waitForText("Удаление способов доставки", "30", "//*[@id='mainContent']/div/div[1]/div[1]/h3");
@@ -49,7 +49,7 @@ class DeliveryVerifyElementsCest {
     /**
      * @group verify
      */
-    public function DeliveryCreateElements(AcceptanceTester $I)
+    public function DeliveryCreateElements(DeliveryTester $I)
     {
         $I->wantTo("Verifyy all elements in Delivery Create page");
         //InitTest::ClearAllCach($I);
@@ -77,7 +77,7 @@ class DeliveryVerifyElementsCest {
     /**
      *@group verify
      */    
-    public function DeliveryEditElements(AcceptanceTester $I)
+    public function DeliveryEditElements(DeliveryTester $I)
     {
         $I->wantTo("Verifyy all elements in Delivery Edit page");
         $I->wait("1");
