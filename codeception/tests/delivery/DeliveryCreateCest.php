@@ -16,7 +16,7 @@ class DeliveryCreateCest {
     }
 
     /**
-     * @group current
+     * @group create
      */
     public function authorization(DeliveryTester $I) {
         InitTest::Login($I);
@@ -279,7 +279,7 @@ class DeliveryCreateCest {
     }
 
     /**
-     * @group current
+     * @group create
      * @guy DeliveryTester\DeliverySteps
      */
     public function fieldPriseSpecifiedSymbols(DeliveryTester $I) {
@@ -297,9 +297,10 @@ class DeliveryCreateCest {
 
     /**
      * @group create
+     * @guy DeliveryTester\DeliverySteps
      */
-    public function DeliveryPaymentVerify(DeliveryTester $I) {
-        $PaymentMethods = $this->GrabAllCreatedPayments($I);
+    public function deliveryPaymentVerify(DeliveryTester\DeliverySteps $I) {
+        $PaymentMethods = $I->GrabAllCreatedPayments();
         $row = 1;
 
         $I->amOnPage(DeliveryCreatePage::$URL);
@@ -316,40 +317,41 @@ class DeliveryCreateCest {
 
     /**
      * @group create
+     * @guy DeliveryTester\DeliverySteps
      */
-    public function DeliveryPaymentEmpty(DeliveryTester $I) {
+    public function deliveryPaymentEmpty(DeliveryTester\DeliverySteps $I) {
         $name = "ДоставкаОплатаНет";
         //For deleting
         $this->CreatedMethods[] = $name;
 
-        $I->amOnPage(DeliveryCreatePage::$URL);
-        $this->CreateDelivery($I, $name, 'on', 'off', 'off', 'off', 'off', 'off', 'off');
-        $this->CheckInFrontEnd($I, $name, null, null, null, null, 'off');
+        $I->CreateDelivery($name, 'on', null, null, null, null, null, null);
+        $I->CheckInFrontEnd($name, null, null, null, null, 'off');
     }
 
     /**
      * @group create
+     * @guy DeliveryTester\DeliverySteps
      */
-    public function DeliveryPaymentCheckedAll(DeliveryTester $I) {
+    public function deliveryPaymentCheckedAll(DeliveryTester\DeliverySteps $I) {
         $name = "ДоставкаОплатаВсе";
         //For deleting
         $this->CreatedMethods[] = $name;
 
-        $pay = $this->GrabAllCreatedPayments($I);
-        $pay = implode("_", $pay);
+        $pay = $I->GrabAllCreatedPayments();
 
         $I->amOnPage(DeliveryCreatePage::$URL);
-        $this->CreateDelivery($I, $name, 'on', 'off', 'off', 'off', 'off', 'off', $pay);
-        $this->CheckInFrontEnd($I, $name, null, null, null, null, $pay);
+        $I->CreateDelivery($name, 'on', null, null, null, null, null, $pay);
+        $I->CheckInFrontEnd($name, null, null, null, null, $pay);
     }
 
     /**
      * @group create
+     * @guy DeliveryTester\DeliverySteps
      */
-    public function DeleteAllCreatedMethods(DeliveryTester $I) {
+    public function deleteAllCreatedMethods(DeliveryTester\DeliverySteps $I) {
         $I->amOnPage(DeliveryPage::$URL);
         //Deleting
-        $this->DeleteDeliveryMethods($I, $this->CreatedMethods);
+        $I->DeleteDeliveryMethods($this->CreatedMethods);
         unset($this->CreatedMethods);
     }
 

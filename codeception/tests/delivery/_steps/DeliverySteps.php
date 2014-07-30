@@ -103,7 +103,7 @@ class DeliverySteps extends \DeliveryTester {
     function CheckInFrontEnd($DeliveryName, $description = null, $price = null, $freefrom = null, $message = null, $pay = null) {
         $I = $this;
 
-        static $WasCalled = true;//FALSE;///////////////////////////////////////////////_______________REPLACE
+        static $WasCalled = false;
         if (!$WasCalled) {
             $I->amOnPage('/shop/product/mobilnyi-telefon-sony-xperia-v-lt25i-black');
 
@@ -374,6 +374,29 @@ class DeliverySteps extends \DeliveryTester {
             $freefrom = number_format($freefrom, 5,".","");
             $I->assertEquals(preg_replace('/[^0-9.]*/u', '', $Cfreefrom), $freefrom);
         }
+    }
+    
+    
+    /**
+     * Grab all payments from payment methods list page and record them to array $PaymentMethods
+     * @param   AcceptanceTester    $I
+     * @return  array               $PaymentMethods
+     */
+    function GrabAllCreatedPayments() {
+        $I = $this;
+        $I->amOnPage(\PaymentListPage::$URL);
+        $I->waitForText("Список способов оплаты", NULL, ".title");
+        /**
+         * @var int $rows Count of table rows
+         * @var int $row Current row in table 
+         */
+        $rows = $I->grabClassCount($I, 'niceCheck')-1;
+        if ($rows > 0){//was !=0
+            $I->comment("I want to read and remember all created payment methods");
+            for ($row = 1;$row<=$rows;++$row) { $PaymentMethods[$row] = $I->grabTextFrom (\PaymentListPage::MethodNameLine($row)); }
+        }
+        else { $I->fail( "there are no created payments" ); }
+        return $PaymentMethods;
     }
 
 }
