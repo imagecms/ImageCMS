@@ -398,5 +398,87 @@ class DeliverySteps extends \DeliveryTester {
         else { $I->fail( "there are no created payments" ); }
         return $PaymentMethods;
     }
+    
+    /**
+     * Edit Delivery 
+     * 
+     * Edit delivery method by specifying parameters, 
+     * must be on delivery edit page before calling
+     * 
+     * @param string    $name               Deliveryname
+     * @param string    $active             off - disabled | on - enabled
+     * @param string    $description        Delivery description
+     * @param string    $descriptionprice   Delivery price description
+     * @param string    $price              Delivery price
+     * @param string    $freefrom           Delivery freefrom
+     * @param string    $message            Delivery sum specified message
+     * @param array     $pay                Select payment methods, array or string for one
+     * @param array     $payoff             Unselect payment methods, array or sring for one
+     */
+    function EditDelivery($name = null, 
+            $active = null, 
+            $description = null,
+            $descriptionprice = null, 
+            $price = null, 
+            $freefrom = null, 
+            $message = null, 
+            $pay = null, 
+            $payoff = null){
+        
+        $I = $this;
+        
+        if(isset($name)) { 
+            $I->fillField(\DeliveryEditPage::$FieldName, $name); }
+        if(isset($active)) {
+            $Cactive = $I->grabAttributeFrom("//*[@id='deliveryUpdate']/div[2]/div[2]/span", 'class');
+            $Cactive == 'frame_label no_connection active'?$Cactive = TRUE:$Cactive = FALSE;
+            if      ($active == "on" && !$Cactive)   { 
+                $I->click(\DeliveryEditPage::$CheckboxActive); 
+                
+            }
+            elseif  ($active == "off" && $Cactive)   {
+                $I->click(\DeliveryEditPage::$CheckboxActive); 
+                
+            }
+        }
+        if(isset($description)) { 
+            $I->fillField(\DeliveryEditPage::$FieldDescription, $description); 
+        }
+        if(isset($descriptionprice)) { 
+            $I->fillField(\DeliveryEditPage::$FieldDescriptionPrice, $descriptionprice); 
+            
+        }
+        if(isset($price)) { 
+            $I->grabAttributeFrom(\DeliveryEditPage::$FieldPrice, 'disabled')== 'true'?$I->click(DeliveryEditPage::$CheckboxPriceSpecified):  print '';
+            $I->fillField(DeliveryEditPage::$FieldPrice,$price);
+        }
+        if(isset($freefrom)) { 
+            $I->grabAttributeFrom(\DeliveryEditPage::$FieldPrice, 'disabled')== 'true'?$I->click(DeliveryEditPage::$CheckboxPriceSpecified):  print '';
+            $I->fillField(DeliveryEditPage::$FieldFreeFrom, $freefrom);
+        }
+        if(isset($message)) { 
+            $class = $I->grabAttributeFrom(\DeliveryEditPage::$CheckboxPriceSpecified.'/..', 'class');
+            $class == 'frame_label no_connection'?$I->click(\DeliveryEditPage::$CheckboxPriceSpecified):$I->comment('already marked');
+            $I->fillField(DeliveryEditPage::$FieldPriceSpecified, $message);
+        }
+        if(isset($pay)) {
+            $paymentAmount = $I->grabClassCount($I, 'niceCheck')-2;
+            for($row = 1 ; $row <=$paymentAmount; ++$row){
+                $Cclass = $I->grabAttributeFrom(\DeliveryEditPage::PaymentMethodLabel($row), 'class');
+                if($Cclass == 'frame_label no_connection d_b active'){
+                        $I->click(\DeliveryEditPage::PaymentMethodCheckbox($row));
+                    }
+            }
+            if(is_string($pay) && $pay != 'off'){
+                $I->click("//span[contains(.,\"$pay\")]");
+            }
+            if (is_array($pay))  {
+                foreach ($pay as $value) {
+                        $I->click("//span[contains(.,\"  $value  \")]");
+                    }
+                }
+            }
+        $I->click(\DeliveryEditPage::$ButtonSave);
+    }
 
 }
