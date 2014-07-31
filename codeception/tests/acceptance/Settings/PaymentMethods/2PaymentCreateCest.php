@@ -5,7 +5,7 @@ require_once 'PaymentHelper.php';
 
 class PaymentCreateCest extends PaymentTestHelper{
     
-    protected $CreatedPaymentMethods    = []; 
+    protected $CreatedPaymentMethods    = [];
     protected $CreatedCurrencies        = [];
     protected static $Logged            = false;
     
@@ -17,14 +17,11 @@ class PaymentCreateCest extends PaymentTestHelper{
      * @group current
      */
     public function authorization(AcceptanceTester $I) {
-//        $thispath   = __DIR__;
-//        $mysqlPath  = '..\..\..\..\..\..\..\modules\database\MySQL-5.5.35\bin';
-//        $I->runShellCommand("cd $thispath && cd $mysqlPath && mysqldump.exe -u root cmsprem > C:\OpenServer\domains\imagecms.loc\codeception\tests\_data\cmsprem.sql");
-                
-
-        InitTest::dataBaseDump($I);
         InitTest::dataBaseBackUp($I);
-        self::$Logged=TRUE;
+//        InitTest::dataBaseDump($I);
+//        InitTest::dataBaseBackUp($I);
+//        InitTest::Login($I);
+//        self::$Logged=TRUE;
     }
     
     
@@ -176,9 +173,9 @@ class PaymentCreateCest extends PaymentTestHelper{
                 foreach ($PaymentSystems as $paymentsystem) {
                     $this->CreatedPaymentMethods[] = $name = $prefix.$paymentsystem;
                     $this->CreatePayment($I, $name, 'Dollars', 'on', null, $paymentsystem);
-                    //$this->CheckInList($I, $name);
-                    //$this->CreateDelivery($I, 'Доставка'.$name, 'on', null, null, null, null, null, $paymentsystem);
-                    //$this->CheckInFrontEnd($I, 'Доставка'.$name, null, null, null, null, null, $name);
+//                    $this->CheckInPaymentList($I, $name);
+//                    $this->CreateDelivery($I, 'Доставка'.$name, 'on', null, null, null, null, null, $paymentsystem);
+//                    $this->CheckInFrontEnd($I, 'Доставка'.$name, null, null, null, null, null, $name);
                 }
         }
         
@@ -189,27 +186,6 @@ class PaymentCreateCest extends PaymentTestHelper{
          */
           public function qwewqe(AcceptanceTester $I) {
                    
-                   
-                   /*Microsoft Windows [Version 6.1.7601]
-
-
-c:\OpenServer\modules\database\MySQL-5.5.35\bin>mysql.exe -u root cmsprem < C:\c
-msprem.sql
-
-c:\OpenServer\modules\database\MySQL-5.5.35\bin>mysqldump.exe -u root cmsprem >
-C:\my.sql*/
-                   
-                   
-                   
-              /*     
-              $I->amOnPage("/admin/components/run/shop/paymentmethods/index");
-              try {
-                  $I->click('button#pkpk');
-              }
-               catch (Exception $e){                         // \PHPUnit_Framework_Exception  or EXEPTION
-                   $I->comment("exeption catched");
-                   $I->see('Создание');
-               }*/
                
           }  
         
