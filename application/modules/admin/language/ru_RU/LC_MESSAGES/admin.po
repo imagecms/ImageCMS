@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-05 05:30+0300\n"
-"PO-Revision-Date: 2014-06-05 05:30+0300\n"
+"POT-Creation-Date: 2014-07-28 01:30+0400\n"
+"PO-Revision-Date: 2014-07-28 01:30+0400\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -7446,3 +7446,47 @@ msgstr "Просмотр на сайте"
 #: ./application/modules/shop/admin/templates/callbacks/status_list.tpl:51
 msgid "Empty callbacks status list."
 msgstr "Пустой список статусов обратных звонков."
+
+#: tmpLink
+msgid "Template carrency"
+msgstr "Шаблон валюты"
+
+#: tmpLink
+msgid "Template output currency"
+msgstr "Шаблон вывода валюты"
+
+#: tmpLink
+msgid "Format string"
+msgstr "Строка формата"
+
+#: tmpLink
+msgid "Separator tens"
+msgstr "Разделитель десятков"
+
+#: tmpLink
+msgid "Thousands separator"
+msgstr "Разделитель тысяч"
+
+#: tmpLink
+msgid "Number of decimal places"
+msgstr "Количество десятичных знаков"
+
+#: tmpLink
+msgid "Do not show zeros in the fractional part"
+msgstr "Не показывать нули в дробной части"
+
+#: tmpLink
+msgid "The list of possible code rates listed in the international standard"
+msgstr "Перечень возможных кодов валют приведен в международном стандарте"
+
+#: tmpLink
+msgid "Remove the display in the public section of leading zeros in the fractional part of the price - if you price 12500,00 rubles - will be shown 12500 if you 12500.50 - 12500.50 will be displayed"
+msgstr "Убрать показ в публичной части незначащих нулей у дробной части цены - если у вас цена 12500,00 рублей - будет отображено 12500, если у вас 12500,50 - будет отображено 12500,50."
+
+#: tmpLink
+msgid "-not selected-"
+msgstr "- Не выбрано -"
+
+#: tmpLink
+msgid "- Not selected -"
+msgstr "- Не выбрано -"

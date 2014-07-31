@@ -36,17 +36,17 @@ class CreateCategoryDiscountCest
             $I->comment("$categ[$i]");
         }
         $AllCategoryDiscount=  implode(" ", $categ);
-        $AllCategoryDiscount=str_replace(array('-'),"",$AllCategoryDiscount);
-        //echo $AllCategoryDiscount;
+        $AllCategoryDiscount=str_replace(array('-'),"",$AllCategoryDiscount);        
         $I->comment($AllCategoryDiscount);
         $I->amOnPage("/admin/components/run/shop/categories/index");
         $I->wait(3);
-        $I->clickAllElements($I,".btn.expandButton",3);
+        $I->clickAllElements($I,".btn.expandButton",3);        
         $text = $I->grabTextFromAllElements($I, "div.body_category div.row-category div.share_alt a.pjax");
             foreach ($text as $value) {
                 $I->comment("$value");                
             }
         $AllCat=  implode(" ", $text);
+        $I->comment($AllCat);
         $AllCat=  str_replace(array('-'),"",$AllCat);
         $I->comment($AllCat);
         $I->assertEquals($AllCat, $AllCategoryDiscount);        

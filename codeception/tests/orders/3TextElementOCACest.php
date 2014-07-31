@@ -1,12 +1,12 @@
 <?php
-use \AcceptanceTester;
+use \OrdersTester;
 class TextElementOCACest
 {
 //---------------------------AUTORIZATION--------------------------------------- 
     /**
      * @group a
      */
-    public function Login(AcceptanceTester $I){
+    public function Login(OrdersTester $I){
         InitTest::Login($I);
     }
     
@@ -16,7 +16,7 @@ class TextElementOCACest
     /**
      * @group a
      */
-    public function WayCreatePage (AcceptanceTester $I){
+    public function WayCreatePage (OrdersTester $I){
         $I->wantTo('Проверить путь к странице "Создание заказа".');
         $I->amOnPage(OrdersListPage::$ListURLorders);
         $I->click(OrdersListPage::$ListButtCreateOrder);
@@ -29,7 +29,7 @@ class TextElementOCACest
     /**
      * @group a
      */
-    public function VerifyTextCreateProductPage (AcceptanceTester $I){
+    public function VerifyTextCreateProductPage (OrdersTester $I){
          $I->wantTo('Проверить текст и наличие елементов на странице "Создание заказа(Админ.Панель.), в блоке "Товар".');
          $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
          $I->see('Создание заказа', CreateOrderAdminPage::$CrtPTitle); 
@@ -59,7 +59,7 @@ class TextElementOCACest
     /**
      * @group a
      */
-    public function VerifyTextCreateUserPage (AcceptanceTester $I){
+    public function VerifyTextCreateUserPage (OrdersTester $I){
         $I->wantTo('Проверить текст и наличие елементов на странице "Создание заказа(Админ.Панель.), в блоке "Пользователь".');
          $I->amOnPage(CreateOrderAdminPage::$CrtPURL);  
          $I->click(CreateOrderAdminPage:: $CrtPButtUser);
@@ -83,7 +83,7 @@ class TextElementOCACest
     /**
      * @group a
      */
-    public function VerifyTextCreateOrderPage (AcceptanceTester $I){
+    public function VerifyTextCreateOrderPage (OrdersTester $I){
         $I->wantTo('Проверить текст и наличие елементов на странице "Создание заказа(Админ.Панель.), в блоке "Заказ".');
         $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
         $I->click(CreateOrderAdminPage::$CrtPButtOrder);
@@ -112,7 +112,7 @@ class TextElementOCACest
     /**
      * @group a
      */
-    public function VerifyTextMessagePresence (AcceptanceTester $I){
+    public function VerifyTextMessagePresence (OrdersTester $I){
         $I->wantTo('Проверить наличие сообщения "только цифры" в поле "Общая цена" при фокусировке курсора на поле.');
         $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
         $I->click(CreateOrderAdminPage::$CrtPButtOrder);
@@ -129,7 +129,7 @@ class TextElementOCACest
     /**
      * @group a
      */
-    public function VerifyButtonAddToBasket(AcceptanceTester $I){
+    public function VerifyButtonAddToBasket(OrdersTester $I){
         $I->wantTo('Проверить присутствие и кликабельность кнопок "Добавить в корзину", "В корзине" и "Удалить товар с корзины".');
         $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
         $I->click(CreateOrderAdminPage::$CrtPButtProduct);
@@ -153,7 +153,7 @@ class TextElementOCACest
     /**
      * @group a
      */
-    public function VerifyButtonOutStock(AcceptanceTester $I){
+    public function VerifyButtonOutStock(OrdersTester $I){
         $I->wantTo('Проверить присутствие и кликабельность кнопки "Нет на складе".');
         $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
         $I->click(CreateOrderAdminPage::$CrtPButtProduct);
@@ -179,7 +179,7 @@ class TextElementOCACest
     /**
      * @group a
      */
-    public function VerifyFieldDefoltAmountInBasket(AcceptanceTester $I){
+    public function VerifyFieldDefoltAmountInBasket(OrdersTester $I){
         $I->wantTo('Проверить значение по умолчанию в поле "Количество", после добавления товара в корзину.');
         $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
         $I->click(CreateOrderAdminPage::$CrtPButtProduct);
@@ -209,7 +209,7 @@ class TextElementOCACest
     /**
      * @group a
      */
-    public function VerifyTextMessageAddUser1 (AcceptanceTester $I) {
+    public function VerifyTextMessageAddUser1 (OrdersTester $I) {
         $I->wantTo('Проверить наличие сообщения при создании с незаполненными полями.');
         $I->amOnPage("/admin/components/run/shop/orders/create");
         $I->click(CreateOrderAdminPage::$CrtPButtUser);
@@ -221,7 +221,7 @@ class TextElementOCACest
     /**
      * @group a
      */
-    public function VerifyTextMessageAddUser2 (AcceptanceTester $I) {
+    public function VerifyTextMessageAddUser2 (OrdersTester $I) {
         $I->wantTo('Проверить наличие сообщения при создании с незаполненными полеми "Имя Пользователя" и "E-meil".');
         $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
         $I->click(CreateOrderAdminPage::$CrtPButtUser);
@@ -234,7 +234,7 @@ class TextElementOCACest
     /**
      * @group a
      */
-    public function VerifyTextMessageAddUser3 (AcceptanceTester $I) {
+    public function VerifyTextMessageAddUser3 (OrdersTester $I) {
         $I->wantTo('Проверить наличие сообщения при создании с незаполненным полем "Имя пользователя".');
         $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
         $I->click(CreateOrderAdminPage::$CrtPButtUser);
@@ -248,7 +248,7 @@ class TextElementOCACest
     /**
      * @group a
      */
-    public function VerifyTextMessageAddUser4 (AcceptanceTester $I) {
+    public function VerifyTextMessageAddUser4 (OrdersTester $I) {
         $I->wantTo('Проверить наличие сообщения при создании с незаполненным полем "E-meil".');
         $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
         $I->click(CreateOrderAdminPage::$CrtPButtUser);
@@ -262,7 +262,7 @@ class TextElementOCACest
     /**
      * @group a
      */
-    public function VerifyTextMessageAddUser5 (AcceptanceTester $I) {
+    public function VerifyTextMessageAddUser5 (OrdersTester $I) {
         $I->wantTo('Проверить наличие сообщения при создании с введенными числами в поле "E-meil".');
         $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
         $I->click(CreateOrderAdminPage::$CrtPButtUser);
@@ -275,7 +275,7 @@ class TextElementOCACest
     /**
      * @group a
      */
-    public function VerifyTextMessageAddUser6 (AcceptanceTester $I) {
+    public function VerifyTextMessageAddUser6 (OrdersTester $I) {
         $I->wantTo('Проверить наличие сообщения при введенных символах кириллицы в поле "E-meil".');
         $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
         $I->click(CreateOrderAdminPage::$CrtPButtUser);
@@ -288,7 +288,7 @@ class TextElementOCACest
     /**
      * @group a
      */
-    public function VerifyTextMessageAddUser7 (AcceptanceTester $I) {
+    public function VerifyTextMessageAddUser7 (OrdersTester $I) {
         $I->wantTo('Проверить наличие сообщения при создании с введенными символами латиницы в поле "E-meil".');
         $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
         $I->click(CreateOrderAdminPage::$CrtPButtUser);
@@ -301,7 +301,7 @@ class TextElementOCACest
     /**
      * @group a
      */
-    public function VerifyTextMessageAddUser8 (AcceptanceTester $I) {
+    public function VerifyTextMessageAddUser8 (OrdersTester $I) {
         $I->wantTo('Проверить наличие сообщения при создании с введенными спец-символами в поле "E-meil".');
         $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
         $I->click(CreateOrderAdminPage::$CrtPButtUser);
@@ -322,7 +322,7 @@ class TextElementOCACest
     /**
      * @group a
      */
-    public function VerifyTextMessageButtonCreateDefolt (AcceptanceTester $I) {
+    public function VerifyTextMessageButtonCreateDefolt (OrdersTester $I) {
         $I->wantTo('Проверить наличие сообщения при создании заказа и неуказанных вводных данных.');
         $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
         $I->click(CreateOrderAdminPage::$CrtPButtCreate);
@@ -334,7 +334,7 @@ class TextElementOCACest
     /**
      * @group a
      */
-    public function VerifyTextMessageButtonCreateAddProducts (AcceptanceTester $I) {
+    public function VerifyTextMessageButtonCreateAddProducts (OrdersTester $I) {
         $I->wantTo('Проверить наличие сообщения при создании заказа с добавленным товаром и не выбранном "Пользователе".');
         $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
         $I->click(CreateOrderAdminPage::$CrtPButtProduct);

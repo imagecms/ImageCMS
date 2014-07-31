@@ -1,5 +1,5 @@
 <?php
-use \AcceptanceTester;
+use \OrdersTester;
 class FieldsOCACest
 {
  //---------------------------AUTORIZATION--------------------------------------- 
@@ -8,7 +8,7 @@ class FieldsOCACest
     /**
      * @group a
      */
-    public function Login(AcceptanceTester $I){
+    public function Login(OrdersTester $I){
         InitTest::Login($I);
     }    
     
@@ -17,7 +17,7 @@ class FieldsOCACest
     /**
      * @group a
      */
-    public function VerifyCategoryPresenceInSelectMenu (AcceptanceTester $I){
+    public function VerifyCategoryPresenceInSelectMenu (OrdersTester $I){
         $I->wantTo('Сравнить идентичность вывода категорий товаров в селект меню, на страницах "Создание товара" и "Создание заказа".');
        $I->wantTo('');
        $AllOptions =[]; 
@@ -54,49 +54,49 @@ class FieldsOCACest
     /**
      * @group a
      */
-    public function SearchProductNameMin (AcceptanceTester $I){
+    public function SearchProductNameMin (OrdersTester $I){
         $I->wantTo('Проверить отображения минимальной длинны названия товара, на странице "Создание заказа"');
         $this->SearchNameProduct($I, $typeName = CreateProductsOrdersPage::$CrtPrdNameMin);
     }
 //    /**
 //     * @group a
 //     */
-//    public function SearchProductNameMax (AcceptanceTester $I){
+//    public function SearchProductNameMax (OrdersTester $I){
 //    $I->wantTo('Проверить отображения максимальной длинны названия товара, на странице "Создание заказа"');
 //        $this->SearchNameProduct($I, $typeName = CreateOrderAdminPage::$CrtPrdNameMax);
 //    }
     /**
      * @group a
      */
-    public function SearchProductPriceMin (AcceptanceTester $I){
+    public function SearchProductPriceMin (OrdersTester $I){
         $I->wantTo('Проверить отображения минимальной цены товара, на странице "Создание заказа"');
         $this->SearchPriceProduct($I, $typeName = 'Минимальная Цена Товара', $typePrice = CreateProductsOrdersPage::$CrtPrdPriceMin);
     }
     /**
      * @group a
      */
-    public function SearchProductPriceMax (AcceptanceTester $I){
+    public function SearchProductPriceMax (OrdersTester $I){
         $I->wantTo('Проверить отображения максимальной цены товара, на странице "Создание заказа"');
         $this->SearchPriceProduct($I, $typeName = 'Максимальная Цена Товара', $typePrice = CreateProductsOrdersPage::$CrtPrdPriceMax);
     }
     /**
      * @group a
      */
-    public function SearchProductArticleMin (AcceptanceTester $I){
+    public function SearchProductArticleMin (OrdersTester $I){
         $I->wantTo('Проверить отображения минимальной длинны артикула товара, на странице "Создание заказа"');
         $this->SearchArticleProduct($I, $articleProduct = CreateProductsOrdersPage::$CrtPrdArticleMin);
     }
     /**
      * @group a
      */
-    public function SearchProductArticleMax (AcceptanceTester $I){
+    public function SearchProductArticleMax (OrdersTester $I){
         $I->wantTo('Проверить отображения максимальной длинны артикула товара, на странице "Создание заказа"');
         $this->SearchArticleProduct($I, $articleProduct = CreateProductsOrdersPage::$CrtPrdArticleMax);
     }
     /**
      * @group a
      */
-    public function SearchProductAmountMin (AcceptanceTester $I){
+    public function SearchProductAmountMin (OrdersTester $I){
         $I->wantTo('Проверить отображения нулевого количества товара, на странице "Создание заказа"');
         $this->SearchAmountProduct($I,  $typeName = 'Минимальное Количество Товара',
                                         $amountProduct = CreateProductsOrdersPage::$CrtPrdAmountMin);
@@ -104,7 +104,7 @@ class FieldsOCACest
     /**
      * @group a
      */
-    public function SearchProductAmountMax (AcceptanceTester $I){
+    public function SearchProductAmountMax (OrdersTester $I){
         $I->wantTo('Проверить отображения максимального количества товара, на странице "Создание заказа"');
         $this->SearchAmountProduct($I,  $typeName = 'Максимальное Количество Товара',
                                         $amountProduct = CreateProductsOrdersPage::$CrtPrdAmountMax);
@@ -116,7 +116,7 @@ class FieldsOCACest
     /**
      * @group a
      */
-    public function VerifyFieldtAmount1ValueAfterPoint(AcceptanceTester $I){
+    public function VerifyFieldtAmount1ValueAfterPoint(OrdersTester $I){
         $I->wantTo('Проверить вывод цены добавленного в корзину товара с одним значением цены после точки.');
         $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
         $I->click(CreateOrderAdminPage::$CrtPButtProduct);
@@ -139,7 +139,7 @@ class FieldsOCACest
     /**
      * @group a
      */
-    public function VerifyFieldtAmount2ValueAfterPoint(AcceptanceTester $I){
+    public function VerifyFieldtAmount2ValueAfterPoint(OrdersTester $I){
         $I->wantTo('Проверить вывод цены добавленного в корзину товара с двумя значениями цены после точки.');
         $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
         $I->click(CreateOrderAdminPage::$CrtPButtProduct);
@@ -161,7 +161,7 @@ class FieldsOCACest
     /**
      * @group a
      */
-    public function VerifyFieldtAmountMaxValueAfterPoint(AcceptanceTester $I){
+    public function VerifyFieldtAmountMaxValueAfterPoint(OrdersTester $I){
         $I->wantTo('Проверить вывод цены добавленного в корзину товара с максимальным значением цены после точки.');
         $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
         $I->click(CreateOrderAdminPage::$CrtPButtProduct);
@@ -181,7 +181,7 @@ class FieldsOCACest
     /**
      * @group a
      */
-    public function VerifyFieldAmountInputSymbols(AcceptanceTester $I) {
+    public function VerifyFieldAmountInputSymbols(OrdersTester $I) {
         $I->wantTo('Проверить блок ввода недопустимых значений в поле "Количество".');
         $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
         $I->fillField('#productNameForOrders', CreateProductsOrdersPage::$CrtPrdNameMin);
@@ -200,7 +200,7 @@ class FieldsOCACest
      /**
      * @group a
      */
-    public function VerifyFieldAmountInputInvalidValues1 (AcceptanceTester $I) {
+    public function VerifyFieldAmountInputInvalidValues1 (OrdersTester $I) {
         $I->wantTo('Проверить вывод сумы заказа при вводе в поле количество неверных данных.');
         $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
         $I->fillField('#productNameForOrders', CreateProductsOrdersPage::$CrtPrdNameMin);
@@ -217,7 +217,7 @@ class FieldsOCACest
     /**
      * @group a
      */
-    public function VerifyFieldAmountInputInvalidValues2 (AcceptanceTester $I) {
+    public function VerifyFieldAmountInputInvalidValues2 (OrdersTester $I) {
         $I->wantTo('Проверить вывод сумы заказа при вводе в поле количество неверных данных.');
         $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
         $I->fillField('#productNameForOrders', CreateProductsOrdersPage::$CrtPrdNameMin);
@@ -234,7 +234,7 @@ class FieldsOCACest
     /**
      * @group a
      */
-    public function VerifyFieldAmountInputInvalidValues3 (AcceptanceTester $I) {
+    public function VerifyFieldAmountInputInvalidValues3 (OrdersTester $I) {
         $I->wantTo('Проверить вывод сумы заказа при вводе в поле количество неверных данных.');
         $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
         $I->fillField('#productNameForOrders', CreateProductsOrdersPage::$CrtPrdNameMin);
@@ -251,7 +251,7 @@ class FieldsOCACest
     /**
      * @group a
      */
-    public function VerifyFieldAmountInputInvalidValues4 (AcceptanceTester $I) {
+    public function VerifyFieldAmountInputInvalidValues4 (OrdersTester $I) {
         $I->wantTo('Проверить вывод сумы заказа при вводе в поле количество неверных данных.');
         $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
         $I->fillField('#productNameForOrders', CreateProductsOrdersPage::$CrtPrdNameMin);
@@ -268,7 +268,7 @@ class FieldsOCACest
     /**
      * @group a
      */
-    public function VerifyFieldAmountInputInvalidValues5 (AcceptanceTester $I) {
+    public function VerifyFieldAmountInputInvalidValues5 (OrdersTester $I) {
         $I->wantTo('Проверить вывод сумы заказа при вводе в поле количество неверных данных.');
         $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
         $I->fillField('#productNameForOrders', CreateProductsOrdersPage::$CrtPrdNameMin);
@@ -288,7 +288,7 @@ class FieldsOCACest
     /**
      * @group a
      */
-    public function VerifyTotalPriceAddInFieldAmount(AcceptanceTester $I){
+    public function VerifyTotalPriceAddInFieldAmount(OrdersTester $I){
         $I->wantTo('Проверить отображение редактирования количества добавленного товара в козину и правильный подсчет суммы заказа.');
         $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
         $I->fillField('#productNameForOrders', CreateProductsOrdersPage::$CrtPrdNameMin);
@@ -322,7 +322,7 @@ class FieldsOCACest
     
     
     
-    protected function SearchNameProduct (AcceptanceTester $I, $typeName = NULL){        
+    protected function SearchNameProduct (OrdersTester $I, $typeName = NULL){        
         $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
         if(isset($typeName)){            
             $I->click(CreateOrderAdminPage::$CrtPButtProduct);    
@@ -341,7 +341,7 @@ class FieldsOCACest
     
     
     
-    protected function SearchPriceProduct(AcceptanceTester $I, $typeName = NULL, $typePrice = NULL) {        
+    protected function SearchPriceProduct(OrdersTester $I, $typeName = NULL, $typePrice = NULL) {        
         $I->amOnPage(CreateOrderAdminPage::$CrtPURL);        
         if(isset($typeName)){            
             $I->click(CreateOrderAdminPage::$CrtPButtProduct);    
@@ -371,7 +371,7 @@ class FieldsOCACest
     
     
     
-    protected function SearchArticleProduct (AcceptanceTester $I, $articleProduct = NULL) {        
+    protected function SearchArticleProduct (OrdersTester $I, $articleProduct = NULL) {        
         $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
         if(isset($articleProduct)){            
            $I->click(CreateOrderAdminPage::$CrtPButtProduct);
@@ -383,7 +383,7 @@ class FieldsOCACest
     
     
     
-    protected function SearchAmountProduct (AcceptanceTester $I, $typeName = NULL, $amountProduct = NULL) {        
+    protected function SearchAmountProduct (OrdersTester $I, $typeName = NULL, $amountProduct = NULL) {        
         if(isset($typeName)){            
             $I->amOnPage(CreateOrderAdminPage::$CrtPURL); 
             $I->fillField('#productNameForOrders', $typeName);
@@ -409,7 +409,7 @@ class FieldsOCACest
 //    /**
 //     * @group a
 //     */
-//    public function QwQEqwQEewqqQQ (AcceptanceTester $I){
+//    public function QwQEqwQEewqqQQ (OrdersTester $I){
 //        $I->amOnPage('/admin/components/run/shop/search/index');
 //        $I->click('//section/div[2]/table/thead/tr[2]/td[4]/div/a');
 //        $I->fillField('//table/thead/tr[2]/td[4]/div/div/div/input', 'Основ');

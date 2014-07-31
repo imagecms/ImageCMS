@@ -1,12 +1,12 @@
 <?php
-use \AcceptanceTester;
+use \NotificationStatusesTester;
 class TextElementNSCest
 {
 //---------------------------AUTORIZATION---------------------------------------
     /**
      * @group a
      */
-    public function Login(AcceptanceTester $I){
+    public function Login(NotificationStatusesTester $I){
         InitTest::Login($I);
     }
     
@@ -16,8 +16,8 @@ class TextElementNSCest
     /**
      * @group a
      */
-    public function VerifyWayNotfStatusesList (AcceptanceTester $I){
-        $I->wantTo('Проверить путь к странице "Список статусов".');
+    public function VerifyWayNotfStatusesList (NotificationStatusesTester $I){
+        $I->wantTo('Verify Way on Notification Statuses List Page.');
         $I->click(NavigationBarPage::$Orders);
         $I->click(NavigationBarPage::$NotificationStatuses);   
         $I->seeInCurrentUrl(NotificationStatusesPage::$ListPageURL);
@@ -25,8 +25,8 @@ class TextElementNSCest
     /**
      * @group a
      */
-    public function VerifyWayNotfStatusesCreateEdit (AcceptanceTester $I){
-        $I->wantTo('Проверить путь к странице "Создание статуса" и "Редактирование татуса".');
+    public function VerifyWayNotfStatusesCreateEdit (NotificationStatusesTester $I){
+        $I->wantTo('Verify Way on Notification Statuses Create and Edit Page.');
         $I->click(NavigationBarPage::$Orders);
         $I->click(NavigationBarPage::$NotificationStatuses);   
         $I->seeInCurrentUrl(NotificationStatusesPage::$ListPageURL);
@@ -61,8 +61,8 @@ class TextElementNSCest
     /**
      * @group a
      */
-    public function VerifyTextListPage (AcceptanceTester $I){
-        $I->wantTo('Проверить текст елементов на странице "Список статусов".');
+    public function VerifyTextListPage (NotificationStatusesTester $I){
+        $I->wantTo('Verify Text on Notification Statuses List Page.');
         $I->amOnPage(NotificationStatusesPage::$ListPageURL);
         $I->see('Статусы уведомлений о появлении', NotificationStatusesPage::$ListTitle );
         $I->see('Создать статус', NotificationStatusesPage::$ListButtonCreate);
@@ -81,8 +81,8 @@ class TextElementNSCest
     /**
      * @group a
      */
-    public function VerifyTextMessage (AcceptanceTester $I){
-        $I->wantTo('Проверить текст и появление сообщения "Редактировать статус" при фокусировке курсора мыши на названии статуса в списке.');
+    public function VerifyTextMessage (NotificationStatusesTester $I){
+        $I->wantTo('Verify Text Message at Focus Cursor on Notification Statuses Name.');
         $I->amOnPage(NotificationStatusesPage::$ListPageURL);
         $I->moveMouseOver(NotificationStatusesPage::$ListLinkEditing);
         $I->waitForText('Редактировать статус уведомления');
@@ -97,8 +97,8 @@ class TextElementNSCest
     /**
      * @group a
      */
-    public function VerifyTextDeleteWindow (AcceptanceTester $I){
-        $I->wantTo('Проверить текст елементов окна "Удаление статусов".');
+    public function VerifyTextDeleteWindow (NotificationStatusesTester $I){
+        $I->wantTo('Verify Text on Delete Window.');
         $I->amOnPage(NotificationStatusesPage::$ListPageURL);
         $I->click(NotificationStatusesPage::$ListHeaderCheckBox);
         $I->click(NotificationStatusesPage::$ListButtonDelete);
@@ -118,8 +118,8 @@ class TextElementNSCest
     /**
      * @group a
      */
-    public function VerifyTextCreatePage (AcceptanceTester $I){
-        $I->wantTo('Проверить текст елементов на странице "Создание статуса".');
+    public function VerifyTextCreatePage (NotificationStatusesTester $I){
+        $I->wantTo('Verify Text on Create Sataus Page.');
         $I->amOnPage(NotificationStatusesPage::$CreatePageUrl);
         $I->see('Создание статуса уведомления о появлении', NotificationStatusesPage::$CreationNameTitle);
         $I->see('Вернуться', NotificationStatusesPage::$CreationButtonBack );
@@ -136,8 +136,8 @@ class TextElementNSCest
     /**
      * @group a
      */
-    public function VerifyTextEditPage (AcceptanceTester $I){
-        $I->wantTo('Проверить текст елементов на странице "редактирование статуса".');
+    public function VerifyTextEditPage (NotificationStatusesTester $I){
+        $I->wantTo('Verify Text on Edit Status Page.');
         $I->amOnPage(NotificationStatusesPage::$EditingPageURL);
         $I->see('Редактирование статуса уведомления о появлении',  NotificationStatusesPage::$EditingNameTitle);
         $I->see('Вернуться',  NotificationStatusesPage::$EditingButtonBack);
@@ -154,8 +154,8 @@ class TextElementNSCest
     /**
      * @group a
      */
-    public function VerifyTextAlertMessageCreatingPage (AcceptanceTester $I){
-        $I->wantTo('Проверить появление сообщения обязательности заполнения поля "Название" на странице "Создание статуса".');
+    public function VerifyTextAlertMessageCreatingPage (NotificationStatusesTester $I){
+        $I->wantTo('Verify Alert Message Present on Create Status Page.');
         $I->amOnPage(NotificationStatusesPage::$CreatePageUrl);
         $I->click('Создать');
         $I->seeElement(NotificationStatusesPage::$CreationAlertMessage);    
@@ -168,8 +168,8 @@ class TextElementNSCest
     /**
      * @group a
      */
-    public function VerifyTextCreateMessageCreatingPage (AcceptanceTester $I){
-        $I->wantTo('Проверить текст и появление сообщения о создании статуса.');
+    public function VerifyTextCreateMessageCreatingPage (NotificationStatusesTester $I){
+        $I->wantTo('Verify Message About Creating Status.');
         $I->amOnPage(NotificationStatusesPage::$CreatePageUrl);
         $I->fillField(NotificationStatusesPage::$CreationFildInput,'qwe 123 !@# ЯЧС');
         $I->click(NotificationStatusesPage::$CreationButtonCreate);
@@ -184,8 +184,8 @@ class TextElementNSCest
     /**
      * @group a
      */
-    public function VerifyTextAlertMessageEdictingPage (AcceptanceTester $I){
-        $I->wantTo('Проверить появление сообщения обязательности заполнения поля "Название" на странице "Редактирование статуса".');
+    public function VerifyTextAlertMessageEdictingPage (NotificationStatusesTester $I){
+        $I->wantTo('');
         $I->amOnPage(NotificationStatusesPage::$ListPageURL);
         $I->waitForElement(NotificationStatusesPage::$ListLinkForEditing);
         $I->click(NotificationStatusesPage::$ListLinkForEditing);
@@ -201,8 +201,8 @@ class TextElementNSCest
     /**
      * @group a
      */
-     public function VerifyTextEdicttMessageEdictingPage (AcceptanceTester $I){
-        $I->wantTo('Проверить текст и появление сообщения о редактировании статуса.');
+     public function VerifyTextEdicttMessageEdictingPage (NotificationStatusesTester $I){
+        $I->wantTo('Verify Alert Message Present on Edit Status Page.');
         $I->amOnPage(NotificationStatusesPage::$ListPageURL);
         $I->waitForElement(NotificationStatusesPage::$ListLinkForEditing);
         $I->click(NotificationStatusesPage::$ListLinkForEditing);
@@ -220,8 +220,8 @@ class TextElementNSCest
     /**
      * @group a
      */
-    public function VerifyTextMessageDeletingStatus (AcceptanceTester $I){
-        $I->wantTo('Проверить текст и появление сообщения об удалении статуса.');
+    public function VerifyTextMessageDeletingStatus (NotificationStatusesTester $I){
+        $I->wantTo('Verify Message About Deleting Status Present.');
         $I->amOnPage(NotificationStatusesPage::$ListPageURL);
         $I->waitForElement(NotificationStatusesPage::$ListHeaderCheckBox);
         $I->click(NotificationStatusesPage::$ListHeaderCheckBox);
