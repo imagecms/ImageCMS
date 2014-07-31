@@ -39,6 +39,17 @@ class InitTest {
      */
     public static $textSymbols = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЬЫЪЭЮЯЇЄІабвгдеёжзийклмнопрстуфхцчшщьыъэюяїєі,<.>?\/|~`!@#$%^&*(){}[]\'";:';
 
+    
+    
+    public static function changeTextAditorToNative($I) {
+        $I->click(NavigationBarPage::$System);
+        $I->click(NavigationBarPage::$SystemGlobalSettings);
+        $I->waitForElement('#textEditor');
+        $I->selectOption('#textEditor', 'Native textarea');
+        $I->click('.btn.btn-small.btn-primary.action_on.formSubmit');
+        $I->waitForElement('.alert.in.fade.alert-success');
+    }
+
     public static function Login($I) {
         if (!self::$LoggedIn) {
             $userName = 'ad@min.com';
