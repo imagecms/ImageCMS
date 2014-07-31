@@ -1,5 +1,5 @@
 <?php
-use \AcceptanceTester;
+use \CurrenciesTester;
 
 class MainCurrencyCest
 {
@@ -12,7 +12,7 @@ class MainCurrencyCest
 //    }
     private $j, $butActiveClass, $disabled, $atribCheck, $rows, $MainCurSymb, $price, $MAINSYM, $MAINISO, $ROWMAIN, $ROWADDIT, $ADDITSYM;
     
-    public function Autorization(AcceptanceTester $I)
+    public function Autorization(CurrenciesTester $I)
     {
         InitTest::Login($I);
         $I->amOnPage("/admin/components/run/shop/currencies");
@@ -20,7 +20,7 @@ class MainCurrencyCest
     }   
     
     
-    public function NamesInListLanding(AcceptanceTester $I)
+    public function NamesInListLanding(CurrenciesTester $I)
     {
         $I->click('html/body/div[1]/div[3]/div/nav/ul/li[8]/a');
         $I->waitForElement('html/body/div[1]/div[3]/div/nav/ul/li[8]/ul');
@@ -41,7 +41,7 @@ class MainCurrencyCest
     } 
         
     
-    public function VerifyButtons(AcceptanceTester $I)
+    public function VerifyButtons(CurrenciesTester $I)
     {
         $this->rows = $I->grabTagCount($I,"tbody tr");
         $I->comment((string)$this->rows);
@@ -64,7 +64,7 @@ class MainCurrencyCest
     }
     
     
-    public function DeleteMainCur(AcceptanceTester $I)
+    public function DeleteMainCur(CurrenciesTester $I)
     {
         //Проверка возможности удаления главной валюты
         $I->click(CurrenciesPage::DeleteButtonLine($this->j));
@@ -74,7 +74,7 @@ class MainCurrencyCest
     }
     
     
-    public function FrontMainCurInProduct(AcceptanceTester $I)
+    public function FrontMainCurInProduct(CurrenciesTester $I)
     {
         //Отображение цены и символа главной валюты на странице сайта
         $symbMainCur=$I->grabTextFrom(".//*[@class='']/tr[$this->j]/td[4]");
@@ -111,7 +111,7 @@ class MainCurrencyCest
     }
     
     
-    public function VerifyCheckAdditCur(AcceptanceTester $I)
+    public function VerifyCheckAdditCur(CurrenciesTester $I)
     {
         $I->amOnPage("/admin/components/run/shop/currencies");
         //Проверяем возможность отметить дополнительную валюту напротив главной
@@ -129,7 +129,7 @@ class MainCurrencyCest
     }
     
                 
-    public function VerifyCheckMainCur(AcceptanceTester $I)
+    public function VerifyCheckMainCur(CurrenciesTester $I)
     {
         //Проверка снятия отметки главной валюты
         $I->click(CurrenciesPage::RadioButtonLine($this->j));
@@ -159,7 +159,7 @@ class MainCurrencyCest
     }
     
     
-    public function VerifyCheckMainAdditCur(AcceptanceTester $I)
+    public function VerifyCheckMainAdditCur(CurrenciesTester $I)
     {   //Проверяем возможность отметить главную валюту напротив дополнительной и проверка отметки дополнительной валюты напротив не главной
         if ($this->j<$this->rows){
             $this->j++;
@@ -191,7 +191,7 @@ class MainCurrencyCest
     }
     
     
-    public function VerifyAdditCurAndMainInProductFront(AcceptanceTester $I)
+    public function VerifyAdditCurAndMainInProductFront(CurrenciesTester $I)
     {   
         //Проверяем отображение цены в главной и дополнительной валютах на странице сайта
         if ($this->j<$this->rows){
@@ -242,7 +242,7 @@ class MainCurrencyCest
     }
     
     
-    public function ChangeMainAndAdditCurInProductFront(AcceptanceTester $I)
+    public function ChangeMainAndAdditCurInProductFront(CurrenciesTester $I)
     {  
         //Проверяем отображение цены товара на странице сайта после смены главной и дополнительной валюты (смены местами)
         $I->amOnPage("/admin/components/run/shop/currencies");
@@ -295,21 +295,22 @@ class MainCurrencyCest
     }
         
     
-    public function VerifyAdditCurOff(AcceptanceTester $I)
+    public function VerifyAdditCurOff(CurrenciesTester $I)
     {  
         //Проверяем возможность снятия отметки дополнительной валюты
         $I->amOnPage("/admin/components/run/shop/currencies");
         $I->click(CurrenciesPage::ActiveButtonLine($this->j));
         $I->wait('1');
         $this->butActiveClass = $I->grabAttributeFrom(CurrenciesPage::ActiveButtonLine($this->j), "class");
+        $this->butActiveClass=  str_replace(array(' '),"",$this->butActiveClass);
         $I->comment("$this->butActiveClass");
-        $I->assertEquals($this->butActiveClass, 'prod-on_off disable_tovar');
+        $I->assertEquals($this->butActiveClass, 'prod-on_offdisable_tovar');
         InitTest::ClearAllCach($I);
         $I->wait('1');
     }
     
     
-    public function DeleteAdditCur(AcceptanceTester $I)
+    public function DeleteAdditCur(CurrenciesTester $I)
     {   
         //Проверяем возможность удаления дополнительной валюты
         $I->comment("$this->j");
@@ -341,7 +342,7 @@ class MainCurrencyCest
     }
     
     
-    public function DeleteCurUsedInProducts(AcceptanceTester $I)
+    public function DeleteCurUsedInProducts(CurrenciesTester $I)
     {   
         //Проверка возможности удаления валюты, которая используется в товарах
         $I->amOnPage("/admin/components/run/shop/currencies");
@@ -456,7 +457,7 @@ class MainCurrencyCest
     }
     
     
-    public function VerifyProductFrontAfterDeleteProdCurrency(AcceptanceTester $I)
+    public function VerifyProductFrontAfterDeleteProdCurrency(CurrenciesTester $I)
     {   
         //Проверка отображения цены товара после удаления валюты, в которой была указана его цена
         InitTest::ClearAllCach($I);
@@ -475,7 +476,7 @@ class MainCurrencyCest
     }
     
     
-    public function DeleteCurUsedInPaymentMethods(AcceptanceTester $I)
+    public function DeleteCurUsedInPaymentMethods(CurrenciesTester $I)
     {   
         //Проверка возможности удаления валюты, которая используется в способах оплаты
         $I->amOnPage("/admin/components/run/shop/currencies");        

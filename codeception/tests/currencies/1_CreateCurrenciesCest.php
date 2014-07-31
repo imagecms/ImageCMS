@@ -1,5 +1,5 @@
 <?php
-use \AcceptanceTester;
+use \CurrenciesTester;
 
 class CreateCurrenciesCest
 {
@@ -11,7 +11,7 @@ class CreateCurrenciesCest
 //    {
 //    }
 
-    public function Autorization(AcceptanceTester $I)
+    public function Autorization(CurrenciesTester $I)
     {
         InitTest::Login($I);
         $I->amOnPage("/admin/components/run/shop/currencies");
@@ -19,7 +19,7 @@ class CreateCurrenciesCest
     }
     
     
-    public function NamesInCreate(AcceptanceTester $I)
+    public function NamesInCreate(CurrenciesTester $I)
     {
         $I->amOnPage("/admin/components/run/shop/currencies");
         $rows = $I->grabTagCount($I,"tbody tr");
@@ -50,7 +50,7 @@ class CreateCurrenciesCest
     }
     
     
-    public function RequiredFieldsSaveButtonInCreate(AcceptanceTester $I)
+    public function RequiredFieldsSaveButtonInCreate(CurrenciesTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/currencies/create');
         $I->click(CurrenciesPage::$SaveButton);
@@ -64,7 +64,7 @@ class CreateCurrenciesCest
     }
     
     
-    public function RequiredFieldsSaveAndExitButtonInCreate(AcceptanceTester $I)
+    public function RequiredFieldsSaveAndExitButtonInCreate(CurrenciesTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/currencies/create');
         $I->click(CurrenciesPage::$SaveAndExitButton);
@@ -75,7 +75,7 @@ class CreateCurrenciesCest
     }
     
     
-    public function TypesOfSymbolsInCreate(AcceptanceTester $I)
+    public function TypesOfSymbolsInCreate(CurrenciesTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/currencies/create');
         $I->fillField(CurrenciesPage::$NameCurrencyCreate, 'йццукsadasd123324?"{{$&(+|!@.,;:ADFФЦВ');
@@ -89,7 +89,7 @@ class CreateCurrenciesCest
     }
     
     
-    public function OneAnd2SymbolsCreate(AcceptanceTester $I)
+    public function OneAnd2SymbolsCreate(CurrenciesTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/currencies/create');
         $I->fillField(CurrenciesPage::$NameCurrencyCreate, 'q');
@@ -114,7 +114,7 @@ class CreateCurrenciesCest
     }
     
     
-    public function Symbols5Create(AcceptanceTester $I)
+    public function Symbols5Create(CurrenciesTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/currencies/create');
         $I->fillField(CurrenciesPage::$NameCurrencyCreate, 'Динар');
@@ -133,7 +133,7 @@ class CreateCurrenciesCest
     }
     
     
-    public function Symbols6Create(AcceptanceTester $I)
+    public function Symbols6Create(CurrenciesTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/currencies/create');
         $I->fillField(CurrenciesPage::$NameCurrencyCreate, 'тугрик');
@@ -170,7 +170,7 @@ class CreateCurrenciesCest
     }
     
     
-    public function Symbols10Create(AcceptanceTester $I)
+    public function Symbols10Create(CurrenciesTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/currencies/create');
         $I->fillField(CurrenciesPage::$NameCurrencyCreate, 'Гульден123');
@@ -206,7 +206,7 @@ class CreateCurrenciesCest
     }
     
     
-    public function Symbols255Create(AcceptanceTester $I)
+    public function Symbols255Create(CurrenciesTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/currencies/create');
         $I->fillField(CurrenciesPage::$NameCurrencyCreate, 'Франкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранк');
@@ -225,7 +225,7 @@ class CreateCurrenciesCest
     }
     
     
-    public function Symbols256Create(AcceptanceTester $I)
+    public function Symbols256Create(CurrenciesTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/currencies/create');
         $I->fillField(CurrenciesPage::$NameCurrencyCreate, 'Форинтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфори');
@@ -243,7 +243,7 @@ class CreateCurrenciesCest
     }
     
     
-    public function CreateAndExitButton(AcceptanceTester $I)
+    public function CreateAndExitButton(CurrenciesTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/currencies/create');
         $I->fillField(CurrenciesPage::$NameCurrencyCreate, 'лира');
