@@ -23,7 +23,7 @@ use Codeception\Module\Cli;
  * @method void comment($description)
  * @method void haveFriend($name)
 */
-class CurrenciesTester extends \Codeception\Actor
+class NotificationListTester extends \Codeception\Actor
 {
    
     /**

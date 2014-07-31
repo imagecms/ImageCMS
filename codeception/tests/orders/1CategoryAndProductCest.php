@@ -1,6 +1,6 @@
 <?php
-use \AcceptanceTester;
-class CategoryAndProductOCACest
+use \OrdersTester;
+class CategoryAndProductCest
 {
 //---------------------------AUTORIZATION--------------------------------------- 
      
@@ -8,7 +8,7 @@ class CategoryAndProductOCACest
     /**
      * @group a
      */
-    public function Login(AcceptanceTester $I){
+    public function Login(OrdersTester $I){
         InitTest::Login($I);
     }
     
@@ -20,8 +20,8 @@ class CategoryAndProductOCACest
     /**
      * @group a
      */
-    public function CreateParentMainCategory (AcceptanceTester $I){
-        $I->wantTo('Cоздать родительскую категорию товара.');
+    public function CreateParentMainCategory (OrdersTester $I){
+        $I->wantTo('Create Parent Category Product.');
     $this->CreateCategory($I,$createNameCategory = CreateCategoryOrdersPage::$CrtCatName1,
                             $addParentCategory = null);
     }
@@ -31,8 +31,8 @@ class CategoryAndProductOCACest
     /**
      * @group a
      */
-    public function CreateFirstChildCategory (AcceptanceTester $I){
-        $I->wantTo('Создать дочерную категорию товара  второго уровня.');
+    public function CreateFirstChildCategory (OrdersTester $I){
+        $I->wantTo('Create Ghild Category Product First Level.');
         $this->CreateCategory($I,$createNameCategory = CreateCategoryOrdersPage::$CrtCatName2,
                                 $addParentCategory = 'Основ');
     }
@@ -42,8 +42,8 @@ class CategoryAndProductOCACest
     /**
      * @group a
      */
-    public function CreateSecondChildCategory (AcceptanceTester $I){
-        $I->wantTo('Создать дочерную категорию товара третьего уровня.');
+    public function CreateSecondChildCategory (OrdersTester $I){
+        $I->wantTo('Create Ghild Category Product Second Level');
         $this->CreateCategory($I,$createNameCategory = CreateCategoryOrdersPage::$CrtCatName3,
                                 $addParentCategory = 'First');
     }
@@ -64,8 +64,8 @@ class CategoryAndProductOCACest
     /**
      * @group a
      */
-    public function CreateProductNameMin (AcceptanceTester $I){
-        $I->wantTo('Создать товар с минимальной длинной названия товара.');
+    public function CreateProductNameMin (OrdersTester $I){
+        $I->wantTo('Create Product Whith Minimal Product Name.');
         $this->CreateProduct($I,$nameProduct = CreateProductsOrdersPage::$CrtPrdNameMin,
                                 $priceProduct = CreateProductsOrdersPage::$CrtPrdPriceMin,
                                 $articleProduct = NULL,
@@ -76,8 +76,8 @@ class CategoryAndProductOCACest
      /**
      * @group a
      */
-    public function CreateProductNameMax (AcceptanceTester $I){
-        $I->wantTo('Создать товар с максимальной длинной названия товара.');
+    public function CreateProductNameMax (OrdersTester $I){
+        $I->wantTo('Create Product Whith Maximal Product Name.');
         $this->CreateProduct($I,$nameProduct = CreateProductsOrdersPage::$CrtPrdNameMax,
                                 $priceProduct = CreateProductsOrdersPage::$CrtPrdPriceMin,
                                 $articleProduct = NULL,    
@@ -89,7 +89,7 @@ class CategoryAndProductOCACest
      /**
      * @group a
      */
-    public function CreateProductPriceMin (AcceptanceTester $I){
+    public function CreateProductPriceMin (OrdersTester $I){
         $I->wantTo('Создать товар с минимальным целым значением цены.');
         $this->CreateProduct($I,$nameProduct = 'Минимальная Цена Товара',
                                 $priceProduct = CreateProductsOrdersPage::$CrtPrdPriceMin,
@@ -102,7 +102,7 @@ class CategoryAndProductOCACest
     /**
      * @group a
      */
-    public function CreateProductPriceMax (AcceptanceTester $I){
+    public function CreateProductPriceMax (OrdersTester $I){
         $I->wantTo('Создать товар с максимальным целым значением цены.');
         $this->CreateProduct($I,$nameProduct = 'Максимальная Цена Товара',
                                 $priceProduct = CreateProductsOrdersPage::$CrtPrdPriceMax,
@@ -114,7 +114,7 @@ class CategoryAndProductOCACest
     /**
      * @group a
      */
-    public function CreateProductArticleMin (AcceptanceTester $I){
+    public function CreateProductArticleMin (OrdersTester $I){
         $I->wantTo('Создать товар с минимальной длинной акртикула.');
         $this->CreateProduct($I,$nameProduct = 'Минимальний Арикул Товара',
                                 $priceProduct = CreateProductsOrdersPage::$CrtPrdPriceMin,
@@ -127,7 +127,7 @@ class CategoryAndProductOCACest
     /**
      * @group a
      */
-    public function CreateProductArticleMax (AcceptanceTester $I){
+    public function CreateProductArticleMax (OrdersTester $I){
         $I->wantTo('Создать товар с максимальной длинной артикула.');
         $this->CreateProduct($I,$nameProduct = 'Максимальний Артикул Товара',
                                 $priceProduct = CreateProductsOrdersPage::$CrtPrdPriceMin,
@@ -140,7 +140,7 @@ class CategoryAndProductOCACest
     /**
      * @group a
      */
-    public function CreateProductAmountMin (AcceptanceTester $I){
+    public function CreateProductAmountMin (OrdersTester $I){
         $I->wantTo('Создать товар с нулевім количеством товара.');
         $this->CreateProduct($I,$nameProduct = 'Минимальное Количество Товара',
                                 $priceProduct = CreateProductsOrdersPage::$CrtPrdPriceMin,
@@ -153,7 +153,7 @@ class CategoryAndProductOCACest
     /**
      * @group a
      */
-    public function CeateProductAmountMax (AcceptanceTester $I){
+    public function CeateProductAmountMax (OrdersTester $I){
         $I->wantTo('Создать товар с максимальнім количеством товара.');
         $this->CreateProduct($I,$nameProduct = 'Максимальное Количество Товара',
                                 $priceProduct = CreateProductsOrdersPage::$CrtPrdPriceMin,
@@ -168,7 +168,7 @@ class CategoryAndProductOCACest
     /**
      * @group a
      */
-    public function CreateProductPrice1AfterPoint (AcceptanceTester $I){
+    public function CreateProductPrice1AfterPoint (OrdersTester $I){
         $I->wantTo('Создать товар с одним значением после точки.');
         $this->CreateProduct($I,$nameProduct = 'Товар с ценой 1 после точки',
                                 $priceProduct = '0.1',
@@ -182,7 +182,7 @@ class CategoryAndProductOCACest
     /**
      * @group a
      */
-    public function CreateProductPrice2AfterPoint (AcceptanceTester $I){
+    public function CreateProductPrice2AfterPoint (OrdersTester $I){
         $I->wantTo('Создать товар с двумя значениями после точки.');
         $this->CreateProduct($I,$nameProduct = 'Товар с ценой 2 после точки',
                                 $priceProduct = '0.11',
@@ -194,7 +194,7 @@ class CategoryAndProductOCACest
     /**
      * @group a
      */
-    public function CreateProductPriceMaxAfterPoint (AcceptanceTester $I){
+    public function CreateProductPriceMaxAfterPoint (OrdersTester $I){
         $I->wantTo('Создать товар с максимальной ценой после точки.');
         $this->CreateProduct($I,$nameProduct = 'Товар с ценой Макс после точки',
                                 $priceProduct = '0.99',
@@ -210,7 +210,7 @@ class CategoryAndProductOCACest
      * @group a
      */ 
     
-    public function createUserValuesMin(AcceptanceTester $I) {
+    public function createUserValuesMin(OrdersTester $I) {
         $I->wantTo('Создать пользователя с минимальной длинной валидных дынных в обязательных полях.');
         $this->CreateUser($I,   $createUserName = 'Ъ',
                                 $createUserEmail = 'a@a.com',
@@ -220,7 +220,7 @@ class CategoryAndProductOCACest
      * @group a
      */ 
     
-    public function createUserValuesMax(AcceptanceTester $I) {
+    public function createUserValuesMax(OrdersTester $I) {
         $I->wantTo('Создать пользователя с максимальной длинной обязательнных полей.');
         $this->CreateUser($I,   $createUserName = 'qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq',
                                 $createUserEmail = 'qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq@qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq.com',
@@ -230,7 +230,7 @@ class CategoryAndProductOCACest
      * @group a
      */ 
     
-    public function createUserPhoneMin(AcceptanceTester $I) {
+    public function createUserPhoneMin(OrdersTester $I) {
         $I->wantTo('Создать пользователя с минимальной длинной телефона');
         $this->CreateUser($I,   $createUserName = 'Минимальное количество ТЕЛЕФОН',
                                 $createUserEmail = 'Line@Age.com',
@@ -241,7 +241,7 @@ class CategoryAndProductOCACest
      * @group a
      */ 
     
-    public function createUserPhoneMax(AcceptanceTester $I) {
+    public function createUserPhoneMax(OrdersTester $I) {
         $I->wantTo('Создать пользователя с максимальной длинной телефона.');
         $this->CreateUser($I,   $createUserName = 'Максимальное количество ТЕЛЕФОН',
                                 $createUserEmail = 'Arche@Age.com',
@@ -252,7 +252,7 @@ class CategoryAndProductOCACest
      * @group a
      */ 
     
-    public function createUserAddressMin(AcceptanceTester $I) {
+    public function createUserAddressMin(OrdersTester $I) {
         $I->wantTo('Создать пользователя с минималной длинной адреса');
         $this->CreateUser($I,   $createUserName = 'Минимальное количество АДРЕС',
                                 $createUserEmail = 'Line@Age.com',
@@ -264,7 +264,7 @@ class CategoryAndProductOCACest
     /**
      * @group a
      */ 
-     public function CreateUserAddressMax (AcceptanceTester $I) {
+     public function CreateUserAddressMax (OrdersTester $I) {
          $I->wantTo('Создать пользователя с максимальной длиной адреса.');
          $this->CreateUser($I,  $createUserName = 'Максимальное количество АДРЕС',
                                 $createUserEmail = 'Cannibal@Corpse.net',
@@ -278,7 +278,7 @@ class CategoryAndProductOCACest
     /**
      * @group a
      */ 
-    public function CreateCurrencyMainCurr (AcceptanceTester $I) {
+    public function CreateCurrencyMainCurr (OrdersTester $I) {
         $I->wantTo('Создать новую главную валюту.');
         $this->CreateCurrency($I,   $createCurrName = 'Тестовая Валюта',
                                     $createCurrCode = 'OUI',
@@ -301,7 +301,7 @@ class CategoryAndProductOCACest
     
     
     
-    protected function CreateCategory (AcceptanceTester $I, $createNameCategory = null,
+    protected function CreateCategory (OrdersTester $I, $createNameCategory = null,
                                                             $addParentCategory = null){
         $I->amOnPage(CreateCategoryOrdersPage::$CrtCategoryPageURL);
         if(isset($createNameCategory)){
@@ -320,7 +320,7 @@ class CategoryAndProductOCACest
     
     
 
-    protected function CreateProduct (AcceptanceTester $I,  $nameProduct = NULL,
+    protected function CreateProduct (OrdersTester $I,  $nameProduct = NULL,
                                                             $priceProduct = NULL,
                                                             $articleProduct = NULL,
                                                             $amountProduct = NULL,
@@ -390,7 +390,7 @@ class CategoryAndProductOCACest
     
     
     
-     protected function CreateUser(AcceptanceTester $I,  $createUserName = NULL,
+     protected function CreateUser(OrdersTester $I,  $createUserName = NULL,
                                                         $createUserEmail = NULL,
                                                         $createUserPassword = NULL,
                                                         $createUserPhone = NULL, 
@@ -416,7 +416,7 @@ class CategoryAndProductOCACest
     
     
     
-    protected function CreateCurrency(AcceptanceTester $I, $createCurrName = NULL,
+    protected function CreateCurrency(OrdersTester $I, $createCurrName = NULL,
                                         $createCurrCode = NULL,
                                         $createCurrSymbol = NULL,
                                         $createCurrCourse = NULL) {

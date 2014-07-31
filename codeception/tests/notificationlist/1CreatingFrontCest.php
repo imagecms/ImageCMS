@@ -1,11 +1,13 @@
 <?php
-use \AcceptanceTester;
+use \NotificationListTester;
 class CreatingFrontCest
 {
 //---------------------------AUTORIZATION---------------------------------------
     
-    
-    public function Login(AcceptanceTester $I){
+    /**
+     * @group q
+     */
+    public function Login(NotificationListTester $I){
         InitTest::Login($I);
     }   
     
@@ -13,8 +15,10 @@ class CreatingFrontCest
     
 //---------------------------TEXT ELEMENT PRESENCE------------------------------
     
-    
-    public function VerifyTextElement(AcceptanceTester $I){
+    /**
+     * @group q
+     */
+    public function VerifyTextElement(NotificationListTester $I){
         $I->amOnPage(NotificationCreateFrontPage::$PageURL);
         $I->scrollToElement($I, '.infoBut.isDrop');
         $I->click(NotificationCreateFrontPage::$ButtonOnPage);
@@ -36,10 +40,12 @@ class CreatingFrontCest
         
 //--------------------------ELEMENT PRESENCE------------------------------------
         
-        
-    public function VerifyTElement(AcceptanceTester $I){
+    /**
+     * @group a
+     */    
+    public function VerifyTElement(NotificationListTester $I){
         $I->amOnPage(NotificationCreateFrontPage::$PageURL);
-        $I->scrollToElement($I, '.infoBut.isDrop');
+//        $I->scrollToElement($I, '.infoBut.isDrop');
         $I->click(NotificationCreateFrontPage::$ButtonOnPage); 
         $I->waitForText('Сообщить о появлении');
         $I->seeElement(NotificationCreateFrontPage::$ButtonX);
@@ -53,10 +59,12 @@ class CreatingFrontCest
         
 //-----------------------MESSAGE MANDATORY FIELD NAME---------------------------
         
-        
-    public function Message1FildName (AcceptanceTester $I){
+    /**
+     * @group a
+     */    
+    public function Message1FildName (NotificationListTester $I){
         $I->amOnPage(NotificationCreateFrontPage::$PageURL);
-        $I->scrollToElement($I, '.infoBut.isDrop');
+//        $I->scrollToElement($I, '.infoBut.isDrop');
         $I->click(NotificationCreateFrontPage::$ButtonOnPage);
         $I->waitForText('Сообщить о появлении');
         $I->fillField(NotificationCreateFrontPage::$FildUserPresent, '');
@@ -69,10 +77,12 @@ class CreatingFrontCest
         
 //-----------------------MESSAGE LINITATION FIELD NAME--------------------------
         
-        
-    public function Message2FildName (AcceptanceTester $I){  
+    /**
+     * @group a
+     */    
+    public function Message2FildName (NotificationListTester $I){  
         $I->amOnPage(NotificationCreateFrontPage::$PageURL);
-        $I->scrollToElement($I, '.infoBut.isDrop');
+//        $I->scrollToElement($I, '.infoBut.isDrop');
         $I->click(NotificationCreateFrontPage::$ButtonOnPage);
         $I->waitForText('Сообщить о появлении');
         $I->fillField(NotificationCreateFrontPage::$FildUserPresent, '1234567890qwertyuiop asdfghj123kl; +_)(*&^%$# ЙЦУКЕНГШЩЗОР');
@@ -85,10 +95,12 @@ class CreatingFrontCest
         
 //-----------------------MESSAGE MANDATORY FIELD EMEIL--------------------------
         
-        
-    public function Message1FildEmeil (AcceptanceTester $I){
+    /**
+     * @group a
+     */    
+    public function Message1FildEmeil (NotificationListTester $I){
         $I->amOnPage(NotificationCreateFrontPage::$PageURL);
-        $I->scrollToElement($I, '.infoBut.isDrop');
+//        $I->scrollToElement($I, '.infoBut.isDrop');
         $I->click(NotificationCreateFrontPage::$ButtonOnPage);
         $I->waitForText('Сообщить о появлении');
         $I->fillField(NotificationCreateFrontPage::$FildEmeilPresent, '');
@@ -101,10 +113,12 @@ class CreatingFrontCest
         
 //-----------------------MESSAGE CORRECTLY FIELD EMEIL--------------------------
         
-        
-    public function Message2FildEmeil (AcceptanceTester $I){
+    /**
+     * @group a
+     */    
+    public function Message2FildEmeil (NotificationListTester $I){
         $I->amOnPage(NotificationCreateFrontPage::$PageURL);
-        $I->scrollToElement($I, '.infoBut.isDrop');
+//        $I->scrollToElement($I, '.infoBut.isDrop');
         $I->click(NotificationCreateFrontPage::$ButtonOnPage);
         $I->waitForText('Сообщить о появлении');
         $I->fillField(NotificationCreateFrontPage::$FildEmeilPresent, 'йцу 123 !!!!!!! ЗЩШЗШ');
@@ -117,10 +131,12 @@ class CreatingFrontCest
         
 //-----------------------MESSAGE LIMITATION FIELD EMEIL-------------------------
         
-        
-    public function Message3FildEmeil (AcceptanceTester $I){  
+    /**
+     * @group a
+     */    
+    public function Message3FildEmeil (NotificationListTester $I){  
         $I->amOnPage(NotificationCreateFrontPage::$PageURL);
-        $I->scrollToElement($I, '.infoBut.isDrop');
+//        $I->scrollToElement($I, '.infoBut.isDrop');
         $I->click(NotificationCreateFrontPage::$ButtonOnPage);
         $I->waitForText('Сообщить о появлении'); 
         $I->fillField(NotificationCreateFrontPage::$FildEmeilPresent, '');
@@ -135,10 +151,12 @@ class CreatingFrontCest
         
 //-----------------------MESSAGE LIMITATION FIELD PHONE-------------------------
         
-        
-    public function Message1FildPhone (AcceptanceTester $I){  
+    /**
+     * @group a
+     */    
+    public function Message1FildPhone (NotificationListTester $I){  
         $I->amOnPage(NotificationCreateFrontPage::$PageURL);
-        $I->scrollToElement($I, '.infoBut.isDrop');
+//        $I->scrollToElement($I, '.infoBut.isDrop');
         $I->click(NotificationCreateFrontPage::$ButtonOnPage); 
         $I->waitForText('Сообщить о появлении'); 
         $I->click(NotificationCreateFrontPage::$FildPhonePresent);
@@ -153,10 +171,12 @@ class CreatingFrontCest
         
 //-----------------------MESSAGE CORRECTLY FIELD PHONE--------------------------
         
-        
-        public function Message2FildPhone (AcceptanceTester $I){  
+    /**
+     * @group a
+     */    
+    public function Message2FildPhone (NotificationListTester $I){  
         $I->amOnPage(NotificationCreateFrontPage::$PageURL);
-        $I->scrollToElement($I, '.infoBut.isDrop');
+//        $I->scrollToElement($I, '.infoBut.isDrop');
         $I->click(NotificationCreateFrontPage::$ButtonOnPage); 
         $I->waitForText('Сообщить о появлении'); 
         $I->click(NotificationCreateFrontPage::$FildPhonePresent);
@@ -170,11 +190,13 @@ class CreatingFrontCest
         
 //-----------------------MESSAGE OF CREATE NOTIFI-------------------------------
         
-        
-    public function CreateNotificationMessage (AcceptanceTester $I){
+    /**
+     * @group a
+     */    
+    public function CreateNotificationMessage (NotificationListTester $I){
         $I->amOnPage(NotificationCreateFrontPage::$PageURL);
         $I->amOnPage(NotificationCreateFrontPage::$PageURL);
-        $I->scrollToElement($I, '.infoBut.isDrop');
+//        $I->scrollToElement($I, '.infoBut.isDrop');
         $I->click(NotificationCreateFrontPage::$ButtonOnPage); 
         $I->waitForText('Сообщить о появлении');
         $I->fillField(NotificationCreateFrontPage::$FildUserPresent, 'QWE 123 йцу zxc !@# ЪХЗ');
@@ -191,8 +213,10 @@ class CreatingFrontCest
         
 //-----------------------PRESENCE CREATEING NOTIFI ADMIN------------------------
         
-        
-    public function VerifyPresenceCreatedNotification (AcceptanceTester $I){
+    /**
+     * @group a
+     */    
+    public function VerifyPresenceCreatedNotification (NotificationListTester $I){
         $I->amOnPage(NotificationListPage::$ListPageURL);
         $I->see('Africa@Boombaataa.net', NotificationListPage::$ListLinkEditting);
         $I->click(NotificationListPage::$ListLinkEditting);
@@ -203,8 +227,10 @@ class CreatingFrontCest
         
 //-----------------------PRESENCE INPUT VALUES FIELDS ADMIN---------------------
         
-        
-    public function VerifyInputValuesCreatedNotification (AcceptanceTester $I){
+    /**
+     * @group a
+     */    
+    public function VerifyInputValuesCreatedNotification (NotificationListTester $I){
         $I->amOnPage(NotificationListPage::$ListPageURL);
         $I->click(NotificationListPage::$ListLinkEditting);
         $I->seeInField(NotificationListPage::$EditingFildName, 'QWE 123 йцу zxc !@# ЪХЗ');
@@ -217,17 +243,19 @@ class CreatingFrontCest
         
 //---------------------------CLEARING-------------------------------------------  
         
-        
-        public function DeleteNotification(AcceptanceTester $I){
-            $I->amOnPage(NotificationListPage::$ListPageURL);
-            $I->click(NotificationListPage::$ListMainCheckBox);
-            $I->waitForElementVisible(NotificationListPage::$ListButtonDelete);
-            $I->click(NotificationListPage::$ListButtonDelete);
-            $I->wait('1');
-            $I->click(NotificationListPage::$DeleteWindowButtonDelete);
-            $I->wait('1');
-            InitTest::ClearAllCach($I);
-            } 
+    /**
+     * @group a
+     */    
+    public function DeleteNotification(NotificationListTester $I){
+        $I->amOnPage(NotificationListPage::$ListPageURL);
+        $I->click(NotificationListPage::$ListMainCheckBox);
+        $I->waitForElementVisible(NotificationListPage::$ListButtonDelete);
+        $I->click(NotificationListPage::$ListButtonDelete);
+        $I->wait('1');
+        $I->click(NotificationListPage::$DeleteWindowButtonDelete);
+        $I->wait('1');
+        InitTest::ClearAllCach($I);
+    } 
             
             
             

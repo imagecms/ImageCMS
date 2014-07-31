@@ -53,7 +53,7 @@ class AcceptanceHelper extends \Codeception\Module
      * @param \AcceptanceTester $I          controller
      * @param string            $CSSelement CSS selector
      */
-    public function scrollToElement(\AcceptanceTester $I,$CSSelement) {
+    public function scrollToElement($I,$CSSelement) {
         $script = "$('html,body').animate({scrollTop:$('$CSSelement').offset().top});";
         $I->executeJS($script);
     }

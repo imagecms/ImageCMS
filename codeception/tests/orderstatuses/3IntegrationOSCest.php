@@ -1,5 +1,5 @@
 <?php
-use \AcceptanceTester;
+use \OrderStatusesTester;
 class IntegrationOSCest
 {
 
@@ -8,7 +8,7 @@ class IntegrationOSCest
     /**
      * @group a
      */
-    public function Login(AcceptanceTester $I){
+    public function Login(OrderStatusesTester $I){
         InitTest::Login($I);
     }   
     
@@ -17,12 +17,12 @@ class IntegrationOSCest
      /**
      * @group a
      */
-    public function CteatedOSPresenceListPage(AcceptanceTester$I){
-        $I->wantTo('Проверить Присутствие созданного статуса на тсранице "Список статусов"');
+    public function CteatedOSPresenceListPage(OrderStatusesTester$I){
+        $I->wantTo('Verify Created Status Present on Status List Page.');
         $nameStatus='123 Super Созданний Status Заказа 890';
-        $I->amOnPage(OrderStatusesPage::$CreateURL);
-        $I->fillField(OrderStatusesPage::$CreateFieldName, $nameStatus);
-        $I->click(OrderStatusesPage::$CreateButtonCreateAndGoBack);
+        $I->amOnPage(OrderStatusesCreatePage::$CreateURL);
+        $I->fillField(OrderStatusesCreatePage::$CreateFieldName, $nameStatus);
+        $I->click(OrderStatusesCreatePage::$CreateButtonCreateAndGoBack);
         $I->waitForText('Статусы заказов');
         $numbeRows = $I->grabTagCount($I, 'tbody tr');
         $I->comment("Number Rows:'$numbeRows'.");
@@ -44,8 +44,8 @@ class IntegrationOSCest
     /**
      * @group a
      */
-    public function CreateOSPresenceOrdersList (AcceptanceTester$I){
-        $I->wantTo('Проверить присутствие созданного статуса на странице "Список заказов".');
+    public function CreateOSPresenceOrdersList (OrderStatusesTester$I){
+        $I->wantTo('Verify Created Status Present on Orders List Page.');
         $nameStatus='123 Super Созданний Status Заказа 890';  
         $I->amOnPage(OrdersListPage::$ListURLorders);
         $I->wait('1');
@@ -69,11 +69,11 @@ class IntegrationOSCest
     /**
      * @group a
      */    
-    public function EditingCteatedOS(AcceptanceTester$I){
-        $I->wantTo('Проверить присутствие отредактированного статуса на странице "Список статусов".');
+    public function EditingCteatedOS(OrderStatusesTester$I){
+        $I->wantTo('Verify Edited Status Present on Status List Page.');
         $nameStatus='123 Super Созданний Status Заказа 890';
         $nameEditStatus='Отредактированний Статус Order';
-        $I->amOnPage(OrderStatusesPage::$ListURL);
+        $I->amOnPage(OrderStatusesListPage::$ListURL);
         $numbeRows= $I->grabTagCount($I, 'tbody tr');
         $I->comment("Number Rows:'$numbeRows'.");
             for($j=1;$j<$numbeRows;++$j){
@@ -81,8 +81,8 @@ class IntegrationOSCest
             $searchName=$I->grabTextFrom("//tbody//tr[$j]/td[2]/a");
                 if($searchName == $nameStatus){
                     $I->click($searchName);
-                    $I->fillField(OrderStatusesPage::$EditFieldName, $nameEditStatus);
-                    $I->click(OrderStatusesPage::$EditButtonSaveAndGoBack);
+                    $I->fillField(OrderStatusesCreatePage::$EditFieldName, $nameEditStatus);
+                    $I->click(OrderStatusesCreatePage::$EditButtonSaveAndGoBack);
                 }            
             }
         $I->waitForText($nameEditStatus);
@@ -98,8 +98,8 @@ class IntegrationOSCest
     /**
      * @group a
      */
-    public function EditingOSPresenceOrdersList (AcceptanceTester$I){
-        $I->wantTo('Проверить присутствие отредактированного статуса на странице "Список заказов".');
+    public function EditingOSPresenceOrdersList (OrderStatusesTester$I){
+        $I->wantTo('Verify Edited Status Present on Orders List Page.');
         $nameEditStatus='Отредактированний Статус Order';  
         $I->amOnPage(OrdersListPage::$ListURLorders);
         $I->wait('1');
@@ -124,11 +124,11 @@ class IntegrationOSCest
     /**
      * @group a
      */
-    public function DeleetinqOSListPage (AcceptanceTester $I){
-        $I->wantTo('Проверить отсутствие удаленного статуса заказа на странице  "Список статусов".');
+    public function DeleetinqOSListPage (OrderStatusesTester $I){
+        $I->wantTo('Verify Deleted Status Present on Status List Page.');
         $nameEditStatus='Отредактированний Статус Order';
         $nameStatus='123 Super Созданний Status Заказа 890';
-        $I->amOnPage(OrderStatusesPage::$ListURL);
+        $I->amOnPage(OrderStatusesListPage::$ListURL);
         $numberStatus=$I->grabTagCount($I, 'tbody tr');
         $I->comment("Number Rows:'$numberStatus'");
         for ($j=1;$j<=$numberStatus;++$j){
@@ -136,7 +136,7 @@ class IntegrationOSCest
             if ($CurrentStatus != 'Новый' && $CurrentStatus != 'Доставлен'){
                 $I->click("//table/tbody/tr[$j]/td[5]/a");
                 $I->wait('1');
-                $I->click(OrderStatusesPage::$DeleteButtonDelete);
+                $I->click(OrderStatusesListPage::$DeleteButtonDelete);
                 $I->wait('1');
                 $numberStatus--;
                 $j--;
@@ -155,8 +155,8 @@ class IntegrationOSCest
     /**
      * @group a
      */
-    public function VerifyDeletingaStatusNotPresenceOrderListPage (AcceptanceTester $I){
-        $I->wantTo('Проверить отсутствие удаленного статуса  на странице "Список закзов".');
+    public function VerifyDeletingaStatusNotPresenceOrderListPage (OrderStatusesTester $I){
+        $I->wantTo('Verify Created Status Present on Orders List Page.');
         $nameEditStatus='Отредактированний Статус Order';
         $nameStatus='123 Super Созданний Status Заказа 890';
         $I->amOnPage(OrdersListPage::$ListURLorders);
