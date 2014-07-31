@@ -1,12 +1,12 @@
 <?php
-use \AcceptanceTester;
+use \NotificationStatusesTester;
 class FieldsNSCest
 {
 //---------------------------AUTORIZATION--------------------------------------- 
     /**
      * @group a
      */
-    public function Login(AcceptanceTester $I){
+    public function Login(NotificationStatusesTester $I){
         InitTest::Login($I);
     }
     
@@ -16,8 +16,8 @@ class FieldsNSCest
     /**
      * @group a
      */
-    public function CreatingStatus1Symbol(AcceptanceTester $I){
-        $I->wantTo('Создать статус с минимально допустимым значением в поле "Название".');
+    public function CreatingStatus1Symbol(NotificationStatusesTester $I){
+        $I->wantTo('Verify Create and Present Status Whit 1 Symbol on Name.');
         $I->amOnPage(NotificationStatusesPage::$CreatePageUrl);
         $I->fillField(NotificationStatusesPage::$CreationFildInput, '1');
         $I->click(NotificationStatusesPage::$CreationButtonCreateAndGoBack);
@@ -32,8 +32,8 @@ class FieldsNSCest
     /**
      * @group a
      */
-    public function CreatingStatus500Symbol(AcceptanceTester $I){
-        $I->wantTo('Создать статус с максимально допустимым значением в поле "Название".');
+    public function CreatingStatus500Symbol(NotificationStatusesTester $I){
+        $I->wantTo('Verify Create and Present Status Whit 500 Symbol on Name.');
         $I->amOnPage(NotificationStatusesPage::$CreatePageUrl);
         $I->fillField(NotificationStatusesPage::$CreationFildInput,  InitTest::$text500);
         $I->click(NotificationStatusesPage::$CreationButtonCreateAndGoBack);
@@ -48,8 +48,8 @@ class FieldsNSCest
     /**
      * @group a
      */  
-    public function CreatingStatus501Symbol(AcceptanceTester $I){
-        $I->wantTo('Создать статус с 501 введенным символом в поле "Название".');
+    public function CreatingStatus501Symbol(NotificationStatusesTester $I){
+        $I->wantTo('Verify Create and Present Status Whit 501 Symbol on Name.');
          $I->amOnPage(NotificationStatusesPage::$CreatePageUrl);
         $I->fillField(NotificationStatusesPage::$CreationFildInput, InitTest::$text501);
         $I->click(NotificationStatusesPage::$CreationButtonCreateAndGoBack);
@@ -72,8 +72,8 @@ class FieldsNSCest
     /**
      * @group a
      */
-    public function EdictingStatus1Symbol(AcceptanceTester $I){
-        $I->wantTo('Отредактировать статус с минимально допустимым значением в поле "Название".');
+    public function EdictingStatus1Symbol(NotificationStatusesTester $I){
+        $I->wantTo('Verify Edit and Present Status Whit 1 Symbol on Name.');
         $I->amOnPage(NotificationStatusesPage::$ListPageURL);
         $I->click(NotificationStatusesPage::$ListLinkForEditing);
         $I->fillField(NotificationStatusesPage::$EditingFildInput, '1');
@@ -89,8 +89,8 @@ class FieldsNSCest
     /**
      * @group a
      */
-    public function EdictingStatus500Symbol(AcceptanceTester $I){
-        $I->wantTo('Отредактировать статус с максимально допустимым значением в поле "Название".');
+    public function EdictingStatus500Symbol(NotificationStatusesTester $I){
+        $I->wantTo('Verify Edit and Present Status Whit 500 Symbol on Name.');
         $I->amOnPage(NotificationStatusesPage::$ListPageURL);
         $I->click(NotificationStatusesPage::$ListLinkForEditing);
         $I->fillField(NotificationStatusesPage::$EditingFildInput, InitTest::$text500);
@@ -106,8 +106,8 @@ class FieldsNSCest
     /**
      * @group a
      */
-    public function EdictingStatus501Symbol(AcceptanceTester $I){
-        $I->wantTo('Отредактировать статус с 501 введенным символом в поле "Название".');
+    public function EdictingStatus501Symbol(NotificationStatusesTester $I){
+        $I->wantTo('Verify Edit and Present Status Whit 501 Symbol on Name.');
         $I->amOnPage(NotificationStatusesPage::$ListPageURL);
         $I->click(NotificationStatusesPage::$ListLinkForEditing);
         $I->fillField(NotificationStatusesPage::$EditingFildInput, InitTest::$text501);
@@ -124,8 +124,8 @@ class FieldsNSCest
     /**
      * @group a
      */ 
-    public function CLEARING(AcceptanceTester $I){
-        $I->wantTo('Проверить отсутствие удалинных созданных и отредактированных статусов уведомлений.');
+    public function CLEARING(NotificationStatusesTester $I){
+        $I->wantTo('Verify Delete Status.');
         $I->amOnPage(NotificationStatusesPage::$ListPageURL);
         $I->click(NotificationStatusesPage::$ListHeaderCheckBox);
         $I->click(NotificationStatusesPage::$ListCheckBoxFirst);
@@ -143,8 +143,8 @@ class FieldsNSCest
     /**
      * @group a
      */
-    public function CreatingSymvol(AcceptanceTester $I){
-        $I->wantTo('Создать статус с введенными спе-символами в поле "Название".');
+    public function CreatingSymvol(NotificationStatusesTester $I){
+        $I->wantTo('Verify Create and Present Status Whit Symbol on Name.');
         $I->amOnPage(NotificationStatusesPage::$CreatePageUrl);
         $I->fillField(NotificationStatusesPage::$CreationFildInput, InitTest::$textSymbols);
         $I->click(NotificationStatusesPage::$CreationButtonCreateAndGoBack);
@@ -159,8 +159,8 @@ class FieldsNSCest
     /**
      * @group a
      */
-    public function EdictingSymvol(AcceptanceTester $I){
-        $I->wantTo('Отредактиовать статус с введенными спе-символами в поле "Название".');
+    public function EdictingSymvol(NotificationStatusesTester $I){
+        $I->wantTo('Verify Edit and Present Status Whit 1 Symbol on Name.');
         $I->amOnPage(NotificationStatusesPage::$ListPageURL);
         $I->click(NotificationStatusesPage::$ListLinkForEditing);
         $I->fillField(NotificationStatusesPage::$EditingFildInput, InitTest::$textSymbols);
@@ -176,8 +176,8 @@ class FieldsNSCest
     /**
      * @group a
      */ 
-    public function DELETING(AcceptanceTester $I){
-        $I->wantTo('Проверить возможность возобновления первичного состояния модуля "Статусы уведомления", после тестирования.');
+    public function DELETING(NotificationStatusesTester $I){
+        $I->wantTo('Verify Delete and Not Present Status.');
         $I->amOnPage(NotificationStatusesPage::$ListPageURL);
         $I->click(NotificationStatusesPage::$ListHeaderCheckBox);
         $I->click(NotificationStatusesPage::$ListCheckBoxFirst);
@@ -187,6 +187,7 @@ class FieldsNSCest
         $I->click(NotificationStatusesPage::$DeleteWindowButtonDelete);
         $I->wait('1');
         $I->dontSee(InitTest::$textSymbols);
+        InitTest::ClearAllCach($I); 
     }   
     
     

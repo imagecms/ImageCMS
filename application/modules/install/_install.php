@@ -105,7 +105,7 @@ class Install extends MY_Controller {
         if (file_exists('./application/modules/shop')) {
             $exts['ionCube Loader'] = 'ok';
         }
-   
+
         foreach ($exts as $k => $v) {
             //if ($this->_get_ext($k) === FALSE) {
             if ($this->checkExtensions($k) === FALSE) {
@@ -269,7 +269,7 @@ class Install extends MY_Controller {
         mysql_query('SET NAMES `utf8`;', $link);
         $sqlFileData = read_file(dirname(__FILE__) . '/' . $this->useSqlFile);
 
-        $queries = explode(";\n", $sqlFileData);
+        $queries = explode(";" . PHP_EOL, $sqlFileData);
 
         foreach ($queries as $q) {
             $q = trim($q);
