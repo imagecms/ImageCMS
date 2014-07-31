@@ -7,6 +7,8 @@
  * Sample Module Admin
  */
 class Admin extends BaseAdminController {
+    
+    private $languages = null;
 
     public function __construct() {
         parent::__construct();
@@ -32,7 +34,8 @@ class Admin extends BaseAdminController {
         } else {
             \CMSFactory\assetManager::create()
                 ->setData('attributes',ImportCSV\BaseImport::create()->makeAttributesList()->possibleAttributes)     
-                ->setData()
+                ->setData('languages',$this->languages)
+                ->setData('cFields',$cFields)
                 ->renderAdmin('export');
         }
     }
