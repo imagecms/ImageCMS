@@ -2,7 +2,7 @@
 
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
-/**1112
+/**vadik
  * Image CMS
  * Module Sample
  */
