@@ -103,7 +103,7 @@ class DeliverySteps extends \DeliveryTester {
     function CheckInFrontEnd($DeliveryName, $description = null, $price = null, $freefrom = null, $message = null, $pay = null) {
         $I = $this;
 
-        static $WasCalled = FALSE;
+        static $WasCalled = false;
         if (!$WasCalled) {
             $I->amOnPage('/shop/product/mobilnyi-telefon-sony-xperia-v-lt25i-black');
 
@@ -115,10 +115,11 @@ class DeliverySteps extends \DeliveryTester {
             $buy = "//div[@class='frame-prices-buy f-s_0']//form/div[3]";
             $basket = "//div[@class='frame-prices-buy f-s_0']//form/div[2]";
 
-            $I->wait(10);
+            $I->wait(5);
             try {
                 $I->click($buy);
             } catch (\Exception $exc) {
+                $I->wait(5);
                 $I->click($basket);
             }
             $I->waitForElementVisible("//*[@id='popupCart']", 10);
@@ -137,7 +138,9 @@ class DeliverySteps extends \DeliveryTester {
 
         for ($j = 1; $j <= $ClassCount; ++$j) {
             $CName = $I->grabTextFrom("//div[@class='frame-radio']/div[$j]//span[@class='text-el']");
-
+            $I->comment($CName);
+            $I->comment($DeliveryName);
+            
             if ($CName == $DeliveryName) {
                 $present = TRUE;
                 break;
@@ -315,6 +318,167 @@ class DeliverySteps extends \DeliveryTester {
                 default :
                     $I->fail("unknown type of error entered");
         }
+    }
+    /**
+     * Checking current parameters in Delivery List page 
+     * if you want to skip verifying of some parameters type null
+     * @param sring             $name       Delivery name
+     * @param string            $active     Active checkbox on - enabled |off - disabled 
+     * @param int|string|float  $price      Delivery price
+     * @param int|string|float  $freefrom   Delivery free from
+     * @return void
+     */
+    function CheckInList($name,$active=null,$price=null,$freefrom=null){
+        $I = $this;
+        $I->amOnPage(\DeliveryPage::$URL);
+        $rows  = $I->grabTagCount($I,"tbody tr");
+        $I->comment($rows);
+        $present = FALSE;
+        if($rows>0){
+            
+            for ($j=1;$j<=$rows;++$j){
+                $method = $I->grabTextFrom(\DeliveryPage::ListMethodLine($j));
+                $I->comment($method);
+                
+                if ($method == $name){
+                    $present = TRUE;
+                    break;
+                }
+            }
+        }
+        $I->comment("results: \n Method: \n$method Present: $present in row: $j\n");
+        //Error when method isn't present in delivery list page
+        $present?$I->assertEquals($method,$name):$I->fail("Method wasn't created");
+        
+        if($active){
+            $attribute = $I->grabAttributeFrom(\DeliveryPage::ListActiveButtonLine($j),"class");
+            
+            switch ($active){
+                case 'on':
+                    $I->assertEquals("prod-on_off ", $attribute);
+                    break;
+                case 'off':
+                    $I->assertEquals("prod-on_off disable_tovar", $attribute);
+                    break;
+            }
+        }
+        
+        if($price){
+            $Cprice = $I->grabTextFrom(\DeliveryPage::ListPriceLine($j));
+            $price = number_format($price, 5,".","");
+            $I->assertEquals(preg_replace('/[^0-9.]*/u', '', $Cprice),$price);
+        }
+        
+        if($freefrom){
+            $Cfreefrom = $I->grabTextFrom(\DeliveryPage::ListFreeFromLine($j));
+            $freefrom = number_format($freefrom, 5,".","");
+            $I->assertEquals(preg_replace('/[^0-9.]*/u', '', $Cfreefrom), $freefrom);
+        }
+    }
+    
+    
+    /**
+     * Grab all payments from payment methods list page and record them to array $PaymentMethods
+     * @param   AcceptanceTester    $I
+     * @return  array               $PaymentMethods
+     */
+    function GrabAllCreatedPayments() {
+        $I = $this;
+        $I->amOnPage(\PaymentListPage::$URL);
+        $I->waitForText("Список способов оплаты", NULL, ".title");
+        /**
+         * @var int $rows Count of table rows
+         * @var int $row Current row in table 
+         */
+        $rows = $I->grabClassCount($I, 'niceCheck')-1;
+        if ($rows > 0){//was !=0
+            $I->comment("I want to read and remember all created payment methods");
+            for ($row = 1;$row<=$rows;++$row) { $PaymentMethods[$row] = $I->grabTextFrom (\PaymentListPage::MethodNameLine($row)); }
+        }
+        else { $I->fail( "there are no created payments" ); }
+        return $PaymentMethods;
+    }
+    
+    /**
+     * Edit Delivery 
+     * 
+     * Edit delivery method by specifying parameters, 
+     * must be on delivery edit page before calling
+     * 
+     * @param string    $name               Deliveryname
+     * @param string    $active             off - disabled | on - enabled
+     * @param string    $description        Delivery description
+     * @param string    $descriptionprice   Delivery price description
+     * @param string    $price              Delivery price
+     * @param string    $freefrom           Delivery freefrom
+     * @param string    $message            Delivery sum specified message
+     * @param array     $pay                Select payment methods, array or string for one
+     * @param array     $payoff             Unselect payment methods, array or sring for one
+     */
+    function EditDelivery($name = null, 
+            $active = null, 
+            $description = null,
+            $descriptionprice = null, 
+            $price = null, 
+            $freefrom = null, 
+            $message = null, 
+            $pay = null, 
+            $payoff = null){
+        
+        $I = $this;
+        
+        if(isset($name)) { 
+            $I->fillField(\DeliveryEditPage::$FieldName, $name); }
+        if(isset($active)) {
+            $Cactive = $I->grabAttributeFrom("//*[@id='deliveryUpdate']/div[2]/div[2]/span", 'class');
+            $Cactive == 'frame_label no_connection active'?$Cactive = TRUE:$Cactive = FALSE;
+            if      ($active == "on" && !$Cactive)   { 
+                $I->click(\DeliveryEditPage::$CheckboxActive); 
+                
+            }
+            elseif  ($active == "off" && $Cactive)   {
+                $I->click(\DeliveryEditPage::$CheckboxActive); 
+                
+            }
+        }
+        if(isset($description)) { 
+            $I->fillField(\DeliveryEditPage::$FieldDescription, $description); 
+        }
+        if(isset($descriptionprice)) { 
+            $I->fillField(\DeliveryEditPage::$FieldDescriptionPrice, $descriptionprice); 
+            
+        }
+        if(isset($price)) { 
+            $I->grabAttributeFrom(\DeliveryEditPage::$FieldPrice, 'disabled')== 'true'?$I->click(DeliveryEditPage::$CheckboxPriceSpecified):  print '';
+            $I->fillField(DeliveryEditPage::$FieldPrice,$price);
+        }
+        if(isset($freefrom)) { 
+            $I->grabAttributeFrom(\DeliveryEditPage::$FieldPrice, 'disabled')== 'true'?$I->click(DeliveryEditPage::$CheckboxPriceSpecified):  print '';
+            $I->fillField(DeliveryEditPage::$FieldFreeFrom, $freefrom);
+        }
+        if(isset($message)) { 
+            $class = $I->grabAttributeFrom(\DeliveryEditPage::$CheckboxPriceSpecified.'/..', 'class');
+            $class == 'frame_label no_connection'?$I->click(\DeliveryEditPage::$CheckboxPriceSpecified):$I->comment('already marked');
+            $I->fillField(DeliveryEditPage::$FieldPriceSpecified, $message);
+        }
+        if(isset($pay)) {
+            $paymentAmount = $I->grabClassCount($I, 'niceCheck')-2;
+            for($row = 1 ; $row <=$paymentAmount; ++$row){
+                $Cclass = $I->grabAttributeFrom(\DeliveryEditPage::PaymentMethodLabel($row), 'class');
+                if($Cclass == 'frame_label no_connection d_b active'){
+                        $I->click(\DeliveryEditPage::PaymentMethodCheckbox($row));
+                    }
+            }
+            if(is_string($pay) && $pay != 'off'){
+                $I->click("//span[contains(.,\"$pay\")]");
+            }
+            if (is_array($pay))  {
+                foreach ($pay as $value) {
+                        $I->click("//span[contains(.,\"  $value  \")]");
+                    }
+                }
+            }
+        $I->click(\DeliveryEditPage::$ButtonSave);
     }
 
 }

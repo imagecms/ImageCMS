@@ -45,7 +45,7 @@ class CreatingFrontCest
      */    
     public function VerifyTElement(NotificationListTester $I){
         $I->amOnPage(NotificationCreateFrontPage::$PageURL);
-//        $I->scrollToElement($I, '.infoBut.isDrop');
+        $I->scrollToElement($I, '.infoBut.isDrop');
         $I->click(NotificationCreateFrontPage::$ButtonOnPage); 
         $I->waitForText('Сообщить о появлении');
         $I->seeElement(NotificationCreateFrontPage::$ButtonX);
@@ -64,7 +64,7 @@ class CreatingFrontCest
      */    
     public function Message1FildName (NotificationListTester $I){
         $I->amOnPage(NotificationCreateFrontPage::$PageURL);
-//        $I->scrollToElement($I, '.infoBut.isDrop');
+        $I->scrollToElement($I, '.infoBut.isDrop');
         $I->click(NotificationCreateFrontPage::$ButtonOnPage);
         $I->waitForText('Сообщить о появлении');
         $I->fillField(NotificationCreateFrontPage::$FildUserPresent, '');
@@ -82,7 +82,7 @@ class CreatingFrontCest
      */    
     public function Message2FildName (NotificationListTester $I){  
         $I->amOnPage(NotificationCreateFrontPage::$PageURL);
-//        $I->scrollToElement($I, '.infoBut.isDrop');
+        $I->scrollToElement($I, '.infoBut.isDrop');
         $I->click(NotificationCreateFrontPage::$ButtonOnPage);
         $I->waitForText('Сообщить о появлении');
         $I->fillField(NotificationCreateFrontPage::$FildUserPresent, '1234567890qwertyuiop asdfghj123kl; +_)(*&^%$# ЙЦУКЕНГШЩЗОР');
@@ -100,7 +100,7 @@ class CreatingFrontCest
      */    
     public function Message1FildEmeil (NotificationListTester $I){
         $I->amOnPage(NotificationCreateFrontPage::$PageURL);
-//        $I->scrollToElement($I, '.infoBut.isDrop');
+        $I->scrollToElement($I, '.infoBut.isDrop');
         $I->click(NotificationCreateFrontPage::$ButtonOnPage);
         $I->waitForText('Сообщить о появлении');
         $I->fillField(NotificationCreateFrontPage::$FildEmeilPresent, '');
@@ -118,7 +118,7 @@ class CreatingFrontCest
      */    
     public function Message2FildEmeil (NotificationListTester $I){
         $I->amOnPage(NotificationCreateFrontPage::$PageURL);
-//        $I->scrollToElement($I, '.infoBut.isDrop');
+        $I->scrollToElement($I, '.infoBut.isDrop');
         $I->click(NotificationCreateFrontPage::$ButtonOnPage);
         $I->waitForText('Сообщить о появлении');
         $I->fillField(NotificationCreateFrontPage::$FildEmeilPresent, 'йцу 123 !!!!!!! ЗЩШЗШ');
@@ -136,7 +136,7 @@ class CreatingFrontCest
      */    
     public function Message3FildEmeil (NotificationListTester $I){  
         $I->amOnPage(NotificationCreateFrontPage::$PageURL);
-//        $I->scrollToElement($I, '.infoBut.isDrop');
+        $I->scrollToElement($I, '.infoBut.isDrop');
         $I->click(NotificationCreateFrontPage::$ButtonOnPage);
         $I->waitForText('Сообщить о появлении'); 
         $I->fillField(NotificationCreateFrontPage::$FildEmeilPresent, '');
@@ -156,7 +156,7 @@ class CreatingFrontCest
      */    
     public function Message1FildPhone (NotificationListTester $I){  
         $I->amOnPage(NotificationCreateFrontPage::$PageURL);
-//        $I->scrollToElement($I, '.infoBut.isDrop');
+        $I->scrollToElement($I, '.infoBut.isDrop');
         $I->click(NotificationCreateFrontPage::$ButtonOnPage); 
         $I->waitForText('Сообщить о появлении'); 
         $I->click(NotificationCreateFrontPage::$FildPhonePresent);
@@ -176,7 +176,7 @@ class CreatingFrontCest
      */    
     public function Message2FildPhone (NotificationListTester $I){  
         $I->amOnPage(NotificationCreateFrontPage::$PageURL);
-//        $I->scrollToElement($I, '.infoBut.isDrop');
+        $I->scrollToElement($I, '.infoBut.isDrop');
         $I->click(NotificationCreateFrontPage::$ButtonOnPage); 
         $I->waitForText('Сообщить о появлении'); 
         $I->click(NotificationCreateFrontPage::$FildPhonePresent);
@@ -196,7 +196,7 @@ class CreatingFrontCest
     public function CreateNotificationMessage (NotificationListTester $I){
         $I->amOnPage(NotificationCreateFrontPage::$PageURL);
         $I->amOnPage(NotificationCreateFrontPage::$PageURL);
-//        $I->scrollToElement($I, '.infoBut.isDrop');
+        $I->scrollToElement($I, '.infoBut.isDrop');
         $I->click(NotificationCreateFrontPage::$ButtonOnPage); 
         $I->waitForText('Сообщить о появлении');
         $I->fillField(NotificationCreateFrontPage::$FildUserPresent, 'QWE 123 йцу zxc !@# ЪХЗ');
