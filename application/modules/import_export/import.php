@@ -188,6 +188,7 @@ class Import extends ShopAdminController{
     public function getAttributes() {
         $this->takeFileName();
         $this->configureImportProcess(false);
-        \CMSFactory\assetManager::create()->renderAdmin('import_attributes');
+        \CMSFactory\assetManager::create()
+                ->renderAdmin('import_attributes');
     }
 }
