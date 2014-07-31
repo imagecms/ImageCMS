@@ -71,7 +71,7 @@ class AcceptanceHelper extends \Codeception\Module
      * 
      * div.body_category div.row-category div.share_alt a.pjax
      */
-    public function grabTextFromAllElements(\AcceptanceTester $I,$JQuerySelector) {
+    public function grabTextFromAllElements($I,$JQuerySelector) {
         $delimiter = '--D_E_L--';
         $script =<<<HERE
             element = $('$JQuerySelector');
@@ -100,7 +100,7 @@ HERE;
      * 
      * .btn.expandButton
      */
-    public function clickAllElements(\AcceptanceTester $I,$JQeryElements,$clickTimes=1,$deelay=3) {
+    public function clickAllElements($I,$JQeryElements,$clickTimes=1,$deelay=3) {
         $script =<<<SCRIPT
           $('$JQeryElements:visible').click();
 SCRIPT;
@@ -117,7 +117,7 @@ SCRIPT;
      * @param   string              $JQerySelector
      * @return  string              Amount of elements
      */
-    public function grabCCSAmount(\AcceptanceTester $I,$JQerySelector){
+    public function grabCCSAmount($I,$JQerySelector){
         $script = "$('<p id=uniqueidunique></p>').text($('$JQerySelector').length).appendTo('body')";
         $I->executeJS($script);
         $amount = $I->grabTextFrom("#uniqueidunique");
