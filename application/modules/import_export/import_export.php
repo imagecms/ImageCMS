@@ -6,7 +6,7 @@
  * Image CMS
  * Module Sample
  */
-class Sample_Module extends MY_Controller {
+class Import_export extends MY_Controller {
 
     /** Подготовим необходимые свойства для класса */
     private $key = FALSE;
