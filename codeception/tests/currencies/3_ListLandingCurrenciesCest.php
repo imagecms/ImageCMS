@@ -24,8 +24,7 @@ class MainCurrencyCest
     {
         $I->click('html/body/div[1]/div[3]/div/nav/ul/li[8]/a');
         $I->waitForElement('html/body/div[1]/div[3]/div/nav/ul/li[8]/ul');
-        $I->click('html/body/div[1]/div[3]/div/nav/ul/li[8]/ul/li[2]/a');
-        // $I->waitForElement('html/body/div[1]/div[3]/div/nav/ul/li[8]/ul'==FALSE)
+        $I->click('html/body/div[1]/div[3]/div/nav/ul/li[8]/ul/li[2]/a');        
         $I->waitForElementNotVisible('html/body/div[1]/div[3]/div/nav/ul/li[8]/ul');
         $I->waitForText('Список валют');
         $I->see('Список валют', 'span.title');
