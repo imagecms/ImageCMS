@@ -31,8 +31,11 @@ class Admin extends BaseAdminController {
                 ->renderAdmin('import');
         } else {
             \CMSFactory\assetManager::create()
+                ->setData('attributes',ImportCSV\BaseImport::create()->makeAttributesList()->possibleAttributes)     
+                ->setData()
                 ->renderAdmin('export');
         }
     }
+    
 
 }
