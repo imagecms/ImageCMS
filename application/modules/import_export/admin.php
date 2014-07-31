@@ -34,7 +34,8 @@ class Admin extends BaseAdminController {
             \CMSFactory\assetManager::create()
                 ->registerScript('importAdmin')
                 ->renderAdmin('import');
-        } else {
+        } 
+        if($check == 'export') {
             \CMSFactory\assetManager::create()
                 ->setData('attributes',ImportCSV\BaseImport::create()->makeAttributesList()->possibleAttributes)     
                 ->setData('languages',$this->languages)
