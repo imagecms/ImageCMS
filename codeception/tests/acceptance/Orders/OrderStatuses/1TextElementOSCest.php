@@ -3,15 +3,20 @@ use \AcceptanceTester;
 class TextElementOSCest
 {
 //---------------------------AUTORIZATION---------------------------------------   
-    
+    /**
+     * @group a
+     */
     public function Login(AcceptanceTester $I){
         InitTest::Login($I);
     }
     
     
 //---------------------------ORDER STATUS CREATE PAGE WAY-----------------------
-    
-    public function  WayCreateOS (AcceptanceTester $I){       
+    /**
+     * @group a
+     */
+    public function  WayCreateOS (AcceptanceTester $I){    
+        $I->wantTo('Проверить путь к странице "Создание статуса".');
         $I->amOnPage(OrderStatusesPage::$ListURL);
         $I->click(OrderStatusesPage::$ListaButtonCreateStatuse);
         $I->seeInCurrentUrl(OrderStatusesPage::$CreateURL);
@@ -21,8 +26,11 @@ class TextElementOSCest
     
     
 //---------------------------ORDER STATUS EDIT PAGE WAY-------------------------
-    
-    public function  WayEditOS (AcceptanceTester $I){       
+    /**
+     * @group a
+     */
+    public function  WayEditOS (AcceptanceTester $I){ 
+        $I->wantTo('Проверить путь к странице "Редактирование статуса".');
         $I->amOnPage(OrderStatusesPage::$ListURL);
         $I->click(OrderStatusesPage::$ListLinkStstusTr1);
         $I->see('Редактирование статуса заказа', OrderStatusesPage::$EditTitle);
@@ -30,8 +38,11 @@ class TextElementOSCest
     
     
 //---------------------------ORDER STATUS LIST PAGE WAY-------------------------
-    
-    public function  WayListOS (AcceptanceTester $I){       
+    /**
+     * @group a
+     */
+    public function  WayListOS (AcceptanceTester $I){   
+        $I->wantTo('Проверить путь к странице "Список статусов".');
         $I->click(NavigationBarPage::$Orders);
         $I->click(NavigationBarPage::$OrderStatuses);
         $I->seeInCurrentUrl(OrderStatusesPage::$ListURL);
@@ -40,8 +51,11 @@ class TextElementOSCest
     
 //---------------------------TEXT PRESENCE LIST PAGE----------------------------
     
-    
-    public function  TextPresenceList (AcceptanceTester $I){       
+    /**
+     * @group a
+     */
+    public function  TextPresenceList (AcceptanceTester $I){    
+        $I->wantTo('Проверить текст елементов страницы "Список статусов".');
         $I->amOnPage(OrderStatusesPage::$ListURL);
         $I->see('Статусы заказов', OrderStatusesPage::$ListTitle);
         $I->see('Создать статус', OrderStatusesPage::$ListaButtonCreateStatuse);
@@ -55,8 +69,11 @@ class TextElementOSCest
     
 //-------------------TEXT MESSAGE MOUSE FOCUS LIST PAGE-------------------------
     
-    
+    /**
+     * @group a
+     */
     public function  MouseMessage (AcceptanceTester $I){
+        $I->wantTo('Проверить появление сообщения "Редактировать статус", при фокусировке курсора мишы на названии статуса на странице "Список статусов".');
         $I->amOnPage(OrderStatusesPage::$ListURL);
         $I->moveMouseOver(OrderStatusesPage::$ListLinkStstusTr1);
         $I->wait(1);
@@ -70,8 +87,11 @@ class TextElementOSCest
     
 //--------------------TEXT PRESENCE CREATING PAGE-------------------------------
     
-    
+    /**
+     * @group a
+     */
     public function TextPresenceCrate(AcceptanceTester $I){
+        $I->wantTo('Проверить текст елементов страницы "Создание статуса".');
         $I->amOnPage(OrderStatusesPage::$CreateURL);
         $I->see('Создание статуса заказа', OrderStatusesPage::$CreateTitle);
         $I->see('Вернуться', OrderStatusesPage::$CreateButtonBack);
@@ -87,8 +107,11 @@ class TextElementOSCest
     
 //--------------------ELEMENT PRESENCE CREATING PAGE----------------------------
     
-    
+    /**
+     * @group a
+     */
     public function ElementPresenceCreate(AcceptanceTester $I){
+        $I->wantTo('ПРоверить наличие полей на странице "Создание статуса".');
         $I->amOnPage(OrderStatusesPage::$CreateURL);        
         $I->seeElement(OrderStatusesPage::$CreateFieldName);
         $I->seeElement(OrderStatusesPage::$CreateNameFieldColor);
@@ -99,8 +122,11 @@ class TextElementOSCest
     
 //---------------ALERT MESSAGE PRESENCE CREATING PAGE---------------------------
     
-    
+    /**
+     * @group a
+     */
     public function AlertMessageCreate(AcceptanceTester $I){
+        $I->wantTo('Проверить появление сообщения об обязатеьности заполнения поля "Название" на странице "Создание статуса".');
         $I->amOnPage(OrderStatusesPage::$CreateURL);        
         $I->fillField(OrderStatusesPage::$CreateFieldName, '');
         $I->click(OrderStatusesPage::$CreateButtonCreateAndGoBack);
@@ -112,8 +138,11 @@ class TextElementOSCest
     
 //---------------------MESSAGE CREATING STATUS----------------------------------
     
-    
+    /**
+     * @group a
+     */
     public function MessageCreateStatus(AcceptanceTester $I){
+        $I->wantTo('Проверить появление сообщения о создании статуса.');
         $I->amOnPage(OrderStatusesPage::$CreateURL);
         $I->fillField(OrderStatusesPage::$CreateFieldName, 'ZavorotkiShock');
         $I->click(OrderStatusesPage::$CreateButtonCreate);
@@ -124,8 +153,11 @@ class TextElementOSCest
     
 //------------------TEXT PRESENCE EDITING PAGE----------------------------------
     
-    
+    /**
+     * @group a
+     */
     public function TextPresenceEdit(AcceptanceTester $I){
+        $I->wantTo('Проверить текст елементов на странице "Редактирование статуса".');
         $I->amOnPage(OrderStatusesPage::$ListURL);
         $I->amOnPage(OrderStatusesPage::$ListURL);
         $I->click(OrderStatusesPage::$ListLinkStstusTr1);
@@ -143,8 +175,11 @@ class TextElementOSCest
     
 //---------------ELEMENT PRESENCE EDITING PAGE----------------------------------
     
-    
+    /**
+     * @group a
+     */
     public function ElementPresenceEdit(AcceptanceTester $I){
+        $I->wantTo('Проверить наличие полей на странице "Редактирование статуса".');
         $I->amOnPage(OrderStatusesPage::$ListURL);
         $I->click(OrderStatusesPage::$ListLinkStstusTr1);
         $I->seeElement(OrderStatusesPage::$EditFieldName);
@@ -155,8 +190,11 @@ class TextElementOSCest
     
 //---------------ALERT MESSAGE PRESENCE EDITING PAGE----------------------------
     
-    
+    /**
+     * @group a
+     */
     public function AlertMessageEdit(AcceptanceTester $I){
+        $I->wantTo('Проверить появление сообщении об обязательности заполнения поля "Название" на странице "Редактирование статуса".');
         $I->amOnPage(OrderStatusesPage::$ListURL);
         $I->click(OrderStatusesPage::$EditLinkEditing);
         $I->fillField(OrderStatusesPage::$EditFieldName, '');
@@ -169,8 +207,11 @@ class TextElementOSCest
     
 //---------------ALERT MESSAGE FOR EDITING STATUS-------------------------------
     
-    
+    /**
+     * @group a
+     */
     public function EditingMessageEdit(AcceptanceTester $I){
+        $I->wantTo('Проверить появление и текст сообщение о редактировании статуса.');
         $I->amOnPage(OrderStatusesPage::$ListURL);
         $I->click(OrderStatusesPage::$ListLinkStatusTr2);
         $I->click(OrderStatusesPage::$EditButtonSaveAndGoBack);
@@ -181,8 +222,11 @@ class TextElementOSCest
     
 //---------------TEXT ELEMENT PRESENCE DELETING PAGE----------------------------
     
-    
+    /**
+     * @group a
+     */
     public function TextElementDeletingWindow(AcceptanceTester $I){
+        $I->wantTo('Проверить текст и присутствие елементов окна "Удаление статуса".');
         $I->amOnPage(OrderStatusesPage::$ListURL);
         $I->click(OrderStatusesPage::$ListButtonDelete);
         $I->waitForText('Удаление статуса заказа', '3', OrderStatusesPage::$DeleteTitle);
@@ -197,8 +241,11 @@ class TextElementOSCest
     
 //---------------------BUTTON DELETING WINDOW-----------------------------------
     
-    
+    /**
+     * @group a
+     */
     public function ButtonDeletingWindow(AcceptanceTester $I){
+        $I->wantTo('Проверить кликабельность кнопок окна "Удаление статуса".');
         $I->amOnPage(OrderStatusesPage::$ListURL);
         $I->click(OrderStatusesPage::$ListButtonDelete);
         $I->wait(1);
@@ -216,8 +263,11 @@ class TextElementOSCest
     
 //---------------------MESSAGE FOR DELETING STATUS------------------------------
     
-    
+    /**
+     * @group a
+     */
     public function MessageDeletingStatusWindow(AcceptanceTester $I){
+        $I->wantTo('Проверить появление сообщения об удалении статуса.');
         $I->amOnPage(OrderStatusesPage::$ListURL);
         $I->click(OrderStatusesPage::$ListButtonDelete);
         $I->wait(1);

@@ -173,7 +173,7 @@ class DeliveryTestHelper {
      * @param string|array      $pay            Delivery Payment methods, which will included, if passed string : "_" - delimiter for few methods 
      * @return void
      */
-    protected function CheckInFrontEnd(AcceptanceTester $I,$DeliveryName,$description=null,$price=null,$freefrom=null,$message=null,$pay=null) {
+    protected function CheckInFrontEnd(DeliveryTester $I,$DeliveryName,$description=null,$price=null,$freefrom=null,$message=null,$pay=null) {
         static $WasCalled  = FALSE;
         if(!$WasCalled){
         $I->comment("$WasCalled");
@@ -187,9 +187,15 @@ class DeliveryTestHelper {
         $buy        = "//div[@class='frame-prices-buy f-s_0']//form/div[3]";
         $basket     = "//div[@class='frame-prices-buy f-s_0']//form/div[2]";
         $Attribute1 = $I->grabAttributeFrom($buy,'class');
+        $I->wait(10);
+        try {
+            $I->click($buy);
+        } catch (Exception $exc) {
+            $I->click($basket);
+        }
         //$Attribute2 = $I->grabAttributeFrom($basket,'class');
-        $Attribute1 == 'btn-buy-p btn-buy'?$I->click($buy):$I->click($basket);
-        $I->waitForElementVisible("//*[@id='popupCart']");
+//        $Attribute1 == 'btn-buy-p btn-buy'?$I->click($buy):$I->click($basket);
+        $I->waitForElementVisible("//*[@id='popupCart']",10);
         $I->click(".btn-cart.btn-cart-p.f_r");
         }  
         else { $I->amOnPage("/shop/cart"); }
@@ -272,7 +278,7 @@ class DeliveryTestHelper {
      * @param string        $module             create|edit|delete|drag
      * @return void
      */
-    protected function CheckForAlertPresent(AcceptanceTester $I,$type,$errorMessage = null,$field=null,$module = 'create') {
+    protected function CheckForAlertPresent($I,$type,$errorMessage = null,$field=null,$module = 'create') {
         switch ($type){
             case 'error':
                     $I->comment("I want to see that error alert is present");
@@ -309,7 +315,7 @@ class DeliveryTestHelper {
      * @param   AcceptanceTester    $I
      * @return  array               $PaymentMethods
      */
-    protected function GrabAllCreatedPayments(AcceptanceTester $I) {
+    protected function GrabAllCreatedPayments($I) {
         $I->amOnPage(PaymentListPage::$URL);
         $I->waitForText("Список способов оплаты", NULL, ".title");
         /**
@@ -339,7 +345,7 @@ class DeliveryTestHelper {
      * @param array $params pay                 => 'Select payment methods, array or sring '_' - delimiter for few methods',
      * @param array $params payoff              => 'Unselect payment methods, array or sring '_' - delimiter for few methods',
      */
-    protected function EditDelivery(AcceptanceTester $I,$params) {
+    protected function EditDelivery($I,$params) {
         $default_params =[  'name'              => NULL,
                             'active'            => NULL,
                             'description'       => NULL,
@@ -417,7 +423,7 @@ class DeliveryTestHelper {
      * @param   type                $methodname name of delivery method which you want to search
      * @return  int|boolean         if Delivery Method is present return method row else return false
      */
-    protected function SearchDeliveryMethod(AcceptanceTester $I,$methodname){
+    protected function SearchDeliveryMethod($I,$methodname){
         $rows = $I->grabClassCount($I, 'niceCheck')-1;
         $present = FALSE;
         for($row = 1;$row <= $rows; ++$row){
@@ -441,7 +447,7 @@ class DeliveryTestHelper {
      * @param AcceptanceTester $I controller
      * @param type $name Delivery Method name
      */
-    protected function CheckMethodNotPresentInFrontEnd(AcceptanceTester $I,$name) {
+    protected function CheckMethodNotPresentInFrontEnd($I,$name) {
         static $WasCalled  = FALSE;
         if(!$WasCalled){
         $I->amOnPage('/shop/product/mobilnyi-telefon-sony-xperia-v-lt25i-black');
@@ -489,7 +495,7 @@ class DeliveryTestHelper {
          * @param AcceptanceTester  $I          controller
          * @param array             $Methods    Names of delivery methods which you want to delete         
          */
-        protected function DeleteDeliveryMethods (AcceptanceTester $I,$Methods) {
+        protected function DeleteDeliveryMethods ($I,$Methods) {
             $AllMethodsCount = $I->grabClassCount($I, "niceCheck")-1;
             for ($row = 1;$row <= $AllMethodsCount;++$row){
                 $CurrentRowMethod = $I->grabTextFrom(DeliveryPage::ListMethodLine($row));
