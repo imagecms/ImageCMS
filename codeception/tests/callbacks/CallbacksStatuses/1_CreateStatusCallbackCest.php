@@ -1,5 +1,5 @@
 <?php
-use \AcceptanceTester;
+use \CallbacksTester;
 
 class CreateStatusCallbackCest
 {
@@ -12,7 +12,7 @@ class CreateStatusCallbackCest
 //    }
 
     // tests
-    public function Autorization(AcceptanceTester $I)
+    public function Autorization(CallbacksTester $I)
     {
         InitTest::Login($I);
         $I->amOnPage("/admin/components/run/shop/callbacks/statuses");
@@ -20,7 +20,7 @@ class CreateStatusCallbackCest
     }  
     
     
-    public function NamesInCreate(AcceptanceTester $I)
+    public function NamesInCreate(CallbacksTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/callbacks/statuses');
         $I->click(CallbacksPage::$CreateStatusButton);
@@ -36,7 +36,7 @@ class CreateStatusCallbackCest
     } 
     
     
-    public function RequiredFieldsInCreateSaveButton(AcceptanceTester $I)
+    public function RequiredFieldsInCreateSaveButton(CallbacksTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/callbacks/statuses');
         $I->click(CallbacksPage::$CreateStatusButton);
@@ -49,7 +49,7 @@ class CreateStatusCallbackCest
     } 
     
     
-    public function RequiredFieldsInCreateSaveAndExitButton(AcceptanceTester $I)
+    public function RequiredFieldsInCreateSaveAndExitButton(CallbacksTester $I)
     {
         $I->click(CallbacksPage::$CreateStatusButton);
         $I->waitForText('Создание статуса обратного звонка');
@@ -60,7 +60,7 @@ class CreateStatusCallbackCest
     } 
     
     
-    public function TypesOfSymbolsInCreate(AcceptanceTester $I)
+    public function TypesOfSymbolsInCreate(CallbacksTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/callbacks/createStatus');
         $I->fillField(CallbacksPage::$NameStatus, 'qwerrQEQE12345!#@$#%%^&*()_+|}{:>?<,./;][\\=-0ёцвцаымпУКП');
@@ -74,7 +74,7 @@ class CreateStatusCallbackCest
     } 
     
     
-    public function OneSymbolsCreate(AcceptanceTester $I)
+    public function OneSymbolsCreate(CallbacksTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/callbacks/createStatus');
         $I->fillField(CallbacksPage::$NameStatus, 'q');
@@ -86,7 +86,7 @@ class CreateStatusCallbackCest
     } 
     
     
-    public function Symbols128Create(AcceptanceTester $I)
+    public function Symbols128Create(CallbacksTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/callbacks/createStatus');
         $I->fillField(CallbacksPage::$NameStatus, 'q');
@@ -99,7 +99,7 @@ class CreateStatusCallbackCest
     } 
     
     
-    public function Symbols255Create(AcceptanceTester $I)
+    public function Symbols255Create(CallbacksTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/callbacks/createStatus');
         $I->fillField(CallbacksPage::$NameStatus, '12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345');
@@ -111,7 +111,7 @@ class CreateStatusCallbackCest
     } 
     
     
-    public function Symbols256Create(AcceptanceTester $I)
+    public function Symbols256Create(CallbacksTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/callbacks/createStatus');
         $I->fillField(CallbacksPage::$NameStatus, '12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке123456');
@@ -124,7 +124,7 @@ class CreateStatusCallbackCest
     } 
     
     
-    public function CreateAndExit(AcceptanceTester $I)
+    public function CreateAndExit(CallbacksTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/callbacks/createStatus');
         $I->fillField(CallbacksPage::$NameStatus, '12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке123456');

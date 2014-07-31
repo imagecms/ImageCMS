@@ -1,5 +1,5 @@
 <?php
-use \AcceptanceTester;
+use \DiscountsTester;
 
 class CreateBrandDiscountCest
 {
@@ -11,7 +11,7 @@ class CreateBrandDiscountCest
 //    {
 //    }
 
-    public function Autorization(AcceptanceTester $I)
+    public function Autorization(DiscountsTester $I)
     {
         InitTest::Login($I);
         $I->amOnPage("/admin/components/cp/mod_discount");
@@ -19,7 +19,7 @@ class CreateBrandDiscountCest
     }
     
     
-    public function NamesAndValuesInCreate(AcceptanceTester $I)
+    public function NamesAndValuesInCreate(DiscountsTester $I)
     {
         $I->amOnPage("/admin/components/init_window/mod_discount/create");
         $I->click(DiscountsPage::$SelectTypeDiscount);

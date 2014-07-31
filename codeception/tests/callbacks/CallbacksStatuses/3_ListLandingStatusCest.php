@@ -1,5 +1,5 @@
 <?php
-use \AcceptanceTester;
+use \CallbacksTester;
 
 class DeleteStatusCest
 {
@@ -13,7 +13,7 @@ class DeleteStatusCest
 
     // tests
     private $j, $rows, $nameStatus, $sum, $AllNamesStatus, $rowsSt;
-    public function Autorization(AcceptanceTester $I)
+    public function Autorization(CallbacksTester $I)
     {
         InitTest::Login($I);
         $I->amOnPage("/admin/components/run/shop/callbacks/statuses");
@@ -21,7 +21,7 @@ class DeleteStatusCest
     } 
     
     
-    public function NamesInListLanding(AcceptanceTester $I)
+    public function NamesInListLanding(CallbacksTester $I)
     {
         $I->click('html/body/div[1]/div[3]/div/nav/ul/li[2]/a');
         $I->waitForElement('html/body/div[1]/div[3]/div/nav/ul/li[2]/ul');
@@ -36,7 +36,7 @@ class DeleteStatusCest
     }
     
     
-    public function VerifyDefaultStatus(AcceptanceTester $I)
+    public function VerifyDefaultStatus(CallbacksTester $I)
     {
         //Проверяем наличие статуса отмеченного по умолчанию в списке и только одного
         $this->rows = $I->grabTagCount($I,"tbody tr");
@@ -56,7 +56,7 @@ class DeleteStatusCest
     }   
     
     
-    public function DeleteDefaultStatus(AcceptanceTester $I)
+    public function DeleteDefaultStatus(CallbacksTester $I)
     {
         //Проверка возможности удаления статуса по умолчанию
         for ($this->j=1;$this->j<=$this->rows;$this->j++){            
@@ -80,7 +80,7 @@ class DeleteStatusCest
     }   
    
     
-    public function DefaultStatusOff(AcceptanceTester $I)
+    public function DefaultStatusOff(CallbacksTester $I)
     {
         //Проверка возможности отключения статуса по умолчанию
         $I->click(CallbacksPage::ActiveButtonLine($this->j));
@@ -97,7 +97,7 @@ class DeleteStatusCest
     }
     
     
-     public function ChangeDefaultStatus(AcceptanceTester $I)
+     public function ChangeDefaultStatus(CallbacksTester $I)
     {
         //Изменение статуса по умолчанию
         if($this->j<$this->rows){
@@ -131,7 +131,7 @@ class DeleteStatusCest
     }
     
     
-    public function AssigningDefaultStatusToNewCallback(AcceptanceTester $I)
+    public function AssigningDefaultStatusToNewCallback(CallbacksTester $I)
     {
         //Присвоение новому колбеку статуса по умолчанию
         $I->amOnPage('/');
@@ -186,7 +186,7 @@ class DeleteStatusCest
     }
     
     
-    public function ValuesOfAllStatusesInSelectMenuAndButtonsListLsndingCallback(AcceptanceTester $I)
+    public function ValuesOfAllStatusesInSelectMenuAndButtonsListLsndingCallback(CallbacksTester $I)
     {
         //Проверка наличия всех названий созданных статусов колбеков в селект меню и кнопках на странице "Список обратных звонков"
         $I->amOnPage('/admin');
@@ -217,7 +217,7 @@ class DeleteStatusCest
     }    
     
     
-    public function ValuesOfAllStatusesInSelectMenuEditCallback(AcceptanceTester $I)
+    public function ValuesOfAllStatusesInSelectMenuEditCallback(CallbacksTester $I)
     {    
         //Проверка наличия всех названий созданных статусов колбеков в селект меню на странице редактирования колбека
         $I->click(".//*[@id='callbacks_all']/table/tbody/tr/td[3]/a");
@@ -233,7 +233,7 @@ class DeleteStatusCest
     }
     
     
-    public function ValuesOfAllStatusesInListLandingStatuses(AcceptanceTester $I)
+    public function ValuesOfAllStatusesInListLandingStatuses(CallbacksTester $I)
     {    
         //Проверка наличия всех названий созданных статусов колбеков на странице "Статусы обратных звонков"
         $I->amOnPage('/admin/components/run/shop/callbacks/statuses');
@@ -250,7 +250,7 @@ class DeleteStatusCest
     }    
                 
     
-    public function DeleteNotDefaultStatus(AcceptanceTester $I)
+    public function DeleteNotDefaultStatus(CallbacksTester $I)
     {
         //Удаление статуса не отмеченного по умолчанию
         if($this->j<$this->rows){

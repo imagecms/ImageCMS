@@ -5,15 +5,20 @@ class IntegrationOSCest
 
 //---------------------------AUTORIZATION---------------------------------------
     
-
+    /**
+     * @group a
+     */
     public function Login(AcceptanceTester $I){
         InitTest::Login($I);
     }   
     
  //------------VERIFY CREATE ORDER STATUS PRESENCE LIST PAGE--------------------
  
-     
+     /**
+     * @group a
+     */
     public function CteatedOSPresenceListPage(AcceptanceTester$I){
+        $I->wantTo('Проверить Присутствие созданного статуса на тсранице "Список статусов"');
         $nameStatus='123 Super Созданний Status Заказа 890';
         $I->amOnPage(OrderStatusesPage::$CreateURL);
         $I->fillField(OrderStatusesPage::$CreateFieldName, $nameStatus);
@@ -36,8 +41,11 @@ class IntegrationOSCest
         
 //----VERIFY CREATING STATUSE PRESENT ORDERS LIST PAGE SELECT STATUS--------------
 
-
+    /**
+     * @group a
+     */
     public function CreateOSPresenceOrdersList (AcceptanceTester$I){
+        $I->wantTo('Проверить присутствие созданного статуса на странице "Список заказов".');
         $nameStatus='123 Super Созданний Status Заказа 890';  
         $I->amOnPage(OrdersListPage::$ListURLorders);
         $I->wait('1');
@@ -58,13 +66,16 @@ class IntegrationOSCest
 //////------------EDITING CREATING STATUS PRESENT LIST PAGE--------------------------   
 
  
-
-        public function EditingCteatedOS(AcceptanceTester$I){
-            $nameStatus='123 Super Созданний Status Заказа 890';
-            $nameEditStatus='Отредактированний Статус Order';
-            $I->amOnPage(OrderStatusesPage::$ListURL);
-            $numbeRows= $I->grabTagCount($I, 'tbody tr');
-            $I->comment("Number Rows:'$numbeRows'.");
+    /**
+     * @group a
+     */    
+    public function EditingCteatedOS(AcceptanceTester$I){
+        $I->wantTo('Проверить присутствие отредактированного статуса на странице "Список статусов".');
+        $nameStatus='123 Super Созданний Status Заказа 890';
+        $nameEditStatus='Отредактированний Статус Order';
+        $I->amOnPage(OrderStatusesPage::$ListURL);
+        $numbeRows= $I->grabTagCount($I, 'tbody tr');
+        $I->comment("Number Rows:'$numbeRows'.");
             for($j=1;$j<$numbeRows;++$j){
             $I->comment("Search In Row$'$j'.");
             $searchName=$I->grabTextFrom("//tbody//tr[$j]/td[2]/a");
@@ -74,9 +85,9 @@ class IntegrationOSCest
                     $I->click(OrderStatusesPage::$EditButtonSaveAndGoBack);
                 }            
             }
-            $I->waitForText($nameEditStatus);
-            $I->see("$nameEditStatus");
-        }  
+        $I->waitForText($nameEditStatus);
+        $I->see("$nameEditStatus");
+    }  
         
         
         
@@ -84,8 +95,11 @@ class IntegrationOSCest
 //----VERIFY EDICTING STATUSE PRESENT ORDERS LIST PAGE SELECT STATUS------------
 
 
-
+    /**
+     * @group a
+     */
     public function EditingOSPresenceOrdersList (AcceptanceTester$I){
+        $I->wantTo('Проверить присутствие отредактированного статуса на странице "Список заказов".');
         $nameEditStatus='Отредактированний Статус Order';  
         $I->amOnPage(OrdersListPage::$ListURLorders);
         $I->wait('1');
@@ -107,8 +121,11 @@ class IntegrationOSCest
 //-----------VERIFY DELETING STATUS NOT PRESENCE LIST PAGE------------------------
 
 
-
+    /**
+     * @group a
+     */
     public function DeleetinqOSListPage (AcceptanceTester $I){
+        $I->wantTo('Проверить отсутствие удаленного статуса заказа на странице  "Список статусов".');
         $nameEditStatus='Отредактированний Статус Order';
         $nameStatus='123 Super Созданний Status Заказа 890';
         $I->amOnPage(OrderStatusesPage::$ListURL);
@@ -135,19 +152,22 @@ class IntegrationOSCest
 //---------VERIFY DELETING STATUS NOT PRESENCE OPTION BUTTON SET STATUS---------
 
 
-
-        public function VerifyDeletingaStatusNotPresenceOrderListPage (AcceptanceTester $I){
-            $nameEditStatus='Отредактированний Статус Order';
-            $nameStatus='123 Super Созданний Status Заказа 890';
-            $I->amOnPage(OrdersListPage::$ListURLorders);
-            $positionsInOption= $I->grabTagCount($I, 'select option');
-            $I->comment("Number Rows:'$positionsInOption' In List Select");
-            if($positionsInOption > 3){
-                for($j=1;$j<=$positionsInOption;++$j){
-                    $nameStSl=$I->grabTextFrom("//table/thead/tr[2]/td[3]/select/option[$j]");
-                    $I->comment("In Row:'$j', Presence Status:'$nameStSl'.");
-                }$I->dontSee('-- Все --','//table/thead/tr[2]/td[3]/select');
-            }elseif($positionsInOption == 3){
+    /**
+     * @group a
+     */
+    public function VerifyDeletingaStatusNotPresenceOrderListPage (AcceptanceTester $I){
+        $I->wantTo('Проверить отсутствие удаленного статуса  на странице "Список закзов".');
+        $nameEditStatus='Отредактированний Статус Order';
+        $nameStatus='123 Super Созданний Status Заказа 890';
+        $I->amOnPage(OrdersListPage::$ListURLorders);
+        $positionsInOption= $I->grabTagCount($I, 'select option');
+        $I->comment("Number Rows:'$positionsInOption' In List Select");
+        if($positionsInOption > 3){
+            for($j=1;$j<=$positionsInOption;++$j){
+                $nameStSl=$I->grabTextFrom("//table/thead/tr[2]/td[3]/select/option[$j]");
+                $I->comment("In Row:'$j', Presence Status:'$nameStSl'.");
+           }$I->dontSee('-- Все --','//table/thead/tr[2]/td[3]/select');
+           }elseif($positionsInOption == 3){
                 $p=$I->grabTextFrom('//table/thead/tr[2]/td[3]/select/option[1]');
                 $o=$I->grabTextFrom('//table/thead/tr[2]/td[3]/select/option[2]');
                 $k=$I->grabTextFrom('//table/thead/tr[2]/td[3]/select/option[3]');
@@ -155,15 +175,10 @@ class IntegrationOSCest
                 }
                 
             
-            $I->dontSee($nameStatus,'//table/thead/tr[2]/td[3]/select');
-            $I->dontSee($nameEditStatus,'//table/thead/tr[2]/td[3]/select');
-        }
+        $I->dontSee($nameStatus,'//table/thead/tr[2]/td[3]/select');
+        $I->dontSee($nameEditStatus,'//table/thead/tr[2]/td[3]/select');
+    }
     
-    
-
-
-  
-
 
 
 }
