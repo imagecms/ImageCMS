@@ -20,9 +20,9 @@ class Admin extends BaseAdminController {
                 ->renderAdmin('settings');
     }
     
-    public function getClass($param){
-        if($param == 'import')
-            require 'import.php';
+    public function getImport($className){
+        require 'import.php';
+        Import::eccc();
     }
     
     public function getTpl($check){
