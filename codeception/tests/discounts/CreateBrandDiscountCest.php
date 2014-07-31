@@ -39,9 +39,9 @@ class CreateBrandDiscountCest
         $I->amOnPage("/admin/components/run/shop/brands/index");
         $kil1=$I->grabClassCount($I, "niceCheck");
         $kil2=$kil1-1;
-        $I->comment("$kil2");
+        $I->comment("Kil2=$kil2");
         $pag=$I->grabClassCount($I, "pagination pull-left");
-        $I->comment("$pag");
+        $I->comment("Pag=$pag");
         if ($pag=0){
             for ($j=1; $j<=$kil2; $j++){
                 $brandList[$j]=$I->grabTextFrom(".//*[@id='brands_filter']/table/tbody/tr[$j]/td[3]/a");
@@ -57,12 +57,15 @@ class CreateBrandDiscountCest
             $BrandAllList=  implode(" ", $brandList);
             $I->comment($BrandAllList);
             for ($i=1; $i<=$but; $i++){
-                $pag2=$I->grabAttributeFrom(".//*[@id='brands_filter']/div/div[2]/ul/li[2]/a", "class");
-                $I->comment("$pag2");
-                if ($pag='pjax'){
-                    $but++;
+                $pag2=$I->grabAttributeFrom(".//*[@id='brands_filter']/div/div[2]/ul/li[2]", "class");
+                $I->comment("Pag2=$pag2");
+                if ($pag2="disabled"){
+                    break;
                 }
-                while ($pag2!="disabled"){
+                else {
+                    $but++;
+                //}
+                //while ($pag2!="disabled"){
                     $I->click(".//*[@id='brands_filter']/div/div[2]/ul/li[2]/a");
                     $I->wait('2');
                     $kil3=$I->grabClassCount($I, "niceCheck");
@@ -74,11 +77,18 @@ class CreateBrandDiscountCest
                     }
                     $BrandAllList=  implode(" ", $brandList);
                     $I->comment($BrandAllList);
-                    if ($kil4<24){
+                    $class=$I->grabAttributeFrom(".//*[@id='brands_filter']/div/div[1]/ul/li[last()]", "class");
+                    $I->comment("Class=$class");
+                    if ($class="btn-primary active"){
+                        //$but--;
+                        //$i++;
                         break;
                     }
+//                    else {
+                    $i++;                       
+//                    }
                 }
-                $i++;                
+                //$i++;                
             }
             $BrandAllList=  implode(" ", $brandList);
             $I->comment($BrandAllList);
