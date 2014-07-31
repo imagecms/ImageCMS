@@ -1,12 +1,12 @@
 <?php
-use \AcceptanceTester;
+use \OrdersTester;
 class TextElementOLCest
 {
 //---------------------------AUTORIZATION--------------------------------------- 
     /**
      * @group a
      */
-    public function Login(AcceptanceTester $I){
+    public function Login(OrdersTester $I){
         InitTest::Login($I);
     }
     
@@ -16,7 +16,7 @@ class TextElementOLCest
     /**
      * @group a
      */
-    public function  WayListOL (AcceptanceTester $I){      
+    public function  WayListOL (OrdersTester $I){      
         $I->wantTo('Проверить путь к странице "Список заказов".');
         $I->click(NavigationBarPage::$Orders);
         $I->click(NavigationBarPage::$OrdersList);
@@ -24,6 +24,7 @@ class TextElementOLCest
         $I->seeInCurrentUrl('/admin/components/run/shop/orders/index');
     }
     
+  
 
     
     
@@ -32,7 +33,7 @@ class TextElementOLCest
     /**
      * @group a
      */
-    public function VerufyTextListPage (AcceptanceTester $I){
+    public function VerufyTextListPage (OrdersTester $I){
         $I->wantTo('Проверить текст на странице "Список заказов.');
         $I->amOnPage(OrdersListPage::$ListURLorders);
         $I->seeInPageSource('Список заказов');
@@ -59,7 +60,7 @@ class TextElementOLCest
     /**
      * @group a
      */
-    public function VerufyElementListPage (AcceptanceTester $I){
+    public function VerufyElementListPage (OrdersTester $I){
         $I->wantTo('Проверить наличие елементов страницы "Список заказов".');
         $I->amOnPage(OrdersListPage::$ListURLorders);
         $I->seeElement(OrdersListPage::$ListHeaderCheckBox);
