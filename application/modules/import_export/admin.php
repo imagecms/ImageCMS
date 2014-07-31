@@ -23,13 +23,16 @@ class Admin extends BaseAdminController {
     }
     
     public function getImport($className){
-        require 'import.php';
-        Import::eccc();
+        require_once 'import.php';
+        
+        $n = new Import();
+        $n->$className();
     }
     
     public function getTpl($check){
         if($check == 'import'){
             \CMSFactory\assetManager::create()
+                ->registerScript('importAdmin')
                 ->renderAdmin('import');
         } else {
             \CMSFactory\assetManager::create()
