@@ -12,11 +12,17 @@ class Admin extends BaseAdminController {
         parent::__construct();
         $lang = new MY_Lang();
         $lang->load('import_export');
+        
     }
 
     public function index() {
         \CMSFactory\assetManager::create()
                 ->renderAdmin('settings');
+    }
+    
+    public function getClass($param){
+        if($param == 'import')
+            require 'import.php';
     }
     
     public function getTpl($check){
