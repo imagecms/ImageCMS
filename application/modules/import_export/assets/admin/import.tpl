@@ -8,8 +8,11 @@
     </div>
     <div class="content_big_td">
         <div class="clearfix">
-            <div class="btn-group myTab m-t_20 pull-left" data-toggle="buttons-radio">
-                
+            <div class="pull-right">
+                <div class="d-i_b">
+                    <a href="{$BASE_URL}admin/components/init_window/import_export" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Back", 'admin')}</span></a>
+                        {echo create_language_select($languages, $locale, "/admin/components/modules_table")}
+                </div>
             </div>
         </div>
         <div class="tab-content">
@@ -42,7 +45,7 @@
                                     <!-- End. Choose file and load to server on checked slot  -->
 
                                     <!-- Start. Choose file and load to server on checked slot  -->
-                                    <form action="../getClass/import" method="post" enctype="multipart/form-data" id="makeImportForm">
+                                    <form action="../getImport/Import" method="post" enctype="multipart/form-data" id="makeImportForm">
                                         <div class="inside_padd span9 form-horizontal row-fluid">
 
                                             <!-- Start. First of tree slots markup -->
