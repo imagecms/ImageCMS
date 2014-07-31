@@ -1,7 +1,7 @@
 <?php
 
 
-class Import extends ShopAdminController{
+class Import{
     /**
      * Fields in export that are marked by default
      * @var array
@@ -14,9 +14,11 @@ class Import extends ShopAdminController{
         'cat',
         'num'
     );
+    public $baseAdminUrl = '/admin/components/run/shop/';
+    public $shopThemeUrl = '/application/modules/import_export/assets/admin/';
     private $languages = null;
-    private $uploadDir = BACKUPFOLDER;
-    private $csvFileName = 'product_csv_1.csv';
+    private $uploadDir = './application/modules/import_export/backups/';
+    private $csvFileName = 'import1.csv';
     private $uplaodedFileInfo = array();
 
     public function __construct() {
@@ -24,23 +26,23 @@ class Import extends ShopAdminController{
         
         \ShopController::checkVar();
         \ShopAdminController::checkVarAdmin();
- 
         $this->languages = $this->db->get('languages')->result();
         $this->load->helper('file');
         ini_set('max_execution_time', 9000000);
         set_time_limit(9000000);
-    }
-    public function eccc(){
-        exit('zzzzzzzzzzzzzz');
     }
 
         /**
      * Import products from CSV file
      * @return void
      */
-    public function import() {
-        if (count($_FILES))
+    public function imports() {
+        if (count($_FILES)){
             $this->saveCSVFile();
+            chmod($this->uploadDir.$this->csvFileName, 0777);
+            var_dump($this->uploadDir.$this->csvFileName);
+        }
+        
         if (count($_POST['attributes']) && $_POST['csvfile']) {
             $importSettings = $this->cache->fetch('ImportExportCache');
             if (empty($importSettings) || $importSettings['withBackup'] != $this->input->post('withBackup'))
@@ -107,9 +109,9 @@ class Import extends ShopAdminController{
 
             if (($data['file_ext'] === '.xls') || ($data['file_ext'] === '.xlsx')) {
                 $this->convertXLStoCSV($data['full_path']);
-                unlink(BACKUPFOLDER . $data['client_name']);
+                unlink($this->uploadDir . $data['client_name']);
             } else {
-                rename(BACKUPFOLDER . str_replace(' ', '_', $data['client_name']), BACKUPFOLDER . $this->csvFileName);
+                rename($this->uploadDir . str_replace(' ', '_', $data['client_name']), $this->uploadDir . $this->csvFileName);
             }
 
             $this->configureImportProcess();
@@ -139,14 +141,14 @@ class Import extends ShopAdminController{
             $toPrint = rtrim($toPrint, ';') . PHP_EOL;
         }
         $filename = $this->csvFileName;
-        fopen(BACKUPFOLDER . $filename, 'w+');
-        if (is_writable(BACKUPFOLDER . $filename)) {
-            if (!$handle = fopen(BACKUPFOLDER . $filename, 'w+')) {
+        fopen($this->uploadDir . $filename, 'w+');
+        if (is_writable($this->uploadDir . $filename)) {
+            if (!$handle = fopen($this->uploadDir . $filename, 'w+')) {
                 echo json_encode(array('error' => \ImportCSV\Factor::ErrorFolderPermission));
                 exit;
             }
 
-            write_file(BACKUPFOLDER . $filename, $toPrint);
+            write_file($this->uploadDir . $filename, $toPrint);
 
             fclose($handle);
         } else {
@@ -176,5 +178,18 @@ class Import extends ShopAdminController{
                     'filesInfo' => $uploadedFiles
                 ));
         }
+    }
+    private function getFilesInfo($dir = null) {
+        $dir = ($dir == null) ? $this->uploadDir : $dir;
+        foreach (get_filenames($dir) as $file) {
+            if (strpos($file, 'roduct_csv_')) {
+                $this->uplaodedFileInfo[] = get_file_info($this->uploadDir . $file);
+            }
+        }
+    }
+    public function getAttributes() {
+        $this->takeFileName();
+        $this->configureImportProcess(false);
+        $this->render('import_attributes');
     }
 }
