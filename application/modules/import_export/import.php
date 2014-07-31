@@ -1,7 +1,7 @@
 <?php
 
 
-class Import{
+class Import extends ShopAdminController{
     /**
      * Fields in export that are marked by default
      * @var array
@@ -14,8 +14,6 @@ class Import{
         'cat',
         'num'
     );
-    public $baseAdminUrl = '/admin/components/run/shop/';
-    public $shopThemeUrl = '/application/modules/import_export/assets/admin/';
     private $languages = null;
     private $uploadDir = './application/modules/import_export/backups/';
     private $csvFileName = 'import1.csv';
@@ -190,6 +188,6 @@ class Import{
     public function getAttributes() {
         $this->takeFileName();
         $this->configureImportProcess(false);
-        $this->render('import_attributes');
+        \CMSFactory\assetManager::create()->renderAdmin('import_attributes');
     }
 }
