@@ -58,7 +58,7 @@ class DeliverySteps extends \DeliveryTester {
             }
         }
         $I->click(\DeliveryCreatePage::$ButtonCreate);
-        $I->wait("3");
+//        $I->wait("3");
     }
 
     /**
