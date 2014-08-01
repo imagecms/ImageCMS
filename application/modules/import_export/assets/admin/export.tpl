@@ -24,7 +24,7 @@
                     <tbody>
                         <tr>
                             <td colspan="6">
-                                <form action="../getExport/test" method="post" id="makeExportForm">
+                                <form action="../getExport" method="post" id="makeExportForm">
                                     {$categories = ShopCore::app()->SCategoryTree->getTree()}
                                     <div class="inside_padd form-horizontal row-fluid">
                                         <label class="control-label" for="">{lang('Columns','admin')}</label>
@@ -93,8 +93,7 @@
                                         <div class="control-group">
                                             <div class="control-label"></div>
                                             <label class="controls">
-                                                <!--<span class="btn btn-small action_on runExport" data-loading-text="{lang('Exports in progress','admin')}...">{lang('Start export','admin')}</span>-->
-                                                <input type="submit" value="export"/>
+                                                <span class="btn btn-small action_on runExport" data-loading-text="{lang('Exports in progress','admin')}...">{lang('Start export','admin')}</span>
                                             </label>
                                         </div>
                                         <!-- End. Let's go Button ;) -->
