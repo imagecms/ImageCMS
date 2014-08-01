@@ -1,6 +1,6 @@
 <?php
 
-
+use import_export\classes\ImportBootstrap as Imp;
 class Import extends ShopAdminController{
     /**
      * Fields in export that are marked by default
@@ -16,7 +16,7 @@ class Import extends ShopAdminController{
     );
     private $languages = null;
     private $uploadDir = './application/modules/import_export/backups/';
-    private $csvFileName = 'import1.csv';
+    private $csvFileName = 'product_csv_1.csv';
     private $uplaodedFileInfo = array();
 
     public function __construct() {
@@ -38,14 +38,18 @@ class Import extends ShopAdminController{
         if (count($_FILES)){
             $this->saveCSVFile();
             chmod($this->uploadDir.$this->csvFileName, 0777);
-            var_dump($this->uploadDir.$this->csvFileName);
+            
+            $path = $this->uploadDir .strtr($_FILES['userfile']['name'], array(' '=>'_'));
+            if(isset($path)){
+                unlink($path);
+            }
         }
         
         if (count($_POST['attributes']) && $_POST['csvfile']) {
             $importSettings = $this->cache->fetch('ImportExportCache');
             if (empty($importSettings) || $importSettings['withBackup'] != $this->input->post('withBackup'))
                 $this->cache->store('ImportExportCache', array('withBackup' => $this->input->post('withBackup')), '25920000');
-            $result = Import::create()->withBackup()->startProcess()->resultAsString();
+            $result = Imp::create()->withBackup()->startProcess()->resultAsString();
             echo(json_encode($result));
         } else {
             if (!$_FILES) {
@@ -124,9 +128,9 @@ class Import extends ShopAdminController{
     }
     
     private function convertXLStoCSV($excel_file = '') {
-        include './application/modules/shop/classes/PHPExcel.php';
-        include './application/modules/shop/classes/PHPExcel/IOFactory.php';
-        include './application/modules/shop/classes/PHPExcel/Writer/Excel2007.php';
+        include './application/modules/import_export/PHPExcel/PHPExcel.php';
+        include './application/modules/import_export/PHPExcel/PHPExcel/IOFactory.php';
+        include './application/modules/import_export/PHPExcel/PHPExcel/Writer/Excel2007.php';
         $objReader = PHPExcel_IOFactory::createReaderForFile($excel_file);
         $objReader->setReadDataOnly(true);
         $objPHPExcel = $objReader->load($excel_file);
