@@ -199,30 +199,27 @@ class DeliverySteps extends \DeliveryTester {
      * @param type $name Delivery Method name
      */
     function CheckMethodNotPresentInFrontEnd($name) {
-        $I = $this;
+$I = $this;
         
-        static $WasCalled = FALSE;
-        
-        if (!$WasCalled) {
+        $I->amOnPage('/');
+
+        $buy = "//div[@class='frame-prices-buy f-s_0']//form/div[3]";
+        $globalbaseket = 'div#tinyBask button';
+
+        $globalbaseketclass = $I->grabAttributeFrom($globalbaseket, 'class');
+
+        if (!empty($globalbaseketclass)) { 
+            $I->comment('My basket is not empty');
+            $I->amOnPage("/shop/cart");
+        } else {
             $I->amOnPage('/shop/product/mobilnyi-telefon-sony-xperia-v-lt25i-black');
-            
-            $buy = "//div[@class='frame-prices-buy f-s_0']//form/div[3]";
-            $basket = "//div[@class='frame-prices-buy f-s_0']//form/div[2]";
-            $I->wait(10);
-            try {
-                $I->click($buy);
-            } catch (\Exception $exc) {
-                $I->click($basket);
-            }
+            $I->wait(5);
+            $I->click($buy);
             $I->waitForElementVisible("//*[@id='popupCart']",10);
             $I->click(".btn-cart.btn-cart-p.f_r");
-        } else {
-            $I->amOnPage("/shop/cart");
         }
-
-        $WasCalled = TRUE;
-        $missing = TRUE;
         $I->waitForText('Оформление заказа');
+        $missing = TRUE;
         /**
          * @var int $ClassCount number of all delivery methods available in processing order  page(front)
          */
@@ -268,7 +265,7 @@ class DeliverySteps extends \DeliveryTester {
             $I->click(\DeliveryPage::$DeleteButton);
             $I->waitForText("Удаление способов доставки", NULL, "//*[@id='mainContent']/div/div[1]/div[1]/h3");
             $I->click(\DeliveryPage::$DeleteWindowDelete);
-            $this->CheckForAlertPresent('success', 'delete');
+            $I->CheckForAlertPresent('success', 'delete');
         }
     }
     /**
@@ -291,10 +288,12 @@ class DeliverySteps extends \DeliveryTester {
             case 'success':
                     $I->comment("I want to see that success alert is present");
                     $I->waitForElementVisible('.alert.in.fade.alert-success');
-                    if      ($module == 'create')   { $I->see('Доставка создана','.alert.in.fade.alert-success'); }
-                    elseif  ($module == 'edit')     { $I->see('Изменения сохранены','.alert.in.fade.alert-success'); }
-                    elseif  ($module == 'delete')   { $I->see('Способ доставки удален','.alert.in.fade.alert-success'); }
-                    elseif  ($module == 'drag')     { $I->see('Позиции сохранены', '.alert.in.fade.alert-success'); }
+//                   ____________________________________________________________________________________________________________________________
+//                    if      ($module == 'create')   { $I->see('Доставка создана','.alert.in.fade.alert-success'); }         Don't work in server     
+//                    elseif  ($module == 'edit')     { $I->see('Изменения сохранены','.alert.in.fade.alert-success'); }
+//                    elseif  ($module == 'delete')   { $I->see('Способ доставки удален','.alert.in.fade.alert-success'); }
+//                    elseif  ($module == 'drag')     { $I->see('Позиции сохранены', '.alert.in.fade.alert-success'); }
+//                    ____________________________________________________________________________________________________________________________
                     $I->waitForElementNotVisible('.alert.in.fade.alert-success');
                     break;
             //Checking required field (red color(class alert) & message 
@@ -302,8 +301,8 @@ class DeliverySteps extends \DeliveryTester {
                     $I->comment("I want to see that field is required");
                     $I->waitForElementVisible('//label[@generated="true"]');
                     $I->see('Это поле обязательное.', 'label.alert.alert-error');
-                    if      ($module=='create') { $I->assertEquals($I->grabAttributeFrom(\DeliveryCreatePage::$FieldName, 'class'), "alert alert-error");}
-                    elseif  ($module=='edit')   { $I->assertEquals($I->grabAttributeFrom(\DeliveryEditPage::$FieldName, 'class'), "required alert alert-error");}
+                    if      ($module=='create') { $I->assertEquals($I->grabAttributeFrom(\DeliveryCreatePage::$FieldName, 'class'), "alert alert-error"); }
+                    elseif  ($module=='edit')   { $I->assertEquals($I->grabAttributeFrom(\DeliveryEditPage::$FieldName, 'class'), "required alert alert-error"); }
                     break;
                 default :
                     $I->fail("unknown type of error entered");
