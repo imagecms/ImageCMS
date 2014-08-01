@@ -6,13 +6,11 @@ class FieldsOCACest
      
     
     /**
-     * @group a
+     * @group q
      */
     public function Login(OrdersTester $I){
         InitTest::Login($I);
     }    
-    
-    
     
     /**
      * @group a

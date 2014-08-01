@@ -20,7 +20,7 @@ class FieldsNLCest
      */
     public function CreateNotificationFront(NotificationListTester $I){
       $I->amOnPage(NotificationCreateFrontPage::$PageURL);
-//        $I->scrollToElement($I, '.infoBut.isDrop');
+        $I->scrollToElement($I, '.infoBut.isDrop');
         $I->click(NotificationCreateFrontPage::$ButtonOnPage);
         $I->waitForText('Сообщить о появлении');
         $I->click(NotificationCreateFrontPage::$ButtonSendPresent);

@@ -21,8 +21,10 @@ class CreateCategoryOrdersPage
        public static $CrtCatName1 = "Основная КаТеГоРиЯ";
        public static $CrtCatName2= "First Дочерная";
        public static $CrtCatName3 = "Second ДоЧеРнАя";
-       public static $CrtCatName1ForSearch = "Основ";
-       public static $CrtCatName2ForSearch = "-First";
-       public static $CrtCatName3ForSearch = "--Second";
+       public static $CrtCatName1ForSearch = "Основная";
+       public static $CrtCatName2ForSearchOrder = "First";
+       public static $CrtCatName2ForSearchCategory = "-First";
+       public static $CrtCatName3ForSearchCategory = "--Second";
+       public static $CrtCatName3ForSearchOrder = "Second";
 }
 

@@ -276,6 +276,7 @@ class TextElementOSCest
         $I->click(OrderStatusesListPage::$DeleteButtonDelete);
         $I->wait(1);
         $I->see('Статус удален', OrderStatusesListPage::$DeleteMessageDeleting);
+        InitTest::ClearAllCach($I);
     } 
     
     

@@ -6,13 +6,20 @@ class CategoryAndProductCest
      
     
     /**
-     * @group a
+     * @group x
      */
     public function Login(OrdersTester $I){
         InitTest::Login($I);
     }
     
     
+    /**
+     * @group x
+     * @guy OrdersTester\OrdersSteps
+     */
+    public function qqq (OrdersTester\OrdersSteps $I) {
+        $I->SearchCategory($typeCategory = 'Основная');
+}
     
 //----------------Create Parent, Sub1, Sub2 Product Category--------------------
     
@@ -275,16 +282,16 @@ class CategoryAndProductCest
     
     
 //-------------------------Create Cirrency--------------------------------------    
-    /**
-     * @group a
-     */ 
-    public function CreateCurrencyMainCurr (OrdersTester $I) {
-        $I->wantTo('Создать новую главную валюту.');
-        $this->CreateCurrency($I,   $createCurrName = 'Тестовая Валюта',
-                                    $createCurrCode = 'OUI',
-                                    $createCurrSymbol = '#%&',
-                                    $createCurrCourse = '5.0000');
-    }
+//    /**
+//     * @group a
+//     */ 
+//    public function CreateCurrencyMainCurr (OrdersTester $I) {
+//        $I->wantTo('Создать новую главную валюту.');
+//        $this->CreateCurrency($I,   $createCurrName = 'Тестовая Валюта',
+//                                    $createCurrCode = 'OUI',
+//                                    $createCurrSymbol = '#%&',
+//                                    $createCurrCourse = '5.0000');
+//    }
 
 
 
