@@ -45,7 +45,7 @@
                                     <!-- End. Choose file and load to server on checked slot  -->
 
                                     <!-- Start. Choose file and load to server on checked slot  -->
-                                    <form action="../getImport/eccc" method="post" enctype="multipart/form-data" id="makeImportForm">
+                                    <form action="{$ADMIN_URL}../getImport/imports" method="post" enctype="multipart/form-data" id="makeImportForm">
                                         <div class="inside_padd span9 form-horizontal row-fluid">
 
                                             <!-- Start. First of tree slots markup -->

@@ -49,7 +49,7 @@ $(document).ready(function() {
         $('input[type=hidden].attributes').val($names);
         $('input[type=hidden].slothidden').val($chekedFile);
         $.ajax({
-            url: "/admin/components/run/shop/system/import",
+            url: "/admin/components/init_window/import_export/getImport/imports",
             type: 'post',
             data: $(this).serialize(),
             success: function(obj) {
@@ -165,3 +165,37 @@ $(document).ready(function() {
 
 
 });
+//limit = 100;
+
+//$.ajax({
+//                    type: 'post',
+//                    async: false,
+//                    url: '/admin/components/init_window/sync/getCountRec/' + file,
+//                    success: function(RecCount) {
+//                        var RecCountInt = parseInt(RecCount)
+//                        for (var i = 0; i < RecCountInt; i = i + limit) {
+//
+//
+//                            $.ajax({
+//                                type: 'post',
+//                                async: false,
+//                                url: '/admin/components/init_window/sync/importProd?limit=' + limit + '&offset=' + i,
+//                                success: function(data) {
+//                                    txt.html(txt.html() + "<br/> Файл - " + index + ' - ' + file + " ----  " + data + " товаров импортирувани")
+//                                    txt.scrollTop(
+//                                            txt[0].scrollHeight - txt.height()
+//                                            );
+//                                    return false;
+//
+//                                }
+//
+//
+//                            })
+//
+//
+//
+//                        }
+//
+//
+//                    }
+//                })
