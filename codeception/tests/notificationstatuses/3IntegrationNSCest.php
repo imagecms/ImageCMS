@@ -1,12 +1,12 @@
 <?php
-use \AcceptanceTester;
+use \NotificationStatusesTester;
 class IntegrationNSCest
 {
 //---------------------------AUTORIZATION---------------------------------------
     /**
      * @group a
      */
-    public function Login(AcceptanceTester $I){
+    public function Login(NotificationStatusesTester $I){
         InitTest::Login($I);
     }
     
@@ -15,11 +15,11 @@ class IntegrationNSCest
     /**
      * @group a
      */
-    public function CreateNotificationFront(AcceptanceTester $I){
-        $I->wantTo('Создать условия для тестирования интеграции модуля "Статусы Уведомления" с модулем "Список уведомлений" посредством создания уведомлениея о появлении товара с фронтенда сайта.');
+    public function CreateNotificationFront(NotificationStatusesTester $I){
+        $I->wantTo('Create Notification in Front End.');
         $I->amOnPage('/shop/category/telefoniia-pleery-gps/telefony/smartfony?per_page=12');
         $I->wait('1');
-        $I->scrollToElement($I, '.infoBut.isDrop');
+//        $I->scrollToElement($I, '.infoBut.isDrop');
         $I->wait('1');
         $I->click('.infoBut.isDrop');
         $I->wait('1');
@@ -33,8 +33,8 @@ class IntegrationNSCest
     /**
      * @group a
      */
-    public function VerifySavedCreateStatus (AcceptanceTester $I){    
-        $I->wantTo('Проверить отображение статуса вна странице "Спиок статусов".');
+    public function VerifySavedCreateStatus (NotificationStatusesTester $I){    
+        $I->wantTo('Verify Created Status Present on Status List Page.');
         $I->amOnPage(NotificationStatusesPage::$CreatePageUrl);
         $I->fillField(NotificationStatusesPage::$CreationFildInput, '123 qwe !@# ЯЧС');
         $I->click(NotificationStatusesPage::$CreationButtonCreateAndGoBack);
@@ -49,8 +49,8 @@ class IntegrationNSCest
     /**
      * @group a
      */
-    public function CreatingStatusMappingOnThePageNotificationList (AcceptanceTester $I){
-        $I->wantTo('Проверить присутствие созданного статуса на страницах "Список уведомлений" и "Редактирование уведомления".');
+    public function CreatingStatusMappingOnThePageNotificationList (NotificationStatusesTester $I){
+        $I->wantTo('Verify Created Status Present on Notification List Page.');
         $I->amOnPage(NotificationListPage::$ListPageURL);
         $I->see('123 qwe !@# ЯЧС',  NotificationListPage::$ListSelectMain);
         $I->selectOption(NotificationListPage::$ListSelectFirst, '123 qwe !@# ЯЧС');
@@ -67,8 +67,8 @@ class IntegrationNSCest
     /**
      * @group a
      */
-    public function VerifySavedEditStatus (AcceptanceTester $I){
-        $I->wantTo('Проверить отображение отредактированного статуса на странице "Список статусов".');
+    public function VerifySavedEditStatus (NotificationStatusesTester $I){
+        $I->wantTo('Verify Edited Status Present on Status List Page.');
         $I->amOnPage(NotificationStatusesPage::$ListPageURL);
         $I->click(NotificationStatusesPage::$ListLinkForEditing);
         $I->fillField(NotificationStatusesPage::$EditingFildInput, 'Гидрокарбонат');
@@ -83,8 +83,8 @@ class IntegrationNSCest
     /**
      * @group a
      */
-    public function EditingStatusMappingOnThePageNotificationList (AcceptanceTester $I){
-        $I->wantTo('Проверить присутствие отредактированного статуса на страницах "Список уведомлений" и "Редактирование уведомления".');
+    public function EditingStatusMappingOnThePageNotificationList (NotificationStatusesTester $I){
+        $I->wantTo('Verify Edited Status Present on Notification List Page.');
         $I->amOnPage(NotificationListPage::$ListPageURL);   
         $I->see('Гидрокарбонат',  NotificationListPage::$ListSelectMain);   
         $I->selectOption(NotificationListPage::$ListSelectFirst, 'Гидрокарбонат');    
@@ -101,8 +101,8 @@ class IntegrationNSCest
     /**
      * @group a
      */     
-    public function VerifyDeletedEditingStatus(AcceptanceTester $I){
-        $I->wantTo('Проверить отсутствие удаленного статуса на странице "Список статусов".');
+    public function VerifyDeletedEditingStatus(NotificationStatusesTester $I){
+        $I->wantTo('Verify Deleted Status Not Present on Status List Page.');
         $I->amOnPage(NotificationStatusesPage::$ListPageURL);
         $I->click(NotificationStatusesPage::$ListHeaderCheckBox);
         $I->click(NotificationStatusesPage::$ListCheckBoxFirst);
@@ -121,8 +121,8 @@ class IntegrationNSCest
     /**
      * @group a
      */        
-    public function DeletingStatusMappingOnThePageNotificationList(AcceptanceTester $I){
-        $I->wantTo('Проверить отсутствие удаленных статусов на страницах "Список уведомлений" и "Редактирование уведомления".');
+    public function DeletingStatusMappingOnThePageNotificationList(NotificationStatusesTester $I){
+        $I->wantTo('Verify Deleted Status Not Present on Notification List Page.');
         $I->amOnPage(NotificationListPage::$ListPageURL);   
         $I->dontsee('Гидрокарбонат',  NotificationListPage::$ListSelectMain); 
         $I->dontsee('123 qwe !@# ЯЧС',  NotificationListPage::$ListSelectMain);
@@ -139,14 +139,15 @@ class IntegrationNSCest
     /**
      * @group a
      */
-    public function DeleteNotification(AcceptanceTester $I){
-        $I->wantTo('Привести в первичное состояние модули "Список уведомлений" и "Статусы уведомлений".');
+    public function DeleteNotification(NotificationStatusesTester $I){
+        $I->wantTo('Deleted Notification.');
         $I->amOnPage(NotificationListPage::$ListPageURL);
         $I->click(NotificationListPage::$ListMainCheckBox);
         $I->click(NotificationListPage::$ListButtonDelete);
         $I->wait('1');
         $I->click(NotificationListPage::$DeleteWindowButtonDelete);
         $I->wait('1');
+        InitTest::ClearAllCach($I); 
     } 
     
     
