@@ -29,7 +29,7 @@
                                 <div class="importProcess">
                                     <!-- Start. Choose file and load to server on checked slot  -->
                                     <div class="fortextblock inside_padd span9">
-                                        <form action="{$ADMIN_URL}system/import" method="post" enctype="multipart/form-data">
+                                        <form action="{$ADMIN_URL}../getImport/imports" method="post" enctype="multipart/form-data">
                                             <div class="control-group form-horizontal">
                                                 <label class="control-label"></label>
                                                 <div class="controls">
@@ -45,7 +45,7 @@
                                     <!-- End. Choose file and load to server on checked slot  -->
 
                                     <!-- Start. Choose file and load to server on checked slot  -->
-                                    <form action="../getImport/Import" method="post" enctype="multipart/form-data" id="makeImportForm">
+                                    <form action="../getImport/eccc" method="post" enctype="multipart/form-data" id="makeImportForm">
                                         <div class="inside_padd span9 form-horizontal row-fluid">
 
                                             <!-- Start. First of tree slots markup -->

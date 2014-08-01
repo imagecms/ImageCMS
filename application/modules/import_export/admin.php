@@ -23,8 +23,10 @@ class Admin extends BaseAdminController {
     }
     
     public function getImport($className){
-        require 'import.php';
-        Import::eccc();
+        require_once 'import.php';
+        
+        $n = new Import();
+        $n->$className();
     }
     
     public function getExport($className){
@@ -47,9 +49,10 @@ class Admin extends BaseAdminController {
     public function getTpl($check){
         if($check == 'import'){
             \CMSFactory\assetManager::create()
+                ->registerScript('importAdmin')
                 ->renderAdmin('import');
-        } else {
-            $this->template->registerJsFile('application/modules/shop/admin/templates/system/importExportAdmin.js', 'after');
+        } 
+        if($check == 'export') {
             \CMSFactory\assetManager::create()
                 ->setData('attributes',ImportCSV\BaseImport::create()->makeAttributesList()->possibleAttributes)     
                 ->setData('languages',$this->languages)
