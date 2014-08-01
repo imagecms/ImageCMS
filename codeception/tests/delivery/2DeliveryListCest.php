@@ -16,6 +16,7 @@ class DeliveryListCest {
 
     /**
      * @group list
+     * @group current
      */
     public function authorization(DeliveryTester $I) {
         InitTest::Login($I);
@@ -81,6 +82,7 @@ class DeliveryListCest {
      * Verify that unactive method isn't present at frontend
      * 
      * @group list
+     * @group current
      * @guy DeliveryTester\DeliverySteps
      */
     public function toggleUnActive(DeliveryTester\DeliverySteps $I) {
@@ -137,7 +139,7 @@ class DeliveryListCest {
         $I->CheckForAlertPresent('success', 'delete');
     }
 //    /**
-//     * @group current
+//     * @group list
 //     * @guy DeliveryTester\DeliverySteps
 //     */
 //    public function deleteCreatedMethods(DeliveryTester\DeliverySteps $I) {

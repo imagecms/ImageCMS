@@ -96,7 +96,8 @@ class DeliveryVerifyElementsCest {
         if($I->grabAttributeFrom(DeliveryEditPage::$CheckboxPriceSpecified.'/..', 'class')== 'frame_label no_connection'){
             $I->click(DeliveryEditPage::$CheckboxPriceSpecified);
         }
-        $I->waitForElementVisible(DeliveryCreatePage::$FieldPriceSpecified);
+        
+        $I->waitForElement(DeliveryCreatePage::$FieldPriceSpecified);           //________________________________replace(was Wait for element visible) for QA_server
         $I->see("Сообщение про уточнение цены:",  DeliveryEditPage::$FieldPriceSpecifiedLabel);
         $I->see("Сохранить и выйти",DeliveryEditPage::$ButtonSaveExit);
         $I->see("Сохранить",DeliveryEditPage::$ButtonSave);

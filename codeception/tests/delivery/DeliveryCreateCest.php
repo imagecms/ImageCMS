@@ -120,10 +120,10 @@ class DeliveryCreateCest {
     //-----------------------FIELD DESCRIPTION TESTS----------------------------
 
     /**
-     * @group create
+     * @group current
      * @guy DeliveryTester\DeliverySteps
      */
-    public function pescription(DeliveryTester\DeliverySteps $I) {
+    public function description(DeliveryTester\DeliverySteps $I) {
         $name = "Доставка Описание";
         //For deleting
         $this->CreatedMethods[] = $name;
