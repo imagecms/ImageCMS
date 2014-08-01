@@ -1,20 +1,20 @@
 <section class="mini-layout">
-    <!--<div class="frame_title clearfix">
+    <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
             <span class="title">{lang('Import-Export CSV/XLS','admin')}</span>
         </div>
-    </div>
-    <div class="content_big_td">
-        <div class="clearfix">
-            <div class="btn-group myTab m-t_20 pull-left" data-toggle="buttons-radio">
-                <a href="#importcsv" class="btn btn-small active">{lang('Import','admin')}</a>
-                <a href="#exportcsv" class="btn btn-small">{lang('Export','admin')}</a>
+        <div class="pull-right">
+            <div class="d-i_b">
+                <a href="{$BASE_URL}admin/components/init_window/import_export" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Back", 'admin')}</span></a>
+                    {echo create_language_select($languages, $locale, "/admin/components/modules_table")}
             </div>
         </div>
+    </div>
+    <div class="content_big_td">
+        
         <div class="tab-content">
-            <div class="tab-pane active" id="importcsv">-->
-
+            <div class="tab-pane active" id="exportcsv">    
                 <table class="table table-striped table-bordered table-hover table-condensed">
                     <thead>
                         <tr>
@@ -24,7 +24,7 @@
                     <tbody>
                         <tr>
                             <td colspan="6">
-                                <form action="{$ADMIN_URL}system/export" method="post" id="makeExportForm">
+                                <form action="../getExport/test" method="post" id="makeExportForm">
                                     {$categories = ShopCore::app()->SCategoryTree->getTree()}
                                     <div class="inside_padd form-horizontal row-fluid">
                                         <label class="control-label" for="">{lang('Columns','admin')}</label>
@@ -93,7 +93,8 @@
                                         <div class="control-group">
                                             <div class="control-label"></div>
                                             <label class="controls">
-                                                <span class="btn btn-small action_on runExport" data-loading-text="{lang('Exports in progress','admin')}...">{lang('Start export','admin')}</span>
+                                                <!--<span class="btn btn-small action_on runExport" data-loading-text="{lang('Exports in progress','admin')}...">{lang('Start export','admin')}</span>-->
+                                                <input type="submit" value="export"/>
                                             </label>
                                         </div>
                                         <!-- End. Let's go Button ;) -->
@@ -112,7 +113,7 @@
                     </tbody>
                 </table>
                 
-            <!--</div>
+            </div>
         </div>
-    </div>-->
+    </div>
 </section>
