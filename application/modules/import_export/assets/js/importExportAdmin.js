@@ -109,17 +109,16 @@ $(document).ready(function() {
             dataType: "json",
             data: $('#makeExportForm').serialize(),
             success: function(data) {
-                showMessage("",data);
-//                switch (data) {
-//                    case "csv":
-//                    case "xls":
-//                    case "xlsx":
-//                        $("#makeExportForm input[name='formed_file_type']").val(data);
-//                        $('#makeExportForm').submit();
-//                        break;
-//                    default:
-//                        showMessage("", data);
-//                }
+                switch (data) {
+                    case "csv":
+                    case "xls":
+                    case "xlsx":
+                        $("#makeExportForm input[name='formed_file_type']").val(data);
+                        //$('#makeExportForm').submit();
+                        break;
+                    default:
+                        showMessage("", data);
+                }
             },
             complete: function(xhr) {
                 $(".runExport").button('reset');
