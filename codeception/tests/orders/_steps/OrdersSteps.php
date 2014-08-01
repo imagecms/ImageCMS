@@ -34,6 +34,7 @@ class OrdersSteps extends \OrdersTester {
             $I->fillField(\CreateCategoryOrdersPage::$CrtCategorySelectMenuInput, $addParentCategory);
             $I->click(\CreateCategoryOrdersPage::$CrtCategorySelectMenuSetSearch);
         }$I->click(\CreateCategoryOrdersPage::$CrtCategoryButtonSaveandBack); 
+        $I->wait('1');
     }
     
     
@@ -46,6 +47,7 @@ class OrdersSteps extends \OrdersTester {
     
 
     function createProduct( $nameProduct = NULL,
+                            $nameVariantProduct = NULL,
                             $priceProduct = NULL,
                             $articleProduct = NULL,
                             $amountProduct = NULL,
@@ -58,6 +60,8 @@ class OrdersSteps extends \OrdersTester {
         $I->amOnPage(\CreateProductsOrdersPage::$CrtProductPageURL);                                                                                                     
         if (isset($nameProduct)) {
             $I->fillField(\CreateProductsOrdersPage::$CrtProductNameProduct, $nameProduct);                                          
+        }If (isset($nameVariantProduct)){
+            $I->fillField(\CreateProductsOrdersPage::$CrtProductNameVariantProduct, $nameVariantProduct);
         }if(isset($priceProduct)){
             $I->fillField(\CreateProductsOrdersPage::$CrtProductPriceProduct, $priceProduct);                                                                            
         }if(isset($articleProduct)){
@@ -182,7 +186,7 @@ class OrdersSteps extends \OrdersTester {
     
     
     
-    
+//-----------------Search For Field  "ID /Название /Артикул"--------------------   
     
     function SearchNameProduct ( $typeName = NULL){ 
         $I = $this;
@@ -200,6 +204,11 @@ class OrdersSteps extends \OrdersTester {
             $I->see($typeName, '//tbody/tr[2]/td[2]/select');
             $I->see($typeName, '//table[2]/tbody/tr/td[1]/span');            
         }        
+    } 
+    
+    function SearchVariantProduct($variantName) {
+        $I = $this;
+              
     } 
     
     
@@ -268,6 +277,130 @@ class OrdersSteps extends \OrdersTester {
             $I->seeInField('//table[2]/tbody/tr/td[4]/div/input', '1');
         }
     } 
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    //-----------------Search For Field  "ID /Название /Артикул"--------------------   
+    
+    function SearchCategorySelect ($typeCategory = NULL){
+        $I = $this;
+        $urlCrtOrd = '/admin/components/run/shop/orders/create';
+        $a = $I->grabFromCurrentUrl();
+        $I->comment("Вот такой у нас урл = $a");
+        if(isset($typeCategory)){
+            if($a != $urlCrtOrd){
+            $I->amOnPage("$urlCrtOrd");
+            }
+            $I->click(\CreateOrderAdminPage::$CrtZMenuCategoryDefolt);
+            $I->fillField(\CreateOrderAdminPage::$CrtZMenuCategoryInput, $typeCategory);
+            $I->click(\CreateOrderAdminPage::$CrtZMenuCategorySearchButton);
+            $I->wait('1');
+            $I->see("$typeCategory", '//table[1]/tbody/tr[2]/td[1]/div/a');
+            
+        }
+    }
+    function SearchProductNameSelect($typeCategoryName = NULL, $typeProductName = NULL) {
+        $I = $this;
+        if(isset($typeProductName)){
+        $I->amOnPage('/admin/components/run/shop/search/index');
+        $I->click('//form/section/div[2]/table/thead/tr[2]/td[4]/div/a');
+        $I->fillField('//form/section/div[2]/table/thead/tr[2]/td[4]/div/div/div/input', $typeCategoryName);
+        $I->click('//form/section/div[2]/table/thead/tr[2]/td[4]/div/div/ul/li');
+        $I->wait('2');
+        $a = $I->grabTagCount($I, 'tbody tr');
+        $I->comment("вот столько у нас rows = $a");
+        }
+        if(isset($typeCategoryName)){
+        $I->amOnPage(\CreateOrderAdminPage::$CrtPURL);
+        $I->wait('1');
+            $I->click(\CreateOrderAdminPage::$CrtZMenuCategoryDefolt);
+            $I->fillField(\CreateOrderAdminPage::$CrtZMenuCategoryInput, $typeCategoryName);
+            $I->click(\CreateOrderAdminPage::$CrtZMenuCategorySearchButton);
+            for($j = 1;$j <= $a;$j++){
+            $b = $I->grabTextFrom("//table[1]/tbody/tr[2]/td[2]/select/option[$j]");
+            $I->comment("вот такое у нас название  опции = $b");
+                if($b == $typeProductName){
+                $I->click("//table[1]/tbody/tr[2]/td[2]/select/option[$j]");
+                $I->comment('Все Хорошо товар найден и активирован.');
+                $I->wait('1');
+                $I->see("Товар: $typeProductName", '//tbody/tr[1]/td[2]/div/div[2]/span[1]/b'); 
+                }elseif ($b != $typeProductName) {
+                $I->comment('Етот товар не соответствует ожыдаэмому.');
+                }
+            }
+        }
+        
+    }
+    
+    
+    function SearchProductVariantandPriceSelect($typeVariantName = NULL, $typeVariantPrice = NULL) {
+        $I = $this;
+        if(isset($typeVariantName)){
+            $I->see($typeVariantName, '//table[1]/tbody/tr[2]/td[3]/select/option');
+        }
+        if(isset($typeVariantPrice)){
+            $I->see($typeVariantPrice, '//table[1]/tbody/tr[2]/td[3]/select/option');
+        }
+    }
+    
+    function AddToBascketSelect() {
+        $I = $this;
+        $I->wait('1');
+        $I->click(\CreateOrderAdminPage::$CrtPButtAddToCart);
+        $I->see('В корзине', \CreateOrderAdminPage::$CrtPButtInBasket);
+    }
+    function SearchProductInBascket($name = NULL,
+                                    $variant = NULL,
+                                    $Price = NULL,
+                                    $totalPrice = NULL,
+                                    $Check = NULL){
+        $I = $this;
+    if(isset($name)){
+        $I->see($name, '//table[2]/tbody/tr/td[1]/span');
+    }    
+    if(isset($variant)){
+        $I->see($variant, '//form/div/div[1]/div/table[2]/tbody/tr/td[2]/span');
+    }    
+    if(isset($Price)){
+        $I->see($Price, '//form/div/div[1]/div/table[2]/tbody/tr/td[3]/span/span[1]');
+    }    
+    if(isset($totalPrice)){
+        $I->see($totalPrice, '//form/div/div[1]/div/table[2]/tbody/tr/td[5]/span[1]');
+    }    
+    if(isset($Check)){
+       $I->see($Check, '//form/div/div[1]/div/table[2]/tfoot/tr/td[3]/span/b/span[1]'); 
+    }    
+            
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    function DeleteCategory() {
+        $I = $this;
+        $I->amOnPage(\DeleteCategoryOrder::$ListURL);
+        $I->click(\DeleteCategoryOrder::$ListHeaderCheckBox);
+        $I->click(\DeleteCategoryOrder::$ListButtonDelete);
+        $I->click(\DeleteCategoryOrder::$DeleteWindowButtonDelete);
+        $I->wait('1');
+        \InitTest::ClearAllCach($I);
+        
+    }
     
     
     
