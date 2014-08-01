@@ -41,9 +41,10 @@ class Admin extends BaseAdminController {
             'languages' => trim($_POST['language']),
             'selectedCats' => $_POST['selectedCats']
         ));
-        $export->getDataArray();
+        //$export->getDataArray();
         if ($export->hasErrors() == FALSE) {
             if (!$this->input->is_ajax_request()) {
+                $export->getDataArray();
                 if (trim($_POST['formed_file_type']) != "0") {
                     $this->downloadFile($_POST['formed_file_type']);
                     return;
@@ -70,6 +71,12 @@ class Admin extends BaseAdminController {
                 ->renderAdmin('import');
         } 
         if($check == 'export') {
+            $customFields = SPropertiesQuery::create()->orderByPosition()->find();
+            $cFieldsTemp = $customFields->toArray();
+            $cFields = array();
+            foreach ($cFieldsTemp as $f) {
+                $cFields[] = $f['CsvName'];
+            }
             \CMSFactory\assetManager::create()
                 ->registerScript('importExportAdmin')
                 ->setData('attributes',ImportCSV\BaseImport::create()->makeAttributesList()->possibleAttributes)     
@@ -97,6 +104,42 @@ class Admin extends BaseAdminController {
                 return $export->saveToCsvFile($this->uploadDir);
         }
     }
+    
+    /**
+     * Start file downloading
+     * @param string $type file type csv|xls|xlsx
+     */
+    protected function downloadFile($type = 'csv') {
+        if (!in_array($type, array('csv', 'xls', 'xlsx'))){
+            return;
+        }
+        $file = 'products.' . $type;
+        $path = $this->uploadDir . $file;
+        if (file_exists($path)) {
+            $this->load->helper('download');
+            $data = file_get_contents($path);
+            if ($type == 'csv') {
+                header('Content-type: text/csv');
+            }
+            force_download($file, $data);
+        }
+    }
+    
+    /**
+     * Create html box with errors.
+     *
+     * @param  array $errors Errors array
+     * @return string
+     */
+    protected function processErrors(array $errors) {
+        $result = '';
+        foreach ($errors as $err) {
+            $result .= $err . '<br/>';
+        }
+        return '<p class="errors">' . $result . '</p>';
+    }
+    
+    
     
     
     public function test(){

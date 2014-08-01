@@ -106,7 +106,6 @@ $(document).ready(function() {
         $.ajax({
             url: "/admin/components/init_window/import_export/getExport",
             type: "post",
-            dataType: "json",
             data: $('#makeExportForm').serialize(),
             success: function(data) {
                 switch (data) {
@@ -114,7 +113,7 @@ $(document).ready(function() {
                     case "xls":
                     case "xlsx":
                         $("#makeExportForm input[name='formed_file_type']").val(data);
-                        //$('#makeExportForm').submit();
+                        $('#makeExportForm').submit();
                         break;
                     default:
                         showMessage("", data);
@@ -134,7 +133,6 @@ $(document).ready(function() {
 
     function showCatProp() {
         var catData = $('#selectedCats').serialize();
-
         if (!catData) {
             // empty - show message
             $("#pleaseSelectCats").fadeIn(100);
