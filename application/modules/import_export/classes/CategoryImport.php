@@ -8,7 +8,7 @@ namespace import_export\classes;
  * @property Core $core
  * @property \CI_DB_active_record $db
  */
-class CategoryImport extends \ImportCSV\BaseImport {
+class CategoryImport extends BaseImport {
 
     /**
      * Process Categories

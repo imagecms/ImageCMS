@@ -69,7 +69,7 @@ class Import extends ShopAdminController{
                     'languages' => $this->languages,
                     'cFields' => $cFields,
                     'currencies' => SCurrenciesQuery::create()->orderByIsDefault()->find(),
-                    'attributes' => ImportCSV\BaseImport::create()->makeAttributesList()->possibleAttributes,
+                    'attributes' => import_export\classes\BaseImport::create()->makeAttributesList()->possibleAttributes,
                     'checkedFields' => $this->checkedFields
                 ));
             }
@@ -146,7 +146,7 @@ class Import extends ShopAdminController{
         fopen($this->uploadDir . $filename, 'w+');
         if (is_writable($this->uploadDir . $filename)) {
             if (!$handle = fopen($this->uploadDir . $filename, 'w+')) {
-                echo json_encode(array('error' => \ImportCSV\Factor::ErrorFolderPermission));
+                echo json_encode(array('error' => import_export\classes\Factor::ErrorFolderPermission));
                 exit;
             }
 
@@ -170,13 +170,13 @@ class Import extends ShopAdminController{
                 echo json_encode(array(
                     'success' => true,
                     'row' => $row,
-                    'attributes' => \ImportCSV\BaseImport::create()->attributes,
+                    'attributes' => import_export\classes\BaseImport::create()->attributes,
                     'filesInfo' => $uploadedFiles
                 ));
             else
                 $this->template->add_array(array(
                     'rows' => $row,
-                    'attributes' => \ImportCSV\BaseImport::create()->makeAttributesList()->possibleAttributes,
+                    'attributes' => import_export\classes\BaseImport::create()->makeAttributesList()->possibleAttributes,
                     'filesInfo' => $uploadedFiles
                 ));
         }

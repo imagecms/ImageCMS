@@ -41,6 +41,7 @@ class BaseImport extends \CI_Model {
      * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
      */
     public function makeImport() {
+        
         $this->makeAttributesList();
         $this->validateAndParse();
 //        $this->makeDBBackup();
@@ -89,6 +90,7 @@ class BaseImport extends \CI_Model {
             return FALSE;
         }
         $cnt = 0;
+        
         while (($row = fgetcsv($file, $this->maxRowLegth, $this->delimiter, $this->enclosure)) !== false) {
             if ($cnt != 0)
                 $this->content[] = array_combine($this->attributes, array_map('trim', $row));
@@ -133,7 +135,7 @@ class BaseImport extends \CI_Model {
     public function setFileName($fileName) {
         try {
             if (FALSE === file_exists($fileName))
-                throw new \Exception(\ImportCSV\Factor::ErrorEmptySlot);
+                throw new \Exception(import_export\classes\Factor::ErrorEmptySlot);
             $this->CSVsource = $fileName;
             return $this;
         } catch (\Exception $exc) {
