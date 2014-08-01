@@ -104,20 +104,22 @@ $(document).ready(function() {
     $(".runExport").unbind("click").click(function() {
         $(".runExport").button('loading');
         $.ajax({
-            url: "/admin/components/run/shop/system/export",
+            url: "/admin/components/init_window/import_export/getExport",
             type: "post",
+            dataType: "json",
             data: $('#makeExportForm').serialize(),
             success: function(data) {
-                switch (data) {
-                    case "csv":
-                    case "xls":
-                    case "xlsx":
-                        $("#makeExportForm input[name='formed_file_type']").val(data);
-                        $('#makeExportForm').submit();
-                        break;
-                    default:
-                        showMessage("", data);
-                }
+                showMessage("",data);
+//                switch (data) {
+//                    case "csv":
+//                    case "xls":
+//                    case "xlsx":
+//                        $("#makeExportForm input[name='formed_file_type']").val(data);
+//                        $('#makeExportForm').submit();
+//                        break;
+//                    default:
+//                        showMessage("", data);
+//                }
             },
             complete: function(xhr) {
                 $(".runExport").button('reset');
