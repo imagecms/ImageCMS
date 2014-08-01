@@ -38,6 +38,11 @@ class Import extends ShopAdminController{
         if (count($_FILES)){
             $this->saveCSVFile();
             chmod($this->uploadDir.$this->csvFileName, 0777);
+            
+            $path = $this->uploadDir .strtr($_FILES['userfile']['name'], array(' '=>'_'));
+            if(isset($path)){
+                unlink($path);
+            }
         }
         
         if (count($_POST['attributes']) && $_POST['csvfile']) {
@@ -123,9 +128,9 @@ class Import extends ShopAdminController{
     }
     
     private function convertXLStoCSV($excel_file = '') {
-        include './application/modules/import_export/classes/PHPExcel.php';
-        include './application/modules/import_export/classes/PHPExcel/IOFactory.php';
-        include './application/modules/import_export/classes/PHPExcel/Writer/Excel2007.php';
+        include './application/modules/import_export/PHPExcel/PHPExcel.php';
+        include './application/modules/import_export/PHPExcel/PHPExcel/IOFactory.php';
+        include './application/modules/import_export/PHPExcel/PHPExcel/Writer/Excel2007.php';
         $objReader = PHPExcel_IOFactory::createReaderForFile($excel_file);
         $objReader->setReadDataOnly(true);
         $objPHPExcel = $objReader->load($excel_file);
