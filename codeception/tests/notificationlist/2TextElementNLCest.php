@@ -290,6 +290,7 @@ class TextElementNLCest
         $I->click(NotificationListPage::$DeleteWindowButtonDelete);
         $I->waitForText('Удаление');
         $I->see('Удаление', '.alert.in.fade.alert-success');
+        InitTest::ClearAllCach($I);
     }
       
       
