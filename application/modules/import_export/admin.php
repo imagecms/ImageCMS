@@ -23,27 +23,15 @@ class Admin extends BaseAdminController {
     }
     
     public function getImport($className){
-        require_once 'import.php';
-        
+        require_once 'import.php';    
         $n = new Import();
         $n->$className();
     }
     
-    public function getExport($className){
+    public function getExport(){
         require_once 'export.php';
-        /*$ex = new Export(array(
-                    'attributes' => $_POST['attribute'],
-                    'attributesCF' => $_POST['cf'],
-                    'import_type' => trim($_POST['import_type']),
-                    'delimiter' => trim($_POST['delimiter']),
-                    'enclosure' => trim($_POST['enclosure']),
-                    'encoding' => trim($_POST['encoding']),
-                    'currency' => trim($_POST['currency']),
-                    'languages' => trim($_POST['language']),
-                    'selectedCats' => $_POST['selectedCats'],
-                ));
-        
-        */
+        $ex = new Export();
+        $ex->test();
     }
     
     public function getTpl($check){
@@ -54,12 +42,11 @@ class Admin extends BaseAdminController {
         } 
         if($check == 'export') {
             \CMSFactory\assetManager::create()
+                ->registerScript('importExportAdmin')
                 ->setData('attributes',ImportCSV\BaseImport::create()->makeAttributesList()->possibleAttributes)     
                 ->setData('languages',$this->languages)
                 ->setData('cFields',$cFields)
                 ->renderAdmin('export');
         }
     }
-    
-
 }
