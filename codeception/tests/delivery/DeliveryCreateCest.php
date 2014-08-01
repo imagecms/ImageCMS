@@ -20,6 +20,7 @@ class DeliveryCreateCest {
      */
     public function authorization(DeliveryTester $I) {
         InitTest::Login($I);
+        InitTest::changeTextAditorToNative($I);
     }
 
     //-----------------------FIELD NAME TESTS-----------------------------------
