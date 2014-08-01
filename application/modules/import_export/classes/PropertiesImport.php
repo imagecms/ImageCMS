@@ -8,7 +8,7 @@ namespace import_export\classes;
  * @property Core $core
  * @property CI_DB_active_record $db
  */
-class PropertiesImport extends \ImportCSV\BaseImport {
+class PropertiesImport extends BaseImport {
 
     /**
      * Process Properties Handling
