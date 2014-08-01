@@ -6,7 +6,7 @@ class FieldsOSCest
 //---------------------------AUTORIZATION---------------------------------------
     
     /**
-     * @group q
+     * @group a
      */
     public function Login(OrderStatusesTester $I){
         InitTest::Login($I);
@@ -25,7 +25,7 @@ class FieldsOSCest
     
     
     /**
-     * @group q
+     * @group a
      */
     public function CreateField25Symvol (OrderStatusesTester $I){
         $I->wantTo('Verify Create and Present Status Whit 25 Symbol on Name.');

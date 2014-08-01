@@ -177,6 +177,7 @@ class IntegrationOSCest
             
         $I->dontSee($nameStatus,'//table/thead/tr[2]/td[3]/select');
         $I->dontSee($nameEditStatus,'//table/thead/tr[2]/td[3]/select');
+        InitTest::ClearAllCach($I);
     }
     
 
