@@ -17,13 +17,14 @@ class DeliveryCreateCest {
 
     /**
      * @group create
+     * @group current
      */
     public function authorization(DeliveryTester $I) {
         InitTest::Login($I);
         InitTest::changeTextAditorToNative($I);
     }
 
-    //-----------------------FIELD NAME TESTS-----------------------------------
+//  ____________________________________________________________FIELD_NAME_TESTS
 
     /**
      * @group create
@@ -88,7 +89,7 @@ class DeliveryCreateCest {
         $I->CheckInFrontEnd($name);
     }
 
-    //-----------------------CHECKBOX ACTIVE TESTS------------------------------
+//    _____________________________________________________CHECKBOX_ACTIVE_TESTS
 
     /**
      * @group create
@@ -117,10 +118,10 @@ class DeliveryCreateCest {
         $I->CheckInList($name, 'off');
     }
 
-    //-----------------------FIELD DESCRIPTION TESTS----------------------------
+//    ___________________________________________________FIELD_DESCRIPTION_TESTS
 
     /**
-     * @group current
+     * @group create
      * @guy DeliveryTester\DeliverySteps
      */
     public function description(DeliveryTester\DeliverySteps $I) {
@@ -132,10 +133,10 @@ class DeliveryCreateCest {
         $I->CreateDelivery($name, 'on', $description, $descriptionprice);
         $I->CheckForAlertPresent('success', 'create');
         $I->CheckInFrontEnd($name, $description);
+//  _________________________________________________________________________________________________________BUG
     }
 
-    //-----------------------FIELDS PRICE & FREE FROM TESTS---------------------
-
+//  ________________________________________________FIELDS_PRICE_FREE_FROM_TESTS
     /**
      * @group create
      * @guy DeliveryTester\DeliverySteps
@@ -150,10 +151,13 @@ class DeliveryCreateCest {
         $I->CheckForAlertPresent('success' ,'create');
         $I->CheckInList($name, null, $price, $freefrom);
         $I->CheckInFrontEnd($I, $name, null, $price, $freefrom);
+//  _________________________________________________________________________________________________________BUG
     }
 
     /**
-     * @group create
+     * @group create     
+     * @group current
+     * 
      * @guy DeliveryTester\DeliverySteps
      */
     public function priceFreeFrom1num(DeliveryTester\DeliverySteps $I) {
@@ -201,7 +205,7 @@ class DeliveryCreateCest {
         $I->CheckInFrontEnd($name, null, $price, $freefrom);
     }
 
-    //---------------------CHECKBOX PRICE SPECIFIED & FIELD PRICE SPECIFIED-----
+//  ______________________________CHECKBOX_PRICE_SPECIFIED_FIELD_PRICE_SPECIFIED
 
     /**
      * @group create
@@ -268,7 +272,6 @@ class DeliveryCreateCest {
      * @group create
      * @guy DeliveryTester\DeliverySteps
      */
-    //______________________________________________________________________________________BUG
     public function fieldPriseSpecified501(DeliveryTester\DeliverySteps $I) {
         $name = 'УточнениеЦены501';
         $message = InitTest::$text501;
@@ -277,6 +280,7 @@ class DeliveryCreateCest {
 
         $I->CreateDelivery($name, 'on', null, null, null, null, $message);
         $I->CheckForAlertPresent('error', 'create');
+//  _________________________________________________________________________________________________________BUG
     }
 
     /**
@@ -294,7 +298,7 @@ class DeliveryCreateCest {
         $I->CheckInFrontEnd($name, null, null, null, $message);
     }
 
-    //---------------------PAYMENT METHODS FIELD--------------------------------
+//  _______________________________________________________PAYMENT_METHODS_FIELD
 
     /**
      * @group create

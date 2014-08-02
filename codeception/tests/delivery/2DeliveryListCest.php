@@ -118,6 +118,7 @@ class DeliveryListCest {
         $I->click(DeliveryPage::$DeleteButton);
         $I->waitForText("Удаление способов доставки", NULL, "//*[@id='mainContent']/div/div[1]/div[1]/h3");
         $I->click(DeliveryPage::$DeleteWindowX);
+        $I->wait(3);
         $I->see("Список способов доставки",null,".title");
         }
     
