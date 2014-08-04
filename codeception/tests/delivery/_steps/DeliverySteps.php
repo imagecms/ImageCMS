@@ -58,7 +58,7 @@ class DeliverySteps extends \DeliveryTester {
             }
         }
         $I->click(\DeliveryCreatePage::$ButtonCreate);
-//        $I->wait("3");
+        $I->wait("3");
     }
 
     /**
@@ -265,49 +265,10 @@ $I = $this;
             $I->click(\DeliveryPage::$DeleteButton);
             $I->waitForText("Удаление способов доставки", NULL, "//*[@id='mainContent']/div/div[1]/div[1]/h3");
             $I->click(\DeliveryPage::$DeleteWindowDelete);
-            $I->CheckForAlertPresent('success', 'delete');
+            $I->wait('3');
         }
     }
-    /**
-     * Checking that alerts is present after clicking create button
-     * 
-     * @param string    $type       error|success|required
-     * @param string    $module     create|edit|delete|drag
-     * @return void
-     */
-    function CheckForAlertPresent($type,$module) {
-        $I = $this;
-        $I->wait(5);
-        return true;
-        /*switch ($type){
-            case 'error':
-                    $I->comment("I want to see that error alert is present");
-                    $I->waitForElementVisible('.alert.in.fade.alert-error');
-                    $I->waitForElementNotVisible('.alert.in.fade.alert-error');
-                    ///edit or create
-                    //$I->see("Создание способа доставки", '.title');
-                    break;
-            case 'success':
-                    $I->comment("I want to see that success alert is present");
-                    $I->waitForElementVisible('.alert.in.fade.alert-success');
-                    if      ($module == 'create')   { $I->see('Доставка создана','.alert.in.fade.alert-success'); }              
-                    elseif  ($module == 'edit')     { $I->see('Изменения сохранены','.alert.in.fade.alert-success'); }
-                    elseif  ($module == 'delete')   { $I->see('Способ доставки удален','.alert.in.fade.alert-success'); }
-                    elseif  ($module == 'drag')     { $I->see('Позиции сохранены', '.alert.in.fade.alert-success'); }
-                    $I->waitForElementNotVisible('.alert.in.fade.alert-success');
-                    break;
-            //Checking required field (red color(class alert) & message 
-            case 'required':
-                    $I->comment("I want to see that field is required");
-                    $I->waitForElementVisible('//label[@generated="true"]');
-                    $I->see('Это поле обязательное.', 'label.alert.alert-error');
-                    if      ($module=='create') { $I->assertEquals($I->grabAttributeFrom(\DeliveryCreatePage::$FieldName, 'class'), "alert alert-error"); }
-                    elseif  ($module=='edit')   { $I->assertEquals($I->grabAttributeFrom(\DeliveryEditPage::$FieldName, 'class'), "required alert alert-error"); }
-                    break;
-                default :
-                    $I->fail("unknown type of error entered");
-        }*/
-    }
+    
     /**
      * Checking current parameters in Delivery List page 
      * if you want to skip verifying of some parameters type null
@@ -467,6 +428,52 @@ $I = $this;
                 }
             }
         $I->click(\DeliveryEditPage::$ButtonSave);
+    }
+    
+    
+    
+    
+    
+    
+    /**
+     * Checking that alerts is present after clicking create button
+     * 
+     * @param string    $type       error|success|required
+     * @param string    $module     create|edit|delete|drag
+     * @return void
+     */
+    function CheckForAlertPresent($type=null,$module=null) {
+        $I = $this;
+        $I->wait(5);
+        return true;
+//        switch ($type){
+//            case 'error':
+//                    $I->comment("I want to see that error alert is present");
+//                    $I->waitForElementVisible('.alert.in.fade.alert-error');
+//                    $I->waitForElementNotVisible('.alert.in.fade.alert-error');
+//                    ///edit or create
+//                    //$I->see("Создание способа доставки", '.title');
+//                    break;
+//            case 'success':
+//                    $I->comment("I want to see that success alert is present");
+//                    $I->waitForElementVisible('.alert.in.fade.alert-success');
+////                    if      ($module == 'create')   { $I->see('Доставка создана','.alert.in.fade.alert-success'); }              
+////                    elseif  ($module == 'edit')     { $I->see('Изменения сохранены','.alert.in.fade.alert-success'); }
+////                    elseif  ($module == 'delete')   { $I->see('Способ доставки удален','.alert.in.fade.alert-success'); }
+////                    elseif  ($module == 'drag')     { $I->see('Позиции сохранены', '.alert.in.fade.alert-success'); }
+//                    $I->waitForElementNotVisible('.alert.in.fade.alert-success');
+//                    break;
+//            //Checking required field (red color(class alert) & message 
+//            case 'required':
+//                    $I->comment("I want to see that field is required");
+//                    $I->waitForElementVisible('//label[@generated="true"]');
+//                    $I->see('Это поле обязательное.', 'label.alert.alert-error');
+//                    if      ($module=='create') { $I->assertEquals($I->grabAttributeFrom(\DeliveryCreatePage::$FieldName, 'class'), "alert alert-error"); }
+//                    elseif  ($module=='edit')   { $I->assertEquals($I->grabAttributeFrom(\DeliveryEditPage::$FieldName, 'class'), "required alert alert-error"); }
+//                    break;
+//                default :
+//                    $I->fail("unknown type of error entered");
+//        }
     }
 
 }

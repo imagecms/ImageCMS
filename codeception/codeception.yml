@@ -18,7 +18,7 @@ modules:
         WebDriver:
             url: 'http://cmsprem.loc/'
             browser: chrome
-            window_size: 1024x768    
+            window_size: maximize   
 #            restart: false
             clear_cookies: false
             wait: 0
