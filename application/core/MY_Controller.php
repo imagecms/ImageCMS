@@ -62,10 +62,6 @@ class MY_Controller extends MX_Controller {
     public function __construct() {
         parent::__construct();
 
-        if (SAAS) {
-            self::$currentLocale = $this->localizer->getLocale();
-        }
-
         if (isset($_SERVER['HTTP_X_PJAX']) && $_SERVER['HTTP_X_PJAX'] == true) {
             $this->pjaxRequest = true;
             header('X-PJAX: true');
@@ -86,8 +82,7 @@ class MY_Controller extends MX_Controller {
             $this->db->cache_off();
 
             return (bool) count($res);
-        }
-        else
+        } else
             return false;
     }
 
@@ -116,8 +111,7 @@ class MY_Controller extends MX_Controller {
                 $defaultLanguage = self::getDefaultLanguage();
                 self::$currentLocale = $defaultLanguage['identif'];
             }
-        }
-        else
+        } else
             self::$currentLocale = chose_language();
 
         return self::$currentLocale;
