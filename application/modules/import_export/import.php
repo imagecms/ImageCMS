@@ -34,6 +34,7 @@ class Import extends ShopAdminController {
 
     public function segmentImport() {
         $result = Imp::create()->startProcess($_POST['offers'], $_POST['limit'], $_POST['countProd'])->resultAsString();
+        
         if(($_POST['offers'] >= $_POST['countProd']) && $_POST['offers']){ 
             echo json_encode($result);        
         }else{
@@ -77,7 +78,7 @@ class Import extends ShopAdminController {
             echo(json_encode($result));
         } else {
             if (!$_FILES) {
-
+                exit('11');
                 $customFields = SPropertiesQuery::create()->orderByPosition()->find();
                 $cFieldsTemp = $customFields->toArray();
                 $cFields = array();
@@ -184,7 +185,7 @@ class Import extends ShopAdminController {
     private function configureImportProcess($vector = true) {
         if (file_exists($this->uploadDir . $this->csvFileName)) {
             $file = fopen($this->uploadDir . $this->csvFileName, 'r');
-            $row = array_diff(fgetcsv($file, 10000, ";", '"'), array(null));
+            $row = array_diff(fgetcsv($file, 1000000, ";", '"'), array(null));
             fclose($file);
             $this->getFilesInfo();
             foreach ($this->uplaodedFileInfo as $file)
