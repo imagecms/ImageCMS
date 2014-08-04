@@ -41,17 +41,17 @@ class BaseImport extends \CI_Model {
      * @author Kaero
      * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
      */
-    public function makeImport($offers = 0, $limit = 0) {
+    public function makeImport($offers, $limit, $countProd) {
 
         $this->makeAttributesList();
-        $this->validateFile($offers, $limit);
+        $this->validateFile($offers, $limit, $countProd);
         if ($offers > 0) {
             CategoriesHandler::loadCategories();
             ProductsHandler::create()->make();
             PropertiesHandler::runProperties();
         }
         if (ImportBootstrap::noErrors())
-            ImportBootstrap::create()->addMessage(Factor::SuccessImportCompleted . '<b>' . $this->maxRowLength . '</b>', Factor::MessageTypeSuccess);
+            ImportBootstrap::create()->addMessage(Factor::SuccessImportCompleted . '<b>' . $countProd . '</b>', Factor::MessageTypeSuccess);
         else
             return FALSE;
     }
@@ -63,7 +63,7 @@ class BaseImport extends \CI_Model {
      * @author Kaero
      * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
      */
-    public function validateFile($offers = 0, $limit = 0) {
+    public function validateFile($offers, $limit, $countProd) {
 
         if (substr(sprintf('%o', fileperms(ImportBootstrap::getUploadDir())), -4) != '0777') {
             ImportBootstrap::addMessage(Factor::ErrorFolderPermission);
@@ -91,7 +91,7 @@ class BaseImport extends \CI_Model {
             ImportBootstrap::addMessage(Factor::ErrorPossibleAttrValues);
             return FALSE;
         }
-        $this->parseFile($offers, $limit, $file);
+        $this->parseFile($offers, $limit, $countProd, $file);
     }
 
     /**
@@ -100,7 +100,7 @@ class BaseImport extends \CI_Model {
      * @param type $file
      * @return boolean
      */
-    public function parseFile($offers = 0, $limit = 0, $file) {
+    public function parseFile($offers, $limit, $countProd, $file) {
         if ($offers > 0) {
             $positionStart = $offers - $limit;
             $this->maxRowLegth = $offers;
@@ -240,21 +240,4 @@ class BaseImport extends \CI_Model {
         }
         return $this;
     }
-
-    /**
-     * Make DB Backup file before start Import. Destination folder is "./application/backups"
-     * @todo Remove first row in method before public to production
-     * @return bool
-     * @author Kaero
-     * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
-     */
-    protected function makeDBBackup() {
-        if (ImportBootstrap::hasErrors()) {
-            return FALSE;
-        }
-        if (is_really_writable(ImportBootstrap::getUploadDir())) {
-            \libraries\Backup::create()->createBackup("zip", "import");
-        }
-    }
-
 }
