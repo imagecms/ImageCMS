@@ -41,12 +41,12 @@ class ImportBootstrap {
      * @return ImportBootstrapА
      * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
      */
-    public function startProcess() {
+    public function startProcess($offers = 0, $limit = 0) {
         $result = BaseImport::create()
                 ->setFileName($this->getFileNameFromPost(TRUE))
                 ->setSettings($this->getSettingsFromPost())
                 ->setImportType(Factor::ImportProducts)
-                ->makeImport();
+                ->makeImport($offers, $limit);
         return $this;
     }
 
