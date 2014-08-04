@@ -47,7 +47,8 @@ class InitTest {
         $I->waitForElement('#textEditor');
         $I->selectOption('#textEditor', 'Native textarea');
         $I->click('.btn.btn-small.btn-primary.action_on.formSubmit');
-        $I->waitForElement('.alert.in.fade.alert-success');
+//        $I->waitForElement('.alert.in.fade.alert-success');
+        $I->wait('3');
     }
 
     public static function Login($I) {

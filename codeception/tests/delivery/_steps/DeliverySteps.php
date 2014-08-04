@@ -428,6 +428,7 @@ $I = $this;
                 }
             }
         $I->click(\DeliveryEditPage::$ButtonSave);
+        $I->wait('3');
     }
     
     
