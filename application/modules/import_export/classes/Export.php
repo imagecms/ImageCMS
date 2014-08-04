@@ -58,6 +58,7 @@ class Export {
         }
         if (!count($this->attributes) > 0) {
             $this->addError('Укажите колонки для экспорта.');
+            LOG::create()->set('No select collums for export');
         } else {
             $this->customFields = $this->getCustomFields();
             $this->completeFields = $this->getCompleteFields();
@@ -69,8 +70,7 @@ class Export {
         }
         ini_set('max_execution_time', 900);
         set_time_limit(900); 
-    }
-    
+    }    
     
     /**
      * Saving csv-file
@@ -80,7 +80,7 @@ class Export {
         $path = $pathToFile . 'products.csv';
         $this->getDataCsv();
         if (!file_exists($path)){
-            LOG::create()->set('File export not exists');
+            LOG::create()->set('File export not exists (csv)!');
         }
         $f = fopen($path, 'w+');
         $writeResult = fwrite($f, $this->resultString);
@@ -105,14 +105,18 @@ class Export {
             default:
                 return FALSE;
         }
-        $this->getDataArray(); // selecting data from DB (if not performed)
-        $objPHPExcel = new PHPExcel();
+        if(!file_exists($path)){
+            LOG::create()->set('File export not exists (xls)!');
+        }
+//        $this->getDataArray(); // selecting data from DB (if not performed)
+        $objPHPExcel = new \PHPExcel();
         $someProductData = current($this->resultArray);
         $headerArray = array();
         $columnNumber = 0;
         foreach ($someProductData as $field => $junk) {
             if (FALSE == $abbr = $this->getAbbreviation($field)) {
                 $this->addError("Error. Abbreviation not found.");
+                LOG::create()->set('Error. Abbreviation not found.');
             }
             $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($columnNumber++, 1, $abbr);
         }
@@ -120,11 +124,11 @@ class Export {
         foreach ($this->resultArray as $productData) {
             $columnNumber = 0;
             foreach ($productData as $value) {
-                $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($columnNumber++, $rowNumber, $value);
+                $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($columnNumber++, $rowNumber, $value);    //запис даних в файл рядками
             }
             $rowNumber++;
         }
-        $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, $type);
+        $objWriter = \PHPExcel_IOFactory::createWriter($objPHPExcel, $type);
         $objWriter->save($path);
         return basename($path);
     }
@@ -162,15 +166,14 @@ class Export {
      * @return string
      */
     public function getDataCsv() {
-        $this->getDataArray(); // selecting data from DB (if not performed)
         if (is_null($this->resultString)) {
-            $this->getDataFromBase();
             $fileContents = "";
             $someProductData = current($this->resultArray);
             $headerArray = array();
             foreach ($someProductData as $field => $junk) {
                 if (FALSE == $abbr = $this->getAbbreviation($field)) {
                     $this->addError("Error. Abbreviation not found.");
+                    LOG::create()->set('Error. Abbreviation not found.');
                 }
                 $headerArray[] = $abbr;
             }
@@ -214,7 +217,8 @@ class Export {
         }
         foreach ($fieldsArray as $field) {
             if ($field == FALSE && $this->skipErrors == TRUE) {
-                $this->addError('Error while creating query. Field missing.');   
+                $this->addError('Error while creating query. Field missing.'); 
+                LOG::create()->set('Error while creating query. Field missing.');
             }
             $fields .= $field != FALSE ? " \n {$field}, " : "";
         }
@@ -327,6 +331,7 @@ class Export {
             } else {
                 if ($this->skipErrors == FALSE) {
                     $this->addError('Unknown column: ' . $field);
+                    LOG::create()->set('Unknown column: ' . $field);
                 }
             }
         }
@@ -397,6 +402,10 @@ class Export {
         ";
         $categoriesData = array();
         $result = $this->db->query($query);
+        if(!$result){
+            LOG::create()->set('Empty result for select categories!');
+            return;
+        }
         foreach ($result->result_array() as $row) {
             $categoriesData[$row['id']] = array(
                 'parent_id' => $row['parent_id'],
