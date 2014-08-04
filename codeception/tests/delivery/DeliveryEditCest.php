@@ -53,14 +53,14 @@ class DeliveryEditCest {
     }
 
 //    __________________________________________________________________________FIELD_NAME_TESTS
-    /**
+    /**_________________________________________________________________________check in alert tests
      * @group edit
      * @guy DeliveryTester\DeliverySteps
      */
-    public function eNameEmpty(DeliveryTester\DeliverySteps $I) {
-        $I->editDelivery('');
-        $I->CheckForAlertPresent('required', "edit");
-    }
+//    public function eNameEmpty(DeliveryTester\DeliverySteps $I) {
+//        $I->editDelivery('');
+//        $I->CheckForAlertPresent('required', "edit");
+//    }
 
     /**
      * @group edit
@@ -72,7 +72,6 @@ class DeliveryEditCest {
         $this->CreatedMethods[] = $name;
 
         $I->EditDelivery($name, 'on');
-        $I->CheckForAlertPresent("success", 'edit');
         $I->CheckInList($name);
         $this->Name = $name;
     }
@@ -87,24 +86,23 @@ class DeliveryEditCest {
         $this->CreatedMethods[] = $name;
 
         $I->EditDelivery($name);
-        $I->CheckForAlertPresent('success', "edit");
         $I->CheckInList($name);
         $this->Name = $name;
     }
 
-    /**
+    /**-________________________________________________________________________check in alert tests
      * @group edit
      * @guy DeliveryTester\DeliverySteps
      */
-    public function eName501(DeliveryTester\DeliverySteps $I) {
-        $name = InitTest::$text501;
-        //For deleting
-        $this->CreatedMethods[] = $name;
-
-        $I->EditDelivery($name);
-        $I->CheckForAlertPresent('error', 'edit');
-        $I->see("Редактирование способа доставки: " . $this->Name, '.title');
-    }
+//    public function eName501(DeliveryTester\DeliverySteps $I) {
+//        $name = InitTest::$text501;
+//        //For deleting
+//        $this->CreatedMethods[] = $name;
+//
+//        $I->EditDelivery($name);
+//        $I->CheckForAlertPresent('error', 'edit');
+//        $I->see("Редактирование способа доставки: " . $this->Name, '.title');
+//    }
 
     /**
      * @group edit
@@ -116,7 +114,6 @@ class DeliveryEditCest {
         $this->CreatedMethods[] = $name;
 
         $I->EditDelivery($name);
-        $I->CheckForAlertPresent('success', 'edit');
         $I->CheckInList($name);
     }
 
@@ -129,7 +126,6 @@ class DeliveryEditCest {
         //For deleting
         $this->CreatedMethods[] = $name;
         $I->EditDelivery($name);
-        $I->CheckForAlertPresent('success', 'edit');
         $I->CheckInList($name);
     }
 
@@ -141,7 +137,6 @@ class DeliveryEditCest {
      */
     public function eActiveCheck(DeliveryTester\DeliverySteps $I) {
         $I->EditDelivery(null, 'on');
-        $I->CheckForAlertPresent('success', 'edit');
         $I->CheckInList($this->Name, 'on');
     }
 
@@ -151,7 +146,6 @@ class DeliveryEditCest {
      */
     public function eActiveUnCheck(DeliveryTester\DeliverySteps $I) {
         $I->EditDelivery(null, 'off');
-        $I->CheckForAlertPresent('success', 'edit');
         $I->CheckInList($this->Name, 'off');
     }
 
@@ -164,7 +158,6 @@ class DeliveryEditCest {
     public function eDescriptionDescriptionPrice(DeliveryTester\DeliverySteps $I) {
         $description = $descriptionprice = InitTest::$textSymbols;
         $I->EditDelivery(null, 'on', $description, $descriptionprice);
-        $I->CheckForAlertPresent('success', 'edit');
         $I->seeInField(DeliveryEditPage::$FieldDescription, $description);
         $I->seeInField(DeliveryEditPage::$FieldDescriptionPrice, $descriptionprice);
         $I->CheckInFrontEnd($this->Name, $description);
@@ -179,8 +172,8 @@ class DeliveryEditCest {
     public function ePriceSymbols(DeliveryTester\DeliverySteps $I) {
         $price = InitTest::$textSymbols;
         $I->EditDelivery(null, null, null, null, $price);
-        $Nprice = '1234567890';
-        $I->CheckInList($this->Name, null, $Nprice);
+//        $Nprice = '1234567890';
+        $I->CheckInList($this->Name, null, $price);//prise - to Nprice
     }
 //______________________________________________________________________________________________________________________++++++++++++++++BUG_HERE
     /**
@@ -190,9 +183,8 @@ class DeliveryEditCest {
     public function eFreeFromSymbols(DeliveryTester\DeliverySteps $I) {
         $freefrom = InitTest::$textSymbols;
         $I->EditDelivery(null, null, null, null, null, $freefrom);
-        $I->CheckForAlertPresent('success','edit');
-        $Nfreefrom = '1234567890';
-        $I->CheckInList($this->Name, null, null, $Nfreefrom);                   
+//        $Nfreefrom = '1234567890';
+        $I->CheckInList($this->Name, null, null, $freefrom);//freefrom - nfreefrom                   
     }
 
     
@@ -287,14 +279,14 @@ class DeliveryEditCest {
         }else $I->fail ('wrong class of checkbox sum specified');
     }
     
-    /**
+    /**_________________________________________________________________________check in alert tests
      * @group edit
      * @guy DeliveryTester\DeliverySteps
      */
-    public function ePriceSpecifiedEmpty(DeliveryTester\DeliverySteps $I) {
-        $I->EditDelivery(null, null, null, null, null, null, '');
-        $I->CheckForAlertPresent('success', 'edit');
-    }
+//    public function ePriceSpecifiedEmpty(DeliveryTester\DeliverySteps $I) {
+//        $I->EditDelivery(null, null, null, null, null, null, '');
+//        $I->CheckForAlertPresent('success', 'edit');
+//    }
     
     /**
      * @group edit
@@ -303,7 +295,6 @@ class DeliveryEditCest {
     public function ePriceSpecified250(DeliveryTester\DeliverySteps $I) {
         $message = InitTest::$text250;
         $I->EditDelivery(null, null, null, null, null, null, $message);
-        $I->CheckForAlertPresent('success', 'edit');
         $I->CheckInFrontEnd($this->Name, null, null, null, $message);
     }
     
@@ -314,20 +305,19 @@ class DeliveryEditCest {
     public function eFieldPriceSpecified500(DeliveryTester\DeliverySteps $I) {
         $message = InitTest::$text500;
         $I->EditDelivery(null, null, null, null, null, null, $message);
-        $I->CheckForAlertPresent('success', 'edit');
         $I->CheckInFrontEnd($this->Name, null, null, null, $message);
     }
     
 //______________________________________________________________________________________________________________________++++++++++++++++BUG_HERE
-    /**
+    /**_________________________________________________________________________check in alert tests
      * @group edit
      * @guy DeliveryTester\DeliverySteps
      */
-    public function eFieldPriceSpecified501(DeliveryTester\DeliverySteps $I){
-        $message = InitTest::$text501;
-        $I->EditDelivery(null, null, null, null, null, null, $message);
-        $I->CheckForAlertPresent('error', 'edit');
-    }
+//    public function eFieldPriceSpecified501(DeliveryTester\DeliverySteps $I){
+//        $message = InitTest::$text501;
+//        $I->EditDelivery(null, null, null, null, null, null, $message);
+//        $I->CheckForAlertPresent('error', 'edit');
+//    }
     
     /**
      * @group edit
@@ -336,7 +326,6 @@ class DeliveryEditCest {
     public function eFieldPriceSpecifiedSymbols(DeliveryTester\DeliverySteps $I) {
         $message = InitTest::$textSymbols;
         $I->EditDelivery(null, null, null, null, null, null, $message);
-        $I->CheckForAlertPresent('success', 'edit');
         $I->CheckInFrontEnd($this->Name, null, null, null, $message);
     }
     
@@ -368,7 +357,6 @@ class DeliveryEditCest {
         //$pay = $I->GrabAllCreatedPayments();
         $this->_before($I);
         $I->EditDelivery(null, null, null, null, null, null, null, 'off');
-        $I->CheckForAlertPresent('success', 'edit');
         $I->CheckInFrontEnd($this->Name, null, null, null, null, 'off');
     }
     
@@ -380,7 +368,6 @@ class DeliveryEditCest {
         $pay = $I->GrabAllCreatedPayments();
         $this->_before($I);
         $I->EditDelivery(null, null, null, null, null, null, null, $pay);
-        $I->CheckForAlertPresent('success', 'edit');
         $I->CheckInFrontEnd($this->Name, NULL, null, null, null, $pay);
         
     }

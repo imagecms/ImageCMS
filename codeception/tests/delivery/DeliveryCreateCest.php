@@ -26,14 +26,14 @@ class DeliveryCreateCest {
 
 //  ____________________________________________________________FIELD_NAME_TESTS
 
-    /**
-     * @group create
-     * @guy DeliveryTester\DeliverySteps
-     */
-    public function nameEmpty(DeliveryTester\DeliverySteps $I) {
-        $I->click(DeliveryCreatePage::$ButtonCreate);
-        $I->CheckForAlertPresent('required','create');
-    }
+//    /**_______________________________________________________________________check in alert tests
+//     * @group create
+//     * @guy DeliveryTester\DeliverySteps
+//     */
+//    public function nameEmpty(DeliveryTester\DeliverySteps $I) {
+//        $I->click(DeliveryCreatePage::$ButtonCreate);
+//        $I->CheckForAlertPresent('required','create');
+//    }
 
     /**
      * @group create
