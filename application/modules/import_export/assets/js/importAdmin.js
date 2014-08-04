@@ -1,4 +1,6 @@
 $(document).ready(function() {
+    var fileNum = $(this).val();
+    loadCsvAttributes(fileNum);
 
     /*IMPORT*/
     $("#importcsvfile").unbind('change').bind('change', function() {
@@ -54,7 +56,7 @@ $(document).ready(function() {
             data: $(this).serialize(),
             success: function(obj) {
                 var object = jQuery.parseJSON(obj);
-                if (object.propertiesSegmentImport.countProductsInFile) {
+                if (object.propertiesSegmentImport) {
                     importSegment(object.propertiesSegmentImport, $names);
                 } else {
                     buildImportReport(obj);
@@ -99,12 +101,10 @@ $(document).ready(function() {
             i = limit;            
         }
         
-        if(i>countProd){
-            i = countProd;
-        }
+        var ratio = (i>countProd)?countProd:i;
         var x = i * 100 / countProd;
         $('#percent').css("width", Math.floor(x) + '%');
-        $('#ratio').html(i + '/' + countProd);
+        $('#ratio').html(ratio + '/' + countProd);
         
         $.ajax({
                 url: '/admin/components/init_window/import_export/getImport/segmentImport',
