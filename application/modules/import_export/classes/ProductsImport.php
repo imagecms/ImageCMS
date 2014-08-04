@@ -134,7 +134,6 @@ class ProductsImport extends BaseImport {
             'name' => 'name',
             'shdesc' => 'short_description',
             'desc' => 'full_description',
-            'vimg' => 'mainImage',
             'mett' => 'meta_title',
             'metd' => 'meta_description',
             'metk' => 'meta_keywords');
