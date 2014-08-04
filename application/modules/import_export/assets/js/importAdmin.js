@@ -50,7 +50,7 @@ $(document).ready(function() {
         $('input[type=hidden].slothidden').val($chekedFile);
         $.ajax({
             url: "/admin/components/init_window/import_export/getImport/imports",
-            type: 'post',
+            type: 'post',     
             data: $(this).serialize(),
             success: function(obj) {
                 var object = jQuery.parseJSON(obj);
@@ -88,55 +88,59 @@ $(document).ready(function() {
             }
         });
     }
-});
-
-function importSegment(obj, attr) {
-    limit = 10;
-    var i = 0;
-    var countProd = obj.countProductsInFile;
-    $('#progressBlock').css("display", "block");
-
-    while (i <= countProd) {
-        i = i + limit;
+    
+    function importSegment(obj, attr, limit1) {
+        limit = 10;
+        var countProd = obj.countProductsInFile;
+        $('#progressBlock').css("display", "block"); 
+        if(limit1){
+            i = limit + limit1;
+        }else{
+            i = limit;            
+        }
         var x = i * 100 / countProd;
         $('#percent').css("width", Math.floor(x) + '%');
         $('#ratio').html(i + '/' + countProd);
+        
         $.ajax({
-            type: 'post',
-            async: false,
-            url: '/admin/components/init_window/import_export/getImport/segmentImport',
-            data: {
-                csvfile: obj.csvfile,
-                attributes: attr,
-                delimiter: obj.delimiter,
-                enclosure: obj.enclosure,
-                encoding: obj.encoding,
-                import_type: obj.import_type,
-                language: obj.language,
-                currency: obj.currency,
-                offers: i,
-                limit: limit,
-                countProd: countProd
-            },
-            success: function(obj) {
-                var obj = obj;
-            }
-        });
-    }    
-    $('#progressBlock').fadeOut('slow');
-    buildImportReport(obj);            
-}
+                url: '/admin/components/init_window/import_export/getImport/segmentImport',
+                type: 'post',
+                data: {
+                    csvfile: obj.csvfile,
+                    attributes: attr,
+                    delimiter: obj.delimiter,
+                    enclosure: obj.enclosure,
+                    encoding: obj.encoding,
+                    import_type: obj.import_type,
+                    language: obj.language,
+                    currency: obj.currency,
+                    offers: i,
+                    limit: limit,
+                    countProd: countProd
+                },
+                success: function() {
+//                    var obj = obj;
+                    if(i<=countProd){
+                        importSegment(obj, attr, i);
+                    }else{
+                        $('#progressBlock').fadeOut('slow');
+                    }
+                }                
+            });
+//        buildImportReport(obj);            
+    }
 
-function buildImportReport($obj) {
-    try {
-        $object = jQuery.parseJSON($obj);
-        if ($object.error != null)
-            showMessage('', $object.message);
-        else if ($object.success != null) {
-            showMessage('', $object.message);
+    function buildImportReport($obj) {
+        try {
+            $object = jQuery.parseJSON($obj);
+            if ($object.error != null)
+                showMessage('', $object.message);
+            else if ($object.success != null) {
+                showMessage('', $object.message);
+            }
+        }
+        catch (err) {
+            showMessage('', langs.scriptErrorTellAdmin);
         }
     }
-    catch (err) {
-        showMessage('', langs.scriptErrorTellAdmin);
-    }
-}
+});
