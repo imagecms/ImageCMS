@@ -23,7 +23,7 @@ class BaseImport extends \CI_Model {
     public $enclosure = '"';
     public $importType = '';
     public $attributes = "";
-    public $maxRowLength = 100000;
+    public $maxRowLength = 1000000;
     public $content = array();
     public $settings = array();
     public $possibleAttributes = array();
@@ -41,13 +41,15 @@ class BaseImport extends \CI_Model {
      * @author Kaero
      * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
      */
-    public function makeImport($offers=1, $limit = 1) {
-        
+    public function makeImport($offers = 0, $limit = 0) {
+
         $this->makeAttributesList();
-        $this->validateAndParse();        
-        CategoriesHandler::loadCategories();
-        ProductsHandler::create()->make();
-        PropertiesHandler::runProperties();
+        $this->validateFile($offers, $limit);
+        if ($offers > 0) {
+            CategoriesHandler::loadCategories();
+            ProductsHandler::create()->make();
+            PropertiesHandler::runProperties();
+        }
         if (ImportBootstrap::noErrors())
             ImportBootstrap::create()->addMessage(Factor::SuccessImportCompleted . '<b>' . count($this->content) . '</b>', Factor::MessageTypeSuccess);
         else
@@ -61,7 +63,7 @@ class BaseImport extends \CI_Model {
      * @author Kaero
      * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
      */
-    public function validateAndParse() {
+    public function validateFile($offers = 0, $limit = 0) {
 
         if (substr(sprintf('%o', fileperms(ImportBootstrap::getUploadDir())), -4) != '0777') {
             ImportBootstrap::addMessage(Factor::ErrorFolderPermission);
@@ -89,16 +91,42 @@ class BaseImport extends \CI_Model {
             ImportBootstrap::addMessage(Factor::ErrorPossibleAttrValues);
             return FALSE;
         }
-        
-        $cnt = 0;
-        
-        while (($row = fgetcsv($file, $this->maxRowLegth, $this->delimiter, $this->enclosure)) !== false) {
-            if ($cnt != 0 ){
-                $this->content[] = array_combine($this->attributes, array_map('trim', $row));
-                $this->countProduct++;
+        $this->parseFile($offers, $limit, $file);
+    }
+
+    /**
+     * Parse file import
+     * @param type $offers
+     * @param type $file
+     * @return boolean
+     */
+    public function parseFile($offers = 0, $limit = 0, $file) {
+        if ($offers > 0) {
+            $positionStart = $offers - $limit;
+            $this->maxRowLegth = $offers;
+            $cnt = 0;
+            $iOffer = 0;
+            while (($row = fgetcsv($file, $this->maxRowLegth, $this->delimiter, $this->enclosure)) !== false) {
+                if ($cnt != 0) {
+                    if ($iOffer < $positionStart) {
+                        $iOffer++;
+                        continue;
+                    }
+                    $this->content[] = array_combine($this->attributes, array_map('trim', $row));
+                }
+                $cnt = 1;
             }
-            $cnt = 1;
-        }           
+        } else {
+            $cnt = 0;
+            while (($row = fgetcsv($file, $this->maxRowLegth, $this->delimiter, $this->enclosure)) !== false) {
+                if ($cnt != 0) {
+                    $this->countProduct++;
+                }
+                $cnt = 1;
+            }
+            $_SESSION['countProductsInFile'] = $this->countProduct;
+        }
+
         fclose($file);
         return TRUE;
     }
@@ -230,4 +258,3 @@ class BaseImport extends \CI_Model {
     }
 
 }
-
