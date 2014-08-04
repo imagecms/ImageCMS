@@ -78,8 +78,10 @@ class InitTest {
      * @param AcceptanceTester $I Controller 
      */
     public static function ClearAllCach($I) {
+        $I->amOnPage('/admin');
         $I->click(NavigationBarPage::$System);
         $I->click(NavigationBarPage::$SystemClearAllCach);
+        $I->wait(3);
     }
 
 
