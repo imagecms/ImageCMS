@@ -112,6 +112,8 @@ class CreateCurrenciesCest
         $symbol1="q";
         $rate1="1.0000";
         $I->CheckInFields($name1,$isocode1,$symbol1,$rate1);
+        $I->click(CurrenciesPage::$GoBackButton);                
+        $I->CheckInListLanding($name1,$isocode1,$symbol1);
         InitTest::ClearAllCach($I);
     }
     
@@ -134,11 +136,8 @@ class CreateCurrenciesCest
         $symbol1="Динар";
         $rate1="11111.0000";
         $I->CheckInFields($name1,$isocode1,$symbol1,$rate1);
-        $I->click(CurrenciesPage::$GoBackButton);
-        $name2="Динар";
-        $isocode2="Динар";
-        $symbol2="Динар";        
-        $I->CheckInListLanding($name2,$isocode2,$symbol2);
+        $I->click(CurrenciesPage::$GoBackButton);                
+        $I->CheckInListLanding($name1,$isocode1,$symbol1);
     }
     
     /**
@@ -177,11 +176,8 @@ class CreateCurrenciesCest
         $symbol1="тугри";
         $rate1="111111.0000";
         $I->CheckInFields($name1,$isocode1,$symbol1,$rate1);
-        $I->click(CurrenciesPage::$GoBackButton);
-        $name2="тугрик";
-        $isocode2="тугри";
-        $symbol2="тугри";        
-        $I->CheckInListLanding($name2,$isocode2,$symbol2);
+        $I->click(CurrenciesPage::$GoBackButton);               
+        $I->CheckInListLanding($name1,$isocode1,$symbol1);
         InitTest::ClearAllCach($I);
     }
     
@@ -221,11 +217,8 @@ class CreateCurrenciesCest
         $symbol1="Гульд";
         $rate1="111112.1233";
         $I->CheckInFields($name1,$isocode1,$symbol1,$rate1);
-        $I->click(CurrenciesPage::$GoBackButton);
-        $name2="Гульден123";
-        $isocode2="Гульд";
-        $symbol2="Гульд";        
-        $I->CheckInListLanding($name2,$isocode2,$symbol2);
+        $I->click(CurrenciesPage::$GoBackButton);               
+        $I->CheckInListLanding($name1,$isocode1,$symbol1);
     }
     
     /**
@@ -247,11 +240,8 @@ class CreateCurrenciesCest
         $symbol1="fr";
         $rate1="0.2340";
         $I->CheckInFields($name1,$isocode1,$symbol1,$rate1);
-        $I->click(CurrenciesPage::$GoBackButton);
-        $name2="Франкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранк";
-        $isocode2="frank";
-        $symbol2="fr";        
-        $I->CheckInListLanding($name2,$isocode2,$symbol2);
+        $I->click(CurrenciesPage::$GoBackButton);                
+        $I->CheckInListLanding($name1,$isocode1,$symbol1);
         InitTest::ClearAllCach($I);
     }
     
@@ -274,11 +264,8 @@ class CreateCurrenciesCest
         $symbol1="фор";
         $rate1="120.0102";
         $I->CheckInFields($name1,$isocode1,$symbol1,$rate1);
-        $I->click(CurrenciesPage::$GoBackButton);
-        $name2="Форинтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфор";
-        $isocode2="forin";
-        $symbol2="фор";        
-        $I->CheckInListLanding($name2,$isocode2,$symbol2);
+        $I->click(CurrenciesPage::$GoBackButton);                
+        $I->CheckInListLanding($name1,$isocode1,$symbol1);
     }
     
     /**
@@ -296,16 +283,13 @@ class CreateCurrenciesCest
         $I->waitForElementVisible('.alert.in.fade.alert-success');
         $I->see('Валюта создана');
         $I->waitForElementNotVisible('.alert.in.fade.alert-success');
-        $I->waitForText('Список валют');
-        //$text=$I->grabTextFrom('.//*[@id="mainContent"]/section/div[2]/div/form/table/tbody/tr[last()]/td[1]');
-        $I->see('лира', './/*[@id="mainContent"]/section/div[2]/div/form/table/tbody/tr[last()]/td[2]/a');
-        $I->see('лира', './/*[@id="mainContent"]/section/div[2]/div/form/table/tbody/tr[last()]/td[3]');
-        $I->see('лира', './/*[@id="mainContent"]/section/div[2]/div/form/table/tbody/tr[last()]/td[4]');
-        $I->click(CurrenciesPage::CurrencyNameLine("last()"));
+        $I->waitForText('Список валют'); 
         $name1="лира";
         $isocode1="лира";
         $symbol1="лира";
         $rate1="1030.2000";
+        $I->CheckInListLanding($name1,$isocode1,$symbol1);
+        $I->click(CurrenciesPage::CurrencyNameLine("last()"));       
         $I->CheckInFields($name1,$isocode1,$symbol1,$rate1);
         InitTest::ClearAllCach($I);
     }
