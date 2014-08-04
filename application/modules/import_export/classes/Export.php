@@ -11,13 +11,13 @@ class Export {
 
     public $delimiter = ";";
     public $maxRowLength = 10000;
-    public $file = null;
-    public $currency = null;
+    //public $file = null;
+    //public $currency = null;
     public $language = 'ru';
     protected $attributes = array();
     protected $attributesCF = array();
     protected $enclosure = '"';
-    protected $tree = null;
+    //protected $tree = null;
     public $encoding = 'utf8';
     protected $selectedCats = array();
     protected $customFields = array();
