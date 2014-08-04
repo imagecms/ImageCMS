@@ -1,4 +1,7 @@
 <?php
+namespace import_export\classes;
+
+use import_export\classes\Logger as LOG;
 
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
@@ -53,7 +56,6 @@ class Export {
                 }
             }
         }
-        
         if (!count($this->attributes) > 0) {
             $this->addError('Укажите колонки для экспорта.');
         } else {
@@ -77,11 +79,15 @@ class Export {
     public function saveToCsvFile($pathToFile) {
         $path = $pathToFile . 'products.csv';
         $this->getDataCsv();
+        if (!file_exists($path)){
+            LOG::create()->set('File export not exists');
+        }
         $f = fopen($path, 'w+');
         $writeResult = fwrite($f, $this->resultString);
         fclose($f);
         return $writeResult == FALSE ? FALSE : basename($path);
     }
+    
 
     /**
      * Saving excel-file
@@ -99,11 +105,8 @@ class Export {
             default:
                 return FALSE;
         }
-
         $this->getDataArray(); // selecting data from DB (if not performed)
         $objPHPExcel = new PHPExcel();
-
-        // formation of headlines (from keys of first product data)
         $someProductData = current($this->resultArray);
         $headerArray = array();
         $columnNumber = 0;
@@ -113,7 +116,6 @@ class Export {
             }
             $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($columnNumber++, 1, $abbr);
         }
-
         $rowNumber = 2;
         foreach ($this->resultArray as $productData) {
             $columnNumber = 0;
@@ -135,7 +137,6 @@ class Export {
         $query = $this->createQuery();
         $result = $this->db->query($query);
         $list = array();
-
         foreach ($result->result_array() as $row) {
             if ($this->categories !== NULL) {
                 $row['category_name'] = $this->categories[$row['category_name']];
@@ -164,10 +165,7 @@ class Export {
         $this->getDataArray(); // selecting data from DB (if not performed)
         if (is_null($this->resultString)) {
             $this->getDataFromBase();
-
             $fileContents = "";
-
-            // headers forming
             $someProductData = current($this->resultArray);
             $headerArray = array();
             foreach ($someProductData as $field => $junk) {
@@ -177,7 +175,6 @@ class Export {
                 $headerArray[] = $abbr;
             }
             $fileContents .= $this->getCsvLine($headerArray);
-
             foreach ($this->resultArray as $row) {
                 $fileContents .= $this->getCsvLine($row);
             }
@@ -207,7 +204,6 @@ class Export {
         $fieldsArray = array(); // tables and fields
         $fields = "";
         $joins = "";
-
         foreach ($this->completeFields as $field) {
             if (in_array(trim($field), $this->customFields)) {// this is property of product
                 // mysql has no pivot, but max(if... construction helps :
@@ -216,18 +212,14 @@ class Export {
                 $fieldsArray[] = $this->getFullField(trim($field));
             }
         }
-
-        // fields in SELECT concatenation
         foreach ($fieldsArray as $field) {
             if ($field == FALSE && $this->skipErrors == TRUE) {
-                $this->addError('Error while creating query. Field missing.');
+                $this->addError('Error while creating query. Field missing.');   
             }
             $fields .= $field != FALSE ? " \n {$field}, " : "";
         }
         // last comma removing
         $fields = substr($fields, 0, strlen($fields) - 2);
-
-
         // if categories are selected adding condition to query
         if (is_array($this->selectedCats) && count($this->selectedCats) > 0) {
             // to avoid query error checking if category exists
@@ -241,8 +233,6 @@ class Export {
         } else {
             $selCatsCondition = " ";
         }
-
-
         $query = "
             SELECT
                 {$fields}
@@ -272,11 +262,6 @@ class Export {
             GROUP BY `shop_product_variants`.`id`
             ORDER BY `shop_products`.`category_id`
         ";
-
-//        $f = fopen('/var/www/export_query.txt', 'w+');
-//        fwrite($f, print_r($query, TRUE));
-//        fclose($f);
-
         return $query;
     }
 
@@ -333,7 +318,6 @@ class Export {
         // the parameters of the products that can be transmitted through the settings designer
         if (sizeof($this->attributesCF) > 0)
             $attr = array_merge($this->attributes, $this->attributesCF);
-
         //a reduction of the field names and field attributes
         foreach ($this->attributes as $field => $justNumber1) {
             if (key_exists($field, $abbreviations)) {
@@ -411,7 +395,6 @@ class Export {
             WHERE 
                 `shop_category_i18n`.`locale` = '{$this->language}'
         ";
-
         $categoriesData = array();
         $result = $this->db->query($query);
         foreach ($result->result_array() as $row) {
@@ -492,11 +475,4 @@ class Export {
     public function getErrors() {
         return $this->errors;
     }
-    
-    
-    public function test(){
-        echo json_encode("hello1234");
-    }
-    
-    
 }
