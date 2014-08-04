@@ -2,6 +2,8 @@
 
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
+use import_export\classes\Logger as LOG;
+
 /**
  * Image CMS 
  * Sample Module Admin
@@ -13,8 +15,7 @@ class Admin extends BaseAdminController {
     public function __construct() {
         parent::__construct();
         $lang = new MY_Lang();
-        $lang->load('import_export');
-        
+        $lang->load('import_export');    
     }
 
     public function index() {
@@ -28,9 +29,8 @@ class Admin extends BaseAdminController {
         $n->$className();
     }
     
-    public function getExport(){
-        require_once ('export.php');
-        $export = new Export(array(
+    /*public function getExport(){
+        $export = new \import_export\classes\Export(array(
             'attributes' => $_POST['attribute'],
             'attributesCF' => $_POST['cf'],
             'import_type' => trim($_POST['import_type']),
@@ -41,7 +41,6 @@ class Admin extends BaseAdminController {
             'languages' => trim($_POST['language']),
             'selectedCats' => $_POST['selectedCats']
         ));
-        //$export->getDataArray();
         if ($export->hasErrors() == FALSE) {
             if (!$this->input->is_ajax_request()) {
                 $export->getDataArray();
@@ -61,8 +60,33 @@ class Admin extends BaseAdminController {
         } else {
             echo $this->processErrors($export->getErrors());
         }
-    }
+    }*/
     
+    public function getExport(){
+        $export = new \import_export\classes\Export(array(
+            'attributes' => $_POST['attribute'],
+            'attributesCF' => $_POST['cf'],
+            'import_type' => trim($_POST['import_type']),
+            'delimiter' => trim($_POST['delimiter']),
+            'enclosure' => trim($_POST['enclosure']),
+            'encoding' => trim($_POST['encoding']),
+            'currency' => trim($_POST['currency']),
+            'languages' => trim($_POST['language']),
+            'selectedCats' => $_POST['selectedCats']
+        ));
+        if ($export->hasErrors() == FALSE) {
+            if (!$this->input->is_ajax_request()) {
+                $this->createFile($_POST['type'], $export);
+                $this->downloadFile($_POST['type']);
+            }
+            if (FALSE !== $this->createFile($_POST['type'], $export)) {
+                echo $_POST['type'];
+                return;
+            }
+        } else {
+            echo $this->processErrors($export->getErrors());
+        }
+    }
     
     public function getTpl($check){
         if($check == 'import'){
@@ -137,12 +161,5 @@ class Admin extends BaseAdminController {
             $result .= $err . '<br/>';
         }
         return '<p class="errors">' . $result . '</p>';
-    }
-    
-    
-    
-    
-    public function test(){
-        echo json_encode('test');
     }
 }
