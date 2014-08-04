@@ -35,7 +35,7 @@ class Import extends ShopAdminController {
     public function segmentImport() {
         $result = Imp::create()->startProcess($_POST['offers'], $_POST['limit'])->resultAsString();
         if(($_POST['offers'] >= $_POST['countProd']) && $_POST['offers']){ 
-            echo(json_encode($result));        
+            echo (json_encode($result));        
         }else{
             return $result;
         }

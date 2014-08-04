@@ -95,7 +95,6 @@ function importSegment(obj, attr) {
     var i = 0;
     var countProd = obj.countProductsInFile;
     $('#progressBlock').css("display", "block");
-
     while (i <= countProd) {
         i = i + limit;
         var x = i * 100 / countProd;
@@ -119,7 +118,8 @@ function importSegment(obj, attr) {
                 countProd: countProd
             },
             success: function(obj) {
-                var obj = obj;
+                //var obj = obj;
+                
             }
         });
     }    
