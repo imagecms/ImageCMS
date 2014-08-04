@@ -23,11 +23,12 @@ class BaseImport extends \CI_Model {
     public $enclosure = '"';
     public $importType = '';
     public $attributes = "";
-    public $maxRowLength = 10000;
+    public $maxRowLength = 100000;
     public $content = array();
     public $settings = array();
     public $possibleAttributes = array();
     public $exportSuccessfulHandler;
+    public $countProduct;
 
     public function __construct() {
         parent::__construct();
@@ -40,11 +41,10 @@ class BaseImport extends \CI_Model {
      * @author Kaero
      * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
      */
-    public function makeImport() {
+    public function makeImport($offers=1, $limit = 1) {
         
         $this->makeAttributesList();
-        $this->validateAndParse();
-//        $this->makeDBBackup();
+        $this->validateAndParse();        
         CategoriesHandler::loadCategories();
         ProductsHandler::create()->make();
         PropertiesHandler::runProperties();
@@ -57,11 +57,11 @@ class BaseImport extends \CI_Model {
     /**
      * Validate Information and parse CSV. As a goal we have $content variable with file information.
      * @return bool
-     * @access private
+     * @access public
      * @author Kaero
      * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
      */
-    private function validateAndParse() {
+    public function validateAndParse() {
 
         if (substr(sprintf('%o', fileperms(ImportBootstrap::getUploadDir())), -4) != '0777') {
             ImportBootstrap::addMessage(Factor::ErrorFolderPermission);
@@ -89,13 +89,16 @@ class BaseImport extends \CI_Model {
             ImportBootstrap::addMessage(Factor::ErrorPossibleAttrValues);
             return FALSE;
         }
+        
         $cnt = 0;
         
         while (($row = fgetcsv($file, $this->maxRowLegth, $this->delimiter, $this->enclosure)) !== false) {
-            if ($cnt != 0)
+            if ($cnt != 0 ){
                 $this->content[] = array_combine($this->attributes, array_map('trim', $row));
+                $this->countProduct++;
+            }
             $cnt = 1;
-        }
+        }           
         fclose($file);
         return TRUE;
     }
@@ -135,7 +138,7 @@ class BaseImport extends \CI_Model {
     public function setFileName($fileName) {
         try {
             if (FALSE === file_exists($fileName))
-                throw new \Exception(import_export\classes\Factor::ErrorEmptySlot);
+                throw new \Exception(Factor::ErrorEmptySlot);
             $this->CSVsource = $fileName;
             return $this;
         } catch (\Exception $exc) {

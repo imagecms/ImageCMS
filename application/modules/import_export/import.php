@@ -30,7 +30,7 @@ class Import extends ShopAdminController{
         set_time_limit(9000000);
     }
 
-        /**
+    /**
      * Import products from CSV file
      * @return void
      */
@@ -48,7 +48,7 @@ class Import extends ShopAdminController{
         if (count($_POST['attributes']) && $_POST['csvfile']) {
             $importSettings = $this->cache->fetch('ImportExportCache');
             if (empty($importSettings) || $importSettings['withBackup'] != $this->input->post('withBackup'))
-                $this->cache->store('ImportExportCache', array('withBackup' => $this->input->post('withBackup')), '25920000');
+                $this->cache->store('ImportExportCache', array('withBackup' => $this->input->post('withBackup')), '25920000');            
             $result = Imp::create()->withBackup()->startProcess()->resultAsString();
             echo(json_encode($result));
         } else {
