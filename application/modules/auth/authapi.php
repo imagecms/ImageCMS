@@ -38,6 +38,7 @@ class Authapi extends MY_Controller {
             $this->form_validation->set_rules('email', lang('Email', 'auth'), 'trim|required|min_length[3]|xss_clean|valid_email|callback_email_check_for_login');
             $this->form_validation->set_rules('password', lang('Password', 'auth'), 'trim|required|min_length[3]|max_length[30]|xss_clean');
             $this->form_validation->set_rules('remember', lang('Remeber me', 'auth'), 'integer');
+            $this->form_validation->set_rules('redirect_to', lang('Redirect to', 'auth'), 'trim|min_length[3]|max_length[255]|xss_clean');
 
             /** Validate rules and change password */
             $validationResult = $this->form_validation->run();
@@ -135,9 +136,9 @@ class Authapi extends MY_Controller {
 
             if ($this->dx_auth->captcha_registration) {
                 if ($this->dx_auth->use_recaptcha)
-                    $val->set_rules('recaptcha_response_field', lang("Code protection",'auth'), 'trim|xss_clean|required|callback_captcha_check');
+                    $val->set_rules('recaptcha_response_field', lang("Code protection", 'auth'), 'trim|xss_clean|required|callback_captcha_check');
                 else
-                    $val->set_rules('captcha', lang("Code protection",'auth'), 'trim|xss_clean|required|callback_captcha_check');
+                    $val->set_rules('captcha', lang("Code protection", 'auth'), 'trim|xss_clean|required|callback_captcha_check');
             }
             // Run form validation and register user if it's pass the validation
             $this->load->helper('string');
@@ -146,9 +147,9 @@ class Authapi extends MY_Controller {
             if ($val->run($this) AND $last_user = $this->dx_auth->register($val->set_value('username'), $val->set_value('password'), $val->set_value('email'), '', $key, '')) {
                 // Set success message accordingly
                 if ($this->dx_auth->email_activation) {
-                    $data['auth_message'] = lang("You have successfully registered. Please check your email to activate your account.",'auth');
+                    $data['auth_message'] = lang("You have successfully registered. Please check your email to activate your account.", 'auth');
                 } else {
-                    $data['auth_message'] = lang("You have successfully registered. ",'auth') . anchor(site_url($this->dx_auth->login_uri), lang("Login",'auth'));
+                    $data['auth_message'] = lang("You have successfully registered. ", 'auth') . anchor(site_url($this->dx_auth->login_uri), lang("Login", 'auth'));
                 }
                 //create json array for ajax request
                 $json = array();
@@ -211,7 +212,7 @@ class Authapi extends MY_Controller {
     public function forgot_password() {
         $val = $this->form_validation;
         // Set form validation rules
-        $val->set_rules('email', lang("Email",'auth'), 'trim|required|xss_clean|valid_email|callback_email_check_for_login');
+        $val->set_rules('email', lang("Email", 'auth'), 'trim|required|xss_clean|valid_email|callback_email_check_for_login');
         // Validate rules and call forgot password function
         if ($val->run($this) AND $this->dx_auth->forgot_password($val->set_value('email'))) {
             echo json_encode(array(
@@ -248,7 +249,7 @@ class Authapi extends MY_Controller {
         if ($this->dx_auth->is_logged_in()) {
             if ($this->dx_auth->reset_password($email, $key)) {
                 echo json_encode(array(
-                    'msg' => lang("You have successfully zeroed my password. ",'auth') . anchor(site_url($this->dx_auth->login_uri), lang("Login Here",'auth')),
+                    'msg' => lang("You have successfully zeroed my password. ", 'auth') . anchor(site_url($this->dx_auth->login_uri), lang("Login Here", 'auth')),
                     'status' => true,
                 ));
             } else {
@@ -427,6 +428,7 @@ class Authapi extends MY_Controller {
         else
             return TRUE;
     }
+
 }
 
 /* End of file authapi.php */

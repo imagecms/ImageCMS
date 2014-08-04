@@ -27,7 +27,8 @@ if (!function_exists('siteinfo')) {
         if (0 !== strpos($name, 'siteinfo_')) {
             $name = 'siteinfo_' . $name;
         }
-
+        $ci = &get_instance();
+        $ci->load->library('SiteInfo');
         $siteinfo = new SiteInfo();
         // next code is only for compatibility with older versions of library, 
         // so in the future needed to be removed (with funciton processOldVersions() too)
@@ -35,9 +36,9 @@ if (!function_exists('siteinfo')) {
             return $data;
         } else {
             $value = $siteinfo->getSiteInfo($name);
-            
+
             if (in_array($name, array('siteinfo_logo', 'siteinfo_favicon'))) {
-                return CI::$APP->siteinfo->imagesPath . $value;
+                return $ci->siteinfo->imagesPath . $value;
             }
             return $value;
         }

@@ -673,7 +673,7 @@ CREATE TABLE IF NOT EXISTS `languages` (
 
 INSERT INTO `languages` (`id`, `lang_name`, `identif`, `image`, `folder`, `template`, `default`, `locale`) VALUES
 (3, 'Русский', 'ru', '', 'russian', 'commerce', 1, 'ru_RU'),
-(4, 'Английский', 'en', '', 'english', 'commerce', 1, 'en_US');
+(4, 'Английский', 'en', '', 'english', 'commerce', 0, 'en_US');
 
 -- --------------------------------------------------------
 
@@ -8245,6 +8245,7 @@ INSERT INTO `shop_rbac_roles_privileges` (`id`, `role_id`, `privilege_id`) VALUE
 (483, 1, 483),
 (484, 1, 484),
 (485, 1, 485),
+(486, 1, 486),
 (612, 1, 424),
 (613, 1, 425);
 
