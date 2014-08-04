@@ -11,6 +11,14 @@ use import_export\classes\Logger as LOG;
 class Admin extends BaseAdminController {
     
     private $languages = null;
+    private $checkedFields = array(
+        'name',
+        'url',
+        'prc',
+        'var',
+        'cat',
+        'num'
+    );
 
     public function __construct() {
         parent::__construct();
@@ -76,6 +84,7 @@ class Admin extends BaseAdminController {
                 ->setData('attributes',ImportCSV\BaseImport::create()->makeAttributesList()->possibleAttributes)     
                 ->setData('languages',$this->languages)
                 ->setData('cFields',$cFields)
+                ->setData('checkedFields',$this->checkedFields)
                 ->renderAdmin('export');
         }
     }

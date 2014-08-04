@@ -12,7 +12,6 @@
         </div>
     </div>
     <div class="content_big_td">
-        
         <div class="tab-content">
             <div class="tab-pane active" id="exportcsv">    
                 <table class="table table-striped table-bordered table-hover table-condensed">
