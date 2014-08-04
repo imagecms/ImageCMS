@@ -29,39 +29,6 @@ class Admin extends BaseAdminController {
         $n->$className();
     }
     
-    /*public function getExport(){
-        $export = new \import_export\classes\Export(array(
-            'attributes' => $_POST['attribute'],
-            'attributesCF' => $_POST['cf'],
-            'import_type' => trim($_POST['import_type']),
-            'delimiter' => trim($_POST['delimiter']),
-            'enclosure' => trim($_POST['enclosure']),
-            'encoding' => trim($_POST['encoding']),
-            'currency' => trim($_POST['currency']),
-            'languages' => trim($_POST['language']),
-            'selectedCats' => $_POST['selectedCats']
-        ));
-        if ($export->hasErrors() == FALSE) {
-            if (!$this->input->is_ajax_request()) {
-                $export->getDataArray();
-                if (trim($_POST['formed_file_type']) != "0") {
-                    $this->downloadFile($_POST['formed_file_type']);
-                    return;
-                }
-                $this->createFile($_POST['type'], $export);
-                $this->downloadFile($_POST['type']);
-                return;
-            }
-            if (FALSE !== $this->createFile($_POST['type'], $export)) {
-                echo $_POST['type'];
-                return;
-            }
-            echo "Error";
-        } else {
-            echo $this->processErrors($export->getErrors());
-        }
-    }*/
-    
     public function getExport(){
         $export = new \import_export\classes\Export(array(
             'attributes' => $_POST['attribute'],
@@ -75,14 +42,17 @@ class Admin extends BaseAdminController {
             'selectedCats' => $_POST['selectedCats']
         ));
         if ($export->hasErrors() == FALSE) {
+            $export->getDataArray();
             if (!$this->input->is_ajax_request()) {
                 $this->createFile($_POST['type'], $export);
                 $this->downloadFile($_POST['type']);
+                return;
             }
             if (FALSE !== $this->createFile($_POST['type'], $export)) {
                 echo $_POST['type'];
                 return;
             }
+            echo "Error!";
         } else {
             echo $this->processErrors($export->getErrors());
         }
@@ -146,6 +116,8 @@ class Admin extends BaseAdminController {
                 header('Content-type: text/csv');
             }
             force_download($file, $data);
+        } else {
+            LOG::create()->set('Cannot download file!');
         }
     }
     

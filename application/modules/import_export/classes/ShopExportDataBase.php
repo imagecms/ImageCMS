@@ -168,10 +168,8 @@ class ShopExportDataBase {
             default:
                 return FALSE;
         }
-
         $this->getDataArray(); // selecting data from DB (if not performed)
         $objPHPExcel = new PHPExcel();
-
         // formation of headlines (from keys of first product data)
         $someProductData = current($this->resultArray);
         $headerArray = array();
