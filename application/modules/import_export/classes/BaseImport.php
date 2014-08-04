@@ -51,7 +51,7 @@ class BaseImport extends \CI_Model {
             PropertiesHandler::runProperties();
         }
         if (ImportBootstrap::noErrors())
-            ImportBootstrap::create()->addMessage(Factor::SuccessImportCompleted . '<b>' . count($this->content) . '</b>', Factor::MessageTypeSuccess);
+            ImportBootstrap::create()->addMessage(Factor::SuccessImportCompleted . '<b>' . $this->maxRowLength . '</b>', Factor::MessageTypeSuccess);
         else
             return FALSE;
     }
