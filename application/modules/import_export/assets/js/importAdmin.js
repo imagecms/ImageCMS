@@ -89,14 +89,18 @@ $(document).ready(function() {
         });
     }
     
-    function importSegment(obj, attr, limit1) {
+    function importSegment(obj, attr, lastCount) {
         limit = 10;
         var countProd = obj.countProductsInFile;
         $('#progressBlock').css("display", "block"); 
-        if(limit1){
-            i = limit + limit1;
+        if(lastCount){
+            i = limit + lastCount;
         }else{
             i = limit;            
+        }
+        
+        if(i>countProd){
+            i = countProd;
         }
         var x = i * 100 / countProd;
         $('#percent').css("width", Math.floor(x) + '%');
@@ -118,16 +122,15 @@ $(document).ready(function() {
                     limit: limit,
                     countProd: countProd
                 },
-                success: function() {
-//                    var obj = obj;
-                    if(i<=countProd){
+                success: function(errors) {
+                    if(i < countProd){
                         importSegment(obj, attr, i);
                     }else{
-                        $('#progressBlock').fadeOut('slow');
+                        $('#progressBlock').fadeOut('slow');                        
+                        buildImportReport(errors);
                     }
                 }                
             });
-//        buildImportReport(obj);            
     }
 
     function buildImportReport($obj) {
