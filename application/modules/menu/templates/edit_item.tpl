@@ -569,7 +569,7 @@
                                                 <select name="url_parent_id" id="item_parent_id">
                                                     <option value="0">{lang("No", "menu")}</option>
                                                     {foreach $parents as $p}
-                                                        <option value="{$p.id}" {if $item.parent_id != 0 AND $item.parent_id == $p.parent_id}selected="selected"{/if}> - {$p.title}</option>
+                                                        <option value="{$p.id}" {if $item.parent_id != 0 AND $item.parent_id == $p.id}selected="selected"{/if}> - {$p.title}</option>
                                                     {/foreach}
                                                 </select>
                                             </div>
