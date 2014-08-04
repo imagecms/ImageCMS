@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-    /*IMPORT EXPORT*/
+    /*IMPORT*/
     $("#importcsvfile").unbind('change').bind('change', function() {
         var selector = $(this).closest('form');
         $chekedFile = $('input[name=csvfile]:checked').val();
@@ -53,26 +53,16 @@ $(document).ready(function() {
             type: 'post',
             data: $(this).serialize(),
             success: function(obj) {
+                var object = jQuery.parseJSON(obj);
+                if (object.propertiesSegmentImport.countProductsInFile) {
+                    importSegment(object.propertiesSegmentImport, $names);
+                } else {
                     buildImportReport(obj);
+                }
             }
         });
         return false;
     });
-    function buildImportReport($obj) {
-        try {
-            $object = jQuery.parseJSON($obj);
-            if ($object.error != null)
-                showMessage('', $object.message);
-            else if ($object.success != null) {
-                showMessage('', $object.message);
-            }
-        }
-        catch (err) {
-            showMessage('', langs.scriptErrorTellAdmin);
-        }
-//                $('.importProcess').fadeOut(100);
-//                $('.importRaport').fadeIn(100);
-    }
 
     $('.dropdown-attr a').unbind('click').bind('click', function() {
         $startPoint = $(this).closest('div');
@@ -98,99 +88,55 @@ $(document).ready(function() {
             }
         });
     }
-
-
-
-    $(".runExport").unbind("click").click(function() {
-        $(".runExport").button('loading');
-        $.ajax({
-            url: "/admin/components/run/shop/system/export",
-            type: "post",
-            data: $('#makeExportForm').serialize(),
-            success: function(data) {
-                switch (data) {
-                    case "csv":
-                    case "xls":
-                    case "xlsx":
-                        $("#makeExportForm input[name='formed_file_type']").val(data);
-                        $('#makeExportForm').submit();
-                        break;
-                    default:
-                        showMessage("", data);
-                }
-            },
-            complete: function(xhr) {
-                $(".runExport").button('reset');
-            }
-        });
-    });
-
-
-    $("#showCatProps").unbind("click").click(function() {
-        showCatProp();
-    });
-
-
-    function showCatProp() {
-        var catData = $('#selectedCats').serialize();
-
-        if (!catData) {
-            // empty - show message
-            $("#pleaseSelectCats").fadeIn(100);
-            return;
-        }
-
-        var time = new Date().getTime(); // disable caching
-        $.ajax({
-            url: "/admin/components/run/shop/system/getCategoryProperties/" + time,
-            type: 'post',
-            data: catData,
-            beforeSend: function() {
-                $('#showCatProps').button('loading');
-                $('.properties_result .serverResponse').remove();
-            },
-            success: function(data) {
-                $('.properties_result').append(data);
-                initNiceCheck();
-            },
-            complete: function() {
-                $("#showCatProps").button('reset');
-                $("#pleaseSelectCats").hide();
-            }
-        });
-    }
-
-
-
-
-
 });
-function importSegment(file, count){
-    alert(file)
-limit = 1;
-//
-//$.ajax({
-//    type: 'post',
-//    async: false,
-//    url: '/admin/components/init_window/sync/getCountRec/' + file,
-//    success: function(RecCount) {
-//        var RecCountInt = parseInt(RecCount)
-//        for (var i = 0; i < RecCountInt; i = i + limit) {
-//
-//
-//            $.ajax({
-//                type: 'post',
-//                async: false,
-//                url: '/admin/components/init_window/sync/importProd?limit=' + limit + '&offset=' + i,
-//                success: function(data) {
-//                    txt.html(txt.html() + "<br/> Файл - " + index + ' - ' + file + " ----  " + data + " товаров импортирувани")
-//                    txt.scrollTop(
-//                            txt[0].scrollHeight - txt.height()
-//                            );
-//                    return false;
-//                }
-//            })
-//        }
-//    }
-//})
+
+function importSegment(obj, attr) {
+    limit = 10;
+    var i = 0;
+    var countProd = obj.countProductsInFile;
+    $('#progressBlock').css("display", "block");
+
+    while (i <= countProd) {
+        i = i + limit;
+        var x = i * 100 / countProd;
+        $('#percent').css("width", Math.floor(x) + '%');
+        $('#ratio').html(i + '/' + countProd);
+        $.ajax({
+            type: 'post',
+            async: false,
+            url: '/admin/components/init_window/import_export/getImport/segmentImport',
+            data: {
+                csvfile: obj.csvfile,
+                attributes: attr,
+                delimiter: obj.delimiter,
+                enclosure: obj.enclosure,
+                encoding: obj.encoding,
+                import_type: obj.import_type,
+                language: obj.language,
+                currency: obj.currency,
+                offers: i,
+                limit: limit,
+                countProd: countProd
+            },
+            success: function(obj) {
+                var obj = obj;
+            }
+        });
+    }    
+    $('#progressBlock').fadeOut('slow');
+    buildImportReport(obj);            
+}
+
+function buildImportReport($obj) {
+    try {
+        $object = jQuery.parseJSON($obj);
+        if ($object.error != null)
+            showMessage('', $object.message);
+        else if ($object.success != null) {
+            showMessage('', $object.message);
+        }
+    }
+    catch (err) {
+        showMessage('', langs.scriptErrorTellAdmin);
+    }
 }

@@ -168,6 +168,20 @@
                                 </div>
                             </td>
                         </tr>
+                        <tr>
+                            <td>
+                                <div id="progressBlock" style="display:none;margin-top:15px;">
+                                    <label id="progressLabel"></label>
+                                    <div class="progress progress-striped active" style="margin-top:15px;">
+                                        <div id="percent" class="bar" style="width: 1%;">
+                                            <div style="position: relative; top:1px">
+                                                <span id="ratio"></span>
+                                            </div>                                                
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
