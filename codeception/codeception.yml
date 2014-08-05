@@ -16,8 +16,8 @@ modules:
         - Cli
     config:
         WebDriver:
-            url: 'http://cmsprem.loc/'
-            browser: chrome
+            url: 'http://lastbild.loc/'
+            browser: firefox
             window_size: 1024x768    
 #            restart: false
             clear_cookies: false
@@ -26,7 +26,7 @@ modules:
                 unexpectedAlertBehaviour: 'accept'
         Db:
             Db:
-            dsn: 'mysql:host=127.0.0.1;dbname=cmsprem'
+            dsn: 'mysql:host=127.0.0.1;dbname=test88'
             user: 'root'
             password: ''
             dump: 'tests/_data/cmsprem.sql'
