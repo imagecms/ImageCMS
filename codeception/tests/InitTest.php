@@ -97,7 +97,7 @@ class InitTest {
      * @param string            $username       Db username
      * @param string            $databasename   Db name
      */
-    public static function dataBaseBackUp(AcceptanceTester $I,$username = 'root', $databasename = 'cmsprem'){
+    public static function dataBaseBackUp($I,$username = 'root', $databasename = 'cmsprem'){
         /**
          * $mysqlbackup command do this:
          * "cd c:\OpenServer\modules\database\MySQL-5.5.35\bin && mysql.exe -u root cmsprem < C:\OpenServer\cmsprem.sql"
