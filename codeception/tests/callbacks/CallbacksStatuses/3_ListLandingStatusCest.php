@@ -23,11 +23,12 @@ class DeleteStatusCest
     
     public function NamesInListLanding(CallbacksTester $I)
     {
-        $I->click('html/body/div[1]/div[3]/div/nav/ul/li[2]/a');
+        $I->click(NavigationBarPage::$Orders);
         $I->waitForElement('html/body/div[1]/div[3]/div/nav/ul/li[2]/ul');
-        $I->click('html/body/div[1]/div[3]/div/nav/ul/li[2]/ul/li[6]/a');
+        $I->click(NavigationBarPage::$CallbackStatuses);
         $I->waitForElementNotVisible('html/body/div[1]/div[3]/div/nav/ul/li[2]/ul');
-        $I->see('Статусы обратных звонков', 'span.title');
+        $I->wait('1');
+        $I->see('Статусы обратных звонков', ".//*[@id='orderStatusesList']/section/div[1]/div[1]/span[2]");
         $I->see('ID', './/*[@id="orderStatusesList"]/section/div[2]/div/table/thead/tr/th[1]');
         $I->see('Имя', './/*[@id="orderStatusesList"]/section/div[2]/div/table/thead/tr/th[2]');
         $I->see('По умолчанию', './/*[@id="orderStatusesList"]/section/div[2]/div/table/thead/tr/th[3]');
@@ -88,8 +89,9 @@ class DeleteStatusCest
         $I->dontSee("Статус по умолчанию изменен");
         $I->wait(1);
         InitTest::ClearAllCach($I);
-        $I->wait(1);
+        $I->wait(1);        
         $ActButOn=$I->grabAttributeFrom(CallbacksPage::ActiveButtonLine($this->j), "class");
+        $ActButOn=  trim($ActButOn);
         $I->assertEquals($ActButOn, "prod-on_off");
         $DelButAct=$I->grabAttributeFrom(CallbacksPage::DeleteStatusButtonLine($this->j), "disabled");
         $I->assertEquals($DelButAct, 'true'); 
@@ -115,15 +117,17 @@ class DeleteStatusCest
         $this->nameStatus=$I->grabTextFrom(".//*[@id='orderStatusesList']/section/div[2]/div/table/tbody/tr[$this->j]/td[2]/a");
         $I->comment($this->nameStatus);
         $ActButOn=$I->grabAttributeFrom(CallbacksPage::ActiveButtonLine($this->j), "class");
+        $ActButOn=  trim($ActButOn);
         $I->assertEquals($ActButOn, "prod-on_off");
         $DelButAct=$I->grabAttributeFrom(CallbacksPage::DeleteStatusButtonLine($this->j), "disabled");
         $I->assertEquals($DelButAct, 'true');
         for ($k=1;$k<=$this->rows;$k++){            
             //РџРѕРёСЃРє Р°С‚СЂРёР±СѓС‚Р° checked РґР»СЏ СЂР°РґРёРѕС‚РѕС‡РєРё
             $atribActiveClass = $I->grabAttributeFrom(CallbacksPage::ActiveButtonLine($k),"class");
+            $atribActiveClass=  trim($atribActiveClass);
             $I->comment($atribActiveClass);
             //$I->assertEquals($atribActiveClass, 'prod-on_off ');
-            if($atribActiveClass == "prod-on_off "){
+            if($atribActiveClass == "prod-on_off"){
                  $true++;
             }
         }
@@ -201,7 +205,7 @@ class DeleteStatusCest
         $n=1;
         for ($n=1; $n<=$this->sum; $n++){
             $nameSel[$n]=$I->grabTextFrom(".//*[@id='callbacks_all']/table/tbody/tr/td[6]/div/select/option[$n]");
-            $I->comment("$nameSel[$n]");
+            $I->comment("Names status: $nameSel[$n]");
         }
         $this->AllNamesStatus = implode(" ", $nameSel);
         $I->comment("$this->AllNamesStatus");
@@ -253,22 +257,25 @@ class DeleteStatusCest
     public function DeleteNotDefaultStatus(CallbacksTester $I)
     {
         //Удаление статуса не отмеченного по умолчанию
+        $I->comment((string)$this->j);
+        $I->comment((string)$this->rows);
         if($this->j<$this->rows){
             $this->j++;
             $idDeleteStatus=$I->grabTextFrom(".//*[@id='orderStatusesList']/section/div[2]/div/table/tbody/tr[$this->j]/td[1]");
-            $I->click(CallbacksPage::DeleteStatusButtonLine($this->j));
+            $I->click(CallbacksPage::DeleteStatusButtonLine($this->j));            
         }
         else{
             $this->j--;
             $idDeleteStatus=$I->grabTextFrom(".//*[@id='orderStatusesList']/section/div[2]/div/table/tbody/tr[$this->j]/td[1]");
             $I->click(CallbacksPage::DeleteStatusButtonLine($this->j));
         }        
-        //$I->waitForElementVisible("alert.in.fade.alert-success");
-        //$I->See("Статус был удален");
-        //$I->waitForElementNotVisible("alert.in.fade.alert-success");
-        $I->wait(1);
+//        $I->waitForElementVisible("alert.in.fade.alert-success");
+//        $I->See("Статус был удален");
+//        $I->waitForElementNotVisible("alert.in.fade.alert-success");
+        $I->wait(2);
         $this->rows--;
         $rowsAfterDelete = $I->grabTagCount($I,"tbody tr");
+        $I->comment($rowsAfterDelete);
         $I->assertEquals($rowsAfterDelete, $this->rows);
         for ($k=1; $k<=$this->rows; $k++){
                     $noId=$I->grabTextFrom(".//*[@id='orderStatusesList']/section/div[2]/div/table/tbody/tr[$k]/td[1]");

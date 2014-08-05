@@ -59,67 +59,46 @@ class CreateStatusCallbackCest
         $I->waitForText('Статусы обратных звонков');
     } 
     
+    /**
+     * @guy CallbacksTester\CallbacksSteps
+     */
     
-    public function TypesOfSymbolsInCreate(CallbacksTester $I)
+    public function TypesOfSymbolsInCreate(CallbacksTester\CallbacksSteps $I)
     {
-        $I->amOnPage('/admin/components/run/shop/callbacks/createStatus');
-        $I->fillField(CallbacksPage::$NameStatus, 'qwerrQEQE12345!#@$#%%^&*()_+|}{:>?<,./;][\\=-0ёцвцаымпУКП');
-        $I->seeInField(CallbacksPage::$NameStatus, 'qwerrQEQE12345!#@$#%%^&*()_+|}{:>?<,./;][\\=-0ёцвцаымпУКП');
-        $I->click(CallbacksPage::$SaveButton);
-        $I->waitForElementVisible('.alert.in.fade.alert-success');
-        $I->see('Статус создан');
-        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
-        $I->seeInField(CallbacksPage::$NameStatus, 'qwerrQEQE12345!#@$#%%^&*()_+|}{:>?<,./;][\\=-0ёцвцаымпУКП');
+        $name="qwerrQEQE12345!#@$#%%^&*()_+|}{:>?<,./;][\\=-0ёцвцаымпУКП";        
+        $I->CreateStatusCallback($name,$name);
         InitTest::ClearAllCach($I);
     } 
+            
+    /**
+     * @guy CallbacksTester\CallbacksSteps
+     */
     
-    
-    public function OneSymbolsCreate(CallbacksTester $I)
+    public function Symbols128Create(CallbacksTester\CallbacksSteps $I)
     {
-        $I->amOnPage('/admin/components/run/shop/callbacks/createStatus');
-        $I->fillField(CallbacksPage::$NameStatus, 'q');
-        $I->click(CallbacksPage::$SaveButton);
-        $I->waitForElementVisible('.alert.in.fade.alert-success');
-        $I->see('Позиция создана');
-        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
-        $I->seeInField(CallbacksPage::$NameStatus, 'q');
+        $name="Статустатустатустатустатустатустатустатустатустатустатустатустатустатустатустатустатустатустатустатустатустатустатустатустатуста";        
+        $I->CreateStatusCallback($name, $name);
     } 
     
+    /**
+     * @guy CallbacksTester\CallbacksSteps
+     */
     
-    public function Symbols128Create(CallbacksTester $I)
+    public function Symbols255Create(CallbacksTester\CallbacksSteps $I)
     {
-        $I->amOnPage('/admin/components/run/shop/callbacks/createStatus');
-        $I->fillField(CallbacksPage::$NameStatus, 'q');
-        $I->click(CallbacksPage::$SaveButton);
-        $I->waitForElementVisible('.alert.in.fade.alert-success');
-        $I->see('Позиция создана');
-        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
-        $I->seeInField(CallbacksPage::$NameStatus, 'q');
-        InitTest::ClearAllCach($I);
+        $name="12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345";        
+        $I->CreateStatusCallback($name, $name);
     } 
     
+    /**
+     * @guy CallbacksTester\CallbacksSteps
+     */
     
-    public function Symbols255Create(CallbacksTester $I)
+    public function Symbols256Create(CallbacksTester\CallbacksSteps $I)
     {
-        $I->amOnPage('/admin/components/run/shop/callbacks/createStatus');
-        $I->fillField(CallbacksPage::$NameStatus, '12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345');
-        $I->click(CallbacksPage::$SaveButton);
-        $I->waitForElementVisible('.alert.in.fade.alert-success');
-        $I->see('Позиция создана');
-        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
-        $I->seeInField(CallbacksPage::$NameStatus, '12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345');
-    } 
-    
-    
-    public function Symbols256Create(CallbacksTester $I)
-    {
-        $I->amOnPage('/admin/components/run/shop/callbacks/createStatus');
-        $I->fillField(CallbacksPage::$NameStatus, '12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке123456');
-        $I->click(CallbacksPage::$SaveButton);
-        $I->waitForElementVisible('.alert.in.fade.alert-success');
-        $I->see('Позиция создана');
-        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
-        $I->seeInField(CallbacksPage::$NameStatus, '12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345');
+        $name="12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке123456"; 
+        $name2="12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345";
+        $I->CreateStatusCallback($name, $name2);
         InitTest::ClearAllCach($I);
     } 
     
@@ -127,12 +106,29 @@ class CreateStatusCallbackCest
     public function CreateAndExit(CallbacksTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/callbacks/createStatus');
-        $I->fillField(CallbacksPage::$NameStatus, '12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке123456');
-        $I->click(CallbacksPage::$SaveButton);
+        $I->fillField(CallbacksPage::$NameStatus, 'На рассмотрении');
+        $I->click(CallbacksPage::$SaveAndExitButton);
         $I->waitForElementVisible('.alert.in.fade.alert-success');
         $I->see('Позиция создана');
         $I->waitForElementNotVisible('.alert.in.fade.alert-success');
-        $I->seeInField(CallbacksPage::$NameStatus, '12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345');
+        $I->see('На рассмотрении', CallbacksPage::ThemeNameLine('last()'));
+        $def=$I->grabAttributeFrom(\CallbacksPage::ActiveButtonLine('last()'), 'class');
+        $I->assertEquals($def, "prod-on_off  disable_tovar");
+        $DeleteBut=$I->grabAttributeFrom(\CallbacksPage::DeleteStatusButtonLine("last()"), 'disabled');
+        $I->comment("DeleteBut");
+        $I->assertEquals($DeleteBut, null);
     } 
     
+    /**
+     * @guy CallbacksTester\CallbacksSteps
+     */
+    
+    public function OneSymbolsCreate(CallbacksTester\CallbacksSteps $I)
+    {
+        $name="q";
+        $default='';
+        $I->CreateStatusCallback($name,$name,$default);
+        $default='prod-on_off ';
+        $I->CheckStatusCallbackListLanding($name, $default);
+    } 
 }

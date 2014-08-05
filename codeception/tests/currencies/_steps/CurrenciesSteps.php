@@ -51,13 +51,13 @@ class CurrenciesSteps extends \CurrenciesTester
         $I->seeInField(\CurrenciesPage::$Rate, $rate1);        
     }
     
-    function CheckInListLanding($name2,$isocode2,$symbol2)
+    function CheckInListLanding($name1,$isocode1,$symbol1)
     {
         $I = $this;
         $I->wait('1');
-        $I->see($name2, './/*[@id="mainContent"]/section/div[2]/div/form/table/tbody/tr[last()]/td[2]/a');
-        $I->see($isocode2, './/*[@id="mainContent"]/section/div[2]/div/form/table/tbody/tr[last()]/td[3]');
-        $I->see($symbol2, './/*[@id="mainContent"]/section/div[2]/div/form/table/tbody/tr[last()]/td[4]');
+        $I->see($name1, './/*[@id="mainContent"]/section/div[2]/div/form/table/tbody/tr[last()]/td[2]/a');
+        $I->see($isocode1, './/*[@id="mainContent"]/section/div[2]/div/form/table/tbody/tr[last()]/td[3]');
+        $I->see($symbol1, './/*[@id="mainContent"]/section/div[2]/div/form/table/tbody/tr[last()]/td[4]');
         $RadioBut=$I->grabAttributeFrom(\CurrenciesPage::RadioButtonLine("last()"), 'checked');
         $I->comment("$RadioBut");
         $I->assertEquals($RadioBut, null);
