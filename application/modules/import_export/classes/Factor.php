@@ -25,6 +25,10 @@ class Factor {
     const ErrorFileReadError = "Ошибка чтения файла-источника.<br/>Продолжение невозможно. <a target='_blank' href='http://docs.imagecms.net/administrirovanie-imagecms-shop/nastroiki/import-eksport'>Подробнее</a><br/><br/>Error: EIx005";
     const ErrorEmptySlot = "Не загружен файл. Слот пуст <a target='_blank' href='http://docs.imagecms.net/administrirovanie-imagecms-shop/nastroiki/import-eksport'>Подробнее</a><br/><br/>Error: EIx005";
     const ErrorCategoryAttribute = "Атрибут 'Категория' не указан.<br/> Уточните данные импорта. <a target='_blank' href='http://docs.imagecms.net/administrirovanie-imagecms-shop/nastroiki/import-eksport'>Подробнее</a><br/><br/>Error: EIx008";
+    const ErrorUrlAttribute = "Атрибут 'URL' не указан.<br/> Уточните данные импорта. <a target='_blank' href='http://docs.imagecms.net/administrirovanie-imagecms-shop/nastroiki/import-eksport'>Подробнее</a><br/><br/>Error: EIx011";
+    const ErrorPriceAttribute = "Атрибут 'Цена' не указан.<br/> Уточните данные импорта. <a target='_blank' href='http://docs.imagecms.net/administrirovanie-imagecms-shop/nastroiki/import-eksport'>Подробнее</a><br/><br/>Error: EIx012";
+    const ErrorNameVariantAttribute = "Атрибут 'Имя варианта' не указан.<br/> Уточните данные импорта. <a target='_blank' href='http://docs.imagecms.net/administrirovanie-imagecms-shop/nastroiki/import-eksport'>Подробнее</a><br/><br/>Error: EIx013";
+    const ErrorNameAttribute = "Атрибут 'Имя товара' не указан.<br/> Уточните данные импорта. <a target='_blank' href='http://docs.imagecms.net/administrirovanie-imagecms-shop/nastroiki/import-eksport'>Подробнее</a><br/><br/>Error: EIx010";
     const ErrorNumberAttribute = "Атрибут 'Артикул' не указан.<br/> Уточните данные импорта. <a target='_blank' href='http://docs.imagecms.net/administrirovanie-imagecms-shop/nastroiki/import-eksport'>Подробнее</a><br/><br/>Error: EIx009";
     const ErrorPossibleAttrValues = "Атрибутов указано больше чем столбцов в файле. <a target='_blank' href=''>Подробнее</a><br/><br/>Error: EIx003";
     const Error1 = " <a target='_blank' href=''>Подробнее</a><br/><br/>Error: EIx009";

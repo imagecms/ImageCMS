@@ -17,20 +17,14 @@ class Import extends ShopAdminController {
         'cat',
         'num'
     );
-    private $languages = null;
     private $uploadDir = './application/modules/import_export/backups/';
     private $csvFileName = 'product_csv_1.csv';
     private $uplaodedFileInfo = array();
 
     public function __construct() {
         parent::__construct();
-
         \ShopController::checkVar();
         \ShopAdminController::checkVarAdmin();
-        $this->languages = $this->db->get('languages')->result();
-        $this->load->helper('file');
-        ini_set('max_execution_time', 9000000);
-        set_time_limit(9000000);
     }
 
     public function segmentImport() {
@@ -48,6 +42,7 @@ class Import extends ShopAdminController {
      * @return void
      */
     public function imports() {
+        chmod($this->uploadDir, 0777);
         if (count($_FILES)) {
             $this->saveCSVFile();
             chmod($this->uploadDir . $this->csvFileName, 0777);
@@ -63,9 +58,8 @@ class Import extends ShopAdminController {
                 $this->cache->store('ImportExportCache', array('withBackup' => $this->input->post('withBackup')), '25920000');
             Imp::create()->withBackup();
             $result = $this->segmentImport();
-            
             /*for ajax*/
-            if (!$_POST['offers']) {
+            if (!$_POST['offers'] && $result['success']) {
                 $result['propertiesSegmentImport']['countProductsInFile'] = $_SESSION['countProductsInFile'];
                 $result['propertiesSegmentImport']['csvfile'] = trim($_POST['csvfile']);
                 $result['propertiesSegmentImport']['delimiter'] = trim($_POST['delimiter']);
@@ -105,7 +99,7 @@ class Import extends ShopAdminController {
         $this->cache->delete_all();
 
         if ($_POST['withResize']) {
-            $result[content] = explode('/', trim($result['content'][0]));
+            $result['content'] = explode('/', trim($result['content'][0]));
             \MediaManager\Image::create()
                     ->resizeById($result['content'])
                     ->resizeByIdAdditional($result['content'], TRUE);
@@ -130,7 +124,6 @@ class Import extends ShopAdminController {
         $fileExt = pathinfo($_FILES['userfile']['name'], PATHINFO_EXTENSION);
         if (!in_array($fileExt, array('csv', 'xls', 'xlsx'))) {
             echo json_encode(array('error' => lang('Wrong file type. Only csv|xls|xlsx')));
-            LOG::create()->set('Wrong file type. Only csv|xls|xlsx - IMPORT');
             return;
         }
 
@@ -174,8 +167,7 @@ class Import extends ShopAdminController {
         fopen($this->uploadDir . $filename, 'w+');
         if (is_writable($this->uploadDir . $filename)) {
             if (!$handle = fopen($this->uploadDir . $filename, 'w+')) {
-                echo json_encode(array('error' => import_export\classes\Factor::ErrorFolderPermission));
-                LOG::create()->set('Error accessing folder - IMPORT');                
+                echo json_encode(array('error' => import_export\classes\Factor::ErrorFolderPermission));             
                 exit;
             }
 
@@ -184,7 +176,6 @@ class Import extends ShopAdminController {
             fclose($handle);
         } else {
             showMessage(lang("The file {$filename} is not writable", 'admin'));
-            LOG::create()->set('The file is not writable - IMPORT');
         }
     }
 
@@ -226,6 +217,10 @@ class Import extends ShopAdminController {
         $this->configureImportProcess(false);
         \CMSFactory\assetManager::create()
                 ->renderAdmin('import_attributes');
+    }
+    
+    public function errorLog() {
+        LOG::create()->set($_POST['error'].' - IMPORT');
     }
 
 }
