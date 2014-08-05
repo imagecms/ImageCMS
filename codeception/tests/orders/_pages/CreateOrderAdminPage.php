@@ -20,7 +20,7 @@ class CreateOrderAdminPage
        public static $CrtPButtProduct = "//div/section/div[2]/div/a[1]";
        public static $CrtPButtUser = "//div/section/div[2]/div/a[2]";
        public static $CrtPButtOrder = "//div/section/div[2]/div/a[3]";
-       public static $CrtPButtAddToCart = "//div[3]/button";
+       public static $CrtPButtAddToCart = "#addVariantToCart";
        public static $CrtPButtOutStock = "//div[3]/button";
        public static $CrtPButtInBasket = "//div[3]/button";
        public static $CrtPButtDeleteTr1 = ".//*[@id='insertHere']/tr[1]/td[6]/button";
@@ -106,5 +106,20 @@ class CreateOrderAdminPage
        public static $CrtOSelectPlayment = "//select[2]";
        public static $CrtOFieldPromocode = "//div[2]/input";
        public static $CrtOButtUpdate = "//div[2]/button";
+       
+       //--------Select Window Category.Product.Variant------------
+       
+       public static $CrtZMenuCategoryDefolt = "//table[1]/tbody/tr[2]/td[1]/div/a";
+       public static $CrtZMenuCategoryInput = "//table[1]/tbody/tr[2]/td[1]/div/div/div/input";
+       public static $CrtZMenuCategorySearchButton = "//section/form/div/div[1]/div/table[1]/tbody/tr[2]/td[1]/div/div/ul/li";
+       public static $CrtZMenuProduct = "//table[1]/tbody/tr[2]/td[2]/select";
+       public static $CrtZMenuVariant = "//table[1]/tbody/tr[2]/td[3]/select";
+       public static $CrtZMenuSetCategory = "//tbody/tr[2]/td[1]/div/a/span";
+       public static $CrtZMenuProductRowOne = "//table[1]/tbody/tr[2]/td[2]/select/option";
+       
+
+       
+       
+       
 
 }
