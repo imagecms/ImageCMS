@@ -40,7 +40,8 @@ class Logger  {
      * @param string $message
      */
     public function set($message){
-        if(!file_exists($this->pathFile)){
+        if(!file_exists($this->pathFile)){            
+            chmod($this->pathFile, 0777);
             $handler = fopen($this->pathFile, 'w') or die('Cannot open log.txt');
         } else {
             $handler = fopen($this->pathFile, 'a') or die('Cannot open log.txt');
@@ -48,5 +49,6 @@ class Logger  {
         $message = 'Error userId - ' . \CI::$APP->dx_auth->get_user_id() . '. time - ' . date("d.m.Y H:i", time()) . '. Message: ' . $message . "\n";
         fwrite($handler, $message);
         fclose($handler);
+        chmod($this->pathFile, 0777);
     }
 }
