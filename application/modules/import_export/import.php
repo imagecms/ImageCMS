@@ -1,6 +1,7 @@
 <?php
 
 use import_export\classes\ImportBootstrap as Imp;
+use import_export\classes\Logger as LOG;
 
 class Import extends ShopAdminController {
 
@@ -61,8 +62,9 @@ class Import extends ShopAdminController {
             if (empty($importSettings) || $importSettings['withBackup'] != $this->input->post('withBackup'))
                 $this->cache->store('ImportExportCache', array('withBackup' => $this->input->post('withBackup')), '25920000');
             Imp::create()->withBackup();
-
             $result = $this->segmentImport();
+            
+            /*for ajax*/
             if (!$_POST['offers']) {
                 $result['propertiesSegmentImport']['countProductsInFile'] = $_SESSION['countProductsInFile'];
                 $result['propertiesSegmentImport']['csvfile'] = trim($_POST['csvfile']);
@@ -74,30 +76,31 @@ class Import extends ShopAdminController {
                 $result['propertiesSegmentImport']['currency'] = trim($_POST['currency']);
                 unset($_SESSION['countProductsInFile']);
             }
-
             echo(json_encode($result));
-        } else {
-            if (!$_FILES) {
-                exit('11');
-                $customFields = SPropertiesQuery::create()->orderByPosition()->find();
-                $cFieldsTemp = $customFields->toArray();
-                $cFields = array();
-                foreach ($cFieldsTemp as $f)
-                    $cFields[] = $f['CsvName'];
-
-                $importSettings = $this->cache->fetch('ImportExportCache');
-                $this->template->assign('withBackup', $importSettings['withBackup']);
-                $this->configureImportProcess();
-                $this->render('import', array(
-                    'customFields' => SPropertiesQuery::create()->orderByPosition()->find(),
-                    'languages' => $this->languages,
-                    'cFields' => $cFields,
-                    'currencies' => SCurrenciesQuery::create()->orderByIsDefault()->find(),
-                    'attributes' => import_export\classes\BaseImport::create()->makeAttributesList()->possibleAttributes,
-                    'checkedFields' => $this->checkedFields
-                ));
-            }
-        }
+            
+        } 
+//        else {
+//            if (!$_FILES) {
+//                exit('11');
+//                $customFields = SPropertiesQuery::create()->orderByPosition()->find();
+//                $cFieldsTemp = $customFields->toArray();
+//                $cFields = array();
+//                foreach ($cFieldsTemp as $f)
+//                    $cFields[] = $f['CsvName'];
+//
+//                $importSettings = $this->cache->fetch('ImportExportCache');
+//                $this->template->assign('withBackup', $importSettings['withBackup']);
+//                $this->configureImportProcess();
+//                $this->render('import', array(
+//                    'customFields' => SPropertiesQuery::create()->orderByPosition()->find(),
+//                    'languages' => $this->languages,
+//                    'cFields' => $cFields,
+//                    'currencies' => SCurrenciesQuery::create()->orderByIsDefault()->find(),
+//                    'attributes' => import_export\classes\BaseImport::create()->makeAttributesList()->possibleAttributes,
+//                    'checkedFields' => $this->checkedFields
+//                ));
+//            }
+//        }
 
         $this->cache->delete_all();
 
@@ -127,6 +130,7 @@ class Import extends ShopAdminController {
         $fileExt = pathinfo($_FILES['userfile']['name'], PATHINFO_EXTENSION);
         if (!in_array($fileExt, array('csv', 'xls', 'xlsx'))) {
             echo json_encode(array('error' => lang('Wrong file type. Only csv|xls|xlsx')));
+            LOG::create()->set('Wrong file type. Only csv|xls|xlsx - IMPORT');
             return;
         }
 
@@ -171,6 +175,7 @@ class Import extends ShopAdminController {
         if (is_writable($this->uploadDir . $filename)) {
             if (!$handle = fopen($this->uploadDir . $filename, 'w+')) {
                 echo json_encode(array('error' => import_export\classes\Factor::ErrorFolderPermission));
+                LOG::create()->set('Error accessing folder - IMPORT');                
                 exit;
             }
 
@@ -179,6 +184,7 @@ class Import extends ShopAdminController {
             fclose($handle);
         } else {
             showMessage(lang("The file {$filename} is not writable", 'admin'));
+            LOG::create()->set('The file is not writable - IMPORT');
         }
     }
 

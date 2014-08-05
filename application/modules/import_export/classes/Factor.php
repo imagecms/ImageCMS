@@ -23,7 +23,7 @@ class Factor {
     /** Error messages for Export/Import */
     const ErrorFolderPermission = "Ошибка доступа к целевой папке.<br/>Продолжение невозможно. <a target='_blank' href='http://docs.imagecms.net/administrirovanie-imagecms-shop/nastroiki/import-eksport'>Подробнее</a><br/><br/>Error: EIx004";
     const ErrorFileReadError = "Ошибка чтения файла-источника.<br/>Продолжение невозможно. <a target='_blank' href='http://docs.imagecms.net/administrirovanie-imagecms-shop/nastroiki/import-eksport'>Подробнее</a><br/><br/>Error: EIx005";
-    const ErrorEmptySlot = "Не загружен файл. Слот пуст <a target='_blank' href='http://http://docs.imagecms.net/administrirovanie-imagecms-shop/nastroiki/import-eksport'>Подробнее</a><br/><br/>Error: EIx005";
+    const ErrorEmptySlot = "Не загружен файл. Слот пуст <a target='_blank' href='http://docs.imagecms.net/administrirovanie-imagecms-shop/nastroiki/import-eksport'>Подробнее</a><br/><br/>Error: EIx005";
     const ErrorCategoryAttribute = "Атрибут 'Категория' не указан.<br/> Уточните данные импорта. <a target='_blank' href='http://docs.imagecms.net/administrirovanie-imagecms-shop/nastroiki/import-eksport'>Подробнее</a><br/><br/>Error: EIx008";
     const ErrorNumberAttribute = "Атрибут 'Артикул' не указан.<br/> Уточните данные импорта. <a target='_blank' href='http://docs.imagecms.net/administrirovanie-imagecms-shop/nastroiki/import-eksport'>Подробнее</a><br/><br/>Error: EIx009";
     const ErrorPossibleAttrValues = "Атрибутов указано больше чем столбцов в файле. <a target='_blank' href=''>Подробнее</a><br/><br/>Error: EIx003";

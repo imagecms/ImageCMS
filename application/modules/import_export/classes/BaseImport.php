@@ -44,7 +44,7 @@ class BaseImport extends \CI_Model {
     public function makeImport($offers, $limit, $countProd) {
 
         $this->makeAttributesList();
-        $this->validateFile($offers, $limit, $countProd);
+        $this->validateFile($offers, $limit);
         if ($offers > 0) {
             CategoriesHandler::loadCategories();
             ProductsHandler::create()->make();
@@ -63,7 +63,7 @@ class BaseImport extends \CI_Model {
      * @author Kaero
      * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
      */
-    public function validateFile($offers, $limit, $countProd) {
+    public function validateFile($offers, $limit) {
 
         if (substr(sprintf('%o', fileperms(ImportBootstrap::getUploadDir())), -4) != '0777') {
             ImportBootstrap::addMessage(Factor::ErrorFolderPermission);
@@ -91,7 +91,7 @@ class BaseImport extends \CI_Model {
             ImportBootstrap::addMessage(Factor::ErrorPossibleAttrValues);
             return FALSE;
         }
-        $this->parseFile($offers, $limit, $countProd, $file);
+        $this->parseFile($offers, $limit, $file);
     }
 
     /**
@@ -100,7 +100,7 @@ class BaseImport extends \CI_Model {
      * @param type $file
      * @return boolean
      */
-    public function parseFile($offers, $limit, $countProd, $file) {
+    public function parseFile($offers, $limit, $file) {
         if ($offers > 0) {
             $positionStart = $offers - $limit;
             $this->maxRowLegth = $offers;
