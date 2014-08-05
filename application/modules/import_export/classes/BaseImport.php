@@ -44,8 +44,10 @@ class BaseImport extends \CI_Model {
     public function makeImport($offers, $limit, $countProd) {
 
         $this->makeAttributesList();
-        $this->validateFile($offers, $limit);
-        if ($offers > 0) {
+        if($offers == 0)
+            $this->validateFile($offers, $limit);
+        else{
+            $this->parseFile($offers, $limit);
             CategoriesHandler::loadCategories();
             ProductsHandler::create()->make();
             PropertiesHandler::runProperties();
@@ -64,7 +66,7 @@ class BaseImport extends \CI_Model {
      * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
      */
     public function validateFile($offers, $limit) {
-
+        
         if (substr(sprintf('%o', fileperms(ImportBootstrap::getUploadDir())), -4) != '0777') {
             ImportBootstrap::addMessage(Factor::ErrorFolderPermission);
             return FALSE;
@@ -77,6 +79,22 @@ class BaseImport extends \CI_Model {
         $row = fgetcsv($file, $this->maxRowLegth, $this->delimiter, $this->enclosure);
         if (!in_array('cat', $row)) {
             ImportBootstrap::addMessage(Factor::ErrorCategoryAttribute);
+            return FALSE;
+        }
+        if (!in_array('name', $row)) {
+            ImportBootstrap::addMessage(Factor::ErrorNameAttribute);
+            return FALSE;
+        }
+        if (!in_array('url', $row)) {
+            ImportBootstrap::addMessage(Factor::ErrorUrlAttribute);
+            return FALSE;
+        }
+        if (!in_array('prc', $row)) {
+            ImportBootstrap::addMessage(Factor::ErrorPriceAttribute);
+            return FALSE;
+        }
+        if (!in_array('var', $row)) {
+            ImportBootstrap::addMessage(Factor::ErrorNameVariantAttribute);
             return FALSE;
         }
         if (!in_array('num', $row) && $this->importType == Factor::ImportProducts) {
@@ -95,12 +113,16 @@ class BaseImport extends \CI_Model {
     }
 
     /**
-     * Parse file import
+     * 
      * @param type $offers
-     * @param type $file
+     * @param type $limit
+     * @param resurs $file
      * @return boolean
      */
-    public function parseFile($offers, $limit, $file) {
+    public function parseFile($offers, $limit, $file = false) {
+        if(!$file){
+            $file = @fopen($this->CSVsource, 'r');
+        }
         if ($offers > 0) {
             $positionStart = $offers - $limit;
             $this->maxRowLegth = $offers;

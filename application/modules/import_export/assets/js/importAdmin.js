@@ -1,6 +1,6 @@
 $(document).ready(function() {
     var fileNum = $(this).val();
-    loadCsvAttributes(fileNum);
+    loadCsvAttributes(fileNum);    
 
     /*IMPORT*/
     $("#importcsvfile").unbind('change').bind('change', function() {
@@ -92,7 +92,7 @@ $(document).ready(function() {
     }
     
     function importSegment(obj, attr, lastCount) {
-        limit = 10;
+        limit = 1000;
         var countProd = obj.countProductsInFile;
         $('#progressBlock').css("display", "block"); 
         if(lastCount){
@@ -136,8 +136,10 @@ $(document).ready(function() {
     function buildImportReport($obj) {
         try {
             $object = jQuery.parseJSON($obj);
-            if ($object.error != null)
+            if ($object.error != null){
                 showMessage('', $object.message);
+                $.post('/admin/components/init_window/import_export/getImport/errorLog',{error:$object.message});
+            }
             else if ($object.success != null) {
                 showMessage('', $object.message);
             }
