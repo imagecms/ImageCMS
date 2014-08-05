@@ -17,21 +17,23 @@ class DeliveryCreateCest {
 
     /**
      * @group create
+     * @group current
      */
     public function authorization(DeliveryTester $I) {
         InitTest::Login($I);
+        InitTest::changeTextAditorToNative($I);
     }
 
-    //-----------------------FIELD NAME TESTS-----------------------------------
+//  ____________________________________________________________FIELD_NAME_TESTS
 
-    /**
-     * @group create
-     * @guy DeliveryTester\DeliverySteps
-     */
-    public function nameEmpty(DeliveryTester\DeliverySteps $I) {
-        $I->click(DeliveryCreatePage::$ButtonCreate);
-        $I->CheckForAlertPresent('required','create');
-    }
+//    /**_______________________________________________________________________check in alert tests
+//     * @group create
+//     * @guy DeliveryTester\DeliverySteps
+//     */
+//    public function nameEmpty(DeliveryTester\DeliverySteps $I) {
+//        $I->click(DeliveryCreatePage::$ButtonCreate);
+//        $I->CheckForAlertPresent('required','create');
+//    }
 
     /**
      * @group create
@@ -43,7 +45,6 @@ class DeliveryCreateCest {
         $this->CreatedMethods[] = $name;
 
         $I->CreateDelivery($name,'on');
-        $I->CheckForAlertPresent('success','create');
         $I->CheckInList($name);
         $I->CheckInFrontEnd($name);
     }
@@ -58,19 +59,18 @@ class DeliveryCreateCest {
         $this->CreatedMethods[] = $name;
 
         $I->CreateDelivery($name, 'on');
-        $I->CheckForAlertPresent('success','create');
         $I->CheckInList($name);
         $I->CheckInFrontEnd($name);
     }
 
-    /**
-     * @group create
-     * @guy DeliveryTester\DeliverySteps
-     */
-    public function name501(DeliveryTester\DeliverySteps $I) {
-        $I->CreateDelivery(InitTest::$text501);
-        $I->CheckForAlertPresent('error', 'create');
-    }
+//    /**_______________________________________________________________________CHECK IN ALERTS TESTS
+//     * @group create
+//     * @guy DeliveryTester\DeliverySteps
+//     */
+//    public function name501(DeliveryTester\DeliverySteps $I) {
+//        $I->CreateDelivery(InitTest::$text501);
+//        $I->CheckForAlertPresent('error', 'create');
+//    }
 
     /**
      * @group create
@@ -82,12 +82,11 @@ class DeliveryCreateCest {
         $this->CreatedMethods[] = $name;
 
         $I->CreateDelivery($name,'on');
-        $I->CheckForAlertPresent("success",'create');
         $I->CheckInList($name);
         $I->CheckInFrontEnd($name);
     }
 
-    //-----------------------CHECKBOX ACTIVE TESTS------------------------------
+//    _____________________________________________________CHECKBOX_ACTIVE_TESTS
 
     /**
      * @group create
@@ -116,25 +115,24 @@ class DeliveryCreateCest {
         $I->CheckInList($name, 'off');
     }
 
-    //-----------------------FIELD DESCRIPTION TESTS----------------------------
+//    ___________________________________________________FIELD_DESCRIPTION_TESTS
 
     /**
      * @group create
      * @guy DeliveryTester\DeliverySteps
      */
-    public function pescription(DeliveryTester\DeliverySteps $I) {
+    public function description(DeliveryTester\DeliverySteps $I) {
         $name = "Доставка Описание";
         //For deleting
         $this->CreatedMethods[] = $name;
         $description = $descriptionprice = InitTest::$textSymbols;
 
         $I->CreateDelivery($name, 'on', $description, $descriptionprice);
-        $I->CheckForAlertPresent('success', 'create');
         $I->CheckInFrontEnd($name, $description);
+//  _________________________________________________________________________________________________________BUG
     }
 
-    //-----------------------FIELDS PRICE & FREE FROM TESTS---------------------
-
+//  ________________________________________________FIELDS_PRICE_FREE_FROM_TESTS
     /**
      * @group create
      * @guy DeliveryTester\DeliverySteps
@@ -146,13 +144,15 @@ class DeliveryCreateCest {
         $this->CreatedMethods[] = $name;
 
         $I->CreateDelivery($name, 'on', null, null, $price, $freefrom);
-        $I->CheckForAlertPresent('success' ,'create');
         $I->CheckInList($name, null, $price, $freefrom);
         $I->CheckInFrontEnd($I, $name, null, $price, $freefrom);
+//  _________________________________________________________________________________________________________BUG
     }
 
     /**
-     * @group create
+     * @group create     
+     * @group current
+     * 
      * @guy DeliveryTester\DeliverySteps
      */
     public function priceFreeFrom1num(DeliveryTester\DeliverySteps $I) {
@@ -162,7 +162,6 @@ class DeliveryCreateCest {
         $this->CreatedMethods[] = $name;
 
         $I->CreateDelivery($name, 'on', null, null, $price, $freefrom);
-        $I->CheckForAlertPresent('success','create');
         $I->CheckInList($name, NULL, $price, $freefrom);
         $I->CheckInFrontEnd($name, null, $price, $freefrom);
     }
@@ -178,7 +177,6 @@ class DeliveryCreateCest {
         $this->CreatedMethods[] = $name;
 
         $I->CreateDelivery($name, 'on', null, null, $price, $freefrom);
-        $I->CheckForAlertPresent('success', 'create');
         $I->CheckInList($name, null, $price, $freefrom);
         $I->CheckInFrontEnd($name, null, $price, $freefrom);
     }
@@ -195,12 +193,11 @@ class DeliveryCreateCest {
 
 
         $I->CreateDelivery($name, 'on', null, null, $price, $freefrom);
-        $I->CheckForAlertPresent('success', 'create');
         $I->CheckInList($name, null, $price, $freefrom);
         $I->CheckInFrontEnd($name, null, $price, $freefrom);
     }
 
-    //---------------------CHECKBOX PRICE SPECIFIED & FIELD PRICE SPECIFIED-----
+//  ______________________________CHECKBOX_PRICE_SPECIFIED_FIELD_PRICE_SPECIFIED
 
     /**
      * @group create
@@ -220,18 +217,18 @@ class DeliveryCreateCest {
         }
     }
 
-    /**
-     * @group create
-     * @guy DeliveryTester\DeliverySteps
-     */
-    public function fieldPriseSpecifiedEmpty(DeliveryTester\DeliverySteps $I) {
-        $name = "УточнениеЦеныПусто";
-        //For deleting
-        $this->CreatedMethods[] = $name;
-
-        $I->CreateDelivery($name, 'on', null, null, null, null, "");
-        $I->CheckForAlertPresent('success', 'create');
-    }
+//    /**_______________________________________________________________________CHECK_IN ALERT TESTS
+//     * @group create
+//     * @guy DeliveryTester\DeliverySteps
+//     */
+//    public function fieldPriseSpecifiedEmpty(DeliveryTester\DeliverySteps $I) {
+//        $name = "УточнениеЦеныПусто";
+//        //For deleting
+//        $this->CreatedMethods[] = $name;
+//
+//        $I->CreateDelivery($name, 'on', null, null, null, null, "");
+//        $I->CheckForAlertPresent('success', 'create');
+//    }
 
     /**
      * @group create
@@ -244,7 +241,6 @@ class DeliveryCreateCest {
         $this->CreatedMethods[] = $name;
 
         $I->CreateDelivery($name, 'on', null, null, null, null, $message);
-        $I->CheckForAlertPresent('success', 'create');
         $I->CheckInFrontEnd($name, null, null, null, $message);
     }
 
@@ -259,24 +255,23 @@ class DeliveryCreateCest {
         $this->CreatedMethods[] = $name;
 
         $I->CreateDelivery($name, 'on', null, null, null, null, $message);
-        $I->CheckForAlertPresent('success', 'create');
         $I->CheckInFrontEnd($name, null, null, null, $message);
     }
 
-    /**
-     * @group create
-     * @guy DeliveryTester\DeliverySteps
-     */
-    //______________________________________________________________________________________BUG
-    public function fieldPriseSpecified501(DeliveryTester\DeliverySteps $I) {
-        $name = 'УточнениеЦены501';
-        $message = InitTest::$text501;
-        //For deleting
-        $this->CreatedMethods[] = $name;
-
-        $I->CreateDelivery($name, 'on', null, null, null, null, $message);
-        $I->CheckForAlertPresent('error', 'create');
-    }
+//    /**_______________________________________________________________________CHECK IN ALERT TEST
+//     * @group create
+//     * @guy DeliveryTester\DeliverySteps
+//     */
+//    public function fieldPriseSpecified501(DeliveryTester\DeliverySteps $I) {
+//        $name = 'УточнениеЦены501';
+//        $message = InitTest::$text501;
+//        //For deleting
+//        $this->CreatedMethods[] = $name;
+//
+//        $I->CreateDelivery($name, 'on', null, null, null, null, $message);
+//        $I->CheckForAlertPresent('error', 'create');
+//  _________________________________________________________________________________________________________BUG
+//    }
 
     /**
      * @group create
@@ -289,11 +284,10 @@ class DeliveryCreateCest {
         $this->CreatedMethods[] = $name;
 
         $I->CreateDelivery($name, 'on', null, null, null, null, $message);
-        $I->CheckForAlertPresent('success', 'create');
         $I->CheckInFrontEnd($name, null, null, null, $message);
     }
 
-    //---------------------PAYMENT METHODS FIELD--------------------------------
+//  _______________________________________________________PAYMENT_METHODS_FIELD
 
     /**
      * @group create

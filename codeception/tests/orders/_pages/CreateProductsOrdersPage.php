@@ -11,6 +11,7 @@ class CreateProductsOrdersPage
        
        public static $CrtProductPageURL = "/admin/components/run/shop/products/create";
        public static $CrtProductNameProduct = "//table[1]/tbody/tr/td/div/div/div[1]/div[1]/div/input";
+       public static $CrtProductNameVariantProduct = "//table/tbody/tr/td[1]/input[2]";
        public static $CrtProductPriceProduct = "//tbody/tr/td/div/div/div[1]/div[4]/table/tbody/tr/td[2]/input";
        public static $CrtProductArticleProduct = "//tbody/tr/td/div/div/div[1]/div[4]/table/tbody/tr/td[4]/input";
        public static $CrtProductAmountProduct = "//table[1]/tbody/tr/td/div/div/div[1]/div[4]/table/tbody/tr[1]/td[5]/input";
