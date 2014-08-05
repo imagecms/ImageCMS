@@ -9,7 +9,6 @@ class DeliverySteps extends \DeliveryTester {
      * if you wont to skip some field type null
      * if you want to select several Payment methods pass array
      * 
-     * @version 1.2
      * 
      * @param string            $name               Delivery name type null to skip
      * @param sting             $active             Active Checkbox on - enabled| null
@@ -123,10 +122,8 @@ class DeliverySteps extends \DeliveryTester {
         $I->waitForText('Оформление заказа');
 
         $present = FALSE;
-//
-//
         $ClassCount = $I->grabClassCount($I, 'name-count');
-//
+
         for ($j = 1; $j <= $ClassCount; ++$j) {
             $CName = $I->grabTextFrom("//div[@class='frame-radio']/div[$j]//span[@class='text-el']");
             $I->comment($CName);
