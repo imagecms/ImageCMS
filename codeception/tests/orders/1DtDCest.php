@@ -1,26 +1,25 @@
 <?php
 use \OrdersTester;
-class TextElementOLCest
+class DtDCest
 {
 //---------------------------AUTORIZATION--------------------------------------- 
     /**
-     * @group a
+     * @group x
      */
     public function Login(OrdersTester $I){
         InitTest::Login($I);
     }    
     
     
- //-------Verify Presence Create Category and Product in Select Menu-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  
- //______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
-// 
-//    
-//    
-//    
-//    
-//    
-//    
-        ///---///----Tests For Category Product---///---///---///---///---///
+     
+    
+    
+    
+    
+    ///---///---Tests For Category Product in Select------------------------------------------------------------------------------------------------------------------------------------------
+    
+    
+    
     
     /**
      * @group a
@@ -30,10 +29,13 @@ class TextElementOLCest
         $I->wantTo('Verify Presence Parent Category on Select Menu.');
         $I->createCategoryProduct(CreateCategoryOrdersPage::$CrtCatName1);
         $I->SearchCategorySelect(CreateCategoryOrdersPage::$CrtCatName1ForSearch);
-        $I->see('', CreateOrderAdminPage::$CrtZMenuProduct);
-        $I->see('', CreateOrderAdminPage::$CrtZMenuVariant);
-        
     } 
+    
+    
+    
+    
+    
+    
     
      /**
      * @group a
@@ -43,9 +45,13 @@ class TextElementOLCest
         $I->wantTo('Verify Presence Child Category Firs Level on Select Menu.');
         $I->createCategoryProduct(CreateCategoryOrdersPage::$CrtCatName2, CreateCategoryOrdersPage::$CrtCatName1ForSearch);
         $I->SearchCategorySelect(CreateCategoryOrdersPage::$CrtCatName2ForSearchOrder);
-        $I->see('', CreateOrderAdminPage::$CrtZMenuProduct);
-        $I->see('', CreateOrderAdminPage::$CrtZMenuVariant);
     }
+    
+    
+    
+    
+    
+    
     
     /**
      * @group a
@@ -55,41 +61,25 @@ class TextElementOLCest
         $I->wantTo('Verify Presence Child Category Second Level on Select Menu.');
         $I->createCategoryProduct(CreateCategoryOrdersPage::$CrtCatName3, CreateCategoryOrdersPage::$CrtCatName2ForSearchOrder);
         $I->SearchCategorySelect(CreateCategoryOrdersPage::$CrtCatName3ForSearchOrder);
-        $I->see('', CreateOrderAdminPage::$CrtZMenuProduct);
-        $I->see('', CreateOrderAdminPage::$CrtZMenuVariant);
-    }
-//    
-//    
-//    
-//    
-//    
-//    
-//    
-//    
-//    
-//    
-        ///---///----Tests For Name Product---///---///---///---///---///
-    
-    /**
-     * @group a
-     * @guy OrdersTester\OrdersSteps
-     */
-    public function ProductNemaMinParentCategory (OrdersTester\OrdersSteps $I) {
-        $I->wantTo('Verify Presence Product Name and Price Max in Parent Category on Select Menu.');
-        $I->createProduct($nameProduct = 'X',
-                                        $nameVariantProduct = NULL ,
-                                        $priceProduct = '1',
-                                        $articleProduct = NULL,
-                                        $amountProduct = NULL,
-                                        $categoryProduct = CreateCategoryOrdersPage::$CrtCatName1ForSearch);
-          $I->SearchProductNameSelect($typeCategoryName = CreateCategoryOrdersPage::$CrtCatName1ForSearch, $typeProductName = $nameProduct);
-          $I->AddToBascketSelect();
-          $I->SearchProductInBascket($name = $nameProduct, $variant = $nameVariantProduct, $Price = $priceProduct, $totalPrice = $priceProduct, $Check = $priceProduct);
-          InitTest::ClearAllCach($I);
     }
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    ///---///----Tests For Name Product----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    
+    
+    
+    
+    
+
     /**
      * @group a
      * @guy OrdersTester\OrdersSteps
@@ -107,6 +97,20 @@ class TextElementOLCest
           $I->SearchProductInBascket($name = $nameProduct, $variant = $nameVariantProduct, $Price = $priceProduct, $totalPrice = $priceProduct, $Check = $priceProduct);
           InitTest::ClearAllCach($I);
     }
+    /**
+     * @group a
+     * @guy OrdersTester\OrdersSteps
+     */
+    public function SearchProductNameLatSmallAutocomplit (OrdersTester\OrdersSteps $I){
+        $I->SearchNameProductaAutocomplete($typeName = "abcdefghijklmnopqrstuvwxyz");
+    }
+    
+    
+    
+    
+    
+    
+    
     
     /**
      * @group a
@@ -125,6 +129,19 @@ class TextElementOLCest
           $I->SearchProductInBascket($name = $nameProduct, $variant = $nameVariantProduct, $Price = $priceProduct, $totalPrice = $priceProduct, $Check = $priceProduct);
           InitTest::ClearAllCach($I);
     }
+    /**
+     * @group a
+     * @guy OrdersTester\OrdersSteps
+     */
+    public function SearchProductNameLatBigAutocomplit (OrdersTester\OrdersSteps $I){
+        $I->SearchNameProductaAutocomplete($typeName = "MNOPQRSTUVWXYZABCDEFGHIJKL");
+    }
+    
+    
+    
+    
+    
+    
     
     
     /**
@@ -144,6 +161,19 @@ class TextElementOLCest
           $I->SearchProductInBascket($name = $nameProduct, $variant = $nameVariantProduct, $Price = $priceProduct, $totalPrice = $priceProduct, $Check = $priceProduct);
           InitTest::ClearAllCach($I);
     }
+    /**
+     * @group a
+     * @guy OrdersTester\OrdersSteps
+     */
+    public function SearchProductNameCirilicSmallAutocomplit (OrdersTester\OrdersSteps $I){
+        $I->SearchNameProductaAutocomplete($typeName = "абвгдеёжзийклмнопрстуфхцчшщьыъэюяїєі");
+    }
+    
+    
+    
+    
+    
+    
     
     
     /**
@@ -163,6 +193,19 @@ class TextElementOLCest
           $I->SearchProductInBascket($name = $nameProduct, $variant = $nameVariantProduct, $Price = $priceProduct, $totalPrice = $priceProduct, $Check = $priceProduct);
           InitTest::ClearAllCach($I);
     }
+    /**
+     * @group a
+     * @guy OrdersTester\OrdersSteps
+     */
+    public function SearchProductNameBiigSmallAutocomplit (OrdersTester\OrdersSteps $I){
+        $I->SearchNameProductaAutocomplete($typeName = "РСТУФХЦЧШЩЬЫЪЭЮЯЇЄІАБВГДЕЁЖЗИЙКЛМНОП");
+    }
+    
+    
+    
+    
+    
+    
     
     
     /**
@@ -182,6 +225,18 @@ class TextElementOLCest
           $I->SearchProductInBascket($name = $nameProduct, $variant = $nameVariantProduct, $Price = $priceProduct, $totalPrice = $priceProduct, $Check = $priceProduct);
           InitTest::ClearAllCach($I);
     }
+    /**
+     * @group a
+     * @guy OrdersTester\OrdersSteps
+     */
+    public function SearchProductNameNumeralAutocomplit (OrdersTester\OrdersSteps $I){
+        $I->SearchNameProductaAutocomplete($typeName = "1 2 3 4 5 6 7 8 9 0");
+    }
+    
+    
+    
+    
+    
     
     
     
@@ -191,7 +246,7 @@ class TextElementOLCest
      */
     public function ProductNemaSymbolParentCategory (OrdersTester\OrdersSteps $I) {
         $I->wantTo('Verify Presence Product Symbol Name in Parent Category on Select Menu.');
-        $I->createProduct($nameProduct = '¿←↑→↓ƒ∞√±≥≤><−⁄÷×–—‚>@!?%<&€¦§¨«»¯*№{}[])(^:|\~;',
+        $I->createProduct($nameProduct = "¿←↑→↓ƒ∞√±≥≤><−⁄÷×–—‚>@!?%<&€¦§¨«»¯*№{}[])(^:|",
                                         $nameVariantProduct = NULL ,
                                         $priceProduct = '1',
                                         $articleProduct = NULL,
@@ -202,18 +257,29 @@ class TextElementOLCest
           $I->SearchProductInBascket($name = $nameProduct, $variant = $nameVariantProduct, $Price = $priceProduct, $totalPrice = $priceProduct, $Check = $priceProduct);
           InitTest::ClearAllCach($I);
     }
-//    
-//    
-//    
-//    
-//    
-//    
-//    
-//    
-//    
-//    
-//    
-        ///---///----Tests For Variant Product---///---///---///---///---///
+    /**
+     * @group a
+     * @guy OrdersTester\OrdersSteps
+     */
+    public function SearchProductNameSymbolAutocomplit (OrdersTester\OrdersSteps $I){
+        $I->SearchNameProductaAutocomplete($typeName = "¿←↑→↓ƒ∞√±≥≤><−⁄÷×–");
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+   
+    ///---///----Tests For Variant Product--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    
+    
+    
+    
     
     /**
      * @group a
@@ -232,6 +298,18 @@ class TextElementOLCest
           $I->SearchProductInBascket($name = $nameProduct, $variant = $nameVariantProduct, $Price = $priceProduct, $totalPrice = $priceProduct, $Check = $priceProduct);
           InitTest::ClearAllCach($I);
     }
+    /**
+     * @group a
+     * @guy OrdersTester\OrdersSteps
+     */
+    public function SearchProductVarianMinAutocomplit (OrdersTester\OrdersSteps $I){
+        $I->SearchVariantProductAutocomplete($productName = 'Товар с минимальним названием варианта', $variantName = 'x'); 
+    }
+    
+    
+    
+    
+    
     
     
     
@@ -252,6 +330,19 @@ class TextElementOLCest
           $I->SearchProductInBascket($name = $nameProduct, $variant = $nameVariantProduct, $Price = $priceProduct, $totalPrice = $priceProduct, $Check = $priceProduct);
           InitTest::ClearAllCach($I);
     }
+    /**
+     * @group a
+     * @guy OrdersTester\OrdersSteps
+     */
+    public function SearchProductVarianLatinSmallAutocomplit (OrdersTester\OrdersSteps $I){
+        $I->SearchVariantProductAutocomplete($productName = 'Товар с мал.сим.лат. в названии варианта', $variantName = 'abcdefghijklmnopqrstuvwxyz'); 
+    }
+    
+    
+    
+    
+    
+    
     
     
     /**
@@ -271,6 +362,18 @@ class TextElementOLCest
           $I->SearchProductInBascket($name = $nameProduct, $variant = $nameVariantProduct, $Price = $priceProduct, $totalPrice = $priceProduct, $Check = $priceProduct);
           InitTest::ClearAllCach($I);
     }
+    /**
+     * @group a
+     * @guy OrdersTester\OrdersSteps
+     */
+    public function SearchProductVarianLatinBigAutocomplit (OrdersTester\OrdersSteps $I){
+        $I->SearchVariantProductAutocomplete($productName = 'Товар с вел.сим.лат. в названии варианта', $variantName = 'NOPQRSTUVWXYZABCDEFGHIJKLM'); 
+    }
+    
+    
+    
+    
+    
     
     
     
@@ -291,6 +394,18 @@ class TextElementOLCest
           $I->SearchProductInBascket($name = $nameProduct, $variant = $nameVariantProduct, $Price = $priceProduct, $totalPrice = $priceProduct, $Check = $priceProduct);
           InitTest::ClearAllCach($I);
     }
+    /**
+     * @group a
+     * @guy OrdersTester\OrdersSteps
+     */
+    public function SearchProductVarianCirilicSmallAutocomplit (OrdersTester\OrdersSteps $I){
+        $I->SearchVariantProductAutocomplete($productName = 'Товар с мал.сим.кир. в названии варианта', $variantName = 'абвгдеёжзийклмнопрстуфхцчшщьыъэюяїєі'); 
+    }
+    
+    
+    
+    
+    
     
     
     
@@ -311,6 +426,19 @@ class TextElementOLCest
           $I->SearchProductInBascket($name = $nameProduct, $variant = $nameVariantProduct, $Price = $priceProduct, $totalPrice = $priceProduct, $Check = $priceProduct);
           InitTest::ClearAllCach($I);
     }
+    /**
+     * @group a
+     * @guy OrdersTester\OrdersSteps
+     */
+    public function SearchProductVarianCirilicBigAutocomplit (OrdersTester\OrdersSteps $I){
+        $I->SearchVariantProductAutocomplete($productName = 'Товар с вел.сим.кир. в названии варианта', $variantName = 'СТУФХЦЧШЩЬЫЪЭЮЯЇЄІАБВГДЕЁЖЗИЙКЛМНОПР'); 
+    }
+    
+    
+    
+    
+    
+    
     
     
     /**
@@ -330,25 +458,58 @@ class TextElementOLCest
           $I->SearchProductInBascket($name = $nameProduct, $variant = $nameVariantProduct, $Price = $priceProduct, $totalPrice = $priceProduct, $Check = $priceProduct);
           InitTest::ClearAllCach($I);
     }
-    
-    
     /**
      * @group a
      * @guy OrdersTester\OrdersSteps
      */
-    public function ProductVariantSymbolParentCategory (OrdersTester\OrdersSteps $I) {
-        $I->wantTo('Verify Presence Variant Symbol in First Child Category on Select Menu.');
-        $I->createProduct($nameProduct = 'Товар с спец символами в названии варианта',
-                                        $nameVariantProduct = '¿←↑→↓ƒ∞√±≥≤><−⁄÷×–—‚>@!?%<&€¦§¨«»¯*№{}[])(^:|\~;',
-                                        $priceProduct = '1',
-                                        $articleProduct = NULL,
-                                        $amountProduct = NULL,
-                                        $categoryProduct = CreateCategoryOrdersPage::$CrtCatName2ForSearchCategory);
-          $I->SearchProductNameSelect($typeCategoryName = CreateCategoryOrdersPage::$CrtCatName2ForSearchOrder, $typeProductName = $nameProduct);
-          $I->AddToBascketSelect();
-          $I->SearchProductInBascket($name = $nameProduct, $variant = $nameVariantProduct, $Price = $priceProduct, $totalPrice = $priceProduct, $Check = $priceProduct);
-          InitTest::ClearAllCach($I);
+    public function SearchProductVarianNumeralAutocomplit (OrdersTester\OrdersSteps $I){
+        $I->SearchVariantProductAutocomplete($productName = 'Товар с цифрами в названии варианта', $variantName = '1 2 3 4 5 6 7 8 9 0'); 
     }
+    
+    
+    
+    
+    
+    
+    
+    
+//    /**
+//     * @group x
+//     * @guy OrdersTester\OrdersSteps
+//     */
+//    public function ProductVariantSymbolParentCategory (OrdersTester\OrdersSteps $I) {
+//        $I->wantTo('Verify Presence Variant Symbol in First Child Category on Select Menu.');
+//        $I->createProduct($nameProduct = 'Товар с спец символами в названии варианта',
+//                                        $nameVariantProduct = '`!@#$%^&*|}{.,',
+//                                        $priceProduct = '1',
+//                                        $articleProduct = NULL,
+//                                        $amountProduct = NULL,
+//                                        $categoryProduct = CreateCategoryOrdersPage::$CrtCatName2ForSearchCategory);
+//          $I->SearchProductNameSelect($typeCategoryName = CreateCategoryOrdersPage::$CrtCatName2ForSearchOrder, $typeProductName = $nameProduct);
+//          $I->AddToBascketSelect();
+//          $I->SearchProductInBascket($name = $nameProduct, $variant = $nameVariantProduct, $Price = $priceProduct, $totalPrice = $priceProduct, $Check = $priceProduct);
+//          InitTest::ClearAllCach($I);
+//    }
+//    /**
+//     * @group x
+//     * @guy OrdersTester\OrdersSteps
+//     */
+//    public function SearchProductVarianSymbolAutocomplit (OrdersTester\OrdersSteps $I){
+//        $I->SearchVariantProductAutocomplete($productName = 'Товар с спец символами в названии варианта', $variantName = '`!@#$%^&*|}{.,'); 
+//    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    ///---///----Tests For Price Product-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    
+    
     
     
     
@@ -369,8 +530,28 @@ class TextElementOLCest
           $I->SearchProductInBascket($name = $nameProduct, $variant = $nameVariantProduct, $Price = $priceProduct, $totalPrice = $priceProduct, $Check = $priceProduct);
           InitTest::ClearAllCach($I);
     }
+    /**
+     * @group a
+     * @guy OrdersTester\OrdersSteps
+     */
+    public function SearchProductPriceNullAutocomplit (OrdersTester\OrdersSteps $I){
+        $I->SearchPriceProductAutocomplete($typeName = 'Товар с нулевой ценой.', $typePrice = '0'); 
+    }
     
     
+    
+    
+    
+    
+    
+    
+    /**
+     * @group a
+     * @guy OrdersTester\OrdersSteps
+     */
+    public function SelectNumber1AfterPoint(OrdersTester\OrdersSteps $I) {
+        $I->SelectNumberAfterPoint($numberAfterPoint = 1);
+    }
     /**
      * @group a
      * @guy OrdersTester\OrdersSteps
@@ -388,8 +569,28 @@ class TextElementOLCest
           $I->SearchProductInBascket($name = $nameProduct, $variant = $nameVariantProduct, $Price = $priceProduct, $totalPrice = $priceProduct, $Check = $priceProduct);
           InitTest::ClearAllCach($I);
     }
+    /**
+     * @group a
+     * @guy OrdersTester\OrdersSteps
+     */
+    public function SearchProductPriceMin1Autocomplit (OrdersTester\OrdersSteps $I){
+        $I->SearchPriceProductAutocomplete($typeName = 'Товар с 1 знаком после точки в цене.', $typePrice = '0.1'); 
+    }
     
     
+    
+    
+    
+    
+    
+    
+    /**
+     * @group a
+     * @guy OrdersTester\OrdersSteps
+     */
+    public function SelectNumber2AfterPoint(OrdersTester\OrdersSteps $I) {
+        $I->SelectNumberAfterPoint($numberAfterPoint = 2);
+    }
     /**
      * @group a
      * @guy OrdersTester\OrdersSteps
@@ -407,6 +608,19 @@ class TextElementOLCest
           $I->SearchProductInBascket($name = $nameProduct, $variant = $nameVariantProduct, $Price = $priceProduct, $totalPrice = $priceProduct, $Check = $priceProduct);
           InitTest::ClearAllCach($I);
     }
+    /**
+     * @group a
+     * @guy OrdersTester\OrdersSteps
+     */
+    public function SearchProductPriceMin2Autocomplit (OrdersTester\OrdersSteps $I){
+        $I->SearchPriceProductAutocomplete($typeName = 'Товар с 2 знаками после точки в цене.', $typePrice = '0.11'); 
+    }
+    
+    
+    
+    
+    
+    
     
     
     /**
@@ -426,8 +640,28 @@ class TextElementOLCest
           $I->SearchProductInBascket($name = $nameProduct, $variant = $nameVariantProduct, $Price = $priceProduct, $totalPrice = $priceProduct, $Check = $priceProduct);
           InitTest::ClearAllCach($I);
     }
+    /**
+     * @group a
+     * @guy OrdersTester\OrdersSteps
+     */
+    public function SearchProductPriceMin3Autocomplit (OrdersTester\OrdersSteps $I){
+        $I->SearchPriceProductAutocomplete($typeName = 'Товар с 2 знаками после точки в цене.', $typePrice = '0.11'); 
+    }
     
     
+    
+    
+    
+    
+    
+    
+    /**
+     * @group a
+     * @guy OrdersTester\OrdersSteps
+     */
+    public function SelectNumber11AfterPoint(OrdersTester\OrdersSteps $I) {
+        $I->SelectNumberAfterPoint($numberAfterPoint = 1);
+    }
     /**
      * @group a
      * @guy OrdersTester\OrdersSteps
@@ -445,12 +679,34 @@ class TextElementOLCest
           $I->SearchProductInBascket($name = $nameProduct, $variant = $nameVariantProduct, $Price = $priceProduct, $totalPrice = $priceProduct, $Check = $priceProduct);
           InitTest::ClearAllCach($I);
     }
+    /**
+     * @group a
+     * @guy OrdersTester\OrdersSteps
+     */
+    public function SearchProductPricemin4Autocomplit (OrdersTester\OrdersSteps $I){
+        $I->SearchPriceProductAutocomplete($typeName = 'Товар с 1 целым и 1 числом после точки в цене.', $typePrice = '9878.3'); 
+    }
+    
+    
+    
+    
+    
+    
+       
+    
     
     /**
      * @group a
      * @guy OrdersTester\OrdersSteps
      */
-    public function ProductPrice2AndPointParentCategory (OrdersTester\OrdersSteps $I) {
+    public function SelectNumber111AfterPoint(OrdersTester\OrdersSteps $I) {
+        $I->SelectNumberAfterPoint($numberAfterPoint = 2);
+    }
+    /**
+     * @group a
+     * @guy OrdersTester\OrdersSteps
+     */
+    public function  ProductPrice2AndPointParentCategory (OrdersTester\OrdersSteps $I) {
         $I->wantTo('Verify Presence Price in Second Child Category on Select Menu.');
         $I->createProduct($nameProduct = 'Товар с 1 целым и 2 числами после точки в цене.',
                                         $nameVariantProduct = NULL,
@@ -463,6 +719,20 @@ class TextElementOLCest
           $I->SearchProductInBascket($name = $nameProduct, $variant = $nameVariantProduct, $Price = $priceProduct, $totalPrice = $priceProduct, $Check = $priceProduct);
           InitTest::ClearAllCach($I);
     }
+    /**
+     * @group a
+     * @guy OrdersTester\OrdersSteps
+     */
+    public function SearchProductPricemin5Autocomplit (OrdersTester\OrdersSteps $I){
+        $I->SearchPriceProductAutocomplete($typeName = 'Товар с 1 целым и 2 числами после точки в цене.', $typePrice = '6543127.86'); 
+    }
+    
+    
+    
+    
+    
+    
+    
     
     /**
      * @group a
@@ -481,6 +751,19 @@ class TextElementOLCest
           $I->SearchProductInBascket($name = $nameProduct, $variant = $nameVariantProduct, $Price = $priceProduct, $totalPrice = $priceProduct, $Check = $priceProduct);
           InitTest::ClearAllCach($I);
     }
+    /**
+     * @group a
+     * @guy OrdersTester\OrdersSteps
+     */
+    public function SearchProductPricemin6Autocomplit (OrdersTester\OrdersSteps $I){
+        $I->SearchPriceProductAutocomplete($typeName = 'Товар с 1 целым и 2 макс.числами после точки в цене.', $typePrice = '99.99'); 
+    }
+
+    
+    
+    
+    
+    
     
     
     /**
@@ -500,6 +783,19 @@ class TextElementOLCest
           $I->SearchProductInBascket($name = $nameProduct, $variant = $nameVariantProduct, $Price = $priceProduct, $totalPrice = $priceProduct, $Check = $priceProduct);
           InitTest::ClearAllCach($I);
     }
+    /**
+     * @group a
+     * @guy OrdersTester\OrdersSteps
+     */
+    public function SearchProductPricemin7Autocomplit (OrdersTester\OrdersSteps $I){
+        $I->SearchPriceProductAutocomplete($typeName = 'Товар с 1 целым и 2 нулевими числами после точки в цене.', $typePrice = '99.00'); 
+    }
+    
+    
+    
+    
+    
+    
     
     
     /**
@@ -519,8 +815,28 @@ class TextElementOLCest
           $I->SearchProductInBascket($name = $nameProduct, $variant = $nameVariantProduct, $Price = $priceProduct, $totalPrice = $priceProduct, $Check = $priceProduct);
           InitTest::ClearAllCach($I);
     }
+    /**
+     * @group a
+     * @guy OrdersTester\OrdersSteps
+     */
+    public function SearchProductPricemin8Autocomplit (OrdersTester\OrdersSteps $I){
+        $I->SearchPriceProductAutocomplete($typeName = 'Товар с макс.значением цены.', $typePrice = '10000000000000'); 
+    }
     
     
+    
+    
+    
+    
+    
+    
+    /**
+     * @group a
+     * @guy OrdersTester\OrdersSteps
+     */
+    public function SelectNumber113AfterPoint(OrdersTester\OrdersSteps $I) {
+        $I->SelectNumberAfterPoint($numberAfterPoint = 2);
+    }
     /**
      * @group a
      * @guy OrdersTester\OrdersSteps
@@ -538,8 +854,28 @@ class TextElementOLCest
           $I->SearchProductInBascket($name = $nameProduct, $variant = $nameVariantProduct, $Price = $priceProduct, $totalPrice = $priceProduct, $Check = $priceProduct);
           InitTest::ClearAllCach($I);
     }
+    /**
+     * @group a
+     * @guy OrdersTester\OrdersSteps
+     */
+    public function SearchProductPricemin9Autocomplit (OrdersTester\OrdersSteps $I){
+        $I->SearchPriceProductAutocomplete($typeName = 'Товар с макс.значением цены и с нулями после точки.', $typePrice = '10000000000000.00'); 
+    }
     
     
+
+    
+    
+    
+    
+    
+    /**
+     * @group a
+     * @guy OrdersTester\OrdersSteps
+     */
+    public function SelectNumber114AfterPoint(OrdersTester\OrdersSteps $I) {
+        $I->SelectNumberAfterPoint($numberAfterPoint = 2);
+    }
     /**
      * @group a
      * @guy OrdersTester\OrdersSteps
@@ -548,7 +884,7 @@ class TextElementOLCest
         $I->wantTo('Verify Presence Price in Second Child Category on Select Menu.');
         $I->createProduct($nameProduct = 'Товар с макс.значением цены и с макс.знач. после точки.',
                                         $nameVariantProduct = NULL,
-                                        $priceProduct = '10000000000000.99',
+                                        $priceProduct = '1000000000000000.99999',
                                         $articleProduct = NULL,
                                         $amountProduct = NULL,
                                         $categoryProduct = CreateCategoryOrdersPage::$CrtCatName3ForSearchCategory);
@@ -557,20 +893,19 @@ class TextElementOLCest
           $I->SearchProductInBascket($name = $nameProduct, $variant = $nameVariantProduct, $Price = $priceProduct, $totalPrice = $priceProduct, $Check = $priceProduct);
           InitTest::ClearAllCach($I);
     }
+    /**
+     * @group a
+     * @guy OrdersTester\OrdersSteps
+     */
+    public function SearchProductPricemin10Autocomplit (OrdersTester\OrdersSteps $I){
+        $I->SearchPriceProductAutocomplete($typeName = 'Товар с макс.значением цены и с макс.знач. после точки.', $typePrice = '1000000000000000.00'); 
+    }
+
     
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    ///---///----Tests For Article Product-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     
     
     
@@ -584,63 +919,212 @@ class TextElementOLCest
     
     
     /**
-     * @group q
+     * @group x
      * @guy OrdersTester\OrdersSteps
      */
-    public function ProductMinParentCategory (OrdersTester\OrdersSteps $I) {
-        $I->wantTo('Verify Presence Product Name and Price Min in Parent Category on Select Menu.');
-        $I->createProduct($nameProduct = CreateProductsOrdersPage::$CrtPrdNameMin,
-                                        $nameVariantProduct = NULL ,
-                                        $priceProduct = CreateProductsOrdersPage::$CrtPrdPriceMin,
-                                        $articleProduct = NULL,
+    public function ProductArticleMin (OrdersTester\OrdersSteps $I) {
+        $I->wantTo('Verify Presence Article on Autocomplete.');
+        $I->createProduct($nameProduct = 'Товар с мин.артикулом.',
+                                        $nameVariantProduct = NULL,
+                                        $priceProduct = 1,
+                                        $articleProduct = 'r2d2',
                                         $amountProduct = NULL,
                                         $categoryProduct = CreateCategoryOrdersPage::$CrtCatName1ForSearch);
-        $I->SearchCategorySelect(CreateCategoryOrdersPage::$CrtCatName1ForSearch);
-        $I->see(CreateProductsOrdersPage::$CrtPrdNameMin, CreateOrderAdminPage::$CrtZMenuProduct);
-        $I->click(CreateOrderAdminPage::$CrtZMenuProductRowOne);
-        $I->wait('1');
-        $I->see($priceProduct, CreateOrderAdminPage::$CrtZMenuVariant);
-        
+        $I->SearchArticleProductAutocomplete($articleProduct = 'r2d2');  
+        InitTest::ClearAllCach($I);
     }
+    
+    
+    
+    
+    
+    
     
     /**
-     * @group q
+     * @group x
      * @guy OrdersTester\OrdersSteps
      */
-    public function ProductPrice01ParentCategory (OrdersTester\OrdersSteps $I) {
-        $I->wantTo('Verify Presence Product Name and Price Max in Parent Category on Select Menu.');
-        $I->createProduct($nameProduct = 'Тестовы товар для проверки максикова значения после точки.',
-                                        $nameVariantProduct = 'WertW' ,
-                                        $priceProduct = '1.1',
-                                        $articleProduct = NULL,
+    public function ProductArticleLatinSmall (OrdersTester\OrdersSteps $I) {
+        $I->wantTo('Verify Presence Article on Autocomplete.');
+        $I->createProduct($nameProduct = 'Товар с Lat Small артикулом.',
+                                        $nameVariantProduct = NULL,
+                                        $priceProduct = 1,
+                                        $articleProduct = 'opqrstuvwxyabcdefglmnzhijk',
                                         $amountProduct = NULL,
                                         $categoryProduct = CreateCategoryOrdersPage::$CrtCatName1ForSearch);
-          $I->SearchProductNameSelect($typeCategoryName = CreateCategoryOrdersPage::$CrtCatName1ForSearch, $typeProductName = $nameProduct);
-          $I->SearchProductVariantandPriceSelect($typeVariantName = $nameVariantProduct, $typeVariantPrice = $priceProduct);
-          $I->AddToBascketSelect();
-          $I->SearchProductInBascket($name = $nameProduct, $variant = $nameVariantProduct, $Price = $priceProduct, $totalPrice = $priceProduct, $Check = $priceProduct);
-          $I->wait('5');
-        
+        $I->SearchArticleProductAutocomplete($articleProduct = 'opqrstuvwxyabcdefglmnzhijk');  
+        InitTest::ClearAllCach($I);
     }
+    
+    
+    
+    
+    
+    
     
     /**
-     * @group q
+     * @group x
      * @guy OrdersTester\OrdersSteps
      */
-    public function ProductPrice02ParentCategory (OrdersTester\OrdersSteps $I) {
-        $I->wantTo('Verify Presence Product Name and Price Max in Parent Category on Select Menu.');
-        $I->createProduct($nameProduct = 'Тестовы товар для проверки 1 значения после точки.',
-                                        $nameVariantProduct = NULL ,
-                                        $priceProduct = '1.1',
-                                        $articleProduct = NULL,
+    public function ProductArticleLatinBig (OrdersTester\OrdersSteps $I) {
+        $I->wantTo('Verify Presence Article on Autocomplete.');
+        $I->createProduct($nameProduct = 'Товар с Lat Big артикулом',
+                                        $nameVariantProduct = NULL,
+                                        $priceProduct = 1,
+                                        $articleProduct = 'LMNOPQRSTUABCDEFGHIJKVWXYZ',
                                         $amountProduct = NULL,
                                         $categoryProduct = CreateCategoryOrdersPage::$CrtCatName1ForSearch);
-          $I->SearchProductNameSelect($typeCategoryName = CreateCategoryOrdersPage::$CrtCatName1ForSearch, $typeProductName = $nameProduct);
-          $I->SearchProductVariantandPriceSelect($typeVariantName = NULL, $typeVariantPrice = $priceProduct);
+        $I->SearchArticleProductAutocomplete($articleProduct = 'LMNOPQRSTUABCDEFGHIJKVWXYZ');  
+        InitTest::ClearAllCach($I);
     }
     
     
     
+    
+    /**
+     * @group x
+     * @guy OrdersTester\OrdersSteps
+     */
+    public function ProductArticleCirilicSmall (OrdersTester\OrdersSteps $I) {
+        $I->wantTo('Verify Presence Article on Autocomplete.');
+        $I->createProduct($nameProduct = 'Товар с Cirilic Small  артикулом',
+                                        $nameVariantProduct = NULL,
+                                        $priceProduct = 1,
+                                        $articleProduct = 'клмнопрстуфхцжзийчшщьыъэабвгдеёюяїєі',
+                                        $amountProduct = NULL,
+                                        $categoryProduct = CreateCategoryOrdersPage::$CrtCatName1ForSearch);
+        $I->SearchArticleProductAutocomplete($articleProduct = 'клмнопрстуфхцжзийчшщьыъэабвгдеёюяїєі');  
+        InitTest::ClearAllCach($I);
+    }
+    
+    
+    
+    
+    
+    
+    /**
+     * @group x
+     * @guy OrdersTester\OrdersSteps
+     */
+    public function ProductArticleCirilicBig (OrdersTester\OrdersSteps $I) {
+        $I->wantTo('Verify Presence Article on Autocomplete.');
+        $I->createProduct($nameProduct = 'Товар с Cirilic Big  артикулом',
+                                        $nameVariantProduct = NULL,
+                                        $priceProduct = 1,
+                                        $articleProduct = 'ЇЄІАБВНОПРСТУФХЦЧГДЕЁЖЗИЙКЛМШЩЬЫЪЭЮЯ',
+                                        $amountProduct = NULL,
+                                        $categoryProduct = CreateCategoryOrdersPage::$CrtCatName1ForSearch);
+        $I->SearchArticleProductAutocomplete($articleProduct = 'ЇЄІАБВНОПРСТУФХЦЧГДЕЁЖЗИЙКЛМШЩЬЫЪЭЮЯ');  
+        InitTest::ClearAllCach($I);
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    /**
+     * @group x
+     * @guy OrdersTester\OrdersSteps
+     */
+    public function ProductArticleNumeral (OrdersTester\OrdersSteps $I) {
+        $I->wantTo('Verify Presence Article on Autocomplete.');
+        $I->createProduct($nameProduct = 'Товар с Articl Numer артикулом',
+                                        $nameVariantProduct = NULL,
+                                        $priceProduct = 1,
+                                        $articleProduct = '7890123456',
+                                        $amountProduct = NULL,
+                                        $categoryProduct = CreateCategoryOrdersPage::$CrtCatName1ForSearch);
+        $I->SearchArticleProductAutocomplete($articleProduct = '7890123456');  
+        InitTest::ClearAllCach($I);
+    }
+    
+    
+    
+    
+    
+    
+
+    /**
+     * @group x
+     * @guy OrdersTester\OrdersSteps
+     */
+    public function ProductArticleNumeralSpace (OrdersTester\OrdersSteps $I) {
+        $I->wantTo('Verify Presence Article on Autocomplete.');
+        $I->createProduct($nameProduct = 'Товар с Article Num Space артикулом',
+                                        $nameVariantProduct = NULL,
+                                        $priceProduct = 1,
+                                        $articleProduct = '1 2 3 4 5 6 7 8 9 0',
+                                        $amountProduct = NULL,
+                                        $categoryProduct = CreateCategoryOrdersPage::$CrtCatName1ForSearch);
+        $I->SearchArticleProductAutocomplete($articleProduct = '1 2 3 4 5 6 7 8 9 0');  
+        InitTest::ClearAllCach($I);
+    }
+    
+    
+    
+    
+    
+    /**
+     * @group x
+     * @guy OrdersTester\OrdersSteps
+     */
+    public function ProductArticleSymbol (OrdersTester\OrdersSteps $I) {
+        $I->wantTo('Verify Presence Article on Autocomplete.');
+        $I->createProduct($nameProduct = 'Товар с допустимими символами в артикуле.',
+                                        $nameVariantProduct = NULL,
+                                        $priceProduct = 1,
+                                        $articleProduct = InitTest::$textSymbols,
+                                        $amountProduct = NULL,
+                                        $categoryProduct = CreateCategoryOrdersPage::$CrtCatName1ForSearch);
+        $I->SearchArticleProductAutocomplete($articleProduct = InitTest::$textSymbols);  
+        InitTest::ClearAllCach($I);
+    }
+    
+    
+    
+    
+    
+    
+    /**
+     * @group x
+     * @guy OrdersTester\OrdersSteps
+     */
+    public function ProductArticleSpaceTabBefore(OrdersTester\OrdersSteps $I) {
+        $I->wantTo('Verify Presence Article on Autocomplete.');
+        $I->createProduct($nameProduct = 'Товар с пробелом и табом перед вводом  в артикуле.',
+                                        $nameVariantProduct = NULL,
+                                        $priceProduct = 1,
+                                        $articleProduct = '  Тиква3333',
+                                        $amountProduct = NULL,
+                                        $categoryProduct = CreateCategoryOrdersPage::$CrtCatName1ForSearch);
+        $I->SearchArticleProductAutocomplete($articleProduct = 'Тиква3333');  
+        InitTest::ClearAllCach($I);
+    }
+    
+    
+    
+    
+    
+    
+    /**
+     * @group x
+     * @guy OrdersTester\OrdersSteps
+     */
+    public function ProductArticlSpaceTabAfter (OrdersTester\OrdersSteps $I) {
+        $I->wantTo('Verify Presence Article on Autocomplete.');
+        $I->createProduct($nameProduct = 'Товар с пробелом и табом после ввода в артикуле.',
+                                        $nameVariantProduct = NULL,
+                                        $priceProduct = 1,
+                                        $articleProduct = 'Тапки4444            ',
+                                        $amountProduct = NULL,
+                                        $categoryProduct = CreateCategoryOrdersPage::$CrtCatName1ForSearch);
+        $I->SearchArticleProductAutocomplete($articleProduct = 'Тапки4444');  
+        InitTest::ClearAllCach($I);
+    }
     
     
     
@@ -655,6 +1139,8 @@ class TextElementOLCest
     
     
     
+    ///---///----Tests For Amount Product-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
     
     
     
@@ -670,6 +1156,11 @@ class TextElementOLCest
     
     
     
+    
+    
+    
+    
+
     
     
 }

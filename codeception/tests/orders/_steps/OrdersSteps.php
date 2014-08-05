@@ -188,7 +188,7 @@ class OrdersSteps extends \OrdersTester {
     
 //-----------------Search For Field  "ID /Название /Артикул"--------------------   
     
-    function SearchNameProduct ( $typeName = NULL){ 
+    function SearchNameProductaAutocomplete ( $typeName = NULL){ 
         $I = $this;
         $I->amOnPage(\CreateOrderAdminPage::$CrtPURL);
         if(isset($typeName)){            
@@ -206,29 +206,35 @@ class OrdersSteps extends \OrdersTester {
         }        
     } 
     
-    function SearchVariantProduct($variantName) {
+    
+    
+    function SearchVariantProductAutocomplete ($productName = NULL, $variantName = NULL) {
         $I = $this;
+        $I->amOnPage(\CreateOrderAdminPage::$CrtPURL);
+        $I->fillField('#productNameForOrders', $productName);
+        $I->wait('1');
+        $I->see($variantName,'//body/ul[2]/li[1]/a');
+        $I->click('//body/ul[2]/li[1]/a');
+        $I->wait('1');
+        $I->see($variantName, '//table[1]/tbody/tr[2]/td[3]/select/option');
+        $I->click(\CreateOrderAdminPage::$CrtPButtAddToCart);
+        $I->see($variantName, '//section/form/div/div[1]/div/table[2]/tbody/tr/td[2]/span');
+        
               
     } 
     
     
     
 
-    function SearchPriceProduct( $typeName = NULL, $typePrice = NULL) { 
+    function SearchPriceProductAutocomplete( $typeName = NULL, $typePrice = NULL) { 
         $I = $this;
         $I->amOnPage(\CreateOrderAdminPage::$CrtPURL);        
         if(isset($typeName)){            
-            $I->click(\CreateOrderAdminPage::$CrtPButtProduct);    
             $I->fillField('#productNameForOrders', $typeName);
             $I->wait('1');
-            $I->see($typeName,'//body/ul[2]/li[1]/a');
             $I->click('//body/ul[2]/li[1]/a');
             $I->wait('1');
-            $I->see("Товар: $typeName", '//tbody/tr[1]/td[2]/div/div[2]/span[1]/b'); 
             $I->click(\CreateOrderAdminPage::$CrtPButtAddToCart);
-            $I->see('В корзине', \CreateOrderAdminPage::$CrtPButtInBasket);
-            $I->see($typeName, '//tbody/tr[2]/td[2]/select');
-            $I->see($typeName, '//table[2]/tbody/tr/td[1]/span');            
         }if(isset($typePrice)){            
             $I->click(\CreateOrderAdminPage::$CrtPButtProduct);
             $I->see($typePrice, '//tbody/tr[1]/td[2]/div/div[2]/span[1]');
@@ -245,7 +251,19 @@ class OrdersSteps extends \OrdersTester {
     
     
     
-    function SearchArticleProduct ( $articleProduct = NULL) { 
+    function SelectNumberAfterPoint ($numberAfterPoint = NULL){
+        $I = $this;
+        $I->amOnPage('/admin/components/run/shop/settings#view');
+        $I->wait('2');
+        $I->selectOption('//table/tbody/tr/td/div/div[3]/div/div/select', "$numberAfterPoint");
+        $I->wait('1');
+        $I->click('//section/div[1]/div[2]/div/button[2]');
+        
+    }
+    
+    
+    
+    function SearchArticleProductAutocomplete ( $articleProduct = NULL) { 
         $I = $this;
         $I->amOnPage(\CreateOrderAdminPage::$CrtPURL);
         if(isset($articleProduct)){            
@@ -257,20 +275,15 @@ class OrdersSteps extends \OrdersTester {
     }
     
     
-    function SearchAmountProduct ( $typeName = NULL, $amountProduct = NULL) { 
+    function SearchAmountProductAutocomplete ( $typeName = NULL, $amountProduct = NULL) { 
         $I = $this;
         if(isset($typeName)){            
             $I->amOnPage(\CreateOrderAdminPage::$CrtPURL); 
             $I->fillField('#productNameForOrders', $typeName);
             $I->wait('1');
-            $I->see($typeName,'//body/ul[2]/li[1]/a');
             $I->click('//body/ul[2]/li[1]/a');
             $I->wait('1');
-            $I->see("Товар: $typeName", '//tbody/tr[1]/td[2]/div/div[2]/span[1]/b'); 
             $I->click(\CreateOrderAdminPage::$CrtPButtAddToCart);
-            $I->see('В корзине', \CreateOrderAdminPage::$CrtPButtInBasket);
-            $I->see($typeName, '//tbody/tr[2]/td[2]/select');
-            $I->see($typeName, '//table[2]/tbody/tr/td[1]/span');            
         }if(isset($amountProduct)){
             $I->click(\CreateOrderAdminPage::$CrtPButtProduct); 
             $I->see("Остаток: $amountProduct", '#productStock');
@@ -287,7 +300,7 @@ class OrdersSteps extends \OrdersTester {
     
     
     
-    //-----------------Search For Field  "ID /Название /Артикул"--------------------   
+    //-----------------Search For Select Menu-----------------------------------   
     
     function SearchCategorySelect ($typeCategory = NULL){
         $I = $this;
@@ -379,12 +392,7 @@ class OrdersSteps extends \OrdersTester {
     }    
             
     }
-    
-    
-    
-    
-    
-    
+
     
     
     
