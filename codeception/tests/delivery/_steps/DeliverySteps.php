@@ -442,36 +442,34 @@ $I = $this;
      */
     function CheckForAlertPresent($type=null,$module=null) {
         $I = $this;
-        $I->wait(5);
-        return true;
-//        switch ($type){
-//            case 'error':
-//                    $I->comment("I want to see that error alert is present");
-//                    $I->waitForElementVisible('.alert.in.fade.alert-error');
-//                    $I->waitForElementNotVisible('.alert.in.fade.alert-error');
-//                    ///edit or create
-//                    //$I->see("Создание способа доставки", '.title');
-//                    break;
-//            case 'success':
-//                    $I->comment("I want to see that success alert is present");
-//                    $I->waitForElementVisible('.alert.in.fade.alert-success');
-////                    if      ($module == 'create')   { $I->see('Доставка создана','.alert.in.fade.alert-success'); }              
-////                    elseif  ($module == 'edit')     { $I->see('Изменения сохранены','.alert.in.fade.alert-success'); }
-////                    elseif  ($module == 'delete')   { $I->see('Способ доставки удален','.alert.in.fade.alert-success'); }
-////                    elseif  ($module == 'drag')     { $I->see('Позиции сохранены', '.alert.in.fade.alert-success'); }
-//                    $I->waitForElementNotVisible('.alert.in.fade.alert-success');
-//                    break;
-//            //Checking required field (red color(class alert) & message 
-//            case 'required':
-//                    $I->comment("I want to see that field is required");
-//                    $I->waitForElementVisible('//label[@generated="true"]');
-//                    $I->see('Это поле обязательное.', 'label.alert.alert-error');
-//                    if      ($module=='create') { $I->assertEquals($I->grabAttributeFrom(\DeliveryCreatePage::$FieldName, 'class'), "alert alert-error"); }
-//                    elseif  ($module=='edit')   { $I->assertEquals($I->grabAttributeFrom(\DeliveryEditPage::$FieldName, 'class'), "required alert alert-error"); }
-//                    break;
-//                default :
-//                    $I->fail("unknown type of error entered");
-//        }
+        switch ($type){
+            case 'error':
+                    $I->comment("I want to see that error alert is present");
+                    $I->waitForElementVisible('.alert.in.fade.alert-error');
+                    $I->waitForElementNotVisible('.alert.in.fade.alert-error');
+                    ///edit or create
+                    //$I->see("Создание способа доставки", '.title');
+                    break;
+            case 'success':
+                    $I->comment("I want to see that success alert is present");
+                    $I->waitForElementVisible('.alert.in.fade.alert-success');
+                    if      ($module == 'create')   { $I->see('Доставка создана','.alert.in.fade.alert-success'); }              
+                    elseif  ($module == 'edit')     { $I->see('Изменения сохранены','.alert.in.fade.alert-success'); }
+                    elseif  ($module == 'delete')   { $I->see('Способ доставки удален','.alert.in.fade.alert-success'); }
+                    elseif  ($module == 'drag')     { $I->see('Позиции сохранены', '.alert.in.fade.alert-success'); }
+                    $I->waitForElementNotVisible('.alert.in.fade.alert-success');
+                    break;
+            //Checking required field (red color(class alert) & message 
+            case 'required':
+                    $I->comment("I want to see that field is required");
+                    $I->waitForElementVisible('//label[@generated="true"]');
+                    $I->see('Это поле обязательное.', 'label.alert.alert-error');
+                    if      ($module=='create') { $I->assertEquals($I->grabAttributeFrom(\DeliveryCreatePage::$FieldName, 'class'), "alert alert-error"); }
+                    elseif  ($module=='edit')   { $I->assertEquals($I->grabAttributeFrom(\DeliveryEditPage::$FieldName, 'class'), "required alert alert-error"); }
+                    break;
+                default :
+                    $I->fail("unknown type of error entered");
+        }
     }
 
 }
