@@ -1,6 +1,7 @@
 <?php
 
 use import_export\classes\ImportBootstrap as Imp;
+use import_export\classes\Logger as LOG;
 
 class Import extends ShopAdminController {
 
@@ -129,6 +130,7 @@ class Import extends ShopAdminController {
         $fileExt = pathinfo($_FILES['userfile']['name'], PATHINFO_EXTENSION);
         if (!in_array($fileExt, array('csv', 'xls', 'xlsx'))) {
             echo json_encode(array('error' => lang('Wrong file type. Only csv|xls|xlsx')));
+            LOG::create()->set('Wrong file type. Only csv|xls|xlsx - IMPORT');
             return;
         }
 
@@ -173,6 +175,7 @@ class Import extends ShopAdminController {
         if (is_writable($this->uploadDir . $filename)) {
             if (!$handle = fopen($this->uploadDir . $filename, 'w+')) {
                 echo json_encode(array('error' => import_export\classes\Factor::ErrorFolderPermission));
+                LOG::create()->set('Error accessing folder - IMPORT');                
                 exit;
             }
 
@@ -181,6 +184,7 @@ class Import extends ShopAdminController {
             fclose($handle);
         } else {
             showMessage(lang("The file {$filename} is not writable", 'admin'));
+            LOG::create()->set('The file is not writable - IMPORT');
         }
     }
 
