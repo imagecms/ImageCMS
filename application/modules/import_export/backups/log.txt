@@ -1,3 +1,5 @@
 Error userId - 54. time - 04.08.2014 13:03. Message: No select collums for export
 Error userId - 54. time - 04.08.2014 15:33. Message: No select collums for export
 Error userId - 54. time - 04.08.2014 18:16. Message: No select collums for export
+Error userId - 54. time - 05.08.2014 12:06. Message: No select collums for export
+Error userId - 54. time - 05.08.2014 12:06. Message: No select collums for export
