@@ -86,14 +86,14 @@ class ImportBootstrap {
         $result[Factor::MessageTypeError] = FALSE;
         if (isset($this->messages[Factor::MessageTypeError])) {
             $result[Factor::MessageTypeError] = TRUE;
-            $result[message] = @implode($separateBy, $this->messages[Factor::MessageTypeError]);
+            $result['message'] = @implode($separateBy, $this->messages[Factor::MessageTypeError]);
         } else {
             $result[Factor::MessageTypeSuccess] = TRUE;
-            $result[message] = @implode($separateBy, $this->messages[Factor::MessageTypeSuccess]);
+            $result['message'] = @implode($separateBy, $this->messages[Factor::MessageTypeSuccess]);
         }
         $result['report'] = $this->messages['report'];
 
-        $result[content] = $this->messages[content];
+        $result['content'] = $this->messages['content'];
 
         return $result;
     }
@@ -141,7 +141,6 @@ class ImportBootstrap {
 
     /**
      * Make DB Backup file before start Import. Destination folder is "./application/backups"
-     * @todo Remove first row in method before public to production
      * @return bool
      * @author Kaero
      * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
@@ -150,14 +149,11 @@ class ImportBootstrap {
         $this->messages['report']['DBBackuName'] = $this->messages['report']['DBBackup'] = FALSE;
         if (FALSE == $forced && !isset($_POST['withBackup']))
             return $this;
-        if (is_really_writable(ImportBootstrap::getUploadDir())) {
-            $CodeIgniter = &get_instance();
-            \libraries\Backup::create()->createBackup("zip", "import");
-            $this->messages['report']['DBBackup'] = TRUE;
-            $this->messages['report']['DBBackuName'] = $backupName;
-            unset($CodeIgniter);
-            return $this;
-        }
+        
+        \libraries\Backup::create()->createBackup("zip", "import");
+        $this->messages['report']['DBBackup'] = TRUE;
+        $this->messages['report']['DBBackuName'] = $backupName;
+        return $this;        
     }
 
 }

@@ -10,8 +10,7 @@
         <div class="clearfix">
             <div class="pull-right">
                 <div class="d-i_b">
-                    <a href="{$BASE_URL}admin/components/init_window/import_export" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Back", 'admin')}</span></a>
-                        {echo create_language_select($languages, $locale, "/admin/components/modules_table")}
+                    <a href="{$BASE_URL}admin/components/init_window/import_export" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Back", 'admin')}</span></a>                        
                 </div>
             </div>
         </div>
