@@ -47,7 +47,8 @@ class InitTest {
         $I->waitForElement('#textEditor');
         $I->selectOption('#textEditor', 'Native textarea');
         $I->click('.btn.btn-small.btn-primary.action_on.formSubmit');
-        $I->waitForElement('.alert.in.fade.alert-success');
+//        $I->waitForElement('.alert.in.fade.alert-success');
+        $I->wait('3');
     }
 
     public static function Login($I) {
@@ -78,8 +79,10 @@ class InitTest {
      * @param AcceptanceTester $I Controller 
      */
     public static function ClearAllCach($I) {
+        $I->amOnPage('/admin');
         $I->click(NavigationBarPage::$System);
         $I->click(NavigationBarPage::$SystemClearAllCach);
+        $I->wait(3);
     }
 
 
@@ -94,7 +97,7 @@ class InitTest {
      * @param string            $username       Db username
      * @param string            $databasename   Db name
      */
-    public static function dataBaseBackUp(AcceptanceTester $I,$username = 'root', $databasename = 'cmsprem'){
+    public static function dataBaseBackUp($I,$username = 'root', $databasename = 'cmsprem'){
         /**
          * $mysqlbackup command do this:
          * "cd c:\OpenServer\modules\database\MySQL-5.5.35\bin && mysql.exe -u root cmsprem < C:\OpenServer\cmsprem.sql"

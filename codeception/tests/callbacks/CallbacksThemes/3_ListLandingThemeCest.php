@@ -23,10 +23,11 @@ class DeleteThemeCest
     
     public function NamesInListLanding(CallbacksTester $I)
     {
-        $I->click('html/body/div[1]/div[3]/div/nav/ul/li[2]/a');
+        $I->click(NavigationBarPage::$Orders);
         $I->waitForElement('html/body/div[1]/div[3]/div/nav/ul/li[2]/ul');
-        $I->click('html/body/div[1]/div[3]/div/nav/ul/li[2]/ul/li[7]/a');
+        $I->click(NavigationBarPage::$CallbackThemes);
         $I->waitForElementNotVisible('html/body/div[1]/div[3]/div/nav/ul/li[2]/ul');
+        $I->wait('1');
         $I->see('Темы обратных звонков', 'span.title');
         $I->see('ID', '//form[@id="orderStatusesList"]/section/div[2]/div/table/thead/tr/th[1]');
         $I->see('Название', '//form[@id="orderStatusesList"]/section/div[2]/div/table/thead/tr/th[2]');
@@ -66,7 +67,7 @@ class DeleteThemeCest
         while ($this->rows>0){
             $I->comment("$this->rows");
             $I->click(CallbacksPage::DeleteThemeButtonLine('1'));
-            $I->wait('1');
+            $I->wait('2');
             $this->rows--;
             $I->comment("$this->rows");
         }
