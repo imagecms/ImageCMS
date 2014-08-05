@@ -27,7 +27,7 @@ class Import extends ShopAdminController {
 
         \ShopController::checkVar();
         \ShopAdminController::checkVarAdmin();
-        $this->languages = $this->db->get('languages')->result();
+        $this->languages = $this->db->get('languages')->result ();
         $this->load->helper('file');
         ini_set('max_execution_time', 9000000);
         set_time_limit(9000000);

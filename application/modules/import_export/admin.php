@@ -49,7 +49,6 @@ class Admin extends BaseAdminController {
             'languages' => trim($_POST['language']),
             'selectedCats' => $_POST['selectedCats']
         ));
-        $this->cache->delete_all();
         if ($export->hasErrors() == FALSE) {
             $export->getDataArray();
             if (!$this->input->is_ajax_request()) {
