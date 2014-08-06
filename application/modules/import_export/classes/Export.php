@@ -1,15 +1,14 @@
 <?php
+
+/**
+ * Клас призначений для експорту даних в файл форматів: csv,xlsx,xls.
+ */
+
 namespace import_export\classes;
-
 use import_export\classes\Logger as LOG;
-
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
-//namespace Export;
-
 class Export {
-    
-    public $fields = array();
     public $delimiter = ";";
     public $maxRowLength = 10000;
     //public $file = null;
@@ -109,7 +108,6 @@ class Export {
         if(!file_exists($path)){
             LOG::create()->set('File export not exists (xls)!');
         }
-//        $this->getDataArray(); // selecting data from DB (if not performed)
         $objPHPExcel = new \PHPExcel();
         $someProductData = current($this->resultArray);
         $headerArray = array();
@@ -148,7 +146,6 @@ class Export {
             }
             $list[] = $row;
         }
-
         if($this->attributes['imgs'] == '1'){
             foreach ($list as $key => $val) {
                 $list[$key]['additional_images'] = $this->addImg($val);
@@ -159,6 +156,7 @@ class Export {
     
     /**
      * Getting additional images
+     * @param array $list
      * @return array 
      * @author Oleh
      */
@@ -238,10 +236,8 @@ class Export {
             if (in_array(trim($field), $this->customFields)) {// this is property of product
                 // mysql has no pivot, but max(if... construction helps :
                 $fieldsArray[] = $this->getPropertyField(trim($field));
-                //$this->fields[] = $this->getPropertyField(trim($field));
             } else { // this is field
                 $fieldsArray[] = $this->getFullField(trim($field));
-                //$this->fields[] = $this->getFullField(trim($field));
             }
         }
         foreach ($fieldsArray as $field) {
@@ -448,6 +444,7 @@ class Export {
 
     /**
      * Gets categories pathes
+     * @return string $categoriesPathes
      */
     protected function getCategoriesPaths() {
         $categoriesPathes = array();
