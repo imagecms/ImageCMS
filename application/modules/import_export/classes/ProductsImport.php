@@ -80,7 +80,7 @@ class ProductsImport extends BaseImport {
                     ->where('number', $node['num'])
                     ->get('shop_product_variants')
                     ->row();
-
+            
             $mas[$key] = (!($result instanceof \stdClass)) ?
                     $this->runProductInsertQuery($node) :
                     $this->runProductUpdateQuery($result->ProductId, $node);
@@ -160,7 +160,7 @@ class ProductsImport extends BaseImport {
             if (isset($productAlias[$key])) {
                 array_push($prepareNames, $productAlias[$key]);
                 $binds[$productAlias[$key]] = $val;
-                $updateData[] = '`' . $productAlias[$key] . '`="' . str_replace('"', '""', $val) . '"';
+                $updateData[] = '`' . $productAlias[$key] . '`="' . $val . '"';
             }
 
         $this->db->query('UPDATE shop_products_i18n SET ' . implode(',', $updateData) . ' WHERE `id`= ' . $productId . ' AND `locale`= "' . $this->languages . '"');
@@ -234,7 +234,7 @@ class ProductsImport extends BaseImport {
             if (isset($productAlias[$key])) {
                 array_push($prepareNames, $productAlias[$key]);
                 $binds[$productAlias[$key]] = $val;
-                $updateData[] = $productAlias[$key] . '="' . str_replace('"', '""', $val) . '"';
+                $updateData[] = $productAlias[$key] . '="' . $val . '"';
             }
 
         $this->db->query('UPDATE shop_product_variants_i18n SET ' . implode(',', $updateData) . ' WHERE `locale`= ? AND `id` = ?', array($this->languages, $variantModel->id));
