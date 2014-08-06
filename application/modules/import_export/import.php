@@ -25,7 +25,7 @@
  * $_POST['offers'], $_POST['limit'], $_POST['countProd'] пусты она просто
  * пересчитывает количество позиций в файле и возвращает об этом информацию.
  * Все последующие этапы используют segmentImport();
- * Количество позиций в сегменте задаелся в файле importAdmin.js > importSegment > limit 
+ * Количество позиций в сегменте задается в файле importAdmin.js > importSegment() > limit 
  */
 
 use import_export\classes\ImportBootstrap as Imp;
