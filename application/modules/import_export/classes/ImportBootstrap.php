@@ -168,6 +168,10 @@ class ImportBootstrap {
             'languages' => trim($_POST['language']));
     }
 
+    /**
+     * Get upload dir
+     * @return string
+     */
     public static function getUploadDir() {
         return self::create()->uploadDir;
     }
