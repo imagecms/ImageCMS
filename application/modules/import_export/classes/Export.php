@@ -8,7 +8,8 @@ use import_export\classes\Logger as LOG;
 //namespace Export;
 
 class Export {
-
+    
+    public $fields = array();
     public $delimiter = ";";
     public $maxRowLength = 10000;
     //public $file = null;
@@ -147,22 +148,11 @@ class Export {
             }
             $list[] = $row;
         }
-        
-//        foreach ($list as $k=>$l){
-//            $number = $l['number'];
-//            $productID = $this->db->where('number',$number )->get('shop_product_variants')->row()->product_id;
-//            $imgsAdd = $this->db->where('product_id',$productID)->get('shop_product_images')->result_array();
-//            if (count($imgsAdd)){
-//                $imgString = '';
-//                foreach ($imgsAdd as $img)
-//                    $imgString .= $img['image_name'] . '|';
-//                $imgString = trim($imgString, '|');
-//                $list[$k]['addImg'] = $imgString;
-//            }
-//            
-//        }
-        foreach($list as $key => $val){
-            $list[$key]['additional_images'] = $this->addImg($val);
+
+        if($this->attributes['imgs'] == '1'){
+            foreach ($list as $key => $val) {
+                $list[$key]['additional_images'] = $this->addImg($val);
+            }
         }
         $this->resultArray = $list;
     }
@@ -175,13 +165,14 @@ class Export {
     public function addImg($v) {
         $number = $v['number'];
         $productID = $this->db->where('number', $number)->get('shop_product_variants')->row()->product_id;
-        $imgsAdd = $this->db->where('product_id', $productID)->get('shop_product_images')->result_array();
+        $imgsAdd = $this->db->where('product_id', $productID)->get('shop_product_images')->result_array();        
         if (count($imgsAdd) > 1) {
             $imgString = '';
             foreach ($imgsAdd as $img) {
                 $imgString .= $img['image_name'] . '|';
             }
             $imgString = trim($imgString, '|');
+            $imgString = str_replace('||','|',$imgString);
             return $imgString;
         }
     }
@@ -247,8 +238,10 @@ class Export {
             if (in_array(trim($field), $this->customFields)) {// this is property of product
                 // mysql has no pivot, but max(if... construction helps :
                 $fieldsArray[] = $this->getPropertyField(trim($field));
+                //$this->fields[] = $this->getPropertyField(trim($field));
             } else { // this is field
                 $fieldsArray[] = $this->getFullField(trim($field));
+                //$this->fields[] = $this->getFullField(trim($field));
             }
         }
         foreach ($fieldsArray as $field) {
@@ -260,6 +253,7 @@ class Export {
         }
         // last comma removing
         $fields = substr($fields, 0, strlen($fields) - 2);
+        $this->fields = $fields;
         // if categories are selected adding condition to query
         if (is_array($this->selectedCats) && count($this->selectedCats) > 0) {
             // to avoid query error checking if category exists
@@ -273,40 +267,6 @@ class Export {
         } else {
             $selCatsCondition = " ";
         }
-        
-//        echo "<pre>";
-//        var_dump($selCatsCondition);
-//        exit('ok');
-        
-        /*$query = "
-            SELECT
-                {$fields}
-            FROM
-                `shop_product_variants`
-            LEFT JOIN `shop_products` ON `shop_product_variants`.`product_id` = `shop_products`.`id`
-            LEFT JOIN `shop_product_variants_i18n` ON `shop_product_variants`.`id` = `shop_product_variants_i18n`.`id`
-            LEFT JOIN `shop_products_i18n` ON `shop_products_i18n`.`id` = `shop_products`.`id` AND `shop_product_variants_i18n`.`locale` = `shop_products_i18n`.`locale`
-
-            LEFT JOIN `shop_category` ON `shop_products`.`category_id` = `shop_category`.`id`
-            LEFT JOIN `shop_category_i18n` ON `shop_category_i18n`.`id` = `shop_category`.`id` AND `shop_product_variants_i18n`.`locale` = `shop_category_i18n`.`locale`
-
-            LEFT JOIN `shop_product_properties_data` ON `shop_product_properties_data`.`product_id` = `shop_product_variants`.`product_id`
-            LEFT JOIN `shop_product_properties` ON `shop_product_properties`.`id` = `shop_product_properties_data`.`property_id`
-            LEFT JOIN `shop_product_properties_i18n` ON `shop_product_properties_i18n`.`id` = `shop_product_properties`.`id` AND `shop_product_variants_i18n`.`locale` = `shop_product_properties_i18n`.`locale`
-
-            LEFT JOIN `shop_brands` ON `shop_brands`.`id` = `shop_products`.`brand_id`
-            LEFT JOIN `shop_brands_i18n` ON `shop_brands_i18n`.`id` = `shop_brands`.`id` AND `shop_product_variants_i18n`.`locale` = `shop_brands_i18n`.`locale`
-
-            LEFT JOIN `shop_currencies` ON `shop_currencies`.`id` = `shop_product_variants`.`currency`
-
-            LEFT JOIN `shop_product_images` ON `shop_product_variants`.`product_id` = `shop_product_images`.`product_id`
-
-            WHERE  1
-                AND `shop_product_variants_i18n`.`locale` = '{$this->language}'
-                {$selCatsCondition}
-            GROUP BY `shop_product_variants`.`id`
-            ORDER BY `shop_products`.`category_id`
-        ";*/
         $query = "
             SELECT
                 {$fields}
