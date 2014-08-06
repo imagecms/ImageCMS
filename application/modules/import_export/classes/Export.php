@@ -161,23 +161,29 @@ class Export {
 //            }
 //            
 //        }
-        
         foreach($list as $key => $val){
-            $number = $val['number'];
-            $productID = $this->db->where('number',$number)->get('shop_product_variants')->row()->product_id;
-            $imgsAdd = $this->db->where('product_id',$productID)->get('shop_product_images')->result_array();
-            if(count($imgsAdd) > 1){
-                $imgString = '';
-                foreach($imgsAdd as $img){
-                    $imgString .= $img['image_name'] . '|';
-                }
-                $imgString = trim($imgString,'|');
-                $list[$key]['additional_images'] = $imgString;
-            }
+            $list[$key]['additional_images'] = $this->addImg($val);
         }
-//        var_dump($list);
-//        exit;
         $this->resultArray = $list;
+    }
+    
+    /**
+     * Getting additional images
+     * @return array 
+     * @author Oleh
+     */
+    public function addImg($v) {
+        $number = $v['number'];
+        $productID = $this->db->where('number', $number)->get('shop_product_variants')->row()->product_id;
+        $imgsAdd = $this->db->where('product_id', $productID)->get('shop_product_images')->result_array();
+        if (count($imgsAdd) > 1) {
+            $imgString = '';
+            foreach ($imgsAdd as $img) {
+                $imgString .= $img['image_name'] . '|';
+            }
+            $imgString = trim($imgString, '|');
+            return $imgString;
+        }
     }
 
     /**
