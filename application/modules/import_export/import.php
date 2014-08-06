@@ -1,4 +1,32 @@
 <?php
+/*
+ * Дополнительные фото и фото вариантов.
+ * 
+ * Фото вариантов должны содержаться в папку /uploads/temp/
+ * Если их нет в этой папке, то производится проверка на наличие их в
+ * папке /uploads/shop/products/origin/. Если там они присутствуют, то вносятся
+ * в базу.
+ * 
+ * Дополнительные фото продукта должны содержаться в /uploads/temp/add
+ * Если их нет в этой папке, то производится проверка на наличие их в
+ * папке /uploads/shop/products/origin/additional. Если там они присутствуют, 
+ * то вносятся в базу.
+ * 
+ * Добавлены новые ошибки Factor.php:
+    const ErrorUrlAttribute = "Атрибут 'URL' не указан. Error: EIx011";
+    const ErrorPriceAttribute = "Атрибут 'Цена' не указан. Error: EIx012";
+    const ErrorNameVariantAttribute = "Атрибут 'Имя варианта' не указан. Error: EIx013";
+    const ErrorNameAttribute = "Атрибут 'Имя товара' не указан. Error: EIx010";
+ * 
+ * Файлы хранятся в /import_export/backups
+ * Backup базы остался неизменным в /aplication/backups 
+ * 
+ * Сегментная выгрузка при первом запуске использует imports(). Так как 
+ * $_POST['offers'], $_POST['limit'], $_POST['countProd'] пусты она просто
+ * пересчитывает количество позиций в файле и возвращает об этом информацию.
+ * Все последующие этапы используют segmentImport();
+ * Количество позиций в сегменте задаелся в файле importAdmin.js > importSegment > limit 
+ */
 
 use import_export\classes\ImportBootstrap as Imp;
 use import_export\classes\Logger as LOG;
@@ -29,7 +57,6 @@ class Import extends ShopAdminController {
         parent::__construct();
         \ShopController::checkVar();
         \ShopAdminController::checkVarAdmin();
-
     }
 
     /**

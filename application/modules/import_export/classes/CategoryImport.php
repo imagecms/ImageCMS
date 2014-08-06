@@ -27,7 +27,6 @@ class CategoryImport extends BaseImport {
             $pathIds = $pathNames = array();
             $parentId = $line = 0;
             foreach ($parts as $part) {
-//                $pathIds[] = $parentId;
                 $pathNames[] = $part;
 
                 /* Find existing category */
