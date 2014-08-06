@@ -11,19 +11,20 @@ namespace import_export\classes;
 class Logger  {
     
     /**
-     *
-     * @var type 
+     * Class Logger
+     * @var Logger 
      */
     private static $object;
     /**
-     *
-     * @var type 
+     * Path to file log.txt
+     * @var string 
      */
     private $pathFile = "./application/modules/import_export/backups/log.txt";
     
     /**
-     * 
-     * @return object
+     * Function create()
+     * @return Logger
+     * @access public
      */
     public static function create(){
         if (!self::$object)
@@ -36,9 +37,8 @@ class Logger  {
     }
     
     /**
-     * 
+     * Open or create log.txt and write errors
      * @param string $message
-     * @return type Description
      * @access public
      */
     public function set($message){
