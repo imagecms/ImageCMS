@@ -85,7 +85,7 @@ class EditingCurrenciesCest
     }
     
     
-    public function TypesOfSymbolsInEditing(CurrenciesTester $I)
+    public function  ICMS_1458_TypesOfSymbolsInEditing(CurrenciesTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/currencies');
         $I->click('.//*[@id="currency_tr1"]/td[2]/a');
@@ -196,7 +196,7 @@ class EditingCurrenciesCest
      * @guy CurrenciesTester\CurrenciesSteps
      */
     
-    public function Symbols10Editing(CurrenciesTester\CurrenciesSteps $I)
+    public function ICMS_1508_Symbols10Editing(CurrenciesTester\CurrenciesSteps $I)
     {
         $name="Гульден123";
         $isocode="Гульден123";
