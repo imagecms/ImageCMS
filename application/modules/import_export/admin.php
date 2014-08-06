@@ -6,7 +6,7 @@ use import_export\classes\Logger as LOG;
 
 /**
  * Image CMS 
- * Sample Module Admin
+ * Import_export Module Admin
  */
 class Admin extends BaseAdminController {
     
@@ -26,15 +26,22 @@ class Admin extends BaseAdminController {
         $lang->load('import_export');    
     }
 
+    /**
+     * Index. Render admin tpl 'settings'
+     */
     public function index() {
         \CMSFactory\assetManager::create()
                 ->renderAdmin('settings');
     }
     
-    public function getImport($className){
+    /**
+     * Controller start classes import
+     * @param string $method method
+     */
+    public function getImport($method){
         require_once 'import.php';    
         $n = new Import();
-        $n->$className();
+        $n->$method();
     }
     
     public function getExport(){
@@ -66,6 +73,10 @@ class Admin extends BaseAdminController {
         }
     }
     
+    /**
+     * Select File tpl import or export
+     * @param string $check (import | export)
+     */
     public function getTpl($check){
         if($check == 'import'){
             \CMSFactory\assetManager::create()
