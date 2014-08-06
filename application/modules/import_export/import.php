@@ -6,19 +6,23 @@ use import_export\classes\Logger as LOG;
 class Import extends ShopAdminController {
 
     /**
-     * Fields in export that are marked by default
-     * @var array
+     * Folder backup
+     * @var string
+     * @access private
      */
-    private $checkedFields = array(
-        'name',
-        'url',
-        'prc',
-        'var',
-        'cat',
-        'num'
-    );
     private $uploadDir = './application/modules/import_export/backups/';
+    
+    /**
+     * Default csv file name
+     * @var string
+     * @access private
+     */
     private $csvFileName = 'product_csv_1.csv';
+    /**
+     * Information about the files
+     * @var array 
+     * @access private
+     */
     private $uplaodedFileInfo = array();
 
     public function __construct() {
@@ -28,6 +32,11 @@ class Import extends ShopAdminController {
 
     }
 
+    /**
+     * Helper function for unloading segment from ajax
+     * @return array Status unloading
+     * @access public
+     */
     public function segmentImport() {
         $result = Imp::create()->startProcess($_POST['offers'], $_POST['limit'], $_POST['countProd'])->resultAsString();
         
@@ -39,8 +48,8 @@ class Import extends ShopAdminController {
     }
 
     /**
-     * Import products from CSV file
-     * @return void
+     * Import products from CSV file, resize photo, update currency, make backup db
+     * @access public
      */
     public function imports() {
         chmod($this->uploadDir, 0777);
@@ -73,30 +82,7 @@ class Import extends ShopAdminController {
             }
             echo(json_encode($result));
             
-        } 
-//        else {
-//            if (!$_FILES) {
-//                exit('11');
-//                $customFields = SPropertiesQuery::create()->orderByPosition()->find();
-//                $cFieldsTemp = $customFields->toArray();
-//                $cFields = array();
-//                foreach ($cFieldsTemp as $f)
-//                    $cFields[] = $f['CsvName'];
-//
-//                $importSettings = $this->cache->fetch('ImportExportCache');
-//                $this->template->assign('withBackup', $importSettings['withBackup']);
-//                $this->configureImportProcess();
-//                $this->render('import', array(
-//                    'customFields' => SPropertiesQuery::create()->orderByPosition()->find(),
-//                    'languages' => $this->languages,
-//                    'cFields' => $cFields,
-//                    'currencies' => SCurrenciesQuery::create()->orderByIsDefault()->find(),
-//                    'attributes' => import_export\classes\BaseImport::create()->makeAttributesList()->possibleAttributes,
-//                    'checkedFields' => $this->checkedFields
-//                ));
-//            }
-//        }
-
+        }
         $this->cache->delete_all();
 
         if ($_POST['withResize']) {
@@ -111,7 +97,9 @@ class Import extends ShopAdminController {
     }
 
     /**
-     *
+     * Downloads the file to the backup and starts conversion function convertXLStoCSV()
+     * and configureImportProcess()
+     * @access public
      */
     private function saveCSVFile() {
         $this->takeFileName();
@@ -144,11 +132,20 @@ class Import extends ShopAdminController {
         }
     }
 
+    /**
+     * Generate file name
+     * @access private
+     */
     private function takeFileName() {
         $fileNumber = (in_array($_POST['csvfile'], array(1, 2, 3))) ? intval($_POST['csvfile']) : 1;
         $this->csvFileName = "product_csv_$fileNumber.csv";
     }
 
+    /**
+     * Xls and xlsx convert to csv
+     * @param string $excel_file Path to the file
+     * @access private
+     */
     private function convertXLStoCSV($excel_file = '') {
         include './application/modules/import_export/PHPExcel/PHPExcel.php';
         include './application/modules/import_export/PHPExcel/PHPExcel/IOFactory.php';
@@ -180,6 +177,11 @@ class Import extends ShopAdminController {
         }
     }
 
+    /**
+     * Forms the attributes of the downloaded file
+     * @param bool $vector Generates attributes for ajax
+     * @access private
+     */
     private function configureImportProcess($vector = true) {
         if (file_exists($this->uploadDir . $this->csvFileName)) {
             $file = fopen($this->uploadDir . $this->csvFileName, 'r');
@@ -204,6 +206,11 @@ class Import extends ShopAdminController {
         }
     }
 
+    /**
+     * Information about the files
+     * @param string $dir path to files
+     * @access private
+     */
     private function getFilesInfo($dir = null) {
         $dir = ($dir == null) ? $this->uploadDir : $dir;
         foreach (get_filenames($dir) as $file) {
@@ -213,6 +220,10 @@ class Import extends ShopAdminController {
         }
     }
 
+    /**
+     * Displays the attributes of a file when you select a cell
+     * @access public
+     */
     public function getAttributes() {
         $this->takeFileName();
         $this->configureImportProcess(false);
@@ -220,6 +231,10 @@ class Import extends ShopAdminController {
                 ->renderAdmin('import_attributes');
     }
     
+    /**
+     * Generates status bar imports from ajax to file
+     * @access public
+     */
     public function errorLog() {
         LOG::create()->set($_POST['error'].' - IMPORT');
     }
