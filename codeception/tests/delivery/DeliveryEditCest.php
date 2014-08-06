@@ -53,14 +53,6 @@ class DeliveryEditCest {
     }
 
 //    __________________________________________________________________________FIELD_NAME_TESTS
-    /**_________________________________________________________________________check in alert tests
-     * @group edit
-     * @guy DeliveryTester\DeliverySteps
-     */
-//    public function eNameEmpty(DeliveryTester\DeliverySteps $I) {
-//        $I->editDelivery('');
-//        $I->CheckForAlertPresent('required', "edit");
-//    }
 
     /**
      * @group edit
@@ -89,20 +81,6 @@ class DeliveryEditCest {
         $I->CheckInList($name);
         $this->Name = $name;
     }
-
-    /**-________________________________________________________________________check in alert tests
-     * @group edit
-     * @guy DeliveryTester\DeliverySteps
-     */
-//    public function eName501(DeliveryTester\DeliverySteps $I) {
-//        $name = InitTest::$text501;
-//        //For deleting
-//        $this->CreatedMethods[] = $name;
-//
-//        $I->EditDelivery($name);
-//        $I->CheckForAlertPresent('error', 'edit');
-//        $I->see("Редактирование способа доставки: " . $this->Name, '.title');
-//    }
 
     /**
      * @group edit
@@ -279,14 +257,6 @@ class DeliveryEditCest {
         }else $I->fail ('wrong class of checkbox sum specified');
     }
     
-    /**_________________________________________________________________________check in alert tests
-     * @group edit
-     * @guy DeliveryTester\DeliverySteps
-     */
-//    public function ePriceSpecifiedEmpty(DeliveryTester\DeliverySteps $I) {
-//        $I->EditDelivery(null, null, null, null, null, null, '');
-//        $I->CheckForAlertPresent('success', 'edit');
-//    }
     
     /**
      * @group edit
@@ -308,17 +278,7 @@ class DeliveryEditCest {
         $I->CheckInFrontEnd($this->Name, null, null, null, $message);
     }
     
-//______________________________________________________________________________________________________________________++++++++++++++++BUG_HERE
-    /**_________________________________________________________________________check in alert tests
-     * @group edit
-     * @guy DeliveryTester\DeliverySteps
-     */
-//    public function eFieldPriceSpecified501(DeliveryTester\DeliverySteps $I){
-//        $message = InitTest::$text501;
-//        $I->EditDelivery(null, null, null, null, null, null, $message);
-//        $I->CheckForAlertPresent('error', 'edit');
-//    }
-    
+
     /**
      * @group edit
      * @guy DeliveryTester\DeliverySteps
