@@ -65,9 +65,11 @@ class Admin extends BaseAdminController {
             }
             if (FALSE !== $this->createFile($_POST['type'], $export)) {
                 echo $_POST['type'];
+                LOG::create()->set("Експорт завершен успешно!");
                 return;
             }
-            echo "Error!";
+            LOG::create()->set("Error during export!");
+            echo "Error during export!";
         } else {
             echo $this->processErrors($export->getErrors());
         }
