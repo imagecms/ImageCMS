@@ -38,6 +38,8 @@ class Logger  {
     /**
      * 
      * @param string $message
+     * @return type Description
+     * @access public
      */
     public function set($message){
         if(!file_exists($this->pathFile)){            
