@@ -11,13 +11,10 @@ use import_export\classes\Logger as LOG;
 class Export {
     public $delimiter = ";";
     public $maxRowLength = 10000;
-    //public $file = null;
-    //public $currency = null;
     public $language = 'ru';
     protected $attributes = array();
     protected $attributesCF = array();
     protected $enclosure = '"';
-    //protected $tree = null;
     public $encoding = 'utf8';
     protected $selectedCats = array();
     protected $customFields = array();
@@ -108,6 +105,9 @@ class Export {
         if(!file_exists($path)){
             LOG::create()->set('File export not exists (xls)!');
         }
+        include './application/modules/import_export/PHPExcel/PHPExcel.php';
+        include './application/modules/import_export/PHPExcel/PHPExcel/IOFactory.php';
+        include './application/modules/import_export/PHPExcel/PHPExcel/Writer/Excel2007.php';
         $objPHPExcel = new \PHPExcel();
         $someProductData = current($this->resultArray);
         $headerArray = array();
