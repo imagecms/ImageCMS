@@ -14,20 +14,75 @@ use import_export\classes\PropertiesImport as PropertiesHandler;
  */
 class BaseImport extends \CI_Model {
 
+    /**
+     * Class BaseImport
+     * @var BaseImport 
+     */
     protected static $_instance;
+    /**
+     * Id currency
+     * @var Int 
+     */
     public $currency = 2;
+    /**
+     * Charset
+     * @var string 
+     */
     public $encoding = 'utf-8';
+    /**
+     * language
+     * @var string 
+     */
     public $languages = 'ru';
+    /**
+     * Path to file
+     * @var string 
+     */
     public $CSVsource = '';
+    /**
+     * CSV delimiter
+     * @var string 
+     */
     public $delimiter = ";";
+    /**
+     * CSV enclosure
+     * @var string 
+     */
     public $enclosure = '"';
+    /**
+     * Import type
+     * @var string 
+     */
     public $importType = '';
+    /**
+     * Attributes
+     * @var array 
+     */
     public $attributes = "";
+    /**
+     * The maximum number of fields
+     * @var int 
+     */
     public $maxRowLength = 1000000;
+    /**
+     * Content
+     * @var array 
+     */
     public $content = array();
+    /**
+     * Settings
+     * @var array 
+     */
     public $settings = array();
+    /**
+     * Possible attributes
+     * @var array 
+     */
     public $possibleAttributes = array();
-    public $exportSuccessfulHandler;
+    /**
+     * Count products in CSV file
+     * @var int 
+     */
     public $countProduct;
 
     public function __construct() {
@@ -36,6 +91,9 @@ class BaseImport extends \CI_Model {
 
     /**
      * Start CSV Import
+     * @param int $offers The final position
+     * @param int $limit Step
+     * @param int $countProd count products
      * @return bool
      * @access public
      * @author Kaero
@@ -60,6 +118,8 @@ class BaseImport extends \CI_Model {
 
     /**
      * Validate Information and parse CSV. As a goal we have $content variable with file information.
+     * @param int $offers The final position
+     * @param int $limit Step
      * @return bool
      * @access public
      * @author Kaero
@@ -113,9 +173,9 @@ class BaseImport extends \CI_Model {
     }
 
     /**
-     * 
-     * @param type $offers
-     * @param type $limit
+     * File parsing
+     * @param int $offers The final position
+     * @param int $limit Step
      * @param resurs $file
      * @return boolean
      */

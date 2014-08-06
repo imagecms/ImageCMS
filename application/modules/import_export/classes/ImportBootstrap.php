@@ -5,14 +5,25 @@ namespace import_export\classes;
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
 /**
- * @todo Delete ShopImport.php Does'nt needed anymore.
  * @property Core $core
  * @property CI_DB_active_record $db
  */
 class ImportBootstrap {
-
+    
+    /**
+     * Errors
+     * @var array 
+     */
     protected $messages;
+    /**
+     * Class ImportBootstrap
+     * @var ImportBootstrap 
+     */
     protected static $_instance;
+    /**
+     * Backup dir
+     * @var string 
+     */
     public $uploadDir = './application/modules/import_export/backups/';
 
     private function __construct() {
@@ -37,6 +48,9 @@ class ImportBootstrap {
 
     /**
      * Start products import
+     * @param int $offers The final position
+     * @param int $limit Step
+     * @param int $countProd count products
      * @author Kaero
      * @return ImportBootstrapА
      * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
@@ -50,14 +64,33 @@ class ImportBootstrap {
         return $this;
     }
 
+    /**
+     * Checks whether there is an error
+     * @param string $type
+     * @return bool
+     * @access public static
+     */
     public static function noErrors($type = Factor::MessageTypeError) {
         return (count(self::create()->messages[$type])) ? FALSE : TRUE;
     }
 
+    /**
+     * Checks whether an error
+     * @param string $type
+     * @return bool
+     * @access public static
+     */
     public static function hasErrors($type = Factor::MessageTypeError) {
         return (count(self::create()->messages[$type])) ? TRUE : FALSE;
     }
 
+    /**
+     * Add error message
+     * @param string $msg 
+     * @param string $type
+     * @return bool
+     * @access public static
+     */
     public static function addMessage($msg, $type = Factor::MessageTypeError) {
         self::create()->messages[$type][] = $msg;
         return ($type == Factor::MessageTypeError) ? FALSE : TRUE;
