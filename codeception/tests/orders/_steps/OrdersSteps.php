@@ -263,6 +263,26 @@ class OrdersSteps extends \OrdersTester {
     
     
     
+    
+    
+    
+    
+    function SelectAmountOutStock($amountOutStockNo = NULL, $amountOutStockYes = NULL) {
+        $I = $this;
+        $I->amOnPage('/admin/components/run/shop/settings#orders');
+        $I->wait('3');
+        if(isset($amountOutStockNo)){
+            $I->click('//div[3]/div/label[2]/input');
+            $I->click('//body/div[1]/div[5]/section/div[1]/div[2]/div/button[2]');
+        }if(isset($amountOutStockYes)){
+            $I->click('//div[3]/div/label/input');
+            $I->click('//body/div[1]/div[5]/section/div[1]/div[2]/div/button[2]');
+        }
+    }
+    
+    
+    
+    
     function SearchArticleProductAutocomplete ( $articleProduct = NULL) { 
         $I = $this;
         $I->amOnPage(\CreateOrderAdminPage::$CrtPURL);
@@ -302,6 +322,14 @@ class OrdersSteps extends \OrdersTester {
     
     //-----------------Search For Select Menu-----------------------------------   
     
+    
+    
+    
+    
+    
+    
+    
+    
     function SearchCategorySelect ($typeCategory = NULL){
         $I = $this;
         $urlCrtOrd = '/admin/components/run/shop/orders/create';
@@ -319,6 +347,16 @@ class OrdersSteps extends \OrdersTester {
             
         }
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     function SearchProductNameSelect($typeCategoryName = NULL, $typeProductName = NULL) {
         $I = $this;
         if(isset($typeProductName)){
@@ -353,6 +391,12 @@ class OrdersSteps extends \OrdersTester {
     }
     
     
+    
+    
+    
+    
+    
+    
     function SearchProductVariantandPriceSelect($typeVariantName = NULL, $typeVariantPrice = NULL) {
         $I = $this;
         if(isset($typeVariantName)){
@@ -363,12 +407,27 @@ class OrdersSteps extends \OrdersTester {
         }
     }
     
+    
+    
+    
+    
+    
+    
+    
+    
     function AddToBascketSelect() {
         $I = $this;
         $I->wait('1');
         $I->click(\CreateOrderAdminPage::$CrtPButtAddToCart);
         $I->see('В корзине', \CreateOrderAdminPage::$CrtPButtInBasket);
     }
+    
+    
+    
+    
+    
+    
+    
     function SearchProductInBascket($name = NULL,
                                     $variant = NULL,
                                     $Price = NULL,

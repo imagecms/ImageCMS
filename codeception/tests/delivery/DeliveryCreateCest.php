@@ -26,14 +26,14 @@ class DeliveryCreateCest {
 
 //  ____________________________________________________________FIELD_NAME_TESTS
 
-    /**
-     * @group create
-     * @guy DeliveryTester\DeliverySteps
-     */
-    public function nameEmpty(DeliveryTester\DeliverySteps $I) {
-        $I->click(DeliveryCreatePage::$ButtonCreate);
-        $I->CheckForAlertPresent('required','create');
-    }
+//    /**_______________________________________________________________________check in alert tests
+//     * @group create
+//     * @guy DeliveryTester\DeliverySteps
+//     */
+//    public function nameEmpty(DeliveryTester\DeliverySteps $I) {
+//        $I->click(DeliveryCreatePage::$ButtonCreate);
+//        $I->CheckForAlertPresent('required','create');
+//    }
 
     /**
      * @group create
@@ -45,7 +45,6 @@ class DeliveryCreateCest {
         $this->CreatedMethods[] = $name;
 
         $I->CreateDelivery($name,'on');
-        $I->CheckForAlertPresent('success','create');
         $I->CheckInList($name);
         $I->CheckInFrontEnd($name);
     }
@@ -60,19 +59,18 @@ class DeliveryCreateCest {
         $this->CreatedMethods[] = $name;
 
         $I->CreateDelivery($name, 'on');
-        $I->CheckForAlertPresent('success','create');
         $I->CheckInList($name);
         $I->CheckInFrontEnd($name);
     }
 
-    /**
-     * @group create
-     * @guy DeliveryTester\DeliverySteps
-     */
-    public function name501(DeliveryTester\DeliverySteps $I) {
-        $I->CreateDelivery(InitTest::$text501);
-        $I->CheckForAlertPresent('error', 'create');
-    }
+//    /**_______________________________________________________________________CHECK IN ALERTS TESTS
+//     * @group create
+//     * @guy DeliveryTester\DeliverySteps
+//     */
+//    public function name501(DeliveryTester\DeliverySteps $I) {
+//        $I->CreateDelivery(InitTest::$text501);
+//        $I->CheckForAlertPresent('error', 'create');
+//    }
 
     /**
      * @group create
@@ -84,7 +82,6 @@ class DeliveryCreateCest {
         $this->CreatedMethods[] = $name;
 
         $I->CreateDelivery($name,'on');
-        $I->CheckForAlertPresent("success",'create');
         $I->CheckInList($name);
         $I->CheckInFrontEnd($name);
     }
@@ -131,7 +128,6 @@ class DeliveryCreateCest {
         $description = $descriptionprice = InitTest::$textSymbols;
 
         $I->CreateDelivery($name, 'on', $description, $descriptionprice);
-        $I->CheckForAlertPresent('success', 'create');
         $I->CheckInFrontEnd($name, $description);
 //  _________________________________________________________________________________________________________BUG
     }
@@ -148,7 +144,6 @@ class DeliveryCreateCest {
         $this->CreatedMethods[] = $name;
 
         $I->CreateDelivery($name, 'on', null, null, $price, $freefrom);
-        $I->CheckForAlertPresent('success' ,'create');
         $I->CheckInList($name, null, $price, $freefrom);
         $I->CheckInFrontEnd($I, $name, null, $price, $freefrom);
 //  _________________________________________________________________________________________________________BUG
@@ -167,7 +162,6 @@ class DeliveryCreateCest {
         $this->CreatedMethods[] = $name;
 
         $I->CreateDelivery($name, 'on', null, null, $price, $freefrom);
-        $I->CheckForAlertPresent('success','create');
         $I->CheckInList($name, NULL, $price, $freefrom);
         $I->CheckInFrontEnd($name, null, $price, $freefrom);
     }
@@ -183,7 +177,6 @@ class DeliveryCreateCest {
         $this->CreatedMethods[] = $name;
 
         $I->CreateDelivery($name, 'on', null, null, $price, $freefrom);
-        $I->CheckForAlertPresent('success', 'create');
         $I->CheckInList($name, null, $price, $freefrom);
         $I->CheckInFrontEnd($name, null, $price, $freefrom);
     }
@@ -200,7 +193,6 @@ class DeliveryCreateCest {
 
 
         $I->CreateDelivery($name, 'on', null, null, $price, $freefrom);
-        $I->CheckForAlertPresent('success', 'create');
         $I->CheckInList($name, null, $price, $freefrom);
         $I->CheckInFrontEnd($name, null, $price, $freefrom);
     }
@@ -225,18 +217,18 @@ class DeliveryCreateCest {
         }
     }
 
-    /**
-     * @group create
-     * @guy DeliveryTester\DeliverySteps
-     */
-    public function fieldPriseSpecifiedEmpty(DeliveryTester\DeliverySteps $I) {
-        $name = "УточнениеЦеныПусто";
-        //For deleting
-        $this->CreatedMethods[] = $name;
-
-        $I->CreateDelivery($name, 'on', null, null, null, null, "");
-        $I->CheckForAlertPresent('success', 'create');
-    }
+//    /**_______________________________________________________________________CHECK_IN ALERT TESTS
+//     * @group create
+//     * @guy DeliveryTester\DeliverySteps
+//     */
+//    public function fieldPriseSpecifiedEmpty(DeliveryTester\DeliverySteps $I) {
+//        $name = "УточнениеЦеныПусто";
+//        //For deleting
+//        $this->CreatedMethods[] = $name;
+//
+//        $I->CreateDelivery($name, 'on', null, null, null, null, "");
+//        $I->CheckForAlertPresent('success', 'create');
+//    }
 
     /**
      * @group create
@@ -249,7 +241,6 @@ class DeliveryCreateCest {
         $this->CreatedMethods[] = $name;
 
         $I->CreateDelivery($name, 'on', null, null, null, null, $message);
-        $I->CheckForAlertPresent('success', 'create');
         $I->CheckInFrontEnd($name, null, null, null, $message);
     }
 
@@ -264,24 +255,23 @@ class DeliveryCreateCest {
         $this->CreatedMethods[] = $name;
 
         $I->CreateDelivery($name, 'on', null, null, null, null, $message);
-        $I->CheckForAlertPresent('success', 'create');
         $I->CheckInFrontEnd($name, null, null, null, $message);
     }
 
-    /**
-     * @group create
-     * @guy DeliveryTester\DeliverySteps
-     */
-    public function fieldPriseSpecified501(DeliveryTester\DeliverySteps $I) {
-        $name = 'УточнениеЦены501';
-        $message = InitTest::$text501;
-        //For deleting
-        $this->CreatedMethods[] = $name;
-
-        $I->CreateDelivery($name, 'on', null, null, null, null, $message);
-        $I->CheckForAlertPresent('error', 'create');
+//    /**_______________________________________________________________________CHECK IN ALERT TEST
+//     * @group create
+//     * @guy DeliveryTester\DeliverySteps
+//     */
+//    public function fieldPriseSpecified501(DeliveryTester\DeliverySteps $I) {
+//        $name = 'УточнениеЦены501';
+//        $message = InitTest::$text501;
+//        //For deleting
+//        $this->CreatedMethods[] = $name;
+//
+//        $I->CreateDelivery($name, 'on', null, null, null, null, $message);
+//        $I->CheckForAlertPresent('error', 'create');
 //  _________________________________________________________________________________________________________BUG
-    }
+//    }
 
     /**
      * @group create
@@ -294,7 +284,6 @@ class DeliveryCreateCest {
         $this->CreatedMethods[] = $name;
 
         $I->CreateDelivery($name, 'on', null, null, null, null, $message);
-        $I->CheckForAlertPresent('success', 'create');
         $I->CheckInFrontEnd($name, null, null, null, $message);
     }
 

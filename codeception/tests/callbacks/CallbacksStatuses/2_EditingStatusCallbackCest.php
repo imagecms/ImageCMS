@@ -53,7 +53,7 @@ class EditingStatusCallbackCest
     
     public function RequiredFieldsInEditingSaveAndExitButton(CallbacksTester $I)
     {
-        //$I->amOnPage('/admin/components/run/shop/callbacks/statuses');
+        $I->amOnPage('/admin/components/run/shop/callbacks/statuses');
         $I->click('.//*[@id="orderStatusesList"]/section/div[2]/div/table/tbody/tr[1]/td[2]/a');
         $I->waitForText('Редактирование статуса обратного звонка');
         $I->fillField(CallbacksPage::$NameStatus, '');
@@ -77,62 +77,47 @@ class EditingStatusCallbackCest
         $I->seeInField(CallbacksPage::$NameStatus, 'qwerrQEQE12345!#@$#%%^&*()_+|}{:">?<,./;][\\=-0ёцвцаымпУКП');
     }
     
+    /**
+     * @guy CallbacksTester\CallbacksSteps
+     */
     
-    public function OneSymbolsEditing(CallbacksTester $I)
+    public function OneSymbolsEditing(CallbacksTester\CallbacksSteps $I)
     {
-        $I->amOnPage('/admin/components/run/shop/callbacks/statuses');
-        $I->click('.//*[@id="orderStatusesList"]/section/div[2]/div/table/tbody/tr[1]/td[2]/a');
-        $I->waitForText('Редактирование статуса обратного звонка');
-        $I->fillField(CallbacksPage::$NameStatus, 'q');
-        $I->click(CallbacksPage::$SaveButton);
-        $I->waitForElementVisible('.alert.in.fade.alert-success');
-        $I->see('Изменения сохранены');
-        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
-        $I->seeInField(CallbacksPage::$NameStatus, 'q');
+        $name='q';
+        $I->EditStatusCallback($name, $name);
         InitTest::ClearAllCach($I);
     }
     
+    /**
+     * @guy CallbacksTester\CallbacksSteps
+     */
     
-    public function Symbols128Editing(CallbacksTester $I)
+    public function Symbols128Editing(CallbacksTester\CallbacksSteps $I)
     {
-        $I->amOnPage('/admin/components/run/shop/callbacks/statuses');
-        $I->click('.//*[@id="orderStatusesList"]/section/div[2]/div/table/tbody/tr[1]/td[2]/a');
-        $I->waitForText('Редактирование статуса обратного звонка');
-        $I->fillField(CallbacksPage::$NameStatus, '12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцу');
-        $I->click(CallbacksPage::$SaveButton);
-        $I->waitForElementVisible('.alert.in.fade.alert-success');
-        $I->see('Изменения сохранены');
-        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
-        $I->seeInField(CallbacksPage::$NameStatus, '12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцу');
+        $name='12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцу';
+        $I->EditStatusCallback($name, $name);
     }
     
+    /**
+     * @guy CallbacksTester\CallbacksSteps
+     */
     
-    public function Symbols255Editing(CallbacksTester $I)
+    public function Symbols255Editing(CallbacksTester\CallbacksSteps $I)
     {
-        $I->amOnPage('/admin/components/run/shop/callbacks/statuses');
-        $I->click('.//*[@id="orderStatusesList"]/section/div[2]/div/table/tbody/tr[1]/td[2]/a');
-        $I->waitForText('Редактирование статуса обратного звонка');
-        $I->fillField(CallbacksPage::$NameStatus, '12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345');
-        $I->click(CallbacksPage::$SaveButton);
-        $I->waitForElementVisible('.alert.in.fade.alert-success');
-        $I->see('Изменения сохранены');
-        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
-        $I->seeInField(CallbacksPage::$NameStatus, '12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345');
+        $name='12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345';
+        $I->EditStatusCallback($name, $name);
         InitTest::ClearAllCach($I);
     }
     
+    /**
+     * @guy CallbacksTester\CallbacksSteps
+     */
     
-    public function Symbols256Editing(CallbacksTester $I)
+    public function Symbols256Editing(CallbacksTester\CallbacksSteps $I)
     {
-        $I->amOnPage('/admin/components/run/shop/callbacks/statuses');
-        $I->click('.//*[@id="orderStatusesList"]/section/div[2]/div/table/tbody/tr[1]/td[2]/a');
-        $I->waitForText('Редактирование статуса обратного звонка');
-        $I->fillField(CallbacksPage::$NameStatus, '12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке123456');
-        $I->click(CallbacksPage::$SaveButton);
-        $I->waitForElementVisible('.alert.in.fade.alert-success');
-        $I->see('Изменения сохранены');
-        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
-        $I->seeInField(CallbacksPage::$NameStatus, '12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345');
+        $name='12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке123456';
+        $name1='12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345';
+        $I->EditStatusCallback($name, $name1);
     }
     
     

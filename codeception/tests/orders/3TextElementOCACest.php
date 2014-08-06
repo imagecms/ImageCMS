@@ -29,7 +29,7 @@ class TextElementOCACest
     /**
      * @group a
      */
-    public function VerifyTextCreateProductPage (OrdersTester $I){
+    public function VerifyTextCreatePageProduct (OrdersTester $I){
          $I->wantTo('Verify Text on Product Page.');
          $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
          $I->see('Создание заказа', CreateOrderAdminPage::$CrtPTitle); 
@@ -59,7 +59,7 @@ class TextElementOCACest
     /**
      * @group a
      */
-    public function VerifyTextCreateUserPage (OrdersTester $I){
+    public function VerifyTextCreatePageUser (OrdersTester $I){
         $I->wantTo('Verify Text on User Page.');
          $I->amOnPage(CreateOrderAdminPage::$CrtPURL);  
          $I->click(CreateOrderAdminPage:: $CrtPButtUser);
@@ -83,7 +83,7 @@ class TextElementOCACest
     /**
      * @group a
      */
-    public function VerifyTextCreateOrderPage (OrdersTester $I){
+    public function VerifyTextCreatePageOrder (OrdersTester $I){
         $I->wantTo('Verify Text on Order Page.');
         $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
         $I->click(CreateOrderAdminPage::$CrtPButtOrder);
@@ -153,12 +153,12 @@ class TextElementOCACest
 //--------------------VERIFY BUTTON OUT STOCK--------------------------------- 
     
     /**
-     * @group q
+     * @group a
      * @guy OrdersTester\OrdersSteps
      */
     public function VerifyButtonOutStock(OrdersTester\OrdersSteps $I){
         $I->wantTo('Verify Button "Out Stock" Presence.');
-        $I->createProduct($nameProduct = 'Товар для Verify BTN нету на складе.');
+        $I->createProduct($nameProduct = 'Товар для Verify BTN нету на складе.', $nameVariantProduct = NULL, $priceProduct = 1);
         $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
         $I->click(CreateOrderAdminPage::$CrtPButtProduct);
         $I->fillField('#productNameForOrders', 'Товар для Verify BTN нету на складе.');
@@ -337,12 +337,14 @@ class TextElementOCACest
     
     /**
      * @group a
+     * @guy OrdersTester\OrdersSteps
      */
-    public function VerifyTextMessageButtonCreateAddProducts (OrdersTester $I) {
+    public function VerifyTextMessageButtonCreateAddProducts (OrdersTester\OrdersSteps $I) {
         $I->wantTo('Verify Text Message User Not Selected.');
+        $I->createProduct($nameProduct = 'Товар для Text Message', $nameVariantProduct = NULL, $priceProduct = 1);
         $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
         $I->click(CreateOrderAdminPage::$CrtPButtProduct);
-        $I->fillField('#productNameForOrders', CreateProductsOrdersPage::$CrtPrdNameMin);
+        $I->fillField('#productNameForOrders', 'Товар для Text Message');
         $I->wait('1');
         $I->click('//body/ul[2]/li[1]/a');
         $I->wait('1');
