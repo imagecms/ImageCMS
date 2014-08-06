@@ -60,6 +60,7 @@ class DeleteStatusCest
     public function DeleteDefaultStatus(CallbacksTester $I)
     {
         //Проверка возможности удаления статуса по умолчанию
+        $I->amOnPage("/admin/components/run/shop/callbacks/statuses");
         for ($this->j=1;$this->j<=$this->rows;$this->j++){            
             //
             $atribActiveClass = $I->grabAttributeFrom(".//*[@id='orderStatusesList']/section/div[2]/div/table/tbody/tr[$this->j]/td[3]/div/span","class");
@@ -84,12 +85,14 @@ class DeleteStatusCest
     public function DefaultStatusOff(CallbacksTester $I)
     {
         //Проверка возможности отключения статуса по умолчанию
+        $I->amOnPage("/admin/components/run/shop/callbacks/statuses");
         $I->click(CallbacksPage::ActiveButtonLine($this->j));
         $I->dontSeeElement("//*[@class='alert.in.fade.alert-success']/a");
         $I->dontSee("Статус по умолчанию изменен");
         $I->wait(1);
         InitTest::ClearAllCach($I);
-        $I->wait(1);        
+        $I->wait(2);
+        $I->amOnPage("/admin/components/run/shop/callbacks/statuses");
         $ActButOn=$I->grabAttributeFrom(CallbacksPage::ActiveButtonLine($this->j), "class");
         $ActButOn=  trim($ActButOn);
         $I->assertEquals($ActButOn, "prod-on_off");
@@ -102,6 +105,7 @@ class DeleteStatusCest
      public function ChangeDefaultStatus(CallbacksTester $I)
     {
         //Изменение статуса по умолчанию
+        $I->amOnPage("/admin/components/run/shop/callbacks/statuses");
         if($this->j<$this->rows){
             $this->j++;
             $I->click(CallbacksPage::ActiveButtonLine($this->j));
@@ -114,13 +118,16 @@ class DeleteStatusCest
 //        $I->See("Статус по умолчанию изменен");
         InitTest::ClearAllCach($I);
         $I->wait(1);
+        $I->amOnPage("/admin/components/run/shop/callbacks/statuses");
         $this->nameStatus=$I->grabTextFrom(".//*[@id='orderStatusesList']/section/div[2]/div/table/tbody/tr[$this->j]/td[2]/a");
         $I->comment($this->nameStatus);
         $ActButOn=$I->grabAttributeFrom(CallbacksPage::ActiveButtonLine($this->j), "class");
         $ActButOn=  trim($ActButOn);
         $I->assertEquals($ActButOn, "prod-on_off");
         $DelButAct=$I->grabAttributeFrom(CallbacksPage::DeleteStatusButtonLine($this->j), "disabled");
+        $I->comment($DelButAct);
         $I->assertEquals($DelButAct, 'true');
+        $true=0;
         for ($k=1;$k<=$this->rows;$k++){            
             //РџРѕРёСЃРє Р°С‚СЂРёР±СѓС‚Р° checked РґР»СЏ СЂР°РґРёРѕС‚РѕС‡РєРё
             $atribActiveClass = $I->grabAttributeFrom(CallbacksPage::ActiveButtonLine($k),"class");
@@ -190,7 +197,7 @@ class DeleteStatusCest
     }
     
     
-    public function ValuesOfAllStatusesInSelectMenuAndButtonsListLsndingCallback(CallbacksTester $I)
+    public function ValuesOfAllStatusesInSelectMenuAndButtonsListLandingCallback(CallbacksTester $I)
     {
         //Проверка наличия всех названий созданных статусов колбеков в селект меню и кнопках на странице "Список обратных звонков"
         $I->amOnPage('/admin');
@@ -221,7 +228,7 @@ class DeleteStatusCest
     }    
     
     
-    public function ValuesOfAllStatusesInSelectMenuEditCallback(CallbacksTester $I)
+    public function ICMS_1489_ValuesOfAllStatusesInSelectMenuEditCallback(CallbacksTester $I)
     {    
         //Проверка наличия всех названий созданных статусов колбеков в селект меню на странице редактирования колбека
         $I->click(".//*[@id='callbacks_all']/table/tbody/tr/td[3]/a");
@@ -237,7 +244,7 @@ class DeleteStatusCest
     }
     
     
-    public function ValuesOfAllStatusesInListLandingStatuses(CallbacksTester $I)
+    public function ICMS_1489_ValuesOfAllStatusesInListLandingStatuses(CallbacksTester $I)
     {    
         //Проверка наличия всех названий созданных статусов колбеков на странице "Статусы обратных звонков"
         $I->amOnPage('/admin/components/run/shop/callbacks/statuses');
@@ -257,6 +264,7 @@ class DeleteStatusCest
     public function DeleteNotDefaultStatus(CallbacksTester $I)
     {
         //Удаление статуса не отмеченного по умолчанию
+        $I->amOnPage("/admin/components/run/shop/callbacks/statuses");
         $I->comment((string)$this->j);
         $I->comment((string)$this->rows);
         if($this->j<$this->rows){

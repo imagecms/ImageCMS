@@ -59,83 +59,68 @@ class CreateThemeCallbackCest
         $I->waitForText('Темы обратных звонков');
     }
     
+    /**
+     * @guy CallbacksTester\CallbacksSteps
+     */
     
-    public function TypesOfSymbolsInCreate(CallbacksTester $I)
+    public function TypesOfSymbolsInCreate(CallbacksTester\CallbacksSteps $I)
     {
-        $I->amOnPage('/admin/components/run/shop/callbacks/createTheme');
-        $I->fillField(CallbacksPage::$NameTheme, 'qwerrQEQE12345!#@$#%%^&*()_+|}{:>?<,./;][\\=-0ёцвцаымпУКП');
-        $I->seeInField(CallbacksPage::$NameTheme, 'qwerrQEQE12345!#@$#%%^&*()_+|}{:>?<,./;][\\=-0ёцвцаымпУКП');
-        $I->click(CallbacksPage::$SaveButton);
-        $I->waitForElementVisible('.alert.in.fade.alert-success');
-        $I->see('Тема начата');
-        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
-        $I->seeInField(CallbacksPage::$NameTheme, 'qwerrQEQE12345!#@$#%%^&*()_+|}{:>?<,./;][\\=-0ёцвцаымпУКП');
+        $name='qwerrQEQE12345!#@$#%%^&*()_+|}{:>?<,./;][\\=-0ёцвцаымпУКП';
+        $I->CreateThemeCallback($name, $name);
         InitTest::ClearAllCach($I);
     }
     
+    /**
+     * @guy CallbacksTester\CallbacksSteps
+     */
     
-    public function OneSymbolsCreate(CallbacksTester $I)
+    public function OneSymbolsCreate(CallbacksTester\CallbacksSteps $I)
     {
-        $I->amOnPage('/admin/components/run/shop/callbacks/createTheme');
-        $I->fillField(CallbacksPage::$NameTheme, 'q');
-        $I->click(CallbacksPage::$SaveButton);
-        $I->waitForElementVisible('.alert.in.fade.alert-success');
-        $I->see('Тема начата');
-        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
-        $I->seeInField(CallbacksPage::$NameTheme, 'q');
+        $name='q';
+        $I->CreateThemeCallback($name, $name);
     }
     
+    /**
+     * @guy CallbacksTester\CallbacksSteps
+     */
     
-    public function Symbols128Create(CallbacksTester $I)
+    public function Symbols128Create(CallbacksTester\CallbacksSteps $I)
     {
-        $I->amOnPage('/admin/components/run/shop/callbacks/createTheme');
-        $I->fillField(CallbacksPage::$NameTheme, '12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцу');
-        $I->click(CallbacksPage::$SaveButton);
-        $I->waitForElementVisible('.alert.in.fade.alert-success');
-        $I->see('Тема начата');
-        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
-        $I->seeInField(CallbacksPage::$NameTheme, '12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцу');
+        $name='12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцу';
+        $I->CreateThemeCallback($name, $name);
         InitTest::ClearAllCach($I);
     }
     
+    /**
+     * @guy CallbacksTester\CallbacksSteps
+     */
     
-    public function Symbols255Create(CallbacksTester $I)
+    public function Symbols255Create(CallbacksTester\CallbacksSteps $I)
     {
-        $I->amOnPage('/admin/components/run/shop/callbacks/createTheme');
-        $I->fillField(CallbacksPage::$NameTheme, '12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345');
-        $I->click(CallbacksPage::$SaveButton);
-        $I->waitForElementVisible('.alert.in.fade.alert-success');
-        $I->see('Тема начата');
-        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
-        $I->seeInField(CallbacksPage::$NameTheme, '12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345');
-
+        $name='12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345';
+        $I->CreateThemeCallback($name, $name);
     }
     
+    /**
+     * @guy CallbacksTester\CallbacksSteps
+     */
     
-    public function Symbols256Create(CallbacksTester $I)
+    public function Symbols256Create(CallbacksTester\CallbacksSteps $I)
     {
-        $I->amOnPage('/admin/components/run/shop/callbacks/createTheme');
-        $I->fillField(CallbacksPage::$NameTheme, '12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке123456');
-        $I->click(CallbacksPage::$SaveButton);
-        $I->waitForElementVisible('.alert.in.fade.alert-success');
-        $I->see('Тема начата');
-        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
-        $I->seeInField(CallbacksPage::$NameTheme, '12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345');
+        $name='12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке123456';
+        $name1='12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345';
+        $I->CreateThemeCallback($name, $name1);
         InitTest::ClearAllCach($I);
     }
     
+    /**
+     * @guy CallbacksTester\CallbacksSteps
+     */
     
-    public function CreateAndExit(CallbacksTester $I)
+    public function CreateAndExit(CallbacksTester\CallbacksSteps $I)
     {
-        $I->amOnPage('/admin/components/run/shop/callbacks/createTheme');
-        $I->fillField(CallbacksPage::$NameTheme, 'ййй');
-        $I->click(CallbacksPage::$SaveAndExitButton);
-        $I->waitForElementVisible('.alert.in.fade.alert-success');
-        $I->see('Тема начата');
-        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
-        $I->waitForText('Темы обратных звонков');
-        $text=$I->grabTextFrom('.//*[@id="orderStatusesList"]/section/div[2]/div/table/tbody/tr[last()]/td[1]');
-        $I->see('ййй', './/*[@id="orderStatusesList"]/section/div[2]/div/table/tbody/tr[last()]/td[2]/a');
+        $name='ййй';
+        $I->CreateThemeCallback($name, $name, $save='saveexit');
     }
     
     

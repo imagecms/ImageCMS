@@ -123,28 +123,98 @@ class CallbacksSteps extends \CallbacksTester
         $I->assertEquals($def, $default);
     }  
     
-    function EditStatusCallback($name,$name1,$default=null)
+    function EditStatusCallback($name,$name1,$save='save',$default=null)
     {
         $I = $this;
         $I->amOnPage('/admin/components/run/shop/callbacks/statuses');
         $I->click(\CallbacksPage::StatusNameLine('1'));
         $I->waitForText('Редактирование статуса обратного звонка');
         $I->fillField(\CallbacksPage::$NameStatus, $name);
+        $I->seeInField(\CallbacksPage::$NameStatus, $name);
         if (isset($default)) {
-            $I->click(\CallbacksPage::$DefaultStatusCheckboxEdit);
-            $I->wait('1');
-            $default=$I->grabAttributeFrom(\CallbacksPage::$DefaultStatusCheckboxEdit.'/input', 'checked');
-            $I->assertEquals($default, 'true');
-        $I->click(\CallbacksPage::$SaveButton);
-        $I->waitForElementVisible('.alert.in.fade.alert-success');
-        $I->see('Изменения сохранены');
-        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
-        $I->seeInField(\CallbacksPage::$NameStatus, $name1); 
-        if (isset($default)) {
-            $default2=$I->grabAttributeFrom(\CallbacksPage::$DefaultStatusCheckboxEdit.'/input', 'checked');
-            $I->assertEquals($default2, 'true');   
-        }
-        }
+            $I->click(\CallbacksPage::$DefaultStatusCheckboxEdit.'/input');
+            $I->wait('2');}
+        switch ($save) {
+            case 'save':
+                $I->click(\CallbacksPage::$SaveButton);
+                $I->waitForElementVisible('.alert.in.fade.alert-success');
+                $I->see('Изменения сохранены');
+                $I->waitForElementNotVisible('.alert.in.fade.alert-success');
+                $I->seeInField(\CallbacksPage::$NameStatus, $name1); 
+                if (isset($default)) {
+                    //$I->wait('10');
+                    $default2=$I->grabAttributeFrom(\CallbacksPage::$DefaultStatusCheckboxEdit.'/input', 'checked');
+                    $I->comment("$default2");
+                    $I->assertEquals("$default2", "true");   
+                }    
+                break;
+            case 'saveexit':
+                $I->click(\CallbacksPage::$SaveAndExitButton);
+                $I->waitForElementVisible('.alert.in.fade.alert-success');
+                $I->see('Изменения сохранены');
+                $I->waitForElementNotVisible('.alert.in.fade.alert-success');
+                $I->waitForText('Статусы обратных звонков');
+                $I->see($name1, \CallbacksPage::StatusNameLine('1'));
+                if (isset($default)) {
+                    $def=$I->grabAttributeFrom(\CallbacksPage::ActiveButtonLine('1'), 'class');
+                    $def=  trim((string)$def);
+                    $I->assertEquals($def, 'prod-on_off');   
+                } 
+                break;
+        }           
     }
         
+    //CallbacksThemes
+    
+    function CreateThemeCallback($name,$name1,$save='save')
+    {
+        $I = $this;
+        $I->amOnPage('/admin/components/run/shop/callbacks/createTheme');
+        $I->fillField(\CallbacksPage::$NameTheme, $name);
+        $I->seeInField(\CallbacksPage::$NameTheme, $name);
+        switch ($save) {
+            case 'save':
+                $I->click(\CallbacksPage::$SaveButton);
+                $I->waitForElementVisible('.alert.in.fade.alert-success');
+                $I->see('Тема начата');
+                $I->waitForElementNotVisible('.alert.in.fade.alert-success');
+                $I->seeInField(\CallbacksPage::$NameTheme, $name1);
+                break;
+            case 'saveexit':
+                $I->click(\CallbacksPage::$SaveAndExitButton);
+                $I->waitForElementVisible('.alert.in.fade.alert-success');
+                $I->see('Тема начата');
+                $I->waitForElementNotVisible('.alert.in.fade.alert-success');
+                $I->waitForText('Темы обратных звонков');                
+                $I->see($name1, \CallbacksPage::ThemeNameLine('last()'));
+                break;
+        }
+    } 
+    
+    function EditThemeCallback($name,$name1,$save='save')
+    {
+        $I = $this;
+        $I->amOnPage('/admin/components/run/shop/callbacks/themes');
+        $I->click(\CallbacksPage::ThemeNameLine('1'));
+        $I->waitForText('Редактирование темы обратного звонка');
+        $I->fillField(\CallbacksPage::$NameTheme, $name);
+        $I->seeInField(\CallbacksPage::$NameTheme, $name);
+        switch ($save) {
+            case 'save':
+                $I->click(\CallbacksPage::$SaveButton);
+                $I->waitForElementVisible('.alert.in.fade.alert-success');
+                $I->see('Изменения сохранены');
+                $I->waitForElementNotVisible('.alert.in.fade.alert-success');
+                $I->seeInField(\CallbacksPage::$NameTheme, $name1);
+                break;
+            case 'saveexit':
+                $I->click(\CallbacksPage::$SaveAndExitButton);
+                $I->waitForElementVisible('.alert.in.fade.alert-success');
+                $I->see('Изменения сохранены');
+                $I->waitForElementNotVisible('.alert.in.fade.alert-success');
+                $I->waitForText('Темы обратных звонков');
+                $I->see($name1, './/*[@id="orderStatusesList"]/section/div[2]/div/table/tbody/tr/td[2]/a');
+                break;
+        }        
+    }           
 }
