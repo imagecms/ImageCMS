@@ -19,7 +19,7 @@
     const ErrorNameAttribute = "Атрибут 'Имя товара' не указан. Error: EIx010";
  * 
  * Файлы хранятся в /import_export/backups
- * Backup базы остался неизменным в /aplication/backups 
+ * Backup базы остался неизменным в /application/backups 
  * 
  * Сегментная выгрузка при первом запуске использует imports(). Так как 
  * $_POST['offers'], $_POST['limit'], $_POST['countProd'] пусты она просто
