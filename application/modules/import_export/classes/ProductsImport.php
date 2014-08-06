@@ -10,21 +10,43 @@ namespace import_export\classes;
  */
 class ProductsImport extends BaseImport {
 
+    /**
+     * Class ProductsImport
+     * @var ProductsImport 
+     */
     protected static $_instance;
-    private $imagetemppath = './uploads/temp/';
+    /**
+     * Path to the temp origin photo
+     * @var string 
+     */
+    private $imagetemppathOrigin = './uploads/temp/';
+    /**
+     * Path to the temp addition photo
+     * @var string 
+     */
+    private $imagetemppathAdd = './uploads/temp/add/';
+    /**
+     * Path to the origin photo
+     * @var string 
+     */
     private $imageOriginPath = './uploads/shop/products/origin/';
+    /**
+     * Path to the addition photo
+     * @var string 
+     */
+    private $imageAddPath = './uploads/shop/products/origin/additional/';
+    /**
+     * Main currency
+     * @var array 
+     */
     private $mainCur = array();
 
     public function __construct() {
         $this->load->helper('translit');
         parent::__construct();
-
         $this->mainCur = $this->db
                 ->get_where('shop_currencies', array('is_default' => '1'))
                 ->row_array();
-
-        ini_set('max_execution_time', 9000000);
-        set_time_limit(9000000);
     }
 
     /**
@@ -38,7 +60,6 @@ class ProductsImport extends BaseImport {
             return FALSE;
         self::create()->processBrands();
         self::create()->startCoreProcess();
-//        $this->copyImages($this->imagesForImport());
     }
 
     /**
@@ -107,9 +128,6 @@ class ProductsImport extends BaseImport {
             'BrandId' => 'brand_id',
             'relp' => 'related_products',
             'mimg' => 'mainImage',
-            'simg' => 'smallImage',
-            'modim' => 'mainModImage',
-            'modis' => 'smallModImage'
         );
 
         foreach ($arg as $key => $val)
@@ -147,7 +165,7 @@ class ProductsImport extends BaseImport {
 
         $this->db->query('UPDATE shop_products_i18n SET ' . implode(',', $updateData) . ' WHERE `id`= ' . $productId . ' AND `locale`= "' . $this->languages . '"');
         /* END product i18n Update query block */
-
+        
         $this->updateSProductsCategories($arg, $productId);
         $varId = $this->runProductVariantUpdateQuery($arg, $productId);
 
@@ -267,10 +285,7 @@ class ProductsImport extends BaseImport {
             'hit' => 'hit',
             'BrandId' => 'brand_id',
             'relp' => 'related_products',
-            'mimg' => 'mainImage',
-            'simg' => 'smallImage',
-            'modim' => 'mainModImage',
-            'modis' => 'smallModImage');
+            'mimg' => 'mainImage');
 
         foreach ($arg as $key => $val)
             if (isset($productAlias[$key])) {
@@ -473,94 +488,42 @@ class ProductsImport extends BaseImport {
         return $result;
     }
 
-    private function copyImages($result) {
-
-        $imageNames = array(
-            'mimg' => 'main',
-            'simg' => 'small',
-            'modim' => 'mainMod');
-
-        if (is_array($result)) {
-            foreach ($result as $key => $item) {
-                $pId = $this->db->query("SELECT DISTINCT `product_id` FROM `shop_product_variants` WHERE `number`='" . $key . "'")->row_array();
-                foreach ($item as $k => $v) {
-                    if ($v != '')
-                        if (file_exists($this->imagetemppath . $v)) {
-                            if (file_exists($pId['product_id'] . "_main_origin.jpg"))
-                                unlink($pId['product_id'] . "_main_origin.jpg");
-                            if ($imageNames[$k] == 'main')
-                                copy($this->imagetemppath . $v, 'uploads/shop/origin/' . $pId ['product_id'] . "_" . $imageNames[$k] . "_origin.jpg");
-                            switch ($imageNames[$k]) {
-                                case 'main': $imagename = $pId['product_id'] . '_main.jpg';
-                                    break;
-                                case 'small': $imagename = $pId['product_id'] . '_small.jpg';
-                                    break;
-                                case 'mainMod': $imagename = $pId['product_id'] . '_mainMod.jpg';
-                                    break;
-                            }
-                            copy($this->imagetemppath . $v, 'uploads/shop/' . $imagename);
-                        }
-                }
-            }
-        } else
-            return false;
-    }
-
+    /**
+     * If the file is in the temp folder, it is copied to the origin and entered 
+     * into the db. If the file is not in a folder, but the pace is already in 
+     * the original folder, just entered into the database.
+     * @param array $result
+     */
     private function runCopyImages($result) {
         foreach ((array) $result as $key => $item) {
 
-            if (($item['vimg'] != '') && (file_exists($this->imagetemppath . $item['vimg']))) {
-
-                copy($this->imagetemppath . $item['vimg'], $this->imageOriginPath . $item['vimg']);
-
+            if (($item['vimg'] != '') && (file_exists($this->imagetemppathOrigin . $item['vimg']))) {
+                copy($this->imagetemppathOrigin . $item['vimg'], $this->imageOriginPath . $item['vimg']);
                 $this->db->set('mainImage', $item['vimg']);
                 $this->db->where('id', $item['variantId']);
                 $this->db->update('shop_product_variants');
+                
+            }elseif(($item['vimg'] != '') && (file_exists($this->imageOriginPath . $item['vimg']))){
+                $this->db->set('mainImage', $item['vimg']);
+                $this->db->where('id', $item['variantId']);
+                $this->db->update('shop_product_variants');
+                
             }
-
-//            if (($item['vimg'] != '') && (file_exists($this->imagetemppath . $item['vimg']))) {
-//                $ext = pathinfo($item['vimg'], PATHINFO_EXTENSION);
-//                copy($this->imagetemppath . $item['vimg'], "./uploads/shop/origin/$item['ProductId']_vM$item['variantId'].$ext");
-//
-//                $this->db->set('mainImage', "$item['ProductId']_vM$item['variantId'].$ext");
-//            } else {
-//                if (file_exists($this->imagetemppath . $item['mimg'])) {
-//                    $ext = pathinfo($item['mimg'], PATHINFO_EXTENSION);
-//                    copy($this->imagetemppath . $item['mimg'], "./uploads/shop/origin/$item['ProductId']_vM$item['variantId'].$ext");
-//
-//                    $this->db->set('mainImage', "$item['ProductId']_vM$item['variantId'].$ext");
-//                }
-//                else
-//                    $this->db->set('mainImage', null);
-//            }
-//
-//            if (($item['vsimg'] != '') && (file_exists($this->imagetemppath . $item['vsimg']))) {
-//                $ext = pathinfo($item['vsimg'], PATHINFO_EXTENSION);
-//                copy($this->imagetemppath . $item['vsimg'], "./uploads/shop/origin/$item['ProductId']_vS$item['variantId'].$ext");
-//
-//                $this->db->set('smallImage', "$item['ProductId']_vS$item['variantId'].$ext");
-//            } else {
-//                if (file_exists($this->imagetemppath . $item['mimg'])) {
-//                    $ext = pathinfo($item['mimg'], PATHINFO_EXTENSION);
-//                    copy($this->imagetemppath . $item['mimg'], "./uploads/shop/origin/$item['ProductId']_vM$item['variantId'].$ext");
-//
-//                    $this->db->set('mainImage', "$item['ProductId']_vM$item['variantId'].$ext");
-//                }
-//                else
-//                    $this->db->set('mainImage', null);
-//            }
-//
-//            $this->db->where('id', $item['variantId']);
-//            $this->db->update('shop_product_variants');
         }
     }
 
+    /**
+     * Does not allow duplicate url
+     * @param string $url
+     * @param int $id
+     * @param string $name
+     * @return string
+     */
     function urlCheck($url, $id = '', $name = '') {
 
         if ($url == '')
             return translit_url(trim($name));
-
-// Check if Url is aviable.
+    // Check if Url is aviable.
         $urlCheck = $this->db
                 ->select('url,id')
                 ->where('url ', $url)
@@ -574,17 +537,29 @@ class ProductsImport extends BaseImport {
             return $id . '_' . random_string('alnum', 8);
     }
 
+    /**
+     * If the file is in the temp folder / add, then copied to the original and 
+     * entered into the db. If the file does not exist in the folder temp  / add
+     * but already exists in the original, just entered into the database
+     * @param array $arg
+     * @param int $id
+     */
     function runAditionalImages($arg, $id) {
         $this->db->delete('shop_product_images', array('product_id' => $id));
 
-        $arg['imgs'] = explode(',', $arg['imgs']);
+        $arg['imgs'] = explode('|', $arg['imgs']);
 
         foreach ((array) $arg['imgs'] as $key => $img) {
             $this->db->set('product_id', $id);
             $img = trim($img);
-            if (file_exists($this->imagetemppath . $img)) {
-                copy($this->imagetemppath . $img, "./uploads/shop/products/origin/additional/$img");
-
+            
+            if (file_exists($this->imagetemppathAdd . $img)) {
+                /* If the photo is in the Temp folder */
+                copy($this->imagetemppathAdd . $img, $this->imageAddPath . $img);
+                $this->db->set('image_name', $img);
+                $this->db->set('position', $key);
+            }elseif(file_exists($this->imageAddPath. $img)){
+                /* If the photo is not in the temp folder, but there is $this->imageAddPath*/
                 $this->db->set('image_name', $img);
                 $this->db->set('position', $key);
             }
