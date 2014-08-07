@@ -1,10 +1,10 @@
 <?php
 use \OrdersTester;
-class DtDCest
+class SubPageProductOCACest
 {
 //---------------------------AUTORIZATION--------------------------------------- 
     /**
-     * @group q
+     * @group a
      */
     public function Login(OrdersTester $I){
         InitTest::Login($I);
@@ -81,6 +81,39 @@ class DtDCest
         $I->fillField(\CreateOrderAdminPage::$CrtZMenuCategoryInput, 'Category');
         $I->click(\CreateOrderAdminPage::$CrtZMenuCategorySearchButton);
         $I->see('Category Regression Jira ICMS-823', 'a.chosen-single > span');
+    }
+    
+    
+    
+    /**
+     * @group a
+     * @guy OrdersTester\OrdersSteps
+     */
+    public function VerifyCategoryPresenceInSelectMenu (OrdersTester $I){
+       $I->wantTo('Сравнить идентичность вывода категорий товаров в селект меню, на страницах "Создание товара" и "Создание заказа".');
+       $I->wantTo('');
+       $AllOptions =[]; 
+       $I->amOnPage('/admin/components/run/shop/products/create');
+       $AllProductOptions = $I->grabTagCount($I, 'select option', 2);
+       $MakeVisible1 = "$('select:eq(2)').css({'display':'block'})";
+       $I->executeJS($MakeVisible1);
+       for($row = 1; $row <= $AllProductOptions; ++$row){
+           $AllOptions[$row] = $I->grabTextFrom("//div[@class = 'control-group'][2]//div//select/option[$row]");
+       }
+       
+       
+       $I->amOnPage('/admin/components/run/shop/orders/create');
+       $OrderCategoriesLength = $I->grabTagCount($I, 'select option');
+       
+       $MakeVisible2 = "$('select:eq(0)').css({'display':'block'})";
+       $I->executeJS($MakeVisible2);
+       
+       for($row = 1; $row <= $OrderCategoriesLength; ++$row){
+           $AllOrderOptions[$row] = $I->grabTextFrom("//select[1]/option[$row]");
+       }
+       foreach ($AllOptions as $key => $AllOptionNow) {
+           $I->assertEquals(str_replace([' ','-'],'',$AllOptionNow), str_replace([' ','-'],'',$AllOrderOptions[$key]));
+       }
     }
     
     
@@ -951,17 +984,7 @@ class DtDCest
     }
 
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     
     
     ///---///----Tests For Article Product-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -971,10 +994,7 @@ class DtDCest
     
     
     
-    
-    
-    
-    
+
     
     
     /**
@@ -1186,20 +1206,32 @@ class DtDCest
     }
     
     
-    
-    
-    
-    
-    
-   
-    
-    
+
     
     
     
     
 ///---///----Tests For Amount Product-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+    
+    /**
+     * @group a
+     */
+    public function VerifyFieldAmountInputSymbols(OrdersTester $I) {
+        $I->wantTo('Проверить блок ввода недопустимых значений в поле "Количество".');
+        $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
+        $I->fillField('#productNameForOrders', CreateProductsOrdersPage::$CrtPrdNameMin);
+        $I->wait('1');
+        $I->click('//body/ul[2]/li[1]/a');
+        $I->wait('1');
+        $I->click(CreateOrderAdminPage::$CrtPButtAddToCart);
+        $I->fillField(CreateOrderAdminPage::$CrtPFieldAmount, ' ');
+        $I->dontSeeInField(CreateOrderAdminPage::$CrtPFieldAmount, ' ');
+        $I->fillField(CreateOrderAdminPage::$CrtPFieldAmount, InitTest::$textSymbols);
+        $I->dontSeeInField(CreateOrderAdminPage::$CrtPFieldAmount, InitTest::$textSymbols);
+        $I->seeInField(CreateOrderAdminPage::$CrtPFieldAmount, '1234567890.');       
+    }
+    
     
     
     /**
@@ -1260,17 +1292,7 @@ class DtDCest
     }
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     
 
     

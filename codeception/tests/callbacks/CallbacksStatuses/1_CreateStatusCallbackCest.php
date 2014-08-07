@@ -20,7 +20,7 @@ class CreateStatusCallbackCest
     }  
     
     
-    public function NamesInCreate(CallbacksTester $I)
+    public function ICMS_1461_NamesInCreate(CallbacksTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/callbacks/statuses');
         $I->click(CallbacksPage::$CreateStatusButton);
@@ -51,6 +51,7 @@ class CreateStatusCallbackCest
     
     public function RequiredFieldsInCreateSaveAndExitButton(CallbacksTester $I)
     {
+        $I->amOnPage('/admin/components/run/shop/callbacks/statuses');
         $I->click(CallbacksPage::$CreateStatusButton);
         $I->waitForText('Создание статуса обратного звонка');
         $I->click(CallbacksPage::$SaveAndExitButton);

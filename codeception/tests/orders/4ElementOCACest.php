@@ -42,71 +42,7 @@ class FieldsOCACest
        }
     }
     
-    
-    
-    
-    
-//------------Verify Products Presence (in field: ID/Название/Артикул)----------
-    
-        
-    /**
-     * @group a
-     */
-    public function SearchProductNameMin (OrdersTester $I){
-        $I->wantTo('Проверить отображения минимальной длинны названия товара, на странице "Создание заказа"');
-        $this->SearchNameProduct($I, $typeName = CreateProductsOrdersPage::$CrtPrdNameMin);
-    }
-//    /**
-//     * @group a
-//     */
-//    public function SearchProductNameMax (OrdersTester $I){
-//    $I->wantTo('Проверить отображения максимальной длинны названия товара, на странице "Создание заказа"');
-//        $this->SearchNameProduct($I, $typeName = CreateOrderAdminPage::$CrtPrdNameMax);
-//    }
-    /**
-     * @group a
-     */
-    public function SearchProductPriceMin (OrdersTester $I){
-        $I->wantTo('Проверить отображения минимальной цены товара, на странице "Создание заказа"');
-        $this->SearchPriceProduct($I, $typeName = 'Минимальная Цена Товара', $typePrice = CreateProductsOrdersPage::$CrtPrdPriceMin);
-    }
-    /**
-     * @group a
-     */
-    public function SearchProductPriceMax (OrdersTester $I){
-        $I->wantTo('Проверить отображения максимальной цены товара, на странице "Создание заказа"');
-        $this->SearchPriceProduct($I, $typeName = 'Максимальная Цена Товара', $typePrice = CreateProductsOrdersPage::$CrtPrdPriceMax);
-    }
-    /**
-     * @group a
-     */
-    public function SearchProductArticleMin (OrdersTester $I){
-        $I->wantTo('Проверить отображения минимальной длинны артикула товара, на странице "Создание заказа"');
-        $this->SearchArticleProduct($I, $articleProduct = CreateProductsOrdersPage::$CrtPrdArticleMin);
-    }
-    /**
-     * @group a
-     */
-    public function SearchProductArticleMax (OrdersTester $I){
-        $I->wantTo('Проверить отображения максимальной длинны артикула товара, на странице "Создание заказа"');
-        $this->SearchArticleProduct($I, $articleProduct = CreateProductsOrdersPage::$CrtPrdArticleMax);
-    }
-    /**
-     * @group a
-     */
-    public function SearchProductAmountMin (OrdersTester $I){
-        $I->wantTo('Проверить отображения нулевого количества товара, на странице "Создание заказа"');
-        $this->SearchAmountProduct($I,  $typeName = 'Минимальное Количество Товара',
-                                        $amountProduct = CreateProductsOrdersPage::$CrtPrdAmountMin);
-    }
-    /**
-     * @group a
-     */
-    public function SearchProductAmountMax (OrdersTester $I){
-        $I->wantTo('Проверить отображения максимального количества товара, на странице "Создание заказа"');
-        $this->SearchAmountProduct($I,  $typeName = 'Максимальное Количество Товара',
-                                        $amountProduct = CreateProductsOrdersPage::$CrtPrdAmountMax);
-    }
+
 
 
 
