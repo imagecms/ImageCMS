@@ -63,6 +63,7 @@ class DeleteThemeCest
     public function DeleteAllThemes(CallbacksTester $I)
     {
         //Удаление всех тем колбеков
+        $I->amOnPage("/admin/components/run/shop/callbacks/themes");
         $I->comment("$this->rows");
         while ($this->rows>0){
             $I->comment("$this->rows");

@@ -124,13 +124,17 @@ class OrdersSteps extends \OrdersTester {
 //----------------------------Create User---------------------------------------       
     
 
-    function createUser($createUserName = NULL,
-                        $createUserEmail = NULL,
-                        $createUserPassword = NULL,
-                        $createUserPhone = NULL, 
-                        $createUserAddress = NULL) {
+    function createUserUserPage($createUserName = NULL,
+                                $createUserEmail = NULL,
+                                $createUserPassword = NULL,
+                                $createUserPhone = NULL, 
+                                $createUserAddress = NULL) {
         $I = $this;
-        $I->amOnPage(\CreateUserForOrdersPage::$CrtUserPageUrl);
+        $I->click(\NavigationBarPage::$Users);
+        $I->click(\NavigationBarPage::$UsersList);
+        $I->wait('1');
+        $I->click('//body/div[1]/div[5]/div/section/div[1]/div[2]/div/a');
+        $I->wait('1');
         if(isset($createUserName)){
             $I->fillField(\CreateUserForOrdersPage::$CrtUserFieldName, $createUserName);
         }if(isset($createUserEmail)){
@@ -143,26 +147,122 @@ class OrdersSteps extends \OrdersTester {
             $I->fillField(\CreateUserForOrdersPage::$CrtUserFieldAddress, $createUserAddress);    
         }
         $I->click(\CreateUserForOrdersPage::$CrtUserButtonSaveAndBack);
+        $I->wait('1');
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    function searchUserOnUserPage($UserName = NULL, $UserEmeil = NULL) {
+        $I = $this;
+        $I->click(\NavigationBarPage::$Users);
+        $I->click(\NavigationBarPage::$UsersList);
+        $I->wait('2');
+        if(isset($UserName)){
+           $Rows = $I->grabTagCount($I, 'tbody tr', 2);
+           $a = $I->comment("Вот такое у нас количество строк $Rows");
+        }
+        for($j = 1;$j != $Rows;$j++){
+               $b = $I->grabTextFrom("//table/tbody/tr[$j]/td[4]/a");
+               $c = $I->comment("Вот такое у нас название пользователя = $b");
+               if($b == $UserName){
+                   $I->see($UserName, "//table/tbody/tr[$j]/td[4]/a");
+               }
+           }
+//        if(isset($UserEmeil)){
+//            $RowsEmeil = $I->grabTagCount($I, 'tbody tr', 2);
+//            $aa = $I->comment("Вот такое у нас количество строк $RowsEmeil");
+//        } 
+//        for($j = 1;$j != $RowsEmeil;$j++){
+//               $bb = $I->grabTextFrom("//table/tbody/tr[$j]/td[3]/span");
+//               $cc = $I->comment("Вот такое у нас название пользователя = $bb");
+//               if($bb == $UserEmeil){
+//                   $I->see($UserEmeil, "//table/tbody/tr[$j]/td[3]/span");
+//               }
+//           }
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    function CreateUserOrderPage($createUserName = NULL,
+                                $createUserEmail = NULL,
+                                $createUserPhone = NULL, 
+                                $createUserAddress = NULL){
+        $I = $this;
+        $I->click(\NavigationBarPage::$Orders);
+        $I->click(\NavigationBarPage::$OrdersList);
+        $I->wait('1');
+        $I->click(\OrdersListPage::$ListButtCreateOrder);
+        $I->wait('1');
+        $I->click(\CreateOrderAdminPage::$CrtPButtUser);
+        $I->click(\CreateOrderAdminPage::$CrtULinkCreate);
+        if(isset($createUserName)){
+            $I->fillField(\CreateOrderAdminPage::$CrtUFieldName, $createUserName);
+        }if(isset($createUserEmail)){
+            $I->fillField(\CreateOrderAdminPage::$CrtUFieldEmeil, $createUserEmail);
+        }if(isset($createUserPhone)){
+            $I->fillField(\CreateOrderAdminPage::$CrtUFieldPhone, $createUserPhone);
+        }if(isset($createUserAddress)){
+            $I->fillField(\CreateOrderAdminPage::$CrtUFieldAddress, $createUserAddress);    
+        }
+        $I->click(\CreateOrderAdminPage::$CrtUButtCreate);
+        $I->wait('1');
     }
 
+    
+    
+    
+    
     function createDelivery() {
         $I = $this;
     }
 
+    
+    
+    
     function createPayment() {
         $I = $this;
     }
 
+    
+    
+    
     function createDiscount() {
         $I = $this;
     }
+    
+
+    
+    
+    
+  //----------------------------Create Currenci---------------------------------         
+    
+    
 
     function createCurrency($createCurrName = NULL,
                             $createCurrCode = NULL,
                             $createCurrSymbol = NULL,
                             $createCurrCourse = NULL){
         $I = $this;
-        $I->amOnPage(\CreateCurrencyOrderPage::$CrtCurrPageURL);
+//        $I->click();
         $I->wait('1');
         if(isset($createCurrName)){
           $I->fillField(\CreateCurrencyOrderPage::$CrtCurrFieldName, $createCurrName);  
@@ -186,6 +286,7 @@ class OrdersSteps extends \OrdersTester {
     
     
     
+    
 //-----------------Search For Field  "ID /Название /Артикул"--------------------   
     
     function SearchNameProductaAutocomplete ( $typeName = NULL){ 
@@ -205,6 +306,9 @@ class OrdersSteps extends \OrdersTester {
             $I->see($typeName, '//table[2]/tbody/tr/td[1]/span');            
         }        
     } 
+    
+    
+    
     
     
     
@@ -251,6 +355,9 @@ class OrdersSteps extends \OrdersTester {
     
     
     
+    
+    
+    
     function SelectNumberAfterPoint ($numberAfterPoint = NULL){
         $I = $this;
         $I->amOnPage('/admin/components/run/shop/settings#view');
@@ -283,6 +390,7 @@ class OrdersSteps extends \OrdersTester {
     
     
     
+    
     function SearchArticleProductAutocomplete ( $articleProduct = NULL) { 
         $I = $this;
         $I->amOnPage(\CreateOrderAdminPage::$CrtPURL);
@@ -293,6 +401,12 @@ class OrdersSteps extends \OrdersTester {
            $I->see($articleProduct, '//body/ul[2]/li[1]/a');           
         }
     }
+    
+    
+    
+    
+    
+    
     
     
     function SearchAmountProductAutocomplete ( $typeName = NULL, $amountProduct = NULL) { 
