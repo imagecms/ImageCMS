@@ -124,13 +124,17 @@ class OrdersSteps extends \OrdersTester {
 //----------------------------Create User---------------------------------------       
     
 
-    function createUser($createUserName = NULL,
-                        $createUserEmail = NULL,
-                        $createUserPassword = NULL,
-                        $createUserPhone = NULL, 
-                        $createUserAddress = NULL) {
+    function createUserUserPage($createUserName = NULL,
+                                $createUserEmail = NULL,
+                                $createUserPassword = NULL,
+                                $createUserPhone = NULL, 
+                                $createUserAddress = NULL) {
         $I = $this;
-        $I->amOnPage(\CreateUserForOrdersPage::$CrtUserPageUrl);
+        $I->click(\NavigationBarPage::$Users);
+        $I->click(\NavigationBarPage::$UsersList);
+        $I->wait('1');
+        $I->click('//body/div[1]/div[5]/div/section/div[1]/div[2]/div/a');
+        $I->wait('1');
         if(isset($createUserName)){
             $I->fillField(\CreateUserForOrdersPage::$CrtUserFieldName, $createUserName);
         }if(isset($createUserEmail)){
@@ -143,26 +147,122 @@ class OrdersSteps extends \OrdersTester {
             $I->fillField(\CreateUserForOrdersPage::$CrtUserFieldAddress, $createUserAddress);    
         }
         $I->click(\CreateUserForOrdersPage::$CrtUserButtonSaveAndBack);
+        $I->wait('1');
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    function searchUserOnUserPage($UserName = NULL, $UserEmeil = NULL) {
+        $I = $this;
+        $I->click(\NavigationBarPage::$Users);
+        $I->click(\NavigationBarPage::$UsersList);
+        $I->wait('2');
+        if(isset($UserName)){
+           $Rows = $I->grabTagCount($I, 'tbody tr', 2);
+           $a = $I->comment("Вот такое у нас количество строк $Rows");
+        }
+        for($j = 1;$j != $Rows;$j++){
+               $b = $I->grabTextFrom("//table/tbody/tr[$j]/td[4]/a");
+               $c = $I->comment("Вот такое у нас название пользователя = $b");
+               if($b == $UserName){
+                   $I->see($UserName, "//table/tbody/tr[$j]/td[4]/a");
+               }
+           }
+//        if(isset($UserEmeil)){
+//            $RowsEmeil = $I->grabTagCount($I, 'tbody tr', 2);
+//            $aa = $I->comment("Вот такое у нас количество строк $RowsEmeil");
+//        } 
+//        for($j = 1;$j != $RowsEmeil;$j++){
+//               $bb = $I->grabTextFrom("//table/tbody/tr[$j]/td[3]/span");
+//               $cc = $I->comment("Вот такое у нас название пользователя = $bb");
+//               if($bb == $UserEmeil){
+//                   $I->see($UserEmeil, "//table/tbody/tr[$j]/td[3]/span");
+//               }
+//           }
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    function CreateUserOrderPage($createUserName = NULL,
+                                $createUserEmail = NULL,
+                                $createUserPhone = NULL, 
+                                $createUserAddress = NULL){
+        $I = $this;
+        $I->click(\NavigationBarPage::$Orders);
+        $I->click(\NavigationBarPage::$OrdersList);
+        $I->wait('1');
+        $I->click(\OrdersListPage::$ListButtCreateOrder);
+        $I->wait('1');
+        $I->click(\CreateOrderAdminPage::$CrtPButtUser);
+        $I->click(\CreateOrderAdminPage::$CrtULinkCreate);
+        if(isset($createUserName)){
+            $I->fillField(\CreateOrderAdminPage::$CrtUFieldName, $createUserName);
+        }if(isset($createUserEmail)){
+            $I->fillField(\CreateOrderAdminPage::$CrtUFieldEmeil, $createUserEmail);
+        }if(isset($createUserPhone)){
+            $I->fillField(\CreateOrderAdminPage::$CrtUFieldPhone, $createUserPhone);
+        }if(isset($createUserAddress)){
+            $I->fillField(\CreateOrderAdminPage::$CrtUFieldAddress, $createUserAddress);    
+        }
+        $I->click(\CreateOrderAdminPage::$CrtUButtCreate);
+        $I->wait('1');
     }
 
+    
+    
+    
+    
     function createDelivery() {
         $I = $this;
     }
 
+    
+    
+    
     function createPayment() {
         $I = $this;
     }
 
+    
+    
+    
     function createDiscount() {
         $I = $this;
     }
+    
+
+    
+    
+    
+  //----------------------------Create Currenci---------------------------------         
+    
+    
 
     function createCurrency($createCurrName = NULL,
                             $createCurrCode = NULL,
                             $createCurrSymbol = NULL,
                             $createCurrCourse = NULL){
         $I = $this;
-        $I->amOnPage(\CreateCurrencyOrderPage::$CrtCurrPageURL);
+//        $I->click();
         $I->wait('1');
         if(isset($createCurrName)){
           $I->fillField(\CreateCurrencyOrderPage::$CrtCurrFieldName, $createCurrName);  
@@ -186,9 +286,10 @@ class OrdersSteps extends \OrdersTester {
     
     
     
+    
 //-----------------Search For Field  "ID /Название /Артикул"--------------------   
     
-    function SearchNameProduct ( $typeName = NULL){ 
+    function SearchNameProductaAutocomplete ( $typeName = NULL){ 
         $I = $this;
         $I->amOnPage(\CreateOrderAdminPage::$CrtPURL);
         if(isset($typeName)){            
@@ -206,29 +307,38 @@ class OrdersSteps extends \OrdersTester {
         }        
     } 
     
-    function SearchVariantProduct($variantName) {
+    
+    
+    
+    
+    
+    function SearchVariantProductAutocomplete ($productName = NULL, $variantName = NULL) {
         $I = $this;
+        $I->amOnPage(\CreateOrderAdminPage::$CrtPURL);
+        $I->fillField('#productNameForOrders', $productName);
+        $I->wait('1');
+        $I->see($variantName,'//body/ul[2]/li[1]/a');
+        $I->click('//body/ul[2]/li[1]/a');
+        $I->wait('1');
+        $I->see($variantName, '//table[1]/tbody/tr[2]/td[3]/select/option');
+        $I->click(\CreateOrderAdminPage::$CrtPButtAddToCart);
+        $I->see($variantName, '//section/form/div/div[1]/div/table[2]/tbody/tr/td[2]/span');
+        
               
     } 
     
     
     
 
-    function SearchPriceProduct( $typeName = NULL, $typePrice = NULL) { 
+    function SearchPriceProductAutocomplete( $typeName = NULL, $typePrice = NULL) { 
         $I = $this;
         $I->amOnPage(\CreateOrderAdminPage::$CrtPURL);        
         if(isset($typeName)){            
-            $I->click(\CreateOrderAdminPage::$CrtPButtProduct);    
             $I->fillField('#productNameForOrders', $typeName);
             $I->wait('1');
-            $I->see($typeName,'//body/ul[2]/li[1]/a');
             $I->click('//body/ul[2]/li[1]/a');
             $I->wait('1');
-            $I->see("Товар: $typeName", '//tbody/tr[1]/td[2]/div/div[2]/span[1]/b'); 
             $I->click(\CreateOrderAdminPage::$CrtPButtAddToCart);
-            $I->see('В корзине', \CreateOrderAdminPage::$CrtPButtInBasket);
-            $I->see($typeName, '//tbody/tr[2]/td[2]/select');
-            $I->see($typeName, '//table[2]/tbody/tr/td[1]/span');            
         }if(isset($typePrice)){            
             $I->click(\CreateOrderAdminPage::$CrtPButtProduct);
             $I->see($typePrice, '//tbody/tr[1]/td[2]/div/div[2]/span[1]');
@@ -245,7 +355,43 @@ class OrdersSteps extends \OrdersTester {
     
     
     
-    function SearchArticleProduct ( $articleProduct = NULL) { 
+    
+    
+    
+    function SelectNumberAfterPoint ($numberAfterPoint = NULL){
+        $I = $this;
+        $I->amOnPage('/admin/components/run/shop/settings#view');
+        $I->wait('2');
+        $I->selectOption('//table/tbody/tr/td/div/div[3]/div/div/select', "$numberAfterPoint");
+        $I->wait('1');
+        $I->click('//section/div[1]/div[2]/div/button[2]');
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    function SelectAmountOutStock($amountOutStockNo = NULL, $amountOutStockYes = NULL) {
+        $I = $this;
+        $I->amOnPage('/admin/components/run/shop/settings#orders');
+        $I->wait('3');
+        if(isset($amountOutStockNo)){
+            $I->click('//div[3]/div/label[2]/input');
+            $I->click('//body/div[1]/div[5]/section/div[1]/div[2]/div/button[2]');
+        }if(isset($amountOutStockYes)){
+            $I->click('//div[3]/div/label/input');
+            $I->click('//body/div[1]/div[5]/section/div[1]/div[2]/div/button[2]');
+        }
+    }
+    
+    
+    
+    
+    
+    function SearchArticleProductAutocomplete ( $articleProduct = NULL) { 
         $I = $this;
         $I->amOnPage(\CreateOrderAdminPage::$CrtPURL);
         if(isset($articleProduct)){            
@@ -257,20 +403,21 @@ class OrdersSteps extends \OrdersTester {
     }
     
     
-    function SearchAmountProduct ( $typeName = NULL, $amountProduct = NULL) { 
+    
+    
+    
+    
+    
+    
+    function SearchAmountProductAutocomplete ( $typeName = NULL, $amountProduct = NULL) { 
         $I = $this;
         if(isset($typeName)){            
             $I->amOnPage(\CreateOrderAdminPage::$CrtPURL); 
             $I->fillField('#productNameForOrders', $typeName);
             $I->wait('1');
-            $I->see($typeName,'//body/ul[2]/li[1]/a');
             $I->click('//body/ul[2]/li[1]/a');
             $I->wait('1');
-            $I->see("Товар: $typeName", '//tbody/tr[1]/td[2]/div/div[2]/span[1]/b'); 
             $I->click(\CreateOrderAdminPage::$CrtPButtAddToCart);
-            $I->see('В корзине', \CreateOrderAdminPage::$CrtPButtInBasket);
-            $I->see($typeName, '//tbody/tr[2]/td[2]/select');
-            $I->see($typeName, '//table[2]/tbody/tr/td[1]/span');            
         }if(isset($amountProduct)){
             $I->click(\CreateOrderAdminPage::$CrtPButtProduct); 
             $I->see("Остаток: $amountProduct", '#productStock');
@@ -287,7 +434,15 @@ class OrdersSteps extends \OrdersTester {
     
     
     
-    //-----------------Search For Field  "ID /Название /Артикул"--------------------   
+    //-----------------Search For Select Menu-----------------------------------   
+    
+    
+    
+    
+    
+    
+    
+    
     
     function SearchCategorySelect ($typeCategory = NULL){
         $I = $this;
@@ -306,6 +461,16 @@ class OrdersSteps extends \OrdersTester {
             
         }
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     function SearchProductNameSelect($typeCategoryName = NULL, $typeProductName = NULL) {
         $I = $this;
         if(isset($typeProductName)){
@@ -340,6 +505,12 @@ class OrdersSteps extends \OrdersTester {
     }
     
     
+    
+    
+    
+    
+    
+    
     function SearchProductVariantandPriceSelect($typeVariantName = NULL, $typeVariantPrice = NULL) {
         $I = $this;
         if(isset($typeVariantName)){
@@ -350,12 +521,27 @@ class OrdersSteps extends \OrdersTester {
         }
     }
     
+    
+    
+    
+    
+    
+    
+    
+    
     function AddToBascketSelect() {
         $I = $this;
         $I->wait('1');
         $I->click(\CreateOrderAdminPage::$CrtPButtAddToCart);
         $I->see('В корзине', \CreateOrderAdminPage::$CrtPButtInBasket);
     }
+    
+    
+    
+    
+    
+    
+    
     function SearchProductInBascket($name = NULL,
                                     $variant = NULL,
                                     $Price = NULL,
@@ -379,12 +565,7 @@ class OrdersSteps extends \OrdersTester {
     }    
             
     }
-    
-    
-    
-    
-    
-    
+
     
     
     
