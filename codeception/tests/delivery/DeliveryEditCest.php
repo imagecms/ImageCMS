@@ -34,7 +34,6 @@ class DeliveryEditCest {
             }
             if (!$methodCreated) {
                 $I->createDelivery($this->Name);
-                $I->CheckForAlertPresent('success', 'create');
                 $methodCreated = true;
             }
             $I->waitForText("Редактирование способа доставки: $this->Name", NULL, ".title");
@@ -150,8 +149,8 @@ class DeliveryEditCest {
     public function ePriceSymbols(DeliveryTester\DeliverySteps $I) {
         $price = InitTest::$textSymbols;
         $I->EditDelivery(null, null, null, null, $price);
-//        $Nprice = '1234567890';
-        $I->CheckInList($this->Name, null, $price);//prise - to Nprice
+        $Nprice = '1234567890';
+        $I->CheckInList($this->Name, null, $Nprice);
     }
 //______________________________________________________________________________________________________________________++++++++++++++++BUG_HERE
     /**
@@ -161,8 +160,8 @@ class DeliveryEditCest {
     public function eFreeFromSymbols(DeliveryTester\DeliverySteps $I) {
         $freefrom = InitTest::$textSymbols;
         $I->EditDelivery(null, null, null, null, null, $freefrom);
-//        $Nfreefrom = '1234567890';
-        $I->CheckInList($this->Name, null, null, $freefrom);//freefrom - nfreefrom                   
+        $Nfreefrom = '1234567890';
+        $I->CheckInList($this->Name, null, null, $Nfreefrom);                  
     }
 
     
