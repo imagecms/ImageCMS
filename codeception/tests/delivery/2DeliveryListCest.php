@@ -136,7 +136,7 @@ class DeliveryListCest {
         $I->click(DeliveryPage::ListCheckboxLine($row));
         $I->click(DeliveryPage::$DeleteButton);
         $I->waitForText("Удаление способов доставки", NULL, "//*[@id='mainContent']/div/div[1]/div[1]/h3");
-        $I->wait(1);
+        $I->wait(2);
         $I->click(DeliveryPage::$DeleteWindowDelete);
         $I->CheckForAlertPresent('success', 'delete');
     }

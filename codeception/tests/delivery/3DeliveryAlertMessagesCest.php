@@ -1,17 +1,21 @@
 <?php
 use \DeliveryTester;
 
-class DeliveryAlertMessagesCest
-{
+class DeliveryAlertMessagesCest {
+    
+    
+    protected $CreatedMethods = [];
+    
     /**
      * @group message
+     * @group current
      */
     public function authorization(DeliveryTester $I){
         InitTest::Login($I);
     }
 
     /**
-     * @group messages
+     * @group message
      * @guy DeliveryTester\DeliverySteps
      */
     public function listDeleteAlert(DeliveryTester\DeliverySteps $I)
@@ -36,7 +40,7 @@ class DeliveryAlertMessagesCest
     }
     
     /**
-     * @group messages
+     * @group message
      * @guy DeliveryTester\DeliverySteps
      */
     public function creteNameEmptyAlert(DeliveryTester\DeliverySteps $I)
@@ -47,7 +51,7 @@ class DeliveryAlertMessagesCest
     }
     
     /**
-     * @group messages
+     * @group message
      * @guy DeliveryTester\DeliverySteps
      */
     public function creteNameMaxSymbolsListAlert(DeliveryTester\DeliverySteps $I)
@@ -60,7 +64,7 @@ class DeliveryAlertMessagesCest
     }
     
     /**
-     * @group messages
+     * @group message
      * @guy DeliveryTester\DeliverySteps
      */
     public function createNameNormalAlert(DeliveryTester\DeliverySteps $I){
@@ -70,77 +74,66 @@ class DeliveryAlertMessagesCest
         $I->click(DeliveryCreatePage::$ButtonCreate);
         $I->CheckForAlertPresent('success', 'create');
     }
-//    
-//    public function cretePriseSpecifiedAlert(DeliveryTester $I)
-//    {
-//        
-//    }
-       
     
-//    /**
-//     * @group create
-//     * @guy DeliveryTester\DeliverySteps
-//     */
-//    public function fieldPriseSpecifiedEmpty(DeliveryTester\DeliverySteps $I) {
-//        $name = "УточнениеЦеныПусто";
-//        //For deleting
-//        $this->CreatedMethods[] = $name;
-//
-//        $I->CreateDelivery($name, 'on', null, null, null, null, "");
-//        $I->CheckForAlertPresent('success', 'create');
-//    }
+    /**
+     * @group message
+     * @group current
+     * @guy DeliveryTester\DeliverySteps
+     */
+    public function editNameEmpty(DeliveryTester\DeliverySteps $I) {
+        $firstname = "ДоставкаИмяПусто";
+        $changedname = '';
+        //For deleting
+        $this->CreatedMethods[] = $firstname;
+        $this->CreatedMethods[] = $changedname;
+        
+        $I->createDelivery($firstname);
+        $I->waitForText("Редактирование способа доставки: " . $firstname, null,  '.title');
+        $I->fillField(DeliveryEditPage::$FieldName,$changedname);
+        $I->click(DeliveryEditPage::$ButtonSave);
+        $I->CheckForAlertPresent('required', 'edit');
+    }
+    /**
+     * @group message
+     * @guy DeliveryTester\DeliverySteps
+     */
+    public function editName501(DeliveryTester\DeliverySteps $I) {
+        $firstname = "ДоствкаИмяМаксСимв";
+        $changedname = InitTest::$text501;
+        //For deleting
+        $this->CreatedMethods[] = $firstname;
+        $this->CreatedMethods[] = $changedname;
+        
+        $I->createDelivery($firstname);
+        $I->waitForText("Редактирование способа доставки: " . $firstname, null,  '.title');
+        $I->fillField(DeliveryEditPage::$FieldName,$changedname);
+        $I->click(DeliveryEditPage::$ButtonSave);
+        $I->CheckForAlertPresent('error', 'namemax');
+    }
     
-    
-    //    /**_______________________________________________________________________CHECK IN ALERT TEST
-//     * @group create
-//     * @guy DeliveryTester\DeliverySteps
-//     */
-//    public function fieldPriseSpecified501(DeliveryTester\DeliverySteps $I) {
-//        $name = 'УточнениеЦены501';
-//        $message = InitTest::$text501;
-//        //For deleting
-//        $this->CreatedMethods[] = $name;
-//
-//        $I->CreateDelivery($name, 'on', null, null, null, null, $message);
-//        $I->CheckForAlertPresent('error', 'create');
-//  _________________________________________________________________________________________________________BUG
-//    }
-    
-   
+     /**
+     * @group edit
+     * @guy DeliveryTester\DeliverySteps
+     */
+    public function deleteAllCreatedMethods(DeliveryTester\DeliverySteps $I) {
+        $I->amOnPage(DeliveryPage::$URL);
+        //Deleting
+        $I->DeleteDeliveryMethods($this->CreatedMethods);
+        unset($this->CreatedMethods);
+    }
 
-    
-        /**-________________________________________________________________________check in alert tests
-     * @group edit
-     * @guy DeliveryTester\DeliverySteps
+    /**
+     * @todo implement functions below
      */
-//    public function eName501(DeliveryTester\DeliverySteps $I) {
-//        $name = InitTest::$text501;
-//        //For deleting
-//        $this->CreatedMethods[] = $name;
-//
-//        $I->EditDelivery($name);
-//        $I->CheckForAlertPresent('error', 'edit');
-//        $I->see("Редактирование способа доставки: " . $this->Name, '.title');
+//    public function fieldPriseSpecifiedEmpty(DeliveryTester\DeliverySteps $I) {
 //    }
-    
-        /**_________________________________________________________________________check in alert tests
-     * @group edit
-     * @guy DeliveryTester\DeliverySteps
-     */
+
+//    public function fieldPriseSpecified501(DeliveryTester\DeliverySteps $I) {
+//    }
 //    public function ePriceSpecifiedEmpty(DeliveryTester\DeliverySteps $I) {
-//        $I->EditDelivery(null, null, null, null, null, null, '');
-//        $I->CheckForAlertPresent('success', 'edit');
 //    }
-    
-    //______________________________________________________________________________________________________________________++++++++++++++++BUG_HERE
-    /**_________________________________________________________________________check in alert tests
-     * @group edit
-     * @guy DeliveryTester\DeliverySteps
-     */
 //    public function eFieldPriceSpecified501(DeliveryTester\DeliverySteps $I){
-//        $message = InitTest::$text501;
-//        $I->EditDelivery(null, null, null, null, null, null, $message);
-//        $I->CheckForAlertPresent('error', 'edit');
 //    }
+//    ____________________________________________________________________________
     
 }
