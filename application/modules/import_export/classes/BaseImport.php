@@ -194,6 +194,9 @@ class BaseImport extends \CI_Model {
                         $iOffer++;
                         continue;
                     }
+                    foreach ($row as $k => $v){
+                        $row[$k] = mysql_real_escape_string($v);
+                    }
                     $this->content[] = array_combine($this->attributes, array_map('trim', $row));
                 }
                 $cnt = 1;
@@ -208,7 +211,10 @@ class BaseImport extends \CI_Model {
             }
             $_SESSION['countProductsInFile'] = $this->countProduct;
         }
-
+//        if($this->content){
+//            var_dump($this->content);
+//            exit('111');
+//        }
         fclose($file);
         return TRUE;
     }

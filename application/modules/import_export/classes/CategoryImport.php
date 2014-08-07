@@ -21,8 +21,10 @@ class CategoryImport extends BaseImport {
             return FALSE;
         $this->load->helper('translit');
         foreach ($this->create()->content as $key => $node) {
-            if ($node[cat] == '')
+            if ($node['cat'] == ''){
+                \import_export\classes\Logger::create()->set('$node[cat] is empty in CategoryImport.php - IMPORT');
                 return;
+            }
             $parts = self::parseCategoryName($node['cat']);
             $pathIds = $pathNames = array();
             $parentId = $line = 0;
@@ -35,13 +37,22 @@ class CategoryImport extends BaseImport {
                     SELECT SCategory.id as CategoryId
                     FROM `shop_category_i18n` as SCategoryI18n
                     RIGHT OUTER JOIN `shop_category` AS SCategory ON SCategory.id = SCategoryI18n.id
-                    WHERE SCategoryI18n.name = ? AND SCategoryI18n.locale = ? AND SCategory.parent_id = ?', $binds)->row();
+                    WHERE SCategoryI18n.name = ? AND SCategoryI18n.locale = ? AND SCategory.parent_id = ?', $binds);
+                if($result){
+                    $result = $result->row();                    
+                }else{
+                    \import_export\classes\Logger::create()->set('Error $result in CategoryImport.php - IMPORT');
+                }                        
+               
 
                 if (!($result instanceof \stdClass)) {
                     /* Create new category */
                     $binds = array('parent_id' => $parentId, 'full_path_ids' => serialize($pathIds), 'full_path' => implode('/', array_map('translit_url', $pathNames)), 'url' => translit_url($part), 'active' => 1);
                     $this->db->insert('shop_category', $binds);
                     $newCategoryId = $this->db->insert_id();
+                    if(!$newCategoryId){
+                        \import_export\classes\Logger::create()->set('Error INSERT category or SELECT id new category in CategoryImport.php - IMPORT');                        
+                    }
 
                     /* Add translation data for new category  */
                     $this->db->insert('shop_category_i18n', array('id' => $newCategoryId, 'locale' => $this->languages, 'name' => trim($part)));
