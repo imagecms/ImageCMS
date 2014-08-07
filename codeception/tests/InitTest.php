@@ -43,11 +43,11 @@ class InitTest {
     
     public static function changeTextAditorToNative($I) {
         $I->click(NavigationBarPage::$System);
+        $I->wait(3);
         $I->click(NavigationBarPage::$SystemGlobalSettings);
         $I->waitForElement('#textEditor');
         $I->selectOption('#textEditor', 'Native textarea');
         $I->click('.btn.btn-small.btn-primary.action_on.formSubmit');
-//        $I->waitForElement('.alert.in.fade.alert-success');
         $I->wait('3');
     }
 

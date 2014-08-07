@@ -47,6 +47,7 @@ class DeliveryEditCest {
      */
     public function authorization(DeliveryTester\DeliverySteps $I) {
         InitTest::Login($I);
+        $I->wait(3);
         InitTest::changeTextAditorToNative($I);
         
     }
