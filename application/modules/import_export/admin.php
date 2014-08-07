@@ -64,6 +64,9 @@ class Admin extends BaseAdminController {
                 return;
             }
             if (FALSE !== $this->createFile($_POST['type'], $export)) {
+                if($_POST['withZip']){
+                    $export->addToArchive($export->resultArray);
+                }
                 echo $_POST['type'];
                 LOG::create()->set("Експорт завершен успешно!");
                 return;
