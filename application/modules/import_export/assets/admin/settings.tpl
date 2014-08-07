@@ -19,7 +19,7 @@
     </section>
 </div>
   
-{ /* }  
+{ /* }
 {literal}
     <script type="text/javascript">
         while(true){
