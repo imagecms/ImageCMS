@@ -3,6 +3,7 @@ use \DeliveryTester;
 
 class DeliveryAlertMessagesCest
 {
+<<<<<<< HEAD
     public function _before()
     {
     }
@@ -41,6 +42,83 @@ class DeliveryAlertMessagesCest
     
     
     //    /**_______________________________________________________________________CHECK_IN ALERT TESTS
+=======
+    /**
+     * @group message
+     */
+    public function authorization(DeliveryTester $I){
+        InitTest::Login($I);
+    }
+
+    /**
+     * @group messages
+     * @guy DeliveryTester\DeliverySteps
+     */
+    public function listDeleteAlert(DeliveryTester\DeliverySteps $I)
+    {
+        $name = "Доставка удаление";
+        $I->createDelivery($name);
+        
+        $I->amOnPage(DeliveryPage::$URL);
+        $AllMethodsCount = $I->grabClassCount($I, "niceCheck")-1;
+        for ($row = 1;$row <= $AllMethodsCount;++$row){
+            $CurrentRowMethod = $I->grabTextFrom(DeliveryPage::ListMethodLine($row));
+            if($CurrentRowMethod == $name){
+                        $I->click (DeliveryPage::ListCheckboxLine ($row));
+            }
+        }
+        
+        $I->click(DeliveryPage::$DeleteButton);
+        $I->waitForText("Удаление способов доставки", NULL, "//*[@id='mainContent']/div/div[1]/div[1]/h3");
+        $I->wait(1);
+        $I->click(DeliveryPage::$DeleteWindowDelete);
+        $I->CheckForAlertPresent('success', 'delete');
+    }
+    
+    /**
+     * @group messages
+     * @guy DeliveryTester\DeliverySteps
+     */
+    public function creteNameEmptyAlert(DeliveryTester\DeliverySteps $I)
+    {
+        $I->amOnPage(DeliveryCreatePage::$URL);
+        $I->click(DeliveryCreatePage::$ButtonCreate);
+        $I->CheckForAlertPresent('required', 'create');
+    }
+    
+    /**
+     * @group messages
+     * @guy DeliveryTester\DeliverySteps
+     */
+    public function creteNameMaxSymbolsListAlert(DeliveryTester\DeliverySteps $I)
+    {
+        $name = InitTest::$text501;
+        $I->amOnPage(DeliveryCreatePage::$URL);
+        $I->fillField(DeliveryCreatePage::$FieldName, $name);
+        $I->click(DeliveryCreatePage::$ButtonCreate);
+        $I->CheckForAlertPresent('error', 'namemax');
+    }
+    
+    /**
+     * @group messages
+     * @guy DeliveryTester\DeliverySteps
+     */
+    public function createNameNormalAlert(DeliveryTester\DeliverySteps $I){
+        $name = "ДоставкаСообщение";
+        $I->amOnPage(DeliveryCreatePage::$URL);
+        $I->fillField(DeliveryCreatePage::$FieldName, $name);
+        $I->click(DeliveryCreatePage::$ButtonCreate);
+        $I->CheckForAlertPresent('success', 'create');
+    }
+//    
+//    public function cretePriseSpecifiedAlert(DeliveryTester $I)
+//    {
+//        
+//    }
+       
+    
+//    /**
+>>>>>>> 43ef1494d036da9ef29de9b03d74355acefebe06
 //     * @group create
 //     * @guy DeliveryTester\DeliverySteps
 //     */
@@ -69,6 +147,7 @@ class DeliveryAlertMessagesCest
 //  _________________________________________________________________________________________________________BUG
 //    }
     
+<<<<<<< HEAD
     
     
     //    /**_______________________________________________________________________CHECK IN ALERTS TESTS
@@ -88,6 +167,9 @@ class DeliveryAlertMessagesCest
 //        $I->editDelivery('');
 //        $I->CheckForAlertPresent('required', "edit");
 //    }
+=======
+   
+>>>>>>> 43ef1494d036da9ef29de9b03d74355acefebe06
 
     
         /**-________________________________________________________________________check in alert tests

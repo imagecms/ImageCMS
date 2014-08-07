@@ -6,14 +6,26 @@ class DeliveryCreateCest {
 
     protected $CreatedMethods = [];
 
-    public function _before(DeliveryTester $I) {
-        static $LoggedIn = false;
-        if ($LoggedIn) {
-            $I->amOnPage(DeliveryCreatePage::$URL);
-            $I->waitForText("Создание способа доставки", NULL, '.title');
-        }
-        $LoggedIn = true;
-    }
+    
+    
+    
+    
+    
+//    _________________________________________________________________________DONT NEED
+//    public function _before(DeliveryTester $I) {
+//        static $LoggedIn = false;
+//        if ($LoggedIn) {
+//            $I->amOnPage(DeliveryPage::$URL);
+//            $I->click(DeliveryPage::$CreateButton);
+//            $I->waitForText("Создание способа доставки", NULL, '.title');
+//        }
+//        $LoggedIn = true;
+//    }
+    
+    
+    
+    
+    
 
     /**
      * @group create
@@ -147,8 +159,7 @@ class DeliveryCreateCest {
     }
 
     /**
-     * @group create     
-     * @group current
+     * @group create
      * 
      * @guy DeliveryTester\DeliverySteps
      */
@@ -200,6 +211,7 @@ class DeliveryCreateCest {
      * @group create
      */
     public function checkPriseSpecified(DeliveryTester $I) {
+        $I->amOnPage(DeliveryCreatePage::$URL);
         $I->checkOption(DeliveryCreatePage::$CheckboxPriceSpecified);
         $I->waitForElementVisible(DeliveryCreatePage::$FieldPriceSpecified);
 
@@ -219,6 +231,7 @@ class DeliveryCreateCest {
      * @group create
      * @guy DeliveryTester\DeliverySteps
      */
+    //__________________________________________________________________________+++++++++++bug here
     public function fieldPriseSpecified250(DeliveryTester\DeliverySteps $I) {
         $name = 'УточнениеЦены250';
         $message = InitTest::$text250;
@@ -226,13 +239,17 @@ class DeliveryCreateCest {
         $this->CreatedMethods[] = $name;
 
         $I->CreateDelivery($name, 'on', null, null, null, null, $message);
+        $I->waitForText('Редактирование способа доставки: ' . $name, 10);
+        $I->wait(5);
         $I->CheckInFrontEnd($name, null, null, null, $message);
     }
+    
 
     /**
      * @group create
      * @guy DeliveryTester\DeliverySteps
      */
+    //__________________________________________________________________________+++++++++++bug here
     public function fieldPriseSpecified500(DeliveryTester\DeliverySteps $I) {
         $name = 'УточнениеЦены500';
         $message = InitTest::$text500;
@@ -248,6 +265,7 @@ class DeliveryCreateCest {
      * @group create
      * @guy DeliveryTester\DeliverySteps
      */
+
     public function fieldPriseSpecifiedSymbols(DeliveryTester $I) {
         $name = 'УточнениеЦеныСимволы';
         $message = InitTest::$textSymbols;
@@ -297,6 +315,7 @@ class DeliveryCreateCest {
      * @group create
      * @guy DeliveryTester\DeliverySteps
      */
+    //__________________________________________________________________________+++++++++++bug here
     public function deliveryPaymentCheckedAll(DeliveryTester\DeliverySteps $I) {
         $name = "ДоставкаОплатаВсе";
         //For deleting
@@ -306,6 +325,7 @@ class DeliveryCreateCest {
 
         $I->amOnPage(DeliveryCreatePage::$URL);
         $I->CreateDelivery($name, 'on', null, null, null, null, null, $pay);
+        $I->waitForText('Редактирование способа доставки: ' . $name, 10);
         $I->CheckInFrontEnd($name, null, null, null, null, $pay);
     }
 
@@ -321,3 +341,26 @@ class DeliveryCreateCest {
     }
 
 }
+    //__________________________________________________________________________+++++++++++bug here
+    //    ________________________¶¶
+    //_______________________¶
+    //______________________¶___________¶¶¶
+    //______________________¶________¶¶¶
+    //______¶¶¶¶¶¶__________¶_______¶
+    //____________¶¶¶______¶¶¶¶¶¶_¶¶
+    //_______________¶¶¶___¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶
+    //__¶¶¶___¶¶¶___¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶
+    //_____¶¶¶___¶¶¶_¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶
+    //___¶¶¶¶¶¶¶¶¶¶¶_¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶
+    //__¶¶¶¶¶¶¶¶¶¶¶¶_¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶
+    //___¶¶¶¶¶¶¶¶¶¶¶_¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶
+    //_____¶¶¶___¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶
+    //__¶¶¶___¶¶¶__¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶
+    //_______________¶¶¶__¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶
+    //____________¶¶¶______¶¶¶¶¶¶__¶¶
+    //______¶¶¶¶¶¶__________¶________¶
+    //______________________¶_________¶¶¶
+    //______________________¶____________¶¶¶
+    //_______________________¶
+    //________________________¶¶
+    //    

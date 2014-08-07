@@ -16,13 +16,8 @@ modules:
         - Cli
     config:
         WebDriver:
-
             url: 'http://lastbild.loc/'
             browser: firefox
-
-            url: 'http://test1.loc/'
-            browser: chrome
-
             window_size: 1024x768    
 #            restart: false
             clear_cookies: false
@@ -30,18 +25,10 @@ modules:
             capabilities:
                 unexpectedAlertBehaviour: 'accept'
         Db:
-            Db:
-
             dsn: 'mysql:host=127.0.0.1;dbname=test88'
             user: 'root'
             password: ''
             dump: 'tests/_data/cmsprem.sql'
             populate: false
-
-            dsn: 'mysql:host=127.0.0.1;dbname=test1'
-            user: 'root'
-            password: ''
-            dump: 'tests/_data/cmsprem.sql'
-            populate: true
-            
             cleanup:  false
+    
