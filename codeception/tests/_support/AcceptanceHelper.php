@@ -1,20 +1,21 @@
 <?php
+
 namespace Codeception\Module;
 
 // here you can define custom actions
 // all public methods declared in helper class will be available in $I
 //class AcceptanceHelper extends \AcceptanceTester
-class AcceptanceHelper extends \Codeception\Module
-{
-    /**Counting specified tags on page 
+class AcceptanceHelper extends \Codeception\Module {
+    /*     * Counting specified tags on page 
      * 
      * @param   AcceptanceTester  $I           controller
      * @param   string            $tags        "tag1 tag2"   
      * @param   int               $position    first element position
      * @return  null
      */
-    public function grabTagCount ($I,$tags,$position='0'){
-        $tag = explode(" ",$tags);
+
+    public function grabTagCount($I, $tags, $position = '0') {
+        $tag = explode(" ", $tags);
         $I->executeJS("var container = document.createElement('input');
 	container.id = 'length';
         container.type = 'hidden';
@@ -24,20 +25,23 @@ class AcceptanceHelper extends \Codeception\Module
         $lines = $I->grabValueFrom('#length');
         return $lines;
     }
+
     public function assertEquals($expected, $actual, $message = '') {
         parent::assertEquals($expected, $actual, $message);
     }
+
     public function fail($message) {
         parent::fail($message);
     }
-    
-    /**Counting elements with specified class
+
+    /*     * Counting elements with specified class
      * 
      * @param   AcceptanceTester    $I       controller
      * @param   string              $class   class wich you want to count
      * @return  type                Amount
      */
-    public function grabClassCount ($I,$class){
+
+    public function grabClassCount($I, $class) {
         $I->executeJS("var container = document.createElement('input');
 	container.id = 'length';
         container.type = 'hidden';
@@ -47,18 +51,18 @@ class AcceptanceHelper extends \Codeception\Module
         $count = $I->grabValueFrom('#length');
         return $count;
     }
-    
-    /**Scrolling  page to specified element
+
+    /*     * Scrolling  page to specified element
      * 
      * @param \AcceptanceTester $I          controller
      * @param string            $CSSelement CSS selector
      */
-    public function scrollToElement($I,$CSSelement) {
+
+    public function scrollToElement($I, $CSSelement) {
         $script = "$('html,body').animate({scrollTop:$('$CSSelement').offset().top});";
         $I->executeJS($script);
     }
-    
-    
+
     /**
      * Grab text from all elements selected with JQUERY
      * and write them to array
@@ -71,9 +75,9 @@ class AcceptanceHelper extends \Codeception\Module
      * 
      * div.body_category div.row-category div.share_alt a.pjax
      */
-    public function grabTextFromAllElements($I,$JQuerySelector) {
+    public function grabTextFromAllElements($I, $JQuerySelector) {
         $delimiter = '--D_E_L--';
-        $script =<<<HERE
+        $script = <<<HERE
             element = $('$JQuerySelector');
             var tex = [];
             for(i=0;i<element.length;i++){
@@ -87,6 +91,7 @@ HERE;
         array_shift($text);
         return $text;
     }
+
     /**
      * click all finded buttons together
      * can click n times if pased $clicktimes
@@ -100,16 +105,16 @@ HERE;
      * 
      * .btn.expandButton
      */
-    public function clickAllElements($I,$JQeryElements,$clickTimes=1,$deelay=3) {
-        $script =<<<SCRIPT
+    public function clickAllElements($I, $JQeryElements, $clickTimes = 1, $deelay = 3) {
+        $script = <<<SCRIPT
           $('$JQeryElements:visible').click();
 SCRIPT;
-        for($j=0;$j<$clickTimes;++$j){
+        for ($j = 0; $j < $clickTimes;  ++$j) {
             $I->executeJS($script);
             $I->wait($deelay);
         }
     }
-    
+
     /**
      * Grab amount of el-ts selected by JQuery
      * 
@@ -117,11 +122,45 @@ SCRIPT;
      * @param   string              $JQerySelector
      * @return  string              Amount of elements
      */
-    public function grabCCSAmount($I,$JQerySelector){
+    public function grabCCSAmount($I, $JQerySelector) {
         $script = "$('<p id=uniqueidunique></p>').text($('$JQerySelector').length).appendTo('body')";
         $I->executeJS($script);
         $amount = $I->grabTextFrom("#uniqueidunique");
         return $amount;
     }
-    
+
+     /**
+      * @param type $I
+      * @param type $type            type of alert success|error
+      * @param type $message         message of alert
+      * @param type $times           one time = 10 milliseconds && 10000 microseconds
+      */
+    public function exactlySeeAlert($I,$type = 'success', $message = null,$times = '100') {
+        //define element
+        if ($type == 'success') {
+            $element = '.alert.in.fade.alert-success';
+        } elseif ($type == 'error') {
+            $element = '.alert.in.fade.alert-error';
+        } else {
+            $I->fail('unknown type of message, pass "success" or "error" string');
+        }
+        for ($j = 1; $j <= $times; ++$j) {
+            usleep(10000);
+            try {
+                $see = $I->see($message, $element);
+                if (!isset($see)) {
+                    $see = true;
+                    break;
+                }
+            } catch (\Exception $exc) {
+                
+            }
+        }
+        if ($see) {
+            $I->comment("I see message");
+        } else {
+            $I->fail("Sory I couldn't see alert message");
+        }
+    }
+
 }
