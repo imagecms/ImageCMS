@@ -92,7 +92,7 @@ $(document).ready(function() {
     }
     
     function importSegment(obj, attr, lastCount) {
-        limit = 10;
+        var limit = 10;
         var countProd = obj.countProductsInFile;
         $('#progressBlock').css("display", "block"); 
         if(lastCount){
