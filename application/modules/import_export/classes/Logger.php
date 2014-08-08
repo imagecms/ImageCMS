@@ -44,9 +44,9 @@ class Logger  {
      */
     public function set($message){
         if(!file_exists($this->pathFolder)){
-            $handler = fopen($this->pathFile, 'w') or print(' Cannot write log.txt. ');
+            $handler = fopen($this->pathFile, 'w') or print(' Cannot write log.txt or do not have permission to the folder backup');
         } else {
-            $handler = fopen($this->pathFile, 'a') or print(' Cannot create log.txt. ');
+            $handler = fopen($this->pathFile, 'a') or print(' Cannot create log.txt or do not have permission to the folder backup');
         }
         $message = 'Error userId - ' . \CI::$APP->dx_auth->get_user_id() . '. time - ' . date("d.m.Y H:i", time()) . '. Message: ' . $message . "\n";
         fwrite($handler, $message);
