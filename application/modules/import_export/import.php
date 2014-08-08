@@ -1,22 +1,23 @@
 <?php
+
 /*
  * Дополнительные фото и фото вариантов.
  * 
- * Фото вариантов должны содержаться в папку /uploads/temp/
+ * Фото вариантов должны содержаться в папку /uploads/origin/
  * Если их нет в этой папке, то производится проверка на наличие их в
  * папке /uploads/shop/products/origin/. Если там они присутствуют, то вносятся
  * в базу.
  * 
- * Дополнительные фото продукта должны содержаться в /uploads/temp/add
+ * Дополнительные фото продукта должны содержаться в /uploads/origin/additional
  * Если их нет в этой папке, то производится проверка на наличие их в
  * папке /uploads/shop/products/origin/additional. Если там они присутствуют, 
  * то вносятся в базу.
  * 
  * Добавлены новые ошибки Factor.php:
-    const ErrorUrlAttribute = "Атрибут 'URL' не указан. Error: EIx011";
-    const ErrorPriceAttribute = "Атрибут 'Цена' не указан. Error: EIx012";
-    const ErrorNameVariantAttribute = "Атрибут 'Имя варианта' не указан. Error: EIx013";
-    const ErrorNameAttribute = "Атрибут 'Имя товара' не указан. Error: EIx010";
+  const ErrorUrlAttribute = "Атрибут 'URL' не указан. Error: EIx011";
+  const ErrorPriceAttribute = "Атрибут 'Цена' не указан. Error: EIx012";
+  const ErrorNameVariantAttribute = "Атрибут 'Имя варианта' не указан. Error: EIx013";
+  const ErrorNameAttribute = "Атрибут 'Имя товара' не указан. Error: EIx010";
  * 
  * Файлы хранятся в /import_export/backups
  * Backup базы остался неизменным в /application/backups 
@@ -39,13 +40,14 @@ class Import extends ShopAdminController {
      * @access private
      */
     private $uploadDir = './application/modules/import_export/backups/';
-    
+
     /**
      * Default csv file name
      * @var string
      * @access private
      */
     private $csvFileName = 'product_csv_1.csv';
+
     /**
      * Information about the files
      * @var array 
@@ -66,10 +68,12 @@ class Import extends ShopAdminController {
      */
     public function segmentImport() {
         $result = Imp::create()->startProcess($_POST['offers'], $_POST['limit'], $_POST['countProd'])->resultAsString();
-        
-        if(($_POST['offers'] >= $_POST['countProd']) && $_POST['offers']){ 
-            echo (json_encode($result));              
-        }else{
+
+        if (($_POST['offers'] >= $_POST['countProd']) && $_POST['offers']) {
+            $this->resizeAndUpdatePrice($_POST['withResize'], $_POST['withCurUpdate'], $result);
+            echo (json_encode($result));
+        } else {
+            $this->resizeAndUpdatePrice($_POST['withResize'], false, $result);
             return $result;
         }
     }
@@ -95,7 +99,7 @@ class Import extends ShopAdminController {
                 $this->cache->store('ImportExportCache', array('withBackup' => $this->input->post('withBackup')), '25920000');
             Imp::create()->withBackup();
             $result = $this->segmentImport();
-            /*for ajax*/
+            /* for ajax */
             if (!$_POST['offers'] && $result['success']) {
                 $result['propertiesSegmentImport']['countProductsInFile'] = $_SESSION['countProductsInFile'];
                 $result['propertiesSegmentImport']['csvfile'] = trim($_POST['csvfile']);
@@ -105,22 +109,33 @@ class Import extends ShopAdminController {
                 $result['propertiesSegmentImport']['import_type'] = trim($_POST['import_type']);
                 $result['propertiesSegmentImport']['language'] = trim($_POST['language']);
                 $result['propertiesSegmentImport']['currency'] = trim($_POST['currency']);
+                $result['propertiesSegmentImport']['withResize'] = trim($_POST['withResize']);
+                $result['propertiesSegmentImport']['withCurUpdate'] = trim($_POST['withCurUpdate']);
                 unset($_SESSION['countProductsInFile']);
             }
             echo(json_encode($result));
-            
         }
         $this->cache->delete_all();
+    }
 
-        if ($_POST['withResize']) {
+    /**
+     * Make resize photo and update price
+     * @param bool $resize
+     * @param bool $curUpdate
+     * @param array $result
+     * @access private
+     */
+    private function resizeAndUpdatePrice($resize = false, $curUpdate = false, $result = null) {
+        if ($resize) {
             $result['content'] = explode('/', trim($result['content'][0]));
             \MediaManager\Image::create()
                     ->resizeById($result['content'])
                     ->resizeByIdAdditional($result['content'], TRUE);
         }
 
-        if ($_POST['withCurUpdate'])
+        if ($curUpdate){
             \Currency\Currency::create()->checkPrices();
+        }
     }
 
     /**
@@ -192,7 +207,7 @@ class Import extends ShopAdminController {
         fopen($this->uploadDir . $filename, 'w+');
         if (is_writable($this->uploadDir . $filename)) {
             if (!$handle = fopen($this->uploadDir . $filename, 'w+')) {
-                echo json_encode(array('error' => import_export\classes\Factor::ErrorFolderPermission));             
+                echo json_encode(array('error' => import_export\classes\Factor::ErrorFolderPermission));
                 exit;
             }
 
@@ -257,13 +272,13 @@ class Import extends ShopAdminController {
         \CMSFactory\assetManager::create()
                 ->renderAdmin('import_attributes');
     }
-    
+
     /**
      * Generates status bar imports from ajax to file
      * @access public
      */
     public function errorLog() {
-        LOG::create()->set($_POST['error'].' - IMPORT');
+        LOG::create()->set($_POST['error'] . ' - IMPORT');
     }
 
 }

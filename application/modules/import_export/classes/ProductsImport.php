@@ -15,26 +15,31 @@ class ProductsImport extends BaseImport {
      * @var ProductsImport 
      */
     protected static $_instance;
+
     /**
      * Path to the temp origin photo
      * @var string 
      */
-    private $imagetemppathOrigin = './uploads/temp/';
+    private $imagetemppathOrigin = './uploads/origin/';
+
     /**
      * Path to the temp addition photo
      * @var string 
      */
-    private $imagetemppathAdd = './uploads/temp/add/';
+    private $imagetemppathAdd = './uploads/origin/additional/';
+
     /**
      * Path to the origin photo
      * @var string 
      */
     private $imageOriginPath = './uploads/shop/products/origin/';
+
     /**
      * Path to the addition photo
      * @var string 
      */
     private $imageAddPath = './uploads/shop/products/origin/additional/';
+
     /**
      * Main currency
      * @var array 
@@ -80,7 +85,7 @@ class ProductsImport extends BaseImport {
                     ->where('number', $node['num'])
                     ->get('shop_product_variants')
                     ->row();
-            
+
             $mas[$key] = (!($result instanceof \stdClass)) ?
                     $this->runProductInsertQuery($node) :
                     $this->runProductUpdateQuery($result->ProductId, $node);
@@ -165,7 +170,7 @@ class ProductsImport extends BaseImport {
 
         $this->db->query('UPDATE shop_products_i18n SET ' . implode(',', $updateData) . ' WHERE `id`= ' . $productId . ' AND `locale`= "' . $this->languages . '"');
         /* END product i18n Update query block */
-        
+
         $this->updateSProductsCategories($arg, $productId);
         $varId = $this->runProductVariantUpdateQuery($arg, $productId);
 
@@ -474,25 +479,57 @@ class ProductsImport extends BaseImport {
     }
 
     /**
-     * If the file is in the temp folder, it is copied to the origin and entered 
+     * If the file is in the origin folder, it is copied to the origin and entered 
      * into the db. If the file is not in a folder, but the pace is already in 
      * the original folder, just entered into the database.
      * @param array $result
      */
     private function runCopyImages($result) {
         foreach ((array) $result as $key => $item) {
-
-            if (($item['vimg'] != '') && (file_exists($this->imagetemppathOrigin . $item['vimg']))) {
-                copy($this->imagetemppathOrigin . $item['vimg'], $this->imageOriginPath . $item['vimg']);
-                $this->db->set('mainImage', $item['vimg']);
-                $this->db->where('id', $item['variantId']);
-                $this->db->update('shop_product_variants');
+            if (preg_match("/http\:\/\//i", $item['vimg'])) {
+                $name = end(explode('/', $item['vimg']));
+                $name = explode('.', $item['vimg']);
+                $name = $name[0];
                 
-            }elseif(($item['vimg'] != '') && (file_exists($this->imageOriginPath . $item['vimg']))){
-                $this->db->set('mainImage', $item['vimg']);
-                $this->db->where('id', $item['variantId']);
-                $this->db->update('shop_product_variants');
-                
+                $format = end(explode('.', $item['vimg']));
+                $format = strtolower($format);
+                switch ($format){
+                    case 'jpg':
+                    case 'jpeg':
+                    case 'png':
+                    case 'gif': $flag = TRUE; break;
+                    default: $flag = FALSE;  \import_export\classes\Logger::create()
+                            ->set('The link does not lead to the image or images in the correct format ProductsImport.php. - IMPORT'); 
+                            break;                    
+                }
+                if($flag){
+                    $url = $item['vimg'];
+                    $timeoutlimit = '5';
+                    ini_set('default_socket_timeout', $timeoutlimit);
+                    $fp = fopen($url, "r");
+                    $res = fread($fp, 500);
+                    fclose($fp);
+                    if (strlen($res) > 0){
+                        $s = file_get_contents($item['vimg']);
+                        file_put_contents('./uploads/111.'.$format ,$s);                    
+                    }
+                    else{
+                      \import_export\classes\Logger::create()
+                            ->set('Server with a picture does not answer '.$timeoutlimit.' sec. ProductsImport.php. - IMPORT');
+                    }
+                    
+                }
+            } else {
+                if (($item['vimg'] != '') && (file_exists($this->imagetemppathOrigin . $item['vimg']))) {
+                    copy($this->imagetemppathOrigin . $item['vimg'], $this->imageOriginPath . $item['vimg']);
+                    $this->db->set('mainImage', $item['vimg']);
+                    $this->db->where('id', $item['variantId']);
+                    $this->db->update('shop_product_variants');
+                } elseif (($item['vimg'] != '') && (file_exists($this->imageOriginPath . $item['vimg']))) {
+                    $this->db->set('mainImage', $item['vimg']);
+                    $this->db->where('id', $item['variantId']);
+                    $this->db->update('shop_product_variants');
+                }
             }
         }
     }
@@ -508,7 +545,7 @@ class ProductsImport extends BaseImport {
 
         if ($url == '')
             return translit_url(trim($name));
-    // Check if Url is aviable.
+        // Check if Url is aviable.
         $urlCheck = $this->db
                 ->select('url,id')
                 ->where('url ', $url)
@@ -523,8 +560,8 @@ class ProductsImport extends BaseImport {
     }
 
     /**
-     * If the file is in the temp folder / add, then copied to the original and 
-     * entered into the db. If the file does not exist in the folder temp  / add
+     * If the file is in the folder orogin/additional, then copied to the original and 
+     * entered into the db. If the file does not exist in the folder orogin/additional
      * but already exists in the original, just entered into the database
      * @param array $arg
      * @param int $id
@@ -537,14 +574,14 @@ class ProductsImport extends BaseImport {
         foreach ((array) $arg['imgs'] as $key => $img) {
             $this->db->set('product_id', $id);
             $img = trim($img);
-            
+
             if (file_exists($this->imagetemppathAdd . $img)) {
-                /* If the photo is in the Temp folder */
+                /* If the photo is in the orogin folder */
                 copy($this->imagetemppathAdd . $img, $this->imageAddPath . $img);
                 $this->db->set('image_name', $img);
-                $this->db->set('position', $key);
-            }elseif(file_exists($this->imageAddPath. $img)){
-                /* If the photo is not in the temp folder, but there is $this->imageAddPath*/
+                $this->db->set('position', $key);            
+            } elseif (file_exists($this->imageAddPath . $img)) {
+                /* If the photo is not in the orogin folder, but there is $this->imageAddPath */
                 $this->db->set('image_name', $img);
                 $this->db->set('position', $key);
             }

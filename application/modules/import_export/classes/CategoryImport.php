@@ -22,7 +22,6 @@ class CategoryImport extends BaseImport {
         $this->load->helper('translit');
         foreach ($this->create()->content as $key => $node) {
             if ($node['cat'] == ''){
-                \import_export\classes\Logger::create()->set('$node[cat] is empty in CategoryImport.php - IMPORT');
                 return;
             }
             $parts = self::parseCategoryName($node['cat']);

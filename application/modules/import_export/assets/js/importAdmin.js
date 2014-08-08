@@ -120,7 +120,9 @@ $(document).ready(function() {
                     currency: obj.currency,
                     offers: i,
                     limit: limit,
-                    countProd: countProd
+                    countProd: countProd,
+                    withResize: obj.withResize,
+                    withCurUpdate: obj.withCurUpdate
                 },
                 success: function(errors) {
                     if(i < countProd){
