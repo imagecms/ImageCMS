@@ -63,23 +63,27 @@ class Import extends ShopAdminController {
 
     /**
      * Helper function for unloading segment from ajax
+     * @param bool $bool If the function is used by the Imports(), is TRUE
      * @return array Status unloading
      * @access public
      */
-    public function segmentImport() {
+    public function segmentImport($bool = false) {
         $result = Imp::create()->startProcess($_POST['offers'], $_POST['limit'], $_POST['countProd'])->resultAsString();
 
         if (($_POST['offers'] >= $_POST['countProd']) && $_POST['offers']) {
             $this->resizeAndUpdatePrice($_POST['withResize'], $_POST['withCurUpdate'], $result);
             echo (json_encode($result));
-        } else {
+        }elseif(!$bool){
+//            var_dump($result);
             $this->resizeAndUpdatePrice($_POST['withResize'], false, $result);
+            return $result;            
+        } else {
             return $result;
         }
     }
 
     /**
-     * Import products from CSV file, resize photo, update currency, make backup db
+     * Import products from CSV file, make backup db
      * @access public
      */
     public function imports() {
@@ -98,7 +102,7 @@ class Import extends ShopAdminController {
             if (empty($importSettings) || $importSettings['withBackup'] != $this->input->post('withBackup'))
                 $this->cache->store('ImportExportCache', array('withBackup' => $this->input->post('withBackup')), '25920000');
             Imp::create()->withBackup();
-            $result = $this->segmentImport();
+            $result = $this->segmentImport(TRUE);
             /* for ajax */
             if (!$_POST['offers'] && $result['success']) {
                 $result['propertiesSegmentImport']['countProductsInFile'] = $_SESSION['countProductsInFile'];
@@ -126,11 +130,15 @@ class Import extends ShopAdminController {
      * @access private
      */
     private function resizeAndUpdatePrice($resize = false, $curUpdate = false, $result = null) {
-        if ($resize) {
-            $result['content'] = explode('/', trim($result['content'][0]));
-            \MediaManager\Image::create()
-                    ->resizeById($result['content'])
-                    ->resizeByIdAdditional($result['content'], TRUE);
+        if($result){
+            if ($resize) {
+                $result['content'] = explode('/', trim($result['content'][0]));
+                \MediaManager\Image::create()
+                        ->resizeById($result['content'])
+                        ->resizeByIdAdditional($result['content'], TRUE);
+            }        
+        }else{
+            LOG::create()->set(' resizeAndUpdatePrice $result is empty. import.php - IMPORT');
         }
 
         if ($curUpdate){

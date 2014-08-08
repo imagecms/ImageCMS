@@ -63,7 +63,7 @@ class BaseImport extends \CI_Model {
      * The maximum number of fields
      * @var int 
      */
-    public $maxRowLength = 1000000;
+    public $maxRowLength = 0;
     /**
      * Content
      * @var array 
@@ -185,19 +185,32 @@ class BaseImport extends \CI_Model {
         }
         if ($offers > 0) {
             $positionStart = $offers - $limit;
-            $this->maxRowLegth = $offers;
             $cnt = 0;
             $iOffer = 0;
             while (($row = fgetcsv($file, $this->maxRowLegth, $this->delimiter, $this->enclosure)) !== false) {
+//                if ($cnt != 0) {
+//                    if ($iOffer < $positionStart) {
+//                        $iOffer++;
+//                    }else{
+//                        $this->content[] = array_combine($this->attributes, array_map('trim', $row));                        
+//                    }
+//                }
+//                $cnt = 1;
+//            }
                 if ($cnt != 0) {
                     if ($iOffer < $positionStart) {
                         $iOffer++;
-                        continue;
+                    }else{
+                        $this->content[] = array_combine($this->attributes, array_map('trim', $row));                        
                     }
-                    $this->content[] = array_combine($this->attributes, array_map('trim', $row));
                 }
-                $cnt = 1;
+                if($cnt >= $offers){
+                    break;
+                }
+                $cnt++;
+                
             }
+//                var_dump($this->content);
         } else {
             $cnt = 0;
             while (($row = fgetcsv($file, $this->maxRowLegth, $this->delimiter, $this->enclosure)) !== false) {
@@ -208,10 +221,6 @@ class BaseImport extends \CI_Model {
             }
             $_SESSION['countProductsInFile'] = $this->countProduct;
         }
-//        if($this->content){
-//            var_dump($this->content);
-//            exit('111');
-//        }
         fclose($file);
         return TRUE;
     }
