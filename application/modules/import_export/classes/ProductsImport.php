@@ -160,7 +160,7 @@ class ProductsImport extends BaseImport {
             if (isset($productAlias[$key])) {
                 array_push($prepareNames, $productAlias[$key]);
                 $binds[$productAlias[$key]] = $val;
-                $updateData[] = '`' . $productAlias[$key] . '`="' . $val . '"';
+                $updateData[] = '`' . $productAlias[$key] . '`="' . mysql_real_escape_string($val) . '"';
             }
 
         $this->db->query('UPDATE shop_products_i18n SET ' . implode(',', $updateData) . ' WHERE `id`= ' . $productId . ' AND `locale`= "' . $this->languages . '"');
@@ -234,7 +234,7 @@ class ProductsImport extends BaseImport {
             if (isset($productAlias[$key])) {
                 array_push($prepareNames, $productAlias[$key]);
                 $binds[$productAlias[$key]] = $val;
-                $updateData[] = $productAlias[$key] . '="' . $val . '"';
+                $updateData[] = $productAlias[$key] . '="' . mysql_real_escape_string($val) . '"';
             }
 
         $this->db->query('UPDATE shop_product_variants_i18n SET ' . implode(',', $updateData) . ' WHERE `locale`= ? AND `id` = ?', array($this->languages, $variantModel->id));
@@ -471,21 +471,6 @@ class ProductsImport extends BaseImport {
     public static function create() {
         (null !== self::$_instance) OR self::$_instance = new self();
         return self::$_instance;
-    }
-
-    //return images names for import
-    private function imagesForImport() {
-        foreach (BaseImport ::create()->content as $key => $node) {
-            if ($node['num'] != '')
-                if ($node['mimg'] != '' OR $node['simg'] != '' OR $node['modim'] != '') {
-                    $result[$node['num']]['mimg'] = $node['mimg'];
-                    $result[$node['num']]['simg'] = $node['simg'];
-                    $result[$node['num']]['modim'] = $node['modim'];
-                }
-        }
-
-
-        return $result;
     }
 
     /**

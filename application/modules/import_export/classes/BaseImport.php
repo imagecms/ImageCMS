@@ -194,9 +194,6 @@ class BaseImport extends \CI_Model {
                         $iOffer++;
                         continue;
                     }
-                    foreach ($row as $k => $v){
-                        $row[$k] = mysql_real_escape_string($v);
-                    }
                     $this->content[] = array_combine($this->attributes, array_map('trim', $row));
                 }
                 $cnt = 1;
