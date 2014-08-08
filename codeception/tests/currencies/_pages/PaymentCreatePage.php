@@ -41,7 +41,7 @@ class PaymentCreatePage
     static $FieldDescription    = '#Description';
     
     //Selects
-    static $SelectCurrency      = '#CurrencyId';
+    static $SelectCurrency      = ".//*[@id='createPayment']/div/div[2]/div/select";
     static function SelectCurrency($row) {
         $currency = "//select[@id='CurrencyId']/option[$row]";
         return $currency;
