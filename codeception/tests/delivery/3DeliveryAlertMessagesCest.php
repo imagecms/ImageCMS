@@ -66,6 +66,7 @@ class DeliveryAlertMessagesCest {
 
     /**
      * @group message
+     * @group current
      * @guy DeliveryTester\DeliverySteps
      */
     public function createNameNormalAlert(DeliveryTester\DeliverySteps $I) {
@@ -73,7 +74,7 @@ class DeliveryAlertMessagesCest {
         $I->amOnPage(DeliveryCreatePage::$URL);
         $I->fillField(DeliveryCreatePage::$FieldName, $name);
         $I->click(DeliveryCreatePage::$ButtonCreate);
-        $I->CheckForAlertPresent('success', 'create');
+        $I->exactlySeeAlert($I, 'success', 'Доставка создана');
     }
 
     /**
