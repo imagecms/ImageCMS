@@ -333,6 +333,18 @@ class SubPageProductOCACest
     
     
     
+    /**
+     * @group a
+     * @guy OrdersTester\OrdersSteps
+     */
+    public function DeleteCeatingProducts(OrdersTester\OrdersSteps $I) {
+        $I->DeleteProductInCategory($CategoryWithProduct = CreateCategoryOrdersPage::$CrtCatName1ForSearch);
+    }
+    
+    
+    
+    
+    
    
     ///---///----Tests For Variant Product--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     
@@ -533,11 +545,33 @@ class SubPageProductOCACest
     
     
     
-    
-    
-    
-    
-    
+    /**
+     * @group a
+     * @guy OrdersTester\OrdersSteps
+     */
+    public function DeleteProductIn2Category(OrdersTester\OrdersSteps $I) {
+       $I->DeleteProductInCategory($CategoryWithProduct = CreateCategoryOrdersPage::$CrtCatName2ForSearchOrder); 
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //    /**
 //     * @group x
 //     * @guy OrdersTester\OrdersSteps
@@ -584,7 +618,7 @@ class SubPageProductOCACest
      */
     public function ProductPriceMinParentCategory (OrdersTester\OrdersSteps $I) {
         $I->wantTo('Verify Presence Price Null in Second Child Category on Select Menu.');
-        $I->createProduct($nameProduct = 'Товар с нулевой ценой.',
+        $I->createProduct($nameProduct = '0Товар0 0с0 0нулевой0 0ценой0',
                                         $nameVariantProduct = NULL,
                                         $priceProduct = '0',
                                         $articleProduct = NULL,
@@ -601,7 +635,7 @@ class SubPageProductOCACest
      */
     public function SearchProductPriceNullAutocomplit (OrdersTester\OrdersSteps $I){
         $I->wantTo('Verify Check Price Presence.');
-        $I->SearchPriceProductAutocomplete($typeName = 'Товар с нулевой ценой.', $typePrice = '0'); 
+        $I->SearchPriceProductAutocomplete($typeName = '0Товар0 0с0 0нулевой0 0ценой0', $typePrice = '0'); 
     }
     
     
@@ -666,7 +700,7 @@ class SubPageProductOCACest
      */
     public function ProductPricePoint2ParentCategory (OrdersTester\OrdersSteps $I) {
         $I->wantTo('Verify Presence Price in Second Child Category on Select Menu.');
-        $I->createProduct($nameProduct = 'Товар с 2 знаками после точки в цене.',
+        $I->createProduct($nameProduct = '2Producticus2 с 2 знаками',
                                         $nameVariantProduct = NULL,
                                         $priceProduct = '0.11',
                                         $articleProduct = NULL,
@@ -683,7 +717,7 @@ class SubPageProductOCACest
      */
     public function SearchProductPriceMin2Autocomplit (OrdersTester\OrdersSteps $I){
         $I->wantTo('Verify Check Price Presence.');
-        $I->SearchPriceProductAutocomplete($typeName = 'Товар с 2 знаками после точки в цене.', $typePrice = '0.11'); 
+        $I->SearchPriceProductAutocomplete($typeName = '2Producticus2 с 2 знаками', $typePrice = '0.11'); 
     }
     
     
@@ -699,7 +733,7 @@ class SubPageProductOCACest
      */
     public function ProductPricePoint2MaxParentCategory (OrdersTester\OrdersSteps $I) {
         $I->wantTo('Verify Presence Price in Second Child Category on Select Menu.');
-        $I->createProduct($nameProduct = 'Товар с 2 макс.знаками после точки в цене.',
+        $I->createProduct($nameProduct = 'PRDmax 2 максзнаками',
                                         $nameVariantProduct = NULL,
                                         $priceProduct = '0.99',
                                         $articleProduct = NULL,
@@ -716,7 +750,7 @@ class SubPageProductOCACest
      */
     public function SearchProductPriceMin3Autocomplit (OrdersTester\OrdersSteps $I){
         $I->wantTo('Verify Check Price Presence.');
-        $I->SearchPriceProductAutocomplete($typeName = 'Товар с 2 знаками после точки в цене.', $typePrice = '0.11'); 
+        $I->SearchPriceProductAutocomplete($typeName = 'PRDmax 2 максзнаками', $typePrice = '0.11'); 
     }
     
     
@@ -740,7 +774,7 @@ class SubPageProductOCACest
      */
     public function ProductPrice1AndPointParentCategory (OrdersTester\OrdersSteps $I) {
         $I->wantTo('Verify Presence Price in Second Child Category on Select Menu.');
-        $I->createProduct($nameProduct = 'Товар с 1 целым и 1 числом после точки в цене.',
+        $I->createProduct($nameProduct = 'TOvaR55  1 и 1 integer до и после',
                                         $nameVariantProduct = NULL,
                                         $priceProduct = '9878.3',
                                         $articleProduct = NULL,
@@ -757,7 +791,7 @@ class SubPageProductOCACest
      */
     public function SearchProductPricemin4Autocomplit (OrdersTester\OrdersSteps $I){
         $I->wantTo('Verify Check Price Presence.');
-        $I->SearchPriceProductAutocomplete($typeName = 'Товар с 1 целым и 1 числом после точки в цене.', $typePrice = '9878.3'); 
+        $I->SearchPriceProductAutocomplete($typeName = 'TOvaR55  1 и 1 integer до и после', $typePrice = '9878.3'); 
     }
     
     
@@ -782,7 +816,7 @@ class SubPageProductOCACest
      */
     public function  ProductPrice2AndPointParentCategory (OrdersTester\OrdersSteps $I) {
         $I->wantTo('Verify Presence Price in Second Child Category on Select Menu.');
-        $I->createProduct($nameProduct = 'Товар с 1 целым и 2 числами после точки в цене.',
+        $I->createProduct($nameProduct = 'integer33 1 и 1 beFore',
                                         $nameVariantProduct = NULL,
                                         $priceProduct = '6543127.86',
                                         $articleProduct = NULL,
@@ -799,7 +833,7 @@ class SubPageProductOCACest
      */
     public function SearchProductPricemin5Autocomplit (OrdersTester\OrdersSteps $I){
         $I->wantTo('Verify Check Price Presence.');
-        $I->SearchPriceProductAutocomplete($typeName = 'Товар с 1 целым и 2 числами после точки в цене.', $typePrice = '6543127.86'); 
+        $I->SearchPriceProductAutocomplete($typeName = 'integer33 1 и 1 beFore', $typePrice = '6543127.86'); 
     }
     
     
@@ -815,7 +849,7 @@ class SubPageProductOCACest
      */
     public function ProductPrice3AndPointParentCategory (OrdersTester\OrdersSteps $I) {
         $I->wantTo('Verify Presence Price in Second Child Category on Select Menu.');
-        $I->createProduct($nameProduct = 'Товар с 1 целым и 2 макс.числами после точки в цене.',
+        $I->createProduct($nameProduct = '22second values after point22',
                                         $nameVariantProduct = NULL,
                                         $priceProduct = '99.99',
                                         $articleProduct = NULL,
@@ -832,7 +866,7 @@ class SubPageProductOCACest
      */
     public function SearchProductPricemin6Autocomplit (OrdersTester\OrdersSteps $I){
         $I->wantTo('Verify Check Price Presence.');
-        $I->SearchPriceProductAutocomplete($typeName = 'Товар с 1 целым и 2 макс.числами после точки в цене.', $typePrice = '99.99'); 
+        $I->SearchPriceProductAutocomplete($typeName = '22second values after point22', $typePrice = '99.99'); 
     }
 
     
@@ -848,7 +882,7 @@ class SubPageProductOCACest
      */
     public function ProductPrice4AndPointParentCategory (OrdersTester\OrdersSteps $I) {
         $I->wantTo('Verify Presence Price in Second Child Category on Select Menu.');
-        $I->createProduct($nameProduct = 'Товар с 1 целым и 2 нулевими числами после точки в цене.',
+        $I->createProduct($nameProduct = 'null after null point null',
                                         $nameVariantProduct = NULL,
                                         $priceProduct = '99.00',
                                         $articleProduct = NULL,
@@ -865,7 +899,7 @@ class SubPageProductOCACest
      */
     public function SearchProductPricemin7Autocomplit (OrdersTester\OrdersSteps $I){
         $I->wantTo('Verify Check Price Presence.');
-        $I->SearchPriceProductAutocomplete($typeName = 'Товар с 1 целым и 2 нулевими числами после точки в цене.', $typePrice = '99.00'); 
+        $I->SearchPriceProductAutocomplete($typeName = 'null after null point null', $typePrice = '99.00'); 
     }
     
     
@@ -881,7 +915,7 @@ class SubPageProductOCACest
      */
     public function ProductPrice5AndPointParentCategory (OrdersTester\OrdersSteps $I) {
         $I->wantTo('Verify Presence Price in Second Child Category on Select Menu.');
-        $I->createProduct($nameProduct = 'Товар с макс.значением цены.',
+        $I->createProduct($nameProduct = 'maximuzik price в товаре',
                                         $nameVariantProduct = NULL,
                                         $priceProduct = CreateProductsOrdersPage::$CrtPrdPriceMax,//10000000000000
                                         $articleProduct = NULL,
@@ -898,7 +932,7 @@ class SubPageProductOCACest
      */
     public function SearchProductPricemin8Autocomplit (OrdersTester\OrdersSteps $I){
         $I->wantTo('Verify Check Price Presence.');
-        $I->SearchPriceProductAutocomplete($typeName = 'Товар с макс.значением цены.', $typePrice = '10000000000000'); 
+        $I->SearchPriceProductAutocomplete($typeName = 'maximuzik price в товаре', $typePrice = '10000000000000'); 
     }
     
     
@@ -922,7 +956,7 @@ class SubPageProductOCACest
      */
     public function ProductPrice6AndPointParentCategory (OrdersTester\OrdersSteps $I) {
         $I->wantTo('Verify Presence Price in Second Child Category on Select Menu.');
-        $I->createProduct($nameProduct = 'Товар с макс.значением цены и с нулями после точки.',
+        $I->createProduct($nameProduct = 'макс null max прайс',
                                         $nameVariantProduct = NULL,
                                         $priceProduct = '10000000000000.00',
                                         $articleProduct = NULL,
@@ -939,7 +973,7 @@ class SubPageProductOCACest
      */
     public function SearchProductPricemin9Autocomplit (OrdersTester\OrdersSteps $I){
         $I->wantTo('Verify Check Price Presence.');
-        $I->SearchPriceProductAutocomplete($typeName = 'Товар с макс.значением цены и с нулями после точки.', $typePrice = '10000000000000.00'); 
+        $I->SearchPriceProductAutocomplete($typeName = 'макс null max прайс', $typePrice = '10000000000000.00'); 
     }
     
     
@@ -963,7 +997,7 @@ class SubPageProductOCACest
      */
     public function ProductPrice7AndPointParentCategory (OrdersTester\OrdersSteps $I) {
         $I->wantTo('Verify Presence Price in Second Child Category on Select Menu.');
-        $I->createProduct($nameProduct = 'Товар с макс.значением цены и с макс.знач. после точки.',
+        $I->createProduct($nameProduct = 'нули по фулу after pointsesis',
                                         $nameVariantProduct = NULL,
                                         $priceProduct = '1000000000000000.99999',
                                         $articleProduct = NULL,
@@ -980,9 +1014,22 @@ class SubPageProductOCACest
      */
     public function SearchProductPricemin10Autocomplit (OrdersTester\OrdersSteps $I){
         $I->wantTo('Verify Check Price Presence.');
-        $I->SearchPriceProductAutocomplete($typeName = 'Товар с макс.значением цены и с макс.знач. после точки.', $typePrice = '1000000000000000.00'); 
+        $I->SearchPriceProductAutocomplete($typeName = 'нули по фулу after pointsesis', $typePrice = '1000000000000000.00'); 
     }
 
+    
+    
+    /**
+     * @group a
+     * @guy OrdersTester\OrdersSteps
+     */
+    public function DeletePriceProductInCategory (OrdersTester\OrdersSteps $I){
+        $I->DeleteProductInCategory($CategoryWithProduct = CreateCategoryOrdersPage::$CrtCatName3ForSearchOrder);
+    }
+    
+    
+    
+    
     
 
     
@@ -1206,11 +1253,26 @@ class SubPageProductOCACest
     }
     
     
+    /**
+     * @group a
+     * @guy OrdersTester\OrdersSteps
+     */
+    public function DeleteArticleProductInCategory (OrdersTester\OrdersSteps $I){
+        $I->DeleteProductInCategory($CategoryWithProduct = CreateCategoryOrdersPage::$CrtCatName1ForSearch);
+    }
 
-    
-    
-    
-    
+
+
+
+
+
+
+
+
+
+
+
+
 ///---///----Tests For Amount Product-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     
@@ -1218,8 +1280,12 @@ class SubPageProductOCACest
      * @group a
      */
     public function VerifyFieldAmountInputSymbols(OrdersTester $I) {
-        $I->wantTo('Проверить блок ввода недопустимых значений в поле "Количество".');
-        $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
+        $I->wantTo('Verify input invalid values in field Amount".');
+        $I->click(\NavigationBarPage::$Orders);
+        $I->click(\NavigationBarPage::$OrdersList);
+        $I->wait('3');
+        $I->click(\OrdersListPage::$ListButtCreateOrder);
+        $I->wait('3');
         $I->fillField('#productNameForOrders', CreateProductsOrdersPage::$CrtPrdNameMin);
         $I->wait('1');
         $I->click('//body/ul[2]/li[1]/a');
@@ -1292,7 +1358,13 @@ class SubPageProductOCACest
     }
     
     
-
+/**
+     * @group a
+     * @guy OrdersTester\OrdersSteps
+     */
+    public function DeleteAmountYesProductInCategory (OrdersTester\OrdersSteps $I){
+        $I->DeleteProductInCategory($CategoryWithProduct = CreateCategoryOrdersPage::$CrtCatName1ForSearch);
+    }
     
 
     

@@ -33,4 +33,10 @@ class NavigationBarPage
     public static $Users = "//body/div[1]/div[3]/div/nav/ul/li[4]/a";
     public static $UsersList = "//div[1]/div[3]/div/nav/ul/li[4]/ul/li[1]/a";
     public static $Permission = "//div[1]/div[3]/div/nav/ul/li[4]/ul/li[2]/a";
+    
+    
+    //      Каталог товаров
+    public static $ProductsCatalogue = "//body/div[1]/div[3]/div/nav/ul/li[3]/a";
+    public static $ProductCategories = "//body/div[1]/div[3]/div/nav/ul/li[3]/ul/li[1]/a";
+    public static $ProductList = "//body/div[1]/div[3]/div/nav/ul/li[3]/ul/li[2]/a";
 }

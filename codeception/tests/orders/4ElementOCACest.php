@@ -1,12 +1,12 @@
 <?php
 use \OrdersTester;
-class FieldsOCACest
+class ElementOCACest
 {
  //---------------------------AUTORIZATION--------------------------------------- 
      
     
     /**
-     * @group q
+     * @group a
      */
     public function Login(OrdersTester $I){
         InitTest::Login($I);
@@ -16,7 +16,7 @@ class FieldsOCACest
      * @group a
      */
     public function VerifyCategoryPresenceInSelectMenu (OrdersTester $I){
-        $I->wantTo('Сравнить идентичность вывода категорий товаров в селект меню, на страницах "Создание товара" и "Создание заказа".');
+        $I->wantTo('Compare the identity of the names and фьщгте of categories  in the SELECT menu, pages "Create Product" and "Create Order".');
        $I->wantTo('');
        $AllOptions =[]; 
        $I->amOnPage('/admin/components/run/shop/products/create');
@@ -47,97 +47,21 @@ class FieldsOCACest
 
 
 //---------------------Verify Field Amount--------------------------------------
-    /**
-     * @group a
-     */
-    public function VerifyFieldtAmount1ValueAfterPoint(OrdersTester $I){
-        $I->wantTo('Проверить вывод цены добавленного в корзину товара с одним значением цены после точки.');
-        $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
-        $I->click(CreateOrderAdminPage::$CrtPButtProduct);
-        $I->fillField('#productNameForOrders', 'Товар с ценой 1 после точки');
-        $I->wait('1');
-        $I->click('//body/ul[2]/li[1]/a');
-        $I->wait('1');
-        $I->click(CreateOrderAdminPage::$CrtPButtAddToCart);
-        $I->seeInField(CreateOrderAdminPage::$CrtPFieldAmount, '1');
-        $I->see( '0.1', CreateOrderAdminPage::$CrtPFieldTotalPrice);
-        $I->see('0.1', CreateOrderAdminPage::$CrtPFieldCommon);
-        $I->click(CreateOrderAdminPage::$CrtPButtOrder);
-        $I->click(CreateOrderAdminPage::$CrtOButtUpdate);
-        $I->seeInField(CreateOrderAdminPage::$CrtOFieldTotalPrice, '0.1');
        
-    }
-    
-    
-    
-    /**
-     * @group a
-     */
-    public function VerifyFieldtAmount2ValueAfterPoint(OrdersTester $I){
-        $I->wantTo('Проверить вывод цены добавленного в корзину товара с двумя значениями цены после точки.');
-        $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
-        $I->click(CreateOrderAdminPage::$CrtPButtProduct);
-        $I->fillField('#productNameForOrders', 'Товар с ценой 2 после точки');
-        $I->wait('1');
-        $I->click('//body/ul[2]/li[1]/a');
-        $I->wait('1');
-        $I->click(CreateOrderAdminPage::$CrtPButtAddToCart);
-        $I->seeInField(CreateOrderAdminPage::$CrtPFieldAmount, '1');
-        $I->see( '0.11', CreateOrderAdminPage::$CrtPFieldTotalPrice);
-        $I->see('0.11', CreateOrderAdminPage::$CrtPFieldCommon);
-        $I->click(CreateOrderAdminPage::$CrtPButtOrder);
-        $I->click(CreateOrderAdminPage::$CrtOButtUpdate);
-        $I->seeInField(CreateOrderAdminPage::$CrtOFieldTotalPrice, '0.11');
-       
-    }
-    
-    
-    /**
-     * @group a
-     */
-    public function VerifyFieldtAmountMaxValueAfterPoint(OrdersTester $I){
-        $I->wantTo('Проверить вывод цены добавленного в корзину товара с максимальным значением цены после точки.');
-        $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
-        $I->click(CreateOrderAdminPage::$CrtPButtProduct);
-        $I->fillField('#productNameForOrders', 'Товар с ценой Макс после точки');
-        $I->wait('1');
-        $I->click('//body/ul[2]/li[1]/a');
-        $I->wait('1');
-        $I->click(CreateOrderAdminPage::$CrtPButtAddToCart);
-        $I->seeInField(CreateOrderAdminPage::$CrtPFieldAmount, '1');
-        $I->see( '0.99', CreateOrderAdminPage::$CrtPFieldTotalPrice);
-        $I->see('0.99', CreateOrderAdminPage::$CrtPFieldCommon);
-        $I->click(CreateOrderAdminPage::$CrtPButtOrder);
-        $I->click(CreateOrderAdminPage::$CrtOButtUpdate);
-        $I->seeInField(CreateOrderAdminPage::$CrtOFieldTotalPrice, '0.99');
-       
-    }
-    /**
-     * @group a
-     */
-    public function VerifyFieldAmountInputSymbols(OrdersTester $I) {
-        $I->wantTo('Проверить блок ввода недопустимых значений в поле "Количество".');
-        $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
-        $I->fillField('#productNameForOrders', CreateProductsOrdersPage::$CrtPrdNameMin);
-        $I->wait('1');
-        $I->click('//body/ul[2]/li[1]/a');
-        $I->wait('1');
-        $I->click(CreateOrderAdminPage::$CrtPButtAddToCart);
-        $I->fillField(CreateOrderAdminPage::$CrtPFieldAmount, ' ');
-        $I->dontSeeInField(CreateOrderAdminPage::$CrtPFieldAmount, ' ');
-        $I->fillField(CreateOrderAdminPage::$CrtPFieldAmount, InitTest::$textSymbols);
-        $I->dontSeeInField(CreateOrderAdminPage::$CrtPFieldAmount, InitTest::$textSymbols);
-        $I->seeInField(CreateOrderAdminPage::$CrtPFieldAmount, '1234567890.');       
-    }
-    
     
      /**
      * @group a
+     * @guy OrdersTester\OrdersSteps
      */
-    public function VerifyFieldAmountInputInvalidValues1 (OrdersTester $I) {
-        $I->wantTo('Проверить вывод сумы заказа при вводе в поле количество неверных данных.');
-        $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
-        $I->fillField('#productNameForOrders', CreateProductsOrdersPage::$CrtPrdNameMin);
+    public function VerifyFieldAmountInputInvalidValues1 (OrdersTester\OrdersSteps $I) {
+        $I->wantTo('Check the output prices added to basket Product.');
+        $I->createProduct($nameProduct = 'Prd44 FzOR Amount input.', $nameVariantProduct = NULL, $priceProduct = 1);
+        $I->click(NavigationBarPage::$Orders);
+        $I->click(NavigationBarPage::$OrdersList);
+        $I->wait('2');
+        $I->click(OrdersListPage::$ListButtCreateOrder);
+        $I->wait('2');
+        $I->fillField('#productNameForOrders', 'Prd44 FzOR Amount input.');
         $I->wait('1');
         $I->click('//body/ul[2]/li[1]/a');
         $I->wait('1');
@@ -150,11 +74,16 @@ class FieldsOCACest
     
     /**
      * @group a
+     * @guy OrdersTester\OrdersSteps
      */
-    public function VerifyFieldAmountInputInvalidValues2 (OrdersTester $I) {
-        $I->wantTo('Проверить вывод сумы заказа при вводе в поле количество неверных данных.');
-        $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
-        $I->fillField('#productNameForOrders', CreateProductsOrdersPage::$CrtPrdNameMin);
+    public function VerifyFieldAmountInputInvalidValues2 (OrdersTester\OrdersSteps $I) {
+        $I->wantTo('Check the output prices added to basket Product.');
+        $I->click(NavigationBarPage::$Orders);
+        $I->click(NavigationBarPage::$OrdersList);
+        $I->wait('2');
+        $I->click(OrdersListPage::$ListButtCreateOrder);
+        $I->wait('2');
+        $I->fillField('#productNameForOrders', 'Prd44 FzOR Amount input.');
         $I->wait('1');
         $I->click('//body/ul[2]/li[1]/a');
         $I->wait('1');
@@ -167,11 +96,16 @@ class FieldsOCACest
     
     /**
      * @group a
+     * @guy OrdersTester\OrdersSteps
      */
-    public function VerifyFieldAmountInputInvalidValues3 (OrdersTester $I) {
-        $I->wantTo('Проверить вывод сумы заказа при вводе в поле количество неверных данных.');
-        $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
-        $I->fillField('#productNameForOrders', CreateProductsOrdersPage::$CrtPrdNameMin);
+    public function VerifyFieldAmountInputInvalidValues3 (OrdersTester\OrdersSteps $I) {
+        $I->wantTo('Check the output prices added to basket Product.');
+        $I->click(NavigationBarPage::$Orders);
+        $I->click(NavigationBarPage::$OrdersList);
+        $I->wait('2');
+        $I->click(OrdersListPage::$ListButtCreateOrder);
+        $I->wait('2');
+        $I->fillField('#productNameForOrders', 'Prd44 FzOR Amount input.');
         $I->wait('1');
         $I->click('//body/ul[2]/li[1]/a');
         $I->wait('1');
@@ -184,11 +118,16 @@ class FieldsOCACest
     
     /**
      * @group a
+     * @guy OrdersTester\OrdersSteps
      */
-    public function VerifyFieldAmountInputInvalidValues4 (OrdersTester $I) {
-        $I->wantTo('Проверить вывод сумы заказа при вводе в поле количество неверных данных.');
-        $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
-        $I->fillField('#productNameForOrders', CreateProductsOrdersPage::$CrtPrdNameMin);
+    public function VerifyFieldAmountInputInvalidValues4 (OrdersTester\OrdersSteps $I) {
+        $I->wantTo('Check the output prices added to basket Product.');
+        $I->click(NavigationBarPage::$Orders);
+        $I->click(NavigationBarPage::$OrdersList);
+        $I->wait('2');
+        $I->click(OrdersListPage::$ListButtCreateOrder);
+        $I->wait('2');
+        $I->fillField('#productNameForOrders', 'Prd44 FzOR Amount input.');
         $I->wait('1');
         $I->click('//body/ul[2]/li[1]/a');
         $I->wait('1');
@@ -201,11 +140,16 @@ class FieldsOCACest
     
     /**
      * @group a
+     * @guy OrdersTester\OrdersSteps
      */
-    public function VerifyFieldAmountInputInvalidValues5 (OrdersTester $I) {
-        $I->wantTo('Проверить вывод сумы заказа при вводе в поле количество неверных данных.');
-        $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
-        $I->fillField('#productNameForOrders', CreateProductsOrdersPage::$CrtPrdNameMin);
+    public function VerifyFieldAmountInputInvalidValues5 (OrdersTester\OrdersSteps $I) {
+        $I->wantTo('Check the output prices added to basket Product.');
+        $I->click(NavigationBarPage::$Orders);
+        $I->click(NavigationBarPage::$OrdersList);
+        $I->wait('2');
+        $I->click(OrdersListPage::$ListButtCreateOrder);
+        $I->wait('2');
+        $I->fillField('#productNameForOrders', 'Prd44 FzOR Amount input.');
         $I->wait('1');
         $I->click('//body/ul[2]/li[1]/a');
         $I->wait('1');
@@ -219,13 +163,22 @@ class FieldsOCACest
     
     
     
+    
+    
+    
     /**
      * @group a
+     * @guy OrdersTester\OrdersSteps
      */
-    public function VerifyTotalPriceAddInFieldAmount(OrdersTester $I){
-        $I->wantTo('Проверить отображение редактирования количества добавленного товара в козину и правильный подсчет суммы заказа.');
-        $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
-        $I->fillField('#productNameForOrders', CreateProductsOrdersPage::$CrtPrdNameMin);
+    public function VerifyTotalPriceAddInFieldAmount(OrdersTester\OrdersSteps $I){
+        $I->wantTo('Check the map editing the amount of added an item to cart and the correct calculation of the amount of order.');
+        $I->createProduct($nameProduct = 'Prd0 for1 Цыкл2 подсчета3 и4 отображения5 Edit6', $nameVariantProduct = NULL, $priceProduct = 1);
+        $I->click(\NavigationBarPage::$Orders);
+        $I->click(\NavigationBarPage::$OrdersList);
+        $I->wait('1');
+        $I->click(\OrdersListPage::$ListButtCreateOrder);
+        $I->wait('1');
+        $I->fillField('#productNameForOrders', 'Prd0 for1 Цыкл2 подсчета3 и4 отображения5 Edit6');
         $I->wait('1');
         $I->click('//body/ul[2]/li[1]/a');
         $I->wait('1');
@@ -234,7 +187,7 @@ class FieldsOCACest
             $I->click(CreateOrderAdminPage::$CrtPButtProduct);
             $I->wait('1');
             $a = $I->grabValueFrom(CreateOrderAdminPage::$CrtPFieldAmount);
-            $I->comment("Количество товара в корзине ($a)");
+            $I->comment("Amount Product In Basket($a)");
             $I->fillField(CreateOrderAdminPage::$CrtPFieldAmount, "$j");
             $I->wait('1');
             $I->see( "$j", CreateOrderAdminPage::$CrtPFieldTotalPrice);

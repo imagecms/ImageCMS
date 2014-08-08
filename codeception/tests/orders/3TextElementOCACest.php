@@ -4,7 +4,7 @@ class TextElementOCACest
 {
 //---------------------------AUTORIZATION--------------------------------------- 
     /**
-     * @group q
+     * @group a
      */
     public function Login(OrdersTester $I){
         InitTest::Login($I);
@@ -158,12 +158,16 @@ class TextElementOCACest
      */
     public function VerifyButtonOutStock(OrdersTester\OrdersSteps $I){
         $I->wantTo('Verify Button "Out Stock" Presence.');
-        $I->createProduct($nameProduct = 'Товар для Verify BTN нету на складе.', $nameVariantProduct = NULL, $priceProduct = 1);
-        $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
-        $I->click(CreateOrderAdminPage::$CrtPButtProduct);
-        $I->fillField('#productNameForOrders', 'Товар для Verify BTN нету на складе.');
+        $I->createProduct($nameProduct = 'Товар для Verify BTN7456 нету на складе.', $nameVariantProduct = NULL, $priceProduct = 1, $articleProduct = NULL, $amountProduct = 0);
+        $I->click(\NavigationBarPage::$Orders);
+            $I->click(\NavigationBarPage::$OrdersList);
+            $I->wait('2');
+            $I->click(\OrdersListPage::$ListButtCreateOrder);
+            $I->wait('2');
+            $I->click(CreateOrderAdminPage::$CrtPButtProduct);
+            $I->fillField('#productNameForOrders', 'Товар для Verify BTN7456 нету на складе.');
             $I->wait('1');
-            $I->see('Товар для Verify BTN нету на складе.','//body/ul[2]/li[1]/a');
+            $I->see('Товар для Verify BTN7456 нету на складе.','//body/ul[2]/li[1]/a');
             $I->click('//body/ul[2]/li[1]/a');
             $I->wait('1');
             $I->see('Нет на складе', CreateOrderAdminPage::$CrtPButtOutStock);
@@ -182,12 +186,17 @@ class TextElementOCACest
     
     /**
      * @group a
+     * @guy OrdersTester\OrdersSteps
      */
-    public function VerifyFieldDefoltAmountInBasket(OrdersTester $I){
+    public function VerifyFieldDefoultAmountInBasket(OrdersTester\OrdersSteps $I){
         $I->wantTo('VerifyDefoltValueOnFieldAmount.');
-        $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
-        $I->click(CreateOrderAdminPage::$CrtPButtProduct);
-        $I->fillField('#productNameForOrders', CreateProductsOrdersPage::$CrtPrdNameMin);
+        $I->createProduct($nameProduct = 'ТоварVerify Defoult98765 AmountinBasket.', $nameVariantProduct = NULL, $priceProduct = 1);
+        $I->click(\NavigationBarPage::$Orders);
+        $I->click(\NavigationBarPage::$OrdersList);
+        $I->wait('2');
+        $I->click(\OrdersListPage::$ListButtCreateOrder);
+        $I->wait('2');
+        $I->fillField('#productNameForOrders', 'ТоварVerify Defoult98765 AmountinBasket.');
         $I->wait('1');
         $I->click('//body/ul[2]/li[1]/a');
         $I->wait('1');
