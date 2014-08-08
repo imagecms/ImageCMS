@@ -20,6 +20,7 @@ class Logger  {
      * @var string 
      */
     private $pathFile = "./application/modules/import_export/backups/log.txt";
+    private $pathFolder = "./application/modules/import_export/";
     
     /**
      * Function create()
@@ -42,15 +43,13 @@ class Logger  {
      * @access public
      */
     public function set($message){
-        if(!file_exists($this->pathFile)){            
-            chmod($this->pathFile, 0777);
-            $handler = fopen($this->pathFile, 'w') or die('Cannot open log.txt');
+        if(!file_exists($this->pathFolder)){
+            $handler = fopen($this->pathFile, 'w') or print(' Cannot write log.txt. ');
         } else {
-            $handler = fopen($this->pathFile, 'a') or die('Cannot open log.txt');
+            $handler = fopen($this->pathFile, 'a') or print(' Cannot create log.txt. ');
         }
         $message = 'Error userId - ' . \CI::$APP->dx_auth->get_user_id() . '. time - ' . date("d.m.Y H:i", time()) . '. Message: ' . $message . "\n";
         fwrite($handler, $message);
-        fclose($handler);
-        chmod($this->pathFile, 0777);
+        fclose($handler);        
     }
 }

@@ -1,12 +1,9 @@
-
 <section class="mini-layout">
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
             <span class="title">{lang('Import-Export CSV/XLS','admin')}</span>
         </div>
-    </div>
-    <div class="content_big_td">
         <div class="clearfix">
             <div class="pull-right">
                 <div class="d-i_b">
@@ -14,6 +11,8 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="content_big_td">
         <div class="tab-content">
             <div class="tab-pane active" id="importcsv">
                 <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
