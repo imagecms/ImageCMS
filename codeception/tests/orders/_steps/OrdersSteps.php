@@ -34,7 +34,7 @@ class OrdersSteps extends \OrdersTester {
             $I->fillField(\CreateCategoryOrdersPage::$CrtCategorySelectMenuInput, $addParentCategory);
             $I->click(\CreateCategoryOrdersPage::$CrtCategorySelectMenuSetSearch);
         }$I->click(\CreateCategoryOrdersPage::$CrtCategoryButtonSaveandBack); 
-        $I->wait('1');
+        $I->wait('2');
     }
     
     
@@ -57,7 +57,11 @@ class OrdersSteps extends \OrdersTester {
                             $variantArticle = NULL,
                             $variantAmount = NULL) {
         $I = $this;
-        $I->amOnPage(\CreateProductsOrdersPage::$CrtProductPageURL);                                                                                                     
+        $I->click(\NavigationBarPage::$ProductsCatalogue);                                                                                                 
+        $I->click(\NavigationBarPage::$ProductList);
+        $I->wait('3');
+        $I->click(\CreateProductsOrdersPage::$CrtProductButtonCreateProduct);                                                                                                 
+        $I->wait('3');
         if (isset($nameProduct)) {
             $I->fillField(\CreateProductsOrdersPage::$CrtProductNameProduct, $nameProduct);                                          
         }If (isset($nameVariantProduct)){
@@ -132,9 +136,9 @@ class OrdersSteps extends \OrdersTester {
         $I = $this;
         $I->click(\NavigationBarPage::$Users);
         $I->click(\NavigationBarPage::$UsersList);
-        $I->wait('1');
+        $I->wait('3');
         $I->click('//body/div[1]/div[5]/div/section/div[1]/div[2]/div/a');
-        $I->wait('1');
+        $I->wait('3');
         if(isset($createUserName)){
             $I->fillField(\CreateUserForOrdersPage::$CrtUserFieldName, $createUserName);
         }if(isset($createUserEmail)){
@@ -147,7 +151,7 @@ class OrdersSteps extends \OrdersTester {
             $I->fillField(\CreateUserForOrdersPage::$CrtUserFieldAddress, $createUserAddress);    
         }
         $I->click(\CreateUserForOrdersPage::$CrtUserButtonSaveAndBack);
-        $I->wait('1');
+        $I->wait('2');
     }
     
     
@@ -167,27 +171,25 @@ class OrdersSteps extends \OrdersTester {
         $I->click(\NavigationBarPage::$UsersList);
         $I->wait('2');
         if(isset($UserName)){
-           $Rows = $I->grabTagCount($I, 'tbody tr', 2);
-           $a = $I->comment("Вот такое у нас количество строк $Rows");
+           $Rows = $I->grabTagCount($I, 'tbody tr');
         }
-        for($j = 1;$j != $Rows;$j++){
+        for($j = 1;$j <= $Rows;$j++){
                $b = $I->grabTextFrom("//table/tbody/tr[$j]/td[4]/a");
-               $c = $I->comment("Вот такое у нас название пользователя = $b");
                if($b == $UserName){
                    $I->see($UserName, "//table/tbody/tr[$j]/td[4]/a");
+                   break;
                }
            }
-//        if(isset($UserEmeil)){
-//            $RowsEmeil = $I->grabTagCount($I, 'tbody tr', 2);
-//            $aa = $I->comment("Вот такое у нас количество строк $RowsEmeil");
-//        } 
-//        for($j = 1;$j != $RowsEmeil;$j++){
-//               $bb = $I->grabTextFrom("//table/tbody/tr[$j]/td[3]/span");
-//               $cc = $I->comment("Вот такое у нас название пользователя = $bb");
-//               if($bb == $UserEmeil){
-//                   $I->see($UserEmeil, "//table/tbody/tr[$j]/td[3]/span");
-//               }
-//           }
+        if(isset($UserEmeil)){
+            $RowsEmeil = $I->grabTagCount($I, 'tbody tr');
+        } 
+        for($l = 1;$l <= $RowsEmeil;$l++){
+               $bb = $I->grabTextFrom("//table/tbody/tr[$l]/td[3]/span");
+               if($bb == $UserEmeil){
+                   $I->see($UserEmeil, "//table/tbody/tr[$l]/td[3]/span");
+                   break;
+               }
+           }
         
     }
     
@@ -291,9 +293,13 @@ class OrdersSteps extends \OrdersTester {
     
     function SearchNameProductaAutocomplete ( $typeName = NULL){ 
         $I = $this;
-        $I->amOnPage(\CreateOrderAdminPage::$CrtPURL);
+        $I->click(\NavigationBarPage::$Orders);
+        $I->click(\NavigationBarPage::$OrdersList);
+        $I->wait('3');
+        $I->click(\OrdersListPage::$ListButtCreateOrder);
+        $I->wait('3');
         if(isset($typeName)){            
-            $I->click(\CreateOrderAdminPage::$CrtPButtProduct);    
+//            $I->click(\CreateOrderAdminPage::$CrtPButtProduct);    
             $I->fillField('#productNameForOrders', $typeName);
             $I->wait('1');
             $I->see($typeName,'//body/ul[2]/li[1]/a');
@@ -314,7 +320,11 @@ class OrdersSteps extends \OrdersTester {
     
     function SearchVariantProductAutocomplete ($productName = NULL, $variantName = NULL) {
         $I = $this;
-        $I->amOnPage(\CreateOrderAdminPage::$CrtPURL);
+        $I->click(\NavigationBarPage::$Orders);
+        $I->click(\NavigationBarPage::$OrdersList);
+        $I->wait('3');
+        $I->click(\OrdersListPage::$ListButtCreateOrder);
+        $I->wait('3');
         $I->fillField('#productNameForOrders', $productName);
         $I->wait('1');
         $I->see($variantName,'//body/ul[2]/li[1]/a');
@@ -332,7 +342,11 @@ class OrdersSteps extends \OrdersTester {
 
     function SearchPriceProductAutocomplete( $typeName = NULL, $typePrice = NULL) { 
         $I = $this;
-        $I->amOnPage(\CreateOrderAdminPage::$CrtPURL);        
+        $I->click(\NavigationBarPage::$Orders);
+        $I->click(\NavigationBarPage::$OrdersList);
+        $I->wait('3');
+        $I->click(\OrdersListPage::$ListButtCreateOrder);
+        $I->wait('3');        
         if(isset($typeName)){            
             $I->fillField('#productNameForOrders', $typeName);
             $I->wait('1');
@@ -340,7 +354,7 @@ class OrdersSteps extends \OrdersTester {
             $I->wait('1');
             $I->click(\CreateOrderAdminPage::$CrtPButtAddToCart);
         }if(isset($typePrice)){            
-            $I->click(\CreateOrderAdminPage::$CrtPButtProduct);
+//            $I->click(\CreateOrderAdminPage::$CrtPButtProduct);
             $I->see($typePrice, '//tbody/tr[1]/td[2]/div/div[2]/span[1]');
             $I->see($typePrice, '//tbody/tr[2]/td[3]/select/option');
             $I->see($typePrice, '//table[2]/tbody/tr/td[3]/span/span[1]');
@@ -361,7 +375,7 @@ class OrdersSteps extends \OrdersTester {
     function SelectNumberAfterPoint ($numberAfterPoint = NULL){
         $I = $this;
         $I->amOnPage('/admin/components/run/shop/settings#view');
-        $I->wait('2');
+        $I->wait('3');
         $I->selectOption('//table/tbody/tr/td/div/div[3]/div/div/select', "$numberAfterPoint");
         $I->wait('1');
         $I->click('//section/div[1]/div[2]/div/button[2]');
@@ -393,9 +407,12 @@ class OrdersSteps extends \OrdersTester {
     
     function SearchArticleProductAutocomplete ( $articleProduct = NULL) { 
         $I = $this;
-        $I->amOnPage(\CreateOrderAdminPage::$CrtPURL);
+        $I->click(\NavigationBarPage::$Orders);
+        $I->click(\NavigationBarPage::$OrdersList);
+        $I->wait('3');
+        $I->click(\OrdersListPage::$ListButtCreateOrder);
+        $I->wait('3');
         if(isset($articleProduct)){            
-           $I->click(\CreateOrderAdminPage::$CrtPButtProduct);
            $I->fillField('#productNameForOrders', $articleProduct);
            $I->wait('1');
            $I->see($articleProduct, '//body/ul[2]/li[1]/a');           
@@ -412,14 +429,17 @@ class OrdersSteps extends \OrdersTester {
     function SearchAmountProductAutocomplete ( $typeName = NULL, $amountProduct = NULL) { 
         $I = $this;
         if(isset($typeName)){            
-            $I->amOnPage(\CreateOrderAdminPage::$CrtPURL); 
+            $I->click(\NavigationBarPage::$Orders);
+            $I->click(\NavigationBarPage::$OrdersList);
+            $I->wait('3');
+            $I->click(\OrdersListPage::$ListButtCreateOrder);
+            $I->wait('3');
             $I->fillField('#productNameForOrders', $typeName);
             $I->wait('1');
             $I->click('//body/ul[2]/li[1]/a');
             $I->wait('1');
             $I->click(\CreateOrderAdminPage::$CrtPButtAddToCart);
         }if(isset($amountProduct)){
-            $I->click(\CreateOrderAdminPage::$CrtPButtProduct); 
             $I->see("Остаток: $amountProduct", '#productStock');
             $I->seeInField('//table[2]/tbody/tr/td[4]/div/input', '1');
         }
@@ -447,6 +467,11 @@ class OrdersSteps extends \OrdersTester {
     function SearchCategorySelect ($typeCategory = NULL){
         $I = $this;
         $urlCrtOrd = '/admin/components/run/shop/orders/create';
+        $I->click(\NavigationBarPage::$Orders);
+        $I->click(\NavigationBarPage::$OrdersList);
+        $I->wait('3');
+        $I->click(\OrdersListPage::$ListButtCreateOrder);
+        $I->wait('3');
         $a = $I->grabFromCurrentUrl();
         $I->comment("Вот такой у нас урл = $a");
         if(isset($typeCategory)){
@@ -462,6 +487,26 @@ class OrdersSteps extends \OrdersTester {
         }
     }
     
+    function DeleteProductInCategory($CategoryWithProduct) {
+        $I = $this;
+        if(isset($CategoryWithProduct)){
+            $I->click(\NavigationBarPage::$ProductsCatalogue);
+            $I->wait('1');
+            $I->click(\NavigationBarPage::$ProductList);
+            $I->wait('3');
+            $I->click('//form/section/div[2]/table/thead/tr[2]/td[4]/div/a');
+            $I->fillField('//form/section/div[2]/table/thead/tr[2]/td[4]/div/div/div/input', $CategoryWithProduct);
+            $I->click('//form/section/div[2]/table/thead/tr[2]/td[4]/div/div/ul/li');
+            $I->wait('2');
+            $I->click(\CreateProductsOrdersPage::$DelPrdMainCheckBox);
+            $I->click(\CreateProductsOrdersPage::$DelPrdButtonDelete);
+            $I->wait('2');
+            $I->click(\CreateProductsOrdersPage::$DelPrdButtonDeleteWindowDelete);
+            $I->wait('1');
+        }
+        
+    }
+    
     
     
     
@@ -474,7 +519,9 @@ class OrdersSteps extends \OrdersTester {
     function SearchProductNameSelect($typeCategoryName = NULL, $typeProductName = NULL) {
         $I = $this;
         if(isset($typeProductName)){
-        $I->amOnPage('/admin/components/run/shop/search/index');
+        $I->click(\NavigationBarPage::$ProductsCatalogue);
+        $I->click(\NavigationBarPage::$ProductList);
+        $I->wait('3');        
         $I->click('//form/section/div[2]/table/thead/tr[2]/td[4]/div/a');
         $I->fillField('//form/section/div[2]/table/thead/tr[2]/td[4]/div/div/div/input', $typeCategoryName);
         $I->click('//form/section/div[2]/table/thead/tr[2]/td[4]/div/div/ul/li');
