@@ -167,27 +167,25 @@ class OrdersSteps extends \OrdersTester {
         $I->click(\NavigationBarPage::$UsersList);
         $I->wait('2');
         if(isset($UserName)){
-           $Rows = $I->grabTagCount($I, 'tbody tr', 2);
-           $a = $I->comment("Вот такое у нас количество строк $Rows");
+           $Rows = $I->grabTagCount($I, 'tbody tr');
         }
-        for($j = 1;$j != $Rows;$j++){
+        for($j = 1;$j <= $Rows;$j++){
                $b = $I->grabTextFrom("//table/tbody/tr[$j]/td[4]/a");
-               $c = $I->comment("Вот такое у нас название пользователя = $b");
                if($b == $UserName){
                    $I->see($UserName, "//table/tbody/tr[$j]/td[4]/a");
+                   break;
                }
            }
-//        if(isset($UserEmeil)){
-//            $RowsEmeil = $I->grabTagCount($I, 'tbody tr', 2);
-//            $aa = $I->comment("Вот такое у нас количество строк $RowsEmeil");
-//        } 
-//        for($j = 1;$j != $RowsEmeil;$j++){
-//               $bb = $I->grabTextFrom("//table/tbody/tr[$j]/td[3]/span");
-//               $cc = $I->comment("Вот такое у нас название пользователя = $bb");
-//               if($bb == $UserEmeil){
-//                   $I->see($UserEmeil, "//table/tbody/tr[$j]/td[3]/span");
-//               }
-//           }
+        if(isset($UserEmeil)){
+            $RowsEmeil = $I->grabTagCount($I, 'tbody tr');
+        } 
+        for($l = 1;$l <= $RowsEmeil;$l++){
+               $bb = $I->grabTextFrom("//table/tbody/tr[$l]/td[3]/span");
+               if($bb == $UserEmeil){
+                   $I->see($UserEmeil, "//table/tbody/tr[$l]/td[3]/span");
+                   break;
+               }
+           }
         
     }
     
