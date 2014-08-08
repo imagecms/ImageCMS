@@ -439,7 +439,7 @@ $I = $this;
      * Checking that alerts is present after clicking create button
      * 
      * @param string    $type       error|success|required
-     * @param string    $text      create|edit|delete|drag
+     * @param string    $text      create|edit|delete|drag|namemax
      * @return void
      */
     function CheckForAlertPresent($type = null,$text = null) {
@@ -451,12 +451,19 @@ $I = $this;
                     $I->waitForElementNotVisible('.alert.in.fade.alert-error');
                     break;
             case 'success':
-                    $I->waitForText('Сообщение:', null, '.alert.in.fade.alert-success h4');
-                    if      ($text  == 'create')   { $I->see('Доставка создана',       null, '.alert.in.fade.alert-success'); }              
-                    elseif  ($text  == 'edit')     { $I->see('Изменения сохранены',    null, '.alert.in.fade.alert-success'); }
-                    elseif  ($text  == 'delete')   { $I->see('Способ доставки удален', null, '.alert.in.fade.alert-success'); }
-                    elseif  ($text  == 'drag')     { $I->see('Позиции сохранены',      null, '.alert.in.fade.alert-success'); }
-                    $I->waitForElementNotVisible('.alert.in.fade.alert-success');
+                    
+//                    $I->waitForText('Сообщение:', null, "//div[@class='alert in fade alert-success']//h4");
+                    if      ($text  == 'create')   { $I->waitForText('Доставка создана',            null, "//div[@class='alert in fade alert-success']"); }              
+                    elseif  ($text  == 'edit')     { $I->waitForText('Изменения сохранены',         null, "//div[@class='alert in fade alert-success']"); }
+                    elseif  ($text  == 'delete')   { $I->waitForText('Способ доставки удален',      null, "//div[@class='alert in fade alert-success']"); }
+                    elseif  ($text  == 'drag')     { $I->WaitForText('Позиции сохранены',           null, "//div[@class='alert in fade alert-success']"); }
+                    $I->waitForElementNotVisible("//div[@class='alert in fade alert-success']");
+//                    $I->waitForText('Сообщение:', null, '.alert.in.fade.alert-success h4');
+//                    if      ($text  == 'create')   { $I->see('Доставка создана',       null, '.alert.in.fade.alert-success'); }              
+//                    elseif  ($text  == 'edit')     { $I->see('Изменения сохранены',    null, '.alert.in.fade.alert-success'); }
+//                    elseif  ($text  == 'delete')   { $I->see('Способ доставки удален', null, '.alert.in.fade.alert-success'); }
+//                    elseif  ($text  == 'drag')     { $I->see('Позиции сохранены',      null, '.alert.in.fade.alert-success'); }
+//                    $I->waitForElementNotVisible('.alert.in.fade.alert-success');
                     break;
             case 'required':
                     $I->comment("I want to see that field is required");
