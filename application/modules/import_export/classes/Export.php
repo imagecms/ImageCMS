@@ -36,7 +36,7 @@ class Export {
         'shop_brands_i18n',
         'shop_product_images',
     );
-    protected $resultArray = NULL;
+    public $resultArray = NULL;
     protected $resultString = NULL;
     protected $skipErrors = FALSE;
     protected $categoriesData = NULL;
@@ -510,5 +510,51 @@ class Export {
      */
     public function getErrors() {
         return $this->errors;
+    }
+    
+    /**
+     * Add photos to ZIP
+     * @access public
+     * @author Oleh
+     */
+    
+    public function addToArchive($arr){
+        $zip = new \ZipArchive();
+        $date = date('m_d_y');
+        $time = date('G_i_s');
+        $zipName = "archive_" . $date . "_" . $time . ".zip"; 
+        if($zip->open('./application/modules/import_export/backups/' . $zipName, \ZipArchive::CREATE) !== TRUE){      
+            LOG::create()->set("Невозможно создать zip-архив.");
+        }
+        foreach($arr as $key => $val){
+            //вигрузка основних фотографій варіанту
+            if($this->attributes['vimg'] == '1'){
+                if(file_exists('./uploads/shop/products/origin/' . $val['mainImage']) && $val['mainImage'] != ""){
+                    $fN = "./uploads/shop/products/origin/" . $val['mainImage'];
+                    $zFN ='origin/' . $val['mainImage'];
+                    $zip->addFile($fN, $zFN);
+                } else {
+                    LOG::create()->set("Невозможна архивация основного изображения: " . $val['mainImage']);
+                }
+            }
+            //вигрузка додаткових фотографій продуктів
+            if($this->attributes['imgs'] == '1'){
+                $number = $val['number'];
+                $prodId = $this->db->where('number',$number)->get('shop_product_variants')->row()->product_id;
+                $imgsAdd = $this->db->where('product_id',$prodId)->get('shop_product_images')->result_array();
+                if(count($imgsAdd) > 1){
+                    foreach($imgsAdd as $img){
+                        if(file_exists('./uploads/shop/products/origin/additional/' . $img['image_name'])){
+                            $filename = "./uploads/shop/products/origin/additional/" . $img['image_name'];
+                            $zipname = "origin/additional/" . $img['image_name'];
+                            $zip->addFile($filename,$zipname);
+                        } else {
+                            LOG::create()->set("Невозможна архивация дополнительного изображения: " . $img['image_name']);
+                        }
+                    }
+                }
+            }
+        }
+        $zip->close();
     }
 }
