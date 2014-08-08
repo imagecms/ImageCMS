@@ -97,7 +97,8 @@ class MainCurrencyCest
         $IsoProduct=$I->grabTextFrom(".//*[@id='ProductVariantRow_0']/td[3]/select/option[$this->j]");
         $I->comment("$IsoProduct");
         $I->click(CurrenciesPage::$SaveButton);
-        $I->waitForText("Продукт был успешно создан");
+        $I->waitForText('Товар4', 4, ".//*[@id='mainContent']/section/div/div[1]/span[2]");
+//        $I->waitForText("Продукт был успешно создан");
         $I->assertEquals($IsoProduct, $isoMainCur);
         $I->amOnPage("/");
         $I->wait('2');
@@ -227,7 +228,9 @@ class MainCurrencyCest
         $I->fillField(".//*[@id='ProductVariantRow_0']/td[2]/input", "$price");        
         $I->wait('1');
         $I->click(CurrenciesPage::$SaveButton);
-        $I->waitForText("Продукт был успешно создан");        
+        //$I->waitForElementVisible('.alert.in.fade.alert-success');
+        $I->waitForText("Продукт был успешно создан");
+        //$I->waitForElementNotVisible('.alert.in.fade.alert-success');
         $I->amOnPage("/");
         $I->fillField(".//*[@id='inputString']", 'товар5');
         $I->click("html/body/div[1]/div[1]/header/div[2]/div/div/div[2]/div[2]/div/form/span/button");
@@ -270,6 +273,7 @@ class MainCurrencyCest
         $I->click("html/body/div[1]/div[1]/header/div[2]/div/div/div[2]/div[2]/div/form/span/button");
         $I->wait('1');
         $price=300*4;
+        $I->comment((string)$price);
         $kMAIN=$I->grabTextFrom(".//*[@id='items-catalog-main']/li/div[1]/div[2]/span/span/span/span[1]");
         $symMAIN=$I->grabTextFrom(".//*[@id='items-catalog-main']/li/div[1]/div[2]/span/span/span/span[2]");        
         $I->comment("$kMAIN"."$symMAIN");
@@ -278,6 +282,7 @@ class MainCurrencyCest
         $kADDIT=$I->grabTextFrom(".//*[@id='items-catalog-main']/li/div[1]/div[2]/span/span[2]/span/span[1]");
         $symADDIT=$I->grabTextFrom(".//*[@id='items-catalog-main']/li/div[1]/div[2]/span/span[2]/span/span[2]");
         $i=$price/4;
+        $I->comment((string)$i);
         $I->comment("$kADDIT", "$symADDIT");
         $I->assertEquals($kADDIT, $i);
         $I->assertEquals($symADDIT, $this->MAINSYM);
@@ -385,7 +390,10 @@ class MainCurrencyCest
         $IsoProduct=$I->grabTextFrom(".//*[@id='ProductVariantRow_0']/td[3]/select/option[3]");
         $I->comment("$IsoProduct");
         $I->click(CurrenciesPage::$SaveButton);
-        $I->waitForText("Продукт был успешно создан");
+        $I->waitForText('Товар2', 4, ".//*[@id='mainContent']/section/div/div[1]/span[2]");
+        //$I->waitForElementVisible('.alert.in.fade.alert-success');
+//        $I->waitForText("Продукт был успешно создан");
+        //$I->waitForElementNotVisible('.alert.in.fade.alert-success');
         $I->assertEquals($IsoProduct, $IsoCur);
         $I->amOnPage("/");
         $I->fillField(".//*[@id='inputString']", 'товар2');
@@ -506,7 +514,7 @@ class MainCurrencyCest
         $text=$Cur[2];
         $I->comment($text);
         $I->click(PaymentCreatePage::$ButtonCreate);
-        $I->waitForText("Способ оплаты создан");
+        $I->waitForText("Редактирование способа оплаты");
         $I->assertEquals($SymbolCur, $text);
         $I->amOnPage("/admin/components/run/shop/currencies");
         $I->click(CurrenciesPage::DeleteButtonLine('4'));
@@ -516,9 +524,9 @@ class MainCurrencyCest
         $I->see('Удалить', './/*[@id="first"]/div[3]/a[1]');
         $I->see('Отменить', './/*[@id="first"]/div[3]/a[2]');
         $I->click('.//*[@id="first"]/div[3]/a[1]');
-        $I->waitForElementVisible('.alert.in.fade.alert-error');
-        $I->see('Невозможно удалить валюту. Эта валюта используется в Способах оплаты.');
-        $I->waitForElementNotVisible('.alert.in.fade.alert-error');
+        //$I->waitForElementVisible('.alert.in.fade.alert-error');
+        $I->waitForText('Невозможно удалить валюту. Эта валюта используется в Способах оплаты.', 3);
+        //$I->waitForElementNotVisible('.alert.in.fade.alert-error');
         $I->amOnPage('/admin/components/run/shop/paymentmethods/index');
         $I->click(PaymentListPage::CheckboxLine('last()'));
         $I->wait('2');
@@ -526,9 +534,9 @@ class MainCurrencyCest
         $I->waitForElement(".//*[@id='mainContent']/div/div[1]");
         $I->wait('1');
         $I->click(".//*[@id='mainContent']/div/div[1]/div[3]/a[1]");
-        $I->waitForElementVisible('.alert.in.fade.alert-success');
-        $I->see('Способ оплаты удален');
-        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
+//        $I->waitForElementVisible('.alert.in.fade.alert-success');
+        $I->waitForText('Способ оплаты удален');
+//        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
         $I->amOnPage("/admin/components/run/shop/currencies");
         $I->click(CurrenciesPage::DeleteButtonLine('4'));
         $I->waitForElement(".//div[@class='modal hide fade in']");
