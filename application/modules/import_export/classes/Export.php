@@ -12,7 +12,7 @@ class Export {
     public $delimiter = ";";
     public $maxRowLength = 10000;
     public $language = 'ru';
-    protected $attributes = array();
+    public $attributes = array();
     protected $attributesCF = array();
     protected $enclosure = '"';
     public $encoding = 'utf8';
@@ -41,6 +41,7 @@ class Export {
     protected $skipErrors = FALSE;
     protected $categoriesData = NULL;
     protected $categories = NULL;
+    protected $withZip = false;
     
     
     public function __construct(array $settings = array()){
@@ -53,6 +54,33 @@ class Export {
                 }
             }
         }
+        
+        $this->withZip = (bool)$settings['withZip'];
+        if($this->withZip == true && $this->attributes['vimg'] != '1' && $this->attributes['imgs'] != '1'){
+            $this->addError('Укажите колонки фотографий для экспорта.');
+            LOG::create()->set('Укажите колонки фотографий для экспорта.');
+        } 
+        
+        if($this->attributes['name'] != '1'){
+            $this->addError('Атрибут \'Имя\' обязательний для експорта!');
+            LOG::create()->set('Атрибут \'Имя\' обязательний для експорта!');
+        } elseif($this->attributes['url'] != '1'){
+            $this->addError('Атрибут \'URL\' обязательний для експорта!');
+            LOG::create()->set('Атрибут \'URL\' обязательний для експорта!');
+        } elseif($this->attributes['prc'] != '1'){
+            $this->addError('Атрибут \'Цена\' обязательний для експорта!');
+            LOG::create()->set('Атрибут \'Цена\' обязательний для експорта!');
+        } elseif($this->attributes['var'] != '1'){
+            $this->addError('Атрибут \'Имя варианта\' обязательний для експорта!');
+            LOG::create()->set('Атрибут \'Имя варианта\' обязательний для експорта!');
+        } elseif($this->attributes['cat'] != '1'){
+            $this->addError('Атрибут \'Категория\' обязательний для експорта!');
+            LOG::create()->set('Атрибут \'Категория\' обязательний для експорта!');
+        } elseif($this->attributes['num'] != '1'){
+            $this->addError('Атрибут \'Артикул\' обязательний для експорта!');
+            LOG::create()->set('Атрибут \'Артикул\' обязательний для експорта!');
+        }
+        
         if (!count($this->attributes) > 0) {
             $this->addError('Укажите колонки для экспорта.');
             LOG::create()->set('No select collums for export');
@@ -164,7 +192,7 @@ class Export {
         $number = $v['number'];
         $productID = $this->db->where('number', $number)->get('shop_product_variants')->row()->product_id;
         $imgsAdd = $this->db->where('product_id', $productID)->get('shop_product_images')->result_array();        
-        if (count($imgsAdd) > 1) {
+        if (count($imgsAdd) > 0) {
             $imgString = '';
             foreach ($imgsAdd as $img) {
                 $imgString .= $img['image_name'] . '|';
@@ -542,7 +570,7 @@ class Export {
                 $number = $val['number'];
                 $prodId = $this->db->where('number',$number)->get('shop_product_variants')->row()->product_id;
                 $imgsAdd = $this->db->where('product_id',$prodId)->get('shop_product_images')->result_array();
-                if(count($imgsAdd) > 1){
+                if(count($imgsAdd) > 0){
                     foreach($imgsAdd as $img){
                         if(file_exists('./uploads/shop/products/origin/additional/' . $img['image_name'])){
                             $filename = "./uploads/shop/products/origin/additional/" . $img['image_name'];
@@ -557,4 +585,5 @@ class Export {
         }
         $zip->close();
     }
+    
 }

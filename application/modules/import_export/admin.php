@@ -54,7 +54,8 @@ class Admin extends BaseAdminController {
             'encoding' => trim($_POST['encoding']),
             'currency' => trim($_POST['currency']),
             'languages' => trim($_POST['language']),
-            'selectedCats' => $_POST['selectedCats']
+            'selectedCats' => $_POST['selectedCats'],
+            'withZip' => $_POST['withZip']
         ));
         if ($export->hasErrors() == FALSE) {
             $export->getDataArray();
@@ -64,7 +65,7 @@ class Admin extends BaseAdminController {
                 return;
             }
             if (FALSE !== $this->createFile($_POST['type'], $export)) {
-                if($_POST['withZip']){
+                if ($_POST['withZip']) {
                     $export->addToArchive($export->resultArray);
                 }
                 echo $_POST['type'];
@@ -102,6 +103,25 @@ class Admin extends BaseAdminController {
                 ->setData('cFields',$cFields)
                 ->setData('checkedFields',$this->checkedFields)
                 ->renderAdmin('export');
+        }
+        if($check == 'archiveList'){
+            $dir = './application/modules/import_export/backups/';
+            $files = array();
+            if(is_dir($dir)){
+                if($dh = opendir($dir)){
+                    $arr = scandir($dir);
+                    foreach($arr as $str){
+                        if(strpos($str,'.zip') != FALSE){
+                            $files[] = $str;
+                        }
+                    }
+                }
+            }
+            arsort($files);
+            \CMSFactory\assetManager::create()
+                ->registerScript('importExportAdmin')    
+                ->setData('files',$files)    
+                ->renderAdmin('list');
         }
     }
     
@@ -159,4 +179,22 @@ class Admin extends BaseAdminController {
         }
         return '<p class="errors">' . $result . '</p>';
     }
+    
+    public function deleteArchive($str){
+        $dir = './application/modules/import_export/backups/';
+        unlink($dir . $str);
+        $this->getTpl('archiveList');
+    }
+    
+    public function downloadZIP($str){
+        $path = './application/modules/import_export/backups/' . $str;
+        $this->load->helper('download');
+        if(file_exists($path)){
+            $data = file_get_contents($path);
+            force_download($str,$data);
+        } else {
+            LOG::create()->set('Cannot download ZIP!');
+        }
+    }
+    
 }
