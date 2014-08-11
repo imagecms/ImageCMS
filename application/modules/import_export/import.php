@@ -1,6 +1,17 @@
 <?php
 
-/*
+/***********************
+ * Дать права 0777 на папки:
+ * /uploads
+ * /uploads/origin
+ * /uploads/origin/additional
+ * /uploads/shop/products/origin
+ * /uploads/shop/products/origin/additional
+ * 
+ * /application/backups 
+ * /application/modules/import_export/backups
+ ***********************
+ * 
  * Дополнительные фото и фото вариантов.
  * 
  * Фото вариантов должны содержаться в папку /uploads/origin/
@@ -12,6 +23,21 @@
  * Если их нет в этой папке, то производится проверка на наличие их в
  * папке /uploads/shop/products/origin/additional. Если там они присутствуют, 
  * то вносятся в базу.
+ * 
+ * Доступен импорт картинок по ссылкам из интернета.
+ * В поле vimg должно быть http://сайт/picture.png (jpg|gif|jpeg)
+ * Имя картинки формируется из имени домена и названия картинки (сайт_picture.png)
+ * Картинка сохраняется в папку /uploads/origin, копируются в /uploads/shop/products/origin
+ * и заносятся в базу.
+ * Если картинка с таким названием уже существует, шаг пропускается.
+ * 
+ * Доступен импорт дополнительных картинок по ссылкам из интернета.
+ * В поле imgs должны быть ссылки http://сайт/picture2.png|http://сайт/picture1.png
+ * Сохраняются в папку uploads/origin/additional, копируется в /uploads/shop/products/origin/additional
+ * и заносятся в базу.
+ * Если картинка с таким названием уже существует, шаг пропускается.
+ * В строке могут быть как ссылки так и названия картинок, которые содержатся в папке.
+ * http://сайт/picture2.png|picture1.png|picture3.png
  * 
  * Добавлены новые ошибки Factor.php:
   const ErrorUrlAttribute = "Атрибут 'URL' не указан. Error: EIx011";
