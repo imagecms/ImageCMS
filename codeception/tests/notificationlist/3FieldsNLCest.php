@@ -238,7 +238,9 @@ class FieldsNLCest
     public function ButonInformationList (NotificationListTester $I){
         $I->wantTo('Verify Valid Information Presence in Button Information.');
         $I->amOnPage(NotificationListPage::$ListPageURL);
+        $I->waitForElement(NotificationListPage::$ListButtonInformation);
         $I->click(NotificationListPage::$ListButtonInformation);
+        $I->wait('1');
         $I->see('Товар', 'h3.popover-title');
         $I->see('Смартфон Samsung GT-S7530 Omnia M EAA Deep Grey (Смартфон Samsung GT-S7530 Omnia M EAA Deep Grey)', 'p > div.check_product > a');
         $I->click(NotificationListPage::$ListButtonInformation);
@@ -322,8 +324,10 @@ class FieldsNLCest
         $I->wantTo('Verify Input Valid Values in Field.');
         $I->amOnPage(NotificationListPage::$ListPageURL);
         $I->click(NotificationListPage::$ListLinkEditting);
+        $I->wait('1'); 
         $I->fillField(NotificationListPage::$EditingFildExpirationDate, '1999-05-03');
         $I->click(NotificationListPage::$EditingButtonSave);
+        $I->wait('1'); 
         $I->seeInField(NotificationListPage::$EditingFildExpirationDate, '1999-05-03');
     }
     

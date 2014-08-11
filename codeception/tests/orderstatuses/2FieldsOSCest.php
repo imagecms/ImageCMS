@@ -6,7 +6,7 @@ class FieldsOSCest
 //---------------------------AUTORIZATION---------------------------------------
     
     /**
-     * @group a
+     * @group aaa
      */
     public function Login(OrderStatusesTester $I){
         InitTest::Login($I);
@@ -18,6 +18,7 @@ class FieldsOSCest
     public function CreateFieldName1Symvol (OrderStatusesTester $I){
         $I->wantTo('Verify Create and Present Status Whit 1 Symbol on Name.');
         $name=1;
+        $I->wait(1);
         $this->COS($I, $name);
         $this->VOS($I, $name);
         $this->DCOS($I);
@@ -30,17 +31,19 @@ class FieldsOSCest
     public function CreateField25Symvol (OrderStatusesTester $I){
         $I->wantTo('Verify Create and Present Status Whit 25 Symbol on Name.');
         $name="йцукен123456ЪХЗЩЯЧ09876Qx";
+        $I->wait(1);
         $this->COS($I, $name);
         $this->VOS($I, $name);
         $this->DCOS($I);
     }
     
     /**
-     * @group a
+     * @group aaa
      */
     public function CreateFieldName50Symvol (OrderStatusesTester $I){
         $I->wantTo('Verify Create and Present Status Whit 50 Symbol on Name.');
         $name="йцукен123456ЪХЗЩЯЧ09876QWERTY987zxzxczxc123123123q";
+        $I->wait(1);
         $this->COS($I, $name);
         $this->VOS($I, $name);
         $this->DCOS($I);
@@ -53,6 +56,7 @@ class FieldsOSCest
         $I->wantTo('Verify Create and Present Status Whit 51 Symbol on Name.');
         $name50="йцукен123456ЪХЗЩЯЧ09876QWERTY987zxzxczxc123123123q";
         $name51="йцукен123456ЪХЗЩЯЧ09876QWERTY987zxzxczxc123123123qX";
+        $I->wait(1);
         $this->COS($I, $name51);
         $this->VOS($I, $name50);
         $this->DCOS($I);
@@ -65,6 +69,7 @@ class FieldsOSCest
         $I->wantTo('Verify Create and Present Status Whit 49 Symbol and 1 Space on Name.');
         $name49Space1="йцукен123456ЪХЗЩЯЧ09876QWERTY987zxzxczxc123123123 ";
         $name="йцукен123456ЪХЗЩЯЧ09876QWERTY987zxzxczxc123123123";
+        $I->wait(1);
         $this->COS($I, $name49Space1);
         $this->VOS($I, $name);
         $this->DCOS($I);
@@ -78,6 +83,7 @@ class FieldsOSCest
         $I->wantTo('Verify Create and Present Status Whit 1 Space and 49 Symbol on Name.');
         $name49Space1=" йцукен123456ЪХЗЩЯЧ09876QWERTY987zxzxczxc123123123";
         $name="йцукен123456ЪХЗЩЯЧ09876QWERTY987zxzxczxc123123123";
+        $I->wait(1);
         $this->COS($I, $name49Space1);
         $this->VOS($I, $name);
         $this->DCOS($I);
@@ -89,6 +95,7 @@ class FieldsOSCest
     public function CreateFieldSymvolsCyrillicSmall (OrderStatusesTester $I){
         $I->wantTo('Verify Create and Present Status Whit Cirillic Small Symbol on Name.');
         $name="абвгдеёжзийклмнопрстуфхцчшщьыъэюяїєі";
+        $I->wait(1);
         $this->COS($I, $name);
         $this->VOS($I, $name);
         $this->DCOS($I);
@@ -100,6 +107,7 @@ class FieldsOSCest
     public function CreateFieldSymvolsCyrillicBig (OrderStatusesTester $I){
         $I->wantTo('Verify Create and Present Status Whit Cirillic Big Symbol on Name.');
         $name="АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЬЫЪЭЮЯЇЄІ";
+        $I->wait(1);
         $this->COS($I, $name);
         $this->VOS($I, $name);
         $this->DCOS($I);
@@ -111,6 +119,7 @@ class FieldsOSCest
     public function CreateFieldSymvolsNumeral (OrderStatusesTester $I){
         $I->wantTo('Verify Create and Present Status Whit Numeral Symbol on Name.');
         $name="1 2 3 4 5 6 7 8 9 0";
+        $I->wait(1);
         $this->COS($I, $name);
         $this->VOS($I, $name);
         $this->DCOS($I);
@@ -122,6 +131,7 @@ class FieldsOSCest
     public function CreateFieldPunctuation (OrderStatusesTester $I){
         $I->wantTo('Verify Create and Present Status Whit Punctuation Symbol on Name.');
         $name="¿←↑→↓ƒ∞√±≥≤><−⁄÷×–—‚>@!?%<&€¦§¨«»¯*№{}[])(^:|\~;";
+        $I->wait(1);
         $this->COS($I, $name);
         $this->VOS($I, $name);
         $this->DCOS($I);
@@ -133,6 +143,7 @@ class FieldsOSCest
     public function CreateFieldSymvolsLatinSmall (OrderStatusesTester $I){
         $I->wantTo('Verify Create and Present Status Whit Latin Small Symbol on Name.');
         $name="abcdefghijklmnopqrstuvwxyz";
+        $I->wait(1);
         $this->COS($I, $name);
         $this->VOS($I, $name);
         $this->DCOS($I);
@@ -144,6 +155,7 @@ class FieldsOSCest
     public function CreateFieldSymvolsLatinBig (OrderStatusesTester $I){
         $I->wantTo('Verify Create and Present Status Whit Latin Big Symbol on Name.');
         $name="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        $I->wait(1);
         $this->COS($I, $name);
         $this->VOS($I, $name);
         $this->DCOS($I);
@@ -155,6 +167,7 @@ class FieldsOSCest
     public function EditingFild1Symvol(OrderStatusesTester $I){
         $I->wantTo('Verify Edit and Present Status Whit 1 Symbol on Name.');
         $nameEdt="1";
+        $I->wait(1);
         $this->EOS($I, $nameEdt);
         $this->VOS($I, $nameEdt);
         $this->DCOS($I);       
@@ -166,6 +179,7 @@ class FieldsOSCest
     public function EditingFild25Symvol(OrderStatusesTester $I){
         $I->wantTo('Verify Edit and Present Status Whit 25 Symbol on Name.');
         $nameEdt="йцукен123456ЪХЗЩЯЧ09876Qx";
+        $I->wait(1);
         $this->EOS($I, $nameEdt);
         $this->VOS($I, $nameEdt);
         $this->DCOS($I);       
@@ -178,6 +192,7 @@ class FieldsOSCest
     public function EditingFild50Symvol(OrderStatusesTester $I){
         $I->wantTo('Verify Edit and Present Status Whit 50 Symbol on Name.');
         $nameEdt="йцукен123456ЪХЗЩЯЧ09876Qxйцукен123456ЪХЗЩЯЧ09876Qx";
+        $I->wait(1);
         $this->EOS($I, $nameEdt);
         $this->VOS($I, $nameEdt);
         $this->DCOS($I);       
@@ -190,6 +205,7 @@ class FieldsOSCest
         $I->wantTo('Verify Edit and Present Status Whit 51 Symbol on Name.');
         $nameEdt="йцукен123456ЪХЗЩЯЧ09876Qxйцукен123456ЪХЗЩЯЧ09876Qx1";
         $nameAssert="йцукен123456ЪХЗЩЯЧ09876Qxйцукен123456ЪХЗЩЯЧ09876Qx";
+        $I->wait(1);
         $this->EOS($I, $nameEdt);
         $this->VOS($I, $nameAssert);
         $this->DCOS($I);       
@@ -202,6 +218,7 @@ class FieldsOSCest
         $I->wantTo('Verify Edit and Present Status Whit 49 Symbol and 1 space on Name.');
         $nameEdt="йцукен123456ЪХЗЩЯЧ09876Qxйцукен123456ЪХЗЩЯЧ09876Q ";
         $nameAssert="йцукен123456ЪХЗЩЯЧ09876Qxйцукен123456ЪХЗЩЯЧ09876Q";
+        $I->wait(1);
         $this->EOS($I, $nameEdt);
         $this->VOS($I, $nameAssert);
         $this->DCOS($I);       
@@ -215,6 +232,7 @@ class FieldsOSCest
         $I->wantTo('Verify Edit and Present Status Whit 1 Space and 49 Symbol on Name.');
         $nameEdt=" йцукен123456ЪХЗЩЯЧ09876Qxйцукен123456ЪХЗЩЯЧ09876Q";
         $nameAssert="йцукен123456ЪХЗЩЯЧ09876Qxйцукен123456ЪХЗЩЯЧ09876Q";
+        $I->wait(1);
         $this->EOS($I, $nameEdt);
         $this->VOS($I, $nameAssert);
         $this->DCOS($I);       
@@ -228,6 +246,7 @@ class FieldsOSCest
     public function EditFieldSymvolsCyrillicSmall (OrderStatusesTester $I){
         $I->wantTo('Verify Edit and Present Status Whit Cirillic Small Symbol on Name.');
         $name="абвгдеёжзийклмнопрстуфхцчшщьыъэюяїєі";
+        $I->wait(1);
         $this->EOS($I, $name);
         $this->VOS($I, $name);
         $this->DCOS($I);
@@ -239,6 +258,7 @@ class FieldsOSCest
     public function EditFieldSymvolsCyrillicBig (OrderStatusesTester $I){
         $I->wantTo('Verify Edit and Present Status Whit Cirillic Big Symbol on Name.');
         $name="АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЬЫЪЭЮЯЇЄІ";
+        $I->wait(1);
         $this->EOS($I, $name);
         $this->VOS($I, $name);
         $this->DCOS($I);
@@ -250,6 +270,7 @@ class FieldsOSCest
     public function EditFieldSymvolsNumeral (OrderStatusesTester $I){
         $I->wantTo('Verify Edit and Present Status Whit Numeral Symbol on Name.');
         $name="1 2 3 4 5 6 7 8 9 0";
+        $I->wait(1);
         $this->EOS($I, $name);
         $this->VOS($I, $name);
         $this->DCOS($I);
@@ -261,6 +282,7 @@ class FieldsOSCest
     public function EditFieldPunctuation (OrderStatusesTester $I){
         $I->wantTo('Verify Edit and Present Status Whit Punctuation Symbol on Name.');
         $name="¿←↑→↓ƒ∞√±≥≤><−⁄÷×–—‚>@!?%<&€¦§¨«»¯*№{}[])(^:|\~;";
+        $I->wait(1);
         $this->EOS($I, $name);
         $this->VOS($I, $name);
         $this->DCOS($I);
@@ -272,6 +294,7 @@ class FieldsOSCest
     public function EditFieldSymvolsLatinSmall (OrderStatusesTester $I){
         $I->wantTo('Verify Edit and Present Status Whit Latin small Symbol on Name.');
         $name="abcdefghijklmnopqrstuvwxyz";
+        $I->wait(1);
         $this->EOS($I, $name);
         $this->VOS($I, $name);
         $this->DCOS($I);
@@ -283,6 +306,7 @@ class FieldsOSCest
     public function EditFieldSymvolsLatinBig (OrderStatusesTester $I){
         $I->wantTo('Verify Edit and Present Status Whit Latin Dig Symbol on Name.');
         $name="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        $I->wait(1);
         $this->EOS($I, $name);
         $this->VOS($I, $name);
         $this->DCOS($I);

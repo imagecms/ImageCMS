@@ -109,10 +109,13 @@ class IntegrationOSCest
             $searchNameOl=$I->grabTextFrom("//td[3]/select/option[$j]");
             if($searchNameOl == $nameEditStatus){                   
                 $I->comment("Order Status '$nameEditStatus' Detectet In Row:'$j'List Select");                  
-                InitTest::ClearAllCach($I);                    
+                InitTest::ClearAllCach($I);  
+                break;
              }
+            break; 
         }
         $I->see($nameEditStatus,'//td[3]/select');
+        
     }
     
     
