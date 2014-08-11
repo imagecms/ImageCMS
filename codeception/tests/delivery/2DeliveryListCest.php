@@ -6,13 +6,13 @@ class DeliveryListCest {
 
     public $name = "ДоставкаСписокТест";
     
-    public function _before(DeliveryTester $I){
-        static $LoggedIn=false;
-        if ($LoggedIn) {
-            $I->amOnPage(DeliveryPage::$URL); 
-        }
-        $LoggedIn = true ;
-    }
+//    public function _before(DeliveryTester $I){
+//        static $LoggedIn=false;
+//        if ($LoggedIn) {
+//            $I->amOnPage(DeliveryPage::$URL); 
+//        }
+//        $LoggedIn = true ;
+//    }
 
     /**
      * @group list
@@ -20,26 +20,29 @@ class DeliveryListCest {
      */
     public function authorization(DeliveryTester $I) {
         InitTest::Login($I);
-        $I->amOnPage(DeliveryPage::$URL);
     }
 
 
 
     /**
      * @group list
+     * @group current
      * @guy DeliveryTester\DeliverySteps
      */
     public function initialisation(DeliveryTester\DeliverySteps $I) {
+        $I->amOnPage(DEliveryPage::$URL);
         if (!$I->SearchDeliveryMethod($this->name)) {
-            $I->amOnPage(DeliveryCreatePage::$URL);
             $I->CreateDelivery($this->name);
         }
     }
 
     /**
      * @group list
+     * @group current
      */
     public function checkBoxTitle(DeliveryTester $I) {
+        $I->amOnPage(DeliveryPage::$URL);
+        $I->waitForText("Список способов доставки");
         $I->click(DeliveryPage::$CheckboxHeader);
         $Rowcount = $I->grabClassCount($I, 'niceCheck') - 1;
         for ($row = 1; $row <= $Rowcount;  ++$row) {
@@ -55,6 +58,7 @@ class DeliveryListCest {
      * @group list
      */
     public function checkBoxLine(DeliveryTester $I) {
+        $I->amOnPage(DeliveryPage::$URL);
         $I->click(DeliveryPage::ListCheckboxLine(1));
         $Activity = $I->grabAttributeFrom("//tbody//tr[1]", 'class');
         $I->assertEquals("active", $Activity);
@@ -67,6 +71,7 @@ class DeliveryListCest {
      * @guy DeliveryTester\DeliverySteps
      */
     public function toggleActive(DeliveryTester\DeliverySteps $I) {
+        $I->amOnPage(DeliveryPage::$URL);
         $I->comment("$this->name");
         $row = $I->SearchDeliveryMethod($this->name);
         $class = $I->grabAttributeFrom(DeliveryPage::ListActiveButtonLine($row), 'class');
@@ -82,10 +87,10 @@ class DeliveryListCest {
      * Verify that unactive method isn't present at frontend
      * 
      * @group list
-     * @group current
      * @guy DeliveryTester\DeliverySteps
      */
     public function toggleUnActive(DeliveryTester\DeliverySteps $I) {
+        $I->amOnPage(DeliveryPage::$URL);
         $row = $I->SearchDeliveryMethod($this->name);
         if ($row) {
             $ActiveButtonClass = $I->grabAttributeFrom(DeliveryPage::ListActiveButtonLine($row), 'class');
@@ -108,6 +113,7 @@ class DeliveryListCest {
      * @guy DeliveryTester\DeliverySteps
      */
     public function windowButtonCancelX(DeliveryTester\DeliverySteps $I) {
+        $I->amOnPage(DeliveryPage::$URL);
         $row = $I->SearchDeliveryMethod($this->name);
         $I->click(DeliveryPage::ListCheckboxLine($row));
         $I->click(DeliveryPage::$DeleteButton);
@@ -127,6 +133,7 @@ class DeliveryListCest {
      * @guy DeliveryTester\DeliverySteps
      */
     public function buttonDelete(DeliveryTester\DeliverySteps $I) {
+        $I->amOnPage(DeliveryPage::$URL);
         $row = $I->SearchDeliveryMethod($this->name);
         if(!$row){ 
             $I->createDelivery($this->name);
@@ -138,7 +145,7 @@ class DeliveryListCest {
         $I->waitForText("Удаление способов доставки", NULL, "//*[@id='mainContent']/div/div[1]/div[1]/h3");
         $I->wait(2);
         $I->click(DeliveryPage::$DeleteWindowDelete);
-        $I->CheckForAlertPresent('success', 'delete');
+        $I->exactlySeeAlert($I,'success', 'Способ доставки удален');
     }
 //    /**
 //     * @group list

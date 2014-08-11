@@ -6,26 +6,6 @@ class DeliveryCreateCest {
 
     protected $CreatedMethods = [];
 
-    
-    
-    
-    
-    
-//    _________________________________________________________________________DONT NEED
-//    public function _before(DeliveryTester $I) {
-//        static $LoggedIn = false;
-//        if ($LoggedIn) {
-//            $I->amOnPage(DeliveryPage::$URL);
-//            $I->click(DeliveryPage::$CreateButton);
-//            $I->waitForText("Создание способа доставки", NULL, '.title');
-//        }
-//        $LoggedIn = true;
-//    }
-    
-    
-    
-    
-    
 
     /**
      * @group create
@@ -300,6 +280,7 @@ class DeliveryCreateCest {
 
     /**
      * @group create
+     * @group current
      * @guy DeliveryTester\DeliverySteps
      */
     public function deliveryPaymentEmpty(DeliveryTester\DeliverySteps $I) {
@@ -308,6 +289,7 @@ class DeliveryCreateCest {
         $this->CreatedMethods[] = $name;
 
         $I->CreateDelivery($name, 'on', null, null, null, null, null, null);
+        $I->waitForText('Редактирование способа доставки: ' . $name, 10);
         $I->CheckInFrontEnd($name, null, null, null, null, 'off');
     }
 

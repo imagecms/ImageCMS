@@ -103,8 +103,9 @@ class DeliverySteps extends \DeliveryTester {
      */
     function CheckInFrontEnd($DeliveryName, $description = null, $price = null, $freefrom = null, $message = null, $pay = null) {
         $I = $this;
-        
+        $I->wait(1);
         $I->amOnPage('/');
+        $I->waitForElement('.menu-header');
 
         $buy = "//div[@class='frame-prices-buy f-s_0']//form/div[3]";
         $globalbaseket = 'div#tinyBask button';
@@ -279,7 +280,9 @@ $I = $this;
      */
     function CheckInList($name,$active=null,$price=null,$freefrom=null){
         $I = $this;
+        $I->wait(3);
         $I->amOnPage(\DeliveryPage::$URL);
+        $I->waitForText('Список способов доставки');
         $rows  = $I->grabTagCount($I,"tbody tr");
         $I->comment($rows);
         $present = FALSE;
@@ -467,8 +470,10 @@ $I = $this;
                     break;
             case 'required':
                     $I->comment("I want to see that field is required");
-                    $I->waitForElementVisible('//label[@generated="true"]');
-                    $I->see('Это поле обязательное.', 'label.alert.alert-error');
+                    $I->waitForText('Это поле обязательное.', NULL, '//label[@generated="true"]');
+//                    $I->waitForElementVisible('//label[@generated="true"]');
+//                    $I->wait(1);
+//                    $I->see('Это поле обязательное.', 'label.alert.alert-error');
                     if      ($text =='create') { $I->assertEquals($I->grabAttributeFrom(\DeliveryCreatePage::$FieldName, 'class'), "alert alert-error"); }
                     elseif  ($text =='edit')   { $I->assertEquals($I->grabAttributeFrom(\DeliveryEditPage::$FieldName, 'class'), "required alert alert-error"); }
                     break;
