@@ -21,7 +21,9 @@ class TextElementNLCest
     public function CreateNotificationFront(NotificationListTester $I){
         $I->wantTo('Create Notification on Frontend.');
         $I->amOnPage(NotificationCreateFrontPage::$PageURL);
+        $I->wait('1');
         $I->scrollToElement($I, '.infoBut.isDrop');
+        $I->wait('1');
         $I->click(NotificationCreateFrontPage::$ButtonOnPage);
         $I->waitForText('Сообщить о появлении');
         $I->click(NotificationCreateFrontPage::$ButtonSendPresent);
@@ -72,8 +74,8 @@ class TextElementNLCest
         $I->see('Отменить фильтрацию', NotificationListPage::$ListButtonCancelFilter);
         $I->see('Удалить', NotificationListPage::$ListButtonDelete);
         $I->see('Все', NotificationListPage::$ListButtonAll);
-        $I->see('Новый', NotificationListPage::$ListButtonNew);
-        $I->see('Выполнен', NotificationListPage::$ListButtonMade);
+        $I->see('Выполнен', NotificationListPage::$ListButtonNew);
+        $I->see('Новый', NotificationListPage::$ListButtonMade);
         $I->see('ID', NotificationListPage::$ListColumnID);
         $I->see('E-mail', NotificationListPage::$ListColumnEmeil);
         $I->see('Время добавления', NotificationListPage::$ListColumnAddition);
@@ -251,16 +253,28 @@ class TextElementNLCest
     /**
      * @group a
      */
-    public function TextMessageEditNotifi(NotificationListTester $I){
+    public function TextMessageEditNotifiButtonSave(NotificationListTester $I){
         $I->wantTo('Verify Text Message of Edit Notifi Presence.');
         $I->amOnPage(NotificationListPage::$ListPageURL);
         $I->click(NotificationListPage::$ListLinkEditting);
         $I->click(NotificationListPage::$EditingButtonSave);
-        $I->waitForText('Уведомление обновлено');
-        $I->see('Уведомление обновлено', '.alert.in.fade.alert-success');
+        $I->wait('1'); 
+        $I->exactlySeeAlert($I, 'success', 'Уведомление обновлено');
+    }
+    
+    
+    
+    
+    /**
+     * @group a
+     */
+    public function TextMessageEditNotifiButtonSaveandBack(NotificationListTester $I){
+        $I->wantTo('Verify Text Message of Edit Notifi Presence.');
+        $I->amOnPage(NotificationListPage::$ListPageURL);
+        $I->click(NotificationListPage::$ListLinkEditting);
         $I->wait('1'); 
         $I->click(NotificationListPage::$EditingButtonSaveAndGoBack);
-        $I->see('Уведомление обновлено', '.alert.in.fade.alert-success');
+        $I->exactlySeeAlert($I, 'success', 'Уведомление обновлено');
     }
     
     
@@ -298,7 +312,7 @@ class TextElementNLCest
         $I->wait('1');
         $I->click(NotificationListPage::$DeleteWindowButtonDelete);
         $I->waitForText('Удаление');
-        $I->see('Удаление', '.alert.in.fade.alert-success');
+        $I->exactlySeeAlert($I, 'success', 'Удаление');
         InitTest::ClearAllCach($I);
     }
       
