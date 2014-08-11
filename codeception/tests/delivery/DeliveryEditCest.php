@@ -43,6 +43,7 @@ class DeliveryEditCest {
 
     /**
      * @group edit
+     * @group current
      * @guy DeliveryTester\DeliverySteps
      */
     public function authorization(DeliveryTester\DeliverySteps $I) {
@@ -131,11 +132,13 @@ class DeliveryEditCest {
 
     /**
      * @group edit
+     * @group current
      * @guy DeliveryTester\DeliverySteps
      */
     public function eDescriptionDescriptionPrice(DeliveryTester\DeliverySteps $I) {
         $description = $descriptionprice = InitTest::$textSymbols;
         $I->EditDelivery(null, 'on', $description, $descriptionprice);
+        $I->waitForText("Редактирование способа доставки: $this->Name", NULL, ".title");
         $I->seeInField(DeliveryEditPage::$FieldDescription, $description);
         $I->seeInField(DeliveryEditPage::$FieldDescriptionPrice, $descriptionprice);
         $I->CheckInFrontEnd($this->Name, $description);
@@ -264,7 +267,7 @@ class DeliveryEditCest {
      */
     public function ePriceSpecified250(DeliveryTester\DeliverySteps $I) {
         $message = InitTest::$text250;
-        $I->EditDelivery(null, null, null, null, null, null, $message);
+        $I->EditDelivery(null, 'on', null, null, null, null, $message);
         $I->CheckInFrontEnd($this->Name, null, null, null, $message);
     }
     
@@ -274,7 +277,7 @@ class DeliveryEditCest {
      */
     public function eFieldPriceSpecified500(DeliveryTester\DeliverySteps $I) {
         $message = InitTest::$text500;
-        $I->EditDelivery(null, null, null, null, null, null, $message);
+        $I->EditDelivery(null, 'on', null, null, null, null, $message);
         $I->CheckInFrontEnd($this->Name, null, null, null, $message);
     }
     
@@ -285,7 +288,7 @@ class DeliveryEditCest {
      */
     public function eFieldPriceSpecifiedSymbols(DeliveryTester\DeliverySteps $I) {
         $message = InitTest::$textSymbols;
-        $I->EditDelivery(null, null, null, null, null, null, $message);
+        $I->EditDelivery(null, 'on', null, null, null, null, $message);
         $I->CheckInFrontEnd($this->Name, null, null, null, $message);
     }
     
@@ -316,7 +319,7 @@ class DeliveryEditCest {
     public function eDeliveryPaymentEmpty(DeliveryTester\DeliverySteps $I){
         //$pay = $I->GrabAllCreatedPayments();
         $this->_before($I);
-        $I->EditDelivery(null, null, null, null, null, null, null, 'off');
+        $I->EditDelivery(null, 'on', null, null, null, null, null, 'off');
         $I->CheckInFrontEnd($this->Name, null, null, null, null, 'off');
     }
     
@@ -327,7 +330,7 @@ class DeliveryEditCest {
     public function eDeliveryPaymentAll(DeliveryTester\DeliverySteps $I){
         $pay = $I->GrabAllCreatedPayments();
         $this->_before($I);
-        $I->EditDelivery(null, null, null, null, null, null, null, $pay);
+        $I->EditDelivery(null, 'on', null, null, null, null, null, $pay);
         $I->CheckInFrontEnd($this->Name, NULL, null, null, null, $pay);
         
     }
