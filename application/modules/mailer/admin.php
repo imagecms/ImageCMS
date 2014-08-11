@@ -14,7 +14,7 @@ class Admin extends BaseAdminController {
         parent::__construct();
 
         $this->load->library('DX_Auth');
-         $lang = new MY_Lang();
+        $lang = new MY_Lang();
         $lang->load('mailer');
         //cp_check_perm('module_admin');
     }
@@ -84,9 +84,9 @@ class Admin extends BaseAdminController {
                     $this->email->reply_to($_POST['email'], $_POST['name']);
                     $this->email->subject($_POST['subject']);
                     $this->email->message($tmp_msg);
-                    $counter['all']++;
+                    $counter['all'] ++;
                     if ($this->email->send()) {
-                        $counter['true']++;
+                        $counter['true'] ++;
                     }
                 }
 
