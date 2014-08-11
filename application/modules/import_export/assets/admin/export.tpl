@@ -93,7 +93,7 @@
                                             <div class="d_n">{lang('The data of your database will be stored in the folder','admin')} {echo BACKUPFOLDER}</div>
                                             <label class="" style="display: inline;">
                                                 <input class="btn btn-small action_on" type="checkbox" value="true" name="withZip">
-                                                <span>{lang('Take a snapshot of the database before start','admin')}</span>
+                                                <span>{lang('Сделать архивацию фото','admin')}</span>
                                             </label>
                                         </span>
                                             

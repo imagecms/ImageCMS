@@ -3,7 +3,7 @@
         <div class="frame_title clearfix">
             <div class="pull-left">
                 <span class="help-inline"></span>
-                <span class="title">{lang('Notification about new comments', 'sample_module')}</span>
+                <span class="title">{lang('Категории управления модулем', 'sample_module')}</span>
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
@@ -13,8 +13,9 @@
             </div>
         </div>
         <div class="tab-pane active" id="mail">
-            <a href="{$BASE_URL}admin/components/init_window/import_export/getTpl/import">Import</a>
-            <a href="{$BASE_URL}admin/components/init_window/import_export/getTpl/export">Export</a>
+            <a href="{$BASE_URL}admin/components/init_window/import_export/getTpl/import">Импорт</a>
+            <a href="{$BASE_URL}admin/components/init_window/import_export/getTpl/export">Експорт</a>
+            <a href="{$BASE_URL}admin/components/init_window/import_export/getTpl/archiveList">Список архивов експорта</a>
         </div>
     </section>
 </div>
