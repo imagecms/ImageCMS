@@ -487,37 +487,12 @@ class ProductsImport extends BaseImport {
     private function runCopyImages($result) {
         foreach ((array) $result as $key => $item) {
             if (preg_match("/http\:\/\//i", $item['vimg'])) {
-                $name = end(explode('/', $item['vimg']));
-                $name = explode('.', $item['vimg']);
-                $name = $name[0];
-                
-                $format = end(explode('.', $item['vimg']));
-                $format = strtolower($format);
-                switch ($format){
-                    case 'jpg':
-                    case 'jpeg':
-                    case 'png':
-                    case 'gif': $flag = TRUE; break;
-                    default: $flag = FALSE;  \import_export\classes\Logger::create()
-                            ->set('The link does not lead to the image or images in the correct format ProductsImport.php. - IMPORT'); 
-                            break;                    
-                }
-                if($flag){
-                    $url = $item['vimg'];
-                    $timeoutlimit = '5';
-                    ini_set('default_socket_timeout', $timeoutlimit);
-                    $fp = fopen($url, "r");
-                    $res = fread($fp, 500);
-                    fclose($fp);
-                    if (strlen($res) > 0){
-                        $s = file_get_contents($item['vimg']);
-                        file_put_contents('./uploads/111.'.$format ,$s);                    
-                    }
-                    else{
-                      \import_export\classes\Logger::create()
-                            ->set('Server with a picture does not answer '.$timeoutlimit.' sec. ProductsImport.php. - IMPORT');
-                    }
-                    
+                $filename = $this->saveImgByUrl($item['vimg'], 'origin');
+                if ($filename) {
+                    copy($this->imagetemppathOrigin . $filename, $this->imageOriginPath . $filename);
+                    $this->db->set('mainImage', $filename);
+                    $this->db->where('id', $item['variantId']);
+                    $this->db->update('shop_product_variants');
                 }
             } else {
                 if (($item['vimg'] != '') && (file_exists($this->imagetemppathOrigin . $item['vimg']))) {
@@ -532,6 +507,63 @@ class ProductsImport extends BaseImport {
                 }
             }
         }
+    }
+
+    /**
+     * Save the picture on coal in the original folder or the original/additional
+     * @param str $param url
+     * @param str $type (origin|additional)
+     * @return boolean|string Name of file OR False
+     * @access private
+     */
+    private function saveImgByUrl($param, $type = false) {
+        if (!$type) {
+            \import_export\classes\Logger::create()
+                    ->set('$type is false. saveImgByUrl() ProductsImport.php. - IMPORT');
+            return FALSE;
+        }
+        $path = ($type && $type == 'origin') ? './uploads/origin/' : './uploads/origin/additional/';
+        $name = explode('/', $param);
+        $sitename = $name[2];
+        $name = explode('.', end($name));
+        $name = $name[0];
+        $goodName = $sitename . '_' . $name;
+
+        $format = end(explode('.', $param));
+        $format = strtolower($format);
+        switch ($format) {
+            case 'jpg':
+            case 'jpeg':
+            case 'png':
+            case 'gif': $flag = TRUE;
+                break;
+            default: $flag = FALSE;
+                \import_export\classes\Logger::create()
+                        ->set('The link does not lead to the image or images in the correct format ProductsImport.php. - IMPORT');
+                break;
+        }
+        if (!file_exists($path . $goodName . '.' . $format)) {
+            if ($flag) {
+                $url = $param;
+                $timeoutlimit = '5';
+                ini_set('default_socket_timeout', $timeoutlimit);
+                $fp = fopen($url, "r");
+                $res = fread($fp, 500);
+                fclose($fp);
+                if (strlen($res) > 0) {
+                    $s = file_get_contents($param);
+                    file_put_contents($path . $goodName . '.' . $format, $s);
+                } else {
+                    \import_export\classes\Logger::create()
+                            ->set('Server with a picture does not answer ' . $timeoutlimit . ' sec. ProductsImport.php. - IMPORT');
+                }
+                return $goodName . '.' . $format;
+            }
+            return FALSE;
+        } else {
+            return $goodName . '.' . $format;
+        }
+        return FALSE;
     }
 
     /**
@@ -575,17 +607,27 @@ class ProductsImport extends BaseImport {
             $this->db->set('product_id', $id);
             $img = trim($img);
 
-            if (file_exists($this->imagetemppathAdd . $img)) {
-                /* If the photo is in the orogin folder */
-                copy($this->imagetemppathAdd . $img, $this->imageAddPath . $img);
-                $this->db->set('image_name', $img);
-                $this->db->set('position', $key);            
-            } elseif (file_exists($this->imageAddPath . $img)) {
-                /* If the photo is not in the orogin folder, but there is $this->imageAddPath */
-                $this->db->set('image_name', $img);
-                $this->db->set('position', $key);
+            if (preg_match("/http\:\/\//i", $img)) {
+                $filename = $this->saveImgByUrl($img, 'additional');
+                if ($filename) {
+                    copy($this->imagetemppathAdd . $filename, $this->imageAddPath . $filename);
+                    $this->db->set('image_name', $filename);
+                    $this->db->set('position', $key);
+                    $this->db->insert('shop_product_images');
+                }
+            } else {
+                if (file_exists($this->imagetemppathAdd . $img)) {
+                    /* If the photo is in the orogin folder */
+                    copy($this->imagetemppathAdd . $img, $this->imageAddPath . $img);
+                    $this->db->set('image_name', $img);
+                    $this->db->set('position', $key);
+                } elseif (file_exists($this->imageAddPath . $img)) {
+                    /* If the photo is not in the orogin folder, but there is $this->imageAddPath */
+                    $this->db->set('image_name', $img);
+                    $this->db->set('position', $key);
+                }
+                $this->db->insert('shop_product_images');
             }
-            $this->db->insert('shop_product_images');
         }
     }
 
