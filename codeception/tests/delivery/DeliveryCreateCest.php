@@ -12,7 +12,11 @@ class DeliveryCreateCest {
      * @group current
      */
     public function authorization(DeliveryTester $I) {
-        InitTest::Login($I);
+        if(InitTest::Login($I)){
+            $I->wait(1);
+            $I->amOnPage(DeliveryPage::$URL);
+        }
+        
         InitTest::changeTextAditorToNative($I);
     }
 

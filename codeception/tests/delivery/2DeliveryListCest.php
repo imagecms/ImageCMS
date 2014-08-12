@@ -41,6 +41,7 @@ class DeliveryListCest {
      * @group current
      */
     public function checkBoxTitle(DeliveryTester $I) {
+        $I->wait(1);
         $I->amOnPage(DeliveryPage::$URL);
         $I->waitForText("Список способов доставки");
         $I->click(DeliveryPage::$CheckboxHeader);
@@ -120,9 +121,10 @@ class DeliveryListCest {
         $I->waitForText("Удаление способов доставки", NULL, "//*[@id='mainContent']/div/div[1]/div[1]/h3");
         $I->click(DeliveryPage::$DeleteWindowBack);
         $I->see("Список способов доставки",null,".title");
-        $I->wait(1);
+        $I->wait(3);
         $I->click(DeliveryPage::$DeleteButton);
         $I->waitForText("Удаление способов доставки", NULL, "//*[@id='mainContent']/div/div[1]/div[1]/h3");
+        $I->wait(1);
         $I->click(DeliveryPage::$DeleteWindowX);
         $I->wait(3);
         $I->see("Список способов доставки",null,".title");
