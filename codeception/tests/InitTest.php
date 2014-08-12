@@ -69,6 +69,7 @@ class InitTest {
 
     public static function Loguot($I) {
         if (self::$LoggedIn) {
+            $I->wait(1);
             $I->amOnPage('/admin');
             $I->click(".my_icon.exit_ico");
             $I->waitForElement(".form_login.t-a_c");
