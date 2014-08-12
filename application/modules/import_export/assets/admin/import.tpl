@@ -2,12 +2,12 @@
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
-            <span class="title">{lang('Import-Export CSV/XLS','admin')}</span>
+            <span class="title">{lang('Import-Export CSV/XLS','import_export')}</span>
         </div>
         <div class="clearfix">
             <div class="pull-right">
                 <div class="d-i_b">
-                    <a href="{$BASE_URL}admin/components/init_window/import_export" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Back", 'admin')}</span></a>                        
+                    <a href="{$BASE_URL}admin/components/init_window/import_export" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Back", 'import_export')}</span></a>                        
                 </div>
             </div>
         </div>
@@ -18,7 +18,7 @@
                 <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
                     <thead>
                         <tr>
-                            <th colspan="6">{lang('Import','admin')}</th>
+                            <th colspan="6">{lang('Import','import_export')}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -32,7 +32,7 @@
                                                 <label class="control-label"></label>
                                                 <div class="controls">
                                                     <span class="btn btn-small p_r pull-left">
-                                                        <i class="icon-folder-open"></i>&nbsp;&nbsp;{lang('Select the file','admin')}
+                                                        <i class="icon-folder-open"></i>&nbsp;&nbsp;{lang('Select the file','import_export')}
                                                         <input type="file" id="importcsvfile" name="userfile" class="btn-small btn" />
                                                     </span>
                                                 </div>
@@ -52,7 +52,7 @@
                                                     <span data-title="&lt;b&gt;CSV/XLS/XLSX&lt;/b&gt;" class="popover_ref" data-original-title="">
                                                         <i class="icon-info-sign"></i>
                                                     </span>
-                                                    <div class="d_n">{lang('Select the file in a convenient format','admin')}</div>&nbsp;{lang('Files','admin')}
+                                                    <div class="d_n">{lang('Select the file in a convenient format','import_export')}</div>&nbsp;{lang('Files','import_export')}
                                                 </span>
                                                 <div class="controls">
                                                     <label class="btn-mini btn import_slot">
@@ -101,42 +101,42 @@
                                                 <span data-title="&lt;b&gt;Backup&lt;/b&gt;" class="popover_ref" data-original-title="">
                                                     <i class="icon-info-sign"></i>
                                                 </span>
-                                                <div class="d_n">{lang('The data of your database will be stored in the folder','admin')} {echo BACKUPFOLDER}</div>
+                                                <div class="d_n">{lang('The data of your database will be stored in the folder','import_export')} {echo BACKUPFOLDER}</div>
                                                 <label class="" style="display: inline;">
                                                     <input class="btn btn-small action_on" type="checkbox" {if $withBackup}checked="checked"{/if} value="true" name="withBackup">
-                                                    <span>{lang('Take a snapshot of the database before start','admin')}</span>
+                                                    <span>{lang('Take a snapshot of the database before start','import_export')}</span>
                                                 </label>
                                             </span>
 
                                             <span class="controls span10">
-                                                <span data-title="&lt;b&gt;{lang('Resize','admin')}&lt;/b&gt;" class="popover_ref" data-original-title="">
+                                                <span data-title="&lt;b&gt;{lang('Resize','import_export')}&lt;/b&gt;" class="popover_ref" data-original-title="">
                                                     <i class="icon-info-sign"></i>
                                                 </span>
                                                 <div class="d_n">
-                                                    {lang('For imported images will be produced resize','admin')} <br>
-                                                    {lang('It may take more time','admin')}
+                                                    {lang('For imported images will be produced resize','import_export')} <br>
+                                                    {lang('It may take more time','import_export')}
                                                 </div>
                                                 <label class="" style="display: inline;">
                                                     <input class="btn btn-small action_on" type="checkbox" value="true" name="withResize">
-                                                    <span>{lang('Start resize images after import','admin')}</span>
+                                                    <span>{lang('Start resize images after import','import_export')}</span>
                                                 </label>
                                             </span>
 
                                             <span class="controls span10">
-                                                <span data-title="&lt;b&gt;{lang('Price checking','admin')}&lt;/b&gt;" class="popover_ref" data-original-title="">
+                                                <span data-title="&lt;b&gt;{lang('Price checking','import_export')}&lt;/b&gt;" class="popover_ref" data-original-title="">
                                                     <i class="icon-info-sign"></i>
                                                 </span>
                                                 <div class="d_n">
-                                                    {lang('Will be recalculated prices of products in accordance to the default currency','admin')}
+                                                    {lang('Will be recalculated prices of products in accordance to the default currency','import_export')}
                                                 </div>
                                                 <label class="" style="display: inline;">
                                                     <input class="btn btn-small action_on" type="checkbox" value="true" name="withCurUpdate">
-                                                    <span>{lang('Refresh prices after import','admin')}</span>
+                                                    <span>{lang('Refresh prices after import','import_export')}</span>
                                                 </label>
                                             </span>
 
                                             <!--<div class="control-group">
-                                                <label class="control-label">{lang('Import language ','admin')}:</label>
+                                                <label class="control-label">{lang('Import language ','import_export')}:</label>
                                                 <div class="controls">
                                                     <select name="language">
                                             {foreach $languages as $language}
@@ -149,7 +149,7 @@
                                             <div class="control-group">
                                                 <span class="controls span2">
                                                     <input class="attributes" type="hidden" name="attributes" value="" />
-                                                    <input class="btn btn-small disable action_on" type="submit" value="{lang('Start import','admin')}">
+                                                    <input class="btn btn-small disable action_on" type="submit" value="{lang('Start import','import_export')}">
                                                 </span>
                                             </div>
                                             <!-- End. Let's go Button ;) -->
