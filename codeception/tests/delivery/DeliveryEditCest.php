@@ -351,4 +351,10 @@ class DeliveryEditCest {
         unset($this->CreatedMethods);
     }
 
+    /**
+     * @group edit
+     */
+    public function Logout(DeliveryTester $I) {
+        InitTest::Loguot($I);
+    }
 }
