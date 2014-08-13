@@ -1,5 +1,5 @@
 <?php
-use \AcceptanceTester;
+use \PaymentTester;
 
 class PaymentElementsCest
 {
@@ -7,7 +7,7 @@ class PaymentElementsCest
     /**
      * @group verify
      */
-    public function Authorization(AcceptanceTester $I)
+    public function Authorization(PaymentTester $I)
     {
         InitTest::Login($I);
     }
@@ -15,7 +15,7 @@ class PaymentElementsCest
     /**
      * @group verify
      */
-    public function PaymentListElements(AcceptanceTester $I) {
+    public function PaymentListElements(PaymentTester $I) {
         $I->amOnPage(PaymentListPage::$URL);
         $I->see("Список способов оплаты", PaymentListPage::$Title);
         $I->seeElement(PaymentListPage::$ActiveHeader);
@@ -31,7 +31,7 @@ class PaymentElementsCest
     /**
      * @group verify
      */
-    public function PaymentDeleteWindow(AcceptanceTester $I) {
+    public function PaymentDeleteWindow(PaymentTester $I) {
         $I->click(PaymentListPage::$CheckboxHeader);
         $I->click(PaymentListPage::$ButtonDelete);
         $I->waitForText('Удаление способов оплаты',NULL,PaymentListPage::$DeleteWindowTitle);
@@ -46,7 +46,7 @@ class PaymentElementsCest
     /**
      * @group verify
      */
-    public function miniMessageEdit(AcceptanceTester $I) {
+    public function miniMessageEdit(PaymentTester $I) {
         $I->moveMouseOver(PaymentListPage::MethodNameLine(1));
         $I->waitForElementVisible('.tooltip.fade.top.in');
         $I->see("Редактировать",'.tooltip.fade.top.in');
@@ -57,7 +57,7 @@ class PaymentElementsCest
     /**
      * @group verify
      */
-    public function miniMessagesActive(AcceptanceTester $I) {
+    public function miniMessagesActive(PaymentTester $I) {
         $Class = $I->grabAttributeFrom(PaymentListPage::ActiveLine(1), 'class');
         $I->comment($Class);
         //BUG HERE------------------------------------------------------------------------------------------
@@ -91,7 +91,7 @@ class PaymentElementsCest
     /**
      * @group verify
      */
-    public function PaymentCreateElements(AcceptanceTester $I) {
+    public function PaymentCreateElements(PaymentTester $I) {
         $I->click(PaymentListPage::$ButtonCreate);
         $I->waitForText('Создание способа оплаты', NULL, PaymentCreatePage::$Title);
         $I->see('Создание способа оплаты', PaymentCreatePage::$TitleHead);
@@ -115,7 +115,7 @@ class PaymentElementsCest
     /**
      * @group verify
      */
-    public function PaymentEditElements(AcceptanceTester $I) {
+    public function PaymentEditElements(PaymentTester $I) {
         $I->click("//tbody//tr[1]//a");
         $I->waitForText('Редактирование способа оплаты', NULL, PaymentEditPage::$Title);
         $I->see('Редактирование способа оплаты', PaymentEditPage::$TitleHead);

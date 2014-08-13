@@ -1,5 +1,5 @@
 <?php
-use \AcceptanceTester;
+use \PaymentTester;
 
 require_once 'PaymentHelper.php';
 
@@ -16,7 +16,7 @@ class PaymentCreateCest extends PaymentTestHelper{
     /**
      * @group current
      */
-    public function authorization(AcceptanceTester $I) {
+    public function authorization(PaymentTester $I) {
         InitTest::dataBaseBackUp($I);
 //        InitTest::dataBaseDump($I);
 //        InitTest::dataBaseBackUp($I);
@@ -30,7 +30,7 @@ class PaymentCreateCest extends PaymentTestHelper{
     /**
      * @group create
      */
-    public function nameEmpty(AcceptanceTester $I){
+    public function nameEmpty(PaymentTester $I){
         $name = "";
         $this->CreatePayment($I, $name);
         $this->CheckForAlertPresent($I, 'required');
@@ -39,7 +39,7 @@ class PaymentCreateCest extends PaymentTestHelper{
     /**
      * @group create
      */
-    public function nameNoramal(AcceptanceTester $I){
+    public function nameNoramal(PaymentTester $I){
         $name                   = "ОплатаТест";
         $this->CreatedPaymentMethods[] = $name;
         
@@ -50,7 +50,7 @@ class PaymentCreateCest extends PaymentTestHelper{
     /**
      * @group create
      */
-    public function name250(AcceptanceTester $I){
+    public function name250(PaymentTester $I){
         $name                   = InitTest::$text250;
         $this->CreatedPaymentMethods[] = $name;
         
@@ -61,7 +61,7 @@ class PaymentCreateCest extends PaymentTestHelper{
     /**
      * @group create
      */
-    public function name251(AcceptanceTester $I){
+    public function name251(PaymentTester $I){
         $name                   = InitTest::$text251;
         $this->CreatedPaymentMethods[] = $name;
         
@@ -72,7 +72,7 @@ class PaymentCreateCest extends PaymentTestHelper{
     /**
      * @group create
      */
-    public function nameSymbols(AcceptanceTester $I){
+    public function nameSymbols(PaymentTester $I){
         $name                   = InitTest::$textSymbols;
         $this->CreatedPaymentMethods[] = $name;
         
@@ -87,7 +87,7 @@ class PaymentCreateCest extends PaymentTestHelper{
      * 
      * @group create
      */
-    public function currenciesCheck(AcceptanceTester $I) {
+    public function currenciesCheck(PaymentTester $I) {
         $CreatedCurrencies = $this->GrabAllCreatedCurrenciesOrDelete($I);
         
         //add options of <select> at create page to array $Options[]
@@ -108,7 +108,7 @@ class PaymentCreateCest extends PaymentTestHelper{
          * 
          * @group create
          */
-        public function currencySelection(AcceptanceTester $I){
+        public function currencySelection(PaymentTester $I){
             $PaymentName                = 'ОплатаВалюта';
             $this->CreatedPaymentMethods []    = $PaymentName;
             $CurrencyName               = 'Pounds';
@@ -124,7 +124,7 @@ class PaymentCreateCest extends PaymentTestHelper{
         /**
          * @group create
          */
-        public function checkboxActiveOn(AcceptanceTester $I) {
+        public function checkboxActiveOn(PaymentTester $I) {
             $pay                    = 'ОплатаАктив';
             $this->CreatedPaymentMethods[] = $pay;
             $delivery               = 'ДоставкаоплатаАктив';
@@ -137,7 +137,7 @@ class PaymentCreateCest extends PaymentTestHelper{
         /**
          * @group create
          */
-        public function checkboxActiveOff(AcceptanceTester $I) {
+        public function checkboxActiveOff(PaymentTester $I) {
             $pay                    = 'ОплатаНеАктив';
             $this->CreatedPaymentMethods[] = $pay;
             $delivery               = 'ДоставкаОплатаНеактив';
@@ -155,7 +155,7 @@ class PaymentCreateCest extends PaymentTestHelper{
          * Create Payment methods for each payment system
          * @group create
          */
-        public function fastAllPaymentSystems(AcceptanceTester $I){
+        public function fastAllPaymentSystems(PaymentTester $I){
             $prefix         = 'Оплата';//for name of payment name = $prefix.$paymentsystem
             $PaymentSystems = [
                 'WebMoney',
@@ -184,7 +184,7 @@ class PaymentCreateCest extends PaymentTestHelper{
          * 
          * experimental
          */
-          public function qwewqe(AcceptanceTester $I) {
+          public function qwewqe(PaymentTester $I) {
                    
                
           }  
@@ -194,7 +194,7 @@ class PaymentCreateCest extends PaymentTestHelper{
          * 
          * insert this after all tests
          */
-        public function deleteAllCreatedPaymentsAndCurrencies(AcceptanceTester $I) {
+        public function deleteAllCreatedPaymentsAndCurrencies(PaymentTester $I) {
             $this->DeletePayments($I, $this->CreatedPaymentMethods);
             $this->GrabAllCreatedCurrenciesOrDelete($I, $this->CreatedCurrencies);
         }

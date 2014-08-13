@@ -151,7 +151,7 @@ class AcceptanceTester extends \Codeception\Actor
      * @param type $I
       * @param type $type            type of alert success|error
       * @param type $message         message of alert
-      * @param type $times           one time = 10 milliseconds && 10000 microseconds
+      * @param type $times           one time = 1 milliseconds && 1000 microseconds
      * @see \Codeception\Module\AcceptanceHelper::exactlySeeAlert()
      */
     public function exactlySeeAlert($I, $type = null, $message = null, $times = null) {
