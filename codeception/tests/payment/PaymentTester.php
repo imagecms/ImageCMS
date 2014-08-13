@@ -23,7 +23,7 @@ use Codeception\Module\Cli;
  * @method void comment($description)
  * @method void haveFriend($name)
 */
-class CallbacksTester extends \Codeception\Actor
+class PaymentTester extends \Codeception\Actor
 {
    
     /**

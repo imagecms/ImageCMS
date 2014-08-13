@@ -258,12 +258,10 @@ class PaymentTestHelper {
     /**
      * Create Delivery with specified parrameters
      * 
-     * @version 1.1(remake transmitted values (on|off to null
      * (array) $pay -string only if you transmit one payment method))
      * if you wont to skip some field type null
      * if you want to select several Payment methods transmit array
      * 
-     * @param object            $I                  Controller
      * @param string            $name               Delivery name type off to skip
      * @param sting             $active             Active Checkbox on - enabled| off - disabled
      * @param string            $description        Method description type off to skip
