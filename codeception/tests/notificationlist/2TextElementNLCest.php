@@ -5,7 +5,7 @@ class TextElementNLCest
 //---------------------------AUTORIZATION---------------------------------------  
     
     /**
-     * @group a
+     * @group aaa
      */
     public function Login(NotificationListTester $I){
         InitTest::Login($I);
@@ -16,7 +16,7 @@ class TextElementNLCest
 //---------------------------CREATE NOTIFI FRONT--------------------------------   
     
     /**
-     * @group a
+     * @group aaa
      */
     public function CreateNotificationFront(NotificationListTester $I){
         $I->wantTo('Create Notification on Frontend.');
@@ -72,6 +72,7 @@ class TextElementNLCest
         $I->click(NotificationListPage::$ListMainCheckBox);
         $I->see('Фильтр', NotificationListPage::$ListButtonFilter);
         $I->see('Отменить фильтрацию', NotificationListPage::$ListButtonCancelFilter);
+        $I->wait('1');
         $I->see('Удалить', NotificationListPage::$ListButtonDelete);
         $I->see('Все', NotificationListPage::$ListButtonAll);
         $I->see('Выполнен', NotificationListPage::$ListButtonNew);
@@ -116,12 +117,12 @@ class TextElementNLCest
     public function VerifyTextElementList(NotificationListTester $I){
         $I->wantTo('Verify Visible Message Tooltip on Name Notifi.');
         $I->amOnPage(NotificationListPage::$ListPageURL);
-        $I->wait('1');
+        $I->wait('2');
         $I->moveMouseOver(NotificationListPage::$ListLinkEditting);
-        $I->wait('1');
+        $I->wait('2');
         $I->see('Редактировать уведомление', NotificationListPage::$ListMouseMessage);
         $I->moveMouseOver(NotificationListPage::$ListSelectMain);
-        $I->wait('1');
+        $I->wait('2');
         $I->dontSee('Редактировать уведомление', NotificationListPage::$ListMouseMessage);
         InitTest::ClearAllCach($I);
     }
@@ -136,6 +137,7 @@ class TextElementNLCest
     public function VerifyTextElementDeleteWindow(NotificationListTester $I){
         $I->wantTo('Verify Presence Text on Delete Window.');
         $I->amOnPage(NotificationListPage::$ListPageURL);
+        $I->wait('1');
         $I->click(NotificationListPage::$ListMainCheckBox);
         $I->click(NotificationListPage::$ListButtonDelete);
         $I->waitForText('Запросов на удаление', '5', NotificationListPage::$DeleteWindowTitle);
@@ -157,6 +159,7 @@ class TextElementNLCest
     public function VerifyTextElementEditing(NotificationListTester $I){
         $I->wantTo('Verify Presence Text on Editing Notifi Page.');
         $I->amOnPage(NotificationListPage::$ListPageURL);
+        $I->wait('1');
         $I->click(NotificationListPage::$ListLinkEditting);
         $I->see('Редактирование уведомления', NotificationListPage::$EditingTitle);
         $I->see('Вернуться', NotificationListPage::$EditingButtonBack);
@@ -187,6 +190,7 @@ class TextElementNLCest
     public function VerifyElementPresenceEditing(NotificationListTester $I){
         $I->wantTo('Verify Element Presence on Notifi List Page.');
         $I->amOnPage(NotificationListPage::$ListPageURL);
+        $I->wait('1');
         $I->click(NotificationListPage::$ListLinkEditting);
         $I->seeElement(NotificationListPage::$EditingSelectStatus);
         $I->seeElement(NotificationListPage::$EditingFildStatusSet);
@@ -210,6 +214,7 @@ class TextElementNLCest
     public function VerifyButtonEditing(NotificationListTester $I){
         $I->wantTo('Verify Clickability Buttons.');
         $I->amOnPage(NotificationListPage::$ListPageURL); 
+        $I->wait('1');
         $I->click(NotificationListPage::$ListLinkEditting);
         $I->click(NotificationListPage::$EditingButtonBack);
         $I->click(NotificationListPage::$ListLinkEditting);
@@ -228,6 +233,7 @@ class TextElementNLCest
     public function VerifyLinkImgEditingProduct(NotificationListTester $I){
         $I->wantTo('Verify Clickabilyti Img Link on Product Page.');
         $I->amOnPage(NotificationListPage::$ListPageURL); 
+        $I->wait('1');
         $I->click(NotificationListPage::$ListLinkEditting);
         $I->click(NotificationListPage::$EditingLinkImg);
         $I->see('Смартфон Samsung GT-S7530 Omnia M EAA Deep Grey');
@@ -243,29 +249,12 @@ class TextElementNLCest
     public function VerifyLinkProductNameEditingProduct(NotificationListTester $I){
         $I->wantTo('Verify Clickabilyti Name  Link on Product Page.');
         $I->amOnPage(NotificationListPage::$ListPageURL); 
+        $I->wait('1');
         $I->click(NotificationListPage::$ListLinkEditting);
         $I->click(NotificationListPage::$EditingLinkProduct);
         $I->see('Смартфон Samsung GT-S7530 Omnia M EAA Deep Grey');
      }
-     
-     
-     
-//-------------------TEXT MESSAGE EDIT PAGE-------------------------------------
-     
-    /**
-     * @group a
-     */
-    public function TextMessageEditNotifiButtonSave(NotificationListTester $I){
-        $I->wantTo('Verify Text Message of Edit Notifi Presence.');
-        $I->amOnPage(NotificationListPage::$ListPageURL);
-        $I->wait('0.5');
-//        $I->waitForElement(NotificationListPage::$ListLinkEditting);
-        $I->click(NotificationListPage::$ListLinkEditting);
-        $I->click(NotificationListPage::$EditingButtonSave);
-        $I->wait('0.5');
-        $I->exactlySeeAlert($I, 'success', 'Уведомление обновлено');
-   }
-    
+   
     
     
     
@@ -274,21 +263,28 @@ class TextElementNLCest
 //-------------------BUTTON DELETE WINDOW---------------------------------------
     
     /**
-     * @group a
+     * @group aaa
      */
     public function VerifyButtonDeleteWindow (NotificationListTester $I){
         $I->wantTo('Verify Button on Delete Window.');
-        $I->amOnPage(NotificationListPage::$ListPageURL);
-        $I->wait('2');
-        $I->waitForElement(NotificationListPage::$ListMainCheckBox);
+//        $I->amOnPage(NotificationListPage::$ListPageURL);
+//        $I->wait('3');
+//        $I->waitForElement(NotificationListPage::$ListMainCheckBox);
+        $I->click(NavigationBarPage::$Orders);
+        $I->click(NavigationBarPage::$NotificationsList);
+        $I->wait('1');
+        $I->click(NotificationListPage::$ListButtonAll);
+        $I->wait('1');
         $I->click(NotificationListPage::$ListMainCheckBox);
+        $I->wait('1');
         $I->click(NotificationListPage::$ListButtonDelete);
         $I->wait('1');
         $I->click(NotificationListPage::$DeleteWindowButtonX);
         $I->wait('1');
         $I->click(NotificationListPage::$ListButtonDelete);
-        $I->wait('1');
+        $I->wait('2');
         $I->click(NotificationListPage::$DeleteWindowButtonCancel);
+        $I->wait('1');
     }
     
     
@@ -296,7 +292,7 @@ class TextElementNLCest
 //-------------------TEXT DELETING NOTIFY LIST PAGE-----------------------------
     
     /**
-     * @group a
+     * @group aaa
      */
     public function TextDeletingNotifi(NotificationListTester $I){
         $I->wantTo('Verrify presence Text Message of Deletiung Window.');
@@ -305,7 +301,8 @@ class TextElementNLCest
         $I->click(NotificationListPage::$ListButtonDelete);
         $I->wait('1');
         $I->click(NotificationListPage::$DeleteWindowButtonDelete);
-        $I->waitForText('Удаление');
+//        $I->waitForText('Удаление');
+        $I->wait('1');
         $I->exactlySeeAlert($I, 'success', 'Удаление');
         InitTest::ClearAllCach($I);
     }
