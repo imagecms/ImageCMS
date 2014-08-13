@@ -3,25 +3,24 @@
 use \DeliveryTester;
 
 class DeliveryEditCest {
-
+    protected $loggedin = false;
     protected $CreatedMethods = [];
     public $Name = "ДоставкаРедактирование";
 
     /**
-     * Works after Autorization
+     * Works after Autorization before all tests
      * @staticvar int $callCount 0 - first time didn't work, 
      *                           >0 - searching current delivery in list 
      * 
      * @var bool $methodCreated true if current method($this->name) finded in list
      *                          if false Create new delivery method for edit      
      *                   
-     * @param DeliveryTester $I Contoller
      * @guy DeliveryTester\DeliverySteps
      */
     public function _before(DeliveryTester\DeliverySteps $I) {
-        static $LoggedIn = false;
+//        static $LoggedIn = false;
         $methodCreated = false;
-        if ($LoggedIn == true) {
+        if ($this->loggedin == true) {
             $I->amOnPage("/admin/components/run/shop/deliverymethods/index");
             $rows = $I->grabClassCount($I, 'niceCheck') - 1;
             for ($row = 1; $row <= $rows; ++$row) {
@@ -38,12 +37,13 @@ class DeliveryEditCest {
             }
             $I->waitForText("Редактирование способа доставки: $this->Name", NULL, ".title");
         }
-        $LoggedIn = true;
+        $this->CreatedMethods[] = $this->Name;
+//        $LoggedIn = true;
+//        $this->loggedin = true;
     }
 
     /**
      * @group edit
-     * @group current
      * @guy DeliveryTester\DeliverySteps
      */
     public function authorization(DeliveryTester\DeliverySteps $I) {
@@ -51,12 +51,8 @@ class DeliveryEditCest {
             $I->wait(1);
             $I->amOnPage(DeliveryPage::$URL);
         }
-
+        $this->loggedin = true;
         InitTest::changeTextAditorToNative($I);
-        //was
-//        InitTest::Login($I);
-//        $I->wait(3);
-//        InitTest::changeTextAditorToNative($I);
     }
 
 //    __________________________________________________________________________FIELD_NAME_TESTS
@@ -138,7 +134,6 @@ class DeliveryEditCest {
 
     /**
      * @group edit
-     * @group current
      * @guy DeliveryTester\DeliverySteps
      */
     public function eDescriptionDescriptionPrice(DeliveryTester\DeliverySteps $I) {
@@ -353,8 +348,10 @@ class DeliveryEditCest {
 
     /**
      * @group edit
+     * @guy DeliveryTester\DeliverySteps
      */
-    public function Logout(DeliveryTester $I) {
+    public function Logout(DeliveryTester\DeliverySteps $I) {
         InitTest::Loguot($I);
+        $this->loggedin = false;
     }
 }
