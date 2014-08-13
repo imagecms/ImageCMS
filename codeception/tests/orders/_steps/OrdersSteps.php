@@ -308,6 +308,7 @@ class OrdersSteps extends \OrdersTester {
             $I->wait('1');
             $I->see("Товар: $typeName", '//tbody/tr[1]/td[2]/div/div[2]/span[1]/b'); 
             $I->click(\CreateOrderAdminPage::$CrtPButtAddToCart);
+            $I->wait('1');
             $I->see('В корзине', \CreateOrderAdminPage::$CrtPButtInBasket);
             $I->see($typeName, '//tbody/tr[2]/td[2]/select');
             $I->see($typeName, '//table[2]/tbody/tr/td[1]/span');            
@@ -333,6 +334,7 @@ class OrdersSteps extends \OrdersTester {
         $I->wait('1');
         $I->see($variantName, '//table[1]/tbody/tr[2]/td[3]/select/option');
         $I->click(\CreateOrderAdminPage::$CrtPButtAddToCart);
+        $I->wait('1');
         $I->see($variantName, '//section/form/div/div[1]/div/table[2]/tbody/tr/td[2]/span');
         
               
@@ -445,6 +447,7 @@ class OrdersSteps extends \OrdersTester {
             $I->click('//body/ul[2]/li[1]/a');
             $I->wait('1');
             $I->click(\CreateOrderAdminPage::$CrtPButtAddToCart);
+            $I->wait('1');
         }if(isset($amountProduct)){
             $I->see("Остаток: $amountProduct", '#productStock');
             $I->seeInField('//table[2]/tbody/tr/td[4]/div/input', '1');

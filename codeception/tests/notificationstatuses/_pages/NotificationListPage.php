@@ -7,7 +7,7 @@ class NotificationListPage
     public static $ListPageURL = "/admin/components/run/shop/notifications";
     public static $ListTitle = "span.title";
     public static $ListMessageID = ".tooltip-inner";
-    public static $ListMouseMessage = "div.tooltip-inner";
+    public static $ListMouseMessage = ".tooltip-inner";
     public static $ListLinkEditting = "//table/tbody/tr[1]/td[3]/a";
     public static $ListLinkEdittingCreateStatusButton = "//div[4]/form/table/tbody/tr/td[3]/a";
     public static $ListButtonFilter = "//div[2]/div/button";
