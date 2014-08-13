@@ -16,7 +16,7 @@ class ElementOCACest
      * @group a
      */
     public function VerifyCategoryPresenceInSelectMenu (OrdersTester $I){
-        $I->wantTo('Compare the identity of the names and фьщгте of categories  in the SELECT menu, pages "Create Product" and "Create Order".');
+       $I->wantTo('Compare the identity of the names and of categories  in the SELECT menu, pages "Create Product" and "Create Order".');
        $I->wantTo('');
        $AllOptions =[]; 
        $I->amOnPage('/admin/components/run/shop/products/create');
