@@ -24,7 +24,7 @@ class DeliveryEditCest {
         if ($LoggedIn == true) {
             $I->amOnPage("/admin/components/run/shop/deliverymethods/index");
             $rows = $I->grabClassCount($I, 'niceCheck') - 1;
-            for ($row = 1; $row <= $rows;  ++$row) {
+            for ($row = 1; $row <= $rows; ++$row) {
                 $Cmethod = $I->grabTextFrom(DeliveryPage::ListMethodLine($row));
                 if ($this->Name == $Cmethod) {
                     $methodCreated = true;
@@ -47,10 +47,16 @@ class DeliveryEditCest {
      * @guy DeliveryTester\DeliverySteps
      */
     public function authorization(DeliveryTester\DeliverySteps $I) {
-        InitTest::Login($I);
-        $I->wait(3);
+        if (InitTest::Login($I)) {
+            $I->wait(1);
+            $I->amOnPage(DeliveryPage::$URL);
+        }
+
         InitTest::changeTextAditorToNative($I);
-        
+        //was
+//        InitTest::Login($I);
+//        $I->wait(3);
+//        InitTest::changeTextAditorToNative($I);
     }
 
 //    __________________________________________________________________________FIELD_NAME_TESTS
@@ -156,6 +162,7 @@ class DeliveryEditCest {
         $Nprice = '1234567890';
         $I->CheckInList($this->Name, null, $Nprice);
     }
+
 //______________________________________________________________________________________________________________________++++++++++++++++BUG_HERE
     /**
      * @group edit
@@ -165,10 +172,9 @@ class DeliveryEditCest {
         $freefrom = InitTest::$textSymbols;
         $I->EditDelivery(null, null, null, null, null, $freefrom);
         $Nfreefrom = '1234567890';
-        $I->CheckInList($this->Name, null, null, $Nfreefrom);                  
+        $I->CheckInList($this->Name, null, null, $Nfreefrom);
     }
 
-    
     /**
      * @group edit
      * @guy DeliveryTester\DeliverySteps
@@ -178,12 +184,12 @@ class DeliveryEditCest {
         $I->EditDelivery(null, null, null, null, $price);
         $I->CheckInList($this->Name, NULL, $price);
     }
-    
+
     /**
      * @group edit
      * @guy DeliveryTester\DeliverySteps
      */
-    public function ePrice1Num(DeliveryTester\DeliverySteps $I){
+    public function ePrice1Num(DeliveryTester\DeliverySteps $I) {
         $price = 1;
         $I->EditDelivery(null, null, null, null, $price);
         $I->CheckInList($this->Name, null, $price);
@@ -200,67 +206,68 @@ class DeliveryEditCest {
     }
 
 //    __________________________________________________________________________FIELD_FREE_FROM_TESTS
-    
+
     /**
      * @group edit
      * @guy DeliveryTester\DeliverySteps
      */
-        public function eFreeFrom1Num(DeliveryTester\DeliverySteps $I) {
+    public function eFreeFrom1Num(DeliveryTester\DeliverySteps $I) {
         $freefrom = 1;
         $I->EditDelivery(null, null, null, null, null, $freefrom);
         $I->CheckInList($this->Name, null, null, $freefrom);
     }
-    
+
     /**
      * @group edit
      * @guy DeliveryTester\DeliverySteps
      */
-        public function eFreeFrom10Num(DeliveryTester\DeliverySteps $I) {
+    public function eFreeFrom10Num(DeliveryTester\DeliverySteps $I) {
         $freefrom = 55555.55555;
         $I->EditDelivery(null, null, null, null, null, $freefrom);
         $I->CheckInList($this->Name, null, null, $freefrom);
     }
-    
+
     /**
      * @group edit
      * @guy DeliveryTester\DeliverySteps
      */
-        public function eFreeFrom15Num(DeliveryTester\DeliverySteps $I) {
+    public function eFreeFrom15Num(DeliveryTester\DeliverySteps $I) {
         $freefrom = 9999999999.999;
         $I->EditDelivery(null, null, null, null, null, $freefrom);
         $I->CheckInList($this->Name, null, null, $freefrom);
     }
-    
+
 //    __________________________________________________________________________CHECKBOX_PRICE_SPECIFIED&FIELD_PRICE_SPECIFIED  
-    
+
     /**
      * @group edit
      * @guy DeliveryTester\DeliverySteps
      */
     public function eCheckPriceSpecified(DeliveryTester\DeliverySteps $I) {
-        $class = $I->grabAttributeFrom(DeliveryEditPage::$CheckboxPriceSpecified.'/..', 'class');
+        $class = $I->grabAttributeFrom(DeliveryEditPage::$CheckboxPriceSpecified . '/..', 'class');
         $I->comment($class);
-        $class == 'frame_label no_connection active'? $I->click(DeliveryEditPage::$CheckboxPriceSpecified):print "";
-        $class = $I->grabAttributeFrom(DeliveryEditPage::$CheckboxPriceSpecified.'/..', 'class');
-        if ($class == 'frame_label no_connection'){
+        $class == 'frame_label no_connection active' ? $I->click(DeliveryEditPage::$CheckboxPriceSpecified) : print "";
+        $class = $I->grabAttributeFrom(DeliveryEditPage::$CheckboxPriceSpecified . '/..', 'class');
+        if ($class == 'frame_label no_connection') {
             $diabledPrice = $I->grabAttributeFrom(DeliveryEditPage::$FieldPrice, 'disabled');
             $diabledFreefrom = $I->grabAttributeFrom(DeliveryEditPage::$FieldFreeFrom, 'disabled');
             $I->assertEquals($diabledPrice, NULL);
             $I->assertEquals($diabledFreefrom, NULL);
-        }else $I->fail ('wrong class of checkbox sum specified');
-        
+        } else
+            $I->fail('wrong class of checkbox sum specified');
+
         $I->click(DeliveryCreatePage::$CheckboxPriceSpecified);
-        $class = $I->grabAttributeFrom(DeliveryEditPage::$CheckboxPriceSpecified.'/..', 'class');
-        
-        if ($class == 'frame_label no_connection active'){
+        $class = $I->grabAttributeFrom(DeliveryEditPage::$CheckboxPriceSpecified . '/..', 'class');
+
+        if ($class == 'frame_label no_connection active') {
             $diabledPrice = $I->grabAttributeFrom(DeliveryEditPage::$FieldPrice, 'disabled');
             $diabledFreefrom = $I->grabAttributeFrom(DeliveryEditPage::$FieldFreeFrom, 'disabled');
             $I->assertEquals($diabledPrice, "true");
             $I->assertEquals($diabledFreefrom, "true");
-        }else $I->fail ('wrong class of checkbox sum specified');
+        } else
+            $I->fail('wrong class of checkbox sum specified');
     }
-    
-    
+
     /**
      * @group edit
      * @guy DeliveryTester\DeliverySteps
@@ -270,7 +277,7 @@ class DeliveryEditCest {
         $I->EditDelivery(null, 'on', null, null, null, null, $message);
         $I->CheckInFrontEnd($this->Name, null, null, null, $message);
     }
-    
+
     /**
      * @group edit
      * @guy DeliveryTester\DeliverySteps
@@ -280,7 +287,6 @@ class DeliveryEditCest {
         $I->EditDelivery(null, 'on', null, null, null, null, $message);
         $I->CheckInFrontEnd($this->Name, null, null, null, $message);
     }
-    
 
     /**
      * @group edit
@@ -291,19 +297,19 @@ class DeliveryEditCest {
         $I->EditDelivery(null, 'on', null, null, null, null, $message);
         $I->CheckInFrontEnd($this->Name, null, null, null, $message);
     }
-    
+
 //    __________________________________________________________________________PAYMENT_METHODS_FIELD
-    
+
     /**
      * @group edit
      * @guy DeliveryTester\DeliverySteps
      */
-    public function eDeliveryPaymentVerify(DeliveryTester\DeliverySteps $I){
+    public function eDeliveryPaymentVerify(DeliveryTester\DeliverySteps $I) {
         $pay = $I->GrabAllCreatedPayments();
         $row = 1;
-        
+
         $this->_before($I);
-        
+
         foreach ($pay as $Currentpay) {
             $I->comment($Currentpay);
             $CreatePagePay = $I->grabTextFrom(DeliveryEditPage::PaymentMethodLabel($row));
@@ -311,31 +317,30 @@ class DeliveryEditCest {
             $row++;
         }
     }
-    
+
     /**
      * @group edit
      * @guy DeliveryTester\DeliverySteps
      */
-    public function eDeliveryPaymentEmpty(DeliveryTester\DeliverySteps $I){
+    public function eDeliveryPaymentEmpty(DeliveryTester\DeliverySteps $I) {
         //$pay = $I->GrabAllCreatedPayments();
         $this->_before($I);
         $I->EditDelivery(null, 'on', null, null, null, null, null, 'off');
         $I->CheckInFrontEnd($this->Name, null, null, null, null, 'off');
     }
-    
+
     /**
      * @group edit
      * @guy DeliveryTester\DeliverySteps
      */
-    public function eDeliveryPaymentAll(DeliveryTester\DeliverySteps $I){
+    public function eDeliveryPaymentAll(DeliveryTester\DeliverySteps $I) {
         $pay = $I->GrabAllCreatedPayments();
         $this->_before($I);
         $I->EditDelivery(null, 'on', null, null, null, null, null, $pay);
         $I->CheckInFrontEnd($this->Name, NULL, null, null, null, $pay);
-        
     }
-    
-     /**
+
+    /**
      * @group edit
      * @guy DeliveryTester\DeliverySteps
      */
@@ -344,5 +349,12 @@ class DeliveryEditCest {
         //Deleting
         $I->DeleteDeliveryMethods($this->CreatedMethods);
         unset($this->CreatedMethods);
+    }
+
+    /**
+     * @group edit
+     */
+    public function Logout(DeliveryTester $I) {
+        InitTest::Loguot($I);
     }
 }

@@ -42,8 +42,9 @@ class InitTest {
     
     
     public static function changeTextAditorToNative($I) {
+        $I->wait(1);
         $I->click(NavigationBarPage::$System);
-        $I->wait(3);
+        $I->wait(1);
         $I->click(NavigationBarPage::$SystemGlobalSettings);
         $I->waitForElement('#textEditor');
         $I->selectOption('#textEditor', 'Native textarea');
@@ -63,10 +64,12 @@ class InitTest {
             $I->waitForElement(".frame_nav");
         }
         self::$LoggedIn = TRUE;
+        return self::$LoggedIn; ///experimental
     }
 
     public static function Loguot($I) {
         if (self::$LoggedIn) {
+            $I->wait(1);
             $I->amOnPage('/admin');
             $I->click(".my_icon.exit_ico");
             $I->waitForElement(".form_login.t-a_c");
