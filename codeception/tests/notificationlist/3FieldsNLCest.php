@@ -339,7 +339,7 @@ class FieldsNLCest
      * @group a
      */
     public function CalendarVALUnitEditing (NotificationListTester $I){
-        $I->wantTo('.');
+        $I->wantTo('See Calendar Presence.');
         $I->amOnPage(NotificationListPage::$ListPageURL);
         $I->appendField(NotificationListPage::$ListFildAddition, '2');
         $I->seeElement(NotificationListPage::$ListCalendar);        

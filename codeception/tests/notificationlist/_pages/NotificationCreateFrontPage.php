@@ -20,7 +20,7 @@ class NotificationCreateFrontPage
     public static $FildEmeilStar = "//label[2]/span[2]/span";
     public static $FildUserPresent = "//span[2]/input";
     public static $FildEmeilPresent = "input[name='UserEmail']";
-    public static $FildPhonePresent = "//label[3]/span[2]/input";
+    public static $FildPhonePresent = "//div/div/div/div/div/div/form/div/label[3]/span[2]/input";
     public static $FildCommentPresent = "//textarea";
     public static $ButtonSendPresent = "//span[2]/div/button";
     public static $FildUserMessage = ".for_validations.error";//span[2]/label

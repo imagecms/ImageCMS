@@ -6,7 +6,7 @@ class ElementOCACest
      
     
     /**
-     * @group a
+     * @group aa
      */
     public function Login(OrdersTester $I){
         InitTest::Login($I);
@@ -50,7 +50,7 @@ class ElementOCACest
        
     
      /**
-     * @group a
+     * @group aa
      * @guy OrdersTester\OrdersSteps
      */
     public function VerifyFieldAmountInputInvalidValues1 (OrdersTester\OrdersSteps $I) {
@@ -167,7 +167,7 @@ class ElementOCACest
     
     
     /**
-     * @group a
+     * @group aa
      * @guy OrdersTester\OrdersSteps
      */
     public function VerifyTotalPriceAddInFieldAmount(OrdersTester\OrdersSteps $I){

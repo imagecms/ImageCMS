@@ -5,7 +5,7 @@ class CreatingFrontCest
 //---------------------------AUTORIZATION---------------------------------------
     
     /**
-     * @group a
+     * @group aa
      */
     public function Login(NotificationListTester $I){
         InitTest::Login($I);
@@ -21,7 +21,9 @@ class CreatingFrontCest
     public function VerifyTextElement(NotificationListTester $I){
         $I->wantTo('Verify Text Element Create Notf Front Page.');
         $I->amOnPage(NotificationCreateFrontPage::$PageURL);
+        $I->wait('2');
         $I->scrollToElement($I, '.infoBut.isDrop');
+        $I->wait('1');
         $I->click(NotificationCreateFrontPage::$ButtonOnPage);
         $I->waitForText('Сообщить о появлении');
         $I->see('Сообщить о появлении', NotificationCreateFrontPage::$TitleWindow);
@@ -48,6 +50,7 @@ class CreatingFrontCest
         $I->wantTo('Verify Element Presence on Create Notifi Front Page.');
         $I->amOnPage(NotificationCreateFrontPage::$PageURL);
         $I->scrollToElement($I, '.infoBut.isDrop');
+        $I->wait('1');
         $I->click(NotificationCreateFrontPage::$ButtonOnPage); 
         $I->waitForText('Сообщить о появлении');
         $I->seeElement(NotificationCreateFrontPage::$ButtonX);
@@ -68,6 +71,7 @@ class CreatingFrontCest
         $I->wantTo('Verify Alert Message Presence.');
         $I->amOnPage(NotificationCreateFrontPage::$PageURL);
         $I->scrollToElement($I, '.infoBut.isDrop');
+        $I->wait('1');
         $I->click(NotificationCreateFrontPage::$ButtonOnPage);
         $I->waitForText('Сообщить о появлении');
         $I->fillField(NotificationCreateFrontPage::$FildUserPresent, '');
@@ -87,6 +91,7 @@ class CreatingFrontCest
         $I->wantTo('Verify Alert Message Presence.');
         $I->amOnPage(NotificationCreateFrontPage::$PageURL);
         $I->scrollToElement($I, '.infoBut.isDrop');
+        $I->wait('1');
         $I->click(NotificationCreateFrontPage::$ButtonOnPage);
         $I->waitForText('Сообщить о появлении');
         $I->fillField(NotificationCreateFrontPage::$FildUserPresent, '1234567890qwertyuiop asdfghj123kl; +_)(*&^%$# ЙЦУКЕНГШЩЗОР');
@@ -106,6 +111,7 @@ class CreatingFrontCest
         $I->wantTo('Verify Alert Message Presence.');
         $I->amOnPage(NotificationCreateFrontPage::$PageURL);
         $I->scrollToElement($I, '.infoBut.isDrop');
+        $I->wait('1');
         $I->click(NotificationCreateFrontPage::$ButtonOnPage);
         $I->waitForText('Сообщить о появлении');
         $I->fillField(NotificationCreateFrontPage::$FildEmeilPresent, '');
@@ -125,6 +131,7 @@ class CreatingFrontCest
         $I->wantTo('Verify Alert Message Presence.');
         $I->amOnPage(NotificationCreateFrontPage::$PageURL);
         $I->scrollToElement($I, '.infoBut.isDrop');
+        $I->wait('1');
         $I->click(NotificationCreateFrontPage::$ButtonOnPage);
         $I->waitForText('Сообщить о появлении');
         $I->fillField(NotificationCreateFrontPage::$FildEmeilPresent, 'йцу 123 !!!!!!! ЗЩШЗШ');
@@ -144,6 +151,7 @@ class CreatingFrontCest
         $I->wantTo('Verify Alert Message Presence.');
         $I->amOnPage(NotificationCreateFrontPage::$PageURL);
         $I->scrollToElement($I, '.infoBut.isDrop');
+        $I->wait('1');
         $I->click(NotificationCreateFrontPage::$ButtonOnPage);
         $I->waitForText('Сообщить о появлении'); 
         $I->fillField(NotificationCreateFrontPage::$FildEmeilPresent, '');
@@ -165,11 +173,12 @@ class CreatingFrontCest
         $I->wantTo('Verify Alert Message Presence.');
         $I->amOnPage(NotificationCreateFrontPage::$PageURL);
         $I->scrollToElement($I, '.infoBut.isDrop');
+        $I->wait('1');
         $I->click(NotificationCreateFrontPage::$ButtonOnPage); 
         $I->waitForText('Сообщить о появлении'); 
         $I->click(NotificationCreateFrontPage::$FildPhonePresent);
         $I->fillField(NotificationCreateFrontPage::$FildPhonePresent, '0123654789012365481201236547890123654812012365478900');
-        $I->wait('3');       
+        $I->wait('2');       
         $I->click(NotificationCreateFrontPage::$ButtonSendPresent);
         $I->waitForElement(NotificationCreateFrontPage::$FildPhoneMessage);
         $I->see('Поле Телефон не может превышать 50 символов в длину.','label.for_validations.error');   
@@ -186,6 +195,7 @@ class CreatingFrontCest
         $I->wantTo('Verify Alert Message Presence.');
         $I->amOnPage(NotificationCreateFrontPage::$PageURL);
         $I->scrollToElement($I, '.infoBut.isDrop');
+        $I->wait('1');
         $I->click(NotificationCreateFrontPage::$ButtonOnPage); 
         $I->waitForText('Сообщить о появлении'); 
         $I->click(NotificationCreateFrontPage::$FildPhonePresent);
@@ -207,6 +217,7 @@ class CreatingFrontCest
         $I->amOnPage(NotificationCreateFrontPage::$PageURL);
         $I->amOnPage(NotificationCreateFrontPage::$PageURL);
         $I->scrollToElement($I, '.infoBut.isDrop');
+        $I->wait('1');
         $I->click(NotificationCreateFrontPage::$ButtonOnPage); 
         $I->waitForText('Сообщить о появлении');
         $I->fillField(NotificationCreateFrontPage::$FildUserPresent, 'QWE 123 йцу zxc !@# ЪХЗ');
