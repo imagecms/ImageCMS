@@ -21,7 +21,9 @@ class FieldsNLCest
     public function CreateNotificationFront(NotificationListTester $I){
         $I->wantTo('Create Notifi on Frontend.');
         $I->amOnPage(NotificationCreateFrontPage::$PageURL);
+        $I->wait('1');
         $I->scrollToElement($I, '.infoBut.isDrop');
+        $I->wait('1');
         $I->click(NotificationCreateFrontPage::$ButtonOnPage);
         $I->waitForText('Сообщить о появлении');
         $I->click(NotificationCreateFrontPage::$ButtonSendPresent);
@@ -37,6 +39,7 @@ class FieldsNLCest
     public function MessageInputFieldIDList (NotificationListTester $I){
         $I->wantTo('Verify Presence Tooltip in Field.');
         $I->amOnPage(NotificationListPage::$ListPageURL);
+        $I->wait('1');
         $I->fillField(NotificationListPage::$ListFildId, 'q');
         $I->see('только цифры', NotificationListPage::$ListMessageID);
         $I->fillField(NotificationListPage::$ListFildId, '');
@@ -67,6 +70,7 @@ class FieldsNLCest
     public function InputFieldIDList (NotificationListTester $I){
         $I->wantTo('Verify Valid Input in Field.');
         $I->amOnPage(NotificationListPage::$ListPageURL);
+        $I->wait('1');
         $I->fillField(NotificationListPage::$ListFildId, '0123456789');
         $I->seeInField(NotificationListPage::$ListFildId, '0123456789');
     }
@@ -81,6 +85,7 @@ class FieldsNLCest
     public function InputFieldEmailList (NotificationListTester $I){
         $I->wantTo('Verify Valid Input in Field.');
         $I->amOnPage(NotificationListPage::$ListPageURL);
+        $I->wait('1');
         $I->appendField(NotificationListPage::$ListFildEmail, 'QWE 123 !@# ячс');
         $I->seeInField(NotificationListPage::$ListFildEmail, 'QWE 123 !@# ячс');
     }
@@ -95,6 +100,7 @@ class FieldsNLCest
     public function NoInputFieldAdditngList (NotificationListTester $I){
         $I->wantTo('Verify Valid Input in Field.');
         $I->amOnPage(NotificationListPage::$ListPageURL);
+        $I->wait('1');
         $I->appendField(NotificationListPage::$ListFildAddition, 'QWE !@# ячс');
         $I->dontSeeInField(NotificationListPage::$ListFildAddition, 'QWE !@# ячс');
     }
@@ -109,6 +115,7 @@ class FieldsNLCest
     public function InputFieldAdditngList (NotificationListTester $I){
         $I->wantTo('Verify Valid Input in Field.');
         $I->amOnPage(NotificationListPage::$ListPageURL);
+        $I->wait('1');
         $I->appendField(NotificationListPage::$ListFildAddition, '12-345-678-90');
         $I->seeInField(NotificationListPage::$ListFildAddition, '12-345-678-90');
     }
@@ -123,6 +130,7 @@ class FieldsNLCest
     public function CalendardAdditngList (NotificationListTester $I){
         $I->wantTo('Verify Calendar Presence.');
         $I->amOnPage(NotificationListPage::$ListPageURL);
+        $I->wait('1');
         $I->appendField(NotificationListPage::$ListFildAddition, '2');
         $I->seeElement(NotificationListPage::$ListCalendar);        
         }
@@ -137,6 +145,7 @@ class FieldsNLCest
     public function inVALIDInputFieldVALIDUNITList (NotificationListTester $I){
         $I->wantTo('Verify InValid Input in Field.');
         $I->amOnPage(NotificationListPage::$ListPageURL);
+        $I->wait('1');
         $I->appendField(NotificationListPage::$ListFildValidUnit, 'QWE !@# ячс');
         $I->dontSeeInField(NotificationListPage::$ListFildValidUnit, 'QWE !@# ячс');
     }
@@ -151,6 +160,7 @@ class FieldsNLCest
     public function VALIDInputFieldVALIDUNITList (NotificationListTester $I){
         $I->wantTo('Verify Valid Input in Field.');
         $I->amOnPage(NotificationListPage::$ListPageURL);
+        $I->wait('1');
         $I->appendField(NotificationListPage::$ListFildValidUnit, '12-345-678-90');
         $I->seeInField(NotificationListPage::$ListFildValidUnit, '12-345-678-90');
     }
@@ -165,6 +175,7 @@ class FieldsNLCest
     public function DefaultFieldStatuseList (NotificationListTester $I){
         $I->wantTo('Verify Default Values on Select Menu.');
         $I->amOnPage(NotificationListPage::$ListPageURL);
+        $I->wait('1');
         $I->seeOptionIsSelected(NotificationListPage::$ListSelectMain, 'нет');    
     }
     
@@ -178,6 +189,7 @@ class FieldsNLCest
     public function SelectFieldStatuseList (NotificationListTester $I){
         $I->wantTo('Verify Select in Option.');
         $I->amOnPage(NotificationListPage::$ListPageURL);
+        $I->wait('1');
         $I->selectOption(NotificationListPage::$ListSelectMain, 'Новый');
         $I->seeOptionIsSelected(NotificationListPage::$ListSelectMain, 'Новый');
         $I->selectOption(NotificationListPage::$ListSelectMain, 'Выполнен');
@@ -194,6 +206,7 @@ class FieldsNLCest
     public function DefaultFieldStatuseLlist (NotificationListTester $I){
         $I->wantTo('Verify Default Values in Field.');
         $I->amOnPage(NotificationListPage::$ListPageURL);
+        $I->wait('1');
         $I->seeOptionIsSelected(NotificationListPage::$ListSelectFirst, 'Новый');    
     }
     
@@ -207,6 +220,7 @@ class FieldsNLCest
     public function SelectFieldStatuseLlist (NotificationListTester $I){
         $I->wantTo('Verify Select in Option.');
         $I->amOnPage(NotificationListPage::$ListPageURL);
+        $I->wait('1');
         $I->selectOption(NotificationListPage::$ListSelectFirst, 'Выполнен');
         $I->seeOptionIsSelected(NotificationListPage::$ListSelectFirst, 'Выполнен');
         $I->amOnPage(NotificationListPage::$ListPageURL);
@@ -224,6 +238,7 @@ class FieldsNLCest
     public function CalendardVALUNITList (NotificationListTester $I){
         $I->wantTo('Verify Calendar Presence.');
         $I->amOnPage(NotificationListPage::$ListPageURL);
+        $I->wait('1');
         $I->appendField(NotificationListPage::$ListFildAddition, '2');
         $I->seeElement(NotificationListPage::$ListCalendar);        
     }
@@ -238,6 +253,7 @@ class FieldsNLCest
     public function ButonInformationList (NotificationListTester $I){
         $I->wantTo('Verify Valid Information Presence in Button Information.');
         $I->amOnPage(NotificationListPage::$ListPageURL);
+        $I->wait('1');
         $I->waitForElement(NotificationListPage::$ListButtonInformation);
         $I->click(NotificationListPage::$ListButtonInformation);
         $I->wait('1');
@@ -257,6 +273,7 @@ class FieldsNLCest
     public function LinkButonInformationList (NotificationListTester $I){
         $I->wantTo('Verify Clickability Link Element.');
         $I->amOnPage(NotificationListPage::$ListPageURL);
+        $I->wait('1');
         $I->click(NotificationListPage::$ListButtonInformation);
         $I->click('Смартфон Samsung GT-S7530 Omnia M EAA Deep Grey (Смартфон Samsung GT-S7530 Omnia M EAA Deep Grey)', '.popover.fade.left.in');
         $I->see('Смартфон Samsung GT-S7530 Omnia M EAA Deep Grey', 'span.title');
@@ -272,6 +289,7 @@ class FieldsNLCest
     public function DefaultFieldStatuseist (NotificationListTester $I){
         $I->wantTo('Verify Default Values oi Select Menu.');
         $I->amOnPage(NotificationListPage::$ListPageURL);
+        $I->wait('1');
         $I->click(NotificationListPage::$ListLinkEditting);
         $I->seeOptionIsSelected(NotificationListPage::$EditingSelectStatus, 'Новый');    
     }
@@ -286,6 +304,7 @@ class FieldsNLCest
     public function SelectFieldStatuseist (NotificationListTester $I){
         $I->wantTo('Verify Select in Option.');
         $I->amOnPage(NotificationListPage::$ListPageURL);
+        $I->wait('1');
         $I->click(NotificationListPage::$ListLinkEditting);
         $I->selectOption(NotificationListPage::$EditingSelectStatus, 'Выполнен');
         $I->click(NotificationListPage::$EditingButtonSave);
@@ -307,6 +326,7 @@ class FieldsNLCest
     public function NoVALIDInputFieldVALIDUNITEditing (NotificationListTester $I){
         $I->wantTo('Verify Input Valid Values in Field.');
         $I->amOnPage(NotificationListPage::$ListPageURL);
+        $I->wait('1');
         $I->click(NotificationListPage::$ListLinkEditting);
         $I->fillField(NotificationListPage::$EditingFildExpirationDate, 'QWE !@# ячс');
         $I->click(NotificationListPage::$EditingButtonSave);
@@ -323,6 +343,7 @@ class FieldsNLCest
     public function VALIDInputFieldVALIDUNITEditing (NotificationListTester $I){
         $I->wantTo('Verify Input Valid Values in Field.');
         $I->amOnPage(NotificationListPage::$ListPageURL);
+        $I->wait('1');
         $I->click(NotificationListPage::$ListLinkEditting);
         $I->wait('1'); 
         $I->fillField(NotificationListPage::$EditingFildExpirationDate, '1999-05-03');
@@ -341,6 +362,7 @@ class FieldsNLCest
     public function CalendarVALUnitEditing (NotificationListTester $I){
         $I->wantTo('See Calendar Presence.');
         $I->amOnPage(NotificationListPage::$ListPageURL);
+        $I->wait('1');
         $I->appendField(NotificationListPage::$ListFildAddition, '2');
         $I->seeElement(NotificationListPage::$ListCalendar);        
         }
@@ -355,6 +377,7 @@ class FieldsNLCest
     public function VALIDInputFieldNamEditing (NotificationListTester $I){
         $I->wantTo('Verify Input Valid Values in Field.');
         $I->amOnPage(NotificationListPage::$ListPageURL);
+        $I->wait('1');
         $I->click(NotificationListPage::$ListLinkEditting);
         $I->appendField(NotificationListPage::$EditingFildName, '123 QWE !@# їзщ');
         $I->click(NotificationListPage::$EditingButtonSave);
@@ -376,6 +399,7 @@ class FieldsNLCest
     public function VALIDInputFieldEmeilEditing (NotificationListTester $I){
         $I->wantTo('Verify Input Valid Values in Field.');
         $I->amOnPage(NotificationListPage::$ListPageURL);
+        $I->wait('1');
         $I->click(NotificationListPage::$ListLinkEditting);
         $I->appendField(NotificationListPage::$EditingFildEmail, '123 QWE !@# їзщ');
         $I->click(NotificationListPage::$EditingButtonSave); 
@@ -397,6 +421,7 @@ class FieldsNLCest
     public function VALIDInputFieldPhonelEditing (NotificationListTester $I){
         $I->wantTo('Verify Input Valid Values in Field.');
         $I->amOnPage(NotificationListPage::$ListPageURL);
+        $I->wait('1');
         $I->click(NotificationListPage::$ListLinkEditting);
         $I->fillField(NotificationListPage::$EditingFildPhone, 'QWE 123 !@# ячс');
         $I->click(NotificationListPage::$EditingButtonSave);
@@ -418,14 +443,15 @@ class FieldsNLCest
     public function VALIDInputFieldCommentlEditing (NotificationListTester $I){
         $I->wantTo('Verify Input Valid Values in Field.');
         $I->amOnPage(NotificationListPage::$ListPageURL);
+        $I->wait('1');
         $I->click(NotificationListPage::$ListLinkEditting);
         $I->fillField(NotificationListPage::$EditingFildComment, 'QWE 123 !@# ячс');
         $I->click(NotificationListPage::$EditingButtonSave);
-        $I->wait('1');
+        $I->wait('2');
         $I->seeInField(NotificationListPage::$EditingFildComment, 'QWE 123 !@# ячс');
         $I->fillField(NotificationListPage::$EditingFildComment, '');
         $I->click(NotificationListPage::$EditingButtonSave);
-        $I->wait('1');
+        $I->wait('2');
         $I->seeInField(NotificationListPage::$EditingFildComment, '');
     }
       
@@ -439,6 +465,7 @@ class FieldsNLCest
     public function TextDeletingNotifi(NotificationListTester $I){
         $I->wantTo('Verify Deleting Notifi.');
         $I->amOnPage(NotificationListPage::$ListPageURL);
+        $I->wait('1');
         $I->click(NotificationListPage::$ListMainCheckBox);
         $I->click(NotificationListPage::$ListButtonDelete);
         $I->wait('1');
