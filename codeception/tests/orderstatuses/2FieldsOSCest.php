@@ -387,6 +387,7 @@ class FieldsOSCest
         for ($j=1;$j<=$numberStatus;++$j){
             $CurrentStatus = $I->grabTextFrom("//table/tbody/tr[$j]/td[2]/a");
             if ($CurrentStatus != 'Новый' && $CurrentStatus != 'Доставлен'){
+                $I->wait('1');
                 $I->click("//table/tbody/tr[$j]/td[5]/a");
                 $I->wait('1');
                 $I->click(OrderStatusesListPage::$DeleteButtonDelete);

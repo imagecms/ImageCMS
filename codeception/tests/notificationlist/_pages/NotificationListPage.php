@@ -26,7 +26,7 @@ class NotificationListPage
     public static $ListFildValidUnit = "//td[5]/input";
     public static $ListSelectMain = "//thead/tr[2]/td[7]/select";
     public static $ListSelectFirst = "//tbody/tr[1]/td[7]/select";
-    public static $ListMainCheckBox = "//section/div[5]/div[1]/form/table/thead/tr[1]/th[1]/span/span"; 
+    public static $ListMainCheckBox = "span.niceCheck"; //section/div[5]/div[1]/form/table/thead/tr[1]/th[1]/span/span
     public static $ListColumnID = "//th[2]";
     public static $ListColumnEmeil = "//th[3]";
     public static $ListColumnAddition = "//th[4]";
