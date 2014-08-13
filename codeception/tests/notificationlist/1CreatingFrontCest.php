@@ -49,6 +49,7 @@ class CreatingFrontCest
     public function VerifyTElement(NotificationListTester $I){
         $I->wantTo('Verify Element Presence on Create Notifi Front Page.');
         $I->amOnPage(NotificationCreateFrontPage::$PageURL);
+        $I->wait('2');
         $I->scrollToElement($I, '.infoBut.isDrop');
         $I->wait('1');
         $I->click(NotificationCreateFrontPage::$ButtonOnPage); 
@@ -70,6 +71,7 @@ class CreatingFrontCest
     public function Message1FildName (NotificationListTester $I){
         $I->wantTo('Verify Alert Message Presence.');
         $I->amOnPage(NotificationCreateFrontPage::$PageURL);
+        $I->wait('2');
         $I->scrollToElement($I, '.infoBut.isDrop');
         $I->wait('1');
         $I->click(NotificationCreateFrontPage::$ButtonOnPage);
@@ -90,6 +92,7 @@ class CreatingFrontCest
     public function Message2FildName (NotificationListTester $I){  
         $I->wantTo('Verify Alert Message Presence.');
         $I->amOnPage(NotificationCreateFrontPage::$PageURL);
+        $I->wait('2');
         $I->scrollToElement($I, '.infoBut.isDrop');
         $I->wait('1');
         $I->click(NotificationCreateFrontPage::$ButtonOnPage);
@@ -110,6 +113,7 @@ class CreatingFrontCest
     public function Message1FildEmeil (NotificationListTester $I){
         $I->wantTo('Verify Alert Message Presence.');
         $I->amOnPage(NotificationCreateFrontPage::$PageURL);
+        $I->wait('2');
         $I->scrollToElement($I, '.infoBut.isDrop');
         $I->wait('1');
         $I->click(NotificationCreateFrontPage::$ButtonOnPage);
@@ -130,6 +134,7 @@ class CreatingFrontCest
     public function Message2FildEmeil (NotificationListTester $I){
         $I->wantTo('Verify Alert Message Presence.');
         $I->amOnPage(NotificationCreateFrontPage::$PageURL);
+        $I->wait('2');
         $I->scrollToElement($I, '.infoBut.isDrop');
         $I->wait('1');
         $I->click(NotificationCreateFrontPage::$ButtonOnPage);
@@ -150,6 +155,7 @@ class CreatingFrontCest
     public function Message3FildEmeil (NotificationListTester $I){  
         $I->wantTo('Verify Alert Message Presence.');
         $I->amOnPage(NotificationCreateFrontPage::$PageURL);
+        $I->wait('2');
         $I->scrollToElement($I, '.infoBut.isDrop');
         $I->wait('1');
         $I->click(NotificationCreateFrontPage::$ButtonOnPage);
@@ -172,6 +178,7 @@ class CreatingFrontCest
     public function Message1FildPhone (NotificationListTester $I){  
         $I->wantTo('Verify Alert Message Presence.');
         $I->amOnPage(NotificationCreateFrontPage::$PageURL);
+        $I->wait('2');
         $I->scrollToElement($I, '.infoBut.isDrop');
         $I->wait('1');
         $I->click(NotificationCreateFrontPage::$ButtonOnPage); 
@@ -194,6 +201,7 @@ class CreatingFrontCest
     public function Message2FildPhone (NotificationListTester $I){  
         $I->wantTo('Verify Alert Message Presence.');
         $I->amOnPage(NotificationCreateFrontPage::$PageURL);
+        $I->wait('2');
         $I->scrollToElement($I, '.infoBut.isDrop');
         $I->wait('1');
         $I->click(NotificationCreateFrontPage::$ButtonOnPage); 
@@ -215,7 +223,7 @@ class CreatingFrontCest
     public function CreateNotificationMessage (NotificationListTester $I){
         $I->wantTo('Verify End Message Presence.');
         $I->amOnPage(NotificationCreateFrontPage::$PageURL);
-        $I->amOnPage(NotificationCreateFrontPage::$PageURL);
+        $I->wait('2');
         $I->scrollToElement($I, '.infoBut.isDrop');
         $I->wait('1');
         $I->click(NotificationCreateFrontPage::$ButtonOnPage); 
@@ -240,6 +248,7 @@ class CreatingFrontCest
     public function VerifyPresenceCreatedNotification (NotificationListTester $I){
         $I->wantTo('Verify Tooltip Message Presence.');
         $I->amOnPage(NotificationListPage::$ListPageURL);
+        $I->wait('1');
         $I->see('Africa@Boombaataa.net', NotificationListPage::$ListLinkEditting);
         $I->click(NotificationListPage::$ListLinkEditting);
         $I->see('Редактирование уведомления', NotificationListPage::$EditingTitle);
@@ -255,7 +264,9 @@ class CreatingFrontCest
     public function VerifyInputValuesCreatedNotification (NotificationListTester $I){
         $I->wantTo('Verify Saved Values Presence.');
         $I->amOnPage(NotificationListPage::$ListPageURL);
+        $I->wait('1');
         $I->click(NotificationListPage::$ListLinkEditting);
+        $I->wait('1');
         $I->seeInField(NotificationListPage::$EditingFildName, 'QWE 123 йцу zxc !@# ЪХЗ');
         $I->seeInField(NotificationListPage::$EditingFildEmail, 'Africa@Boombaataa.net');
         $I->seeInField(NotificationListPage::$EditingFildPhone, '0123456789');

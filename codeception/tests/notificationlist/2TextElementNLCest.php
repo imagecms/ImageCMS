@@ -254,26 +254,7 @@ class TextElementNLCest
         $I->click(NotificationListPage::$EditingLinkProduct);
         $I->see('Смартфон Samsung GT-S7530 Omnia M EAA Deep Grey');
      }
-     
-     
-     
-//-------------------TEXT MESSAGE EDIT PAGE-------------------------------------
-     
-    /**
-     * @group aaa
-     */
-    public function TextMessageEditNotifiButtonSave(NotificationListTester $I){
-        $I->wantTo('Verify Text Message of Edit Notifi Presence.');
-        $I->amOnPage(NotificationListPage::$ListPageURL);
-        $I->wait('1');
-//        $I->waitForElement(NotificationListPage::$ListLinkEditting);
-        $I->click(NotificationListPage::$ListLinkEditting);
-        $I->click(NotificationListPage::$EditingButtonSave);
-        $I->wait('1');
-        $I->see('Уведомление обновлено', '.alert.in.fade.alert-success');
-//        $I->exactlySeeAlert($I, 'success', 'Уведомление обновлено');
-   }
-    
+   
     
     
     

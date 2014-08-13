@@ -447,11 +447,11 @@ class FieldsNLCest
         $I->click(NotificationListPage::$ListLinkEditting);
         $I->fillField(NotificationListPage::$EditingFildComment, 'QWE 123 !@# ячс');
         $I->click(NotificationListPage::$EditingButtonSave);
-        $I->wait('1');
+        $I->wait('2');
         $I->seeInField(NotificationListPage::$EditingFildComment, 'QWE 123 !@# ячс');
         $I->fillField(NotificationListPage::$EditingFildComment, '');
         $I->click(NotificationListPage::$EditingButtonSave);
-        $I->wait('1');
+        $I->wait('2');
         $I->seeInField(NotificationListPage::$EditingFildComment, '');
     }
       
