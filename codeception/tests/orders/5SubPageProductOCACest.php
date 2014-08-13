@@ -233,7 +233,7 @@ class SubPageProductOCACest
     
     
     /**
-     * @group a
+     * @group aa
      * @guy OrdersTester\OrdersSteps
      */
     public function ProductNemaCillicBigParentCategory (OrdersTester\OrdersSteps $I) {
@@ -250,7 +250,7 @@ class SubPageProductOCACest
           InitTest::ClearAllCach($I);
     }
     /**
-     * @group a
+     * @group aa
      * @guy OrdersTester\OrdersSteps
      */
     public function SearchProductNameBiigSmallAutocomplit (OrdersTester\OrdersSteps $I){

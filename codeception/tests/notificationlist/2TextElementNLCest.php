@@ -116,12 +116,14 @@ class TextElementNLCest
     public function VerifyTextElementList(NotificationListTester $I){
         $I->wantTo('Verify Visible Message Tooltip on Name Notifi.');
         $I->amOnPage(NotificationListPage::$ListPageURL);
+        $I->wait('1');
         $I->moveMouseOver(NotificationListPage::$ListLinkEditting);
-        $I->waitForText('Редактировать уведомление');
+        $I->wait('1');
         $I->see('Редактировать уведомление', NotificationListPage::$ListMouseMessage);
         $I->moveMouseOver(NotificationListPage::$ListSelectMain);
-        $I->waitForElementNotVisible(NotificationListPage::$ListMouseMessage);
-        $I->dontSee('Редактировать уведомление');
+        $I->wait('1');
+        $I->dontSee('Редактировать уведомление', NotificationListPage::$ListMouseMessage);
+        InitTest::ClearAllCach($I);
     }
     
     
@@ -256,28 +258,18 @@ class TextElementNLCest
     public function TextMessageEditNotifiButtonSave(NotificationListTester $I){
         $I->wantTo('Verify Text Message of Edit Notifi Presence.');
         $I->amOnPage(NotificationListPage::$ListPageURL);
+        $I->wait('0.5');
+//        $I->waitForElement(NotificationListPage::$ListLinkEditting);
         $I->click(NotificationListPage::$ListLinkEditting);
         $I->click(NotificationListPage::$EditingButtonSave);
-        $I->wait('1'); 
+        $I->wait('0.5');
         $I->exactlySeeAlert($I, 'success', 'Уведомление обновлено');
-    }
+   }
     
     
     
     
-    /**
-     * @group a
-     */
-    public function TextMessageEditNotifiButtonSaveandBack(NotificationListTester $I){
-        $I->wantTo('Verify Text Message of Edit Notifi Presence.');
-        $I->amOnPage(NotificationListPage::$ListPageURL);
-        $I->click(NotificationListPage::$ListLinkEditting);
-        $I->wait('1'); 
-        $I->click(NotificationListPage::$EditingButtonSaveAndGoBack);
-        $I->exactlySeeAlert($I, 'success', 'Уведомление обновлено');
-    }
-    
-    
+  
     
 //-------------------BUTTON DELETE WINDOW---------------------------------------
     
@@ -286,7 +278,9 @@ class TextElementNLCest
      */
     public function VerifyButtonDeleteWindow (NotificationListTester $I){
         $I->wantTo('Verify Button on Delete Window.');
-        $I->amOnPage(NotificationListPage::$ListPageURL);  
+        $I->amOnPage(NotificationListPage::$ListPageURL);
+        $I->wait('2');
+        $I->waitForElement(NotificationListPage::$ListMainCheckBox);
         $I->click(NotificationListPage::$ListMainCheckBox);
         $I->click(NotificationListPage::$ListButtonDelete);
         $I->wait('1');
