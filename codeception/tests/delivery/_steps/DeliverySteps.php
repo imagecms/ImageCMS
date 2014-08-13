@@ -244,7 +244,7 @@ $I = $this;
     function DeleteDeliveryMethods ($Methods) {
         $I = $this;
         $I->amOnPage(\DeliveryPage::$URL);
-
+        $HaveMethodsToDelete = false;
         $AllMethodsCount = $I->grabClassCount($I, "niceCheck")-1;
         for ($row = 1;$row <= $AllMethodsCount;++$row){
             $CurrentRowMethod = $I->grabTextFrom(\DeliveryPage::ListMethodLine($row));
