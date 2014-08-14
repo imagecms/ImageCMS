@@ -72,8 +72,8 @@ class Admin extends BaseAdminController {
                 LOG::create()->set("Експорт завершен успешно!");
                 return;
             }
-            LOG::create()->set("Error during export!");
-            echo "Error during export!";
+            LOG::create()->set("Ошибка при експорте!");
+            echo "Ошибка при експорте!";
         } else {
             echo $this->processErrors($export->getErrors());
         }
@@ -162,7 +162,7 @@ class Admin extends BaseAdminController {
             }
             force_download($file, $data);
         } else {
-            LOG::create()->set('Cannot download file!');
+            LOG::create()->set('Невозможно скачать файл!');
         }
     }
     
@@ -180,12 +180,25 @@ class Admin extends BaseAdminController {
         return '<p class="errors">' . $result . '</p>';
     }
     
+    /**
+     * Delete archive with origin and additional photos
+     * 
+     * @author Oleh
+     * @param string $str
+     */
+    
     public function deleteArchive($str){
         $dir = './application/modules/import_export/backups/';
         unlink($dir . $str);
         $this->getTpl('archiveList');
     }
     
+    /**
+     * Download ZIP with origin and additional photo
+     * 
+     * @author Oleh
+     * @param string $str
+     */
     public function downloadZIP($str){
         $path = './application/modules/import_export/backups/' . $str;
         $this->load->helper('download');
@@ -193,7 +206,7 @@ class Admin extends BaseAdminController {
             $data = file_get_contents($path);
             force_download($str,$data);
         } else {
-            LOG::create()->set('Cannot download ZIP!');
+            LOG::create()->set('Невозможно скачать архив ZIP, файт отсутствует!');
         }
     }
     
