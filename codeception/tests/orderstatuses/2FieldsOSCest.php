@@ -333,6 +333,7 @@ class FieldsOSCest
     
     protected function COS (OrderStatusesTester $I, $name){
         $I->amOnPage(OrderStatusesCreatePage::$CreateURL);
+        $I->wait('1');
         $I->fillField(OrderStatusesCreatePage::$CreateFieldName, $name);
         $I->click(OrderStatusesCreatePage::$CreateButtonCreateAndGoBack);
         $I->wait('1');
@@ -345,6 +346,7 @@ class FieldsOSCest
     
     protected function EOS (OrderStatusesTester $I, $nameEdt){
         $I->amOnPage(OrderStatusesCreatePage::$CreateURL);
+        $I->wait('1');
         $I->fillField(OrderStatusesCreatePage::$CreateFieldName, "qweasdqwe");
         $I->click(OrderStatusesCreatePage::$CreateButtonCreate);
         $I->wait('1');
@@ -361,10 +363,12 @@ class FieldsOSCest
     
     protected function VOS (OrderStatusesTester $I, $name){
         $I->amOnPage(OrderStatusesListPage::$ListURL);
+        $I->wait('1');
         $numbeRows = $I->grabTagCount($I, 'tbody tr');
         $I->comment("Number Rows:'$numbeRows'.");
         for($j=1;$j<=$numbeRows;++$j){
             $I->comment("Search In Row:'$j'");
+            $I->wait('1');
             $searchName = $I->grabTextFrom("//tbody//tr[$j]/td[2]/a");
                 if($searchName == $name){
                    $I->comment("Status Presence In Row Number:'$j'.");
@@ -382,9 +386,11 @@ class FieldsOSCest
     
     protected function DCOS (OrderStatusesTester $I){
         $I->amOnPage(OrderStatusesListPage::$ListURL);
+        $I->wait('1');
         $numberStatus=$I->grabTagCount($I, 'tbody tr');
         $I->comment("Number Rows:'$numberStatus'");
         for ($j=1;$j<=$numberStatus;++$j){
+            $I->wait('1');
             $CurrentStatus = $I->grabTextFrom("//table/tbody/tr[$j]/td[2]/a");
             if ($CurrentStatus != 'Новый' && $CurrentStatus != 'Доставлен'){
                 $I->wait('1');
