@@ -122,6 +122,8 @@ class Export {
      * @return string filename
      */
     public function saveToExcelFile($pathToFile, $type = "Excel5") {
+//        var_dump($pathToFile);
+//        exit('ok');
         switch ($type) {
             case "Excel5":
                 $path = $pathToFile . 'products.xls';
