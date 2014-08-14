@@ -2,7 +2,7 @@
 /**
  * PHPExcel
  *
- * Copyright (c) 2006 - 2013 PHPExcel
+ * Copyright (c) 2006 - 2014 PHPExcel
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -20,9 +20,9 @@
  *
  * @category   PHPExcel
  * @package	PHPExcel_Style
- * @copyright  Copyright (c) 2006 - 2013 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @copyright  Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license	http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt	LGPL
- * @version	1.7.9, 2013-06-02
+ * @version	1.8.0, 2014-03-02
  */
 
 
@@ -31,7 +31,7 @@
  *
  * @category   PHPExcel
  * @package	PHPExcel_Style
- * @copyright  Copyright (c) 2006 - 2013 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @copyright  Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
  */
 class PHPExcel_Style_NumberFormat extends PHPExcel_Style_Supervisor implements PHPExcel_IComparable
 {
@@ -673,7 +673,10 @@ class PHPExcel_Style_NumberFormat extends PHPExcel_Style_Supervisor implements P
 									);
 							$value = preg_replace($number_regex, $value, $format);
 						} else {
-							if (preg_match('/0([^\d\.]+)0/', $format, $matches)) {
+							if (preg_match('/[0#]E[+-]0/i', $format)) {
+								//	Scientific format
+								$value = sprintf('%5.2E', $value);
+							} elseif (preg_match('/0([^\d\.]+)0/', $format)) {
 								$value = self::_complexNumberFormatMask($value, $format);
 							} else {
 								$sprintf_pattern = "%0$minWidth." . strlen($right) . "f";

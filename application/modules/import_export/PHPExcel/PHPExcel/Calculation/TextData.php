@@ -2,7 +2,7 @@
 /**
  * PHPExcel
  *
- * Copyright (c) 2006 - 2013 PHPExcel
+ * Copyright (c) 2006 - 2014 PHPExcel
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -20,9 +20,9 @@
  *
  * @category	PHPExcel
  * @package		PHPExcel_Calculation
- * @copyright	Copyright (c) 2006 - 2013 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @copyright	Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license		http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt	LGPL
- * @version		1.7.9, 2013-06-02
+ * @version		1.8.0, 2014-03-02
  */
 
 
@@ -41,7 +41,7 @@ if (!defined('PHPEXCEL_ROOT')) {
  *
  * @category	PHPExcel
  * @package		PHPExcel_Calculation
- * @copyright	Copyright (c) 2006 - 2013 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @copyright	Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
  */
 class PHPExcel_Calculation_TextData {
 
@@ -208,16 +208,17 @@ class PHPExcel_Calculation_TextData {
 		}
 		$decimals = floor($decimals);
 
+		$mask = '$#,##0';
 		if ($decimals > 0) {
-			return money_format('%.'.$decimals.'n',$value);
+			$mask .= '.' . str_repeat('0',$decimals);
 		} else {
 			$round = pow(10,abs($decimals));
 			if ($value < 0) { $round = 0-$round; }
-			$value = PHPExcel_Calculation_MathTrig::MROUND($value,$round);
-			//	The implementation of money_format used if the standard PHP function is not available can't handle decimal places of 0,
-			//		so we display to 1 dp and chop off that character and the decimal separator using substr
-			return substr(money_format('%.1n',$value),0,-2);
+			$value = PHPExcel_Calculation_MathTrig::MROUND($value, $round);
 		}
+
+		return PHPExcel_Style_NumberFormat::toFormattedString($value, $mask);
+
 	}	//	function DOLLAR()
 
 
