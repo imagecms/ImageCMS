@@ -37,6 +37,8 @@ class PaymentSteps extends \PaymentTester {
             $I->fillField(\PaymentCreatePage::$FieldName, $name);
         }
         if (isset($currency)) {
+            
+            $I->click(\PaymentCreatePage::$SelectCurrency);
             $I->selectOption(\PaymentCreatePage::$SelectPaymentSystem, $currency);
         }
         if (isset($active)) {
@@ -61,7 +63,11 @@ class PaymentSteps extends \PaymentTester {
             $I->fillField(\PaymentCreatePage::$FieldDescription, $description);
         }
         if (isset($paymentsystem)) {
+            //for chrome
             $I->selectOption(\PaymentCreatePage::$SelectPaymentSystem, $paymentsystem);
+            //forfirefox
+            $I->click(\PaymentCreatePage::$SelectPaymentSystem);                
+            $I->doubleClick("//option[contains(.,\"$paymentsystem\")]");
         }
         $I->click(\PaymentCreatePage::$ButtonCreate);
         $I->wait(3);
@@ -240,8 +246,9 @@ class PaymentSteps extends \PaymentTester {
      */
     public function checkInList($name, $CurrencyName = null, $CurrencySymbol = null, $active = null) {
 
-
+        
         $I = $this;
+        $I->wait(3);
         isset($name) ? $I->comment("I search method $name in list") : $I->fail("name of payment method must be passed");
         $I->amOnPage(\PaymentListPage::$URL);
         $I->waitForText("Список способов оплаты", NULL, ".title");
@@ -379,7 +386,6 @@ $I->wait(1);
             }
         }
         if (isset($selectpay)) {
-            //$JQScrollToclick = "$('html,body').animate({scrollTop:$('div.frame-radio>div:nth-child($j)').offset().top});";
             $I->scrollToElement($I, "div[class=\'frame-radio\'] div:nth-child(1) span[class=\'text-el\']"); //scroll for click
             $I->wait(5);
             $I->click("//div[@class='frame-radio']/div[$j]//span[@class='text-el']");
@@ -466,7 +472,7 @@ $I->wait(1);
         $I->amOnPage(\CurrenciesPage::$URL);
         $CurrenciesAmount = $I->grabClassCount($I, 'mainCurrency');
         for ($row = 1; $row <= $CurrenciesAmount; ++$row) {
-            $findedCur = $I->grabTextFrom(\CurrenciesPage::CuccencyNameLine($row));
+            $findedCur = $I->grabTextFrom(\CurrenciesPage::CurrencyNameLine($row));
             if (is_string($settedTodeleteName) && $findedCur == $settedTodeleteName || is_array($settedTodeleteName) && in_array($findedCur, $settedTodeleteName)) {
                 $I->click("//tr[$row]//td[7]//button");
                 $I->waitForElementVisible("div#first .btn.btn-primary");
