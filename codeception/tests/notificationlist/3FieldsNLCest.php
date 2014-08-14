@@ -381,11 +381,11 @@ class FieldsNLCest
         $I->click(NotificationListPage::$ListLinkEditting);
         $I->appendField(NotificationListPage::$EditingFildName, '123 QWE !@# їзщ');
         $I->click(NotificationListPage::$EditingButtonSave);
-        $I->wait('1');
+        $I->wait('2');
         $I->seeInField(NotificationListPage::$EditingFildName, 'Administrator');
         $I->fillField(NotificationListPage::$EditingFildName, '');
         $I->click(NotificationListPage::$EditingButtonSave);
-        $I->wait('1');
+        $I->wait('2');
         $I->seeInField(NotificationListPage::$EditingFildName, 'Administrator');          
     }
       
@@ -403,11 +403,11 @@ class FieldsNLCest
         $I->click(NotificationListPage::$ListLinkEditting);
         $I->appendField(NotificationListPage::$EditingFildEmail, '123 QWE !@# їзщ');
         $I->click(NotificationListPage::$EditingButtonSave); 
-        $I->wait('1');
+        $I->wait('2');
         $I->seeInField(NotificationListPage::$EditingFildEmail, 'ad@min.com');
         $I->fillField(NotificationListPage::$EditingFildEmail, '');
         $I->click(NotificationListPage::$EditingButtonSave);
-        $I->wait('1');
+        $I->wait('2');
         $I->seeInField(NotificationListPage::$EditingFildEmail, 'ad@min.com');          
     }
       
@@ -425,11 +425,11 @@ class FieldsNLCest
         $I->click(NotificationListPage::$ListLinkEditting);
         $I->fillField(NotificationListPage::$EditingFildPhone, 'QWE 123 !@# ячс');
         $I->click(NotificationListPage::$EditingButtonSave);
-        $I->wait('1');
+        $I->wait('2');
         $I->seeInField(NotificationListPage::$EditingFildPhone, 'QWE 123 !@# ячс');
         $I->fillField(NotificationListPage::$EditingFildPhone, '');
         $I->click(NotificationListPage::$EditingButtonSave);
-        $I->wait('1');
+        $I->wait('2');
         $I->seeInField(NotificationListPage::$EditingFildPhone, '');
     }
       
