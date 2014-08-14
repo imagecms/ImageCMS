@@ -19,6 +19,7 @@ class Admin extends BaseAdminController {
         'cat',
         'num'
     );
+    private $uploadDir = './application/modules/import_export/backups/';
 
     public function __construct() {
         parent::__construct();
