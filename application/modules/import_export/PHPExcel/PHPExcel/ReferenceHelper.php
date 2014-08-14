@@ -2,7 +2,7 @@
 /**
  * PHPExcel
  *
- * Copyright (c) 2006 - 2013 PHPExcel
+ * Copyright (c) 2006 - 2014 PHPExcel
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -20,9 +20,9 @@
  *
  * @category   PHPExcel
  * @package	PHPExcel
- * @copyright  Copyright (c) 2006 - 2013 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @copyright  Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license	http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt	LGPL
- * @version	1.7.9, 2013-06-02
+ * @version	1.8.0, 2014-03-02
  */
 
 
@@ -31,7 +31,7 @@
  *
  * @category   PHPExcel
  * @package	PHPExcel
- * @copyright  Copyright (c) 2006 - 2013 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @copyright  Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
  */
 class PHPExcel_ReferenceHelper
 {
@@ -424,9 +424,14 @@ class PHPExcel_ReferenceHelper
 		}
 
 		// Loop through cells, bottom-up, and change cell coordinates
-		while (($cellID = $remove ? array_shift($aCellCollection) : array_pop($aCellCollection))) {
+        if($remove) {
+            // It's faster to reverse and pop than to use unshift, especially with large cell collections
+            $aCellCollection = array_reverse($aCellCollection);
+        }
+		while ($cellID = array_pop($aCellCollection)) {
 			$cell = $pSheet->getCell($cellID);
 			$cellIndex = PHPExcel_Cell::columnIndexFromString($cell->getColumn());
+
 			if ($cellIndex-1 + $pNumCols < 0) {
 				continue;
 			}
@@ -673,7 +678,7 @@ class PHPExcel_ReferenceHelper
 								$cellIndex = $column.$row;
 
 								$newCellTokens[$cellIndex] = preg_quote($toString);
-								$cellTokens[$cellIndex] = '/(?<!\d)'.preg_quote($fromString).'(?!\d)/i';
+								$cellTokens[$cellIndex] = '/(?<!\d\$\!)'.preg_quote($fromString).'(?!\d)/i';
 								++$adjustCount;
 							}
 						}
@@ -698,7 +703,7 @@ class PHPExcel_ReferenceHelper
 								$cellIndex = $column.$row;
 
 								$newCellTokens[$cellIndex] = preg_quote($toString);
-								$cellTokens[$cellIndex] = '/(?<![A-Z])'.preg_quote($fromString).'(?![A-Z])/i';
+								$cellTokens[$cellIndex] = '/(?<![A-Z\$\!])'.preg_quote($fromString).'(?![A-Z])/i';
 								++$adjustCount;
 							}
 						}
@@ -724,7 +729,7 @@ class PHPExcel_ReferenceHelper
 								$cellIndex = $column.$row;
 
 								$newCellTokens[$cellIndex] = preg_quote($toString);
-								$cellTokens[$cellIndex] = '/(?<![A-Z])'.preg_quote($fromString).'(?!\d)/i';
+								$cellTokens[$cellIndex] = '/(?<![A-Z]\$\!)'.preg_quote($fromString).'(?!\d)/i';
 								++$adjustCount;
 							}
 						}
@@ -732,12 +737,13 @@ class PHPExcel_ReferenceHelper
 				}
 				//	Search for cell references (e.g. 'Sheet1'!A3 or C5) with or without $ absolutes (e.g. $A1 or C$5)
 				$matchCount = preg_match_all('/'.self::REFHELPER_REGEXP_CELLREF.'/i', ' '.$formulaBlock.' ', $matches, PREG_SET_ORDER);
+
 				if ($matchCount > 0) {
 					foreach($matches as $match) {
 						$fromString = ($match[2] > '') ? $match[2].'!' : '';
 						$fromString .= $match[3];
-						$modified3 = $this->updateCellReference($match[3],$pBefore,$pNumCols,$pNumRows);
 
+						$modified3 = $this->updateCellReference($match[3],$pBefore,$pNumCols,$pNumRows);
 						if ($match[3] !== $modified3) {
 							if (($match[2] == '') || (trim($match[2],"'") == $sheetName)) {
 								$toString = ($match[2] > '') ? $match[2].'!' : '';
@@ -746,24 +752,23 @@ class PHPExcel_ReferenceHelper
 								//	Max worksheet size is 1,048,576 rows by 16,384 columns in Excel 2007, so our adjustments need to be at least one digit more
 								$column = PHPExcel_Cell::columnIndexFromString(trim($column,'$')) + 100000;
 								$row = trim($row,'$') + 10000000;
-								$cellIndex = $column.$row;
+								$cellIndex = $row . $column;
 
 								$newCellTokens[$cellIndex] = preg_quote($toString);
-								$cellTokens[$cellIndex] = '/(?<![A-Z])'.preg_quote($fromString).'(?!\d)/i';
+								$cellTokens[$cellIndex] = '/(?<![A-Z\$\!])'.preg_quote($fromString).'(?!\d)/i';
 								++$adjustCount;
 							}
 						}
 					}
 				}
 				if ($adjustCount > 0) {
-					if ($pNumCols > 0) {
-						krsort($cellTokens);
-						krsort($newCellTokens);
-					} else {
-						ksort($cellTokens);
-						ksort($newCellTokens);
-					}
-					//	Update cell references in the formula
+                    if ($pNumCols > 0 || $pNumRows > 0) {
+                        krsort($cellTokens);
+                        krsort($newCellTokens);
+                      } else {
+                        ksort($cellTokens);
+                        ksort($newCellTokens);
+                    }   //  Update cell references in the formula
 					$formulaBlock = str_replace('\\','',preg_replace($cellTokens,$newCellTokens,$formulaBlock));
 				}
 			}
@@ -886,7 +891,6 @@ class PHPExcel_ReferenceHelper
 			// Verify which parts should be updated
 			$updateColumn = (($newColumn{0} != '$') && ($beforeColumn{0} != '$') &&
 							 PHPExcel_Cell::columnIndexFromString($newColumn) >= PHPExcel_Cell::columnIndexFromString($beforeColumn));
-
 			$updateRow = (($newRow{0} != '$') && ($beforeRow{0} != '$') &&
 						  $newRow >= $beforeRow);
 
