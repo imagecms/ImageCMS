@@ -5,8 +5,9 @@ class DeliveryVerifyElementsCest {
     
     /**
      * @group verify
+     * @guy DeliveryTester\DeliverySteps
      */
-    public function Authorization(DeliveryTester $I){
+    public function Authorization(DeliveryTester\DeliverySteps $I){
         //Login & go to page DeliveryList
         InitTest::login($I);
         $I->click(NavigationBarPage::$Settings);
@@ -105,5 +106,11 @@ class DeliveryVerifyElementsCest {
         $I->click(DeliveryEditPage::$ButtonBack);
         $I->waitForText("Список способов доставки");
 
+    }
+    /**
+     * @group verify
+     */
+    public function logout(DeliveryTester $I) {
+        InitTest::Loguot($I);
     }
 }
