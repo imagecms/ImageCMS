@@ -160,6 +160,7 @@ class CreatingFrontCest
         $I->wait('1');
         $I->click(NotificationCreateFrontPage::$ButtonOnPage);
         $I->waitForText('Сообщить о появлении'); 
+        $I->wait('1');
         $I->fillField(NotificationCreateFrontPage::$FildEmeilPresent, '');
         $I->click(NotificationCreateFrontPage::$FildEmeilPresent);
         $I->fillField(NotificationCreateFrontPage::$FildEmeilPresent, 'ad@muuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuin.com');
@@ -228,9 +229,13 @@ class CreatingFrontCest
         $I->wait('1');
         $I->click(NotificationCreateFrontPage::$ButtonOnPage); 
         $I->waitForText('Сообщить о появлении');
+        $I->wait('1');
         $I->fillField(NotificationCreateFrontPage::$FildUserPresent, 'QWE 123 йцу zxc !@# ЪХЗ');
+        $I->wait('1');
         $I->fillField(NotificationCreateFrontPage::$FildEmeilPresent, 'Africa@Boombaataa.net');
+        $I->wait('1');
         $I->fillField(NotificationCreateFrontPage::$FildPhonePresent, '0123456789');
+        $I->wait('1');
         $I->fillField(NotificationCreateFrontPage::$FildCommentPresent,  InitTest::$textSymbols);
         $I->click(NotificationCreateFrontPage::$ButtonSendPresent);
         $I->waitForElement('div.jspPane > div.inside-padd');
