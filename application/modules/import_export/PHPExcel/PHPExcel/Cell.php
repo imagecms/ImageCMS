@@ -2,7 +2,7 @@
 /**
  *	PHPExcel
  *
- *	Copyright (c) 2006 - 2013 PHPExcel
+ *	Copyright (c) 2006 - 2014 PHPExcel
  *
  *	This library is free software; you can redistribute it and/or
  *	modify it under the terms of the GNU Lesser General Public
@@ -20,9 +20,9 @@
  *
  *	@category	PHPExcel
  *	@package	PHPExcel_Cell
- *	@copyright	Copyright (c) 2006 - 2013 PHPExcel (http://www.codeplex.com/PHPExcel)
+ *	@copyright	Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
  *	@license	http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt	LGPL
- *	@version	1.7.9, 2013-06-02
+ *	@version	1.8.0, 2014-03-02
  */
 
 
@@ -31,7 +31,7 @@
  *
  *	@category   PHPExcel
  *	@package	PHPExcel_Cell
- *	@copyright  Copyright (c) 2006 - 2013 PHPExcel (http://www.codeplex.com/PHPExcel)
+ *	@copyright  Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
  */
 class PHPExcel_Cell
 {
@@ -233,10 +233,12 @@ class PHPExcel_Cell
 	{
 		// set the value according to data type
 		switch ($pDataType) {
+			case PHPExcel_Cell_DataType::TYPE_NULL:
+				$this->_value = $pValue;
+				break;
 			case PHPExcel_Cell_DataType::TYPE_STRING2:
 				$pDataType = PHPExcel_Cell_DataType::TYPE_STRING;
 			case PHPExcel_Cell_DataType::TYPE_STRING:
-			case PHPExcel_Cell_DataType::TYPE_NULL:
 			case PHPExcel_Cell_DataType::TYPE_INLINE:
 				$this->_value = PHPExcel_Cell_DataType::checkString($pValue);
 				break;
@@ -370,6 +372,16 @@ class PHPExcel_Cell
 		return $this->notifyCacheController();
 	}
 
+    /**
+     *  Identify if the cell contains a formula
+     *
+     *  @return boolean
+     */
+    public function isFormula()
+    {
+        return $this->_dataType == PHPExcel_Cell_DataType::TYPE_FORMULA;
+    }
+
 	/**
 	 *	Does this cell contain Data validation rules?
 	 *
@@ -469,7 +481,7 @@ class PHPExcel_Cell
 	/**
 	 *	Get parent worksheet
 	 *
-	 *	@return PHPExcel_Worksheet
+	 *	@return PHPExcel_CachedObjectStorage_CacheBase
 	 */
 	public function getParent() {
 		return $this->_parent;

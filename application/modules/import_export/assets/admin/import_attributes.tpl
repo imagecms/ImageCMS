@@ -2,8 +2,8 @@
     <div class="control-group">
         <span class="control-label">
             {if $key === 0}
-                <span data-title="&lt;b&gt;{lang('Attributes','admin')}&lt;/b&gt;" class="popover_ref" data-original-title=""><i class="icon-info-sign"></i></span>
-                <div class="d_n">{lang('The list of attributes that will be imported','admin')}</div>
+                <span data-title="&lt;b&gt;{lang('Attributes','import_export')}&lt;/b&gt;" class="popover_ref" data-original-title=""><i class="icon-info-sign"></i></span>
+                <div class="d_n">{lang('The list of attributes that will be imported','import_export')}</div>
                 <span>{lang('Properties','admin')}</span>
             {/if}
         </span>
@@ -15,7 +15,7 @@
                             <span data-attrnames="{echo $row}" class="attrnameHolder" style="width: 142px;">{echo $attrInRow}</span>
                         </div>
                     {else:}
-                        <button class="btn btn-mini dropdown-toggle" data-toggle="dropdown" title="{lang('Skip column','admin')}" style="max-width: 165px;padding: 4px 6px 0px;">
+                        <button class="btn btn-mini dropdown-toggle" data-toggle="dropdown" title="{lang('Skip column','import_export')}" style="max-width: 165px;padding: 4px 6px 0px;">
                             <span data-attrnames="skip" class="attrnameHolder">{lang('Skip column','admin')}</span>&nbsp;<span class="caret"></span>
                         </button>
                         <ul style="height:213px;overflow:auto;" class="dropdown-menu dropdown-attr">

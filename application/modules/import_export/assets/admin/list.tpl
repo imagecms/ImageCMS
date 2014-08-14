@@ -2,11 +2,11 @@
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
-            <span class="title">{lang('Import-Export CSV/XLS','admin')}</span>
+            <span class="title">{lang('Import-Export CSV/XLS','import_export')}</span>
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <a href="{$BASE_URL}admin/components/init_window/import_export" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Back", 'admin')}</span></a>
+                <a href="{$BASE_URL}admin/components/init_window/import_export" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Back", 'import_export')}</span></a>
                     {echo create_language_select($languages, $locale, "/admin/components/modules_table")}
             </div>
         </div>
@@ -17,7 +17,7 @@
                 <table class="table table-striped table-bordered table-hover table-condensed">
                     <thead>
                         <tr>
-                            <th colspan="18">{lang('Archive List','admin')}</th>
+                            <th colspan="18">{lang('Archive List','import_export')}</th>
                         </tr>
                     </thead>
                     <tbody>
