@@ -2,6 +2,7 @@
 
 /**
  * Клас призначений для експорту даних в файл форматів: csv,xlsx,xls.
+ * Також передбачена можливість вигрузки основних та додаткових зображень в ZIP-архів
  */
 
 namespace import_export\classes;
@@ -62,8 +63,8 @@ class Export {
         } 
         
         if($this->attributes['name'] != '1'){
-            $this->addError('Атрибут \'Имя\' обязательний для експорта!');
-            LOG::create()->set('Атрибут \'Имя\' обязательний для експорта!');
+            $this->addError('Атрибут \'Имя товара\' обязательний для експорта!');
+            LOG::create()->set('Атрибут \'Имя товара\' обязательний для експорта!');
         } elseif($this->attributes['url'] != '1'){
             $this->addError('Атрибут \'URL\' обязательний для експорта!');
             LOG::create()->set('Атрибут \'URL\' обязательний для експорта!');
@@ -83,7 +84,7 @@ class Export {
         
         if (!count($this->attributes) > 0) {
             $this->addError('Укажите колонки для экспорта.');
-            LOG::create()->set('No select collums for export');
+            LOG::create()->set('Укажите колонки для экспорта.');
         } else {
             $this->customFields = $this->getCustomFields();
             $this->completeFields = $this->getCompleteFields();
@@ -105,7 +106,7 @@ class Export {
         $path = $pathToFile . 'products.csv';
         $this->getDataCsv();
         if (!file_exists($path)){
-            LOG::create()->set('File export not exists (csv)!');
+            LOG::create()->set('Файл експорта не существует (csv)!');
         }
         $f = fopen($path, 'w+');
         $writeResult = fwrite($f, $this->resultString);
@@ -131,7 +132,7 @@ class Export {
                 return FALSE;
         }
         if(!file_exists($path)){
-            LOG::create()->set('File export not exists (xls)!');
+            LOG::create()->set('Файл експорта не существует (xls)!');
         }
         include './application/modules/import_export/PHPExcel/PHPExcel.php';
         include './application/modules/import_export/PHPExcel/PHPExcel/IOFactory.php';
@@ -226,7 +227,7 @@ class Export {
             foreach ($someProductData as $field => $junk) {
                 if (FALSE == $abbr = $this->getAbbreviation($field)) {
                     $this->addError("Error. Abbreviation not found.");
-                    LOG::create()->set('Error. Abbreviation not found.');
+                    LOG::create()->set('Ошибка. Абревиатуру не найдено.');
                 }
                 $headerArray[] = $abbr;
             }
@@ -385,7 +386,7 @@ class Export {
             } else {
                 if ($this->skipErrors == FALSE) {
                     $this->addError('Unknown column: ' . $field);
-                    LOG::create()->set('Unknown column: ' . $field);
+                    LOG::create()->set('Неизвестная колонка: ' . $field);
                 }
             }
         }
@@ -457,7 +458,7 @@ class Export {
         $categoriesData = array();
         $result = $this->db->query($query);
         if(!$result){
-            LOG::create()->set('Empty result for select categories!');
+            LOG::create()->set('Пустой результат вибора категорий');
             return;
         }
         foreach ($result->result_array() as $row) {
@@ -554,28 +555,59 @@ class Export {
         if($zip->open('./application/modules/import_export/backups/' . $zipName, \ZipArchive::CREATE) !== TRUE){      
             LOG::create()->set("Невозможно создать zip-архив.");
         }
-        foreach($arr as $key => $val){
-            //вигрузка основних фотографій варіанту
-            if($this->attributes['vimg'] == '1'){
-                if(file_exists('./uploads/shop/products/origin/' . $val['mainImage']) && $val['mainImage'] != ""){
+//        foreach($arr as $key => $val){
+//            //вигрузка основних фотографій варіанту
+//            if($this->attributes['vimg'] == '1'){
+//                if(file_exists('./uploads/shop/products/origin/' . $val['mainImage']) && $val['mainImage'] != ""){
+//                    $fN = "./uploads/shop/products/origin/" . $val['mainImage'];
+//                    $zFN ='origin/' . $val['mainImage'];
+//                    $zip->addFile($fN, $zFN);
+//                } else {
+//                    LOG::create()->set("Невозможна архивация основного изображения: " . $val['mainImage']);
+//                }
+//            }
+//            //вигрузка додаткових фотографій продуктів
+//            if($this->attributes['imgs'] == '1'){
+//                $number = $val['number'];
+//                $prodId = $this->db->where('number',$number)->get('shop_product_variants')->row()->product_id;
+//                $imgsAdd = $this->db->where('product_id',$prodId)->get('shop_product_images')->result_array();
+//                if(count($imgsAdd) > 0){
+//                    foreach($imgsAdd as $img){
+//                        if(file_exists('./uploads/shop/products/origin/additional/' . $img['image_name'])){
+//                            $filename = "./uploads/shop/products/origin/additional/" . $img['image_name'];
+//                            $zipname = "origin/additional/" . $img['image_name'];
+//                            $zip->addFile($filename,$zipname);
+//                        } else {
+//                            LOG::create()->set("Невозможна архивация дополнительного изображения: " . $img['image_name']);
+//                        }
+//                    }
+//                }
+//            }
+//        }
+        
+        if ($this->attributes['vimg'] == '1') {
+            foreach($arr as $key => $val){
+                if (file_exists('./uploads/shop/products/origin/' . $val['mainImage']) && $val['mainImage'] != "") {
                     $fN = "./uploads/shop/products/origin/" . $val['mainImage'];
-                    $zFN ='origin/' . $val['mainImage'];
+                    $zFN = 'origin/' . $val['mainImage'];
                     $zip->addFile($fN, $zFN);
                 } else {
                     LOG::create()->set("Невозможна архивация основного изображения: " . $val['mainImage']);
                 }
             }
-            //вигрузка додаткових фотографій продуктів
-            if($this->attributes['imgs'] == '1'){
+        }
+        
+        if ($this->attributes['imgs'] == '1') {
+            foreach($arr as $key => $val){
                 $number = $val['number'];
-                $prodId = $this->db->where('number',$number)->get('shop_product_variants')->row()->product_id;
-                $imgsAdd = $this->db->where('product_id',$prodId)->get('shop_product_images')->result_array();
-                if(count($imgsAdd) > 0){
-                    foreach($imgsAdd as $img){
-                        if(file_exists('./uploads/shop/products/origin/additional/' . $img['image_name'])){
+                $prodId = $this->db->where('number', $number)->get('shop_product_variants')->row()->product_id;
+                $imgsAdd = $this->db->where('product_id', $prodId)->get('shop_product_images')->result_array();
+                if (count($imgsAdd) > 0) {
+                    foreach ($imgsAdd as $img) {
+                        if (file_exists('./uploads/shop/products/origin/additional/' . $img['image_name'])) {
                             $filename = "./uploads/shop/products/origin/additional/" . $img['image_name'];
                             $zipname = "origin/additional/" . $img['image_name'];
-                            $zip->addFile($filename,$zipname);
+                            $zip->addFile($filename, $zipname);
                         } else {
                             LOG::create()->set("Невозможна архивация дополнительного изображения: " . $img['image_name']);
                         }
