@@ -2,7 +2,7 @@
 /**
  * PHPExcel
  *
- * Copyright (c) 2006 - 2013 PHPExcel
+ * Copyright (c) 2006 - 2014 PHPExcel
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -20,9 +20,9 @@
  *
  * @category   PHPExcel
  * @package    PHPExcel_Reader
- * @copyright  Copyright (c) 2006 - 2013 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @copyright  Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt	LGPL
- * @version    1.7.9, 2013-06-02
+ * @version    1.8.0, 2014-03-02
  */
 
 
@@ -40,7 +40,7 @@ if (!defined('PHPEXCEL_ROOT')) {
  *
  * @category   PHPExcel
  * @package    PHPExcel_Reader
- * @copyright  Copyright (c) 2006 - 2013 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @copyright  Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
  */
 class PHPExcel_Reader_CSV extends PHPExcel_Reader_Abstract implements PHPExcel_Reader_IReader
 {
@@ -144,28 +144,28 @@ class PHPExcel_Reader_CSV extends PHPExcel_Reader_Abstract implements PHPExcel_R
 	 */
 	protected function _skipBOM()
 	{
-		rewind($fileHandle);
+		rewind($this->_fileHandle);
 
 		switch ($this->_inputEncoding) {
 			case 'UTF-8':
 				fgets($this->_fileHandle, 4) == "\xEF\xBB\xBF" ?
-				fseek($this->_fileHandle, 3) : fseek($this->_fileHandle, 0);
+					fseek($this->_fileHandle, 3) : fseek($this->_fileHandle, 0);
 				break;
 			case 'UTF-16LE':
 				fgets($this->_fileHandle, 3) == "\xFF\xFE" ?
-				fseek($this->_fileHandle, 2) : fseek($this->_fileHandle, 0);
+					fseek($this->_fileHandle, 2) : fseek($this->_fileHandle, 0);
 				break;
 			case 'UTF-16BE':
 				fgets($this->_fileHandle, 3) == "\xFE\xFF" ?
-				fseek($this->_fileHandle, 2) : fseek($this->_fileHandle, 0);
+					fseek($this->_fileHandle, 2) : fseek($this->_fileHandle, 0);
 				break;
 			case 'UTF-32LE':
 				fgets($this->_fileHandle, 5) == "\xFF\xFE\x00\x00" ?
-				fseek($this->_fileHandle, 4) : fseek($this->_fileHandle, 0);
+					fseek($this->_fileHandle, 4) : fseek($this->_fileHandle, 0);
 				break;
 			case 'UTF-32BE':
 				fgets($this->_fileHandle, 5) == "\x00\x00\xFE\xFF" ?
-				fseek($this->_fileHandle, 4) : fseek($this->_fileHandle, 0);
+					fseek($this->_fileHandle, 4) : fseek($this->_fileHandle, 0);
 				break;
 			default:
 				break;
@@ -187,7 +187,7 @@ class PHPExcel_Reader_CSV extends PHPExcel_Reader_Abstract implements PHPExcel_R
 			throw new PHPExcel_Reader_Exception($pFilename . " is an Invalid Spreadsheet file.");
 		}
 		$fileHandle = $this->_fileHandle;
-		
+
 		// Skip BOM, if any
 		$this->_skipBOM();
 
