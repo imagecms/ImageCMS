@@ -16,6 +16,7 @@ class Auth extends MY_Controller {
     public $min_password = 5;
     public $max_password = 20;
     public $ban_reason = NULL;
+    private $assetManager;
 
     public function __construct() {
         parent::__construct();
@@ -30,6 +31,7 @@ class Auth extends MY_Controller {
         $lang = new MY_Lang();
         $lang->load('auth');
 //        $this->form_validation->this = & $this;
+        $this->assetManager = property_exists('\CMSFactory\assetManager', '_BehaviorInstance')?TRUE:FALSE;
     }
 
     public function index() {
