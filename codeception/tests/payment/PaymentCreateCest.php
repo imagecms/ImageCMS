@@ -6,6 +6,7 @@ class PaymentCreateCest {
 
     protected $CreatedPaymentMethods = [];
     protected $CreatedCurrencies = [];
+    protected $CreatedDeliveries = [];
     protected static $Logged = false;
 
     /**
@@ -103,6 +104,7 @@ class PaymentCreateCest {
     //______________________________________________________________________ACTIVE CHECKBOX
     /**
      * @group create
+     * @group current
      * @guy PaymentTester\PaymentSteps
      */
     public function checkboxActiveOn(PaymentTester\PaymentSteps $I) {
@@ -117,7 +119,6 @@ class PaymentCreateCest {
 
     /**
      * @group create
-     * @group current
      * @guy paymentTester\PaymentSteps
      */
     public function checkboxActiveOff(PaymentTester\PaymentSteps $I) {
@@ -130,58 +131,59 @@ class PaymentCreateCest {
         $I->CheckInFront($delivery, null, null, null, null, 'off');
     }
 
-//        
-//        
-//        //______________________________________________________________________PAY SYSTEMS
-//        //OR ONE TEST FOR ALL
-//
-//        /**
-//         * Create Payment methods for each payment system
-//         * @group create
-//         */
-//        public function fastAllPaymentSystems(PaymentTester $I){
-//            $prefix         = 'Оплата';//for name of payment name = $prefix.$paymentsystem
-//            $PaymentSystems = [
-//                'WebMoney',
-//                'ОщадБанк Украины',
-//                'СберБанк России',
-//                'Robokassa',
-//                'LiqPay',
-//                'YandexMoney',
-//                'QiWi',
-//                'PayPal',
-//                'ПриватБанк',
-//                'Interkassa'
-//                ];
-//            
-//                foreach ($PaymentSystems as $paymentsystem) {
-//                    $this->CreatedPaymentMethods[] = $name = $prefix.$paymentsystem;
-//                    $this->CreatePayment($I, $name, 'Dollars', 'on', null, $paymentsystem);
-////                    $this->CheckInPaymentList($I, $name);
-////                    $this->CreateDelivery($I, 'Доставка'.$name, 'on', null, null, null, null, null, $paymentsystem);
-////                    $this->CheckInFrontEnd($I, 'Доставка'.$name, null, null, null, null, null, $name);
-//                }
-//        }
-//        
-//        /**
-//         * @group currents
-//         * 
-//         * experimental
-//         */
-//          public function qwewqe(PaymentTester $I) {
-//                   
-//               
-//          }  
-//        
-//        /**
-//         * @group create
-//         * 
-//         * insert this after all tests
-//         */
-//        public function deleteAllCreatedPaymentsAndCurrencies(PaymentTester $I) {
-//            $this->DeletePayments($I, $this->CreatedPaymentMethods);
-//            $this->GrabAllCreatedCurrenciesOrDelete($I, $this->CreatedCurrencies);
-//        }
+    //______________________________________________________________________PAY SYSTEMS
+    //ONE TEST FOR ALL PAYMENT SYSTEMS
+
+    /**
+     * Create Payment methods for each payment system
+     * @group create
+     * @guy PaymentTester\PaymentSteps
+     */
+    public function AllPaymentSystems(PaymentTester\PaymentSteps $I) {
+        $pay_prefix = 'Оплата'; //for name of payment name = $prefix.$paymentsystem
+        $delivery_prefix = 'Доставка'; //for name of payment name = $prefix.$paymentsystem
+
+        $PaymentSystems = [
+            'WebMoney',
+            'ОщадБанк Украины',
+            'СберБанк России',
+            'Robokassa',
+            'LiqPay',
+            'YandexMoney',
+            'QiWi',
+            'PayPal',
+            'ПриватБанк',
+            'Interkassa'
+        ];
+
+        foreach ($PaymentSystems as $paymentsystem) {
+            $this->CreatedPaymentMethods[] = $payname = $pay_prefix . $paymentsystem;
+            $this->CreatedDeliveries[] = $delname = $delivery_prefix . $paymentsystem;
+            $I->wait(1);
+            $I->CreatePayment($payname, 'Dollars', 'on', null, $paymentsystem);
+            $I->wait(1);
+            $I->checkInList($payname);
+            $I->wait(1);
+            $I->CreateDelivery($delname, 'on', null, null, null, null, null, $paymentsystem);
+        }
+    }
+
+    /**
+     * Delete all after tests
+     * @group create
+     * @guy PaymentTester\PaymentSteps
+     */
+    public function deleteAllCreated(PaymentTester\PaymentSteps $I) {
+        $I->wait(1);
+        $I->DeletePayments($this->CreatedPaymentMethods);
+        $I->wait(1);
+        $I->deleteCurrencies($this->CreatedCurrencies);
+        $I->wait(1);
+        $I->deleteDelivery($this->CreatedDeliveries);
+        $I->wait(1);
+        InitTest::Loguot($I);
+    }
+
     //______________________________________________________________________
 //        /**
 //         * @group create

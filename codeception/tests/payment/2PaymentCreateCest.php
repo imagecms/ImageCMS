@@ -179,15 +179,6 @@ class PaymentCreateCest extends PaymentTestHelper{
                 }
         }
         
-        /**
-         * @group currents
-         * 
-         * experimental
-         */
-          public function qwewqe(PaymentTester $I) {
-                   
-               
-          }  
         
         /**
          * @group create
