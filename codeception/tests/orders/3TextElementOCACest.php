@@ -236,8 +236,10 @@ class TextElementOCACest
     public function VerifyTextMessageAddUser2 (OrdersTester $I) {
         $I->wantTo('Verify Text Message Unfilled "User" and "E-meil".');
         $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
+        $I->wait('1');
         $I->click(CreateOrderAdminPage::$CrtPButtUser);
         $I->click(CreateOrderAdminPage::$CrtULinkCreate);
+        $I->wait('1');
         $I->fillField(CreateOrderAdminPage::$CrtUFieldAddress, 'qwe 123');
         $I->fillField(CreateOrderAdminPage::$CrtUFieldPhone, '0987654123');
         $I->click(CreateOrderAdminPage::$CrtUButtCreate);
@@ -249,8 +251,10 @@ class TextElementOCACest
     public function VerifyTextMessageAddUser3 (OrdersTester $I) {
         $I->wantTo('Verify Text Message Unfilled "User".');
         $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
+        $I->wait('1');
         $I->click(CreateOrderAdminPage::$CrtPButtUser);
         $I->click(CreateOrderAdminPage::$CrtULinkCreate);
+        $I->wait('1');
         $I->fillField(CreateOrderAdminPage::$CrtUFieldAddress, 'йцу )(?*');
         $I->fillField(CreateOrderAdminPage::$CrtUFieldPhone, '1');
         $I->fillField(CreateOrderAdminPage::$CrtUFieldEmeil, 'ad@min.com');
@@ -263,8 +267,10 @@ class TextElementOCACest
     public function VerifyTextMessageAddUser4 (OrdersTester $I) {
         $I->wantTo('Verify Text Message Unfilled "E-meil".');
         $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
+        $I->wait('1');
         $I->click(CreateOrderAdminPage::$CrtPButtUser);
         $I->click(CreateOrderAdminPage::$CrtULinkCreate);
+        $I->wait('1');
         $I->fillField(CreateOrderAdminPage::$CrtUFieldAddress, '"№; 2134 йцу ASD');
         $I->fillField(CreateOrderAdminPage::$CrtUFieldPhone, '0982398746563216549878765465');
         $I->fillField(CreateOrderAdminPage::$CrtUFieldName, 'Gipotolamus ЖВ');
@@ -277,8 +283,10 @@ class TextElementOCACest
     public function VerifyTextMessageAddUser5 (OrdersTester $I) {
         $I->wantTo('Verify Text Message Numeral Filled "E-meil".');
         $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
+        $I->wait('1');
         $I->click(CreateOrderAdminPage::$CrtPButtUser);
         $I->click(CreateOrderAdminPage::$CrtULinkCreate);
+        $I->wait('1');
         $I->fillField(CreateOrderAdminPage::$CrtUFieldName, 'Br4TD7 1z');
         $I->fillField(CreateOrderAdminPage::$CrtUFieldEmeil, '0987654123');
         $I->click(CreateOrderAdminPage::$CrtUButtCreate);
@@ -290,8 +298,10 @@ class TextElementOCACest
     public function VerifyTextMessageAddUser6 (OrdersTester $I) {
         $I->wantTo('Verify Text Message Cirilic Filled "E-meil".');
         $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
+        $I->wait('1');
         $I->click(CreateOrderAdminPage::$CrtPButtUser);
         $I->click(CreateOrderAdminPage::$CrtULinkCreate);
+        $I->wait('1');
         $I->fillField(CreateOrderAdminPage::$CrtUFieldName, 'КуМтЕлЯпАсЕ');
         $I->fillField(CreateOrderAdminPage::$CrtUFieldEmeil, 'йцуйцу йцуйцу');
         $I->click(CreateOrderAdminPage::$CrtUButtCreate);
@@ -303,8 +313,10 @@ class TextElementOCACest
     public function VerifyTextMessageAddUser7 (OrdersTester $I) {
         $I->wantTo('Verify Text Message Latin Filled "E-meil".');
         $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
+        $I->wait('1');
         $I->click(CreateOrderAdminPage::$CrtPButtUser);
         $I->click(CreateOrderAdminPage::$CrtULinkCreate);
+        $I->wait('1');
         $I->fillField(CreateOrderAdminPage::$CrtUFieldName, 'ZURGODZUP');
         $I->fillField(CreateOrderAdminPage::$CrtUFieldEmeil, 'qweQWEasdaPOUI');
         $I->click(CreateOrderAdminPage::$CrtUButtCreate);
@@ -316,8 +328,10 @@ class TextElementOCACest
     public function VerifyTextMessageAddUser8 (OrdersTester $I) {
         $I->wantTo('Verify Text Message Symbol Filled "E-meil".');
         $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
+        $I->wait('1');
         $I->click(CreateOrderAdminPage::$CrtPButtUser);
         $I->click(CreateOrderAdminPage::$CrtULinkCreate);
+        $I->wait('1');
         $I->fillField(CreateOrderAdminPage::$CrtUFieldName, 'b');
         $I->fillField(CreateOrderAdminPage::$CrtUFieldEmeil, '+-*/\!#^:');
         $I->click(CreateOrderAdminPage::$CrtUButtCreate);

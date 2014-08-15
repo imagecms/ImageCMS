@@ -4,7 +4,7 @@ class SubPageProductOCACest
 {
 //---------------------------AUTORIZATION--------------------------------------- 
     /**
-     * @group aa
+     * @group a
      */
     public function Login(OrdersTester $I){
         InitTest::Login($I);
@@ -233,7 +233,7 @@ class SubPageProductOCACest
     
     
     /**
-     * @group aa
+     * @group a
      * @guy OrdersTester\OrdersSteps
      */
     public function ProductNemaCillicBigParentCategory (OrdersTester\OrdersSteps $I) {
@@ -250,7 +250,7 @@ class SubPageProductOCACest
           InitTest::ClearAllCach($I);
     }
     /**
-     * @group aa
+     * @group a
      * @guy OrdersTester\OrdersSteps
      */
     public function SearchProductNameBiigSmallAutocomplit (OrdersTester\OrdersSteps $I){
@@ -339,6 +339,7 @@ class SubPageProductOCACest
      */
     public function DeleteCeatingProducts(OrdersTester\OrdersSteps $I) {
         $I->DeleteProductInCategory($CategoryWithProduct = CreateCategoryOrdersPage::$CrtCatName1ForSearch);
+        $I->wait('1');
     }
     
     
@@ -358,7 +359,7 @@ class SubPageProductOCACest
      */
     public function ProductVariantMinParentCategory (OrdersTester\OrdersSteps $I) {
         $I->wantTo('Verify Presence Variant Min in First Child Category on Select Menu.');
-        $I->createProduct($nameProduct = 'Товар с минимальним названием варианта',
+        $I->createProduct($nameProduct = 'Товар с xXxXx названием варианта',
                                         $nameVariantProduct = 'x' ,
                                         $priceProduct = '1',
                                         $articleProduct = NULL,
@@ -375,7 +376,7 @@ class SubPageProductOCACest
      */
     public function SearchProductVarianMinAutocomplit (OrdersTester\OrdersSteps $I){
         $I->wantTo('Verify Check Variant Name Presence.');
-        $I->SearchVariantProductAutocomplete($productName = 'Товар с минимальним названием варианта', $variantName = 'x'); 
+        $I->SearchVariantProductAutocomplete($productName = 'Товар с xXxXx названием варианта', $variantName = 'x'); 
     }
     
     
@@ -1261,6 +1262,7 @@ class SubPageProductOCACest
      */
     public function DeleteArticleProductInCategory (OrdersTester\OrdersSteps $I){
         $I->DeleteProductInCategory($CategoryWithProduct = CreateCategoryOrdersPage::$CrtCatName1ForSearch);
+        $I->wait('1');
     }
 
 
