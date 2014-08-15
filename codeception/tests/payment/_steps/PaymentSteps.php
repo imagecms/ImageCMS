@@ -100,6 +100,7 @@ class PaymentSteps extends \PaymentTester {
         $I->click('.btn.btn-small.btn-success.formSubmit');
         $I->wait(3);
     }
+    
 
     /**
      * Create Delivery with specified parrameters
@@ -540,6 +541,58 @@ $I->wait(1);
             default :
                 $I->fail('passed incorrect variable: "$type" to method');
         }
+    }
+        /**
+     * Create payment method with specified parameters
+     * 
+     * @param string $name          Fill field "Name"
+     * @param string $currency      Select "Currency Name"
+     * @param string $active        Set Checkbox "Active" on|off
+     * @param string $description   Fill field "Description"
+     * @param string $paymentsystem Select "Payment system"
+     */
+    public function editPayment($name, $currency = null, $active = null, $description = null, $paymentsystem = null) {
+        $I = $this;
+
+
+        if (isset($name)) {
+            $I->fillField(\PaymentEditPage::$FieldName, $name);
+        }
+        if (isset($currency)) {
+            
+            $I->click(\PaymentEditPage::$SelectCurrency);
+            $I->selectOption(\PaymentEditPage::$SelectPaymentSystem, $currency);
+        }
+        if (isset($active)) {
+            $Class = $I->grabAttributeFrom('//form/div[1]/div[3]/div[2]/span', 'class');
+
+            switch ($active) {
+                case 'on':
+                    if ($Class == 'frame_label') {
+                        $I->click(\PaymentEditPage::$CheckboxActive);
+                        $I->comment('Checkbox Active on');
+                    }
+                    break;
+                case 'off':
+                    if ($Class == 'frame_label active') {
+                        $I->click(\PaymentEditPage::$CheckboxActive);
+                        $I->comment('Checkbox Active off');
+                    }
+                    break;
+            }
+        }
+        if (isset($description)) {
+            $I->fillField(\PaymentEditPage::$FieldDescription, $description);
+        }
+        if (isset($paymentsystem)) {
+            //for chrome
+            $I->selectOption(\PaymentEditPage::$SelectPaymentSystem, $paymentsystem);
+            //forfirefox
+            $I->click(\PaymentEditPage::$SelectPaymentSystem);                
+            $I->doubleClick("//option[contains(.,\"$paymentsystem\")]");
+        }
+        $I->click(\PaymentEditPage::$ButtonSave);
+        $I->wait(3);
     }
 
 }
