@@ -27,6 +27,7 @@ class OrdersSteps extends \OrdersTester {
     function createCategoryProduct( $createNameCategory = NULL, $addParentCategory = NULL) {
         $I = $this;
         $I->amOnPage(\CreateCategoryOrdersPage::$CrtCategoryPageURL);
+        $I->wait('1');
         if(isset($createNameCategory)){
             $I->fillField(\CreateCategoryOrdersPage::$CrtCategoryFieldName, $createNameCategory);
         }if(isset($addParentCategory)){ 
@@ -57,7 +58,9 @@ class OrdersSteps extends \OrdersTester {
                             $variantArticle = NULL,
                             $variantAmount = NULL) {
         $I = $this;
-        $I->click(\NavigationBarPage::$ProductsCatalogue);                                                                                                 
+        $I->wait('1');
+        $I->click(\NavigationBarPage::$ProductsCatalogue); 
+        $I->wait('1');
         $I->click(\NavigationBarPage::$ProductList);
         $I->wait('3');
         $I->waitForElement(\CreateProductsOrdersPage::$CrtProductButtonCreateProduct);
@@ -116,6 +119,7 @@ class OrdersSteps extends \OrdersTester {
         }
         $I->wait('1');
         $I->click(\CreateProductsOrdersPage::$CrtProductButtonSaveandBack);
+        $I->wait('2');
     }
     
     
@@ -135,7 +139,9 @@ class OrdersSteps extends \OrdersTester {
                                 $createUserPhone = NULL, 
                                 $createUserAddress = NULL) {
         $I = $this;
+        $I->wait('1');
         $I->click(\NavigationBarPage::$Users);
+        $I->wait('1');
         $I->click(\NavigationBarPage::$UsersList);
         $I->wait('3');
         $I->click('//body/div[1]/div[5]/div/section/div[1]/div[2]/div/a');
@@ -168,7 +174,9 @@ class OrdersSteps extends \OrdersTester {
     
     function searchUserOnUserPage($UserName = NULL, $UserEmeil = NULL) {
         $I = $this;
+        $I->wait('1');
         $I->click(\NavigationBarPage::$Users);
+        $I->wait('1');
         $I->click(\NavigationBarPage::$UsersList);
         $I->wait('2');
         if(isset($UserName)){
@@ -210,7 +218,9 @@ class OrdersSteps extends \OrdersTester {
                                 $createUserPhone = NULL, 
                                 $createUserAddress = NULL){
         $I = $this;
+        $I->wait('1');
         $I->click(\NavigationBarPage::$Orders);
+        $I->wait('1');
         $I->click(\NavigationBarPage::$OrdersList);
         $I->wait('2');
         $I->click(\OrdersListPage::$ListButtCreateOrder);
@@ -294,7 +304,9 @@ class OrdersSteps extends \OrdersTester {
     
     function SearchNameProductaAutocomplete ( $typeName = NULL){ 
         $I = $this;
+        $I->wait('1');
         $I->click(\NavigationBarPage::$Orders);
+        $I->wait('1');
         $I->click(\NavigationBarPage::$OrdersList);
         $I->wait('3');
         $I->click(\OrdersListPage::$ListButtCreateOrder);
@@ -322,7 +334,9 @@ class OrdersSteps extends \OrdersTester {
     
     function SearchVariantProductAutocomplete ($productName = NULL, $variantName = NULL) {
         $I = $this;
+        $I->wait('1');
         $I->click(\NavigationBarPage::$Orders);
+        $I->wait('1');
         $I->click(\NavigationBarPage::$OrdersList);
         $I->wait('3');
         $I->click(\OrdersListPage::$ListButtCreateOrder);
@@ -345,7 +359,9 @@ class OrdersSteps extends \OrdersTester {
 
     function SearchPriceProductAutocomplete( $typeName = NULL, $typePrice = NULL) { 
         $I = $this;
+        $I->wait('1');
         $I->click(\NavigationBarPage::$Orders);
+        $I->wait('1');
         $I->click(\NavigationBarPage::$OrdersList);
         $I->wait('3');
         $I->click(\OrdersListPage::$ListButtCreateOrder);
@@ -436,8 +452,10 @@ class OrdersSteps extends \OrdersTester {
     
     function SearchAmountProductAutocomplete ( $typeName = NULL, $amountProduct = NULL) { 
         $I = $this;
-        if(isset($typeName)){            
+        if(isset($typeName)){   
+            $I->wait('1');
             $I->click(\NavigationBarPage::$Orders);
+            $I->wait('1');
             $I->click(\NavigationBarPage::$OrdersList);
             $I->wait('3');
             $I->click(\OrdersListPage::$ListButtCreateOrder);
@@ -476,7 +494,9 @@ class OrdersSteps extends \OrdersTester {
     function SearchCategorySelect ($typeCategory = NULL){
         $I = $this;
         $urlCrtOrd = '/admin/components/run/shop/orders/create';
+        $I->wait('1');
         $I->click(\NavigationBarPage::$Orders);
+        $I->wait('1');
         $I->click(\NavigationBarPage::$OrdersList);
         $I->wait('3');
         $I->click(\OrdersListPage::$ListButtCreateOrder);
@@ -499,6 +519,7 @@ class OrdersSteps extends \OrdersTester {
     function DeleteProductInCategory($CategoryWithProduct) {
         $I = $this;
         if(isset($CategoryWithProduct)){
+            $I->wait('1');
             $I->click(\NavigationBarPage::$ProductsCatalogue);
             $I->wait('1');
             $I->click(\NavigationBarPage::$ProductList);
@@ -511,7 +532,7 @@ class OrdersSteps extends \OrdersTester {
             $I->click(\CreateProductsOrdersPage::$DelPrdButtonDelete);
             $I->wait('2');
             $I->click(\CreateProductsOrdersPage::$DelPrdButtonDeleteWindowDelete);
-            $I->wait('1');
+            $I->wait('2');
         }
         
     }
@@ -528,7 +549,9 @@ class OrdersSteps extends \OrdersTester {
     function SearchProductNameSelect($typeCategoryName = NULL, $typeProductName = NULL) {
         $I = $this;
         if(isset($typeProductName)){
+        $I->wait('1');
         $I->click(\NavigationBarPage::$ProductsCatalogue);
+        $I->wait('1');
         $I->click(\NavigationBarPage::$ProductList);
         $I->wait('3');        
         $I->click('//form/section/div[2]/table/thead/tr[2]/td[4]/div/a');
@@ -633,6 +656,7 @@ class OrdersSteps extends \OrdersTester {
     function DeleteCategory() {
         $I = $this;
         $I->amOnPage(\DeleteCategoryOrder::$ListURL);
+        $I->wait('1');
         $I->click(\DeleteCategoryOrder::$ListHeaderCheckBox);
         $I->click(\DeleteCategoryOrder::$ListButtonDelete);
         $I->click(\DeleteCategoryOrder::$DeleteWindowButtonDelete);
