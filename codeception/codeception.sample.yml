@@ -12,23 +12,39 @@ modules:
     enabled:
         - AcceptanceHelper
         - WebDriver
-        - Db
-        - Cli
+        
+#        Database module and comand line interface
+#        - Db
+#        - Cli
     config:
         WebDriver:
             url: 'http://cmsprem.loc/'
             browser: chrome
-            window_size: 1024x768    
+            window_size: maximize    
 #            restart: false
             clear_cookies: false
             wait: 0
             capabilities:
                 unexpectedAlertBehaviour: 'accept'
-        Db:
-            Db:
-            dsn: 'mysql:host=127.0.0.1;dbname=cmsprem'
-            user: 'root'
-            password: ''
-            dump: 'tests/_data/cmsprem.sql'
-            populate: false
-            cleanup:  false
+#        Db:
+#            Db:
+#            dsn: 'mysql:host=127.0.0.1;dbname=cmsprem'
+#            user: 'root'
+#            password: ''
+#            dump: 'tests/_data/cmsprem.sql'
+#            populate: false
+#            cleanup:  false
+            
+# To run tests in all  browsers, just list all the environments:
+# php codecept.phar run acceptance  --env chrome --env firefox
+env:
+    chrome:
+        modules:
+            config:
+                WebDriver:
+                    browser: chrome
+    firefox:
+        modules:
+            config:
+                WebDriver:
+                    browser: firefox

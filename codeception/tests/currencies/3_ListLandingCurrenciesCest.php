@@ -27,7 +27,7 @@ class MainCurrencyCest
         $I->click('html/body/div[1]/div[3]/div/nav/ul/li[8]/ul/li[2]/a');        
         $I->waitForElementNotVisible('html/body/div[1]/div[3]/div/nav/ul/li[8]/ul');
         $I->waitForText('Список валют');
-        $I->see('Список валют', 'span.title');
+        $I->see('Список валют', ".//*[@id='mainContent']/section/div[1]/div[1]/span[2]");
         $I->see('ID', '//*[@id="mainContent"]/section/div[2]/div/form/table/thead/tr/th[1]');
         $I->see('Название', '//*[@id="mainContent"]/section/div[2]/div/form/table/thead/tr/th[2]');
         $I->see('ISO Код', '//*[@id="mainContent"]/section/div[2]/div/form/table/thead/tr/th[3]');
@@ -76,6 +76,7 @@ class MainCurrencyCest
     public function FrontMainCurInProduct(CurrenciesTester $I)
     {
         //Отображение цены и символа главной валюты на странице сайта
+        $I->amOnPage("/admin/components/run/shop/currencies");
         $symbMainCur=$I->grabTextFrom(".//*[@class='']/tr[$this->j]/td[4]");
         $isoMainCur=$I->grabTextFrom(".//*[@class='']/tr[$this->j]/td[3]");
         $I->comment("Symbol Main Currency on CurrencyList: $symbMainCur");
@@ -99,6 +100,7 @@ class MainCurrencyCest
         $I->waitForText("Продукт был успешно создан");
         $I->assertEquals($IsoProduct, $isoMainCur);
         $I->amOnPage("/");
+        $I->wait('2');
         $I->fillField(".//*[@id='inputString']", 'товар4');
         $I->click("html/body/div[1]/div[1]/header/div[2]/div/div/div[2]/div[2]/div/form/span/button");
         $I->wait('1');
@@ -131,6 +133,7 @@ class MainCurrencyCest
     public function VerifyCheckMainCur(CurrenciesTester $I)
     {
         //Проверка снятия отметки главной валюты
+        $I->amOnPage("/admin/components/run/shop/currencies");
         $I->click(CurrenciesPage::RadioButtonLine($this->j));
         $this->atribCheck = $I->grabAttributeFrom("//tbody/tr[$this->j]/td[5]/input","checked");
         $I->assertEquals($this->atribCheck, 'true');
@@ -160,6 +163,7 @@ class MainCurrencyCest
     
     public function VerifyCheckMainAdditCur(CurrenciesTester $I)
     {   //Проверяем возможность отметить главную валюту напротив дополнительной и проверка отметки дополнительной валюты напротив не главной
+        $I->amOnPage("/admin/components/run/shop/currencies");
         if ($this->j<$this->rows){
             $this->j++;
             $I->click(CurrenciesPage::ActiveButtonLine($this->j));
@@ -190,9 +194,10 @@ class MainCurrencyCest
     }
     
     
-    public function VerifyAdditCurAndMainInProductFront(CurrenciesTester $I)
+    public function  ICMS_1510_VerifyAdditCurAndMainInProductFront(CurrenciesTester $I)
     {   
         //Проверяем отображение цены в главной и дополнительной валютах на странице сайта
+        $I->amOnPage("/admin/components/run/shop/currencies");
         if ($this->j<$this->rows){
             $this->j++;
             $I->click(CurrenciesPage::ActiveButtonLine($this->j));
@@ -243,9 +248,9 @@ class MainCurrencyCest
     
     public function ChangeMainAndAdditCurInProductFront(CurrenciesTester $I)
     {  
-        //Проверяем отображение цены товара на странице сайта после смены главной и дополнительной валюты (смены местами)
-        $I->amOnPage("/admin/components/run/shop/currencies");
+        //Проверяем отображение цены товара на странице сайта после смены главной и дополнительной валюты (смены местами)        
         InitTest::ClearAllCach($I);
+        $I->amOnPage("/admin/components/run/shop/currencies");
         $I->click(CurrenciesPage::RadioButtonLine($this->ROWADDIT));
         $I->click(CurrenciesPage::CurrencyNameLine($this->ROWADDIT));
         $I->waitForText('Редактирование валют');
@@ -312,7 +317,9 @@ class MainCurrencyCest
     public function DeleteAdditCur(CurrenciesTester $I)
     {   
         //Проверяем возможность удаления дополнительной валюты
-        $I->comment("$this->j");
+        $I->amOnPage("/admin/components/run/shop/currencies");
+        $I->comment("Main row:$this->j");
+        $I->comment("Rows:$this->rows");
         $I->wait('5');
         if ($this->j<$this->rows){
             $this->j++;
@@ -456,7 +463,7 @@ class MainCurrencyCest
     }
     
     
-    public function VerifyProductFrontAfterDeleteProdCurrency(CurrenciesTester $I)
+    public function  ICMS_1509_VerifyProductFrontAfterDeleteProdCurrency(CurrenciesTester $I)
     {   
         //Проверка отображения цены товара после удаления валюты, в которой была указана его цена
         InitTest::ClearAllCach($I);

@@ -99,14 +99,14 @@ class CreateCurrenciesCest
         $symbol="q";
         $rate="1";
         $I->CreateCurrency($name,$isocode,$symbol,$rate);        
-        $I->waitForElementVisible('.alert.in.fade.alert-error');
-        $I->see('Поле Название должно быть не менее 2 символов в длину.');
-        $I->waitForElementNotVisible('.alert.in.fade.alert-error');        
+//        $I->waitForElementVisible('.alert.in.fade.alert-error');
+        $I->waitForText('Поле Название должно быть не менее 2 символов в длину.');
+//        $I->waitForElementNotVisible('.alert.in.fade.alert-error');        
         $I->appendField(CurrenciesPage::$NameCurrencyCreate, 'q');
         $I->click(CurrenciesPage::$SaveButton);
-        $I->waitForElementVisible('.alert.in.fade.alert-success');
-        $I->see('Валюта создана');
-        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
+//        $I->waitForElementVisible('.alert.in.fade.alert-success');
+        $I->waitForText('Валюта создана');
+//        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
         $name1="qq";
         $isocode1="q";
         $symbol1="q";
@@ -128,9 +128,9 @@ class CreateCurrenciesCest
         $symbol="Динар";
         $rate="11111";
         $I->CreateCurrency($name,$isocode,$symbol,$rate);      
-        $I->waitForElementVisible('.alert.in.fade.alert-success');
-        $I->see('Валюта создана');
-        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
+//        $I->waitForElementVisible('.alert.in.fade.alert-success');
+        $I->waitForText('Валюта создана');
+//        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
         $name1="Динар";
         $isocode1="Динар";
         $symbol1="Динар";
@@ -168,9 +168,9 @@ class CreateCurrenciesCest
         $I->waitForElementNotVisible('.alert.in.fade.alert-error');
         $I->fillField(CurrenciesPage::$IsoCodCreate, 'тугри');
         $I->click(CurrenciesPage::$SaveButton);
-        $I->waitForElementVisible('.alert.in.fade.alert-success');
-        $I->see('Валюта создана');
-        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
+//        $I->waitForElementVisible('.alert.in.fade.alert-success');
+        $I->waitForText('Валюта создана');
+//        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
         $name1="тугрик";
         $isocode1="тугри";
         $symbol1="тугри";
@@ -185,7 +185,7 @@ class CreateCurrenciesCest
      * @guy CurrenciesTester\CurrenciesSteps
      */
     
-    public function Symbols10Create(CurrenciesTester\CurrenciesSteps $I)
+    public function ICMS_1508_Symbols10Create(CurrenciesTester\CurrenciesSteps $I)
     {
         $name="Гульден123";
         $isocode="Гульден123";
@@ -209,9 +209,9 @@ class CreateCurrenciesCest
         $I->waitForElementNotVisible('.alert.in.fade.alert-error');
         $I->fillField(CurrenciesPage::$IsoCodCreate, 'Гульд');
         $I->click(CurrenciesPage::$SaveButton);
-        $I->waitForElementVisible('.alert.in.fade.alert-success');
-        $I->see('Валюта создана');
-        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
+//        $I->waitForElementVisible('.alert.in.fade.alert-success');
+        $I->waitForText('Валюта создана');
+//        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
         $name1="Гульден123";
         $isocode1="Гульд";
         $symbol1="Гульд";
@@ -232,9 +232,9 @@ class CreateCurrenciesCest
         $symbol="fr";
         $rate=".234";
         $I->CreateCurrency($name,$isocode,$symbol,$rate);
-        $I->waitForElementVisible('.alert.in.fade.alert-success');
-        $I->see('Валюта создана');
-        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
+//        $I->waitForElementVisible('.alert.in.fade.alert-success');
+        $I->waitForText('Валюта создана');
+//        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
         $name1="Франкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранк";
         $isocode1="frank";
         $symbol1="fr";
@@ -256,9 +256,9 @@ class CreateCurrenciesCest
         $symbol="фор";
         $rate="00120.0102";
         $I->CreateCurrency($name,$isocode,$symbol,$rate);     
-        $I->waitForElementVisible('.alert.in.fade.alert-success');
-        $I->see('Валюта создана');
-        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
+//        $I->waitForElementVisible('.alert.in.fade.alert-success');
+        $I->waitForText('Валюта создана');
+//        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
         $name1="Форинтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфор";
         $isocode1="forin";
         $symbol1="фор";
@@ -280,9 +280,9 @@ class CreateCurrenciesCest
         $rate="01030.2";
         $save="saveexit";
         $I->CreateCurrency($name,$isocode,$symbol,$rate,$save);
-        $I->waitForElementVisible('.alert.in.fade.alert-success');
-        $I->see('Валюта создана');
-        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
+//        $I->waitForElementVisible('.alert.in.fade.alert-success');
+        $I->waitForText('Валюта создана');
+//        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
         $I->waitForText('Список валют'); 
         $name1="лира";
         $isocode1="лира";
