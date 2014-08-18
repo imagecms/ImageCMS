@@ -33,8 +33,6 @@ class Core extends MY_Controller {
 
     public function index() {
 
-
-
         $page_found = FALSE;
         $without_cat = FALSE;
         $SLASH = '';
