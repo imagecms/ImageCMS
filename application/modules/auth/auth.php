@@ -16,7 +16,7 @@ class Auth extends MY_Controller {
     public $min_password = 5;
     public $max_password = 20;
     public $ban_reason = NULL;
-    private $assetManager;
+    private $assetManager = "\CMSFactory\assetManager";
 
     public function __construct() {
         parent::__construct();
@@ -31,7 +31,15 @@ class Auth extends MY_Controller {
         $lang = new MY_Lang();
         $lang->load('auth');
 //        $this->form_validation->this = & $this;
-        $this->assetManager = property_exists('\CMSFactory\assetManager', '_BehaviorInstance')?TRUE:FALSE;
+    }
+    /**
+     * Check method in class
+     * @param str $class
+     * @param str $method
+     * @return bool
+     */
+    public function checkMethodInClass($class, $method){
+        return method_exists($class, $method)?TRUE:FALSE;
     }
 
     public function index() {
@@ -239,19 +247,33 @@ class Auth extends MY_Controller {
                     $this->template->display('register_popup', array('succes' => TRUE));
                 }
             } else {
-
-                $this->template->assign('info_message', $this->dx_auth->get_auth_error());
+                if($this->checkMethodInClass($this->assetManager, "setData")){
+                    \CMSFactory\assetManager::create()
+                                  ->setData('info_message', $this->dx_auth->get_auth_error());
+                }else{
+                    $this->template->assign('info_message', $this->dx_auth->get_auth_error());
+                }
 
                 // Is registration using captcha
                 if ($this->dx_auth->captcha_registration) {
                     $this->dx_auth->captcha();
-                    $this->template->assign('cap_image', $this->dx_auth->get_captcha_image());
+                    if($this->checkMethodInClass($this->assetManager, "setData")){
+                        \CMSFactory\assetManager::create()
+                                      ->setData('cap_image', $this->dx_auth->get_captcha_image());
+                    }else{
+                        $this->template->assign('cap_image', $this->dx_auth->get_captcha_image());
+                    }
                 }
 
 //                 ($hook = get_hook('auth_show_register_tpl')) ? eval($hook) : NULL;
 
                 if ($_SERVER['HTTP_X_REQUESTED_WITH'] != 'XMLHttpRequest') {
-                    $this->template->show('register');
+//                    if($this->checkMethodInClass($this->assetManager, "render")){
+//                        \CMSFactory\assetManager::create()
+//                                      ->render('register');
+//                    }else{
+                        $this->template->show('register');
+//                    }
                 } else {
                     $this->template->display('register_popup');
                 }
