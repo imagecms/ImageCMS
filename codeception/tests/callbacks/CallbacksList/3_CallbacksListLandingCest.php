@@ -39,6 +39,7 @@ class DeleteCallbackByButtonCest
     public function DeleteButton(CallbacksTester $I)
     {
         //Удаление одного колбека с помощью кнопки удаления напротив этого колбека
+        $I->amOnPage('/admin/components/run/shop/callbacks');
         $rowMax=14;     
         $kil1=$I->grabTextFrom('.//*[@id="totalCallbacks"]');
         $I->comment($kil1);
@@ -117,6 +118,7 @@ class DeleteCallbackByButtonCest
     public function DeleteCheckBoxButton(CallbacksTester $I)
     { 
         //Удаление одного колбека с помощью чекбокса и кнопки "Удалить"
+        $I->amOnPage('/admin/components/run/shop/callbacks');
         $rowMax=14;     
         $kil1=$I->grabTextFrom('.//*[@id="totalCallbacks"]');
         $I->comment($kil1);
@@ -196,6 +198,7 @@ class DeleteCallbackByButtonCest
     public function DeleteFewCheckBoxButton(CallbacksTester $I)
     { 
         //Удаление нескольких колбеков с помощью чекбоксов и кнопки "Удалить"
+        $I->amOnPage('/admin/components/run/shop/callbacks');
         $rowMax=14;     
         $kil1=$I->grabTextFrom('.//*[@id="totalCallbacks"]');
         $I->comment($kil1);
@@ -298,6 +301,7 @@ class DeleteCallbackByButtonCest
     public function ActiveCheckBox(CallbacksTester $I)
     {
         //Проверка активности чекбоксов при первом переходе на страницу
+        $I->amOnPage('/admin/components/run/shop/callbacks');
         $rowMax=14;     
         $kil1=$I->grabTextFrom('.//*[@id="totalCallbacks"]');
         $I->comment($kil1);
@@ -356,6 +360,7 @@ class DeleteCallbackByButtonCest
     public function DeleteAllCheckBoxButton(CallbacksTester $I)
     {
         //Удаление всех колбеков из списка
+        $I->amOnPage('/admin/components/run/shop/callbacks');
         $rowMax=14;     
         $kil1=$I->grabTextFrom('.//*[@id="totalCallbacks"]');
         $I->comment($kil1);

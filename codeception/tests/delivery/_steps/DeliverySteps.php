@@ -23,7 +23,9 @@ class DeliverySteps extends \DeliveryTester {
     function createDelivery(
     $name = null, $active = null, $description = null, $descriptionprice = null, $price = null, $freefrom = null, $message = null, $pay = null) {
         $I = $this;
-        $I->amOnPage(\DeliveryCreatePage::$URL);
+        $I->amOnPage(\DeliveryPage::$URL);
+        $I->click(\DeliveryPage::$CreateButton);
+        $I->waitForText("Создание способа доставки");
         if (isset($name)) {
             $I->fillField(\DeliveryCreatePage::$FieldName, $name);
         }
@@ -43,7 +45,7 @@ class DeliverySteps extends \DeliveryTester {
             $I->fillField(\DeliveryCreatePage::$FieldFreeFrom, $freefrom);
         }
         if (isset($message)) {
-            $I->checkOption(\DeliveryCreatePage::$CheckboxPriceSpecified);
+            $I->click(\DeliveryCreatePage::$CheckboxPriceSpecified);
             $I->fillField(\DeliveryCreatePage::$FieldPriceSpecified, $message);
         }
         if (isset($pay)) {
@@ -101,8 +103,9 @@ class DeliverySteps extends \DeliveryTester {
      */
     function CheckInFrontEnd($DeliveryName, $description = null, $price = null, $freefrom = null, $message = null, $pay = null) {
         $I = $this;
-        
+        $I->wait(1);
         $I->amOnPage('/');
+        $I->waitForElement('.menu-header');
 
         $buy = "//div[@class='frame-prices-buy f-s_0']//form/div[3]";
         $globalbaseket = 'div#tinyBask button';
@@ -241,7 +244,7 @@ $I = $this;
     function DeleteDeliveryMethods ($Methods) {
         $I = $this;
         $I->amOnPage(\DeliveryPage::$URL);
-
+        $HaveMethodsToDelete = false;
         $AllMethodsCount = $I->grabClassCount($I, "niceCheck")-1;
         for ($row = 1;$row <= $AllMethodsCount;++$row){
             $CurrentRowMethod = $I->grabTextFrom(\DeliveryPage::ListMethodLine($row));
@@ -277,7 +280,9 @@ $I = $this;
      */
     function CheckInList($name,$active=null,$price=null,$freefrom=null){
         $I = $this;
+        $I->wait(3);
         $I->amOnPage(\DeliveryPage::$URL);
+        $I->waitForText('Список способов доставки');
         $rows  = $I->grabTagCount($I,"tbody tr");
         $I->comment($rows);
         $present = FALSE;
@@ -437,35 +442,32 @@ $I = $this;
      * Checking that alerts is present after clicking create button
      * 
      * @param string    $type       error|success|required
-     * @param string    $module     create|edit|delete|drag
+     * @param string    $text      create|edit|delete|drag|namemax
      * @return void
      */
-    function CheckForAlertPresent($type=null,$module=null) {
+    function CheckForAlertPresent($type = null,$text = null) {
         $I = $this;
         switch ($type){
             case 'error':
-                    $I->comment("I want to see that error alert is present");
-                    $I->waitForElementVisible('.alert.in.fade.alert-error');
+                    $I->waitForText('Ошибка:', null, '.alert.in.fade.alert-error h4');
+                    if ($text  == 'namemax') { $I->see('Поле Название не может превышать 500 символов в длину.', '.alert.in.fade.alert-error'); }
                     $I->waitForElementNotVisible('.alert.in.fade.alert-error');
-                    ///edit or create
-                    //$I->see("Создание способа доставки", '.title');
                     break;
             case 'success':
-                    $I->comment("I want to see that success alert is present");
-                    $I->waitForElementVisible('.alert.in.fade.alert-success');
-                    if      ($module == 'create')   { $I->see('Доставка создана','.alert.in.fade.alert-success'); }              
-                    elseif  ($module == 'edit')     { $I->see('Изменения сохранены','.alert.in.fade.alert-success'); }
-                    elseif  ($module == 'delete')   { $I->see('Способ доставки удален','.alert.in.fade.alert-success'); }
-                    elseif  ($module == 'drag')     { $I->see('Позиции сохранены', '.alert.in.fade.alert-success'); }
-                    $I->waitForElementNotVisible('.alert.in.fade.alert-success');
+                    
+//                    $I->waitForText('Сообщение:', null, "//div[@class='alert in fade alert-success']//h4");
+                    if      ($text  == 'create')   { $I->waitForText('Доставка создана',            null, "//div[@class='alert in fade alert-success']"); }              
+                    elseif  ($text  == 'edit')     { $I->waitForText('Изменения сохранены',         null, "//div[@class='alert in fade alert-success']"); }
+                    elseif  ($text  == 'delete')   { $I->waitForText('Способ доставки удален',      null, "//div[@class='alert in fade alert-success']"); }
+                    elseif  ($text  == 'drag')     { $I->WaitForText('Позиции сохранены',           null, "//div[@class='alert in fade alert-success']"); }
+                    $I->waitForElementNotVisible("//div[@class='alert in fade alert-success']");
+
                     break;
-            //Checking required field (red color(class alert) & message 
             case 'required':
                     $I->comment("I want to see that field is required");
-                    $I->waitForElementVisible('//label[@generated="true"]');
-                    $I->see('Это поле обязательное.', 'label.alert.alert-error');
-                    if      ($module=='create') { $I->assertEquals($I->grabAttributeFrom(\DeliveryCreatePage::$FieldName, 'class'), "alert alert-error"); }
-                    elseif  ($module=='edit')   { $I->assertEquals($I->grabAttributeFrom(\DeliveryEditPage::$FieldName, 'class'), "required alert alert-error"); }
+                    $I->waitForText('Это поле обязательное.', NULL, '//label[@generated="true"]');
+                    if      ($text =='create') { $I->assertEquals($I->grabAttributeFrom(\DeliveryCreatePage::$FieldName, 'class'), "alert alert-error"); }
+                    elseif  ($text =='edit')   { $I->assertEquals($I->grabAttributeFrom(\DeliveryEditPage::$FieldName, 'class'), "required alert alert-error"); }
                     break;
                 default :
                     $I->fail("unknown type of error entered");

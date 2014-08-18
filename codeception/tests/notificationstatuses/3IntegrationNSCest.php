@@ -19,7 +19,7 @@ class IntegrationNSCest
         $I->wantTo('Create Notification in Front End.');
         $I->amOnPage('/shop/category/telefoniia-pleery-gps/telefony/smartfony?per_page=12');
         $I->wait('1');
-//        $I->scrollToElement($I, '.infoBut.isDrop');
+        $I->scrollToElement($I, '.infoBut.isDrop');
         $I->wait('1');
         $I->click('.infoBut.isDrop');
         $I->wait('1');
@@ -110,7 +110,7 @@ class IntegrationNSCest
         $I->click(NotificationStatusesPage::$ListButtonDelete);
         $I->wait('1');
         $I->click(NotificationStatusesPage::$DeleteWindowButtonDelete);
-        $I->wait('1');
+        $I->wait('2');
         $I->dontSeeLink('Гидрокарбонат');   
     }
 
