@@ -189,9 +189,19 @@ class Admin extends BaseAdminController {
 
     // Edit comment
     public function edit($id, $update_list = 1) {
-        $this->template->assign('comment', $this->comments->get_one($id));
-        $this->template->assign('update_list', $update_list);
-        $this->display_tpl('edit');
+        if($this->check_method('\CMSFactory\assetManager','renderAdmin')){
+            $data = array(
+                'comment' => $this->comments->get_one($id),
+                'update_list' => $update_list    
+            );
+            \CMSFactory\assetManager::create()
+                    ->setData($data)
+                    ->renderAdmin('edit');
+        } else {
+            $this->template->assign('comment', $this->comments->get_one($id));
+            $this->template->assign('update_list', $update_list);
+            $this->display_tpl('edit');
+        }
     }
 
     // Update comment
@@ -248,8 +258,7 @@ class Admin extends BaseAdminController {
         } else {
             $this->drop_cache($id);
             $comment = $this->comments->get_one($id);
-        }
-
+        }   
 
         $this->comments->delete($id);
 
@@ -295,12 +304,17 @@ class Admin extends BaseAdminController {
      */
     public function show_settings() {
         $settings = $this->comments->get_settings();
-
-//        $this->template->add_array(array(
-//            'settings' => $settings
-//        ));
-        $this->render('settings', array('settings' => $settings));
-        //$this->display_tpl('settings');
+        //$this->render('settings', array('settings' => $settings));
+        if($this->check_method('\CMSFactory\assetManager','render')){
+            $data = array(
+                'settings' => $settings    
+            );
+            \CMSFactory\assetManager::create()
+                    ->setData($data)
+                    ->renderAdmin('settings');
+        } else {
+            $this->render('settings', array('settings' => $settings));
+        }
     }
 
     public function update_settings() {
@@ -344,6 +358,15 @@ class Admin extends BaseAdminController {
     private function fetch_tpl($file) {
         $file = realpath(dirname(__FILE__)) . '/templates/' . $file;
         return $this->template->show('file:' . $file);
+    }
+    
+    public function check_method( $class, $method){
+        $obj = new \CMSFactory\assetManager;
+        if(class_exists($class) && method_exists($obj, $method)){
+            return TRUE;
+        } else {
+            return FALSE;
+        }
     }
 
 }

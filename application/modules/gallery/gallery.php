@@ -38,7 +38,7 @@ class Gallery extends MY_Controller {
     /**
      * List categories and get albums from first category
      */
-    function index() {
+    function index() {    
         $this->core->set_meta_tags(lang('Gallery', 'gallery'));
 
         $categories = $this->gallery_m->get_categories($this->settings['order_by'], $this->settings['sort_order']);

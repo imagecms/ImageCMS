@@ -37,7 +37,7 @@ class Comments_Widgets extends MY_Controller {
         $this->db->join('content', 'content.id = comments.item_id', 'left');
         $this->db->order_by('date', 'desc');
         $query = $this->db->get('comments', $settings['comments_count']);
-
+        
         if ($query->num_rows() > 0) {
             $comments = $query->result_array();
 
@@ -49,23 +49,24 @@ class Comments_Widgets extends MY_Controller {
                     }
                 }
             }
-
             return $this->template->fetch('widgets/' . $widget['name'], array('comments' => $comments));
         }
     }
+    
 
-    public function render($viewName, array $data = array(), $return = false) {
-        if (!empty($data))
-            $this->template->add_array($data);
-
-        $this->template->show('file:' . 'application/modules/comments/templates/' . $viewName);
-        exit;
-
-        if ($return === false)
-            $this->template->show('file:' . 'application/modules/comments/templates/' . $viewName);
-        else
-            return $this->template->fetch('file:' . 'application/modules/comments/templates/' . $viewName);
-    }
+//    public function render($viewName, array $data = array(), $return = false) {
+//        if (!empty($data))
+//            $this->template->add_array($data);
+//
+//        $this->template->show('file:' . 'application/modules/comments/templates/' . $viewName);
+//        exit;
+//
+//        if ($return === false)
+//            $this->template->show('file:' . 'application/modules/comments/templates/' . $viewName);
+//        else
+//            return $this->template->fetch('file:' . 'application/modules/comments/templates/' . $viewName);
+//    }
+    
 
     // Configure widget settings
     public function recent_comments_configure($action = 'show_settings', $widget_data = array()) {
@@ -173,18 +174,18 @@ class Comments_Widgets extends MY_Controller {
     }
 
     // Template functions
-    function display_tpl($file, $vars = array()) {
-        $this->template->add_array($vars);
-
-        $file = realpath(dirname(__FILE__)) . '/templates/' . $file . '.tpl';
-        $this->template->display('file:' . $file);
-    }
-
-    function fetch_tpl($file, $vars = array()) {
-        $this->template->add_array($vars);
-
-        $file = realpath(dirname(__FILE__)) . '/templates/' . $file . '.tpl';
-        return $this->template->fetch('file:' . $file);
-    }
-
+//    function display_tpl($file, $vars = array()) {
+//        $this->template->add_array($vars);
+//
+//        $file = realpath(dirname(__FILE__)) . '/templates/' . $file . '.tpl';
+//        $this->template->display('file:' . $file);
+//    }
+//
+//    function fetch_tpl($file, $vars = array()) {
+//        $this->template->add_array($vars);
+//
+//        $file = realpath(dirname(__FILE__)) . '/templates/' . $file . '.tpl';
+//        return $this->template->fetch('file:' . $file);
+//    }
+    
 }

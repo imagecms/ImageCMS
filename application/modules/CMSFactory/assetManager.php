@@ -20,7 +20,7 @@ class assetManager {
     protected $template;
     protected $ci;
 
-    private function __construct() {
+    public function __construct() {
         
     }
 

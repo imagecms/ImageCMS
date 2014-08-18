@@ -15,6 +15,7 @@ class Commentsapi extends Comments {
     public $validation_errors;
     public $enable_comments = true;
     public $module = 'core';
+    public $assetManager;
 
     public function __construct() {
         parent::__construct();
@@ -108,6 +109,7 @@ class Commentsapi extends Comments {
     }
 
     public function renderPosts() {
+        
         $comments = array();
         ($hook = get_hook('comments_on_build_comments')) ? eval($hook) : NULL;
         $this->load->model('base');
@@ -150,7 +152,7 @@ class Commentsapi extends Comments {
             'use_captcha' => $this->use_captcha,
             'use_moderation' => $this->use_moderation,
             'enable_comments' => $this->enable_comments,
-            'visibleMainForm' => $_POST[visibleMainForm]
+            'visibleMainForm' => $_POST['visibleMainForm']
         );
 
         if ($this->use_captcha == TRUE && !$this->dx_auth->is_admin()) {
@@ -505,12 +507,11 @@ class Commentsapi extends Comments {
         if ($query->num_rows() == 1) {
             $query = $query->row_array();
 
-
             $latest_comment = $query['date'];
             $allow_time = $latest_comment + ($this->period * 60);
 //            var_dumps(time());
 //            var_dumps($allow_time);
-//var_dumps_exit($query);
+//            var_dumps_exit($query);
             if ($allow_time > time())
                 return FALSE;
             else

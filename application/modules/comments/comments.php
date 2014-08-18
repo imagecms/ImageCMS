@@ -46,7 +46,7 @@ class Comments extends MY_Controller {
     }
 
     public function commentsDeleteFromCategory($product) {
-
+        
         if (!$product)
             return;
 
@@ -360,10 +360,11 @@ class Comments extends MY_Controller {
                 ($hook = get_hook('comments_goes_redirect')) ? eval($hook) : NULL;
                 // Redirect back to page
                 //redirect($this->input->post('redirect'));
-                if ($_POST['redirect'])
+                if ($_POST['redirect']) {
                     redirect((substr($this->input->post('redirect'), 0, 1) == '/') ? $this->input->post('redirect') : '/' . $this->input->post('redirect'), 301);
-                else
+                } else {
                     redirect('/');
+                }
             }
             else {
                 ($hook = get_hook('comments_empty_text')) ? eval($hook) : NULL;
