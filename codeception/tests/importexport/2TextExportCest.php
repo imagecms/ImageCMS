@@ -21,7 +21,7 @@ class TextExportCest
     public function  WayExport (ImportExportTester $I){
         $I->click(NavigationBarPage::$Settings);
         $I->click(NavigationBarPage::$SettingsImportExport);
-        $I->waitForElement(ExportPage::$ExpButtonExport);
+        $I->wait('1');
         $I->click(ExportPage::$ExpButtonExport);
         $I->seeInCurrentUrl('/admin/components/run/shop/system/import#exportcsv');
     }
