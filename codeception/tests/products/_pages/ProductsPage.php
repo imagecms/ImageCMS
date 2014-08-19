@@ -12,6 +12,7 @@ class ProductsPage
     public static $ChangeStatusButton  = ".//*[@id='filter_form']/section/div[1]/div[2]/div/div/button";
     public static $DeleteButton  = ".//*[@id='del_in_search']";    
     //Кнопки в создании
+    public static $ProductButton  = ".//*[@id='image_upload_form']/div/div[1]/div/a";
     public static $GoBackButton  = './/*[@id="mainContent"]/section/div[1]/div[2]/div/a/span[2]';
     public static $SaveButton  = './/*[@id="mainContent"]/section/div[1]/div[2]/div/button[1]';
     public static $SaveAndExitButton  = './/*[@id="mainContent"]/section/div[1]/div[2]/div/button[2]';
@@ -31,15 +32,17 @@ class ProductsPage
     public static $DateOfCreate  = ".//*[@id='dCreate']";
     public static $OldPrice  = ".//*[@id='oldP']";
     public static $MainTemplate  = ".//*[@id='templateGH']";
-    public static $Url  = ".//*[@id='Url']";
+    public static $UrlField  = ".//*[@id='Url']";
     public static $MetaTitle  = ".//*[@id='Mtag']";
     public static $MetaDescription  = ".//*[@id='mDesc']";
     public static $MetaKeywords  = ".//*[@id='mKey']";
     
-    public static $EditImage  = ".//*[@id='ProductVariantRow_0']/td[6]/div/div/div[2]/button[1]";
-    public static $DownloadImage  = ".//*[@id='ProductVariantRow_0']/td[6]/div/div/div[2]/button[2]";
-    
-    
+    public static $EditImageButton  = ".//*[@id='ProductVariantRow_0']/td[6]/div/div/div[2]/button[1]";
+    public static $HotProductButton  = ".//*[@id='parameters']/table[1]/tbody/tr/td/div/div/div[1]/div[3]/div/button[1]";
+    public static $NewProductButton  = ".//*[@id='parameters']/table[1]/tbody/tr/td/div/div/div[1]/div[3]/div/button[2]";
+    public static $SaleProductButton  = ".//*[@id='parameters']/table[1]/tbody/tr/td/div/div/div[1]/div[3]/div/button[3]";
+    public static $AutoSelectButton  = ".//*[@id='translateProductUrl']";
+    public static $AddVariantButton  = ".//*[@id='addVariant']";
     
     //Кнопки в списке
     public static function ActiveButtonLine($row){

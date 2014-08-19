@@ -4,7 +4,7 @@ class TextElementNSCest
 {
 //---------------------------AUTORIZATION---------------------------------------
     /**
-     * @group a
+     * @group aaa
      */
     public function Login(NotificationStatusesTester $I){
         InitTest::Login($I);
@@ -25,34 +25,38 @@ class TextElementNSCest
     /**
      * @group a
      */
-    public function VerifyWayNotfStatusesCreateEdit (NotificationStatusesTester $I){
+    public function VerifyWayNotfStatusesCreate1 (NotificationStatusesTester $I){
         $I->wantTo('Verify Way on Notification Statuses Create and Edit Page.');
-        $I->click(NavigationBarPage::$Orders);
-        $I->click(NavigationBarPage::$NotificationStatuses);   
-        $I->seeInCurrentUrl(NotificationStatusesPage::$ListPageURL);
-        $I->waitForElement(NotificationStatusesPage::$ListButtonCreate);
-        $I->click(NotificationStatusesPage::$ListButtonCreate);
-        $I->seeInCurrentUrl(NotificationStatusesPage::$CreatePageUrl);
-        $I->waitForElement(NotificationStatusesPage::$CreationButtonBack);
-        $I->click(NotificationStatusesPage::$CreationButtonBack);
-        $I->seeInCurrentUrl(NotificationStatusesPage::$ListPageURL);
-        $I->waitForElement(NotificationStatusesPage::$ListLinkEditing);
-        $I->click(NotificationStatusesPage::$ListLinkEditing);
-        $I->seeInCurrentUrl(NotificationStatusesPage::$EditingPageURL);
-        $I->waitForElement(NotificationStatusesPage::$EditingButtonBack);
-        $I->click(NotificationStatusesPage::$EditingButtonBack);
-        $I->seeInCurrentUrl(NotificationStatusesPage::$ListPageURL);
-        $I->waitForElement(NotificationStatusesPage::$ListHeaderCheckBox);
-        $I->click(NotificationStatusesPage::$ListHeaderCheckBox);
-        $I->click(NotificationStatusesPage::$ListButtonDelete);
-        $I->waitForText('Удаление статуса');
-        $I->click('button.close');
-        $I->wait(1);
-        $I->click('.btn.btn-small.btn-danger.action_on');
-        $I->wait(1);
-        $I->click('//div[3]/a[2]');
+        $I->wait('1');
+        $I->click('//body/div[1]/div[3]/div/nav/ul/li[2]/a');
+        $I->click('//body/div[1]/div[3]/div/nav/ul/li[2]/ul/li[10]/a');
+        $I->seeInCurrentUrl('/admin/components/run/shop/notificationstatuses');
+        $I->wait('1');
+        $I->click('//body/div[1]/div[5]/div/div[3]/section/div[1]/div[2]/div/a');
+        $I->seeInCurrentUrl('/admin/components/run/shop/notificationstatuses/create');
     } 
-    
+    /**
+     * @group a
+     */
+    public function VerifyWayNotfStatusesCreate2 (NotificationStatusesTester $I){
+        $I->wantTo('Verify Way on Notification Statuses Create and Edit Page.');
+        $I->amOnPage('/admin/components/run/shop/notificationstatuses/create');
+        $I->click('//body/div[1]/div[5]/div/section/div/div[2]/div/a');
+        $I->wait('1');
+        $I->seeInCurrentUrl('/admin/components/run/shop/notificationstatuses');
+        
+    } 
+    /**
+     * @group a
+     */
+    public function VerifyWayNotfStatusesEdit1 (NotificationStatusesTester $I){
+        $I->wantTo('Verify Way on Notification Statuses Create and Edit Page.');
+        $I->amOnPage('/admin/components/run/shop/notificationstatuses');
+        $I->click('//body/div[1]/div[5]/div/div[3]/section/div[2]/table/tbody/tr[1]/td[3]/a');
+        $I->seeInCurrentUrl('/components/run/shop/notificationstatuses/edit');
+        $I->click('//body/div[1]/div[5]/div/section/div[1]/div[2]/div/a');
+        $I->seeInCurrentUrl('/admin/components/run/shop/notificationstatuses');
+    } 
     
     
 
@@ -166,15 +170,15 @@ class TextElementNSCest
 //-----------------------VERIFY TEXT CREATE MESSAGE-----------------------------
     
     /**
-     * @group a
+     * @group aaa
      */
     public function VerifyTextCreateMessageCreatingPage (NotificationStatusesTester $I){
         $I->wantTo('Verify Message About Creating Status.');
         $I->amOnPage(NotificationStatusesPage::$CreatePageUrl);
         $I->fillField(NotificationStatusesPage::$CreationFildInput,'qwe 123 !@# ЯЧС');
         $I->click(NotificationStatusesPage::$CreationButtonCreate);
-        $I->waitForElement(NotificationStatusesPage::$CreationCreateMessage);
-        $I->see('Статус ожидания создан',NotificationStatusesPage::$CreationCreateMessage); 
+        $I->exactlySeeAlert($I, 'success', 'Статус ожидания создан');
+        $I->wait('1');
     }
 
     
@@ -182,15 +186,17 @@ class TextElementNSCest
 //--------------VERIFY TEXT ALERT MESSAGE EDITING PAGE--------------------------
     
     /**
-     * @group a
+     * @group aaa
      */
     public function VerifyTextAlertMessageEdictingPage (NotificationStatusesTester $I){
-        $I->wantTo('');
+        $I->wantTo('Verify Alert Message.');
         $I->amOnPage(NotificationStatusesPage::$ListPageURL);
-        $I->waitForElement(NotificationStatusesPage::$ListLinkForEditing);
-        $I->click(NotificationStatusesPage::$ListLinkForEditing);
+        $I->wait('1');
+        $I->click('Выполнен');
+        $I->waitForElement(NotificationStatusesPage::$EditingFildInput);
         $I->fillField(NotificationStatusesPage::$EditingFildInput,'');
-        $I->click('//button[1]');
+        $I->click('.btn.btn-small.btn-primary.action_on.formSubmit');
+        $I->waitForElement(NotificationStatusesPage::$CreationAlertMessage);
         $I->seeElement(NotificationStatusesPage::$CreationAlertMessage);    
     }
 
@@ -209,7 +215,8 @@ class TextElementNSCest
         $I->fillField(NotificationStatusesPage::$EditingFildInput,'ХоЛеСтеРИннн 123123123');
         $I->click(NotificationStatusesPage::$EditingButtonSave);
         $I->wait('1');
-        $I->see('Изменения сохранены',NotificationStatusesPage::$EdictingEdictMessage);
+        $I->exactlySeeAlert($I, 'success', 'Изменения сохранены');
+//        $I->see('Изменения сохранены',NotificationStatusesPage::$EdictingEdictMessage);
         $I->wait('1');
     }
 

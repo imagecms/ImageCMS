@@ -117,9 +117,9 @@ class assetManager {
      * @return assetManager
      * @access public
      * @author a.gula
-     * @param type $script
-     * @param type $useCompress
-     * @param type $position
+     * @param string $script
+     * @param boolean $useCompress
+     * @param string $position after|before
      * @return \CMSFactory\assetManager
      * @copyright ImageCMS (c) 2013, a.gula <a.gula@imagecms.net>
      */

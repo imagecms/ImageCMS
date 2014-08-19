@@ -16,13 +16,12 @@ class DeliveryAlertMessagesCest {
 
     /**
      * @group message
-     * @group current
      * @guy DeliveryTester\DeliverySteps
      */
     public function listDeleteAlert(DeliveryTester\DeliverySteps $I) {
         $name = "Доставка удаление";
         $I->createDelivery($name);
-
+        $I->waitForText("Редактирование способа доставки: " . $name, null, '.title');
         $I->amOnPage(DeliveryPage::$URL);
         $AllMethodsCount = $I->grabClassCount($I, "niceCheck") - 1;
         for ($row = 1; $row <= $AllMethodsCount;  ++$row) {
@@ -47,7 +46,10 @@ class DeliveryAlertMessagesCest {
      * @guy DeliveryTester\DeliverySteps
      */
     public function creteNameEmptyAlert(DeliveryTester\DeliverySteps $I) {
-        $I->amOnPage(DeliveryCreatePage::$URL);
+        $I->amOnPage(DeliveryPage::$URL);
+        $I->waitForText('Список способов доставки', null, '.title');
+        $I->click(DeliveryPage::$CreateButton);
+        $I->waitForText("Создание способа доставки", 10, '.title');
         $I->click(DeliveryCreatePage::$ButtonCreate);
         $I->CheckForAlertPresent('required', 'create');
     }
@@ -58,7 +60,11 @@ class DeliveryAlertMessagesCest {
      */
     public function creteNameMaxSymbolsListAlert(DeliveryTester\DeliverySteps $I) {
         $name = InitTest::$text501;
-        $I->amOnPage(DeliveryCreatePage::$URL);
+        $I->amOnPage(DeliveryPage::$URL);
+        $I->waitForText('Список способов доставки', null, '.title');
+        $I->click(DeliveryPage::$CreateButton);
+        $I->waitForText("Создание способа доставки", 10, '.title');
+
         $I->fillField(DeliveryCreatePage::$FieldName, $name);
         $I->click(DeliveryCreatePage::$ButtonCreate);
         $I->CheckForAlertPresent('error', 'namemax');
@@ -69,15 +75,20 @@ class DeliveryAlertMessagesCest {
      * @guy DeliveryTester\DeliverySteps
      */
     public function createNameNormalAlert(DeliveryTester\DeliverySteps $I) {
-        $name = "ДоставкаСообщение";
-        $I->amOnPage(DeliveryCreatePage::$URL);
+        $name = "ДоставкаСообщение";        
+        $I->amOnPage(DeliveryPage::$URL);
+        $I->waitForText('Список способов доставки', null, '.title');
+        $I->click(DeliveryPage::$CreateButton);
+        $I->waitForText("Создание способа доставки", null, '.title');
         $I->fillField(DeliveryCreatePage::$FieldName, $name);
         $I->click(DeliveryCreatePage::$ButtonCreate);
-        $I->CheckForAlertPresent('success', 'create');
+        $I->exactlySeeAlert($I, 'success', 'Доставка создана');
+        $I->waitForText("Редактирование способа доставки: " . $name, null, '.title');
     }
 
     /**
      * @group message
+     * @group current
      * @guy DeliveryTester\DeliverySteps
      */
     public function editNameEmpty(DeliveryTester\DeliverySteps $I) {
@@ -86,13 +97,19 @@ class DeliveryAlertMessagesCest {
         //For deleting
         $this->CreatedMethods[] = $firstname;
         $this->CreatedMethods[] = $changedname;
-
-        $I->createDelivery($firstname);
+//        $I->createDelivery($firstname);
+        $I->amOnPage(DeliveryPage::$URL);
+        $I->waitForText('Список способов доставки', null, '.title');
+        $I->click(DeliveryPage::$CreateButton);
+        $I->waitForText("Создание способа доставки", null, '.title');
+        $I->fillField(DeliveryCreatePage::$FieldName, $firstname);
+        $I->click(DeliveryCreatePage::$ButtonCreate);
         $I->waitForText("Редактирование способа доставки: " . $firstname, null, '.title');
         $I->fillField(DeliveryEditPage::$FieldName, $changedname);
         $I->click(DeliveryEditPage::$ButtonSave);
         $I->CheckForAlertPresent('required', 'edit');
     }
+
 
     /**
      * @group message
