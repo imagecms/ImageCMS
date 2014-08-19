@@ -47,6 +47,7 @@ class DeliveryEditCest {
      * @guy DeliveryTester\DeliverySteps
      */
     public function authorization(DeliveryTester\DeliverySteps $I) {
+
         if (InitTest::Login($I)) {
             $I->wait(1);
             $I->amOnPage(DeliveryPage::$URL);
