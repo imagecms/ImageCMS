@@ -1,127 +1,138 @@
 <?php
+
 use \DeliveryTester;
 
-class DeliveryAlertMessagesCest
-{
-    public function _before()
-    {
+class DeliveryAlertMessagesCest {
+
+    protected $CreatedMethods = [];
+
+    /**
+     * @group message
+     * @group current
+     */
+    public function authorization(DeliveryTester $I) {
+        InitTest::Login($I);    
     }
 
-    public function _after()
-    {
+    /**
+     * @group message
+     * @group current
+     * @guy DeliveryTester\DeliverySteps
+     */
+    public function listDeleteAlert(DeliveryTester\DeliverySteps $I) {
+        $name = "Доставка удаление";
+        $I->createDelivery($name);
+
+        $I->amOnPage(DeliveryPage::$URL);
+        $AllMethodsCount = $I->grabClassCount($I, "niceCheck") - 1;
+        for ($row = 1; $row <= $AllMethodsCount;  ++$row) {
+            $CurrentRowMethod = $I->grabTextFrom(DeliveryPage::ListMethodLine($row));
+            if ($CurrentRowMethod == $name) {
+                $I->click(DeliveryPage::ListCheckboxLine($row));
+            }
+        }
+
+        $I->click(DeliveryPage::$DeleteButton);
+        $I->waitForText("Удаление способов доставки", NULL, "//*[@id='mainContent']/div/div[1]/div[1]/h3");
+        $I->wait(1);
+        $I->click(DeliveryPage::$DeleteWindowDelete);
+        $I->exactlySeeAlert($I, 'success', 'Способ доставки удален');
+
+
+//    $I->CheckForAlertPresent('success', 'delete');
     }
 
-    // tests
-    public function deleteListAlert(DeliveryTester $I)
-    {
-        $I->amOnPage(DeliveryPage::$URL);
+    /**
+     * @group message
+     * @guy DeliveryTester\DeliverySteps
+     */
+    public function creteNameEmptyAlert(DeliveryTester\DeliverySteps $I) {
+        $I->amOnPage(DeliveryCreatePage::$URL);
+        $I->click(DeliveryCreatePage::$ButtonCreate);
+        $I->CheckForAlertPresent('required', 'create');
     }
-    
-    public function creteNameEmptyAlert(DeliveryTester $I)
-    {
-        $I->amOnPage(DeliveryPage::$URL);
+
+    /**
+     * @group message
+     * @guy DeliveryTester\DeliverySteps
+     */
+    public function creteNameMaxSymbolsListAlert(DeliveryTester\DeliverySteps $I) {
+        $name = InitTest::$text501;
+        $I->amOnPage(DeliveryCreatePage::$URL);
+        $I->fillField(DeliveryCreatePage::$FieldName, $name);
+        $I->click(DeliveryCreatePage::$ButtonCreate);
+        $I->CheckForAlertPresent('error', 'namemax');
     }
-    public function creteNameMaxSymbolsListAlert(DeliveryTester $I)
-    {
-        $I->amOnPage(DeliveryPage::$URL);
+
+    /**
+     * @group message
+     * @guy DeliveryTester\DeliverySteps
+     */
+    public function createNameNormalAlert(DeliveryTester\DeliverySteps $I) {
+        $name = "ДоставкаСообщение";
+        $I->amOnPage(DeliveryCreatePage::$URL);
+        $I->fillField(DeliveryCreatePage::$FieldName, $name);
+        $I->click(DeliveryCreatePage::$ButtonCreate);
+        $I->CheckForAlertPresent('success', 'create');
     }
-    public function cretePriseSpecifiedAlert(DeliveryTester $I)
-    {
-        $I->amOnPage(DeliveryPage::$URL);
+
+    /**
+     * @group message
+     * @guy DeliveryTester\DeliverySteps
+     */
+    public function editNameEmpty(DeliveryTester\DeliverySteps $I) {
+        $firstname = "ДоставкаИмяПусто";
+        $changedname = '';
+        //For deleting
+        $this->CreatedMethods[] = $firstname;
+        $this->CreatedMethods[] = $changedname;
+
+        $I->createDelivery($firstname);
+        $I->waitForText("Редактирование способа доставки: " . $firstname, null, '.title');
+        $I->fillField(DeliveryEditPage::$FieldName, $changedname);
+        $I->click(DeliveryEditPage::$ButtonSave);
+        $I->CheckForAlertPresent('required', 'edit');
     }
-    
-    //    /**_______________________________________________________________________check in alert tests
-//     * @group create
-//     * @guy DeliveryTester\DeliverySteps
-//     */
-//    public function nameEmpty(DeliveryTester\DeliverySteps $I) {
-//        $I->click(DeliveryCreatePage::$ButtonCreate);
-//        $I->CheckForAlertPresent('required','create');
-//    }
-    
-    
-    //    /**_______________________________________________________________________CHECK_IN ALERT TESTS
-//     * @group create
-//     * @guy DeliveryTester\DeliverySteps
-//     */
+
+    /**
+     * @group message
+     * @guy DeliveryTester\DeliverySteps
+     */
+    public function editName501(DeliveryTester\DeliverySteps $I) {
+        $firstname = "ДоствкаИмяМаксСимв";
+        $changedname = InitTest::$text501;
+        //For deleting
+        $this->CreatedMethods[] = $firstname;
+        $this->CreatedMethods[] = $changedname;
+
+        $I->createDelivery($firstname);
+        $I->waitForText("Редактирование способа доставки: " . $firstname, null, '.title');
+        $I->fillField(DeliveryEditPage::$FieldName, $changedname);
+        $I->click(DeliveryEditPage::$ButtonSave);
+        $I->CheckForAlertPresent('error', 'namemax');
+    }
+
+    /**
+     * @group edit
+     * @guy DeliveryTester\DeliverySteps
+     */
+    public function deleteAllCreatedMethods(DeliveryTester\DeliverySteps $I) {
+        $I->amOnPage(DeliveryPage::$URL);
+        //Deleting
+        $I->DeleteDeliveryMethods($this->CreatedMethods);
+        unset($this->CreatedMethods);
+    }
+
+    /**
+     * @todo implement functions below
+     */
 //    public function fieldPriseSpecifiedEmpty(DeliveryTester\DeliverySteps $I) {
-//        $name = "УточнениеЦеныПусто";
-//        //For deleting
-//        $this->CreatedMethods[] = $name;
-//
-//        $I->CreateDelivery($name, 'on', null, null, null, null, "");
-//        $I->CheckForAlertPresent('success', 'create');
 //    }
-    
-    
-    //    /**_______________________________________________________________________CHECK IN ALERT TEST
-//     * @group create
-//     * @guy DeliveryTester\DeliverySteps
-//     */
 //    public function fieldPriseSpecified501(DeliveryTester\DeliverySteps $I) {
-//        $name = 'УточнениеЦены501';
-//        $message = InitTest::$text501;
-//        //For deleting
-//        $this->CreatedMethods[] = $name;
-//
-//        $I->CreateDelivery($name, 'on', null, null, null, null, $message);
-//        $I->CheckForAlertPresent('error', 'create');
-//  _________________________________________________________________________________________________________BUG
 //    }
-    
-    
-    
-    //    /**_______________________________________________________________________CHECK IN ALERTS TESTS
-//     * @group create
-//     * @guy DeliveryTester\DeliverySteps
-//     */
-//    public function name501(DeliveryTester\DeliverySteps $I) {
-//        $I->CreateDelivery(InitTest::$text501);
-//        $I->CheckForAlertPresent('error', 'create');
-//    }
-    
-        /**_________________________________________________________________________check in alert tests
-     * @group edit
-     * @guy DeliveryTester\DeliverySteps
-     */
-//    public function eNameEmpty(DeliveryTester\DeliverySteps $I) {
-//        $I->editDelivery('');
-//        $I->CheckForAlertPresent('required', "edit");
-//    }
-
-    
-        /**-________________________________________________________________________check in alert tests
-     * @group edit
-     * @guy DeliveryTester\DeliverySteps
-     */
-//    public function eName501(DeliveryTester\DeliverySteps $I) {
-//        $name = InitTest::$text501;
-//        //For deleting
-//        $this->CreatedMethods[] = $name;
-//
-//        $I->EditDelivery($name);
-//        $I->CheckForAlertPresent('error', 'edit');
-//        $I->see("Редактирование способа доставки: " . $this->Name, '.title');
-//    }
-    
-        /**_________________________________________________________________________check in alert tests
-     * @group edit
-     * @guy DeliveryTester\DeliverySteps
-     */
 //    public function ePriceSpecifiedEmpty(DeliveryTester\DeliverySteps $I) {
-//        $I->EditDelivery(null, null, null, null, null, null, '');
-//        $I->CheckForAlertPresent('success', 'edit');
 //    }
-    
-    //______________________________________________________________________________________________________________________++++++++++++++++BUG_HERE
-    /**_________________________________________________________________________check in alert tests
-     * @group edit
-     * @guy DeliveryTester\DeliverySteps
-     */
 //    public function eFieldPriceSpecified501(DeliveryTester\DeliverySteps $I){
-//        $message = InitTest::$text501;
-//        $I->EditDelivery(null, null, null, null, null, null, $message);
-//        $I->CheckForAlertPresent('error', 'edit');
 //    }
-    
+//    ____________________________________________________________________________
 }

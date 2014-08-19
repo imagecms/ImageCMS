@@ -47,6 +47,15 @@ class EditingCurrenciesCest
         $I->see('Вернуться', CurrenciesPage::$GoBackButton);
         $I->see('Сохранить', CurrenciesPage::$SaveButton);
         $I->see('Сохранить и выйти', CurrenciesPage::$SaveAndExitButton);
+        $I->see('Шаблон вывода валюты', '//*[@id="cur_ed_form"]/table[2]/thead/tr/th');
+        $I->see('Шаблон валюты:', '//*[@id="cur_ed_form"]/table[2]/tbody/tr/td/div/div[1]/label');
+        $I->see('Строка формата:', '//*[@id="cur_ed_form"]/table[2]/tbody/tr/td/div/div[2]/label');
+        $I->see('Разделитель десятков:', '//*[@id="cur_ed_form"]/table[2]/tbody/tr/td/div/div[3]/label');
+        $I->see('Разделитель тысяч:', '//*[@id="cur_ed_form"]/table[2]/tbody/tr/td/div/div[4]/label');
+        $I->see('Количество дясятичных знаков:', '//*[@id="cur_ed_form"]/table[2]/tbody/tr/td/div/div[5]/label');
+        $I->see('Не показывать нули в дробной части:', '//*[@id="cur_ed_form"]/table[2]/tbody/tr/td/div/div[6]/label');
+        $I->see('Перечень возможных кодов валют приведен в международном стандарте', '//*[@id="cur_ed_form"]/table[2]/tbody/tr/td/div/div[7]/div/p[1]');
+        $I->see('Убрать показ в публичной части незначащих нулей у дробной части цены - если у вас цена 12500,00 рублей - будет отображено 12500, если у вас 12500,50 - будет отображено 12500,50.', '//*[@id="cur_ed_form"]/table[2]/tbody/tr/td/div/div[7]/div/p[2]');
     }
     
     /**
@@ -124,6 +133,12 @@ class EditingCurrenciesCest
         $symbol1="q";
         $rate1="1.0000";
         $I->CheckInFields($name1,$isocode1,$symbol1,$rate1);
+        $I->seeElement('//*[@id="cur_ed_form"]/table[2]');
+        $I->seeElement(CurrenciesPage::$CurrencyTemplate);
+        $I->seeElement(CurrenciesPage::$FormatLine);
+        $I->seeElement(CurrenciesPage::$DelimiterTens);
+        $I->seeElement(CurrenciesPage::$AmountDecimals);
+        $I->seeElement(CurrenciesPage::$NotNullsCheckbox);
         InitTest::ClearAllCach($I);
     }
     
@@ -138,8 +153,9 @@ class EditingCurrenciesCest
         $symbol="Динар";
         $rate="11111";
         $I->EditCurrency($name,$isocode,$symbol,$rate);
+//        $I->exactlySeeAlert($I, 'success', 'Изменения сохранены');
         //$I->waitForElementVisible('.alert.in.fade.alert-success');
-        //$I->waitForText('Изменения сохранены', 4);
+        $I->waitForText('Изменения сохранены', 4);
         //$I->waitForElementNotVisible('.alert.in.fade.alert-success');
         $I->wait('3');
         $name1="Динар";
@@ -237,7 +253,7 @@ class EditingCurrenciesCest
     
     public function Symbols255Editing(CurrenciesTester\CurrenciesSteps $I)
     {
-        $name="Франкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранк";
+        $name="Франкфранкфранк франкфранкфранкфранк франкфранкфранкфранкфранкфранкфранкфранкфранк франкфранкфранкфранкфранк франкфранкфранкфранк франкфранкфранкфранкфранк франкфранкфранк франк франкфранк франкфр анкфранкфранкфранк франкфранкфранк франк ф р анкфранкфранк";
         $isocode="frank";
         $symbol="fr";
         $rate=".0210";
@@ -245,7 +261,7 @@ class EditingCurrenciesCest
         //$I->waitForElementVisible('.alert.in.fade.alert-success');
         $I->waitForText('Изменения сохранены');
         //$I->waitForElementNotVisible('.alert.in.fade.alert-success');
-        $name1="Франкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранк";
+        $name1="Франкфранкфранк франкфранкфранкфранк франкфранкфранкфранкфранкфранкфранкфранкфранк франкфранкфранкфранкфранк франкфранкфранкфранк франкфранкфранкфранкфранк франкфранкфранк франк франкфранк франкфр анкфранкфранкфранк франкфранкфранк франк ф р анкфранкфранк";
         $isocode1="frank";
         $symbol1="fr";
         $rate1="0.0210";
@@ -259,7 +275,7 @@ class EditingCurrenciesCest
     
     public function Symbols256Editing(CurrenciesTester\CurrenciesSteps $I)
     {
-        $name="Форинтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфори";
+        $name="Форинтфоринт форинтфоринтфоринт форинтфо ринтфоринтфоринтфор интфоринтфоринтфоринтфоринтфоринтфоринтфори нтфоринтфоринтфоринтфор интфоринтфоринтфоринтфоринтф оринтфоринтфор интфоринтфоринтфоринтфор интфоринт форинтфоринтфоринтфоринтф оринтфоринтфоринтфорин";
         $isocode="forin";
         $symbol="фор";
         $rate="00120.01";
@@ -267,7 +283,7 @@ class EditingCurrenciesCest
         //$I->waitForElementVisible('.alert.in.fade.alert-success');
         $I->waitForText('Изменения сохранены', 4);
         //$I->waitForElementNotVisible('.alert.in.fade.alert-success');
-        $name1="Форинтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфор";
+        $name1="Форинтфоринт форинтфоринтфоринт форинтфо ринтфоринтфоринтфор интфоринтфоринтфоринтфоринтфоринтфоринтфори нтфоринтфоринтфоринтфор интфоринтфоринтфоринтфоринтф оринтфоринтфор интфоринтфоринтфоринтфор интфоринт форинтфоринтфоринтфоринтф оринтфоринтфоринтфори";
         $isocode1="forin";
         $symbol1="фор";
         $rate1="120.0100";

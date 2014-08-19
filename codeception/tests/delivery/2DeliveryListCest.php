@@ -114,7 +114,7 @@ class DeliveryListCest {
         $I->waitForText("Удаление способов доставки", NULL, "//*[@id='mainContent']/div/div[1]/div[1]/h3");
         $I->click(DeliveryPage::$DeleteWindowBack);
         $I->see("Список способов доставки",null,".title");
-        $I->wait('1');
+        $I->wait(1);
         $I->click(DeliveryPage::$DeleteButton);
         $I->waitForText("Удаление способов доставки", NULL, "//*[@id='mainContent']/div/div[1]/div[1]/h3");
         $I->click(DeliveryPage::$DeleteWindowX);
@@ -136,6 +136,7 @@ class DeliveryListCest {
         $I->click(DeliveryPage::ListCheckboxLine($row));
         $I->click(DeliveryPage::$DeleteButton);
         $I->waitForText("Удаление способов доставки", NULL, "//*[@id='mainContent']/div/div[1]/div[1]/h3");
+        $I->wait(2);
         $I->click(DeliveryPage::$DeleteWindowDelete);
         $I->CheckForAlertPresent('success', 'delete');
     }
