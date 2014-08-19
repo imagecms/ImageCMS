@@ -6,7 +6,7 @@ class TextImportCest
     
 //---------------------------AUTORIZATION--------------------------------------- 
     /**
-     * @group aa
+     * @group a
      */
     public function Login(ImportExportTester $I){
         InitTest::Login($I);
@@ -76,6 +76,8 @@ class TextImportCest
         $I->see('Для импортированных изображений будет произведен ресайз', ImportPage::$IMPInfoPopoverContent);
         
         
+        
+        
     }
     /**
      * @group a
@@ -101,10 +103,81 @@ class TextImportCest
         $I->see('Не загружен файл. Слот пуст Подробнее', '.alert.in.fade.alert-success');        
     }
     
-    //body/div[1]/div[2]/div/a[2]
+    
+    
     
     /**
-     * @group aa
+     * @group a
+     */
+    public function Dsyyy (ImportExportTester $I){
+        $I->amOnPage(ImportPage::$IMPURL);
+        $I->click(ImportPage::$IMPButtonSlot2);
+        $I->seeCheckboxIsChecked('//tbody/tr/td/div/form/div/div[2]/div/label/input');
+    }
+    
+    
+    
+    
+    /**
+     * @group a
+     */
+    public function Dsyyyppp (ImportExportTester $I){
+        $I->amOnPage(ImportPage::$IMPURL);
+        $I->click(ImportPage::$IMPButtonSlot3);
+        $I->seeCheckboxIsChecked('//tbody/tr/td/div/form/div/div[3]/div/label/input');
+    }
+    
+    
+    
+    
+    /**
+     * @group a
+     */
+    public function Dsyyyooo (ImportExportTester $I){
+        $I->amOnPage(ImportPage::$IMPURL);
+        $I->click(ImportPage::$IMPButtonSlot1);
+        $I->seeCheckboxIsChecked('//tbody/tr/td/div/form/div/div[1]/div/label/input');
+    }
+    
+    
+    
+    /**
+     * @group a
+     */
+    public function Dsyypp65 (ImportExportTester $I){
+        $I->amOnPage(ImportPage::$IMPURL);
+        $I->click(ImportPage::$IMPChekBoxBD);
+        $I->seeCheckboxIsChecked(ImportPage::$IMPChekBoxBD);
+    }
+    
+    
+    
+    /**
+     * @group a
+     */
+    public function Dsyypp87 (ImportExportTester $I){
+        $I->amOnPage(ImportPage::$IMPURL);
+        $I->click(ImportPage::$IMPChekBoxImg);
+        $I->seeCheckboxIsChecked(ImportPage::$IMPChekBoxImg);
+    }
+    
+    
+    
+    /**
+     * @group a
+     */
+    public function Dsyypp98 (ImportExportTester $I){
+        $I->amOnPage(ImportPage::$IMPURL);
+        $I->click(ImportPage::$IMPChekBoxPrice);
+        $I->seeCheckboxIsChecked(ImportPage::$IMPChekBoxPrice);
+    }
+    
+    
+
+
+    
+    /**
+     * @group a
      */
     public function ICMS1521 (ImportExportTester $I){
         $I->amOnPage(ImportPage::$IMPURL);
