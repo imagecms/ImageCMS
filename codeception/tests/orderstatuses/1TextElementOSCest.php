@@ -4,7 +4,7 @@ class TextElementOSCest
 {
 //---------------------------AUTORIZATION---------------------------------------   
     /**
-     * @group a
+     * @group aaa
      */
     public function Login(OrderStatusesTester $I){
         InitTest::Login($I);
@@ -225,7 +225,7 @@ class TextElementOSCest
 //---------------TEXT ELEMENT PRESENCE DELETING PAGE----------------------------
     
     /**
-     * @group a
+     * @group aaa
      */
     public function TextElementDeletingWindow(OrderStatusesTester $I){
         $I->wantTo('Verify Text Present on Delete Window.');
@@ -233,8 +233,9 @@ class TextElementOSCest
         $I->click(OrderStatusesListPage::$ListButtonDelete);
         $I->waitForText('Удаление статуса заказа', '3', OrderStatusesListPage::$DeleteTitle);
         $I->seeElement(OrderStatusesListPage::$DeleteWindow);
+        $I->wait(1);
         $I->see('Удаление статуса заказа', OrderStatusesListPage::$DeleteTitle);
-        $I->see('Вы действительно хотите удалить статус?', OrderStatusesListPage::$DeleteMessage);
+        $I->see('Вы действительно хотите удалить статус?', '.control-group>p');
         $I->see('Удалить', OrderStatusesListPage::$DeleteButtonDelete);
         $I->see('Отменить', OrderStatusesListPage::$DeleteButtonCancel);
         $I->see('×', OrderStatusesListPage::$DeleteButtonX);

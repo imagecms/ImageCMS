@@ -151,7 +151,11 @@ class CurrenciesTester extends \Codeception\Actor
      * @param type $I
       * @param type $type            type of alert success|error
       * @param type $message         message of alert
+<<<<<<< HEAD
       * @param type $times           one time = 10 milliseconds && 10000 microseconds
+=======
+      * @param type $times           one time = 1 milliseconds && 1000 microseconds
+>>>>>>> 5023d323781dc635a5ec87da815b32bf01ebdfca
      * @see \Codeception\Module\AcceptanceHelper::exactlySeeAlert()
      */
     public function exactlySeeAlert($I, $type = null, $message = null, $times = null) {

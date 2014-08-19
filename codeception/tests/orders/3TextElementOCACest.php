@@ -135,7 +135,7 @@ class TextElementOCACest
         $I->createProduct($nameProduct = 'Твр 123 for click butn', $nameVariantProduct = NULL, $priceProduct = 1);        
         $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
         $I->click(CreateOrderAdminPage::$CrtPButtProduct);
-        $I->fillField('#productNameForOrders', 'Твр 123 for click butn');
+        $I->fillField('//table[1]/tbody/tr[1]/td[1]/div/input', 'Твр 123 for click butn');
         $I->wait('1');
         $I->see('Твр 123 for click butn','//body/ul[2]/li[1]/a');
         $I->click('//body/ul[2]/li[1]/a');
@@ -164,8 +164,7 @@ class TextElementOCACest
             $I->wait('2');
             $I->click(\OrdersListPage::$ListButtCreateOrder);
             $I->wait('2');
-            $I->click(CreateOrderAdminPage::$CrtPButtProduct);
-            $I->fillField('#productNameForOrders', 'Товар для Verify BTN7456 нету на складе.');
+            $I->fillField('//table[1]/tbody/tr[1]/td[1]/div/input', 'Товар для Verify BTN7456 нету на складе.');
             $I->wait('1');
             $I->see('Товар для Verify BTN7456 нету на складе.','//body/ul[2]/li[1]/a');
             $I->click('//body/ul[2]/li[1]/a');
@@ -190,13 +189,13 @@ class TextElementOCACest
      */
     public function VerifyFieldDefoultAmountInBasket(OrdersTester\OrdersSteps $I){
         $I->wantTo('VerifyDefoltValueOnFieldAmount.');
-        $I->createProduct($nameProduct = 'ТоварVerify Defoult98765 AmountinBasket.', $nameVariantProduct = NULL, $priceProduct = 1);
+        $I->createProduct($nameProduct = 'ТоварVerify Defoult98765 AmountinBasket', $nameVariantProduct = NULL, $priceProduct = 1);
         $I->click(\NavigationBarPage::$Orders);
         $I->click(\NavigationBarPage::$OrdersList);
         $I->wait('2');
         $I->click(\OrdersListPage::$ListButtCreateOrder);
         $I->wait('2');
-        $I->fillField('#productNameForOrders', 'ТоварVerify Defoult98765 AmountinBasket.');
+        $I->fillField('//table[1]/tbody/tr[1]/td[1]/div/input', 'ТоварVerify Defoult98765 AmountinBasket');
         $I->wait('1');
         $I->click('//body/ul[2]/li[1]/a');
         $I->wait('1');
@@ -237,8 +236,10 @@ class TextElementOCACest
     public function VerifyTextMessageAddUser2 (OrdersTester $I) {
         $I->wantTo('Verify Text Message Unfilled "User" and "E-meil".');
         $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
+        $I->wait('1');
         $I->click(CreateOrderAdminPage::$CrtPButtUser);
         $I->click(CreateOrderAdminPage::$CrtULinkCreate);
+        $I->wait('1');
         $I->fillField(CreateOrderAdminPage::$CrtUFieldAddress, 'qwe 123');
         $I->fillField(CreateOrderAdminPage::$CrtUFieldPhone, '0987654123');
         $I->click(CreateOrderAdminPage::$CrtUButtCreate);
@@ -250,8 +251,10 @@ class TextElementOCACest
     public function VerifyTextMessageAddUser3 (OrdersTester $I) {
         $I->wantTo('Verify Text Message Unfilled "User".');
         $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
+        $I->wait('1');
         $I->click(CreateOrderAdminPage::$CrtPButtUser);
         $I->click(CreateOrderAdminPage::$CrtULinkCreate);
+        $I->wait('1');
         $I->fillField(CreateOrderAdminPage::$CrtUFieldAddress, 'йцу )(?*');
         $I->fillField(CreateOrderAdminPage::$CrtUFieldPhone, '1');
         $I->fillField(CreateOrderAdminPage::$CrtUFieldEmeil, 'ad@min.com');
@@ -264,8 +267,10 @@ class TextElementOCACest
     public function VerifyTextMessageAddUser4 (OrdersTester $I) {
         $I->wantTo('Verify Text Message Unfilled "E-meil".');
         $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
+        $I->wait('1');
         $I->click(CreateOrderAdminPage::$CrtPButtUser);
         $I->click(CreateOrderAdminPage::$CrtULinkCreate);
+        $I->wait('1');
         $I->fillField(CreateOrderAdminPage::$CrtUFieldAddress, '"№; 2134 йцу ASD');
         $I->fillField(CreateOrderAdminPage::$CrtUFieldPhone, '0982398746563216549878765465');
         $I->fillField(CreateOrderAdminPage::$CrtUFieldName, 'Gipotolamus ЖВ');
@@ -278,8 +283,10 @@ class TextElementOCACest
     public function VerifyTextMessageAddUser5 (OrdersTester $I) {
         $I->wantTo('Verify Text Message Numeral Filled "E-meil".');
         $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
+        $I->wait('1');
         $I->click(CreateOrderAdminPage::$CrtPButtUser);
         $I->click(CreateOrderAdminPage::$CrtULinkCreate);
+        $I->wait('1');
         $I->fillField(CreateOrderAdminPage::$CrtUFieldName, 'Br4TD7 1z');
         $I->fillField(CreateOrderAdminPage::$CrtUFieldEmeil, '0987654123');
         $I->click(CreateOrderAdminPage::$CrtUButtCreate);
@@ -291,8 +298,10 @@ class TextElementOCACest
     public function VerifyTextMessageAddUser6 (OrdersTester $I) {
         $I->wantTo('Verify Text Message Cirilic Filled "E-meil".');
         $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
+        $I->wait('1');
         $I->click(CreateOrderAdminPage::$CrtPButtUser);
         $I->click(CreateOrderAdminPage::$CrtULinkCreate);
+        $I->wait('1');
         $I->fillField(CreateOrderAdminPage::$CrtUFieldName, 'КуМтЕлЯпАсЕ');
         $I->fillField(CreateOrderAdminPage::$CrtUFieldEmeil, 'йцуйцу йцуйцу');
         $I->click(CreateOrderAdminPage::$CrtUButtCreate);
@@ -304,8 +313,10 @@ class TextElementOCACest
     public function VerifyTextMessageAddUser7 (OrdersTester $I) {
         $I->wantTo('Verify Text Message Latin Filled "E-meil".');
         $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
+        $I->wait('1');
         $I->click(CreateOrderAdminPage::$CrtPButtUser);
         $I->click(CreateOrderAdminPage::$CrtULinkCreate);
+        $I->wait('1');
         $I->fillField(CreateOrderAdminPage::$CrtUFieldName, 'ZURGODZUP');
         $I->fillField(CreateOrderAdminPage::$CrtUFieldEmeil, 'qweQWEasdaPOUI');
         $I->click(CreateOrderAdminPage::$CrtUButtCreate);
@@ -317,8 +328,10 @@ class TextElementOCACest
     public function VerifyTextMessageAddUser8 (OrdersTester $I) {
         $I->wantTo('Verify Text Message Symbol Filled "E-meil".');
         $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
+        $I->wait('1');
         $I->click(CreateOrderAdminPage::$CrtPButtUser);
         $I->click(CreateOrderAdminPage::$CrtULinkCreate);
+        $I->wait('1');
         $I->fillField(CreateOrderAdminPage::$CrtUFieldName, 'b');
         $I->fillField(CreateOrderAdminPage::$CrtUFieldEmeil, '+-*/\!#^:');
         $I->click(CreateOrderAdminPage::$CrtUButtCreate);
@@ -353,7 +366,7 @@ class TextElementOCACest
         $I->createProduct($nameProduct = 'Товар для Text Message', $nameVariantProduct = NULL, $priceProduct = 1);
         $I->amOnPage(CreateOrderAdminPage::$CrtPURL);
         $I->click(CreateOrderAdminPage::$CrtPButtProduct);
-        $I->fillField('#productNameForOrders', 'Товар для Text Message');
+        $I->fillField('//table[1]/tbody/tr[1]/td[1]/div/input', 'Товар для Text Message');
         $I->wait('1');
         $I->click('//body/ul[2]/li[1]/a');
         $I->wait('1');

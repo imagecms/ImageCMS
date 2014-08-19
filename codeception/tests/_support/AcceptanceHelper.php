@@ -133,9 +133,12 @@ SCRIPT;
       * @param type $I
       * @param type $type            type of alert success|error
       * @param type $message         message of alert
-      * @param type $times           one time = 10 milliseconds && 10000 microseconds
+
+
+      * @param type $times           one time = 1 milliseconds && 1000 microseconds
       */
-    public function exactlySeeAlert($I,$type = 'success', $message = null,$times = '100') {
+    public function exactlySeeAlert($I,$type = 'success', $message = null,$times = '30') {
+
         //define element
         if ($type == 'success') {
             $element = '.alert.in.fade.alert-success';
@@ -145,7 +148,9 @@ SCRIPT;
             $I->fail('unknown type of message, pass "success" or "error" string');
         }
         for ($j = 1; $j <= $times; ++$j) {
+
             usleep(100000);
+            
             try {
                 $see = $I->see($message, $element);
                 if (!isset($see)) {
@@ -153,7 +158,7 @@ SCRIPT;
                     break;
                 }
             } catch (\Exception $exc) {
-                
+
             }
         }
         if ($see) {
