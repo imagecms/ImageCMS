@@ -45,6 +45,7 @@ class CurrenciesSteps extends \CurrenciesTester
     {
         $I = $this;
         $I->waitForText('Редактирование валют');
+        $I->wait('1');
         $I->seeInField(\CurrenciesPage::$NameCurrencyEdit, $name1);
         $I->seeInField(\CurrenciesPage::$IsoCodEdit, $isocode1);
         $I->seeInField(\CurrenciesPage::$SymbolEdit, $symbol1);
@@ -54,7 +55,7 @@ class CurrenciesSteps extends \CurrenciesTester
     function CheckInListLanding($name1,$isocode1,$symbol1)
     {
         $I = $this;
-        $I->wait('1');
+        $I->wait('3');
         $I->see($name1, './/*[@id="mainContent"]/section/div[2]/div/form/table/tbody/tr[last()]/td[2]/a');
         $I->see($isocode1, './/*[@id="mainContent"]/section/div[2]/div/form/table/tbody/tr[last()]/td[3]');
         $I->see($symbol1, './/*[@id="mainContent"]/section/div[2]/div/form/table/tbody/tr[last()]/td[4]');

@@ -6,7 +6,7 @@ class CategoryAndNameProductCest
 //---------------------------AUTORIZATION--------------------------------------- 
     
     /**
-     * @group a
+     * @group categ
      */
     public function Login(OrdersTester $I){
         InitTest::Login($I);
@@ -22,7 +22,7 @@ class CategoryAndNameProductCest
     
     
     /**
-     * @group a
+     * @group categ
      * @guy OrdersTester\OrdersSteps
      */
     public function ParentCategory (OrdersTester\OrdersSteps $I) {
@@ -38,7 +38,7 @@ class CategoryAndNameProductCest
     
     
      /**
-     * @group a
+     * @group categ
      * @guy OrdersTester\OrdersSteps
      */
     public function ChildCategoryFirstLevel (OrdersTester\OrdersSteps $I) {
@@ -54,7 +54,7 @@ class CategoryAndNameProductCest
     
     
     /**
-     * @group a
+     * @group categ
      * @guy OrdersTester\OrdersSteps
      */
     public function ChildCategorySecondLevel(OrdersTester\OrdersSteps $I) {
