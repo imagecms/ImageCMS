@@ -16,9 +16,9 @@ modules:
         - Cli
     config:
         WebDriver:
-            url: 'http://test1.loc/'
+            url: 'http://testbuild.loc/'
             browser: chrome
-            window_size: 1024x768    
+            window_size: 1024x1000    
 #            restart: false
             clear_cookies: false
             wait: 0
@@ -26,7 +26,7 @@ modules:
                 unexpectedAlertBehaviour: 'accept'
         Db:
             Db:
-            dsn: 'mysql:host=127.0.0.1;dbname=test1'
+            dsn: 'mysql:host=127.0.0.1;dbname=testbuild'
             user: 'root'
             password: ''
             dump: 'tests/_data/cmsprem.sql'

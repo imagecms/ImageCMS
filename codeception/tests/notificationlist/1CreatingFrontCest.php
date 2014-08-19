@@ -19,6 +19,7 @@ class CreatingFrontCest
      * @group q
      */
     public function VerifyTextElement(NotificationListTester $I){
+        $I->wantTo('Verify Text Element Create Notf Front Page.');
         $I->amOnPage(NotificationCreateFrontPage::$PageURL);
         $I->scrollToElement($I, '.infoBut.isDrop');
         $I->click(NotificationCreateFrontPage::$ButtonOnPage);
@@ -44,6 +45,7 @@ class CreatingFrontCest
      * @group a
      */    
     public function VerifyTElement(NotificationListTester $I){
+        $I->wantTo('Verify Element Presence on Create Notifi Front Page.');
         $I->amOnPage(NotificationCreateFrontPage::$PageURL);
         $I->scrollToElement($I, '.infoBut.isDrop');
         $I->click(NotificationCreateFrontPage::$ButtonOnPage); 
@@ -63,6 +65,7 @@ class CreatingFrontCest
      * @group a
      */    
     public function Message1FildName (NotificationListTester $I){
+        $I->wantTo('Verify Alert Message Presence.');
         $I->amOnPage(NotificationCreateFrontPage::$PageURL);
         $I->scrollToElement($I, '.infoBut.isDrop');
         $I->click(NotificationCreateFrontPage::$ButtonOnPage);
@@ -81,6 +84,7 @@ class CreatingFrontCest
      * @group a
      */    
     public function Message2FildName (NotificationListTester $I){  
+        $I->wantTo('Verify Alert Message Presence.');
         $I->amOnPage(NotificationCreateFrontPage::$PageURL);
         $I->scrollToElement($I, '.infoBut.isDrop');
         $I->click(NotificationCreateFrontPage::$ButtonOnPage);
@@ -99,6 +103,7 @@ class CreatingFrontCest
      * @group a
      */    
     public function Message1FildEmeil (NotificationListTester $I){
+        $I->wantTo('Verify Alert Message Presence.');
         $I->amOnPage(NotificationCreateFrontPage::$PageURL);
         $I->scrollToElement($I, '.infoBut.isDrop');
         $I->click(NotificationCreateFrontPage::$ButtonOnPage);
@@ -117,6 +122,7 @@ class CreatingFrontCest
      * @group a
      */    
     public function Message2FildEmeil (NotificationListTester $I){
+        $I->wantTo('Verify Alert Message Presence.');
         $I->amOnPage(NotificationCreateFrontPage::$PageURL);
         $I->scrollToElement($I, '.infoBut.isDrop');
         $I->click(NotificationCreateFrontPage::$ButtonOnPage);
@@ -135,6 +141,7 @@ class CreatingFrontCest
      * @group a
      */    
     public function Message3FildEmeil (NotificationListTester $I){  
+        $I->wantTo('Verify Alert Message Presence.');
         $I->amOnPage(NotificationCreateFrontPage::$PageURL);
         $I->scrollToElement($I, '.infoBut.isDrop');
         $I->click(NotificationCreateFrontPage::$ButtonOnPage);
@@ -155,6 +162,7 @@ class CreatingFrontCest
      * @group a
      */    
     public function Message1FildPhone (NotificationListTester $I){  
+        $I->wantTo('Verify Alert Message Presence.');
         $I->amOnPage(NotificationCreateFrontPage::$PageURL);
         $I->scrollToElement($I, '.infoBut.isDrop');
         $I->click(NotificationCreateFrontPage::$ButtonOnPage); 
@@ -175,6 +183,7 @@ class CreatingFrontCest
      * @group a
      */    
     public function Message2FildPhone (NotificationListTester $I){  
+        $I->wantTo('Verify Alert Message Presence.');
         $I->amOnPage(NotificationCreateFrontPage::$PageURL);
         $I->scrollToElement($I, '.infoBut.isDrop');
         $I->click(NotificationCreateFrontPage::$ButtonOnPage); 
@@ -194,6 +203,7 @@ class CreatingFrontCest
      * @group a
      */    
     public function CreateNotificationMessage (NotificationListTester $I){
+        $I->wantTo('Verify End Message Presence.');
         $I->amOnPage(NotificationCreateFrontPage::$PageURL);
         $I->amOnPage(NotificationCreateFrontPage::$PageURL);
         $I->scrollToElement($I, '.infoBut.isDrop');
@@ -217,6 +227,7 @@ class CreatingFrontCest
      * @group a
      */    
     public function VerifyPresenceCreatedNotification (NotificationListTester $I){
+        $I->wantTo('Verify Tooltip Message Presence.');
         $I->amOnPage(NotificationListPage::$ListPageURL);
         $I->see('Africa@Boombaataa.net', NotificationListPage::$ListLinkEditting);
         $I->click(NotificationListPage::$ListLinkEditting);
@@ -231,6 +242,7 @@ class CreatingFrontCest
      * @group a
      */    
     public function VerifyInputValuesCreatedNotification (NotificationListTester $I){
+        $I->wantTo('Verify Saved Values Presence.');
         $I->amOnPage(NotificationListPage::$ListPageURL);
         $I->click(NotificationListPage::$ListLinkEditting);
         $I->seeInField(NotificationListPage::$EditingFildName, 'QWE 123 йцу zxc !@# ЪХЗ');
@@ -247,6 +259,7 @@ class CreatingFrontCest
      * @group a
      */    
     public function DeleteNotification(NotificationListTester $I){
+        $I->wantTo('Verify Delete Message presence.');
         $I->amOnPage(NotificationListPage::$ListPageURL);
         $I->click(NotificationListPage::$ListMainCheckBox);
         $I->waitForElementVisible(NotificationListPage::$ListButtonDelete);

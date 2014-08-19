@@ -209,6 +209,7 @@ class CreateAllOrderDiscountCest
 //        $date=$I->grabValueFrom(DiscountsPage::$OnDateCreate);
 //        $I->comment($date);
 //        $I->click(DiscountsPage::$SaveButton);
+//        $I->exactlySeeAlert($I, 'success', 'Скидка успешно создана!');
 //        $I->waitForText("Редактирование скидки");
 //        $I->waitForElementVisible('.alert.in.fade.alert-success');
 //        $I->see('Скидка успешно создана!');
@@ -235,7 +236,8 @@ class CreateAllOrderDiscountCest
         $I->click(".//*[@id='ui-datepicker-div']/table/tbody/tr/td/a");
         $I->seeInField(DiscountsPage::$ValueDiscount, '99');
         $I->click(DiscountsPage::$SaveButton);
-        $I->waitForText("Редактирование скидки");
+        $I->exactlySeeAlert($I, 'success', 'Скидка успешно создана!');
+        $I->waitForText("Редактирование скидки");        
 //        $I->waitForElementVisible('.alert.in.fade.alert-success');
 //        $I->see('Скидка успешно создана!');
 //        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
@@ -257,7 +259,8 @@ class CreateAllOrderDiscountCest
         $I->fillField(DiscountsPage::$BeginValueDiscount, '6666');
         $I->click(DiscountsPage::$OnDateCreate);
         $I->click(".//*[@id='ui-datepicker-div']/table/tbody/tr/td/a");
-        $I->click(DiscountsPage::$SaveButton);
+        $I->click(DiscountsPage::$SaveButton);        
+        $I->exactlySeeAlert($I, 'success', 'Скидка успешно создана!');
         $I->waitForText("Редактирование скидки");
 //        $I->waitForElementVisible('.alert.in.fade.alert-success');
 //        $I->see('Скидка успешно создана!');
@@ -282,6 +285,7 @@ class CreateAllOrderDiscountCest
         $I->click(DiscountsPage::$OnDateCreate);
         $I->click(".//*[@id='ui-datepicker-div']/table/tbody/tr/td/a");
         $I->click(DiscountsPage::$SaveButton);
+        $I->exactlySeeAlert($I, 'success', 'Скидка успешно создана!');
         $I->waitForText("Редактирование скидки");
 //        $I->waitForElementVisible('.alert.in.fade.alert-success');
 //        $I->see('Скидка успешно создана!');
@@ -306,6 +310,7 @@ class CreateAllOrderDiscountCest
         $I->click(DiscountsPage::$OnDateCreate);
         $I->click(".//*[@id='ui-datepicker-div']/table/tbody/tr/td/a");
         $I->click(DiscountsPage::$SaveButton);
+        $I->exactlySeeAlert($I, 'success', 'Скидка успешно создана!');
         $I->waitForText("Редактирование скидки");
 //        $I->waitForElementVisible('.alert.in.fade.alert-success');
 //        $I->see('Скидка успешно создана!');
@@ -330,6 +335,7 @@ class CreateAllOrderDiscountCest
         $I->click(DiscountsPage::$OnDateCreate);
         $I->click(".//*[@id='ui-datepicker-div']/table/tbody/tr/td/a");
         $I->click(DiscountsPage::$SaveButton);
+        $I->exactlySeeAlert($I, 'success', 'Скидка успешно создана!');
         $I->waitForText("Редактирование скидки");
 //        $I->waitForElementVisible('.alert.in.fade.alert-success');
 //        $I->see('Скидка успешно создана!');
@@ -354,6 +360,7 @@ class CreateAllOrderDiscountCest
         $I->click(DiscountsPage::$OnDateCreate);
         $I->click(".//*[@id='ui-datepicker-div']/table/tbody/tr/td/a");
         $I->click(DiscountsPage::$SaveButton);
+        $I->exactlySeeAlert($I, 'success', 'Скидка успешно создана!');
         $I->waitForText("Редактирование скидки");
 //        $I->waitForElementVisible('.alert.in.fade.alert-success');
 //        $I->see('Скидка успешно создана!');
@@ -378,6 +385,7 @@ class CreateAllOrderDiscountCest
         $I->click(DiscountsPage::$OnDateCreate);
         $I->click(".//*[@id='ui-datepicker-div']/table/tbody/tr/td/a");
         $I->click(DiscountsPage::$SaveButton);
+        $I->exactlySeeAlert($I, 'success', 'Скидка успешно создана!');
         $I->waitForText("Редактирование скидки");
 //        $I->waitForElementVisible('.alert.in.fade.alert-success');
 //        $I->see('Скидка успешно создана!');
@@ -406,6 +414,7 @@ class CreateAllOrderDiscountCest
         $date=$I->grabValueFrom(DiscountsPage::$OnDateCreate);
         $I->comment($date);
         $I->click(DiscountsPage::$SaveButton);
+        $I->exactlySeeAlert($I, 'success', 'Скидка успешно создана!');
         $I->waitForText("Редактирование скидки");
 //        $I->waitForElementVisible('.alert.in.fade.alert-success');
 //        $I->see('Скидка успешно создана!');
@@ -433,6 +442,7 @@ class CreateAllOrderDiscountCest
         $date=$I->grabValueFrom(DiscountsPage::$OnDateCreate);
         $I->comment($date);
         $I->click(DiscountsPage::$SaveButton);
+        $I->exactlySeeAlert($I, 'success', 'Скидка успешно создана!');
         $I->waitForText("Редактирование скидки");
 //        $I->waitForElementVisible('.alert.in.fade.alert-success');
 //        $I->see('Скидка успешно создана!');
@@ -475,6 +485,7 @@ class CreateAllOrderDiscountCest
         $date=$I->grabValueFrom(DiscountsPage::$OnDateCreate);
         $I->comment($date);
         $I->click(DiscountsPage::$SaveButton);
+        $I->exactlySeeAlert($I, 'success', 'Скидка успешно создана!');
         $I->waitForText("Редактирование скидки");
 //        $I->waitForElementVisible('.alert.in.fade.alert-success');
 //        $I->see('Скидка успешно создана!');
@@ -517,6 +528,7 @@ class CreateAllOrderDiscountCest
         $date=$I->grabValueFrom(DiscountsPage::$OnDateCreate);
         $I->comment($date);
         $I->click(DiscountsPage::$SaveButton);
+        $I->exactlySeeAlert($I, 'success', 'Скидка успешно создана!');
         $I->waitForText("Редактирование скидки");
 //        $I->waitForElementVisible('.alert.in.fade.alert-success');
 //        $I->see('Скидка успешно создана!');

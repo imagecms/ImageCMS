@@ -45,6 +45,7 @@ class CurrenciesSteps extends \CurrenciesTester
     {
         $I = $this;
         $I->waitForText('Редактирование валют');
+        $I->wait('1');
         $I->seeInField(\CurrenciesPage::$NameCurrencyEdit, $name1);
         $I->seeInField(\CurrenciesPage::$IsoCodEdit, $isocode1);
         $I->seeInField(\CurrenciesPage::$SymbolEdit, $symbol1);

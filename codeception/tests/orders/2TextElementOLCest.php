@@ -1,7 +1,9 @@
 <?php
 use \OrdersTester;
 class TextElementOLCest
+
 {
+    
 //---------------------------AUTORIZATION--------------------------------------- 
     /**
      * @group a
@@ -17,7 +19,7 @@ class TextElementOLCest
      * @group a
      */
     public function  WayListOL (OrdersTester $I){      
-        $I->wantTo('Проверить путь к странице "Список заказов".');
+        $I->wantTo('Verify Way to "Orders list" Page.');
         $I->click(NavigationBarPage::$Orders);
         $I->click(NavigationBarPage::$OrdersList);
         $I->wait('1');
@@ -33,8 +35,8 @@ class TextElementOLCest
     /**
      * @group a
      */
-    public function VerufyTextListPage (OrdersTester $I){
-        $I->wantTo('Проверить текст на странице "Список заказов.');
+    public function VerifyTextListPage (OrdersTester $I){
+        $I->wantTo('Verify Text on "Orders List" Page.');
         $I->amOnPage(OrdersListPage::$ListURLorders);
         $I->seeInPageSource('Список заказов');
         $I->click(OrdersListPage::$ListHeaderCheckBox);
@@ -60,8 +62,8 @@ class TextElementOLCest
     /**
      * @group a
      */
-    public function VerufyElementListPage (OrdersTester $I){
-        $I->wantTo('Проверить наличие елементов страницы "Список заказов".');
+    public function VerifyElementListPage (OrdersTester $I){
+        $I->wantTo('Verify Element Presence on "Orders List" Page.');
         $I->amOnPage(OrdersListPage::$ListURLorders);
         $I->seeElement(OrdersListPage::$ListHeaderCheckBox);
         $I->seeElement(OrdersListPage::$ListFieldID);

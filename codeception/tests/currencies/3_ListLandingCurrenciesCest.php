@@ -97,6 +97,7 @@ class MainCurrencyCest
         $IsoProduct=$I->grabTextFrom(".//*[@id='ProductVariantRow_0']/td[3]/select/option[$this->j]");
         $I->comment("$IsoProduct");
         $I->click(CurrenciesPage::$SaveButton);
+//        $I->exactlySeeAlert($I, 'success', "Продукт был успешно создан", '100');
         $I->waitForText('Товар4', 4, ".//*[@id='mainContent']/section/div/div[1]/span[2]");
 //        $I->waitForText("Продукт был успешно создан");
         $I->assertEquals($IsoProduct, $isoMainCur);
@@ -228,8 +229,9 @@ class MainCurrencyCest
         $I->fillField(".//*[@id='ProductVariantRow_0']/td[2]/input", "$price");        
         $I->wait('1');
         $I->click(CurrenciesPage::$SaveButton);
+        $I->waitForText('Товар5', 4, ".//*[@id='mainContent']/section/div/div[1]/span[2]");
         //$I->waitForElementVisible('.alert.in.fade.alert-success');
-        $I->waitForText("Продукт был успешно создан");
+//        $I->exactlySeeAlert($I, 'success', "Продукт был успешно создан", '100');
         //$I->waitForElementNotVisible('.alert.in.fade.alert-success');
         $I->amOnPage("/");
         $I->fillField(".//*[@id='inputString']", 'товар5');
@@ -390,6 +392,7 @@ class MainCurrencyCest
         $IsoProduct=$I->grabTextFrom(".//*[@id='ProductVariantRow_0']/td[3]/select/option[3]");
         $I->comment("$IsoProduct");
         $I->click(CurrenciesPage::$SaveButton);
+//        $I->exactlySeeAlert($I, 'success', "Продукт был успешно создан", '100');
         $I->waitForText('Товар2', 4, ".//*[@id='mainContent']/section/div/div[1]/span[2]");
         //$I->waitForElementVisible('.alert.in.fade.alert-success');
 //        $I->waitForText("Продукт был успешно создан");
@@ -411,9 +414,10 @@ class MainCurrencyCest
         $I->fillField(CurrenciesPage::$Rate, '4');
         $I->click(CurrenciesPage::$SaveAndExitButton);
         $I->waitForText('Список валют');
-        $I->waitForElementVisible('.alert.in.fade.alert-success');
-        $I->see('Изменения сохранены');
-        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
+        $I->wait('4');
+//        $I->waitForElementVisible('.alert.in.fade.alert-success');
+//        $I->see('Изменения сохранены');
+//        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
         $I->click(CurrenciesPage::$VerifyPrices);
         $I->waitForElementVisible('.alert.in.fade.alert-success');
         $I->see('Цены обновлены', '.alert.in.fade.alert-success');
@@ -455,6 +459,7 @@ class MainCurrencyCest
         $I->waitForElementVisible('.alert.in.fade.alert-success');
         $I->see('Валюта успешно удалена');
         $I->waitForElementNotVisible('.alert.in.fade.alert-success');
+        $I->wait('2');
         $rows = $I->grabTagCount($I,"tbody tr");
         for ($j=1; $j<=$rows; $j++){
             $idAfter = $I->grabTextFrom("//tbody/tr[$j]/td[1]");
@@ -524,8 +529,9 @@ class MainCurrencyCest
         $I->see('Удалить', './/*[@id="first"]/div[3]/a[1]');
         $I->see('Отменить', './/*[@id="first"]/div[3]/a[2]');
         $I->click('.//*[@id="first"]/div[3]/a[1]');
+        $I->exactlySeeAlert($I, 'error', 'Невозможно удалить валюту. Эта валюта используется в Способах оплаты.');
         //$I->waitForElementVisible('.alert.in.fade.alert-error');
-        $I->waitForText('Невозможно удалить валюту. Эта валюта используется в Способах оплаты.', 3);
+//        $I->waitForText('Невозможно удалить валюту. Эта валюта используется в Способах оплаты.', 3);
         //$I->waitForElementNotVisible('.alert.in.fade.alert-error');
         $I->amOnPage('/admin/components/run/shop/paymentmethods/index');
         $I->click(PaymentListPage::CheckboxLine('last()'));
@@ -544,10 +550,13 @@ class MainCurrencyCest
         $I->see('Удалить выбранную валюту?');
         $I->see('Удалить', './/*[@id="first"]/div[3]/a[1]');
         $I->see('Отменить', './/*[@id="first"]/div[3]/a[2]');
-        $I->click('.//*[@id="first"]/div[3]/a[1]');        
-        $I->waitForElementVisible('.alert.in.fade.alert-success');
-        $I->see('Валюта успешно удалена');
-        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
+        $I->click('.//*[@id="first"]/div[3]/a[1]');
+        $I->waitForElementNotVisible(".//div[@class='modal hide fade in']");
+        $I->wait(2);
+//        $I->exactlySeeAlert($I, 'success', 'Валюта успешно удалена','100');
+//        $I->waitForElementVisible('.alert.in.fade.alert-success');
+//        $I->see('Валюта успешно удалена');
+//        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
         $rows = $I->grabTagCount($I,"tbody tr");
         for ($j=1; $j<=$rows; $j++){
             $idAfter = $I->grabTextFrom("//tbody/tr[$j]/td[1]");
