@@ -18,27 +18,15 @@ class importexportSteps extends \ImportExportTester
         }$I->click(\ExportCategoryPage::$CatCreatButtSave);
         $I->wait('2');
     }
-//        $I->amOnPage('/admin/components/run/shop/categories/create');
-//        $I->wait('1');
-//        if(isset($createNameCategory)){
-//            $I->fillField('#inputName', $createNameCategory);
-//        }if(isset($addParentCategory)){ 
-//            $I->click('//div[1]/div[2]/div/div/a');
-//            $I->fillField('//section/form/div[1]/table[1]/tbody/tr/td/div/div[1]/div[2]/div/div/div/div/input', $addParentCategory);
-//            $I->click('//section/form/div[1]/table[1]/tbody/tr/td/div/div[1]/div[2]/div/div/div/ul/li');
-//        }$I->click('//button[2]'); 
-//        $I->wait('2');
-//    }
-    
+ 
     
 
     
     
     
     function CreateProperty($NameProperty = NULL, $CVS = NULL, $Category = NULL,
-            $Values1 = NULL) {
+            $Values1 = NULL, $Values2 = NULL, $Values3 = NULL, $Values4 = NULL) {
         $I = $this;
-        //'                                                                                                                                                    '   
         $I->amOnPage(\ExportPropertyPage::$PropURL);
         $I->fillField(\ExportPropertyPage::$PropFieldName, $NameProperty);
         $I->fillField(\ExportPropertyPage::$PropFieldCVS, $CVS);
@@ -50,10 +38,49 @@ class importexportSteps extends \ImportExportTester
         $I->click(\ExportPropertyPage::$PropMultipleChoice);
         $I->click(\ExportPropertyPage::$PropSelect);
         $I->fillField(\ExportPropertyPage::$PropSelecctField, $Category);
-        $I->click(\ExportPropertyPage::$PropSelectCategory);  
+        $I->click(\ExportPropertyPage::$PropSelectCategory); 
         $I->appendField(\ExportPropertyPage::$PropTextArea, $Values1);
+        $I->appendField(\ExportPropertyPage::$PropTextArea, '
+            ');
+        $I->appendField(\ExportPropertyPage::$PropTextArea, $Values2);
+        $I->appendField(\ExportPropertyPage::$PropTextArea, '
+            ');
+        $I->appendField(\ExportPropertyPage::$PropTextArea, $Values3);
+        $I->appendField(\ExportPropertyPage::$PropTextArea, '
+            ');
+        $I->appendField(\ExportPropertyPage::$PropTextArea, $Values4);
         $I->click(\ExportPropertyPage::$PropButtSave);
+        $I->wait('1');        
+    }
+    
+    
+    function SelectPropertyInProduct($NameProduct = NULL, $Property1 = NULL, $Property2 = NULL, $Property3 = NULL, $Property4 = NULL) {
+        $I = $this; 
+        if(isset($NameProduct)){
+         $I->amOnPage('/admin/components/run/shop/search');   
+         $I->fillField('//section/div[2]/table/thead/tr[2]/td[3]/input', $NameProduct);
+         $I->click('//section/div[1]/div[2]/div/button[1]');
+         $I->wait('1');
+         $I->click('//section/div[2]/table/tbody/tr/td[3]/div/a');
+         $I->wait('2');
+         $I->click(\ExportProductPage::$CrtProdButtonProperty);
+         $I->wait('2');
+         $I->click('//table/tbody/tr/td/div/div/div/div/div/select/option[1]');
+         if(isset($Property1)){
+            $I->click(\ExportPropertyPage::$PropSelectOption1);
+//            $I->click(\ExportPropertyPage::$PropSelectOption1);
+//            $I->click(\ExportPropertyPage::$PropSelectOption1);
+        }if(isset($Property2)){
+            $I->click(\ExportPropertyPage::$PropSelectOption2);
+        }if(isset($Property3)){
+            $I->click(\ExportPropertyPage::$PropSelectOption3);
+        }if(isset($Property4)){
+            $I->click(\ExportPropertyPage::$PropSelectOption4);
+        }$I->wait('1');
+        $I->click(\ExportProductPage::$CrtProductButtonSaveandBack);
         $I->wait('1');
+         
+        }
         
     }
     
@@ -62,8 +89,7 @@ class importexportSteps extends \ImportExportTester
     
         function createProductForExport($nameProduct = NULL,
                                 $priceProduct = NULL,
-                                $categoryProduct = NULL,
-                                $Property = NULL) {
+                                $categoryProduct = NULL) {
         $I = $this;
         $I->wait('1');
         $I->amOnPage('/admin/components/run/shop/products/create');                                                                                    
@@ -78,12 +104,6 @@ class importexportSteps extends \ImportExportTester
             $I->click(\ExportProductPage::$CrtProductCategoryProductSetSelect);            
         }$I->click(\ExportProductPage::$CrtProductButtonSave);
         $I->wait('3');
-        if(isset($Property)){
-            $I->click(\ExportProductPage::$CrtProdButtonProperty);
-            $I->click(\ExportProductPage::$CrtProdSelectProperty);
-        }$I->wait('1');
-        $I->click(\ExportProductPage::$CrtProductButtonSaveandBack);
-        $I->wait('1');
     }
     
     
