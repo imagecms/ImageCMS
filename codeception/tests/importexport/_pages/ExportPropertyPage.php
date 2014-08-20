@@ -17,6 +17,10 @@ class ExportPropertyPage
     public static $PropSelectCategory = ".active-result.highlighted"; 
     public static $PropTextArea = "//tbody/tr/td/div/div[12]/div/textarea"; 
     public static $PropButtSave = "//section/div/div[2]/div/button[2]"; 
+    public static $PropSelectOption1 = "//table/tbody/tr/td/div/div/div/div/div/select/option[2]"; 
+    public static $PropSelectOption2 = "//table/tbody/tr/td/div/div/div/div/div/select/option[3]"; 
+    public static $PropSelectOption3 = "//table/tbody/tr/td/div/div/div/div/div/select/option[4]"; 
+    public static $PropSelectOption4 = "//table/tbody/tr/td/div/div/div/div/div/select/option[5]"; 
 
     
 }
