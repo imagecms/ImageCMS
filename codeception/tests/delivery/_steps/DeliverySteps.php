@@ -103,8 +103,9 @@ class DeliverySteps extends \DeliveryTester {
      */
     function CheckInFrontEnd($DeliveryName, $description = null, $price = null, $freefrom = null, $message = null, $pay = null) {
         $I = $this;
-        
+        $I->wait(1);
         $I->amOnPage('/');
+        $I->waitForElement('.menu-header');
 
         $buy = "//div[@class='frame-prices-buy f-s_0']//form/div[3]";
         $globalbaseket = 'div#tinyBask button';
@@ -243,7 +244,7 @@ $I = $this;
     function DeleteDeliveryMethods ($Methods) {
         $I = $this;
         $I->amOnPage(\DeliveryPage::$URL);
-
+        $HaveMethodsToDelete = false;
         $AllMethodsCount = $I->grabClassCount($I, "niceCheck")-1;
         for ($row = 1;$row <= $AllMethodsCount;++$row){
             $CurrentRowMethod = $I->grabTextFrom(\DeliveryPage::ListMethodLine($row));
@@ -279,7 +280,9 @@ $I = $this;
      */
     function CheckInList($name,$active=null,$price=null,$freefrom=null){
         $I = $this;
+        $I->wait(3);
         $I->amOnPage(\DeliveryPage::$URL);
+        $I->waitForText('Список способов доставки');
         $rows  = $I->grabTagCount($I,"tbody tr");
         $I->comment($rows);
         $present = FALSE;
@@ -439,7 +442,7 @@ $I = $this;
      * Checking that alerts is present after clicking create button
      * 
      * @param string    $type       error|success|required
-     * @param string    $text      create|edit|delete|drag
+     * @param string    $text      create|edit|delete|drag|namemax
      * @return void
      */
     function CheckForAlertPresent($type = null,$text = null) {
@@ -451,17 +454,20 @@ $I = $this;
                     $I->waitForElementNotVisible('.alert.in.fade.alert-error');
                     break;
             case 'success':
-                    $I->waitForText('Сообщение:', null, '.alert.in.fade.alert-success h4');
-                    if      ($text  == 'create')   { $I->see('Доставка создана',       null, '.alert.in.fade.alert-success'); }              
-                    elseif  ($text  == 'edit')     { $I->see('Изменения сохранены',    null, '.alert.in.fade.alert-success'); }
-                    elseif  ($text  == 'delete')   { $I->see('Способ доставки удален', null, '.alert.in.fade.alert-success'); }
-                    elseif  ($text  == 'drag')     { $I->see('Позиции сохранены',      null, '.alert.in.fade.alert-success'); }
-                    $I->waitForElementNotVisible('.alert.in.fade.alert-success');
+                    
+//                    $I->waitForText('Сообщение:', null, "//div[@class='alert in fade alert-success']//h4");
+                    if      ($text  == 'create')   { $I->waitForText('Доставка создана',            null, "//div[@class='alert in fade alert-success']"); }              
+                    elseif  ($text  == 'edit')     { $I->waitForText('Изменения сохранены',         null, "//div[@class='alert in fade alert-success']"); }
+                    elseif  ($text  == 'delete')   { $I->waitForText('Способ доставки удален',      null, "//div[@class='alert in fade alert-success']"); }
+                    elseif  ($text  == 'drag')     { $I->WaitForText('Позиции сохранены',           null, "//div[@class='alert in fade alert-success']"); }
+                    $I->waitForElementNotVisible("//div[@class='alert in fade alert-success']");
+
+
                     break;
             case 'required':
                     $I->comment("I want to see that field is required");
-                    $I->waitForElementVisible('//label[@generated="true"]');
-                    $I->see('Это поле обязательное.', 'label.alert.alert-error');
+                    $I->waitForText('Это поле обязательное.', NULL, '//label[@generated="true"]');
+
                     if      ($text =='create') { $I->assertEquals($I->grabAttributeFrom(\DeliveryCreatePage::$FieldName, 'class'), "alert alert-error"); }
                     elseif  ($text =='edit')   { $I->assertEquals($I->grabAttributeFrom(\DeliveryEditPage::$FieldName, 'class'), "required alert alert-error"); }
                     break;

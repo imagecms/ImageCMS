@@ -19,6 +19,16 @@ class CurrenciesPage
     public static $NameCurrencyEdit  = './/*[@id="cur_ed_form"]/table/tbody/tr/td/div/div[1]/div/input';
     public static $IsoCodEdit  = './/*[@id="cur_ed_form"]/table/tbody/tr/td/div/div[2]/div/input';
     public static $SymbolEdit  = './/*[@id="cur_ed_form"]/table/tbody/tr/td/div/div[3]/div/input';
+    public static $CurrencyTemplate  = '//*[@id="select-format"]';
+    public static $FormatLine  = '//*[@id="select-format-currency"]';
+    public static $DelimiterTens  = '//*[@id="select-separator-tens"]';
+    public static $DelimiterThousands  = '//*[@id="select-thousands-separator"]';
+    public static $AmountDecimals  = '//*[@id="select-decimal-places"]';
+    public static $NotNullsCheckbox  = '//*[@id="cur_ed_form"]/table[2]/tbody/tr/td/div/div[6]/div/input';
+    
+    
+    
+    
     //Кнопки в списке
     public static function ActiveButtonLine($row){
         $ActiveBut = "//tbody/tr[$row]/td[6]/div/span";
