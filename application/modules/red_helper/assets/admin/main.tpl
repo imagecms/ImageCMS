@@ -35,16 +35,19 @@
                 <label for="login"><b>{lang('Your login', 'red_helper')}:</b> *</label>
                 <input type="text" id="login1" name="login1" value=""/>
                 <p class="help-block">{lang('Create your own unique login. Username can only consist of letters and numbers, login itself must be at least 3 characters.', 'red_helper')}</p>
+                <p id="loginResult" style="color:#ff0000;"></p>
             </div>
             <div>
                 <label for="pass"><b>{lang('Choose password', 'red_helper')}:</b> *</label>
                 <input type="password" id="pass" name="pass" value=""/>
                 <p class="help-block">{lang('Use a password to connect service RedHelper. For security reasons, the password should be different from the password ImageCMS.', 'red_helper')}</p>
+                <p id="passwordResult" style="color:#ff0000;"></p>
             </div>        
             <div>
                 <label for="email"><b>{lang('Your email', 'red_helper')}:</b> *</label>
                 <input type="text" id="email" name="email" value="" />
                 <p class="help-block">{lang('Enter your email address to be used for communication with you.', 'red_helper')}</p>
+                <p id="emailResult" style="color:#ff0000;"></p>
             </div>
             <div>
                 <label for="pass"><b>{lang('Your name', 'red_helper')}:</b> *</label>
@@ -55,10 +58,11 @@
                 <label for="pass"><b>{lang('Your phone', 'red_helper')}:</b> *</label>
                 <input type="text" id="phone" name="phone" value="" />
                 <p class="help-block">{lang('Your contact phone number.', 'red_helper')}</p>
+                <p id="phoneResult" style="color:#ff0000;"></p>
             </div> 
             <p class="help-block"><b>{lang('* - Fields are required', 'red_helper')}</b></p>
             <div>
-                <p id="result" style="color:red"></p>
+                <p id="result" style="color:red;display:none;"></p>
                 
             </div>
         </div>
@@ -100,14 +104,14 @@
             <p></p>
             <h4>Что такое RedHelper?</h4>
             <p>RedHelper - это SaaS решение для Интернет сайтов. Самый популярный сервис для увеличения конверсии и продаж.</p>
-            <p>Информация о RedHelper на сайте компании - <a target = "_blank" href="http://redhelper.ru/">http://redhelper.ru/</a>
+            <p>Информация о RedHelper на сайте компании - <a target = "_blank" href="http://redhelper.ru/?p=2003624">http://redhelper.ru/</a>
             <p><a target = "_blank" href="http://youtu.be/9EDo6zQJJGM">Видеопрезентация</a></p>
             <p>Этот модуль позволит Вам самостоятельно подключить систему RedHelper для Вашего сайта ImageCMS, без помощи технического специалиста.</p>
             <h4>С чего начать работу?</h4>
             <p>Вам необходимо выбрать вариант подключения:</p>
-            <p>a. Существующий аккаунт в системе RedHelper</p>
+            <p>a) &nbsp; Существующий аккаунт в системе RedHelper</p>
             <p>Если Вы знаете свой логин в системе, нажмите на кнопку "Параметры", введите его.</p>
-            <p>b. Создать новый аккаунт в RedHelper, нажмите на кнопку "Регистрация"</p>
+            <p>b) &nbsp; Создать новый аккаунт в RedHelper, нажмите на кнопку "Регистрация"</p>
         </div>
         <div id="row-fluid-2" class="tab-pane">
             <p></p>
@@ -118,31 +122,47 @@
 
             <p><b>1. Установка приложения.</b></p>
 
-            <p>Вам необходимо скачать и установить приложение оператора. Приложение оператора позволяет наблюдать за посетителями, отвечать на их вопросы и многое другое. Приложение под Windows или Mac OS вы можете скачать по ссылкам ниже. Для других операционных систем и мобильных устройств вы можете использовать любой jabber клиент (как это сделать? – добавить ссылку https://redhelper.zendesk.com/forums/21556502-jabber-redhelper ).</p>
+            <p>Вам необходимо скачать и установить приложение оператора. Приложение оператора позволяет наблюдать за посетителями, отвечать на их вопросы и многое другое. Приложение под Windows или Mac OS вы можете скачать по ссылкам ниже. Для других операционных систем и мобильных устройств вы можете использовать любой jabber клиент <a href="https://redhelper.zendesk.com/forums/21556502-jabber-redhelper">как это сделать?</a></p>
             <p>Выберете тип операционной системы, скачайте и установите приложение.</p>
-            <p>Сделать скачивание ввиде кнопок, пример, текст, и ссылки ниже. (Картинки в аттаче)</p>
-            <p>Скачать для Windows (http://update.redhelper.ru/RedHelperSetup.ru-RU.exe)</p>
-            <p>Скачать для MAC OS (http://update.redhelper.ru/RedHelper.dmg)</p>
-
+            
+            <p>
+                <div style="border:0px solid #ff0000; width:300px; height:50px; float:left; margin-left:250px; border-radius:6px; background-color:#0DA61F;">
+                    <a href="http://update.redhelper.ru/RedHelperSetup.ru-RU.exe" style="border:0px solid #0000ff; display:block; height:78%; border-radius:6px;text-align:center; color:#ffffff; text-transform:uppercase; font-size:18px; padding-top:10px; text-decoration:none;">
+                        Скачать для Windows
+                    </a>
+                </div>
+                <div style="border:0px solid #ff0000; width:300px; height:50px; float:right; margin-right:250px; border-radius:6px; background-color:#6A6A6A;">
+                    <a href="http://update.redhelper.ru/RedHelper.dmg" style="border:0px solid #0000ff; display:block; height:78%; border-radius:6px;text-align:center; color:#ffffff; text-transform:uppercase; font-size:18px; padding-top:10px; text-decoration:none;">
+                        Скачать для MAC OS
+                    </a>
+                </div>
+            </p>
+            
+            <div style="clear:both;"></div>
+            <p></p>
 
             <p>После установки используйте логин и пароль, выбранный при регистрации, для входа в приложение. Для завершения установки, попробуйте пообщаться через приложение. Для этого зайдите на сайт (обновите страницу), нажмите на значок "Задать вопрос" и напишите пару фраз в открывшемся окне. Сообщения придут в приложение оператора.</p>
             <p><b>2. Настройка системы</b></p>
             <p>Всё готово для использования RedHelper на вашем сайте, но для максимальной эффективности работы системы необходимо произвести настройку внешнего вида и поведения RedHelper для вашего сайта. </p>
 
-            <p>Добавить кнопку перехода в ЛК RedHelper – Перейти в Личный кабинет RedHelper (http://redhelper.ru/my/{$login}) </p>
-
-            <p>Подпись к кнопке (Цвет подписи серый, шрифт курсивом.) Используйте в дальнейшем для перехода в Личный кабинет наш сайт  http://redhelper.ru/</p>
+            <p>
+                <div style="border:0px solid #ff0000; width:400px; height:50px; margin:0 auto; border-radius:6px; background-color:#BFBFBF;">
+                    <a href="http://redhelper.ru/my/login" style="border:0px solid #0000ff; display:block; height:74%; border-radius:6px;text-align:center; color:#F5F5F5; text-transform:uppercase; font-size:16px; padding-top:12px; text-decoration:none;">
+                        <i>Перейти в Личный кабинет RedHelper</i>
+                    </a>
+                </div>
+            </p>
 
             <p>Если Вам требуется помощь, напишите или позвоните нам.</p>
-            <p>Отдел технической поддержки клиентов RedHelper.</p>
+            <p><b>Отдел технической поддержки клиентов RedHelper.</b></p>
 
             <p>+7 (495) 221-77-57,  (доб. 201)</p>
 
-            <p>Info@redhelper.ru</p>
+            <p><a href="mailto:Info@redhelper.ru">Info@redhelper.ru</a></p>
 
-            <p>База знаний центра технической поддержки RedHelper</p>
+            <p>База знаний центра технической поддержки <a href="https://redhelper.zendesk.com/home">RedHelper</a></p>
 
-            <p>Вы так же можете получить поддержку в режиме онлайн на нашем сайте: http://redhelper.ru/</p>
+            <p>Вы так же можете получить поддержку в режиме онлайн на нашем сайте: <a href="http://redhelper.ru/?p=2003624">redhelper.ru</a></p>
         </div>
     </div>
 </section>
