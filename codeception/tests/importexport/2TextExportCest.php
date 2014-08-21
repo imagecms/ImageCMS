@@ -19,6 +19,7 @@ class TextExportCest
      * @group a
      */
     public function  WayExport (ImportExportTester $I){
+        $I->wantTo('Verify Way ToExport Page');
         $I->click(NavigationBarPage::$Settings);
         $I->click(NavigationBarPage::$SettingsImportExport);
         $I->wait('1');
@@ -33,6 +34,7 @@ class TextExportCest
      * @group a
      */
     public function  TextExport (ImportExportTester $I){
+        $I->wantTo('Verify Text Present On Export Page.');
         $I->amOnPage(ExportPage::$ExpURL);
         $I->waitForElement(ExportPage::$ExpButtonExport);
         $I->see('Экспорт', ExportPage::$ExpButtonExport);
