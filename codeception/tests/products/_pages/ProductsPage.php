@@ -23,9 +23,10 @@ class ProductsPage
     public static $Currency  = ".//*[@id='ProductVariantRow_0']/td[3]/select";
     public static $Articul  = ".//*[@id='ProductVariantRow_0']/td[4]/input";
     public static $Amount  = ".//*[@id='ProductVariantRow_0']/td[5]/input";
+    public static $ImageIcon  = ".//*[@id='ProductVariantRow_0']/td[6]/div/div";
     public static $BrandName  = '//*[@id="inputParent_chosen"]';   //div/ul     
     public static $Category  = '//*[@id="comment_chosen"]';    //div/ul 
-    public static $AdditionalCategory  = '//*[@id="iddCategory_chosen"]/ul/li/input';
+    public static $AdditionalCategory  = '//*[@id="iddCategory_chosen"]';
     public static $ShortDescription  = ".//*[@id='ShortDescriptions']";
     public static $FullDescription  = ".//*[@id='FullDescriptions']";
     public static $Comments  = ".//*[@id='comments']";
@@ -38,6 +39,7 @@ class ProductsPage
     public static $MetaKeywords  = ".//*[@id='mKey']";
     
     public static $EditImageButton  = ".//*[@id='ProductVariantRow_0']/td[6]/div/div/div[2]/button[1]";
+    public static $ImageDownloadButton  = ".//*[@id='ProductVariantRow_0']/td[6]/div/div/div[2]/button[2]";
     public static $HotProductButton  = ".//*[@id='parameters']/table[1]/tbody/tr/td/div/div/div[1]/div[3]/div/button[1]";
     public static $NewProductButton  = ".//*[@id='parameters']/table[1]/tbody/tr/td/div/div/div[1]/div[3]/div/button[2]";
     public static $SaleProductButton  = ".//*[@id='parameters']/table[1]/tbody/tr/td/div/div/div[1]/div[3]/div/button[3]";

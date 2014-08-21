@@ -30,5 +30,5 @@ modules:
             user: 'root'
             password: ''
             dump: 'tests/_data/cmsprem.sql'
-            populate: true
+            populate: false
             cleanup:  false
