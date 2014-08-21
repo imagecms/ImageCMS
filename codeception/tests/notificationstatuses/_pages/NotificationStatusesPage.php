@@ -4,7 +4,7 @@ class NotificationStatusesPage
 {   // List Page
     public static $ListPageURL = "admin/components/run/shop/notificationstatuses";
     public static $ListButtonCreate = ".btn.btn-small.btn-success.pjax"; 
-    public static $ListLinkEditing = "//td[3]/a";
+    public static $ListLinkEditing = "//section/div[2]/table/tbody/tr[1]/td[3]/a";
     public static $ListLinkForEditing = "//tr[3]/td[3]/a";
     public static $ListHeaderCheckBox = "//div[2]/table/thead/tr/th[1]/span/span";
     public static $ListCheckBoxFirst = ".//*[@id='mainContent']/div/div[3]/section/div[2]/table/tbody/tr[1]/td[1]/span/span";
@@ -12,8 +12,8 @@ class NotificationStatusesPage
     public static $ListCheckBoxThird = "//tr[3]/td[1]/span/span";    
     public static $ListButtonDelete = "//div[1]/div[2]/div/button";
     public static $ListTitle = "span.title";
-    public static $ListNameFirstStatuse = "//td[3]/a";
-    public static $ListNameSecondStatuse = "//tr[2]/td[3]/a";
+    public static $ListNameFirstStatuse = "//tr[2]/td[3]/a";
+    public static $ListNameSecondStatuse = "//table/tbody/tr[1]/td[3]/a";
     public static $ListNameFirstCollum = "//th[2]";
     public static $ListNameSecondCollum = "//th[3]";
     public static $ListNameThirdCollum = "//th[4]";

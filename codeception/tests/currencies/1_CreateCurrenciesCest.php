@@ -99,9 +99,9 @@ class CreateCurrenciesCest
         $symbol="q";
         $rate="1";
         $I->CreateCurrency($name,$isocode,$symbol,$rate);        
-//        $I->waitForElementVisible('.alert.in.fade.alert-error');
-        $I->waitForText('Поле Название должно быть не менее 2 символов в длину.');
-//        $I->waitForElementNotVisible('.alert.in.fade.alert-error');        
+        $I->waitForElementVisible('.alert.in.fade.alert-error');
+        $I->see('Поле Название должно быть не менее 2 символов в длину.');
+        $I->waitForElementNotVisible('.alert.in.fade.alert-error');        
         $I->appendField(CurrenciesPage::$NameCurrencyCreate, 'q');
         $I->click(CurrenciesPage::$SaveButton);
 //        $I->waitForElementVisible('.alert.in.fade.alert-success');
@@ -169,8 +169,8 @@ class CreateCurrenciesCest
         $I->fillField(CurrenciesPage::$IsoCodCreate, 'тугри');
         $I->click(CurrenciesPage::$SaveButton);
 //        $I->waitForElementVisible('.alert.in.fade.alert-success');
-        $I->waitForText('Валюта создана');
-//        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
+//        $I->waitForText('Валюта создана', 3, '.alert.in.fade.alert-success');
+//        $I->waitForElementNotVisible('.alert.in.fade.alert-success');        
         $name1="тугрик";
         $isocode1="тугри";
         $symbol1="тугри";
@@ -227,15 +227,15 @@ class CreateCurrenciesCest
     
     public function Symbols255Create(CurrenciesTester\CurrenciesSteps $I)
     {
-        $name="Франкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранк";
+        $name="Франкфранкфранк франкфранкфранкфранк франкфранкфранкфранкфранкфранкфранкфранкфранк франкфранкфранкфранкфранк франкфранкфранкфранк франкфранкфранкфранкфранк франкфранкфранк франк франкфранк франкфр анкфранкфранкфранк франкфранкфранк франк ф р анкфранкфранк";
         $isocode="frank";
         $symbol="fr";
         $rate=".234";
         $I->CreateCurrency($name,$isocode,$symbol,$rate);
 //        $I->waitForElementVisible('.alert.in.fade.alert-success');
-        $I->waitForText('Валюта создана');
+        $I->waitForText('Валюта создана', 3);
 //        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
-        $name1="Франкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранк";
+        $name1="Франкфранкфранк франкфранкфранкфранк франкфранкфранкфранкфранкфранкфранкфранкфранк франкфранкфранкфранкфранк франкфранкфранкфранк франкфранкфранкфранкфранк франкфранкфранк франк франкфранк франкфр анкфранкфранкфранк франкфранкфранк франк ф р анкфранкфранк";
         $isocode1="frank";
         $symbol1="fr";
         $rate1="0.2340";
@@ -251,7 +251,7 @@ class CreateCurrenciesCest
     
     public function Symbols256Create(CurrenciesTester\CurrenciesSteps $I)
     {
-        $name="Форинтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфори";
+        $name="Форинтфоринт форинтфоринтфоринт форинтфо ринтфоринтфоринтфор интфоринтфоринтфоринтфоринтфоринтфоринтфори нтфоринтфоринтфоринтфор интфоринтфоринтфоринтфоринтф оринтфоринтфор интфоринтфоринтфоринтфор интфоринт форинтфоринтфоринтфоринтф оринтфоринтфоринтфорин";
         $isocode="forin";
         $symbol="фор";
         $rate="00120.0102";
@@ -259,7 +259,7 @@ class CreateCurrenciesCest
 //        $I->waitForElementVisible('.alert.in.fade.alert-success');
         $I->waitForText('Валюта создана');
 //        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
-        $name1="Форинтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфор";
+        $name1="Форинтфоринт форинтфоринтфоринт форинтфо ринтфоринтфоринтфор интфоринтфоринтфоринтфоринтфоринтфоринтфори нтфоринтфоринтфоринтфор интфоринтфоринтфоринтфоринтф оринтфоринтфор интфоринтфоринтфоринтфор интфоринт форинтфоринтфоринтфоринтф оринтфоринтфоринтфори";
         $isocode1="forin";
         $symbol1="фор";
         $rate1="120.0102";
@@ -281,7 +281,7 @@ class CreateCurrenciesCest
         $save="saveexit";
         $I->CreateCurrency($name,$isocode,$symbol,$rate,$save);
 //        $I->waitForElementVisible('.alert.in.fade.alert-success');
-        $I->waitForText('Валюта создана');
+//        $I->see('Валюта создана');
 //        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
         $I->waitForText('Список валют'); 
         $name1="лира";

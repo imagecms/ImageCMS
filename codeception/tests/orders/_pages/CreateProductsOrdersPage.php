@@ -24,12 +24,17 @@ class CreateProductsOrdersPage
        public static $CrtProductVariantFieldArticle = "//body/div[1]/div[5]/section/form/div/div[2]/div[1]/table[1]/tbody/tr/td/div/div/div[1]/div[4]/table/tbody/tr[2]/td[4]/input";
        public static $CrtProductVariantFieldAmount = "//body/div[1]/div[5]/section/form/div/div[2]/div[1]/table[1]/tbody/tr/td/div/div/div[1]/div[4]/table/tbody/tr[2]/td[5]/input";
        public static $CrtProductButtonSaveandBack = "//body/div[1]/div[5]/section/div/div[2]/div/button[2]";
+       public static $CrtProductButtonCreateProduct = "//body/div[1]/div[5]/form/section/div[1]/div[2]/div/a[2]";
+                                                       
        
-       
-       
-    
-       
-    //Defolt Values For Created Products
+   //       Delete Product In Category
+   public static $DelPrdMainCheckBox = "//body/div[1]/div[5]/form/section/div[2]/table/thead/tr[1]/th[1]/span/span";
+   public static $DelPrdButtonDelete = "//body/div[1]/div[5]/form/section/div[1]/div[2]/div/a[1]";
+   public static $DelPrdButtonDeleteWindowDelete = "//body/div[1]/div[5]/div[1]/div[3]/a[1]";
+
+
+
+   //Defolt Values For Created Products
        
     public static $CrtPrdNameMin = "....."; 
     public static $CrtPrdNameMax = "qwertyuioasdfghjklzxcvbnmйцукенгшщзхъфывапролдджэячсмиттьбюQWERTYUIOPASDFGHJKLZXCVBNMЙЦУКЕННГШГШЩЗФЫВАПРОЛДЖЭЯЧСМИТЬБЮqwertyuioasdfghjklzxcvbnmйцукенгшщзхъфывапролдджэячсмиттьбюQWERTYUIOPASDFGHJKLZXCVBNMЙЦУКЕННГШГШЩЗФЫВАПРОЛДЖЭЯЧСМИТЬБЮqwertyuioasdfghjklzxcvbnmйцукенгшщзхъфывапролдджэячсмиттьбюQWERTYUIOPASDFGHJKLZXCVBNMЙЦУКЕННГШГШЩЗФЫВАПРОЛДЖЭЯЧСМИТЬБЮqwertyuioasdfghjklzxcvbnmйцукенгшщзхъфывапролдджэячсмиттьбюQWERTYUIOPASDFGHJKLZXCVBNMЙЦУКЕННГШГШЩЗФЫВАПРОЛДЖЭЯЧСМИТЬБЮQWEQWEQWEQWEQWEASDASDZXCASDQ"; 
