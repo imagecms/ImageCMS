@@ -30,23 +30,14 @@ class ExportPage
        public static $ExpСhek21MetaKey = "//tbody/tr/td/form/div/div[1]/div[21]/span/span";
 
        // Селект меню "Категории"
+       public static $ExpSelectMenu = "//tbody/tr/td/form/div/div[2]/div[1]/div/ul/li/input"; 
+       public static $ExpSelectField = "//tbody/tr/td/form/div/div[2]/div[1]/div/ul/li/input"; 
+       public static $ExpSelectSearch = "//tbody/tr/td/form/div/div[2]/div[1]/div/div/ul/li"; 
+       
+       
+       
+       public static $ExpButtonShowProp = "//table/tbody/tr/td/form/div/div[2]/div[1]/button"; 
 
-       
-       
-       
-       
-       
-       
-       
-       
-       
-//       public static $Exp = "";
-//       public static $Exp = "";
-//       public static $Exp = "";
-//       public static $Exp = "";
-//       public static $Exp = "";
-//       public static $Exp = "";
-       
        
        
        
