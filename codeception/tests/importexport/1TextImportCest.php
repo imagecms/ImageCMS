@@ -6,7 +6,7 @@ class TextImportCest
     
 //---------------------------AUTORIZATION--------------------------------------- 
     /**
-     * @group a
+     * @group aw
      */
     public function Login(ImportExportTester $I){
         InitTest::Login($I);
@@ -14,6 +14,131 @@ class TextImportCest
     
     
 //-----------------------------------------------------------
+    /**
+     * @group a
+     */
+    public function  installationImportNew (ImportExportTester $I){
+        $I->wantTo("Verify Way To Import New Page.");
+        $I->click('//div[1]/div[3]/div/nav/ul/li[6]/a');
+        $I->wait('1');
+        $I->click('//div[1]/div[3]/div/nav/ul/li[6]/ul/li[15]/a');
+        $I->wait('3');
+        $I->click('//div/form/section/div[2]/div[1]/div[1]/a[2]');
+        $I->wait('1');
+        $I->click('//section/div[2]/div[2]/div[2]/div/table/tbody/tr[2]/td[1]/a');
+    }
+    
+    
+    /**
+     * @group a
+     */
+    
+    public function ActivationModuel(ImportExportTester $I) {
+        $I->wantTo("Activation Moduel Import Export.");
+        $I->click('//div[1]/div[3]/div/nav/ul/li[6]/a');
+        $I->wait('1');
+        $I->click('//div[1]/div[3]/div/nav/ul/li[6]/ul/li[15]/a');
+        $I->wait('3');
+        $I->click('//table/tbody/tr[2]/td[5]/div/span');
+        $I->click('//table/tbody/tr[2]/td[6]/div/span');
+        $I->click('//table/tbody/tr[2]/td[7]/div/span');
+    }
+    
+    
+    
+    /**
+     * @group a
+     */
+    
+    public function PresentActivationModuel(ImportExportTester $I) {
+        $I->wantTo("Present Activation Moduel.");
+        $I->click('//div[1]/div[3]/div/nav/ul/li[6]/a');
+        $I->click('//div[1]/div[3]/div/nav/ul/li[6]/ul/li[3]/a');
+        $I->wait('1');
+        $I->see('Категории управления модулем', '//div[5]/div/section/div[1]/div[1]/span[2]');        
+    }
+    
+    
+    /**
+     * @group a
+     */
+    
+    public function LinkBack1Moduel(ImportExportTester $I) {
+        $I->wantTo("Clicability Link Moduel.");
+        $I->amOnPage('/admin/components/cp/import_export');
+        $I->click('//div[5]/div/section/div[1]/div[2]/div/a');
+        $I->wait('3');
+        $I->see('Все модули', '//div[5]/div/form/section/div[1]/div[1]/span[2]');                
+    }
+    
+    
+    /**
+     * @group a
+     */
+    
+    public function LinkBack2Moduel(ImportExportTester $I) {
+        $I->wantTo("Present Activation Moduel.");
+        $I->amOnPage('/admin/components/cp/import_export');
+        $I->wait('1');
+        $I->click('//div[5]/div/section/div[1]/div[2]/div/a');
+        $I->wait('3');
+        $I->see('Все модули', '//div[5]/div/form/section/div[1]/div[1]/span[2]');                
+    }
+    
+    
+    
+    /**
+     * @group a
+     */
+    
+    public function LinkBack3Moduel(ImportExportTester $I) {
+        $I->wantTo("Present Activation Moduel.");
+        $I->amOnPage('/admin/components/cp/import_export');
+        $I->wait('1');
+        $I->click('//div[1]/div[5]/div/section/div[2]/a[1]');
+        $I->wait('1');
+        $I->click('//div[1]/div[5]/section/div[1]/div[2]/div/div/a');
+        $I->wait('1');
+        $I->see('Категории управления модулем', '//div[1]/div[5]/div/section/div[1]/div[1]/span[2]');                
+    }
+    
+    
+    
+    
+    
+    /**
+     * @group a
+     */
+    
+    public function LinkBack4Moduel(ImportExportTester $I) {
+        $I->wantTo("Present Activation Moduel.");
+        $I->amOnPage('/admin/components/cp/import_export');
+        $I->wait('1');
+        $I->click('//div[1]/div[5]/div/section/div[2]/a[2]');
+        $I->wait('1');
+        $I->click('//div[1]/div[5]/section/div[1]/div[2]/div/a/span[2]');
+        $I->wait('1');
+        $I->see('Категории управления модулем', '//div[1]/div[5]/div/section/div[1]/div[1]/span[2]');                
+    }
+    
+    
+    
+    
+    /**
+     * @group aw
+     */
+    
+    public function LinkBack5Moduel(ImportExportTester $I) {
+        $I->wantTo("Present Activation Moduel.");
+        $I->amOnPage('/admin/components/cp/import_export');
+        $I->wait('1');
+        $I->click('//div[1]/div[5]/div/section/div[2]/a[3]');
+        $I->wait('1');
+        $I->click('//div[1]/div[5]/section/div[1]/div[2]/div/a/span[2]');
+        $I->wait('1');
+        $I->see('Категории управления модулем', '//div[1]/div[5]/div/section/div[1]/div[1]/span[2]');                
+    }
+    
     
     /**
      * @group a
