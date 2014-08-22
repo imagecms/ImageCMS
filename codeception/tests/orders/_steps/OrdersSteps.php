@@ -398,8 +398,7 @@ class OrdersSteps extends \OrdersTester {
         $I->selectOption('//table/tbody/tr/td/div/div[3]/div/div/select', "$numberAfterPoint");
         $I->wait('1');
         $I->click('//section/div[1]/div[2]/div/button[2]');
-        $I->wait('3');
-        
+        $I->wait('3');        
     }
     
     
@@ -420,6 +419,7 @@ class OrdersSteps extends \OrdersTester {
             $I->click('//body/div[1]/div[5]/section/div[1]/div[2]/div/button[2]');
         }
         $I->wait('3');
+
     }
     
     
@@ -532,7 +532,9 @@ class OrdersSteps extends \OrdersTester {
             $I->click(\CreateProductsOrdersPage::$DelPrdButtonDelete);
             $I->wait('2');
             $I->click(\CreateProductsOrdersPage::$DelPrdButtonDeleteWindowDelete);
+            $I->wait('1');
             $I->wait('2');
+
         }
         
     }
