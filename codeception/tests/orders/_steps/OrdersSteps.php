@@ -3,20 +3,12 @@
 namespace OrdersTester;
 
 
-//    /**
-//     * @group a
-//     * @guy OrdersTester\OrdersSteps
-//     */
-//    public function Blabla(OrdersTester\OrdersSteps $I) {
-//        $I->createOrderAdmin
-//    }
+class OrdersSteps
 
-class OrdersSteps extends \OrdersTester {
+extends \OrdersTester
 
-//    function createOrderAdmin($product,$user = null, $delivery = null, $payment  = null) {
-//        $I = $this;
-//    }
-    
+{
+
     
     
     
