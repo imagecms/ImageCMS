@@ -1,3 +1,5 @@
+<!-- Count digitals after point  -->
+{$pricePrecision = ShopCore::app()->SSettings->pricePrecision}
 <div class="frame-inside page-cart pageCart">
     <div class="container">
         <div class="js-empty empty {if count($items) == 0}d_b{/if}">
@@ -135,9 +137,10 @@
                                                                 {echo $deliveryMethod->getDeliverySumSpecifiedMessage()}
                                                             {else:}
                                                                 {if $deliveryMethod->getPrice() > 0}
-                                                                    <div>{lang('Стоимость','newLevel')}: {echo ceil($deliveryMethod->getPrice())} <span class="curr">{$CS}</span></div>
-                                                                    <div>{lang('Бесплатно от','newLevel')}: {echo ceil($deliveryMethod->getFreeFrom())} <span class="curr">{$CS}</span></div>
-
+                                                                    <!--<div>{lang('Стоимость','newLevel')}: {echo ceil($deliveryMethod->getPrice())} <span class="curr">{$CS}</span></div>-->
+                                                                    <!--<div>{lang('Бесплатно от','newLevel')}: {echo ceil($deliveryMethod->getFreeFrom())} <span class="curr">{$CS}</span></div>-->
+                                                                    <div>{lang('Стоимость','newLevel')}: {echo number_format($deliveryMethod->getPrice(),$pricePrecision,'.','')} <span class="curr">{$CS}</span></div>
+                                                                    <div>{lang('Бесплатно от','newLevel')}: {echo number_format($deliveryMethod->getFreeFrom(),$pricePrecision,'.','')} <span class="curr">{$CS}</span></div>
                                                                 {/if}
                                                             {/if}
                                                         </div>
