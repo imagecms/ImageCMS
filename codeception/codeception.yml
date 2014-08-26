@@ -18,17 +18,17 @@ modules:
         WebDriver:
             url: 'http://testbuild.loc/'
             browser: chrome
-            window_size: 1024x1000    
+            window_size: 1000*1000  
 #            restart: false
             clear_cookies: false
             wait: 0
             capabilities:
                 unexpectedAlertBehaviour: 'accept'
         Db:
-            Db:
             dsn: 'mysql:host=127.0.0.1;dbname=testbuild'
             user: 'root'
             password: ''
             dump: 'tests/_data/cmsprem.sql'
             populate: false
             cleanup:  false
+    

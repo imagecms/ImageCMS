@@ -21,6 +21,7 @@ class IntegrationOSCest
         $I->wantTo('Verify Created Status Present on Status List Page.');
         $nameStatus='123 Super Созданний Status Заказа 890';
         $I->amOnPage(OrderStatusesCreatePage::$CreateURL);
+        $I->wait('1');
         $I->fillField(OrderStatusesCreatePage::$CreateFieldName, $nameStatus);
         $I->click(OrderStatusesCreatePage::$CreateButtonCreateAndGoBack);
         $I->waitForText('Статусы заказов');
@@ -74,6 +75,7 @@ class IntegrationOSCest
         $nameStatus='123 Super Созданний Status Заказа 890';
         $nameEditStatus='Отредактированний Статус Order';
         $I->amOnPage(OrderStatusesListPage::$ListURL);
+        $I->wait('1');
         $numbeRows= $I->grabTagCount($I, 'tbody tr');
         $I->comment("Number Rows:'$numbeRows'.");
             for($j=1;$j<$numbeRows;++$j){
@@ -132,6 +134,7 @@ class IntegrationOSCest
         $nameEditStatus='Отредактированний Статус Order';
         $nameStatus='123 Super Созданний Status Заказа 890';
         $I->amOnPage(OrderStatusesListPage::$ListURL);
+        $I->wait('1');
         $numberStatus=$I->grabTagCount($I, 'tbody tr');
         $I->comment("Number Rows:'$numberStatus'");
         for ($j=1;$j<=$numberStatus;++$j){
@@ -163,6 +166,7 @@ class IntegrationOSCest
         $nameEditStatus='Отредактированний Статус Order';
         $nameStatus='123 Super Созданний Status Заказа 890';
         $I->amOnPage(OrdersListPage::$ListURLorders);
+        $I->wait('1');
         $positionsInOption= $I->grabTagCount($I, 'select option');
         $I->comment("Number Rows:'$positionsInOption' In List Select");
         if($positionsInOption > 3){

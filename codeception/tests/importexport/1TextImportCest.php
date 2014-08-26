@@ -62,7 +62,7 @@ class TextImportCest
         $I->amOnPage(ImportPage::$IMPURL);
         $I->click(ImportPage::$IMPInfoBD);
         $I->see('Backup', ImportPage::$IMPInfoPopoverTitle);
-        $I->see('Данные вашей базы данных будут храниться в папке C:\OpenServer\domains\lastbild.loc\application/backups/', ImportPage::$IMPInfoPopoverContent);
+        $I->see('Данные вашей базы данных будут храниться в папке', ImportPage::$IMPInfoPopoverContent);
         
         
     }

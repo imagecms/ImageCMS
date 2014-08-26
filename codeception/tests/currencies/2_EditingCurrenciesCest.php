@@ -18,20 +18,26 @@ class EditingCurrenciesCest
         $I->waitForText("Список валют", "10", "//*[@id='mainContent']/section/div[1]/div[1]/span[2]");
     }
     
+    /**
+     * @guy CurrenciesTester\CurrenciesSteps
+     */
     
-    public function NamesInEditing(CurrenciesTester $I)
+    public function NamesInEditing(CurrenciesTester\CurrenciesSteps $I)
     {
-        $I->amOnPage('/admin/components/run/shop/currencies');
-        $rows = $I->grabTagCount($I,"tbody tr");
-        $I->comment("$rows");
-        //Определение строчки главной валюты
-        for ($j=1;$j<$rows;++$j){
-            //Поиск атрибута checked для радиоточки
-            $atribCheck = $I->grabAttributeFrom("//tbody/tr[$j]/td[5]/input","checked");
-                if($atribCheck == TRUE){
-                break;
-            }
-        }
+        $j=$I->SearchMainCurrencyLine();
+        $I->comment($j);
+        //echo CurrenciesTester\CurrenciesSteps::SearchMainCurrencyLine();
+//        $I->amOnPage('/admin/components/run/shop/currencies');
+//        $rows = $I->grabTagCount($I,"tbody tr");
+//        $I->comment("$rows");
+//        //Определение строчки главной валюты
+//        for ($j=1;$j<$rows;++$j){
+//            //Поиск атрибута checked для радиоточки
+//            $atribCheck = $I->grabAttributeFrom("//tbody/tr[$j]/td[5]/input","checked");
+//                if($atribCheck == TRUE){
+//                break;
+//            }
+//        }
         $SymbolMainCur=$I->grabTextFrom(".//*[@class='']/tr[$j]/td[4]");
         $I->click('.//*[@id="currency_tr1"]/td[2]/a');
         $I->waitForElement('.//*[@id="mod_name"]/label');
@@ -47,12 +53,13 @@ class EditingCurrenciesCest
         $I->see('Вернуться', CurrenciesPage::$GoBackButton);
         $I->see('Сохранить', CurrenciesPage::$SaveButton);
         $I->see('Сохранить и выйти', CurrenciesPage::$SaveAndExitButton);
+        $I->seeElement(CurrenciesPage::$TemplateForm);
         $I->see('Шаблон вывода валюты', '//*[@id="cur_ed_form"]/table[2]/thead/tr/th');
         $I->see('Шаблон валюты:', '//*[@id="cur_ed_form"]/table[2]/tbody/tr/td/div/div[1]/label');
         $I->see('Строка формата:', '//*[@id="cur_ed_form"]/table[2]/tbody/tr/td/div/div[2]/label');
         $I->see('Разделитель десятков:', '//*[@id="cur_ed_form"]/table[2]/tbody/tr/td/div/div[3]/label');
         $I->see('Разделитель тысяч:', '//*[@id="cur_ed_form"]/table[2]/tbody/tr/td/div/div[4]/label');
-        $I->see('Количество дясятичных знаков:', '//*[@id="cur_ed_form"]/table[2]/tbody/tr/td/div/div[5]/label');
+        $I->see('Количество десятичных знаков:', '//*[@id="cur_ed_form"]/table[2]/tbody/tr/td/div/div[5]/label');
         $I->see('Не показывать нули в дробной части:', '//*[@id="cur_ed_form"]/table[2]/tbody/tr/td/div/div[6]/label');
         $I->see('Перечень возможных кодов валют приведен в международном стандарте', '//*[@id="cur_ed_form"]/table[2]/tbody/tr/td/div/div[7]/div/p[1]');
         $I->see('Убрать показ в публичной части незначащих нулей у дробной части цены - если у вас цена 12500,00 рублей - будет отображено 12500, если у вас 12500,50 - будет отображено 12500,50.', '//*[@id="cur_ed_form"]/table[2]/tbody/tr/td/div/div[7]/div/p[2]');
@@ -68,11 +75,17 @@ class EditingCurrenciesCest
         $isocode="";
         $symbol="";
         $rate="";
-        $I->EditCurrency($name,$isocode,$symbol,$rate);
+        $format="";
+        $delimTens="";
+        $delimThousands="";
+        $amount="";
+        $I->EditCurrency($name, $isocode, $symbol, $rate, $template=null, $format, $delimTens, $delimThousands, $amount);
         $I->see('Это поле обязательное.', './/*[@id="cur_ed_form"]/table/tbody/tr/td/div/div[1]/div/label');
         $I->see('Это поле обязательное.', './/*[@id="cur_ed_form"]/table/tbody/tr/td/div/div[2]/div/label');
         $I->see('Это поле обязательное.', './/*[@id="cur_ed_form"]/table/tbody/tr/td/div/div[3]/div/label');
         $I->see('Это поле обязательное.', './/*[@id="mod_name"]/div/label');
+        $I->see('Это поле обязательное.', ".//*[@id='cur_ed_form']/table[2]/tbody/tr/td/div/div[2]/div/label");
+        $I->see('Это поле обязательное.', ".//*[@id='cur_ed_form']/table[2]/tbody/tr/td/div/div[5]/div/label");
         InitTest::ClearAllCach($I);
     }
     
@@ -86,11 +99,17 @@ class EditingCurrenciesCest
         $isocode="";
         $symbol="";
         $rate="";
-        $I->EditCurrency($name,$isocode,$symbol,$rate,$save='saveexit');
+        $format="";
+        $delimTens="";
+        $delimThousands="";
+        $amount="";
+        $I->EditCurrency($name, $isocode, $symbol, $rate, null, $format, $delimTens, $delimThousands, $amount,$notNull='off',$save='saveexit');
         $I->see('Это поле обязательное.', './/*[@id="cur_ed_form"]/table/tbody/tr/td/div/div[1]/div/label');
         $I->see('Это поле обязательное.', './/*[@id="cur_ed_form"]/table/tbody/tr/td/div/div[2]/div/label');
         $I->see('Это поле обязательное.', './/*[@id="cur_ed_form"]/table/tbody/tr/td/div/div[3]/div/label');
         $I->see('Это поле обязательное.', './/*[@id="mod_name"]/div/label');
+        $I->see('Это поле обязательное.', ".//*[@id='cur_ed_form']/table[2]/tbody/tr/td/div/div[2]/div/label");
+        $I->see('Это поле обязательное.', ".//*[@id='cur_ed_form']/table[2]/tbody/tr/td/div/div[5]/div/label");
     }
     
     
@@ -103,17 +122,33 @@ class EditingCurrenciesCest
         $I->fillField(CurrenciesPage::$IsoCodEdit, 'йццукsadasd123324?"{{$&(+|!@.,;:ADFФЦВ');
         $I->fillField(CurrenciesPage::$SymbolEdit, 'йццукsadasd123324?"{{$&(+|!@.,;:ADFФЦВ');
         $I->fillField(CurrenciesPage::$Rate, 'qwweйЫВSDFцук!"№;№%%:??*()_1ЮБ.,7653423');
+        $I->fillField(CurrenciesPage::$FormatLine, 'qwweйЫВSDFцук!"№;№%%:??*()_1ЮБ.,7653423');
+        $I->fillField(CurrenciesPage::$DelimiterTens, 'qwweйЫВSDFцук!"№;№%%:??*()_1ЮБ.,7653423');
+        $I->fillField(CurrenciesPage::$DelimiterThousands, 'qwweйЫВSDFцук!"№;№%%:??*()_1ЮБ.,7653423');
+        $I->fillField(CurrenciesPage::$AmountDecimals, 'qwweйЫВSDFцук!"№;№%%:??*()_1ЮБ.,7653423');        
         $I->seeInField(CurrenciesPage::$NameCurrencyEdit, 'йццукsadasd123324?"{{$&(+|!@.,;:ADFФЦВ');
         $I->seeInField(CurrenciesPage::$IsoCodEdit, 'йццукsadasd123324?"{{$&(+|!@.,;:ADFФЦВ');
         $I->seeInField(CurrenciesPage::$SymbolEdit, 'йццукsadasd123324?"{{$&(+|!@.,;:ADFФЦВ');
         $I->seeInField(CurrenciesPage::$Rate, '1.7653423');
+        $I->seeInField(CurrenciesPage::$FormatLine, 'йццукsadasd123324?"{{$&(+|!@.,;:ADFФЦВ');
+        $I->seeInField(CurrenciesPage::$DelimiterTens, 'йццукsadasd123324?"{{$&(+|!@.,;:ADFФЦВ');
+        $I->seeInField(CurrenciesPage::$DelimiterThousands, 'йццукsadasd123324?"{{$&(+|!@.,;:ADFФЦВ');
+        $I->seeInField(CurrenciesPage::$AmountDecimals, 'йццукsadasd123324?"{{$&(+|!@.,;:ADFФЦВ');
     }
+    
+    
+    public function EditingTemplateMainCur(CurrenciesTester\CurrenciesSteps $I)
+    {
+        $I->amOnPage(CurrenciesPage::$URL);
+        
+    }
+    
     
     /**
      * @guy CurrenciesTester\CurrenciesSteps
      */
     
-    public function OneAnd2SymbolsEditing(CurrenciesTester\CurrenciesSteps $I)
+    /*public function OneAnd2SymbolsEditing(CurrenciesTester\CurrenciesSteps $I)
     {
         $name="q";
         $isocode="q";
@@ -140,13 +175,13 @@ class EditingCurrenciesCest
         $I->seeElement(CurrenciesPage::$AmountDecimals);
         $I->seeElement(CurrenciesPage::$NotNullsCheckbox);
         InitTest::ClearAllCach($I);
-    }
+    }*/
     
     /**
      * @guy CurrenciesTester\CurrenciesSteps
      */
     
-    public function Symbols5Editing(CurrenciesTester\CurrenciesSteps $I)
+    /*public function Symbols5Editing(CurrenciesTester\CurrenciesSteps $I)
     {
         $name="Динар";
         $isocode="Динар";
@@ -168,13 +203,13 @@ class EditingCurrenciesCest
         $I->see('Динар', './/*[@id="mainContent"]/section/div[2]/div/form/table/tbody/tr[1]/td[2]/a');
         $I->see('Динар', './/*[@id="mainContent"]/section/div[2]/div/form/table/tbody/tr[1]/td[3]');
         $I->see('Динар', './/*[@id="mainContent"]/section/div[2]/div/form/table/tbody/tr[1]/td[4]');
-    }
+    }*/
     
     /**
      * @guy CurrenciesTester\CurrenciesSteps
      */
     
-    public function Symbols6Editing(CurrenciesTester\CurrenciesSteps $I)
+    /*public function Symbols6Editing(CurrenciesTester\CurrenciesSteps $I)
     {     
         $name="валюта";
         $isocode="валюта";
@@ -207,13 +242,13 @@ class EditingCurrenciesCest
         $rate1="111111.0000";
         $I->CheckInFields($name1,$isocode1,$symbol1,$rate1);
         InitTest::ClearAllCach($I);
-    }
+    }*/
     
     /**
      * @guy CurrenciesTester\CurrenciesSteps
      */
     
-    public function ICMS_1508_Symbols10Editing(CurrenciesTester\CurrenciesSteps $I)
+    /*public function ICMS_1508_Symbols10Editing(CurrenciesTester\CurrenciesSteps $I)
     {
         $name="Гульден123";
         $isocode="Гульден123";
@@ -245,13 +280,13 @@ class EditingCurrenciesCest
         $symbol1="Гульд";
         $rate1="105236.2354";
         $I->CheckInFields($name1,$isocode1,$symbol1,$rate1);      
-    }
+    }*/
     
     /**
      * @guy CurrenciesTester\CurrenciesSteps
      */
     
-    public function Symbols255Editing(CurrenciesTester\CurrenciesSteps $I)
+    /*public function Symbols255Editing(CurrenciesTester\CurrenciesSteps $I)
     {
         $name="Франкфранкфранк франкфранкфранкфранк франкфранкфранкфранкфранкфранкфранкфранкфранк франкфранкфранкфранкфранк франкфранкфранкфранк франкфранкфранкфранкфранк франкфранкфранк франк франкфранк франкфр анкфранкфранкфранк франкфранкфранк франк ф р анкфранкфранк";
         $isocode="frank";
@@ -267,13 +302,13 @@ class EditingCurrenciesCest
         $rate1="0.0210";
         $I->CheckInFields($name1,$isocode1,$symbol1,$rate1);
         InitTest::ClearAllCach($I);
-    }
+    }*/
     
     /**
      * @guy CurrenciesTester\CurrenciesSteps
      */
     
-    public function Symbols256Editing(CurrenciesTester\CurrenciesSteps $I)
+    /*public function Symbols256Editing(CurrenciesTester\CurrenciesSteps $I)
     {
         $name="Форинтфоринт форинтфоринтфоринт форинтфо ринтфоринтфоринтфор интфоринтфоринтфоринтфоринтфоринтфоринтфори нтфоринтфоринтфоринтфор интфоринтфоринтфоринтфоринтф оринтфоринтфор интфоринтфоринтфоринтфор интфоринт форинтфоринтфоринтфоринтф оринтфоринтфоринтфорин";
         $isocode="forin";
@@ -288,13 +323,13 @@ class EditingCurrenciesCest
         $symbol1="фор";
         $rate1="120.0100";
         $I->CheckInFields($name1,$isocode1,$symbol1,$rate1);
-    }
+    }*/
     
     /**
      * @guy CurrenciesTester\CurrenciesSteps
      */
     
-    public function SaveAndExitButton(CurrenciesTester\CurrenciesSteps $I)
+    /*public function SaveAndExitButton(CurrenciesTester\CurrenciesSteps $I)
     {
         $name="Лат";
         $isocode="лат";
@@ -309,6 +344,6 @@ class EditingCurrenciesCest
         $I->see('лат', './/*[@id="mainContent"]/section/div[2]/div/form/table/tbody/tr[1]/td[3]');
         $I->see('лат', './/*[@id="mainContent"]/section/div[2]/div/form/table/tbody/tr[1]/td[4]');
         InitTest::ClearAllCach($I);
-    }
-    
+    }*/
+        
 }
