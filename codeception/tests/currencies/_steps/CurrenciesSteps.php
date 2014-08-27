@@ -159,10 +159,11 @@ class CurrenciesSteps extends \CurrenciesTester
         $I->amOnPage('/admin/components/run/shop/products/create');
         $I->waitForText('Создание товара');        
         $I->fillField(\ProductsPage::$NameProduct, $name);
-        $I->fillField(\ProductsPage::$Price, "$price"); 
-        $I->selectOption(\ProductsPage::$Currency, $j);
+        $I->fillField(\ProductsPage::$Price, "$price");
+        $I->click(\ProductsPage::$Currency);
+//        $I->selectOption(\ProductsPage::$Currency, $j);
 //        $I->click(\ProductsPage::$Currency);
-//        $I->click(\ProductsPage::$Currency."/option[$j]");
+        $I->click(\ProductsPage::$Currency."/option[$j]");
         $I->wait('1');
         $IsoProduct=$I->grabTextFrom(\ProductsPage::$Currency."/option[$j]");
         $I->comment("$IsoProduct");
