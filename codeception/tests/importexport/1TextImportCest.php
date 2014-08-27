@@ -6,7 +6,7 @@ class TextImportCest
     
 //---------------------------AUTORIZATION--------------------------------------- 
     /**
-     * @group a
+     * @group aw
      */
     public function Login(ImportExportTester $I){
         InitTest::Login($I);
@@ -14,11 +14,137 @@ class TextImportCest
     
     
 //-----------------------------------------------------------
+    /**
+     * @group a
+     */
+    public function  installationImportNew (ImportExportTester $I){
+        $I->wantTo("Verify Way To Import New Page.");
+        $I->click('//div[1]/div[3]/div/nav/ul/li[6]/a');
+        $I->wait('1');
+        $I->click('//div[1]/div[3]/div/nav/ul/li[6]/ul/li[15]/a');
+        $I->wait('3');
+        $I->click('//div/form/section/div[2]/div[1]/div[1]/a[2]');
+        $I->wait('1');
+        $I->click('//section/div[2]/div[2]/div[2]/div/table/tbody/tr[2]/td[1]/a');
+    }
+    
+    
+    /**
+     * @group a
+     */
+    
+    public function ActivationModuel(ImportExportTester $I) {
+        $I->wantTo("Activation Moduel Import Export.");
+        $I->click('//div[1]/div[3]/div/nav/ul/li[6]/a');
+        $I->wait('1');
+        $I->click('//div[1]/div[3]/div/nav/ul/li[6]/ul/li[15]/a');
+        $I->wait('3');
+        $I->click('//table/tbody/tr[2]/td[5]/div/span');
+        $I->click('//table/tbody/tr[2]/td[6]/div/span');
+        $I->click('//table/tbody/tr[2]/td[7]/div/span');
+    }
+    
+    
+    
+    /**
+     * @group a
+     */
+    
+    public function PresentActivationModuel(ImportExportTester $I) {
+        $I->wantTo("Present Activation Moduel.");
+        $I->click('//div[1]/div[3]/div/nav/ul/li[6]/a');
+        $I->click('//div[1]/div[3]/div/nav/ul/li[6]/ul/li[3]/a');
+        $I->wait('1');
+        $I->see('Категории управления модулем', '//div[5]/div/section/div[1]/div[1]/span[2]');        
+    }
+    
+    
+    /**
+     * @group a
+     */
+    
+    public function LinkBack1Moduel(ImportExportTester $I) {
+        $I->wantTo("Clicability Link Moduel.");
+        $I->amOnPage('/admin/components/cp/import_export');
+        $I->click('//div[5]/div/section/div[1]/div[2]/div/a');
+        $I->wait('3');
+        $I->see('Все модули', '//div[5]/div/form/section/div[1]/div[1]/span[2]');                
+    }
+    
+    
+    /**
+     * @group a
+     */
+    
+    public function LinkBack2Moduel(ImportExportTester $I) {
+        $I->wantTo("Present Activation Moduel.");
+        $I->amOnPage('/admin/components/cp/import_export');
+        $I->wait('1');
+        $I->click('//div[5]/div/section/div[1]/div[2]/div/a');
+        $I->wait('3');
+        $I->see('Все модули', '//div[5]/div/form/section/div[1]/div[1]/span[2]');                
+    }
+    
+    
+    
+    /**
+     * @group a
+     */
+    
+    public function LinkBack3Moduel(ImportExportTester $I) {
+        $I->wantTo("Present Activation Moduel.");
+        $I->amOnPage('/admin/components/cp/import_export');
+        $I->wait('1');
+        $I->click('//div[1]/div[5]/div/section/div[2]/a[1]');
+        $I->wait('1');
+        $I->click('//div[1]/div[5]/section/div[1]/div[2]/div/div/a');
+        $I->wait('1');
+        $I->see('Категории управления модулем', '//div[1]/div[5]/div/section/div[1]/div[1]/span[2]');                
+    }
+    
+    
+    
+    
+    
+    /**
+     * @group a
+     */
+    
+    public function LinkBack4Moduel(ImportExportTester $I) {
+        $I->wantTo("Present Activation Moduel.");
+        $I->amOnPage('/admin/components/cp/import_export');
+        $I->wait('1');
+        $I->click('//div[1]/div[5]/div/section/div[2]/a[2]');
+        $I->wait('1');
+        $I->click('//div[1]/div[5]/section/div[1]/div[2]/div/a/span[2]');
+        $I->wait('1');
+        $I->see('Категории управления модулем', '//div[1]/div[5]/div/section/div[1]/div[1]/span[2]');                
+    }
+    
+    
+    
+    
+    /**
+     * @group aw
+     */
+    
+    public function LinkBack5Moduel(ImportExportTester $I) {
+        $I->wantTo("Present Activation Moduel.");
+        $I->amOnPage('/admin/components/cp/import_export');
+        $I->wait('1');
+        $I->click('//div[1]/div[5]/div/section/div[2]/a[3]');
+        $I->wait('1');
+        $I->click('//div[1]/div[5]/section/div[1]/div[2]/div/a/span[2]');
+        $I->wait('1');
+        $I->see('Категории управления модулем', '//div[1]/div[5]/div/section/div[1]/div[1]/span[2]');                
+    }
+    
     
     /**
      * @group a
      */
     public function  WayImport (ImportExportTester $I){
+        $I->wantTo("Verify Way To Import Page.");
         $I->click(NavigationBarPage::$Settings);
         $I->click(NavigationBarPage::$SettingsImportExport);
         $I->seeInCurrentUrl(ImportPage::$IMPURL);
@@ -29,6 +155,7 @@ class TextImportCest
      * @group a
      */
     public function VerifyTextImpotrPage (ImportExportTester $I){
+        $I->wantTo('Verify Text On Import Page.');
         $I->amOnPage(ImportPage::$IMPURL);
         $I->see('Импорт', ImportPage::$IMPButtonImport);
         $I->see('Импорт-Экспорт CSV/XLS', ImportPage::$IMPTitle);
@@ -47,7 +174,7 @@ class TextImportCest
     /**
      * @group a
      */
-    public function Ds (ImportExportTester $I){
+    public function VerifyTipInformationFile (ImportExportTester $I){
         $I->amOnPage(ImportPage::$IMPURL);
         $I->click(ImportPage::$IMPInfoFile);
         $I->see('CSV/XLS/XLSX', ImportPage::$IMPInfoPopoverTitle);
@@ -58,7 +185,7 @@ class TextImportCest
     /**
      * @group a
      */
-    public function Dss (ImportExportTester $I){
+    public function VerifyTipInformationBD (ImportExportTester $I){
         $I->amOnPage(ImportPage::$IMPURL);
         $I->click(ImportPage::$IMPInfoBD);
         $I->see('Backup', ImportPage::$IMPInfoPopoverTitle);
@@ -69,7 +196,7 @@ class TextImportCest
     /**
      * @group a
      */
-    public function Dse (ImportExportTester $I){
+    public function VerifyTipInformationIMG (ImportExportTester $I){
         $I->amOnPage(ImportPage::$IMPURL);
         $I->click(ImportPage::$IMPInfoImg);
         $I->see('Ресайз', ImportPage::$IMPInfoPopoverTitle);
@@ -82,7 +209,7 @@ class TextImportCest
     /**
      * @group a
      */
-    public function Dsd (ImportExportTester $I){
+    public function VerifyTipInformationPrice (ImportExportTester $I){
         $I->amOnPage(ImportPage::$IMPURL);
         $I->click(ImportPage::$IMPInfoPrice);
         $I->see('Проверка цен', ImportPage::$IMPInfoPopoverTitle);
@@ -96,7 +223,7 @@ class TextImportCest
     /**
      * @group a
      */
-    public function Dsiid (ImportExportTester $I){
+    public function VerifyTipAlertMessage (ImportExportTester $I){
         $I->amOnPage(ImportPage::$IMPURL);
         $I->click(ImportPage::$IMPButtonStartImport);
         $I->waitForElement('.alert.in.fade.alert-success');
@@ -109,7 +236,7 @@ class TextImportCest
     /**
      * @group a
      */
-    public function Dsyyy (ImportExportTester $I){
+    public function VerifyClickSlot2 (ImportExportTester $I){
         $I->amOnPage(ImportPage::$IMPURL);
         $I->click(ImportPage::$IMPButtonSlot2);
         $I->seeCheckboxIsChecked('//tbody/tr/td/div/form/div/div[2]/div/label/input');
@@ -121,7 +248,7 @@ class TextImportCest
     /**
      * @group a
      */
-    public function Dsyyyppp (ImportExportTester $I){
+    public function VerifyClickSlot3 (ImportExportTester $I){
         $I->amOnPage(ImportPage::$IMPURL);
         $I->click(ImportPage::$IMPButtonSlot3);
         $I->seeCheckboxIsChecked('//tbody/tr/td/div/form/div/div[3]/div/label/input');
@@ -133,7 +260,7 @@ class TextImportCest
     /**
      * @group a
      */
-    public function Dsyyyooo (ImportExportTester $I){
+    public function VerifyClickSlot1 (ImportExportTester $I){
         $I->amOnPage(ImportPage::$IMPURL);
         $I->click(ImportPage::$IMPButtonSlot1);
         $I->seeCheckboxIsChecked('//tbody/tr/td/div/form/div/div[1]/div/label/input');
@@ -144,7 +271,7 @@ class TextImportCest
     /**
      * @group a
      */
-    public function Dsyypp65 (ImportExportTester $I){
+    public function VerifyClickChekBoxBD (ImportExportTester $I){
         $I->amOnPage(ImportPage::$IMPURL);
         $I->click(ImportPage::$IMPChekBoxBD);
         $I->seeCheckboxIsChecked(ImportPage::$IMPChekBoxBD);
@@ -155,7 +282,7 @@ class TextImportCest
     /**
      * @group a
      */
-    public function Dsyypp87 (ImportExportTester $I){
+    public function VerifyClickChekBoxIMG (ImportExportTester $I){
         $I->amOnPage(ImportPage::$IMPURL);
         $I->click(ImportPage::$IMPChekBoxImg);
         $I->seeCheckboxIsChecked(ImportPage::$IMPChekBoxImg);
@@ -166,7 +293,7 @@ class TextImportCest
     /**
      * @group a
      */
-    public function Dsyypp98 (ImportExportTester $I){
+    public function VerifyClickChekBoxPrice (ImportExportTester $I){
         $I->amOnPage(ImportPage::$IMPURL);
         $I->click(ImportPage::$IMPChekBoxPrice);
         $I->seeCheckboxIsChecked(ImportPage::$IMPChekBoxPrice);
@@ -180,6 +307,7 @@ class TextImportCest
      * @group a
      */
     public function ICMS1521 (ImportExportTester $I){
+        $I->wantTo('Verify Link Page Open');
         $I->amOnPage(ImportPage::$IMPURL);
         $I->click(ImportPage::$IMPButtonStartImport);
         $I->waitForElement('.alert.in.fade.alert-success');

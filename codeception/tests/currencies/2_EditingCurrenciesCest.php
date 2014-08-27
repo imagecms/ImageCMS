@@ -26,18 +26,6 @@ class EditingCurrenciesCest
     {
         $j=$I->SearchMainCurrencyLine();
         $I->comment($j);
-        //echo CurrenciesTester\CurrenciesSteps::SearchMainCurrencyLine();
-//        $I->amOnPage('/admin/components/run/shop/currencies');
-//        $rows = $I->grabTagCount($I,"tbody tr");
-//        $I->comment("$rows");
-//        //Определение строчки главной валюты
-//        for ($j=1;$j<$rows;++$j){
-//            //Поиск атрибута checked для радиоточки
-//            $atribCheck = $I->grabAttributeFrom("//tbody/tr[$j]/td[5]/input","checked");
-//                if($atribCheck == TRUE){
-//                break;
-//            }
-//        }
         $SymbolMainCur=$I->grabTextFrom(".//*[@class='']/tr[$j]/td[4]");
         $I->click('.//*[@id="currency_tr1"]/td[2]/a');
         $I->waitForElement('.//*[@id="mod_name"]/label');
@@ -137,32 +125,32 @@ class EditingCurrenciesCest
     }
     
     
-    public function EditingTemplateMainCur(CurrenciesTester\CurrenciesSteps $I)
-    {
-        $I->amOnPage(CurrenciesPage::$URL);
-        
-    }
+//    public function EditingTemplateMainCur(CurrenciesTester\CurrenciesSteps $I)
+//    {
+//        $I->amOnPage(CurrenciesPage::$URL);
+//        
+//    }
     
     
     /**
      * @guy CurrenciesTester\CurrenciesSteps
      */
     
-    /*public function OneAnd2SymbolsEditing(CurrenciesTester\CurrenciesSteps $I)
+    public function OneAnd2SymbolsEditing(CurrenciesTester\CurrenciesSteps $I)
     {
         $name="q";
         $isocode="q";
         $symbol="q";
         $rate="1";
-        $I->EditCurrency($name,$isocode,$symbol,$rate);      
+        $I->EditCurrency($name,$isocode,$symbol,$rate,$template=null,$format=null,$delimTens=null,$delimThousands=null,$amount=null);      
         $I->waitForElementVisible('.alert.in.fade.alert-error');
         $I->see('Поле Название должно быть не менее 2 символов в длину.');
         $I->waitForElementNotVisible('.alert.in.fade.alert-error');
         $I->appendField(CurrenciesPage::$NameCurrencyEdit, 'q');
         $I->click(CurrenciesPage::$SaveButton);
         //$I->waitForElementVisible('.alert.in.fade.alert-success');
-        $I->waitForText('Изменения сохранены');
-        //$I->waitForElementNotVisible('.alert.in.fade.alert-success');
+//        $I->waitForText('Изменения сохранены');
+        //$I->waitForElementNotVisible('.alert.in.fade.alert-success');        
         $name1="qq";
         $isocode1="q";
         $symbol1="q";
@@ -175,24 +163,23 @@ class EditingCurrenciesCest
         $I->seeElement(CurrenciesPage::$AmountDecimals);
         $I->seeElement(CurrenciesPage::$NotNullsCheckbox);
         InitTest::ClearAllCach($I);
-    }*/
+    }
     
     /**
      * @guy CurrenciesTester\CurrenciesSteps
      */
     
-    /*public function Symbols5Editing(CurrenciesTester\CurrenciesSteps $I)
+    public function Symbols5Editing(CurrenciesTester\CurrenciesSteps $I)
     {
         $name="Динар";
         $isocode="Динар";
         $symbol="Динар";
         $rate="11111";
-        $I->EditCurrency($name,$isocode,$symbol,$rate);
+        $I->EditCurrency($name,$isocode,$symbol,$rate,$template=null,$format=null,$delimTens=null,$delimThousands=null,$amount=null);
 //        $I->exactlySeeAlert($I, 'success', 'Изменения сохранены');
         //$I->waitForElementVisible('.alert.in.fade.alert-success');
-        $I->waitForText('Изменения сохранены', 4);
-        //$I->waitForElementNotVisible('.alert.in.fade.alert-success');
-        $I->wait('3');
+//        $I->waitForText('Изменения сохранены', 4);
+        //$I->waitForElementNotVisible('.alert.in.fade.alert-success');        
         $name1="Динар";
         $isocode1="Динар";
         $symbol1="Динар";
@@ -203,19 +190,19 @@ class EditingCurrenciesCest
         $I->see('Динар', './/*[@id="mainContent"]/section/div[2]/div/form/table/tbody/tr[1]/td[2]/a');
         $I->see('Динар', './/*[@id="mainContent"]/section/div[2]/div/form/table/tbody/tr[1]/td[3]');
         $I->see('Динар', './/*[@id="mainContent"]/section/div[2]/div/form/table/tbody/tr[1]/td[4]');
-    }*/
+    }
     
     /**
      * @guy CurrenciesTester\CurrenciesSteps
      */
     
-    /*public function Symbols6Editing(CurrenciesTester\CurrenciesSteps $I)
+    public function Symbols6Editing(CurrenciesTester\CurrenciesSteps $I)
     {     
         $name="валюта";
         $isocode="валюта";
         $symbol="валюта";
         $rate="111111";
-        $I->EditCurrency($name,$isocode,$symbol,$rate);
+        $I->EditCurrency($name,$isocode,$symbol,$rate,$template=null,$format=null,$delimTens=null,$delimThousands=null,$amount=null);
         $I->waitForElementVisible('.alert.in.fade.alert-error');
         $I->see('Поле Iso Код не может превышать 5 символов в длину.');
         $I->see('Поле Символ не может превышать 5 символов в длину.');
@@ -234,27 +221,27 @@ class EditingCurrenciesCest
         $I->fillField(CurrenciesPage::$IsoCodEdit, 'валют');
         $I->click(CurrenciesPage::$SaveButton);
         //$I->waitForElementVisible('.alert.in.fade.alert-success');
-        $I->waitForText('Изменения сохранены');
-        //$I->waitForElementNotVisible('.alert.in.fade.alert-success');
+//        $I->waitForText('Изменения сохранены');
+        //$I->waitForElementNotVisible('.alert.in.fade.alert-success');        
         $name1="валюта";
         $isocode1="валют";
         $symbol1="валют";
         $rate1="111111.0000";
         $I->CheckInFields($name1,$isocode1,$symbol1,$rate1);
         InitTest::ClearAllCach($I);
-    }*/
+    }
     
     /**
      * @guy CurrenciesTester\CurrenciesSteps
      */
     
-    /*public function ICMS_1508_Symbols10Editing(CurrenciesTester\CurrenciesSteps $I)
+    public function ICMS_1508_Symbols10Editing(CurrenciesTester\CurrenciesSteps $I)
     {
         $name="Гульден123";
         $isocode="Гульден123";
         $symbol="Гульден123";
         $rate="105236.2354";
-        $I->EditCurrency($name,$isocode,$symbol,$rate);
+        $I->EditCurrency($name,$isocode,$symbol,$rate,$template=null,$format=null,$delimTens=null,$delimThousands=null,$amount=null);
         $I->waitForElementVisible('.alert.in.fade.alert-error');
         $I->see('Поле Iso Код не может превышать 5 символов в длину.');
         $I->see('Поле Символ не может превышать 5 символов в длину.');
@@ -273,77 +260,77 @@ class EditingCurrenciesCest
         $I->fillField(CurrenciesPage::$IsoCodEdit, 'Гульд');
         $I->click(CurrenciesPage::$SaveButton);
         //$I->waitForElementVisible('.alert.in.fade.alert-success');
-        $I->waitForText('Изменения сохранены',4);
-        //$I->waitForElementNotVisible('.alert.in.fade.alert-success');
+//        $I->waitForText('Изменения сохранены',4);
+        //$I->waitForElementNotVisible('.alert.in.fade.alert-success');        
         $name1="Гульден123";
         $isocode1="Гульд";
         $symbol1="Гульд";
         $rate1="105236.2354";
         $I->CheckInFields($name1,$isocode1,$symbol1,$rate1);      
-    }*/
+    }
     
     /**
      * @guy CurrenciesTester\CurrenciesSteps
      */
     
-    /*public function Symbols255Editing(CurrenciesTester\CurrenciesSteps $I)
+    public function Symbols255Editing(CurrenciesTester\CurrenciesSteps $I)
     {
         $name="Франкфранкфранк франкфранкфранкфранк франкфранкфранкфранкфранкфранкфранкфранкфранк франкфранкфранкфранкфранк франкфранкфранкфранк франкфранкфранкфранкфранк франкфранкфранк франк франкфранк франкфр анкфранкфранкфранк франкфранкфранк франк ф р анкфранкфранк";
         $isocode="frank";
         $symbol="fr";
         $rate=".0210";
-        $I->EditCurrency($name,$isocode,$symbol,$rate);
+        $I->EditCurrency($name,$isocode,$symbol,$rate,$template=null,$format=null,$delimTens=null,$delimThousands=null,$amount=null);
         //$I->waitForElementVisible('.alert.in.fade.alert-success');
-        $I->waitForText('Изменения сохранены');
-        //$I->waitForElementNotVisible('.alert.in.fade.alert-success');
+//        $I->waitForText('Изменения сохранены');
+        //$I->waitForElementNotVisible('.alert.in.fade.alert-success');        
         $name1="Франкфранкфранк франкфранкфранкфранк франкфранкфранкфранкфранкфранкфранкфранкфранк франкфранкфранкфранкфранк франкфранкфранкфранк франкфранкфранкфранкфранк франкфранкфранк франк франкфранк франкфр анкфранкфранкфранк франкфранкфранк франк ф р анкфранкфранк";
         $isocode1="frank";
         $symbol1="fr";
         $rate1="0.0210";
         $I->CheckInFields($name1,$isocode1,$symbol1,$rate1);
         InitTest::ClearAllCach($I);
-    }*/
+    }
     
     /**
      * @guy CurrenciesTester\CurrenciesSteps
      */
     
-    /*public function Symbols256Editing(CurrenciesTester\CurrenciesSteps $I)
+    public function Symbols256Editing(CurrenciesTester\CurrenciesSteps $I)
     {
         $name="Форинтфоринт форинтфоринтфоринт форинтфо ринтфоринтфоринтфор интфоринтфоринтфоринтфоринтфоринтфоринтфори нтфоринтфоринтфоринтфор интфоринтфоринтфоринтфоринтф оринтфоринтфор интфоринтфоринтфоринтфор интфоринт форинтфоринтфоринтфоринтф оринтфоринтфоринтфорин";
         $isocode="forin";
         $symbol="фор";
         $rate="00120.01";
-        $I->EditCurrency($name,$isocode,$symbol,$rate);
+        $I->EditCurrency($name,$isocode,$symbol,$rate,$template=null,$format=null,$delimTens=null,$delimThousands=null,$amount=null);
         //$I->waitForElementVisible('.alert.in.fade.alert-success');
-        $I->waitForText('Изменения сохранены', 4);
-        //$I->waitForElementNotVisible('.alert.in.fade.alert-success');
+//        $I->waitForText('Изменения сохранены', 4);
+        //$I->waitForElementNotVisible('.alert.in.fade.alert-success');        
         $name1="Форинтфоринт форинтфоринтфоринт форинтфо ринтфоринтфоринтфор интфоринтфоринтфоринтфоринтфоринтфоринтфори нтфоринтфоринтфоринтфор интфоринтфоринтфоринтфоринтф оринтфоринтфор интфоринтфоринтфоринтфор интфоринт форинтфоринтфоринтфоринтф оринтфоринтфоринтфори";
         $isocode1="forin";
         $symbol1="фор";
         $rate1="120.0100";
         $I->CheckInFields($name1,$isocode1,$symbol1,$rate1);
-    }*/
+    }
     
     /**
      * @guy CurrenciesTester\CurrenciesSteps
      */
     
-    /*public function SaveAndExitButton(CurrenciesTester\CurrenciesSteps $I)
+    public function SaveAndExitButton(CurrenciesTester\CurrenciesSteps $I)
     {
         $name="Лат";
         $isocode="лат";
         $symbol="лат";
         $rate="11111";
-        $I->EditCurrency($name,$isocode,$symbol,$rate,$save='saveexit');
+        $I->EditCurrency($name,$isocode,$symbol,$rate, null, $format=null, $delimTens=null, $delimThousands=null, $amount=null,$notNull='off',$save='saveexit');
         //$I->waitForElementVisible('.alert.in.fade.alert-success');
-        $I->waitForText('Изменения сохранены');
+//        $I->waitForText('Изменения сохранены');
         //$I->waitForElementNotVisible('.alert.in.fade.alert-success');
         $I->waitForText('Список валют');
         $I->see('Лат', './/*[@id="mainContent"]/section/div[2]/div/form/table/tbody/tr[1]/td[2]/a');
         $I->see('лат', './/*[@id="mainContent"]/section/div[2]/div/form/table/tbody/tr[1]/td[3]');
         $I->see('лат', './/*[@id="mainContent"]/section/div[2]/div/form/table/tbody/tr[1]/td[4]');
         InitTest::ClearAllCach($I);
-    }*/
+    }
         
 }
