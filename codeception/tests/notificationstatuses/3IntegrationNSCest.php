@@ -24,7 +24,7 @@ class IntegrationNSCest
         $I->click('.infoBut.isDrop');
         $I->wait('1');
         $I->click('//span[2]/div/button');
-    }        
+    }
 
     
     

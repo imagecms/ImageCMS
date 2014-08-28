@@ -76,12 +76,16 @@ class importexportSteps extends \ImportExportTester
             $I->click(\ExportPropertyPage::$PropSelectOption1);
 //            $I->click(\ExportPropertyPage::$PropSelectOption1);
 //            $I->click(\ExportPropertyPage::$PropSelectOption1);
-        }if(isset($Property2)){
             $I->click(\ExportPropertyPage::$PropSelectOption2);
-        }if(isset($Property3)){
             $I->click(\ExportPropertyPage::$PropSelectOption3);
-        }if(isset($Property4)){
             $I->click(\ExportPropertyPage::$PropSelectOption4);
+        }if(isset($Property2)){
+            $I->fillField('//form/div/div[2]/div[2]/table/tbody/tr/td/div/div/div/div[2]/div/input', '1');
+        }if(isset($Property3)){
+            $I->click('//table/tbody/tr/td/div/div/div/div[3]/div/select/option[4]');
+            $I->click('//table/tbody/tr/td/div/div/div/div[3]/div/select/option[3]');
+        }if(isset($Property4)){
+            $I->click('//table/tbody/tr/td/div/div/div/div[4]/div/select/option[2]');
         }$I->wait('1');
         $I->click(\ExportProductPage::$CrtProductButtonSaveandBack);
         $I->wait('1');
