@@ -20,6 +20,10 @@
 codeception/tests/acceptance.suite.yml
 \codeception\tests\acceptance.suite.yml
 codeception\tests\acceptance.suite.yml
+\codeception\codeception.yml
+codeception\codeception.yml
+/codeception/codeception.yml
+codeception/codeception.yml
 /codeception/tests/_output/*
 codeception/tests/_output/*
 /templates/fluid/

@@ -2297,7 +2297,8 @@ CREATE TABLE IF NOT EXISTS `shop_currencies` (
   `code` varchar(5) DEFAULT NULL,
   `symbol` varchar(5) DEFAULT NULL,
   `rate` float(10,4) DEFAULT '1.0000',
-  `showOnSite` int(1) DEFAULT '0',
+  `showOnSite` int(1) DEFAULT '0',  
+  `currency_template` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `shop_currencies_I_1` (`name`),
   KEY `shop_currencies_I_2` (`main`),
@@ -2308,9 +2309,9 @@ CREATE TABLE IF NOT EXISTS `shop_currencies` (
 -- Dumping data for table `shop_currencies`
 --
 
-INSERT INTO `shop_currencies` (`id`, `name`, `main`, `is_default`, `code`, `symbol`, `rate`, `showOnSite`) VALUES
-(1, 'Dollars', 0, 0, 'USD', '$', 0.0310, 1),
-(2, 'Рубль', 1, 1, 'RUR', 'руб', 1.0000, 0);
+INSERT INTO `shop_currencies` (`id`, `name`, `main`, `is_default`, `code`, `symbol`, `rate`, `showOnSite`, `currency_template`) VALUES
+(1, 'Dollars', 0, 0, 'USD', '$', 0.0310, 1, 'a:5:{s:19:"Thousands_separator";s:1:" ";s:14:"Separator_tens";s:1:",";s:14:"Decimal_places";s:1:"2";s:4:"Zero";s:1:"0";s:6:"Format";s:3:"$ #";}'),
+(2, 'Рубль', 1, 1, 'RUR', 'руб', 1.0000, 0, 'a:5:{s:19:"Thousands_separator";s:1:".";s:14:"Separator_tens";s:1:",";s:14:"Decimal_places";s:1:"2";s:4:"Zero";s:1:"0";s:6:"Format";s:8:"# руб";}');
 
 -- --------------------------------------------------------
 
@@ -8245,6 +8246,7 @@ INSERT INTO `shop_rbac_roles_privileges` (`id`, `role_id`, `privilege_id`) VALUE
 (483, 1, 483),
 (484, 1, 484),
 (485, 1, 485),
+(486, 1, 486),
 (612, 1, 424),
 (613, 1, 425);
 
