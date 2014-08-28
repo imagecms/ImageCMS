@@ -32,7 +32,18 @@ class CurrenciesPage
     public static $DeleteButtonWindow  = './/*[@id="first"]/div[3]/a[1]';
     public static $CancelButtonWindow  = './/*[@id="first"]/div[3]/a[2]';
     
-   
+    
+    public static $SearchField  = ".//*[@id='inputString']";
+    public static $SearchButton  = "html/body/div[1]/div[1]/header/div[2]/div/div/div[2]/div[2]/div/form/span/button";
+    
+    
+    //FrontEnd Product Price 
+    public static $MainFirstPlace  = ".//*[@id='items-catalog-main']/li/div[1]/div[2]/span/span/span/span[1]";
+    public static $MainSecondPlace  = ".//*[@id='items-catalog-main']/li/div[1]/div[2]/span/span/span/span[2]";
+    public static $AdditFirstPlace  = '//*[@id="items-catalog-main"]/li/div[1]/div[2]/span/span[2]/span/span/span[1]';
+    public static $AdditSecondPlace  = '//*[@id="items-catalog-main"]/li/div[1]/div[2]/span/span[2]/span/span/span[2]';
+    
+    
     //Кнопки в списке
      public static function IdCurrencyLine($row){
         $IdCur = "//tbody/tr[$row]/td[1]";
