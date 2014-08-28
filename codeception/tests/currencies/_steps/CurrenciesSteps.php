@@ -24,16 +24,24 @@ class CurrenciesSteps extends \CurrenciesTester
         }
     }    
     
-    function EditCurrency($name,$isocode,$symbol,$rate,$template=null,$format,$delimTens=null,$delimThousands=null,$amount=null,$notNull='off',$save='save')
+    function EditCurrency($j,$name=null,$isocode=null,$symbol=null,$rate=null,$template=null,$format,$delimTens=null,$delimThousands=null,$amount=null,$notNull='off',$save='save')
     {
         $I = $this;
-        $I->amOnPage('/admin/components/run/shop/currencies');
-        $I->click('.//*[@id="currency_tr1"]/td[2]/a');
+        $I->amOnPage(\CurrenciesPage::$URL);
+        $I->click(\CurrenciesPage::CurrencyNameLine($j));
         $I->waitForElement('.//*[@id="mod_name"]/label');
-        $I->fillField(\CurrenciesPage::$NameCurrencyEdit, $name);
-        $I->fillField(\CurrenciesPage::$IsoCodEdit, $isocode);
-        $I->fillField(\CurrenciesPage::$SymbolEdit, $symbol);
-        $I->fillField(\CurrenciesPage::$Rate, $rate);        
+        if(isset($name)){
+            $I->fillField(\CurrenciesPage::$NameCurrencyEdit, $name);
+        }
+        if(isset($isocode)){
+            $I->fillField(\CurrenciesPage::$IsoCodEdit, $isocode);
+        }
+        if(isset($symbol)){
+            $I->fillField(\CurrenciesPage::$SymbolEdit, $symbol);
+        }
+        if(isset($rate)){
+            $I->fillField(\CurrenciesPage::$Rate, $rate);        
+        }
         if(isset($template)){
             $I->selectOption(\CurrenciesPage::$CurrencyTemplate, $template);
             $text=$I->grabTextFrom(\CurrenciesPage::$CurrencyTemplate."/option[$template]");
@@ -72,16 +80,24 @@ class CurrenciesSteps extends \CurrenciesTester
         }
     }
     
-    function CheckInFields($name1,$isocode1,$symbol1,$rate1,$format1,$delimTens1,$delimThousands1,$amount1,$notNull1="off")
+    function CheckInFields($name1=null,$isocode1=null,$symbol1=null,$rate1=null,$format1,$delimTens1,$delimThousands1,$amount1,$notNull1="off")
     {
         $I = $this;
         $I->waitForText('Редактирование валют');
-        $I->wait('1');
+        $I->wait('3');
         $I->seeElement(\CurrenciesPage::$TemplateForm);
-        $I->seeInField(\CurrenciesPage::$NameCurrencyEdit, $name1);
-        $I->seeInField(\CurrenciesPage::$IsoCodEdit, $isocode1);
-        $I->seeInField(\CurrenciesPage::$SymbolEdit, $symbol1);
-        $I->seeInField(\CurrenciesPage::$Rate, $rate1);
+        if(isset($name1)){
+            $I->seeInField(\CurrenciesPage::$NameCurrencyEdit, $name1);
+        }
+        if(isset($isocode1)){
+            $I->seeInField(\CurrenciesPage::$IsoCodEdit, $isocode1);
+        }
+        if(isset($symbol1)){
+            $I->seeInField(\CurrenciesPage::$SymbolEdit, $symbol1);
+        }
+        if(isset($rate1)){
+            $I->seeInField(\CurrenciesPage::$Rate, $rate1);
+        }
         $I->seeOptionIsSelected(\CurrenciesPage::$CurrencyTemplate, 'Не выбрано');
         $I->seeInField(\CurrenciesPage::$FormatLine, $format1);
         $I->seeInField(\CurrenciesPage::$DelimiterTens, $delimTens1);
@@ -153,20 +169,22 @@ class CurrenciesSteps extends \CurrenciesTester
     }
     
     
-    function CreateProduct($name,$price,$j)
+    function CreateProduct($name,$price,$j=null)
     {
         $I = $this;
         $I->amOnPage('/admin/components/run/shop/products/create');
         $I->waitForText('Создание товара');        
         $I->fillField(\ProductsPage::$NameProduct, $name);
         $I->fillField(\ProductsPage::$Price, "$price");
-        $I->click(\ProductsPage::$Currency);
-//        $I->selectOption(\ProductsPage::$Currency, $j);
-//        $I->click(\ProductsPage::$Currency);
-        $I->click(\ProductsPage::$Currency."/option[$j]");
-        $I->wait('1');
-        $IsoProduct=$I->grabTextFrom(\ProductsPage::$Currency."/option[$j]");
-        $I->comment("$IsoProduct");
+        if(isset($j)){
+            $I->click(\ProductsPage::$Currency);
+    //        $I->selectOption(\ProductsPage::$Currency, $j);
+    //        $I->click(\ProductsPage::$Currency);
+            $I->click(\ProductsPage::$Currency."/option[$j]");
+            $I->wait('1');
+            $IsoProduct=$I->grabTextFrom(\ProductsPage::$Currency."/option[$j]");
+            $I->comment("$IsoProduct");
+        }
         $I->click(\CurrenciesPage::$SaveButton);
         $I->waitForText($name, 4, ".//*[@id='mainContent']/section/div/div[1]/span[2]");
         return $IsoProduct;

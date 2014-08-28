@@ -318,7 +318,7 @@ class CurrencyListCest
         $symMAIN=$I->grabTextFrom(".//*[@id='items-catalog-main']/li/div[1]/div[2]/span/span/span/span[2]");        
         $I->comment("$kMAIN"."$symMAIN");
         $I->assertEquals($kMAIN, $price1.",00");
-        $I->assertEquals($symMAIN, $this->ADDITSYM);//*[@id="items-catalog-main"]/li/div[1]/div[2]/span/span[2]/span/span/span[1]
+        $I->assertEquals($symMAIN, $this->ADDITSYM);
         $kADDIT=$I->grabTextFrom('//*[@id="items-catalog-main"]/li/div[1]/div[2]/span/span[2]/span/span/span[1]');
         $symADDIT=$I->grabTextFrom('//*[@id="items-catalog-main"]/li/div[1]/div[2]/span/span[2]/span/span/span[2]');
         $i=$price/4;

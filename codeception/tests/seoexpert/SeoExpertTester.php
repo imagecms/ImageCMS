@@ -23,7 +23,7 @@ use Codeception\Module\Cli;
  * @method void comment($description)
  * @method void haveFriend($name)
 */
-class AcceptanceTester extends \Codeception\Actor
+class SeoExpertTester extends \Codeception\Actor
 {
    
     /**
