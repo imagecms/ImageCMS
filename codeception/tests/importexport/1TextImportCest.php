@@ -6,7 +6,7 @@ class TextImportCest
     
 //---------------------------AUTORIZATION--------------------------------------- 
     /**
-     * @group aw
+     * @group a
      */
     public function Login(ImportExportTester $I){
         InitTest::Login($I);
@@ -52,8 +52,7 @@ class TextImportCest
     
     public function PresentActivationModuel(ImportExportTester $I) {
         $I->wantTo("Present Activation Moduel.");
-        $I->click('//div[1]/div[3]/div/nav/ul/li[6]/a');
-        $I->click('//div[1]/div[3]/div/nav/ul/li[6]/ul/li[3]/a');
+        $I->amOnPage('/admin/components/init_window/import_export');
         $I->wait('1');
         $I->see('Категории управления модулем', '//div[5]/div/section/div[1]/div[1]/span[2]');        
     }
