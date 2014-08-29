@@ -5,7 +5,7 @@
 // @codingStandardsIgnoreFile
 
 
-use Codeception\Module\ProductsHelper;
+use Codeception\Module\AcceptanceHelper;
 use Codeception\Module\WebDriver;
 use Codeception\Module\Db;
 use Codeception\Module\Cli;
@@ -26,6 +26,141 @@ use Codeception\Module\Cli;
 class ProductsTester extends \Codeception\Actor
 {
    
+    /**
+     * [!] Method is generated. Documentation taken from corresponding module.
+     *
+     *
+     * @see \Codeception\Module\AcceptanceHelper::grabTagCount()
+     */
+    public function grabTagCount($I, $tags, $position = null) {
+        return $this->scenario->runStep(new \Codeception\Step\Action('grabTagCount', func_get_args()));
+    }
+
+ 
+    /**
+     * [!] Method is generated. Documentation taken from corresponding module.
+     *
+     * Checks that two variables are equal.
+     *
+     * @param        $expected
+     * @param        $actual
+     * @param string $message
+     *
+     * @return mixed
+     * @see \Codeception\Module\AcceptanceHelper::assertEquals()
+     */
+    public function assertEquals($expected, $actual, $message = null) {
+        return $this->scenario->runStep(new \Codeception\Step\Action('assertEquals', func_get_args()));
+    }
+
+ 
+    /**
+     * [!] Method is generated. Documentation taken from corresponding module.
+     *
+     * Fails the test with message.
+     *
+     * @param $message
+     * @see \Codeception\Module\AcceptanceHelper::fail()
+     */
+    public function fail($message) {
+        return $this->scenario->runStep(new \Codeception\Step\Action('fail', func_get_args()));
+    }
+
+ 
+    /**
+     * [!] Method is generated. Documentation taken from corresponding module.
+     *
+     *
+     * @see \Codeception\Module\AcceptanceHelper::grabClassCount()
+     */
+    public function grabClassCount($I, $class) {
+        return $this->scenario->runStep(new \Codeception\Step\Action('grabClassCount', func_get_args()));
+    }
+
+ 
+    /**
+     * [!] Method is generated. Documentation taken from corresponding module.
+     *
+     *
+     * @see \Codeception\Module\AcceptanceHelper::scrollToElement()
+     */
+    public function scrollToElement($I, $CSSelement) {
+        return $this->scenario->runStep(new \Codeception\Step\Action('scrollToElement', func_get_args()));
+    }
+
+ 
+    /**
+     * [!] Method is generated. Documentation taken from corresponding module.
+     *
+     * Grab text from all elements selected with JQUERY
+     * and write them to array
+     * 
+     * @todo normalize 
+     * 
+     * @param   AcceptanceTester    $I                  controller
+     * @param   string              $JQuerySelector     JQueryCssSelector     
+     * @return  array               Texts from elements
+     * 
+     * div.body_category div.row-category div.share_alt a.pjax
+     * @see \Codeception\Module\AcceptanceHelper::grabTextFromAllElements()
+     */
+    public function grabTextFromAllElements($I, $JQuerySelector) {
+        return $this->scenario->runStep(new \Codeception\Step\Action('grabTextFromAllElements', func_get_args()));
+    }
+
+ 
+    /**
+     * [!] Method is generated. Documentation taken from corresponding module.
+     *
+     * click all finded buttons together
+     * can click n times if pased $clicktimes
+     * can set the wait between clicks
+     * 
+     * @param AcceptanceTester  $I              controller
+     * @param string            $JQeryElements  JQ_CSS_Slecector  
+     * @param int               $clickTimes     times
+     * @param int               $deelay         pause between clicks
+     * @return null null
+     * 
+     * .btn.expandButton
+     * @see \Codeception\Module\AcceptanceHelper::clickAllElements()
+     */
+    public function clickAllElements($I, $JQeryElements, $clickTimes = null, $deelay = null) {
+        return $this->scenario->runStep(new \Codeception\Step\Action('clickAllElements', func_get_args()));
+    }
+
+ 
+    /**
+     * [!] Method is generated. Documentation taken from corresponding module.
+     *
+     * Grab amount of el-ts selected by JQuery
+     * 
+     * @param   AcceptanceTester    $I
+     * @param   string              $JQerySelector
+     * @return  string              Amount of elements
+     * @see \Codeception\Module\AcceptanceHelper::grabCCSAmount()
+     */
+    public function grabCCSAmount($I, $JQerySelector) {
+        return $this->scenario->runStep(new \Codeception\Step\Action('grabCCSAmount', func_get_args()));
+    }
+
+ 
+    /**
+     * [!] Method is generated. Documentation taken from corresponding module.
+     *
+     * @param type $I
+      * @param type $type            type of alert success|error
+      * @param type $message         message of alert
+
+
+      * @param type $times           one time = 1 milliseconds && 1000 microseconds
+     * @see \Codeception\Module\AcceptanceHelper::exactlySeeAlert()
+     */
+    public function exactlySeeAlert($I, $type = null, $message = null, $times = null) {
+        return $this->scenario->runStep(new \Codeception\Step\Action('exactlySeeAlert', func_get_args()));
+    }
+
+ 
     /**
      * [!] Method is generated. Documentation taken from corresponding module.
      *

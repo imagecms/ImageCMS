@@ -16,16 +16,16 @@ modules:
         - Cli
     config:
         WebDriver:
-            url: 'http://lastbuild.loc/'
+            url: 'http://testbuild.loc/'
             browser: chrome
-            window_size: maximize  
+            window_size: 1000*1000  
 #            restart: false
             clear_cookies: false
             wait: 0
             capabilities:
                 unexpectedAlertBehaviour: 'accept'
         Db:
-            dsn: 'mysql:host=127.0.0.1;dbname=test88'
+            dsn: 'mysql:host=127.0.0.1;dbname=testbuild'
             user: 'root'
             password: ''
             dump: 'tests/_data/cmsprem.sql'
