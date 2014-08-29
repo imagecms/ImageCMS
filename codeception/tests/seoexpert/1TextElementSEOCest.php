@@ -274,7 +274,7 @@ class TextElementSEOCest
         $I->see('Список пуст', '//body/div[1]/div[5]/section/div[2]');
     }
           
-    
+   
     
     
     
