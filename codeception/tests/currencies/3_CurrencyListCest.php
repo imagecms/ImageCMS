@@ -1,21 +1,13 @@
 <?php
 use \CurrenciesTester;
 
-class MainCurrencyCest
+class CurrencyListCest
 {
-//    public function _before()
-//    {
-//    }
-//
-//    public function _after()
-//    {
-//    }
-    private $j, $butActiveClass, $disabled, $atribCheck, $rows, $MainCurSymb, $price, $MAINSYM, $MAINISO, $ROWMAIN, $ROWADDIT, $ADDITSYM;
-    
+    private  $MainCurSymb, $price, $MAINSYM, $MAINISO, $ROWMAIN, $ROWADDIT, $ADDITSYM;
     public function Autorization(CurrenciesTester $I)
     {
         InitTest::Login($I);
-        $I->amOnPage("/admin/components/run/shop/currencies");
+        $I->amOnPage(CurrenciesPage::$URL);
         $I->waitForText("Список валют", "10", "//*[@id='mainContent']/section/div[1]/div[1]/span[2]");
     }   
     
@@ -39,67 +31,59 @@ class MainCurrencyCest
         $I->see('Создать валюту', CurrenciesPage::$CreateCurrencyButton);
     } 
         
+     /**
+     * @guy CurrenciesTester\CurrenciesSteps
+     */
     
-    public function VerifyButtons(CurrenciesTester $I)
+    public function VerifyButtons(CurrenciesTester\CurrenciesSteps $I)
     {
-        $this->rows = $I->grabTagCount($I,"tbody tr");
-        $I->comment((string)$this->rows);
-        //Определение строчки главной валюты
-        for ($this->j=1;$this->j<$this->rows;++$this->j){
-            //Поиск атрибута checked для радиоточки
-            $this->atribCheck = $I->grabAttributeFrom("//tbody/tr[$this->j]/td[5]/input","checked");
-                if($this->atribCheck == TRUE){
-                break;
-            }
-        }
+        $j=$I->SearchMainCurrencyLine();
+        $I->comment($j);
         //Определяем класс кнопки-переключателя у главной валюты
-
-        $this->butActiveClass = $I->grabAttributeFrom(CurrenciesPage::ActiveButtonLine($this->j), "class");
-        $I->comment("$this->butActiveClass");
+        $butActiveClass = $I->grabAttributeFrom(CurrenciesPage::ActiveButtonLine($j), "class");
+        $I->comment("$butActiveClass");
         //Проверяем активность кнопки удаления напротив главной валюты
-        $this->disabled = $I->grabAttributeFrom(CurrenciesPage::DeleteButtonLine($this->j), "disabled");
-        codecept_debug($this->disabled);
-               $I->assertEquals($this->disabled, 'true');  
+        $disabled = $I->grabAttributeFrom(CurrenciesPage::DeleteButtonLine($j), "disabled");
+        codecept_debug($disabled);
+               $I->assertEquals($disabled, 'true');  
     }
     
+    /**
+     * @guy CurrenciesTester\CurrenciesSteps
+     */
     
-    public function DeleteMainCur(CurrenciesTester $I)
+    public function DeleteMainCur(CurrenciesTester\CurrenciesSteps $I)
     {
         //Проверка возможности удаления главной валюты
-        $I->click(CurrenciesPage::DeleteButtonLine($this->j));
+        $j=$I->SearchMainCurrencyLine();
+        $I->comment($j);
+        $I->click(CurrenciesPage::DeleteButtonLine($j));
         $I->wait('3');
         $I->dontSeeElement(".//div[@class='modal hide fade in']");
         InitTest::ClearAllCach($I);
     }
     
+    /**
+     * @guy CurrenciesTester\CurrenciesSteps
+     */
     
-    public function FrontMainCurInProduct(CurrenciesTester $I)
+    public function FrontMainCurInProduct(CurrenciesTester\CurrenciesSteps $I)
     {
         //Отображение цены и символа главной валюты на странице сайта
-        $I->amOnPage("/admin/components/run/shop/currencies");
-        $symbMainCur=$I->grabTextFrom(".//*[@class='']/tr[$this->j]/td[4]");
-        $isoMainCur=$I->grabTextFrom(".//*[@class='']/tr[$this->j]/td[3]");
+        $j=$I->SearchMainCurrencyLine();
+        $I->comment($j);
+        $symbMainCur=$I->grabTextFrom(CurrenciesPage::SymbolCurrencyLine($j));
+        $isoMainCur=$I->grabTextFrom(CurrenciesPage::IsoCodeLine($j));
         $I->comment("Symbol Main Currency on CurrencyList: $symbMainCur");
         $I->comment("ISO Code Main Currency on CurrencyList: $isoMainCur");
-        $I->click(CurrenciesPage::CurrencyNameLine($this->j));
+        $I->click(CurrenciesPage::CurrencyNameLine($j));
         $I->waitForText('Редактирование валют');
         $I->fillField(CurrenciesPage::$Rate, '1');
         $I->click(CurrenciesPage::$SaveAndExitButton);
         $I->waitForText('Список валют');
-        $I->amOnPage('/admin/components/run/shop/products/create');
-        $I->waitForText('Создание товара');
-        $price=200;
-        $I->fillField('.//*[@id="Name"]', 'Товар4');
-        $I->fillField(".//*[@id='ProductVariantRow_0']/td[2]/input", "$price");
-        $I->click(".//*[@id='ProductVariantRow_0']/td[3]/select");
-        $I->click(".//*[@id='ProductVariantRow_0']/td[3]/select/option[$this->j]");
-        $I->wait('1');
-        $IsoProduct=$I->grabTextFrom(".//*[@id='ProductVariantRow_0']/td[3]/select/option[$this->j]");
-        $I->comment("$IsoProduct");
-        $I->click(CurrenciesPage::$SaveButton);
-//        $I->exactlySeeAlert($I, 'success', "Продукт был успешно создан", '100');
-        $I->waitForText('Товар4', 4, ".//*[@id='mainContent']/section/div/div[1]/span[2]");
-//        $I->waitForText("Продукт был успешно создан");
+        $name="Товар4";
+        $price="200";        
+        $IsoProduct=$I->CreateProduct($name, $price, $j);
         $I->assertEquals($IsoProduct, $isoMainCur);
         $I->amOnPage("/");
         $I->wait('2');
@@ -109,48 +93,58 @@ class MainCurrencyCest
         $k=$I->grabTextFrom(".//*[@id='items-catalog-main']/li/div[1]/div[2]/span/span/span/span[1]");
         $sym=$I->grabTextFrom(".//*[@id='items-catalog-main']/li/div[1]/div[2]/span/span/span/span[2]");        
         $I->comment("$k", "$sym");
-        $I->assertEquals($k, $price);
+        $I->assertEquals($k, $price.",00");
         $I->assertEquals($sym, $symbMainCur);        
     }
     
+    /**
+     * @guy CurrenciesTester\CurrenciesSteps
+     */
     
-    public function VerifyCheckAdditCur(CurrenciesTester $I)
+    public function VerifyCheckAdditCur(CurrenciesTester\CurrenciesSteps $I)
     {
-        $I->amOnPage("/admin/components/run/shop/currencies");
+        $j=$I->SearchMainCurrencyLine();
+        $I->comment($j);
+        //Определяем класс кнопки-переключателя у главной валюты
+        $butActiveClass = $I->grabAttributeFrom(CurrenciesPage::ActiveButtonLine($j), "class");
+        $I->comment("Additional Currency Button: $butActiveClass");
         //Проверяем возможность отметить дополнительную валюту напротив главной
-        $I->assertEquals($this->butActiveClass, 'prod-on_off disable_tovar');
-
-        {   $I->click(CurrenciesPage::ActiveButtonLine($this->j));
-            $this->butActiveClass = $I->grabAttributeFrom(CurrenciesPage::ActiveButtonLine($this->j), "class");
-            $I->comment("$this->butActiveClass");
-            $I->assertEquals($this->butActiveClass, 'prod-on_off disable_tovar');
-
+        $I->assertEquals($butActiveClass, 'prod-on_off disable_tovar');
+        $I->click(CurrenciesPage::ActiveButtonLine($j));
+        $butActiveClass = $I->grabAttributeFrom(CurrenciesPage::ActiveButtonLine($j), "class");
+        $I->comment("Additional Currency Button After Check On Main: $butActiveClass");
+        $I->assertEquals($butActiveClass, 'prod-on_off disable_tovar');
         //Проверяем активность кнопки удаления после нажатия на кнопку-переключатель
-        $this->disabled = $I->grabAttributeFrom(CurrenciesPage::DeleteButtonLine($this->j), "disabled");
-        $I->assertEquals($this->disabled, 'true');
-        } 
+        $disabled = $I->grabAttributeFrom(CurrenciesPage::DeleteButtonLine($j), "disabled");
+        $I->assertEquals($disabled, 'true');         
     }
     
-                
-    public function VerifyCheckMainCur(CurrenciesTester $I)
+    /**
+     * @guy CurrenciesTester\CurrenciesSteps
+     */
+    
+    public function VerifyCheckMainCur(CurrenciesTester\CurrenciesSteps $I)
     {
         //Проверка снятия отметки главной валюты
-        $I->amOnPage("/admin/components/run/shop/currencies");
-        $I->click(CurrenciesPage::RadioButtonLine($this->j));
-        $this->atribCheck = $I->grabAttributeFrom("//tbody/tr[$this->j]/td[5]/input","checked");
-        $I->assertEquals($this->atribCheck, 'true');
+        $j=$I->SearchMainCurrencyLine();
+        $I->comment($j);
+        $I->click(CurrenciesPage::RadioButtonLine($j));
+        $atribCheck = $I->grabAttributeFrom(CurrenciesPage::RadioButtonLine($j),"checked");
+        $I->assertEquals($atribCheck, 'true');
 
         //Проверка переключения главной валюты и проверка количества отметок главных валют
-        if($this->j<$this->rows){
-            $this->j++;
-            $I->click(CurrenciesPage::RadioButtonLine($this->j));
+        $rows = $I->grabTagCount($I,"tbody tr");
+        $I->comment("$rows");
+        if($j<$rows){
+            $j++;
+            $I->click(CurrenciesPage::RadioButtonLine($j));
         }
         else{
-            $this->j--;
-            $I->click(CurrenciesPage::RadioButtonLine($this->j));
+            $j--;
+            $I->click(CurrenciesPage::RadioButtonLine($j));
         }
         $true = 0;
-        for ($k=1;$k<=$this->rows;++$k)
+        for ($k=1;$k<=$rows;++$k)
         {
             $grabbedAttrib = $I->grabAttributeFrom(CurrenciesPage::RadioButtonLine($k), "checked"); 
             $I->comment("$grabbedAttrib");
@@ -162,85 +156,95 @@ class MainCurrencyCest
         InitTest::ClearAllCach($I);
     }
     
+    /**
+     * @guy CurrenciesTester\CurrenciesSteps
+     */
     
-    public function VerifyCheckMainAdditCur(CurrenciesTester $I)
+    public function VerifyCheckMainAdditCur(CurrenciesTester\CurrenciesSteps $I)
     {   //Проверяем возможность отметить главную валюту напротив дополнительной и проверка отметки дополнительной валюты напротив не главной
-        $I->amOnPage("/admin/components/run/shop/currencies");
-        if ($this->j<$this->rows){
-            $this->j++;
-            $I->click(CurrenciesPage::ActiveButtonLine($this->j));
+        $j=$I->SearchMainCurrencyLine();
+        $I->comment($j);
+        $rows = $I->grabTagCount($I,"tbody tr");
+        $I->comment("$rows");
+        if ($j<$rows){
+            $j++;
+            $I->click(CurrenciesPage::ActiveButtonLine($j));
         }
         else{
-            $this->j--;
-            $I->click(CurrenciesPage::ActiveButtonLine($this->j));
+            $j--;
+            $I->click(CurrenciesPage::ActiveButtonLine($j));
         }
-        $this->butActiveClass = $I->grabAttributeFrom(CurrenciesPage::ActiveButtonLine($this->j), "class");
-        $I->comment("$this->butActiveClass");
-        $I->assertEquals($this->butActiveClass, 'prod-on_off');
-        $I->click(CurrenciesPage::RadioButtonLine($this->j));
+        $butActiveClass = $I->grabAttributeFrom(CurrenciesPage::ActiveButtonLine($j), "class");
+        $I->comment("$butActiveClass");
+        $I->assertEquals($butActiveClass, 'prod-on_off');
+        $I->click(CurrenciesPage::RadioButtonLine($j));
         $I->wait('1');
-        $this->butActiveClass = $I->grabAttributeFrom(CurrenciesPage::ActiveButtonLine($this->j), "class");
-        $I->comment("$this->butActiveClass");
-        $I->assertEquals($this->butActiveClass, 'prod-on_off disable_tovar');
-        $this->MAINSYM=$I->grabTextFrom(".//*[@class='']/tr[$this->j]/td[4]");
-        $this->MAINISO=$I->grabTextFrom(".//*[@class='']/tr[$this->j]/td[3]");        
+        $butActiveClass = $I->grabAttributeFrom(CurrenciesPage::ActiveButtonLine($j), "class");
+        $I->comment("$butActiveClass");
+        $I->assertEquals($butActiveClass, 'prod-on_off disable_tovar');
+        $this->MAINSYM=$I->grabTextFrom(CurrenciesPage::SymbolCurrencyLine($j));
+        $MAINISO=$I->grabTextFrom(CurrenciesPage::IsoCodeLine($j));        
         $I->comment("Main Symbol: $this->MAINSYM");
-        $I->comment("Main ISO: $this->MAINISO");
-        $this->ROWMAIN=$this->j;
+        $I->comment("Main ISO: $MAINISO");
+        $this->ROWMAIN=$j;
         $I->comment("Row Main: $this->ROWMAIN");
-        $I->click(CurrenciesPage::CurrencyNameLine($this->j));
+        $I->click(CurrenciesPage::CurrencyNameLine($j));
         $I->waitForText('Редактирование валют');
         $I->fillField(CurrenciesPage::$Rate, '1');
         $I->click(CurrenciesPage::$SaveAndExitButton);
         $I->waitForText('Список валют');
     }
     
+    /**
+     * @guy CurrenciesTester\CurrenciesSteps
+     */
     
-    public function  ICMS_1510_VerifyAdditCurAndMainInProductFront(CurrenciesTester $I)
+    public function  ICMS_1510_VerifyAdditCurAndMainInProductFront(CurrenciesTester\CurrenciesSteps $I)
     {   
         //Проверяем отображение цены в главной и дополнительной валютах на странице сайта
-        $I->amOnPage("/admin/components/run/shop/currencies");
-        if ($this->j<$this->rows){
-            $this->j++;
-            $I->click(CurrenciesPage::ActiveButtonLine($this->j));
+        $j=$I->SearchMainCurrencyLine();
+        $I->comment($j);
+        $this->MAINSYM=$I->grabTextFrom(CurrenciesPage::SymbolCurrencyLine($j));
+        $rows = $I->grabTagCount($I,"tbody tr");
+        $I->comment("$rows");        
+        if ($j<$rows){
+            $k=$j+1;
+            $I->click(CurrenciesPage::ActiveButtonLine($k));
         }
         else{
-            $this->j--;
-            $I->click(CurrenciesPage::ActiveButtonLine($this->j));
+            $k=$j-1;
+            $I->click(CurrenciesPage::ActiveButtonLine($k));
         }
-        $this->butActiveClass = $I->grabAttributeFrom(CurrenciesPage::ActiveButtonLine($this->j), "class");
-        $I->comment("$this->butActiveClass");
-        $I->assertEquals($this->butActiveClass, 'prod-on_off');
-        $this->ADDITSYM=$I->grabTextFrom(".//*[@class='']/tr[$this->j]/td[4]");
-        $ADDITISO=$I->grabTextFrom(".//*[@class='']/tr[$this->j]/td[3]");
-        $this->ROWADDIT=$this->j;
+        $butActiveClass = $I->grabAttributeFrom(CurrenciesPage::ActiveButtonLine($k), "class");
+        $I->comment("$butActiveClass");
+        $I->assertEquals($butActiveClass, 'prod-on_off');
+        $this->ADDITSYM=$I->grabTextFrom(CurrenciesPage::SymbolCurrencyLine($k));
+        $ADDITISO=$I->grabTextFrom(CurrenciesPage::IsoCodeLine($k));
+        $this->ROWADDIT=$k;
         $I->comment("Addit Symbol: $this->ADDITSYM");
         $I->comment("Addit ISO: $ADDITISO");
         $I->comment("Row Addit: $this->ROWADDIT");
-        $I->click(CurrenciesPage::CurrencyNameLine($this->j));
+        $I->click(CurrenciesPage::CurrencyNameLine($k));
         $I->waitForText('Редактирование валют');
         $I->fillField(CurrenciesPage::$Rate, '4');
         $I->click(CurrenciesPage::$SaveAndExitButton);
         $I->waitForText('Список валют');
-        $I->amOnPage('/admin/components/run/shop/products/create');
-        $I->waitForText('Создание товара');
-        $price=300;
-        $I->fillField('.//*[@id="Name"]', 'Товар5');
-        $I->fillField(".//*[@id='ProductVariantRow_0']/td[2]/input", "$price");        
-        $I->wait('1');
-        $I->click(CurrenciesPage::$SaveButton);
-        $I->waitForText('Товар5', 4, ".//*[@id='mainContent']/section/div/div[1]/span[2]");
-        //$I->waitForElementVisible('.alert.in.fade.alert-success');
-//        $I->exactlySeeAlert($I, 'success', "Продукт был успешно создан", '100');
-        //$I->waitForElementNotVisible('.alert.in.fade.alert-success');
+//        $I->wait('6');
+        $I->click(CurrenciesPage::$VerifyPrices);
+//        $I->waitForElementVisible('.alert.in.fade.alert-success');
+//        $I->see('Цены обновлены');
+//        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
+        $name="Товар5";
+        $price="300";         
+        $I->CreateProduct($name, $price, $j);
         $I->amOnPage("/");
         $I->fillField(".//*[@id='inputString']", 'товар5');
         $I->click("html/body/div[1]/div[1]/header/div[2]/div/div/div[2]/div[2]/div/form/span/button");
-        $I->wait('1');
+        $I->wait('3');
         $kMAIN=$I->grabTextFrom(".//*[@id='items-catalog-main']/li/div[1]/div[2]/span/span/span/span[1]");
         $symMAIN=$I->grabTextFrom(".//*[@id='items-catalog-main']/li/div[1]/div[2]/span/span/span/span[2]");        
         $I->comment("$kMAIN"."$symMAIN");
-        $I->assertEquals($kMAIN, $price);
+        $I->assertEquals($kMAIN, $price.",00");
         $I->assertEquals($symMAIN, $this->MAINSYM);
         $kADDIT=$I->grabTextFrom(".//*[@id='items-catalog-main']/li/div[1]/div[2]/span/span[2]/span/span[1]");
         $symADDIT=$I->grabTextFrom(".//*[@id='items-catalog-main']/li/div[1]/div[2]/span/span[2]/span/span[2]");
@@ -250,12 +254,15 @@ class MainCurrencyCest
         $I->assertEquals($symADDIT, $this->ADDITSYM);
     }
     
+    /**
+     * @guy CurrenciesTester\CurrenciesSteps
+     */
     
-    public function ChangeMainAndAdditCurInProductFront(CurrenciesTester $I)
+    public function ChangeMainAndAdditCurInProductFront(CurrenciesTester\CurrenciesSteps $I)
     {  
         //Проверяем отображение цены товара на странице сайта после смены главной и дополнительной валюты (смены местами)        
         InitTest::ClearAllCach($I);
-        $I->amOnPage("/admin/components/run/shop/currencies");
+        $I->amOnPage(CurrenciesPage::$URL);
         $I->click(CurrenciesPage::RadioButtonLine($this->ROWADDIT));
         $I->click(CurrenciesPage::CurrencyNameLine($this->ROWADDIT));
         $I->waitForText('Редактирование валют');
@@ -268,23 +275,29 @@ class MainCurrencyCest
         $I->fillField(CurrenciesPage::$Rate, '0.25');
         $I->click(CurrenciesPage::$SaveAndExitButton);
         $I->waitForText('Список валют');
-        $I->click(CurrenciesPage::$VerifyPrices);
+//        $I->wait('6');
+        $I->click(CurrenciesPage::$VerifyPrices);        
+//        $I->waitForElementVisible('.alert.in.fade.alert-success');
+//        $I->see('Цены обновлены');
+//        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
+        InitTest::ClearAllCach($I);
         $I->wait('2');
         $I->amOnPage("/");
         $I->fillField(".//*[@id='inputString']", 'товар5');
         $I->click("html/body/div[1]/div[1]/header/div[2]/div/div/div[2]/div[2]/div/form/span/button");
-        $I->wait('1');
+        $I->wait('3');
         $price=300*4;
+        $price1='1.200';
         $I->comment((string)$price);
-        $kMAIN=$I->grabTextFrom(".//*[@id='items-catalog-main']/li/div[1]/div[2]/span/span/span/span[1]");
-        $symMAIN=$I->grabTextFrom(".//*[@id='items-catalog-main']/li/div[1]/div[2]/span/span/span/span[2]");        
+        $kMAIN=$I->grabTextFrom(CurrenciesPage::$MainFirstPlace);
+        $symMAIN=$I->grabTextFrom(CurrenciesPage::$MainSecondPlace);        
         $I->comment("$kMAIN"."$symMAIN");
-        $I->assertEquals($kMAIN, $price);
+        $I->assertEquals($kMAIN, $price1.",00");
         $I->assertEquals($symMAIN, $this->ADDITSYM);
-        $kADDIT=$I->grabTextFrom(".//*[@id='items-catalog-main']/li/div[1]/div[2]/span/span[2]/span/span[1]");
-        $symADDIT=$I->grabTextFrom(".//*[@id='items-catalog-main']/li/div[1]/div[2]/span/span[2]/span/span[2]");
+        $kADDIT=$I->grabTextFrom(CurrenciesPage::$AdditFirstPlace);
+        $symADDIT=$I->grabTextFrom(CurrenciesPage::$AdditSecondPlace);
         $i=$price/4;
-        $I->comment((string)$i);
+        $I->comment("Addit price:$i");
         $I->comment("$kADDIT", "$symADDIT");
         $I->assertEquals($kADDIT, $i);
         $I->assertEquals($symADDIT, $this->MAINSYM);
@@ -304,48 +317,49 @@ class MainCurrencyCest
         $I->click(CurrenciesPage::$VerifyPrices);
         $I->wait('2');
     }
-        
     
-    public function VerifyAdditCurOff(CurrenciesTester $I)
+    /**
+     * @guy CurrenciesTester\CurrenciesSteps
+     */
+    
+    public function VerifyAdditCurOff(CurrenciesTester\CurrenciesSteps $I)
     {  
         //Проверяем возможность снятия отметки дополнительной валюты
-        $I->amOnPage("/admin/components/run/shop/currencies");
-        $I->click(CurrenciesPage::ActiveButtonLine($this->j));
+        $I->amOnPage(CurrenciesPage::$URL);
+        $I->click(CurrenciesPage::ActiveButtonLine($this->ROWADDIT));
         $I->wait('1');
-        $this->butActiveClass = $I->grabAttributeFrom(CurrenciesPage::ActiveButtonLine($this->j), "class");
-        $this->butActiveClass=  str_replace(array(' '),"",$this->butActiveClass);
-        $I->comment("$this->butActiveClass");
-        $I->assertEquals($this->butActiveClass, 'prod-on_offdisable_tovar');
+        $butActiveClass = $I->grabAttributeFrom(CurrenciesPage::ActiveButtonLine($this->ROWADDIT), "class");
+        $butActiveClass=  str_replace(array(' '),"",$butActiveClass);
+        $I->comment("$butActiveClass");
+        $I->assertEquals($butActiveClass, 'prod-on_offdisable_tovar');
         InitTest::ClearAllCach($I);
         $I->wait('1');
     }
     
+    /**
+     * @guy CurrenciesTester\CurrenciesSteps
+     */
     
-    public function DeleteAdditCur(CurrenciesTester $I)
+    public function DeleteAdditCur(CurrenciesTester\CurrenciesSteps $I)
     {   
         //Проверяем возможность удаления дополнительной валюты
-        $I->amOnPage("/admin/components/run/shop/currencies");
-        $I->comment("Main row:$this->j");
-        $I->comment("Rows:$this->rows");
+        $j=$I->SearchMainCurrencyLine();        
+        $rows = $I->grabTagCount($I,"tbody tr");        
+        $I->comment("Main row:$j");
+        $I->comment("Rows:$rows");
         $I->wait('5');
-        if ($this->j<$this->rows){
-            $this->j++;
-            $I->click(CurrenciesPage::ActiveButtonLine($this->j));
+        if ($j<$rows){
+            $j++;
+            $I->click(CurrenciesPage::ActiveButtonLine($j));
         }
         else{
-            $this->j--;
-            $I->click(CurrenciesPage::ActiveButtonLine($this->j));
+            $j--;
+            $I->click(CurrenciesPage::ActiveButtonLine($j));
         }
-        $this->butActiveClass = $I->grabAttributeFrom(CurrenciesPage::ActiveButtonLine($this->j), "class");
-        $I->comment("$this->butActiveClass");
-        $I->assertEquals($this->butActiveClass, 'prod-on_off');
-        $I->click(CurrenciesPage::DeleteButtonLine($this->j));      
-        $I->waitForElement(".//div[@class='modal hide fade in']");
-        $I->see('Удалить валюту');
-        $I->see('Удалить выбранную валюту?');
-        $I->see('Удалить', './/*[@id="first"]/div[3]/a[1]');
-        $I->see('Отменить', './/*[@id="first"]/div[3]/a[2]');
-        $I->click('.//*[@id="first"]/div[3]/a[1]');
+        $butActiveClass = $I->grabAttributeFrom(CurrenciesPage::ActiveButtonLine($j), "class");
+        $I->comment("$butActiveClass");
+        $I->assertEquals($butActiveClass, 'prod-on_off');
+        $I->DeleteWindowOperation($j);
         $I->waitForElementVisible('.alert.in.fade.alert-success');
         $I->see('Валюта успешно удалена');
         $I->waitForElementNotVisible('.alert.in.fade.alert-success');
@@ -354,67 +368,59 @@ class MainCurrencyCest
         InitTest::ClearAllCach($I);
     }
     
+    /**
+     * @guy CurrenciesTester\CurrenciesSteps
+     */
     
-    public function DeleteCurUsedInProducts(CurrenciesTester $I)
+    public function DeleteCurUsedInProducts(CurrenciesTester\CurrenciesSteps $I)
     {   
         //Проверка возможности удаления валюты, которая используется в товарах
         $I->amOnPage("/admin/components/run/shop/currencies");
-        $I->click(CurrenciesPage::RadioButtonLine('1'));
+        $j=2;
+        $I->click(CurrenciesPage::RadioButtonLine($j));
         $I->wait('1');
-        $IsoCur=$I->grabTextFrom(".//*[@class='']/tr[3]/td[3]");
-        $id=$I->grabTextFrom(".//*[@class='']/tr[3]/td[1]");
-        $SymbCur=$I->grabTextFrom(".//*[@class='']/tr[3]/td[4]");
+        $y=3;
+        $IsoCur=$I->grabTextFrom(CurrenciesPage::IsoCodeLine($y));
+        $id=$I->grabTextFrom(CurrenciesPage::SymbolCurrencyLine($y));
+        $SymbCur=$I->grabTextFrom(CurrenciesPage::SymbolCurrencyLine($y));
         $I->comment("$IsoCur"); 
         $I->comment("$id");
         $I->comment("$SymbCur");
-        $MainCurIso=$I->grabTextFrom(".//*[@class='']/tr[1]/td[3]");
-        $this->MainCurSymb=$I->grabTextFrom(".//*[@class='']/tr[1]/td[4]");
+        $MainCurIso=$I->grabTextFrom(CurrenciesPage::IsoCodeLine($j));
+        $this->MainCurSymb=$I->grabTextFrom(CurrenciesPage::SymbolCurrencyLine($j));
         $I->comment("$MainCurIso");
         $I->comment("$this->MainCurSymb");        
-        $I->click(CurrenciesPage::CurrencyNameLine('1'));
+        $I->click(CurrenciesPage::CurrencyNameLine($j));
         $I->waitForText('Редактирование валют');
         $I->fillField(CurrenciesPage::$Rate, '1');
         $I->click(CurrenciesPage::$SaveAndExitButton);
         $I->waitForText('Список валют');
-        $I->click(CurrenciesPage::CurrencyNameLine('3'));
+        $I->click(CurrenciesPage::CurrencyNameLine($y));
         $I->waitForText('Редактирование валют');
         $I->fillField(CurrenciesPage::$Rate, '2');
         $I->click(CurrenciesPage::$SaveAndExitButton);
         $I->waitForText('Список валют');
-        $I->amOnPage('/admin/components/run/shop/products/create');
-        $I->waitForText('Создание товара');
-        $this->price=100;
-        $I->fillField('.//*[@id="Name"]', 'Товар2');
-        $I->fillField(".//*[@id='ProductVariantRow_0']/td[2]/input", "$this->price");
-        $I->click(".//*[@id='ProductVariantRow_0']/td[3]/select");
-        $I->click(".//*[@id='ProductVariantRow_0']/td[3]/select/option[3]");
-        $I->wait('1');
-        $IsoProduct=$I->grabTextFrom(".//*[@id='ProductVariantRow_0']/td[3]/select/option[3]");
-        $I->comment("$IsoProduct");
-        $I->click(CurrenciesPage::$SaveButton);
-//        $I->exactlySeeAlert($I, 'success', "Продукт был успешно создан", '100');
-        $I->waitForText('Товар2', 4, ".//*[@id='mainContent']/section/div/div[1]/span[2]");
-        //$I->waitForElementVisible('.alert.in.fade.alert-success');
-//        $I->waitForText("Продукт был успешно создан");
-        //$I->waitForElementNotVisible('.alert.in.fade.alert-success');
+        $name="Товар2";
+        $this->price="100";        
+        $IsoProduct=$I->CreateProduct($name, $this->price, $y);
         $I->assertEquals($IsoProduct, $IsoCur);
         $I->amOnPage("/");
         $I->fillField(".//*[@id='inputString']", 'товар2');
         $I->click("html/body/div[1]/div[1]/header/div[2]/div/div/div[2]/div[2]/div/form/span/button");
-        $I->wait('1');
-        $k=$I->grabTextFrom(".//*[@id='items-catalog-main']/li/div[1]/div[2]/span/span/span/span[1]");
-        $sym=$I->grabTextFrom(".//*[@id='items-catalog-main']/li/div[1]/div[2]/span/span/span/span[2]");
+        $I->wait('3');
+        $k=$I->grabTextFrom('//*[@id="items-catalog-main"]/li[1]/div[1]/div[2]/span/span[1]/span/span[1]');
+        $sym=$I->grabTextFrom('//*[@id="items-catalog-main"]/li[1]/div[1]/div[2]/span/span[1]/span/span[2]');
         $i=$k*2;
         $I->comment("$i", "$k", "$sym");
-        $I->assertEquals($i, $this->price);
+        $I->assertEquals($i.",00", $this->price.",00");
         $I->assertEquals($sym, $this->MainCurSymb);
-        $I->amOnPage("/admin/components/run/shop/currencies");
-        $I->click(CurrenciesPage::CurrencyNameLine('3'));
+        $I->amOnPage(CurrenciesPage::$URL);
+        $I->click(CurrenciesPage::CurrencyNameLine($y));
         $I->waitForText('Редактирование валют');
         $I->fillField(CurrenciesPage::$Rate, '4');
         $I->click(CurrenciesPage::$SaveAndExitButton);
         $I->waitForText('Список валют');
-        $I->wait('4');
+        $I->wait('6');
 //        $I->waitForElementVisible('.alert.in.fade.alert-success');
 //        $I->see('Изменения сохранены');
 //        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
@@ -431,14 +437,8 @@ class MainCurrencyCest
         $I->comment("$i3", "$k3", "$sym3");
         $I->assertEquals($i3, $this->price);
         $I->assertEquals($sym, $this->MainCurSymb);
-        $I->amOnPage("/admin/components/run/shop/currencies");
-        $I->click(CurrenciesPage::DeleteButtonLine('3'));
-        $I->waitForElement(".//div[@class='modal hide fade in']");
-        $I->see('Удалить валюту');
-        $I->see('Удалить выбранную валюту?');
-        $I->see('Удалить', './/*[@id="first"]/div[3]/a[1]');
-        $I->see('Отменить', './/*[@id="first"]/div[3]/a[2]');
-        $I->click('.//*[@id="first"]/div[3]/a[1]');
+        $I->amOnPage(CurrenciesPage::$URL);
+        $I->DeleteWindowOperation($y);
         $I->waitForElement(".//*[@id='recount']");
         $I->wait('1');
         $I->see('Пересчет');
@@ -449,20 +449,14 @@ class MainCurrencyCest
         $I->waitForElementVisible('.alert.in.fade.alert-success');
         $I->see('Преобразование завершено. Сейчас валюта может быть удалена');
         $I->waitForElementNotVisible('.alert.in.fade.alert-success');
-        $I->click(CurrenciesPage::DeleteButtonLine('3'));
-        $I->waitForElement(".//div[@class='modal hide fade in']");
-        $I->see('Удалить валюту');
-        $I->see('Удалить выбранную валюту?');
-        $I->see('Удалить', './/*[@id="first"]/div[3]/a[1]');
-        $I->see('Отменить', './/*[@id="first"]/div[3]/a[2]');
-        $I->click('.//*[@id="first"]/div[3]/a[1]');
+        $I->DeleteWindowOperation($y);   
         $I->waitForElementVisible('.alert.in.fade.alert-success');
         $I->see('Валюта успешно удалена');
         $I->waitForElementNotVisible('.alert.in.fade.alert-success');
         $I->wait('2');
         $rows = $I->grabTagCount($I,"tbody tr");
-        for ($j=1; $j<=$rows; $j++){
-            $idAfter = $I->grabTextFrom("//tbody/tr[$j]/td[1]");
+        for ($i=1; $i<=$rows; $i++){
+            $idAfter = $I->grabTextFrom(CurrenciesPage::IdCurrencyLine($i));
             $I->comment($idAfter);
             if($idAfter == $id){
                 $I->fail("NOT DELETED");
@@ -483,33 +477,37 @@ class MainCurrencyCest
         $I->amOnPage("/");
         $I->fillField(".//*[@id='inputString']", 'товар2');
         $I->click("html/body/div[1]/div[1]/header/div[2]/div/div/div[2]/div[2]/div/form/span/button");
-        $I->wait('1');
+        $I->wait('3');
         $k2=$I->grabTextFrom(".//*[@id='items-catalog-main']/li/div[1]/div[2]/span/span/span/span[1]");
         $sym2=$I->grabTextFrom(".//*[@id='items-catalog-main']/li/div[1]/div[2]/span/span/span/span[2]");
         $i2=$k2*4;
         $I->comment("$i2");
         $I->comment("$k2");
         $I->comment("$sym2");
-        $I->assertEquals($i2, $this->price);
+        $I->assertEquals($i2.",00", $this->price.",00");
         $I->assertEquals($sym2, $this->MainCurSymb);
     }
     
+    /**
+     * @guy CurrenciesTester\CurrenciesSteps
+     */
     
-    public function DeleteCurUsedInPaymentMethods(CurrenciesTester $I)
+    public function DeleteCurUsedInPaymentMethods(CurrenciesTester\CurrenciesSteps $I)
     {   
         //Проверка возможности удаления валюты, которая используется в способах оплаты
-        $I->amOnPage("/admin/components/run/shop/currencies");        
-        $SymbolCur=$I->grabTextFrom(".//*[@class='']/tr[4]/td[4]");
-        $id=$I->grabTextFrom(".//*[@class='']/tr[4]/td[1]");
+        $I->amOnPage("/admin/components/run/shop/currencies");
+        $y=4;
+        $SymbolCur=$I->grabTextFrom(CurrenciesPage::SymbolCurrencyLine($y));
+        $id=$I->grabTextFrom(CurrenciesPage::IdCurrencyLine($y));
         $I->comment("$SymbolCur"); 
         $I->comment("$id");
-        $I->amOnPage('/admin/components/run/shop/paymentmethods/create');
+        $I->amOnPage(PaymentCreatePage::$URL);
         $I->waitForText('Создание способа оплаты');
         $I->fillField(PaymentCreatePage::$FieldName, 'Оплата');        
         $I->click(PaymentCreatePage::$SelectCurrency);
-        $I->click(PaymentCreatePage::SelectCurrency('4'));
+        $I->click(PaymentCreatePage::SelectCurrency($y));
         $I->wait('1');
-        $SelectCur=$I->grabTextFrom(PaymentCreatePage::SelectCurrency('4'));        
+        $SelectCur=$I->grabTextFrom(PaymentCreatePage::SelectCurrency($y));        
         $I->comment("$SelectCur"); 
         $SelectCur = trim(preg_replace("/\s+/", " ", $SelectCur));
         $Cur= explode(" ", $SelectCur);  
@@ -521,19 +519,13 @@ class MainCurrencyCest
         $I->click(PaymentCreatePage::$ButtonCreate);
         $I->waitForText("Редактирование способа оплаты");
         $I->assertEquals($SymbolCur, $text);
-        $I->amOnPage("/admin/components/run/shop/currencies");
-        $I->click(CurrenciesPage::DeleteButtonLine('4'));
-        $I->waitForElement(".//div[@class='modal hide fade in']");
-        $I->see('Удалить валюту');
-        $I->see('Удалить выбранную валюту?');
-        $I->see('Удалить', './/*[@id="first"]/div[3]/a[1]');
-        $I->see('Отменить', './/*[@id="first"]/div[3]/a[2]');
-        $I->click('.//*[@id="first"]/div[3]/a[1]');
+        $I->amOnPage(CurrenciesPage::$URL);
+        $I->DeleteWindowOperation($y);
         $I->exactlySeeAlert($I, 'error', 'Невозможно удалить валюту. Эта валюта используется в Способах оплаты.');
         //$I->waitForElementVisible('.alert.in.fade.alert-error');
 //        $I->waitForText('Невозможно удалить валюту. Эта валюта используется в Способах оплаты.', 3);
         //$I->waitForElementNotVisible('.alert.in.fade.alert-error');
-        $I->amOnPage('/admin/components/run/shop/paymentmethods/index');
+        $I->amOnPage(PaymentListPage::$URL);
         $I->click(PaymentListPage::CheckboxLine('last()'));
         $I->wait('2');
         $I->click(PaymentListPage::$ButtonDelete);
@@ -543,15 +535,9 @@ class MainCurrencyCest
 //        $I->waitForElementVisible('.alert.in.fade.alert-success');
         $I->waitForText('Способ оплаты удален');
 //        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
-        $I->amOnPage("/admin/components/run/shop/currencies");
-        $I->click(CurrenciesPage::DeleteButtonLine('4'));
-        $I->waitForElement(".//div[@class='modal hide fade in']");
-        $I->see('Удалить валюту');
-        $I->see('Удалить выбранную валюту?');
-        $I->see('Удалить', './/*[@id="first"]/div[3]/a[1]');
-        $I->see('Отменить', './/*[@id="first"]/div[3]/a[2]');
-        $I->click('.//*[@id="first"]/div[3]/a[1]');
-        $I->waitForElementNotVisible(".//div[@class='modal hide fade in']");
+        $I->amOnPage(CurrenciesPage::$URL);
+        $I->DeleteWindowOperation($y);   
+        $I->waitForElementNotVisible(CurrenciesPage::$DeleteWindow);
         $I->wait(2);
 //        $I->exactlySeeAlert($I, 'success', 'Валюта успешно удалена','100');
 //        $I->waitForElementVisible('.alert.in.fade.alert-success');
@@ -559,7 +545,7 @@ class MainCurrencyCest
 //        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
         $rows = $I->grabTagCount($I,"tbody tr");
         for ($j=1; $j<=$rows; $j++){
-            $idAfter = $I->grabTextFrom("//tbody/tr[$j]/td[1]");
+            $idAfter = $I->grabTextFrom(CurrenciesPage::IdCurrencyLine($j));
             $I->comment($idAfter);
             if($idAfter == $id){
                 $I->fail("NOT DELETED");
@@ -569,7 +555,3 @@ class MainCurrencyCest
         InitTest::ClearAllCach($I);
     }
 }
-    
-    
-    
-
