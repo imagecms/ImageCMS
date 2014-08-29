@@ -24,10 +24,11 @@ class CurrenciesSteps extends \CurrenciesTester
         }
     }    
     
-    function EditCurrency($j,$name=null,$isocode=null,$symbol=null,$rate=null,$template=null,$format,$delimTens=null,$delimThousands=null,$amount=null,$notNull='off',$save='save')
+    function EditCurrency($j,$name=null,$isocode=null,$symbol=null,$rate=null,$template=null,$format=null,$delimTens=null,$delimThousands=null,$amount=null,$notNull='off',$save='save')
     {
         $I = $this;
         $I->amOnPage(\CurrenciesPage::$URL);
+        $I->wait("2");
         $I->click(\CurrenciesPage::CurrencyNameLine($j));
         $I->waitForElement('.//*[@id="mod_name"]/label');
         if(isset($name)){
@@ -50,6 +51,7 @@ class CurrenciesSteps extends \CurrenciesTester
         if(isset($format)){
             $I->fillField(\CurrenciesPage::$FormatLine, $format);
         }
+//        $I->wait('2');
         if(isset($delimTens)){
             $I->fillField(\CurrenciesPage::$DelimiterTens, $delimTens);
         }
@@ -57,7 +59,8 @@ class CurrenciesSteps extends \CurrenciesTester
             $I->fillField(\CurrenciesPage::$DelimiterThousands, $delimThousands);
         }
         if(isset($amount)){
-            $I->fillField(\CurrenciesPage::$AmountDecimals, $amount);
+            $I->click(\CurrenciesPage::$AmountDecimals);
+            $I->selectOption(\CurrenciesPage::$AmountDecimals, $amount);
         }
         switch ($notNull) {
             case 'off':
@@ -80,7 +83,7 @@ class CurrenciesSteps extends \CurrenciesTester
         }
     }
     
-    function CheckInFields($name1=null,$isocode1=null,$symbol1=null,$rate1=null,$format1,$delimTens1,$delimThousands1,$amount1,$notNull1="off")
+    function CheckInFields($name1=null,$isocode1=null,$symbol1=null,$rate1=null,$format1=null,$delimTens1=null,$delimThousands1=null,$amount1=null,$notNull1="off")
     {
         $I = $this;
         $I->waitForText('Редактирование валют');
@@ -99,10 +102,18 @@ class CurrenciesSteps extends \CurrenciesTester
             $I->seeInField(\CurrenciesPage::$Rate, $rate1);
         }
         $I->seeOptionIsSelected(\CurrenciesPage::$CurrencyTemplate, 'Не выбрано');
-        $I->seeInField(\CurrenciesPage::$FormatLine, $format1);
-        $I->seeInField(\CurrenciesPage::$DelimiterTens, $delimTens1);
-        $I->seeInField(\CurrenciesPage::$DelimiterThousands, $delimThousands1);
-        $I->seeInField(\CurrenciesPage::$AmountDecimals, $amount1);
+        if(isset($format1)){
+            $I->seeInField(\CurrenciesPage::$FormatLine, $format1);
+        }
+        if(isset($delimTens1)){
+            $I->seeInField(\CurrenciesPage::$DelimiterTens, $delimTens1);
+        }
+        if(isset($delimThousands1)){
+            $I->seeInField(\CurrenciesPage::$DelimiterThousands, $delimThousands1);
+        }
+        if(isset($amount1)){
+            $I->seeOptionIsSelected(\CurrenciesPage::$AmountDecimals, $amount1);
+        }
         switch ($notNull1) {
             case 'off':
                 $I->dontSeeCheckboxIsChecked(\CurrenciesPage::$NotNullsCheckbox);
@@ -187,7 +198,9 @@ class CurrenciesSteps extends \CurrenciesTester
         }
         $I->click(\CurrenciesPage::$SaveButton);
         $I->waitForText($name, 4, ".//*[@id='mainContent']/section/div/div[1]/span[2]");
-        return $IsoProduct;
+        if(isset($j)){
+            return $IsoProduct;
+        }
     }
     
     

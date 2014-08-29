@@ -7,7 +7,7 @@ class TextElementSEOCest
     
 //---------------------------AUTORIZATION--------------------------------------- 
     /**
-     * @group aa
+     * @group a
      */
     public function Login(SeoExpertTester $I){
         InitTest::Login($I);
@@ -145,24 +145,6 @@ class TextElementSEOCest
     
     
     
-    /**
-     * @group a
-     */
-    public function VerifyTextAdvancedPage (SeoExpertTester $I){
-        $I->amOnPage(seoexpertPage::$SeoUrl);
-        $I->wait('1');
-        $I->click(seoexpertPage::$SeoButtShop);
-        $I->wait('1');
-        $I->click(seoexpertPage::$SeoProductButtAdvanced);
-        $I->wait('1');
-        $I->see('Вернуться', seoexpertPage::$SeoAdvencedButtBack);
-        $I->see('Удалить', '//body/div[1]/div[5]/section/div/div[2]/div/a[2]');
-        $I->see('Добавить новую категорию', '//body/div[1]/div[5]/section/div/div[2]/div/a[3]');
-        $I->see('Имя категории', '//body/div[1]/div[5]/section/table/thead/tr/th[2]');
-        $I->see('Активный', '//body/div[1]/div[5]/section/table/thead/tr/th[3]');
-        $I->see('Использовать только для пустых метаданных', '//body/div[1]/div[5]/section/table/thead/tr/th[4]');
-    }
-    
     
     /**
      * @group a
@@ -188,12 +170,15 @@ class TextElementSEOCest
         $I->see('Использовать только для пустых метаданных:', '//table/tbody/tr/td/div/div/div[2]/div/span[1]');
     }
     
+    
+    
+    
     /**
-     * @group aa
+     * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
     public function VerifyTextAdvancedEditPage(SeoExpertTester\seoexpertSteps $I) {
-//        $I->SeoCreateCategoryProduct($createNameCategory ='Для Сео Експерта');
+        $I->SeoCreateCategoryProduct($createNameCategory ='Для Сео Експерта');
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->click(seoexpertPage::$SeoButtShop);
@@ -221,8 +206,28 @@ class TextElementSEOCest
     
     
     
+    
     /**
-     * @group aa 
+     * @group a
+     */
+    public function VerifyTextAdvancedPage (SeoExpertTester $I){
+        $I->amOnPage(seoexpertPage::$SeoUrl);
+        $I->wait('1');
+        $I->click(seoexpertPage::$SeoButtShop);
+        $I->wait('1');
+        $I->click(seoexpertPage::$SeoProductButtAdvanced);
+        $I->wait('1');
+        $I->see('Вернуться', seoexpertPage::$SeoAdvencedButtBack);
+        $I->see('Удалить', '//body/div[1]/div[5]/section/div/div[2]/div/a[2]');
+        $I->see('Добавить новую категорию', '//body/div[1]/div[5]/section/div/div[2]/div/a[3]');
+        $I->see('Имя категории', '//body/div[1]/div[5]/section/table/thead/tr/th[2]');
+        $I->see('Активный', '//body/div[1]/div[5]/section/table/thead/tr/th[3]');
+        $I->see('Использовать только для пустых метаданных', '//body/div[1]/div[5]/section/table/thead/tr/th[4]');
+    }
+    
+    
+    /**
+     * @group a
      */
     public function VerifyTextDeleteWindow(SeoExpertTester $I) {
         $I->amOnPage(seoexpertPage::$SeoUrl);
@@ -251,7 +256,7 @@ class TextElementSEOCest
     
     
     /**
-     * @group aa 
+     * @group a
      */
     public function VerifytDeletingCategory(SeoExpertTester $I) {
         $I->amOnPage(seoexpertPage::$SeoUrl);

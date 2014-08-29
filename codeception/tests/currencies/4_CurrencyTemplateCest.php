@@ -15,12 +15,12 @@ class CurrencyTemplateCest
      * @guy CurrenciesTester\CurrenciesSteps
      */
     
-    /*public function ProductCreate(CurrenciesTester\CurrenciesSteps $I)
+    public function ProductCreate(CurrenciesTester\CurrenciesSteps $I)
     {
         $name="Товар1";
         $price="1300";        
         $I->CreateProduct($name, $price, $j=null);       
-    }*/
+    }
     
     /**
      * @guy CurrenciesTester\CurrenciesSteps
@@ -92,7 +92,7 @@ class CurrencyTemplateCest
      * @guy CurrenciesTester\CurrenciesSteps
      */
     
-    public function Template3Editing(CurrenciesTester\CurrenciesSteps $I)
+    public function ICMS_1527_Template3Editing(CurrenciesTester\CurrenciesSteps $I)
     {
         $j=$I->SearchMainCurrencyLine();
         $I->comment($j);
@@ -142,8 +142,8 @@ class CurrencyTemplateCest
         $I->assertEquals($SecondMAIN, $SYMBOL);
         $FirstAddit=$I->grabTextFrom(CurrenciesPage::$AdditFirstPlace);
         $SecondAddit=$I->grabTextFrom(CurrenciesPage::$AdditSecondPlace);
-        $I->assertEquals($FirstMAIN, $priceAddit);
-        $I->assertEquals($SecondMAIN, $this->ADDITSYM);
+        $I->assertEquals($FirstAddit, $priceAddit);
+        $I->assertEquals($SecondAddit, $this->ADDITSYM);
     }
     
     /**
@@ -157,13 +157,13 @@ class CurrencyTemplateCest
         $SYMBOL=$I->grabTextFrom(CurrenciesPage::SymbolCurrencyLine($j));        
         $rate="1";
         $template="3";
-        $amount="5";
+        $amount="4";
         $delimTens="_";
         $delimThousands="@";
-        $I->EditCurrency($this->k,$name=null,$isocode=null,$symbol=null,$rate=null,$template,$format=null,$delimTens=null,$delimThousands=null,$amount);
+        $I->EditCurrency($this->k,$name=null,$isocode=null,$symbol=null,$rate=null,$template,$format=null,$delimTens1=null,$delimThousands1=null,$amount);
         $I->EditCurrency($j,$name=null,$isocode=null,$symbol=null,$rate,$template,$format=null,$delimTens,$delimThousands,$amount);      
-        $price="1@300_00000";
-        $priceAddit="2@600_00000";
+        $price="1@300_0000";
+        $priceAddit="2@600_0000";
         $format1="# $SYMBOL";               
         $I->CheckInFields($name1=null,$isocode=null,$symbol=null,$rate1=null,$format1,$delimTens,$delimThousands,$amount);
         $I->click(CurrenciesPage::$GoBackButton);
@@ -181,8 +181,8 @@ class CurrencyTemplateCest
         $I->assertEquals($SecondMAIN, $SYMBOL);
         $FirstAddit=$I->grabTextFrom(CurrenciesPage::$AdditFirstPlace);
         $SecondAddit=$I->grabTextFrom(CurrenciesPage::$AdditSecondPlace);
-        $I->assertEquals($FirstMAIN, $priceAddit);
-        $I->assertEquals($SecondMAIN, $this->ADDITSYM);
+        $I->assertEquals($FirstAddit, $priceAddit);
+        $I->assertEquals($SecondAddit, $this->ADDITSYM);
     }
     
     /**
@@ -221,8 +221,8 @@ class CurrencyTemplateCest
         $I->assertEquals($SecondMAIN, $SYMBOL);
         $FirstAddit=$I->grabTextFrom(CurrenciesPage::$AdditFirstPlace);
         $SecondAddit=$I->grabTextFrom(CurrenciesPage::$AdditSecondPlace);
-        $I->assertEquals($FirstMAIN, $this->ADDITSYM);
-        $I->assertEquals($SecondMAIN, $priceAddit);
+        $I->assertEquals($FirstAddit, $this->ADDITSYM);
+        $I->assertEquals($SecondAddit, $priceAddit);
     }
     
     /**
@@ -241,7 +241,7 @@ class CurrencyTemplateCest
         $delimThousands="@";
         $template1="2";
         $amount1="2";
-        $I->EditCurrency($this->k,$name=null,$isocode=null,$symbol=null,$rate=null,$template1,$format=null,$delimTens=null,$delimThousands=null,$amount1);
+        $I->EditCurrency($this->k,$name=null,$isocode=null,$symbol=null,$rate=null,$template1,$format1=null,$delimTens1=null,$delimThousands1=null,$amount1);
         $I->EditCurrency($j,$name=null,$isocode=null,$symbol=null,$rate,$template=null,$format,$delimTens,$delimThousands,$amount,$notNull='on');      
         $price="1@300";
         $priceAddit="2 600,00";
@@ -261,8 +261,8 @@ class CurrencyTemplateCest
         $I->assertEquals($SecondMAIN, $SYMBOL);
         $FirstAddit=$I->grabTextFrom(CurrenciesPage::$AdditFirstPlace);
         $SecondAddit=$I->grabTextFrom(CurrenciesPage::$AdditSecondPlace);
-        $I->assertEquals($FirstMAIN, $this->ADDITSYM);
-        $I->assertEquals($SecondMAIN, $priceAddit);
+        $I->assertEquals($FirstAddit, $this->ADDITSYM);
+        $I->assertEquals($SecondAddit, $priceAddit);
     }           
         
      /**
@@ -288,7 +288,7 @@ class CurrencyTemplateCest
         $rate="1";
         $template="4";
         $amount="3"; 
-        $I->EditCurrency($this->k,$name=null,$isocode=null,$symbol=null,$rate=null,$template1,$format=null,$delimTens=null,$delimThousands=null,$amount,$notNull1='on');
+        $I->EditCurrency($this->k,$name=null,$isocode=null,$symbol=null,$rate=null,$template,$format=null,$delimTens=null,$delimThousands=null,$amount,$notNull1='on');
         $I->EditCurrency($j,$name=null,$isocode=null,$symbol=null,$rate,$template,$format=null,$delimTens=null,$delimThousands=null,$amount,$notNull='on');      
         $price="1 650,05";
         $priceAddit="3 300,1";
@@ -311,8 +311,8 @@ class CurrencyTemplateCest
         $I->assertEquals($SecondMAIN, $SYMBOL);
         $FirstAddit=$I->grabTextFrom(CurrenciesPage::$AdditFirstPlace);
         $SecondAddit=$I->grabTextFrom(CurrenciesPage::$AdditSecondPlace);
-        $I->assertEquals($FirstMAIN, $priceAddit);
-        $I->assertEquals($SecondMAIN, $this->ADDITSYM);
+        $I->assertEquals($FirstAddit, $priceAddit);
+        $I->assertEquals($SecondAddit, $this->ADDITSYM);
     }
     
      /**
@@ -331,7 +331,7 @@ class CurrencyTemplateCest
         $I->selectOption(\CurrenciesPage::$CurrencyTemplate, 1);
         $text=$I->grabTextFrom(\CurrenciesPage::$CurrencyTemplate."/option[1]");
         $I->comment($text);               
-        $I->fillField(\CurrenciesPage::$AmountDecimals, $amount);
+        $I->selectOption(\CurrenciesPage::$AmountDecimals, $amount);
         $I->seeCheckboxIsChecked(\CurrenciesPage::$NotNullsCheckbox);
         $I->click(\CurrenciesPage::$SaveAndExitButton);
         $I->waitForText('Список валют');
