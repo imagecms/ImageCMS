@@ -74,8 +74,6 @@ class importexportSteps extends \ImportExportTester
          $I->click('//table/tbody/tr/td/div/div/div/div/div/select/option[1]');
          if(isset($Property1)){
             $I->click(\ExportPropertyPage::$PropSelectOption1);
-//            $I->click(\ExportPropertyPage::$PropSelectOption1);
-//            $I->click(\ExportPropertyPage::$PropSelectOption1);
             $I->click(\ExportPropertyPage::$PropSelectOption2);
             $I->click(\ExportPropertyPage::$PropSelectOption3);
             $I->click(\ExportPropertyPage::$PropSelectOption4);
