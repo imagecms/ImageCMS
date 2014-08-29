@@ -59,6 +59,7 @@ class EditingCurrenciesCest
     
     public function RequiredFieldsSaveButtonInEditing(CurrenciesTester\CurrenciesSteps $I)
     {
+        $j=1;
         $name="";
         $isocode="";
         $symbol="";
@@ -67,7 +68,7 @@ class EditingCurrenciesCest
         $delimTens="";
         $delimThousands="";
         $amount="";
-        $I->EditCurrency($name, $isocode, $symbol, $rate, $template=null, $format, $delimTens, $delimThousands, $amount);
+        $I->EditCurrency($j,$name, $isocode, $symbol, $rate, $template=null, $format, $delimTens, $delimThousands, $amount);
         $I->see('Это поле обязательное.', './/*[@id="cur_ed_form"]/table/tbody/tr/td/div/div[1]/div/label');
         $I->see('Это поле обязательное.', './/*[@id="cur_ed_form"]/table/tbody/tr/td/div/div[2]/div/label');
         $I->see('Это поле обязательное.', './/*[@id="cur_ed_form"]/table/tbody/tr/td/div/div[3]/div/label');
@@ -83,6 +84,7 @@ class EditingCurrenciesCest
     
     public function RequiredFieldsSaveAndExitButtonInEditing(CurrenciesTester\CurrenciesSteps $I)
     {
+        $j=1;
         $name="";
         $isocode="";
         $symbol="";
@@ -91,7 +93,7 @@ class EditingCurrenciesCest
         $delimTens="";
         $delimThousands="";
         $amount="";
-        $I->EditCurrency($name, $isocode, $symbol, $rate, null, $format, $delimTens, $delimThousands, $amount,$notNull='off',$save='saveexit');
+        $I->EditCurrency($j,$name, $isocode, $symbol, $rate, null, $format, $delimTens, $delimThousands, $amount,$notNull='off',$save='saveexit');
         $I->see('Это поле обязательное.', './/*[@id="cur_ed_form"]/table/tbody/tr/td/div/div[1]/div/label');
         $I->see('Это поле обязательное.', './/*[@id="cur_ed_form"]/table/tbody/tr/td/div/div[2]/div/label');
         $I->see('Это поле обязательное.', './/*[@id="cur_ed_form"]/table/tbody/tr/td/div/div[3]/div/label');
@@ -112,16 +114,14 @@ class EditingCurrenciesCest
         $I->fillField(CurrenciesPage::$Rate, 'qwweйЫВSDFцук!"№;№%%:??*()_1ЮБ.,7653423');
         $I->fillField(CurrenciesPage::$FormatLine, 'qwweйЫВSDFцук!"№;№%%:??*()_1ЮБ.,7653423');
         $I->fillField(CurrenciesPage::$DelimiterTens, 'qwweйЫВSDFцук!"№;№%%:??*()_1ЮБ.,7653423');
-        $I->fillField(CurrenciesPage::$DelimiterThousands, 'qwweйЫВSDFцук!"№;№%%:??*()_1ЮБ.,7653423');
-        $I->fillField(CurrenciesPage::$AmountDecimals, 'qwweйЫВSDFцук!"№;№%%:??*()_1ЮБ.,7653423');        
+        $I->fillField(CurrenciesPage::$DelimiterThousands, 'qwweйЫВSDFцук!"№;№%%:??*()_1ЮБ.,7653423');                
         $I->seeInField(CurrenciesPage::$NameCurrencyEdit, 'йццукsadasd123324?"{{$&(+|!@.,;:ADFФЦВ');
         $I->seeInField(CurrenciesPage::$IsoCodEdit, 'йццукsadasd123324?"{{$&(+|!@.,;:ADFФЦВ');
         $I->seeInField(CurrenciesPage::$SymbolEdit, 'йццукsadasd123324?"{{$&(+|!@.,;:ADFФЦВ');
         $I->seeInField(CurrenciesPage::$Rate, '1.7653423');
         $I->seeInField(CurrenciesPage::$FormatLine, 'йццукsadasd123324?"{{$&(+|!@.,;:ADFФЦВ');
         $I->seeInField(CurrenciesPage::$DelimiterTens, 'йццукsadasd123324?"{{$&(+|!@.,;:ADFФЦВ');
-        $I->seeInField(CurrenciesPage::$DelimiterThousands, 'йццукsadasd123324?"{{$&(+|!@.,;:ADFФЦВ');
-        $I->seeInField(CurrenciesPage::$AmountDecimals, 'йццукsadasd123324?"{{$&(+|!@.,;:ADFФЦВ');
+        $I->seeInField(CurrenciesPage::$DelimiterThousands, 'йццукsadasd123324?"{{$&(+|!@.,;:ADFФЦВ');        
     }
     
     
@@ -138,11 +138,12 @@ class EditingCurrenciesCest
     
     public function OneAnd2SymbolsEditing(CurrenciesTester\CurrenciesSteps $I)
     {
+        $j=1;
         $name="q";
         $isocode="q";
         $symbol="q";
         $rate="1";
-        $I->EditCurrency($name,$isocode,$symbol,$rate);      
+        $I->EditCurrency($j,$name,$isocode,$symbol,$rate);      
         $I->waitForElementVisible('.alert.in.fade.alert-error');
         $I->see('Поле Название должно быть не менее 2 символов в длину.');
         $I->waitForElementNotVisible('.alert.in.fade.alert-error');
@@ -169,13 +170,14 @@ class EditingCurrenciesCest
      * @guy CurrenciesTester\CurrenciesSteps
      */
     
-    public function Symbols5Editing(CurrenciesTester\CurrenciesSteps $I)
+    public function ICMS_1525_Symbols5Editing(CurrenciesTester\CurrenciesSteps $I)
     {
+        $j=1;
         $name="Динар";
         $isocode="Динар";
         $symbol="Динар";
         $rate="11111";
-        $I->EditCurrency($name,$isocode,$symbol,$rate);
+        $I->EditCurrency($j,$name,$isocode,$symbol,$rate);
 //        $I->exactlySeeAlert($I, 'success', 'Изменения сохранены');
         //$I->waitForElementVisible('.alert.in.fade.alert-success');
         $I->waitForText('Изменения сохранены', 4);
@@ -200,11 +202,12 @@ class EditingCurrenciesCest
     
     public function Symbols6Editing(CurrenciesTester\CurrenciesSteps $I)
     {     
+        $j=1;
         $name="валюта";
         $isocode="валюта";
         $symbol="валюта";
         $rate="111111";
-        $I->EditCurrency($name,$isocode,$symbol,$rate);
+        $I->EditCurrency($j,$name,$isocode,$symbol,$rate);
         $I->waitForElementVisible('.alert.in.fade.alert-error');
         $I->see('Поле Iso Код не может превышать 5 символов в длину.');
         $I->see('Поле Символ не может превышать 5 символов в длину.');
@@ -239,11 +242,12 @@ class EditingCurrenciesCest
     
     public function ICMS_1508_Symbols10Editing(CurrenciesTester\CurrenciesSteps $I)
     {
+        $j=1;
         $name="Гульден123";
         $isocode="Гульден123";
         $symbol="Гульден123";
         $rate="105236.2354";
-        $I->EditCurrency($name,$isocode,$symbol,$rate);
+        $I->EditCurrency($j,$name,$isocode,$symbol,$rate);
         $I->waitForElementVisible('.alert.in.fade.alert-error');
         $I->see('Поле Iso Код не может превышать 5 символов в длину.');
         $I->see('Поле Символ не может превышать 5 символов в длину.');
@@ -277,11 +281,12 @@ class EditingCurrenciesCest
     
     public function Symbols255Editing(CurrenciesTester\CurrenciesSteps $I)
     {
+        $j=1;
         $name="Франкфранкфранк франкфранкфранкфранк франкфранкфранкфранкфранкфранкфранкфранкфранк франкфранкфранкфранкфранк франкфранкфранкфранк франкфранкфранкфранкфранк франкфранкфранк франк франкфранк франкфр анкфранкфранкфранк франкфранкфранк франк ф р анкфранкфранк";
         $isocode="frank";
         $symbol="fr";
         $rate=".0210";
-        $I->EditCurrency($name,$isocode,$symbol,$rate);
+        $I->EditCurrency($j,$name,$isocode,$symbol,$rate);
         //$I->waitForElementVisible('.alert.in.fade.alert-success');
         $I->waitForText('Изменения сохранены');
         //$I->waitForElementNotVisible('.alert.in.fade.alert-success');
@@ -299,11 +304,12 @@ class EditingCurrenciesCest
     
     public function Symbols256Editing(CurrenciesTester\CurrenciesSteps $I)
     {
+        $j=1;
         $name="Форинтфоринт форинтфоринтфоринт форинтфо ринтфоринтфоринтфор интфоринтфоринтфоринтфоринтфоринтфоринтфори нтфоринтфоринтфоринтфор интфоринтфоринтфоринтфоринтф оринтфоринтфор интфоринтфоринтфоринтфор интфоринт форинтфоринтфоринтфоринтф оринтфоринтфоринтфорин";
         $isocode="forin";
         $symbol="фор";
         $rate="00120.01";
-        $I->EditCurrency($name,$isocode,$symbol,$rate);
+        $I->EditCurrency($j,$name,$isocode,$symbol,$rate);
         //$I->waitForElementVisible('.alert.in.fade.alert-success');
         $I->waitForText('Изменения сохранены', 4);
         //$I->waitForElementNotVisible('.alert.in.fade.alert-success');
@@ -320,11 +326,12 @@ class EditingCurrenciesCest
     
     public function SaveAndExitButton(CurrenciesTester\CurrenciesSteps $I)
     {
+        $j=1;
         $name="Лат";
         $isocode="лат";
         $symbol="лат";
         $rate="11111";
-        $I->EditCurrency($name,$isocode,$symbol,$rate,$save='saveexit');
+        $I->EditCurrency($j,$name,$isocode,$symbol,$rate,$template=null,$format=null,$delimTens=null,$delimThousands=null,$amount=null,$notNull='off',$save='saveexit');
         //$I->waitForElementVisible('.alert.in.fade.alert-success');
         $I->waitForText('Изменения сохранены');
         //$I->waitForElementNotVisible('.alert.in.fade.alert-success');

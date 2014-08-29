@@ -24,8 +24,9 @@ class CurrenciesPage
     public static $FormatLine  = '//*[@id="select-format-currency"]';
     public static $DelimiterTens  = '//*[@id="select-separator-tens"]';
     public static $DelimiterThousands  = '//*[@id="select-thousands-separator"]';
-    public static $AmountDecimals  = '//*[@id="select-decimal-places"]';
+    public static $AmountDecimals  = '//*[@id="cur_ed_form"]/table[2]/tbody/tr/td/div/div[5]/div/select';
     public static $NotNullsCheckbox  = '//*[@id="cur_ed_form"]/table[2]/tbody/tr/td/div/div[6]/div/input';
+    
     
        
     public static $DeleteWindow  = ".//div[@class='modal hide fade in']";
