@@ -292,7 +292,7 @@ class PaymentSteps extends \PaymentTester {
 
     /**
      * Checking current parameters in frontend 
-     * first time goes "processing order" page by clicking, other times goes to "processing order" page immediately
+     * if basket is empty goes to "processing order" page by clicking, else goes to "processing order" page immediately
      * if you want to skip verifying of some parameters type null
      * verify one payment if string or many if array transmitted
      * 
@@ -316,9 +316,9 @@ $I->wait(1);
         $buy = "//div[@class='frame-prices-buy f-s_0']//form/div[3]";
         $globalbaseket = 'div#tinyBask button';
 
-        $globalbaseketclass = $I->grabAttributeFrom($globalbaseket, 'class');
+        $globalbasketclass = $I->grabAttributeFrom($globalbaseket, 'class');
 
-        if (!empty($globalbaseketclass)) { 
+        if (!empty($globalbasketclass)) { 
             $I->comment('My basket is not empty');
             $I->amOnPage("/shop/cart");
         } else {
@@ -395,6 +395,7 @@ $I->wait(1);
             $I->click("#cuselFrame-paymentMethod");
             //White spaces added to method in "select" 
             //Read text ,trim then verify , if true click
+//            $payment_options = "//div[@id='cusel-scroll-paymentMethod']";
             $I->grabTextFrom("$cssOrXPathOrRegex");
             $I->click(" " . $selectpay . " ");
             $I->wait(5);

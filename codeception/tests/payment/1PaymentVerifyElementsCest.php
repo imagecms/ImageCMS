@@ -46,46 +46,46 @@ class PaymentElementsCest
     /**
      * @group verify
      */
-    public function miniMessageEdit(PaymentTester $I) {
-        $I->moveMouseOver(PaymentListPage::MethodNameLine(1));
-        $I->waitForElementVisible('.tooltip.fade.top.in');
-        $I->see("Редактировать",'.tooltip.fade.top.in');
-        $I->moveMouseOver('//tbody//tr[3]//td');
-        $I->waitForElementNotVisible('.tooltip.fade.top.in');
-    }
+//    public function miniMessageEdit(PaymentTester $I) {
+//        $I->moveMouseOver(PaymentListPage::MethodNameLine(1));
+//        $I->waitForElementVisible('.tooltip-inner');
+//        $I->see("Редактировать",'.tooltip-inner');
+//        $I->moveMouseOver('//tbody//tr[3]//td');
+//        $I->waitForElementNotVisible('.tooltip-inner');
+//    }
     
     /**
      * @group verify
      */
-    public function miniMessagesActive(PaymentTester $I) {
-        $Class = $I->grabAttributeFrom(PaymentListPage::ActiveLine(1), 'class');
-        $I->comment($Class);
+//    public function miniMessagesActive(PaymentTester $I) {
+//        $Class = $I->grabAttributeFrom(PaymentListPage::ActiveLine(1), 'class');
+//        $I->comment($Class);
         //BUG HERE------------------------------------------------------------------------------------------
 //        $I->click(PaymentListPage::ActiveLine(1));                                //BUG HERE inscription ACTIVE
         //--------------------------------------------------------------------------------------------------
-        $I->wait(1);
-        $I->moveMouseOver(PaymentListPage::ActiveLine(1));
-        $I->waitForElementVisible('.tooltip-inner');
-        if ($Class == 'prod-on_off')
-            $I->see ('показать', '.tooltip-inner');
-        else {
-            $I->see ('не показывать', '.tooltip-inner');
-        }
-        
-        
-        
-        $I->click(PaymentListPage::ActiveLine(1));
-        $I->moveMouseOver('//tbody//tr[3]');
-        $Class = $I->grabAttributeFrom(PaymentListPage::ActiveLine(1), 'class');
-        $I->comment($Class);
-        $I->moveMouseOver(PaymentListPage::ActiveLine(1));
-        if ($Class == 'prod-on_off')
-            $I->see ('показать', '.tooltip-inner');
-        else {
-            $I->see ('не показывать', '.tooltip-inner');
-        }
-        
-    }
+//        $I->wait(1);
+//        $I->moveMouseOver(PaymentListPage::ActiveLine(1));
+//        $I->waitForElementVisible('.tooltip-inner');
+//        if ($Class == 'prod-on_off')
+//            $I->see ('показать', '.tooltip-inner');
+//        else {
+//            $I->see ('не показывать', '.tooltip-inner');
+//        }
+//        
+//        
+//        
+//        $I->click(PaymentListPage::ActiveLine(1));
+//        $I->moveMouseOver('//tbody//tr[3]');
+//        $Class = $I->grabAttributeFrom(PaymentListPage::ActiveLine(1), 'class');
+//        $I->comment($Class);
+//        $I->moveMouseOver(PaymentListPage::ActiveLine(1));
+//        if ($Class == 'prod-on_off')
+//            $I->see ('показать', '.tooltip-inner');
+//        else {
+//            $I->see ('не показывать', '.tooltip-inner');
+//        }
+//        
+//    }
     
     
     /**
