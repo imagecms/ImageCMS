@@ -31,10 +31,9 @@ class PaymentEditCest {
         $I->createPayment($this->PaymentName, $this->CurrencyNme, 'on');
         $I->createDelivery($this->DeliveryName, 'on', null, null, null, null, null, $this->PaymentName);
     }
-    
+
     /**
      * @group edit
-     * @group current
      * @guy PaymentTester\PaymentSteps 
      */
     public function name250(PaymentTester\PaymentSteps $I) {
@@ -43,9 +42,49 @@ class PaymentEditCest {
         $I->waitForText('Редактирование способа оплаты', null, '.title');
         $I->editPayment(InitTest::$text250);
         $I->checkInList(InitTest::$text250);
-        
+        $this->PaymentName = InitTest::$text250;
 //        $I->fillField(DeliveryEditPage::$FieldName, InitTest::$text250);
 //        $I->checkInList($name)
     }
+
+    /**
+     * @todo finish method and add to stepObject
+     * Method for checking payment system in FrontEnd
+     * @group current
+     * @guy PaymentTester\PaymentSteps 
+     * 
+     */
+//    public function frontPay(PaymentTester\PaymentSteps $I) {
+//        $I->amOnPage('/shop/cart');
+//        $I->waitForText('Оформление заказа');
+//        $DeliveryName = $this->DeliveryName;
+////        $PaymentName = 
+//        $DeliveriesInProcessingOrderPageAmount = $I->grabClassCount($I, 'name-count');
+//        for ($j = 1; $j <= $DeliveriesInProcessingOrderPageAmount; ++$j) {
+//            $GrabbedName = $I->grabTextFrom("//div[@class='frame-radio']/div[$j]//span[@class='text-el']");
+//            if ($GrabbedName == $DeliveryName) {
+//                $I->click("//div[@class='frame-radio']/div[$j]//span[@class='text-el']");
+//                break;
+//            }
+//        }
+//        $I->wait(7);
+//        $I->scrollToElement($I, '.frame-payment.p_r');
+//        $I->click("#cuselFrame-paymentMethod");
+//        $payment_name = InitTest::$text250;
+//        $payment_options_css = 'div[id="cusel-scroll-paymentMethod"]';
+//        $payment_options_xpath = '//div[@id="cusel-scroll-paymentMethod"]';
+//        $payment_methods_amount = $I->grabCCSAmount($I, "$payment_options_css span");
+//        for ($index = 1; $index <= $payment_methods_amount; $index++) {
+//            $text = $I->grabTextFrom("$payment_options_xpath/span[$index]");
+//            if ($text == $payment_name) {
+//                $I->click("$payment_options_xpath/span[$index]");
+//                break;
+//            }
+////            $I->comment($text);
+//        }
+//        //Заповнити поля тел і.т.д
+//        $I->click('#submitOrder');
+//        $I->wait(5);
+//    }
 
 }
