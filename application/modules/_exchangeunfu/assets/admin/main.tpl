@@ -1,4 +1,4 @@
-<table class="table PartnersTable table-striped table-bordered table-hover table-condensed t-l_a" {if !$info}style="display: none"{/if}>
+<table class="table PartnersTable  table-bordered table-hover table-condensed t-l_a" {if !$info}style="display: none"{/if}>
     <thead>
         <tr>
             <th class="span1">#</th>

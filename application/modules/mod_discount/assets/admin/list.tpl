@@ -29,7 +29,7 @@
     </div>
     <div class="row-fluid">
         {if count($discountsList) > 0}
-            <table class="table table-striped table-bordered table-hover table-condensed discounts_table t-l_a">
+            <table class="table  table-bordered table-hover table-condensed discounts_table t-l_a">
                 <thead>
                     <tr style="cursor: pointer;">
                         <th>{lang('Key', 'mod_discount')}</th>

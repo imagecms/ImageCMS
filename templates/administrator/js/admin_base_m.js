@@ -11,7 +11,7 @@ function export_csv() {
 
             $('#exportUsers').submit();
 
-            $('#loading').hide();
+            hideLoading();
             return false;
         }
     });
