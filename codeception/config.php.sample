@@ -1,11 +1,13 @@
 <?php
 /**
- * визначити свох налаштування
+ * Вказати шлях до опен сервера
  */
-define('OPENSERVER_FILE_PATH','C:\OpenServer\domains\\');
-define('OPENSERVER_DOMAIN','cmsprem.loc\\');
-
+define('OPENSERVER_PATH','C:\OpenServer\domains');
+/**
+ * вказати імя домена
+ */
+define('OPENSERVER_DOMAIN','\cmsprem.loc');
 /**
  * не змінювати
  */
-define('FILE_PATH',OPENSERVER_FILE_PATH.OPENSERVER_DOMAIN);
+define('CSV_OUTPUT_FILE', OPENSERVER_PATH.OPENSERVER_DOMAIN.'\application\modules\import_export\backups\products.csv');

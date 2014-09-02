@@ -7,11 +7,11 @@ class CatProdPropCest {
 
 //---------------------------AUTORIZATION--------------------------------------- 
     /**
-     * @group a
+     * @group export
      */
-//    public function Login(ImportExportTester $I) {
-//        InitTest::Login($I);
-//    }
+    public function login(ImportExportTester $I) {
+        InitTest::Login($I);
+    }
 
     /**
      * @group a
@@ -36,9 +36,14 @@ class CatProdPropCest {
      * @guy ImportExportTester\importexportSteps
      */
     public function ExportProduct(ImportExportTester\importexportSteps $I) {
-//        $I->amOnPage('http://cmsprem.loc/admin/components/init_window/import_export/getTpl/export');
-        $I->comment(FILE_PATH);
-        ;
+        $I->amOnPage('http://cmsprem.loc/admin/components/init_window/import_export/getTpl/export');
+        $I->comment(CSV_OUTPUT_FILE);
+        $handle = fopen(CSV_OUTPUT_FILE, 'rb');
+        $csv = [];
+        while ($csv [] = fgetcsv($handle,0,';')){
+            
+        }
+        codecept_debug($csv);
     }
 
 //        $file_content = file('C:/CVS/products.csv');
