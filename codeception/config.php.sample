@@ -1,0 +1,11 @@
+<?php
+/**
+ * визначити свох налаштування
+ */
+define('OPENSERVER_FILE_PATH','C:\OpenServer\domains\\');
+define('OPENSERVER_DOMAIN','cmsprem.loc\\');
+
+/**
+ * не змінювати
+ */
+define('FILE_PATH',OPENSERVER_FILE_PATH.OPENSERVER_DOMAIN);

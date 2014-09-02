@@ -20,7 +20,7 @@
 codeception/tests/acceptance.suite.yml
 \codeception\tests\acceptance.suite.yml
 codeception\tests\acceptance.suite.yml
-codeception/codeception1.yml
+codeception/codeception.yml
 codeception/config.php
 /codeception/tests/_output/*
 codeception/tests/_output/*
