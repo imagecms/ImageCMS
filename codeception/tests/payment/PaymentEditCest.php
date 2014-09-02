@@ -34,21 +34,24 @@ class PaymentEditCest {
 
     /**
      * @group edit
+     * @group current
      * @guy PaymentTester\PaymentSteps 
      */
     public function name250(PaymentTester\PaymentSteps $I) {
         $I->amOnPage(PaymentListPage::$URL);
-        $I->click($this->PaymentName);
+        try {
+            $I->click($this->PaymentName);
+        } catch (Exception $e) {
+            $I->createDelivery($this->DeliveryName, 'on', null, null, null, null, null, $this->PaymentName);
+        }
         $I->waitForText('Редактирование способа оплаты', null, '.title');
         $I->editPayment(InitTest::$text250);
         $I->checkInList(InitTest::$text250);
         $this->PaymentName = InitTest::$text250;
-//        $I->fillField(DeliveryEditPage::$FieldName, InitTest::$text250);
-//        $I->checkInList($name)
     }
 
     /**
-     * @todo finish method and add to stepObject
+     * @todo finish method and add to stepObject, realise checking for all payment systems
      * Method for checking payment system in FrontEnd
      * @group current
      * @guy PaymentTester\PaymentSteps 
@@ -86,5 +89,4 @@ class PaymentEditCest {
 //        $I->click('#submitOrder');
 //        $I->wait(5);
 //    }
-
 }
