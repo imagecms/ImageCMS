@@ -467,15 +467,15 @@ $I->wait(1);
     /**
      * Delete currencies with passed name
      * 
-     * @param array|string $settedTodeleteName
+     * @param array|string $CurrenciName
      */
-    public function deleteCurrencies($settedTodeleteName) {
+    public function deleteCurrencies($CurrenciName) {
         $I = $this;
         $I->amOnPage(\CurrenciesPage::$URL);
         $CurrenciesAmount = $I->grabClassCount($I, 'mainCurrency');
         for ($row = 1; $row <= $CurrenciesAmount; ++$row) {
             $findedCur = $I->grabTextFrom(\CurrenciesPage::CurrencyNameLine($row));
-            if (is_string($settedTodeleteName) && $findedCur == $settedTodeleteName || is_array($settedTodeleteName) && in_array($findedCur, $settedTodeleteName)) {
+            if (is_string($CurrenciName) && $findedCur == $CurrenciName || is_array($CurrenciName) && in_array($findedCur, $CurrenciName)) {
                 $I->click("//tr[$row]//td[7]//button");
                 $I->waitForElementVisible("div#first .btn.btn-primary");
                 $I->wait(1);
@@ -566,16 +566,17 @@ $I->wait(1);
         }
         if (isset($active)) {
             $Class = $I->grabAttributeFrom('//form/div[1]/div[3]/div[2]/span', 'class');
+            $I->comment($Class);
 
             switch ($active) {
                 case 'on':
-                    if ($Class == 'frame_label') {
+                    if ($Class == 'frame_label no_connection') {
                         $I->click(\PaymentEditPage::$CheckboxActive);
                         $I->comment('Checkbox Active on');
                     }
                     break;
                 case 'off':
-                    if ($Class == 'frame_label active') {
+                    if ($Class == 'frame_label no_connection active') {
                         $I->click(\PaymentEditPage::$CheckboxActive);
                         $I->comment('Checkbox Active off');
                     }
