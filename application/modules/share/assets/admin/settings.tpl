@@ -20,7 +20,7 @@
         <div class="tab-content">
             <div class="tab-pane active" id="likes">
                 <div class="row-fluid">
-                    <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+                    <table class="table  table-bordered table-hover table-condensed content_big_td">
                         <thead>
                         <th>{lang("Settings", 'share')}</th>
                         </thead>
@@ -151,7 +151,7 @@
             </div>
             <div class="tab-pane" id="share_buttons">
                 <div class="row-fluid">
-                    <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+                    <table class="table  table-bordered table-hover table-condensed content_big_td">
                         <thead>
                         <th>{lang("Settings", 'share')}</th>
                         </thead>

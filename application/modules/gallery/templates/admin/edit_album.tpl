@@ -21,7 +21,7 @@
     </div>
    
     {if $album.images}
-        <table class="table">
+        <table class="table content_big_td">
             <tbody>
                 <tr>
                     <td style="border: 0;">
@@ -36,7 +36,7 @@
                         <ul class="sortable2 f-s_0 save_positions photo_list albums_list" data-url="/admin/components/cp/gallery/update_img_positions" data-url-delete="/admin/components/cp/gallery/delete_image">
                             {foreach $album.images as $item}
                                 <li>
-                                    <table  class="table table-striped table-bordered">
+                                    <table  class="table  table-bordered content_big_td">
                                         <tr>
                                             <td>
                                                 <div class="pull-left m-r_15">

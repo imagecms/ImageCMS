@@ -37,7 +37,7 @@
             <div class="tab-content m-t_20">
                 {if count($model)>0}
                     <div class="row-fluid">
-                        <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+                        <table class="table  table-bordered table-hover table-condensed">
                             <thead>
                                 <tr>
                                     <th class="span1">
