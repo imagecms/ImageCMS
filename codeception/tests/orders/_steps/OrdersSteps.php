@@ -115,7 +115,21 @@ extends \OrdersTester
     }
     
     
+//--------------------------Create Product Kits---------------------------------
     
+    function CreateProductKits($MainProductKits = NULL, $AddProductKits = NULL) {
+        $I = $this;
+        $I->amOnPage('/admin/components/run/shop/kits/kit_create');
+        $I->fillField('//table/tbody/tr/td/div/div/div[1]/div/input', $MainProductKits);
+        $I->wait('1');
+        $I->click('//body/ul[2]/li/a');
+        $I->fillField('//table/tbody/tr/td/div/div/div[2]/div/input', $AddProductKits);
+        $I->wait('1');
+        $I->click('//body/ul[3]/li/a');
+        $I->wait('1');
+        $I->click('//section/div[1]/div[2]/div/button[1]');
+        $I->wait('1');
+    }
     
     
     

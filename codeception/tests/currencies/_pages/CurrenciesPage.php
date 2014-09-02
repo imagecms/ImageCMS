@@ -19,17 +19,53 @@ class CurrenciesPage
     public static $NameCurrencyEdit  = './/*[@id="cur_ed_form"]/table/tbody/tr/td/div/div[1]/div/input';
     public static $IsoCodEdit  = './/*[@id="cur_ed_form"]/table/tbody/tr/td/div/div[2]/div/input';
     public static $SymbolEdit  = './/*[@id="cur_ed_form"]/table/tbody/tr/td/div/div[3]/div/input';
+    public static $TemplateForm  = ".//*[@id='cur_ed_form']/table[2]";
     public static $CurrencyTemplate  = '//*[@id="select-format"]';
     public static $FormatLine  = '//*[@id="select-format-currency"]';
     public static $DelimiterTens  = '//*[@id="select-separator-tens"]';
     public static $DelimiterThousands  = '//*[@id="select-thousands-separator"]';
-    public static $AmountDecimals  = '//*[@id="select-decimal-places"]';
+    public static $AmountDecimals  = '//*[@id="cur_ed_form"]/table[2]/tbody/tr/td/div/div[5]/div/select';
     public static $NotNullsCheckbox  = '//*[@id="cur_ed_form"]/table[2]/tbody/tr/td/div/div[6]/div/input';
     
     
+       
+    public static $DeleteWindow  = ".//div[@class='modal hide fade in']";
+    public static $DeleteButtonWindow  = './/*[@id="first"]/div[3]/a[1]';
+    public static $CancelButtonWindow  = './/*[@id="first"]/div[3]/a[2]';
+    
+    
+    public static $SearchField  = ".//*[@id='inputString']";
+    public static $SearchButton  = "html/body/div[1]/div[1]/header/div[2]/div/div/div[2]/div[2]/div/form/span/button";
+    
+    
+    //FrontEnd Product Price 
+    public static $MainFirstPlace  = ".//*[@id='items-catalog-main']/li/div[1]/div[2]/span/span/span/span[1]";
+    public static $MainSecondPlace  = ".//*[@id='items-catalog-main']/li/div[1]/div[2]/span/span/span/span[2]";
+    public static $AdditFirstPlace  = '//*[@id="items-catalog-main"]/li/div[1]/div[2]/span/span[2]/span/span/span[1]';
+    public static $AdditSecondPlace  = '//*[@id="items-catalog-main"]/li/div[1]/div[2]/span/span[2]/span/span/span[2]';
     
     
     //Кнопки в списке
+     public static function IdCurrencyLine($row){
+        $IdCur = "//tbody/tr[$row]/td[1]";
+        return $IdCur;
+    }    
+    public static function CurrencyNameLine($row) {
+        $CurrencyLine = "//tbody/tr[$row]/td[2]/a";
+        return $CurrencyLine;
+    }
+    public static function IsoCodeLine($row) {
+        $IsoCodeLine = "//tbody/tr[$row]/td[3]";
+        return $IsoCodeLine;
+    }
+    public static function SymbolCurrencyLine($row) {
+        $SymbLine = "//tbody/tr[$row]/td[4]";
+        return $SymbLine;
+    }
+    public static function RadioButtonLine($row){
+        $RadioBut = "//tbody//tr[$row]//td[5]/input";
+        return $RadioBut;
+    }
     public static function ActiveButtonLine($row){
         $ActiveBut = "//tbody/tr[$row]/td[6]/div/span";
         return $ActiveBut;
@@ -38,13 +74,5 @@ class CurrenciesPage
         $DeleteBut = "//tbody/tr[$row]/td[7]/button";
         return $DeleteBut;
     }
-    public static function RadioButtonLine($row){
-        $RadioBut = "//tbody//tr[$row]//td[5]/input";
-        return $RadioBut;
-    }
-    //Currency name in table
-    public static function CurrencyNameLine($row) {
-        $CurrencyLine = "//tbody/tr[$row]/td[2]/a";
-        return $CurrencyLine;
-    }
+        
 }

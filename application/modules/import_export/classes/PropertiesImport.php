@@ -27,11 +27,19 @@ class PropertiesImport extends BaseImport {
             foreach ($node as $nodeKey => $nodeElement) {
                 if (array_key_exists($nodeKey, $properyAlias) && !empty($nodeElement)) {
                     $result = $this->db->query('SELECT * FROM `shop_product_properties_data` WHERE `product_id` = ? AND `property_id` = ?', array($node['ProductId'], $properyAlias[$nodeKey]))->row();
-                    if (!($result instanceof \stdClass))
-                        $this->db->insert('shop_product_properties_data', array('product_id' => $node['ProductId'], 'property_id' => $properyAlias[$nodeKey], 'locale' => $this->languages, 'value' => $nodeElement));
-                    else {
-                        $this->db->update('shop_product_properties_data', array('value' => $nodeElement), array('product_id' => $node['ProductId'], 'property_id' => $properyAlias[$nodeKey], 'locale' => $this->languages));
-                    }
+
+                    if ($result instanceof \stdClass)
+                        $this->db->delete('shop_product_properties_data', array('product_id' => $node['ProductId'],
+                                                                            'property_id' => $properyAlias[$nodeKey]));
+                    $insertdata = array();
+                    $values = array_map('trim', explode('|', $nodeElement));
+                    foreach ($values as $v)
+                        $insertdata[] = array('product_id' => $node['ProductId'],
+                                                'property_id' => $properyAlias[$nodeKey],
+                                                'locale' => $this->languages,
+                                                'value' => $v);
+                    $this->db->insert_batch('shop_product_properties_data', $insertdata);
+
                     foreach ($node['CategoryIds'] as $categoryId) {
                         $result = $this->db->query('SELECT * FROM `shop_product_properties_categories` WHERE `category_id` = ? AND `property_id` = ?', array($categoryId, $properyAlias[$nodeKey]))->row();
                         if (!($result instanceof \stdClass))
@@ -43,10 +51,15 @@ class PropertiesImport extends BaseImport {
                     FROM `shop_product_properties_i18n`
                     WHERE id = ? AND locale = ?', array($properyAlias[$nodeKey], $this->languages))->row();
                     $data = (!empty($propery->data)) ? unserialize($propery->data) : array();
-                    if (!in_array($nodeElement, $data)) {
-                        $data[] = $nodeElement;
-                        $this->db->update('shop_product_properties_i18n', array('data' => serialize($data)), array('id' => $properyAlias[$nodeKey], 'locale' => $this->languages));
+                    $changed = false;
+                    foreach ($values as $v) {
+                        if (!in_array($v, $data)) {
+                            $changed = true;
+                            $data[] = $v;
+                        }
                     }
+                    if ($changed)
+                        $this->db->update('shop_product_properties_i18n', array('data' => serialize($data)), array('id' => $properyAlias[$nodeKey], 'locale' => $this->languages));
                 }
             }
         }
