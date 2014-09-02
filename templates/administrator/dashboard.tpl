@@ -1,5 +1,4 @@
-
-<div class="container ">
+<div class="container">
     <section class="mini-layout">
         <div class="frame_title clearfix">
             <div class="pull-left">
@@ -14,9 +13,9 @@
             </div>
         </div>
         <div class="row-fluid">
-            <div class="span8 content_big_td">
+            <div class="span8">
                 <h4>{lang("New pages","admin")}</h4>
-                <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+                <table class="table  table-bordered table-hover table-condensed">
                     <thead>
                     <th>{lang("Title","admin")}</th>
                         {if count($latest)>0}
@@ -62,7 +61,7 @@
                     </tbody>
                 </table>
                 <h4>{lang("Updated pages","admin")}</h4>
-                <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+                <table class="table  table-bordered table-hover table-condensed">
                     <thead>
                     <th>
                         {lang("Title","admin")}
@@ -112,7 +111,7 @@
                 </table>
             </div>
             <div class="span4">
-                <table class="table table-striped table-bordered table-hover table-condensed content_big_td" style="margin-top: 40px;">
+                <table class="table table-bordered table-hover table-condensed content_big_td" style="margin-top: 40px;">
                     <thead>
                     <th>{lang("System","admin")}</th>
                     </thead>
@@ -131,7 +130,7 @@
                         </tr>
                     </tbody>
                 </table>
-                <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+                <table class="table  table-bordered table-hover table-condensed content_big_td">
                     <thead>
                     <th>{lang("Statistics","admin")}</th>
                     </thead>
@@ -149,7 +148,7 @@
                 </table>
                 {if count($comments)>0}
 
-                    <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+                    <table class="table  table-bordered table-hover table-condensed content_big_td">
                         <thead>
                         <th>{lang('Latest/recent comments', 'admin')}</th>
                         </thead>
@@ -170,7 +169,7 @@
                     </table>
                 {/if}
                 {if count($api_news) > 1}
-                    <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+                    <table class="table  table-bordered table-hover table-condensed content_big_td">
                         <thead>
                         <th>{lang('Interesting articles with blog ImageCMS',"admin")}</th>
                         </thead>

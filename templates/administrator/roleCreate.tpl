@@ -14,7 +14,7 @@
 
     </div>
     <form method="post" action="{$ADMIN_URL}roleCreate" class="form-horizontal" id="role_cr_form">
-        <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+        <table class="table  table-bordered table-hover table-condensed content_big_td">
             <thead>
                 <tr>
                     <th colspan="6">
@@ -64,7 +64,7 @@
                 <div class="tab-pane row {if $key == 'base'}active{/if}" id="{echo $key}">
                     {foreach $type as $k => $groups} 
                         <div class="span3">
-                            <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                            <table class="table  table-bordered table-hover table-condensed t-l_a">
                                 <thead>
                                     <tr>
                                         <th class="t-a_c span1">

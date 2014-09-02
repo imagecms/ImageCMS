@@ -51,7 +51,7 @@
                 <button type="button" class="btn btn-small disabled listFilterSubmitButton pull-right " style="margin-top:-26px; margin-right: 3px;" disabled="disabled"><i class="icon-filter"></i> {lang('Filter admin', 'user_manager')}</button>
 
                 <form method="get" action="/admin/components/cp/user_manager/search/" id="ordersListFilter" class="listFilterForm">
-                    <table class="table table-striped table-bordered table-hover table-condensed t-l_a" style="clear: both;">
+                    <table class="table  table-bordered table-hover table-condensed t-l_a" style="clear: both;">
                         <thead>
                             <tr>
                                 <th class="t-a_c span1">

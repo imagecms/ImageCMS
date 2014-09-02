@@ -42,7 +42,7 @@
         <div class="tab-content">
             <!-----------------------------------------------------SETTINGS MAIL-------------------------------------------------------------->
             <div class="tab-pane active" id="mail">
-                <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
                     <thead>
                         <tr>
                             <th colspan="6">
@@ -118,7 +118,7 @@
             <!-----------------------------------------------------USER-------------------------------------------------------------->
             <div class="tab-pane" id="user">
                 {if count($all) > 0}
-                    <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                    <table class="table  table-bordered table-hover table-condensed t-l_a">
                         <thead>
                             <tr>
                                 <th class="t-a_c span1">
