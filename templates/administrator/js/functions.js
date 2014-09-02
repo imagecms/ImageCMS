@@ -291,13 +291,13 @@ $('body').off('click.validate').on('click.validate', '.formSubmit', function() {
     $(selector).validate()
     if ($(selector).valid())
     {
-        $('#loading').fadeIn(100);
+        showLoading();
         var options = {
             data: $.extend({
                 "action": action
             }, eval('(' + data + ')')),
             success: function(data) {
-                $('#loading').fadeOut(100);
+                hideLoading();
                 var resp = document.createElement('div');
                 resp.innerHTML = data;
                 $(resp).find('p').remove();

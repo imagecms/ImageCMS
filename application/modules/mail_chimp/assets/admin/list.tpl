@@ -41,7 +41,7 @@
         </div>
         <div class="row-fluid">
             <form method="post" action="/admin/components/init_window/mail_chimp/create/" class="form-horizontal" id="mail_form">
-                <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+                <table class="table  table-bordered table-hover table-condensed">
                     <thead>
                         <tr>
                             <th class="t-a_c span1">

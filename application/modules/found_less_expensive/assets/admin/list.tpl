@@ -31,7 +31,7 @@
         {if count($data) > 0}
             <div class="tab-pane active" id="modules">
                 <div class="row-fluid">
-                   <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                   <table class="table  table-bordered table-hover table-condensed t-l_a">
                     <thead>
                         <tr>
                             <th class="t-a_c span1"></th>
