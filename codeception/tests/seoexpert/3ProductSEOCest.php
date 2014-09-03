@@ -49,39 +49,63 @@ class ProductSEOCest
     
     
     /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps 
      */
     public function CreateProperty(SeoExpertTester\seoexpertSteps $I) {
-      $I->SeoCreateProperty($NameProperty = 'Оуххх Х', $CVS = 'XYXYxyxyxyxyXYXY', $Category = 'СЕОшная', $Values1 = 'Первое Свойство', $Values2 = 'Vtoroe Svoystvo', $Values3 = 'Третье свойство', $Values4  = 'The END');
-      $I->SeoSelectPropertyInProduct($NameProduct = 'Товарчик для SEO експерта', $Property1 = 'Yes');
+        $I->SeoCreateProperty($NameProperty = 'Оуххх Х', $CVS = 'XYXYxyxyxyxyXYXY', $Category = 'СЕОшная', $Values1 = 'Первое Свойство', $Values2 = NULL, $Values3 = NULL, $Values4 = NULL);
+//        $I->SeoCreateProperty($NameProperty = 'Оуххх Х', $CVS = 'XYXYxyxyxyxyXYXY', $Category = 'СЕОшная', $Values1 = 'Первое Свойство');
+        $I->SeoSelectPropertyInProduct($NameProduct = 'Товарчик для SEO експерта', $Property1 = 'Yes');
     }
-    
-    
-    
     
     /**
      * @group a
      */
-    public function ShopProductTitlePage (SeoExpertTester $I){
+    public function BaseDefoultValues (SeoExpertTester $I) {
+        $I->amOnPage(seoexpertPage::$SeoUrl);
+        $I->click(seoexpertPage::$SeoBaseRadioButtCategoryNameNo);
+        $I->click(seoexpertPage::$SeoBaseRadioButtSiteNameNo);
+        $I->fillField(seoexpertPage::$SeoBaseFieldSeparator, '');
+        $I->fillField(seoexpertPage::$SeoBaseFieldDescription, '');
+        $I->fillField(seoexpertPage::$SeoBaseFieldKeywords, '');
+        $I->fillField(seoexpertPage::$SeoBaseFieldSiteName, '');
+        $I->fillField(seoexpertPage::$SeoBaseFieldShortSiteName, '');
+        $I->click(seoexpertPage::$SeoButtSave);
+        $I->wait('1');
+    }
+    
+    
+
+   
+
+    
+    /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps
+     */
+    public function ShopProductPageTitle (SeoExpertTester\seoexpertSteps $I){
         $I->amOnPage('/admin/components/run/shop/properties');
         $I->wait('2');
         $I->fillField('//form/table/thead/tr[2]/td[3]/input', $namesOfProperty = 'Оуххх Х');
         $I->click('//section/div[1]/div[2]/div/button[1]');
-        $I->wait('2');
         $a = $I->grabTextFrom('//tr[1]/td[2]');
-        $I->comment("$a");        
+        $I->comment("$a");   
+        $I->wait('2');               
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->click(seoexpertPage::$SeoButtShop);
         $I->wait('1');
-        $I->fillField(seoexpertPage::$SeoProductTitle, "ID-%ID% ИМЯ=%name% Catg_%category% Бренді:%brand% ЦЕНа(%price%) ВалХ[%CS%] /%p_$a%,.");
-        $I->click(seoexpertPage::$SeoProductCheckBoxActive);
+        $I->fillField(seoexpertPage::$SeoProductTitle, "%ID%%name%%category%%brand%%price%%CS%%p_$a%");
+        $I->fillField(seoexpertPage::$SeoProductDescription, '');
+        $I->fillField(seoexpertPage::$SeoProductKeywords, '');
+        $checkbox_path = '//tbody/tr[1]/td/div/div/div[2]/div/span[2]'; 
+        $I->ActivateCheckBox($checkbox_xpath = $checkbox_path);
         $I->click(seoexpertPage::$SeoButtSave);
+        InitTest::ClearAllCach($I);
         $I->wait('2');
         $I->amOnPage('/shop/product/tovarchik-dlia-seo-eksperta');
-        $I->wait('2');
-        $I->seeInPageSource('ID-17193 ИМЯ=Товарчик для SEO експерта Catg_СЕОшная категория Product Бренді:Про100 Бренд ЦЕНа(777) ВалХ[руб] /The END,.');
+        $I->wait('7');
+        $I->seeInPageSource('17194Товарчик для SEO експертаСЕОшная категория ProductПро100 Бренд777рубПервое Свойство');// / lastbuild.loc
              
     }
     
@@ -91,143 +115,66 @@ class ProductSEOCest
     
     /**
      * @group a
+     * @guy SeoExpertTester\seoexpertSteps
      */
-    public function ShopProductDescriptionPage (SeoExpertTester $I){
-        $I->amOnPage('/admin/components/run/shop/properties');
+    public function ShopProductPageDescription (SeoExpertTester\seoexpertSteps $I){
+       $I->amOnPage('/admin/components/run/shop/properties');
         $I->wait('2');
         $I->fillField('//form/table/thead/tr[2]/td[3]/input', $namesOfProperty = 'Оуххх Х');
         $I->click('//section/div[1]/div[2]/div/button[1]');
-        $I->wait('2');
         $a = $I->grabTextFrom('//tr[1]/td[2]');
-        $I->comment("$a");        
+        $I->comment("$a");   
+        $I->wait('2');               
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->click(seoexpertPage::$SeoButtShop);
         $I->wait('1');
         $I->fillField(seoexpertPage::$SeoProductTitle, '');
-        $I->fillField(seoexpertPage::$SeoProductDescription, "%ID% %name% %desc% %category% %brand% %price% %CS% %p_$a%");
-        $I->fillField(seoexpertPage::$SeoProductLength, '300');
-//        $I->click(seoexpertPage::$SeoProductCheckBoxActive);
-        $I->click(seoexpertPage::$SeoButtSave);
-        $I->wait('2');
-        $I->amOnPage('/shop/product/tovarchik-dlia-seo-eksperta');
-        $I->wait('2');
-        $I->seeInPageSource('17193 Товарчик для SEO експерта  СЕОшная категория Product Про100 Бренд 777 руб The END / lastbuild.loc');
-        $I->wait('1');
-        
-    }
-    
-    
-    
-    /**
-     * @group a
-     */
-    public function ShopProductKeywordsPage (SeoExpertTester $I){
-        $I->amOnPage('/admin/components/run/shop/properties');
-        $I->wait('2');
-        $I->fillField('//form/table/thead/tr[2]/td[3]/input', $namesOfProperty = 'Оуххх Х');
-        $I->click('//section/div[1]/div[2]/div/button[1]');
-        $I->wait('2');
-        $a = $I->grabTextFrom('//tr[1]/td[2]');
-        $I->comment("$a");        
-        $I->amOnPage(seoexpertPage::$SeoUrl);
-        $I->wait('1');
-        $I->click(seoexpertPage::$SeoButtShop);
-        $I->wait('1');
-        $I->fillField(seoexpertPage::$SeoProductTitle, '');
-        $I->fillField(seoexpertPage::$SeoProductDescription, '');
-        $I->fillField(seoexpertPage::$SeoProductLength, '300');
-        $I->fillField(seoexpertPage::$SeoProductKeywords, "Ключ %name% ко %category% всему %brand% тут %p_$a%");
-//        $I->click(seoexpertPage::$SeoProductCheckBoxActive);
-        $I->click(seoexpertPage::$SeoButtSave);
-        $I->wait('2');
-        $I->amOnPage('/shop/product/tovarchik-dlia-seo-eksperta');
-        $I->wait('2');
-        $I->seeInPageSource('Ключ Товарчик для SEO експерта ко СЕОшная категория Product всему Про100 Бренд тут The END');
-        
-    }
-    
-    
-    
-    /**
-     * @group aa
-     */
-    public function ShopProductLength1Page (SeoExpertTester $I){
-        $I->amOnPage('/admin/components/run/shop/properties');
-        $I->wait('2');
-        $I->fillField('//form/table/thead/tr[2]/td[3]/input', $namesOfProperty = 'Оуххх Х');
-        $I->click('//section/div[1]/div[2]/div/button[1]');
-        $I->wait('2');
-        $a = $I->grabTextFrom('//tr[1]/td[2]');
-        $I->comment("$a");        
-        $I->amOnPage(seoexpertPage::$SeoUrl);
-        $I->wait('1');
-        $I->click(seoexpertPage::$SeoButtShop);
-        $I->wait('1');
-        $I->fillField(seoexpertPage::$SeoProductTitle, '');
-        $I->fillField(seoexpertPage::$SeoProductLength, '0');
-        $I->fillField(seoexpertPage::$SeoProductDescription, InitTest::$text501);
+        $I->fillField(seoexpertPage::$SeoProductDescription, "%ID%  %name%  %category%  %brand%  %price% %CS%  %p_$a%");
         $I->fillField(seoexpertPage::$SeoProductKeywords, '');
-//        $I->click(seoexpertPage::$SeoProductCheckBoxActive);
+        $I->fillField(seoexpertPage::$SeoProductLength, '555');
+        $checkbox_path = '//tbody/tr[1]/td/div/div/div[2]/div/span[2]'; 
+        $I->ActivateCheckBox($checkbox_xpath = $checkbox_path);
         $I->click(seoexpertPage::$SeoButtSave);
+        InitTest::ClearAllCach($I);
         $I->wait('2');
         $I->amOnPage('/shop/product/tovarchik-dlia-seo-eksperta');
-        $I->wait('2');
-        $I->seeInPageSource(InitTest::$text501);
-              
+        $I->wait('7');
+        $I->seeInPageSource('17194  Товарчик для SEO експерта  СЕОшная категория Product  Про100 Бренд  777 руб  Первое Свойство');// / lastbuild.loc
+       
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     /**
      * @group a
+     * @guy SeoExpertTester\seoexpertSteps
      */
-    public function ShopProductPage (SeoExpertTester $I){
-        $I->amOnPage('/admin/components/run/shop/properties');
-        $I->wait('2');
-        $I->fillField('//form/table/thead/tr[2]/td[3]/input', $namesOfProperty = 'Оуххх Х');
-        $I->click('//section/div[1]/div[2]/div/button[1]');
-        $I->wait('2');
-        $a = $I->grabTextFrom('//tr[1]/td[2]');
-        $I->comment("$a");        
+    public function ShopProductPageLength (SeoExpertTester\seoexpertSteps $I){       
+        $I->wait('2');               
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->click(seoexpertPage::$SeoButtShop);
         $I->wait('1');
-        $I->fillField(seoexpertPage::$SeoProductTitle, "ID-%ID% ИМЯ=%name% Catg_%category% Бренді:%brand% ЦЕНа(%price%) ВалХ[%CS%] /%p_$a%,.");
-        $I->fillField(seoexpertPage::$SeoProductDescription, "%ID% %name% %desc% %category% %brand% %price% %CS% %p_$a%");
-        $I->fillField(seoexpertPage::$SeoProductLength, '300');
-        $I->fillField(seoexpertPage::$SeoProductKeywords, "Ключ %name% ко %category% всему %brand% тут %p_$a%");
-        $I->click(seoexpertPage::$SeoProductCheckBoxActive);
+        $I->fillField(seoexpertPage::$SeoProductTitle, '');
+        $I->fillField(seoexpertPage::$SeoProductDescription, 'я тут');
+        $I->fillField(seoexpertPage::$SeoProductKeywords, '');
+        $I->fillField(seoexpertPage::$SeoProductLength, '1');
+        $checkbox_path = '//tbody/tr[1]/td/div/div/div[2]/div/span[2]'; 
+        $I->ActivateCheckBox($checkbox_xpath = $checkbox_path);
         $I->click(seoexpertPage::$SeoButtSave);
+        InitTest::ClearAllCach($I);
         $I->wait('2');
         $I->amOnPage('/shop/product/tovarchik-dlia-seo-eksperta');
-        $I->wait('2');
-        $I->seeInPageSource('ID-17193 ИМЯ=Товарчик для SEO експерта Catg_СЕОшная категория Product Бренді:Про100 Бренд ЦЕНа(777) ВалХ[руб] /The END,.');
-        $I->wait('1');
-        $I->seeInPageSource('17193 Товарчик для SEO експерта  СЕОшная категория Product Про100 Бренд 777 руб The END / lastbuild.loc');
-        $I->wait('1');
-        $I->seeInPageSource('Ключ Товарчик для SEO експерта ко СЕОшная категория Product всему Про100 Бренд тут The END');
-        
+        $I->wait('7');
+        $I->dontSeeInPageSource('я тут');
+        $I->seeInPageSource('я');
+       
     }
+   
 
     
     
-    
-    
-    
-    
-    
+
     
     
     

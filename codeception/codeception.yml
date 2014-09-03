@@ -16,7 +16,7 @@ modules:
 #        - Cli
     config:
         WebDriver:
-            url: 'http://cmsprem.loc/'
+            url: 'http://lastbuild.loc/'
             browser: chrome
             window_size: maximize  
 #            restart: false

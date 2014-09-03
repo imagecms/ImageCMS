@@ -178,6 +178,7 @@ class TextElementSEOCest
      * @guy SeoExpertTester\seoexpertSteps 
      */
     public function VerifyTextAdvancedEditPage(SeoExpertTester\seoexpertSteps $I) {
+        $NameCategory = 'Для Сео Експерта';
         $I->SeoCreateCategoryProduct($createNameCategory ='Для Сео Експерта');
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
@@ -192,16 +193,41 @@ class TextElementSEOCest
         $I->click(seoexpertPage::$SeoCreatePageSelectCategory);
         $I->click(seoexpertPage::$SeoCreatePageButtSave);
         $I->wait('1');
-        $I->see('Для Сео Експерта', seoexpertPage::$SeoAdvencedLinkCategory);
-        $I->click(seoexpertPage::$SeoAdvencedLinkCategory);
-        $I->wait('1');
-        $I->see('Редактирование метаданных категории Для Сео Експерта', seoexpertPage::$SeoEditPageTitle);
-        $I->see('Meta-title:', '//tbody/tr/td/div/div/label[1]/span[1]');
-        $I->see('Meta-description:', '//tbody/tr/td/div/div/label[2]/span[1]');
-        $I->see('Длина описания:', '//tbody/tr/td/div/div/label[3]/span[1]');
-        $I->see('Meta-keywords:', '//table/tbody/tr/td/div/div/label[4]/span[1]');
-        $I->see('Активный:', '//tbody/tr/td/div/div/div[1]/div/span[1]');
-        $I->see('Использовать только для пустых метаданных:', '//tbody/tr/td/div/div/div[2]/div/span[1]');
+        $ListNameCategory = $I->grabTextFrom(seoexpertPage::$SeoAdvencedLinkCategory);
+        $I->comment("Такое название первой категории $ListNameCategory");
+        $I->wait('3');
+        $AmountRows = $I->grabTagCount($I, 'tbody tr');
+         $I->comment("Количество строк $AmountRows");
+        if($ListNameCategory == $NameCategory){
+            $I->click(seoexpertPage::$SeoAdvencedLinkCategory);
+            $I->see("Редактирование метаданных категории $NameCategory", seoexpertPage::$SeoEditPageTitle);  
+            $I->see('Вернуться', seoexpertPage::$SeoEditPageButtBack);    
+            $I->see('Сохранить и выйти', seoexpertPage::$SeoEditPageButtSaveAndBack);            
+        }
+        elseif($ListNameCategory != $NameCategory) {
+            for($j = 1;$j < $AmountRows;$j++){
+                $a = $I->grabTextFrom("//body/div[1]/div[5]/section/table/tbody/tr[$j]/td[2]/a"); 
+                $I->comment(" вот вот вот $a");
+                    if($a == $NameCategory){
+                    $I->click("//body/div[1]/div[5]/section/table/tbody/tr[$j]/td[2]/a");
+                    $I->wait('1');
+                    $I->see("Редактирование метаданных категории $NameCategory", seoexpertPage::$SeoEditPageTitle);  
+                    $I->see('Вернуться', seoexpertPage::$SeoEditPageButtBack);
+                    $I->see('Сохранить и выйти', seoexpertPage::$SeoEditPageButtSaveAndBack);
+                    break;
+                    } 
+            }
+        }
+//        $I->see('Для Сео Експерта', seoexpertPage::$SeoAdvencedLinkCategory);
+//        $I->click(seoexpertPage::$SeoAdvencedLinkCategory);
+//        $I->wait('1');
+//        $I->see('Редактирование метаданных категории Для Сео Експерта', seoexpertPage::$SeoEditPageTitle);
+//        $I->see('Meta-title:', '//tbody/tr/td/div/div/label[1]/span[1]');
+//        $I->see('Meta-description:', '//tbody/tr/td/div/div/label[2]/span[1]');
+//        $I->see('Длина описания:', '//tbody/tr/td/div/div/label[3]/span[1]');
+//        $I->see('Meta-keywords:', '//table/tbody/tr/td/div/div/label[4]/span[1]');
+//        $I->see('Активный:', '//tbody/tr/td/div/div/div[1]/div/span[1]');
+//        $I->see('Использовать только для пустых метаданных:', '//tbody/tr/td/div/div/div[2]/div/span[1]');
     }
     
     
