@@ -275,8 +275,8 @@ $('form input[type="submit"], form button[type="submit"]').off('click.validate')
     if (!form.valid())
         e.preventDefault();
 });
-$('body').off('click.validate').on('click.validate', '.formSubmit', function() {
 
+function handleFormSubmit() {
     //        collectMCEData();
     //update content in textareas with elRTE
     var $this = $(this);
@@ -311,7 +311,8 @@ $('body').off('click.validate').on('click.validate', '.formSubmit', function() {
     else
         $this.removeClass('disabled').attr('disabled', false);
     return false;
-});
+}
+$('body').off('click.validate').on('click.validate', '.formSubmit', handleFormSubmit);
 
 function updateNotificationsTotal()
 {
@@ -526,7 +527,7 @@ function initTinyMCE()
         // Location of TinyMCE script
         height: 300,
         language: locale.substr(0, 2),
-        script_url: MAINSITE.replace('../','http://')+'/js/tiny_mce/tiny_mce.js',
+        script_url: MAINSITE.replace('../', 'http://') + '/js/tiny_mce/tiny_mce.js',
         // General options
         theme: "advanced",
         //skin: "o2k7",
@@ -925,7 +926,6 @@ var orders = new Object({
             });
 
             if ($.exists('#productNumber')) {
-
                 $('#productNumber').autocomplete({
                     minChars: 1,
                     source: function(request, callback) {
@@ -1024,55 +1024,57 @@ var orders = new Object({
         });
     },
     getProductsInCategory: function(categoryId) {
-        console.log(categoryId)
-        $('#variantInfoBlock').hide();
+        $('.variantInfoBlock').hide();
         $.ajax({
             url: '/admin/components/run/shop/orders/ajaxGetProductsInCategory/',
             type: "post",
             data: 'categoryId=' + categoryId,
             async: false,
             success: function(data) {
-                products = JSON.parse(data)
-                $("#productsForOrders").empty();
-                $("#variantsForOrders").empty();
-                for (i = 0; i < products.length; i++) {
-                    $("#productsForOrders").append($('<option data-productName=\'' + products[i]['name'] + '\' value=' + products[i]['id'] + '>' + products[i]['name'] + '</option>'));
-                }
+                var products = JSON.parse(data)
+                $(".variantsForOrders").empty();
+                $(".productsForOrders").empty().each(function() {
+                    for (var i = 0; i < products.length; i++)
+                        $(this).append($('<option data-product-name=\'' + products[i]['name'] + '\' value=' + products[i]['id'] + '>' + products[i]['name'] + '</option>'));
+                })
             }
         });
     },
     getProductVariantsByProduct: function(productId, productName) {
-        $('#variantInfoBlock').hide();
+        $('.variantInfoBlock').hide();
         $.ajax({
             url: '/admin/components/run/shop/orders/ajaxGetProductVariants/',
             type: "post",
             data: 'productId=' + productId,
             complete: function(data) {
-                productVariants = JSON.parse(data.responseText);
-                separate = '';
-                $("#variantsForOrders").empty();
-                for (i = 0; i < productVariants.length; i++) {
-                    var variantName = '';
-                    if (productVariants[i]['name'] != '') {
-                        variantName = productVariants[i]['name'];
-                        separate = ' - '
-                    }
-                    price = parseFloat(productVariants[i]['price']).toFixed(2);
-                    $("#variantsForOrders").append($('<option data-stock=' + productVariants[i]['stock'] + ' data-price=' + price + ' data-variantName=\'' + variantName +
-                            '\' data-productId=' + productId + ' data-productName=\'' + productName + '\' data-productCurrency=' + curr + ' data-variantId=' + productVariants[i]['id'] +
-                            ' value=' + productVariants[i]['id'] + ' data-orig_price="' + productVariants[i]['origPrice'] + '">' + variantName + separate + price + ' ' + curr + '</option>'));
+                var productVariants = JSON.parse(data.responseText),
+                        separate = '';
+                console.log(productVariants)
+                $(".variantsForOrders").empty().each(function() {
+                    for (var i = 0; i < productVariants.length; i++) {
+                        var $this = $(this),
+                                variantName = '';
+                        if (productVariants[i]['name'] != '') {
+                            variantName = productVariants[i]['name'];
+                            separate = ' - '
+                        }
+                        var price = parseFloat(productVariants[i]['price']).toFixed(2);
+                        $this.append($('<option data-number=' + productVariants[i]['number'] + ' data-stock=' + productVariants[i]['stock'] + ' data-price=' + price + ' data-variantName=\'' + variantName +
+                                '\' data-product-id=' + productId + ' data-product-name=\'' + productName + '\' data-productCurrency=' + curr + ' data-variantId=' + productVariants[i]['id'] +
+                                ' value=' + productVariants[i]['id'] + ' data-orig_price="' + productVariants[i]['origPrice'] + '">' + variantName + separate + price + ' ' + curr + '</option>'));
 
-                    $($('#variantsForOrders').find('option')[0]).trigger('click');
-                    $('#variantsForOrders').trigger('change');
-                }
+                        $($this.find('option')[0]).trigger('click');
+                        $this.trigger('change');
+                    }
+                });
             }
         });
     },
     //Add product to cart in admin
     addToCartAdmin: function(element) {
-        var clonedElement = $('.addNewProductBlock').clone(true).removeClass('addNewProductBlock');
-        var data = element.data();
-        var variantName = '-';
+        var clonedElement = $('.addNewProductBlock').clone(true).removeClass('addNewProductBlock'),
+                data = element.data(),
+                variantName = '-';
 
         if (data.variantname != 'noName') {
             variantName = data.variantname;
@@ -1082,14 +1084,15 @@ var orders = new Object({
 
         }
 
+        clonedElement.find('.variantCartNumber').html(data.number);
         clonedElement.find('.variantCartName').html(variantName);
-        clonedElement.find('.productCartName').html(data.productname);
+        clonedElement.find('.productCartName').html(data.productName);
         clonedElement.find('.productCartPrice').html(parseFloat(data.price).toFixed(2));
         clonedElement.find('.productCartPriceSymbol').html(data.productcurrency);
 
         //Input values
         clonedElement.find('.inputProductId').val(data.productid);
-        clonedElement.find('.inputProductName').val(data.productname);
+        clonedElement.find('.inputProductName').val(data.productName);
         clonedElement.find('.inputVariantId').val(data.variantid);
         clonedElement.find('.inputVariantName').val(variantName);
         clonedElement.find('.inputPrice').val(data.price);
@@ -1106,7 +1109,7 @@ var orders = new Object({
     deleteCartProduct: function(element) {
         $(element).closest('tr').remove();
         orders.updateTotalCartSum();
-        $('#addVariantToCart').removeClass('btn-primary').removeAttr('disabled').addClass('btn-success').removeClass('btn-danger disabled').html(langs.addToCart);
+        $('.addVariantToCart').removeClass('btn-primary').removeAttr('disabled').addClass('btn-success').removeClass('btn-danger disabled').html(langs.addToCart);
     },
     updateQuantityAdmin: function(element) {
         var stock = $(element).data('stock');
