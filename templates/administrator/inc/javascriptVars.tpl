@@ -20,6 +20,8 @@
     langs.discount = "{lang('Discount','admin')}";
     langs.needToEnterName = "{lang('You need to enter a string','admin')}";
     langs.needToFillField = "{lang('This field is required.','admin')}";
+    langs.needToFillFields = "{lang('Fill in the required fields.','admin')}";
+    langs.notFound = "{lang('Your search did not found','admin')}";
     langs.please = "{lang('Please','admin')}";
     langs.enterCorrectValue = "{lang('enter the correct value','admin')}";
     langs.enterValidEmailAddress = "{lang('enter a valid email address','admin')}";
