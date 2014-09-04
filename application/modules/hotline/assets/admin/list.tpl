@@ -13,7 +13,7 @@
                             </div>                            
                         </div>
                            <form id="settings_form" name ="settings_form" action="/admin/components/cp/hotline/update" method="post">
-                            <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                            <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
                                 <thead>
                                     <tr>
                                         <th colspan="6">
@@ -72,7 +72,7 @@
                             </table>
                             
                                                         
-                            <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+                            <table class="table  table-bordered table-hover table-condensed content_big_td">
                                 <thead>
                                 <th>{lang('Hotline document','hotline')}</th>
                                 </thead>

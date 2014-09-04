@@ -19,7 +19,7 @@
             <div class="tab-content">
                 <div class="tab-pane active" id="modules">
 
-                    <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+                    <table class="table  table-bordered table-hover table-condensed content_big_td">
                         <thead>
                             <tr>
                                 <th colspan="6">

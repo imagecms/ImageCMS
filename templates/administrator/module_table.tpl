@@ -47,7 +47,7 @@
                     {if count($installed) != 0}
                         <div class="tab-pane active" id="modules">
                             <div class="row-fluid">
-                                <table class="modules_table table table-striped table-bordered table-hover table-condensed t-l_a">
+                                <table class="modules_table table  table-bordered table-hover table-condensed t-l_a">
                                     <thead>
                                         <tr>
                                             <th class="t-a_c span1">
@@ -134,7 +134,7 @@
                     <div class="tab-pane" id="set_modul">
                         {if count($not_installed) > 0}
                             <div class="row-fluid" id="nimc">
-                                <table class="table table-striped table-bordered table-hover table-condensed t-l_a" id="nimt">
+                                <table class="table  table-bordered table-hover table-condensed t-l_a" id="nimt">
                                     <thead>
                                         <tr>
                                             <th>{lang('Module','admin')}</th>
