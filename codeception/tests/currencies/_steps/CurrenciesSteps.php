@@ -67,7 +67,7 @@ class CurrenciesSteps extends \CurrenciesTester
                 $I->dontSeeCheckboxIsChecked(\CurrenciesPage::$NotNullsCheckbox);
                 break;
             case 'on':
-                $I->checkOption(\CurrenciesPage::$NotNullsCheckbox);
+                $I->click(\CurrenciesPage::$NotNullsCheckbox);
                 $I->wait('1');
                 $I->seeCheckboxIsChecked(\CurrenciesPage::$NotNullsCheckbox);
                 break;
