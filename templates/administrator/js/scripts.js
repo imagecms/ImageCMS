@@ -403,24 +403,9 @@ function init_2() {
                             }).appendTo(listProduct);
                     else
                         $('<option>', {
-                            text: langs.notFound
+                            text: langs.notFound,
+                            disabled: 'disabled'
                         }).appendTo(listProduct);
-
-                    //listProduct.children(':first').attr("selected", "selected");
-//                    productName = ui.item.name;
-//                    productId = ui.item.id;
-//                    categoryId = ui.item.category;
-//                    $('#categoryForOrders option:selected').each(function() {
-//                        this.selected = false;
-//                    });
-//                    $("#categoryForOrders [value='" + categoryId + "']").attr("selected", "selected");
-//                    orders.getProductsInCategory(categoryId);
-//                    $('.productsForOrders option:selected').each(function() {
-//                        this.selected = false;
-//                    });
-//                    $(".productsForOrders [value='" + productId + "']").attr("selected", "selected");
-//                    orders.getProductVariantsByProduct(productId, productName);
-//                    $('#productNameForOrders').val(productName);
                 }
             });
         });
@@ -430,7 +415,7 @@ function init_2() {
         var list = $('#listUsersForOrder')
         list.off('change').on('change', function() {
             orders.user = $(this).find(':selected').data();
-            $('#usersForOrders').val(orders.user.value).addClass('hasUser');
+            $('#usersForOrders').addClass('hasUser');
             $('#userEmail').val(orders.user.email);
             $('#userPhone').val(orders.user.phone);
             $('#userAddress').val(orders.user.address);
@@ -466,11 +451,17 @@ function init_2() {
                 type: "post",
                 dataType: 'json',
                 success: function(data) {
-                    for (var i in data)
+                    if (data)
+                        for (var i in data)
+                            $('<option>', {
+                                data: data[i],
+                                value: data[i].id,
+                                text: data[i].value
+                            }).appendTo(list);
+                    else
                         $('<option>', {
-                            data: data[i],
-                            value: data[i].id,
-                            text: data[i].value
+                            text: langs.notFound,
+                            disabled: 'disabled'
                         }).appendTo(list);
                 }
             });
@@ -972,11 +963,13 @@ function fixed_frame_title() {
             addH = FFT.adBlocke ? FFT.adBlock.height() : 0;
     if (top - wTop - addH < 0) {
         FFT.fixed_block.css('top', wTop - FFT.mini_layout_top + addH).addClass('active');
-        if (FFT.rame_zH_frame_title_e)
+        if (FFT.frame_zH_frame_title_e)
             FFT.frame_zH_frame_title.css('top', 0);
     }
-    else if (FFT.frame_zH_frame_title_e)
-        FFT.frame_zH_frame_title.css('top', top - wTop);
+    else if (FFT.frame_zH_frame_title_e){
+        FFT.frame_zH_frame_title.css('top', top - wTop + addH);
+        }
+
     if (FFT.frame_zH_frame_title_e)
         FFT.frame_zH_frame_title.css('right', $(window).width() - FFT.fixed_block.outerWidth() - FFT.mini_layout.offset().left + 10).show();
 }
@@ -1218,8 +1211,6 @@ function initAdminArea() {
         $(this).closest('.control-group').find('.controls').html(img);
         $this.parent().next().val($type_file).attr('data-rel', 'tooltip');
         isChanged = $(this).closest('td').find('.changeImage').val('1');
-//        console.log($(img));
-
     });
     //add arrows to orders list
     if (window.hasOwnProperty('orderField'))
@@ -1397,7 +1388,6 @@ $(window).load(function() {
     });
     $(window).resize(function(event) {
         $(this).trigger('scroll');
-        $('.fade.in').remove();
         difTooltip();
     }).resize();
     if (window.hasOwnProperty('userLogined') && !notificationsInitialized && $.exists('#topPanelNotifications'))
@@ -1446,9 +1436,9 @@ $('#categoryForOrders').live('change', function() {
 
 //Get product variants
 $('.productsForOrders').live('change', function() {
-    console.log(1)
-    var productId = $(this).val();
-    var productName = $('.productsForOrders option:selected').data('productName');
+    var productId = $(this).val(),
+    productName = $(this).find('option:selected').data('productName');
+    
     orders.getProductVariantsByProduct(productId, productName);
 });
 //Get variants info
@@ -1528,56 +1518,7 @@ $('.shopOrdersPaymentMethod').live('change', function() {
     var $this = $(this);
     $($this.data('rel')).val($this.val());
 });
-/** When change discount recount total price**/
-$('#shopOrdersComulativ').live('keyup', function() {
-    var inputDiscount = $(this);
-    var userDiscount = $(this).val();
-    var totalCartSum = $('#totalCartSum').html();
-    var totalProductPrice = $('#shopOrdersTotalPrice').val();
-    if (inputDiscount.val() > 100) {
-        inputDiscount.val(99);
-        userDiscount = 99;
-    }
-    if ($('#shopOrdersGiftCertPrice').val() == null) {
-        totalProductPrice = (totalCartSum / 100 * (100 - userDiscount)).toFixed(pricePrecision);
-        $('#shopOrdersTotalPrice').val(totalProductPrice);
-    } else {
-        totalProductPrice = ((totalCartSum - $('#shopOrdersGiftCertPrice').val()) / 100 * (100 - userDiscount)).toFixed(pricePrecision);
-        $('#shopOrdersTotalPrice').val(totalProductPrice);
-    }
-});
-/** Chech gift Certificate **/
-$('#checkOrderGiftCert').live('click', function() {
-    var key = $('#shopOrdersCheckGiftCert').val();
-    var userDiscount = $('#shopOrdersComulativ').val();
-    var totalCartSum = $('#totalCartSum').html();
-    $.get('/admin/components/run/shop/orders/checkGiftCert/' + key, function(dataStr) {
-        data = JSON.parse(dataStr);
-        if (data.price != null) {
-            $('#shopOrdersGiftCertPrice').val(data.price);
-            $('#shopOrdersGiftCertKey').val(data.key);
-            totalCartSum = totalCartSum - data.price;
-            totalProductPrice = (totalCartSum / 100 * (100 - userDiscount)).toFixed(pricePrecision);
-            $('#shopOrdersTotalPrice').val(totalProductPrice);
-            $('#shopOrdersCheckGiftCert').attr('disabled', 'disabled');
-            $('#giftPrice').html(langs.curCertificate + data.price);
-            $('#currentGiftCertInfo').show();
-        }
-    });
-});
-/** Remove gift Certificate **/
-$('.removeGiftCert').live('click', function() {
-    var userDiscount = $('#shopOrdersComulativ').val();
-    var totalCartSum = $('#totalCartSum').html();
-    $('#shopOrdersGiftCertPrice').val('');
-    $('#shopOrdersGiftCertKey').val('');
-    totalProductPrice = (totalCartSum / 100 * (100 - userDiscount)).toFixed(pricePrecision);
-    $('#shopOrdersTotalPrice').val(totalProductPrice);
-    $('#shopOrdersCheckGiftCert').removeAttr('disabled');
-    $('#shopOrdersCheckGiftCert').val('');
-    $('#giftPrice').html('');
-    $('#currentGiftCertInfo').hide();
-});
+
 $('.orderMethodsEdit').live('click', function() {
     $(this).next('.orderMethodsRefresh').css('display', 'block');
     $(this).css('display', 'none');
