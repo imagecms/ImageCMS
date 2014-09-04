@@ -146,7 +146,7 @@ class TextImportCest
         $I->wantTo("Verify Way To Import Page.");
         $I->click(NavigationBarPage::$Settings);
         $I->click(NavigationBarPage::$SettingsImportExport);
-        $I->seeInCurrentUrl(ImportPage::$IMPURL);
+        $I->seeInCurrentUrl(ImportPage::$URL);
     }
     
     
@@ -155,9 +155,9 @@ class TextImportCest
      */
     public function VerifyTextImpotrPage (ImportExportTester $I){
         $I->wantTo('Verify Text On Import Page.');
-        $I->amOnPage(ImportPage::$IMPURL);
-        $I->see('Импорт', ImportPage::$IMPButtonImport);
-        $I->see('Импорт-Экспорт CSV/XLS', ImportPage::$IMPTitle);
+        $I->amOnPage(ImportPage::$URL);
+        $I->see('Импорт', ImportPage::$ButtonImport);
+        $I->see('Импорт-Экспорт CSV/XLS', ImportPage::$Title);
         $I->see('Импорт', '//section/div[2]/div[2]/div[1]/table/thead/tr/th');
         $I->see('Выберите файл');
         $I->see('Файлы', '//table/tbody/tr/td/div/form/div/div[1]/span');
@@ -174,8 +174,8 @@ class TextImportCest
      * @group a
      */
     public function VerifyTipInformationFile (ImportExportTester $I){
-        $I->amOnPage(ImportPage::$IMPURL);
-        $I->click(ImportPage::$IMPInfoFile);
+        $I->amOnPage(ImportPage::$URL);
+        $I->click(ImportPage::$InfoFile);
         $I->see('CSV/XLS/XLSX', ImportPage::$IMPInfoPopoverTitle);
         $I->see('Выберите файл в удобном формате', ImportPage::$IMPInfoPopoverContent);
         
@@ -185,8 +185,8 @@ class TextImportCest
      * @group a
      */
     public function VerifyTipInformationBD (ImportExportTester $I){
-        $I->amOnPage(ImportPage::$IMPURL);
-        $I->click(ImportPage::$IMPInfoBD);
+        $I->amOnPage(ImportPage::$URL);
+        $I->click(ImportPage::$InfoDB);
         $I->see('Backup', ImportPage::$IMPInfoPopoverTitle);
         $I->see('Данные вашей базы данных будут храниться в папке', ImportPage::$IMPInfoPopoverContent);
         
@@ -196,8 +196,8 @@ class TextImportCest
      * @group a
      */
     public function VerifyTipInformationIMG (ImportExportTester $I){
-        $I->amOnPage(ImportPage::$IMPURL);
-        $I->click(ImportPage::$IMPInfoImg);
+        $I->amOnPage(ImportPage::$URL);
+        $I->click(ImportPage::$InfoImg);
         $I->see('Ресайз', ImportPage::$IMPInfoPopoverTitle);
         $I->see('Для импортированных изображений будет произведен ресайз', ImportPage::$IMPInfoPopoverContent);
         
@@ -209,8 +209,8 @@ class TextImportCest
      * @group a
      */
     public function VerifyTipInformationPrice (ImportExportTester $I){
-        $I->amOnPage(ImportPage::$IMPURL);
-        $I->click(ImportPage::$IMPInfoPrice);
+        $I->amOnPage(ImportPage::$URL);
+        $I->click(ImportPage::$InfoPrice);
         $I->see('Проверка цен', ImportPage::$IMPInfoPopoverTitle);
         $I->see('Будут пересчитаны цены на продукцию в соответствии с валютой по умолчанию', ImportPage::$IMPInfoPopoverContent);
         
@@ -223,8 +223,8 @@ class TextImportCest
      * @group a
      */
     public function VerifyTipAlertMessage (ImportExportTester $I){
-        $I->amOnPage(ImportPage::$IMPURL);
-        $I->click(ImportPage::$IMPButtonStartImport);
+        $I->amOnPage(ImportPage::$URL);
+        $I->click(ImportPage::$ButtonStartImport);
         $I->waitForElement('.alert.in.fade.alert-success');
         $I->see('Не загружен файл. Слот пуст Подробнее', '.alert.in.fade.alert-success');        
     }
@@ -236,8 +236,8 @@ class TextImportCest
      * @group a
      */
     public function VerifyClickSlot2 (ImportExportTester $I){
-        $I->amOnPage(ImportPage::$IMPURL);
-        $I->click(ImportPage::$IMPButtonSlot2);
+        $I->amOnPage(ImportPage::$URL);
+        $I->click(ImportPage::$ButtonSlot2);
         $I->seeCheckboxIsChecked('//tbody/tr/td/div/form/div/div[2]/div/label/input');
     }
     
@@ -248,8 +248,8 @@ class TextImportCest
      * @group a
      */
     public function VerifyClickSlot3 (ImportExportTester $I){
-        $I->amOnPage(ImportPage::$IMPURL);
-        $I->click(ImportPage::$IMPButtonSlot3);
+        $I->amOnPage(ImportPage::$URL);
+        $I->click(ImportPage::$ButtonSlot3);
         $I->seeCheckboxIsChecked('//tbody/tr/td/div/form/div/div[3]/div/label/input');
     }
     
@@ -260,8 +260,8 @@ class TextImportCest
      * @group a
      */
     public function VerifyClickSlot1 (ImportExportTester $I){
-        $I->amOnPage(ImportPage::$IMPURL);
-        $I->click(ImportPage::$IMPButtonSlot1);
+        $I->amOnPage(ImportPage::$URL);
+        $I->click(ImportPage::$ButtonSlot1);
         $I->seeCheckboxIsChecked('//tbody/tr/td/div/form/div/div[1]/div/label/input');
     }
     
@@ -271,9 +271,9 @@ class TextImportCest
      * @group a
      */
     public function VerifyClickChekBoxBD (ImportExportTester $I){
-        $I->amOnPage(ImportPage::$IMPURL);
-        $I->click(ImportPage::$IMPChekBoxBD);
-        $I->seeCheckboxIsChecked(ImportPage::$IMPChekBoxBD);
+        $I->amOnPage(ImportPage::$URL);
+        $I->click(ImportPage::$ChekBoxBD);
+        $I->seeCheckboxIsChecked(ImportPage::$ChekBoxBD);
     }
     
     
@@ -282,9 +282,9 @@ class TextImportCest
      * @group a
      */
     public function VerifyClickChekBoxIMG (ImportExportTester $I){
-        $I->amOnPage(ImportPage::$IMPURL);
-        $I->click(ImportPage::$IMPChekBoxImg);
-        $I->seeCheckboxIsChecked(ImportPage::$IMPChekBoxImg);
+        $I->amOnPage(ImportPage::$URL);
+        $I->click(ImportPage::$ChekBoxImg);
+        $I->seeCheckboxIsChecked(ImportPage::$ChekBoxImg);
     }
     
     
@@ -293,9 +293,9 @@ class TextImportCest
      * @group a
      */
     public function VerifyClickChekBoxPrice (ImportExportTester $I){
-        $I->amOnPage(ImportPage::$IMPURL);
-        $I->click(ImportPage::$IMPChekBoxPrice);
-        $I->seeCheckboxIsChecked(ImportPage::$IMPChekBoxPrice);
+        $I->amOnPage(ImportPage::$URL);
+        $I->click(ImportPage::$ChekBoxPrice);
+        $I->seeCheckboxIsChecked(ImportPage::$ChekBoxPrice);
     }
     
     
@@ -307,8 +307,8 @@ class TextImportCest
      */
     public function ICMS1521 (ImportExportTester $I){
         $I->wantTo('Verify Link Page Open');
-        $I->amOnPage(ImportPage::$IMPURL);
-        $I->click(ImportPage::$IMPButtonStartImport);
+        $I->amOnPage(ImportPage::$URL);
+        $I->click(ImportPage::$ButtonStartImport);
         $I->waitForElement('.alert.in.fade.alert-success');
         $I->click('//body/div[1]/div[2]/div/a[2]');
 //        $I->amOnPage('http://docs.imagecms.net/administrirovanie-imagecms-shop/nastroiki/import-eksport');
