@@ -83,9 +83,9 @@
                 <div class="imagecms-inside">
                     <div class="container">
                         <button type="button" class="imagecms-close" {if $_COOKIE['condPromoToolbar'] == '1' || $_COOKIE['condPromoToolbar'] == NULL}style="display: block;"{/if} onclick="setCookie('condPromoToolbar', '0');
-                                $('.imagecms-top-fixed-header').removeClass('imagecms-active');
-                                $(this).hide().next().show();
-                                $(window).scroll();">
+                $('.imagecms-top-fixed-header').removeClass('imagecms-active');
+                $(this).hide().next().show();
+                $(window).scroll();">
                             <span class="imagecms-toggle-close-text imagecms-bar-close-text"><span style="font-size: 14px;">↑</span> Скрыть</span>
                         </button>
                         <button type="button" class="imagecms-close" {if $_COOKIE['condPromoToolbar'] == '0'}style="display: block;"{/if} onclick="setCookie('condPromoToolbar', '1');
@@ -174,14 +174,19 @@
                             <div class="pull-right span4 f-s_0 right-header">
                                 <span class="helper"></span>
                                 <ul class="d_i-b f-s_0">
-                                    {/*<li class="btn_header btn_header-danger">
+                                    {/*<li class="btn_header">
                                         <button type="button">
-                                            <span class="text-el">{lang("Осталось 5 дней", "admin")}</span>
+                                            <span class="text-el">{lang("14 days left", "admin")}</span>
+                                        </button>
+                                    </li>
+                                    <li class="btn_header btn_header-danger">
+                                        <button type="button">
+                                            <span class="text-el">{lang("5 days left", "admin")}</span>
                                         </button>
                                     </li>
                                     <li class="btn_header">
                                         <button type="button">
-                                            <span class="text-el">{lang("Free rate", "admin")}</span>
+                                            <span class="text-el">{lang("Free tarif", "admin")}</span>
                                         </button>
                                     </li>
                                     <li class="btn_header btn-mail">
@@ -227,7 +232,7 @@
                                     <li class="btn_header">
                                         <a href="{$BASE_URL}" target="_blank">
                                             <span class="icon_on-site"></span>
-                                            <span class="text-el">{lang('On site','admin')}</span>
+                                            <span class="text-el">{lang('To the site','admin')}</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -380,7 +385,9 @@
             <div id="loading"></div>
             {$CI->lang->load($langDomain)}
             <div class="container" id="mainContent">
-                {literal}<script>setTimeout(function() {$('.mini-layout').css('padding-top', $('.frame_title:not(.no_fixed)').outerHeight());}, 0);</script>{/literal}
+                {literal}<script>setTimeout(function() {
+                        $('.mini-layout').css('padding-top', $('.frame_title:not(.no_fixed)').outerHeight());
+                    }, 0);</script>{/literal}
                 {$content}
             </div>
             {$CI->lang->load('admin')}
