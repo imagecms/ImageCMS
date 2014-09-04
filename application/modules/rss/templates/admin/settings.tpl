@@ -13,7 +13,7 @@
     </div>
     <div class="tab-content">
         <form action="{$BASE_URL}admin/components/cp/rss/settings_update" id="rss_settings_form" method="post" class="form-horizontal">
-            <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+            <table class="table  table-bordered table-hover table-condensed content_big_td">
                 <thead>
                 <th>{lang("Settings", 'rss')}</th>
                 </thead>

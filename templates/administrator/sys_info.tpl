@@ -2,11 +2,12 @@
     <section class="mini-layout">
         <div class="frame_title clearfix">
             <div class="pull-left">
+                <span class="help-inline"></span>
                 <span class="title">{lang("System information","admin")}</span>
             </div>
         </div>
         <div class="row-fluid">
-            <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+            <table class="table  table-bordered table-hover table-condensed">
                 <tbody>
                     <tr>
                         <td class="span2">{lang("Level of server utilisation","admin")}:</td>

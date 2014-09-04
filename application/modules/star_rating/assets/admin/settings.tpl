@@ -16,7 +16,7 @@
         <div class="tab-content">
             <div class="tab-pane active" id="likes">
                 <div class="row-fluid">
-                    <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+                    <table class="table  table-bordered table-hover table-condensed content_big_td">
                         <thead>
                             <th>{lang('Show on pages', 'star_rating')}:</th>
                         </thead>
@@ -24,8 +24,8 @@
                             <tr>
                                 <td>
                                     <div class="inside_padd span9">
-                                        <div class="row-fluid" style ='padding:10px'>
-                                            <div class="controls-group" style ='padding:5px'>
+                                        <div class="row-fluid">
+                                            <div class="controls-group" style ='padding:5px 0'>
                                                  <span class="frame_label">
                                                      <span class="niceCheck">
                                                          <input type="checkbox" name="sr[main]" value="1" {if $settings->main == 1}checked="checked"{/if}/>
@@ -33,14 +33,14 @@
                                                  </span>
                                              </div>
                                              <hr style ='margin:5px'>
-                                             <div class="controls-group" style ='padding:5px'>
+                                             <div class="controls-group" style ='padding:5px 0'>
                                                  <span class="frame_label ">
                                                      <span class="niceCheck">
                                                          <input type="checkbox" name="sr[page]" value="1" {if $settings->page == 1}checked="checked"{/if}/>
                                                      </span> {lang('Contains', 'star_rating')}
                                                  </span>
                                              </div>
-                                             <div class="controls-group" style ='padding:5px'>
+                                             <div class="controls-group" style ='padding:5px 0'>
                                                  <span class="frame_label">
                                                      <span class="niceCheck">
                                                          <input type="checkbox" name="sr[category]" value="1" {if $settings->category == 1}checked="checked"{/if}/>
@@ -50,21 +50,21 @@
                                              </div>
                                              {if $is_shop != null}
                                                  <hr style ='margin:5px'>
-                                                 <div class="controls-group" style ='padding:5px'>
+                                                 <div class="controls-group" style ='padding:5px 0'>
                                                      <span class="frame_label">
                                                          <span class="niceCheck">
                                                              <input type="checkbox" name="sr[product]" value="1" {if $settings->product == 1}checked="checked"{/if}/>
                                                          </span> {lang('Product', 'star_rating')}
                                                      </span>
                                                  </div>
-                                                 <div class="controls-group" style ='padding:5px'>
+                                                 <div class="controls-group" style ='padding:5px 0'>
                                                      <span class="frame_label">
                                                          <span class="niceCheck">
                                                              <input type="checkbox" name="sr[shop_category]" value="1" {if $settings->shop_category == 1}checked="checked"{/if}/>
                                                          </span> {lang('Products category', 'star_rating')}
                                                      </span>
                                                  </div>
-                                                 <div class="controls-group" style ='padding:5px'>
+                                                 <div class="controls-group" style ='padding:5px 0'>
                                                      <span class="frame_label">
                                                          <span class="niceCheck">
                                                              <input type="checkbox" name="sr[brand]" value="1" {if $settings->brand == 1}checked="checked"{/if}/>

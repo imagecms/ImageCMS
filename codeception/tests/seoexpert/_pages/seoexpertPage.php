@@ -49,7 +49,7 @@ class seoexpertPage
     public static $SeoAdvencedChekBoxFirst = "//body/div[1]/div[5]/section/table/tbody/tr/td[1]/span/span";
     public static $SeoAdvencedChekBoxActive = "//body/div[1]/div[5]/section/table/tbody/tr/td[3]/div/span";
     public static $SeoAdvencedChekBoxMetaData = "//body/div[1]/div[5]/section/table/tbody/tr/td[4]/div/span";
-    public static $SeoAdvencedLinkCategory = "//body/div[1]/div[5]/section/table/tbody/tr/td[2]/a";    
+    public static $SeoAdvencedLinkCategory = "html/body/div[1]/div[5]/section/table/tbody/tr[1]/td[2]/a";    
     public static $SeoAdvencedDeleteWindowTitle = "//body/div[1]/div[5]/div/div[1]/h3";    
     public static $SeoAdvencedDeleteWindowMessage = "//body/div[1]/div[5]/div/div[2]/p";    
     public static $SeoAdvencedDeleteWindowButtX = "//body/div[1]/div[5]/div/div[1]/button";    

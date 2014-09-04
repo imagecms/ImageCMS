@@ -3,6 +3,8 @@
 class ExportPropertyPage
 
 {
+    
+    
     public static $PropURL = "/admin/components/run/shop/properties/create"; 
     public static $PropFieldName = "//tbody/tr/td/div/div[1]/div/input"; 
     public static $PropFieldCVS = "//tbody/tr/td/div/div[2]/div/input"; 
