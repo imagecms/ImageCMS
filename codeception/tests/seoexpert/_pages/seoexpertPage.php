@@ -8,8 +8,8 @@ class seoexpertPage
     public static $SeoTitle = "//div[1]/div[5]/section/div/div[1]/span[2]";
     public static $SeoButtBack = "//div[1]/div[5]/section/div/div[2]/div/a/span[2]";
     public static $SeoButtSave = "//div[1]/div[5]/section/div/div[2]/div/button";
-    public static $SeoButtBase = "//div[1]/div[5]/section/form/div/div[1]/div/a[1]";
-    public static $SeoButtShop = "//body/div[1]/div[5]/section/form/div/div[1]/div/a[2]";
+    public static $SeoButtBase = "//div[1]/div[5]/section/form/div[1]/div/a[1]";
+    public static $SeoButtShop = "//div[1]/div[5]/section/form/div[1]/div/a[2]";
     public static $SeoInfoPopoverTitle = ".popover-title";
     public static $SeoInfoPopoverContent = ".popover-content";
     
