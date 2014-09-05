@@ -12,7 +12,7 @@
         </div>                            
     </div>
     <form method="post" action="{site_url('admin/components/cp/found_less_expensive/update_settings')}" class="form-horizontal" id="settingsForm">
-        <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+        <table class="table  table-bordered table-hover table-condensed content_big_td">
             <thead>
                 <tr>
                     <th colspan="6">

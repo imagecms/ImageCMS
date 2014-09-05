@@ -254,7 +254,7 @@ class TextElementNLCest
         $I->click(NotificationListPage::$EditingLinkProduct);
         $I->see('Смартфон Samsung GT-S7530 Omnia M EAA Deep Grey');
      }
-   
+
     
     
     

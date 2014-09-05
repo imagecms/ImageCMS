@@ -22,7 +22,7 @@
             <form method="post" action="/admin/components/cp/menu/insert_menu_item/" id="{$item_type}_form">
                 <div class="row-fluid">
                     <div class="span6">
-                        <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                        <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
                             <thead>
                                 <tr>
                                     <th colspan="6">
@@ -78,7 +78,7 @@
                     </div>
                     <div class="span6">
                         <input type="hidden" id="owner_id" value="{$insert_id}" />
-                        <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                        <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
                             <thead>
                                 <tr>
                                     <th colspan="6">

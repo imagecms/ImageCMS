@@ -34,7 +34,7 @@
                     <i class="icon-info-sign"></i>
                 </span>
                 <div class="d_n">
-                    <table class="table table-striped">
+                    <table class="table ">
                         <thead>
                             <tr>
                                 <th>{lang('Old URL', 'trash')}</th>

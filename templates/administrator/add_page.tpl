@@ -25,9 +25,9 @@
         </div>
     </div>             
     <form method="post" action="{$BASE_URL}admin/pages/add" id="add_page_form" class="form-horizontal" >
-        <div class="tab-content content_big_td">
+        <div class="tab-content">
             <div class="tab-pane active" id="content_article">
-                <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
                     <thead>
                         <tr>
                             <th colspan="6">
@@ -86,7 +86,7 @@
                 </table>
             </div>
             <div class="tab-pane" id="parameters_article">
-                <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
                     <thead>
                         <tr>
                             <th colspan="6">
@@ -201,7 +201,7 @@
             </div>
 
             <div class="tab-pane" id="setings_article">
-                <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
                     <thead>
                         <tr>
                             <th colspan="6">

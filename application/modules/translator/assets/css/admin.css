@@ -156,7 +156,7 @@ div[class="tooltip-inner"] {
     font-weight: bold;
 }
 
-.content_big_td .statistic{
+.statistic{
     display: none; 
     width: 302px; 
     height: 50px; 
@@ -165,20 +165,20 @@ div[class="tooltip-inner"] {
     margin-bottom: 2px;
 }
 
-.content_big_td .statistic > .statisticTitle{
+.statistic > .statisticTitle{
     position: absolute; 
     margin-left: -90px; 
     margin-top: 5px;
 }
 
-.content_big_td .statistic table{
+.statistic table{
     width: 140px!important; 
     height: 50px!important;
     padding-left: 10px; 
     border-left: 1px solid #ddd;
 }
 
-.content_big_td .statistic table td{
+.statistic table td{
     border: none!important;
 }
 

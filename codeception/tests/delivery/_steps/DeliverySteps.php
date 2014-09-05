@@ -462,10 +462,12 @@ $I = $this;
                     elseif  ($text  == 'drag')     { $I->WaitForText('Позиции сохранены',           null, "//div[@class='alert in fade alert-success']"); }
                     $I->waitForElementNotVisible("//div[@class='alert in fade alert-success']");
 
+
                     break;
             case 'required':
                     $I->comment("I want to see that field is required");
                     $I->waitForText('Это поле обязательное.', NULL, '//label[@generated="true"]');
+
                     if      ($text =='create') { $I->assertEquals($I->grabAttributeFrom(\DeliveryCreatePage::$FieldName, 'class'), "alert alert-error"); }
                     elseif  ($text =='edit')   { $I->assertEquals($I->grabAttributeFrom(\DeliveryEditPage::$FieldName, 'class'), "required alert alert-error"); }
                     break;

@@ -64,6 +64,7 @@ class DeliveryAlertMessagesCest {
         $I->waitForText('Список способов доставки', null, '.title');
         $I->click(DeliveryPage::$CreateButton);
         $I->waitForText("Создание способа доставки", 10, '.title');
+
         $I->fillField(DeliveryCreatePage::$FieldName, $name);
         $I->click(DeliveryCreatePage::$ButtonCreate);
         $I->CheckForAlertPresent('error', 'namemax');
@@ -108,6 +109,7 @@ class DeliveryAlertMessagesCest {
         $I->click(DeliveryEditPage::$ButtonSave);
         $I->CheckForAlertPresent('required', 'edit');
     }
+
 
     /**
      * @group message
