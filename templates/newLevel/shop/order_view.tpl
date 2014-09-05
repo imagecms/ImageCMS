@@ -536,7 +536,7 @@
                                     <span class="price-new">
                                         <span>
                                             <span>
-                                                {echo \Currency\Currency::create()->getCurrencyToFormat(\Currency\Currency::create()->getMainCurrency()->getId(), $cartPrice,'span', 'curr', '',  'span', 'price')})
+                                                {echo \Currency\Currency::create()->getCurrencyToFormat(\Currency\Currency::create()->getMainCurrency()->getId(), $cartPrice,'span', 'curr', '',  'span', 'price')}
                                             </span>
                                             { /*}<span class="price">{echo $cartPrice}</span>
                                             <span class="curr">{$CS}</span>{ */}
