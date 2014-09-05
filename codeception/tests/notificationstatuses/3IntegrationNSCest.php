@@ -124,11 +124,13 @@ class IntegrationNSCest
     public function DeletingStatusMappingOnThePageNotificationList(NotificationStatusesTester $I){
         $I->wantTo('Verify Deleted Status Not Present on Notification List Page.');
         $I->amOnPage(NotificationListPage::$ListPageURL);   
+        $I->wait('1');        
         $I->dontsee('Гидрокарбонат',  NotificationListPage::$ListSelectMain); 
         $I->dontsee('123 qwe !@# ЯЧС',  NotificationListPage::$ListSelectMain);
         $I->dontSeeOptionIsSelected(NotificationListPage::$ListSelectFirst, 'Гидрокарбонат'); 
         $I->dontSeeOptionIsSelected(NotificationListPage::$ListSelectFirst, '123 qwe !@# ЯЧС'); 
         $I->click(NotificationListPage::$ListLinkEditting);
+        $I->wait('1');
         $I->dontseeOptionIsSelected(NotificationListPage::$EditingSelectStatus, 'Гидрокарбонат');
         $I->dontseeOptionIsSelected(NotificationListPage::$EditingSelectStatus, '123 qwe !@# ЯЧС');             
     }
