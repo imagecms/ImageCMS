@@ -101,8 +101,11 @@
                                     {if $hasDiscounts}
                                         <span class="price-discount">
                                             <span>
-                                                <span class="price priceOrigVariant">{echo $model->firstVariant->toCurrency('OrigPrice')}</span>
-                                                <span class="curr">{$CS}</span>
+                                                <span>
+                                                    {echo \Currency\Currency::create()->getCurrencyToFormat(\Currency\Currency::create()->getMainCurrency()->getId(), $model->firstVariant->toCurrency('OrigPrice'),'span', 'curr', '',  'span', 'price priceOrigVariant', '')}
+                                                </span>
+                                                {/*}<span class="price priceOrigVariant">{echo $model->firstVariant->toCurrency('OrigPrice')}</span>
+                                                <span class="curr">{$CS}</span>{ */}
                                             </span>
                                         </span>
                                     {/if}
@@ -111,8 +114,11 @@
                                     {if $oldoprice && !$hasDiscounts}
                                         <span class="price-discount">
                                             <span>
-                                                <span class="price priceOrigVariant">{echo intval($model->toCurrency('OldPrice'))}</span>
-                                                <span class="curr">{$CS}</span>
+                                                <span>
+                                                    {echo \Currency\Currency::create()->getCurrencyToFormat(\Currency\Currency::create()->getMainCurrency()->getId(), intval($model->toCurrency('OldPrice')),'span', 'curr', '',  'span', 'price priceOrigVariant', '')}
+                                                </span>
+                                                {/*}<span class="price priceOrigVariant">{echo intval($model->toCurrency('OldPrice'))}</span>
+                                                <span class="curr">{$CS}</span>{ */}
                                             </span>
                                         </span>
                                     {/if}
@@ -122,15 +128,21 @@
                                         <span class="current-prices f-s_0">
                                             <span class="price-new">
                                                 <span>
-                                                    <span class="price priceVariant">{echo $model->firstVariant->toCurrency()}</span>
-                                                    <span class="curr">{$CS}</span>
+                                                    <span>
+                                                        {echo \Currency\Currency::create()->getCurrencyToFormat(\Currency\Currency::create()->getMainCurrency()->getId(), $model->firstVariant->toCurrency(),'span', 'curr', '',  'span', 'price priceVariant', '')}
+                                                    </span>
+                                                    {/*}<span class="price priceVariant">{echo $model->firstVariant->toCurrency()}</span>
+                                                    <span class="curr">{$CS}</span>{ */}
                                                 </span>
                                             </span>
                                             {if $NextCSIdCond}
                                                 <span class="price-add">
                                                     <span>
-                                                        (<span class="price addCurrPrice">{echo $model->firstVariant->toCurrency('Price',$NextCSId)}</span>
-                                                        <span class="curr-add">{$NextCS}</span>)
+                                                        <span>
+                                                            ({echo \Currency\Currency::create()->getCurrencyToFormat($NextCSId, $model->firstVariant->toCurrency('Price',$NextCSId),'span', 'curr-add', '',  'span', 'price addCurrPrice', '')})
+                                                        </span>
+                                                        {/*}(<span class="price addCurrPrice">{echo $model->firstVariant->toCurrency('Price',$NextCSId)}</span>
+                                                        <span class="curr-add">{$NextCS}</span>){ */}
                                                     </span>
                                                 </span>
                                             {/if}
@@ -440,17 +452,21 @@
                                                         <span class="current-prices f-s_0">
                                                             <span class="price-new">
                                                                 <span>
-                                                                    <span class="price priceVariant">{echo $kitProducts->getMainProductPrice()}</span>
-                                                                    <span class="curr">{$CS}</span>
+                                                                    <span>
+                                                                        {echo \Currency\Currency::create()->getCurrencyToFormat(\Currency\Currency::create()->getMainCurrency()->getId(), $kitProducts->getMainProductPrice(),'span', 'curr', '',  'span', 'price priceVariant', '')}
+                                                                    </span>
+                                                                    {/*}<span class="price priceVariant">{echo $kitProducts->getMainProductPrice()}</span>
+                                                                    <span class="curr">{$CS}</span>{ */}
                                                                 </span>
                                                             </span>
                                                             {if $NextCSIdCond}
                                                                 <span class="price-add">
                                                                     <span>
-
-                                                                        (<span class="price addCurrPrice">{echo $kitProducts->getMainProductPrice($NextCSId)}</span>
-
-                                                                        <span class="curr-add">{$NextCS}</span>)
+                                                                        <span>
+                                                                            ({echo \Currency\Currency::create()->getCurrencyToFormat($NextCSId, $kitProducts->getMainProductPrice($NextCSId),'span', 'curr-add', '',  'span', 'price addCurrPrice', '')})
+                                                                        </span>
+                                                                        {/*}(<span class="price addCurrPrice">{echo $kitProducts->getMainProductPrice($NextCSId)}</span>
+                                                                        <span class="curr-add">{$NextCS}</span>){ */}
                                                                     </span>
                                                                 </span>
                                                             {/if}
@@ -483,8 +499,11 @@
                                                             {if $kitProduct->getDiscount()}
                                                                 <span class="price-discount">
                                                                     <span>
-                                                                        <span class="price priceOrigVariant">{echo $kitProduct->getKitProductPrice()}</span>
-                                                                        <span class="curr">{$CS}</span>
+                                                                        <span>
+                                                                            {echo \Currency\Currency::create()->getCurrencyToFormat(\Currency\Currency::create()->getMainCurrency()->getId(), $kitProduct->getKitProductPrice(),'span', 'curr', '',  'span', 'price priceOrigVariant', '')}
+                                                                        </span>
+                                                                        {/*}<span class="price priceOrigVariant">{echo $kitProduct->getKitProductPrice()}</span>
+                                                                        <span class="curr">{$CS}</span>{ */}
                                                                     </span>
                                                                 </span>
                                                             {/if}
@@ -493,15 +512,21 @@
                                                             <span class="current-prices f-s_0">
                                                                 <span class="price-new">
                                                                     <span>
-                                                                        <span class="price priceVariant">{echo $kitProduct->getKitNewPrice()}</span>
-                                                                        <span class="curr">{$CS}</span>
+                                                                        <span>
+                                                                            {echo \Currency\Currency::create()->getCurrencyToFormat(\Currency\Currency::create()->getMainCurrency()->getId(), $kitProduct->getKitNewPrice(),'span', 'curr', '',  'span', 'price priceVariant', '')}
+                                                                        </span> 
+                                                                        {/*}<span class="price priceVariant">{echo $kitProduct->getKitNewPrice()}</span>
+                                                                        <span class="curr">{$CS}</span>{ */}
                                                                     </span>
                                                                 </span>
                                                                 {if $NextCSIdCond}
                                                                     <span class="price-add">
                                                                         <span>
-                                                                            (<span class="price addCurrPrice">{echo $kitProduct->getKitNewPrice($NextCSId)}</span>
-                                                                            <span class="curr-add">{$NextCS}</span>)
+                                                                            <span>
+                                                                                ({echo \Currency\Currency::create()->getCurrencyToFormat($NextCSId, $kitProduct->getKitNewPrice($NextCSId),'span', 'curr', '',  'span', 'price priceVariant', '')})
+                                                                            </span>
+                                                                            {/*}(<span class="price addCurrPrice">{echo $kitProduct->getKitNewPrice($NextCSId)}</span>
+                                                                            <span class="curr-add">{$NextCS}</span>){ */}
                                                                         </span>
                                                                     </span>
                                                                 {/if}
@@ -522,22 +547,31 @@
                                             <div class="frame-prices f-s_0">
                                                 <span class="price-discount">
                                                     <span>
-                                                        <span class="price">{echo $kitProducts->getTotalPriceOld()}</span>
-                                                        <span class="curr">{$CS}</span>
+                                                        <span>
+                                                            {echo \Currency\Currency::create()->getCurrencyToFormat(\Currency\Currency::create()->getMainCurrency()->getId(), $kitProducts->getTotalPriceOld(),'span', 'curr', '',  'span', 'price', '')}
+                                                        </span>
+                                                        {/*}<span class="price">{echo $kitProducts->getTotalPriceOld()}</span>
+                                                        <span class="curr">{$CS}</span>{ */}
                                                     </span>
                                                 </span>
                                                 <span class="current-prices f-s_0">
                                                     <span class="price-new">
                                                         <span>
-                                                            <span class="price">{echo $kitProducts->getTotalPrice()}</span>
-                                                            <span class="curr">{$CS}</span>
+                                                            <span>
+                                                                {echo \Currency\Currency::create()->getCurrencyToFormat(\Currency\Currency::create()->getMainCurrency()->getId(), $kitProducts->getTotalPrice(),'span', 'curr', '',  'span', 'price', '')}
+                                                            </span>
+                                                            {/*}<span class="price">{echo $kitProducts->getTotalPrice()}</span>
+                                                            <span class="curr">{$CS}</span>{ */}
                                                         </span>
                                                     </span>
                                                     {if $NextCSIdCond}
                                                         <span class="price-add">
                                                             <span>
-                                                                (<span class="price">{echo $kitProducts->getTotalPrice($NextCSId)}</span>
-                                                                <span class="curr-add">{$NextCS}</span>)
+                                                                <span>
+                                                                    {echo \Currency\Currency::create()->getCurrencyToFormat($NextCSId, $kitProducts->getTotalPrice($NextCSId),'span', 'curr-add', '',  'span', 'price ', '')}
+                                                                </span>
+                                                                {/*}(<span class="price">{echo $kitProducts->getTotalPrice($NextCSId)}</span>
+                                                                <span class="curr-add">{$NextCS}</span>){ */}
                                                             </span>
                                                         </span>
                                                     {/if}
