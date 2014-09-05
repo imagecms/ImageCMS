@@ -593,7 +593,7 @@ function initTinyMCE()
                             y: win.document.forms[0].elements['fancyThumbY'].value,
                             cms_token: $('input[name=cms_token]').val()
                         }, function(data) {
-                            console.log(data);
+                            //console.log(data);
                         });
                     }
 
@@ -716,7 +716,6 @@ function elFinderPopup(type, id, path, onlyMimes)
                 {
                     var str = file.path;
                     var m = str.match('[\\\\ /]');
-                    console.log(m)
                     file.path = file.path.substr(m.index + 1);
                     if (path[0] != '/')
                         path = '/' + path;
@@ -1081,8 +1080,6 @@ var orders = new Object({
                 data = element.data(),
                 variantName = '-';
 
-        console.log(data)
-
         if (data.variantname != 'noName') {
             variantName = data.variantname;
             if (!data.variantname) {
@@ -1096,7 +1093,6 @@ var orders = new Object({
         clonedElement.find('.productCartPrice').html(parseFloat(data.price).toFixed(2));
         clonedElement.find('.productCartPriceSymbol').html(data.productcurrency);
 
-        console.log(data)
         //Input values
         clonedElement.find('.inputProductId').val(data.productId);
         clonedElement.find('.inputProductName').val(data.productName);

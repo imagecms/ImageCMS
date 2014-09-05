@@ -1519,6 +1519,59 @@ $('.shopOrdersPaymentMethod').live('change', function() {
     $($this.data('rel')).val($this.val());
 });
 
+/*discount createorder*/
+/** When change discount recount total price**/
+$('#shopOrdersComulativ').live('keyup', function() {
+    var inputDiscount = $(this);
+    var userDiscount = $(this).val();
+    var totalCartSum = $('#totalCartSum').html();
+    var totalProductPrice = $('#shopOrdersTotalPrice').val();
+    if (inputDiscount.val() > 100) {
+        inputDiscount.val(99);
+        userDiscount = 99;
+    }
+    if ($('#shopOrdersGiftCertPrice').val() == null) {
+        totalProductPrice = (totalCartSum / 100 * (100 - userDiscount)).toFixed(pricePrecision);
+        $('#shopOrdersTotalPrice').val(totalProductPrice);
+    } else {
+        totalProductPrice = ((totalCartSum - $('#shopOrdersGiftCertPrice').val()) / 100 * (100 - userDiscount)).toFixed(pricePrecision);
+        $('#shopOrdersTotalPrice').val(totalProductPrice);
+    }
+});
+/** Chech gift Certificate **/
+$('#checkOrderGiftCert').live('click', function() {
+    var key = $('#shopOrdersCheckGiftCert').val();
+    var userDiscount = $('#shopOrdersComulativ').val();
+    var totalCartSum = $('#totalCartSum').html();
+    $.get('/admin/components/run/shop/orders/checkGiftCert/' + key, function(dataStr) {
+        data = JSON.parse(dataStr);
+        if (data.price != null) {
+            $('#shopOrdersGiftCertPrice').val(data.price);
+            $('#shopOrdersGiftCertKey').val(data.key);
+            totalCartSum = totalCartSum - data.price;
+            totalProductPrice = (totalCartSum / 100 * (100 - userDiscount)).toFixed(pricePrecision);
+            $('#shopOrdersTotalPrice').val(totalProductPrice);
+            $('#shopOrdersCheckGiftCert').attr('disabled', 'disabled');
+            $('#giftPrice').html(langs.curCertificate + data.price);
+            $('#currentGiftCertInfo').show();
+        }
+    });
+});
+/** Remove gift Certificate **/
+$('.removeGiftCert').live('click', function() {
+    var userDiscount = $('#shopOrdersComulativ').val();
+    var totalCartSum = $('#totalCartSum').html();
+    $('#shopOrdersGiftCertPrice').val('');
+    $('#shopOrdersGiftCertKey').val('');
+    totalProductPrice = (totalCartSum / 100 * (100 - userDiscount)).toFixed(pricePrecision);
+    $('#shopOrdersTotalPrice').val(totalProductPrice);
+    $('#shopOrdersCheckGiftCert').removeAttr('disabled');
+    $('#shopOrdersCheckGiftCert').val('');
+    $('#giftPrice').html('');
+    $('#currentGiftCertInfo').hide();
+});
+/*/discount createorder*/
+
 $('.orderMethodsEdit').live('click', function() {
     $(this).next('.orderMethodsRefresh').css('display', 'block');
     $(this).css('display', 'none');
