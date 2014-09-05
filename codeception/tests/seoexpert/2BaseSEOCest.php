@@ -107,7 +107,7 @@ class BaseSEOCest
         $I->wait('1');
         $I->amOnPage('/shop/category/zzzz-kategoriia-dlia-seo#');
         $I->wait('1');
-        $I->seeInPageSource('Zzzz категория для SEO ./*-+ lastbuild.loc');
+        $I->seeInPageSource('Zzzz категория для SEO ./*-+ mini.loc');
     }
     
     
@@ -127,7 +127,7 @@ class BaseSEOCest
         $I->wait('1');
         $I->amOnPage('/shop/category/zzzz-kategoriia-dlia-seo#');
         $I->wait('1');
-        $I->seeInPageSource('Zzzz категория для SEO |%#@ lastbuild.loc');
+        $I->seeInPageSource('Zzzz категория для SEO |%#@ mini.loc');
     }
     
     
@@ -147,7 +147,7 @@ class BaseSEOCest
         $I->wait('1');
         $I->amOnPage('/shop/category/zzzz-kategoriia-dlia-seo#');
         $I->wait('1');
-        $I->seeInPageSource('Zzzz категория для SEO ~=\} lastbuild.loc');
+        $I->seeInPageSource('Zzzz категория для SEO ~=\} mini.loc');
     }
     
     
@@ -168,7 +168,7 @@ class BaseSEOCest
         $I->wait('1');
         $I->amOnPage('/shop/category/zzzz-kategoriia-dlia-seo#');
         $I->wait('1');
-        $I->seeInPageSource('Zzzz категория для SEO 1230 lastbuild.loc');
+        $I->seeInPageSource('Zzzz категория для SEO 1230 mini.loc');
     }
     
     
@@ -190,7 +190,7 @@ class BaseSEOCest
         $I->wait('1');
         $I->amOnPage('/shop/category/zzzz-kategoriia-dlia-seo#');
         $I->wait('1');
-        $I->seeInPageSource('Zzzz категория для SEO ЙЦол lastbuild.loc');
+        $I->seeInPageSource('Zzzz категория для SEO ЙЦол mini.loc');
     }
     
     

@@ -4,7 +4,7 @@ class TextElementOSCest
 {
 //---------------------------AUTORIZATION---------------------------------------   
     /**
-     * @group aaa
+     * @group a
      */
     public function Login(OrderStatusesTester $I){
         InitTest::Login($I);
@@ -225,7 +225,7 @@ class TextElementOSCest
 //---------------TEXT ELEMENT PRESENCE DELETING PAGE----------------------------
     
     /**
-     * @group aaa
+     * @group a
      */
     public function TextElementDeletingWindow(OrderStatusesTester $I){
         $I->wantTo('Verify Text Present on Delete Window.');

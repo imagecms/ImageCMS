@@ -4,7 +4,7 @@ class TextElementNSCest
 {
 //---------------------------AUTORIZATION---------------------------------------
     /**
-     * @group aaa
+     * @group a
      */
     public function Login(NotificationStatusesTester $I){
         InitTest::Login($I);
@@ -171,7 +171,7 @@ class TextElementNSCest
 //-----------------------VERIFY TEXT CREATE MESSAGE-----------------------------
     
     /**
-     * @group aaa
+     * @group a
      */
     public function VerifyTextCreateMessageCreatingPage (NotificationStatusesTester $I){
         $I->wantTo('Verify Message About Creating Status.');
@@ -187,7 +187,7 @@ class TextElementNSCest
 //--------------VERIFY TEXT ALERT MESSAGE EDITING PAGE--------------------------
     
     /**
-     * @group aaa
+     * @group a
      */
     public function VerifyTextAlertMessageEdictingPage (NotificationStatusesTester $I){
         $I->wantTo('Verify Alert Message.');

@@ -49,11 +49,11 @@ class ProductSEOCest
     
     
     /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps 
      */
     public function CreateProperty(SeoExpertTester\seoexpertSteps $I) {
-        $I->SeoCreateProperty($NameProperty = 'СЕО Тест Свойство', $CVS = 'XYXYxyxyxyxyXYXY', $Category = 'СЕО', $Values1 = 'Первое Свойство', $Values2 = NULL, $Values3 = NULL, $Values4 = NULL);
+//        $I->SeoCreateProperty($NameProperty = 'СЕО Тест Свойство', $CVS = 'XYXYxyxyxyxyXYXY', $Category = 'СЕО', $Values1 = 'Первое Свойство', $Values2 = NULL, $Values3 = NULL, $Values4 = NULL);
         $I->SeoSelectPropertyInProduct($NameProduct = 'СЕО Тест Продукт', $Property1 = 'Yes');
     }
     
@@ -297,7 +297,7 @@ class ProductSEOCest
     
     
     /**
-     * @group aa
+     * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function ShopProductPageDeactive (SeoExpertTester\seoexpertSteps $I){ 

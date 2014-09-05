@@ -131,7 +131,7 @@ extends \SeoExpertTester
          $I->wait('1');
          $I->click('//section/div[2]/table/tbody/tr/td[3]/div/a');
          $I->wait('2');
-         $I->click('//section/form/div/div[1]/div[1]/a[2]');
+         $I->click('//body/div[1]/div[5]/section/form/div[1]/div[1]/a[2]');
          $I->wait('2');
          $I->click('//table/tbody/tr/td/div/div/div/div/div/select/option[1]');
             if(isset($Property1)){
