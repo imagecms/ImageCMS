@@ -33,8 +33,11 @@
                     <span class="text-el">{echo SStringHelper::Pluralize($count, array(lang('товар','newLevel'),lang('товара','newLevel'),lang('товаров','newLevel')))}</span>
                     <span class="divider text-el">&#8226;</span>
                     <span class="d_i-b">
-                        <span class="text-el">{echo ShopCore::app()->SCurrencyHelper->convert($price)}</span>
-                        <span class="text-el">&nbsp;<span class="curr">{$CS}</span></span>
+                        <span>
+                            {echo \Currency\Currency::create()->getCurrencyToFormat(\Currency\Currency::create()->getMainCurrency()->getId(), ShopCore::app()->SCurrencyHelper->convert($price),'span', 'curr', '',  'span', 'text-el', '');}
+                        </span>
+                        { /*}<span class="text-el">{echo ShopCore::app()->SCurrencyHelper->convert($price)}</span>
+                        <span class="text-el">&nbsp;<span class="curr">{$CS}</span></span>{ */}
                     </span>
                 </span>
             </span>
