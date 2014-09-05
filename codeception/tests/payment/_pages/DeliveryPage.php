@@ -36,7 +36,7 @@ class DeliveryPage
         return $ListID;
     }
     public static function ListMethodLine ($row){
-        $ListMethod = "//table/tbody/tr[$row]/td[3]/a";
+        $ListMethod = "//section/div[2]/div/table/tbody/tr[$row]/td[3]/a";
         return $ListMethod;
     }
     public static function ListPriceLine ($row){
