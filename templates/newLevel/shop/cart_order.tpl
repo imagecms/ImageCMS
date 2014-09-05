@@ -74,8 +74,8 @@
                                             <span>
                                                 {echo \Currency\Currency::create()->getCurrencyToFormat($NextCSId, ShopCore::app()->SCurrencyHelper->convert($item->price * $item->quantity, $NextCSId),'span', 'curr', '',  'span', 'price', '');}
                                             </span>
-                                            { /*}<span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($item->price * $item->quantity, $NextCSId)}</span>
-                                            <span class="curr">{$NextCS}</span>{ */}
+                                            <!--<span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($item->price * $item->quantity, $NextCSId)}</span>
+                                            <span class="curr">{$NextCS}</span>-->
                                         </span>
                                     </span>
                                 {/if}
@@ -162,8 +162,8 @@
                                             <span>
                                                 {echo \Currency\Currency::create()->getCurrencyToFormat($NextCSId, ShopCore::app()->SCurrencyHelper->convert($item->price * $item->quantity, $NextCSId),'span', 'curr', '',  'span', 'price', '');}
                                             </span>
-                                            { /*}<span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($item->price * $item->quantity, $NextCSId)}</span>
-                                            <span class="curr">{$NextCS}</span>{ */}
+                                            <!--<span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($item->price * $item->quantity, $NextCSId)}</span>
+                                            <span class="curr">{$NextCS}</span>-->
                                         </span>
                                     </span>
                                 {/if}
