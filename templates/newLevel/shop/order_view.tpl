@@ -190,8 +190,8 @@
                                                                 <span>
                                                                     {echo \Currency\Currency::create()->getCurrencyToFormat(\Currency\Currency::create()->getMainCurrency()->getId(), $orderProduct->getPrice(),'span', 'curr', '',  'span', 'price', '');}
                                                                 </span>
-                                                                { /*}<span class="price">{echo $orderProduct->getPrice()}</span>
-                                                                <span class="curr">{$CS}</span>{ */}
+                                                                <!--<span class="price">{echo $orderProduct->getPrice()}</span>
+                                                                <span class="curr">{$CS}</span>-->
                                                             </span>
                                                         </span>
                                                         {if $NextCSIdCond}
@@ -200,8 +200,8 @@
                                                                     <span>
                                                                         {echo \Currency\Currency::create()->getCurrencyToFormat($NextCSId, ShopCore::app()->SCurrencyHelper->convert($orderProduct->getPrice(), $NextCSId),'span', 'curr-add', '',  'span', 'price', '');}
                                                                     </span>
-                                                                    { /*}<span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($orderProduct->getPrice(), $NextCSId)}</span>
-                                                                    <span class="curr-add">{$NextCS}</span>{ */}
+                                                                    <!--<span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($orderProduct->getPrice(), $NextCSId)}</span>
+                                                                    <span class="curr-add">{$NextCS}</span>-->
                                                                 </span>
                                                             </span>
                                                         {/if}
@@ -246,8 +246,8 @@
                                                                 <span>
                                                                     {echo \Currency\Currency::create()->getCurrencyToFormat($NextCSId, ShopCore::app()->SCurrencyHelper->convert($orderProduct->getPrice(), $NextCSId)*$orderProduct->getQuantity($NextCSId),'span', 'curr-add', '',  'span', 'price', '');}
                                                                 </span>
-                                                                { /*}<span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($orderProduct->getPrice(), $NextCSId)*$orderProduct->getQuantity($NextCSId)}</span>
-                                                                <span class="curr-add">{$NextCS}</span>{ */}
+                                                                <!--<span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($orderProduct->getPrice(), $NextCSId)*$orderProduct->getQuantity($NextCSId)}</span>
+                                                                <span class="curr-add">{$NextCS}</span>-->
                                                             </span>
                                                         </span>
                                                     {/if}
@@ -284,8 +284,8 @@
                                                                             <span>
                                                                                 {echo \Currency\Currency::create()->getCurrencyToFormat(\Currency\Currency::create()->getMainCurrency()->getId(), $orderProduct->getKit()->getMainProductPrice(),'span', 'curr', '',  'span', 'price', '');}
                                                                             </span>
-                                                                            { /*}<span class="price">{echo $orderProduct->getKit()->getMainProductPrice()}</span>
-                                                                            <span class="curr">{$CS}</span>{ */}
+                                                                            <!--<span class="price">{echo $orderProduct->getKit()->getMainProductPrice()}</span>
+                                                                            <span class="curr">{$CS}</span>-->
                                                                         </span>
                                                                     </span>
                                                                     {if $NextCSIdCond}
@@ -294,8 +294,8 @@
                                                                                 <span>
                                                                                     {echo \Currency\Currency::create()->getCurrencyToFormat($NextCSId, $orderProduct->getKit()->getMainProductPrice($NextCSId),'span', 'curr', '',  'span', 'price', '');}
                                                                                 </span>
-                                                                                { /*}<span class="price">{echo $orderProduct->getKit()->getMainProductPrice($NextCSId)}</span>
-                                                                                <span class="curr">{$NextCS}</span>{ */}
+                                                                                <!--<span class="price">{echo $orderProduct->getKit()->getMainProductPrice($NextCSId)}</span>
+                                                                                <span class="curr">{$NextCS}</span>-->
                                                                             </span>
                                                                         </span>
                                                                     {/if}
@@ -327,8 +327,8 @@
                                                                                 <span>
                                                                                     {echo \Currency\Currency::create()->getCurrencyToFormat(\Currency\Currency::create()->getMainCurrency()->getId(), $kitProducts->getKitProductPrice(),'span', 'curr', '',  'span', 'price', '');}
                                                                                 </span>
-                                                                                { /*}<span class="price priceOrigVariant">{echo $kitProducts->getKitProductPrice()}</span>
-                                                                                <span class="curr">{$CS}</span>{ */}
+                                                                                <!--<span class="price priceOrigVariant">{echo $kitProducts->getKitProductPrice()}</span>
+                                                                                <span class="curr">{$CS}</span>-->
                                                                             </span>
                                                                         </span>
                                                                     {/if}
@@ -338,8 +338,8 @@
                                                                                 <span>
                                                                                     {echo \Currency\Currency::create()->getCurrencyToFormat(\Currency\Currency::create()->getMainCurrency()->getId(), $kitProducts->getKitNewPrice(),'span', 'curr', '',  'span', 'price', '');}
                                                                                 </span>
-                                                                                { /*}<span class="price">{echo $kitProducts->getKitNewPrice()}</span>
-                                                                                <span class="curr">{$CS}</span>{ */}
+                                                                                <!--<span class="price">{echo $kitProducts->getKitNewPrice()}</span>
+                                                                                <span class="curr">{$CS}</span>-->
                                                                             </span>
                                                                         </span>
                                                                         {if $NextCSIdCond}    
@@ -348,8 +348,8 @@
                                                                                     <span>
                                                                                         {echo \Currency\Currency::create()->getCurrencyToFormat($NextCSId, $kitProducts->getKitNewPrice($NextCSId),'span', 'curr', '',  'span', 'price', '');}
                                                                                     </span>
-                                                                                    { /*}<span class="price">{echo $kitProducts->getKitNewPrice($NextCSId)}</span>
-                                                                                    <span class="curr">{$NextCS}</span>{ */}
+                                                                                    <!--<span class="price">{echo $kitProducts->getKitNewPrice($NextCSId)}</span>
+                                                                                    <span class="curr">{$NextCS}</span>-->
                                                                                 </span>
                                                                             </span>
                                                                         {/if}
@@ -396,8 +396,8 @@
                                                                  <span>
                                                                     {echo \Currency\Currency::create()->getCurrencyToFormat($NextCSId, $orderProduct->getKit()->getTotalPrice($NextCSId)*$orderProduct->getQuantity($NextCSId),'span', 'curr-add', '',  'span', 'price', '');}
                                                                  </span>
-                                                                { /*}<span class="price">{echo $orderProduct->getKit()->getTotalPrice($NextCSId)*$orderProduct->getQuantity($NextCSId)}</span>
-                                                                <span class="curr-add">{$NextCS}</span>{ */}
+                                                                <!--<span class="price">{echo $orderProduct->getKit()->getTotalPrice($NextCSId)*$orderProduct->getQuantity($NextCSId)}</span>
+                                                                <span class="curr-add">{$NextCS}</span>-->
                                                             </span>
                                                         </span>
                                                     {/if}
@@ -420,7 +420,7 @@
                                                 <span class="price-new">
                                                     <span>
                                                         <span>
-                                                            {echo \Currency\Currency::create()->getCurrencyToFormat(\Currency\Currency::create()->getMainCurrency()->getId(), ShopCore::app()->SCurrencyHelper->convert($model->getOriginPrice(),'span', 'curr', '',  'span', 'price', '');}
+                                                            {echo \Currency\Currency::create()->getCurrencyToFormat(\Currency\Currency::create()->getMainCurrency()->getId(), ShopCore::app()->SCurrencyHelper->convert($model->getOriginPrice()),'span', 'curr', '',  'span', 'price', '');}
                                                         </span>
                                                         { /*}<span class="price">
                                                             {echo ShopCore::app()->SCurrencyHelper->convert($model->getOriginPrice())}
@@ -543,7 +543,7 @@
                                         <span class="price-add">
                                             <span>
                                                 <span>
-                                                    {echo \Currency\Currency::create()->getCurrencyToFormat($NextCSId, ShopCore::app()->SCurrencyHelper->convert($cartPrice,$NextCSId),'span', 'curr-add', '',  'span', 'price', 'totalPriceAdd')}
+                                                    ({echo \Currency\Currency::create()->getCurrencyToFormat($NextCSId, ShopCore::app()->SCurrencyHelper->convert($cartPrice,$NextCSId),'span', 'curr-add', '',  'span', 'price', 'totalPriceAdd')})
                                                 </span>
                                                 { /*}(<span class="price" id="totalPriceAdd">{echo ShopCore::app()->SCurrencyHelper->convert($cartPrice,$NextCSId)}</span>
                                                 <span class="curr-add">{$NextCS}</span>){ */}
