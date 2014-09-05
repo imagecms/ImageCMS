@@ -6,9 +6,10 @@ define('OPENSERVER_PATH','C:\OpenServer\domains');
 /**
  * вказати імя домена
  */
-define('OPENSERVER_DOMAIN','\cmsprem.loc');
+define('OPENSERVER_DOMAIN','\lastbuild.loc');
 /**
  * не змінювати
  */
+
 define('BROWSER_DOWNLOADS', 'C:\Users\moff\Downloads\\');
-define('CSV_OUTPUT_FILE', OPENSERVER_PATH.OPENSERVER_DOMAIN.'\application\modules\import_export\backups\products.csv');
+
