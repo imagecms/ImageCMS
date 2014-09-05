@@ -10,4 +10,6 @@ define('OPENSERVER_DOMAIN','\lastbuild.loc');
 /**
  * не змінювати
  */
-define('CSV_OUTPUT_FILE', OPENSERVER_PATH.OPENSERVER_DOMAIN.'\application\modules\import_export\backups\products.csv');
+
+define('BROWSER_DOWNLOADS', 'C:\Users\moff\Downloads\\');
+

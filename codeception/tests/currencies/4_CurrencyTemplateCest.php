@@ -161,6 +161,7 @@ class CurrencyTemplateCest
         $delimTens="_";
         $delimThousands="@";
         $I->EditCurrency($this->k,$name=null,$isocode=null,$symbol=null,$rate=null,$template,$format=null,$delimTens1=null,$delimThousands1=null,$amount);
+        $I->wait('2');
         $I->EditCurrency($j,$name=null,$isocode=null,$symbol=null,$rate,$template,$format=null,$delimTens,$delimThousands,$amount);      
         $price="1@300_0000";
         $priceAddit="2@600_0000";
@@ -199,6 +200,7 @@ class CurrencyTemplateCest
         $template1="1";
         $amount="0";
         $I->EditCurrency($this->k,$name=null,$isocode=null,$symbol=null,$rate=null,$template1,$format=null,$delimTens=null,$delimThousands=null,$amount);
+        $I->wait('2');
         $I->EditCurrency($j,$name=null,$isocode=null,$symbol=null,$rate,$template,$format=null,$delimTens=null,$delimThousands=null,$amount);      
         $price="1 300"; 
         $priceAddit="2.600";
@@ -242,6 +244,7 @@ class CurrencyTemplateCest
         $template1="2";
         $amount1="2";
         $I->EditCurrency($this->k,$name=null,$isocode=null,$symbol=null,$rate=null,$template1,$format1=null,$delimTens1=null,$delimThousands1=null,$amount1);
+        $I->wait('2');
         $I->EditCurrency($j,$name=null,$isocode=null,$symbol=null,$rate,$template=null,$format,$delimTens,$delimThousands,$amount,$notNull='on');      
         $price="1@300";
         $priceAddit="2 600,00";
