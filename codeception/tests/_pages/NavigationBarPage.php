@@ -4,6 +4,10 @@ class NavigationBarPage
 {
     //      Navigation bar buttons
     
+    //Heade buttons
+    //
+    public static $PersonalButton = "//a[@class='btn_header btn-personal-area']";
+    public static $PersonalButtonLogout = "//a[@href='/admin/logout']";
     
     //     Настройки
     public static $Settings = "//div[1]/div[3]/table/tbody/tr/td[7]/a";
