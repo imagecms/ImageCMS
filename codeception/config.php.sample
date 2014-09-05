@@ -10,4 +10,5 @@ define('OPENSERVER_DOMAIN','\cmsprem.loc');
 /**
  * не змінювати
  */
+define('BROWSER_DOWNLOADS', 'C:\Users\moff\Downloads\\');
 define('CSV_OUTPUT_FILE', OPENSERVER_PATH.OPENSERVER_DOMAIN.'\application\modules\import_export\backups\products.csv');

@@ -3,7 +3,7 @@
 use \ImportExportTester;
 
 /**
- * імпортувати підготований CSV - Файл
+ * імпортувати підготований CSV - Файл (_data(test.csv))
  * перевірити на сторінці товару
  * змінити 
  * експортувати
@@ -20,23 +20,33 @@ class ImportExport {
 //---------------------------AUTORIZATION--------------------------------------- 
     /**
      * @group export
+     * @group current
      */
     public function login(ImportExportTester $I) {
-        InitTest::Login($I);
+         InitTest::Login($I);
     }
 
     /**
+     * @group current
+     */
+    public function importCSV(ImportExportTester $I) {
+        $I->amOnPage(ImportPage::$URL);
+        $I->click(ImportPage::$ButtonSlot1);
+        $I->wait(1);
+        $I->attachFile(ImportPage::$InputSelectFile, 'test.csv');
+        $I->click(ImportPage::$ButtonStartImport);
+    }
+    
+    
+    /**
+     * read export 
      * @group export
      */
+    
     public function exportCSV(ImportExportTester $I) {
         include_once '_steps/CSV.php';
-        
         $output_file = BROWSER_DOWNLOADS . 'products.csv';
-        
-        /*
-         * if browser downloads directory contains file products.csv - unlink it
-         *  
-         */
+        //if browser downloads directory contains file products.csv - unlink it
         if (file_exists($output_file)) {
             $I->comment("I unlink file products.csv");
             unlink($output_file);
@@ -61,12 +71,13 @@ class ImportExport {
         $I->click(ExportPage::$ButtonExport);
         $I->wait(5);
 
-        $csv = new CSV;
-        $array_csv = $csv->loadCSV(BROWSER_DOWNLOADS . 'products.csv');
-        codecept_debug($array_csv);
+
+        $array_csv = CSV::loadCSV(BROWSER_DOWNLOADS . 'products.csv');
     }
 
-    /**
+}
+
+/**
      * @group a
      * @guy ImportExportTester\importexportSteps
      */
@@ -103,7 +114,6 @@ class ImportExport {
 //            strstr($line, 'Твр 123 for click butn');
 //        }
 //        unlink('C:/CVS/products.csv');
-}
 
 /**
  * 
