@@ -5,9 +5,9 @@ class ImportPage
 {
        public static $URL = "/admin/components/init_window/import_export/getTpl/import";
        public static $Title = ".title";
-       public static $ButtonImport = ".btn.btn-small.disable.action_on";
+//       public static $ButtonImport =        ".btn.btn-small.disable.action_on";
        public static $InputSelectFile = "#importcsvfile";
-       public static $ButtonStartImport = ".btn.btn-small.disable.action_on";
+       public static $ButtonStartImport =   ".btn.btn-small.disable.action_on";
        
        public static $InfoFile = "//table/tbody/tr/td/div/form/div/div[1]/span/span/i";
        public static $InfoDB = "//table/tbody/tr/td/div/form/div/span[1]/span/i";

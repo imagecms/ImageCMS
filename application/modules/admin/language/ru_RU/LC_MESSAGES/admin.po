@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-04 11:30+0400\n"
-"PO-Revision-Date: 2014-09-04 11:30+0400\n"
+"POT-Creation-Date: 2014-09-04 06:28+0400\n"
+"PO-Revision-Date: 2014-09-04 06:28+0400\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -21,32 +21,48 @@ msgstr ""
 "X-Poedit-SearchPath-2: ../../modules/shop/admin\n"
 "X-Poedit-SearchPath-3: ../../../application/modules/shop/models/build/classes\n"
 
+#: ./templates/administrator/search.tpl:5
+msgid "Search results"
+msgstr "Результаты поиска"
+
+#: ./application/modules/shop/admin/templates/dashboard/dashboard.tpl:74
+#: ./application/modules/shop/admin/templates/orders/list.tpl:221
+#: ./application/modules/shop/admin/templates/users/edit_orders_list.tpl:75
+msgid "pcs"
+msgstr "штук"
+
+#: ./application/modules/shop/admin/templates/users/edit.tpl:199
+msgid "Pcs"
+msgstr "Штук"
+
+#: ./application/modules/shop/admin/templates/orders/cart_list.tpl:12
+#: ./application/modules/shop/admin/templates/orders/check.tpl:95
+#: ./application/modules/shop/admin/templates/orders/create.tpl:62
+#: ./application/modules/shop/admin/templates/orders/create.tpl:114
+msgid "Pieces."
+msgstr "Шт."
+
 #: ./templates/administrator/inc/javascriptVars.tpl:23
 msgid "Fill in the required fields."
 msgstr "Заполните необходимые поля."
 
-#: ./application/modules/shop/admin/templates/orders/create.tpl:32
+#: ./application/modules/shop/admin/templates/orders/create.tpl:31
 msgid "Product search"
-msgstr ""
-
-#: ./application/modules/shop/admin/templates/orders/create.tpl:63
-#: ./application/modules/shop/admin/templates/orders/create.tpl:114
-msgid "item"
-msgstr ""
+msgstr "Поиск товара"
 
 #: ./application/modules/shop/admin/templates/orders/create.tpl:131
 msgid "New user"
-msgstr ""
+msgstr "Новый пользователь"
 
 #: ./application/modules/shop/admin/templates/orders/create.tpl:132
 msgid "Find a user"
-msgstr ""
+msgstr "Поиск пользователя"
 
-#: ./application/modules/shop/admin/templates/orders/create.tpl:24
+#: ./application/modules/shop/admin/templates/orders/create.tpl:23
 msgid "Quick product search"
 msgstr "Быстрый поиск товара"
 
-#: ./application/modules/shop/admin/templates/orders/create.tpl:25
+#: ./application/modules/shop/admin/templates/orders/create.tpl:24
 msgid "Advanced search product"
 msgstr "Расширенный поиск товара"
 
@@ -279,7 +295,7 @@ msgstr "Логотип"
 msgid "No results match"
 msgstr "Совпадений не найдено"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:107
+#: ./templates/administrator/inc/javascriptVars.tpl:108
 msgid "Only fonts-files can be uploaded"
 msgstr "Только файлы-шрифтов могут быть загружены"
 
@@ -427,7 +443,7 @@ msgstr "ID страницы"
 msgid "ProductId"
 msgstr "ID товара"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:53
+#: ./templates/administrator/inc/javascriptVars.tpl:54
 msgid "Delete order ID"
 msgstr "ID удаленого заказа"
 
@@ -613,11 +629,11 @@ msgstr "Автор"
 msgid "Administrator"
 msgstr "Администратор"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:45
+#: ./templates/administrator/inc/javascriptVars.tpl:46
 msgid "Administer shop"
 msgstr "Администрирование магазина"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:94
+#: ./templates/administrator/inc/javascriptVars.tpl:95
 #: ./templates/administrator/main.tpl:333
 msgid "Manage shop"
 msgstr "Администрировать магазин"
@@ -757,7 +773,7 @@ msgstr "Акция"
 msgid "Promotion"
 msgstr "Акция"
 
-#: ./application/modules/shop/admin/templates/orders/create.tpl:36
+#: ./application/modules/shop/admin/templates/orders/create.tpl:35
 #: ./application/modules/shop/admin/templates/orders/create.tpl:284
 #: ./application/modules/shop/admin/templates/orders/create_1.tpl:43
 #: ./application/modules/shop/admin/templates/orders/edit.tpl:212
@@ -913,7 +929,7 @@ msgstr "в ID категории"
 msgid "In categories"
 msgstr "В категориях"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:85
+#: ./templates/administrator/inc/javascriptVars.tpl:86
 msgid "In the cart"
 msgstr "В корзине"
 
@@ -980,7 +996,7 @@ msgstr "Валюты"
 msgid "You need to enter a string"
 msgstr "Вам нужно ввести строку"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:80
+#: ./templates/administrator/inc/javascriptVars.tpl:81
 msgid "Variant"
 msgstr "Вариант"
 
@@ -1025,7 +1041,7 @@ msgstr "Введен IP панели управления"
 msgid "Enter the URL of the image or the search criterion"
 msgstr "Введите адрес изображения или критери поиска"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:26
+#: ./templates/administrator/inc/javascriptVars.tpl:27
 msgid "enter a valid email address"
 msgstr "введите действительный адрес электронной почты"
 
@@ -1033,7 +1049,7 @@ msgstr "введите действительный адрес электрон�
 msgid "Enter a valid email address."
 msgstr "Введите действительный адрес электронной почты"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:38
+#: ./templates/administrator/inc/javascriptVars.tpl:39
 msgid "enter value from"
 msgstr "введите значение от"
 
@@ -1046,7 +1062,7 @@ msgstr "Введите имя или ID"
 msgid "Enter template name"
 msgstr "Введите имя шаблона"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:35
+#: ./templates/administrator/inc/javascriptVars.tpl:36
 msgid "Enter no more"
 msgstr "Введите не более"
 
@@ -1058,27 +1074,27 @@ msgstr "Введите не более {0} символов."
 msgid "Please enter at least {0} characters."
 msgstr "Введите не менее {0} символов."
 
-#: ./templates/administrator/inc/javascriptVars.tpl:30
+#: ./templates/administrator/inc/javascriptVars.tpl:31
 msgid "enter number"
 msgstr "введите номер"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:37
+#: ./templates/administrator/inc/javascriptVars.tpl:38
 msgid "enter at least"
 msgstr "Введите по крайней мере"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:25
+#: ./templates/administrator/inc/javascriptVars.tpl:26
 msgid "enter the correct value"
 msgstr "введите правильное значение"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:28
+#: ./templates/administrator/inc/javascriptVars.tpl:29
 msgid "enter correct date"
 msgstr "введите правильную дату"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:29
+#: ./templates/administrator/inc/javascriptVars.tpl:30
 msgid "enter correct date in format ISO"
 msgstr "введите правильную дату в формате ISO"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:33
+#: ./templates/administrator/inc/javascriptVars.tpl:34
 msgid "enter the same value again"
 msgstr "введите то же значение снова"
 
@@ -1086,11 +1102,11 @@ msgstr "введите то же значение снова"
 msgid "Enter a product for discount"
 msgstr "Введите товар для скидки"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:31
+#: ./templates/administrator/inc/javascriptVars.tpl:32
 msgid "enter only numbers"
 msgstr "введите только цифры"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:40
+#: ./templates/administrator/inc/javascriptVars.tpl:41
 msgid "enter number from"
 msgstr "введите число от"
 
@@ -1102,7 +1118,7 @@ msgstr "Вверху"
 msgid "Enter a product for promotion"
 msgstr "Ввести код продукта для продвижения"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:27
+#: ./templates/administrator/inc/javascriptVars.tpl:28
 msgid "enter the correct URL"
 msgstr "ввести правильный URL"
 
@@ -1110,11 +1126,11 @@ msgstr "ввести правильный URL"
 msgid "Enter promo-code"
 msgstr "Ввести промо-код"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:42
+#: ./templates/administrator/inc/javascriptVars.tpl:43
 msgid "enter a number more than or equal to"
 msgstr "ввести число больше или равно"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:41
+#: ./templates/administrator/inc/javascriptVars.tpl:42
 msgid "enter a number less than or equal to"
 msgstr "ввести число меньше или равно"
 
@@ -1342,7 +1358,7 @@ msgstr "Все контента по категориям"
 msgid "All modules"
 msgstr "Все модули"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:60
+#: ./templates/administrator/inc/javascriptVars.tpl:61
 msgid "All finding products"
 msgstr "Все найденные продукты"
 
@@ -1509,7 +1525,7 @@ msgstr "Выберите файл"
 msgid "Select the file in a convenient format"
 msgstr "Выберите файл в удобном формате"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:34
+#: ./templates/administrator/inc/javascriptVars.tpl:35
 msgid "Select the file with the correct extension"
 msgstr "Выберите файл с правильным расширением"
 
@@ -1901,18 +1917,18 @@ msgstr "Дни"
 msgid "To"
 msgstr "До"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:39
+#: ./templates/administrator/inc/javascriptVars.tpl:40
 msgid "to"
 msgstr "до"
 
 #: ./application/modules/shop/admin/templates/orders/cart_list.tpl:21
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:437
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:436
 #: ./application/modules/shop/admin/templates/orders/edit_1.tpl:582
 #: ./application/modules/shop/admin/templates/settings/settings.tpl:226
 msgid "Add"
 msgstr "Добавить"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:84
+#: ./templates/administrator/inc/javascriptVars.tpl:85
 msgid "Add to Cart"
 msgstr "Добавить в корзину"
 
@@ -1952,7 +1968,7 @@ msgstr "Добавить подкатегорию"
 msgid "Add an article"
 msgstr "Добавить статью"
 
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:432
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:431
 #: ./application/modules/shop/admin/templates/orders/edit_1.tpl:577
 msgid "Add product to order"
 msgstr "Добавление товара к заказу"
@@ -1961,7 +1977,7 @@ msgstr "Добавление товара к заказу"
 msgid "Added products"
 msgstr "Добавленные продукты"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:58
+#: ./templates/administrator/inc/javascriptVars.tpl:59
 msgid "Wait for resize ending"
 msgstr "Дождитесь окончания ресайза"
 
@@ -2093,7 +2109,7 @@ msgstr "Забанен"
 msgid "Forgot your password?"
 msgstr "Забыли пароль?"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:63
+#: ./templates/administrator/inc/javascriptVars.tpl:64
 msgid "Completed"
 msgstr "Завершено"
 
@@ -2279,11 +2295,11 @@ msgstr "Изменить"
 msgid "Change category data"
 msgstr "Изменить данные категории"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:54
+#: ./templates/administrator/inc/javascriptVars.tpl:55
 msgid "Product changes"
 msgstr "Изменить продукт"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:101
+#: ./templates/administrator/inc/javascriptVars.tpl:102
 msgid "Change product"
 msgstr "Изменить продукт"
 
@@ -2310,8 +2326,8 @@ msgstr "Изображение"
 msgid "Images"
 msgstr "Изображения"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:62
-#: ./templates/administrator/inc/javascriptVars.tpl:71
+#: ./templates/administrator/inc/javascriptVars.tpl:63
+#: ./templates/administrator/inc/javascriptVars.tpl:72
 msgid "Images updated"
 msgstr "Изображения обновлены"
 
@@ -2932,7 +2948,7 @@ msgstr "Мета-теги"
 msgid "Label"
 msgstr "Метка"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:91
+#: ./templates/administrator/inc/javascriptVars.tpl:92
 msgid "Sort method updated"
 msgstr "Метод сортировки обновлен"
 
@@ -3150,7 +3166,7 @@ msgstr "Название файла"
 msgid "Template name"
 msgstr "Название шаблона"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:68
+#: ./templates/administrator/inc/javascriptVars.tpl:69
 msgid "Products found"
 msgstr "Найдено товаров"
 
@@ -3158,7 +3174,7 @@ msgstr "Найдено товаров"
 msgid "Found results"
 msgstr "Найденые результаты"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:70
+#: ./templates/administrator/inc/javascriptVars.tpl:71
 msgid "Found products with additional images"
 msgstr "Найденые товары с дополнительными изображениями"
 
@@ -3355,11 +3371,11 @@ msgstr "Не удается удалить статус по умолчанию"
 msgid "Could not find any properties"
 msgstr "Не удалось найти свойства"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:78
+#: ./templates/administrator/inc/javascriptVars.tpl:79
 msgid "Failed to update the column number"
 msgstr "Не удалось обновить номер столбца"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:88
+#: ./templates/administrator/inc/javascriptVars.tpl:89
 msgid "Failed to create user"
 msgstr "Не удалось создать пользователя"
 
@@ -3473,7 +3489,7 @@ msgstr "Нет модулей для установки!"
 msgid "Have not modules to install"
 msgstr "Нет модулей для установки!"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:83
+#: ./templates/administrator/inc/javascriptVars.tpl:84
 msgid "Out of stock"
 msgstr "Нет на складе"
 
@@ -3518,6 +3534,7 @@ msgstr "Неудача"
 msgid "No modules have been found at your request"
 msgstr "Ни один из модулей не было найдено по Вашему запросу"
 
+#: ./templates/administrator/inc/javascriptVars.tpl:24
 #: ./templates/administrator/pages_list.tpl:1
 #: ./templates/administrator/pages_list.tpl:227
 msgid "Your search did not found"
@@ -3597,7 +3614,7 @@ msgstr "Новый статус заказа"
 msgid "Application number"
 msgstr "Номер приложения"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:77
+#: ./templates/administrator/inc/javascriptVars.tpl:78
 msgid "Column number updated"
 msgstr "Номер столбца обновлен"
 
@@ -3641,12 +3658,12 @@ msgstr "Обновление системы"
 msgid "Currency symbol"
 msgstr "Обозначение валюты"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:61
+#: ./templates/administrator/inc/javascriptVars.tpl:62
 msgid "Processed"
 msgstr "Обработано"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:46
-#: ./templates/administrator/inc/javascriptVars.tpl:95
+#: ./templates/administrator/inc/javascriptVars.tpl:47
+#: ./templates/administrator/inc/javascriptVars.tpl:96
 msgid "Back to the system"
 msgstr "Обратно в систему"
 
@@ -3711,7 +3728,7 @@ msgstr "Общий"
 msgid "Custom required field"
 msgstr "Обязательное поле"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:73
+#: ./templates/administrator/inc/javascriptVars.tpl:74
 msgid "Access denied"
 msgstr "Ограничение прав"
 
@@ -3862,7 +3879,7 @@ msgstr "Оставить пустым"
 msgid "Others"
 msgstr "Остальное"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:82
+#: ./templates/administrator/inc/javascriptVars.tpl:83
 msgid "Balance"
 msgstr "Остаток"
 
@@ -4027,7 +4044,7 @@ msgstr "Ошибка"
 msgid "Error"
 msgstr "Ошибка"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:105
+#: ./templates/administrator/inc/javascriptVars.tpl:106
 msgid "Error in the script. Please notify the administrator"
 msgstr "Ошибка в сценарии. Пожалуйста, сообщите администратору"
 
@@ -4035,11 +4052,11 @@ msgstr "Ошибка в сценарии. Пожалуйста, сообщите
 msgid "Clearing cache error"
 msgstr "Ошибка очистки кэша"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:47
+#: ./templates/administrator/inc/javascriptVars.tpl:48
 msgid "Conversion error"
 msgstr "Ошибка преобразования"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:96
+#: ./templates/administrator/inc/javascriptVars.tpl:97
 msgid "Conversion error, "
 msgstr "Ошибка преобразования,"
 
@@ -4059,11 +4076,11 @@ msgstr "Ошибка проверки формы: <br />"
 msgid "File downloading error"
 msgstr "Ошибка скачивания файла"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:50
+#: ./templates/administrator/inc/javascriptVars.tpl:51
 msgid "Error removing options"
 msgstr "Ошибка удалении опций"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:97
+#: ./templates/administrator/inc/javascriptVars.tpl:98
 msgid "Failure to remove variant"
 msgstr "Ошибка удаления варианта"
 
@@ -4100,7 +4117,7 @@ msgstr "Ошибка: Общая страница не может быть уд�
 msgid "The operation error"
 msgstr "Ошибки в операции"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:57
+#: ./templates/administrator/inc/javascriptVars.tpl:58
 msgid "Script error. Notify administrator."
 msgstr "Ошибки сценария. Сообщите администратору."
 
@@ -4266,7 +4283,7 @@ msgstr "Подтверждение нового пароль"
 msgid "Password confirm"
 msgstr "Подтверждение пароля"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:24
+#: ./templates/administrator/inc/javascriptVars.tpl:25
 msgid "Please"
 msgstr "Пожалуйста"
 
@@ -4286,7 +4303,7 @@ msgstr "Пожалуйста, введите значение от {0} и {1}."
 msgid "Please enter a value with a valid extension."
 msgstr "Пожалуйста, введите значение с допустимым расширением."
 
-#: ./templates/administrator/inc/javascriptVars.tpl:76
+#: ./templates/administrator/inc/javascriptVars.tpl:77
 msgid "Please enter the column number"
 msgstr "Пожалуйста, введите номер столбца"
 
@@ -4534,7 +4551,7 @@ msgstr "Пользователь получил уведомление по эл
 msgid "A user with this email is already registered."
 msgstr "Пользователь с таким E-mail уже зарегистрирован."
 
-#: ./templates/administrator/inc/javascriptVars.tpl:86
+#: ./templates/administrator/inc/javascriptVars.tpl:87
 msgid "A user with this email already exists"
 msgstr "Пользователь с таким E-mail уже существует"
 
@@ -4546,7 +4563,7 @@ msgstr "Пользователь создан"
 msgid "User has already been notified by e-mail about product arrival! Notify again? "
 msgstr "Пользователь уже был уведомлен по электронной почте о прибытие товара! Сообщить снова?"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:48
+#: ./templates/administrator/inc/javascriptVars.tpl:49
 msgid "User already notified via E-mail upon availability! Notify again"
 msgstr "Пользователь уже уведомлен по электронной почте про наличие! Сообщить снова"
 
@@ -4680,7 +4697,7 @@ msgstr "Проверка"
 msgid "Price checking"
 msgstr "Проверка цен"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:89
+#: ./templates/administrator/inc/javascriptVars.tpl:90
 msgid "Check the input data and fill in all mandatory fields"
 msgstr "Проверьте введенные данные и заполните все обязательные поля"
 
@@ -4705,7 +4722,7 @@ msgstr "Продукт успешно отредактирован"
 msgid "Transparency"
 msgstr "Прозрачность"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:59
+#: ./templates/administrator/inc/javascriptVars.tpl:60
 msgid "Resize images for products"
 msgstr "Произвести ресайз для товара"
 
@@ -5099,10 +5116,6 @@ msgstr "Резервное копирование завершено"
 msgid "Result"
 msgstr "Результат"
 
-#: ./templates/administrator/search.tpl:5
-msgid "Search results"
-msgstr "Результаты поиска"
-
 #: ./application/modules/shop/admin/templates/settings/settings.tpl:445
 #: ./application/modules/shop/admin/templates/settings/settings.tpl:456
 #: ./application/modules/shop/admin/templates/settings/settings.tpl:489
@@ -5110,11 +5123,11 @@ msgstr "Результаты поиска"
 msgid "Resize"
 msgstr "Ресайз"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:69
+#: ./templates/administrator/inc/javascriptVars.tpl:70
 msgid "Additional images resize"
 msgstr "Ресайз дополнительных изображений"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:67
+#: ./templates/administrator/inc/javascriptVars.tpl:68
 msgid "Resize products images"
 msgstr "Ресайз изображений продуктов"
 
@@ -5287,7 +5300,7 @@ msgstr "Сиджетов создан"
 msgid "Character"
 msgstr "Символ"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:36
+#: ./templates/administrator/inc/javascriptVars.tpl:37
 msgid "characters"
 msgstr "символов"
 
@@ -5388,7 +5401,7 @@ msgstr "Создать копию"
 msgid "Created a page"
 msgstr "Создал страницу"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:87
+#: ./templates/administrator/inc/javascriptVars.tpl:88
 msgid "New user created"
 msgstr "Создан новый пользователь"
 
@@ -5414,7 +5427,7 @@ msgstr "Создание временного каталога не удалос
 msgid "Create additional field"
 msgstr "Создание дополнительного поля"
 
-#: ./application/modules/shop/admin/templates/orders/create.tpl:9
+#: ./application/modules/shop/admin/templates/orders/create.tpl:8
 #: ./application/modules/shop/admin/templates/orders/create_1.tpl:9
 #: ./application/modules/shop/admin/templates/orders/_create.tpl:6
 msgid "Order create"
@@ -5717,7 +5730,7 @@ msgstr "Сообщите пользователю по электронной п
 msgid "report an error"
 msgstr "сообщить об ошибке"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:49
+#: ./templates/administrator/inc/javascriptVars.tpl:50
 msgid "Notify the user via E-mail upon availability"
 msgstr "Сообщить пользователю с помощью электронной почты про наличие"
 
@@ -6464,7 +6477,7 @@ msgstr "Текущий возможный список"
 msgid "Custom object"
 msgstr "Текущий объект"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:90
+#: ./templates/administrator/inc/javascriptVars.tpl:91
 msgid "Current certificate (amount):"
 msgstr "Текущий сертификат (сумма):"
 
@@ -6574,7 +6587,7 @@ msgstr "Тип файла"
 msgid "product"
 msgstr "товар"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:79
+#: ./templates/administrator/inc/javascriptVars.tpl:80
 msgid "Product"
 msgstr "Товар"
 
@@ -6883,7 +6896,7 @@ msgstr "Удалить выбранные баннеры?"
 msgid "Remove selected brands?"
 msgstr "Удалить выбранные бренды?"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:98
+#: ./templates/administrator/inc/javascriptVars.tpl:99
 msgid "Remove selected orders?"
 msgstr "Удалить выбранные заказы?"
 
@@ -6924,7 +6937,7 @@ msgstr "Удалить выбранные способы оплаты?"
 msgid "Delete selected pages?"
 msgstr "Удалить выбранные страницы?"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:99
+#: ./templates/administrator/inc/javascriptVars.tpl:100
 msgid "Remove selected notifications?"
 msgstr "Удалить выбранные уведомления?"
 
@@ -6966,7 +6979,7 @@ msgstr "Удалить группу"
 msgid "Delete order"
 msgstr "Удалить заказ"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:100
+#: ./templates/administrator/inc/javascriptVars.tpl:101
 msgid "Remove order with ID: "
 msgstr "Удалить заказ с ID:"
 
@@ -6997,11 +7010,11 @@ msgstr "Удалить набор"
 msgid "Remove callback(s)"
 msgstr "Удалить обратный(е) звонок(ки)"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:51
+#: ./templates/administrator/inc/javascriptVars.tpl:52
 msgid "Delete canceled orders"
 msgstr "Удалить отмененные заказы"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:52
+#: ./templates/administrator/inc/javascriptVars.tpl:53
 msgid "Delete canceled messages"
 msgstr "Удалить отмененные сообщения"
 
@@ -7092,7 +7105,7 @@ msgstr "уже существует. Укажите или выберите др
 msgid "Specify"
 msgstr "Укажите"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:32
+#: ./templates/administrator/inc/javascriptVars.tpl:33
 msgid "enter a valid credit card number"
 msgstr "укажите действительный номер кредитной карты"
 
@@ -7132,7 +7145,7 @@ msgstr "Управление правами доступа"
 msgid "Level of server utilisation"
 msgstr "Уровень использования сервера"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:55
+#: ./templates/administrator/inc/javascriptVars.tpl:56
 msgid "Success"
 msgstr "Успешно"
 
@@ -7209,11 +7222,11 @@ msgstr "Файл {$filename} не доступен для записи"
 msgid "File will be saved in the directory"
 msgstr "Файл будет сохранен в каталоге"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:56
+#: ./templates/administrator/inc/javascriptVars.tpl:57
 msgid "File is loaded. Slot"
 msgstr "Файл загружается. Слот"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:104
+#: ./templates/administrator/inc/javascriptVars.tpl:105
 msgid "The file is loaded. Slot "
 msgstr "Файл загружается. Слот"
 
@@ -7271,7 +7284,7 @@ msgstr "Формат письма"
 msgid "File format"
 msgstr "Формат файла"
 
-#: ./templates/administrator/js/scripts.js:1202
+#: ./templates/administrator/js/scripts.js:1208
 msgid "Not supported file format"
 msgstr "Формат файла не поддерживается"
 
@@ -7326,7 +7339,7 @@ msgstr "Хит"
 msgid "hit"
 msgstr "Хит"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:81
+#: ./templates/administrator/inc/javascriptVars.tpl:82
 msgid "Price"
 msgstr "Цена"
 
@@ -7423,24 +7436,9 @@ msgstr "Ширина"
 msgid "Width, px"
 msgstr "Ширина, px"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:108
+#: ./templates/administrator/inc/javascriptVars.tpl:109
 msgid "Font is not uploaded"
 msgstr "Шрифт не загружен"
-
-#: ./application/modules/shop/admin/templates/orders/cart_list.tpl:12
-#: ./application/modules/shop/admin/templates/orders/check.tpl:95
-msgid "Pieces."
-msgstr "Шт."
-
-#: ./application/modules/shop/admin/templates/dashboard/dashboard.tpl:74
-#: ./application/modules/shop/admin/templates/orders/list.tpl:221
-#: ./application/modules/shop/admin/templates/users/edit_orders_list.tpl:75
-msgid "pcs"
-msgstr "штук"
-
-#: ./application/modules/shop/admin/templates/users/edit.tpl:199
-msgid "Pcs"
-msgstr "Штук"
 
 #: ./application/modules/shop/admin/templates/system/export.tpl:4
 #: ./application/modules/shop/admin/templates/system/export_.tpl:61
@@ -7483,7 +7481,7 @@ msgstr "Эта скидка не пользуется"
 msgid "These discounts"
 msgstr "Эти скидки"
 
-#: ./templates/administrator/inc/javascriptVars.tpl:74
+#: ./templates/administrator/inc/javascriptVars.tpl:75
 msgid "This is a demo version ImageCMS. Part of the actions are limited. For a complete functional download and install the distribution."
 msgstr "Это демонстрационная версия ImageCMS. Часть действий ограничена. Что-бы ознакомиться с полным функционалом скачайте и установите дистрибутив."
 
