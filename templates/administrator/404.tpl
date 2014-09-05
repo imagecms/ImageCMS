@@ -5,7 +5,7 @@
                 <span class="title">{lang("No relevant data has been found","admin")}</span>
             </div>                      
         </div>
-        <div class="content_big_td row-fluid">
+        <div class="row-fluid">
             <div class="tab-content">
                 <br/>
                 <div class="alert alert-error span11">

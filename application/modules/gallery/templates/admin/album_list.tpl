@@ -16,7 +16,7 @@
             <ul class="sortable2 f-s_0 save_positions albums_list" data-url="/admin/components/cp/gallery/update_album_positions">
                 {foreach $albums as $item}
                     <li>
-                        <table  class="table table-striped table-bordered">
+                        <table  class="table table-bordered">
                             <tr>
                                 <td class="span2" style="border-top: 0;">
                                     <div class="t-a_c">

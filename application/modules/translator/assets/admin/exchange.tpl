@@ -22,9 +22,9 @@
                 </div>
             </div>
         </div>
-        <div class="content_big_td row-fluid">
+        <div class="row-fluid">
             <form method="post" class="form-horizontal">
-                <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
                     <thead>
                         <tr>
                             <th colspan="6">

@@ -14,7 +14,7 @@
     <div class="tab-content">
         <div class="row-fluid">
             <form action="{$BASE_URL}admin/components/cp/menu/translate_item/{$id}" method="post" id="item_t_save_form" class="form-horizontal">
-                <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+                <table class="table  table-bordered table-hover table-condensed content_big_td">
                     <thead>
                     <th>{lang("Settings", "menu")}</th>
                     </thead>

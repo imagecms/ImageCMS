@@ -26,6 +26,24 @@ extends \SeoExpertTester
         $I->wait('2');
     }
     
+    function SeoCreateDescriptonAndH1($name_category = NULL, $description_category = NULL, $H1_category = NULL) {
+        $I = $this;
+        $I->amOnPage('/admin/components/run/shop/search');
+        $I->wait('3');
+        $I->click('//table/thead/tr[2]/td[4]/div/a/div/b');
+        $I->wait('1');
+        $I->fillField('//table/thead/tr[2]/td[4]/div/div/div/input', $name_category);
+        $I->wait('1');
+        $I->click('//table/thead/tr[2]/td[4]/div/div/ul/li');
+        $I->wait('1');
+        $I->click('//table/tbody/tr/td[4]/div/a');
+        $I->wait('3');
+        $I->fillField('//table[1]/tbody/tr/td/div/div[2]/div/textarea', $description_category);
+        $I->fillField('//table[3]/tbody/tr/td/div/div/div[1]/div/input', $H1_category);
+        $I->click('//section/div/div[2]/div/button[1]');        
+        $I->wait('1');
+    }
+    
     
     //------------------------Create Brands-------------------------------------
     
@@ -57,13 +75,21 @@ extends \SeoExpertTester
         $I->amOnPage('/admin/components/run/shop/products/create');
         $I->wait('2');
         $I->fillField('//table[1]/tbody/tr/td/div/div/div[1]/div[1]/div/input', $NameProduct);
+        $I->wait('1');
         $I->fillField('//tbody/tr/td/div/div/div[1]/div[4]/table/tbody/tr/td[2]/input', $PriceProduct);
+        $I->wait('1');
         $I->click('//tbody/tr/td/div/div/div[2]/div/div[1]/div/div/a/span');
+        $I->wait('1');
         $I->fillField('//tbody/tr/td/div/div/div[2]/div/div[1]/div/div/div/div/input', $BrandProduct);
+        $I->wait('1');
         $I->click('//tbody/tr/td/div/div/div[2]/div/div[1]/div/div/div/ul/li');
+        $I->wait('1');
         $I->click('//table[1]/tbody/tr/td/div/div/div[2]/div/div[2]/div/div/a/span');
+        $I->wait('1');
         $I->fillField('//table[1]/tbody/tr/td/div/div/div[2]/div/div[2]/div/div/div/div/input', $CategoryProduct);
+        $I->wait('1');
         $I->click('//tbody/tr/td/div/div/div[2]/div/div[2]/div/div/div/ul/li');
+        $I->wait('1');
         $I->click('//div[1]/div[5]/section/div/div[2]/div/button[1]');
         $I->wait('2');
     }
@@ -147,5 +173,37 @@ extends \SeoExpertTester
                 $I->comment(" Чекбокс Не Активний, я Натискаю його тобто Активую та служу далі тобі Мегатрон Царь Завороткі Шок :)");
             }
     }
+    
+    
+    
+    function DeactivateCheckBox($checkbox_xpath = NULL) {
+        $I = $this;
+        $I->wait('1');
+        $active = 'span1 active';
+        $inactive = 'span1';
+        $checkbox_path = $checkbox_xpath;
+        $checkbox_class = $I->grabAttributeFrom($checkbox_path, 'class');
+        $I->comment('class: ' . $checkbox_class);
+            if($checkbox_class == $active){                
+                $I->wait('1');
+                $I->click($checkbox_path);                
+                $I->comment(" Чекбокс Активний, Деактивую його та служу далі тобі Володарю :)");
+            }elseif($checkbox_class == $inactive) {
+                $I->wait('1');  
+                $I->comment(" Чекбокс Не Активний, нечыпаю його та служу далі тобі Мегатрон Царь Завороткі Шок :)");
+            }
+    }
+  
+    function SeoTextAreaActive ($on = NULL) {
+        $I = $this;
+        $I->wait('1');
+        $I->amOnPage('/admin/settings');
+        $I->selectOption('//form/div/div[1]/table/tbody/tr/td/div/div/div/div[5]/div/select', 'none');
+        $I->click('//section/div[1]/div[2]/div/button');
+        $I->wait('1');
+    }
+    
+    
+    
     
 }
