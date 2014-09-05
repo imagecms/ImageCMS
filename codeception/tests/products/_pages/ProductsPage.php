@@ -47,21 +47,52 @@ class ProductsPage
     public static $AddVariantButton  = ".//*[@id='addVariant']";
     
     //Кнопки в списке
-    public static function ActiveButtonLine($row){
-        $ActiveBut = "//tbody/tr[$row]/td[6]/div/span";
-        return $ActiveBut;
+    public static function CheckboxLine($row){
+        $Checkbox = ".//*[@id='filter_form']/section/div[2]/table/tbody/tr[$row]/td[1]/span/span";
+        return $Checkbox;
     }
-    public static function DeleteButtonLine($row){
-        $DeleteBut = "//tbody/tr[$row]/td[7]/button";
-        return $DeleteBut;
+    public static function IdLine($row){
+        $Id = ".//*[@id='filter_form']/section/div[2]/table/tbody/tr[$row]/td[2]/p";
+        return $Id;
     }
-    public static function RadioButtonLine($row){
-        $RadioBut = "//tbody//tr[$row]//td[5]/input";
-        return $RadioBut;
+    public static function ProductNameLine($row){
+        $NameProd = ".//*[@id='filter_form']/section/div[2]/table/tbody/tr[$row]/td[3]/div/a";
+        return $NameProd;
+    }   
+    public static function ProductReviewButton($row){
+        $RevBut = "//*[@id='filter_form']/section/div[2]/table/tbody/tr[$row]/td[3]/a";
+        return $RevBut;
+    } 
+    public static function CategoryLine($row) {
+        $Category = ".//*[@id='filter_form']/section/div[2]/table/tbody/tr[$row]/td[4]/div/a";
+        return $Category;
     }
-    //Currency name in table
-    public static function CurrencyNameLine($row) {
-        $CurrencyLine = "//tbody/tr[$row]/td[2]/a";
-        return $CurrencyLine;
+    public static function ArticulLine($row) {
+        $Artic = ".//*[@id='filter_form']/section/div[2]/table/tbody/tr[$row]/td[5]/p";
+        return $Artic;
+    }
+    public static function ActiveButtonLine($row) {
+        $ActBut = ".//*[@id='filter_form']/section/div[2]/table/tbody/tr[$row]/td[6]/div/span";
+        return $ActBut;
+    }
+    public static function StatusLine1($row) {
+        $StatBut1 = ".//*[@id='filter_form']/section/div[2]/table/tbody/tr[$row]/td[7]/button[1]";
+        return $StatBut1;
+    }
+    public static function StatusLine2($row) {
+        $StatBut2 = ".//*[@id='filter_form']/section/div[2]/table/tbody/tr[$row]/td[7]/button[2]";
+        return $StatBut2;
+    }
+    public static function StatusLine3($row) {
+        $StatBut3 = ".//*[@id='filter_form']/section/div[2]/table/tbody/tr[$row]/td[7]/button[3]";
+        return $StatBut3;
+    }
+    public static function PriceFieldLine($row) {
+        $Price = ".//*[@id='filter_form']/section/div[2]/table/tbody/tr[$row]/td[8]/div/input";
+        return $Price;
+    }
+    public static function PriceCurrencySymbolLine($row) {
+        $Symb = ".//*[@id='filter_form']/section/div[2]/table/tbody/tr[$row]/td[8]/span";
+        return $Symb;
     }
 }
