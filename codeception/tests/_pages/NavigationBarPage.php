@@ -7,7 +7,7 @@ class NavigationBarPage
     
     //     Настройки
     public static $Settings = "//div[1]/div[3]/table/tbody/tr/td[7]/a";
-    public static $SettingsDelivery = "//div[1]/div[3]/table/tbody/tr/td[7]/ul/li[3]/a"; 
+    public static $SettingsDelivery = "//div[1]/div[3]/table/tbody/tr/td[7]/ul/li[3]/a";
     
 //    public static $SettingsImportExport = "//div[3]/table/tbody/tr/td[7]/ul/li[5]/a";
     
