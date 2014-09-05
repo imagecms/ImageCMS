@@ -535,8 +535,11 @@
                                 <span class="current-prices f-s_0">
                                     <span class="price-new">
                                         <span>
-                                            <span class="price">{echo $cartPrice}</span>
-                                            <span class="curr">{$CS}</span>
+                                            <span>
+                                                {echo \Currency\Currency::create()->getCurrencyToFormat(\Currency\Currency::create()->getMainCurrency()->getId(), $cartPrice,'span', 'curr', '',  'span', 'price')})
+                                            </span>
+                                            { /*}<span class="price">{echo $cartPrice}</span>
+                                            <span class="curr">{$CS}</span>{ */}
                                         </span>
                                     </span>
                                     {if $NextCSIdCond}     
