@@ -593,7 +593,7 @@ function initTinyMCE()
                             y: win.document.forms[0].elements['fancyThumbY'].value,
                             cms_token: $('input[name=cms_token]').val()
                         }, function(data) {
-                            console.log(data);
+                            //console.log(data);
                         });
                     }
 
@@ -716,7 +716,6 @@ function elFinderPopup(type, id, path, onlyMimes)
                 {
                     var str = file.path;
                     var m = str.match('[\\\\ /]');
-                    console.log(m)
                     file.path = file.path.substr(m.index + 1);
                     if (path[0] != '/')
                         path = '/' + path;
@@ -948,7 +947,7 @@ var orders = new Object({
                     select: function(event, ui) {
                         productName = ui.item.name;
                         pNumber = ui.item.number;
-                        console.log(ui.item);
+
                         $('#product_id').val(ui.item.value);
                         vKeys = Object.keys(ui.item.variants);
 
@@ -958,7 +957,7 @@ var orders = new Object({
                     },
                     close: function() {
                         $('#product_name').val(productName);
-                        console.log(pNumber);
+
                         $('#productNumber').val(pNumber);
                     }
 
@@ -1034,9 +1033,15 @@ var orders = new Object({
                 var products = JSON.parse(data)
                 $(".variantsForOrders").empty();
                 $(".productsForOrders").empty().each(function() {
-                    for (var i = 0; i < products.length; i++)
-                        $(this).append($('<option data-product-name=\'' + products[i]['name'] + '\' value=' + products[i]['id'] + '>' + products[i]['name'] + '</option>'));
-                })
+                    if (products.length > 0)
+                        for (var i = 0; i < products.length; i++)
+                            $(this).append($('<option data-product-name=\'' + products[i]['name'] + '\' value=' + products[i]['id'] + '>' + products[i]['name'] + '</option>'));
+                    else
+                        $('<option>', {
+                            text: langs.notFound,
+                            disabled: 'disabled'
+                        }).appendTo($(this));
+                });
             }
         });
     },
@@ -1049,7 +1054,6 @@ var orders = new Object({
             complete: function(data) {
                 var productVariants = JSON.parse(data.responseText),
                         separate = '';
-                console.log(productVariants)
                 $(".variantsForOrders").empty().each(function() {
                     for (var i = 0; i < productVariants.length; i++) {
                         var $this = $(this),
@@ -1083,15 +1087,14 @@ var orders = new Object({
             }
 
         }
-
         clonedElement.find('.variantCartNumber').html(data.number);
         clonedElement.find('.variantCartName').html(variantName);
-        clonedElement.find('.productCartName').html(data.productName);
+        clonedElement.find('.productCartName').html('<a target="_blank" href="/admin/components/run/shop/products/edit/' + data.productId + '">' + data.productName + '</a>');
         clonedElement.find('.productCartPrice').html(parseFloat(data.price).toFixed(2));
         clonedElement.find('.productCartPriceSymbol').html(data.productcurrency);
 
         //Input values
-        clonedElement.find('.inputProductId').val(data.productid);
+        clonedElement.find('.inputProductId').val(data.productId);
         clonedElement.find('.inputProductName').val(data.productName);
         clonedElement.find('.inputVariantId').val(data.variantid);
         clonedElement.find('.inputVariantName').val(variantName);
@@ -1101,15 +1104,17 @@ var orders = new Object({
 
         $('#insertHere').append(clonedElement);
 
-        inputUpdatePrice = clonedElement.find('.productCartQuantity');
+        var inputUpdatePrice = clonedElement.find('.productCartQuantity');
         inputUpdatePrice.data('stock', data.stock);
         orders.updateQuantityAdmin(inputUpdatePrice);
 
     },
     deleteCartProduct: function(element) {
-        $(element).closest('tr').remove();
+        var tr = $(element).closest('tr');
+        tr.remove();
         orders.updateTotalCartSum();
-        $('.addVariantToCart').removeClass('btn-primary').removeAttr('disabled').addClass('btn-success').removeClass('btn-danger disabled').html(langs.addToCart);
+        if ($('.addVariantToCart').data('productId') == tr.find('.inputProductId').val())
+            $('.addVariantToCart').removeClass('btn-primary').removeAttr('disabled').addClass('btn-success').removeClass('btn-danger disabled').html(langs.addToCart);
     },
     updateQuantityAdmin: function(element) {
         var stock = $(element).data('stock');
