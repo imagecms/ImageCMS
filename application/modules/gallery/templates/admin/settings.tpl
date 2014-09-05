@@ -15,7 +15,7 @@
         <div class="tab-pane active" id="modules">
             <div class="row-fluid">
                 <form method="post" enctype="multipart/form-data" action="{site_url('admin/components/cp/gallery/settings/update')}" id="gallery_settings_form">
-                    <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+                    <table class="table  table-bordered table-hover table-condensed content_big_td">
                         <thead>
                             <tr>
                                 <th colspan="6">
@@ -48,7 +48,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+                    <table class="table  table-bordered table-hover table-condensed content_big_td">
                         <thead>
                             <tr>
                                 <th colspan="6">
@@ -116,7 +116,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+                    <table class="table  table-bordered table-hover table-condensed content_big_td">
                         <thead>
                             <tr>
                                 <th colspan="6">
@@ -167,7 +167,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+                    <table class="table  table-bordered table-hover table-condensed content_big_td">
                         <thead>
                             <tr>
                                 <th colspan="6">
@@ -218,7 +218,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+                    <table class="table  table-bordered table-hover table-condensed content_big_td">
                         <thead>
                             <tr>
                                 <th colspan="6">

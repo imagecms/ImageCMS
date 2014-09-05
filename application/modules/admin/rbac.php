@@ -22,11 +22,10 @@ class Rbac extends BaseAdminController {
     public function permition_denied() {
         $this->template->show('permition_error');
     }
-    
-    public function index(){
+
+    public function index() {
         
     }
-    
 
 }
 

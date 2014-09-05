@@ -823,8 +823,8 @@ function export_csv() {
         if ($('input[name=export]:checked').val() == 'csv') {
 
             $('#exportUsers').submit();
-
-            $('#loading').hide();
+            
+            hideLoading();
             return false;
         }
     });

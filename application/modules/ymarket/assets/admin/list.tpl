@@ -12,7 +12,7 @@
             </div>                            
         </div>
         <form id="settings_form" action="/admin/components/cp/ymarket/save" method="post">
-            <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+            <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
                 <thead>
                     <tr>
                         <th colspan="6">
@@ -52,7 +52,7 @@
                     </tr>
                 </tbody>
             </table>
-            <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+            <table class="table  table-bordered table-hover table-condensed content_big_td">
                 <thead>
                 <th>{lang('Yandex.Market document','ymarket')}</th>
                 </thead>

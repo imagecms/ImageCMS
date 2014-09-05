@@ -20,12 +20,11 @@
                     <li><a href="#backup_settings">{lang('Settings','admin')}</a></li>  
                 </ul>
             </div>
-            <div class="span9 content_big_td">
-
+            <div class="span9">
                 <div class="tab-content">
                     <div class="tab-pane" id="backup_list">
 
-                        <table id="backups_list" class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                        <table id="backups_list" class="table  table-bordered table-hover table-condensed t-l_a">
                             <thead>
                             <th>{lang('File name', 'admin')}</th>
                             <th>{lang('Source', 'admin')}</th>
@@ -67,7 +66,7 @@
                     </div>
 
                     <div class="tab-pane active" id="backup_create">
-                        <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                        <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
                             <thead>
                                 <tr>
                                     <th colspan="6">
@@ -155,7 +154,7 @@
                     </div>
 
                     <div class="tab-pane" id="backup_settings">
-                        <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                        <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
                             <thead>
                                 <tr>
                                     <th colspan="6">

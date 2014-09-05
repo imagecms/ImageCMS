@@ -27,7 +27,7 @@
             </label>
             {foreach $wishlists as $key => $wishlist}
                 <form method="POST" action="/admin/components/cp/wishlist/updateWL">
-                    <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                    <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
                         <input type="hidden" name="WLID" value="{echo $wishlist[0][wish_list_id]}">
                         <thead>
                             <tr>
@@ -68,7 +68,7 @@
                         </tbody>
                     </table>
                     {if $wishlist[0][id] != null}
-                        <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                        <table class="table  table-bordered table-hover table-condensed t-l_a">
                             <thead>
                                 <tr>
                                     <td colspan="3">

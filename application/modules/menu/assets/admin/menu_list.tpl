@@ -33,7 +33,7 @@
             </div>
             <div class="tab-content">
                 <div class="row-fluid">
-                    <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                    <table class="table  table-bordered table-hover table-condensed t-l_a">
                         <thead>
                             <tr>
                                 <th class="t-a_c span1">

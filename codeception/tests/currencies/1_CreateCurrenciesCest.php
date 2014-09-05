@@ -10,7 +10,7 @@ class CreateCurrenciesCest
 //    public function _after()
 //    {
 //    }
-
+    private $delimTens, $delimThousands, $amount;
     public function Autorization(CurrenciesTester $I)
     {
         InitTest::Login($I);
@@ -99,21 +99,23 @@ class CreateCurrenciesCest
         $symbol="q";
         $rate="1";
         $I->CreateCurrency($name,$isocode,$symbol,$rate);        
-//        $I->waitForElementVisible('.alert.in.fade.alert-error');
-        $I->waitForText('Поле Название должно быть не менее 2 символов в длину.');
-//        $I->waitForElementNotVisible('.alert.in.fade.alert-error');        
+        $I->waitForElementVisible('.alert.in.fade.alert-error');
+        $I->see('Поле Название должно быть не менее 2 символов в длину.');
+        $I->waitForElementNotVisible('.alert.in.fade.alert-error');        
         $I->appendField(CurrenciesPage::$NameCurrencyCreate, 'q');
         $I->click(CurrenciesPage::$SaveButton);
 //        $I->waitForElementVisible('.alert.in.fade.alert-success');
         $I->waitForText('Валюта создана');
 //        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
-        $name1="qq";
-        $isocode1="q";
-        $symbol1="q";
+        $name1="qq";        
         $rate1="1.0000";
-        $I->CheckInFields($name1,$isocode1,$symbol1,$rate1);
+        $format="# $symbol";
+        $this->delimTens=",";
+        $this->delimThousands=".";
+        $this->amount="2";
+        $I->CheckInFields($name1, $isocode, $symbol, $rate1, $format, $this->delimTens, $this->delimThousands, $this->amount);
         $I->click(CurrenciesPage::$GoBackButton);                
-        $I->CheckInListLanding($name1,$isocode1,$symbol1);
+        $I->CheckInListLanding($name1,$isocode,$symbol);
         InitTest::ClearAllCach($I);
     }
     
@@ -130,14 +132,12 @@ class CreateCurrenciesCest
         $I->CreateCurrency($name,$isocode,$symbol,$rate);      
 //        $I->waitForElementVisible('.alert.in.fade.alert-success');
         $I->waitForText('Валюта создана');
-//        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
-        $name1="Динар";
-        $isocode1="Динар";
-        $symbol1="Динар";
+//        $I->waitForElementNotVisible('.alert.in.fade.alert-success');       
         $rate1="11111.0000";
-        $I->CheckInFields($name1,$isocode1,$symbol1,$rate1);
+        $format="# $symbol";        
+        $I->CheckInFields($name, $isocode, $symbol, $rate1, $format, $this->delimTens, $this->delimThousands, $this->amount);
         $I->click(CurrenciesPage::$GoBackButton);                
-        $I->CheckInListLanding($name1,$isocode1,$symbol1);
+        $I->CheckInListLanding($name,$isocode,$symbol);
     }
     
     /**
@@ -169,15 +169,15 @@ class CreateCurrenciesCest
         $I->fillField(CurrenciesPage::$IsoCodCreate, 'тугри');
         $I->click(CurrenciesPage::$SaveButton);
 //        $I->waitForElementVisible('.alert.in.fade.alert-success');
-        $I->waitForText('Валюта создана');
-//        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
-        $name1="тугрик";
+//        $I->waitForText('Валюта создана', 3, '.alert.in.fade.alert-success');
+//        $I->waitForElementNotVisible('.alert.in.fade.alert-success');        
         $isocode1="тугри";
         $symbol1="тугри";
         $rate1="111111.0000";
-        $I->CheckInFields($name1,$isocode1,$symbol1,$rate1);
+        $format="# $symbol1";
+        $I->CheckInFields($name,$isocode1,$symbol1,$rate1,$format,  $this->delimTens,  $this->delimThousands,  $this->amount);
         $I->click(CurrenciesPage::$GoBackButton);               
-        $I->CheckInListLanding($name1,$isocode1,$symbol1);
+        $I->CheckInListLanding($name,$isocode1,$symbol1);
         InitTest::ClearAllCach($I);
     }
     
@@ -211,12 +211,12 @@ class CreateCurrenciesCest
         $I->click(CurrenciesPage::$SaveButton);
 //        $I->waitForElementVisible('.alert.in.fade.alert-success');
         $I->waitForText('Валюта создана');
-//        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
-        $name1="Гульден123";
+//        $I->waitForElementNotVisible('.alert.in.fade.alert-success');        
         $isocode1="Гульд";
         $symbol1="Гульд";
-        $rate1="111112.1233";
-        $I->CheckInFields($name1,$isocode1,$symbol1,$rate1);
+        $rate="111112.1233";
+        $format="# $symbol1";
+        $I->CheckInFields($name,$isocode1,$symbol1,$rate,$format,  $this->delimTens,  $this->delimThousands,  $this->amount);
         $I->click(CurrenciesPage::$GoBackButton);               
         $I->CheckInListLanding($name1,$isocode1,$symbol1);
     }
@@ -227,7 +227,7 @@ class CreateCurrenciesCest
     
     public function Symbols255Create(CurrenciesTester\CurrenciesSteps $I)
     {
-        $name="Франкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранк";
+        $name="Франкфранкфранк франкфранкфранкфранк франкфранкфранкфранкфранкфранкфранкфранкфранк франкфранкфранкфранкфранк франкфранкфранкфранк франкфранкфранкфранкфранк франкфранкфранк франк франкфранк франкфр анкфранкфранкфранк франкфранкфранк франк ф р анкфранкфранк";
         $isocode="frank";
         $symbol="fr";
         $rate=".234";
@@ -235,13 +235,11 @@ class CreateCurrenciesCest
 //        $I->waitForElementVisible('.alert.in.fade.alert-success');
         $I->waitForText('Валюта создана');
 //        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
-        $name1="Франкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранкфранк";
-        $isocode1="frank";
-        $symbol1="fr";
         $rate1="0.2340";
-        $I->CheckInFields($name1,$isocode1,$symbol1,$rate1);
+        $format="# $symbol";
+        $I->CheckInFields($name,$isocode,$symbol,$rate1,$format,  $this->delimTens,  $this->delimThousands,  $this->amount);
         $I->click(CurrenciesPage::$GoBackButton);                
-        $I->CheckInListLanding($name1,$isocode1,$symbol1);
+        $I->CheckInListLanding($name,$isocode,$symbol);
         InitTest::ClearAllCach($I);
     }
     
@@ -251,7 +249,7 @@ class CreateCurrenciesCest
     
     public function Symbols256Create(CurrenciesTester\CurrenciesSteps $I)
     {
-        $name="Форинтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфори";
+        $name="Форинтфоринт форинтфоринтфоринт форинтфо ринтфоринтфоринтфор интфоринтфоринтфоринтфоринтфоринтфоринтфори нтфоринтфоринтфоринтфор интфоринтфоринтфоринтфоринтф оринтфоринтфор интфоринтфоринтфоринтфор интфоринт форинтфоринтфоринтфоринтф оринтфоринтфоринтфорин";
         $isocode="forin";
         $symbol="фор";
         $rate="00120.0102";
@@ -259,13 +257,12 @@ class CreateCurrenciesCest
 //        $I->waitForElementVisible('.alert.in.fade.alert-success');
         $I->waitForText('Валюта создана');
 //        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
-        $name1="Форинтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфоринтфор";
-        $isocode1="forin";
-        $symbol1="фор";
+        $name1="Форинтфоринт форинтфоринтфоринт форинтфо ринтфоринтфоринтфор интфоринтфоринтфоринтфоринтфоринтфоринтфори нтфоринтфоринтфоринтфор интфоринтфоринтфоринтфоринтф оринтфоринтфор интфоринтфоринтфоринтфор интфоринт форинтфоринтфоринтфоринтф оринтфоринтфоринтфори";
         $rate1="120.0102";
-        $I->CheckInFields($name1,$isocode1,$symbol1,$rate1);
+        $format="# $symbol";
+        $I->CheckInFields($name1,$isocode,$symbol,$rate1,$format,  $this->delimTens,  $this->delimThousands,  $this->amount);
         $I->click(CurrenciesPage::$GoBackButton);                
-        $I->CheckInListLanding($name1,$isocode1,$symbol1);
+        $I->CheckInListLanding($name1,$isocode,$symbol);
     }
     
     /**
@@ -281,16 +278,14 @@ class CreateCurrenciesCest
         $save="saveexit";
         $I->CreateCurrency($name,$isocode,$symbol,$rate,$save);
 //        $I->waitForElementVisible('.alert.in.fade.alert-success');
-        $I->waitForText('Валюта создана');
+//        $I->see('Валюта создана');
 //        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
-        $I->waitForText('Список валют'); 
-        $name1="лира";
-        $isocode1="лира";
-        $symbol1="лира";
+        $I->waitForText('Список валют');        
         $rate1="1030.2000";
-        $I->CheckInListLanding($name1,$isocode1,$symbol1);
+        $format="# $symbol";
+        $I->CheckInListLanding($name,$isocode,$symbol);
         $I->click(CurrenciesPage::CurrencyNameLine("last()"));       
-        $I->CheckInFields($name1,$isocode1,$symbol1,$rate1);
+        $I->CheckInFields($name,$isocode,$symbol,$rate1,$format,  $this->delimTens,  $this->delimThousands,  $this->amount);
         InitTest::ClearAllCach($I);
     }
 }

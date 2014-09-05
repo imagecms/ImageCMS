@@ -29,7 +29,7 @@
         </div>                            
     </div>
     <form method="post" action="/admin/components/init_window/banners/edit/{echo $banner['id']}/{$locale}" enctype="multipart/form-data" id="image_upload_form">
-        <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+        <table class="table  table-bordered table-hover table-condensed content_big_td">
             <thead>
                 <tr>
                     <th colspan="6">

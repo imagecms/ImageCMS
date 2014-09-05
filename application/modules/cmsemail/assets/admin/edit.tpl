@@ -20,7 +20,7 @@
             </div>
         </div>
     </div>
-    <div class="content_big_td row-fluid">
+    <div class="row-fluid">
         <div class="clearfix">
             <div class="btn-group myTab m-t_20 pull-left" data-toggle="buttons-radio">
                 <a href="#settings" class="btn btn-small active" onclick="EmailTemplateVariables.updateVariablesList($(this), '{$model['id']}', '{echo $locale}')">{lang('Template settings', 'cmsemail')}</a>
@@ -31,7 +31,7 @@
             <div class="tab-pane active" id="settings">
                 <div class="inside_padd">
                     <form action="{$BASE_URL}admin/components/cp/cmsemail/edit/{$model['id']}/{echo $locale}" id="email_form" method="post" class="form-horizontal">
-                        <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+                        <table class="table  table-bordered table-hover table-condensed content_big_td">
                             <thead>
                             <th>{lang('Settings', 'cmsemail')}</th>
                             </thead>
@@ -175,9 +175,8 @@
                 </div>
             </div>
             <div class="tab-pane active" id="variables">
-
                 <div class="inside_padd">
-                    <table class="table table-striped table-bordered table-hover table-condensed content_big_td variablesTable t-l_a">
+                    <table class="table  table-bordered table-hover table-condensed variablesTable t-l_a">
                         <thead>
                         <th>{lang('Variables', 'cmsemail')}</th>
                         <th>{lang('Values', 'cmsemail')}</th>

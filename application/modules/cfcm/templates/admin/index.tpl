@@ -21,7 +21,7 @@
                     </div>                            
                     <h4>{lang("Additional fields", 'cfcm')}</h4>
                     {if !empty($fields)}
-                        <table class="table table-striped table-bordered table-hover table-condensed pages-table t-l_a">
+                        <table class="table  table-bordered table-hover table-condensed pages-table t-l_a">
                             <thead>
                                 <tr>
                                     <th>{lang("Label", 'cfcm')}</th>
@@ -87,7 +87,7 @@
                            {lang("No groups", "cfcm")}
                         </div>
                     {else:}
-                        <table class="table table-striped table-bordered table-hover table-condensed pages-table t-l_a">
+                        <table class="table  table-bordered table-hover table-condensed pages-table t-l_a">
                             <thead>
                                 <tr>
                                     <th>ID</th>

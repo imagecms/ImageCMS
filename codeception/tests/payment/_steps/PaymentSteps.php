@@ -292,7 +292,7 @@ class PaymentSteps extends \PaymentTester {
 
     /**
      * Checking current parameters in frontend 
-     * first time goes "processing order" page by clicking, other times goes to "processing order" page immediately
+     * if basket is empty goes to "processing order" page by clicking, else goes to "processing order" page immediately
      * if you want to skip verifying of some parameters type null
      * verify one payment if string or many if array transmitted
      * 
@@ -316,9 +316,9 @@ $I->wait(1);
         $buy = "//div[@class='frame-prices-buy f-s_0']//form/div[3]";
         $globalbaseket = 'div#tinyBask button';
 
-        $globalbaseketclass = $I->grabAttributeFrom($globalbaseket, 'class');
+        $globalbasketclass = $I->grabAttributeFrom($globalbaseket, 'class');
 
-        if (!empty($globalbaseketclass)) { 
+        if (!empty($globalbasketclass)) { 
             $I->comment('My basket is not empty');
             $I->amOnPage("/shop/cart");
         } else {
@@ -395,6 +395,7 @@ $I->wait(1);
             $I->click("#cuselFrame-paymentMethod");
             //White spaces added to method in "select" 
             //Read text ,trim then verify , if true click
+//            $payment_options = "//div[@id='cusel-scroll-paymentMethod']";
             $I->grabTextFrom("$cssOrXPathOrRegex");
             $I->click(" " . $selectpay . " ");
             $I->wait(5);
@@ -466,15 +467,15 @@ $I->wait(1);
     /**
      * Delete currencies with passed name
      * 
-     * @param array|string $settedTodeleteName
+     * @param array|string $CurrenciName
      */
-    public function deleteCurrencies($settedTodeleteName) {
+    public function deleteCurrencies($CurrenciName) {
         $I = $this;
         $I->amOnPage(\CurrenciesPage::$URL);
         $CurrenciesAmount = $I->grabClassCount($I, 'mainCurrency');
         for ($row = 1; $row <= $CurrenciesAmount; ++$row) {
             $findedCur = $I->grabTextFrom(\CurrenciesPage::CurrencyNameLine($row));
-            if (is_string($settedTodeleteName) && $findedCur == $settedTodeleteName || is_array($settedTodeleteName) && in_array($findedCur, $settedTodeleteName)) {
+            if (is_string($CurrenciName) && $findedCur == $CurrenciName || is_array($CurrenciName) && in_array($findedCur, $CurrenciName)) {
                 $I->click("//tr[$row]//td[7]//button");
                 $I->waitForElementVisible("div#first .btn.btn-primary");
                 $I->wait(1);
@@ -565,16 +566,17 @@ $I->wait(1);
         }
         if (isset($active)) {
             $Class = $I->grabAttributeFrom('//form/div[1]/div[3]/div[2]/span', 'class');
+            $I->comment($Class);
 
             switch ($active) {
                 case 'on':
-                    if ($Class == 'frame_label') {
+                    if ($Class == 'frame_label no_connection') {
                         $I->click(\PaymentEditPage::$CheckboxActive);
                         $I->comment('Checkbox Active on');
                     }
                     break;
                 case 'off':
-                    if ($Class == 'frame_label active') {
+                    if ($Class == 'frame_label no_connection active') {
                         $I->click(\PaymentEditPage::$CheckboxActive);
                         $I->comment('Checkbox Active off');
                     }

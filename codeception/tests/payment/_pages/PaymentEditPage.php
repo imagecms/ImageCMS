@@ -41,7 +41,7 @@ class PaymentEditPage
     //Selects
     static $SelectCurrency      = '//select[@name="CurrencyId"]';
     static function SelectCurrency($row) {
-        $currency = "//select[@name='CurrencyId']/option[2]";
+        $currency = "//select[@name='CurrencyId']/option[$row]";
         return $currency;
     }
     
