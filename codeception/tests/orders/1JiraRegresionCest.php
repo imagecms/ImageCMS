@@ -84,7 +84,7 @@ class JiraRegresionCest {
 //        $I->wait('1');
 //        $I->click(CreateOrderAdminPage::$CrtPButtCreateAndGoBack);
 //        $I->wait('3');
-        $I->click();
+//        $I->click();
         
     
     
