@@ -1,7 +1,7 @@
 <div class="tab-pane" id="privilege"> 
     <button type="button" class="btn btn-small action_on formSubmit pull-right" style="margin-top:-26px; margin-bottom: 10px;" data-form="#save"><i class="icon-ok"></i>{lang('Save', 'user_manager')}</button>
     <form action="{$SELF_URL}/update_role_perms" method="post" id="save" style="clear:both;">
-        <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+        <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
             <thead>
                 <tr>
                     <th colspan="6">
@@ -36,7 +36,7 @@
         </table> 
         {foreach $groups as $group_k => $group_v}
             <div class="span3">
-                <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                <table class="table  table-bordered table-hover table-condensed t-l_a">
                     <thead>
                         <tr>
                             <th class="t-a_c span1">

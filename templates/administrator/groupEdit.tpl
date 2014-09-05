@@ -40,7 +40,7 @@
 <form method="post" action="{$ADMIN_URL}{echo $model->id}" class="form-horizontal" id="group_ed_form">
     <div class="tab-content">
         <div class="tab-pane active" id="params">
-            <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+            <table class="table  table-bordered table-hover table-condensed content_big_td">
                 <thead>
                     <tr>
                         <th colspan="6">
@@ -51,7 +51,7 @@
                 <tbody>
                     <tr>
                         <td colspan="6">
-                            <div class="inside_padd span9 span9">
+                            <div class="inside_padd span9">
                                 <div class="control-group m-t_10">
                                     <label class="control-label" for="Name">{lang("Name","admin")}:</label>
                                     <div class="controls">
@@ -69,7 +69,7 @@
                     </tr>
                 </tbody>
             </table>
-            <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+            <table class="table  table-bordered table-hover table-condensed">
                 <thead>
                     <tr>
                         <th class="span1">

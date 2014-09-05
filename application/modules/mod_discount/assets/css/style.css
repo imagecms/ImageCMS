@@ -28,6 +28,4 @@
 .sum-of-order{width: 80px!important;margin-right: 7px;}
 .discount-out .icon-calendar{position: absolute;top: 6px;right: 6px;}
 .discount-out .niceCheck{top: 3px;}
-
-
-
+#selectTypeValue, #selectDiscountType { text-align: left; }

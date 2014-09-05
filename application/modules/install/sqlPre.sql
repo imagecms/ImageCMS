@@ -9237,7 +9237,7 @@ INSERT INTO `shop_settings` (`name`, `value`, `locale`) VALUES
 ('userInfoSenderName', '', ''),
 ('userInfoMessageTheme', '', ''),
 ('topSalesBlockFormulaCoef', '1', ''),
-('pricePrecision', '0', ''),
+('pricePrecision', '4', ''),
 ('smallAddImageWidth', '90', ''),
 ('smallAddImageHeight', '90', ''),
 ('forgotPasswordMessageText', 'Здравствуйте!\n\nНа сайте %webSiteName% создан запрос на восстановление пароля для Вашего аккаунта.\n\nДля завершения процедуры восстановления пароля перейдите по ссылке %resetPasswordUri% \n\nВаш новый пароль для входа: %password%\n\nЕсли это письмо попало к Вам по ошибке просто проигнорируйте его.\n\n\nПри возникновении любых вопросов, обращайтесь по телефонам:  \n(012)  345-67-89 , (012)  345-67-89 \n---\n\nС уважением, \nсотрудники службы продаж %webSiteName%', ''),

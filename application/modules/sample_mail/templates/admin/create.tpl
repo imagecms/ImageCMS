@@ -15,7 +15,7 @@
     <div class="tab-content">
         <div class="row-fluid">
             <form action="{$BASE_URL}admin/components/cp/sample_mail/create" id="widget_form" method="post" class="form-horizontal">
-                <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+                <table class="table  table-bordered table-hover table-condensed content_big_td">
                     <thead>
                     <th>{lang("Settings", 'admin')}</th>
                     </thead>

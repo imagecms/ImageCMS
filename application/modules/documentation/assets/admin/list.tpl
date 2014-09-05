@@ -52,7 +52,7 @@
                 <a href="#menu_manage" class="btn btn-small ">{lang("Menu manage", 'documentation')}</a>
             </div>
         </div>
-        <div class="tab-content content_big_td">
+        <div class="tab-content">
             <div class="tab-pane active" id="content_list">
                 <div class="row-fluid">
                     {if $show_cat_list == 'yes'}
@@ -107,7 +107,7 @@
                         </div>
                     {/if}
                     <span class="span9">
-                        <table class="table table-striped table-bordered table-hover table-condensed pages-table t-l_a">
+                        <table class="table  table-bordered table-hover table-condensed pages-table t-l_a">
                             <thead>
                                 <tr>
                                     <th class="t-a_c span1">
@@ -182,7 +182,7 @@
             </div>
             <div class="tab-pane" id="menu_categories">
                 <div class="row-fluid">
-                    <table class="table table-striped table-bordered table-hover table-condensed pages-table t-l_a">
+                    <table class="table  table-bordered table-hover table-condensed pages-table t-l_a">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -193,7 +193,7 @@
                         <tbody>
                             {foreach $categories as $category}
                                 <tr data-id="{echo $category['id']}">
-                                    <td class="t-a_c">
+                                    <td>
                                         <span>{echo $category['id']}</span>
                                     </td>
                                     <td>
@@ -223,7 +223,7 @@
 
             <div class="tab-pane" id="menu_manage">
                 <div class="row-fluid">
-                    <table class="table table-striped table-bordered table-hover table-condensed pages-table">
+                    <table class="table  table-bordered table-hover table-condensed pages-table">
                         <thead>
 
                         </thead>

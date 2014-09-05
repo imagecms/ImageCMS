@@ -3,20 +3,12 @@
 namespace OrdersTester;
 
 
-//    /**
-//     * @group a
-//     * @guy OrdersTester\OrdersSteps
-//     */
-//    public function Blabla(OrdersTester\OrdersSteps $I) {
-//        $I->createOrderAdmin
-//    }
+class OrdersSteps
 
-class OrdersSteps extends \OrdersTester {
+extends \OrdersTester
 
-//    function createOrderAdmin($product,$user = null, $delivery = null, $payment  = null) {
-//        $I = $this;
-//    }
-    
+{
+
     
     
     
@@ -123,7 +115,21 @@ class OrdersSteps extends \OrdersTester {
     }
     
     
+//--------------------------Create Product Kits---------------------------------
     
+    function CreateProductKits($MainProductKits = NULL, $AddProductKits = NULL) {
+        $I = $this;
+        $I->amOnPage('/admin/components/run/shop/kits/kit_create');
+        $I->fillField('//table/tbody/tr/td/div/div/div[1]/div/input', $MainProductKits);
+        $I->wait('1');
+        $I->click('//body/ul[2]/li/a');
+        $I->fillField('//table/tbody/tr/td/div/div/div[2]/div/input', $AddProductKits);
+        $I->wait('1');
+        $I->click('//body/ul[3]/li/a');
+        $I->wait('1');
+        $I->click('//section/div[1]/div[2]/div/button[1]');
+        $I->wait('1');
+    }
     
     
     
