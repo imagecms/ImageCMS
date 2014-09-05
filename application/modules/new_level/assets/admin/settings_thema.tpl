@@ -12,7 +12,7 @@
                 </div>
             </div> 
         </div>
-        <table id="tickets_table" class="table table-striped table-bordered table-hover table-condensed t-l_a" style="clear:both;">
+        <table id="tickets_table" class="table  table-bordered table-hover table-condensed t-l_a content_big_td" style="clear:both;">
             <thead>
             <th class="span1">{lang('Settings', 'new_level')}</th>
             </thead>

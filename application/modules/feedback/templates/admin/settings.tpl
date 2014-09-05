@@ -15,7 +15,7 @@
         <div class="tab-content">
             <!-----------------------------------------------------SETTINGS-------------------------------------------------------------->
             <div class="tab-pane active" id="mail">
-                <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
                     <thead>
                         <tr>
                             <th colspan="6">

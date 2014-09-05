@@ -261,7 +261,7 @@
                             </div>
                         </div>
                         <hr>
-                        <table id="po_table" class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                        <table id="po_table" class="table  table-bordered table-hover table-condensed t-l_a">
                             <thead>
                                 <tr>
                                     <th style="width: 50px">
@@ -362,7 +362,7 @@
                             <hr>
                         </div>
                         <form method="post" action="{site_url('admin/components/init_window/translator/createFile')}" class="form-horizontal" id="po_settings_form">
-                            <table style="width: 49%; float: left;" class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                            <table style="width: 49%; float: left;" class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
                                 <thead>
                                     <tr>
                                         <th>
@@ -382,7 +382,7 @@
                             </table>
 
                             <br>
-                            <table style="width: 49%; float: right; margin-top: -28px;" class="po_path_table table table-striped table-bordered table-hover table-condensed t-l_a">
+                            <table style="width: 49%; float: right; margin-top: -28px;" class="po_path_table table  table-bordered table-hover table-condensed t-l_a">
                                 <caption>
                                     <b><h5>{lang('Searched langs paths', 'translator')}</h5></b>
                                 </caption>

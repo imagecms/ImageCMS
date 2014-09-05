@@ -19,10 +19,11 @@ class TextExportCest
      * @group a
      */
     public function  WayExport (ImportExportTester $I){
+        $I->wantTo('Verify Way ToExport Page');
         $I->click(NavigationBarPage::$Settings);
         $I->click(NavigationBarPage::$SettingsImportExport);
         $I->wait('1');
-        $I->click(ExportPage::$ExpButtonExport);
+        $I->click(ExportPage::$ButtonExport);
         $I->seeInCurrentUrl('/admin/components/run/shop/system/import#exportcsv');
     }
     
@@ -33,10 +34,11 @@ class TextExportCest
      * @group a
      */
     public function  TextExport (ImportExportTester $I){
-        $I->amOnPage(ExportPage::$ExpURL);
-        $I->waitForElement(ExportPage::$ExpButtonExport);
-        $I->see('Экспорт', ExportPage::$ExpButtonExport);
-        $I->click(ExportPage::$ExpButtonExport);
+        $I->wantTo('Verify Text Present On Export Page.');
+        $I->amOnPage(ExportPage::$URL);
+        $I->waitForElement(ExportPage::$ButtonExport);
+        $I->see('Экспорт', ExportPage::$ButtonExport);
+        $I->click(ExportPage::$ButtonExport);
         $I->see('Колонки', '//tbody/tr/td/form/div/label');
         $I->see('Категории', '//tbody/tr/td/form/div/div[2]/label');
         $I->see('Свойства продуктов:', '//tbody/tr/td/form/div/div[2]/div[2]/label');

@@ -49,7 +49,7 @@
             {if count($models)>0}
                 <div class="row-fluid">
                     <form method="post" action="#" class="form-horizontal">
-                        <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+                        <table class="table  table-bordered table-hover table-condensed">
                             <thead>
                                 <tr>
                                     <th class="t-a_c span1">

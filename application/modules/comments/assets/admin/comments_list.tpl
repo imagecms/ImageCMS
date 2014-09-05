@@ -61,7 +61,7 @@ langs["Show answers"] = '<?php echo lang("Show answers", "comments")?>';
         {if count($comments) > 0 AND is_array($comments)}
             <div class="tab-pane active" id="modules">
                 <div class="row-fluid">
-                    <table class="table table-striped table-bordered table-hover table-condensed">
+                    <table class="table  table-bordered table-hover table-condensed">
                         <thead>
                             <tr>
                                 <th class="t-a_c span1">
