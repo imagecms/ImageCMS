@@ -4,11 +4,16 @@ class NavigationBarPage
 {
     //      Navigation bar buttons
     
+    //Heade buttons
+    //
+    public static $PersonalButton = "//a[@class='btn_header btn-personal-area']";
+    public static $PersonalButtonLogout = "//a[@href='/admin/logout']";
     
     //     Настройки
-    public static $Settings = "//nav/ul/li[8]/a";
-    public static $SettingsDelivery = "//nav/ul/li[8]/ul/li[3]/a"; 
-    public static $SettingsImportExport = "//div[3]/table/tbody/tr/td[7]/ul/li[5]/a";
+    public static $Settings = "//div[1]/div[3]/table/tbody/tr/td[7]/a";
+    public static $SettingsDelivery = "//div[1]/div[3]/table/tbody/tr/td[7]/ul/li[3]/a";
+    
+//    public static $SettingsImportExport = "//div[3]/table/tbody/tr/td[7]/ul/li[5]/a";
     
     //      Система
     public static $System = "//table/tbody/tr/td[8]/a";
