@@ -22,8 +22,10 @@ class CreateCurrenciesCest
     public function NamesInCreate(CurrenciesTester $I)
     {
         $I->amOnPage("/admin/components/run/shop/currencies");
+        $I->wait('2');
         $rows = $I->grabTagCount($I,"tbody tr");
         $I->comment("$rows");
+        $rows--;
         //Определение строчки главной валюты
         for ($j=1;$j<$rows;++$j){
             //Поиск атрибута checked для радиоточки
