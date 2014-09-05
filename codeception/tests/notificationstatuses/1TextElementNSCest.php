@@ -28,11 +28,12 @@ class TextElementNSCest
     public function VerifyWayNotfStatusesCreate1 (NotificationStatusesTester $I){
         $I->wantTo('Verify Way on Notification Statuses Create and Edit Page.');
         $I->wait('1');
-        $I->click('//body/div[1]/div[3]/div/nav/ul/li[2]/a');
-        $I->click('//body/div[1]/div[3]/div/nav/ul/li[2]/ul/li[10]/a');
+        $I->click(NavigationBarPage::$Orders);
+        $I->click(NavigationBarPage::$NotificationStatuses);
         $I->seeInCurrentUrl('/admin/components/run/shop/notificationstatuses');
         $I->wait('1');
-        $I->click('//body/div[1]/div[5]/div/div[3]/section/div[1]/div[2]/div/a');
+        $I->click(notificationstatusesPage::$ListButtonCreate);
+        $I->wait('1');
         $I->seeInCurrentUrl('/admin/components/run/shop/notificationstatuses/create');
     } 
     /**

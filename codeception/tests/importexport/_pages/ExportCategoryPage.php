@@ -1,6 +1,6 @@
 <?php
 
-class ExportCategoryPage 
+class ExportCategoryPage
 
 {
     public static $CatCreatURL = "/admin/components/run/shop/categories/create";

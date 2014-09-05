@@ -1,0 +1,13 @@
+<?php
+/**
+ * Вказати шлях до опен сервера
+ */
+define('OPENSERVER_PATH','C:\OpenServer\domains');
+/**
+ * вказати імя домена
+ */
+define('OPENSERVER_DOMAIN','\lastbuild.loc');
+/**
+ * не змінювати
+ */
+define('CSV_OUTPUT_FILE', OPENSERVER_PATH.OPENSERVER_DOMAIN.'\application\modules\import_export\backups\products.csv');

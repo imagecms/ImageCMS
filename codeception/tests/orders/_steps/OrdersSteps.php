@@ -434,19 +434,11 @@ extends \OrdersTester
     
     function SearchArticleProductAutocomplete ( $articleProduct = NULL) { 
         $I = $this;
-//        $I->click(\NavigationBarPage::$Orders);
-//        $I->click(\NavigationBarPage::$OrdersList);
-//        $I->wait('5');
-//        $I->click(\OrdersListPage::$ListButtCreateOrder);
         $I->amOnPage('/admin/components/run/shop/orders/create');
         $I->wait('3');
-//        if(isset($articleProduct)){
-//           $I->wait('1');
-//           $I->waitForElement('//table[1]/tbody/tr[1]/td[1]/div/input'); 
-           $I->fillField('//table[1]/tbody/tr[1]/td[1]/div/input', "$articleProduct");
-           $I->wait('1');
-           $I->see($articleProduct, '//body/ul[2]/li[1]/a');           
-//        }
+        $I->fillField('//table[1]/tbody/tr[1]/td[1]/div/input', "$articleProduct");
+        $I->wait('2');
+        $I->see($articleProduct, '//body/ul[2]/li[1]/a');      
     }
     
     

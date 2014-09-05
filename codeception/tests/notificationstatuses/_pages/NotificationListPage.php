@@ -12,7 +12,7 @@ class NotificationListPage
     public static $ListLinkEdittingCreateStatusButton = "//div[4]/form/table/tbody/tr/td[3]/a";
     public static $ListButtonFilter = "//div[2]/div/button";
     public static $ListButtonCancelFilter = "//div[3]/div[2]/div/a";
-    public static $ListButtonDelete = "//button[2]";
+    public static $ListButtonDelete = "//section/div[3]/div[2]/div/button[2]";
     public static $ListCalendar = "#ui-datepicker-div";
     public static $ListButtonAll = "//section/div[4]/a[1]";
     public static $ListButtonNew = "//section/div[4]/a[2]";

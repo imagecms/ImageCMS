@@ -15,7 +15,7 @@
     <div class="tab-content">
         <div class="tab-pane active" id="modules">
             <form method="post" action="{$BASE_URL}admin/widgets_manager/create" class="form-horizontal" id="wid_cr_form">
-                <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+                <table class="table  table-bordered table-hover table-condensed content_big_td">
                     <thead>
                         <tr>
                             <th colspan="6">
@@ -71,7 +71,7 @@
                     </tbody>
                 </table>
                 <div class="row-fluid">
-                    <table class="table table-striped table-bordered table-hover table-condensed t-l_a" id="moduleholder">
+                    <table class="table  table-bordered table-hover table-condensed t-l_a" id="moduleholder">
                         <thead>
                             <tr>
                                 <th class="t-a_c span1"></th>
