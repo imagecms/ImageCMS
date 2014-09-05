@@ -1,4 +1,4 @@
-<!-- Count digitals after point  -->
+{ /*} Count digitals after point  { */}
 {$pricePrecision = ShopCore::app()->SSettings->pricePrecision}
 <div class="frame-inside page-cart pageCart">
     <div class="container">
@@ -100,7 +100,7 @@
                             </div>
                             <div class="groups-form">
                                 {if count($deliveryMethods) > 0}
-                                    <!-- Start. Delivery methods block -->
+                                    { /*} Start. Delivery methods block { */}
                                     <div class="frame-label" id="frameDelivery">
                                         <span class="title">{lang('Доставка:','newLevel')}</span>
                                         <div class="frame-form-field check-variant-delivery">
@@ -137,10 +137,17 @@
                                                                 {echo $deliveryMethod->getDeliverySumSpecifiedMessage()}
                                                             {else:}
                                                                 {if $deliveryMethod->getPrice() > 0}
-                                                                    <!--<div>{lang('Стоимость','newLevel')}: {echo ceil($deliveryMethod->getPrice())} <span class="curr">{$CS}</span></div>-->
-                                                                    <!--<div>{lang('Бесплатно от','newLevel')}: {echo ceil($deliveryMethod->getFreeFrom())} <span class="curr">{$CS}</span></div>-->
-                                                                    <div>{lang('Стоимость','newLevel')}: {echo number_format($deliveryMethod->getPrice(),$pricePrecision,'.','')} <span class="curr">{$CS}</span></div>
-                                                                    <div>{lang('Бесплатно от','newLevel')}: {echo number_format($deliveryMethod->getFreeFrom(),$pricePrecision,'.','')} <span class="curr">{$CS}</span></div>
+                                                                    { /*}<div>{lang('Стоимость','newLevel')}: {echo ceil($deliveryMethod->getPrice())} <span class="curr">{$CS}</span></div>{ */}
+                                                                    { /*}<div>{lang('Бесплатно от','newLevel')}: {echo ceil($deliveryMethod->getFreeFrom())} <span class="curr">{$CS}</span></div>{ */}
+                                                                    <div> {lang('Стоимость','newLevel')}:
+                                                                            {echo \Currency\Currency::create()->getCurrencyToFormat(\Currency\Currency::create()->getMainCurrency()->getId(), number_format($deliveryMethod->getPrice(),$pricePrecision,'.',''),'span', 'curr', '');}
+                                                                    </div>
+                                                                    <div> {lang('Стоимость','newLevel')}:
+                                                                            {echo \Currency\Currency::create()->getCurrencyToFormat(\Currency\Currency::create()->getMainCurrency()->getId(), number_format($deliveryMethod->getFreeFrom(),$pricePrecision,'.',''),'span', 'curr', '');}
+                                                                    </div>
+                        
+                                                                    { /*}<div>{lang('Стоимость','newLevel')}: {echo number_format($deliveryMethod->getPrice(),$pricePrecision,'.','')} <span class="curr">{$CS}</span></div>
+                                                                    <div>{lang('Бесплатно от','newLevel')}: {echo number_format($deliveryMethod->getFreeFrom(),$pricePrecision,'.','')} <span class="curr">{$CS}</span></div>{ */}
                                                                 {/if}
                                                             {/if}
                                                         </div>
@@ -148,9 +155,9 @@
                                                 {/foreach}
                                             </div>
                                         </div>
-                                        <!-- End. Delivery methods block -->
+                                        { /*} End. Delivery methods block { */}
                                     </div>
-                                    <!-- Start. Delivery  address block and comment-->
+                                    { /*} Start. Delivery  address block and comment{ */}
                                 {/if}
                                 <div class="frame-label">
                                     <span class="title">{lang('Адрес доставки', 'newLevel')}:</span>
@@ -161,7 +168,7 @@
                                         <input name="userInfo[deliverTo]" type="text" value="{if isset($formData['deliverTo'])}{$formData['deliverTo']}{else:}{$profile.deliverTo}{/if}"/>
                                     </span>
                                 </div>
-                                <!-- End. Delivery  address block and comment-->
+                                { /*} End. Delivery  address block and comment{ */}
 
                                 {echo ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPatternMain('pattern_custom_field')->getOneCustomFieldsByName('city','order',$profile.id,'user')->asHtml()}
 
@@ -174,7 +181,7 @@
                                     </div>
                                 </div>
                                 {if count($deliveryMethods) > 0}
-                                    <!-- Start. Payment methods block-->
+                                    { /*} Start. Payment methods block{ */}
                                     <div class="frame-payment p_r">
                                         <div id="framePaymentMethod">
                                             <div class="frame-label">
@@ -186,7 +193,7 @@
                                         </div>
                                         <div class="preloader d_n_"></div>
                                     </div>
-                                    <!-- End. Payment methods block-->
+                                    { /*} End. Payment methods block{ */}
                                 {/if}
                             </div>
                             <div class="groups-form">

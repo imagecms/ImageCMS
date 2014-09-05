@@ -8,7 +8,7 @@
 <table class="table-order">
     <tbody>
         {foreach $items as $item}
-            <!-- Start. For single product -->
+            { /*} Start. For single product { */}
             {if  $item->instance == 'SProducts'}
                 <tr class="items items-bask cart-product items-product">
                     <td class="frame-items">
@@ -49,24 +49,33 @@
                             {if ShopCore::app()->SCurrencyHelper->convert($item->originPrice) != ShopCore::app()->SCurrencyHelper->convert($item->price)}
                                 <span class="price-discount">
                                     <span>
+                                        {echo \Currency\Currency::create()->getCurrencyToFormat(\Currency\Currency::create()->getMainCurrency()->getId(), ShopCore::app()->SCurrencyHelper->convert($item->originPrice) * $item->quantity,'span', 'curr', '',  'span', 'price', '');}
+                                    </span>
+                                    { /*}<span>
                                         <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($item->originPrice) * $item->quantity}</span>
-                                        <span class="curr">{$CS}</span>
+                                        <span class="curr">{$CS}</span>{ */}
                                     </span>
                                 </span>
                             {/if}
                             <span class="current-prices f-s_0">
                                 <span class="price-new">
                                     <span>
-                                        <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($item->price * $item->quantity)}</span>
-                                        <span class="curr">{$CS}</span>
+                                        <span>
+                                            {echo \Currency\Currency::create()->getCurrencyToFormat(\Currency\Currency::create()->getMainCurrency()->getId(), ShopCore::app()->SCurrencyHelper->convert($item->price * $item->quantity),'span', 'curr', '',  'span', 'price', '');}
+                                        </span>
+                                        { /*}<span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($item->price * $item->quantity)}</span>
+                                        <span class="curr">{$CS}</span>{ */}
                                     </span>
                                 </span>
                                 {/*}
                                 {if $NextCSId}
                                     <span class="price-add">
                                         <span>
-                                            <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($item->price * $item->quantity, $NextCSId)}</span>
-                                            <span class="curr">{$NextCS}</span>
+                                            <span>
+                                                {echo \Currency\Currency::create()->getCurrencyToFormat($NextCSId, ShopCore::app()->SCurrencyHelper->convert($item->price * $item->quantity, $NextCSId),'span', 'curr', '',  'span', 'price', '');}
+                                            </span>
+                                            { /*}<span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($item->price * $item->quantity, $NextCSId)}</span>
+                                            <span class="curr">{$NextCS}</span>{ */}
                                         </span>
                                     </span>
                                 {/if}
@@ -76,7 +85,7 @@
                     </td>
                 </tr>
             {else:}
-                <!-- Start. Shop kit -->
+                { /*} Start. Shop kit { */}
                 <tr class="row row-kits">
                     <td class="frame-items frame-items-kit">
                         <div class="title-h3 c_9">{lang('Комплект товаров', 'newLevel')}</div>
@@ -128,24 +137,33 @@
                             {if ShopCore::app()->SCurrencyHelper->convert($item->originPrice) != ShopCore::app()->SCurrencyHelper->convert($item->price)}
                                 <span class="price-discount">
                                     <span>
-                                        <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($item->originPrice * $item->quantity)}</span>
-                                        <span class="curr">{$CS}</span>
+                                        <span>
+                                            {echo \Currency\Currency::create()->getCurrencyToFormat(\Currency\Currency::create()->getMainCurrency()->getId(), ShopCore::app()->SCurrencyHelper->convert($item->originPrice * $item->quantity),'span', 'curr', '',  'span', 'price', '');}
+                                        </span>
+                                        { /*}<span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($item->originPrice * $item->quantity)}</span>
+                                        <span class="curr">{$CS}</span>{ */}
                                     </span>
                                 </span>
                             {/if}
                             <span class="current-prices f-s_0">
                                 <span class="price-new">
                                     <span>
-                                        <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($item->price)}</span>
-                                        <span class="curr">{$CS}</span>
+                                        <span>
+                                            {echo \Currency\Currency::create()->getCurrencyToFormat(\Currency\Currency::create()->getMainCurrency()->getId(), ShopCore::app()->SCurrencyHelper->convert($item->price),'span', 'curr', '',  'span', 'price', '');}
+                                        </span>
+                                        { /*}<span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($item->price)}</span>
+                                        <span class="curr">{$CS}</span>{ */}
                                     </span>
                                 </span>
                                 {/*}
                                 {if $NextCSId}
                                     <span class="price-add">
                                         <span>
-                                            <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($item->price * $item->quantity, $NextCSId)}</span>
-                                            <span class="curr">{$NextCS}</span>
+                                            <span>
+                                                {echo \Currency\Currency::create()->getCurrencyToFormat($NextCSId, ShopCore::app()->SCurrencyHelper->convert($item->price * $item->quantity, $NextCSId),'span', 'curr', '',  'span', 'price', '');}
+                                            </span>
+                                            { /*}<span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($item->price * $item->quantity, $NextCSId)}</span>
+                                            <span class="curr">{$NextCS}</span>{ */}
                                         </span>
                                     </span>
                                 {/if}
@@ -154,7 +172,7 @@
                         </div>
                     </td>
                 </tr>
-                <!-- End. Shop kit -->
+                { /*} End. Shop kit { */}
             {/if}
         {/foreach}   
     </tbody>
@@ -163,9 +181,12 @@
             <tr>
                 <td colspan="3">
                     <span class="s-t f_l">{lang('Начальная стоимость товаров','newLevel')}:</span>
-                    <div class="f_r">                
-                        <span class="price f-w_b">{echo ShopCore::app()->SCurrencyHelper->convert($cartOriginPrice)}</span>
-                        <span class="curr"> {$CS}</span>
+                    <div class="f_r">               
+                        <span>
+                            {echo \Currency\Currency::create()->getCurrencyToFormat(\Currency\Currency::create()->getMainCurrency()->getId(), ShopCore::app()->SCurrencyHelper->convert($cartOriginPrice),'span', 'curr', '',  'span', 'price f-w_b', '');}
+                        </span>
+                        { /*}<span class="price f-w_b">{echo ShopCore::app()->SCurrencyHelper->convert($cartOriginPrice)}</span>
+                        <span class="curr"> {$CS}</span>{ */}
                     </div>
                 </td>
             </tr>
@@ -174,8 +195,11 @@
             <td colspan="3">
                 <span class="s-t f_l">{lang('Cтоимость товаров','newLevel')}:</span>
                 <div class="f_r">
-                    <span class="price f-w_b">{echo ShopCore::app()->SCurrencyHelper->convert($cartPrice)}</span>
-                    <span class="curr">{$CS}</span>
+                    <span>
+                        {echo \Currency\Currency::create()->getCurrencyToFormat(\Currency\Currency::create()->getMainCurrency()->getId(), ShopCore::app()->SCurrencyHelper->convert($cartPrice),'span', 'curr', '',  'span', 'price f-w_b', '');}
+                    </span>
+                    { /*}<span class="price f-w_b">{echo ShopCore::app()->SCurrencyHelper->convert($cartPrice)}</span>
+                    <span class="curr">{$CS}</span>{ */}
                 </div>
             </td>
         </tr>
@@ -190,11 +214,17 @@
                             {$priceDelAdd = ShopCore::app()->SCurrencyHelper->convert($deliveryMethod->getPrice(), $NextCSId)}
                             {if $cartPrice < $priceDelFreeFrom}
                                 {$cartPrice += $priceDel}
-                                <span class="price f-w_b">{echo $priceDel}</span>
-                                <span class="curr">{$CS}</span>
+                                <span>
+                                    {echo \Currency\Currency::create()->getCurrencyToFormat(\Currency\Currency::create()->getMainCurrency()->getId(), $priceDel,'span', 'curr', '',  'span', 'price f-w_b', '');}
+                                </span>
+                                { /*}<span class="price f-w_b">{echo $priceDel}</span>
+                                <span class="curr">{$CS}</span>{ */}
                                 {if $NextCSId}
-                                    (<span class="price f-w_b">{$priceDelAdd}</span>
-                                    <span class="curr-add">{$NextCS}</span>)
+                                    <span>
+                                        ({echo \Currency\Currency::create()->getCurrencyToFormat($NextCSId, $priceDelAdd,'span', 'curr-add', '',  'span', 'price f-w_b', '');})
+                                    </span>
+                                    { /*}(<span class="price f-w_b">{$priceDelAdd}</span>
+                                    <span class="curr-add">{$NextCS}</span>){ */}
                                 {/if}
                             {else:}
                                 <span class="text-el s-t">{lang('Бесплатно', 'newLevel')}</span>
@@ -211,8 +241,11 @@
                 <td colspan="3">
                     <span class="s-t f_l">{lang('Ваша текущая скидка','newLevel')}:</span>
                     <div class="text-discount current-discount f_r">
-                                        <span class="price f-w_b">{echo ShopCore::app()->SCurrencyHelper->convert($discount_val)}</span>
-                                    <span class="curr">{$CS}</span>
+                        <span>
+                            {echo \Currency\Currency::create()->getCurrencyToFormat(\Currency\Currency::create()->getMainCurrency()->getId(), ShopCore::app()->SCurrencyHelper->convert($discount_val),'span', 'curr', '',  'span', 'price f-w_b', '');}
+                        </span>
+                        { /*}<span class="price f-w_b">{echo ShopCore::app()->SCurrencyHelper->convert($discount_val)}</span>
+                        <span class="curr">{$CS}</span>{ */}
                     </div>
                 </td>
             </tr>
@@ -223,8 +256,11 @@
                 <td colspan="3">
                     <span class="s-t f_l">{lang('Подарочный сертификат','newLevel')}:</span>
                     <div class="text-discount f_r">
-                        <span class="price f-w_b">{echo ShopCore::app()->SCurrencyHelper->convert($gift_val)}</span>
-                        <span class="curr">{$CS}</span>
+                        <span>
+                            {echo \Currency\Currency::create()->getCurrencyToFormat(\Currency\Currency::create()->getMainCurrency()->getId(), ShopCore::app()->SCurrencyHelper->convert($gift_val),'span', 'curr', '',  'span', 'price f-w_b', '');}
+                        </span>
+                        { /*}<span class="price f-w_b">{echo ShopCore::app()->SCurrencyHelper->convert($gift_val)}</span>
+                        <span class="curr">{$CS}</span>{ */}
                     </div>
                 </td>
             </tr>
@@ -272,18 +308,24 @@
             <span class="current-prices f-s_0">
                 <span class="price-new">
                     <span>
-                        <span class="price" id="finalAmount">
+                        <span>
+                            {echo \Currency\Currency::create()->getCurrencyToFormat(\Currency\Currency::create()->getMainCurrency()->getId(), ShopCore::app()->SCurrencyHelper->convert($cartPrice),'span', 'curr', '',  'span', 'price', 'finalAmount');}
+                        </span>
+                        { /*}<span class="price" id="finalAmount">
                             {echo ShopCore::app()->SCurrencyHelper->convert($cartPrice)}
                         </span>
-                        <span class="curr">{$CS}</span>
+                        <span class="curr">{$CS}</span>{ */}
                     </span>
                 </span>
                 {if $NextCS != null}
                     <span class="price-add">
                         <span>
+                            ({echo \Currency\Currency::create()->getCurrencyToFormat($NextCSId, ShopCore::app()->SCurrencyHelper->convert($cartPrice, $NextCSId),'span', 'curr-add', '',  'span', 'price', 'finalAmountAdd');})
+                        </span>
+                        { /*}<span>
                             (<span class="price" id="finalAmountAdd">{echo ShopCore::app()->SCurrencyHelper->convert($cartPrice, $NextCSId)}</span>
                             <span class="curr-add">{$NextCS}</span>)
-                        </span>
+                        </span>{ */}
                     {/if}
                 </span>
             </span>
