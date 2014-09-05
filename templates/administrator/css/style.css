@@ -94,7 +94,7 @@ table thead td a:hover, table thead th a:hover{color: #aaa;}
 .navbar .nav {margin-right: 0 !important;}
 .navbar .btn{margin-bottom: 5px;}
 .nav a{text-decoration: none;}
-.nav-tabs.nav-stacked > .active > a{background-color: #cfcfcf !important;}
+.nav-tabs.nav-stacked > .active > a{background-color: #E9E9E9 !important;}
 
 .frame_label{font-size: 12px;display: inline-block;}
 .frame_label + .frame_label{margin-top: 5px;}
@@ -300,8 +300,8 @@ form > *{font-size: 12px;}
 .ui-datepicker.dropdown-menu a{padding: 2px 10px;}
 .ui-state-disabled{color: #999;}
 
-.form-horizontal .control-label{width: 126px !important;text-align: right;}
-.form-horizontal .controls{margin-left: 136px !important;display: block;}
+.form-horizontal .control-label{width: 214px !important;text-align: right;}
+.form-horizontal .controls{margin-left: 224px !important;display: block;}
 .form-horizontal .controls.c_b{margin-left: 0 !important;}
 .form-horizontal .control-group{margin-bottom: 10px;}
 .ctext{padding-top: 6px;}
@@ -947,14 +947,16 @@ a.btn-quick-access:hover .text-el{text-decoration: underline;}
 .dropdown-menu li>a:hover, .dropdown-menu li>a:focus, .dropdown-submenu:hover>a{background-color: #f2f2f2;}
 
 .myTab > a, .myTab > button{border: 0;background: none;padding: 9px 20px;border-radius: 3px 3px 0 0 !important;color: #08c;border: 1px solid transparent;border-bottom-color: #d6d6d6;vertical-align: bottom;}
-.myTab > a:hover, .myTab > button:hover{background: none;}
+.nav-tabs>li>a:hover, .myTab > a:hover, .myTab > button:hover{background-color: #E4E4E4;}
+.nav-tabs>li.active>a{background: none;}
 .myTab > a.active, .myTab > button.active{border-color: #d6d6d6;border-bottom-color: transparent;background: none;}
 
 td[colspan]{padding: 0;}
-.content_big_td td{background-color: #f6f6f6 !important;padding: 18px;border-color: #dfdfdf;}
+.content_big_td td{background-color: #f6f6f6 !important;padding: 18px 70px 18px 18px;border-color: #dfdfdf;}
 .content_big_td.table{table-layout: fixed;}
-.title-default{margin-bottom: 12px;margin-top: 12px;}
-.content_big_td thead th, .title-default{color: #000;font-weight: bold;font-size: 14px;background-color: #fff;padding: 0 18px;}
+.title-default{margin-top: 30px;margin-bottom: 12px;}
+.content_big_td thead th, .title-default{color: #000;font-weight: bold;font-size: 14px;}
+.content_big_td thead th{background-color: #fff;padding: 0 18px;}
 
 .inside_padd{padding-top: 10px;}
 .table .inside_padd{padding-top: 0;}
@@ -967,5 +969,4 @@ hr{border-top-color: #dfdfdf;border-bottom: 0;margin-top: 30px;}
 .table tfoot td:first-child{border-left: 1px solid #dfdfdf;}
 .table tfoot td > .inside_padd{padding: 11px 14px;}
 
-.nav-tabs>li>a:hover{background: none;}
 .productText > div{margin-bottom: 4px;}
