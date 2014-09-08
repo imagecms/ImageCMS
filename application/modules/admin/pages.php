@@ -1042,6 +1042,7 @@ class Pages extends BaseAdminController {
 
             $this->template->add_array(array(
                 'paginator' => $this->pagination->create_links_ajax(),
+                'total_pages' => $total_pages,
                 'pages' => $pages,
                 'cat_id' => $cat_id,
                 'category' => $category,
@@ -1054,11 +1055,11 @@ class Pages extends BaseAdminController {
 
             $this->template->add_array(array('no_pages' => TRUE,
                 'category' => $category,
+                'total_pages' => $total_pages,
                 'tree' => $this->lib_category->build(),
                 'cat_id' => $cat_id,
                 'show_cat_list' => $main_settings['cat_list'],
             ));
-            $this->template->show('pages_list', FALSE);
         }
     }
 

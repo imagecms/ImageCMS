@@ -27,7 +27,7 @@ class NotificationStatusesPage
     // Create Page
     public static $CreatePageUrl = "admin/components/run/shop/notificationstatuses/create";
     public static $CreationButtonCreate = "//div[2]/div/button[1]";
-    public static $CreationButtonBack = "//a/span[2]";
+    public static $CreationButtonBack = "//section/div/div[2]/div/a/span[2]";
     public static $CreationButtonCreateAndGoBack = ".btn.btn-small.btn-default.formSubmit";
     public static $CreationFildInput =  ".//*[@id='inputFio']";
     public static $CreationNameTitle =  "//div/section/div/div/span[2]";
@@ -37,7 +37,7 @@ class NotificationStatusesPage
     public static $CreationCreateMessage =  "//div[2]/div[2]";
     // Edit Page
     public static $EditingPageURL = "/admin/components/run/shop/notificationstatuses/edit/1";
-    public static $EditingButtonBack = "//a/span[2]";
+    public static $EditingButtonBack = "//section/div/div[2]/div/a/span[2]";
     public static $EditingButtonSave = "//div[2]/div/button[1]";
     public static $EditingButtonSaveAndGoBack = "//div[2]/div/button[2]";
     public static $EdictingEdictMessage =  "//div[2]/div[2]";
