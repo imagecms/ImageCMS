@@ -27,8 +27,11 @@
                                 <span class="current-prices">
                                     <span class="price-new">
                                         <span>
-                                            <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($order->getTotalPrice())}</span>
-                                            <span class="curr">{$CS}</span>
+                                            <span>
+                                                {echo \Currency\Currency::create()->getCurrencyToFormat(\Currency\Currency::create()->getMainCurrency()->getId(), ShopCore::app()->SCurrencyHelper->convert($order->getTotalPrice()),'span', 'curr', '',  'span', 'price', '')}
+                                            </span>
+                                            {/*}<span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($order->getTotalPrice())}</span>
+                                            <span class="curr">{$CS}</span> { */}
                                         </span>
                                     </span>
                                 </span>

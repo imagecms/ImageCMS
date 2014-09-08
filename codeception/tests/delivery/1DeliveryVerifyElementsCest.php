@@ -4,11 +4,12 @@ use \DeliveryTester;
 class DeliveryVerifyElementsCest {
     
     /**
+     * Login & go to page DeliveryList
      * @group verify
+     * @group current
      * @guy DeliveryTester\DeliverySteps
      */
     public function Authorization(DeliveryTester\DeliverySteps $I){
-        //Login & go to page DeliveryList
         InitTest::login($I);
         $I->click(NavigationBarPage::$Settings);
         $I->click(NavigationBarPage::$SettingsDelivery);
@@ -16,6 +17,8 @@ class DeliveryVerifyElementsCest {
     }
     
     /**
+     * Verify all elements on list landing page
+     * 
      * @group verify
      */
     public function DeliveryListElements(DeliveryTester $I)
@@ -34,6 +37,8 @@ class DeliveryVerifyElementsCest {
     }
     
     /**
+     * Verify all elements in delete window 
+     * 
      * @group verify
      */
     public function DeliveryDeleteWindow (DeliveryTester $I){
@@ -48,6 +53,7 @@ class DeliveryVerifyElementsCest {
     }
     
     /**
+     * Verify all elements in Delivery create page
      * @group verify
      */
     public function DeliveryCreateElements(DeliveryTester $I)
@@ -109,6 +115,7 @@ class DeliveryVerifyElementsCest {
     }
     /**
      * @group verify
+     * @group current
      */
     public function logout(DeliveryTester $I) {
         InitTest::Loguot($I);
