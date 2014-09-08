@@ -294,7 +294,7 @@ function init_2() {
     // /if ($.exists('[data-submit]')) $('body').append('<div class="notifications bottom-right"><div class="alert-message" style="color:#666;text-shadow:0 1px #fff;">??? ???? ???? <span style="color:green;font-weight:bold;">'+$('[data-submit]').text()+'</span> ??????????? ?????????? ?????? <span style="color:green;font-weight:bold;">Ctrl + s</span></div></div>')
 
     /** Show/Hide Price to be confirmed message input in delivery methods edit and create ***/
-    $('#deliverySumSpecifiedSpan').bind('click', function() {
+    $('#deliverySumSpecifiedSpan').off('click').on('click', function() {
         var spanBlock = $(this);
         var checkBox = spanBlock.find('#deliverySumSpecifiedInput');
         var controlBlock = spanBlock.closest('#deliveryPriceDisableBlock');
@@ -337,7 +337,7 @@ function init_2() {
 
 
 // shop - settings - count of products on site
-    $("#arrayFrontProductsPerPage").unbind('keyup').bind('keyup', function() {
+    $("#arrayFrontProductsPerPage").off('keyup').on('keyup', function() {
         var currentValue = $(this).val();
         var pattern = /^[0-9\,[^\,\,]]+$/;
         if (!currentValue.match(pattern)) { // has banned symbols
@@ -607,7 +607,7 @@ function init_2() {
     });
 }
 function dropDownMenu() {
-    $('.to_pspam').unbind('click').on('click', function() {
+    $('.to_pspam').off('click').on('click', function() {
         var arr = new Array();
         $('input[name=ids]:checked').each(function() {
             arr.push(parseInt($(this).val()));
@@ -622,7 +622,7 @@ function dropDownMenu() {
         }
         );
     });
-    $('.to_wait').unbind('click').on('click', function() {
+    $('.to_wait').off('click').on('click', function() {
         var arr = new Array();
         $('input[name=ids]:checked').each(function() {
             arr.push(parseInt($(this).val()));
@@ -637,7 +637,7 @@ function dropDownMenu() {
         }
         );
     });
-    $('.to_approved').unbind('click').on('click', function() {
+    $('.to_approved').off('click').on('click', function() {
         var arr = new Array();
         $('input[name=ids]:checked').each(function() {
             arr.push(parseInt($(this).val()));
@@ -769,7 +769,7 @@ function autocomplete() {
                 }, 'json')
             },
             select: function(event, ui) {
-                $('#relatedProductsNames').append('<div id="tpm_row' + ui.item.identifier.id + '" class="item-accessories">' +
+                $('#relatedProductsNames').show().append('<div id="tpm_row' + ui.item.identifier.id + '" class="item-accessories">' +
                         '<span class="pull-left">' +
                         '<a id="AttachedProducts" href="edit/' + ui.item.identifier.id + '">' + ui.item.label + '</a>' +
                         '<input type="hidden" name="RelatedProducts[]" value="' + ui.item.identifier.id + '">' +
@@ -867,7 +867,7 @@ handleFileSelect = function(evt) {
             return function(e) {
                 // Render thumbnail.
                 var span = document.createElement('div');
-                span.innerHTML = ['<img style="max-height: 100%;" src="', e.target.result,
+                span.innerHTML = ['<img style="widht: 50px;max-height: 100%;width: 50px;" src="', e.target.result,
                     '" title="', escape(theFile.name), '"/>'].join('');
                 document.getElementById('picsToUpload').insertBefore(span, null);
                 document.getElementById('picsToUpload').className = 'is_content';
@@ -966,9 +966,9 @@ function fixed_frame_title() {
         if (FFT.frame_zH_frame_title_e)
             FFT.frame_zH_frame_title.css('top', 0);
     }
-    else if (FFT.frame_zH_frame_title_e){
+    else if (FFT.frame_zH_frame_title_e) {
         FFT.frame_zH_frame_title.css('top', top - wTop + addH);
-        }
+    }
 
     if (FFT.frame_zH_frame_title_e)
         FFT.frame_zH_frame_title.css('right', $(window).width() - FFT.fixed_block.outerWidth() - FFT.mini_layout.offset().left + 10).show();
@@ -1190,17 +1190,19 @@ function initAdminArea() {
         $($(this).data('file')).click();
     });
     $('[data-url="file"] input[type="file"]').die('change').live('change', function(e) {
-        var $this = $(this);
-        var $type_file = $this.val();
-        var file = this.files[0];
-        var img = document.createElement("img");
-        var reader = new FileReader();
+        var $this = $(this),
+                $type_file = $this.val(),
+                file = this.files[0],
+                img = document.createElement("img"),
+                reader = new FileReader();
+
         reader.onloadend = function() {
             img.src = reader.result;
         };
         reader.readAsDataURL(file);
         $(img).addClass('img-polaroid').css({
-            'max-height': '100%'
+            'max-height': '100%',
+            'width': '50px'
         });
         img.onerror = function() {
             // image not found or change src like this as default image:
@@ -1210,7 +1212,31 @@ function initAdminArea() {
         };
         $(this).closest('.control-group').find('.controls').html(img);
         $this.parent().next().val($type_file).attr('data-rel', 'tooltip');
-        isChanged = $(this).closest('td').find('.changeImage').val('1');
+        $(this).closest('td').find('.changeImage').val('1');
+    });
+    $('[data-url="file2"]').die('change').live('change', function(e) {
+        var $this = $(this),
+                data = $this.data(),
+                val = $this.val(),
+                file = this.files[0],
+                img = document.createElement("img"),
+                reader = new FileReader();
+
+        reader.onloadend = function() {
+            img.src = reader.result;
+        };
+        reader.readAsDataURL(file);
+        $(img).addClass('img-polaroid').css({
+            'max-height': '100%',
+            'width': data.width
+        });
+        img.onerror = function() {
+            // image not found or change src like this as default image:
+            img.src = base_url + 'templates/administrator/images/select-picture.png';
+            showMessage(lang('Error'), lang('Not supported file format'));
+            return;
+        };
+        $(data.rel).html(img);
     });
     //add arrows to orders list
     if (window.hasOwnProperty('orderField'))
@@ -1235,11 +1261,12 @@ function initAdminArea() {
     });
     $('button.rmAddPic').die('click').live('click', function(event) {
         event.preventDefault();
-        $(this).closest('label').find('input[type=hidden]').val($(this).data('i'));
-        $(this).closest('label').find('span').find('input[type=file]').val('');
-        $(this).closest('div.control-group').find('img').attr('src', '/templates/administrator/images/select-picture.png');
-        $(this).remove();
-        return false;
+        var $this = $(this),
+                i = $this.data('i');
+        $('#add_img_urls_' + i).val(i);
+        $('#fileImg_' + i).val('');
+        $('#frame_for_img_' + i).find('img').attr('src', '/templates/administrator/images/select-picture.png');
+        $this.remove();
     });
     if ($.fn.chosen)
         initChosenSelect();
@@ -1437,8 +1464,8 @@ $('#categoryForOrders').live('change', function() {
 //Get product variants
 $('.productsForOrders').live('change', function() {
     var productId = $(this).val(),
-    productName = $(this).find('option:selected').data('productName');
-    
+            productName = $(this).find('option:selected').data('productName');
+
     orders.getProductVariantsByProduct(productId, productName);
 });
 //Get variants info
