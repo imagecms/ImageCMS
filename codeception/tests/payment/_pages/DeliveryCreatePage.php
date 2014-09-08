@@ -21,7 +21,7 @@ class DeliveryCreatePage
     public static $FieldPriceSpecifiedLabel = ".//*[@id='deliverySumSpecifiedMessageSpan']/label";
     public static $PaymentLabel = "//*[@id='mainContent']/div/section/div[2]/table/tbody/tr/td/div/div/div[3]/div[1]";
     public static function PaymentMethodLabel($row){
-        $Payment = "//tbody/tr/td/div/div/div[3]/div[2]/div[$row]/button";
+        $Payment = "//section[@class='mini-layout']/div[2]/table/tbody/tr/td/div/div/div[2]/div[2]/div[$row]/button";
         return $Payment;
     }
     Public static $ButtonCreateExit = ".btn.btn-small.action_on.formSubmit";
