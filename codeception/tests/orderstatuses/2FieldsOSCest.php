@@ -6,7 +6,7 @@ class FieldsOSCest
 //---------------------------AUTORIZATION---------------------------------------
     
     /**
-     * @group aaa
+     * @group a
      */
     public function Login(OrderStatusesTester $I){
         InitTest::Login($I);
@@ -38,7 +38,7 @@ class FieldsOSCest
     }
     
     /**
-     * @group aaa
+     * @group a
      */
     public function CreateFieldName50Symvol (OrderStatusesTester $I){
         $I->wantTo('Verify Create and Present Status Whit 50 Symbol on Name.');
@@ -364,18 +364,15 @@ class FieldsOSCest
     protected function VOS (OrderStatusesTester $I, $name){
         $I->amOnPage(OrderStatusesListPage::$ListURL);
         $I->wait('1');
-        $numbeRows = $I->grabTagCount($I, 'tbody tr');
-        $I->comment("Number Rows:'$numbeRows'.");
-        for($j=1;$j<=$numbeRows;++$j){
-            $I->comment("Search In Row:'$j'");
+        $amountRows = $I->grabCCSAmount($I, 'section.mini-layout tbody tr');
+        for($j=1;$j<=$amountRows;++$j){
             $I->wait('1');
             $searchName = $I->grabTextFrom("//tbody//tr[$j]/td[2]/a");
                 if($searchName == $name){
-                   $I->comment("Status Presence In Row Number:'$j'.");
+                    $I->see("$name", "//tbody//tr[$j]/td[2]/a"); 
+                    break;
                 }
         }  
-        $I->see("$name");
-        $I->comment('Status Presence In Order Statuses List Page.');
         $I->wait('1');
     }
     
@@ -387,14 +384,13 @@ class FieldsOSCest
     protected function DCOS (OrderStatusesTester $I){
         $I->amOnPage(OrderStatusesListPage::$ListURL);
         $I->wait('1');
-        $numberStatus=$I->grabTagCount($I, 'tbody tr');
-        $I->comment("Number Rows:'$numberStatus'");
+        $numberStatus = $I->grabCCSAmount($I, 'section.mini-layout tbody tr');
         for ($j=1;$j<=$numberStatus;++$j){
             $I->wait('1');
-            $CurrentStatus = $I->grabTextFrom("//table/tbody/tr[$j]/td[2]/a");
+            $CurrentStatus = $I->grabTextFrom("//section[@class='mini-layout']/div[2]/div/table/tbody/tr[$j]/td[2]/a");
             if ($CurrentStatus != 'Новый' && $CurrentStatus != 'Доставлен'){
                 $I->wait('1');
-                $I->click("//table/tbody/tr[$j]/td[5]/a");
+                $I->click("//section[@class='mini-layout']/div[2]/div/table/tbody/tr[$j]/td[5]/a/i");
                 $I->wait('1');
                 $I->click(OrderStatusesListPage::$DeleteButtonDelete);
                 $I->wait('1');

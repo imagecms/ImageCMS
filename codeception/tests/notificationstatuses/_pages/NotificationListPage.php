@@ -58,11 +58,11 @@ class NotificationListPage
     
     public static $EditingTitle = "//div/section[@class='mini-layout']/div/div/span[2]";
     public static $EditingBlockData = "//*[@id='editNot']/table/thead/tr/th"; 
-    public static $EditingBlockImage = "//*[@id='mainContent']/div/section/div[3]/table/thead/tr/th[1]"; 
-    public static $EditingBlockProduct = "//*[@id='mainContent']/div/section/div[3]/table/thead/tr/th[2]"; 
+    public static $EditingBlockImage = "//section[@class='mini-layout']/div[2]/table/thead/tr/th[1]"; 
+    public static $EditingBlockProduct = "//section[@class='mini-layout']/div[2]/table/thead/tr/th[2]"; 
     public static $EditingLinkImg = "//table/tbody/tr/td[1]/a/img";
-    public static $EditingLinkProduct = "//section/div[3]/table/tbody/tr/td[2]/a";    
-    public static $EditingButtonBack = "//a/span[2]";
+    public static $EditingLinkProduct = "//section[@class='mini-layout']/div[2]/table/tbody/tr/td[2]/a";    
+    public static $EditingButtonBack = "//section[@class='mini-layout']/div[1]/div[2]/div/a/span[2]";
     public static $EditingButtonSave = "//section/div[1]/div[2]/div/button[1]";
     public static $EditingButtonSaveAndGoBack = "//button[2]";
     public static $EditingButtonNotifi = "//dd[6]/img";

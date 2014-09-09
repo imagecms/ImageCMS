@@ -23,7 +23,9 @@ class DeliverySteps extends \DeliveryTester {
     function createDelivery(
     $name = null, $active = null, $description = null, $descriptionprice = null, $price = null, $freefrom = null, $message = null, $pay = null) {
         $I = $this;
+        $I->wait(1);
         $I->amOnPage(\DeliveryPage::$URL);
+        $I->wait(1);
         $I->click(\DeliveryPage::$CreateButton);
         $I->waitForText("Создание способа доставки");
         if (isset($name)) {
@@ -147,14 +149,14 @@ class DeliverySteps extends \DeliveryTester {
         if ($price) {
             $Cprice = $I->grabTextFrom("//div[@class='frame-radio']/div[$j]/div[@class='help-block']/div[1]");
             $Cprice = preg_replace('/[^0-9.]*/u', '', $Cprice);
-            $price = ceil($price);
+            $price = round($price);
             $I->assertEquals($Cprice, $price);
         }
 
         if ($freefrom) {
             $Cfreefrom = $I->grabTextFrom("//div[@class='frame-radio']/div[$j]/div[@class='help-block']/div[2]");
             $Cfreefrom = preg_replace('/[^0-9.]*/u', '', $Cfreefrom);
-            $freefrom = ceil($freefrom);
+            $freefrom = round($freefrom);
             $I->assertEquals($Cfreefrom, $freefrom);
         }
 
@@ -283,7 +285,8 @@ $I = $this;
         $I->wait(3);
         $I->amOnPage(\DeliveryPage::$URL);
         $I->waitForText('Список способов доставки');
-        $rows  = $I->grabTagCount($I,"tbody tr");
+        $rows = $I->grabCCSAmount($I, "section[class=\'mini-layout\'] table tbody tr");
+//        $rows  = $I->grabTagCount($I,"tbody tr");
         $I->comment($rows);
         $present = FALSE;
         if($rows>0){
@@ -317,14 +320,24 @@ $I = $this;
         
         if($price){
             $Cprice = $I->grabTextFrom(\DeliveryPage::ListPriceLine($j));
-            $price = number_format($price, 5,".","");
-            $I->assertEquals(preg_replace('/[^0-9.]*/u', '', $Cprice),$price);
+            $price = number_format(preg_replace('/[^0-9\.]/', '', $price), 5,".","");
+            
+            $matches = [];
+            preg_match('/[0-9]+\.[0-9]+/', $Cprice, $matches);
+            $I->assertEquals($matches[0],$price);
+//            $I->assertEquals(preg_replace('/[^0-9.]*/u', '', $Cprice),$price);
+            
         }
         
         if($freefrom){
             $Cfreefrom = $I->grabTextFrom(\DeliveryPage::ListFreeFromLine($j));
-            $freefrom = number_format($freefrom, 5,".","");
-            $I->assertEquals(preg_replace('/[^0-9.]*/u', '', $Cfreefrom), $freefrom);
+            $freefrom = number_format(preg_replace('/[^0-9\.]/', '', $freefrom), 5,".","");
+            
+            unset($matches);
+            $matches = [];
+            preg_match('/[0-9]+\.[0-9]+/', $Cfreefrom, $matches);
+            $I->assertEquals($matches[0], $freefrom);
+//            $I->assertEquals(preg_replace('/[^0-9.]*/u', '', $Cfreefrom), $freefrom);
         }
     }
     

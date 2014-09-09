@@ -1087,7 +1087,8 @@ $(document).ready(function() {
         var img = document.createElement("img");
         img.src = selectedImageUrl;
         $(img).addClass('img-polaroid').css({
-            width: '100px'
+            width: '50px',
+            'max-heigth': '100%'
         });
         $("#" + trId).find('.control-group .controls img').remove().html(img);
         $("#" + trId).find('.control-group .controls').append(img);
@@ -1131,7 +1132,8 @@ $(document).ready(function() {
             var img = document.createElement("img");
             img.src = urlArray[i];
             $(img).addClass('img-polaroid').css({
-                width: '100px'
+                width: '50px',
+                'max-heigth': '100%'
             });
             $("#" + freeUrlInputs[i]).val(urlArray[i]);
             $("#" + freeUrlInputs[i]).parents("div.control-group.span6").find(".controls").html(img);
