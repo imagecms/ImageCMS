@@ -13,12 +13,13 @@ class DeliveryPage
 
 
     public static $DeleteButton = ".btn.btn-small.btn-danger.action_on";
-    public static $CheckboxHeader = "//table/thead/tr/th[1]/span/span";
-    public static $IDHeader = "//table/thead/tr/th[2]";
-    public static $MethodHEader = "//table/thead/tr/th[3]";
-    public static $PriceHeader = "//table/thead/tr/th[4]";
-    public static $FreeFromHeader = "//table/thead/tr/th[5]";
-    public static $ActiveButton = "//table/thead/tr/th[6]";
+    public static $CheckboxHeader = "//section[@class='mini-layout']//thead/tr/th[1]/span/span";
+    public static $IDHeader = "//section[@class='mini-layout']//thead/tr/th[2]";
+                            //section/div[2]/div/table/thead/tr/th[2]
+    public static $MethodHEader = "//section[@class='mini-layout']//thead/tr/th[3]";
+    public static $PriceHeader = "//section[@class='mini-layout']//thead/tr/th[4]";
+    public static $FreeFromHeader = "//section[@class='mini-layout']//thead/tr/th[5]";
+    public static $ActiveButton = "//section[@class='mini-layout']//thead/tr/th[6]";
      
     //Delete Window
     public static $Deletewindow = ".modal.hide.fade.modal_del.in";
@@ -28,27 +29,27 @@ class DeliveryPage
 
     //Functions
     public static function ListCheckboxLine($row){
-        $ListCheckboxLine  = "//table/tbody/tr[$row]/td[1]/span/span";
+        $ListCheckboxLine  = "//section[@class='mini-layout']//tbody/tr[$row]/td[1]/span/span";
         return $ListCheckboxLine;
     }
     public static function ListIDLine($row){
-        $ListID  = "//table/tbody/tr[$row]/td[2]/p";
+        $ListID  = "//section[@class='mini-layout']//tbody/tr[$row]/td[2]/p";
         return $ListID;
     }
     public static function ListMethodLine ($row){
-        $ListMethod = "//section/div[2]/div/table/tbody/tr[$row]/td[3]/a";
+        $ListMethod = "//section[@class='mini-layout']//tbody/tr[$row]/td[3]/a";
         return $ListMethod;
     }
     public static function ListPriceLine ($row){
-        $ListPrice = "//table/tbody/tr[$row]/td[4]/p";
+        $ListPrice = "//section[@class='mini-layout']//tbody/tr[$row]/td[4]/p";
         return $ListPrice;
     }
     public static function ListFreeFromLine($row){
-        $ListFreeFrom = "//table/tbody/tr[$row]/td[5]/p";
+        $ListFreeFrom = "//section[@class='mini-layout']//tbody/tr[$row]/td[5]/p";
         return $ListFreeFrom;
     }
     public static function ListActiveButtonLine($row){
-        $ListActiveButton = "//table/tbody/tr[$row]/td[6]/div/span";
+        $ListActiveButton = "//section/div[2]/div/table/tbody/tr[$row]/td[6]/div/span";
         return $ListActiveButton;
     }
 }

@@ -4,7 +4,7 @@ use \PaymentTester;
 class PeymentAlertsCest
 {
 
-//        /**
+//    /**
 //     * @group create
 //     */
 //    public function nameEmpty(PaymentTester $I){
