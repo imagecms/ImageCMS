@@ -51,8 +51,7 @@ class ImportExport {
         $I->attachFile(ImportPage::$InputSelectFile, $this->csvFileName);
         $I->wait(3);
         $I->click(ImportPage::$ButtonStartImport);
-        $I->wait(15);
-        
+        $I->wait(3);
     }
     
     
