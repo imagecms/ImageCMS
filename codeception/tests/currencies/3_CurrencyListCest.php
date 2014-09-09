@@ -11,13 +11,19 @@ class CurrencyListCest
         $I->waitForText("Список валют", "10", "//*[@id='mainContent']/section/div[1]/div[1]/span[2]");
     }   
     
+    public function DeleteDefaultDiscount(CurrenciesTester $I)
+    {
+        $I->amOnPage('/admin/components/cp/mod_discount');
+        $I->click('//*[@id="mainContent"]/section/div[2]/table/tbody/tr/td[8]/button');
+        $I->wait('2');
+    }
     
     public function NamesInListLanding(CurrenciesTester $I)
     {
-        $I->click('html/body/div[1]/div[3]/div/nav/ul/li[8]/a');
-        $I->waitForElement('html/body/div[1]/div[3]/div/nav/ul/li[8]/ul');
-        $I->click('html/body/div[1]/div[3]/div/nav/ul/li[8]/ul/li[2]/a');        
-        $I->waitForElementNotVisible('html/body/div[1]/div[3]/div/nav/ul/li[8]/ul');
+        $I->click(NavigationBarPage::$Settings);
+        $I->waitForElement('html/body/div[1]/div[3]/table/tbody/tr/td[7]/ul');
+        $I->click(NavigationBarPage::$Currencies);        
+        $I->waitForElementNotVisible('html/body/div[1]/div[3]/table/tbody/tr/td[7]/ul');
         $I->waitForText('Список валют');
         $I->see('Список валют', ".//*[@id='mainContent']/section/div[1]/div[1]/span[2]");
         $I->see('ID', '//*[@id="mainContent"]/section/div[2]/div/form/table/thead/tr/th[1]');
@@ -94,7 +100,8 @@ class CurrencyListCest
         $sym=$I->grabTextFrom(".//*[@id='items-catalog-main']/li/div[1]/div[2]/span/span/span/span[2]");        
         $I->comment("$k", "$sym");
         $I->assertEquals($k, $price.",00");
-        $I->assertEquals($sym, $symbMainCur);        
+        $I->assertEquals($sym, $symbMainCur);
+        $I->CheckProductCart($price.",00", $symbMainCur);
     }
     
     /**
@@ -164,7 +171,7 @@ class CurrencyListCest
     {   //Проверяем возможность отметить главную валюту напротив дополнительной и проверка отметки дополнительной валюты напротив не главной
         $j=$I->SearchMainCurrencyLine();
         $I->comment($j);
-        $rows = $I->grabTagCount($I,"tbody tr");
+        $rows = $I->grabCCSAmount($I,".btn.btn-small.btn-danger");
         $I->comment("$rows");
         if ($j<$rows){
             $j++;
@@ -205,7 +212,7 @@ class CurrencyListCest
         $j=$I->SearchMainCurrencyLine();
         $I->comment($j);
         $this->MAINSYM=$I->grabTextFrom(CurrenciesPage::SymbolCurrencyLine($j));
-        $rows = $I->grabTagCount($I,"tbody tr");
+        $rows = $I->grabCCSAmount($I,".btn.btn-small.btn-danger");
         $I->comment("$rows");        
         if ($j<$rows){
             $k=$j+1;
@@ -227,6 +234,7 @@ class CurrencyListCest
         $I->click(CurrenciesPage::CurrencyNameLine($k));
         $I->waitForText('Редактирование валют');
         $I->fillField(CurrenciesPage::$Rate, '4');
+        $I->wait('10');
         $I->click(CurrenciesPage::$SaveAndExitButton);
         $I->waitForText('Список валют');
 //        $I->wait('6');
@@ -235,23 +243,28 @@ class CurrencyListCest
 //        $I->see('Цены обновлены');
 //        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
         $name="Товар5";
-        $price="300";         
+        $price="300"; 
+        $price1="1.200";
         $I->CreateProduct($name, $price, $j);
         $I->amOnPage("/");
         $I->fillField(".//*[@id='inputString']", 'товар5');
         $I->click("html/body/div[1]/div[1]/header/div[2]/div/div/div[2]/div[2]/div/form/span/button");
         $I->wait('3');
-        $kMAIN=$I->grabTextFrom(".//*[@id='items-catalog-main']/li/div[1]/div[2]/span/span/span/span[1]");
-        $symMAIN=$I->grabTextFrom(".//*[@id='items-catalog-main']/li/div[1]/div[2]/span/span/span/span[2]");        
+        $kMAIN=$I->grabTextFrom(CurrenciesPage::$MainFirstPlace);
+        $symMAIN=$I->grabTextFrom(CurrenciesPage::$MainSecondPlace);
+//        $kMAIN=$I->grabTextFrom(".//*[@id='items-catalog-main']/li/div[1]/div[2]/span/span/span/span[1]");
+//        $symMAIN=$I->grabTextFrom(".//*[@id='items-catalog-main']/li/div[1]/div[2]/span/span/span/span[2]");        
         $I->comment("$kMAIN"."$symMAIN");
         $I->assertEquals($kMAIN, $price.",00");
         $I->assertEquals($symMAIN, $this->MAINSYM);
-        $kADDIT=$I->grabTextFrom(".//*[@id='items-catalog-main']/li/div[1]/div[2]/span/span[2]/span/span[1]");
-        $symADDIT=$I->grabTextFrom(".//*[@id='items-catalog-main']/li/div[1]/div[2]/span/span[2]/span/span[2]");
+        $kADDIT=$I->grabTextFrom(CurrenciesPage::$AdditFirstPlace);
+        $symADDIT=$I->grabTextFrom(CurrenciesPage::$AdditSecondPlace);
         $i=$price*4;
         $I->comment("$kADDIT", "$symADDIT");
-        $I->assertEquals($kADDIT, $i);
+        $I->assertEquals($kADDIT, $price1.',00');
         $I->assertEquals($symADDIT, $this->ADDITSYM);
+        $I->wait('10');
+        $I->CheckProductCart($price.",00", $this->MAINSYM, $price1.',00', $this->ADDITSYM);
     }
     
     /**
@@ -267,12 +280,15 @@ class CurrencyListCest
         $I->click(CurrenciesPage::CurrencyNameLine($this->ROWADDIT));
         $I->waitForText('Редактирование валют');
         $I->fillField(CurrenciesPage::$Rate, '1');
+        $I->wait('10');
         $I->click(CurrenciesPage::$SaveAndExitButton);
         $I->waitForText('Список валют');
+        $I->wait('2');
         $I->click(CurrenciesPage::ActiveButtonLine($this->ROWMAIN));
         $I->click(CurrenciesPage::CurrencyNameLine($this->ROWMAIN));
         $I->waitForText('Редактирование валют');
         $I->fillField(CurrenciesPage::$Rate, '0.25');
+        $I->wait('10');
         $I->click(CurrenciesPage::$SaveAndExitButton);
         $I->waitForText('Список валют');
 //        $I->wait('6');
@@ -299,8 +315,31 @@ class CurrencyListCest
         $i=$price/4;
         $I->comment("Addit price:$i");
         $I->comment("$kADDIT", "$symADDIT");
-        $I->assertEquals($kADDIT, $i);
-        $I->assertEquals($symADDIT, $this->MAINSYM);
+        $I->assertEquals($kADDIT, $i.',00');
+        $I->assertEquals($symADDIT, $this->MAINSYM);       
+        $I->wait('10');
+        $I->CheckProductCart($price1.",00", $this->ADDITSYM, $i.',00', $this->MAINSYM);
+//        $I->amOnPage("/admin/components/run/shop/currencies");
+//        $I->click(CurrenciesPage::RadioButtonLine($this->ROWMAIN));
+//        $I->click(CurrenciesPage::CurrencyNameLine($this->ROWMAIN));
+//        $I->waitForText('Редактирование валют');
+//        $I->fillField(CurrenciesPage::$Rate, '1');
+//        $I->click(CurrenciesPage::$SaveAndExitButton);
+//        $I->waitForText('Список валют');
+//        $I->click(CurrenciesPage::ActiveButtonLine($this->ROWADDIT));
+//        $I->click(CurrenciesPage::CurrencyNameLine($this->ROWADDIT));
+//        $I->waitForText('Редактирование валют');
+//        $I->fillField(CurrenciesPage::$Rate, '4');
+//        $I->click(CurrenciesPage::$SaveAndExitButton);
+//        $I->waitForText('Список валют');
+//        $I->click(CurrenciesPage::$VerifyPrices);
+//        $I->wait('2');
+    }
+    
+    
+    
+    public function RateChange(CurrenciesTester $I)
+    { 
         $I->amOnPage("/admin/components/run/shop/currencies");
         $I->click(CurrenciesPage::RadioButtonLine($this->ROWMAIN));
         $I->click(CurrenciesPage::CurrencyNameLine($this->ROWMAIN));
@@ -317,7 +356,7 @@ class CurrencyListCest
         $I->click(CurrenciesPage::$VerifyPrices);
         $I->wait('2');
     }
-    
+        
     /**
      * @guy CurrenciesTester\CurrenciesSteps
      */
@@ -344,7 +383,7 @@ class CurrencyListCest
     {   
         //Проверяем возможность удаления дополнительной валюты
         $j=$I->SearchMainCurrencyLine();        
-        $rows = $I->grabTagCount($I,"tbody tr");        
+        $rows = $I->grabCCSAmount($I,".btn.btn-small.btn-danger");      
         $I->comment("Main row:$j");
         $I->comment("Rows:$rows");
         $I->wait('5');
@@ -372,12 +411,13 @@ class CurrencyListCest
      * @guy CurrenciesTester\CurrenciesSteps
      */
     
+    
     public function DeleteCurUsedInProducts(CurrenciesTester\CurrenciesSteps $I)
     {   
         //Проверка возможности удаления валюты, которая используется в товарах
         $I->amOnPage("/admin/components/run/shop/currencies");
         $j=2;
-        $I->click(CurrenciesPage::RadioButtonLine($j));
+//        $I->click(CurrenciesPage::RadioButtonLine($j));
         $I->wait('1');
         $y=3;
         $IsoCur=$I->grabTextFrom(CurrenciesPage::IsoCodeLine($y));
@@ -454,7 +494,7 @@ class CurrencyListCest
         $I->see('Валюта успешно удалена');
         $I->waitForElementNotVisible('.alert.in.fade.alert-success');
         $I->wait('2');
-        $rows = $I->grabTagCount($I,"tbody tr");
+        $rows = $I->grabCCSAmount($I,".btn.btn-small.btn-danger");
         for ($i=1; $i<=$rows; $i++){
             $idAfter = $I->grabTextFrom(CurrenciesPage::IdCurrencyLine($i));
             $I->comment($idAfter);
@@ -543,7 +583,7 @@ class CurrencyListCest
 //        $I->waitForElementVisible('.alert.in.fade.alert-success');
 //        $I->see('Валюта успешно удалена');
 //        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
-        $rows = $I->grabTagCount($I,"tbody tr");
+        $rows = $I->grabCCSAmount($I,".btn.btn-small.btn-danger");
         for ($j=1; $j<=$rows; $j++){
             $idAfter = $I->grabTextFrom(CurrenciesPage::IdCurrencyLine($j));
             $I->comment($idAfter);

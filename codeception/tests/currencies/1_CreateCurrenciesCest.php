@@ -23,13 +23,12 @@ class CreateCurrenciesCest
     {
         $I->amOnPage("/admin/components/run/shop/currencies");
         $I->wait('2');
-        $rows = $I->grabTagCount($I,"tbody tr");
-        $I->comment("$rows");
-        $rows--;
+        $rows = $I->grabCCSAmount($I,".btn.btn-small.btn-danger");
+        $I->comment("Rows:$rows");        
         //Определение строчки главной валюты
         for ($j=1;$j<$rows;++$j){
             //Поиск атрибута checked для радиоточки
-            $atribCheck = $I->grabAttributeFrom("//tbody/tr[$j]/td[5]/input","checked");
+            $atribCheck = $I->grabAttributeFrom(CurrenciesPage::RadioButtonLine($j),"checked");
                 if($atribCheck == TRUE){
                 break;
             }
