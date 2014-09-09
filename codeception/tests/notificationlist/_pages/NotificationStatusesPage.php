@@ -5,7 +5,7 @@ class NotificationStatusesPage
     public static $ListPageURL = "admin/components/run/shop/notificationstatuses";
     public static $ListButtonCreate = ".btn.btn-small.btn-success.pjax"; 
     public static $ListLinkEditing = "//td[3]/a";
-    public static $ListLinkForEditing = "//tr[3]/td[3]/a";
+    public static $ListLinkForEditing = "//section/div[2]/table/tbody/tr[1]/td[3]/a";
     public static $ListHeaderCheckBox = "//div[2]/table/thead/tr/th[1]/span/span";
     public static $ListCheckBoxFirst = ".//*[@id='mainContent']/div/div[3]/section/div[2]/table/tbody/tr[1]/td[1]/span/span";
     public static $ListCheckBoxSecond = "//div[2]/table/tbody/tr[2]/td[1]/span/span";
@@ -33,8 +33,8 @@ class NotificationStatusesPage
     public static $CreationNameTitle =  "//div/section/div/div/span[2]";
     public static $CreationNameBlock =  "//th";
     public static $CreationNameFild =  "//label";
-    public static $CreationAlertMessage =  "//div/div/div/label";
-    public static $CreationCreateMessage =  "//div[2]/div[2]";
+    public static $CreationAlertMessage =  ".alert.alert-error";
+    public static $CreationCreateMessage =  "success";
     // Edit Page
     public static $EditingPageURL = "/admin/components/run/shop/notificationstatuses/edit/1";
     public static $EditingButtonBack = "//a/span[2]";

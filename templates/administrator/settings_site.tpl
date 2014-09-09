@@ -23,11 +23,11 @@
                     <li><a href="#site_info_tab">{lang('Site information','admin')}</a></li>
                 </ul>
             </div>
-            <div class="span9 content_big_td">
+            <div class="span9">
                 <form action="{$BASE_URL}admin/settings/save" method="post" id="saveSettings">
                     <div class="tab-content">
                         <div class="tab-pane active" id="setings">
-                            <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                            <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
                                 <thead>
                                     <tr>
                                         <th colspan="6">
@@ -120,9 +120,8 @@
                                 </tbody>
                             </table>
                         </div>
-
                         <div class="tab-pane" id="seo">
-                            <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                            <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
                                 <thead>
                                     <tr>
                                         <th colspan="6">
@@ -175,7 +174,7 @@
                         </div>
 
                         <div class="tab-pane" id="homePage">
-                            <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                            <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
                                 <thead>
                                     <tr>
                                         <th colspan="6">
@@ -236,7 +235,7 @@
                             </table>
                         </div>
                         <div class="tab-pane" id="metatag">
-                            <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                            <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
                                 <thead>
                                     <tr>
                                         <th colspan="6">
@@ -318,7 +317,7 @@
                             </table>
                         </div>
                         <div class="tab-pane" id="metatag_edit">
-                            <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                            <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
                                 <thead>
                                     <tr>
                                         <th colspan="6">
@@ -390,7 +389,7 @@
                         </div>
                         <div class="tab-pane" id="site_info_tab"> <!-- Інформація про сайт -->
                             {$tooltipText = lang('Please use function siteinfo() with the parameter', 'admin')}
-                            <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                            <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
                                 <thead>
                                     <tr>
                                         <th colspan="6">

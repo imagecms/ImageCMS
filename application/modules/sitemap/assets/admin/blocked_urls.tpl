@@ -27,7 +27,7 @@
         </div>                            
     </div>
     <form action="/admin/components/cp/sitemap/blockedUrls" id="sitemap_blockedUrls_form" method="post" class="form-horizontal">
-        <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+        <table class="table  table-bordered table-hover table-condensed content_big_td">
             <thead>
             <th>{lang('Do not show on Site Map', 'sitemap')}</th>
             </thead>

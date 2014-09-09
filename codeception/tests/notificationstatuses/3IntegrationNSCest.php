@@ -19,12 +19,12 @@ class IntegrationNSCest
         $I->wantTo('Create Notification in Front End.');
         $I->amOnPage('/shop/category/telefoniia-pleery-gps/telefony/smartfony?per_page=12');
         $I->wait('1');
-//        $I->scrollToElement($I, '.infoBut.isDrop');
+        $I->scrollToElement($I, '.infoBut.isDrop');
         $I->wait('1');
         $I->click('.infoBut.isDrop');
         $I->wait('1');
         $I->click('//span[2]/div/button');
-    }        
+    }
 
     
     
@@ -36,6 +36,7 @@ class IntegrationNSCest
     public function VerifySavedCreateStatus (NotificationStatusesTester $I){    
         $I->wantTo('Verify Created Status Present on Status List Page.');
         $I->amOnPage(NotificationStatusesPage::$CreatePageUrl);
+        $I->wait('1');
         $I->fillField(NotificationStatusesPage::$CreationFildInput, '123 qwe !@# ЯЧС');
         $I->click(NotificationStatusesPage::$CreationButtonCreateAndGoBack);
         $I->waitForText('Статусы уведомлений о появлении');
@@ -52,6 +53,7 @@ class IntegrationNSCest
     public function CreatingStatusMappingOnThePageNotificationList (NotificationStatusesTester $I){
         $I->wantTo('Verify Created Status Present on Notification List Page.');
         $I->amOnPage(NotificationListPage::$ListPageURL);
+        $I->wait('1');        
         $I->see('123 qwe !@# ЯЧС',  NotificationListPage::$ListSelectMain);
         $I->selectOption(NotificationListPage::$ListSelectFirst, '123 qwe !@# ЯЧС');
         $I->click(NotificationListPage::$ListButtonCreatedStatus);
@@ -70,6 +72,7 @@ class IntegrationNSCest
     public function VerifySavedEditStatus (NotificationStatusesTester $I){
         $I->wantTo('Verify Edited Status Present on Status List Page.');
         $I->amOnPage(NotificationStatusesPage::$ListPageURL);
+        $I->wait('1');
         $I->click(NotificationStatusesPage::$ListLinkForEditing);
         $I->fillField(NotificationStatusesPage::$EditingFildInput, 'Гидрокарбонат');
         $I->click(NotificationStatusesPage::$EditingButtonSaveAndGoBack);
@@ -104,13 +107,14 @@ class IntegrationNSCest
     public function VerifyDeletedEditingStatus(NotificationStatusesTester $I){
         $I->wantTo('Verify Deleted Status Not Present on Status List Page.');
         $I->amOnPage(NotificationStatusesPage::$ListPageURL);
+        $I->wait('1');
         $I->click(NotificationStatusesPage::$ListHeaderCheckBox);
         $I->click(NotificationStatusesPage::$ListCheckBoxFirst);
         $I->click(NotificationStatusesPage::$ListCheckBoxSecond);
         $I->click(NotificationStatusesPage::$ListButtonDelete);
         $I->wait('1');
         $I->click(NotificationStatusesPage::$DeleteWindowButtonDelete);
-        $I->wait('1');
+        $I->wait('2');
         $I->dontSeeLink('Гидрокарбонат');   
     }
 
@@ -124,11 +128,16 @@ class IntegrationNSCest
     public function DeletingStatusMappingOnThePageNotificationList(NotificationStatusesTester $I){
         $I->wantTo('Verify Deleted Status Not Present on Notification List Page.');
         $I->amOnPage(NotificationListPage::$ListPageURL);   
+        $I->wait('1');        
         $I->dontsee('Гидрокарбонат',  NotificationListPage::$ListSelectMain); 
         $I->dontsee('123 qwe !@# ЯЧС',  NotificationListPage::$ListSelectMain);
         $I->dontSeeOptionIsSelected(NotificationListPage::$ListSelectFirst, 'Гидрокарбонат'); 
         $I->dontSeeOptionIsSelected(NotificationListPage::$ListSelectFirst, '123 qwe !@# ЯЧС'); 
         $I->click(NotificationListPage::$ListLinkEditting);
+//        $a = $I->grabTextFrom('//body/div[1]/div[5]/section/div[5]/div[1]/form/table/tbody/tr[1]/td[3]');
+//        $I->comment("$a");
+//        $I->click(['link' => $a]);
+        $I->wait('2');
         $I->dontseeOptionIsSelected(NotificationListPage::$EditingSelectStatus, 'Гидрокарбонат');
         $I->dontseeOptionIsSelected(NotificationListPage::$EditingSelectStatus, '123 qwe !@# ЯЧС');             
     }
@@ -142,6 +151,7 @@ class IntegrationNSCest
     public function DeleteNotification(NotificationStatusesTester $I){
         $I->wantTo('Deleted Notification.');
         $I->amOnPage(NotificationListPage::$ListPageURL);
+        $I->wait('1');
         $I->click(NotificationListPage::$ListMainCheckBox);
         $I->click(NotificationListPage::$ListButtonDelete);
         $I->wait('1');
