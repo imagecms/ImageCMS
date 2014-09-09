@@ -167,7 +167,8 @@
                             <a href="/admin/dashboard" class="logo pull-left pjax">
                             {/if}
                             <span class="helper"></span>
-                            <img src="{$THEME}img/logo_premmerce.png"/>
+                            <img src="{$THEME}img/logo_new.png"/>
+                            {/*<img src="{$THEME}img/logo_premmerce.png"/>*/}
                         </a>
 
                         {if $CI->dx_auth->is_logged_in()}
