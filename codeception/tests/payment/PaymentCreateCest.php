@@ -103,6 +103,7 @@ class PaymentCreateCest {
     //There are nothing to check
     //______________________________________________________________________ACTIVE CHECKBOX
     /**
+     * @group current
      * @group create
      * @guy PaymentTester\PaymentSteps
      */
@@ -117,6 +118,7 @@ class PaymentCreateCest {
     }
 
     /**
+     * @group current
      * @group create
      * @guy paymentTester\PaymentSteps
      */

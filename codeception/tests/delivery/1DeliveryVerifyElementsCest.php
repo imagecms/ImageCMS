@@ -6,6 +6,7 @@ class DeliveryVerifyElementsCest {
     /**
      * Login & go to page DeliveryList
      * @group verify
+     * @group current
      * @guy DeliveryTester\DeliverySteps
      */
     public function Authorization(DeliveryTester\DeliverySteps $I){
@@ -52,6 +53,7 @@ class DeliveryVerifyElementsCest {
     }
     
     /**
+     * Verify all elements in Delivery create page
      * @group verify
      */
     public function DeliveryCreateElements(DeliveryTester $I)
@@ -113,6 +115,7 @@ class DeliveryVerifyElementsCest {
     }
     /**
      * @group verify
+     * @group current
      */
     public function logout(DeliveryTester $I) {
         InitTest::Loguot($I);

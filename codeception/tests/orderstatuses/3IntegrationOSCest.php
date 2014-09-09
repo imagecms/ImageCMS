@@ -76,7 +76,7 @@ class IntegrationOSCest
         $nameEditStatus='Отредактированний Статус Order';
         $I->amOnPage(OrderStatusesListPage::$ListURL);
         $I->wait('1');
-        $numbeRows= $I->grabTagCount($I, 'tbody tr');
+        $numbeRows= $I->grabCCSAmount($I, 'section.mini-layout tbody tr');
         $I->comment("Number Rows:'$numbeRows'.");
             for($j=1;$j<$numbeRows;++$j){
             $I->comment("Search In Row$'$j'.");
@@ -85,6 +85,7 @@ class IntegrationOSCest
                     $I->click($searchName);
                     $I->fillField(OrderStatusesCreatePage::$EditFieldName, $nameEditStatus);
                     $I->click(OrderStatusesCreatePage::$EditButtonSaveAndGoBack);
+                    break;
                 }            
             }
         $I->waitForText($nameEditStatus);
@@ -134,11 +135,12 @@ class IntegrationOSCest
         $nameEditStatus='Отредактированний Статус Order';
         $nameStatus='123 Super Созданний Status Заказа 890';
         $I->amOnPage(OrderStatusesListPage::$ListURL);
-        $I->wait('1');
-        $numberStatus=$I->grabTagCount($I, 'tbody tr');
+        $I->wait('2');
+        $numberStatus = $I->grabCCSAmount($I, 'section.mini-layout tbody tr');
         $I->comment("Number Rows:'$numberStatus'");
         for ($j=1;$j<=$numberStatus;++$j){
-            $CurrentStatus = $I->grabTextFrom("//table/tbody/tr[$j]/td[2]/a");
+            $CurrentStatus = $I->grabTextFrom("//section[@class='mini-layout']/div[2]/div/table/tbody/tr[$j]/td[2]/a");
+            $I->comment("$CurrentStatus");
             if ($CurrentStatus != 'Новый' && $CurrentStatus != 'Доставлен'){
                 $I->click("//table/tbody/tr[$j]/td[5]/a");
                 $I->wait('1');

@@ -99,14 +99,6 @@ function ajaxLoadChildCategory(el, id) {
             initNiceCheck();
             share_alt_init();
             sortInit();
-            if ($.exists('[data-rel="tooltip"], [rel="tooltip"]'))
-                $('[data-rel="tooltip"], [rel="tooltip"]').not('tr').not('.row-category').tooltip({
-                    'delay': {
-                        show: 500,
-                        hide: 100
-                    }
-                });
-            difTooltip();
         })
 
 
@@ -284,12 +276,14 @@ function handleFormSubmit() {
     if ($('.workzone textarea.elRTE').length)
         $('.workzone textarea.elRTE').elrte('updateSource');
 
-    var selector = $this.attr('data-form');
-    var action = $this.data('action');
-    var data = $this.data('adddata');
+    var selector = $this.attr('data-form'),
+            action = $this.data('action'),
+            data = $this.data('adddata'),
+            form = $(selector);
 
-    $(selector).validate()
-    if ($(selector).valid())
+
+    form.validate()
+    if (form.valid())
     {
         showLoading();
         var options = {
@@ -306,7 +300,7 @@ function handleFormSubmit() {
                 return true;
             }
         };
-        $(selector).ajaxSubmit(options);
+        form.ajaxSubmit(options);
     }
     else
         $this.removeClass('disabled').attr('disabled', false);

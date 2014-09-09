@@ -33,11 +33,7 @@
                 </div>
             </div>                            
         </div>       
-<<<<<<< HEAD
         <div class="frame_table table  table-bordered table-hover table-condensed pages-table">
-=======
-        <div class="frame_table table table-hover table-condensed pages-table">
->>>>>>> 133cbb71355e9d802b0125b0bc25d51dc6b5c7c1
             <div id="category">
                 <div class="row-category head">
                     <div class="t-a_c">

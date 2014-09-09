@@ -3,6 +3,7 @@
 use \ImportExportTester;
 
 /**
+ * сформувати csv - файл s і зберегти codecept_data_dir();
  * імпортувати підготований CSV - Файл (_data(test.csv))
  * перевірити на сторінці товару
  * змінити 
@@ -16,10 +17,10 @@ use \ImportExportTester;
 class ImportExport {
 
     protected $category = 'ПодКатегорияИмпорт';
+    protected $csvFileName = 'test.csv';
 
 //---------------------------AUTORIZATION--------------------------------------- 
     /**
-     * @group export
      * @group current
      */
     public function login(ImportExportTester $I) {
@@ -27,14 +28,30 @@ class ImportExport {
     }
 
     /**
+     * @group export
+     * @group current
+     */
+    public function createCSV(ImportExportTester $I){
+        
+        include_once '_steps/CSV.php';
+        $I->comment('Create CSV file');
+        $datadir = codecept_data_dir();
+        $filename = $datadir.$this->csvFileName;
+        $data = CSV::formData('ТоварТест', 'tovarauto', '100', '300','50', '1234565', 'ТоварВаріант1', 'on', '1', 'Apple', 'ПодкатегорияИмпорт');
+        $data2 = CSV::formData('ТоварТест2', 'tovartest', '100', '300','50', '12343465', 'ТоварВаріант2', 'on', '1', 'Apple', 'ПодкатегорияИмпорт');
+        CSV::createCSV($filename, [$data,$data2]);
+    }
+    /**
      * @group current
      */
     public function importCSV(ImportExportTester $I) {
         $I->amOnPage(ImportPage::$URL);
         $I->click(ImportPage::$ButtonSlot1);
         $I->wait(1);
-        $I->attachFile(ImportPage::$InputSelectFile, 'test.csv');
+        $I->attachFile(ImportPage::$InputSelectFile, $this->csvFileName);
+        $I->wait(3);
         $I->click(ImportPage::$ButtonStartImport);
+        $I->wait(3);
     }
     
     
@@ -76,22 +93,6 @@ class ImportExport {
     }
 
 }
-
-/**
-     * @group a
-     * @guy ImportExportTester\importexportSteps
-     */
-//    public function ExportProduct(ImportExportTester\importexportSteps $I) {
-//        $I->amOnPage('http://cmsprem.loc/admin/components/init_window/import_export/getTpl/export');
-//        $I->comment(CSV_OUTPUT_FILE);
-//        $handle = fopen(CSV_OUTPUT_FILE, 'rb');
-//        $csv = [];
-//        while ($csv [] = fgetcsv($handle,0,';')){
-//            
-//        }
-//        codecept_debug($csv);
-//    }
-
     /**
      * @group a
      * @guy ImportExportTester\importexportSteps
