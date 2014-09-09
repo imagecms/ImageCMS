@@ -467,14 +467,15 @@ $(document).ready(function() {
 
     $('#translateProductUrl').live('click', function() {
         var str = $('#Name').attr('value');
-        $.ajax({
-            type: 'post',
-            url: '/admin/components/run/shop/products/ajax_translit',
-            data: 'str=' + str,
-            success: function(data) {
-                $('#Url').attr('value', data);
-            }
-        });
+        if (str)
+            $.ajax({
+                type: 'post',
+                url: '/admin/components/run/shop/products/ajax_translit',
+                data: 'str=' + str,
+                success: function(data) {
+                    $('#Url').attr('value', data);
+                }
+            });
     });
 
     $('.cat_change_active').live('click', function() {
@@ -554,8 +555,7 @@ $(document).ready(function() {
     });
 
     $('.del_tmp_row').live('click', function() {
-        var id = $(this).attr('data-kid');
-        $('#tpm_row' + id).remove();
+        $('#tpm_row' + $(this).attr('data-kid')).remove();
     });
 
 
@@ -843,8 +843,6 @@ $(document).ready(function() {
         clonedVarTr.attr('id', 'ProductVariantRow_' + countVarRows);
         $('#variantHolder').append(clonedVarTr);
         $(window).scrollTop($(window).scrollTop() + 59);
-        number_tooltip();
-
     });
 
     /*------------------------- IMAGES -------------------------*/
