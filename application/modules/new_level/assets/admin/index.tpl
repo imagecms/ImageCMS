@@ -21,7 +21,7 @@
                 </div>
             </div>
         </div>
-        <div class="content_big_td row-fluid">
+        <div class="row-fluid">
             <div class="clearfix">
                 <div class="btn-group myTab m-t_20 pull-left" data-toggle="buttons-radio">
                     <a href="#properties" class="btn btn-small active">{lang('Properties', 'new_level')}</a>
@@ -32,7 +32,7 @@
             <div class="tab-content">
                 <div class="tab-pane active" id="properties">
                     <div class="inside_padd span9">
-                        <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                        <table class="table  table-bordered table-hover table-condensed t-l_a">
                             <thead>
                                 <tr>
                                     <th>
@@ -73,7 +73,7 @@
                 </div>
                 <div class="tab-pane" id="columns">
                     <div class="inside_padd span9">
-                        <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                        <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
                             <thead>
                                 <tr>
                                     <th colspan="6">
@@ -121,7 +121,7 @@
                 </div>
                 <div class="tab-pane" id="theme">
                     <div class="inside_padd span9">
-                        <table id="tickets_table" class="table table-striped table-bordered table-hover table-condensed t-l_a" style="clear:both;">
+                        <table id="tickets_table" class="table  table-bordered table-hover table-condensed t-l_a content_big_td" style="clear:both;">
                             <thead>
                             <th class="span1">{lang('Settings', 'new_level')}</th>
                             </thead>

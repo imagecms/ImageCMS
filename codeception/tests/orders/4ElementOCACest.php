@@ -6,7 +6,7 @@ class ElementOCACest
      
     
     /**
-     * @group a
+     * @group aa
      */
     public function Login(OrdersTester $I){
         InitTest::Login($I);
@@ -16,7 +16,7 @@ class ElementOCACest
      * @group a
      */
     public function VerifyCategoryPresenceInSelectMenu (OrdersTester $I){
-        $I->wantTo('Compare the identity of the names and фьщгте of categories  in the SELECT menu, pages "Create Product" and "Create Order".');
+       $I->wantTo('Compare the identity of the names and of categories  in the SELECT menu, pages "Create Product" and "Create Order".');
        $I->wantTo('');
        $AllOptions =[]; 
        $I->amOnPage('/admin/components/run/shop/products/create');
@@ -50,7 +50,7 @@ class ElementOCACest
        
     
      /**
-     * @group a
+     * @group aa
      * @guy OrdersTester\OrdersSteps
      */
     public function VerifyFieldAmountInputInvalidValues1 (OrdersTester\OrdersSteps $I) {
@@ -167,7 +167,7 @@ class ElementOCACest
     
     
     /**
-     * @group a
+     * @group aa
      * @guy OrdersTester\OrdersSteps
      */
     public function VerifyTotalPriceAddInFieldAmount(OrdersTester\OrdersSteps $I){

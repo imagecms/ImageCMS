@@ -1333,14 +1333,13 @@ $(document).ready(function() {
             return;
         }
 
-        id = $('#product_variant_name').val();
-//        console.log(id);
-        $('#loading').fadeIn(100);
+        var id = $('#product_variant_name').val();
+        showLoading();
         $.ajax({
             url: "/admin/components/run/shop/settings/runResizeById/" + id,
             type: "post",
             success: function(data) {
-                $('#loading').fadeIn(100);
+                showLoading();
                 $('.notifications').append(data);
             }
         });

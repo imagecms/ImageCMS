@@ -4,9 +4,6 @@ Options +FollowSymLinks
 Options -Indexes
 
 RewriteEngine on
-RewriteCond %{HTTP_HOST} !some-new-domain.com.ua [NC]
-RewriteRule ^(.*)$ http://some-new-domain.com.ua/$1 [L,R=301]
-# ending of redirection
 
 # RewriteCond %{HTTP_HOST} ^www.site.com$ [NC]
 # RewriteRule ^(.*)$ http://site.com/$1 [L,R=301]

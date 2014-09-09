@@ -1,6 +1,7 @@
 <section class="mini-layout">
     <div class="frame_title clearfix">
         <div class="pull-left">
+            <span class="help-inline"></span>
             <span class="title">{lang("Widget editing","admin")}<b> {$widget.name}</b></span>
         </div>
         <div class="pull-right">
@@ -12,7 +13,7 @@
         </div>                            
     </div>
     <form method="post" action="{$BASE_URL}admin/widgets_manager/update_widget/{$widget.id}/info" class="form-horizontal" id="wid_ed_form">
-        <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+        <table class="table  table-bordered table-hover table-condensed content_big_td">
             <thead>
                 <tr>
                     <th colspan="6">
@@ -23,7 +24,7 @@
             <tbody>
                 <tr>
                     <td colspan="6">
-                        <div class="inside_padd span9 span9">
+                        <div class="inside_padd span9">
                             <div class="control-group m-t_10">
                                 <label class="control-label" for="inputName">{lang("Name","admin")}:</label>
                                 <div class="controls">

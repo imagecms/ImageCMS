@@ -1,6 +1,7 @@
 <section class="mini-layout">
     <div class="frame_title clearfix">
         <div class="pull-left">
+            <span class="help-inline"></span>
             <span class="title">{lang('Widget editing',"admin")}<b> {$widget.name}</b></span>
         </div>
         <div class="pull-right">
@@ -22,7 +23,7 @@
         <div class="tab-pane active" id="modules">
             <div class="row-fluid">
                 <form method="post" action="{$BASE_URL}admin/widgets_manager/update_html_widget/{$widget.id}/{echo $locale}" class="form-horizontal" id="wid_ed_form">
-                    <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+                    <table class="table  table-bordered table-hover table-condensed content_big_td">
                         <thead>
                             <tr>
                                 <th colspan="6">

@@ -10,7 +10,7 @@
             <div class="tab-pane active" id="modules">
                 <div class="row-fluid">
                     <div class="form-horizontal">
-                        <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                        <table class="table  table-bordered table-hover table-condensed t-l_a">
                             <thead>
                                 <tr>                                              
                                     <th>{lang("User","admin")}</th>

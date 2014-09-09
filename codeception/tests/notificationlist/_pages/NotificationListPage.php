@@ -8,7 +8,7 @@ class NotificationListPage
     public static $ListTitle = "span.title";
     public static $ListMessageID = ".tooltip-inner";
     public static $ListMouseMessage = "div.tooltip-inner";
-    public static $ListLinkEditting = "//table/tbody/tr[1]/td[3]/a";
+    public static $ListLinkEditting = "//section[@class='mini-layout']/div[5]/div[1]/form/table/tbody/tr[1]/td[3]/a";
     public static $ListLinkEdittingCreateStatusButton = "//div[4]/form/table/tbody/tr/td[3]/a";
     public static $ListButtonFilter = "//div[2]/div/button";
     public static $ListButtonCancelFilter = "//div[3]/div[2]/div/a";
@@ -24,9 +24,9 @@ class NotificationListPage
     public static $ListFildEmail = "//td[3]/input";
     public static $ListFildAddition = "//td[4]/input";
     public static $ListFildValidUnit = "//td[5]/input";
-    public static $ListSelectMain = "//thead/tr[2]/td[7]/select";
-    public static $ListSelectFirst = "//tbody/tr[1]/td[7]/select";
-    public static $ListMainCheckBox = "//span/span"; 
+    public static $ListSelectMain = "//section/div[5]/div[1]/form/table/thead/tr[2]/td[7]/selects";
+    public static $ListSelectFirst = "//section/div[5]/div[1]/form/table/tbody/tr[1]/td[7]/select";
+    public static $ListMainCheckBox = "//section/div[5]/div[1]/form/table/thead/tr[1]/th[1]/span/span"; //section/div[5]/div[1]/form/table/thead/tr[1]/th[1]/span/span
     public static $ListColumnID = "//th[2]";
     public static $ListColumnEmeil = "//th[3]";
     public static $ListColumnAddition = "//th[4]";

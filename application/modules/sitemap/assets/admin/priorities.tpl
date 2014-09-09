@@ -27,7 +27,7 @@
         </div>                            
     </div>
     <form action="/admin/components/cp/sitemap/priorities" id="sitemap_priorities_form" method="post" class="form-horizontal">
-        <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+        <table class="table  table-bordered table-hover table-condensed content_big_td">
             <thead>
             <th>{lang("Priorities", 'sitemap')}</th>
             </thead>
