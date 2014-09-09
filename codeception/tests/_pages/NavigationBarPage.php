@@ -4,17 +4,23 @@ class NavigationBarPage
 {
     //      Navigation bar buttons
     
+    //Heade buttons
+    //
+    public static $PersonalButton = "//a[@class='btn_header btn-personal-area']";
+    public static $PersonalButtonLogout = "//a[@href='/admin/logout']";
     
     //     Настройки
     public static $Settings = "//div[1]/div[3]/table/tbody/tr/td[7]/a";
+    
     public static $Currencies = "//div[1]/div[3]/table/tbody/tr/td[7]/ul/li[2]/a"; 
-    public static $SettingsDelivery = "//div[1]/div[3]/table/tbody/tr/td[7]/ul/li[3]/a"; 
+    public static $SettingsDelivery = "//div[1]/div[3]/table/tbody/tr/td[7]/ul/li[3]/a";
+    public static $SettingsShopSettings = "//div[1]/div[3]/table/tbody/tr/td[7]/ul/li[1]/a";
     
 //    public static $SettingsImportExport = "//div[3]/table/tbody/tr/td[7]/ul/li[5]/a";
     
     //      Система
     public static $System = "//table/tbody/tr/td[8]/a";
-    public static $SystemGlobalSettings = '//table/tbody/tr/td[8]/a';
+    public static $SystemGlobalSettings = '//div[1]/div[3]/table/tbody/tr/td[8]/ul/li[1]/a';
     public static $SystemClearAllCach = "#clearAllCache";
     
     

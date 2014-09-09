@@ -34,6 +34,18 @@ class InitTest {
         $I->click('.btn.btn-small.btn-primary.action_on.formSubmit');
         $I->wait('3');
     }
+    public static function changeSymbolsAfterCommaInPrice($I,$num) {
+//        $I = new AcceptanceTester;
+        $I->wait(1);
+        $I->amOnPage('/admin');
+        $I->click(NavigationBarPage::$Settings);
+        $I->click(NavigationBarPage::$SettingsShopSettings);
+        $I->waitForText('Настройки магазина',null,'.title');
+        $I->selectOption('select.input-small', $num);
+        $I->click('.btn.btn-small.btn-primary.action_on.formSubmit');
+        $I->wait(0);
+        
+    }
 
     public static function Login($I) {
         if (!self::$LoggedIn) {
@@ -54,7 +66,8 @@ class InitTest {
         if (self::$LoggedIn) {
             $I->wait(1);
             $I->amOnPage('/admin');
-            $I->click(".my_icon.exit_ico");
+            $I->click(NavigationBarPage::$PersonalButton);
+            $I->click(NavigationBarPage::$PersonalButtonLogout);
             $I->waitForElement(".form_login.t-a_c");
         }
         self::$LoggedIn = FALSE;

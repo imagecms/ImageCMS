@@ -18,6 +18,7 @@ class DeliveryCreateCest {
         }
         
         InitTest::changeTextAditorToNative($I);
+        InitTest::changeSymbolsAfterCommaInPrice($I, '0');
     }
 
 //  ____________________________________________________________FIELD_NAME_TESTS
@@ -114,7 +115,7 @@ class DeliveryCreateCest {
      * @group create
      * @guy DeliveryTester\DeliverySteps
      */
-    public function description(DeliveryTester\DeliverySteps $I) {
+    public function descriptionICMS1484(DeliveryTester\DeliverySteps $I) {
         $name = "Доставка Описание";
         //For deleting
         $this->CreatedMethods[] = $name;
@@ -126,6 +127,7 @@ class DeliveryCreateCest {
     }
 
 //  ________________________________________________FIELDS_PRICE_FREE_FROM_TESTS
+   
     /**
      * @group create
      * @guy DeliveryTester\DeliverySteps
@@ -138,7 +140,7 @@ class DeliveryCreateCest {
 
         $I->CreateDelivery($name, 'on', null, null, $price, $freefrom);
         $I->CheckInList($name, null, $price, $freefrom);
-        $I->CheckInFrontEnd($I, $name, null, $price, $freefrom);
+        $I->CheckInFrontEnd($name, null, $price, $freefrom);
 //  _________________________________________________________________________________________________________BUG
     }
 
@@ -263,11 +265,15 @@ class DeliveryCreateCest {
 //  _______________________________________________________PAYMENT_METHODS_FIELD
 
     /**
+     * @group current
      * @group create
      * @guy DeliveryTester\DeliverySteps
      */
     public function deliveryPaymentVerify(DeliveryTester\DeliverySteps $I) {
         $PaymentMethods = $I->GrabAllCreatedPayments();
+        foreach($PaymentMethods as $pmp){
+            $I->comment($pmp);
+        }
         $row = 1;
 
         $I->amOnPage(DeliveryCreatePage::$URL);
@@ -284,7 +290,6 @@ class DeliveryCreateCest {
 
     /**
      * @group create
-     * @group current
      * @guy DeliveryTester\DeliverySteps
      */
     public function deliveryPaymentEmpty(DeliveryTester\DeliverySteps $I) {
@@ -298,11 +303,12 @@ class DeliveryCreateCest {
     }
 
     /**
+     * 
      * @group create
      * @guy DeliveryTester\DeliverySteps
      */
     //__________________________________________________________________________+++++++++++bug here
-    public function deliveryPaymentCheckedAll(DeliveryTester\DeliverySteps $I) {
+    public function deliveryPaymentCheckedAllICMS1477(DeliveryTester\DeliverySteps $I) {
         $name = "ДоставкаОплатаВсе";
         //For deleting
         $this->CreatedMethods[] = $name;

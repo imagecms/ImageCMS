@@ -263,7 +263,7 @@ class TextElementNLCest
 //-------------------BUTTON DELETE WINDOW---------------------------------------
     
     /**
-     * @group aaa
+     * @group a
      */
     public function VerifyButtonDeleteWindow (NotificationListTester $I){
         $I->wantTo('Verify Button on Delete Window.');
@@ -292,7 +292,7 @@ class TextElementNLCest
 //-------------------TEXT DELETING NOTIFY LIST PAGE-----------------------------
     
     /**
-     * @group aaa
+     * @group a
      */
     public function TextDeletingNotifi(NotificationListTester $I){
         $I->wantTo('Verrify presence Text Message of Deletiung Window.');

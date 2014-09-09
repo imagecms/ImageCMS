@@ -58,7 +58,7 @@
                                         </td>
                                         <td class="t-a_c">
                                             <button onclick="CFAdmin.deleteOne('{$f.field_name}');
-                    return false;" class="btn btn-small btn-danger my_btn_s" data-rel="tooltip" data-title="{lang("Delete", 'cfcm')}"> <i class="icon-trash icon-white"></i></button>
+                    return false;" class="btn btn-small my_btn_s" data-rel="tooltip" data-title="{lang("Delete", 'cfcm')}"> <i class="icon-trash icon-white"></i></button>
                                         </td>
                                     </tr>        
                                 {/foreach}
@@ -110,7 +110,7 @@
                                             </td>
                                             <td class="t-a_c">
                                                 <button onclick="CFAdmin.deleteOneGroup({$g.id});
-                        return false;" class="btn btn-danger btn-small my_btn_s" data-rel="tooltip" data-title="{lang("Delete", 'cfcm')}"> <i class="icon-trash icon-white"></i></button>
+                        return false;" class="btn btn-small my_btn_s" data-rel="tooltip" data-title="{lang("Delete", 'cfcm')}"> <i class="icon-trash icon-white"></i></button>
                                             </td>
                                         </tr>        
                                     {/foreach}

@@ -4,7 +4,7 @@ class FieldsNSCest
 {
 //---------------------------AUTORIZATION--------------------------------------- 
     /**
-     * @group aa
+     * @group a
      */
     public function Login(NotificationStatusesTester $I){
         InitTest::Login($I);
