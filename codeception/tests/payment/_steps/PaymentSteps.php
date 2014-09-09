@@ -31,7 +31,7 @@ class PaymentSteps extends \PaymentTester {
     public function createPayment($name, $currency = null, $active = null, $description = null, $paymentsystem = null) {
         $I = $this;
 
-
+        $I->wait(3);
         if (isset($name)) {
             $I->amOnPage(\PaymentCreatePage::$URL);
             $I->fillField(\PaymentCreatePage::$FieldName, $name);
@@ -120,10 +120,12 @@ class PaymentSteps extends \PaymentTester {
      */
     public function createDelivery($name = null, $active = null, $description = null, $descriptionprice = null, $price = null, $freefrom = null, $message = null, $pay = null) {
         $I = $this;
+        $I->wait(3);
 //        $I->amOnPage(\DeliveryPage::$URL);
 //        $I->click(\DeliveryPage::$CreateButton);
 //        $I->waitForText("Создание способа доставки");
         $I->amOnPage(\DeliveryCreatePage::$URL);
+        $I->wait(3);
         if (isset($name)) {
             $I->fillField(\DeliveryCreatePage::$FieldName, $name);
         }
