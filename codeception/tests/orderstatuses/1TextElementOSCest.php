@@ -71,7 +71,7 @@ class TextElementOSCest
 //-------------------TEXT MESSAGE MOUSE FOCUS LIST PAGE-------------------------
     
     /**
-     * @group a
+     * @group aa
      */
     public function  MouseMessage (OrderStatusesTester $I){
         $I->wantTo('Verify Message When Focus Cursor on Name Status.');

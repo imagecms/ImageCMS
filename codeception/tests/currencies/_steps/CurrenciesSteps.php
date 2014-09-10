@@ -71,6 +71,9 @@ class CurrenciesSteps extends \CurrenciesTester
                 $I->wait('1');
                 $I->seeCheckboxIsChecked(\CurrenciesPage::$NotNullsCheckbox);
                 break;
+            case 'onCheck':                
+                $I->seeCheckboxIsChecked(\CurrenciesPage::$NotNullsCheckbox);
+                break;
         }
         $I->wait('3');
         switch ($save) {
@@ -165,7 +168,7 @@ class CurrenciesSteps extends \CurrenciesTester
     {
         $I = $this;
         $I->amOnPage(\CurrenciesPage::$URL);
-        $rows = $I->grabTagCount($I,"tbody tr");
+        $rows = $I->grabCCSAmount($I,".btn.btn-small.btn-danger");
         $I->comment("$rows");
         //Определение строчки главной валюты
         for ($j=1;$j<$rows;++$j){
@@ -197,7 +200,7 @@ class CurrenciesSteps extends \CurrenciesTester
             $I->comment("$IsoProduct");
         }
         $I->click(\CurrenciesPage::$SaveButton);
-        $I->waitForText($name, 4, ".//*[@id='mainContent']/section/div/div[1]/span[2]");
+        $I->waitForText($name, 6, ".//*[@id='mainContent']/section/div/div[1]/span[2]");
         if(isset($j)){
             return $IsoProduct;
         }
@@ -221,5 +224,66 @@ class CurrenciesSteps extends \CurrenciesTester
                 $I->click(\CurrenciesPage::$CancelButtonWindow);
                 break;
         }        
+    }
+    
+    
+    function CheckProductCart($firMain,$secMain,$firADD=null,$secADD=null)
+    {
+        $I = $this;
+        $I->click('//*[@id="items-catalog-main"]/li[1]/a');
+        $I->waitForElement("/html/body/div[1]/div[2]/div[2]/div[1]/div/div[2]");
+//        $I->seeInCurrentUrl("//shop/product/$name");
+        $I->see($firMain, \CurrenciesPage::$MainFirstPlaceCard);
+        $I->see($secMain, \CurrenciesPage::$MainSecondPlaceCard);
+        if(isset($firADD)){
+            $I->see($firADD, \CurrenciesPage::$AdditFirstPlaceCard);
+        }
+        if(isset($secADD)){
+            $I->see($secADD, \CurrenciesPage::$AdditSecondPlaceCard);
+        }
+        $I->wait('3');
+        $I->click("/html/body/div[1]/div[2]/div[2]/div[1]/div/div[2]/div[2]/div/div/div[1]/div[2]/div/form/div[3]/button");
+        $I->waitForElement('//*[@id="popupCart"]/div');
+        $I->see($firMain, \CurrenciesPage::$MainFirstPlaceSum);
+        $I->see($secMain, \CurrenciesPage::$MainSecondPlaceSum);
+        $I->see($firMain, \CurrenciesPage::$MainFirstCart);
+        $I->see($secMain, \CurrenciesPage::$MainSecondCart);
+        if(isset($firADD)){
+            $I->see($firADD, \CurrenciesPage::$AdditFirstCart);
+        }
+        if(isset($secADD)){
+            $I->see($secADD, \CurrenciesPage::$AdditSecondCart);
+        }
+        $I->wait('3');
+        $I->click('//*[@id="popupCart"]/div/div[3]/div[2]/div/div[2]/a');
+        $I->waitForText('Оформление заказа');
+        $I->see($firMain, '//*[@id="orderDetails"]/table/tbody/tr/td[3]/div/span/span/span/span/span[1]');
+        $I->see($secMain, '//*[@id="orderDetails"]/table/tbody/tr/td[3]/div/span/span/span/span/span[2]');
+        $I->see($firMain, '//*[@id="orderDetails"]/table/tfoot/tr/td/div/span/span[1]');
+        $I->see($secMain, '//*[@id="orderDetails"]/table/tfoot/tr/td/div/span/span[2]');
+        $I->see($firMain, '//*[@id="orderDetails"]/div[1]/div/span[2]/span/span[1]/span/span/span[1]');
+        $I->see($secMain, '//*[@id="orderDetails"]/div[1]/div/span[2]/span/span[1]/span/span/span[2]');
+        if(isset($firADD)){
+            $I->see($firADD, '//*[@id="orderDetails"]/div[1]/div/span[2]/span/span[2]/span/span[1]');
+        }
+        if(isset($secADD)){
+            $I->see($secADD, '//*[@id="orderDetails"]/div[1]/div/span[2]/span/span[2]/span/span[2]');
+        }
+        $I->fillField('/html/body/div[1]/div[2]/div/div/div[2]/form/div[2]/div/div[1]/div/div/div/input', '111111111111');
+        $I->wait('3');
+        $I->click('//*[@id="submitOrder"]');
+        $I->waitForText('Заказ');
+        $I->see($firMain, '/html/body/div[1]/div[2]/div/div/div[3]/div/div[1]/div/table/tbody/tr/td[3]/span[2]/span/span/span/span/span[1]');
+        $I->see($secMain, '/html/body/div[1]/div[2]/div/div/div[3]/div/div[1]/div/table/tbody/tr/td[3]/span[2]/span/span/span/span/span[2]');
+        $I->see($firMain, '/html/body/div[1]/div[2]/div/div/div[3]/div/div[1]/div/table/tfoot/tr/td/div/span/span/span/span[1]');
+        $I->see($secMain, '/html/body/div[1]/div[2]/div/div/div[3]/div/div[1]/div/table/tfoot/tr/td/div/span/span/span/span[2]');
+        $I->see($firMain, '/html/body/div[1]/div[2]/div/div/div[3]/div/div[2]/div/div/span[2]/span/span[1]/span/span/span[1]');
+        $I->see($secMain, '/html/body/div[1]/div[2]/div/div/div[3]/div/div[2]/div/div/span[2]/span/span[1]/span/span/span[2]');
+        if(isset($firADD)){
+            $I->see($firADD, '/html/body/div[1]/div[2]/div/div/div[3]/div/div[2]/div/div/span[2]/span/span[2]/span/span/span[1]');
+        }
+        if(isset($secADD)){
+            $I->see($secADD, '/html/body/div[1]/div[2]/div/div/div[3]/div/div[2]/div/div/span[2]/span/span[2]/span/span/span[2]');
+        }
     }
 }
