@@ -13,13 +13,13 @@
  */
 class CSV {
 
-    private static $titles = ["name",
-        "url","prc","oldprc",
-        "stk","num","var",
-        "act","hit","brd",
-        "cat","relp","vimg",
-        "cur","imgs","shdesc",
-        "desc","mett","metd","metk"];
+    private static $titles = [  "name","url","prc",
+                                "oldprc","stk","num",
+                                "var","act","hit",
+                                "brd","cat","relp",
+                                "vimg","cur","imgs",
+                                "shdesc","desc","mett",
+                                "metd","metk"];
 //    private $name; //ТоварИмпорт
 //    private $url; //tovarimport
 //    private $price; //100.50

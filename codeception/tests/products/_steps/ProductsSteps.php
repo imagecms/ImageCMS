@@ -213,7 +213,7 @@ class ProductsSteps extends \ProductsTester
     {
         $I = $this;
         $I->waitForText('Список товаров');
-        $I->click(".//*[@id='filter_form']/section/div[2]/div/div[1]/ul/li[8]/a");
+        $I->click(\ProductsPage::PaginationLine('last()'));
         $I->wait('2');
         $I->see($name, \ProductsPage::ProductNameLine('last()'));
         if(isset($category)){
@@ -259,13 +259,16 @@ class ProductsSteps extends \ProductsTester
         }
         if(isset($fullDesc)){
 //            $I->see($fullDesc, ".//*[@id='view']/div[2]/div/div/table");
-            $I->click("Полное описание");
+            $I->scrollToElement($I, ".text");
+            $I->wait('2');
+            $I->click("html/body/div[1]/div[2]/div[2]/div[3]/ul/li[2]");
+            $I->scrollToElement($I, ".text");
             $I->wait('2');
             $I->see($fullDesc, ".//*[@id='second']/div/div[2]");
         }
         switch ($comment) {
             case 'Да':
-                $I->click("html/body/div[1]/div[2]/div[2]/div[3]/ul/li[4]/button");
+                $I->click("html/body/div[1]/div[2]/div[2]/div[3]/ul/li[3]/button");
                 $I->waitForText("Текст комментария");
                 $I->seeElement(".//*[@id='comments']/div[2]/div/div[2]/div/form/label/span[2]/textarea");
                 $I->fillField(".//*[@id='comments']/div[2]/div/div[2]/div/form/label/span[2]/textarea", "Great purchase");
@@ -274,7 +277,7 @@ class ProductsSteps extends \ProductsTester
                 $I->see("Great purchase", ".//*[@id='comments']/div[2]/ul/li/div[1]/div[3]/div[1]/p");
                 break;
             case 'Нет':
-                $I->dontSeeElement("html/body/div[1]/div[2]/div[2]/div[3]/ul/li[4]/button");
+                $I->dontSeeElement("html/body/div[1]/div[2]/div[2]/div[3]/ul/li[3]/button");
                 break;
         }
         if(isset($oldPrice)){
