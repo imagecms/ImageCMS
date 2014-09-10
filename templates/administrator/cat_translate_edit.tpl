@@ -40,7 +40,7 @@
         <form method="post" active="{$BASE_URL}admin/categories/translate/{$orig_cat.id}/{$lang}" id="save">
             <div class="tab-content">
                 <div class="tab-pane active">
-                    <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                    <table class="table  table-bordered table-hover table-condensed content_big_td">
                         <thead>
                             <tr>
                                 <th colspan="6">

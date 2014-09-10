@@ -147,7 +147,7 @@
                                         {foreach $not_installed as $module}
                                             <tr class="module_row">
                                                 <td class="module_name">
-                                                    <a href="#" class="mod_instal" data-mname="{$module.com_name}" data-mid="{$module.id}">{$module.menu_name}</a>
+                                                    {$module.menu_name}
                                                 </td>
                                                 <td class="module_description">
                                                     <p>{$module.description}</p>

@@ -11,7 +11,7 @@
                     <span style="position: relative">
                         <a href="#" onclick="$(this).next().slideToggle();
                                 return false" class="btn btn-small">{lang('Template settings', 'banners')}</a>
-                        <div style="position: absolute; display: none; background-color: white; padding: 8px; margin-top: 5px; border-radius: 5px; width: 335px;">
+                        <div style="position: absolute; display: none; background-color: white; padding: 8px; margin-top: 5px;width: 335px;border: 1px solid #ccc;">
                             <input {if $show_tpl}checked='checked'{/if}type="checkbox" onclick="chckTplParam(this);" /> {lang('Use different templates for different pages', 'banners')}
                         </div>
                     </span>

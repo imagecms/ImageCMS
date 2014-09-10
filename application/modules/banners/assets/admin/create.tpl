@@ -121,7 +121,7 @@
                                         <div class="o_h">		            
                                             <input type="text" name="photo" id="Img" value="" required="required">					
                                         </div>
-                                        <div id="Img-preview" style="width: 400px;" ></div>
+                                        <div id="Img-preview" style="width: 400px;" class="m-t_20"></div>
                                     </div>
                                 </div>
                             </div>
