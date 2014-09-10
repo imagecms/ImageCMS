@@ -3,6 +3,7 @@
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
 use import_export\classes\Logger as LOG;
+use import_export\classes\BaseImport as Imports;
 
 /**
  * Image CMS 
@@ -99,7 +100,8 @@ class Admin extends BaseAdminController {
             }
             \CMSFactory\assetManager::create()
                 ->registerScript('importExportAdmin')
-                ->setData('attributes',ImportCSV\BaseImport::create()->makeAttributesList()->possibleAttributes)     
+                //->setData('attributes',ImportCSV\BaseImport::create()->makeAttributesList()->possibleAttributes)     
+                    ->setData('attributes',  Imports::create()->makeAttributesList()->possibleAttributes)   
                 ->setData('languages',$this->languages)
                 ->setData('cFields',$cFields)
                 ->setData('checkedFields',$this->checkedFields)
