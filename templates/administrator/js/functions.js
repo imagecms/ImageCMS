@@ -99,14 +99,6 @@ function ajaxLoadChildCategory(el, id) {
             initNiceCheck();
             share_alt_init();
             sortInit();
-            if ($.exists('[data-rel="tooltip"], [rel="tooltip"]'))
-                $('[data-rel="tooltip"], [rel="tooltip"]').not('tr').not('.row-category').tooltip({
-                    'delay': {
-                        show: 500,
-                        hide: 100
-                    }
-                });
-            difTooltip();
         })
 
 

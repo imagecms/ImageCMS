@@ -5,6 +5,7 @@ class importexportSteps extends \ImportExportTester
 {
    
     
+    
     function createCategoryProductForExport( $createNameCategory = NULL, $addParentCategory = NULL) {
         $I = $this;
         $I->amOnPage(\ExportCategoryPage::$CatCreatURL);
@@ -24,10 +25,8 @@ class importexportSteps extends \ImportExportTester
     
     
     
-    function CreateProperty($NameProperty = NULL,
-                            $CVS = NULL,
-                            $Category = NULL,
-            $Values1 = NULL, $Values2 = NULL, $Values3 = NULL, $Values4 = NULL) {
+    function CreateProperty($NameProperty = NULL, $CVS = NULL, $Category = NULL,
+                                $Values1 = NULL, $Values2 = NULL, $Values3 = NULL, $Values4 = NULL) {
         $I = $this;
         $I->amOnPage(\ExportPropertyPage::$PropURL);
         $I->fillField(\ExportPropertyPage::$PropFieldName, $NameProperty);
