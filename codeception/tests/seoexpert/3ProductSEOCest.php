@@ -20,12 +20,10 @@ class ProductSEOCest
      * @guy SeoExpertTester\seoexpertSteps 
      */
     public function CreateCategoryForFront (SeoExpertTester\seoexpertSteps $I){
-        $I->SeoCreateCategoryProduct($createNameCategory = 'СЕО Тест Категория');
+        $I->SeoCreateCategoryProduct($createNameCategory = 'Вода');
     }
     
-    
 
-  
     
 
     /**
@@ -33,7 +31,7 @@ class ProductSEOCest
      * @guy SeoExpertTester\seoexpertSteps 
      */
     public function CreatуBrandForFront (SeoExpertTester\seoexpertSteps $I){
-        $I->SeoCreateBrand($brandName = 'СЕО тест Бренд');
+        $I->SeoCreateBrand($brandName = 'Хлеб');
     }
     
     
@@ -43,7 +41,7 @@ class ProductSEOCest
      * @guy SeoExpertTester\seoexpertSteps 
      */
     public function CreateProductForFront (SeoExpertTester\seoexpertSteps $I){
-        $I->SeoCreateProduct($NameProduct = 'СЕО Тест Продукт', $PriceProduct = '777', $BrandProduct = 'СЕО тест Бренд', $CategoryProduct = 'СЕО Тест Категория');
+        $I->SeoCreateProduct($NameProduct = 'Сеошний товар', $PriceProduct = '777', $BrandProduct = 'Хлеб', $CategoryProduct = 'Вода');
 
     }
     
@@ -53,9 +51,11 @@ class ProductSEOCest
      * @guy SeoExpertTester\seoexpertSteps 
      */
     public function CreateProperty(SeoExpertTester\seoexpertSteps $I) {
-        $I->SeoCreateProperty($NameProperty = 'СЕО Тест Свойство', $CVS = 'XYXYxyxyxyxyXYXY', $Category = 'СЕО', $Values1 = 'Первое Свойство', $Values2 = NULL, $Values3 = NULL, $Values4 = NULL);
-        $I->SeoSelectPropertyInProduct($NameProduct = 'СЕО Тест Продукт', $Property1 = 'Yes');
+        $I->SeoCreateProperty($NameProperty = 'Свойственно сео', $CVS = 'XYXYxyxyxyxyXYXY', $Category = 'Вода', $Values1 = 'Первое Свойство', $Values2 = NULL, $Values3 = NULL, $Values4 = NULL);
+        $I->SeoSelectPropertyInProduct($NameProduct = 'Сеошний товар', $Property1 = 'Yes');
     }
+    
+    
     
     /**
      * @group a
@@ -64,6 +64,10 @@ class ProductSEOCest
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->click(seoexpertPage::$SeoBaseRadioButtCategoryNameNo);
         $I->click(seoexpertPage::$SeoBaseRadioButtSiteNameYes);
+        $I->click(seoexpertPage::$SeoBaseSelectKeywords);
+        $I->click(seoexpertPage::$SeoBaseOptionMakeAutomaticKeywords);
+        $I->click(seoexpertPage::$SeoBaseSelectDescription);
+        $I->click(seoexpertPage::$SeoBaseOptionMakeAutomaticDescription);
         $I->fillField(seoexpertPage::$SeoBaseFieldSeparator, '/');
         $I->fillField(seoexpertPage::$SeoBaseFieldDescription, '');
         $I->fillField(seoexpertPage::$SeoBaseFieldKeywords, '');
@@ -83,12 +87,18 @@ class ProductSEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function ShopProductPageTitle (SeoExpertTester\seoexpertSteps $I){
-        $I->amOnPage('/admin/components/run/shop/properties');
+        $I->amOnPage(PropertySEOPage::$ListURL);
         $I->wait('2');
-        $I->fillField('//form/table/thead/tr[2]/td[3]/input', $namesOfProperty = 'СЕО Тест Свойство');
-        $I->click('//section/div[1]/div[2]/div/button[1]');
-        $a = $I->grabTextFrom('//tr[1]/td[2]');
-        $I->comment("$a");   
+        $I->fillField(PropertySEOPage::$SearchField, $namesOfProperty = 'Свойственно сео');
+        $I->click(PropertySEOPage::$ButtonFilter);
+        $a = $I->grabTextFrom(PropertySEOPage::$IDField);
+        $I->comment("$a"); 
+        $I->amOnPage(ProductSEOPage::$ListURL);
+        $I->wait('2');
+        $I->fillField(ProductSEOPage::$ListFildSearch, $name_product = 'Сеошний товар');
+        $I->click(ProductSEOPage::$ListButtonFilter);
+        $b = $I->grabTextFrom(ProductSEOPage::$ListGrabID);
+        $I->comment("$b");
         $I->wait('2');               
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
@@ -102,9 +112,9 @@ class ProductSEOCest
         $I->click(seoexpertPage::$SeoButtSave);
         InitTest::ClearAllCach($I);
         $I->wait('2');
-        $I->amOnPage('/shop/product/seo-test-produkt');
-        $I->wait('7');
-        $I->seeInPageSource('17193 СЕО Тест Продукт СЕО Тест Категория СЕО тест Бренд 777 руб Первое Свойство / mini.loc');
+        $I->amOnPage(seoexpertPage::$FrontProductURL);
+        $I->wait('2');
+        $I->seeInPageSource("$b Сеошний товар Вода Хлеб 777 руб Первое Свойство / mini.loc");
              
     }
     
@@ -116,12 +126,18 @@ class ProductSEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function ShopProductPageTitleTranslit (SeoExpertTester\seoexpertSteps $I){
-        $I->amOnPage('/admin/components/run/shop/properties');
+        $I->amOnPage(PropertySEOPage::$ListURL);
         $I->wait('2');
-        $I->fillField('//form/table/thead/tr[2]/td[3]/input', $namesOfProperty = 'СЕО Тест Свойство');
-        $I->click('//section/div[1]/div[2]/div/button[1]');
-        $a = $I->grabTextFrom('//tr[1]/td[2]');
-        $I->comment("$a");   
+        $I->fillField(PropertySEOPage::$SearchField, $namesOfProperty = 'Свойственно сео');
+        $I->click(PropertySEOPage::$ButtonFilter);
+        $a = $I->grabTextFrom(PropertySEOPage::$IDField);
+        $I->comment("$a");
+        $I->amOnPage(ProductSEOPage::$ListURL);
+        $I->wait('2');
+        $I->fillField(ProductSEOPage::$ListFildSearch, $name_product = 'Сеошний товар');
+        $I->click(ProductSEOPage::$ListButtonFilter);
+        $b = $I->grabTextFrom(ProductSEOPage::$ListGrabID);
+        $I->comment("$b");
         $I->wait('2');               
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
@@ -135,13 +151,64 @@ class ProductSEOCest
         $I->click(seoexpertPage::$SeoButtSave);
         InitTest::ClearAllCach($I);
         $I->wait('2');
-        $I->amOnPage('/shop/product/seo-test-produkt');
-        $I->wait('7');
-        $I->seeInPageSource('17193 SEO Test Produkt SEO Test Kategoriia SEO test Brend 777 руб Первое Свойство / mini.loc');
+        $I->amOnPage(seoexpertPage::$FrontProductURL);
+        $I->wait('2');
+        $I->seeInPageSource("$b Seoshnii tovar Voda Hleb 777 руб Первое Свойство / mini.loc");
+             
+    }
+    
+    
+    
+    /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps
+     */
+    public function ShopProductPageTitlePadeguName (SeoExpertTester\seoexpertSteps $I){                    
+        $I->amOnPage(seoexpertPage::$SeoUrl);
+        $I->wait('1');
+        $I->click(seoexpertPage::$SeoButtShop);
+        $I->wait('1');
+        $I->fillField(seoexpertPage::$SeoProductTitle, "%name[1]% %name[2]% %name[3]% %name[4]% %name[5]% %name[6]%");
+        $I->fillField(seoexpertPage::$SeoProductDescription, '');
+        $I->fillField(seoexpertPage::$SeoProductKeywords, '');
+        $checkbox_path = '//tbody/tr[1]/td/div/div/div[2]/div/span[2]'; 
+        $I->ActivateCheckBox($checkbox_xpath = $checkbox_path);
+        $I->click(seoexpertPage::$SeoButtSave);
+        InitTest::ClearAllCach($I);
+        $I->wait('2');
+        $I->amOnPage(seoexpertPage::$FrontProductURL);
+        $I->wait('2');
+        $I->seeInPageSource('Сеошний товар Сеошнего товара Сеошнему товару Сеошнего товара Сеошним товаром Сеошнем товаре / mini.loc');
              
     }
     
 
+    
+    
+    
+    
+    /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps
+     */
+    public function ShopProductPageTitlePadeguCategory (SeoExpertTester\seoexpertSteps $I){         
+        $I->amOnPage(seoexpertPage::$SeoUrl);
+        $I->wait('1');
+        $I->click(seoexpertPage::$SeoButtShop);
+        $I->wait('1');
+        $I->fillField(seoexpertPage::$SeoProductTitle, "%category[1]% %category[2]% %category[3]% %category[4]% %category[5]% %category[6]%");
+        $I->fillField(seoexpertPage::$SeoProductDescription, '');
+        $I->fillField(seoexpertPage::$SeoProductKeywords, '');
+        $checkbox_path = '//tbody/tr[1]/td/div/div/div[2]/div/span[2]'; 
+        $I->ActivateCheckBox($checkbox_xpath = $checkbox_path);
+        $I->click(seoexpertPage::$SeoButtSave);
+        InitTest::ClearAllCach($I);
+        $I->wait('2');
+        $I->amOnPage(seoexpertPage::$FrontProductURL);
+        $I->wait('2');
+        $I->seeInPageSource('Вода Воды Воде Воду Водой Воде / mini.loc');
+             
+    }
     
     
     
@@ -150,12 +217,18 @@ class ProductSEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function ShopProductPageDescription (SeoExpertTester\seoexpertSteps $I){
-       $I->amOnPage('/admin/components/run/shop/properties');
+        $I->amOnPage(PropertySEOPage::$ListURL);
         $I->wait('2');
-        $I->fillField('//form/table/thead/tr[2]/td[3]/input', $namesOfProperty = 'СЕО Тест Свойство');
-        $I->click('//section/div[1]/div[2]/div/button[1]');
-        $a = $I->grabTextFrom('//tr[1]/td[2]');
-        $I->comment("$a");   
+        $I->fillField(PropertySEOPage::$SearchField, $namesOfProperty = 'Свойственно сео');
+        $I->click(PropertySEOPage::$ButtonFilter);
+        $a = $I->grabTextFrom(PropertySEOPage::$IDField);
+        $I->comment("$a"); 
+        $I->amOnPage(ProductSEOPage::$ListURL);
+        $I->wait('2');
+        $I->fillField(ProductSEOPage::$ListFildSearch, $name_product = 'Сеошний товар');
+        $I->click(ProductSEOPage::$ListButtonFilter);
+        $b = $I->grabTextFrom(ProductSEOPage::$ListGrabID);
+        $I->comment("$b");
         $I->wait('2');               
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
@@ -170,9 +243,9 @@ class ProductSEOCest
         $I->click(seoexpertPage::$SeoButtSave);
         InitTest::ClearAllCach($I);
         $I->wait('2');
-        $I->amOnPage('/shop/product/seo-test-produkt');
-        $I->wait('7');
-        $I->seeInPageSource('17193 СЕО Тест Продукт СЕО Тест Категория СЕО тест Бренд 777 руб Первое Свойство / mini.loc');
+        $I->amOnPage(seoexpertPage::$FrontProductURL);
+        $I->wait('2');
+        $I->seeInPageSource("$b Сеошний товар Вода Хлеб 777 руб Первое Свойство / mini.loc");
        
     }
     
@@ -182,12 +255,18 @@ class ProductSEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function ShopProductPageDescriptionTranslit (SeoExpertTester\seoexpertSteps $I){
-       $I->amOnPage('/admin/components/run/shop/properties');
+        $I->amOnPage(PropertySEOPage::$ListURL);
         $I->wait('2');
-        $I->fillField('//form/table/thead/tr[2]/td[3]/input', $namesOfProperty = 'СЕО Тест Свойство');
-        $I->click('//section/div[1]/div[2]/div/button[1]');
-        $a = $I->grabTextFrom('//tr[1]/td[2]');
+        $I->fillField(PropertySEOPage::$SearchField, $namesOfProperty = 'Свойственно сео');
+        $I->click(PropertySEOPage::$ButtonFilter);
+        $a = $I->grabTextFrom(PropertySEOPage::$IDField);
         $I->comment("$a");   
+        $I->amOnPage(ProductSEOPage::$ListURL);
+        $I->wait('2');
+        $I->fillField(ProductSEOPage::$ListFildSearch, $name_product = 'Сеошний товар');
+        $I->click(ProductSEOPage::$ListButtonFilter);
+        $b = $I->grabTextFrom(ProductSEOPage::$ListGrabID);
+        $I->comment("$b");
         $I->wait('2');               
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
@@ -202,9 +281,9 @@ class ProductSEOCest
         $I->click(seoexpertPage::$SeoButtSave);
         InitTest::ClearAllCach($I);
         $I->wait('2');
-        $I->amOnPage('/shop/product/seo-test-produkt');
-        $I->wait('7');
-        $I->seeInPageSource('17193 SEO Test Produkt SEO Test Kategoriia SEO test Brend 777 руб Первое Свойство / mini.loc');
+        $I->amOnPage(seoexpertPage::$FrontProductURL);
+        $I->wait('2');
+        $I->seeInPageSource("$b Seoshnii tovar Voda Hleb 777 руб Первое Свойство / mini.loc");
        
     }
  
@@ -229,8 +308,8 @@ class ProductSEOCest
         $I->click(seoexpertPage::$SeoButtSave);
         InitTest::ClearAllCach($I);
         $I->wait('2');
-        $I->amOnPage('/shop/product/seo-test-produkt');
-        $I->wait('7');
+        $I->amOnPage(seoexpertPage::$FrontProductURL);
+        $I->wait('2');
         $I->dontSeeInPageSource('я тут');
         $I->seeInPageSource('я');
        
@@ -241,13 +320,13 @@ class ProductSEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function ShopProductPageKeywords (SeoExpertTester\seoexpertSteps $I){
-        $I->amOnPage('/admin/components/run/shop/properties');
+        $I->amOnPage(PropertySEOPage::$ListURL);
         $I->wait('2');
-        $I->fillField('//form/table/thead/tr[2]/td[3]/input', $namesOfProperty = 'СЕО Тест Свойство');
-        $I->click('//section/div[1]/div[2]/div/button[1]');
-        $a = $I->grabTextFrom('//tr[1]/td[2]');
+        $I->fillField(PropertySEOPage::$SearchField, $namesOfProperty = 'Свойственно сео');
+        $I->click(PropertySEOPage::$ButtonFilter);
+        $a = $I->grabTextFrom(PropertySEOPage::$IDField);
         $I->comment("$a");   
-        $I->wait('2');               
+        $I->wait('1');               
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->click(seoexpertPage::$SeoButtShop);
@@ -260,9 +339,9 @@ class ProductSEOCest
         $I->click(seoexpertPage::$SeoButtSave);
         InitTest::ClearAllCach($I);
         $I->wait('2');
-        $I->amOnPage('/shop/product/seo-test-produkt');
-        $I->wait('8');
-        $I->seeInPageSource('СЕО Тест Продукт СЕО Тест Категория СЕО тест Бренд Первое Свойство');
+        $I->amOnPage(seoexpertPage::$FrontProductURL);
+        $I->wait('2');
+        $I->seeInPageSource('Сеошний товар Вода Хлеб Первое Свойство');
              
     }
     
@@ -287,25 +366,25 @@ class ProductSEOCest
         $I->click(seoexpertPage::$SeoButtSave);
         InitTest::ClearAllCach($I);
         $I->wait('2');
-        $I->amOnPage('/shop/product/seo-test-produkt');
+        $I->amOnPage(seoexpertPage::$FrontProductURL);
         $I->wait('7');
-        $I->seeInPageSource('СЕО Тест Продукт / mini.loc');
-        $I->seeInPageSource('СЕО Тест Категория / mini.loc');
-        $I->seeInPageSource('СЕО тест Бренд');             
+        $I->seeInPageSource('Сеошний товар / mini.loc');
+        $I->seeInPageSource('Вода / mini.loc');
+        $I->seeInPageSource('Хлеб');             
     }
     
     
     
     /**
-     * @group aa
+     * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function ShopProductPageDeactive (SeoExpertTester\seoexpertSteps $I){ 
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->click(seoexpertPage::$SeoBaseSelectKeywords);
-        $I->click('//tbody/tr/td/div/div/div/div[4]/div/select/option[2]');
+        $I->click(seoexpertPage::$SeoBaseOptionLeaveBlankKeywords);
         $I->click(seoexpertPage::$SeoBaseSelectDescription);
-        $I->click('//tbody/tr/td/div/div/div/div[5]/div/select/option[2]');
+        $I->click(seoexpertPage::$SeoBaseOptionLeaveBlankDescription);
         $I->click(seoexpertPage::$SeoButtSave);
         $I->wait('1');   
         $I->amOnPage(seoexpertPage::$SeoUrl);
@@ -320,8 +399,8 @@ class ProductSEOCest
         $I->click(seoexpertPage::$SeoButtSave);
         InitTest::ClearAllCach($I);
         $I->wait('2');
-        $I->amOnPage('/shop/product/seo-test-produkt');
-        $I->wait('7');
+        $I->amOnPage(seoexpertPage::$FrontProductURL);
+        $I->wait('2');
         $I->dontSeeInPageSource('Церберус офф руб');             
         $I->dontSeeInPageSource('Нига777Нига');             
     }

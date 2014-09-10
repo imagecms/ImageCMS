@@ -4,7 +4,7 @@ class TextElementOSCest
 {
 //---------------------------AUTORIZATION---------------------------------------   
     /**
-     * @group aaa
+     * @group aa
      */
     public function Login(OrderStatusesTester $I){
         InitTest::Login($I);
@@ -17,7 +17,7 @@ class TextElementOSCest
      */
     public function  WayCreateOS (OrderStatusesTester $I){    
         $I->wantTo('Verify Way to Create Status Page.');
-        $I->amOnPage(OrderStatusesListPage::$ListURL);
+        $I->amOnPage(OrderStatusesListPage::$ListURL);       
         $I->click(OrderStatusesListPage::$ListaButtonCreateStatuse);
         $I->seeInCurrentUrl(OrderStatusesCreatePage::$CreateURL);
         $I->amOnPage(OrderStatusesListPage::$ListURL);
@@ -128,9 +128,10 @@ class TextElementOSCest
      */
     public function AlertMessageCreate(OrderStatusesTester $I){
         $I->wantTo('Verify Alert Message Present on Create Status Page.');
-        $I->amOnPage(OrderStatusesCreatePage::$CreateURL);        
+        $I->amOnPage(OrderStatusesCreatePage::$CreateURL);  
         $I->fillField(OrderStatusesCreatePage::$CreateFieldName, '');
         $I->click(OrderStatusesCreatePage::$CreateButtonCreateAndGoBack);
+        $I->wait('1');
         $I->seeElement(OrderStatusesCreatePage::$CreateMessageAlertFild);        
         $I->fillField(OrderStatusesCreatePage::$CreateFieldName, '123');
         $I->dontSeeElement(OrderStatusesCreatePage::$EditNessageAlert);        
@@ -140,7 +141,7 @@ class TextElementOSCest
 //---------------------MESSAGE CREATING STATUS----------------------------------
     
     /**
-     * @group a
+     * @group aa
      */
     public function MessageCreateStatus(OrderStatusesTester $I){
         $I->wantTo('Verify Message Cteation Status Present.');
@@ -225,7 +226,7 @@ class TextElementOSCest
 //---------------TEXT ELEMENT PRESENCE DELETING PAGE----------------------------
     
     /**
-     * @group aaa
+     * @group a
      */
     public function TextElementDeletingWindow(OrderStatusesTester $I){
         $I->wantTo('Verify Text Present on Delete Window.');
