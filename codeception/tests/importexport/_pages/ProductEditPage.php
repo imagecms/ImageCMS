@@ -2,11 +2,11 @@
 
 class ProductEditPage
 {
-   public static $FieldProductName = '#Name';
+   public static $InputProductName = '#Name';
    public static $ButtonStatusHit = "//section[@class='mini-layout']/form/div[2]/div[1]/div/div[1]/div[2]/div/button[1]";
    public static $ButtonStatusNew = "//section[@class='mini-layout']/form/div[2]/div[1]/div/div[1]/div[2]/div/button[1]";
    public static $ButtonStatusAction = "//section[@class='mini-layout']/form/div[2]/div[1]/div/div[1]/div[2]/div/button[1]";
-   public static $FielOldPrice = '#oldP';
+   public static $InputOldPrice = '#oldP';
    public static $ButtonActive = "//section[@class='mini-layout']/form/div[2]/div[1]/div/div[1]/div[1]/div[2]/div/span";
    public static $SelectBrend = "//section/form/div[2]/div[1]/div/div[2]/div/div[1]/div/div/a";
    public static $SelectCategory = "//section/form/div[2]/div[1]/div/div[2]/div/div[2]/div/div/a";
@@ -23,8 +23,8 @@ class ProductEditPage
    
    //Вкладка Настройки
    public static $TabSettings = "//section[@class='mini-layout']/form/div[1]/div[1]/a[6]";
-   public static $SettingsFieldUrl = '#Url';
-   public static $SettingsFieldMetaTitle = '#Mtag';
-   public static $SettingsFieldMetaDescription = '#mDesc';
-   public static $SettingsFieldMetaKeywords = '#mKey';
+   public static $SettingsInputdUrl = '#Url';
+   public static $SettingsInputMetaTitle = '#Mtag';
+   public static $SettingsInputMetaDescription = '#mDesc';
+   public static $SettingsInputMetaKeywords = '#mKey';
 }
