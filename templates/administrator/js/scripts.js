@@ -4,6 +4,7 @@ $.exists = function(selector) {
 $.exists_nabir = function(nabir) {
     return (nabir.length > 0);
 };
+var gA = {};
 var loading = $('#loading');
 function showLoading() {
     loading.css('background-position', function() {
@@ -17,13 +18,7 @@ function hideLoading() {
 }
 function sortInit() {
     if ($.exists('.sortable')) {
-        $('.sortable tr').not(':has(tr)').tooltip({
-            'placement': place_tr_ttp,
-            'delay': {
-                show: 500,
-                hide: 100
-            }
-        }).css('cursor', 'move');
+        $('.sortable tr').css('cursor', 'move');
         $(".sortable").sortable({
             axis: 'y',
             cursor: 'move',
@@ -276,11 +271,6 @@ function init_2() {
         }
     }
 
-    try {
-        $('[data-toggle="ttip"]').tooltip();
-    } catch (e) {
-    }
-
     $('.products_table').find('span.prod-on_off').add($('[data-page="tovar"]')).off('click').on('click', function() {
         var page_id = $(this).attr('data-id');
         $.ajax({
@@ -293,7 +283,7 @@ function init_2() {
     // /if ($.exists('[data-submit]')) $('body').append('<div class="notifications bottom-right"><div class="alert-message" style="color:#666;text-shadow:0 1px #fff;">??? ???? ???? <span style="color:green;font-weight:bold;">'+$('[data-submit]').text()+'</span> ??????????? ?????????? ?????? <span style="color:green;font-weight:bold;">Ctrl + s</span></div></div>')
 
     /** Show/Hide Price to be confirmed message input in delivery methods edit and create ***/
-    $('#deliverySumSpecifiedSpan').bind('click', function() {
+    $('#deliverySumSpecifiedSpan').off('click').on('click', function() {
         var spanBlock = $(this);
         var checkBox = spanBlock.find('#deliverySumSpecifiedInput');
         var controlBlock = spanBlock.closest('#deliveryPriceDisableBlock');
@@ -336,7 +326,7 @@ function init_2() {
 
 
 // shop - settings - count of products on site
-    $("#arrayFrontProductsPerPage").unbind('keyup').bind('keyup', function() {
+    $("#arrayFrontProductsPerPage").off('keyup').on('keyup', function() {
         var currentValue = $(this).val();
         var pattern = /^[0-9\,[^\,\,]]+$/;
         if (!currentValue.match(pattern)) { // has banned symbols
@@ -369,48 +359,148 @@ function init_2() {
         });
     }
 
+
+    /*order create*/
+    function setValueUser() {
+        if (orders.user) {
+            $('#shopOrdersUserFullName').val(orders.user.name);
+            $('#shopOrdersUserEmail').val(orders.user.email);
+            $('#shopOrdersUserPhone').val(orders.user.phone);
+            $('#shopOrdersUserAddress').val(orders.user.address);
+            $('#shopOrdersUserid').val(orders.user.id);
+        }
+    }
 //Autocomplete for orders
     if ($('#productNameForOrders').length) {
-        $('#productNameForOrders').autocomplete({
-            source: '/admin/components/run/shop/orders/ajaxGetProductList/?',
-            select: function(event, ui) {
-                productName = ui.item.name;
-                productId = ui.item.id;
-                categoryId = ui.item.category;
-            },
-            close: function() {
-                $('#categoryForOrders option:selected').each(function() {
-                    this.selected = false;
-                });
-                $("#categoryForOrders [value='" + categoryId + "']").attr("selected", "selected");
-                orders.getProductsInCategory(categoryId);
-                $('#productsForOrders option:selected').each(function() {
-                    this.selected = false;
-                });
-                $("#productsForOrders [value='" + productId + "']").attr("selected", "selected");
-                orders.getProductVariantsByProduct(productId, productName);
-                $('#productNameForOrders').val(productName);
-            }
+        var listProduct = $('.productsForOrders');
+        $('#productNameForOrders').off('keyup').on('keyup', function() {
+            listProduct.empty();
+            if (gA.getProductsAjax)
+                gA.getProductsAjax.abort();
+            gA.getProductsAjax = $.ajax({
+                url: '/admin/components/run/shop/orders/ajaxGetProductList/?term=' + $(this).val(),
+                type: "post",
+                dataType: 'json',
+                success: function(data) {
+                    if (data)
+                        for (var i in data)
+                            $('<option>', {
+                                data: data[i],
+                                'data-product-name': data[i].name,
+                                value: data[i].id,
+                                text: data[i].label
+                            }).appendTo(listProduct);
+                    else
+                        $('<option>', {
+                            text: langs.notFound,
+                            disabled: 'disabled'
+                        }).appendTo(listProduct);
+                }
+            });
         });
     }
     /* Autocomplete users in orders */
-    if ($('#usersForOrders').length) {
-        $('#usersForOrders').autocomplete({
-            source: '/admin/components/run/shop/orders/autoComplite/?limit=25',
-            select: function(event, ui) {
-                userData = ui.item;
-            },
-            close: function() {
-                $('#userIdforOrder').html(userData.id);
-                $('#userIdforOrder').attr('href', '/admin/components/run/shop/users/edit/' + userData.id);
-                $('#userEmailforOrder').html(userData.email);
-                $('#userNameforOrder').html(userData.name);
-                $('#userNameforOrder').attr('href', '/admin/components/run/shop/users/edit/' + userData.id);
-                $('#userPhoneforOrder').html(userData.phone);
-                $('#userAddressforOrder').html(userData.address);
-            }
+    if ($('#usersForOrders').length > 0) {
+        var list = $('#listUsersForOrder')
+        list.off('change').on('change', function() {
+            orders.user = $(this).find(':selected').data();
+            $('#usersForOrders').addClass('hasUser');
+            $('#userEmail').val(orders.user.email);
+            $('#userPhone').val(orders.user.phone);
+            $('#userAddress').val(orders.user.address);
+            setValueUser();
+            var totalCartSum = $('#totalCartSum').html();
+            var totalProductPrice = totalCartSum;
+            var userDiscount = 0;
+            if (gA.getUserDiscount)
+                gA.getUserDiscount.abort();
+            gA.getUserDiscount = $.ajax({
+                url: '/admin/components/run/shop/orders/ajaxGetUserDiscount/',
+                data: 'userId=' + orders.user.id,
+                type: "post",
+                success: function(data) {
+                    if (data != '')
+                        userDiscount = data;
+                    if (userDiscount != 0)
+                        totalProductPrice = (totalCartSum / 100 * (100 - userDiscount)).toFixed(pricePrecision);
+                    $('#shopOrdersTotalPrice').val(totalProductPrice);
+                }
+            });
+        });
+        $('#usersForOrders').off('keyup').on('keyup', function() {
+            $(this).removeClass('hasUser');
+            $('#userEmail, #userPhone, #userAddress').val('').addClass('hasUser');
+            $('#shopOrdersUserFullName, #shopOrdersUserEmail, #shopOrdersUserPhone, #shopOrdersUserAddress, #shopOrdersUserid').val('');
+            orders.user = null;
+            list.empty();
+            if (gA.getUsersAjax)
+                gA.getUsersAjax.abort();
+            gA.getUsersAjax = $.ajax({
+                url: '/admin/components/run/shop/orders/autoComplite/?limit=100&term=' + $(this).val(),
+                type: "post",
+                dataType: 'json',
+                success: function(data) {
+                    if (data)
+                        for (var i in data)
+                            $('<option>', {
+                                data: data[i],
+                                value: data[i].id,
+                                text: data[i].value
+                            }).appendTo(list);
+                    else
+                        $('<option>', {
+                            text: langs.notFound,
+                            disabled: 'disabled'
+                        }).appendTo(list);
+                }
+            });
         });
     }
+    /* Create user in order */
+    $('#createOrder').off('click').on('click', function(e) {
+        e.stopImmediatePropagation();
+        var emailPattern = /^[a-z0-9_-]+@[a-z0-9-]+\.([a-z]{1,6}\.)?[a-z]{2,6}$/i;
+        setValueUser();
+        if ($('#usersForOrders').is(':visible')) {
+            if ($('#usersForOrders').hasClass('hasUser'))
+                handleFormSubmit.call($('#createOrder'));
+            else
+                showMessage(langs.error, langs.failToCreateUser, "error");
+        }
+        else if ($('#createUserName').val() != '' && $('#createUserEmail').val() != '') {
+            orders.user = {};
+            orders.user.name = $('#createUserName').val();
+            orders.user.email = $('#createUserEmail').val();
+            orders.user.phone = $('#createUserPhone').val();
+            orders.user.address = $('#createUserAddress').val();
+            setValueUser();
+            if (orders.user.email.search(emailPattern) === -1)
+                showMessage(langs.message, langs.enterValidEmailAddress, "error");
+            else
+                $.ajax({
+                    url: '/admin/components/run/shop/orders/createNewUser',
+                    type: "POST",
+                    data: "name=" + orders.user.name + "&email=" + orders.user.email + "&phone=" + orders.user.phone + "&address=" + orders.user.address,
+                    success: function(response) {
+                        if (response == 'email') {
+                            showMessage(langs.message, langs.thisEmailUserExists, "error");
+                        } else if (response != 'false') {
+                            $.extend(orders.user, $.parseJSON(response));
+                            //$.extend(orders.user, response);
+                            setValueUser();
+                            showMessage(langs.message, langs.newUserCreated, "success");
+                            handleFormSubmit.call($('#createOrder'));
+                        } else {
+                            showMessage(langs.error, langs.failToCreateUser, "error");
+                        }
+                    }
+                });
+        }
+        else
+            showMessage(langs.error, langs.needToFillFields, "error");
+    });
+    /** Update data in orders*/
+    /*/order create*/
 
     if ($.exists('.niceRadio')) {
         $(".niceRadio").each(function() {
@@ -486,13 +576,6 @@ function init_2() {
             changeCheckallreset($(this).find('.niceCheck'));
         });
     });
-    if ($.exists('[data-rel="tooltip"], [rel="tooltip"]'))
-        $('[data-rel="tooltip"], [rel="tooltip"]').not('tr').not('.row-category').tooltip({
-            'delay': {
-                show: 500,
-                hide: 100
-            }
-        });
     $('[data-max]').die('keyup').live('keyup', function(event) {
         $this = $(this);
         if (parseInt($this.val()) > $this.data('max')) {
@@ -504,7 +587,7 @@ function init_2() {
     });
 }
 function dropDownMenu() {
-    $('.to_pspam').unbind('click').on('click', function() {
+    $('.to_pspam').off('click').on('click', function() {
         var arr = new Array();
         $('input[name=ids]:checked').each(function() {
             arr.push(parseInt($(this).val()));
@@ -519,7 +602,7 @@ function dropDownMenu() {
         }
         );
     });
-    $('.to_wait').unbind('click').on('click', function() {
+    $('.to_wait').off('click').on('click', function() {
         var arr = new Array();
         $('input[name=ids]:checked').each(function() {
             arr.push(parseInt($(this).val()));
@@ -534,7 +617,7 @@ function dropDownMenu() {
         }
         );
     });
-    $('.to_approved').unbind('click').on('click', function() {
+    $('.to_approved').off('click').on('click', function() {
         var arr = new Array();
         $('input[name=ids]:checked').each(function() {
             arr.push(parseInt($(this).val()));
@@ -646,7 +729,8 @@ function autocomplete() {
                         '<span class="d-i_b v-a_b">' +
                         '<button class="btn btn-danger btn-small del_tmp_row" type="button" data-kid="' + ui.item.identifier.id + '"><i class="icon-trash icon-white"></i></button>' +
                         '</span>' +
-                        '</div>');
+                        '</div>'
+                        );
             },
             close: function(event, ui) {
                 $('#AttachedProducts').val('');
@@ -666,18 +750,24 @@ function autocomplete() {
                 }, 'json')
             },
             select: function(event, ui) {
-                $('#relatedProductsNames').append('<div id="tpm_row' + ui.item.identifier.id + '" class="item-accessories">' +
-                        '<span class="pull-left">' +
-                        '<a id="AttachedProducts" href="edit/' + ui.item.identifier.id + '">' + ui.item.label + '</a>' +
-                        '<input type="hidden" name="RelatedProducts[]" value="' + ui.item.identifier.id + '">' +
-                        '</span>' +
-                        '<span style="margin-left: 1%;" class="pull-left">' +
-                        '<button class="btn btn-small btn-danger del_tmp_row" data-kid="' + ui.item.identifier.id + '"><i class="icon-trash icon-white"></i></button>' +
-                        '</span>' +
-                        '</div>');
+                $('<tr id="tpm_row' + ui.item.identifier.id + '" class="item-accessories"><td>\n\
+                        <button class="btn btn-small my_btn_s del_tmp_row pull-left m-r_10" data-rel="tooltip" data-title="' + langs.remove + '" data-kid="' + ui.item.identifier.id + '"><i class="icon-trash"></i></button>\n\
+                        <div class="photo_album-v">' +
+                        (ui.item.photo ? '<img src="' + ui.item.photo + '" class="img-polaroid" style="width: 50px;max-height: 100%;">' : '<img src="' + (base_url + 'templates/administrator/images/select-picture.png') + '" class="img-polaroid" style="width: 50px;max-height: 100%;">')
+                        +
+                        '<div class="o_h">\n\
+                        <a href="../' + ui.item.identifier.id + '">' + ui.item.label + '</a>\n\
+                        <div>' +
+                        '<b>' + ui.item.price + ' ' + ui.item.cs + '</b>'
+                        + '</div>\n\
+                        <input type="hidden" name="RelatedProducts[]" value="' + ui.item.identifier.id + '">\n\
+                        </div>\n\
+                        </div>\n\
+                        </td></tr>').prependTo($('#relatedProductsNames tbody'));
+                $('#relatedProductsNames').show();
             },
             close: function(event, ui) {
-                $('#RelatedProducts').attr('value', '');
+                $(this).attr('value', '');
             }
         });
     }
@@ -764,7 +854,7 @@ handleFileSelect = function(evt) {
             return function(e) {
                 // Render thumbnail.
                 var span = document.createElement('div');
-                span.innerHTML = ['<img style="max-height: 100%;" src="', e.target.result,
+                span.innerHTML = ['<img style="widht: 50px;max-height: 100%;width: 50px;" src="', e.target.result,
                     '" title="', escape(theFile.name), '"/>'].join('');
                 document.getElementById('picsToUpload').insertBefore(span, null);
                 document.getElementById('picsToUpload').className = 'is_content';
@@ -822,83 +912,40 @@ function initChosenSelect(el) {
     });
     el.find('.chosen:visible').chosen();
 }
-function number_tooltip() {
-    $('.number input').tooltip({
-        'delay': {
-            show: 500,
-            hide: 100
-        }
-    }).die('testNumber').live('testNumber', function(e) {
-        if (!e.res)
-            $(this).tooltip('show');
-        else
-            $(this).tooltip('hide');
-    });
-}
 function getVarsFFT() {
     FFT = {
         fixed_block: $('.frame_title:not(.no_fixed)'),
         mini_layout: $('.mini-layout'),
         frame_zH_frame_title: $('.frame_zH_frame_title'),
+        adBlock: $('.imagecms-inside')
     }
     FFT.mini_layout_top = FFT.mini_layout.offset().top;
     FFT.fixed_block_e = $.exists_nabir(FFT.fixed_block);
+    FFT.adBlocke = $.exists_nabir(FFT.adBlock);
     FFT.frame_zH_frame_title_e = $.exists_nabir(FFT.frame_zH_frame_title);
-
     loading.css('top', FFT.mini_layout_top - 20);
 }
 function fixed_frame_title() {
     if (!window.FFT)
         getVarsFFT();
-
     if (!FFT.fixed_block_e)
         return false;
-
     FFT.mini_layout.css('padding-top', FFT.fixed_block.outerHeight());
     FFT.fixed_block.css('top', '').removeClass('active');
     var top = FFT.fixed_block.offset().top,
-            wTop = $(window).scrollTop();
-    if (top - wTop < 0) {
-        FFT.fixed_block.css('top', wTop - FFT.mini_layout_top).addClass('active');
-        if (FFT.rame_zH_frame_title_e)
+            wTop = $(window).scrollTop(),
+            addH = FFT.adBlocke ? FFT.adBlock.height() : 0;
+    if (top - wTop - addH < 0) {
+        FFT.fixed_block.css('top', wTop - FFT.mini_layout_top + addH).addClass('active');
+        if (FFT.frame_zH_frame_title_e)
             FFT.frame_zH_frame_title.css('top', 0);
     }
-    else if (FFT.frame_zH_frame_title_e)
-        FFT.frame_zH_frame_title.css('top', top - wTop);
+    else if (FFT.frame_zH_frame_title_e) {
+        FFT.frame_zH_frame_title.css('top', top - wTop + addH);
+    }
+
     if (FFT.frame_zH_frame_title_e)
         FFT.frame_zH_frame_title.css('right', $(window).width() - FFT.fixed_block.outerWidth() - FFT.mini_layout.offset().left + 10).show();
-}
-function difTooltip() {
-// tooltip
-    var tr_tooltip = $('tr[data-title]').add('.row-category[data-title]');
-    if ($.exists_nabir(tr_tooltip)) {
-        tr_tooltip.tooltip('destroy');
-        tr_tooltip.each(function() {
-            var $this = $(this);
-            if ($this.data('title').length * 9 > $this.offset().left) {
-                $this.tooltip({
-                    'placement': 'top',
-                    'delay': {
-                        show: 500,
-                        hide: 100
-                    }
-                });
-                place_tr_ttp = 'top';
-            }
-            else {
-                $this.tooltip({
-                    'placement': 'left',
-                    'delay': {
-                        show: 500,
-                        hide: 100
-                    }
-                });
-                place_tr_ttp = 'left';
-            }
-        });
-    }
-    else
-        place_tr_ttp = 'top';
 }
 function what_key(enter_key, event) {
     var enter_key = enter_key;
@@ -961,18 +1008,10 @@ function initAdminArea() {
 // drop search
     if ($.exists('.typeahead'))
         $('.typeahead').typeahead();
-    //init tooltip
-    difTooltip();
     //sortable
     sortInit();
     if ($.exists('.sortable2')) {
-        $('.sortable2 tr').not(':has(tr)').tooltip({
-            'placement': place_tr_ttp,
-            'delay': {
-                show: 500,
-                hide: 100
-            }
-        }).css('cursor', 'move');
+        $('.sortable2 tr').css('cursor', 'move');
     }
     if ($.exists('.sortable2')) {
         $(".sortable2").sortable({
@@ -1032,6 +1071,7 @@ function initAdminArea() {
             $(this).tooltip('hide');
         }
     }).die('keypress').live('keypress', function(event) {
+        event.stopPropagation();
         if (what_key('13', event)) {
             $(this).next().trigger('click');
             return false;
@@ -1044,7 +1084,6 @@ function initAdminArea() {
         variants.toggle();
         return false;
     });
-
     $('#category .btn:has(.icon-plus)').die('click').live('click', function() {
         var $this = $(this);
         $this.closest('.row-category').next().show();
@@ -1064,10 +1103,6 @@ function initAdminArea() {
         $this.parent().next().children().val($this.val());
     });
     $('.item_menu .row-category:even').addClass('even');
-    // $('.listFilterForm').die('focus').live('focus', function() {
-    // $('.listFilterSubmitButton').removeAttr('disabled').removeClass('disabled');
-    // });
-
     $('.listFilterSubmitButton').die('click').live('click', function() {
         if (!$(this).attr('disabled') && !$(this).hasClass('disabled'))
         {
@@ -1089,17 +1124,18 @@ function initAdminArea() {
         $($(this).data('file')).click();
     });
     $('[data-url="file"] input[type="file"]').die('change').live('change', function(e) {
-        var $this = $(this);
-        var $type_file = $this.val();
-        var file = this.files[0];
-        var img = document.createElement("img");
-        var reader = new FileReader();
+        var $this = $(this),
+                $type_file = $this.val(),
+                file = this.files[0],
+                img = document.createElement("img"),
+                reader = new FileReader();
         reader.onloadend = function() {
             img.src = reader.result;
         };
         reader.readAsDataURL(file);
         $(img).addClass('img-polaroid').css({
-            'max-height': '100%'
+            'max-height': '100%',
+            'width': '50px'
         });
         img.onerror = function() {
             // image not found or change src like this as default image:
@@ -1109,9 +1145,30 @@ function initAdminArea() {
         };
         $(this).closest('.control-group').find('.controls').html(img);
         $this.parent().next().val($type_file).attr('data-rel', 'tooltip');
-        isChanged = $(this).closest('td').find('.changeImage').val('1');
-//        console.log($(img));
-
+        $(this).closest('td').find('.changeImage').val('1');
+    });
+    $('[data-url="file2"]').die('change').live('change', function(e) {
+        var $this = $(this),
+                data = $this.data(),
+                val = $this.val(),
+                file = this.files[0],
+                img = document.createElement("img"),
+                reader = new FileReader();
+        reader.onloadend = function() {
+            img.src = reader.result;
+        };
+        reader.readAsDataURL(file);
+        $(img).addClass('img-polaroid').css({
+            'max-height': '100%',
+            'width': data.width
+        });
+        img.onerror = function() {
+            // image not found or change src like this as default image:
+            img.src = base_url + 'templates/administrator/images/select-picture.png';
+            showMessage(lang('Error'), lang('Not supported file format'));
+            return;
+        };
+        $(data.rel).html(img);
     });
     //add arrows to orders list
     if (window.hasOwnProperty('orderField'))
@@ -1136,11 +1193,12 @@ function initAdminArea() {
     });
     $('button.rmAddPic').die('click').live('click', function(event) {
         event.preventDefault();
-        $(this).closest('label').find('input[type=hidden]').val($(this).data('i'));
-        $(this).closest('label').find('span').find('input[type=file]').val('');
-        $(this).closest('div.control-group').find('img').attr('src', '/templates/administrator/images/select-picture.png');
-        $(this).remove();
-        return false;
+        var $this = $(this),
+                i = $this.data('i');
+        $('#add_img_urls_' + i).val(i);
+        $('#fileImg_' + i).val('');
+        $('#frame_for_img_' + i).find('img').attr('src', '/templates/administrator/images/select-picture.png');
+        $this.remove();
     });
     if ($.fn.chosen)
         initChosenSelect();
@@ -1289,12 +1347,10 @@ $(window).load(function() {
     });
     $(window).resize(function(event) {
         $(this).trigger('scroll');
-        $('.fade.in').remove();
-        difTooltip();
     }).resize();
     if (window.hasOwnProperty('userLogined') && !notificationsInitialized && $.exists('#topPanelNotifications'))
     {
-        window.setInterval('updateNotificationsTotal()', 200000);
+        window.setInterval('updateNotificationsTotal()', 20000);
         notificationsInitialized = true;
     }
 
@@ -1330,80 +1386,63 @@ $('[name="makeResize"]').live('click', function() {
         }
     });
 });
-$('#categoryForOrders option').live('mouseup click', function() {
-    var categoryId = $(this).val();
-    $('#categoryForOrders ').val(categoryId)
-});
 //Get products
 $('#categoryForOrders').live('change', function() {
     var categoryId = $(this).val();
     orders.getProductsInCategory(categoryId);
 });
-$('#productsForOrders option').live('mouseup click', function() {
-    var productId = $(this).val();
-    $('#productsForOrders ').val(productId)
-})
-
-
 //Get product variants
-$('#productsForOrders').live('change', function() {
-    var productId = $(this).val();
-    var productName = $('#productsForOrders option:selected').data('productname');
+$('.productsForOrders').live('change', function() {
+    var productId = $(this).val(),
+            productName = $(this).find('option:selected').data('productName');
     orders.getProductVariantsByProduct(productId, productName);
 });
-$('#variantsForOrders option').live('click', function() {
-    var variantId = $(this).val();
-    $('#variantsForOrders ').val(variantId)
-    if (orders.isInCart(variantId) == 'true') {
-        $('#addVariantToCart').removeClass('btn-success').attr('disabled', 'disabled').addClass('btn-primary').html(langs.inTheCart);
-    } else {
-        $('#addVariantToCart').removeClass('btn-primary').removeAttr('disabled').addClass('btn-success').removeClass('btn-danger disabled').html(langs.addToCart);
-    }
-
-
-});
 //Get variants info
-$('#variantsForOrders').live('change', function() {
-    var variantId = $(this).val();
-    var imageName = variantInfo.getImage(variantId);
-    var productName = $('#variantsForOrders option:selected').data('productname');
-    var variantName = $('#variantsForOrders option:selected').data('variantname');
-    var variantPrice = $('#variantsForOrders option:selected').data('price');
-    var stock = $('#variantsForOrders option:selected').data('stock');
-    var currency = $('#variantsForOrders option:selected').data('productcurrency');
-    var origPrice = $('#variantsForOrders option:selected').data('orig_price');
-    $('#productText').html('<b>' + langs.product + ': ' + productName + '</b>');
-    if (variantName != '')
-        $('#productText').append('<br/>' + langs.variant + ': ' + variantName);
-    $('#productText').append('<br/>' + langs.price + ': ' + parseFloat(variantPrice).toFixed(pricePrecision) + ' ' + currency);
-    if (origPrice != variantPrice & origPrice > variantPrice) {
-        $('#productText').append('<br/>' + langs.discount + ': ' + (origPrice - variantPrice) + " " + currency);
-    }
-
-    $("#imageSrc").attr("src", '/uploads/shop/products/origin/' + imageName);
-    $('#productStock').html('<br/>' + langs.balance + ': ' + stock);
+$('.variantsForOrders').live('change', function() {
+    var $this = $(this),
+            option = $this.find('option:selected'),
+            variantId = $this.val(),
+            imageName = variantInfo.getImage(variantId),
+            productName = option.data('productName'),
+            variantName = option.data('variantname'),
+            variantPrice = option.data('price'),
+            stock = option.data('stock'),
+            productId = option.data('productId'),
+            currency = option.data('productcurrency'),
+            origPrice = option.data('orig_price');
+    $('.productText').each(function() {
+        var $this = $(this);
+        if (productName)
+            $this.html('<div>' + langs.product + ': <a href = "/admin/components/run/shop/products/edit/' + productId + '" target = "_blank">' + productName + ' </a></div>');
+        if (variantName != '')
+            $this.append('<div>' + langs.variant + ': <b>' + variantName + '</b></div>');
+        $this.append('<div>' + langs.price + ': <b>' + parseFloat(variantPrice).toFixed(pricePrecision) + ' ' + currency + '</b></div>');
+        if (origPrice != variantPrice & origPrice > variantPrice)
+            $this.append('<div>' + langs.discount + ': <b>' + (origPrice - variantPrice) + " " + currency + '</div>');
+    });
+    $(".imageSrc").attr("src", '/uploads/shop/products/origin/' + imageName).parent('a').attr('href', '/admin/components/run/shop/products/edit/' + productId);
+    $('.productStock').html(langs.balance + ': <b>' + stock + '</b>');
     //Show info product block
     if (variantId != undefined)
-        $('#variantInfoBlock').show();
+        $('.variantInfoBlock').show();
     //Disable button if stock =0
     if (stock == 0) {
-        $('#addVariantToCart').removeClass('btn-primary').removeClass('btn-success').addClass('btn-danger disabled').html(langs.outOfStock);
+        $('.addVariantToCart').removeClass('btn-primary').removeClass('btn-success').addClass('btn-danger disabled').html(langs.outOfStock);
     } else {
-        $('#addVariantToCart').removeClass('btn-primary').addClass('btn-success').removeClass('btn-danger disabled').html(langs.addToCart);
+        $('.addVariantToCart').removeClass('btn-primary').addClass('btn-success').removeClass('btn-danger disabled').html(langs.addToCart);
     }
 // Check is element in cart
-    if (orders.isInCart(variantId) == 'true') {
-        $('#addVariantToCart').removeClass('btn-success').attr('disabled', 'disabled').addClass('btn-primary').html(langs.inTheCart);
-    }
-
-    dataForButton = $('#variantsForOrders option:selected').data();
-    $('#addVariantToCart').data(dataForButton);
+    if (orders.isInCart(variantId) == 'true')
+        $('.addVariantToCart').removeClass('btn-success').attr('disabled', 'disabled').addClass('btn-primary').html(langs.inTheCart);
+    else
+        $('.addVariantToCart').removeClass('btn-primary').removeAttr('disabled').addClass('btn-success').removeClass('btn-danger disabled').html(langs.addToCart);
+    $('.addVariantToCart').data(option.data());
 });
 //Add product
-$('#addVariantToCart').die('click').live('click', function() {
+$('.addVariantToCart').die('click').live('click', function() {
     if ((checkProdStock != 1 || $(this).data('stock') != 0) && !$(this).hasClass('btn-primary')) {
         orders.addToCartAdmin($(this));
-        $(this).removeClass('btn-success').attr('disabled', 'disabled').addClass('btn-primary').html(langs.inTheCart);
+        $('.addVariantToCart').removeClass('btn-success').attr('disabled', 'disabled').addClass('btn-primary').html(langs.inTheCart);
     }
 
 });
@@ -1411,97 +1450,31 @@ $('#addVariantToCart').die('click').live('click', function() {
 $('.removeImageType').live('click', function() {
     $(this).closest('tr').remove();
 });
-/* Create user in order */
-$('#createUserButton').live('click', function() {
-    var userName = $('#createUserName').val();
-    var userEmail = $('#createUserEmail').val();
-    var userPhone = $('#createUserPhone').val();
-    var userAddress = $('#createUserAddress').val();
-    var emailPattern = /^[a-z0-9_-]+@[a-z0-9-]+\.([a-z]{1,6}\.)?[a-z]{2,6}$/i;
-    if (userName != '' && userEmail != '' && userEmail.search(emailPattern) == 0) {
-        $.ajax({
-            url: '/admin/components/run/shop/orders/createNewUser',
-            type: "POST",
-            data: "name=" + userName + "&email=" + userEmail + "&phone=" + userPhone + "&address=" + userAddress,
-            success: function(response) {
-                if (response == 'email') {
-                    showMessage(langs.message, langs.thisEmailUserExists, "error");
-                } else if (response != 'false') {
-                    $('#collapsed').click();
-                    $('#createUserName').val('');
-                    $('#createUserEmail').val('');
-                    $('#createUserPhone').val('');
-                    $('#createUserAddress').val('');
-                    data = JSON.parse(response);
-                    if (data != null) {
-                        /*Make created user selected */
-                        $('#userIdforOrder').html(data.id);
-                        $('#userIdforOrder').attr('href', '/admin/components/run/shop/users/edit/' + data.id);
-                        $('#userEmailforOrder').html(data.email);
-                        $('#userNameforOrder').html(data.username);
-                        $('#userNameforOrder').attr('href', '/admin/components/run/shop/users/edit/' + data.id);
-                        $('#userPhoneforOrder').html(data.phone);
-                        $('#userAddressforOrder').html(data.address);
-                    }
-                    showMessage(langs.message, langs.newUserCreated, "success");
-                } else {
-                    showMessage(langs.error, langs.failToCreateUser, "error");
-                }
-            }
-        });
-    } else {
-        showMessage(langs.error, langs.checkAndFillAll, "error");
-    }
-});
-/** Update data in orders*/
-$('#getAllOrderInfoButton').live('click', function() {
-    var userId = $('#userIdforOrder').html();
-    var userName = $('#userNameforOrder').html();
-    var userEmail = $('#userEmailforOrder').html();
-    var userPhone = $('#userPhoneforOrder').html();
-    var userAddress = $('#userAddressforOrder').html();
-    var totalCartSum = $('#totalCartSum').html();
-    var totalProductPrice = totalCartSum;
-    var userDiscount = 0;
-    if (userId != undefined) {
-        $('#shopOrdersUserid').val(userId);
-        $('#shopOrdersUserFullName').val(userName);
-        $('#shopOrdersUserEmail').val(userEmail);
-        $('#shopOrdersUserPhone').val(userPhone);
-        $('#shopOrdersUserAddress').val(userAddress);
-        //Get user discount
-        $.ajax({
-            url: '/admin/components/run/shop/orders/ajaxGetUserDiscount/',
-            async: false,
-            data: 'userId=' + userId,
-            type: "post",
-            success: function(data) {
-                if (data != '') {
-                    userDiscount = data;
-                }
-            }
-        });
-        $('#shopOrdersComulativ').val(userDiscount);
-        if (userDiscount != 0)
-            totalProductPrice = (totalCartSum / 100 * (100 - userDiscount)).toFixed(pricePrecision);
-        $('#shopOrdersTotalPrice').val(totalProductPrice);
-    }
-});
 /** Get payments methds for delivery method **/
-$('#shopOrdersdeliveryMethod').live('change', function() {
-    var id = $(this).val();
+$('.shopOrdersdeliveryMethod').live('change', function(e, param) {
+    var $this = $(this),
+            payment = $($this.data('rel')),
+            delivery = $($this.data('rel2')),
+            id = $this.val();
+    $(delivery).val(id);
     $.get('/admin/components/run/shop/orders/getPaymentsMethods/' + id, function(dataStr) {
         var data = JSON.parse(dataStr);
-        $('#shopOrdersPaymentMethod').empty();
+        payment.empty();
         jQuery.each(data, function(index, el) {
-            $("#shopOrdersPaymentMethod").append($('<option value="' + el.id + '">' + el.name + '</option>'));
+            payment.append($('<option value="' + el.id + '">' + el.name + '</option>'));
         });
         if (data.length === 0)
-            $("#shopOrdersPaymentMethod").attr('disabled', 'disabled');
+            payment.attr('disabled', 'disabled');
         else
-            $("#shopOrdersPaymentMethod").removeAttr('disabled');
+            payment.removeAttr('disabled');
+        payment.change();
     });
 });
+$('.shopOrdersPaymentMethod').live('change', function() {
+    var $this = $(this);
+    $($this.data('rel')).val($this.val());
+});
+/*discount createorder*/
 /** When change discount recount total price**/
 $('#shopOrdersComulativ').live('keyup', function() {
     var inputDiscount = $(this);
@@ -1552,6 +1525,8 @@ $('.removeGiftCert').live('click', function() {
     $('#giftPrice').html('');
     $('#currentGiftCertInfo').hide();
 });
+/*/discount createorder*/
+
 $('.orderMethodsEdit').live('click', function() {
     $(this).next('.orderMethodsRefresh').css('display', 'block');
     $(this).css('display', 'none');
@@ -1806,5 +1781,17 @@ $(document).ready(function() {
             input.val(valOff);
         else
             input.val(valOn);
+    });
+    $('body').on('mouseenter', '[data-rel="tooltip"], tr[data-title], .row-category[data-title], [data-toggle="ttip"]', function() {
+        if (!$.exists_nabir($(this).closest($('.number'))))
+            $(this).tooltip('show');
+    });
+    $('.number input').die('testNumber').live('testNumber', function(e) {
+        if (!e.res)
+            $(this).tooltip('show');
+        else
+            $(this).tooltip('hide');
+    }).die('blur').live('blur', function() {
+        $(this).tooltip('hide');
     });
 });

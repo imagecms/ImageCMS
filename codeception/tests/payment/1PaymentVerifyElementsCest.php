@@ -116,7 +116,7 @@ class PaymentElementsCest
      * @group verify
      */
     public function PaymentEditElements(PaymentTester $I) {
-        $I->click("//tbody//tr[1]//a");
+        $I->click(PaymentListPage::MethodNameLine(1));
         $I->waitForText('Редактирование способа оплаты', NULL, PaymentEditPage::$Title);
         $I->see('Редактирование способа оплаты', PaymentEditPage::$TitleHead);
         $I->see('Вернуться',        PaymentEditPage::$ButtonBack);
