@@ -6,33 +6,29 @@ use \ImportExportTester;
  * активувати модуль CSV
  * сформувати csv - файл s і зберегти codecept_data_dir()
  * імпортувати підготований CSV - Файл (_data(test.csv))
- * перевірити на сторінці товару
- * змінити 
- * експортувати
- * перевірити 
- * змінити
- * імпортувати 
- * перевірити
+ * перевірити на сторінці редагування товару всі імпортовані поля
+ * змінити цей товар та експортувати 
+ * перевірити CSV файл 
  * 
  */
 class ImportExport {
 
     protected $csvFileName = 'test.csv';
     
-    private $name = 'ТоварИмпортnew';
-    private $url = 'tovarimport';
-    private $price = '100.50';
-    private $oldPrice = '200';
-    private $amount =  '10';
-    private $article = '200113';
-    private $variantName = 'ТоварИмпортВариант';
+    private $name = 'ТоварИмпортCSV';
+    private $url = 'tovarimportcsvtest';
+    private $price = '1080.50';
+    private $oldPrice = '500';
+    private $amount =  '500';
+    private $article = '2043113';
+    private $variantName = 'ТоварИмпортTestВариант';
     private $active = 1; //1|0
     private $hit = 1; // 1|0
     private $brand = 'Apple';
-    private $category = 'КАТЕГОРИЯ/КатегорияИмпорт';
+    private $category = 'КАТЕГОРИЯ/КатегорияИмпорт/Подкатегория импорт';
     private $relatedProducts;// ID ? 'СвязаныйТоварИмпорт'
     private $mainImage;
-    private $currency = 1; //(currencyID) RUR - 1 Dollar - 2
+    private $currency = 2; //(currencyID) RUR - 1 Dollar - 2
     private $additionalImage;
     private $shortDescription = 'Краткое описание';
     private $fullDescription =  'Полное описание';
@@ -51,6 +47,7 @@ class ImportExport {
     
     /**
      * Install module importExport CSV
+     * @group current
      * @group import
      */
     public function activateModule(ImportExportTester $I) {
@@ -78,6 +75,7 @@ class ImportExport {
 
     /**
      * Create csv file and save him to _data directory
+     * @group current
      * @group import
      */
     public function createCSV(ImportExportTester $I){
@@ -97,6 +95,7 @@ class ImportExport {
     }
     /**
      * Import CSV file test.csv from _data directory
+     * @group current
      * @group  import
      */
     public function importCSV(ImportExportTester $I) {
@@ -112,7 +111,7 @@ class ImportExport {
     /**
      * @group current
      */
-    public function verifyExportedData(ImportExportTester $I) {
+    public function verifyExportedDataICMS1540(ImportExportTester $I) {
         $I->amOnPage(ProductListPage::$URL);
         $I->fillField(ProductListPage::$InputFilterProduct, $this->name);
         $I->click(ProductListPage::$ButtonFilter);
@@ -120,7 +119,58 @@ class ImportExport {
         $I->click($this->name);
         $I->waitForText($this->name,NULL, '.title');
         
+        
+        //verifying
+        $I->seeInField(ProductEditPage::$InputProductName, $this->name); 
+        $I->seeInField(ProductEditPage::$InputProductVariantPrice, $this->price); 
+        $I->seeInField(ProductEditPage::$InputOldPrice, $this->oldPrice);
+        $I->seeInField(ProductEditPage::$InputProductVariantAmount, $this->amount);
+        $I->seeInField(ProductEditPage::$InputProductvariantArticle, $this->article);
+        $I->seeInField(ProductEditPage::$InputProductVariantName, $this->variantName);
+        
+        //verify that product is active
+        if($this->active == 1) { $class = 'prod-on_off ';}
+        elseif ($this->active == 0) { $class  = 'prod-on_off disable_tovar'; }
+        $I->assertEquals($I->grabAttributeFrom(ProductEditPage::$ButtonActive, 'class'),$class);
+        unset($class);
+        
+        //verify that product is hit and thet button is anabled|disabled
+        if($this->hit == 1 && $this->active ==1)        { $class = 'btn btn-small  btn-primary active setHit';}
+        elseif($this->hit == 0 && $this->active ==1)    { $class = 'btn btn-small setHit';}
+        if($this->hit == 1 && $this->active ==0)        { $class = 'btn btn-small disabled btn-primary active setHit';}
+        elseif($this->hit == 0 && $this->active ==0)    { $class = 'btn btn-small disabled setHit';}
+//        btn btn-small disabled setHit
+//        btn btn-small setHit btn-primary active disabled
+        $I->assertEquals($I->grabAttributeFrom(ProductEditPage::$ButtonStatusHit, 'class'),$class);
+        
+        $I->see($this->brand, ProductEditPage::$SelectBrend);
+        
+        if(strstr($this->category,'/') === false){
+            
+            $category = $this->category; 
+        }  else {
+            $category = array_pop(explode('/', $this->category));
+        }
+        
+                
+        $I->see($category,  ProductEditPage::$SelectCategory);
+
+        if($this->currency == 1)        { $currency = 'USD'; }
+        elseif($this->currency == 2)    { $currency = 'RUR'; }
+        $I->see($currency,  ProductEditPage::$SelectProductVariantCurrency);
+        
+//        $I->seeInField(ProductEditPage::$TextareaShortDescription, $this->shortDescription);        //----------------------bug
+//        $I->seeInField(ProductEditPage::$TextareaFullDescription, $this->fullDescription);          //----------------------bug
+
+        //switch to Settings tab
+        $I->click(ProductEditPage::$TabSettings);
+        $I->seeInField(ProductEditPage::$SettingsInputdUrl, $this->url);
+        $I->seeInField(ProductEditPage::$SettingsInputMetaTitle, $this->metaTitle);
+        $I->seeInField(ProductEditPage::$SettingsInputMetaDescription, $this->metaDescription);
+        $I->seeInField(ProductEditPage::$SettingsInputMetaKeywords, $this->metaKeywords);
     }
+    
+    
     
 
     /**
