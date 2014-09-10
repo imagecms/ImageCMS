@@ -1,3 +1,2 @@
-"name";"url";"prc";"oldprc";"stk";"num";"var";"act";"hit";"brd";"cat"
-"ТоварТест";"tovarauto";"100";"300";"50";"1234565";"ТоварВаріант1";"on";"1";"Apple";"ПодкатегорияИмпорт"
-"ТоварТест2";"tovartest";"100";"300";"50";"12343465";"ТоварВаріант2";"on";"1";"Apple";"ПодкатегорияИмпорт"
+"name";"url";"prc";"oldprc";"stk";"num";"var";"act";"hit";"brd";"cat";"cur";"shdesc";"desc";"mett";"metd";"metk"
+"ТоварИмпорт";"tovarimport";"100.50";"200";"10";"200113";"ТоварИмпортВариант";"on";"1";"Apple";"КатегорияИмпорт";"1";"Краткое описание";"Полное описание";"tovarmetatitle";"tovarmetadescription";"tovarmetakeywords"
