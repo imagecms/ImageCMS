@@ -27,7 +27,7 @@
             <thead>
                 <tr>
                     <th colspan="6">
-                        {lang('Edit', 'mod_discount')}
+                        {lang('Discount details', 'mod_discount')}
                     </th>
                 </tr>
             </thead>
@@ -36,10 +36,6 @@
                     <td colspan="6">
                         <div class="inside_padd discount-out">
                             <div class="form-horizontal">
-                                <div class="title-bonus-out">
-                                    <div class="span4"></div>
-                                    <div class="span8 title-bonus">{lang('Discount details', 'mod_discount')}</div>
-                                </div>
                                 <label class="">
                                     <span class="span4">{lang('Discount name', 'mod_discount')}:</span>
                                     <span class="span8 discount-name"><input type="text" name='name' value="{echo $discount['name']}" /></span>
@@ -78,44 +74,56 @@
                         </div>
                     </td>
                 </tr>
+            </tbody>
+        </table>
+        <table class="table  table-bordered table-condensed content_big_td module-cheep">
+            <thead>
+                <tr>
+                    <th colspan="6">
+                        {lang('Method of calculation', 'mod_discount')}
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
                 <tr>
                     <td colspan="6">
                         <div class="inside_padd discount-out">
                             <div class="form-horizontal">
-                                <div class="title-bonus-out">
-                                    <div class="span4"></div>
-                                    <div class="span8 title-bonus">{lang('Method of calculation', 'mod_discount')}</div>
-                                </div>
-                                <div class="">
-                                    <div class="span4">{lang('Choose method', 'mod_discount')}:</div>
-                                    <div class="span8">
-                                        <div class="d-i_b m-r_15">
-                                            <select name="type_value" id="selectTypeValue" class="span4">
-                                                <option value="1" {if $discount['type_value'] == 1}selected {/if}>{lang('Percents', 'mod_discount')}</option>
-                                                <option value="2" {if $discount['type_value'] == 2}selected {/if}>{lang('Fixed', 'mod_discount')}</option>
-                                            </select>
-                                        </div>
-                                        <div class="d-i_b w-s_n-w">
-                                            <input id="valueInput" required="required" class="input-small required" type="text" name="value" value="{echo $discount['value']}" maxlength="9" />
-                                            <span  id="typeValue">
-                                                {if $discount['type_value'] == 1} % {/if}
-                                                {if $discount['type_value'] == 2} {echo $CS} {/if}
-                                            </span>
-                                        </div>
+                                <div class="span4">{lang('Choose method', 'mod_discount')}:</div>
+                                <div class="span8">
+                                    <div class="d-i_b m-r_15">
+                                        <select name="type_value" id="selectTypeValue" class="span4">
+                                            <option value="1" {if $discount['type_value'] == 1}selected {/if}>{lang('Percents', 'mod_discount')}</option>
+                                            <option value="2" {if $discount['type_value'] == 2}selected {/if}>{lang('Fixed', 'mod_discount')}</option>
+                                        </select>
+                                    </div>
+                                    <div class="d-i_b w-s_n-w">
+                                        <input id="valueInput" required="required" class="input-small required" type="text" name="value" value="{echo $discount['value']}" maxlength="9" />
+                                        <span  id="typeValue">
+                                            {if $discount['type_value'] == 1} % {/if}
+                                            {if $discount['type_value'] == 2} {echo $CS} {/if}
+                                        </span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </td>
                 </tr>
+            </tbody>
+        </table>
+        <table class="table  table-bordered table-condensed content_big_td module-cheep">
+            <thead>
+                <tr>
+                    <th colspan="6">
+                        {lang('Discount type', 'mod_discount')}
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
                 <tr>
                     <td colspan="6">
                         <div class="inside_padd discount-out">
                             <div class="form-horizontal">
-                                <div class="title-bonus-out">
-                                    <div class="span4"></div>
-                                    <div class="span8 title-bonus">{lang('Discount type', 'mod_discount')}</div>
-                                </div>
                                 <!-- Start. Choose type discount -->
                                 <div class="m-b_15">
                                     <div class="span4">{lang('Choose type', 'mod_discount')}:</div>
@@ -266,51 +274,58 @@
                     </div>
                 </td>
             </tr>
+        </tbody>
+    </table>
+    <table class="table  table-bordered table-condensed content_big_td module-cheep">
+        <thead>
+            <tr>
+                <th colspan="6">
+                    {lang('Allowed time for discounts', 'mod_discount')}
+                </th>
+            </tr>
+        </thead>
+        <tbody>
             <tr>
                 <td colspan="6">
-                    <!-- Start. Data discount block -->
                     <div class="inside_padd discount-out">
-                        <div class="title-bonus-out">
-                            <div class="span4"></div>
-                            <div class="span8 title-bonus">{lang('Allowed time for discounts', 'mod_discount')}</div>
-                        </div>
-                        <div class="">
-                            <div class="span4">{lang('Period of the discount from', 'mod_discount')}:</div>
-                            <div class="span8">
-                                <div class="">
-                                    <span class="d-i_b">
-                                        <label class="p_r">
-                                            <input class="datepicker required discountDate" type="text" value="{echo date("Y-m-d",$discount['date_begin'])}" name="date_begin" onkeypress="return false;" onkeyup="return false;" onkeydown="return false;" autocomplete="off" />
-                                            <span class="icon-calendar"></span>
-                                        </label>
-                                    </span>
-                                    <span class="d-i_b m-r_10 m-l_10">{lang('to', 'mod_discount')}</span>
-                                    <span class="d-i_b">
-                                        <div class="noLimitC">
-                                            {if $discount['date_end'] != null && $discount['date_end'] != '0'}
-                                                {$endDate = true;}
-                                            {/if}
-                                            <label class="d-i_b p_r">
-                                                <input class="discountDate endDateDiscount" type="text" {if $endDate} value="{echo date("Y-m-d",$discount['date_end'])}"{/if}{if !$endDate} disabled="disabled"{/if} name="date_end" onkeypress="return false;" onkeyup="return false;" onkeydown="return false;" autocomplete="off"/>
+                        <div class="form-horizontal">
+                            <div class="">
+                                <div class="span4">{lang('Period of the discount from', 'mod_discount')}:</div>
+                                <div class="span8">
+                                    <div class="">
+                                        <span class="d-i_b">
+                                            <label class="p_r">
+                                                <input class="datepicker required discountDate" type="text" value="{echo date("Y-m-d",$discount['date_begin'])}" name="date_begin" onkeypress="return false;" onkeyup="return false;" onkeydown="return false;" autocomplete="off" />
                                                 <span class="icon-calendar"></span>
                                             </label>
-                                            <div class="d-i_b m-l_10 v-a_m">
-                                                <span class="frame_label no_connection m-r_15 spanForNoLimit" >
-                                                    <span class="niceCheck" style="background-position: -46px 0px; ">
-                                                        <input type="checkbox" {if !$endDate} checked {/if}class="noLimitCountCheck">
+                                        </span>
+                                        <span class="d-i_b m-r_10 m-l_10">{lang('to', 'mod_discount')}</span>
+                                        <span class="d-i_b">
+                                            <div class="noLimitC">
+                                                {if $discount['date_end'] != null && $discount['date_end'] != '0'}
+                                                    {$endDate = true;}
+                                                {/if}
+                                                <label class="d-i_b p_r">
+                                                    <input class="discountDate endDateDiscount" type="text" {if $endDate} value="{echo date("Y-m-d",$discount['date_end'])}"{/if}{if !$endDate} disabled="disabled"{/if} name="date_end" onkeypress="return false;" onkeyup="return false;" onkeydown="return false;" autocomplete="off"/>
+                                                    <span class="icon-calendar"></span>
+                                                </label>
+                                                <div class="d-i_b m-l_10 v-a_m">
+                                                    <span class="frame_label no_connection m-r_15 spanForNoLimit" >
+                                                        <span class="niceCheck" style="background-position: -46px 0px; ">
+                                                            <input type="checkbox" {if !$endDate} checked {/if}class="noLimitCountCheck">
+                                                        </span>
+                                                        {lang('Constant discount', 'mod_discount')}
                                                     </span>
-                                                    {lang('Constant discount', 'mod_discount')}
-                                                </span>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </span>
+                                        </span>
+                                    </div>
+
+
                                 </div>
-
-
                             </div>
                         </div>
                     </div>
-                    <!-- End. Data discount block -->
                 </td>
             </tr>
         </tbody>

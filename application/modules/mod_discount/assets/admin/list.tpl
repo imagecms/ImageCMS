@@ -88,8 +88,8 @@
                                 </div>
                             </td>
                             <td>
-                                <button class="btn removeDiscountLink btn-small btn-danger">
-                                    <i class="icon-trash icon-white"></i>
+                                <button class="btn removeDiscountLink btn-small">
+                                    <i class="icon-trash"></i> 
                                 </button>
                             </td>
                         </tr>

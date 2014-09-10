@@ -30,7 +30,7 @@
             </div>
             <div class="tab-content">
                 <div class="tab-pane active" id="user">
-                    <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                    <table class="table  table-bordered table-hover table-condensed content_big_td">
                         <thead>
                             <tr>
                                 <th colspan="6">{lang('User', 'wishlist')}</th>
@@ -216,7 +216,7 @@
                     {/if}
                 </div>
                 <div class="tab-pane" id="create_list">
-                    <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                    <table class="table  table-bordered table-hover table-condensed content_big_td">
                         <thead>
                             <tr>
                                 <th colspan="6">{lang('Create list', 'wishlist')}</th>
