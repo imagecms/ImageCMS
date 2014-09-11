@@ -1229,118 +1229,117 @@ function change_per_page(el) {
 }
 //+++++++++++++++++++++++++++++++
 
-$(document).ready(
-        function() {
-            $('ul.auto_search li').live('click', function() {
-                var tex = $('[name=Products]').val();
-                if (tex == '')
-                    tex = $(this).attr('data-id');
-                else
-                    tex = tex + ',' + $(this).attr('data-id');
-                $('[name=Products]').val(tex);
-            });
-            if ($('#shopSearch').length) {
-                initShopSearch();
+$(document).ready(function() {
+    $('ul.auto_search li').live('click', function() {
+        var tex = $('[name=Products]').val();
+        if (tex == '')
+            tex = $(this).attr('data-id');
+        else
+            tex = tex + ',' + $(this).attr('data-id');
+        $('[name=Products]').val(tex);
+    });
+    if ($('#shopSearch').length) {
+        initShopSearch();
+    }
+
+    if ($.exists('#topPanelNotifications'))
+        updateNotificationsTotal();
+    initAdminArea();
+    //$('.nav .dropdown-menu a').die('click');
+
+    var txt_val = $('.now-active-prod').text();
+    $('.discount-out #productForDiscount').attr('value', txt_val);
+    $('.main_body').append('<div class="overlay"></div>');
+    $(this).keydown(function(e) {
+        e = e || window.event;
+        if (e.target.id == "baseSearch" || e.target.id == "shopSearch")
+        {
+            if ((e.keyCode === 13 || (e.keyCode === 83 && e.ctrlKey)) && e.target.localName != 'textarea') {
+                $('#adminSearchSubmit').click();
+                return false;
             }
-
-            if ($.exists('#topPanelNotifications'))
-                updateNotificationsTotal();
-            initAdminArea();
-            //$('.nav .dropdown-menu a').die('click');
-
-            var txt_val = $('.now-active-prod').text();
-            $('.discount-out #productForDiscount').attr('value', txt_val);
-            $('.main_body').append('<div class="overlay"></div>');
-            $(this).keydown(function(e) {
-                e = e || window.event;
-                if (e.target.id == "baseSearch" || e.target.id == "shopSearch")
-                {
-                    if ((e.keyCode === 13 || (e.keyCode === 83 && e.ctrlKey)) && e.target.localName != 'textarea') {
-                        $('#adminSearchSubmit').click();
-                        return false;
-                    }
-                }
-            });
-            $('#rep_bug').die('click').live('click', function() {
-                $('.overlay').css({height: $(document).height(), 'opacity': 0.6});
-                $('.frame_rep_bug').find('.alert').remove().end().fadeIn();
-                $('.overlay').fadeIn();
-                return false;
-            });
-            $('.overlay').die('click').live('click', function() {
-                $('.frame_rep_bug').fadeOut(function() {
-                    $('.overlay').fadeOut();
-                });
-            });
-            $('.frame_rep_bug [type="submit"]').die('click').live('click', function() {
-                var formData = $(".frame_rep_bug form").serialize();
-                formData += '&hostname=' + location.hostname;
-                formData += '&pathname=' + location.pathname;
-                // deleting old errors
-                $('.frame_rep_bug').find('.alert').remove().end().fadeIn();
-                $.ajax({
-                    type: 'POST',
-                    url: '/admin/report_bug',
-                    data: formData,
-                    dataType: 'json',
-                    success: function(data) {
-                        $('.frame_rep_bug').prepend(data.message);
-                        if (parseInt(data.status) == 1) {
-                            setTimeout(function() {
-                                $('.overlay').trigger('click');
-                                $(".frame_rep_bug form")[0].reset();
-                            }, 2000);
-                        }
-                    }
-                });
-                return false;
-            });
-            $('[name="cancel_button"]').live('click', function() {
-                var overlay = $('.overlay');
-                overlay.trigger('click');
-                //$('.frame_rep_bug').hide('slow');
-            });
-            if ($.exists('#chart'))
-                brands();
-            if ($.exists('#wrapper_gistogram'))
-                gistogram();
-            if ($.exists('#addPictures'))
-                $('#addPictures').live('change', handleFileSelect);
-            $(document).die('keydown').live('keydown', function(e) {
-                var dataSubmit = $("[data-submit]");
-                e = e || window.event;
-                if (e.keyCode === 83 && e.ctrlKey) {
-                    if (!dataSubmit.hasClass('disabled') && dataSubmit.closest('.tab-pane').css('display') != 'none')
-                        dataSubmit.trigger('click');
-                    e.preventDefault();
-                }
-            });
-            init_2();
-            autocomplete();
-            //list filter
-
-            $('.listFilterForm').die('keydown').live('keydown', function(event) {
-                $('.listFilterSubmitButton').removeAttr('disabled').removeClass('disabled');
-                if (what_key(13, event))
-                    $('.listFilterSubmitButton').trigger('click');
-            });
-            $('.listFilterForm select').die('change').live('change', function(event) {
-                $('.listFilterSubmitButton').removeAttr('disabled').removeClass('disabled');
-            });
-            $('.listFilterForm input.datepicker').die('change').live('change', function(event) {
-                $('.listFilterSubmitButton').removeAttr('disabled').removeClass('disabled');
-            });
-            /**/
-            $('[data-remove]').live('click', function() {
-                $(this).closest('tr').remove();
-            });
-            $('.btn').live('click', function() {
-                $('.tooltip').remove();
-            });
-            $('#settings_form .control-label').live('click', function() {
-                $(this).next().find(':input:first').focus();
-            });
+        }
+    });
+    $('#rep_bug').die('click').live('click', function() {
+        $('.overlay').css({height: $(document).height(), 'opacity': 0.6});
+        $('.frame_rep_bug').find('.alert').remove().end().fadeIn();
+        $('.overlay').fadeIn();
+        return false;
+    });
+    $('.overlay').die('click').live('click', function() {
+        $('.frame_rep_bug').fadeOut(function() {
+            $('.overlay').fadeOut();
         });
+    });
+    $('.frame_rep_bug [type="submit"]').die('click').live('click', function() {
+        var formData = $(".frame_rep_bug form").serialize();
+        formData += '&hostname=' + location.hostname;
+        formData += '&pathname=' + location.pathname;
+        // deleting old errors
+        $('.frame_rep_bug').find('.alert').remove().end().fadeIn();
+        $.ajax({
+            type: 'POST',
+            url: '/admin/report_bug',
+            data: formData,
+            dataType: 'json',
+            success: function(data) {
+                $('.frame_rep_bug').prepend(data.message);
+                if (parseInt(data.status) == 1) {
+                    setTimeout(function() {
+                        $('.overlay').trigger('click');
+                        $(".frame_rep_bug form")[0].reset();
+                    }, 2000);
+                }
+            }
+        });
+        return false;
+    });
+    $('[name="cancel_button"]').live('click', function() {
+        var overlay = $('.overlay');
+        overlay.trigger('click');
+        //$('.frame_rep_bug').hide('slow');
+    });
+    if ($.exists('#chart'))
+        brands();
+    if ($.exists('#wrapper_gistogram'))
+        gistogram();
+    if ($.exists('#addPictures'))
+        $('#addPictures').live('change', handleFileSelect);
+    $(document).die('keydown').live('keydown', function(e) {
+        var dataSubmit = $("[data-submit]");
+        e = e || window.event;
+        if (e.keyCode === 83 && e.ctrlKey) {
+            if (!dataSubmit.hasClass('disabled') && dataSubmit.closest('.tab-pane').css('display') != 'none')
+                dataSubmit.trigger('click');
+            e.preventDefault();
+        }
+    });
+    init_2();
+    autocomplete();
+    //list filter
+
+    $('.listFilterForm').die('keydown').live('keydown', function(event) {
+        $('.listFilterSubmitButton').removeAttr('disabled').removeClass('disabled');
+        if (what_key(13, event))
+            $('.listFilterSubmitButton').trigger('click');
+    });
+    $('.listFilterForm select').die('change').live('change', function(event) {
+        $('.listFilterSubmitButton').removeAttr('disabled').removeClass('disabled');
+    });
+    $('.listFilterForm input.datepicker').die('change').live('change', function(event) {
+        $('.listFilterSubmitButton').removeAttr('disabled').removeClass('disabled');
+    });
+    /**/
+    $('[data-remove]').live('click', function() {
+        $(this).closest('tr').remove();
+    });
+    $('.btn').live('click', function() {
+        $('.tooltip').remove();
+    });
+    $('#settings_form .control-label').live('click', function() {
+        $(this).next().find(':input:first').focus();
+    });
+});
 $(window).load(function() {
     $(window).scroll(function() {
         fixed_frame_title();
@@ -1362,15 +1361,15 @@ $('#addImageSizesBlock').live('click', function() {
     $('#AppendHolder').append(clonedSizesBlock);
 });
 //update fields names
+console.log($('.keyupSizes'))
 $('.keyupSizes').live('keyup', function() {
-    var thisInput = $(this);
-    var name = $(this).val();
-    var heightInput = $(this).closest('tr').find('.keyupHeight').first();
-    var widthInput = $(this).closest('tr').find('.keyupWidth');
-    //make new names for inputs
-    newName = 'imageSizesBlock[' + name + '][name]';
-    newheight = 'imageSizesBlock[' + name + '][height]';
-    newWidth = 'imageSizesBlock[' + name + '][width]';
+    var thisInput = $(this),
+            name = $(this).val(),
+            heightInput = $(this).closest('tr').find('.keyupHeight').first(),
+            widthInput = $(this).closest('tr').find('.keyupWidth'),
+            newName = 'imageSizesBlock[' + name + '][name]',
+            newheight = 'imageSizesBlock[' + name + '][height]',
+            newWidth = 'imageSizesBlock[' + name + '][width]';
     //set names to inputs
     thisInput.attr('name', newName);
     heightInput.attr('name', newheight);
@@ -1786,8 +1785,7 @@ $(document).ready(function() {
         if (!$.exists_nabir($(this).closest($('.number'))))
             $(this).tooltip('show');
     });
-
-
+    
     $('.number input').die('testNumber').live('testNumber', function(e) {
         if (!e.res)
             $(this).tooltip('show');
