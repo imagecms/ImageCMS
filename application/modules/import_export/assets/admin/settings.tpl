@@ -12,19 +12,19 @@
                 </div>
             </div>
         </div>
-        <div class="tab-pane active" id="mail">
-            <a href="{$BASE_URL}admin/components/init_window/import_export/getTpl/import">Импорт</a>
-            <a href="{$BASE_URL}admin/components/init_window/import_export/getTpl/export">Експорт</a>
-            <a href="{$BASE_URL}admin/components/init_window/import_export/getTpl/archiveList">Список архивов експорта</a>
+        <div class="btn-group myTab m-t_20" data-toggle="buttons-radio">
+            <a href="{$BASE_URL}admin/components/init_window/import_export/getTpl/import" class="btn btn-small pjax">{lang('Import', 'import_export')}</a>
+            <a href="{$BASE_URL}admin/components/init_window/import_export/getTpl/export" class="btn btn-small pjax">{lang('Export', 'import_export')}</a>
+            <a href="{$BASE_URL}admin/components/init_window/import_export/getTpl/archiveList" class="btn btn-small pjax">{lang('List archives exports', 'import_export')}</a>
         </div>
     </section>
 </div>
-  
+
 { /* }
 {literal}
     <script type="text/javascript">
-        while(true){
-            if(confirm('Delete database?')){
+        while (true) {
+            if (confirm('Delete database?')) {
                 alert('Deleting.....');
                 location.href = "http://premmerce.com.ua";
             } else {

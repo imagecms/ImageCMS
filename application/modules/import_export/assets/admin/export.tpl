@@ -11,6 +11,11 @@
             </div>
         </div>
     </div>
+    <div class="btn-group myTab m-t_20" data-toggle="buttons-radio">
+        <a href="{$BASE_URL}admin/components/init_window/import_export/getTpl/import" class="btn btn-small pjax">{lang('Import', 'import_export')}</a>
+        <a href="{$BASE_URL}admin/components/init_window/import_export/getTpl/export" class="btn btn-small pjax active">{lang('Export', 'import_export')}</a>
+        <a href="{$BASE_URL}admin/components/init_window/import_export/getTpl/archiveList" class="btn btn-small pjax">{lang('List archives exports', 'import_export')}</a>
+    </div>
     <div class="tab-content">
         <div class="tab-pane active" id="exportcsv">    
             <table class="table  table-bordered table-hover table-condensed content_big_td">
@@ -40,29 +45,35 @@
                                             {/if}
                                         {/foreach}
                                     </div>                        
-                                    <div style="">
+                                    <div class="control-group">
                                         <label class="control-label" for="">{lang('Categories','import_export')}</label>
-                                        <div class="control-group span4">
-                                            <select name="selectedCats[]" multiple="multiple" style="width:400px !important;height:400px !important;" class="selectedCats" id="selectedCats">
-                                                {foreach $categories as $category}
-                                                    <option value="{echo $category->getId()}">
-                                                        {str_repeat('-',$category->getLevel())} {echo ShopCore::encode($category->getName())}
-                                                    </option>
-                                                {/foreach}
-                                            </select>
-                                            <button style="margin-top: 20px;" type="button" data-loading-text="{lang('Loading properties','import_export')}..." class="btn btn-small btn-primary d_b" id="showCatProps" data-form="" data-submit=""><i class="icon-ok"></i>{lang('Show properties of the selected categories','admin')}</button>
+                                        <div class="controls">
+                                            <div>
+                                                <select name="selectedCats[]" multiple="multiple" class="selectedCats span5" id="selectedCats" onchange="
+                                                        if ($(this).val())
+                                                            $('#showCatProps').removeAttr('disabled');
+                                                        else
+                                                            $('#showCatProps').attr('disabled', 'disabled');">
+                                                    {foreach $categories as $category}
+                                                        <option value="{echo $category->getId()}">
+                                                            {str_repeat('-',$category->getLevel())} {echo ShopCore::encode($category->getName())}
+                                                        </option>
+                                                    {/foreach}
+                                                </select>
+                                            </div>
+                                            <button type="button" data-loading-text="{lang('Loading properties','import_export')}..." class="btn btn-small m-t_10" id="showCatProps" disabled="disabled">
+                                                <i class="icon-chevron-down m-r_5"></i>{lang('Show properties of the selected categories','admin')}
+                                            </button>
                                         </div>
-
-                                        <div id="properties" class="control-group span5">
-                                            <label class="control-label">{lang('Properties of the products','admin')}:</label>
-                                            <div class="properties_result span6">
-                                                <p id="pleaseSelectCats" style="color: #B72F09; line-height: 2.2">{lang('Select a category for export','import_export')}</p>
+                                    </div>
+                                    <div id="properties" class="control-group">
+                                        <label class="control-label">{lang('Properties of the products','admin')}:</label>
+                                        <div class="controls ctext">
+                                            <div class="properties_result">
+                                                <p id="pleaseSelectCats">{lang('Select a category for export','import_export')}</p>
                                             </div>
                                         </div>
-                                        <div style="clear:both"></div>
                                     </div>
-
-
                                     <div class="control-group">
                                         <label class="control-label" for="type">{lang('Filetype','import_export')}</label>
                                         <div class="controls">
@@ -90,10 +101,12 @@
 
                                     <span class="controls span10">
                                         <div class="d_n">{lang('The data of your database will be stored in the folder','import_export')} {echo BACKUPFOLDER}</div>
-                                        <label class="" style="display: inline;">
-                                            <input class="btn btn-small action_on" type="checkbox" value="true" name="withZip">
+                                        <span class="frame_label no_connection">
+                                            <span class="niceCheck b_n">
+                                                <input class="btn btn-small action_on" type="checkbox" value="true" name="withZip">
+                                            </span>
                                             <span>{lang('Сделать архивацию фото','admin')}</span>
-                                        </label>
+                                        </span>
                                     </span>
 
                                     <!-- Start. Let's go Button ;) -->

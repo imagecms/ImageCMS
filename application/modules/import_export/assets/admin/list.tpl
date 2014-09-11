@@ -11,24 +11,29 @@
             </div>
         </div>
     </div>
+    <div class="btn-group myTab m-t_20" data-toggle="buttons-radio">
+        <a href="{$BASE_URL}admin/components/init_window/import_export/getTpl/import" class="btn btn-small pjax">{lang('Import', 'import_export')}</a>
+        <a href="{$BASE_URL}admin/components/init_window/import_export/getTpl/export" class="btn btn-small pjax">{lang('Export', 'import_export')}</a>
+        <a href="{$BASE_URL}admin/components/init_window/import_export/getTpl/archiveList" class="btn btn-small pjax active">{lang('List archives exports', 'import_export')}</a>
+    </div>
     <div class="tab-content">
-        <div class="tab-pane active" id="exportcsv">    
-            <table class="table  table-bordered table-hover table-condensed content_big_td">
+        <div class="tab-pane active" id="exportcsv">
+            <table class="table  table-bordered table-hover table-condensed content_big_td t-l_a">
                 <thead>
                     <tr>
-                        <th colspan="18">{lang('Archive List','import_export')}</th>
+                        <th colspan="3">{lang('Archive List','import_export')}</th>
                     </tr>
                 </thead>
                 <tbody>
                     {foreach $files as $str}
                         <tr>
-                            <td colspan="6">
+                            <td>
                                 {echo $str}
                             </td>
-                            <td colspan="6">
+                            <td>
                                 <a href="{$BASE_URL}admin/components/init_window/import_export/downloadZIP/{echo $str}">Скачать</a>
                             </td>
-                            <td colspan="6">
+                            <td>
                                 <a href="{$BASE_URL}admin/components/init_window/import_export/deleteArchive/{echo $str}">Удалить</a>
                             </td>
                         </tr>
