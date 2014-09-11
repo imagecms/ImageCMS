@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-11 01:50+0300\n"
-"PO-Revision-Date: 2014-09-11 01:50+0300\n"
+"POT-Creation-Date: 2014-09-11 04:15+0300\n"
+"PO-Revision-Date: 2014-09-11 04:15+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -20,6 +20,14 @@ msgstr ""
 "X-Poedit-SearchPath-1: ../../../templates/administrator\n"
 "X-Poedit-SearchPath-2: ../../modules/shop/admin\n"
 "X-Poedit-SearchPath-3: ../../../application/modules/shop/models/build/classes\n"
+
+#: ./application/modules/shop/admin/callbacks.php:445
+msgid "Topic deleted"
+msgstr "Тема удалено"
+
+#: ./application/modules/shop/admin/callbacks.php:369
+msgid "Topic started"
+msgstr "Тема создана"
 
 #: ./application/modules/shop/admin/callbacks.php:162
 msgid "Position created"
@@ -3742,10 +3750,6 @@ msgstr "Обратный звонок удалён"
 msgid "Callback(s) was removed"
 msgstr "Обратный(е) звонок(ки) удален(ы)"
 
-#: ./application/modules/shop/admin/callbacks.php:445
-msgid "Topic deleted"
-msgstr "Обсуждение удалено"
-
 #: ./application/modules/shop/admin/templates/notificationstatuses/create.tpl:21
 msgid "General information"
 msgstr "Общая информация"
@@ -6580,10 +6584,6 @@ msgstr "Тема"
 #: ./application/modules/shop/admin/templates/settings/settings.tpl:973
 msgid "Subject"
 msgstr "Тема"
-
-#: ./application/modules/shop/admin/callbacks.php:369
-msgid "Topic started"
-msgstr "Тема начата"
 
 #: ./application/modules/shop/admin/callbacks.php:287
 msgid "Callback theme is changed"
