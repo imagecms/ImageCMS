@@ -304,7 +304,7 @@ class BaseImport extends \CI_Model {
                 'var' => lang('Variant name','import_export'),
                 'act' => lang('Active','import_export'),
                 'hit' => lang('Hit','import_export'),
-                'hot' => lang('Latest','import_export'),
+                'hot' => lang('Hot','import_export'),
                 'action' => lang('Action','import_export'),
                 'brd' => lang('Brand','import_export'),
                 'cat' => lang('Category','import_export'),
