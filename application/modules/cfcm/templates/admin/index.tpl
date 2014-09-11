@@ -80,6 +80,7 @@
                     <div class="d-i_b">
                         <a href="/admin/components/cp/cfcm/create_group" class="btn btn-small btn-success pjax" ><i class=" icon-plus-sign icon-white"></i>{lang('Create group', 'cfcm')}</a>				
                     </div>
+
                 </div>
                 <h4>{lang('Field groups', 'cfcm')}</h4>
                 {if !$groups}

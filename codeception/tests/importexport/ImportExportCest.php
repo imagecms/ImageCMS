@@ -14,7 +14,7 @@ use \ImportExportTester;
 class ImportExport {
 
     protected $csvFileName = 'test.csv';
-    
+
     private $name = 'ТоварИмпортCSV';
     private $url = 'tovarimportcsvtest';
     private $price = '1080.50';
@@ -29,6 +29,7 @@ class ImportExport {
     private $relatedProducts;// ID ? 'СвязаныйТоварИмпорт'
     private $mainImage;
     private $currency = 2; //(currencyID) RUR - 1 Dollar - 2
+
     private $additionalImage;
     private $shortDescription = 'Краткое описание';
     private $fullDescription =  'Полное описание';
@@ -47,7 +48,9 @@ class ImportExport {
     
     /**
      * Install module importExport CSV
+
      * @group current
+
      * @group import
      */
     public function activateModule(ImportExportTester $I) {
@@ -75,7 +78,9 @@ class ImportExport {
 
     /**
      * Create csv file and save him to _data directory
+
      * @group current
+
      * @group import
      */
     public function createCSV(ImportExportTester $I){
@@ -95,7 +100,9 @@ class ImportExport {
     }
     /**
      * Import CSV file test.csv from _data directory
+
      * @group current
+
      * @group  import
      */
     public function importCSV(ImportExportTester $I) {
@@ -108,9 +115,12 @@ class ImportExport {
         $I->wait(7);
     }
     
+
+
     /**
      * @group current
      */
+
     public function verifyExportedDataICMS1540(ImportExportTester $I) {
         $I->amOnPage(ProductListPage::$URL);
         $I->fillField(ProductListPage::$InputFilterProduct, $this->name);
@@ -177,6 +187,7 @@ class ImportExport {
      * read export 
      * @group export
      */
+
     
 //    public function exportCSV(ImportExportTester $I) {
 //        include_once '_steps/CSV.php';

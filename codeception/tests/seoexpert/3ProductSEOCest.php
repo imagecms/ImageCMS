@@ -21,7 +21,6 @@ class ProductSEOCest
      */
     public function CreateCategoryForFront (SeoExpertTester\seoexpertSteps $I){
         $I->SeoCreateCategoryProduct($createNameCategory = 'Вода');
-        $I->SeoCreateCategoryProduct($createNameCategory = 'Water');
     }
     
 
@@ -33,7 +32,6 @@ class ProductSEOCest
      */
     public function CreatуBrandForFront (SeoExpertTester\seoexpertSteps $I){
         $I->SeoCreateBrand($brandName = 'Хлеб');
-        $I->SeoCreateBrand($brandName = 'Bread');
     }
     
     
@@ -44,8 +42,6 @@ class ProductSEOCest
      */
     public function CreateProductForFront (SeoExpertTester\seoexpertSteps $I){
         $I->SeoCreateProduct($NameProduct = 'Сеошний товар', $PriceProduct = '777', $BrandProduct = 'Хлеб', $CategoryProduct = 'Вода');
-        $I->SeoCreateProduct($NameProduct = 'Seoshny product', $PriceProduct = '777', $BrandProduct = 'Bread', $CategoryProduct = 'Water');
-
     }
     
     
@@ -60,8 +56,7 @@ class ProductSEOCest
         $I->SeoSelectPropertyInProduct($NameProduct = 'Seoshny product', $Property1 = 'Yes');
     }
     
-    
- 
+
     
     /**
      * @group a
@@ -80,6 +75,7 @@ class ProductSEOCest
         $I->fillField(seoexpertPage::$SeoProductKeywords, '');
         $checkbox_path = '//tbody/tr[1]/td/div/div/div[2]/div/span[2]'; 
         $I->ActivateCheckBox($checkbox_xpath = $checkbox_path);
+
         $I->click(seoexpertPage::$SeoButtSave);
         InitTest::ClearAllCach($I);
         $I->wait('1');
@@ -95,6 +91,7 @@ class ProductSEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
+
     public function ShopProductPageTitleEng (SeoExpertTester\seoexpertSteps $I){
         $I->DefoultValues();
         $ID_property = $I->GetPropertyID($name_property = 'Tend seo');
@@ -136,11 +133,12 @@ class ProductSEOCest
         $I->ActivateCheckBox($checkbox_xpath = $checkbox_path);
         $I->click(seoexpertPage::$SeoButtSave);
         InitTest::ClearAllCach($I);
+
         $I->wait('1');
         $I->amOnPage(seoexpertPage::$FrontProductURLRu);
         $I->wait('1');
         $I->seeInPageSource("$ID_product Seoshnii tovar Voda Hleb 777 руб Первое Свойство / mini.loc");
-             
+
     }
     
     
@@ -177,8 +175,10 @@ class ProductSEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
+
     public function ShopProductPageTitlePadeguName (SeoExpertTester\seoexpertSteps $I){   
         $I->DefoultValues();
+
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->click(seoexpertPage::$SeoButtShop);
@@ -190,9 +190,11 @@ class ProductSEOCest
         $I->ActivateCheckBox($checkbox_xpath = $checkbox_path);
         $I->click(seoexpertPage::$SeoButtSave);
         InitTest::ClearAllCach($I);
+
         $I->wait('1');
         $I->amOnPage(seoexpertPage::$FrontProductURLRu);
         $I->wait('1');
+
         $I->seeInPageSource('Сеошний товар Сеошнего товара Сеошнему товару Сеошнего товара Сеошним товаром Сеошнем товаре / mini.loc');
              
     }
@@ -231,8 +233,10 @@ class ProductSEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
+
     public function ShopProductPageTitlePadeguCategory (SeoExpertTester\seoexpertSteps $I){  
         $I->DefoultValues();
+
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->click(seoexpertPage::$SeoButtShop);
@@ -244,16 +248,17 @@ class ProductSEOCest
         $I->ActivateCheckBox($checkbox_xpath = $checkbox_path);
         $I->click(seoexpertPage::$SeoButtSave);
         InitTest::ClearAllCach($I);
+
         $I->wait('1');
         $I->amOnPage(seoexpertPage::$FrontProductURLRu);
         $I->wait('1');
         $I->seeInPageSource('Вода Воды Воде Воду Водой Воде / mini.loc');             
+
     }
     
     
     
-    
-    
+
     /**
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
@@ -278,15 +283,18 @@ class ProductSEOCest
     }
     
     
+
     /**
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function ShopProductPageDescription (SeoExpertTester\seoexpertSteps $I){
+
         $I->DefoultValues();
         $ID_property = $I->GetPropertyID($name_property = 'Свойственно сео');
         $ID_product = $I->GetProductID($name_product = 'Сеошний товар');    
         $I->wait('1');               
+
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->click(seoexpertPage::$SeoButtShop);
@@ -299,10 +307,12 @@ class ProductSEOCest
         $I->ActivateCheckBox($checkbox_xpath = $checkbox_path);
         $I->click(seoexpertPage::$SeoButtSave);
         InitTest::ClearAllCach($I);
+
         $I->wait('1');
         $I->amOnPage(seoexpertPage::$FrontProductURLRu);
         $I->wait('1');
         $I->seeInPageSource("$ID_product Сеошний товар Вода Хлеб 777 руб Первое Свойство / mini.loc");
+
        
     }
     
@@ -339,9 +349,11 @@ class ProductSEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function ShopProductPageDescriptionTranslit (SeoExpertTester\seoexpertSteps $I){
+
         $I->DefoultValues();
         $ID_property = $I->GetPropertyID($name_property = 'Свойственно сео');
         $ID_product = $I->GetProductID($name_product = 'Сеошний товар'); 
+
         $I->wait('2');               
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
@@ -355,6 +367,7 @@ class ProductSEOCest
         $I->ActivateCheckBox($checkbox_xpath = $checkbox_path);
         $I->click(seoexpertPage::$SeoButtSave);
         InitTest::ClearAllCach($I);
+
         $I->wait('1');
         $I->amOnPage(seoexpertPage::$FrontProductURLRu);
         $I->wait('1');
@@ -385,6 +398,7 @@ class ProductSEOCest
         $I->amOnPage(seoexpertPage::$FrontProductURLENG);
         $I->wait('1');
         $I->seeInPageSource("$ID_product Seoshny product Water Bread 777 руб First property / mini.loc");             
+
     }
     
     
@@ -460,9 +474,11 @@ class ProductSEOCest
         $I->ActivateCheckBox($checkbox_xpath = $checkbox_path);
         $I->click(seoexpertPage::$SeoButtSave);
         InitTest::ClearAllCach($I);
+
         $I->wait('1');
         $I->amOnPage(seoexpertPage::$FrontProductURLRu);
         $I->wait('1');
+
         $I->dontSeeInPageSource('я тут');
         $I->seeInPageSource('я');
        
@@ -473,8 +489,10 @@ class ProductSEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function ShopProductPageKeywords (SeoExpertTester\seoexpertSteps $I){
+
         $I->DefoultValues();
         $ID_property = $I->GetPropertyID($name_property = 'Свойственно сео');                    
+
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->click(seoexpertPage::$SeoButtShop);
@@ -486,9 +504,11 @@ class ProductSEOCest
         $I->ActivateCheckBox($checkbox_xpath = $checkbox_path);
         $I->click(seoexpertPage::$SeoButtSave);
         InitTest::ClearAllCach($I);
+
         $I->wait('1');
         $I->amOnPage(seoexpertPage::$FrontProductURLRu);
         $I->wait('1');
+
         $I->seeInPageSource('Сеошний товар Вода Хлеб Первое Свойство');
              
     }
@@ -514,9 +534,11 @@ class ProductSEOCest
         $I->ActivateCheckBox($checkbox_xpath = $checkbox_path);
         $I->click(seoexpertPage::$SeoButtSave);
         InitTest::ClearAllCach($I);
+
         $I->wait('1');
         $I->amOnPage(seoexpertPage::$FrontProductURLRu);
         $I->wait('1');
+
         $I->seeInPageSource('Сеошний товар / mini.loc');
         $I->seeInPageSource('Вода / mini.loc');
         $I->seeInPageSource('Хлеб');             
@@ -547,9 +569,11 @@ class ProductSEOCest
         $I->DeactivateCheckBox($checkbox_xpath = $checkbox_path);
         $I->click(seoexpertPage::$SeoButtSave);
         InitTest::ClearAllCach($I);
+
         $I->wait('1');
         $I->amOnPage(seoexpertPage::$FrontProductURLRu);
         $I->wait('1');
+
         $I->dontSeeInPageSource('Церберус офф руб');             
         $I->dontSeeInPageSource('Нига777Нига');             
     }
