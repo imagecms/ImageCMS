@@ -1,2 +1,2 @@
-"name";"url";"prc";"oldprc";"stk";"num";"var";"act";"hit";"brd";"cat";"cur";"shdesc";"desc";"mett";"metd";"metk"
-"ТоварИмпортCSV";"tovarimportcsvtest";"1080.50";"500";"500";"2043113";"ТоварИмпортTestВариант";"1";"1";"Apple";"КАТЕГОРИЯ/КатегорияИмпорт/Подкатегория импорт";"2";"Краткое описание";"Полное описание";"tovarmetatitle";"tovarmetadescription";"tovarmetakeywords"
+"name";"url";"prc";"oldprc";"stk";"num";"var";"act";"hit";"hot";"action";"brd";"cat";"cur";"shdesc";"desc";"mett";"metd";"metk"
+"ТоварИмпортCSV";"tovarimportcsvtest";"1080.50";"500";"500";"2043113";"ТоварИмпортTestВариант";"1";"0";"0";"0";"Apple";"КАТЕГОРИЯ/КатегорияИмпорт/Подкатегория импорт";"2";"Краткое описание";"Полное описание";"tovarmetatitle";"tovarmetadescription";"tovarmetakeywords"
