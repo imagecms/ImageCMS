@@ -21,7 +21,7 @@
         </div>
     </div>
     <form method="post" action="{site_url('admin/components/cp/exchangeunfu/update_settings')}" class="form-horizontal" id="exchange_settings_form">
-        <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+        <table class="table  table-bordered table-hover table-condensed content_big_td">
             <thead>
                 <tr>
                     <th colspan="6">

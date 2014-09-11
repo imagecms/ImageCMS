@@ -28,15 +28,16 @@ extends \SeoExpertTester
     
     function SeoCreateDescriptonAndH1($name_category = NULL, $description_category = NULL, $H1_category = NULL) {
         $I = $this;
-        $I->amOnPage('/admin/components/run/shop/search');
-        $I->wait('3');
-        $I->click('//table/thead/tr[2]/td[4]/div/a/div/b');
+        $I->amOnPage('/admin/components/run/shop/categories');
         $I->wait('1');
-        $I->fillField('//table/thead/tr[2]/td[4]/div/div/div/input', $name_category);
-        $I->wait('1');
-        $I->click('//table/thead/tr[2]/td[4]/div/div/ul/li');
-        $I->wait('1');
-        $I->click('//table/tbody/tr/td[4]/div/a');
+        $amount_rows = $I->grabCCSAmount($I, '.share_alt');
+        for($j = 1;$j <= $amount_rows;$j++){
+        $name_search = $I->grabTextFrom("//section/div[2]/div/div[2]/div/div[$j]/div/div[3]/div/a");
+            if($name_search == $name_category){
+                $ID_category = $I->grabTextFrom("//section/div[2]/div/div[2]/div/div[$j]/div/div[2]/p");                
+            }
+        }
+        $I->amOnPage("/admin/components/run/shop/categories/edit/$ID_category");        
         $I->wait('3');
         $I->fillField('//table[1]/tbody/tr/td/div/div[2]/div/textarea', $description_category);
         $I->fillField('//table[3]/tbody/tr/td/div/div/div[1]/div/input', $H1_category);
@@ -70,27 +71,33 @@ extends \SeoExpertTester
     
     
     
-    function SeoCreateProduct ($NameProduct = NULL, $PriceProduct = NULL, $BrandProduct = NULL, $CategoryProduct = NULL) {
+    function SeoCreateProduct ($Name_Product = NULL, $Price_Product = NULL, $Brand_Product = NULL, $Category_Product = NULL, $Additional_Category = NULL) {
         $I = $this;        
         $I->amOnPage('/admin/components/run/shop/products/create');
         $I->wait('2');
-        $I->fillField('//table[1]/tbody/tr/td/div/div/div[1]/div[1]/div/input', $NameProduct);
+        $I->fillField('//section/form/div[2]/div[1]/div/div[1]/div[1]/div[1]/div/input', $Name_Product);
         $I->wait('1');
-        $I->fillField('//tbody/tr/td/div/div/div[1]/div[4]/table/tbody/tr/td[2]/input', $PriceProduct);
+        $I->fillField('//section/form/div[2]/div[1]/div/div[1]/div[4]/div/div/table/tbody/tr/td[3]/input', $Price_Product);
         $I->wait('1');
-        $I->click('//tbody/tr/td/div/div/div[2]/div/div[1]/div/div/a/span');
+        $I->click('//section/form/div[2]/div[1]/div/div[2]/div/div[1]/div/div/a/span');
         $I->wait('1');
-        $I->fillField('//tbody/tr/td/div/div/div[2]/div/div[1]/div/div/div/div/input', $BrandProduct);
+        $I->fillField('//section/form/div[2]/div[1]/div/div[2]/div/div[1]/div/div/div/div/input', $Brand_Product);
         $I->wait('1');
-        $I->click('//tbody/tr/td/div/div/div[2]/div/div[1]/div/div/div/ul/li');
+        $I->click('//section/form/div[2]/div[1]/div/div[2]/div/div[1]/div/div/div/ul/li');
         $I->wait('1');
-        $I->click('//table[1]/tbody/tr/td/div/div/div[2]/div/div[2]/div/div/a/span');
+        $I->click('//section/form/div[2]/div[1]/div/div[2]/div/div[2]/div/div/a/span');
         $I->wait('1');
-        $I->fillField('//table[1]/tbody/tr/td/div/div/div[2]/div/div[2]/div/div/div/div/input', $CategoryProduct);
+        $I->fillField('//section/form/div[2]/div[1]/div/div[2]/div/div[2]/div/div/div/div/input', $Category_Product);
         $I->wait('1');
-        $I->click('//tbody/tr/td/div/div/div[2]/div/div[2]/div/div/div/ul/li');
+        $I->click('//section/form/div[2]/div[1]/div/div[2]/div/div[2]/div/div/div/ul/li');
         $I->wait('1');
-        $I->click('//div[1]/div[5]/section/div/div[2]/div/button[1]');
+        $I->click('//section/form/div[2]/div[1]/div/div[2]/div/div[3]/div/div/ul/li/input');
+        $I->wait('1');
+        $I->fillField('//section/form/div[2]/div[1]/div/div[2]/div/div[3]/div/div/ul/li/input', $Additional_Category);
+        $I->wait('1');
+        $I->click('//section/form/div[2]/div[1]/div/div[2]/div/div[3]/div/div/div/ul/li');
+        $I->wait('1');
+        $I->click('//section/div/div[2]/div/button[2]');
         $I->wait('2');
     }
     
@@ -142,19 +149,7 @@ extends \SeoExpertTester
         $I->wait('1');         
         }        
     }
-    
-    
-    function SeoGrabIDProperty($namesOfProperty = NULL) {
-        $I = $this;
-        $I->amOnPage('/admin/components/run/shop/properties');
-        $I->wait('2');
-        $I->fillField('//form/table/thead/tr[2]/td[3]/input', $namesOfProperty);
-        $I->click('//section/div[1]/div[2]/div/button[1]');
-        $I->wait('2');
-        $a = $I->grabTextFrom('//tr[1]/td[2]');
-        $I->comment("$a");        
-        
-    }
+
     
     function ActivateCheckBox($checkbox_xpath = NULL) {
         $I = $this;
@@ -163,14 +158,12 @@ extends \SeoExpertTester
         $inactive = 'span1';
         $checkbox_path = $checkbox_xpath;
         $checkbox_class = $I->grabAttributeFrom($checkbox_path, 'class');
-        $I->comment('class: ' . $checkbox_class);
             if($checkbox_class == $active){                
                 $I->wait('1');
-                $I->comment(" Чекбокс Активний, Пропускаю крок та служу далі тобі Володарю :)");
             }elseif($checkbox_class == $inactive) {
                 $I->click($checkbox_path);
-                $I->wait('1');  
-                $I->comment(" Чекбокс Не Активний, я Натискаю його тобто Активую та служу далі тобі Мегатрон Царь Завороткі Шок :)");
+                $I->wait('1');
+
             }
     }
     
@@ -183,14 +176,11 @@ extends \SeoExpertTester
         $inactive = 'span1';
         $checkbox_path = $checkbox_xpath;
         $checkbox_class = $I->grabAttributeFrom($checkbox_path, 'class');
-        $I->comment('class: ' . $checkbox_class);
             if($checkbox_class == $active){                
                 $I->wait('1');
                 $I->click($checkbox_path);                
-                $I->comment(" Чекбокс Активний, Деактивую його та служу далі тобі Володарю :)");
             }elseif($checkbox_class == $inactive) {
                 $I->wait('1');  
-                $I->comment(" Чекбокс Не Активний, нечыпаю його та служу далі тобі Мегатрон Царь Завороткі Шок :)");
             }
     }
   
@@ -202,15 +192,106 @@ extends \SeoExpertTester
         $I->click('//section/div[1]/div[2]/div/button');
         $I->wait('1');
     }
+   
     
-//    function DeleteCategorySEO($name_category = NULL) {
-//        $I = $this;
-//        $I->amOnPage('/admin/components/run/shop/categories');
-//        $amount_category = $I->grabCCSAmount($I, '.share_alt');
-//        $I->comment("$amount_category");
-//        $name_search_category = $I->grabTextFrom('.share_alt');
-//        $I->comment("$name_search_category");
-//    }
+    
+    function GetProductID($name_product) {
+        $I = $this;
+        $I->amOnPage(\ProductSEOPage::$ListURL);
+        $I->wait('1');
+        $I->fillField(\ProductSEOPage::$ListFildSearch, $name_product);
+        $I->click(\ProductSEOPage::$ListButtonFilter);
+        $I->wait('1');
+        $ID_product = $I->grabTextFrom(\ProductSEOPage::$ListGrabID);        
+        return $ID_product;
+    }
+    
+    
+    
+    function GetPropertyID($name_property) {
+        $I = $this;
+        $I->amOnPage(\PropertySEOPage::$ListURL);
+        $I->wait('1');
+        $I->fillField(\PropertySEOPage::$SearchField, $name_property);
+        $I->click(\PropertySEOPage::$ButtonFilter);
+        $ID_property = $I->grabTextFrom(\PropertySEOPage::$IDField);
+        return $ID_property;
+        
+    }
+    
+    function GetCategoryID($name_category) {
+        $I = $this;
+        $I->amOnPage('/admin/components/run/shop/categories');
+        $I->wait('1');
+        $amount_rows = $I->grabCCSAmount($I, '.share_alt');
+        for($j = 1;$j <= $amount_rows;$j++){
+        $name_search = $I->grabTextFrom("//section/div[2]/div/div[2]/div/div[$j]/div/div[3]/div/a");
+            if($name_search == $name_category){
+                $ID_category = $I->grabTextFrom("//section/div[2]/div/div[2]/div/div[$j]/div/div[2]/p");
+                return $ID_category;
+            }
+        }
+    }
+    
+    function DefoultValues() {
+        $I = $this;
+        $I->amOnPage(\seoexpertPage::$SeoUrl);
+        $I->click(\seoexpertPage::$SeoBaseRadioButtCategoryNameNo);
+        $I->click(\seoexpertPage::$SeoBaseRadioButtSiteNameYes);
+        $I->click(\seoexpertPage::$SeoBaseSelectKeywords);
+        $I->click(\seoexpertPage::$SeoBaseOptionMakeAutomaticKeywords);
+        $I->click(\seoexpertPage::$SeoBaseSelectDescription);
+        $I->click(\seoexpertPage::$SeoBaseOptionMakeAutomaticDescription);
+        $I->fillField(\seoexpertPage::$SeoBaseFieldSeparator, '/');
+        $I->fillField(\seoexpertPage::$SeoBaseFieldDescription, '');
+        $I->fillField(\seoexpertPage::$SeoBaseFieldKeywords, '');
+        $I->fillField(\seoexpertPage::$SeoBaseFieldSiteName, 'lastbuild.loc');
+        $I->fillField(\seoexpertPage::$SeoBaseFieldShortSiteName, 'mini.loc');
+        $I->click(\seoexpertPage::$SeoButtSave);
+        $I->wait('1');
+    }
+    
+    
+    
+    
+    function CheckValuesInPage ($URL_Page, $values){
+        $I = $this;
+        $I->amOnPage($URL_Page);
+        $I->wait('1');
+        $I->seeInPageSource($values);
+    }
+    
+    
+    
+    
+    function SettingsCategorySeoPage($Title = NULL,
+                            $Description = NULL,
+                            $Length_Desc = NULL,
+                            $Amount_Brands = NULL,
+                            $Keywords = NULL,
+                            $CheckBox_Activate = NULL) {
+        $I = $this;
+        $I->amOnPage(\seoexpertPage::$SeoUrl);
+        $I->click(\seoexpertPage::$SeoButtShop);
+        $I->fillField(\seoexpertPage::$SeoCategoryTitle, $Title);
+        $I->fillField(\seoexpertPage::$SeoCategoryDescription, $Description);
+        $I->fillField(\seoexpertPage::$SeoCategoryLength, $Length_Desc);
+        $I->fillField(\seoexpertPage::$SeoCategoryCountBrands, $Amount_Brands);
+        $I->fillField(\seoexpertPage::$SeoCategoryKeywords, $Keywords);
+        if(isset($CheckBox_Activate)){
+            $active = 'span1 active';
+            $inactive = 'span1';
+            $checkbox_path = $CheckBox_Activate;
+        $checkbox_class = $I->grabAttributeFrom($checkbox_path, 'class');
+            if($checkbox_class == $active){                
+                $I->wait('1');
+            }elseif($checkbox_class == $inactive) {
+                $I->click($checkbox_path);
+                $I->wait('1');
+            }
+        }
+        $I->click(\seoexpertPage::$SeoButtSave);
+    }
    
     
 }

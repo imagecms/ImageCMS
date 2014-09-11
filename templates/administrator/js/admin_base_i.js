@@ -1447,7 +1447,7 @@ $(document).ready(function() {
             $(this).removeAttr("value");
             showMessage(langs.error, langs.onlyFontsFilesAllowed, "error");
         } else {
-            $(".watermark_path_info div").html($(this).val().split('\\').pop());
+            $(".watermark_path_info").html($(this).val().split('\\').pop());
         }
     });
 

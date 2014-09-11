@@ -24,7 +24,7 @@
         <div class="tab-content">
             <div class="tab-pane active" id="properties">
                 <div class="inside_padd span9">
-                    <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                    <table class="table  table-bordered table-hover table-condensed content_big_td">
                         <thead>
                             <tr>
                                 <th colspan="6">
@@ -39,7 +39,7 @@
                                         <div class="control-group">
                                             <label class="control-label" for="settings[propertiesTypes]"></label>
                                             <div class="controls">
-                                                <table class="propertyTypes table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                                                <table class="propertyTypes table  table-bordered table-hover table-condensed content_big_td">
                                                     {foreach $settings['propertiesTypes'] as $type}
                                                         <tr>
                                                             <td>
@@ -89,7 +89,7 @@
             </div>
             <div class="tab-pane" id="columns">
                 <div class="inside_padd span9">
-                    <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                    <table class="table  table-bordered table-hover table-condensed content_big_td">
                         <thead>
                             <tr>
                                 <th colspan="6">
@@ -104,7 +104,7 @@
                                         <div class="control-group">
                                             <label class="control-label" for="settings[propertiesTypes]"></label>
                                             <div class="controls">
-                                                <table class="columns table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                                                <table class="columns table  table-bordered table-hover table-condensed content_big_td">
                                                     {foreach $settings['columns'] as $column}
                                                         <tr>
                                                             <td>

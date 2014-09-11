@@ -162,7 +162,7 @@
                                         <div class="o_h">		            
                                             <input type="text" name="photo" id="Img" value="{echo $banner['photo'];}" required="required">					
                                         </div>
-                                        <div id="Img-preview" style="width: 400px;" >
+                                        <div id="Img-preview" style="width: 400px;" class="m-t_20">
                                             {if $banner['photo']}
                                                 <img src="{echo $banner['photo']}" class="img-polaroid" style="width: 400px;">
                                             {/if}
