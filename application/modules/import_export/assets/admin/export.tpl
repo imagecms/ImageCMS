@@ -67,7 +67,7 @@
                                         </div>
                                     </div>
                                     <div id="properties" class="control-group">
-                                        <label class="control-label">{lang('Properties of the products','admin')}:</label>
+                                        <label class="control-label">{lang('Properties of the products','import_export')}:</label>
                                         <div class="controls ctext">
                                             <div class="properties_result">
                                                 <p id="pleaseSelectCats">{lang('Select a category for export','import_export')}</p>
