@@ -33,15 +33,15 @@
                 </div>
             </div>                            
         </div>
-        <div class="clearfix">
+        {/*<div class="clearfix">
             <div class="btn-group myTab m-t_20 pull-left" data-toggle="buttons-radio">
                 <a href="#users" class="btn btn-small active">{lang('Users', 'user_manager')}</a>
                 <!--<a href="#group" class="btn btn-small">{lang('Groups', 'user_manager')}</a>-->
                 <!--<a href="#privilege" class="btn btn-small">{lang('Access rights differentiation system', 'user_manager')}</a>-->
 
             </div>   
-        </div>
-        <div class="tab-content clearfix">
+        </div>*/}
+        <div class="tab-content clearfix m-t_30">
             <!----------------------------------------------------- USERS-------------------------------------------------------------->
             <div class="tab-pane active" id="users">
                 <button type="button" class="btn btn-small btn-danger action_on disabled pull-right" style="margin-top:-26px;" onclick="delete_function.deleteFunction()" disabled="disabled"><i class="icon-trash icon-white"></i> {lang('Delete', 'user_manager')}</button>

@@ -27,7 +27,7 @@
                 <form action="{$BASE_URL}admin/settings/save" method="post" id="saveSettings">
                     <div class="tab-content">
                         <div class="tab-pane active" id="setings">
-                            <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                            <table class="table  table-bordered table-hover table-condensed content_big_td">
                                 <thead>
                                     <tr>
                                         <th colspan="6">
@@ -121,7 +121,7 @@
                             </table>
                         </div>
                         <div class="tab-pane" id="seo">
-                            <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                            <table class="table  table-bordered table-hover table-condensed content_big_td">
                                 <thead>
                                     <tr>
                                         <th colspan="6">
@@ -174,7 +174,7 @@
                         </div>
 
                         <div class="tab-pane" id="homePage">
-                            <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                            <table class="table  table-bordered table-hover table-condensed content_big_td">
                                 <thead>
                                     <tr>
                                         <th colspan="6">
@@ -235,7 +235,7 @@
                             </table>
                         </div>
                         <div class="tab-pane" id="metatag">
-                            <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                            <table class="table  table-bordered table-hover table-condensed content_big_td">
                                 <thead>
                                     <tr>
                                         <th colspan="6">
@@ -317,7 +317,7 @@
                             </table>
                         </div>
                         <div class="tab-pane" id="metatag_edit">
-                            <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                            <table class="table  table-bordered table-hover table-condensed content_big_td">
                                 <thead>
                                     <tr>
                                         <th colspan="6">
@@ -389,7 +389,7 @@
                         </div>
                         <div class="tab-pane" id="site_info_tab"> <!-- Інформація про сайт -->
                             {$tooltipText = lang('Please use function siteinfo() with the parameter', 'admin')}
-                            <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                            <table class="table  table-bordered table-hover table-condensed content_big_td">
                                 <thead>
                                     <tr>
                                         <th colspan="6">
@@ -403,7 +403,6 @@
                                             <div class="inside_padd span9">
                                                 <div class="form-horizontal">
                                                     <div class="row-fluid">
-
                                                         <div class="control-group">
                                                             <label class="control-label" data-toggle="ttip" data-title="{$tooltipText} 'siteinfo_companytype'" for="siteinfo_companytype">
                                                                 {lang('For language', 'admin')} 
@@ -460,7 +459,7 @@
                                                                 <i class="icon-info-sign"></i>
                                                             </label>  
                                                             <div class="controls">
-                                                                <table id="siteinfo_contacts_table">
+                                                                <table id="siteinfo_contacts_table" class="content_small_td">
                                                                     {if count($contacts) > 0}
                                                                         {foreach $contacts as $contact_name => $contact_value}
                                                                             <tr class="siteinfo_contact_row">
@@ -471,8 +470,8 @@
                                                                                     <textarea rows="1" placeholder="{lang('Value', 'admin')}" class="siteinfo_contactvalue" name="siteinfo_contactvalue[]">{$contact_value}</textarea>
                                                                                 </td>
                                                                                 <td>
-                                                                                    <button type="button" class="btn btn-small btn-danger si_remove_contact_row">
-                                                                                        <i class="icon-trash icon-white"></i>
+                                                                                    <button type="button" class="btn btn-small si_remove_contact_row" data-rel="tooltip" data-title="{lang('Remove', 'admin')}">
+                                                                                        <i class="icon-trash"></i>
                                                                                     </button>
                                                                                 </td>
                                                                             </tr> 
@@ -486,8 +485,8 @@
                                                                                 <textarea rows="1" placeholder="{lang('Value', 'admin')}" class="siteinfo_contactvalue" value="" name="siteinfo_contactvalue[]"></textarea>
                                                                             </td>
                                                                             <td>
-                                                                                <button type="button" class="btn btn-small btn-danger si_remove_contact_row">
-                                                                                    <i class="icon-trash icon-white"></i>
+                                                                                <button type="button" class="btn btn-small si_remove_contact_row" data-rel="tooltip" data-title="{lang('Remove', 'admin')}">
+                                                                                    <i class="icon-trash"></i>
                                                                                 </button>
                                                                             </td>
                                                                         </tr> 

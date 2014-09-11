@@ -1,4 +1,4 @@
-<table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+<table class="table  table-bordered table-hover table-condensed content_big_td">
     <thead>
         <tr>
             <th colspan="6">

@@ -219,8 +219,6 @@
                     </table>
                 </div>
             </div>
-
-
             <div class="tab-pane" id="menu_manage">
                 <div class="row-fluid">
                     <table class="table  table-bordered table-hover table-condensed pages-table">
@@ -233,9 +231,6 @@
                     </table>
                 </div>
             </div>
-
-
-
         </div>
     </section>
 </form>

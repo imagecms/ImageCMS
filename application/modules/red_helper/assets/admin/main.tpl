@@ -59,7 +59,7 @@
             <p class="help-block"><b>{lang('* - Fields are required', 'red_helper')}</b></p>
             <div>
                 <p id="result" style="color:red"></p>
-                
+
             </div>
         </div>
         <div class="modal-footer">
@@ -74,10 +74,6 @@
         <div class="pull-left">
             <span class="help-inline"></span>
             <span class="title">{lang('Red Helper', 'red_helper')}</span>
-            <div style="display:inline-block; vertical-align: top; padding-top:6px;padding-left:10px;" class="btn-group myTab " data-toggle="buttons-radio">
-                <a href="#row-fluid-1" class="btn btn-small active">Что такое RedHelper?</a>
-                <a href="#row-fluid-2" class="btn btn-small">Установка модуля RedHelper</a>
-            </div>
         </div>
         <div class="pull-right">
             <div class="d-i_b">
@@ -92,6 +88,10 @@
                 </a>
             </div>
         </div>                            
+    </div>
+    <div class="btn-group myTab m-t_20" data-toggle="buttons-radio">
+        <a href="#row-fluid-1" class="btn btn-small active">Что такое RedHelper?</a>
+        <a href="#row-fluid-2" class="btn btn-small">Установка модуля RedHelper</a>
     </div>
     <div class="tab-content">
         <div class="row-fluid tab-pane active" id="row-fluid-1">
