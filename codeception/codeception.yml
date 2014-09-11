@@ -16,7 +16,7 @@ modules:
 #        - Cli
     config:
         WebDriver:
-            url: 'http://lastbuild.loc/'
+            url: 'http://premmerce.loc/'
             browser: chrome
             window_size: maximize  
 #            restart: false

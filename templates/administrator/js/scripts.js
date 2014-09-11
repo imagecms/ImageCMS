@@ -1785,8 +1785,7 @@ $(document).ready(function() {
         if (!$.exists_nabir($(this).closest($('.number'))))
             $(this).tooltip('show');
     });
-
-
+    
     $('.number input').die('testNumber').live('testNumber', function(e) {
         if (!e.res)
             $(this).tooltip('show');
