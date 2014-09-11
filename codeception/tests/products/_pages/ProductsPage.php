@@ -46,6 +46,12 @@ class ProductsPage
     public static $AutoSelectButton  = ".//*[@id='translateProductUrl']";
     public static $AddVariantButton  = ".//*[@id='addVariant']";
     
+    //Кнопки в редактировании
+    public static $PropertyButton  = '//*[@id="image_upload_form"]/div/div[1]/div[1]/a[2]';
+    public static $ImagesButton  = '//*[@id="image_upload_form"]/div/div[1]/div[1]/a[3]';
+    public static $KitsProductButton  = '//*[@id="image_upload_form"]/div/div[1]/div[1]/a[4]';
+    
+    public static $NameVariantProductEdit  = ".//*[@id='ProductVariantRow_0']/td[1]/div/input[3]";
     //Кнопки в списке
     public static function CheckboxLine($row){
         $Checkbox = ".//*[@id='filter_form']/section/div[2]/table/tbody/tr[$row]/td[1]/span/span";
@@ -94,5 +100,9 @@ class ProductsPage
     public static function PriceCurrencySymbolLine($row) {
         $Symb = ".//*[@id='filter_form']/section/div[2]/table/tbody/tr[$row]/td[8]/span";
         return $Symb;
+    }
+    public static function PaginationLine($row) {
+        $Pag = ".//*[@id='filter_form']/section/div[2]/div/div[1]/ul/li[$row]/a";
+        return $Pag;
     }
 }

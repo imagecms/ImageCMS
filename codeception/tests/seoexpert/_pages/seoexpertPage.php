@@ -26,6 +26,10 @@ class seoexpertPage
     public static $SeoBaseFieldShortSiteName = "//tbody/tr/td/div/div/div/div/div[2]/div/input";
     public static $SeoBaseFieldDescription = "//tbody/tr/td/div/div/div/div/div[3]/div/input";
     public static $SeoBaseFieldKeywords = "//tbody/tr/td/div/div/div/div/div[4]/div/input";
+    public static $SeoBaseOptionMakeAutomaticKeywords = "//tbody/tr/td/div/div/div/div[4]/div/select/option[1]";
+    public static $SeoBaseOptionMakeAutomaticDescription = "//tbody/tr/td/div/div/div/div[5]/div/select/option[1]";
+    public static $SeoBaseOptionLeaveBlankKeywords = "//tbody/tr/td/div/div/div/div[4]/div/select/option[2]";
+    public static $SeoBaseOptionLeaveBlankDescription = "//tbody/tr/td/div/div/div/div[5]/div/select/option[2]";
     
     //   Shop Page
        
@@ -135,6 +139,12 @@ class seoexpertPage
     public static $SeoSearchCheckBoxActive = "//tbody/tr[5]/td/div/div/div[2]/div/span[2]/span";
     
     
+    
+    // Front 
+    public static $FrontProductURL = "/shop/product/seoshnii-tovar";
+//    public static $FrontURL = "";
+//    public static $FrontURL = "";
+//    public static $FrontURL = "";
     
     
     

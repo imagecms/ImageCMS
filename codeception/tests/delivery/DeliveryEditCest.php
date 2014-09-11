@@ -43,6 +43,7 @@ class DeliveryEditCest {
     }
 
     /**
+     * @group current
      * @group edit
      * @guy DeliveryTester\DeliverySteps
      */
@@ -141,6 +142,7 @@ class DeliveryEditCest {
         $description = $descriptionprice = InitTest::$textSymbols;
         $I->EditDelivery(null, 'on', $description, $descriptionprice);
         $I->waitForText("Редактирование способа доставки: $this->Name", NULL, ".title");
+        $I->wait(3);
         $I->seeInField(DeliveryEditPage::$FieldDescription, $description);
         $I->seeInField(DeliveryEditPage::$FieldDescriptionPrice, $descriptionprice);
         $I->CheckInFrontEnd($this->Name, $description);
