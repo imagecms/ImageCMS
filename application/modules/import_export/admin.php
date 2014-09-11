@@ -33,7 +33,7 @@ class Admin extends BaseAdminController {
      */
     public function index() {
         \CMSFactory\assetManager::create()
-                ->renderAdmin('settings');
+                ->renderAdmin('import');
     }
     
     /**
