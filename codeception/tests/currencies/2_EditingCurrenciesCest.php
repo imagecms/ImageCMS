@@ -30,7 +30,7 @@ class EditingCurrenciesCest
         $I->click('.//*[@id="currency_tr1"]/td[2]/a');
         $I->waitForElement('.//*[@id="mod_name"]/label');
         $I->see('Редактирование валют', 'span.title');
-        $I->see('Свойства', '.table.table-striped.table-bordered.table-hover.table-condensed.content_big_td>thead>tr>th');
+        $I->see('Свойства', ".//*[@id='cur_ed_form']/table[1]/thead/tr/th");
         $I->see('Название:', './/*[@id="cur_ed_form"]/table/tbody/tr/td/div/div[1]/label');
         $I->see('ISO Код:', './/*[@id="cur_ed_form"]/table/tbody/tr/td/div/div[2]/label');
         $I->see('Символ:', './/*[@id="cur_ed_form"]/table/tbody/tr/td/div/div[3]/label');
@@ -66,15 +66,13 @@ class EditingCurrenciesCest
         $rate="";
         $format="";
         $delimTens="";
-        $delimThousands="";
-        $amount="";
-        $I->EditCurrency($j,$name, $isocode, $symbol, $rate, $template=null, $format, $delimTens, $delimThousands, $amount);
+        $delimThousands="";        
+        $I->EditCurrency($j,$name, $isocode, $symbol, $rate, $template=null, $format, $delimTens, $delimThousands);
         $I->see('Это поле обязательное.', './/*[@id="cur_ed_form"]/table/tbody/tr/td/div/div[1]/div/label');
         $I->see('Это поле обязательное.', './/*[@id="cur_ed_form"]/table/tbody/tr/td/div/div[2]/div/label');
         $I->see('Это поле обязательное.', './/*[@id="cur_ed_form"]/table/tbody/tr/td/div/div[3]/div/label');
         $I->see('Это поле обязательное.', './/*[@id="mod_name"]/div/label');
-        $I->see('Это поле обязательное.', ".//*[@id='cur_ed_form']/table[2]/tbody/tr/td/div/div[2]/div/label");
-        $I->see('Это поле обязательное.', ".//*[@id='cur_ed_form']/table[2]/tbody/tr/td/div/div[5]/div/label");
+        $I->see('Это поле обязательное.', ".//*[@id='cur_ed_form']/table[2]/tbody/tr/td/div/div[2]/div/label");        
         InitTest::ClearAllCach($I);
     }
     
@@ -91,15 +89,13 @@ class EditingCurrenciesCest
         $rate="";
         $format="";
         $delimTens="";
-        $delimThousands="";
-        $amount="";
-        $I->EditCurrency($j,$name, $isocode, $symbol, $rate, null, $format, $delimTens, $delimThousands, $amount,$notNull='off',$save='saveexit');
+        $delimThousands="";        
+        $I->EditCurrency($j,$name, $isocode, $symbol, $rate, null, $format, $delimTens, $delimThousands, $amount=null,$notNull='off',$save='saveexit');
         $I->see('Это поле обязательное.', './/*[@id="cur_ed_form"]/table/tbody/tr/td/div/div[1]/div/label');
         $I->see('Это поле обязательное.', './/*[@id="cur_ed_form"]/table/tbody/tr/td/div/div[2]/div/label');
         $I->see('Это поле обязательное.', './/*[@id="cur_ed_form"]/table/tbody/tr/td/div/div[3]/div/label');
         $I->see('Это поле обязательное.', './/*[@id="mod_name"]/div/label');
-        $I->see('Это поле обязательное.', ".//*[@id='cur_ed_form']/table[2]/tbody/tr/td/div/div[2]/div/label");
-        $I->see('Это поле обязательное.', ".//*[@id='cur_ed_form']/table[2]/tbody/tr/td/div/div[5]/div/label");
+        $I->see('Это поле обязательное.', ".//*[@id='cur_ed_form']/table[2]/tbody/tr/td/div/div[2]/div/label");        
     }
     
     

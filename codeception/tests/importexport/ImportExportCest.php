@@ -3,6 +3,8 @@
 use \ImportExportTester;
 
 /**
+ * активувати модуль CSV
+ * сформувати csv - файл s і зберегти codecept_data_dir()
  * імпортувати підготований CSV - Файл (_data(test.csv))
  * перевірити на сторінці товару
  * змінити 
@@ -15,83 +17,150 @@ use \ImportExportTester;
  */
 class ImportExport {
 
-    protected $category = 'ПодКатегорияИмпорт';
+    protected $csvFileName = 'test.csv';
+    
+    private $name = 'ТоварИмпортnew';
+    private $url = 'tovarimport';
+    private $price = '100.50';
+    private $oldPrice = '200';
+    private $amount =  '10';
+    private $article = '200113';
+    private $variantName = 'ТоварИмпортВариант';
+    private $active = 1; //1|0
+    private $hit = 1; // 1|0
+    private $brand = 'Apple';
+    private $category = 'КАТЕГОРИЯ/КатегорияИмпорт';
+    private $relatedProducts;// ID ? 'СвязаныйТоварИмпорт'
+    private $mainImage;
+    private $currency = 1; //(currencyID) RUR - 1 Dollar - 2
+    private $additionalImage;
+    private $shortDescription = 'Краткое описание';
+    private $fullDescription =  'Полное описание';
+    private $metaTitle = 'tovarmetatitle';
+    private $metaDescription = 'tovarmetadescription';
+    private $metaKeywords =  'tovarmetakeywords';
 
-//---------------------------AUTORIZATION--------------------------------------- 
     /**
-     * @group export
      * @group current
+     * @group import
      */
     public function login(ImportExportTester $I) {
          InitTest::Login($I);
+//         InitTest::changeTextAditorToNative($I);
+    }
+    
+    /**
+     * Install module importExport CSV
+     * @group import
+     */
+    public function activateModule(ImportExportTester $I) {
+        $I->amOnPage('/admin');
+        $I->click(NavigationBarPage::$Modules);
+        $I->click(NavigationBarPage::$ModulesAllModules);
+        $I->waitForText('Все модули', null, '.title');
+        $I->click('Установить модули');
+        $rows = $I->grabCCSAmount($I, '#nimt tbody tr');
+        $present = false;
+        for ($index = 1; $index <= $rows; $index++) {
+            $module_name = $I->grabTextFrom("//table[@id ='nimt']/tbody/tr[$index]/td[1]/a");
+            if($module_name == 'Module Import & Export'){
+                $present = true;
+                break;
+            }
+        }
+        if($present){ 
+            $I->comment('Not installed');
+            $I->click("//table[@id ='nimt']/tbody/tr[$index]/td[4]/a");
+            $I->wait(3);
+        }
+        
     }
 
     /**
-     * @group current
+     * Create csv file and save him to _data directory
+     * @group import
+     */
+    public function createCSV(ImportExportTester $I){
+        include_once '_steps/CSV.php';
+        $I->comment('Create CSV file');
+        $datadir = codecept_data_dir();
+        $filename = $datadir.$this->csvFileName;
+        $data = CSV::formData($this->name, $this->url, $this->price, 
+                                $this->oldPrice, $this->amount, $this->article, 
+                                $this->variantName, $this->active, $this->hit, 
+                                $this->brand, $this->category, $this->relatedProducts, 
+                                $this->mainImage, $this->currency, $this->additionalImage, 
+                                $this->shortDescription, $this->fullDescription, $this->metaTitle, 
+                                $this->metaDescription,  $this->metaKeywords);
+//        $data = CSV::formData('ТоварТест', 'tovarauto', '100', '300','50', '1234565', 'ТоварВаріант1', 'on', '1', 'Apple', 'ПодкатегорияИмпорт');
+        CSV::createCSV($filename, [$data]);
+    }
+    /**
+     * Import CSV file test.csv from _data directory
+     * @group  import
      */
     public function importCSV(ImportExportTester $I) {
         $I->amOnPage(ImportPage::$URL);
         $I->click(ImportPage::$ButtonSlot1);
         $I->wait(1);
-        $I->attachFile(ImportPage::$InputSelectFile, 'test.csv');
+        $I->attachFile(ImportPage::$InputSelectFile, $this->csvFileName);
+        $I->wait(3);
         $I->click(ImportPage::$ButtonStartImport);
+        $I->wait(7);
     }
     
+    /**
+     * @group current
+     */
+    public function verifyExportedData(ImportExportTester $I) {
+        $I->amOnPage(ProductListPage::$URL);
+        $I->fillField(ProductListPage::$InputFilterProduct, $this->name);
+        $I->click(ProductListPage::$ButtonFilter);
+        $I->waitForText($this->name);
+        $I->click($this->name);
+        $I->waitForText($this->name,NULL, '.title');
+        
+    }
     
+
     /**
      * read export 
      * @group export
      */
     
-    public function exportCSV(ImportExportTester $I) {
-        include_once '_steps/CSV.php';
-        $output_file = BROWSER_DOWNLOADS . 'products.csv';
-        //if browser downloads directory contains file products.csv - unlink it
-        if (file_exists($output_file)) {
-            $I->comment("I unlink file products.csv");
-            unlink($output_file);
-        }
-
-
-        $I->amOnPage(ExportPage::$Url);
-        $I->click(ExportPage::$SelectMenu);
-
-        //get pathes to all checkboxes and mark each if its's not checked
-        $checkboxes = ExportPage::allCheckboxes();
-        foreach ($checkboxes as $checkbox) {
-            if ($I->grabAttributeFrom($checkbox . '/..', 'class') == 'frame_label no_connection eattrcol') {
-                $I->click($checkbox);
-            }
-        }
-
-        $I->fillField(ExportPage::$SelectMenu, $this->category);
-        $I->wait(3);
-        $I->click("//li[contains(.,'$this->category')]");
-        $I->wait(3);
-        $I->click(ExportPage::$ButtonExport);
-        $I->wait(5);
-
-
-        $array_csv = CSV::loadCSV(BROWSER_DOWNLOADS . 'products.csv');
-    }
-
-}
-
-/**
-     * @group a
-     * @guy ImportExportTester\importexportSteps
-     */
-//    public function ExportProduct(ImportExportTester\importexportSteps $I) {
-//        $I->amOnPage('http://cmsprem.loc/admin/components/init_window/import_export/getTpl/export');
-//        $I->comment(CSV_OUTPUT_FILE);
-//        $handle = fopen(CSV_OUTPUT_FILE, 'rb');
-//        $csv = [];
-//        while ($csv [] = fgetcsv($handle,0,';')){
-//            
+//    public function exportCSV(ImportExportTester $I) {
+//        include_once '_steps/CSV.php';
+//        $output_file = BROWSER_DOWNLOADS . 'products.csv';
+//        //if browser downloads directory contains file products.csv - unlink it
+//        if (file_exists($output_file)) {
+//            $I->comment("I unlink file products.csv");
+//            unlink($output_file);
 //        }
-//        codecept_debug($csv);
+//
+//
+//        $I->amOnPage(ExportPage::$Url);
+//        $I->click(ExportPage::$SelectMenu);
+//
+//        //get pathes to all checkboxes and mark each if its's not checked
+//        $checkboxes = ExportPage::allCheckboxes();
+//        foreach ($checkboxes as $checkbox) {
+//            if ($I->grabAttributeFrom($checkbox . '/..', 'class') == 'frame_label no_connection eattrcol') {
+//                $I->click($checkbox);
+//            }
+//        }
+//
+//        $I->fillField(ExportPage::$SelectMenu, $this->category);
+//        $I->wait(3);
+//        $I->click("//li[contains(.,'$this->category')]");
+//        $I->wait(3);
+//        $I->click(ExportPage::$ButtonExport);
+//        $I->wait(5);
+//
+//
+//        $array_csv = CSV::loadCSV(BROWSER_DOWNLOADS . 'products.csv');
 //    }
 
+}
     /**
      * @group a
      * @guy ImportExportTester\importexportSteps

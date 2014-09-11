@@ -108,7 +108,7 @@
                         {lang('Update', 'translator')}
                     </button>
                     <span class="btn-group">
-                        <button type="button" class="btn btn-small btn-info dropdown-toggle" data-toggle="dropdown" style="margin-top: -5px;">
+                        <button type="button" class="btn btn-small btn-info dropdown-toggle" data-toggle="dropdown">
                             <i class="icon-white icon-list"></i>
                             {lang('Others', 'translator')}<span class="caret"></span>
                         </button>

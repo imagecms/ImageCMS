@@ -108,7 +108,6 @@ extends \SeoExpertTester
         $I->click('//tbody/tr/td/div/div[6]/div[2]/span/span');
         $I->click('//tbody/tr/td/div/div[7]/div[2]/span/span');
         $I->click('//tbody/tr/td/div/div[8]/div[2]/span/span');
-        $I->click('//table/tbody/tr/td/div/div[9]/div[2]/span/span');
         $I->click('//tbody/tr/td/div/div[10]/div/div/ul/li/input');
         $I->wait('2');
         $I->fillField('//tbody/tr/td/div/div[10]/div/div/ul/li/input', $Category);
@@ -135,7 +134,8 @@ extends \SeoExpertTester
          $I->wait('2');
          $I->click('//table/tbody/tr/td/div/div/div/div/div/select/option[1]');
             if(isset($Property1)){
-                $I->click('//tbody/tr/td/div/div/div/div/div/select/option[2]');            
+                $I->click('//table/tbody/tr/td/div/div/div/div/div/select/option[1]');            
+                $I->click('//table/tbody/tr/td/div/div/div/div/div/select/option[2]');            
             }
         $I->wait('1');
         $I->click('//section/div/div[2]/div/button[2]');
@@ -203,7 +203,14 @@ extends \SeoExpertTester
         $I->wait('1');
     }
     
-    
-    
+//    function DeleteCategorySEO($name_category = NULL) {
+//        $I = $this;
+//        $I->amOnPage('/admin/components/run/shop/categories');
+//        $amount_category = $I->grabCCSAmount($I, '.share_alt');
+//        $I->comment("$amount_category");
+//        $name_search_category = $I->grabTextFrom('.share_alt');
+//        $I->comment("$name_search_category");
+//    }
+   
     
 }
