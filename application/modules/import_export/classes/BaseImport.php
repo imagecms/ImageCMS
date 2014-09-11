@@ -294,29 +294,30 @@ class BaseImport extends \CI_Model {
     public function makeAttributesList() {
         if (!count($this->possibleAttributes)) {
             $this->possibleAttributes = array(
-                'skip' => 'Пропустить колонку',
-                'name' => 'Имя товара',
-                'url' => 'URL',
-                'prc' => 'Цена',
-                'oldprc' => 'Старая Цена',
-                'stk' => 'Количество',
-                'num' => 'Артикул',
-                'var' => 'Имя варианта',
-                'act' => 'Активен',
-                'hit' => 'Хит',
-                'hot' => 'Новинка',
-                'action' => 'Акция',
-                'brd' => 'Бренд',
-                'cat' => 'Категория',
-                'relp' => 'Связанные товары',
-                'vimg' => 'Основное изображение варианта',
-                'cur' => 'Валюта',
-                'imgs' => 'Дополнительные изображения',
-                'shdesc' => 'Краткое описание',
-                'desc' => 'Полное описание',
-                'mett' => 'Meta Title',
-                'metd' => 'Meta Description',
-                'metk' => 'Meta Keywords');
+                'skip' => lang('Skip column','import_export'),
+                'name' => lang('Product Name','import_export'),
+                'url' => lang('URL','import_export'),
+                'prc' => lang('Price','import_export'),
+                'oldprc' => lang('Old Price','import_export'),
+                'stk' => lang('Amount','import_export'),
+                'num' => lang('Article','import_export'),
+                'var' => lang('Variant name','import_export'),
+                'act' => lang('Active','import_export'),
+                'hit' => lang('Hit','import_export'),
+                'hot' => lang('Latest','import_export'),
+                'action' => lang('Action','import_export'),
+                'brd' => lang('Brand','import_export'),
+                'cat' => lang('Category','import_export'),
+                'relp' => lang('Related products','import_export'),
+                'vimg' => lang('Main image variant','import_export'),
+                'cur' => lang('Currencies','import_export'),
+                'imgs' => lang('Additional images','import_export'),
+                'shdesc' => lang('Short description','import_export'),
+                'desc' => lang('Full description','import_export'),
+                'mett' => lang('Meta Title','import_export'),
+                'metd' => lang('Meta Description','import_export'),
+                'metk' => lang('Meta Keywords','import_export')
+                );
 
             $properties = $this->db->query('
                 SELECT shop_product_properties.id, shop_product_properties.csv_name, shop_product_properties_i18n.name
