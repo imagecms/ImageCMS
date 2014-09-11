@@ -62,7 +62,7 @@
                                                 </select>
                                             </div>
                                             <button type="button" data-loading-text="{lang('Loading properties','import_export')}..." class="btn btn-small m-t_10" id="showCatProps" disabled="disabled">
-                                                <i class="icon-chevron-down m-r_5"></i>{lang('Show properties of the selected categories','admin')}
+                                                <i class="icon-chevron-down m-r_5"></i>{lang('Show properties of the selected categories','import_export')}
                                             </button>
                                         </div>
                                     </div>
@@ -105,7 +105,7 @@
                                             <span class="niceCheck b_n">
                                                 <input class="btn btn-small action_on" type="checkbox" value="true" name="withZip">
                                             </span>
-                                            <span>{lang('Сделать архивацию фото','admin')}</span>
+                                            <span>{lang('Make a backup of photos','import_export')}</span>
                                         </span>
                                     </span>
 
