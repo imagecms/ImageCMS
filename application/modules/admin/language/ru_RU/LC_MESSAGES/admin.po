@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-11 01:42+0300\n"
-"PO-Revision-Date: 2014-09-11 01:42+0300\n"
+"POT-Creation-Date: 2014-09-11 01:50+0300\n"
+"PO-Revision-Date: 2014-09-11 01:50+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -4471,7 +4471,7 @@ msgstr "Показать"
 
 #: ./application/modules/shop/admin/templates/orders/edit.tpl:182
 #: ./application/modules/shop/admin/templates/orders/edit_1.tpl:185
-#:Position created ./application/modules/shop/admin/templates/orders/_create.tpl:126
+#: Position created ./application/modules/shop/admin/templates/orders/_create.tpl:126
 msgid "Show on map"
 msgstr "Показать на карте"
 
