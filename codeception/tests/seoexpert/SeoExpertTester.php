@@ -62,7 +62,7 @@ class SeoExpertTester extends \Codeception\Actor
      */
     public function fail($message) {
         return $this->scenario->runStep(new \Codeception\Step\Action('fail', func_get_args()));
-    }
+        }
 
  
     /**

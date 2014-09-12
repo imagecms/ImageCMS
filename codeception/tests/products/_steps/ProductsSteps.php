@@ -3,15 +3,28 @@ namespace ProductsTester;
 
 class ProductsSteps extends \ProductsTester
 {
-    public function CreateProduct($name,$nameVariant=null,$price,$currency=null,$articul=null,$amount=null,$image2=null,
-            $brand=null,$category=null,$addCat=null,$shortDesc=null,$fullDesc=null,$comment=null,$dateCreate=null,$oldPrice=null,$mainTemp=null,
+    public function CreateProduct($name,$nameVariant=null,$price,$hotStatus=null,$newStatus=null, $saleStatus=null,$currency=null,$articul=null,$amount=null,$image2=null,
+            $brand=null,$category=null,$addCat=null,$shortDesc=null,$fullDesc=null,$comment='yes',$dateCreate=null,$oldPrice=null,$mainTemp=null,
             $url=null,$mTitle=null,$mDesc=null,$mKeywords=null,$save='save')
     {
         $I = $this;
+        $ret = array();
         $I->amOnPage(\ProductsPage::$URL);
         $I->click(\ProductsPage::$CreateProductButton);
         $I->waitForText('Создание товара');
         $I->fillField(\ProductsPage::$NameProduct, $name);
+        if (isset($hotStatus)){
+            $I->click(\ProductsPage::$HotProductButton);
+        }
+        if (isset($newStatus)){
+            $I->click(\ProductsPage::$NewProductButton);
+        }
+        if (isset($saleStatus)){
+            $I->click(\ProductsPage::$SaleProductButton);
+        }
+        if (isset($oldPrice)){
+            $I->fillField(\ProductsPage::$OldPrice, $oldPrice);
+        }
         if(isset($nameVariant)){
             $I->fillField(\ProductsPage::$NameVariantProduct, $nameVariant);
         }
@@ -40,21 +53,25 @@ class ProductsSteps extends \ProductsTester
 //            $I->wait('3');
             $I->waitForElement(".//*[@id='image_search_result']/span[1]");
             $I->click(".//*[@id='image_search_result']/span[1]");
-            $im=$I->grabAttributeFrom(".//*[@id='image_search_result']/span[1]/img", 'src');
+            $im=$I->grabAttributeFrom(".//*[@id='image_search_result']/span[1]/img", 'src');//*[@id="ProductVariantRow_0"]/td[1]/div/div/img
             $I->comment($im);
             $I->click(".//*[@id='save_image']");
             $I->wait('4');
-            $im2=$I->grabAttributeFrom(".//*[@id='ProductVariantRow_0']/td[6]/div/div/img", 'src');
+            $im2=$I->grabAttributeFrom(".//*[@id='ProductVariantRow_0']/td[1]/div/div/img", 'src');
             $I->comment($im2);
             $I->assertEquals($im2, $im);
+            $ret['image'] = $im;
         }
         if(isset($brand)){
             $I->click(\ProductsPage::$BrandName);
+            $I->wait('2');
             $br=$I->grabTextFrom(\ProductsPage::$BrandName."/div/ul/li[$brand]");
             $I->comment($br);
-            $I->click(\ProductsPage::$BrandName."/div/ul/li[$brand]");
+//            $I->click(\ProductsPage::$BrandName);
+            $I->click(\ProductsPage::$BrandName."/div/ul/li[$brand]");//*[@id="inputParent_chosen"]/div/ul/li[27]
             $I->wait('1');
             $I->see($br, \ProductsPage::$BrandName.'/a/span');
+            $ret['brand'] = $br;
         }
         if(isset($category)){
             $I->click(\ProductsPage::$Category);
@@ -63,6 +80,7 @@ class ProductsSteps extends \ProductsTester
             $I->click(\ProductsPage::$Category."/div/ul/li[$category]");
             $I->wait('1');
             $I->see($cat, \ProductsPage::$Category.'/a/span');
+            $ret['category'] = $cat;
         }                
         if(isset($addCat)){
             $I->click(\ProductsPage::$AdditionalCategory);
@@ -72,6 +90,7 @@ class ProductsSteps extends \ProductsTester
             $I->click(\ProductsPage::$AdditionalCategory."/div/ul/li[$addCat]");
             $I->wait('1');
             $I->see($add, \ProductsPage::$AdditionalCategory.'/ul/li/span');
+            $ret['addCategory'] = $add;
         }        
         if(isset($shortDesc)){
             $I->fillField(\ProductsPage::$ShortDescription, $shortDesc);
@@ -79,19 +98,28 @@ class ProductsSteps extends \ProductsTester
         if(isset($fullDesc)){
             $I->fillField(\ProductsPage::$FullDescription, $fullDesc);
         }
-        if(isset($comment)){
-            $I->click(\ProductsPage::$Comments);
-            $I->wait('2');
-            $I->selectOption(\ProductsPage::$Comments, $comment);
-        }
+        $I->click(\ProductsPage::$PreferencesButton);
+        $I->waitForElement(\ProductsPage::$MetaTitle);
+        switch ($comment) {
+            case 'yes':
+                $I->click(\ProductsPage::Comments('1'));
+                $activeRadioBut=$I->grabAttributeFrom(\ProductsPage::Comments('1')."/span/input", 'checked');
+                $I->comment("$activeRadioBut");
+                $I->assertEquals($activeRadioBut, 'true');                
+                break;
+            case 'no':
+                $I->click(\ProductsPage::Comments('2'));
+                $activeRadioBut=$I->grabAttributeFrom(\ProductsPage::Comments('2')."/span/input", 'checked');
+                $I->comment("$activeRadioBut");
+                $I->assertEquals($activeRadioBut, 'true');
+                break;
+        }        
         if(isset($dateCreate)){
             $I->fillField(\ProductsPage::$DateOfCreate, $dateCreate);
         }
         $date=$I->grabValueFrom(\ProductsPage::$DateOfCreate);
         $I->comment($date);
-        if (isset($oldPrice)){
-            $I->fillField(\ProductsPage::$OldPrice, $oldPrice);
-        }
+        $ret['date'] = $date;
         if(isset($mainTemp)){
             $I->fillField(\ProductsPage::$MainTemplate, $mainTemp);
         }
@@ -115,7 +143,7 @@ class ProductsSteps extends \ProductsTester
                 $I->click(\ProductsPage::$SaveAndExitButton);
                 break;
         }
-        return $date;
+        return $ret;
     }    
     
     public function GenerateNameProduct()
@@ -134,14 +162,29 @@ class ProductsSteps extends \ProductsTester
     }
     
     
-    public function CheckInFields($name,$nameVariant=null,$price,$currency=null,$articul=null,$amount=null,$image2=null,
-            $brand=null,$category=null,$addCat=null,$shortDesc=null,$fullDesc=null,$comment=null,$date=null,$oldPrice=null,$mainTemp=null,
+    public function CheckInFields($name,$nameVariant=null,$price,$hotStatus=null,$newStatus=null, $saleStatus=null,$currency=null,$articul=null,$amount=null,$image=null,
+            $brand=null,$category=null,$addCat=null,$shortDesc=null,$fullDesc=null,$comment='yes',$date=null,$oldPrice=null,$mainTemp=null,
             $url=null,$mTitle=null,$mDesc=null,$mKeywords=null)
     {
         $I = $this;
-        $I->waitForText($name, "5", '//*[@id="mainContent"]/section/div/div[1]/span[2]');
+        $I->waitForText($name, "6", '//*[@id="mainContent"]/section/div/div[1]/span[2]');
         $I->wait('3');
         $I->seeInField(\ProductsPage::$NameProduct, $name);
+        if (isset($hotStatus)){
+            $hotClass=$I->grabAttributeFrom(\ProductsPage::$HotProductButton);
+            $I->assertEquals($hotClass, "btn btn-small  btn-primary active setHit");
+        }
+        if (isset($newStatus)){
+            $newClass=$I->grabAttributeFrom(\ProductsPage::$NewProductButton);
+            $I->assertEquals($newClass, "btn btn-small  btn-primary active setHot");
+        }
+        if (isset($saleStatus)){
+            $saleStatus=$I->grabAttributeFrom(\ProductsPage::$SaleProductButton);
+            $I->assertEquals($saleStatus, "btn btn-small  btn-primary active setAction");
+        }
+        if (isset($oldPrice)){
+            $I->seeInField(\ProductsPage::$OldPrice, $oldPrice);
+        }
         if(isset($nameVariant)){
             $I->seeInField(\ProductsPage::$NameVariantProduct, $nameVariant);
         }
@@ -157,9 +200,18 @@ class ProductsSteps extends \ProductsTester
             $I->seeInField(\ProductsPage::$Amount, $amount);
         }
         if(isset($image)){
-            $im2=$I->grabAttributeFrom(".//*[@id='ProductVariantRow_0']/td[6]/div/div/img", 'src');
+//            $im=array();
+//            $im[]=$image;
+            $image = explode("/", $image);        
+            $I->comment("$image[0]"."$image[1]");
+            $n = count($image);
+            $I->comment($n);
+            $I->comment("$image[$n]");
+            $im2=$I->grabAttributeFrom(".//*[@id='ProductVariantRow_0']/td[1]/div/div/img", 'src');
             $I->comment($im2);
-            $I->assertEquals($im2, $image);
+//            $I->assertEquals($im2, $image);
+//            $im=array();
+//            $im['image']=$im2;
         }
         if(isset($brand)){            
             $I->see($brand, \ProductsPage::$BrandName.'/a/span');
@@ -182,15 +234,22 @@ class ProductsSteps extends \ProductsTester
             $fdesc=  trim($desc2);
             $I->assertEquals($fdesc, $fullDesc);
         }
-        if(isset($comment)){
-            $I->seeOptionIsSelected(\ProductsPage::$Comments, $comment);
-        }
+        $I->click('//*[@id="image_upload_form"]/div[1]/div[1]/a[6]');
+        switch ($comment) {
+            case 'yes':
+                $activeRadioBut=$I->grabAttributeFrom(\ProductsPage::Comments('1')."/span/input", 'checked');
+                $I->comment("$activeRadioBut");
+                $I->assertEquals($activeRadioBut, 'true');                
+                break;
+            case 'no':                
+                $activeRadioBut=$I->grabAttributeFrom(\ProductsPage::Comments('2')."/span/input", 'checked');
+                $I->comment("$activeRadioBut");
+                $I->assertEquals($activeRadioBut, 'true');
+                break;
+        } 
         if(isset($date)){
             $I->seeInField(\ProductsPage::$DateOfCreate, $date);
-        }
-        if (isset($oldPrice)){
-            $I->seeInField(\ProductsPage::$OldPrice, $oldPrice);
-        }
+        }        
         if(isset($mainTemp)){
             $I->seeInField(\ProductsPage::$MainTemplate, $mainTemp);
         }
@@ -239,7 +298,7 @@ class ProductsSteps extends \ProductsTester
     }   
     
     
-    public function CheckInFrontEnd($name,$category=null,$articul=null,$price,$symbolmain=null,$brand=null,$shortDesc=null,$fullDesc=null,$comment='Нет',
+    public function CheckInFrontEnd($name,$category=null,$articul=null,$price,$symbolmain=null,$brand=null,$image=null,$shortDesc=null,$fullDesc=null,$comment='no',
             $oldPrice=null,$url=null)
     {
         $I = $this;
@@ -249,11 +308,16 @@ class ProductsSteps extends \ProductsTester
         if(isset($articul)){
             $I->see($articul, "html/body/div[1]/div[2]/div[2]/div[1]/div/div[1]/span/span[1]/span");
         }
-        $I->see($price, 'html/body/div[1]/div[2]/div[2]/div[1]/div/div[2]/div[2]/div[1]/div/div[1]/div[1]/span/span[1]/span/span[1]');
-        $I->see($symbolmain, 'html/body/div[1]/div[2]/div[2]/div[1]/div/div[2]/div[2]/div[1]/div/div[1]/div[1]/span/span[1]/span/span[2]');
+        $I->see($price, \CurrenciesPage::$MainFirstPlaceCard);
+        $I->see($symbolmain, \CurrenciesPage::$MainSecondPlaceCard);
         if(isset($brand)){
             $I->see($brand, "html/body/div[1]/div[2]/div[2]/div[1]/div/div[1]/span/span[2]/span/a");
         }
+        if(isset($image)){
+            $I->wait('2');
+            $im=$I->grabAttributeFrom('//*[@id="photoProduct"]/span/img', 'src');
+            $I->assertEquals($im, $image);          
+        }  
         if(isset($shortDesc)){
             $I->see($shortDesc, "html/body/div[1]/div[2]/div[2]/div[1]/div/div[2]/div[2]/div[2]");
         }
@@ -267,7 +331,7 @@ class ProductsSteps extends \ProductsTester
             $I->see($fullDesc, ".//*[@id='second']/div/div[2]");
         }
         switch ($comment) {
-            case 'Да':
+            case 'yes':
                 $I->click("html/body/div[1]/div[2]/div[2]/div[3]/ul/li[3]/button");
                 $I->waitForText("Текст комментария");
                 $I->seeElement(".//*[@id='comments']/div[2]/div/div[2]/div/form/label/span[2]/textarea");
@@ -276,7 +340,7 @@ class ProductsSteps extends \ProductsTester
                 $I->waitForElement(".//*[@id='comments']/div[2]/ul/li/div[1]/div[3]/div[1]/p");
                 $I->see("Great purchase", ".//*[@id='comments']/div[2]/ul/li/div[1]/div[3]/div[1]/p");
                 break;
-            case 'Нет':
+            case 'no':
                 $I->dontSeeElement("html/body/div[1]/div[2]/div[2]/div[3]/ul/li[3]/button");
                 break;
         }

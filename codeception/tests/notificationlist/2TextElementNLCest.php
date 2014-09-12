@@ -5,7 +5,7 @@ class TextElementNLCest
 //---------------------------AUTORIZATION---------------------------------------  
     
     /**
-     * @group aaa
+     * @group aa
      */
     public function Login(NotificationListTester $I){
         InitTest::Login($I);
@@ -16,7 +16,7 @@ class TextElementNLCest
 //---------------------------CREATE NOTIFI FRONT--------------------------------   
     
     /**
-     * @group aaa
+     * @group a
      */
     public function CreateNotificationFront(NotificationListTester $I){
         $I->wantTo('Create Notification on Frontend.');
@@ -112,14 +112,14 @@ class TextElementNLCest
 //-------------------MOUSE FOCUS TEXT MESSAGE LIST PAGE-------------------------
     
     /**
-     * @group a
+     * @group aa
      */
     public function VerifyTextElementList(NotificationListTester $I){
         $I->wantTo('Verify Visible Message Tooltip on Name Notifi.');
         $I->amOnPage(NotificationListPage::$ListPageURL);
         $I->wait('2');
         $I->moveMouseOver(NotificationListPage::$ListLinkEditting);
-        $I->wait('2');
+//        $I->wait('2');
         $I->see('Редактировать уведомление', NotificationListPage::$ListMouseMessage);
         $I->moveMouseOver(NotificationListPage::$ListSelectMain);
         $I->wait('2');
