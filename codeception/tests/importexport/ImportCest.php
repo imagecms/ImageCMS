@@ -38,7 +38,6 @@ class ImportExport {
                  'metaKeywords'     => 'tovarmetakeywords'
         ];
     
-    
     /**
      * @group current
      * @group import
