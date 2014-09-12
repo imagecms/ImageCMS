@@ -60,8 +60,8 @@ class ProductSEOCest
         $I->SeoSelectPropertyInProduct($NameProduct = 'Seoshny product', $Property1 = 'Yes');
     }
     
+
     
- 
     
     /**
      * @group a
@@ -140,7 +140,7 @@ class ProductSEOCest
         $I->amOnPage(seoexpertPage::$FrontProductURLRu);
         $I->wait('1');
         $I->seeInPageSource("$ID_product Seoshnii tovar Voda Hleb 777 руб Первое Свойство / mini.loc");
-             
+
     }
     
     
@@ -231,6 +231,7 @@ class ProductSEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
+
     public function ShopProductPageTitlePadeguCategory (SeoExpertTester\seoexpertSteps $I){  
         $I->DefoultValues();
         $I->amOnPage(seoexpertPage::$SeoUrl);
@@ -248,11 +249,12 @@ class ProductSEOCest
         $I->amOnPage(seoexpertPage::$FrontProductURLRu);
         $I->wait('1');
         $I->seeInPageSource('Вода Воды Воде Воду Водой Воде / mini.loc');             
+
     }
     
     
     
-    
+
     
     /**
      * @group a
@@ -278,6 +280,7 @@ class ProductSEOCest
     }
     
     
+
     /**
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
@@ -286,7 +289,7 @@ class ProductSEOCest
         $I->DefoultValues();
         $ID_property = $I->GetPropertyID($name_property = 'Свойственно сео');
         $ID_product = $I->GetProductID($name_product = 'Сеошний товар');    
-        $I->wait('1');               
+        $I->wait('1');              
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->click(seoexpertPage::$SeoButtShop);
@@ -385,6 +388,7 @@ class ProductSEOCest
         $I->amOnPage(seoexpertPage::$FrontProductURLENG);
         $I->wait('1');
         $I->seeInPageSource("$ID_product Seoshny product Water Bread 777 руб First property / mini.loc");             
+
     }
     
     
@@ -474,7 +478,7 @@ class ProductSEOCest
      */
     public function ShopProductPageKeywords (SeoExpertTester\seoexpertSteps $I){
         $I->DefoultValues();
-        $ID_property = $I->GetPropertyID($name_property = 'Свойственно сео');                    
+        $ID_property = $I->GetPropertyID($name_property = 'Свойственно сео');
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->click(seoexpertPage::$SeoButtShop);

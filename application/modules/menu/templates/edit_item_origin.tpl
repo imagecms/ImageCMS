@@ -29,7 +29,7 @@
                 <input type="hidden" name="menu_id" value="{$menu.id}"/>
                 <input type="hidden" name="item_id" value="{$item.item_id}" id="item_page_id"/>
                 <input type="hidden" name="item_type" value="page"/>
-                <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                <table class="table  table-bordered table-hover table-condensed content_big_td">
                     <thead>
                         <tr>
                             <th colspan="6">
@@ -84,7 +84,7 @@
                     </tbody>
                 </table>
                 <input type="hidden" id="owner_id" value="{$insert_id}" />
-                <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                <table class="table  table-bordered table-hover table-condensed content_big_td">
                     <thead>
                         <tr>
                             <th colspan="6">
@@ -199,7 +199,7 @@
                 <input type="hidden" name="menu_id" value="{$menu.id}"/>
                 <input type="hidden" name="item_id" value="{$item.item_id}" id="cat_input"/>
                 <input type="hidden" name="item_type" value="category"/>
-                <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                <table class="table  table-bordered table-hover table-condensed content_big_td">
                     <thead>
                         <tr>
                             <th colspan="6">
@@ -226,7 +226,7 @@
                         </tr>
                     </tbody>
                 </table>
-                <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                <table class="table  table-bordered table-hover table-condensed content_big_td">
                     <thead>
                         <tr>
                             <th colspan="6">
@@ -364,7 +364,7 @@
                         </ul>
                     </div>
                     <div class="span9">
-                        <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                        <table class="table  table-bordered table-hover table-condensed content_big_td">
                             <thead>
                                 <tr>
                                     <th colspan="6">
@@ -504,7 +504,7 @@
                 <input type="hidden" name="menu_id" value="{$menu.id}">
                 <input type="hidden" name="item_id" value="0"/>
                 <input type="hidden" name="item_type" value="url"/>
-                <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                <table class="table  table-bordered table-hover table-condensed content_big_td">
                     <thead>
                         <tr>
                             <th colspan="6">
@@ -529,7 +529,7 @@
                         </tr>
                     </tbody>
                 </table>
-                <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                <table class="table  table-bordered table-hover table-condensed content_big_td">
                     <thead>
                         <tr>
                             <th colspan="6">
