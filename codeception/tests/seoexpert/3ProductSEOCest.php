@@ -7,7 +7,7 @@ class ProductSEOCest
     
 //---------------------------AUTORIZATION--------------------------------------- 
     /**
-     * @group aa
+     * @group a
      */
     public function Login(SeoExpertTester $I){
         InitTest::Login($I);
@@ -43,8 +43,8 @@ class ProductSEOCest
      * @guy SeoExpertTester\seoexpertSteps 
      */
     public function CreateProductForFront (SeoExpertTester\seoexpertSteps $I){
-        $I->SeoCreateProduct($NameProduct = 'Сеошний товар', $PriceProduct = '777', $BrandProduct = 'Хлеб', $CategoryProduct = 'Вода');
-        $I->SeoCreateProduct($NameProduct = 'Seoshny product', $PriceProduct = '777', $BrandProduct = 'Bread', $CategoryProduct = 'Water');
+        $I->SeoCreateProduct($NameProduct = 'Сеошний товар', $PriceProduct = '777', $BrandProduct = 'Хлеб', $CategoryProduct = 'Вода', $Additional_Category = '');
+        $I->SeoCreateProduct($NameProduct = 'Seoshny product', $PriceProduct = '777', $BrandProduct = 'Bread', $CategoryProduct = 'Water', $Additional_Category = '');
 
     }
     
@@ -417,7 +417,7 @@ class ProductSEOCest
     
     
     /**
-     * @group aa
+     * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function ShopProductPageDescriptionPadeguCategory (SeoExpertTester\seoexpertSteps $I){     

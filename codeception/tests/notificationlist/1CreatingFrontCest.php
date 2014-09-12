@@ -5,7 +5,7 @@ class CreatingFrontCest
 //---------------------------AUTORIZATION---------------------------------------
     
     /**
-     * @group aa
+     * @group a
      */
     public function Login(NotificationListTester $I){
         InitTest::Login($I);
@@ -52,7 +52,7 @@ class CreatingFrontCest
         $I->wait('2');
         $I->scrollToElement($I, '.infoBut.isDrop');
         $I->wait('1');
-        $I->click(NotificationCreateFrontPage::$ButtonOnPage); 
+        $I->click(NotificationCreateFrontPage::$ButtonOnPage);
         $I->waitForText('Сообщить о появлении');
         $I->seeElement(NotificationCreateFrontPage::$ButtonX);
         $I->seeElement(NotificationCreateFrontPage::$FildUserPresent);
@@ -72,7 +72,7 @@ class CreatingFrontCest
         $I->wantTo('Verify Alert Message Presence.');
         $I->amOnPage(NotificationCreateFrontPage::$PageURL);
         $I->wait('2');
-        $I->scrollToElement($I, '.infoBut.isDrop');
+        $I->scrollToElement($I, '.isDrop.infoBut');
         $I->wait('1');
         $I->click(NotificationCreateFrontPage::$ButtonOnPage);
         $I->waitForText('Сообщить о появлении');
@@ -174,7 +174,7 @@ class CreatingFrontCest
 //-----------------------MESSAGE LIMITATION FIELD PHONE-------------------------
         
     /**
-     * @group aa
+     * @group a
      */    
     public function Message1FildPhone (NotificationListTester $I){  
         $I->wantTo('Verify Alert Message Presence.');
@@ -254,7 +254,7 @@ class CreatingFrontCest
         $I->wantTo('Verify Tooltip Message Presence.');
         $I->amOnPage(NotificationListPage::$ListPageURL);
         $I->wait('1');
-        $I->see('Africa@Boombaataa.net', NotificationListPage::$ListLinkEditting);
+        $I->see('Africa@Boombaataa.net', '//section/div[5]/div[1]/form/table/tbody/tr/td[3]');
         $I->click(NotificationListPage::$ListLinkEditting);
         $I->see('Редактирование уведомления', NotificationListPage::$EditingTitle);
         }
