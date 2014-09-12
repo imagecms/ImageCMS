@@ -1,9 +1,7 @@
 <?php
 namespace SeoExpertTester;
 
-class seoexpertSteps 
-
-extends \SeoExpertTester
+class seoexpertSteps extends \SeoExpertTester
 
 {
 
@@ -292,6 +290,36 @@ extends \SeoExpertTester
         }
         $I->click(\seoexpertPage::$SeoButtSave);
     }
-   
+    
+    function DeleteProductCategorys() {
+        $I = $this;
+        $first_default_category = 'Телефония, МР3-плееры, GPS';
+        $second_default_category = 'Домашнее видео';
+        $third_default_category = 'Детские товары';
+        $fourth_default_category = 'Активный отдых и туризм';
+        $fifth_default_category = 'Музыкальные инструменты';
+        $I->amOnPage('/admin/components/run/shop/categories');
+        $I->wait('1');
+        $amount_rows = $I->grabCCSAmount($I, '.share_alt');
+        $I->comment("$amount_rows --- количество строк");
+        for($j = 1;$j <= $amount_rows;++$j){
+        $name_search = $I->grabTextFrom("//section/div[2]/div/div[2]/div/div[$j]/div/div[3]/div/a");
+        $I->comment("$name_search даное имя !!!");
+            if($name_search != $first_default_category && $name_search != $second_default_category && $name_search != $third_default_category && $name_search != $fourth_default_category && $name_search != $fifth_default_category){
+                $I->click("//section/div[2]/div/div[2]/div/div[$j]/div/div[1]");
+                $I->wait('1');
+                $I->click('//section/div[1]/div[2]/div/button[1]');
+                $I->wait('1');
+                $I->click('//section/div[4]/div[3]/a[1]');
+                $I->wait('3');
+                $I->amOnPage('/admin/components/run/shop/categories');
+                $I->wait('3');
+                $amount_rows--;
+                $j--;
+                $I->comment("Status:'$name_search' is Deleting.");                
+            }
+        }
+        $I->comment("Все созданные категории, успешно удалены. Остались только дефолтные !!!");
+    }
     
 }

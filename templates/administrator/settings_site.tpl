@@ -189,11 +189,12 @@
                                                 <div class="form-horizontal">
                                                     <div class="row-fluid">
 
-                                                        <div class="control-group m-t_10">
+                                                        <div class="control-group m-t_10 frame_label no_connection">
                                                             <label class="control-label" for="main_typesq">{lang('Categories',"admin")}:</label>
-                                                            <div class="controls">
-
-                                                                <input type="radio" id="main_typesq" name="main_type" value="category" {if $main_type == "category"} checked="checked" {/if} />
+                                                            <div class="controls ctext">
+                                                                <span class="niceRadio b_n">
+                                                                    <input type="radio" id="main_typesq" name="main_type" value="category" {if $main_type == "category"} checked="checked" {/if} />
+                                                                </span>
 
                                                                 <select name="main_page_cat" class="input-large">
                                                                     { $this->view("cats_select.tpl", $this->template_vars); }
@@ -201,20 +202,22 @@
                                                             </div>
                                                         </div>
 
-                                                        <div class="control-group m-t_10">
+                                                        <div class="control-group m-t_10 frame_label no_connection">
                                                             <label class="control-label" for="main_types">{lang('Page',"admin")}:</label>
-                                                            <div class="controls">
-                                                                <input type="radio" id="main_types" name="main_type" value="page" {if $main_type == "page"} checked="checked" {/if} />
-
+                                                            <div class="controls ctext">
+                                                                <span class="niceRadio b_n">
+                                                                    <input type="radio" id="main_types" name="main_type" value="page" {if $main_type == "page"} checked="checked" {/if} />
+                                                                </span>
                                                                 <input type="text" class="input-small" name="main_page_pid" class="textbox_long" style="width:100px" value="{$main_page_id}" /> - {lang("Page ID","admin")}
                                                             </div>
                                                         </div>
 
-                                                        <div class="control-group m-t_10">
+                                                        <div class="control-group m-t_10 frame_label no_connection">
                                                             <label class="control-label" for="main_type">{lang('Module',"admin")}:</label>
-                                                            <div class="controls">
-
-                                                                <input type="radio" id="main_type" name="main_type" value="module" {if $main_type == "module"} checked="checked" {/if} />
+                                                            <div class="controls ctext">
+                                                                <span class="niceRadio b_n">
+                                                                    <input type="radio" id="main_type" name="main_type" value="module" {if $main_type == "module"} checked="checked" {/if} />
+                                                                </span>
 
                                                                 <select name="main_page_module"  class="input-large">
                                                                     {foreach $modules as $m}
