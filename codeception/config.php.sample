@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Вказати шлях до опен сервера
  */
@@ -6,10 +7,12 @@ define('OPENSERVER_PATH','C:\OpenServer\domains');
 /**
  * вказати імя домена
  */
-define('OPENSERVER_DOMAIN','\lastbuild.loc');
+define('OPENSERVER_DOMAIN','\cmsprem.loc');
+
 /**
- * не змінювати
+ * папка загрузки файлів з браузера
  */
 
+//define('OTPUT_CSV_FILE', BROWSER_DOWNLOADS . 'products.csv');
+//mkdir(BROWSER_DOWNLOADS);
 define('BROWSER_DOWNLOADS', 'C:\Users\moff\Downloads\\');
-
