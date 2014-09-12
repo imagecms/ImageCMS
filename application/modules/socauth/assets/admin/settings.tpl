@@ -16,7 +16,7 @@
             </div>
         </div>                            
     </div>
-    <form method="post" action="{site_url('admin/components/cp/socauth/update_settings')}" class="form-horizontal" id="settings_form">
+    <form method="post" action="{site_url('admin/components/cp/socauth/update_settings')}" class="form-horizontal m-t_10" id="settings_form">
         <table class="table  table-bordered table-hover table-condensed content_big_td">
             <thead>
                 <tr>

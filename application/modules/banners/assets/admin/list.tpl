@@ -17,7 +17,7 @@
                     </span>
 
                     <a href="/admin/components/init_window/banners/create" class="btn btn-small btn-success pjax"><i class="icon-plus-sign icon-white"></i>{lang('Create a banner', 'banners')}</a>
-                    <button type="button" class="btn btn-small btn-danger disabled action_on" id="banner_del" onclick="DeleteSliderBanner()"><i class="icon-trash icon-white"></i>{lang('Delete', 'banners')}</button>
+                    <button type="button" class="btn btn-small btn-danger disabled action_on" id="banner_del" onclick="DeleteSliderBanner()"><i class="icon-trash"></i>{lang('Delete', 'banners')}</button>
                 </div>
             </div>
         </div>

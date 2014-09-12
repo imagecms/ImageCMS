@@ -31,7 +31,7 @@
 
                     <a href="/admin/components/modules_table" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Go back", 'mailer')}</span></a>
                     <button type="button" class="btn btn-small formSubmit" data-form="#send" ><i class="icon-list-alt"></i>{lang("Send a letter", 'mailer')}</button>
-                    <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="delete_function.deleteFunction()" id="del_sel_brand"><i class="icon-trash icon-white"></i>{lang("Delete", 'mailer')}</button>
+                    <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="delete_function.deleteFunction()" id="del_sel_brand"><i class="icon-trash"></i>{lang("Delete", 'mailer')}</button>
                 </div>
             </div>                            
         </div>

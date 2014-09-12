@@ -27,7 +27,7 @@
                 <div class="pull-right">
                     <div class="d-i_b">
                         <button type="button" class="btn btn-small btn-success" onclick="window.location.href = '{$BASE_URL}admin/components/cp/menu/create_tpl'"><i class="icon-plus-sign icon-white"></i>{lang("Create a menu", "menu")}</button>
-                        <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="delete_function.deleteFunction()"><i class="icon-trash icon-white"></i>{lang("Delete", "menu")}</button>
+                        <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="delete_function.deleteFunction()"><i class="icon-trash"></i>{lang("Delete", "menu")}</button>
                     </div>
                 </div>                            
             </div>

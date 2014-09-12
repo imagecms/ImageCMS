@@ -70,7 +70,7 @@
                                                             onclick="change_status('/admin/components/init_window/gallery/delete_album/{echo $item.id}/{echo $item.category_id}')"
                                                             data-title="{lang('Delete', 'gallery')}"
                                                             data-remove="">
-                                                        <i class="icon-trash icon-white"></i> {lang('Delete', 'gallery')}
+                                                        <i class="icon-trash"></i> {lang('Delete', 'gallery')}
                                                     </button>
                                                 </td>
                                             </tr>

@@ -7,8 +7,8 @@
         <div class="pull-right">
             <div class="d-i_b">
                 <a href="{$BASE_URL}admin/components/cp/sample_mail" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Go back", 'admin')}</span></a>
-                <button type="button" class="btn btn-small formSubmit" data-form="#widget_form"><i class="icon-ok"></i>{lang("Save", 'admin')}</button>
-                <button type="button" class="btn btn-small formSubmit" data-form="#widget_form" data-action="tomain"><i class="icon-edit"></i>{lang("Save and go back", 'admin')}</button>
+                <button type="button" class="btn btn-small btn-primary formSubmit" data-form="#widget_form"><i class="icon-ok"></i>{lang("Save", 'admin')}</button>
+                <button type="button" class="btn btn-small formSubmit" data-form="#widget_form" data-action="tomain"><i class="icon-check"></i>{lang("Save and go back", 'admin')}</button>
                     {echo create_language_select($languages, $locale, "/admin/components/cp/sample_mail/edit/".$model.name)}
             </div>
         </div>                            
