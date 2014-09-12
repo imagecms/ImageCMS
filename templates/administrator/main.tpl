@@ -23,10 +23,6 @@
 
         <link rel="stylesheet" type="text/css" href="{$JS_URL}/elfinder-2.0/css/elfinder.min.css" media="screen" charset="utf-8">
         <link rel="stylesheet" type="text/css" href="{$JS_URL}/elfinder-2.0/css/theme.css" media="screen" charset="utf-8">
-
-        <script type="text/javascript">
-            var MAINSITE = "{echo MAINSITE}";
-        </script>
         <script src="{$THEME}js/jquery-1.8.2.min.js" type="text/javascript"></script>
     </head>
     <body>
