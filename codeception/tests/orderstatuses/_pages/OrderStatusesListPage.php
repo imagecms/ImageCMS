@@ -14,7 +14,7 @@ class OrderStatusesListPage
     public static $ListCollumFontColor = "//th[4]";
     public static $ListCollumBackColor = "th.span2";
     public static $ListColumnDelete = "//th[5]";
-    public static $ListMessageMouseFocuse = "div.tooltip-inner";
+    public static $ListMessageMouseFocuse = ".tooltip-inner";
     public static $ListMessageDragDrop = ".alert.in.fade.alert-success";
     public static $ListTitle = ".//*[@id='orderStatusesList']/section/div[1]/div[1]";
 

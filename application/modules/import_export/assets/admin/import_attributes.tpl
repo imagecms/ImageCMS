@@ -4,7 +4,7 @@
             {if $key === 0}
                 <span data-title="&lt;b&gt;{lang('Attributes','import_export')}&lt;/b&gt;" class="popover_ref" data-original-title=""><i class="icon-info-sign"></i></span>
                 <div class="d_n">{lang('The list of attributes that will be imported','import_export')}</div>
-                <span>{lang('Properties','admin')}</span>
+                <span>{lang('Properties','import_export')}</span>
             {/if}
         </span>
         <div class="controls">
@@ -16,7 +16,7 @@
                         </div>
                     {else:}
                         <button class="btn btn-mini dropdown-toggle" data-toggle="dropdown" title="{lang('Skip column','import_export')}" style="max-width: 165px;padding: 4px 6px 0px;">
-                            <span data-attrnames="skip" class="attrnameHolder">{lang('Skip column','admin')}</span>&nbsp;<span class="caret"></span>
+                            <span data-attrnames="skip" class="attrnameHolder">{lang('Skip column','import_export')}</span>&nbsp;<span class="caret"></span>
                         </button>
                         <ul style="height:213px;overflow:auto;" class="dropdown-menu dropdown-attr">
                             {foreach $attributes as $keyAttr => $attribut}
