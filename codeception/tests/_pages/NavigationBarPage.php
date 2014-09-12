@@ -46,5 +46,5 @@ class NavigationBarPage
     //      Каталог товаров
     public static $ProductsCatalogue = "//div[1]/div[3]/table/tbody/tr/td[2]/a";
     public static $ProductCategories = "//div[3]/table/tbody/tr/td[2]/ul/li[1]/a";
-    public static $ProductList = "//div[3]/table/tbody/tr/td[2]/ul/li[2]/a";
+    public static $ProductsList = "//div[3]/table/tbody/tr/td[2]/ul/li[2]/a";
 }
