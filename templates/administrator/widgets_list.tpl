@@ -65,15 +65,21 @@
                                 </td>
                                 <td>{$widget.id}</td>
                                 <td> 
-                                    <a 
-                                        {if $widget.config == TRUE} 
-                                            class="pjax" href="/admin/widgets_manager/edit_module_widget/{$widget.id}" 
-                                            data-rel="tooltip" data-title="{lang("Editing","admin")}"
-                                        {/if}  
-                                        {if $widget.type == 'html'} 
-                                            class="pjax" href="/admin/widgets_manager/edit_html_widget/{$widget.id}"
+                                    {if $widget.config == TRUE || $widget.type == 'html'}
+                                        <a 
+                                            {if $widget.config == TRUE} 
+                                                class="pjax" href="/admin/widgets_manager/edit_module_widget/{$widget.id}" 
+                                                data-rel="tooltip" data-title="{lang("Editing","admin")}"
+                                            {/if}  
+                                            {if $widget.type == 'html'} 
+                                                class="pjax" href="/admin/widgets_manager/edit_html_widget/{$widget.id}"
+                                            {/if}
+                                            >
                                         {/if}
-                                        >{$widget.name}</a>
+                                        {$widget.name}
+                                        {if $widget.config == TRUE ||  $widget.type == 'html'}
+                                        </a>
+                                    {/if}
                                 </td>
                                 <td>
                                     {switch $widget.type}
@@ -89,7 +95,7 @@
                                 <td class="span2 t-a_c">
                                     {if $widget.config == TRUE}
                                         <a class="btn-small btn pjax" href="/admin/widgets_manager/edit/{$widget.id}" data-rel="tooltip" data-title="{lang("Settings","admin")}"><i class="icon-wrench"></i></a>
-                                    {/if}
+                                        {/if}
                                 </td>
                             </tr>
                         {/foreach}

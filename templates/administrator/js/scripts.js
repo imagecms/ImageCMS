@@ -245,14 +245,10 @@ function changeRadioStart(el)
     return false;
 }
 function dis_un_dis() {
-    var label_act = $('.frame_label.active');
-    if (label_act.length > 0) {
+    if ($('.body_category, tbody').find('.frame_label:not(.no_connection).active').length > 0)
         $('.action_on').removeClass('disabled').attr('disabled', false);
-    }
     else
-    {
         $('.action_on').addClass('disabled').attr('disabled', true);
-    }
 }
 
 function init_2() {

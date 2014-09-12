@@ -15,7 +15,7 @@
                     </a>
                 </div>
                 <div class="d-i_b">
-                    <button type="button" class="btn btn-small btn-success action_on formSubmit" data-form="#settings_form">
+                    <button type="button" class="btn btn-small btn-primary action_on formSubmit" data-form="#settings_form">
                         <i class="icon-ok"></i>
                         {lang('Save', 'translator')}
                     </button>

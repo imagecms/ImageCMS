@@ -140,7 +140,7 @@
                                                                 sql
                                                             </span>
                                                             <div style="margin-top: 30px;">
-                                                                <button type="button" class="btn btn-small btn-success action_on formSubmit" data-form="#createBackup" data-submit><i class="icon-plus-sign icon-white"></i>{lang("Create","admin")}</button>
+                                                                <button type="button" class="btn btn-small btn-success action_on formSubmit" data-form="#createBackup" data-submit><i class="icon-plus-sign icon-white m-r_5"></i>{lang("Create","admin")}</button>
                                                             </div>
                                                         </div>
                                                     </div> 
