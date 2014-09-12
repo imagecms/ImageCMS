@@ -362,7 +362,7 @@
                             <hr>
                         </div>
                         <form method="post" action="{site_url('admin/components/init_window/translator/createFile')}" class="form-horizontal" id="po_settings_form">
-                            <table style="width: 49%; float: left;" class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                            <table style="width: 49%; float: left;" class="table  table-bordered table-hover table-condensed content_big_td">
                                 <thead>
                                     <tr>
                                         <th>

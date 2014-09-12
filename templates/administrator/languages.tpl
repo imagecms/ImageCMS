@@ -56,7 +56,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {foreach $langs as $key => $lang}                                  
+                                {foreach $langs as $key => $lang}
                                     <tr class="simple_tr">
                                         <td class="t-a_c">
                                             {if $key > 1}

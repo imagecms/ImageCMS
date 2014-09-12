@@ -141,11 +141,7 @@ class seoexpertPage
     
     
     // Front 
-    public static $FrontProductURL = "/shop/product/seoshnii-tovar";
-//    public static $FrontURL = "";
-//    public static $FrontURL = "";
-//    public static $FrontURL = "";
-    
-    
-    
+    public static $FrontProductURLRu = "/shop/product/seoshnii-tovar";
+    public static $FrontProductURLENG = "/shop/product/seoshny-product";
+
 }

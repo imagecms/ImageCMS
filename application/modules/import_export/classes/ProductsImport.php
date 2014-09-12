@@ -130,6 +130,8 @@ class ProductsImport extends BaseImport {
             'url' => 'url',
             'oldprc' => 'old_price',
             'hit' => 'hit',
+            'hot' => 'hot',
+            'action' => 'action',
             'BrandId' => 'brand_id',
             'relp' => 'related_products',
             'mimg' => 'mainImage',
@@ -288,6 +290,8 @@ class ProductsImport extends BaseImport {
             'CategoryId' => 'category_id',
             'oldprc' => 'old_price',
             'hit' => 'hit',
+            'hot' => 'hot',
+            'action' => 'action',
             'BrandId' => 'brand_id',
             'relp' => 'related_products',
             'mimg' => 'mainImage');
