@@ -2,8 +2,10 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
+
 "POT-Creation-Date: 2014-09-11 05:57+0400\n"
 "PO-Revision-Date: 2014-09-11 05:57+0400\n"
+
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -24,6 +26,7 @@ msgstr ""
 #: ./application/modules/shop/admin/templates/users/edit.tpl:144
 msgid "Purchase history"
 msgstr "История покупок"
+
 
 #: ./application/modules/shop/admin/callbacks.php:445
 msgid "Topic deleted"
@@ -2430,6 +2433,7 @@ msgstr "Импорт языка"
 msgid "Import-Export CSV/XLS"
 msgstr "Импорт-Экспорт CSV/XLS"
 
+
 #: ./application/modules/admin/settings.php:96
 #: ./application/modules/admin/widgets_manager.php:96
 #: ./application/modules/admin/widgets_manager.php:169
@@ -2441,6 +2445,7 @@ msgstr "Имя"
 
 #: ./application/modules/shop/admin/templates/settings/settings.tpl:866
 #: ./application/modules/shop/admin/templates/settings/settings.tpl:937
+
 msgid "Name of the customer"
 msgstr "Имя заказчика"
 
