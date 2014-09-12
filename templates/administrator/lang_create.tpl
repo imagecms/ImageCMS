@@ -16,7 +16,7 @@
         <div class="tab-content">
             <div class="tab-pane active" id="parameters">
                 <form action="{$BASE_URL}admin/languages/insert" method="post"  id="createLang" >
-                    <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                    <table class="table  table-bordered table-hover table-condensed content_big_td">
                         <thead>
                             <tr>
                                 <th colspan="6">

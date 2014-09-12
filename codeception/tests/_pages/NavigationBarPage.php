@@ -4,10 +4,14 @@ class NavigationBarPage
 {
     //      Navigation bar buttons
     
-    //Heade buttons
+    //Header buttons
     //
     public static $PersonalButton = "//a[@class='btn_header btn-personal-area']";
     public static $PersonalButtonLogout = "//a[@href='/admin/logout']";
+    
+    //      Модули
+    public static $Modules = "//div[@class='frame_nav']/table/tbody/tr/td[5]/a";
+    public static $ModulesAllModules = '//a[@href="/admin/components/modules_table"]';
     
     //     Настройки
     public static $Settings = "//div[1]/div[3]/table/tbody/tr/td[7]/a";

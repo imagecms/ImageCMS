@@ -21,14 +21,14 @@
                     </div>                            
                     <h4>{lang("Additional fields", 'cfcm')}</h4>
                     {if !empty($fields)}
-                        <table class="table  table-bordered table-hover table-condensed pages-table t-l_a">
+                        <table class="table  table-bordered table-hover table-condensed pages-table">
                             <thead>
                                 <tr>
                                     <th>{lang("Label", 'cfcm')}</th>
                                     <th>{lang("Name", 'cfcm')}</th>
                                     <th>{lang("Type", 'cfcm')}</th>
                                     <th>{lang("Categories", 'cfcm')}</th>
-                                    <th>{lang("Delete", 'cfcm')}</th>
+                                    <th class="span1">{lang("Delete", 'cfcm')}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -44,81 +44,82 @@
                                             {$arr = array()}
                                             {foreach $groupRels as $gr}
                                                 {if $gr['field_name'] == $f.field_name}
-                                                    {if $gr.group_id == -1}{$arr[] =lang('Without catagory',"cfcm")}{/if}
-                                                    {if $arr[] = $gr['name']}
-                                                        {$i++}
-                                                    {/if}
+                                                {if $gr.group_id == -1}{$arr[] =lang('Without catagory',"cfcm")}{/if}
+                                                {if $arr[] = $gr['name']}
+                                                    {$i++}
                                                 {/if}
-                                            {/foreach}
-                                            {if !$i}
-                                                0
-                                            {else:} 
-                                                {echo implode(', ', array_unique($arr))}
                                             {/if}
-                                        </td>
-                                        <td class="t-a_c">
-                                            <button onclick="CFAdmin.deleteOne('{$f.field_name}');
-                    return false;" class="btn btn-small my_btn_s" data-rel="tooltip" data-title="{lang("Delete", 'cfcm')}"> <i class="icon-trash icon-white"></i></button>
-                                        </td>
-                                    </tr>        
-                                {/foreach}
-                            </tbody>
-                        </table>
-                    {else:}        
-                        <div class="alert alert-info">
-                            {lang('List of additional fields is empty', 'cfcm')}
-                        </div>
-                    {/if}
-                </div>
-            </div>
-        </div>
-        <div class="tab-pane" id="fields_groups">
-            <div class="row-fluid">
-                <div>
-                    <div class="pull-right frame_zH_frame_title">
-                        <span class="help-inline"></span>
-                        <div class="d-i_b">
-                            <a href="/admin/components/cp/cfcm/create_group" class="btn btn-small btn-success pjax" ><i class=" icon-plus-sign icon-white"></i>{lang('Create group', 'cfcm')}</a>				
-                        </div>
+                                        {/foreach}
+                                        {if !$i}
+                                            0
+                                        {else:} 
+                                            {echo implode(', ', array_unique($arr))}
+                                        {/if}
+                                    </td>
+                                    <td class="t-a_c">
+                                        <button onclick="CFAdmin.deleteOne('{$f.field_name}');
+                                                    return false;" class="btn btn-small my_btn_s" data-rel="tooltip" data-title="{lang("Delete", 'cfcm')}"> <i class="icon-trash"></i></button>
+                                    </td>
+                                </tr>        
+                            {/foreach}
+                        </tbody>
+                    </table>
+                {else:}        
+                    <div class="alert alert-info">
+                        {lang('List of additional fields is empty', 'cfcm')}
                     </div>
-                    <h4>{lang('Field groups', 'cfcm')}</h4>
-                    {if !$groups}
-                        <div class="alert alert-info">
-                           {lang("No groups", "cfcm")}
-                        </div>
-                    {else:}
-                        <table class="table  table-bordered table-hover table-condensed pages-table t-l_a">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>{lang("Name", 'cfcm')}</th>
-                                    <th>{lang("Description", 'cfcm')}</th>
-                                    <th>{lang('Fields', 'cfcm')}</th>
-                                    <th>{lang("Delete", 'cfcm')}</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                    {foreach $groups as $g}
-                                        <tr>
-                                            <td>{$g.id}</td>
-                                            <td>
-                                                <a data-rel="tooltip" data-title="{lang("Edit custom group", 'cfcm')}" href="/admin/components/cp/cfcm/edit_group/{$g.id}" class="pjax">{$g.name}</a>
-                                            </td>
-                                            <td>{truncate($g.description, 35)}</td>
-                                            <td>
-                                                {echo $this->CI->db->get_where('content_fields_groups_relations', array('group_id' => $g.id))->num_rows()}
-                                            </td>
-                                            <td class="t-a_c">
-                                                <button onclick="CFAdmin.deleteOneGroup({$g.id});
-                        return false;" class="btn btn-small my_btn_s" data-rel="tooltip" data-title="{lang("Delete", 'cfcm')}"> <i class="icon-trash icon-white"></i></button>
-                                            </td>
-                                        </tr>        
-                                    {/foreach}
-                            </tbody>
-                        </table>
-                    {/if}
-                </div>
+                {/if}
             </div>
         </div>
     </div>
+    <div class="tab-pane" id="fields_groups">
+        <div class="row-fluid">
+            <div>
+                <div class="pull-right frame_zH_frame_title">
+                    <span class="help-inline"></span>
+                    <div class="d-i_b">
+                        <a href="/admin/components/cp/cfcm/create_group" class="btn btn-small btn-success pjax" ><i class=" icon-plus-sign icon-white"></i>{lang('Create group', 'cfcm')}</a>				
+                    </div>
+
+                </div>
+                <h4>{lang('Field groups', 'cfcm')}</h4>
+                {if !$groups}
+                    <div class="alert alert-info">
+                        {lang("No groups", "cfcm")}
+                    </div>
+                {else:}
+                    <table class="table  table-bordered table-hover table-condensed pages-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>{lang("Name", 'cfcm')}</th>
+                                <th>{lang("Description", 'cfcm')}</th>
+                                <th>{lang('Fields', 'cfcm')}</th>
+                                <th class="span1">{lang("Delete", 'cfcm')}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {foreach $groups as $g}
+                                <tr>
+                                    <td>{$g.id}</td>
+                                    <td>
+                                        <a data-rel="tooltip" data-title="{lang("Edit custom group", 'cfcm')}" href="/admin/components/cp/cfcm/edit_group/{$g.id}" class="pjax">{$g.name}</a>
+                                    </td>
+                                    <td>{truncate($g.description, 35)}</td>
+                                    <td>
+                                        {echo $this->CI->db->get_where('content_fields_groups_relations', array('group_id' => $g.id))->num_rows()}
+                                    </td>
+                                    <td class="t-a_c">
+                                        <button onclick="CFAdmin.deleteOneGroup({$g.id});
+                                                        return false;" class="btn btn-small my_btn_s" data-rel="tooltip" data-title="{lang("Delete", 'cfcm')}"> <i class="icon-trash"></i></button>
+                                    </td>
+                                </tr>        
+                            {/foreach}
+                        </tbody>
+                    </table>
+                {/if}
+            </div>
+        </div>
+    </div>
+</div>
 </section>

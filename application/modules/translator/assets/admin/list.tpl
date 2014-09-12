@@ -160,10 +160,10 @@
             </div>
             <br>
             <div class="tabbable"> <!-- Only required for left/right tabs -->
-                <ul class="nav nav-tabs">
-                    <li class="active"><a href="#poTab" data-toggle="tab">{lang('Translation file', 'translator')}</a></li>
-                    <li><a href="#poSettingsTab" id="settings" data-toggle="tab">{lang('Translation file settings', 'translator')}</a></li>
-                </ul>
+                <div class="myTab btn-group" data-toggle="buttons-radio">
+                    <a href="#poTab" class="btn btn-small active">{lang('Translation file', 'translator')}</a>
+                    <a href="#poSettingsTab" id="settings" class="btn btn-small">{lang('Translation file settings', 'translator')}</a>
+                </div>
 
                 <div class="tab-content">
                     <div class="tab-pane active" id="poTab">
@@ -334,10 +334,10 @@
                             <hr>
                         </div>
                         <form method="post" action="{site_url('admin/components/init_window/translator/createFile')}" class="form-horizontal" id="po_settings_form">
-                            <table style="width: 49%; float: left;" class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                            <table style="width: 49%; float: left;" class="table  table-bordered table-hover table-condensed content_big_td">
                                 <thead>
                                     <tr>
-                                        <th>
+                                        <th colspan="6">
                                             {lang('Translation file information', 'translator')}
                                         </th>
                                     </tr>
