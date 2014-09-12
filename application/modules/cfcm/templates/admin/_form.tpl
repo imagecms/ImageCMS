@@ -13,37 +13,35 @@
             </div>
         </div>                            
     </div>             
-    <div>
-        <table class="table  table-bordered table-hover table-condensed content_big_td">
-            <thead>
-                <tr>
-                    <th colspan="6">
-                        {lang("Information", 'cfcm')}
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td colspan="6">
-                        <div class="inside_padd span9">
-                            <form action="{echo $form->action}" method="post" id="{$f_id}" class="form-horizontal">
-                                {foreach $form->asArray() as $f}
-                                    <div class="control-group">
-                                        <label class="control-label">
-                                            {$f.label}
-                                        </label>
-                                        <div class="controls">
-                                            {$f.field}
-                                            {$f.help_text}
-                                        </div>
+    <table class="table  table-bordered table-hover table-condensed content_big_td m-t_10">
+        <thead>
+            <tr>
+                <th colspan="6">
+                    {lang("Information", 'cfcm')}
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="6">
+                    <div class="inside_padd span9">
+                        <form action="{echo $form->action}" method="post" id="{$f_id}" class="form-horizontal">
+                            {foreach $form->asArray() as $f}
+                                <div class="control-group">
+                                    <label class="control-label">
+                                        {$f.label}
+                                    </label>
+                                    <div class="controls">
+                                        {$f.field}
+                                        {$f.help_text}
                                     </div>
-                                {/foreach}
-                            </form>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+                                </div>
+                            {/foreach}
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>
 

@@ -12,7 +12,7 @@
                 </div>
             </div>                            
         </div>
-        <form id="settings_form" action="/admin/components/cp/yandex_market/update" method="post">
+        <form id="settings_form" action="/admin/components/cp/yandex_market/update" method="post" class="m-t_10">
             <table class="table  table-bordered table-hover table-condensed content_big_td">
                 <thead>
                     <tr>

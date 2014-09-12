@@ -33,7 +33,7 @@
                             class="btn btn-small btn-danger disabled action_on"
                             onclick="delete_function.deleteFunction()"
                             id="del_sel_property">
-                        <i class="icon-trash icon-white"></i>{lang('Delete', 'admin')}
+                        <i class="icon-trash"></i>{lang('Delete', 'admin')}
                     </button>
                     <a class="btn btn-small btn-success pjax" href="/admin/components/cp/sample_mail/create" >
                         <i class="icon-list-alt icon-white"></i>Создать шаблон
