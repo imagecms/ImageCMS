@@ -190,7 +190,7 @@ class seoexpertSteps extends \SeoExpertTester
         $I->click('//section/div[1]/div[2]/div/button');
         $I->wait('1');
     }
-    
+   
     
     
     function GetProductID($name_product) {

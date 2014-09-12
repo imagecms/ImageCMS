@@ -4,7 +4,7 @@ class IntegrationNSCest
 {
 //---------------------------AUTORIZATION---------------------------------------
     /**
-     * @group a
+     * @group aa
      */
     public function Login(NotificationStatusesTester $I){
         InitTest::Login($I);
@@ -123,7 +123,7 @@ class IntegrationNSCest
 //---------------------------NOT PRESENCE DELETING STATUS-----------------------  
             
     /**
-     * @group a
+     * @group aa
      */        
     public function Jira_ICMS_1563(NotificationStatusesTester $I){
         $I->wantTo('Verify Deleted Status Not Present on Notification List Page.');

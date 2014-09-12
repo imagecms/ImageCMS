@@ -98,26 +98,6 @@ $(document).ready(function() {
 
 //***************Scripts for languages page***************
 
-    //*****change language by default*****
-    $('.lan_def').live('click', function() {
-        if ($(this).hasClass('btn-primary active')) {
-            return false;
-        }
-        var id = $(this).attr('data-id');
-        var th = $(this);
-        $.ajax({
-            type: "post",
-            url: "/admin/languages/set_default",
-            data: "lang=" + id,
-            success: function(data) {
-                $('.lan_def').removeClass('btn-primary active');
-                th.addClass('btn-primary active');
-                $('.notifications').append(data);
-            }
-        });
-    });
-    //*****change language by default*****
-
 //***************Scripts for languages page***************
     $('span.selwid').live('click', function() {
         var title = $(this).attr('data-title');

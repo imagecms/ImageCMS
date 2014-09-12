@@ -12,8 +12,7 @@ class JiraRegresionCest
     public function Login(SeoExpertTester $I){
         InitTest::Login($I);
     }
-    
-    
+
     
     
     /**
