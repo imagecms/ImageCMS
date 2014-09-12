@@ -29,7 +29,7 @@
                 </div>
                 <div class="pull-right">
                     <div class="d-i_b">
-                        <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="delete_function.deleteFunction()" id="del_sel_role"><i class="icon-trash icon-white"></i>{lang("Delete","admin")}</button>
+                        <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="delete_function.deleteFunction()" id="del_sel_role"><i class="icon-trash"></i>{lang("Delete","admin")}</button>
                         <a class="btn btn-small pjax btn-success" href="/admin/rbac/roleCreate" ><i class="icon-plus-sign icon-white"></i>{lang("New Role","admin")}</a>
                     </div>
                 </div>  

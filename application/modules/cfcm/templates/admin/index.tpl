@@ -16,7 +16,7 @@
                     <div class="pull-right frame_zH_frame_title">
                         <span class="help-inline"></span>
                         <div class="d-i_b">
-                            <a href="/admin/components/cp/cfcm/create_field" class="btn btn-small btn-success pjax" ><i class=" icon-plus-sign icon-white"></i>{lang('Add field', 'cfcm')}</a>
+                            <a href="/admin/components/cp/cfcm/create_field" class="btn btn-small btn-success pjax" ><i class=" icon-plus-sign icon-white m-r_5"></i>{lang('Add field', 'cfcm')}</a>
                         </div>
                     </div>                            
                     <h4>{lang("Additional fields", 'cfcm')}</h4>
@@ -78,7 +78,7 @@
                 <div class="pull-right frame_zH_frame_title">
                     <span class="help-inline"></span>
                     <div class="d-i_b">
-                        <a href="/admin/components/cp/cfcm/create_group" class="btn btn-small btn-success pjax" ><i class=" icon-plus-sign icon-white"></i>{lang('Create group', 'cfcm')}</a>				
+                        <a href="/admin/components/cp/cfcm/create_group" class="btn btn-small btn-success pjax" ><i class=" icon-plus-sign icon-white m-r_5"></i>{lang('Create group', 'cfcm')}</a>				
                     </div>
 
                 </div>

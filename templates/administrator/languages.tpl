@@ -27,7 +27,7 @@
             {if end(explode(' ',IMAGECMS_NUMBER)) != 'Professional'}
                 <div class="pull-right">
                     <div class="d-i_b">
-                        <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="delete_function.deleteFunction()" id="module_delete"><i class="icon-trash icon-white"></i>{lang("Delete","admin")}</button>
+                        <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="delete_function.deleteFunction()" id="module_delete"><i class="icon-trash"></i>{lang("Delete","admin")}</button>
                         <button type="button" class="btn btn-small btn-success" onclick="window.location.href = '/admin/languages/create_form'" data-submit><i class="icon-plus-sign icon-white"></i>{lang('Create language',"admin")}</button>
                     </div>
                 </div>

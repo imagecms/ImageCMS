@@ -10,7 +10,7 @@
             <div class="tab-pane active" id="modules">
                 <div class="row-fluid">
                     <div class="form-horizontal">
-                        <table class="table  table-bordered table-hover table-condensed t-l_a">
+                        <table class="table table-bordered table-hover table-condensed t-l_a">
                             <thead>
                                 <tr>                                              
                                     <th>{lang("User","admin")}</th>
@@ -18,20 +18,21 @@
                                     <th>{lang("Action","admin")}</th>
                                 </tr>
                             </thead>
-                            <tbody class="sortable ui-sortable">
+                            <tbody>
                                 {foreach $messages as $m}                                  
-                                <td><p>{$m.username}</p></td>
-                                <td><p>{date('d-m-Y H:i:s', $m.date)}</p></td>
-                                <td><p>{$m.message}</p></td>
-                                </tr>
-                            {/foreach}                                            
+                                    <tr>
+                                        <td><p>{$m.username}</p></td>
+                                        <td><p>{date('d-m-Y H:i:s', $m.date)}</p></td>
+                                        <td><p>{$m.message}</p></td>
+                                    </tr>
+                                {/foreach}                                            
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>   
             <div class="clearfix">
-                    {$paginator}
+                {$paginator}
             </div>
     </section>
 </div>

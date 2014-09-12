@@ -139,7 +139,7 @@
                                     <br>
                                     <div class="controls ">
                                         <button type="button" class="btn delete_image mailTestResultsHide">
-                                            <i class="icon-remove"></i>
+                                            <i class="icon-trash"></i>
                                         </button>
                                         <div class="mailTestResults">
                                         </div>
