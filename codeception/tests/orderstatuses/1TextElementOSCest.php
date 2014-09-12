@@ -77,9 +77,9 @@ class TextElementOSCest
         $I->wantTo('Verify Message When Focus Cursor on Name Status.');
         $I->amOnPage(OrderStatusesListPage::$ListURL);
         $I->moveMouseOver(OrderStatusesListPage::$ListLinkStstusTr1);
-        $I->wait(1);
         $I->see('Редактировать статус', OrderStatusesListPage::$ListMessageMouseFocuse);
         $I->moveMouseOver(OrderStatusesListPage::$ListaButtonCreateStatuse);
+//        $I->wait(1);
         $I->waitForElementNotVisible(OrderStatusesListPage::$ListMessageMouseFocuse);
         $I->dontSeeElement(OrderStatusesListPage::$ListMessageMouseFocuse);
     }

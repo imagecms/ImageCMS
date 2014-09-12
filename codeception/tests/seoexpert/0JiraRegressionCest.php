@@ -7,7 +7,7 @@ class JiraRegresionCest
     
 //---------------------------AUTORIZATION--------------------------------------- 
     /**
-     * @group a
+     * @group delete
      */
     public function Login(SeoExpertTester $I){
         InitTest::Login($I);
@@ -16,11 +16,12 @@ class JiraRegresionCest
     
     
     /**
-     * @group a
+     * @group delete
      * @guy SeoExpertTester\seoexpertSteps 
      */
     public function CreateCategoryForJiraTests(SeoExpertTester\seoexpertSteps $I) {
-        $I->SeoCreateCategoryProduct($createNameCategory = 'Jira Tests');
+        $I->DeleteProductCategorys();
+//        $I->SeoCreateCategoryProduct($createNameCategory = 'Jira Tests');
     }
     
     

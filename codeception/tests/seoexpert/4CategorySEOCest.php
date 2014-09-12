@@ -7,21 +7,21 @@ class CategorySEOCest
     
 //---------------------------AUTORIZATION--------------------------------------- 
     /**
-     * @group a
+     * @group aa
      */
     public function Login(SeoExpertTester $I){
         InitTest::Login($I);
+        $P = new SeoExpertTester\seoexpertSteps;
     }
     
-    
-  
+      
     
     
     /**
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
-    public function CreateCategoryForFront (SeoExpertTester\seoexpertSteps $I){
+    public function CreateCategoryForFront (SeoExpertTester\seoexpertSteps $I){    
         $I->SeoCreateCategoryProduct($createNameCategory = 'Напиток');
         $I->SeoCreateCategoryProduct($createNameCategory = 'Bird');
         $I->SeoCreateBrand($brandName = 'Перец');
@@ -46,7 +46,7 @@ class CategorySEOCest
     
     
     /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function CategoryTitleComonRUS (SeoExpertTester\seoexpertSteps $I) {
@@ -58,7 +58,7 @@ class CategorySEOCest
                                     $Amount_Brands = '3',
                                     $Keywords = '',
                                     $CheckBox_Activate = '//section/form/div[2]/div[2]/table/tbody/tr[2]/td/div/div/div[2]/div/span[2]');     
-        $I->CheckValuesInPage($URL_Page = '/shop/category/napitok#', $values = "$ID_Cat Напиток ДЕСК Модная категория страх и ненависть в Ласвегасе ДЕСК 'Н1 для категории Н1' мойва просроченная, Сахар, Перец / mini.loc");
+        $I->CheckValuesInPage($URL_Page = '/shop/category/napitok#', $values = "$ID_Cat Напиток ДЕСК страх и ненависть ДЕСК 'Н1 для категории Н1' мойва просроченная, Сахар, Перец / mini.loc");
     }
     
     
@@ -86,7 +86,7 @@ class CategorySEOCest
     
     
     /**
-     * @group a
+     * @group aaa
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function CategoryTitleComonAndTextRUS (SeoExpertTester\seoexpertSteps $I) {

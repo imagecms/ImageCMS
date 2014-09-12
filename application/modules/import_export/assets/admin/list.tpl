@@ -31,10 +31,10 @@
                                 {echo $str}
                             </td>
                             <td>
-                                <a href="{$BASE_URL}admin/components/init_window/import_export/downloadZIP/{echo $str}">Скачать</a>
+                                <a href="{$BASE_URL}admin/components/init_window/import_export/downloadZIP/{echo $str}">{lang('Download', 'import_export')}</a>
                             </td>
                             <td>
-                                <a href="{$BASE_URL}admin/components/init_window/import_export/deleteArchive/{echo $str}">Удалить</a>
+                                <a href="{$BASE_URL}admin/components/init_window/import_export/deleteArchive/{echo $str}">{lang('Delete', 'import_export')}</a>
                             </td>
                         </tr>
                     {/foreach}
