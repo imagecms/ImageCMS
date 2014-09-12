@@ -4,11 +4,12 @@ use \ImportExportTester;
 
 /**
  * активувати модуль CSV
+ * 
  * сформувати csv - файл s і зберегти codecept_data_dir()
+ * 
  * імпортувати підготований CSV - Файл (_data(test.csv))
+ * 
  * перевірити на сторінці редагування товару всі імпортовані поля
- * змінити цей товар та експортувати 
- * перевірити CSV файл 
  * 
  */
 class ImportExport {
@@ -27,7 +28,7 @@ class ImportExport {
                  'action'           => 0,
                  'brand'            => 'Apple',
                  'category'         => 'КАТЕГОРИЯ/КатегорияИмпорт/Подкатегория импорт',
-                 'elatedProducts'   => null,
+                 'relatedProducts'  => null,
                  'mainImage'        => null,
                  'currency'         => 2,
                  'additionalImage'  => null,
