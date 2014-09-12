@@ -111,7 +111,7 @@
                                                 </div>
                                                 <div class="control-group">
                                                     <div class="controls">
-                                                        <input type="submit" class="btn btn-small btn-success" value="{lang('Save', 'wishlist')}"/>
+                                                        <input type="submit" class="btn btn-small btn-primary" value="{lang('Save', 'wishlist')}"/>
                                                     </div>
                                                 </div>
                                             </div>

@@ -21,7 +21,7 @@
             </div>
         </div>
     </div>
-    <form method="post" action="/admin/components/init_window/mod_discount/create" enctype="multipart/form-data" id="createDiscountForm">
+    <form method="post" action="/admin/components/init_window/mod_discount/create" enctype="multipart/form-data" id="createDiscountForm" class="m-t_10">
         <table class="table  table-bordered table-condensed content_big_td module-cheep">
             <thead>
                 <tr>
