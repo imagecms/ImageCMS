@@ -11,7 +11,7 @@
             </div>
         </div>
     </div>
-    <div id="gallery_main_block">
+    <div id="gallery_main_block" class="m-t_10">
         {if $albums}
             <ul class="sortable2 f-s_0 save_positions albums_list" data-url="/admin/components/cp/gallery/update_album_positions">
                 {foreach $albums as $item}
@@ -88,6 +88,7 @@
                 {lang("No albums found", 'gallery')}
             </div>
         {/if}
+    </div>
 </section>
 <div class="modal hide fade products_delete_dialog">
     <div class="modal-header">
@@ -97,6 +98,6 @@
     <div class="modal-footer">
         <a href="" class="btn" onclick="$('.modal').modal('hide');">{lang('Cancel', 'gallery')}</a>
         <a href="" class="btn btn-primary" onclick="GalleryAlbums.deleteCategoriesConfirm();
-                                                                    $('.modal').modal('hide');">{lang('Delete', 'gallery')}</a>
+                $('.modal').modal('hide');">{lang('Delete', 'gallery')}</a>
     </div>
 </div>
