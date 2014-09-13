@@ -1,7 +1,7 @@
 *{margin:0px;padding: 0px;border: 0px;outline: none;background-color: transparent;vertical-align: baseline;}
 .mini-layout > .frame_title [disabled="disabled"], .mini-layout > .frame_title .disabled{display: none;}
 h1, h2, h3, h4, h5, h6{font-weight: normal;}
-.table{margin: 0 0 10px;}
+.table{margin: 0 0 20px;}
 a{cursor: pointer;}
 .f-s_14{font-size: 14px;}
 .f-s_26{font-size: 26px !important;}
