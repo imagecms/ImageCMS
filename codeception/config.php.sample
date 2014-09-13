@@ -3,14 +3,14 @@
 /**
  * Вказати шлях до опен сервера
  */
-define('OPENSERVER_PATH','C:\OpenServer\domains');
+//define('OPENSERVER_PATH','C:\OpenServer\domains');
 /**
  * вказати імя домена
  */
-define('OPENSERVER_DOMAIN','\cmsprem.loc');
+//define('OPENSERVER_DOMAIN','\cmsprem.loc');
 
 /**
- * папка загрузки файлів з браузера
+ * папка загрузки файлів з браузера для тестування модуля імпорт експорт csv
  */
 
 //define('OTPUT_CSV_FILE', BROWSER_DOWNLOADS . 'products.csv');
