@@ -36,7 +36,7 @@
                         <i class="icon-trash"></i>{lang('Delete', 'admin')}
                     </button>
                     <a class="btn btn-small btn-success pjax" href="/admin/components/cp/sample_mail/create" >
-                        <i class="icon-list-alt icon-white"></i>Создать шаблон
+                        <i class="icon-plus-sign icon-white"></i>Создать шаблон
                     </a>
                 </div>
             </div>
