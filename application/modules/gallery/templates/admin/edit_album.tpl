@@ -19,13 +19,13 @@
     <div id="picsToUpload">
 
     </div>
-   
+
     {if $album.images}
-        <table class="table content_big_td">
+        <table class="table content_big_td m-t_10">
             <tbody>
                 <tr>
-                    <td style="border: 0;">
-                        <div class="well well-small">
+                    <td style="border: 0;padding: 0;">
+                        <div class="well well-small m-b_0">
                             <div class="frame_label all_select">
                                 <span class="niceCheck">
                                     <input type="checkbox"/>
@@ -38,7 +38,7 @@
                                 <li>
                                     <table  class="table  table-bordered content_big_td">
                                         <tr>
-                                            <td>
+                                            <td style="border-top: 0;">
                                                 <div class="pull-left m-r_15">
                                                     <spna class="frame_label">
                                                         <span class="niceCheck">
@@ -80,7 +80,7 @@
             <input type="file" multiple="multiple"  name="newPic[]" id="addPictures" class="multiPic" data-previewdiv="#picsToUpload">
         </form>
     </div>
-            
+
 </section>
 <div class="modal hide fade">
     <div class="modal-header">
