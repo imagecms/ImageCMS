@@ -34,6 +34,6 @@ class OrderStatusesCreatePage
     public static $EditFieldColor = "//div[2]/div/input";
     public static $EditFieldColorFont = "//div[3]/div/input";
     public static $EditNessageAlert = "label.alert.alert-error";
-    public static $EditMessageEditingStatus = "//div[2]/div[2]";
+    public static $EditMessageEditingStatus = ".alert.in.fade.alert-success";//div[2]/div[2]
 
 }
