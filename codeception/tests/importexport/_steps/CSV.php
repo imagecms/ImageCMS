@@ -47,6 +47,8 @@ class CSV {
         $handle = fopen($filename, 'rb');
         if ($handle) {
             $csv = [];
+            //read all lines and write to array
+            //first line is keys
             while (true) {
                 $tmp = fgetcsv($handle, 0, ';');
                 if ($tmp) {
@@ -55,7 +57,9 @@ class CSV {
                     break;
                 }
             }
+            //get titles of current csv
             $keys = array_shift($csv);
+            
             $array_csvs = [];
             foreach ($csv as $value) {
                 $array_csvs [] = array_combine($keys, $value);

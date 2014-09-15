@@ -6,10 +6,8 @@ use \ImportExportTester;
 /**
  * 
  * ЕКСПОРТ ПРАЦЮЄ ТІЛЬКИ В ХРОМІ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
- * створити товар
- * створити аксесуар
  * створити категорію
- * створити 
+ * створити товар
  * імпортувати цей товар в CSV файл
  * порівняти дані створеного товару з CSV файлом
  * 
@@ -40,20 +38,17 @@ class ExportCest {
                      'metaKeywords'     => 'tovarmetakeywords'
             ];
     /**
-     * @group current
      * @group export
      */
     public function login(ImportExportTester $I) {
         InitTest::Login($I);
-        InitTest::changeTextAditorToNative($I);
     }
-
     /**
      * Install module importExport CSV
-     * @group current
      * @group export
      */
-    public function activateModule(ImportExportTester $I) {
+    public function activateModuleChangeTextarea(ImportExportTester $I) {
+        InitTest::changeTextAditorToNative($I);
         $I->amOnPage('/admin');
         $I->click(NavigationBarPage::$Modules);
         $I->click(NavigationBarPage::$ModulesAllModules);
@@ -74,22 +69,57 @@ class ExportCest {
             $I->wait(3);
         }
     }
+    
+    
+    /**
+     * @group export
+     * @guy ImportExportTester\ImportExportSteps
+     */
+    public function createCategory(ImportExportTester\ImportExportSteps $I) {
+        $I->createCategory($this->data['category']);
+        
+    }
 
+    /**
+     * @group export
+     * @guy ImportExportTester\ImportExportSteps
+     */
+    public function createProduct(ImportExportTester\ImportExportSteps $I) {
+        $I->createProduct(  $name               = $this->data['name'],
+                            $price              = $this->data['price'],
+                            $active             = $this->data['active'],
+                            $hit                = $this->data['hit'], 
+                            $hot                = $this->data['hot'], 
+                            $action             = $this->data['action'], 
+                            $old_price          = $this->data['oldPrice'],
+                            $variant_name       = $this->data['variantName'], 
+                            $currency           = $this->data['currency'],
+                            $article            = $this->data['article'],
+                            $amount             = $this->data['amount'], 
+                            $brand              = $this->data['brand'], 
+                            $category           = $this->data['category'],
+                            $short_description  = $this->data['shortDescription'],
+                            $full_description   = $this->data['fullDescription'], 
+                            $url                = $this->data['url'],
+                            $meta_title         = $this->data['metaTitle'], 
+                            $meta_description   = $this->data['metaDescription'], 
+                            $meta_keywords      = $this->data['metaKeywords']);
+    }
+    
     /**
      * export file products.csv 
      * @group export
      */
     public function exportCSV(ImportExportTester $I) {
-        include_once '_steps/CSV.php';
         $output_file = BROWSER_DOWNLOADS . '/' . 'products.csv';
         //if browser downloads directory contains file products.csv - unlink it
         if (file_exists($output_file)) {
-            $I->comment("I unlink file products.csv");
             unlink($output_file);
         }
 
-
+        $I->wait(1);
         $I->amOnPage(ExportPage::$Url);
+        $I->waitForElement(ExportPage::$SelectMenu);
         $I->click(ExportPage::$SelectMenu);
 
         //get pathes to all checkboxes and mark each if its's not checked
@@ -112,8 +142,42 @@ class ExportCest {
         $I->fail("* I couldn\'t see file products.csv in directory " . BROWSER_DOWNLOADS);    
         }
 
-        $array_csv = CSV::loadCSV(BROWSER_DOWNLOADS . 'products.csv');
-        codecept_debug($array_csv);
+        
+    }
+    
+    /**
+     * Compare data from products.csv file and entered data
+     * 
+     * @group export
+     * @group current
+     */
+    public function comparedata(ImportExportTester $I) {
+        include_once '_steps/CSV.php';
+        $products = CSV::loadCSV(BROWSER_DOWNLOADS . 'products.csv');
+//        codecept_debug($products);
+        $I->assertEquals($products[0]['name'], $this->data['name']);
+        $I->assertEquals($products[0]['url'], $this->data['url']);
+        $I->assertEquals($products[0]['prc'], $this->data['price']);
+        $I->assertEquals($products[0]['oldprc'], $this->data['oldPrice']);
+        $I->assertEquals($products[0]['stk'], $this->data['amount']);
+        $I->assertEquals($products[0]['num'], $this->data['article']);
+        $I->assertEquals($products[0]['var'], $this->data['variantName']);
+        $I->assertEquals($products[0]['act'], $this->data['active']);
+        $I->assertEquals($products[0]['hit'], $this->data['hit']);
+        $I->assertEquals($products[0]['hot'], $this->data['hot']);
+        $I->assertEquals($products[0]['action'], $this->data['action']);
+        $I->assertEquals($products[0]['brd'], $this->data['brand']);
+        $I->assertEquals($products[0]['cat'], $this->data['category']);
+        $I->assertEquals($products[0]['relp'], $this->data['relatedProducts']);
+        $I->assertEquals($products[0]['relp'], $this->data['relatedProducts']);
+        $I->assertEquals($products[0]['vimg'], $this->data['mainImage']);
+        $I->assertEquals($products[0]['cur'], $this->data['currency']);
+        $I->assertEquals($products[0]['imgs'], $this->data['additionalImage']);
+        $I->assertEquals($products[0]['shdesc'], $this->data['shortDescription']);
+        $I->assertEquals($products[0]['desc'], $this->data['fullDescription']);
+        $I->assertEquals($products[0]['mett'], $this->data['metaTitle']);
+        $I->assertEquals($products[0]['metd'], $this->data['metaDescription']);
+        $I->assertEquals($products[0]['metk'], $this->data['metaKeywords']);
     }
 
 }
