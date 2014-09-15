@@ -37,10 +37,10 @@
                             class="btn btn-small btn-danger disabled action_on"
                             onclick="delete_function.deleteFunction()"
                             id="del_sel_property">
-                        <i class="icon-trash icon-white"></i>{lang('Delete', 'cmsemail')}
+                        <i class="icon-trash"></i>{lang('Delete', 'cmsemail')}
                     </button>
                     <a class="btn btn-small btn-success pjax" href="/admin/components/cp/cmsemail/create" >
-                        <i class="icon-list-alt icon-white"></i>{lang('Create template', 'cmsemail')}
+                        <i class="icon-plus-sign icon-white"></i>{lang('Create template', 'cmsemail')}
                     </a>
                 </div>
             </div>

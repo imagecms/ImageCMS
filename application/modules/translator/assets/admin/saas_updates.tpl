@@ -17,7 +17,7 @@
                 <div class="d-i_b">
                     <!--button type="button" class="btn btn-small btn-success action_on formSubmit" data-form="#create_file_form"-->
                     <button type="button" class="btn btn-small btn-success action_on" onclick="SAAS_UPDATES.update($(this))">
-                        <i class="icon-ok"></i>
+                        <i class="icon-ok icon-white"></i>
                         {lang('Update', 'translator')}
                     </button>
                 </div>
