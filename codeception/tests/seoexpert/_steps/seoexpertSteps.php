@@ -73,30 +73,51 @@ class seoexpertSteps extends \SeoExpertTester
         $I = $this;        
         $I->amOnPage('/admin/components/run/shop/products/create');
         $I->wait('2');
-        $I->fillField('//section/form/div[2]/div[1]/div/div[1]/div[1]/div[1]/div/input', $Name_Product);
+        $I->fillField('//section/form/div[2]/div[1]/div/table/tbody/tr/td/div/div[1]/div[1]/div/input', $Name_Product);
         $I->wait('1');
-        $I->fillField('//section/form/div[2]/div[1]/div/div[1]/div[4]/div/div/table/tbody/tr/td[3]/input', $Price_Product);
+        $I->fillField('//section/form/div[2]/div[1]/div/table/tbody/tr/td/div/div[1]/div[4]/div/div/table/tbody/tr/td[3]/input', $Price_Product);
         $I->wait('1');
-        $I->click('//section/form/div[2]/div[1]/div/div[2]/div/div[1]/div/div/a/span');
+        $I->click('//section/form/div[2]/div[1]/div/table/tbody/tr/td/div/div[2]/div/div/a/span');
         $I->wait('1');
-        $I->fillField('//section/form/div[2]/div[1]/div/div[2]/div/div[1]/div/div/div/div/input', $Brand_Product);
+        $I->fillField('//section/form/div[2]/div[1]/div/table/tbody/tr/td/div/div[2]/div/div/div/div/input', $Brand_Product);
         $I->wait('1');
-        $I->click('//section/form/div[2]/div[1]/div/div[2]/div/div[1]/div/div/div/ul/li');
+        $I->click('//section/form/div[2]/div[1]/div/table/tbody/tr/td/div/div[2]/div/div/div/ul/li');
         $I->wait('1');
-        $I->click('//section/form/div[2]/div[1]/div/div[2]/div/div[2]/div/div/a/span');
+        $I->click('//section/form/div[2]/div[1]/div/table/tbody/tr/td/div/div[3]/div/div/a/span');
         $I->wait('1');
-        $I->fillField('//section/form/div[2]/div[1]/div/div[2]/div/div[2]/div/div/div/div/input', $Category_Product);
+        $I->fillField('//section/form/div[2]/div[1]/div/table/tbody/tr/td/div/div[3]/div/div/div/div/input', $Category_Product);
         $I->wait('1');
-        $I->click('//section/form/div[2]/div[1]/div/div[2]/div/div[2]/div/div/div/ul/li');
+        $I->click('//section/form/div[2]/div[1]/div/table/tbody/tr/td/div/div[3]/div/div/div/ul/li');
         $I->wait('1');
-        $I->click('//section/form/div[2]/div[1]/div/div[2]/div/div[3]/div/div/ul/li/input');
+        $I->click('//section/form/div[2]/div[1]/div/table/tbody/tr/td/div/div[4]/div/div/ul/li/input');
         $I->wait('1');
-        $I->fillField('//section/form/div[2]/div[1]/div/div[2]/div/div[3]/div/div/ul/li/input', $Additional_Category);
+        $I->fillField('//section/form/div[2]/div[1]/div/table/tbody/tr/td/div/div[4]/div/div/ul/li/input', $Additional_Category);
         $I->wait('1');
-        $I->click('//section/form/div[2]/div[1]/div/div[2]/div/div[3]/div/div/div/ul/li');
+        $I->click('//section/form/div[2]/div[1]/div/table/tbody/tr/td/div/div[4]/div/div/div/ul/li');
         $I->wait('1');
         $I->click('//section/div/div[2]/div/button[2]');
         $I->wait('2');
+    }
+    
+    function SeoProductFillFieldMettaData($name_product = NULL, $Meta_Title = NULL, $Meta_Description = NULL, $Meta_Keywords = NULL ) {
+        $I = $this;
+        $I->amOnPage('/admin/components/run/shop/search');
+        $I->wait('1');
+        $I->fillField('//section/div[2]/table/thead/tr[2]/td[3]/input', $name_product);
+        $I->wait('1');
+        $I->click('//section/div[1]/div[2]/div/button[1]');
+        $I->wait('1');
+        $I->click('//section/div[2]/table/tbody/tr/td[3]/div/a');
+        $I->wait('1');
+        $I->click('//section/form/div[1]/div[1]/a[6]');
+        $I->wait('1');
+        $I->fillField('//section/form/div[2]/div[6]/div/div[1]/table/tbody/tr/td/div/div/div[2]/div/textarea', $Meta_Title);
+        $I->fillField('//section/form/div[2]/div[6]/div/div[1]/table/tbody/tr/td/div/div/div[3]/div/textarea', $Meta_Description);
+        $I->fillField('//section/form/div[2]/div[6]/div/div[1]/table/tbody/tr/td/div/div/div[4]/div/textarea', $Meta_Keywords);
+        $I->click('//section/div/div[2]/div/button[2]');
+        $I->wait('1');
+
+        
     }
     
     
@@ -105,22 +126,52 @@ class seoexpertSteps extends \SeoExpertTester
                             $Category = NULL,
                             $Values1 = NULL) {
         $I = $this;
-        $I->amOnPage('/admin/components/run/shop/properties/create');
-        $I->fillField('//tbody/tr/td/div/div[1]/div/input', $NameProperty);
-        $I->fillField('//tbody/tr/td/div/div[2]/div/input', $CVS);
-        $I->click('//tbody/tr/td/div/div[4]/div[2]/span/span');
-        $I->click('//tbody/tr/td/div/div[5]/div[2]/span/span');
-        $I->click('//tbody/tr/td/div/div[6]/div[2]/span/span');
-        $I->click('//tbody/tr/td/div/div[7]/div[2]/span/span');
-        $I->click('//tbody/tr/td/div/div[8]/div[2]/span/span');
-        $I->click('//tbody/tr/td/div/div[10]/div/div/ul/li/input');
+        $I->amOnPage('/admin/components/run/shop/properties');
         $I->wait('2');
-        $I->fillField('//tbody/tr/td/div/div[10]/div/div/ul/li/input', $Category);
-        $I->wait('1');
-        $I->click('//tbody/tr/td/div/div[10]/div/div/div/ul/li'); 
-        $I->appendField('//tbody/tr/td/div/div[12]/div/textarea', $Values1);
-        $I->click('//section/div/div[2]/div/button[2]');
-        $I->wait('1');        
+        $I->fillField('//section/div[2]/div[1]/form/table/thead/tr[2]/td[3]/input', $NameProperty);
+        $I->click('//section/div[1]/div[2]/div/button[1]');
+        $I->wait('2');
+        $get_text = $I->grabCCSAmount($I, '.niceCheck');
+//        /body/div[1]/div[5]/div/section/div[2]/div[1]/form/table/tbody/tr/td[3]
+//        /body/div[1]/div[5]/div/section/div[2]/div[2]
+        $I->comment("$get_text");
+        if($get_text > 1){
+            $I->click ('//section/div[2]/div[1]/form/table/tbody/tr/td[3]/a');
+            $I->wait('1');
+            $I->fillField('//tbody/tr/td/div/div[1]/div/input', $NameProperty);
+            $I->fillField('//tbody/tr/td/div/div[2]/div/input', $CVS);
+//            $I->click('//tbody/tr/td/div/div[4]/div[2]/span/span');
+//            $I->click('//tbody/tr/td/div/div[5]/div[2]/span/span');
+//            $I->click('//tbody/tr/td/div/div[6]/div[2]/span/span');
+//            $I->click('//tbody/tr/td/div/div[7]/div[2]/span/span');
+//            $I->click('//tbody/tr/td/div/div[8]/div[2]/span/span');
+            $I->click('//tbody/tr/td/div/div[10]/div/div/ul/li/input');
+            $I->wait('2');
+            $I->fillField('//tbody/tr/td/div/div[10]/div/div/ul/li/input', $Category);
+            $I->wait('1');
+            $I->click('//tbody/tr/td/div/div[10]/div/div/div/ul/li'); 
+            $I->fillField('//tbody/tr/td/div/div[12]/div/textarea', $Values1);
+            $I->click('//section/div/div[2]/div/button[1]');
+            $I->wait('1');
+        }  elseif($get_text == 1){
+            $I->amOnPage('/admin/components/run/shop/properties/create');
+            $I->wait('1');
+            $I->fillField('//tbody/tr/td/div/div[1]/div/input', $NameProperty);
+            $I->fillField('//tbody/tr/td/div/div[2]/div/input', $CVS); 
+            $I->click('//tbody/tr/td/div/div[4]/div[2]/span/span');
+            $I->click('//tbody/tr/td/div/div[5]/div[2]/span/span');
+            $I->click('//tbody/tr/td/div/div[6]/div[2]/span/span');
+            $I->click('//tbody/tr/td/div/div[7]/div[2]/span/span');
+            $I->click('//tbody/tr/td/div/div[8]/div[2]/span/span');
+            $I->click('//tbody/tr/td/div/div[10]/div/div/ul/li/input');
+            $I->wait('2');
+            $I->fillField('//tbody/tr/td/div/div[10]/div/div/ul/li/input', $Category);
+            $I->wait('1');
+            $I->click('//tbody/tr/td/div/div[10]/div/div/div/ul/li'); 
+            $I->fillField('//tbody/tr/td/div/div[12]/div/textarea', $Values1);
+            $I->click('//section/div/div[2]/div/button[1]');
+            $I->wait('1');
+        }
     }
     
     
@@ -311,9 +362,9 @@ class seoexpertSteps extends \SeoExpertTester
                 $I->click('//section/div[1]/div[2]/div/button[1]');
                 $I->wait('1');
                 $I->click('//section/div[4]/div[3]/a[1]');
-                $I->wait('3');
+                $I->wait('2');
                 $I->amOnPage('/admin/components/run/shop/categories');
-                $I->wait('3');
+                $I->wait('2');
                 $amount_rows--;
                 $j--;
                 $I->comment("Status:'$name_search' is Deleting.");                

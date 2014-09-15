@@ -7,11 +7,11 @@ class CategorySEOCest
     
 //---------------------------AUTORIZATION--------------------------------------- 
     /**
-     * @group aa
+     * @group a
      */
     public function Login(SeoExpertTester $I){
         InitTest::Login($I);
-        $P = new SeoExpertTester\seoexpertSteps;
+//        $P = new SeoExpertTester\seoexpertSteps;
     }
     
       
@@ -46,7 +46,7 @@ class CategorySEOCest
     
     
     /**
-     * @group aa
+     * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function CategoryTitleComonRUS (SeoExpertTester\seoexpertSteps $I) {
@@ -86,7 +86,7 @@ class CategorySEOCest
     
     
     /**
-     * @group aaa
+     * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function CategoryTitleComonAndTextRUS (SeoExpertTester\seoexpertSteps $I) {
@@ -121,7 +121,13 @@ class CategorySEOCest
     
     
     
-    
+    /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps 
+     */
+    public function DeleteCategoryForJiraTests(SeoExpertTester\seoexpertSteps $I) {
+        $I->DeleteProductCategorys();
+    }
     
     
 }    
