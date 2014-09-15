@@ -11,7 +11,7 @@
                     <span class="t-d_u">{lang('Go back', 'cmsemail')}</span>
                 </a>
                 <button type="button" class="btn btn-small formSubmit btn-success" data-form="#email_form" data-action="save">
-                    <i class="icon-ok icon-white"></i>{lang('Create', 'cmsemail')}
+                    <i class="icon-plus-sign icon-white"></i>{lang('Create', 'cmsemail')}
                 </button>
                 <button type="button" class="btn btn-small formSubmit" data-form="#email_form" data-action="tomain">
                     <i class="icon-edit"></i>{lang('Create and exit', 'cmsemail')}
