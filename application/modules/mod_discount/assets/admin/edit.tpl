@@ -22,7 +22,7 @@
             </div>
         </div>
     </div>
-    <form method="post" action="/admin/components/init_window/mod_discount/edit/{echo $discount['id']}/{echo $locale}" enctype="multipart/form-data" id="editDiscountForm">
+    <form method="post" action="/admin/components/init_window/mod_discount/edit/{echo $discount['id']}/{echo $locale}" enctype="multipart/form-data" id="editDiscountForm" class="m-t_10">
         <table class="table  table-bordered table-condensed content_big_td module-cheep">
             <thead>
                 <tr>

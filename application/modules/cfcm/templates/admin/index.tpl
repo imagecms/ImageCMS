@@ -5,7 +5,7 @@
             <span class="title w-s_n">{lang("Field constructor", 'cfcm')}</span>
         </div>
     </div>
-    <div class="btn-group myTab m-t_10" data-toggle="buttons-radio">
+    <div class="btn-group myTab m-t_20" data-toggle="buttons-radio">
         <a href="#additional_fields" class="btn btn-small active" onclick="$('#allM').html('{lang("All modules", 'cfcm')}')">{lang("Additional fields", 'cfcm')}</a>
         <a href="#fields_groups" class="btn btn-small" onclick="$('#allM').html('{lang("Install modules", 'cfcm')}')">{lang('Fields groups', 'cfcm')}</a>
     </div>
@@ -16,7 +16,7 @@
                     <div class="pull-right frame_zH_frame_title">
                         <span class="help-inline"></span>
                         <div class="d-i_b">
-                            <a href="/admin/components/cp/cfcm/create_field" class="btn btn-small btn-success pjax" ><i class=" icon-plus-sign icon-white"></i>{lang('Add field', 'cfcm')}</a>
+                            <a href="/admin/components/cp/cfcm/create_field" class="btn btn-small btn-success pjax" ><i class=" icon-plus-sign icon-white m-r_5"></i>{lang('Add field', 'cfcm')}</a>
                         </div>
                     </div>                            
                     <h4>{lang("Additional fields", 'cfcm')}</h4>
@@ -58,7 +58,7 @@
                                     </td>
                                     <td class="t-a_c">
                                         <button onclick="CFAdmin.deleteOne('{$f.field_name}');
-                                                    return false;" class="btn btn-small my_btn_s" data-rel="tooltip" data-title="{lang("Delete", 'cfcm')}"> <i class="icon-trash"></i></button>
+                                                return false;" class="btn btn-small my_btn_s" data-rel="tooltip" data-title="{lang("Delete", 'cfcm')}"> <i class="icon-trash"></i></button>
                                     </td>
                                 </tr>        
                             {/foreach}
@@ -78,7 +78,7 @@
                 <div class="pull-right frame_zH_frame_title">
                     <span class="help-inline"></span>
                     <div class="d-i_b">
-                        <a href="/admin/components/cp/cfcm/create_group" class="btn btn-small btn-success pjax" ><i class=" icon-plus-sign icon-white"></i>{lang('Create group', 'cfcm')}</a>				
+                        <a href="/admin/components/cp/cfcm/create_group" class="btn btn-small btn-success pjax" ><i class=" icon-plus-sign icon-white m-r_5"></i>{lang('Create group', 'cfcm')}</a>				
                     </div>
 
                 </div>
@@ -111,7 +111,7 @@
                                     </td>
                                     <td class="t-a_c">
                                         <button onclick="CFAdmin.deleteOneGroup({$g.id});
-                                                        return false;" class="btn btn-small my_btn_s" data-rel="tooltip" data-title="{lang("Delete", 'cfcm')}"> <i class="icon-trash"></i></button>
+                                                return false;" class="btn btn-small my_btn_s" data-rel="tooltip" data-title="{lang("Delete", 'cfcm')}"> <i class="icon-trash"></i></button>
                                     </td>
                                 </tr>        
                             {/foreach}

@@ -26,7 +26,7 @@
             </div>
         </div>                            
     </div>
-    <form action="/admin/components/cp/sitemap/settings" id="sitemap_settings_form" method="post" class="form-horizontal">
+    <form action="/admin/components/cp/sitemap/settings" id="sitemap_settings_form" method="post" class="form-horizontal m-t_10">
         <table class="table  table-bordered table-hover table-condensed content_big_td">
             <thead>
             <th>{lang("Settings", 'sitemap')}</th>

@@ -10,11 +10,11 @@
                     <span class="f-s_14">←</span>
                     <span class="t-d_u">{lang('Go back', 'cmsemail')}</span>
                 </a>
-                <button type="button" class="btn btn-small formSubmit btn-primary" data-form="#email_form" data-action="save">
+                <button type="button" class="btn btn-small btn-primary formSubmit btn-primary" data-form="#email_form" data-action="save">
                     <i class="icon-ok icon-white"></i>{lang('Save', 'cmsemail')}
                 </button>
                 <button type="button" class="btn btn-small formSubmit" data-form="#email_form" data-action="tomain">
-                    <i class="icon-edit"></i>{lang('Save and go back', 'cmsemail')}
+                    <i class="icon-check"></i>{lang('Save and go back', 'cmsemail')}
                 </button>
                 {echo create_language_select($languages, $locale, "/admin/components/cp/cmsemail/edit/" . $model['id'])}
             </div>

@@ -353,7 +353,7 @@
                                     <a href="http://api.yandex.ru/translate/" target="blanck">{lang('Get Yandex Api key', 'translator')}</a>
                                 </label>
                                 <textarea class="YandexApiKey">{echo $settings['YandexApiKey']}</textarea>
-                                <button onclick="Translator.addYandexApiKey($(this))"  type="button" class="btn btn-small btn-success">
+                                <button onclick="Translator.addYandexApiKey($(this))"  type="button" class="btn btn-small btn-primary">
                                     <i class="icon-ok"></i>
                                     {lang('Save', 'translator')}
                                 </button>

@@ -44,7 +44,7 @@
         <div class="tab-content clearfix m-t_30">
             <!----------------------------------------------------- USERS-------------------------------------------------------------->
             <div class="tab-pane active" id="users">
-                <button type="button" class="btn btn-small btn-danger action_on disabled pull-right" style="margin-top:-26px;" onclick="delete_function.deleteFunction()" disabled="disabled"><i class="icon-trash icon-white"></i> {lang('Delete', 'user_manager')}</button>
+                <button type="button" class="btn btn-small btn-danger action_on disabled pull-right" style="margin-top:-26px;" onclick="delete_function.deleteFunction()" disabled="disabled"><i class="icon-trash"></i> {lang('Delete', 'user_manager')}</button>
                 <a href="/admin/components/init_window/user_manager"  title="{lang('Cancel filtering', 'user_manager')}" type="button" class="btn btn-small pjax action_on pull-right" {if !$_GET || (count($_GET) == 1 && $_GET['_pjax'])}disabled="disabled"{/if} style="margin-top:-26px; margin-bottom: 10px; margin-right: 3px;">
                     <i class="icon-refresh"></i> {lang('Cancel filtering', 'user_manager')}
                 </a>
