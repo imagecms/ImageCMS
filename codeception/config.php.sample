@@ -12,7 +12,4 @@
 /**
  * папка загрузки файлів з браузера для тестування модуля імпорт експорт csv
  */
-
-//define('OTPUT_CSV_FILE', BROWSER_DOWNLOADS . 'products.csv');
-//mkdir(BROWSER_DOWNLOADS);
 define('BROWSER_DOWNLOADS', 'C:\Users\moff\Downloads\\');
