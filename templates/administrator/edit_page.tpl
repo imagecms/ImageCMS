@@ -73,7 +73,7 @@
                                         </label>
                                         <div class="controls">
                                             <a onclick="$('.modal').modal();
-                                                    return false;" class="btn btn-success btn-small pull-right" href="#"><i class="icon-plus icon-white"></i> {lang("Create a category","admin")}</a>
+                                                    return false;" class="btn btn-success btn-small pull-right" href="#"><i class="icon-plus-sign icon-white"></i> {lang("Create a category","admin")}</a>
                                             <div class="o_h">
                                                 <select name="category"  id="category_selectbox"  onchange="pagesAdmin.loadCFEditPage()">
                                                     <option value="0" >{lang('No','admin')}</option>
@@ -345,7 +345,7 @@
     </div>
     <div class="modal-footer">
         <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang('Cancel','admin')}</a>
-        <a href="#" class="btn btn-primary" onclick="pagesAdmin.quickAddCategory()">{lang('Create','admin')}</a>
+        <a href="#" class="btn btn-success" onclick="pagesAdmin.quickAddCategory()">{lang('Create','admin')}</a>
     </div>
 </div>
 <script>
