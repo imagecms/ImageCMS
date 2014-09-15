@@ -86,7 +86,7 @@ class seoexpertSteps extends \SeoExpertTester
         $I->click('//section/form/div[2]/div[1]/div/table/tbody/tr/td/div/div[3]/div/div/a/span');
         $I->wait('1');
         $I->fillField('//section/form/div[2]/div[1]/div/table/tbody/tr/td/div/div[3]/div/div/div/div/input', $Category_Product);
-        $I->wait('1');
+        $I->wait('2');
         $I->click('//section/form/div[2]/div[1]/div/table/tbody/tr/td/div/div[3]/div/div/div/ul/li');
         $I->wait('1');
         $I->click('//section/form/div[2]/div[1]/div/table/tbody/tr/td/div/div[4]/div/div/ul/li/input');
@@ -132,19 +132,12 @@ class seoexpertSteps extends \SeoExpertTester
         $I->click('//section/div[1]/div[2]/div/button[1]');
         $I->wait('2');
         $get_text = $I->grabCCSAmount($I, '.niceCheck');
-//        /body/div[1]/div[5]/div/section/div[2]/div[1]/form/table/tbody/tr/td[3]
-//        /body/div[1]/div[5]/div/section/div[2]/div[2]
         $I->comment("$get_text");
         if($get_text > 1){
             $I->click ('//section/div[2]/div[1]/form/table/tbody/tr/td[3]/a');
             $I->wait('1');
             $I->fillField('//tbody/tr/td/div/div[1]/div/input', $NameProperty);
             $I->fillField('//tbody/tr/td/div/div[2]/div/input', $CVS);
-//            $I->click('//tbody/tr/td/div/div[4]/div[2]/span/span');
-//            $I->click('//tbody/tr/td/div/div[5]/div[2]/span/span');
-//            $I->click('//tbody/tr/td/div/div[6]/div[2]/span/span');
-//            $I->click('//tbody/tr/td/div/div[7]/div[2]/span/span');
-//            $I->click('//tbody/tr/td/div/div[8]/div[2]/span/span');
             $I->click('//tbody/tr/td/div/div[10]/div/div/ul/li/input');
             $I->wait('2');
             $I->fillField('//tbody/tr/td/div/div[10]/div/div/ul/li/input', $Category);
@@ -302,6 +295,37 @@ class seoexpertSteps extends \SeoExpertTester
     
     
     
+    function NullValues() {
+        $I = $this;
+        $I->amOnPage(\seoexpertPage::$SeoUrl);
+        $I->click(\seoexpertPage::$SeoBaseRadioButtCategoryNameNo);
+        $I->click(\seoexpertPage::$SeoBaseRadioButtSiteNameNo);
+        $I->click(\seoexpertPage::$SeoBaseSelectKeywords);
+        $I->click(\seoexpertPage::$SeoBaseOptionMakeAutomaticKeywords);
+        $I->click(\seoexpertPage::$SeoBaseSelectDescription);
+        $I->click(\seoexpertPage::$SeoBaseOptionMakeAutomaticDescription);
+        $I->fillField(\seoexpertPage::$SeoBaseFieldSeparator, '');
+        $I->fillField(\seoexpertPage::$SeoBaseFieldDescription, '');
+        $I->fillField(\seoexpertPage::$SeoBaseFieldKeywords, '');
+        $I->fillField(\seoexpertPage::$SeoBaseFieldSiteName, '');
+        $I->fillField(\seoexpertPage::$SeoBaseFieldShortSiteName, '');
+        $I->click(\seoexpertPage::$SeoButtSave);
+        $I->wait('1');
+    }
+    
+    
+    
+    function AmountProductInFront($Amount_Product_Front = NULL) {
+        $I = $this;
+        $I->amOnPage('/admin/components/run/shop/settings');
+        $I->wait('1');
+        $I->fillField('//section/div[2]/div[2]/form/div/div[1]/table/tbody/tr/td/div/div[1]/div/div/input', $Amount_Product_Front);        
+        $I->click('//section/div[1]/div[2]/div/button[1]');
+        $I->wait('1');
+    }
+    
+    
+    
     
     function CheckValuesInPage ($URL_Page, $values){
         $I = $this;
@@ -318,7 +342,8 @@ class seoexpertSteps extends \SeoExpertTester
                             $Length_Desc = NULL,
                             $Amount_Brands = NULL,
                             $Keywords = NULL,
-                            $CheckBox_Activate = NULL) {
+                            $CheckBox_Activate = NULL,
+                            $Page_Number = NULL) {
         $I = $this;
         $I->amOnPage(\seoexpertPage::$SeoUrl);
         $I->click(\seoexpertPage::$SeoButtShop);
@@ -327,6 +352,7 @@ class seoexpertSteps extends \SeoExpertTester
         $I->fillField(\seoexpertPage::$SeoCategoryLength, $Length_Desc);
         $I->fillField(\seoexpertPage::$SeoCategoryCountBrands, $Amount_Brands);
         $I->fillField(\seoexpertPage::$SeoCategoryKeywords, $Keywords);
+        $I->wait('1');
         if(isset($CheckBox_Activate)){
             $active = 'span1 active';
             $inactive = 'span1';
@@ -340,6 +366,12 @@ class seoexpertSteps extends \SeoExpertTester
             }
         }
         $I->click(\seoexpertPage::$SeoButtSave);
+        $I->wait('1');
+        if(isset($Page_Number)){
+            $I->fillField('//section/form/div[2]/div[2]/table[2]/tbody/tr/td/div/div/label[6]/span[2]/textarea', $Page_Number);
+            $I->click(\seoexpertPage::$SeoButtSave);
+            $I->wait('1');
+        }
     }
     
     function DeleteProductCategorys() {
