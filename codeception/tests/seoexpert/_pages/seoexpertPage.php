@@ -94,14 +94,14 @@ class seoexpertPage
     //  Category Block
     
     public static $SeoCategoryBlockTitle = "//section/form/div[2]/div[2]/table[2]/thead/tr/th";
-    public static $SeoCategoryTitle = "//tbody/tr[2]/td/div/div/label[1]/span[2]/textarea";
-    public static $SeoCategoryDescription = "//tbody/tr[2]/td/div/div/label[2]/span[2]/textarea";
-    public static $SeoCategoryLength = "//tbody/tr[2]/td/div/div/label[3]/span[2]/input";
-    public static $SeoCategoryCountBrands = "//tbody/tr[2]/td/div/div/label[4]/span[2]/input";
-    public static $SeoCategoryKeywords = "//tbody/tr[2]/td/div/div/label[5]/span[2]/textarea";
-    public static $SeoCategoryPaginationPage = "//tbody/tr[2]/td/div/div/label[6]/span[2]/textarea";
-    public static $SeoCategoryCheckBoxActive = "//tbody/tr[2]/td/div/div/div[2]/div/span[2]/span";
-    public static $SeoCategoryMetadata = "//tbody/tr[2]/td/div/div/div[3]/div/span[2]/span";
+    public static $SeoCategoryTitle = "//section/form/div[2]/div[2]/table[2]/tbody/tr/td/div/div/label[1]/span[2]/textarea";
+    public static $SeoCategoryDescription = "//section/form/div[2]/div[2]/table[2]/tbody/tr/td/div/div/label[2]/span[2]/textarea";
+    public static $SeoCategoryLength = "//section/form/div[2]/div[2]/table[2]/tbody/tr/td/div/div/label[3]/span[2]/input";
+    public static $SeoCategoryCountBrands = "//section/form/div[2]/div[2]/table[2]/tbody/tr/td/div/div/label[4]/span[2]/input";
+    public static $SeoCategoryKeywords = "//section/form/div[2]/div[2]/table[2]/tbody/tr/td/div/div/label[5]/span[2]/textarea";
+    public static $SeoCategoryPaginationPage = "//section/form/div[2]/div[2]/table[2]/tbody/tr/td/div/div/label[6]/span[2]/textarea";
+    public static $SeoCategoryCheckBoxActive = "//section/form/div[2]/div[2]/table[2]/tbody/tr/td/div/div/div[1]/div/span[2]";
+    public static $SeoCategoryCheckBoxMetaData = "//section/form/div[2]/div[2]/table[2]/tbody/tr/td/div/div/div[2]/div/span[2]";
    
  
     // Subcategory Block
