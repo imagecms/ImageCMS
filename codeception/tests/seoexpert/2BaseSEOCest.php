@@ -22,6 +22,26 @@ class BaseSEOCest
         $I->SeoCreateCategoryProduct($createNameCategory = 'Zzzz категория для SEO');
     }
     
+    
+    /**
+     * @group a
+     */
+    public function BaseDefoultValues (SeoExpertTester $I) {
+        $I->amOnPage(seoexpertPage::$SeoUrl);
+        $I->click(seoexpertPage::$SeoBaseRadioButtCategoryNameYes);
+        $I->click(seoexpertPage::$SeoBaseRadioButtSiteNameYes);
+        $I->click(seoexpertPage::$SeoBaseSelectKeywords);
+        $I->click(seoexpertPage::$SeoBaseOptionMakeAutomaticKeywords);
+        $I->click(seoexpertPage::$SeoBaseSelectDescription);
+        $I->click(seoexpertPage::$SeoBaseOptionMakeAutomaticDescription);
+        $I->fillField(seoexpertPage::$SeoBaseFieldSeparator, '/');
+        $I->fillField(seoexpertPage::$SeoBaseFieldDescription, '');
+        $I->fillField(seoexpertPage::$SeoBaseFieldKeywords, '');
+        $I->fillField(seoexpertPage::$SeoBaseFieldSiteName, 'lastbuild.loc');
+        $I->fillField(seoexpertPage::$SeoBaseFieldShortSiteName, 'lastbuild.loc');
+        $I->click(seoexpertPage::$SeoButtSave);
+        $I->wait('1');
+    }
 
     
     
@@ -229,6 +249,15 @@ class BaseSEOCest
     }
     
     
+    
+    
+    /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps 
+     */
+    public function DeleteCategoryForJiraTests(SeoExpertTester\seoexpertSteps $I) {
+        $I->DeleteProductCategorys();
+    }
 
     
     

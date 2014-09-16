@@ -13,7 +13,7 @@ class OrderStatusesCreatePage
     public static $CreateNameFieldName = "label.control-label";
     public static $CreateNameFieldColor = "//div[2]/label";
     public static $CreateNameFieldColorFont = "//div[3]/label";
-    public static $CreateMessageAlertFild = "label.alert.alert-error";
+    public static $CreateMessageAlertFild = ".alert.alert-error";
     public static $CreateMessageCreatingStatus = ".alert.in.fade.alert-success";
     public static $CreateFieldName = "#Name";
     public static $CreateFieldColorBack = "//div[2]/div/input";
@@ -34,6 +34,6 @@ class OrderStatusesCreatePage
     public static $EditFieldColor = "//div[2]/div/input";
     public static $EditFieldColorFont = "//div[3]/div/input";
     public static $EditNessageAlert = "label.alert.alert-error";
-    public static $EditMessageEditingStatus = "//div[2]/div[2]";
+    public static $EditMessageEditingStatus = ".alert.in.fade.alert-success";//div[2]/div[2]
 
 }

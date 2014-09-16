@@ -26,7 +26,7 @@
         <form method="post" id="save" action="{$BASE_URL}admin/categories/create/new" >
             <div class="tab-content">
                 <div class="tab-pane active" id="parameters">
-                    <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                    <table class="table  table-bordered table-hover table-condensed content_big_td">
                         <thead>
                             <tr>
                                 <th colspan="6">
@@ -149,7 +149,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                    <table class="table  table-bordered table-hover table-condensed content_big_td">
                         <thead>
                             <tr>
                                 <th colspan="6">
@@ -244,7 +244,7 @@
                     </table>
                 </div>
                 <div class="tab-pane" id="metatag">
-                    <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                    <table class="table  table-bordered table-hover table-condensed content_big_td">
                         <thead>
                             <tr>
                                 <th colspan="6">
@@ -265,12 +265,12 @@
                                             </div>
                                             <div class="control-group"><label class="control-label" for="descriptions">{lang("Meta Description","admin")}:</label>
                                                 <div class="controls">
-                                                    <textarea id="descriptions"  name="description" rows="10" cols="180" ></textarea>
+                                                    <textarea id="descriptions" class="elRTE"  name="description" rows="10" cols="180" ></textarea>
                                                 </div>
                                             </div>
                                             <div class="control-group"><label class="control-label" for="keywordss">{lang("Meta Keywords","admin")}:</label>
                                                 <div class="controls">
-                                                    <textarea id="keywordss" name="keywords" rows="10" cols="180" ></textarea>
+                                                    <textarea id="keywordss" name="keywords" class="elRTE" rows="10" cols="180" ></textarea>
                                                 </div>
                                             </div>
                                         </div>

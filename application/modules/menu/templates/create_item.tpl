@@ -7,20 +7,20 @@
         <div class="pull-right">
             <div class="d-i_b">
                 <a href="/admin/components/cp/menu/menu_item/{$menu.name}" class="t-d_n m-r_15 pjax"><span class="f-s_14"></span>←<span class="t-d_u">{lang("Go back", "menu")}</span></a>
-                <button type="button" class="btn btn-small btn-success formSubmit submit_link" data-form="#page_form" data-submit><i class="icon-ok"></i>{lang("Create", "menu")}</button>
-                <button type="button" class="btn btn-small formSubmit submit_link" data-form="#page_form" data-action="tomain"><i class="icon-ok"></i>{lang("Create and exit", "menu")}</button>
+                <button type="button" class="btn btn-small btn-success formSubmit submit_link" data-form="#page_form" data-submit><i class="icon-plus-sign icon-white"></i>{lang("Create", "menu")}</button>
+                <button type="button" class="btn btn-small formSubmit submit_link" data-form="#page_form" data-action="tomain"><i class="icon-check"></i>{lang("Create and exit", "menu")}</button>
             </div>
         </div>                            
     </div>
     <div class="row">
         {//$item.item_type = 'page'}
         <div class="span5">
-            <ul class="btn-group myTab m-t_10 nav-tabs horiz link_type">
-                <li class="btn btn-small active"><a href="#page">{lang("Page", "menu")}</a></li>
-                <li class="btn btn-small"><a href="#category">{lang("Categories", "menu")}</a></li>
-                <li class="btn btn-small"><a href="#module">{lang("Module", "menu")}</a></li>
-                <li class="btn btn-small"><a href="#url">{lang("Link", "menu")}</a></li>
-            </ul>
+            <div class="btn-group myTab m-t_20">
+                <a href="#page" class="btn btn-small active">{lang("Page", "menu")}</a>
+                <a href="#category" class="btn btn-small">{lang("Categories", "menu")}</a>
+                <a href="#module" class="btn btn-small">{lang("Module", "menu")}</a>
+                <a href="#url" class="btn btn-small">{lang("Link", "menu")}</a>
+            </div>
         </div>
     </div>
     <div class="tab-content form-horizontal">
@@ -30,7 +30,7 @@
                 <input type="hidden" name="menu_id" value="{$menu.id}"/>
                 <input type="hidden" name="item_id" value="{$item.item_id}" id="item_page_id"/>
                 <input type="hidden" name="item_type" value="page"/>
-                <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                <table class="table  table-bordered table-hover table-condensed content_big_td">
                     <thead>
                         <tr>
                             <th colspan="6">
@@ -73,7 +73,7 @@
                                                     <ul class="nav myTab nav-tabs nav-stacked">
                                                         {foreach $pages.pages_list as $p}
                                                             <li><a class="page_title" data-url="{$p.cat_url}/{$p.url}" data-title="{$p.title}" data-id="{$p.id}">{echo $p.title}</a></li>
-                                                        {/foreach}
+                                                            {/foreach}
                                                     </ul>
                                                 </div>
                                             </div>        
@@ -85,7 +85,7 @@
                     </tbody>
                 </table>
                 <input type="hidden" id="owner_id" value="{$insert_id}" />
-                <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                <table class="table  table-bordered table-hover table-condensed content_big_td">
                     <thead>
                         <tr>
                             <th colspan="6">
@@ -104,7 +104,7 @@
                                                 <span class="help-block">{lang("Page", "menu")}</span>
                                             </div>
                                         </div>
-                                            
+
                                         <div class="control-group">
                                             <label class="control-label">{lang("ID", "menu")}:</label>
                                             <div class="controls">
@@ -146,7 +146,8 @@
                                             </label>
                                             <div class="controls">
                                                 <div class="group_icon pull-right">            
-                                                    <button class="btn btn-small" onclick="elFinderPopup('image', 'Img0');return false;"><i class="icon-picture"></i>  {lang('Choose an image ', "menu")}</button>
+                                                    <button class="btn btn-small" onclick="elFinderPopup('image', 'Img0');
+                                                            return false;"><i class="icon-picture"></i>  {lang('Choose an image ', "menu")}</button>
                                                 </div>
                                                 <div class="o_h">		            
                                                     <input type="text" name="page_item_image" id="Img0" value="{$item.item_image}">
@@ -213,7 +214,7 @@
                 <input type="hidden" name="menu_id" value="{$menu.id}"/>
                 <input type="hidden" name="item_id" value="{$item.item_id}" id="cat_input"/>
                 <input type="hidden" name="item_type" value="category"/>
-                <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                <table class="table  table-bordered table-hover table-condensed content_big_td">
                     <thead>
                         <tr>
                             <th colspan="6">
@@ -240,7 +241,7 @@
                         </tr>
                     </tbody>
                 </table>
-                <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                <table class="table  table-bordered table-hover table-condensed content_big_td">
                     <thead>
                         <tr>
                             <th colspan="6">
@@ -300,7 +301,8 @@
                                             </label>
                                             <div class="controls">
                                                 <div class="group_icon pull-right">            
-                                                    <button class="btn btn-small" onclick="elFinderPopup('image', 'Img1');return false;"><i class="icon-picture"></i>  {lang('Choose an image ', "menu")}</button>
+                                                    <button class="btn btn-small" onclick="elFinderPopup('image', 'Img1');
+                                                            return false;"><i class="icon-picture"></i>  {lang('Choose an image ', "menu")}</button>
                                                 </div>
                                                 <div class="o_h">		            
                                                     <input type="text" name="cat_item_image" id="Img1" value="{$item.item_image}">
@@ -374,11 +376,11 @@
                         <ul class="nav myTab nav-tabs nav-stacked">
                             {foreach $modules as $module}
                                 <li><a href="#" class="module_item" data-mname="{$module.name}" id="module_{$module.name}" title="{$module.description}">{$module.menu_name}</a></li>
-                            {/foreach}   
+                                {/foreach}   
                         </ul>
                     </div>
                     <div class="span9">
-                        <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                        <table class="table  table-bordered table-hover table-condensed content_big_td">
                             <thead>
                                 <tr>
                                     <th colspan="6">
@@ -443,11 +445,12 @@
                                                 </div>
                                                 <div class="control-group">
                                                     <label class="control-label" for="Img2">
-                                                         {lang("Image", "menu")}:
+                                                        {lang("Image", "menu")}:
                                                     </label>
                                                     <div class="controls">
                                                         <div class="group_icon pull-right">            
-                                                            <button class="btn btn-small" onclick="elFinderPopup('image', 'Img2');return false;"><i class="icon-picture"></i>  {lang('Choose an image ', "menu")}</button>
+                                                            <button class="btn btn-small" onclick="elFinderPopup('image', 'Img2');
+                                                                    return false;"><i class="icon-picture"></i>  {lang('Choose an image ', "menu")}</button>
                                                         </div>
                                                         <div class="o_h">		            
                                                             <input type="text" name="module_item_image" id="Img2" value="{$item.item_image}">
@@ -518,7 +521,7 @@
                 <input type="hidden" name="menu_id" value="{$menu.id}">
                 <input type="hidden" name="item_id" value="0"/>
                 <input type="hidden" name="item_type" value="url"/>
-                <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                <table class="table  table-bordered table-hover table-condensed content_big_td">
                     <thead>
                         <tr>
                             <th colspan="6">
@@ -543,7 +546,7 @@
                         </tr>
                     </tbody>
                 </table>
-                <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                <table class="table  table-bordered table-hover table-condensed content_big_td">
                     <thead>
                         <tr>
                             <th colspan="6">
@@ -588,11 +591,12 @@
                                         </div>
                                         <div class="control-group">
                                             <label class="control-label" for="Img3">
-                                               {lang("Image", "menu")}:
+                                                {lang("Image", "menu")}:
                                             </label>
                                             <div class="controls">
                                                 <div class="group_icon pull-right">            
-                                                    <button class="btn btn-small" onclick="elFinderPopup('image', 'Img3');return false;"><i class="icon-picture"></i>  {lang('Choose an image ', "menu")}</button>
+                                                    <button class="btn btn-small" onclick="elFinderPopup('image', 'Img3');
+                                                            return false;"><i class="icon-picture"></i>  {lang('Choose an image ', "menu")}</button>
                                                 </div>
                                                 <div class="o_h">		            
                                                     <input type="text" name="url_item_image" id="Img3" value="{$item.item_image}">

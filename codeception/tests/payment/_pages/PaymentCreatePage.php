@@ -19,7 +19,7 @@ class PaymentCreatePage
      */
     
     static $Title       = '.title';
-    static $TitleHead   = '//thead//th';
+    static $TitleHead   = "//section[@class='mini-layout']//thead//th";
     
     static $CheckboxActive = "//span[@class='niceCheck']";
 

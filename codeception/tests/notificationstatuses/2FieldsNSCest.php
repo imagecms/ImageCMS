@@ -157,7 +157,7 @@ class FieldsNSCest
 //-----------------INPUT SAVE PRESENCE VALID SYMVOL EDIT------------------------ 
     
     /**
-     * @group a
+     * @group aa
      */
     public function EdictingSymvol(NotificationStatusesTester $I){
         $I->wantTo('Verify Edit and Present Status Whit 1 Symbol on Name.');

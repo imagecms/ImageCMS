@@ -111,8 +111,8 @@
     </td>
     <td >
         <b class="baseTitle">({lang('Basic path', 'translator')})</b>
-        <button style="display: none;" class="btn btn-small btn-danger v-a_b" onclick="Translator.deletePath($(this))" type="button">
-            <i class="icon-trash icon-white"></i>
+        <button style="display: none;" class="btn btn-small v-a_b" onclick="Translator.deletePath($(this))" type="button">
+            <i class="icon-trash"></i>
         </button>
     </td>
 </tr>
@@ -127,8 +127,8 @@
             <input type="text" name="path[]" class="otherPaths" style="width: 100%;" value="{echo $path}">
         </td>
         <td>
-            <button class="btn btn-small btn-danger v-a_b" onclick="Translator.deletePath($(this))" type="button">
-                <i class="icon-trash icon-white"></i>
+            <button class="btn btn-small v-a_b" onclick="Translator.deletePath($(this))" type="button">
+                <i class="icon-trash"></i>
             </button>
         </td>
     </tr>
@@ -146,7 +146,7 @@
             {echo $key+1}.
         </b>
         <input type="text" name="path[]" class="otherPaths" value="{echo $path}">
-        <div class="removePath" onclick="Translator.deletePath($(this))"><i class=" icon icon-remove-sign"></i></div>
+        <div class="removePath" onclick="Translator.deletePath($(this))"><i class=" icon icon-trash"></i></div>
         <br>
     </div>
 {/foreach}
