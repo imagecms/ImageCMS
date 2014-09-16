@@ -21,7 +21,7 @@ use Codeception\Module\WebDriver;
  * @method void comment($description)
  * @method void haveFriend($name)
 */
-class AcceptanceTester extends \Codeception\Actor
+class PremmerceTester extends \Codeception\Actor
 {
    
     /**
