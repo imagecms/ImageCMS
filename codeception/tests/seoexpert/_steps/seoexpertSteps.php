@@ -24,6 +24,9 @@ class seoexpertSteps extends \SeoExpertTester
         $I->wait('2');
     }
     
+    
+    
+    
     function SeoCreateDescriptonAndH1($name_category = NULL, $description_category = NULL, $H1_category = NULL) {
         $I = $this;
         $I->amOnPage('/admin/components/run/shop/categories');
@@ -44,6 +47,31 @@ class seoexpertSteps extends \SeoExpertTester
     }
     
     
+    
+    function SeoCreatecategoryMetaData($name_category = NULL,
+                                        $meta_description = NULL,
+                                        $meta_title = NULL,
+                                        $meta_keywords = NULL) {
+        $I = $this;
+        $I->amOnPage('/admin/components/run/shop/categories');
+        $I->wait('1');
+        $amount_rows = $I->grabCCSAmount($I, '.share_alt');
+        for($j = 1;$j <= $amount_rows;$j++){
+        $name_search = $I->grabTextFrom("//section/div[2]/div/div[2]/div/div[$j]/div/div[3]/div/a");
+            if($name_search == $name_category){
+                $ID_category = $I->grabTextFrom("//section/div[2]/div/div[2]/div/div[$j]/div/div[2]/p");                
+            }
+        }
+        $I->amOnPage("/admin/components/run/shop/categories/edit/$ID_category");        
+        $I->wait('3');
+        $I->fillField('//section/form/table[3]/tbody/tr/td/div/div/div[2]/div/input', $meta_description);
+        $I->fillField('//section/form/table[3]/tbody/tr/td/div/div/div[3]/div/input', $meta_title);
+        $I->fillField('//section/form/table[3]/tbody/tr/td/div/div/div[4]/div/input', $meta_keywords);
+        $I->click('//section/div/div[2]/div/button[1]');        
+        $I->wait('1');
+    }
+    
+    
     //------------------------Create Brands-------------------------------------
     
     
@@ -52,17 +80,17 @@ class seoexpertSteps extends \SeoExpertTester
         $I = $this;
         $I->amOnPage('/admin/components/run/shop/brands/create');
         $I->wait('2');
-        $I->fillField('//tbody/tr/td/div/div[1]/div[1]/div/input', $brandName);
+        $I->fillField('//section/div[2]/div/form/div/div[1]/table/tbody/tr/td/div/div[1]/div[1]/div/input', $brandName);
         if(isset($opisanie)){
-            $I->fillField('//table/tbody/tr/td/div/div[2]/div/textarea', $opisanie);
+            $I->fillField('//section/div[2]/div/form/div/div[1]/table/tbody/tr/td/div/div[2]/div/textarea', $opisanie);
         }if(isset($title)){
-            $I->fillField('//table/tbody/tr/td/div/div[3]/div[1]/div/input', $title);
+            $I->fillField('//section/div[2]/div/form/div/div[1]/table/tbody/tr/td/div/div[3]/div[1]/div/input', $title);
         }if(isset($description)){
-            $I->fillField('//tbody/tr/td/div/div[3]/div[2]/div/input', $description);
+            $I->fillField('//section/div[2]/div/form/div/div[1]/table/tbody/tr/td/div/div[3]/div[2]/div/input', $description);
         }if(isset($keywords)){
-            $I->fillField('//tbody/tr/td/div/div[3]/div[3]/div/input', $keywords);
+            $I->fillField('//section/div[2]/div/form/div/div[1]/table/tbody/tr/td/div/div[3]/div[3]/div/input', $keywords);
         }
-        $I->click('//div[1]/div[5]/section/div[1]/div[2]/div/button[2]');
+        $I->click('//section/div[1]/div[2]/div/button[1]');
         $I->wait('2');
     }
     
@@ -205,8 +233,9 @@ class seoexpertSteps extends \SeoExpertTester
             }elseif($checkbox_class == $inactive) {
                 $I->click($checkbox_path);
                 $I->wait('1');
-
             }
+        $I->click(\seoexpertPage::$SeoButtSave);  
+        $I->wait('1');
     }
     
     
@@ -224,6 +253,8 @@ class seoexpertSteps extends \SeoExpertTester
             }elseif($checkbox_class == $inactive) {
                 $I->wait('1');  
             }
+        $I->click(\seoexpertPage::$SeoButtSave);  
+        $I->wait('1');
     }
   
     function SeoTextAreaActive ($on = NULL) {
@@ -260,6 +291,19 @@ class seoexpertSteps extends \SeoExpertTester
         return $ID_property;
         
     }
+    
+    
+    function GetBrandID($name_brand) {
+        $I = $this;
+        $I->amOnPage('/admin/components/run/shop/brands');
+        $I->wait('1');
+        $I->fillField('//section/div[2]/div/form/table/thead/tr[2]/td[3]/input', $name_brand);
+        $I->wait('2');
+        $ID_brand = $I->grabTextFrom('//section/div[2]/div/form/table/tbody/tr/td[2]');
+        return $ID_brand;
+        
+    }
+    
     
     function GetCategoryID($name_category) {
         $I = $this;
@@ -373,6 +417,39 @@ class seoexpertSteps extends \SeoExpertTester
             $I->wait('1');
         }
     }
+    
+    
+    function SetBrandSeoPage($Title = NULL,
+                            $Description = NULL,
+                            $Pagination = NULL,
+                            $Length_Desc = NULL,                            
+                            $Keywords = NULL,
+                            $CheckBox_Activate = NULL) {
+        $I = $this;
+        $I->amOnPage(\seoexpertPage::$SeoUrl);
+        $I->click(\seoexpertPage::$SeoButtShop);
+        $I->fillField(\seoexpertPage::$SeoBrandFieldTitle, $Title);
+        $I->fillField(\seoexpertPage::$SeoBrandFieldDescription, $Description);
+        $I->fillField(\seoexpertPage::$SeoBrandFieldPagination, $Pagination);
+        $I->fillField(\seoexpertPage::$SeoBrandFieldLength, $Length_Desc);
+        $I->fillField(\seoexpertPage::$SeoBrandFieldKeywords, $Keywords);
+            if(isset($CheckBox_Activate)){
+            $active = 'span1 active';
+            $inactive = 'span1';
+            $checkbox_path = $CheckBox_Activate;
+        $checkbox_class = $I->grabAttributeFrom($checkbox_path, 'class');
+            if($checkbox_class == $active){                
+                $I->wait('1');
+            }elseif($checkbox_class == $inactive) {
+                $I->click($checkbox_path);
+                $I->wait('1');
+            }
+        $I->click(\seoexpertPage::$SeoButtSave);
+        $I->wait('1');        
+        }
+    }
+    
+    
     
     function DeleteProductCategorys() {
         $I = $this;
