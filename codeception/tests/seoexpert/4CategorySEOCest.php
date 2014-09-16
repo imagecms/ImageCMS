@@ -426,7 +426,7 @@ class CategorySEOCest
     
     
     /**
-     * @group aa
+     * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function CategoryDescriptionPagination (SeoExpertTester\seoexpertSteps $I) {
@@ -444,12 +444,82 @@ class CategorySEOCest
                                     $Page_namber = '%number%');     
         $I->CheckValuesInPage($URL_Page = '/shop/category/napitok?per_page=2#',
                             $values = "3");
+        $I->CheckValuesInPage($URL_Page = '/shop/category/napitok?per_page=1#',
+                            $values = "2");
+        $I->CheckValuesInPage($URL_Page = '/shop/category/napitok?per_page=3#',
+                            $values = "4");
+        $I->CheckValuesInPage($URL_Page = '/shop/category/napitok?per_page=4#',
+                            $values = "5");
+        $I->AmountProductInFront($Amount_Product_Front = '12');
+    }
+    
+    
+    /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps
+     */
+    public function CategoryAmount1BrandsTitleComonRUS (SeoExpertTester\seoexpertSteps $I) {
+        $I->NullValues();
+        $I->SettingsCategorySeoPage($Title = '%brands%',
+                                    $Description = '',
+                                    $Length_Desc = '999',
+                                    $Amount_Brands = '1',
+                                    $Keywords = '',
+                                    $CheckBox_Activate = '//div[1]/div[5]/section/form/div[2]/div[2]/table[2]/tbody/tr/td/div/div/div[1]/div/span[2]');     
+        $I->CheckValuesInPage($URL_Page = '/shop/category/napitok#', $values = "мойва просроченная");
+    }
+    
+    
+    /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps
+     */
+    public function CategoryAmount2BrandsTitleComonRUS (SeoExpertTester\seoexpertSteps $I) {
+        $I->NullValues();
+        $I->SettingsCategorySeoPage($Title = '%brands%',
+                                    $Description = '',
+                                    $Length_Desc = '999',
+                                    $Amount_Brands = '2',
+                                    $Keywords = '',
+                                    $CheckBox_Activate = '//div[1]/div[5]/section/form/div[2]/div[2]/table[2]/tbody/tr/td/div/div/div[1]/div/span[2]');     
+        $I->CheckValuesInPage($URL_Page = '/shop/category/napitok#', $values = "мойва просроченная, Сахар");
     }
     
     
     
+    /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps
+     */
+    public function CategoryAmount3BrandsTitleComonRUS (SeoExpertTester\seoexpertSteps $I) {
+        $I->NullValues();
+        $I->SettingsCategorySeoPage($Title = '%brands%',
+                                    $Description = '',
+                                    $Length_Desc = '999',
+                                    $Amount_Brands = '3',
+                                    $Keywords = '',
+                                    $CheckBox_Activate = '//div[1]/div[5]/section/form/div[2]/div[2]/table[2]/tbody/tr/td/div/div/div[1]/div/span[2]');     
+        $I->CheckValuesInPage($URL_Page = '/shop/category/napitok#', $values = "мойва просроченная, Сахар, Перец");
+    }
     
     
+    
+    /**
+     * @group aa
+     * @guy SeoExpertTester\seoexpertSteps
+     */
+    public function CategoryAmount0BrandsTitleComonRUS (SeoExpertTester\seoexpertSteps $I) {
+        $I->NullValues();
+        $I->SettingsCategorySeoPage($Title = '%brands%',
+                                    $Description = '',
+                                    $Length_Desc = '999',
+                                    $Amount_Brands = '0',
+                                    $Keywords = '',
+                                    $CheckBox_Activate = '//div[1]/div[5]/section/form/div[2]/div[2]/table[2]/tbody/tr/td/div/div/div[1]/div/span[2]');     
+//        $I->CheckValuesInPage($URL_Page = '/shop/category/napitok#', $values = "мойва просроченная, Сахар, Перец");
+        $I->amOnPage('/shop/category/napitok#');
+        $I->dontSeeInPageSource('мойва просроченная, Сахар, Перец');
+    }
     
     
     
