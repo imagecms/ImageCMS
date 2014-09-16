@@ -19,8 +19,8 @@ class ProductsPage
     //Поля
     public static $NameProduct  = ".//*[@id='Name']";
     public static $NameVariantProduct  = ".//*[@id='ProductVariantRow_0']/td[1]/input[2]";
-    public static $Price  = ".//*[@id='ProductVariantRow_0']/td[2]/input";
-    public static $Currency  = ".//*[@id='ProductVariantRow_0']/td[3]/select";
+    public static $Price  = ".//*[@id='ProductVariantRow_0']/td[3]/input";
+    public static $Currency  = ".//*[@id='ProductVariantRow_0']/td[4]/select";
     public static $Articul  = ".//*[@id='ProductVariantRow_0']/td[4]/input";
     public static $Amount  = ".//*[@id='ProductVariantRow_0']/td[5]/input";
     public static $ImageIcon  = ".//*[@id='ProductVariantRow_0']/td[6]/div/div";

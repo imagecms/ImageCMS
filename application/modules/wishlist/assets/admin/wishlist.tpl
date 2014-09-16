@@ -30,7 +30,7 @@
             </div>
             <div class="tab-content">
                 <div class="tab-pane active" id="user">
-                    <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                    <table class="table  table-bordered table-hover table-condensed content_big_td">
                         <thead>
                             <tr>
                                 <th colspan="6">{lang('User', 'wishlist')}</th>
@@ -111,7 +111,7 @@
                                                 </div>
                                                 <div class="control-group">
                                                     <div class="controls">
-                                                        <input type="submit" class="btn btn-small btn-success" value="{lang('Save', 'wishlist')}"/>
+                                                        <input type="submit" class="btn btn-small btn-primary" value="{lang('Save', 'wishlist')}"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -155,7 +155,7 @@
                                 </div>
                                 <div class="pull-right" style="margin-top: 37px; margin-right: 20px ">
                                     <a class="btn btn-danger btn-small" href="/admin/components/cp/wishlist/deleteWL/{$wishlist[0][wish_list_id]}">
-                                        <i class="icon-trash icon-white"></i>
+                                        <i class="icon-trash"></i>
                                         {lang('Delete', 'wishlist')}
                                     </a>
                                     <a class="btn btn-small" href="/admin/components/cp/wishlist/editWL/{$wishlist[0][wish_list_id]}/{echo $user[id]}">
@@ -216,7 +216,7 @@
                     {/if}
                 </div>
                 <div class="tab-pane" id="create_list">
-                    <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                    <table class="table  table-bordered table-hover table-condensed content_big_td">
                         <thead>
                             <tr>
                                 <th colspan="6">{lang('Create list', 'wishlist')}</th>

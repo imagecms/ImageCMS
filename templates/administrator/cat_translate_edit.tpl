@@ -8,7 +8,7 @@
             <div class="pull-right">
                 <div class="d-i_b">
                     <a href="/admin/categories/edit/{$orig_cat.id}" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Back","admin")}</span></a>
-                    <button type="button" class="btn btn-small btn-success  action_on formSubmit" data-action="close" data-form="#save"><i class="icon-ok icon-white"></i>{lang("Save","admin")}</button>
+                    <button type="button" class="btn btn-small btn-primary  action_on formSubmit" data-action="close" data-form="#save"><i class="icon-ok icon-white"></i>{lang("Save","admin")}</button>
                     <button type="button" class="btn btn-small action_on formSubmit" data-action="exit" data-form="#save"><i class="icon-check"></i>{lang("Save and exit","admin")}</button>
 
 
@@ -40,7 +40,7 @@
         <form method="post" active="{$BASE_URL}admin/categories/translate/{$orig_cat.id}/{$lang}" id="save">
             <div class="tab-content">
                 <div class="tab-pane active">
-                    <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                    <table class="table  table-bordered table-hover table-condensed content_big_td">
                         <thead>
                             <tr>
                                 <th colspan="6">

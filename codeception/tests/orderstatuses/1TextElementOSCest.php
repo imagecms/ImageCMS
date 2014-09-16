@@ -4,7 +4,7 @@ class TextElementOSCest
 {
 //---------------------------AUTORIZATION---------------------------------------   
     /**
-     * @group aaa
+     * @group a
      */
     public function Login(OrderStatusesTester $I){
         InitTest::Login($I);
@@ -17,7 +17,7 @@ class TextElementOSCest
      */
     public function  WayCreateOS (OrderStatusesTester $I){    
         $I->wantTo('Verify Way to Create Status Page.');
-        $I->amOnPage(OrderStatusesListPage::$ListURL);
+        $I->amOnPage(OrderStatusesListPage::$ListURL);       
         $I->click(OrderStatusesListPage::$ListaButtonCreateStatuse);
         $I->seeInCurrentUrl(OrderStatusesCreatePage::$CreateURL);
         $I->amOnPage(OrderStatusesListPage::$ListURL);
@@ -77,9 +77,9 @@ class TextElementOSCest
         $I->wantTo('Verify Message When Focus Cursor on Name Status.');
         $I->amOnPage(OrderStatusesListPage::$ListURL);
         $I->moveMouseOver(OrderStatusesListPage::$ListLinkStstusTr1);
-        $I->wait(1);
         $I->see('Редактировать статус', OrderStatusesListPage::$ListMessageMouseFocuse);
         $I->moveMouseOver(OrderStatusesListPage::$ListaButtonCreateStatuse);
+//        $I->wait(1);
         $I->waitForElementNotVisible(OrderStatusesListPage::$ListMessageMouseFocuse);
         $I->dontSeeElement(OrderStatusesListPage::$ListMessageMouseFocuse);
     }
@@ -128,9 +128,10 @@ class TextElementOSCest
      */
     public function AlertMessageCreate(OrderStatusesTester $I){
         $I->wantTo('Verify Alert Message Present on Create Status Page.');
-        $I->amOnPage(OrderStatusesCreatePage::$CreateURL);        
+        $I->amOnPage(OrderStatusesCreatePage::$CreateURL);  
         $I->fillField(OrderStatusesCreatePage::$CreateFieldName, '');
         $I->click(OrderStatusesCreatePage::$CreateButtonCreateAndGoBack);
+        $I->wait('1');
         $I->seeElement(OrderStatusesCreatePage::$CreateMessageAlertFild);        
         $I->fillField(OrderStatusesCreatePage::$CreateFieldName, '123');
         $I->dontSeeElement(OrderStatusesCreatePage::$EditNessageAlert);        
@@ -216,8 +217,8 @@ class TextElementOSCest
         $I->wantTo('Verify Message Editing Status Present.');
         $I->amOnPage(OrderStatusesListPage::$ListURL);
         $I->click(OrderStatusesListPage::$ListLinkStatusTr2);
-        $I->click(OrderStatusesCreatePage::$EditButtonSaveAndGoBack);
-        $I->wait(1);
+        $I->click(OrderStatusesCreatePage::$EditButtonSave);
+        $I->waitForElement(OrderStatusesCreatePage::$EditMessageEditingStatus);
         $I->see('Изменения сохранены', OrderStatusesCreatePage::$EditMessageEditingStatus);
     }
     
@@ -225,7 +226,7 @@ class TextElementOSCest
 //---------------TEXT ELEMENT PRESENCE DELETING PAGE----------------------------
     
     /**
-     * @group aaa
+     * @group a
      */
     public function TextElementDeletingWindow(OrderStatusesTester $I){
         $I->wantTo('Verify Text Present on Delete Window.');

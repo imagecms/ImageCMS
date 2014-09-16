@@ -12,10 +12,11 @@ class JiraRegresionCest
     public function Login(SeoExpertTester $I){
         InitTest::Login($I);
     }
+
     
     
     /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps 
      */
     public function CreateCategoryForJiraTests(SeoExpertTester\seoexpertSteps $I) {
@@ -26,9 +27,9 @@ class JiraRegresionCest
     
 
     /**
-     * @group aa
+     * @group a
      */
-    public function ICMS258ICMS336ButtonBackSaveAndBack(SeoExpertTester $I) {
+    public function ICMS_258_ands_ICMS_336___ButtonBackSaveAndBack(SeoExpertTester $I) {
         $NameCategory = 'Jira Tests';
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
@@ -71,10 +72,17 @@ class JiraRegresionCest
                     } 
             }
         }
-    
     }
     
     
+    
+    /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps 
+     */
+    public function DeleteCategoryForJiraTests(SeoExpertTester\seoexpertSteps $I) {
+        $I->DeleteProductCategorys();
+    }
     
     
     

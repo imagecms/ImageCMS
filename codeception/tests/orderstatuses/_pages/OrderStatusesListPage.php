@@ -14,7 +14,7 @@ class OrderStatusesListPage
     public static $ListCollumFontColor = "//th[4]";
     public static $ListCollumBackColor = "th.span2";
     public static $ListColumnDelete = "//th[5]";
-    public static $ListMessageMouseFocuse = "div.tooltip-inner";
+    public static $ListMessageMouseFocuse = ".tooltip-inner";
     public static $ListMessageDragDrop = ".alert.in.fade.alert-success";
     public static $ListTitle = ".//*[@id='orderStatusesList']/section/div[1]/div[1]";
 
@@ -25,9 +25,9 @@ class OrderStatusesListPage
     public static $DeleteTitle = "//div[@id='mainContent']/div[2]/div/h3";
     public static $DeleteMessage = "//div[@id='mainContent']/div[2]/div[2]/div/p";
     public static $DeleteButtonX = "button.close";
-    public static $DeleteButtonDelete = "//div[@id='mainContent']/div[2]/div[3]/a";
+    public static $DeleteButtonDelete = "//div[1]/div[5]/div[2]/div[3]/a[1]";
     public static $DeleteButtonCancel = "//div[@id='mainContent']/div[2]/div[3]/a[2]";
-    public static $DeleteWindow = ".//*[@id='mainContent']/div[2]";//".modal.hide.fade.in";
+    public static $DeleteWindow = ".//*[@id='mainContent']/div[2]";
     public static $DeleteMessageDeleting = ".alert.in.fade.alert-success";
     
     

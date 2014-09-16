@@ -53,6 +53,7 @@ class CurrencyTemplateCest
         $I->comment("$FirstMAIN"."$SecondMAIN");
         $I->assertEquals($FirstMAIN, $SYMBOL);
         $I->assertEquals($SecondMAIN, $price);
+        $I->CheckProductCart($SYMBOL, $price);
     }               
     
     /**
@@ -86,6 +87,7 @@ class CurrencyTemplateCest
         $I->comment("$FirstMAIN"."$SecondMAIN");
         $I->assertEquals($FirstMAIN, $SYMBOL);
         $I->assertEquals($SecondMAIN, $price);
+        $I->CheckProductCart($SYMBOL, $price);
     }
     
     /**
@@ -144,6 +146,7 @@ class CurrencyTemplateCest
         $SecondAddit=$I->grabTextFrom(CurrenciesPage::$AdditSecondPlace);
         $I->assertEquals($FirstAddit, $priceAddit);
         $I->assertEquals($SecondAddit, $this->ADDITSYM);
+        $I->CheckProductCart($price, $SYMBOL, $priceAddit, $this->ADDITSYM);
     }
     
     /**
@@ -160,7 +163,7 @@ class CurrencyTemplateCest
         $amount="4";
         $delimTens="_";
         $delimThousands="@";
-        $I->EditCurrency($this->k,$name=null,$isocode=null,$symbol=null,$rate=null,$template,$format=null,$delimTens1=null,$delimThousands1=null,$amount);
+        $I->EditCurrency($this->k,$name=null,$isocode=null,$symbol=null,$rate=null,$template,$format=null,$delimTens,$delimThousands,$amount);
         $I->wait('2');
         $I->EditCurrency($j,$name=null,$isocode=null,$symbol=null,$rate,$template,$format=null,$delimTens,$delimThousands,$amount);      
         $price="1@300_0000";
@@ -184,6 +187,7 @@ class CurrencyTemplateCest
         $SecondAddit=$I->grabTextFrom(CurrenciesPage::$AdditSecondPlace);
         $I->assertEquals($FirstAddit, $priceAddit);
         $I->assertEquals($SecondAddit, $this->ADDITSYM);
+        $I->CheckProductCart($price, $SYMBOL, $priceAddit, $this->ADDITSYM);
     }
     
     /**
@@ -225,6 +229,7 @@ class CurrencyTemplateCest
         $SecondAddit=$I->grabTextFrom(CurrenciesPage::$AdditSecondPlace);
         $I->assertEquals($FirstAddit, $this->ADDITSYM);
         $I->assertEquals($SecondAddit, $priceAddit);
+        $I->CheckProductCart($price, $SYMBOL, $this->ADDITSYM, $priceAddit);
     }
     
     /**
@@ -266,6 +271,7 @@ class CurrencyTemplateCest
         $SecondAddit=$I->grabTextFrom(CurrenciesPage::$AdditSecondPlace);
         $I->assertEquals($FirstAddit, $this->ADDITSYM);
         $I->assertEquals($SecondAddit, $priceAddit);
+        $I->CheckProductCart($price, $SYMBOL, $this->ADDITSYM, $priceAddit);
     }           
         
      /**
@@ -292,9 +298,9 @@ class CurrencyTemplateCest
         $template="4";
         $amount="3"; 
         $I->EditCurrency($this->k,$name=null,$isocode=null,$symbol=null,$rate=null,$template,$format=null,$delimTens=null,$delimThousands=null,$amount,$notNull1='on');
-        $I->EditCurrency($j,$name=null,$isocode=null,$symbol=null,$rate,$template,$format=null,$delimTens=null,$delimThousands=null,$amount,$notNull='on');      
+        $I->EditCurrency($j,$name=null,$isocode=null,$symbol=null,$rate,$template,$format=null,$delimTens=null,$delimThousands=null,$amount,$notNull='onCheck');      
         $price="1 650,05";
-        $priceAddit="3 300,1";
+        $priceAddit="3 300,101";
         $format1="# $SYMBOL";
         $delimTens1=",";
         $delimThousands1=" ";
@@ -305,6 +311,12 @@ class CurrencyTemplateCest
         InitTest::ClearAllCach($I);
         $I->amOnPage("/");
         $I->fillField(CurrenciesPage::$SearchField, 'товар3');
+        $I->waitForElement('//*[@id="suggestions"]');
+        $I->wait('2');
+        $I->see($price, '//*[@id="suggestions"]/div/ul/li/a/span[3]/span/span/span[1]/span/span[1]');  //Отображение в выпадающем списке в поиске
+        $I->see($SYMBOL, '//*[@id="suggestions"]/div/ul/li/a/span[3]/span/span/span[1]/span/span[2]');
+        $I->see($priceAddit, '//*[@id="suggestions"]/div/ul/li/a/span[3]/span/span/span[2]/span/span[1]');
+        $I->see($this->ADDITSYM, '//*[@id="suggestions"]/div/ul/li/a/span[3]/span/span/span[2]/span/span[2]');
         $I->click(CurrenciesPage::$SearchButton);
         $I->wait('3');
         $FirstMAIN=$I->grabTextFrom(CurrenciesPage::$MainFirstPlace);
@@ -316,6 +328,7 @@ class CurrencyTemplateCest
         $SecondAddit=$I->grabTextFrom(CurrenciesPage::$AdditSecondPlace);
         $I->assertEquals($FirstAddit, $priceAddit);
         $I->assertEquals($SecondAddit, $this->ADDITSYM);
+        $I->CheckProductCart($price, $SYMBOL, $priceAddit, $this->ADDITSYM);
     }
     
      /**
@@ -328,12 +341,22 @@ class CurrencyTemplateCest
         $I->comment($j);
         $SYMBOL=$I->grabTextFrom(CurrenciesPage::SymbolCurrencyLine($j)); 
         $amount="1";
-        $price="1 650,1";
+        $price="1.650,1";
+        $priceAddit="3 300,1";
         $I->click(CurrenciesPage::CurrencyNameLine($j));        
         $I->waitForElement('.//*[@id="mod_name"]/label');        
         $I->selectOption(\CurrenciesPage::$CurrencyTemplate, 1);
         $text=$I->grabTextFrom(\CurrenciesPage::$CurrencyTemplate."/option[1]");
         $I->comment($text);               
+        $I->selectOption(\CurrenciesPage::$AmountDecimals, $amount);
+        $I->seeCheckboxIsChecked(\CurrenciesPage::$NotNullsCheckbox);
+        $I->click(\CurrenciesPage::$SaveAndExitButton);
+        $I->waitForText('Список валют');
+        $I->click(CurrenciesPage::CurrencyNameLine($this->k));        
+        $I->waitForElement('.//*[@id="mod_name"]/label');        
+        $I->selectOption(\CurrenciesPage::$CurrencyTemplate, 2);
+        $text1=$I->grabTextFrom(\CurrenciesPage::$CurrencyTemplate."/option[1]");
+        $I->comment($text1);               
         $I->selectOption(\CurrenciesPage::$AmountDecimals, $amount);
         $I->seeCheckboxIsChecked(\CurrenciesPage::$NotNullsCheckbox);
         $I->click(\CurrenciesPage::$SaveAndExitButton);
@@ -349,5 +372,10 @@ class CurrencyTemplateCest
         $I->comment("$FirstMAIN"."$SecondMAIN");
         $I->assertEquals($FirstMAIN, $SYMBOL);
         $I->assertEquals($SecondMAIN, $price);
+        $FirstAddit=$I->grabTextFrom(CurrenciesPage::$AdditFirstPlace);
+        $SecondAddit=$I->grabTextFrom(CurrenciesPage::$AdditSecondPlace);
+        $I->assertEquals($FirstAddit, $this->ADDITSYM);
+        $I->assertEquals($SecondAddit, $priceAddit);
+        $I->CheckProductCart($SYMBOL, $price, $this->ADDITSYM, $priceAddit);
     }
 }

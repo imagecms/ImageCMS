@@ -12,7 +12,7 @@
             </div>
         </div>                            
     </div>
-    <form method="post" action="{$BASE_URL}admin/widgets_manager/update_widget/{$widget.id}/info" class="form-horizontal" id="wid_ed_form">
+    <form method="post" action="{$BASE_URL}admin/widgets_manager/update_widget/{$widget.id}/info" class="form-horizontal m-t_10" id="wid_ed_form">
         <table class="table  table-bordered table-hover table-condensed content_big_td">
             <thead>
                 <tr>

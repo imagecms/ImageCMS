@@ -61,7 +61,7 @@ class DeliveryListCest {
     public function checkBoxLine(DeliveryTester $I) {
         $I->amOnPage(DeliveryPage::$URL);
         $I->click(DeliveryPage::ListCheckboxLine(1));
-        $Activity = $I->grabAttributeFrom("//tbody//tr[1]", 'class');
+        $Activity = $I->grabAttributeFrom(DeliveryPage::ListCheckboxLine(1).'/../../..', 'class');
         $I->assertEquals("active", $Activity);
         $Disabled = $I->grabAttributeFrom(DeliveryPage::$DeleteButton, 'disabled');
         $I->assertEquals($Disabled, NULL);

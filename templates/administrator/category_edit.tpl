@@ -48,7 +48,7 @@
             </div>
             <div class="tab-content">
                 <div class="tab-pane active" id="parameters">
-                    <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                    <table class="table  table-bordered table-hover table-condensed content_big_td">
                         <thead>
                             <tr>
                                 <th colspan="6">
@@ -167,7 +167,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                    <table class="table  table-bordered table-hover table-condensed content_big_td">
                         <thead>
                             <tr>
                                 <th colspan="6">
@@ -265,7 +265,7 @@
                     </table>
                 </div>
                 <div class="tab-pane" id="metatag">
-                    <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                    <table class="table  table-bordered table-hover table-condensed content_big_td">
                         <thead>
                             <tr>
                                 <th colspan="6">
@@ -301,7 +301,7 @@
                     </table>
                 </div>
 
-                <div class="tab-pane" id="dodPol">
+                                                <div class="tab-pane" id="dodPol">
                     {echo $this->CI->load->module('cfcm/admin')->form_from_category_group($id, $id, 'category')}
                 </div>
                 {include_tpl('modules_additions')}

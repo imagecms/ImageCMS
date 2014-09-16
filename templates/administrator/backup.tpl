@@ -66,7 +66,7 @@
                     </div>
 
                     <div class="tab-pane active" id="backup_create">
-                        <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                        <table class="table  table-bordered table-hover table-condensed content_big_td">
                             <thead>
                                 <tr>
                                     <th colspan="6">
@@ -140,7 +140,7 @@
                                                                 sql
                                                             </span>
                                                             <div style="margin-top: 30px;">
-                                                                <button type="button" class="btn btn-small btn-success action_on formSubmit" data-form="#createBackup" data-submit><i class="icon-plus-sign icon-white"></i>{lang("Create","admin")}</button>
+                                                                <button type="button" class="btn btn-small btn-success action_on formSubmit" data-form="#createBackup" data-submit><i class="icon-plus-sign icon-white m-r_5"></i>{lang("Create","admin")}</button>
                                                             </div>
                                                         </div>
                                                     </div> 
@@ -154,7 +154,7 @@
                     </div>
 
                     <div class="tab-pane" id="backup_settings">
-                        <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                        <table class="table  table-bordered table-hover table-condensed content_big_td">
                             <thead>
                                 <tr>
                                     <th colspan="6">

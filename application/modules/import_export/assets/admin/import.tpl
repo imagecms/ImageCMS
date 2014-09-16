@@ -6,13 +6,18 @@
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <a href="{$BASE_URL}admin/components/init_window/import_export" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Back", 'import_export')}</span></a>                        
+                <a href="{$BASE_URL}admin/components/" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Back", 'import_export')}</span></a>                        
             </div>
         </div>
     </div>
+    <div class="btn-group myTab m-t_20" data-toggle="buttons-radio">
+        <a href="{$BASE_URL}admin/components/init_window/import_export/getTpl/import" class="btn btn-small pjax active">{lang('Import', 'import_export')}</a>
+        <a href="{$BASE_URL}admin/components/init_window/import_export/getTpl/export" class="btn btn-small pjax">{lang('Export', 'import_export')}</a>
+        <a href="{$BASE_URL}admin/components/init_window/import_export/getTpl/archiveList" class="btn btn-small pjax">{lang('List archives exports', 'import_export')}</a>
+    </div>
     <div class="tab-content">
         <div class="tab-pane active" id="importcsv">
-            <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+            <table class="table  table-bordered table-hover table-condensed content_big_td">
                 <thead>
                     <tr>
                         <th colspan="6">{lang('Import','import_export')}</th>
@@ -164,15 +169,13 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>
-                            <div id="progressBlock" style="display:none;margin-top:15px;">
-                                <label id="progressLabel"></label>
-                                <div class="progress progress-striped active" style="margin-top:15px;">
-                                    <div id="percent" class="bar" style="width: 1%;">
-                                        <div style="position: relative; top:1px">
-                                            <span id="ratio"></span>
-                                        </div>                                                
-                                    </div>
+                        <td colspan="6">
+                            <label id="progressLabel"></label>
+                            <div class="progress progress-striped active" id="progressBlock" style="display:none;margin-top:15px;">
+                                <div id="percent" class="bar" style="width: 1%;">
+                                    <div style="position: relative; top:1px">
+                                        <span id="ratio"></span>
+                                    </div>                                                
                                 </div>
                             </div>
                         </td>

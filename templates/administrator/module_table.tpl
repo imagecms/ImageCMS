@@ -29,7 +29,7 @@
                 </div>
                 <div class="pull-right">
                     <div class="d-i_b">
-                        <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="delete_function.deleteFunction()" id="module_delete"><i class="icon-trash icon-white"></i>{lang('Delete','admin')}</button>
+                        <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="delete_function.deleteFunction()" id="module_delete"><i class="icon-trash"></i>{lang('Delete','admin')}</button>
                     </div>
                 </div>
             </div>
@@ -147,7 +147,7 @@
                                         {foreach $not_installed as $module}
                                             <tr class="module_row">
                                                 <td class="module_name">
-                                                    <a href="#" class="mod_instal" data-mname="{$module.com_name}" data-mid="{$module.id}">{$module.menu_name}</a>
+                                                    {$module.menu_name}
                                                 </td>
                                                 <td class="module_description">
                                                     <p>{$module.description}</p>

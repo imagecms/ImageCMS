@@ -38,10 +38,6 @@ $(document).ready(function() {
         var fileNum = $(this).val();
         loadCsvAttributes(fileNum);
     });
-
-
-
-
     $('#makeImportForm').unbind('submit').bind('submit', function() {
         $chekedFile = $('input[name=csvfile]:checked').val();
         $names = '';

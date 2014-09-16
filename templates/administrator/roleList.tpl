@@ -29,59 +29,58 @@
                 </div>
                 <div class="pull-right">
                     <div class="d-i_b">
-                        <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="delete_function.deleteFunction()" id="del_sel_role"><i class="icon-trash icon-white"></i>{lang("Delete","admin")}</button>
+                        <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="delete_function.deleteFunction()" id="del_sel_role"><i class="icon-trash"></i>{lang("Delete","admin")}</button>
                         <a class="btn btn-small pjax btn-success" href="/admin/rbac/roleCreate" ><i class="icon-plus-sign icon-white"></i>{lang("New Role","admin")}</a>
                     </div>
                 </div>  
             </div>
-            <div class="tab-content m-t_20">
-                {if count($model)>0}
-                    <div class="row-fluid">
-                        <table class="table  table-bordered table-hover table-condensed">
-                            <thead>
-                                <tr>
-                                    <th class="span1">
-                                        <span class="frame_label">
-                                            <span class="niceCheck b_n">
-                                                <input type="checkbox"/>
-                                            </span>
+            {if count($model)>0}
+                <div class="row-fluid">
+                    <table class="table  table-bordered table-hover table-condensed">
+                        <thead>
+                            <tr>
+                                <th class="span1">
+                                    <span class="frame_label">
+                                        <span class="niceCheck b_n">
+                                            <input type="checkbox"/>
                                         </span>
-                                    </th>
-                                    <th class="span1">{lang("ID","admin")}</th>
-                                    <th>{lang("Name","admin")}</th>
-                                    <th>{lang("Description","admin")}</th>                                   
-                                </tr>    
-                            </thead>
-                            <tbody>
-                                {foreach $model as $item}
-                                    <tr data-id="{echo $item->id}" data-imp={echo $item->importance}>
-                                        <td>{if $item->id != 1}
+                                    </span>
+                                </th>
+                                <th class="span1">{lang("ID","admin")}</th>
+                                <th>{lang("Name","admin")}</th>
+                                <th>{lang("Description","admin")}</th>                                   
+                            </tr>    
+                        </thead>
+                        <tbody>
+                            {foreach $model as $item}
+                                <tr data-id="{echo $item->id}" data-imp={echo $item->importance}>
+                                    <td>
+                                        {if $item->id != 1}
                                             <span class="frame_label">
                                                 <span class="niceCheck b_n">
                                                     <input type="checkbox" value="{echo $item->id}" name="ids"/>
                                                 </span>
                                             </span>
-                                                {/if}
-                                        </td>
-                                        <td><a class="pjax" href="/admin/rbac/roleEdit/{echo $item->id}">{echo $item->id}</a></td>
-                                        <td>
-                                            <a class="pjax" href="/admin/rbac/roleEdit/{echo $item->id}">{echo $item->alt_name}</a>
-                                        </td>
-                                        <td>
-                                            {echo $item->description}
-                                        </td>
-                                    </tr>
-                                {/foreach}
-                            </tbody>
-                        </table>
-                    </div>
-                {else:}
-                    </br>
-                    <div class="alert alert-info">
-                        {lang("List","admin")} {lang("Role","admin")} {lang("Empty.","admin")}
-                    </div>
-                {/if}
-            </div>
+                                        {/if}
+                                    </td>
+                                    <td><a class="pjax" href="/admin/rbac/roleEdit/{echo $item->id}">{echo $item->id}</a></td>
+                                    <td>
+                                        <a class="pjax" href="/admin/rbac/roleEdit/{echo $item->id}">{echo $item->alt_name}</a>
+                                    </td>
+                                    <td>
+                                        {echo $item->description}
+                                    </td>
+                                </tr>
+                            {/foreach}
+                        </tbody>
+                    </table>
+                </div>
+            {else:}
+                </br>
+                <div class="alert alert-info">
+                    {lang("List","admin")} {lang("Role","admin")} {lang("Empty.","admin")}
+                </div>
+            {/if}
         </section>
     </form>
 </div>

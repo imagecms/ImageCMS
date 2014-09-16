@@ -38,27 +38,27 @@ class PaymentListPage
 
     //table rows
     static function CheckboxLine($row){
-        $CheckboxLine = "//tbody/tr[$row]/td[1]/span/span";
+        $CheckboxLine = "//section[@class='mini-layout']//tbody/tr[$row]/td[1]/span/span";
         return $CheckboxLine;
     }
     static function IDLine($row) {
-        $ID = "//tbody/tr[$row]/td[2]/p";
+        $ID = "//section[@class='mini-layout']//tbody/tr[$row]/td[2]/p";
         return $ID;
     }
     static function MethodNameLine($row) {
-        $ListMethodLine = "//table//tbody//tr[$row]/td[3]/a";
+        $ListMethodLine = "//section[@class='mini-layout']//table//tbody//tr[$row]/td[3]/a";
         return $ListMethodLine;
     }
     static function CurrencyNameLine($row) {
-        $Currency = "//tbody/tr[$row]/td[4]/p";
+        $Currency = "//section[@class='mini-layout']//tbody/tr[$row]/td[4]/p";
         return $Currency;
     }
     static function CurrencySymbolLine($row) {
-        $Symbol = "//tbody/tr[$row]/td[5]/p";
+        $Symbol = "//section[@class='mini-layout']//tbody/tr[$row]/td[5]/p";
         return $Symbol;
     }
     static function ActiveLine($row) {
-        $Active = "//tbody/tr[$row]/td[6]/div/span";
+        $Active = "//section[@class='mini-layout']//tbody/tr[$row]/td[6]/div/span";
         return $Active;
     }
 }

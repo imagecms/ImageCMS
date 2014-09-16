@@ -4,7 +4,7 @@ class IntegrationNSCest
 {
 //---------------------------AUTORIZATION---------------------------------------
     /**
-     * @group a
+     * @group aa
      */
     public function Login(NotificationStatusesTester $I){
         InitTest::Login($I);
@@ -123,9 +123,9 @@ class IntegrationNSCest
 //---------------------------NOT PRESENCE DELETING STATUS-----------------------  
             
     /**
-     * @group a
+     * @group aa
      */        
-    public function DeletingStatusMappingOnThePageNotificationList(NotificationStatusesTester $I){
+    public function Jira_ICMS_1563(NotificationStatusesTester $I){
         $I->wantTo('Verify Deleted Status Not Present on Notification List Page.');
         $I->amOnPage(NotificationListPage::$ListPageURL);   
         $I->wait('1');        
@@ -134,9 +134,6 @@ class IntegrationNSCest
         $I->dontSeeOptionIsSelected(NotificationListPage::$ListSelectFirst, 'Гидрокарбонат'); 
         $I->dontSeeOptionIsSelected(NotificationListPage::$ListSelectFirst, '123 qwe !@# ЯЧС'); 
         $I->click(NotificationListPage::$ListLinkEditting);
-//        $a = $I->grabTextFrom('//body/div[1]/div[5]/section/div[5]/div[1]/form/table/tbody/tr[1]/td[3]');
-//        $I->comment("$a");
-//        $I->click(['link' => $a]);
         $I->wait('2');
         $I->dontseeOptionIsSelected(NotificationListPage::$EditingSelectStatus, 'Гидрокарбонат');
         $I->dontseeOptionIsSelected(NotificationListPage::$EditingSelectStatus, '123 qwe !@# ЯЧС');             

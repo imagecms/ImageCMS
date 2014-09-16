@@ -8,18 +8,18 @@
             <div class="d-i_b">
                 <a href="/admin/components/cp/menu/menu_item/{$menu.name}" class="t-d_n m-r_15 pjax"><span class="f-s_14"></span>←<span class="t-d_u">{lang("Go back", 'menu')}</span></a>
                 <button type="button" class="btn btn-small btn-primary formSubmit submit_link" data-form="#{$item.item_type}_form" data-submit><i class="icon-ok"></i>{lang("Save", "menu")}</button>
-                <button type="button" class="btn btn-small formSubmit submit_link" data-form="#{$item.item_type}_form" data-action="tomain"><i class="icon-ok"></i>{lang("Save and exit", "menu")}</button>
+                <button type="button" class="btn btn-small formSubmit submit_link" data-form="#{$item.item_type}_form" data-action="tomain"><i class="icon-check"></i>{lang("Save and exit", "menu")}</button>
             </div>
         </div>                            
     </div>
     <div class="row">
         <div class="span5">
-            <ul class="btn-group myTab m-t_10 nav-tabs horiz link_type">
-                <li class="btn btn-small {if $item.item_type == 'page'} active{/if}"><a href="#page">{lang("Page", "menu")}</a></li>
-                <li class="btn btn-small {if $item.item_type == 'category'}active{/if}"><a href="#category">{lang("Categories", "menu")}</a></li>
-                <li class="btn btn-small {if $item.item_type == 'module'}active{/if}"><a href="#module">{lang("Module", "menu")}</a></li>
-                <li class="btn btn-small {if $item.item_type == 'url'}active{/if}"><a href="#url">{lang("Link", "menu")}</a></li>
-            </ul>
+            <div class="btn-group myTab m-t_20 tabs" data-toggle="buttons-radio">
+                <a href="#page" class="btn btn-small {if $item.item_type == 'page'} active{/if}">{lang("Page", "menu")}</a>
+                <a href="#category" class="btn btn-small {if $item.item_type == 'category'}active{/if}">{lang("Categories", "menu")}</a>
+                <a href="#module" class="btn btn-small {if $item.item_type == 'module'}active{/if}">{lang("Module", "menu")}</a>
+                <a href="#url" class="btn btn-small {if $item.item_type == 'url'}active{/if}">{lang("Link", "menu")}</a>
+            </div>
         </div>
     </div>
     <div class="tab-content form-horizontal">
@@ -29,7 +29,7 @@
                 <input type="hidden" name="menu_id" value="{$menu.id}"/>
                 <input type="hidden" name="item_id" value="{$item.item_id}" id="item_page_id"/>
                 <input type="hidden" name="page_item_type" value="page"/>
-                <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                <table class="table  table-bordered table-hover table-condensed content_big_td">
                     <thead>
                         <tr>
                             <th colspan="6">
@@ -86,7 +86,7 @@
                     </tbody>
                 </table>
                 <input type="hidden" id="owner_id" value="{$insert_id}" />
-                <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                <table class="table  table-bordered table-hover table-condensed content_big_td">
                     <thead>
                         <tr>
                             <th colspan="6">
@@ -101,13 +101,13 @@
                                     <div class="span12">
                                         <div class="control-group">
                                             <label class="control-label">{lang("Type", "menu")}:</label>
-                                            <div class="controls">
+                                            <div class="controls ctext">
                                                 <span class="help-block">{lang("Page", "menu")}</span>
                                             </div>
                                         </div>
                                         <div class="control-group">
                                             <label class="control-label">{lang("ID", "menu")}:</label>
-                                            <div class="controls">
+                                            <div class="controls ctext">
                                                 <span id="page_id_holder" class="help-block">{$item.id}</span>
                                             </div>
                                         </div>    
@@ -213,7 +213,7 @@
                 <input type="hidden" name="menu_id" value="{$menu.id}"/>
                 <input type="hidden" name="item_id" value="{$item.item_id}" id="cat_input"/>
                 <input type="hidden" name="cat_item_type" value="category"/>
-                <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                <table class="table  table-bordered table-hover table-condensed content_big_td">
                     <thead>
                         <tr>
                             <th colspan="6">
@@ -240,7 +240,7 @@
                         </tr>
                     </tbody>
                 </table>
-                <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                <table class="table  table-bordered table-hover table-condensed content_big_td">
                     <thead>
                         <tr>
                             <th colspan="6">
@@ -255,13 +255,13 @@
                                     <div class="span12">
                                         <div class="control-group">
                                             <label class="control-label">{lang("Type", "menu")}:</label>
-                                            <div class="controls">
+                                            <div class="controls ctext">
                                                 <span class="help-block">{lang("Categories", "menu")}</span>
                                             </div>
                                         </div>
                                         <div class="control-group">
                                             <label class="control-label">{lang("ID", "menu")}:</label>
-                                            <div class="controls">
+                                            <div class="controls ctext">
                                                 <span id="cat_id_holder" class="help-block">{$item.item_id}</span>
                                             </div>
                                         </div>    
@@ -378,7 +378,7 @@
                         </ul>
                     </div>
                     <div class="span9">
-                        <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                        <table class="table  table-bordered table-hover table-condensed content_big_td">
                             <thead>
                                 <tr>
                                     <th colspan="6">
@@ -393,7 +393,7 @@
                                             <div class="span12">
                                                 <div class="control-group">
                                                     <label class="control-label">{lang("Type", "menu")}:</label>
-                                                    <div class="controls">
+                                                    <div class="controls ctext">
                                                         <span class="help-block">
                                                             {lang("Module", "menu")}
                                                         </span>
@@ -401,7 +401,7 @@
                                                 </div>
                                                 <div class="control-group">
                                                     <label class="control-label">{lang("Name", "menu")}:</label>
-                                                    <div class="controls">
+                                                    <div class="controls ctext">
                                                         <span id="module_name_holder" class="help-block">{$data.mod_name}</span>
                                                     </div>
                                                 </div>    
@@ -518,7 +518,7 @@
                 <input type="hidden" name="menu_id" value="{$menu.id}">
                 <input type="hidden" name="item_id" value="0"/>
                 <input type="hidden" name="url_item_type" value="url"/>
-                <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                <table class="table  table-bordered table-hover table-condensed content_big_td">
                     <thead>
                         <tr>
                             <th colspan="6">
@@ -543,7 +543,7 @@
                         </tr>
                     </tbody>
                 </table>
-                <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                <table class="table  table-bordered table-hover table-condensed content_big_td">
                     <thead>
                         <tr>
                             <th colspan="6">
