@@ -189,12 +189,29 @@
                                         {/if}
                                     {/if}
                                     {/* <li class="btn_header btn-mail">
+                                    <li class="btn_header">
+                                        <button type="button">
+                                            <span class="text-el">{lang("14 days left", "admin")}</span>
+                                        </button>
+                                    </li>
+                                    <li class="btn_header btn_header-danger">
+                                        <button type="button">
+                                            <span class="text-el">{lang("5 days left", "admin")}</span>
+                                        </button>
+                                    </li>
+                                    <li class="btn_header">
+                                        <button type="button">
+                                            <span class="text-el">{lang("Free tarif", "admin")}</span>
+                                        </button>
+                                    </li>
+                                    <li class="btn_header btn-mail">
                                         <a href="#">
                                             <span class="icon_mail">
-                                                <span class="badge">25</span>
+                                                <span class="badge badge-important">25</span>
                                             </span>
                                         </a>
                                     </li> */}
+
                                     <li class="dropdown d-i_b v-a_m">
                                         <a data-toggle="dropdown" class="btn_header btn-personal-area">
                                             <span>
@@ -329,7 +346,7 @@
                                 </tr>
 
                                 {//if SHOP_INSTALLED}
-                                   <!-- <a class="btn btn-small pull-right btn-info" onclick="loadShopInterface();" href="#">{lang('Manage shop','admin')}<span class="f-s_14">→</span></a>-->
+                                <!-- <a class="btn btn-small pull-right btn-info" onclick="loadShopInterface();" href="#">{lang('Manage shop','admin')}<span class="f-s_14">→</span></a>-->
                                 {///if}
                                 {$CI->lang->load($langDomain)}
                             </tbody>

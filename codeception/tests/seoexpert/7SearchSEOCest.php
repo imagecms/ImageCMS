@@ -7,7 +7,7 @@ class SearchSEOCest
     
 //---------------------------AUTORIZATION--------------------------------------- 
     /**
-     * @group aa
+     * @group a
      */
     public function Login(SeoExpertTester $I){
         InitTest::Login($I);
@@ -15,7 +15,7 @@ class SearchSEOCest
     
     
     /**
-     * @group aa
+     * @group a
      */
     public function ShopSearchPage (SeoExpertTester $I){
         $I->amOnPage(seoexpertPage::$SeoUrl);
