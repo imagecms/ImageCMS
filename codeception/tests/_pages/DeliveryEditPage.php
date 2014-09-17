@@ -2,32 +2,47 @@
 
 class DeliveryEditPage
 {
-    public static $FieldNameLabel = "//*[@id='deliveryUpdate']/div[1]/div/label";
-    public static $FieldName = "#Name";
-    public static $CheckboxActiveLabel = "//*[@id='deliveryUpdate']/div[2]/div[2]/span";
-    public static $CheckboxActive = "//*[@id='deliveryUpdate']/div[2]/div[2]/span/span";
-    public static $FieldDescriptionLabel = "//div[3]/label";
-    public static $FieldDescription = "//*[@id='Description']";
-    public static $FieldDescriptionPriceLabel = "//div[4]/label";
-    public static $FieldDescriptionPrice = "//*[@id='pricedescription']";
-    public static $FieldPriceLabel = "//*[@id='deliveryPriceDisableBlock']/div[1]/label";
-    public static $FieldPrice = "//*[@id='Price']";
-    public static $FieldFreeFromLabel = "//*[@id='deliveryPriceDisableBlock']/div[2]/label";
-    public static $FieldFreeFrom = "//*[@id='FreeFrom']";
-    public static $CheckboxPriceSpecifiedLabel = "//*[@id='deliveryPriceDisableBlock']/div[2]/div[2]/span";
-    public static $CheckboxPriceSpecified = "//*[@id='deliverySumSpecifiedSpan']";
-    public static $FieldPriceSpecified = "//*[@name='delivery_sum_specified_message']";
-    public static $FieldPriceSpecifiedLabel = "//*[@id='deliverySumSpecifiedMessageSpan']/label";
-    public static $PaymentLabel = "//*[@id='deliveryUpdate']/div[5]/div[3]/div[1]";
-    public static function PaymentMethodLabel($row){
-        $Payment = "//div[5]/div[3]/div[2]/span[$row]";
-        return $Payment;
+    
+    //кнопки
+    Public static $ButtonBack                   = '.t-d_u';
+    Public static $ButtonSave                   = '.btn.btn-small.btn-primary.formSubmit';
+    Public static $ButtonSaveExit               = '.btn.btn-small.action_on.formSubmit';
+    public static $ButtonLanguage               = '.btn.dropdown-toggle.btn-small';
+    
+    //поля для вводу
+    public static $InputName                    = '#Name';
+    public static $InputDescription             = '#Description';
+    public static $InputDescriptionPrice        = '#pricedescription';
+    public static $InputPrice                   = '#Price';
+    public static $InputFreeFrom                = '#FreeFrom';
+    public static $InputPriceSpecified          = '[name="delivery_sum_specified_message"]';
+
+    //чекбокси
+    public static $CheckboxActive               = '//form[@id="deliveryUpdate"]/div[2]/div[2]/span/span';
+    public static $CheckPriceSpecified          = '#deliverySumSpecifiedSpan';
+
+    
+    //лейбли
+    public static $InputNameLabel               = 'label[for="Name"]';
+    public static $InputDescriptionLabel        = 'label[ for="Description"]';
+    public static $InputDescriptionPriceLabel   = 'label[for="priceDescription"]';
+    public static $InputPriceLabel              = 'label[for="Price"]';
+    public static $InputFreeFromLabel           = 'label[for="FreeFrom"]';
+    public static $InputPriceSpecifiedLabel     = "#deliverySumSpecifiedMessageSpan label";
+    
+    public static $CheckActiveLabel             = '//form[@id="deliveryUpdate"]/div[2]/div[2]/span';
+    public static $CheckPriceSpecifiedLabel     = '//div[@id="deliveryPriceDisableBlock"]/div[2]/div[2]/span';
+    
+    
+    //поле з чекбоксами
+    public static $FieldPaymentLabel            = "//form[@id='deliveryUpdate']/div[5]/div[3]/div[1]";
+
+    public static function checkPaymentMethodLabel($row){
+        return "//div[5]/div[3]/div[2]/span[$row]";
     }
-    public static function PaymentMethodCheckbox($row) {
+    
+    public static function checkPaymentMethod($row) {
         return "//form/div[5]/div[3]/div[2]/span[$row]/span";
         
     }
-    Public static $ButtonSaveExit = ".btn.btn-small.action_on.formSubmit";
-    Public static $ButtonSave = ".btn.btn-small.btn-primary.formSubmit";
-    Public static $ButtonBack = ".t-d_u";
 }    
