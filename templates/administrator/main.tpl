@@ -79,9 +79,9 @@
                 <div class="imagecms-inside">
                     <div class="container">
                         <button type="button" class="imagecms-close" {if $_COOKIE['condPromoToolbar'] == '1' || $_COOKIE['condPromoToolbar'] == NULL}style="display: block;"{/if} onclick="setCookie('condPromoToolbar', '0');
-                $('.imagecms-top-fixed-header').removeClass('imagecms-active');
-                $(this).hide().next().show();
-                $(window).scroll();">
+                                $('.imagecms-top-fixed-header').removeClass('imagecms-active');
+                                $(this).hide().next().show();
+                                $(window).scroll();">
                             <span class="imagecms-toggle-close-text imagecms-bar-close-text"><span style="font-size: 14px;">↑</span> Скрыть</span>
                         </button>
                         <button type="button" class="imagecms-close" {if $_COOKIE['condPromoToolbar'] == '0'}style="display: block;"{/if} onclick="setCookie('condPromoToolbar', '1');
@@ -121,15 +121,15 @@
                 <div class="imagecms-inside">
                     <div class="container">
                         <button type="button" class="imagecms-close" {if $_COOKIE['condPromoToolbar'] == '1' || $_COOKIE['condPromoToolbar'] == NULL}style="display: block;"{/if} onclick="setCookie('condPromoToolbar', '0');
-                            $('.imagecms-top-fixed-header').removeClass('imagecms-active');
-                            $(this).hide().next().show();
-                            $(window).scroll();">
+                                $('.imagecms-top-fixed-header').removeClass('imagecms-active');
+                                $(this).hide().next().show();
+                                $(window).scroll();">
                             <span class="imagecms-toggle-close-text imagecms-bar-close-text"><span style="font-size: 14px;">↑</span> {lang('Hide', 'admin')}</span>
                         </button>
                         <button type="button" class="imagecms-close" {if $_COOKIE['condPromoToolbar'] == '0'}style="display: block;"{/if} onclick="setCookie('condPromoToolbar', '1');
-                            $('.imagecms-top-fixed-header').addClass('imagecms-active');
-                            $(this).hide().prev().show();
-                            $(window).scroll();">
+                                $('.imagecms-top-fixed-header').addClass('imagecms-active');
+                                $(this).hide().prev().show();
+                                $(window).scroll();">
                             <span class="imagecms-toggle-close-text imagecms-bar-show-text"><span style="font-size: 14px;">↓</span> {lang('Show', 'admin')}</span>
                         </button>
                         <div class="imagecms-buy-license">
@@ -173,7 +173,8 @@
                             <div class="pull-right span4 f-s_0 right-header">
                                 <span class="helper"></span>
                                 <ul class="d_i-b f-s_0">
-                                    {/*<li class="btn_header">
+                                    {/*}
+                                    <li class="btn_header">
                                         <button type="button">
                                             <span class="text-el">{lang("14 days left", "admin")}</span>
                                         </button>
@@ -191,10 +192,11 @@
                                     <li class="btn_header btn-mail">
                                         <a href="#">
                                             <span class="icon_mail">
-                                                <span class="badge">25</span>
+                                                <span class="badge badge-important">25</span>
                                             </span>
                                         </a>
-                                    </li>*/}
+                                    </li>
+                                    { */}
                                     <li class="dropdown d-i_b v-a_m">
                                         <a data-toggle="dropdown" class="btn_header btn-personal-area">
                                             <span>
@@ -329,7 +331,7 @@
                                 </tr>
 
                                 {//if SHOP_INSTALLED}
-                                   <!-- <a class="btn btn-small pull-right btn-info" onclick="loadShopInterface();" href="#">{lang('Manage shop','admin')}<span class="f-s_14">→</span></a>-->
+                                <!-- <a class="btn btn-small pull-right btn-info" onclick="loadShopInterface();" href="#">{lang('Manage shop','admin')}<span class="f-s_14">→</span></a>-->
                                 {///if}
                                 {$CI->lang->load($langDomain)}
                             </tbody>
