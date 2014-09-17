@@ -3,6 +3,11 @@
 class DeliveryEditPage
 {
     
+    public static $Title                        = '.title';
+    
+    //блок редагування
+    public static $BlockEditTitle               = '//section[@class="mini-layout"]//th';
+    
     //кнопки
     Public static $ButtonBack                   = '.t-d_u';
     Public static $ButtonSave                   = '.btn.btn-small.btn-primary.formSubmit';

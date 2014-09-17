@@ -6,7 +6,7 @@ class DeliveryListPage
 
     public static $URL                      = '/admin/components/run/shop/deliverymethods/index'; 
     public static $Title                    = '.title';
-
+    
     //кнопки
     public static $ButtonCreate             = 'a[href="/admin/components/run/shop/deliverymethods/create"]';
     public static $ButtonDelete             = '.btn.btn-small.btn-danger.action_on';
@@ -18,7 +18,7 @@ class DeliveryListPage
     public static $HeadMethod               = "//section[@class='mini-layout']//th[3]";
     public static $HeadPrice                = "//section[@class='mini-layout']//th[4]";
     public static $HeadFreeFrom             = "//section[@class='mini-layout']//th[5]";
-    public static $HeadActive             = "//section[@class='mini-layout']//th[6]";
+    public static $HeadActive               = "//section[@class='mini-layout']//th[6]";
      
    //таблиця рядки
     public static function lineCheck($row){
