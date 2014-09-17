@@ -92,6 +92,7 @@ class seoexpertSteps extends \SeoExpertTester
         }
         $I->click('//section/div[1]/div[2]/div/button[1]');
         $I->wait('2');
+        
     }
     
     
@@ -126,6 +127,25 @@ class seoexpertSteps extends \SeoExpertTester
         $I->click('//section/div/div[2]/div/button[2]');
         $I->wait('2');
     }
+    
+    
+    
+    function SeoBrandMetaDta($brand_name = NULL, $meta_title = NULL, $meta_description = NULL, $meta_keywords = NULL) {
+        $I = $this; 
+        $I->amOnPage('/admin/components/run/shop/brands');
+        $I->wait('2');
+        $I->fillField('//section/div[2]/div/form/table/thead/tr[2]/td[3]/input', $brand_name);
+        $I->wait('3');
+        $I->click('//section/div[2]/div/form/table/tbody/tr/td[3]/a');
+        $I->wait('2');
+        $I->fillField('//section/div[2]/form/div/div[1]/table/tbody/tr/td/div/div[3]/div[1]/div/input', $meta_title);
+        $I->fillField('//section/div[2]/form/div/div[1]/table/tbody/tr/td/div/div[3]/div[2]/div/input', $meta_description);
+        $I->fillField('//section/div[2]/form/div/div[1]/table/tbody/tr/td/div/div[3]/div[3]/div/input', $meta_keywords);
+        $I->click('//section/div[1]/div[2]/div/button[1]');
+        $I->wait('1');
+    }
+    
+    
     
     function SeoProductFillFieldMettaData($name_product = NULL, $Meta_Title = NULL, $Meta_Description = NULL, $Meta_Keywords = NULL ) {
         $I = $this;
