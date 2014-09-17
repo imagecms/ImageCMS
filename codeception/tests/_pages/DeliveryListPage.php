@@ -13,12 +13,12 @@ class DeliveryListPage
 
 
     //таблиця заголовки
-    public static $HeadCheck                = "//section[@class='mini-layout']//thead/tr/th[1]/span/span";
-    public static $HeadID                   = "//section[@class='mini-layout']//thead/tr/th[2]";
-    public static $HeadMethod               = "//section[@class='mini-layout']//thead/tr/th[3]";
-    public static $HeadPrice                = "//section[@class='mini-layout']//thead/tr/th[4]";
-    public static $HeadFreeFrom             = "//section[@class='mini-layout']//thead/tr/th[5]";
-    public static $ActiveButton             = "//section[@class='mini-layout']//thead/tr/th[6]";
+    public static $HeadCheck                = "//section[@class='mini-layout']//th[1]/span/span";
+    public static $HeadID                   = "//section[@class='mini-layout']//th[2]";
+    public static $HeadMethod               = "//section[@class='mini-layout']//th[3]";
+    public static $HeadPrice                = "//section[@class='mini-layout']//th[4]";
+    public static $HeadFreeFrom             = "//section[@class='mini-layout']//th[5]";
+    public static $HeadActive             = "//section[@class='mini-layout']//th[6]";
      
    //таблиця рядки
     public static function lineCheck($row){
