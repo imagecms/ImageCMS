@@ -16,8 +16,10 @@ class CallbackStatusesCreatePage
     //поля для вводу
     public static $InputName                = '#Text';
     
-    //лейбли
-    public static $InpunNameLAbel           = 'label[for="Text"]';
     //чекбокси
     public static $CheckDefault             = '.niceCheck';
+    
+    //лейбли
+    public static $InputNameLabel           = 'label[for="Text"]';
+    public static $CheckDefaultLabel        = '.frame_label.no_connection';
 }
