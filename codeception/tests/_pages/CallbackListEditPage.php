@@ -1,6 +1,6 @@
 <?php
 
-class CallBackListEditPage
+class CallbackListEditPage
 {
     //заголовки
     public static $Title                = '.title';
