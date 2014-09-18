@@ -2,15 +2,16 @@
 
 class PageObjectTemplateEditPage
 {
+    
     //заголовки
-    public static $Title                        = '.title';
-    public static $BlockEditTitle               = '//section[@class="mini-layout"]//th';
+    public static $Title                    = '.title';
+    public static $BlockEditTitle           = '//section[@class="mini-layout"]//th';
     
     //кнопки
-    Public static $ButtonBack                   = '.t-d_u';
-    Public static $ButtonSave                   = '//section[@class="mini-layout"]/div[1]/div[2]/div/button[1]';
-    Public static $ButtonSaveExit               = '//section[@class="mini-layout"]/div[1]/div[2]/div/button[2]';
-    public static $ButtonLanguage               = '.btn.dropdown-toggle.btn-small';
+    Public static $ButtonBack               = '.t-d_u';
+    Public static $ButtonSave               = '//section[@class="mini-layout"]/div[1]/div[2]/div/button[1]';
+    Public static $ButtonSaveExit           = '//section[@class="mini-layout"]/div[1]/div[2]/div/button[2]';
+    public static $ButtonLanguage           = '.btn.dropdown-toggle.btn-small';
     
     //поля для вводу
     public static $Input                    = '';
@@ -22,7 +23,7 @@ class PageObjectTemplateEditPage
     public static $Text                     = '';
     
     //лейбли
-    public static $InputNameLabel           = '';
+    public static $ElementNameLabel           = '';
 
     //таби
     public static $Tab                      = '';
@@ -31,5 +32,5 @@ class PageObjectTemplateEditPage
     public static $Select                   = '';
     
     //опції
-    public static function selectNameOptin($number) { return "//[$number]";}
+    public static function selectNameOption($number) { return "//[$number]";}
 }

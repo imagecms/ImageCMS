@@ -3,7 +3,6 @@
 class PageObjectTemplateCreatePage
 {
     public static $URL                      = '';
-    public static $Title                    = '.title';
     
     //заголовки
     public static $Title                    = '.title';
@@ -24,7 +23,7 @@ class PageObjectTemplateCreatePage
     public static $Text                     = '';
     
     //лейбли
-    public static $InputNameLabel           = '';
+    public static $ElementNameLabel         = '';
 
     //таби
     public static $Tab                      = '';
@@ -33,5 +32,5 @@ class PageObjectTemplateCreatePage
     public static $Select                   = '';
     
     //опції
-    public static function selectNameOptin($number) { return "//[$number]";}
+    public static function selectNameOption($number) { return "//[$number]";}
 }
