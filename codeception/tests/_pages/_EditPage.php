@@ -1,17 +1,17 @@
 <?php
 
-class PageObjectTemplateCreatePage
+class EditPage
 {
-    public static $URL                      = '';
     
     //заголовки
     public static $Title                    = '.title';
-    public static $BlockCreateTitle         = '//section[@class="mini-layout"]//th';
-
+    public static $BlockEditTitle           = '//section[@class="mini-layout"]//th';
+    
     //кнопки
-    public static $ButtonBack               = '.t-d_u';
-    public static $ButtonCreate             = '//section[@class="mini-layout"]/div[1]/div[2]/div/button[1]';
-    public static $ButtonCreateExit         = '//section[@class="mini-layout"]/div[1]/div[2]/div/button[2]';
+    Public static $ButtonBack               = '.t-d_u';
+    Public static $ButtonSave               = '//section[@class="mini-layout"]/div[1]/div[2]/div/button[1]';
+    Public static $ButtonSaveExit           = '//section[@class="mini-layout"]/div[1]/div[2]/div/button[2]';
+    public static $ButtonLanguage           = '.btn.dropdown-toggle.btn-small';
     
     //поля для вводу
     public static $Input                    = '';
@@ -23,7 +23,7 @@ class PageObjectTemplateCreatePage
     public static $Text                     = '';
     
     //лейбли
-    public static $ElementNameLabel         = '';
+    public static $ElementNameLabel           = '';
 
     //таби
     public static $Tab                      = '';

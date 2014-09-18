@@ -1,8 +1,8 @@
 <?php
 
-class PageObjectTemplateEditPage
+class CallbackThemesEditPage
 {
-    
+   
     //заголовки
     public static $Title                    = '.title';
     public static $BlockEditTitle           = '//section[@class="mini-layout"]//th';
@@ -14,23 +14,8 @@ class PageObjectTemplateEditPage
     public static $ButtonLanguage           = '.btn.dropdown-toggle.btn-small';
     
     //поля для вводу
-    public static $Input                    = '';
-
-    //чекбокси
-    public static $Check                    = '';
-    
-    //текст
-    public static $Text                     = '';
+    public static $InputName                = '#Text';
     
     //лейбли
-    public static $ElementNameLabel           = '';
-
-    //таби
-    public static $Tab                      = '';
-    
-    //селекти
-    public static $Select                   = '';
-    
-    //опції
-    public static function selectNameOption($number) { return "//[$number]";}
+    public static $InputNameLabel           = 'label[for="Text"]';
 }

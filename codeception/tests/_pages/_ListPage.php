@@ -1,6 +1,6 @@
 <?php
 
-class PageObjectTemplateListPage
+class ListPage
 {
 
     public static $URL = '';
