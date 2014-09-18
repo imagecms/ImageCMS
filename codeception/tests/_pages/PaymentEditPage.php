@@ -2,15 +2,15 @@
 
 class PaymentEditPage
 {
-    public static $Title                    = '.title';
  
-    //блок редагування
+    //заголовки
+    public static $Title                    = '.title';
     public static $BlockEditTitle           = '//section[@class="mini-layout"]//th';
     
     //чекбокси
     public static $CheckActive              = '.niceCheck';
     
-    //Кнопки
+    //кнопки
     public static $ButtonBack               = '.t-d_u';
     public static $ButtonSave               = '.btn.btn-small.btn-primary.formSubmit';
     public static $ButtonSaveExit           = '.btn.btn-small.formSubmit:nth-child(3)';
@@ -24,17 +24,14 @@ class PaymentEditPage
     public static $SelectPaymentSystemLabel = '//section[@class="mini-layout"]//form/div[3]/div[1]/label';
     
     //поля для вводу
-    public static $InputName            = '[name="Name"]';
-    public static $InputDescription     = '[name="Description"]';
+    public static $InputName                = '[name="Name"]';
+    public static $InputDescription         = '[name="Description"]';
     
-    //Selects
-    public static $SelectCurrency       = '[name="CurrencyId"]';
-    public static function selectCurrencyOption($row) {
-        return "//select[@name='CurrencyId']/option[$row]";
-    }
+    //селекти
+    public static $SelectCurrency           = '[name="CurrencyId"]';
+    public static $SelectPaymentSystem      = '//select[@name="PaymentSystemName"]';
     
-    public static $SelectPaymentSystem  = '//select[@name="PaymentSystemName"]';
-    public static function selectPaymentSystemOption($row){
-        return "//select[@name='PaymentSystemName']/option[$row]";
-    }
+    //опції
+    public static function selectCurrencyOption($row)       { return "//select[@name='CurrencyId']/option[$row]"; }
+    public static function selectPaymentSystemOption($row)  { return "//select[@name='PaymentSystemName']/option[$row]"; }
 }
