@@ -1,0 +1,1149 @@
+﻿msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-08-13 04:44+0300\n"
+"PO-Revision-Date: 2014-08-13 04:44+0300\n"
+"Last-Translator:  <>\n"
+"Language-Team:  <>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-Language: \n"
+"X-Poedit-Country: \n"
+"X-Poedit-SearchPath-0: ..\n"
+"X-Poedit-SearchPath-1: ../../../../../application/core\n"
+"X-Poedit-SearchPath-2: ../../../../../application/errors\n"
+"X-Poedit-SearchPath-3: ../../../../../application/helpers\n"
+"X-Poedit-SearchPath-4: ../../../../../application/libraries\n"
+"X-Poedit-SearchPath-5: ../../../../../application/modules/shop/classes\n"
+"X-Poedit-SearchPath-6: ../../../../../application/modules/shop/helpers\n"
+"X-Poedit-SearchPath-7: ../../../../../system/language/form_validation\n"
+"X-Poedit-SearchPath-8: ../../../../../system/language/email_lang\n"
+"X-Poedit-SearchPath-9: ../../../../../system/language/upload\n"
+"X-Poedit-SearchPath-10: ../../../../../system/libraries\n"
+"X-Poedit-SearchPath-11: ../../../../../templates/administrator/js/jquery-validate\n"
+"X-Poedit-SearchPath-12: ../../../../../application/modules/shop/widgets\n"
+
+#: ./application/helpers/category_helper.php:86
+msgid "No category"
+msgstr ""
+
+#: ./application/helpers/rules_helper.php:48
+msgid "No rights for"
+msgstr ""
+
+#: ./application/helpers/rules_helper.php:60
+msgid "Error checking permissions"
+msgstr ""
+
+#: ./application/helpers/rules_helper.php:90
+msgid "Operation panel"
+msgstr ""
+
+#: ./application/helpers/rules_helper.php:91
+msgid "Languages"
+msgstr ""
+
+#: ./application/helpers/rules_helper.php:92
+msgid "Cache"
+msgstr ""
+
+#: ./application/helpers/rules_helper.php:93
+msgid "Pages"
+msgstr ""
+
+#: ./application/helpers/rules_helper.php:94
+msgid "Categories"
+msgstr ""
+
+#: ./application/helpers/rules_helper.php:95
+msgid "Modules"
+msgstr ""
+
+#: ./application/helpers/rules_helper.php:96
+msgid "Widgets"
+msgstr ""
+
+#: ./application/helpers/rules_helper.php:97
+msgid "Menu"
+msgstr ""
+
+#: ./application/helpers/rules_helper.php:98
+msgid "Members"
+msgstr ""
+
+#: ./application/helpers/rules_helper.php:99
+msgid "Group"
+msgstr ""
+
+#: ./application/helpers/rules_helper.php:100
+msgid "Logs"
+msgstr ""
+
+#: ./application/helpers/rules_helper.php:101
+msgid "Backup copying"
+msgstr ""
+
+#: ./application/helpers/rules_helper.php:102
+msgid "File Editor"
+msgstr ""
+
+#: ./application/helpers/rules_helper.php:116
+msgid "Access Control Panel"
+msgstr ""
+
+#: ./application/helpers/rules_helper.php:117
+msgid "System update"
+msgstr ""
+
+#: ./application/helpers/rules_helper.php:118
+msgid "Find pages in the control panel"
+msgstr ""
+
+#: ./application/helpers/rules_helper.php:119
+msgid "Creating a language"
+msgstr ""
+
+#: ./application/helpers/rules_helper.php:120
+msgid "Changing the language"
+msgstr ""
+
+#: ./application/helpers/rules_helper.php:121
+msgid "Remove languages"
+msgstr ""
+
+#: ./application/helpers/rules_helper.php:122
+msgid "Changing site settings"
+msgstr ""
+
+#: ./application/helpers/rules_helper.php:123
+msgid "Clearing the cache"
+msgstr ""
+
+#: ./application/helpers/rules_helper.php:124
+msgid "Creating pages"
+msgstr ""
+
+#: ./application/helpers/rules_helper.php:125
+msgid "Editing pages"
+msgstr ""
+
+#: ./application/helpers/rules_helper.php:126
+msgid "Delete pages"
+msgstr ""
+
+#: ./application/helpers/rules_helper.php:127
+msgid "Creating categories"
+msgstr ""
+
+#: ./application/helpers/rules_helper.php:128
+msgid "Edit Categories"
+msgstr ""
+
+#: ./application/helpers/rules_helper.php:129
+msgid "Category delete"
+msgstr ""
+
+#: ./application/helpers/rules_helper.php:130
+msgid "Install Modules"
+msgstr ""
+
+#: ./application/helpers/rules_helper.php:131
+msgid "Removing Modules"
+msgstr ""
+
+#: ./application/helpers/rules_helper.php:132
+msgid "Administration module"
+msgstr ""
+
+#: ./application/helpers/rules_helper.php:133
+msgid "Creating widgets"
+msgstr ""
+
+#: ./application/helpers/rules_helper.php:134
+msgid "Removing widgets"
+msgstr ""
+
+#: ./application/helpers/rules_helper.php:135
+msgid "Access to the widget settings"
+msgstr ""
+
+#: ./application/helpers/rules_helper.php:136
+msgid "Create a menu"
+msgstr ""
+
+#: ./application/helpers/rules_helper.php:137
+msgid "Edit menu"
+msgstr ""
+
+#: ./application/helpers/rules_helper.php:138
+msgid "Menu deleting"
+msgstr ""
+
+#: ./application/helpers/rules_helper.php:139
+msgid "Create users of their group"
+msgstr ""
+
+#: ./application/helpers/rules_helper.php:140
+msgid "Create users of all groups"
+msgstr ""
+
+#: ./application/helpers/rules_helper.php:141
+msgid "Edit Users"
+msgstr ""
+
+#: ./application/helpers/rules_helper.php:142
+msgid "Remove Users"
+msgstr ""
+
+#: ./application/helpers/rules_helper.php:143
+msgid "Viewing member"
+msgstr ""
+
+#: ./application/helpers/rules_helper.php:144
+msgid "Creating Groups"
+msgstr ""
+
+#: ./application/helpers/rules_helper.php:145
+msgid "Editing Groups"
+msgstr ""
+
+#: ./application/helpers/rules_helper.php:146
+msgid "Deleting Groups"
+msgstr ""
+
+#: ./application/helpers/rules_helper.php:147
+msgid "View Log"
+msgstr ""
+
+#: ./application/helpers/rules_helper.php:148
+msgid "Backing up"
+msgstr ""
+
+#: ./application/helpers/rules_helper.php:149
+msgid "Access to the file editor"
+msgstr ""
+
+#: ./application/helpers/rules_helper.php:150
+msgid "Download files"
+msgstr ""
+
+#: ./application/helpers/rules_helper.php:151
+msgid "Editing Files"
+msgstr ""
+
+#: ./application/helpers/rules_helper.php:152
+msgid "Edit Folders"
+msgstr ""
+
+#: ./application/helpers/admin_helper.php:77
+#: ./application/helpers/admin_helper.php:95
+msgid "English"
+msgstr ""
+
+#: ./application/helpers/javascript_helper.php:20
+msgid "Message"
+msgstr ""
+
+#: ./application/helpers/javascript_helper.php:22
+msgid "Error"
+msgstr ""
+
+#: ./application/helpers/javascript_helper.php:25
+msgid "Success"
+msgstr ""
+
+#: ./application/helpers/javascript_helper.php:29
+msgid "Requests to the database"
+msgstr ""
+
+#: ./application/helpers/javascript_helper.php:48
+msgid "Redirecting"
+msgstr ""
+
+#: ./application/libraries/Update.php:295
+msgid "Can not create a database snapshot, Check the folder {0} on the ability to record"
+msgstr ""
+
+#: ./application/libraries/BaseAdminController.php:21
+#: ./application/libraries/gettext_php/Gettext_extension.php:44
+#: ./application/libraries/gettext_php/Gettext_extension.php:49
+msgid "To improve performance set php_gettext.dll extension"
+msgstr ""
+
+#: ./application/libraries/BaseAdminController.php:21
+#: ./application/libraries/gettext_php/Gettext_extension.php:44
+#: ./application/libraries/gettext_php/Gettext_extension.php:49
+msgid "Advice"
+msgstr ""
+
+#: ./application/libraries/Permitions.php:509
+#: ./application/libraries/Permitions.php:583
+#: ./application/libraries/Permitions.php:647
+#: ./application/libraries/Permitions.php:836
+msgid "Changes have been saved"
+msgstr ""
+
+#: ./application/libraries/Permitions.php:616
+msgid "Role not found"
+msgstr ""
+
+#: ./application/libraries/Permitions.php:786
+msgid "Privilege created"
+msgstr ""
+
+#: ./application/libraries/Permitions.php:824
+msgid "The privilege is not found"
+msgstr ""
+
+#: ./application/libraries/DX_Auth.php:813
+msgid "auth login incorrect password"
+msgstr ""
+
+#: ./application/libraries/DX_Auth.php:820
+msgid "auth not activated"
+msgstr ""
+
+#: ./application/libraries/DX_Auth.php:825
+msgid "auth login username not exist"
+msgstr ""
+
+#: ./application/libraries/DX_Auth.php:875
+#: ./application/libraries/DX_Auth.php:906
+msgid "auth activate subject"
+msgstr ""
+
+#: ./application/libraries/DX_Auth.php:921
+msgid "auth account subject"
+msgstr ""
+
+#: ./application/libraries/DX_Auth.php:1008
+msgid "auth request sent"
+msgstr ""
+
+#: ./application/libraries/DX_Auth.php:1011
+msgid "auth username or email not exist"
+msgstr ""
+
+#: ./application/libraries/DX_Auth.php:1116
+msgid "auth incorrect old password"
+msgstr ""
+
+#: ./application/libraries/DX_Auth.php:1148
+msgid "auth incorrect password"
+msgstr ""
+
+#: ./application/libraries/DX_Auth.php:1229
+#: ./application/libraries/DX_Auth.php:1234
+#: ./application/libraries/DX_Auth.php:1237
+msgid "Improper protection code"
+msgstr ""
+
+#: ./application/modules/shop/classes/SPropertiesRenderer.php:22
+msgid "none"
+msgstr ""
+
+#: ./application/modules/shop/classes/Category/CategoryApi.php:105
+#: ./application/modules/shop/classes/Category/CategoryApi.php:155
+#: ./application/modules/shop/classes/Category/CategoryApi.php:195
+#: ./application/modules/shop/classes/Category/CategoryApi.php:256
+#: ./application/modules/shop/classes/Products/ProductApi.php:108
+#: ./application/modules/shop/classes/Products/ProductApi.php:255
+#: ./application/modules/shop/classes/Products/ProductApi.php:307
+#: ./application/modules/shop/classes/Products/ProductApi.php:351
+#: ./application/modules/shop/classes/Products/ProductApi.php:398
+msgid "You did not specified data array"
+msgstr ""
+
+#: ./application/modules/shop/classes/Category/CategoryApi.php:109
+#: ./application/modules/shop/classes/Category/CategoryApi.php:159
+#: ./application/modules/shop/classes/Category/CategoryApi.php:199
+#: ./application/modules/shop/classes/Category/CategoryApi.php:260
+#: ./application/modules/shop/classes/Products/ProductApi.php:112
+#: ./application/modules/shop/classes/Products/ProductApi.php:259
+#: ./application/modules/shop/classes/Products/ProductApi.php:311
+#: ./application/modules/shop/classes/Products/ProductApi.php:355
+#: ./application/modules/shop/classes/Products/ProductApi.php:402
+msgid "Second parameter $data must be array"
+msgstr ""
+
+#: ./application/modules/shop/classes/Category/CategoryApi.php:151
+#: ./application/modules/shop/classes/Category/CategoryApi.php:191
+#: ./application/modules/shop/classes/Category/CategoryApi.php:252
+#: ./application/modules/shop/classes/Category/CategoryApi.php:334
+msgid "Category(ies) id(s) not specified"
+msgstr ""
+
+#: ./application/modules/shop/classes/Category/CategoryApi.php:232
+msgid "Category with such ID not exist"
+msgstr ""
+
+#: ./application/modules/shop/classes/Category/CategoryApi.php:321
+msgid "Category(ies) was not found"
+msgstr ""
+
+#: ./application/modules/shop/classes/Category/CategoryApi.php:411
+msgid "Category(ies) not exists"
+msgstr ""
+
+#: ./application/modules/shop/classes/Category/CategoryApi.php:524
+#: ./application/modules/shop/classes/Products/ProductApi.php:430
+msgid "Invalid url"
+msgstr ""
+
+#: ./application/modules/shop/classes/Category/CategoryApi.php:537
+#: ./application/modules/shop/classes/Category/CategoryApi.php:551
+#: ./application/modules/shop/classes/Products/ProductApi.php:443
+#: ./application/modules/shop/classes/Products/ProductApi.php:457
+msgid "This URL is already in use!"
+msgstr ""
+
+#: ./application/modules/shop/classes/Category/CategoryApi.php:559
+#: ./application/modules/shop/classes/Products/ProductApi.php:465
+msgid "active not 1 or 0"
+msgstr ""
+
+#: ./application/modules/shop/classes/Category/CategoryApi.php:567
+msgid "showsitetitle not 1 or 0"
+msgstr ""
+
+#: ./application/modules/shop/classes/Category/CategoryApi.php:575
+msgid "Invalid order method"
+msgstr ""
+
+#: ./application/modules/shop/classes/Category/CategoryApi.php:583
+msgid "Invalid parent_id"
+msgstr ""
+
+#: ./application/modules/shop/classes/Category/CategoryApi.php:591
+msgid "The tpl field legth must be smaler than 250 symbols."
+msgstr ""
+
+#: ./application/modules/shop/classes/Category/CategoryApi.php:595
+msgid "The tpl field can only contain Latin alpha-numeric characters"
+msgstr ""
+
+#: ./application/modules/shop/classes/Category/CategoryApi.php:601
+msgid "Invalid file type."
+msgstr ""
+
+#: ./application/modules/shop/classes/Category/CategoryApi.php:625
+msgid "Can not buid category tree"
+msgstr ""
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:251
+#: ./application/modules/shop/classes/Products/ProductApi.php:303
+#: ./application/modules/shop/classes/Products/ProductApi.php:347
+#: ./application/modules/shop/classes/Products/ProductApi.php:751
+#: ./application/modules/shop/classes/Products/ProductApi.php:793
+#: ./application/modules/shop/classes/Products/ProductApi.php:805
+#: ./application/modules/shop/classes/Products/ProductApi.php:826
+#: ./application/modules/shop/classes/Products/ProductApi.php:859
+#: ./application/modules/shop/classes/Products/ProductApi.php:879
+#: ./application/modules/shop/classes/Products/ProductApi.php:900
+#: ./application/modules/shop/classes/Products/ProductApi.php:1071
+#: ./application/modules/shop/classes/Products/ProductApi.php:1127
+msgid "You did not specified product id"
+msgstr ""
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:275
+msgid "Product with such ID not exist"
+msgstr ""
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:365
+msgid "Product variant not found"
+msgstr ""
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:394
+msgid "You did not specified product variant id"
+msgstr ""
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:473
+#: ./application/modules/shop/classes/Products/ProductApi.php:592
+msgid "hit not 1 or 0"
+msgstr ""
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:481
+msgid "Invalid stock"
+msgstr ""
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:489
+msgid "Invalid brand_id"
+msgstr ""
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:493
+msgid "not specified product_name"
+msgstr ""
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:497
+msgid "currency not specified"
+msgstr ""
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:501
+msgid "currency not exist"
+msgstr ""
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:505
+msgid "price_in_main not specified"
+msgstr ""
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:509
+msgid "price_in_main not float"
+msgstr ""
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:514
+msgid "Invalid category_id"
+msgstr ""
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:517
+msgid "category_id not specified"
+msgstr ""
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:530
+msgid "Invalid related_products"
+msgstr ""
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:534
+msgid "Invalid created"
+msgstr ""
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:542
+msgid "Invalid updated"
+msgstr ""
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:549
+msgid "Invalid old_price"
+msgstr ""
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:557
+msgid "Invalid views"
+msgstr ""
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:569
+msgid "Invalid added_to_cart_count"
+msgstr ""
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:578
+msgid "Invalid external_id"
+msgstr ""
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:586
+msgid "hot not 1 or 0"
+msgstr ""
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:598
+msgid "action not 1 or 0"
+msgstr ""
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:604
+msgid "The Main tpl field can only contain Latin alpha-numeric characters"
+msgstr ""
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:921
+msgid "Product category does not exists"
+msgstr ""
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:927
+msgid "Product has no properties"
+msgstr ""
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:930
+msgid "Product has no category"
+msgstr ""
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:933
+msgid "Product that you specified does not exist"
+msgstr ""
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:979
+msgid "Not multiple property cant set few values"
+msgstr ""
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:994
+msgid "Property that you specified does not exist"
+msgstr ""
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:998
+#: ./application/modules/shop/classes/Products/ProductApi.php:1018
+msgid "Not valid arguments passed to the method"
+msgstr ""
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:1049
+msgid "Additional categories ids must be array"
+msgstr ""
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:1054
+msgid "You did not specified product model"
+msgstr ""
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:1058
+msgid "You did not specified categories array"
+msgstr ""
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:1076
+msgid "You did not specified image name"
+msgstr ""
+
+#: ./application/modules/shop/classes/Products/ProductApi.php:1081
+msgid "You did not specified image position"
+msgstr ""
+
+#: ./application/modules/shop/classes/MediaManager/Image.php:539
+#: ./application/modules/shop/classes/MediaManager/Image.php:566
+msgid "Image wasnt loaded"
+msgstr ""
+
+#: ./application/modules/shop/classes/MediaManager/Image.php:547
+#: ./application/modules/shop/classes/MediaManager/Image.php:575
+msgid "Wrong variant id"
+msgstr ""
+
+#: ./application/modules/shop/classes/Compare/BaseCompare.php:35
+msgid "Compare list"
+msgstr ""
+
+#: ./application/modules/shop/classes/Profile/BaseProfile.php:43
+msgid "Profile"
+msgstr ""
+
+#: ./application/modules/shop/classes/Profile/BaseProfile.php:81
+msgid "Name"
+msgstr ""
+
+#: ./application/modules/shop/classes/Profile/BaseProfile.php:82
+msgid "Email"
+msgstr ""
+
+#: ./application/modules/shop/classes/Profile/BaseProfile.php:83
+msgid "Address"
+msgstr ""
+
+#: ./application/modules/shop/classes/Profile/BaseProfile.php:84
+msgid "Phone"
+msgstr ""
+
+#: ./application/modules/shop/classes/Profile/BaseProfile.php:99
+msgid "Data is saved"
+msgstr ""
+
+#: ./application/modules/shop/classes/Profile/BaseProfile.php:105
+msgid "Old password"
+msgstr ""
+
+#: ./application/modules/shop/classes/Profile/BaseProfile.php:106
+#: ./application/modules/shop/classes/Profile/BaseProfile.php:113
+#: ./application/modules/shop/classes/Profile/BaseProfile.php:115
+#: ./application/modules/shop/classes/PaymentSystems/Robokassa/RobokassaSystem.php:135
+#: ./application/modules/shop/classes/PaymentSystems/Robokassa/RobokassaSystem.php:142
+msgid "Password"
+msgstr ""
+
+#: ./application/modules/shop/classes/Profile/BaseProfile.php:107
+msgid "Confirm password"
+msgstr ""
+
+#: ./application/modules/shop/classes/Profile/BaseProfile.php:113
+msgid "wrong"
+msgstr ""
+
+#: ./application/modules/shop/classes/Profile/BaseProfile.php:115
+msgid "successfully saved."
+msgstr ""
+
+#: ./application/modules/shop/classes/Search/BaseSearch.php:238
+msgid "All result"
+msgstr ""
+
+#: ./application/modules/shop/classes/PaymentSystems/Interkassa/InterkassaSystem.php:135
+msgid "Kassa number"
+msgstr ""
+
+#: ./application/modules/shop/classes/PaymentSystems/Interkassa/InterkassaSystem.php:141
+msgid "Secret Key"
+msgstr ""
+
+#: ./application/modules/shop/classes/PaymentSystems/LiqPay/LiqPaySystem.php:153
+msgid "Public key"
+msgstr ""
+
+#: ./application/modules/shop/classes/PaymentSystems/LiqPay/LiqPaySystem.php:159
+msgid "Private key"
+msgstr ""
+
+#: ./application/modules/shop/classes/PaymentSystems/OschadBankInvoice/OschadBankInvoiceSystem.php:276
+msgid "Recipient"
+msgstr ""
+
+#: ./application/modules/shop/classes/PaymentSystems/OschadBankInvoice/OschadBankInvoiceSystem.php:283
+msgid "Identifier code"
+msgstr ""
+
+#: ./application/modules/shop/classes/PaymentSystems/OschadBankInvoice/OschadBankInvoiceSystem.php:286
+msgid "Integer. The maximum length of 10 characters."
+msgstr ""
+
+#: ./application/modules/shop/classes/PaymentSystems/OschadBankInvoice/OschadBankInvoiceSystem.php:291
+msgid "Current account"
+msgstr ""
+
+#: ./application/modules/shop/classes/PaymentSystems/OschadBankInvoice/OschadBankInvoiceSystem.php:294
+msgid "Integer. The maximum length of 14 characters."
+msgstr ""
+
+#: ./application/modules/shop/classes/PaymentSystems/OschadBankInvoice/OschadBankInvoiceSystem.php:299
+msgid "Bank MFI"
+msgstr ""
+
+#: ./application/modules/shop/classes/PaymentSystems/OschadBankInvoice/OschadBankInvoiceSystem.php:302
+msgid "Integer. The maximum length of 6 characters."
+msgstr ""
+
+#: ./application/modules/shop/classes/PaymentSystems/OschadBankInvoice/OschadBankInvoiceSystem.php:308
+msgid "Money sign"
+msgstr ""
+
+#: ./application/modules/shop/classes/PaymentSystems/OschadBankInvoice/OschadBankInvoiceSystem.php:311
+msgid "For example: rub"
+msgstr ""
+
+#: ./application/modules/shop/classes/PaymentSystems/SberBankInvoice/SberBankInvoiceSystem.php:195
+msgid "Name of recipient"
+msgstr ""
+
+#: ./application/modules/shop/classes/PaymentSystems/SberBankInvoice/SberBankInvoiceSystem.php:202
+msgid "Recipient bank"
+msgstr ""
+
+#: ./application/modules/shop/classes/PaymentSystems/SberBankInvoice/SberBankInvoiceSystem.php:209
+msgid "TIN address"
+msgstr ""
+
+#: ./application/modules/shop/classes/PaymentSystems/SberBankInvoice/SberBankInvoiceSystem.php:216
+#: ./application/modules/shop/classes/PaymentSystems/YandexMoney/src/lib/YandexMoneySystem.php:117
+msgid "Recipient account"
+msgstr ""
+
+#: ./application/modules/shop/classes/PaymentSystems/SberBankInvoice/SberBankInvoiceSystem.php:224
+msgid "BIC"
+msgstr ""
+
+#: ./application/modules/shop/classes/PaymentSystems/SberBankInvoice/SberBankInvoiceSystem.php:232
+msgid "Correspondent account"
+msgstr ""
+
+#: ./application/modules/shop/classes/PaymentSystems/SberBankInvoice/SberBankInvoiceSystem.php:239
+msgid "Bank notes"
+msgstr ""
+
+#: ./application/modules/shop/classes/PaymentSystems/SberBankInvoice/SberBankInvoiceSystem.php:246
+msgid "Kopeck"
+msgstr ""
+
+#: ./application/modules/shop/classes/PaymentSystems/PayPal/PayPalSystem.php:116
+msgid "E-mail"
+msgstr ""
+
+#: ./application/modules/shop/classes/PaymentSystems/PayPal/PayPalSystem.php:122
+msgid "Information about transaction"
+msgstr ""
+
+#: ./application/modules/shop/classes/PaymentSystems/PayPal/PayPalSystem.php:128
+#: ./application/modules/shop/classes/PaymentSystems/Robokassa/RobokassaSystem.php:150
+#: ./application/modules/shop/classes/PaymentSystems/YandexMoney/src/lib/YandexMoneySystem.php:123
+msgid "Merchant settings"
+msgstr ""
+
+#: ./application/modules/shop/classes/PaymentSystems/PayPal/PayPalSystem.php:132
+#: ./application/modules/shop/classes/PaymentSystems/Robokassa/RobokassaSystem.php:155
+#: ./application/modules/shop/classes/PaymentSystems/YandexMoney/src/lib/YandexMoneySystem.php:127
+msgid "The method of sending data for all requests: GET"
+msgstr ""
+
+#: ./application/modules/shop/classes/PaymentSystems/WebMoney/WebMoneySystem.php:171
+msgid "Trick seller"
+msgstr ""
+
+#: ./application/modules/shop/classes/PaymentSystems/WebMoney/WebMoneySystem.php:180
+msgid "Secret Key:"
+msgstr ""
+
+#: ./application/modules/shop/classes/PaymentSystems/QiWi/QiWiSystem.php:128
+msgid "Account number"
+msgstr ""
+
+#: ./application/modules/shop/classes/PaymentSystems/QiWi/QiWiSystem.php:134
+msgid "The lifetime of the account"
+msgstr ""
+
+#: ./application/modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:158
+msgid "Merchant id"
+msgstr ""
+
+#: ./application/modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:161
+#: ./application/modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:168
+#: ./application/modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:175
+msgid "Trick seller to which the customer has to make a payment. Format - letter and 12 digits."
+msgstr ""
+
+#: ./application/modules/shop/classes/PaymentSystems/PrivateBank/PrivateBankSystem.php:165
+msgid "Merchant password"
+msgstr ""
+
+#: ./application/modules/shop/classes/PaymentSystems/Robokassa/RobokassaSystem.php:128
+msgid "Login"
+msgstr ""
+
+#: ./application/modules/shop/classes/PaymentSystems/YandexMoney/YandexMoneySystem.php:118
+msgid "Links to create application:"
+msgstr ""
+
+#: ./application/modules/shop/classes/PaymentSystems/YandexMoney/YandexMoneySystem.php:119
+msgid "https://sp-money.yandex.ru/myservices/new.xml"
+msgstr ""
+
+#: ./application/modules/shop/classes/PaymentSystems/YandexMoney/YandexMoneySystem.php:120
+msgid "https://sp-money.yandex.ru/myservices/online.xml"
+msgstr ""
+
+#: ./application/modules/shop/classes/PaymentSystems/YandexMoney/YandexMoneySystem.php:121
+msgid "Redirect url, HTTP:"
+msgstr ""
+
+#: ./application/modules/shop/classes/PaymentSystems/YandexMoney/YandexMoneySystem.php:128
+msgid "Client"
+msgstr ""
+
+#: ./application/modules/shop/classes/PaymentSystems/YandexMoney/YandexMoneySystem.php:134
+msgid "Client_ID"
+msgstr ""
+
+#: ./application/modules/shop/classes/PaymentSystems/YandexMoney/YandexMoneySystem.php:140
+msgid "Notification_secret"
+msgstr ""
+
+#: ./application/modules/shop/classes/PaymentSystems/YandexMoney/YandexMoneySystem.php:146
+msgid "OAuth2 client_secret"
+msgstr ""
+
+#: ./application/modules/shop/classes/PaymentSystems/YandexMoney/YandexMoneySystem.php:154
+msgid "Get link for Received token "
+msgstr ""
+
+#: ./application/modules/shop/classes/PaymentSystems/YandexMoney/YandexMoneySystem.php:159
+msgid "Follow the link to get Received token:"
+msgstr ""
+
+#: ./application/modules/shop/classes/PaymentSystems/YandexMoney/YandexMoneySystem.php:165
+msgid "Received token"
+msgstr ""
+
+#: ./application/modules/shop/helpers/shop_helper.php:244
+#: ./application/modules/shop/helpers/shop_helper.php:285
+#: ./application/modules/shop/helpers/shop_helper.php:298
+msgid "Home"
+msgstr ""
+
+#: ./application/modules/shop/widgets/templates/view_product.tpl:62
+#: ./application/modules/shop/widgets/templates/similar_products.tpl:62
+#: ./application/modules/shop/widgets/templates/products.tpl:75
+msgid "Buy"
+msgstr ""
+
+#: ./application/modules/shop/helpers/shop_helper.php:449
+msgid "Formulation  order"
+msgstr ""
+
+#: ./application/modules/shop/helpers/shop_helper.php:468
+msgid "Formulation order"
+msgstr ""
+
+#: ./application/modules/shop/helpers/shop_helper.php:469
+msgid "Announce a"
+msgstr ""
+
+#: ./system/language/form_validation/form_validation.php:8
+msgid "required"
+msgstr ""
+
+#: ./system/language/form_validation/form_validation.php:9
+msgid "isset"
+msgstr ""
+
+#: ./system/language/form_validation/form_validation.php:10
+msgid "valid_email"
+msgstr ""
+
+#: ./system/language/form_validation/form_validation.php:11
+msgid "valid_emails"
+msgstr ""
+
+#: ./system/language/form_validation/form_validation.php:12
+msgid "valid_url"
+msgstr ""
+
+#: ./system/language/form_validation/form_validation.php:13
+msgid "valid_ip"
+msgstr ""
+
+#: ./system/language/form_validation/form_validation.php:14
+msgid "min_length"
+msgstr ""
+
+#: ./system/language/form_validation/form_validation.php:15
+msgid "max_length"
+msgstr ""
+
+#: ./system/language/form_validation/form_validation.php:16
+msgid "exact_length"
+msgstr ""
+
+#: ./system/language/form_validation/form_validation.php:17
+msgid "alpha"
+msgstr ""
+
+#: ./system/language/form_validation/form_validation.php:18
+msgid "alpha_numeric"
+msgstr ""
+
+#: ./system/language/form_validation/form_validation.php:19
+msgid "alpha_dash"
+msgstr ""
+
+#: ./system/language/form_validation/form_validation.php:20
+msgid "numeric"
+msgstr ""
+
+#: ./system/language/form_validation/form_validation.php:21
+msgid "is_numeric"
+msgstr ""
+
+#: ./system/language/form_validation/form_validation.php:22
+msgid "integer"
+msgstr ""
+
+#: ./system/language/form_validation/form_validation.php:23
+msgid "regex_match"
+msgstr ""
+
+#: ./system/language/form_validation/form_validation.php:24
+msgid "matches"
+msgstr ""
+
+#: ./system/language/form_validation/form_validation.php:25
+msgid "is_unique"
+msgstr ""
+
+#: ./system/language/form_validation/form_validation.php:26
+msgid "is_natural"
+msgstr ""
+
+#: ./system/language/form_validation/form_validation.php:27
+msgid "is_natural_no_zero"
+msgstr ""
+
+#: ./system/language/form_validation/form_validation.php:28
+msgid "decimal"
+msgstr ""
+
+#: ./system/language/form_validation/form_validation.php:29
+msgid "less_than"
+msgstr ""
+
+#: ./system/language/form_validation/form_validation.php:30
+msgid "greater_than"
+msgstr ""
+
+#: ./system/language/form_validation/form_validation.php:31
+msgid "User profile successfully changed"
+msgstr ""
+
+#: ./system/language/form_validation/form_validation.php:32
+msgid "Cart"
+msgstr ""
+
+#: ./system/language/form_validation/form_validation.php:33
+msgid "Order view"
+msgstr ""
+
+#: ./system/libraries/Email.php:1523
+msgid "email_sent"
+msgstr ""
+
+#: ./system/language/upload/upload_validation.php:7
+#: ./system/language/upload/upload_validation.php:17
+msgid "upload_invalid_filetype"
+msgstr ""
+
+#: ./system/language/upload/upload_validation.php:9
+msgid "upload_userfile_not_set"
+msgstr ""
+
+#: ./system/language/upload/upload_validation.php:10
+msgid "upload_file_exceeds_limit"
+msgstr ""
+
+#: ./system/language/upload/upload_validation.php:11
+msgid "upload_file_exceeds_form_limit"
+msgstr ""
+
+#: ./system/language/upload/upload_validation.php:12
+msgid "upload_file_partial"
+msgstr ""
+
+#: ./system/language/upload/upload_validation.php:13
+msgid "upload_no_temp_directory"
+msgstr ""
+
+#: ./system/language/upload/upload_validation.php:14
+msgid "upload_unable_to_write_file"
+msgstr ""
+
+#: ./system/language/upload/upload_validation.php:15
+msgid "upload_stopped_by_extension"
+msgstr ""
+
+#: ./system/language/upload/upload_validation.php:16
+msgid "upload_no_file_selected"
+msgstr ""
+
+#: ./system/language/upload/upload_validation.php:18
+msgid "upload_invalid_filesize"
+msgstr ""
+
+#: ./system/language/upload/upload_validation.php:19
+msgid "upload_invalid_dimensions"
+msgstr ""
+
+#: ./system/language/upload/upload_validation.php:20
+msgid "upload_destination_error"
+msgstr ""
+
+#: ./system/language/upload/upload_validation.php:21
+msgid "upload_no_filepath"
+msgstr ""
+
+#: ./system/language/upload/upload_validation.php:22
+msgid "upload_no_file_types"
+msgstr ""
+
+#: ./system/language/upload/upload_validation.php:23
+msgid "upload_bad_filename"
+msgstr ""
+
+#: ./system/language/upload/upload_validation.php:24
+msgid "upload_not_writable"
+msgstr ""
+
+#: ./system/libraries/Migration.php:223
+msgid "migration_none_found"
+msgstr ""
+
+#: ./system/libraries/Pagination.php:74
+msgid "First"
+msgstr ""
+
+#: ./system/libraries/Pagination.php:75
+msgid "Last"
+msgstr "Остання"
+
+#: ./templates/administrator/js/jquery-validate/jquery.validate.i18n.js:7
+msgid "This field is required"
+msgstr ""
+
+#: ./templates/administrator/js/jquery-validate/jquery.validate.i18n.js:8
+msgid "Please fix this field."
+msgstr ""
+
+#: ./templates/administrator/js/jquery-validate/jquery.validate.i18n.js:9
+msgid "Enter a valid email address."
+msgstr ""
+
+#: ./templates/administrator/js/jquery-validate/jquery.validate.i18n.js:10
+msgid "Please enter a valid URL."
+msgstr ""
+
+#: ./templates/administrator/js/jquery-validate/jquery.validate.i18n.js:11
+msgid "Please enter a valid date."
+msgstr ""
+
+#: ./templates/administrator/js/jquery-validate/jquery.validate.i18n.js:12
+msgid "Please enter a valid date (ISO)."
+msgstr ""
+
+#: ./templates/administrator/js/jquery-validate/jquery.validate.i18n.js:13
+msgid "Please enter a valid number."
+msgstr ""
+
+#: ./templates/administrator/js/jquery-validate/jquery.validate.i18n.js:14
+msgid "Please enter only digits."
+msgstr ""
+
+#: ./templates/administrator/js/jquery-validate/jquery.validate.i18n.js:15
+msgid "Please enter a valid credit card number."
+msgstr ""
+
+#: ./templates/administrator/js/jquery-validate/jquery.validate.i18n.js:16
+msgid "Please enter the same value again."
+msgstr ""
+
+#: ./templates/administrator/js/jquery-validate/jquery.validate.i18n.js:17
+msgid "Please enter a value with a valid extension."
+msgstr ""
+
+#: ./templates/administrator/js/jquery-validate/jquery.validate.i18n.js:18
+msgid "Please enter no more than {0} characters."
+msgstr ""
+
+#: ./templates/administrator/js/jquery-validate/jquery.validate.i18n.js:19
+msgid "Please enter at least {0} characters."
+msgstr ""
+
+#: ./templates/administrator/js/jquery-validate/jquery.validate.i18n.js:20
+msgid "Please enter a value between {0} and {1} characters long."
+msgstr ""
+
+#: ./templates/administrator/js/jquery-validate/jquery.validate.i18n.js:21
+msgid "Please enter a value between {0} and {1}."
+msgstr ""
+
+#: ./templates/administrator/js/jquery-validate/jquery.validate.i18n.js:22
+msgid "Please enter a value less than or equal to {0}."
+msgstr ""
+
+#: ./templates/administrator/js/jquery-validate/jquery.validate.i18n.js:23
+msgid "Please enter a value greater than or equal to {0}."
+msgstr ""
+
+#: ./application/modules/shop/widgets/shop_widgets.php:123
+#: ./application/modules/shop/widgets/shop_widgets.php:193
+msgid "Widget title"
+msgstr ""
+
+#: ./application/modules/shop/widgets/shop_widgets.php:135
+#: ./application/modules/shop/widgets/shop_widgets.php:208
+#: ./application/modules/shop/widgets/shop_widgets.php:276
+#: ./application/modules/shop/widgets/shop_widgets.php:334
+msgid "Successfully saved"
+msgstr ""
+
+#: ./application/modules/shop/widgets/shop_widgets.php:194
+#: ./application/modules/shop/widgets/shop_widgets.php:265
+#: ./application/modules/shop/widgets/shop_widgets.php:324
+msgid "Number of items to display"
+msgstr ""
+
+#: ./application/modules/shop/widgets/templates/view_product.tpl:70
+#: ./application/modules/shop/widgets/templates/similar_products.tpl:71
+#: ./application/modules/shop/widgets/templates/products.tpl:84
+msgid "Report message"
+msgstr ""
+
+#: ./application/modules/shop/helpers/shop_helper.php:449
+msgid "Formulation <br/> order"
+msgstr ""
