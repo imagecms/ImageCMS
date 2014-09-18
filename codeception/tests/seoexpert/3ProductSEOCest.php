@@ -43,8 +43,8 @@ class ProductSEOCest
      * @guy SeoExpertTester\seoexpertSteps 
      */
     public function CreateProductForFront (SeoExpertTester\seoexpertSteps $I){
-        $I->SeoCreateProduct($NameProduct = 'Сеошний товар', $PriceProduct = '777', $BrandProduct = 'Хлеб', $CategoryProduct = 'Вода', $Additional_Category = '');
-        $I->SeoCreateProduct($NameProduct = 'Seoshny product', $PriceProduct = '777', $BrandProduct = 'Bread', $CategoryProduct = 'Water', $Additional_Category = '');
+        $I->SeoCreateProduct($NameProduct = 'Сеошний товар', $PriceProduct = '777', $BrandProduct = 'Хлеб', $CategoryProduct = 'Вода', $Additional_Category = 'Water');
+        $I->SeoCreateProduct($NameProduct = 'Seoshny product', $PriceProduct = '777', $BrandProduct = 'Bread', $CategoryProduct = 'Water', $Additional_Category = 'Вода');
 
     }
     
@@ -78,8 +78,10 @@ class ProductSEOCest
         $I->fillField(seoexpertPage::$SeoProductTitle, "%ID% %name% %category% %brand% %price% %CS% %p_$ID_property%");
         $I->fillField(seoexpertPage::$SeoProductDescription, '');
         $I->fillField(seoexpertPage::$SeoProductKeywords, '');
-        $checkbox_path = '//tbody/tr[1]/td/div/div/div[2]/div/span[2]'; 
+        $checkbox_path = '//section/form/div[2]/div[2]/table[1]/tbody/tr/td/div/div/div[1]/div/span[2]'; 
         $I->ActivateCheckBox($checkbox_xpath = $checkbox_path);
+        $checkbox_path = '//section/form/div[2]/div[2]/table[1]/tbody/tr/td/div/div/div[2]/div/span[2]';
+        $I->DeactivateCheckBox($checkbox_xpath = $checkbox_path);
         $I->click(seoexpertPage::$SeoButtSave);
         InitTest::ClearAllCach($I);
         $I->wait('1');
@@ -106,8 +108,10 @@ class ProductSEOCest
         $I->fillField(seoexpertPage::$SeoProductTitle, "%ID% %name% %category% %brand% %price% %CS% %p_$ID_property%");
         $I->fillField(seoexpertPage::$SeoProductDescription, '');
         $I->fillField(seoexpertPage::$SeoProductKeywords, '');
-        $checkbox_path = '//tbody/tr[1]/td/div/div/div[2]/div/span[2]'; 
+        $checkbox_path = '//section/form/div[2]/div[2]/table[1]/tbody/tr/td/div/div/div[1]/div/span[2]'; 
         $I->ActivateCheckBox($checkbox_xpath = $checkbox_path);
+        $checkbox_path = '//section/form/div[2]/div[2]/table[1]/tbody/tr/td/div/div/div[2]/div/span[2]';
+        $I->DeactivateCheckBox($checkbox_xpath = $checkbox_path);
         $I->click(seoexpertPage::$SeoButtSave);
         InitTest::ClearAllCach($I);
         $I->wait('1');
@@ -132,8 +136,10 @@ class ProductSEOCest
         $I->fillField(seoexpertPage::$SeoProductTitle, "%ID% %name[t]% %category[t]% %brand[t]% %price% %CS% %p_$ID_property%");
         $I->fillField(seoexpertPage::$SeoProductDescription, '');
         $I->fillField(seoexpertPage::$SeoProductKeywords, '');
-        $checkbox_path = '//tbody/tr[1]/td/div/div/div[2]/div/span[2]'; 
+        $checkbox_path = '//section/form/div[2]/div[2]/table[1]/tbody/tr/td/div/div/div[1]/div/span[2]'; 
         $I->ActivateCheckBox($checkbox_xpath = $checkbox_path);
+        $checkbox_path = '//section/form/div[2]/div[2]/table[1]/tbody/tr/td/div/div/div[2]/div/span[2]';
+        $I->DeactivateCheckBox($checkbox_xpath = $checkbox_path);
         $I->click(seoexpertPage::$SeoButtSave);
         InitTest::ClearAllCach($I);
         $I->wait('1');
@@ -159,8 +165,10 @@ class ProductSEOCest
         $I->fillField(seoexpertPage::$SeoProductTitle, "%ID% %name[t]% %category[t]% %brand[t]% %price% %CS% %p_$ID_property%");
         $I->fillField(seoexpertPage::$SeoProductDescription, '');
         $I->fillField(seoexpertPage::$SeoProductKeywords, '');
-        $checkbox_path = '//tbody/tr[1]/td/div/div/div[2]/div/span[2]'; 
+        $checkbox_path = '//section/form/div[2]/div[2]/table[1]/tbody/tr/td/div/div/div[1]/div/span[2]'; 
         $I->ActivateCheckBox($checkbox_xpath = $checkbox_path);
+        $checkbox_path = '//section/form/div[2]/div[2]/table[1]/tbody/tr/td/div/div/div[2]/div/span[2]';
+        $I->DeactivateCheckBox($checkbox_xpath = $checkbox_path);
         $I->click(seoexpertPage::$SeoButtSave);
         InitTest::ClearAllCach($I);
         $I->wait('1');
@@ -186,8 +194,10 @@ class ProductSEOCest
         $I->fillField(seoexpertPage::$SeoProductTitle, "%name[1]% %name[2]% %name[3]% %name[4]% %name[5]% %name[6]%");
         $I->fillField(seoexpertPage::$SeoProductDescription, '');
         $I->fillField(seoexpertPage::$SeoProductKeywords, '');
-        $checkbox_path = '//tbody/tr[1]/td/div/div/div[2]/div/span[2]'; 
+        $checkbox_path = '//section/form/div[2]/div[2]/table[1]/tbody/tr/td/div/div/div[1]/div/span[2]'; 
         $I->ActivateCheckBox($checkbox_xpath = $checkbox_path);
+        $checkbox_path = '//section/form/div[2]/div[2]/table[1]/tbody/tr/td/div/div/div[2]/div/span[2]';
+        $I->DeactivateCheckBox($checkbox_xpath = $checkbox_path);
         $I->click(seoexpertPage::$SeoButtSave);
         InitTest::ClearAllCach($I);
         $I->wait('1');
@@ -213,8 +223,10 @@ class ProductSEOCest
         $I->fillField(seoexpertPage::$SeoProductTitle, "%name[1]% %name[2]% %name[3]% %name[4]% %name[5]% %name[6]%");
         $I->fillField(seoexpertPage::$SeoProductDescription, '');
         $I->fillField(seoexpertPage::$SeoProductKeywords, '');
-        $checkbox_path = '//tbody/tr[1]/td/div/div/div[2]/div/span[2]'; 
+        $checkbox_path = '//section/form/div[2]/div[2]/table[1]/tbody/tr/td/div/div/div[1]/div/span[2]'; 
         $I->ActivateCheckBox($checkbox_xpath = $checkbox_path);
+        $checkbox_path = '//section/form/div[2]/div[2]/table[1]/tbody/tr/td/div/div/div[2]/div/span[2]';
+        $I->DeactivateCheckBox($checkbox_xpath = $checkbox_path);
         $I->click(seoexpertPage::$SeoButtSave);
         InitTest::ClearAllCach($I);
         $I->wait('1');
@@ -241,8 +253,10 @@ class ProductSEOCest
         $I->fillField(seoexpertPage::$SeoProductTitle, "%category[1]% %category[2]% %category[3]% %category[4]% %category[5]% %category[6]%");
         $I->fillField(seoexpertPage::$SeoProductDescription, '');
         $I->fillField(seoexpertPage::$SeoProductKeywords, '');
-        $checkbox_path = '//tbody/tr[1]/td/div/div/div[2]/div/span[2]'; 
+        $checkbox_path = '//section/form/div[2]/div[2]/table[1]/tbody/tr/td/div/div/div[1]/div/span[2]'; 
         $I->ActivateCheckBox($checkbox_xpath = $checkbox_path);
+        $checkbox_path = '//section/form/div[2]/div[2]/table[1]/tbody/tr/td/div/div/div[2]/div/span[2]';
+        $I->DeactivateCheckBox($checkbox_xpath = $checkbox_path);
         $I->click(seoexpertPage::$SeoButtSave);
         InitTest::ClearAllCach($I);
         $I->wait('1');
@@ -269,8 +283,10 @@ class ProductSEOCest
         $I->fillField(seoexpertPage::$SeoProductTitle, "%category[1]% %category[2]% %category[3]% %category[4]% %category[5]% %category[6]%");
         $I->fillField(seoexpertPage::$SeoProductDescription, '');
         $I->fillField(seoexpertPage::$SeoProductKeywords, '');
-        $checkbox_path = '//tbody/tr[1]/td/div/div/div[2]/div/span[2]'; 
+        $checkbox_path = '//section/form/div[2]/div[2]/table[1]/tbody/tr/td/div/div/div[1]/div/span[2]'; 
         $I->ActivateCheckBox($checkbox_xpath = $checkbox_path);
+        $checkbox_path = '//section/form/div[2]/div[2]/table[1]/tbody/tr/td/div/div/div[2]/div/span[2]';
+        $I->DeactivateCheckBox($checkbox_xpath = $checkbox_path);
         $I->click(seoexpertPage::$SeoButtSave);
         InitTest::ClearAllCach($I);
         $I->wait('1');
@@ -298,8 +314,10 @@ class ProductSEOCest
         $I->fillField(seoexpertPage::$SeoProductDescription, "%ID% %name% %category% %brand% %price% %CS% %p_$ID_property%");
         $I->fillField(seoexpertPage::$SeoProductKeywords, '');
         $I->fillField(seoexpertPage::$SeoProductLength, '');
-        $checkbox_path = '//tbody/tr[1]/td/div/div/div[2]/div/span[2]'; 
+        $checkbox_path = '//section/form/div[2]/div[2]/table[1]/tbody/tr/td/div/div/div[1]/div/span[2]'; 
         $I->ActivateCheckBox($checkbox_xpath = $checkbox_path);
+        $checkbox_path = '//section/form/div[2]/div[2]/table[1]/tbody/tr/td/div/div/div[2]/div/span[2]';
+        $I->DeactivateCheckBox($checkbox_xpath = $checkbox_path);
         $I->click(seoexpertPage::$SeoButtSave);
         InitTest::ClearAllCach($I);
         $I->wait('1');
@@ -326,8 +344,10 @@ class ProductSEOCest
         $I->fillField(seoexpertPage::$SeoProductTitle, '');
         $I->fillField(seoexpertPage::$SeoProductDescription, "%ID% %name% %category% %brand% %price% %CS% %p_$ID_property%");
         $I->fillField(seoexpertPage::$SeoProductKeywords, '');
-        $checkbox_path = '//tbody/tr[1]/td/div/div/div[2]/div/span[2]'; 
+        $checkbox_path = '//section/form/div[2]/div[2]/table[1]/tbody/tr/td/div/div/div[1]/div/span[2]'; 
         $I->ActivateCheckBox($checkbox_xpath = $checkbox_path);
+        $checkbox_path = '//section/form/div[2]/div[2]/table[1]/tbody/tr/td/div/div/div[2]/div/span[2]';
+        $I->DeactivateCheckBox($checkbox_xpath = $checkbox_path);
         $I->click(seoexpertPage::$SeoButtSave);
         InitTest::ClearAllCach($I);
         $I->wait('1');
@@ -354,8 +374,10 @@ class ProductSEOCest
         $I->fillField(seoexpertPage::$SeoProductDescription, "%ID% %name[t]% %category[t]% %brand[t]% %price% %CS% %p_$ID_property%");
         $I->fillField(seoexpertPage::$SeoProductKeywords, '');
         $I->fillField(seoexpertPage::$SeoProductLength, '');
-        $checkbox_path = '//tbody/tr[1]/td/div/div/div[2]/div/span[2]'; 
+        $checkbox_path = '//section/form/div[2]/div[2]/table[1]/tbody/tr/td/div/div/div[1]/div/span[2]'; 
         $I->ActivateCheckBox($checkbox_xpath = $checkbox_path);
+        $checkbox_path = '//section/form/div[2]/div[2]/table[1]/tbody/tr/td/div/div/div[2]/div/span[2]';
+        $I->DeactivateCheckBox($checkbox_xpath = $checkbox_path);
         $I->click(seoexpertPage::$SeoButtSave);
         InitTest::ClearAllCach($I);
         $I->wait('1');
@@ -380,8 +402,10 @@ class ProductSEOCest
         $I->fillField(seoexpertPage::$SeoProductTitle, '');
         $I->fillField(seoexpertPage::$SeoProductDescription, "%ID% %name[t]% %category[t]% %brand[t]% %price% %CS% %p_$ID_property%");
         $I->fillField(seoexpertPage::$SeoProductKeywords, '');
-        $checkbox_path = '//tbody/tr[1]/td/div/div/div[2]/div/span[2]'; 
+        $checkbox_path = '//section/form/div[2]/div[2]/table[1]/tbody/tr/td/div/div/div[1]/div/span[2]';        
         $I->ActivateCheckBox($checkbox_xpath = $checkbox_path);
+        $checkbox_path = '//section/form/div[2]/div[2]/table[1]/tbody/tr/td/div/div/div[2]/div/span[2]';
+        $I->DeactivateCheckBox($checkbox_xpath = $checkbox_path);
         $I->click(seoexpertPage::$SeoButtSave);
         InitTest::ClearAllCach($I);
         $I->wait('1');
@@ -408,8 +432,10 @@ class ProductSEOCest
         $I->fillField(seoexpertPage::$SeoProductDescription, "%name[1]% %name[2]% %name[3]% %name[4]% %name[5]% %name[6]%");
         $I->fillField(seoexpertPage::$SeoProductKeywords, '');
         $I->fillField(seoexpertPage::$SeoProductLength, '');
-        $checkbox_path = '//tbody/tr[1]/td/div/div/div[2]/div/span[2]'; 
+        $checkbox_path = '//section/form/div[2]/div[2]/table[1]/tbody/tr/td/div/div/div[1]/div/span[2]'; 
         $I->ActivateCheckBox($checkbox_xpath = $checkbox_path);
+        $checkbox_path = '//section/form/div[2]/div[2]/table[1]/tbody/tr/td/div/div/div[2]/div/span[2]';
+        $I->DeactivateCheckBox($checkbox_xpath = $checkbox_path);
         $I->click(seoexpertPage::$SeoButtSave);
         InitTest::ClearAllCach($I);
         $I->wait('1');
@@ -434,8 +460,10 @@ class ProductSEOCest
         $I->fillField(seoexpertPage::$SeoProductDescription, "%category[1]% %category[2]% %category[3]% %category[4]% %category[5]% %category[6]%");
         $I->fillField(seoexpertPage::$SeoProductKeywords, '');
         $I->fillField(seoexpertPage::$SeoProductLength, '');
-        $checkbox_path = '//tbody/tr[1]/td/div/div/div[2]/div/span[2]'; 
+        $checkbox_path = '//section/form/div[2]/div[2]/table[1]/tbody/tr/td/div/div/div[1]/div/span[2]'; 
         $I->ActivateCheckBox($checkbox_xpath = $checkbox_path);
+        $checkbox_path = '//section/form/div[2]/div[2]/table[1]/tbody/tr/td/div/div/div[2]/div/span[2]';
+        $I->DeactivateCheckBox($checkbox_xpath = $checkbox_path);
         $I->click(seoexpertPage::$SeoButtSave);
         InitTest::ClearAllCach($I);
         $I->wait('1');
@@ -446,31 +474,7 @@ class ProductSEOCest
  
     
     
-    /**
-     * @group a
-     * @guy SeoExpertTester\seoexpertSteps
-     */
-    public function ICMS_1264___ShopProductPageLength (SeoExpertTester\seoexpertSteps $I){  
-        $I->DefoultValues();
-        $I->amOnPage(seoexpertPage::$SeoUrl);
-        $I->wait('1');
-        $I->click(seoexpertPage::$SeoButtShop);
-        $I->wait('1');
-        $I->fillField(seoexpertPage::$SeoProductTitle, '');
-        $I->fillField(seoexpertPage::$SeoProductDescription, 'я тут');
-        $I->fillField(seoexpertPage::$SeoProductKeywords, '');
-        $I->fillField(seoexpertPage::$SeoProductLength, '1');
-        $checkbox_path = '//tbody/tr[1]/td/div/div/div[2]/div/span[2]'; 
-        $I->ActivateCheckBox($checkbox_xpath = $checkbox_path);
-        $I->click(seoexpertPage::$SeoButtSave);
-        InitTest::ClearAllCach($I);
-        $I->wait('1');
-        $I->amOnPage(seoexpertPage::$FrontProductURLRu);
-        $I->wait('1');
-        $I->dontSeeInPageSource('я тут');
-        $I->seeInPageSource('я');
-       
-    }
+   
    
     /**
      * @group a
@@ -486,8 +490,10 @@ class ProductSEOCest
         $I->fillField(seoexpertPage::$SeoProductTitle, '');
         $I->fillField(seoexpertPage::$SeoProductDescription, '');
         $I->fillField(seoexpertPage::$SeoProductKeywords, "%name% %category% %brand% %p_$ID_property%");
-        $checkbox_path = '//tbody/tr[1]/td/div/div/div[2]/div/span[2]'; 
+        $checkbox_path = '//section/form/div[2]/div[2]/table[1]/tbody/tr/td/div/div/div[1]/div/span[2]'; 
         $I->ActivateCheckBox($checkbox_xpath = $checkbox_path);
+        $checkbox_path = '//section/form/div[2]/div[2]/table[1]/tbody/tr/td/div/div/div[2]/div/span[2]';
+        $I->DeactivateCheckBox($checkbox_xpath = $checkbox_path);
         $I->click(seoexpertPage::$SeoButtSave);
         InitTest::ClearAllCach($I);
         $I->wait('1');
@@ -514,8 +520,10 @@ class ProductSEOCest
         $I->fillField(seoexpertPage::$SeoProductTitle, '%name%');
         $I->fillField(seoexpertPage::$SeoProductDescription, '%category%');
         $I->fillField(seoexpertPage::$SeoProductKeywords, "%brand%");
-        $checkbox_path = '//tbody/tr[1]/td/div/div/div[2]/div/span[2]'; 
+        $checkbox_path = '//section/form/div[2]/div[2]/table[1]/tbody/tr/td/div/div/div[1]/div/span[2]';
         $I->ActivateCheckBox($checkbox_xpath = $checkbox_path);
+        $checkbox_path = '//section/form/div[2]/div[2]/table[1]/tbody/tr/td/div/div/div[2]/div/span[2]';
+        $I->DeactivateCheckBox($checkbox_xpath = $checkbox_path);
         $I->click(seoexpertPage::$SeoButtSave);
         InitTest::ClearAllCach($I);
         $I->wait('1');
@@ -547,7 +555,9 @@ class ProductSEOCest
         $I->fillField(seoexpertPage::$SeoProductTitle, '%name%');
         $I->fillField(seoexpertPage::$SeoProductDescription, 'Церберус офф %CS%');
         $I->fillField(seoexpertPage::$SeoProductKeywords, "Нига%price%Нига");
-        $checkbox_path = '//tbody/tr[1]/td/div/div/div[2]/div/span[2]'; 
+        $checkbox_path = '//section/form/div[2]/div[2]/table[1]/tbody/tr/td/div/div/div[1]/div/span[2]'; 
+        $I->DeactivateCheckBox($checkbox_xpath = $checkbox_path);
+        $checkbox_path = '//section/form/div[2]/div[2]/table[1]/tbody/tr/td/div/div/div[2]/div/span[2]';
         $I->DeactivateCheckBox($checkbox_xpath = $checkbox_path);
         $I->click(seoexpertPage::$SeoButtSave);
         InitTest::ClearAllCach($I);
@@ -559,7 +569,48 @@ class ProductSEOCest
     }
     
     
+    /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps
+     */
+    public function CheckBoxNullMetaData (SeoExpertTester\seoexpertSteps $I){
+        $I->DefoultValues();
+        $ID_property = $I->GetPropertyID($name_property = 'Свойственно сео');
+        $ID_product = $I->GetProductID($name_product = 'Сеошний товар');
+        $I->SeoProductFillFieldMettaData($name_product = 'Сеошний товар', $Meta_Title = 'ТАЙТЛ', $Meta_Description  = 'ОПИСАНИЕ', $Meta_Keywords = 'КЕЙВОРДС');
+        $I->amOnPage(seoexpertPage::$SeoUrl);
+        $I->wait('1');
+        $I->click(seoexpertPage::$SeoButtShop);
+        $I->wait('1');
+        $I->fillField(seoexpertPage::$SeoProductTitle, "%ID% %name% %category% %brand% %price% %CS% %p_$ID_property%");
+        $I->fillField(seoexpertPage::$SeoProductDescription, '');
+        $I->fillField(seoexpertPage::$SeoProductKeywords, '');
+        $checkbox_path = '//section/form/div[2]/div[2]/table[1]/tbody/tr/td/div/div/div[1]/div/span[2]'; 
+        $I->ActivateCheckBox($checkbox_xpath = $checkbox_path);
+        $checkbox_path = '//section/form/div[2]/div[2]/table[1]/tbody/tr/td/div/div/div[2]/div/span[2]';
+        $I->ActivateCheckBox($checkbox_xpath = $checkbox_path);
+        $I->click(seoexpertPage::$SeoButtSave);
+        InitTest::ClearAllCach($I);
+        $I->wait('1');
+        $I->amOnPage(seoexpertPage::$FrontProductURLRu);
+        $I->wait('1');
+        $I->seeInPageSource('ТАЙТЛ');             
+        $I->seeInPageSource('ОПИСАНИЕ');             
+        $I->seeInPageSource('КЕЙВОРДС');   
+        $I->dontSee("$ID_product");
+        $I->dontSee("$ID_property");
+    }
     
+    
+    
+    
+    /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps 
+     */
+    public function DeleteCategoryForJiraTests(SeoExpertTester\seoexpertSteps $I) {
+        $I->DeleteProductCategorys();
+    }
     
     
     

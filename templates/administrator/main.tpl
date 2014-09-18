@@ -23,10 +23,6 @@
 
         <link rel="stylesheet" type="text/css" href="{$JS_URL}/elfinder-2.0/css/elfinder.min.css" media="screen" charset="utf-8">
         <link rel="stylesheet" type="text/css" href="{$JS_URL}/elfinder-2.0/css/theme.css" media="screen" charset="utf-8">
-
-        <script type="text/javascript">
-            var MAINSITE = "{echo MAINSITE}";
-        </script>
         <script src="{$THEME}js/jquery-1.8.2.min.js" type="text/javascript"></script>
     </head>
     <body>
@@ -83,9 +79,9 @@
                 <div class="imagecms-inside">
                     <div class="container">
                         <button type="button" class="imagecms-close" {if $_COOKIE['condPromoToolbar'] == '1' || $_COOKIE['condPromoToolbar'] == NULL}style="display: block;"{/if} onclick="setCookie('condPromoToolbar', '0');
-                $('.imagecms-top-fixed-header').removeClass('imagecms-active');
-                $(this).hide().next().show();
-                $(window).scroll();">
+                                $('.imagecms-top-fixed-header').removeClass('imagecms-active');
+                                $(this).hide().next().show();
+                                $(window).scroll();">
                             <span class="imagecms-toggle-close-text imagecms-bar-close-text"><span style="font-size: 14px;">↑</span> Скрыть</span>
                         </button>
                         <button type="button" class="imagecms-close" {if $_COOKIE['condPromoToolbar'] == '0'}style="display: block;"{/if} onclick="setCookie('condPromoToolbar', '1');
@@ -122,35 +118,37 @@
         {/if}
         {if !SHOP_INSTALLED}
             <div class="imagecms-top-fixed-header{if $_COOKIE['condPromoToolbar'] == '1' || $_COOKIE['condPromoToolbar'] == NULL} imagecms-active{/if}">
-                <div class="container">
-                    <button type="button" class="imagecms-close" {if $_COOKIE['condPromoToolbar'] == '1' || $_COOKIE['condPromoToolbar'] == NULL}style="display: block;"{/if} onclick="setCookie('condPromoToolbar', '0');
-                            $('.imagecms-top-fixed-header').removeClass('imagecms-active');
-                            $(this).hide().next().show();
-                            $(window).scroll();">
-                        <span class="imagecms-toggle-close-text imagecms-bar-close-text"><span style="font-size: 14px;">↑</span> {lang('Hide', 'admin')}</span>
-                    </button>
-                    <button type="button" class="imagecms-close" {if $_COOKIE['condPromoToolbar'] == '0'}style="display: block;"{/if} onclick="setCookie('condPromoToolbar', '1');
-                            $('.imagecms-top-fixed-header').addClass('imagecms-active');
-                            $(this).hide().prev().show();
-                            $(window).scroll();">
-                        <span class="imagecms-toggle-close-text imagecms-bar-show-text"><span style="font-size: 14px;">↓</span> {lang('Show', 'admin')}</span>
-                    </button>
-                    <div class="imagecms-buy-license">
-                        <a href="http://www.imagecms.net/download/corporate" target="_blank" onclick="_gaq.push(['_trackEvent', 'demo-admin', '/download/corporate']);">
-                            <span class="imagecms-text-el">Скачать бесплатно</span>
-                        </a>
+                <div class="imagecms-inside">
+                    <div class="container">
+                        <button type="button" class="imagecms-close" {if $_COOKIE['condPromoToolbar'] == '1' || $_COOKIE['condPromoToolbar'] == NULL}style="display: block;"{/if} onclick="setCookie('condPromoToolbar', '0');
+                                $('.imagecms-top-fixed-header').removeClass('imagecms-active');
+                                $(this).hide().next().show();
+                                $(window).scroll();">
+                            <span class="imagecms-toggle-close-text imagecms-bar-close-text"><span style="font-size: 14px;">↑</span> {lang('Hide', 'admin')}</span>
+                        </button>
+                        <button type="button" class="imagecms-close" {if $_COOKIE['condPromoToolbar'] == '0'}style="display: block;"{/if} onclick="setCookie('condPromoToolbar', '1');
+                                $('.imagecms-top-fixed-header').addClass('imagecms-active');
+                                $(this).hide().prev().show();
+                                $(window).scroll();">
+                            <span class="imagecms-toggle-close-text imagecms-bar-show-text"><span style="font-size: 14px;">↓</span> {lang('Show', 'admin')}</span>
+                        </button>
+                        <div class="imagecms-buy-license">
+                            <a href="http://www.imagecms.net/download/corporate" target="_blank" onclick="_gaq.push(['_trackEvent', 'demo-admin', '/download/corporate']);">
+                                <span class="imagecms-text-el">Скачать бесплатно</span>
+                            </a>
+                        </div>
+                        <ul class="imagecms-list">
+                            <li>
+                                <a href="http://www.imagecms.net/free-cms-corporate" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demo-admin', '/free-cms-corporate']);">Обзор продукта</a>
+                            </li>
+                            <li>
+                                <a href="http://www.imagecms.net/corporate-bazovye-vozmozhnosti" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demo-admin', '/corporate-bazovye-vozmozhnosti']);">Базовые возможности</a>
+                            </li>
+                            <li>
+                                <a href="http://www.imagecms.net/blog" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demo-admin', '/blog']);">Блог</a>
+                            </li>
+                        </ul>
                     </div>
-                    <ul class="imagecms-list">
-                        <li>
-                            <a href="http://www.imagecms.net/free-cms-corporate" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demo-admin', '/free-cms-corporate']);">Обзор продукта</a>
-                        </li>
-                        <li>
-                            <a href="http://www.imagecms.net/corporate-bazovye-vozmozhnosti" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demo-admin', '/corporate-bazovye-vozmozhnosti']);">Базовые возможности</a>
-                        </li>
-                        <li>
-                            <a href="http://www.imagecms.net/blog" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demo-admin', '/blog']);">Блог</a>
-                        </li>
-                    </ul>
                 </div>
             </div>
         {/if}
@@ -175,7 +173,23 @@
                             <div class="pull-right span4 f-s_0 right-header">
                                 <span class="helper"></span>
                                 <ul class="d_i-b f-s_0">
-                                    {/*<li class="btn_header">
+                                    {if MAINSITE}
+                                        {if !$isfree}
+                                            <li class="btn_header {if $daysLeft <= 5}btn_header-danger{/if}">
+                                                <button type="button">
+                                                    <span class="text-el">{$daysLeft} {lang("days left", "admin")}</span>
+                                                </button>
+                                            </li>
+                                        {else:}
+                                            <li class="btn_header">
+                                                <button type="button">
+                                                    <span class="text-el">{lang("Free tarif", "admin")}</span>
+                                                </button>
+                                            </li>
+                                        {/if}
+                                    {/if}
+                                    {/* <li class="btn_header btn-mail">
+                                    <li class="btn_header">
                                         <button type="button">
                                             <span class="text-el">{lang("14 days left", "admin")}</span>
                                         </button>
@@ -193,10 +207,11 @@
                                     <li class="btn_header btn-mail">
                                         <a href="#">
                                             <span class="icon_mail">
-                                                <span class="badge">25</span>
+                                                <span class="badge badge-important">25</span>
                                             </span>
                                         </a>
-                                    </li>*/}
+                                    </li> */}
+
                                     <li class="dropdown d-i_b v-a_m">
                                         <a data-toggle="dropdown" class="btn_header btn-personal-area">
                                             <span>
@@ -224,7 +239,7 @@
                                                 </li>
                                             {/if}
                                             <li>
-                                                <a href="/admin/logout">
+                                                <a href="/auth/logout">
                                                     {lang("Exit", "admin")}
                                                 </a>
                                             </li>
@@ -282,7 +297,7 @@
                     {if !SHOP_INSTALLED}
                         <table class="container" id="baseAdminMenu">
                             <tbody class="navbar navbar-inverse">
-                                <tr class="nav">
+                                <tr>
                                     {foreach $baseMenu as $li}
                                         {if $li.subMenu}
                                             <td class="{$li.class} {if $li.subMenu} dropdown{/if}">
@@ -331,7 +346,7 @@
                                 </tr>
 
                                 {//if SHOP_INSTALLED}
-                                   <!-- <a class="btn btn-small pull-right btn-info" onclick="loadShopInterface();" href="#">{lang('Manage shop','admin')}<span class="f-s_14">→</span></a>-->
+                                <!-- <a class="btn btn-small pull-right btn-info" onclick="loadShopInterface();" href="#">{lang('Manage shop','admin')}<span class="f-s_14">→</span></a>-->
                                 {///if}
                                 {$CI->lang->load($langDomain)}
                             </tbody>

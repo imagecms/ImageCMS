@@ -77,7 +77,7 @@
 </div>
 <br>
 <a class="btn btn-small pjax pull-right btn-success"  href="{$BASE_URL}admin/components/init_window/exchangeunfu" >
-    <i class="icon-plus"></i>{lang('Create partner', 'exchangeunfu')}
+    <i class="icon-plus-sign icon-white"></i>{lang('Create partner', 'exchangeunfu')}
 </a>
 <button type="button" class="btn btn-small action_on pull-right btn-success addPartnerBtn">
     <i class="icon-plus"></i>{lang('Add partner', 'exchangeunfu')}

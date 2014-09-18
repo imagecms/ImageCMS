@@ -28,7 +28,7 @@
             </div>
         </div>                            
     </div>
-    <form method="post" action="/admin/components/init_window/banners/edit/{echo $banner['id']}/{$locale}" enctype="multipart/form-data" id="image_upload_form">
+    <form method="post" action="/admin/components/init_window/banners/edit/{echo $banner['id']}/{$locale}" enctype="multipart/form-data" id="image_upload_form" class="m-t_10">
         <table class="table  table-bordered table-hover table-condensed content_big_td">
             <thead>
                 <tr>
