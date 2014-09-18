@@ -3,6 +3,11 @@
 class DeliveryEditPage
 {
     
+    
+    //заголовки
+    public static $Title                        = '.title';
+    public static $BlockEditTitle               = '//section[@class="mini-layout"]//th';
+    
     //кнопки
     Public static $ButtonBack                   = '.t-d_u';
     Public static $ButtonSave                   = '.btn.btn-small.btn-primary.formSubmit';
@@ -36,13 +41,7 @@ class DeliveryEditPage
     
     //поле з чекбоксами
     public static $FieldPaymentLabel            = "//form[@id='deliveryUpdate']/div[5]/div[3]/div[1]";
-
-    public static function checkPaymentMethodLabel($row){
-        return "//div[5]/div[3]/div[2]/span[$row]";
-    }
     
-    public static function checkPaymentMethod($row) {
-        return "//form/div[5]/div[3]/div[2]/span[$row]/span";
-        
-    }
+    public static function checkPaymentMethodLabel($row) { return "//div[5]/div[3]/div[2]/span[$row]";           }
+    public static function checkPaymentMethod($row)      { return "//form/div[5]/div[3]/div[2]/span[$row]/span"; }
 }    

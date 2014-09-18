@@ -121,22 +121,22 @@ class seoexpertPage
     
     
     public static $SeoBrandBlockTitle = "//section/form/div[2]/div[2]/table[4]/thead/tr/th";
-    public static $SeoBrandFieldTitle = "//tbody/tr[4]/td/div/div/label[1]/span[2]/textarea";
-    public static $SeoBrandFieldDescription = "//tbody/tr[4]/td/div/div/label[2]/span[2]/textarea";
-    public static $SeoBrandFieldPagination = "//tbody/tr[4]/td/div/div/label[3]/span[2]/textarea";
-    public static $SeoBrandFieldLength = "//tbody/tr[4]/td/div/div/label[4]/span[2]/input";
-    public static $SeoBrandFieldKeywords = "//tbody/tr[4]/td/div/div/label[5]/span[2]/textarea";
-    public static $SeoBrandCheckBoxActive = "//tbody/tr[4]/td/div/div/div[2]/div/span[2]/span";
-    public static $SeoBrandCheckBoxMetyaData = "//tbody/tr[4]/td/div/div/div[3]/div/span[2]/span";
+    public static $SeoBrandFieldTitle = "//section/form/div[2]/div[2]/table[4]/tbody/tr/td/div/div/label[1]/span[2]/textarea";
+    public static $SeoBrandFieldDescription = "//section/form/div[2]/div[2]/table[4]/tbody/tr/td/div/div/label[2]/span[2]/textarea";
+    public static $SeoBrandFieldPagination = "//section/form/div[2]/div[2]/table[4]/tbody/tr/td/div/div/label[3]/span[2]/textarea";
+    public static $SeoBrandFieldLength = "//section/form/div[2]/div[2]/table[4]/tbody/tr/td/div/div/label[4]/span[2]/input";
+    public static $SeoBrandFieldKeywords = "//section/form/div[2]/div[2]/table[4]/tbody/tr/td/div/div/label[5]/span[2]/textarea";
+    public static $SeoBrandCheckBoxActive = "//section/form/div[2]/div[2]/table[4]/tbody/tr/td/div/div/div[1]/div/span[2]/span";
+    public static $SeoBrandCheckBoxMetyaData = "//section/form/div[2]/div[2]/table[4]/tbody/tr/td/div/div/div[2]/div/span[2]/span";
   
     
     // Search Block
     
-    public static $SeoSearchBlockTitle = "//section/form/div[2]/div[2]/table[5]/thead/tr/th";
-    public static $SeoSearchFieldTitle = "//tbody/tr[5]/td/div/div/label[1]/span[2]/textarea";
+    public static $SeoSearchBlockTitle = "//section/form/div[2]/div[2]/table[5]/tbody/tr/td/div/div/label[1]/span[2]/textarea";
+    public static $SeoSearchFieldTitle = "//section/form/div[2]/div[2]/table[5]/tbody/tr/td/div/div/label[2]/span[2]/textarea";
     public static $SeoSearchFielddescription = "//tbody/tr[5]/td/div/div/label[2]/span[2]/textarea";
-    public static $SeoSearchFieldKeywords = "//tbody/tr[5]/td/div/div/label[3]/span[2]/textarea";
-    public static $SeoSearchCheckBoxActive = "//tbody/tr[5]/td/div/div/div[2]/div/span[2]/span";
+    public static $SeoSearchFieldKeywords = "//section/form/div[2]/div[2]/table[5]/tbody/tr/td/div/div/label[3]/span[2]/textarea";
+    public static $SeoSearchCheckBoxActive = "//section/form/div[2]/div[2]/table[5]/tbody/tr/td/div/div/div/div/span[2]";
     
     
     
