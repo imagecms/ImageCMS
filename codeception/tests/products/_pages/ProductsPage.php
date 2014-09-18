@@ -32,7 +32,7 @@ class ProductsPage
     public static $Category  = '//*[@id="comment_chosen"]';    //div/ul 
     public static $AdditionalCategory  = '//*[@id="iddCategory_chosen"]';
     public static $ShortDescription  = ".//*[@id='ShortDescriptions']";
-    public static $FullDescription  = ".//*[@id='FullDescriptions']";
+    public static $FullDescription  = ".//*[@id='FullDescription']";
     //Additional Preferences
     public static function Comments($agree){
         $Com = "//*[@id='settings']/div/div[2]/table/tbody/tr/td/div/div/div/div[1]/div/span[$agree]";
@@ -50,17 +50,20 @@ class ProductsPage
     public static $ActiveButton  = '//*[@id="parameters"]/div/div[1]/div[1]/div[2]/div/span';
     public static $EditImageButton  = ".//*[@id='ProductVariantRow_0']/td[1]/div/div/div[2]/button[1]";
     public static $ImageDownloadButton  = ".//*[@id='ProductVariantRow_0']/td[1]/div/div/div[2]/button[2]";
-    public static $HotProductButton  = '//*[@id="parameters"]/div/div[1]/div[2]/div/button[1]';
-    public static $NewProductButton  = '//*[@id="parameters"]/div/div[1]/div[2]/div/button[2]';
-    public static $SaleProductButton  = '//*[@id="parameters"]/div/div[1]/div[2]/div/button[3]';
+    public static $HotProductButton  = '//*[@id="parameters"]/div/table/tbody/tr/td/div/div[1]/div[2]/div/button[1]';
+    public static $NewProductButton  = '//*[@id="parameters"]/div/table/tbody/tr/td/div/div[1]/div[2]/div/button[2]';
+    public static $SaleProductButton  = '//*[@id="parameters"]/div/table/tbody/tr/td/div/div[1]/div[2]/div/button[3]';
     public static $AddVariantButton  = ".//*[@id='addVariant']";
     
     //Кнопки в редактировании
-    public static $PropertyButton  = '//*[@id="image_upload_form"]/div/div[1]/div[1]/a[2]';
-    public static $ImagesButton  = '//*[@id="image_upload_form"]/div/div[1]/div[1]/a[3]';
-    public static $KitsProductButton  = '//*[@id="image_upload_form"]/div/div[1]/div[1]/a[4]';
-    
-    public static $NameVariantProductEdit  = ".//*[@id='ProductVariantRow_0']/td[1]/div/input[3]";
+    public static $PropertyButton  = '//*[@id="image_upload_form"]/div[1]/div[1]/a[2]';
+    public static $ImagesButton  = '//*[@id="image_upload_form"]/div[1]/div[1]/a[3]';
+    public static $KitsProductButton  = '//*[@id="image_upload_form"]/div[1]/div[1]/a[4]';
+    public static $AccessoriesButton  = '//*[@id="image_upload_form"]/div[1]/div[1]/a[5]';
+    public static $PrefButtonEditing  = '//*[@id="image_upload_form"]/div[1]/div[1]/a[6]';
+                                         
+    public static $NameVariantProductEdit  = '//*[@id="ProductVariantRow_0"]/td[2]/input[4]';
+    public static $AccessoryEdit  = '//*[@id="RelatedProducts"]';
     //Кнопки в списке
     public static function CheckboxLine($row){
         $Checkbox = ".//*[@id='filter_form']/section/div[2]/table/tbody/tr[$row]/td[1]/span/span";
@@ -113,5 +116,9 @@ class ProductsPage
     public static function PaginationLine($row) {
         $Pag = ".//*[@id='filter_form']/section/div[2]/div/div[1]/ul/li[$row]/a";
         return $Pag;
+    }
+    public static function ButtonsFront($row) {
+        $But = "html/body/div[1]/div[2]/div[2]/div[3]/ul/li[$row]/button";
+        return $But;
     }
 }
