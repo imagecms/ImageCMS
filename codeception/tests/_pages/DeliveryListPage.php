@@ -14,19 +14,19 @@ class DeliveryListPage
 
     //заголовки таблиці
     public static $HeadCheck                = "//section[@class='mini-layout']//th[1]/span/span";
-    public static $HeadID                   = "//section[@class='mini-layout']//th[2]";
-    public static $HeadMethod               = "//section[@class='mini-layout']//th[3]";
-    public static $HeadPrice                = "//section[@class='mini-layout']//th[4]";
-    public static $HeadFreeFrom             = "//section[@class='mini-layout']//th[5]";
-    public static $HeadActive               = "//section[@class='mini-layout']//th[6]";
+    public static $HeadIDText               = "//section[@class='mini-layout']//th[2]";
+    public static $HeadMethodText           = "//section[@class='mini-layout']//th[3]";
+    public static $HeadPriceText            = "//section[@class='mini-layout']//th[4]";
+    public static $HeadFreeFromText         = "//section[@class='mini-layout']//th[5]";
+    public static $HeadActiveText           = "//section[@class='mini-layout']//th[6]";
      
    //рядки таблиці
-    public static function lineCheck($row)          { return "//section[@class='mini-layout']//tbody/tr[$row]/td[1]/span/span"; }
-    public static function lineID($row)             { return "//section[@class='mini-layout']//tbody/tr[$row]/td[2]/p";         }
-    public static function lineMethod ($row)        { return "//section[@class='mini-layout']//tbody/tr[$row]/td[3]/a";         }
-    public static function linePrice($row)          { return  "//section[@class='mini-layout']//tbody/tr[$row]/td[4]/p";        }
-    public static function lineFreeFrom($row)       { return "//section[@class='mini-layout']//tbody/tr[$row]/td[5]/p";         }
-    public static function lineActive($row)         { return "//section/div[2]/div/table/tbody/tr[$row]/td[6]/div/span";        }
+    public static function lineCheck($row)              { return "//section[@class='mini-layout']//tbody/tr[$row]/td[1]/span/span"; }
+    public static function lineIDText($row)             { return "//section[@class='mini-layout']//tbody/tr[$row]/td[2]/p";         }
+    public static function lineMethodLink ($row)        { return "//section[@class='mini-layout']//tbody/tr[$row]/td[3]/a";         }
+    public static function linePriceText($row)          { return  "//section[@class='mini-layout']//tbody/tr[$row]/td[4]/p";        }
+    public static function lineFreeFromText($row)       { return "//section[@class='mini-layout']//tbody/tr[$row]/td[5]/p";         }
+    public static function lineActiveToggle($row)       { return "//section/div[2]/div/table/tbody/tr[$row]/td[6]/div/span";        }
     
     //вікно видалення
     public static $WindowDelete             = ".modal.hide.fade.modal_del.in";
