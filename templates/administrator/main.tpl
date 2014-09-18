@@ -417,7 +417,9 @@
                             {echo create_admin_language_select()}
                         </div>
                         <div class="span4 t-a_c">
-                            {lang("Version","admin")}: <b>{echo getCMSNumber()}</b>
+                            {if !defined('MAINSITE')}
+                                {lang("Version","admin")}: <b>{echo getCMSNumber()}</b>-->
+                            {/if}
                             <div class="muted">{lang('Help us get better','admin')} - <a href="#" id="rep_bug">{lang('report an error','admin')}</a></div>
                         </div>
                         <div class="span4 t-a_r">
