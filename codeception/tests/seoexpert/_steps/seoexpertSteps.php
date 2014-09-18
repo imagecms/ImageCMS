@@ -470,6 +470,30 @@ class seoexpertSteps extends \SeoExpertTester
     }
     
     
+    function SetSearchSeoPage($Title = NULL, $Description = NULL, $Keywords = NULL, $CheckBox_Activate = NULL) {
+        $I = $this;
+        $I->amOnPage(\seoexpertPage::$SeoUrl);
+        $I->click(\seoexpertPage::$SeoButtShop);
+        $I->fillField(\seoexpertPage::$SeoSearchFieldTitle, $Title);
+        $I->fillField(\seoexpertPage::$SeoSearchFielddescription, $Description);
+        $I->fillField(\seoexpertPage::$SeoSearchFieldKeywords, $Keywords);
+            if(isset($CheckBox_Activate)){
+            $active = 'span1 active';
+            $inactive = 'span1';
+            $checkbox_path = $CheckBox_Activate;
+        $checkbox_class = $I->grabAttributeFrom($checkbox_path, 'class');
+            if($checkbox_class == $active){                
+                $I->wait('1');
+            }elseif($checkbox_class == $inactive) {
+                $I->click($checkbox_path);
+                $I->wait('1');
+            }
+        $I->click(\seoexpertPage::$SeoButtSave);
+        $I->wait('1');        
+        }
+    }
+    
+    
     
     function DeleteProductCategorys() {
         $I = $this;

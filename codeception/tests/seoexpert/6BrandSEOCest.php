@@ -48,8 +48,28 @@ class BrandSEOCest
                             $Brand_Product = 'Пробник',
                             $Category_Product = 'Брендовая',
                             $Additional_Category = '');     
+        $I->SeoCreateProduct($Name_Product = 'Пробник товар Брендовий',
+                            $Price_Product = '888',
+                            $Brand_Product = 'Пробник',
+                            $Category_Product = 'Брендовая',
+                            $Additional_Category = '');
+        $I->SeoCreateProduct($Name_Product = 'Товар Брендовый Пробник',
+                            $Price_Product = '654',
+                            $Brand_Product = 'Пробник',
+                            $Category_Product = 'Брендовая',
+                            $Additional_Category = ''); 
         $I->SeoCreateProduct($Name_Product = 'Zulusandia',
                             $Price_Product = '888',
+                            $Brand_Product = 'Cannibal Corpse',
+                            $Category_Product = 'Etmo Plasma',
+                            $Additional_Category = '');     
+        $I->SeoCreateProduct($Name_Product = 'Two Zulusandia',
+                            $Price_Product = '999',
+                            $Brand_Product = 'Cannibal Corpse',
+                            $Category_Product = 'Etmo Plasma',
+                            $Additional_Category = '');     
+        $I->SeoCreateProduct($Name_Product = 'Zulusandia Three',
+                            $Price_Product = '658',
                             $Brand_Product = 'Cannibal Corpse',
                             $Category_Product = 'Etmo Plasma',
                             $Additional_Category = '');     
@@ -661,6 +681,67 @@ class BrandSEOCest
     } 
     
    
+    /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps
+     */
+    public function BrandPaginationNumberRUS (SeoExpertTester\seoexpertSteps $I) {
+        $I->NullValues();
+        $I->AmountProductInFront($Amount_Product_Front = '1');
+        $I->SetBrandSeoPage($Title = 'тайтл %pagenumber%',
+                            $Description = 'дескрипшн %pagenumber%',
+                            $Pagination = 'привет питер %number%',
+                            $Length_Desc = '',
+                            $Keywords = 'кейвордс %pagenumber%',
+                            $CheckBox_Activate = '//section/form/div[2]/div[2]/table[4]/tbody/tr/td/div/div/div[1]/div/span[2]');     
+        $I->CheckValuesInPage($URL_Page = '/shop/brand/probnik#',
+                                $values = 'тайтл ');
+        $I->seeInPageSource('дескрипшн ');
+        $I->seeInPageSource('кейвордс ');
+        $I->CheckValuesInPage($URL_Page = '/shop/brand/probnik?per_page=1#',
+                                $values = 'тайтл привет питер 2');
+        $I->seeInPageSource('дескрипшн привет питер 2 ');
+        $I->seeInPageSource('кейвордс привет питер 2');
+        $I->CheckValuesInPage($URL_Page = '/shop/brand/probnik?per_page=2#',
+                                $values = 'тайтл привет питер 3');
+        $I->seeInPageSource('дескрипшн привет питер 3 ');
+        $I->seeInPageSource('кейвордс привет питер 3');     
+    }
+    
+    
+    
+    
+    /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps
+     */
+    public function BrandPaginationNumberENG (SeoExpertTester\seoexpertSteps $I) {
+        $I->NullValues();
+        $I->AmountProductInFront($Amount_Product_Front = '1');
+        $I->SetBrandSeoPage($Title = 'тайтл title %pagenumber%',
+                            $Description = 'дескрипшн Description %pagenumber%',
+                            $Pagination = 'привет питер Zdorow %number%',
+                            $Length_Desc = '',
+                            $Keywords = 'кейвордс Keywords %pagenumber%',
+                            $CheckBox_Activate = '//section/form/div[2]/div[2]/table[4]/tbody/tr/td/div/div/div[1]/div/span[2]');     
+        $I->CheckValuesInPage($URL_Page = '/shop/brand/cannibal-corpse#',
+                                $values = 'тайтл title ');
+        $I->seeInPageSource('дескрипшн Description ');
+        $I->seeInPageSource('кейвордс Keywords ');
+        $I->CheckValuesInPage($URL_Page = '/shop/brand/cannibal-corpse?per_page=1#',
+                                $values = 'тайтл title привет питер Zdorow 2');
+        $I->seeInPageSource('дескрипшн Description привет питер Zdorow 2');
+        $I->seeInPageSource('кейвордс Keywords привет питер Zdorow 2');
+        $I->CheckValuesInPage($URL_Page = '/shop/brand/cannibal-corpse?per_page=2#',
+                                $values = 'тайтл title привет питер Zdorow 3');
+        $I->seeInPageSource('дескрипшн Description привет питер Zdorow 3 ');
+        $I->seeInPageSource('кейвордс Keywords привет питер Zdorow 3');     
+    }
+    
+    
+    
+    
+    
     
     /**
      * @group a
