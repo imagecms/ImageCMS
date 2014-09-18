@@ -11,7 +11,7 @@
                  {else:}
                     <a href="{$BASE_URL}admin/widgets_manager/index/" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Back','admin')}</span></a>
                  {/if}
-                <button type="button" class="btn btn-small btn-success formSubmit" data-form="#wid_ed_form"><i class="icon-list-alt icon-white"></i>{lang('Save','admin')}</button>
+                <button type="button" class="btn btn-small btn-primary formSubmit" data-form="#wid_ed_form"><i class="icon-ok icon-white"></i>{lang('Save','admin')}</button>
                 {if !$widget.id == 16 and $widget.id != 17}
                 <button type="button" class="btn btn-small formSubmit" data-form="#wid_ed_form" data-action="tomain"><i class="icon-check"></i>{lang('Save and exit','admin')}</button>
                 {/if}

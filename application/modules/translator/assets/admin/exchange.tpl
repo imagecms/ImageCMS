@@ -16,7 +16,7 @@
                 </div>
                 <div class="d-i_b">
                     <button type="button" class="btn btn-small btn-success" onclick="Exchange.go($(this));">
-                        <i class="icon-ok"></i>
+                        <i class="icon-ok icon-white"></i>
                         {lang('Exchange', 'translator')}
                     </button>
                 </div>

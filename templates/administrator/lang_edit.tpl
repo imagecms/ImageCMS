@@ -13,12 +13,12 @@
                             {lang("Go back","admin")}
                         </span>
                     </a>
-                    <button type="submit" class="btn btn-small btn-success formSubmit" data-form="#editLang" data-action="edit">
-                        <i class="icon-list-alt icon-white"></i>
+                    <button type="submit" class="btn btn-small btn-primary formSubmit" data-form="#editLang" data-action="edit">
+                        <i class="icon-ok icon-white"></i>
                         {lang("Save","admin")}
                     </button>
                     <button type="submit" class="btn btn-small formSubmit" data-form="#editLang" data-action="close">
-                        <i class="icon-ok"></i>
+                        <i class="icon-check"></i>
                         {lang("Save and go back","admin")}
                     </button>
                 </div>

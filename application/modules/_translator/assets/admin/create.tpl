@@ -15,11 +15,11 @@
                     </a>
                 </div>
                 <div class="d-i_b">
-                    <button type="button" class="btn btn-small btn-success action_on formSubmit" data-form="#create_file_form">
+                    <button type="button" class="btn btn-small btn-primary action_on formSubmit" data-form="#create_file_form">
                         <i class="icon-ok"></i>
                         {lang('Save', 'translator')}
                     </button>
-                    <button type="button" class="btn btn-small btn-success action_on formSubmit" data-action="showEdit" data-form="#create_file_form">
+                    <button type="button" class="btn btn-small action_on formSubmit" data-action="showEdit" data-form="#create_file_form">
                         <i class="icon-ok"></i>
                         {lang('Save and Go to Edit', 'translator')}
                     </button>

@@ -24,6 +24,9 @@ class seoexpertSteps extends \SeoExpertTester
         $I->wait('2');
     }
     
+    
+    
+    
     function SeoCreateDescriptonAndH1($name_category = NULL, $description_category = NULL, $H1_category = NULL) {
         $I = $this;
         $I->amOnPage('/admin/components/run/shop/categories');
@@ -44,6 +47,31 @@ class seoexpertSteps extends \SeoExpertTester
     }
     
     
+    
+    function SeoCreatecategoryMetaData($name_category = NULL,
+                                        $meta_description = NULL,
+                                        $meta_title = NULL,
+                                        $meta_keywords = NULL) {
+        $I = $this;
+        $I->amOnPage('/admin/components/run/shop/categories');
+        $I->wait('1');
+        $amount_rows = $I->grabCCSAmount($I, '.share_alt');
+        for($j = 1;$j <= $amount_rows;$j++){
+        $name_search = $I->grabTextFrom("//section/div[2]/div/div[2]/div/div[$j]/div/div[3]/div/a");
+            if($name_search == $name_category){
+                $ID_category = $I->grabTextFrom("//section/div[2]/div/div[2]/div/div[$j]/div/div[2]/p");                
+            }
+        }
+        $I->amOnPage("/admin/components/run/shop/categories/edit/$ID_category");        
+        $I->wait('3');
+        $I->fillField('//section/form/table[3]/tbody/tr/td/div/div/div[2]/div/input', $meta_description);
+        $I->fillField('//section/form/table[3]/tbody/tr/td/div/div/div[3]/div/input', $meta_title);
+        $I->fillField('//section/form/table[3]/tbody/tr/td/div/div/div[4]/div/input', $meta_keywords);
+        $I->click('//section/div/div[2]/div/button[1]');        
+        $I->wait('1');
+    }
+    
+    
     //------------------------Create Brands-------------------------------------
     
     
@@ -52,18 +80,19 @@ class seoexpertSteps extends \SeoExpertTester
         $I = $this;
         $I->amOnPage('/admin/components/run/shop/brands/create');
         $I->wait('2');
-        $I->fillField('//tbody/tr/td/div/div[1]/div[1]/div/input', $brandName);
+        $I->fillField('//section/div[2]/div/form/div/div[1]/table/tbody/tr/td/div/div[1]/div[1]/div/input', $brandName);
         if(isset($opisanie)){
-            $I->fillField('//table/tbody/tr/td/div/div[2]/div/textarea', $opisanie);
+            $I->fillField('//section/div[2]/div/form/div/div[1]/table/tbody/tr/td/div/div[2]/div/textarea', $opisanie);
         }if(isset($title)){
-            $I->fillField('//table/tbody/tr/td/div/div[3]/div[1]/div/input', $title);
+            $I->fillField('//section/div[2]/div/form/div/div[1]/table/tbody/tr/td/div/div[3]/div[1]/div/input', $title);
         }if(isset($description)){
-            $I->fillField('//tbody/tr/td/div/div[3]/div[2]/div/input', $description);
+            $I->fillField('//section/div[2]/div/form/div/div[1]/table/tbody/tr/td/div/div[3]/div[2]/div/input', $description);
         }if(isset($keywords)){
-            $I->fillField('//tbody/tr/td/div/div[3]/div[3]/div/input', $keywords);
+            $I->fillField('//section/div[2]/div/form/div/div[1]/table/tbody/tr/td/div/div[3]/div[3]/div/input', $keywords);
         }
-        $I->click('//div[1]/div[5]/section/div[1]/div[2]/div/button[2]');
+        $I->click('//section/div[1]/div[2]/div/button[1]');
         $I->wait('2');
+        
     }
     
     
@@ -73,30 +102,70 @@ class seoexpertSteps extends \SeoExpertTester
         $I = $this;        
         $I->amOnPage('/admin/components/run/shop/products/create');
         $I->wait('2');
-        $I->fillField('//section/form/div[2]/div[1]/div/div[1]/div[1]/div[1]/div/input', $Name_Product);
+        $I->fillField('//section/form/div[2]/div[1]/div/table/tbody/tr/td/div/div[1]/div[1]/div/input', $Name_Product);
         $I->wait('1');
-        $I->fillField('//section/form/div[2]/div[1]/div/div[1]/div[4]/div/div/table/tbody/tr/td[3]/input', $Price_Product);
+        $I->fillField('//section/form/div[2]/div[1]/div/table/tbody/tr/td/div/div[1]/div[4]/div/div/table/tbody/tr/td[3]/input', $Price_Product);
         $I->wait('1');
-        $I->click('//section/form/div[2]/div[1]/div/div[2]/div/div[1]/div/div/a/span');
+        $I->click('//section/form/div[2]/div[1]/div/table/tbody/tr/td/div/div[2]/div/div/a/span');
         $I->wait('1');
-        $I->fillField('//section/form/div[2]/div[1]/div/div[2]/div/div[1]/div/div/div/div/input', $Brand_Product);
+        $I->fillField('//section/form/div[2]/div[1]/div/table/tbody/tr/td/div/div[2]/div/div/div/div/input', $Brand_Product);
         $I->wait('1');
-        $I->click('//section/form/div[2]/div[1]/div/div[2]/div/div[1]/div/div/div/ul/li');
+        $I->click('//section/form/div[2]/div[1]/div/table/tbody/tr/td/div/div[2]/div/div/div/ul/li');
         $I->wait('1');
-        $I->click('//section/form/div[2]/div[1]/div/div[2]/div/div[2]/div/div/a/span');
+        $I->click('//section/form/div[2]/div[1]/div/table/tbody/tr/td/div/div[3]/div/div/a/span');
         $I->wait('1');
-        $I->fillField('//section/form/div[2]/div[1]/div/div[2]/div/div[2]/div/div/div/div/input', $Category_Product);
+        $I->fillField('//section/form/div[2]/div[1]/div/table/tbody/tr/td/div/div[3]/div/div/div/div/input', $Category_Product);
+        $I->wait('2');
+        $I->click('//section/form/div[2]/div[1]/div/table/tbody/tr/td/div/div[3]/div/div/div/ul/li');
         $I->wait('1');
-        $I->click('//section/form/div[2]/div[1]/div/div[2]/div/div[2]/div/div/div/ul/li');
+        $I->click('//section/form/div[2]/div[1]/div/table/tbody/tr/td/div/div[4]/div/div/ul/li/input');
         $I->wait('1');
-        $I->click('//section/form/div[2]/div[1]/div/div[2]/div/div[3]/div/div/ul/li/input');
+        $I->fillField('//section/form/div[2]/div[1]/div/table/tbody/tr/td/div/div[4]/div/div/ul/li/input', $Additional_Category);
         $I->wait('1');
-        $I->fillField('//section/form/div[2]/div[1]/div/div[2]/div/div[3]/div/div/ul/li/input', $Additional_Category);
-        $I->wait('1');
-        $I->click('//section/form/div[2]/div[1]/div/div[2]/div/div[3]/div/div/div/ul/li');
+        $I->click('//section/form/div[2]/div[1]/div/table/tbody/tr/td/div/div[4]/div/div/div/ul/li');
         $I->wait('1');
         $I->click('//section/div/div[2]/div/button[2]');
         $I->wait('2');
+    }
+    
+    
+    
+    function SeoBrandMetaDta($brand_name = NULL, $meta_title = NULL, $meta_description = NULL, $meta_keywords = NULL) {
+        $I = $this; 
+        $I->amOnPage('/admin/components/run/shop/brands');
+        $I->wait('2');
+        $I->fillField('//section/div[2]/div/form/table/thead/tr[2]/td[3]/input', $brand_name);
+        $I->wait('3');
+        $I->click('//section/div[2]/div/form/table/tbody/tr/td[3]/a');
+        $I->wait('2');
+        $I->fillField('//section/div[2]/form/div/div[1]/table/tbody/tr/td/div/div[3]/div[1]/div/input', $meta_title);
+        $I->fillField('//section/div[2]/form/div/div[1]/table/tbody/tr/td/div/div[3]/div[2]/div/input', $meta_description);
+        $I->fillField('//section/div[2]/form/div/div[1]/table/tbody/tr/td/div/div[3]/div[3]/div/input', $meta_keywords);
+        $I->click('//section/div[1]/div[2]/div/button[1]');
+        $I->wait('1');
+    }
+    
+    
+    
+    function SeoProductFillFieldMettaData($name_product = NULL, $Meta_Title = NULL, $Meta_Description = NULL, $Meta_Keywords = NULL ) {
+        $I = $this;
+        $I->amOnPage('/admin/components/run/shop/search');
+        $I->wait('1');
+        $I->fillField('//section/div[2]/table/thead/tr[2]/td[3]/input', $name_product);
+        $I->wait('1');
+        $I->click('//section/div[1]/div[2]/div/button[1]');
+        $I->wait('1');
+        $I->click('//section/div[2]/table/tbody/tr/td[3]/div/a');
+        $I->wait('1');
+        $I->click('//section/form/div[1]/div[1]/a[6]');
+        $I->wait('1');
+        $I->fillField('//section/form/div[2]/div[6]/div/div[1]/table/tbody/tr/td/div/div/div[2]/div/textarea', $Meta_Title);
+        $I->fillField('//section/form/div[2]/div[6]/div/div[1]/table/tbody/tr/td/div/div/div[3]/div/textarea', $Meta_Description);
+        $I->fillField('//section/form/div[2]/div[6]/div/div[1]/table/tbody/tr/td/div/div/div[4]/div/textarea', $Meta_Keywords);
+        $I->click('//section/div/div[2]/div/button[2]');
+        $I->wait('1');
+
+        
     }
     
     
@@ -105,22 +174,45 @@ class seoexpertSteps extends \SeoExpertTester
                             $Category = NULL,
                             $Values1 = NULL) {
         $I = $this;
-        $I->amOnPage('/admin/components/run/shop/properties/create');
-        $I->fillField('//tbody/tr/td/div/div[1]/div/input', $NameProperty);
-        $I->fillField('//tbody/tr/td/div/div[2]/div/input', $CVS);
-        $I->click('//tbody/tr/td/div/div[4]/div[2]/span/span');
-        $I->click('//tbody/tr/td/div/div[5]/div[2]/span/span');
-        $I->click('//tbody/tr/td/div/div[6]/div[2]/span/span');
-        $I->click('//tbody/tr/td/div/div[7]/div[2]/span/span');
-        $I->click('//tbody/tr/td/div/div[8]/div[2]/span/span');
-        $I->click('//tbody/tr/td/div/div[10]/div/div/ul/li/input');
+        $I->amOnPage('/admin/components/run/shop/properties');
         $I->wait('2');
-        $I->fillField('//tbody/tr/td/div/div[10]/div/div/ul/li/input', $Category);
-        $I->wait('1');
-        $I->click('//tbody/tr/td/div/div[10]/div/div/div/ul/li'); 
-        $I->appendField('//tbody/tr/td/div/div[12]/div/textarea', $Values1);
-        $I->click('//section/div/div[2]/div/button[2]');
-        $I->wait('1');        
+        $I->fillField('//section/div[2]/div[1]/form/table/thead/tr[2]/td[3]/input', $NameProperty);
+        $I->click('//section/div[1]/div[2]/div/button[1]');
+        $I->wait('2');
+        $get_text = $I->grabCCSAmount($I, '.niceCheck');
+        $I->comment("$get_text");
+        if($get_text > 1){
+            $I->click ('//section/div[2]/div[1]/form/table/tbody/tr/td[3]/a');
+            $I->wait('1');
+            $I->fillField('//tbody/tr/td/div/div[1]/div/input', $NameProperty);
+            $I->fillField('//tbody/tr/td/div/div[2]/div/input', $CVS);
+            $I->click('//tbody/tr/td/div/div[10]/div/div/ul/li/input');
+            $I->wait('2');
+            $I->fillField('//tbody/tr/td/div/div[10]/div/div/ul/li/input', $Category);
+            $I->wait('1');
+            $I->click('//tbody/tr/td/div/div[10]/div/div/div/ul/li'); 
+            $I->fillField('//tbody/tr/td/div/div[12]/div/textarea', $Values1);
+            $I->click('//section/div/div[2]/div/button[1]');
+            $I->wait('1');
+        }  elseif($get_text == 1){
+            $I->amOnPage('/admin/components/run/shop/properties/create');
+            $I->wait('1');
+            $I->fillField('//tbody/tr/td/div/div[1]/div/input', $NameProperty);
+            $I->fillField('//tbody/tr/td/div/div[2]/div/input', $CVS); 
+            $I->click('//tbody/tr/td/div/div[4]/div[2]/span/span');
+            $I->click('//tbody/tr/td/div/div[5]/div[2]/span/span');
+            $I->click('//tbody/tr/td/div/div[6]/div[2]/span/span');
+            $I->click('//tbody/tr/td/div/div[7]/div[2]/span/span');
+            $I->click('//tbody/tr/td/div/div[8]/div[2]/span/span');
+            $I->click('//tbody/tr/td/div/div[10]/div/div/ul/li/input');
+            $I->wait('2');
+            $I->fillField('//tbody/tr/td/div/div[10]/div/div/ul/li/input', $Category);
+            $I->wait('1');
+            $I->click('//tbody/tr/td/div/div[10]/div/div/div/ul/li'); 
+            $I->fillField('//tbody/tr/td/div/div[12]/div/textarea', $Values1);
+            $I->click('//section/div/div[2]/div/button[1]');
+            $I->wait('1');
+        }
     }
     
     
@@ -161,8 +253,9 @@ class seoexpertSteps extends \SeoExpertTester
             }elseif($checkbox_class == $inactive) {
                 $I->click($checkbox_path);
                 $I->wait('1');
-
             }
+        $I->click(\seoexpertPage::$SeoButtSave);  
+        $I->wait('1');
     }
     
     
@@ -180,6 +273,8 @@ class seoexpertSteps extends \SeoExpertTester
             }elseif($checkbox_class == $inactive) {
                 $I->wait('1');  
             }
+        $I->click(\seoexpertPage::$SeoButtSave);  
+        $I->wait('1');
     }
   
     function SeoTextAreaActive ($on = NULL) {
@@ -217,6 +312,19 @@ class seoexpertSteps extends \SeoExpertTester
         
     }
     
+    
+    function GetBrandID($name_brand) {
+        $I = $this;
+        $I->amOnPage('/admin/components/run/shop/brands');
+        $I->wait('1');
+        $I->fillField('//section/div[2]/div/form/table/thead/tr[2]/td[3]/input', $name_brand);
+        $I->wait('2');
+        $ID_brand = $I->grabTextFrom('//section/div[2]/div/form/table/tbody/tr/td[2]');
+        return $ID_brand;
+        
+    }
+    
+    
     function GetCategoryID($name_category) {
         $I = $this;
         $I->amOnPage('/admin/components/run/shop/categories');
@@ -251,6 +359,37 @@ class seoexpertSteps extends \SeoExpertTester
     
     
     
+    function NullValues() {
+        $I = $this;
+        $I->amOnPage(\seoexpertPage::$SeoUrl);
+        $I->click(\seoexpertPage::$SeoBaseRadioButtCategoryNameNo);
+        $I->click(\seoexpertPage::$SeoBaseRadioButtSiteNameNo);
+        $I->click(\seoexpertPage::$SeoBaseSelectKeywords);
+        $I->click(\seoexpertPage::$SeoBaseOptionMakeAutomaticKeywords);
+        $I->click(\seoexpertPage::$SeoBaseSelectDescription);
+        $I->click(\seoexpertPage::$SeoBaseOptionMakeAutomaticDescription);
+        $I->fillField(\seoexpertPage::$SeoBaseFieldSeparator, '');
+        $I->fillField(\seoexpertPage::$SeoBaseFieldDescription, '');
+        $I->fillField(\seoexpertPage::$SeoBaseFieldKeywords, '');
+        $I->fillField(\seoexpertPage::$SeoBaseFieldSiteName, '');
+        $I->fillField(\seoexpertPage::$SeoBaseFieldShortSiteName, '');
+        $I->click(\seoexpertPage::$SeoButtSave);
+        $I->wait('1');
+    }
+    
+    
+    
+    function AmountProductInFront($Amount_Product_Front = NULL) {
+        $I = $this;
+        $I->amOnPage('/admin/components/run/shop/settings');
+        $I->wait('1');
+        $I->fillField('//section/div[2]/div[2]/form/div/div[1]/table/tbody/tr/td/div/div[1]/div/div/input', $Amount_Product_Front);        
+        $I->click('//section/div[1]/div[2]/div/button[1]');
+        $I->wait('1');
+    }
+    
+    
+    
     
     function CheckValuesInPage ($URL_Page, $values){
         $I = $this;
@@ -267,7 +406,8 @@ class seoexpertSteps extends \SeoExpertTester
                             $Length_Desc = NULL,
                             $Amount_Brands = NULL,
                             $Keywords = NULL,
-                            $CheckBox_Activate = NULL) {
+                            $CheckBox_Activate = NULL,
+                            $Page_Number = NULL) {
         $I = $this;
         $I->amOnPage(\seoexpertPage::$SeoUrl);
         $I->click(\seoexpertPage::$SeoButtShop);
@@ -276,6 +416,7 @@ class seoexpertSteps extends \SeoExpertTester
         $I->fillField(\seoexpertPage::$SeoCategoryLength, $Length_Desc);
         $I->fillField(\seoexpertPage::$SeoCategoryCountBrands, $Amount_Brands);
         $I->fillField(\seoexpertPage::$SeoCategoryKeywords, $Keywords);
+        $I->wait('1');
         if(isset($CheckBox_Activate)){
             $active = 'span1 active';
             $inactive = 'span1';
@@ -289,7 +430,46 @@ class seoexpertSteps extends \SeoExpertTester
             }
         }
         $I->click(\seoexpertPage::$SeoButtSave);
+        $I->wait('1');
+        if(isset($Page_Number)){
+            $I->fillField('//section/form/div[2]/div[2]/table[2]/tbody/tr/td/div/div/label[6]/span[2]/textarea', $Page_Number);
+            $I->click(\seoexpertPage::$SeoButtSave);
+            $I->wait('1');
+        }
     }
+    
+    
+    function SetBrandSeoPage($Title = NULL,
+                            $Description = NULL,
+                            $Pagination = NULL,
+                            $Length_Desc = NULL,                            
+                            $Keywords = NULL,
+                            $CheckBox_Activate = NULL) {
+        $I = $this;
+        $I->amOnPage(\seoexpertPage::$SeoUrl);
+        $I->click(\seoexpertPage::$SeoButtShop);
+        $I->fillField(\seoexpertPage::$SeoBrandFieldTitle, $Title);
+        $I->fillField(\seoexpertPage::$SeoBrandFieldDescription, $Description);
+        $I->fillField(\seoexpertPage::$SeoBrandFieldPagination, $Pagination);
+        $I->fillField(\seoexpertPage::$SeoBrandFieldLength, $Length_Desc);
+        $I->fillField(\seoexpertPage::$SeoBrandFieldKeywords, $Keywords);
+            if(isset($CheckBox_Activate)){
+            $active = 'span1 active';
+            $inactive = 'span1';
+            $checkbox_path = $CheckBox_Activate;
+        $checkbox_class = $I->grabAttributeFrom($checkbox_path, 'class');
+            if($checkbox_class == $active){                
+                $I->wait('1');
+            }elseif($checkbox_class == $inactive) {
+                $I->click($checkbox_path);
+                $I->wait('1');
+            }
+        $I->click(\seoexpertPage::$SeoButtSave);
+        $I->wait('1');        
+        }
+    }
+    
+    
     
     function DeleteProductCategorys() {
         $I = $this;
@@ -311,9 +491,9 @@ class seoexpertSteps extends \SeoExpertTester
                 $I->click('//section/div[1]/div[2]/div/button[1]');
                 $I->wait('1');
                 $I->click('//section/div[4]/div[3]/a[1]');
-                $I->wait('3');
+                $I->wait('2');
                 $I->amOnPage('/admin/components/run/shop/categories');
-                $I->wait('3');
+                $I->wait('2');
                 $amount_rows--;
                 $j--;
                 $I->comment("Status:'$name_search' is Deleting.");                

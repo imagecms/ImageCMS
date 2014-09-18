@@ -35,7 +35,7 @@
                             class="btn btn-small btn-danger disabled action_on"
                             id="trash_del"
                             onclick="delete_function.deleteFunction()">
-                        <i class="icon-trash icon-white"></i>{lang('Delete', 'wishlist')}
+                        <i class="icon-trash"></i>{lang('Delete', 'wishlist')}
                     </button>
                 </div>
             </div>
