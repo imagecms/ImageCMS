@@ -5,6 +5,5 @@ class CreateShopCest
 {
     // tests
     public function tryToTEsts(PremmerceTester $I){
-
     }
 }
