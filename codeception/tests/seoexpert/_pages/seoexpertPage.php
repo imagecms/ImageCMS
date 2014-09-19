@@ -133,8 +133,8 @@ class seoexpertPage
     // Search Block
     
     public static $SeoSearchBlockTitle = "//section/form/div[2]/div[2]/table[5]/tbody/tr/td/div/div/label[1]/span[2]/textarea";
-    public static $SeoSearchFieldTitle = "//section/form/div[2]/div[2]/table[5]/tbody/tr/td/div/div/label[2]/span[2]/textarea";
-    public static $SeoSearchFielddescription = "//tbody/tr[5]/td/div/div/label[2]/span[2]/textarea";
+    public static $SeoSearchFieldTitle = "//section/form/div[2]/div[2]/table[5]/tbody/tr/td/div/div/label[1]/span[2]/textarea";
+    public static $SeoSearchFielddescription = "//section/form/div[2]/div[2]/table[5]/tbody/tr/td/div/div/label[2]/span[2]/textarea";
     public static $SeoSearchFieldKeywords = "//section/form/div[2]/div[2]/table[5]/tbody/tr/td/div/div/label[3]/span[2]/textarea";
     public static $SeoSearchCheckBoxActive = "//section/form/div[2]/div[2]/table[5]/tbody/tr/td/div/div/div/div/span[2]";
     
