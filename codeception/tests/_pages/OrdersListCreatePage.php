@@ -2,7 +2,7 @@
 
 class OrdersListCreatePage
 {
-    public static $URL                      = '';
+    public static $URL                      = '/admin/components/run/shop/orders/create';
     
     //заголовки
     public static $Title                    = '.title';
