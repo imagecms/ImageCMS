@@ -37,7 +37,7 @@ class NavigationBarPage
     public static $CallbackStatuses = "//table/tbody/tr/td[1]/ul/li[6]/a";
     public static $CallbackThemes  = "//table/tbody/tr/td[1]/ul/li[7]/a";
     public static $NotificationsList = "//table/tbody/tr/td[1]/ul/li[9]/a";
-    public static $NotificationStatuses = "//table/tbody/tr/td[1]/ul/li[10]/a";
+    public static $NotificationStatuses = "//div[1]/div[3]/table/tbody/tr/td[1]/ul/li[9]/a";
     
     
     
