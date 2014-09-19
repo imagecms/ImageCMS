@@ -80,15 +80,15 @@ class seoexpertSteps extends \SeoExpertTester
         $I = $this;
         $I->amOnPage('/admin/components/run/shop/brands/create');
         $I->wait('2');
-        $I->fillField('//section/div[2]/div/form/div/div[1]/table/tbody/tr/td/div/div[1]/div[1]/div/input', $brandName);
+        $I->fillField('//section/div[2]/div/form/table/tbody/tr/td/div/div[1]/div[1]/div/input', $brandName);
         if(isset($opisanie)){
-            $I->fillField('//section/div[2]/div/form/div/div[1]/table/tbody/tr/td/div/div[2]/div/textarea', $opisanie);
+            $I->fillField('//section/div[2]/div/form/table/tbody/tr/td/div/div[2]/div/textarea', $opisanie);
         }if(isset($title)){
-            $I->fillField('//section/div[2]/div/form/div/div[1]/table/tbody/tr/td/div/div[3]/div[1]/div/input', $title);
+            $I->fillField('//section/div[2]/div/form/table/tbody/tr/td/div/div[3]/div[1]/div/input', $title);
         }if(isset($description)){
-            $I->fillField('//section/div[2]/div/form/div/div[1]/table/tbody/tr/td/div/div[3]/div[2]/div/input', $description);
+            $I->fillField('//section/div[2]/div/form/table/tbody/tr/td/div/div[3]/div[2]/div/input', $description);
         }if(isset($keywords)){
-            $I->fillField('//section/div[2]/div/form/div/div[1]/table/tbody/tr/td/div/div[3]/div[3]/div/input', $keywords);
+            $I->fillField('//section/div[2]/div/form/table/tbody/tr/td/div/div[3]/div[3]/div/input', $keywords);
         }
         $I->click('//section/div[1]/div[2]/div/button[1]');
         $I->wait('2');
@@ -138,9 +138,9 @@ class seoexpertSteps extends \SeoExpertTester
         $I->wait('3');
         $I->click('//section/div[2]/div/form/table/tbody/tr/td[3]/a');
         $I->wait('2');
-        $I->fillField('//section/div[2]/form/div/div[1]/table/tbody/tr/td/div/div[3]/div[1]/div/input', $meta_title);
-        $I->fillField('//section/div[2]/form/div/div[1]/table/tbody/tr/td/div/div[3]/div[2]/div/input', $meta_description);
-        $I->fillField('//section/div[2]/form/div/div[1]/table/tbody/tr/td/div/div[3]/div[3]/div/input', $meta_keywords);
+        $I->fillField('//section/div[2]/form/table/tbody/tr/td/div/div[3]/div[1]/div/input', $meta_title);
+        $I->fillField('//section/div[2]/form/table/tbody/tr/td/div/div[3]/div[2]/div/input', $meta_description);
+        $I->fillField('//section/div[2]/form/table/tbody/tr/td/div/div[3]/div[3]/div/input', $meta_keywords);
         $I->click('//section/div[1]/div[2]/div/button[1]');
         $I->wait('1');
     }
