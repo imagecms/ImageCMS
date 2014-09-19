@@ -27,18 +27,18 @@ class PaymentListPage {
     static $WindowDeleteButtonClose     = '.close';
 
     //заголовки таблиці
-    static $HeadCheck                   = '.t-a_c.span1 .niceCheck';
-    static $HeadID                      = "//section[@class='mini-layout']//th[2]";
-    static $HeadMethod                  = "//section[@class='mini-layout']//th[3]";
-    static $HeadCurrencyName            = "//section[@class='mini-layout']//th[4]";
-    static $HeadCurrencySymbol          = "//section[@class='mini-layout']//th[5]";
-    static $HeadActive                  = "//section[@class='mini-layout']//th[6]";
+    static $HeadCheck                       = '.t-a_c.span1 .niceCheck';
+    static $HeadIDText                      = "//section[@class='mini-layout']//th[2]";
+    static $HeadMethodText                  = "//section[@class='mini-layout']//th[3]";
+    static $HeadCurrencyNameText            = "//section[@class='mini-layout']//th[4]";
+    static $HeadCurrencySymbolText          = "//section[@class='mini-layout']//th[5]";
+    static $HeadActiveText                  = "//section[@class='mini-layout']//th[6]";
 
     //рядки таблиці
-    static function lineCheck($row)             { return "//section[@class='mini-layout']//tbody/tr[$row]/td[1]/span/span"; }
-    static function lineID($row)                { return "//section[@class='mini-layout']//tbody/tr[$row]/td[2]/p";         }
-    static function lineMethod($row)            { return "//section[@class='mini-layout']//table//tbody//tr[$row]/td[3]/a"; }
-    static function lineCurrencyName($row)      { return "//section[@class='mini-layout']//tbody/tr[$row]/td[4]/p";         }
-    static function lineCurrencySymbol($row)    { return "//section[@class='mini-layout']//tbody/tr[$row]/td[5]/p";         }
-    static function lineActive($row)            { return "//section[@class='mini-layout']//tbody/tr[$row]/td[6]/div/span";  }
+    static function lineCheck($row)                 { return "//section[@class='mini-layout']//tbody/tr[$row]/td[1]/span/span"; }
+    static function lineIDText($row)                { return "//section[@class='mini-layout']//tbody/tr[$row]/td[2]/p";         }
+    static function lineMethodLink($row)            { return "//section[@class='mini-layout']//table//tbody//tr[$row]/td[3]/a"; }
+    static function lineCurrencyNameText($row)      { return "//section[@class='mini-layout']//tbody/tr[$row]/td[4]/p";         }
+    static function lineCurrencySymbolText($row)    { return "//section[@class='mini-layout']//tbody/tr[$row]/td[5]/p";         }
+    static function lineActiveToggle($row)          { return "//section[@class='mini-layout']//tbody/tr[$row]/td[6]/div/span";  }
 }
