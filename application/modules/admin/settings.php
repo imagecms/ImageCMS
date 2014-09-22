@@ -230,7 +230,6 @@ class Settings extends BaseAdminController {
             'add_site_name' => $this->input->post('add_site_name'),
             'add_site_name_to_cat' => $this->input->post('add_site_name_to_cat'),
             'delimiter' => $this->input->post('delimiter'),
-            'site_template' => $this->input->post('template'),
             'cat_list' => $this->input->post('cat_list'),
             'editor_theme' => $this->input->post('editor_theme'),
             'site_offline' => $this->input->post('site_offline'),
@@ -238,19 +237,22 @@ class Settings extends BaseAdminController {
             'google_webmaster' => $this->input->post('google_webmaster'),
             'yandex_webmaster' => $this->input->post('yandex_webmaster'),
             'yandex_metric' => $this->input->post('yandex_metric'),
+            'site_template' => $this->input->post('template'),
             'lang_sel' => $this->input->post('lang_sel'),
             'text_editor' => $this->input->post('text_editor'),
             'robots_status' => (int) $this->input->post('robots_status')
                 //'siteinfo' => serialize($siData)
         );
 
-        $this->replaceRobots($data_m['robots_status']);
 
         /** Save template path for shop * */
         if ($this->db->table_exists('shop_settings')) {
             $shopTemplatePath = './templates/' . $this->input->post('template') . '/shop/';
             $this->db->where('name', 'systemTemplatePath')->update('shop_settings', array('value' => $shopTemplatePath));
         }
+
+        $this->replaceRobots($data_m['robots_status']);
+
 
         $this->translate_meta();
 
