@@ -348,10 +348,10 @@ $shopMenu = array(
                 'link' => $ADMIN_URL . 'paymentmethods/index',
                 'text' => lang('Payment methods', 'admin', FALSE),
             ),
-            array(
+            /*array(
                 'link' => $ADMIN_URL . 'system/import',
                 'text' => lang('Import-Export CSV/XLS', 'admin', FALSE),
-            ),
+            ),*/
             array(
                 'link' => '/admin/widgets_manager',
                 'text' => lang('Widgets', 'admin', FALSE),

@@ -32,7 +32,7 @@ class ProductSEOCest
     
 
     /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps 
      */
     public function CreatуBrandForFront (SeoExpertTester\seoexpertSteps $I){
@@ -82,7 +82,7 @@ class ProductSEOCest
     
 
     /**
-     * @group aa
+     * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function ShopProductPageTitleRus (SeoExpertTester\seoexpertSteps $I){
