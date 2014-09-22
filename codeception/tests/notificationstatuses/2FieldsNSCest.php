@@ -185,7 +185,7 @@ class FieldsNSCest
         $I->click(NotificationStatusesPage::$ListButtonDelete);
         $I->wait('1');
         $I->click(NotificationStatusesPage::$DeleteWindowButtonDelete);
-        $I->wait('1');
+        $I->wait('2');
         $I->dontSee(InitTest::$textSymbols);
         InitTest::ClearAllCach($I); 
     }   
