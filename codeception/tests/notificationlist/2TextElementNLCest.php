@@ -5,7 +5,7 @@ class TextElementNLCest
 //---------------------------AUTORIZATION---------------------------------------  
     
     /**
-     * @group aa
+     * @group a
      */
     public function Login(NotificationListTester $I){
         InitTest::Login($I);
@@ -70,8 +70,8 @@ class TextElementNLCest
         $I->amOnPage(NotificationListPage::$ListPageURL);
         $I->see('Уведомления о появлении', NotificationListPage::$ListTitle);
         $I->click(NotificationListPage::$ListMainCheckBox);
+        $I->wait('1');
         $I->see('Фильтр', NotificationListPage::$ListButtonFilter);
-        $I->see('Отменить фильтрацию', NotificationListPage::$ListButtonCancelFilter);
         $I->wait('1');
         $I->see('Удалить', NotificationListPage::$ListButtonDelete);
         $I->see('Все', NotificationListPage::$ListButtonAll);
@@ -112,7 +112,7 @@ class TextElementNLCest
 //-------------------MOUSE FOCUS TEXT MESSAGE LIST PAGE-------------------------
     
     /**
-     * @group aa
+     * @group a
      */
     public function VerifyTextElementList(NotificationListTester $I){
         $I->wantTo('Verify Visible Message Tooltip on Name Notifi.');
@@ -267,9 +267,6 @@ class TextElementNLCest
      */
     public function VerifyButtonDeleteWindow (NotificationListTester $I){
         $I->wantTo('Verify Button on Delete Window.');
-//        $I->amOnPage(NotificationListPage::$ListPageURL);
-//        $I->wait('3');
-//        $I->waitForElement(NotificationListPage::$ListMainCheckBox);
         $I->click(NavigationBarPage::$Orders);
         $I->click(NavigationBarPage::$NotificationsList);
         $I->wait('2');
@@ -301,7 +298,6 @@ class TextElementNLCest
         $I->click(NotificationListPage::$ListButtonDelete);
         $I->wait('1');
         $I->click(NotificationListPage::$DeleteWindowButtonDelete);
-//        $I->waitForText('Удаление');
         $I->wait('1');
         $I->exactlySeeAlert($I, 'success', 'Удаление');
         InitTest::ClearAllCach($I);

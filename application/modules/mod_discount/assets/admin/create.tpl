@@ -13,7 +13,7 @@
             <div class="d-i_b">
                 <a href="/admin/components/init_window/mod_discount{echo $filterQuery}" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Back', 'mod_discount')}</span></a>
                 <button onclick="" type="button" class="btn btn-small btn-success formSubmit submitButton" data-form="#createDiscountForm" data-submit>
-                    <i class="icon-ok icon-white"></i>{lang('Create', 'mod_discount')}
+                    <i class="icon-plus-sign icon-white"></i>{lang('Create', 'mod_discount')}
                 </button>
                 <button onclick="" type="button" class="btn btn-small formSubmit submitButton" data-form="#createDiscountForm" data-submit data-action="tomain">
                     <i class="icon-check"></i>{lang('Create and exit', 'mod_discount')}
@@ -21,7 +21,7 @@
             </div>
         </div>
     </div>
-    <form method="post" action="/admin/components/init_window/mod_discount/create" enctype="multipart/form-data" id="createDiscountForm">
+    <form method="post" action="/admin/components/init_window/mod_discount/create" enctype="multipart/form-data" id="createDiscountForm" class="m-t_10">
         <table class="table  table-bordered table-condensed content_big_td module-cheep">
             <thead>
                 <tr>

@@ -9,7 +9,7 @@
             <div class="d-i_b">
                 <a href="/admin/components/init_window/documentation" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Back', 'admin')}</span></a>
                 <button type="button"
-                        class="btn btn-small btn-success action_on formSubmit"
+                        class="btn btn-small btn-primary action_on formSubmit"
                         data-form="#doc_roles_settings"
                         data-action="save">
                     <i class="icon-ok icon-white"></i>{lang('Save', 'admin')}

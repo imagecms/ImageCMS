@@ -32,12 +32,12 @@ class NavigationBarPage
     //       Заказы
     public static $Orders = "//div[1]/div[3]/table/tbody/tr/td[1]/a";
     public static $OrdersList = "//table/tbody/tr/td[1]/ul/li[2]/a";
-    public static $OrderStatuses = "//table/tbody/tr/td[1]/ul/li[3]/a";
+    public static $OrderStatuses = "//body/div[1]/div[3]/table/tbody/tr/td[1]/ul/li[2]/a";
     public static $CallbacksList = "//table/tbody/tr/td[1]/ul/li[5]/a";
     public static $CallbackStatuses = "//table/tbody/tr/td[1]/ul/li[6]/a";
     public static $CallbackThemes  = "//table/tbody/tr/td[1]/ul/li[7]/a";
-    public static $NotificationsList = "//table/tbody/tr/td[1]/ul/li[9]/a";
-    public static $NotificationStatuses = "//table/tbody/tr/td[1]/ul/li[10]/a";
+    public static $NotificationsList = "//div[1]/div[3]/table/tbody/tr/td[1]/ul/li[8]/a";
+    public static $NotificationStatuses = "//div[1]/div[3]/table/tbody/tr/td[1]/ul/li[9]/a";
     
     
     
@@ -50,5 +50,5 @@ class NavigationBarPage
     //      Каталог товаров
     public static $ProductsCatalogue = "//div[1]/div[3]/table/tbody/tr/td[2]/a";
     public static $ProductCategories = "//div[3]/table/tbody/tr/td[2]/ul/li[1]/a";
-    public static $ProductList = "//div[3]/table/tbody/tr/td[2]/ul/li[2]/a";
+    public static $ProductsList = "//div[3]/table/tbody/tr/td[2]/ul/li[2]/a";
 }

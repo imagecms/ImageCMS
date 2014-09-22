@@ -115,10 +115,12 @@ class BaseSEOCest
     
     /**
      * @group a
+     * @guy SeoExpertTester\seoexpertSteps
      */
-    public function CkeckFieldSeparatorSympol1 (SeoExpertTester $I){
+    public function CkeckFieldSeparatorSympol1 (SeoExpertTester\seoexpertSteps $I){
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
+        $I->DefoultValues();
         $I->click(seoexpertPage::$SeoBaseRadioButtSiteNameYes);
         $I->click(seoexpertPage::$SeoBaseRadioButtCategoryNameYes);
         $I->fillField(seoexpertPage::$SeoBaseFieldSeparator, './*-+');
@@ -127,7 +129,7 @@ class BaseSEOCest
         $I->wait('1');
         $I->amOnPage('/shop/category/zzzz-kategoriia-dlia-seo#');
         $I->wait('1');
-        $I->seeInPageSource('Zzzz категория для SEO ./*-+ lastbuild.loc');
+        $I->seeInPageSource('Zzzz категория для SEO ./*-+ mini.loc');
     }
     
     
@@ -135,10 +137,12 @@ class BaseSEOCest
     
     /**
      * @group a
+     * @guy SeoExpertTester\seoexpertSteps
      */
-    public function CkeckFieldSeparatorSympol2 (SeoExpertTester $I){
+    public function CkeckFieldSeparatorSympol2 (SeoExpertTester\seoexpertSteps $I){
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
+        $I->DefoultValues();
         $I->click(seoexpertPage::$SeoBaseRadioButtSiteNameYes);
         $I->click(seoexpertPage::$SeoBaseRadioButtCategoryNameYes);
         $I->fillField(seoexpertPage::$SeoBaseFieldSeparator, '|%#@');
@@ -147,7 +151,7 @@ class BaseSEOCest
         $I->wait('1');
         $I->amOnPage('/shop/category/zzzz-kategoriia-dlia-seo#');
         $I->wait('1');
-        $I->seeInPageSource('Zzzz категория для SEO |%#@ lastbuild.loc');
+        $I->seeInPageSource('Zzzz категория для SEO |%#@ mini.loc');
     }
     
     
@@ -155,10 +159,12 @@ class BaseSEOCest
     
     /**
      * @group a
+     * @guy SeoExpertTester\seoexpertSteps
      */
-    public function CkeckFieldSeparatorSympol3 (SeoExpertTester $I){
+    public function CkeckFieldSeparatorSympol3 (SeoExpertTester\seoexpertSteps $I){
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
+        $I->DefoultValues();
         $I->click(seoexpertPage::$SeoBaseRadioButtSiteNameYes);
         $I->click(seoexpertPage::$SeoBaseRadioButtCategoryNameYes);
         $I->fillField(seoexpertPage::$SeoBaseFieldSeparator, '~=\}');
@@ -167,7 +173,7 @@ class BaseSEOCest
         $I->wait('1');
         $I->amOnPage('/shop/category/zzzz-kategoriia-dlia-seo#');
         $I->wait('1');
-        $I->seeInPageSource('Zzzz категория для SEO ~=\} lastbuild.loc');
+        $I->seeInPageSource('Zzzz категория для SEO ~=\} mini.loc');
     }
     
     
@@ -176,10 +182,12 @@ class BaseSEOCest
     
     /**
      * @group a
+     * @guy SeoExpertTester\seoexpertSteps
      */
-    public function CkeckFieldSeparatorSympol4 (SeoExpertTester $I){
+    public function CkeckFieldSeparatorSympol4 (SeoExpertTester\seoexpertSteps $I){
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
+        $I->DefoultValues();
         $I->click(seoexpertPage::$SeoBaseRadioButtSiteNameYes);
         $I->click(seoexpertPage::$SeoBaseRadioButtCategoryNameYes);
         $I->fillField(seoexpertPage::$SeoBaseFieldSeparator, '1230');
@@ -188,7 +196,7 @@ class BaseSEOCest
         $I->wait('1');
         $I->amOnPage('/shop/category/zzzz-kategoriia-dlia-seo#');
         $I->wait('1');
-        $I->seeInPageSource('Zzzz категория для SEO 1230 lastbuild.loc');
+        $I->seeInPageSource('Zzzz категория для SEO 1230 mini.loc');
     }
     
     
@@ -198,10 +206,12 @@ class BaseSEOCest
     
     /**
      * @group a
+     * @guy SeoExpertTester\seoexpertSteps
      */
-    public function CkeckFieldSeparatorSympol5 (SeoExpertTester $I){
+    public function CkeckFieldSeparatorSympol5 (SeoExpertTester\seoexpertSteps $I){
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
+        $I->DefoultValues();
         $I->click(seoexpertPage::$SeoBaseRadioButtSiteNameYes);
         $I->click(seoexpertPage::$SeoBaseRadioButtCategoryNameYes);
         $I->fillField(seoexpertPage::$SeoBaseFieldSeparator, 'ЙЦол');
@@ -210,7 +220,7 @@ class BaseSEOCest
         $I->wait('1');
         $I->amOnPage('/shop/category/zzzz-kategoriia-dlia-seo#');
         $I->wait('1');
-        $I->seeInPageSource('Zzzz категория для SEO ЙЦол lastbuild.loc');
+        $I->seeInPageSource('Zzzz категория для SEO ЙЦол mini.loc');
     }
     
     
@@ -249,6 +259,15 @@ class BaseSEOCest
     }
     
     
+    
+    
+    /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps 
+     */
+    public function DeleteCategoryForJiraTests(SeoExpertTester\seoexpertSteps $I) {
+        $I->DeleteProductCategorys();
+    }
 
     
     
