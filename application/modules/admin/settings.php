@@ -237,18 +237,18 @@ class Settings extends BaseAdminController {
             'google_webmaster' => $this->input->post('google_webmaster'),
             'yandex_webmaster' => $this->input->post('yandex_webmaster'),
             'yandex_metric' => $this->input->post('yandex_metric'),
+            'site_template' => $this->input->post('template'),
             'lang_sel' => $this->input->post('lang_sel'),
             'text_editor' => $this->input->post('text_editor'),
             'robots_status' => (int) $this->input->post('robots_status')
                 //'siteinfo' => serialize($siData)
         );
-        if(!defined('MAINSITE')){
-            $data_m['site_template'] = $this->input->post('template');
-            /** Save template path for shop * */
-            if ($this->db->table_exists('shop_settings')) {
-                $shopTemplatePath = './templates/' . $this->input->post('template') . '/shop/';
-                $this->db->where('name', 'systemTemplatePath')->update('shop_settings', array('value' => $shopTemplatePath));
-            }
+
+
+        /** Save template path for shop * */
+        if ($this->db->table_exists('shop_settings')) {
+            $shopTemplatePath = './templates/' . $this->input->post('template') . '/shop/';
+            $this->db->where('name', 'systemTemplatePath')->update('shop_settings', array('value' => $shopTemplatePath));
         }
 
         $this->replaceRobots($data_m['robots_status']);
