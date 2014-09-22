@@ -111,7 +111,7 @@
                                                 </div>
                                                 <div class="control-group">
                                                     <div class="controls">
-                                                        <input type="submit" class="btn btn-small btn-success" value="{lang('Save', 'wishlist')}"/>
+                                                        <input type="submit" class="btn btn-small btn-primary" value="{lang('Save', 'wishlist')}"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -155,7 +155,7 @@
                                 </div>
                                 <div class="pull-right" style="margin-top: 37px; margin-right: 20px ">
                                     <a class="btn btn-danger btn-small" href="/admin/components/cp/wishlist/deleteWL/{$wishlist[0][wish_list_id]}">
-                                        <i class="icon-trash icon-white"></i>
+                                        <i class="icon-trash"></i>
                                         {lang('Delete', 'wishlist')}
                                     </a>
                                     <a class="btn btn-small" href="/admin/components/cp/wishlist/editWL/{$wishlist[0][wish_list_id]}/{echo $user[id]}">

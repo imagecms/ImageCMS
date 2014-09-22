@@ -64,6 +64,7 @@
                                                                 </select>
                                                             </div>
                                                         </div>
+                                                        {if !defined('MAINSITE')}               
                                                         <div class="control-group">
                                                             <label class="control-label" for="template">{lang('Template', 'admin')}:</label>
                                                             <div class="controls">
@@ -72,17 +73,15 @@
                                                                         <option value="{$k}" {if $template_selected == $k} selected="selected" {/if} >{$k}</option>
                                                                     {/foreach}
                                                                 </select>
-
                                                                 <span class="help-block" id='license_link' style="display: none">
                                                                     {lang('Installing the template you agree to the', 'admin')}
                                                                     <a target="_blank" href="/admin/settings/license_agreement?template_name={$template_selected}" id="license_agreement_link">
                                                                         {lang('license agreement', 'admin')}
                                                                     </a>
                                                                 </span>
-
                                                             </div>
-
                                                         </div>
+                                                        {/if}
                                                         <div class="control-group">
                                                             <label class="control-label" for="cat_list">{lang('Display category tree in the content','admin')}:</label>
                                                             <div class="controls">
@@ -189,11 +188,12 @@
                                                 <div class="form-horizontal">
                                                     <div class="row-fluid">
 
-                                                        <div class="control-group m-t_10">
+                                                        <div class="control-group m-t_10 frame_label no_connection">
                                                             <label class="control-label" for="main_typesq">{lang('Categories',"admin")}:</label>
-                                                            <div class="controls">
-
-                                                                <input type="radio" id="main_typesq" name="main_type" value="category" {if $main_type == "category"} checked="checked" {/if} />
+                                                            <div class="controls ctext">
+                                                                <span class="niceRadio b_n">
+                                                                    <input type="radio" id="main_typesq" name="main_type" value="category" {if $main_type == "category"} checked="checked" {/if} />
+                                                                </span>
 
                                                                 <select name="main_page_cat" class="input-large">
                                                                     { $this->view("cats_select.tpl", $this->template_vars); }
@@ -201,29 +201,39 @@
                                                             </div>
                                                         </div>
 
-                                                        <div class="control-group m-t_10">
+                                                        <div class="control-group m-t_10 frame_label no_connection">
                                                             <label class="control-label" for="main_types">{lang('Page',"admin")}:</label>
-                                                            <div class="controls">
-                                                                <input type="radio" id="main_types" name="main_type" value="page" {if $main_type == "page"} checked="checked" {/if} />
-
+                                                            <div class="controls ctext">
+                                                                <span class="niceRadio b_n">
+                                                                    <input type="radio" id="main_types" name="main_type" value="page" {if $main_type == "page"} checked="checked" {/if} />
+                                                                </span>
                                                                 <input type="text" class="input-small" name="main_page_pid" class="textbox_long" style="width:100px" value="{$main_page_id}" /> - {lang("Page ID","admin")}
                                                             </div>
                                                         </div>
 
-                                                        <div class="control-group m-t_10">
+                                                        <div class="control-group m-t_10 frame_label no_connection">
                                                             <label class="control-label" for="main_type">{lang('Module',"admin")}:</label>
-                                                            <div class="controls">
-
-                                                                <input type="radio" id="main_type" name="main_type" value="module" {if $main_type == "module"} checked="checked" {/if} />
-
-                                                                <select name="main_page_module"  class="input-large">
+                                                            <div class="controls ctext">
+                                                                <span class="niceRadio b_n">
+                                                                    <input type="radio" id="main_type" name="main_type" value="module" {if $main_type == "module"} checked="checked" {/if} />
+                                                                </span>
+                                                                {if defined('MAINSITE')}
                                                                     {foreach $modules as $m}
                                                                         {$mData = modules::run('admin/components/get_module_info',$m['name'])}
-                                                                        {//if $mData['main_page'] === true}
-                                                                        <option {if $m['name'] == $main_page_module}selected="selected"{/if} value="{$m['name']}">{echo $mData['menu_name']}</option>
-                                                                        {///if}
-                                                                    {/foreach}
-                                                                </select>
+                                                                        {if $m['name'] == 'shop'}
+                                                                            <input type="text" value="{$mData['menu_name']}" readonly='true'/>
+                                                                        {/if}
+                                                                    {/foreach}    
+                                                                {else:}
+                                                                    <select name="main_page_module"  class="input-large">
+                                                                        {foreach $modules as $m}
+                                                                            {$mData = modules::run('admin/components/get_module_info',$m['name'])}
+                                                                            {//if $mData['main_page'] === true}
+                                                                            <option {if $m['name'] == $main_page_module}selected="selected"{/if} value="{$m['name']}">{echo $mData['menu_name']}</option>
+                                                                            {///if}
+                                                                        {/foreach}    
+                                                                    </select>
+                                                                {/if}
                                                             </div>
                                                         </div>
                                                     </div>

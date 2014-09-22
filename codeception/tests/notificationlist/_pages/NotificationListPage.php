@@ -10,11 +10,11 @@ class NotificationListPage
     public static $ListMouseMessage = ".tooltip-inner";
     public static $ListLinkEditting = "//section/div[5]/div[1]/form/table/tbody/tr/td[2]/a";
     public static $ListLinkEdittingCreateStatusButton = "//div[4]/form/table/tbody/tr/td[3]/a";
-    public static $ListButtonFilter = "//div[2]/div/button";
+    public static $ListButtonFilter = "//section/div[3]/div[2]/div/button[1]";
     public static $ListButtonCancelFilter = "//div[3]/div[2]/div/a";
     public static $ListButtonDelete = "//button[2]";
     public static $ListCalendar = "#ui-datepicker-div";
-    public static $ListButtonAll = "//section[@class='mini-layout']/div[4]/a[1]";
+    public static $ListButtonAll = "//body/div[1]/div[5]/section/div[4]/a[1]";
     public static $ListButtonNew = "//section[@class='mini-layout']/div[4]/a[2]";
     public static $ListButtonMade = "//section[@class='mini-layout']/div[4]/a[3]";
     public static $ListButtonInformation = "//table/tbody/tr[1]/td[8]/div[1]/i";

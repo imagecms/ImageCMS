@@ -103,7 +103,7 @@
                         </table>
                     {/if}
                     {form_csrf()}
-                    <input type="submit" class="btn btn-small btn-success" value="{lang('Save', 'wishlist')}"/>
+                    <input type="submit" class="btn btn-small btn-primary" value="{lang('Save', 'wishlist')}"/>
                 </form>
             {/foreach}
         </div>

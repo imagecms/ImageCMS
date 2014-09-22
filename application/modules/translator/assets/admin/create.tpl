@@ -15,12 +15,12 @@
                     </a>
                 </div>
                 <div class="d-i_b">
-                    <button type="button" class="btn btn-small btn-success action_on formSubmit" data-form="#create_file_form">
+                    <button type="button" class="btn btn-small btn-primary action_on formSubmit" data-form="#create_file_form">
                         <i class="icon-ok"></i>
                         {lang('Save', 'translator')}
                     </button>
                     <button type="button" class="btn btn-small btn-success action_on formSubmit" data-action="showEdit" data-form="#create_file_form">
-                        <i class="icon-ok"></i>
+                        <i class="icon-ok icon-white"></i>
                         {lang('Save and Go to Edit', 'translator')}
                     </button>
                 </div>
@@ -116,7 +116,7 @@
                                         <label class="control-label" for="file">{lang('Paths', 'translator')}:</label>
                                         <div class="controls">
                                             <button type="button" onclick="CreatePoFile.addPath($(this))" class="createPagePathsAddButton disabled btn btn-small btn-success" style="float: left">
-                                                <i class="icon-plus"></i>
+                                                <i class="icon-plus icon-white"></i>
                                                 {lang('Add path', 'translator')}
                                             </button>
                                             <input type="text" class="createPagePathsAddInput" onkeypress="if (event.keyCode == 13)
