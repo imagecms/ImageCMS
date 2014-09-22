@@ -80,7 +80,7 @@ class seoexpertSteps extends \SeoExpertTester
         $I = $this;
         $I->amOnPage('/admin/components/run/shop/brands/create');
         $I->wait('2');
-        $I->fillField('//section/div[2]/div/form/table/tbody/tr/td/div/div[1]/div[1]/div/input', $brandName);
+        $I->fillField('#Name', $brandName);
         if(isset($opisanie)){
             $I->fillField('//section/div[2]/div/form/table/tbody/tr/td/div/div[2]/div/textarea', $opisanie);
         }if(isset($title)){
@@ -281,7 +281,7 @@ class seoexpertSteps extends \SeoExpertTester
         $I = $this;
         $I->wait('1');
         $I->amOnPage('/admin/settings');
-        $I->selectOption('//form/div/div[1]/table/tbody/tr/td/div/div/div/div[5]/div/select', 'none');
+        $I->selectOption('//section/div[2]/div[2]/form/div/div[1]/table/tbody/tr/td/div/div/div/div[4]/div/select', 'none');
         $I->click('//section/div[1]/div[2]/div/button');
         $I->wait('1');
     }
