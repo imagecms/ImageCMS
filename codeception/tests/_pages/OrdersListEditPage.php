@@ -108,9 +108,9 @@ class OrdersListEditPage
     public static $TableProductsFootButtonAddProduct    = '//section[@class="mini-layout"]/form/table[1]/tfoot//a';
     public static $TableProductsFootTextInitialPrice    = '//section[@class="mini-layout"]/form/table[1]/tfoot/tr/td/div/div/div[1]/b';
     public static $TableProductsFootTextTotalPrice      = '//section[@class="mini-layout"]/form/table[1]/tfoot/tr/td/div/div/div[2]/div/b';
-        //лейбли
-        public static $TableProductsFootInitialPriceLabel   = '//section[@class="mini-layout"]/form/table[1]/tfoot/tr/td/div/div/div[1]';
-        public static $TableProductsFootTotalPriceLabel     = '//section[@class="mini-layout"]/form/table[1]/tfoot/tr/td/div/div/div[2]/div';
+    //лейбли
+    public static $TableProductsFootInitialPriceLabel   = '//section[@class="mini-layout"]/form/table[1]/tfoot/tr/td/div/div/div[1]';
+    public static $TableProductsFootTotalPriceLabel     = '//section[@class="mini-layout"]/form/table[1]/tfoot/tr/td/div/div/div[2]/div';
     
     
     
@@ -131,6 +131,30 @@ class OrdersListEditPage
     public static function tableHistoryLineComment($row)        { return "//section[@class='mini-layout']/form/table[2]/tbody/tr[$row]/td[3]";}
     public static function tableHistoryLineManager($row)        { return "//section[@class='mini-layout']/form/table[2]/tbody/tr[$row]/td[4]";}
     public static function tableHistoryLinePaymentStatus($row)  { return "//section[@class='mini-layout']/form/table[2]/tbody/tr[$row]/td[5]/span";}
+    //--------------------------------------------------------------------------
+    //-------------------------ВІКНО ДОБАВЛЕНИЕ ТОВАРА К ЗАКАЗУ-----------------
+    //--------------------------------------------------------------------------
+    public static $WindowAddProduct             = ".modal.hide.fade.in";
+    public static $WindowAddProductTitle        = ".modal.hide.fade.in .modal-header h3";
     
+    //поля для вводу
+    public static $WindowAddProductInputArticle = "#productNumber";
+    public static $WindowAddProductInputProduct = "#product_name";
+    public static $WindowAddProductInputAmount  = "#product_quantity";
+    
+    //селекти
+    public static $WindowAddProductSelectVariant        = "#product_variant_name";
+    public static function windowAddProductSelectVariantOption($number) { return "//select[@id='product_variant_name']/option[$number]"; }
+    
+    //кнопки
+    public static $WindowAddProductButtonClose  = ".modal.hide.fade.in .modal-header button";
+    public static $WindowAddProductButtonAdd    = "#addToCartConfirm";
+    public static $WindowAddProductButtonCancel = ".modal.hide.fade.in a.btn";
+    
+    //лейбли
+    public static $WindowAddProductInputArticleLabel    = "//form[@id='addToCartForm']/div[1]/label";
+    public static $WindowAddProductInputProductLabel    = "//form[@id='addToCartForm']/div[2]/label";
+    public static $WindowAddProductSelectVariantLabel   = "//form[@id='addToCartForm']/div[3]/label";
+    public static $WindowAddProductInputAmountLabel     = "//form[@id='addToCartForm']/div[4]/label";
 
 }
