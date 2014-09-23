@@ -31,6 +31,22 @@ class ProductCategoryListPage
     public static function lineAmountText($row)         { return "//div[@id='category']/div[2]/div/div[$row]/div[@class='row-category']/div[5]/p"; }
     public static function lineActiveToggle($row)       { return "//div[@id='category']/div[2]/div/div[$row]/div[@class='row-category']/div[6]//span"; }
     
+    //підкатегорії
+    //
+    //div[@id='category']/div[2]/div/div[1]/div[@class='frame_level sortable ui-sortable']/div[3]/div[@class='row-category']
+    //categories         div[@class='row-category']
+    //wraper for subcategories    div[@class='frame_level sortable ui-sortable']
+    //
+    //
+    //
+    //
+    public static function lineSubcategory($main_category_row,$sub_category_row){return "";}
+
+    
+
+
+
+
     //вікно видалення
     static $WindowDelete                = '.modal.hide.fade.in';
     static $WindowDeleteTitle           = '.modal.hide.fade.in .modal-header >h3';
