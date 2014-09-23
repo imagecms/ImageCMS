@@ -115,7 +115,7 @@ class CategorySEOCest
     }
 
     /**
-     * @group aaaaaaaaaaa
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps 
      */
     public function TextAreaActive (SeoExpertTester\seoexpertSteps $I){ 

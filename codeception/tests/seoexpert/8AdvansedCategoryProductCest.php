@@ -167,7 +167,7 @@ class AdvansedCategoryProductCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function VerifyCommonValuesTitleOnFrontPageCategoryProduct (SeoExpertTester\seoexpertSteps $I){ 
+    public function VerifyCommonValuesTitleOnFrontPageCategoryRussianProduct (SeoExpertTester\seoexpertSteps $I){ 
     $I->CreateSettingValuesForFrontPageCategoryProducts($name_Category_Product_For_select = 'Троллейбус',
                                                         $input_Values_in_Field_Title = "%ID% %name% %category% %brand% %price% %CS% %p_$this->ID_Property_Russian_Name%",
                                                         $input_Values_in_Field_Description = '',
@@ -178,6 +178,22 @@ class AdvansedCategoryProductCest
                             $values = "$this->ID_Product_Russian_Name Тракторная резина Троллейбус Тротуар 49870 руб Организация организованных");
     }
     
+    
+    
+    /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps
+     */
+    public function VerifyCommonValuesTitleOnFrontPageCategoryEnglishProduct (SeoExpertTester\seoexpertSteps $I){ 
+    $I->CreateSettingValuesForFrontPageCategoryProducts($name_Category_Product_For_select = '',
+                                                        $input_Values_in_Field_Title = "%ID% %name% %category% %brand% %price% %CS% %p_$this->ID_Property_English_Name%",
+                                                        $input_Values_in_Field_Description = '',
+                                                        $input_Values_in_Field_Lenght = '',
+                                                        $input_Values_in_Field_Keywords = '',
+                                                        $CheckBox_Activate = '//section/form/table/tbody/tr/td/div/div/div[1]/div/span[2]');
+    $I->CheckValuesInPage(  $URL_Page = '/shop/product/traktornaia-rezina', 
+                            $values = "$this->ID_Product_");
+    }
     
     /**
      * @group a

@@ -294,7 +294,7 @@ class seoexpertSteps extends \SeoExpertTester
         $I->wait('1');
         $I->fillField(\ProductSEOPage::$ListFildSearch, $name_product);
         $I->click(\ProductSEOPage::$ListButtonFilter);
-        $I->wait('1');
+        $I->wait('2');
         $ID_product = $I->grabTextFrom(\ProductSEOPage::$ListGrabID);        
         return $ID_product;
     }
@@ -307,6 +307,7 @@ class seoexpertSteps extends \SeoExpertTester
         $I->wait('1');
         $I->fillField(\PropertySEOPage::$SearchField, $name_property);
         $I->click(\PropertySEOPage::$ButtonFilter);
+        $I->wait('2');
         $ID_property = $I->grabTextFrom(\PropertySEOPage::$IDField);
         return $ID_property;
         
