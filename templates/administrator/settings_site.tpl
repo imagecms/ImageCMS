@@ -27,7 +27,7 @@
                 <form action="{$BASE_URL}admin/settings/save" method="post" id="saveSettings">
                     <div class="tab-content">
                         <div class="tab-pane active" id="setings">
-                            <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                            <table class="table  table-bordered table-hover table-condensed content_big_td">
                                 <thead>
                                     <tr>
                                         <th colspan="6">
@@ -64,6 +64,7 @@
                                                                 </select>
                                                             </div>
                                                         </div>
+                                                        {if !defined('MAINSITE')}               
                                                         <div class="control-group">
                                                             <label class="control-label" for="template">{lang('Template', 'admin')}:</label>
                                                             <div class="controls">
@@ -72,17 +73,17 @@
                                                                         <option value="{$k}" {if $template_selected == $k} selected="selected" {/if} >{$k}</option>
                                                                     {/foreach}
                                                                 </select>
-
                                                                 <span class="help-block" id='license_link' style="display: none">
                                                                     {lang('Installing the template you agree to the', 'admin')}
                                                                     <a target="_blank" href="/admin/settings/license_agreement?template_name={$template_selected}" id="license_agreement_link">
                                                                         {lang('license agreement', 'admin')}
                                                                     </a>
                                                                 </span>
-
                                                             </div>
-
                                                         </div>
+                                                        {else:}
+                                                            <input name='template' type='hidden' value="{echo $template_selected}">                                                            
+                                                        {/if}
                                                         <div class="control-group">
                                                             <label class="control-label" for="cat_list">{lang('Display category tree in the content','admin')}:</label>
                                                             <div class="controls">
@@ -121,7 +122,7 @@
                             </table>
                         </div>
                         <div class="tab-pane" id="seo">
-                            <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                            <table class="table  table-bordered table-hover table-condensed content_big_td">
                                 <thead>
                                     <tr>
                                         <th colspan="6">
@@ -174,7 +175,7 @@
                         </div>
 
                         <div class="tab-pane" id="homePage">
-                            <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                            <table class="table  table-bordered table-hover table-condensed content_big_td">
                                 <thead>
                                     <tr>
                                         <th colspan="6">
@@ -189,11 +190,12 @@
                                                 <div class="form-horizontal">
                                                     <div class="row-fluid">
 
-                                                        <div class="control-group m-t_10">
+                                                        <div class="control-group m-t_10 frame_label no_connection">
                                                             <label class="control-label" for="main_typesq">{lang('Categories',"admin")}:</label>
-                                                            <div class="controls">
-
-                                                                <input type="radio" id="main_typesq" name="main_type" value="category" {if $main_type == "category"} checked="checked" {/if} />
+                                                            <div class="controls ctext">
+                                                                <span class="niceRadio b_n">
+                                                                    <input type="radio" id="main_typesq" name="main_type" value="category" {if $main_type == "category"} checked="checked" {/if} />
+                                                                </span>
 
                                                                 <select name="main_page_cat" class="input-large">
                                                                     { $this->view("cats_select.tpl", $this->template_vars); }
@@ -201,29 +203,39 @@
                                                             </div>
                                                         </div>
 
-                                                        <div class="control-group m-t_10">
+                                                        <div class="control-group m-t_10 frame_label no_connection">
                                                             <label class="control-label" for="main_types">{lang('Page',"admin")}:</label>
-                                                            <div class="controls">
-                                                                <input type="radio" id="main_types" name="main_type" value="page" {if $main_type == "page"} checked="checked" {/if} />
-
+                                                            <div class="controls ctext">
+                                                                <span class="niceRadio b_n">
+                                                                    <input type="radio" id="main_types" name="main_type" value="page" {if $main_type == "page"} checked="checked" {/if} />
+                                                                </span>
                                                                 <input type="text" class="input-small" name="main_page_pid" class="textbox_long" style="width:100px" value="{$main_page_id}" /> - {lang("Page ID","admin")}
                                                             </div>
                                                         </div>
 
-                                                        <div class="control-group m-t_10">
+                                                        <div class="control-group m-t_10 frame_label no_connection">
                                                             <label class="control-label" for="main_type">{lang('Module',"admin")}:</label>
-                                                            <div class="controls">
-
-                                                                <input type="radio" id="main_type" name="main_type" value="module" {if $main_type == "module"} checked="checked" {/if} />
-
-                                                                <select name="main_page_module"  class="input-large">
+                                                            <div class="controls ctext">
+                                                                <span class="niceRadio b_n">
+                                                                    <input type="radio" id="main_type" name="main_type" value="module" {if $main_type == "module"} checked="checked" {/if} />
+                                                                </span>
+                                                                {if defined('MAINSITE')}
                                                                     {foreach $modules as $m}
                                                                         {$mData = modules::run('admin/components/get_module_info',$m['name'])}
-                                                                        {//if $mData['main_page'] === true}
-                                                                        <option {if $m['name'] == $main_page_module}selected="selected"{/if} value="{$m['name']}">{echo $mData['menu_name']}</option>
-                                                                        {///if}
-                                                                    {/foreach}
-                                                                </select>
+                                                                        {if $m['name'] == 'shop'}
+                                                                            <input type="text" value="{$mData['menu_name']}" readonly='true'/>
+                                                                        {/if}
+                                                                    {/foreach}    
+                                                                {else:}
+                                                                    <select name="main_page_module"  class="input-large">
+                                                                        {foreach $modules as $m}
+                                                                            {$mData = modules::run('admin/components/get_module_info',$m['name'])}
+                                                                            {//if $mData['main_page'] === true}
+                                                                            <option {if $m['name'] == $main_page_module}selected="selected"{/if} value="{$m['name']}">{echo $mData['menu_name']}</option>
+                                                                            {///if}
+                                                                        {/foreach}    
+                                                                    </select>
+                                                                {/if}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -235,7 +247,7 @@
                             </table>
                         </div>
                         <div class="tab-pane" id="metatag">
-                            <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                            <table class="table  table-bordered table-hover table-condensed content_big_td">
                                 <thead>
                                     <tr>
                                         <th colspan="6">
@@ -317,7 +329,7 @@
                             </table>
                         </div>
                         <div class="tab-pane" id="metatag_edit">
-                            <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                            <table class="table  table-bordered table-hover table-condensed content_big_td">
                                 <thead>
                                     <tr>
                                         <th colspan="6">
@@ -389,7 +401,7 @@
                         </div>
                         <div class="tab-pane" id="site_info_tab"> <!-- Інформація про сайт -->
                             {$tooltipText = lang('Please use function siteinfo() with the parameter', 'admin')}
-                            <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                            <table class="table  table-bordered table-hover table-condensed content_big_td">
                                 <thead>
                                     <tr>
                                         <th colspan="6">
@@ -403,7 +415,6 @@
                                             <div class="inside_padd span9">
                                                 <div class="form-horizontal">
                                                     <div class="row-fluid">
-
                                                         <div class="control-group">
                                                             <label class="control-label" data-toggle="ttip" data-title="{$tooltipText} 'siteinfo_companytype'" for="siteinfo_companytype">
                                                                 {lang('For language', 'admin')} 
@@ -460,7 +471,7 @@
                                                                 <i class="icon-info-sign"></i>
                                                             </label>  
                                                             <div class="controls">
-                                                                <table id="siteinfo_contacts_table">
+                                                                <table id="siteinfo_contacts_table" class="content_small_td">
                                                                     {if count($contacts) > 0}
                                                                         {foreach $contacts as $contact_name => $contact_value}
                                                                             <tr class="siteinfo_contact_row">
@@ -471,8 +482,8 @@
                                                                                     <textarea rows="1" placeholder="{lang('Value', 'admin')}" class="siteinfo_contactvalue" name="siteinfo_contactvalue[]">{$contact_value}</textarea>
                                                                                 </td>
                                                                                 <td>
-                                                                                    <button type="button" class="btn btn-small btn-danger si_remove_contact_row">
-                                                                                        <i class="icon-trash icon-white"></i>
+                                                                                    <button type="button" class="btn btn-small si_remove_contact_row" data-rel="tooltip" data-title="{lang('Remove', 'admin')}">
+                                                                                        <i class="icon-trash"></i>
                                                                                     </button>
                                                                                 </td>
                                                                             </tr> 
@@ -486,8 +497,8 @@
                                                                                 <textarea rows="1" placeholder="{lang('Value', 'admin')}" class="siteinfo_contactvalue" value="" name="siteinfo_contactvalue[]"></textarea>
                                                                             </td>
                                                                             <td>
-                                                                                <button type="button" class="btn btn-small btn-danger si_remove_contact_row">
-                                                                                    <i class="icon-trash icon-white"></i>
+                                                                                <button type="button" class="btn btn-small si_remove_contact_row" data-rel="tooltip" data-title="{lang('Remove', 'admin')}">
+                                                                                    <i class="icon-trash"></i>
                                                                                 </button>
                                                                             </td>
                                                                         </tr> 

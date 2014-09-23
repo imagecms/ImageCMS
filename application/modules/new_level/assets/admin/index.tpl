@@ -73,7 +73,7 @@
                 </div>
                 <div class="tab-pane" id="columns">
                     <div class="inside_padd span9">
-                        <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                        <table class="table  table-bordered table-hover table-condensed content_big_td">
                             <thead>
                                 <tr>
                                     <th colspan="6">
@@ -121,7 +121,7 @@
                 </div>
                 <div class="tab-pane" id="theme">
                     <div class="inside_padd span9">
-                        <table id="tickets_table" class="table  table-bordered table-hover table-condensed t-l_a content_big_td" style="clear:both;">
+                        <table id="tickets_table" class="table  table-bordered table-hover table-condensed content_big_td" style="clear:both;">
                             <thead>
                             <th class="span1">{lang('Settings', 'new_level')}</th>
                             </thead>

@@ -23,6 +23,7 @@ class DeleteCallbackByButtonCest
     public function NamesInListLanding(CallbacksTester $I)
     {
         $I->amOnPage('/admin/components/run/shop/callbacks');
+        $I->dontSeeElement(CallbacksPage::$DeleteCallbackButton);
         $I->see('Список обратных звонков', 'span.title');
         $I->see('Все обратные звонки :', './/*[@id="totalCallbacks"]/b');
         $I->see('ID', './/*[@id="callbacks_all"]/table/thead/tr/th[2]');
@@ -32,7 +33,9 @@ class DeleteCallbackByButtonCest
         $I->see('Статус', './/*[@id="callbacks_all"]/table/thead/tr/th[6]');
         $I->see('Дата', './/*[@id="callbacks_all"]/table/thead/tr/th[7]');
         $I->see('Удалить', './/*[@id="callbacks_all"]/table/thead/tr/th[8]');
-        $I->see('Удалить', CallbacksPage::$DeleteCallback);
+        $I->click(CallbacksPage::CheckBoxButtonLine('1'));
+        $I->wait('1');
+        $I->see('Удалить', CallbacksPage::$DeleteCallbackButton);
     }
     
     
@@ -126,12 +129,12 @@ class DeleteCallbackByButtonCest
         $I->comment($kil);
         $j=1;
         $id=$I->grabTextFrom(".//*[@id='callbacks_all']/table/tbody/tr[$j]/td[2]");
-        $actButDel=$I->grabAttributeFrom(CallbacksPage::$DeleteCallback, "disabled");
+        $actButDel=$I->grabAttributeFrom(CallbacksPage::$DeleteCallbackButton, "disabled");
         $I->comment($actButDel);
         $I->assertEquals($actButDel, "true"); //Проверка активности кнопки "Удалить"
         $I->checkOption(CallbacksPage::CheckBoxButtonLine($j)); //Активация чекбокса
         $I->wait('1');
-        $I->click(CallbacksPage::$DeleteCallback);
+        $I->click(CallbacksPage::$DeleteCallbackButton);
         $I->waitForElement('.//div[@class="modal hide fade in"]');
         $I->see('Удалить обратный(е) звонок(ки)');
         $I->see('Вы действительно хотите удалить обратный(е) звонок(ки)?');
@@ -213,7 +216,7 @@ class DeleteCallbackByButtonCest
         $I->click(CallbacksPage::CheckBoxButtonLine($j));
         $I->click(CallbacksPage::CheckBoxButtonLine($g));
         $I->click(CallbacksPage::CheckBoxButtonLine($t));
-        $I->click(CallbacksPage::$DeleteCallback);
+        $I->click(CallbacksPage::$DeleteCallbackButton);
         $I->waitForElement('.//div[@class="modal hide fade in"]');
         $I->see('Удалить обратный(е) звонок(ки)');
         $I->see('Вы действительно хотите удалить обратный(е) звонок(ки)?');
@@ -372,7 +375,7 @@ class DeleteCallbackByButtonCest
         $I->comment((string)$rows);
         if ($kil<=$rows){
                 $I->click('.//*[@id="callbacks_all"]/table/thead/tr/th[1]/span/span');
-                $I->click(CallbacksPage::$DeleteCallback);
+                $I->click(CallbacksPage::$DeleteCallbackButton);
                 $I->waitForElement('.//div[@class="modal hide fade in"]');
                 $I->see('Удалить обратный(е) звонок(ки)');
                 $I->see('Вы действительно хотите удалить обратный(е) звонок(ки)?');
@@ -391,7 +394,7 @@ class DeleteCallbackByButtonCest
             $j=1;            
                 for ($j=1; $j<=$pagAll; $j++){
                     $I->click('.//*[@id="callbacks_all"]/table/thead/tr/th[1]/span/span');
-                    $I->click(CallbacksPage::$DeleteCallback);
+                    $I->click(CallbacksPage::$DeleteCallbackButton);
                     $I->waitForElement('.//div[@class="modal hide fade in"]');
                     $I->see('Удалить обратный(е) звонок(ки)');
                     $I->see('Вы действительно хотите удалить обратный(е) звонок(ки)?');

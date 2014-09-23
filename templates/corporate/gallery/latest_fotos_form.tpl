@@ -8,7 +8,7 @@
             <div class="d-i_b">
                 <a href="{$BASE_URL}admin/widgets_manager/index" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Назад')}</span></a>
                 <button type="button" class="btn btn-small formSubmit" data-form="#widget_form"><i class="icon-ok"></i>{lang('Сохранить')}</button>
-                <button type="button" class="btn btn-small formSubmit" data-form="#widget_form" data-action="tomain"><i class="icon-edit"></i>{lang('Сохранить и выйти')}</button>
+                <button type="button" class="btn btn-small formSubmit" data-form="#widget_form" data-action="tomain"><i class="icon-check"></i>{lang('Сохранить и выйти')}</button>
             </div>
         </div>                            
     </div>

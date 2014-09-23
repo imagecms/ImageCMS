@@ -16,7 +16,7 @@
                 </div>
                 <div class="d-i_b">
                     <button type="button" class="btn btn-small btn-success" onclick="Exchange.go($(this));">
-                        <i class="icon-ok"></i>
+                        <i class="icon-ok icon-white"></i>
                         {lang('Exchange', 'translator')}
                     </button>
                 </div>
@@ -24,7 +24,7 @@
         </div>
         <div class="row-fluid">
             <form method="post" class="form-horizontal">
-                <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                <table class="table  table-bordered table-hover table-condensed content_big_td">
                     <thead>
                         <tr>
                             <th colspan="6">

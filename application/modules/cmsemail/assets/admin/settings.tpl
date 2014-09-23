@@ -21,8 +21,8 @@
                 </div>
             </div>
         </div>
-        <form method="post" action="{site_url('admin/components/cp/cmsemail/update_settings')}" class="form-horizontal" id="wishlist_settings_form">
-            <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+        <form method="post" action="{site_url('admin/components/cp/cmsemail/update_settings')}" class="form-horizontal m-t_10" id="wishlist_settings_form">
+            <table class="table  table-bordered table-hover table-condensed content_big_td">
                 <thead>
                     <tr>
                         <th colspan="6">
@@ -139,7 +139,7 @@
                                     <br>
                                     <div class="controls ">
                                         <button type="button" class="btn delete_image mailTestResultsHide">
-                                            <i class="icon-remove"></i>
+                                            <i class="icon-trash"></i>
                                         </button>
                                         <div class="mailTestResults">
                                         </div>

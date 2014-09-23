@@ -22,6 +22,26 @@ class BaseSEOCest
         $I->SeoCreateCategoryProduct($createNameCategory = 'Zzzz категория для SEO');
     }
     
+    
+    /**
+     * @group a
+     */
+    public function BaseDefoultValues (SeoExpertTester $I) {
+        $I->amOnPage(seoexpertPage::$SeoUrl);
+        $I->click(seoexpertPage::$SeoBaseRadioButtCategoryNameYes);
+        $I->click(seoexpertPage::$SeoBaseRadioButtSiteNameYes);
+        $I->click(seoexpertPage::$SeoBaseSelectKeywords);
+        $I->click(seoexpertPage::$SeoBaseOptionMakeAutomaticKeywords);
+        $I->click(seoexpertPage::$SeoBaseSelectDescription);
+        $I->click(seoexpertPage::$SeoBaseOptionMakeAutomaticDescription);
+        $I->fillField(seoexpertPage::$SeoBaseFieldSeparator, '/');
+        $I->fillField(seoexpertPage::$SeoBaseFieldDescription, '');
+        $I->fillField(seoexpertPage::$SeoBaseFieldKeywords, '');
+        $I->fillField(seoexpertPage::$SeoBaseFieldSiteName, 'lastbuild.loc');
+        $I->fillField(seoexpertPage::$SeoBaseFieldShortSiteName, 'lastbuild.loc');
+        $I->click(seoexpertPage::$SeoButtSave);
+        $I->wait('1');
+    }
 
     
     
@@ -95,10 +115,12 @@ class BaseSEOCest
     
     /**
      * @group a
+     * @guy SeoExpertTester\seoexpertSteps
      */
-    public function CkeckFieldSeparatorSympol1 (SeoExpertTester $I){
+    public function CkeckFieldSeparatorSympol1 (SeoExpertTester\seoexpertSteps $I){
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
+        $I->DefoultValues();
         $I->click(seoexpertPage::$SeoBaseRadioButtSiteNameYes);
         $I->click(seoexpertPage::$SeoBaseRadioButtCategoryNameYes);
         $I->fillField(seoexpertPage::$SeoBaseFieldSeparator, './*-+');
@@ -115,10 +137,12 @@ class BaseSEOCest
     
     /**
      * @group a
+     * @guy SeoExpertTester\seoexpertSteps
      */
-    public function CkeckFieldSeparatorSympol2 (SeoExpertTester $I){
+    public function CkeckFieldSeparatorSympol2 (SeoExpertTester\seoexpertSteps $I){
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
+        $I->DefoultValues();
         $I->click(seoexpertPage::$SeoBaseRadioButtSiteNameYes);
         $I->click(seoexpertPage::$SeoBaseRadioButtCategoryNameYes);
         $I->fillField(seoexpertPage::$SeoBaseFieldSeparator, '|%#@');
@@ -135,10 +159,12 @@ class BaseSEOCest
     
     /**
      * @group a
+     * @guy SeoExpertTester\seoexpertSteps
      */
-    public function CkeckFieldSeparatorSympol3 (SeoExpertTester $I){
+    public function CkeckFieldSeparatorSympol3 (SeoExpertTester\seoexpertSteps $I){
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
+        $I->DefoultValues();
         $I->click(seoexpertPage::$SeoBaseRadioButtSiteNameYes);
         $I->click(seoexpertPage::$SeoBaseRadioButtCategoryNameYes);
         $I->fillField(seoexpertPage::$SeoBaseFieldSeparator, '~=\}');
@@ -156,10 +182,12 @@ class BaseSEOCest
     
     /**
      * @group a
+     * @guy SeoExpertTester\seoexpertSteps
      */
-    public function CkeckFieldSeparatorSympol4 (SeoExpertTester $I){
+    public function CkeckFieldSeparatorSympol4 (SeoExpertTester\seoexpertSteps $I){
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
+        $I->DefoultValues();
         $I->click(seoexpertPage::$SeoBaseRadioButtSiteNameYes);
         $I->click(seoexpertPage::$SeoBaseRadioButtCategoryNameYes);
         $I->fillField(seoexpertPage::$SeoBaseFieldSeparator, '1230');
@@ -178,10 +206,12 @@ class BaseSEOCest
     
     /**
      * @group a
+     * @guy SeoExpertTester\seoexpertSteps
      */
-    public function CkeckFieldSeparatorSympol5 (SeoExpertTester $I){
+    public function CkeckFieldSeparatorSympol5 (SeoExpertTester\seoexpertSteps $I){
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
+        $I->DefoultValues();
         $I->click(seoexpertPage::$SeoBaseRadioButtSiteNameYes);
         $I->click(seoexpertPage::$SeoBaseRadioButtCategoryNameYes);
         $I->fillField(seoexpertPage::$SeoBaseFieldSeparator, 'ЙЦол');
@@ -229,6 +259,15 @@ class BaseSEOCest
     }
     
     
+    
+    
+    /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps 
+     */
+    public function DeleteCategoryForJiraTests(SeoExpertTester\seoexpertSteps $I) {
+        $I->DeleteProductCategorys();
+    }
 
     
     

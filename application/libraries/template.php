@@ -37,7 +37,7 @@ class Template extends Mabilis {
         $this->modules_template_dir = TEMPLATES_PATH . 'modules/';
         $tpl = $this->CI->config->item('template');
 
-        if (MAINSITE and $tpl == 'administrator' and ! is_dir(TEMPLATES_PATH . 'administrator')) {
+        if (MAINSITE and $tpl == 'administrator' and !is_dir(TEMPLATES_PATH . 'administrator')) {
             $config = array(
                 'tpl_path' => str_replace('system/', '', BASEPATH) . 'templates/' . $tpl . '/',
                 'compile_path' => $this->CI->config->item('tpl_compile_path'),
@@ -46,10 +46,6 @@ class Template extends Mabilis {
                 'compress_output' => $this->CI->config->item('tpl_compress_output'),
                 'use_filemtime' => $this->CI->config->item('tpl_use_filemtime')
             );
-
-            /** URL to template folder */
-            $this->assign('THEME', 'http://' . ltrim(MAINSITE, '../') . '/templates/' . $tpl . '/');
-            $this->assign('JS_URL', 'http://' . ltrim(MAINSITE, '../') . '/js');
         } else {
             $config = array(
                 'tpl_path' => TEMPLATES_PATH . $tpl . '/',
@@ -59,11 +55,10 @@ class Template extends Mabilis {
                 'compress_output' => $this->CI->config->item('tpl_compress_output'),
                 'use_filemtime' => $this->CI->config->item('tpl_use_filemtime')
             );
-
-            /** URL to template folder */
-            $this->assign('THEME', base_url() . 'templates/' . $tpl . '/');
-            $this->assign('JS_URL', base_url() . 'js');
         }
+        /** URL to template folder */
+        $this->assign('THEME', base_url() . 'templates/' . $tpl . '/');
+        $this->assign('JS_URL', base_url() . 'js');
 
         $this->load_config($config);
 

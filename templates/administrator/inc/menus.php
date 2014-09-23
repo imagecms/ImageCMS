@@ -21,10 +21,6 @@ $baseMenu = array(
         'icon' => 'icon-align-justify',
         'subMenu' => array(
             array(
-                'header' => true,
-                'text' => lang('Content', 'admin', FALSE),
-            ),
-            array(
                 'link' => '/admin/pages',
                 'text' => lang('Create page', 'admin', FALSE),
             ),
@@ -34,10 +30,6 @@ $baseMenu = array(
             ),
             array(
                 'divider' => true
-            ),
-            array(
-                'header' => true,
-                'text' => lang('Custom fields constructor', 'admin', FALSE),
             ),
             array(
                 'link' => '/admin/components/cp/cfcm/index#additional_fields',
@@ -163,10 +155,6 @@ $shopMenu = array(
         'icon' => 'icon-shopping-cart',
         'subMenu' => array(
             array(
-                'header' => true,
-                'text' => lang('Orders', 'admin', FALSE),
-            ),
-            array(
                 'link' => $ADMIN_URL . 'orders/index',
                 'text' => lang('Orders list', 'admin', FALSE),
             ),
@@ -175,8 +163,7 @@ $shopMenu = array(
                 'text' => lang('Order statuses', 'admin', FALSE),
             ),
             array(
-                'header' => true,
-                'text' => lang('Callbacks', 'admin', FALSE),
+                'divider' => true
             ),
             array(
                 'link' => $ADMIN_URL . 'callbacks',
@@ -191,8 +178,7 @@ $shopMenu = array(
                 'text' => lang('Callback themes', 'admin', FALSE),
             ),
             array(
-                'header' => true,
-                'text' => lang('Notifications', 'admin', FALSE),
+                'divider' => true
             ),
             array(
                 'link' => $ADMIN_URL . 'notifications',
@@ -258,10 +244,6 @@ $shopMenu = array(
         'icon' => 'icon-align-justify',
         'subMenu' => array(
             array(
-                'header' => true,
-                'text' => lang('Content', 'admin', FALSE),
-            ),
-            array(
                 'link' => '/admin/pages',
                 'text' => lang('Create page', 'admin', FALSE),
             ),
@@ -273,10 +255,6 @@ $shopMenu = array(
                 'divider' => true
             ),
             array(
-                'header' => true,
-                'text' => lang('Categories', 'admin', FALSE),
-            ),
-            array(
                 'link' => '/admin/categories/create_form',
                 'text' => lang('Create category', 'admin', FALSE),
             ),
@@ -286,10 +264,6 @@ $shopMenu = array(
             ),
             array(
                 'divider' => true
-            ),
-            array(
-                'header' => true,
-                'text' => lang('Custom fields constructor', 'admin', FALSE),
             ),
             array(
                 'link' => '/admin/components/cp/cfcm/index#additional_fields',
@@ -374,10 +348,10 @@ $shopMenu = array(
                 'link' => $ADMIN_URL . 'paymentmethods/index',
                 'text' => lang('Payment methods', 'admin', FALSE),
             ),
-            array(
+            /*array(
                 'link' => $ADMIN_URL . 'system/import',
                 'text' => lang('Import-Export CSV/XLS', 'admin', FALSE),
-            ),
+            ),*/
             array(
                 'link' => '/admin/widgets_manager',
                 'text' => lang('Widgets', 'admin', FALSE),

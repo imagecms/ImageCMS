@@ -23,10 +23,6 @@
 
         <link rel="stylesheet" type="text/css" href="{$JS_URL}/elfinder-2.0/css/elfinder.min.css" media="screen" charset="utf-8">
         <link rel="stylesheet" type="text/css" href="{$JS_URL}/elfinder-2.0/css/theme.css" media="screen" charset="utf-8">
-
-        <script type="text/javascript">
-            var MAINSITE = "{echo MAINSITE}";
-        </script>
         <script src="{$THEME}js/jquery-1.8.2.min.js" type="text/javascript"></script>
     </head>
     <body>
@@ -122,35 +118,37 @@
         {/if}
         {if !SHOP_INSTALLED}
             <div class="imagecms-top-fixed-header{if $_COOKIE['condPromoToolbar'] == '1' || $_COOKIE['condPromoToolbar'] == NULL} imagecms-active{/if}">
-                <div class="container">
-                    <button type="button" class="imagecms-close" {if $_COOKIE['condPromoToolbar'] == '1' || $_COOKIE['condPromoToolbar'] == NULL}style="display: block;"{/if} onclick="setCookie('condPromoToolbar', '0');
-                            $('.imagecms-top-fixed-header').removeClass('imagecms-active');
-                            $(this).hide().next().show();
-                            $(window).scroll();">
-                        <span class="imagecms-toggle-close-text imagecms-bar-close-text"><span style="font-size: 14px;">↑</span> {lang('Hide', 'admin')}</span>
-                    </button>
-                    <button type="button" class="imagecms-close" {if $_COOKIE['condPromoToolbar'] == '0'}style="display: block;"{/if} onclick="setCookie('condPromoToolbar', '1');
-                            $('.imagecms-top-fixed-header').addClass('imagecms-active');
-                            $(this).hide().prev().show();
-                            $(window).scroll();">
-                        <span class="imagecms-toggle-close-text imagecms-bar-show-text"><span style="font-size: 14px;">↓</span> {lang('Show', 'admin')}</span>
-                    </button>
-                    <div class="imagecms-buy-license">
-                        <a href="http://www.imagecms.net/download/corporate" target="_blank" onclick="_gaq.push(['_trackEvent', 'demo-admin', '/download/corporate']);">
-                            <span class="imagecms-text-el">Скачать бесплатно</span>
-                        </a>
+                <div class="imagecms-inside">
+                    <div class="container">
+                        <button type="button" class="imagecms-close" {if $_COOKIE['condPromoToolbar'] == '1' || $_COOKIE['condPromoToolbar'] == NULL}style="display: block;"{/if} onclick="setCookie('condPromoToolbar', '0');
+                                $('.imagecms-top-fixed-header').removeClass('imagecms-active');
+                                $(this).hide().next().show();
+                                $(window).scroll();">
+                            <span class="imagecms-toggle-close-text imagecms-bar-close-text"><span style="font-size: 14px;">↑</span> {lang('Hide', 'admin')}</span>
+                        </button>
+                        <button type="button" class="imagecms-close" {if $_COOKIE['condPromoToolbar'] == '0'}style="display: block;"{/if} onclick="setCookie('condPromoToolbar', '1');
+                                $('.imagecms-top-fixed-header').addClass('imagecms-active');
+                                $(this).hide().prev().show();
+                                $(window).scroll();">
+                            <span class="imagecms-toggle-close-text imagecms-bar-show-text"><span style="font-size: 14px;">↓</span> {lang('Show', 'admin')}</span>
+                        </button>
+                        <div class="imagecms-buy-license">
+                            <a href="http://www.imagecms.net/download/corporate" target="_blank" onclick="_gaq.push(['_trackEvent', 'demo-admin', '/download/corporate']);">
+                                <span class="imagecms-text-el">Скачать бесплатно</span>
+                            </a>
+                        </div>
+                        <ul class="imagecms-list">
+                            <li>
+                                <a href="http://www.imagecms.net/free-cms-corporate" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demo-admin', '/free-cms-corporate']);">Обзор продукта</a>
+                            </li>
+                            <li>
+                                <a href="http://www.imagecms.net/corporate-bazovye-vozmozhnosti" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demo-admin', '/corporate-bazovye-vozmozhnosti']);">Базовые возможности</a>
+                            </li>
+                            <li>
+                                <a href="http://www.imagecms.net/blog" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demo-admin', '/blog']);">Блог</a>
+                            </li>
+                        </ul>
                     </div>
-                    <ul class="imagecms-list">
-                        <li>
-                            <a href="http://www.imagecms.net/free-cms-corporate" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demo-admin', '/free-cms-corporate']);">Обзор продукта</a>
-                        </li>
-                        <li>
-                            <a href="http://www.imagecms.net/corporate-bazovye-vozmozhnosti" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demo-admin', '/corporate-bazovye-vozmozhnosti']);">Базовые возможности</a>
-                        </li>
-                        <li>
-                            <a href="http://www.imagecms.net/blog" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demo-admin', '/blog']);">Блог</a>
-                        </li>
-                    </ul>
                 </div>
             </div>
         {/if}
@@ -167,30 +165,53 @@
                             <a href="/admin/dashboard" class="logo pull-left pjax">
                             {/if}
                             <span class="helper"></span>
-                            <img src="{$THEME}img/logo_premmerce.png"/>
+                            <img src="{$THEME}img/logo_new.png"/>
+                            {/*<img src="{$THEME}img/logo_premmerce.png"/>*/}
                         </a>
 
                         {if $CI->dx_auth->is_logged_in()}
                             <div class="pull-right span4 f-s_0 right-header">
                                 <span class="helper"></span>
                                 <ul class="d_i-b f-s_0">
-                                    {/*<li class="btn_header btn_header-danger">
+                                    {if MAINSITE}
+                                        {if !$isfree}
+                                            <li class="btn_header {if $daysLeft <= 5}btn_header-danger{/if}">
+                                                <button type="button">
+                                                    <span class="text-el">{$daysLeft} {lang("days left", "admin")}</span>
+                                                </button>
+                                            </li>
+                                        {else:}
+                                            <li class="btn_header">
+                                                <button type="button">
+                                                    <span class="text-el">{lang("Free tarif", "admin")}</span>
+                                                </button>
+                                            </li>
+                                        {/if}
+                                    {/if}
+                                    {/* <li class="btn_header btn-mail">
+                                    <li class="btn_header">
                                         <button type="button">
-                                            <span class="text-el">{lang("Осталось 5 дней", "admin")}</span>
+                                            <span class="text-el">{lang("14 days left", "admin")}</span>
+                                        </button>
+                                    </li>
+                                    <li class="btn_header btn_header-danger">
+                                        <button type="button">
+                                            <span class="text-el">{lang("5 days left", "admin")}</span>
                                         </button>
                                     </li>
                                     <li class="btn_header">
                                         <button type="button">
-                                            <span class="text-el">{lang("Free rate", "admin")}</span>
+                                            <span class="text-el">{lang("Free tarif", "admin")}</span>
                                         </button>
                                     </li>
                                     <li class="btn_header btn-mail">
                                         <a href="#">
                                             <span class="icon_mail">
-                                                <span class="badge">25</span>
+                                                <span class="badge badge-important">25</span>
                                             </span>
                                         </a>
-                                    </li>*/}
+                                    </li> */}
+
                                     <li class="dropdown d-i_b v-a_m">
                                         <a data-toggle="dropdown" class="btn_header btn-personal-area">
                                             <span>
@@ -218,7 +239,7 @@
                                                 </li>
                                             {/if}
                                             <li>
-                                                <a href="/admin/logout">
+                                                <a href="/auth/logout">
                                                     {lang("Exit", "admin")}
                                                 </a>
                                             </li>
@@ -227,7 +248,7 @@
                                     <li class="btn_header">
                                         <a href="{$BASE_URL}" target="_blank">
                                             <span class="icon_on-site"></span>
-                                            <span class="text-el">{lang('On site','admin')}</span>
+                                            <span class="text-el">{lang('To the site','admin')}</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -276,7 +297,7 @@
                     {if !SHOP_INSTALLED}
                         <table class="container" id="baseAdminMenu">
                             <tbody class="navbar navbar-inverse">
-                                <tr class="nav">
+                                <tr>
                                     {foreach $baseMenu as $li}
                                         {if $li.subMenu}
                                             <td class="{$li.class} {if $li.subMenu} dropdown{/if}">
@@ -325,7 +346,7 @@
                                 </tr>
 
                                 {//if SHOP_INSTALLED}
-                                   <!-- <a class="btn btn-small pull-right btn-info" onclick="loadShopInterface();" href="#">{lang('Manage shop','admin')}<span class="f-s_14">→</span></a>-->
+                                <!-- <a class="btn btn-small pull-right btn-info" onclick="loadShopInterface();" href="#">{lang('Manage shop','admin')}<span class="f-s_14">→</span></a>-->
                                 {///if}
                                 {$CI->lang->load($langDomain)}
                             </tbody>
@@ -380,167 +401,168 @@
             <div id="loading"></div>
             {$CI->lang->load($langDomain)}
             <div class="container" id="mainContent">
-                {literal}<script>setTimeout(function() {$('.mini-layout').css('padding-top', $('.frame_title:not(.no_fixed)').outerHeight());}, 0);</script>{/literal}
-                {$content}
+                {literal}<script>setTimeout(function() {
+                        $('.mini-layout').css('padding-top', $('.frame_title:not(.no_fixed)').outerHeight());
+                    }, 0);</script>{/literal}
+                        {$content}
+                </div>
+                {$CI->lang->load('admin')}
+                <div class="hfooter"></div>
             </div>
-            {$CI->lang->load('admin')}
-            <div class="hfooter"></div>
-        </div>
-        <footer>
-            <div class="container">
-                <div class="row-fluid">
-                    <div class="span4">
-                        {lang('Interface','admin')}:
-                        {echo create_admin_language_select()}
-                    </div>
-                    <div class="span4 t-a_c">
-                        {lang("Version","admin")}: <b>{echo getCMSNumber()}</b>
-                        <div class="muted">{lang('Help us get better','admin')} - <a href="#" id="rep_bug">{lang('report an error','admin')}</a></div>
-                    </div>
-                    <div class="span4 t-a_r">
-                        <div class="muted">Copyright © ImageCMS {echo date('Y')}</div>
-                        <a href="http://docs.imagecms.net" target="blank">{lang('Documentation','admin')}</a>
+            <footer>
+                <div class="container">
+                    <div class="row-fluid">
+                        <div class="span4">
+                            {lang('Interface','admin')}:
+                            {echo create_admin_language_select()}
+                        </div>
+                        <div class="span4 t-a_c">
+                            {if !defined('MAINSITE')}
+                                {lang("Version","admin")}: <b>{echo getCMSNumber()}</b>-->
+                            {/if}
+                            <div class="muted">{lang('Help us get better','admin')} - <a href="#" id="rep_bug">{lang('report an error','admin')}</a></div>
+                        </div>
+                        <div class="span4 t-a_r">
+                            <div class="muted">Copyright © ImageCMS {echo date('Y')}</div>
+                            <a href="http://docs.imagecms.net" target="blank">{lang('Documentation','admin')}</a>
+                        </div>
                     </div>
                 </div>
+            </footer>
+            <div id="elfinder"></div>
+            <div class="standart_form frame_rep_bug">
+                <form>
+                    <label>
+                        {lang('Your Name','admin')}:
+                        <input type=text name="name"/>
+                    </label>
+                    <label>
+                        {lang('Your Email','admin')}:
+                        <input type=text name="email"/>
+                    </label>
+                    <label>
+                        {lang('Your remark', "admin")}:
+                        <textarea name='text'></textarea>
+                    </label>
+                    <input type="submit" value="{lang("Send","admin")}" class="btn btn-info"/>
+                    <input type="button" value="{lang("Cancel","admin")}" class="btn btn-info" style="float:right" name="cancel_button"/>
+                    <input type="hidden" name='ip' value="{$_SERVER['REMOTE_ADDR']}" id="ip_address"/>
+                </form>
             </div>
-        </footer>
-        <div id="elfinder"></div>
-        <div class="standart_form frame_rep_bug">
-            <form>
-                <label>
-                    {lang('Your Name','admin')}:
-                    <input type=text name="name"/>
-                </label>
-                <label>
-                    {lang('Your Email','admin')}:
-                    <input type=text name="email"/>
-                </label>
-                <label>
-                    {lang('Your remark', "admin")}:
-                    <textarea name='text'></textarea>
-                </label>
-                <input type="submit" value="{lang("Send","admin")}" class="btn btn-info"/>
-                <input type="button" value="{lang("Cancel","admin")}" class="btn btn-info" style="float:right" name="cancel_button"/>
-                <input type="hidden" name='ip' value="{$_SERVER['REMOTE_ADDR']}" id="ip_address"/>
-            </form>
-        </div>
-        <script>
-            {$settings = $CI->cms_admin->get_settings();}
-            var textEditor = '{$settings.text_editor}';
-            var textEditor = '{$settings.text_editor}';
-            {if $CI->dx_auth->is_logged_in()}
-            var userLogined = true;
-            {else:}
-            var userLogined = false;
-            {/if}
-
-            var locale = '{echo $this->CI->config->item('language')}';
-            var base_url = "{site_url()}";
-        </script>
-
-        <script src="{$THEME}js/pjax/jquery.pjax.min.js" type="text/javascript"></script>
-        <script src="{$THEME}js/jquery-ui-1.8.23.custom.min.js" type="text/javascript"></script>
-        <script src="{$THEME}js/bootstrap.min.js" type="text/javascript"></script>
-        <script async="async" src="{$THEME}js/bootstrap-notify.js" type="text/javascript"></script>
-        <script src="{$THEME}js/jquery.form.js" type="text/javascript"></script>
-
-        <script async="async" src="{$THEME}js/jquery-validate/jquery.validate.min.js" type="text/javascript"></script>
-        <script async="async" src="{$THEME}js/jquery-validate/jquery.validate.i18n.js" type="text/javascript"></script>
-
-        <script src="{$THEME}js/chosen.js" type="text/javascript"></script>
-
-        <script src="{$THEME}js/functions.js" type="text/javascript"></script>
-        <script src="{$THEME}js/scripts.js" type="text/javascript"></script>
-
-        <script type="text/javascript" src="{$JS_URL}/elrte-1.3/js/elrte.min.js"></script>
-        <script type="text/javascript" src="{$JS_URL}/elfinder-2.0/js/elfinder.min.js"></script>
-
-
-        {if $this->CI->config->item('language') == 'russian'}
-            <script async="async" src="{$THEME}js/jquery-validate/messages_ru.js" type="text/javascript"></script>
-            <script type="text/javascript" src="{$JS_URL}/elrte-1.3/js/i18n/elrte.ru.js"></script>
-            <script type="text/javascript" src="{$JS_URL}/elfinder-2.0/js/i18n/elfinder.ru.js"></script>
-        {/if}
-
-        <script src="{$THEME}js/admin_base_i.js" type="text/javascript"></script>
-        <script src="{$THEME}js/admin_base_m.js" type="text/javascript"></script>
-        <script src="{$THEME}js/admin_base_r.js" type="text/javascript"></script>
-        <script src="{$THEME}js/admin_base_v.js" type="text/javascript"></script>
-        <script src="{$THEME}js/admin_base_y.js" type="text/javascript"></script>
-        <script type="text/javascript" src="{$JS_URL}/tiny_mce/jquery.tinymce.js"></script>
-        <script src="{$THEME}js/autosearch.js" type="text/javascript"></script>
-
-        <script>
-            {if $CI->uri->segment('4') == 'shop'}
-            var isShop = true;
-            {else:}
-            var isShop = false;
-            {/if}
-            var lang_only_number = "{lang("numbers only","admin")}";
-            var show_tovar_text = "{lang("show","admin")}";
-            var hide_tovar_text = "{lang("don't show", 'admin')}";
-            {literal}
-
-                $(document).ready(function() {
-
-                    if (!isShop)
-                    {
-                        $('#shopAdminMenu').hide();
-                        //$('#topPanelNotifications').hide();
-                    }
-                    else
-                        $('#baseAdminMenu').hide();
-                })
-
-                function number_tooltip_live() {
-                    $('.number input').each(function() {
-                        $(this).attr({
-                            'data-placement': 'top',
-                            'data-title': lang_only_number
-                        });
-                    })
-                    number_tooltip();
-                }
-                function prod_on_off() {
-                    $('.prod-on_off').die('click').live('click', function() {
-                        var $this = $(this);
-                        if (!$this.hasClass('disabled')) {
-                            if ($this.hasClass('disable_tovar')) {
-                                $this.animate({
-                                    'left': '0'
-                                }, 200).removeClass('disable_tovar');
-                                if ($this.parent().data('only-original-title') == undefined) {
-                                    $this.parent().attr('data-original-title', show_tovar_text)
-                                    $('.tooltip-inner').text(show_tovar_text);
-                                }
-                                $this.next().attr('checked', true).end().closest('td').next().children().removeClass('disabled').removeAttr('disabled');
-                                if ($this.attr('data-page') != undefined)
-                                    $('.setHit, .setHot, .setAction').removeClass('disabled').removeAttr('disabled');
-                            }
-                            else {
-                                $this.animate({
-                                    'left': '-28px'
-                                }, 200).addClass('disable_tovar');
-                                if ($this.parent().data('only-original-title') == undefined) {
-                                    $this.parent().attr('data-original-title', hide_tovar_text)
-                                    $('.tooltip-inner').text(hide_tovar_text);
-                                }
-                                $this.next().attr('checked', false).end().closest('td').next().children().addClass('disabled').attr('disabled', 'disabled');
-                                if ($this.attr('data-page') != undefined)
-                                    $('.setHit, .setHot, .setAction').addClass('disabled').attr('disabled', 'disabled')
-                            }
-                        }
-                    });
-                }
-                $(window).load(function() {
-                    number_tooltip_live();
-                    prod_on_off();
-                })
-                base_url = '{/literal}{$BASE_URL}';
-                    theme_url = '{$THEME}';
-
-                    var elfToken = '{echo $CI->lib_csrf->get_token()}';
+            <script>
+                {$settings = $CI->cms_admin->get_settings();}
+                var textEditor = '{$settings.text_editor}';
+                {if $CI->dx_auth->is_logged_in()}
+                var userLogined = true;
+                {else:}
+                var userLogined = false;
+                {/if}
+                var locale = '{echo $this->CI->config->item('language')}';
+                var base_url = "{site_url()}";
             </script>
-            <div id="jsOutput" style="display: none;"></div>
-        </body>
-    </html>
+
+            <script src="{$THEME}js/pjax/jquery.pjax.min.js" type="text/javascript"></script>
+            <script src="{$THEME}js/jquery-ui-1.8.23.custom.min.js" type="text/javascript"></script>
+            <script src="{$THEME}js/bootstrap.min.js" type="text/javascript"></script>
+            <script async="async" src="{$THEME}js/bootstrap-notify.js" type="text/javascript"></script>
+            <script src="{$THEME}js/jquery.form.js" type="text/javascript"></script>
+
+            <script async="async" src="{$THEME}js/jquery-validate/jquery.validate.min.js" type="text/javascript"></script>
+            <script async="async" src="{$THEME}js/jquery-validate/jquery.validate.i18n.js" type="text/javascript"></script>
+
+            <script src="{$THEME}js/chosen.js" type="text/javascript"></script>
+
+            <script src="{$THEME}js/functions.js" type="text/javascript"></script>
+            <script src="{$THEME}js/scripts.js" type="text/javascript"></script>
+
+            <script type="text/javascript" src="{$JS_URL}/elrte-1.3/js/elrte.min.js"></script>
+            <script type="text/javascript" src="{$JS_URL}/elfinder-2.0/js/elfinder.min.js"></script>
+
+
+            {if $this->CI->config->item('language') == 'russian'}
+                <script async="async" src="{$THEME}js/jquery-validate/messages_ru.js" type="text/javascript"></script>
+                <script type="text/javascript" src="{$JS_URL}/elrte-1.3/js/i18n/elrte.ru.js"></script>
+                <script type="text/javascript" src="{$JS_URL}/elfinder-2.0/js/i18n/elfinder.ru.js"></script>
+            {/if}
+
+            <script src="{$THEME}js/admin_base_i.js" type="text/javascript"></script>
+            <script src="{$THEME}js/admin_base_m.js" type="text/javascript"></script>
+            <script src="{$THEME}js/admin_base_r.js" type="text/javascript"></script>
+            <script src="{$THEME}js/admin_base_v.js" type="text/javascript"></script>
+            <script src="{$THEME}js/admin_base_y.js" type="text/javascript"></script>
+            <script type="text/javascript" src="{$JS_URL}/tiny_mce/jquery.tinymce.js"></script>
+            <script src="{$THEME}js/autosearch.js" type="text/javascript"></script>
+
+            <script>
+                {if $CI->uri->segment('4') == 'shop'}
+                var isShop = true;
+                {else:}
+                var isShop = false;
+                {/if}
+                var lang_only_number = "{lang("numbers only","admin")}";
+                var show_tovar_text = "{lang("show","admin")}";
+                var hide_tovar_text = "{lang("don't show", 'admin')}";
+                {literal}
+
+                    $(document).ready(function() {
+
+                        if (!isShop)
+                        {
+                            $('#shopAdminMenu').hide();
+                            //$('#topPanelNotifications').hide();
+                        }
+                        else
+                            $('#baseAdminMenu').hide();
+                    })
+
+                    function number_tooltip_live() {
+                        $('.number input').each(function() {
+                            $(this).attr({
+                                'data-placement': 'top',
+                                'data-title': lang_only_number
+                            });
+                        });
+                    }
+                    function prod_on_off() {
+                        $('.prod-on_off').die('click').live('click', function() {
+                            var $this = $(this);
+                            if (!$this.hasClass('disabled')) {
+                                if ($this.hasClass('disable_tovar')) {
+                                    $this.animate({
+                                        'left': '0'
+                                    }, 200).removeClass('disable_tovar');
+                                    if ($this.parent().data('only-original-title') == undefined) {
+                                        $this.parent().attr('data-original-title', show_tovar_text)
+                                        $('.tooltip-inner').text(show_tovar_text);
+                                    }
+                                    $this.next().attr('checked', true).end().closest('td').next().children().removeClass('disabled').removeAttr('disabled');
+                                    if ($this.attr('data-page') != undefined)
+                                        $('.setHit, .setHot, .setAction').removeClass('disabled').removeAttr('disabled');
+                                }
+                                else {
+                                    $this.animate({
+                                        'left': '-28px'
+                                    }, 200).addClass('disable_tovar');
+                                    if ($this.parent().data('only-original-title') == undefined) {
+                                        $this.parent().attr('data-original-title', hide_tovar_text)
+                                        $('.tooltip-inner').text(hide_tovar_text);
+                                    }
+                                    $this.next().attr('checked', false).end().closest('td').next().children().addClass('disabled').attr('disabled', 'disabled');
+                                    if ($this.attr('data-page') != undefined)
+                                        $('.setHit, .setHot, .setAction').addClass('disabled').attr('disabled', 'disabled')
+                                }
+                            }
+                        });
+                    }
+                    $(window).load(function() {
+                        number_tooltip_live();
+                        prod_on_off();
+                    })
+                    base_url = '{/literal}{$BASE_URL}';
+                        theme_url = '{$THEME}';
+
+                        var elfToken = '{echo $CI->lib_csrf->get_token()}';
+                </script>
+                <div id="jsOutput" style="display: none;"></div>
+            </body>
+        </html>
