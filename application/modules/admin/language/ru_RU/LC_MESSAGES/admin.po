@@ -30,7 +30,7 @@ msgstr "История покупок"
 
 #: ./application/modules/shop/admin/callbacks.php:445
 msgid "Topic deleted"
-msgstr "Тема удалено"
+msgstr "Тема удалена"
 
 #: ./application/modules/shop/admin/callbacks.php:369
 msgid "Topic started"

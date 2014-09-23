@@ -4,7 +4,7 @@ class TextElementNSCest
 {
 //---------------------------AUTORIZATION---------------------------------------
     /**
-     * @group a
+     * @group aa
      */
     public function Login(NotificationStatusesTester $I){
         InitTest::Login($I);
@@ -22,6 +22,8 @@ class TextElementNSCest
         $I->click(NavigationBarPage::$NotificationStatuses);   
         $I->seeInCurrentUrl(NotificationStatusesPage::$ListPageURL);
     } 
+    
+    
     /**
      * @group a
      */
@@ -36,6 +38,8 @@ class TextElementNSCest
         $I->wait('1');
         $I->seeInCurrentUrl('/admin/components/run/shop/notificationstatuses/create');
     } 
+    
+    
     /**
      * @group a
      */
@@ -44,9 +48,10 @@ class TextElementNSCest
         $I->amOnPage('/admin/components/run/shop/notificationstatuses/create');
         $I->click('//body/div[1]/div[5]/div/section/div/div[2]/div/a');
         $I->wait('1');
-        $I->seeInCurrentUrl('/admin/components/run/shop/notificationstatuses');
-        
+        $I->seeInCurrentUrl('/admin/components/run/shop/notificationstatuses');        
     } 
+    
+    
     /**
      * @group a
      */
@@ -69,6 +74,7 @@ class TextElementNSCest
     public function VerifyTextListPage (NotificationStatusesTester $I){
         $I->wantTo('Verify Text on Notification Statuses List Page.');
         $I->amOnPage(NotificationStatusesPage::$ListPageURL);
+        $I->click('//section/div[2]/table/thead/tr/th[1]/span/span');
         $I->see('Статусы уведомлений о появлении', NotificationStatusesPage::$ListTitle );
         $I->see('Создать статус', NotificationStatusesPage::$ListButtonCreate);
         $I->see('Удалить', NotificationStatusesPage::$ListButtonDelete);

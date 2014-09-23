@@ -4,6 +4,8 @@ use \SeoExpertTester;
 class CategorySEOCest
 
 {
+    private $ID_Category_Rus;
+    private $ID_Category_Eng;
     
 //---------------------------AUTORIZATION--------------------------------------- 
     /**
@@ -13,8 +15,7 @@ class CategorySEOCest
         InitTest::Login($I);
     }
     
-    
-    
+   
     /**
      * @group a
      */
@@ -22,34 +23,124 @@ class CategorySEOCest
         InitTest::ClearAllCach($I);
     }  
     
-      
     
     
     /**
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
-    public function CreateCategoryForFront (SeoExpertTester\seoexpertSteps $I){    
+    public function CreateCategoryRusForFront (SeoExpertTester\seoexpertSteps $I){    
         $I->SeoCreateCategoryProduct($createNameCategory = 'Напиток');
+    }       
+    /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps 
+     */
+    public function CreateCategoryEngForFront (SeoExpertTester\seoexpertSteps $I){      
         $I->SeoCreateCategoryProduct($createNameCategory = 'Bird');
-        InitTest::ClearAllCach($I);
+        InitTest::ClearAllCach($I);        
+    }
+    
+    
+    /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps 
+     */
+    public function CreateBrand1ForFront (SeoExpertTester\seoexpertSteps $I){      
         $I->SeoCreateBrand($brandName = 'Перец');
+    }
+    /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps 
+     */
+    public function CreateBrand2ForFront (SeoExpertTester\seoexpertSteps $I){   
         $I->SeoCreateBrand($brandName = 'Сахар');
+    }
+    /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps 
+     */
+    public function CreateBrand3ForFront (SeoExpertTester\seoexpertSteps $I){   
         $I->SeoCreateBrand($brandName = 'мойва просроченная');
+    }
+    /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps 
+     */
+    public function CreateBrand4ForFront (SeoExpertTester\seoexpertSteps $I){   
         $I->SeoCreateBrand($brandName = 'Gstar');
+    }
+    /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps 
+     */
+    public function CreateBrand5ForFront (SeoExpertTester\seoexpertSteps $I){   
         $I->SeoCreateBrand($brandName = 'Stone Island');
         InitTest::ClearAllCach($I);
+    }
+    
+    /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps 
+     */
+    public function CreateProduct1ForFront (SeoExpertTester\seoexpertSteps $I){  
         $I->SeoCreateProduct($NameProduct = 'Сок', $PriceProduct = '987', $BrandProduct = 'Перец', $CategoryProduct = 'Напиток', $Additional_Category = 'Bird');
+    }
+     /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps 
+     */
+    public function CreateProduct2ForFront (SeoExpertTester\seoexpertSteps $I){  
         $I->SeoCreateProduct($NameProduct = 'Квас', $PriceProduct = '4', $BrandProduct = 'Сахар', $CategoryProduct = 'Напиток', $Additional_Category = 'Bird');
+    }
+     /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps 
+     */
+    public function CreateProduct3ForFront (SeoExpertTester\seoexpertSteps $I){  
         $I->SeoCreateProduct($NameProduct = 'Пиво', $PriceProduct = '2', $BrandProduct = 'мойва просроченная', $CategoryProduct = 'Напиток', $Additional_Category = 'Bird');
+    }
+    /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps 
+     */
+    public function CreateProduct4ForFront (SeoExpertTester\seoexpertSteps $I){  
         $I->SeoCreateProduct($NameProduct = 'Кефир', $PriceProduct = '3', $BrandProduct = 'Gstar', $CategoryProduct = 'Bird', $Additional_Category = 'Напиток');
+    }
+    /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps 
+     */
+    public function CreateProduct5ForFront (SeoExpertTester\seoexpertSteps $I){  
         $I->SeoCreateProduct($NameProduct = 'Молоко', $PriceProduct = '5', $BrandProduct = 'Stone Island', $CategoryProduct = 'Bird', $Additional_Category = 'Напиток');
         InitTest::ClearAllCach($I);
+    }
+
+    /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps 
+     */
+    public function TextAreaActive (SeoExpertTester\seoexpertSteps $I){ 
         $I->SeoTextAreaActive($on = 'YES');
+    }
+    
+    /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps 
+     */
+    public function H1andDescriptionForRusProduct (SeoExpertTester\seoexpertSteps $I){     
         $I->SeoCreateDescriptonAndH1($name_category = 'Напиток',
                                     $description_category = 'ДЕСК страх и ненависть ДЕСК',
                                     $H1_category = "'Н1 категории Н1'");
         InitTest::ClearAllCach($I);
+    }
+    
+    
+        /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps 
+     */
+    public function H1andDescriptionForEngProduct (SeoExpertTester\seoexpertSteps $I){       
         $I->SeoCreateDescriptonAndH1($name_category = 'Bird',
                                     $description_category = 'DESC cannibal corpse DESC',
                                     $H1_category = "'Н1 eng category Н1'");
@@ -65,9 +156,21 @@ class CategorySEOCest
     }
     
     
+    /**
+     * @group aa
+     * @guy SeoExpertTester\seoexpertSteps 
+     */
+    public function GetIDCategory(SeoExpertTester\seoexpertSteps $I) {
+        $ID_Cat_RUS = $I->GetCategoryID($name_category = 'Напиток');
+        $ID_Cat_ENG = $I->GetCategoryID($name_category = 'Bird');
+        $this->ID_Category_Rus = $ID_Cat_RUS;
+        $this->ID_Category_Eng = $ID_Cat_ENG;
+                
+    }
+    
     
     /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function DefoltSettings(SeoExpertTester\seoexpertSteps $I) {
@@ -76,18 +179,19 @@ class CategorySEOCest
     
     
     /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function CategoryTitleComonRUS (SeoExpertTester\seoexpertSteps $I) {
-        $ID_Cat = $I->GetCategoryID($name_category = 'Напиток');
+//        $this->ID_Category_Rus;
+//        $ID_Cat = $I->GetCategoryID($name_category = 'Напиток');
         $I->SettingsCategorySeoPage($Title = '%ID% %name% %desc% %H1% %brands%',
                                     $Description = '',
                                     $Length_Desc = '999',
                                     $Amount_Brands = '3',
                                     $Keywords = '',
                                     $CheckBox_Activate = '//div[1]/div[5]/section/form/div[2]/div[2]/table[2]/tbody/tr/td/div/div/div[1]/div/span[2]');     
-        $I->CheckValuesInPage($URL_Page = '/shop/category/napitok#', $values = "$ID_Cat Напиток ДЕСК страх и ненависть ДЕСК 'Н1 категории Н1' мойва просроченная, Сахар, Перец / mini.loc");
+        $I->CheckValuesInPage($URL_Page = '/shop/category/napitok#', $values = "$this->ID_Category_Rus");//Напиток ДЕСК страх и ненависть ДЕСК 'Н1 категории Н1' мойва просроченная, Сахар, Перец / mini.loc
     }
     
     

@@ -3,17 +3,17 @@
 class DeliveryCreatePage
 {
     public static $URL                          = "/admin/components/run/shop/deliverymethods/create";
-    public static $Title                        = '.title';
     
-//блок створення
-    public static $BlockCreateTitlr             = '//section[@class="mini-layout"]//th';
+    //заголовки
+    public static $Title                        = '.title';
+    public static $BlockCreateTitle             = '//section[@class="mini-layout"]//th';
 
-//кнопки
+    //кнопки
     Public static $ButtonBack                   = '.t-d_u';
     Public static $ButtonCreate                 = '.btn.btn-small.btn-success.formSubmit';
     Public static $ButtonCreateExit             = '.btn.btn-small.action_on.formSubmit';
     
-//поля для вводу
+    //поля для вводу
     public static $InputName                    = '#Name';
     public static $InputDescription             = '#Description';
     public static $InputDescriptionPrice        = '#priceDescription';
@@ -21,11 +21,11 @@ class DeliveryCreatePage
     public static $InputFreeFrom                = '#FreeFrom';
     public static $InputPriceSpecified          = '[name="delivery_sum_specified_message"]';
 
-//чекбокси
+    //чекбокси
     public static $CheckActive                  = '//form[@id="createDelivery"]/div[2]/div[2]/span/span';
     public static $CheckPriceSpecified          = '#deliverySumSpecifiedSpan';
 
-//лейбли
+    //лейбли
     public static $InputNameLabel               = 'label[for="Name"]';
     public static $InputDescriptionLabel        = 'label[for="Description"]';
     public static $InputDescriptionPriceLabel   = 'label[for="priceDescription"]'; 
@@ -35,13 +35,10 @@ class DeliveryCreatePage
     public static $CheckActiveLabel             = '//form[@id="createDelivery"]/div[2]/div[2]/span';
     public static $CheckPriceSpecifiedLabel     = '//div[@id="deliveryPriceDisableBlock"]/div[2]/div[2]/span';
     
-//поле з чекбоксами
+    //поле з чекбоксами
     public static $FieldPaymentLabel            = 'div[for="inputRecCount"]';
     
-    public static function checkPaymentMethodLabel($row){
-        return "//section[@class='mini-layout']/div[2]/table/tbody/tr/td/div/div/div[2]/div[2]/div[$row]/button";
-    }
-    public static function checkPaymentMethod($row){
-        return "//section[@class='mini-layout']/div[2]/table/tbody/tr/td/div/div/div[2]/div[2]/div[$row]/button/span";
-    }
+    //чекбокси оплати
+    public static function checkPaymentMethod($row)         { return "//section[@class='mini-layout']/div[2]/table/tbody/tr/td/div/div/div[2]/div[2]/div[$row]/button/span"; }
+    public static function checkPaymentMethodLabel($row)    { return "//section[@class='mini-layout']/div[2]/table/tbody/tr/td/div/div/div[2]/div[2]/div[$row]/button"; }
 }
