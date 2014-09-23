@@ -8,7 +8,7 @@ class CreateProductCest
     {
         InitTest::Login($I);
         $I->amOnPage(ProductsPage::$URL);
-        $I->waitForText("Отменить фильтрацию", "10", ProductsPage::$CancelFilterButton);
+        $I->waitForText("Создать товар", "10", ProductsPage::$CreateProductButton);
     }
     
     
@@ -35,8 +35,10 @@ class CreateProductCest
         $I->click(CurrenciesPage::CurrencyNameLine("$i"));
         $I->waitForText('Редактирование валют');
         $I->fillField(CurrenciesPage::$Rate, '1');
-        $I->selectOption(CurrenciesPage::$CurrencyTemplate, '4');
-        $I->selectOption(CurrenciesPage::$AmountDecimals, '0');
+        $I->click(CurrenciesPage::$CurrencyTemplateSelect);
+        $I->click(CurrenciesPage::$CurrencyTemplateSelect.'/option[9]');
+        $I->click(CurrenciesPage::$AmountDecimalsSelect);
+        $I->click(CurrenciesPage::$AmountDecimalsSelect.'/option', '1');
         $I->wait('5');
         $I->click(CurrenciesPage::$SaveAndExitButton);
         $I->waitForText('Список валют');
@@ -270,6 +272,7 @@ class CreateProductCest
         $I->CheckInFrontEnd($name, $text[2], $articul, $price, $this->MAINSYM, $ret["brand"], $ret["image"], null,null,null,$shortDesc=null, $fullDesc=null, $comment, $oldPrice);
     }
     
+    
     /**
      * @guy ProductsTester\ProductsSteps
      */
@@ -292,7 +295,8 @@ class CreateProductCest
         $I->click(CurrenciesPage::CurrencyNameLine('1'));
         $I->waitForText('Редактирование валют');
         $rate=$I->grabValueFrom(CurrenciesPage::$Rate);
-        $I->selectOption(CurrenciesPage::$CurrencyTemplate, '4');
+        $I->click(CurrenciesPage::$CurrencyTemplateSelect);
+        $I->click(CurrenciesPage::$CurrencyTemplateSelect.'/option[9]');
         $I->wait('5');
         $I->click(CurrenciesPage::$SaveAndExitButton);
         $I->waitForText('Список валют');
@@ -359,7 +363,7 @@ class CreateProductCest
         $I->CheckInListLanding($name, $text[0], $articul, $price, $this->MAINSYM);
         $I->CheckInFrontEnd($name, $text[0], $articul, $price, $this->MAINSYM, null, null, $hotStatus, null, null, $shortDesc, $fullDesc, $comment='no', $oldPrice, $url);
     }
-    
+        
      /**
      * @guy ProductsTester\ProductsSteps
      */
@@ -375,7 +379,7 @@ class CreateProductCest
         $fullDesc='быть слишком большим для собственных бриджей.Если учесть,что бриджами назывались обтягивающие штанишки для занятий верховой ездо';
         $oldPrice='4';//float(10,2)
         $mainTemp='sdjfosijffddg65656jrfjdj5454564jdfkdfdkfkfFGHFHgdgrty6567568654566666645645645645646464564564564564646456fghfhghfhhjghjghjghjggg';
-        $url='Itwillgive_us_three2or%four_days at/best/fdgs_jfjjkkkkkkkkkkkkdg6788668ggg_gdjkdfdGDF8989kfcjkccjjjjjjjjjjjjjjjjjj7777777777745w';
+        $url='Itwillgive_us_three2or%four_days atbesfdgs_jfjjkkkkkkkkkkkkdg6788668ggg_gdjkdfdGDF8989kfcjkccjjjjjjjjjjjjjjjjjj7777777777745w';
         $mTitle='Как правильно написать тайтл. Как правильно написать тайтл. Как правильно написать тайтл. Как правильно написать тайтл. Как прав';
         $mDesc='как правильно заполнять теги meta keywords . Явно, устарели, так как на мета-теги поисковики уже давно внимания не обращают юююю';
         $mKeywords='В случае, если фраза из keywords не была расценена как спамная и при этом она встречается на странице,то Яндекс может это учес т';
@@ -406,14 +410,14 @@ class CreateProductCest
         $name='Если от неосторожного обращения на дверном полотне возникли потёртости или царапины — не расстраивайтесь. Повреждения можно частично исправить своими руками. Для этого используются подкрашенные мебельные либо прозрачные лаки, твердые цветные восковые.';
         $price='3';//max=double(20,5)
         $newStatus='';
-        $articul='Необходимо 555123455555555555675555 апрапорганизационно-правовую форму  предприятия, провести все переговоры с потенциальными партнёрами и подготовить апувпапв222222 343444444444444444444 Необходимо рганизационно-правовую форму 5565665567567575675676';//255
+        $articul='Необходимо 55512345555 5555555675555 апрапорганизационно-правовую форму предприятия, провести все переговоры с потенциальными партнёрами и подготовить апувпапв222222 343444444444444444444 Необходимо рганизационно-правовую форму 5565665567567575675676';//255
         $amount='123456';//max=11
         $shortDesc='Можно приобрести в отделах бытовой химии.Мелкие царапины на двери с отделкой искусственным шпоном восстанавливаются полиролью,в которую добавляют краситель в цвет реставрируемого изделия,например,из качественных акварельных красок.Большие повреждения';
         $fullDesc='(глубокие и широкие царапины и обрывы от удара) полностью восстановить невозможно. Можно только сделать их менее заметными тем же способом с полиролью или закрасить их близкой по цвету краской. Если от неосторожного обращения на дверном полотне вознb';
         $oldPrice='4';//float(10,2)
         $mainTemp='dfg';
 //        $mainTemp='sdjfosijffddg65656jrfjdj5454564jdfkdfdkfkfFGHFHgdgrty6567568654566666645645645645646464564564564564646456fghfhghfhhjghjghjghjgggsdjfosijffddg65656jrfjdj5454564jdfkdfdkfkfFGHFHgdgrty6567568654566666645645645645646464564564564564646456fghfhghfhhjghjghj';
-        $url='uuuuuuuuuuuthtjklfjhjfklhjhtht/tshrththrhot?kththyt%jm$fgfg68hgjgjyujy7685+uhjyuj=yhjuyj-hjhj_hjujhjhj/fgfdgdfgd556667_ggfgfgf/fgfhgh444444444444444444444498/fghgggggggggggggggggggggjdf7dhddddddddddddddddddddddddddd_gggg/gggfhjddddddddddddj6667777777';
+        $url='uuuuuuuuuuuthtjklfjhjfklhjhthttshrththrhotkththyt%jm$fgfg68hgjgjyujy7685+uhjyuj=yhjuyj-hjhj_hjujhjhjfgfdgdfgd556667_ggfgfgffgfhgh444444444444444444444498fghgggggggggggggggggggggjdf7dhddddddddddddddddddddddddddd_gggggggfhjddddddddddddj6667777777wwww66';
         $mTitle='Как видно - слишком много "если", "может", "возможно". В то же время, как обратный эффект - спамное пичканье всевозможных ключевых фраз в keywords "намного более возможней" может привести к отрицательному эффекту, когда перенасыщенный ключевиками ввв';
         $mDesc='Как видно - слишком много "если", "может", "возможно". В то же время, как обратный эффект - спамное пичканье всевозможных ключевых фраз в keywords "намного более возможней" может привести к отрицательному эффекту, когда перенасыщенный ключевиками ввв';
         $mKeywords='Как видно - слишком много "если", "может", "возможно". В то же время, как обратный эффект - спамное пичканье всевозможных ключевых фраз в keywords "намного более возможней" может привести к отрицательному эффекту, когда перенасыщенный ключевиками ввв';
@@ -451,13 +455,13 @@ class CreateProductCest
         $oldPrice='4';//float(10,2)
         $mainTemp='dfd';
 //        $mainTemp='sdjfosijffddg65656jrfjdj5454564jdfkdfdkfkfFGHFHgdgrty6567568654566666645645645645646464564564564564646456fghfhghfhhjghjghjghjgggsdjfosijffddg65656jrfjdj5454564jdfkdfdkfkfFGHFHgdgrty6567568654566666645645645645646464564564564564646456fghfhghfhhjghjghjghjgg';
-        $url='uuuuuuuuuuuthtjklfjhjfklhjhtht/tshrththrhot?kththyt%jm$fgfg68hgjgjyujy7685+uhjyuj=yhjuyj-hjhj_hjujhjhj/fgfdgdfgd556667_ggfgfgf/fgfhgh444444444444444444444498/fghgggggggggggggggggggggjdf7dhddddddddddddddddddddddddddd_gggg/gggfhjddddddddddddj66677777775';
+        $url='uuuuuuuuuuuthtjklfjhjfklhjhthttshrththrhotkththyt%jm$fgfg68hgjgjyujy7685+uhjyuj=yhjuyj-hjhj_hjujhjhjfgfdgdfgd556667_ggfgfgfdffgfhgh444444444444444444444498fghgggggggggggggggggggggjdf7dhdddddddddddd33ddd34dddddddddddd_gggggggfhjddddddddddddj666777777753434';
         $mTitle='Take advantage of all legitimate opportunities to score keyword credit, even when the payoff is relatively low. Fill in this tag`s text with relevant keywords and phrases that describe that page`s content.When creating keyword text, remember the following';
         $mDesc='Choose words that may be secondary keyword terms and even include a few, commonly seen typographical errors of primary keywords, just for good measure Limit your keyword and key phrase text, separated by commas, to no more than 874 characters Don`t repeat';
         $mKeywords='tags keyword attribute is not the page rank panacea it once was back in the prehistoric days of Internet search. It was abused far too much and lost most of its cachet. But theres no need to ignore the tag. Take advantage of all legitimate opportunities .';
         $I->amOnPage("/admin/components/run/shop/categories/index");
         $I->wait(3);
-        $name2= substr($name, 0, 188);
+        $name2= substr($name, 0, 186);
         $I->clickAllElements($I,".btn.expandButton",3);        
         $text = $I->grabTextFromAllElements($I, "div.body_category div.row-category div.share_alt a.pjax");
             foreach ($text as $key =>$value) {
@@ -472,64 +476,279 @@ class CreateProductCest
         $I->CheckInListLanding($name2.'...', null, $articul, $price, $this->MAINSYM);
         $I->CheckInFrontEnd($name, null, $articul, $price, $this->MAINSYM, null, null, null, null, $saleStatus, $shortDesc, $fullDesc, $comment='no', $oldPrice, $url);
     }
-//    
-//     /**
-//     * @guy ProductsTester\ProductsSteps
-//     */
-//    
-//    public function CreateProduct8_256Symbols(ProductsTester\ProductsSteps $I)
-//    {
-//        $name=$I->GenerateNameProduct();
-//        $price='100';
-//        $date=$I->CreateProduct($name, $nameVariant=null, $price);
-//        $amount='1';
-//        $brand='Не указано';
-//        $addCat='Выберите дополнительные категории';
-//        $comment='Нет';
-////        $comment='Да';
-//        $I->CheckInFields($name, $nameVariant=null, $price, $currency=null, $articul=null, $amount, $image=null, $brand, 
-//                $category=null, $addCat, $shortDesc=null, $fullDesc=null, $comment, $date);
-//        $I->click(ProductsPage::$GoBackButton);
-//        $I->CheckInListLanding($name, $category=null, $articul=null, $price, $this->MAINSYM);
-//    }
+    
+     /**
+     * @guy ProductsTester\ProductsSteps
+     */
+    
+    public function CreateProduct8_256Symbols(ProductsTester\ProductsSteps $I)
+    {
+        $name='Как-то поздно вечером я сидел в машине напротив Колумбийского Университета, ждал свою жену . Слушал интервью по радио. И вот ведущий задаёт вопрос: «Вам исполнилось (12353473) уже 75 лет, есть у вас совет для нашей аудитории, как подготовиться к старости?»';
+        $price='3';//max=double(20,5)
+        $saleStatus='';
+        $articul='2353625326353625326532635263527667878787687678к6у78к6у87а6кп87па67в786666666666666тььььььььььььььььььььььалдППАВА;4палллаааааааааааааааааа12321321123ввааттвтв77777777888888888888888888888888090909090090994848888888аеорипекоркиеопкпл443434344344440909045454';//255
+        $articul2='2353625326353625326532635263527667878787687678к6у78к6у87а6кп87па67в786666666666666тььььььььььььььььььььььалдППАВА;4палллаааааааааааааааааа12321321123ввааттвтв77777777888888888888888888888888090909090090994848888888аеорипекоркиеопкпл44343434434444090904545';
+        $amount='123456';//max=11
+        $shortDesc='Раздражённый голос ответил: «И почему все меня теперь спрашивают о старости?!»Я узнал голос Джона Кейджа, композитора и философа, который оказал серьезное влияние на развитие музыки и на становление таких людей, как Джаспер Джонс и Мерс Каннингем.Я немного';
+        $fullDesc='И вот он отвечает: «Хотя, знаете, я дам совет, как подготовиться к старости. Никогда не нанимайтесь на работу. Потому что тогда кто-нибудь в один прекрасный день сможет вас уволить. И вот вы не готовы к старости. Что касается меня, то ничего не меняется с.';
+        $oldPrice='4';//float(10,2)
+        $mainTemp='dfd';
+//        $mainTemp='sdjfosijffddg65656jrfjdj5454564jdfkdfdkfkfFGHFHgdgrty6567568654566666645645645645646464564564564564646456fghfhghfhhjghjghjghjgggsdjfosijffddg65656jrfjdj5454564jdfkdfdkfkfFGHFHgdgrty6567568654566666645645645645646464564564564564646456fghfhghfhhjghjghjghjgg';
+        $url='ddddddddddddddddddddddddddddddddfffffffffffffffffffffffffffffffffffffffffffffssssssssssssssssssssssssssssssssssssssssssssssssgggggggggggggggggggggggggggggggggggggggggggggggg_ddddddddddddddddddddddddddddddddddd-rfffffffffffffffff_ddddddbbbbbbbbbbbvdfvdfdfdd';
+        $url2='ddddddddddddddddddddddddddddddddfffffffffffffffffffffffffffffffffffffffffffffssssssssssssssssssssssssssssssssssssssssssssssssgggggggggggggggggggggggggggggggggggggggggggggggg_ddddddddddddddddddddddddddddddddddd-rfffffffffffffffff_ddddddbbbbbbbbbbbvdfvdfdfd';
+        $mTitle='Take advantage of all legitimate opportunities to score keyword credit, even when the payoff is relatively low. Fill in this tag`s text with relevant keywords and phrases that describe that page`s content.When creating keyword text, remember the following1';
+        $mDesc='Choose words that may be secondary keyword terms and even include a few, commonly seen typographical errors of primary keywords, just for good measure Limit your keyword and key phrase text, separated by commas, to no more than 874 characters Don`t repeat1';
+        $mKeywords='tags keyword attribute is not the page rank panacea it once was back in the prehistoric days of Internet search. It was abused far too much and lost most of its cachet. But theres no need to ignore the tag. Take advantage of all legitimate opportunities 1.';
+        $mTitle2='Take advantage of all legitimate opportunities to score keyword credit, even when the payoff is relatively low. Fill in this tag`s text with relevant keywords and phrases that describe that page`s content.When creating keyword text, remember the following';
+        $mDesc2='Choose words that may be secondary keyword terms and even include a few, commonly seen typographical errors of primary keywords, just for good measure Limit your keyword and key phrase text, separated by commas, to no more than 874 characters Don`t repeat';
+        $mKeywords2='tags keyword attribute is not the page rank panacea it once was back in the prehistoric days of Internet search. It was abused far too much and lost most of its cachet. But theres no need to ignore the tag. Take advantage of all legitimate opportunities 1';
+        $I->amOnPage("/admin/components/run/shop/categories/index");
+        $I->wait(3);
+        $name2= substr($name, 0, 182);
+        $I->clickAllElements($I,".btn.expandButton",3);        
+        $text = $I->grabTextFromAllElements($I, "div.body_category div.row-category div.share_alt a.pjax");
+            foreach ($text as $key =>$value) {
+                $I->comment("$value");
+                if($value)  $I->comment("$key: $value");
+            } 
+        $ret=$I->CreateProduct($name, null, $price,null,null,$saleStatus,null,$articul,$amount,null,null,null,null,$shortDesc,$fullDesc,$comment='no',
+                null,$oldPrice,$mainTemp,$url,$mTitle,$mDesc,$mKeywords);
+        $I->CheckInFields($name, null, $price, null, null, $saleStatus, $this->MainIso, $articul2, $amount, null, null, null, null,
+                $shortDesc, $fullDesc, $comment='no', null, $oldPrice, $mainTemp,$url2,$mTitle2,$mDesc2,$mKeywords2);
+        $I->click(ProductsPage::$GoBackButton);
+        $I->CheckInListLanding($name2.'...', null, $articul2, $price, $this->MAINSYM);
+        $I->CheckInFrontEnd($name, null, $articul2, $price, $this->MAINSYM, null, null, null, null, $saleStatus, $shortDesc, $fullDesc, $comment='no', $oldPrice, $url2);
+    }
     
     /**
-//     * @guy ProductsTester\ProductsSteps
-//     */
-//    
-//    public function CreateProduct9_500Symbols(ProductsTester\ProductsSteps $I)
-//    {
-//        $name=$I->GenerateNameProduct();
-//        $price='100';
-//        $date=$I->CreateProduct($name, $nameVariant=null, $price);
-//        $amount='1';
-//        $brand='Не указано';
-//        $addCat='Выберите дополнительные категории';
-//        $comment='Нет';
-////        $comment='Да';
-//        $I->CheckInFields($name, $nameVariant=null, $price, $currency=null, $articul=null, $amount, $image=null, $brand, 
-//                $category=null, $addCat, $shortDesc=null, $fullDesc=null, $comment, $date);
-//        $I->click(ProductsPage::$GoBackButton);
-//        $I->CheckInListLanding($name, $category=null, $articul=null, $price, $this->MAINSYM);
-//    }
+     * @guy ProductsTester\ProductsSteps
+      */
+    
+    public function CreateProduct9_500Symbols(ProductsTester\ProductsSteps $I)
+    {
+        $name='За повідомленням пресслужби ДПСУ,впродовж доби прикордонники відділу прикордонної служби Красна Талівка(Луганська область) тричі фіксували спрацювання мін,встановлених російськими терористами на ділянці відповідальності відділу поблизу кордону.В одному із випадків на міні підірвалася жителька одного із прикордонних сіл.Обставини вибухів ще у двох випадках зясовуються,сказано у повідомленні.Це може свідчити про активізацію мінної війни на даній ділянці та поновлення спроб боку російських найманців відтіснити прикордонників від лінії кордону';
+        $price='3';//max=double(20,5)
+        $saleStatus='';
+        $articul=' 5555ddddd ';//255
+        $articul2='5555ddddd';
+        $amount='123456';//max=11
+        $shortDesc='Вселенское пространство во все столетия беспокоило умы Людей! 1234435-34-3434_7 У вас в руках все тайны Космоса! Каждая десятиминутная часть данного альманаха увлекательно рассказывает о нашей космической обители, показывает ясный, реалистический и превосходно проиллюстрированный рассказ о планетах и спутниках, о Солнце, о галактике и Вселенной за ее рубежами. Превосходный текст, академическая выверенность, первоклассный видеоряд формируют и обучают самим основам познаний о космосе и астрономии.';
+        $fullDesc='Пишу з передової, коротко. Прошу репосту. Народні депутати, громадські активісти, підключайтеся терміново. Зараз у Житомирському суді обирають запобіжний захід Кашубі Віталію. Це наш кращий розвідник, командир диверсійної групи Добровольчого Укр. Корпусу. Знищив сотні - не перебільшую - озброєних сепаратистів . Його схопили під час короткотривалого перебування в Києві, привезли на суд у Житомир і хочуть посадити під домашній арешт з браслетом . Суть справи: кілька місяців тому попався в Житомирі - віз нам на фронт боєприпаси.';
+        $oldPrice='4';//float(10,2)
+//        $mainTemp='dfjd!@##$#%&(*_|98763></,.:`~;d';
+//        $mainTemp='sdjfosijffddg65656jrfjdj5454564jdfkdfdkfkfFGHFHgdgrty6567568654566666645645645645646464564564564564646456fghfhghfhhjghjghjghjgggsdjfosijffddg65656jrfjdj5454564jdfkdfdkfkfFGHFHgdgrty6567568654566666645645645645646464564564564564646456fghfhghfhhjghjghjghjgg';
+        $url='3434';
+        $mTitle='Take advantage';
+        $mDesc='Choose';
+        $mKeywords='it once was back';
+        $I->amOnPage("/admin/components/run/shop/categories/index");
+        $I->wait(3);
+        $name2= substr($name, 0, 186);
+        $I->clickAllElements($I,".btn.expandButton",3);        
+        $text = $I->grabTextFromAllElements($I, "div.body_category div.row-category div.share_alt a.pjax");
+            foreach ($text as $key =>$value) {
+                $I->comment("$value");
+                if($value)  $I->comment("$key: $value");
+            } 
+        $ret=$I->CreateProduct($name, null, $price,null,null,$saleStatus,null,$articul,$amount,null,null,null,null,$shortDesc,$fullDesc,$comment='no',
+                null,$oldPrice,null,$url,$mTitle,$mDesc,$mKeywords);
+        $I->CheckInFields($name, null, $price, null, null, $saleStatus, $this->MainIso, $articul2, $amount, null, null, null, null,
+                $shortDesc, $fullDesc, $comment='no', null, $oldPrice, null,$url,$mTitle,$mDesc,$mKeywords);
+        $I->click(ProductsPage::$GoBackButton);
+        $I->CheckInListLanding($name2.'...', null, $articul2, $price, $this->MAINSYM);
+        $I->CheckInFrontEnd($name, null, $articul2, $price, $this->MAINSYM, null, null, null, null, $saleStatus, $shortDesc, $fullDesc, $comment='no', $oldPrice, $url);
+    }
     
     /**
-//     * @guy ProductsTester\ProductsSteps
-//     */
-//    
-//    public function CreateProduct10_501Symbols(ProductsTester\ProductsSteps $I)
-//    {
-//        $name=$I->GenerateNameProduct();
-//        $price='100';
-//        $date=$I->CreateProduct($name, $nameVariant=null, $price);
-//        $amount='1';
-//        $brand='Не указано';
-//        $addCat='Выберите дополнительные категории';
-//        $comment='Нет';
-////        $comment='Да';
-//        $I->CheckInFields($name, $nameVariant=null, $price, $currency=null, $articul=null, $amount, $image=null, $brand, 
-//                $category=null, $addCat, $shortDesc=null, $fullDesc=null, $comment, $date);
-//        $I->click(ProductsPage::$GoBackButton);
-//        $I->CheckInListLanding($name, $category=null, $articul=null, $price, $this->MAINSYM);
-//    }
+      * @guy ProductsTester\ProductsSteps
+     */
+    
+    public function CreateProduct10_501Symbols(ProductsTester\ProductsSteps $I)
+    {
+        $name='В американском аэропорту Кеннеди журналист проводил опрос на тему : " Что по вашему мнению является самым отвратительным на свете? " Люди отвечали разное: война, бедность, предательство, болезни.. В это время в зале находился дзэнский монах Сунг Сан. Журналист, увидев буддийское одеяние, задал вопрос монаху. А монах задал встречный вопрос:- Кто вы? - Я, Джон Смит. - Нет, это имя, но кто Вы? - Я телерепортёр такой-то компании.. - Нет. Это профессия, но кто Вы? - Я человек, в конце концов!.. - Нет.';
+        $name3='В американском аэропорту Кеннеди журналист проводил опрос на тему : " Что по вашему мнению является самым отвратительным на свете? " Люди отвечали разное: война, бедность, предательство, болезни.. В это время в зале находился дзэнский монах Сунг Сан. Журналист, увидев буддийское одеяние, задал вопрос монаху. А монах задал встречный вопрос:- Кто вы? - Я, Джон Смит. - Нет, это имя, но кто Вы? - Я телерепортёр такой-то компании.. - Нет. Это профессия, но кто Вы? - Я человек, в конце концов!.. - Нет';
+        $price='3';//max=double(20,5)
+        $saleStatus='';
+        $articul='6478347894373894777493478 hfduyfguyguygygufduuuuuuuuuuuuuuuuuuuuudyyyf(00?==;hodfjkndghj56745+_Gfghfhfkdkjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjgggggggggggggg666666*8fgkjuhukgvuyxhcfvxx+gfgjfjfjffgggggggggg111113454545645645trrtgdrfdjh222jsjsjs5dfdfd555555555ddddd';//255
+        $amount='123456';//max=11
+        $shortDesc='В американском аэропорту Кеннеди журналист проводил опрос на тему : " Что по вашему мнению является самым отвратительным на свете? " Люди отвечали разное: война, бедность, предательство, болезни.. В это время в зале находился дзэнский монах Сунг Сан. Журналист, увидев буддийское одеяние, задал вопрос монаху. А монах задал встречный вопрос:- Кто вы? - Я, Джон Смит. - Нет, это имя, но кто Вы? - Я телерепортёр такой-то компании.. - Нет. Это профессия, но кто Вы? - Я человек, в конце концов!.. - Нет.';
+        $fullDesc='В американском аэропорту Кеннеди журналист проводил опрос на тему : " Что по вашему мнению является самым отвратительным на свете? " Люди отвечали разное: война, бедность, предательство, болезни.. В это время в зале находился дзэнский монах Сунг Сан. Журналист, увидев буддийское одеяние, задал вопрос монаху. А монах задал встречный вопрос:- Кто вы? - Я, Джон Смит. - Нет, это имя, но кто Вы? - Я телерепортёр такой-то компании.. - Нет. Это профессия, но кто Вы? - Я человек, в конце концов!.. - Нет.';
+        $oldPrice='4';//float(10,2)
+//        $mainTemp=' dfd ';
+//        $mainTemp2='dfd';
+//        $mainTemp='sdjfosijffddg65656jrfjdj5454564jdfkdfdkfkfFGHFHgdgrty6567568654566666645645645645646464564564564564646456fghfhghfhhjghjghjghjgggsdjfosijffddg65656jrfjdj5454564jdfkdfdkfkfFGHFHgdgrty6567568654566666645645645645646464564564564564646456fghfhghfhhjghjghjghjgg';
+        $mTitle='keyword credit ,';
+        $mDesc='Choose words';
+        $mKeywords='tags keyword attribute .';
+        $I->amOnPage("/admin/components/run/shop/categories/index");
+        $I->wait(3);
+        $name2= substr($name, 0, 186);
+        $I->clickAllElements($I,".btn.expandButton",3);        
+        $text = $I->grabTextFromAllElements($I, "div.body_category div.row-category div.share_alt a.pjax");
+            foreach ($text as $key =>$value) {
+                $I->comment("$value");
+                if($value)  $I->comment("$key: $value");
+            } 
+        $ret=$I->CreateProduct($name, null, $price,null,null,$saleStatus,null,$articul,$amount,null,null,null,null,$shortDesc,$fullDesc,$comment='no',
+                null,$oldPrice,null,null,$mTitle,$mDesc,$mKeywords);
+        $I->CheckInFields($name3, null, $price, null, null, $saleStatus, $this->MainIso, $articul, $amount, null, null, null, null,
+                $shortDesc, $fullDesc, $comment='no', null, $oldPrice, null,null,$mTitle,$mDesc,$mKeywords);
+        $I->click(ProductsPage::$GoBackButton);
+        $I->CheckInListLanding($name2.'...', null, $articul, $price, $this->MAINSYM);
+        $I->CheckInFrontEnd($name3, null, $articul, $price, $this->MAINSYM, null, null, null, null, $saleStatus, $shortDesc, $fullDesc, $comment='no', $oldPrice);
+    }
+    
+    
+    public function CreateProduct11_2StatusAndNotActive(ProductsTester\ProductsSteps $I)
+    {
+        $name='Телефон Panasonic';
+        $price='77';//max=double(20,5)
+        $saleStatus='';
+        $hotStatus='';
+        $I->amOnPage("/admin/components/run/shop/categories/index");
+        $I->wait(3);
+        $name2= substr($name, 0, 186);
+        $I->clickAllElements($I,".btn.expandButton",3);        
+        $text = $I->grabTextFromAllElements($I, "div.body_category div.row-category div.share_alt a.pjax");
+            foreach ($text as $key =>$value) {
+                $I->comment("$value");
+                if($value)  $I->comment("$key: $value");
+            } 
+        $ret=$I->CreateProduct($name, null, $price,$hotStatus,null,$saleStatus,null,null,null,null,null,null,null,null,null,null,null,null,null,null,
+                null,null,null,$active='no');
+        $I->waitForText($name, '10', '//*[@id="mainContent"]/section/div/div[1]/span[2]');
+        $I->wait('3');        
+        $I->seeInField(\ProductsPage::$NameProduct, $name);
+        $I->see($name, ".//*[@id='ProductVariantRow_0']/td[1]/div/div/span");
+        $hotClass=$I->grabAttributeFrom(\ProductsPage::$HotProductButton, 'class');
+        $I->assertEquals($hotClass, "btn btn-small  btn-primary active setHit");
+        $newClass=$I->grabAttributeFrom(\ProductsPage::$NewProductButton, 'class');
+        $I->assertEquals($newClass, "btn btn-small  setHot");
+        $saleStatus=$I->grabAttributeFrom(\ProductsPage::$SaleProductButton, 'class');
+        $I->assertEquals($saleStatus, "btn btn-small  btn-primary active setAction");
+        $I->seeInField(\ProductsPage::$Price, $price);        
+        $I->click(ProductsPage::$GoBackButton);
+        $I->waitForText('Список товаров');
+        $I->click(\ProductsPage::PaginationLine('last()'));
+        $I->wait('2');
+        $I->see($name, \ProductsPage::ProductNameLine('last()'));        
+        $class=$I->grabAttributeFrom(\ProductsPage::ActiveButtonLine('last()'), 'class');
+        $I->assertEquals($class, "prod-on_off disable_tovar");        
+        $hotClass=$I->grabAttributeFrom(\ProductsPage::StatusLine1('last()'), 'class');
+        $I->assertEquals($hotClass, "btn btn-small  btn-primary active setHit");        
+        $newClass=$I->grabAttributeFrom(\ProductsPage::StatusLine2('last()'), 'class');
+        $I->assertEquals($newClass, "btn btn-small  setHot");       
+        $saleStatus=$I->grabAttributeFrom(\ProductsPage::StatusLine3('last()'), 'class');
+        $I->assertEquals($saleStatus, "btn btn-small  btn-primary active setAction");        
+        $I->seeInField(\ProductsPage::PriceFieldLine('last()'), $price);        
+        $I->moveMouseOver(\ProductsPage::ProductNameLine('last()'));
+        $I->wait('1');
+        $I->click(\ProductsPage::ProductReviewButton('last()'));
+        $I->executeInSelenium(function (\Webdriver $webdriver) {
+            $handles=$webdriver->getWindowHandles();
+            $last_window = end($handles);
+            $webdriver->switchTo()->window($last_window);
+        });        
+    }
+    
+    
+    public function CreateProduct12_2StatusAndActive(ProductsTester\ProductsSteps $I)
+    {
+        $name='Телефон Apple';
+        $price='10000';//max=double(20,5)
+        $newStatus='';
+        $hotStatus='';
+        $ret=$I->CreateProduct($name, null, $price,$hotStatus,$newStatus);
+        $I->waitForText($name, '10', '//*[@id="mainContent"]/section/div/div[1]/span[2]');
+        $I->wait('3');        
+        $I->seeInField(\ProductsPage::$NameProduct, $name);
+        $I->see($name, ".//*[@id='ProductVariantRow_0']/td[1]/div/div/span");
+        $hotClass=$I->grabAttributeFrom(\ProductsPage::$HotProductButton, 'class');
+        $I->assertEquals($hotClass, "btn btn-small  btn-primary active setHit");
+        $newClass=$I->grabAttributeFrom(\ProductsPage::$NewProductButton, 'class');
+        $I->assertEquals($newClass, "btn btn-small  btn-primary active setHot");
+        $saleStatus=$I->grabAttributeFrom(\ProductsPage::$SaleProductButton, 'class');
+        $I->assertEquals($saleStatus, "btn btn-small  setAction");
+        $I->seeInField(\ProductsPage::$Price, $price);        
+        $I->click(ProductsPage::$GoBackButton);
+        $I->waitForText('Список товаров');
+        $I->click(\ProductsPage::PaginationLine('last()'));
+        $I->wait('2');
+        $I->see($name, \ProductsPage::ProductNameLine('last()'));        
+        $class=$I->grabAttributeFrom(\ProductsPage::ActiveButtonLine('last()'), 'class');
+        $I->assertEquals($class, "prod-on_off");        
+        $hotClass=$I->grabAttributeFrom(\ProductsPage::StatusLine1('last()'), 'class');
+        $I->assertEquals($hotClass, "btn btn-small  btn-primary active setHit");        
+        $newClass=$I->grabAttributeFrom(\ProductsPage::StatusLine2('last()'), 'class');
+        $I->assertEquals($newClass, "btn btn-small  btn-primary active setHot");       
+        $saleStatus=$I->grabAttributeFrom(\ProductsPage::StatusLine3('last()'), 'class');
+        $I->assertEquals($saleStatus, "btn btn-small  setAction");        
+        $I->seeInField(\ProductsPage::PriceFieldLine('last()'), $price);        
+        $I->moveMouseOver(\ProductsPage::ProductNameLine('last()'));
+        $I->wait('1');
+        $I->click(\ProductsPage::ProductReviewButton('last()'));
+        $I->executeInSelenium(function (\Webdriver $webdriver) {
+            $handles=$webdriver->getWindowHandles();
+            $last_window = end($handles);
+        $webdriver->switchTo()->window($last_window);});
+        $I->waitForElement(\CurrenciesPage::$SearchField);
+        $I->see($name, "html/body/div[1]/div[2]/div[2]/div[1]/div/div[1]/div/h1");
+        $I->see($price, \CurrenciesPage::$MainFirstPlaceCard);        
+            $classHot=$I->grabAttributeFrom('//*[@id="photoProduct"]/span/span[2]', 'class');
+            $I->assertEquals($classHot, "product-status hit");        
+            $classHot=$I->grabAttributeFrom('//*[@id="photoProduct"]/span/span[3]', 'class');
+            $I->assertEquals($classHot, "product-status nowelty");           
+    }
+    
+    
+    public function CreateProduct13_3StatusAndActive(ProductsTester\ProductsSteps $I)
+    {
+        $name='Телефон Samsung';
+        $price='7890';//max=double(20,5)
+        $newStatus='';
+        $hotStatus='';
+        $saleStatus='';
+        $ret=$I->CreateProduct($name, null, $price,$hotStatus,$newStatus,$saleStatus);
+        $I->waitForText($name, '10', '//*[@id="mainContent"]/section/div/div[1]/span[2]');
+        $I->wait('3');        
+        $I->seeInField(\ProductsPage::$NameProduct, $name);
+        $I->see($name, ".//*[@id='ProductVariantRow_0']/td[1]/div/div/span");
+        $hotClass=$I->grabAttributeFrom(\ProductsPage::$HotProductButton, 'class');
+        $I->assertEquals($hotClass, "btn btn-small  btn-primary active setHit");
+        $newClass=$I->grabAttributeFrom(\ProductsPage::$NewProductButton, 'class');
+        $I->assertEquals($newClass, "btn btn-small  btn-primary active setHot");
+        $saleStatus=$I->grabAttributeFrom(\ProductsPage::$SaleProductButton, 'class');
+        $I->assertEquals($saleStatus, "btn btn-small  btn-primary active setAction");
+        $I->seeInField(\ProductsPage::$Price, $price);        
+        $I->click(ProductsPage::$GoBackButton);
+        $I->waitForText('Список товаров');
+        $I->click(\ProductsPage::PaginationLine('last()'));
+        $I->wait('2');
+        $I->see($name, \ProductsPage::ProductNameLine('last()'));        
+        $class=$I->grabAttributeFrom(\ProductsPage::ActiveButtonLine('last()'), 'class');
+        $I->assertEquals($class, "prod-on_off");        
+        $hotClass=$I->grabAttributeFrom(\ProductsPage::StatusLine1('last()'), 'class');
+        $I->assertEquals($hotClass, "btn btn-small  btn-primary active setHit");        
+        $newClass=$I->grabAttributeFrom(\ProductsPage::StatusLine2('last()'), 'class');
+        $I->assertEquals($newClass, "btn btn-small  btn-primary active setHot");       
+        $saleStatus=$I->grabAttributeFrom(\ProductsPage::StatusLine3('last()'), 'class');
+        $I->assertEquals($saleStatus, "btn btn-small  btn-primary active setAction");        
+        $I->seeInField(\ProductsPage::PriceFieldLine('last()'), $price);        
+        $I->moveMouseOver(\ProductsPage::ProductNameLine('last()'));
+        $I->wait('1');
+        $I->click(\ProductsPage::ProductReviewButton('last()'));
+        $I->executeInSelenium(function (\Webdriver $webdriver) {
+            $handles=$webdriver->getWindowHandles();
+            $last_window = end($handles);
+        $webdriver->switchTo()->window($last_window);});
+        $I->waitForElement(\CurrenciesPage::$SearchField);
+        $I->see($name, "html/body/div[1]/div[2]/div[2]/div[1]/div/div[1]/div/h1");
+        $I->see($price, \CurrenciesPage::$MainFirstPlaceCard);        
+            $classHot=$I->grabAttributeFrom('//*[@id="photoProduct"]/span/span[2]', 'class');
+            $I->assertEquals($classHot, "product-status hit");        
+            $classNew=$I->grabAttributeFrom('//*[@id="photoProduct"]/span/span[3]', 'class');
+            $I->assertEquals($classNew, "product-status nowelty");
+            $classSale=$I->grabAttributeFrom('//*[@id="photoProduct"]/span/span[4]', 'class');
+            $I->assertEquals($classSale, "product-status action");
+    }
 }

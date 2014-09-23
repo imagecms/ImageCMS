@@ -5,7 +5,7 @@ class ProductsSteps extends \ProductsTester
 {
     public function CreateProduct($name,$nameVariant=null,$price,$hotStatus=null,$newStatus=null, $saleStatus=null,$currency=null,$articul=null,$amount=null,$image2=null,
             $brand=null,$category=null,$addCat=null,$shortDesc=null,$fullDesc=null,$comment='yes',$dateCreate=null,$oldPrice=null,$mainTemp=null,
-            $url=null,$mTitle=null,$mDesc=null,$mKeywords=null,$save='save')
+            $url=null,$mTitle=null,$mDesc=null,$mKeywords=null,$active='yes',$save='save')
     {
         $I = $this;
         $ret = array();
@@ -104,6 +104,19 @@ class ProductsSteps extends \ProductsTester
         if(isset($fullDesc)){
             $I->fillField(\ProductsPage::$FullDescription, $fullDesc);
         }
+        switch ($active) {
+            case 'yes':
+                $activeBut=$I->grabAttributeFrom(\ProductsPage::$ActiveButton, 'class');
+                $I->comment("$activeBut");
+                $I->assertEquals($activeBut, 'prod-on_off');                
+                break;
+            case 'no':
+                $I->click(\ProductsPage::$ActiveButton);
+                $activeBut=$I->grabAttributeFrom(\ProductsPage::$ActiveButton, 'class');
+                $I->comment("$activeBut");
+                $I->assertEquals($activeBut, 'prod-on_off disable_tovar');
+                break;
+        } 
         $I->click(\ProductsPage::$PreferencesButton);
         $I->waitForElement(\ProductsPage::$MetaTitle);
         switch ($comment) {
@@ -170,7 +183,7 @@ class ProductsSteps extends \ProductsTester
     
     public function CheckInFields($name=null,$nameVariant=null,$price=null,$hotStatus=null,$newStatus=null, $saleStatus=null,$currency=null,$articul=null,$amount=null,$image=null,
             $brand=null,$category=null,$addCat=null,$shortDesc=null,$fullDesc=null,$comment='yes',$date=null,$oldPrice=null,$mainTemp=null,
-            $url=null,$mTitle=null,$mDesc=null,$mKeywords=null)
+            $url=null,$mTitle=null,$mDesc=null,$mKeywords=null,$active='yes')
     {
         $I = $this;
 //        $I->waitForElement(\ProductsPage::$AccessoriesButton);
@@ -254,6 +267,18 @@ class ProductsSteps extends \ProductsTester
             $fdesc=  trim($desc2);
             $I->assertEquals($fdesc, $fullDesc);
         }
+        switch ($active) {
+            case 'yes':
+                $activeBut=$I->grabAttributeFrom(\ProductsPage::$ActiveButton, 'class');
+                $I->comment("$activeBut");
+                $I->assertEquals($activeBut, 'prod-on_off');                
+                break;
+            case 'no':
+                $activeBut=$I->grabAttributeFrom(\ProductsPage::$ActiveButton, 'class');
+                $I->comment("$activeBut");
+                $I->assertEquals($activeBut, 'prod-on_off disable_tovar');
+                break;
+        } 
         $I->click(\ProductsPage::$PrefButtonEditing);
         switch ($comment) {
             case 'yes':
@@ -288,7 +313,7 @@ class ProductsSteps extends \ProductsTester
     }    
     
     
-    public function CheckInListLanding($name,$category=null,$articul=null,$price,$symbol=null)
+    public function CheckInListLanding($name,$category=null,$articul=null,$hotStatus=null,$newStatus=null,$saleStatus=null,$price,$symbol=null,$active='yes')
     {
         $I = $this;
         $I->waitForText('Список товаров');
@@ -301,8 +326,30 @@ class ProductsSteps extends \ProductsTester
         if(isset($articul)){
             $I->see($articul, \ProductsPage::ArticulLine('last()'));
         }
-        $class=$I->grabAttributeFrom(\ProductsPage::ActiveButtonLine('last()'), 'class');
-        $I->assertEquals($class, "prod-on_off");
+        switch ($active) {
+            case 'yes':
+                $activeBut=$I->grabAttributeFrom(\ProductsPage::ActiveButtonLine('last()'), 'class');
+                $I->comment("$activeBut");
+                $I->assertEquals($activeBut, 'prod-on_off');                
+                break;
+            case 'no':
+                $activeBut=$I->grabAttributeFrom(\ProductsPage::ActiveButtonLine('last()'), 'class');
+                $I->comment("$activeBut");
+                $I->assertEquals($activeBut, 'prod-on_off disable_tovar');
+                break;
+        } 
+        if (isset($hotStatus)){
+            $hotClass=$I->grabAttributeFrom(\ProductsPage::StatusLine1('last()'), 'class');
+            $I->assertEquals($hotClass, "btn btn-small  btn-primary active setHit");
+        }
+        if (isset($newStatus)){
+            $newClass=$I->grabAttributeFrom(\ProductsPage::StatusLine2('last()'), 'class');
+            $I->assertEquals($newClass, "btn btn-small  btn-primary active setHot");
+        }
+        if (isset($saleStatus)){
+            $saleStatus=$I->grabAttributeFrom(\ProductsPage::StatusLine3('last()'), 'class');
+            $I->assertEquals($saleStatus, "btn btn-small  btn-primary active setAction");
+        }
         $I->seeInField(\ProductsPage::PriceFieldLine('last()'), $price);
         if(isset($symbol)){
             $I->see($symbol, \ProductsPage::PriceCurrencySymbolLine('last()'));
@@ -322,7 +369,7 @@ class ProductsSteps extends \ProductsTester
             $oldPrice=null,$url=null)
     {
         $I = $this;
-        $I->waitForElement(".//*[@id='inputString']");
+        $I->waitForElement(\CurrenciesPage::$SearchField);
         $I->see($name, "html/body/div[1]/div[2]/div[2]/div[1]/div/div[1]/div/h1");
         $I->see($category, "html/body/div[1]/div[2]/div[1]/div/div/ul/li['last()']/a/span");
         if(isset($articul)){
@@ -349,12 +396,12 @@ class ProductsSteps extends \ProductsTester
             $I->assertEquals($classHot, "product-status hit");
         }
         if(isset($newStatus)){
-            $classHot=$I->grabAttributeFrom('//*[@id="photoProduct"]/span/span[2]', 'class');
-            $I->assertEquals($classHot, "product-status nowelty");
+            $classNew=$I->grabAttributeFrom('//*[@id="photoProduct"]/span/span[2]', 'class');
+            $I->assertEquals($classNew, "product-status nowelty");
         }
         if(isset($saleStatus)){
-            $classHot=$I->grabAttributeFrom('//*[@id="photoProduct"]/span/span[2]', 'class');
-            $I->assertEquals($classHot, "product-status action");
+            $classSale=$I->grabAttributeFrom('//*[@id="photoProduct"]/span/span[2]', 'class');
+            $I->assertEquals($classSale, "product-status action");
         }
         if(isset($shortDesc)){
             $I->see($shortDesc, "html/body/div[1]/div[2]/div[2]/div[1]/div/div[2]/div[2]/div[2]");

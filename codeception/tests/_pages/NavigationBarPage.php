@@ -7,7 +7,7 @@ class NavigationBarPage
     //Header buttons
     //
     public static $PersonalButton = "//a[@class='btn_header btn-personal-area']";
-    public static $PersonalButtonLogout = "//a[@href='/admin/logout']";
+    public static $PersonalButtonLogout = "//a[@href='/auth/logout']";
     
     //      Модули
     public static $Modules = "//div[@class='frame_nav']/table/tbody/tr/td[5]/a";
@@ -33,9 +33,9 @@ class NavigationBarPage
     public static $Orders = "//div[1]/div[3]/table/tbody/tr/td[1]/a";
     public static $OrdersList = "//table/tbody/tr/td[1]/ul/li[2]/a";
     public static $OrderStatuses = "//table/tbody/tr/td[1]/ul/li[3]/a";
-    public static $CallbacksList = "//table/tbody/tr/td[1]/ul/li[5]/a";
-    public static $CallbackStatuses = "//table/tbody/tr/td[1]/ul/li[6]/a";
-    public static $CallbackThemes  = "//table/tbody/tr/td[1]/ul/li[7]/a";
+    public static $CallbacksList = "//table/tbody/tr/td[1]/ul/li[4]/a";
+    public static $CallbackStatuses = "//table/tbody/tr/td[1]/ul/li[5]/a";
+    public static $CallbackThemes  = "//table/tbody/tr/td[1]/ul/li[6]/a";
     public static $NotificationsList = "//table/tbody/tr/td[1]/ul/li[9]/a";
     public static $NotificationStatuses = "//table/tbody/tr/td[1]/ul/li[10]/a";
     
