@@ -15,7 +15,7 @@ class NotificationListPage
     static $WindowDeleteTitle           = '.modal-header>h3';
     static $WindowDeleteQuestion        = '.modal-body>p';
     static $WindowDeleteButtonDelete    = '.modal-footer .btn.btn-primary';
-    static $WindowDeleteButtonBack      = '.modal-footer .btn:nth-child(2)';
+    static $WindowDeleteButtonCancel    = '.modal-footer .btn:nth-child(2)';
     static $WindowDeleteButtonClose     = '.close';
 
     //--------------------------------------------------------------------------

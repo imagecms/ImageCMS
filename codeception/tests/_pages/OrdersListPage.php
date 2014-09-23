@@ -68,7 +68,7 @@ class OrdersListPage
     static $WindowDeleteTitle           = '.modal.hide.fade.in>div.modal-header>h3';
     static $WindowDeleteQuestion        = '.modal.hide.fade.in>div.modal-body>p';
     static $WindowDeleteButtonDelete    = '.modal.hide.fade.in>div.modal-footer>a:nth-child(1)';
-    static $WindowDeleteButtonBack      = '.modal.hide.fade.in>div.modal-footer>a:nth-child(2)';
+    static $WindowDeleteButtonCancel      = '.modal.hide.fade.in>div.modal-footer>a:nth-child(2)';
     static $WindowDeleteButtonClose     = '.modal.hide.fade.in>div.modal-header>button';
 
 }
