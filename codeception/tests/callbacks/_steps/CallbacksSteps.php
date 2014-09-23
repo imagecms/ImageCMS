@@ -22,42 +22,49 @@ class CallbacksSteps extends \CallbacksTester
     function CheckListLandingAndEditingPage($name1,$phone1,$comment1 = null)
     {
         $I = $this;
-        $I->amOnPage('/admin');
+        $I->amOnPage('/admin');       
+        $I->wait('3');
         $I->click(\NavigationBarPage::$Orders);
-        $I->waitForElement('html/body/div[1]/div[3]/div/nav/ul/li[2]/ul');
+        $I->waitForElement('html/body/div[1]/div[3]/table/tbody/tr/td[1]/ul');
         $I->click(\NavigationBarPage::$CallbacksList);
-        $I->waitForElementNotVisible('html/body/div[1]/div[3]/div/nav/ul/li[2]/ul');
+        $I->waitForElementNotVisible('html/body/div[1]/div[3]/table/tbody/tr/td[1]/ul');
         $I->wait('5');
-        $kil1=$I->grabTextFrom('.//*[@id="totalCallbacks"]');
-        $I->comment("$kil1");
-        $kil=  explode(" ", $kil1);
-        foreach ($kil as $key =>$value) {
-            if($value)  $I->comment("$key: $value");
-        }   
-        $kil=$kil[4];        
-        $I->comment("$kil");
-        if ($kil<=14){
-            $I->see($name1, \CallbacksPage::UserNameLine("last()").'/..');
-            $I->see($phone1, \CallbacksPage::PhoneLine("last()"));
-            $I->click(\CallbacksPage::UserNameLine("last()"));
-            $I->waitForElement('.//*[@id="editCallbackForm"]/div[5]/label');
-            $I->see($comment1, \CallbacksPage::$CommentEdit);
-        }
-        else{
-            $I->click(\CallbacksPage::PaginationButton(last()-1));
-            $I->wait('2');
-            $I->see($name1, \CallbacksPage::UserNameLine("last()").'/..');
-            $I->see($phone1, \CallbacksPage::PhoneLine("last()"));
-            $I->click(\CallbacksPage::UserNameLine("last()"));
-            $I->waitForElement('.//*[@id="editCallbackForm"]/div[5]/label');
-            $I->see($comment1, \CallbacksPage::$CommentEdit);
-        }
+        $I->see($name1, \CallbacksPage::UserNameLine("1").'/..');
+        $I->see($phone1, \CallbacksPage::PhoneLine("1"));
+        $I->click(\CallbacksPage::UserNameLine("1"));
+        $I->waitForElement('.//*[@id="editCallbackForm"]/div[5]/label');
+        $I->see($comment1, \CallbacksPage::$CommentEdit);
+//        $kil1=$I->grabTextFrom('.//*[@id="totalCallbacks"]');
+//        $I->comment("$kil1");
+//        $kil=  explode(" ", $kil1);
+//        foreach ($kil as $key =>$value) {
+//            if($value)  $I->comment("$key: $value");
+//        }   
+//        $kil=$kil[4];        
+//        $I->comment("$kil");
+//        if ($kil<=14){
+//            $I->see($name1, \CallbacksPage::UserNameLine("last()").'/..');
+//            $I->see($phone1, \CallbacksPage::PhoneLine("last()"));
+//            $I->click(\CallbacksPage::UserNameLine("last()"));
+//            $I->waitForElement('.//*[@id="editCallbackForm"]/div[5]/label');
+//            $I->see($comment1, \CallbacksPage::$CommentEdit);
+//        }
+//        else{
+//            $I->click(\CallbacksPage::PaginationButton(last()-1));
+//            $I->wait('2');
+//            $I->see($name1, \CallbacksPage::UserNameLine("last()").'/..');
+//            $I->see($phone1, \CallbacksPage::PhoneLine("last()"));
+//            $I->click(\CallbacksPage::UserNameLine("last()"));
+//            $I->waitForElement('.//*[@id="editCallbackForm"]/div[5]/label');
+//            $I->see($comment1, \CallbacksPage::$CommentEdit);
+//        }
     }
     
     function EditCallback($name,$phone,$comment,$save='save')
     {
         $I = $this;
-        $I->amOnPage('/admin/components/run/shop/callbacks');
+        $I->amOnPage(\CallbacksPage::$URL);
+        $I->wait('3');
         $I->click(\CallbacksPage::UserNameLine('1'));
         $I->waitForElement('.//*[@id="editCallbackForm"]/div[2]/label');
         $I->fillField(\CallbacksPage::$UserNameEdit, $name);
@@ -104,7 +111,7 @@ class CallbacksSteps extends \CallbacksTester
         }
         $I->click(\CallbacksPage::$SaveButton);
         $I->waitForElementVisible('.alert.in.fade.alert-success');
-        $I->see('Позиция создана');
+        $I->see('Статус создан');
         $I->waitForElementNotVisible('.alert.in.fade.alert-success');
         $I->seeInField(\CallbacksPage::$NameStatus, $name1);
         if (isset($default)) {
@@ -126,7 +133,7 @@ class CallbacksSteps extends \CallbacksTester
     function EditStatusCallback($name,$name1,$save='save',$default=null)
     {
         $I = $this;
-        $I->amOnPage('/admin/components/run/shop/callbacks/statuses');
+        $I->amOnPage(\CallbacksPage::$URLStatuses);
         $I->click(\CallbacksPage::StatusNameLine('1'));
         $I->waitForText('Редактирование статуса обратного звонка');
         $I->fillField(\CallbacksPage::$NameStatus, $name);
@@ -183,7 +190,7 @@ class CallbacksSteps extends \CallbacksTester
             case 'saveexit':
                 $I->click(\CallbacksPage::$SaveAndExitButton);
                 $I->waitForElementVisible('.alert.in.fade.alert-success');
-                $I->see('Тема начата');
+                $I->see('Тема создана');
                 $I->waitForElementNotVisible('.alert.in.fade.alert-success');
                 $I->waitForText('Темы обратных звонков');                
                 $I->see($name1, \CallbacksPage::ThemeNameLine('last()'));
@@ -194,7 +201,7 @@ class CallbacksSteps extends \CallbacksTester
     function EditThemeCallback($name,$name1,$save='save')
     {
         $I = $this;
-        $I->amOnPage('/admin/components/run/shop/callbacks/themes');
+        $I->amOnPage(\CallbacksPage::$URLThemes);
         $I->click(\CallbacksPage::ThemeNameLine('1'));
         $I->waitForText('Редактирование темы обратного звонка');
         $I->fillField(\CallbacksPage::$NameTheme, $name);
@@ -213,7 +220,7 @@ class CallbacksSteps extends \CallbacksTester
                 $I->see('Изменения сохранены');
                 $I->waitForElementNotVisible('.alert.in.fade.alert-success');
                 $I->waitForText('Темы обратных звонков');
-                $I->see($name1, './/*[@id="orderStatusesList"]/section/div[2]/div/table/tbody/tr/td[2]/a');
+                $I->see($name1, \CallbacksPage::ThemeNameLine('1'));
                 break;
         }        
     }           
