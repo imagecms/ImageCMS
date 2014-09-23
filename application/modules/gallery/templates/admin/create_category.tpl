@@ -12,31 +12,37 @@
             </div>
         </div>
     </div>
-    <div class="inside_padd">
-        <div class="form-horizontal row-fluid">
-            <form method="post" action="{site_url('admin/components/cp/gallery/create_category')}" id="create_category_form">
-                <div class="control-group">
-                    <label class="control-label" for="name">{lang("Name", 'gallery')}:</label>
-                    <div class="controls">
-                        <input type="text" name="name" id="name" value="" />
+    <table class="table table-bordered content_big_td">
+        <tbody>
+            <tr>
+                <td style="border-top: 0;">
+                    <div class="form-horizontal row-fluid">
+                        <form method="post" action="{site_url('admin/components/cp/gallery/create_category')}" id="create_category_form">
+                            <div class="control-group">
+                                <label class="control-label" for="name">{lang("Name", 'gallery')}:</label>
+                                <div class="controls">
+                                    <input type="text" name="name" id="name" value="" />
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="g_c_desc">{lang("Description", 'gallery')}:</label>
+                                <div class="controls">
+                                    <textarea name="description" id="g_c_desc" class="smallTextarea elRTE">{htmlspecialchars($category.description)}</textarea>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="position">{lang("Position", 'gallery')}:</label>
+                                <div class="controls number">
+                                    <input type="text" name="position" id="position" value=""/>
+                                </div>
+                            </div>
+                            {form_csrf()}
+                        </form>
                     </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label" for="g_c_desc">{lang("Description", 'gallery')}:</label>
-                    <div class="controls">
-                        <textarea name="description" id="g_c_desc" class="smallTextarea elRTE">{htmlspecialchars($category.description)}</textarea>
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label" for="position">{lang("Position", 'gallery')}:</label>
-                    <div class="controls number">
-                        <input type="text" name="position" id="position" value=""/>
-                    </div>
-                </div>
-                {form_csrf()}
-            </form>
-        </div>
-    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>
 <div class="modal hide fade">
     <div class="modal-header">

@@ -7,12 +7,12 @@
         <div class="pull-right">
             <div class="d-i_b">
                 <a href="/admin/components/init_window/banners" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Back', 'banners')}</span></a>
-                <button onclick="selects()" type="button" class="btn btn-small btn-success formSubmit" data-form="#image_upload_form" data-submit data-action="toedit"><i class="icon-ok icon-white"></i>{lang('Create', 'admin')}</button>
+                <button onclick="selects()" type="button" class="btn btn-small btn-success formSubmit" data-form="#image_upload_form" data-submit data-action="toedit"><i class="icon-plus-sign icon-white"></i>{lang('Create', 'admin')}</button>
                 <button onclick="selects()" type="button" class="btn btn-small action_on formSubmit" data-form="#image_upload_form" data-action="tomain"><i class="icon-check"></i>{lang('Create and exit', 'admin')}</button>
             </div>
         </div>                            
     </div>
-    <form method="post" action="/admin/components/init_window/banners/create" enctype="multipart/form-data" id="image_upload_form">
+    <form method="post" action="/admin/components/init_window/banners/create" enctype="multipart/form-data" id="image_upload_form" class="m-t_10">
         <table class="table  table-bordered table-hover table-condensed content_big_td">
             <thead>
                 <tr>
@@ -121,7 +121,7 @@
                                         <div class="o_h">		            
                                             <input type="text" name="photo" id="Img" value="" required="required">					
                                         </div>
-                                        <div id="Img-preview" style="width: 400px;" ></div>
+                                        <div id="Img-preview" style="width: 400px;" class="m-t_20"></div>
                                     </div>
                                 </div>
                             </div>

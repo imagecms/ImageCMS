@@ -157,7 +157,7 @@ class FieldsNSCest
 //-----------------INPUT SAVE PRESENCE VALID SYMVOL EDIT------------------------ 
     
     /**
-     * @group a
+     * @group aa
      */
     public function EdictingSymvol(NotificationStatusesTester $I){
         $I->wantTo('Verify Edit and Present Status Whit 1 Symbol on Name.');
@@ -185,7 +185,7 @@ class FieldsNSCest
         $I->click(NotificationStatusesPage::$ListButtonDelete);
         $I->wait('1');
         $I->click(NotificationStatusesPage::$DeleteWindowButtonDelete);
-        $I->wait('1');
+        $I->wait('2');
         $I->dontSee(InitTest::$textSymbols);
         InitTest::ClearAllCach($I); 
     }   

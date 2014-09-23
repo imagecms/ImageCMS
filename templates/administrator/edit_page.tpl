@@ -55,7 +55,7 @@
     <form method="post" action="{$BASE_URL}admin/pages/update/{$update_page_id}/{$page_lang}" id="edit_page_form" class="form-horizontal" data-pageid="{$update_page_id}">
         <div class="tab-content">
             <div class="tab-pane active" id="content_article">
-                <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                <table class="table  table-bordered table-hover table-condensed content_big_td">
                     <thead>
                         <tr>
                             <th colspan="6">
@@ -73,7 +73,7 @@
                                         </label>
                                         <div class="controls">
                                             <a onclick="$('.modal').modal();
-                                                    return false;" class="btn btn-success btn-small pull-right" href="#"><i class="icon-plus icon-white"></i> {lang("Create a category","admin")}</a>
+                                                    return false;" class="btn btn-success btn-small pull-right" href="#"><i class="icon-plus-sign icon-white"></i> {lang("Create a category","admin")}</a>
                                             <div class="o_h">
                                                 <select name="category"  id="category_selectbox"  onchange="pagesAdmin.loadCFEditPage()">
                                                     <option value="0" >{lang('No','admin')}</option>
@@ -117,7 +117,7 @@
                 </table>
             </div>
            <div class="tab-pane" id="parameters_article">
-                <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                <table class="table  table-bordered table-hover table-condensed content_big_td">
                     <thead>
                         <tr>
                             <th colspan="6">
@@ -234,7 +234,7 @@
                 <div id="cfcm_fields_block"></div>
             </div>
             <div class="tab-pane" id="setings_article">
-                <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                <table class="table  table-bordered table-hover table-condensed content_big_td">
                     <thead>
                         <tr>
                             <th colspan="6">
@@ -345,7 +345,7 @@
     </div>
     <div class="modal-footer">
         <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang('Cancel','admin')}</a>
-        <a href="#" class="btn btn-primary" onclick="pagesAdmin.quickAddCategory()">{lang('Create','admin')}</a>
+        <a href="#" class="btn btn-success" onclick="pagesAdmin.quickAddCategory()">{lang('Create','admin')}</a>
     </div>
 </div>
 <script>

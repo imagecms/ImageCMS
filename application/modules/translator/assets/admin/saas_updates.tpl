@@ -17,7 +17,7 @@
                 <div class="d-i_b">
                     <!--button type="button" class="btn btn-small btn-success action_on formSubmit" data-form="#create_file_form"-->
                     <button type="button" class="btn btn-small btn-success action_on" onclick="SAAS_UPDATES.update($(this))">
-                        <i class="icon-ok"></i>
+                        <i class="icon-ok icon-white"></i>
                         {lang('Update', 'translator')}
                     </button>
                 </div>
@@ -25,7 +25,7 @@
         </div>
         <div class="row-fluid">
             <form method="post" action="{site_url('admin/components/init_window/translator/saas_updates')}" class="form-horizontal" id="create_file_form">
-                <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                <table class="table  table-bordered table-hover table-condensed content_big_td">
                     <thead>
                         <tr>
                             <th colspan="6">

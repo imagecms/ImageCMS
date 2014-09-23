@@ -211,10 +211,13 @@ class Export {
      * Getting products data
      * @return array
      */
-    public function getDataArray() {
+    public function getDataArray() {        
         if (is_null($this->resultArray)) {
             $this->getDataFromBase();
         }
+//        echo "<pre>";
+//        var_dump($this->resultArray);
+//        exit();
         return $this->resultArray;
     }
 
@@ -411,6 +414,8 @@ class Export {
             'var' => '`shop_product_variants_i18n`.`name` as variant_name',
             'act' => 'active', //
             'hit' => 'hit', //
+            'hot' => 'hot',         //новинка
+            'action' => 'action',   //акція
             'brd' => '`shop_brands_i18n`.`name` as brand_name', //
             'modim' => 'mainModImage',
             'modis' => 'smallModImage',

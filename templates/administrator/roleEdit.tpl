@@ -41,7 +41,7 @@
             </div>
         </div>
     </div>
-    <form method="post" action="{$ADMIN_URL}{echo $model->id}" class="form-horizontal" id="role_ed_form">
+    <form method="post" action="{$ADMIN_URL}{echo $model->id}" class="form-horizontal m-t_10" id="role_ed_form">
         <table class="table  table-bordered table-hover table-condensed content_big_td">
             <thead>
                 <tr>

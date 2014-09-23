@@ -7,7 +7,7 @@
         <div class="pull-right">
             <div class="d-i_b">
                 <a class="btn btn-small btn-success pjax" href="/admin/rbac/privilegeCreate" ><i class="icon-plus-sign icon-white"></i>{lang("Create privilege","admin")}</a>
-                <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="$('.modal').modal();"><i class="icon-trash icon-white"></i>{lang("Delete","admin")}</button>
+                <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="$('.modal').modal();"><i class="icon-trash"></i>{lang("Delete","admin")}</button>
             </div>
         </div>  
     </div>

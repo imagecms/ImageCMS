@@ -5,7 +5,7 @@ class TextElementNLCest
 //---------------------------AUTORIZATION---------------------------------------  
     
     /**
-     * @group aaa
+     * @group a
      */
     public function Login(NotificationListTester $I){
         InitTest::Login($I);
@@ -16,7 +16,7 @@ class TextElementNLCest
 //---------------------------CREATE NOTIFI FRONT--------------------------------   
     
     /**
-     * @group aaa
+     * @group a
      */
     public function CreateNotificationFront(NotificationListTester $I){
         $I->wantTo('Create Notification on Frontend.');
@@ -70,8 +70,8 @@ class TextElementNLCest
         $I->amOnPage(NotificationListPage::$ListPageURL);
         $I->see('Уведомления о появлении', NotificationListPage::$ListTitle);
         $I->click(NotificationListPage::$ListMainCheckBox);
+        $I->wait('1');
         $I->see('Фильтр', NotificationListPage::$ListButtonFilter);
-        $I->see('Отменить фильтрацию', NotificationListPage::$ListButtonCancelFilter);
         $I->wait('1');
         $I->see('Удалить', NotificationListPage::$ListButtonDelete);
         $I->see('Все', NotificationListPage::$ListButtonAll);
@@ -119,7 +119,7 @@ class TextElementNLCest
         $I->amOnPage(NotificationListPage::$ListPageURL);
         $I->wait('2');
         $I->moveMouseOver(NotificationListPage::$ListLinkEditting);
-        $I->wait('2');
+//        $I->wait('2');
         $I->see('Редактировать уведомление', NotificationListPage::$ListMouseMessage);
         $I->moveMouseOver(NotificationListPage::$ListSelectMain);
         $I->wait('2');
@@ -267,9 +267,6 @@ class TextElementNLCest
      */
     public function VerifyButtonDeleteWindow (NotificationListTester $I){
         $I->wantTo('Verify Button on Delete Window.');
-//        $I->amOnPage(NotificationListPage::$ListPageURL);
-//        $I->wait('3');
-//        $I->waitForElement(NotificationListPage::$ListMainCheckBox);
         $I->click(NavigationBarPage::$Orders);
         $I->click(NavigationBarPage::$NotificationsList);
         $I->wait('2');
@@ -301,7 +298,6 @@ class TextElementNLCest
         $I->click(NotificationListPage::$ListButtonDelete);
         $I->wait('1');
         $I->click(NotificationListPage::$DeleteWindowButtonDelete);
-//        $I->waitForText('Удаление');
         $I->wait('1');
         $I->exactlySeeAlert($I, 'success', 'Удаление');
         InitTest::ClearAllCach($I);

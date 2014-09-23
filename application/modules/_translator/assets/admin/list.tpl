@@ -353,7 +353,7 @@
                                     <a href="http://api.yandex.ru/translate/" target="blanck">{lang('Get Yandex Api key', 'translator')}</a>
                                 </label>
                                 <textarea class="YandexApiKey">{echo $settings['YandexApiKey']}</textarea>
-                                <button onclick="Translator.addYandexApiKey($(this))"  type="button" class="btn btn-small btn-success">
+                                <button onclick="Translator.addYandexApiKey($(this))"  type="button" class="btn btn-small btn-primary">
                                     <i class="icon-ok"></i>
                                     {lang('Save', 'translator')}
                                 </button>
@@ -362,7 +362,7 @@
                             <hr>
                         </div>
                         <form method="post" action="{site_url('admin/components/init_window/translator/createFile')}" class="form-horizontal" id="po_settings_form">
-                            <table style="width: 49%; float: left;" class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                            <table style="width: 49%; float: left;" class="table  table-bordered table-hover table-condensed content_big_td">
                                 <thead>
                                     <tr>
                                         <th>

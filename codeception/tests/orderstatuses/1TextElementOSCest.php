@@ -4,7 +4,7 @@ class TextElementOSCest
 {
 //---------------------------AUTORIZATION---------------------------------------   
     /**
-     * @group aa
+     * @group a
      */
     public function Login(OrderStatusesTester $I){
         InitTest::Login($I);
@@ -77,9 +77,9 @@ class TextElementOSCest
         $I->wantTo('Verify Message When Focus Cursor on Name Status.');
         $I->amOnPage(OrderStatusesListPage::$ListURL);
         $I->moveMouseOver(OrderStatusesListPage::$ListLinkStstusTr1);
-        $I->wait(1);
         $I->see('Редактировать статус', OrderStatusesListPage::$ListMessageMouseFocuse);
         $I->moveMouseOver(OrderStatusesListPage::$ListaButtonCreateStatuse);
+//        $I->wait(1);
         $I->waitForElementNotVisible(OrderStatusesListPage::$ListMessageMouseFocuse);
         $I->dontSeeElement(OrderStatusesListPage::$ListMessageMouseFocuse);
     }
@@ -141,7 +141,7 @@ class TextElementOSCest
 //---------------------MESSAGE CREATING STATUS----------------------------------
     
     /**
-     * @group aa
+     * @group a
      */
     public function MessageCreateStatus(OrderStatusesTester $I){
         $I->wantTo('Verify Message Cteation Status Present.');
@@ -217,8 +217,8 @@ class TextElementOSCest
         $I->wantTo('Verify Message Editing Status Present.');
         $I->amOnPage(OrderStatusesListPage::$ListURL);
         $I->click(OrderStatusesListPage::$ListLinkStatusTr2);
-        $I->click(OrderStatusesCreatePage::$EditButtonSaveAndGoBack);
-        $I->wait(1);
+        $I->click(OrderStatusesCreatePage::$EditButtonSave);
+        $I->waitForElement(OrderStatusesCreatePage::$EditMessageEditingStatus);
         $I->see('Изменения сохранены', OrderStatusesCreatePage::$EditMessageEditingStatus);
     }
     

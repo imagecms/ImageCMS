@@ -27,7 +27,7 @@
     <form method="post" action="{$BASE_URL}admin/pages/add" id="add_page_form" class="form-horizontal" >
         <div class="tab-content">
             <div class="tab-pane active" id="content_article">
-                <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                <table class="table  table-bordered table-hover table-condensed content_big_td">
                     <thead>
                         <tr>
                             <th colspan="6">
@@ -86,7 +86,7 @@
                 </table>
             </div>
             <div class="tab-pane" id="parameters_article">
-                <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                <table class="table  table-bordered table-hover table-condensed content_big_td">
                     <thead>
                         <tr>
                             <th colspan="6">
@@ -201,7 +201,7 @@
             </div>
 
             <div class="tab-pane" id="setings_article">
-                <table class="table  table-bordered table-hover table-condensed t-l_a content_big_td">
+                <table class="table  table-bordered table-hover table-condensed content_big_td">
                     <thead>
                         <tr>
                             <th colspan="6">
@@ -225,16 +225,13 @@
                                             </select>
                                         </div>
                                     </div>
-
-                                    <hr />
-
                                     <div class="control-group">
                                         <label class="control-label" for="create_date">
                                             {lang("Time and date of creation","admin")}:    
                                         </label>
                                         <div class="controls">
                                             <span class="pull-left p_r">
-                                                <input id="create_date" name="create_date" value="{$cur_date}" type="text" data-placement="top" data-original-title="{lang('choose date','admin')}" data-rel="tooltip" class="datepicker input-small"/>
+                                                <input id="create_date" name="create_date" value="{$cur_date}" type="text" data-placement="top" data-original-title="{lang('choose date','admin')}" data-rel="tooltip" class="datepicker input-medium"/>
                                                 <i class="icon-calendar"></i>
                                             </span>
                                             <input id="create_time" name="create_time" tabindex="8" type="text" value="{$cur_time}" class="input-small" />			             	
@@ -246,7 +243,7 @@
                                         </label>
                                         <div class="controls">
                                             <span class="pull-left p_r">
-                                                <input id="publish_date" name="publish_date" tabindex="7" value="{$cur_date}" type="text" data-placement="top" data-original-title="{lang('choose date','admin')}" data-rel="tooltip" class="datepicker input-small" />
+                                                <input id="publish_date" name="publish_date" tabindex="7" value="{$cur_date}" type="text" data-placement="top" data-original-title="{lang('choose date','admin')}" data-rel="tooltip" class="datepicker input-medium"/>
                                                 <i class="icon-calendar"></i>
                                             </span>
                                             <input name="publish_time" tabindex="8" type="text" value="{$cur_time}" class="input-small" />            	
