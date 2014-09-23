@@ -4,9 +4,9 @@ class PaymentCreatePage
 {
         
     public static $URL                      = '/admin/components/run/shop/paymentmethods/create';
-    public static $Title                    = '.title';
     
-    //блок створення
+    //заголовки
+    public static $Title                    = '.title';
     public static $BlockCreateTitle         = '//section[@class="mini-layout"]//th';
 
     //кнопки
@@ -34,11 +34,6 @@ class PaymentCreatePage
     public static $SelectCurrency           = '#CurrencyId';
     public static $SelectPaymentSystem      = '[name="PaymentSystemName"]';
     
-    public static function SelectCurrencyOption($row) {
-        return "//select[@id='CurrencyId']/option[$row]";
-    }
-    
-    public static function SelectPaymentSystemOption($row){
-        return "//select[@name='PaymentSystemName']/option[$row]";
-    }
+    public static function selectCurrencyOption($row)       { return "//select[@id='CurrencyId']/option[$row]";          }
+    public static function selectPaymentSystemOption($row)  { return "//select[@name='PaymentSystemName']/option[$row]"; }
 }
