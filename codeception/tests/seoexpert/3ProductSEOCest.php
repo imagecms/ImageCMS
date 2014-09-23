@@ -145,10 +145,10 @@ class ProductSEOCest
     public function variableGrabIDForPropertyProduct (SeoExpertTester\seoexpertSteps $I) {
         
         $ID_property_Eng = $I->GetPropertyID($name_property = 'Tend seo');  
-        $this->ID_property_Rus = $ID_property_Rus;
+        $this->ID_property_Eng = $ID_property_Eng;
         
         $ID_property_Rus = $I->GetPropertyID($name_property = 'Свойственно сео');
-        $this->ID_property_Eng = $ID_property_Eng;
+        $this->ID_property_Rus = $ID_property_Rus;
     }
     
     
@@ -181,7 +181,7 @@ class ProductSEOCest
         $I->wait('1');
         $I->amOnPage(seoexpertPage::$FrontProductURLRu);
         $I->wait('1');
-        $I->seeInPageSource("$this->ID_product_Rus");//Сеошний товар Вода Хлеб 777 руб Первое Свойство / mini.loc             
+        $I->seeInPageSource("$this->ID_product_Rus Сеошний товар Вода Хлеб 777 руб Первое Свойство / mini.loc");//Сеошний товар Вода Хлеб 777 руб Первое Свойство / mini.loc             
     }
     
     
