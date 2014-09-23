@@ -398,8 +398,38 @@ class seoexpertSteps extends \SeoExpertTester
         $I->seeInPageSource($values);
     }
     
-    
-    
+    function CreateSettingValuesForFrontPageCategoryProducts ($name_Category_Product_For_select = NULL,
+                                                            $input_Values_in_Field_Title = NULL,
+                                                            $input_Values_in_Field_Description = NULL,
+                                                            $input_Values_in_Field_Lenght = NULL,
+                                                            $input_Values_in_Field_Keywords = NULL,
+                                                            $CheckBox_Activate = NULL) {
+        $I = $this;
+        $I->amOnPage('/admin/components/init_window/mod_seo/productsCategories');
+        $I->click('//section/div[1]/div[2]/div/a[3]');
+        $I->fillField('//section/form/table/tbody/tr/td/div/div/label[1]/span[2]/input[1]', $name_Category_Product_For_select);
+        $I->wait('2');
+        $I->click('//body/ul/li/a');      
+        $I->fillField('//section/form/table/tbody/tr/td/div/div/label[2]/span[2]/input', $input_Values_in_Field_Title);
+        $I->fillField('//section/form/table/tbody/tr/td/div/div/label[3]/span[2]/input', $input_Values_in_Field_Description);
+        $I->fillField('//section/form/table/tbody/tr/td/div/div/label[4]/span[2]/input', $input_Values_in_Field_Lenght);
+        $I->fillField('//section/form/table/tbody/tr/td/div/div/label[5]/span[2]/input', $input_Values_in_Field_Keywords);
+        if(isset($CheckBox_Activate)){
+            $active = 'span1 active';
+            $inactive = 'span1';
+            $checkbox_path = $CheckBox_Activate;
+        $checkbox_class = $I->grabAttributeFrom($checkbox_path, 'class');
+            if($checkbox_class == $active){                
+                $I->wait('1');
+            }elseif($checkbox_class == $inactive) {
+                $I->click($checkbox_path);
+                $I->wait('1');
+            }
+        $I->click('//section/div/div[2]/div/button');    
+        
+        
+        }
+    }
     
     function SettingsCategorySeoPage($Title = NULL,
                             $Description = NULL,

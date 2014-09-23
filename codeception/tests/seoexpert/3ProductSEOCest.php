@@ -15,92 +15,143 @@ class ProductSEOCest
      */
     public function Login(SeoExpertTester $I){
         InitTest::Login($I);
-    }  
+    } 
+    
+    
     /**
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
-    public function CreateCategoryRusForFront (SeoExpertTester\seoexpertSteps $I){
+    public function CreateCategoryRusForProduct (SeoExpertTester\seoexpertSteps $I){
         $I->SeoCreateCategoryProduct($createNameCategory = 'Вода');
     }
+    
+    
     /**
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
-    public function CreateCategoryEngForFront (SeoExpertTester\seoexpertSteps $I){
+    public function CreateCategoryEngForProduct (SeoExpertTester\seoexpertSteps $I){
         $I->SeoCreateCategoryProduct($createNameCategory = 'Water');
     }
+    
+    
     /**
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
-    public function CreatуBrandRusForFront (SeoExpertTester\seoexpertSteps $I){
+    public function CreatуBrandRusForProduct (SeoExpertTester\seoexpertSteps $I){
         $I->SeoCreateBrand($brandName = 'Хлеб');
     }
+    
+    
     /**
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
-    public function CreatуBrandEngForFront (SeoExpertTester\seoexpertSteps $I){
+    public function CreatуBrandEngForProduct (SeoExpertTester\seoexpertSteps $I){
         $I->SeoCreateBrand($brandName = 'Bread');
     }
+    
+    
     /**
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
     public function CreateProductRusForFront (SeoExpertTester\seoexpertSteps $I){
-        $I->SeoCreateProduct($NameProduct = 'Сеошний товар', $PriceProduct = '777', $BrandProduct = 'Хлеб', $CategoryProduct = 'Вода', $Additional_Category = 'Water');
+        $I->SeoCreateProduct(   $NameProduct            = 'Сеошний товар', 
+                                $PriceProduct           = '777', 
+                                $BrandProduct           = 'Хлеб', 
+                                $CategoryProduct        = 'Вода',
+                                $Additional_Category    = 'Water');
     }
+    
+    
     /**
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
     public function CreateProductEngForFront (SeoExpertTester\seoexpertSteps $I){
-        $I->SeoCreateProduct($NameProduct = 'Seoshny product', $PriceProduct = '777', $BrandProduct = 'Bread', $CategoryProduct = 'Water', $Additional_Category = 'Вода');
+        $I->SeoCreateProduct(   $NameProduct            = 'Seoshny product',
+                                $PriceProduct           = '777', 
+                                $BrandProduct           = 'Bread', 
+                                $CategoryProduct        = 'Water',
+                                $Additional_Category    = 'Вода');
     }
+    
+    
     /**
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
-    public function CreatePropertyRus(SeoExpertTester\seoexpertSteps $I) {
-        $I->SeoCreateProperty($NameProperty = 'Свойственно сео', $CVS = 'XYXYxyxyxyxyXYXY', $Category = 'Вода', $Values1 = 'Первое Свойство');
+    public function CreatePropertyRusForProduct(SeoExpertTester\seoexpertSteps $I) {
+        $I->SeoCreateProperty(  $NameProperty   = 'Свойственно сео', 
+                                $CVS            = 'XYXYxyxyxyxyXYXY', 
+                                $Category       = 'Вода', 
+                                $Values1        = 'Первое Свойство');
     }
+    
+    
     /**
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
-    public function SelectPropertyInRusProduct(SeoExpertTester\seoexpertSteps $I) {
-        $I->SeoSelectPropertyInProduct($NameProduct = 'Сеошний товар', $Property1 = 'Yes');
+    public function SelectPropertyForRusProduct(SeoExpertTester\seoexpertSteps $I) {
+        $I->SeoSelectPropertyInProduct( $NameProduct    = 'Сеошний товар',
+                                        $Property1      = 'Yes');
     }
+    
+    
     /**
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
-    public function CreatePropertyEng(SeoExpertTester\seoexpertSteps $I) {
-        $I->SeoCreateProperty($NameProperty = 'Tend seo', $CVS = 'YYYYYyyyyyYYYYYY', $Category = 'Water', $Values1 = 'First property');//, $Values2 = NULL, $Values3 = NULL, $Values4 = NULL
+    public function CreatePropertyEngForProduct(SeoExpertTester\seoexpertSteps $I) {
+        $I->SeoCreateProperty(  $NameProperty   = 'Tend seo',
+                                $CVS            = 'YYYYYyyyyyYYYYYY',
+                                $Category       = 'Water', 
+                                $Values1        = 'First property');
     }
+    
+    
      /**
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
-    public function SelectPropertyInEngProduct(SeoExpertTester\seoexpertSteps $I) {
-        $I->SeoSelectPropertyInProduct($NameProduct = 'Seoshny product', $Property1 = 'Yes');
+    public function SelectPropertyForEngProduct(SeoExpertTester\seoexpertSteps $I) {        
+        $I->SeoSelectPropertyInProduct( $NameProduct    = 'Seoshny product',
+                                        $Property1      = 'Yes');
     }
+    
 
     /**
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function variableGrabID (SeoExpertTester\seoexpertSteps $I) {
-        $ID_property_Rus = $I->GetPropertyID($name_property = 'Свойственно сео');
+    public function variableGrabIDForCategoyProduct (SeoExpertTester\seoexpertSteps $I) {   
+        
         $ID_product_Rus = $I->GetProductID($name_product = 'Сеошний товар');
-        $ID_property_Eng = $I->GetPropertyID($name_property = 'Tend seo');
-        $ID_product_Eng = $I->GetProductID($name_product = 'Seoshny product');
-        $this->ID_property_Rus = $ID_property_Rus;
-        $this->ID_product_Rus = $ID_product_Rus;
-        $this->ID_property_Eng = $ID_property_Eng;
+        $this->ID_product_Rus = $ID_product_Rus;        
+        
+        $ID_product_Eng = $I->GetProductID($name_product = 'Seoshny product');             
         $this->ID_product_Eng = $ID_product_Eng;
     }
+    
+    
+    /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps
+     */
+    public function variableGrabIDForPropertyProduct (SeoExpertTester\seoexpertSteps $I) {
+        
+        $ID_property_Eng = $I->GetPropertyID($name_property = 'Tend seo');  
+        $this->ID_property_Rus = $ID_property_Rus;
+        
+        $ID_property_Rus = $I->GetPropertyID($name_property = 'Свойственно сео');
+        $this->ID_property_Eng = $ID_property_Eng;
+    }
+    
+    
     /**
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
@@ -108,6 +159,7 @@ class ProductSEOCest
     public function DefoultValues (SeoExpertTester\seoexpertSteps $I) {
             $I->DefoultValues();  
     }
+    
 
     /**
      * @group a

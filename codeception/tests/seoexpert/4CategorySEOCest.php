@@ -9,7 +9,7 @@ class CategorySEOCest
     
 //---------------------------AUTORIZATION--------------------------------------- 
     /**
-     * @group aa
+     * @group aaa
      */
     public function Login(SeoExpertTester $I){
         InitTest::Login($I);
@@ -17,7 +17,7 @@ class CategorySEOCest
     
    
     /**
-     * @group a
+     * @group aa
      */
     public function ClearChash(SeoExpertTester $I) {
         InitTest::ClearAllCach($I);
@@ -26,52 +26,50 @@ class CategorySEOCest
     
     
     /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps 
      */
     public function CreateCategoryRusForFront (SeoExpertTester\seoexpertSteps $I){    
         $I->SeoCreateCategoryProduct($createNameCategory = 'Напиток');
     }       
     /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps 
      */
     public function CreateCategoryEngForFront (SeoExpertTester\seoexpertSteps $I){      
         $I->SeoCreateCategoryProduct($createNameCategory = 'Bird');
         InitTest::ClearAllCach($I);        
     }
-    
-    
     /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps 
      */
     public function CreateBrand1ForFront (SeoExpertTester\seoexpertSteps $I){      
         $I->SeoCreateBrand($brandName = 'Перец');
     }
     /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps 
      */
     public function CreateBrand2ForFront (SeoExpertTester\seoexpertSteps $I){   
         $I->SeoCreateBrand($brandName = 'Сахар');
     }
     /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps 
      */
     public function CreateBrand3ForFront (SeoExpertTester\seoexpertSteps $I){   
         $I->SeoCreateBrand($brandName = 'мойва просроченная');
     }
     /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps 
      */
     public function CreateBrand4ForFront (SeoExpertTester\seoexpertSteps $I){   
         $I->SeoCreateBrand($brandName = 'Gstar');
     }
     /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps 
      */
     public function CreateBrand5ForFront (SeoExpertTester\seoexpertSteps $I){   
@@ -80,35 +78,35 @@ class CategorySEOCest
     }
     
     /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps 
      */
     public function CreateProduct1ForFront (SeoExpertTester\seoexpertSteps $I){  
         $I->SeoCreateProduct($NameProduct = 'Сок', $PriceProduct = '987', $BrandProduct = 'Перец', $CategoryProduct = 'Напиток', $Additional_Category = 'Bird');
     }
      /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps 
      */
     public function CreateProduct2ForFront (SeoExpertTester\seoexpertSteps $I){  
         $I->SeoCreateProduct($NameProduct = 'Квас', $PriceProduct = '4', $BrandProduct = 'Сахар', $CategoryProduct = 'Напиток', $Additional_Category = 'Bird');
     }
      /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps 
      */
     public function CreateProduct3ForFront (SeoExpertTester\seoexpertSteps $I){  
         $I->SeoCreateProduct($NameProduct = 'Пиво', $PriceProduct = '2', $BrandProduct = 'мойва просроченная', $CategoryProduct = 'Напиток', $Additional_Category = 'Bird');
     }
     /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps 
      */
     public function CreateProduct4ForFront (SeoExpertTester\seoexpertSteps $I){  
         $I->SeoCreateProduct($NameProduct = 'Кефир', $PriceProduct = '3', $BrandProduct = 'Gstar', $CategoryProduct = 'Bird', $Additional_Category = 'Напиток');
     }
     /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps 
      */
     public function CreateProduct5ForFront (SeoExpertTester\seoexpertSteps $I){  
@@ -117,7 +115,7 @@ class CategorySEOCest
     }
 
     /**
-     * @group a
+     * @group aaaaaaaaaaa
      * @guy SeoExpertTester\seoexpertSteps 
      */
     public function TextAreaActive (SeoExpertTester\seoexpertSteps $I){ 
@@ -125,7 +123,7 @@ class CategorySEOCest
     }
     
     /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps 
      */
     public function H1andDescriptionForRusProduct (SeoExpertTester\seoexpertSteps $I){     
@@ -136,8 +134,8 @@ class CategorySEOCest
     }
     
     
-        /**
-     * @group a
+    /**
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps 
      */
     public function H1andDescriptionForEngProduct (SeoExpertTester\seoexpertSteps $I){       
@@ -145,19 +143,14 @@ class CategorySEOCest
                                     $description_category = 'DESC cannibal corpse DESC',
                                     $H1_category = "'Н1 eng category Н1'");
     }
-    
-    
-    
-    /**
-     * @group a
+     /**
+     * @group aa
      */
     public function ClearChash1(SeoExpertTester $I) {
         InitTest::ClearAllCach($I);
     }
-    
-    
     /**
-     * @group aa
+     * @group aaa
      * @guy SeoExpertTester\seoexpertSteps 
      */
     public function GetIDCategory(SeoExpertTester\seoexpertSteps $I) {
@@ -170,7 +163,7 @@ class CategorySEOCest
     
     
     /**
-     * @group aa
+     * @group aaa
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function DefoltSettings(SeoExpertTester\seoexpertSteps $I) {
@@ -179,12 +172,11 @@ class CategorySEOCest
     
     
     /**
-     * @group aa
+     * @group aaa
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function CategoryTitleComonRUS (SeoExpertTester\seoexpertSteps $I) {
-//        $this->ID_Category_Rus;
-//        $ID_Cat = $I->GetCategoryID($name_category = 'Напиток');
+//        $I->NullValues();
         $I->SettingsCategorySeoPage($Title = '%ID% %name% %desc% %H1% %brands%',
                                     $Description = '',
                                     $Length_Desc = '999',
@@ -203,14 +195,13 @@ class CategorySEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function CategoryTitleComonENG (SeoExpertTester\seoexpertSteps $I) {
-        $ID_Cat = $I->GetCategoryID($name_category = 'Bird');
         $I->SettingsCategorySeoPage($Title = '%ID% %name% %desc% %H1% %brands%',
                                     $Description = '',
                                     $Length_Desc = '999',
                                     $Amount_Brands = '3',
                                     $Keywords = '',
                                     $CheckBox_Activate = '//div[1]/div[5]/section/form/div[2]/div[2]/table[2]/tbody/tr/td/div/div/div[1]/div/span[2]');
-        $I->CheckValuesInPage($URL_Page = '/shop/category/bird#', $values = "$ID_Cat Bird DESC cannibal corpse DESC 'Н1 eng category Н1' мойва просроченная, Сахар, Перец / mini.loc");
+        $I->CheckValuesInPage($URL_Page = '/shop/category/bird#', $values = "$this->ID_Category_Eng Bird DESC cannibal corpse DESC 'Н1 eng category Н1' мойва просроченная, Сахар, Перец / mini.loc");
     }
     
      
@@ -222,14 +213,13 @@ class CategorySEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function CategoryTitleComonAndTextRUS (SeoExpertTester\seoexpertSteps $I) {
-        $ID_Cat = $I->GetCategoryID($name_category = 'Напиток');
         $I->SettingsCategorySeoPage($Title = 'Вот %ID%  такоей %name% prdoduct %desc% in %H1% category %brands%',
                                     $Description = '',
                                     $Length_Desc = '999',
                                     $Amount_Brands = '3',
                                     $Keywords = '',
                                     $CheckBox_Activate = '//div[1]/div[5]/section/form/div[2]/div[2]/table[2]/tbody/tr/td/div/div/div[1]/div/span[2]');     
-        $I->CheckValuesInPage($URL_Page = '/shop/category/napitok#', $values = "Вот $ID_Cat  такоей Напиток prdoduct ДЕСК страх и ненависть ДЕСК in 'Н1 категории Н1' category мойва просроченная, Сахар, Перец / mini.loc");
+        $I->CheckValuesInPage($URL_Page = '/shop/category/napitok#', $values = "Вот $this->ID_Category_Rus  такоей Напиток prdoduct ДЕСК страх и ненависть ДЕСК in 'Н1 категории Н1' category мойва просроченная, Сахар, Перец / mini.loc");
     }
     
     
@@ -238,14 +228,13 @@ class CategorySEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function CategoryTitleComonAndTextENG (SeoExpertTester\seoexpertSteps $I) {
-        $ID_Cat = $I->GetCategoryID($name_category = 'Bird');
         $I->SettingsCategorySeoPage($Title = 'QWE %ID% asd %name% фыв %desc% ясч %H1% ы %brands%',
                                     $Description = '',
                                     $Length_Desc = '999',
                                     $Amount_Brands = '3',
                                     $Keywords = '',
                                     $CheckBox_Activate = '//div[1]/div[5]/section/form/div[2]/div[2]/table[2]/tbody/tr/td/div/div/div[1]/div/span[2]');     
-        $I->CheckValuesInPage($URL_Page = '/shop/category/bird#', $values = "QWE $ID_Cat asd Bird фыв DESC cannibal corpse DESC ясч 'Н1 eng category Н1' ы мойва просроченная, Сахар, Перец / mini.loc");
+        $I->CheckValuesInPage($URL_Page = '/shop/category/bird#', $values = "QWE $this->ID_Category_Eng asd Bird фыв DESC cannibal corpse DESC ясч 'Н1 eng category Н1' ы мойва просроченная, Сахар, Перец / mini.loc");
     }
     
     
@@ -471,7 +460,6 @@ class CategorySEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function CategoryDescriptionLenghtMaxRUS (SeoExpertTester\seoexpertSteps $I) {
-        $I->NullValues();
         $I->SeoCreateDescriptonAndH1($name_category = 'Напиток',
                                     $description_category = 'Миллионы покупателей ищут товары в интернет-магазинах, но покупают как правило в одном из них. Что же влияет на выбор покупателем того или иного магазина? Как сделать так, чтобы покупатель, ищущий определенный товар, остановил свой выбор именно на вашем интернет-магазине?',
                                     $H1_category = "'Н1 категории Н1'");
@@ -492,7 +480,6 @@ class CategorySEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function CategoryDescriptionLenghtMinRUS (SeoExpertTester\seoexpertSteps $I) {
-        $I->NullValues();
         $I->SeoCreateDescriptonAndH1($name_category = 'Напиток',
                                     $description_category = 'Миллионы покупателей ищут товары в интернет-магазинах, но покупают как правило в одном из них. Что же влияет на выбор покупателем того или иного магазина? Как сделать так, чтобы покупатель, ищущий определенный товар, остановил свой выбор именно на вашем интернет-магазине?',
                                     $H1_category = "'Н1 категории Н1'");
@@ -514,7 +501,6 @@ class CategorySEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function CategoryDescriptionLenghtNullRUS (SeoExpertTester\seoexpertSteps $I) {
-        $I->NullValues();
         $I->SeoCreateDescriptonAndH1($name_category = 'Напиток',
                                     $description_category = 'Миллионы покупателей ищут товары в интернет-магазинах, но покупают как правило в одном из них. Что же влияет на выбор покупателем того или иного магазина? Как сделать так, чтобы покупатель, ищущий определенный товар, остановил свой выбор именно на вашем интернет-магазине?',
                                     $H1_category = "'Н1 категории Н1'");
@@ -534,7 +520,6 @@ class CategorySEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function CategoryDescriptionPagination (SeoExpertTester\seoexpertSteps $I) {
-        $I->NullValues();
         $I->AmountProductInFront($Amount_Product_Front = '1');
         $I->SeoCreateDescriptonAndH1($name_category = 'Напиток',
                                     $description_category = '',
@@ -563,7 +548,6 @@ class CategorySEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function CategoryAmount1BrandsTitleComonRUS (SeoExpertTester\seoexpertSteps $I) {
-        $I->NullValues();
         $I->SettingsCategorySeoPage($Title = '%brands%',
                                     $Description = '',
                                     $Length_Desc = '999',
@@ -580,7 +564,6 @@ class CategorySEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function CategoryAmount1BrandsTitleComonENG (SeoExpertTester\seoexpertSteps $I) {
-        $I->NullValues();
         $I->SettingsCategorySeoPage($Title = '%brands%',
                                     $Description = '',
                                     $Length_Desc = '999',
@@ -596,7 +579,6 @@ class CategorySEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function CategoryAmount2BrandsTitleComonRUS (SeoExpertTester\seoexpertSteps $I) {
-        $I->NullValues();
         $I->SettingsCategorySeoPage($Title = '%brands%',
                                     $Description = '',
                                     $Length_Desc = '999',
@@ -621,7 +603,6 @@ class CategorySEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function CategoryAmount2BrandsTitleComonENG (SeoExpertTester\seoexpertSteps $I) {
-        $I->NullValues();
         $I->SettingsCategorySeoPage($Title = '%brands%',
                                     $Description = '',
                                     $Length_Desc = '999',
@@ -638,7 +619,6 @@ class CategorySEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function CategoryAmount3BrandsTitleComonRUS (SeoExpertTester\seoexpertSteps $I) {
-        $I->NullValues();
         $I->SettingsCategorySeoPage($Title = '%brands%',
                                     $Description = '',
                                     $Length_Desc = '999',
@@ -655,7 +635,6 @@ class CategorySEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function CategoryAmount0BrandsTitleComonRUS (SeoExpertTester\seoexpertSteps $I) {
-        $I->NullValues();
         $I->SettingsCategorySeoPage($Title = '%brands%',
                                     $Description = '',
                                     $Length_Desc = '999',
@@ -672,7 +651,6 @@ class CategorySEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function CategoryAmountMAXBrandsTitleComonRUS (SeoExpertTester\seoexpertSteps $I) {
-        $I->NullValues();
         $I->SettingsCategorySeoPage($Title = '%brands%',
                                     $Description = '',
                                     $Length_Desc = '',
@@ -690,8 +668,6 @@ class CategorySEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function CategoryKeywordsComonRUS (SeoExpertTester\seoexpertSteps $I) {
-        $ID_Cat = $I->GetCategoryID($name_category = 'Напиток');
-        $I->NullValues();
         $I->SeoCreateDescriptonAndH1($name_category = 'Напиток',
                                     $description_category = 'Сангвынык Холерик Ипохондрик Флегматик',
                                     $H1_category = 'Меланхолік');
@@ -701,7 +677,7 @@ class CategorySEOCest
                                     $Amount_Brands = '',
                                     $Keywords = '%ID% %name% %desc% %H1% %brands%',
                                     $CheckBox_Activate = '//div[1]/div[5]/section/form/div[2]/div[2]/table[2]/tbody/tr/td/div/div/div[1]/div/span[2]');     
-        $I->CheckValuesInPage($URL_Page = '/shop/category/napitok#', $values = "$ID_Cat Напиток Сангвынык Холерик Ипохондрик Флегматик Меланхолік мойва просроченная, Сахар, Перец");
+        $I->CheckValuesInPage($URL_Page = '/shop/category/napitok#', $values = "$this->ID_Category_Rus Напиток Сангвынык Холерик Ипохондрик Флегматик Меланхолік мойва просроченная, Сахар, Перец");
     }
     
     
@@ -711,8 +687,6 @@ class CategorySEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function CategoryKeywordsComonENG (SeoExpertTester\seoexpertSteps $I) {
-        $ID_Cat = $I->GetCategoryID($name_category = 'Bird');
-        $I->NullValues();
         $I->SeoCreateDescriptonAndH1($name_category = 'Bird',
                                     $description_category = 'Сангвынык Холерик Ипохондрик Флегматик',
                                     $H1_category = 'Меланхолік');
@@ -722,7 +696,7 @@ class CategorySEOCest
                                     $Amount_Brands = '',
                                     $Keywords = '%ID% %name% %desc% %H1% %brands%',
                                     $CheckBox_Activate = '//div[1]/div[5]/section/form/div[2]/div[2]/table[2]/tbody/tr/td/div/div/div[1]/div/span[2]');     
-        $I->CheckValuesInPage($URL_Page = '/shop/category/bird#', $values = "$ID_Cat Bird Сангвынык Холерик Ипохондрик Флегматик Меланхолік мойва просроченная, Сахар, Перец");
+        $I->CheckValuesInPage($URL_Page = '/shop/category/bird#', $values = "$this->ID_Category_Eng Bird Сангвынык Холерик Ипохондрик Флегматик Меланхолік мойва просроченная, Сахар, Перец");
     }
     
     
@@ -732,8 +706,6 @@ class CategorySEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function CategoryCheckBoxActiveON (SeoExpertTester\seoexpertSteps $I) {
-        $ID_Cat = $I->GetCategoryID($name_category = 'Напиток');
-        $I->NullValues();
         $I->SeoCreateDescriptonAndH1($name_category = 'Напиток',
                                     $description_category = 'Сангвынык Холерик Ипохондрик Флегматик',
                                     $H1_category = 'Меланхолік');
@@ -743,7 +715,7 @@ class CategorySEOCest
                                     $Amount_Brands = '999',
                                     $Keywords = '%ID% %name% %desc% %H1% %brands%',
                                     $CheckBox_Activate = '//div[1]/div[5]/section/form/div[2]/div[2]/table[2]/tbody/tr/td/div/div/div[1]/div/span[2]');     
-        $I->CheckValuesInPage($URL_Page = '/shop/category/napitok#', $values = "$ID_Cat Напиток Сангвынык Холерик Ипохондрик Флегматик Меланхолік мойва просроченная, Сахар, Перец, Stone Island, Gstar");
+        $I->CheckValuesInPage($URL_Page = '/shop/category/napitok#', $values = "$this->ID_Category_Rus Напиток Сангвынык Холерик Ипохондрик Флегматик Меланхолік мойва просроченная, Сахар, Перец, Stone Island, Gstar");
     }
     
     /**
@@ -759,8 +731,6 @@ class CategorySEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function CategoryCheckBoxActiveOff (SeoExpertTester\seoexpertSteps $I) {
-        $ID_Cat = $I->GetCategoryID($name_category = 'Напиток');
-        $I->NullValues();
         $I->SeoCreateDescriptonAndH1($name_category = 'Напиток',
                                     $description_category = 'Сангвынык Холерик Ипохондрик Флегматик',
                                     $H1_category = 'Меланхолік');
@@ -772,7 +742,7 @@ class CategorySEOCest
                                     $CheckBox_Activate = '//div[1]/div[5]/section/form/div[2]/div[2]/table[2]/tbody/tr/td/div/div/div[1]/div/span[2]');     
         $I->DeactivateCheckBox($checkbox_xpath = '//div[1]/div[5]/section/form/div[2]/div[2]/table[2]/tbody/tr/td/div/div/div[1]/div/span[2]');
         $I->amOnPage('/shop/category/napitok#');
-        $I->dontSeeInPageSource("$ID_Cat Напиток Сангвынык Холерик Ипохондрик Флегматик Меланхолік мойва просроченная, Сахар, Перец, Stone Island, Gstar");
+        $I->dontSeeInPageSource("$this->ID_Category_Rus Напиток Сангвынык Холерик Ипохондрик Флегматик Меланхолік мойва просроченная, Сахар, Перец, Stone Island, Gstar");
     }
     
     
@@ -782,8 +752,6 @@ class CategorySEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function CategoryCheckBoxNullMetaData (SeoExpertTester\seoexpertSteps $I) {
-        $ID_Cat = $I->GetCategoryID($name_category = 'Напиток');
-        $I->NullValues();
         $I->SeoCreateDescriptonAndH1($name_category = 'Напиток',
                                     $description_category = 'Сангвынык Холерик Ипохондрик Флегматик',
                                     $H1_category = 'Меланхолік');
@@ -799,7 +767,7 @@ class CategorySEOCest
                                     $CheckBox_Activate = '//div[1]/div[5]/section/form/div[2]/div[2]/table[2]/tbody/tr/td/div/div/div[1]/div/span[2]');     
         $I->ActivateCheckBox($checkbox_xpath = '//section/form/div[2]/div[2]/table[2]/tbody/tr/td/div/div/div[2]/div/span[2]');
         $I->amOnPage('/shop/category/napitok#');
-        $I->dontSeeInPageSource("$ID_Cat Напиток Сангвынык Холерик Ипохондрик Флегматик Меланхолік мойва просроченная, Сахар, Перец, Stone Island, Gstar");
+        $I->dontSeeInPageSource("$this->ID_Category_Rus Напиток Сангвынык Холерик Ипохондрик Флегматик Меланхолік мойва просроченная, Сахар, Перец, Stone Island, Gstar");
         $I->CheckValuesInPage($URL_Page = '/shop/category/napitok#', $values = 'абракадабра');
         $I->CheckValuesInPage($URL_Page = '/shop/category/napitok#', $values = 'тайтловский');
         $I->CheckValuesInPage($URL_Page = '/shop/category/napitok#', $values = 'кейовордекс');
