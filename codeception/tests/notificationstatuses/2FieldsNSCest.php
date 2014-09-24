@@ -4,7 +4,7 @@ class FieldsNSCest
 {
 //---------------------------AUTORIZATION--------------------------------------- 
     /**
-     * @group a
+     * @group aa
      */
     public function Login(NotificationStatusesTester $I){
         InitTest::Login($I);
@@ -14,15 +14,24 @@ class FieldsNSCest
 //----------------INPUT SAVE PRESENCE 1 SYMVOL CREATE--------------------------- 
     
     /**
-     * @group a
+     * @group aa
      */
     public function CreatingStatus1Symbol(NotificationStatusesTester $I){
-        $I->wantTo('Verify Create and Present Status Whit 1 Symbol on Name.');
-        $I->amOnPage(NotificationStatusesPage::$CreatePageUrl);
-        $I->fillField(NotificationStatusesPage::$CreationFildInput, '1');
-        $I->click(NotificationStatusesPage::$CreationButtonCreateAndGoBack);
-        $I->waitForText('Статусы уведомлений о появлении');
-        $I->see('1', NotificationStatusesPage::$ListTable);
+        $I->click(NavigationBarPage::$Orders);
+        $I->click(NavigationBarPage::$NotificationStatuses);
+        $I->wait('1');
+        $I->click(NotificationStatusesListPage::$ButtonCreate);
+        $I->wait('1');
+        $I->fillField(NotificationStatusesCreatePage::$InputName, '1');
+        $I->click(NotificationStatusesCreatePage::$ButtonCreateExit);
+        $I->wait('1');
+        $amount_rows = $I->grabCCSAmount($I, '.share_alt');
+        for($j = 1;$j <= $amount_rows;++$j){
+            $name_notification = $I->grabTextFrom(NotificationStatusesListPage::lineNameLink($j));
+            if($name_notification == '1'){
+            $I->see('1', NotificationStatusesListPage::lineNameLink($j));
+            }
+        }
     }   
 
     
@@ -30,15 +39,35 @@ class FieldsNSCest
 //--------------------INPUT SAVE PRESENCE 500 SYMVOL CREATE---------------------
     
     /**
-     * @group a
+     * @group aa
      */
     public function CreatingStatus500Symbol(NotificationStatusesTester $I){
-        $I->wantTo('Verify Create and Present Status Whit 500 Symbol on Name.');
-        $I->amOnPage(NotificationStatusesPage::$CreatePageUrl);
-        $I->fillField(NotificationStatusesPage::$CreationFildInput,  InitTest::$text500);
-        $I->click(NotificationStatusesPage::$CreationButtonCreateAndGoBack);
-        $I->waitForText('Статусы уведомлений о появлении');
-        $I->See(InitTest::$text500, NotificationStatusesPage::$ListTable);
+        $I->click(NavigationBarPage::$Orders);
+        $I->click(NavigationBarPage::$NotificationStatuses);
+        $I->wait('1');
+        $I->click(NotificationStatusesListPage::$ButtonCreate);
+        $I->wait('1');
+        $I->fillField(NotificationStatusesCreatePage::$InputName, InitTest::$text500);
+        $I->click(NotificationStatusesCreatePage::$ButtonCreateExit);
+        $I->wait('1');
+        $amount_rows = $I->grabCCSAmount($I, '.share_alt');
+        $I->wait('1');
+        for($j = 1;$j <= $amount_rows;++$j){
+            $name_notification = $I->grabTextFrom(NotificationStatusesListPage::lineNameLink($j));
+            $I->wait('1');
+            if($name_notification == InitTest::$text500){
+                $I->wait('1');
+                $I->see(InitTest::$text500, NotificationStatusesListPage::lineNameLink($j));
+                }
+        }
+        
+        
+//        $I->wantTo('Verify Create and Present Status Whit 500 Symbol on Name.');
+//        $I->amOnPage(NotificationStatusesPage::$CreatePageUrl);
+//        $I->fillField(NotificationStatusesPage::$CreationFildInput,  InitTest::$text500);
+//        $I->click(NotificationStatusesPage::$CreationButtonCreateAndGoBack);
+//        $I->waitForText('Статусы уведомлений о появлении');
+//        $I->See(InitTest::$text500, NotificationStatusesPage::$ListTable);
     }
 
       
@@ -157,7 +186,7 @@ class FieldsNSCest
 //-----------------INPUT SAVE PRESENCE VALID SYMVOL EDIT------------------------ 
     
     /**
-     * @group aa
+     * @group a
      */
     public function EdictingSymvol(NotificationStatusesTester $I){
         $I->wantTo('Verify Edit and Present Status Whit 1 Symbol on Name.');
