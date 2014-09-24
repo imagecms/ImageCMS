@@ -21,6 +21,6 @@ class ListPage
     static $WindowDeleteTitle           = '';
     static $WindowDeleteQuestion        = '';
     static $WindowDeleteButtonDelete    = '';
-    static $WindowDeleteButtonBack      = '';
+    static $WindowDeleteButtonCancel    = '';
     static $WindowDeleteButtonClose     = '';
 }
