@@ -5,7 +5,7 @@ class CreatingFrontCest
 //---------------------------AUTORIZATION---------------------------------------
     
     /**
-     * @group a
+     * @group aa
      */
     public function Login(NotificationListTester $I){
         InitTest::Login($I);
@@ -16,7 +16,7 @@ class CreatingFrontCest
 //---------------------------TEXT ELEMENT PRESENCE------------------------------
     
     /**
-     * @group a
+     * @group aa
      */
     public function VerifyTextElement(NotificationListTester $I){
         $I->wantTo('Verify Text Element Create Notf Front Page.');
