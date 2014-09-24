@@ -17,7 +17,8 @@ class ProductCategoryCreatePage
     public static $ButtonCreateExit         = '//section[@class="mini-layout"]/div[1]/div[2]/div/button[2]';
     
     //поля для вводу
-    public static $Input                    = '';
+    public static $InputName                = '#inputName';
+    public static $InputLogo                = '#Img';
 
     //чекбокси
     public static $Check                    = '';
@@ -32,9 +33,15 @@ class ProductCategoryCreatePage
     public static $Tab                      = '';
     
     //селекти
-    public static $Select                   = '';
+    public static $SelectParent                   = '#inputMainC_chosen';
+    public static $SelectParentInput              = '#inputMainC_chosen input';
+    public static function selectParentOptions($number) { return "#inputMainC_chosen ul li:nth-child($number)"; }
     
     //опції
     public static function selectNameOption($number) { return "//[$number]";}
 
+    //лейбли
+    public static $InputNameLabel           = '';
+    public static $SelectParentLabel        = '';
+    public static $InputLogoLabel           = '';
 }
