@@ -15,6 +15,7 @@ class ProductCategoryCreatePage
     public static $ButtonBack               = '.t-d_u';
     public static $ButtonCreate             = '//section[@class="mini-layout"]/div[1]/div[2]/div/button[1]';
     public static $ButtonCreateExit         = '//section[@class="mini-layout"]/div[1]/div[2]/div/button[2]';
+    public static $ButtonSelectImage        = '//div[3]//div[@class="controls"]//button';
     public static $ButtonCreateNewTemplate  = '#create_tpl';//ВІКНО JS PROMT
     public static $ButtonAutoFit            = '#translateCategoryTitle';
     
