@@ -280,18 +280,10 @@ class TextElementNSCest
             }        
         }
       InitTest::ClearAllCach($I);   
-    }    
-            // ДЛя редактирвания !!!!!!!!!!!!!!!!!!!!!!!!    
-//    $I->click(NavigationBarPage::$Orders);
-//        $I->click(NavigationBarPage::$NotificationStatuses);
-//        $I->wait('1');
-//        $amount_rows = $I->grabCCSAmount($I, '.share_alt');
-//        for($j = 1;$j <= $amount_rows;++$j){
-//            $name_notification = $I->grabTextFrom(NotificationStatusesListPage::lineNameLink($j));
-//            if($name_notification == 'qwe 123 !@# ЯЧС'){
-//            $I->click(NotificationStatusesListPage::lineNameLink($j));
-//            }
-//        }
-//    }
+    }
+    
+    
+    
+    
     
 }
