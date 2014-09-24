@@ -2,11 +2,11 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-05 11:24+0300\n"
-"PO-Revision-Date: 2014-06-05 11:24+0300\n"
-"Last-Translator:  \n"
-"Language-Team:  \n"
-"Language: en_US\n"
+"POT-Creation-Date: 2014-08-02 05:27+0300\n"
+"PO-Revision-Date: 2014-08-02 05:27+0300\n"
+"Last-Translator:  <>\n"
+"Language-Team:  <>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -17,3 +17,40 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/navigation/module_info.php:4
+msgid "Site Navigation"
+msgstr "Site Navigation/Site navigation"
+
+#: ./application/modules/navigation/module_info.php:5
+msgid "Displays the current user location on the site."
+msgstr "Displays the current user location on the site."
+
+#: ./application/modules/navigation/navigation_widgets.php:71
+#: ./application/modules/navigation/navigation_widgets.php:77
+msgid "Brands"
+msgstr "Brands"
+
+#: ./application/modules/navigation/navigation_widgets.php:84
+msgid "Compare"
+msgstr "Compare"
+
+#: ./application/modules/navigation/navigation_widgets.php:89
+msgid "Wish list"
+msgstr "Wishlist/ Wish list"
+
+#: ./application/modules/navigation/navigation_widgets.php:94
+msgid "Profile"
+msgstr "Profile"
+
+#: ./application/modules/navigation/navigation_widgets.php:99
+msgid "Search"
+msgstr "Search"
+
+#: ./application/modules/navigation/navigation_widgets.php:104
+msgid "Cart"
+msgstr "Cart"
+
+#: ./application/modules/navigation/templates/widget_navigation.tpl:3
+msgid "Navigation"
+msgstr "Navigation"
