@@ -72,7 +72,7 @@ class Admin extends \ShopAdminController {
                 'userGroups' => $userGroups,
                 'CS' => $this->discount_model_admin->getMainCurrencySymbol(),
                 'filterQuery' => $_SESSION['QueryDiscountList'],
-                'categories' => ShopCore::app()->SCategoryTree->getTree(),
+                'categories' => ShopCore::app()->SCategoryTree->getTree_(),
             );
 
             //Render template and set data
@@ -164,7 +164,7 @@ class Admin extends \ShopAdminController {
                 'userGroups' => $userGroups,
                 'CS' => $this->discount_model_admin->getMainCurrencySymbol(),
                 'filterQuery' => $_SESSION['QueryDiscountList'],
-                'categories' => ShopCore::app()->SCategoryTree->getTree(),
+                'categories' => ShopCore::app()->SCategoryTree->getTree_(),
                 'languages' => $this->db->get('languages')->result_array(),
                 'locale' => $locale
             );
