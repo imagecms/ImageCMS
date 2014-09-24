@@ -22,6 +22,16 @@ class ProductSEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
+    public function ClearCashee (SeoExpertTester\seoexpertSteps $I){
+        InitTest::ClearAllCach($I);
+        InitTest::changeTextAditorToNative($I);
+    }
+    
+    
+    /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps 
+     */
     public function CreateCategoryRusForProduct (SeoExpertTester\seoexpertSteps $I){
         $I->SeoCreateCategoryProduct($createNameCategory = 'Вода');
     }
@@ -41,7 +51,11 @@ class ProductSEOCest
      * @guy SeoExpertTester\seoexpertSteps 
      */
     public function CreatуBrandRusForProduct (SeoExpertTester\seoexpertSteps $I){
-        $I->SeoCreateBrand($brandName = 'Хлеб');
+        $I->SeoCreateBrand( $brandName = 'Хлеб',
+                            $opisanie = '',
+                            $title = '',
+                            $description = '',
+                            $keywords = '');
     }
     
     
@@ -50,7 +64,11 @@ class ProductSEOCest
      * @guy SeoExpertTester\seoexpertSteps 
      */
     public function CreatуBrandEngForProduct (SeoExpertTester\seoexpertSteps $I){
-        $I->SeoCreateBrand($brandName = 'Bread');
+        $I->SeoCreateBrand( $brandName = 'Bread',
+                            $opisanie = '',
+                            $title = '',
+                            $description = '',
+                            $keywords = '');
     }
     
     
