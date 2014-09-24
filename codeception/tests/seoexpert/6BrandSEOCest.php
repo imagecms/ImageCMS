@@ -4,6 +4,8 @@ use \SeoExpertTester;
 class BrandSEOCest
 
 {
+    private $ID_Russian_Name_Brand;
+    private $ID_English_Name_Brand;
     
 //---------------------------AUTORIZATION--------------------------------------- 
     /**
@@ -13,17 +15,52 @@ class BrandSEOCest
         InitTest::Login($I);
     }
     
+    /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps 
+     */
+    public function ClearCashee (SeoExpertTester\seoexpertSteps $I){
+        InitTest::ClearAllCach($I);
+        InitTest::changeTextAditorToNative($I);
+    }
+    
+
+    
+    /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps 
+     */
+    public function CreateRussianNameBrandForFront (SeoExpertTester\seoexpertSteps $I){        
+        $I->SeoCreateBrand( $brandName      = 'Пробник',
+                            $opisanie       = 'Ъписание описание описание',
+                            $title          = 'тайтл тайтл тайтл',
+                            $description    = 'деск деск деск',
+                            $keywords       = 'кей кей кей'); 
+    }
     
     
     /**
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
-    public function CreateBrandForFront (SeoExpertTester\seoexpertSteps $I){
-        InitTest::ClearAllCach($I);
-        InitTest::changeTextAditorToNative($I);
-        $I->SeoCreateBrand($brandName = 'Пробник', $opisanie = 'Ъписание описание описание', $title = 'тайтл тайтл тайтл', $description = 'деск деск деск', $keywords = 'кей кей кей');       
-        $I->SeoCreateBrand($brandName = 'Cannibal Corpse', $opisanie = 'Qrutal Death Metal', $title = 'Grind Core', $description = 'Powervailens noise', $keywords = 'SwS Destr CC CX EE');       
+    public function CreateEnglishNameBrandForFront (SeoExpertTester\seoexpertSteps $I){    
+        $I->SeoCreateBrand( $brandName      = 'Cannibal Corpse',
+                            $opisanie       = 'Qrutal Death Metal',
+                            $title          = 'Grind Core',
+                            $description    = 'Powervailens noise',
+                            $keywords       = 'SwS Destr CC CX EE');       
+    }
+    
+    
+    /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps
+     */
+    public function GetIDCreatingrussianAndEnglishNameBrands(SeoExpertTester\seoexpertSteps $I) {
+        $ID_Russian_Name_Brand = $I->GetBrandID($name_brand = 'Пробник');
+        $ID_English_Name_Brand = $I->GetBrandID($name_brand = 'Cannibal Corpse');
+        $this->ID_Russian_Name_Brand = $ID_Russian_Name_Brand;
+        $this->ID_English_Name_Brand = $ID_English_Name_Brand;
     }
     
     
@@ -32,8 +69,16 @@ class BrandSEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
-    public function CreateCategoryForFront (SeoExpertTester\seoexpertSteps $I){
-        $I->SeoCreateCategoryProduct($createNameCategory = 'Брендовая');   
+    public function CreateRussianNameProductCategoryForFront (SeoExpertTester\seoexpertSteps $I){
+        $I->SeoCreateCategoryProduct($createNameCategory = 'Брендовая');
+    }
+    
+    
+    /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps 
+     */
+    public function CreateEnglishNameProductCategoryForFront (SeoExpertTester\seoexpertSteps $I){
         $I->SeoCreateCategoryProduct($createNameCategory = 'Etmo Plasma');   
     }
     
@@ -42,32 +87,71 @@ class BrandSEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
-    public function CreateProductForFront (SeoExpertTester\seoexpertSteps $I){
-        $I->SeoCreateProduct($Name_Product = 'Брендовый Пробник товар',
-                            $Price_Product = '777',
-                            $Brand_Product = 'Пробник',
-                            $Category_Product = 'Брендовая',
-                            $Additional_Category = '');     
-        $I->SeoCreateProduct($Name_Product = 'Пробник товар Брендовий',
-                            $Price_Product = '888',
-                            $Brand_Product = 'Пробник',
+    public function CreateProduct1ForFront (SeoExpertTester\seoexpertSteps $I){
+        $I->SeoCreateProduct($Name_Product  = 'Брендовый Пробник товар',
+                            $Price_Product  = '777',
+                            $Brand_Product  = 'Пробник',
+                            $Category_Product   = 'Брендовая',
+                            $Additional_Category = '');
+    }
+    
+    
+    /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps 
+     */
+    public function CreateProduct2ForFront (SeoExpertTester\seoexpertSteps $I){        
+        $I->SeoCreateProduct($Name_Product  = 'Пробник товар Брендовий',
+                            $Price_Product  = '888',
+                            $Brand_Product  = 'Пробник',
                             $Category_Product = 'Брендовая',
                             $Additional_Category = '');
+    }
+    
+    
+    /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps 
+     */
+    public function CreateProduct3ForFront (SeoExpertTester\seoexpertSteps $I){        
         $I->SeoCreateProduct($Name_Product = 'Товар Брендовый Пробник',
                             $Price_Product = '654',
                             $Brand_Product = 'Пробник',
                             $Category_Product = 'Брендовая',
                             $Additional_Category = ''); 
+    }
+    
+    
+    /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps 
+     */
+    public function CreateProduct4ForFront (SeoExpertTester\seoexpertSteps $I){        
         $I->SeoCreateProduct($Name_Product = 'Zulusandia',
                             $Price_Product = '888',
                             $Brand_Product = 'Cannibal Corpse',
                             $Category_Product = 'Etmo Plasma',
-                            $Additional_Category = '');     
+                            $Additional_Category = '');  
+    }
+    
+    /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps 
+     */
+    public function CreateProduct5ForFront (SeoExpertTester\seoexpertSteps $I){
         $I->SeoCreateProduct($Name_Product = 'Two Zulusandia',
                             $Price_Product = '999',
                             $Brand_Product = 'Cannibal Corpse',
                             $Category_Product = 'Etmo Plasma',
-                            $Additional_Category = '');     
+                            $Additional_Category = ''); 
+    }
+    
+    
+    /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps 
+     */
+    public function CreateProduct6ForFront (SeoExpertTester\seoexpertSteps $I){        
         $I->SeoCreateProduct($Name_Product = 'Zulusandia Three',
                             $Price_Product = '658',
                             $Brand_Product = 'Cannibal Corpse',
@@ -83,15 +167,22 @@ class BrandSEOCest
         InitTest::ClearAllCach($I);
     }
     
+
+    /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps
+     */
+    public function SettingvaluesOnSeoexpertBasePage(SeoExpertTester\seoexpertSteps $I) {
+        $I->NullValues();
+    }
+    
     
     
     /**
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function BrandTitleComonVariableRUS (SeoExpertTester\seoexpertSteps $I) {
-        $ID_brand = $I->GetBrandID($name_brand = 'Пробник');
-        $I->NullValues();
+    public function BrandTitleComonVariableRUS (SeoExpertTester\seoexpertSteps $I) {  
         $I->SetBrandSeoPage($Title = '%ID% %name% %desc%',
                             $Description = '',
                             $Pagination = '',
@@ -99,7 +190,7 @@ class BrandSEOCest
                             $Keywords = '',
                             $CheckBox_Activate = '//section/form/div[2]/div[2]/table[4]/tbody/tr/td/div/div/div[1]/div/span[2]');     
         $I->CheckValuesInPage($URL_Page = '/shop/brand/probnik#',
-                                $values = "$ID_brand Пробник Ъписание описание описание");
+                                $values = "$this->ID_Russian_Name_Brand Пробник Ъписание описание описание");
     }
     
     
@@ -108,8 +199,6 @@ class BrandSEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function BrandTitleComonVariableENG (SeoExpertTester\seoexpertSteps $I) {
-        $ID_brand = $I->GetBrandID($name_brand = 'Cannibal Corpse');
-        $I->NullValues();
         $I->SetBrandSeoPage($Title = '%ID% %name% %desc%',
                             $Description = '',
                             $Pagination = '',
@@ -117,7 +206,7 @@ class BrandSEOCest
                             $Keywords = '',
                             $CheckBox_Activate = '//section/form/div[2]/div[2]/table[4]/tbody/tr/td/div/div/div[1]/div/span[2]');     
         $I->CheckValuesInPage($URL_Page = '/shop/brand/cannibal-corpse#',
-                                $values = "$ID_brand Cannibal Corpse Qrutal Death Metal");
+                                $values = "$this->ID_English_Name_Brand Cannibal Corpse Qrutal Death Metal");
     }
     
     
@@ -128,7 +217,6 @@ class BrandSEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function BrandTitleComonSymbolRUS (SeoExpertTester\seoexpertSteps $I) {
-        $I->NullValues();
         $I->SetBrandSeoPage($Title = 'QWE asd 123 ЪХЗЫ хїзфіва +-',
                             $Description = '',
                             $Pagination = '',
@@ -145,7 +233,6 @@ class BrandSEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function BrandTitleComonSymbolENG (SeoExpertTester\seoexpertSteps $I) {
-        $I->NullValues();
         $I->SetBrandSeoPage($Title = 'QWE asd 123 ЪХЗЫ хїзфіва +-',
                             $Description = '',
                             $Pagination = '',
@@ -164,8 +251,6 @@ class BrandSEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function BrandTitleComonSymbolVariableRUS (SeoExpertTester\seoexpertSteps $I) {
-        $ID_brand = $I->GetBrandID($name_brand = 'Пробник');
-        $I->NullValues();
         $I->SetBrandSeoPage($Title = 'QWE %desc% asd 123 %ID% ЪХЗЫ хїзфіва %name% +-',
                             $Description = '',
                             $Pagination = '',
@@ -173,7 +258,7 @@ class BrandSEOCest
                             $Keywords = '',
                             $CheckBox_Activate = '//section/form/div[2]/div[2]/table[4]/tbody/tr/td/div/div/div[1]/div/span[2]');     
         $I->CheckValuesInPage($URL_Page = '/shop/brand/probnik#',
-                                $values = "QWE Ъписание описание описание asd 123 $ID_brand ЪХЗЫ хїзфіва Пробник +-");
+                                $values = "QWE Ъписание описание описание asd 123 $this->ID_Russian_Name_Brand ЪХЗЫ хїзфіва Пробник +-");
     }
     
     
@@ -183,8 +268,6 @@ class BrandSEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function BrandTitleComonSymbolVariableENG (SeoExpertTester\seoexpertSteps $I) {
-        $ID_brand = $I->GetBrandID($name_brand = 'Cannibal Corpse');
-        $I->NullValues();
         $I->SetBrandSeoPage($Title = 'QWE %desc% asd 123 %ID% ЪХЗЫ хїзфіва %name% +-',
                             $Description = '',
                             $Pagination = '',
@@ -192,7 +275,7 @@ class BrandSEOCest
                             $Keywords = '',
                             $CheckBox_Activate = '//section/form/div[2]/div[2]/table[4]/tbody/tr/td/div/div/div[1]/div/span[2]');     
         $I->CheckValuesInPage($URL_Page = '/shop/brand/cannibal-corpse#',
-                                $values = "QWE Qrutal Death Metal asd 123 $ID_brand ЪХЗЫ хїзфіва Cannibal Corpse +-");
+                                $values = "QWE Qrutal Death Metal asd 123 $this->ID_English_Name_Brand ЪХЗЫ хїзфіва Cannibal Corpse +-");
     }
     
     
@@ -210,8 +293,6 @@ class BrandSEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function BrandDescriptionComonRUS (SeoExpertTester\seoexpertSteps $I) {
-        $ID_brand = $I->GetBrandID($name_brand = 'Пробник');
-        $I->NullValues();
         $I->SetBrandSeoPage($Title = '',
                             $Description = '%ID% %name% %desc%',
                             $Pagination = '',
@@ -219,7 +300,7 @@ class BrandSEOCest
                             $Keywords = '',
                             $CheckBox_Activate = '//section/form/div[2]/div[2]/table[4]/tbody/tr/td/div/div/div[1]/div/span[2]');     
         $I->CheckValuesInPage($URL_Page = '/shop/brand/probnik#',
-                                $values = "$ID_brand Пробник Ъписание описание описание");
+                                $values = "$this->ID_Russian_Name_Brand Пробник Ъписание описание описание");
     }
     
     
@@ -229,8 +310,6 @@ class BrandSEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function BrandDescriptionComonENG (SeoExpertTester\seoexpertSteps $I) {
-        $ID_brand = $I->GetBrandID($name_brand = 'Cannibal Corpse');
-        $I->NullValues();
         $I->SetBrandSeoPage($Title = '',
                             $Description = '%ID% %name% %desc%',
                             $Pagination = '',
@@ -238,7 +317,7 @@ class BrandSEOCest
                             $Keywords = '',
                             $CheckBox_Activate = '//section/form/div[2]/div[2]/table[4]/tbody/tr/td/div/div/div[1]/div/span[2]');     
         $I->CheckValuesInPage($URL_Page = '/shop/brand/cannibal-corpse#',
-                                $values = "$ID_brand Cannibal Corpse Qrutal Death Metal");
+                                $values = "$this->ID_English_Name_Brand Cannibal Corpse Qrutal Death Metal");
     }
     
     
@@ -247,7 +326,6 @@ class BrandSEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function BrandDescriptionSymbolRUS (SeoExpertTester\seoexpertSteps $I) {
-        $I->NullValues();
         $I->SetBrandSeoPage($Title = '',
                             $Description = 'QWE asd 123 ЪХЗЫ хїзфіва +-',
                             $Pagination = '',
@@ -267,7 +345,6 @@ class BrandSEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function BrandDescriptionSymbolENG (SeoExpertTester\seoexpertSteps $I) {
-        $I->NullValues();
         $I->SetBrandSeoPage($Title = '',
                             $Description = 'QWE asd 123 ЪХЗЫ хїзфіва +-',
                             $Pagination = '',
@@ -288,7 +365,6 @@ class BrandSEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function BrandKeywordsComonRUS (SeoExpertTester\seoexpertSteps $I) {   
-        $I->NullValues();
         $I->SetBrandSeoPage($Title = '',
                             $Description = '',
                             $Pagination = '',
@@ -305,7 +381,6 @@ class BrandSEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function BrandKeywordsComonENG (SeoExpertTester\seoexpertSteps $I) {   
-        $I->NullValues();
         $I->SetBrandSeoPage($Title = '',
                             $Description = '',
                             $Pagination = '',
@@ -322,7 +397,6 @@ class BrandSEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function BrandKeywordsSymbolRUS (SeoExpertTester\seoexpertSteps $I) {   
-        $I->NullValues();
         $I->SetBrandSeoPage($Title = '',
                             $Description = '',
                             $Pagination = '',
@@ -339,7 +413,6 @@ class BrandSEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function BrandKeywordsSymbolENG (SeoExpertTester\seoexpertSteps $I) {   
-        $I->NullValues();
         $I->SetBrandSeoPage($Title = '',
                             $Description = '',
                             $Pagination = '',
@@ -363,7 +436,6 @@ class BrandSEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function BrandTitleLengthRUS (SeoExpertTester\seoexpertSteps $I) {   
-        $I->NullValues();
         $I->SetBrandSeoPage($Title = '%desc%',
                             $Description = '',
                             $Pagination = '',
@@ -380,7 +452,6 @@ class BrandSEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function BrandTitleLengthENG (SeoExpertTester\seoexpertSteps $I) {   
-        $I->NullValues();
         $I->SetBrandSeoPage($Title = '%desc%',
                             $Description = '',
                             $Pagination = '',
@@ -397,7 +468,6 @@ class BrandSEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function BrandTitleLengthMAXRUS (SeoExpertTester\seoexpertSteps $I) {   
-        $I->NullValues();
         $I->SetBrandSeoPage($Title = '%desc%',
                             $Description = '',
                             $Pagination = '',
@@ -414,7 +484,6 @@ class BrandSEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function BrandTitleLengthMAXENG (SeoExpertTester\seoexpertSteps $I) {   
-        $I->NullValues();
         $I->SetBrandSeoPage($Title = '%desc%',
                             $Description = '',
                             $Pagination = '',
@@ -431,7 +500,6 @@ class BrandSEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function BrandTitleLengthMedRUS (SeoExpertTester\seoexpertSteps $I) {   
-        $I->NullValues();
         $I->SetBrandSeoPage($Title = '%desc%',
                             $Description = '',
                             $Pagination = '',
@@ -448,7 +516,6 @@ class BrandSEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function BrandTitleLengthMedENG (SeoExpertTester\seoexpertSteps $I) {   
-        $I->NullValues();
         $I->SetBrandSeoPage($Title = '%desc%',
                             $Description = '',
                             $Pagination = '',
@@ -465,7 +532,6 @@ class BrandSEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function ICMS_1573__BrandDescriptionLengthMedRUS (SeoExpertTester\seoexpertSteps $I) {   
-        $I->NullValues();
         $I->SetBrandSeoPage($Title = '',
                             $Description = '%desc%',
                             $Pagination = '',
@@ -483,7 +549,6 @@ class BrandSEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function BrandDescriptionLengthMedENG (SeoExpertTester\seoexpertSteps $I) {   
-        $I->NullValues();
         $I->SetBrandSeoPage($Title = '',
                             $Description = '%desc%',
                             $Pagination = '',
@@ -501,8 +566,6 @@ class BrandSEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function BrandActiveCheckBoxActiveRUS (SeoExpertTester\seoexpertSteps $I) {
-        $ID_brand = $I->GetBrandID($name_brand = 'Пробник');
-        $I->NullValues();
         $I->SetBrandSeoPage($Title = '%ID% %name% %desc% гуд бай',
                             $Description = '%ID% %name% %desc% гуд бай',
                             $Pagination = '',
@@ -510,7 +573,7 @@ class BrandSEOCest
                             $Keywords = '%name% гуд бай',
                             $CheckBox_Activate = '//section/form/div[2]/div[2]/table[4]/tbody/tr/td/div/div/div[1]/div/span[2]');     
         $I->CheckValuesInPage($URL_Page = '/shop/brand/probnik#',
-                                $values = "$ID_brand Пробник Ъписание описание описание гуд бай");
+                                $values = "$this->ID_Russian_Name_Brand Пробник Ъписание описание описание гуд бай");
     } 
     
     
@@ -519,8 +582,6 @@ class BrandSEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function BrandActiveCheckBoxActiveENG (SeoExpertTester\seoexpertSteps $I) {
-        $ID_brand = $I->GetBrandID($name_brand = 'Cannibal Corpse');
-        $I->NullValues();
         $I->SetBrandSeoPage($Title = '%ID% %name% %desc% гуд бай',
                             $Description = '%ID% %name% %desc% гуд бай',
                             $Pagination = '',
@@ -528,7 +589,7 @@ class BrandSEOCest
                             $Keywords = '%name% гуд бай',
                             $CheckBox_Activate = '//section/form/div[2]/div[2]/table[4]/tbody/tr/td/div/div/div[1]/div/span[2]');     
         $I->CheckValuesInPage($URL_Page = '/shop/brand/cannibal-corpse#',
-                                $values = "$ID_brand Cannibal Corpse Qrutal Death Metal гуд бай");
+                                $values = "$this->ID_English_Name_Brand Cannibal Corpse Qrutal Death Metal гуд бай");
     } 
     
     
@@ -537,8 +598,6 @@ class BrandSEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function BrandActiveCheckBoxDeactiveRUS (SeoExpertTester\seoexpertSteps $I) {
-        $ID_brand = $I->GetBrandID($name_brand = 'Пробник');
-        $I->NullValues();
         $I->SetBrandSeoPage($Title = '%ID% %name% %desc% гуд бай',
                             $Description = '%ID% %name% %desc% гуд бай',
                             $Pagination = '',
@@ -547,7 +606,7 @@ class BrandSEOCest
                             $CheckBox_Activate = '//section/form/div[2]/div[2]/table[4]/tbody/tr/td/div/div/div[1]/div/span[2]');     
         $I->DeactivateCheckBox($checkbox_xpath = '//section/form/div[2]/div[2]/table[4]/tbody/tr/td/div/div/div[1]/div/span[2]');
         $I->amOnPage('/shop/brand/probnik#');
-        $I->dontSeeInPageSource("$ID_brand Пробник Ъписание описание описание гуд бай");
+        $I->dontSeeInPageSource("$this->ID_Russian_Name_Brand Пробник Ъписание описание описание гуд бай");
     } 
     
     
@@ -558,8 +617,6 @@ class BrandSEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function BrandActiveCheckBoxDeactiveENG (SeoExpertTester\seoexpertSteps $I) {
-        $ID_brand = $I->GetBrandID($name_brand = 'Cannibal Corpse');
-        $I->NullValues();
         $I->SetBrandSeoPage($Title = '%ID% %name% %desc% гуд бай',
                             $Description = '%ID% %name% %desc% гуд бай',
                             $Pagination = '',
@@ -568,7 +625,7 @@ class BrandSEOCest
                             $CheckBox_Activate = '//section/form/div[2]/div[2]/table[4]/tbody/tr/td/div/div/div[1]/div/span[2]');     
         $I->DeactivateCheckBox($checkbox_xpath = '//section/form/div[2]/div[2]/table[4]/tbody/tr/td/div/div/div[1]/div/span[2]');
         $I->amOnPage('/shop/brand/cannibal-corpse#');
-        $I->dontSeeInPageSource("$ID_brand Пробник Ъписание описание описание гуд бай");
+        $I->dontSeeInPageSource("$this->ID_English_Name_Brand Пробник Ъписание описание описание гуд бай");
     } 
     
     
@@ -578,8 +635,6 @@ class BrandSEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function BrandNullCheckBoxActiveRUS (SeoExpertTester\seoexpertSteps $I) {
-        $ID_brand = $I->GetBrandID($name_brand = 'Пробник');
-        $I->NullValues();
         $I->SetBrandSeoPage($Title = '%ID% %name% %desc% гуд бай',
                             $Description = '%ID% %name% %desc% гуд бай',
                             $Pagination = '',
@@ -592,7 +647,7 @@ class BrandSEOCest
                             $meta_description = 'декскрімінатіононзенатіфон',
                             $meta_keywords = 'основаосвноавключей');
         $I->amOnPage('/shop/brand/probnik#');
-        $I->dontSeeInPageSource("$ID_brand Пробник гуляй поле бай");
+        $I->dontSeeInPageSource("$this->ID_Russian_Name_Brand Пробник гуляй поле бай");
         $I->seeInPageSource('тітутайтлілукай');
         $I->seeInPageSource('декскрімінатіононзенатіфон');
         $I->seeInPageSource('основаосвноавключей');
@@ -605,8 +660,6 @@ class BrandSEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function BrandNullCheckBoxActiveENG (SeoExpertTester\seoexpertSteps $I) {
-        $ID_brand = $I->GetBrandID($name_brand = 'Cannibal Corpse');
-        $I->NullValues();
         $I->SetBrandSeoPage($Title = '%ID% %name% %desc% гуд бай',
                             $Description = '%ID% %name% %desc% гуд бай',
                             $Pagination = '',
@@ -619,7 +672,7 @@ class BrandSEOCest
                             $meta_description = 'Afrikanabanana',
                             $meta_keywords = 'TeroristUKRqwerty');
         $I->amOnPage('/shop/brand/cannibal-corpse#');
-        $I->dontSeeInPageSource("$ID_brand Cannibal Corpse гуляй поле бай");
+        $I->dontSeeInPageSource("$this->ID_English_Name_Brand Cannibal Corpse гуляй поле бай");
         $I->seeInPageSource('Baambaataa');
         $I->seeInPageSource('Afrikanabanana');
         $I->seeInPageSource('TeroristUKRqwerty');
@@ -632,8 +685,6 @@ class BrandSEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function BrandNullCheckBoxDeactiveRUS (SeoExpertTester\seoexpertSteps $I) {
-        $ID_brand = $I->GetBrandID($name_brand = 'Пробник');
-        $I->NullValues();
         $I->SetBrandSeoPage($Title = '%ID% %name% %desc% гуд бай',
                             $Description = '%ID% %name% %desc% гуд бай',
                             $Pagination = '',
@@ -646,7 +697,7 @@ class BrandSEOCest
                             $meta_description = 'декскрімінатіононзенатіфон',
                             $meta_keywords = 'основаосвноавключей');
         $I->amOnPage('/shop/brand/probnik#');
-        $I->seeInPageSource("$ID_brand Пробник Ъписание описание описание гуд бай");
+        $I->seeInPageSource("$this->ID_Russian_Name_Brand Пробник Ъписание описание описание гуд бай");
         $I->dontSeeInPageSource('тітутайтлілукай');
         $I->dontSeeInPageSource('декскрімінатіононзенатіфон');
         $I->dontSeeInPageSource('основаосвноавключей');
@@ -660,8 +711,6 @@ class BrandSEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function BrandNullCheckBoxDeactiveENG (SeoExpertTester\seoexpertSteps $I) {
-        $ID_brand = $I->GetBrandID($name_brand = 'Cannibal Corpse');
-        $I->NullValues();
         $I->SetBrandSeoPage($Title = '%ID% %name% %desc% гуд бай',
                             $Description = '%ID% %name% %desc% гуд бай',
                             $Pagination = '',
@@ -674,7 +723,7 @@ class BrandSEOCest
                             $meta_description = 'Afrikanabanana',
                             $meta_keywords = 'TeroristUKRqwerty');
         $I->amOnPage('/shop/brand/cannibal-corpse#');
-        $I->seeInPageSource("$ID_brand Cannibal Corpse Qrutal Death Metal гуд бай");
+        $I->seeInPageSource("$this->ID_English_Name_Brand Cannibal Corpse Qrutal Death Metal гуд бай");
         $I->dontSeeInPageSource('Baambaataa');
         $I->dontSeeInPageSource('Afrikanabanana');
         $I->dontSeeInPageSource('TeroristUKRqwerty');
@@ -686,7 +735,6 @@ class BrandSEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function BrandPaginationNumberRUS (SeoExpertTester\seoexpertSteps $I) {
-        $I->NullValues();
         $I->AmountProductInFront($Amount_Product_Front = '1');
         $I->SetBrandSeoPage($Title = 'тайтл %pagenumber%',
                             $Description = 'дескрипшн %pagenumber%',
@@ -716,7 +764,6 @@ class BrandSEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function BrandPaginationNumberENG (SeoExpertTester\seoexpertSteps $I) {
-        $I->NullValues();
         $I->AmountProductInFront($Amount_Product_Front = '1');
         $I->SetBrandSeoPage($Title = 'тайтл title %pagenumber%',
                             $Description = 'дескрипшн Description %pagenumber%',
@@ -738,11 +785,7 @@ class BrandSEOCest
         $I->seeInPageSource('кейвордс Keywords привет питер Zdorow 3');     
     }
     
-    
-    
-    
-    
-    
+
     /**
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
