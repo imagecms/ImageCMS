@@ -4,7 +4,7 @@ class TextElementNSCest
 {
 //---------------------------AUTORIZATION---------------------------------------
     /**
-     * @group aa
+     * @group a
      */
     public function Login(NotificationStatusesTester $I){
         InitTest::Login($I);
@@ -150,7 +150,7 @@ class TextElementNSCest
         $I->see('Вернуться', NotificationStatusesCreatePage::$ButtonBack);
         $I->see('Создать', NotificationStatusesCreatePage::$ButtonCreate);
         $I->see('Создать и выйти', NotificationStatusesCreatePage::$ButtonCreateExit);        
-        $I->see('Общая информация', NotificationStatusesCreatePage::$BlockInfoTitle);        
+        $I->see('Общая информация', NotificationStatusesCreatePage::$TitleBlockInfo);        
         $I->see('Название', NotificationStatusesCreatePage::$InputNameLabel);        
     }
 
@@ -171,7 +171,7 @@ class TextElementNSCest
         $I->see('Вернуться', NotificationStatusesEditPage::$ButtonBack);
         $I->see('Сохранить', NotificationStatusesEditPage::$ButtonSave);
         $I->see('Сохранить и выйти', NotificationStatusesEditPage::$ButtonSaveExit);
-        $I->see('Данные статуса уведомления о появлении', NotificationStatusesEditPage::$BlockEditTitle);
+        $I->see('Данные статуса уведомления о появлении', NotificationStatusesEditPage::$TitleBlockEdit);
         $I->see('Название', NotificationStatusesEditPage::$InputNameLabel);
     }
 
@@ -256,7 +256,7 @@ class TextElementNSCest
 //------------VERIFY TEXT DELETING MESSAGE LIST PAGE----------------------------
     
     /**
-     * @group aa
+     * @group a
      */
     public function VerifyTextMessageDeletingStatus (NotificationStatusesTester $I){
         $I->click(NavigationBarPage::$Orders);

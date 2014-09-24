@@ -2,11 +2,11 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-05 11:24+0300\n"
-"PO-Revision-Date: 2014-06-05 11:24+0300\n"
-"Last-Translator:  \n"
-"Language-Team:  \n"
-"Language: en_US\n"
+"POT-Creation-Date: 2014-07-29 12:14+0300\n"
+"PO-Revision-Date: 2014-07-29 12:14+0300\n"
+"Last-Translator:  <>\n"
+"Language-Team:  <>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -17,3 +17,32 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/filter/module_info.php:5
+msgid "Allows you to add filters to search by additional fields in ImageCMS Corporate"
+msgstr "Allows you to add filters to search by additional fields in ImageCMS Corporate"
+
+#: ./application/modules/filter/module_info.php:4
+msgid "Filter"
+msgstr "Filter"
+
+#: ./application/modules/filter/filter.php:60
+msgid "The first"
+msgstr "The first/ First"
+
+#: ./application/modules/filter/filter.php:35
+#: ./application/modules/filter/filter.php:152
+msgid "Search"
+msgstr "Search"
+
+#: ./application/modules/filter/filter.php:29
+msgid "At your request, page not found."
+msgstr "The requested page has not been found"
+
+#: ./application/modules/filter/filter.php:133
+msgid "Group has not fields"
+msgstr "Group has no fields"
+
+#: ./application/modules/filter/filter.php:61
+msgid "Last"
+msgstr "Last"
