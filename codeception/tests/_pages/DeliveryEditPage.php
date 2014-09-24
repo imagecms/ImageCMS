@@ -6,7 +6,7 @@ class DeliveryEditPage
     
     //заголовки
     public static $Title                        = '.title';
-    public static $BlockEditTitle               = '//section[@class="mini-layout"]//th';
+    public static $TitleBlockEdit               = '//section[@class="mini-layout"]//th';
     
     //кнопки
     Public static $ButtonBack                   = '.t-d_u';

@@ -6,7 +6,7 @@ class NotificationStatusesCreatePage
     
     //заголовки
     public static $Title                    = '.title';
-    public static $BlockInfoTitle           = '//section[@class="mini-layout"]//th';
+    public static $TitleBlockInfo           = '//section[@class="mini-layout"]//th';
 
     //кнопки
     public static $ButtonBack               = '.t-d_u';
