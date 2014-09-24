@@ -23,7 +23,7 @@ class EditPage
     public static $Text                     = '';
     
     //лейбли
-    public static $ElementNameLabel           = '';
+    public static $ElementNameLabel         = '';
 
     //таби
     public static $Tab                      = '';
