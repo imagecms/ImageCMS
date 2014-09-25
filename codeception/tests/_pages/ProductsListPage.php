@@ -1,6 +1,6 @@
 <?php
 
-class ProductslistPage
+class ProductsListPage
 {
     public static $URL = '/admin/components/run/shop/search/index';
     
