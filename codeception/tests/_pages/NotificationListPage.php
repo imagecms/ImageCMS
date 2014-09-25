@@ -58,9 +58,9 @@ class NotificationListPage
         public static function tabAllLineNotifications($row)              { return "//div[@id='notification_all']//tbody/tr[$row]/td[9]/button"; }
     //--------------------------------------------------------------------------
     //----------------------------ДЛЯ ВСІХ ВКЛАДОК------------------------------
-    //Елементи всіх табі в дублюються , і для елементів кожного таба створюється 
+    //Елементи всіх табів дублюються , і для елементів кожного таба створюється 
     //<DIV> з ID notification_(тут ID статуса)
-    //тому для роботи з окремим табом, методу потрібно потрібно передати ID таба 
+    //тому для роботи з окремим табом, методу потрібно передати ID таба 
     //--------------------------------------------------------------------------
     //перемикання вкладок
     public static function tab($number) { return "//div[@class='btn-group myTab m-t_20']/a[$number]"; }
@@ -84,9 +84,9 @@ class NotificationListPage
         public static function filterSelectStatus($tab_id)                   { return "//div[@id='notification_$tab_id']//thead/tr[2]/td[7]/select";}
         public static function filterSelectStatusOption($tab_id, $number)    { return "//div[@id='notification_$tab_id']//thead/tr[2]/td[7]/select/option[$number]"; }
     //рядки таблиці
-        public static function lineCheck($tab_id, $row)                      { return "//div[@id='notification_$tab_id']//tbody/tr[$row]/td[1]/span/span"; }
-        public static function lineIDLink($tab_id, $row)                     { return "//div[@id='notification_$tab_id']//tbody/tr[$row]/td[2]/a"; }
-        public static function lineEmailText($tab_id, $row)                  { return "//div[@id='notification_$tab_id']//tbody/tr[$row/td[3]"; }
+        public static function lineCheck($tab_id, $row)                      { return "//div[@id='notification_$tab_id']//tbody/tr[$row]/td[1]/span/span"; }        
+        public static function lineIDText($tab_id, $row)                     { return "//div[@id='notification_$tab_id']//tbody/tr[$row]/td[2]/p"; }  
+        public static function lineEmailLink($tab_id, $row)                  { return "//div[@id='notification_$tab_id']//tbody/tr[$row]/td[3]/a"; }                                                                                       
         public static function lineTimeText($tab_id, $row)                   { return "//div[@id='notification_$tab_id']//tbody/tr[$row]/td[4]/p"; }
         public static function lineValidUntilText($tab_id, $row)             { return "//div[@id='notification_$tab_id']//tbody/tr[$row]/td[5]/p"; }
         public static function lineManagerText($tab_id, $row)                { return "//div[@id='notification_$tab_id']//tbody/tr[$row]/td[6]/p"; }
