@@ -2,6 +2,10 @@
 use \NotificationStatusesTester;
 class IntegrationNSCest
 {
+    
+    private $ID_Create_Status;
+    private $Position_Create_Status;
+    private $name_create_status =  '123 qwe !@# ЯЧС';
 //---------------------------AUTORIZATION---------------------------------------
     /**
      * @group aa
@@ -53,20 +57,36 @@ class IntegrationNSCest
     /**
      * @group a
      */
-    public function VerifySavedCreateStatus (NotificationStatusesTester $I){    
+    public function VerifySavedCreateStatus (NotificationStatusesTester $I){         
         $I->amOnPage(NotificationStatusesCreatePage::$URL);
         $I->wait('1');
-        $I->fillField(NotificationStatusesCreatePage::$InputName, '123 qwe !@# ЯЧС');
+        $I->fillField(NotificationStatusesCreatePage::$InputName, $this->name_create_status);
         $I->click(NotificationStatusesCreatePage::$ButtonCreateExit);
         $I->wait('1');
         $amount_rows = $I->grabCCSAmount($I, '.share_alt');
         for($j = 1;$j <= $amount_rows;++$j){
             $name_notification = $I->grabTextFrom(NotificationStatusesListPage::lineNameLink($j));
-            if($name_notification == '123 qwe !@# ЯЧС'){
+            if($name_notification == $this->name_create_status){
                 $I->wait('1');
                 $I->see('123 qwe !@# ЯЧС', NotificationStatusesListPage::lineNameLink($j));
             }
         }        
+    }
+    
+    
+    /**
+     * @group aa
+     * @guy NotificationStatusesTester\NotificationStatusesSteps 
+     */
+    public function GetIDCreateStatus(NotificationStatusesTester\NotificationStatusesSteps  $I) {
+               
+        $ID_Status = $I->GetIDStatus($name_statuse = $this->name_create_status);
+        $this->ID_Create_Status = $ID_Status;
+        $I->comment("ID созданного статуса: '$this->ID_Create_Status'");
+        
+        $number_position = $I->GetPositionStatus($name_statuse = $this->name_create_status);
+        $this->Position_Create_Status = $number_position;
+        $I->comment("Номер позиции созданого статуса увеличен на(+2), для страницы 'Список Уведомлений': '$this->Position_Create_Status'");
     }
 
     
@@ -79,12 +99,12 @@ class IntegrationNSCest
     public function CreatingStatusMappingOnThePageNotificationList (NotificationStatusesTester $I){
         $I->amOnPage(NotificationListPage::$URL);
         $I->wait('1');        
-        $I->see('123 qwe !@# ЯЧС', NotificationListPage::tab(4));
+        $I->see('123 qwe !@# ЯЧС', NotificationListPage::tab($this->Position_Create_Status));
         $I->selectOption(NotificationListPage::tabAllLineStatusSelect(1), '123 qwe !@# ЯЧС');
         $I->wait('1');  
-        $I->click(NotificationListPage::tab(4));
+        $I->click(NotificationListPage::tab($this->Position_Create_Status));
         $I->wait('1');
-        $I->click(NotificationListPage::lineEmailText(4, 1));
+        $I->click(NotificationListPage::lineEmailLink($this->ID_Create_Status, 1));
         $I->wait('1');        
         $I->seeOptionIsSelected(NotificationEditPage::$SelectStatus, '123 qwe !@# ЯЧС');
     } 
