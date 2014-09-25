@@ -10,14 +10,34 @@ class IntegrationNSCest
         InitTest::Login($I);
     }
     
-//---------------------------CREATE NOTIFI FRONT--------------------------------  
+//------------------CREATE Category, Product and NOTIFI FRONT-------------------
+    /**
+     * @group a
+     * @guy NotificationStatusesTester\NotificationStatusesSteps 
+     */
+    public function CreateProductCategory(NotificationStatusesTester\NotificationStatusesSteps $I) {
+        $I->CreateProductCategory($createNameCategory = 'Уведомленная');
+    }
     
+    
+    /**
+     * @group a
+     * @guy NotificationStatusesTester\NotificationStatusesSteps 
+     */
+    public function CreateProduct(NotificationStatusesTester\NotificationStatusesSteps $I) {
+        $I->CreateProduct(  $Name_Product       = 'Уведомления ради',
+                            $Price_Product      = '888',
+                            $Amount_Product     = '0',
+                            $Category_Product   = 'Уведомленная');
+    }
+    
+    
+
     /**
      * @group a
      */
     public function CreateNotificationFront(NotificationStatusesTester $I){
-        $I->wantTo('Create Notification in Front End.');
-        $I->amOnPage('/shop/category/telefoniia-pleery-gps/telefony/smartfony?per_page=12');
+        $I->amOnPage('/shop/category/uvedomlennaia#');
         $I->wait('1');
         $I->scrollToElement($I, '.infoBut.isDrop');
         $I->wait('1');
@@ -34,13 +54,19 @@ class IntegrationNSCest
      * @group a
      */
     public function VerifySavedCreateStatus (NotificationStatusesTester $I){    
-        $I->wantTo('Verify Created Status Present on Status List Page.');
-        $I->amOnPage(NotificationStatusesPage::$CreatePageUrl);
+        $I->amOnPage(NotificationStatusesCreatePage::$URL);
         $I->wait('1');
-        $I->fillField(NotificationStatusesPage::$CreationFildInput, '123 qwe !@# ЯЧС');
-        $I->click(NotificationStatusesPage::$CreationButtonCreateAndGoBack);
-        $I->waitForText('Статусы уведомлений о появлении');
-        $I->See('123 qwe !@# ЯЧС', '//div[3]/section/div[2]');
+        $I->fillField(NotificationStatusesCreatePage::$InputName, '123 qwe !@# ЯЧС');
+        $I->click(NotificationStatusesCreatePage::$ButtonCreateExit);
+        $I->wait('1');
+        $amount_rows = $I->grabCCSAmount($I, '.share_alt');
+        for($j = 1;$j <= $amount_rows;++$j){
+            $name_notification = $I->grabTextFrom(NotificationStatusesListPage::lineNameLink($j));
+            if($name_notification == '123 qwe !@# ЯЧС'){
+                $I->wait('1');
+                $I->see('123 qwe !@# ЯЧС', NotificationStatusesListPage::lineNameLink($j));
+            }
+        }        
     }
 
     
@@ -48,18 +74,19 @@ class IntegrationNSCest
 //---------------------------PRESENCE CREATED STATUS----------------------------    
     
     /**
-     * @group a
+     * @group aa
      */
     public function CreatingStatusMappingOnThePageNotificationList (NotificationStatusesTester $I){
-        $I->wantTo('Verify Created Status Present on Notification List Page.');
-        $I->amOnPage(NotificationListPage::$ListPageURL);
+        $I->amOnPage(NotificationListPage::$URL);
         $I->wait('1');        
-        $I->see('123 qwe !@# ЯЧС',  NotificationListPage::$ListSelectMain);
-        $I->selectOption(NotificationListPage::$ListSelectFirst, '123 qwe !@# ЯЧС');
-        $I->click(NotificationListPage::$ListButtonCreatedStatus);
+        $I->see('123 qwe !@# ЯЧС', NotificationListPage::tab(4));
+        $I->selectOption(NotificationListPage::tabAllLineStatusSelect(1), '123 qwe !@# ЯЧС');
+        $I->wait('1');  
+        $I->click(NotificationListPage::tab(4));
         $I->wait('1');
-        $I->click(NotificationListPage::$ListLinkEdittingCreateStatusButton);
-        $I->seeOptionIsSelected(NotificationListPage::$EditingSelectStatus, '123 qwe !@# ЯЧС');
+        $I->click(NotificationListPage::lineEmailText(4, 1));
+        $I->wait('1');        
+        $I->seeOptionIsSelected(NotificationEditPage::$SelectStatus, '123 qwe !@# ЯЧС');
     } 
 
     
@@ -123,7 +150,7 @@ class IntegrationNSCest
 //---------------------------NOT PRESENCE DELETING STATUS-----------------------  
             
     /**
-     * @group aa
+     * @group a
      */        
     public function Jira_ICMS_1563(NotificationStatusesTester $I){
         $I->wantTo('Verify Deleted Status Not Present on Notification List Page.');
