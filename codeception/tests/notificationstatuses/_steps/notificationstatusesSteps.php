@@ -48,6 +48,38 @@ extends \NotificationStatusesTester
         $I->wait('2');
     }
     
+    function GetIDStatus($name_statuse = NULL) {
+        $I = $this;
+        $I->amOnPage(\NotificationStatusesListPage::$URL);
+        $I->wait('1');
+        $amount_rows = $I->grabCCSAmount($I, '.share_alt');
+        for($j = 1;$j <= $amount_rows;++$j){
+            $name_notification = $I->grabTextFrom(\NotificationStatusesListPage::lineNameLink($j));
+            if($name_notification == $name_statuse){
+                $I->wait('1');                
+                $ID_Status = $I->grabTextFrom(\NotificationStatusesListPage::lineIDText($j));
+                return $ID_Status;
+            }
+        }
+    }
+    
+    
+    
+    function GetPositionStatus($name_status = NULL) {
+        $I = $this;
+        $I->amOnPage(\NotificationStatusesListPage::$URL);
+        $I->wait('1');
+        $amount_rows = $I->grabCCSAmount($I, '.share_alt');
+        for($j = 1;$j <= $amount_rows;++$j){
+            $name_notification = $I->grabTextFrom(\NotificationStatusesListPage::lineNameLink($j));
+            if($name_notification == $name_status){
+                $I->wait('1');                
+                $number_position = $I->grabTextFrom(\NotificationStatusesListPage::linePositionText($j));
+                $number_position += 2;
+                return $number_position;
+            }
+        }
+    }
     
     
     
