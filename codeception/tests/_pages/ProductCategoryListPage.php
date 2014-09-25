@@ -39,20 +39,20 @@ class ProductCategoryListPage
     //                                      [,порядковий номер підкатегорії ...]
     //                                    ] 
     //EXP:
-    //ProductCategoryListPage::subLineActiveToggle([1,2,3,1]);
+    //ProductCategoryListPage::_subLineActiveToggle([1,2,3,1]);
     //
     //--------------------------------------------------------------------------
-    public static function subLineCheck($level)              { return self::subCategoryLocator($level) . "/div[1]/span/span"; }
-    public static function subLineIDText($level)             { return self::subCategoryLocator($level) . "/div[2]/p"; }
+    public static function subLineCheck($level)              { return self::_subCategoryLocator($level) . "/div[1]/span/span"; }
+    public static function subLineIDText($level)             { return self::_subCategoryLocator($level) . "/div[2]/p"; }
     
-    public static function subLineNameLink($level)           { return self::subCategoryLocator($level) . "/div[3]/div/a"; }
-    public static function subLineNameButtonGoToSite($level) { return self::subCategoryLocator($level) . "/div[3]/a"; }
-    public static function subLineNameButtonExpand($level)   { return self::subCategoryLocator($level) . "/div[3]/div/button[2]"; }
-    public static function subLineNameButtonCollapse($level) { return self::subCategoryLocator($level) . "/div[3]/div/button[1]"; }
+    public static function subLineNameLink($level)           { return self::_subCategoryLocator($level) . "/div[3]/div/a"; }
+    public static function subLineNameButtonGoToSite($level) { return self::_subCategoryLocator($level) . "/div[3]/a"; }
+    public static function subLineNameButtonExpand($level)   { return self::_subCategoryLocator($level) . "/div[3]/div/button[2]"; }
+    public static function subLineNameButtonCollapse($level) { return self::_subCategoryLocator($level) . "/div[3]/div/button[1]"; }
     
-    public static function subLineUrlLink($level)            { return self::subCategoryLocator($level) . "/div[4]//a"; }
-    public static function subLineAmountText($level)         { return self::subCategoryLocator($level) . "/div[5]/p"; }
-    public static function subLineActiveToggle($level)       { return self::subCategoryLocator($level) . "/div[6]//span"; }
+    public static function subLineUrlLink($level)            { return self::_subCategoryLocator($level) . "/div[4]//a"; }
+    public static function subLineAmountText($level)         { return self::_subCategoryLocator($level) . "/div[5]/p"; }
+    public static function subLineActiveToggle($level)       { return self::_subCategoryLocator($level) . "/div[6]//span"; }
     
 
 
@@ -89,7 +89,7 @@ class ProductCategoryListPage
      * @param int|string $main_category_row
      * @return string
      */
-    private static function mainCategory($main_category_row){
+    private static function _mainCategory($main_category_row){
         return "//div[@id='category']/div[2]/div/div[$main_category_row]/div[@class='row-category']";
     }
     
@@ -100,7 +100,7 @@ class ProductCategoryListPage
      * @param int|string $sub_category_row
      * @return string
      */
-    private static function subLevel($sub_category_row){
+    private static function _subLevel($sub_category_row){
         return "/following-sibling::div/div[$sub_category_row]/div[@class='row-category']";
     }
 
@@ -111,11 +111,11 @@ class ProductCategoryListPage
      * @param array $level
      * @return string
      */
-    private static function subCategoryLocator($level=[]){
+    private static function _subCategoryLocator($level=[]){
         $main_category_row = array_shift($level);
-        $path = self::mainCategory($main_category_row);
+        $path = self::_mainCategory($main_category_row);
         foreach ($level as $sub_category_row) {
-            $path .=self::subLevel($sub_category_row);
+            $path .=self::_subLevel($sub_category_row);
         }
         return $path;
     }
