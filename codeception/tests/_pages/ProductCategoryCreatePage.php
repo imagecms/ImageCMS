@@ -49,20 +49,20 @@ class ProductCategoryCreatePage
     public static function selectSortOption($number)    { return "#inputSortdefault >option:nth-child($number)"; }
 
     //лейбли
-    public static $InputNameLabel               = 'label[for="inputName"]';
-    public static $SelectParentLabel            = 'label[for="inputMainC"]';
-    public static $InputLogoLabel               = 'label[for="Img"]';
-    public static $InputDescriptionLabel        = 'label[for="inputDescr"]';
+    public static $InputNameLabel                   = 'label[for="inputName"]';
+    public static $SelectParentLabel                = 'label[for="inputMainC"]';
+    public static $InputLogoLabel                   = 'label[for="Img"]';
+    public static $InputDescriptionLabel            = 'label[for="inputDescr"]';
     
-    public static $InputCategoryTemplateLabel   = 'label[for="inputTemplateCategory"]';
-    public static $InputURLLabel                = 'label[for="inputUrl"]';
-    public static $SelectSortLabel              = 'label[for="inputSortdefault"]';
-    public static $CheckActiveLabel             = '//table[2]//div[@class="control-group"][4]/div[1]/span';
-    public static $CheckDontShowShortSiteName   = '//table[2]//div[@class="control-group"][4]/div[2]/div/span';
+    public static $InputCategoryTemplateLabel       = 'label[for="inputTemplateCategory"]';
+    public static $InputURLLabel                    = 'label[for="inputUrl"]';
+    public static $SelectSortLabel                  = 'label[for="inputSortdefault"]';
+    public static $CheckActiveLabel                 = '//table[2]//div[@class="control-group"][4]/div[1]/span';
+    public static $CheckDontShowShortSiteNameLabel  = '//table[2]//div[@class="control-group"][4]/div[2]/div/span';
     
-    public static $InputH1Label                 = 'label[for="inputTagmeta"]';
-    public static $InputMetaDescriptionLabel    = 'label[for="inputTagmetadescription"]';
-    public static $InputMetaTitleLabel          = 'label[for="inputTagmetakey"]';
-    public static $InputMetaKeywordsLabel       = 'label[for="inputaddname"]';
+    public static $InputH1Label                     = 'label[for="inputTagmeta"]';
+    public static $InputMetaDescriptionLabel        = 'label[for="inputTagmetadescription"]';
+    public static $InputMetaTitleLabel              = 'label[for="inputTagmetakey"]';
+    public static $InputMetaKeywordsLabel           = 'label[for="inputaddname"]';
 
     }
