@@ -68,17 +68,28 @@ class ProductslistPage
     public static function lineStatusHot($row)          { return "//div[@id='mainContent']//div/table/tbody/tr[$row]//td[7]/button[2]"; }
     public static function lineStatusAction($row)       { return "//div[@id='mainContent']//div/table/tbody/tr[$row]//td[7]/button[3]"; }
     
-    public static function linePriceInput($row)         { return "//div[@id='mainContent']//div/table/tbody/tr[$row]//td[8]//input"; }
-    public static function linePriceButtonUpdate($row)  { return "//div[@id='mainContent']//div/table/tbody/tr[$row]//td[8]//button"; }
-    public static function linePriceTextCurrency($row)  { return "//div[@id='mainContent']//div/table/tbody/tr[$row]//td[8]//span"; }
-    public static function linePriceLinkVariants($row)  { return "//div[@id='mainContent']//div/table/tbody/tr[$row]//td[8]//a"; }
+    public static function linePriceInput($row)         { return "//div[@id='mainContent']//div/table/tbody/tr[$row]//td[8]//input";    }
+    public static function linePriceButtonUpdate($row)  { return "//div[@id='mainContent']//div/table/tbody/tr[$row]//td[8]//button";   }
+    public static function linePriceTextCurrency($row)  { return "//div[@id='mainContent']//div/table/tbody/tr[$row]//td[8]//span";     }
+    public static function linePriceLinkVariants($row)  { return "//div[@id='mainContent']//div/table/tbody/tr[$row]//td[8]//a";        }
     
-    //вікно видалення
-    static $WindowDelete                = '';
-    static $WindowDeleteTitle           = '';
-    static $WindowDeleteQuestion        = '';
-    static $WindowDeleteButtonDelete    = '';
-    static $WindowDeleteButtonCancel    = '';
-    static $WindowDeleteButtonClose     = '';
+    //--------------------------------------------------------------------------
+    //----------------------------ВІКНО ВИДАЛЕННЯ-------------------------------
+    public static $WindowDelete                = '.modal.hide.fade.modal_del.in';
+    public static $WindowDeleteTitle           = '.modal.hide.fade.modal_del.in h3';
+    public static $WindowDeleteQuestion        = '.modal.hide.fade.modal_del.in p';
+    public static $WindowDeleteButtonDelete    = '.modal.hide.fade.modal_del.in .modal-footer a:nth-child(1)';
+    public static $WindowDeleteButtonCancel    = '.modal.hide.fade.modal_del.in .modal-footer a:nth-child(2)';
+    public static $WindowDeleteButtonClose     = '.modal.hide.fade.modal_del.in .close';
+    
+    //--------------------------------------------------------------------------
+    //--------------------------------ПАГІНАЦІЯ---------------------------------
+    public static $PaginationForvard;
+    public static $PaginationBack;
+    
+    public static $PaginationStart;
+    public static $PaginationEnd;
+    
+    public static $PaginationSelect;
 
 }
