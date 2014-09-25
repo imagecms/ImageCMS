@@ -5,7 +5,7 @@ class NotificationStatusesListPage
 
     public static $URL  = '/admin/components/run/shop/notificationstatuses/index';
     public static $Title = 'span.title';
-    public static $Table = '//body/div[1]/div[5]/div/div[3]/section/div[2]/table';
+    public static $Table = '//body/div[1]/div[5]/div/div[3]/section/div[2]/table/tbody';
     
     //кнопки
     public static $ButtonCreate = '.btn.btn-small.btn-success.pjax';
