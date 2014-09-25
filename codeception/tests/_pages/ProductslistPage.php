@@ -54,19 +54,24 @@ class ProductslistPage
 
     //--------------------------------------------------------------------------
     //----------------------------РЯДКИ ТАБЛИЦІ---------------------------------
-    public static function lineCheck($row) { return ""; }
-    public static function lineIDText($row) { return ""; }
-    public static function lineProductLink($row) { return ""; }
-    public static function lineCategoryLink($row) { return ""; }
-    public static function lineArticleText($row) { return ""; }
-    public static function lineActiveToggle($row) { return ""; }
+    //Тут не змінювати локатори, для правильного пошуку товарів з варіантами.
+    //Для таких товарів створюється ще она таблиця в рядку і локатори
+    //мають знаходити ці рядки на рівні з іншими і тільки один елемент
+    public static function lineCheck($row)          { return "//div[@id='mainContent']//div/table/tbody/tr[$row]/td[1]//span[@class='frame_label']/span"; }
+    public static function lineIDText($row)         { return "//div[@id='mainContent']//div/table/tbody/tr[$row]//td[2]//p"; }
+    public static function lineProductLink($row)    { return "//div[@id='mainContent']//div/table/tbody/tr[$row]//td[3]/div/a"; }
+    public static function lineCategoryLink($row)   { return "//div[@id='mainContent']//div/table/tbody/tr[$row]//td[4]/div/a"; }
+    public static function lineArticleText($row)    { return "//div[@id='mainContent']//div/table/tbody/tr[$row]//td[5]/p"; }//відсутній в товарі з  варіантами
+    public static function lineActiveToggle($row)   { return "//div[@id='mainContent']//div/table/tbody/tr[$row]//td[6]//span"; }
     
-    public static function lineStatusHit($row) { return ""; }
-    public static function lineStatusHot($row) { return ""; }
-    public static function lineStatusAction($row) { return ""; }
+    public static function lineStatusHit($row)          { return "//div[@id='mainContent']//div/table/tbody/tr[$row]//td[7]/button[1]"; }
+    public static function lineStatusHot($row)          { return "//div[@id='mainContent']//div/table/tbody/tr[$row]//td[7]/button[2]"; }
+    public static function lineStatusAction($row)       { return "//div[@id='mainContent']//div/table/tbody/tr[$row]//td[7]/button[3]"; }
     
-    public static function linePriceInput($row) { return ""; }
-    public static function linePriceTextCurrency($row) { return ""; }
+    public static function linePriceInput($row)         { return "//div[@id='mainContent']//div/table/tbody/tr[$row]//td[8]//input"; }
+    public static function linePriceButtonUpdate($row)  { return "//div[@id='mainContent']//div/table/tbody/tr[$row]//td[8]//button"; }
+    public static function linePriceTextCurrency($row)  { return "//div[@id='mainContent']//div/table/tbody/tr[$row]//td[8]//span"; }
+    public static function linePriceLinkVariants($row)  { return "//div[@id='mainContent']//div/table/tbody/tr[$row]//td[8]//a"; }
     
     //вікно видалення
     static $WindowDelete                = '';
