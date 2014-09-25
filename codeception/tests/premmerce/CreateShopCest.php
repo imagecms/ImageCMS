@@ -8,6 +8,7 @@ class CreateShopCest
     public function tryToTEsts(PremmerceTester $I){
 //    InitTest::Login($I);
     $I->amOnPage(PCP::$URL);
+    $I->amOnPage(DeliveryCreatePage::$URL);
     $I->wait(3);
     $I->click(PCP::$SelectParent);
     $I->wait(5);
