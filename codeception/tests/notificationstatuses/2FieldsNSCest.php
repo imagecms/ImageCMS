@@ -1,6 +1,9 @@
 <?php
+
 use \NotificationStatusesTester;
+
 class FieldsNSCest
+
 {
 //---------------------------AUTORIZATION--------------------------------------- 
     /**
@@ -24,12 +27,19 @@ class FieldsNSCest
         $I->wait('1');
         $I->fillField(NotificationStatusesCreatePage::$InputName, '1');
         $I->click(NotificationStatusesCreatePage::$ButtonCreateExit);
-        $I->wait('1');
+        $I->wait('3');
         $amount_rows = $I->grabCCSAmount($I, '.share_alt');
         for($j = 1;$j <= $amount_rows;++$j){
             $name_notification = $I->grabTextFrom(NotificationStatusesListPage::lineNameLink($j));
             if($name_notification == '1'){
             $I->see('1', NotificationStatusesListPage::lineNameLink($j));
+            $I->wait('1');
+            $I->click(NotificationStatusesListPage::lineCheck($j));
+            $I->wait('1');
+                $I->click(NotificationStatusesListPage::$ButtonDelete);
+                $I->wait('1');
+                $I->click(NotificationStatusesListPage::$WindowDeleteButtonDelete);
+                $I->wait('1');
             }
         }
     }   
@@ -49,7 +59,7 @@ class FieldsNSCest
         $I->wait('1');
         $I->fillField(NotificationStatusesCreatePage::$InputName, InitTest::$text500);
         $I->click(NotificationStatusesCreatePage::$ButtonCreateExit);
-        $I->wait('1');
+        $I->wait('3');
         $amount_rows = $I->grabCCSAmount($I, '.share_alt');
         $I->wait('1');
         for($j = 1;$j <= $amount_rows;++$j){
@@ -58,6 +68,14 @@ class FieldsNSCest
             if($name_notification == InitTest::$text500){
                 $I->wait('1');
                 $I->see(InitTest::$text500, NotificationStatusesListPage::lineNameLink($j));
+                $I->wait('1');
+                $I->click(NotificationStatusesListPage::lineCheck($j));
+                $I->wait('1');
+                $I->click(NotificationStatusesListPage::$ButtonDelete);
+                $I->wait('1');
+                $I->click(NotificationStatusesListPage::$WindowDeleteButtonDelete);
+                $I->wait('1');
+                $I->dontSee(InitTest::$text500, NotificationStatusesListPage::$Table);
                 }
         }
     }
@@ -77,32 +95,33 @@ class FieldsNSCest
         $I->wait('1');
         $I->fillField(NotificationStatusesCreatePage::$InputName, InitTest::$text501);
         $I->click(NotificationStatusesCreatePage::$ButtonCreateExit);
+        $I->wait('3');
+        $amount_rows = $I->grabCCSAmount($I, '.share_alt');
         $I->wait('1');
-        $I->dontsee(InitTest::$text501);
-        $I->wait('1');
+        for($j = 1;$j <= $amount_rows;++$j){
+            $name_notification = $I->grabTextFrom(NotificationStatusesListPage::lineNameLink($j));
+            $I->wait('1');
+            if($name_notification == InitTest::$text500){
+                $I->wait('1');
+                $I->see(InitTest::$text500, NotificationStatusesListPage::lineNameLink($j));
+                $I->wait('1');
+                $I->click(NotificationStatusesListPage::lineCheck($j));
+                $I->wait('1');
+                $I->click(NotificationStatusesListPage::$ButtonDelete);
+                $I->wait('1');
+                $I->click(NotificationStatusesListPage::$WindowDeleteButtonDelete);
+                $I->wait('1');
+                $I->dontSee(InitTest::$text500, NotificationStatusesListPage::$Table);
+                }
+        }
     }   
     
     
-    /**
-     * @group a
-     */  
-    public function DeleteCreatingNotificationStatuses(NotificationStatusesTester $I){
-        $I->click(NavigationBarPage::$Orders);
-        $I->click(NavigationBarPage::$NotificationStatuses);
-        $I->wait('1');
-        $I->click(NotificationStatusesListPage::$HeadCheck);
-        $I->click(NotificationStatusesListPage::lineCheck(1));
-        $I->click(NotificationStatusesListPage::lineCheck(2));
-        $I->click(NotificationStatusesListPage::$ButtonDelete);
-        $I->wait('1');
-        $I->click(NotificationStatusesListPage::$WindowDeleteButtonDelete);
-        $I->wait('2');
-    }
-  
+      
 //-------------------INPUT SAVE PRESENCE 1 SYMVOL EDIT-------------------------- 
     
     /**
-     * @group a
+     * @group aa
      */
     public function EdictingStatus1Symbol(NotificationStatusesTester $I){
         $I->click(NavigationBarPage::$Orders);
@@ -115,8 +134,26 @@ class FieldsNSCest
         $I->wait('1');
         $I->fillField(NotificationStatusesEditPage::$InputName, 'as 21 Q');
         $I->click(NotificationStatusesEditPage::$ButtonSaveExit);
+        $I->wait('2');
+        $I->see('as 21 Q', NotificationStatusesListPage::$Table);
+        $amount_rows = $I->grabCCSAmount($I, '.share_alt');
         $I->wait('1');
-        $I->see('as 21 Q');
+        for($j = 1;$j <= $amount_rows;++$j){
+            $name_notification = $I->grabTextFrom(NotificationStatusesListPage::lineNameLink($j));
+            $I->wait('1');
+            if($name_notification == 'as 21 Q'){
+                $I->wait('1');
+                $I->see('as 21 Q', NotificationStatusesListPage::lineNameLink($j));
+                $I->wait('1');
+                $I->click(NotificationStatusesListPage::lineCheck($j));
+                $I->wait('1');
+                $I->click(NotificationStatusesListPage::$ButtonDelete);
+                $I->wait('1');
+                $I->click(NotificationStatusesListPage::$WindowDeleteButtonDelete);
+                $I->wait('1');
+                $I->dontSee('as 21 Q', NotificationStatusesListPage::$Table);
+            }
+        }
     }
     
   
@@ -131,14 +168,15 @@ class FieldsNSCest
         $I->wait('1');
         $I->click(NotificationStatusesListPage::$ButtonCreate);
         $I->wait('1');
-        $I->fillField(NotificationStatusesCreatePage::$InputName, InitTest::$textSymbols);
+        $I->fillField(NotificationStatusesCreatePage::$InputName, '1234 QWERT хзщфыв asd ФІВЇ');
         $I->click(NotificationStatusesCreatePage::$ButtonCreateExit);
-        $I->wait('1');
+        $I->wait('3');
         $amount_rows = $I->grabCCSAmount($I, '.share_alt');
         for($j = 1;$j <= $amount_rows;++$j){
             $name_notification = $I->grabTextFrom(NotificationStatusesListPage::lineNameLink($j));
-            if($name_notification == InitTest::$textSymbols){
-            $I->see(InitTest::$textSymbols, NotificationStatusesListPage::lineNameLink($j));
+            if($name_notification == '1234 QWERT хзщфыв asd ФІВЇ'){
+                $I->wait('1');
+                $I->see('1234 QWERT хзщфыв asd ФІВЇ', NotificationStatusesListPage::lineNameLink($j));
             }
         }
     } 
@@ -151,17 +189,25 @@ class FieldsNSCest
     public function EdictingSymvol(NotificationStatusesTester $I){
         $I->click(NavigationBarPage::$Orders);
         $I->click(NavigationBarPage::$NotificationStatuses);
-        $I->wait('1');  
+        $I->wait('3');  
         $amount_rows = $I->grabCCSAmount($I, '.share_alt');
         for($j = 1;$j <= $amount_rows;++$j){
             $name_notification = $I->grabTextFrom(NotificationStatusesListPage::lineNameLink($j));
-            if($name_notification == InitTest::$textSymbols){
+            if($name_notification == '1234 QWERT хзщфыв asd ФІВЇ'){
             $I->click(NotificationStatusesListPage::lineNameLink($j));
             $I->wait('1');
-            $I->fillField(NotificationStatusesEditPage::$InputName, InitTest::$textSymbols);
+            $I->fillField(NotificationStatusesEditPage::$InputName, '1234 QWERT хзщфыв asd ФІВЇ');
             $I->click(NotificationStatusesEditPage::$ButtonSaveExit);
             $I->wait('1');
-            $I->see(InitTest::$textSymbols, NotificationStatusesListPage::lineNameLink($j));
+            $I->see('1234 QWERT хзщфыв asd ФІВЇ', NotificationStatusesListPage::lineNameLink($j));
+            $I->wait('1');
+            $I->click(NotificationStatusesListPage::lineCheck($j));
+            $I->wait('1');
+            $I->click(NotificationStatusesListPage::$ButtonDelete);
+            $I->wait('1');
+            $I->click(NotificationStatusesListPage::$WindowDeleteButtonDelete);
+            $I->wait('1');
+            $I->dontSee('1234 QWERT хзщфыв asd ФІВЇ', NotificationStatusesListPage::$Table);
             }
         }
     }
@@ -170,15 +216,19 @@ class FieldsNSCest
       
 //---------------------------CLEARING-------------------------------------------  
       
+    
+    
+    
     /**
-     * @group aa
+     * @group a
      */ 
     public function DELETING(NotificationStatusesTester $I){
         $I->click(NavigationBarPage::$Orders);
         $I->click(NavigationBarPage::$NotificationStatuses);
-        $I->wait('4');
+        $I->wait('5');
         $amount_rows = $I->grabCCSAmount($I, '.share_alt');
-        for($j = 1;$j <= $amount_rows;++$j){
+        $I->comment("$amount_rows");
+        for($j = 1;$j <= $amount_rows;$j++){
             $name_notification = $I->grabTextFrom(NotificationStatusesListPage::lineNameLink($j));
             $I->wait('1');
             if($name_notification != 'Новый' && $name_notification != 'Выполнен'){
@@ -193,12 +243,16 @@ class FieldsNSCest
                 $j--;
             }        
         }
-        $I->dontSee(InitTest::$textSymbols);
-        $I->dontSee(InitTest::$text500);
-        $I->dontSee('as 21 Q');
+        $I->dontSee(InitTest::$text500, NotificationStatusesListPage::$Table);
+        $I->wait('1');
+        $I->dontSee('as 21 Q', NotificationStatusesListPage::$Table);
+        $I->wait('1');
+        $I->dontSee('1234 QWERT хзщфыв asd ФІВЇ', NotificationStatusesListPage::$Table);
         InitTest::ClearAllCach($I); 
     }   
     
     
+    
+
     
 }

@@ -1,6 +1,9 @@
 <?php
+
 use \NotificationStatusesTester;
+
 class TextElementNSCest
+
 {
 //---------------------------AUTORIZATION---------------------------------------
     /**
