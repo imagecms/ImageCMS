@@ -1,6 +1,6 @@
 <?php
 
-class ProductslistPage
+class ProductsListPage
 {
     public static $URL = '/admin/components/run/shop/search/index';
     
@@ -72,7 +72,37 @@ class ProductslistPage
     public static function linePriceButtonUpdate($row)  { return "//div[@id='mainContent']//div/table/tbody/tr[$row]//td[8]//button";   }
     public static function linePriceTextCurrency($row)  { return "//div[@id='mainContent']//div/table/tbody/tr[$row]//td[8]//span";     }
     public static function linePriceLinkVariants($row)  { return "//div[@id='mainContent']//div/table/tbody/tr[$row]//td[8]//a";        }
+
+    //--------------------------------------------------------------------------
+    //---------------------------РЯДКИ ВАРІАНТІВ ПРОДУКТА-----------------------
+    //передавати (рядок товара, рядок варіанта)
+    public static function variantLineProductText($product_row, $variant_row) {
+        return self::_variantLine($product_row, $variant_row) . '/td[3]/span[2]';           
+    }
+    public static function variantLineArticleText($product_row, $variant_row){ 
+        return self::_variantLine($product_row, $variant_row) . '/td[5]/p';
+    }
+    public static function variantLinePriceInput($product_row, $variant_row){
+        return self::_variantLine($product_row, $variant_row) . '/td[8]//input';           
+    } 
+    public static function variantLinePriceTextCurrency($product_row, $variant_row){
+        return self::_variantLine($product_row, $variant_row) . '/td[8]/span';           
+    }
+    public static function variantLinePriceButtonUpdate($product_row, $variant_row){
+        return self::_variantLine($product_row, $variant_row) . '/td[8]//button';           
+    }
     
+    
+    //--------------------------------------------------------------------------
+    //------------------------------PRIVATE-------------------------------------
+    private static function _productLine($row) {
+        return "//div[@id='mainContent']//div//tbody/tr[$row]";
+    }
+    private static function _variantLine($product_row,$variant_row){ 
+        return self::_productLine($product_row) . "//tbody[@class='sortable save_positions_variant ui-sortable']/tr[$variant_row]";
+    }
+
+
     //--------------------------------------------------------------------------
     //----------------------------ВІКНО ВИДАЛЕННЯ-------------------------------
     public static $WindowDelete                = '.modal.hide.fade.modal_del.in';
@@ -84,12 +114,12 @@ class ProductslistPage
     
     //--------------------------------------------------------------------------
     //--------------------------------ПАГІНАЦІЯ---------------------------------
-    public static $PaginationForvard;
-    public static $PaginationBack;
+    public static $PaginationPrev           = "//div[@class='clearfix']/div[2]//li[1]/*";
+    public static $PaginationNext           = "//div[@class='clearfix']/div[2]//li[2]/*";
     
-    public static $PaginationStart;
-    public static $PaginationEnd;
+    public static $PaginationSelect         = '//div[@class="clearfix"]/div[3]/select';
+    public static $PaginationSelectLabel    = '//div[@class="clearfix"]/div[4]';
     
-    public static $PaginationSelect;
-
+    public static function paginationSelectOption($number)  { return "//div[@class='clearfix']/div[3]/select/option[$number]";  }
+    public static function pagination($number)              { return "//div[@class='clearfix']/div[1]/ul/li[$number]/*";        }
 }
