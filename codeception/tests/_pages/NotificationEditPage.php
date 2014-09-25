@@ -2,7 +2,7 @@
 
 class NotificationEditPage
 {
- //заголовки
+    //заголовки
     public static $Title                = '.title';
     public static $TitleBlockEdit       = '//section[@class="mini-layout"]//form//th';
     
