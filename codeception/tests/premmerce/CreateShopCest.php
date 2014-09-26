@@ -3,8 +3,8 @@ use \PremmerceTester;
 
 class CreateShopCest
 {
-    // tests
-    public function tryToTEsts(PremmerceTester $I){
-    InitTest::Login($I);
+    private static $PremmerceAdress = 'http://www.premmerce.ru/saas/create_store';
+    public function createShop(PremmerceTester $I){
+    $I->amOnPage(self::$PremmerceAdress);    
     }
 }

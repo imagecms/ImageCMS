@@ -6,7 +6,7 @@ class DeliveryEditPage
     
     //заголовки
     public static $Title                        = '.title';
-    public static $BlockEditTitle               = '//section[@class="mini-layout"]//th';
+    public static $TitleBlockEdit               = '//section[@class="mini-layout"]//th';
     
     //кнопки
     Public static $ButtonBack                   = '.t-d_u';
@@ -23,8 +23,8 @@ class DeliveryEditPage
     public static $InputPriceSpecified          = '[name="delivery_sum_specified_message"]';
 
     //чекбокси
-    public static $CheckboxActive               = '//form[@id="deliveryUpdate"]/div[2]/div[2]/span/span';
-    public static $CheckPriceSpecified          = '#deliverySumSpecifiedSpan';
+    public static $CheckActive               = '//form[@id="deliveryUpdate"]/div[2]/div[2]/span/span';
+    public static $CheckPriceSpecified          = '//span[@id="deliverySumSpecifiedSpan"]';
 
     
     //лейбли

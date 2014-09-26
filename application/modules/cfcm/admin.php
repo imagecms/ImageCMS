@@ -440,9 +440,9 @@ class Admin extends BaseAdminController {
 
 
         if ($this->ajaxRequest)
-            echo $this->template->fetch('file:' . 'application/modules/cfcm/templates/admin/' . $viewName);
+            echo $this->template->fetch('file:' . realpath(dirname(__FILE__)) . '/templates/admin/' . $viewName);
         else
-            $this->template->show('file:' . 'application/modules/cfcm/templates/admin/' . $viewName);
+            $this->template->show('file:' . realpath(dirname(__FILE__)) . '/templates/admin/' . $viewName);
 //     	$this->template->fetch('file:' . 'application/modules/cfcm/templates/admin/' . $viewName);
         exit;
     }

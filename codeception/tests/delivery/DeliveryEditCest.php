@@ -24,10 +24,10 @@ class DeliveryEditCest {
             $I->amOnPage("/admin/components/run/shop/deliverymethods/index");
             $rows = $I->grabClassCount($I, 'niceCheck') - 1;
             for ($row = 1; $row <= $rows; ++$row) {
-                $Cmethod = $I->grabTextFrom(DeliveryPage::ListMethodLine($row));
+                $Cmethod = $I->grabTextFrom(DeliveryListPage::lineMethodLink($row));
                 if ($this->Name == $Cmethod) {
                     $methodCreated = true;
-                    $I->click(DeliveryPage::ListMethodLine($row));
+                    $I->click(DeliveryListPage::lineMethodLink($row));
                     break;
                 }
             }
@@ -35,7 +35,7 @@ class DeliveryEditCest {
                 $I->createDelivery($this->Name);
                 $methodCreated = true;
             }
-            $I->waitForText("Редактирование способа доставки: $this->Name", NULL, ".title");
+            $I->waitForText("Редактирование способа доставки: $this->Name", NULL, DeliveryEditPage::$Title);
         }
         $this->CreatedMethods[] = $this->Name;
 //        $LoggedIn = true;
@@ -51,7 +51,7 @@ class DeliveryEditCest {
 
         if (InitTest::Login($I)) {
             $I->wait(1);
-            $I->amOnPage(DeliveryPage::$URL);
+            $I->amOnPage(DeliveryListPage::$URL);
         }
         $this->loggedin = true;
         InitTest::changeTextAditorToNative($I);
@@ -143,8 +143,8 @@ class DeliveryEditCest {
         $I->EditDelivery(null, 'on', $description, $descriptionprice);
         $I->waitForText("Редактирование способа доставки: $this->Name", NULL, ".title");
         $I->wait(3);
-        $I->seeInField(DeliveryEditPage::$FieldDescription, $description);
-        $I->seeInField(DeliveryEditPage::$FieldDescriptionPrice, $descriptionprice);
+        $I->seeInField(DeliveryEditPage::$InputDescription, $description);
+        $I->seeInField(DeliveryEditPage::$InputDescriptionPrice, $descriptionprice);
         $I->CheckInFrontEnd($this->Name, $description);
     }
 
@@ -242,24 +242,24 @@ class DeliveryEditCest {
      * @guy DeliveryTester\DeliverySteps
      */
     public function eCheckPriceSpecified(DeliveryTester\DeliverySteps $I) {
-        $class = $I->grabAttributeFrom(DeliveryEditPage::$CheckboxPriceSpecified . '/..', 'class');
+        $class = $I->grabAttributeFrom(DeliveryEditPage::$CheckPriceSpecified . '/..', 'class');
         $I->comment($class);
         $class == 'frame_label no_connection active' ? $I->click(DeliveryEditPage::$CheckboxPriceSpecified) : print "";
-        $class = $I->grabAttributeFrom(DeliveryEditPage::$CheckboxPriceSpecified . '/..', 'class');
+        $class = $I->grabAttributeFrom(DeliveryEditPage::$CheckPriceSpecified . '/..', 'class');
         if ($class == 'frame_label no_connection') {
-            $diabledPrice = $I->grabAttributeFrom(DeliveryEditPage::$FieldPrice, 'disabled');
-            $diabledFreefrom = $I->grabAttributeFrom(DeliveryEditPage::$FieldFreeFrom, 'disabled');
+            $diabledPrice = $I->grabAttributeFrom(DeliveryEditPage::$InputPrice, 'disabled');
+            $diabledFreefrom = $I->grabAttributeFrom(DeliveryEditPage::$InputFreeFrom, 'disabled');
             $I->assertEquals($diabledPrice, NULL);
             $I->assertEquals($diabledFreefrom, NULL);
         } else
             $I->fail('wrong class of checkbox sum specified');
 
-        $I->click(DeliveryCreatePage::$CheckboxPriceSpecified);
-        $class = $I->grabAttributeFrom(DeliveryEditPage::$CheckboxPriceSpecified . '/..', 'class');
+        $I->click(DeliveryCreatePage::$CheckPriceSpecified);
+        $class = $I->grabAttributeFrom(DeliveryEditPage::$CheckPriceSpecified . '/..', 'class');
 
         if ($class == 'frame_label no_connection active') {
-            $diabledPrice = $I->grabAttributeFrom(DeliveryEditPage::$FieldPrice, 'disabled');
-            $diabledFreefrom = $I->grabAttributeFrom(DeliveryEditPage::$FieldFreeFrom, 'disabled');
+            $diabledPrice = $I->grabAttributeFrom(DeliveryEditPage::$InputPrice, 'disabled');
+            $diabledFreefrom = $I->grabAttributeFrom(DeliveryEditPage::$InputFreeFrom, 'disabled');
             $I->assertEquals($diabledPrice, "true");
             $I->assertEquals($diabledFreefrom, "true");
         } else
@@ -310,7 +310,7 @@ class DeliveryEditCest {
 
         foreach ($pay as $Currentpay) {
             $I->comment($Currentpay);
-            $CreatePagePay = $I->grabTextFrom(DeliveryEditPage::PaymentMethodLabel($row));
+            $CreatePagePay = $I->grabTextFrom(DeliveryEditPage::checkPaymentMethodLabel($row));
             $I->assertEquals($CreatePagePay, $Currentpay);
             $row++;
         }
@@ -343,7 +343,7 @@ class DeliveryEditCest {
      * @guy DeliveryTester\DeliverySteps
      */
     public function deleteAllCreatedMethods(DeliveryTester\DeliverySteps $I) {
-        $I->amOnPage(DeliveryPage::$URL);
+        $I->amOnPage(DeliveryListPage::$URL);
         //Deleting
         $I->DeleteDeliveryMethods($this->CreatedMethods);
         unset($this->CreatedMethods);
@@ -353,7 +353,8 @@ class DeliveryEditCest {
      * @group edit
      * @guy DeliveryTester\DeliverySteps
      */
-    public function Logout(DeliveryTester\DeliverySteps $I) {
+    public function logout(DeliveryTester\DeliverySteps $I) {
+        $I->amOnPage(DeliveryListPage::$URL);
         InitTest::Loguot($I);
         $this->loggedin = false;
     }

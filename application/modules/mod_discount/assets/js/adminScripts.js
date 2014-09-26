@@ -182,7 +182,7 @@ $(document).ready(function() {
             success: function(response) {
                 if (response == true)
                     discountRow.hide();
-                showMessage(lang('Discount deleted'), '', 'g')
+                showMessage(lang('Discount deleted'), '')
             }
         })
 
