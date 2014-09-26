@@ -20,9 +20,9 @@ class InitTest {
 
     public static function changeTextAditorToNative($I) {
         $I->wait(1);
-        $I->click(NavigationBarPage::$System);
+        $I->click(GeneralPage::$System);
         $I->wait(1);
-        $I->click(NavigationBarPage::$SystemGlobalSettings);
+        $I->click(GeneralPage::$SystemGlobalSettings);
         $I->waitForElement('#textEditor');
         $I->selectOption('#textEditor', 'Native textarea');
         $I->click('.btn.btn-small.btn-primary.action_on.formSubmit');
@@ -31,8 +31,8 @@ class InitTest {
     public static function changeSymbolsAfterCommaInPrice($I,$num) {
         $I->wait(1);
         $I->amOnPage('/admin');
-        $I->click(NavigationBarPage::$Settings);
-        $I->click(NavigationBarPage::$SettingsShopSettings);
+        $I->click(GeneralPage::$Settings);
+        $I->click(GeneralPage::$SettingsShopSettings);
         $I->waitForText('Настройки магазина',null,'.title');
         $I->selectOption('select.input-small', $num);
         $I->click('.btn.btn-small.btn-primary.action_on.formSubmit');
@@ -59,8 +59,9 @@ class InitTest {
         if (self::$LoggedIn) {
             $I->wait(1);
             $I->amOnPage('/admin');
-            $I->click(NavigationBarPage::$PersonalButton);
-            $I->click(NavigationBarPage::$PersonalButtonLogout);
+            $I->click(GeneralPage::$PersonalButton);
+//            $I->click(NavigationBarPage::$PersonalButton);
+            $I->click(GeneralPage::$PersonalButtonLogout);
             $I->wait(3);
             
 //            $I->waitForElement(".form_login.t-a_c");
@@ -74,8 +75,8 @@ class InitTest {
      */
     public static function ClearAllCach($I) {
         $I->amOnPage('/admin');
-        $I->click(NavigationBarPage::$System);
-        $I->click(NavigationBarPage::$SystemClearAllCach);
+        $I->click(GeneralPage::$System);
+        $I->click(GeneralPage::$SystemClearAllCach);
         $I->wait(3);
     }
     
