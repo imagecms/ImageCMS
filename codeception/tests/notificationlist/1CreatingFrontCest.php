@@ -24,12 +24,6 @@ class CreatingFrontCest
     private $user_Comment   = 'Привет Питер ії ZXCMN !,.-';
 
 
-
-
-
-
-
-
 //---------------------------AUTORIZATION---------------------------------------
     
     /**
