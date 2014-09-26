@@ -44,6 +44,29 @@ extends \NotificationListTester
         $I->wait('2');
     }
     
+    
+    function GetRowNotification($email = NULL) {
+        $I = $this;
+        $I->amOnPage(\NotificationListPage::$URL);
+        $I->wait('5');
+        $amount_check = $I->grabCCSAmount($I, '.niceCheck');
+        $I->wait('1');
+        if($amount_check > 3){
+            for($j = 1;$j <= $amount_check;++$j){
+            $I->wait('1');
+                $email_notification = $I->grabTextFrom(\NotificationListPage::tabAllLineEmailText($j));
+                if($email_notification == $email){
+                $I->wait('1');
+                    $I->wait('1');            
+                    $position = $j;
+                return $position;
+                }
+            }
+        }
+    }
+        
+
+    
     function GetIDStatus($name_statuse = NULL) {
         $I = $this;
         $I->amOnPage(\NotificationStatusesListPage::$URL);
