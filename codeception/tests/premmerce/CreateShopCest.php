@@ -1,17 +1,10 @@
 <?php
 use \PremmerceTester;
-use ProductCategoryCreatePage as PCP;
 
 class CreateShopCest
 {
-    // tests
-    public function tryToTEsts(PremmerceTester $I){
-//    InitTest::Login($I);
-    $I->amOnPage(PCP::$URL);
-    $I->amOnPage(DeliveryCreatePage::$URL);
-    $I->wait(3);
-    $I->click(PCP::$SelectParent);
-    $I->wait(5);
-    
+    private static $PremmerceAdress = 'http://www.premmerce.ru/saas/create_store';
+    public function createShop(PremmerceTester $I){
+    $I->amOnPage(self::$PremmerceAdress);    
     }
 }

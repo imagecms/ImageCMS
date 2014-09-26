@@ -30,7 +30,7 @@ class DeleteStatusCest
         $I->wait('1');
         $I->see('Статусы обратных звонков', ".//*[@id='orderStatusesList']/section/div[1]/div[1]/span[2]");
         $I->see('ID', './/*[@id="orderStatusesList"]/section/div[2]/div/table/thead/tr/th[1]');
-        $I->see('Имя', './/*[@id="orderStatusesList"]/section/div[2]/div/table/thead/tr/th[2]');
+        $I->see('Название', './/*[@id="orderStatusesList"]/section/div[2]/div/table/thead/tr/th[2]');
         $I->see('По умолчанию', './/*[@id="orderStatusesList"]/section/div[2]/div/table/thead/tr/th[3]');
         $I->see('Удалить', './/*[@id="orderStatusesList"]/section/div[2]/div/table/thead/tr/th[4]');
         $I->see('Создать статус', CallbacksPage::$CreateStatusButton);
@@ -40,7 +40,7 @@ class DeleteStatusCest
     public function VerifyDefaultStatus(CallbacksTester $I)
     {
         //Проверяем наличие статуса отмеченного по умолчанию в списке и только одного
-        $this->rows = $I->grabTagCount($I,"tbody tr");
+        $this->rows = $I->grabCCSAmount($I,".btn.btn-small.btn-danger.my_btn_s");
         $I->comment((string)$this->rows);
         $true=0;
         for ($this->j=1;$this->j<=$this->rows;$this->j++){            
@@ -170,7 +170,7 @@ class DeleteStatusCest
         $I->assertEquals($nameStatList, $this->nameStatus);
         $I->click(CallbacksPage::UserNameLine('1'));
         $I->waitForElement('.//*[@id="editCallbackForm"]/div[5]/label');
-        $nameStatEdit=$I->grabTextFrom(CallbacksPage::$StatusSelEdit."option[@selected='selected']");
+        $nameStatEdit=$I->grabTextFrom(CallbacksPage::$StatusSelEdit."/option[@selected='selected']");
         $I->comment($nameStatEdit);
         $I->assertEquals($nameStatEdit, $this->nameStatus);
 //        $kil1=$I->grabTextFrom('.//*[@id="totalCallbacks"]');
@@ -248,7 +248,7 @@ class DeleteStatusCest
         $I->click(CallbacksPage::UserNameLine('1'));
         $I->waitForText("Редактирование обратного звонка");
         for ($i=1; $i<=$this->sum; $i++){
-            $nameEdit[$i]=$I->grabTextFrom(CallbacksPage::$StatusSelEdit."option[$i]");
+            $nameEdit[$i]=$I->grabTextFrom(CallbacksPage::$StatusSelEdit."/option[$i]");
             $I->comment("$nameEdit[$i]");
         }
         $NamesStatusEdit = implode(" ", $nameEdit);
@@ -262,7 +262,7 @@ class DeleteStatusCest
     {    
         //Проверка наличия всех названий созданных статусов колбеков на странице "Статусы обратных звонков"
         $I->amOnPage(CallbacksPage::$URLStatuses);
-        $rowsSt=$I->grabTagCount($I, "tbody tr");
+        $rowsSt=$I->grabCCSAmount($I, ".btn.btn-small.btn-danger.my_btn_s");
         $I->comment($rowsSt);
         for ($j=1; $j<=$rowsSt; $j++){
             $name[$j]=$I->grabTextFrom(CallbacksPage::StatusNameLine($j));//           
@@ -296,7 +296,7 @@ class DeleteStatusCest
 //        $I->waitForElementNotVisible("alert.in.fade.alert-success");
         $I->wait(2);
         $this->rows--;
-        $rowsAfterDelete = $I->grabTagCount($I,"tbody tr");
+        $rowsAfterDelete = $I->grabCCSAmount($I,".btn.btn-small.btn-danger.my_btn_s");
         $I->comment($rowsAfterDelete);
         $I->assertEquals($rowsAfterDelete, $this->rows);
         for ($k=1; $k<=$this->rows; $k++){
