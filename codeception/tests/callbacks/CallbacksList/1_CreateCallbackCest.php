@@ -24,7 +24,7 @@ class CreateCallbackCest
     {
         $I->amOnPage('/');
         $I->waitForText('Заказать звонок');
-        $I->see('Заказать звонок', 'html/body/div[1]/div[1]/header/div[2]/div/div/div[1]/div/div[2]/button');
+        $I->see('Заказать звонок', CallbacksPage::$OrderCallButton);
         $I->click(CallbacksPage::$OrderCallButton);
         $I->waitForElement(CallbacksPage::$CallMeButton);
         $I->see('Заказать звонок', './/*[@id="ordercall"]/div[1]/div');
@@ -117,23 +117,7 @@ class CreateCallbackCest
         $I->assertEquals($pov, $text[1]);
         InitTest::ClearAllCach($I);
     }
-    
-     /**
-     * @guy CallbacksTester\CallbacksSteps
-     */
-    
-//     public function OneSymbolsCreate(CallbacksTester\CallbacksSteps $I)
-//    {
-//        InitTest::Loguot($I);
-//        $name='й';
-//        $phone='1';
-//        $comment='1';
-//        $I->CreateCallback($name, $phone, $comment);
-//        $I->waitForElementNotVisible('.//*[@id="ordercall"]');
-//        InitTest::Login($I);        
-//        $I->CheckListLandingAndEditingPage($name, $phone, $comment);        
-//    }
-    
+           
      /**
      * @guy CallbacksTester\CallbacksSteps
      */
@@ -213,10 +197,22 @@ class CreateCallbackCest
         $I->waitForElementNotVisible('.//*[@id="ordercall"]');
         $I->CheckListLandingAndEditingPage($name, $phone);
     }
+        
+      /**
+     * @guy CallbacksTester\CallbacksSteps
+     */
     
+//     public function OneSymbolsCreate(CallbacksTester\CallbacksSteps $I)
+//    {
+//        InitTest::Loguot($I);
+//        $name='й';
+//        $phone='1';
+//        $comment='1';
+//        $I->CreateCallback($name, $phone, $comment);
+//        $I->waitForElementNotVisible('.//*[@id="ordercall"]');
+//        InitTest::Login($I);        
+//        $I->CheckListLandingAndEditingPage($name, $phone, $comment);        
+//    }
     
-    
-    
-    
-    
+        
 }

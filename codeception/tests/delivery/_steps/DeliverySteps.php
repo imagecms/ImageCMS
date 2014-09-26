@@ -391,7 +391,7 @@ $I = $this;
         $I = $this;
         
         if(isset($name)) { 
-            $I->fillField(\DeliveryEditPage::$inputName, $name); }
+            $I->fillField(\DeliveryEditPage::$InputName, $name); }
         if(isset($active)) {
             $Cactive = $I->grabAttributeFrom("//*[@id='deliveryUpdate']/div[2]/div[2]/span", 'class');
             $Cactive == 'frame_label no_connection active'?$Cactive = TRUE:$Cactive = FALSE;
@@ -417,7 +417,7 @@ $I = $this;
         }
         if(isset($freefrom)) { 
             $I->grabAttributeFrom(\DeliveryEditPage::$InputFreeFrom, 'disabled')== 'true'?$I->click(\DeliveryEditPage::$CheckPriceSpecified):  print '';
-            $I->fillField(\DeliveryEditPage::$FieldFreeFrom, $freefrom);
+            $I->fillField(\DeliveryEditPage::$InputFreeFrom, $freefrom);
         }
         if(isset($message)) { 
             $class = $I->grabAttributeFrom(\DeliveryEditPage::$CheckPriceSpecified.'/..', 'class');
