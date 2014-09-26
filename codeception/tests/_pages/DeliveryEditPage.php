@@ -24,7 +24,7 @@ class DeliveryEditPage
 
     //чекбокси
     public static $CheckboxActive               = '//form[@id="deliveryUpdate"]/div[2]/div[2]/span/span';
-    public static $CheckPriceSpecified          = '#deliverySumSpecifiedSpan';
+    public static $CheckPriceSpecified          = '//span[@id="deliverySumSpecifiedSpan"]';
 
     
     //лейбли
