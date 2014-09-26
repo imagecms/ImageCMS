@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-25 06:12+0300\n"
-"PO-Revision-Date: 2014-09-25 06:12+0300\n"
+"POT-Creation-Date: 2014-09-25 06:51+0300\n"
+"PO-Revision-Date: 2014-09-25 06:51+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -16,6 +16,14 @@ msgstr ""
 "X-Generator: Poedit 1.5.7\n"
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
+
+#: ./application/modules/import_export/assets/admin/export.tpl:49
+msgid "Categories"
+msgstr ""
+
+#: ./application/modules/import_export/assets/admin/export.tpl:65
+msgid "Show properties of the selected categories"
+msgstr ""
 
 #: ./application/modules/import_export/classes/BaseImport.php:297
 #: ./application/modules/import_export/assets/admin/import_attributes.tpl:18
@@ -220,16 +228,8 @@ msgstr ""
 msgid "Columns"
 msgstr ""
 
-#: ./application/modules/import_export/assets/admin/export.tpl:49
-msgid "Categories"
-msgstr ""
-
 #: ./application/modules/import_export/assets/admin/export.tpl:64
 msgid "Loading properties"
-msgstr ""
-
-#: ./application/modules/import_export/assets/admin/export.tpl:65
-msgid "Show properties of the selected categories"
 msgstr ""
 
 #: ./application/modules/import_export/assets/admin/export.tpl:70
