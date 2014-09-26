@@ -28,7 +28,7 @@ class EditingStatusCallbackCest
         $I->waitForText('Редактирование статуса обратного звонка');
         $I->see('Редактирование статуса обратного звонка', 'span.title.w-s_n');
         $I->see('Информация', './/*[@id="mainContent"]/section/table/thead/tr/th');
-        $I->see('Имя:', './/*[@id="addCallbackStatusForm"]/div[1]/label');
+        $I->see('Название:', './/*[@id="addCallbackStatusForm"]/div[1]/label');
         $I->see('По умолчанию', 'span.frame_label.no_connection');
         $I->see('Статус будет назначен всем новым запросам.', 'div.help-block');
         $I->see('Вернуться', CallbacksPage::$GoBackButton);

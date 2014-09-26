@@ -15,24 +15,24 @@ class CreateThemeCallbackCest
     public function Autorization(CallbacksTester $I)
     {
         InitTest::Login($I);
-        $I->amOnPage("/admin/components/run/shop/callbacks/themes");
+        $I->amOnPage(CallbacksPage::$URLThemes);
         $I->waitForText("Темы обратных звонков");
     }
     
     
     public function NamesInCreate(CallbacksTester $I)
     {
-        $I->click('html/body/div[1]/div[3]/div/nav/ul/li[2]/a');
-        $I->waitForElement('html/body/div[1]/div[3]/div/nav/ul/li[2]/ul');
-        $I->click('html/body/div[1]/div[3]/div/nav/ul/li[2]/ul/li[7]/a');
-        $I->waitForElementNotVisible('html/body/div[1]/div[3]/div/nav/ul/li[2]/ul');
+        $I->click(NavigationBarPage::$Orders);
+        $I->waitForElement(CallbacksPage::$OrdersFormUp);
+        $I->click(NavigationBarPage::$CallbackThemes);
+        $I->waitForElementNotVisible(CallbacksPage::$OrdersFormUp);
         $I->see('Темы обратных звонков', 'span.title');
         $I->wait('1');
         $I->click(CallbacksPage::$CreateThemeButton);
         $I->waitForText('Создание темы обратного звонка');
         $I->see('Создание темы обратного звонка', 'span.title.w-s_n');
-        $I->see('Информация', '.table.table-striped.table-bordered.table-hover.table-condensed.content_big_td>thead>tr>th');
-        $I->see('Имя:', './/*[@id="addCallbackStatusForm"]/div/label');
+        $I->see('Информация', '//*[@id="mainContent"]/section/table/thead/tr/th');
+        $I->see('Название:', './/*[@id="addCallbackStatusForm"]/div/label');
         $I->see('Вернуться', CallbacksPage::$GoBackButton);
         $I->see('Создать', CallbacksPage::$SaveButton);
         $I->see('Создать и выйти', CallbacksPage::$SaveAndExitButton);
@@ -86,7 +86,7 @@ class CreateThemeCallbackCest
     
     public function Symbols128Create(CallbacksTester\CallbacksSteps $I)
     {
-        $name='12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцу';
+        $name='12345йцуке12345йцуке12345йцук 12345йцуке12345йцуке12345йцуке12345 цуке12345йцуке12345йцуке1 345йцуке12345йцуке 2345йцуке12345йцу';
         $I->CreateThemeCallback($name, $name);
         InitTest::ClearAllCach($I);
     }
@@ -97,7 +97,7 @@ class CreateThemeCallbackCest
     
     public function Symbols255Create(CallbacksTester\CallbacksSteps $I)
     {
-        $name='12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345';
+        $name='12345йцуке12345йцуке123 5йцуке12345йцуке12345йцуке12345йцук 12345йцуке12345йцуке12345йцу е12345йцуке12345йцуке12345йц ке12345йцуке12345йц ке12345йцуке12345йцуке12345 цуке12345йцуке12345й уке12345йцуке12345йцуке1234 йцуке12345йцуке1 345йцуке12345йцук 12345';
         $I->CreateThemeCallback($name, $name);
     }
     
@@ -107,8 +107,8 @@ class CreateThemeCallbackCest
     
     public function Symbols256Create(CallbacksTester\CallbacksSteps $I)
     {
-        $name='12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке123456';
-        $name1='12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345';
+        $name='12345йцуке12345 цуке12345йцуке12345йцу е12345йцуке12345йцуке123 5йцуке12345йцу е12345йцуке12345йцу е12345йцуке12345йцуке 2345йцуке12345йцуке123 5йцуке12345йцуке12345йцуке1234 йцуке12345йцуке12345 цуке12345йцуке12345йц ке12345йцуке12345йцу е12345йцуке123456';
+        $name1='12345йцуке12345 цуке12345йцуке12345йцу е12345йцуке12345йцуке123 5йцуке12345йцу е12345йцуке12345йцу е12345йцуке12345йцуке 2345йцуке12345йцуке123 5йцуке12345йцуке12345йцуке1234 йцуке12345йцуке12345 цуке12345йцуке12345йц ке12345йцуке12345йцу е12345йцуке12345';
         $I->CreateThemeCallback($name, $name1);
         InitTest::ClearAllCach($I);
     }

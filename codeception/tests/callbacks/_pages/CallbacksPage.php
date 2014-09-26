@@ -52,7 +52,7 @@ class CallbacksPage
     public static $NameTheme  = './/*[@id="Text"]';                                                                 //CallbacksThemes
     
     public static $StatusSelListLanding  = './/*[@id="callbacks_all"]/table/tbody/tr/td[6]/div/select';             //CallbacksList
-    public static $ThemeSelListLanding  = './/*[@id="editCallbackForm"]/div[2]/div/select';                         //CallbacksList
+    public static $AmountAllCallbacks  = './/*[@id="totalCallbacks"]';                         //CallbacksList
     
 
     //Кнопки в списку
