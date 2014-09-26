@@ -76,8 +76,6 @@ class TextElementNLCest
         $number_position = $I->GetPositionStatus($name_statuse = 'Выполнен');
         $this->Position_Status_Made = $number_position;
         $I->comment("Номер позиции статуса 'Выполнен' увеличен на(+2), для страницы 'Список Уведомлений': '$this->Position_Status_Made'");
-
-        
     }
     
     
