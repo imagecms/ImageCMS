@@ -2,7 +2,7 @@
 
 class NotificationListPage
 {
-    public static $URL = '/admin/components/run/shop/notifications/index#notification_all';
+    public static $URL = '/admin/components/run/shop/notifications';///index#notification_all
     public static $Title = '.title';
     
     //кнопки
