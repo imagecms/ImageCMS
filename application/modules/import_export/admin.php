@@ -203,7 +203,7 @@ class Admin extends BaseAdminController {
      * @param string $str
      */
     public function downloadZIP($str){
-        $path = './application/modules/import_export/backups/' . $str;
+        $path = $this->uploadDir . $str;
         $this->load->helper('download');
         if(file_exists($path)){
             $data = file_get_contents($path);

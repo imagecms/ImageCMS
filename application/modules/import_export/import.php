@@ -45,7 +45,7 @@
   const ErrorNameVariantAttribute = "Атрибут 'Имя варианта' не указан. Error: EIx013";
   const ErrorNameAttribute = "Атрибут 'Имя товара' не указан. Error: EIx010";
  * 
- * Файлы хранятся в /import_export/backups
+ * Файлы хранятся в /application/backups 
  * Backup базы остался неизменным в /application/backups 
  * 
  * Сегментная выгрузка при первом запуске использует imports(). Так как 
