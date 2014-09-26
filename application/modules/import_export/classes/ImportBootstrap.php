@@ -24,7 +24,7 @@ class ImportBootstrap {
      * Backup dir
      * @var string 
      */
-    public $uploadDir = './application/modules/import_export/backups/';
+    public $uploadDir = './application/backups/';
 
     private function __construct() {
         
