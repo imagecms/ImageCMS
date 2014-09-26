@@ -28,22 +28,22 @@ class InitTest {
         $I->click('.btn.btn-small.btn-primary.action_on.formSubmit');
         $I->wait('3');
     }
-    public static function changeSymbolsAfterCommaInPrice($I,$num) {
-        $I->wait(1);
-        $I->amOnPage('/admin');
-        $I->click(GeneralPage::$Settings);
-        $I->click(GeneralPage::$SettingsShopSettings);
-        $I->waitForText('Настройки магазина',null,'.title');
-        $I->selectOption('select.input-small', $num);
-        $I->click('.btn.btn-small.btn-primary.action_on.formSubmit');
-        $I->wait(0);
-        
-    }
+    
+//DEPRECATED    
+//    public static function changeSymbolsAfterCommaInPrice($I,$num) {
+//        $I->wait(1);
+//        $I->amOnPage('/admin');
+//        $I->click(GeneralPage::$Settings);
+//        $I->click(GeneralPage::$SettingsShopSettings);
+//        $I->waitForText('Настройки магазина',null,'.title');
+//        $I->selectOption('select.input-small', $num);
+//        $I->click('.btn.btn-small.btn-primary.action_on.formSubmit');
+//        $I->wait(0);
+//        
+//    }
 
     public static function Login($I) {
         if (!self::$LoggedIn) {
-//            $userName = 'ad@min.com';
-//            $password = 'admin';
             $I->wantTo('log in as admin');
             $I->amOnPage('/admin/login');
             $I->fillField('login', self::$UserName);
@@ -60,10 +60,8 @@ class InitTest {
             $I->wait(1);
             $I->amOnPage('/admin');
             $I->click(GeneralPage::$PersonalButton);
-//            $I->click(NavigationBarPage::$PersonalButton);
             $I->click(GeneralPage::$PersonalButtonLogout);
             $I->wait(3);
-            
 //            $I->waitForElement(".form_login.t-a_c");
         }
         self::$LoggedIn = FALSE;
