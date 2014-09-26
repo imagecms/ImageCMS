@@ -96,6 +96,8 @@ class NotificationListPage
             }
         public static function lineProductText($tab_id, $row)                { return "//div[@id='notification_$tab_id']//tbody/tr[$row]/td[8]/div/span"; }
         public static function lineProductInfo($tab_id, $row)                { return "//div[@id='notification_$tab_id']//tbody/tr[$row]/td[8]/div/i"; }
-        public static function lineNotifications($tab_id, $row)              { return "//div[@id='notification_$tab_id']//tbody/tr[$row]/td[9]/button"; }    
+        public static function lineNotifications($tab_id, $row)              { return "//div[@id='notification_$tab_id']//tbody/tr[$row]/td[9]/button"; } 
+    //пустий список    
+        public static function TextEmptyList ($tab_id)                   { return "//section/div[5]/div[$tab_id]/form/table/tbody/tr/td/p"; } 
 
 }
