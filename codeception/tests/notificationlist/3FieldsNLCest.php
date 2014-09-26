@@ -5,10 +5,38 @@ use \NotificationListTester;
 class FieldsNLCest
 
 {
+    
+    private $front_Prodct_URl    = '/shop/product/nepredskazuemost-tupizny';
+    private $front_Prodct_Button_Notification = '.infoBut.isDrop';
+    
+    private $create_Prodct_Name  = 'непредсказуемость ТУПИЗНЫ';
+    private $create_Prodct_Price = '1';
+    
+    private $create_Category_Name = 'Важность разума';
+    
+    private $user_Name      = 'Квантовая теория';
+    private $user_Email     = 'Zal.Upa@godo.net';
+    private $user_Phone     = '9876453210';
+    private $user_Comment   = 'QWErty its my faivorit message';
+    
+    private $additional_User_Name      = 'Бахвальство';
+    private $additional_User_Email     = 'qwerty@ss.net';
+    private $additional_User_Phone     = '8888888888';
+    private $additional_User_Comment   = 'Прихвостай свой абстайс или в рот вали иии.';
+    
+    private $ID_Status_New;
+    private $Position_Status_New;
+    private $ID_Status_Made;
+    private $Position_Status_Made;
+    
+    private $Position_Notification;
+    private $ID_Notification;
+
+    
 //---------------------------AUTORIZATION---------------------------------------    
     
     /**
-     * @group a
+     * @group aa
      */
     public function Login(NotificationListTester $I){
         InitTest::Login($I);
@@ -16,67 +44,185 @@ class FieldsNLCest
     
     
     
-//---------------------------CREATE NOTIFI FRONT--------------------------------  
+    /**
+     * @group a
+     * @guy NotificationListTester\notificationlistSteps
+     */
+    public function CreateProductCategory(NotificationListTester\notificationlistSteps $I) {
+        $I->CreateProductCategory($createNameCategory = $this->create_Category_Name);
+    }
+    
+    
+    /**
+     * @group a
+     * @guy NotificationListTester\notificationlistSteps
+     */
+    public function CreateProduct(NotificationListTester\notificationlistSteps $I) {
+        $I->CreateProduct(  $Name_Product       = $this->create_Prodct_Name,
+                            $Price_Product      = $this->create_Prodct_Price,
+                            $Amount_Product     = '0',
+                            $Category_Product   = $this->create_Category_Name);
+    }
+    
+    /**
+     * @group aa
+     * @guy NotificationListTester\notificationlistSteps
+     */
+    public function GetIDDefoultStatuses(NotificationListTester\notificationlistSteps  $I) {
+        
+        $ID_Status = $I->GetIDStatus($name_statuse = 'Новый');
+        $this->ID_Status_New = $ID_Status;
+        $I->comment("ID статуса 'Новый': '$this->ID_Status_New'");
+        $number_position = $I->GetPositionStatus($name_statuse = 'Новый');
+        $this->Position_Status_New = $number_position;
+        $I->comment("Номер позиции статуса 'Новый' увеличен на(+2), для страницы 'Список Уведомлений': '$this->Position_Status_New'");
+               
+        $ID_Status = $I->GetIDStatus($name_statuse = 'Выполнен');
+        $this->ID_Status_Made = $ID_Status;
+        $I->comment("ID статуса 'Выполнен': '$this->ID_Status_Made'");
+        $number_position = $I->GetPositionStatus($name_statuse = 'Выполнен');
+        $this->Position_Status_Made = $number_position;
+        $I->comment("Номер позиции статуса 'Выполнен' увеличен на(+2), для страницы 'Список Уведомлений': '$this->Position_Status_Made'");
+    }
+    
+    
+    
+    /**
+     * @group a
+     */
+    public function CreateAdditionalNotificationFront(NotificationListTester $I){
+        $I->amOnPage($this->front_Prodct_URl);
+        $I->wait('2');
+        $I->scrollToElement($I, $this->front_Prodct_Button_Notification);
+        $I->wait('1');
+        $I->click($this->front_Prodct_Button_Notification);
+        $I->wait('3');
+        $I->fillField(FrontCreateNotificationPage::$InputName, $this->additional_User_Name);
+        $I->wait('1');
+        $I->fillField(FrontCreateNotificationPage::$InputEmail, $this->additional_User_Email);
+        $I->wait('1');
+        $I->fillField(FrontCreateNotificationPage::$InputPhone, $this->additional_User_Phone);
+        $I->wait('1');
+        $I->fillField(FrontCreateNotificationPage::$InputComment, $this->additional_User_Comment);
+        $I->click(FrontCreateNotificationPage::$ButtonSend);
+    }
     
     /**
      * @group a
      */
     public function CreateNotificationFront(NotificationListTester $I){
-        $I->wantTo('Create Notifi on Frontend.');
-        $I->amOnPage(NotificationCreateFrontPage::$PageURL);
+        $I->amOnPage($this->front_Prodct_URl);
+        $I->wait('2');
+        $I->scrollToElement($I, $this->front_Prodct_Button_Notification);
         $I->wait('1');
-        $I->scrollToElement($I, '.infoBut.isDrop');
+        $I->click($this->front_Prodct_Button_Notification);
+        $I->wait('3');
+        $I->fillField(FrontCreateNotificationPage::$InputName, $this->user_Name);
         $I->wait('1');
-        $I->click(NotificationCreateFrontPage::$ButtonOnPage);
-        $I->waitForText('Сообщить о появлении');
-        $I->click(NotificationCreateFrontPage::$ButtonSendPresent);
+        $I->fillField(FrontCreateNotificationPage::$InputEmail, $this->user_Email);
+        $I->wait('1');
+        $I->fillField(FrontCreateNotificationPage::$InputPhone, $this->user_Phone);
+        $I->wait('1');
+        $I->fillField(FrontCreateNotificationPage::$InputComment, $this->user_Comment);
+        $I->click(FrontCreateNotificationPage::$ButtonSend);
     }
+    
+    
+    
+    
+    
+    /**
+     * @group aa
+     * @guy NotificationListTester\notificationlistSteps
+     */
+    public function GetRowNotification(NotificationListTester\notificationlistSteps  $I) {
+        $position = $I->GetRowNotification($email = $this->user_Email);
+        $I->comment("$position");
+        $this->Position_Notification = $position;  
+    }
+    
+    /**
+     * @group aa
+     * @guy NotificationListTester\notificationlistSteps
+     */
+    public function GetIDNotification(NotificationListTester\notificationlistSteps  $I) {
+        $ID_notification = $I->GetIDNotification($email = $this->user_Email);
+        $I->comment("$ID_notification");
+        $this->ID_Notification = $ID_notification;  
+    }
+   
     
     
     
 //-------------------------MESSAGE INPUT FIELD ID LIST--------------------------
     
     /**
-     * @group a
+     * @group aa
      */
-    public function MessageInputFieldIDList (NotificationListTester $I){
-        $I->wantTo('Verify Presence Tooltip in Field.');
-        $I->amOnPage(NotificationListPage::$ListPageURL);
-        $I->wait('1');
-        $I->fillField(NotificationListPage::$ListFildId, 'q');
-        $I->see('только цифры', NotificationListPage::$ListMessageID);
-        $I->fillField(NotificationListPage::$ListFildId, '');
-        $I->fillField(NotificationListPage::$ListFildId, '@');
-        $I->waitForText('только цифры');
-        $I->see('только цифры', NotificationListPage::$ListMessageID);
-        $I->fillField(NotificationListPage::$ListFildId, '');
-        $I->fillField(NotificationListPage::$ListFildId, 'Ы');
-        $I->waitForText('только цифры');
-        $I->see('только цифры', NotificationListPage::$ListMessageID);
-        $I->fillField(NotificationListPage::$ListFildId, '');
-        $I->fillField(NotificationListPage::$ListFildId, 'ї');
-        $I->waitForText('только цифры');
-        $I->see('только цифры', NotificationListPage::$ListMessageID);
-        $I->fillField(NotificationListPage::$ListFildId, '');
-        $I->fillField(NotificationListPage::$ListFildId, ' ');
-        $I->waitForText('только цифры');
-        $I->see('только цифры', NotificationListPage::$ListMessageID);
+    public function InvalidIDInputFieldIDList (NotificationListTester $I){
+        $I->amOnPage(NotificationListPage::$URL);
+        $I->wait(3);
+        $I->fillField(NotificationListPage::$TabAllFilterIDInput, 'qweert');
+        $I->seeInField(NotificationListPage::$TabAllFilterIDInput, '');
+        $I->wait(1);
+        $I->fillField(NotificationListPage::$TabAllFilterIDInput, '-+=/,!');
+        $I->seeInField(NotificationListPage::$TabAllFilterIDInput, '');
+        $I->wait(1);
+        $I->fillField(NotificationListPage::$TabAllFilterIDInput, 'фыв ії');
+        $I->seeInField(NotificationListPage::$TabAllFilterIDInput, '');
+        $I->wait(1);
+        $I->fillField(NotificationListPage::$TabAllFilterIDInput, '0987654321');
+        $I->wait(1);
+        $I->seeInField(NotificationListPage::$TabAllFilterIDInput, '0987654321');
+    }
+    
+    
+    /**
+     * @group aa
+     */
+    public function ValidIDInputFieldIDListtabAll (NotificationListTester $I){
+        $I->amOnPage(NotificationListPage::$URL);
+        $I->wait('3');
+        $I->fillField(NotificationListPage::$TabAllFilterIDInput, $this->ID_Notification);
+        $I->click(NotificationListPage::$ButtonFilter);
+        $I->wait('2');
+        $I->see($this->user_Email, NotificationListPage::tabAllLineEmailText($this->Position_Notification));
+        $I->dontSeeElement(NotificationListPage::tabAllLineEmailText(2));
     } 
     
     
-    
-//-------------------------INPUT FIELD ID LIST----------------------------------
+    /**
+     * @group aa
+     */
+    public function ValidIDInputFieldIDListtabMade (NotificationListTester $I){
+        $I->amOnPage(NotificationListPage::$URL);
+        $I->wait(3);
+        $I->click(NotificationListPage::tab($this->Position_Status_Made));
+        $I->wait(1);        
+        $I->fillField(NotificationListPage::filterIDInput($this->ID_Status_Made), $this->ID_Notification);
+        $I->click(NotificationListPage::$ButtonFilter);
+        $I->wait(2);
+        $I->see('Список уведомлений о появлении пустой.', NotificationListPage::TextEmptyList($this->ID_Status_Made));
+        $I->dontSeeElement(NotificationListPage::tabAllLineEmailText(1));
+    } 
     
     /**
-     * @group a
+     * @group aa
      */
-    public function InputFieldIDList (NotificationListTester $I){
-        $I->wantTo('Verify Valid Input in Field.');
-        $I->amOnPage(NotificationListPage::$ListPageURL);
-        $I->wait('1');
-        $I->fillField(NotificationListPage::$ListFildId, '0123456789');
-        $I->seeInField(NotificationListPage::$ListFildId, '0123456789');
-    }
+    public function ValidIDInputFieldIDListtabNew (NotificationListTester $I){
+        $I->amOnPage(NotificationListPage::$URL);
+        $I->wait('3');
+        $I->click(NotificationListPage::tab($this->Position_Status_New));
+        $I->wait(1);   
+        $I->fillField(NotificationListPage::filterIDInput($this->ID_Status_New), $this->ID_Notification);
+        $I->click(NotificationListPage::$ButtonFilter);
+        $I->wait('2');
+        $I->see($this->user_Email, NotificationListPage::lineEmailLink($this->ID_Status_New, $this->Position_Notification));
+        $I->dontSeeElement(NotificationListPage::tabAllLineEmailText(2));
+    } 
+    
+    
+
        
        
        
