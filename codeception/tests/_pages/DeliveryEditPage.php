@@ -23,7 +23,7 @@ class DeliveryEditPage
     public static $InputPriceSpecified          = '[name="delivery_sum_specified_message"]';
 
     //чекбокси
-    public static $CheckboxActive               = '//form[@id="deliveryUpdate"]/div[2]/div[2]/span/span';
+    public static $CheckActive               = '//form[@id="deliveryUpdate"]/div[2]/div[2]/span/span';
     public static $CheckPriceSpecified          = '//span[@id="deliverySumSpecifiedSpan"]';
 
     

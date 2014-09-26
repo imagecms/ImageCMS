@@ -24,10 +24,10 @@ class DeliveryEditCest {
             $I->amOnPage("/admin/components/run/shop/deliverymethods/index");
             $rows = $I->grabClassCount($I, 'niceCheck') - 1;
             for ($row = 1; $row <= $rows; ++$row) {
-                $Cmethod = $I->grabTextFrom(DeliveryPage::ListMethodLine($row));
+                $Cmethod = $I->grabTextFrom(DeliveryListPage::lineMethodLink($row));
                 if ($this->Name == $Cmethod) {
                     $methodCreated = true;
-                    $I->click(DeliveryPage::ListMethodLine($row));
+                    $I->click(DeliveryListPage::lineMethodLink($row));
                     break;
                 }
             }
@@ -35,7 +35,7 @@ class DeliveryEditCest {
                 $I->createDelivery($this->Name);
                 $methodCreated = true;
             }
-            $I->waitForText("Редактирование способа доставки: $this->Name", NULL, ".title");
+            $I->waitForText("Редактирование способа доставки: $this->Name", NULL, DeliveryEditPage::$Title);
         }
         $this->CreatedMethods[] = $this->Name;
 //        $LoggedIn = true;
@@ -51,7 +51,7 @@ class DeliveryEditCest {
 
         if (InitTest::Login($I)) {
             $I->wait(1);
-            $I->amOnPage(DeliveryPage::$URL);
+            $I->amOnPage(DeliveryListPage::$URL);
         }
         $this->loggedin = true;
         InitTest::changeTextAditorToNative($I);
