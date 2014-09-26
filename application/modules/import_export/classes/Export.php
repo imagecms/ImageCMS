@@ -560,7 +560,7 @@ class Export {
         $date = date('m_d_y');
         $time = date('G_i_s');
         $zipName = "archive_" . $date . "_" . $time . ".zip"; 
-        if($zip->open('./application/modules/import_export/backups/' . $zipName, \ZipArchive::CREATE) !== TRUE){      
+        if($zip->open('./application/backups/' . $zipName, \ZipArchive::CREATE) !== TRUE){      
             LOG::create()->set("Невозможно создать zip-архив.");
         }
 //        foreach($arr as $key => $val){
