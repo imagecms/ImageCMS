@@ -54,7 +54,7 @@ class Admin extends MY_Controller {
 
 
     public function init() {
-        if (SHOP_INSTALLED) {
+        if (SHOP_INSTALLED) {            
             redirect('/admin/components/run/shop/dashboard');
         } else {
             $this->index();
