@@ -18,7 +18,7 @@ class ProductsCreatePage
     public static $ButtonHot                = '//div[@class="inside_padd"]/div[1]/div[2]//button[2]';
     public static $ButtonAction             = '//div[@class="inside_padd"]/div[1]/div[2]//button[3]';
     
-    public static $ButtonAddVariant         = '';
+    public static $ButtonAddVariant         = '#addVariant';
     
         //перемикач
         public static $ToggleActive     =  'span.prod-on_off' ;
@@ -38,37 +38,91 @@ class ProductsCreatePage
     public static $InputShortDescription    = '#ShortDescriptions';
     public static $InputFullDescription     = '#FullDescription';
     
+    
+    //--------------------------------------------------------------------------
+    //-------------------------------ТЕКСТ--------------------------------------
+    public static $TextOldPriceCurrency     = '#oldP';
 
+    
     //--------------------------------------------------------------------------
     //---------------------ТАБЛИЦЯ ТОВАРУ---------------------------------------
+   public static $HeadProductText       = '//div[@class="variantsProduct"]//th[1]';
+   public static $HeadVariantNameText   = '//div[@class="variantsProduct"]//th[2]';
+   public static $HeadPriceText         = '//div[@class="variantsProduct"]//th[3]';
+   public static $HeadCurrencyText      = '//div[@class="variantsProduct"]//th[4]';
+   public static $HeadArticleText       = '//div[@class="variantsProduct"]//th[5]';
+   public static $HeadAmountText        = '//div[@class="variantsProduct"]//th[6]';
+   
+   //InputFile можна прикріпити файл зображення 
+   //(з папки _data) з допомогою attachFile($InputFile,'name.jpg') 
+   public static function lineProductInputFile($row)                { return "//div[@class='variantsProduct']//tbody/tr[$row]/td[1]//input[@type='file']"; }
+   //загрузить из интернета
+   public static function lineProductButtonDownload($row)           { return "//div[@class='variantsProduct']//tbody/tr[$row]/td[1]/div//button[2]"; }
+   public static function lineProductButtonDelete($row)             { return "//div[@class='variantsProduct']//tbody/tr[$row]/td[1]/button"; }
+   
+   public static function lineVariantNameInput($row)                { return "//div[@class='variantsProduct']//tbody/tr[$row]/td[2]/input[@type='text']"; }
+   public static function linePriceInput($row)                      { return "//div[@class='variantsProduct']//tbody/tr[$row]/td[3]/input[@type='text']"; }
+   
+   public static function lineCurrencySelect($row)                  { return "//div[@class='variantsProduct']//tbody/tr[$row]/td[4]/select"; }
+   public static function lineCurrencySelectOption($row,$number)    { return "//div[@class='variantsProduct']//tbody/tr[$row]/td[4]/select/option[$number]"; }
+   
+   public static function lineArticleInput($row)                    { return "//div[@class='variantsProduct']//tbody/tr[$row]/td[5]/input[@type='text']"; }
+   public static function lineAmount($row)                          { return "//div[@class='variantsProduct']//tbody/tr[$row]/td[6]/input[@type='text']"; }
+   
+   
+    //--------------------------------------------------------------------------
+    //-----------------ВІКНО ЗАГРУЗКИ ЗОБРАЖЕННЯ З ІНТЕРНЕТУ--------------------
+   public static $WindowDownload                         = '#images_modal';
+   public static $WindowDownloadTitle                    = '#images_modal .modal-header h3';
+   public static $WindowDownloadButtonClose              = '#images_modal .modal-header .close';
+   public static $WindowDownloadButtonSearch             = '#images_modal .modal-header button#search_images';
+   public static $WindowDownloadButtonMore               = '#loadMoreImages';
+   public static $WindowDownloadTextNoElements           = '#image_search_result p:nth-child(1)';
+   public static $WindowDownloadTextPlease               = '#image_search_result p:nth-child(2)';
+   public static $WindowDownloadCheckSaveAdditional      = '#images_modal .modal-footer input';
+   public static $WindowDownloadCheckSaveAdditionalLabel = '#images_modal .modal-footer label';
+   public static $WindowDownloadButtonSave               = '#images_modal .modal-footer a:nth-child(3)';
+   public static $WindowDownloadButtonCancel             = '#images_modal .modal-footer a:nth-child(2)';
+   public static function windowDownloadImage($number)  {return "#image_search_result span:nth-child($number)";}
    
 
 
+
+
+   //--------------------------------------------------------------------------
+    //----------------------------СЕЛЕКТИ---------------------------------------
+    public static $SelectBrand                        = '#inputParent_chosen';
+    public static $SelectBrandInput                   = '#inputParent_chosen input';
+    public static function selectBrandOption($number) { return "//#inputParent_chosen ul li:nth-child($number)";}
+    
+    
+    public static $SelectCategory                     = '#comment_chosen';
+    public static $SelectCategoryInput                = '#comment_chosen input';
+    public static function selectCategoryOption($number) { return "#comment_chosen ul li:nth-child($number)";}
+    
+    
+    public static $SelectAdditionalCategory           = '#iddCategory_chosen';
+    public static $SelectAdditionalCategoryInput      = '#iddCategory_chosen input';
+    public static function selectAdditionalCategoryOption($number) { return "#iddCategory_chosen ul.chosen-results li:nth-child($number)";}
+
+
     //--------------------------------------------------------------------------
-
-
-
-
-    //лейбли
+    //------------------------------ЛЕЙБЛИ--------------------------------------
+    public static $InputNameLabel               = '//div[@class="inside_padd"]/div[1]/div[1]/label';
+    public static $InputOldPriceLabel           = '//div[@class="inside_padd"]/div[1]/div[3]/label';
+    public static $InputShortDescriptionLabel   = '//div[@class="inside_padd"]/div[5]/label';
+    public static $InputFullDescriptionLabel    = '//div[@class="inside_padd"]/div[6]/label';
+    
+    public static $ToggleActiveLabel            = '//div[@class="inside_padd"]/div[1]/div[1]/div/div/span';
+    
+    public static $TableProductLabel            = '//div[@class="inside_padd"]/div[1]/div[4]/label';
+    
     public static $FieldStatusLabel                 = '//div[@class="inside_padd"]/div[1]/div[2]/label';
     
-    public static $SelectBrandLabel                 = '';
-    public static $SelectCategoryLabel              = '';
-    public static $SelectAdditionalCategoryLabel    = '';
+    public static $SelectBrandLabel                 = '//div[@class="inside_padd"]/div[2]/label';
+    public static $SelectCategoryLabel              = '//div[@class="inside_padd"]/div[3]/label';
+    public static $SelectAdditionalCategoryLabel    = '//div[@class="inside_padd"]/div[4]/label';
 
     
-    //селекти
-    public static $SelectBrand                        = '';
-    public static $SelectBrandInput                   = '';
-    public static function selectBrandOption($number) { return "//[$number]";}
-    
-    
-    public static $SelectCategory                     = '';
-    public static $SelectCategoryInput                = '';
-    public static function selectCategoryOption($number) { return "//[$number]";}
-    
-    
-    public static $SelectAdditionalCategory           = '';
-    public static function selectAdditionalCategoryOption($number) { return "//[$number]";}
-    public static $SelectAdditionalCategoryInput      = '';
+
 }
