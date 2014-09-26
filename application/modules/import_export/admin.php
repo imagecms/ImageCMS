@@ -20,7 +20,7 @@ class Admin extends BaseAdminController {
         'cat',
         'num'
     );
-    private $uploadDir = './application/modules/import_export/backups/';
+    private $uploadDir = './application/backups/';
 
     public function __construct() {
         parent::__construct();
@@ -108,7 +108,7 @@ class Admin extends BaseAdminController {
                 ->renderAdmin('export');
         }
         if($check == 'archiveList'){
-            $dir = './application/modules/import_export/backups/';
+            $dir = $this->uploadDir;
             $files = array();
             if(is_dir($dir)){
                 if($dh = opendir($dir)){
@@ -191,7 +191,7 @@ class Admin extends BaseAdminController {
      */
     
     public function deleteArchive($str){
-        $dir = './application/modules/import_export/backups/';
+        $dir = $this->uploadDir;
         unlink($dir . $str);
         $this->getTpl('archiveList');
     }

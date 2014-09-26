@@ -9,7 +9,7 @@
  * /uploads/shop/products/origin/additional
  * 
  * /application/backups 
- * /application/modules/import_export/backups
+ * /application/backups
  ***********************
  * 
  * Дополнительные фото и фото вариантов.
@@ -65,7 +65,7 @@ class Import extends ShopAdminController {
      * @var string
      * @access private
      */
-    private $uploadDir = './application/modules/import_export/backups/';
+    private $uploadDir = './application/backups/';
 
     /**
      * Default csv file name
