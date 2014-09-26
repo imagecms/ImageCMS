@@ -45,7 +45,7 @@ class NotificationListPage
         //рядки таблиці
         public static function tabAllLineCheck($row)                      { return "//div[@id='notification_all']//tbody/tr[$row]/td[1]/span/span"; }
         public static function tabAllLineIDLink($row)                     { return "//div[@id='notification_all']//tbody/tr[$row]/td[2]/a"; }
-        public static function tabAllLineEmailText($row)                  { return "//div[@id='notification_all']//tbody/tr[$row/td[3]"; }
+        public static function tabAllLineEmailText($row)                  { return "//div[@id='notification_all']//tbody/tr[$row]/td[3]"; }
         public static function tabAllLineTimeText($row)                   { return "//div[@id='notification_all']//tbody/tr[$row]/td[4]/p"; }
         public static function tabAllLineValidUntilText($row)             { return "//div[@id='notification_all']//tbody/tr[$row]/td[5]/p"; }
         public static function tabAllLineManagerText($row)                { return "//div[@id='notification_all']//tbody/tr[$row]/td[6]/p"; }

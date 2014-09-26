@@ -7,7 +7,7 @@ class TextElementNSCest
 {
 //---------------------------AUTORIZATION---------------------------------------
     /**
-     * @group a
+     * @group aa
      */
     public function Login(NotificationStatusesTester $I){
         InitTest::Login($I);
@@ -237,7 +237,7 @@ class TextElementNSCest
 //-----------------------VERIFY TEXT EDITING MESSAGE----------------------------
     
     /**
-     * @group a
+     * @group aa
      */
      public function VerifyTextEdicttMessageEdictingPage (NotificationStatusesTester $I){
         $I->click(NavigationBarPage::$Orders);
@@ -249,6 +249,7 @@ class TextElementNSCest
         $I->click(NotificationStatusesCreatePage::$ButtonCreate);
         $I->wait('3');
         $I->see('Редактирование статуса уведомления о появлении', NotificationStatusesEditPage::$Title);
+        $I->wait('5');
         $I->click(NotificationStatusesEditPage::$ButtonSave);
         $I->exactlySeeAlert($I, 'success', 'Изменения сохранены');
         $I->wait('1');

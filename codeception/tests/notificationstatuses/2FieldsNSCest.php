@@ -74,7 +74,7 @@ class FieldsNSCest
                 $I->click(NotificationStatusesListPage::$ButtonDelete);
                 $I->wait('1');
                 $I->click(NotificationStatusesListPage::$WindowDeleteButtonDelete);
-                $I->wait('1');
+                $I->wait('3');
                 $I->dontSee(InitTest::$text500, NotificationStatusesListPage::$Table);
                 }
         }
@@ -175,7 +175,7 @@ class FieldsNSCest
         for($j = 1;$j <= $amount_rows;++$j){
             $name_notification = $I->grabTextFrom(NotificationStatusesListPage::lineNameLink($j));
             if($name_notification == '1234 QWERT хзщфыв asd ФІВЇ'){
-                $I->wait('1');
+                $I->wait('2');
                 $I->see('1234 QWERT хзщфыв asd ФІВЇ', NotificationStatusesListPage::lineNameLink($j));
             }
         }
