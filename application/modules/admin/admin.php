@@ -39,9 +39,7 @@ class Admin extends MY_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->library('DX_Auth');
-        if ($this->dx_auth->is_admin() == TRUE and SHOP_INSTALLED) {
-            redirect('/admin/components/run/shop/orders/index');
-        }
+
         $lang = new MY_Lang();
         $lang->load('admin');
 
@@ -56,7 +54,7 @@ class Admin extends MY_Controller {
 
 
     public function init() {
-        if (SHOP_INSTALLED) {
+        if (SHOP_INSTALLED) {            
             redirect('/admin/components/run/shop/dashboard');
         } else {
             $this->index();
@@ -64,6 +62,9 @@ class Admin extends MY_Controller {
     }
 
     public function index() {
+        if ($this->dx_auth->is_admin() == TRUE and SHOP_INSTALLED) {
+            redirect('/admin/components/run/shop/orders/index');
+        }
         //just show dashboard
         $this->load->module('admin/dashboard');
         $this->dashboard->index();
