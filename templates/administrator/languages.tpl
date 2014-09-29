@@ -24,7 +24,7 @@
                 <span class="help-inline"></span>
                 <span class="title">{lang('Languages list',"admin")}</span>
             </div>
-            {if end(explode(' ',IMAGECMS_NUMBER)) != 'Professional'}
+            {if end(explode(' ',IMAGECMS_NUMBER)) != 'Professional' || MAINSITE}
                 <div class="pull-right">
                     <div class="d-i_b">
                         <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="delete_function.deleteFunction()" id="module_delete"><i class="icon-trash"></i>{lang("Delete","admin")}</button>
