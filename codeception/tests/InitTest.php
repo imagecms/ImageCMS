@@ -1,12 +1,4 @@
 <?php
-
-/**
- * Description of InitTest
- *
- * @author cray
- */
-
-
 class InitTest {
 
     //Username і пароль ,будуть знінені в тесті 
