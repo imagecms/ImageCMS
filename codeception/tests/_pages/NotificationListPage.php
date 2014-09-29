@@ -89,8 +89,8 @@ class NotificationListPage
         public static function lineEmailLink($tab_id, $row)                  { return "//div[@id='notification_$tab_id']//tbody/tr[$row]/td[3]/a"; }                                                                                       
         public static function lineTimeText($tab_id, $row)                   { return "//div[@id='notification_$tab_id']//tbody/tr[$row]/td[4]/p"; }
         public static function lineValidUntilText($tab_id, $row)             { return "//div[@id='notification_$tab_id']//tbody/tr[$row]/td[5]/p"; }
-        public static function lineManagerText($tab_id, $row)                { return "//div[@id='notification_$tab_id']//tbody/tr[$row]/td[6]/p"; }
-        public static function lineStatusSelect($tab_id, $row)               { return "//div[@id='notification_$tab_id']//tbody/tr[$row]/td[7]/select"; }
+        public static function lineManagerText($tab_id, $row)                { return "//div[@id='notification_$tab_id']//tbody/tr[$row]/td[7]/p"; }
+        public static function lineStatusSelect($tab_id, $row)               { return "//div[@id='notification_$tab_id']//tbody/tr[$row]/td[6]/select"; }
         public static function lineStatusSelectOption($tab_id, $row,$number){ 
                 return "//div[@id='notification_$tab_id']//tbody/tr[$row]/td[7]/select/option[$number]"; 
             }
