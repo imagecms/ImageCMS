@@ -51,7 +51,7 @@ class FieldsNLCest
     
     
     /**
-     * @group aa
+     * @group a
      * @guy NotificationListTester\notificationlistSteps
      */
     public function CreateProductCategory(NotificationListTester\notificationlistSteps $I) {
@@ -60,7 +60,7 @@ class FieldsNLCest
     
     
     /**
-     * @group aa
+     * @group a
      * @guy NotificationListTester\notificationlistSteps
      */
     public function CreateProduct(NotificationListTester\notificationlistSteps $I) {
@@ -71,12 +71,12 @@ class FieldsNLCest
     }
     
     /**
-     * @group aa
+     * @group a
      */
-    public function VerifySavedCreateStatus (NotificationListTester $I){         
+    public function CreateNotificationStatus (NotificationListTester $I){         
         $I->amOnPage(NotificationStatusesCreatePage::$URL);
         $I->wait('1');
-        $I->fillField(NotificationStatusesCreatePage::$InputName, $this->Status_Notification_Name);
+        $I->fillField(NotificationStatusesCreatePage::$InputName, $this->Status_Awaiting_Name);
         $I->click(NotificationStatusesCreatePage::$ButtonCreateExit);
         $I->wait('1');
     }
@@ -132,9 +132,9 @@ class FieldsNLCest
      */
     public function GetNumberIDStatusAwaiting(NotificationListTester\notificationlistSteps  $I) {
         
-        $ID_Status = $I->GetIDStatus($name_statuse = $this->Status_Awaiting_Name);
+        $ID_Status = $I->GetIDStatus($name_statuse = 'В ожыдании');
         $this->ID_Status_Awaiting = $ID_Status;
-        $I->comment("ID статуса 'Выполнен': '$this->ID_Status_Awaiting'");
+        $I->comment("ID статуса 'В ожыдании': '$this->ID_Status_Awaiting'");
         
     }
     /**
@@ -143,15 +143,15 @@ class FieldsNLCest
      */
     public function GetNumberPositionStatusAwaiting(NotificationListTester\notificationlistSteps  $I) {
         
-        $number_position = $I->GetPositionStatus($name_statuse = $this->Status_Awaiting_Name);
+        $number_position = $I->GetPositionStatus($name_statuse = 'В ожыдании');
         $this->Position_Status_Awaiting = $number_position;
-        $I->comment("Номер позиции статуса 'Выполнен' увеличен на(+2), для страницы 'Список Уведомлений': '$this->Position_Status_Awaiting'");
+        $I->comment("Номер позиции статуса 'В ожыдании' увеличен на(+2), для страницы 'Список Уведомлений': '$this->Position_Status_Awaiting'");
     }
     
     
     
     /**
-     * @group aa
+     * @group a
      */
     public function CreateAdditionalNotificationFront(NotificationListTester $I){
         $I->amOnPage($this->Prodct_URl);
@@ -171,7 +171,7 @@ class FieldsNLCest
     }
     
     /**
-     * @group aa
+     * @group a
      */
     public function CreateNotificationFront(NotificationListTester $I){
         $I->amOnPage($this->Prodct_URl);
@@ -220,7 +220,7 @@ class FieldsNLCest
 //-------------------------MESSAGE INPUT FIELD ID LIST--------------------------
     
     /**
-     * @group aa
+     * @group a
      */
     public function InvalidInputFieldIDList (NotificationListTester $I){
         $I->amOnPage(NotificationListPage::$URL);
@@ -241,7 +241,7 @@ class FieldsNLCest
     
     
     /**
-     * @group aa
+     * @group a
      */
     public function ValidInputFieldIDTabAll (NotificationListTester $I){
         $I->amOnPage(NotificationListPage::$URL);
@@ -255,7 +255,7 @@ class FieldsNLCest
     
     
     /**
-     * @group aa
+     * @group a
      */
     public function ValidInputFieldIDTabMade (NotificationListTester $I){
         $I->amOnPage(NotificationListPage::$URL);
@@ -270,7 +270,7 @@ class FieldsNLCest
     } 
     
     /**
-     * @group aa
+     * @group a
      */
     public function ValidInputFieldIDTabNew (NotificationListTester $I){
         $I->amOnPage(NotificationListPage::$URL);
@@ -285,11 +285,27 @@ class FieldsNLCest
     } 
     
     
+    /**
+     * @group aa
+     */
+    public function ValidInputFieldIDTabAwaiting (NotificationListTester $I){
+        $I->amOnPage(NotificationListPage::$URL);
+        $I->wait('3');
+        $I->click(NotificationListPage::tab($this->Position_Status_Awaiting));
+        $I->wait(1);   
+        $I->fillField(NotificationListPage::filterIDInput($this->ID_Status_Awaiting), $this->ID_Notification);
+        $I->click(NotificationListPage::$ButtonFilter);
+        $I->wait('2');
+        $I->see('Список уведомлений о появлении пустой.', NotificationListPage::TextEmptyList($this->Position_Status_Awaiting));
+        $I->dontSeeElement(NotificationListPage::lineEmailLink($this->Position_Status_Awaiting, 1));
+    } 
+    
+    
 
 
 //-------------------------INPUT FIELD EMAIL LIST----------------------------------
     /**
-     * @group aa
+     * @group a
      */   
     public function InputFieldEmailTabAll (NotificationListTester $I){
         $I->amOnPage(NotificationListPage::$URL);
@@ -303,7 +319,7 @@ class FieldsNLCest
     
     
     /**
-     * @group aa
+     * @group a
      */   
     public function InputFieldEmailTabMade (NotificationListTester $I){
         $I->amOnPage(NotificationListPage::$URL);
@@ -320,9 +336,9 @@ class FieldsNLCest
     
 
     /**
-     * @group aa
+     * @group a
      */   
-    public function InputFieldEmail (NotificationListTester $I){
+    public function InputFieldEmailTabNew (NotificationListTester $I){
         $I->amOnPage(NotificationListPage::$URL);
         $I->wait('3');
         $I->click(NotificationListPage::tab($this->Position_Status_New));
@@ -335,9 +351,27 @@ class FieldsNLCest
     }
 
     
-//--------------------------------Select Status-------------------------------------------    
     /**
      * @group aa
+     */   
+    public function InputFieldEmailTabAwaiting (NotificationListTester $I){
+        $I->amOnPage(NotificationListPage::$URL);
+        $I->wait('3');
+        $I->click(NotificationListPage::tab($this->Position_Status_Awaiting));
+        $I->wait(1);  
+        $I->fillField(NotificationListPage::filterEmailInput($this->ID_Status_Awaiting), $this->user_Email);
+        $I->click(NotificationListPage::$ButtonFilter);
+        $I->wait('2');
+        $I->see('Список уведомлений о появлении пустой.', NotificationListPage::TextEmptyList($this->Position_Status_Awaiting));
+        $I->dontSeeElement(NotificationListPage::lineEmailLink($this->Position_Status_Awaiting, 1));
+    }
+    
+    
+    
+    
+//--------------------------------Select Status-------------------------------------------    
+    /**
+     * @group a
      */   
     public function SelectStatuseAllTab (NotificationListTester $I){
         $I->amOnPage(NotificationListPage::$URL);
