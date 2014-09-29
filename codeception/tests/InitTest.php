@@ -9,10 +9,11 @@
 
 class InitTest {
 
-
-    protected static $LoggedIn;
+    //Username і пароль ,будуть знінені в тесті 
     protected static $UserName = 'ad@min.com';
     protected static $Password = 'admin';
+    
+    protected static $LoggedIn;
 
     
 
