@@ -15,18 +15,18 @@ class CreateStatusCallbackCest
     public function Autorization(CallbacksTester $I)
     {
         InitTest::Login($I);
-        $I->amOnPage("/admin/components/run/shop/callbacks/statuses");
+        $I->amOnPage(CallbacksPage::$URLStatuses);
         $I->waitForText("Статусы обратных звонков");
     }  
     
     
     public function ICMS_1461_NamesInCreate(CallbacksTester $I)
     {
-        $I->amOnPage('/admin/components/run/shop/callbacks/statuses');
+        $I->amOnPage(CallbacksPage::$URLStatuses);
         $I->click(CallbacksPage::$CreateStatusButton);
         $I->waitForText('Создание статуса обратного звонка');
         $I->see('Создание статуса обратного звонка', 'span.title');
-        $I->see('Информация', './/*[@id="mainContent"]/section/div[2]/table/thead/tr/th');
+        $I->see('Информация', './/*[@id="mainContent"]/section/table/thead/tr/th');
         $I->see('Название:', './/*[@id="addCallbackStatusForm"]/div[1]/label');
         $I->see('По умолчанию', 'span.frame_label.no_connection');
         $I->see('Статус будет назначен всем новым запросам.', 'span.help-block');
@@ -38,7 +38,7 @@ class CreateStatusCallbackCest
     
     public function RequiredFieldsInCreateSaveButton(CallbacksTester $I)
     {
-        $I->amOnPage('/admin/components/run/shop/callbacks/statuses');
+        $I->amOnPage(CallbacksPage::$URLStatuses);
         $I->click(CallbacksPage::$CreateStatusButton);
         $I->waitForText('Создание статуса обратного звонка');
         $I->click(CallbacksPage::$SaveButton);
@@ -51,7 +51,7 @@ class CreateStatusCallbackCest
     
     public function RequiredFieldsInCreateSaveAndExitButton(CallbacksTester $I)
     {
-        $I->amOnPage('/admin/components/run/shop/callbacks/statuses');
+        $I->amOnPage(CallbacksPage::$URLStatuses);
         $I->click(CallbacksPage::$CreateStatusButton);
         $I->waitForText('Создание статуса обратного звонка');
         $I->click(CallbacksPage::$SaveAndExitButton);
@@ -77,8 +77,9 @@ class CreateStatusCallbackCest
     
     public function Symbols128Create(CallbacksTester\CallbacksSteps $I)
     {
-        $name="Статустатустатустатустатустатустатустатустатустатустатустатустатустатустатустатустатустатустатустатустатустатустатустатустатуста";        
+        $name="Статустатустатустатустатустатуста устатустатуста устатустатустатустатустатуста устатустатустатустатустатустат статустатустатуста";        
         $I->CreateStatusCallback($name, $name);
+        $I->CheckStatusCallbackListLanding($name);
     } 
     
     /**
@@ -87,8 +88,9 @@ class CreateStatusCallbackCest
     
     public function Symbols255Create(CallbacksTester\CallbacksSteps $I)
     {
-        $name="12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345";        
+        $name="12345йцуке12345йцуке123 5йцуке12345йцуке12345йцуке12345йцуке1 345йцуке12345йцуке12345йцуке 2345йцуке12345йц ке12345йцуке12345йцу е12345йцуке12345йцуке12345йцуке12345йцуке12345й уке12345йцуке12345йц ке12345йцуке12345йцуке1234 йцуке12345йцуке12345йцуке12345";        
         $I->CreateStatusCallback($name, $name);
+        $I->CheckStatusCallbackListLanding($name);
     } 
     
     /**
@@ -97,9 +99,10 @@ class CreateStatusCallbackCest
     
     public function Symbols256Create(CallbacksTester\CallbacksSteps $I)
     {
-        $name="12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке123456"; 
-        $name2="12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345";
+        $name="12345йцуке12345 цуке12345йцуке12345 цуке12345йцуке12345йцу е12345йцуке12345йцуке1234 йцуке12345йцуке12345йцуке12345 цуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке1234 йцуке12345йцуке12345йцуке12345йцуке12345йцуке1 345йцуке12345йцуке12 45йцуке123456"; 
+        $name2="12345йцуке12345 цуке12345йцуке12345 цуке12345йцуке12345йцу е12345йцуке12345йцуке1234 йцуке12345йцуке12345йцуке12345 цуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке1234 йцуке12345йцуке12345йцуке12345йцуке12345йцуке1 345йцуке12345йцуке12 45йцуке12345";
         $I->CreateStatusCallback($name, $name2);
+        $I->CheckStatusCallbackListLanding($name2);
         InitTest::ClearAllCach($I);
     } 
     
@@ -110,7 +113,7 @@ class CreateStatusCallbackCest
         $I->fillField(CallbacksPage::$NameStatus, 'На рассмотрении');
         $I->click(CallbacksPage::$SaveAndExitButton);
         $I->waitForElementVisible('.alert.in.fade.alert-success');
-        $I->see('Позиция создана');
+        $I->see('Статус создан');
         $I->waitForElementNotVisible('.alert.in.fade.alert-success');
         $I->see('На рассмотрении', CallbacksPage::ThemeNameLine('last()'));
         $def=$I->grabAttributeFrom(\CallbacksPage::ActiveButtonLine('last()'), 'class');
@@ -129,7 +132,7 @@ class CreateStatusCallbackCest
         $name="q";
         $default='';
         $I->CreateStatusCallback($name,$name,$default);
-        $default='prod-on_off ';
-        $I->CheckStatusCallbackListLanding($name, $default);
+//        $default='prod-on_off ';
+        $I->CheckStatusCallbackListLanding($name, $default='yes');
     } 
 }

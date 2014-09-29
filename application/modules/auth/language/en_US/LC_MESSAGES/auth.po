@@ -2,11 +2,11 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-05 11:24+0300\n"
-"PO-Revision-Date: 2014-06-05 11:24+0300\n"
-"Last-Translator:  \n"
-"Language-Team:  \n"
-"Language: en_US\n"
+"POT-Creation-Date: 2014-07-29 12:02+0300\n"
+"PO-Revision-Date: 2014-07-29 12:02+0300\n"
+"Last-Translator:  <>\n"
+"Language-Team:  <>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -17,3 +17,244 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/auth/auth.php:347
+msgid "Reset failed. Possible reasons: wrong email, wrong restore url, used restore url"
+msgstr "Reset failed. Possible reasons: wrong e-mail, wrong restore URL, used restore URL"
+
+#: ./application/modules/auth/authapi.php:282
+msgid "Old password"
+msgstr "Old password"
+
+# ?
+#: ./application/modules/auth/authapi.php:251
+#: ./application/modules/auth/auth.php:336
+msgid "You have successfully zeroed my password. "
+msgstr "You have successfully reset your password"
+
+#: ./application/modules/auth/authapi.php:39
+#: ./application/modules/auth/authapi.php:133
+#: ./application/modules/auth/authapi.php:334
+#: ./application/modules/auth/auth.php:109
+#: ./application/modules/auth/auth.php:207
+#: ./application/modules/auth/auth.php:397
+msgid "Password"
+msgstr "Password"
+
+#: ./application/modules/auth/authapi.php:284
+#: ./application/modules/auth/auth.php:370
+msgid "Repeat new password"
+msgstr "Confirm new password"
+
+#: ./application/modules/auth/authapi.php:352
+msgid "You are not logged in, you dont have any account to delete"
+msgstr "You are not logged in, you do not have any account to delete."
+
+#: ./application/modules/auth/module_info.php:5
+msgid "The authorization module and user registration"
+msgstr "Authorization module and user registration"
+
+#: ./application/modules/auth/auth.php:307
+msgid "Please check your email for instructions on how to activate the new password."
+msgstr "Please, check your email for instructions on how to activate the new password."
+
+#: ./application/modules/auth/auth.php:206
+msgid "Name"
+msgstr "Name"
+
+#: ./application/modules/auth/authapi.php:376
+msgid "User is already login in"
+msgstr "User is already logged in."
+
+#: ./application/modules/auth/authapi.php:306
+msgid "You are not logged in to change password"
+msgstr "Please log in, to change password"
+
+#: ./application/modules/auth/authapi.php:50
+msgid "User logged in success"
+msgstr "User has successfully logged in"
+
+#: ./application/modules/auth/auth.php:259
+msgid "Registration is prohibited."
+msgstr "User registration is currently not allowed"
+
+#: ./application/modules/auth/authapi.php:396
+msgid "A user with such mail is not found in the database"
+msgstr "A user with this e-mail is not found in the database"
+
+#: ./application/modules/auth/authapi.php:111
+msgid "You are not loggin to make loggout"
+msgstr "You must be logged in to log out."
+
+#: ./application/modules/auth/authapi.php:40
+msgid "Remeber me"
+msgstr "Remember me"
+
+#: ./application/modules/auth/auth.php:267
+msgid "You are already registered ;)"
+msgstr "You are already registered "
+
+#: ./application/modules/auth/auth.php:79
+msgid "Login field can only contain letters, numbers, underscores, dashes, or e-mail address"
+msgstr "Login field can only contain letters, numbers, underscores, dashes, or e-mail address"
+
+#: ./application/modules/auth/authapi.php:151
+#: ./application/modules/auth/auth.php:228
+msgid "You have successfully registered. "
+msgstr "You have successfully registered."
+
+#: ./application/modules/auth/authapi.php:138
+#: ./application/modules/auth/authapi.php:140
+#: ./application/modules/auth/auth.php:115
+#: ./application/modules/auth/auth.php:117
+#: ./application/modules/auth/auth.php:214
+#: ./application/modules/auth/auth.php:216
+msgid "Code protection"
+msgstr "Code protection"
+
+#: ./application/modules/auth/auth.php:282
+msgid "Your account has been successfully activated. "
+msgstr "Your account has been successfully activated."
+
+#: ./application/modules/auth/auth.php:103
+#: ./application/modules/auth/auth.php:133
+#: ./application/modules/auth/module_info.php:4
+msgid "Authorization"
+msgstr "Authorization"
+
+#: ./application/modules/auth/authapi.php:199
+msgid "User is logged in"
+msgstr "User is logged in"
+
+#: ./application/modules/auth/auth.php:368
+msgid "Old Password"
+msgstr "Old password "
+
+#: ./application/modules/auth/auth.php:287
+msgid "You have provided an incorrect activation code."
+msgstr "The entered activation code is incorrect"
+
+#: ./application/modules/auth/auth.php:180
+msgid "You are already logged."
+msgstr "You are already logged in."
+
+#: ./application/modules/auth/authapi.php:256
+msgid "Reset password failed"
+msgstr "Reset password failed"
+
+#: ./application/modules/auth/authapi.php:38
+#: ./application/modules/auth/authapi.php:131
+#: ./application/modules/auth/authapi.php:214
+#: ./application/modules/auth/auth.php:108
+#: ./application/modules/auth/auth.php:205
+#: ./application/modules/auth/auth.php:303
+msgid "Email"
+msgstr "E-mail"
+
+#: ./application/modules/auth/authapi.php:292
+#: ./application/modules/auth/auth.php:374
+msgid "Your password was successfully changed."
+msgstr "Your password has been successfully changed"
+
+#: ./application/modules/auth/authapi.php:363
+#: ./application/modules/auth/auth.php:426
+msgid "Your account has been blocked."
+msgstr "Your account has been blocked."
+
+#: ./application/modules/auth/auth.php:296
+msgid "Forgot password"
+msgstr "Forgot password"
+
+#: ./application/modules/auth/auth.php:369
+msgid "The new password"
+msgstr "The new password"
+
+#: ./application/modules/auth/authapi.php:65
+#: ./application/modules/auth/authapi.php:66
+msgid "User with this name and password is not found"
+msgstr "This username and password could not be found"
+
+#: ./application/modules/auth/auth.php:46
+msgid "This username is already registered."
+msgstr "This username has already been registered"
+
+#: ./application/modules/auth/authapi.php:134
+#: ./application/modules/auth/auth.php:208
+msgid "Repeat Password"
+msgstr "Confirm password"
+
+#: ./application/modules/auth/authapi.php:301
+msgid "Field Old password is not correct"
+msgstr "Field "
+
+#: ./application/modules/auth/authapi.php:151
+#: ./application/modules/auth/auth.php:228
+#: ./application/modules/auth/auth.php:282
+msgid "Login"
+msgstr "Login"
+
+#: ./application/modules/auth/auth.php:133
+msgid "Authorization successfully completed"
+msgstr "Authorization successfully completed"
+
+#: ./application/modules/auth/authapi.php:218
+msgid "Email with new password send to you email"
+msgstr "New password has been sent to your e-mail"
+
+#: ./application/modules/auth/auth.php:419
+msgid "You are not allowed to view the page."
+msgstr "You are not allowed to view the page"
+
+#: ./application/modules/auth/authapi.php:262
+msgid "You have to be logged in to reset password"
+msgstr "You have to be logged in to reset password"
+
+#: ./application/modules/auth/authapi.php:381
+msgid "User not logined"
+msgstr "User has not been logged in"
+
+#: ./application/modules/auth/authapi.php:156
+msgid "Register success"
+msgstr "Registration successfull"
+
+#: ./application/modules/auth/authapi.php:320
+#: ./application/modules/auth/auth.php:61
+msgid "A user with this email is already registered."
+msgstr "This e-mail is already registered."
+
+#: ./application/modules/auth/authapi.php:105
+msgid "Logout completed"
+msgstr "Logout completed"
+
+#: ./application/modules/auth/auth.php:88
+msgid "Improper protection code"
+msgstr "Wrong protection code"
+
+#: ./application/modules/auth/authapi.php:194
+msgid "Registration is not allowed"
+msgstr "User registration is currently not allowed"
+
+#: ./application/modules/auth/auth.php:197
+msgid "Registration"
+msgstr "Registration"
+
+#: ./application/modules/auth/authapi.php:283
+msgid "New password"
+msgstr "New password"
+
+#: ./application/modules/auth/authapi.php:82
+msgid "User is already logged in"
+msgstr "User is already logged in"
+
+#: ./application/modules/auth/authapi.php:149
+#: ./application/modules/auth/auth.php:226
+msgid "You have successfully registered. Please check your email to activate your account."
+msgstr "You have successfully registered. Please, check your e-mail to activate your account."
+
+#: ./application/modules/auth/authapi.php:338
+msgid "Deleting account completed"
+msgstr "Account deletion completed"
+
+#: ./application/modules/auth/authapi.php:251
+msgid "Login Here"
+msgstr "Login here"

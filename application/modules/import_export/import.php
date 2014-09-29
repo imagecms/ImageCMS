@@ -9,7 +9,7 @@
  * /uploads/shop/products/origin/additional
  * 
  * /application/backups 
- * /application/modules/import_export/backups
+ * /application/backups
  ***********************
  * 
  * Дополнительные фото и фото вариантов.
@@ -45,7 +45,7 @@
   const ErrorNameVariantAttribute = "Атрибут 'Имя варианта' не указан. Error: EIx013";
   const ErrorNameAttribute = "Атрибут 'Имя товара' не указан. Error: EIx010";
  * 
- * Файлы хранятся в /import_export/backups
+ * Файлы хранятся в /application/backups 
  * Backup базы остался неизменным в /application/backups 
  * 
  * Сегментная выгрузка при первом запуске использует imports(). Так как 
@@ -65,7 +65,7 @@ class Import extends ShopAdminController {
      * @var string
      * @access private
      */
-    private $uploadDir = './application/modules/import_export/backups/';
+    private $uploadDir = './application/backups/';
 
     /**
      * Default csv file name

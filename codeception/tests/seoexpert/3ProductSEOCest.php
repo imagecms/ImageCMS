@@ -4,52 +4,58 @@ use \SeoExpertTester;
 class ProductSEOCest
 
 {
-    private $ID_property_Rus;
-    private $ID_product_Rus;
-    private $ID_property_Eng;
-    private $ID_product_Eng;
+    private $ID_Russian_Name_Property;
+    private $ID_Russian_Name_Product;
+    private $ID_EngLish_Name_Property;
+    private $ID_English_Name_Product;
     
 //---------------------------AUTORIZATION--------------------------------------- 
     /**
-     * @group aa
+     * @group a
      */
     public function Login(SeoExpertTester $I){
         InitTest::Login($I);
-    }
-    
+    } 
     
     
     /**
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
-    public function CreateCategoryForFront (SeoExpertTester\seoexpertSteps $I){
+    public function ClearCashee (SeoExpertTester\seoexpertSteps $I){
+        InitTest::ClearAllCach($I);
+        InitTest::changeTextAditorToNative($I);
+    }
+    
+    
+    /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps 
+     */
+    public function CreateCategoryRussianNameForProduct (SeoExpertTester\seoexpertSteps $I){
         $I->SeoCreateCategoryProduct($createNameCategory = 'Вода');
+    }
+    
+    
+    /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps 
+     */
+    public function CreateCategoryEnglishNameForProduct (SeoExpertTester\seoexpertSteps $I){
         $I->SeoCreateCategoryProduct($createNameCategory = 'Water');
     }
     
-
     
-
-    /**
-     * @group aa
-     * @guy SeoExpertTester\seoexpertSteps 
-     */
-    public function CreatуBrandForFront (SeoExpertTester\seoexpertSteps $I){
-        $I->SeoCreateBrand($brandName = 'Хлеб');
-        $I->SeoCreateBrand($brandName = 'Bread');
-    }
-    
-    
-
     /**
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
-    public function CreateProductForFront (SeoExpertTester\seoexpertSteps $I){
-        $I->SeoCreateProduct($NameProduct = 'Сеошний товар', $PriceProduct = '777', $BrandProduct = 'Хлеб', $CategoryProduct = 'Вода', $Additional_Category = 'Water');
-        $I->SeoCreateProduct($NameProduct = 'Seoshny product', $PriceProduct = '777', $BrandProduct = 'Bread', $CategoryProduct = 'Water', $Additional_Category = 'Вода');
-
+    public function CreatуBrandRusssianNameForProduct (SeoExpertTester\seoexpertSteps $I){
+        $I->SeoCreateBrand( $brandName = 'Хлеб',
+                            $opisanie = '',
+                            $title = '',
+                            $description = '',
+                            $keywords = '');
     }
     
     
@@ -57,27 +63,119 @@ class ProductSEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
-    public function CreateProperty(SeoExpertTester\seoexpertSteps $I) {
-        $I->SeoCreateProperty($NameProperty = 'Свойственно сео', $CVS = 'XYXYxyxyxyxyXYXY', $Category = 'Вода', $Values1 = 'Первое Свойство');
-        $I->SeoSelectPropertyInProduct($NameProduct = 'Сеошний товар', $Property1 = 'Yes');
-        $I->SeoCreateProperty($NameProperty = 'Tend seo', $CVS = 'YYYYYyyyyyYYYYYY', $Category = 'Water', $Values1 = 'First property');//, $Values2 = NULL, $Values3 = NULL, $Values4 = NULL
-        $I->SeoSelectPropertyInProduct($NameProduct = 'Seoshny product', $Property1 = 'Yes');
+    public function CreatуBrandEnglishNameForProduct (SeoExpertTester\seoexpertSteps $I){
+        $I->SeoCreateBrand( $brandName = 'Bread',
+                            $opisanie = '',
+                            $title = '',
+                            $description = '',
+                            $keywords = '');
     }
     
     
+    /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps 
+     */
+    public function CreateProductRussianNameForFront (SeoExpertTester\seoexpertSteps $I){
+        $I->SeoCreateProduct(   $NameProduct            = 'Сеошний товар', 
+                                $PriceProduct           = '777', 
+                                $BrandProduct           = 'Хлеб', 
+                                $CategoryProduct        = 'Вода',
+                                $Additional_Category    = 'Water');
+    }
+    
+    
+    /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps 
+     */
+    public function CreateProductEnglishNameForFront (SeoExpertTester\seoexpertSteps $I){
+        $I->SeoCreateProduct(   $NameProduct            = 'Seoshny product',
+                                $PriceProduct           = '777', 
+                                $BrandProduct           = 'Bread', 
+                                $CategoryProduct        = 'Water',
+                                $Additional_Category    = 'Вода');
+    }
+    
+    
+    /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps 
+     */
+    public function CreatePropertyRussianNameForProduct(SeoExpertTester\seoexpertSteps $I) {
+        $I->SeoCreateProperty(  $NameProperty   = 'Свойственно сео', 
+                                $CVS            = 'XYXYxyxyxyxyXYXY', 
+                                $Category       = 'Вода', 
+                                $Values1        = 'Первое Свойство');
+    }
+    
+    
+    /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps 
+     */
+    public function SelectPropertyForRussianNameProduct(SeoExpertTester\seoexpertSteps $I) {
+        $I->SeoSelectPropertyInProduct( $NameProduct    = 'Сеошний товар',
+                                        $Property1      = 'Yes');
+    }
+    
+    
+    /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps 
+     */
+    public function CreatePropertyEnglishNameForProduct(SeoExpertTester\seoexpertSteps $I) {
+        $I->SeoCreateProperty(  $NameProperty   = 'Tend seo',
+                                $CVS            = 'YYYYYyyyyyYYYYYY',
+                                $Category       = 'Water', 
+                                $Values1        = 'First property');
+    }
+    
+    
+     /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps 
+     */
+    public function SelectPropertyForEnglishNameProduct(SeoExpertTester\seoexpertSteps $I) {        
+        $I->SeoSelectPropertyInProduct( $NameProduct    = 'Seoshny product',
+                                        $Property1      = 'Yes');
+    }
+    
+
     /**
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function variableGrabID (SeoExpertTester\seoexpertSteps $I) {
-        $ID_property_Rus = $I->GetPropertyID($name_property = 'Свойственно сео');
+    public function GrabIDForCategoyProductInVariable (SeoExpertTester\seoexpertSteps $I) {   
+        
         $ID_product_Rus = $I->GetProductID($name_product = 'Сеошний товар');
-        $ID_property_Eng = $I->GetPropertyID($name_property = 'Tend seo');
-        $ID_product_Eng = $I->GetProductID($name_product = 'Seoshny product');
-        $this->ID_property_Rus = $ID_property_Rus;
-        $this->ID_product_Rus = $ID_product_Rus;
-        $this->ID_property_Eng = $ID_property_Eng;
-        $this->ID_product_Eng = $ID_product_Eng;
+        $this->ID_Russian_Name_Product = $ID_product_Rus;        
+        
+        $ID_product_Eng = $I->GetProductID($name_product = 'Seoshny product');             
+        $this->ID_English_Name_Product = $ID_product_Eng;
+    }
+    
+    
+    /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps
+     */
+    public function GrabIDForPropertyProductInVariable (SeoExpertTester\seoexpertSteps $I) {
+        
+        $ID_property_Eng = $I->GetPropertyID($name_property = 'Tend seo');  
+        $this->ID_EngLish_Name_Property = $ID_property_Eng;
+        
+        $ID_property_Rus = $I->GetPropertyID($name_property = 'Свойственно сео');
+        $this->ID_Russian_Name_Property = $ID_property_Rus;
+    }
+    
+    
+    /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps
+     */
+    public function DefoultValues (SeoExpertTester\seoexpertSteps $I) {
+            $I->DefoultValues();  
     }
     
 
@@ -85,15 +183,12 @@ class ProductSEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function ShopProductPageTitleRus (SeoExpertTester\seoexpertSteps $I){
-        $this->ID_property_Rus;
-        $this->ID_product_Rus;
-        $I->DefoultValues();               
+    public function ShopProductPageTitleRus (SeoExpertTester\seoexpertSteps $I){          
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->click(seoexpertPage::$SeoButtShop);
         $I->wait('1');
-        $I->fillField(seoexpertPage::$SeoProductTitle, "%ID% %name% %category% %brand% %price% %CS% %p_$this->ID_property_Rus%");
+        $I->fillField(seoexpertPage::$SeoProductTitle, "%ID% %name% %category% %brand% %price% %CS% %p_$this->ID_Russian_Name_Property%");
         $I->fillField(seoexpertPage::$SeoProductDescription, '');
         $I->fillField(seoexpertPage::$SeoProductKeywords, '');
         $checkbox_path = '//section/form/div[2]/div[2]/table[1]/tbody/tr/td/div/div/div[1]/div/span[2]'; 
@@ -104,7 +199,7 @@ class ProductSEOCest
         $I->wait('1');
         $I->amOnPage(seoexpertPage::$FrontProductURLRu);
         $I->wait('1');
-        $I->seeInPageSource("$this->ID_product_Rus Сеошний товар Вода Хлеб 777 руб Первое Свойство / mini.loc");             
+        $I->seeInPageSource("$this->ID_Russian_Name_Product Сеошний товар Вода Хлеб 777 руб Первое Свойство / mini.loc");            
     }
     
     
@@ -115,14 +210,11 @@ class ProductSEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function ShopProductPageTitleEng (SeoExpertTester\seoexpertSteps $I){
-        $this->ID_property_Eng;
-        $this->ID_product_Eng;
-        $I->DefoultValues();                   
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->click(seoexpertPage::$SeoButtShop);
         $I->wait('1');
-        $I->fillField(seoexpertPage::$SeoProductTitle, "%ID% %name% %category% %brand% %price% %CS% %p_$this->ID_property_Eng%");
+        $I->fillField(seoexpertPage::$SeoProductTitle, "%ID% %name% %category% %brand% %price% %CS% %p_$this->ID_EngLish_Name_Property%");
         $I->fillField(seoexpertPage::$SeoProductDescription, '');
         $I->fillField(seoexpertPage::$SeoProductKeywords, '');
         $checkbox_path = '//section/form/div[2]/div[2]/table[1]/tbody/tr/td/div/div/div[1]/div/span[2]'; 
@@ -133,7 +225,7 @@ class ProductSEOCest
         $I->wait('1');
         $I->amOnPage(seoexpertPage::$FrontProductURLENG);
         $I->wait('1');
-        $I->seeInPageSource("$this->ID_product_Eng Seoshny product Water Bread 777 руб First property / mini.loc");             
+        $I->seeInPageSource("$this->ID_English_Name_Product Seoshny product Water Bread 777 руб First property / mini.loc");             
     }
     
     
@@ -142,14 +234,11 @@ class ProductSEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function ShopProductPageTitleTranslitRus (SeoExpertTester\seoexpertSteps $I){
-        $this->ID_property_Rus;
-        $this->ID_product_Rus;
-        $I->DefoultValues();            
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->click(seoexpertPage::$SeoButtShop);
         $I->wait('1');
-        $I->fillField(seoexpertPage::$SeoProductTitle, "%ID% %name[t]% %category[t]% %brand[t]% %price% %CS% %p_$this->ID_property_Rus%");
+        $I->fillField(seoexpertPage::$SeoProductTitle, "%ID% %name[t]% %category[t]% %brand[t]% %price% %CS% %p_$this->ID_Russian_Name_Property%");
         $I->fillField(seoexpertPage::$SeoProductDescription, '');
         $I->fillField(seoexpertPage::$SeoProductKeywords, '');
         $checkbox_path = '//section/form/div[2]/div[2]/table[1]/tbody/tr/td/div/div/div[1]/div/span[2]'; 
@@ -160,7 +249,7 @@ class ProductSEOCest
         $I->wait('1');
         $I->amOnPage(seoexpertPage::$FrontProductURLRu);
         $I->wait('1');
-        $I->seeInPageSource("$this->ID_product_Rus Seoshnii tovar Voda Hleb 777 руб Первое Свойство / mini.loc");
+        $I->seeInPageSource("$this->ID_Russian_Name_Product Seoshnii tovar Voda Hleb 777 руб Первое Свойство / mini.loc");
 
     }
     
@@ -170,14 +259,11 @@ class ProductSEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function ShopProductPageTitleTranslitEng (SeoExpertTester\seoexpertSteps $I){
-        $this->ID_property_Eng;
-        $this->ID_product_Eng;
-        $I->DefoultValues();                  
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->click(seoexpertPage::$SeoButtShop);
         $I->wait('1');
-        $I->fillField(seoexpertPage::$SeoProductTitle, "%ID% %name[t]% %category[t]% %brand[t]% %price% %CS% %p_$this->ID_property_Eng%");
+        $I->fillField(seoexpertPage::$SeoProductTitle, "%ID% %name[t]% %category[t]% %brand[t]% %price% %CS% %p_$this->ID_EngLish_Name_Property%");
         $I->fillField(seoexpertPage::$SeoProductDescription, '');
         $I->fillField(seoexpertPage::$SeoProductKeywords, '');
         $checkbox_path = '//section/form/div[2]/div[2]/table[1]/tbody/tr/td/div/div/div[1]/div/span[2]'; 
@@ -188,7 +274,7 @@ class ProductSEOCest
         $I->wait('1');
         $I->amOnPage(seoexpertPage::$FrontProductURLENG);
         $I->wait('1');
-        $I->seeInPageSource("$this->ID_product_Eng Seoshny product Water Bread 777 руб First property / mini.loc");             
+        $I->seeInPageSource("$this->ID_English_Name_Product Seoshny product Water Bread 777 руб First property / mini.loc");             
     }
     
   
@@ -200,7 +286,6 @@ class ProductSEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function ShopProductPageTitlePadeguName (SeoExpertTester\seoexpertSteps $I){   
-        $I->DefoultValues();
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->click(seoexpertPage::$SeoButtShop);
@@ -228,7 +313,6 @@ class ProductSEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function ShopProductPageTitlePadeguNameEng (SeoExpertTester\seoexpertSteps $I){    
-        $I->DefoultValues();
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->click(seoexpertPage::$SeoButtShop);
@@ -257,7 +341,6 @@ class ProductSEOCest
      */
 
     public function ShopProductPageTitlePadeguCategory (SeoExpertTester\seoexpertSteps $I){  
-        $I->DefoultValues();
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->click(seoexpertPage::$SeoButtShop);
@@ -286,7 +369,6 @@ class ProductSEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function ShopProductPageTitlePadeguCategoryEng (SeoExpertTester\seoexpertSteps $I){     
-        $I->DefoultValues();
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->click(seoexpertPage::$SeoButtShop);
@@ -312,16 +394,12 @@ class ProductSEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function ShopProductPageDescriptionRus (SeoExpertTester\seoexpertSteps $I){
-        $this->ID_property_Rus;
-        $this->ID_product_Rus;
-        $I->DefoultValues();    
-        $I->wait('1');              
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->click(seoexpertPage::$SeoButtShop);
         $I->wait('1');
         $I->fillField(seoexpertPage::$SeoProductTitle, '');
-        $I->fillField(seoexpertPage::$SeoProductDescription, "%ID% %name% %category% %brand% %price% %CS% %p_$this->ID_property_Rus%");
+        $I->fillField(seoexpertPage::$SeoProductDescription, "%ID% %name% %category% %brand% %price% %CS% %p_$this->ID_Russian_Name_Property%");
         $I->fillField(seoexpertPage::$SeoProductKeywords, '');
         $I->fillField(seoexpertPage::$SeoProductLength, '');
         $checkbox_path = '//section/form/div[2]/div[2]/table[1]/tbody/tr/td/div/div/div[1]/div/span[2]'; 
@@ -332,7 +410,7 @@ class ProductSEOCest
         $I->wait('1');
         $I->amOnPage(seoexpertPage::$FrontProductURLRu);
         $I->wait('1');
-        $I->seeInPageSource("$this->ID_product_Rus Сеошний товар Вода Хлеб 777 руб Первое Свойство / mini.loc");
+        $I->seeInPageSource("$this->ID_Russian_Name_Product Сеошний товар Вода Хлеб 777 руб Первое Свойство / mini.loc");
        
     }
     
@@ -343,15 +421,12 @@ class ProductSEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function ShopProductPageDiscriprionEng (SeoExpertTester\seoexpertSteps $I){   
-        $this->ID_property_Eng;
-        $this->ID_product_Eng;
-        $I->DefoultValues();    
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->click(seoexpertPage::$SeoButtShop);
         $I->wait('1');
         $I->fillField(seoexpertPage::$SeoProductTitle, '');
-        $I->fillField(seoexpertPage::$SeoProductDescription, "%ID% %name% %category% %brand% %price% %CS% %p_$this->ID_property_Eng%");
+        $I->fillField(seoexpertPage::$SeoProductDescription, "%ID% %name% %category% %brand% %price% %CS% %p_$this->ID_EngLish_Name_Property%");
         $I->fillField(seoexpertPage::$SeoProductKeywords, '');
         $checkbox_path = '//section/form/div[2]/div[2]/table[1]/tbody/tr/td/div/div/div[1]/div/span[2]'; 
         $I->ActivateCheckBox($checkbox_xpath = $checkbox_path);
@@ -361,7 +436,7 @@ class ProductSEOCest
         $I->wait('1');
         $I->amOnPage(seoexpertPage::$FrontProductURLENG);
         $I->wait('1');
-        $I->seeInPageSource("$this->ID_product_Eng Seoshny product Water Bread 777 руб First property / mini.loc");             
+        $I->seeInPageSource("$this->ID_English_Name_Product Seoshny product Water Bread 777 руб First property / mini.loc");             
     }
     
     
@@ -370,16 +445,13 @@ class ProductSEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function ShopProductPageDescriptionTranslitRus (SeoExpertTester\seoexpertSteps $I){
-        $this->ID_property_Rus;
-        $this->ID_product_Rus;
-        $I->DefoultValues();
         $I->wait('1');               
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->click(seoexpertPage::$SeoButtShop);
         $I->wait('1');
         $I->fillField(seoexpertPage::$SeoProductTitle, '');
-        $I->fillField(seoexpertPage::$SeoProductDescription, "%ID% %name[t]% %category[t]% %brand[t]% %price% %CS% %p_$this->ID_property_Rus%");
+        $I->fillField(seoexpertPage::$SeoProductDescription, "%ID% %name[t]% %category[t]% %brand[t]% %price% %CS% %p_$this->ID_Russian_Name_Property%");
         $I->fillField(seoexpertPage::$SeoProductKeywords, '');
         $I->fillField(seoexpertPage::$SeoProductLength, '');
         $checkbox_path = '//section/form/div[2]/div[2]/table[1]/tbody/tr/td/div/div/div[1]/div/span[2]'; 
@@ -390,7 +462,7 @@ class ProductSEOCest
         $I->wait('1');
         $I->amOnPage(seoexpertPage::$FrontProductURLRu);
         $I->wait('1');
-        $I->seeInPageSource("$this->ID_product_Rus Seoshnii tovar Voda Hleb 777 руб Первое Свойство / mini.loc");       
+        $I->seeInPageSource("$this->ID_Russian_Name_Product Seoshnii tovar Voda Hleb 777 руб Первое Свойство / mini.loc");       
     }
     
     
@@ -399,15 +471,12 @@ class ProductSEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function ShopProductPageDiscriprionTranslitEng (SeoExpertTester\seoexpertSteps $I){  
-        $this->ID_property_Eng;
-        $this->ID_product_Eng;
-        $I->DefoultValues(); 
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->click(seoexpertPage::$SeoButtShop);
         $I->wait('1');
         $I->fillField(seoexpertPage::$SeoProductTitle, '');
-        $I->fillField(seoexpertPage::$SeoProductDescription, "%ID% %name[t]% %category[t]% %brand[t]% %price% %CS% %p_$this->ID_property_Eng%");
+        $I->fillField(seoexpertPage::$SeoProductDescription, "%ID% %name[t]% %category[t]% %brand[t]% %price% %CS% %p_$this->ID_EngLish_Name_Property%");
         $I->fillField(seoexpertPage::$SeoProductKeywords, '');
         $checkbox_path = '//section/form/div[2]/div[2]/table[1]/tbody/tr/td/div/div/div[1]/div/span[2]';        
         $I->ActivateCheckBox($checkbox_xpath = $checkbox_path);
@@ -417,7 +486,7 @@ class ProductSEOCest
         $I->wait('1');
         $I->amOnPage(seoexpertPage::$FrontProductURLENG);
         $I->wait('1');
-        $I->seeInPageSource("$this->ID_product_Eng Seoshny product Water Bread 777 руб First property / mini.loc");             
+        $I->seeInPageSource("$this->ID_English_Name_Product Seoshny product Water Bread 777 руб First property / mini.loc");             
 
     }
     
@@ -455,7 +524,6 @@ class ProductSEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function ShopProductPageDescriptionPadeguCategory (SeoExpertTester\seoexpertSteps $I){     
-        $I->DefoultValues();
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->click(seoexpertPage::$SeoButtShop);
@@ -484,15 +552,13 @@ class ProductSEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function ShopProductPageKeywordsRus (SeoExpertTester\seoexpertSteps $I){
-        $this->ID_property_Rus;
-        $I->DefoultValues();
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->click(seoexpertPage::$SeoButtShop);
         $I->wait('1');
         $I->fillField(seoexpertPage::$SeoProductTitle, '');
         $I->fillField(seoexpertPage::$SeoProductDescription, '');
-        $I->fillField(seoexpertPage::$SeoProductKeywords, "%name% %category% %brand% %p_$this->ID_property_Rus%");
+        $I->fillField(seoexpertPage::$SeoProductKeywords, "%name% %category% %brand% %p_$this->ID_Russian_Name_Property%");
         $checkbox_path = '//section/form/div[2]/div[2]/table[1]/tbody/tr/td/div/div/div[1]/div/span[2]'; 
         $I->ActivateCheckBox($checkbox_xpath = $checkbox_path);
         $checkbox_path = '//section/form/div[2]/div[2]/table[1]/tbody/tr/td/div/div/div[2]/div/span[2]';
@@ -514,7 +580,6 @@ class ProductSEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function ShopProductPageActive (SeoExpertTester\seoexpertSteps $I){ 
-        $I->DefoultValues();
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->click(seoexpertPage::$SeoButtShop);
@@ -574,15 +639,13 @@ class ProductSEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function CheckBoxNullMetaData (SeoExpertTester\seoexpertSteps $I){
-        $this->ID_property_Rus;
-        $this->ID_product_Rus;
         $I->DefoultValues();
         $I->SeoProductFillFieldMettaData($name_product = 'Сеошний товар', $Meta_Title = 'ТАЙТЛ', $Meta_Description  = 'ОПИСАНИЕ', $Meta_Keywords = 'КЕЙВОРДС');
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->click(seoexpertPage::$SeoButtShop);
         $I->wait('1');
-        $I->fillField(seoexpertPage::$SeoProductTitle, "%ID% %name% %category% %brand% %price% %CS% %p_$this->ID_property_Rus%");
+        $I->fillField(seoexpertPage::$SeoProductTitle, "%ID% %name% %category% %brand% %price% %CS% %p_$this->ID_Russian_Name_Property%");
         $I->fillField(seoexpertPage::$SeoProductDescription, '');
         $I->fillField(seoexpertPage::$SeoProductKeywords, '');
         $checkbox_path = '//section/form/div[2]/div[2]/table[1]/tbody/tr/td/div/div/div[1]/div/span[2]'; 
@@ -596,8 +659,7 @@ class ProductSEOCest
         $I->seeInPageSource('ТАЙТЛ');             
         $I->seeInPageSource('ОПИСАНИЕ');             
         $I->seeInPageSource('КЕЙВОРДС');   
-        $I->dontSee("$this->ID_product_Rus");
-        $I->dontSee("$this->ID_property_Rus");
+        $I->dontSee("$this->ID_Russian_Name_Product");
     }
     
     

@@ -6,7 +6,7 @@ class CallbackStatusesCreatePage
     
     //заголовки
     public static $Title                    = '.title';
-    public static $BlockCreateTitle         = '//thead//th';
+    public static $TitleBlockCreate         = '//thead//th';
     
     //кнопки
     public static $ButtonBack               = '.t-d_u';

@@ -14,11 +14,11 @@ class DeliveryCreateCest {
     public function authorization(DeliveryTester $I) {
         if(InitTest::Login($I)){
             $I->wait(1);
-            $I->amOnPage(DeliveryPage::$URL);
+            $I->amOnPage(DeliveryListPage::$URL);
         }
         
         InitTest::changeTextAditorToNative($I);
-        InitTest::changeSymbolsAfterCommaInPrice($I, '0');
+//        InitTest::changeSymbolsAfterCommaInPrice($I, '0');
     }
 
 //  ____________________________________________________________FIELD_NAME_TESTS
@@ -198,11 +198,11 @@ class DeliveryCreateCest {
      */
     public function checkPriseSpecified(DeliveryTester $I) {
         $I->amOnPage(DeliveryCreatePage::$URL);
-        $I->checkOption(DeliveryCreatePage::$CheckboxPriceSpecified);
-        $I->waitForElementVisible(DeliveryCreatePage::$FieldPriceSpecified);
+        $I->checkOption(DeliveryCreatePage::$CheckPriceSpecified);
+        $I->waitForElementVisible(DeliveryCreatePage::$InputPriceSpecified);
 
-        $a = $I->grabAttributeFrom(DeliveryCreatePage::$FieldPrice, 'disabled');
-        $b = $I->grabAttributeFrom(DeliveryCreatePage::$FieldPrice, 'disabled');
+        $a = $I->grabAttributeFrom(DeliveryCreatePage::$InputPrice, 'disabled');
+        $b = $I->grabAttributeFrom(DeliveryCreatePage::$InputFreeFrom, 'disabled');
 
         if ($a && $b) {
             $I->assertEquals($a, 'true');
@@ -278,11 +278,11 @@ class DeliveryCreateCest {
 
         $I->amOnPage(DeliveryCreatePage::$URL);
         $I->waitForText("Создание способа доставки", NULL, '.title');
-        $I->comment("I want to Verify created Pay Methods with Create Page Pay Methods");
+        $I->comment("I want to Verify created Pay Methods with CreatePage Pay Methods");
 
         foreach ($PaymentMethods as $Currentpay) {
             $I->comment($Currentpay);
-            $CreatePagePay = $I->grabTextFrom(DeliveryCreatePage::PaymentMethodLabel($row));
+            $CreatePagePay = $I->grabTextFrom(DeliveryCreatePage::checkPaymentMethodLabel($row));
             $I->assertEquals($CreatePagePay, $Currentpay);
             $row++;
         }
@@ -326,7 +326,7 @@ class DeliveryCreateCest {
      * @guy DeliveryTester\DeliverySteps
      */
     public function deleteAllCreatedMethods(DeliveryTester\DeliverySteps $I) {
-        $I->amOnPage(DeliveryPage::$URL);
+        $I->amOnPage(DeliveryListPage::$URL);
         //Deleting
         $I->DeleteDeliveryMethods($this->CreatedMethods);
         unset($this->CreatedMethods);

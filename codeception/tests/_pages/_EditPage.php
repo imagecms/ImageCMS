@@ -5,7 +5,7 @@ class EditPage
     
     //заголовки
     public static $Title                    = '.title';
-    public static $BlockEditTitle           = '//section[@class="mini-layout"]//th';
+    public static $TitleBlockEdit           = '//section[@class="mini-layout"]//th';
     
     //кнопки
     Public static $ButtonBack               = '.t-d_u';
@@ -23,7 +23,7 @@ class EditPage
     public static $Text                     = '';
     
     //лейбли
-    public static $ElementNameLabel           = '';
+    public static $ElementNameLabel         = '';
 
     //таби
     public static $Tab                      = '';

@@ -122,6 +122,7 @@ class Components extends BaseAdminController {
     private function setPermited() {
         if (MAINSITE != '' and $this->load->module('mainsaas')) {
             $this->permited = $this->load->module('mainsaas')->getNotPermited();
+            $this->permited = array_map('trim', $this->permited);
         }
     }
 

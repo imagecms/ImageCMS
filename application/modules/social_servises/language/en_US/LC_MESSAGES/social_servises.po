@@ -2,11 +2,11 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-05 11:24+0300\n"
-"PO-Revision-Date: 2014-06-05 11:24+0300\n"
-"Last-Translator:  \n"
-"Language-Team:  \n"
-"Language: en_US\n"
+"POT-Creation-Date: 2014-07-30 12:39+0300\n"
+"PO-Revision-Date: 2014-07-30 12:39+0300\n"
+"Last-Translator:  <>\n"
+"Language-Team:  <>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -17,3 +17,59 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/social_servises/admin.php:37
+msgid "Settings successfully saved"
+msgstr "Settings successfully saved / Settings have been successfully saved"
+
+#: ./application/modules/social_servises/social_servises.php:56
+msgid "Check the settings for integration with facebook"
+msgstr "Check the settings for integration with Facebook"
+
+# ?
+#: ./application/modules/social_servises/templates/admin/settings.tpl:5
+msgid "Integration with social servises module settings"
+msgstr "social services integration  module settings"
+
+#: ./application/modules/social_servises/templates/admin/settings.tpl:9
+msgid "Go back"
+msgstr "Go back"
+
+#: ./application/modules/social_servises/templates/admin/settings.tpl:10
+msgid "Save"
+msgstr "Save"
+
+#: ./application/modules/social_servises/templates/admin/settings.tpl:40
+msgid "Switch on integration with Facebook?"
+msgstr "Switch on integration with Facebook?"
+
+#: ./application/modules/social_servises/templates/admin/settings.tpl:45
+msgid "Secret key"
+msgstr "Secret key"
+
+#: ./application/modules/social_servises/templates/admin/settings.tpl:51
+#: ./application/modules/social_servises/templates/admin/settings.tpl:103
+msgid "Application number"
+msgstr "Application number"
+
+#: ./application/modules/social_servises/templates/admin/settings.tpl:57
+#: ./application/modules/social_servises/templates/admin/settings.tpl:109
+msgid "Select template folder"
+msgstr "Select template folder"
+
+#: ./application/modules/social_servises/templates/admin/settings.tpl:92
+msgid "Switch on integration with VKontakte?"
+msgstr "Switch on integration with VKontakte?"
+
+#: ./application/modules/social_servises/templates/admin/settings.tpl:97
+msgid "Protection key"
+msgstr "Protection key"
+
+#: ./application/modules/social_servises/_module_info.php:4
+msgid "Integration with social networks"
+msgstr "Social networks integration"
+
+# ?
+#: ./application/modules/social_servises/_module_info.php:5
+msgid "Integration with social networks module"
+msgstr "social networks integration module"

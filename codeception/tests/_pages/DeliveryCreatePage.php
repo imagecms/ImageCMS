@@ -6,7 +6,7 @@ class DeliveryCreatePage
     
     //заголовки
     public static $Title                        = '.title';
-    public static $BlockCreateTitle             = '//section[@class="mini-layout"]//th';
+    public static $TitleBlockCreate             = '//section[@class="mini-layout"]//th';
 
     //кнопки
     Public static $ButtonBack                   = '.t-d_u';
