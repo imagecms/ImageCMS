@@ -2,11 +2,11 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-05 11:24+0300\n"
-"PO-Revision-Date: 2014-06-05 11:24+0300\n"
-"Last-Translator:  \n"
-"Language-Team:  \n"
-"Language: en_US\n"
+"POT-Creation-Date: 2014-07-29 12:34+0300\n"
+"PO-Revision-Date: 2014-07-29 12:34+0300\n"
+"Last-Translator:  <>\n"
+"Language-Team:  <>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -17,3 +17,187 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/install/_install.php:205
+msgid "Site name"
+msgstr "Site name"
+
+#: ./application/modules/install/_install.php:206
+#: ./application/modules/install/views/step_2.php:44
+msgid "Host"
+msgstr "Host"
+
+#: ./application/modules/install/_install.php:207
+msgid "Database username"
+msgstr "Database username"
+
+#: ./application/modules/install/_install.php:209
+#: ./application/modules/install/views/step_2.php:69
+msgid "Database name"
+msgstr "Database name"
+
+#: ./application/modules/install/_install.php:211
+msgid "Administrator password"
+msgstr "Administrator password"
+
+#: ./application/modules/install/_install.php:212
+msgid "Administrator E-mail"
+msgstr "Administrator E-mail"
+
+#: ./application/modules/install/_install.php:213
+#: ./application/modules/install/views/main.php:150
+msgid "Language"
+msgstr "Language"
+
+#: ./application/modules/install/_install.php:220
+msgid "Database connection error"
+msgstr "Database connection error"
+
+# ?
+#: ./application/modules/install/_install.php:415
+msgid "Error writing file config.php"
+msgstr "Error writing file config.php"
+
+#: ./application/modules/install/views/license_shop.php:1
+#: ./application/modules/install/views/license.php:1
+msgid "License Agreement"
+msgstr "License Agreement"
+
+#: ./application/modules/install/views/license_shop.php:87
+#: ./application/modules/install/views/license.php:127
+msgid "Accept license"
+msgstr "Accept license"
+
+#: ./application/modules/install/views/license_shop.php:89
+#: ./application/modules/install/views/license.php:129
+msgid "Cancel"
+msgstr "Cancel"
+
+# ?
+#: ./application/modules/install/views/done.php:1
+msgid "Installation complete"
+msgstr "Installation completed/ Installation has been completed"
+
+# ?
+#: ./application/modules/install/views/done.php:3
+msgid "Go to Control Panel"
+msgstr "Go to Control Panel"
+
+# ?
+#: ./application/modules/install/views/done.php:5
+msgid "Main page"
+msgstr "Main page/ Home page"
+
+# ?
+#: ./application/modules/install/views/step_1.php:1
+msgid "Directories checking"
+msgstr "Directory check / Directory checking/ Checking directories"
+
+# ?
+#: ./application/modules/install/views/step_1.php:3
+msgid "To continue the installation, install the write rights"
+msgstr "To continue  installation, set the write rights"
+
+#: ./application/modules/install/views/step_1.php:3
+msgid "to the following directories"
+msgstr "to the following directories"
+
+#: ./application/modules/install/views/step_1.php:12
+msgid "Verifying the PHP"
+msgstr "Verifying PHP"
+
+#: ./application/modules/install/views/step_1.php:14
+msgid "In order to continue the installation of the system, set the PHP options"
+msgstr "In order to continue the system installation, set the PHP options"
+
+#: ./application/modules/install/views/step_1.php:23
+msgid "Verifying the PHP modules"
+msgstr "Verifying the PHP modules"
+
+#: ./application/modules/install/views/step_1.php:25
+msgid "For best performance, install the PHP modules"
+msgstr "For best performance, install the PHP modules"
+
+#: ./application/modules/install/views/step_1.php:33
+msgid "Verifying locales"
+msgstr "Verifying locales"
+
+# ?
+#: ./application/modules/install/views/step_1.php:35
+msgid "To use these locales, install them on the server"
+msgstr "To use these locales, install them on the server/
+The locales must be installed on the server to be used
+"
+
+#: ./application/modules/install/views/step_1.php:47
+#: ./application/modules/install/views/step_2.php:99
+msgid "Next"
+msgstr "Next"
+
+#: ./application/modules/install/views/step_1.php:48
+msgid "Update"
+msgstr "Update"
+
+#: ./application/modules/install/views/step_2.php:3
+msgid "Was founded following errors"
+msgstr "The following errors have been found"
+
+#: ./application/modules/install/views/step_2.php:7
+msgid "Site Settings"
+msgstr "Site settings"
+
+#: ./application/modules/install/views/step_2.php:11
+msgid "Site title"
+msgstr "Site title"
+
+# ?
+#: ./application/modules/install/views/step_2.php:19
+msgid "Language of the administrative part"
+msgstr "Language of the administrative part/ Language of the operation panel/ The operation panel language"
+
+#: ./application/modules/install/views/step_2.php:22
+#: ./application/modules/install/views/main.php:147
+msgid "Russian"
+msgstr "Russian"
+
+#: ./application/modules/install/views/step_2.php:23
+msgid "English (beta)"
+msgstr "English (beta)"
+
+# ?
+#: ./application/modules/install/views/step_2.php:28
+msgid "Install demo data"
+msgstr "Install demo data/ Install demo version"
+
+#: ./application/modules/install/views/step_2.php:35
+msgid "Database connection"
+msgstr "Database connection"
+
+#: ./application/modules/install/views/step_2.php:39
+msgid "Attention"
+msgstr "Attention!"
+
+#: ./application/modules/install/views/step_2.php:39
+msgid "All the data in this database will be destroyed"
+msgstr " This database will be destroyed"
+
+#: ./application/modules/install/views/step_2.php:55
+msgid "User name"
+msgstr "User name"
+
+#: ./application/modules/install/views/step_2.php:63
+#: ./application/modules/install/views/step_2.php:87
+msgid "Password"
+msgstr "Password"
+
+#: ./application/modules/install/views/step_2.php:77
+msgid "Administrator name"
+msgstr "Administrator name"
+
+#: ./application/modules/install/views/main.php:5
+msgid "Installing"
+msgstr "Installing"
+
+#: ./application/modules/install/views/main.php:148
+msgid "English"
+msgstr "English"

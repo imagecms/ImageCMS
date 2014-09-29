@@ -22,42 +22,49 @@ class CallbacksSteps extends \CallbacksTester
     function CheckListLandingAndEditingPage($name1,$phone1,$comment1 = null)
     {
         $I = $this;
-        $I->amOnPage('/admin');
+        $I->amOnPage('/admin');       
+        $I->wait('3');
         $I->click(\NavigationBarPage::$Orders);
-        $I->waitForElement('html/body/div[1]/div[3]/div/nav/ul/li[2]/ul');
+        $I->waitForElement('html/body/div[1]/div[3]/table/tbody/tr/td[1]/ul');
         $I->click(\NavigationBarPage::$CallbacksList);
-        $I->waitForElementNotVisible('html/body/div[1]/div[3]/div/nav/ul/li[2]/ul');
+        $I->waitForElementNotVisible('html/body/div[1]/div[3]/table/tbody/tr/td[1]/ul');
         $I->wait('5');
-        $kil1=$I->grabTextFrom('.//*[@id="totalCallbacks"]');
-        $I->comment("$kil1");
-        $kil=  explode(" ", $kil1);
-        foreach ($kil as $key =>$value) {
-            if($value)  $I->comment("$key: $value");
-        }   
-        $kil=$kil[4];        
-        $I->comment("$kil");
-        if ($kil<=14){
-            $I->see($name1, \CallbacksPage::UserNameLine("last()").'/..');
-            $I->see($phone1, \CallbacksPage::PhoneLine("last()"));
-            $I->click(\CallbacksPage::UserNameLine("last()"));
-            $I->waitForElement('.//*[@id="editCallbackForm"]/div[5]/label');
-            $I->see($comment1, \CallbacksPage::$CommentEdit);
-        }
-        else{
-            $I->click(\CallbacksPage::PaginationButton(last()-1));
-            $I->wait('2');
-            $I->see($name1, \CallbacksPage::UserNameLine("last()").'/..');
-            $I->see($phone1, \CallbacksPage::PhoneLine("last()"));
-            $I->click(\CallbacksPage::UserNameLine("last()"));
-            $I->waitForElement('.//*[@id="editCallbackForm"]/div[5]/label');
-            $I->see($comment1, \CallbacksPage::$CommentEdit);
-        }
+        $I->see($name1, \CallbacksPage::UserNameLine("1"));
+        $I->see($phone1, \CallbacksPage::PhoneLine("1"));
+        $I->click(\CallbacksPage::UserNameLine("1"));
+        $I->waitForElement('.//*[@id="editCallbackForm"]/div[5]/label');
+        $I->see($comment1, \CallbacksPage::$CommentEdit);
+//        $kil1=$I->grabTextFrom('.//*[@id="totalCallbacks"]');
+//        $I->comment("$kil1");
+//        $kil=  explode(" ", $kil1);
+//        foreach ($kil as $key =>$value) {
+//            if($value)  $I->comment("$key: $value");
+//        }   
+//        $kil=$kil[4];        
+//        $I->comment("$kil");
+//        if ($kil<=14){
+//            $I->see($name1, \CallbacksPage::UserNameLine("last()").'/..');
+//            $I->see($phone1, \CallbacksPage::PhoneLine("last()"));
+//            $I->click(\CallbacksPage::UserNameLine("last()"));
+//            $I->waitForElement('.//*[@id="editCallbackForm"]/div[5]/label');
+//            $I->see($comment1, \CallbacksPage::$CommentEdit);
+//        }
+//        else{
+//            $I->click(\CallbacksPage::PaginationButton(last()-1));
+//            $I->wait('2');
+//            $I->see($name1, \CallbacksPage::UserNameLine("last()").'/..');
+//            $I->see($phone1, \CallbacksPage::PhoneLine("last()"));
+//            $I->click(\CallbacksPage::UserNameLine("last()"));
+//            $I->waitForElement('.//*[@id="editCallbackForm"]/div[5]/label');
+//            $I->see($comment1, \CallbacksPage::$CommentEdit);
+//        }
     }
     
     function EditCallback($name,$phone,$comment,$save='save')
     {
         $I = $this;
-        $I->amOnPage('/admin/components/run/shop/callbacks');
+        $I->amOnPage(\CallbacksPage::$URL);
+        $I->wait('3');
         $I->click(\CallbacksPage::UserNameLine('1'));
         $I->waitForElement('.//*[@id="editCallbackForm"]/div[2]/label');
         $I->fillField(\CallbacksPage::$UserNameEdit, $name);
@@ -78,9 +85,10 @@ class CallbacksSteps extends \CallbacksTester
     function CheckFieldsEditCallback($name1,$phone1,$comment1)
     {
         $I = $this;
-        $I->waitForElementVisible('.alert.in.fade.alert-success');
-        $I->see('Изменения сохранены');
-        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
+        $I->wait('5');
+//        $I->waitForElementVisible('.alert.in.fade.alert-success');
+//        $I->see('Изменения сохранены');
+//        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
         $I->seeInField(\CallbacksPage::$UserNameEdit, $name1);
         $I->seeInField(\CallbacksPage::$TelephoneEdit, $phone1);
         $I->seeInField(\CallbacksPage::$CommentEdit, $comment1);
@@ -103,9 +111,10 @@ class CallbacksSteps extends \CallbacksTester
             $I->assertEquals($default, 'true');
         }
         $I->click(\CallbacksPage::$SaveButton);
-        $I->waitForElementVisible('.alert.in.fade.alert-success');
-        $I->see('Позиция создана');
-        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
+        $I->waitForText('Редактирование статуса обратного звонка');
+//        $I->waitForElementVisible('.alert.in.fade.alert-success');
+//        $I->see('Статус создан');
+//        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
         $I->seeInField(\CallbacksPage::$NameStatus, $name1);
         if (isset($default)) {
             $default2=$I->grabAttributeFrom(\CallbacksPage::$DefaultStatusCheckboxEdit.'/input', 'checked');
@@ -113,20 +122,29 @@ class CallbacksSteps extends \CallbacksTester
         }
     }  
     
-    function CheckStatusCallbackListLanding($name,$default)
+    function CheckStatusCallbackListLanding($name,$default='no')
     {
         $I = $this;
         $I->click(\CallbacksPage::$GoBackButton);
         $I->waitForText('Статусы обратных звонков');
-        $I->see($name, \CallbacksPage::ThemeNameLine('last()'));
-        $def=$I->grabAttributeFrom(\CallbacksPage::ActiveButtonLine('last()'), 'class');
-        $I->assertEquals($def, $default);
+//        $I->see($name, \CallbacksPage::ThemeNameLine('last()'));
+        switch ($default) {
+            case 'no':
+                $I->see($name, \CallbacksPage::ThemeNameLine('last()'));
+                $def=$I->grabAttributeFrom(\CallbacksPage::ActiveButtonLine('last()'), 'class');
+                $I->assertEquals($def, "prod-on_off  disable_tovar");
+                break;
+            case 'yes':
+                $I->see($name, \CallbacksPage::ThemeNameLine('1'));
+                $def=$I->grabAttributeFrom(\CallbacksPage::ActiveButtonLine('1'), 'class');
+                $I->assertEquals($def, "prod-on_off ");
+        }        
     }  
     
     function EditStatusCallback($name,$name1,$save='save',$default=null)
     {
         $I = $this;
-        $I->amOnPage('/admin/components/run/shop/callbacks/statuses');
+        $I->amOnPage(\CallbacksPage::$URLStatuses);
         $I->click(\CallbacksPage::StatusNameLine('1'));
         $I->waitForText('Редактирование статуса обратного звонка');
         $I->fillField(\CallbacksPage::$NameStatus, $name);
@@ -137,9 +155,10 @@ class CallbacksSteps extends \CallbacksTester
         switch ($save) {
             case 'save':
                 $I->click(\CallbacksPage::$SaveButton);
-                $I->waitForElementVisible('.alert.in.fade.alert-success');
-                $I->see('Изменения сохранены');
-                $I->waitForElementNotVisible('.alert.in.fade.alert-success');
+                $I->exactlySeeAlert($I, 'success', 'Изменения сохранены',"10");
+//                $I->waitForElementVisible('.alert.in.fade.alert-success');
+//                $I->see('Изменения сохранены');
+//                $I->waitForElementNotVisible('.alert.in.fade.alert-success');
                 $I->seeInField(\CallbacksPage::$NameStatus, $name1); 
                 if (isset($default)) {
                     //$I->wait('10');
@@ -150,9 +169,10 @@ class CallbacksSteps extends \CallbacksTester
                 break;
             case 'saveexit':
                 $I->click(\CallbacksPage::$SaveAndExitButton);
-                $I->waitForElementVisible('.alert.in.fade.alert-success');
-                $I->see('Изменения сохранены');
-                $I->waitForElementNotVisible('.alert.in.fade.alert-success');
+                $I->exactlySeeAlert($I, 'success', 'Изменения сохранены',"10");
+//                $I->waitForElementVisible('.alert.in.fade.alert-success');
+//                $I->see('Изменения сохранены');
+//                $I->waitForElementNotVisible('.alert.in.fade.alert-success');
                 $I->waitForText('Статусы обратных звонков');
                 $I->see($name1, \CallbacksPage::StatusNameLine('1'));
                 if (isset($default)) {
@@ -175,16 +195,18 @@ class CallbacksSteps extends \CallbacksTester
         switch ($save) {
             case 'save':
                 $I->click(\CallbacksPage::$SaveButton);
-                $I->waitForElementVisible('.alert.in.fade.alert-success');
-                $I->see('Тема начата');
-                $I->waitForElementNotVisible('.alert.in.fade.alert-success');
+                $I->exactlySeeAlert($I, 'success', 'Тема создана',"10");
+//                $I->waitForElementVisible('.alert.in.fade.alert-success');
+//                $I->see('Тема создана');
+//                $I->waitForElementNotVisible('.alert.in.fade.alert-success');
                 $I->seeInField(\CallbacksPage::$NameTheme, $name1);
                 break;
             case 'saveexit':
                 $I->click(\CallbacksPage::$SaveAndExitButton);
-                $I->waitForElementVisible('.alert.in.fade.alert-success');
-                $I->see('Тема начата');
-                $I->waitForElementNotVisible('.alert.in.fade.alert-success');
+                $I->exactlySeeAlert($I, 'success', 'Тема создана',"10");
+//                $I->waitForElementVisible('.alert.in.fade.alert-success');
+//                $I->see('Тема создана');
+//                $I->waitForElementNotVisible('.alert.in.fade.alert-success');
                 $I->waitForText('Темы обратных звонков');                
                 $I->see($name1, \CallbacksPage::ThemeNameLine('last()'));
                 break;
@@ -194,7 +216,7 @@ class CallbacksSteps extends \CallbacksTester
     function EditThemeCallback($name,$name1,$save='save')
     {
         $I = $this;
-        $I->amOnPage('/admin/components/run/shop/callbacks/themes');
+        $I->amOnPage(\CallbacksPage::$URLThemes);
         $I->click(\CallbacksPage::ThemeNameLine('1'));
         $I->waitForText('Редактирование темы обратного звонка');
         $I->fillField(\CallbacksPage::$NameTheme, $name);
@@ -202,18 +224,20 @@ class CallbacksSteps extends \CallbacksTester
         switch ($save) {
             case 'save':
                 $I->click(\CallbacksPage::$SaveButton);
-                $I->waitForElementVisible('.alert.in.fade.alert-success');
-                $I->see('Изменения сохранены');
-                $I->waitForElementNotVisible('.alert.in.fade.alert-success');
+                $I->exactlySeeAlert($I, 'success', 'Изменения сохранены', "10");
+//                $I->waitForElementVisible('.alert.in.fade.alert-success');
+//                $I->see('Изменения сохранены');
+//                $I->waitForElementNotVisible('.alert.in.fade.alert-success');
                 $I->seeInField(\CallbacksPage::$NameTheme, $name1);
                 break;
             case 'saveexit':
                 $I->click(\CallbacksPage::$SaveAndExitButton);
-                $I->waitForElementVisible('.alert.in.fade.alert-success');
-                $I->see('Изменения сохранены');
-                $I->waitForElementNotVisible('.alert.in.fade.alert-success');
+                $I->exactlySeeAlert($I, 'success', 'Изменения сохранены', "10");
+//                $I->waitForElementVisible('.alert.in.fade.alert-success');
+//                $I->see('Изменения сохранены');
+//                $I->waitForElementNotVisible('.alert.in.fade.alert-success');
                 $I->waitForText('Темы обратных звонков');
-                $I->see($name1, './/*[@id="orderStatusesList"]/section/div[2]/div/table/tbody/tr/td[2]/a');
+                $I->see($name1, \CallbacksPage::ThemeNameLine('1'));
                 break;
         }        
     }           

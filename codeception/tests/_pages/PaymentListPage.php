@@ -23,7 +23,7 @@ class PaymentListPage {
     static $WindowDeleteTitle           = '.modal-header>h3';
     static $WindowDeleteQuestion        = '.modal-body>p';
     static $WindowDeleteButtonDelete    = '.btn.btn-primary';
-    static $WindowDeleteButtonBack      = '.modal-footer a.btn:nth-child(2)';
+    static $WindowDeleteButtonCancel    = '.modal-footer a.btn:nth-child(2)';
     static $WindowDeleteButtonClose     = '.close';
 
     //заголовки таблиці

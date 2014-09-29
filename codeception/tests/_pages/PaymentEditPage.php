@@ -5,7 +5,7 @@ class PaymentEditPage
  
     //заголовки
     public static $Title                    = '.title';
-    public static $BlockEditTitle           = '//section[@class="mini-layout"]//th';
+    public static $TitleBlockEdit           = '//section[@class="mini-layout"]//th';
     
     //чекбокси
     public static $CheckActive              = '.niceCheck';

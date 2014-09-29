@@ -2,11 +2,11 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-05 11:24+0300\n"
-"PO-Revision-Date: 2014-06-05 11:24+0300\n"
-"Last-Translator:  \n"
-"Language-Team:  \n"
-"Language: en_US\n"
+"POT-Creation-Date: 2014-07-29 12:00+0300\n"
+"PO-Revision-Date: 2014-07-29 12:00+0300\n"
+"Last-Translator:  <>\n"
+"Language-Team:  <>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -17,3 +17,784 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+# ?
+#: ./application/modules/admin/admin.php:83
+msgid "Cleared the cache"
+msgstr "Cleared the cache/ Clear the cache/ the cash has been cleared"
+
+#: ./application/modules/admin/admin.php:89
+msgid "Files deleted"
+msgstr "Files deleted/ Files have been deleted"
+
+#: ./application/modules/admin/admin.php:91
+#: ./application/modules/admin/admin.php:99
+msgid "Cache has been cleared"
+msgstr "Cache has been cleared"
+
+#: ./application/modules/admin/admin.php:97
+msgid "Outdated files have been deleted"
+msgstr "Outdated files have been deleted"
+
+#: ./application/modules/admin/admin.php:102
+msgid "Clearing cache error"
+msgstr "Cache clearing error"
+
+# ?
+#: ./application/modules/admin/admin.php:183
+msgid "Exited the control panel"
+msgstr "Exited the control panel/ You have exited the control panel"
+
+#: ./application/modules/admin/admin.php:192
+msgid "Your Name"
+msgstr "Your name "
+
+#: ./application/modules/admin/admin.php:193
+msgid "Your Email"
+msgstr "Your e-mail"
+
+# ?
+#: ./application/modules/admin/admin.php:194
+msgid "Your remark"
+msgstr "Your remark"
+
+#: ./application/modules/admin/admin.php:207
+msgid "Site address"
+msgstr "Site address"
+
+# ?
+#: ./application/modules/admin/admin.php:207
+msgid "page"
+msgstr "page/ Page"
+
+#: ./application/modules/admin/admin.php:207
+msgid "ip-address"
+msgstr "IP address"
+
+#: ./application/modules/admin/admin.php:207
+msgid "user name"
+msgstr "Username"
+
+#: ./application/modules/admin/admin.php:207
+msgid "Message"
+msgstr "Message"
+
+#: ./application/modules/admin/admin.php:216
+msgid "An error occurred while sending a message"
+msgstr "An error occurred while sending a message"
+
+#: ./application/modules/admin/admin.php:218
+msgid "Your message has been sent"
+msgstr "Your message has been sent"
+
+#: ./application/modules/admin/admin_logs.php:48
+#: ./application/modules/admin/pages.php:1022
+msgid "Next"
+msgstr "Next"
+
+#: ./application/modules/admin/admin_logs.php:49
+#: ./application/modules/admin/pages.php:1023
+msgid "Prev"
+msgstr "Prev"
+
+# ?
+#: ./application/modules/admin/admin_search.php:93
+#: ./application/modules/admin/admin_search.php:187
+msgid "First link"
+msgstr "First link"
+
+#: ./application/modules/admin/admin_search.php:94
+#: ./application/modules/admin/admin_search.php:188
+msgid "Last link"
+msgstr "Last link"
+
+# ?
+#: ./application/modules/admin/backup.php:43
+msgid "Some of settings not saved"
+msgstr "Some settings are being not saved/  Some settings have not been saved"
+
+# ?
+#: ./application/modules/admin/backup.php:45
+msgid "Settings saved"
+msgstr "Settings saved/ Settings have been saved"
+
+#: ./application/modules/admin/backup.php:121
+msgid "Directory {0} has no writing permission"
+msgstr "Directory {0} has no writing permission"
+
+#: ./application/modules/admin/backup.php:141
+#: ./application/modules/admin/backup.php:194
+msgid "Backup copying has been completed"
+msgstr "Backup copying has been completed"
+
+#: ./application/modules/admin/backup.php:173
+msgid "Backup copying"
+msgstr "Backup copying"
+
+#: ./application/modules/admin/categories.php:63
+msgid "The position has been successfully saved"
+msgstr "The position has been successfully saved"
+
+#: ./application/modules/admin/categories.php:129
+#: ./application/modules/admin/pages.php:137
+msgid "The %s field can only contain Latin characters"
+msgstr "The %s field can only contain Latin characters"
+
+#: ./application/modules/admin/categories.php:142
+#: ./application/modules/admin/categories.php:150
+#: ./application/modules/admin/categories.php:328
+#: ./application/modules/admin/categories.php:450
+#: ./application/modules/admin/languages.php:72
+#: ./application/modules/admin/languages.php:353
+#: ./application/modules/admin/pages.php:149
+#: ./application/modules/admin/pages.php:491
+msgid "Title"
+msgstr "Title"
+
+#: ./application/modules/admin/categories.php:143
+msgid "URL categories"
+msgstr "URL categories"
+
+#: ./application/modules/admin/categories.php:144
+#: ./application/modules/admin/categories.php:451
+#: ./application/modules/admin/languages.php:74
+#: ./application/modules/admin/languages.php:355
+msgid "Image"
+msgstr "Image"
+
+#: ./application/modules/admin/categories.php:145
+msgid "Position"
+msgstr "Position"
+
+# ?
+#: ./application/modules/admin/categories.php:146
+#: ./application/modules/admin/categories.php:329
+msgid "Parent"
+msgstr "Parent"
+
+#: ./application/modules/admin/categories.php:147
+#: ./application/modules/admin/categories.php:452
+#: ./application/modules/admin/pages.php:152
+#: ./application/modules/admin/pages.php:495
+#: ./application/modules/admin/widgets_manager.php:95
+#: ./application/modules/admin/widgets_manager.php:168
+#: ./application/modules/admin/widgets_manager.php:254
+#: ./application/modules/admin/widgets_manager.php:310
+#: ./application/modules/admin/widgets_manager.php:341
+msgid "Description "
+msgstr "Description "
+
+#: ./application/modules/admin/categories.php:148
+#: ./application/modules/admin/categories.php:453
+#: ./application/modules/admin/pages.php:493
+#: ./application/modules/admin/settings.php:98
+msgid "Keywords"
+msgstr "Keywords"
+
+#: ./application/modules/admin/categories.php:149
+#: ./application/modules/admin/categories.php:454
+msgid "Short description"
+msgstr "Short description"
+
+#: ./application/modules/admin/categories.php:151
+#: ./application/modules/admin/languages.php:76
+#: ./application/modules/admin/languages.php:357
+msgid "Template"
+msgstr "Template"
+
+#: ./application/modules/admin/categories.php:152
+#: ./application/modules/admin/pages.php:153
+#: ./application/modules/admin/pages.php:496
+msgid "Page template"
+msgstr "Page template"
+
+#: ./application/modules/admin/categories.php:153
+msgid "Main template"
+msgstr "Main template"
+
+#: ./application/modules/admin/categories.php:154
+msgid "Per page"
+msgstr "Per page"
+
+#: ./application/modules/admin/categories.php:233
+msgid "Category has been created"
+msgstr "Category has been created"
+
+# ?
+#: ./application/modules/admin/categories.php:241
+msgid "Category created"
+msgstr "Category created/ Category has been created"
+
+# ?
+#: ./application/modules/admin/categories.php:277
+msgid "Changed the category"
+msgstr "Category has been changed/ Category changed"
+
+# ?
+#: ./application/modules/admin/categories.php:284
+#: ./application/modules/admin/components.php:467
+#: ./application/modules/admin/sys_update.php:104
+msgid "Changes saved"
+msgstr "Changes saved/ Changes has been saved"
+
+#: ./application/modules/admin/categories.php:381
+msgid "Category has been created or created a category"
+msgstr "Category has been created or created a category"
+
+#: ./application/modules/admin/categories.php:400
+msgid "Category"
+msgstr "Category"
+
+#: ./application/modules/admin/categories.php:401
+#: ./application/modules/admin/settings.php:56
+msgid "No"
+msgstr "No"
+
+#: ./application/modules/admin/categories.php:455
+msgid "Meta title"
+msgstr "Meta title"
+
+# ?
+#: ./application/modules/admin/categories.php:478
+msgid "Translated the category"
+msgstr "Category has been translated/ Category translated "
+
+# ?
+#: ./application/modules/admin/categories.php:487
+msgid "Changed the category translation"
+msgstr "Change the category translation/ Category translation has been changed"
+
+# ?
+#: ./application/modules/admin/categories.php:500
+msgid "Category translation updated"
+msgstr "Category translation updated/ Category translation has been updated"
+
+#: ./application/modules/admin/categories.php:559
+msgid "You can not delete the last category from the list"
+msgstr "You can not delete the last category from the list"
+
+#: ./application/modules/admin/categories.php:559
+#: ./application/modules/admin/sys_update.php:106
+msgid "Error"
+msgstr "Error"
+
+# ?
+#: ./application/modules/admin/categories.php:570
+#: ./application/modules/admin/categories.php:602
+msgid "Deleted ID category or ID category has been deleted"
+msgstr "Deleted ID category or ID category has been deleted"
+
+# ?
+#: ./application/modules/admin/categories.php:630
+msgid "Category deleted"
+msgstr "Category deleted/ Category has been deleted"
+
+#: ./application/modules/admin/components.php:103
+msgid "Installed a module"
+msgstr "Module has been installed/ Module installed"
+
+#: ./application/modules/admin/components.php:138
+msgid "Deleted a module"
+msgstr "Delete module"
+
+# ?
+#: ./application/modules/admin/components.php:139
+msgid "The module successfully uninstall"
+msgstr "Module has been successfully uninstalled"
+
+#: ./application/modules/admin/components.php:142
+msgid "Module deletion error"
+msgstr "Module deletion error"
+
+# ?
+#: ./application/modules/admin/components.php:288
+msgid "Changed the module settings"
+msgstr "Change the module settings / Module settings have been changed"
+
+#: ./application/modules/admin/components.php:310
+#: ./application/modules/admin/widgets_manager.php:97
+msgid "Module"
+msgstr "Module"
+
+#: ./application/modules/admin/components.php:380
+msgid "Author"
+msgstr "Author"
+
+#: ./application/modules/admin/components.php:380
+msgid "Version "
+msgstr "Version "
+
+# ?
+#: ./application/modules/admin/components.php:384
+msgid "Can't load module info file"
+msgstr "Cannot load module info file"
+
+#: ./application/modules/admin/components.php:451
+msgid "Positions updated"
+msgstr "Positions updated/ Positions have been updated"
+
+# ?
+#: ./application/modules/admin/components.php:453
+msgid "Fail"
+msgstr "Fail/ Failure/ Failed"
+
+#: ./application/modules/admin/languages.php:73
+#: ./application/modules/admin/languages.php:354
+msgid "Identifier"
+msgstr "Identifier"
+
+# ?
+#: ./application/modules/admin/languages.php:75
+#: ./application/modules/admin/languages.php:356
+msgid "Locale"
+msgstr "Locale"
+
+# ?
+#: ./application/modules/admin/languages.php:96
+msgid "Create a language"
+msgstr "Create a language/ Create language"
+
+#: ./application/modules/admin/languages.php:102
+msgid "Language has been created"
+msgstr "Language has been created"
+
+#: ./application/modules/admin/languages.php:380
+msgid "Changed a language"
+msgstr "Change a language/ Language has been changed "
+
+#: ./application/modules/admin/languages.php:390
+#: ./application/modules/admin/widgets_manager.php:295
+#: ./application/modules/admin/widgets_manager.php:328
+#: ./application/modules/admin/widgets_manager.php:364
+msgid "Changes has been saved"
+msgstr "Changes have been saved"
+
+# ?
+#: ./application/modules/admin/languages.php:411
+#: ./application/modules/admin/languages.php:428
+msgid "This language has been used by default and can not be deleted"
+msgstr "This language has been used by default and can not be deleted/This language is beign  used by default and cannot be deleted"
+
+#: ./application/modules/admin/languages.php:411
+#: ./application/modules/admin/languages.php:428
+msgid "Blocking"
+msgstr "Blocking"
+
+# ?
+#: ./application/modules/admin/languages.php:420
+#: ./application/modules/admin/languages.php:441
+msgid "Deleted the ID language"
+msgstr "Deleted the ID language/Delete the ID language/ ID language has been deleted"
+
+#: ./application/modules/admin/languages.php:443
+msgid "the language has been deleted"
+msgstr "The language has been deleted"
+
+# ?
+#: ./application/modules/admin/languages.php:464
+msgid "Specified a language or selected a language"
+msgstr "Specify a language or select a language"
+
+#: ./application/modules/admin/languages.php:464
+msgid "by default"
+msgstr "by default"
+
+#: ./application/modules/admin/languages.php:466
+msgid "The language has been installed by default"
+msgstr "The language has been installed by default"
+
+#: ./application/modules/admin/login.php:50
+msgid "E-mail"
+msgstr "E-mail"
+
+#: ./application/modules/admin/login.php:51
+msgid "Password"
+msgstr "Password"
+
+#: ./application/modules/admin/login.php:61
+msgid "Protection code"
+msgstr "Protection code"
+
+#: ./application/modules/admin/login.php:77
+msgid "Entered the IP control panel"
+msgstr "Entered the IP control panel"
+
+#: ./application/modules/admin/login.php:81
+msgid "Username and password have not been found"
+msgstr "Username and password have not been found"
+
+#: ./application/modules/admin/login.php:84
+#: ./application/modules/admin/login.php:101
+msgid "Not enough access rights"
+msgstr "Not enough access rights"
+
+#: ./application/modules/admin/login.php:116
+msgid "Username or Email"
+msgstr "Username or E-mail"
+
+#: ./application/modules/admin/login.php:120
+msgid "Please check your email for instructions on how to activate the new password."
+msgstr "Please check your e-mail for instructions on how to activate the new password"
+
+#: ./application/modules/admin/login.php:142
+#: ./application/modules/admin/login.php:146
+msgid "Wrong protection code"
+msgstr "Wrong protection code"
+
+#: ./application/modules/admin/mod_search.php:96
+msgid "Error: Module information has not been found"
+msgstr "Error: Module information has not been found"
+
+# ?
+#: ./application/modules/admin/mod_search.php:123
+#: ./application/modules/admin/sys_upgrade.php:32
+msgid "FTP_connect function is not available"
+msgstr "FTP_connect function is not available"
+
+#: ./application/modules/admin/mod_search.php:140
+#: ./application/modules/admin/sys_upgrade.php:62
+msgid "Server connection error:Check username and password"
+msgstr "Server connection error: Check username and password"
+
+#: ./application/modules/admin/mod_search.php:167
+msgid "Wrong path to the root directory"
+msgstr "Wrong path to the root directory"
+
+#: ./application/modules/admin/mod_search.php:182
+msgid "File downloading error"
+msgstr "File downloading error"
+
+#: ./application/modules/admin/mod_search.php:207
+#: ./application/modules/admin/mod_search.php:287
+msgid "Creation of temporary directory has been failed"
+msgstr "Creation of temporary directory has failed/  Temporary directory creation has  failed"
+
+#: ./application/modules/admin/mod_search.php:231
+msgid "Delete the directory to continue"
+msgstr "Delete the directory to continue"
+
+# ?
+#: ./application/modules/admin/mod_search.php:231
+msgid "Attention or Caution"
+msgstr "Attention or Caution"
+
+# ?
+#: ./application/modules/admin/mod_search.php:237
+#: ./application/modules/admin/mod_search.php:268
+#: ./application/modules/admin/sys_upgrade.php:129
+msgid "Exploding error"
+msgstr "Exploding error"
+
+#: ./application/modules/admin/mod_search.php:248
+msgid "Module installation error"
+msgstr "Module installation error"
+
+#: ./application/modules/admin/mod_search.php:258
+#: ./application/modules/admin/mod_search.php:306
+msgid "Modul has been installed"
+msgstr "Module has been installed"
+
+# ?
+#: ./application/modules/admin/mod_search.php:296
+msgid "Module installation module"
+msgstr "Module installation module"
+
+# ?
+#: ./application/modules/admin/pages.php:109
+msgid "Deleted ID page"
+msgstr "Deleted ID page/ Delete the ID page/ The ID page has been deleted"
+
+#: ./application/modules/admin/pages.php:150
+#: ./application/modules/admin/pages.php:492
+msgid "URL"
+msgstr "URL"
+
+# ?
+#: ./application/modules/admin/pages.php:151
+#: ./application/modules/admin/pages.php:494
+msgid "Preliminary contents"
+msgstr "Preliminary contents/ Preliminary content"
+
+# ?
+#: ./application/modules/admin/pages.php:154
+#: ./application/modules/admin/pages.php:498
+msgid "Creation date"
+msgstr "Creation date/ Date of creation"
+
+# ?
+#: ./application/modules/admin/pages.php:155
+#: ./application/modules/admin/pages.php:499
+msgid "Creation time"
+msgstr "Creation time/ Time of creation"
+
+# ?
+#: ./application/modules/admin/pages.php:156
+#: ./application/modules/admin/pages.php:500
+msgid "Publication date"
+msgstr "Publication date/ Date of publication"
+
+#: ./application/modules/admin/pages.php:157
+#: ./application/modules/admin/pages.php:501
+msgid "Publication time"
+msgstr "Publication time/ Time of publication"
+
+#: ./application/modules/admin/pages.php:159
+msgid "Main page template"
+msgstr "Main page template"
+
+# ?
+#: ./application/modules/admin/pages.php:169
+msgid "From validation error: "
+msgstr "From validation error: "
+
+# ?
+#: ./application/modules/admin/pages.php:188
+#: ./application/modules/admin/pages.php:532
+msgid "Reserved the same name module"
+msgstr "Reserved the same name module"
+
+#: ./application/modules/admin/pages.php:197
+msgid "Category or page with such url already exist"
+msgstr "Category or page with such URL already exists"
+
+#: ./application/modules/admin/pages.php:209
+msgid "Page with the same URL has been created yet. Specify or select another URL"
+msgstr "Page with the same URL has been created yet. Specify or select another URL"
+
+# ?
+#: ./application/modules/admin/pages.php:275
+msgid "Created a page"
+msgstr "Created a page/ Create a page/ Page has been created"
+
+#: ./application/modules/admin/pages.php:285
+msgid "Page has been created"
+msgstr "Page has been created"
+
+#: ./application/modules/admin/pages.php:334
+msgid "Page"
+msgstr "Page"
+
+#: ./application/modules/admin/pages.php:334
+msgid "Not found"
+msgstr "Not found"
+
+#: ./application/modules/admin/pages.php:458
+msgid "Language of the page"
+msgstr "Language of the page/ Page language"
+
+#: ./application/modules/admin/pages.php:458
+msgid "ID"
+msgstr "ID"
+
+#: ./application/modules/admin/pages.php:497
+msgid "Main page template "
+msgstr "Main page template "
+
+# ?
+#: ./application/modules/admin/pages.php:541
+msgid "Reserved of the same name category"
+msgstr "Reserved of the same name category"
+
+# ?
+#: ./application/modules/admin/pages.php:555
+msgid "Page with URL"
+msgstr "Page with URL"
+
+# ?
+#: ./application/modules/admin/pages.php:555
+msgid "in ID category"
+msgstr "in ID category"
+
+# ?
+#: ./application/modules/admin/pages.php:555
+msgid " already exists. Specify or select another URL"
+msgstr " already exists. Specify or select another URL"
+
+# ?
+#: ./application/modules/admin/pages.php:617
+msgid "Changed the page"
+msgstr "Changed the page/ The page has been changed/ Change the page"
+
+# ?
+#: ./application/modules/admin/pages.php:627
+msgid "Page contents have been updated"
+msgstr "Page contents have been updated/ Page content has been updated"
+
+#: ./application/modules/admin/pages.php:646
+msgid "Error: Generic page can not be deleted."
+msgstr "Error: Generic page cannot be deleted."
+
+#: ./application/modules/admin/pages.php:664
+#: ./application/modules/admin/pages.php:681
+msgid "Page has been deleted."
+msgstr "Page has been deleted."
+
+#: ./application/modules/admin/pages.php:726
+msgid "Successful delete"
+msgstr "Successful delete"
+
+#: ./application/modules/admin/pages.php:807
+msgid "Page successfuly copied"
+msgstr "Page has been successfully copied"
+
+# ?
+#: ./application/modules/admin/pages.php:809
+msgid "Successfull moving"
+msgstr "Successful move/ Moved successfully"
+
+#: ./application/modules/admin/pages.php:812
+msgid "The operation error"
+msgstr "The operation error/ Operation error"
+
+#: ./application/modules/admin/pages.php:865
+msgid "Zero-length string"
+msgstr "Zero-length string"
+
+#: ./application/modules/admin/pages.php:916
+msgid "Pending approval"
+msgstr "Pending approval"
+
+# ?
+#: ./application/modules/admin/pages.php:928
+msgid "Has not been published"
+msgstr "Has not been published/ Not published"
+
+# ?
+#: ./application/modules/admin/pages.php:938
+#: ./application/modules/admin/pages.php:949
+msgid "Has been published"
+msgstr "Published"
+
+#: ./application/modules/admin/pages.php:953
+msgid "Status change success"
+msgstr "Status change success"
+
+#: ./application/modules/admin/settings.php:56
+msgid "Yes"
+msgstr "Yes"
+
+#: ./application/modules/admin/settings.php:95
+#: ./application/modules/admin/widgets_manager.php:96
+#: ./application/modules/admin/widgets_manager.php:169
+#: ./application/modules/admin/widgets_manager.php:255
+#: ./application/modules/admin/widgets_manager.php:311
+#: ./application/modules/admin/widgets_manager.php:342
+msgid "Name"
+msgstr "Name"
+
+#: ./application/modules/admin/settings.php:96
+msgid "Short name"
+msgstr "Short name"
+
+#: ./application/modules/admin/settings.php:97
+msgid "Description"
+msgstr "Description"
+
+#: ./application/modules/admin/settings.php:208
+msgid "Page has not been found"
+msgstr "Page has not been found"
+
+# ?
+#: ./application/modules/admin/settings.php:264
+msgid "Changed wesite settings"
+msgstr "Changed wesite settings/ Website settings have been changed"
+
+#: ./application/modules/admin/settings.php:268
+msgid "Settings have been saved"
+msgstr "Settings have been saved"
+
+# ?
+#: ./application/modules/admin/sys_update.php:16
+msgid "PHP SOAP extension is not installed"
+msgstr "PHP SOAP extension is not installed/ PHP SOAP extension has not been installed"
+
+# ?
+#: ./application/modules/admin/sys_update.php:106
+msgid "Changes not saved"
+msgstr "Changes not saved / Changes has not been saved"
+
+#: ./application/modules/admin/sys_upgrade.php:48
+msgid "You are using the latest version"
+msgstr "You are using the latest version"
+
+#: ./application/modules/admin/sys_upgrade.php:48
+msgid "Congratulations!"
+msgstr "Congratulations!"
+
+#: ./application/modules/admin/sys_upgrade.php:85
+msgid "Error: Wrong path to the root directory."
+msgstr "Error: Wrong path to the root directory."
+
+# ?
+#: ./application/modules/admin/sys_upgrade.php:96
+msgid "Error downloading update file"
+msgstr "Error downloading update file"
+
+#: ./application/modules/admin/sys_upgrade.php:162
+msgid "Updating has been completed"
+msgstr "Updating has been completed/ Updating completed"
+
+# ?
+#: ./application/modules/admin/sys_upgrade.php:180
+msgid "Error loading file versions"
+msgstr "Error loading file versions"
+
+#: ./application/modules/admin/widgets_manager.php:30
+#: ./application/modules/admin/widgets_manager.php:80
+#: ./application/modules/admin/widgets_manager.php:214
+msgid "Set the directory access rights to continue the work with widgets"
+msgstr "Set the directory access rights to continue the work with widgets"
+
+#: ./application/modules/admin/widgets_manager.php:90
+msgid "Widget with the same name already exists. Choose or select another name"
+msgstr "Widget with the same name already exists. Choose or select another name"
+
+#: ./application/modules/admin/widgets_manager.php:98
+msgid "Method"
+msgstr "Method"
+
+#: ./application/modules/admin/widgets_manager.php:148
+#: ./application/modules/admin/widgets_manager.php:184
+msgid "Created a widget"
+msgstr "Created a widget"
+
+# ?
+#: ./application/modules/admin/widgets_manager.php:151
+#: ./application/modules/admin/widgets_manager.php:199
+msgid "Widget created"
+msgstr "Widget created/ Widget has been created"
+
+#: ./application/modules/admin/widgets_manager.php:170
+#: ./application/modules/admin/widgets_manager.php:256
+#: ./application/modules/admin/widgets_manager.php:343
+msgid "HTML"
+msgstr "HTML"
+
+#: ./application/modules/admin/widgets_manager.php:243
+#: ./application/modules/admin/widgets_manager.php:369
+msgid "Error: widget not found!"
+msgstr "Error: widget not found / Error: widget has not been found!"
+
+#: ./application/modules/admin/widgets_manager.php:292
+#: ./application/modules/admin/widgets_manager.php:326
+#: ./application/modules/admin/widgets_manager.php:361
+msgid "Changed a widget"
+msgstr "Changed the widget/ Changed  widget"
+
+#: ./application/modules/admin/widgets_manager.php:398
+msgid "Deleted a widget"
+msgstr "Deleted  the widget/Deleted widget"
+
+# ?
+#: ./application/modules/admin/widgets_manager.php:400
+msgid "Widget successfully deleted"
+msgstr "Widget successfully deleted/ Widget has been successfully deleted"
+
+#: ./application/modules/admin/widgets_manager.php:541
+msgid "Core"
+msgstr "Core"
+
+# ?
+#: ./application/modules/admin/pages.php:169
+msgid "From validation error: <br />"
+msgstr "From validation error: <br /> / Form validation error: <br />"

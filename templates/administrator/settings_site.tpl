@@ -81,6 +81,8 @@
                                                                 </span>
                                                             </div>
                                                         </div>
+                                                        {else:}
+                                                            <input name='template' type='hidden' value="{echo $template_selected}">                                                            
                                                         {/if}
                                                         <div class="control-group">
                                                             <label class="control-label" for="cat_list">{lang('Display category tree in the content','admin')}:</label>
@@ -222,6 +224,7 @@
                                                                         {$mData = modules::run('admin/components/get_module_info',$m['name'])}
                                                                         {if $m['name'] == 'shop'}
                                                                             <input type="text" value="{$mData['menu_name']}" readonly='true'/>
+                                                                            <input type="hidden" name="main_page_module" value="{echo $m['name']}" />
                                                                         {/if}
                                                                     {/foreach}    
                                                                 {else:}

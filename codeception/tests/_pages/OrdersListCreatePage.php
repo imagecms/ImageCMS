@@ -6,8 +6,8 @@ class OrdersListCreatePage
     
     //заголовки
     public static $Title                            = '.title';
-    public static $BlockCreateTitle                 = '//section[@class="mini-layout"]//th';
-    public static $TitleBasket                      = '.title-default';
+    public static $TitleBlockCreate                 = '//section[@class="mini-layout"]//th';
+    public static $TitleTableBasket                      = '.title-default';
 
     //кнопки
     public static $ButtonBack                       = '.t-d_u';
@@ -142,8 +142,8 @@ class OrdersListCreatePage
     public static function lineTotalPriceText($row)         { return "//*[@id='productsInCart']//tbody//tr[$row]/td[7]/span[1]";}
     public static function lineTotalPriceCurrencyText($row) { return "//*[@id='productsInCart']//tbody//tr[$row]/td[7]/span[2]";}
     //футер таблиці
-    public static $FooterGiftCertificateInput   = '#shopOrdersCheckGiftCert';
-    public static $FooterTotalPrice             = '//span[@class="gen_sum d-i_b v-a_m"]/b/span[1]';
-    public static $FooterTotalPriceLabel        = '.gen_sum.d-i_b.v-a_m';
-    public static $FooterTotalPriceCurrency     = '//span[@class="gen_sum d-i_b v-a_m"]/b/span[2]';
+    public static $FootGiftCertificateInput   = '#shopOrdersCheckGiftCert';
+    public static $FootTotalPrice             = '//span[@class="gen_sum d-i_b v-a_m"]/b/span[1]';
+    public static $FootTotalPriceLabel        = '.gen_sum.d-i_b.v-a_m';
+    public static $FootTotalPriceCurrency     = '//span[@class="gen_sum d-i_b v-a_m"]/b/span[2]';
 }

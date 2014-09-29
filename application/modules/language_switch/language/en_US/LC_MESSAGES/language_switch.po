@@ -2,11 +2,11 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-05 11:24+0300\n"
-"PO-Revision-Date: 2014-06-05 11:24+0300\n"
-"Last-Translator:  \n"
-"Language-Team:  \n"
-"Language: en_US\n"
+"POT-Creation-Date: 2014-07-29 12:35+0300\n"
+"PO-Revision-Date: 2014-07-29 12:35+0300\n"
+"Last-Translator:  <>\n"
+"Language-Team:  <>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -17,3 +17,48 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/language_switch/module_info.php:5
+msgid "Allows you to insert a widget to switch languages on the site"
+msgstr "Allows you to insert a widget to switch languages on the site"
+
+#: ./application/modules/language_switch/templates/admin.tpl:2
+msgid "Language Switch module"
+msgstr "Language Switcher Module"
+
+#: ./application/modules/language_switch/templates/admin.tpl:8
+msgid "Set of icons, flags to work with the module. It must be specified in the two-letter language identifier format"
+msgstr "Flag icons to work with the module. They must be specified in the two-letter language identifier format"
+
+# ?
+#: ./application/modules/language_switch/language_switch_widgets.php:68
+msgid "passage Url"
+msgstr "Passage URL"
+
+#: ./application/modules/language_switch/templates/admin.tpl:6
+msgid "Automatic creation of the switch between the languages that are configured online"
+msgstr "Automatic creation of the switcher between the languages that are configured online"
+
+#: ./application/modules/language_switch/language_switch_widgets.php:81
+msgid "Settings saved"
+msgstr "Settings saved/ Settings have been saved"
+
+#: ./application/modules/language_switch/language_switch_widgets.php:66
+msgid "Image"
+msgstr "Image"
+
+#: ./application/modules/language_switch/templates/admin.tpl:12
+msgid "Module development"
+msgstr "Module development/ Module Development"
+
+#: ./application/modules/language_switch/language_switch_widgets.php:67
+msgid "Description"
+msgstr "Description"
+
+#: ./application/modules/language_switch/templates/admin.tpl:14
+msgid "Author"
+msgstr "Author"
+
+#: ./application/modules/language_switch/module_info.php:4
+msgid "Langauges switch"
+msgstr "Language switcher"

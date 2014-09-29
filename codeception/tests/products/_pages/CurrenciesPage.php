@@ -7,7 +7,7 @@ class CurrenciesPage
 
     //Кнопки
     public static $CreateCurrencyButton  = './/*[@id="mainContent"]/section/div[1]/div[2]/div/a';
-    public static $VerifyPrices  = './/*[@id="mainContent"]/section/div[1]/div[2]/div/button';
+    public static $VerifyPricesButton  = './/*[@id="mainContent"]/section/div[1]/div[2]/div/button';
     public static $GoBackButton  = './/*[@id="mainContent"]/section/div[1]/div[2]/div/a/span[2]';
     public static $SaveButton  = './/*[@id="mainContent"]/section/div[1]/div[2]/div/button[1]';
     public static $SaveAndExitButton  = './/*[@id="mainContent"]/section/div[1]/div[2]/div/button[2]';
@@ -20,20 +20,20 @@ class CurrenciesPage
     public static $IsoCodEdit  = './/*[@id="cur_ed_form"]/table/tbody/tr/td/div/div[2]/div/input';
     public static $SymbolEdit  = './/*[@id="cur_ed_form"]/table/tbody/tr/td/div/div[3]/div/input';
     public static $TemplateForm  = ".//*[@id='cur_ed_form']/table[2]";
-    public static $CurrencyTemplate  = '//*[@id="select-format"]';
-    public static $FormatLine  = '//*[@id="select-format-currency"]';
-    public static $DelimiterTens  = '//*[@id="select-separator-tens"]';
-    public static $DelimiterThousands  = '//*[@id="select-thousands-separator"]';
-    public static $AmountDecimals  = '//*[@id="cur_ed_form"]/table[2]/tbody/tr/td/div/div[5]/div/select';
+    public static $CurrencyTemplateSelect  = '//*[@id="select-format"]';
+//    public static $FormatLine  = '//*[@id="select-format-currency"]';
+//    public static $DelimiterTens  = '//*[@id="select-separator-tens"]';
+//    public static $DelimiterThousands  = '//*[@id="select-thousands-separator"]';
+    public static $AmountDecimalsSelect  = '//*[@id="select-decimal-places"]';
     public static $NotNullsCheckbox  = '//*[@id="cur_ed_form"]/table[2]/tbody/tr/td/div/div[6]/div/input';
     
     
-       
+    //Delete Window
     public static $DeleteWindow  = ".//div[@class='modal hide fade in']";
     public static $DeleteButtonWindow  = './/*[@id="first"]/div[3]/a[1]';
     public static $CancelButtonWindow  = './/*[@id="first"]/div[3]/a[2]';
     
-    
+    //FrontEnd Search
     public static $SearchField  = ".//*[@id='inputString']";
     public static $SearchButton  = "html/body/div[1]/div[1]/header/div[2]/div/div/div[2]/div[2]/div/form/span/button";
     
@@ -59,7 +59,7 @@ class CurrenciesPage
     public static $MainFirstPlaceSum  = '//*[@id="popupCart"]/div/div[2]/div/div/div/table/tbody/tr/td[4]/div/span/span/span/span/span[1]';
     public static $MainSecondPlaceSum  = '//*[@id="popupCart"]/div/div[2]/div/div/div/table/tbody/tr/td[4]/div/span/span/span/span/span[2]';
     
-    //Кнопки в списке
+    //List Landing Page
      public static function IdCurrencyLine($row){
         $IdCur = "//section[@class='mini-layout']/div[2]/div/form/table/tbody/tr[$row]/td[1]";
         return $IdCur;
@@ -88,5 +88,5 @@ class CurrenciesPage
         $DeleteBut = "//section[@class='mini-layout']/div[2]/div/form/table/tbody/tr[$row]/td[7]/button";
         return $DeleteBut;
     }
-        //section[@class="mini-layout"]/div[2]/div/form/table/tbody/tr
+        
 }

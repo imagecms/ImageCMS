@@ -4,7 +4,7 @@ class TextElementOSCest
 {
 //---------------------------AUTORIZATION---------------------------------------   
     /**
-     * @group aa
+     * @group a
      */
     public function Login(OrderStatusesTester $I){
         InitTest::Login($I);
@@ -141,7 +141,7 @@ class TextElementOSCest
 //---------------------MESSAGE CREATING STATUS----------------------------------
     
     /**
-     * @group aa
+     * @group a
      */
     public function MessageCreateStatus(OrderStatusesTester $I){
         $I->wantTo('Verify Message Cteation Status Present.');
