@@ -290,7 +290,7 @@
             {if $CI->dx_auth->is_logged_in()}
                 <div class="frame_nav">
                     {if MAINSITE}
-                        {include(MAINSITE.'/templates/administrator/inc/menus.php');}
+                        {include(MAINSITE.'/templates/administrator/inc/menus_premmerce.php');}
                     {else:}
                         {include('templates/administrator/inc/menus.php');}
                     {/if}
@@ -382,6 +382,7 @@
                                                             {foreach $components as $component}
                                                                 <li><a href="/admin/components/cp/{echo $component['name']}" class="pjax">{echo $component['menu_name']}</a></li>
                                                                 {/foreach}
+                                                            
                                                                 {if !MAINSITE}
                                                                 <li class="divider"></li>
                                                                     <li><a href="/admin/components/modules_table" class="pjax">{lang('All modules', 'admin')}</a></li>
