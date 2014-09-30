@@ -147,16 +147,14 @@ class DeliverySteps extends \DeliveryTester {
         }
 
         if ($price) {
-            $Cprice = $I->grabTextFrom("//div[@class='frame-radio']/div[$j]/div[@class='help-block']/div[1]");
-            $Cprice = preg_replace('/[^0-9.]*/u', '', $Cprice);
-            $price = round($price);
+            $Cprice = preg_replace('/[^0-9.,]*/u', '', $I->grabTextFrom("//div[@class='frame-radio']/div[$j]/div[@class='help-block']/div[1]"));
+            $price  = number_format(preg_replace('/[^0-9.]*/u', '', $price), 2, ",", ".");
             $I->assertEquals($Cprice, $price);
         }
 
         if ($freefrom) {
-            $Cfreefrom = $I->grabTextFrom("//div[@class='frame-radio']/div[$j]/div[@class='help-block']/div[2]");
-            $Cfreefrom = preg_replace('/[^0-9.]*/u', '', $Cfreefrom);
-            $freefrom = round($freefrom);
+            $Cfreefrom = preg_replace('/[^0-9.,]*/u', '', $I->grabTextFrom("//div[@class='frame-radio']/div[$j]/div[@class='help-block']/div[2]"));
+            $freefrom = number_format(preg_replace('/[^0-9.]*/u', '', $freefrom), 2, ",", ".");
             $I->assertEquals($Cfreefrom, $freefrom);
         }
 
