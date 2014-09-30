@@ -382,6 +382,7 @@
                                                             {foreach $components as $component}
                                                                 <li><a href="/admin/components/cp/{echo $component['name']}" class="pjax">{echo $component['menu_name']}</a></li>
                                                                 {/foreach}
+                                                            
                                                                 {if !MAINSITE}
                                                                 <li class="divider"></li>
                                                                     <li><a href="/admin/components/modules_table" class="pjax">{lang('All modules', 'admin')}</a></li>
