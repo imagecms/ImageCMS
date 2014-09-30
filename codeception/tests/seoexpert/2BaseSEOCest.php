@@ -7,7 +7,7 @@ class BaseSEOCest
     
 //---------------------------AUTORIZATION--------------------------------------- 
     /**
-     * @group a
+     * @group aa
      */
     public function Login(SeoExpertTester $I){
         InitTest::Login($I);
@@ -24,7 +24,7 @@ class BaseSEOCest
     
     
     /**
-     * @group a
+     * @group aa
      */
     public function BaseDefoultValues (SeoExpertTester $I) {
         $I->amOnPage(seoexpertPage::$SeoUrl);
@@ -46,7 +46,7 @@ class BaseSEOCest
     
     
     /**
-     * @group a
+     * @group aa
      */
     public function CkeckOptionSiteNoWork (SeoExpertTester $I){
         $I->amOnPage(seoexpertPage::$SeoUrl);
@@ -56,7 +56,7 @@ class BaseSEOCest
         $I->click(seoexpertPage::$SeoButtSave);
         $I->wait('1');
         $I->amOnPage('/shop/category/zzzz-kategoriia-dlia-seo#');
-        $I->wait('1');
+        $I->wait('2');
         $I->seeInPageSource('lastbuild.loc');
     }
     
@@ -64,7 +64,7 @@ class BaseSEOCest
     
     
     /**
-     * @group a
+     * @group aa
      */
     public function CkeckOptionSiteYesWork (SeoExpertTester $I){
         $I->amOnPage(seoexpertPage::$SeoUrl);
@@ -74,14 +74,14 @@ class BaseSEOCest
         $I->click(seoexpertPage::$SeoButtSave);
         $I->wait('1');
         $I->amOnPage('/shop/category/zzzz-kategoriia-dlia-seo#');
-        $I->wait('1');
+        $I->wait('2');
         $I->seeInPageSource('lastbuild.loc');
     }
     
     
     
-     /**
-     * @group a
+    /**
+     * @group aa
      */
     public function CkeckOptionCatNoWork (SeoExpertTester $I){
         $I->amOnPage(seoexpertPage::$SeoUrl);
@@ -91,14 +91,14 @@ class BaseSEOCest
         $I->click(seoexpertPage::$SeoButtSave);
         $I->wait('1');
         $I->amOnPage('/shop/category/zzzz-kategoriia-dlia-seo#');
-        $I->wait('1');
+        $I->wait('2');
         $I->seeInPageSource('Zzzz категория для SEO');
     }
     
     
     
     /**
-     * @group a
+     * @group aa
      */
     public function CkeckOptionCatNYesWork (SeoExpertTester $I){
         $I->amOnPage(seoexpertPage::$SeoUrl);
@@ -108,13 +108,13 @@ class BaseSEOCest
         $I->click(seoexpertPage::$SeoButtSave);
         $I->wait('1');
         $I->amOnPage('/shop/category/zzzz-kategoriia-dlia-seo#');
-        $I->wait('1');
+        $I->wait('2');
         $I->seeInPageSource('Zzzz категория для SEO');
     }
     
     
     /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function CkeckFieldSeparatorSympol1 (SeoExpertTester\seoexpertSteps $I){
@@ -128,7 +128,7 @@ class BaseSEOCest
         $I->click(seoexpertPage::$SeoButtSave);
         $I->wait('1');
         $I->amOnPage('/shop/category/zzzz-kategoriia-dlia-seo#');
-        $I->wait('1');
+        $I->wait('2');
         $I->seeInPageSource('Zzzz категория для SEO ./*-+ mini.loc');
     }
     
@@ -136,7 +136,7 @@ class BaseSEOCest
     
     
     /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function CkeckFieldSeparatorSympol2 (SeoExpertTester\seoexpertSteps $I){
@@ -150,7 +150,7 @@ class BaseSEOCest
         $I->click(seoexpertPage::$SeoButtSave);
         $I->wait('1');
         $I->amOnPage('/shop/category/zzzz-kategoriia-dlia-seo#');
-        $I->wait('1');
+        $I->wait('2');
         $I->seeInPageSource('Zzzz категория для SEO |%#@ mini.loc');
     }
     
@@ -158,7 +158,7 @@ class BaseSEOCest
     
     
     /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function CkeckFieldSeparatorSympol3 (SeoExpertTester\seoexpertSteps $I){
@@ -172,7 +172,7 @@ class BaseSEOCest
         $I->click(seoexpertPage::$SeoButtSave);
         $I->wait('1');
         $I->amOnPage('/shop/category/zzzz-kategoriia-dlia-seo#');
-        $I->wait('1');
+        $I->wait('2');
         $I->seeInPageSource('Zzzz категория для SEO ~=\} mini.loc');
     }
     
@@ -181,7 +181,7 @@ class BaseSEOCest
     
     
     /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function CkeckFieldSeparatorSympol4 (SeoExpertTester\seoexpertSteps $I){
@@ -195,7 +195,7 @@ class BaseSEOCest
         $I->click(seoexpertPage::$SeoButtSave);
         $I->wait('1');
         $I->amOnPage('/shop/category/zzzz-kategoriia-dlia-seo#');
-        $I->wait('1');
+        $I->wait('2');
         $I->seeInPageSource('Zzzz категория для SEO 1230 mini.loc');
     }
     
@@ -205,7 +205,7 @@ class BaseSEOCest
     
     
     /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function CkeckFieldSeparatorSympol5 (SeoExpertTester\seoexpertSteps $I){
@@ -219,7 +219,7 @@ class BaseSEOCest
         $I->click(seoexpertPage::$SeoButtSave);
         $I->wait('1');
         $I->amOnPage('/shop/category/zzzz-kategoriia-dlia-seo#');
-        $I->wait('1');
+        $I->wait('2');
         $I->seeInPageSource('Zzzz категория для SEO ЙЦол mini.loc');
     }
     
@@ -236,7 +236,7 @@ class BaseSEOCest
         $I->click(seoexpertPage::$SeoButtSave);
         $I->wait('1');
         $I->amOnPage('/');
-        $I->wait('1');
+        $I->wait('2');
         $I->seeInPageSource('098765 ~!@##$^% ЗЩШГ фыва хіь POI ZXC');
     }
     
@@ -254,7 +254,7 @@ class BaseSEOCest
         $I->click(seoexpertPage::$SeoButtSave);
         $I->wait('1');
         $I->amOnPage('/');
-        $I->wait('1');
+        $I->wait('2');
         $I->seeInPageSource('Keywords а также Ключевыэ сЛоВЫААА р2д2 брр и в том стиле');
     }
     
