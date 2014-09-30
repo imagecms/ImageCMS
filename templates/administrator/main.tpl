@@ -424,10 +424,17 @@
                             {/if}
                             <div class="muted">{lang('Help us get better','admin')} - <a href="#" id="rep_bug">{lang('report an error','admin')}</a></div>
                         </div>
+                        {if !define(MAINSITE)}
                         <div class="span4 t-a_r">
                             <div class="muted">Copyright © ImageCMS {echo date('Y')}</div>
                             <a href="http://docs.imagecms.net" target="blank">{lang('Documentation','admin')}</a>
                         </div>
+                        {else:}
+                        <div class="span4 t-a_r">
+                            <div class="muted">Copyright © ImageCMS {echo date('Y')}</div>
+                            <a href="http://docs.premmerce.com" target="blank">{lang('Documentation','admin')}</a>
+                        </div>                        
+                        {/if}
                     </div>
                 </div>
             </footer>
