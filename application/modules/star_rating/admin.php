@@ -43,7 +43,7 @@ class Admin extends BaseAdminController {
         if (!empty($data))
             $this->template->add_array($data);
 
-        $this->template->show('file:' . 'application/modules/star_rating/assets/admin/' . $viewName);
+        $this->template->show('file:' .  realpath(dirname(__FILE__)) . '/templates/admin/' . $viewName);
         exit;
     }
     

@@ -238,7 +238,7 @@ class CurrencyListCest
         $I->click(CurrenciesPage::$SaveAndExitButton);
         $I->waitForText('Список валют');
 //        $I->wait('6');
-        $I->click(CurrenciesPage::$VerifyPrices);
+        $I->click(CurrenciesPage::$VerifyPricesButton);
 //        $I->waitForElementVisible('.alert.in.fade.alert-success');
 //        $I->see('Цены обновлены');
 //        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
@@ -292,7 +292,7 @@ class CurrencyListCest
         $I->click(CurrenciesPage::$SaveAndExitButton);
         $I->waitForText('Список валют');
 //        $I->wait('6');
-        $I->click(CurrenciesPage::$VerifyPrices);        
+        $I->click(CurrenciesPage::$VerifyPricesButton);        
 //        $I->waitForElementVisible('.alert.in.fade.alert-success');
 //        $I->see('Цены обновлены');
 //        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
@@ -353,7 +353,7 @@ class CurrencyListCest
         $I->fillField(CurrenciesPage::$Rate, '4');
         $I->click(CurrenciesPage::$SaveAndExitButton);
         $I->waitForText('Список валют');
-        $I->click(CurrenciesPage::$VerifyPrices);
+        $I->click(CurrenciesPage::$VerifyPricesButton);
         $I->wait('2');
     }
         
@@ -402,7 +402,7 @@ class CurrencyListCest
         $I->waitForElementVisible('.alert.in.fade.alert-success');
         $I->see('Валюта успешно удалена');
         $I->waitForElementNotVisible('.alert.in.fade.alert-success');
-        $rowsAfterDel = $I->grabTagCount($I,"tbody tr");
+        $rowsAfterDel = $I->grabCCSAmount($I,".btn.btn-small.btn-danger");
         $I->comment((string)$rowsAfterDel);
         InitTest::ClearAllCach($I);
     }
@@ -415,7 +415,7 @@ class CurrencyListCest
     public function DeleteCurUsedInProducts(CurrenciesTester\CurrenciesSteps $I)
     {   
         //Проверка возможности удаления валюты, которая используется в товарах
-        $I->amOnPage("/admin/components/run/shop/currencies");
+        $I->amOnPage(CurrenciesPage::$URL);
         $j=2;
 //        $I->click(CurrenciesPage::RadioButtonLine($j));
         $I->wait('1');
@@ -445,11 +445,11 @@ class CurrencyListCest
         $IsoProduct=$I->CreateProduct($name, $this->price, $y);
         $I->assertEquals($IsoProduct, $IsoCur);
         $I->amOnPage("/");
-        $I->fillField(".//*[@id='inputString']", 'товар2');
-        $I->click("html/body/div[1]/div[1]/header/div[2]/div/div/div[2]/div[2]/div/form/span/button");
+        $I->fillField(CurrenciesPage::$SearchField, 'товар2');
+        $I->click(CurrenciesPage::$SearchButton);
         $I->wait('3');
-        $k=$I->grabTextFrom('//*[@id="items-catalog-main"]/li[1]/div[1]/div[2]/span/span[1]/span/span[1]');
-        $sym=$I->grabTextFrom('//*[@id="items-catalog-main"]/li[1]/div[1]/div[2]/span/span[1]/span/span[2]');
+        $k=$I->grabTextFrom(CurrenciesPage::$MainFirstPlace);
+        $sym=$I->grabTextFrom(CurrenciesPage::$MainSecondPlace);
         $i=$k*2;
         $I->comment("$i", "$k", "$sym");
         $I->assertEquals($i.",00", $this->price.",00");
@@ -464,15 +464,15 @@ class CurrencyListCest
 //        $I->waitForElementVisible('.alert.in.fade.alert-success');
 //        $I->see('Изменения сохранены');
 //        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
-        $I->click(CurrenciesPage::$VerifyPrices);
+        $I->click(CurrenciesPage::$VerifyPricesButton);
         $I->waitForElementVisible('.alert.in.fade.alert-success');
         $I->see('Цены обновлены', '.alert.in.fade.alert-success');
         $I->amOnPage("/");
-        $I->fillField(".//*[@id='inputString']", 'товар2');
-        $I->click("html/body/div[1]/div[1]/header/div[2]/div/div/div[2]/div[2]/div/form/span/button");
+        $I->fillField(CurrenciesPage::$SearchField, 'товар2');
+        $I->click(CurrenciesPage::$SearchButton);
         $I->wait('1');
-        $k3=$I->grabTextFrom(".//*[@id='items-catalog-main']/li/div[1]/div[2]/span/span/span/span[1]");
-        $sym3=$I->grabTextFrom(".//*[@id='items-catalog-main']/li/div[1]/div[2]/span/span/span/span[2]");
+        $k3=$I->grabTextFrom(CurrenciesPage::$MainFirstPlace);
+        $sym3=$I->grabTextFrom(CurrenciesPage::$MainSecondPlace);
         $i3=$k3*4;
         $I->comment("$i3", "$k3", "$sym3");
         $I->assertEquals($i3, $this->price);
@@ -503,7 +503,7 @@ class CurrencyListCest
                 break;
             } 
         }
-        $I->click(CurrenciesPage::$VerifyPrices);
+        $I->click(CurrenciesPage::$VerifyPricesButton);
         $I->waitForElementVisible('.alert.in.fade.alert-success');
         $I->see('Цены обновлены');
         $I->waitForElementNotVisible('.alert.in.fade.alert-success');
@@ -515,11 +515,11 @@ class CurrencyListCest
         //Проверка отображения цены товара после удаления валюты, в которой была указана его цена
         InitTest::ClearAllCach($I);
         $I->amOnPage("/");
-        $I->fillField(".//*[@id='inputString']", 'товар2');
-        $I->click("html/body/div[1]/div[1]/header/div[2]/div/div/div[2]/div[2]/div/form/span/button");
+        $I->fillField(CurrenciesPage::$SearchField, 'товар2');
+        $I->click(CurrenciesPage::$SearchButton);
         $I->wait('3');
-        $k2=$I->grabTextFrom(".//*[@id='items-catalog-main']/li/div[1]/div[2]/span/span/span/span[1]");
-        $sym2=$I->grabTextFrom(".//*[@id='items-catalog-main']/li/div[1]/div[2]/span/span/span/span[2]");
+        $k2=$I->grabTextFrom(CurrenciesPage::$MainFirstPlace);
+        $sym2=$I->grabTextFrom(CurrenciesPage::$MainSecondPlace);
         $i2=$k2*4;
         $I->comment("$i2");
         $I->comment("$k2");
@@ -535,7 +535,7 @@ class CurrencyListCest
     public function DeleteCurUsedInPaymentMethods(CurrenciesTester\CurrenciesSteps $I)
     {   
         //Проверка возможности удаления валюты, которая используется в способах оплаты
-        $I->amOnPage("/admin/components/run/shop/currencies");
+        $I->amOnPage(CurrenciesPage::$URL);
         $y=4;
         $SymbolCur=$I->grabTextFrom(CurrenciesPage::SymbolCurrencyLine($y));
         $id=$I->grabTextFrom(CurrenciesPage::IdCurrencyLine($y));

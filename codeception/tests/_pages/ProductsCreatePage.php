@@ -7,6 +7,9 @@ class ProductsCreatePage
     //заголовки
     public static $Title                    = '.title';
     public static $TitleBlockSettings       = '//div[@class="form-horizontal"]/table/thead//th';
+    
+    public static $TabSettingsBlockMetaTitle        = '';
+    public static $TabSettingsBlockAdditionalTitle  = '';
 
     //--------------------------------------------------------------------------
     //----------------------------КНОПКИ----------------------------------------
@@ -23,12 +26,9 @@ class ProductsCreatePage
         //перемикач
         public static $ToggleActive     =  'span.prod-on_off' ;
 
-
         //таби
         public static $TabProduct   = '//div[@class="clearfix"]//a[1]';
         public static $TabSettings  = '//div[@class="clearfix"]//a[2]';
-    
-    
     
     
     //--------------------------------------------------------------------------
@@ -69,7 +69,6 @@ class ProductsCreatePage
    public static function lineArticleInput($row)                    { return "//div[@class='variantsProduct']//tbody/tr[$row]/td[5]/input[@type='text']"; }
    public static function lineAmount($row)                          { return "//div[@class='variantsProduct']//tbody/tr[$row]/td[6]/input[@type='text']"; }
    
-   
     //--------------------------------------------------------------------------
     //-----------------ВІКНО ЗАГРУЗКИ ЗОБРАЖЕННЯ З ІНТЕРНЕТУ--------------------
    public static $WindowDownload                         = '#images_modal';
@@ -84,10 +83,6 @@ class ProductsCreatePage
    public static $WindowDownloadButtonSave               = '#images_modal .modal-footer a:nth-child(3)';
    public static $WindowDownloadButtonCancel             = '#images_modal .modal-footer a:nth-child(2)';
    public static function windowDownloadImage($number)  {return "#image_search_result span:nth-child($number)";}
-   
-
-
-
 
    //--------------------------------------------------------------------------
     //----------------------------СЕЛЕКТИ---------------------------------------
@@ -123,6 +118,33 @@ class ProductsCreatePage
     public static $SelectCategoryLabel              = '//div[@class="inside_padd"]/div[3]/label';
     public static $SelectAdditionalCategoryLabel    = '//div[@class="inside_padd"]/div[4]/label';
 
+    //--------------------------------------------------------------------------
+    //------------------------------ТАБ НАСТРОЙКИ-------------------------------
     
+    
+    public static $TabSettingsInputURL              = '#Url';
+    public static $TabSettingsInputMetaTitle        = '#Mtag';
+    public static $TabSettingsInputMetaDescription  = '#mDesc';
+    public static $TabSettingsInputMetaKeywords     = '#mKey';
+    
+    public static $TabSettingsInputCreateDate       = '#dCreate';
+    public static $TabSettingsInputMainTemplate     = '#templateGH';
+    
+    public static $TabSettingsButtonUpdate          = '#translateProductUrl';
+    
+    public static $TabSettingsRadioCommentYes       = '//div[@id="settings"]/div/div[2]//div[@class="inside_padd"]/div/div/div[1]/div/span[1]/span';
+    public static $TabSettingsRadioCommentNo        = '//div[@id="settings"]/div/div[2]//div[@class="inside_padd"]/div/div/div[1]/div/span[2]/span';
+    
+    public static $TabSettingsInputURLLabel              = 'label[for="Url"]';
+    public static $TabSettingsInputMetaTitleLabel        = 'label[for="Mtag"]';
+    public static $TabSettingsInputMetaDescriptionLabel  = 'label[for="mDesc"]';
+    public static $TabSettingsInputMetaKeywordsLabel     = 'label[for="mKey"]';
+    public static $TabSettingsInputCreateDateLabel       = 'label[for="dCreate"]';
+    public static $TabSettingsInputMainTemplateLabel     = 'label[for="templateGH"]';
+ 
+    public static $TabSettingsFieldCommentLabel          = '//div[@id="settings"]/div/div[2]//div[@class="inside_padd"]/div/div/div[1]/label';
+    
+    public static $TabSettingsRadioCommentYesLabel       = '//div[@id="settings"]/div/div[2]//div[@class="inside_padd"]/div/div/div[1]/div/span[1]';
+    public static $TabSettingsRadioCommentNoLabel        = '//div[@id="settings"]/div/div[2]//div[@class="inside_padd"]/div/div/div[1]/div/span[2]';
 
 }

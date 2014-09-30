@@ -19,7 +19,7 @@ class Logger  {
      * Path to file log.txt
      * @var string 
      */
-    private $pathFile = "./application/modules/import_export/backups/log.txt";
+    private $pathFile = "./application/backups/log.txt";
     private $pathFolder = "./application/modules/import_export/";
     
     /**
