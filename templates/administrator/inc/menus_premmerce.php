@@ -66,23 +66,23 @@ $baseMenu = array(
             ),
         )
     ),
-//    array(
-//        'link' => '',
-//        'text' => lang('Modules', 'admin', FALSE),
-//        'icon' => 'icon-circle-arrow-down',
-//        'subMenu' => array(
-//            array(
-//                'link' => '/admin/components/modules_table',
-//                'text' => lang('All modules', 'admin', FALSE),
-//            ),
-//            array(
-//                'divider' => true
-//            ),
-//            array(
-//                'modulesList' => true
-//            ),
-//        )
-//    ),
+    array(
+        'link' => '',
+        'text' => lang('Modules', 'admin', FALSE),
+        'icon' => 'icon-circle-arrow-down',
+        'subMenu' => array(
+            array(
+                'link' => '/admin/components/modules_table',
+                'text' => lang('All modules', 'admin', FALSE),
+            ),
+            array(
+                'divider' => true
+            ),
+            array(
+                'modulesList' => true
+            ),
+        )
+    ),
     array(
         'link' => '',
         'text' => lang('Widgets', 'admin', FALSE),
@@ -281,13 +281,13 @@ $shopMenu = array(
         'text' => lang('Modules', 'admin', FALSE),
         'icon' => 'icon-circle-arrow-down',
         'subMenu' => array(
-//            array(
-//                'link'      => '/admin/components/modules_table',
-//                'text'      => lang('All modules', 'admin', FALSE),
-//            ),
-//            array(
-//                'divider'   => true
-//            ),
+            array(
+                'link'      => '/admin/components/modules_table',
+                'text'      => lang('All modules', 'admin', FALSE),
+            ),
+            array(
+                'divider'   => true
+            ),
             array(
                 'modulesList' => true
             ),
