@@ -1,15 +1,17 @@
 <?php
-
-/**
- * Вказати шлях до опен сервера
- */
-//define('OPENSERVER_PATH','C:\OpenServer\domains');
-/**
- * вказати імя домена
- */
-//define('OPENSERVER_DOMAIN','\cmsprem.loc');
-
-/**
- * папка загрузки файлів з браузера для тестування модуля імпорт експорт csv
- */
+ 
+// папка загрузки файлів з браузера для тестування модуля імпорт експорт csv
 define('BROWSER_DOWNLOADS', 'C:\Users\moff\Downloads\\');
+
+//константи змінюються для тестування premmerce
+/**
+ * @uses InitTest::Login()
+ */
+define('USER_EMAIL', 'ad@min.com');
+define('USER_PASSWORD', 'admin');
+
+/**
+ * @uses tests/premmerce/CreateShopCest.php
+ */
+define('STORE_NAME', 'premmerceTest');
+define('STORE_URL', 'http://' . STORE_NAME . '.premme.com');
