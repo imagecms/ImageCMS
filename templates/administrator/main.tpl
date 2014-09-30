@@ -290,7 +290,7 @@
             {if $CI->dx_auth->is_logged_in()}
                 <div class="frame_nav">
                     {if MAINSITE}
-                        {include(MAINSITE.'/templates/administrator/inc/menus_premmerce.php');}
+                        {include(MAINSITE.'/templates/administrator/inc/menus.php');}
                     {else:}
                         {include('templates/administrator/inc/menus.php');}
                     {/if}
