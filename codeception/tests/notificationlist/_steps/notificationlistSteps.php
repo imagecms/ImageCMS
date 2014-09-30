@@ -1,18 +1,14 @@
 <?php
 
-namespace NotificationStatusesTester;
+namespace NotificationListTester;
 
-class notificationstatusesSteps
+class notificationlistSteps 
 
-extends \NotificationStatusesTester
+extends \NotificationListTester
 
 {
 
-   //-------------------------Create Category----------------------------------    
-    
-
-    
-    function CreateProductCategory( $createNameCategory = NULL) {
+     function CreateProductCategory( $createNameCategory = NULL) {
         $I = $this;
         $I->amOnPage('/admin/components/run/shop/categories/create');
         $I->wait('1');
@@ -48,6 +44,52 @@ extends \NotificationStatusesTester
         $I->wait('2');
     }
     
+    
+    function GetRowNotification($email = NULL) {
+        $I = $this;
+        $I->amOnPage(\NotificationListPage::$URL);
+        $I->wait('5');
+        $amount_check = $I->grabCCSAmount($I, '.niceCheck');
+        $I->wait('1');
+        if($amount_check > 3){
+            for($j = 1;$j <= $amount_check;++$j){
+            $I->wait('1');
+                $email_notification = $I->grabTextFrom(\NotificationListPage::tabAllLineEmailText($j));
+                if($email_notification == $email){
+                $I->wait('1');
+                    $I->wait('1');            
+                    $position = $j;
+//                    $I->comment("Номер позиции в списке статуса уведомления: '$position' ");
+                return $position;
+                }
+            }
+        }
+    }
+    
+    
+    function GetIDNotification($email = NULL) {
+        $I = $this;
+        $I->amOnPage(\NotificationListPage::$URL);
+        $I->wait('5');
+        $amount_check = $I->grabCCSAmount($I, '.niceCheck');
+        $I->wait('1');
+        if($amount_check > 3){
+            for($j = 1;$j <= $amount_check;++$j){
+            $I->wait('1');
+                $email_notification = $I->grabTextFrom(\NotificationListPage::tabAllLineEmailText($j));
+                if($email_notification == $email){
+                $I->wait('1');
+                $ID = $I->grabTextFrom(\NotificationListPage::tabAllLineIDLink($j));
+                    $I->wait('1');            
+                    $ID_notification = $ID;
+//                    $I->comment("Номер ID в списке статуса уведомления: '$ID_notification' ");
+                return $ID_notification;
+                }
+            }
+        }
+    }    
+
+    
     function GetIDStatus($name_statuse = NULL) {
         $I = $this;
         $I->amOnPage(\NotificationStatusesListPage::$URL);
@@ -58,6 +100,7 @@ extends \NotificationStatusesTester
             if($name_notification == $name_statuse){
                 $I->wait('1');                
                 $ID_Status = $I->grabTextFrom(\NotificationStatusesListPage::lineIDText($j));
+//                $I->comment("Номер ID в списке статуса $name_statuse: '$ID_Status' ");
                 return $ID_Status;
             }
         }
@@ -76,6 +119,7 @@ extends \NotificationStatusesTester
                 $I->wait('1');                
                 $number_position = $I->grabTextFrom(\NotificationStatusesListPage::linePositionText($j));
                 $number_position += 2;
+//                $I->comment("Номер позиции в списке статуса $name_status: '$number_position' ");
                 return $number_position;
             }
         }
@@ -113,6 +157,21 @@ extends \NotificationStatusesTester
         }
         $I->comment("Все созданные категории, успешно удалены. Остались только дефолтные !!!");
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
 }

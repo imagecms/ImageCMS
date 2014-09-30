@@ -11,7 +11,7 @@ class GeneralPage
     public static $TopPanelCallback     = "//div[@id='topPanelNotifications']//a[4]";
     
     public static $PersonalButton       = "//a[@class='btn_header btn-personal-area']";
-    public static $PersonalButtonLogout = "//a[@href='/admin/logout']";
+    public static $PersonalButtonLogout = "//a[@href='/auth/logout']";
     public static $PersonalButtonData   = "#user_name";
     
     //Модулі

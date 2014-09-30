@@ -79,6 +79,7 @@ class CreateStatusCallbackCest
     {
         $name="Статустатустатустатустатустатуста устатустатуста устатустатустатустатустатуста устатустатустатустатустатустат статустатустатуста";        
         $I->CreateStatusCallback($name, $name);
+        $I->CheckStatusCallbackListLanding($name);
     } 
     
     /**
@@ -89,6 +90,7 @@ class CreateStatusCallbackCest
     {
         $name="12345йцуке12345йцуке123 5йцуке12345йцуке12345йцуке12345йцуке1 345йцуке12345йцуке12345йцуке 2345йцуке12345йц ке12345йцуке12345йцу е12345йцуке12345йцуке12345йцуке12345йцуке12345й уке12345йцуке12345йц ке12345йцуке12345йцуке1234 йцуке12345йцуке12345йцуке12345";        
         $I->CreateStatusCallback($name, $name);
+        $I->CheckStatusCallbackListLanding($name);
     } 
     
     /**
@@ -100,6 +102,7 @@ class CreateStatusCallbackCest
         $name="12345йцуке12345 цуке12345йцуке12345 цуке12345йцуке12345йцу е12345йцуке12345йцуке1234 йцуке12345йцуке12345йцуке12345 цуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке1234 йцуке12345йцуке12345йцуке12345йцуке12345йцуке1 345йцуке12345йцуке12 45йцуке123456"; 
         $name2="12345йцуке12345 цуке12345йцуке12345 цуке12345йцуке12345йцу е12345йцуке12345йцуке1234 йцуке12345йцуке12345йцуке12345 цуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке1234 йцуке12345йцуке12345йцуке12345йцуке12345йцуке1 345йцуке12345йцуке12 45йцуке12345";
         $I->CreateStatusCallback($name, $name2);
+        $I->CheckStatusCallbackListLanding($name2);
         InitTest::ClearAllCach($I);
     } 
     
@@ -129,7 +132,7 @@ class CreateStatusCallbackCest
         $name="q";
         $default='';
         $I->CreateStatusCallback($name,$name,$default);
-        $default='prod-on_off ';
-        $I->CheckStatusCallbackListLanding($name, $default);
+//        $default='prod-on_off ';
+        $I->CheckStatusCallbackListLanding($name, $default='yes');
     } 
 }

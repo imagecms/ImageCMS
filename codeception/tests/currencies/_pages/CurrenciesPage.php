@@ -21,11 +21,11 @@ class CurrenciesPage
     public static $SymbolEdit  = './/*[@id="cur_ed_form"]/table/tbody/tr/td/div/div[3]/div/input';
     public static $TemplateForm  = ".//*[@id='cur_ed_form']/table[2]";
     public static $CurrencyTemplateSelect  = '//*[@id="select-format"]';
-    public static $FormatLine  = '//*[@id="select-format-currency"]';
-    public static $DelimiterTens  = '//*[@id="select-separator-tens"]';
-    public static $DelimiterThousands  = '//*[@id="select-thousands-separator"]';
-    public static $AmountDecimalsSelect  = '//*[@id="cur_ed_form"]/table[2]/tbody/tr/td/div/div[5]/div/select';
-    public static $NotNullsCheckbox  = '//*[@id="cur_ed_form"]/table[2]/tbody/tr/td/div/div[6]/div/input';
+//    public static $FormatLine  = '//*[@id="select-format-currency"]';
+//    public static $DelimiterTens  = '//*[@id="select-separator-tens"]';
+//    public static $DelimiterThousands  = '//*[@id="select-thousands-separator"]';
+    public static $AmountDecimalsSelect  = ".//*[@id='select-decimal-places']";
+    public static $NotNullsCheckbox  = ".//*[@id='cur_ed_form']/table[2]/tbody/tr/td/div/div[3]/div/span/span";
     
     
     //Delete Window   
@@ -58,6 +58,12 @@ class CurrenciesPage
     
     public static $MainFirstPlaceSum  = '//*[@id="popupCart"]/div/div[2]/div/div/div/table/tbody/tr/td[4]/div/span/span/span/span/span[1]';
     public static $MainSecondPlaceSum  = '//*[@id="popupCart"]/div/div[2]/div/div/div/table/tbody/tr/td[4]/div/span/span/span/span/span[2]';
+    
+    
+    
+    
+    
+    
     
     //List Landing Page
      public static function IdCurrencyLine($row){
