@@ -46,6 +46,7 @@ class TextElementOSCest
         $I->wantTo('Verify Way to Status List Page.');
         $I->click(NavigationBarPage::$Orders);
         $I->click(NavigationBarPage::$OrderStatuses);
+        $I->wait('1');
         $I->seeInCurrentUrl(OrderStatusesListPage::$ListURL);
     } 
     
