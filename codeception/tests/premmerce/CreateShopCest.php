@@ -17,21 +17,14 @@ class CreateShopCest {
     private $Data;
 
 
-
-
-    public function getData(PremmerceTester $I) {
-        $this->_getCodeceptionYml();
-        $this->_getStoreData();
-        
-    }
     public function createShop(PremmerceTester $I) {
         $I->amOnPage('/');
-        $I->fillField(CreateStorePage::$InputDomain,    $this->Data['domain']);
-        $I->fillField(CreateStorePage::$InputEmail,     $this->Data['email']);
-        $I->fillField(CreateStorePage::$InputPassword,  $this->Data['password']);
-        $I->fillField(CreateStorePage::$InputName,      $this->Data['name']);
-        $I->fillField(CreateStorePage::$InputPhone,     $this->Data['phone']);
-        $I->fillField(CreateStorePage::$InputCity,      $this->Data['city']);
+        $I->fillField(CreateStorePage::$InputDomain,    STORE_NAME);
+        $I->fillField(CreateStorePage::$InputEmail,     USER_EMAIL);
+        $I->fillField(CreateStorePage::$InputPassword,  USER_PASSWORD);
+        $I->fillField(CreateStorePage::$InputName,      'CI-server');
+        $I->fillField(CreateStorePage::$InputPhone,     '800800');
+        $I->fillField(CreateStorePage::$InputCity,      'Lviv');
         
         //селекти
         $I->click(CreateStorePage::$SelectCategoryOfProducts);
@@ -40,24 +33,23 @@ class CreateShopCest {
         $I->click(CreateStorePage::selectProductsOption(3));
         $I->checkOption(CreateStorePage::$CheckAgree);
         $I->click(CreateStorePage::$ButtonCreate);
-        $I->wait(100);
+        $I->wait(5);
+//        $this->_getCodeceptionYml();
+//        $this->_changeAdress(STORE_URL);
     }        
 
 
     /***************************************************************************
      ****************************PROTECTED**************************************
      **************************************************************************/
-    protected function _getStoreData() {
-        return $this->Data = json_decode(file_get_contents(codecept_root_dir().'tests/premmerce/ShopData.json'),TRUE);
-    }
-    protected function _restoreCodeceptionYml(){
-        return file_put_contents(codecept_root_dir() . "codeception.yml", $this->CodeceptionYml);
-    }
     protected function _getCodeceptionYml() {
-        return file_get_contents(codecept_root_dir() . "codeception.yml");
+        return $this->CodeceptionYml = file_get_contents(codecept_root_dir() . "codeception.yml");
     }
     protected function _changeAdress($adress) {
         $modified = preg_replace('~\surl:\s\'.*\'\s~', " url: '" . $adress . "' ", $this->CodeceptionYml);
         return  file_put_contents(codecept_root_dir() . "codeception.yml", $modified);
+    }
+    protected function _restoreCodeceptionYml(){
+        return file_put_contents(codecept_root_dir() . "codeception.yml", $this->CodeceptionYml);
     }
 }

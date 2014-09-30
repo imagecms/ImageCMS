@@ -1,15 +1,7 @@
 <?php
 class InitTest {
 
-    //Username і пароль ,будуть знінені в тесті 
-    protected static $UserName = 'ad@min.com';
-    protected static $Password = 'admin';
-    
     protected static $LoggedIn;
-
-    
-
-
 
     public static function changeTextAditorToNative($I) {
         $I->wait(1);
@@ -21,26 +13,13 @@ class InitTest {
         $I->click('.btn.btn-small.btn-primary.action_on.formSubmit');
         $I->wait('3');
     }
-    
-//DEPRECATED    
-//    public static function changeSymbolsAfterCommaInPrice($I,$num) {
-//        $I->wait(1);
-//        $I->amOnPage('/admin');
-//        $I->click(GeneralPage::$Settings);
-//        $I->click(GeneralPage::$SettingsShopSettings);
-//        $I->waitForText('Настройки магазина',null,'.title');
-//        $I->selectOption('select.input-small', $num);
-//        $I->click('.btn.btn-small.btn-primary.action_on.formSubmit');
-//        $I->wait(0);
-//        
-//    }
 
     public static function Login($I) {
         if (!self::$LoggedIn) {
             $I->wantTo('log in as admin');
             $I->amOnPage('/admin/login');
-            $I->fillField('login', self::$UserName);
-            $I->fillField('password', self::$Password);
+            $I->fillField('login', USER_EMAIL);
+            $I->fillField('password', USER_PASSWORD);
             $I->click('.btn.btn-info');
             $I->waitForElement(".frame_nav");
         }
