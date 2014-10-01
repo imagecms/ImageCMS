@@ -96,7 +96,7 @@ class PaymentEditCest {
         $OptionsAmount = $I->grabTagCount($I, 'select option', 0);
         $I->comment("$OptionsAmount");
         for ($row = 0; $row < $OptionsAmount; ++$row) {
-            $Options[$row] = $I->grabTextFrom(PaymentEditPage::SelectCurrency($row + 1));
+            $Options[$row] = $I->grabTextFrom(PaymentEditPage::selectCurrencyOption($row + 1));
             $Options[$row] = trim(array_shift(explode('(', $Options[$row]))); //to get only name of currency without whitespaces
         }
         $CreatedCurrencies = $I->GrabAllCreatedCurrencies();

@@ -50,7 +50,7 @@ class PaymentCreateCest {
      */
     public function nameSymbols(PaymentTester\Paymentsteps $I) {
         $name = InitTest::$textSymbols;
-        $DeliveryName = "Доставка Оплата";
+//        $DeliveryName = "Доставка Оплата";
 
         $this->CreatedPaymentMethods[] = $name;
 
@@ -74,7 +74,7 @@ class PaymentCreateCest {
         $OptionsAmount = $I->grabTagCount($I, 'select option', 0);
         $I->comment("$OptionsAmount");
         for ($row = 0; $row < $OptionsAmount; ++$row) {
-            $Options[$row] = $I->grabTextFrom(PaymentCreatePage::SelectCurrency($row + 1));
+            $Options[$row] = $I->grabTextFrom(PaymentCreatePage::selectCurrencyOption($row + 1));
             $Options[$row] = trim(array_shift(explode('(', $Options[$row]))); //to get only name of currency
         }
         foreach ($CreatedCurrencies as $key => $Currecy) {
