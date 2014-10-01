@@ -18,9 +18,9 @@ class PaymentElementsCest
     public function PaymentListElements(PaymentTester $I) {
         $I->amOnPage(PaymentListPage::$URL);
         $I->see("Список способов оплаты", PaymentListPage::$Title);
-        $I->seeElement(PaymentListPage::$ActiveHeader);
-        $I->see('ID', PaymentListPage::$IDHeader);
-        $I->see('Способ', PaymentListPage::$MethodNameHeader);
+        $I->seeElement(PaymentListPage::$HeadActiveText);
+        $I->see('ID', PaymentListPage::$HeadIDText);
+        $I->see('Способ', PaymentListPage::$HeadMethodText);
         $I->see('Название валюты', PaymentListPage::$CurrencyNameHeader);
         $I->see('Обозначение валюты', PaymentListPage::$CurrencySymbolHeader);
         $I->see('Активный', PaymentListPage::$ActiveHeader);

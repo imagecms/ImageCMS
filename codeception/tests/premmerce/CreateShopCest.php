@@ -3,12 +3,11 @@
 use \PremmerceTester;
 /**
  * - встановити в codeception.yml адрес premmerce(на сервері)
- * - створитив папці тесту(або codecept_root_dir()) ShopData.json Файл з даними реєстрації (на сервері) 
+ * - створитив папці тесту(або codecept_root_dir()) config.php Файл з даними реєстрації (на сервері) 
  * 
  * - запустити тест
- * - зчитати дані(в тесті)
  * - створити магазин використовуючи ці дані(в тесті) 
- * - змінити адресу магаза в codeception.yml і логін пароль в InitTest(в тесті або на сервері)
+ * - змінити адресу магаза в codeception.yml
  * - запустити всі інші тести (окремий запуск для врахування змін в налаштуваннях)
  */
 class CreateShopCest {
@@ -34,8 +33,8 @@ class CreateShopCest {
         $I->checkOption(CreateStorePage::$CheckAgree);
         $I->click(CreateStorePage::$ButtonCreate);
         $I->wait(5);
-//        $this->_getCodeceptionYml();
-//        $this->_changeAdress(STORE_URL);
+        $this->_getCodeceptionYml();
+        $this->_changeAdress(STORE_URL);
     }        
 
 
