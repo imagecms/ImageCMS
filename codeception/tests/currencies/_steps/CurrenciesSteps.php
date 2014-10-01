@@ -246,6 +246,21 @@ class CurrenciesSteps extends \CurrenciesTester
     function CheckProductCart($firMain,$secMain,$firADD=null,$secADD=null)
     {
         $I = $this;
+        $TextCart=$I->grabTextFrom('//*[@id="tinyBask"]/div/button/span[2]/span[2]/span[1]');
+        $I->comment($TextCart);
+        if($TextCart=='Корзина пуста'){
+//            break;
+        }
+        else{
+            for($i=1;$i<=$TextCart;$i++){
+                $I->click('//*[@id="popupCart"]/div/div[2]/div/div/div/table/tbody/tr/td[1]/button');
+                $I->wait('2');
+            }
+            $I->waitForText('Ваша корзина пуста');
+            $I->click('//*[@id="popupCart"]/div/button');
+            $I->waitForElementNotVisible('//*[@id="popupCart"]');
+//            break;
+        }
         $I->click('//*[@id="items-catalog-main"]/li[1]/a');
         $I->waitForElement("/html/body/div[1]/div[2]/div[2]/div[1]/div/div[2]");
 //        $I->seeInCurrentUrl("//shop/product/$name");
