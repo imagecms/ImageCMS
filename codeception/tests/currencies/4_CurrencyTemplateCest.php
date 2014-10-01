@@ -185,7 +185,7 @@ class CurrencyTemplateCest
      * @guy CurrenciesTester\CurrenciesSteps
      */
     
-    public function Template8Editing(CurrenciesTester\CurrenciesSteps $I)
+    public function ICMS_1596_Template8Editing(CurrenciesTester\CurrenciesSteps $I)
     {
         $j=$I->SearchMainCurrencyLine();
         $I->comment($j);
@@ -274,7 +274,7 @@ class CurrencyTemplateCest
      * @guy CurrenciesTester\CurrenciesSteps
      */
     
-    public function NotNullsTemplateEditing(CurrenciesTester\CurrenciesSteps $I)
+    public function ICMS_1548_NotNullsTemplateEditing(CurrenciesTester\CurrenciesSteps $I)
     {
         $j=$I->SearchMainCurrencyLine();
         $I->comment($j);
@@ -317,7 +317,7 @@ class CurrencyTemplateCest
      * @guy CurrenciesTester\CurrenciesSteps
      */
     
-    public function NotNulls2TemplateEditing(CurrenciesTester\CurrenciesSteps $I)
+    public function ICMS_1552_NotNulls2TemplateEditing(CurrenciesTester\CurrenciesSteps $I)
     {
         $j=$I->SearchMainCurrencyLine();
         $I->comment($j);
