@@ -21,9 +21,6 @@ class CurrenciesPage
     public static $SymbolEdit  = './/*[@id="cur_ed_form"]/table/tbody/tr/td/div/div[3]/div/input';
     public static $TemplateForm  = ".//*[@id='cur_ed_form']/table[2]";
     public static $CurrencyTemplateSelect  = '//*[@id="select-format"]';
-//    public static $FormatLine  = '//*[@id="select-format-currency"]';
-//    public static $DelimiterTens  = '//*[@id="select-separator-tens"]';
-//    public static $DelimiterThousands  = '//*[@id="select-thousands-separator"]';
     public static $AmountDecimalsSelect  = ".//*[@id='select-decimal-places']";
     public static $NotNullsCheckbox  = ".//*[@id='cur_ed_form']/table[2]/tbody/tr/td/div/div[3]/div/span/span";
     

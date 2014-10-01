@@ -107,28 +107,45 @@ class DeleteStatusCest
         //Изменение статуса по умолчанию
         $I->amOnPage(CallbacksPage::$URLStatuses);
         $I->comment("Rows: $this->rows");
-        $I->comment("Default Old Status: $this->j");
-        if($this->j<$this->rows){
-            $this->j++;
-            $I->click(CallbacksPage::ActiveButtonLine($this->j));
-        }
-        else{
-            $this->j--;
-            $I->click(CallbacksPage::ActiveButtonLine($this->j));
-        }        
+//        $I->comment("Default Old Status: $this->j");
+//        if($this->j<$this->rows){
+//            $this->j++;
+//            $I->click(CallbacksPage::ActiveButtonLine($this->j));
+//        }
+//        else{
+//            $this->j--;
+//            $I->click(CallbacksPage::ActiveButtonLine($this->j));
+//        }        
 //        $I->SeeElement("//*[@class='alert.in.fade.alert-success']/a");
 //        $I->See("Статус по умолчанию изменен");
+        $IdOldStatus=$I->grabTextFrom(CallbacksPage::IdStatusLine('1'));
+        $I->comment("Old Id: $IdOldStatus");
+        $IdNewStatus=$I->grabTextFrom(CallbacksPage::IdStatusLine('2'));
+        $I->click(CallbacksPage::ActiveButtonLine('2'));
         InitTest::ClearAllCach($I);
-        $I->wait(1);
+        $I->wait(2);
         $I->amOnPage(CallbacksPage::$URLStatuses);
-        $this->nameStatus=$I->grabTextFrom(CallbacksPage::StatusNameLine($this->j));
+        $I->see($IdNewStatus, CallbacksPage::IdStatusLine('1'));
+        $this->nameStatus=$I->grabTextFrom(CallbacksPage::StatusNameLine('1'));
         $I->comment($this->nameStatus);
-        $ActButOn=$I->grabAttributeFrom(CallbacksPage::ActiveButtonLine($this->j), "class");
+        $ActButOn=$I->grabAttributeFrom(CallbacksPage::ActiveButtonLine('1'), "class");
         $ActButOn=  trim($ActButOn);
         $I->assertEquals($ActButOn, "prod-on_off");
-        $DelButAct=$I->grabAttributeFrom(CallbacksPage::DeleteStatusButtonLine($this->j), "disabled");
+        $DelButAct=$I->grabAttributeFrom(CallbacksPage::DeleteStatusButtonLine('1'), "disabled");
         $I->comment($DelButAct);
         $I->assertEquals($DelButAct, 'true');
+        for ($i=1;$i<=$this->rows;$i++){            
+            //РџРѕРёСЃРє Р°С‚СЂРёР±СѓС‚Р° checked РґР»СЏ СЂР°РґРёРѕС‚РѕС‡РєРё
+            $idold = $I->grabTextFrom(CallbacksPage::IdStatusLine($i));            
+            $I->comment($idold);
+            //$I->assertEquals($atribActiveClass, 'prod-on_off ');
+            if($idold == $IdOldStatus){
+                 break;
+            }
+//            else{
+//                $I->fail('Old Default Status Delete');
+//            }
+        }
         $true=0;
         for ($k=1;$k<=$this->rows;$k++){            
             //РџРѕРёСЃРє Р°С‚СЂРёР±СѓС‚Р° checked РґР»СЏ СЂР°РґРёРѕС‚РѕС‡РєРё
@@ -173,40 +190,6 @@ class DeleteStatusCest
         $nameStatEdit=$I->grabTextFrom(CallbacksPage::$StatusSelEdit."/option[@selected='selected']");
         $I->comment($nameStatEdit);
         $I->assertEquals($nameStatEdit, $this->nameStatus);
-//        $kil1=$I->grabTextFrom('.//*[@id="totalCallbacks"]');
-//        $I->comment($kil1);        
-//        $kil=substr($kil1, 39, 41);
-//        $I->comment($kil);
-//        if ($kil<=14){
-//            $rowCallback=$I->grabClassCount($I,"btn btn-small btn-danger my_btn_s");
-//            $I->comment((string)$rowCallback);
-//            $I->see('name', ".//*[@id='callbacks_all']/table/tbody/tr[$rowCallback]/td[3]");
-//            $I->see('123', ".//*[@id='callbacks_all']/table/tbody/tr[$rowCallback]/td[4]");
-//            $nameStatList=$I->grabTextFrom(CallbacksPage::StatusSelListLandingLine($rowCallback));
-//            $I->comment($nameStatList);
-//            $I->assertEquals($nameStatList, $this->nameStatus);
-//            $I->click(".//*[@id='callbacks_all']/table/tbody/tr[last()]/td[3]/a");
-//            $I->waitForElement('.//*[@id="editCallbackForm"]/div[5]/label');
-//            $nameStatEdit=$I->grabTextFrom(CallbacksPage::$StatusSelEdit);
-//            $I->comment($nameStatEdit);
-//            $I->assertEquals($nameStatEdit, $this->nameStatus);
-//        }
-//        else{
-//            $I->click(CallbacksPage::PaginationButton('last()-1'));
-//            $I->wait('2');
-//            $rowCallback=$I->grabClassCount($I,"btn btn-small btn-danger my_btn_s");
-//            $I->comment((string)$rowCallback);
-//            $I->see('name', ".//*[@id='callbacks_all']/table/tbody/tr[$rowCallback]/td[3]");
-//            $I->see('123', ".//*[@id='callbacks_all']/table/tbody/tr[$rowCallback]/td[4]");
-//            $nameStatList=$I->grabTextFrom(CallbacksPage::StatusSelListLandingLine($rowCallback));
-//            $I->comment($nameStatList);
-//            $I->assertEquals($nameStatList, $this->nameStatus);
-//            $I->click(".//*[@id='callbacks_all']/table/tbody/tr[last()]/td[3]/a");
-//            $I->waitForElement('.//*[@id="editCallbackForm"]/div[5]/label');
-//            $nameStatEdit=$I->grabTextFrom(CallbacksPage::$StatusSelEdit);
-//            $I->comment($nameStatEdit);
-//            $I->assertEquals($nameStatEdit, $this->nameStatus);            
-//        }
         InitTest::ClearAllCach($I);
     }
     

@@ -380,8 +380,8 @@
                                                                 {$CI->load->module('admin/components'); $components = $CI->components->find_components_for_menu_list(TRUE)}
                                                             {/if}
                                                             {foreach $components as $component}
-                                                                <li><a href="/admin/components/cp/{echo $component['name']}" class="pjax">{echo $component['menu_name']}</a></li>
-                                                                {/foreach}
+                                                                <li><a href="/admin/components/cp/{echo $component['name']}">{echo $component['menu_name']}</a></li>
+                                                            {/foreach}
                                                             
                                                                 {if !MAINSITE}
                                                                 <li class="divider"></li>
