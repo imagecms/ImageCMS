@@ -32,10 +32,15 @@ class seoexpertSteps extends \SeoExpertTester
         $I->amOnPage('/admin/components/run/shop/categories');
         $I->wait('1');
         $amount_rows = $I->grabCCSAmount($I, '.share_alt');
+        $I->wait('1');
         for($j = 1;$j <= $amount_rows;$j++){
+            $I->wait('1');
         $name_search = $I->grabTextFrom("//section/div[2]/div/div[2]/div/div[$j]/div/div[3]/div/a");
+        $I->wait('1');
             if($name_search == $name_category){
-                $ID_category = $I->grabTextFrom("//section/div[2]/div/div[2]/div/div[$j]/div/div[2]/p");                
+                $I->wait('1');
+                $ID_category = $I->grabTextFrom("//section/div[2]/div/div[2]/div/div[$j]/div/div[2]/p");       
+                $I->wait('1');
             }
         }
         $I->amOnPage("/admin/components/run/shop/categories/edit/$ID_category");        
