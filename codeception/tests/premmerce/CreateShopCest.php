@@ -13,8 +13,6 @@ use \PremmerceTester;
 class CreateShopCest {
     
     private $CodeceptionYml;
-    private $Data;
-
 
     public function createShop(PremmerceTester $I) {
         $I->amOnPage('/');
@@ -45,7 +43,7 @@ class CreateShopCest {
         return $this->CodeceptionYml = file_get_contents(codecept_root_dir() . "codeception.yml");
     }
     protected function _changeAdress($adress) {
-        $modified = preg_replace('~\surl:\s\'.*\'\s~', " url: '" . $adress . "' ", $this->CodeceptionYml);
+        $modified = preg_replace('~\surl:\s\'.*\'\s~', " url: '" . $adress . "'\n", $this->CodeceptionYml);
         return  file_put_contents(codecept_root_dir() . "codeception.yml", $modified);
     }
     protected function _restoreCodeceptionYml(){
