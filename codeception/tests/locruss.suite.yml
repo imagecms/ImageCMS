@@ -1,3 +1,0 @@
-class_name: RussianTester
-modules:
-    enabled: [AcceptanceHelper]

@@ -15,7 +15,7 @@ class BaseSEOCest
     
     
     /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps 
      */
     public function CreateCategoryForFront (SeoExpertTester\seoexpertSteps $I){
@@ -24,7 +24,7 @@ class BaseSEOCest
     
     
     /**
-     * @group aa
+     * @group a
      */
     public function BaseDefoultValues (SeoExpertTester $I) {
         $I->amOnPage(seoexpertPage::$SeoUrl);
@@ -46,7 +46,7 @@ class BaseSEOCest
     
     
     /**
-     * @group aa
+     * @group a
      */
     public function CkeckOptionSiteNoWork (SeoExpertTester $I){
         $I->amOnPage(seoexpertPage::$SeoUrl);
@@ -64,7 +64,7 @@ class BaseSEOCest
     
     
     /**
-     * @group aa
+     * @group a
      */
     public function CkeckOptionSiteYesWork (SeoExpertTester $I){
         $I->amOnPage(seoexpertPage::$SeoUrl);
@@ -81,7 +81,7 @@ class BaseSEOCest
     
     
     /**
-     * @group aa
+     * @group a
      */
     public function CkeckOptionCatNoWork (SeoExpertTester $I){
         $I->amOnPage(seoexpertPage::$SeoUrl);
@@ -98,7 +98,7 @@ class BaseSEOCest
     
     
     /**
-     * @group aa
+     * @group a
      */
     public function CkeckOptionCatNYesWork (SeoExpertTester $I){
         $I->amOnPage(seoexpertPage::$SeoUrl);
