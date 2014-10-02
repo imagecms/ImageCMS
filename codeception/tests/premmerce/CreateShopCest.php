@@ -30,7 +30,7 @@ class CreateShopCest {
         $I->click(CreateStorePage::selectProductsOption(3));
         $I->checkOption(CreateStorePage::$CheckAgree);
         $I->click(CreateStorePage::$ButtonCreate);
-        $I->wait(20);
+        $I->wait(30);
         $this->_getCodeceptionYml();
         $this->_changeAdress(STORE_URL);
     }        
