@@ -13,8 +13,6 @@ use \PremmerceTester;
 class CreateShopCest {
     
     private $CodeceptionYml;
-    private $Data;
-
 
     public function createShop(PremmerceTester $I) {
         $I->amOnPage('/');
