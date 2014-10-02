@@ -221,17 +221,6 @@ class CreateShopUsaCest
     public function CreateShopRusCountry(EnglishTester\LocEngSteps $I)
     {
         InitTest::VerifyLogInOrLogOutUsa($I);
-//        $I->amOnPage('/');
-//        $Atrib=$I->grabCCSAmount($I, '.f-s_0.d_i-b.v-a_t>input');
-//        $I->comment($Atrib);
-//        $I->wait(2);
-//        if($Atrib==0){
-//            $I->click(LocEngPage::$CabinetButton);
-//            $I->waitForElement('/html/body/div[1]/div/div[1]/nav/ul/li[1]/a/span[2]');
-//            $I->click(LocEngPage::$ProfileButton);
-//            $I->click(LocEngPage::$ExitButton);
-//            $I->seeInCurrentUrl('/');            
-//        }   
         $I->click(LocEngPage::$CreateShopFreeButton);        
         $I->waitForElement(LocEngPage::$RegisterForm);
             $set="abcdefghijklmnopqrstuvwxyz";
@@ -287,17 +276,6 @@ class CreateShopUsaCest
     public function CreateShopUsaCountry(EnglishTester\LocEngSteps $I)
     {
         InitTest::VerifyLogInOrLogOutUsa($I);
-//        $I->amOnPage('/');
-//        $Atrib=$I->grabCCSAmount($I, '.f-s_0.d_i-b.v-a_t>input');
-//        $I->comment($Atrib);
-//        $I->wait(2);
-//        if($Atrib==0){
-//            $I->click(LocEngPage::$CabinetButton);
-//            $I->waitForElement('/html/body/div[1]/div/div[1]/nav/ul/li[1]/a/span[2]');
-//            $I->click(LocEngPage::$ProfileButton);
-//            $I->click(LocEngPage::$ExitButton);
-//            $I->seeInCurrentUrl('/');            
-//        }        
         $I->click(LocEngPage::$CreateShopFreeButton);        
         $I->waitForElement(LocEngPage::$RegisterForm);               
             $set="abcdefghijklmnopqrstuvwxyz";
@@ -351,18 +329,7 @@ class CreateShopUsaCest
         
     public function CreateShopWithEmailAlreadyRegistered(EnglishTester\LocEngSteps $I)
     {
-        InitTest::VerifyLogInOrLogOutUsa($I);
-//        $I->amOnPage('/');
-//        $Atrib=$I->grabCCSAmount($I, '.f-s_0.d_i-b.v-a_t>input');
-//        $I->comment($Atrib);
-//        $I->wait(2);
-//        if($Atrib==0){
-//            $I->click(LocEngPage::$CabinetButton);
-//            $I->waitForElement('/html/body/div[1]/div/div[1]/nav/ul/li[1]/a/span[2]');
-//            $I->click(LocEngPage::$ProfileButton);
-//            $I->click(LocEngPage::$ExitButton);
-//            $I->seeInCurrentUrl('/');            
-//        }   
+        InitTest::VerifyLogInOrLogOutUsa($I);   
         $I->click(LocEngPage::$CreateShopFreeButton);        
         $I->waitForElement(LocEngPage::$RegisterForm);               
             $set="abcdefghijklmnopqrstuvwxyz";
@@ -420,18 +387,7 @@ class CreateShopUsaCest
     
     public function CreateShopWithNameDomainAlreadyRegistered(EnglishTester\LocEngSteps $I)
     {
-        InitTest::VerifyLogInOrLogOutUsa($I);
-//        $I->amOnPage('/');
-//        $Atrib=$I->grabCCSAmount($I, '.f-s_0.d_i-b.v-a_t>input');
-//        $I->comment($Atrib);
-//        $I->wait(2);
-//        if($Atrib==0){
-//            $I->click(LocEngPage::$CabinetButton);
-//            $I->waitForElement('/html/body/div[1]/div/div[1]/nav/ul/li[1]/a/span[2]');
-//            $I->click(LocEngPage::$ProfileButton);
-//            $I->click(LocEngPage::$ExitButton);
-//            $I->seeInCurrentUrl('/');            
-//        }   
+        InitTest::VerifyLogInOrLogOutUsa($I);  
         $I->click(LocEngPage::$CreateShopFreeButton);        
         $I->waitForElement(LocEngPage::$RegisterForm);
             $set="abcdefghijklmnopqrstuvwxyz";

@@ -5,13 +5,14 @@ class LocRusPage
     public static $URL = '/';
 
     
-    public static $CreateShopField = '/html/body/div[1]/div[1]/div/div[1]/div/div/form/div/div[1]/input';
-    public static $DomainEnd = 'html/body/div[1]/div[1]/div/div[1]/div/div/form/div/div[1]/span';
+    public static $CreateShopField = 'html/body/div[3]/div[1]/div/div[1]/div/div/form/div/div[1]/input';
+    public static $DomainEnd = 'html/body/div[3]/div[1]/div/div[1]/div/div/form/div/div[1]/span';
     public static $RegisterForm = './/*[@class="frame-inside page-register"]';
     public static $ShopNameField = ".//*[@id='register-form']/div/label/input";
     public static $DomainEndInRegisterForm = ".//*[@id='register-form']/div/label/span";
     public static $HelpStaticFieldRegisterForm = ".//*[@id='register-form']/div/div[1]";
     public static $EmailField = ".//*[@id='register-form']/div/div[2]/div[1]/label[1]/input";
+    
     public static $PasswordField = ".//*[@id='register-form']/div/div[2]/div[2]/label[1]/input";
     public static $UserNameField = ".//*[@id='register-form']/div/div[2]/div[1]/label[2]/input";
     public static $PhoneNumberField = ".//*[@id='register-form']/div/div[2]/div[2]/label[2]/input";
