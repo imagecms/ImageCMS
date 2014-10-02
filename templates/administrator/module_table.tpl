@@ -85,7 +85,7 @@
                                                         {if $module.name == 'shop'}
                                                             {$module.menu_name}
                                                         {else:}
-                                                            <a href="/admin/components/init_window/{$module.name}" class="pjax">{$module.menu_name}</a>
+                                                            <a href="/admin/components/init_window/{$module.name}">{$module.menu_name}</a>
                                                         {/if}
                                                     {else:}
                                                         {$module.menu_name}

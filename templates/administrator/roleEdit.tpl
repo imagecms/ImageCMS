@@ -86,7 +86,7 @@
             </tbody>
         </table>
         <div class="btn-group myTab m-t_20" data-toggle="buttons-radio">
-            {if strpos(getCmsNumber(), 'Premium')}
+            {if strpos(getCmsNumber(), 'Premium') OR MAINSITE}
                 <a href="#shop" class="btn btn-small">{lang('Shop','admin')}</a>
             {/if}
             <a href="#base" class="btn btn-small active">{lang('Base','admin')}</a>
@@ -94,7 +94,7 @@
         </div>
         <div class="tab-content">
             {foreach $types as $key => $type}
-                {if  strpos(getCmsNumber(), 'Premium') OR  $key!='shop'}
+                {if  strpos(getCmsNumber(), 'Premium') OR  $key!='shop' OR MAINSITE}
                     <div class="tab-pane row {if $key == 'base'}active{/if}" id="{echo $key}">
                         {foreach $type as $k => $groups}
                             <div class="span3">
