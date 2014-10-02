@@ -82,7 +82,7 @@ class TextAndElementsPresentCast
     
     
     /**
-     * @group aa
+     * @group a
      */
     public function VerifyWayToCreatetPage (OrdersTester $I) {
         $I->click(NavigationBarPage::$Orders);
@@ -145,6 +145,25 @@ class TextAndElementsPresentCast
         $I->see('Общий:', OrdersListCreatePage::$FootTotalPriceLabel);
     }
     
+    /**
+     * @group aa
+     */
+    public function VerifyTextOrderCreatePage (OrdersTester $I) {
+        $I->amOnPage(OrdersListCreatePage::$URL);
+        $I->wait(2);
+        $I->click(OrdersListCreatePage::$TabNewUser);
+        $I->wait(1);
+        $I->fillField(OrdersListCreatePage::$TabNewUserInputName, 'Test');
+        $I->fillField(OrdersListCreatePage::$TabNewUserInputEmail, 'Test@mail.com');
+        $I->click(OrdersListCreatePage::$ButtonCreate);
+        $I->wait(1);
+        $I->click(OrdersListCreatePage::$ButtonCreateExit);
+        $I->wait(2);
+        $I->seeInCurrentUrl('/admin/components/run/shop/orders');
+
+    }
     
+    
+
 }
 
