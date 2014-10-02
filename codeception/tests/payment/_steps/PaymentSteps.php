@@ -34,33 +34,33 @@ class PaymentSteps extends \PaymentTester {
         $I->wait(3);
         if (isset($name)) {
             $I->amOnPage(\PaymentCreatePage::$URL);
-            $I->fillField(\PaymentCreatePage::$FieldName, $name);
+            $I->fillField(\PaymentCreatePage::$InputName, $name);
         }
         if (isset($currency)) {
             
             $I->click(\PaymentCreatePage::$SelectCurrency);
-            $I->selectOption(\PaymentCreatePage::$SelectPaymentSystem, $currency);
+            $I->selectOption(\PaymentCreatePage::$SelectCurrency, $currency);
         }
         if (isset($active)) {
-            $Class = $I->grabAttributeFrom('//form/div[1]/div[3]/div[2]/span', 'class');
+            $Class = $I->grabAttributeFrom(\PaymentCreatePage::$CheckActive . '/..', 'class'); //form/div[1]/div[3]/div[2]/span', 'class');
 
             switch ($active) {
                 case 'on':
                     if ($Class == 'frame_label') {
-                        $I->click(\PaymentCreatePage::$CheckboxActive);
+                        $I->click(\PaymentCreatePage::$CheckActive);
                         $I->comment('Checkbox Active on');
                     }
                     break;
                 case 'off':
                     if ($Class == 'frame_label active') {
-                        $I->click(\PaymentCreatePage::$CheckboxActive);
+                        $I->click(\PaymentCreatePage::$CheckActive);
                         $I->comment('Checkbox Active off');
                     }
                     break;
             }
         }
         if (isset($description)) {
-            $I->fillField(\PaymentCreatePage::$FieldDescription, $description);
+            $I->fillField(\PaymentCreatePage::$InputDescription, $description);
         }
         if (isset($paymentsystem)) {
             //for chrome
@@ -127,26 +127,26 @@ class PaymentSteps extends \PaymentTester {
         $I->amOnPage(\DeliveryCreatePage::$URL);
         $I->wait(3);
         if (isset($name)) {
-            $I->fillField(\DeliveryCreatePage::$FieldName, $name);
+            $I->fillField(\DeliveryCreatePage::$InputName, $name);
         }
         if (isset($active)) {
-            $I->checkOption(\DeliveryCreatePage::$CheckboxActive);
+            $I->checkOption(\DeliveryCreatePage::$CheckActive);
         }
         if (isset($description)) {
-            $I->fillField(\DeliveryCreatePage::$FieldDescription, $description);
+            $I->fillField(\DeliveryCreatePage::$InputDescription, $description);
         }
         if (isset($descriptionprice)) {
-            $I->fillField(\DeliveryCreatePage::$FieldDescriptionPrice, $descriptionprice);
+            $I->fillField(\DeliveryCreatePage::$InputDescriptionPrice, $descriptionprice);
         }
         if (isset($price)) {
-            $I->fillField(\DeliveryCreatePage::$FieldPrice, $price);
+            $I->fillField(\DeliveryCreatePage::$InputPrice, $price);
         }
         if (isset($freefrom)) {
-            $I->fillField(\DeliveryCreatePage::$FieldFreeFrom, $freefrom);
+            $I->fillField(\DeliveryCreatePage::$InputFreeFrom, $freefrom);
         }
         if (isset($message)) {
-            $I->click(\DeliveryCreatePage::$CheckboxPriceSpecified);
-            $I->fillField(\DeliveryCreatePage::$FieldPriceSpecified, $message);
+            $I->click(\DeliveryCreatePage::$CheckPriceSpecified);
+            $I->fillField(\DeliveryCreatePage::$InputPriceSpecified, $message);
         }
         if (isset($pay)) {
             if (is_string($pay)) {
@@ -183,42 +183,42 @@ class PaymentSteps extends \PaymentTester {
         $I = $this;
 
         if (isset($name)) {
-            $I->fillField(\DeliveryEditPage::$FieldName, $name);
+            $I->fillField(\DeliveryEditPage::$InputName, $name);
         }
         if (isset($active)) {
             $Cactive = $I->grabAttributeFrom("//*[@id='deliveryUpdate']/div[2]/div[2]/span", 'class');
             $Cactive == 'frame_label no_connection active' ? $Cactive = TRUE : $Cactive = FALSE;
             if ($active == "on" && !$Cactive) {
-                $I->click(\DeliveryEditPage::$CheckboxActive);
+                $I->click(\DeliveryEditPage::$CheckActive);
             } elseif ($active == "off" && $Cactive) {
-                $I->click(\DeliveryEditPage::$CheckboxActive);
+                $I->click(\DeliveryEditPage::$CheckActive);
             }
         }
         if (isset($description)) {
-            $I->fillField(\DeliveryEditPage::$FieldDescription, $description);
+            $I->fillField(\DeliveryEditPage::$InputDescription, $description);
         }
         if (isset($descriptionprice)) {
-            $I->fillField(\DeliveryEditPage::$FieldDescriptionPrice, $descriptionprice);
+            $I->fillField(\DeliveryEditPage::$InputDescriptionPrice, $descriptionprice);
         }
         if (isset($price)) {
-            $I->grabAttributeFrom(\DeliveryEditPage::$FieldPrice, 'disabled') == 'true' ? $I->click(\DeliveryEditPage::$CheckboxPriceSpecified) : print '';
-            $I->fillField(\DeliveryEditPage::$FieldPrice, $price);
+            $I->grabAttributeFrom(\DeliveryEditPage::$InputPrice, 'disabled') == 'true' ? $I->click(\DeliveryEditPage::$CheckPriceSpecified) : print '';
+            $I->fillField(\DeliveryEditPage::$InputPrice, $price);
         }
         if (isset($freefrom)) {
-            $I->grabAttributeFrom(\DeliveryEditPage::$FieldPrice, 'disabled') == 'true' ? $I->click(\DeliveryEditPage::$CheckboxPriceSpecified) : print '';
+            $I->grabAttributeFrom(\DeliveryEditPage::$InputPrice, 'disabled') == 'true' ? $I->click(\DeliveryEditPage::$CheckPriceSpecified) : print '';
             $I->fillField(\DeliveryEditPage::$FieldFreeFrom, $freefrom);
         }
         if (isset($message)) {
-            $class = $I->grabAttributeFrom(\DeliveryEditPage::$CheckboxPriceSpecified . '/..', 'class');
-            $class == 'frame_label no_connection' ? $I->click(\DeliveryEditPage::$CheckboxPriceSpecified) : $I->comment('already marked');
-            $I->fillField(\DeliveryEditPage::$FieldPriceSpecified, $message);
+            $class = $I->grabAttributeFrom(\DeliveryEditPage::$CheckPriceSpecified . '/..', 'class');
+            $class == 'frame_label no_connection' ? $I->click(\DeliveryEditPage::$CheckPriceSpecified) : $I->comment('already marked');
+            $I->fillField(\DeliveryEditPage::$InputPriceSpecified, $message);
         }
         if (isset($pay)) {
             $paymentAmount = $I->grabClassCount($I, 'niceCheck') - 2;
             for ($row = 1; $row <= $paymentAmount; ++$row) {
-                $Cclass = $I->grabAttributeFrom(\DeliveryEditPage::PaymentMethodLabel($row), 'class');
+                $Cclass = $I->grabAttributeFrom(\DeliveryEditPage::checkPaymentMethodLabel($row), 'class');
                 if ($Cclass == 'frame_label no_connection d_b active') {
-                    $I->click(\DeliveryEditPage::PaymentMethodCheckbox($row));
+                    $I->click(\DeliveryEditPage::checkPaymentMethod($row));
                 }
             }
             if (is_string($pay) && $pay != 'off') {
@@ -261,7 +261,7 @@ class PaymentSteps extends \PaymentTester {
 
         if ($rows > 0) {
             for ($row = 1; $row <= $rows; ++$row) {
-                $PaymentMethod = $I->grabTextFrom(\PaymentListPage::MethodNameLine($row));
+                $PaymentMethod = $I->grabTextFrom(\PaymentListPage::lineMethodLink($row));
                 if ($PaymentMethod == $name) {
                     $I->assertEquals($PaymentMethod, $name, "Method $PaymentMethod present in row $row");
                     $present = true;
@@ -276,17 +276,17 @@ class PaymentSteps extends \PaymentTester {
         }
 
         if (isset($CurrencyName)) {
-            $grabbedCurrencyName = $I->grabTextFrom(\PaymentListPage::CurrencyNameLine($row));
+            $grabbedCurrencyName = $I->grabTextFrom(\PaymentListPage::lineCurrencyNameText($row));
             $I->assertEquals($grabbedCurrencyName, $CurrencyName);
         }
 
         if (isset($CurrencySymbol)) {
-            $grabbedCurrencySymbol = $I->grabTextFrom(\PaymentListPage::CurrencySymbolLine($row));
+            $grabbedCurrencySymbol = $I->grabTextFrom(\PaymentListPage::lineCurrencySymbolText($row));
             $I->assertEquals($grabbedCurrencySymbol, $CurrencySymbol);
         }
 
         if (isset($active)) {
-            $grabbedActiveClass = $I->grabAttributeFrom(\PaymentListPage::ActiveLine($row), 'class');
+            $grabbedActiveClass = $I->grabAttributeFrom(\PaymentListPage::lineActiveToggle($row), 'class');
             $active ? $I->assertEquals($grabbedActiveClass, 'prod-on_off ') : $I->assertEquals($grabbedActiveClass, 'prod-on_off disable_tovar');
         }
         return $row;
@@ -388,20 +388,20 @@ $I->wait(1);
                 }
             }
         }
-        if (isset($selectpay)) {
-            $I->scrollToElement($I, "div[class=\'frame-radio\'] div:nth-child(1) span[class=\'text-el\']"); //scroll for click
-            $I->wait(5);
-            $I->click("//div[@class='frame-radio']/div[$j]//span[@class='text-el']");
-            $I->scrollToElement($I, '.frame-payment.p_r');
-            $I->wait(5);
-            $I->click("#cuselFrame-paymentMethod");
-            //White spaces added to method in "select" 
-            //Read text ,trim then verify , if true click
-//            $payment_options = "//div[@id='cusel-scroll-paymentMethod']";
-            $I->grabTextFrom("$cssOrXPathOrRegex");
-            $I->click(" " . $selectpay . " ");
-            $I->wait(5);
-        }
+//        if (isset($selectpay)) {
+//            $I->scrollToElement($I, "div[class=\'frame-radio\'] div:nth-child(1) span[class=\'text-el\']"); //scroll for click
+//            $I->wait(5);
+//            $I->click("//div[@class='frame-radio']/div[$j]//span[@class='text-el']");
+//            $I->scrollToElement($I, '.frame-payment.p_r');
+//            $I->wait(5);
+//            $I->click("#cuselFrame-paymentMethod");
+//            //White spaces added to method in "select" 
+//            //Read text ,trim then verify , if true click
+////            $payment_options = "//div[@id='cusel-scroll-paymentMethod']";
+//            $I->grabTextFrom("$cssOrXPathOrRegex");
+//            $I->click(" " . $selectpay . " ");
+//            $I->wait(5);
+//        }
     }
 
     /**
@@ -434,50 +434,50 @@ $I->wait(1);
      * or all methods with current name if passed string
      * 
      * @param AcceptanceTester $I controller
-     * @param array|string $paymethods Names of payment methods witch you want to delete
+     * @param array|string $pay_methods Names of payment methods witch you want to delete
      */
-    public function deletePayments($paymethods) {
+    public function deletePayments($pay_methods) {
         $I = $this;
-        $haveSomethingToRemove = false;
+        $have_something_to_remove = false;
         $I->amOnPage(\PaymentListPage::$URL);
         $MethodsAmount = $I->grabClassCount($I, 'niceCheck') - 1;
         for ($row = 1; $row <= $MethodsAmount; ++$row) {
-            $MethodName = $I->grabTextFrom(\PaymentListPage::MethodNameLine($row));
-            if (is_array($paymethods)) {
-                if (in_array($MethodName, $paymethods)) {
-                    $I->click(\PaymentListPage::CheckboxLine($row));
-                    $haveSomethingToRemove = true;
+            $MethodName = $I->grabTextFrom(\PaymentListPage::lineMethodLink($row));
+            if (is_array($pay_methods)) {
+                if (in_array($MethodName, $pay_methods)) {
+                    $I->click(\PaymentListPage::lineCheck($row));
+                    $have_something_to_remove = true;
                 }
-            } elseif (is_string($paymethods)) {
-                if ($paymethods == $MethodName) {
-                    $I->click(\PaymentListPage::CheckboxLine($row));
-                    $haveSomethingToRemove = true;
+            } elseif (is_string($pay_methods)) {
+                if ($pay_methods == $MethodName) {
+                    $I->click(\PaymentListPage::lineCheck($row));
+                    $have_something_to_remove = true;
                 }
             }
         }
-        if ($haveSomethingToRemove) {
+        if ($have_something_to_remove) {
             $I->click(\PaymentListPage::$ButtonDelete);
-            $I->waitForElementVisible(\PaymentListPage::$DeleteWindowQuestion);
-            $I->click(\PaymentListPage::$DeleteWindowButtonDelete);
-            $I->waitForElementNotVisible(\PaymentListPage::$DeleteWindowQuestion);
+            $I->waitForElementVisible(\PaymentListPage::$WindowDeleteQuestion);
+            $I->click(\PaymentListPage::$WindowDeleteButtonDelete);
+            $I->waitForElementNotVisible(\PaymentListPage::$WindowDeleteQuestion);
         } else {
             $I->comment('nothing to delete');
         }
-        return $haveSomethingToRemove;
+        return $have_something_to_remove;
     }
 
     /**
      * Delete currencies with passed name
      * 
-     * @param array|string $CurrenciName
+     * @param array|string $currency_name
      */
-    public function deleteCurrencies($CurrenciName) {
+    public function deleteCurrencies($currency_name) {
         $I = $this;
         $I->amOnPage(\CurrenciesPage::$URL);
         $CurrenciesAmount = $I->grabClassCount($I, 'mainCurrency');
         for ($row = 1; $row <= $CurrenciesAmount; ++$row) {
             $findedCur = $I->grabTextFrom(\CurrenciesPage::CurrencyNameLine($row));
-            if (is_string($CurrenciName) && $findedCur == $CurrenciName || is_array($CurrenciName) && in_array($findedCur, $CurrenciName)) {
+            if (is_string($currency_name) && $findedCur == $currency_name || is_array($currency_name) && in_array($findedCur, $currency_name)) {
                 $I->click("//tr[$row]//td[7]//button");
                 $I->waitForElementVisible("div#first .btn.btn-primary");
                 $I->wait(1);
@@ -495,27 +495,27 @@ $I->wait(1);
      */
     public function deleteDelivery($Methods) {
         $I = $this;
-        $I->amOnPage(\DeliveryPage::$URL);
+        $I->amOnPage(\DeliveryListPage::$URL);
         $HaveMethodsToDelete = false;
         $AllMethodsCount = $I->grabClassCount($I, "niceCheck") - 1;
         for ($row = 1; $row <= $AllMethodsCount; ++$row) {
-            $CurrentRowMethod = $I->grabTextFrom(\DeliveryPage::ListMethodLine($row));
+            $CurrentRowMethod = $I->grabTextFrom(\DeliveryListPage::lineMethodLink($row));
             if (is_array($Methods)) {
                 if (in_array($CurrentRowMethod, $Methods)) {
-                    $I->click(\DeliveryPage::ListCheckboxLine($row));
+                    $I->click(\DeliveryListPage::lineMethodLink($row));
                     $HaveMethodsToDelete = true;
                 }
             } else {
                 if ($CurrentRowMethod == $Methods) {
-                    $I->click(\DeliveryPage::ListCheckboxLine($row));
+                    $I->click(\DeliveryListPage::lineCheck($row));
                     $HaveMethodsToDelete = true;
                 }
             }
         }
         if ($HaveMethodsToDelete) {
-            $I->click(\DeliveryPage::$DeleteButton);
+            $I->click(\DeliveryListPage::$ButtonDelete);
             $I->waitForText("Удаление способов доставки", NULL, "//*[@id='mainContent']/div/div[1]/div[1]/h3");
-            $I->click(\DeliveryPage::$DeleteWindowDelete);
+            $I->click(\DeliveryListPage::$WindowDeleteButtonDelete);
             $I->wait('3');
         }
     }
@@ -559,7 +559,7 @@ $I->wait(1);
 
 
         if (isset($name)) {
-            $I->fillField(\PaymentEditPage::$FieldName, $name);
+            $I->fillField(\PaymentEditPage::$InputName, $name);
         }
         if (isset($currency)) {
             
@@ -573,20 +573,20 @@ $I->wait(1);
             switch ($active) {
                 case 'on':
                     if ($Class == 'frame_label no_connection') {
-                        $I->click(\PaymentEditPage::$CheckboxActive);
+                        $I->click(\PaymentEditPage::$CheckActive);
                         $I->comment('Checkbox Active on');
                     }
                     break;
                 case 'off':
                     if ($Class == 'frame_label no_connection active') {
-                        $I->click(\PaymentEditPage::$CheckboxActive);
+                        $I->click(\PaymentEditPage::$CheckActive);
                         $I->comment('Checkbox Active off');
                     }
                     break;
             }
         }
         if (isset($description)) {
-            $I->fillField(\PaymentEditPage::$FieldDescription, $description);
+            $I->fillField(\PaymentEditPage::$inputDescription, $description);
         }
         if (isset($paymentsystem)) {
             //for chrome
