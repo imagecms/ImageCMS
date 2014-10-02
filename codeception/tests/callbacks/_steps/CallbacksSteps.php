@@ -159,6 +159,7 @@ class CallbacksSteps extends \CallbacksTester
 //                $I->waitForElementVisible('.alert.in.fade.alert-success');
 //                $I->see('Изменения сохранены');
 //                $I->waitForElementNotVisible('.alert.in.fade.alert-success');
+                $I->wait('3');
                 $I->seeInField(\CallbacksPage::$NameStatus, $name1); 
                 if (isset($default)) {
                     //$I->wait('10');
@@ -195,10 +196,12 @@ class CallbacksSteps extends \CallbacksTester
         switch ($save) {
             case 'save':
                 $I->click(\CallbacksPage::$SaveButton);
-                $I->exactlySeeAlert($I, 'success', 'Тема создана',"10");
+//                $I->exactlySeeAlert($I, 'success', 'Тема создана',"10");
 //                $I->waitForElementVisible('.alert.in.fade.alert-success');
 //                $I->see('Тема создана');
 //                $I->waitForElementNotVisible('.alert.in.fade.alert-success');
+                $I->waitForText('Редактирование темы обратного звонка');
+                $I->wait('2');
                 $I->seeInField(\CallbacksPage::$NameTheme, $name1);
                 break;
             case 'saveexit':
@@ -224,7 +227,8 @@ class CallbacksSteps extends \CallbacksTester
         switch ($save) {
             case 'save':
                 $I->click(\CallbacksPage::$SaveButton);
-                $I->exactlySeeAlert($I, 'success', 'Изменения сохранены', "10");
+                $I->wait('3');
+//                $I->exactlySeeAlert($I, 'success', 'Изменения сохранены', "10");
 //                $I->waitForElementVisible('.alert.in.fade.alert-success');
 //                $I->see('Изменения сохранены');
 //                $I->waitForElementNotVisible('.alert.in.fade.alert-success');
@@ -232,7 +236,7 @@ class CallbacksSteps extends \CallbacksTester
                 break;
             case 'saveexit':
                 $I->click(\CallbacksPage::$SaveAndExitButton);
-                $I->exactlySeeAlert($I, 'success', 'Изменения сохранены', "10");
+//                $I->exactlySeeAlert($I, 'success', 'Изменения сохранены', "10");
 //                $I->waitForElementVisible('.alert.in.fade.alert-success');
 //                $I->see('Изменения сохранены');
 //                $I->waitForElementNotVisible('.alert.in.fade.alert-success');

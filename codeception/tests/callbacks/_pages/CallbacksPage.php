@@ -73,9 +73,9 @@ class CallbacksPage
         return $PhoneBut;
     }
     public static function ThemeSelListLandingLine($row){
-        $ThemeSelList = ".//*[@id='callbacks_all']/table/tbody/tr[$row]/td[5]/div/select/option[@selected='selected']"; //CallbacksList
+        $ThemeSelList = ".//*[@id='callbacks_all']/table/tbody/tr[$row]/td[5]/div/select"; //CallbacksList
         return $ThemeSelList;
-    }
+    }                     //*[@id="callbacks_all"]/table/tbody/tr[1]/td[5]/div/select/option[@selected='selected']
     public static function StatusSelListLandingLine($row){
         $StatusSelList = ".//*[@id='callbacks_all']/table/tbody/tr[$row]/td[6]/div/select/option[@selected='selected']"; //CallbacksList
         return $StatusSelList;

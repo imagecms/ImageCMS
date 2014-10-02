@@ -15,7 +15,7 @@ class PaymentCreatePage
     public static $ButtonCreateExit         = '.btn.btn-small.formSubmit:nth-child(3)';
     
     //чекбокси
-    public static $CheckActive              = ".niceCheck";
+    public static $CheckActive              = '//span[@class="niceCheck"]';
 
     //Лейбли
     public static $InputNameLabel           = '[for="Name"]';

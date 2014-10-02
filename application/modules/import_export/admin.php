@@ -32,8 +32,7 @@ class Admin extends BaseAdminController {
      * Index. Render admin tpl 'settings'
      */
     public function index() {
-        \CMSFactory\assetManager::create()
-                ->renderAdmin('import');
+        redirect('/admin/components/init_window/import_export/getTpl/import');
     }
     
     /**

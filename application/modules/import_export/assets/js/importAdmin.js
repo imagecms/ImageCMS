@@ -1,6 +1,6 @@
 $(document).ready(function() {
     var fileNum = $(this).val();
-    loadCsvAttributes(fileNum);    
+    loadCsvAttributes(fileNum);   
 
     /*IMPORT*/
     $("#importcsvfile").unbind('change').bind('change', function() {

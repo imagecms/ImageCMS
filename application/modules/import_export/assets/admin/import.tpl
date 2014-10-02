@@ -6,14 +6,14 @@
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <a href="{$BASE_URL}admin/components/" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Back", 'import_export')}</span></a>                        
+                <a href="{$BASE_URL}admin/components/" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Back", 'import_export')}</span></a>                        
             </div>
         </div>
     </div>
     <div class="btn-group myTab m-t_20" data-toggle="buttons-radio">
-        <a href="{$BASE_URL}admin/components/init_window/import_export/getTpl/import" class="btn btn-small pjax active">{lang('Import', 'import_export')}</a>
-        <a href="{$BASE_URL}admin/components/init_window/import_export/getTpl/export" class="btn btn-small pjax">{lang('Export', 'import_export')}</a>
-        <a href="{$BASE_URL}admin/components/init_window/import_export/getTpl/archiveList" class="btn btn-small pjax">{lang('List archives exports', 'import_export')}</a>
+        <a href="{$BASE_URL}admin/components/init_window/import_export/getTpl/import" class="btn btn-small active">{lang('Import', 'import_export')}</a>
+        <a href="{$BASE_URL}admin/components/init_window/import_export/getTpl/export" class="btn btn-small">{lang('Export', 'import_export')}</a>
+        <a href="{$BASE_URL}admin/components/init_window/import_export/getTpl/archiveList" class="btn btn-small">{lang('List archives exports', 'import_export')}</a>
     </div>
     <div class="tab-content">
         <div class="tab-pane active" id="importcsv">

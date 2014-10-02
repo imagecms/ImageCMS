@@ -20,7 +20,7 @@ class PaymentEditPage
     public static $InputNameLabel           = '//section[@class="mini-layout"]//form/div[1]/div[1]/label';
     public static $SelectCurrencyLabel      = '//section[@class="mini-layout"]//form/div[1]/div[2]/label';
     public static $CheckActiveLabel         = '//section[@class="mini-layout"]//form/div[1]/div[3]/div[2]/span';
-    public static $InputDescriptionLable    = '//section[@class="mini-layout"]//form/div[2]/label';
+    public static $InputDescriptionLabel    = '//section[@class="mini-layout"]//form/div[2]/label';
     public static $SelectPaymentSystemLabel = '//section[@class="mini-layout"]//form/div[3]/div[1]/label';
     
     //поля для вводу

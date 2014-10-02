@@ -229,7 +229,7 @@ class CreateCurrenciesCest
         $rate=".234";
         $I->CreateCurrency($name,$isocode,$symbol,$rate);
 //        $I->waitForElementVisible('.alert.in.fade.alert-success');
-        $I->waitForText('Валюта создана');
+//        $I->waitForText('Валюта создана');
 //        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
         $rate1="0.2340";        
         $I->CheckInFields($name,$isocode,$symbol,$rate1, null,$this->amount);
