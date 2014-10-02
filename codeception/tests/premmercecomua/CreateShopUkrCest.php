@@ -46,7 +46,7 @@ class CreateShopUkrCest
         $I->seeElement(LocUaPage::$LevelOfUseSelectMenu);
         $I->seeElement(LocUaPage::$AgreeCheckbox);
         $I->seeElement(LocUaPage::$WorkConditionLink);
-        $I->seeElement(LocUaPage::$CreateShopNowRegisterFormButton);       
+        $I->seeElement(LocUaPage::$CreateShopNowRegisterFormButton);         
     }
     
     
@@ -263,18 +263,7 @@ class CreateShopUkrCest
     
     public function CreateShopRusCountry(UkrainianTester\LocUaSteps $I)
     {
-        InitTest::VerifyLogInOrLogOutUkr($I);
-//        $I->amOnPage('/');
-//        $Atrib=$I->grabCCSAmount($I, '.f-s_0.d_i-b.v-a_t>input');
-//        $I->comment($Atrib);
-//        $I->wait(2);
-//        if($Atrib==0){
-//            $I->click(LocUaPage::$CabinetButton);
-//            $I->waitForElement('/html/body/div[1]/div/div[1]/nav/ul/li[1]/a/span[2]');
-//            $I->click(LocUaPage::$ProfileButton);
-//            $I->click(LocUaPage::$ExitButton);
-//            $I->seeInCurrentUrl('/');            
-//        }   
+        InitTest::VerifyLogInOrLogOutUkr($I);  
         $I->click(LocUaPage::$CreateShopFreeButton);        
         $I->waitForElement(LocUaPage::$RegisterForm);
             $set="abcdefghijklmnopqrstuvwxyz";
@@ -327,18 +316,7 @@ class CreateShopUkrCest
     
     public function CreateShopUsaCountry(UkrainianTester\LocUaSteps $I)
     {
-        InitTest::VerifyLogInOrLogOutUkr($I);
-//        $I->amOnPage('/');
-//        $Atrib=$I->grabCCSAmount($I, '.f-s_0.d_i-b.v-a_t>input');
-//        $I->comment($Atrib);
-//        $I->wait(2);
-//        if($Atrib==0){
-//            $I->click(LocUaPage::$CabinetButton);
-//            $I->waitForElement('/html/body/div[1]/div/div[1]/nav/ul/li[1]/a/span[2]');
-//            $I->click(LocUaPage::$ProfileButton);
-//            $I->click(LocUaPage::$ExitButton);
-//            $I->seeInCurrentUrl('/');            
-//        }        
+        InitTest::VerifyLogInOrLogOutUkr($I);       
         $I->click(LocUaPage::$CreateShopFreeButton);        
         $I->waitForElement(LocUaPage::$RegisterForm);               
             $set="abcdefghijklmnopqrstuvwxyz";
@@ -393,17 +371,6 @@ class CreateShopUkrCest
     public function CreateShopWithEmailAlreadyRegistered(UkrainianTester\LocUaSteps $I)
     {
         InitTest::VerifyLogInOrLogOutUkr($I);
-//        $I->amOnPage('/');
-//        $Atrib=$I->grabCCSAmount($I, '.f-s_0.d_i-b.v-a_t>input');
-//        $I->comment($Atrib);
-//        $I->wait(2);
-//        if($Atrib==0){
-//            $I->click(LocUaPage::$CabinetButton);
-//            $I->waitForElement('/html/body/div[1]/div/div[1]/nav/ul/li[1]/a/span[2]');
-//            $I->click(LocUaPage::$ProfileButton);
-//            $I->click(LocUaPage::$ExitButton);
-//            $I->seeInCurrentUrl('/');            
-//        }   
         $I->click(LocUaPage::$CreateShopFreeButton);        
         $I->waitForElement(LocUaPage::$RegisterForm);               
             $set="abcdefghijklmnopqrstuvwxyz";
@@ -461,18 +428,7 @@ class CreateShopUkrCest
     
     public function CreateShopWithNameDomainAlreadyRegistered(UkrainianTester\LocUaSteps $I)
     {
-        InitTest::VerifyLogInOrLogOutUkr($I);
-//        $I->amOnPage('/');
-//        $Atrib=$I->grabCCSAmount($I, '.f-s_0.d_i-b.v-a_t>input');
-//        $I->comment($Atrib);
-//        $I->wait(2);
-//        if($Atrib==0){
-//            $I->click(LocUaPage::$CabinetButton);
-//            $I->waitForElement('/html/body/div[1]/div/div[1]/nav/ul/li[1]/a/span[2]');
-//            $I->click(LocUaPage::$ProfileButton);
-//            $I->click(LocUaPage::$ExitButton);
-//            $I->seeInCurrentUrl('/');            
-//        }   
+        InitTest::VerifyLogInOrLogOutUkr($I);  
         $I->click(LocUaPage::$CreateShopFreeButton);        
         $I->waitForElement(LocUaPage::$RegisterForm);
             $set="abcdefghijklmnopqrstuvwxyz";
