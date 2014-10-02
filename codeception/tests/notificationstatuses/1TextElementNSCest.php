@@ -210,7 +210,7 @@ class TextElementNSCest
         $I->wait('1');
         $I->fillField(NotificationStatusesCreatePage::$InputName,'qwe 123 !@# ЯЧС');
         $I->click(NotificationStatusesCreatePage::$ButtonCreate);
-        $I->exactlySeeAlert($I, 'success', 'Статус ожидания создан');//.alert.in.fade.alert-
+        $I->exactlySeeAlert($I, 'success', 'Статус ожидания создан');
         $I->wait('1');
     }
 

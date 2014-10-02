@@ -233,7 +233,6 @@ class TextElementSEOCest
         $I->click(seoexpertPage::$SeoProductButtAdvanced);
         $I->wait('1');
         $I->see('Вернуться', seoexpertPage::$SeoAdvencedButtBack);
-//        $I->see('Удалить', '//body/div[1]/div[5]/section/div/div[2]/div/a[2]');
         $I->see('Добавить новую категорию', '//body/div[1]/div[5]/section/div/div[2]/div/a[3]');
         $I->see('Имя категории', '//body/div[1]/div[5]/section/table/thead/tr/th[2]');
         $I->see('Активный', '//body/div[1]/div[5]/section/table/thead/tr/th[3]');
