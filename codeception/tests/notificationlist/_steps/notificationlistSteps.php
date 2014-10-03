@@ -59,7 +59,6 @@ extends \NotificationListTester
                 $I->wait('1');
                     $I->wait('1');            
                     $position = $j;
-//                    $I->comment("Номер позиции в списке статуса уведомления: '$position' ");
                 return $position;
                 }
             }
@@ -82,7 +81,6 @@ extends \NotificationListTester
                 $ID = $I->grabTextFrom(\NotificationListPage::tabAllLineIDLink($j));
                     $I->wait('1');            
                     $ID_notification = $ID;
-//                    $I->comment("Номер ID в списке статуса уведомления: '$ID_notification' ");
                 return $ID_notification;
                 }
             }
@@ -100,7 +98,6 @@ extends \NotificationListTester
             if($name_notification == $name_statuse){
                 $I->wait('1');                
                 $ID_Status = $I->grabTextFrom(\NotificationStatusesListPage::lineIDText($j));
-//                $I->comment("Номер ID в списке статуса $name_statuse: '$ID_Status' ");
                 return $ID_Status;
             }
         }
@@ -119,7 +116,6 @@ extends \NotificationListTester
                 $I->wait('1');                
                 $number_position = $I->grabTextFrom(\NotificationStatusesListPage::linePositionText($j));
                 $number_position += 2;
-//                $I->comment("Номер позиции в списке статуса $name_status: '$number_position' ");
                 return $number_position;
             }
         }
@@ -158,20 +154,5 @@ extends \NotificationListTester
         $I->comment("Все созданные категории, успешно удалены. Остались только дефолтные !!!");
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
 }
