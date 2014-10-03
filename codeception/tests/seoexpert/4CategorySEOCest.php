@@ -29,7 +29,7 @@ class CategorySEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
-    public function CreateCategoryRusForFront (SeoExpertTester\seoexpertSteps $I){    
+    public function CreateCategoryRus (SeoExpertTester\seoexpertSteps $I){    
         $I->SeoCreateCategoryProduct($createNameCategory = 'Напиток');
     }   
     
@@ -38,7 +38,7 @@ class CategorySEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
-    public function CreateCategoryEngForFront (SeoExpertTester\seoexpertSteps $I){      
+    public function CreateCategoryEng (SeoExpertTester\seoexpertSteps $I){      
         $I->SeoCreateCategoryProduct($createNameCategory = 'Bird');
         InitTest::ClearAllCach($I);        
     }
@@ -48,12 +48,17 @@ class CategorySEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
-    public function CreateBrand1ForFront (SeoExpertTester\seoexpertSteps $I){   
-        $I->SeoCreateBrand($brandName = 'Перец',
-                            $opisanie = '',
-                            $title = '',
-                            $description = '',
-                            $keywords = '');
+    public function CreateBrandFirst (SeoExpertTester\seoexpertSteps $I){   
+        $I->SeoCreateBrand($brandName = 'Перец');
+       }
+    
+    
+    /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps 
+     */
+    public function CreateBrandSecond (SeoExpertTester\seoexpertSteps $I){ 
+        $I->SeoCreateBrand($brandName = 'Сахар');
     }
     
     
@@ -61,12 +66,8 @@ class CategorySEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
-    public function CreateBrand2ForFront (SeoExpertTester\seoexpertSteps $I){ 
-        $I->SeoCreateBrand($brandName = 'Сахар',
-                            $opisanie = '',
-                            $title = '',
-                            $description = '',
-                            $keywords = '');
+    public function CreateBrandThird (SeoExpertTester\seoexpertSteps $I){  
+        $I->SeoCreateBrand($brandName = 'мойва просроченная');
     }
     
     
@@ -74,12 +75,8 @@ class CategorySEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
-    public function CreateBrand3ForFront (SeoExpertTester\seoexpertSteps $I){  
-        $I->SeoCreateBrand($brandName = 'мойва просроченная',
-                            $opisanie = '',
-                            $title = '',
-                            $description = '',
-                            $keywords = '');
+    public function CreateBrandFouth (SeoExpertTester\seoexpertSteps $I){
+        $I->SeoCreateBrand($brandName = 'Gstar');
     }
     
     
@@ -87,25 +84,8 @@ class CategorySEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
-    public function CreateBrand4ForFront (SeoExpertTester\seoexpertSteps $I){
-        $I->SeoCreateBrand($brandName = 'Gstar',
-                            $opisanie = '',
-                            $title = '',
-                            $description = '',
-                            $keywords = '');
-    }
-    
-    
-    /**
-     * @group a
-     * @guy SeoExpertTester\seoexpertSteps 
-     */
-    public function CreateBrand5ForFront (SeoExpertTester\seoexpertSteps $I){
-        $I->SeoCreateBrand($brandName = 'Stone Island',
-                            $opisanie = '',
-                            $title = '',
-                            $description = '',
-                            $keywords = '');
+    public function CreateBrandFifth (SeoExpertTester\seoexpertSteps $I){
+        $I->SeoCreateBrand($brandName = 'Stone Island');
         InitTest::ClearAllCach($I);
     }
     
@@ -114,7 +94,7 @@ class CategorySEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
-    public function CreateProduct1ForFront (SeoExpertTester\seoexpertSteps $I){  
+    public function CreateProductFirst (SeoExpertTester\seoexpertSteps $I){  
         $I->SeoCreateProduct(
                 $NameProduct    = 'Сок',
                 $PriceProduct   = '987',
@@ -128,7 +108,7 @@ class CategorySEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
-    public function CreateProduct2ForFront (SeoExpertTester\seoexpertSteps $I){  
+    public function CreateProductSecond (SeoExpertTester\seoexpertSteps $I){  
         $I->SeoCreateProduct(
                 $NameProduct    = 'Квас', 
                 $PriceProduct   = '4', 
@@ -142,7 +122,7 @@ class CategorySEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
-    public function CreateProduct3ForFront (SeoExpertTester\seoexpertSteps $I){  
+    public function CreateProductThird (SeoExpertTester\seoexpertSteps $I){  
         $I->SeoCreateProduct(
                 $NameProduct    = 'Пиво', 
                 $PriceProduct   = '2', 
@@ -156,7 +136,7 @@ class CategorySEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
-    public function CreateProduct4ForFront (SeoExpertTester\seoexpertSteps $I){  
+    public function CreateProductFouth (SeoExpertTester\seoexpertSteps $I){  
         $I->SeoCreateProduct(
                 $NameProduct    = 'Кефир',
                 $PriceProduct   = '3',
@@ -170,7 +150,7 @@ class CategorySEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
-    public function CreateProduct5ForFront (SeoExpertTester\seoexpertSteps $I){  
+    public function CreateProductFifth (SeoExpertTester\seoexpertSteps $I){  
         $I->SeoCreateProduct(
                 $NameProduct    = 'Молоко',
                 $PriceProduct   = '5',
@@ -185,7 +165,7 @@ class CategorySEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
-    public function TextAreaActive (SeoExpertTester\seoexpertSteps $I){ 
+    public function NativeTextAresOn (SeoExpertTester\seoexpertSteps $I){ 
         $I->SeoTextAreaActive($on = 'YES');
     }
     
@@ -194,7 +174,7 @@ class CategorySEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
-    public function H1andDescriptionForRusProduct (SeoExpertTester\seoexpertSteps $I){     
+    public function CreateRusCategoryMetaData (SeoExpertTester\seoexpertSteps $I){     
         $I->SeoCreateDescriptonAndH1($name_category = 'Напиток',
                                     $description_category = 'ДЕСК страх и ненависть ДЕСК',
                                     $H1_category = "'Н1 категории Н1'");
@@ -206,7 +186,7 @@ class CategorySEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
-    public function H1andDescriptionForEngProduct (SeoExpertTester\seoexpertSteps $I){       
+    public function CreateEngCategoryMetaData (SeoExpertTester\seoexpertSteps $I){       
         $I->SeoCreateDescriptonAndH1($name_category = 'Bird',
                                     $description_category = 'DESC cannibal corpse DESC',
                                     $H1_category = "'Н1 eng category Н1'");
@@ -216,7 +196,7 @@ class CategorySEOCest
      /**
      * @group a
      */
-    public function ClearChash1(SeoExpertTester $I) {
+    public function CCach(SeoExpertTester $I) {
         InitTest::ClearAllCach($I);
     }
     
@@ -238,7 +218,7 @@ class CategorySEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function DefoltSettings(SeoExpertTester\seoexpertSteps $I) {
+    public function TabBaseSetData(SeoExpertTester\seoexpertSteps $I) {
         $I->DefoultValues();
     }
     
@@ -247,7 +227,7 @@ class CategorySEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function CategoryTitleComonRUS (SeoExpertTester\seoexpertSteps $I) {
+    public function RusTitle (SeoExpertTester\seoexpertSteps $I) {
         $I->SettingsCategorySeoPage($Title = '%ID% %name% %desc% %H1% %brands%',
                                     $Description = '',
                                     $Length_Desc = '999',
@@ -265,7 +245,7 @@ class CategorySEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function CategoryTitleComonENG (SeoExpertTester\seoexpertSteps $I) {
+    public function EngTitle (SeoExpertTester\seoexpertSteps $I) {
         $I->SettingsCategorySeoPage($Title = '%ID% %name% %desc% %H1% %brands%',
                                     $Description = '',
                                     $Length_Desc = '999',
@@ -283,7 +263,7 @@ class CategorySEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function CategoryTitleComonAndTextRUS (SeoExpertTester\seoexpertSteps $I) {
+    public function RusTitleText (SeoExpertTester\seoexpertSteps $I) {
         $I->SettingsCategorySeoPage($Title = 'Вот %ID%  такоей %name% prdoduct %desc% in %H1% category %brands%',
                                     $Description = '',
                                     $Length_Desc = '999',
@@ -298,7 +278,7 @@ class CategorySEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function CategoryTitleComonAndTextENG (SeoExpertTester\seoexpertSteps $I) {
+    public function EngTitleText (SeoExpertTester\seoexpertSteps $I) {
         $I->SettingsCategorySeoPage($Title = 'QWE %ID% asd %name% фыв %desc% ясч %H1% ы %brands%',
                                     $Description = '',
                                     $Length_Desc = '999',
@@ -313,7 +293,7 @@ class CategorySEOCest
     /**
      * @group a
      */
-    public function ClearChash3(SeoExpertTester $I) {
+    public function ClearC(SeoExpertTester $I) {
         InitTest::ClearAllCach($I);
     }
     
@@ -322,7 +302,7 @@ class CategorySEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function CategoryTitleTranslitRUS (SeoExpertTester\seoexpertSteps $I) {
+    public function RusTitleTrnslit (SeoExpertTester\seoexpertSteps $I) {
         $I->SettingsCategorySeoPage($Title = 'тайтл%name[t]%',
                                     $Description = 'дескрипшн%name[t]%',
                                     $Length_Desc = '',
@@ -341,7 +321,7 @@ class CategorySEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function CategoryTitleTranslitENG (SeoExpertTester\seoexpertSteps $I) {
+    public function EngTitleTranslit (SeoExpertTester\seoexpertSteps $I) {
         $I->SettingsCategorySeoPage($Title = 'тайтл%name[t]%',
                                     $Description = 'дескрипшн%name[t]%',
                                     $Length_Desc = '',
@@ -356,7 +336,7 @@ class CategorySEOCest
     /**
      * @group a
      */
-    public function ClearChash4(SeoExpertTester $I) {
+    public function ClearChashOn(SeoExpertTester $I) {
         InitTest::ClearAllCach($I);
     }
     
@@ -365,7 +345,7 @@ class CategorySEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function CategoryTitlePadeguRUS (SeoExpertTester\seoexpertSteps $I) {
+    public function RusTitlePadegu (SeoExpertTester\seoexpertSteps $I) {
         $I->SettingsCategorySeoPage($Title = '%name[1]%  %name[2]%  %name[3]%  %name[4]%  %name[5]%  %name[6]%',
                                     $Description = '',
                                     $Length_Desc = '',
@@ -382,7 +362,7 @@ class CategorySEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function CategoryDescriptionPadeguRUS (SeoExpertTester\seoexpertSteps $I) {
+    public function RusDescriptionPadegu (SeoExpertTester\seoexpertSteps $I) {
         $I->SettingsCategorySeoPage($Title = '',
                                     $Description = '%name[1]%,%name[2]%%name[3]%,%name[4]%.%name[5]%-%name[6]%',
                                     $Length_Desc = '',
@@ -399,7 +379,7 @@ class CategorySEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function CategoryTitleTranslitPadeguRUS (SeoExpertTester\seoexpertSteps $I) {
+    public function RusTitlePadeguTranslit (SeoExpertTester\seoexpertSteps $I) {
         $I->SettingsCategorySeoPage($Title = '%name[1][t]%  %name[t][2]%  %name[3][t]%  %name[t][4]%  %name[t][5]%  %name[6][t]%',
                                     $Description = '',
                                     $Length_Desc = '',
@@ -414,7 +394,7 @@ class CategorySEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function CategoryDescriptionTranslitPadeguRUS (SeoExpertTester\seoexpertSteps $I) {
+    public function RusDescriptionPadeguTranslit (SeoExpertTester\seoexpertSteps $I) {
         $I->SettingsCategorySeoPage($Title = '',
                                     $Description = '%name[1][t]%  %name[t][2]%  %name[3][t]%  %name[t][4]%  %name[t][5]%  %name[6][t]%',
                                     $Length_Desc = '',
@@ -428,7 +408,7 @@ class CategorySEOCest
     /**
      * @group a
      */
-    public function ClearChash5(SeoExpertTester $I) {
+    public function ClearChashClear(SeoExpertTester $I) {
         InitTest::ClearAllCach($I);
     }
     
@@ -437,7 +417,7 @@ class CategorySEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function CategoryTitlePadeguENG (SeoExpertTester\seoexpertSteps $I) {
+    public function EngTitlePadegu (SeoExpertTester\seoexpertSteps $I) {
         $I->SettingsCategorySeoPage($Title = '%name[1]%  %name[2]%  %name[3]%  %name[4]%  %name[5]%  %name[6]%',
                                     $Description = '',
                                     $Length_Desc = '',
@@ -453,7 +433,7 @@ class CategorySEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function CategoryDescriptionPadeguENG (SeoExpertTester\seoexpertSteps $I) {
+    public function EngDEscriprionPadegu (SeoExpertTester\seoexpertSteps $I) {
         $I->SettingsCategorySeoPage($Title = '',
                                     $Description = '%name[1]%  %name[2]%  %name[3]%  %name[4]%  %name[5]%  %name[6]%',
                                     $Length_Desc = '',
@@ -469,7 +449,7 @@ class CategorySEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function CategoryTitleTranslitPadeguENG (SeoExpertTester\seoexpertSteps $I) {
+    public function EngTitlePadeguTranslit (SeoExpertTester\seoexpertSteps $I) {
         $I->SettingsCategorySeoPage($Title = '%name[1][t]%  %name[t][2]%  %name[3][t]%  %name[t][4]%  %name[t][5]%  %name[6][t]%',
                                     $Description = '',
                                     $Length_Desc = '',
@@ -486,7 +466,7 @@ class CategorySEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function CategoryDescriptionTranslitPadeguENG (SeoExpertTester\seoexpertSteps $I) {
+    public function EngDescriptionPadeguTranslit (SeoExpertTester\seoexpertSteps $I) {
         $I->SettingsCategorySeoPage($Title = '',
                                     $Description = '%name[1][t]%  %name[t][2]%  %name[3][t]%  %name[t][4]%  %name[t][5]%  %name[6][t]%',
                                     $Length_Desc = '',
@@ -499,7 +479,7 @@ class CategorySEOCest
     /**
      * @group a
      */
-    public function ClearChash6(SeoExpertTester $I) {
+    public function ChashClear(SeoExpertTester $I) {
         InitTest::ClearAllCach($I);
     }
     
@@ -510,7 +490,7 @@ class CategorySEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function CategoryDescriptionLenght100RUS (SeoExpertTester\seoexpertSteps $I) {
+    public function RusLenghtFirst (SeoExpertTester\seoexpertSteps $I) {
         $I->NullValues();
         $I->SeoCreateDescriptonAndH1($name_category = 'Напиток',
                                     $description_category = 'Миллионы покупателей ищут товары в интернет-магазинах, но покупают как правило в одном из них. Что же влияет на выбор покупателем того или иного магазина? Как сделать так, чтобы покупатель, ищущий определенный товар, остановил свой выбор именно на вашем интернет-магазине?',
@@ -530,7 +510,7 @@ class CategorySEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function CategoryDescriptionLenghtMaxRUS (SeoExpertTester\seoexpertSteps $I) {
+    public function RusLenghtFirstMax (SeoExpertTester\seoexpertSteps $I) {
         $I->SeoCreateDescriptonAndH1($name_category = 'Напиток',
                                     $description_category = 'Миллионы покупателей ищут товары в интернет-магазинах, но покупают как правило в одном из них. Что же влияет на выбор покупателем того или иного магазина? Как сделать так, чтобы покупатель, ищущий определенный товар, остановил свой выбор именно на вашем интернет-магазине?',
                                     $H1_category = "'Н1 категории Н1'");
@@ -550,7 +530,7 @@ class CategorySEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function CategoryDescriptionLenghtMinRUS (SeoExpertTester\seoexpertSteps $I) {
+    public function RusLenghtFirstMin (SeoExpertTester\seoexpertSteps $I) {
         $I->SeoCreateDescriptonAndH1($name_category = 'Напиток',
                                     $description_category = 'Миллионы покупателей ищут товары в интернет-магазинах, но покупают как правило в одном из них. Что же влияет на выбор покупателем того или иного магазина? Как сделать так, чтобы покупатель, ищущий определенный товар, остановил свой выбор именно на вашем интернет-магазине?',
                                     $H1_category = "'Н1 категории Н1'");
@@ -571,7 +551,7 @@ class CategorySEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function CategoryDescriptionLenghtNullRUS (SeoExpertTester\seoexpertSteps $I) {
+    public function RusLenghtFirstNull (SeoExpertTester\seoexpertSteps $I) {
         $I->SeoCreateDescriptonAndH1($name_category = 'Напиток',
                                     $description_category = 'Миллионы покупателей ищут товары в интернет-магазинах, но покупают как правило в одном из них. Что же влияет на выбор покупателем того или иного магазина? Как сделать так, чтобы покупатель, ищущий определенный товар, остановил свой выбор именно на вашем интернет-магазине?',
                                     $H1_category = "'Н1 категории Н1'");
@@ -590,7 +570,7 @@ class CategorySEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function CategoryDescriptionPagination (SeoExpertTester\seoexpertSteps $I) {
+    public function RusPagination (SeoExpertTester\seoexpertSteps $I) {
         $I->AmountProductInFront($Amount_Product_Front = '1');
         $I->SeoCreateDescriptonAndH1($name_category = 'Напиток',
                                     $description_category = '',
@@ -618,7 +598,7 @@ class CategorySEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function CategoryAmount1BrandsTitleComonRUS (SeoExpertTester\seoexpertSteps $I) {
+    public function RusAmuontBrandOne (SeoExpertTester\seoexpertSteps $I) {
         $I->SettingsCategorySeoPage($Title = '%brands%',
                                     $Description = '',
                                     $Length_Desc = '999',
@@ -634,7 +614,7 @@ class CategorySEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function CategoryAmount1BrandsTitleComonENG (SeoExpertTester\seoexpertSteps $I) {
+    public function EngAmuontBrandOne (SeoExpertTester\seoexpertSteps $I) {
         $I->SettingsCategorySeoPage($Title = '%brands%',
                                     $Description = '',
                                     $Length_Desc = '999',
@@ -649,7 +629,7 @@ class CategorySEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function CategoryAmount2BrandsTitleComonRUS (SeoExpertTester\seoexpertSteps $I) {
+    public function RusAmuontBrandTwo (SeoExpertTester\seoexpertSteps $I) {
         $I->SettingsCategorySeoPage($Title = '%brands%',
                                     $Description = '',
                                     $Length_Desc = '999',
@@ -660,20 +640,13 @@ class CategorySEOCest
     }
     
     
-    /**
-     * @group a
-     */
-    public function ClearChashasas(SeoExpertTester $I) {
-        InitTest::ClearAllCach($I);
-    }  
-    
     
     
     /**
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function CategoryAmount2BrandsTitleComonENG (SeoExpertTester\seoexpertSteps $I) {
+    public function EngAmuontBrandTwo (SeoExpertTester\seoexpertSteps $I) {
         $I->SettingsCategorySeoPage($Title = '%brands%',
                                     $Description = '',
                                     $Length_Desc = '999',
@@ -689,7 +662,7 @@ class CategorySEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function CategoryAmount3BrandsTitleComonRUS (SeoExpertTester\seoexpertSteps $I) {
+    public function RusAmuontBrandThree (SeoExpertTester\seoexpertSteps $I) {
         $I->SettingsCategorySeoPage($Title = '%brands%',
                                     $Description = '',
                                     $Length_Desc = '999',
@@ -705,7 +678,7 @@ class CategorySEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function CategoryAmount0BrandsTitleComonRUS (SeoExpertTester\seoexpertSteps $I) {
+    public function EngAmuontBrandThree (SeoExpertTester\seoexpertSteps $I) {
         $I->SettingsCategorySeoPage($Title = '%brands%',
                                     $Description = '',
                                     $Length_Desc = '999',
@@ -721,7 +694,7 @@ class CategorySEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function CategoryAmountMAXBrandsTitleComonRUS (SeoExpertTester\seoexpertSteps $I) {
+    public function RusAmuontBrandMax (SeoExpertTester\seoexpertSteps $I) {
         $I->SettingsCategorySeoPage($Title = '%brands%',
                                     $Description = '',
                                     $Length_Desc = '',
@@ -738,7 +711,7 @@ class CategorySEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function CategoryKeywordsComonRUS (SeoExpertTester\seoexpertSteps $I) {
+    public function EngAmuontBrandMax (SeoExpertTester\seoexpertSteps $I) {
         $I->SeoCreateDescriptonAndH1($name_category = 'Напиток',
                                     $description_category = 'Сангвынык Холерик Ипохондрик Флегматик',
                                     $H1_category = 'Меланхолік');
@@ -757,7 +730,7 @@ class CategorySEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function CategoryKeywordsComonENG (SeoExpertTester\seoexpertSteps $I) {
+    public function RusKeywords (SeoExpertTester\seoexpertSteps $I) {
         $I->SeoCreateDescriptonAndH1($name_category = 'Bird',
                                     $description_category = 'Сангвынык Холерик Ипохондрик Флегматик',
                                     $H1_category = 'Меланхолік');
@@ -776,7 +749,7 @@ class CategorySEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function CategoryCheckBoxActiveON (SeoExpertTester\seoexpertSteps $I) {
+    public function CheckBoxActiveOn (SeoExpertTester\seoexpertSteps $I) {
         $I->SeoCreateDescriptonAndH1($name_category = 'Напиток',
                                     $description_category = 'Сангвынык Холерик Ипохондрик Флегматик',
                                     $H1_category = 'Меланхолік');
@@ -788,13 +761,6 @@ class CategorySEOCest
                                     $CheckBox_Activate = '//div[1]/div[5]/section/form/div[2]/div[2]/table[2]/tbody/tr/td/div/div/div[1]/div/span[2]');     
         $I->CheckValuesInPage($URL_Page = '/shop/category/napitok#', $values = "$this->ID_Russian_Name_Product_Category Напиток Сангвынык Холерик Ипохондрик Флегматик Меланхолік мойва просроченная, Сахар, Перец, Stone Island, Gstar");
     }
-    
-    /**
-     * @group a
-     */
-    public function ClearChash111(SeoExpertTester $I) {
-        InitTest::ClearAllCach($I);
-    }  
     
     
     /**

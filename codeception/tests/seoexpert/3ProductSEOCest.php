@@ -22,7 +22,7 @@ class ProductSEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
-    public function ClearCashee (SeoExpertTester\seoexpertSteps $I){
+    public function ClearCashAndTextAreaOn (SeoExpertTester\seoexpertSteps $I){
         InitTest::ClearAllCach($I);
         InitTest::changeTextAditorToNative($I);
     }
@@ -32,7 +32,7 @@ class ProductSEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
-    public function CreateCategoryRussianNameForProduct (SeoExpertTester\seoexpertSteps $I){
+    public function CreateCategoryRus (SeoExpertTester\seoexpertSteps $I){
         $I->SeoCreateCategoryProduct($createNameCategory = 'Вода');
     }
     
@@ -41,7 +41,7 @@ class ProductSEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
-    public function CreateCategoryEnglishNameForProduct (SeoExpertTester\seoexpertSteps $I){
+    public function CreateCategoryEng (SeoExpertTester\seoexpertSteps $I){
         $I->SeoCreateCategoryProduct($createNameCategory = 'Water');
     }
     
@@ -50,12 +50,12 @@ class ProductSEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
-    public function CreatуBrandRusssianNameForProduct (SeoExpertTester\seoexpertSteps $I){
-        $I->SeoCreateBrand( $brandName = 'Хлеб',
-                            $opisanie = '',
-                            $title = '',
-                            $description = '',
-                            $keywords = '');
+    public function CreateBrandRus (SeoExpertTester\seoexpertSteps $I){
+        $I->SeoCreateBrand( $brandName  = 'Хлеб',
+                            $opisanie   = null,
+                            $title      = null,
+                            $description= null,
+                            $keywords   = null);
     }
     
     
@@ -63,12 +63,12 @@ class ProductSEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
-    public function CreatуBrandEnglishNameForProduct (SeoExpertTester\seoexpertSteps $I){
-        $I->SeoCreateBrand( $brandName = 'Bread',
-                            $opisanie = '',
-                            $title = '',
-                            $description = '',
-                            $keywords = '');
+    public function CreateBrandEng (SeoExpertTester\seoexpertSteps $I){
+        $I->SeoCreateBrand( $brandName  = 'Bread',
+                            $opisanie   = null,
+                            $title      = null,
+                            $description= null,
+                            $keywords   = null);
     }
     
     
@@ -76,7 +76,7 @@ class ProductSEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
-    public function CreateProductRussianNameForFront (SeoExpertTester\seoexpertSteps $I){
+    public function CreateProductRus (SeoExpertTester\seoexpertSteps $I){
         $I->SeoCreateProduct(   $NameProduct            = 'Сеошний товар', 
                                 $PriceProduct           = '777', 
                                 $BrandProduct           = 'Хлеб', 
@@ -89,7 +89,7 @@ class ProductSEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
-    public function CreateProductEnglishNameForFront (SeoExpertTester\seoexpertSteps $I){
+    public function CreateProductEng (SeoExpertTester\seoexpertSteps $I){
         $I->SeoCreateProduct(   $NameProduct            = 'Seoshny product',
                                 $PriceProduct           = '777', 
                                 $BrandProduct           = 'Bread', 
@@ -102,7 +102,7 @@ class ProductSEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
-    public function CreatePropertyRussianNameForProduct(SeoExpertTester\seoexpertSteps $I) {
+    public function CreatePropertyRus(SeoExpertTester\seoexpertSteps $I) {
         $I->SeoCreateProperty(  $NameProperty   = 'Свойственно сео', 
                                 $CVS            = 'XYXYxyxyxyxyXYXY', 
                                 $Category       = 'Вода', 
@@ -114,7 +114,7 @@ class ProductSEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
-    public function SelectPropertyForRussianNameProduct(SeoExpertTester\seoexpertSteps $I) {
+    public function SelectPropertyRusProduct(SeoExpertTester\seoexpertSteps $I) {
         $I->SeoSelectPropertyInProduct( $NameProduct    = 'Сеошний товар',
                                         $Property1      = 'Yes');
     }
@@ -124,7 +124,7 @@ class ProductSEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
-    public function CreatePropertyEnglishNameForProduct(SeoExpertTester\seoexpertSteps $I) {
+    public function CreatePropertryEng(SeoExpertTester\seoexpertSteps $I) {
         $I->SeoCreateProperty(  $NameProperty   = 'Tend seo',
                                 $CVS            = 'YYYYYyyyyyYYYYYY',
                                 $Category       = 'Water', 
@@ -136,7 +136,7 @@ class ProductSEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
-    public function SelectPropertyForEnglishNameProduct(SeoExpertTester\seoexpertSteps $I) {        
+    public function SelectPropertyEngProduct(SeoExpertTester\seoexpertSteps $I) {        
         $I->SeoSelectPropertyInProduct( $NameProduct    = 'Seoshny product',
                                         $Property1      = 'Yes');
     }
@@ -146,7 +146,7 @@ class ProductSEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function GrabIDForCategoyProductInVariable (SeoExpertTester\seoexpertSteps $I) {   
+    public function GetIDProducts (SeoExpertTester\seoexpertSteps $I) {   
         
         $ID_product_Rus = $I->GetProductID($name_product = 'Сеошний товар');
         $this->ID_Russian_Name_Product = $ID_product_Rus;        
@@ -160,7 +160,7 @@ class ProductSEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function GrabIDForPropertyProductInVariable (SeoExpertTester\seoexpertSteps $I) {
+    public function GetIDProperties (SeoExpertTester\seoexpertSteps $I) {
         
         $ID_property_Eng = $I->GetPropertyID($name_property = 'Tend seo');  
         $this->ID_EngLish_Name_Property = $ID_property_Eng;
@@ -174,7 +174,7 @@ class ProductSEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function DefoultValues (SeoExpertTester\seoexpertSteps $I) {
+    public function TabBaseSetData (SeoExpertTester\seoexpertSteps $I) {
             $I->DefoultValues();  
     }
     
@@ -183,7 +183,7 @@ class ProductSEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function ShopProductPageTitleRus (SeoExpertTester\seoexpertSteps $I){          
+    public function RusTitle (SeoExpertTester\seoexpertSteps $I){          
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->click(seoexpertPage::$SeoButtShop);
@@ -209,7 +209,7 @@ class ProductSEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function ShopProductPageTitleEng (SeoExpertTester\seoexpertSteps $I){
+    public function EngTitle (SeoExpertTester\seoexpertSteps $I){
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->click(seoexpertPage::$SeoButtShop);
@@ -233,7 +233,7 @@ class ProductSEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function ShopProductPageTitleTranslitRus (SeoExpertTester\seoexpertSteps $I){
+    public function RusTitleTranslit (SeoExpertTester\seoexpertSteps $I){
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->click(seoexpertPage::$SeoButtShop);
@@ -258,7 +258,7 @@ class ProductSEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function ShopProductPageTitleTranslitEng (SeoExpertTester\seoexpertSteps $I){
+    public function EngTitleTranslit (SeoExpertTester\seoexpertSteps $I){
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->click(seoexpertPage::$SeoButtShop);
@@ -285,7 +285,7 @@ class ProductSEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function ShopProductPageTitlePadeguName (SeoExpertTester\seoexpertSteps $I){   
+    public function RusTitlePadegu (SeoExpertTester\seoexpertSteps $I){   
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->click(seoexpertPage::$SeoButtShop);
@@ -312,7 +312,7 @@ class ProductSEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function ShopProductPageTitlePadeguNameEng (SeoExpertTester\seoexpertSteps $I){    
+    public function EngTitlePadegu (SeoExpertTester\seoexpertSteps $I){    
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->click(seoexpertPage::$SeoButtShop);
@@ -340,7 +340,7 @@ class ProductSEOCest
      * @guy SeoExpertTester\seoexpertSteps
      */
 
-    public function ShopProductPageTitlePadeguCategory (SeoExpertTester\seoexpertSteps $I){  
+    public function RusTitleCategoryPadegu (SeoExpertTester\seoexpertSteps $I){  
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->click(seoexpertPage::$SeoButtShop);
@@ -368,7 +368,7 @@ class ProductSEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function ShopProductPageTitlePadeguCategoryEng (SeoExpertTester\seoexpertSteps $I){     
+    public function EngTitleCategoryPadegu (SeoExpertTester\seoexpertSteps $I){     
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->click(seoexpertPage::$SeoButtShop);
@@ -393,7 +393,7 @@ class ProductSEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function ShopProductPageDescriptionRus (SeoExpertTester\seoexpertSteps $I){
+    public function RusDescription (SeoExpertTester\seoexpertSteps $I){
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->click(seoexpertPage::$SeoButtShop);
@@ -420,7 +420,7 @@ class ProductSEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function ShopProductPageDiscriprionEng (SeoExpertTester\seoexpertSteps $I){   
+    public function EngDescription (SeoExpertTester\seoexpertSteps $I){   
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->click(seoexpertPage::$SeoButtShop);
@@ -444,7 +444,7 @@ class ProductSEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function ShopProductPageDescriptionTranslitRus (SeoExpertTester\seoexpertSteps $I){
+    public function RusDescriptionTranslit (SeoExpertTester\seoexpertSteps $I){
         $I->wait('1');               
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
@@ -470,7 +470,7 @@ class ProductSEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function ShopProductPageDiscriprionTranslitEng (SeoExpertTester\seoexpertSteps $I){  
+    public function EngDescriptionTranslit (SeoExpertTester\seoexpertSteps $I){  
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->click(seoexpertPage::$SeoButtShop);
@@ -495,7 +495,7 @@ class ProductSEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function ICMS_1549___ShopProductPageDescriptionPadeguName (SeoExpertTester\seoexpertSteps $I){
+    public function ICMS1549DescriptionPadeguName (SeoExpertTester\seoexpertSteps $I){
         $I->DefoultValues();
         $I->wait('1');               
         $I->amOnPage(seoexpertPage::$SeoUrl);
@@ -523,7 +523,7 @@ class ProductSEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function ShopProductPageDescriptionPadeguCategory (SeoExpertTester\seoexpertSteps $I){     
+    public function RusDescriptionCategoryPadegu (SeoExpertTester\seoexpertSteps $I){     
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->click(seoexpertPage::$SeoButtShop);
@@ -551,7 +551,7 @@ class ProductSEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function ShopProductPageKeywordsRus (SeoExpertTester\seoexpertSteps $I){
+    public function RusKeywords (SeoExpertTester\seoexpertSteps $I){
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->click(seoexpertPage::$SeoButtShop);
@@ -579,7 +579,7 @@ class ProductSEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function ShopProductPageActive (SeoExpertTester\seoexpertSteps $I){ 
+    public function CkechBoxActiveOn (SeoExpertTester\seoexpertSteps $I){ 
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->click(seoexpertPage::$SeoButtShop);
@@ -606,7 +606,7 @@ class ProductSEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function ShopProductPageDeactive (SeoExpertTester\seoexpertSteps $I){ 
+    public function CkechBoxActiveOff (SeoExpertTester\seoexpertSteps $I){ 
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->click(seoexpertPage::$SeoBaseSelectKeywords);
         $I->click(seoexpertPage::$SeoBaseOptionLeaveBlankKeywords);
@@ -638,7 +638,7 @@ class ProductSEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function CheckBoxNullMetaData (SeoExpertTester\seoexpertSteps $I){
+    public function CkechBoxNullMetaDataOn (SeoExpertTester\seoexpertSteps $I){
         $I->DefoultValues();
         $I->SeoProductFillFieldMettaData($name_product = 'Сеошний товар', $Meta_Title = 'ТАЙТЛ', $Meta_Description  = 'ОПИСАНИЕ', $Meta_Keywords = 'КЕЙВОРДС');
         $I->amOnPage(seoexpertPage::$SeoUrl);
@@ -669,7 +669,7 @@ class ProductSEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
-    public function DeleteCategoryForJiraTests(SeoExpertTester\seoexpertSteps $I) {
+    public function DeleteAllCategory(SeoExpertTester\seoexpertSteps $I) {
         $I->DeleteProductCategorys();
     }
     

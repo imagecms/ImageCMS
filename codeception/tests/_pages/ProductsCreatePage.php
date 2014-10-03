@@ -84,7 +84,7 @@ class ProductsCreatePage
    public static $WindowDownloadButtonCancel             = '#images_modal .modal-footer a:nth-child(2)';
    public static function windowDownloadImage($number)  {return "#image_search_result span:nth-child($number)";}
 
-   //--------------------------------------------------------------------------
+    //--------------------------------------------------------------------------
     //----------------------------СЕЛЕКТИ---------------------------------------
     public static $SelectBrand                        = '#inputParent_chosen';
     public static $SelectBrandInput                   = '#inputParent_chosen input';
