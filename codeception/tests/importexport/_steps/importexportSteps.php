@@ -91,13 +91,13 @@ Private $data = [
             $I->executeJS("$('#inputParent').css({'display':'block'})");
             $I->selectOption('div.control-group div.controls select#inputParent', $brand);
         }
-//        
+
         if(isset($category))                { 
             $I->executeJS("$('#comment').css({'display':'block'})");
             $I->selectOption('#comment', $category);             }
         if(isset($short_description))       { $I->fillField(\ProductCreatePage::$InputShortDescriptin, $short_description); }
         if(isset($full_description))        { $I->fillField(\ProductCreatePage::$InputFullDescriptin, $full_description);   }
-//        
+
         if(isset($url) || isset($meta_title) || isset($meta_description) || isset($meta_keywords)){
             $I->click(\ProductCreatePage::$TabSettings);
             $I->waitForElement(\ProductCreatePage::$InputURL);
