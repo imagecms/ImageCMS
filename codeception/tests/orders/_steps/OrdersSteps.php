@@ -13,22 +13,25 @@ extends \OrdersTester
     
     
     
-////-------------------------Create Category--------------------------------------    
-//    
-//
-//    function createCategoryProduct( $createNameCategory = NULL, $addParentCategory = NULL) {
-//        $I = $this;
-//        $I->amOnPage(\CreateCategoryOrdersPage::$CrtCategoryPageURL);
-//        $I->wait('1');
-//        if(isset($createNameCategory)){
-//            $I->fillField(\CreateCategoryOrdersPage::$CrtCategoryFieldName, $createNameCategory);
-//        }if(isset($addParentCategory)){ 
-//            $I->click(\CreateCategoryOrdersPage::$CrtCategorySelectMenu);
-//            $I->fillField(\CreateCategoryOrdersPage::$CrtCategorySelectMenuInput, $addParentCategory);
-//            $I->click(\CreateCategoryOrdersPage::$CrtCategorySelectMenuSetSearch);
-//        }$I->click(\CreateCategoryOrdersPage::$CrtCategoryButtonSaveandBack); 
-//        $I->wait('2');
-//    }
+//-------------------------Create Category--------------------------------------    
+    
+
+    function createCategoryProduct( $createNameCategory = NULL, $addParentCategory = NULL) {
+        $I = $this;
+        $I->amOnPage(\ProductCategoryCreatePage::$URL);
+        $I->wait('1');
+        if(isset($createNameCategory)){
+            $I->fillField(\ProductCategoryCreatePage::$InputName, $createNameCategory);
+        }if(isset($addParentCategory)){ 
+            $I->click(\ProductCategoryCreatePage::$SelectParent);
+            $I->wait('1');
+            $I->fillField(\ProductCategoryCreatePage::$SelectParentInput, $addParentCategory);
+            $I->wait('1');
+            $I->click('//section/form/table[1]/tbody/tr/td/div/div[1]/div[2]/div/div/div/ul/li');
+            $I->wait('1');
+        }$I->click(\ProductCategoryCreatePage::$ButtonCreateExit); 
+        $I->wait('2');
+    }
     
     
     
@@ -39,80 +42,84 @@ extends \OrdersTester
 //-------------------------Create Product---------------------------------------   
     
 
-//    function createProduct( $nameProduct = NULL,
-//                            $nameVariantProduct = NULL,
-//                            $priceProduct = NULL,
-//                            $articleProduct = NULL,
-//                            $amountProduct = NULL,
-//                            $categoryProduct = NULL,
-//                            $variantProduct = NULL,
-//                            $variantPrice = NULL,
-//                            $variantArticle = NULL,
-//                            $variantAmount = NULL) {
-//        $I = $this;
-//        $I->wait('1');
-//        $I->click(\NavigationBarPage::$ProductsCatalogue); 
-//        $I->wait('1');
-//        $I->click(\NavigationBarPage::$ProductList);
-//        $I->wait('3');
-//        $I->waitForElement(\CreateProductsOrdersPage::$CrtProductButtonCreateProduct);
-//        $I->click(\CreateProductsOrdersPage::$CrtProductButtonCreateProduct);                                                                                                 
-//        $I->wait('3');
-//        if (isset($nameProduct)) {
-//            $I->fillField(\CreateProductsOrdersPage::$CrtProductNameProduct, $nameProduct);                                          
-//        }If (isset($nameVariantProduct)){
-//            $I->fillField(\CreateProductsOrdersPage::$CrtProductNameVariantProduct, $nameVariantProduct);
-//        }if(isset($priceProduct)){
-//            $I->fillField(\CreateProductsOrdersPage::$CrtProductPriceProduct, $priceProduct);                                                                            
-//        }if(isset($articleProduct)){
-//            $I->fillField(\CreateProductsOrdersPage::$CrtProductArticleProduct, $articleProduct);                           
-//        }if(isset($amountProduct)){
-//            $I->fillField(\CreateProductsOrdersPage::$CrtProductAmountProduct, $amountProduct);                            
-//        }if(isset($categoryProduct)){
-//            $I->click(\CreateProductsOrdersPage::$CrtProductCategoryProductSelectField);                                                         
-//            $I->fillField(\CreateProductsOrdersPage::$CrtProductCategoryProductSelectInput, $categoryProduct);                                               
-//            $I->click(\CreateProductsOrdersPage::$CrtProductCategoryProductSetSelect);                                         
-//        }if(isset($variantProduct)){                                                        
+    function createProduct( $name_Product        = NULL,
+//                            $name_Variant_Product = NULL,
+                            $price_Product       = NULL,
+                            $article_Product     = NULL,
+                            $amount_Product      = NULL,
+                            $category_Product    = NULL) {
+//                            $variant_Product     = NULL,
+//                            $variant_Price       = NULL,
+//                            $variant_Article     = NULL,
+//                            $variant_Amount      = NULL
+        $I = $this;
+        $I->wait(1);
+        $I->amOnPage(\ProductsCreatePage::$URL);                                                                                    
+        $I->wait(3);
+        if (isset($name_Product)) {
+            $I->fillField(\ProductsCreatePage::$InputName, $name_Product);                                          
+        }
+        If (isset($name_Variant_Product)){
+            $I->fillField(\ProductsCreatePage::lineVariantNameInput(1), $name_Variant_Product);
+        }
+        if(isset($price_Product)){
+            $I->fillField(\ProductsCreatePage::linePriceInput(1), $price_Product);                                                                            
+        }
+        if(isset($article_Product)){
+            $I->fillField(\ProductsCreatePage::lineArticleInput(1), $article_Product);                           
+        }
+        if(isset($amount_Product)){
+            $I->fillField(\ProductsCreatePage::lineAmount(1), $amount_Product);                            
+        }
+        if(isset($category_Product)){
+            $I->click(\ProductsCreatePage::$SelectCategory);                                                         
+            $I->fillField(\ProductsCreatePage::$SelectCategoryInput, $category_Product);                                               
+            $I->click('//section/form/div[2]/div[1]/div/table/tbody/tr/td/div/div[3]/div/div/div/ul/li');                                         
+        }
+//        if(isset($variant_Product)){                                                        
 //            $a = $I->grabTagCount($I, 'td select');
 //            $b = $I->comment("$a");
 //                if($a == 4){
 //                    $I->click(\CreateProductsOrdersPage::$CrtProductVariantButtonADD);                                                      
-//                    $I->fillField(\CreateProductsOrdersPage::$CrtProductVariantFieldName, $variantProduct);                                                        
+//                    $I->fillField(\CreateProductsOrdersPage::$CrtProductVariantFieldName, $variant_Product);                                                        
 //                }elseif($a > 4){
-//                    $I->fillField(\CreateProductsOrdersPage::$CrtProductVariantFieldName, $variantProduct);                
+//                    $I->fillField(\CreateProductsOrdersPage::$CrtProductVariantFieldName, $variant_Product);                
 //                }
-//        }if(isset($variantPrice)){
+//        }
+//        if(isset($variant_Price)){
 //            $a = $I->grabTagCount($I, 'td select');
 //            $b = $I->comment("$a");
 //                if($a == 4){
 //                  $I->click(\CreateProductsOrdersPage::$CrtProductVariantButtonADD);
-//                  $I->fillField(\CreateProductsOrdersPage::$CrtProductVariantFieldPrice, $variantPrice);                                         
+//                  $I->fillField(\CreateProductsOrdersPage::$CrtProductVariantFieldPrice, $variant_Price);                                         
 //                }elseif ($a > 4) {
-//                  $I->fillField(\CreateProductsOrdersPage::$CrtProductVariantFieldPrice, $variantPrice);                                               
+//                  $I->fillField(\CreateProductsOrdersPage::$CrtProductVariantFieldPrice, $variant_Price);                                               
 //                }
-//        }if(isset($variantArticle)){
+//        }
+//        if(isset($variant_Article)){
 //            $a = $I->grabTagCount($I, 'td select');
 //            $b = $I->comment("$a");
 //                if($a == 4){
 //                   $I->click(\CreateProductsOrdersPage::$CrtProductVariantButtonADD);
-//                   $I->fillField(\CreateProductsOrdersPage::$CrtProductVariantFieldArticle, $variantArticle); 
+//                   $I->fillField(\CreateProductsOrdersPage::$CrtProductVariantFieldArticle, $variant_Article); 
 //                }elseif ($a > 4) {
-//                   $I->fillField(\CreateProductsOrdersPage::$CrtProductVariantFieldArticle, $variantArticle);
+//                   $I->fillField(\CreateProductsOrdersPage::$CrtProductVariantFieldArticle, $variant_Article);
 //                }
-//        }if(isset($variantAmount)){
+//        }
+//        if(isset($variant_Amount)){
 //            $a = $I->grabTagCount($I, 'td select');
 //            $b = $I->comment("$a");
 //                if($a == 4){
 //                  $I->click(\CreateProductsOrdersPage::$CrtProductVariantButtonADD);
-//                  $I->fillField(\CreateProductsOrdersPage::$CrtProductVariantFieldAmount, $variantAmount);                       
+//                  $I->fillField(\CreateProductsOrdersPage::$CrtProductVariantFieldAmount, $variant_Amount);                       
 //                }elseif ($a > 4) {
-//                  $I->fillField(\CreateProductsOrdersPage::$CrtProductVariantFieldAmount, $variantAmount); 
+//                  $I->fillField(\CreateProductsOrdersPage::$CrtProductVariantFieldAmount, $variant_Amount); 
 //                }
 //        }
-//        $I->wait('1');
-//        $I->click(\CreateProductsOrdersPage::$CrtProductButtonSaveandBack);
-//        $I->wait('2');
-//    }
+        $I->wait('1');
+        $I->click(\ProductsCreatePage::$ButtonCreateExit);
+        $I->wait('2');
+    }
     
     
 ////--------------------------Create Product Kits---------------------------------
@@ -139,33 +146,29 @@ extends \OrdersTester
 //----------------------------Create User---------------------------------------       
     
 
-//    function createUserUserPage($createUserName = NULL,
-//                                $createUserEmail = NULL,
-//                                $createUserPassword = NULL,
-//                                $createUserPhone = NULL, 
-//                                $createUserAddress = NULL) {
-//        $I = $this;
-//        $I->wait('1');
-//        $I->click(\NavigationBarPage::$Users);
-//        $I->wait('1');
-//        $I->click(\NavigationBarPage::$UsersList);
-//        $I->wait('3');
-//        $I->click('//body/div[1]/div[5]/div/section/div[1]/div[2]/div/a');
-//        $I->wait('3');
-//        if(isset($createUserName)){
-//            $I->fillField(\CreateUserForOrdersPage::$CrtUserFieldName, $createUserName);
-//        }if(isset($createUserEmail)){
-//            $I->fillField(\CreateUserForOrdersPage::$CrtUserFieldEmail, $createUserEmail);
-//        }if(isset($createUserPassword)){
-//            $I->fillField(\CreateUserForOrdersPage::$CrtUserFieldPassword, $createUserPassword);
-//        }if(isset($createUserPhone)){
-//            $I->fillField(\CreateUserForOrdersPage::$CrtUserFieldPhone, $createUserPhone);
-//        }if(isset($createUserAddress)){
-//            $I->fillField(\CreateUserForOrdersPage::$CrtUserFieldAddress, $createUserAddress);    
-//        }
-//        $I->click(\CreateUserForOrdersPage::$CrtUserButtonSaveAndBack);
-//        $I->wait('2');
-//    }
+    function createUserUserPage($user_Name      = NULL,
+                                $user_Email     = NULL,
+                                $user_Password  = NULL,
+                                $user_Phone     = NULL, 
+                                $user_Address   = NULL) {
+        $I = $this;
+        $I->wait('1');
+        $I->amOnPage('/admin/components/run/shop/users/create');
+        $I->wait('3');
+        if(isset($user_Name)){
+            $I->fillField('//section/div[2]/form/table/tbody/tr/td/div/div/div[4]/div/input', $user_Name);
+        }if(isset($user_Email)){
+            $I->fillField('//section/div[2]/form/table/tbody/tr/td/div/div/div[1]/div/input', $user_Email);
+        }if(isset($user_Password)){
+            $I->fillField('//section/div[2]/form/table/tbody/tr/td/div/div/div[2]/div/input', $user_Password);
+        }if(isset($user_Phone)){
+            $I->fillField('//section/div[2]/form/table/tbody/tr/td/div/div/div[5]/div/input', $user_Phone);
+        }if(isset($user_Address)){
+            $I->fillField('//section/div[2]/form/table/tbody/tr/td/div/div/div[6]/div/input', $user_Address);    
+        }
+        $I->click('//section/div[1]/div[2]/div/button[2]');
+        $I->wait('2');
+    }
     
     
     
