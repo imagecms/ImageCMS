@@ -8,8 +8,21 @@ class TextAndElementsPresentCast
     private $URl_List_Page      = '/admin/components/run/shop/orders';
     private $URl_Create_Page    = '/admin/components/run/shop/orders/create';
     
-
+    private $name_product_category    = 'Длязаказа';
     
+    private $name_product    = 'Для создания заказа';
+    private $price_product    = '777';
+    private $article_product    = 'r2d2';
+    private $amount_product    = '333';
+    private $category_product    = 'Длязаказа';
+    
+    private $user_name      = 'Main Powerviolence';
+    private $user_password  = '1234567';
+    private $user_email     = 'afrika@boombaataa.net';
+    private $user_phone     = '9876543210';
+    private $user_adress    = 'New York';
+
+  
 //----------------------------LIST PAGE-----------------------------------------   
     
     /**
@@ -19,6 +32,40 @@ class TextAndElementsPresentCast
         InitTest::Login($I);
     }
     
+    
+    /**
+     * @group a
+     * @guy OrdersTester\OrdersSteps
+     */
+    public function CrateProductCategory (OrdersTester\OrdersSteps $I) {
+        $I->createCategoryProduct($createNameCategory = $this->name_product_category);
+    }
+    
+    /**
+     * @group a
+     * @guy OrdersTester\OrdersSteps
+     */
+    public function CrateProduct (OrdersTester\OrdersSteps $I) {
+        $I->createProduct(  $name_Product           = $this->name_product,
+                            $price_Product          = $this->price_product,
+                            $article_Product        = $this->article_product,
+                            $amount_Product         = $this->amount_product,
+                            $category_Product       = $this->category_product);
+    }
+    
+    
+    /**
+     * @group a
+     * @guy OrdersTester\OrdersSteps
+     */
+    public function CrateUser (OrdersTester\OrdersSteps $I) {
+        $I->createUserUserPage( $user_Name      = $this->user_name,
+                                $user_Email     = $this->user_email,
+                                $user_Password  = $this->user_password,
+                                $user_Phone     = $this->user_phone,
+                                $user_Address   = $this->user_adress);
+    }
+
     /**
      * @group a
      */
@@ -145,25 +192,214 @@ class TextAndElementsPresentCast
         $I->see('Общий:', OrdersListCreatePage::$FootTotalPriceLabel);
     }
     
+    
     /**
-     * @group aa
+     * @group a
+     */
+    public function VerifyOrderListEmptyPage (OrdersTester $I) {
+        $I->amOnPage(OrdersListPage::$URL);
+        $I->wait(1);
+        $amount_checkbox = $I->grabCCSAmount($I, '.niceCheck');
+        $I->comment("Количество чекбоксов = '$amount_checkbox'");
+        if($amount_checkbox > 1){
+            $I->click(OrdersListPage::$HeadCheck);
+            $I->wait(1);
+            $I->click(OrdersListPage::$ButtonDelete);
+            $I->wait(1);
+            $I->click(OrdersListPage::$WindowDeleteButtonDelete);
+        }
+        elseif ($amount_checkbox == 1) {
+            $I->comment('Список пуст, заказов нет !');
+        }
+    }
+    
+
+    /**
+     * @group a
      */
     public function VerifyTextOrderCreatePage (OrdersTester $I) {
         $I->amOnPage(OrdersListCreatePage::$URL);
         $I->wait(2);
-        $I->click(OrdersListCreatePage::$TabNewUser);
+        $I->click(OrdersListCreatePage::$TabSearchUser);
         $I->wait(1);
-        $I->fillField(OrdersListCreatePage::$TabNewUserInputName, 'Test');
-        $I->fillField(OrdersListCreatePage::$TabNewUserInputEmail, 'Test@mail.com');
+        $I->fillField(OrdersListCreatePage::$TabSearchUserInputUser, '1');
+        $I->wait(1);
+        $I->click(OrdersListCreatePage::tabSearchUserSelectResultOption(1));
+        $I->wait(1);
         $I->click(OrdersListCreatePage::$ButtonCreate);
         $I->wait(1);
         $I->click(OrdersListCreatePage::$ButtonCreateExit);
         $I->wait(2);
         $I->seeInCurrentUrl('/admin/components/run/shop/orders');
-
     }
     
     
+    
+    /**
+     * @group a
+     */
+    public function VerifyRowListPage (OrdersTester $I) {
+        $I->amOnPage(OrdersListPage::$URL);
+        $I->wait(2);
+        $I->see('Новый', OrdersListPage::lineStatusText(1));
+        $I->see('0', OrdersListPage::lineTotalPriceText(1));
+        $I->see('0', OrdersListPage::lineProductsText(1));
+        $I->see('Не оплачен', OrdersListPage::linePaymentStatusText(1));
+    }
 
+    
+    
+    /**
+     * @group a
+     */
+    public function VerifyСheckButton (OrdersTester $I) {
+        $I->amOnPage(OrdersListPage::$URL);
+        $I->click(OrdersListPage::lineCheck(1));
+        $I->wait(1);
+        $I->see('Список заказов (1)',OrdersListPage::$Title);
+        $I->see('Фильтр', OrdersListPage::$ButtonFilter);
+        $I->see('Изменить статус', OrdersListPage::$ButtonChangeStatus);
+        $I->see('Удалить', OrdersListPage::$ButtonDelete);
+        $I->click(OrdersListPage::$ButtonChangeStatus);
+        $I->wait(1);
+        $I->see('СТАТУСЫ ЗАКАЗОВ', '//section/div[1]/div[2]/div/div/ul/li[1]');
+        $I->see('Новый', '//section/div[1]/div[2]/div/div/ul/li[2]/a');
+        $I->see('Доставлен', '//section/div[1]/div[2]/div/div/ul/li[3]/a');
+        $I->see('СТАТУС ОПЛАТЫ', '//section/div[1]/div[2]/div/div/ul/li[4]');
+        $I->see('Оплачен', '//section/div[1]/div[2]/div/div/ul/li[5]/a');
+        $I->see('Не оплачен', '//section/div[1]/div[2]/div/div/ul/li[6]/a');
+        $I->click(OrdersListPage::$ButtonDelete);
+        $I->wait(1);        
+        $I->seeElement(OrdersListPage::$WindowDelete);
+        $I->see('Удаление заказа', OrdersListPage::$WindowDeleteTitle);
+        $I->see('Удалить отмеченные заказы?', OrdersListPage::$WindowDeleteQuestion);
+        $I->see('Удалить', OrdersListPage::$WindowDeleteButtonDelete);
+        $I->see('Отменить', OrdersListPage::$WindowDeleteButtonCancel);
+        $I->see('×', OrdersListPage::$WindowDeleteButtonClose);        
+    }
+        
+    
+    /**
+     * @group a
+     */
+    public function VerifyFilterStatusAndButtonCancelFilter (OrdersTester $I) {
+        $I->amOnPage(OrdersListPage::$URL);
+        $I->wait(1);
+        $I->selectOption(OrdersListPage::$FilterStatusSelect, 'Доставлен');
+        $I->wait(2);
+        $I->dontSee('Новый', OrdersListPage::lineStatusText(1));
+        $I->click(OrdersListPage::$ButtonCancelFiltration);
+        $I->wait(2);
+        $I->see('Новый', OrdersListPage::lineStatusText(1));
+    }
+    
+    /**
+     * @group a
+     */
+    public function VerifyButtonChangeStatusForStatus (OrdersTester $I) {
+        $change_status_Made = '//section/div[1]/div[2]/div/div/ul/li[3]/a';
+        $I->amOnPage(OrdersListPage::$URL);
+        $I->wait(1);
+        $I->click(OrdersListPage::lineCheck(1));
+        $I->click(OrdersListPage::$ButtonChangeStatus);
+        $I->click($change_status_Made);
+        $I->wait(2);
+        $I->see('Доставлен', OrdersListPage::lineStatusText(1));        
+        $I->selectOption(OrdersListPage::$FilterStatusSelect, 'Новый');
+        $I->wait(2);
+        $I->dontSee('Доставлен', OrdersListPage::lineStatusText(1));
+        $I->click(OrdersListPage::$ButtonCancelFiltration);
+        $I->wait(2);
+        $I->see('Доставлен', OrdersListPage::lineStatusText(1));
+    }
+    
+    
+    /**
+     * @group a
+     */
+    public function VerifyFilterPaymentStatus (OrdersTester $I) {
+        $I->amOnPage(OrdersListPage::$URL);
+        $I->wait(1);
+        $I->see('Не оплачен', OrdersListPage::linePaymentStatusText(1));
+        $I->selectOption(OrdersListPage::$FilterPaymentStatusSelect, 'Оплачен');
+        $I->wait(2);
+        $I->dontSee('Не оплачен', OrdersListPage::linePaymentStatusText(1));
+        $I->wait(1);
+        $I->click(OrdersListPage::$ButtonCancelFiltration);
+        $I->wait(2);
+        $I->see('Не оплачен', OrdersListPage::linePaymentStatusText(1));        
+    }
+    
+    
+    /**
+     * @group a
+     */
+    public function VerifyButtonChangeStatusForPaymentStatus (OrdersTester $I) {
+        $change_payment_status_paid = '//section/div[1]/div[2]/div/div/ul/li[5]/a';
+        $I->amOnPage(OrdersListPage::$URL);
+        $I->wait(1);
+        $I->click(OrdersListPage::lineCheck(1));
+        $I->click(OrdersListPage::$ButtonChangeStatus);
+        $I->click($change_payment_status_paid);
+        $I->wait(2);
+        $I->see('Доставлен', OrdersListPage::lineStatusText(1));        
+        $I->selectOption(OrdersListPage::$FilterStatusSelect, 'Новый');
+        $I->wait(2);
+        $I->dontSee('Доставлен', OrdersListPage::lineStatusText(1));
+        $I->click(OrdersListPage::$ButtonCancelFiltration);
+        $I->wait(2);
+        $I->see('Доставлен', OrdersListPage::lineStatusText(1));
+    }
+    
+    /**
+     * @group a
+     */
+    public function DeleteOrders (OrdersTester $I) {
+        $I->amOnPage(OrdersListPage::$URL);
+        $I->wait(1);
+        $amount_checkbox = $I->grabCCSAmount($I, '.niceCheck');
+        $I->comment("Количество чекбоксов = '$amount_checkbox'");
+        if($amount_checkbox > 1){
+            $I->click(OrdersListPage::$HeadCheck);
+            $I->wait(1);
+            $I->click(OrdersListPage::$ButtonDelete);
+            $I->wait(1);
+            $I->click(OrdersListPage::$WindowDeleteButtonDelete);
+        }
+        elseif ($amount_checkbox == 1) {
+            $I->comment('Список пуст, заказов нет !');
+        }
+    }
+    
+    /**
+     * @group aa
+     */
+    public function TabQuick (OrdersTester $I) {
+        $I->amOnPage(OrdersListCreatePage::$URL);
+        $I->wait(3);
+        $I->fillField(OrdersListCreatePage::$TabQuickSearchInputProduct, $this->name_product);
+        $I->wait(12);
+        $I->click(OrdersListCreatePage::tabQuickSearchSelectResultOption(1));
+        $I->wait(4);
+        $I->see($this->price_product, OrdersListCreatePage::tabQuickSearchSelectVariantOption(1));
+        $I->see($this->name_product, OrdersListCreatePage::$TabQuickSearchLinkProduct);
+        $I->see($this->price_product, OrdersListCreatePage::$TabQuickSearchTextVariant);
+        $I->see($this->amount_product, OrdersListCreatePage::$TabQuickSearchTextStock);
+        $I->click(OrdersListCreatePage::$TabQuickSearchButtonAdd);
+        $I->wait(1);
+        $I->see('В корзине', OrdersListCreatePage::$TabQuickSearchButtonAdd);
+        $I->see('', OrdersListCreatePage::lineProductLink(1));
+        $I->see('', OrdersListCreatePage::lineArticleText(1));
+        $I->see('', OrdersListCreatePage::lineVarianText(1));
+        $I->see('', OrdersListCreatePage::linePriceText(1));
+        $I->see('', OrdersListCreatePage::lineAmountInput(1));
+        $I->see('', OrdersListCreatePage::lineTotalPriceText(1));
+        $I->see('', OrdersListCreatePage::lineTotalPriceCurrencyText(1));
+        $I->see('', OrdersListCreatePage::$FootTotalPrice);
+        $I->see('', OrdersListCreatePage::$FootTotalPriceCurrency);
+        $I->see('', OrdersListCreatePage::$FootTotalPriceLabel);
+        $I->see('', OrdersListCreatePage::$FootGiftCertificateInput);
+        
+    }
 }
 

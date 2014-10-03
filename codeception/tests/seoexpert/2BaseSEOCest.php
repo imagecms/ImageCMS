@@ -18,7 +18,7 @@ class BaseSEOCest
      * @group aa
      * @guy SeoExpertTester\seoexpertSteps 
      */
-    public function CreateCategoryForFront (SeoExpertTester\seoexpertSteps $I){
+    public function CreateCategory (SeoExpertTester\seoexpertSteps $I){
         $I->SeoCreateCategoryProduct($createNameCategory = 'Zzzz категория для SEO');
     }
     
@@ -26,7 +26,7 @@ class BaseSEOCest
     /**
      * @group a
      */
-    public function BaseDefoultValues (SeoExpertTester $I) {
+    public function BasePageSetData (SeoExpertTester $I) {
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->click(seoexpertPage::$SeoBaseRadioButtCategoryNameYes);
         $I->click(seoexpertPage::$SeoBaseRadioButtSiteNameYes);
@@ -48,7 +48,7 @@ class BaseSEOCest
     /**
      * @group a
      */
-    public function CkeckOptionSiteNoWork (SeoExpertTester $I){
+    public function RadioButtonSiteNameOff (SeoExpertTester $I){
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->click(seoexpertPage::$SeoBaseRadioButtSiteNameNo);
@@ -66,7 +66,7 @@ class BaseSEOCest
     /**
      * @group a
      */
-    public function CkeckOptionSiteYesWork (SeoExpertTester $I){
+    public function RadioButtonSiteNameOn (SeoExpertTester $I){
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->click(seoexpertPage::$SeoBaseRadioButtSiteNameYes);
@@ -83,7 +83,7 @@ class BaseSEOCest
     /**
      * @group a
      */
-    public function CkeckOptionCatNoWork (SeoExpertTester $I){
+    public function RadioButtonCategoryNameOff (SeoExpertTester $I){
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->click(seoexpertPage::$SeoBaseRadioButtCategoryNameNo);
@@ -100,7 +100,7 @@ class BaseSEOCest
     /**
      * @group a
      */
-    public function CkeckOptionCatNYesWork (SeoExpertTester $I){
+    public function RadioButtonCategoryNameOn (SeoExpertTester $I){
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->click(seoexpertPage::$SeoBaseRadioButtCategoryNameYes);
@@ -117,7 +117,7 @@ class BaseSEOCest
      * @group aa
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function CkeckFieldSeparatorSympol1 (SeoExpertTester\seoexpertSteps $I){
+    public function FirstSetSeparator (SeoExpertTester\seoexpertSteps $I){
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->DefoultValues();
@@ -139,7 +139,7 @@ class BaseSEOCest
      * @group aa
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function CkeckFieldSeparatorSympol2 (SeoExpertTester\seoexpertSteps $I){
+    public function SecondSetSeparator (SeoExpertTester\seoexpertSteps $I){
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->DefoultValues();
@@ -161,7 +161,7 @@ class BaseSEOCest
      * @group aa
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function CkeckFieldSeparatorSympol3 (SeoExpertTester\seoexpertSteps $I){
+    public function ThirdSetSeparator (SeoExpertTester\seoexpertSteps $I){
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->DefoultValues();
@@ -184,7 +184,7 @@ class BaseSEOCest
      * @group aa
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function CkeckFieldSeparatorSympol4 (SeoExpertTester\seoexpertSteps $I){
+    public function FouthSetSeparator (SeoExpertTester\seoexpertSteps $I){
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->DefoultValues();
@@ -208,7 +208,7 @@ class BaseSEOCest
      * @group aa
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function CkeckFieldSeparatorSympol5 (SeoExpertTester\seoexpertSteps $I){
+    public function FifthSetSeparator (SeoExpertTester\seoexpertSteps $I){
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->DefoultValues();
@@ -228,7 +228,7 @@ class BaseSEOCest
     /**
      * @group a
      */
-    public function CkeckFieldOpisanie1 (SeoExpertTester $I){
+    public function TabBaseFieldDescription (SeoExpertTester $I){
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->fillField(seoexpertPage::$SeoBaseFieldDescription, '098765 ~!@##$^% ЗЩШГ фыва хіь POI ZXC');
@@ -246,7 +246,7 @@ class BaseSEOCest
     /**
      * @group a
      */
-    public function CkeckFieldOpisanie2 (SeoExpertTester $I){
+    public function TabBaseFieldKeywords (SeoExpertTester $I){
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->fillField(seoexpertPage::$SeoBaseFieldKeywords, 'Keywords а также Ключевыэ сЛоВЫААА р2д2 брр и в том стиле');
@@ -265,7 +265,7 @@ class BaseSEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
-    public function DeleteCategoryForJiraTests(SeoExpertTester\seoexpertSteps $I) {
+    public function DeleteAllTestCategory(SeoExpertTester\seoexpertSteps $I) {
         $I->DeleteProductCategorys();
     }
 
