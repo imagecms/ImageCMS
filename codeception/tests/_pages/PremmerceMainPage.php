@@ -22,4 +22,7 @@ class PremmerceMainPage
     public static $EnterInCabinetButton = '/html/body/div[3]/div[1]/div/div[1]/div/div/div/div[2]/div[1]/a';
     public static $ChooseDesignButton = '/html/body/div[3]/div[1]/div/div[1]/div/div/div/div[2]/div[2]/a';
     
+    //Language Buttons on .COM.UA    
+    public static $UkrLangRegisterFormLink = "/html/body/footer/div/div/div[1]/ul/li[1]";
+    public static $RusLangRegisterFormLink = "/html/body/footer/div/div/div[1]/ul/li[2]";
 }

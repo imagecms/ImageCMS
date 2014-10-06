@@ -13,5 +13,8 @@ class PremmerceCabinetPage
     public static $PersonalDataButton='/html/body/ul/li[1]';
     public static $ExitButton = "/html/body/ul/li[2]";   
 
-
+    //Language Buttons on .COM.UA
+    public static $UkrLangProfileButton = "/html/body/div[1]/div/div[1]/div/ul/li[1]";
+    public static $RusLangProfileButton = "/html/body/div[1]/div/div[1]/div/ul/li[2]";
+    
 }

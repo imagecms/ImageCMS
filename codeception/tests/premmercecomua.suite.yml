@@ -4,4 +4,4 @@ modules:
     
     config:
         WebDriver:
-            url: 'http://premmerce.com.ua/'
+            url: 'http://imagego.com.ua/'
