@@ -28,6 +28,7 @@ if (strpos($_SERVER['REQUEST_URI'], 'index.php') !== false) {
     exit;
 }
 define('ENVIRONMENT', 'development');
+
 /*
  * ---------------------------------------------------------------
  * ERROR REPORTING
