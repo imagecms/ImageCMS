@@ -2,10 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-
-"POT-Creation-Date: 2014-09-11 05:57+0400\n"
-"PO-Revision-Date: 2014-09-11 05:57+0400\n"
-
+"POT-Creation-Date: 2014-10-06 03:14+0300\n"
+"PO-Revision-Date: 2014-10-06 03:14+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -23,10 +21,17 @@ msgstr ""
 "X-Poedit-SearchPath-2: ../../modules/shop/admin\n"
 "X-Poedit-SearchPath-3: ../../../application/modules/shop/models/build/classes\n"
 
+#: ./application/modules/shop/admin/notificationstatuses.php:102
+msgid "Status pending not found"
+msgstr "Статус не найден"
+
+#: ./application/modules/shop/admin/notificationstatuses.php:75
+msgid "Status pending created"
+msgstr "Статус создан"
+
 #: ./application/modules/shop/admin/templates/users/edit.tpl:144
 msgid "Purchase history"
 msgstr "История покупок"
-
 
 #: ./application/modules/shop/admin/callbacks.php:445
 msgid "Topic deleted"
@@ -2433,7 +2438,6 @@ msgstr "Импорт языка"
 msgid "Import-Export CSV/XLS"
 msgstr "Импорт-Экспорт CSV/XLS"
 
-
 #: ./application/modules/admin/settings.php:96
 #: ./application/modules/admin/widgets_manager.php:96
 #: ./application/modules/admin/widgets_manager.php:169
@@ -2445,7 +2449,6 @@ msgstr "Имя"
 
 #: ./application/modules/shop/admin/templates/settings/settings.tpl:866
 #: ./application/modules/shop/admin/templates/settings/settings.tpl:937
-
 msgid "Name of the customer"
 msgstr "Имя заказчика"
 
@@ -6202,14 +6205,6 @@ msgstr "Статус заказа создан"
 msgid "Status and related orders removed"
 msgstr "Статус и связанных с ним заказы удалены"
 
-#: ./application/modules/shop/admin/notificationstatuses.php:102
-msgid "Status pending not found"
-msgstr "Статус ожидания не найден"
-
-#: ./application/modules/shop/admin/notificationstatuses.php:75
-msgid "Status pending created"
-msgstr "Статус ожидания создан"
-
 #: ./application/modules/shop/admin/templates/dashboard/dashboard.tpl:29
 #: ./application/modules/shop/admin/templates/orders/edit.tpl:410
 #: ./application/modules/shop/admin/templates/orders/list.tpl:38
@@ -7564,3 +7559,7 @@ msgstr "Убрать показ в публичной части незнача�
 #: ./application/modules/shop/admin/templates/currencies/edit.tpl:82
 msgid "- Not selected -"
 msgstr "- Не выбрано -"
+
+#: tmpLink
+msgid "Remove the display in the public section of leading zeros in the fractional part of the price - if you price 12500,00 rubles - will be shown 12500 if you 12500.5 - 12500.5 will be displayed"
+msgstr "Убрать показ в публичной части незначащих нулей у дробной части цены - если у вас цена 12500,00 рублей - будет отображено 12500, если у вас 12500,5 - будет отображено 12500,5."

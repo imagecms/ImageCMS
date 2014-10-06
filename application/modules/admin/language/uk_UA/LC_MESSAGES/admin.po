@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-24 04:49+0300\n"
-"PO-Revision-Date: 2014-09-24 04:49+0300\n"
+"POT-Creation-Date: 2014-10-06 03:15+0300\n"
+"PO-Revision-Date: 2014-10-06 03:15+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -20,6 +20,18 @@ msgstr ""
 "X-Poedit-SearchPath-1: ../../../templates/administrator\n"
 "X-Poedit-SearchPath-2: ../../modules/shop/admin\n"
 "X-Poedit-SearchPath-3: ../../../application/modules/shop/models/build/classes\n"
+
+#: ./application/modules/shop/admin/notificationstatuses.php:102
+msgid "Status pending not found"
+msgstr "Статус не знайдений"
+
+#: ./application/modules/shop/admin/notificationstatuses.php:75
+msgid "Status pending created"
+msgstr "Статус створено"
+
+#: ./application/modules/shop/admin/templates/notificationstatuses/create.tpl:6
+msgid "Creation of Status pending"
+msgstr "Створення статусу в очікуванні"
 
 #: ./templates/administrator/main.tpl:180
 msgid "days left"
@@ -107,10 +119,6 @@ msgstr "Ви не обрали"
 #: ./application/modules/shop/admin/deliverymethods.php:227
 msgid "Positions saved"
 msgstr "Позиції зберігаються"
-
-#: ./application/modules/shop/admin/notificationstatuses.php:102
-msgid "Status pending not found"
-msgstr "Статус pending не знайдений"
 
 #: ./application/modules/shop/admin/orders.php:1312
 msgid "Delivery method is not selected"
@@ -357,10 +365,6 @@ msgstr "Тема видалена"
 #: ./application/modules/shop/admin/callbacks.php:339
 msgid "Status was removed"
 msgstr "Статус був видалений"
-
-#: ./application/modules/shop/admin/notificationstatuses.php:75
-msgid "Status pending created"
-msgstr "Статус pending створено"
 
 #: ./application/modules/shop/admin/products.php:704
 msgid "Price updated"
@@ -6405,10 +6409,6 @@ msgstr "Створення нової сторінки"
 msgid "Creating a warehouse"
 msgstr "Створення складу"
 
-#: ./application/modules/shop/admin/templates/notificationstatuses/create.tpl:6
-msgid "Creation of Status pending"
-msgstr "Створення статусу в очікуванні"
-
 #: ./application/modules/shop/admin/templates/orderstatuses/create.tpl:5
 msgid "Orders status creating"
 msgstr "Створення статусу замовлень"
@@ -7560,3 +7560,7 @@ msgstr "існує"
 #: ./application/modules/shop/admin/templates/users/edit_orders_list.tpl:25
 msgid "Orders history"
 msgstr "Історія замовлень"
+
+#: tmpLink
+msgid "Remove the display in the public section of leading zeros in the fractional part of the price - if you price 12500,00 rubles - will be shown 12500 if you 12500.5 - 12500.5 will be displayed"
+msgstr "Зніміть дисплей в публічному розділі провідних нулів в дробовій частині ціни; якщо ціна 12500,00 руб. - буде показано 12500; якщо ви 12500.5 - 12500.5 буде відображатися"
