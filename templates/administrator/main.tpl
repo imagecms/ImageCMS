@@ -239,7 +239,7 @@
                                                 </li>
                                             {/if}
                                             <li>
-                                                <a href="/auth/logout">
+                                                <a href="/admin/logout">
                                                     {lang("Exit", "admin")}
                                                 </a>
                                             </li>

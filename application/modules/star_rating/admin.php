@@ -26,7 +26,9 @@ class Admin extends BaseAdminController {
             'settings' => $settings,
             'is_shop' => $this->rating_model->is_shop(),
         ));
-        $this->render('settings');
+        \CMSFactory\assetManager::create()
+                ->renderAdmin('settings');
+//        $this->render('settings');
     }
 
     public function update_settings() {
