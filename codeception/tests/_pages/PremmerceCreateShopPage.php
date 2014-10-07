@@ -31,4 +31,21 @@ class PremmerceCreateShopPage
     public static $ErrorCity = ".//*[@id='register-form']/div/div[1]/div[3]/div[3]/label";    
     public static $ErrorLevelOfUse = ".//*[@id='register-form']/div/div[1]/div[3]/div[4]/label";
     public static $ErrorAgree = ".//*[@id='register-form']/div/label[2]";
+    
+    
+    
+    //---Saas----
+    
+    public static $FieldStoreName = '.form-create-shop2>input';
+    public static $FieldUserEmail = '//form/div/div[1]/div[2]/div[1]/input';
+    public static $FieldUserPassword = '//form/div/div[1]/div[3]/div[1]/input';
+    public static $FieldUserName = '//form/div/div[1]/div[2]/div[2]/input';
+    public static $FieldUserPhone = '//form/div/div[1]/div[3]/div[2]/input';
+    public static $FieldUserCity = '//form/div/div[1]/div[3]/div[3]/input';
+    public static $SelectUserCountry = '//form/div/div[1]/div[2]/div[3]/div/div';
+    public static $SelectProductCategory = '//form/div/div[1]/div[2]/div[4]/div/div';
+    public static $SelectProductLevel = '//form/div/div[1]/div[3]/div[4]/div/div';
+    public static $CheckBoxAgree = '//form/div/div[2]/input';
+    public static $ButtonCreateStore = '.btn-create-shop2>button';
+    
 }
