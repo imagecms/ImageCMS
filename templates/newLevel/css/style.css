@@ -704,7 +704,7 @@ li[class*="x"] > .title-category-l1{width: 100%;text-align: center;display: bloc
 .description .frame-prices:first-child, .description .frame-variant-name-code:first-child+.frame-prices{margin-top: 10px;}
 [class*="price-"]{display: inline-block;line-height: 0.75;}
 [class*="price-"] > span{display: block;white-space: nowrap;}
-.curr{text-transform: lowercase;}
+//.curr{text-transform: lowercase;}
 .price-discount{text-decoration: line-through;margin-bottom: 7px;}
 .price-discount + .current-prices{margin-bottom: 7px;}/*for Safari*/
 .price-discount, .price-new{margin-right: 5px;}
