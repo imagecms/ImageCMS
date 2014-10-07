@@ -8,7 +8,7 @@ class AdminPageForManagersCest
 {
    
     /**
-     * @group a
+     * @group aa
      * @guy UkrainianTester\LocUaSteps 
      */
     public function TestsCRT(UkrainianTester\LocUaSteps $I){
@@ -22,7 +22,7 @@ class AdminPageForManagersCest
                         $user_city          = 'Львів',
                         $product_category   = 3,
                         $product_level      = 2);
-        $I->wait(25);
+        $I->wait(20);
     }
     
     /**
@@ -44,17 +44,17 @@ class AdminPageForManagersCest
         $I->wait(1);
         $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
         $I->wait(1);
-        $I->click('//body/div[1]/div[3]/div/nav/ul/li[6]/a');
+        $I->click(SaasUserListPage::$NavigationModules);
         $I->wait(1);
-        $I->click('//body/div[1]/div[3]/div/nav/ul/li[6]/ul/li[2]/a');
+        $I->click(SaasUserListPage::$NavigationModulSaas);
         $I->wait(1);
-        $I->click('//body/div[1]/div[5]/section/div/div[1]/ul/li[2]/a');
+        $I->click(SaasUserListPage::$NavigationModulSaasTabUser);
         $I->wait(7);
-        $I->click('//body/div[1]/div[5]/div[3]/section/div[2]/div/div[2]/form/div/ul/li[1]/label/span');
-        $I->fillField('//body/div[1]/div[5]/div[3]/section/div[2]/div/div[2]/form/div/ul/li[1]/input', 'afrikabbaxx');
-        $I->click('//body/div[1]/div[5]/div[3]/section/div[2]/div/div[2]/form/div/input');
+        $I->click(SaasUserListPage::$FilterDomainEndLabel);
+        $I->fillField(SaasUserListPage::$FilterDomainInput, 'afrikabbaxx');
+        $I->click(SaasUserListPage::$FilterButtonFilter);
         $I->wait(3);
-        $I->see('afrikabbaxx', '//body/div[1]/div[5]/div[3]/section/div[2]/div/div[1]/table/tbody/tr/td[5]/p/a');
+        $I->see('afrikabbaxx', SaasUserListPage::lineDomainLink(1));
         $I->wait(3);
     }
 }    
