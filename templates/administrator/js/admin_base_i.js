@@ -724,9 +724,12 @@ $(document).ready(function() {
 
     $('.module_item').live('click', function() {
         var mname = $(this).attr('data-mname');
+        var murl = $(this).attr('data-murl');
         var title = $(this).html();
+        var url_module = $("#item_url_image").val();
         $('input[name=mod_name]').attr('value', mname);
         $('#module_item_title').attr('value', title);
+        $('#Img2').attr('value', murl);
         $('#module_name_holder').html(mname);
 
     });
