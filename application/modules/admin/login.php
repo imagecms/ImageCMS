@@ -15,8 +15,9 @@ class Login extends BaseAdminController {
         parent::__construct();
 
         $this->load->library('DX_Auth');
-        if ($this->dx_auth->is_admin() == TRUE)
+        if ($this->dx_auth->is_admin() == TRUE) {
             redirect('/admin');
+        }
 
         $this->load->library(array('lib_admin', 'form_validation'));
         $this->lib_admin->init_settings();
@@ -24,7 +25,6 @@ class Login extends BaseAdminController {
     }
 
     function index() {
-//        var_dumps($this->session->all_userdata());
         if ($this->dx_auth->is_max_login_attempts_exceeded()) {
 
             $this->dx_auth->captcha();

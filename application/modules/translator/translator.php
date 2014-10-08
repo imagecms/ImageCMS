@@ -21,6 +21,85 @@ class Translator extends MY_Controller {
         $this->core->error_404();
     }
 
+    public function replaceKeys($templateName) {
+//        $templateName = 'newLevel2';
+//        var_dumps_exit($templateName);
+        $templatesPath = './templates/' . $templateName;
+
+        $fromLocale = 'en_US';
+        $pofilePath = $templatesPath . '/language/' . $templateName . '/' . $fromLocale . '/LC_MESSAGES/' . $templateName . '.po';
+
+
+        $poFile = file($pofilePath);
+
+        $result = array();
+        foreach ($poFile as $line) {
+            $first2symbols = substr($line, 0, 2);
+
+            if ($first2symbols == '#:') {
+                $links[] = trim(substr($line, 2, -1));
+                continue;
+            }
+
+            if (substr($line, 0, 5) == 'msgid') {
+                if (preg_match('/"(.*?)"/', $line, $matches)) {
+                    $origin = $matches[1];
+                    if (!strlen($origin)) {
+                        $origin = 0;
+                    }
+                }
+
+                continue;
+            }
+
+            if (substr($line, 0, 6) == 'msgstr') {
+                if ($origin) {
+                    preg_match('/"(.*?)"/', $line, $translation);
+                    $translation = $translation[1];
+                    $result[] = array('paths' => $links, 'origin' => $origin, 'translation' => $translation);
+                    unset($links);
+                }
+            }
+        }
+
+        foreach ($result as $key => $value) {
+            foreach ($value['paths'] as $path) {
+                $path = preg_replace('/:[\d]+/', '', $path);
+                $file = file_get_contents($path);
+                $translation = str_replace("'", '', $value['translation']);
+                $translation = str_replace('"', '', $translation);
+                $file = preg_replace('/(?<!\w)lang\([\"]{1}' . preg_quote($value['origin']) . '[\"]{1}/', "lang('" . $translation . "'", $file);
+                $file = preg_replace("/(?<!\w)lang\([']{1}" . preg_quote($value['origin']) . "[']{1}/", "lang('" . $translation . "'", $file);
+                file_put_contents($path, $file);
+            }
+        }
+
+        foreach ($poFile as $key => $line) {
+            if (strstr($line, 'msgid') && $key > 5) {
+                $tmp = $poFile[$key];
+                $poFile[$key] = $poFile[$key + 1];
+                $poFile[$key + 1] = $tmp;
+                $poFile[$key] = str_replace('msgstr', 'msgid', $poFile[$key]);
+                $poFile[$key + 1] = str_replace('msgid', 'msgstr', $poFile[$key + 1]);
+            }
+        }
+
+        $pofilePathRu = str_replace('en_US', 'ru_RU', $pofilePath);
+        file_put_contents($pofilePath, implode("", $poFile));
+
+        foreach ($poFile as $key => $line) {
+            if (strstr($line, 'msgstr') && $key > 5) {
+                $poFile[$key] = "msgstr \"\"\n";
+            }
+        }
+
+        file_put_contents($pofilePath, implode("", $poFile));
+        $poFileManager = new PoFileManager();
+
+        $poFileManager->convertToMO($pofilePath);
+        $poFileManager->convertToMO($pofilePathRu);
+    }
+
     public static function adminAutoload() {
         self::fetchApiTpl();
     }

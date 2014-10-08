@@ -98,9 +98,12 @@
                     <!-- Start. Check for discount-->
                     <span class="price-discount">
                         <span>
+                            {echo \Currency\Currency::create()->getCurrencyToFormat(\Currency\Currency::create()->getMainCurrency()->getId(), $p->firstVariant->toCurrency('OrigPrice'),'span', 'curr', '',  'span', 'price priceOrigVariant', '');}
+                        </span>
+                        <!--<span>
                             <span class="price priceOrigVariant">{echo $p->firstVariant->toCurrency('OrigPrice')}</span>
                             <span class="curr">{$CS}</span>
-                        </span>
+                        </span>-->
                     </span>
                     <!-- End. Check for discount-->
                 {/if}
@@ -108,9 +111,12 @@
                     <!-- Start. Check old price-->
                     <span class="price-discount">
                         <span>
+                            {echo \Currency\Currency::create()->getCurrencyToFormat(\Currency\Currency::create()->getMainCurrency()->getId(), intval($p->toCurrency('OldPrice')),'span', 'curr', '',  'span', 'price priceOrigVariant', '');}
+                        </span>
+                        <!--<span>
                             <span class="price priceOrigVariant">{echo intval($p->toCurrency('OldPrice'))}</span>
                             <span class="curr">{$CS}</span>
-                        </span>
+                        </span>-->
                     </span>
                     <!-- End. Check old price-->
                 {/if}
@@ -119,15 +125,23 @@
                     <span class="current-prices f-s_0">
                         <span class="price-new">
                             <span>
+                            {echo \Currency\Currency::create()->getCurrencyToFormat(\Currency\Currency::create()->getMainCurrency()->getId(), $p->firstVariant->toCurrency(),'span', 'curr', '',  'span', 'price priceVariant', '');}
+                            </span>
+                            
+                            <!--<span>
                                 <span class="price priceVariant">{echo $p->firstVariant->toCurrency()}</span>
                                 <span class="curr">{$CS}</span>
-                            </span>
+                            </span>-->
                         </span>
                         {if $NextCS != null}
                             <span class="price-add">
                                 <span>
-                                    (<span class="price addCurrPrice">{echo $p->firstVariant->toCurrency('Price',$NextCSId)}</span>
-                                    <span class="curr-add">{$NextCS}</span>)
+                                   <span>
+                                        ({echo \Currency\Currency::create()->getCurrencyToFormat($NextCSId, $p->firstVariant->toCurrency('Price',$NextCSId),'span', 'curr-add', '',  'span', 'price addCurrPrice', '');})
+                                    </span>
+                                    
+                                     <!--(<span class="price addCurrPrice">{echo $p->firstVariant->toCurrency('Price',$NextCSId)}</span>
+                                    <span class="curr-add">{$NextCS}</span>)-->
                                 </span>
                             </span>
                         {/if}

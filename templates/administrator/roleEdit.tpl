@@ -41,8 +41,8 @@
             </div>
         </div>
     </div>
-    <form method="post" action="{$ADMIN_URL}{echo $model->id}" class="form-horizontal" id="role_ed_form">
-        <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+    <form method="post" action="{$ADMIN_URL}{echo $model->id}" class="form-horizontal m-t_10" id="role_ed_form">
+        <table class="table  table-bordered table-hover table-condensed content_big_td">
             <thead>
                 <tr>
                     <th colspan="6">
@@ -86,7 +86,7 @@
             </tbody>
         </table>
         <div class="btn-group myTab m-t_20" data-toggle="buttons-radio">
-            {if strpos(getCmsNumber(), 'Premium')}
+            {if strpos(getCmsNumber(), 'Premium') OR MAINSITE}
                 <a href="#shop" class="btn btn-small">{lang('Shop','admin')}</a>
             {/if}
             <a href="#base" class="btn btn-small active">{lang('Base','admin')}</a>
@@ -94,11 +94,11 @@
         </div>
         <div class="tab-content">
             {foreach $types as $key => $type}
-                {if  strpos(getCmsNumber(), 'Premium') OR  $key!='shop'}
+                {if  strpos(getCmsNumber(), 'Premium') OR  $key!='shop' OR MAINSITE}
                     <div class="tab-pane row {if $key == 'base'}active{/if}" id="{echo $key}">
                         {foreach $type as $k => $groups}
                             <div class="span3">
-                                <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                                <table class="table  table-bordered table-hover table-condensed t-l_a">
                                     <thead>
                                         <tr>
                                             <th class="t-a_c span1">

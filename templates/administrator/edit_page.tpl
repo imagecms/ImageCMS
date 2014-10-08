@@ -10,26 +10,26 @@
                 <a href="/admin/pages/GetPagesByCategory" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Back","admin")}</span></a>
                 <button type="button" class="btn btn-small btn-primary action_on formSubmit" data-action="edit" data-form="#edit_page_form" data-submit><i class="icon-ok icon-white"></i>{lang("Save","admin")}</button>
                 <button type="button" class="btn btn-small action_on formSubmit" data-action="close" data-form="#edit_page_form"><i class="icon-check"></i>{lang("Save and go back","admin")}</button>
-                {if count($langs) > 1}
-                <div class="dropdown d-i_b">
-                    <a class="btn dropdown-toggle btn-small" data-toggle="dropdown" href="#">
-                        {foreach $langs as $l}
-                            {if $page_lang == $l.id}
-                                {$l.lang_name}
-                            {/if}
-                        {/foreach}
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        {foreach $langs as $l}
-                            {if $l.id != $page_lang}
-                                <li>
-                                    <a href="/admin/pages/edit/{$page_id}/{$l.id}" class="pjax">{$l.lang_name}</a>
-                                </li>
-                            {/if}
-                        {/foreach}
-                    </ul>
-                </div>
+                    {if count($langs) > 1}
+                    <div class="dropdown d-i_b">
+                        <a class="btn dropdown-toggle btn-small" data-toggle="dropdown" href="#">
+                            {foreach $langs as $l}
+                                {if $page_lang == $l.id}
+                                    {$l.lang_name}
+                                {/if}
+                            {/foreach}
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            {foreach $langs as $l}
+                                {if $l.id != $page_lang}
+                                    <li>
+                                        <a href="/admin/pages/edit/{$page_id}/{$l.id}" class="pjax">{$l.lang_name}</a>
+                                    </li>
+                                {/if}
+                            {/foreach}
+                        </ul>
+                    </div>
                 {/if}
             </div>
         </div>
@@ -53,13 +53,9 @@
         </div>
     </div>
     <form method="post" action="{$BASE_URL}admin/pages/update/{$update_page_id}/{$page_lang}" id="edit_page_form" class="form-horizontal" data-pageid="{$update_page_id}">
-        <div class="tab-content content_big_td">
-
+        <div class="tab-content">
             <div class="tab-pane active" id="content_article">
-
-
-                <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
-
+                <table class="table  table-bordered table-hover table-condensed content_big_td">
                     <thead>
                         <tr>
                             <th colspan="6">
@@ -77,7 +73,7 @@
                                         </label>
                                         <div class="controls">
                                             <a onclick="$('.modal').modal();
-                                                    return false;" class="btn btn-success btn-small pull-right" href="#"><i class="icon-plus icon-white"></i> {lang("Create a category","admin")}</a>
+                                                    return false;" class="btn btn-success btn-small pull-right" href="#"><i class="icon-plus-sign icon-white"></i> {lang("Create a category","admin")}</a>
                                             <div class="o_h">
                                                 <select name="category"  id="category_selectbox"  onchange="pagesAdmin.loadCFEditPage()">
                                                     <option value="0" >{lang('No','admin')}</option>
@@ -120,13 +116,8 @@
                     </tbody>
                 </table>
             </div>
-
-            <div class="tab-pane" id="parameters_article">
-
-
-
-                <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
-
+           <div class="tab-pane" id="parameters_article">
+                <table class="table  table-bordered table-hover table-condensed content_big_td">
                     <thead>
                         <tr>
                             <th colspan="6">
@@ -180,7 +171,7 @@
                                         </label>
                                         <div class="controls">
                                             <textarea name="page_description" class="textarea" id="page_description" >{$description}</textarea>
-                                            <button  onclick="create_description('#prev_text', '#page_description' );" type="button" class="btn btn-small" ><i class="icon-refresh"></i>&nbsp;&nbsp;{lang('Autocomplete','admin')}</button>
+                                            <button  onclick="create_description('#prev_text', '#page_description');" type="button" class="btn btn-small" ><i class="icon-refresh"></i>&nbsp;&nbsp;{lang('Autocomplete','admin')}</button>
                                         </div>
                                     </div>
 
@@ -190,7 +181,7 @@
                                         </label>
                                         <div class="controls">
                                             <textarea name="page_keywords" id="page_keywords">{$keywords}</textarea>
-                                            <button  onclick="retrive_keywords('#prev_text', '#keywords_list' );"  type="button" class="btn btn-small" ><i class="icon-refresh"></i>&nbsp;&nbsp;{lang('Autocomplete words','admin')}</button>
+                                            <button  onclick="retrive_keywords('#prev_text', '#keywords_list');"  type="button" class="btn btn-small" ><i class="icon-refresh"></i>&nbsp;&nbsp;{lang('Autocomplete words','admin')}</button>
                                             <div id="keywords_list">
                                             </div>
                                         </div>
@@ -238,18 +229,12 @@
                         </tr>
                     </tbody>
                 </table>
-
-
             </div>
-
             <div class="tab-pane" id="addfields_article">
                 <div id="cfcm_fields_block"></div>
             </div>
-
             <div class="tab-pane" id="setings_article">
-
-                <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
-
+                <table class="table  table-bordered table-hover table-condensed content_big_td">
                     <thead>
                         <tr>
                             <th colspan="6">
@@ -360,10 +345,10 @@
     </div>
     <div class="modal-footer">
         <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang('Cancel','admin')}</a>
-        <a href="#" class="btn btn-primary" onclick="pagesAdmin.quickAddCategory()">{lang('Create','admin')}</a>
+        <a href="#" class="btn btn-success" onclick="pagesAdmin.quickAddCategory()">{lang('Create','admin')}</a>
     </div>
 </div>
 <script>
-                                                if (window.hasOwnProperty('pagesAdmin'))
-                                                    pagesAdmin.initialize();
+    if (window.hasOwnProperty('pagesAdmin'))
+        pagesAdmin.initialize();
 </script>

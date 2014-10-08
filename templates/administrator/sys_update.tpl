@@ -57,7 +57,7 @@
                         {if $diff_files and !$error}
                             <h4>{lang('Files that will be changed', 'admin')} ({echo $filesCount})</h4>
                             <form  action="{$ADMIN_URL}" method="post" id="update_form">
-                                <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                                <table class="table  table-bordered table-hover table-condensed t-l_a">
                                     <thead>
                                         <tr>
                                             <th>
@@ -106,7 +106,7 @@
 
                 <div class="tab-pane" id="restore">
                     {if $restore_files}
-                        <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                        <table class="table  table-bordered table-hover table-condensed t-l_a">
                             <thead>
                                 <tr>
                                     <th >{lang('Name', 'admin')}</th>

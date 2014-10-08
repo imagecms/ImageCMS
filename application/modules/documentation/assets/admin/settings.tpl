@@ -9,7 +9,7 @@
             <div class="d-i_b">
                 <a href="/admin/components/init_window/documentation" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Back', 'admin')}</span></a>
                 <button type="button"
-                        class="btn btn-small btn-success action_on formSubmit"
+                        class="btn btn-small btn-primary action_on formSubmit"
                         data-form="#doc_roles_settings"
                         data-action="save">
                     <i class="icon-ok icon-white"></i>{lang('Save', 'admin')}
@@ -19,17 +19,17 @@
     </div>
     <div class="row-fluid">
         <form action="{$BASE_URL}admin/components/cp/documentation/saveSettings" method="POST" id="doc_roles_settings">
-            <table class="table table-striped table-bordered table-hover table-condensed content_big_td t-l_a">
+            <table class="table  table-bordered table-hover table-condensed">
                 <thead>
                     <tr>
-                        <th>
+                        <th class="span1 t-a_c">
                             <span class="frame_label">
                                 <span class="niceCheck" style="background-position: -46px 0px;">
                                     <input type="checkbox">
                                 </span>
                             </span>
                         </th>
-                        <th>ID</th>
+                        <th class="span1">ID</th>
                         <th>Имя</th>
                         <th>Описание</th>                                   
                     </tr>    
@@ -39,7 +39,7 @@
                     {if count($roles) > 0}
                         {foreach $roles as $role}
                             <tr>
-                                <td>                                            
+                                <td class="t-a_c">                                            
                                     <span class="frame_label role_checkbox {if $role.edit == '1'}active{/if}" data-id="{$role.id}">
                                         <span class="niceCheck" style="background-position: -46px 0px;">
                                             <input type="checkbox" name="ids[]"{if $role.edit == '1'}checked="checked"{/if} value="{$role.id}">

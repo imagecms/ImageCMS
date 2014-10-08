@@ -2,11 +2,11 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-18 04:21+0400\n"
-"PO-Revision-Date: 2014-06-18 04:21+0400\n"
-"Last-Translator:  \n"
-"Language-Team:  \n"
-"Language: uk_UA\n"
+"POT-Creation-Date: 2014-08-13 06:58+0300\n"
+"PO-Revision-Date: 2014-08-13 06:58+0300\n"
+"Last-Translator:  <>\n"
+"Language-Team:  <>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -17,3 +17,67 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/rss/admin.php:60
+msgid "Changes have been saved"
+msgstr "Зміни були збережені"
+
+#: ./application/modules/rss/module_info.php:4
+msgid "RSS"
+msgstr "RSS"
+
+#: ./application/modules/rss/module_info.php:5
+msgid "RSS-каналы"
+msgstr "RSS-канали"
+
+#: ./application/modules/rss/templates/admin/settings.tpl:5
+msgid "RSS channel options or specifications"
+msgstr "RSS-канал, параметри або технічні характеристики"
+
+#: ./application/modules/rss/templates/admin/settings.tpl:9
+msgid "Go back"
+msgstr "Повернутися"
+
+#: ./application/modules/rss/templates/admin/settings.tpl:10
+msgid "Save"
+msgstr "Зберегти"
+
+#: ./application/modules/rss/templates/admin/settings.tpl:18
+msgid "Settings"
+msgstr "Параметри"
+
+#: ./application/modules/rss/templates/admin/settings.tpl:25
+msgid "Name"
+msgstr "Назва"
+
+#: ./application/modules/rss/templates/admin/settings.tpl:31
+msgid "Description"
+msgstr "Опис"
+
+#: ./application/modules/rss/templates/admin/settings.tpl:37
+msgid "Categories"
+msgstr "Категорії"
+
+#: ./application/modules/rss/templates/admin/settings.tpl:40
+msgid "Without a category"
+msgstr "Без категорії"
+
+#: ./application/modules/rss/templates/admin/settings.tpl:44
+msgid "Choose transmition categories"
+msgstr "Вибрати категорії для сповіщення"
+
+#: ./application/modules/rss/templates/admin/settings.tpl:48
+msgid "Number of pages"
+msgstr "Кількість сторінок"
+
+#: ./application/modules/rss/templates/admin/settings.tpl:51
+msgid "Specify the number of pages for display"
+msgstr "Вказати число сторінок для відображення"
+
+#: ./application/modules/rss/templates/admin/settings.tpl:55
+msgid "Cache"
+msgstr "Кеш"
+
+#: ./application/modules/rss/templates/admin/settings.tpl:58
+msgid "Specify caсhe lifetime in minutes"
+msgstr "Вкажіть час життя кешу в хвилинах"

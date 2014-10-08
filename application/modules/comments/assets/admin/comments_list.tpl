@@ -22,7 +22,7 @@ langs["Show answers"] = '<?php echo lang("Show answers", "comments")?>';
                         <li><a href="#" class="to_approved">{lang('In approve', 'comments')}</a></li>
                     </ul>
                 </div>
-                <button type="button" class="btn btn-small btn-danger disabled action_on" id="comment_delete"><i class="icon-trash icon-white"></i>{lang("Delete", 'comments')}</button>
+                <button type="button" class="btn btn-small btn-danger disabled action_on" id="comment_delete"><i class="icon-trash"></i>{lang("Delete", 'comments')}</button>
                 <a class="btn btn-small pjax" href="/admin/components/cp/comments/show_settings"><i class="icon-wrench"></i>{lang('Settings', 'comments')}</a>
             </div>
         </div>    
@@ -61,7 +61,7 @@ langs["Show answers"] = '<?php echo lang("Show answers", "comments")?>';
         {if count($comments) > 0 AND is_array($comments)}
             <div class="tab-pane active" id="modules">
                 <div class="row-fluid">
-                    <table class="table table-striped table-bordered table-hover table-condensed">
+                    <table class="table  table-bordered table-hover table-condensed">
                         <thead>
                             <tr>
                                 <th class="t-a_c span1">

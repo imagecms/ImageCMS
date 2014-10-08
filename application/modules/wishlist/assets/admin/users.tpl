@@ -35,16 +35,15 @@
                             class="btn btn-small btn-danger disabled action_on"
                             id="trash_del"
                             onclick="delete_function.deleteFunction()">
-                        <i class="icon-trash icon-white"></i>{lang('Delete', 'wishlist')}
+                        <i class="icon-trash"></i>{lang('Delete', 'wishlist')}
                     </button>
                 </div>
             </div>
         </div>
-        <div class="content_big_td row-fluid">
-
+        <div class="row-fluid">
             <div class="tab-content">
                 <div class="tab-pane active" id="users">
-                    <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                    <table class="table  table-bordered table-hover table-condensed t-l_a">
                         <thead>
                             <tr>
                                 <th class="t-a_c span1">

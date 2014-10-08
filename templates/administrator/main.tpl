@@ -4,10 +4,9 @@
         <title>{lang("Operation panel","admin")} | Image CMS</title>
         <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
         <meta name="description" content="{lang("Operation panel","admin")} - Image CMS" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="generator" content="ImageCMS">
 
-        <link rel="icon" type="image/x-icon" href="{$THEME}images/favicon.png"/>
+        <link rel="icon" type="image/x-icon" href="{$THEME}images/{if MAINSITE}premmerce_{/if}favicon.png"/>
 
         <link rel="stylesheet" type="text/css" href="{$THEME}css/bootstrap_complete.css">
         <link rel="stylesheet" type="text/css" href="{$THEME}css/style.css">
@@ -24,6 +23,7 @@
 
         <link rel="stylesheet" type="text/css" href="{$JS_URL}/elfinder-2.0/css/elfinder.min.css" media="screen" charset="utf-8">
         <link rel="stylesheet" type="text/css" href="{$JS_URL}/elfinder-2.0/css/theme.css" media="screen" charset="utf-8">
+        <script src="{$THEME}js/jquery-1.8.2.min.js" type="text/javascript"></script>
     </head>
     <body>
         {literal}
@@ -118,35 +118,37 @@
         {/if}
         {if !SHOP_INSTALLED}
             <div class="imagecms-top-fixed-header{if $_COOKIE['condPromoToolbar'] == '1' || $_COOKIE['condPromoToolbar'] == NULL} imagecms-active{/if}">
-                <div class="container">
-                    <button type="button" class="imagecms-close" {if $_COOKIE['condPromoToolbar'] == '1' || $_COOKIE['condPromoToolbar'] == NULL}style="display: block;"{/if} onclick="setCookie('condPromoToolbar', '0');
+                <div class="imagecms-inside">
+                    <div class="container">
+                        <button type="button" class="imagecms-close" {if $_COOKIE['condPromoToolbar'] == '1' || $_COOKIE['condPromoToolbar'] == NULL}style="display: block;"{/if} onclick="setCookie('condPromoToolbar', '0');
                                 $('.imagecms-top-fixed-header').removeClass('imagecms-active');
                                 $(this).hide().next().show();
                                 $(window).scroll();">
-                        <span class="imagecms-toggle-close-text imagecms-bar-close-text"><span style="font-size: 14px;">↑</span> {lang('Hide', 'admin')}</span>
-                    </button>
-                    <button type="button" class="imagecms-close" {if $_COOKIE['condPromoToolbar'] == '0'}style="display: block;"{/if} onclick="setCookie('condPromoToolbar', '1');
+                            <span class="imagecms-toggle-close-text imagecms-bar-close-text"><span style="font-size: 14px;">↑</span> {lang('Hide', 'admin')}</span>
+                        </button>
+                        <button type="button" class="imagecms-close" {if $_COOKIE['condPromoToolbar'] == '0'}style="display: block;"{/if} onclick="setCookie('condPromoToolbar', '1');
                                 $('.imagecms-top-fixed-header').addClass('imagecms-active');
                                 $(this).hide().prev().show();
                                 $(window).scroll();">
-                        <span class="imagecms-toggle-close-text imagecms-bar-show-text"><span style="font-size: 14px;">↓</span> {lang('Show', 'admin')}</span>
-                    </button>
-                    <div class="imagecms-buy-license">
-                        <a href="http://www.imagecms.net/download/corporate" target="_blank" onclick="_gaq.push(['_trackEvent', 'demo-admin', '/download/corporate']);">
-                            <span class="imagecms-text-el">Скачать бесплатно</span>
-                        </a>
+                            <span class="imagecms-toggle-close-text imagecms-bar-show-text"><span style="font-size: 14px;">↓</span> {lang('Show', 'admin')}</span>
+                        </button>
+                        <div class="imagecms-buy-license">
+                            <a href="http://www.imagecms.net/download/corporate" target="_blank" onclick="_gaq.push(['_trackEvent', 'demo-admin', '/download/corporate']);">
+                                <span class="imagecms-text-el">Скачать бесплатно</span>
+                            </a>
+                        </div>
+                        <ul class="imagecms-list">
+                            <li>
+                                <a href="http://www.imagecms.net/free-cms-corporate" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demo-admin', '/free-cms-corporate']);">Обзор продукта</a>
+                            </li>
+                            <li>
+                                <a href="http://www.imagecms.net/corporate-bazovye-vozmozhnosti" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demo-admin', '/corporate-bazovye-vozmozhnosti']);">Базовые возможности</a>
+                            </li>
+                            <li>
+                                <a href="http://www.imagecms.net/blog" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demo-admin', '/blog']);">Блог</a>
+                            </li>
+                        </ul>
                     </div>
-                    <ul class="imagecms-list">
-                        <li>
-                            <a href="http://www.imagecms.net/free-cms-corporate" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demo-admin', '/free-cms-corporate']);">Обзор продукта</a>
-                        </li>
-                        <li>
-                            <a href="http://www.imagecms.net/corporate-bazovye-vozmozhnosti" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demo-admin', '/corporate-bazovye-vozmozhnosti']);">Базовые возможности</a>
-                        </li>
-                        <li>
-                            <a href="http://www.imagecms.net/blog" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demo-admin', '/blog']);">Блог</a>
-                        </li>
-                    </ul>
                 </div>
             </div>
         {/if}
@@ -162,64 +164,127 @@
                         {else:}
                             <a href="/admin/dashboard" class="logo pull-left pjax">
                             {/if}
-                            <img src="{$THEME}img/logo.png"/>
+                            <span class="helper"></span>
+                            <img src="{$THEME}img/logo_new.png"/>
+                            {/*<img src="{$THEME}img/logo_premmerce.png"/>*/}
                         </a>
 
                         {if $CI->dx_auth->is_logged_in()}
-                            <div class="pull-right span4">
-                                <div class="clearfix">
-                                    <span class="m-r_10">
-                                        {lang("Hello","admin")},
-                                        {if $CI->dx_auth->get_username()}
-                                            <a href="
-                                               {if SHOP_INSTALLED}/admin/components/run/shop/users/edit/{echo $CI->dx_auth->get_user_id()}
-                                               {else:}/admin/components/cp/user_manager/edit_user/{echo $CI->dx_auth->get_user_id()}
-                                               {/if}"
-                                               id="user_name">
-                                                {echo $CI->dx_auth->get_username()}
-                                            </a>
-                                            <a href="/admin/logout">
-                                                <i class="my_icon exit_ico"></i>
-                                            </a>
+                            <div class="pull-right span4 f-s_0 right-header">
+                                <span class="helper"></span>
+                                <ul class="d_i-b f-s_0">
+                                    {if MAINSITE}
+                                        {if !$isfree}
+                                            <li class="btn_header {if $daysLeft <= 5}btn_header-danger{/if}">
+                                                <button type="button">
+                                                    <span class="text-el">{$daysLeft} {lang("days left", "admin")}</span>
+                                                </button>
+                                            </li>
                                         {else:}
-                                            {echo lang("Guest","admin")}
+                                            <li class="btn_header">
+                                                <button type="button">
+                                                    <span class="text-el">{lang("Free tarif", "admin")}</span>
+                                                </button>
+                                            </li>
                                         {/if}
-                                    </span>
-                                    <span class="m-l_10">{lang('Preview','admin')} <a href="{$BASE_URL}" target="_blank">{lang('site','admin')} <span class="f-s_14">→</span></a></span>
-                                </div>
-                                <form method="get" action="{if $ADMIN_URL}/admin/components/run/shop/search/advanced{else:}/admin/admin_search{/if}" id="adminAdvancedSearch">
-                                    <div class="input-append search">
-                                        <button id="adminSearchSubmit" type="submit" class="btn pull-right"><i class="icon-search"></i></button>
-                                        <div class="o_h">
-                                            <input id="{if $ADMIN_URL}shopSearch{else:}baseSearch{/if}" name="q" size="16" type="text"  autocomplete="off" tabindex="1" value="{$_GET['q']}">
-                                        </div>
-                                    </div>
-                                </form>
+                                    {/if}
+                                    {/* <li class="btn_header btn-mail">
+                                    <li class="btn_header">
+                                        <button type="button">
+                                            <span class="text-el">{lang("14 days left", "admin")}</span>
+                                        </button>
+                                    </li>
+                                    <li class="btn_header btn_header-danger">
+                                        <button type="button">
+                                            <span class="text-el">{lang("5 days left", "admin")}</span>
+                                        </button>
+                                    </li>
+                                    <li class="btn_header">
+                                        <button type="button">
+                                            <span class="text-el">{lang("Free tarif", "admin")}</span>
+                                        </button>
+                                    </li>
+                                    <li class="btn_header btn-mail">
+                                        <a href="#">
+                                            <span class="icon_mail">
+                                                <span class="badge badge-important">25</span>
+                                            </span>
+                                        </a>
+                                    </li> */}
+
+                                    <li class="dropdown d-i_b v-a_m">
+                                        <a data-toggle="dropdown" class="btn_header btn-personal-area">
+                                            <span>
+                                                <span class="icon_person"></span>
+                                                <span class="icon_arrow"></span>
+                                            </span>
+                                        </a>
+                                        <ul class="frame-dropdown dropdown-menu">
+                                            <li class="head">
+                                                {if $CI->dx_auth->get_username()}
+                                                    {echo $CI->dx_auth->get_username()}
+                                                {else:}
+                                                    {echo lang("Guest","admin")}
+                                                {/if}
+                                            </li>
+                                            {if $CI->dx_auth->get_username()}
+                                                <li>
+                                                    <a href="
+                                                       {if SHOP_INSTALLED}/admin/components/run/shop/users/edit/{echo $CI->dx_auth->get_user_id()}
+                                                       {else:}/admin/components/cp/user_manager/edit_user/{echo $CI->dx_auth->get_user_id()}
+                                                       {/if}"
+                                                       id="user_name">
+                                                        {lang("Personal data", "admin")}
+                                                    </a>
+                                                </li>
+                                            {/if}
+                                            <li>
+                                                <a href="/admin/logout">
+                                                    {lang("Exit", "admin")}
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="btn_header">
+                                        <a href="{$BASE_URL}" target="_blank">
+                                            <span class="icon_on-site"></span>
+                                            <span class="text-el">{lang('To the site','admin')}</span>
+                                        </a>
+                                    </li>
+                                </ul>
                             </div>
-
-
-
                             {if SHOP_INSTALLED}
-                                <div class="btn-group" id="topPanelNotifications" style="display: block;">
-                                    <div class="span4 d-i_b">
-                                        <a href="/admin/components/run/shop/orders/index" class=" pjax btn btn-large" data-title="{lang('Orders','admin')}" data-rel="tooltip" data-original-title="{lang('Orders','admin')}">
-                                            <i class="icon-bask "></i>
+                                <div class="frame-quick-access f-s_0" id="topPanelNotifications" style="display: block;">
+                                    <span class="helper"></span>
+                                    <div class="d-i_b">
+                                        <a href="/admin/components/run/shop/orders/index" class="btn-quick-access pjax">
+                                            <span class="frame-icon">
+                                                <i class="icon-bask"></i>
+                                            </span>
+                                            <span class="text-el">{lang('Orders','admin')}</span>
                                         </a>
-                                        <a href="#" class="btn btn-large pjax" data-title="{lang("Products without icons","admin")}" data-rel="tooltip" data-original-title="">
-                                            <i class="icon-report_exists"></i>
+                                        <a href="/admin/components/cp/comments" class="btn-quick-access pjax">
+                                            <span class="frame-icon">
+                                                <i class="icon-comment_head"></i>
+                                            </span>
+                                            <span class="text-el">{lang("Comments","admin")}</span>
                                         </a>
-                                        <a href="#" class="btn btn-large pjax" data-title="Callback" data-rel="tooltip" data-original-title="Callback">
-                                            <i class="icon-callback "></i>
+                                        <a href="#" class="btn-quick-access pjax">
+                                            <span class="frame-icon">
+                                                <i class="icon-report_exists"></i>
+                                            </span>
+                                            <span class="text-el">{lang("No photo","admin")}</span>
                                         </a>
-                                        <a href="/admin/components/cp/comments" class="btn btn-large pjax" data-title="{lang("Latest/recent comments","admin")}" data-rel="tooltip" data-original-title="{lang("Latest/recent comments","admin")}">
-                                            <i class="icon-comment_head "></i>
+                                        <a href="#" class="btn-quick-access pjax">
+                                            <span class="frame-icon">
+                                                <i class="icon-callback"></i>
+                                            </span>
+                                            <span class="text-el">{lang("Callback", "admin")}</span>
                                         </a>
                                     </div>
                                 </div>
                             {/if}
                         {/if}
-
-
                 </section>
             </header>
             {if $CI->dx_auth->is_logged_in()}
@@ -230,20 +295,19 @@
                         {include('templates/administrator/inc/menus.php');}
                     {/if}
                     {if !SHOP_INSTALLED}
-                        <div class="container" id="baseAdminMenu">
-                            <nav class="navbar navbar-inverse">
-                                <ul class="nav">
+                        <table class="container" id="baseAdminMenu">
+                            <tbody class="navbar navbar-inverse">
+                                <tr>
                                     {foreach $baseMenu as $li}
-                                        <li class="{$li.class} {if $li.subMenu} dropdown{/if}">
-                                            {if $li.subMenu}
-                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="{$li.icon}"></i>{echo (bool)$li.text?$li.text:$li.text}<b class="caret"></b></a>
+                                        {if $li.subMenu}
+                                            <td class="{$li.class} {if $li.subMenu} dropdown{/if}">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{echo (bool)$li.text?$li.text:$li.text}</a>
                                                 <ul class="dropdown-menu">
                                                     {foreach $li.subMenu as $sli}
                                                         {if $sli.menusList}
                                                             {if !$menus}
                                                                 {$CI->load->module('menu'); $menus=$CI->menu->get_all_menus()}
                                                             {/if}
-
                                                             <li><a href="/admin/components/cp/menu/index" class="pjax">{lang("Management","admin")}</a></li>
                                                             <li class="divider"></li>
                                                                 {foreach $menus as $menu}
@@ -262,252 +326,253 @@
                                                         <li {if $sli.divider} class="divider"{/if}{if $sli.header} class="nav-header"{/if}>
                                                             {if $sli.link || $sli.id}
                                                                 <a 
-                                                                {if $sli.link} href="{site_url($sli.link)}" {/if}
-                                                            {if $sli.id} id="{$sli.id}" {/if}
-                                                        {if $sli.pjax !== FALSE} class="pjax" {/if}
-                                                        >
-                                                        {echo (bool)$sli.text?$sli.text:$sli.text}
-                                                    </a>
-                                                {else:}
-                                                    {echo (bool)$sli.text ? $sli.text : $sli.text}
-                                                {/if}
-                                            </li>
+                                                                    {if $sli.link} href="{site_url($sli.link)}" {/if}
+                                                                    {if $sli.id} id="{$sli.id}" {/if}
+                                                                    {if $sli.pjax !== FALSE} class="pjax" {/if}
+                                                                    >
+                                                                    {echo (bool)$sli.text?$sli.text:$sli.text}
+                                                                </a>
+                                                            {else:}
+                                                                {echo (bool)$sli.text ? $sli.text : $sli.text}
+                                                            {/if}
+                                                        </li>
 
 
-                                        {/foreach}
-                                    </ul>
-                                {else:}
-                                    <a href="{$li.link}" class="pjax">
-                                        <i class="{$li.icon}"></i>
-                                        <span>{$li.text}</span>
-                                    </a>
-                                {/if}
-                            </li>
-                        {/foreach}
-                    </ul>
+                                                    {/foreach}
+                                                </ul>
+                                            </td>
+                                        {/if}
+                                    {/foreach}
+                                </tr>
 
-                    {//if SHOP_INSTALLED}
-                       <!-- <a class="btn btn-small pull-right btn-info" onclick="loadShopInterface();" href="#">{lang('Manage shop','admin')}<span class="f-s_14">→</span></a>-->
-                    {///if}
-                    {$CI->lang->load($langDomain)}
-                </nav>
-            </div>
-        {/if}
-        {if SHOP_INSTALLED}
-            <div class="container" >
-                <nav class="navbar navbar-inverse">
-                    <ul class="nav">
-                        {foreach $shopMenu as $li}
-                            <li class="{$li.class} {if $li.subMenu} dropdown{/if}">
-                                {if $li.subMenu}
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="{$li.icon}"></i>{echo (bool)$li.text?$li.text:$li.text}<b class="caret"></b></a>
-                                    <ul class="dropdown-menu">
-                                        {foreach $li.subMenu as $sli}
-                                            <li {if $sli.divider} class="divider"{/if}{if $sli.header} class="nav-header"{/if}>
-                                                {if $sli.link || $sli.id}
-                                                    <a 
-                                                    {if $sli.link} href="{site_url($sli.link)}" {/if}
-                                                {if $sli.id} id="{$sli.id}" {/if}
-                                            {if $sli.pjax !== FALSE} class="pjax" {/if}>
-                                            {echo (bool)$sli.text?$sli.text:$sli.text}
-                                        </a>
-                                    {else:}
-                                        {echo $sli.text?$sli.text:$sli.text}
-                                    {/if}
-
-                                </li>
-                                {if $sli.modulesList}
-                                    {if !$components}
-                                        {$CI->load->module('admin/components'); $components = $CI->components->find_components_for_menu_list(TRUE)}
-                                    {/if}
-                                    {foreach $components as $component}
-                                        <li><a href="/admin/components/cp/{echo $component['name']}" class="pjax">{echo $component['menu_name']}</a></li>
-                                        {/foreach}
-                                    <li class="divider"></li>
-                                    <li><a href="/admin/components/modules_table" class="pjax">{lang('All modules', 'admin')}</a></li>
-                                    {/if}
-
-                            {/foreach}
-                        </ul>
-                    {else:}
-                        <a href="{$li.link}" class="pjax">
-                            <i class="{$li.icon}"></i>
-                            <span>{$li.text}</span>
-                        </a>
+                                {//if SHOP_INSTALLED}
+                                <!-- <a class="btn btn-small pull-right btn-info" onclick="loadShopInterface();" href="#">{lang('Manage shop','admin')}<span class="f-s_14">→</span></a>-->
+                                {///if}
+                                {$CI->lang->load($langDomain)}
+                            </tbody>
+                        </table>
                     {/if}
-                </li>
-            {/foreach}
-        </ul>
-        <!--<a class="btn btn-small pull-right btn-info" onclick=" loadBaseInterface();"  href="#"><span class="f-s_14">←</span> {lang('Manage site','admin')} </a>-->
-    </nav>
-</div>
-{/if}
-</div>
-{/if}
-<div id="loading"></div>
-{$CI->lang->load($langDomain)}
-<div class="container" id="mainContent">
-    {$content}
-</div>
-{$CI->lang->load('admin')}
-<div class="hfooter"></div>
-</div>
-<footer>
-    <div class="container">
-        <div class="row-fluid">
-            <div class="span4">
-                {lang('Interface','admin')}:
-                {echo create_admin_language_select()}
+                    {if SHOP_INSTALLED}
+                        <table class="container" >
+                            <tbody>
+                                <tr>
+                                    {foreach $shopMenu as $li}
+                                        {if $li.subMenu}
+                                            <td class="{$li.class} {if $li.subMenu} dropdown{/if}">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{echo (bool)$li.text?$li.text:$li.text}</a>
+                                                <ul class="dropdown-menu">
+                                                    {foreach $li.subMenu as $sli}
+                                                        <li {if $sli.divider} class="divider"{/if}{if $sli.header} class="nav-header"{/if}>
+                                                            {if $sli.link || $sli.id}
+                                                                <a 
+                                                                    {if $sli.link} href="{site_url($sli.link)}" {/if}
+                                                                    {if $sli.id} id="{$sli.id}" {/if}
+                                                                    {if $sli.pjax !== FALSE} class="pjax" {/if}>
+                                                                    {echo (bool)$sli.text?$sli.text:$sli.text}
+                                                                </a>
+                                                            {else:}
+                                                                {echo $sli.text?$sli.text:$sli.text}
+                                                            {/if}
+
+                                                        </li>
+                                                        {if $sli.modulesList}
+                                                            {if !$components}
+                                                                {$CI->load->module('admin/components'); $components = $CI->components->find_components_for_menu_list(TRUE)}
+                                                            {/if}
+                                                            {foreach $components as $component}
+                                                                <li><a href="/admin/components/cp/{echo $component['name']}">{echo $component['menu_name']}</a></li>
+                                                            {/foreach}
+                                                            
+                                                                {if !MAINSITE}
+                                                                <li class="divider"></li>
+                                                                    <li><a href="/admin/components/modules_table" class="pjax">{lang('All modules', 'admin')}</a></li>
+                                                                {/if}
+                                                            {/if}
+
+                                                    {/foreach}
+                                                </ul>
+                                            </td>
+                                        {/if}
+                                    {/foreach}
+                                </tr>
+                                <!--<a class="btn btn-small pull-right btn-info" onclick=" loadBaseInterface();"  href="#"><span class="f-s_14">←</span> {lang('Manage site','admin')} </a>-->
+                            </tbody>
+                        </table>
+                    {/if}
+                </div>
+            {/if}
+            <div id="loading"></div>
+            {$CI->lang->load($langDomain)}
+            <div class="container" id="mainContent">
+                {literal}<script>setTimeout(function() {
+                        $('.mini-layout').css('padding-top', $('.frame_title:not(.no_fixed)').outerHeight());
+                    }, 0);</script>{/literal}
+                        {$content}
+                </div>
+                {$CI->lang->load('admin')}
+                <div class="hfooter"></div>
             </div>
-            <div class="span4 t-a_c">
-                {lang("Version","admin")}: <b>{echo getCMSNumber()}</b>
-                <div class="muted">{lang('Help us get better','admin')} - <a href="#" id="rep_bug">{lang('report an error','admin')}</a></div>
+            <footer>
+                <div class="container">
+                    <div class="row-fluid">
+                        <div class="span4">
+                            {lang('Interface','admin')}:
+                            {echo create_admin_language_select()}
+                        </div>
+                        <div class="span4 t-a_c">
+                            {if !defined('MAINSITE')}
+                                {lang("Version","admin")}: <b>{echo getCMSNumber()}</b>-->
+                            {/if}
+                            <div class="muted">{lang('Help us get better','admin')} - <a href="#" id="rep_bug">{lang('report an error','admin')}</a></div>
+                        </div>
+                        {if !define(MAINSITE)}
+                        <div class="span4 t-a_r">
+                            <div class="muted">Copyright © ImageCMS {echo date('Y')}</div>
+                            <a href="{if MAINSITE}http://docs.premmerce.com/{else:}http://docs.imagecms.net{/if}" target="blank">{lang('Documentation','admin')}</a>
+                        </div>
+                        {else:}
+                        <div class="span4 t-a_r">
+                            <div class="muted">Copyright © ImageCMS {echo date('Y')}</div>
+                            <a href="http://docs.premmerce.com" target="blank">{lang('Documentation','admin')}</a>
+                        </div>                        
+                        {/if}
+                    </div>
+                </div>
+            </footer>
+            <div id="elfinder"></div>
+            <div class="standart_form frame_rep_bug">
+                <form>
+                    <label>
+                        {lang('Your Name','admin')}:
+                        <input type=text name="name"/>
+                    </label>
+                    <label>
+                        {lang('Your Email','admin')}:
+                        <input type=text name="email"/>
+                    </label>
+                    <label>
+                        {lang('Your remark', "admin")}:
+                        <textarea name='text'></textarea>
+                    </label>
+                    <input type="submit" value="{lang("Send","admin")}" class="btn btn-info"/>
+                    <input type="button" value="{lang("Cancel","admin")}" class="btn btn-info" style="float:right" name="cancel_button"/>
+                    <input type="hidden" name='ip' value="{$_SERVER['REMOTE_ADDR']}" id="ip_address"/>
+                </form>
             </div>
-            <div class="span4 t-a_r">
-                <div class="muted">Copyright © ImageCMS {echo date('Y')}</div>
-                <a href="http://docs.imagecms.net" target="blank">{lang('Documentation','admin')}</a>
-            </div>
-        </div>
-    </div>
-</footer>
-<div id="elfinder"></div>
-<div class="standart_form frame_rep_bug">
-    <form>
-        <label>
-            {lang('Your Name','admin')}:
-            <input type=text name="name"/>
-        </label>
-        <label>
-            {lang('Your Email','admin')}:
-            <input type=text name="email"/>
-        </label>
-        <label>
-            {lang('Your remark', "admin")}:
-            <textarea name='text'></textarea>
-        </label>
-        <input type="submit" value="{lang("Send","admin")}" class="btn btn-info"/>
-        <input type="button" value="{lang("Cancel","admin")}" class="btn btn-info" style="float:right" name="cancel_button"/>
-        <input type="hidden" name='ip' value="{$_SERVER['REMOTE_ADDR']}" id="ip_address"/>
-    </form>
-</div>
-<script>
-    {$settings = $CI->cms_admin->get_settings();}
-                            var textEditor = '{$settings.text_editor}';
-                            var textEditor = '{$settings.text_editor}';
-    {if $CI->dx_auth->is_logged_in()}
-                            var userLogined = true;
-    {else:}
-                            var userLogined = false;
-    {/if}
+            <script>
+                {$settings = $CI->cms_admin->get_settings();}
+                var textEditor = '{$settings.text_editor}';
+                {if $CI->dx_auth->is_logged_in()}
+                var userLogined = true;
+                {else:}
+                var userLogined = false;
+                {/if}
+                var locale = '{echo $this->CI->config->item('language')}';
+                var base_url = "{site_url()}";
+            </script>
 
-                            var locale = '{echo $this->CI->config->item('language')}';
-                            var base_url = "{site_url()}";
-</script>
+            <script src="{$THEME}js/pjax/jquery.pjax.min.js" type="text/javascript"></script>
+            <script src="{$THEME}js/jquery-ui-1.8.23.custom.min.js" type="text/javascript"></script>
+            <script src="{$THEME}js/bootstrap.min.js" type="text/javascript"></script>
+            <script async="async" src="{$THEME}js/bootstrap-notify.js" type="text/javascript"></script>
+            <script src="{$THEME}js/jquery.form.js" type="text/javascript"></script>
 
-<script src="{$THEME}js/jquery-1.8.2.min.js" type="text/javascript"></script>
-<script src="{$THEME}js/pjax/jquery.pjax.min.js" type="text/javascript"></script>
-<script src="{$THEME}js/jquery-ui-1.8.23.custom.min.js" type="text/javascript"></script>
-<script src="{$THEME}js/bootstrap.min.js" type="text/javascript"></script>
-<script async="async" src="{$THEME}js/bootstrap-notify.js" type="text/javascript"></script>
-<script src="{$THEME}js/jquery.form.js" type="text/javascript"></script>
+            <script async="async" src="{$THEME}js/jquery-validate/jquery.validate.min.js" type="text/javascript"></script>
+            <script async="async" src="{$THEME}js/jquery-validate/jquery.validate.i18n.js" type="text/javascript"></script>
 
-<script async="async" src="{$THEME}js/jquery-validate/jquery.validate.min.js" type="text/javascript"></script>
-<script async="async" src="{$THEME}js/jquery-validate/jquery.validate.i18n.js" type="text/javascript"></script>
+            <script src="{$THEME}js/chosen.js" type="text/javascript"></script>
 
-<script src="{$THEME}js/chosen.js" type="text/javascript"></script>
+            <script src="{$THEME}js/functions.js" type="text/javascript"></script>
+            <script src="{$THEME}js/scripts.js" type="text/javascript"></script>
 
-<script src="{$THEME}js/functions.js" type="text/javascript"></script>
-<script src="{$THEME}js/scripts.js" type="text/javascript"></script>
-
-<script type="text/javascript" src="{$JS_URL}/elrte-1.3/js/elrte.min.js"></script>
-<script type="text/javascript" src="{$JS_URL}/elfinder-2.0/js/elfinder.min.js"></script>
+            <script type="text/javascript" src="{$JS_URL}/elrte-1.3/js/elrte.min.js"></script>
+            <script type="text/javascript" src="{$JS_URL}/elfinder-2.0/js/elfinder.min.js"></script>
 
 
-{if $this->CI->config->item('language') == 'russian'}
-    <script async="async" src="{$THEME}js/jquery-validate/messages_ru.js" type="text/javascript"></script>
-    <script type="text/javascript" src="{$JS_URL}/elrte-1.3/js/i18n/elrte.ru.js"></script>
-    <script type="text/javascript" src="{$JS_URL}/elfinder-2.0/js/i18n/elfinder.ru.js"></script>
-{/if}
+            {if $this->CI->config->item('language') == 'russian'}
+                <script async="async" src="{$THEME}js/jquery-validate/messages_ru.js" type="text/javascript"></script>
+                <script type="text/javascript" src="{$JS_URL}/elrte-1.3/js/i18n/elrte.ru.js"></script>
+                <script type="text/javascript" src="{$JS_URL}/elfinder-2.0/js/i18n/elfinder.ru.js"></script>
+            {/if}
 
-<script src="{$THEME}js/admin_base_i.js" type="text/javascript"></script>
-<script src="{$THEME}js/admin_base_m.js" type="text/javascript"></script>
-<script src="{$THEME}js/admin_base_r.js" type="text/javascript"></script>
-<script src="{$THEME}js/admin_base_v.js" type="text/javascript"></script>
-<script src="{$THEME}js/admin_base_y.js" type="text/javascript"></script>
-<script type="text/javascript" src="{$JS_URL}/tiny_mce/jquery.tinymce.js"></script>
-<script src="{$THEME}js/autosearch.js" type="text/javascript"></script>
+            <script src="{$THEME}js/admin_base_i.js" type="text/javascript"></script>
+            <script src="{$THEME}js/admin_base_m.js" type="text/javascript"></script>
+            <script src="{$THEME}js/admin_base_r.js" type="text/javascript"></script>
+            <script src="{$THEME}js/admin_base_v.js" type="text/javascript"></script>
+            <script src="{$THEME}js/admin_base_y.js" type="text/javascript"></script>
+            <script type="text/javascript" src="{$JS_URL}/tiny_mce/jquery.tinymce.js"></script>
+            <script src="{$THEME}js/autosearch.js" type="text/javascript"></script>
 
-<script>
-    {if $CI->uri->segment('4') == 'shop'}
-                            var isShop = true;
-    {else:}
-                            var isShop = false;
-    {/if}
-                            var lang_only_number = "{lang("numbers only","admin")}";
-                            var show_tovar_text = "{lang("show","admin")}";
-                            var hide_tovar_text = "{lang("don't show", 'admin')}";
-    {literal}
+            <script>
+                {if $CI->uri->segment('4') == 'shop'}
+                var isShop = true;
+                {else:}
+                var isShop = false;
+                {/if}
+                var lang_only_number = "{lang("numbers only","admin")}";
+                var show_tovar_text = "{lang("show","admin")}";
+                var hide_tovar_text = "{lang("don't show", 'admin')}";
+                {literal}
 
-                $(document).ready(function() {
+                    $(document).ready(function() {
 
-                    if (!isShop)
-                    {
-                        $('#shopAdminMenu').hide();
-                        //$('#topPanelNotifications').hide();
-                    }
-                    else
-                        $('#baseAdminMenu').hide();
-                })
-
-                function number_tooltip_live() {
-                    $('.number input').each(function() {
-                        $(this).attr({
-                            'data-placement': 'top',
-                            'data-title': lang_only_number
-                        });
-                    })
-                    number_tooltip();
-                }
-                function prod_on_off() {
-                    $('.prod-on_off').die('click').live('click', function() {
-                        var $this = $(this);
-                        if (!$this.hasClass('disabled')) {
-                            if ($this.hasClass('disable_tovar')) {
-                                $this.animate({
-                                    'left': '0'
-                                }, 200).removeClass('disable_tovar');
-                                if ($this.parent().data('only-original-title') == undefined) {
-                                    $this.parent().attr('data-original-title', show_tovar_text)
-                                    $('.tooltip-inner').text(show_tovar_text);
-                                }
-                                $this.next().attr('checked', true).end().closest('td').next().children().removeClass('disabled').removeAttr('disabled');
-                                if ($this.attr('data-page') != undefined)
-                                    $('.setHit, .setHot, .setAction').removeClass('disabled').removeAttr('disabled');
-                            }
-                            else {
-                                $this.animate({
-                                    'left': '-28px'
-                                }, 200).addClass('disable_tovar');
-                                if ($this.parent().data('only-original-title') == undefined) {
-                                    $this.parent().attr('data-original-title', hide_tovar_text)
-                                    $('.tooltip-inner').text(hide_tovar_text);
-                                }
-                                $this.next().attr('checked', false).end().closest('td').next().children().addClass('disabled').attr('disabled', 'disabled');
-                                if ($this.attr('data-page') != undefined)
-                                    $('.setHit, .setHot, .setAction').addClass('disabled').attr('disabled', 'disabled')
-                            }
+                        if (!isShop)
+                        {
+                            $('#shopAdminMenu').hide();
+                            //$('#topPanelNotifications').hide();
                         }
-                    });
-                }
-                $(window).load(function() {
-                    number_tooltip_live();
-                    prod_on_off();
-                })
-                base_url = '{/literal}{$BASE_URL}';
-                theme_url = '{$THEME}';
+                        else
+                            $('#baseAdminMenu').hide();
+                    })
 
-                var elfToken = '{echo $CI->lib_csrf->get_token()}';
-    </script>
-    <div id="jsOutput" style="display: none;"></div>
-</body>
-</html>
+                    function number_tooltip_live() {
+                        $('.number input').each(function() {
+                            $(this).attr({
+                                'data-placement': 'top',
+                                'data-title': lang_only_number
+                            });
+                        });
+                    }
+                    function prod_on_off() {
+                        $('.prod-on_off').die('click').live('click', function() {
+                            var $this = $(this);
+                            if (!$this.hasClass('disabled')) {
+                                if ($this.hasClass('disable_tovar')) {
+                                    $this.animate({
+                                        'left': '0'
+                                    }, 200).removeClass('disable_tovar');
+                                    if ($this.parent().data('only-original-title') == undefined) {
+                                        $this.parent().attr('data-original-title', show_tovar_text)
+                                        $('.tooltip-inner').text(show_tovar_text);
+                                    }
+                                    $this.next().attr('checked', true).end().closest('td').next().children().removeClass('disabled').removeAttr('disabled');
+                                    if ($this.attr('data-page') != undefined)
+                                        $('.setHit, .setHot, .setAction').removeClass('disabled').removeAttr('disabled');
+                                }
+                                else {
+                                    $this.animate({
+                                        'left': '-28px'
+                                    }, 200).addClass('disable_tovar');
+                                    if ($this.parent().data('only-original-title') == undefined) {
+                                        $this.parent().attr('data-original-title', hide_tovar_text)
+                                        $('.tooltip-inner').text(hide_tovar_text);
+                                    }
+                                    $this.next().attr('checked', false).end().closest('td').next().children().addClass('disabled').attr('disabled', 'disabled');
+                                    if ($this.attr('data-page') != undefined)
+                                        $('.setHit, .setHot, .setAction').addClass('disabled').attr('disabled', 'disabled')
+                                }
+                            }
+                        });
+                    }
+                    $(window).load(function() {
+                        number_tooltip_live();
+                        prod_on_off();
+                    })
+                    base_url = '{/literal}{$BASE_URL}';
+                        theme_url = '{$THEME}';
+
+                        var elfToken = '{echo $CI->lib_csrf->get_token()}';
+                </script>
+                <div id="jsOutput" style="display: none;"></div>
+            </body>
+        </html>

@@ -6,7 +6,7 @@
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <button class="btn btn-small btn-danger disabled action_on" id="del_in_search" onclick="$('.modal').modal();" disabled="disabled"><i class="icon-trash icon-white"></i>{lang("Delete", 'gallery')}</button>
+                <button class="btn btn-small btn-danger disabled action_on" id="del_in_search" onclick="$('.modal').modal();" disabled="disabled"><i class="icon-trash"></i>{lang("Delete", 'gallery')}</button>
                 <a href="/admin/components/init_window/gallery/show_create_category" class="btn btn-small pjax btn-success"><i class="icon-plus-sign icon-white"></i>{lang("Create a category", 'gallery')}</a>
                 <a href="/admin/components/init_window/gallery/show_crate_album" class="btn btn-small pjax btn-success pjax"><i class="icon-plus-sign icon-white"></i>{lang("Create an album", 'gallery')}</a>
                 <a href="/admin/components/cp/gallery/settings" class="btn btn-small pjax">{lang("Settings", 'gallery')}</a>
@@ -14,7 +14,7 @@
         </div>
     </div>
     {if $categories}
-        <table id="cats_table" class="table table-striped table-bordered table-hover table-condensed content_big_td t-l_a">
+        <table id="cats_table" class="table  table-bordered table-hover table-condensed t-l_a">
             <thead>
             <th class="t-a_c span1">
                 <span class="frame_label">

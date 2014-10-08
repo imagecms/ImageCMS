@@ -2,11 +2,11 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-05 11:24+0300\n"
-"PO-Revision-Date: 2014-06-05 11:24+0300\n"
-"Last-Translator:  \n"
-"Language-Team:  \n"
-"Language: en_US\n"
+"POT-Creation-Date: 2014-07-26 04:00+0300\n"
+"PO-Revision-Date: 2014-07-26 04:00+0300\n"
+"Last-Translator:  <>\n"
+"Language-Team:  <>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -17,3 +17,431 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+# ?
+#: ./application/modules/comments/assets/comments_api.tpl:34
+#: ./application/modules/comments/assets/comments_api.tpl:169
+msgid "Minuses"
+msgstr "Minuses"
+
+# ?
+#: ./application/modules/comments/templates/settings.tpl:38
+msgid "Comment frequency restriction per minute . O - check off"
+msgstr "Comment frequency restriction per minute . 0 - check off"
+
+# ?
+#: ./application/modules/comments/assets/comments_api.tpl:28
+#: ./application/modules/comments/assets/comments_api.tpl:163
+msgid "Pluses"
+msgstr "Pluses"
+
+#: ./application/modules/comments/templates/comments_list.tpl:20
+#: ./application/modules/comments/templates/comments_list.tpl:107
+#: ./application/modules/comments/templates/comments_list.tpl:206
+#: ./application/modules/comments/templates/comments_list.tpl:313
+msgid "Into spam"
+msgstr "Into spam"
+
+#: ./application/modules/comments/admin.php:256
+msgid "Comment(s) deleted"
+msgstr "Comment(s) deleted"
+
+#: ./application/modules/comments/commentsapi.php:175
+msgid "Leave a comment"
+msgstr "Leave a comment"
+
+#: ./application/modules/comments/comments_widgets.php:94
+#: ./application/modules/comments/comments_widgets.php:163
+msgid "Settings have been saved"
+msgstr "Settings have been saved"
+
+#: ./application/modules/comments/templates/comments_list.tpl:100
+#: ./application/modules/comments/templates/comments_list.tpl:196
+#: ./application/modules/comments/templates/comments_list.tpl:308
+#: ./application/modules/comments/templates/edit.tpl:12
+#: ./application/modules/comments/templates/recent_comments_form.tpl:10
+#: ./application/modules/comments/templates/recent_product_comments_form.tpl:10
+#: ./application/modules/comments/templates/settings.tpl:10
+msgid "Save"
+msgstr "Save"
+
+#: ./application/modules/comments/templates/comments_list.tpl:39
+msgid "Waiting for moderation"
+msgstr "Waiting for moderation"
+
+#: ./application/modules/comments/commentsapi.php:295
+msgid "Wrong code protection"
+msgstr "Wrong code protection"
+
+#: ./application/modules/comments/templates/recent_product_comments.tpl:1
+msgid "Recent reviews"
+msgstr "Recent reviews/Latest reviews"
+
+#: ./application/modules/comments/assets/comments_api.tpl:3
+msgid "log in"
+msgstr "Log in"
+
+#: ./application/modules/comments/comments.php:250
+msgid "Commenting on recording is prohibited."
+msgstr "Commenting on recording is prohibited."
+
+#: ./application/modules/comments/comments_widgets.php:151
+msgid "Number of responses"
+msgstr "Number of responses"
+
+#: ./application/modules/comments/comments_widgets.php:83
+#: ./application/modules/comments/comments_widgets.php:152
+msgid "Number of characters"
+msgstr "Number of characters"
+
+#: ./application/modules/comments/assets/comments_api.tpl:65
+msgid "Do not like it"
+msgstr "Do not like review"
+
+#: ./application/modules/comments/templates/settings.tpl:31
+msgid "O - unlimited comment length"
+msgstr "0 - unlimited comment length"
+
+#: ./application/modules/comments/templates/settings.tpl:70
+msgid "Use the protection code"
+msgstr "Use the protection code"
+
+#: ./application/modules/comments/templates/edit.tpl:54
+msgid "Pending approval"
+msgstr "Pending approval"
+
+#: ./application/modules/comments/templates/comments_list.tpl:26
+#: ./application/modules/comments/templates/edit.tpl:23
+#: ./application/modules/comments/templates/recent_comments_form.tpl:20
+#: ./application/modules/comments/templates/recent_product_comments_form.tpl:20
+msgid "Settings"
+msgstr "Settings"
+
+#: ./application/modules/comments/comments.php:370
+msgid "Fill text in comment."
+msgstr "Fill text in comment."
+
+#: ./application/modules/comments/templates/edit.tpl:6
+msgid "Comment editing"
+msgstr "Comment editing"
+
+#: ./application/modules/comments/templates/edit.tpl:36
+msgid "Author"
+msgstr "Author"
+
+#: ./application/modules/comments/commentsapi.php:175
+#: ./application/modules/comments/commentsapi.php:583
+#: ./application/modules/comments/commentsapi.php:587
+msgid "reviews"
+msgstr "Reviews"
+
+#: ./application/modules/comments/templates/settings.tpl:19
+msgid "Properties"
+msgstr "Properties"
+
+#: ./application/modules/comments/templates/comments_list.tpl:52
+#: ./application/modules/comments/templates/edit.tpl:55
+msgid "Spam"
+msgstr "Spam"
+
+#: ./application/modules/comments/admin.php:213
+msgid "Comment successfully updated"
+msgstr "Comment successfully updated"
+
+#: ./application/modules/comments/templates/edit.tpl:13
+#: ./application/modules/comments/templates/recent_product_comments_form.tpl:11
+msgid "Save and exit"
+msgstr "Save and exit"
+
+#: ./application/modules/comments/comments_widgets.php:82
+msgid "Number of comments"
+msgstr "Number of comments"
+
+#: ./application/modules/comments/templates/edit.tpl:43
+msgid "E-Mail"
+msgstr "E-mail"
+
+#: ./application/modules/comments/assets/comments_api.tpl:98
+msgid "Write your comment"
+msgstr "Write your comment"
+
+#: ./application/modules/comments/assets/comments_api.tpl:134
+#: ./application/modules/comments/assets/comments_api.tpl:210
+#: ./application/modules/comments/comments.php:269
+#: ./application/modules/comments/commentsapi.php:288
+msgid "Your name"
+msgstr "Your name"
+
+#: ./application/modules/comments/templates/settings.tpl:28
+msgid "Maximum comment length"
+msgstr "Maximum comment length"
+
+#: ./application/modules/comments/templates/comments_list.tpl:77
+msgid "User"
+msgstr "User"
+
+#: ./application/modules/comments/templates/edit.tpl:11
+#: ./application/modules/comments/templates/recent_comments_form.tpl:9
+#: ./application/modules/comments/templates/recent_product_comments_form.tpl:9
+#: ./application/modules/comments/templates/settings.tpl:9
+msgid "Back"
+msgstr "Back"
+
+#: ./application/modules/comments/templates/comments_list.tpl:31
+msgid "All comments"
+msgstr "All comments"
+
+#: ./application/modules/comments/assets/comments_api.tpl:3
+#: ./application/modules/comments/comments.php:241
+msgid "Only authorized users can leave comments."
+msgstr "Only authorized users can leave comments."
+
+#: ./application/modules/comments/templates/comments_list.tpl:25
+#: ./application/modules/comments/templates/comments_list.tpl:111
+#: ./application/modules/comments/templates/comments_list.tpl:210
+#: ./application/modules/comments/templates/comments_list.tpl:317
+msgid "Delete"
+msgstr "Delete"
+
+#: ./application/modules/comments/commentsapi.php:105
+#: ./application/modules/comments/commentsapi.php:587
+msgid "comments"
+msgstr "Comments"
+
+#: ./application/modules/comments/module_info.php:5
+msgid "User comments management module"
+msgstr "Comment management module"
+
+#: ./application/modules/comments/templates/settings.tpl:35
+msgid "Comment restrictions"
+msgstr "Comment restrictions"
+
+#: ./application/modules/comments/templates/comments_list.tpl:102
+#: ./application/modules/comments/templates/comments_list.tpl:200
+#: ./application/modules/comments/templates/comments_list.tpl:310
+msgid "Cancel"
+msgstr "Cancel"
+
+#: ./application/modules/comments/admin.php:233
+msgid "Status updated"
+msgstr "Status updated"
+
+#: ./application/modules/comments/templates/comments_list.tpl:74
+msgid "ID"
+msgstr "ID"
+
+#: ./application/modules/comments/comments.php:204
+#: ./application/modules/comments/commentsapi.php:79
+#: ./application/modules/comments/commentsapi.php:148
+msgid "Total comments: "
+msgstr "Total comments count"
+
+#: ./application/modules/comments/commentsapi.php:277
+msgid "minutes"
+msgstr "Minutes"
+
+#: ./application/modules/comments/assets/comments_api.tpl:127
+#: ./application/modules/comments/assets/comments_api.tpl:226
+msgid "The comment will be sent for moderation"
+msgstr "The comment will be sent for moderation"
+
+#: ./application/modules/comments/admin.php:119
+msgid "Next"
+msgstr "Next"
+
+#: ./application/modules/comments/templates/comments_list.tpl:109
+msgid "Waiting moderation"
+msgstr "Awaiting moderation"
+
+#: ./application/modules/comments/admin.php:315
+msgid "Changes saved"
+msgstr "Changes saved"
+
+#: ./application/modules/comments/templates/comments_list.tpl:208
+#: ./application/modules/comments/templates/comments_list.tpl:315
+msgid "Wait moderation"
+msgstr "Waiting for moderation"
+
+#: ./application/modules/comments/templates/comments_list.tpl:78
+msgid "User Email"
+msgstr "User e-mail "
+
+#: ./application/modules/comments/assets/comments_api.tpl:177
+#: ./application/modules/comments/comments.php:277
+#: ./application/modules/comments/comments.php:279
+#: ./application/modules/comments/commentsapi.php:297
+#: ./application/modules/comments/commentsapi.php:299
+msgid "Code protection"
+msgstr "Code protection"
+
+#: ./application/modules/comments/templates/comments_list.tpl:384
+msgid "No data has been found"
+msgstr "No data has been found"
+
+#: ./application/modules/comments/templates/settings.tpl:5
+msgid "Comment settings"
+msgstr "Comment settings"
+
+#: ./application/modules/comments/templates/edit.tpl:53
+msgid "Approved"
+msgstr "Approved"
+
+#: ./application/modules/comments/assets/comments_api.tpl:45
+msgid "Answer"
+msgstr "Answer"
+
+#: ./application/modules/comments/templates/comments_list.tpl:75
+msgid "Text"
+msgstr "Text"
+
+#: ./application/modules/comments/assets/comments_api.tpl:3
+msgid "please"
+msgstr "Please"
+
+#: ./application/modules/comments/templates/comments_list.tpl:22
+#: ./application/modules/comments/templates/comments_list.tpl:104
+#: ./application/modules/comments/templates/comments_list.tpl:203
+#: ./application/modules/comments/templates/comments_list.tpl:311
+msgid "In approve"
+msgstr "Approved"
+
+#: ./application/modules/comments/assets/comments_api.tpl:58
+msgid "Like review"
+msgstr "Like review"
+
+#: ./application/modules/comments/templates/comments_list.tpl:44
+msgid "Approval"
+msgstr "Approved"
+
+#: ./application/modules/comments/assets/comments_api.tpl:140
+#: ./application/modules/comments/assets/comments_api.tpl:216
+#: ./application/modules/comments/comments.php:268
+#: ./application/modules/comments/commentsapi.php:287
+msgid "Email"
+msgstr "E-mail"
+
+#: ./application/modules/comments/assets/comments_api.tpl:147
+#: ./application/modules/comments/comments.php:270
+#: ./application/modules/comments/commentsapi.php:289
+msgid "Site"
+msgstr "Site"
+
+#: ./application/modules/comments/assets/comments_api.tpl:188
+#: ./application/modules/comments/assets/comments_api.tpl:243
+#: ./application/modules/comments/commentsapi.php:105
+msgid "Leave comment"
+msgstr "Leave a comment"
+
+#: ./application/modules/comments/module_info.php:4
+#: ./application/modules/comments/templates/comments_list.tpl:9
+msgid "Comments"
+msgstr "Comments"
+
+#: ./application/modules/comments/comments.php:241
+msgid "log in, please."
+msgstr "Please log in"
+
+#: ./application/modules/comments/templates/edit.tpl:60
+msgid "Contents"
+msgstr "Contents"
+
+#: ./application/modules/comments/commentsapi.php:105
+#: ./application/modules/comments/commentsapi.php:105
+msgid "comment"
+msgstr "Comment"
+
+#: ./application/modules/comments/templates/comments_list.tpl:79
+msgid "Page"
+msgstr "Page"
+
+#: ./application/modules/comments/templates/comments_list.tpl:21
+msgid "In the waiting"
+msgstr "Waiting for moderation"
+
+#: ./application/modules/comments/templates/recent_comments_form.tpl:11
+msgid "Save and go back"
+msgstr "Save and go back"
+
+#: ./application/modules/comments/commentsapi.php:277
+msgid "The following comment can be left through"
+msgstr "The next comment can be left in"
+
+#: ./application/modules/comments/templates/recent_comments_form.tpl:34
+#: ./application/modules/comments/templates/recent_product_comments_form.tpl:34
+msgid "Maximum number of characters"
+msgstr "Maximum number of characters"
+
+#: ./application/modules/comments/admin.php:213
+#: ./application/modules/comments/admin.php:233
+msgid "Message"
+msgstr "Message"
+
+#: ./application/modules/comments/templates/settings.tpl:48
+msgid "Forbid comments for unregistered users"
+msgstr "Prohibit comments by unregistered users"
+
+#: ./application/modules/comments/assets/js/admin.js:22
+#: ./application/modules/comments/templates/comments_list.tpl:2
+msgid "Hide answers"
+msgstr "Hide answers"
+
+#: ./application/modules/comments/assets/comments_api.tpl:110
+msgid "Your rating"
+msgstr "Your rating"
+
+#: ./application/modules/comments/assets/js/admin.js:30
+#: ./application/modules/comments/templates/comments_list.tpl:3
+#: ./application/modules/comments/templates/comments_list.tpl:287
+msgid "Show answers"
+msgstr "Show answers"
+
+#: ./application/modules/comments/templates/comments_list.tpl:76
+msgid "Mark"
+msgstr "Mark"
+
+#: ./application/modules/comments/commentsapi.php:175
+#: ./application/modules/comments/commentsapi.php:175
+#: ./application/modules/comments/commentsapi.php:583
+#: ./application/modules/comments/commentsapi.php:583
+#: ./application/modules/comments/commentsapi.php:587
+msgid "review"
+msgstr "Review"
+
+#: ./application/modules/comments/templates/recent_comments_form.tpl:5
+#: ./application/modules/comments/templates/recent_product_comments_form.tpl:5
+msgid "Widget settings"
+msgstr "Widget settings"
+
+#: ./application/modules/comments/templates/settings.tpl:59
+msgid "Enable administrator comments approval"
+msgstr "Enable administrator to approve comments"
+
+#: ./application/modules/comments/admin.php:120
+msgid "Prev"
+msgstr "Prev"
+
+#: ./application/modules/comments/assets/comments_api.tpl:156
+#: ./application/modules/comments/assets/comments_api.tpl:234
+#: ./application/modules/comments/comments.php:282
+#: ./application/modules/comments/commentsapi.php:303
+#: ./application/modules/comments/commentsapi.php:305
+msgid "Comment"
+msgstr "Comment"
+
+#: ./application/modules/comments/templates/recent_comments_form.tpl:28
+#: ./application/modules/comments/templates/recent_product_comments_form.tpl:28
+msgid "Number of comments for display"
+msgstr "Number of comments for display"
+
+#: ./application/modules/comments/templates/comments_list.tpl:16
+#: ./application/modules/comments/templates/edit.tpl:50
+msgid "Status"
+msgstr "Status"
+
+#: ./application/modules/comments/comments.php:261
+msgid "Allowed to comment once in %s minutes."
+msgstr "Allowed to comment once in %s minutes."
+
+#: ./application/modules/comments/assets/comments_api.tpl:8
+msgid "Customer comments"
+msgstr "Customer comments"

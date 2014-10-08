@@ -36,13 +36,13 @@ class Admin extends BaseAdminController {
         if (!empty($data))
             $this->template->add_array($data);
 
-        $this->template->show('file:' . 'application/modules/rss/templates/admin/' . $viewName);
+                $this->template->show('file:' . realpath(dirname(__FILE__)) . '/templates/admin/' . $viewName);
         exit;
 
         if ($return === false)
-            $this->template->show('file:' . 'application/modules/rss/templates/admin/' . $viewName);
+            $this->template->show('file:' . realpath(dirname(__FILE__)) . '/templates/admin/' . $viewName);
         else
-            return $this->template->fetch('file:' . 'application/modules/rss/templates/admin/' . $viewName);
+            return $this->template->fetch('file:' . realpath(dirname(__FILE__)) . '/templates/admin/' . $viewName);
     }
 
     public function settings_update() {

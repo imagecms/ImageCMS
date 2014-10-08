@@ -26,7 +26,7 @@ class Components extends BaseAdminController {
         $this->load->library('lib_admin');
         $this->lib_admin->init_settings();
         $this->setInstalled();
-        $this->setNotPermited();
+        $this->setPermited();
     }
 
     function index() {
@@ -92,8 +92,8 @@ class Components extends BaseAdminController {
     private function isNotPermited($moduleName) {
         if (MAINSITE != '') {
             return !in_array($moduleName, $this->permited);
-        }  else {
-            return FALSE;    
+        } else {
+            return FALSE;
         }
     }
 
@@ -119,9 +119,10 @@ class Components extends BaseAdminController {
         $this->installed = $installed;
     }
 
-    private function setNotPermited() {
-        if (MAINSITE != '' and $this->load->module('saas')) {
-            $this->permited = $this->load->module('saas')->getPermited();
+    private function setPermited() {
+        if (MAINSITE != '' and $this->load->module('mainsaas')) {
+            $this->permited = $this->load->module('mainsaas')->getNotPermited();
+            $this->permited = array_map('trim', $this->permited);
         }
     }
 
@@ -351,8 +352,6 @@ class Components extends BaseAdminController {
     private function checkPerm($module) {
         if ($this->isNotPermited($module)) {
             $msg = lang("Error checking permissions");
-//            $this->template->assign('content', $msg);
-//            $msg = $this->template->fetch('main');
             die($msg);
         }
     }
@@ -427,7 +426,7 @@ class Components extends BaseAdminController {
 
     function run($module) {
         $this->checkPerm($module);
-        
+
         $func = $this->uri->segment(5);
         if ($func == FALSE) {
             $func = 'index';

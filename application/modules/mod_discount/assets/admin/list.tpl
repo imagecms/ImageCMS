@@ -8,7 +8,7 @@
             <div class="d-i_b">
                 <!--        <button title="Фильтровать" type="submit" class="btn btn-small"><i class="icon-filter"></i>Фильтр</button>
                         <a href="/admin/components/run/shop/search/index" title="Сбросить фильтр" type="button" class="btn btn-small pjax"><i class="icon-refresh"></i>Сбросить фильтр</a>-->
-                <a class="btn btn-small btn-success pjax" href="/admin/components/init_window/mod_discount/create"><i class="icon-plus-sign icon-white"></i>{lang('Create discount', 'mod_discount')}</a>
+                <a class="btn btn-small btn-success" href="/admin/components/init_window/mod_discount/create"><i class="icon-plus-sign icon-white"></i>{lang('Create discount', 'mod_discount')}</a>
             </div>
         </div>
         <div class="pull-right">
@@ -29,7 +29,7 @@
     </div>
     <div class="row-fluid">
         {if count($discountsList) > 0}
-            <table class="table table-striped table-bordered table-hover table-condensed discounts_table t-l_a">
+            <table class="table  table-bordered table-hover table-condensed discounts_table t-l_a">
                 <thead>
                     <tr style="cursor: pointer;">
                         <th>{lang('Key', 'mod_discount')}</th>
@@ -88,8 +88,8 @@
                                 </div>
                             </td>
                             <td>
-                                <button class="btn removeDiscountLink btn-small btn-danger">
-                                    <i class="icon-trash icon-white"></i>
+                                <button class="btn removeDiscountLink btn-small">
+                                    <i class="icon-trash"></i> 
                                 </button>
                             </td>
                         </tr>

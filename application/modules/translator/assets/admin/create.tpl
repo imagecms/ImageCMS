@@ -15,20 +15,20 @@
                     </a>
                 </div>
                 <div class="d-i_b">
-                    <button type="button" class="btn btn-small btn-success action_on formSubmit" data-form="#create_file_form">
+                    <button type="button" class="btn btn-small btn-primary action_on formSubmit" data-form="#create_file_form">
                         <i class="icon-ok"></i>
                         {lang('Save', 'translator')}
                     </button>
                     <button type="button" class="btn btn-small btn-success action_on formSubmit" data-action="showEdit" data-form="#create_file_form">
-                        <i class="icon-ok"></i>
+                        <i class="icon-ok icon-white"></i>
                         {lang('Save and Go to Edit', 'translator')}
                     </button>
                 </div>
             </div>
         </div>
-        <div class="content_big_td row-fluid">
+        <div class="row-fluid">
             <form method="post" action="{site_url('admin/components/init_window/translator/createFile')}" class="form-horizontal" id="create_file_form">
-                <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                <table class="table  table-bordered table-hover table-condensed content_big_td">
                     <thead>
                         <tr>
                             <th colspan="6">
@@ -116,7 +116,7 @@
                                         <label class="control-label" for="file">{lang('Paths', 'translator')}:</label>
                                         <div class="controls">
                                             <button type="button" onclick="CreatePoFile.addPath($(this))" class="createPagePathsAddButton disabled btn btn-small btn-success" style="float: left">
-                                                <i class="icon-plus"></i>
+                                                <i class="icon-plus icon-white"></i>
                                                 {lang('Add path', 'translator')}
                                             </button>
                                             <input type="text" class="createPagePathsAddInput" onkeypress="if (event.keyCode == 13)

@@ -22,7 +22,7 @@
         <div class="tab-content">
             <div class="tab-pane {if count($pages) || !count($users)} active {/if} " id="pages">
                 {if count($pages)}
-                    <table class="table table-striped table-bordered table-hover table-condensed pages-table t-l_a">
+                    <table class="table  table-bordered table-hover table-condensed pages-table t-l_a">
                         <thead>
                             <tr>
                                 <th class="span1">ID</th>
@@ -64,7 +64,7 @@
             <div class="tab-pane  {if !count($pages) && count($users)} active{/if}" id="users">
                 {if count($users)}
 
-                    <table class="table table-striped table-bordered table-hover table-condensed t-l_a" style="clear: both;">
+                    <table class="table  table-bordered table-hover table-condensed t-l_a" style="clear: both;">
                         <thead>
                             <tr>
                                 <th class="span1">{lang("ID","admin")}</th>

@@ -2,11 +2,11 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-05 11:24+0300\n"
-"PO-Revision-Date: 2014-06-05 11:24+0300\n"
-"Last-Translator:  \n"
-"Language-Team:  \n"
-"Language: en_US\n"
+"POT-Creation-Date: 2014-08-09 04:10+0300\n"
+"PO-Revision-Date: 2014-08-09 04:10+0300\n"
+"Last-Translator:  <>\n"
+"Language-Team:  <>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -17,3 +17,424 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+# ? (Андрій)
+#: ./application/modules/user_manager/templates/groups.tpl:2
+msgid "Preliminary contents"
+msgstr "Preliminary contents"
+
+#: ./application/modules/user_manager/admin.php:174
+#: ./application/modules/user_manager/admin.php:393
+#: ./application/modules/user_manager/templates/edit_user.tpl:48
+msgid "Phone"
+msgstr "Phone number"
+
+# ?
+#: ./application/modules/user_manager/admin.php:392
+#: ./application/modules/user_manager/admin.php:400
+msgid "amt_new_pass_confirm"
+msgstr "amt_new_pass_confirm"
+
+# ?
+#: ./application/modules/user_manager/admin.php:367
+msgid "amt_users_not_found"
+msgstr "amt_users_not_found"
+
+#: ./application/modules/user_manager/templates/edit_user.tpl:71
+msgid "Password confirm"
+msgstr "Password confirmation"
+
+# ?
+#: ./application/modules/user_manager/admin.php:390
+msgid "amt_user_login"
+msgstr "amt_user_login"
+
+#: ./application/modules/user_manager/templates/edit_user.tpl:57
+msgid "Without group"
+msgstr "No group"
+
+#: ./application/modules/user_manager/templates/edit_user.tpl:6
+msgid "User editing"
+msgstr "User editing"
+
+# ?
+#: ./application/modules/user_manager/admin.php:405
+msgid "amt_email_exists"
+msgstr "amt_email_exists"
+
+#: ./application/modules/user_manager/templates/groups_edit.tpl:6
+msgid "Editing Groups"
+msgstr "Group editing"
+
+#: ./application/modules/user_manager/templates/users_table_search.tpl:10
+msgid "Latest Entry or Last Entry"
+msgstr "Last Entry"
+
+# ?
+#: ./application/modules/user_manager/admin.php:391
+#: ./application/modules/user_manager/admin.php:399
+msgid "amt_password"
+msgstr "amt_password"
+
+# ?
+#: ./application/modules/user_manager/admin.php:349
+msgid "a_bas_filt_pass_not_post"
+msgstr "a_bas_filt_pass_not_post"
+
+#: ./application/modules/user_manager/templates/main.tpl:51
+msgid "Filter admin"
+msgstr "Filter"
+
+# ? (Оля)
+#: ./application/modules/user_manager/templates/main.tpl:9
+msgid "Remove selected users?"
+msgstr "Remove selected users?/ Delete selected users?"
+
+# ?
+#: ./application/modules/user_manager/admin.php:433
+msgid "amt_updated_user"
+msgstr "amt_updated_user"
+
+#: ./application/modules/user_manager/templates/edit_perms.tpl:64
+msgid "Cancel all"
+msgstr "Cancel all"
+
+#: ./application/modules/user_manager/templates/main.tpl:31
+msgid "User create"
+msgstr "Create a user"
+
+# ? (Оля)
+#: ./application/modules/user_manager/admin.php:204
+msgid "Create a user or the username has been created"
+msgstr "Create a user/ The username has been created"
+
+# ?
+#: ./application/modules/user_manager/admin.php:394
+msgid "amt_email"
+msgstr "amt_email"
+
+#: ./application/modules/user_manager/templates/create_user.tpl:39
+msgid "Email"
+msgstr "E-mail"
+
+#: ./application/modules/user_manager/templates/main.tpl:48
+#: ./application/modules/user_manager/templates/main.tpl:49
+msgid "Cancel filtering"
+msgstr "Cancel filtering"
+
+#: ./application/modules/user_manager/admin.php:170
+#: ./application/modules/user_manager/templates/users_table_search.tpl:5
+msgid "Login"
+msgstr "Login/ Log in"
+
+#: ./application/modules/user_manager/module_info.php:4
+msgid "Users manager"
+msgstr "User manager"
+
+#: ./application/modules/user_manager/templates/main.tpl:65
+msgid "User"
+msgstr "User"
+
+#: ./application/modules/user_manager/templates/create_group.tpl:6
+msgid "Creating a group"
+msgstr "Creating a group"
+
+#: ./application/modules/user_manager/admin.php:470
+msgid "amt_identif"
+msgstr "amt_identif"
+
+#: ./application/modules/user_manager/templates/create_group.tpl:11
+#: ./application/modules/user_manager/templates/groups.tpl:30
+#: ./application/modules/user_manager/templates/groups.tpl:49
+msgid "Create"
+msgstr "Create"
+
+#: ./application/modules/user_manager/templates/main.tpl:66
+msgid "E-mail"
+msgstr "E-mail"
+
+#: ./application/modules/user_manager/templates/create_group.tpl:24
+msgid "Group details"
+msgstr "Group details"
+
+#: ./application/modules/user_manager/module_info.php:5
+msgid "User management in ImageCMS Corporate."
+msgstr "User management in ImageCMS Corporate"
+
+#: ./application/modules/user_manager/templates/create_group.tpl:41
+#: ./application/modules/user_manager/templates/groups.tpl:8
+#: ./application/modules/user_manager/templates/groups.tpl:37
+#: ./application/modules/user_manager/templates/groups_edit.tpl:38
+#: ./application/modules/user_manager/templates/groups_edit.tpl:41
+msgid "Identifier"
+msgstr "Identifier"
+
+#: ./application/modules/user_manager/templates/main.tpl:68
+msgid "Banned"
+msgstr "Banned"
+
+#: ./application/modules/user_manager/templates/create_group.tpl:48
+#: ./application/modules/user_manager/templates/groups.tpl:9
+#: ./application/modules/user_manager/templates/groups.tpl:41
+#: ./application/modules/user_manager/templates/groups_edit.tpl:45
+msgid "Description"
+msgstr "Description"
+
+#: ./application/modules/user_manager/templates/create_group.tpl:44
+msgid "Only Latin characters"
+msgstr "Only Latin characters"
+
+#: ./application/modules/user_manager/templates/create_user.tpl:11
+#: ./application/modules/user_manager/templates/edit_user.tpl:10
+#: ./application/modules/user_manager/templates/main.tpl:30
+msgid "Back"
+msgstr "Back"
+
+#: ./application/modules/user_manager/templates/main.tpl:69
+#: ./application/modules/user_manager/templates/users_table_search.tpl:9
+msgid "Last IP"
+msgstr "Last IP"
+
+#: ./application/modules/user_manager/templates/create_user.tpl:26
+msgid "New user"
+msgstr "New user"
+
+#: ./application/modules/user_manager/templates/create_user.tpl:53
+msgid "Phone number"
+msgstr "Phone number"
+
+#: ./application/modules/user_manager/templates/create_user.tpl:46
+#: ./application/modules/user_manager/templates/edit_user.tpl:41
+msgid "Full name"
+msgstr "Full name"
+
+#: ./application/modules/user_manager/templates/main.tpl:79
+msgid "All groups"
+msgstr "All groups"
+
+#: ./application/modules/user_manager/admin.php:94
+msgid "Next"
+msgstr "Next"
+
+#: ./application/modules/user_manager/admin.php:488
+msgid "amt_group_created"
+msgstr "amt_group_created"
+
+#: ./application/modules/user_manager/admin.php:172
+#: ./application/modules/user_manager/templates/create_user.tpl:69
+msgid "Confirm the password"
+msgstr "Confirm the password"
+
+#: ./application/modules/user_manager/templates/main.tpl:125
+msgid "There are no results."
+msgstr "There are no results."
+
+#: ./application/modules/user_manager/admin.php:272
+msgid "The user has been unbanned "
+msgstr "The user has been unbanned"
+
+#: ./application/modules/user_manager/templates/create_user.tpl:12
+msgid "Сreate"
+msgstr "Сreate"
+
+#: ./application/modules/user_manager/admin.php:472
+msgid "amt_description"
+msgstr "amt_description"
+
+#: ./application/modules/user_manager/templates/create_group.tpl:12
+#: ./application/modules/user_manager/templates/create_user.tpl:13
+msgid "Create and exit"
+msgstr "Create and exit"
+
+#: ./application/modules/user_manager/admin.php:516
+msgid "amt_deleted_user"
+msgstr "amt_deleted_user"
+
+#: ./application/modules/user_manager/admin.php:208
+msgid "Username has been created or user has been created"
+msgstr "Username has been created/ User has been created"
+
+#: ./application/modules/user_manager/templates/create_group.tpl:10
+msgid "Go back"
+msgstr "Go back"
+
+#: ./application/modules/user_manager/templates/users_table_search.tpl:29
+msgid "Edit"
+msgstr "Edit"
+
+#: ./application/modules/user_manager/templates/create_group.tpl:35
+#: ./application/modules/user_manager/templates/groups.tpl:7
+#: ./application/modules/user_manager/templates/groups.tpl:33
+#: ./application/modules/user_manager/templates/groups_edit.tpl:32
+msgid "Name"
+msgstr "Name"
+
+#: ./application/modules/user_manager/templates/create_user.tpl:77
+#: ./application/modules/user_manager/templates/edit_perms.tpl:35
+#: ./application/modules/user_manager/templates/edit_user.tpl:54
+#: ./application/modules/user_manager/templates/genreroletable.tpl:20
+#: ./application/modules/user_manager/templates/main.tpl:67
+#: ./application/modules/user_manager/templates/users_table_search.tpl:7
+msgid "Group"
+msgstr "Group"
+
+#: ./application/modules/user_manager/templates/create_user.tpl:6
+msgid "Create a new user"
+msgstr "Create a new user"
+
+#: ./application/modules/user_manager/admin.php:95
+msgid "Prev"
+msgstr "Prev/ Previous"
+
+#: ./application/modules/user_manager/templates/edit_user.tpl:82
+msgid "Yes"
+msgstr "Yes"
+
+#: ./application/modules/user_manager/templates/create_user.tpl:80
+msgid "No group"
+msgstr "No group"
+
+#: ./application/modules/user_manager/templates/edit_user.tpl:87
+msgid "Ban Reason"
+msgstr "Ban Reason/ Ban reason"
+
+#: ./application/modules/user_manager/admin.php:171
+msgid "Password"
+msgstr "Password"
+
+#: ./application/modules/user_manager/templates/groups.tpl:2
+msgid "Group list"
+msgstr "Group list"
+
+#: ./application/modules/user_manager/templates/edit_perms.tpl:63
+#: ./application/modules/user_manager/templates/edit_user.tpl:11
+#: ./application/modules/user_manager/templates/genreroletable.tpl:2
+#: ./application/modules/user_manager/templates/groups_edit.tpl:11
+msgid "Save"
+msgstr "Save"
+
+#: ./application/modules/user_manager/templates/groups.tpl:30
+msgid "Options"
+msgstr "Options"
+
+#: ./application/modules/user_manager/admin.php:173
+#: ./application/modules/user_manager/templates/edit_user.tpl:34
+#: ./application/modules/user_manager/templates/users_table_search.tpl:6
+msgid "E-Mail"
+msgstr "E-mail"
+
+#: ./application/modules/user_manager/templates/groups_edit.tpl:10
+msgid "Return"
+msgstr "Return"
+
+#: ./application/modules/user_manager/admin.php:184
+msgid "User with the same e-mail has been registered"
+msgstr "User with the same e-mail has been registered"
+
+#: ./application/modules/user_manager/templates/main.tpl:6
+#: ./application/modules/user_manager/templates/main.tpl:18
+msgid "Deleting a user"
+msgstr "Deleting a user"
+
+#: ./application/modules/user_manager/templates/users_table_search.tpl:11
+msgid "Created"
+msgstr "Created"
+
+#: ./application/modules/user_manager/templates/main.tpl:13
+msgid "Cancel"
+msgstr "Cancel"
+
+#: ./application/modules/user_manager/templates/edit_perms.tpl:64
+msgid "Cancel selection"
+msgstr "Cancel selection"
+
+#: ./application/modules/user_manager/templates/create_user.tpl:60
+#: ./application/modules/user_manager/templates/edit_user.tpl:65
+msgid "New password"
+msgstr "New password"
+
+#: ./application/modules/user_manager/admin.php:263
+msgid "Ban the user  or the user has been banned"
+msgstr "Ban the user or the user has been banned"
+
+#: ./application/modules/user_manager/templates/main.tpl:38
+msgid "Users"
+msgstr "Users"
+
+#: ./application/modules/user_manager/templates/edit_user.tpl:12
+#: ./application/modules/user_manager/templates/groups_edit.tpl:12
+msgid "Save and exit"
+msgstr "Save and exit"
+
+#: ./application/modules/user_manager/templates/main.tpl:40
+msgid "Access rights differentiation system"
+msgstr "Access rights differentiation system"
+
+#: ./application/modules/user_manager/admin.php:437
+#: ./application/modules/user_manager/admin.php:542
+msgid "Changes saved"
+msgstr "Changes saved/ Changes have been saved"
+
+#: ./application/modules/user_manager/templates/genreroletable.tpl:8
+msgid "Properties"
+msgstr "Properties"
+
+#: ./application/modules/user_manager/templates/edit_user.tpl:21
+msgid "User data"
+msgstr "User data"
+
+#: ./application/modules/user_manager/templates/groups.tpl:38
+msgid "Just latin characters"
+msgstr "Only Latin characters"
+
+#: ./application/modules/user_manager/admin.php:471
+msgid "amt_tname"
+msgstr "amt_tname"
+
+#: ./application/modules/user_manager/templates/main.tpl:12
+#: ./application/modules/user_manager/templates/main.tpl:47
+msgid "Delete"
+msgstr "Delete"
+
+#: ./application/modules/user_manager/templates/edit_user.tpl:78
+#: ./application/modules/user_manager/templates/users_table_search.tpl:8
+msgid "Ban"
+msgstr "Ban"
+
+#: ./application/modules/user_manager/templates/main.tpl:32
+msgid "Create a Group"
+msgstr "Create a group"
+
+#: ./application/modules/user_manager/admin.php:487
+msgid "amt_created_group"
+msgstr "amt_created_group"
+
+#: ./application/modules/user_manager/templates/main.tpl:26
+msgid "Corporate site users"
+msgstr "Corporate site users"
+
+#: ./application/modules/user_manager/templates/edit_user.tpl:81
+msgid "No"
+msgstr "No"
+
+#: ./application/modules/user_manager/templates/groups_edit.tpl:21
+msgid "Group data"
+msgstr "Group data"
+
+#: ./application/modules/user_manager/admin.php:506
+msgid "a_del_user_notif"
+msgstr "a_del_user_notif"
+
+#: ./application/modules/user_manager/templates/main.tpl:39
+msgid "Groups"
+msgstr "Groups"
+
+#: ./application/modules/user_manager/templates/main.tpl:19
+msgid "Delete a user?"
+msgstr "Delete a user?"
+
+#: ./application/modules/user_manager/templates/groups.tpl:6
+#: ./application/modules/user_manager/templates/main.tpl:64
+#: ./application/modules/user_manager/templates/users_table_search.tpl:4
+msgid "ID"
+msgstr "ID"

@@ -7,7 +7,7 @@
         <div class="pull-right">
             <div class="d-i_b">
                 <a class="btn btn-small btn-success pjax" href="/admin/rbac/privilegeCreate" ><i class="icon-plus-sign icon-white"></i>{lang("Create privilege","admin")}</a>
-                <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="$('.modal').modal();"><i class="icon-trash icon-white"></i>{lang("Delete","admin")}</button>
+                <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="$('.modal').modal();"><i class="icon-trash"></i>{lang("Delete","admin")}</button>
             </div>
         </div>  
     </div>
@@ -16,7 +16,7 @@
             <div class="tab-pane active">
                 {foreach $groups as $key =>$group} 
                     <div class="span3">
-                        <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                        <table class="table  table-bordered table-hover table-condensed t-l_a">
                             <thead>
                                 <tr>
                                     <th class="t-a_c span1">

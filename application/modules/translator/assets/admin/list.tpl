@@ -108,7 +108,7 @@
                         {lang('Update', 'translator')}
                     </button>
                     <span class="btn-group">
-                        <button type="button" class="btn btn-small btn-info dropdown-toggle" data-toggle="dropdown" style="margin-top: -5px;">
+                        <button type="button" class="btn btn-small btn-info dropdown-toggle" data-toggle="dropdown">
                             <i class="icon-white icon-list"></i>
                             {lang('Others', 'translator')}<span class="caret"></span>
                         </button>
@@ -133,7 +133,7 @@
                 </div>
             </div>
         </div>
-        <div class="content_big_td row-fluid">
+        <div class="row-fluid">
             <div class="statistic">
                 <div class="statisticTitle">
                     <h5>
@@ -141,7 +141,7 @@
                     </h5>
                 </div>
                 <div class="pull-left">
-                    <table class=" table-hover table-bordered">
+                    <table class="table-hover table-bordered">
                         <tr>
                             <td style="width: 90px;"><b>{lang('All strings', 'translator')}:</b></td>
                             <td style="width: 50px; color: grey"><b><i class="allStringsCount"></i></b></td>
@@ -160,10 +160,10 @@
             </div>
             <br>
             <div class="tabbable"> <!-- Only required for left/right tabs -->
-                <ul class="nav nav-tabs">
-                    <li class="active"><a href="#poTab" data-toggle="tab">{lang('Translation file', 'translator')}</a></li>
-                    <li><a href="#poSettingsTab" id="settings" data-toggle="tab">{lang('Translation file settings', 'translator')}</a></li>
-                </ul>
+                <div class="myTab btn-group" data-toggle="buttons-radio">
+                    <a href="#poTab" class="btn btn-small active">{lang('Translation file', 'translator')}</a>
+                    <a href="#poSettingsTab" id="settings" class="btn btn-small">{lang('Translation file settings', 'translator')}</a>
+                </div>
 
                 <div class="tab-content">
                     <div class="tab-pane active" id="poTab">
@@ -233,7 +233,7 @@
                             </div>
                         </div>
                         <hr>
-                        <table id="po_table" class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                        <table id="po_table" class="table  table-bordered table-hover table-condensed t-l_a">
                             <thead>
                                 <tr>
                                     <th style="width: 50px">
@@ -325,7 +325,7 @@
                                     <a href="http://api.yandex.ru/translate/" target="blanck">{lang('Get Yandex Api key', 'translator')}</a>
                                 </label>
                                 <textarea class="YandexApiKey">{echo $settings['YandexApiKey']}</textarea>
-                                <button onclick="Translator.addYandexApiKey($(this))"  type="button" class="btn btn-small btn-success">
+                                <button onclick="Translator.addYandexApiKey($(this))"  type="button" class="btn btn-small btn-primary">
                                     <i class="icon-ok"></i>
                                     {lang('Save', 'translator')}
                                 </button>
@@ -334,10 +334,10 @@
                             <hr>
                         </div>
                         <form method="post" action="{site_url('admin/components/init_window/translator/createFile')}" class="form-horizontal" id="po_settings_form">
-                            <table style="width: 49%; float: left;" class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                            <table style="width: 49%; float: left;" class="table  table-bordered table-hover table-condensed content_big_td">
                                 <thead>
                                     <tr>
-                                        <th>
+                                        <th colspan="6">
                                             {lang('Translation file information', 'translator')}
                                         </th>
                                     </tr>
@@ -354,7 +354,7 @@
                             </table>
 
                             <br>
-                            <table style="width: 49%; float: right; margin-top: -28px;" class="po_path_table table table-striped table-bordered table-hover table-condensed t-l_a">
+                            <table style="width: 49%; float: right; margin-top: -28px;" class="po_path_table table  table-bordered table-hover table-condensed t-l_a">
                                 <caption>
                                     <b><h5>{lang('Searched langs paths', 'translator')}</h5></b>
                                 </caption>
@@ -376,7 +376,7 @@
                                 </tbody>
                             </table>
                             <button style="float: right" id="add" type="button" class="btn btn-small btn-success" onclick="Translator.addNewPath($(this))">
-                                <i class="icon-plus"></i>
+                                <i class="icon-plus icon-white"></i>
                                 {lang('Add', 'translator')}
                             </button>
 

@@ -11,7 +11,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">{lang("Close","Documentation")}</button>
-                <a href="/documentation/delete_page/{echo $page['id']}" class="btn btn-danger"/>{lang("Delete","Documentation")}</a>
+                <a href="/documentation/delete_page/{echo $page['id']}" class="btn"/>{lang("Delete","Documentation")}</a>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -183,7 +183,7 @@
     <!-- Start. Submit button-->
 
     <div class="buttonSave pull-right">
-        <a data-toggle="modal" href="#confirmDeletePage"  class="btn btn-danger"/>
+        <a data-toggle="modal" href="#confirmDeletePage"  class="btn"/>
         {lang('Delete','documentation')}
         </a>
         <button type="submit" class="btn btn-info">

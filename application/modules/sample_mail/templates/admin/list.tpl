@@ -33,10 +33,10 @@
                             class="btn btn-small btn-danger disabled action_on"
                             onclick="delete_function.deleteFunction()"
                             id="del_sel_property">
-                        <i class="icon-trash icon-white"></i>{lang('Delete', 'admin')}
+                        <i class="icon-trash"></i>{lang('Delete', 'admin')}
                     </button>
                     <a class="btn btn-small btn-success pjax" href="/admin/components/cp/sample_mail/create" >
-                        <i class="icon-list-alt icon-white"></i>Создать шаблон
+                        <i class="icon-plus-sign icon-white"></i>Создать шаблон
                     </a>
                 </div>
             </div>
@@ -45,7 +45,7 @@
             {if count($models)>0}
                 <div class="row-fluid">
                     <form method="post" action="#" class="form-horizontal">
-                        <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+                        <table class="table  table-bordered table-hover table-condensed">
                             <thead>
                                 <tr>
                                     <th class="t-a_c span1">

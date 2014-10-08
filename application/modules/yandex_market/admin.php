@@ -15,25 +15,53 @@ class Admin extends BaseAdminController {
             parent::__construct();
         }
         public function index() {
-            /** Get all Banners from DB */
-            /** Show Banners list */
+         
             \CMSFactory\assetManager::create()
-                    ->renderAdmin('list');
+                     ->renderAdmin('list');
         }
         
         public function update() {
         //Yandex market settings
         if($_POST['displayedCats']){
-            ShopCore::app()->SSettings->set('selectedProductCats',  serialize($this->input->post('displayedCats')));
+                $this->db->set('value', serialize($this->input->post('displayedCats')));
+                $this->db->where('id', 1);
+                $this->db->update('mod_yandex_market'); 
+          
         }else{
-             ShopCore::app()->SSettings->set('selectedProductCats',  null );
+                $this->db->set('value', '');
+                $this->db->where('id', 1);
+                $this->db->update('mod_yandex_market'); 
         }
         
         if($_POST['yandex']['isAdult']){
-            ShopCore::app()->SSettings->set('isAdult', 1); 
+                $this->db->set('value', 1);
+                $this->db->where('id', 1);
+                $this->db->update('mod_yandex_market_adalt'); 
+
         }else{
-            ShopCore::app()->SSettings->set('isAdult', 0); 
+                $this->db->set('value', 0);
+                $this->db->where('id', 1);
+                $this->db->update('mod_yandex_market_adalt');
         }
    }
+   
+
+        public function IsAdult() {
+            $this->db->select('value');
+            $this->db->where('id', 1); 
+            $query = $this->db->get('mod_yandex_market_adalt');
+                return $query->row_array();
+        } 
+        
+        public function getSelectedCats()
+        {
+            $this->db->select('value');
+            $this->db->where('id', 1); 
+            $query = $this->db->get('mod_yandex_market');
+            $arr = $query->row_array();
+            $arr = unserialize($arr['value']);
+                return $arr;
+        }        
+
 }
 /* End of file admin.php */

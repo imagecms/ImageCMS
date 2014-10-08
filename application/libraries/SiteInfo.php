@@ -50,7 +50,7 @@ class SiteInfo {
      * @param string $locale locale to intiate class with
      */
     public function __construct($locale = NULL) {
-
+        
         if ($this->useLocales == TRUE) {
             $this->locale = !is_null($locale) ? $locale : MY_Controller::getCurrentLocale();
         }

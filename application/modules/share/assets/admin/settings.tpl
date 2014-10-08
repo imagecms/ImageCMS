@@ -8,7 +8,7 @@
             <div class="d-i_b">
                 <a href="{$BASE_URL}admin/components/modules_table/" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Go back", 'share')}</span></a>
                 <button type="button" class="btn btn-small formSubmit btn-primary" data-form="#widget_form"><i class="icon-ok"></i>{lang("Save", 'share')}</button>
-                <button type="button" class="btn btn-small formSubmit" data-form="#widget_form" data-action="tomain"><i class="icon-edit"></i>{lang("Save and go back", 'share')}</button>
+                <button type="button" class="btn btn-small formSubmit" data-form="#widget_form" data-action="tomain"><i class="icon-check"></i>{lang("Save and go back", 'share')}</button>
             </div>
         </div>                            
     </div>
@@ -20,7 +20,7 @@
         <div class="tab-content">
             <div class="tab-pane active" id="likes">
                 <div class="row-fluid">
-                    <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+                    <table class="table  table-bordered table-hover table-condensed content_big_td">
                         <thead>
                         <th>{lang("Settings", 'share')}</th>
                         </thead>
@@ -151,7 +151,7 @@
             </div>
             <div class="tab-pane" id="share_buttons">
                 <div class="row-fluid">
-                    <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+                    <table class="table  table-bordered table-hover table-condensed content_big_td">
                         <thead>
                         <th>{lang("Settings", 'share')}</th>
                         </thead>

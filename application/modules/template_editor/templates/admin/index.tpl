@@ -1,13 +1,9 @@
 <script type="text/javascript" src="/js/ace/src/ace.js" ></script>
 <section class="mini-layout">
     <div class="frame_title clearfix">
-        <div class="pull-left w-s_n">
-            <span class="help-inline"></span>
-            <span class="title w-s_n"></span>
-        </div>
-
         <div class="pull-left">
             <span class="title">
+                <span class="help-inline"></span>
                 {lang('Template editor', 'template_editor')}
             </span>
         </div>
@@ -17,7 +13,7 @@
             </div>
         </div>                            
     </div>               
-    <div class="tab-content content_big_td" style="font-size: 20px;">                
+    <div class="tab-content" style="font-size: 20px;">                
         <style type="text/css">
             {literal}
                 .elfinder-contextmenu .elfinder-contextmenu-item span
@@ -25,11 +21,8 @@
             {/literal}
         </style>
         <div id="elFinderTPLEd"></div>
-
     </div>
-
 </section>
-
 
 <script type="text/javascript" src="/js/ace/src/mode-html.js" ></script>
 <script type="text/javascript" src="/js/ace/src/mode-css.js" ></script>
