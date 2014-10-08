@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-07 12:02+0300\n"
-"PO-Revision-Date: 2014-10-07 12:02+0300\n"
+"POT-Creation-Date: 2014-10-07 05:56+0300\n"
+"PO-Revision-Date: 2014-10-07 05:56+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -20,6 +20,10 @@ msgstr ""
 "X-Poedit-SearchPath-1: ../../../templates/administrator\n"
 "X-Poedit-SearchPath-2: ../../modules/shop/admin\n"
 "X-Poedit-SearchPath-3: ../../../application/modules/shop/models/build/classes\n"
+
+#: ./application/modules/shop/admin/templates/callbacks/list.tpl:64
+msgid "Does not have"
+msgstr "Немає"
 
 #: ./application/modules/shop/admin/products.php:143
 #: ./application/modules/shop/admin/products.php:322
@@ -44,7 +48,7 @@ msgstr "Створення статусу в очікуванні"
 
 #: ./templates/administrator/main.tpl:180
 msgid "days left"
-msgstr "днів залишилося"
+msgstr "днів залишилось"
 
 #: ./application/modules/shop/admin/templates/orders/edit.tpl:136
 #: ./application/modules/shop/admin/templates/orders/create.tpl:200
@@ -93,7 +97,7 @@ msgstr "Не вдалося знайти які-небудь властивос�
 msgid "File with the same name is already exist."
 msgstr "Файл з таким ім'ям вже існує"
 
-#: ./application/modules/shop/admin/currencies.php:226
+#: ./application/modules/shop/admin/currencies.php:229
 msgid "Unable to remove currency. The currency used in the payment methods."
 msgstr "Не вдається видалити валюти. Валюта, використовувана в способах оплати"
 
@@ -157,7 +161,7 @@ msgstr "Немає фото"
 msgid "A user with this email is already registered."
 msgstr "Користувач із таким email вже зареєстрований"
 
-#: ./application/modules/shop/admin/products.php:907
+#: ./application/modules/shop/admin/products.php:908
 msgid "Deleted complete"
 msgstr "Видалення завершено"
 
@@ -165,7 +169,7 @@ msgstr "Видалення завершено"
 msgid "Certificate (s) removed (s)"
 msgstr "Сертифікат(и) видалений(і)"
 
-#: ./application/modules/shop/admin/currencies.php:246
+#: ./application/modules/shop/admin/currencies.php:249
 msgid "Currency successfully removed"
 msgstr "Обмін успішно видалений"
 
@@ -220,7 +224,7 @@ msgstr "Профіль"
 msgid "Accessories"
 msgstr "Аксесуари"
 
-#: ./application/modules/shop/admin/currencies.php:216
+#: ./application/modules/shop/admin/currencies.php:219
 msgid "Unable to remove the main currency"
 msgstr "Неможливо видалити основний обмін"
 
@@ -253,7 +257,7 @@ msgstr "Видалення"
 msgid "You have changed the status of the certificate"
 msgstr "Ви змінили статус сертифіката"
 
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:218
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:219
 msgid "Comments buyer"
 msgstr "Зауваження покупця"
 
@@ -271,7 +275,7 @@ msgstr "мова"
 msgid "Category not found"
 msgstr "Категорію не знайдено"
 
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:236
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:237
 msgid "Ordered products"
 msgstr "Замовлені продукти"
 
@@ -321,7 +325,7 @@ msgstr "Властивість не знайдено"
 msgid "5 days left"
 msgstr "5 днів залишилося"
 
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:351
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:352
 msgid "The initial value of the goods"
 msgstr "Первісна вартість товарів"
 
@@ -337,7 +341,7 @@ msgstr "Список властивостей порожній"
 msgid "Visualization"
 msgstr "Візуалізація"
 
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:400
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:401
 msgid "Order status and history"
 msgstr "Статус замовлення та історія"
 
@@ -363,7 +367,7 @@ msgstr "Тема видалена"
 msgid "Status was removed"
 msgstr "Статус був видалений"
 
-#: ./application/modules/shop/admin/products.php:716
+#: ./application/modules/shop/admin/products.php:717
 msgid "Price updated"
 msgstr "Ціна оновлюється"
 
@@ -396,9 +400,9 @@ msgstr "Перевірити"
 msgid "To the site"
 msgstr "На сайт"
 
-#: ./application/modules/shop/admin/products.php:727
-#: ./application/modules/shop/admin/products.php:779
-#: ./application/modules/shop/admin/products.php:812
+#: ./application/modules/shop/admin/products.php:728
+#: ./application/modules/shop/admin/products.php:780
+#: ./application/modules/shop/admin/products.php:813
 msgid "(copy)"
 msgstr "(копія)"
 
@@ -453,7 +457,7 @@ msgstr "Обмін створено"
 msgid "Order bad "
 msgstr "Замовлення погане"
 
-#: ./application/modules/shop/admin/products.php:892
+#: ./application/modules/shop/admin/products.php:893
 msgid "A copy was successfully created"
 msgstr "Копія успішно створена"
 
@@ -535,7 +539,7 @@ msgstr "Статус замовлення не знайдено"
 msgid "You must attach the goods to create a set"
 msgstr "Ви повинні прикріпити товари для створення набору"
 
-#: ./application/modules/shop/admin/currencies.php:275
+#: ./application/modules/shop/admin/currencies.php:278
 msgid "Prices updated"
 msgstr "Ціни оновлено"
 
@@ -559,7 +563,7 @@ msgstr "Вперед"
 msgid "Find a user"
 msgstr "Знайти користувача"
 
-#: ./application/modules/shop/admin/currencies.php:277
+#: ./application/modules/shop/admin/currencies.php:280
 msgid "There was no price for the upgrade"
 msgstr "Немає ціни для оновлення"
 
@@ -627,8 +631,8 @@ msgstr "Заповніть необхідні поля"
 msgid "The list of possible code rates listed in the international standard"
 msgstr "Список можливих кодових ставок, зазначених у міжнародному стандарті"
 
-#: ./application/modules/shop/admin/currencies.php:259
-#: ./application/modules/shop/admin/currencies.php:270
+#: ./application/modules/shop/admin/currencies.php:262
+#: ./application/modules/shop/admin/currencies.php:273
 msgid "Conversion completed. Now the currency may be removed"
 msgstr "Перетворення завершено. Тепер валюта може бути видалена"
 
@@ -658,7 +662,7 @@ msgstr "Спосіб оплати створюється"
 msgid "Brand created"
 msgstr "Бренд створений"
 
-#: ./application/modules/shop/admin/templates/currencies/edit.tpl:72
+#: ./application/modules/shop/admin/templates/currencies/edit.tpl:73
 msgid "Template output currency"
 msgstr "Шаблон виводу обміну"
 
@@ -674,7 +678,7 @@ msgstr "Статус оплати замовлення змінено"
 msgid "Selecting a product"
 msgstr "Вибір товару"
 
-#: ./application/modules/shop/admin/templates/currencies/edit.tpl:81
+#: ./application/modules/shop/admin/templates/currencies/edit.tpl:82
 msgid "Template carrency"
 msgstr "Шаблон carrency"
 
@@ -690,7 +694,7 @@ msgstr "Дуже висока ціна, будь ласка, встановіт�
 msgid "Change saved successfully"
 msgstr "Зміни успішно збережено"
 
-#: ./application/modules/shop/admin/templates/currencies/edit.tpl:96
+#: ./application/modules/shop/admin/templates/currencies/edit.tpl:97
 msgid "- Not selected -"
 msgstr "- Не вибрано -"
 
@@ -698,7 +702,7 @@ msgstr "- Не вибрано -"
 msgid "refreshed successfully"
 msgstr "оновилася успішно"
 
-#: ./application/modules/shop/admin/currencies.php:237
+#: ./application/modules/shop/admin/currencies.php:240
 msgid "Error. The currency used in the products. Check the currency options products"
 msgstr "Помилка. Валюта, яка використовується в продуктах. Перевірте параметри валюти продукції"
 
@@ -708,12 +712,12 @@ msgstr "Помилка. Валюта, яка використовується в
 msgid "The operation was successful"
 msgstr "Операція пройшла успішно"
 
-#: ./application/modules/shop/admin/templates/currencies/edit.tpl:117
+#: ./application/modules/shop/admin/templates/currencies/edit.tpl:118
 msgid "Number of decimal places"
 msgstr "Число десяткових знаків"
 
 #: ./application/modules/shop/admin/currencies.php:84
-#: ./application/modules/shop/admin/currencies.php:129
+#: ./application/modules/shop/admin/currencies.php:132
 msgid "Currency not found"
 msgstr "Обмін не знайдено"
 
@@ -742,7 +746,7 @@ msgstr "Сертифікат з таким ключем вже існує"
 msgid "Order status created"
 msgstr "Статус замовлення створено"
 
-#: ./application/modules/shop/admin/templates/currencies/edit.tpl:138
+#: ./application/modules/shop/admin/templates/currencies/edit.tpl:139
 msgid "Do not show zeros in the fractional part"
 msgstr "Не показувати нулі в дробовій частині"
 
@@ -1154,7 +1158,7 @@ msgid "English"
 msgstr "Англійська"
 
 #: ./application/modules/shop/admin/templates/orders/_editAddToCartWindow.tpl:5
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:242
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:243
 #: ./application/modules/shop/admin/templates/orders/create.tpl:35
 #: ./application/modules/shop/admin/templates/orders/create.tpl:283
 #: ./application/modules/shop/admin/templates/search/list.tpl:123
@@ -1225,7 +1229,7 @@ msgstr "Без рубрики"
 msgid "Free"
 msgstr "Безкоштовно"
 
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:434
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:435
 #: ./application/modules/shop/admin/templates/users/edit.tpl:206
 #: ./application/modules/shop/admin/templates/users/edit_1.tpl:208
 #: ./application/modules/shop/admin/templates/dashboard/dashboard.tpl:93
@@ -1609,7 +1613,7 @@ msgstr "Ви використовуєте останню версію"
 msgid "Do you really want to delete the status?"
 msgstr "Ви дійсно хочете видалити статус?"
 
-#: ./application/modules/shop/admin/templates/products/edit.tpl:94
+#: ./application/modules/shop/admin/templates/products/edit.tpl:100
 msgid "Do you really want to delete this kit"
 msgstr "Ви дійсно хочете видалити цей комплект?"
 
@@ -1994,7 +1998,7 @@ msgstr "Видалити замовлення"
 msgid "Delete the query?"
 msgstr "Видалити запит?"
 
-#: ./application/modules/shop/admin/templates/callbacks/list.tpl:170
+#: ./application/modules/shop/admin/templates/callbacks/list.tpl:171
 msgid "Remove callback(s)"
 msgstr "Видалити зворотній дзвінок(ки)"
 
@@ -2278,7 +2282,7 @@ msgstr "Всі"
 msgid "All orders"
 msgstr "Всі замовлення"
 
-#: ./application/modules/shop/admin/templates/callbacks/list.tpl:155
+#: ./application/modules/shop/admin/templates/callbacks/list.tpl:156
 msgid "All Callbacks "
 msgstr "Всі зворотні виклики"
 
@@ -2691,7 +2695,7 @@ msgstr "до"
 msgid "Added products"
 msgstr "Додано продукції"
 
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:470
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:471
 #: ./application/modules/shop/admin/templates/orders/cart_list.tpl:21
 #: ./application/modules/shop/admin/templates/settings/settings.tpl:230
 #: ./application/modules/shop/admin/templates/products/default_edit.tpl:317
@@ -2719,11 +2723,11 @@ msgstr "Додати варіант"
 msgid "Add contact"
 msgstr "Додати контакт"
 
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:347
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:348
 msgid "Add a new product to the order"
 msgstr "Додати новий товар на замовлення"
 
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:465
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:466
 msgid "Add product to order"
 msgstr "Додати продукт у замовлення"
 
@@ -2819,7 +2823,7 @@ msgid "Help us get better"
 msgstr "Допоможіть нам стати краще"
 
 #: ./application/modules/shop/admin/orders.php:1077
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:358
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:359
 #: ./application/modules/shop/admin/templates/orders/cart_list.tpl:28
 msgid "Delivery"
 msgstr "Доставка"
@@ -2867,7 +2871,7 @@ msgstr "Дійсно видалити вибрані продукти?"
 msgid "Really remove selected warehouses?"
 msgstr "Дійсно видалити вибрані склади?"
 
-#: ./application/modules/shop/admin/templates/callbacks/list.tpl:173
+#: ./application/modules/shop/admin/templates/callbacks/list.tpl:174
 msgid "Really delete callback(s)"
 msgstr "Дійсно видалити зворотній дзвінок(ки)?"
 
@@ -2992,12 +2996,12 @@ msgstr "Завершено"
 msgid "Completed"
 msgstr "Завершено"
 
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:383
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:384
 #: ./application/modules/shop/admin/templates/orders/check.tpl:110
 msgid "In total"
 msgstr "Загалом"
 
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:245
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:246
 #: ./application/modules/shop/admin/templates/orders/create.tpl:287
 #: ./application/modules/shop/admin/templates/orders/check.tpl:70
 #: ./application/modules/shop/admin/templates/orders/list.tpl:92
@@ -3286,7 +3290,7 @@ msgstr "Зміни були збережені"
 #: ./application/modules/shop/admin/gifts.php:116
 #: ./application/modules/shop/admin/brands.php:273
 #: ./application/modules/shop/admin/brands.php:436
-#: ./application/modules/shop/admin/currencies.php:106
+#: ./application/modules/shop/admin/currencies.php:109
 #: ./application/modules/shop/admin/notificationstatuses.php:116
 #: ./application/modules/shop/admin/deliverymethods.php:156
 #: ./application/modules/shop/admin/discounts.php:164
@@ -3312,7 +3316,7 @@ msgstr "Зміни продукту"
 msgid "Edit category ID"
 msgstr "Змінити ID категорії"
 
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:407
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:408
 msgid "Modify date"
 msgstr "Змінити дату"
 
@@ -3380,7 +3384,7 @@ msgstr "Знайдено товарів з додатковими зображе
 msgid "Products found"
 msgstr "Знайдені продукти"
 
-#: ./application/modules/shop/admin/templates/callbacks/list.tpl:155
+#: ./application/modules/shop/admin/templates/callbacks/list.tpl:156
 msgid "Found results"
 msgstr "Знайдені результати"
 
@@ -3677,7 +3681,7 @@ msgid "Comma"
 msgstr "Кома"
 
 #: ./application/modules/shop/admin/templates/orders/edit.tpl:95
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:408
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:409
 #: ./application/modules/shop/admin/templates/orders/_create.tpl:136
 #: ./application/modules/shop/admin/templates/orders/check.tpl:51
 #: ./application/modules/shop/admin/templates/notifications/edit.tpl:88
@@ -3709,7 +3713,7 @@ msgid "Comments by a callback user"
 msgstr "Коментарі зворотного виклику користувача"
 
 #: ./application/modules/shop/admin/templates/kits/index.tpl:7
-#: ./application/modules/shop/admin/templates/products/edit.tpl:91
+#: ./application/modules/shop/admin/templates/products/edit.tpl:97
 #: ./application/modules/shop/admin/templates/products/_edit.tpl:678
 msgid "Kit removal"
 msgstr "Комплект для видалення"
@@ -3825,14 +3829,14 @@ msgstr "Кошик"
 msgid "Semicolon"
 msgstr "Крапка з комою"
 
-#: ./application/modules/shop/admin/templates/currencies/edit.tpl:54
+#: ./application/modules/shop/admin/templates/currencies/edit.tpl:55
 #: ./application/modules/shop/admin/templates/currencies/create.tpl:51
 msgid "Currency rate"
 msgstr "Курс валюти"
 
 #: ./application/modules/shop/admin/orders.php:1127
 #: ./application/modules/shop/admin/templates/orders/_editAddToCartWindow.tpl:34
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:244
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:245
 #: ./application/modules/shop/admin/templates/orders/create.tpl:286
 #: ./application/modules/shop/admin/templates/orders/check.tpl:68
 #: ./application/modules/shop/admin/templates/system/export_.tpl:75
@@ -3907,11 +3911,11 @@ msgstr "Магазин"
 msgid "Maximum backup size"
 msgstr "Максимальний розмір резервної копії"
 
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:409
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:410
 #: ./application/modules/shop/admin/templates/notifications/list.tpl:72
 #: ./application/modules/shop/admin/templates/notifications/list.tpl:196
 #: ./application/modules/shop/admin/templates/callbacks/list.tpl:44
-#: ./application/modules/shop/admin/templates/callbacks/list.tpl:106
+#: ./application/modules/shop/admin/templates/callbacks/list.tpl:107
 msgid "Manager"
 msgstr "Менеджер"
 
@@ -4371,8 +4375,8 @@ msgstr "Недостатньо прав для доступу"
 msgid "Unregistered users"
 msgstr "Незареєстровані користувачі"
 
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:196
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:208
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:197
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:209
 #: ./application/modules/shop/admin/templates/notifications/list.tpl:84
 #: ./application/modules/shop/admin/templates/notifications/list.tpl:118
 #: ./application/modules/shop/admin/templates/notifications/list.tpl:208
@@ -4657,7 +4661,7 @@ msgid "Description delivery price"
 msgstr "Опис ціни доставки"
 
 #: ./application/modules/shop/admin/templates/orders/edit.tpl:68
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:432
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:433
 #: ./application/modules/shop/admin/templates/orders/_create.tpl:86
 #: ./application/modules/shop/admin/templates/orders/list.tpl:39
 #: ./application/modules/shop/admin/templates/orders/list.tpl:169
@@ -4705,7 +4709,7 @@ msgstr "Основна категорія шаблону за замовчува
 
 #: ./application/modules/shop/admin/templates/system/importfields.tpl:180
 #: ./application/modules/shop/admin/templates/products/default_edit.tpl:95
-#: ./application/modules/shop/admin/templates/products/edit.tpl:120
+#: ./application/modules/shop/admin/templates/products/edit.tpl:126
 #: ./application/modules/shop/admin/templates/products/create.tpl:106
 #: ./application/modules/shop/admin/templates/products/create.tpl:354
 #: ./application/modules/shop/admin/templates/products/_create.tpl:93
@@ -4773,7 +4777,7 @@ msgid "Last comments"
 msgstr "Останні коментарі"
 
 #: ./application/modules/shop/admin/templates/callbacks/list.tpl:44
-#: ./application/modules/shop/admin/templates/callbacks/list.tpl:106
+#: ./application/modules/shop/admin/templates/callbacks/list.tpl:107
 msgid "Last comment left by the manager"
 msgstr "Останні коментарі, залишені менеджером"
 
@@ -5175,7 +5179,7 @@ msgstr "Повідомляти користувача через E-mail про �
 msgid "Gift certificate"
 msgstr "Подарунковий сертифікат"
 
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:375
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:376
 #: ./application/modules/shop/admin/templates/orders/create.tpl:299
 msgid "Gift Certificate"
 msgstr "Подарунковий сертифікат"
@@ -5184,7 +5188,7 @@ msgstr "Подарунковий сертифікат"
 msgid "Gift Certificates"
 msgstr "Подарункові сертифікати"
 
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:182
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:183
 #: ./application/modules/shop/admin/templates/orders/_create.tpl:126
 msgid "Show on map"
 msgstr "Подивитися на карті"
@@ -5357,7 +5361,7 @@ msgstr "Попер."
 msgid "Warning"
 msgstr "Попередження"
 
-#: ./application/modules/shop/admin/templates/products/edit.tpl:50
+#: ./application/modules/shop/admin/templates/products/edit.tpl:56
 #: ./application/modules/shop/admin/templates/products/_edit.tpl:19
 msgid "Previous"
 msgstr "Попередній"
@@ -5723,7 +5727,7 @@ msgstr "Редагування теми зворотнього виклику"
 #: ./application/modules/shop/admin/templates/paymentmethods/list.tpl:70
 #: ./application/modules/shop/admin/templates/products/default_edit.tpl:105
 #: ./application/modules/shop/admin/templates/products/default_edit.tpl:300
-#: ./application/modules/shop/admin/templates/products/edit.tpl:132
+#: ./application/modules/shop/admin/templates/products/edit.tpl:138
 #: ./application/modules/shop/admin/templates/products/create.tpl:114
 #: ./application/modules/shop/admin/templates/products/create.tpl:365
 msgid "Edit"
@@ -5739,7 +5743,7 @@ msgid "Roles group edit"
 msgstr "Редагувати групи ролей"
 
 #: ./application/modules/shop/admin/templates/callbacks/list.tpl:59
-#: ./application/modules/shop/admin/templates/callbacks/list.tpl:122
+#: ./application/modules/shop/admin/templates/callbacks/list.tpl:123
 msgid "Edit callback"
 msgstr "Редагувати зворотній дзвінок"
 
@@ -5785,8 +5789,8 @@ msgstr "Редагувати повідомлення про статус"
 msgid "Gift certificate edit"
 msgstr "Редагувати подарунковий сертифікат "
 
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:262
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:302
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:263
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:303
 #: ./application/modules/shop/admin/templates/notifications/edit.tpl:117
 #: ./application/modules/shop/admin/templates/search/list.tpl:244
 #: ./application/modules/shop/admin/templates/search/list.tpl:354
@@ -6033,12 +6037,12 @@ msgid "Copy to the local computer"
 msgstr "Скопіювати на локальний комп'ютер"
 
 #: ./application/modules/shop/admin/templates/callbacks/list.tpl:40
-#: ./application/modules/shop/admin/templates/callbacks/list.tpl:102
+#: ./application/modules/shop/admin/templates/callbacks/list.tpl:103
 msgid "Sort by phone number"
 msgstr "Сортування за номером телефону"
 
 #: ./application/modules/shop/admin/templates/callbacks/list.tpl:41
-#: ./application/modules/shop/admin/templates/callbacks/list.tpl:103
+#: ./application/modules/shop/admin/templates/callbacks/list.tpl:104
 msgid "Sort by theme"
 msgstr "Сортування за темами"
 
@@ -6052,18 +6056,18 @@ msgid "Sort by"
 msgstr "Сортувати по"
 
 #: ./application/modules/shop/admin/templates/callbacks/list.tpl:38
-#: ./application/modules/shop/admin/templates/callbacks/list.tpl:100
+#: ./application/modules/shop/admin/templates/callbacks/list.tpl:101
 #: ./application/modules/shop/admin/templates/products/list.tpl:38
 msgid "Sort by ID"
 msgstr "Сортувати по ID"
 
 #: ./application/modules/shop/admin/templates/callbacks/list.tpl:43
-#: ./application/modules/shop/admin/templates/callbacks/list.tpl:105
+#: ./application/modules/shop/admin/templates/callbacks/list.tpl:106
 msgid "Sort by date"
 msgstr "Сортувати по даті"
 
 #: ./application/modules/shop/admin/templates/callbacks/list.tpl:42
-#: ./application/modules/shop/admin/templates/callbacks/list.tpl:104
+#: ./application/modules/shop/admin/templates/callbacks/list.tpl:105
 msgid "Sort by status"
 msgstr "Сортувати по статусу"
 
@@ -6072,7 +6076,7 @@ msgid "Sort by name ."
 msgstr "Сортувати по імені"
 
 #: ./application/modules/shop/admin/templates/callbacks/list.tpl:39
-#: ./application/modules/shop/admin/templates/callbacks/list.tpl:101
+#: ./application/modules/shop/admin/templates/callbacks/list.tpl:102
 msgid "Sort by username"
 msgstr "Сортувати по імені користувача"
 
@@ -6153,7 +6157,7 @@ msgstr "Список зворотних викликів порожній"
 msgid "Callback list"
 msgstr "Список зворотніх викликів"
 
-#: ./application/modules/shop/admin/templates/callbacks/list.tpl:160
+#: ./application/modules/shop/admin/templates/callbacks/list.tpl:161
 msgid "Empty callback list."
 msgstr "Список зворотніх викликів - порожній"
 
@@ -6312,7 +6316,7 @@ msgstr "Спосіб доставки"
 msgid "Delivery Method"
 msgstr "Спосіб доставки"
 
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:205
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:206
 #: ./application/modules/shop/admin/templates/orders/create.tpl:186
 #: ./application/modules/shop/admin/templates/orders/create.tpl:254
 #: ./application/modules/shop/admin/templates/orders/_create.tpl:223
@@ -6377,7 +6381,7 @@ msgstr "Статус встановлюється для всіх нових з�
 msgid "Order status deleting"
 msgstr "Статус замовлення видаляється"
 
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:410
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:411
 #: ./application/modules/shop/admin/templates/orders/list.tpl:38
 #: ./application/modules/shop/admin/templates/orders/list.tpl:102
 #: ./application/modules/shop/admin/templates/users/edit_orders_list.tpl:35
@@ -6876,7 +6880,7 @@ msgstr "Телефон"
 #: ./application/modules/shop/admin/templates/search/advanced.tpl:226
 #: ./application/modules/shop/admin/templates/callbacks/edit.tpl:69
 #: ./application/modules/shop/admin/templates/callbacks/list.tpl:40
-#: ./application/modules/shop/admin/templates/callbacks/list.tpl:102
+#: ./application/modules/shop/admin/templates/callbacks/list.tpl:103
 #: ./application/modules/shop/admin/templates/comulativ/edit.tpl:94
 msgid "Telephone"
 msgstr "Телефон"
@@ -6896,7 +6900,7 @@ msgstr "Тема"
 
 #: ./application/modules/shop/admin/templates/settings/settings.tpl:697
 #: ./application/modules/shop/admin/templates/callbacks/list.tpl:41
-#: ./application/modules/shop/admin/templates/callbacks/list.tpl:103
+#: ./application/modules/shop/admin/templates/callbacks/list.tpl:104
 msgid "Theme"
 msgstr "Тема"
 
@@ -6957,7 +6961,7 @@ msgstr "Товари без зображень"
 msgid "Adult products"
 msgstr "Товари для дорослих"
 
-#: ./application/modules/shop/admin/templates/orders/edit.tpl:241
+#: ./application/modules/shop/admin/templates/orders/edit.tpl:242
 msgid "Items in Cart"
 msgstr "Товари у кошику"
 
@@ -7492,7 +7496,7 @@ msgstr "Ім'я клієнта"
 #: ./application/modules/shop/admin/templates/notifications/edit.tpl:69
 #: ./application/modules/shop/admin/templates/callbacks/edit.tpl:60
 #: ./application/modules/shop/admin/templates/callbacks/list.tpl:39
-#: ./application/modules/shop/admin/templates/callbacks/list.tpl:101
+#: ./application/modules/shop/admin/templates/callbacks/list.tpl:102
 msgid "User name"
 msgstr "Ім'я користувача"
 
@@ -7626,6 +7630,6 @@ msgstr "існує"
 msgid "Orders history"
 msgstr "Історія замовлень"
 
-#: ./application/modules/shop/admin/templates/currencies/edit.tpl:139
+#: ./application/modules/shop/admin/templates/currencies/edit.tpl:140
 msgid "Remove the display in the public section of leading zeros in the fractional part of the price - if you price 12500,00 rubles - will be shown 12500 if you 12500.5 - 12500.5 will be displayed"
 msgstr "Зніміть дисплей в публічному розділі провідних нулів в дробовій частині ціни; якщо ціна 12500,00 руб. - буде показано 12500; якщо ви 12500.5 - 12500.5 буде відображатися"

@@ -375,7 +375,7 @@ class Pages extends BaseAdminController {
             $locale = $def_lang;
             $locale = $locale['identif'];
 
-            $g_query = $this->db->query("SELECT * FROM `shop_rbac_roles` JOIN `shop_rbac_roles_i18n` ON shop_rbac_roles.id=shop_rbac_roles_i18n.id WHERE `locale`='" . $locale . "'");
+            $g_query = $this->db->query("SELECT * FROM `shop_rbac_roles` JOIN `shop_rbac_roles_i18n` ON shop_rbac_roles.id=shop_rbac_roles_i18n.id");
             $roles = $g_query->result_array();
 
             if ($roles != FALSE) {
