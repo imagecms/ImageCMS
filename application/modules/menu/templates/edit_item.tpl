@@ -14,7 +14,7 @@
     </div>
     <div class="row">
         <div class="span5">
-            <div class="btn-group myTab m-t_20 tabs" data-toggle="buttons-radio">
+            <div class="btn-group myTab m-t_20 tabs link_type" data-toggle="buttons-radio">
                 <a href="#page" class="btn btn-small {if $item.item_type == 'page'} active{/if}">{lang("Page", "menu")}</a>
                 <a href="#category" class="btn btn-small {if $item.item_type == 'category'}active{/if}">{lang("Categories", "menu")}</a>
                 <a href="#module" class="btn btn-small {if $item.item_type == 'module'}active{/if}">{lang("Module", "menu")}</a>
@@ -26,8 +26,10 @@
         <div id="page" class="tab-pane {if $item.item_type == 'page'}active{/if}">
             <form method="post" action="/admin/components/cp/menu/edit_item/{$item.id}" id="page_form">
                 {$data = unserialize($item.add_data)}
+                {var_dump($item)}
                 <input type="hidden" name="menu_id" value="{$menu.id}"/>
                 <input type="hidden" name="item_id" value="{$item.item_id}" id="item_page_id"/>
+                <input type="hidden" value="{$item.item_image}" id="item_url_image"/>
                 <input type="hidden" name="page_item_type" value="page"/>
                 <table class="table  table-bordered table-hover table-condensed content_big_td">
                     <thead>
@@ -373,7 +375,8 @@
                         <input type="hidden" name="mod_name" value="{$data.mod_name}"/>
                         <ul class="nav myTab nav-tabs nav-stacked">
                             {foreach $modules as $module}
-                                <li><a href="#" class="module_item" data-mname="{$module.name}" id="module_{$module.name}" title="{$module.description}">{$module.menu_name}</a></li>
+                                {//var_dump($module)}
+                                <li><a href="#" class="module_item" data-mname="{$module.name}" data-murl="{$module.url_image}" id="module_{$module.name}" title="{$module.description}">{$module.menu_name}</a></li>
                             {/foreach}   
                         </ul>
                     </div>
