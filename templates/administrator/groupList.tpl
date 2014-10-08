@@ -6,7 +6,7 @@
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="$('.modal').modal();"><i class="icon-trash icon-white"></i>{lang("Delete","admin")}</button>
+                <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="$('.modal').modal();"><i class="icon-trash"></i>{lang("Delete","admin")}</button>
                 <a class="btn btn-small btn-success pjax" href="/admin/rbac/groupCreate" ><i class="icon-plus-sign icon-white"></i>{lang('Create role group','admin')}</a>
             </div>
         </div>  
@@ -15,7 +15,7 @@
         {if count($model) > 0}
             <div class="row-fluid">            
                 <form method="post" action="#" class="form-horizontal" data-url-delete="/admin/rbac/groupDelete">
-                    <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+                    <table class="table  table-bordered table-hover table-condensed">
                         <thead>
                             <tr>
                                 <th class="span1">

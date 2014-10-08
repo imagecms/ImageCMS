@@ -2,11 +2,11 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-05 11:24+0300\n"
-"PO-Revision-Date: 2014-06-05 11:24+0300\n"
-"Last-Translator:  \n"
-"Language-Team:  \n"
-"Language: en_US\n"
+"POT-Creation-Date: 2014-07-29 12:18+0300\n"
+"PO-Revision-Date: 2014-07-29 12:18+0300\n"
+"Last-Translator:  <>\n"
+"Language-Team:  <>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -17,3 +17,103 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/imagebox/module_info.php:5
+msgid "Fast upload/insert images"
+msgstr "Fast images upload/insert"
+
+#: ./application/modules/imagebox/admin.php:74
+msgid "You are trying to download banned file type "
+msgstr "You are trying to download disallowed file type"
+
+#: ./application/modules/imagebox/templates/install.tpl:8
+msgid "and set them to record rights"
+msgstr "and set the record rights"
+
+#: ./application/modules/imagebox/templates/main_window.tpl:18
+msgid "Upload a file"
+msgstr "Upload a file"
+
+#: ./application/modules/imagebox/templates/main_window.tpl:19
+msgid "Cancel"
+msgstr "Cancel"
+
+#: ./application/modules/imagebox/templates/main_window.tpl:27
+msgid "Settings"
+msgstr "Settings"
+
+#: ./application/modules/imagebox/admin.php:81
+msgid "File loading error"
+msgstr "File loading error"
+
+#: ./application/modules/imagebox/templates/main_window.tpl:30
+msgid "Maximum image width"
+msgstr "Maximum image width"
+
+#: ./application/modules/imagebox/templates/install.tpl:6
+msgid "Copy contents of the archive into a directory"
+msgstr "Copy contents of the archive into a directory"
+
+#: ./application/modules/imagebox/templates/main_window.tpl:34
+msgid "Maximum image height"
+msgstr "Maximum image height"
+
+#: ./application/modules/imagebox/templates/install.tpl:8
+msgid "Create directory"
+msgstr "Create a directory"
+
+#: ./application/modules/imagebox/templates/main_window.tpl:38
+msgid "Icon width"
+msgstr "Icon width"
+
+#: ./application/modules/imagebox/templates/main_window.tpl:3
+msgid "Files uploading"
+msgstr "File uploading"
+
+#: ./application/modules/imagebox/templates/main_window.tpl:42
+msgid "Icon height"
+msgstr "Icon height"
+
+#: ./application/modules/imagebox/templates/main_window.tpl:61
+msgid "Save"
+msgstr "Save"
+
+#: ./application/modules/imagebox/templates/main_window.tpl:46
+msgid "Image quality"
+msgstr "Image quality"
+
+#: ./application/modules/imagebox/templates/main_window.tpl:10
+msgid "Or specify URL"
+msgstr "Or specify URL/ or indicate URL"
+
+#: ./application/modules/imagebox/templates/main_window.tpl:50
+msgid "Save ratio"
+msgstr "Save ratio"
+
+#: ./application/modules/imagebox/templates/install.tpl:6
+msgid "Install module through the control panel"
+msgstr "Install module through the control panel"
+
+#: ./application/modules/imagebox/templates/main_window.tpl:53
+msgid "Yes"
+msgstr "Yes"
+
+#: ./application/modules/imagebox/templates/main_window.tpl:6
+msgid "Select a file"
+msgstr "Select a file"
+
+#: ./application/modules/imagebox/templates/main_window.tpl:54
+msgid "No"
+msgstr "No"
+
+#: ./application/modules/imagebox/templates/install.tpl:2
+msgid "Install"
+msgstr "Install"
+
+#: ./application/modules/imagebox/module_info.php:4
+msgid "ImageBox"
+msgstr "Image box"
+
+#: ./application/modules/imagebox/admin.php:191
+msgid "Changes saved"
+msgstr "Changes saved/ Changes have been saved"

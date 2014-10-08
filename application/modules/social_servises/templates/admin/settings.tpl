@@ -18,7 +18,7 @@
     <form method="post" action="/admin/components/cp/social_servises/update_settings" class="form-horizontal" id="social_servises">
         <div class="tab-content">
             <div class="tab-pane active" id="Facebook">
-                <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+                <table class="table  table-bordered table-hover table-condensed content_big_td">
                     <thead>
                         <tr>
                             <th colspan="6">
@@ -70,7 +70,7 @@
                 </table>
             </div>
             <div class="tab-pane" id="VK">
-                <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+                <table class="table  table-bordered table-hover table-condensed content_big_td">
                     <thead>
                         <tr>
                             <th colspan="6">

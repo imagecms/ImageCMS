@@ -7,7 +7,7 @@
         <div class="pull-right">
             <div class="d-i_b">
                 <a href="#" class="t-d_n m-r_15 pjax"><span class="f-s_14"></span>←<span class="t-d_u">{lang('Go back', "menu")}</span></a>
-                <button type="button" class="btn btn-small page_item_save"><i class="icon-ok"></i>{lang("Save", "menu")}</button>
+                <button type="button" class="btn btn-small btn-primary page_item_save"><i class="icon-ok"></i>{lang("Save", "menu")}</button>
             </div>
         </div>                            
     </div>
@@ -22,7 +22,7 @@
             <form method="post" action="/admin/components/cp/menu/insert_menu_item/" id="{$item_type}_form">
                 <div class="row-fluid">
                     <div class="span6">
-                        <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                        <table class="table  table-bordered table-hover table-condensed content_big_td">
                             <thead>
                                 <tr>
                                     <th colspan="6">
@@ -78,7 +78,7 @@
                     </div>
                     <div class="span6">
                         <input type="hidden" id="owner_id" value="{$insert_id}" />
-                        <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                        <table class="table  table-bordered table-hover table-condensed content_big_td">
                             <thead>
                                 <tr>
                                     <th colspan="6">

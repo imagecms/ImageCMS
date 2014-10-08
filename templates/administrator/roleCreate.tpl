@@ -7,14 +7,14 @@
         <div class="pull-right">
             <div class="d-i_b">
                 <a href="{$BASE_URL}admin/rbac/roleList" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Back","admin")}</span></a>
-                <button type="button" class="btn btn-small btn-success formSubmit" data-form="#role_cr_form" data-action="new" data-submit><i class="icon-ok icon-white"></i>{lang("Create","admin")}</button>
+                <button type="button" class="btn btn-small btn-success formSubmit" data-form="#role_cr_form" data-action="new" data-submit><i class="icon-plus-sign icon-white"></i>{lang("Create","admin")}</button>
                 <button type="button" class="btn btn-small formSubmit" data-form="#role_cr_form" data-action="exit"><i class="icon-check"></i>{lang("Create and exit","admin")}</button>
             </div>
         </div>
 
     </div>
-    <form method="post" action="{$ADMIN_URL}roleCreate" class="form-horizontal" id="role_cr_form">
-        <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+    <form method="post" action="{$ADMIN_URL}roleCreate" class="form-horizontal m-t_10" id="role_cr_form">
+        <table class="table  table-bordered table-hover table-condensed content_big_td">
             <thead>
                 <tr>
                     <th colspan="6">
@@ -64,7 +64,7 @@
                 <div class="tab-pane row {if $key == 'base'}active{/if}" id="{echo $key}">
                     {foreach $type as $k => $groups} 
                         <div class="span3">
-                            <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                            <table class="table  table-bordered table-hover table-condensed t-l_a">
                                 <thead>
                                     <tr>
                                         <th class="t-a_c span1">

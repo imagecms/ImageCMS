@@ -26,8 +26,8 @@
             </div>
         </div>                            
     </div>
-    <form action="/admin/components/cp/sitemap/changefreq" id="sitemap_changefreq_form" method="post" class="form-horizontal">
-        <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+    <form action="/admin/components/cp/sitemap/changefreq" id="sitemap_changefreq_form" method="post" class="form-horizontal m-t_10">
+        <table class="table  table-bordered table-hover table-condensed content_big_td">
             <thead>
             <th>{lang("Сhange frequency", 'sitemap')}</th>
             </thead>

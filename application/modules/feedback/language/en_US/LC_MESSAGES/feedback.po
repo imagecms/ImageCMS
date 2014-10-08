@@ -2,11 +2,11 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-05 11:24+0300\n"
-"PO-Revision-Date: 2014-06-05 11:24+0300\n"
-"Last-Translator:  \n"
-"Language-Team:  \n"
-"Language: en_US\n"
+"POT-Creation-Date: 2014-07-26 04:21+0300\n"
+"PO-Revision-Date: 2014-07-26 04:21+0300\n"
+"Last-Translator:  <>\n"
+"Language-Team:  <>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -17,3 +17,141 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/feedback/templates/admin/settings.tpl:36
+msgid "Specify the e-mail address for mailing"
+msgstr "Specify the e-mail address for mailing"
+
+#: ./application/modules/feedback/assets/feedback.tpl:86
+#: ./application/modules/feedback/templates/feedback.tpl:59
+msgid "Send"
+msgstr "Send"
+
+#: ./application/modules/feedback/feedback.php:88
+msgid "E-mail"
+msgstr "E-mail"
+
+#: ./application/modules/feedback/admin.php:46
+#: ./application/modules/feedback/templates/admin/settings.tpl:33
+msgid "E-Mail"
+msgstr "E-mail"
+
+#: ./application/modules/feedback/admin.php:47
+#: ./application/modules/feedback/templates/admin/settings.tpl:40
+msgid "Maximum message length"
+msgstr "Maximum message length"
+
+#: ./application/modules/feedback/feedback.php:28
+msgid "Email is not valid"
+msgstr "E-mail is not valid"
+
+#: ./application/modules/feedback/module_info.php:5
+msgid "Manage and configure the feedback form on the site"
+msgstr "Manage and configure the feedback form on the site"
+
+#: ./application/modules/feedback/feedback.php:29
+msgid "Length greater than the maximum"
+msgstr "maximum request length exceeded"
+
+#: ./application/modules/feedback/assets/feedback.tpl:23
+#: ./application/modules/feedback/assets/feedback.tpl:30
+#: ./application/modules/feedback/feedback.php:71
+#: ./application/modules/feedback/templates/feedback.tpl:23
+#: ./application/modules/feedback/templates/feedback.tpl:25
+msgid "Your name"
+msgstr "Your name"
+
+#: ./application/modules/feedback/feedback.php:50
+msgid "Improper protection code"
+msgstr "Wrong protection code"
+
+#: ./application/modules/feedback/templates/admin/settings.tpl:6
+msgid "Feedback settings"
+msgstr "Feedback settings"
+
+#: ./application/modules/feedback/feedback.php:60
+#: ./application/modules/feedback/module_info.php:4
+msgid "Feedback"
+msgstr "Feedback"
+
+#: ./application/modules/feedback/assets/feedback.tpl:64
+#: ./application/modules/feedback/templates/feedback.tpl:41
+msgid "Message text"
+msgstr "Message text"
+
+#: ./application/modules/feedback/feedback.php:86
+msgid "Theme"
+msgstr "Theme"
+
+#: ./application/modules/feedback/templates/admin/settings.tpl:10
+msgid "Go back"
+msgstr "Go back"
+
+#: ./application/modules/feedback/feedback.php:87
+msgid "Name"
+msgstr "Name"
+
+#: ./application/modules/feedback/feedback.php:26
+msgid "Field is required"
+msgstr "Field is required"
+
+#: ./application/modules/feedback/templates/admin/settings.tpl:22
+msgid "Properties"
+msgstr "Properties"
+
+#: ./application/modules/feedback/templates/admin/settings.tpl:11
+msgid "Save"
+msgstr "Save"
+
+#: ./application/modules/feedback/assets/feedback.tpl:17
+#: ./application/modules/feedback/templates/feedback.tpl:17
+msgid "Your message has been sent."
+msgstr "Your message has been sent."
+
+#: ./application/modules/feedback/assets/feedback.tpl:46
+#: ./application/modules/feedback/assets/feedback.tpl:52
+#: ./application/modules/feedback/feedback.php:73
+#: ./application/modules/feedback/templates/feedback.tpl:34
+#: ./application/modules/feedback/templates/feedback.tpl:35
+msgid "Subject"
+msgstr "Subject"
+
+#: ./application/modules/feedback/assets/feedback.tpl:58
+#: ./application/modules/feedback/feedback.php:74
+#: ./application/modules/feedback/feedback.php:89
+#: ./application/modules/feedback/templates/feedback.tpl:40
+msgid "Message"
+msgstr "Message"
+
+#: ./application/modules/feedback/assets/feedback.tpl:6
+#: ./application/modules/feedback/templates/feedback.tpl:6
+msgid "Contacts"
+msgstr "Contacts"
+
+#: ./application/modules/feedback/feedback.php:27
+msgid "Length is less than the minimum"
+msgstr "Minimum length is insufficient"
+
+#: ./application/modules/feedback/assets/feedback.tpl:78
+#: ./application/modules/feedback/templates/feedback.tpl:52
+msgid "Enter protection code"
+msgstr "Enter the protection code"
+
+#: ./application/modules/feedback/assets/feedback.tpl:35
+#: ./application/modules/feedback/assets/feedback.tpl:41
+#: ./application/modules/feedback/feedback.php:72
+#: ./application/modules/feedback/templates/feedback.tpl:29
+#: ./application/modules/feedback/templates/feedback.tpl:30
+msgid "Email"
+msgstr "E-mail"
+
+#: ./application/modules/feedback/admin.php:59
+msgid "Settings have been saved"
+msgstr "Settings have been saved"
+
+#: ./application/modules/feedback/assets/feedback.tpl:71
+#: ./application/modules/feedback/feedback.php:77
+#: ./application/modules/feedback/feedback.php:79
+#: ./application/modules/feedback/templates/feedback.tpl:48
+msgid "Protection code"
+msgstr "Protection code/ CAPTCHA"

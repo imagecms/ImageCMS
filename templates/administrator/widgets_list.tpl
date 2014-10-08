@@ -23,7 +23,7 @@
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="delete_function.deleteFunction()" id="del_sel_wid"><i class="icon-trash icon-white"></i>{lang("Delete","admin")}</button>
+                <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="delete_function.deleteFunction()" id="del_sel_wid"><i class="icon-trash"></i>{lang("Delete","admin")}</button>
                 <a href="/admin/widgets_manager/create_tpl" type="button" class="btn btn-small btn-success pjax"><i class="icon-plus-sign icon-white"></i>{lang("Create a widget","admin")}</a>
             </div>
         </div>  
@@ -36,7 +36,7 @@
     {else:}   
         {if count($widgets)>0}
             <form method="post" action="#" class="form-horizontal">
-                <table class="table table-striped table-bordered table-hover table-condensed content_big_td t-l_a">
+                <table class="table  table-bordered table-hover table-condensed t-l_a">
                     <thead>
                         <tr>
                             <th class="t-a_c span1">
@@ -65,15 +65,21 @@
                                 </td>
                                 <td>{$widget.id}</td>
                                 <td> 
-                                    <a 
-                                        {if $widget.config == TRUE} 
-                                            class="pjax" href="/admin/widgets_manager/edit_module_widget/{$widget.id}" 
-                                            data-rel="tooltip" data-title="{lang("Editing","admin")}"
-                                        {/if}  
-                                        {if $widget.type == 'html'} 
-                                            class="pjax" href="/admin/widgets_manager/edit_html_widget/{$widget.id}"
+                                    {if $widget.config == TRUE || $widget.type == 'html'}
+                                        <a 
+                                            {if $widget.config == TRUE} 
+                                                class="pjax" href="/admin/widgets_manager/edit_module_widget/{$widget.id}" 
+                                                data-rel="tooltip" data-title="{lang("Editing","admin")}"
+                                            {/if}  
+                                            {if $widget.type == 'html'} 
+                                                class="pjax" href="/admin/widgets_manager/edit_html_widget/{$widget.id}"
+                                            {/if}
+                                            >
                                         {/if}
-                                        >{$widget.name}</a>
+                                        {$widget.name}
+                                        {if $widget.config == TRUE ||  $widget.type == 'html'}
+                                        </a>
+                                    {/if}
                                 </td>
                                 <td>
                                     {switch $widget.type}
@@ -89,7 +95,7 @@
                                 <td class="span2 t-a_c">
                                     {if $widget.config == TRUE}
                                         <a class="btn-small btn pjax" href="/admin/widgets_manager/edit/{$widget.id}" data-rel="tooltip" data-title="{lang("Settings","admin")}"><i class="icon-wrench"></i></a>
-                                    {/if}
+                                        {/if}
                                 </td>
                             </tr>
                         {/foreach}

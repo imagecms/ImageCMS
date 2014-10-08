@@ -29,7 +29,7 @@
                 </div>
                 <div class="pull-right">
                     <div class="d-i_b">
-                        <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="delete_function.deleteFunction()" id="module_delete"><i class="icon-trash icon-white"></i>{lang('Delete','admin')}</button>
+                        <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="delete_function.deleteFunction()" id="module_delete"><i class="icon-trash"></i>{lang('Delete','admin')}</button>
                     </div>
                 </div>
             </div>
@@ -47,7 +47,7 @@
                     {if count($installed) != 0}
                         <div class="tab-pane active" id="modules">
                             <div class="row-fluid">
-                                <table class="modules_table table table-striped table-bordered table-hover table-condensed t-l_a">
+                                <table class="modules_table table  table-bordered table-hover table-condensed t-l_a">
                                     <thead>
                                         <tr>
                                             <th class="t-a_c span1">
@@ -85,7 +85,7 @@
                                                         {if $module.name == 'shop'}
                                                             {$module.menu_name}
                                                         {else:}
-                                                            <a href="/admin/components/init_window/{$module.name}" class="pjax">{$module.menu_name}</a>
+                                                            <a href="/admin/components/init_window/{$module.name}">{$module.menu_name}</a>
                                                         {/if}
                                                     {else:}
                                                         {$module.menu_name}
@@ -134,7 +134,7 @@
                     <div class="tab-pane" id="set_modul">
                         {if count($not_installed) > 0}
                             <div class="row-fluid" id="nimc">
-                                <table class="table table-striped table-bordered table-hover table-condensed t-l_a" id="nimt">
+                                <table class="table  table-bordered table-hover table-condensed t-l_a" id="nimt">
                                     <thead>
                                         <tr>
                                             <th>{lang('Module','admin')}</th>
@@ -147,7 +147,7 @@
                                         {foreach $not_installed as $module}
                                             <tr class="module_row">
                                                 <td class="module_name">
-                                                    <a href="#" class="mod_instal" data-mname="{$module.com_name}" data-mid="{$module.id}">{$module.menu_name}</a>
+                                                    {$module.menu_name}
                                                 </td>
                                                 <td class="module_description">
                                                     <p>{$module.description}</p>

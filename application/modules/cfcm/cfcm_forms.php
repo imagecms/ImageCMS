@@ -2,8 +2,7 @@
 
 class Cfcm_forms extends MY_Controller {
 
-    public
-            $field_types = array(
+    public $field_types = array(
         'text' => 'Text',
         'textarea' => 'Textarea',
         'select' => 'Select',
@@ -67,48 +66,51 @@ class Cfcm_forms extends MY_Controller {
 
         $f['label'] = array(
             'type' => 'text',
-            'label' => lang('Label', 'cfcm'). ':',
+            'label' => lang('Label', 'cfcm') . ':',
             'validation' => 'max_length[255]',
             'class' => 'required',
         );
         $f['initial'] = array(
             'type' => 'textarea',
-            'label' => lang('The initial value', 'cfcm'). ':',
+            'label' => lang('The initial value', 'cfcm') . ':',
         );
         $f['help_text'] = array(
             'type' => 'text',
-            'label' => lang('Hint', 'cfcm'). ':',
+            'label' => lang('Hint', 'cfcm') . ':',
             'help_text' => lang('Field description ', 'cfcm') . '.',
         );
         $f['required'] = array(
             'type' => 'checkbox',
-            'label' => lang('Required field', 'cfcm'). ':',
+            'label' => lang('Required field', 'cfcm') . ':',
             'initial' => '1',
         );
         $f['type'] = array(
             'type' => 'select',
-            'label' => lang('Type', 'cfcm'). ':',
+            'label' => lang('Type', 'cfcm') . ':',
             'initial' => $this->field_types,
         );
 
-        if (in_array($type, array('select', 'checkgroup', 'radiogroup')))
+        if (in_array($type, array('select', 'checkgroup', 'radiogroup'))) {
             $f['initial']['help_text'] = lang('Specify the possible values in the new row', 'cfcm') . '.';
+        }
 
-        if ($type == 'select')
+        if ($type == 'select') {
             $f['multiple'] = array(
                 'type' => 'checkbox',
                 'label' => lang('Multiple', 'cfcm'),
                 'initial' => '1',
                 'checked' => FALSE,
             );
+        }
 
-        if ($type == 'checkbox')
+        if ($type == 'checkbox') {
             $f['checked'] = array(
                 'type' => 'checkbox',
                 'label' => lang('Checked', 'cfcm'),
                 'initial' => '1',
                 'checked' => FALSE,
             );
+        }
 
         if ($type == 'text' OR $type == 'textarea') {
             $f['enable_image_browser'] = array(
@@ -138,12 +140,12 @@ class Cfcm_forms extends MY_Controller {
 
         $f['validation'] = array(
             'type' => 'text',
-            'label' => lang('Check conditions', 'cfcm'). ':',
+            'label' => lang('Check conditions', 'cfcm') . ':',
             'help_text' => lang('For example', 'cfcm') . ': valid_email|max_length[255]',
         );
         $f['groups'] = array(
             'type' => 'select',
-            'label' => lang('Group', 'cfcm'). ':',
+            'label' => lang('Group', 'cfcm') . ':',
             'initial' => self::prepare_groups_select(),
             'multiple' => true,
             'class' => 'required'
@@ -171,7 +173,7 @@ class Cfcm_forms extends MY_Controller {
         $this->db->select('id, name');
         $groups = $this->db->get('content_field_groups');
 
-        $list = array();
+        $list = array('-1' => lang('Without group', 'cfcm'));
         if ($groups->num_rows() > 0) {
             foreach ($groups->result_array() as $group) {
                 $list[$group['id']] = $group['name'];

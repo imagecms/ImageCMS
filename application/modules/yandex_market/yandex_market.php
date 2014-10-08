@@ -16,33 +16,11 @@ class Yandex_market extends ShopController {
     protected $categories = array();
     protected $currencyCode;
     protected $settings;
-    protected $adult = FALSE;
 
     public function __construct() {
         $this->currencyCode = SCurrenciesQuery::create()->filterByIsDefault(true)->findOne()->getCode();
         $this->settings = $this->cms_base->get_settings();
-
-        try {
-            if (!is_callable('SSettings::getIsAdult')) {
-                throw new Exception;
-            }
-            $this->adult = ShopCore::app()->SSettings->getIsAdult();
-        } catch (Exception $exc) {
-            $this->adult = FALSE;
-        }
-
         parent::__construct();
-    }
-
-    public function allCatId($arg) {
-        $query = $this->db->get_where('shop_product_categories', array('product_id' => $arg));
-        $row = $query->row();
-
-        foreach ($query->result() as $row) {
-            $a = $row->category_id;
-        }
-
-        return $a;
     }
 
     public function genreYML() {
@@ -73,12 +51,16 @@ class Yandex_market extends ShopController {
                     }
 
                     $this->offers[$unique_id]['name'] = $this->forName($p->getName(), $v->getName());
-                    $this->offers[$unique_id]['vendor'] = $p->getBrand() ? htmlspecialchars($p->getBrand()->getName()) : '';
-                    $this->offers[$unique_id]['vendorCode'] = $v->getNumber() ? htmlspecialchars($v->getNumber()) : '';
+                    $this->offers[$unique_id]['vendor'] = $p->getBrand() ? htmlspecialchars($p->getBrand()->getName()) : ' ';
+                    $this->offers[$unique_id]['vendorCode'] = $v->getNumber() ? htmlspecialchars($v->getNumber()) : ' ';
                     $this->offers[$unique_id]['description'] = htmlspecialchars($p->getFullDescription());
-                    if ($this->adult) {
-                        $this->offers[$unique_id]['adult'] = 'true';
-                    }
+                    
+                    $this->db->select('value');
+                    $this->db->where('id', 1); 
+                    $query = $this->db->get('mod_yandex_market_adalt');
+                    $adalt = $query->row_array();
+                        if($adalt['value'] == 1){
+                        $this->offers[$unique_id]['adult'] = 'true';}
                     $this->offers[$unique_id]['param'] = $param;
                 }
             }
@@ -116,33 +98,17 @@ class Yandex_market extends ShopController {
     }
 
     public function renderCategories() {
-        $categories = SCategoryQuery::create()->filterById(ShopCore::app()->SSettings->getSelectedCats())
-                ->find();
-
         echo "<categories>";
-        foreach ($categories as $c) {
+        foreach ($this->categories as $c) {
             $parent = '';
-            if ($c->getParentId() > 0) {
-                $parent = ' parentId="' . $c->getParentId() . '"';
+            if ($c['parent_id'] > 0) {
+                $parent = ' parentId="' . $c['parent_id'] . '"';
             }
-            echo '<category id="' . $c->getId() . '"' . $parent . '>' . encode($c->getName()) . '</category>' . "\n";
+            echo '<category id="' . $c['id'] . '"' . $parent . '>' . encode($c['name']) . '</category>' . "\n";
         }
         echo "</categories>";
     }
-    public function renderCategoriesHotline() {
-        $categories = SCategoryQuery::create()->filterById(ShopCore::app()->SSettings->getSelectedCats())
-                ->find();
-
-        echo "<categories>";
-        foreach ($categories as $c) {
-            $parent = '';
-            if ($c->getParentId() > 0) {
-                $parent = '<parentId>' . $c->getParentId() . '</parentId>';
-            }
-            echo '<category><id>' . $c->getId() . '</id>' . $parent . '<name>' . encode($c->getName()) . '</name></category>' . "\n";
-        }
-        echo "</categories>";
-    }
+    
     protected function renderOffers() {
         echo '<offers>';
         foreach ($this->offers as $id => $offer) {
@@ -152,6 +118,7 @@ class Yandex_market extends ShopController {
         }
         echo '</offers>';
     }
+    
     protected function arrayToXml($array) {
         foreach ($array as $k => $v) {
             if ($k == 'param') {
@@ -165,10 +132,26 @@ class Yandex_market extends ShopController {
             }
         }
     }
+    
     public function getProducts() {
+        $this->db->select('value');
+        $this->db->where('id', 1); 
+        $query = $this->db->get('mod_yandex_market');
+        $arr = $query->row_array();
+        $arr = unserialize($arr['value']); 
+        $Idss = array(implode($arr, ','));
+          
+                       $query = $this->db->query("
+                           SELECT shop_category.id, shop_category.parent_id, shop_category_i18n.name  FROM shop_category
+                           LEFT JOIN shop_category_i18n ON (shop_category_i18n.id = shop_category.id)
+                           WHERE shop_category.id IN (" . $Idss[0] ." ) AND shop_category_i18n.locale = 'ru'
+                        ");
+                        
+                       $this->categories = $query->result_array();
+                                       
         $Ids = $this->db
                 ->select('id')
-                ->where_in('category_id', ShopCore::app()->SSettings->getSelectedCats())
+                ->where_in('category_id', $arr)
                 ->get('shop_products')
                 ->result_array();
 
@@ -190,24 +173,19 @@ class Yandex_market extends ShopController {
         return $products;
     }
 
-    protected static function prep_desc($var, $chars = 0, $end = '...') {
-        if ($chars > 0 AND mb_strlen($var, 'utf-8') >= $chars) {
-            $result = mb_substr($var, 0, $chars, 'utf-8') . $end;
-        } else {
-            $result = $var;
-        }
-
-        $result = str_replace('&ndash;', '', $result);
-        $result = str_replace('&nbsp;', '', $result);
-        $result = str_replace('&quot;', '', $result);
-        $result = str_replace('&mdash;', '', $result);
-        $result = str_replace('&laquo;', '', $result);
-        $result = str_replace('&raquo;', '', $result);
-        $result = str_replace('&ldquo;', '', $result);
-        $result = str_replace('&rdquo;', '', $result);
-        return $result;
+    // Install
+    function _install() {
+        if ($this->dx_auth->is_admin() == FALSE)
+            exit;
+        $this->load->model('install')->make_install();
     }
 
+    // Delete module
+    function _deinstall() {
+        if ($this->dx_auth->is_admin() == FALSE)
+            exit;
+        $this->load->model('install')->deinstall();
+    }
 }
 
 /* End of file banners.php */

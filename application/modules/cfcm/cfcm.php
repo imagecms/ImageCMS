@@ -14,12 +14,12 @@ class Cfcm extends MY_Controller {
         parent::__construct();
         $obj = new MY_Lang();
         $obj->load('cfcm');
-        
+
         $this->load->module('forms');
         $this->load->library('form_validation');
         $this->_set_forms_config();
     }
-    
+
     public function _set_forms_config() {
         $config = array();
         $config['filter_xss_post'] = TRUE;
@@ -94,7 +94,7 @@ class Cfcm extends MY_Controller {
 
     public function get_form($category_id = FALSE, $item_id = FALSE, $item_type = FALSE, $tpl = '_onpage_form') {
         if ('page' === $category_id) {
-            $item_type = 'page';            
+            $item_type = 'page';
             $item_id = 0;
             $category_id = 0;
         }
@@ -115,7 +115,7 @@ class Cfcm extends MY_Controller {
         if ($category->field_group != '0') {
             // Get group
             $group = $this->db->get_where('content_field_groups', array('id' => $category->field_group))->row();
-            
+
             // Get all fields in group
             $fg = (int) $category->field_group;
             $query = $this->db->select('*')
@@ -158,22 +158,17 @@ class Cfcm extends MY_Controller {
                 $gid = isset($group->id) ? $group->id : -1;
 
                 $hiddenField = '<input type="hidden" name="cfcm_use_group" value="' . $gid . '" />';
-                $this->template->add_array(array(
-                    'form' => $form,
-                    'hf' => $hiddenField
-                ));
-
-                $this->display_tpl($tpl);
             } else {
-                echo '<div class="alert alert-info" style="margin-bottom: 18px; margin-top: 18px;">'
-                . lang("Group without any fields", 'cfcm') .
-                '</div>';
+               $form = array();
             }
-        } else {
-            echo '<div class="alert alert-info" style="margin-bottom: 18px; margin-top: 18px;"> '
-            . lang("For category", 'cfcm') . " " . $category->name . " " . lang("Field group has not been selected", 'cfcm') .
-            ' </div>';
-        }
+        } 
+
+        $this->template->add_array(array(
+            'form' => $form,
+            'hf' => $hiddenField
+        ));
+
+        $this->display_tpl($tpl);
     }
 
     public function get_form_attributes($fields, $item_id, $item_type) {

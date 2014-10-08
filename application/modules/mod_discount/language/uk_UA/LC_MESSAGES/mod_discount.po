@@ -2,11 +2,11 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-18 04:21+0400\n"
-"PO-Revision-Date: 2014-06-18 04:21+0400\n"
-"Last-Translator:  \n"
-"Language-Team:  \n"
-"Language: uk_UA\n"
+"POT-Creation-Date: 2014-08-13 04:16+0300\n"
+"PO-Revision-Date: 2014-08-13 04:16+0300\n"
+"Last-Translator:  <>\n"
+"Language-Team:  <>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -17,3 +17,465 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/mod_discount/discount_api.php:67
+msgid "Invalid code try again"
+msgstr "Невірний код, спробуйте ще раз"
+
+#: ./application/modules/mod_discount/admin.php:57
+msgid "Discount successfully created!"
+msgstr "Знижка успішно створена!"
+
+#: ./application/modules/mod_discount/admin.php:127
+#: ./application/modules/mod_discount/classes/DiscountManager.php:270
+msgid "Has been already created with the cumulative discount value"
+msgstr "Вже створено зі значенням накопичувальної знижки"
+
+#: ./application/modules/mod_discount/admin.php:133
+msgid "Changes saved"
+msgstr "Зміни збережено"
+
+#: ./application/modules/mod_discount/admin.php:151
+msgid "Discount not found"
+msgstr "Знижка не знайдена"
+
+#: ./application/modules/mod_discount/admin.php:189
+msgid "Discount don't exists"
+msgstr "Знижка не існує"
+
+#: ./application/modules/mod_discount/admin.php:189
+#: ./application/modules/mod_discount/admin.php:197
+#: ./application/modules/mod_discount/admin.php:202
+msgid "Error"
+msgstr "Помилка"
+
+#: ./application/modules/mod_discount/admin.php:197
+#: ./application/modules/mod_discount/classes/DiscountManager.php:352
+msgid "This user already have active discount"
+msgstr "Цей користувач вже має діючу знижку"
+
+#: ./application/modules/mod_discount/admin.php:202
+#: ./application/modules/mod_discount/classes/DiscountManager.php:355
+msgid "This group of users already have active discount"
+msgstr "Ця група користувачів вже має діючу знижку"
+
+#: ./application/modules/mod_discount/admin.php:209
+msgid "Status changed"
+msgstr "Статус змінився"
+
+#: ./application/modules/mod_discount/module_info.php:4
+#: ./application/modules/mod_discount/assets/admin/list.tpl:5
+msgid "Discounts of online store"
+msgstr "Знижки інтернет-магазину"
+
+#: ./application/modules/mod_discount/module_info.php:5
+msgid "Manage all discounts of online store"
+msgstr "Керувати усіма знижками інтернет-магазину"
+
+#: ./application/modules/mod_discount/models/discount_model_admin.php:508
+#: ./application/modules/mod_discount/models/discount_model_admin.php:520
+msgid "Value"
+msgstr "Значення"
+
+#: ./application/modules/mod_discount/assets/discount_order.tpl:4
+msgid "Maximum possible discount is using"
+msgstr "Максимально можлива знижка використовується"
+
+#: ./application/modules/mod_discount/assets/discount_order.tpl:6
+msgid "discount type: product"
+msgstr "знижка type: product"
+
+#: ./application/modules/mod_discount/assets/discount_order.tpl:7
+#: ./application/modules/mod_discount/assets/discount_order.tpl:17
+msgid "discount amount"
+msgstr "сума знижки"
+
+#: ./application/modules/mod_discount/assets/discount_order.tpl:10
+msgid "number"
+msgstr "кількість"
+
+#: ./application/modules/mod_discount/assets/discount_order.tpl:12
+msgid "discount name"
+msgstr "ім'я знижки"
+
+#: ./application/modules/mod_discount/assets/discount_order.tpl:13
+msgid "discount key"
+msgstr "знижка ключа"
+
+#: ./application/modules/mod_discount/assets/discount_order.tpl:14
+msgid "discount type"
+msgstr "Тип знижки"
+
+#: ./application/modules/mod_discount/assets/discount_order.tpl:15
+msgid "discount charge type"
+msgstr "знижка типу заправки"
+
+#: ./application/modules/mod_discount/assets/discount_order.tpl:16
+msgid "discount size"
+msgstr "розмір знижки"
+
+#: ./application/modules/mod_discount/assets/gift_succes.tpl:3
+#: ./application/modules/mod_discount/assets/gift.tpl:3
+msgid "Certificate code"
+msgstr "Код сертифіката"
+
+#: ./application/modules/mod_discount/assets/gift_succes.tpl:6
+msgid "on amount"
+msgstr "на суму"
+
+#: ./application/modules/mod_discount/assets/gift.tpl:5
+msgid "Apply sertificate"
+msgstr "Застосувати сертифікат"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:10
+msgid "Discount creating"
+msgstr "Створення знижки"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:14
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:14
+msgid "Back"
+msgstr "Назад"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:16
+#: ./application/modules/mod_discount/assets/admin/create.tpl:29
+msgid "Create"
+msgstr "Створити"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:19
+msgid "Create and exit"
+msgstr "Створити і вийти"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:40
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:41
+msgid "Discount details"
+msgstr "Деталі знижки"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:43
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:44
+msgid "Discount name"
+msgstr "Назва знижки"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:47
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:48
+msgid "Discount code"
+msgstr "Код знижки"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:58
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:59
+msgid "Count of usage"
+msgstr "Кількість використання"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:68
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:72
+msgid "Unlimit"
+msgstr "Без обмежень"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:83
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:87
+msgid "Method of calculation"
+msgstr "Метод розрахунку"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:86
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:90
+msgid "Choose method"
+msgstr "Обраний метод"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:90
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:94
+msgid "Percents"
+msgstr "Відсотків"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:91
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:95
+msgid "Fixed"
+msgstr "Виправлена"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:112
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:117
+msgid "Discount type"
+msgstr "Тип знижок"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:116
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:121
+msgid "Choose type"
+msgstr "Обраний тип"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:119
+#: ./application/modules/mod_discount/assets/admin/list.tpl:81
+#: ./application/modules/mod_discount/assets/js/adminScripts.js:248
+#: ./application/modules/mod_discount/assets/js/adminScripts.js:249
+msgid "No"
+msgstr "Немає"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:120
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:124
+#: ./application/modules/mod_discount/assets/admin/list.tpl:19
+#: ./application/modules/mod_discount/classes/BaseDiscount.php:180
+msgid "Order amount of more than"
+msgstr "Сума замовлення більш ніж"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:121
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:125
+#: ./application/modules/mod_discount/assets/admin/list.tpl:20
+#: ./application/modules/mod_discount/classes/BaseDiscount.php:181
+msgid "Cumulative discount"
+msgstr "Накопичувальні знижки"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:122
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:126
+#: ./application/modules/mod_discount/assets/admin/list.tpl:21
+#: ./application/modules/mod_discount/classes/BaseDiscount.php:182
+msgid "User"
+msgstr "Користувач"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:123
+#: ./application/modules/mod_discount/classes/BaseDiscount.php:183
+msgid "Users group"
+msgstr "Групи користувачів"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:124
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:128
+#: ./application/modules/mod_discount/assets/admin/list.tpl:23
+#: ./application/modules/mod_discount/classes/BaseDiscount.php:184
+msgid "Category"
+msgstr "Категорія"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:125
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:129
+#: ./application/modules/mod_discount/assets/admin/list.tpl:24
+#: ./application/modules/mod_discount/classes/BaseDiscount.php:185
+msgid "Product"
+msgstr "Продукт"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:126
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:130
+#: ./application/modules/mod_discount/assets/admin/list.tpl:25
+#: ./application/modules/mod_discount/classes/BaseDiscount.php:186
+msgid "Brand"
+msgstr "Бренд"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:147
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:151
+msgid "Only for registered"
+msgstr "Тільки для зареєстрованих"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:155
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:159
+msgid "Gift Certificate"
+msgstr "Подарунковий сертифікат"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:164
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:168
+msgid "from"
+msgstr "від"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:169
+#: ./application/modules/mod_discount/assets/admin/create.tpl:277
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:176
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:287
+msgid "to"
+msgstr "до"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:179
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:186
+msgid "Maximum"
+msgstr "Максимальна"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:191
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:198
+msgid "Current user"
+msgstr "Поточний користувач"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:194
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:205
+msgid "ID / Name / E-mail"
+msgstr "ID / ім'я / E-mail"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:223
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:234
+msgid "Change child category"
+msgstr "Зміни дитячої категорії"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:232
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:242
+msgid "Current product"
+msgstr "Поточний продукт"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:235
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:245
+msgid "ID / Name / Number"
+msgstr "ID / ім'я / номер"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:265
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:275
+msgid "Allowed time for discounts"
+msgstr "Дозволений час для знижок"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:268
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:278
+msgid "Period of the discount from"
+msgstr "Період дії знижки з"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:290
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:302
+msgid "Constant discount"
+msgstr "Постійна знижка"
+
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:10
+msgid "Discount editing"
+msgstr "Знижка редагується"
+
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:16
+msgid "Save"
+msgstr "Зберегти"
+
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:19
+msgid "Save and exit"
+msgstr "Зберегти і вийти"
+
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:30
+msgid "Edit"
+msgstr "Редагувати"
+
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:127
+#: ./application/modules/mod_discount/assets/admin/list.tpl:22
+msgid "User group"
+msgstr "Групи користувачів"
+
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:202
+msgid "User does not exist"
+msgstr "Користувача не існує"
+
+#: ./application/modules/mod_discount/assets/admin/list.tpl:11
+msgid "Create discount"
+msgstr "Створити знижку"
+
+#: ./application/modules/mod_discount/assets/admin/list.tpl:15
+msgid "Choose discount type"
+msgstr "Вибрати тип знижки"
+
+#: ./application/modules/mod_discount/assets/admin/list.tpl:18
+msgid "All"
+msgstr "Всі"
+
+#: ./application/modules/mod_discount/assets/admin/list.tpl:35
+msgid "Key"
+msgstr "Ключ"
+
+#: ./application/modules/mod_discount/assets/admin/list.tpl:36
+msgid "Name"
+msgstr "Ім'я"
+
+#: ./application/modules/mod_discount/assets/admin/list.tpl:37
+msgid "Limit"
+msgstr "Ліміт"
+
+#: ./application/modules/mod_discount/assets/admin/list.tpl:38
+msgid "Used"
+msgstr "Використовується"
+
+#: ./application/modules/mod_discount/assets/admin/list.tpl:39
+msgid "Beggining time"
+msgstr "Час початку"
+
+#: ./application/modules/mod_discount/assets/admin/list.tpl:40
+msgid "End time"
+msgstr "Час закінчення"
+
+#: ./application/modules/mod_discount/assets/admin/list.tpl:41
+msgid "Active"
+msgstr "Активність"
+
+#: ./application/modules/mod_discount/assets/admin/list.tpl:42
+msgid "Delete"
+msgstr "Видалити"
+
+#: ./application/modules/mod_discount/assets/admin/list.tpl:49
+msgid "Edit discount"
+msgstr "Редагувати знижку"
+
+#: ./application/modules/mod_discount/assets/admin/list.tpl:58
+msgid "Unlimited"
+msgstr "Необмежено"
+
+#: ./application/modules/mod_discount/assets/admin/list.tpl:79
+#: ./application/modules/mod_discount/assets/js/adminScripts.js:255
+#: ./application/modules/mod_discount/assets/js/adminScripts.js:257
+msgid "Yes"
+msgstr "Так"
+
+#: ./application/modules/mod_discount/assets/admin/list.tpl:101
+msgid "Discounts list is empty"
+msgstr "Список знижок порожній"
+
+#: ./application/modules/mod_discount/assets/js/adminScripts.js:185
+msgid "Discount deleted"
+msgstr "Знижка видалена"
+
+#: ./application/modules/mod_discount/classes/DiscountManager.php:51
+#: ./application/modules/mod_discount/classes/DiscountManager.php:81
+#: ./application/modules/mod_discount/classes/DiscountManager.php:111
+#: ./application/modules/mod_discount/classes/DiscountManager.php:140
+#: ./application/modules/mod_discount/classes/DiscountManager.php:169
+msgid "Entity does not exists!"
+msgstr "Сутність не існує!"
+
+#: ./application/modules/mod_discount/classes/DiscountManager.php:309
+msgid "Error creating discount"
+msgstr "Помилка при створенні знижки"
+
+#: ./application/modules/mod_discount/classes/DiscountManager.php:325
+msgid "Wrong type discount"
+msgstr "Неправильний вибір типу знижки"
+
+#: ./application/modules/mod_discount/classes/DiscountManager.php:328
+msgid "End value must be numeric"
+msgstr "Кінцеве значення мусить бути числом"
+
+#: ./application/modules/mod_discount/classes/DiscountManager.php:331
+#: ./application/modules/mod_discount/classes/DiscountManager.php:334
+msgid "Begin value must be numeric"
+msgstr "Початкове значення мусить бути числом"
+
+#: ./application/modules/mod_discount/classes/DiscountManager.php:337
+msgid "Max apply must be numeric"
+msgstr "Максимальне значення повинне бути числовим"
+
+#: ./application/modules/mod_discount/classes/DiscountManager.php:340
+msgid "Value must be numeric"
+msgstr "Значення повинне бути цілим"
+
+#: ./application/modules/mod_discount/classes/DiscountManager.php:343
+msgid "Amount <> can not be greater than the sum <>"
+msgstr "Сума <> не може бути більшою, ніж сума <>"
+
+#: ./application/modules/mod_discount/classes/DiscountManager.php:346
+msgid "Enter a product that is in the database"
+msgstr "Введіть продукт, який знаходиться в базі даних"
+
+#: ./application/modules/mod_discount/classes/DiscountManager.php:349
+msgid "Enter the user who is in the database"
+msgstr "Введіть користувача, який знаходиться в базі даних"
+
+#: ./application/modules/mod_discount/classes/DiscountManager.php:358
+msgid "There can be more than one discount with said upper threshold as a <>!"
+msgstr "Там може бути більше, ніж одна знижка з верхнього порогу <>!"
+
+#: ./application/modules/mod_discount/classes/DiscountManager.php:361
+#: ./application/modules/mod_discount/classes/DiscountManager.php:364
+msgid "Invalid type value!"
+msgstr "Невірний тип значення!"
+
+#: ./application/modules/mod_discount/classes/DiscountManager.php:367
+#: ./application/modules/mod_discount/classes/DiscountManager.php:370
+#: ./application/modules/mod_discount/classes/DiscountManager.php:373
+msgid "Invalid date range!"
+msgstr "Невірний діапазон дат!"
+
+#: ./application/modules/mod_discount/classes/DiscountManager.php:343
+msgid "Amount <<from>> can not be greater than the sum <<to>>"
+msgstr "Значення <<від>> не може бути більше, ніж сума <<до>>"
+
+#: ./application/modules/mod_discount/classes/DiscountManager.php:358
+msgid "There can be more than one discount with said upper threshold as a <<maximum>>!"
+msgstr "Там може бути більше, ніж одна знижка з верхнього порогу  <<максимум>>!"

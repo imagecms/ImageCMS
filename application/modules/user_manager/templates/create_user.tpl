@@ -19,7 +19,7 @@
 
         <!----------------------------------------------------- CREATE USER-------------------------------------------------------------->
         <div class="tab-pane">
-            <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+            <table class="table  table-bordered table-hover table-condensed content_big_td">
                 <thead>
                     <tr>
                         <th colspan="6">

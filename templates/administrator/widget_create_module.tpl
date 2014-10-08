@@ -1,17 +1,17 @@
 {foreach $widgets as $item}
-<div class="widget_block">
-    <div class="widget_header"><b>{$item.module_name} </b></div>
+    <div class="widget_block">
+        <div class="widget_header"><b>{$item.module_name} </b></div>
 
-    <div class="info_container">
-    {foreach $item.widgets as $widget }
-        <div class="widget_info" onclick="select_widget('{$item.module}','{$widget.method}','{$widget.title}');">
-            <a>{$widget.title}</a>
-            <p>{$widget.description}</p>
+        <div class="info_container">
+            {foreach $item.widgets as $widget }
+                <div class="widget_info" onclick="select_widget('{$item.module}', '{$widget.method}', '{$widget.title}');">
+                    <a>{$widget.title}</a>
+                    <p>{$widget.description}</p>
+                </div>
+            {/foreach}
         </div>
-    {/foreach}
-    </div>
 
-</div>
+    </div>
 {/foreach}
 
 
@@ -46,9 +46,9 @@
         }
 
         .info_container {
-         /*   height:200px;
-            overflow:auto;
-        */
+            /*   height:200px;
+               overflow:auto;
+            */
         }
     </style>
 {/literal}

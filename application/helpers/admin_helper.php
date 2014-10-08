@@ -72,7 +72,7 @@ if (!function_exists('check_admin_redirect')) {
     function create_admin_language_select() {
 
         $CI = & get_instance();
-        $languages = $CI->db->select('lang_name, locale')->get('languages')->result_array();
+        $languages = $CI->db->select('lang_name, locale')->order_by('lang_name')->get('languages')->result_array();
         $current_locale = $CI->config->item('language');
         $current_language = lang('English', 'admin');
 

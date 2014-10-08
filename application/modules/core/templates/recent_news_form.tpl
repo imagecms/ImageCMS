@@ -8,12 +8,12 @@
             <div class="d-i_b">
                 <a href="{$BASE_URL}admin/widgets_manager/index" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Go back", 'admin')}</span></a>
                 <button type="button" class="btn btn-small btn-primary formSubmit" data-form="#widget_form" data-submit><i class="icon-ok"></i>{lang("Save", 'admin')}</button>
-                <button type="button" class="btn btn-small formSubmit" data-form="#widget_form" data-action="tomain"><i class="icon-edit"></i>{lang("Save and go back", 'admin')}</button>
+                <button type="button" class="btn btn-small formSubmit" data-form="#widget_form" data-action="tomain"><i class="icon-check"></i>{lang("Save and go back", 'admin')}</button>
             </div>
         </div>                            
     </div>
     <form action="{$BASE_URL}admin/widgets_manager/update_widget/{$widget.id}" id="widget_form" method="post" class="form-horizontal">
-        <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+        <table class="table  table-bordered table-hover table-condensed content_big_td">
             <thead>
                 <th>{lang("Settings", 'core')}</th>
             </thead>

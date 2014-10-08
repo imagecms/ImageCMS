@@ -2,11 +2,11 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-18 04:21+0400\n"
-"PO-Revision-Date: 2014-06-18 04:21+0400\n"
-"Last-Translator:  \n"
-"Language-Team:  \n"
-"Language: uk_UA\n"
+"POT-Creation-Date: 2014-08-13 06:11+0300\n"
+"PO-Revision-Date: 2014-08-13 06:11+0300\n"
+"Last-Translator:  <>\n"
+"Language-Team:  <>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -17,3 +17,147 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/new_level/module_info.php:6
+#: ./application/modules/new_level/assets/admin/index.tpl:6
+msgid "Online store template settings"
+msgstr "Налаштування шаблону інтернет-магазину"
+
+#: ./application/modules/new_level/module_info.php:7
+msgid "New Level template settings. Managing blocks and columns."
+msgstr "Новий рівень налаштування шаблону. Керування блоками і колонами"
+
+#: ./application/modules/new_level/assets/admin/settings_thema.tpl:6
+msgid "Additional settings of NewLevel module"
+msgstr "Додаткові параметри модулю NewLevel"
+
+#: ./application/modules/new_level/assets/admin/settings_thema.tpl:10
+msgid "Go back"
+msgstr "Повернутися"
+
+#: ./application/modules/new_level/assets/admin/settings_thema.tpl:11
+#: ./application/modules/new_level/assets/admin/index.tpl:106
+#: ./application/modules/new_level/assets/admin/index.tpl:159
+#: ./application/modules/new_level/assets/admin/_columns.tpl:31
+msgid "Save"
+msgstr "Зберегти"
+
+#: ./application/modules/new_level/assets/admin/settings_thema.tpl:17
+#: ./application/modules/new_level/assets/admin/index.tpl:19
+#: ./application/modules/new_level/assets/admin/index.tpl:126
+#: ./application/modules/new_level/assets/admin/settings.tpl:5
+msgid "Settings"
+msgstr "Налаштування"
+
+#: ./application/modules/new_level/assets/admin/settings_thema.tpl:27
+#: ./application/modules/new_level/assets/admin/index.tpl:29
+#: ./application/modules/new_level/assets/admin/index.tpl:136
+msgid "Colour scheme"
+msgstr "Кольорова схема"
+
+#: ./application/modules/new_level/assets/admin/index.tpl:13
+#: ./application/modules/new_level/assets/admin/settings.tpl:12
+msgid "Back"
+msgstr "Повернутися"
+
+#: ./application/modules/new_level/assets/admin/index.tpl:27
+msgid "Properties"
+msgstr "Властивості"
+
+#: ./application/modules/new_level/assets/admin/index.tpl:28
+#: ./application/modules/new_level/assets/admin/settings.tpl:96
+msgid "Columns"
+msgstr "Стовпці"
+
+#: ./application/modules/new_level/assets/admin/index.tpl:39
+msgid "Id"
+msgstr "Id"
+
+#: ./application/modules/new_level/assets/admin/index.tpl:42
+msgid "Name"
+msgstr "Назва"
+
+#: ./application/modules/new_level/assets/admin/index.tpl:45
+msgid "Type"
+msgstr "Тип"
+
+#: ./application/modules/new_level/assets/admin/index.tpl:80
+#: ./application/modules/new_level/assets/admin/_columns.tpl:5
+msgid "Categories menu"
+msgstr "Категорії меню"
+
+#: ./application/modules/new_level/assets/admin/index.tpl:95
+#: ./application/modules/new_level/assets/admin/_columns.tpl:20
+#: ./application/modules/new_level/assets/js/script.js:55
+#: ./application/modules/new_level/assets/js/script.js:160
+#: ./application/modules/new_level/assets/js/script.js:191
+msgid "Column"
+msgstr "Стовпець"
+
+#: ./application/modules/new_level/assets/admin/settings.tpl:20
+msgid "Properties settings"
+msgstr "Властивості, параметри"
+
+#: ./application/modules/new_level/assets/admin/settings.tpl:21
+msgid "Columns settings"
+msgstr "Налаштування колонок"
+
+#: ./application/modules/new_level/assets/admin/settings.tpl:31
+msgid "Properties types"
+msgstr "Властивості типів"
+
+#: ./application/modules/new_level/assets/admin/settings.tpl:78
+msgid "Add new properties type"
+msgstr "Додавання нових властивостей типу"
+
+#: ./application/modules/new_level/assets/admin/settings.tpl:143
+msgid "Add new column"
+msgstr "Додати новий стовпець"
+
+#: ./application/modules/new_level/assets/js/script.js:26
+#: ./application/modules/new_level/assets/js/script.js:55
+#: ./application/modules/new_level/assets/js/script.js:95
+#: ./application/modules/new_level/assets/js/script.js:112
+#: ./application/modules/new_level/assets/js/script.js:127
+#: ./application/modules/new_level/assets/js/script.js:143
+#: ./application/modules/new_level/assets/js/script.js:160
+#: ./application/modules/new_level/assets/js/script.js:175
+#: ./application/modules/new_level/assets/js/script.js:191
+msgid "Message"
+msgstr "Повідомлення"
+
+#: ./application/modules/new_level/assets/js/script.js:26
+msgid "Property type updated"
+msgstr "Тип нерухомості оновлюється"
+
+#: ./application/modules/new_level/assets/js/script.js:55
+msgid "updated"
+msgstr "оновлено"
+
+#: ./application/modules/new_level/assets/js/script.js:95
+msgid "Data successfully saved"
+msgstr "Дані успішно збережено"
+
+#: ./application/modules/new_level/assets/js/script.js:112
+msgid "Type of property successfully removed"
+msgstr "Тип власності успішно видалений"
+
+#: ./application/modules/new_level/assets/js/script.js:127
+msgid "Type of property successfully updated"
+msgstr "Тип власності успішно оновлено"
+
+#: ./application/modules/new_level/assets/js/script.js:143
+msgid "Type of property successfully added"
+msgstr "Тип власності успішно додано"
+
+#: ./application/modules/new_level/assets/js/script.js:160
+msgid "removed"
+msgstr "видалено"
+
+#: ./application/modules/new_level/assets/js/script.js:175
+msgid "Column successfully removed"
+msgstr "Колонка успішно видалена"
+
+#: ./application/modules/new_level/assets/js/script.js:191
+msgid "successfully added"
+msgstr "успішно додано"

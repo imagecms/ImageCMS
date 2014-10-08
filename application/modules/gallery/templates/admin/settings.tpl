@@ -15,7 +15,7 @@
         <div class="tab-pane active" id="modules">
             <div class="row-fluid">
                 <form method="post" enctype="multipart/form-data" action="{site_url('admin/components/cp/gallery/settings/update')}" id="gallery_settings_form">
-                    <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+                    <table class="table  table-bordered table-hover table-condensed content_big_td">
                         <thead>
                             <tr>
                                 <th colspan="6">
@@ -48,7 +48,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+                    <table class="table  table-bordered table-hover table-condensed content_big_td">
                         <thead>
                             <tr>
                                 <th colspan="6">
@@ -116,7 +116,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+                    <table class="table  table-bordered table-hover table-condensed content_big_td">
                         <thead>
                             <tr>
                                 <th colspan="6">
@@ -167,7 +167,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+                    <table class="table  table-bordered table-hover table-condensed content_big_td">
                         <thead>
                             <tr>
                                 <th colspan="6">
@@ -218,7 +218,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+                    <table class="table  table-bordered table-hover table-condensed content_big_td">
                         <thead>
                             <tr>
                                 <th colspan="6">
@@ -339,7 +339,7 @@
                                                                         {lang('Font is not uploaded','admin')}
                                                                     {else:}
                                                                         <a href="{site_url(str_replace('./','',$settings.watermark_font_path))}">{$settings.watermark_font_path}</a>
-                                                                        <a href="javascript:$('#delete_watermark_font_path').val(1); $('.watermark_path_info div').html(langs.fontNotUploaded)"><i class="icon-remove"></i></a>
+                                                                        <a href="javascript:$('#delete_watermark_font_path').val(1); $('.watermark_path_info div').html(langs.fontNotUploaded)"><i class="icon-trash"></i></a>
                                                                         {/if}
                                                                 </div>
                                                             </div>

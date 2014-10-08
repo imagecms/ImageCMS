@@ -60,8 +60,11 @@
                             {lang('Товаров на сумму','newLevel')}:
                             <span class="price-item">
                                 <span class="text-discount">
-                                    <span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($profile->getamout())}</span>
-                                    <span class="curr">{$CS}</span>
+                                    <span>
+                                        {echo \Currency\Currency::create()->getCurrencyToFormat(\Currency\Currency::create()->getMainCurrency()->getId(), ShopCore::app()->SCurrencyHelper->convert($profile->getamout()),'span', 'curr', '',  'span', 'price', '')}
+                                    </span>
+                                    {/*}<span class="price">{echo ShopCore::app()->SCurrencyHelper->convert($profile->getamout())}</span>
+                                    <span class="curr">{$CS}</span>{ */}
                                 </span>
                             </span>
                         </div>
@@ -69,7 +72,11 @@
                             <div>
                                 {lang('Ваша текущая скидка','newLevel')}:
                                 <span class="price-item">
-                                    <span class="text-discount">{echo $discount['user'][0]['value']}{if $discount['user'][0]['type_value'] == 1}%{else:}{$CS}{/if}</span>
+                                    <span class="text-discount">                                    
+                                    {if $discount['user'][0]['type_value'] == 1}{echo $discount['user'][0]['value']}%
+                                    {else:}{echo \Currency\Currency::create()->getCurrencyToFormat(\Currency\Currency::create()->getMainCurrency()->getId(), $discount['user'][0]['value'])}
+                                    {/if}
+                                </span>
                                 </span>
                             </div>
                         {/if}
@@ -77,7 +84,10 @@
                             <div>
                                 {lang('Ваша текущая скидка группы пользователей','newLevel')}:
                                 <span class="price-item">
-                                    <span class="text-discount">{echo $discount['group_user'][0]['value']}{if  $discount['group_user'][0]['type_value'] == 1}%{else:}{$CS}{/if}</span>
+                                    <span class="text-discount">                                    
+                                    {if  $discount['group_user'][0]['type_value'] == 1}{echo $discount['group_user'][0]['value']}%
+                                    {else:}{echo \Currency\Currency::create()->getCurrencyToFormat(\Currency\Currency::create()->getMainCurrency()->getId(), $discount['group_user'][0]['value'])}
+                                    {/if}</span>
                                 </span>
                             </div>
                         {/if}
@@ -93,7 +103,10 @@
                             <div>
                                 {lang('Ваша текущая скидка','newLevel')}:
                                 <span class="price-item">
-                                    <span class="text-discount">{echo $discount_comul_curr['value']}{if  $discount_comul_curr['type_value'] == 1}%{else:}{$CS}{/if}</span>
+                                    <span class="text-discount">                                        
+                                    {if  $discount_comul_curr['type_value'] == 1}{echo $discount_comul_curr['value']}%
+                                    {else:}{echo \Currency\Currency::create()->getCurrencyToFormat(\Currency\Currency::create()->getMainCurrency()->getId(), $discount_comul_curr['value'])}
+                                    {/if}</span>
                                 </span>
                             </div>
                         {/if}
@@ -102,8 +115,12 @@
 
                     {if $discount_comul_next}
                         <li class="inside-padd">
-                            <div>{lang('Для следующей скидки','newLevel')} {echo $discount_comul_next['value']}{if  $discount_comul_next['type_value'] == 1}%{else:}{$CS}{/if}</b> {lang('осталось','newLevel')}</div>
-                            <div>{lang('cделать покупки на сумму','newLevel')}: <b>{echo $discount_comul_next['begin_value'] - $profile->getamout()} {$CS}</b></div>
+                            <div>{lang('Для следующей скидки','newLevel')} 
+                            {if  $discount_comul_next['type_value'] == 1}
+                            {echo $discount_comul_next['value']}%
+                            {else:}{echo \Currency\Currency::create()->getCurrencyToFormat(\Currency\Currency::create()->getMainCurrency()->getId(), $discount_comul_next['value'])}
+                            {/if}</b> {lang('осталось','newLevel')}</div>
+                            <div>{lang('cделать покупки на сумму','newLevel')}: <b>{echo \Currency\Currency::create()->getCurrencyToFormat(\Currency\Currency::create()->getMainCurrency()->getId(), $discount_comul_next['begin_value'] - $profile->getamout())}</b></div>
                         </li>
                     {/if}
                     {if  $discount['comulativ']}
@@ -135,9 +152,16 @@
                     <tbody>
                         {foreach $discount['comulativ'] as $disc}
                             <tr>
-                                <td class="text-discount">{echo $disc['value']}{if $disc['type_value'] == 1}%{else:}{$CS}{/if}</td>
-                                <td>{echo $disc['begin_value']} {$CS}</td>
-                                <td>{if $disc['end_value']}{echo $disc['end_value']} {$CS}{else:}{lang('Бесконечно','newLevel')}{/if}</td>
+                                <td class="text-discount">
+                                {if $disc['type_value'] == 1}
+                                {echo $disc['value']}%
+                                {else:}{echo \Currency\Currency::create()->getCurrencyToFormat(\Currency\Currency::create()->getMainCurrency()->getId(), $disc['value'])}
+                                {/if}</td>
+                                <td>{echo \Currency\Currency::create()->getCurrencyToFormat(\Currency\Currency::create()->getMainCurrency()->getId(), $disc['begin_value'])}</td>
+                                <td>{if $disc['end_value']}
+                                    {echo \Currency\Currency::create()->getCurrencyToFormat(\Currency\Currency::create()->getMainCurrency()->getId(), $disc['end_value'])}
+                                    {else:}{lang('Бесконечно','newLevel')}
+                                    {/if}</td>
                             </tr>
                         {/foreach}
                     </tbody>

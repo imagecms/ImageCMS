@@ -671,7 +671,8 @@ class Core extends MY_Controller {
                 'id' => $lang['id'],
                 'name' => $lang['lang_name'],
                 'folder' => $lang['folder'],
-                'template' => $lang['template']
+                'template' => $lang['template'],
+                'image' => $lang['image']
             );
 
             if ($lang['default'] == 1)

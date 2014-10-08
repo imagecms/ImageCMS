@@ -27,14 +27,14 @@
                 <div class="d-i_b">
                     <a href="/admin/components/init_window/trash/create_trash/" class="btn btn-small btn-success pjax"><i class="icon-plus-sign icon-white"></i>{lang('Create redirect', 'trash')}</a>
                     <a href="/admin/components/init_window/trash/create_trash_list/" class="btn btn-small btn-success pjax"><i class="icon-plus-sign icon-white"></i>{lang('Create redirect list', 'trash')}</a>
-                    <button type="button" class="btn btn-small btn-danger disabled action_on" id="trash_del" onclick="delete_function.deleteFunction()"><i class="icon-trash icon-white"></i>{lang("Delete", 'trash')}</button>
+                    <button type="button" class="btn btn-small btn-danger disabled action_on" id="trash_del" onclick="delete_function.deleteFunction()"><i class="icon-trash"></i>{lang("Delete", 'trash')}</button>
                 </div>
             </div>                            
         </div>
 
         <div class="row-fluid">
             <form method="post" action="#" class="form-horizontal">
-                <table class="table table-striped table-bordered table-hover table-condensed content_big_td t-l_a">
+                <table class="table  table-bordered table-hover table-condensed t-l_a">
                     <thead>
                         <tr>
                             <th class="t-a_c span1">

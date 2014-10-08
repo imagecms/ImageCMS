@@ -73,7 +73,7 @@ class YandexTranslate {
 
     public function translate($translationLanguage, $textToTranslate = "") {
         if ($translationLanguage) {
-            $translationLanguage = '&text=' . str_replace(' ', '%20', $translationLanguage);
+            $translationLanguage = '&text=' . str_replace(' ', '%20', $textToTranslate);
             return $this->open_https_url(self::$yandexApiUrl . 'key=' . $this->yandexApiKey . $translationLanguage . '&lang=' . $this->sourceLanguage . '-' . $translationLanguage . '&format=plain');
         } else {
             return FALSE;

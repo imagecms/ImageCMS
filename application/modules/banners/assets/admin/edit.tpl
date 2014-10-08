@@ -28,8 +28,8 @@
             </div>
         </div>                            
     </div>
-    <form method="post" action="/admin/components/init_window/banners/edit/{echo $banner['id']}/{$locale}" enctype="multipart/form-data" id="image_upload_form">
-        <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+    <form method="post" action="/admin/components/init_window/banners/edit/{echo $banner['id']}/{$locale}" enctype="multipart/form-data" id="image_upload_form" class="m-t_10">
+        <table class="table  table-bordered table-hover table-condensed content_big_td">
             <thead>
                 <tr>
                     <th colspan="6">
@@ -162,7 +162,7 @@
                                         <div class="o_h">		            
                                             <input type="text" name="photo" id="Img" value="{echo $banner['photo'];}" required="required">					
                                         </div>
-                                        <div id="Img-preview" style="width: 400px;" >
+                                        <div id="Img-preview" style="width: 400px;" class="m-t_20">
                                             {if $banner['photo']}
                                                 <img src="{echo $banner['photo']}" class="img-polaroid" style="width: 400px;">
                                             {/if}

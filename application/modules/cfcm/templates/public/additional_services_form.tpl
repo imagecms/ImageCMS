@@ -1,91 +1,111 @@
-<style>
-    {literal}
-        .item:nth-child(odd){
-            float: left;
-            clear: both;
-        }
-        .item:nth-child(even){
-            float: right;
-        }
-        div.items{
-            width: 80%;
-            margin-top: 28px;
-            padding-right: 120px;
-            padding-left: 20px;
-            height: 340px;
-            background-color: #f8f8f8;
-        }
-        div.item.textarea{
-            clear: both;
-            top: 40px;
-            position: relative;
-            width: 100%;
-        }
-        div.item.textarea  textarea{
-            width: 100%;
-            margin-top: 10px;
-            min-height: 100px;
-            border-color: gray;
-        }
+{if $form}
+    {$result = $CI->session->flashdata('result');}
 
-        input[type="submit"]{
-            float: left;
-            clear: both;
-            margin-top: 20px;
-        }
+    <form action="{site_url('saas/additional_services_order')}" method="post" enctype="multipart/form-data">
+        {if $result}
+            {if $result['errors']}
+                <div class="errors">
+                    {echo $result['errors']}
+                </div>
+            {/if}
 
-        input[type="file"]{
-            float: left;
-            margin-top: 60px;
-        }
-
-        form > div.errors, form > div.success{
-            padding-left: 20px;
-            padding-top: 1px;
-        }
-
-        form > div.success{
-            color: green;
-            padding-top: 10px;
-        }
-    {/literal}
-</style>
-{$result = $CI->session->flashdata('result');}
-
-<form action="{site_url('saas/additional_services_order')}" method="post" enctype="multipart/form-data">
-    {if $result}
-        {if $result['errors']}
-            <div class="errors">
-                {echo $result['errors']}
-            </div>
+            {if $result['success']}
+                <div class="success">
+                    {echo $result['success']}
+                </div>
+            {/if}
         {/if}
 
-        {if $result['success']}
-            <div class="success">
-                {echo $result['success']}
-            </div>
-        {/if}
-    {/if}
+        <div class="group-checkboxes default-patch m-b_10 clearfix">
+            {foreach $form->asArray() as $f}
 
-    <div class="items">
+                <!-- FIELD CHECKBOX -->
+                {if $f.info.type == 'checkbox'}
+                    <div class="frame-checkbox">
+                        <input type="checkbox" id="{echo $f.name}" {if $result['errors'] && $result['POST'][$f.name]}checked="checked"{/if} name="{echo $f.name}" value="{echo strip_tags($f.info.initial)}"/>
+                        <label for="{echo $f.name}">
+                            <span class="title">{$f.info.label},</span> 
+                            <span class="price">
+                                {if $f.info.type == 'checkbox'}
+                                    {echo strip_tags($f.info.initial)}
+                                {/if}
+                            </span>
+                        </label>
+                    </div>
+                {/if}
 
-        {foreach $form->asArray() as $f}
-            <div class="item {echo $f.info.type}">
-                {$f.label}
-                <div>
+                <!-- FIELD TEXTAREA -->
+                {if $f.info.type == 'textarea'}
+                    <textarea id="{echo $f.name}" name="{echo $f.name}" placeholder="{echo $f.info.label}&hellip;" class="m-b_15">{if $result['errors'] && $result['POST'][$f.name]}{echo $result['POST'][$f.name]}{/if}</textarea>
+                {/if}
 
-                {$f.field} {if $f.info.type == 'checkbox'} {echo strip_tags($f.info.initial)}{/if}
+                <!-- FIELD SELECT -->
+                {if $f.info.type == 'select'}
 
-                {$f.help_text}
+                    <!-- SINGLE SELECT -->
+                    {$options = explode("\n", strip_tags($f.info.initial));}
+                    {if !isset($f['info']['multiple'])}
+                        <select id="{echo $f.name}" name="{echo $f.name}">
+                            {foreach $options as $option}
+                                <option value="{echo $option}" {if $result['errors'] && $result['POST'][$f.name] == $option}selected="selected"{/if}>{echo $option}</option>
+                            {/foreach}
+                        </select>
+                    {else:}
+                        <!-- MULTIPLE SELECT -->
+                        <select id="{echo $f.name}" name="{echo $f.name}[]" multiple="multiple">
+                            {foreach $options as $option}
+                                <option value="{echo $option}" {if $result['errors'] && in_array($option, $result['POST'][$f.name])}selected="selected"{/if}>{echo $option}</option>
+                            {/foreach}
+                        </select>
+                    {/if}
+                {/if}
+
+                <!-- FIELD CHECKGROUP -->
+                {if $f.info.type == 'checkgroup'}
+                    {$values = explode("\n", strip_tags($f.info.initial));}
+                    {foreach $values as $number => $value}
+                        <div class="frame-checkbox">
+                            <input type="checkbox" id="{echo $f.name}_{echo $number}" {if $result['errors'] && in_array($value, $result['POST'][$f.name])}checked="checked"{/if} name="{echo $f.name}[]" value="{echo $value}"/>
+                            <label for="{echo $f.name}_{echo $number}">
+                                <span class="title">{$f.info.label},</span> 
+                                <span class="price">
+                                    {echo $value}
+                                </span>
+                            </label>
+                        </div>
+                    {/foreach}
+                {/if}
+
+                <!-- FIELD RADIOGROUP -->
+                {if $f.info.type == 'radiogroup'}
+                    {$values = explode("\n", strip_tags($f.info.initial));}
+                    {foreach $values as $number => $value}
+                        <div class="frame-checkbox">
+                            <input type="radio" id="{echo $f.name}_{echo $number}" {if $result['errors'] && in_array($value, $result['POST'][$f.name])}checked="checked"{/if} name="{echo $f.name}[]" value="{echo $value}"/>
+                            <label for="{echo $f.name}_{echo $number}">
+                                <span class="title">{$f.info.label},</span> 
+                                <span class="price">
+                                    {echo $value}
+                                </span>
+                            </label>
+                        </div>
+                    {/foreach}
+                {/if}
+            {/foreach}
+        </div>
+        {$hf}
+        {form_csrf()}
+        <div class="footer-panel clearfix">
+            <button type="submit" class="btn btn-primary f_l">
+                <span class="text-el">{echo lang('Send', 'cfcm')}</span>
+            </button>
+            <div class="hidden-type-file f_r btn-attach-file2 btn">
+                <span class="icon-attach"></span>
+                <span class="text-el">{echo lang('Attach', 'cfcm')}</span>
+                <input type="file" name="attachment" title="{echo lang('Choose file', 'cfcm')}"/>
             </div>
         </div>
-
-    {/foreach}
-    {$hf}
-    {form_csrf()}
-    <input type="file" name="attachment">
-    <input type="submit" value="{echo lang('Отправить', 'saas')}">
-</div>
-</form>
-
-
+    </form>
+{else:}
+    {lang('Empty page.', 'saas')}
+{/if}
