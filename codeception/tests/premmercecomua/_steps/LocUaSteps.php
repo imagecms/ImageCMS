@@ -34,7 +34,7 @@ class LocUaSteps extends \UkrainianTester
     
     
     
-    //----Saas----
+    //----Saas--------Saas--------Saas--------Saas--------Saas--------Saas----
     
     public function CreateStore($store_name,
                                 $user_email,
@@ -64,8 +64,8 @@ class LocUaSteps extends \UkrainianTester
     }  
     
     
-    public function AdminLogin (   $admin_email,
-                                            $admin_password){
+    public function AdminLogin (    $admin_email,
+                                    $admin_password){
         $I = $this; 
         $I->amOnPage('/admin');
         $I->fillField('//body/div[1]/div[1]/form/label[1]/input', $admin_email);
@@ -74,8 +74,8 @@ class LocUaSteps extends \UkrainianTester
         $I->wait(5);
     }
     
-    public function CabinetLogin ( $user_email,
-                                            $user_password){
+    public function CabinetLogin (  $user_email,
+                                    $user_password){
         $I = $this; 
         $I->amOnPage(\PremmerceMainPage::$URL);
         $I->click(\PremmerceMainPage::$ButtonEnter);
