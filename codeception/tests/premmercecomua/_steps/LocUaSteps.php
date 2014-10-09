@@ -92,7 +92,7 @@ class LocUaSteps extends \UkrainianTester
                                     $user_password){
         $I = $this; 
         $I->amOnPage(\PremmerceMainPage::$URL);//body/div[3]/header/div/div/div/div[1]/div[1]/a
-        $I->wait(1);           //body/div[3]/header/div/div/div/div[1]/div[1]/button 
+        $I->wait(2);           //body/div[3]/header/div/div/div/div[1]/div[1]/button 
         $button_text = $I->grabTextFrom('//body/div[3]/header/div/div/div/div[1]/div[1]');
         $I->comment("$button_text");
         $name_button_enter      = 'ВХІД';

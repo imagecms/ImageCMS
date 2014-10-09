@@ -13,7 +13,7 @@ class SaasUserPageUACest
    private $user_email = 'premmerce.test@gmail.com';
    private $user_password = '98765431';
    private $user_name = 'Bazooka Band Powerviolence Go';
-   private $user_phone = '111444555333222666777888000999';
+   private $user_phone = '11144226677788';
    private $user_city = 'Львів Сіті Сінь Пянь';
 
 
@@ -50,11 +50,11 @@ class SaasUserPageUACest
                         $user_city          = $this->user_city,
                         $product_category   = 3,
                         $product_level      = 2);
-        $I->wait(10);
+        $I->wait(20);
         $I->wait(1);
         $I->seeInCurrentUrl('/saas/profile');
-        $I->see('Баланс', '//body/div[1]/header/div/div[2]/a/span[2]/span[1]');
-        $I->see('днів', '//body/div[1]/header/div/div[2]/a/span[2]/span[3]');
+        $I->see('Баланс', PremmerceCabinetPage::$HeadTextBalans);
+        $I->see('днів', PremmerceCabinetPage::$HeadTextDay);
         $I->see($this->store_name, PremmerceCabinetPage::$TabMainFieldSiteLink);
         $I->see($this->store_name, PremmerceCabinetPage::$TabMainFieldAdminLink);
         $I->see($this->tarif_standart, PremmerceCabinetPage::$TabMainFieldTarifNameTarif);
@@ -66,23 +66,16 @@ class SaasUserPageUACest
         $I->seeInField(PremmerceCabinetPage::$TabProfileFieldCity, $this->user_city);
         $I->seeInField(PremmerceCabinetPage::$TabProfileFieldEmail, $this->user_email);
         $I->wait(1);
-        $I->click(PremmerceCabinetPage::$HeadLinkShop);
-        $I->seeInCurrentUrl();
+//        $I->click(PremmerceCabinetPage::$HeadLinkShop);
+//        $I->seeInCurrentUrl();
         $I->CabinetLogout();
     }
     
- 
-    /**
-     * @group a
-     * @guy UkrainianTester\LocUaSteps 
-     */
-    public function CheckCabinet (UkrainianTester\LocUaSteps $I){
-        $I->CabinetLogin($user_email = $this->user_email, $user_password = $this->user_password);
-    }
+
     
     
     /**
-     * @group a
+     * @group aa
      * @guy UkrainianTester\LocUaSteps 
      */
     public function CheckSaas(UkrainianTester\LocUaSteps $I){
@@ -99,22 +92,23 @@ class SaasUserPageUACest
         $I->see($this->store_name, SaasUserListPage::lineDomainLink(1));
         $I->click(SaasUserListPage::lineActionlink(1));
         $I->click(SaasUserListPage::ButtonDisable(1));
-        $I->wait(3);
+        $I->wait(12);
+        $I->reloadPage();
         $I->AdminLogout();
     }
     
     
     
     /**
-     * @group a
+     * @group aa
      * @guy UkrainianTester\LocUaSteps 
      */
     public function CheckOffCabinet (UkrainianTester\LocUaSteps $I){
         $I->CabinetLogin($user_email = $this->user_email, $user_password = $this->user_password);
         $I->wait(1);
         $I->seeInCurrentUrl('/saas/profile');
-        $I->see('Магазин отключен', '//body/div[1]/header/div/div[2]/div[1]/span[2]/span');
-        $I->see('Сплатити', '//body/div[1]/header/div/div[2]/div[1]/span[2]/a');
+        $I->see('Магазин отключен', PremmerceCabinetPage::$HeadTextShopOff);
+        $I->see('Сплатити', PremmerceCabinetPage::$HeadTextPaid);
         $I->see($this->store_name, PremmerceCabinetPage::$TabMainFieldSiteLink);
         $I->see($this->store_name, PremmerceCabinetPage::$TabMainFieldAdminLink);
         $I->see($this->tarif_standart, PremmerceCabinetPage::$TabMainFieldTarifNameTarif);
@@ -125,7 +119,6 @@ class SaasUserPageUACest
         $I->seeInField(PremmerceCabinetPage::$TabProfileFieldPhone, $this->user_phone);
         $I->seeInField(PremmerceCabinetPage::$TabProfileFieldCity, $this->user_city);
         $I->seeInField(PremmerceCabinetPage::$TabProfileFieldEmail, $this->user_email);
-        $I->wait(1);
         $I->CabinetLogout();
     }
     
@@ -135,7 +128,7 @@ class SaasUserPageUACest
     
     
     /**
-     * @group a
+     * @group aa
      * @guy UkrainianTester\LocUaSteps 
      */
     public function CheckOffSaas(UkrainianTester\LocUaSteps $I){
@@ -151,13 +144,14 @@ class SaasUserPageUACest
         $I->see($this->store_name, SaasUserListPage::lineDomainLink(1));
         $I->click(SaasUserListPage::lineActionlink(1));
         $I->click(SaasUserListPage::ButtonDisable(1));
-        $I->wait(3);
+        $I->wait(12);
+        $I->reloadPage();
         $I->AdminLogout();
     }
     
     
     /**
-     * @group a
+     * @group aa
      * @guy UkrainianTester\LocUaSteps 
      */
     public function CheckOnCabinet (UkrainianTester\LocUaSteps $I){
@@ -176,14 +170,13 @@ class SaasUserPageUACest
         $I->seeInField(PremmerceCabinetPage::$TabProfileFieldPhone, $this->user_phone);
         $I->seeInField(PremmerceCabinetPage::$TabProfileFieldCity, $this->user_city);
         $I->seeInField(PremmerceCabinetPage::$TabProfileFieldEmail, $this->user_email);
-        $I->wait(1);
         $I->CabinetLogout();
     }
         
     
     
     /**
-     * @group a
+     * @group aa
      * @guy UkrainianTester\LocUaSteps 
      */
     public function FilterPhone(UkrainianTester\LocUaSteps $I){
@@ -194,13 +187,61 @@ class SaasUserPageUACest
         $I->fillField(SaasUserListPage::$FilterPhoneInput, $this->user_phone);
         $I->click(SaasUserListPage::$FilterButtonFilter);
         $I->see($this->user_phone, SaasUserListPage::linePhoneText(1));
-        $I->wait(5);
-//        $I->click(SaasUserListPage::lineActionlink(1));
-//        $I->click(SaasUserListPage::ButtonDisable(1));
-//        $I->wait(3);
         $I->AdminLogout();
-//        $I->click(SaasUserListPage::$Logout);
+    } 
+    
+    /**
+     * @group aa
+     * @guy UkrainianTester\LocUaSteps 
+     */
+    public function FilterName(UkrainianTester\LocUaSteps $I){
+        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
+        $I->amOnPage(SaasUserListPage::$URL);
+        $I->wait(1);
+        $I->click(SaasUserListPage::$FilterNameLabel);
+        $I->fillField(SaasUserListPage::$FilterNameInput, $this->user_name);
+        $I->click(SaasUserListPage::$FilterButtonFilter);
+        $I->see($this->user_name, SaasUserListPage::lineNameText(1));
+        $I->AdminLogout();
     }
+    
+    
+    
+    /**
+     * @group aa
+     * @guy UkrainianTester\LocUaSteps 
+     */
+    public function FilterEmail(UkrainianTester\LocUaSteps $I){
+        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
+        $I->amOnPage(SaasUserListPage::$URL);
+        $I->wait(1);
+        $I->click(SaasUserListPage::$FilterEmailLabel);
+        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->user_email);
+        $I->click(SaasUserListPage::$FilterButtonFilter);
+        $I->see($this->user_email, SaasUserListPage::lineEmailLink(1));
+        $I->AdminLogout();
+    }
+    
+    
+    /**
+     * @group aaa
+     * @guy UkrainianTester\LocUaSteps 
+     */
+    public function FilterCountry(UkrainianTester\LocUaSteps $I){
+        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
+        $I->amOnPage(SaasUserListPage::$URL);
+        $I->wait(1);
+        $I->click(SaasUserListPage::$FilterDomainLabel);
+        $I->fillField(SaasUserListPage::$FilterDomainInput, $this->store_name);
+        $I->click(SaasUserListPage::$FilterCountryLabel);
+        $I->click(SaasUserListPage::$FilterCountrySelect);
+        $I->click(SaasUserListPage::FilterCountrySelectOption(2));
+        $I->click(SaasUserListPage::$FilterButtonFilter);
+        $I->see($this->user_email, SaasUserListPage::lineEmailLink(1));
+        $I->AdminLogout();
+    }
+    
+    
     
 
     
