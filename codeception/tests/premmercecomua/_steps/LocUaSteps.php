@@ -74,22 +74,52 @@ class LocUaSteps extends \UkrainianTester
         $I->fillField('//body/div[1]/div[1]/form/label[2]/input', $admin_password);
         $I->wait(1);
         $I->click('//body/div[1]/div[1]/form/input[1]');
-        $I->wait(1);
+        $I->wait(3);
     }
+    
+    public function AdminLogout (){
+        $I = $this;
+        $I->click(\SaasUserListPage::$NavigationSystem);
+        $I->click(\SaasUserListPage::$NavigationSystemClearCach);
+        $I->wait(1);
+        $I->click(\SaasUserListPage::$Logout);
+        $I->wait(1);
+    } 
+    
+    
     
     public function CabinetLogin (  $user_email,
                                     $user_password){
         $I = $this; 
-        $I->amOnPage(\PremmerceMainPage::$URL);
-        $I->wait(1);
-        $I->click(\PremmerceMainPage::$ButtonEnter);
+        $I->amOnPage(\PremmerceMainPage::$URL);//body/div[3]/header/div/div/div/div[1]/div[1]/a
+        $I->wait(1);           //body/div[3]/header/div/div/div/div[1]/div[1]/button 
+        $button_text = $I->grabTextFrom('//body/div[3]/header/div/div/div/div[1]/div[1]');
+        $I->comment("$button_text");
+        $name_button_enter      = 'ВХІД';
+        $name_button_cabinet    = 'КАБІНЕТ';
+        if($button_text == $name_button_enter){
+            $I->click(\PremmerceMainPage::$ButtonEnter);
         $I->wait(1);
         $I->fillField(\PremmerceMainPage::$WindowLoginFieldEmail, $user_email);
         $I->wait(1);
         $I->fillField(\PremmerceMainPage::$WindowLoginFieldPassword, $user_password);
         $I->wait(1);
         $I->click(\PremmerceMainPage::$WindowLoginButtonSend);
-        $I->wait(15);
+        $I->wait(1);
+        $I->see('User logged in success', \PremmerceMainPage::$WindowLoginTextLogining);
+        $I->wait(7);
+        }
+        if($button_text == $name_button_cabinet){
+        $I->click(\PremmerceMainPage::$ButtonCabinet);
+        $I->wait(1);
+        }
     }
+    
+    public function CabinetLogout (){
+        $I = $this;
+        $I->click(\PremmerceCabinetPage::$HeadLinkProfile);
+        $I->click(\PremmerceCabinetPage::$HeadLinkProfileLinkExit);
+        $I->wait(1);
+    } 
     
 }
