@@ -115,14 +115,14 @@ class SaasUserListPage
     public static function FilterFillProductsSelectOption ($number){
         return "//section/div[2]/div/div[2]/form/div/ul/li[17]/select/option[$number]";
     }
-    public static $FilterFillStatusesLabel = '//section/div[2]/div/div[2]/form/div/ul/li[18]/label/span';
-    public static $FilterFillStatusesSelect = '//section/div[2]/div/div[2]/form/div/ul/li[18]/select';
-    public static function FilterFillStatusesSelectOption ($number){
+    public static $FilterStatusesLabel = '//section/div[2]/div/div[2]/form/div/ul/li[18]/label/span';
+    public static $FilterStatusesSelect = '//section/div[2]/div/div[2]/form/div/ul/li[18]/select';
+    public static function FilterStatusesSelectOption ($number){
         return "//section/div[2]/div/div[2]/form/div/ul/li[18]/select/option[$number]";
     }
-    public static $FilterFillDepartmentsLabel = '//section/div[2]/div/div[2]/form/div/ul/li[19]/label/span';
-    public static $FilterFillDepartmentsSelect = '//section/div[2]/div/div[2]/form/div/ul/li[19]/select';
-    public static function FilterFillDepartmentsSelectOption ($number){
+    public static $FilterDepartmentsLabel = '//section/div[2]/div/div[2]/form/div/ul/li[19]/label/span';
+    public static $FilterDepartmentsSelect = '//section/div[2]/div/div[2]/form/div/ul/li[19]/select';
+    public static function FilterDepartmentsSelectOption ($number){
         return "//section/div[2]/div/div[2]/form/div/ul/li[19]/select/option[$number]";
     }
     public static $FilterButtonFilter = '//section/div[2]/div/div[2]/form/div/input';
