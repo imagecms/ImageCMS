@@ -9,11 +9,15 @@ class SaasUserListPage
     public static $NavigationModulSaas = "//body/div[1]/div[3]/div/nav/ul/li[6]/ul/li[2]/a";
     public static $NavigationModulSaasTabUser = "//body/div[1]/div[5]/section/div/div[1]/ul/li[2]/a";
     
+    public static $NavigationSystem = "//body/div[1]/div[3]/div/nav/ul/li[9]/a";
+    public static $NavigationSystemClearCach = "//body/div[1]/div[3]/div/nav/ul/li[9]/ul/li[12]/a";
+    
     
     
     
     //---  Сторінка " Список користувачів і їх баланси saas"
     
+    public static $Logout = '//body/div[1]/header/section/div[1]/div/span[1]/a[2]/i';
     public static $URL = '/admin/components/run/saas/users/lists';
     public static $Title = '//body/div[1]/div[5]/div[3]/section/div[1]/div[1]/span[2]';
     public static $ButtonBack = '//section/div[1]/div[2]/div/a';
