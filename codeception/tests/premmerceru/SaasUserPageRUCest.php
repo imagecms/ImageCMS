@@ -1,20 +1,20 @@
 <?php
 
-use \UkrainianTester;
+use \RussianTester;
 
-class SaasUserPageUACest
+class SaasUserPageRUCest
 
 
 {
-   private $store_url = 'populationnation.premme.com.ua';
-//   private $store_url = 'message.premme.com.ua';
+   private $store_url = 'zagibokpolymjagkiy.premme.ru';
+//   private $store_url = 'message.premme.ru';
 
-   private $store_name = 'populationnation';
-   private $user_email = 'premmerce.test@gmail.com';
-   private $user_password = '98765431';
-   private $user_name = 'Bazooka Band Powerviolence Go';
-   private $user_phone = '11144226677788';
-   private $user_city = 'Львів Сіті Сінь Пянь';
+   private $store_name = 'zagibokpolymjagkiy';
+   private $user_email = 'premmerce.testers@gmail.com';
+   private $user_password = '54319876';
+   private $user_name = 'Tomi Mikky Dob';
+   private $user_phone = '55777991113322';
+   private $user_city = 'Любер Дед Тюмень';
 
 
    
@@ -26,20 +26,20 @@ class SaasUserPageUACest
    
 
    
-   private $price_free = 'Безкоштовно';
-   private $price_basic = '199 грн/міс';
-   private $price_standart = '399 грн/міс';
-   private $price_business = '699 грн/міс';
-   private $price_premium = '1399 грн/міс';
+   private $price_free = '0 руб / мес';
+   private $price_basic = '599 руб / мес';
+   private $price_standart = '1399 руб / мес';
+   private $price_business = '2399 руб / мес';
+   private $price_premium = '4499 руб / мес';
    
    
    
    
     /**
      * @group aa
-     * @guy UkrainianTester\LocUaSteps 
+     * @guy RussianTester\LocrusSteps 
      */
-    public function CreateStore(UkrainianTester\LocUaSteps $I){
+    public function CreateStore(RussianTester\LocrusSteps $I){
         $I->amOnPage(PremmerceMainPage::$URL);
         $I->click(PremmerceMainPage::$ButtonCreateStore);
         $I->CreateStore($store_name         = $this->store_name,
@@ -54,7 +54,7 @@ class SaasUserPageUACest
         $I->wait(1);
         $I->seeInCurrentUrl('/saas/profile');
         $I->see('Баланс', PremmerceCabinetPage::$HeadTextBalans);
-        $I->see('днів', PremmerceCabinetPage::$HeadTextDay);
+        $I->see('дней', PremmerceCabinetPage::$HeadTextDay);
         $I->see($this->store_name, PremmerceCabinetPage::$TabMainFieldSiteLink);
         $I->see($this->store_name, PremmerceCabinetPage::$TabMainFieldAdminLink);
         $I->see($this->tarif_standart, PremmerceCabinetPage::$TabMainFieldTarifNameTarif);
@@ -75,12 +75,12 @@ class SaasUserPageUACest
     
     
     /**
-     * @group aa
-     * @guy UkrainianTester\LocUaSteps 
+     * @group aaaaa
+     * @guy RussianTester\LocrusSteps 
      */
-    public function CheckSaas(UkrainianTester\LocUaSteps $I){
+    public function CheckSaas(RussianTester\LocrusSteps $I){
         $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
-        $I->click(SaasUserListPage::$NavigationModules);
+        $I->click(\SaasUserListPage::$NavigationModules);
         $I->wait(1);
         $I->click(SaasUserListPage::$NavigationModulSaas);
         $I->wait(1);
@@ -101,14 +101,14 @@ class SaasUserPageUACest
     
     /**
      * @group aa
-     * @guy UkrainianTester\LocUaSteps 
+     * @guy RussianTester\LocrusSteps 
      */
-    public function CheckOffCabinet (UkrainianTester\LocUaSteps $I){
+    public function CheckOffCabinet (RussianTester\LocrusSteps $I){
         $I->CabinetLogin($user_email = $this->user_email, $user_password = $this->user_password);
         $I->wait(1);
         $I->seeInCurrentUrl('/saas/profile');
         $I->see('Магазин отключен', PremmerceCabinetPage::$HeadTextShopOff);
-        $I->see('Сплатити', PremmerceCabinetPage::$HeadTextPaid);
+        $I->see('Сплать', PremmerceCabinetPage::$HeadTextPaid);
         $I->see($this->store_name, PremmerceCabinetPage::$TabMainFieldSiteLink);
         $I->see($this->store_name, PremmerceCabinetPage::$TabMainFieldAdminLink);
         $I->see($this->tarif_standart, PremmerceCabinetPage::$TabMainFieldTarifNameTarif);
@@ -129,9 +129,9 @@ class SaasUserPageUACest
     
     /**
      * @group aa
-     * @guy UkrainianTester\LocUaSteps 
+     * @guy RussianTester\LocrusSteps 
      */
-    public function CheckOffSaas(UkrainianTester\LocUaSteps $I){
+    public function CheckOffSaas(RussianTester\LocrusSteps $I){
         $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
         $I->amOnPage(SaasUserListPage::$URL);
         $I->wait(1);
@@ -152,14 +152,14 @@ class SaasUserPageUACest
     
     /**
      * @group aa
-     * @guy UkrainianTester\LocUaSteps 
+     * @guy RussianTester\LocrusSteps 
      */
-    public function CheckOnCabinet (UkrainianTester\LocUaSteps $I){
+    public function CheckOnCabinet (RussianTester\LocrusSteps $I){
         $I->CabinetLogin($user_email = $this->user_email, $user_password = $this->user_password);
         $I->wait(1);
         $I->seeInCurrentUrl('/saas/profile');
         $I->see('Баланс', '//body/div[1]/header/div/div[2]/a/span[2]/span[1]');
-        $I->see('днів', '//body/div[1]/header/div/div[2]/a/span[2]/span[3]');
+        $I->see('дней', '//body/div[1]/header/div/div[2]/a/span[2]/span[3]');
         $I->see($this->store_name, PremmerceCabinetPage::$TabMainFieldSiteLink);
         $I->see($this->store_name, PremmerceCabinetPage::$TabMainFieldAdminLink);
         $I->see($this->tarif_standart, PremmerceCabinetPage::$TabMainFieldTarifNameTarif);
@@ -177,9 +177,9 @@ class SaasUserPageUACest
     
     /**
      * @group aa
-     * @guy UkrainianTester\LocUaSteps 
+     * @guy RussianTester\LocrusSteps 
      */
-    public function FilterPhone(UkrainianTester\LocUaSteps $I){
+    public function FilterPhone(RussianTester\LocrusSteps $I){
         $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
         $I->amOnPage(SaasUserListPage::$URL);
         $I->wait(1);
@@ -192,9 +192,9 @@ class SaasUserPageUACest
     
     /**
      * @group aa
-     * @guy UkrainianTester\LocUaSteps 
+     * @guy RussianTester\LocrusSteps 
      */
-    public function FilterName(UkrainianTester\LocUaSteps $I){
+    public function FilterName(RussianTester\LocrusSteps $I){
         $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
         $I->amOnPage(SaasUserListPage::$URL);
         $I->wait(1);
@@ -209,9 +209,9 @@ class SaasUserPageUACest
     
     /**
      * @group aa
-     * @guy UkrainianTester\LocUaSteps 
+     * @guy RussianTester\LocrusSteps 
      */
-    public function FilterEmail(UkrainianTester\LocUaSteps $I){
+    public function FilterEmail(RussianTester\LocrusSteps $I){
         $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
         $I->amOnPage(SaasUserListPage::$URL);
         $I->wait(1);
@@ -225,9 +225,9 @@ class SaasUserPageUACest
     
     /**
      * @group aa
-     * @guy UkrainianTester\LocUaSteps 
+     * @guy RussianTester\LocrusSteps 
      */
-    public function FilterCountry(UkrainianTester\LocUaSteps $I){
+    public function FilterCountry(RussianTester\LocrusSteps $I){
         $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
         $I->amOnPage(SaasUserListPage::$URL);
         $I->wait(1);
@@ -244,9 +244,9 @@ class SaasUserPageUACest
     
     /**
      * @group aa
-     * @guy UkrainianTester\LocUaSteps 
+     * @guy RussianTester\LocrusSteps 
      */
-    public function FilterCity(UkrainianTester\LocUaSteps $I){
+    public function FilterCity(RussianTester\LocrusSteps $I){
         $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
         $I->amOnPage(SaasUserListPage::$URL);
         $I->wait(1);
@@ -262,9 +262,9 @@ class SaasUserPageUACest
     
     /**
      * @group aa
-     * @guy UkrainianTester\LocUaSteps 
+     * @guy RussianTester\LocrusSteps 
      */
-    public function FilterTarif(UkrainianTester\LocUaSteps $I){
+    public function FilterTarif(RussianTester\LocrusSteps $I){
         $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
         $I->amOnPage(SaasUserListPage::$URL);
         $I->wait(1);
@@ -282,9 +282,9 @@ class SaasUserPageUACest
     
     /**
      * @group aa
-     * @guy UkrainianTester\LocUaSteps 
+     * @guy RussianTester\LocrusSteps 
      */
-    public function FilterLevel(UkrainianTester\LocUaSteps $I){
+    public function FilterLevel(RussianTester\LocrusSteps $I){
         $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
         $I->amOnPage(SaasUserListPage::$URL);
         $I->wait(1);
@@ -301,9 +301,9 @@ class SaasUserPageUACest
     
     /**
      * @group aa
-     * @guy UkrainianTester\LocUaSteps 
+     * @guy RussianTester\LocrusSteps 
      */
-    public function FilterCategory(UkrainianTester\LocUaSteps $I){
+    public function FilterCategory(RussianTester\LocrusSteps $I){
         $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
         $I->amOnPage(SaasUserListPage::$URL);
         $I->wait(1);
@@ -320,9 +320,9 @@ class SaasUserPageUACest
     
     /**
      * @group aa
-     * @guy UkrainianTester\LocUaSteps 
+     * @guy RussianTester\LocrusSteps 
      */
-//    public function FilterAmountProduct(UkrainianTester\LocUaSteps $I){
+//    public function FilterAmountProduct(RussianTester\LocrusSteps $I){
 //        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
 //        $I->amOnPage(SaasUserListPage::$URL);
 //        $I->wait(1);
@@ -340,9 +340,9 @@ class SaasUserPageUACest
     
     /**
      * @group aa
-     * @guy UkrainianTester\LocUaSteps 
+     * @guy RussianTester\LocrusSteps 
      */
-//    public function FilterDisk(UkrainianTester\LocUaSteps $I){
+//    public function FilterDisk(RussianTester\LocrusSteps $I){
 //        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
 //        $I->amOnPage(SaasUserListPage::$URL);
 //        $I->wait(1);
@@ -360,9 +360,9 @@ class SaasUserPageUACest
     
     /**
      * @group aaa
-     * @guy UkrainianTester\LocUaSteps 
+     * @guy RussianTester\LocrusSteps 
      */
-//    public function FilterBalans(UkrainianTester\LocUaSteps $I){
+//    public function FilterBalans(RussianTester\LocrusSteps $I){
 //        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
 //        $I->amOnPage(SaasUserListPage::$URL);
 //        $I->wait(1);
@@ -380,9 +380,9 @@ class SaasUserPageUACest
     
     /**
      * @group aaa
-     * @guy UkrainianTester\LocUaSteps 
+     * @guy RussianTester\LocrusSteps 
      */
-//    public function FilterManager(UkrainianTester\LocUaSteps $I){
+//    public function FilterManager(RussianTester\LocrusSteps $I){
 //        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
 //        $I->amOnPage(SaasUserListPage::$URL);
 //        $I->wait(1);
@@ -401,9 +401,9 @@ class SaasUserPageUACest
 
     /**
      * @group aa
-     * @guy UkrainianTester\LocUaSteps 
+     * @guy RussianTester\LocrusSteps 
      */
-//    public function FilterDomainEnd(UkrainianTester\LocUaSteps $I){
+//    public function FilterDomainEnd(RussianTester\LocrusSteps $I){
 //        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
 //        $I->amOnPage(SaasUserListPage::$URL);
 //        $I->wait(1);
@@ -423,9 +423,9 @@ class SaasUserPageUACest
     
     /**
      * @group aa
-     * @guy UkrainianTester\LocUaSteps 
+     * @guy RussianTester\LocrusSteps 
      */
-//    public function FilterActivateByEmail(UkrainianTester\LocUaSteps $I){
+//    public function FilterActivateByEmail(RussianTester\LocrusSteps $I){
 //        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
 //        $I->amOnPage(SaasUserListPage::$URL);
 //        $I->wait(1);
@@ -443,9 +443,9 @@ class SaasUserPageUACest
     
     /**
      * @group aaa
-     * @guy UkrainianTester\LocUaSteps 
+     * @guy RussianTester\LocrusSteps 
      */
-//    public function FilterFillProduct(UkrainianTester\LocUaSteps $I){
+//    public function FilterFillProduct(RussianTester\LocrusSteps $I){
 //        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
 //        $I->amOnPage(SaasUserListPage::$URL);
 //        $I->wait(1);
@@ -463,9 +463,9 @@ class SaasUserPageUACest
     
     /**
      * @group aa
-     * @guy UkrainianTester\LocUaSteps 
+     * @guy RussianTester\LocrusSteps 
      */
-//    public function FilterStatuses(UkrainianTester\LocUaSteps $I){
+//    public function FilterStatuses(RussianTester\LocrusSteps $I){
 //        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
 //        $I->amOnPage(SaasUserListPage::$URL);
 //        $I->wait(1);
@@ -481,9 +481,9 @@ class SaasUserPageUACest
     
     /**
      * @group aaa
-     * @guy UkrainianTester\LocUaSteps 
+     * @guy RussianTester\LocrusSteps 
      */
-    public function FilterDepartments(UkrainianTester\LocUaSteps $I){
+    public function FilterDepartments(RussianTester\LocrusSteps $I){
         $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
         $I->amOnPage(SaasUserListPage::$URL);
         $I->wait(1);
@@ -509,9 +509,9 @@ class SaasUserPageUACest
    //DELETE SHOP     DELETE SHOP    DELETE SHOP    DELETE SHOP   DELETE SHOP  //                    
     /**
      * @group a
-     * @guy UkrainianTester\LocUaSteps 
+     * @guy RussianTester\LocrusSteps 
      */
-    public function DeleteSahopSaas(UkrainianTester\LocUaSteps $I){
+    public function DeleteSahopSaas(RussianTester\LocrusSteps $I){
         $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
         $I->amOnPage(SaasUserListPage::$URL);
         $I->wait(1);
@@ -536,3 +536,4 @@ class SaasUserPageUACest
     
     
 }    
+

@@ -105,8 +105,6 @@ class LocUaSteps extends \UkrainianTester
         $I->fillField(\PremmerceMainPage::$WindowLoginFieldPassword, $user_password);
         $I->wait(1);
         $I->click(\PremmerceMainPage::$WindowLoginButtonSend);
-        $I->wait(1);
-        $I->see('User logged in success', \PremmerceMainPage::$WindowLoginTextLogining);
         $I->wait(7);
         }
         if($button_text == $name_button_cabinet){
