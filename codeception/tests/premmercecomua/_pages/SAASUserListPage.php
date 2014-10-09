@@ -24,8 +24,6 @@ class SaasUserListPage
     public static $ButtonChancheData = '//section/div[1]/div[2]/div/button';
     public static $ButtonStatuses = '//section/div[1]/div[2]/div/a[2]/span';
     public static $ButtonDepartments = '//section/div[1]/div[2]/div/a[3]';
-
-
     
     
     
@@ -65,53 +63,67 @@ class SaasUserListPage
     public static $FilterNameInput = '//section/div[2]/div/div[2]/form/div/ul/li[4]/input';
     public static $FilterEmailLabel = '//section/div[2]/div/div[2]/form/div/ul/li[5]/label/span';
     public static $FilterEmailInput = '//section/div[2]/div/div[2]/form/div/ul/li[5]/input';
-    public static $FilterPhysYurLabel = '//section/div[2]/div/div[2]/form/div/ul/li[6]/label/span';
-    public static function FilterPhysYurSelectOption ($number){
+    public static $FilterCountryLabel = '//section/div[2]/div/div[2]/form/div/ul/li[6]/label/span';
+    public static $FilterCountrySelect = '//section/div[2]/div/div[2]/form/div/ul/li[6]/select/option';
+    public static function FilterCountrySelectOption ($number){
         return "//section/div[2]/div/div[2]/form/div/ul/li[6]/select/option[$number]";
     }
-    public static $FilterCountryLabel = '//section/div[2]/div/div[2]/form/div/ul/li[7]/label/span';
-    public static function FilterCountrySelectOption ($number){
-        return "//section/div[2]/div/div[2]/form/div/ul/li[7]/select/option[$number]";
-    }
-    public static $FilterCityLabel = '//section/div[2]/div/div[2]/form/div/ul/li[8]/label/span';
-    public static $FilterCityInput = '//section/div[2]/div/div[2]/form/div/ul/li[8]/input';
-    public static $FilterTarifLabel = '//section/div[2]/div/div[2]/form/div/ul/li[9]/label/span';
+    public static $FilterCityLabel = '//section/div[2]/div/div[2]/form/div/ul/li[7]/label/span';
+    public static $FilterCityInput = '//section/div[2]/div/div[2]/form/div/ul/li[7]/input';
+    public static $FilterTarifLabel = '//section/div[2]/div/div[2]/form/div/ul/li[8]/label/span';
+    public static $FilterTarifSelect = '//section/div[2]/div/div[2]/form/div/ul/li[8]/select';
     public static function FilterTarifSelectOption ($number){
+        return "//section/div[2]/div/div[2]/form/div/ul/li[8]/select/option[$number]";
+    }
+    public static $FilterLevelLabel = '//section/div[2]/div/div[2]/form/div/ul/li[9]/label/span';
+    public static $FilterLevelSelect = '//section/div[2]/div/div[2]/form/div/ul/li[9]/select';
+    public static function FilterLevelSelectOption ($number){
         return "//section/div[2]/div/div[2]/form/div/ul/li[9]/select/option[$number]";
     }
-    public static $FilterLevelLabel = '//section/div[2]/div/div[2]/form/div/ul/li[10]/label/span';
-    public static function FilterLevelSelectOption ($number){
+    
+    public static $FilterCategoryLabel = '//section/div[2]/div/div[2]/form/div/ul/li[10]/label/span';
+    public static $FilterCategorySelect = '//section/div[2]/div/div[2]/form/div/ul/li[10]/select';
+    public static function FilterCategorySelectOption ($number){
         return "//section/div[2]/div/div[2]/form/div/ul/li[10]/select/option[$number]";
     }
-    
-    public static $FilterCategoryLabel = '//section/div[2]/div/div[2]/form/div/ul/li[11]/label/span';
-    public static function FilterCategorySelectOption ($number){
-        return "//section/div[2]/div/div[2]/form/div/ul/li[11]/select/option[$number]";
-    }
-    public static $FilterAmountProducntLabel = '//section/div[2]/div/div[2]/form/div/ul/li[12]/label/span';
-    public static $FilterAmountProducntInputFrom = '//section/div[2]/div/div[2]/form/div/ul/li[12]/div/label/input[1]';
-    public static $FilterAmountProducntInputTo = '//section/div[2]/div/div[2]/form/div/ul/li[12]/div/label/input[2]';
-    public static $FilterDiskLimitLabel = '//section/div[2]/div/div[2]/form/div/ul/li[13]/label/span';
-    public static $FilterDiskLimitInputFrom = 'html/body/div[1]/div[5]/div[3]/section/div[2]/div/div[2]/form/div/ul/li[13]/div/label/input[1]';
-    public static $FilterDiskLimitInputTo = 'html/body/div[1]/div[5]/div[3]/section/div[2]/div/div[2]/form/div/ul/li[13]/div/label/input[2]';
-    public static $FilterBalansLabel = '//section/div[2]/div/div[2]/form/div/ul/li[14]/label/span';
-    public static $FilterBalansInputFrom = '//section/div[2]/div/div[2]/form/div/ul/li[14]/div/label/input[1]';
-    public static $FilterBalansInputTo = '//section/div[2]/div/div[2]/form/div/ul/li[14]/div/label/input[2]';
-    public static $FilterManagerLabel = '//section/div[2]/div/div[2]/form/div/ul/li[15]/label/span';
+    public static $FilterAmountProducntLabel = '//section/div[2]/div/div[2]/form/div/ul/li[11]/label/span';
+    public static $FilterAmountProducntInputFrom = '//section/div[2]/div/div[2]/form/div/ul/li[11]/div/label/input[1]';
+    public static $FilterAmountProducntInputTo = '//section/div[2]/div/div[2]/form/div/ul/li[11]/div/label/input[2]';
+    public static $FilterDiskLimitLabel = '//section/div[2]/div/div[2]/form/div/ul/li[12]/label/span';
+    public static $FilterDiskLimitInputFrom = '//section/div[2]/div/div[2]/form/div/ul/li[12]/div/label/input[1]';
+    public static $FilterDiskLimitInputTo = '//section/div[2]/div/div[2]/form/div/ul/li[12]/div/label/input[2]';
+    public static $FilterBalansLabel = '//section/div[2]/div/div[2]/form/div/ul/li[13]/label/span';
+    public static $FilterBalansInputFrom = '//section/div[2]/div/div[2]/form/div/ul/li[13]/div/label/input[1]';
+    public static $FilterBalansInputTo = '//section/div[2]/div/div[2]/form/div/ul/li[13]/div/label/input[2]';
+    public static $FilterManagerLabel = '//section/div[2]/div/div[2]/form/div/ul/li[14]/label/span';
+    public static $FilterManagerSelect = '//section/div[2]/div/div[2]/form/div/ul/li[14]/select';
     public static function FilterManagerSelectOption ($number){
-        return "//section/div[2]/div/div[2]/form/div/ul/li[11]/select/option[$number]";
+        return "//section/div[2]/div/div[2]/form/div/ul/li[14]/select/option[$number]";
     }
-    public static $FilterDomainEndLabel = '//section/div[2]/div/div[2]/form/div/ul/li[16]/label/span';
+    public static $FilterDomainEndLabel = '//section/div[2]/div/div[2]/form/div/ul/li[15]/label/span';
+    public static $FilterDomainEnSelect = '//section/div[2]/div/div[2]/form/div/ul/li[15]/select';
     public static function FilterDomainEndSelectOption ($number){
+        return "//section/div[2]/div/div[2]/form/div/ul/li[15]/select/option[$number]";
+    }
+    public static $FilterActivatedByEmailLabel = '//section/div[2]/div/div[2]/form/div/ul/li[16]/label/span';
+    public static $FilterActivatedByEmailSelect = '//section/div[2]/div/div[2]/form/div/ul/li[16]/select';
+    public static function FilterActivatedByEmailSelectOption ($number){
         return "//section/div[2]/div/div[2]/form/div/ul/li[16]/select/option[$number]";
     }
-    public static $FilterActivatedByEmailLabel = '//section/div[2]/div/div[2]/form/div/ul/li[17]/label/span';
-    public static function FilterActivatedByEmailSelectOption ($number){
+    public static $FilterFillProductsLabel = '//section/div[2]/div/div[2]/form/div/ul/li[17]/label/span';
+    public static $FilterFillProductsSelect = '//section/div[2]/div/div[2]/form/div/ul/li[17]/select';
+    public static function FilterFillProductsSelectOption ($number){
         return "//section/div[2]/div/div[2]/form/div/ul/li[17]/select/option[$number]";
     }
-    public static $FilterFillProducts = '//section/div[2]/div/div[2]/form/div/ul/li[18]/label/span';
-    public static function FilterFillProductsSelectOption ($number){
+    public static $FilterFillStatusesLabel = '//section/div[2]/div/div[2]/form/div/ul/li[18]/label/span';
+    public static $FilterFillStatusesSelect = '//section/div[2]/div/div[2]/form/div/ul/li[18]/select';
+    public static function FilterFillStatusesSelectOption ($number){
         return "//section/div[2]/div/div[2]/form/div/ul/li[18]/select/option[$number]";
+    }
+    public static $FilterFillDepartmentsLabel = '//section/div[2]/div/div[2]/form/div/ul/li[19]/label/span';
+    public static $FilterFillDepartmentsSelect = '//section/div[2]/div/div[2]/form/div/ul/li[19]/select';
+    public static function FilterFillDepartmentsSelectOption ($number){
+        return "//section/div[2]/div/div[2]/form/div/ul/li[19]/select/option[$number]";
     }
     public static $FilterButtonFilter = '//section/div[2]/div/div[2]/form/div/input';
     public static $FilterButtonCancel = '//section/div[2]/div/div[2]/form/div/a';

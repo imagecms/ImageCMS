@@ -37,7 +37,11 @@ class PremmerceCabinetPage
     public static $HeadLinkShop = "//body/div[1]/header/div/ul/li[2]/a";   
     public static $HeadLinkAdmin = "//header/div/ul/li[4]/a";   
     public static $HeadLinkConsultation = "//header/div/div[2]/div/div/a/span";   
-    public static $HeadQuestionConsultationText = "//header/div/div[2]/div/div/span/span[1]";   
+    public static $HeadQuestionConsultationText = "//header/div/div[2]/div/div/span/span[1]";
+    public static $HeadTextBalans = '//body/div[1]/header/div/div[2]/a/span[2]/span[1]';
+    public static $HeadTextDay = '//body/div[1]/header/div/div[2]/a/span[2]/span[3]';
+    public static $HeadTextShopOff = '//body/div[1]/header/div/div[2]/div[1]/span[2]/span';
+    public static $HeadTextPaid = '//body/div[1]/header/div/div[2]/div[1]/span[2]/a';
     
     //-----------Tab Main------------
     
