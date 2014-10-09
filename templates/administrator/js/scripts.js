@@ -1418,7 +1418,7 @@ $('.variantsForOrders').live('change', function() {
         $('.variantInfoBlock').show();
     //Disable button if stock =0
     if (stock == 0) {
-        $('.addVariantToCart').removeClass('btn-primary').removeClass('btn-success').addClass('btn-danger disabled').html(langs.outOfStock);
+          $('.addVariantToCart').removeClass('btn-primary').removeClass('btn-success').addClass('btn-danger disabled').html(langs.outOfStock);
     } else {
         $('.addVariantToCart').removeClass('btn-primary').addClass('btn-success').removeClass('btn-danger disabled').html(langs.addToCart);
     }
@@ -1431,10 +1431,11 @@ $('.variantsForOrders').live('change', function() {
 });
 //Add product
 $('.addVariantToCart').die('click').live('click', function() {
-    if ((checkProdStock != 1 || $(this).data('stock') != 0) && !$(this).hasClass('btn-primary')) {
+      //Условие убрано в связи с заданием ICMS-1518
+//    if ((checkProdStock != 1 || $(this).data('stock') != 0) && !$(this).hasClass('btn-primary')) {
         orders.addToCartAdmin($(this));
         $('.addVariantToCart').removeClass('btn-success').attr('disabled', 'disabled').addClass('btn-primary').html(langs.inTheCart);
-    }
+//    }
 
 });
 //Remove image type
