@@ -36,7 +36,7 @@ class SaasUserPageRUCest
    
    
     /**
-     * @group aa
+     * @group a
      * @guy RussianTester\LocrusSteps 
      */
     public function CreateStore(RussianTester\LocrusSteps $I){
@@ -75,7 +75,7 @@ class SaasUserPageRUCest
     
     
     /**
-     * @group aaaaa
+     * @group a
      * @guy RussianTester\LocrusSteps 
      */
     public function CheckSaas(RussianTester\LocrusSteps $I){
@@ -100,7 +100,7 @@ class SaasUserPageRUCest
     
     
     /**
-     * @group aa
+     * @group a
      * @guy RussianTester\LocrusSteps 
      */
     public function CheckOffCabinet (RussianTester\LocrusSteps $I){
@@ -128,7 +128,7 @@ class SaasUserPageRUCest
     
     
     /**
-     * @group aa
+     * @group a
      * @guy RussianTester\LocrusSteps 
      */
     public function CheckOffSaas(RussianTester\LocrusSteps $I){
@@ -151,7 +151,7 @@ class SaasUserPageRUCest
     
     
     /**
-     * @group aa
+     * @group a
      * @guy RussianTester\LocrusSteps 
      */
     public function CheckOnCabinet (RussianTester\LocrusSteps $I){
@@ -176,7 +176,7 @@ class SaasUserPageRUCest
     
     
     /**
-     * @group aa
+     * @group a
      * @guy RussianTester\LocrusSteps 
      */
     public function FilterPhone(RussianTester\LocrusSteps $I){
@@ -191,7 +191,7 @@ class SaasUserPageRUCest
     } 
     
     /**
-     * @group aa
+     * @group a
      * @guy RussianTester\LocrusSteps 
      */
     public function FilterName(RussianTester\LocrusSteps $I){
@@ -208,7 +208,7 @@ class SaasUserPageRUCest
     
     
     /**
-     * @group aa
+     * @group a
      * @guy RussianTester\LocrusSteps 
      */
     public function FilterEmail(RussianTester\LocrusSteps $I){
@@ -224,7 +224,7 @@ class SaasUserPageRUCest
     
     
     /**
-     * @group aa
+     * @group a
      * @guy RussianTester\LocrusSteps 
      */
     public function FilterCountry(RussianTester\LocrusSteps $I){
@@ -243,7 +243,7 @@ class SaasUserPageRUCest
     
     
     /**
-     * @group aa
+     * @group a
      * @guy RussianTester\LocrusSteps 
      */
     public function FilterCity(RussianTester\LocrusSteps $I){
@@ -261,7 +261,7 @@ class SaasUserPageRUCest
     
     
     /**
-     * @group aa
+     * @group a
      * @guy RussianTester\LocrusSteps 
      */
     public function FilterTarif(RussianTester\LocrusSteps $I){
@@ -281,7 +281,7 @@ class SaasUserPageRUCest
     
     
     /**
-     * @group aa
+     * @group a
      * @guy RussianTester\LocrusSteps 
      */
     public function FilterLevel(RussianTester\LocrusSteps $I){
@@ -300,7 +300,7 @@ class SaasUserPageRUCest
     
     
     /**
-     * @group aa
+     * @group a
      * @guy RussianTester\LocrusSteps 
      */
     public function FilterCategory(RussianTester\LocrusSteps $I){
@@ -319,168 +319,168 @@ class SaasUserPageRUCest
     
     
     /**
-     * @group aa
+     * @group a
      * @guy RussianTester\LocrusSteps 
      */
-//    public function FilterAmountProduct(RussianTester\LocrusSteps $I){
-//        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
-//        $I->amOnPage(SaasUserListPage::$URL);
-//        $I->wait(1);
-//        $I->click(SaasUserListPage::$FilterEmailLabel);
-//        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->user_email);
-//        $I->click(SaasUserListPage::$FilterAmountProducntLabel);
-//        $I->fillField(SaasUserListPage::$FilterAmountProducntInputFrom, '1');
-//        $I->fillField(SaasUserListPage::$FilterAmountProducntInputTo, '1111');
-//        $I->click(SaasUserListPage::$FilterButtonFilter);
-//        $I->see($this->user_email, SaasUserListPage::lineEmailLink(1));
-//        $I->AdminLogout();
-//    }
+    public function FilterAmountProduct(RussianTester\LocrusSteps $I){
+        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
+        $I->amOnPage(SaasUserListPage::$URL);
+        $I->wait(1);
+        $I->click(SaasUserListPage::$FilterEmailLabel);
+        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->user_email);
+        $I->click(SaasUserListPage::$FilterAmountProducntLabel);
+        $I->fillField(SaasUserListPage::$FilterAmountProducntInputFrom, '1');
+        $I->fillField(SaasUserListPage::$FilterAmountProducntInputTo, '1111');
+        $I->click(SaasUserListPage::$FilterButtonFilter);
+        $I->see($this->user_email, SaasUserListPage::lineEmailLink(1));
+        $I->AdminLogout();
+    }
 
     
     
     /**
-     * @group aa
+     * @group a
      * @guy RussianTester\LocrusSteps 
      */
-//    public function FilterDisk(RussianTester\LocrusSteps $I){
-//        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
-//        $I->amOnPage(SaasUserListPage::$URL);
-//        $I->wait(1);
-//        $I->click(SaasUserListPage::$FilterEmailLabel);
-//        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->user_email);
-//        $I->click(SaasUserListPage::$FilterDiskLimitLabel);
-//        $I->fillField(SaasUserListPage::$FilterDiskLimitInputFrom, '1');
-//        $I->fillField(SaasUserListPage::$FilterDiskLimitInputTo, '1111');
-//        $I->click(SaasUserListPage::$FilterButtonFilter);
-//        $I->see($this->user_email, SaasUserListPage::lineEmailLink(1));
-//        $I->AdminLogout();
-//    }
+    public function FilterDisk(RussianTester\LocrusSteps $I){
+        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
+        $I->amOnPage(SaasUserListPage::$URL);
+        $I->wait(1);
+        $I->click(SaasUserListPage::$FilterEmailLabel);
+        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->user_email);
+        $I->click(SaasUserListPage::$FilterDiskLimitLabel);
+        $I->fillField(SaasUserListPage::$FilterDiskLimitInputFrom, '1');
+        $I->fillField(SaasUserListPage::$FilterDiskLimitInputTo, '1111');
+        $I->click(SaasUserListPage::$FilterButtonFilter);
+        $I->see($this->user_email, SaasUserListPage::lineEmailLink(1));
+        $I->AdminLogout();
+    }
     
     
     
     /**
-     * @group aaa
+     * @group a
      * @guy RussianTester\LocrusSteps 
      */
-//    public function FilterBalans(RussianTester\LocrusSteps $I){
-//        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
-//        $I->amOnPage(SaasUserListPage::$URL);
-//        $I->wait(1);
-//        $I->click(SaasUserListPage::$FilterEmailLabel);
-//        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->user_email);
-//        $I->click(SaasUserListPage::$FilterBalansLabel);
-//        $I->fillField(SaasUserListPage::$FilterBalansInputFrom, '1');
-//        $I->fillField(SaasUserListPage::$FilterBalansInputTo, '1111');
-//        $I->click(SaasUserListPage::$FilterButtonFilter);
-//        $I->see($this->user_email, SaasUserListPage::lineEmailLink(1));
-//        $I->AdminLogout();
-//    }
+    public function FilterBalans(RussianTester\LocrusSteps $I){
+        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
+        $I->amOnPage(SaasUserListPage::$URL);
+        $I->wait(1);
+        $I->click(SaasUserListPage::$FilterEmailLabel);
+        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->user_email);
+        $I->click(SaasUserListPage::$FilterBalansLabel);
+        $I->fillField(SaasUserListPage::$FilterBalansInputFrom, '1');
+        $I->fillField(SaasUserListPage::$FilterBalansInputTo, '1111');
+        $I->click(SaasUserListPage::$FilterButtonFilter);
+        $I->see($this->user_email, SaasUserListPage::lineEmailLink(1));
+        $I->AdminLogout();
+    }
     
     
     
     /**
-     * @group aaa
+     * @group a
      * @guy RussianTester\LocrusSteps 
      */
-//    public function FilterManager(RussianTester\LocrusSteps $I){
-//        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
-//        $I->amOnPage(SaasUserListPage::$URL);
-//        $I->wait(1);
-//        $I->click(SaasUserListPage::$FilterEmailLabel);
-//        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->user_email);
-//        $I->click(SaasUserListPage::$FilterManagerLabel);
-//        $I->click(SaasUserListPage::$FilterManagerSelect);
-//        $I->click(SaasUserListPage::FilterManagerSelectOption(3));
-//        $I->click(SaasUserListPage::$FilterButtonFilter);
-//        $I->see($this->user_email, SaasUserListPage::lineEmailLink(1));
-//        $I->AdminLogout();
-//    }
+    public function FilterManager(RussianTester\LocrusSteps $I){
+        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
+        $I->amOnPage(SaasUserListPage::$URL);
+        $I->wait(1);
+        $I->click(SaasUserListPage::$FilterEmailLabel);
+        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->user_email);
+        $I->click(SaasUserListPage::$FilterManagerLabel);
+        $I->click(SaasUserListPage::$FilterManagerSelect);
+        $I->click(SaasUserListPage::FilterManagerSelectOption(3));
+        $I->click(SaasUserListPage::$FilterButtonFilter);
+        $I->see($this->user_email, SaasUserListPage::lineEmailLink(1));
+        $I->AdminLogout();
+    }
     
     
     
 
     /**
-     * @group aa
+     * @group a
      * @guy RussianTester\LocrusSteps 
      */
-//    public function FilterDomainEnd(RussianTester\LocrusSteps $I){
-//        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
-//        $I->amOnPage(SaasUserListPage::$URL);
-//        $I->wait(1);
-//        $I->click(SaasUserListPage::$FilterEmailLabel);
-//        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->user_email);
-//        $I->click(SaasUserListPage::$FilterDomainEndLabel);
-//        $I->click(SaasUserListPage::$FilterDomainEndLabel);
-//        $I->click(SaasUserListPage::FilterDomainEndSelectOption(3));
-//        $I->click(SaasUserListPage::$FilterButtonFilter);
-//        $I->see($this->user_email, SaasUserListPage::lineEmailLink(1));
-//        $I->AdminLogout();
-//    }
+    public function FilterDomainEnd(RussianTester\LocrusSteps $I){
+        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
+        $I->amOnPage(SaasUserListPage::$URL);
+        $I->wait(1);
+        $I->click(SaasUserListPage::$FilterEmailLabel);
+        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->user_email);
+        $I->click(SaasUserListPage::$FilterDomainEndLabel);
+        $I->click(SaasUserListPage::$FilterDomainEndLabel);
+        $I->click(SaasUserListPage::FilterDomainEndSelectOption(3));
+        $I->click(SaasUserListPage::$FilterButtonFilter);
+        $I->see($this->user_email, SaasUserListPage::lineEmailLink(1));
+        $I->AdminLogout();
+    }
     
     
     
     
     
     /**
-     * @group aa
+     * @group a
      * @guy RussianTester\LocrusSteps 
      */
-//    public function FilterActivateByEmail(RussianTester\LocrusSteps $I){
-//        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
-//        $I->amOnPage(SaasUserListPage::$URL);
-//        $I->wait(1);
-//        $I->click(SaasUserListPage::$FilterEmailLabel);
-//        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->user_email);
-//        $I->click(SaasUserListPage::$FilterActivatedByEmailLabel);
-//        $I->click(SaasUserListPage::$FilterActivatedByEmailSelect);
-//        $I->click(SaasUserListPage::FilterActivatedByEmailSelectOption(2));
-//        $I->click(SaasUserListPage::$FilterButtonFilter);
-//        $I->see($this->user_email, SaasUserListPage::lineEmailLink(1));
-//        $I->AdminLogout();
-//    }
+    public function FilterActivateByEmail(RussianTester\LocrusSteps $I){
+        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
+        $I->amOnPage(SaasUserListPage::$URL);
+        $I->wait(1);
+        $I->click(SaasUserListPage::$FilterEmailLabel);
+        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->user_email);
+        $I->click(SaasUserListPage::$FilterActivatedByEmailLabel);
+        $I->click(SaasUserListPage::$FilterActivatedByEmailSelect);
+        $I->click(SaasUserListPage::FilterActivatedByEmailSelectOption(2));
+        $I->click(SaasUserListPage::$FilterButtonFilter);
+        $I->see($this->user_email, SaasUserListPage::lineEmailLink(1));
+        $I->AdminLogout();
+    }
     
     
     
     /**
-     * @group aaa
+     * @group a
      * @guy RussianTester\LocrusSteps 
      */
-//    public function FilterFillProduct(RussianTester\LocrusSteps $I){
-//        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
-//        $I->amOnPage(SaasUserListPage::$URL);
-//        $I->wait(1);
-//        $I->click(SaasUserListPage::$FilterEmailLabel);
-//        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->user_email);
-//        $I->click(SaasUserListPage::$FilterFillProductsLabel);
-//        $I->click(SaasUserListPage::$FilterFillProductsSelect);
-//        $I->click(SaasUserListPage::FilterFillProductsSelectOption(2));
-//        $I->click(SaasUserListPage::$FilterButtonFilter);
-//        $I->see($this->user_email, SaasUserListPage::lineEmailLink(1));
-//        $I->AdminLogout();
-//    }
+    public function FilterFillProduct(RussianTester\LocrusSteps $I){
+        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
+        $I->amOnPage(SaasUserListPage::$URL);
+        $I->wait(1);
+        $I->click(SaasUserListPage::$FilterEmailLabel);
+        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->user_email);
+        $I->click(SaasUserListPage::$FilterFillProductsLabel);
+        $I->click(SaasUserListPage::$FilterFillProductsSelect);
+        $I->click(SaasUserListPage::FilterFillProductsSelectOption(2));
+        $I->click(SaasUserListPage::$FilterButtonFilter);
+        $I->see($this->user_email, SaasUserListPage::lineEmailLink(1));
+        $I->AdminLogout();
+    }
     
     
     
     /**
-     * @group aa
+     * @group a
      * @guy RussianTester\LocrusSteps 
      */
-//    public function FilterStatuses(RussianTester\LocrusSteps $I){
-//        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
-//        $I->amOnPage(SaasUserListPage::$URL);
-//        $I->wait(1);
-//        $I->click(SaasUserListPage::$FilterEmailLabel);
-//        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->user_email);
-//        $I->click(SaasUserListPage::$FilterStatusesLabel);
-//        $I->click(SaasUserListPage::$FilterStatusesSelect);
-//        $I->click(SaasUserListPage::FilterStatusesSelectOption(2));
-//        $I->click(SaasUserListPage::$FilterButtonFilter);
-//        $I->see($this->user_email, SaasUserListPage::lineEmailLink(1));
-//        $I->AdminLogout();
-//    }
+    public function FilterStatuses(RussianTester\LocrusSteps $I){
+        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
+        $I->amOnPage(SaasUserListPage::$URL);
+        $I->wait(1);
+        $I->click(SaasUserListPage::$FilterEmailLabel);
+        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->user_email);
+        $I->click(SaasUserListPage::$FilterStatusesLabel);
+        $I->click(SaasUserListPage::$FilterStatusesSelect);
+        $I->click(SaasUserListPage::FilterStatusesSelectOption(2));
+        $I->click(SaasUserListPage::$FilterButtonFilter);
+        $I->see($this->user_email, SaasUserListPage::lineEmailLink(1));
+        $I->AdminLogout();
+    }
     
     /**
-     * @group aaa
+     * @group a
      * @guy RussianTester\LocrusSteps 
      */
     public function FilterDepartments(RussianTester\LocrusSteps $I){

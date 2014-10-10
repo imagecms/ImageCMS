@@ -86,6 +86,19 @@ class LocUaSteps extends \UkrainianTester
         $I->wait(1);
     } 
     
+    public function AdminCabinetLogin (    $admin_email,
+                                    $admin_password){
+        $I = $this; 
+        $I->wait(1);
+        $I->fillField('//body/div[1]/div[1]/form/label[1]/input', $admin_email);
+        $I->wait(1);
+        $I->fillField('//body/div[1]/div[1]/form/label[2]/input', $admin_password);
+        $I->wait(1);
+        $I->click('//body/div[1]/div[1]/form/input[1]');
+        $I->wait(3);
+    }
+    
+    
     
     
     public function CabinetLogin (  $user_email,
