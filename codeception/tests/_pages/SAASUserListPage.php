@@ -26,6 +26,119 @@ class SaasUserListPage
     public static $ButtonDepartments = '//section/div[1]/div[2]/div/a[3]';
     
     
+    //--- Вікно Зміни даних ---- Вікно Зміни даних ----Вікно Зміни даних --/
+    
+    public static $WindowChancheData = '//body/div[1]/div[5]/div[3]';
+    public static $WindowChancheDataTitle = '//body/div[1]/div[5]/div[3]/div[1]/h3';
+    public static $WindowChancheDataButtonClose = '//body/div[1]/div[5]/div[3]/div[1]/button';
+    public static $WindowChancheDataButtonBack = '//body/div[1]/div[5]/div[3]/div[3]/a[2]';
+    public static $WindowChancheDataButtonChange = '//body/div[1]/div[5]/div[3]/div[3]/a[1]';
+    public static $WindowChancheDataSelectStatus = '//body/div[1]/div[5]/div[3]/div[2]/select[1]';
+    public static $WindowChancheDataSelectStatusLabel = '//body/div[1]/div[5]/div[3]/div[2]/b[1]';
+    public static $WindowChancheDataSelectManager = '//body/div[1]/div[5]/div[3]/div[2]/select[2]';
+    public static $WindowChancheDataSelectManagerLabel = '//body/div[1]/div[5]/div[3]/div[2]/b[2]';
+    public static $WindowChancheDataSelectDepartmens = '//body/div[1]/div[5]/div[3]/div[2]/select[3]';
+    public static $WindowChancheDataSelectDepartmensLabel = '//body/div[1]/div[5]/div[3]/div[2]/b[3]';
+    public static function WindowChancheDataSelectStatusOption ($number){
+        return "//body/div[1]/div[5]/div[3]/div[2]/select[1]/option[$number]";
+    }
+    public static function WindowChancheDataSelectManagerOption ($number){
+        return "//body/div[1]/div[5]/div[3]/div[2]/select[2]/option[$number]";
+    }
+    public static function WindowChancheDataSelectDepartmensOption ($number){
+        return "//body/div[1]/div[5]/div[3]/div[2]/select[3]/option[$number]";
+    }
+    
+    
+    
+    
+    
+    //--- Сторінка Статуси
+    
+    public static $StatusesListTitle = '//body/div[1]/div[5]/div/section/div[1]/div[1]/span[2]';
+    public static $StatusesListButtonBack = '//body/div[1]/div[5]/div/section/div[1]/div[2]/div/a[1]';
+    public static $StatusesListButtonCreate = '//body/div[1]/div[5]/div/section/div[1]/div[2]/div/a[2]';
+    public static $StatusesListButtonDelete = '//body/div[1]/div[5]/div/section/div[1]/div[2]/div/button';
+    public static $StatusesListHeadCheckBox = '//section/div[2]/div/div/table/thead/tr/th[1]/span/span';
+    public static $StatusesListHeadID = '//section/div[2]/div/div/table/thead/tr/th[2]';
+    public static $StatusesListHeadName = '//section/div[2]/div/div/table/thead/tr/th[3]';
+    public static $StatusesListHeadDescription = '//section/div[2]/div/div/table/thead/tr/th[4]';
+    public static $StatusesListHeadDate = '//section/div[2]/div/div/table/thead/tr/th[5]';
+    public static function StatusListlineCheckBox($row)             { return "//section/div[2]/div/div/table/tbody/tr[$row]/td[1]/span/span"; }
+    public static function StatusListlineID($row)                   { return "//section/div[2]/div/div/table/tbody/tr[$row]/td[2]/a"; }
+    public static function StatusListlineName($row)                 { return "//section/div[2]/div/div/table/tbody/tr[$row]/td[3]/a"; }
+    public static function StatusListlineDescription($row)          { return "//section/div[2]/div/div/table/tbody/tr[$row]/td[4]/p"; }
+    public static function StatusListlineDate($row)                 { return "//section/div[2]/div/div/table/tbody/tr[$row]/td[5]"; }
+    public static $StatusesListWindowDelete = '//body/div[1]/div[5]/div/div';
+    public static $StatusesListWindowDeleteTitle = '//body/div[1]/div[5]/div/div/div[1]/h3';
+    public static $StatusesListWindowDeleteQuestion = '//body/div[1]/div[5]/div/div/div[1]/button';
+    public static $StatusesListWindowDeleteButtonClose = '//body/div[1]/div[5]/div/div/div[1]/button';
+    public static $StatusesListWindowDeleteButtonCancel = '//body/div[1]/div[5]/div/div/div[3]/a[2]';
+    public static $StatusesListWindowDeleteButtonDelete = '//body/div[1]/div[5]/div/div/div[3]/a[1]';
+
+    public static $StatusesCreateTitle = '//body/div[1]/div[5]/section/div/div[1]/span[2]';
+    public static $StatusesCreateBlockStatuslabel = '//body/div[1]/div[5]/section/form/div/table/thead/tr/th';
+    public static $StatusesCreateButtonBack = '//body/div[1]/div[5]/section/div/div[2]/div/a';
+    public static $StatusesCreateButtonSave = '//body/div[1]/div[5]/section/div/div[2]/div/button';
+    public static $StatusesCreateFieldName = '//section/form/div/table/tbody/tr/td/div/div/div[1]/div/input';
+    public static $StatusesCreateFieldNameLabel = '//section/form/div/table/tbody/tr/td/div/div/div[1]/label';
+    public static $StatusesCreateFieldDescription = '//body/p';
+    public static $StatusesCreateFieldDescriptionLabel = '//section/form/div/table/tbody/tr/td/div/div/div[2]/label';
+    
+    public static $StatusesEditTitle = '//body/div[1]/div[5]/section/div/div[1]/span[2]';
+    public static $StatusesEditBlockStatusLabel = '//body/div[1]/div[5]/section/form/div/table/thead/tr/th';
+    public static $StatusesEditButtonBack = '//body/div[1]/div[5]/section/div/div[2]/div/a';
+    public static $StatusesEditButtonSave = '//body/div[1]/div[5]/section/div/div[2]/div/button';
+    public static $StatusesEditFieldName = '//section/form/div/table/tbody/tr/td/div/div/div[1]/div/input';
+    public static $StatusesEditFieldNameLabel = '//section/form/div/table/tbody/tr/td/div/div/div[1]/label';
+    public static $StatusesEditFieldDescription = '//body/p';
+    public static $StatusesEditFieldDescriptionLabel = '//section/form/div/table/tbody/tr/td/div/div/div[2]/label';
+
+    
+    
+    
+    
+    //--- Сторінка Departmens
+    
+    public static $DepartmensListTitle = '//body/div[1]/div[5]/div/section/div[1]/div[1]/span[2]';
+    public static $DepartmensListButtonBack = '//body/div[1]/div[5]/div/section/div[1]/div[2]/div/a[1]';
+    public static $DepartmensListButtonCreate = '//body/div[1]/div[5]/div/section/div[1]/div[2]/div/a[2]';
+    public static $DepartmensListButtonDelete = '//body/div[1]/div[5]/div/section/div[1]/div[2]/div/button';
+    public static $DepartmensListHeadCheckBox = '//section/div[2]/div/div/table/thead/tr/th[1]/span/span';
+    public static $DepartmensListHeadID = '//section/div[2]/div/div/table/thead/tr/th[2]';
+    public static $DepartmensListHeadName = '//section/div[2]/div/div/table/thead/tr/th[3]';
+    public static $DepartmensListHeadDescription = '//section/div[2]/div/div/table/thead/tr/th[4]';
+    public static $DepartmensListHeadDate = '//section/div[2]/div/div/table/thead/tr/th[5]';
+    public static function DepartmensListlineCheckBox($row)             { return "//section/div[2]/div/div/table/tbody/tr[$row]/td[1]/span/span"; }
+    public static function DepartmensListlineID($row)                   { return "//section/div[2]/div/div/table/tbody/tr[$row]/td[2]/a"; }
+    public static function DepartmensListlineName($row)                 { return "//section/div[2]/div/div/table/tbody/tr[$row]/td[3]/a"; }
+    public static function DepartmensListlineDescription($row)          { return "//section/div[2]/div/div/table/tbody/tr[$row]/td[4]"; }
+    public static function DepartmensListlineDate($row)                 { return "//section/div[2]/div/div/table/tbody/tr[$row]/td[5]"; }
+    public static $DepartmensListWindowDelete = '//body/div[1]/div[5]/div/div';
+    public static $DepartmensListWindowDeleteTitle = '//body/div[1]/div[5]/div/div/div[1]/h3';
+    public static $DepartmensListWindowDeleteQuestion = '//body/div[1]/div[5]/div/div/div[1]/button';
+    public static $DepartmensListWindowDeleteButtonClose = '//body/div[1]/div[5]/div/div/div[1]/button';
+    public static $DepartmensListWindowDeleteButtonCancel = '//body/div[1]/div[5]/div/div/div[3]/a[2]';
+    public static $DepartmensListWindowDeleteButtonDelete = '//body/div[1]/div[5]/div/div/div[3]/a[1]';
+    
+    public static $DepartmensCreateTitle = '//body/div[1]/div[5]/section/div/div[1]/span[2]';
+    public static $DepartmensCreateBlockStatuslabel = '//body/div[1]/div[5]/section/form/div/table/thead/tr/th';
+    public static $DepartmensCreateButtonBack = '//body/div[1]/div[5]/section/div/div[2]/div/a';
+    public static $DepartmensCreateButtonSave = '//body/div[1]/div[5]/section/div/div[2]/div/button';
+    public static $DepartmensCreateFieldName = '//section/form/div/table/tbody/tr/td/div/div/div[1]/div/input';
+    public static $DepartmensCreateFieldNameLabel = '//section/form/div/table/tbody/tr/td/div/div/div[1]/label';
+    public static $DepartmensCreateFieldDescription = '//body/p';
+    public static $DepartmensCreateFieldDescriptionLabel = '//section/form/div/table/tbody/tr/td/div/div/div[2]/label';
+    
+    public static $DepartmensEditTitle = '//body/div[1]/div[5]/section/div/div[1]/span[2]';
+    public static $DepartmensEditBlockStatusLabel = '//body/div[1]/div[5]/section/form/div/table/thead/tr/th';
+    public static $DepartmensEditButtonBack = '//body/div[1]/div[5]/section/div/div[2]/div/a';
+    public static $DepartmensEditButtonSave = '//body/div[1]/div[5]/section/div/div[2]/div/button';
+    public static $DepartmensEditFieldName = '//section/form/div/table/tbody/tr/td/div/div/div[1]/div/input';
+    public static $DepartmensEditFieldNameLabel = '//section/form/div/table/tbody/tr/td/div/div/div[1]/label';
+    public static $DepartmensEditFieldDescription = '//body/p';
+    public static $DepartmensEditFieldDescriptionLabel = '//section/form/div/table/tbody/tr/td/div/div/div[2]/label';
+    
     
     //---- Head ------- Head ------- Head ------- Head ------- Head ------- Head ---
     
