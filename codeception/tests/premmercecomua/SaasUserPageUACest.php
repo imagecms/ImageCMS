@@ -6,7 +6,7 @@ class SaasUserPageUACest
 
 
 {
-   private $store_url = 'populationnation.premme.com.ua';
+   private $store_url = 'populationnation.premme.com';
 //   private $store_url = 'message.premme.com.ua';
 
    private $store_name = 'populationnation';
@@ -36,10 +36,11 @@ class SaasUserPageUACest
    
    
     /**
-     * @group aa
+     * @group q
      * @guy UkrainianTester\LocUaSteps 
      */
     public function CreateStore(UkrainianTester\LocUaSteps $I){
+//        $I->CabinetLogin($user_email = $this->user_email, $user_password = $this->user_password);
         $I->amOnPage(PremmerceMainPage::$URL);
         $I->click(PremmerceMainPage::$ButtonCreateStore);
         $I->CreateStore($store_name         = $this->store_name,
@@ -65,9 +66,17 @@ class SaasUserPageUACest
         $I->seeInField(PremmerceCabinetPage::$TabProfileFieldPhone, $this->user_phone);
         $I->seeInField(PremmerceCabinetPage::$TabProfileFieldCity, $this->user_city);
         $I->seeInField(PremmerceCabinetPage::$TabProfileFieldEmail, $this->user_email);
-        $I->wait(1);
+//        $I->wait(3);
 //        $I->click(PremmerceCabinetPage::$HeadLinkShop);
-//        $I->seeInCurrentUrl();
+//        $I->wait(3);
+//        $I->seeInCurrentUrl($this->store_url);
+//        $I->wait(3);
+//        $I->see('PREMMERCE', '//body/div[1]/div[1]/header/div[2]/div/span/img');
+//        $I->wait(3);
+//        $I->amOnPage('/saas/profile');
+//        $I->wait(3);
+//        $I->click(PremmerceCabinetPage::$HeadLinkAdmin);
+//        $I->AdminLogin($admin_email = 'premmerce.test@gmail.com', $admin_password = '98765431');
         $I->CabinetLogout();
     }
     
@@ -75,7 +84,7 @@ class SaasUserPageUACest
     
     
     /**
-     * @group aa
+     * @group a
      * @guy UkrainianTester\LocUaSteps 
      */
     public function CheckSaas(UkrainianTester\LocUaSteps $I){
@@ -100,7 +109,7 @@ class SaasUserPageUACest
     
     
     /**
-     * @group aa
+     * @group a
      * @guy UkrainianTester\LocUaSteps 
      */
     public function CheckOffCabinet (UkrainianTester\LocUaSteps $I){
@@ -128,7 +137,7 @@ class SaasUserPageUACest
     
     
     /**
-     * @group aa
+     * @group a
      * @guy UkrainianTester\LocUaSteps 
      */
     public function CheckOffSaas(UkrainianTester\LocUaSteps $I){
@@ -151,7 +160,7 @@ class SaasUserPageUACest
     
     
     /**
-     * @group aa
+     * @group a
      * @guy UkrainianTester\LocUaSteps 
      */
     public function CheckOnCabinet (UkrainianTester\LocUaSteps $I){
@@ -176,7 +185,7 @@ class SaasUserPageUACest
     
     
     /**
-     * @group aa
+     * @group a
      * @guy UkrainianTester\LocUaSteps 
      */
     public function FilterPhone(UkrainianTester\LocUaSteps $I){
@@ -191,7 +200,7 @@ class SaasUserPageUACest
     } 
     
     /**
-     * @group aa
+     * @group a
      * @guy UkrainianTester\LocUaSteps 
      */
     public function FilterName(UkrainianTester\LocUaSteps $I){
@@ -208,7 +217,7 @@ class SaasUserPageUACest
     
     
     /**
-     * @group aa
+     * @group a
      * @guy UkrainianTester\LocUaSteps 
      */
     public function FilterEmail(UkrainianTester\LocUaSteps $I){
@@ -224,7 +233,7 @@ class SaasUserPageUACest
     
     
     /**
-     * @group aa
+     * @group a
      * @guy UkrainianTester\LocUaSteps 
      */
     public function FilterCountry(UkrainianTester\LocUaSteps $I){
@@ -243,7 +252,7 @@ class SaasUserPageUACest
     
     
     /**
-     * @group aa
+     * @group a
      * @guy UkrainianTester\LocUaSteps 
      */
     public function FilterCity(UkrainianTester\LocUaSteps $I){
@@ -261,7 +270,7 @@ class SaasUserPageUACest
     
     
     /**
-     * @group aa
+     * @group a
      * @guy UkrainianTester\LocUaSteps 
      */
     public function FilterTarif(UkrainianTester\LocUaSteps $I){
@@ -281,7 +290,7 @@ class SaasUserPageUACest
     
     
     /**
-     * @group aa
+     * @group a
      * @guy UkrainianTester\LocUaSteps 
      */
     public function FilterLevel(UkrainianTester\LocUaSteps $I){
@@ -300,7 +309,7 @@ class SaasUserPageUACest
     
     
     /**
-     * @group aa
+     * @group a
      * @guy UkrainianTester\LocUaSteps 
      */
     public function FilterCategory(UkrainianTester\LocUaSteps $I){
@@ -322,19 +331,19 @@ class SaasUserPageUACest
      * @group aa
      * @guy UkrainianTester\LocUaSteps 
      */
-//    public function FilterAmountProduct(UkrainianTester\LocUaSteps $I){
-//        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
-//        $I->amOnPage(SaasUserListPage::$URL);
-//        $I->wait(1);
-//        $I->click(SaasUserListPage::$FilterEmailLabel);
-//        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->user_email);
-//        $I->click(SaasUserListPage::$FilterAmountProducntLabel);
-//        $I->fillField(SaasUserListPage::$FilterAmountProducntInputFrom, '1');
-//        $I->fillField(SaasUserListPage::$FilterAmountProducntInputTo, '1111');
-//        $I->click(SaasUserListPage::$FilterButtonFilter);
-//        $I->see($this->user_email, SaasUserListPage::lineEmailLink(1));
-//        $I->AdminLogout();
-//    }
+    public function FilterAmountProduct(UkrainianTester\LocUaSteps $I){
+        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
+        $I->amOnPage(SaasUserListPage::$URL);
+        $I->wait(1);
+        $I->click(SaasUserListPage::$FilterEmailLabel);
+        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->user_email);
+        $I->click(SaasUserListPage::$FilterAmountProducntLabel);
+        $I->fillField(SaasUserListPage::$FilterAmountProducntInputFrom, '1');
+        $I->fillField(SaasUserListPage::$FilterAmountProducntInputTo, '1111');
+        $I->click(SaasUserListPage::$FilterButtonFilter);
+        $I->see($this->user_email, SaasUserListPage::lineEmailLink(1));
+        $I->AdminLogout();
+    }
 
     
     
@@ -342,59 +351,59 @@ class SaasUserPageUACest
      * @group aa
      * @guy UkrainianTester\LocUaSteps 
      */
-//    public function FilterDisk(UkrainianTester\LocUaSteps $I){
-//        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
-//        $I->amOnPage(SaasUserListPage::$URL);
-//        $I->wait(1);
-//        $I->click(SaasUserListPage::$FilterEmailLabel);
-//        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->user_email);
-//        $I->click(SaasUserListPage::$FilterDiskLimitLabel);
-//        $I->fillField(SaasUserListPage::$FilterDiskLimitInputFrom, '1');
-//        $I->fillField(SaasUserListPage::$FilterDiskLimitInputTo, '1111');
-//        $I->click(SaasUserListPage::$FilterButtonFilter);
-//        $I->see($this->user_email, SaasUserListPage::lineEmailLink(1));
-//        $I->AdminLogout();
-//    }
+    public function FilterDisk(UkrainianTester\LocUaSteps $I){
+        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
+        $I->amOnPage(SaasUserListPage::$URL);
+        $I->wait(1);
+        $I->click(SaasUserListPage::$FilterEmailLabel);
+        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->user_email);
+        $I->click(SaasUserListPage::$FilterDiskLimitLabel);
+        $I->fillField(SaasUserListPage::$FilterDiskLimitInputFrom, '1');
+        $I->fillField(SaasUserListPage::$FilterDiskLimitInputTo, '1111');
+        $I->click(SaasUserListPage::$FilterButtonFilter);
+        $I->see($this->user_email, SaasUserListPage::lineEmailLink(1));
+        $I->AdminLogout();
+    }
     
     
     
     /**
-     * @group aaa
+     * @group aa
      * @guy UkrainianTester\LocUaSteps 
      */
-//    public function FilterBalans(UkrainianTester\LocUaSteps $I){
-//        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
-//        $I->amOnPage(SaasUserListPage::$URL);
-//        $I->wait(1);
-//        $I->click(SaasUserListPage::$FilterEmailLabel);
-//        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->user_email);
-//        $I->click(SaasUserListPage::$FilterBalansLabel);
-//        $I->fillField(SaasUserListPage::$FilterBalansInputFrom, '1');
-//        $I->fillField(SaasUserListPage::$FilterBalansInputTo, '1111');
-//        $I->click(SaasUserListPage::$FilterButtonFilter);
-//        $I->see($this->user_email, SaasUserListPage::lineEmailLink(1));
-//        $I->AdminLogout();
-//    }
+    public function FilterBalans(UkrainianTester\LocUaSteps $I){
+        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
+        $I->amOnPage(SaasUserListPage::$URL);
+        $I->wait(1);
+        $I->click(SaasUserListPage::$FilterEmailLabel);
+        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->user_email);
+        $I->click(SaasUserListPage::$FilterBalansLabel);
+        $I->fillField(SaasUserListPage::$FilterBalansInputFrom, '1');
+        $I->fillField(SaasUserListPage::$FilterBalansInputTo, '1111');
+        $I->click(SaasUserListPage::$FilterButtonFilter);
+        $I->see($this->user_email, SaasUserListPage::lineEmailLink(1));
+        $I->AdminLogout();
+    }
     
     
     
     /**
-     * @group aaa
+     * @group aa
      * @guy UkrainianTester\LocUaSteps 
      */
-//    public function FilterManager(UkrainianTester\LocUaSteps $I){
-//        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
-//        $I->amOnPage(SaasUserListPage::$URL);
-//        $I->wait(1);
-//        $I->click(SaasUserListPage::$FilterEmailLabel);
-//        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->user_email);
-//        $I->click(SaasUserListPage::$FilterManagerLabel);
-//        $I->click(SaasUserListPage::$FilterManagerSelect);
-//        $I->click(SaasUserListPage::FilterManagerSelectOption(3));
-//        $I->click(SaasUserListPage::$FilterButtonFilter);
-//        $I->see($this->user_email, SaasUserListPage::lineEmailLink(1));
-//        $I->AdminLogout();
-//    }
+    public function FilterManager(UkrainianTester\LocUaSteps $I){
+        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
+        $I->amOnPage(SaasUserListPage::$URL);
+        $I->wait(1);
+        $I->click(SaasUserListPage::$FilterEmailLabel);
+        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->user_email);
+        $I->click(SaasUserListPage::$FilterManagerLabel);
+        $I->click(SaasUserListPage::$FilterManagerSelect);
+        $I->click(SaasUserListPage::FilterManagerSelectOption(3));
+        $I->click(SaasUserListPage::$FilterButtonFilter);
+        $I->see($this->user_email, SaasUserListPage::lineEmailLink(1));
+        $I->AdminLogout();
+    }
     
     
     
@@ -403,19 +412,19 @@ class SaasUserPageUACest
      * @group aa
      * @guy UkrainianTester\LocUaSteps 
      */
-//    public function FilterDomainEnd(UkrainianTester\LocUaSteps $I){
-//        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
-//        $I->amOnPage(SaasUserListPage::$URL);
-//        $I->wait(1);
-//        $I->click(SaasUserListPage::$FilterEmailLabel);
-//        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->user_email);
-//        $I->click(SaasUserListPage::$FilterDomainEndLabel);
-//        $I->click(SaasUserListPage::$FilterDomainEndLabel);
-//        $I->click(SaasUserListPage::FilterDomainEndSelectOption(3));
-//        $I->click(SaasUserListPage::$FilterButtonFilter);
-//        $I->see($this->user_email, SaasUserListPage::lineEmailLink(1));
-//        $I->AdminLogout();
-//    }
+    public function FilterDomainEnd(UkrainianTester\LocUaSteps $I){
+        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
+        $I->amOnPage(SaasUserListPage::$URL);
+        $I->wait(1);
+        $I->click(SaasUserListPage::$FilterEmailLabel);
+        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->user_email);
+        $I->click(SaasUserListPage::$FilterDomainEndLabel);
+        $I->click(SaasUserListPage::$FilterDomainEndLabel);
+        $I->click(SaasUserListPage::FilterDomainEndSelectOption(3));
+        $I->click(SaasUserListPage::$FilterButtonFilter);
+        $I->see($this->user_email, SaasUserListPage::lineEmailLink(1));
+        $I->AdminLogout();
+    }
     
     
     
@@ -425,39 +434,19 @@ class SaasUserPageUACest
      * @group aa
      * @guy UkrainianTester\LocUaSteps 
      */
-//    public function FilterActivateByEmail(UkrainianTester\LocUaSteps $I){
-//        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
-//        $I->amOnPage(SaasUserListPage::$URL);
-//        $I->wait(1);
-//        $I->click(SaasUserListPage::$FilterEmailLabel);
-//        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->user_email);
-//        $I->click(SaasUserListPage::$FilterActivatedByEmailLabel);
-//        $I->click(SaasUserListPage::$FilterActivatedByEmailSelect);
-//        $I->click(SaasUserListPage::FilterActivatedByEmailSelectOption(2));
-//        $I->click(SaasUserListPage::$FilterButtonFilter);
-//        $I->see($this->user_email, SaasUserListPage::lineEmailLink(1));
-//        $I->AdminLogout();
-//    }
-    
-    
-    
-    /**
-     * @group aaa
-     * @guy UkrainianTester\LocUaSteps 
-     */
-//    public function FilterFillProduct(UkrainianTester\LocUaSteps $I){
-//        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
-//        $I->amOnPage(SaasUserListPage::$URL);
-//        $I->wait(1);
-//        $I->click(SaasUserListPage::$FilterEmailLabel);
-//        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->user_email);
-//        $I->click(SaasUserListPage::$FilterFillProductsLabel);
-//        $I->click(SaasUserListPage::$FilterFillProductsSelect);
-//        $I->click(SaasUserListPage::FilterFillProductsSelectOption(2));
-//        $I->click(SaasUserListPage::$FilterButtonFilter);
-//        $I->see($this->user_email, SaasUserListPage::lineEmailLink(1));
-//        $I->AdminLogout();
-//    }
+    public function FilterActivateByEmail(UkrainianTester\LocUaSteps $I){
+        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
+        $I->amOnPage(SaasUserListPage::$URL);
+        $I->wait(1);
+        $I->click(SaasUserListPage::$FilterEmailLabel);
+        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->user_email);
+        $I->click(SaasUserListPage::$FilterActivatedByEmailLabel);
+        $I->click(SaasUserListPage::$FilterActivatedByEmailSelect);
+        $I->click(SaasUserListPage::FilterActivatedByEmailSelectOption(2));
+        $I->click(SaasUserListPage::$FilterButtonFilter);
+        $I->see($this->user_email, SaasUserListPage::lineEmailLink(1));
+        $I->AdminLogout();
+    }
     
     
     
@@ -465,22 +454,42 @@ class SaasUserPageUACest
      * @group aa
      * @guy UkrainianTester\LocUaSteps 
      */
-//    public function FilterStatuses(UkrainianTester\LocUaSteps $I){
-//        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
-//        $I->amOnPage(SaasUserListPage::$URL);
-//        $I->wait(1);
-//        $I->click(SaasUserListPage::$FilterEmailLabel);
-//        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->user_email);
-//        $I->click(SaasUserListPage::$FilterStatusesLabel);
-//        $I->click(SaasUserListPage::$FilterStatusesSelect);
-//        $I->click(SaasUserListPage::FilterStatusesSelectOption(2));
-//        $I->click(SaasUserListPage::$FilterButtonFilter);
-//        $I->see($this->user_email, SaasUserListPage::lineEmailLink(1));
-//        $I->AdminLogout();
-//    }
+    public function FilterFillProduct(UkrainianTester\LocUaSteps $I){
+        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
+        $I->amOnPage(SaasUserListPage::$URL);
+        $I->wait(1);
+        $I->click(SaasUserListPage::$FilterEmailLabel);
+        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->user_email);
+        $I->click(SaasUserListPage::$FilterFillProductsLabel);
+        $I->click(SaasUserListPage::$FilterFillProductsSelect);
+        $I->click(SaasUserListPage::FilterFillProductsSelectOption(2));
+        $I->click(SaasUserListPage::$FilterButtonFilter);
+        $I->see($this->user_email, SaasUserListPage::lineEmailLink(1));
+        $I->AdminLogout();
+    }
+    
+    
     
     /**
-     * @group aaa
+     * @group aa
+     * @guy UkrainianTester\LocUaSteps 
+     */
+    public function FilterStatuses(UkrainianTester\LocUaSteps $I){
+        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
+        $I->amOnPage(SaasUserListPage::$URL);
+        $I->wait(1);
+        $I->click(SaasUserListPage::$FilterEmailLabel);
+        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->user_email);
+        $I->click(SaasUserListPage::$FilterStatusesLabel);
+        $I->click(SaasUserListPage::$FilterStatusesSelect);
+        $I->click(SaasUserListPage::FilterStatusesSelectOption(2));
+        $I->click(SaasUserListPage::$FilterButtonFilter);
+        $I->see($this->user_email, SaasUserListPage::lineEmailLink(1));
+        $I->AdminLogout();
+    }
+    
+    /**
+     * @group aa
      * @guy UkrainianTester\LocUaSteps 
      */
     public function FilterDepartments(UkrainianTester\LocUaSteps $I){
