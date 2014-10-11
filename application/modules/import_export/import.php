@@ -9,7 +9,7 @@
  * /uploads/shop/products/origin/additional
  * 
  * /application/backups 
- * /application/modules/import_export/backups
+ * /application/backups
  ***********************
  * 
  * Дополнительные фото и фото вариантов.
@@ -45,7 +45,7 @@
   const ErrorNameVariantAttribute = "Атрибут 'Имя варианта' не указан. Error: EIx013";
   const ErrorNameAttribute = "Атрибут 'Имя товара' не указан. Error: EIx010";
  * 
- * Файлы хранятся в /import_export/backups
+ * Файлы хранятся в /application/backups 
  * Backup базы остался неизменным в /application/backups 
  * 
  * Сегментная выгрузка при первом запуске использует imports(). Так как 
@@ -65,7 +65,7 @@ class Import extends ShopAdminController {
      * @var string
      * @access private
      */
-    private $uploadDir = './application/modules/import_export/backups/';
+    private $uploadDir = './application/backups/';
 
     /**
      * Default csv file name
@@ -80,6 +80,8 @@ class Import extends ShopAdminController {
      * @access private
      */
     private $uplaodedFileInfo = array();
+    
+    private $fullPath = '/var/www/saas_data/mainsaas/';
 
     public function __construct() {
         parent::__construct();
@@ -223,9 +225,15 @@ class Import extends ShopAdminController {
      * @access private
      */
     private function convertXLStoCSV($excel_file = '') {
-        include './application/modules/import_export/PHPExcel/PHPExcel.php';
-        include './application/modules/import_export/PHPExcel/PHPExcel/IOFactory.php';
-        include './application/modules/import_export/PHPExcel/PHPExcel/Writer/Excel2007.php';
+        if(file_exists('./application/modules/import_export/PHPExcel/PHPExcel.php')){
+            include './application/modules/import_export/PHPExcel/PHPExcel.php';
+            include './application/modules/import_export/PHPExcel/PHPExcel/IOFactory.php';
+            include './application/modules/import_export/PHPExcel/PHPExcel/Writer/Excel2007.php';            
+        }else{
+            include $this->fullPath.'/application/modules/import_export/PHPExcel/PHPExcel.php';
+            include $this->fullPath.'/application/modules/import_export/PHPExcel/PHPExcel/IOFactory.php';
+            include $this->fullPath.'/application/modules/import_export/PHPExcel/PHPExcel/Writer/Excel2007.php';
+        }
         $objReader = PHPExcel_IOFactory::createReaderForFile($excel_file);
         $objReader->setReadDataOnly(true);
         $objPHPExcel = $objReader->load($excel_file);

@@ -30,6 +30,7 @@ class DeliveryListPage
     
     //вікно видалення
     public static $WindowDelete             = ".modal.hide.fade.modal_del.in";
+    public static $WindowDeleteTitle        = ".modal.hide.fade.modal_del.in h3";
     public static $WindowDeleteButtonDelete = ".btn.btn-primary";
     public static $WindowDeleteButtonCancel = "//div[@id='mainContent']/div/div[1]/div[3]/a[2]";
     public static $WindowDeleteButtonClose  = ".close";

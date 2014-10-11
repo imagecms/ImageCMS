@@ -28,7 +28,7 @@ class EditingStatusCallbackCest
         $I->waitForText('Редактирование статуса обратного звонка');
         $I->see('Редактирование статуса обратного звонка', 'span.title.w-s_n');
         $I->see('Информация', './/*[@id="mainContent"]/section/table/thead/tr/th');
-        $I->see('Имя:', './/*[@id="addCallbackStatusForm"]/div[1]/label');
+        $I->see('Название:', './/*[@id="addCallbackStatusForm"]/div[1]/label');
         $I->see('По умолчанию', 'span.frame_label.no_connection');
         $I->see('Статус будет назначен всем новым запросам.', 'div.help-block');
         $I->see('Вернуться', CallbacksPage::$GoBackButton);
@@ -125,16 +125,6 @@ class EditingStatusCallbackCest
     {
         $name='sss';
         $I->EditStatusCallback($name, $name, $save='saveexit');
-//        $I->amOnPage('/admin/components/run/shop/callbacks/statuses');
-//        $I->click('.//*[@id="orderStatusesList"]/section/div[2]/div/table/tbody/tr[1]/td[2]/a');
-//        $I->waitForText('Редактирование статуса обратного звонка');
-//        $I->fillField(CallbacksPage::$NameStatus, 'sss');
-//        $I->click(CallbacksPage::$SaveAndExitButton);
-//        $I->waitForElementVisible('.alert.in.fade.alert-success');
-//        $I->see('Изменения сохранены');
-//        $I->waitForElementNotVisible('.alert.in.fade.alert-success');
-//        $I->waitForText('Статусы обратных звонков');
-//        $I->see('sss', './/*[@id="orderStatusesList"]/section/div[2]/div/table/tbody/tr[1]/td[2]/a');
         InitTest::ClearAllCach($I);
     }
     

@@ -24,31 +24,31 @@ class DeliverySteps extends \DeliveryTester {
     $name = null, $active = null, $description = null, $descriptionprice = null, $price = null, $freefrom = null, $message = null, $pay = null) {
         $I = $this;
         $I->wait(1);
-        $I->amOnPage(\DeliveryPage::$URL);
+        $I->amOnPage(\DeliveryListPage::$URL);
         $I->wait(1);
-        $I->click(\DeliveryPage::$CreateButton);
+        $I->click(\DeliverylistPage::$ButtonCreate);
         $I->waitForText("Создание способа доставки");
         if (isset($name)) {
-            $I->fillField(\DeliveryCreatePage::$FieldName, $name);
+            $I->fillField(\DeliveryCreatePage::$InputName, $name);
         }
         if (isset($active)) {
-            $I->checkOption(\DeliveryCreatePage::$CheckboxActive);
+            $I->checkOption(\DeliveryCreatePage::$CheckActive);
         }
         if (isset($description)) {
-            $I->fillField(\DeliveryCreatePage::$FieldDescription, $description);
+            $I->fillField(\DeliveryCreatePage::$InputDescription, $description);
         }
         if (isset($descriptionprice)) {
-            $I->fillField(\DeliveryCreatePage::$FieldDescriptionPrice, $descriptionprice);
+            $I->fillField(\DeliveryCreatePage::$InputDescriptionPrice, $descriptionprice);
         }
         if (isset($price)) {
-            $I->fillField(\DeliveryCreatePage::$FieldPrice, $price);
+            $I->fillField(\DeliveryCreatePage::$InputPrice, $price);
         }
         if (isset($freefrom)) {
-            $I->fillField(\DeliveryCreatePage::$FieldFreeFrom, $freefrom);
+            $I->fillField(\DeliveryCreatePage::$InputFreeFrom, $freefrom);
         }
         if (isset($message)) {
-            $I->click(\DeliveryCreatePage::$CheckboxPriceSpecified);
-            $I->fillField(\DeliveryCreatePage::$FieldPriceSpecified, $message);
+            $I->click(\DeliveryCreatePage::$CheckPriceSpecified);
+            $I->fillField(\DeliveryCreatePage::$InputPriceSpecified, $message);
         }
         if (isset($pay)) {
             if (is_string($pay)) {
@@ -78,7 +78,7 @@ class DeliverySteps extends \DeliveryTester {
         $present = FALSE;
 
         for ($row = 1; $row <= $rows; ++$row) {
-            $CMethod = $I->grabTextFrom(\DeliveryPage::ListMethodLine($row));
+            $CMethod = $I->grabTextFrom(\DeliveryListPage::lineMethodLink($row));
 
             if ($CMethod == $methodname) {
                 $present = TRUE;
@@ -147,16 +147,14 @@ class DeliverySteps extends \DeliveryTester {
         }
 
         if ($price) {
-            $Cprice = $I->grabTextFrom("//div[@class='frame-radio']/div[$j]/div[@class='help-block']/div[1]");
-            $Cprice = preg_replace('/[^0-9.]*/u', '', $Cprice);
-            $price = round($price);
+            $Cprice = preg_replace('/[^0-9.,]*/u', '', $I->grabTextFrom("//div[@class='frame-radio']/div[$j]/div[@class='help-block']/div[1]"));
+            $price  = number_format(preg_replace('/[^0-9.]*/u', '', $price), 2, ",", ".");
             $I->assertEquals($Cprice, $price);
         }
 
         if ($freefrom) {
-            $Cfreefrom = $I->grabTextFrom("//div[@class='frame-radio']/div[$j]/div[@class='help-block']/div[2]");
-            $Cfreefrom = preg_replace('/[^0-9.]*/u', '', $Cfreefrom);
-            $freefrom = round($freefrom);
+            $Cfreefrom = preg_replace('/[^0-9.,]*/u', '', $I->grabTextFrom("//div[@class='frame-radio']/div[$j]/div[@class='help-block']/div[2]"));
+            $freefrom = number_format(preg_replace('/[^0-9.]*/u', '', $freefrom), 2, ",", ".");
             $I->assertEquals($Cfreefrom, $freefrom);
         }
 
@@ -245,28 +243,28 @@ $I = $this;
      */
     function DeleteDeliveryMethods ($Methods) {
         $I = $this;
-        $I->amOnPage(\DeliveryPage::$URL);
+        $I->amOnPage(\DeliveryListPage::$URL);
         $HaveMethodsToDelete = false;
         $AllMethodsCount = $I->grabClassCount($I, "niceCheck")-1;
         for ($row = 1;$row <= $AllMethodsCount;++$row){
-            $CurrentRowMethod = $I->grabTextFrom(\DeliveryPage::ListMethodLine($row));
+            $CurrentRowMethod = $I->grabTextFrom(\DeliveryListPage::lineMethodLink($row));
             if(is_array($Methods)){
                 if(in_array($CurrentRowMethod, $Methods)){
-                        $I->click (\DeliveryPage::ListCheckboxLine ($row));
+                        $I->click (\DeliveryListPage::lineCheck($row));
                         $HaveMethodsToDelete = true;
                 }
             }
             else {
                 if($CurrentRowMethod == $Methods){
-                        $I->click (\DeliveryPage::ListCheckboxLine ($row));
+                        $I->click (\DeliveryListPage::lineCheck($row));
                         $HaveMethodsToDelete = true;
                     }        
             }   
         }
         if($HaveMethodsToDelete){
-            $I->click(\DeliveryPage::$DeleteButton);
-            $I->waitForText("Удаление способов доставки", NULL, "//*[@id='mainContent']/div/div[1]/div[1]/h3");
-            $I->click(\DeliveryPage::$DeleteWindowDelete);
+            $I->click(\DeliveryListPage::$ButtonDelete);
+            $I->waitForText("Удаление способов доставки", NULL, \DeliveryListPage::$WindowDeleteTitle);
+            $I->click(\DeliveryListPage::$WindowDeleteButtonDelete);
             $I->wait('3');
         }
     }
@@ -283,16 +281,15 @@ $I = $this;
     function CheckInList($name,$active=null,$price=null,$freefrom=null){
         $I = $this;
         $I->wait(3);
-        $I->amOnPage(\DeliveryPage::$URL);
+        $I->amOnPage(\DeliveryListPage::$URL);
         $I->waitForText('Список способов доставки');
         $rows = $I->grabCCSAmount($I, "section[class=\'mini-layout\'] table tbody tr");
-//        $rows  = $I->grabTagCount($I,"tbody tr");
         $I->comment($rows);
         $present = FALSE;
         if($rows>0){
             
             for ($j=1;$j<=$rows;++$j){
-                $method = $I->grabTextFrom(\DeliveryPage::ListMethodLine($j));
+                $method = $I->grabTextFrom(\DeliveryListPage::lineMethodLink($j));
                 $I->comment($method);
                 
                 if ($method == $name){
@@ -306,7 +303,7 @@ $I = $this;
         $present?$I->assertEquals($method,$name):$I->fail("Method wasn't created");
         
         if($active){
-            $attribute = $I->grabAttributeFrom(\DeliveryPage::ListActiveButtonLine($j),"class");
+            $attribute = $I->grabAttributeFrom(\DeliveryListPage::lineActiveToggle($j),"class");
             
             switch ($active){
                 case 'on':
@@ -319,7 +316,7 @@ $I = $this;
         }
         
         if($price){
-            $Cprice = $I->grabTextFrom(\DeliveryPage::ListPriceLine($j));
+            $Cprice = $I->grabTextFrom(\DeliveryListPage::linePriceText($j));
             $price = number_format(preg_replace('/[^0-9\.]/', '', $price), 5,".","");
             
             $matches = [];
@@ -330,7 +327,7 @@ $I = $this;
         }
         
         if($freefrom){
-            $Cfreefrom = $I->grabTextFrom(\DeliveryPage::ListFreeFromLine($j));
+            $Cfreefrom = $I->grabTextFrom(\DeliveryListPage::lineFreeFromText($j));
             $freefrom = number_format(preg_replace('/[^0-9\.]/', '', $freefrom), 5,".","");
             
             unset($matches);
@@ -350,7 +347,7 @@ $I = $this;
     function GrabAllCreatedPayments() {
         $I = $this;
         $I->amOnPage(\PaymentListPage::$URL);
-        $I->waitForText("Список способов оплаты", NULL, ".title");
+        $I->waitForText("Список способов оплаты", NULL, \PaymentListPage::$Title);
         /**
          * @var int $rows Count of table rows
          * @var int $row Current row in table 
@@ -358,7 +355,7 @@ $I = $this;
         $rows = $I->grabClassCount($I, 'niceCheck')-1;
         if ($rows > 0){//was !=0
             $I->comment("I want to read and remember all created payment methods");
-            for ($row = 1;$row<=$rows;++$row) { $PaymentMethods[$row] = $I->grabTextFrom (\PaymentListPage::MethodNameLine($row)); }
+            for ($row = 1;$row<=$rows;++$row) { $PaymentMethods[$row] = $I->grabTextFrom (\PaymentListPage::lineMethodLink($row)); }
         }
         else { $I->fail( "there are no created payments" ); }
         return $PaymentMethods;
@@ -392,45 +389,45 @@ $I = $this;
         $I = $this;
         
         if(isset($name)) { 
-            $I->fillField(\DeliveryEditPage::$FieldName, $name); }
+            $I->fillField(\DeliveryEditPage::$InputName, $name); }
         if(isset($active)) {
             $Cactive = $I->grabAttributeFrom("//*[@id='deliveryUpdate']/div[2]/div[2]/span", 'class');
             $Cactive == 'frame_label no_connection active'?$Cactive = TRUE:$Cactive = FALSE;
             if      ($active == "on" && !$Cactive)   { 
-                $I->click(\DeliveryEditPage::$CheckboxActive); 
+                $I->click(\DeliveryEditPage::$CheckActive); 
                 
             }
             elseif  ($active == "off" && $Cactive)   {
-                $I->click(\DeliveryEditPage::$CheckboxActive); 
+                $I->click(\DeliveryEditPage::$CheckActive); 
                 
             }
         }
         if(isset($description)) { 
-            $I->fillField(\DeliveryEditPage::$FieldDescription, $description); 
+            $I->fillField(\DeliveryEditPage::$InputDescription, $description); 
         }
         if(isset($descriptionprice)) { 
-            $I->fillField(\DeliveryEditPage::$FieldDescriptionPrice, $descriptionprice); 
+            $I->fillField(\DeliveryEditPage::$InputDescriptionPrice, $descriptionprice); 
             
         }
         if(isset($price)) { 
-            $I->grabAttributeFrom(\DeliveryEditPage::$FieldPrice, 'disabled')== 'true'?$I->click(\DeliveryEditPage::$CheckboxPriceSpecified):  print '';
-            $I->fillField(\DeliveryEditPage::$FieldPrice,$price);
+            $I->grabAttributeFrom(\DeliveryEditPage::$InputPrice, 'disabled')== 'true'?$I->click(\DeliveryEditPage::$CheckPriceSpecified):  print '';
+            $I->fillField(\DeliveryEditPage::$InputPrice,$price);
         }
         if(isset($freefrom)) { 
-            $I->grabAttributeFrom(\DeliveryEditPage::$FieldPrice, 'disabled')== 'true'?$I->click(\DeliveryEditPage::$CheckboxPriceSpecified):  print '';
-            $I->fillField(\DeliveryEditPage::$FieldFreeFrom, $freefrom);
+            $I->grabAttributeFrom(\DeliveryEditPage::$InputFreeFrom, 'disabled')== 'true'?$I->click(\DeliveryEditPage::$CheckPriceSpecified):  print '';
+            $I->fillField(\DeliveryEditPage::$InputFreeFrom, $freefrom);
         }
         if(isset($message)) { 
-            $class = $I->grabAttributeFrom(\DeliveryEditPage::$CheckboxPriceSpecified.'/..', 'class');
-            $class == 'frame_label no_connection'?$I->click(\DeliveryEditPage::$CheckboxPriceSpecified):$I->comment('already marked');
-            $I->fillField(\DeliveryEditPage::$FieldPriceSpecified, $message);
+            $class = $I->grabAttributeFrom(\DeliveryEditPage::$CheckPriceSpecified.'/..', 'class');
+            $class == 'frame_label no_connection'?$I->click(\DeliveryEditPage::$CheckPriceSpecified):$I->comment('already marked');
+            $I->fillField(\DeliveryEditPage::$InputPriceSpecified, $message);
         }
         if(isset($pay)) {
             $paymentAmount = $I->grabClassCount($I, 'niceCheck')-2;
             for($row = 1 ; $row <=$paymentAmount; ++$row){
-                $Cclass = $I->grabAttributeFrom(\DeliveryEditPage::PaymentMethodLabel($row), 'class');
+                $Cclass = $I->grabAttributeFrom(\DeliveryEditPage::checkPaymentMethodLabel($row), 'class');
                 if($Cclass == 'frame_label no_connection d_b active'){
-                        $I->click(\DeliveryEditPage::PaymentMethodCheckbox($row));
+                        $I->click(\DeliveryEditPage::checkPaymentMethod($row));
                     }
             }
             if(is_string($pay) && $pay != 'off'){
@@ -481,8 +478,8 @@ $I = $this;
                     $I->comment("I want to see that field is required");
                     $I->waitForText('Это поле обязательное.', NULL, '//label[@generated="true"]');
 
-                    if      ($text =='create') { $I->assertEquals($I->grabAttributeFrom(\DeliveryCreatePage::$FieldName, 'class'), "alert alert-error"); }
-                    elseif  ($text =='edit')   { $I->assertEquals($I->grabAttributeFrom(\DeliveryEditPage::$FieldName, 'class'), "required alert alert-error"); }
+                    if      ($text =='create') { $I->assertEquals($I->grabAttributeFrom(\DeliveryCreatePage::$InputName, 'class'), "alert alert-error"); }
+                    elseif  ($text =='edit')   { $I->assertEquals($I->grabAttributeFrom(\DeliveryEditPage::$InputName, 'class'), "required alert alert-error"); }
                     break;
                 default :
                     $I->fail("unknown type of error entered");

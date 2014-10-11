@@ -15,22 +15,22 @@ class EditingThemeCallbackCest
     public function Autorization(CallbacksTester $I)
     {
         InitTest::Login($I);
-        $I->amOnPage("/admin/components/run/shop/callbacks/themes");
+        $I->amOnPage(CallbacksPage::$URLThemes);
         $I->waitForText("Темы обратных звонков");
     }
     
     
     public function NamesInEditing(CallbacksTester $I)
     {
-        $I->amOnPage('/admin/components/run/shop/callbacks/themes');
-        $I->moveMouseOver('.//*[@id="orderStatusesList"]/section/div[2]/div/table/tbody/tr/td[2]/a');
+        $I->amOnPage(CallbacksPage::$URLThemes);
+        $I->moveMouseOver(CallbacksPage::ThemeNameLine('1'));
 //        $I->canSeeElement('div.tooltip-inner');
 //        $I->see('Редактировать тему обратного звонка');
-        $I->click('.//*[@id="orderStatusesList"]/section/div[2]/div/table/tbody/tr/td[2]/a');
+        $I->click(CallbacksPage::ThemeNameLine('1'));
         $I->waitForText('Редактирование темы обратного звонка');
         $I->see('Редактирование темы обратного звонка', 'span.title.w-s_n');
-        $I->see('Информация', '.table.table-striped.table-bordered.table-hover.table-condensed.content_big_td>thead>tr>th');
-        $I->see('Имя:', './/*[@id="addCallbackStatusForm"]/div/label');
+        $I->see('Информация', '//*[@id="mainContent"]/section/table/thead/tr/th');
+        $I->see('Название:', './/*[@id="addCallbackStatusForm"]/div/label');
         $I->see('Вернуться', CallbacksPage::$GoBackButton);
         $I->see('Сохранить', CallbacksPage::$SaveButton);
         $I->see('Сохранить и выйти', CallbacksPage::$SaveAndExitButton);
@@ -40,8 +40,8 @@ class EditingThemeCallbackCest
     
     public function RequiredFieldsInEditingSaveButton(CallbacksTester $I)
     {
-        $I->amOnPage('/admin/components/run/shop/callbacks/themes');
-        $I->click('.//*[@id="orderStatusesList"]/section/div[2]/div/table/tbody/tr/td[2]/a');
+        $I->amOnPage(CallbacksPage::$URLThemes);
+        $I->click(CallbacksPage::ThemeNameLine('1'));
         $I->waitForText('Редактирование темы обратного звонка');
         $I->fillField(CallbacksPage::$NameTheme, '');
         $I->click(CallbacksPage::$SaveButton);
@@ -53,8 +53,8 @@ class EditingThemeCallbackCest
     
     public function RequiredFieldsInEditingSaveAndExitButton(CallbacksTester $I)
     {
-        $I->amOnPage('/admin/components/run/shop/callbacks/themes');
-        $I->click('.//*[@id="orderStatusesList"]/section/div[2]/div/table/tbody/tr/td[2]/a');
+        $I->amOnPage(CallbacksPage::$URLThemes);
+        $I->click(CallbacksPage::ThemeNameLine('1'));
         $I->waitForText('Редактирование темы обратного звонка');
         $I->fillField(CallbacksPage::$NameTheme, '');
         $I->click(CallbacksPage::$SaveAndExitButton);
@@ -91,7 +91,7 @@ class EditingThemeCallbackCest
     
     public function Symbols128Editing(CallbacksTester\CallbacksSteps $I)
     {
-        $name='12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцу';
+        $name='12345йцуке12345йцуке12345 цуке12345йцуке 2345йцуке12345йцуке123 5йцуке12345йцуке12345 цуке12345йцуке12345 цуке12345 цуке12345йцу';
         $I->EditThemeCallback($name, $name);
     }
     
@@ -101,7 +101,7 @@ class EditingThemeCallbackCest
     
     public function Symbols255Editing(CallbacksTester\CallbacksSteps $I)
     {
-        $name='12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345';
+        $name='12345йцуке12345йцуке12345йц ке12345йцуке123 5йцуке12345йцуке12 45йцуке12345йцук 12345йцуке12345йцуке123 5йцуке12345йцуке12345йцуке 2345йцуке12345йцуке12345йцук 12345йцуке12345йцу е12345йцуке12345йцу е12345йцуке12345йцук 12345йцуке12345йцуке1234 йцуке12345';
         $I->EditThemeCallback($name, $name);
         InitTest::ClearAllCach($I);
     }
@@ -112,8 +112,8 @@ class EditingThemeCallbackCest
     
     public function Symbols256Editing(CallbacksTester\CallbacksSteps $I)
     {
-        $name='12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке123456';
-        $name1='12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345йцуке12345';
+        $name='12345йцуке12345йц ке12345йцуке12345й уке12345йцуке12345йц ке12345йцуке12345йцуке12345й уке12345йцуке12345йцуке1234 йцуке123 5йцуке12345йцуке1234 йцуке12345йцуке12345йцук 12345йцуке12345йцуке12 45йцуке12345йцуке12345йц ке12345йцуке12345йцуке12345й уке123456';
+        $name1='12345йцуке12345йц ке12345йцуке12345й уке12345йцуке12345йц ке12345йцуке12345йцуке12345й уке12345йцуке12345йцуке1234 йцуке123 5йцуке12345йцуке1234 йцуке12345йцуке12345йцук 12345йцуке12345йцуке12 45йцуке12345йцуке12345йц ке12345йцуке12345йцуке12345й уке12345';
         $I->EditThemeCallback($name, $name1);
     }
     

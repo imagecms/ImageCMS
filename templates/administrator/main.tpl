@@ -6,7 +6,7 @@
         <meta name="description" content="{lang("Operation panel","admin")} - Image CMS" />
         <meta name="generator" content="ImageCMS">
 
-        <link rel="icon" type="image/x-icon" href="{$THEME}images/favicon.png"/>
+        <link rel="icon" type="image/x-icon" href="{$THEME}images/{if MAINSITE}premmerce_{/if}favicon.png"/>
 
         <link rel="stylesheet" type="text/css" href="{$THEME}css/bootstrap_complete.css">
         <link rel="stylesheet" type="text/css" href="{$THEME}css/style.css">
@@ -239,7 +239,7 @@
                                                 </li>
                                             {/if}
                                             <li>
-                                                <a href="/auth/logout">
+                                                <a href="/admin/logout">
                                                     {lang("Exit", "admin")}
                                                 </a>
                                             </li>
@@ -380,10 +380,13 @@
                                                                 {$CI->load->module('admin/components'); $components = $CI->components->find_components_for_menu_list(TRUE)}
                                                             {/if}
                                                             {foreach $components as $component}
-                                                                <li><a href="/admin/components/cp/{echo $component['name']}" class="pjax">{echo $component['menu_name']}</a></li>
-                                                                {/foreach}
-                                                            <li class="divider"></li>
-                                                            <li><a href="/admin/components/modules_table" class="pjax">{lang('All modules', 'admin')}</a></li>
+                                                                <li><a href="/admin/components/cp/{echo $component['name']}">{echo $component['menu_name']}</a></li>
+                                                            {/foreach}
+                                                            
+                                                                {if !MAINSITE}
+                                                                <li class="divider"></li>
+                                                                    <li><a href="/admin/components/modules_table" class="pjax">{lang('All modules', 'admin')}</a></li>
+                                                                {/if}
                                                             {/if}
 
                                                     {/foreach}
@@ -422,10 +425,17 @@
                             {/if}
                             <div class="muted">{lang('Help us get better','admin')} - <a href="#" id="rep_bug">{lang('report an error','admin')}</a></div>
                         </div>
+                        {if !define(MAINSITE)}
                         <div class="span4 t-a_r">
                             <div class="muted">Copyright © ImageCMS {echo date('Y')}</div>
-                            <a href="http://docs.imagecms.net" target="blank">{lang('Documentation','admin')}</a>
+                            <a href="{if MAINSITE}http://docs.premmerce.com/{else:}http://docs.imagecms.net{/if}" target="blank">{lang('Documentation','admin')}</a>
                         </div>
+                        {else:}
+                        <div class="span4 t-a_r">
+                            <div class="muted">Copyright © ImageCMS {echo date('Y')}</div>
+                            <a href="http://docs.premmerce.com" target="blank">{lang('Documentation','admin')}</a>
+                        </div>                        
+                        {/if}
                     </div>
                 </div>
             </footer>

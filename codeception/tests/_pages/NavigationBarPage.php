@@ -31,8 +31,8 @@ class NavigationBarPage
 
     //       Заказы
     public static $Orders = "//div[1]/div[3]/table/tbody/tr/td[1]/a";
-    public static $OrdersList = "//table/tbody/tr/td[1]/ul/li[2]/a";
-    public static $OrderStatuses = "//table/tbody/tr/td[1]/ul/li[3]/a";
+    public static $OrdersList = "//div[1]/div[3]/table/tbody/tr/td[1]/ul/li[1]/a";
+    public static $OrderStatuses = "//div[1]/div[3]/table/tbody/tr/td[1]/ul/li[2]/a";
     public static $CallbacksList = "//table/tbody/tr/td[1]/ul/li[4]/a";
     public static $CallbackStatuses = "//table/tbody/tr/td[1]/ul/li[5]/a";
     public static $CallbackThemes  = "//table/tbody/tr/td[1]/ul/li[6]/a";

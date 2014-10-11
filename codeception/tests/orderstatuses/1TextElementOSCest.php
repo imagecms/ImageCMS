@@ -46,6 +46,7 @@ class TextElementOSCest
         $I->wantTo('Verify Way to Status List Page.');
         $I->click(NavigationBarPage::$Orders);
         $I->click(NavigationBarPage::$OrderStatuses);
+        $I->wait('1');
         $I->seeInCurrentUrl(OrderStatusesListPage::$ListURL);
     } 
     
@@ -79,7 +80,6 @@ class TextElementOSCest
         $I->moveMouseOver(OrderStatusesListPage::$ListLinkStstusTr1);
         $I->see('Редактировать статус', OrderStatusesListPage::$ListMessageMouseFocuse);
         $I->moveMouseOver(OrderStatusesListPage::$ListaButtonCreateStatuse);
-//        $I->wait(1);
         $I->waitForElementNotVisible(OrderStatusesListPage::$ListMessageMouseFocuse);
         $I->dontSeeElement(OrderStatusesListPage::$ListMessageMouseFocuse);
     }
@@ -148,8 +148,7 @@ class TextElementOSCest
         $I->amOnPage(OrderStatusesCreatePage::$CreateURL);
         $I->fillField(OrderStatusesCreatePage::$CreateFieldName, 'ZavorotkiShock');
         $I->click(OrderStatusesCreatePage::$CreateButtonCreate);
-        $I->waitForElement(OrderStatusesCreatePage::$CreateMessageCreatingStatus);
-        $I->see('Статус заказа создан', OrderStatusesCreatePage::$CreateMessageCreatingStatus);
+        $I->exactlySeeAlert($I, 'success', 'Статус заказа создан');
     }   
     
     
@@ -218,8 +217,7 @@ class TextElementOSCest
         $I->amOnPage(OrderStatusesListPage::$ListURL);
         $I->click(OrderStatusesListPage::$ListLinkStatusTr2);
         $I->click(OrderStatusesCreatePage::$EditButtonSave);
-        $I->waitForElement(OrderStatusesCreatePage::$EditMessageEditingStatus);
-        $I->see('Изменения сохранены', OrderStatusesCreatePage::$EditMessageEditingStatus);
+        $I->exactlySeeAlert($I, 'success', 'Изменения сохранены');
     }
     
     
@@ -277,7 +275,7 @@ class TextElementOSCest
         $I->wait(1);
         $I->click(OrderStatusesListPage::$DeleteButtonDelete);
         $I->wait(1);
-        $I->see('Статус удален', OrderStatusesListPage::$DeleteMessageDeleting);
+        $I->exactlySeeAlert($I, 'success', 'Статус удален');
         InitTest::ClearAllCach($I);
     } 
     

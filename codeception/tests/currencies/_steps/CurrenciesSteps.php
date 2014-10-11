@@ -24,7 +24,7 @@ class CurrenciesSteps extends \CurrenciesTester
         }
     }    
     
-    function EditCurrency($j,$name=null,$isocode=null,$symbol=null,$rate=null,$template=null,$format=null,$delimTens=null,$delimThousands=null,$amount=null,$notNull='off',$save='save')
+    function EditCurrency($j,$name=null,$isocode=null,$symbol=null,$rate=null,$template=null,$amount=null,$notNull='off',$save='save')
     {
         $I = $this;
         $I->amOnPage(\CurrenciesPage::$URL);
@@ -44,36 +44,56 @@ class CurrenciesSteps extends \CurrenciesTester
             $I->fillField(\CurrenciesPage::$Rate, $rate);        
         }
         if(isset($template)){
-            $I->selectOption(\CurrenciesPage::$CurrencyTemplate, $template);
-            $text=$I->grabTextFrom(\CurrenciesPage::$CurrencyTemplate."/option[$template]");
+            $I->click(\CurrenciesPage::$CurrencyTemplateSelect);
+//            $I->click(\CurrenciesPage::$CurrencyTemplateSelect."/option[$template]");
+            $text=$I->grabTextFrom(\CurrenciesPage::$CurrencyTemplateSelect."/option[$template]");
             $I->comment($text);
-        }
-        if(isset($format)){
-            $I->fillField(\CurrenciesPage::$FormatLine, $format);
-        }
-//        $I->wait('2');
-        if(isset($delimTens)){
-            $I->fillField(\CurrenciesPage::$DelimiterTens, $delimTens);
-        }
-        if(isset($delimThousands)){
-            $I->fillField(\CurrenciesPage::$DelimiterThousands, $delimThousands);
-        }
+            $I->click(\CurrenciesPage::$CurrencyTemplateSelect."/option[$template]");
+            $I->wait('2');
+            $I->seeOptionIsSelected(\CurrenciesPage::$CurrencyTemplateSelect, $text);
+            
+        }        
         if(isset($amount)){
-            $I->click(\CurrenciesPage::$AmountDecimals);
-            $I->selectOption(\CurrenciesPage::$AmountDecimals, $amount);
+            $I->click(\CurrenciesPage::$AmountDecimalsSelect);
+            $I->selectOption(\CurrenciesPage::$AmountDecimalsSelect, $amount);
         }
         switch ($notNull) {
             case 'off':
-                $I->dontSeeCheckboxIsChecked(\CurrenciesPage::$NotNullsCheckbox);
+                $check=$I->grabAttributeFrom(\CurrenciesPage::$NotNullsCheckbox.'/input', 'checked');
+                $I->comment("$check");
+                if($check==true){
+                    $I->click(\CurrenciesPage::$NotNullsCheckbox);
+                    $I->wait('1');
+                    $I->dontSeeCheckboxIsChecked(\CurrenciesPage::$NotNullsCheckbox.'/input');
+                    break;
+                }
+                else{
+                    $I->dontSeeCheckboxIsChecked(\CurrenciesPage::$NotNullsCheckbox.'/input');
+                    break;
+                }
                 break;
             case 'on':
-                $I->click(\CurrenciesPage::$NotNullsCheckbox);
-                $I->wait('1');
-                $I->seeCheckboxIsChecked(\CurrenciesPage::$NotNullsCheckbox);
+                $check=$I->grabAttributeFrom(\CurrenciesPage::$NotNullsCheckbox.'/input', 'checked');
+                $I->comment("$check");
+                if($check==false){
+                    $I->click(\CurrenciesPage::$NotNullsCheckbox);
+                    $I->wait('1');
+                    $I->seeCheckboxIsChecked(\CurrenciesPage::$NotNullsCheckbox.'/input');
+                    break;
+                }
+                else{
+                    $I->seeCheckboxIsChecked(\CurrenciesPage::$NotNullsCheckbox.'/input');
+                    break;
+                }
                 break;
-            case 'onCheck':                
-                $I->seeCheckboxIsChecked(\CurrenciesPage::$NotNullsCheckbox);
-                break;
+//            case 'onCheck':                
+//                $I->seeCheckboxIsChecked(\CurrenciesPage::$NotNullsCheckbox);
+//                break;
+//            case 'off':
+//                $I->click(\CurrenciesPage::$NotNullsCheckbox);
+//                $I->wait('1');
+//                $I->dontSeeCheckboxIsChecked(\CurrenciesPage::$NotNullsCheckbox);
+//                break;
         }
         $I->wait('3');
         switch ($save) {
@@ -84,9 +104,12 @@ class CurrenciesSteps extends \CurrenciesTester
                 $I->click(\CurrenciesPage::$SaveAndExitButton);
                 break;
         }
+        if(isset($template)){
+            return $text;
+        }
     }
     
-    function CheckInFields($name1=null,$isocode1=null,$symbol1=null,$rate1=null,$format1=null,$delimTens1=null,$delimThousands1=null,$amount1=null,$notNull1="off")
+    function CheckInFields($name1=null,$isocode1=null,$symbol1=null,$rate1=null,$templateText=null,$amount1=null,$notNull1="off")
     {
         $I = $this;
         $I->waitForText('Редактирование валют');
@@ -104,25 +127,18 @@ class CurrenciesSteps extends \CurrenciesTester
         if(isset($rate1)){
             $I->seeInField(\CurrenciesPage::$Rate, $rate1);
         }
-        $I->seeOptionIsSelected(\CurrenciesPage::$CurrencyTemplate, 'Не выбрано');
-        if(isset($format1)){
-            $I->seeInField(\CurrenciesPage::$FormatLine, $format1);
-        }
-        if(isset($delimTens1)){
-            $I->seeInField(\CurrenciesPage::$DelimiterTens, $delimTens1);
-        }
-        if(isset($delimThousands1)){
-            $I->seeInField(\CurrenciesPage::$DelimiterThousands, $delimThousands1);
+        if(isset($templateText)){
+            $I->seeOptionIsSelected(\CurrenciesPage::$CurrencyTemplateSelect, $templateText); 
         }
         if(isset($amount1)){
-            $I->seeOptionIsSelected(\CurrenciesPage::$AmountDecimals, $amount1);
+            $I->seeOptionIsSelected(\CurrenciesPage::$AmountDecimalsSelect, $amount1);
         }
         switch ($notNull1) {
             case 'off':
-                $I->dontSeeCheckboxIsChecked(\CurrenciesPage::$NotNullsCheckbox);
+                $I->dontSeeCheckboxIsChecked(\CurrenciesPage::$NotNullsCheckbox.'/input');
                 break;
             case 'on':
-                $I->seeCheckboxIsChecked(\CurrenciesPage::$NotNullsCheckbox);
+                $I->seeCheckboxIsChecked(\CurrenciesPage::$NotNullsCheckbox.'/input');
                 break;
         }
     }
@@ -131,9 +147,9 @@ class CurrenciesSteps extends \CurrenciesTester
     {
         $I = $this;
         $I->wait('3');
-        $I->see($name1, './/*[@id="mainContent"]/section/div[2]/div/form/table/tbody/tr[last()]/td[2]/a');
-        $I->see($isocode1, './/*[@id="mainContent"]/section/div[2]/div/form/table/tbody/tr[last()]/td[3]');
-        $I->see($symbol1, './/*[@id="mainContent"]/section/div[2]/div/form/table/tbody/tr[last()]/td[4]');
+        $I->see($name1, \CurrenciesPage::CurrencyNameLine('last()'));
+        $I->see($isocode1, \CurrenciesPage::IsoCodeLine('last()'));
+        $I->see($symbol1, \CurrenciesPage::SymbolCurrencyLine('last()'));
         $RadioBut=$I->grabAttributeFrom(\CurrenciesPage::RadioButtonLine("last()"), 'checked');
         $I->comment("$RadioBut");
         $I->assertEquals($RadioBut, null);
@@ -230,6 +246,21 @@ class CurrenciesSteps extends \CurrenciesTester
     function CheckProductCart($firMain,$secMain,$firADD=null,$secADD=null)
     {
         $I = $this;
+        $TextCart=$I->grabTextFrom('//*[@id="tinyBask"]/div/button/span[2]/span[2]/span[1]');
+        $I->comment($TextCart);
+        if($TextCart=='Корзина пуста'){
+//            break;
+        }
+        else{
+            for($i=1;$i<=$TextCart;$i++){
+                $I->click('//*[@id="popupCart"]/div/div[2]/div/div/div/table/tbody/tr/td[1]/button');
+                $I->wait('2');
+            }
+            $I->waitForText('Ваша корзина пуста');
+            $I->click('//*[@id="popupCart"]/div/button');
+            $I->waitForElementNotVisible('//*[@id="popupCart"]');
+//            break;
+        }
         $I->click('//*[@id="items-catalog-main"]/li[1]/a');
         $I->waitForElement("/html/body/div[1]/div[2]/div[2]/div[1]/div/div[2]");
 //        $I->seeInCurrentUrl("//shop/product/$name");

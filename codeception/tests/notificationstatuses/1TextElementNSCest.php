@@ -7,7 +7,7 @@ class TextElementNSCest
 {
 //---------------------------AUTORIZATION---------------------------------------
     /**
-     * @group a
+     * @group aa
      */
     public function Login(NotificationStatusesTester $I){
         InitTest::Login($I);
@@ -210,7 +210,7 @@ class TextElementNSCest
         $I->wait('1');
         $I->fillField(NotificationStatusesCreatePage::$InputName,'qwe 123 !@# ЯЧС');
         $I->click(NotificationStatusesCreatePage::$ButtonCreate);
-        $I->exactlySeeAlert($I, 'success', 'Статус ожидания создан');//.alert.in.fade.alert-
+        $I->exactlySeeAlert($I, 'success', 'Статус ожидания создан');
         $I->wait('1');
     }
 
@@ -237,7 +237,7 @@ class TextElementNSCest
 //-----------------------VERIFY TEXT EDITING MESSAGE----------------------------
     
     /**
-     * @group a
+     * @group aa
      */
      public function VerifyTextEdicttMessageEdictingPage (NotificationStatusesTester $I){
         $I->click(NavigationBarPage::$Orders);
@@ -249,6 +249,7 @@ class TextElementNSCest
         $I->click(NotificationStatusesCreatePage::$ButtonCreate);
         $I->wait('3');
         $I->see('Редактирование статуса уведомления о появлении', NotificationStatusesEditPage::$Title);
+        $I->wait('5');
         $I->click(NotificationStatusesEditPage::$ButtonSave);
         $I->exactlySeeAlert($I, 'success', 'Изменения сохранены');
         $I->wait('1');
