@@ -386,3 +386,4 @@
         <div class="decor-element"></div>
     </li>
 {/foreach}
+{$opi_limit_show = null}
