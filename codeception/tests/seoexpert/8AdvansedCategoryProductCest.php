@@ -24,7 +24,7 @@ class AdvansedCategoryProductCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
-    public function CreateCategoryRusForFront (SeoExpertTester\seoexpertSteps $I){
+    public function CreateCategoryRus (SeoExpertTester\seoexpertSteps $I){
         $I->SeoCreateCategoryProduct($createNameCategory = 'Троллейбус');
     }
     
@@ -33,7 +33,7 @@ class AdvansedCategoryProductCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
-    public function CreateCategoryEngForFront (SeoExpertTester\seoexpertSteps $I){
+    public function CreateCategoryEng (SeoExpertTester\seoexpertSteps $I){
         $I->SeoCreateCategoryProduct($createNameCategory = 'Trolleybus');
     }
     
@@ -42,7 +42,7 @@ class AdvansedCategoryProductCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
-    public function CreatуBrandRusForProduct (SeoExpertTester\seoexpertSteps $I){
+    public function CreateBrandRus (SeoExpertTester\seoexpertSteps $I){
         $I->SeoCreateBrand($brandName = 'Тротуар');
     }
     
@@ -51,7 +51,7 @@ class AdvansedCategoryProductCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
-    public function CreatуBrandEngForProduct (SeoExpertTester\seoexpertSteps $I){
+    public function CreateBrandEng (SeoExpertTester\seoexpertSteps $I){
         $I->SeoCreateBrand($brandName = 'Sidewalk');
     }
     
@@ -60,7 +60,7 @@ class AdvansedCategoryProductCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
-    public function CreateProductRusForFront (SeoExpertTester\seoexpertSteps $I){
+    public function CreateProductRus (SeoExpertTester\seoexpertSteps $I){
         $I->SeoCreateProduct($NameProduct           = 'Тракторная резина',
                             $PriceProduct           = '49870',
                             $BrandProduct           = 'Тротуар',
@@ -73,7 +73,7 @@ class AdvansedCategoryProductCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
-    public function CreateProductEngForFront (SeoExpertTester\seoexpertSteps $I){
+    public function CreateProductEng (SeoExpertTester\seoexpertSteps $I){
         $I->SeoCreateProduct($NameProduct           = 'Tractor tires',
                             $PriceProduct           = '13265',
                             $BrandProduct           = 'Sidewalk',
@@ -86,7 +86,7 @@ class AdvansedCategoryProductCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
-    public function CreatePropertyRusForProduct(SeoExpertTester\seoexpertSteps $I) {
+    public function CreatePropertyRus(SeoExpertTester\seoexpertSteps $I) {
         $I->SeoCreateProperty(  $NameProperty   = 'Рогатый', 
                                 $CVS            = 'TrapStation', 
                                 $Category       = 'Троллейбус',
@@ -98,7 +98,7 @@ class AdvansedCategoryProductCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
-    public function SelectPropertyForRusProduct(SeoExpertTester\seoexpertSteps $I) {
+    public function SetPropertyRus(SeoExpertTester\seoexpertSteps $I) {
         $I->SeoSelectPropertyInProduct( $NameProduct    = 'Тракторная резина',
                                         $Property1      = 'Yes');
     }
@@ -108,7 +108,7 @@ class AdvansedCategoryProductCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
-    public function CreatePropertyEngForProduct(SeoExpertTester\seoexpertSteps $I) {
+    public function CreatePropertyEng(SeoExpertTester\seoexpertSteps $I) {
         $I->SeoCreateProperty(  $NameProperty   = 'Horned', 
                                 $CVS            = 'Intergalactik', 
                                 $Category       = 'Trolleybus', 
@@ -120,7 +120,7 @@ class AdvansedCategoryProductCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
-    public function SelectPropertyForEngProduct(SeoExpertTester\seoexpertSteps $I) {
+    public function SetPropertyEng(SeoExpertTester\seoexpertSteps $I) {
         $I->SeoSelectPropertyInProduct( $NameProduct    = 'Tractor tires', 
                                         $Property1      = 'Yes');
     }
@@ -130,7 +130,7 @@ class AdvansedCategoryProductCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function variableGrabIDForCategoyProduct (SeoExpertTester\seoexpertSteps $I) {    
+    public function grabIDProducts (SeoExpertTester\seoexpertSteps $I) {    
         
         $ID_product_Rus = $I->GetProductID($name_product = 'Тракторная резина');
         $this->ID_Product_Russian_Name = $ID_product_Rus; 
@@ -144,7 +144,7 @@ class AdvansedCategoryProductCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function variableGrabIDForPropertyProduct (SeoExpertTester\seoexpertSteps $I) {
+    public function grabIDProperties (SeoExpertTester\seoexpertSteps $I) {
         
         $ID_property_Rus = $I->GetPropertyID($name_property = 'Рогатый');
         $this->ID_Property_Russian_Name = $ID_property_Rus;
@@ -158,7 +158,7 @@ class AdvansedCategoryProductCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function SettingDefoultValuesOnSeoexpertBasePage (SeoExpertTester\seoexpertSteps $I){
+    public function SetNullValuesBasePage (SeoExpertTester\seoexpertSteps $I){
         $I->NullValues();
     }
     
@@ -167,7 +167,7 @@ class AdvansedCategoryProductCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function VerifyCommonValuesTitleOnFrontPageCategoryRussianProduct (SeoExpertTester\seoexpertSteps $I){ 
+    public function RusTitle (SeoExpertTester\seoexpertSteps $I){ 
     $I->CreateSettingValuesForFrontPageCategoryProducts($name_Category_Product_For_select = 'Троллейбус',
                                                         $input_Values_in_Field_Title = "%ID% %name% %category% %brand% %price% %CS% %p_$this->ID_Property_Russian_Name%",
                                                         $input_Values_in_Field_Description = '',
@@ -199,7 +199,7 @@ class AdvansedCategoryProductCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function VerifyCommonValuesDescritionOnFrontPageCategoryProduct (SeoExpertTester\seoexpertSteps $I){ 
+    public function RusDescription (SeoExpertTester\seoexpertSteps $I){ 
     $I->CreateSettingValuesForFrontPageCategoryProducts($name_Category_Product_For_select = 'Троллейбус',
                                                         $input_Values_in_Field_Title = '',
                                                         $input_Values_in_Field_Description = "%ID% %name% %category% %brand% %price% %CS% %p_$this->ID_Property_Russian_Name%",
@@ -215,7 +215,7 @@ class AdvansedCategoryProductCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps
      */
-    public function VerifyCommonValuesKeywordsOnFrontPageCategoryProduct (SeoExpertTester\seoexpertSteps $I){ 
+    public function RusKeywords (SeoExpertTester\seoexpertSteps $I){ 
     $I->CreateSettingValuesForFrontPageCategoryProducts($name_Category_Product_For_select = 'Троллейбус',
                                                         $input_Values_in_Field_Title = '',
                                                         $input_Values_in_Field_Description = '',

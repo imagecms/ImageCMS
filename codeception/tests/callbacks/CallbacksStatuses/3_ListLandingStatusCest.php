@@ -30,7 +30,7 @@ class DeleteStatusCest
         $I->wait('1');
         $I->see('Статусы обратных звонков', ".//*[@id='orderStatusesList']/section/div[1]/div[1]/span[2]");
         $I->see('ID', './/*[@id="orderStatusesList"]/section/div[2]/div/table/thead/tr/th[1]');
-        $I->see('Имя', './/*[@id="orderStatusesList"]/section/div[2]/div/table/thead/tr/th[2]');
+        $I->see('Название', './/*[@id="orderStatusesList"]/section/div[2]/div/table/thead/tr/th[2]');
         $I->see('По умолчанию', './/*[@id="orderStatusesList"]/section/div[2]/div/table/thead/tr/th[3]');
         $I->see('Удалить', './/*[@id="orderStatusesList"]/section/div[2]/div/table/thead/tr/th[4]');
         $I->see('Создать статус', CallbacksPage::$CreateStatusButton);
@@ -40,7 +40,7 @@ class DeleteStatusCest
     public function VerifyDefaultStatus(CallbacksTester $I)
     {
         //Проверяем наличие статуса отмеченного по умолчанию в списке и только одного
-        $this->rows = $I->grabTagCount($I,"tbody tr");
+        $this->rows = $I->grabCCSAmount($I,".btn.btn-small.btn-danger.my_btn_s");
         $I->comment((string)$this->rows);
         $true=0;
         for ($this->j=1;$this->j<=$this->rows;$this->j++){            
@@ -107,28 +107,45 @@ class DeleteStatusCest
         //Изменение статуса по умолчанию
         $I->amOnPage(CallbacksPage::$URLStatuses);
         $I->comment("Rows: $this->rows");
-        $I->comment("Default Old Status: $this->j");
-        if($this->j<$this->rows){
-            $this->j++;
-            $I->click(CallbacksPage::ActiveButtonLine($this->j));
-        }
-        else{
-            $this->j--;
-            $I->click(CallbacksPage::ActiveButtonLine($this->j));
-        }        
+//        $I->comment("Default Old Status: $this->j");
+//        if($this->j<$this->rows){
+//            $this->j++;
+//            $I->click(CallbacksPage::ActiveButtonLine($this->j));
+//        }
+//        else{
+//            $this->j--;
+//            $I->click(CallbacksPage::ActiveButtonLine($this->j));
+//        }        
 //        $I->SeeElement("//*[@class='alert.in.fade.alert-success']/a");
 //        $I->See("Статус по умолчанию изменен");
+        $IdOldStatus=$I->grabTextFrom(CallbacksPage::IdStatusLine('1'));
+        $I->comment("Old Id: $IdOldStatus");
+        $IdNewStatus=$I->grabTextFrom(CallbacksPage::IdStatusLine('2'));
+        $I->click(CallbacksPage::ActiveButtonLine('2'));
         InitTest::ClearAllCach($I);
-        $I->wait(1);
+        $I->wait(2);
         $I->amOnPage(CallbacksPage::$URLStatuses);
-        $this->nameStatus=$I->grabTextFrom(CallbacksPage::StatusNameLine($this->j));
+        $I->see($IdNewStatus, CallbacksPage::IdStatusLine('1'));
+        $this->nameStatus=$I->grabTextFrom(CallbacksPage::StatusNameLine('1'));
         $I->comment($this->nameStatus);
-        $ActButOn=$I->grabAttributeFrom(CallbacksPage::ActiveButtonLine($this->j), "class");
+        $ActButOn=$I->grabAttributeFrom(CallbacksPage::ActiveButtonLine('1'), "class");
         $ActButOn=  trim($ActButOn);
         $I->assertEquals($ActButOn, "prod-on_off");
-        $DelButAct=$I->grabAttributeFrom(CallbacksPage::DeleteStatusButtonLine($this->j), "disabled");
+        $DelButAct=$I->grabAttributeFrom(CallbacksPage::DeleteStatusButtonLine('1'), "disabled");
         $I->comment($DelButAct);
         $I->assertEquals($DelButAct, 'true');
+        for ($i=1;$i<=$this->rows;$i++){            
+            //РџРѕРёСЃРє Р°С‚СЂРёР±СѓС‚Р° checked РґР»СЏ СЂР°РґРёРѕС‚РѕС‡РєРё
+            $idold = $I->grabTextFrom(CallbacksPage::IdStatusLine($i));            
+            $I->comment($idold);
+            //$I->assertEquals($atribActiveClass, 'prod-on_off ');
+            if($idold == $IdOldStatus){
+                 break;
+            }
+//            else{
+//                $I->fail('Old Default Status Delete');
+//            }
+        }
         $true=0;
         for ($k=1;$k<=$this->rows;$k++){            
             //РџРѕРёСЃРє Р°С‚СЂРёР±СѓС‚Р° checked РґР»СЏ СЂР°РґРёРѕС‚РѕС‡РєРё
@@ -170,43 +187,9 @@ class DeleteStatusCest
         $I->assertEquals($nameStatList, $this->nameStatus);
         $I->click(CallbacksPage::UserNameLine('1'));
         $I->waitForElement('.//*[@id="editCallbackForm"]/div[5]/label');
-        $nameStatEdit=$I->grabTextFrom(CallbacksPage::$StatusSelEdit."option[@selected='selected']");
+        $nameStatEdit=$I->grabTextFrom(CallbacksPage::$StatusSelEdit."/option[@selected='selected']");
         $I->comment($nameStatEdit);
         $I->assertEquals($nameStatEdit, $this->nameStatus);
-//        $kil1=$I->grabTextFrom('.//*[@id="totalCallbacks"]');
-//        $I->comment($kil1);        
-//        $kil=substr($kil1, 39, 41);
-//        $I->comment($kil);
-//        if ($kil<=14){
-//            $rowCallback=$I->grabClassCount($I,"btn btn-small btn-danger my_btn_s");
-//            $I->comment((string)$rowCallback);
-//            $I->see('name', ".//*[@id='callbacks_all']/table/tbody/tr[$rowCallback]/td[3]");
-//            $I->see('123', ".//*[@id='callbacks_all']/table/tbody/tr[$rowCallback]/td[4]");
-//            $nameStatList=$I->grabTextFrom(CallbacksPage::StatusSelListLandingLine($rowCallback));
-//            $I->comment($nameStatList);
-//            $I->assertEquals($nameStatList, $this->nameStatus);
-//            $I->click(".//*[@id='callbacks_all']/table/tbody/tr[last()]/td[3]/a");
-//            $I->waitForElement('.//*[@id="editCallbackForm"]/div[5]/label');
-//            $nameStatEdit=$I->grabTextFrom(CallbacksPage::$StatusSelEdit);
-//            $I->comment($nameStatEdit);
-//            $I->assertEquals($nameStatEdit, $this->nameStatus);
-//        }
-//        else{
-//            $I->click(CallbacksPage::PaginationButton('last()-1'));
-//            $I->wait('2');
-//            $rowCallback=$I->grabClassCount($I,"btn btn-small btn-danger my_btn_s");
-//            $I->comment((string)$rowCallback);
-//            $I->see('name', ".//*[@id='callbacks_all']/table/tbody/tr[$rowCallback]/td[3]");
-//            $I->see('123', ".//*[@id='callbacks_all']/table/tbody/tr[$rowCallback]/td[4]");
-//            $nameStatList=$I->grabTextFrom(CallbacksPage::StatusSelListLandingLine($rowCallback));
-//            $I->comment($nameStatList);
-//            $I->assertEquals($nameStatList, $this->nameStatus);
-//            $I->click(".//*[@id='callbacks_all']/table/tbody/tr[last()]/td[3]/a");
-//            $I->waitForElement('.//*[@id="editCallbackForm"]/div[5]/label');
-//            $nameStatEdit=$I->grabTextFrom(CallbacksPage::$StatusSelEdit);
-//            $I->comment($nameStatEdit);
-//            $I->assertEquals($nameStatEdit, $this->nameStatus);            
-//        }
         InitTest::ClearAllCach($I);
     }
     
@@ -248,7 +231,7 @@ class DeleteStatusCest
         $I->click(CallbacksPage::UserNameLine('1'));
         $I->waitForText("Редактирование обратного звонка");
         for ($i=1; $i<=$this->sum; $i++){
-            $nameEdit[$i]=$I->grabTextFrom(CallbacksPage::$StatusSelEdit."option[$i]");
+            $nameEdit[$i]=$I->grabTextFrom(CallbacksPage::$StatusSelEdit."/option[$i]");
             $I->comment("$nameEdit[$i]");
         }
         $NamesStatusEdit = implode(" ", $nameEdit);
@@ -262,7 +245,7 @@ class DeleteStatusCest
     {    
         //Проверка наличия всех названий созданных статусов колбеков на странице "Статусы обратных звонков"
         $I->amOnPage(CallbacksPage::$URLStatuses);
-        $rowsSt=$I->grabTagCount($I, "tbody tr");
+        $rowsSt=$I->grabCCSAmount($I, ".btn.btn-small.btn-danger.my_btn_s");
         $I->comment($rowsSt);
         for ($j=1; $j<=$rowsSt; $j++){
             $name[$j]=$I->grabTextFrom(CallbacksPage::StatusNameLine($j));//           
@@ -296,7 +279,7 @@ class DeleteStatusCest
 //        $I->waitForElementNotVisible("alert.in.fade.alert-success");
         $I->wait(2);
         $this->rows--;
-        $rowsAfterDelete = $I->grabTagCount($I,"tbody tr");
+        $rowsAfterDelete = $I->grabCCSAmount($I,".btn.btn-small.btn-danger.my_btn_s");
         $I->comment($rowsAfterDelete);
         $I->assertEquals($rowsAfterDelete, $this->rows);
         for ($k=1; $k<=$this->rows; $k++){

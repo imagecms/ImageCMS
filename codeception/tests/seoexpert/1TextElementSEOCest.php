@@ -17,7 +17,7 @@ class TextElementSEOCest
     /**
      * @group a
      */
-    public function VerifyTextBasePage (SeoExpertTester $I){
+    public function TabBaseText (SeoExpertTester $I){
        $I->amOnPage(seoexpertPage::$SeoUrl);
        $I->see('SEO эксперт', seoexpertPage::$SeoTitle);
        $I->see('Вернуться', seoexpertPage::$SeoButtBack);
@@ -49,7 +49,7 @@ class TextElementSEOCest
     /**
      * @group a
      */
-    public function VerifyTextShopProductPage (SeoExpertTester $I){
+    public function TabShopBlockProductText (SeoExpertTester $I){
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->click(seoexpertPage::$SeoButtShop);
@@ -70,7 +70,7 @@ class TextElementSEOCest
     /**
      * @group a
      */
-    public function VerifyTextShopCategoryPage (SeoExpertTester $I){
+    public function TabShopBlockCategoryText (SeoExpertTester $I){
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->click(seoexpertPage::$SeoButtShop);
@@ -90,7 +90,7 @@ class TextElementSEOCest
     /**
      * @group a
      */
-    public function VerifyTextShopSubcategoryPage (SeoExpertTester $I){
+    public function TabShopBlockSubcategoryText (SeoExpertTester $I){
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->click(seoexpertPage::$SeoButtShop);
@@ -111,7 +111,7 @@ class TextElementSEOCest
     /**
      * @group a
      */
-    public function VerifyTextShopBrandsPage (SeoExpertTester $I){
+    public function TabShopBlockBrandText(SeoExpertTester $I){
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->click(seoexpertPage::$SeoButtShop);
@@ -130,7 +130,7 @@ class TextElementSEOCest
     /**
      * @group a
      */
-    public function VerifyTextShopSearchPage (SeoExpertTester $I){
+    public function TabShopBlockSearchText(SeoExpertTester $I){
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->click(seoexpertPage::$SeoButtShop);
@@ -148,7 +148,7 @@ class TextElementSEOCest
     /**
      * @group a
      */
-    public function VerifyTextAdvancedCreatePage (SeoExpertTester $I){
+    public function AdvanceCreatePageText(SeoExpertTester $I){
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->click(seoexpertPage::$SeoButtShop);
@@ -176,7 +176,7 @@ class TextElementSEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
-    public function VerifyTextAdvancedEditPage(SeoExpertTester\seoexpertSteps $I) {
+    public function AdvanceListPageText(SeoExpertTester\seoexpertSteps $I) {
         $NameCategory = 'Для Сео Експерта';
         $I->SeoCreateCategoryProduct($createNameCategory ='Для Експерта');
         $I->amOnPage(seoexpertPage::$SeoUrl);
@@ -225,7 +225,7 @@ class TextElementSEOCest
     /**
      * @group a
      */
-    public function VerifyTextAdvancedPage (SeoExpertTester $I){
+    public function AdvanceEditPageText (SeoExpertTester $I){
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->click(seoexpertPage::$SeoButtShop);
@@ -233,7 +233,6 @@ class TextElementSEOCest
         $I->click(seoexpertPage::$SeoProductButtAdvanced);
         $I->wait('1');
         $I->see('Вернуться', seoexpertPage::$SeoAdvencedButtBack);
-//        $I->see('Удалить', '//body/div[1]/div[5]/section/div/div[2]/div/a[2]');
         $I->see('Добавить новую категорию', '//body/div[1]/div[5]/section/div/div[2]/div/a[3]');
         $I->see('Имя категории', '//body/div[1]/div[5]/section/table/thead/tr/th[2]');
         $I->see('Активный', '//body/div[1]/div[5]/section/table/thead/tr/th[3]');
@@ -244,7 +243,7 @@ class TextElementSEOCest
     /**
      * @group a
      */
-    public function VerifyTextDeleteWindow(SeoExpertTester $I) {
+    public function DeleteWindowText(SeoExpertTester $I) {
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->click(seoexpertPage::$SeoButtShop);
@@ -273,7 +272,7 @@ class TextElementSEOCest
     /**
      * @group a
      */
-    public function VerifytDeletingCategory(SeoExpertTester $I) {
+    public function DeleteCategoryAdvancePage(SeoExpertTester $I) {
         $I->amOnPage(seoexpertPage::$SeoUrl);
         $I->wait('1');
         $I->click(seoexpertPage::$SeoButtShop);
@@ -293,7 +292,7 @@ class TextElementSEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
-    public function DeleteCategoryForTests(SeoExpertTester\seoexpertSteps $I) {
+    public function DeleteAllTestCategory (SeoExpertTester\seoexpertSteps $I) {
         $I->DeleteProductCategorys();
     }
     

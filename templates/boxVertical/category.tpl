@@ -1,7 +1,11 @@
 <div class="frame-crumbs">
     {widget('path')}
 </div>
-<div class="frame-inside page-text">
+
+<div class="frame-menu-main vertical-menu">
+    {\Category\RenderMenu::create()->setConfig(array('cache'=>TRUE))->load('category_menu')}
+</div>
+<div class="content">
     <div class="container">
         <div class="text-left">{load_menu('left_menu')}</div>
         <div class="text-right">
@@ -41,3 +45,4 @@
         </div>
     </div>
 </div>
+

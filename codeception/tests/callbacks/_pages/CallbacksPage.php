@@ -52,7 +52,7 @@ class CallbacksPage
     public static $NameTheme  = './/*[@id="Text"]';                                                                 //CallbacksThemes
     
     public static $StatusSelListLanding  = './/*[@id="callbacks_all"]/table/tbody/tr/td[6]/div/select';             //CallbacksList
-    public static $ThemeSelListLanding  = './/*[@id="editCallbackForm"]/div[2]/div/select';                         //CallbacksList
+    public static $AmountAllCallbacks  = './/*[@id="totalCallbacks"]';                         //CallbacksList
     
 
     //Кнопки в списку
@@ -73,9 +73,9 @@ class CallbacksPage
         return $PhoneBut;
     }
     public static function ThemeSelListLandingLine($row){
-        $ThemeSelList = ".//*[@id='callbacks_all']/table/tbody/tr[$row]/td[5]/div/select/option[@selected='selected']"; //CallbacksList
+        $ThemeSelList = ".//*[@id='callbacks_all']/table/tbody/tr[$row]/td[5]/div/select"; //CallbacksList
         return $ThemeSelList;
-    }
+    }                     //*[@id="callbacks_all"]/table/tbody/tr[1]/td[5]/div/select/option[@selected='selected']
     public static function StatusSelListLandingLine($row){
         $StatusSelList = ".//*[@id='callbacks_all']/table/tbody/tr[$row]/td[6]/div/select/option[@selected='selected']"; //CallbacksList
         return $StatusSelList;

@@ -2,7 +2,7 @@
 
 class NotificationListPage
 {
-    public static $URL = '/admin/components/run/shop/notifications/index#notification_all';
+    public static $URL = '/admin/components/run/shop/notifications';///index#notification_all
     public static $Title = '.title';
     
     //кнопки
@@ -45,7 +45,7 @@ class NotificationListPage
         //рядки таблиці
         public static function tabAllLineCheck($row)                      { return "//div[@id='notification_all']//tbody/tr[$row]/td[1]/span/span"; }
         public static function tabAllLineIDLink($row)                     { return "//div[@id='notification_all']//tbody/tr[$row]/td[2]/a"; }
-        public static function tabAllLineEmailText($row)                  { return "//div[@id='notification_all']//tbody/tr[$row/td[3]"; }
+        public static function tabAllLineEmailText($row)                  { return "//div[@id='notification_all']//tbody/tr[$row]/td[3]"; }
         public static function tabAllLineTimeText($row)                   { return "//div[@id='notification_all']//tbody/tr[$row]/td[4]/p"; }
         public static function tabAllLineValidUntilText($row)             { return "//div[@id='notification_all']//tbody/tr[$row]/td[5]/p"; }
         public static function tabAllLineManagerText($row)                { return "//div[@id='notification_all']//tbody/tr[$row]/td[6]/p"; }
@@ -89,13 +89,15 @@ class NotificationListPage
         public static function lineEmailLink($tab_id, $row)                  { return "//div[@id='notification_$tab_id']//tbody/tr[$row]/td[3]/a"; }                                                                                       
         public static function lineTimeText($tab_id, $row)                   { return "//div[@id='notification_$tab_id']//tbody/tr[$row]/td[4]/p"; }
         public static function lineValidUntilText($tab_id, $row)             { return "//div[@id='notification_$tab_id']//tbody/tr[$row]/td[5]/p"; }
-        public static function lineManagerText($tab_id, $row)                { return "//div[@id='notification_$tab_id']//tbody/tr[$row]/td[6]/p"; }
-        public static function lineStatusSelect($tab_id, $row)               { return "//div[@id='notification_$tab_id']//tbody/tr[$row]/td[7]/select"; }
+        public static function lineManagerText($tab_id, $row)                { return "//div[@id='notification_$tab_id']//tbody/tr[$row]/td[7]/p"; }
+        public static function lineStatusSelect($tab_id, $row)               { return "//div[@id='notification_$tab_id']//tbody/tr[$row]/td[6]/select"; }
         public static function lineStatusSelectOption($tab_id, $row,$number){ 
                 return "//div[@id='notification_$tab_id']//tbody/tr[$row]/td[7]/select/option[$number]"; 
             }
         public static function lineProductText($tab_id, $row)                { return "//div[@id='notification_$tab_id']//tbody/tr[$row]/td[8]/div/span"; }
         public static function lineProductInfo($tab_id, $row)                { return "//div[@id='notification_$tab_id']//tbody/tr[$row]/td[8]/div/i"; }
-        public static function lineNotifications($tab_id, $row)              { return "//div[@id='notification_$tab_id']//tbody/tr[$row]/td[9]/button"; }    
+        public static function lineNotifications($tab_id, $row)              { return "//div[@id='notification_$tab_id']//tbody/tr[$row]/td[9]/button"; } 
+    //пустий список    
+        public static function TextEmptyList ($tab_id)                   { return "//section/div[5]/div[$tab_id]/form/table/tbody/tr/td/p"; } 
 
 }

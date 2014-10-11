@@ -7,7 +7,7 @@ class PaymentElementsCest
     /**
      * @group verify
      */
-    public function Authorization(PaymentTester $I)
+    public function authorization(PaymentTester $I)
     {
         InitTest::Login($I);
     }
@@ -15,98 +15,55 @@ class PaymentElementsCest
     /**
      * @group verify
      */
-    public function PaymentListElements(PaymentTester $I) {
+    public function paymentListElements(PaymentTester $I) {
         $I->amOnPage(PaymentListPage::$URL);
         $I->see("Список способов оплаты", PaymentListPage::$Title);
-        $I->seeElement(PaymentListPage::$ActiveHeader);
-        $I->see('ID', PaymentListPage::$IDHeader);
-        $I->see('Способ', PaymentListPage::$MethodNameHeader);
-        $I->see('Название валюты', PaymentListPage::$CurrencyNameHeader);
-        $I->see('Обозначение валюты', PaymentListPage::$CurrencySymbolHeader);
-        $I->see('Активный', PaymentListPage::$ActiveHeader);
+        $I->seeElement(PaymentListPage::$HeadActiveText);
+        $I->see('ID', PaymentListPage::$HeadIDText);
+        $I->see('Способ', PaymentListPage::$HeadMethodText);
+        $I->see('Название валюты', PaymentListPage::$HeadCurrencyNameText);
+        $I->see('Обозначение валюты', PaymentListPage::$HeadCurrencySymbolText);
+        $I->see('Активный', PaymentListPage::$HeadActiveText);
         $I->see('Создать способ оплаты', PaymentListPage::$ButtonCreate);
+        $I->click(PaymentListPage::lineCheck(1));
         $I->see('Удалить', PaymentListPage::$ButtonDelete);
     }
     
     /**
      * @group verify
      */
-    public function PaymentDeleteWindow(PaymentTester $I) {
-        $I->click(PaymentListPage::$CheckboxHeader);
+    public function paymentDeleteWindow(PaymentTester $I) {
+        $I->click(PaymentListPage::$HeadCheck);
         $I->click(PaymentListPage::$ButtonDelete);
-        $I->waitForText('Удаление способов оплаты',NULL,PaymentListPage::$DeleteWindowTitle);
-        $I->see('Удалить выбранные способы оплаты?', PaymentListPage::$DeleteWindowQuestion);
-        $I->see('Удалить', PaymentListPage::$DeleteWindowButtonDelete);
-        $I->see('Отменить', PaymentListPage::$DeleteWindowButtonBack);
-        $I->see('×',PaymentListPage::$DeleteWindowButtonXClose);
-        $I->click(PaymentListPage::$DeleteWindowButtonXClose);
-        $I->waitForElementNotVisible(PaymentListPage::$DeleteWindowTitle);
+        $I->waitForText('Удаление способов оплаты',NULL,PaymentListPage::$WindowDeleteTitle);
+        $I->see('Удалить выбранные способы оплаты?', PaymentListPage::$WindowDeleteQuestion);
+        $I->see('Удалить', PaymentListPage::$WindowDeleteButtonDelete);
+        $I->see('Отменить', PaymentListPage::$WindowDeleteButtonCancel);
+        $I->see('×',PaymentListPage::$WindowDeleteButtonClose);
+        $I->click(PaymentListPage::$WindowDeleteButtonClose);
+        $I->waitForElementNotVisible(PaymentListPage::$WindowDeleteTitle);
     }
     
-    /**
-     * @group verify
-     */
-//    public function miniMessageEdit(PaymentTester $I) {
-//        $I->moveMouseOver(PaymentListPage::MethodNameLine(1));
-//        $I->waitForElementVisible('.tooltip-inner');
-//        $I->see("Редактировать",'.tooltip-inner');
-//        $I->moveMouseOver('//tbody//tr[3]//td');
-//        $I->waitForElementNotVisible('.tooltip-inner');
-//    }
     
     /**
      * @group verify
      */
-//    public function miniMessagesActive(PaymentTester $I) {
-//        $Class = $I->grabAttributeFrom(PaymentListPage::ActiveLine(1), 'class');
-//        $I->comment($Class);
-        //BUG HERE------------------------------------------------------------------------------------------
-//        $I->click(PaymentListPage::ActiveLine(1));                                //BUG HERE inscription ACTIVE
-        //--------------------------------------------------------------------------------------------------
-//        $I->wait(1);
-//        $I->moveMouseOver(PaymentListPage::ActiveLine(1));
-//        $I->waitForElementVisible('.tooltip-inner');
-//        if ($Class == 'prod-on_off')
-//            $I->see ('показать', '.tooltip-inner');
-//        else {
-//            $I->see ('не показывать', '.tooltip-inner');
-//        }
-//        
-//        
-//        
-//        $I->click(PaymentListPage::ActiveLine(1));
-//        $I->moveMouseOver('//tbody//tr[3]');
-//        $Class = $I->grabAttributeFrom(PaymentListPage::ActiveLine(1), 'class');
-//        $I->comment($Class);
-//        $I->moveMouseOver(PaymentListPage::ActiveLine(1));
-//        if ($Class == 'prod-on_off')
-//            $I->see ('показать', '.tooltip-inner');
-//        else {
-//            $I->see ('не показывать', '.tooltip-inner');
-//        }
-//        
-//    }
-    
-    
-    /**
-     * @group verify
-     */
-    public function PaymentCreateElements(PaymentTester $I) {
+    public function paymentCreateElements(PaymentTester $I) {
         $I->click(PaymentListPage::$ButtonCreate);
         $I->waitForText('Создание способа оплаты', NULL, PaymentCreatePage::$Title);
-        $I->see('Создание способа оплаты', PaymentCreatePage::$TitleHead);
+        $I->see('Создание способа оплаты', PaymentCreatePage::$TitleBlockCreate);
         $I->see('Вернуться',        PaymentCreatePage::$ButtonBack);
         $I->see('Создать',          PaymentCreatePage::$ButtonCreate);
         $I->see('Создать и выйти',  PaymentCreatePage::$ButtonCreateExit);
-        $I->see('Название: *', PaymentCreatePage::$LabelName);
-        $I->seeElement(PaymentCreatePage::$FieldName);
-        $I->see('Валюта:', PaymentCreatePage::$LabelCurrency);
+        $I->see('Название: *', PaymentCreatePage::$InputNameLabel);
+        $I->seeElement(PaymentCreatePage::$InputName);
+        $I->see('Валюта:', PaymentCreatePage::$SelectCurrencyLabel);
         $I->seeElement(PaymentCreatePage::$SelectCurrency);
-        $I->see("Активный", PaymentCreatePage::$LabelActive);
-        $I->seeElement(PaymentCreatePage::$CheckboxActive);
-        $I->see('Описание:', PaymentCreatePage::$LableDescription);
-        $I->seeElement(PaymentCreatePage::$FieldDescription);
-        $I->see('Система оплаты:', PaymentCreatePage::$LabelPaymentSystem);
+        $I->see("Активный", PaymentCreatePage::$CheckActiveLabel);
+        $I->seeElement(PaymentCreatePage::$CheckActive);
+        $I->see('Описание:', PaymentCreatePage::$InputDescriptionLabel);
+        $I->seeElement(PaymentCreatePage::$InputDescription);
+        $I->see('Система оплаты:', PaymentCreatePage::$SelectPaymentSystemLabel);
         $I->seeElement(PaymentCreatePage::$SelectPaymentSystem);
         $I->click(PaymentCreatePage::$ButtonBack);
         $I->waitForText("Список способов оплаты",NULL, PaymentListPage::$Title);
@@ -116,21 +73,21 @@ class PaymentElementsCest
      * @group verify
      */
     public function PaymentEditElements(PaymentTester $I) {
-        $I->click(PaymentListPage::MethodNameLine(1));
+        $I->click(PaymentListPage::lineMethodLink(1));
         $I->waitForText('Редактирование способа оплаты', NULL, PaymentEditPage::$Title);
-        $I->see('Редактирование способа оплаты', PaymentEditPage::$TitleHead);
+        $I->see('Редактирование способа оплаты', PaymentEditPage::$TitleBlockEdit);
         $I->see('Вернуться',        PaymentEditPage::$ButtonBack);
         $I->see('Сохранить',          PaymentEditPage::$ButtonSave);
         $I->see('Сохранить и выйти',  PaymentEditPage::$ButtonSaveExit);
-        $I->see('Название: *', PaymentEditPage::$NameLabel);
-        $I->seeElement(PaymentEditPage::$FieldName);
-        $I->see('Валюта:', PaymentEditPage::$CurrencyLabel);
+        $I->see('Название: *', PaymentEditPage::$InputNameLabel);
+        $I->seeElement(PaymentEditPage::$InputName);
+        $I->see('Валюта:', PaymentEditPage::$SelectCurrencyLabel);
         $I->seeElement(PaymentEditPage::$SelectCurrency);
-        $I->see("Активный", PaymentEditPage::$Activelabel);
-        $I->seeElement(PaymentEditPage::$CheckboxActive);
-        $I->see('Описание:', PaymentEditPage::$DescriptionLable);
-        $I->seeElement(PaymentEditPage::$FieldDescription);
-        $I->see('Система оплаты:', PaymentEditPage::$PaymentSystemLabel);
+        $I->see("Активный", PaymentEditPage::$CheckActiveLabel);
+        $I->seeElement(PaymentEditPage::$CheckActive);
+        $I->see('Описание:', PaymentEditPage::$InputDescriptionLabel);
+        $I->seeElement(PaymentEditPage::$InputDescription);
+        $I->see('Система оплаты:', PaymentEditPage::$SelectPaymentSystemLabel);
         $I->seeElement(PaymentEditPage::$SelectPaymentSystem);
         $I->click(PaymentEditPage::$ButtonBack);
         $I->waitForText("Список способов оплаты",NULL, PaymentListPage::$Title);        

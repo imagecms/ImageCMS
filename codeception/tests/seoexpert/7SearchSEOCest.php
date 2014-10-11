@@ -18,8 +18,14 @@ class SearchSEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
-    public function CreateCategoryForFront (SeoExpertTester\seoexpertSteps $I){
-        $I->SeoCreateCategoryProduct($createNameCategory = 'Брендовая');   
+    public function CreateCategoryForFrontRus (SeoExpertTester\seoexpertSteps $I){
+        $I->SeoCreateCategoryProduct($createNameCategory = 'Брендовая'); 
+    }
+    /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps 
+     */
+    public function CreateCategoryForFrontEng (SeoExpertTester\seoexpertSteps $I){
         $I->SeoCreateCategoryProduct($createNameCategory = 'Etmo Plasma');   
     }
     
@@ -28,32 +34,62 @@ class SearchSEOCest
      * @group a
      * @guy SeoExpertTester\seoexpertSteps 
      */
-    public function CreateProductForFront (SeoExpertTester\seoexpertSteps $I){
+    public function CreateProductForFront1 (SeoExpertTester\seoexpertSteps $I){
         $I->SeoCreateProduct($Name_Product = 'Брендовый Пробник товар',
                             $Price_Product = '777',
                             $Brand_Product = '',
                             $Category_Product = 'Брендовая',
-                            $Additional_Category = '');     
+                            $Additional_Category = '');  
+    }
+    /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps 
+     */
+    public function CreateProductForFront2(SeoExpertTester\seoexpertSteps $I){
         $I->SeoCreateProduct($Name_Product = 'Пробник товар Брендовий',
                             $Price_Product = '888',
                             $Brand_Product = '',
                             $Category_Product = 'Брендовая',
                             $Additional_Category = '');
+    }
+    /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps 
+     */
+    public function CreateProductForFront3 (SeoExpertTester\seoexpertSteps $I){
         $I->SeoCreateProduct($Name_Product = 'Товар Брендовый Пробник',
                             $Price_Product = '654',
                             $Brand_Product = '',
                             $Category_Product = 'Брендовая',
                             $Additional_Category = ''); 
+    }
+    /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps 
+     */
+    public function CreateProductForFront4 (SeoExpertTester\seoexpertSteps $I){
         $I->SeoCreateProduct($Name_Product = 'Zulusandia',
                             $Price_Product = '888',
                             $Brand_Product = '',
                             $Category_Product = 'Etmo Plasma',
-                            $Additional_Category = '');     
+                            $Additional_Category = '');
+    }
+    /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps 
+     */
+    public function CreateProductForFront5 (SeoExpertTester\seoexpertSteps $I){
         $I->SeoCreateProduct($Name_Product = 'Two Zulusandia',
                             $Price_Product = '999',
                             $Brand_Product = '',
                             $Category_Product = 'Etmo Plasma',
-                            $Additional_Category = '');     
+                            $Additional_Category = '');  
+    }
+    /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps 
+     */
+    public function CreateProductForFront6 (SeoExpertTester\seoexpertSteps $I){
         $I->SeoCreateProduct($Name_Product = 'Zulusandia Three',
                             $Price_Product = '658',
                             $Brand_Product = '',

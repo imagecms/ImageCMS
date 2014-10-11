@@ -1089,11 +1089,12 @@ var orders = new Object({
         var row = $(element).closest('tr');
         var quantity = $(element).val();
         var price = row.find('.productCartPrice').html();
-
-        if (checkProdStock == 1 && quantity > stock) {
-            $(element).val(stock);
-            quantity = stock;
-        }
+        
+//Условие убрано в связи с заданием ICMS-1518
+//        if (checkProdStock == 1 && quantity > stock) {
+//            $(element).val(stock);
+//            quantity = stock;
+//        }
         total = price * quantity;
         row.find('.productCartTotal').html(total.toFixed(2));
 
