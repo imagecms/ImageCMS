@@ -275,6 +275,11 @@ class Components extends BaseAdminController {
                 ->order_by('position', 'asc')
                 ->get('components')
                 ->result_array();
+                
+        if (MAINSITE != '') {
+            $components = $this->isPermitedModules($components, array());
+            $components = $components[0];
+        }
         /*         * If not components for show in menu */
         if (!$components) {
             return false;
