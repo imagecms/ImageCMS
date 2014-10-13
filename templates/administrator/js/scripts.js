@@ -1,3 +1,17 @@
+function checkLenghtStr(id,lenLeft,lenRight){
+    var Price = $('#'+id+'').val();
+    var array,Temp;
+    
+    array = Price.split('.');
+    Temp = array[0].substr(0,lenLeft);
+    if(array[1] || array[1] == ''){
+        array[1] = array[1].substr(0,lenRight);
+        array[0] = Temp;
+        Temp = array.join('.');
+    }
+    $('#'+id+'').val(Temp);    
+}
+
 $.exists = function(selector) {
     return ($(selector).length > 0);
 };
