@@ -3,6 +3,7 @@
 use \PremmerceTester;
 
 class RedirectsCest {
+    
     /*
      * ПЕРЕВІРКА РЕДІРЕКТІВ
      * 
@@ -34,19 +35,18 @@ class RedirectsCest {
 
     protected $urlUa            = 'http://imagego.com.ua/';
     protected $urlRu            = 'http://imagego.ru/';
+    
     protected $createStorePage  = "saas/create_store";
 
     
-    /*
+    /**
      * створити  на.ru - російська мова 
+     * @guy PremmerceTester\PremmerceSteps
      */
-    public function createRuStoreRuLanguage(PremmerceTester $I) {
+    public function createRuStoreRuLanguage(PremmerceTester\PremmerceSteps $I) {
         $I->amOnUrl($this->urlRu . $this->createStorePage);
-        
-//        generate name for store
         $generated = $this->generateName();
-        $this->createStore($I, $generated, $generated . '@gmail.com');
-        $I->waitForElement('.info-header', 60);
+        $I->createStore($generated, $generated . '@gmail.com', $generated);
     }
 
     /**
@@ -64,16 +64,16 @@ class RedirectsCest {
         $this->logout($I);
     }
 
-    /*
+    /**
      * створити  на.com.ua - українська мова 
+     * @guy PremmerceTester\PremmerceSteps
      */
-    public function createUaStoreUaLanguage(PremmerceTester $I) {
+    public function createUaStoreUaLanguage(PremmerceTester\PremmerceSteps $I) {
         
         $I->amOnUrl($this->urlUa . $this->createStorePage);
 //        generate name for store
         $generated = $this->generateName();
-        $this->createStore($I, $generated, $generated . '@gmail.com');
-        $I->waitForElement('.info-header', 60);
+        $I->createStore($generated, $generated . '@gmail.com', $generated);
     }
     
     
@@ -92,30 +92,30 @@ class RedirectsCest {
         $this->logout($I);
     }
     
-    /*
+    /**
      * створити  на.com.ua - російська мова 
+     * @guy PremmerceTester\PremmerceSteps
      */
-    public function createUaStoreRusLanguage(PremmerceTester $I) {
+    public function createUaStoreRusLanguage(PremmerceTester\PremmerceSteps $I) {
         
         $I->amOnUrl($this->urlUa . $this->createStorePage);
 //        generate name for store
         $generated = $this->generateName();
-        $this->createStore($I, $generated, $generated . '@gmail.com', 2);
-        $I->waitForElement('.info-header', 60);
-        $this->changeCountriesRuUa($I);
+        $I->createStore($generated, $generated . '@gmail.com', $generated,  2);
+        $this->changeCountriesRuToUa($I);
     }
     
-    /*
+    /**
      * створити  на.ru - українська мова 
+     * @guy PremmerceTester\PremmerceSteps
      */
-    public function createRuStoreUaLanguage(PremmerceTester $I) {
+    public function createRuStoreUaLanguage(PremmerceTester\PremmerceSteps $I) {
         
         $I->amOnUrl($this->urlRu . $this->createStorePage);
 //        generate name for store
         $generated = $this->generateName();
-        $this->createStore($I, $generated, $generated . '@gmail.com', 2);
-        $I->waitForElement('.info-header', 60);
-        $this->changeCountriesUaRu($I);
+        $I->createStore($generated, $generated . '@gmail.com', $generated, 2);
+        $this->changeCountriesUaToRu($I);
     }
     
     
@@ -151,25 +151,6 @@ class RedirectsCest {
         $I->click('//div[@class="panel-form"][1]//button');
         $I->reloadPage();
         $I->wait(3);
-    }
-
-    protected function createStore(PremmerceTester $I, $store_name, $email, $country = NULL) {
-        $I->fillField(CreateStorePage::$InputDomain, $store_name);
-        $I->fillField(CreateStorePage::$InputEmail, $email);
-        $I->fillField(CreateStorePage::$InputPassword, 'adminadmin');
-        $I->fillField(CreateStorePage::$InputName, 'CI-server');
-        $I->fillField(CreateStorePage::$InputPhone, '800800');
-        $I->fillField(CreateStorePage::$InputCity, 'Lviv');
-        if (isset($country)) {
-            $I->click(CreateStorePage::$SelectCountry);
-            $I->click(CreateStorePage::selectCountryOption($country));
-        }
-        $I->click(CreateStorePage::$SelectCategoryOfProducts);
-        $I->click(CreateStorePage::selectCategoryOfProductsOption(11));
-        $I->click(CreateStorePage::$SelectProducts);
-        $I->click(CreateStorePage::selectProductsOption(3));
-        $I->checkOption(CreateStorePage::$CheckAgree);
-        $I->click(CreateStorePage::$ButtonCreate);
     }
 
     protected function generateName() {
