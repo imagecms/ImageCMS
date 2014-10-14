@@ -53,7 +53,9 @@
                                                         if ($(this).val())
                                                             $('#showCatProps').removeAttr('disabled');
                                                         else
-                                                            $('#showCatProps').attr('disabled', 'disabled');">
+                                                            $('#showCatProps').attr('disabled', 'disabled');                                                        
+                                                        reNameButton(this.value);                                                    
+                                                        ">
                                                     {foreach $categories as $category}
                                                         <option value="{echo $category->getId()}">
                                                             {str_repeat('-',$category->getLevel())} {echo ShopCore::encode($category->getName())}
@@ -113,7 +115,7 @@
                                     <div class="control-group">
                                         <div class="control-label"></div>
                                         <label class="controls">
-                                            <span class="btn btn-small action_on runExport" data-loading-text="{lang('Exports in progress','import_export')}...">{lang('Start export','import_export')}</span>
+                                            <span id="reNameButton" class="btn btn-small action_on runExport" data-loading-text="{lang('Exports in progress','import_export')}...">{lang('Start export all categories','import_export')}</span>
                                         </label>
                                     </div>
                                     <!-- End. Let's go Button ;) -->
@@ -125,6 +127,8 @@
                                 <input type="hidden" value="ProductsImport" name="import_type"/>
                                 <input type="hidden" value="{echo $languages[0]->identif}" name="language"/>
                                 <input type="hidden" value="{echo $currencies[0]->id}" name="currency"/>
+                                <input type="hidden" value="{lang('Start export','import_export')}" id="button-name-new"/>
+                                <input type="hidden" value="{lang('Start export all categories','import_export')}" id="button-name-old"/>
                                 {form_csrf()}
                             </form>
                         </td>

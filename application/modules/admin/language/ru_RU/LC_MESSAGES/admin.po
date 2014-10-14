@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-07 05:56+0300\n"
-"PO-Revision-Date: 2014-10-07 05:56+0300\n"
+"POT-Creation-Date: 2014-10-10 12:15+0300\n"
+"PO-Revision-Date: 2014-10-10 12:15+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -21,6 +21,10 @@ msgstr ""
 "X-Poedit-SearchPath-2: ../../modules/shop/admin\n"
 "X-Poedit-SearchPath-3: ../../../application/modules/shop/models/build/classes\n"
 
+#: ./application/modules/shop/admin/system.php:373
+msgid "Can not create file (No Rights)"
+msgstr "Невозможно создать файл (Нет прав)"
+
 #: ./application/modules/shop/admin/templates/callbacks/list.tpl:64
 msgid "Does not have"
 msgstr "Не имеет"
@@ -34,7 +38,7 @@ msgstr "URL не должен содержать Кириллицу, пробе�
 msgid "days left"
 msgstr ""
 
-#: ./application/modules/shop/admin/orders.php:1123
+#: ./application/modules/shop/admin/orders.php:1127
 msgid "Items not selected "
 msgstr "Товары не выбраны"
 
@@ -245,7 +249,7 @@ msgstr "Личные данные"
 msgid "No photo"
 msgstr "Нет фото"
 
-#: ./application/modules/shop/admin/orders.php:1275
+#: ./application/modules/shop/admin/orders.php:1280
 msgid "Order bad "
 msgstr ""
 
@@ -629,8 +633,8 @@ msgstr "Meta title"
 msgid "Off manually entered"
 msgstr "Off введенные вручную"
 
-#: ./templates/administrator/js/admin_base_i.js:1184
-#: ./templates/administrator/js/admin_base_i.js:1332
+#: ./templates/administrator/js/admin_base_i.js:1187
+#: ./templates/administrator/js/admin_base_i.js:1335
 msgid "PHP GD library is not installed"
 msgstr "PHP GD библиотека не установлена"
 
@@ -1548,7 +1552,7 @@ msgstr "Вы можете использовать следующие перем
 msgid "You do not choose"
 msgstr "Вы не выбрали"
 
-#: ./application/modules/shop/admin/orders.php:667
+#: ./application/modules/shop/admin/orders.php:671
 msgid "You can not delete the last item from the order"
 msgstr "Вы не можете удалить последний элемент из заказа"
 
@@ -2149,7 +2153,7 @@ msgstr "Дополнительные поля"
 msgid "Additional fields"
 msgstr "Дополнительные поля"
 
-#: ./application/modules/shop/admin/orders.php:1077
+#: ./application/modules/shop/admin/orders.php:1081
 #: ./application/modules/shop/admin/templates/orders/edit.tpl:359
 #: ./application/modules/shop/admin/templates/orders/cart_list.tpl:28
 msgid "Delivery"
@@ -2245,11 +2249,11 @@ msgstr "Загрузка свойств"
 msgid "Order"
 msgstr "Заказ"
 
-#: ./application/modules/shop/admin/orders.php:240
+#: ./application/modules/shop/admin/orders.php:241
 msgid "Order not found"
 msgstr "Заказ не найден"
 
-#: ./application/modules/shop/admin/orders.php:1302
+#: ./application/modules/shop/admin/orders.php:1307
 msgid "Order was successfully created"
 msgstr "Заказ успешно создан"
 
@@ -2278,7 +2282,7 @@ msgstr "Заказы"
 msgid "Orders "
 msgstr "Заказы"
 
-#: ./application/modules/shop/admin/orders.php:547
+#: ./application/modules/shop/admin/orders.php:551
 msgid "Orders are removed"
 msgstr "Заказы удалены"
 
@@ -2773,7 +2777,7 @@ msgstr "Код защиты"
 msgid "Encoding"
 msgstr "Кодирование"
 
-#: ./application/modules/shop/admin/orders.php:1127
+#: ./application/modules/shop/admin/orders.php:1131
 #: ./application/modules/shop/admin/templates/orders/_editAddToCartWindow.tpl:34
 #: ./application/modules/shop/admin/templates/orders/edit.tpl:245
 #: ./application/modules/shop/admin/templates/orders/create.tpl:286
@@ -3468,7 +3472,7 @@ msgstr "Не удалось создать пользователя"
 msgid "Could not create file"
 msgstr "Не удалось создать файл"
 
-#: ./application/modules/shop/admin/orderstatuses.php:198
+#: ./application/modules/shop/admin/orderstatuses.php:201
 msgid "Unable to remove the base status"
 msgstr "Не удалось удалить основной статус"
 
@@ -3558,7 +3562,7 @@ msgstr "Нет заказов"
 msgid "There are no categories at the site"
 msgstr "Нет категорий на сайте"
 
-#: ./application/modules/shop/admin/system.php:406
+#: ./application/modules/shop/admin/system.php:407
 msgid "No configuration key or<br /> key account list on Mailchimp"
 msgstr "Нет ключа конфигурации или <br /> ключа списка аккаунта на Mailchimp"
 
@@ -3839,8 +3843,8 @@ msgstr "Ожидает одобрения"
 msgid "Operating system"
 msgstr "Операционная система"
 
-#: ./application/modules/shop/admin/orders.php:547
-#: ./application/modules/shop/admin/orders.php:591
+#: ./application/modules/shop/admin/orders.php:551
+#: ./application/modules/shop/admin/orders.php:595
 #: ./application/modules/shop/admin/warehouses.php:111
 msgid "The operation was successful"
 msgstr "Операция прошла успешно"
@@ -4068,7 +4072,7 @@ msgstr "Отправить email"
 msgid "Send notification about new callback to administrator"
 msgstr "Отправлять администратору оповещение о новом Callback'e"
 
-#: ./application/modules/shop/admin/orders.php:778
+#: ./application/modules/shop/admin/orders.php:782
 msgid "Very high price, please set smaller"
 msgstr "Очень высокая цена, пожалуйста, установите меньшую"
 
@@ -4435,7 +4439,7 @@ msgid "Positions saved"
 msgstr "Позиции сохранены"
 
 #: ./application/modules/shop/admin/callbacks.php:276
-#: ./application/modules/shop/admin/orderstatuses.php:230
+#: ./application/modules/shop/admin/orderstatuses.php:233
 msgid "Positions saved successfully"
 msgstr "Позиции успешно сохранены"
 
@@ -4593,7 +4597,7 @@ msgstr "Пользователи удалены"
 msgid "User"
 msgstr "Пользователь"
 
-#: ./application/modules/shop/admin/orders.php:1315
+#: ./application/modules/shop/admin/orders.php:1320
 msgid "User is not selected"
 msgstr "Пользователь не выбран"
 
@@ -4766,8 +4770,8 @@ msgstr "Продукт"
 msgid "The product was successfully created"
 msgstr "Продукт был успешно создан"
 
-#: ./application/modules/shop/admin/orders.php:880
-#: ./application/modules/shop/admin/orders.php:907
+#: ./application/modules/shop/admin/orders.php:884
+#: ./application/modules/shop/admin/orders.php:911
 msgid "Product updated"
 msgstr "Продукт обновлен"
 
@@ -5840,7 +5844,7 @@ msgstr "Сортировка по умолчанию"
 msgid "Save and edit"
 msgstr "Сохраненить и измененить"
 
-#: ./application/modules/shop/admin/orders.php:612
+#: ./application/modules/shop/admin/orders.php:616
 msgid "Saved"
 msgstr "Сохранено"
 
@@ -6137,7 +6141,7 @@ msgstr "Список языков"
 msgid "Method name"
 msgstr "Способ"
 
-#: ./application/modules/shop/admin/orders.php:1318
+#: ./application/modules/shop/admin/orders.php:1323
 msgid "Delivery method is not selected"
 msgstr "Способ доставки не выбран"
 
@@ -6160,7 +6164,7 @@ msgstr "Способ доставки удален"
 msgid "Payment method"
 msgstr "Способ оплаты"
 
-#: ./application/modules/shop/admin/orders.php:1320
+#: ./application/modules/shop/admin/orders.php:1325
 msgid "Payment method is not selected"
 msgstr "Способ оплаты не выбран"
 
@@ -6256,13 +6260,13 @@ msgstr "Статус был изменен"
 msgid "Status was removed"
 msgstr "Статус был удален"
 
-#: ./application/modules/shop/admin/orders.php:328
+#: ./application/modules/shop/admin/orders.php:329
 #: ./application/modules/shop/admin/notifications.php:316
 msgid "Order status changed"
 msgstr "Статус заказа изменен"
 
-#: ./application/modules/shop/admin/orders.php:477
-#: ./application/modules/shop/admin/orders.php:591
+#: ./application/modules/shop/admin/orders.php:481
+#: ./application/modules/shop/admin/orders.php:595
 msgid "Order Status changed"
 msgstr "Статус заказа изменен"
 
@@ -6274,7 +6278,7 @@ msgstr "Статус заказа не найден"
 msgid "Order status created"
 msgstr "Статус заказа создан"
 
-#: ./application/modules/shop/admin/orderstatuses.php:178
+#: ./application/modules/shop/admin/orderstatuses.php:179
 msgid "Status and related orders removed"
 msgstr "Статус и связанных с ним заказы удалены"
 
@@ -6288,7 +6292,7 @@ msgstr "Статус и связанных с ним заказы удалены
 msgid "Payment status"
 msgstr "Статус оплаты"
 
-#: ./application/modules/shop/admin/orders.php:612
+#: ./application/modules/shop/admin/orders.php:616
 msgid "Payment status of orders changed"
 msgstr "Статус оплаты заказов изменен"
 
@@ -6310,8 +6314,8 @@ msgid "Notification status updated"
 msgstr "Статус уведомления обновлен"
 
 #: ./application/modules/shop/admin/notificationstatuses.php:167
-#: ./application/modules/shop/admin/orderstatuses.php:186
-#: ./application/modules/shop/admin/orderstatuses.php:190
+#: ./application/modules/shop/admin/orderstatuses.php:189
+#: ./application/modules/shop/admin/orderstatuses.php:193
 msgid "Status removed"
 msgstr "Статус удален"
 
@@ -6467,7 +6471,7 @@ msgid "Just like the number 10"
 msgstr "Так же, как номер 10"
 
 #: ./application/modules/shop/admin/callbacks.php:197
-#: ./application/modules/shop/admin/orderstatuses.php:195
+#: ./application/modules/shop/admin/orderstatuses.php:198
 msgid "Such status does not exist"
 msgstr "Такой статус не существует"
 
@@ -6625,7 +6629,7 @@ msgstr "товар"
 msgid "Product"
 msgstr "Товар"
 
-#: ./application/modules/shop/admin/orders.php:967
+#: ./application/modules/shop/admin/orders.php:971
 msgid "Item has been added to the order"
 msgstr "Товар добавлен к заказу"
 
@@ -6633,8 +6637,8 @@ msgstr "Товар добавлен к заказу"
 msgid "Product not found"
 msgstr "Товар не найден"
 
-#: ./application/modules/shop/admin/orders.php:687
-#: ./application/modules/shop/admin/orders.php:702
+#: ./application/modules/shop/admin/orders.php:691
+#: ./application/modules/shop/admin/orders.php:706
 msgid "Product is removed from the Order"
 msgstr "Товар удалён из заказа"
 
@@ -7309,8 +7313,8 @@ msgstr "Формат письма"
 msgid "File format"
 msgstr "Формат файла"
 
-#: ./templates/administrator/js/scripts.js:1135
-#: ./templates/administrator/js/scripts.js:1160
+#: ./templates/administrator/js/scripts.js:1178
+#: ./templates/administrator/js/scripts.js:1203
 msgid "Not supported file format"
 msgstr "Формат файла не поддерживается"
 
@@ -7486,8 +7490,8 @@ msgstr "Экспорт в прогрессе"
 msgid "Export complete"
 msgstr "Экспорт завершен"
 
-#: ./application/modules/shop/admin/system.php:386
-#: ./application/modules/shop/admin/system.php:403
+#: ./application/modules/shop/admin/system.php:387
+#: ./application/modules/shop/admin/system.php:404
 msgid "Export successfully"
 msgstr "Экспорт прошол успешно"
 
@@ -7524,7 +7528,7 @@ msgstr "Это поле обязательное."
 msgid "This URL is already in use"
 msgstr "Этот адрес уже используется"
 
-#: ./application/modules/shop/admin/orders.php:971
+#: ./application/modules/shop/admin/orders.php:975
 msgid "This product does not exist"
 msgstr "Этот товар не существует"
 
