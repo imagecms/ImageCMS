@@ -82,7 +82,7 @@ class SaasUserListPage
     public static $StatusesCreateButtonSave = '//body/div[1]/div[5]/section/div/div[2]/div/button';
     public static $StatusesCreateFieldName = '//section/form/div/table/tbody/tr/td/div/div/div[1]/div/input';
     public static $StatusesCreateFieldNameLabel = '//section/form/div/table/tbody/tr/td/div/div/div[1]/label';
-    public static $StatusesCreateFieldDescription = '//body/p';
+    public static $StatusesCreateFieldDescription = '//section/form/div/table/tbody/tr/td/div/div/div[2]/div/textarea';
     public static $StatusesCreateFieldDescriptionLabel = '//section/form/div/table/tbody/tr/td/div/div/div[2]/label';
     
     public static $StatusesEditTitle = '//body/div[1]/div[5]/section/div/div[1]/span[2]';

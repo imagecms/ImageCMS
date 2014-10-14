@@ -28,6 +28,8 @@ class PremmerceCabinetPage
     
     
     //---------------------------------------------------------------------------
+    //---------------------------------------------------------------------------
+    //---------------------------------------------------------------------------
     
     public static $HeadTitleImg = "//header/div/div[1]/a/img";   
     public static $HeadLinkBalans = "//body/div[1]/header/div/div[2]/a";   
@@ -46,9 +48,10 @@ class PremmerceCabinetPage
     //-----------Tab Main------------
     
     public static $TabMain = "//body/div[1]/div/div[1]/nav/ul/li[1]/a";   
-    public static $TabMainTitleText = "//body/div[1]/div/div[3]/div[1]/div[1]/div";   
+    public static $TabMainBlockText = "//body/div[1]/div/div[3]/div[1]/div[1]/div";   
     public static $TabMainFieldSiteLabel = "//table/tbody/tr[1]/th";   
     public static $TabMainFieldSiteLink = "//table/tbody/tr[1]/td/a";   
+    public static $TabMainFieldSiteButtonChange = "//table/tbody/tr[1]/td[2]/a";   
     public static $TabMainFieldAdminLabel = "//table/tbody/tr[2]/th";   
     public static $TabMainFieldAdminLink = "//table/tbody/tr[2]/td/a";   
     public static $TabMainFieldTarifLabel = "//table/tbody/tr[3]/th";   
@@ -73,19 +76,29 @@ class PremmerceCabinetPage
     //-----------Tab Profile-------
     
     public static $TabProfile = "//body/div[1]/div/div[1]/nav/ul/li[2]/a";  
-    public static $TabProfileFieldName = "//div[1]/div/div[2]/div[2]/div/form/div[1]/div[2]/div/input";  
-    public static $TabProfileFieldPhone = "//div[1]/div/div[2]/div[2]/div/form/div[1]/div[3]/div/input";  
-    public static $TabProfileSelectCountry = "//div[1]/div/div[2]/div[2]/div/form/div[1]/div[4]/div/div/div";  
-    public static $TabProfileFieldCity = "//div[1]/div/div[2]/div[2]/div/form/div[1]/div[5]/div/input";  
-    public static $TabProfileSelectCategory = "//div[1]/div/div[2]/div[2]/div/form/div[1]/div[6]/div/div/div/div[2]";  
-    public static $TabProfileSelectProduct = "//div[1]/div/div[2]/div[2]/div/form/div[1]/div[7]/div/div/div/div[2]l";  
-    public static $TabProfileFieldEmail = "//div[1]/div/div[2]/div[4]/div/form/div/div[2]/div/input";  
-    public static $TabProfileFieldNewPassword = "//div[1]/div/div[2]/div[4]/div/form/div/div[3]/div/input";  
-    public static $TabProfileFieldOldPassword = "//div[1]/div/div[2]/div[4]/div/form/div/div[4]/div/input";  
-    public static $TabProfileFieldReplayNewPassword = "//div[1]/div/div[2]/div[4]/div/form/div/div[5]/div/input";  
     public static $TabProfileBlockDataText = "//body/div[1]/div/div[2]/div[1]/div";  
+    public static $TabProfileFieldName = "//div[1]/div/div[2]/div[2]/div/form/div[1]/div[2]/div/input";  
+    public static $TabProfileFieldNameLabel = "//body/div[1]/div/div[2]/div[2]/div/form/div[1]/div[2]/label";  
+    public static $TabProfileFieldPhone = "//div[1]/div/div[2]/div[2]/div/form/div[1]/div[3]/div/input";  
+    public static $TabProfileFieldPhoneLabel = "//body/div[1]/div/div[2]/div[2]/div/form/div[1]/div[3]/label";  
+    public static $TabProfileSelectCountry = "//div[1]/div/div[2]/div[2]/div/form/div[1]/div[4]/div/div/div";  
+    public static $TabProfileSelectCountryLabel = "//div[1]/div/div[2]/div[2]/div/form/div[1]/div[4]/span";  
+    public static $TabProfileFieldCity = "//div[1]/div/div[2]/div[2]/div/form/div[1]/div[5]/div/input";  
+    public static $TabProfileFieldCityLabel = "//div[1]/div/div[2]/div[2]/div/form/div[1]/div[5]/label";  
+    public static $TabProfileSelectCategory = "//div[1]/div/div[2]/div[2]/div/form/div[1]/div[6]/div/div/div/div[2]";  
+    public static $TabProfileSelectCategoryLabel = "//div[1]/div/div[2]/div[2]/div/form/div[1]/div[6]/span";  
+    public static $TabProfileSelectProduct = "//div[1]/div/div[2]/div[2]/div/form/div[1]/div[7]/div/div/div/div[2]";  
+    public static $TabProfileSelectProductLabel = "//div[1]/div/div[2]/div[2]/div/form/div[1]/div[7]/span";  
     public static $TabProfileBlockDataButtonSave = "//div[1]/div/div[2]/div[2]/div/form/button";  
     public static $TabProfileBlockLoginPasswordText = "//body/div[1]/div/div[2]/div[3]/div";  
+    public static $TabProfileFieldEmail = "//div[1]/div/div[2]/div[4]/div/form/div/div[2]/div/input";  
+    public static $TabProfileFieldEmailLabel = "//div[1]/div/div[2]/div[4]/div/form/div/div[2]/label";  
+    public static $TabProfileFieldNewPassword = "//div[1]/div/div[2]/div[4]/div/form/div/div[3]/div/input";  
+    public static $TabProfileFieldNewPasswordLabel = "//div[1]/div/div[2]/div[4]/div/form/div/div[3]/label";  
+    public static $TabProfileFieldOldPassword = "//div[1]/div/div[2]/div[4]/div/form/div/div[4]/div/input";  
+    public static $TabProfileFieldOldPasswordLabel = "//body/div[1]/div/div[2]/div[4]/div/form/div/div[4]/label";  
+    public static $TabProfileFieldReplayNewPassword = "//div[1]/div/div[2]/div[4]/div/form/div/div[5]/div/input";  
+    public static $TabProfileFieldReplayNewPasswordLabel = "//body/div[1]/div/div[2]/div[4]/div/form/div/div[5]/label";  
     public static $TabProfileBlockLoginButtonSave = "//div[1]/div/div[2]/div[4]/div/form/button";  
     
     
@@ -97,7 +110,11 @@ class PremmerceCabinetPage
 //    
 //    public static $TabPayments = "";   
 //    
-//    public static $TabChoiceTarif = "";   
+    public static $TabChoiceTarif = "";   
+    public static $TabChoiceTarif = "";   
+    public static $TabChoiceTarif = "";   
+    public static $TabChoiceTarif = "";   
+    public static $TabChoiceTarif = "";   
 //    
 //    public static $TabConfigureDomain = "";  
 //    

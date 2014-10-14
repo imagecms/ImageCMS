@@ -32,6 +32,7 @@ class SaasUserPageUACest
    private $price_business = '699 грн/міс';
    private $price_premium = '1399 грн/міс';
    
+   private $name_status = 'TEST';
    
    
    
@@ -397,9 +398,14 @@ class SaasUserPageUACest
         $I->wait(1);
         $I->click(SaasUserListPage::$FilterEmailLabel);
         $I->fillField(SaasUserListPage::$FilterEmailInput, $this->user_email);
+        $I->click(SaasUserListPage::$FilterButtonFilter);
+        $I->click(SaasUserListPage::$HeadCheckBox);
+        $I->click(SaasUserListPage::$ButtonChancheData);
+        $I->click(SaasUserListPage::$WindowChancheDataSelectManager);
+        $I->click(SaasUserListPage::WindowChancheDataSelectManagerOption(2));
         $I->click(SaasUserListPage::$FilterManagerLabel);
         $I->click(SaasUserListPage::$FilterManagerSelect);
-        $I->click(SaasUserListPage::FilterManagerSelectOption(3));
+        $I->click(SaasUserListPage::FilterManagerSelectOption(2));
         $I->click(SaasUserListPage::$FilterButtonFilter);
         $I->see($this->user_email, SaasUserListPage::lineEmailLink(1));
         $I->AdminLogout();
@@ -505,6 +511,48 @@ class SaasUserPageUACest
         $I->see($this->user_email, SaasUserListPage::lineEmailLink(1));
         $I->AdminLogout();
     }
+    
+    
+    ///----------Test For Create Statuse------------
+    
+    /**
+     * @group aass
+     * @guy UkrainianTester\LocUaSteps 
+     */
+    public function CreateStatus(UkrainianTester\LocUaSteps $I){
+        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
+        $I->wait(2);
+        $I->amOnPage('/admin/settings#setings');
+        $I->wait(2);
+        $I->selectOption('#textEditor', 'Native textarea');
+        $I->click('.btn.btn-small.btn-primary.action_on.formSubmit');
+        $I->wait('3');
+        $I->amOnPage(SaasUserListPage::$URL);
+        $I->wait(2);
+        $I->click(SaasUserListPage::$ButtonStatuses);
+        $I->wait(2);
+        $I->seeInCurrentUrl('/admin/components/cp/saas/users_statuses');
+        $I->click(SaasUserListPage::$StatusesListButtonCreate);
+        $I->wait(2);
+        $I->fillField(SaasUserListPage::$StatusesCreateFieldName, $this->name_status);
+        $I->fillField(SaasUserListPage::$StatusesCreateFieldDescription, 'for test');
+        $I->click(SaasUserListPage::$StatusesCreateButtonSave);
+        $I->wait(2);
+        $I->click(SaasUserListPage::$StatusesCreateButtonBack);
+        $I->wait(2);
+        $amount_rows = $I->grabCCSAmount($I, '.table.table-striped.table-bordered.table-hover.table-condensed.t-l_a>tbody>tr>td>p');
+        $I->comment("Количество строк = $amount_rows");
+        for($j = 1;$j > $amount_rows; $j++){
+        $name = $I->grabTextFrom(SaasUserListPage::StatusListlineName($j));
+        if($name == $this->name_status){
+            $number_ID = $I->grabTextFrom(SaasUserListPage::StatusListlineID($j));
+            $I->comment("Вот такое айди созданого статуса = $number_ID");            
+        }
+        
+        }        
+        $I->AdminLogout();
+    }
+    
     
     
     
