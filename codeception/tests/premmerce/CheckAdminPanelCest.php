@@ -35,15 +35,9 @@ class CheckAdminPanelCest {
     }
 
     public function checkAdminPanel(PremmerceTester $I) {
-        $times = 3;
-        $interval = 60;
-        while (--$times != 0) {
-
-            sleep($interval);
             for ($i = 1; $i <= 8; $i++) {
                 $I->see("//div[@class = 'frame_nav']//tbody//tr/td[$i]");
             }
-        }
     }
 
 }
