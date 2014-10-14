@@ -6,7 +6,8 @@ namespace Codeception\Module;
 // all public methods declared in helper class will be available in $I
 //class AcceptanceHelper extends \AcceptanceTester
 class AcceptanceHelper extends \Codeception\Module {
-    /*     * Counting specified tags on page 
+    /*     
+     * Counting specified tags on page 
      * 
      * @param   AcceptanceTester  $I           controller
      * @param   string            $tags        "tag1 tag2"   
