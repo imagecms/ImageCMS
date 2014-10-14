@@ -43,9 +43,9 @@ class RedirectsCest {
      * створити  на.ru - російська мова 
      * @guy PremmerceTester\PremmerceSteps
      */
-    public function createRuStoreRuLanguage(PremmerceTester\PremmerceSteps $I) {
+    public function createRuStoreRuCountry(PremmerceTester\PremmerceSteps $I) {
         $I->amOnUrl($this->urlRu . $this->createStorePage);
-        $generated = $this->generateName();
+        $generated = $I->generateName();
         $I->createStore($generated, $generated . '@gmail.com', $generated);
     }
 
@@ -68,11 +68,11 @@ class RedirectsCest {
      * створити  на.com.ua - українська мова 
      * @guy PremmerceTester\PremmerceSteps
      */
-    public function createUaStoreUaLanguage(PremmerceTester\PremmerceSteps $I) {
+    public function createUaStoreUaCountry(PremmerceTester\PremmerceSteps $I) {
         
         $I->amOnUrl($this->urlUa . $this->createStorePage);
 //        generate name for store
-        $generated = $this->generateName();
+        $generated = $I->generateName();
         $I->createStore($generated, $generated . '@gmail.com', $generated);
     }
     
@@ -96,11 +96,11 @@ class RedirectsCest {
      * створити  на.com.ua - російська мова 
      * @guy PremmerceTester\PremmerceSteps
      */
-    public function createUaStoreRusLanguage(PremmerceTester\PremmerceSteps $I) {
+    public function createUaStoreRusCountry(PremmerceTester\PremmerceSteps $I) {
         
         $I->amOnUrl($this->urlUa . $this->createStorePage);
 //        generate name for store
-        $generated = $this->generateName();
+        $generated = $I->generateName();
         $I->createStore($generated, $generated . '@gmail.com', $generated,  2);
         $this->changeCountriesRuToUa($I);
     }
@@ -109,11 +109,11 @@ class RedirectsCest {
      * створити  на.ru - українська мова 
      * @guy PremmerceTester\PremmerceSteps
      */
-    public function createRuStoreUaLanguage(PremmerceTester\PremmerceSteps $I) {
+    public function createRuStoreUaCountry(PremmerceTester\PremmerceSteps $I) {
         
         $I->amOnUrl($this->urlRu . $this->createStorePage);
 //        generate name for store
-        $generated = $this->generateName();
+        $generated = $I->generateName();
         $I->createStore($generated, $generated . '@gmail.com', $generated, 2);
         $this->changeCountriesUaToRu($I);
     }
@@ -151,17 +151,6 @@ class RedirectsCest {
         $I->click('//div[@class="panel-form"][1]//button');
         $I->reloadPage();
         $I->wait(3);
-    }
-
-    protected function generateName() {
-        $set = "abcdefghijklmnopqrstuvwxyz1234567890";
-        $size = strlen($set) - 1;
-        $name = '';
-        $max = 10;
-        while ($max--) {
-            $name.=$set[rand(0, $size)];
-        }
-        return $name;
     }
 
 }

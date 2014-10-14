@@ -25,5 +25,15 @@ class PremmerceSteps extends \PremmerceTester {
         $I->waitForElement('.info-header', 60);
 
     }
+    public function generateName($length = 10){
+        $set = "abcdefghijklmnopqrstuvwxyz1234567890";
+        $size = strlen($set) - 1;
+        $name = '';
+        while ($length--) {
+            $name.=$set[rand(0, $size)];
+        }
+        return $name;
+    
+    }
 
 }
