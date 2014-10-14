@@ -9,7 +9,7 @@ class PremmerceSteps extends \PremmerceTester {
         $I->fillField(\CreateStorePage::$InputDomain, $store_name);
         $I->fillField(\CreateStorePage::$InputEmail, $email);
         $I->fillField(\CreateStorePage::$InputPassword, $password);
-        $I->fillField(\CreateStorePage::$InputName, 'defult');
+        $I->fillField(\CreateStorePage::$InputName, 'Test');
         $I->fillField(\CreateStorePage::$InputPhone, '800800');
         $I->fillField(\CreateStorePage::$InputCity, 'MyCity');
         if (isset($country)) {
@@ -26,7 +26,8 @@ class PremmerceSteps extends \PremmerceTester {
 
     }
     public function generateName($length = 10){
-        $set = "abcdefghijklmnopqrstuvwxyz1234567890";
+//        $set = "abcdefghijklmnopqrstuvwxyz1234567890";
+        $set = "abcdefghijklmnopqrstuvwxyz";
         $size = strlen($set) - 1;
         $name = '';
         while ($length--) {
@@ -34,6 +35,12 @@ class PremmerceSteps extends \PremmerceTester {
         }
         return $name;
     
+    }
+    public function logout(){
+        $I = $this;
+        $I->click('.btn-profile.btn.isDrop');
+        $I->wait(2);
+        $I->click('.sub-menu.drop-sub-menu.drop.noinherit.active>li:nth-child(2)>a');
     }
 
 }
