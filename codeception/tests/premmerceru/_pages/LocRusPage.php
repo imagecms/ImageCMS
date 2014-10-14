@@ -3,7 +3,7 @@
 class LocRusPage
 {
     public static $URL = '/';
-
+    
     
     public static $CreateShopField = 'html/body/div[3]/div[1]/div/div[1]/div/div/form/div/div[1]/input';
     public static $DomainEnd = 'html/body/div[3]/div[1]/div/div[1]/div/div/form/div/div[1]/span';
