@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-07 12:18+0300\n"
-"PO-Revision-Date: 2014-10-07 12:18+0300\n"
+"POT-Creation-Date: 2014-10-13 04:11+0300\n"
+"PO-Revision-Date: 2014-10-13 04:11+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -17,6 +17,11 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/import_export/assets/admin/export.tpl:118
+#: ./application/modules/import_export/assets/admin/export.tpl:131
+msgid "Start export all categories"
+msgstr "Начать экспорт всех категорий"
 
 #: ./application/modules/import_export/module_info.php:8
 msgid "The module allows you to import and export of goods by means of formats CSV, XLS, XLSX"
@@ -177,7 +182,7 @@ msgid "Files"
 msgstr "Файлы"
 
 #: ./application/modules/import_export/assets/admin/import.tpl:106
-#: ./application/modules/import_export/assets/admin/export.tpl:103
+#: ./application/modules/import_export/assets/admin/export.tpl:105
 msgid "The data of your database will be stored in the folder"
 msgstr "Данные Вашей базы данных будет храниться в папке"
 
@@ -233,35 +238,35 @@ msgstr "Столбцы"
 msgid "Categories"
 msgstr "Категории"
 
-#: ./application/modules/import_export/assets/admin/export.tpl:64
+#: ./application/modules/import_export/assets/admin/export.tpl:66
 msgid "Loading properties"
 msgstr "Загрузка свойств"
 
-#: ./application/modules/import_export/assets/admin/export.tpl:65
+#: ./application/modules/import_export/assets/admin/export.tpl:67
 msgid "Show properties of the selected categories"
 msgstr "Посмотреть свойства выбранной категории"
 
-#: ./application/modules/import_export/assets/admin/export.tpl:70
+#: ./application/modules/import_export/assets/admin/export.tpl:72
 msgid "Properties of the products"
 msgstr "Свойства продуктов"
 
-#: ./application/modules/import_export/assets/admin/export.tpl:73
+#: ./application/modules/import_export/assets/admin/export.tpl:75
 msgid "Select a category for export"
 msgstr "Выберите категорию для экспорта"
 
-#: ./application/modules/import_export/assets/admin/export.tpl:78
+#: ./application/modules/import_export/assets/admin/export.tpl:80
 msgid "Filetype"
 msgstr "Тип файла"
 
-#: ./application/modules/import_export/assets/admin/export.tpl:108
+#: ./application/modules/import_export/assets/admin/export.tpl:110
 msgid "Make a backup of photos"
 msgstr "Сделать резервную копию фотографий"
 
-#: ./application/modules/import_export/assets/admin/export.tpl:116
+#: ./application/modules/import_export/assets/admin/export.tpl:118
 msgid "Exports in progress"
 msgstr "Экспорт в прогрессе"
 
-#: ./application/modules/import_export/assets/admin/export.tpl:116
+#: ./application/modules/import_export/assets/admin/export.tpl:130
 msgid "Start export"
 msgstr "Начать экспорт"
 
