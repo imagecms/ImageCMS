@@ -55,7 +55,7 @@ class PremmerceSteps extends \PremmerceTester {
         $I->submitForm('#with_out_article', ['login' => $user_email, 'password' => $user_password]);
         $I->waitForElement('#topPanelNotifications');
     }
-    public function storeLogout() {
+    public function logoutStore() {
         $I = $this;
         $I->click(\GeneralPage::$PersonalButton);
         $I->wait(2);
@@ -66,7 +66,7 @@ class PremmerceSteps extends \PremmerceTester {
      * @param string $user_email
      * @param string $user_password
      */
-    public function cabinetLogin($user_email, $user_password) {
+    public function loginCabinet($user_email, $user_password) {
 
         $I = $this;
         $I->amOnPage(\PremmerceMainPage::$URL);
@@ -82,7 +82,7 @@ class PremmerceSteps extends \PremmerceTester {
     }
 
     
-    public function cabinetLogout() {
+    public function logoutCabinet() {
         $I = $this;
         $I->click(\CabinetPage::$HeadButtonProfile);
         $I->wait(2);
@@ -91,7 +91,7 @@ class PremmerceSteps extends \PremmerceTester {
 
 
 
-    public function saasLogout() {
+    public function logoutSaas() {
         $I = $this;
         $I->wait(1);
         $I->click(\SaasGeneralPage::$Logout);
