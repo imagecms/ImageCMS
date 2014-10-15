@@ -1,6 +1,6 @@
 <?php
 
-class SaasNavigationBarPage
+class SaasGeneralPage
 
 {
     public static $Logout = '//body/div[1]/header/section/div[1]/div/span[1]/a[2]/i';
