@@ -33,10 +33,10 @@ class RedirectsCest {
      * перевірити урлу
      */
 
-//    protected $urlUa            = 'http://premmerce.com.ua/';
-//    protected $urlRu            = 'http://premmerce.ru/';
-    protected $urlUa            = 'http://imagego.com.ua/';
-    protected $urlRu            = 'http://imagego.ru/';
+    protected $urlUa            = 'http://premmerce.com.ua/';
+    protected $urlRu            = 'http://premmerce.ru/';
+//    protected $urlUa            = 'http://imagego.com.ua/';
+//    protected $urlRu            = 'http://imagego.ru/';
     protected $createStorePage  = "saas/create_store";
 
     
