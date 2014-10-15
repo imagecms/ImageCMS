@@ -71,22 +71,22 @@ class PremmerceSteps extends \PremmerceTester {
         $I = $this;
         $I->amOnPage(\PremmerceMainPage::$URL);
         $I->wait(2);
-        $I->click(\PremmerceMainPage::$ButtonEnter);
+        $I->click(\MainPage::$ButtonEnter);
         $I->wait(1);
-        $I->fillField(\PremmerceMainPage::$WindowLoginFieldEmail, $user_email);
+        $I->fillField(\MainPage::$WindowLoginInputEmail, $user_email);
         $I->wait(1);
-        $I->fillField(\PremmerceMainPage::$WindowLoginFieldPassword, $user_password);
+        $I->fillField(\MainPage::$WindowLoginInputPassword, $user_password);
         $I->wait(1);
-        $I->click(\PremmerceMainPage::$WindowLoginButtonSend);
+        $I->click(\MainPage::$WindowLoginButtonSend);
         $I->wait(7);
     }
 
     
     public function cabinetLogout() {
         $I = $this;
-        $I->click('.btn-profile.btn.isDrop');
+        $I->click(\CabinetPage::$HeadButtonProfile);
         $I->wait(2);
-        $I->click('.sub-menu.drop-sub-menu.drop.noinherit.active>li:nth-child(2)>a');
+        $I->click(\CabinetPage::$HeadButtonProfileExit);
     }
 
 
