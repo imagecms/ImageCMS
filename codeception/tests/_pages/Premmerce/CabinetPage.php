@@ -6,11 +6,11 @@ class CabinetPage
     public static $HeadTitle = "//header/div/div[1]/a/img";   
     public static $HeadLinkConsultation = "//header/div/div[2]/div/div/a/span";   
     public static $HeadQuestionConsultationText = "//header/div/div[2]/div/div/span/span[1]";
-    public static $HeadLinkProfile = "//body/div[1]/header/div/ul/li[1]/button";   
-    public static $HeadLinkProfileLinkUserData = "//body/ul/li[1]/a";   
-    public static $HeadLinkProfileLinkExit = "//body/ul/li[2]/a";   
-    public static $HeadLinkShop = "//body/div[1]/header/div/ul/li[2]/a";   
-    public static $HeadLinkAdmin = "//header/div/ul/li[4]/a";   
+    public static $HeadButtonProfile = "//body/div[1]/header/div/ul/li[1]/button";   
+    public static $HeadButtonProfileUserData = "//body/ul/li[1]/a";   
+    public static $HeadButtonProfileExit = "//body/ul/li[2]/a";   
+    public static $HeadButtonShop = "//body/div[1]/header/div/ul/li[2]/a";   
+    public static $HeadButtonAdmin = "//header/div/ul/li[4]/a";   
     
     //--- Зелене вікно оплаченого магазу
     public static $HeadLinkBalans = "//body/div[1]/header/div/div[2]/a";   
