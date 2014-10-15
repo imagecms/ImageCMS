@@ -1,3 +1,0 @@
-class_name: TariffsTester
-modules:
-    enabled: [TariffsHelper]

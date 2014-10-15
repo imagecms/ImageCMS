@@ -73,9 +73,9 @@ class PremmerceSteps extends \PremmerceTester {
         $I->wait(2);
         $I->click(\MainPage::$ButtonEnter);
         $I->wait(1);
-        $I->fillField(\MainPage::$WindowLoginFieldEmail, $user_email);
+        $I->fillField(\MainPage::$WindowLoginInputEmail, $user_email);
         $I->wait(1);
-        $I->fillField(\MainPage::$WindowLoginFieldPassword, $user_password);
+        $I->fillField(\MainPage::$WindowLoginInputPassword, $user_password);
         $I->wait(1);
         $I->click(\MainPage::$WindowLoginButtonSend);
         $I->wait(7);
