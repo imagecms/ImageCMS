@@ -37,12 +37,44 @@ class PremmerceSteps extends \PremmerceTester {
     }
     
     
-    public function StoreLogin($user_email, $user_password){}
+    public function StoreLogin($user_email, $user_password){
+        $I = $this;
+        $I->submitForm('#with_out_article', ['login' => $user_email, 'password' => $user_password]);
+        $I->waitForElement('#topPanelNotifications');
+    }
     
-    public function StoreLogout(){}
+    public function StoreLogout(){
+        $I = $this;
+        $I->click(\GeneralPage::$PersonalButton);
+        $I->wait(2);
+        $I->click(\GeneralPage::$PersonalButtonLogout);
+        $I->wait(2);
+    }
     
     public function CabinetLogin($user_email, $user_password) {
-        
+
+        $I = $this; 
+        $I->amOnPage(\PremmerceMainPage::$URL);//body/div[3]/header/div/div/div/div[1]/div[1]/a
+        $I->wait(2);           //body/div[3]/header/div/div/div/div[1]/div[1]/button 
+        $button_text = $I->grabTextFrom('//body/div[3]/header/div/div/div/div[1]/div[1]');
+        $I->comment("$button_text");
+        $name_button_enter      = 'ВХІД';
+        $name_button_cabinet    = 'КАБІНЕТ';
+        if($button_text == $name_button_enter){
+            $I->click(\PremmerceMainPage::$ButtonEnter);
+        $I->wait(1);
+        $I->fillField(\PremmerceMainPage::$WindowLoginFieldEmail, $user_email);
+        $I->wait(1);
+        $I->fillField(\PremmerceMainPage::$WindowLoginFieldPassword, $user_password);
+        $I->wait(1);
+        $I->click(\PremmerceMainPage::$WindowLoginButtonSend);
+        $I->wait(7);
+        }
+        if($button_text == $name_button_cabinet){
+        $I->click(\PremmerceMainPage::$ButtonCabinet);
+        $I->wait(1);
+        }
+    
     }
 
     public function CabinetLogout() {
