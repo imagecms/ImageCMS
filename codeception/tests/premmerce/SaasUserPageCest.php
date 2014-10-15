@@ -1,6 +1,6 @@
 <?php
 
-use \UkrainianTester;
+use PremmerceTester;
 
 class SaasUserPageCest
 
@@ -38,20 +38,29 @@ class SaasUserPageCest
    
     /**
      * @group q
-     * @guy UkrainianTester\LocUaSteps 
+     * @guy PremmerceTester\PremmerceSteps 
      */
-    public function CreateStore(UkrainianTester\LocUaSteps $I){
+    public function CreateStore(PremmerceTester\PremmerceSteps $I){
 //        $I->CabinetLogin($user_email = $this->user_email, $user_password = $this->user_password);
-        $I->amOnPage(PremmerceMainPage::$URL);
-        $I->click(PremmerceMainPage::$ButtonCreateStore);
-        $I->CreateStore($store_name         = $this->store_name,
-                        $user_email         = $this->user_email,
-                        $user_password      = $this->user_password,
-                        $user_name          = $this->user_name,
-                        $user_phone         = $this->user_phone,
-                        $user_city          = $this->user_city,
-                        $product_category   = 3,
-                        $product_level      = 2);
+        $I->amOnPage(MainPage::$URL);
+        $I->click(MainPage::$ButtonCreateStore);
+        $I->createStore($store_name         = '',
+                        $user_email         = '',
+                        $user_password      = '',
+                        $country            = '',
+                        $user_name          = '',
+                        $user_phone         = '',
+                        $user_city          = '',
+                        $product_category   = '',
+                        $product_level      = '');
+//        $I->CreateStore($store_name         = $this->store_name,
+//                        $user_email         = $this->user_email,
+//                        $user_password      = $this->user_password,
+//                        $user_name          = $this->user_name,
+//                        $user_phone         = $this->user_phone,
+//                        $user_city          = $this->user_city,
+//                        $product_category   = 3,
+//                        $product_level      = 2);
         $I->wait(20);
         $I->wait(1);
         $I->seeInCurrentUrl('/saas/profile');
@@ -86,9 +95,9 @@ class SaasUserPageCest
     
     /**
      * @group a
-     * @guy UkrainianTester\LocUaSteps 
+     * @guy PremmerceTester\PremmerceSteps 
      */
-    public function CheckSaas(UkrainianTester\LocUaSteps $I){
+    public function CheckSaas(PremmerceTester\PremmerceSteps $I){
         $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
         $I->click(SaasUserListPage::$NavigationModules);
         $I->wait(1);
@@ -111,9 +120,9 @@ class SaasUserPageCest
     
     /**
      * @group a
-     * @guy UkrainianTester\LocUaSteps 
+     * @guy PremmerceTester\PremmerceSteps
      */
-    public function CheckOffCabinet (UkrainianTester\LocUaSteps $I){
+    public function CheckOffCabinet (PremmerceTester\PremmerceSteps $I){
         $I->CabinetLogin($user_email = $this->user_email, $user_password = $this->user_password);
         $I->wait(1);
         $I->seeInCurrentUrl('/saas/profile');
@@ -139,9 +148,9 @@ class SaasUserPageCest
     
     /**
      * @group a
-     * @guy UkrainianTester\LocUaSteps 
+     * @guy PremmerceTester\PremmerceSteps
      */
-    public function CheckOffSaas(UkrainianTester\LocUaSteps $I){
+    public function CheckOffSaas(PremmerceTester\PremmerceSteps $I){
         $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
         $I->amOnPage(SaasUserListPage::$URL);
         $I->wait(1);
@@ -162,9 +171,9 @@ class SaasUserPageCest
     
     /**
      * @group a
-     * @guy UkrainianTester\LocUaSteps 
+     * @guy PremmerceTester\PremmerceSteps 
      */
-    public function CheckOnCabinet (UkrainianTester\LocUaSteps $I){
+    public function CheckOnCabinet (PremmerceTester\PremmerceSteps $I){
         $I->CabinetLogin($user_email = $this->user_email, $user_password = $this->user_password);
         $I->wait(1);
         $I->seeInCurrentUrl('/saas/profile');
@@ -187,9 +196,9 @@ class SaasUserPageCest
     
     /**
      * @group a
-     * @guy UkrainianTester\LocUaSteps 
+     * @guy PremmerceTester\PremmerceSteps 
      */
-    public function FilterPhone(UkrainianTester\LocUaSteps $I){
+    public function FilterPhone(PremmerceTester\PremmerceSteps $I){
         $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
         $I->amOnPage(SaasUserListPage::$URL);
         $I->wait(1);
@@ -202,9 +211,9 @@ class SaasUserPageCest
     
     /**
      * @group a
-     * @guy UkrainianTester\LocUaSteps 
+     * @guy PremmerceTester\PremmerceSteps
      */
-    public function FilterName(UkrainianTester\LocUaSteps $I){
+    public function FilterName(PremmerceTester\PremmerceSteps $I){
         $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
         $I->amOnPage(SaasUserListPage::$URL);
         $I->wait(1);
@@ -219,9 +228,9 @@ class SaasUserPageCest
     
     /**
      * @group a
-     * @guy UkrainianTester\LocUaSteps 
+     * @guy PremmerceTester\PremmerceSteps
      */
-    public function FilterEmail(UkrainianTester\LocUaSteps $I){
+    public function FilterEmail(PremmerceTester\PremmerceSteps $I){
         $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
         $I->amOnPage(SaasUserListPage::$URL);
         $I->wait(1);
@@ -235,9 +244,9 @@ class SaasUserPageCest
     
     /**
      * @group a
-     * @guy UkrainianTester\LocUaSteps 
+     * @guy PremmerceTester\PremmerceSteps
      */
-    public function FilterCountry(UkrainianTester\LocUaSteps $I){
+    public function FilterCountry(PremmerceTester\PremmerceSteps $I){
         $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
         $I->amOnPage(SaasUserListPage::$URL);
         $I->wait(1);
@@ -254,9 +263,9 @@ class SaasUserPageCest
     
     /**
      * @group a
-     * @guy UkrainianTester\LocUaSteps 
+     * @guy PremmerceTester\PremmerceSteps
      */
-    public function FilterCity(UkrainianTester\LocUaSteps $I){
+    public function FilterCity(PremmerceTester\PremmerceSteps $I){
         $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
         $I->amOnPage(SaasUserListPage::$URL);
         $I->wait(1);
@@ -272,9 +281,9 @@ class SaasUserPageCest
     
     /**
      * @group a
-     * @guy UkrainianTester\LocUaSteps 
+     * @guy PremmerceTester\PremmerceSteps
      */
-    public function FilterTarif(UkrainianTester\LocUaSteps $I){
+    public function FilterTarif(PremmerceTester\PremmerceSteps $I){
         $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
         $I->amOnPage(SaasUserListPage::$URL);
         $I->wait(1);
@@ -292,9 +301,9 @@ class SaasUserPageCest
     
     /**
      * @group a
-     * @guy UkrainianTester\LocUaSteps 
+     * @guy PremmerceTester\PremmerceSteps
      */
-    public function FilterLevel(UkrainianTester\LocUaSteps $I){
+    public function FilterLevel(PremmerceTester\PremmerceSteps $I){
         $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
         $I->amOnPage(SaasUserListPage::$URL);
         $I->wait(1);
@@ -311,9 +320,9 @@ class SaasUserPageCest
     
     /**
      * @group a
-     * @guy UkrainianTester\LocUaSteps 
+     * @guy PremmerceTester\PremmerceSteps
      */
-    public function FilterCategory(UkrainianTester\LocUaSteps $I){
+    public function FilterCategory(PremmerceTester\PremmerceSteps $I){
         $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
         $I->amOnPage(SaasUserListPage::$URL);
         $I->wait(1);
@@ -330,9 +339,9 @@ class SaasUserPageCest
     
     /**
      * @group aa
-     * @guy UkrainianTester\LocUaSteps 
+     * @guy PremmerceTester\PremmerceSteps
      */
-    public function FilterAmountProduct(UkrainianTester\LocUaSteps $I){
+    public function FilterAmountProduct(PremmerceTester\PremmerceSteps $I){
         $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
         $I->amOnPage(SaasUserListPage::$URL);
         $I->wait(1);
@@ -350,9 +359,9 @@ class SaasUserPageCest
     
     /**
      * @group aa
-     * @guy UkrainianTester\LocUaSteps 
+     * @guy PremmerceTester\PremmerceSteps
      */
-    public function FilterDisk(UkrainianTester\LocUaSteps $I){
+    public function FilterDisk(PremmerceTester\PremmerceSteps $I){
         $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
         $I->amOnPage(SaasUserListPage::$URL);
         $I->wait(1);
@@ -370,9 +379,9 @@ class SaasUserPageCest
     
     /**
      * @group aa
-     * @guy UkrainianTester\LocUaSteps 
+     * @guy PremmerceTester\PremmerceSteps
      */
-    public function FilterBalans(UkrainianTester\LocUaSteps $I){
+    public function FilterBalans(PremmerceTester\PremmerceSteps $I){
         $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
         $I->amOnPage(SaasUserListPage::$URL);
         $I->wait(1);
@@ -390,9 +399,9 @@ class SaasUserPageCest
     
     /**
      * @group aa
-     * @guy UkrainianTester\LocUaSteps 
+     * @guy PremmerceTester\PremmerceSteps
      */
-    public function FilterManager(UkrainianTester\LocUaSteps $I){
+    public function FilterManager(PremmerceTester\PremmerceSteps $I){
         $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
         $I->amOnPage(SaasUserListPage::$URL);
         $I->wait(1);
@@ -416,9 +425,9 @@ class SaasUserPageCest
 
     /**
      * @group aa
-     * @guy UkrainianTester\LocUaSteps 
+     * @guy PremmerceTester\PremmerceSteps
      */
-    public function FilterDomainEnd(UkrainianTester\LocUaSteps $I){
+    public function FilterDomainEnd(PremmerceTester\PremmerceSteps $I){
         $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
         $I->amOnPage(SaasUserListPage::$URL);
         $I->wait(1);
@@ -438,9 +447,9 @@ class SaasUserPageCest
     
     /**
      * @group aa
-     * @guy UkrainianTester\LocUaSteps 
+     * @guy PremmerceTester\PremmerceSteps
      */
-    public function FilterActivateByEmail(UkrainianTester\LocUaSteps $I){
+    public function FilterActivateByEmail(PremmerceTester\PremmerceSteps $I){
         $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
         $I->amOnPage(SaasUserListPage::$URL);
         $I->wait(1);
@@ -458,9 +467,9 @@ class SaasUserPageCest
     
     /**
      * @group aa
-     * @guy UkrainianTester\LocUaSteps 
+     * @guy PremmerceTester\PremmerceSteps
      */
-    public function FilterFillProduct(UkrainianTester\LocUaSteps $I){
+    public function FilterFillProduct(PremmerceTester\PremmerceSteps $I){
         $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
         $I->amOnPage(SaasUserListPage::$URL);
         $I->wait(1);
@@ -478,9 +487,9 @@ class SaasUserPageCest
     
     /**
      * @group aa
-     * @guy UkrainianTester\LocUaSteps 
+     * @guy PremmerceTester\PremmerceSteps
      */
-    public function FilterStatuses(UkrainianTester\LocUaSteps $I){
+    public function FilterStatuses(PremmerceTester\PremmerceSteps $I){
         $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
         $I->amOnPage(SaasUserListPage::$URL);
         $I->wait(1);
@@ -496,9 +505,9 @@ class SaasUserPageCest
     
     /**
      * @group aa
-     * @guy UkrainianTester\LocUaSteps 
+     * @guy PremmerceTester\PremmerceSteps
      */
-    public function FilterDepartments(UkrainianTester\LocUaSteps $I){
+    public function FilterDepartments(PremmerceTester\PremmerceSteps $I){
         $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
         $I->amOnPage(SaasUserListPage::$URL);
         $I->wait(1);
@@ -517,9 +526,9 @@ class SaasUserPageCest
     
     /**
      * @group aass
-     * @guy UkrainianTester\LocUaSteps 
+     * @guy PremmerceTester\PremmerceSteps
      */
-    public function CreateStatus(UkrainianTester\LocUaSteps $I){
+    public function CreateStatus(PremmerceTester\PremmerceSteps $I){
         $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
         $I->wait(2);
         $I->amOnPage('/admin/settings#setings');
@@ -566,9 +575,9 @@ class SaasUserPageCest
    //DELETE SHOP     DELETE SHOP    DELETE SHOP    DELETE SHOP   DELETE SHOP  //                    
     /**
      * @group a
-     * @guy UkrainianTester\LocUaSteps 
+     * @guy PremmerceTester\PremmerceSteps
      */
-    public function DeleteSahopSaas(UkrainianTester\LocUaSteps $I){
+    public function DeleteSahopSaas(PremmerceTester\PremmerceSteps $I){
         $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
         $I->amOnPage(SaasUserListPage::$URL);
         $I->wait(1);
