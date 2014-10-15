@@ -17,7 +17,7 @@ class CreateStorePage
     public static $InputCity        = '[name="city"]';
     
     //чекбокси
-    public static $CheckAgree       = '.frame-apply-terms.f-s_0>input';
+    public static $CheckAgree       = '#agreeLicense';
     
     //селекти
     public static $SelectCountry            = '#cuselFrame-id1';
