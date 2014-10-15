@@ -36,6 +36,17 @@ class LocUaSteps extends \UkrainianTester
     
     //----Saas--------Saas--------Saas--------Saas--------Saas--------Saas----
     
+    /**
+     * 
+     * @param strig $store_name
+     * @param strig $user_email
+     * @param int|string $user_password
+     * @param strig $user_name
+     * @param int $user_phone
+     * @param strig $user_city
+     * @param int $product_category
+     * @param int $product_level
+     */
     public function CreateStore($store_name,
                                 $user_email,
                                 $user_password,
