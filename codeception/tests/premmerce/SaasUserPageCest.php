@@ -2,7 +2,7 @@
 
 use \UkrainianTester;
 
-class SaasUserPageUACest
+class SaasUserPageCest
 
 
 {
