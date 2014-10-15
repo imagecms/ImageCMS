@@ -3,6 +3,7 @@
 class MainPage
     
 {   
+    public static $URL = '/';
     public static $ButtonEnter          = '#loginButton';
     public static $ButtonCabinet        = '//body/div[3]/header/div/div/div/div[1]/div[1]';
     public static $ButtonCreateStore    = '.btn-create-shop>a';
