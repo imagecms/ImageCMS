@@ -33,10 +33,10 @@ class RedirectsCest {
      * перевірити урлу
      */
 
-    protected $urlUa            = 'http://premmerce.com.ua/';
-    protected $urlRu            = 'http://premmerce.ru/';
-//    protected $urlUa            = 'http://imagego.com.ua/';
-//    protected $urlRu            = 'http://imagego.ru/';
+//    protected $urlUa            = 'http://premmerce.com.ua/';
+//    protected $urlRu            = 'http://premmerce.ru/';
+    protected $urlUa            = 'http://imagego.com.ua/';
+    protected $urlRu            = 'http://imagego.ru/';
     protected $createStorePage  = "saas/create_store";
 
     
@@ -55,14 +55,15 @@ class RedirectsCest {
      * -російська
      * -українська
      * -білоруська
+     * @guy PremmerceTester\PremmerceSteps
      */
-    public function changeCountriesRuToUa(PremmerceTester $I) {
+    public function changeCountriesRuToUa(PremmerceTester\PremmerceSteps $I) {
         $this->verifyUrl($I, 'ru');
         $this->changeCountry($I, 1);
         $this->verifyUrl($I, 'ua');
         $this->changeCountry($I, 4);
         $this->verifyUrl($I, 'ru');
-        $this->logout($I);
+        $I->logoutCabinet();
     }
 
     /**
@@ -83,14 +84,16 @@ class RedirectsCest {
      * -українська
      * -російська
      * -білоруська
+     * 
+     * @guy PremmerceTester\PremmerceSteps
      */
-    public function changeCountriesUaToRu(PremmerceTester $I) {
+    public function changeCountriesUaToRu(PremmerceTester\PremmerceSteps $I) {
         $this->verifyUrl($I, 'ua');
         $this->changeCountry($I, 2);
         $this->verifyUrl($I, 'ru');
         $this->changeCountry($I, 4);
         $this->verifyUrl($I, 'ru');
-        $this->logout($I);
+        $I->logoutCabinet();
     }
     
     /**
@@ -124,11 +127,6 @@ class RedirectsCest {
     
     /*----------------------------PROTECTED-----------------------------------*/
 
-    protected function logout(PremmerceTester $I){
-        $I->click('.btn-profile.btn.isDrop');
-        $I->wait(2);
-        $I->click('.sub-menu.drop-sub-menu.drop.noinherit.active>li:nth-child(2)>a');
-    }
     /**
      * @param string $country ru | ua
      */
@@ -144,7 +142,7 @@ class RedirectsCest {
     }
 
     protected function changeCountry(PremmerceTester $I, $number) {
-
+        $I->wait(2);
         $I->click('//ul[@class="nav nav-vertical nav-sidebar"]/ li[2]');
         $I->waitForElement('#cuselFrame-country');
         $I->click('#cuselFrame-country');
