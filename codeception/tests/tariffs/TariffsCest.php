@@ -7,7 +7,7 @@ use \PremmerceTester;
  * Перейти на free > basic > standart > bussiness > premium
  * змінити в адмінці
  * перевірити які модулі доступні
- * створити максимум товарів
+ * створити максимум товарів( CSV )-  підготувати CSV файли
  * забити місце до максимума
  * 
  * 
@@ -15,7 +15,6 @@ use \PremmerceTester;
  */
 class TariffsCest {
 
-    public $joe;
 
     public function controll(PremmerceTester $I) {
         $I->amOnUrl('http://google.com');

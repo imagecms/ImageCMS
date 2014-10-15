@@ -23,7 +23,7 @@ class CheckAdminPanelCest {
         $I->comment('store url: '       . $this->StoreUrl);
         $I->comment('user email: '      . $this->UserEmail);
         $I->comment('user password: '   . $this->UserPassword);
-        $I->logout();
+        $I->CabinetLogout();
     }
 
     public function login(PremmerceTester $I) {
