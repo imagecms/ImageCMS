@@ -44,7 +44,7 @@ class SaasUserListPage
     public static $HeadCheckBox = '//section/div[2]/div/div[1]/table/thead/tr/th[1]/span/span';
     public static $HeadID = '//section/div[2]/div/div[1]/table/thead/tr/th[2]';
     public static $HeadName = '//section/div[2]/div/div[1]/table/thead/tr/th[3]';
-    public static $HeadAdress = '//section/div[2]/div/div[1]/table/thead/tr/th[4]';
+    public static $HeadEmail = '//section/div[2]/div/div[1]/table/thead/tr/th[4]';
     public static $HeadPhone = '//section/div[2]/div/div[1]/table/thead/tr/th[5]';
     public static $HeadDomain = '//section/div[2]/div/div[1]/table/thead/tr/th[6]';
     public static $HeadStatuse = '//section/div[2]/div/div[1]/table/thead/tr/th[7]';
