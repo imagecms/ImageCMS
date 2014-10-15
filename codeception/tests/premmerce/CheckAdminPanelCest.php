@@ -4,40 +4,25 @@ use \PremmerceTester;
 
 class CheckAdminPanelCest {
 
+    /**
+     *  Тест запускатиметься кожних 15 хв для перевірки справності адмінки на Premmerce i на Imagego
+     *  Для роботи теста має бути створений магазин 
+     * 
+     */
+    protected $StoreUrl     = 'http://testqaimagego.premme.com/admin';
     protected $UserPassword = 'mnkvlqxnfi';
-    protected $UserEmail = 'mnkvlqxnfi@gmail.com';
-    protected $StoreName;
-    protected $StoreUrl = 'http://mnkvlqxnfi.premme.com/admin';
-    protected $CreateStoreUrl = 'http://imagego.ru/saas/create_store';
+    protected $UserEmail    = 'qa@image.go';
 
     /**
      * @guy PremmerceTester\PremmerceSteps
      */
-    public function createStore(PremmerceTester\PremmerceSteps $I){
-        $I->amOnUrl($this->CreateStoreUrl);
-        $this->StoreName = $this->UserPassword = $I->generateName();
-        $this->UserEmail = $this->StoreName . '@gmail.com';
-        $this->StoreUrl = 'http://' . $this->StoreName . '.premme.com/admin';
-        $I->createStore($this->StoreName, $this->UserEmail, $this->UserPassword);
-        $I->comment('store name: '      . $this->StoreName);
-        $I->comment('store url: '       . $this->StoreUrl);
-        $I->comment('user email: '      . $this->UserEmail);
-        $I->comment('user password: '   . $this->UserPassword);
-        $I->CabinetLogout();
-    }
-
-    public function login(PremmerceTester $I) {
+    public function checkAdminPanel(PremmerceTester\PremmerceSteps $I) {
         $I->amOnUrl($this->StoreUrl);
-        $I->submitForm('#with_out_article', ['login' => $this->UserEmail, 'password' => $this->UserPassword]);
-        $I->waitForElement('#topPanelNotifications');
+        $I->login($this->UserEmail, $this->UserPassword);
         $I->seeElement('#topPanelNotifications');
-        $this->checkAdminPanel($I);
-    }
-
-    public function checkAdminPanel(PremmerceTester $I) {
-            for ($i = 1; $i <= 8; $i++) {
-                $I->see("//div[@class = 'frame_nav']//tbody//tr/td[$i]");
-            }
+        for ($i = 1; $i <= 7; $i++) {
+            $I->seeElement("//div[@class = 'frame_nav']//tbody//tr/td[$i]");
+        }
     }
 
 }
