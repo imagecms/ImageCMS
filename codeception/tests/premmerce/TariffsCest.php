@@ -3,7 +3,7 @@
 use \PremmerceTester;
 
 /**
- * Для запуску тесту потрібен створений магаз
+ * Для запуску тесту має бути створений магаз
  * 
  * 
  * Перейти на free > basic > standart > bussiness > premium
@@ -18,7 +18,6 @@ use \PremmerceTester;
 class TariffsCest {
 
     /**
-     * 
      * @guy PremmerceTester\PremmerceSteps
      */
     public function controll(PremmerceTester\PremmerceSteps $I) {
@@ -32,9 +31,4 @@ class TariffsCest {
 //            $I->amOnUrl('http://google.com');
 //        });
     }
-
-    public function createShop(PremmerceTester $I) {
-        
-    }
-
 }
