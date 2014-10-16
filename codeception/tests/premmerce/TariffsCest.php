@@ -37,6 +37,7 @@ class TariffsCest {
         $I->amOnPage(MainPage::$URL);
         $I->loginCabinet($this->email, $this->password);
         $I->click(CabinetPage::$TabTariff);
+        $I->wait(3);
         $I->comment($I->grabTextFrom(CabinetPage::$TabTariffFieldAdminLabel));
         $I->comment($I->grabTextFrom(CabinetPage::$TabTariffFieldAdminLink));
         $I->comment($I->grabTextFrom(CabinetPage::$TabTariffFieldCapacityLabel));

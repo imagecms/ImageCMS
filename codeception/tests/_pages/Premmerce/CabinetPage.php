@@ -100,7 +100,7 @@ class CabinetPage {
     /*                              ТАРИФИ                                    */
     /*------------------------------------------------------------------------*/
     
-    public static $TabTariff = '//ul[@class="nav nav-vertical nav-sidebar"]/li[7]';
+    public static $TabTariff = '//ul[@class="nav nav-vertical nav-sidebar"]/li[6]';
     
     //                              ПОЛЯ
     
