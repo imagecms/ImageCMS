@@ -9,8 +9,8 @@ class SaasUserPageCest
    private $store_url = 'populationnationn.premme.com';
 //   private $store_url = 'message.premme.com.ua';
 
-   private $store_name = 'wenationn';
-   private $user_email = 'emmerce.test@test.com';
+   private $store_name = 'populationnationn';
+   private $user_email = 'premme.test@test.com';
    private $user_password = '98765431';
    private $user_name = 'Bazooka Band Powerviolence Go';
    private $user_phone = '11144226677788';
@@ -34,19 +34,19 @@ class SaasUserPageCest
      * @guy PremmerceTester\PremmerceSteps 
      */
     public function CreateStore(PremmerceTester\PremmerceSteps $I){
-//        $I->CabinetLogin($user_email = $this->user_email, $user_password = $this->user_password);
-        $I->amOnPage(MainPage::$URL);
-        $I->click(MainPage::$ButtonCreateStore);
-        $I->createStore($store_name         = $this->store_name,
-                        $user_email         = $this->user_email,
-                        $user_password      = $this->user_password,
-                        $country            = NULL,
-                        $user_name          = $this->user_name,
-                        $user_phone         = $this->user_phone,
-                        $user_city          = $this->user_city,
-                        $product_category   = '3',
-                        $product_level      = '2');
-        $I->wait(20);
+        $I->loginCabinet($user_email = $this->user_email, $user_password = $this->user_password);
+//        $I->amOnPage(MainPage::$URL);
+//        $I->click(MainPage::$ButtonCreateStore);
+//        $I->createStore($store_name         = $this->store_name,
+//                        $user_email         = $this->user_email,
+//                        $user_password      = $this->user_password,
+//                        $country            = NULL,
+//                        $user_name          = $this->user_name,
+//                        $user_phone         = $this->user_phone,
+//                        $user_city          = $this->user_city,
+//                        $product_category   = '3',
+//                        $product_level      = '2');
+//        $I->wait(20);
         $I->wait(1);
         $I->seeInCurrentUrl('/saas/profile');
         $I->see($this->store_name, CabinetPage::$TabMainFieldSiteLink);
@@ -59,16 +59,30 @@ class SaasUserPageCest
         $I->seeInField(CabinetPage::$TabProfileInputEmail, $this->user_email);        
         $I->wait(3);
         $I->click(CabinetPage::$HeadButtonShop);
+        $$I->executeInSelenium(function (\Webdriver $webdriver) {
+            $handles = $webdriver->getWindowHandles();
+            $last_window = end($handles);
+            $webdriver->switchTo()->window($last_window);
+        });
+        $I->wait('6');
+        $I->waitForElement(".//*[@id='inputString']");
+        $I->seeInTitle('ImageCMS DemoShop');
+//        $I->wait(10);
+////        $I->seeInCurrentUrl($this->store_url);
+//        $I->switchToWindow('ImageCMS DemoShop');
+//        $I->amOnPage('populationnationn.premme.com');
         $I->wait(3);
-        $I->seeInCurrentUrl($this->store_url);
-        $I->wait(3);
-        $I->see('PREMMERCE', '//body/div[1]/div[1]/header/div[2]/div/span/img');
-        $I->wait(3);
-        $I->amOnPage('/saas/profile');
-        $I->wait(3);
-        $I->click(CabinetPage::$HeadButtonAdmin);
-        $I->wait(3);
-        $I->logoutCabinet();
+        $I->see('.btn-bask>button');
+////        $I->wait(3);
+//        $I->amOnPage('populationnationn.premme.com');
+//        $I->wait(3);
+//        $I->seeElement('');
+//        $I->click(CabinetPage::$HeadButtonAdmin);
+//        $I->wait(3);
+//        $I->seeInCurrentUrl('/admin/components/run/shop/orders/index');
+//        $I->amOnPage('/saas/profile');
+//        $I->amOnPage('/saas/profile');
+//        $I->logoutCabinet();
     }
     
 

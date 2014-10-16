@@ -8,7 +8,7 @@ class CabinetPage {
     public static $HeadButtonProfile = '//body/div[1]/header/div/ul/li[1]/button';
     public static $HeadButtonProfileUserData = '//body/ul/li[1]/a';
     public static $HeadButtonProfileExit = '//body/ul/li[2]/a';
-    public static $HeadButtonShop = '//body/div[1]/header/div/ul/li[2]/a';
+    public static $HeadButtonShop = '.btn-shop.btn';
     public static $HeadButtonAdmin = '//header/div/ul/li[4]/a';
     //--- Зелене вікно оплаченого магазу
     public static $HeadLinkBalans = '//body/div[1]/header/div/div[2]/a';
