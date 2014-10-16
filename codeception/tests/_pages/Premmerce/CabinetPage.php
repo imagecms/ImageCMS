@@ -30,9 +30,9 @@ class CabinetPage {
     public static $TabMainFieldAdminLabel = '//table/tbody/tr[2]/th';
     public static $TabMainFieldAdminLink = '//table/tbody/tr[2]/td/a';
     public static $TabMainFieldAdminText = '//table/tbody/tr[2]/td/div';
-    public static $TabMainFieldTarifLabel = '//table/tbody/tr[3]/th';
-    public static $TabMainFieldTarifNameText = '//table/tbody/tr[3]/td[1]';
-    public static $TabMainFieldTarifButtonChange = '//table/tbody/tr[3]/td[2]/a';
+    public static $TabMainFieldTariffLabel = '//table/tbody/tr[3]/th';
+    public static $TabMainFieldTariffNameText = '//table/tbody/tr[3]/td[1]';
+    public static $TabMainFieldTariffButtonChange = '//table/tbody/tr[3]/td[2]/a';
     public static $TabMainFieldCostLabel = '//table/tbody/tr[4]/th';
     public static $TabMainFieldCostPrice = '//table/tbody/tr[4]/td';
     public static $TabMainFieldFillingLabel = '//table/tbody/tr[5]/th';
