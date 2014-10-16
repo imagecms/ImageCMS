@@ -105,22 +105,29 @@ class CabinetPage {
     //                              ПОЛЯ
     
     public static $TabTariffField = '';
-    public static $TabTariffFieldSite = '';
-    public static $TabTariffFieldSiteLabel = '';
-    public static $TabTariffFieldSiteLink = '';
-    public static $TabTariffFieldAdmin = '';
-    public static $TabTariffFieldAdminLink = '';
-    public static $TabTariffFieldAdminLabel = '';
-    public static $TabTariffFieldTriffText = '';
-    public static $TabTariffFieldTriffLabel = '';
-    public static $TabTariffFieldPriceText = '';
-    public static $TabTariffFieldPriceLabel = '';
-    public static $TabTariffFieldContentText = '';
-    public static $TabTariffFieldContentLabel = '';
-    public static $TabTariffFieldCapacityText = '';
-    public static $TabTariffFieldCapacityLabel = '';
-    public static $TabTariffFieldPayedText = '';
-    public static $TabTariffFieldPayedLabel = '';
+
+    public static $TabTariffFieldSiteLabel = '//div[@class="content content-main-page"]/div[1]//li[1]//tr[1]//th';
+    public static $TabTariffFieldSiteLink  = '//div[@class="content content-main-page"]/div[1]//li[1]//tr[1]//a';
+    
+    public static $TabTariffFieldAdminLabel = '//div[@class="content content-main-page"]/div[1]//li[1]//tr[2]//th';
+    public static $TabTariffFieldAdminLink  = '//div[@class="content content-main-page"]/div[1]//li[1]//tr[2]//a';
+    
+    public static $TabTariffFieldTariffLabel = '//div[@class="content content-main-page"]/div[1]//li[1]//tr[3]//th';
+    public static $TabTariffFieldTariffText  = '//div[@class="content content-main-page"]/div[1]//li[1]//tr[3]//td';
+    
+    public static $TabTariffFieldPriceLabel = '//div[@class="content content-main-page"]/div[1]//li[1]//tr[4]//th';
+    public static $TabTariffFieldPriceText  = '//div[@class="content content-main-page"]/div[1]//li[1]//tr[4]//td';
+    
+    public static $TabTariffFieldContentLabel   = '//div[@class="content content-main-page"]/div[1]//li[2]//tr[1]//th';
+    public static $TabTariffFieldContentText    = '//div[@class="content content-main-page"]/div[1]//li[2]//tr[1]//td';
+    
+    public static $TabTariffFieldCapacityLabel  = '//div[@class="content content-main-page"]/div[1]//li[2]//tr[2]//th';
+    public static $TabTariffFieldCapacityText   = '//div[@class="content content-main-page"]/div[1]//li[2]//tr[2]//td';
+    
+    public static $TabTariffFieldPayedLabel     = '//div[@class="content content-main-page"]/div[1]//li[2]//tr[3]//th';
+    public static $TabTariffFieldPayedText      = '//div[@class="content content-main-page"]/div[1]//li[2]//tr[3]//td/span';
+    
+    
     //                              ТАБЛИЦЯ
     public static $TabTariffTable = '';
     public static $TabTariffTableHeadFree = '';
