@@ -6,26 +6,27 @@ class SaasUserPageCest
 
 
 {
-   private $store_url = 'populationnationn.premme.com';
-//   private $store_url = 'message.premme.com.ua';
+   private $Store_Url = 'populationnationn.premme.com';
+   private $Cabinet_Url = '/saas/profile';
 
-   private $store_name = 'populationnationn';
-   private $user_email = 'premme.test@test.com';
-   private $user_password = '98765431';
-   private $user_name = 'Bazooka Band Powerviolence Go';
-   private $user_phone = '11144226677788';
-   private $user_city = 'Львів Сіті Сінь Пянь';
+
+   private $Store_Name = 'populationnationn';
+   private $User_Email = 'premme.test@test.com';
+   private $User_Password = '98765431';
+   private $User_Name = 'Bazooka Band Powerviolence Go';
+   private $User_Phone = '11144226677788';
+   private $User_City = 'Львів Сіті Сінь Пянь';
 
 
    
-   private $tarif_free = 'Free';
-   private $tarif_basic = 'Basic';
-   private $tarif_standart = 'Standart';
-   private $tarif_business = 'Business';
-   private $tarif_premium = 'Premium';
+   private $Tarif_Free = 'Free';
+   private $Tarif_Basic = 'Basic';
+   private $Tarif_Standart = 'Standart';
+   private $Tarif_Business = 'Business';
+   private $Tarif_Premium = 'Premium';
    
    
-   private $name_status = 'TEST';
+   private $Name_Status = 'TEST';
    
    
    
@@ -34,7 +35,7 @@ class SaasUserPageCest
      * @guy PremmerceTester\PremmerceSteps 
      */
     public function CreateStore(PremmerceTester\PremmerceSteps $I){
-        $I->loginCabinet($user_email = $this->user_email, $user_password = $this->user_password);
+        $I->loginCabinet($user_email = $this->User_Email, $user_password = $this->User_Password);
 //        $I->amOnPage(MainPage::$URL);
 //        $I->click(MainPage::$ButtonCreateStore);
 //        $I->createStore($store_name         = $this->store_name,
@@ -48,40 +49,35 @@ class SaasUserPageCest
 //                        $product_level      = '2');
 //        $I->wait(20);
         $I->wait(1);
-        $I->seeInCurrentUrl('/saas/profile');
-        $I->see($this->store_name, CabinetPage::$TabMainFieldSiteLink);
-        $I->see($this->store_name, CabinetPage::$TabMainFieldAdminLink);
+        $I->seeInCurrentUrl($this->Cabinet_Url);
+        $I->see($this->Store_Name, CabinetPage::$TabMainFieldSiteLink);
+        $I->see($this->Store_Name, CabinetPage::$TabMainFieldAdminLink);
         $I->click(CabinetPage::$TabProfile);
         $I->wait(1);
-        $I->seeInField(CabinetPage::$TabProfileInputdName, $this->user_name);
-        $I->seeInField(CabinetPage::$TabProfileInputPhone, $this->user_phone);
-        $I->seeInField(CabinetPage::$TabProfileInputCity, $this->user_city);
-        $I->seeInField(CabinetPage::$TabProfileInputEmail, $this->user_email);        
+        $I->seeInField(CabinetPage::$TabProfileInputdName, $this->User_Name);
+        $I->seeInField(CabinetPage::$TabProfileInputPhone, $this->User_Phone);
+        $I->seeInField(CabinetPage::$TabProfileInputCity, $this->User_City);
+        $I->seeInField(CabinetPage::$TabProfileInputEmail, $this->User_Email);        
         $I->wait(3);
-        $I->click(CabinetPage::$HeadButtonShop);
-        $$I->executeInSelenium(function (\Webdriver $webdriver) {
-            $handles = $webdriver->getWindowHandles();
-            $last_window = end($handles);
-            $webdriver->switchTo()->window($last_window);
-        });
-        $I->wait('6');
-        $I->waitForElement(".//*[@id='inputString']");
-        $I->seeInTitle('ImageCMS DemoShop');
-//        $I->wait(10);
-////        $I->seeInCurrentUrl($this->store_url);
-//        $I->switchToWindow('ImageCMS DemoShop');
-//        $I->amOnPage('populationnationn.premme.com');
-        $I->wait(3);
-        $I->see('.btn-bask>button');
-////        $I->wait(3);
-//        $I->amOnPage('populationnationn.premme.com');
-//        $I->wait(3);
-//        $I->seeElement('');
+//        $I->click(CabinetPage::$HeadButtonShop);
+//        $I->executeInSelenium(function (\Webdriver $Webdriver) {
+//            $Handles = $Webdriver->getWindowHandles();
+//            $Last_Window = end($Handles);
+//            $Webdriver->switchTo()->window($Last_Window);
+//        });
+//        $I->wait('6');
+//        $I->waitForElement(".//*[@id='inputString']");
+//        $I->seeInTitle('ImageCMS DemoShop');
+//        $I->seeElement('.logo>img');
+//        $I->amOnPage($this->Cabinet_Url);
+//        $I->wait(1);
 //        $I->click(CabinetPage::$HeadButtonAdmin);
-//        $I->wait(3);
-//        $I->seeInCurrentUrl('/admin/components/run/shop/orders/index');
-//        $I->amOnPage('/saas/profile');
-//        $I->amOnPage('/saas/profile');
+//        $I->executeInSelenium(function (\Webdriver $Webdriver) {
+//            $Handles = $Webdriver->getWindowHandles();
+//            $Last_Window = end($Handles);
+//            $Webdriver->switchTo()->window($Last_Window);
+//        });
+//        $I->seeElement('');
 //        $I->logoutCabinet();
     }
     
@@ -89,22 +85,21 @@ class SaasUserPageCest
     
     
     /**
-     * @group a
+     * @group q
      * @guy PremmerceTester\PremmerceSteps 
      */
     public function CheckSaas(PremmerceTester\PremmerceSteps $I){
         $I->login($user_email = USER_EMAIL, $user_password = USER_PASSWORD);
-//        $I->ogin($admin_email = 'ad@min.com', $admin_password = 'admin');
         $I->click(SaasGeneralPage::$Modules);
         $I->wait(1);
         $I->click(SaasGeneralPage::$ModulSaas);
         $I->wait(1);
-        $I->click(Saas::$ModulSaasTabUser);
+        $I->click(SaasGeneralPage::$ModulSaasTabUser);
         $I->wait(1);
         $I->click(SaasUserListPage::$FilterDomainLabel);
-        $I->fillField(SaasUserListPage::$FilterDomainInput, $this->store_name);
+        $I->fillField(SaasUserListPage::$FilterDomainInput, $this->Store_Name);
         $I->click(SaasUserListPage::$FilterButtonFilter);
-        $I->see($this->store_name, SaasUserListPage::lineDomainLink(1));
+        $I->see($this->Store_Name, SaasUserListPage::lineDomainLink(1));
         $I->click(SaasUserListPage::lineActionlink(1));
         $I->click(SaasUserListPage::ButtonDisable(1));
         $I->wait(12);
