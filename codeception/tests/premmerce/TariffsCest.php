@@ -29,19 +29,19 @@ class TariffsCest {
      * @guy PremmerceTester\PremmerceSteps
      */
     public function checkFree(PremmerceTester\PremmerceSteps $I) {
-//        $jonny = $I->haveFriend('Jonny', 'PremmerceTester\PremmerceSteps');
-//        $jonny->does(function(PremmerceTester\PremmerceSteps $I) {
-//            $I->maximizeWindow();
-//            $this->changeTarif($I, $this->tariffs[0]);
-//            $I->resizeWindow(1, 1);
-//            $I->acceptPopup();
-//        });
+
+        $this->actualTariff = $this->tariffs[0];
+        $this->changeTarif($I);
+
         $I->amOnPage(MainPage::$URL);
         $I->loginCabinet($this->email, $this->password);
-        $I->click(CabinetPage::$TabTariff);
         $I->wait(3);
-//        $actual_tarif = $I->grabTextFrom(CabinetPage::$TabTariffFieldTariffText);
-//        $I->assertEquals(preg_replace('/\s.*/', '', $this->tariffs[0]), $actual_tarif);
+        $I->amOnPage('/saas/tariffs');
+        $I->wait(3);
+//        $I->click(CabinetPage::$TabTariff);
+//        $I->wait(3);
+        $cabinet_actual_tarif = $I->grabTextFrom(CabinetPage::$TabTariffFieldTariffText);
+        $I->assertEquals(preg_replace('/\s.*/', '', $this->actualTariff), $cabinet_actual_tarif);
     }
 
     /**
@@ -50,21 +50,23 @@ class TariffsCest {
     public function checkBasic(PremmerceTester\PremmerceSteps $I) {
         $this->actualTariff = $this->tariffs[1];
         $this->changeTarif($I);
-
-
         $I->reloadPage();
-        $I->wait(3);
-        $actual_tarif = $I->grabTextFrom(CabinetPage::$TabTariffFieldTariffText);
-        $I->assertEquals(preg_replace('/\s.*/', '', $this->tariffs[1]), $actual_tarif);
+//        $I->wait(3);
+        $cabinet_actual_tarif = $I->grabTextFrom(CabinetPage::$TabTariffFieldTariffText);
+        $I->assertEquals(preg_replace('/\s.*/', '', $this->actualTariff), $cabinet_actual_tarif);
     }
 
     /*                        PROTECTED                                       */
 
+    
+    /**
+     * create new tester(new session in another window) 
+     * which change tarif to [protected : $actualTariff] in Saas Admin Panel
+     */
     protected function changeTarif(PremmerceTester $I) {
         $jonny = $I->haveFriend('Jonny', 'PremmerceTester\PremmerceSteps');
         $jonny->does(function(PremmerceTester\PremmerceSteps $I) {
             $I->maximizeWindow();
-
 
             $I->login();
             $I->amOnPage(SaasUserListPage::$URL);
@@ -73,10 +75,9 @@ class TariffsCest {
             $I->click(SaasUserListPage::$FilterButtonFilter);
             $I->click(SaasUserListPage::lineActionlink(1));
             $I->selectOption(SaasUserListPage::SelectTariff(1), $this->actualTariff);
+            $I->wait(3);
 //            $I->acceptPopup();
-
-
-//            $I->resizeWindow(1, 1);
+            $I->resizeWindow(1, 1);
         });
     }
 
