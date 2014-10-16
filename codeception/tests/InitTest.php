@@ -68,7 +68,7 @@ class InitTest {
             $I->waitForElement('/html/body/div[1]/div/div[1]/nav/ul/li[1]/a/span[2]');
             $I->click(PremmerceCabinetPage::$ProfileButton);
             $I->click(PremmerceCabinetPage::$ExitButton);
-            $I->seeInCurrentUrl(PremmerceMainPage::$URL);            
+            $I->seeInCurrentUrl(PremmerceMainPage::$URL);
         } 
     }
     

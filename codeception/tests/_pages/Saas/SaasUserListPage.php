@@ -3,16 +3,7 @@
 class SaasUserListPage
 
 {
-    //----  Navigation Page Bar
-    
-    public static $NavigationModules = "//body/div[1]/div[3]/div/nav/ul/li[6]/a";
-    public static $NavigationModulSaas = "//body/div[1]/div[3]/div/nav/ul/li[6]/ul/li[2]/a";
-    public static $NavigationModulSaasTabUser = "//body/div[1]/div[5]/section/div/div[1]/ul/li[2]/a";
-    
-    
-    
-    
-    //---  Сторінка " Список користувачів і їх баланси saas"
+     
     
     public static $URL = '/admin/components/run/saas/users/lists';
     public static $Title = '//body/div[1]/div[5]/div[3]/section/div[1]/div[1]/span[2]';
@@ -20,9 +11,32 @@ class SaasUserListPage
     public static $ButtonChancheData = '//section/div[1]/div[2]/div/button';
     public static $ButtonStatuses = '//section/div[1]/div[2]/div/a[2]/span';
     public static $ButtonDepartments = '//section/div[1]/div[2]/div/a[3]';
-
-
     
+    
+    //--- Вікно Зміни даних ---- Вікно Зміни даних ----Вікно Зміни даних --/
+    
+    public static $WindowChancheData = '//body/div[1]/div[5]/div[3]';
+    public static $WindowChancheDataTitle = '//body/div[1]/div[5]/div[3]/div[1]/h3';
+    public static $WindowChancheDataButtonClose = '//body/div[1]/div[5]/div[3]/div[1]/button';
+    public static $WindowChancheDataButtonBack = '//body/div[1]/div[5]/div[3]/div[3]/a[2]';
+    public static $WindowChancheDataButtonChange = '//body/div[1]/div[5]/div[3]/div[3]/a[1]';
+    public static $WindowChancheDataSelectStatus = '//body/div[1]/div[5]/div[3]/div[2]/select[1]';
+    public static $WindowChancheDataSelectStatusLabel = '//body/div[1]/div[5]/div[3]/div[2]/b[1]';
+    public static $WindowChancheDataSelectManager = '//body/div[1]/div[5]/div[3]/div[2]/select[2]';
+    public static $WindowChancheDataSelectManagerLabel = '//body/div[1]/div[5]/div[3]/div[2]/b[2]';
+    public static $WindowChancheDataSelectDepartmens = '//body/div[1]/div[5]/div[3]/div[2]/select[3]';
+    public static $WindowChancheDataSelectDepartmensLabel = '//body/div[1]/div[5]/div[3]/div[2]/b[3]';
+    public static function WindowChancheDataSelectStatusOption ($number){
+        return "//body/div[1]/div[5]/div[3]/div[2]/select[1]/option[$number]";
+    }
+    public static function WindowChancheDataSelectManagerOption ($number){
+        return "//body/div[1]/div[5]/div[3]/div[2]/select[2]/option[$number]";
+    }
+    public static function WindowChancheDataSelectDepartmensOption ($number){
+        return "//body/div[1]/div[5]/div[3]/div[2]/select[3]/option[$number]";
+    }
+    
+   
     
     
     //---- Head ------- Head ------- Head ------- Head ------- Head ------- Head ---
@@ -30,7 +44,7 @@ class SaasUserListPage
     public static $HeadCheckBox = '//section/div[2]/div/div[1]/table/thead/tr/th[1]/span/span';
     public static $HeadID = '//section/div[2]/div/div[1]/table/thead/tr/th[2]';
     public static $HeadName = '//section/div[2]/div/div[1]/table/thead/tr/th[3]';
-    public static $HeadAdress = '//section/div[2]/div/div[1]/table/thead/tr/th[4]';
+    public static $HeadEmail = '//section/div[2]/div/div[1]/table/thead/tr/th[4]';
     public static $HeadPhone = '//section/div[2]/div/div[1]/table/thead/tr/th[5]';
     public static $HeadDomain = '//section/div[2]/div/div[1]/table/thead/tr/th[6]';
     public static $HeadStatuse = '//section/div[2]/div/div[1]/table/thead/tr/th[7]';
@@ -61,53 +75,67 @@ class SaasUserListPage
     public static $FilterNameInput = '//section/div[2]/div/div[2]/form/div/ul/li[4]/input';
     public static $FilterEmailLabel = '//section/div[2]/div/div[2]/form/div/ul/li[5]/label/span';
     public static $FilterEmailInput = '//section/div[2]/div/div[2]/form/div/ul/li[5]/input';
-    public static $FilterPhysYurLabel = '//section/div[2]/div/div[2]/form/div/ul/li[6]/label/span';
-    public static function FilterPhysYurSelectOption ($number){
+    public static $FilterCountryLabel = '//section/div[2]/div/div[2]/form/div/ul/li[6]/label/span';
+    public static $FilterCountrySelect = '//section/div[2]/div/div[2]/form/div/ul/li[6]/select/option';
+    public static function FilterCountrySelectOption ($number){
         return "//section/div[2]/div/div[2]/form/div/ul/li[6]/select/option[$number]";
     }
-    public static $FilterCountryLabel = '//section/div[2]/div/div[2]/form/div/ul/li[7]/label/span';
-    public static function FilterCountrySelectOption ($number){
-        return "//section/div[2]/div/div[2]/form/div/ul/li[7]/select/option[$number]";
-    }
-    public static $FilterCityLabel = '//section/div[2]/div/div[2]/form/div/ul/li[8]/label/span';
-    public static $FilterCityInput = '//section/div[2]/div/div[2]/form/div/ul/li[8]/input';
-    public static $FilterTarifLabel = '//section/div[2]/div/div[2]/form/div/ul/li[9]/label/span';
+    public static $FilterCityLabel = '//section/div[2]/div/div[2]/form/div/ul/li[7]/label/span';
+    public static $FilterCityInput = '//section/div[2]/div/div[2]/form/div/ul/li[7]/input';
+    public static $FilterTarifLabel = '//section/div[2]/div/div[2]/form/div/ul/li[8]/label/span';
+    public static $FilterTarifSelect = '//section/div[2]/div/div[2]/form/div/ul/li[8]/select';
     public static function FilterTarifSelectOption ($number){
+        return "//section/div[2]/div/div[2]/form/div/ul/li[8]/select/option[$number]";
+    }
+    public static $FilterLevelLabel = '//section/div[2]/div/div[2]/form/div/ul/li[9]/label/span';
+    public static $FilterLevelSelect = '//section/div[2]/div/div[2]/form/div/ul/li[9]/select';
+    public static function FilterLevelSelectOption ($number){
         return "//section/div[2]/div/div[2]/form/div/ul/li[9]/select/option[$number]";
     }
-    public static $FilterLevelLabel = '//section/div[2]/div/div[2]/form/div/ul/li[10]/label/span';
-    public static function FilterLevelSelectOption ($number){
+    
+    public static $FilterCategoryLabel = '//section/div[2]/div/div[2]/form/div/ul/li[10]/label/span';
+    public static $FilterCategorySelect = '//section/div[2]/div/div[2]/form/div/ul/li[10]/select';
+    public static function FilterCategorySelectOption ($number){
         return "//section/div[2]/div/div[2]/form/div/ul/li[10]/select/option[$number]";
     }
-    
-    public static $FilterCategoryLabel = '//section/div[2]/div/div[2]/form/div/ul/li[11]/label/span';
-    public static function FilterCategorySelectOption ($number){
-        return "//section/div[2]/div/div[2]/form/div/ul/li[11]/select/option[$number]";
-    }
-    public static $FilterAmountProducntLabel = '//section/div[2]/div/div[2]/form/div/ul/li[12]/label/span';
-    public static $FilterAmountProducntInputFrom = '//section/div[2]/div/div[2]/form/div/ul/li[12]/div/label/input[1]';
-    public static $FilterAmountProducntInputTo = '//section/div[2]/div/div[2]/form/div/ul/li[12]/div/label/input[2]';
-    public static $FilterDiskLimitLabel = '//section/div[2]/div/div[2]/form/div/ul/li[13]/label/span';
-    public static $FilterDiskLimitInputFrom = 'html/body/div[1]/div[5]/div[3]/section/div[2]/div/div[2]/form/div/ul/li[13]/div/label/input[1]';
-    public static $FilterDiskLimitInputTo = 'html/body/div[1]/div[5]/div[3]/section/div[2]/div/div[2]/form/div/ul/li[13]/div/label/input[2]';
-    public static $FilterBalansLabel = '//section/div[2]/div/div[2]/form/div/ul/li[14]/label/span';
-    public static $FilterBalansInputFrom = '//section/div[2]/div/div[2]/form/div/ul/li[14]/div/label/input[1]';
-    public static $FilterBalansInputTo = '//section/div[2]/div/div[2]/form/div/ul/li[14]/div/label/input[2]';
-    public static $FilterManagerLabel = '//section/div[2]/div/div[2]/form/div/ul/li[15]/label/span';
+    public static $FilterAmountProducntLabel = '//section/div[2]/div/div[2]/form/div/ul/li[11]/label/span';
+    public static $FilterAmountProducntInputFrom = '//section/div[2]/div/div[2]/form/div/ul/li[11]/div/label/input[1]';
+    public static $FilterAmountProducntInputTo = '//section/div[2]/div/div[2]/form/div/ul/li[11]/div/label/input[2]';
+    public static $FilterDiskLimitLabel = '//section/div[2]/div/div[2]/form/div/ul/li[12]/label/span';
+    public static $FilterDiskLimitInputFrom = '//section/div[2]/div/div[2]/form/div/ul/li[12]/div/label/input[1]';
+    public static $FilterDiskLimitInputTo = '//section/div[2]/div/div[2]/form/div/ul/li[12]/div/label/input[2]';
+    public static $FilterBalansLabel = '//section/div[2]/div/div[2]/form/div/ul/li[13]/label/span';
+    public static $FilterBalansInputFrom = '//section/div[2]/div/div[2]/form/div/ul/li[13]/div/label/input[1]';
+    public static $FilterBalansInputTo = '//section/div[2]/div/div[2]/form/div/ul/li[13]/div/label/input[2]';
+    public static $FilterManagerLabel = '//section/div[2]/div/div[2]/form/div/ul/li[14]/label/span';
+    public static $FilterManagerSelect = '//section/div[2]/div/div[2]/form/div/ul/li[14]/select';
     public static function FilterManagerSelectOption ($number){
-        return "//section/div[2]/div/div[2]/form/div/ul/li[11]/select/option[$number]";
+        return "//section/div[2]/div/div[2]/form/div/ul/li[14]/select/option[$number]";
     }
-    public static $FilterDomainEndLabel = '//section/div[2]/div/div[2]/form/div/ul/li[16]/label/span';
+    public static $FilterDomainEndLabel = '//section/div[2]/div/div[2]/form/div/ul/li[15]/label/span';
+    public static $FilterDomainEnSelect = '//section/div[2]/div/div[2]/form/div/ul/li[15]/select';
     public static function FilterDomainEndSelectOption ($number){
+        return "//section/div[2]/div/div[2]/form/div/ul/li[15]/select/option[$number]";
+    }
+    public static $FilterActivatedByEmailLabel = '//section/div[2]/div/div[2]/form/div/ul/li[16]/label/span';
+    public static $FilterActivatedByEmailSelect = '//section/div[2]/div/div[2]/form/div/ul/li[16]/select';
+    public static function FilterActivatedByEmailSelectOption ($number){
         return "//section/div[2]/div/div[2]/form/div/ul/li[16]/select/option[$number]";
     }
-    public static $FilterActivatedByEmailLabel = '//section/div[2]/div/div[2]/form/div/ul/li[17]/label/span';
-    public static function FilterActivatedByEmailSelectOption ($number){
+    public static $FilterFillProductsLabel = '//section/div[2]/div/div[2]/form/div/ul/li[17]/label/span';
+    public static $FilterFillProductsSelect = '//section/div[2]/div/div[2]/form/div/ul/li[17]/select';
+    public static function FilterFillProductsSelectOption ($number){
         return "//section/div[2]/div/div[2]/form/div/ul/li[17]/select/option[$number]";
     }
-    public static $FilterFillProducts = '//section/div[2]/div/div[2]/form/div/ul/li[18]/label/span';
-    public static function FilterFillProductsSelectOption ($number){
+    public static $FilterStatusesLabel = '//section/div[2]/div/div[2]/form/div/ul/li[18]/label/span';
+    public static $FilterStatusesSelect = '//section/div[2]/div/div[2]/form/div/ul/li[18]/select';
+    public static function FilterStatusesSelectOption ($number){
         return "//section/div[2]/div/div[2]/form/div/ul/li[18]/select/option[$number]";
+    }
+    public static $FilterDepartmentsLabel = '//section/div[2]/div/div[2]/form/div/ul/li[19]/label/span';
+    public static $FilterDepartmentsSelect = '//section/div[2]/div/div[2]/form/div/ul/li[19]/select';
+    public static function FilterDepartmentsSelectOption ($number){
+        return "//section/div[2]/div/div[2]/form/div/ul/li[19]/select/option[$number]";
     }
     public static $FilterButtonFilter = '//section/div[2]/div/div[2]/form/div/input';
     public static $FilterButtonCancel = '//section/div[2]/div/div[2]/form/div/a';
@@ -116,7 +144,7 @@ class SaasUserListPage
     
 
     
-    //---- рядки таблиці
+    //---- Рядки таблиці
    
     public static function lineCheckBox($row)               { return "//section/div[2]/div/div[1]/table/tbody/tr[$row]/td[1]/span/span"; }
     public static function lineIDText($row)                 { return "//section/div[2]/div/div[1]/table/tbody/tr[$row]/td[2]/p"; }
@@ -139,7 +167,7 @@ class SaasUserListPage
     
     
     
-     //----- кнопки, селекти, поля - таблиці.                                
+     //-----Силка Список Дій: кнопки, селекти, поля.                                
     
     public static function ButtonAddModule ($row)           { return "//section/div[2]/div/div[1]/table/tbody/tr[$row]/td[16]/div/div[1]/a"; }
     public static function ButtonRemoveModule ($row)        { return "//section/div[2]/div/div[1]/table/tbody/tr[$row]/td[16]/div/div[2]/a"; }
@@ -156,7 +184,7 @@ class SaasUserListPage
     public static function SelectTarif ($row, $number){
         return "//section/div[2]/div/div[1]/table/tbody/tr[$row]/td[16]/div/div[7]/select/option[$number]";
     }
-    public static function FieldAmountPoints ($row)         { return "//section/div[2]/div/div[1]/table/tbody/tr[$row]/td[16]/div/div[8]/input"; }
+    public static function InputAmountPoints ($row)         { return "//section/div[2]/div/div[1]/table/tbody/tr[$row]/td[16]/div/div[8]/input"; }
     public static function SelectStatuses ($row, $number){
         return "//section/div[2]/div/div[1]/table/tbody/tr[$row]/td[16]/div/div[9]/select/option[$number]";
     }    
@@ -182,7 +210,7 @@ class SaasUserListPage
     
     
   
-    // вікно Видалити Модуль
+        //------ вікно Видалити Модуль
 
     public static $WindowRemoveModule = '#delModuleModal';
     public static $WindowRemoveModuleTitle = '//body/div[1]/div[5]/div[2]/div[1]/h3';
