@@ -86,6 +86,31 @@ class SaasUserPageCest
 //        $I->logoutCabinet();
     }
     
+    /**
+     * @group qo
+     * @guy PremmerceTester\PremmerceSteps 
+     */
+    public function CreateSaasStatus(PremmerceTester\PremmerceSteps $I){
+        $I->login($user_email = USER_EMAIL, $user_password = USER_PASSWORD);
+        $I->amOnPage('/admin/settings#setings');
+        $I->wait(2);
+        $I->selectOption('#textEditor', 'Native textarea');
+        $I->click('.btn.btn-small.btn-primary.action_on.formSubmit');
+        $I->wait('3');
+        $I->amOnPage(SaasUserListPage::$URL);
+        $I->wait(1);
+        $I->click(SaasUserListPage::$ButtonStatuses);
+        $I->wait(1);
+        $I->click(SaasStatusesPage::$ListButtonCreate);
+        $I->wait(1);
+        $I->fillField(SaasStatusesPage::$CreateInputName, 'Test Saas');
+        $I->wait(1);
+        $I->fillField(SaasStatusesPage::$CreateInputDescription, 'Jira PRMS-16 Admin page for Managers. Tests');
+        $I->click(SaasStatusesPage::$CreateButtonSave);
+        
+
+    }
+    
     
     
     /**
@@ -99,6 +124,7 @@ class SaasUserPageCest
         $I->wait(1);
         $Get_Name_Country = $I->grabTextFrom(CabinetPage::$TabProfileSelectCountry);
         $this->Cabinet_Name_Country = $Get_Name_Country;
+        $I->logoutCabinet();
     }
     
     
@@ -135,10 +161,11 @@ class SaasUserPageCest
         $I->comment("$Get_Amount_Product");
         $this->Cabinet_Amount_Product = $Get_Amount_Product;
         $I->wait(1);
+        $I->logoutCabinet();
     }
     
     /**
-     * @group qa
+     * @group qaa
      * @guy PremmerceTester\PremmerceSteps 
      */
     public function CetNameLevel(PremmerceTester\PremmerceSteps $I){
@@ -149,6 +176,7 @@ class SaasUserPageCest
         $Get_Name_level = $I->grabTextFrom(CabinetPage::$TabProfileSelectProduct);
         $I->comment("$Get_Name_level");
         $this->Cabinet_Level = $Get_Name_level;
+        $I->logoutCabinet();
     }
     
     /**
@@ -160,8 +188,11 @@ class SaasUserPageCest
         $I->wait(1);
         $I->click(CabinetPage::$TabProfile);
         $I->wait(1);
-        $Get_Name_Country = $I->grabTextFrom(CabinetPage::$TabProfileSelect);
-        $this->Cabinet_Name_Country = $Get_Name_Country;
+        $Get_Name_Category = $I->grabTextFrom(CabinetPage::$TabProfileSelectCategory);
+        $I->comment("$Get_Name_Category");        
+        $this->Cabinet_Category = $Get_Name_Category;
+        $I->logoutCabinet();
+
     }
     
     
@@ -364,7 +395,7 @@ class SaasUserPageCest
     
     
     /**
-     * @group q
+     * @group qaa
      * @guy PremmerceTester\PremmerceSteps
      */
     public function FilterLevel(PremmerceTester\PremmerceSteps $I){
@@ -374,8 +405,7 @@ class SaasUserPageCest
         $I->click(SaasUserListPage::$FilterEmailLabel);
         $I->fillField(SaasUserListPage::$FilterEmailInput, $this->User_Email);
         $I->click(SaasUserListPage::$FilterLevelLabel);
-        $I->click(SaasUserListPage::$FilterLevelSelect);
-        $I->click(SaasUserListPage::FilterLevelSelectOption(2));
+        $I->selectOption(SaasUserListPage::$FilterLevelSelect, $this->Cabinet_Level);
         $I->click(SaasUserListPage::$FilterButtonFilter);
         $I->see($this->User_Email, SaasUserListPage::lineEmailLink(1));
         $I->logoutSaas();
@@ -383,7 +413,7 @@ class SaasUserPageCest
     
     
     /**
-     * @group q
+     * @group qaa
      * @guy PremmerceTester\PremmerceSteps
      */
     public function FilterCategory(PremmerceTester\PremmerceSteps $I){
@@ -393,8 +423,7 @@ class SaasUserPageCest
         $I->click(SaasUserListPage::$FilterEmailLabel);
         $I->fillField(SaasUserListPage::$FilterEmailInput, $this->User_Email);
         $I->click(SaasUserListPage::$FilterCategoryLabel);
-        $I->click(SaasUserListPage::$FilterCategorySelect);
-        $I->click(SaasUserListPage::FilterCategorySelectOption(3));
+        $I->selectOption(SaasUserListPage::$FilterCategorySelect, $this->Cabinet_Category);
         $I->click(SaasUserListPage::$FilterButtonFilter);
         $I->see($this->User_Email, SaasUserListPage::lineEmailLink(1));
         $I->logoutSaas();
