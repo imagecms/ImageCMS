@@ -80,10 +80,10 @@ class SaasUserListPage {
 
     public static $FilterCityLabel = "//ul[@class='toggle']//li[7]/label";
     public static $FilterCityInput = "//ul[@class='toggle']//li[7]/input";
-    public static $FilterTarifLabel = "//ul[@class='toggle']//li[8]/label";
-    public static $FilterTarifSelect = "//ul[@class='toggle']//li[8]/select";
+    public static $FilterTariffLabel = "//ul[@class='toggle']//li[8]/label";
+    public static $FilterTariffSelect = "//ul[@class='toggle']//li[8]/select";
 
-    public static function FilterTarifSelectOption($number) {
+    public static function FilterTariffSelectOption($number) {
         return "//ul[@class='toggle']//li[8]/select/option[$number]";
     }
 
@@ -185,7 +185,7 @@ class SaasUserListPage {
         return "//section/div[2]/div/div[1]/table/tbody/tr[$row]/td[7]/p/a";
     }
 
-    public static function lineTarifText($row) {
+    public static function lineTariffText($row) {
         return "//section/div[2]/div/div[1]/table/tbody/tr[$row]/td[8]";
     }
 
