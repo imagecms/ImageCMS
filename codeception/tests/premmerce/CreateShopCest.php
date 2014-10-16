@@ -23,7 +23,7 @@ class CreateShopCest {
      * @guy PremmerceTester\PremmerceSteps
      */
     public function createShop(PremmerceTester\PremmerceSteps $I) {
-        $I->amOnPage('/');
+        $I->amOnPage('/saas/create_store');
         $I->createStore(STORE_NAME, USER_EMAIL, USER_PASSWORD);
         
         $this->_getCodeceptionYml();
