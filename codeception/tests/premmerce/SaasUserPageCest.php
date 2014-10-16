@@ -31,7 +31,7 @@ class SaasUserPageCest
    
    
     /**
-     * @group q
+     * @group a
      * @guy PremmerceTester\PremmerceSteps 
      */
     public function CreateStore(PremmerceTester\PremmerceSteps $I){
@@ -85,7 +85,7 @@ class SaasUserPageCest
     
     
     /**
-     * @group q
+     * @group a
      * @guy PremmerceTester\PremmerceSteps 
      */
     public function CheckSaas(PremmerceTester\PremmerceSteps $I){
@@ -114,18 +114,18 @@ class SaasUserPageCest
      * @guy PremmerceTester\PremmerceSteps
      */
     public function CheckOffCabinet (PremmerceTester\PremmerceSteps $I){
-        $I->loginCabinet($user_email = $this->user_email, $user_password = $this->user_password);
+        $I->loginCabinet($user_email = $this->User_Email, $user_password = $this->User_Password);
         $I->wait(4);
-        $I->seeInCurrentUrl('/saas/profile');
-        $I->see($this->store_name, CabinetPage::$TabMainFieldSiteLink);
-        $I->see($this->store_name, CabinetPage::$TabMainFieldAdminLink);
-        $I->see($this->tarif_standart, CabinetPage::$TabMainFieldTarifNameTarif);
+        $I->seeInCurrentUrl($this->Cabinet_Url);
+        $I->see($this->Store_Name, CabinetPage::$TabMainFieldSiteLink);
+        $I->see($this->Store_Name, CabinetPage::$TabMainFieldAdminLink);
+        $I->see($this->Tarif_Standart, CabinetPage::$TabMainFieldTarifNameText);
         $I->click(CabinetPage::$TabProfile);
         $I->wait(1);
-        $I->seeInField(CabinetPage::$TabProfileFieldName, $this->user_name);
-        $I->seeInField(CabinetPage::$TabProfileFieldPhone, $this->user_phone);
-        $I->seeInField(CabinetPage::$TabProfileFieldCity, $this->user_city);
-        $I->seeInField(CabinetPage::$TabProfileFieldEmail, $this->user_email);
+        $I->seeInField(CabinetPage::$TabProfileInputdName, $this->User_Name);
+        $I->seeInField(CabinetPage::$TabProfileInputPhone, $this->User_Phone);
+        $I->seeInField(CabinetPage::$TabProfileInputCity, $this->User_City);
+        $I->seeInField(CabinetPage::$TabProfileInputEmail, $this->User_Email);
         $I->logoutCabinet();
     }
     
@@ -139,16 +139,16 @@ class SaasUserPageCest
      * @guy PremmerceTester\PremmerceSteps
      */
     public function CheckOffSaas(PremmerceTester\PremmerceSteps $I){
-        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
+        $I->login($admin_email = USER_EMAIL, $admin_password = USER_PASSWORD);
         $I->amOnPage(SaasUserListPage::$URL);
         $I->wait(1);
         $I->click(SaasUserListPage::$FilterDomainLabel);
-        $I->fillField(SaasUserListPage::$FilterDomainInput, $this->store_name);
+        $I->fillField(SaasUserListPage::$FilterDomainInput, $this->Store_Name);
         $I->click(SaasUserListPage::$FilterActiveLabel);
         $I->click(SaasUserListPage::$FilterActiveSelect);
         $I->click(SaasUserListPage::FilterActiveSelectOption(2));
         $I->click(SaasUserListPage::$FilterButtonFilter);
-        $I->see($this->store_name, SaasUserListPage::lineDomainLink(1));
+        $I->see($this->Store_Name, SaasUserListPage::lineDomainLink(1));
         $I->click(SaasUserListPage::lineActionlink(1));
         $I->click(SaasUserListPage::ButtonDisable(1));
         $I->wait(12);
@@ -162,20 +162,19 @@ class SaasUserPageCest
      * @guy PremmerceTester\PremmerceSteps 
      */
     public function CheckOnCabinet (PremmerceTester\PremmerceSteps $I){
-        $I->CabinetLogin($user_email = $this->user_email, $user_password = $this->user_password);
+        $I->loginCabinet($user_email = $this->User_Email, $user_password = $this->User_Password);
         $I->wait(1);
         $I->seeInCurrentUrl('/saas/profile');
-        $I->see($this->store_name, CabinetPage::$TabMainFieldSiteLink);
-        $I->see($this->store_name, CabinetPage::$TabMainFieldAdminLink);
-        $I->see($this->tarif_standart, CabinetPage::$TabMainFieldTarifNameTarif);
-        $I->see($this->price_standart, CabinetPage::$TabMainFieldCostPrice);
+        $I->see($this->Store_Name, CabinetPage::$TabMainFieldSiteLink);
+        $I->see($this->Store_Name, CabinetPage::$TabMainFieldAdminLink);
+        $I->see($this->Tarif_Standart, CabinetPage::$TabMainFieldTarifNameText);
         $I->click(CabinetPage::$TabProfile);
         $I->wait(1);
-        $I->seeInField(PremmerceCabinetPage::$TabProfileFieldName, $this->user_name);
-        $I->seeInField(PremmerceCabinetPage::$TabProfileFieldPhone, $this->user_phone);
-        $I->seeInField(PremmerceCabinetPage::$TabProfileFieldCity, $this->user_city);
-        $I->seeInField(PremmerceCabinetPage::$TabProfileFieldEmail, $this->user_email);
-        $I->CabinetLogout();
+        $I->seeInField(CabinetPage::$TabProfileInputdName, $this->User_Name);
+        $I->seeInField(CabinetPage::$TabProfileInputPhone, $this->User_Phone);
+        $I->seeInField(CabinetPage::$TabProfileInputCity, $this->User_City);
+        $I->seeInField(CabinetPage::$TabProfileInputEmail, $this->User_Email);
+        $I->logoutCabinet();
     }
         
     
@@ -185,13 +184,13 @@ class SaasUserPageCest
      * @guy PremmerceTester\PremmerceSteps 
      */
     public function FilterPhone(PremmerceTester\PremmerceSteps $I){
-        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
+        $I->login($admin_email = USER_EMAIL, $admin_password = USER_PASSWORD);
         $I->amOnPage(SaasUserListPage::$URL);
         $I->wait(1);
         $I->click(SaasUserListPage::$FilterPhoneLabel);
-        $I->fillField(SaasUserListPage::$FilterPhoneInput, $this->user_phone);
+        $I->fillField(SaasUserListPage::$FilterPhoneInput, $this->User_Phone);
         $I->click(SaasUserListPage::$FilterButtonFilter);
-        $I->see($this->user_phone, SaasUserListPage::linePhoneText(1));
+        $I->see($this->User_Phone, SaasUserListPage::linePhoneText(1));
         $I->AdminLogout();
     } 
     
