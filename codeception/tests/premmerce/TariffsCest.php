@@ -4,7 +4,9 @@ use \PremmerceTester;
 
 /**
  * Для запуску тесту має бути створений магаз
- * 
+ *  	imageqatarifftest.premme.com
+ *      imageqa@tarrrif.test
+ *      imageqa
  * 
  * Перейти на free > basic > standart > bussiness > premium
  * змінити в адмінці
@@ -16,11 +18,18 @@ use \PremmerceTester;
  * Перейти на basik тариф
  */
 class TariffsCest {
+    private $url        = 'http://imageqatarifftest.premme.com';
+    private $email      = 'imageqa@tarrrif.test';
+    private $password   = 'imageqa';
+    
 
     /**
      * @guy PremmerceTester\PremmerceSteps
      */
     public function controll(PremmerceTester\PremmerceSteps $I) {
+        $I->amOnPage('/');
+        $I->loginCabinet($this->email, $this->password);
+        $I->wait(5);
         
 //        $I->wait(5);
 //        $this->createShop($I);
