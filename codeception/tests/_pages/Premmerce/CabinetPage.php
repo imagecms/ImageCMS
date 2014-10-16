@@ -2,6 +2,9 @@
 
 class CabinetPage {
 
+    public static  $URL = '/saas/profile';
+
+
     public static $HeadTitle = '//header/div/div[1]/a/img';
     public static $HeadLinkConsultation = '//header/div/div[2]/div/div/a/span';
     public static $HeadQuestionConsultationText = '//header/div/div[2]/div/div/span/span[1]';
@@ -92,7 +95,45 @@ class CabinetPage {
 //    public static $TabTechnicalSupport = '';  
 //    public static $TabMyAdditions = '';   
 //    public static $TabPayments = '';
-//    public static $TabChoiceTarif = '';   
+    
+    /*------------------------------------------------------------------------*/
+    /*                              ТАРИФИ                                    */
+    /*------------------------------------------------------------------------*/
+    
+    public static $TabTariff = '//ul[@class="nav nav-vertical nav-sidebar"]/li[7]';
+    
+    //                              ПОЛЯ
+    
+    public static $TabTariffField = '';
+    public static $TabTariffFieldSite = '';
+    public static $TabTariffFieldSiteLabel = '';
+    public static $TabTariffFieldSiteLink = '';
+    public static $TabTariffFieldAdmin = '';
+    public static $TabTariffFieldAdminLink = '';
+    public static $TabTariffFieldAdminLabel = '';
+    public static $TabTariffFieldTriffText = '';
+    public static $TabTariffFieldTriffLabel = '';
+    public static $TabTariffFieldPriceText = '';
+    public static $TabTariffFieldPriceLabel = '';
+    public static $TabTariffFieldContentText = '';
+    public static $TabTariffFieldContentLabel = '';
+    public static $TabTariffFieldCapacityText = '';
+    public static $TabTariffFieldCapacityLabel = '';
+    public static $TabTariffFieldPayedText = '';
+    public static $TabTariffFieldPayedLabel = '';
+    //                              ТАБЛИЦЯ
+    public static $TabTariffTable = '';
+    public static $TabTariffTableHeadFree = '';
+    public static $TabTariffTableHeadBasic = '';
+    public static $TabTariffTableHeadBusiness = '';
+    public static $TabTariffTableHeadPremium = '';
+    public static function tabTariffTableLineFree ()        { return ""; }
+    public static function tabTariffTableLineBasic ()       { return ""; }
+    public static function tabTariffTableLineBusiness ()    { return ""; }
+    public static function tabTariffTableLinePremium ()     { return ""; }
+    
+    
+    
 //    public static $TabConfigureDomain = '';  
 //    public static $TabAdditionalServices = '';   
 }

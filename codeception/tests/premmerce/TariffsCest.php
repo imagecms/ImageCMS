@@ -18,19 +18,36 @@ use \PremmerceTester;
  * Перейти на basik тариф
  */
 class TariffsCest {
-    private $url        = 'http://imageqatarifftest.premme.com';
-    private $email      = 'imageqa@tarrrif.test';
-    private $password   = 'imageqa';
-    
+
+    private $url = 'http://imageqatarifftest.premme.com';
+    private $email = 'imageqa@tarrrif.test';
+    private $password = 'imageqa';
 
     /**
      * @guy PremmerceTester\PremmerceSteps
      */
     public function controll(PremmerceTester\PremmerceSteps $I) {
         $I->amOnPage('/');
-        $I->loginCabinet($this->email, $this->password);
+        $I->login();
+        $I->amOnPage(SaasUserListPage::$URL);
         $I->wait(5);
         
+        
+        
+//        $I->loginCabinet($this->email, $this->password);
+//        $I->click(PremmerceCabinetPage::$AdminButton);
+//        $I->wait(5);
+//
+//        $I->executeInSelenium(function (\Webdriver $webdriver) {
+//            $handles = $webdriver->getWindowHandles();
+//            $last_window = end($handles);
+//            $webdriver->switchTo()->window($last_window);
+//        });
+//
+//        $I->click(GeneralPage::$Modules);
+//        $I->wait(5);
+
+//        $I->login($this->email,  $this->password);
 //        $I->wait(5);
 //        $this->createShop($I);
 //        $joe = $I->haveFriend('Joe', 'PremmerceTester');
@@ -40,4 +57,5 @@ class TariffsCest {
 //            $I->amOnUrl('http://google.com');
 //        });
     }
+
 }
