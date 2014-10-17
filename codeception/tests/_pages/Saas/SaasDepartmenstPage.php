@@ -1,6 +1,6 @@
 <?php
 
- class SaasUserListPage
+ class SaasDepartmenstPage
 
 {
     public static $ListURL = '/admin/components/cp/saas/users_departments/allUsersDepartments';

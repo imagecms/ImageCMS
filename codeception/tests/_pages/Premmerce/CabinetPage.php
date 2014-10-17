@@ -2,13 +2,16 @@
 
 class CabinetPage {
 
+    public static  $URL = '/saas/profile';
+
+
     public static $HeadTitle = '//header/div/div[1]/a/img';
     public static $HeadLinkConsultation = '//header/div/div[2]/div/div/a/span';
     public static $HeadQuestionConsultationText = '//header/div/div[2]/div/div/span/span[1]';
     public static $HeadButtonProfile = '//body/div[1]/header/div/ul/li[1]/button';
     public static $HeadButtonProfileUserData = '//body/ul/li[1]/a';
     public static $HeadButtonProfileExit = '//body/ul/li[2]/a';
-    public static $HeadButtonShop = '//body/div[1]/header/div/ul/li[2]/a';
+    public static $HeadButtonShop = '.btn-shop.btn';
     public static $HeadButtonAdmin = '//header/div/ul/li[4]/a';
     //--- Зелене вікно оплаченого магазу
     public static $HeadLinkBalans = '//body/div[1]/header/div/div[2]/a';
@@ -27,9 +30,9 @@ class CabinetPage {
     public static $TabMainFieldAdminLabel = '//table/tbody/tr[2]/th';
     public static $TabMainFieldAdminLink = '//table/tbody/tr[2]/td/a';
     public static $TabMainFieldAdminText = '//table/tbody/tr[2]/td/div';
-    public static $TabMainFieldTarifLabel = '//table/tbody/tr[3]/th';
-    public static $TabMainFieldTarifNameText = '//table/tbody/tr[3]/td[1]';
-    public static $TabMainFieldTarifButtonChange = '//table/tbody/tr[3]/td[2]/a';
+    public static $TabMainFieldTariffLabel = '//table/tbody/tr[3]/th';
+    public static $TabMainFieldTariffNameText = '//table/tbody/tr[3]/td[1]';
+    public static $TabMainFieldTariffButtonChange = '//table/tbody/tr[3]/td[2]/a';
     public static $TabMainFieldCostLabel = '//table/tbody/tr[4]/th';
     public static $TabMainFieldCostPrice = '//table/tbody/tr[4]/td';
     public static $TabMainFieldFillingLabel = '//table/tbody/tr[5]/th';
@@ -92,7 +95,52 @@ class CabinetPage {
 //    public static $TabTechnicalSupport = '';  
 //    public static $TabMyAdditions = '';   
 //    public static $TabPayments = '';
-//    public static $TabChoiceTarif = '';   
+    
+    /*------------------------------------------------------------------------*/
+    /*                              ТАРИФИ                                    */
+    /*------------------------------------------------------------------------*/
+    
+    public static $TabTariff = '//ul[@class="nav nav-vertical nav-sidebar"]/li[7]';
+    
+    //                              ПОЛЯ
+    
+    public static $TabTariffField = '';
+
+    public static $TabTariffFieldSiteLabel = '//div[@class="content content-main-page"]/div[1]//li[1]//tr[1]//th';
+    public static $TabTariffFieldSiteLink  = '//div[@class="content content-main-page"]/div[1]//li[1]//tr[1]//a';
+    
+    public static $TabTariffFieldAdminLabel = '//div[@class="content content-main-page"]/div[1]//li[1]//tr[2]//th';
+    public static $TabTariffFieldAdminLink  = '//div[@class="content content-main-page"]/div[1]//li[1]//tr[2]//a';
+    
+    public static $TabTariffFieldTariffLabel = '//div[@class="content content-main-page"]/div[1]//li[1]//tr[3]//th';
+    public static $TabTariffFieldTariffText  = '//div[@class="content content-main-page"]/div[1]//li[1]//tr[3]//td';
+    
+    public static $TabTariffFieldPriceLabel = '//div[@class="content content-main-page"]/div[1]//li[1]//tr[4]//th';
+    public static $TabTariffFieldPriceText  = '//div[@class="content content-main-page"]/div[1]//li[1]//tr[4]//td';
+    
+    public static $TabTariffFieldContentLabel   = '//div[@class="content content-main-page"]/div[1]//li[2]//tr[1]//th';
+    public static $TabTariffFieldContentText    = '//div[@class="content content-main-page"]/div[1]//li[2]//tr[1]//td';
+    
+    public static $TabTariffFieldCapacityLabel  = '//div[@class="content content-main-page"]/div[1]//li[2]//tr[2]//th';
+    public static $TabTariffFieldCapacityText   = '//div[@class="content content-main-page"]/div[1]//li[2]//tr[2]//td';
+    
+    public static $TabTariffFieldPayedLabel     = '//div[@class="content content-main-page"]/div[1]//li[2]//tr[3]//th';
+    public static $TabTariffFieldPayedText      = '//div[@class="content content-main-page"]/div[1]//li[2]//tr[3]//td/span';
+    
+    
+    //                              ТАБЛИЦЯ
+    public static $TabTariffTable = '';
+    public static $TabTariffTableHeadFree = '';
+    public static $TabTariffTableHeadBasic = '';
+    public static $TabTariffTableHeadBusiness = '';
+    public static $TabTariffTableHeadPremium = '';
+    public static function tabTariffTableLineFree ()        { return ""; }
+    public static function tabTariffTableLineBasic ()       { return ""; }
+    public static function tabTariffTableLineBusiness ()    { return ""; }
+    public static function tabTariffTableLinePremium ()     { return ""; }
+    
+    
+    
 //    public static $TabConfigureDomain = '';  
 //    public static $TabAdditionalServices = '';   
 }
