@@ -579,8 +579,11 @@ class ProductsImport extends BaseImport {
      */
     function urlCheck($url, $id = '', $name = '') {
 
-        if ($url == '')
+        if ($url == '') {
             return translit_url(trim($name));
+        } else {
+            $url = translit_url($url);
+        }
         // Check if Url is aviable.
         $urlCheck = $this->db
                 ->select('url,id')
@@ -589,10 +592,11 @@ class ProductsImport extends BaseImport {
                 ->get('shop_products')
                 ->row();
 
-        if ($urlCheck->id != $id)
+        if ($urlCheck->id != $id) {
             return $url;
-        else
+        } else {
             return $id . '_' . random_string('alnum', 8);
+        }
     }
 
     /**
