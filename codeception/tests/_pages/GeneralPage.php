@@ -16,6 +16,7 @@ class GeneralPage
     
     //Модулі
     public static $Modules              = "//div[@class='frame_nav']/table/tbody/tr/td[5]/a";
+    public static function modules($line) { return "//div[@class = 'frame_nav']//td[5]/ul/li[$line]"; }
     public static $ModulesAllModules    = '//a[@href="/admin/components/modules_table"]';
     
     //Настройки
