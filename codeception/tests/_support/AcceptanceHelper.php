@@ -6,15 +6,42 @@ namespace Codeception\Module;
 // all public methods declared in helper class will be available in $I
 //class AcceptanceHelper extends \AcceptanceTester
 class AcceptanceHelper extends \Codeception\Module {
-    /*     
-     * Counting specified tags on page 
-     * 
-     * @param   AcceptanceTester  $I           controller
-     * @param   string            $tags        "tag1 tag2"   
-     * @param   int               $position    first element position
-     * @return  null
-     */
 
+    public function assertEquals($expected, $actual, $message = '') {
+        parent::assertEquals($expected, $actual, $message);
+    }
+
+    public function fail($message) {
+        parent::fail($message);
+    }
+
+    /**
+     * Counting Specified Tags
+     * @param [Some]Tester $I
+     * @param str $css
+     * @return int
+     */
+    public function getAmount($I, $css) {
+        return $I->executeJS("return $('$css').length");
+    }
+
+    /**     
+     * Scrolling  page to specified element
+     * @param \AcceptanceTester $I          controller
+     * @param string            $CSSelement CSS selector
+     */
+    public function scrollToElement($I, $CSSelement) {
+        $I->executeJS("$('html,body').animate({scrollTop:$('$CSSelement').offset().top});");
+    }
+    
+    
+    
+    
+
+
+    /**
+     * @deprecated
+     */
     public function grabTagCount($I, $tags, $position = '0') {
         $tag = explode(" ", $tags);
         $I->executeJS("var container = document.createElement('input');
@@ -26,22 +53,18 @@ class AcceptanceHelper extends \Codeception\Module {
         $lines = $I->grabValueFrom('#length');
         return $lines;
     }
-
-    public function assertEquals($expected, $actual, $message = '') {
-        parent::assertEquals($expected, $actual, $message);
-    }
-
-    public function fail($message) {
-        parent::fail($message);
-    }
-
-    /*     * Counting elements with specified class
-     * 
-     * @param   AcceptanceTester    $I       controller
-     * @param   string              $class   class wich you want to count
-     * @return  type                Amount
+    /**
+     * @deprecated
      */
-
+    public function grabCCSAmount($I, $JQerySelector) {
+        $script = "$('<p id=uniqueidunique></p>').text($('$JQerySelector').length).appendTo('body')";
+        $I->executeJS($script);
+        $amount = $I->grabTextFrom("#uniqueidunique");
+        return $amount;
+    }
+    /**
+     * @deprecated
+     */
     public function grabClassCount($I, $class) {
         $I->executeJS("var container = document.createElement('input');
 	container.id = 'length';
@@ -51,17 +74,6 @@ class AcceptanceHelper extends \Codeception\Module {
         $I->wait("1");
         $count = $I->grabValueFrom('#length');
         return $count;
-    }
-
-    /*     * Scrolling  page to specified element
-     * 
-     * @param \AcceptanceTester $I          controller
-     * @param string            $CSSelement CSS selector
-     */
-
-    public function scrollToElement($I, $CSSelement) {
-        $script = "$('html,body').animate({scrollTop:$('$CSSelement').offset().top});";
-        $I->executeJS($script);
     }
 
     /**
@@ -87,8 +99,7 @@ class AcceptanceHelper extends \Codeception\Module {
             $('<p id="GRABTEXTFROMALL"></p>').text(tex).appendTo('body');
 HERE;
         $I->executeJS($script);
-        $text = $I->grabTextFrom('#GRABTEXTFROMALL');
-        $text = explode($delimiter, $text);
+        $text = explode($delimiter, $I->grabTextFrom('#GRABTEXTFROMALL'));
         array_shift($text);
         return $text;
     }
@@ -110,35 +121,18 @@ HERE;
         $script = <<<SCRIPT
           $('$JQeryElements:visible').click();
 SCRIPT;
-        for ($j = 0; $j < $clickTimes;  ++$j) {
+        for ($j = 0; $j < $clickTimes; ++$j) {
             $I->executeJS($script);
             $I->wait($deelay);
         }
     }
 
     /**
-     * Grab amount of el-ts selected by JQuery
-     * 
-     * @param   AcceptanceTester    $I
-     * @param   string              $JQerySelector
-     * @return  string              Amount of elements
+     * @param string $type            type of alert success|error
+     * @param string $message         message of alert
+     * @param string|int  $times           one time = 1 milliseconds && 1000 microseconds
      */
-    public function grabCCSAmount($I, $JQerySelector) {
-        $script = "$('<p id=uniqueidunique></p>').text($('$JQerySelector').length).appendTo('body')";
-        $I->executeJS($script);
-        $amount = $I->grabTextFrom("#uniqueidunique");
-        return $amount;
-    }
-
-     /**
-      * @param type $I
-      * @param type $type            type of alert success|error
-      * @param type $message         message of alert
-
-
-      * @param type $times           one time = 1 milliseconds && 1000 microseconds
-      */
-    public function exactlySeeAlert($I,$type = 'success', $message = null,$times = '30') {
+    public function exactlySeeAlert($I, $type = 'success', $message = null, $times = '30') {
 
         //define element
         if ($type == 'success') {
@@ -151,7 +145,7 @@ SCRIPT;
         for ($j = 1; $j <= $times; ++$j) {
 
             usleep(100000);
-            
+
             try {
                 $see = $I->see($message, $element);
                 if (!isset($see)) {
@@ -159,7 +153,7 @@ SCRIPT;
                     break;
                 }
             } catch (\Exception $exc) {
-
+                
             }
         }
         if ($see) {
