@@ -66,6 +66,10 @@ class TariffsCest {
         $I->click(GeneralPage::$Modules);
         $length = $I->getAmount($I, 'div.frame_nav td:nth-child(5) ul li');//$I->executeJS("return $('div.frame_nav td:nth-child(5) ul li').length");
         $I->comment("$length");
+        $length = $I->grabCCSAmount($I, 'div.frame_nav td:nth-child(5) ul li');//$I->executeJS("return $('div.frame_nav td:nth-child(5) ul li').length");
+        $I->comment("$length");
+        $length = $I->grabClassCount($I, 'div.frame_nav td:nth-child(5) ul li');//$I->executeJS("return $('div.frame_nav td:nth-child(5) ul li').length");
+        $I->comment("$length");
         $I->wait(10);
     }
 

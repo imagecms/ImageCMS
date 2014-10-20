@@ -43,37 +43,40 @@ class AcceptanceHelper extends \Codeception\Module {
      * @deprecated
      */
     public function grabTagCount($I, $tags, $position = '0') {
-        $tag = explode(" ", $tags);
-        $I->executeJS("var container = document.createElement('input');
-	container.id = 'length';
-        container.type = 'hidden';
-	container.value = document.getElementsByTagName(\"$tag[0]\")[$position].getElementsByTagName(\"$tag[1]\").length;
-	document.body.insertBefore(container, document.body.firstChild)");
-        $I->wait("1");
-        $lines = $I->grabValueFrom('#length');
-        return $lines;
+        return $this->getAmount($I, $tags);
+//        $tag = explode(" ", $tags);
+//        $I->executeJS("var container = document.createElement('input');
+//	container.id = 'length';
+//        container.type = 'hidden';
+//	container.value = document.getElementsByTagName(\"$tag[0]\")[$position].getElementsByTagName(\"$tag[1]\").length;
+//	document.body.insertBefore(container, document.body.firstChild)");
+//        $I->wait("1");
+//        $lines = $I->grabValueFrom('#length');
+//        return $lines;
     }
     /**
      * @deprecated
      */
     public function grabCCSAmount($I, $JQerySelector) {
-        $script = "$('<p id=uniqueidunique></p>').text($('$JQerySelector').length).appendTo('body')";
-        $I->executeJS($script);
-        $amount = $I->grabTextFrom("#uniqueidunique");
-        return $amount;
+        return $this->getAmount($I, $JQerySelector);
+//        $script = "$('<p id=uniqueidunique></p>').text($('$JQerySelector').length).appendTo('body')";
+//        $I->executeJS($script);
+//        $amount = $I->grabTextFrom("#uniqueidunique");
+//        return $amount;
     }
     /**
      * @deprecated
      */
     public function grabClassCount($I, $class) {
-        $I->executeJS("var container = document.createElement('input');
-	container.id = 'length';
-        container.type = 'hidden';
-	container.value = document.getElementsByClassName(\"$class\").length;
-	document.body.insertBefore(container, document.body.firstChild)");
-        $I->wait("1");
-        $count = $I->grabValueFrom('#length');
-        return $count;
+        return $this->getAmount($I, $class);
+//        $I->executeJS("var container = document.createElement('input');
+//	container.id = 'length';
+//        container.type = 'hidden';
+//	container.value = document.getElementsByClassName(\"$class\").length;
+//	document.body.insertBefore(container, document.body.firstChild)");
+//        $I->wait("1");
+//        $count = $I->grabValueFrom('#length');
+//        return $count;
     }
 
     /**
