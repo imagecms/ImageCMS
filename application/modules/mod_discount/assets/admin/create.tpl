@@ -197,10 +197,7 @@
                                             <!--Start. Show if discount type is user -->
                                             <div id="userBlock" class="forHide" style="display: none;">
                                                 <div>
-                                                    <div>
-                                                        <label class="hideAfterAutocomlite"> {lang('Current user', 'mod_discount')} :
-
-                                                        </label>
+                                                    <div>                                                        
                                                         <label> {lang('ID / Name / E-mail', 'mod_discount')} :</label>
                                                         <input id="usersForDiscount" required="required" style="border-color: coral;" type="text" value="" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
                                                         <input id="discountUserId" type="hidden" name="user[user_id]" value=""/>
@@ -239,9 +236,6 @@
                                             <!--Start. Show if discount type is product-->
                                             <div id="productBlock" class="forHide" style="display: none;">
                                                 <div>
-                                                    <label class="hideAfterAutocomlite"> {lang('Current product', 'mod_discount')} :
-                                                        <span class="now-active-prod"></span>
-                                                    </label>
                                                     <label> {lang('ID / Name / Number', 'mod_discount')} :</label>
                                                     <input id="productForDiscount" required="required" style="border-color: coral;" type="text" value="" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
                                                     <input id="discountProductId" type="hidden" name="product[product_id]" value=""/>

@@ -2,6 +2,10 @@
 
 use \PremmerceTester;
 /**
+ *      СТВОРЕННЯ МАГАЗИНУ ДЛЯ ЗАПУСКУ ВСІХ ТЕСТІВ НА ТЕСТОВОМУ(CI) СЕРВЕРІ
+ * МИЛО І ПАРОЛЬ I НАЗВА МАГАЗИНУ БЕРУТЬСЯ З config.php(який створюється на CI сервері)
+ * 
+ * 
  * - встановити в codeception.yml адрес premmerce(на сервері)
  * - створитив папці тесту(або codecept_root_dir()) config.php Файл з даними реєстрації (на сервері) 
  * 
@@ -14,23 +18,14 @@ class CreateShopCest {
     
     private $CodeceptionYml;
 
-    public function createShop(PremmerceTester $I) {
-        $I->amOnPage('/');
-        $I->fillField(CreateStorePage::$InputDomain,    STORE_NAME);
-        $I->fillField(CreateStorePage::$InputEmail,     USER_EMAIL);
-        $I->fillField(CreateStorePage::$InputPassword,  USER_PASSWORD);
-        $I->fillField(CreateStorePage::$InputName,      'CI-server');
-        $I->fillField(CreateStorePage::$InputPhone,     '800800');
-        $I->fillField(CreateStorePage::$InputCity,      'Lviv');
+    /**
+     * 
+     * @guy PremmerceTester\PremmerceSteps
+     */
+    public function createShop(PremmerceTester\PremmerceSteps $I) {
+        $I->amOnPage('/saas/create_store');
+        $I->createStore(STORE_NAME, USER_EMAIL, USER_PASSWORD);
         
-        //селекти
-        $I->click(CreateStorePage::$SelectCategoryOfProducts);
-        $I->click(CreateStorePage::selectCategoryOfProductsOption(11));
-        $I->click(CreateStorePage::$SelectProducts);
-        $I->click(CreateStorePage::selectProductsOption(3));
-        $I->checkOption(CreateStorePage::$CheckAgree);
-        $I->click(CreateStorePage::$ButtonCreate);
-        $I->wait(30);
         $this->_getCodeceptionYml();
         $this->_changeAdress(STORE_URL);
     }        
