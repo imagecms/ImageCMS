@@ -690,12 +690,14 @@ class SaasUserPageCest
     }
     
     /**
-     * @group i
+     * @group status
      * @guy PremmerceTester\PremmerceSteps 
      */
     public function CreateSaasStatus(PremmerceTester\PremmerceSteps $I){
         $I->login($user_email = USER_EMAIL, $user_password = USER_PASSWORD);
+        $I->wait(1);
         $I->SetTextAditorNative();
+        $I->wait(1);
         $I->amOnPage(SaasUserListPage::$URL);
         $I->wait(1);
         $I->click(SaasUserListPage::$ButtonStatuses);
@@ -706,6 +708,8 @@ class SaasUserPageCest
         $I->wait(1);
         $I->fillField(SaasStatusesPage::$CreateInputDescription, $this->Status_Description);
         $I->click(SaasStatusesPage::$CreateButtonSave);
+        $I->wait(1);
+        $I->logoutSaas();
     }
     
     
@@ -730,7 +734,7 @@ class SaasUserPageCest
     
     
     /**
-     * @group i
+     * @group Department
      * @guy PremmerceTester\PremmerceSteps 
      */
     public function CreateSaasDepartment(PremmerceTester\PremmerceSteps $I){
@@ -743,7 +747,7 @@ class SaasUserPageCest
         $I->click(SaasDepartmenstPage::$ListButtonCreate);
         $I->wait(1);
         $I->fillField(SaasDepartmenstPage::$CreateInputName, $this->Department_Name);
-        $I->fillField(SaasDepartmenstPage::$CreateInputName, $this->Department_Description);
+        $I->fillField(SaasDepartmenstPage::$CreateInputDescription, $this->Department_Description);
         $I->click(SaasDepartmenstPage::$CreateButtonSave);
         $I->wait(1);
         $I->logoutSaas();
@@ -786,8 +790,8 @@ class SaasUserPageCest
         $I->click(SaasUserListPage::$ButtonStatuses);
         $I->wait(3);
         $Amount_Rows = $I->getAmount($I, 'tbody .niceCheck');
-        $Number = $I->comment("$Amount_Rows");
-        for ($j = 1;$j >= $Number; ++$j){
+        $I->comment("$Amount_Rows");
+        for ($j = 1;$j <= $Amount_Rows; ++$j){
         $Get_Name_Statuse = $I->grabTextFrom(SaasStatusesPage::LineName($j));
         $I->comment("$Get_Name_Statuse");      
             if($Get_Name_Statuse == $this->Status_Name){
@@ -797,23 +801,48 @@ class SaasUserPageCest
                 $I->click(SaasStatusesPage::$ListButtonDelete);
                 $I->wait(1);
                 $I->click(SaasStatusesPage::$WindowDeleteButtonDelete);
+                $Amount_Rows--;
+                $j--;
+            }  else {
+                $I->comment("$Get_Name_Statuse не є створенним тестовим статусом.");
             }
         }
-        
-        
-//        $I->click(SaasUserListPage::$ButtonStatuses);
-//        $I->wait(1);
-//        $I->click(SaasStatusesPage::$ListButtonCreate);
-//        $I->wait(1);
-//        $I->fillField(SaasStatusesPage::$CreateInputName, $this->Status_Name);
-//        $I->wait(1);
-//        $I->fillField(SaasStatusesPage::$CreateInputDescription, $this->Status_Description);
-//        $I->click(SaasStatusesPage::$CreateButtonSave);
-//        $I->logoutSaas();
+        $I->logoutSaas();
     }
     
     
-    
+    /**
+     * @group Department
+     * @guy PremmerceTester\PremmerceSteps 
+     */
+    public function DeleteSaasDepartment(PremmerceTester\PremmerceSteps $I){
+        $I->login($user_email = USER_EMAIL, $user_password = USER_PASSWORD);
+        $I->wait(3);
+//        $I->SetTextAditorNative();
+        $I->amOnPage(SaasUserListPage::$URL);
+        $I->wait(3);
+        $I->click(SaasUserListPage::$ButtonDepartments);
+        $I->wait(3);
+        $Amount_Rows = $I->getAmount($I, 'tbody .niceCheck');
+        $I->comment("$Amount_Rows");
+        for ($j = 1;$j <= $Amount_Rows; ++$j){
+        $Get_Name_Department = $I->grabTextFrom(SaasDepartmenstPage::LineName($j));
+        $I->comment("$Get_Name_Department");      
+            if($Get_Name_Department == $this->Department_Name){
+                $I->wait(1);
+                $I->click(SaasDepartmenstPage::LineCheckBox($j));
+                $I->wait(1);
+                $I->click(SaasDepartmenstPage::$ListButtonDelete);
+                $I->wait(1);
+                $I->click(SaasDepartmenstPage::$WindowDeleteButtonDelete);
+                $Amount_Rows--;
+                $j--;
+            }  else {
+                $I->comment("$Get_Name_Department не є створенним тестовим статусом.");
+            }
+        }
+        $I->logoutSaas();
+    }
     
     
     
@@ -824,7 +853,7 @@ class SaasUserPageCest
    /////////////////////////////////////////////////////////////////////////////
    //DELETE SHOP     DELETE SHOP    DELETE SHOP    DELETE SHOP   DELETE SHOP  //                    
     /**
-     * @group a
+     * @group DeleteShop
      * @guy PremmerceTester\PremmerceSteps
      */
     public function DeleteSahopSaas(PremmerceTester\PremmerceSteps $I){
@@ -832,16 +861,39 @@ class SaasUserPageCest
         $I->amOnPage(SaasUserListPage::$URL);
         $I->wait(1);
         $I->click(SaasUserListPage::$FilterDomainLabel);
-        $I->fillField(SaasUserListPage::$FilterDomainInput, $this->store_name);
+        $I->fillField(SaasUserListPage::$FilterDomainInput, $this->Store_Name);
+        $I->click(SaasUserListPage::$FilterNameLabel);
+        $I->fillField(SaasUserListPage::$FilterNameInput, $this->User_Name);
+        $I->click(SaasUserListPage::$FilterPhoneLabel);
+        $I->fillField(SaasUserListPage::$FilterPhoneInput, $this->User_Phone);
+        $I->click(SaasUserListPage::$FilterEmailLabel);
+        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->User_Email);
         $I->click(SaasUserListPage::$FilterButtonFilter);
-        $I->see($this->store_name, SaasUserListPage::lineDomainLink(1));
+        $I->see($this->Store_Name, SaasUserListPage::lineDomainLink(1));
+        $I->see($this->User_Name, SaasUserListPage::lineNameText(1));
+        $I->see($this->User_Phone, SaasUserListPage::linePhoneText(1));
+        $I->see($this->User_Email, SaasUserListPage::lineEmailLink(1));
         $I->click(SaasUserListPage::lineActionlink(1));
         $I->click(SaasUserListPage::ButtonDelete(1));
         $I->wait(3);
         $I->logoutSaas();
     }    
         
-        
+      
+    
+    /**
+     * @group DeleteShopCabinet
+     * @guy PremmerceTester\PremmerceSteps
+     */
+    public function VerifyDeleteSahopCabinet(PremmerceTester\PremmerceSteps $I){
+       $I->loginCabinet($user_email = $this->User_Email, $user_password = $this->User_Password);
+       $I->wait(1);
+       $I->seeElement('.for_validations.error');
+       $I->wait(1);
+       $I->seeInField(MainPage::$WindowLoginInputEmail, $this->User_Email);       
+       $I->seeInField(MainPage::$WindowLoginInputPassword, $this->User_Password);       
+       $I->seeElement(MainPage::$WindowLoginButtonSend);       
+    }
     
     
     
