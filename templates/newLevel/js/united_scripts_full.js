@@ -67,7 +67,7 @@ var isTouch = 'ontouchstart' in document.documentElement,
         сC = 'cloned',
         wnd = $(window),
         body = $('body');
-$.expr[':'].regex = function(elem, index, match) {
+$.expr[':'].regex = function (elem, index, match) {
     var matchParams = match[3].split(','),
             validLabels = /^(data|css):/,
             attr = {
@@ -79,25 +79,25 @@ $.expr[':'].regex = function(elem, index, match) {
             regex = new RegExp(matchParams.join('').replace(/^\s+|\s+$/g, ''), regexFlags);
     return regex.test($(elem)[attr.method](attr.property));
 };
-String.prototype.trimMiddle = function()
+String.prototype.trimMiddle = function ()
 {
     var r = /\s\s+/g;
     return $.trim(this).replace(r, ' ');
 };
-String.prototype.isNumeric = function() {
+String.prototype.isNumeric = function () {
     return !isNaN(parseFloat(this)) && isFinite(this);
 };
-String.prototype.pasteSAcomm = function() {
+String.prototype.pasteSAcomm = function () {
     var r = /\s,/g;
     return this.replace(r, ',');
 };
-$.exists = function(selector) {
+$.exists = function (selector) {
     return $(selector).length > 0 && $(selector) instanceof jQuery;
 };
-$.existsN = function(nabir) {
+$.existsN = function (nabir) {
     return nabir.length > 0 && nabir instanceof jQuery;
 };
-getChar = function(e) {
+getChar = function (e) {
     if (e.which === null) {  // IE
         if (e.keyCode < 32)
             return null;
@@ -111,13 +111,13 @@ getChar = function(e) {
     }
     return null;
 };
-returnMsg = function(msg) {
+returnMsg = function (msg) {
     if (window.console) {
         console.log(msg);
     }
 };
-$.fn.testNumber = function(add) {
-    $(this).off('keypress.testNumber').on('keypress.testNumber', function(e) {
+$.fn.testNumber = function (add) {
+    $(this).off('keypress.testNumber').on('keypress.testNumber', function (e) {
         var $this = $(this);
         if (e.ctrlKey || e.altKey || e.metaKey)
             return;
@@ -140,7 +140,7 @@ $.fn.testNumber = function(add) {
         }
     });
 };
-$.fn.pricetext = function(e, rank) {
+$.fn.pricetext = function (e, rank) {
     var $this = $(this);
     rank = rank !== undefined ? rank : true;
     $(document).trigger({
@@ -152,9 +152,9 @@ $.fn.pricetext = function(e, rank) {
     });
     return $this;
 };
-$.fn.setCursorPosition = function(pos) {
+$.fn.setCursorPosition = function (pos) {
     if (!isTouch)
-        this.each(function() {
+        this.each(function () {
             this.select();
             try {
                 this.setSelectionRange(pos, pos);
@@ -164,7 +164,7 @@ $.fn.setCursorPosition = function(pos) {
         });
     return this;
 };
-$.fn.getCursorPosition = function() {
+$.fn.getCursorPosition = function () {
     var el = $(this).get(0),
             pos = 0;
     if ('selectionStart' in el) {
@@ -178,8 +178,8 @@ $.fn.getCursorPosition = function() {
     return pos;
 };
 /*plugin actual*/
-(function($) {
-    $.fn.actual = function() {
+(function ($) {
+    $.fn.actual = function () {
         if (arguments.length && typeof arguments[0] === 'string') {
             var dim = arguments[0],
                     clone = this.clone().addClass(сC);
@@ -196,7 +196,7 @@ $.fn.getCursorPosition = function() {
     };
 })(jQuery);
 /*/plugin actual end*/
-$(document).on('textanimatechange', function(e) {
+$(document).on('textanimatechange', function (e) {
     var $this = e.el,
             nv = e.nvalue,
             ov = e.ovalue,
@@ -213,7 +213,7 @@ $(document).on('textanimatechange', function(e) {
                 step = -Math.floor(ndif / 100);
     }
     var cond = '',
-            numb = setInterval(function() {
+            numb = setInterval(function () {
                 temp += step;
                 cond = temp < nv;
                 if (dif < 0)
@@ -260,10 +260,10 @@ function getCookie(c_name)
     return c_value;
 }
 /*plugin nstCheck*/
-(function($) {
+(function ($) {
     var nS = "nstcheck",
             methods = {
-                init: function(options) {
+                init: function (options) {
                     if ($.existsN(this)) {
                         var settings = $.extend({
                             wrapper: $("label:has(.niceCheck)"),
@@ -271,9 +271,9 @@ function getCookie(c_name)
                             evCond: false,
                             classRemove: '',
                             resetChecked: false,
-                            trigger: function() {
+                            trigger: function () {
                             },
-                            after: function() {
+                            after: function () {
                             }
                         }, options);
                         var frameChecks = $(this),
@@ -286,7 +286,7 @@ function getCookie(c_name)
                                 resetChecked = settings.resetChecked;
                         frameChecks.find(elCheckWrap).removeClass(dC + ' ' + aC + ' ' + fC);
                         //init event click on wrapper change state
-                        frameChecks.find(wrapper).removeClass(dC + ' ' + aC + ' ' + fC).off('click.' + nS).on('click.' + nS, function(e) {
+                        frameChecks.find(wrapper).removeClass(dC + ' ' + aC + ' ' + fC).off('click.' + nS).on('click.' + nS, function (e) {
                             e.stopPropagation();
                             var $this = $(this),
                                     nstcheck = $this.find(elCheckWrap);
@@ -304,18 +304,18 @@ function getCookie(c_name)
                             e.preventDefault();
                         });
                         //init event reset
-                        frameChecks.closest('form').each(function() {
+                        frameChecks.closest('form').each(function () {
                             var $this = $(this);
                             if (resetChecked)
-                                $this.find('[type="reset"]').off('click.' + nS).on('click.' + nS, function(e) {
+                                $this.find('[type="reset"]').off('click.' + nS).on('click.' + nS, function (e) {
                                     methods.checkAllReset($this.find(elCheckWrap).filter('.' + aC));
                                 });
                             else {
                                 var checked = $([]);
-                                $this.find('input:checked').each(function() {
+                                $this.find('input:checked').each(function () {
                                     checked = checked.add($(this).closest(elCheckWrap));
                                 });
-                                $this.find('[type="reset"]').off('click.' + nS).on('click.' + nS, function(e) {
+                                $this.find('[type="reset"]').off('click.' + nS).on('click.' + nS, function (e) {
                                     var wrap = $this.find(elCheckWrap);
                                     methods.checkAllReset(wrap.not(checked));
                                     methods.checkAllChecks(wrap.not('.' + aC).filter(checked));
@@ -324,28 +324,28 @@ function getCookie(c_name)
                             }
                         });
                         //init events input
-                        wrapper.find('input').off('mousedown.' + nS).on('mousedown.' + nS, function(e) {
+                        wrapper.find('input').off('mousedown.' + nS).on('mousedown.' + nS, function (e) {
                             e.stopPropagation();
                             e.preventDefault();
                             if (e.button === 0)
                                 $(this).closest(wrapper).trigger('click.' + nS);
-                        }).off('click.' + nS).on('click.' + nS, function(e) {
+                        }).off('click.' + nS).on('click.' + nS, function (e) {
                             e.stopPropagation();
                             e.preventDefault();
-                        }).off('keyup.' + nS).on('keyup.' + nS, function(e) {
+                        }).off('keyup.' + nS).on('keyup.' + nS, function (e) {
                             if (e.keyCode === 32)
                                 $(this).closest(wrapper).trigger('click.' + nS);
-                        }).off('focus.' + nS).on('focus.' + nS, function(e) {
+                        }).off('focus.' + nS).on('focus.' + nS, function (e) {
                             var $this = $(this);
                             $this.closest(wrapper).add($this.closest(elCheckWrap)).addClass(fC);
-                        }).off('blur.' + nS).on('blur.' + nS, function(e) {
+                        }).off('blur.' + nS).on('blur.' + nS, function (e) {
                             var $this = $(this);
                             $this.closest(wrapper).add($this.closest(elCheckWrap)).removeClass(fC);
-                        }).off('change.' + nS).on('change.' + nS, function(e) {
+                        }).off('change.' + nS).on('change.' + nS, function (e) {
                             e.preventDefault();
                         });
                         //init states of checkboxes
-                        frameChecks.find(elCheckWrap).each(function() {
+                        frameChecks.find(elCheckWrap).each(function () {
                             var $this = $(this).removeClass(classRemove).addClass(nS),
                                     input = $this.find('input');
                             methods._changeCheckStart($this);
@@ -358,12 +358,12 @@ function getCookie(c_name)
                         });
                     }
                 },
-                _changeCheckStart: function(el) {
+                _changeCheckStart: function (el) {
                     if (el === undefined)
                         el = this;
                     el.find("input").is(":checked") ? methods.checkChecked(el) : methods.checkUnChecked(el);
                 },
-                checkChecked: function(el) {
+                checkChecked: function (el) {
                     if (el === undefined)
                         el = this;
                     el.addClass(aC).parent().addClass(aC).end().find("input").attr("checked", "checked");
@@ -372,7 +372,7 @@ function getCookie(c_name)
                         'el': el
                     });
                 },
-                checkUnChecked: function(el) {
+                checkUnChecked: function (el) {
                     if (el === undefined)
                         el = this;
                     el.removeClass(aC).parent().removeClass(aC).end().find("input").removeAttr("checked");
@@ -381,7 +381,7 @@ function getCookie(c_name)
                         'el': el
                     });
                 },
-                changeCheck: function(el)
+                changeCheck: function (el)
                 {
                     if (el === undefined)
                         el = this;
@@ -392,21 +392,21 @@ function getCookie(c_name)
                         methods.checkChecked(el);
                     }
                 },
-                checkAllChecks: function(el)
+                checkAllChecks: function (el)
                 {
-                    (el === undefined ? this : el).each(function() {
+                    (el === undefined ? this : el).each(function () {
                         methods.checkChecked($(this));
                     });
                 },
-                checkAllReset: function(el)
+                checkAllReset: function (el)
                 {
-                    (el === undefined ? this : el).each(function() {
+                    (el === undefined ? this : el).each(function () {
                         methods.checkUnChecked($(this));
                     });
                 },
-                checkAllDisabled: function(el)
+                checkAllDisabled: function (el)
                 {
-                    (el === undefined ? this : el).each(function() {
+                    (el === undefined ? this : el).each(function () {
                         var $this = $(this);
                         $this.addClass(dC).parent().addClass(dC).end().find("input").attr('disabled', 'disabled');
                         $this.find('input').trigger({
@@ -415,9 +415,9 @@ function getCookie(c_name)
                         });
                     });
                 },
-                checkAllEnabled: function(el)
+                checkAllEnabled: function (el)
                 {
-                    (el === undefined ? this : el).each(function() {
+                    (el === undefined ? this : el).each(function () {
                         var $this = $(this);
                         $this.removeClass(dC).parent().removeClass(dC).end().find("input").removeAttr('disabled');
                         $this.find('input').trigger({
@@ -427,7 +427,7 @@ function getCookie(c_name)
                     });
                 }
             };
-    $.fn.nStCheck = function(method) {
+    $.fn.nStCheck = function (method) {
         if (methods[method]) {
             return methods[ method ].apply(this, Array.prototype.slice.call(arguments, 1));
         } else if (typeof method === 'object' || !method) {
@@ -436,29 +436,29 @@ function getCookie(c_name)
             $.error('Method ' + method + ' does not exist on $.nStCheck');
         }
     };
-    $.nStCheck = function(m) {
+    $.nStCheck = function (m) {
         return methods[m];
     };
 })(jQuery);
 /*plugin nstCheck end*/
 /*plugin nstRadio*/
-(function($) {
+(function ($) {
     var nS = "nstradio",
             methods = {
-                init: function(options) {
+                init: function (options) {
                     var optionsRadio = $.extend({
                         wrapper: $(".frame-label:has(.niceRadio)"),
                         elCheckWrap: '.niceRadio',
                         classRemove: null,
-                        before: function() {
+                        before: function () {
                         },
-                        after: function() {
+                        after: function () {
                         }
                     }, options),
                             settings = optionsRadio;
                     var $this = this;
                     if ($.existsN($this)) {
-                        $this.each(function() {
+                        $this.each(function () {
                             var $this = $(this),
                                     after = settings.after,
                                     before = settings.before,
@@ -466,28 +466,28 @@ function getCookie(c_name)
                                     wrapper = settings.wrapper,
                                     elCheckWrap = settings.elCheckWrap,
                                     input = $this.find(elCheckWrap).find('input');
-                            $this.find(elCheckWrap).each(function() {
+                            $this.find(elCheckWrap).each(function () {
                                 methods.changeRadioStart($(this), classRemove, after, true);
                             });
-                            input.each(function() {
+                            input.each(function () {
                                 var input = $(this);
-                                $(input.data('link')).focus(function(e) {
+                                $(input.data('link')).focus(function (e) {
                                     if (e.which === 0)
                                         methods.radioCheck(input.parent(), after, false);
                                 });
                             });
-                            $this.find(wrapper).off('click.' + nS).on('click.' + nS, function(e) {
+                            $this.find(wrapper).off('click.' + nS).on('click.' + nS, function (e) {
                                 var input = $(this).find('input');
                                 if (!input.is(':disabled') && !input.is(':checked')) {
                                     before($(this));
                                     methods.changeRadio($(this).find(elCheckWrap), after, false);
                                 }
                             });
-                            input.off('click.' + nS).off('change.' + nS).on('click.' + nS + ' change.' + nS, function(e) {
+                            input.off('click.' + nS).off('change.' + nS).on('click.' + nS + ' change.' + nS, function (e) {
                                 e.preventDefault();
                                 e.stopPropagation();
                             });
-                            input.off('mousedown.' + nS).on('mousedown.' + nS, function(e) {
+                            input.off('mousedown.' + nS).on('mousedown.' + nS, function (e) {
                                 e.preventDefault();
                                 e.stopPropagation();
                                 $(this).closest(wrapper).trigger('click.' + nS);
@@ -495,7 +495,7 @@ function getCookie(c_name)
                         });
                     }
                 },
-                changeRadioStart: function(el, classRemove, after, start)
+                changeRadioStart: function (el, classRemove, after, start)
                 {
                     if (el === undefined)
                         el = this;
@@ -509,13 +509,13 @@ function getCookie(c_name)
                     el.removeClass(classRemove);
                     return false;
                 },
-                changeRadio: function(el, after, start)
+                changeRadio: function (el, after, start)
                 {
                     if (el === undefined)
                         el = this;
                     methods.radioCheck(el, after, start);
                 },
-                radioCheck: function(el, after, start) {
+                radioCheck: function (el, after, start) {
                     if (el === undefined)
                         el = this;
                     var input = el.find("input");
@@ -523,7 +523,7 @@ function getCookie(c_name)
                     el.parent().addClass(aC).removeClass(dC);
                     input.attr("checked", true);
                     $(input.data('link')).focus();
-                    input.closest('form').find('[name=' + input.attr('name') + ']').not(input).each(function() {
+                    input.closest('form').find('[name=' + input.attr('name') + ']').not(input).each(function () {
                         methods.radioUnCheck($(this).parent());
                     });
                     after(el, start);
@@ -533,7 +533,7 @@ function getCookie(c_name)
                         'input': input
                     });
                 },
-                radioUnCheck: function(el) {
+                radioUnCheck: function (el) {
                     if (el === undefined)
                         el = this;
                     var input = el.find("input");
@@ -546,7 +546,7 @@ function getCookie(c_name)
                         'input': input
                     });
                 },
-                radioDisabled: function(el) {
+                radioDisabled: function (el) {
                     if (el === undefined)
                         el = this;
                     var input = el.find("input");
@@ -554,7 +554,7 @@ function getCookie(c_name)
                     el.removeClass(aC).addClass(dC);
                     el.parent().removeClass(aC).addClass(dC);
                 },
-                radioUnDisabled: function(el) {
+                radioUnDisabled: function (el) {
                     if (el === undefined)
                         el = this;
                     var input = el.find("input");
@@ -563,7 +563,7 @@ function getCookie(c_name)
                     el.parent().removeClass(aC + ' ' + dC);
                 }
             };
-    $.fn.nStRadio = function(method) {
+    $.fn.nStRadio = function (method) {
         if (methods[method]) {
             return methods[ method ].apply(this, Array.prototype.slice.call(arguments, 1));
         } else if (typeof method === 'object' || !method) {
@@ -572,15 +572,15 @@ function getCookie(c_name)
             $.error('Method ' + method + ' does not exist on jQuery.nStRadio');
         }
     };
-    $.nStRadio = function(m) {
+    $.nStRadio = function (m) {
         return methods[m];
     };
 })(jQuery);
 /*plugin nstRadio end*/
 /*plugin autocomplete*/
-(function($) {
+(function ($) {
     var methods = {
-        init: function(options) {
+        init: function (options) {
             var settings = $.extend({
                 item: 'ul > li',
                 duration: 300,
@@ -605,7 +605,7 @@ function getCookie(c_name)
                     'data': {
                         queryString: inputString.val()
                     },
-                    'success': function(data) {
+                    'success': function (data) {
                         try {
                             var dataObj = JSON.parse(data),
                                     html = _.template($(underscoreLayout).html(), {
@@ -615,18 +615,18 @@ function getCookie(c_name)
                             var html = e.toString();
                         }
                         $thisS.html(html);
-                        $thisS.fadeIn(durationA, function() {
+                        $thisS.fadeIn(durationA, function () {
                             $(document).trigger({
                                 'type': 'autocomplete.after',
                                 'el': $thisS,
                                 'input': inputString
                             });
-                            $thisS.off('click.autocomplete').on('click.autocomplete', function(e) {
+                            $thisS.off('click.autocomplete').on('click.autocomplete', function (e) {
                                 e.stopImmediatePropagation();
                             });
-                            body.off('click.autocomplete').on('click.autocomplete', function(event) {
+                            body.off('click.autocomplete').on('click.autocomplete', function (event) {
                                 closeFrame();
-                            }).off('keydown.autocomplete').on('keydown.autocomplete', function(e) {
+                            }).off('keydown.autocomplete').on('keydown.autocomplete', function (e) {
                                 if (!e)
                                     var e = window.event;
                                 if (e.keyCode === 27) {
@@ -638,12 +638,12 @@ function getCookie(c_name)
                             closeFrame();
                         selectorPosition = -1;
                         var itemserch = $thisS.find(itemA);
-                        itemserch.mouseover(function() {
+                        itemserch.mouseover(function () {
                             var $this = $(this);
                             $this.addClass('selected');
                             selectorPosition = $this.index();
                             lookup(itemserch, selectorPosition);
-                        }).mouseleave(function() {
+                        }).mouseleave(function () {
                             $(this).removeClass('selected');
                         });
                         lookup(itemserch, selectorPosition);
@@ -651,7 +651,7 @@ function getCookie(c_name)
                 });
             }
             function lookup(itemserch, selectorPosition) {
-                inputString.keyup(function(event) {
+                inputString.keyup(function (event) {
                     if (!event)
                         var event = window.event;
                     var code = event.keyCode;
@@ -684,7 +684,7 @@ function getCookie(c_name)
                     {
                         var itemserchS = itemserch.filter('.selected');
                         if ($.existsN(itemserchS))
-                            itemserchS.each(function(i, el) {
+                            itemserchS.each(function (i, el) {
                                 window.location = $(el).attr('href');
                                 window.location = $(el).find('a').attr('href');
                             });
@@ -719,7 +719,7 @@ function getCookie(c_name)
                     minValue = settings.minValue;
             var submit = inputString.closest('form').find('[type="submit"]');
             if (blockEnter)
-                submit.on('click.autocomplete', function(e) {
+                submit.on('click.autocomplete', function (e) {
                     e.preventDefault();
                     inputString.focus();
                     $(document).trigger({
@@ -728,7 +728,7 @@ function getCookie(c_name)
                         value: minValue
                     });
                 });
-            inputString.keyup(function(event) {
+            inputString.keyup(function (event) {
                 if (postTime)
                     clearTimeout(postTime);
                 var $this = $(this);
@@ -755,7 +755,7 @@ function getCookie(c_name)
                         });
                 }
                 if (inputString.val().length <= minValue && blockEnter)
-                    submit.off('click.autocomplete').on('click.autocomplete', function(e) {
+                    submit.off('click.autocomplete').on('click.autocomplete', function (e) {
                         e.preventDefault();
                         inputString.focus();
                         $(document).trigger({
@@ -767,10 +767,10 @@ function getCookie(c_name)
                 else {
                     submit.off('click.autocomplete');
                 }
-            }).blur(function() {
+            }).blur(function () {
                 closeFrame();
             });
-            inputString.keypress(function(event) {
+            inputString.keypress(function (event) {
                 if (!event)
                     var event = window.event;
                 var code = event.keyCode;
@@ -779,7 +779,7 @@ function getCookie(c_name)
             });
         }
     };
-    $.fn.autocomplete = function(method) {
+    $.fn.autocomplete = function (method) {
         if (methods[method]) {
             return methods[ method ].apply(this, Array.prototype.slice.call(arguments, 1));
         } else if (typeof method === 'object' || !method) {
@@ -788,13 +788,13 @@ function getCookie(c_name)
             $.error('Method ' + method + ' does not exist on $.autocomplete');
         }
     };
-    $.autocomplete = function(m) {
+    $.autocomplete = function (m) {
         return methods[m];
     };
 })(jQuery);
 /*plugin autocomplete end*/
 /*plugin tooltip*/
-(function($) {
+(function ($) {
     var nS = 'tooltip',
             tooltip = '.tooltip',
             methods = {
@@ -811,8 +811,8 @@ function getCookie(c_name)
                     durationOff: 200,
                     show: false
                 },
-                init: function(options) {
-                    this.each(function() {
+                init: function (options) {
+                    this.each(function () {
                         if (!options)
                             options = {};
                         var $this = $(this),
@@ -845,7 +845,7 @@ function getCookie(c_name)
                         }
 
                         if (set.effect === 'mouse')
-                            $this.off('mousemove.' + nS).on('mousemove.' + nS, function(e) {
+                            $this.off('mousemove.' + nS).on('mousemove.' + nS, function (e) {
                                 tooltip.html(set.title).show().css({
                                     'left': methods.left($(this), tooltip, set.placement, e.pageX, set.effect, set.offsetX),
                                     'top': methods.top($(this), tooltip, set.placement, e.pageY, set.effect, set.offsetY)
@@ -858,21 +858,21 @@ function getCookie(c_name)
                         });
                         if (set.show === 'true')
                             tooltip.fadeIn(set.durationOn);
-                        $this.off('mouseleave.' + nS).on('mouseleave.' + nS, function(e) {
+                        $this.off('mouseleave.' + nS).on('mouseleave.' + nS, function (e) {
                             var el = $(this);
                             if (set.effect !== 'always')
                                 el.tooltip('remove', e);
                         });
-                        $this.filter(':input').off('blur.' + nS).on('blur.' + nS, function(e) {
+                        $this.filter(':input').off('blur.' + nS).on('blur.' + nS, function (e) {
                             $(this).tooltip('remove', e);
                         });
                     });
                     return this;
                 },
-                show: function(options) {
+                show: function (options) {
                     methods.init.call(this, $.extend({show: true}, options));
                 },
-                left: function(el, tooltip, placement, left, eff, offset) {
+                left: function (el, tooltip, placement, left, eff, offset) {
                     if (placement === 'left')
                         return Math.ceil(left - (eff === 'mouse' ? offset : tooltip.actual('outerWidth') - offset));
                     if (placement === 'right')
@@ -880,7 +880,7 @@ function getCookie(c_name)
                     else
                         return Math.ceil(left - (eff === 'mouse' ? offset : (tooltip.actual('outerWidth') - el.outerWidth()) / 2));
                 },
-                top: function(el, tooltip, placement, top, eff, offset) {
+                top: function (el, tooltip, placement, top, eff, offset) {
                     if (placement === 'top')
                         return Math.ceil(top - (eff === 'mouse' ? offset : tooltip.actual('outerHeight') - offset));
                     if (placement === 'bottom')
@@ -889,8 +889,8 @@ function getCookie(c_name)
                         return Math.ceil(top - (eff === 'mouse' ? offset : (tooltip.actual('outerHeight') - el.outerHeight()) / 2));
                     }
                 },
-                remove: function(e) {
-                    this.each(function() {
+                remove: function (e) {
+                    this.each(function () {
                         var $this = $(this),
                                 tooltip = $(methods.def.tooltip);
                         if ($this instanceof jQuery && $this['data']) {
@@ -903,7 +903,7 @@ function getCookie(c_name)
                         }
                         else
                             durOff = methods.def.durationOff;
-                        $(tooltip).stop().fadeOut(durOff, function() {
+                        $(tooltip).stop().fadeOut(durOff, function () {
                             var $this = $(this);
                             if ($this.data('otherClass') && $this.data('otherClass') !== '')
                                 $this.remove();
@@ -912,7 +912,7 @@ function getCookie(c_name)
                     return this;
                 }
             };
-    $.fn.tooltip = function(method) {
+    $.fn.tooltip = function (method) {
         if (methods[method]) {
             return methods[ method ].apply(this, Array.prototype.slice.call(arguments, 1));
         } else if (typeof method === 'object' || !method) {
@@ -921,11 +921,11 @@ function getCookie(c_name)
             $.error('Method ' + method + ' does not exist on $.tooltip');
         }
     };
-    $.tooltip = function(m) {
+    $.tooltip = function (m) {
         return methods[m];
     };
     function handlerTooltip(o, e) {
-        $(this).each(function() {
+        $(this).each(function () {
             if (e && $(e.relatedTarget).has('[data-rel="tooltip"]'))
                 $(tooltip).hide();
             $(this).tooltip('init', o);
@@ -933,9 +933,9 @@ function getCookie(c_name)
         return $(this);
     }
     ;
-    body.on('mouseenter.' + nS, '[data-rel="tooltip"]', function(e) {
+    body.on('mouseenter.' + nS, '[data-rel="tooltip"]', function (e) {
         handlerTooltip.call(this, {show: true}, e);
-    }).on('click.' + nS + ' mouseup.' + nS, function(e) {
+    }).on('click.' + nS + ' mouseup.' + nS, function (e) {
         if ($(this).data('effect') === 'always')
             $.tooltip('remove')(e);
     });
@@ -944,9 +944,9 @@ function getCookie(c_name)
 })(jQuery);
 /*plugin tooltip end*/
 /*plugin menuImageCms for main menu shop*/
-(function($) {
+(function ($) {
     var methods = {
-        _position: function(menuW, $thisL, dropW, drop, $thisW, countColumn, sub2, direction) {
+        _position: function (menuW, $thisL, dropW, drop, $thisW, countColumn, sub2, direction) {
             if ((menuW - $thisL < dropW && dropW < menuW && direction !== 'left') || direction === 'right') {
                 drop.removeClass('left-drop');
                 if (drop.children().children().length >= countColumn && !sub2)
@@ -968,8 +968,8 @@ function getCookie(c_name)
                     drop.css('left', $thisL).addClass('left-drop');
             }
         },
-        init: function(options) {
-            this.each(function() {
+        init: function (options) {
+            this.each(function () {
                 var menu = $(this);
                 if ($.existsN(menu)) {
                     var sH = 0,
@@ -1043,15 +1043,18 @@ function getCookie(c_name)
                             otherPage = settings.otherPage,
                             classRemove = settings.classRemove,
                             vertical = settings.vertical;
+                    wnd.load(function () {
+                        menuItem.removeData('show');
+                    });
                     if (menuCache && !refresh) {
-                        menu.find('a').each(function() {//if start without cache and remove active item
+                        menu.find('a').each(function () {//if start without cache and remove active item
                             var $this = $(this);
                             $this.closest(activeFl.split(' ')[0]).removeClass(aC);
                             $this.removeClass(aC);
                         });
                         var locHref = location.origin + location.pathname,
                                 locationHref = otherPage !== undefined ? otherPage : locHref;
-                        menu.find('a[href="' + locationHref + '"]').each(function() {
+                        menu.find('a[href="' + locationHref + '"]').each(function () {
                             var $this = $(this);
                             $this.closest(activeFl.split(' ')[0]).addClass(aC);
                             $this.closest(parentTl.split(' ')[0]).addClass(aC).prev().addClass(aC);
@@ -1064,11 +1067,11 @@ function getCookie(c_name)
                     }
                     if (!refresh) {
                         if (columnPart2) {
-                            dropOJ.find(sub3Frame).each(function() {
+                            dropOJ.find(sub3Frame).each(function () {
                                 var $this = $(this),
                                         columnsObj = $this.find(':regex(class,' + columnClassPref2 + '([0-9]+))'),
                                         numbColumn = [];
-                                columnsObj.each(function(i) {
+                                columnsObj.each(function (i) {
                                     numbColumn[i] = $(this).attr('class').match(new RegExp(columnClassPref2 + '([0-9]+)'))[0];
                                 });
                                 numbColumn = _.uniq(numbColumn).sort();
@@ -1078,7 +1081,7 @@ function getCookie(c_name)
                                         numbColumn.shift();
                                         numbColumn.push('0');
                                     }
-                                    $.map(numbColumn, function(n, i) {
+                                    $.map(numbColumn, function (n, i) {
                                         var currC = columnsObj.filter('.' + n),
                                                 classCuurC = currC.first().attr('class');
                                         $this.children().append('<li class="' + classCuurC + '" data-column="' + n + '"><ul></ul></li>');
@@ -1095,11 +1098,11 @@ function getCookie(c_name)
                             });
                         }
                         if (columnPart && !sub2Frame)
-                            dropOJ.each(function() {
+                            dropOJ.each(function () {
                                 var $this = $(this),
                                         columnsObj = $this.find(':regex(class,' + columnClassPref + '([0-9]|-1+))'),
                                         numbColumn = [];
-                                columnsObj.each(function(i) {
+                                columnsObj.each(function (i) {
                                     numbColumn[i] = $(this).attr('class').match(/([0-9]|-1+)/)[0];
                                 });
                                 numbColumn = _.uniq(numbColumn).sort();
@@ -1113,10 +1116,10 @@ function getCookie(c_name)
                                         numbColumn.shift();
                                         numbColumn.push('0');
                                     }
-                                    $.map(numbColumn, function(n, i) {
+                                    $.map(numbColumn, function (n, i) {
                                         var $thisLi = columnsObj.filter('.' + columnClassPref + n),
                                                 sumx = 0;
-                                        $thisLi.each(function() {
+                                        $thisLi.each(function () {
                                             var datax = +$(this).attr('data-x');
                                             sumx = parseInt(datax === 0 || !datax ? 1 : datax) > sumx ? parseInt(datax === 0 || !datax ? 1 : datax) : sumx;
                                         });
@@ -1126,7 +1129,7 @@ function getCookie(c_name)
                                     columnsObj.remove();
                                 }
                                 var sumx = 0;
-                                $this.children().children().each(function() {
+                                $this.children().children().each(function () {
                                     var datax = +$(this).attr('data-x');
                                     sumx = sumx + parseInt(datax === 0 || !datax ? 1 : datax);
                                 });
@@ -1141,7 +1144,7 @@ function getCookie(c_name)
                     var k = [];
                     if (!vertical)
                         menuItem.add(menuItem.find('.helper:first')).css('height', '');
-                    menuItem.each(function(index) {
+                    menuItem.each(function (index) {
                         var $this = $(this),
                                 $thisW = $this.width(),
                                 $thisL = $this.position().left,
@@ -1188,7 +1191,7 @@ function getCookie(c_name)
                     if (evLS === 'toggle')
                         evLS = 'click';
                     menuItem.off('click').off('hover')[evLF](
-                            function(e) {
+                            function (e) {
                                 var $this = $(this);
                                 if (evLF === 'click')
                                     e.stopPropagation();
@@ -1206,8 +1209,8 @@ function getCookie(c_name)
                                     if ($(e.relatedTarget).is(menuItem) || $.existsN($(e.relatedTarget).parents(menuItem)) || $this.data('kk') === 0)
                                         k[$thisI] = true;
                                     if (k[$thisI]) {
-                                        hoverTO = setTimeout(function() {
-                                            $thisDrop[effOn](durationOn, function(e) {
+                                        hoverTO = setTimeout(function () {
+                                            $thisDrop[effOn](durationOn, function (e) {
                                                 $this.data('kk', $this.data('kk') + 1);
                                                 $(document).trigger({
                                                     type: 'menu.showDrop',
@@ -1218,7 +1221,7 @@ function getCookie(c_name)
                                                 if (sub2Frame) {
                                                     var listDrop = $thisDrop.children();
                                                     $thisDrop.find(sub2Frame).addClass('is-side');
-                                                    listDrop.children().off('click').off('hover')[evLS](function(e) {
+                                                    listDrop.children().off('click').off('hover')[evLS](function (e) {
                                                         var $this = $(this);
                                                         if (evLS === 'click')
                                                             e.stopPropagation();
@@ -1251,7 +1254,7 @@ function getCookie(c_name)
                                                                     }, {
                                                                         queue: false,
                                                                         duration: durationOnS,
-                                                                        complete: function() {
+                                                                        complete: function () {
                                                                             $thisDrop.animate({
                                                                                 'width': sumW,
                                                                                 'height': subHL2 + addH
@@ -1269,7 +1272,7 @@ function getCookie(c_name)
                                                                         'width': sumW
                                                                     });
                                                                 }
-                                                                subFrame[effOnS](durationOnS, function() {
+                                                                subFrame[effOnS](durationOnS, function () {
                                                                     subFrame.css('height', subHL2);
                                                                 });
                                                             }
@@ -1314,29 +1317,29 @@ function getCookie(c_name)
                                 }
                             });
                     menu.off('hover')['hover'](
-                            function(e) {
-                                menuItem.each(function() {
+                            function (e) {
+                                menuItem.each(function () {
                                     $(this).data('kk', 0);
                                 });
                                 timeDurM = 0;
                             },
-                            function(e) {
+                            function (e) {
                                 closeMenu();
-                                menuItem.each(function() {
+                                menuItem.each(function () {
                                     $(this).data('kk', -1);
                                 });
                                 timeDurM = duration;
                             });
-                    body.off('click.menu').on('click.menu', function(e) {
+                    body.off('click.menu').on('click.menu', function (e) {
                         closeMenu();
-                    }).off('keydown.menu').on('keydown.menu', function(e) {
+                    }).off('keydown.menu').on('keydown.menu', function (e) {
                         if (!e)
                             var e = window.event;
                         if (e.keyCode === 27) {
                             closeMenu();
                         }
                     });
-                    dropOJ.find('a').off('click.menuref').on('click.menuref', function(e) {
+                    dropOJ.find('a').off('click.menuref').on('click.menuref', function (e) {
                         if (evLS === 'click') {
                             if ($.existsN($(this).next()) && sub2Frame) {
                                 e.preventDefault();
@@ -1348,7 +1351,7 @@ function getCookie(c_name)
                         else
                             e.stopPropagation();
                     });
-                    menuItem.find('a:first').off('click.menuref').on('click.menuref', function(e) {
+                    menuItem.find('a:first').off('click.menuref').on('click.menuref', function (e) {
                         if (!$.existsN($(this).closest(item).find(drop)))
                             e.stopPropagation();
                         if (evLF === 'click' && $.existsN($(this).closest(item).find(drop)))
@@ -1358,14 +1361,14 @@ function getCookie(c_name)
             });
             return this;
         },
-        refresh: function(optionsMenu) {
+        refresh: function (optionsMenu) {
             methods.init.call(this, $.extend({}, optionsMenu ? optionsMenu : this.data('options'), {
                 refresh: true
             }));
             return this;
         }
     };
-    $.fn.menuImageCms = function(method) {
+    $.fn.menuImageCms = function (method) {
         if (methods[method]) {
             return methods[ method ].apply(this, Array.prototype.slice.call(arguments, 1));
         } else if (typeof method === 'object' || !method) {
@@ -1374,16 +1377,16 @@ function getCookie(c_name)
             $.error('Method ' + method + ' does not exist on $.menuImageCms');
         }
     };
-    $.menuImageCms = function(m) {
+    $.menuImageCms = function (m) {
         return methods[m];
     };
 })(jQuery);
 /*plugin menuImageCms end*/
 /*plugin tabs*/
-(function($) {
+(function ($) {
     var methods = {
         index: 0,
-        init: function(options) {
+        init: function (options) {
             var $this = this;
             if ($.existsN($this)) {
                 var settings = $.extend({
@@ -1391,9 +1394,9 @@ function getCookie(c_name)
                     effectOff: 'hide',
                     durationOn: '0',
                     durationOff: '0',
-                    before: function() {
+                    before: function () {
                     },
-                    after: function() {
+                    after: function () {
                     }
                 }, options);
                 var tabsDiv = [],
@@ -1404,7 +1407,7 @@ function getCookie(c_name)
                         k = true,
                         refs = [],
                         attrOrdata = [];
-                $this.each(function() {
+                $this.each(function () {
                     var index = methods.index,
                             $thiss = $(this),
                             data = $thiss.data(),
@@ -1419,7 +1422,7 @@ function getCookie(c_name)
                             tempO2 = $([]),
                             tempRefs = [];
                     methods.index += 1;
-                    refs[index].each(function(ind) {
+                    refs[index].each(function (ind) {
                         var tHref = $(this)[attrOrdata[index]]('href');
                         if (tHref.indexOf('#') !== -1) {
                             tempO = tempO.add($(tHref));
@@ -1430,7 +1433,7 @@ function getCookie(c_name)
                     tabsDiv[index] = tempO;
                     tabsId[index] = tempO2;
                     regRefs[index] = tempRefs;
-                    refs[index].off('click.tabs').on('click.tabs', function(e) {
+                    refs[index].off('click.tabs').on('click.tabs', function (e) {
                         var $this = $(this),
                                 resB = settings.before($this);
                         if (resB === undefined || resB === true) {
@@ -1451,7 +1454,7 @@ function getCookie(c_name)
                                     var showBlock = $thisAO.add($('[data-id=' + $thisA + ']')),
                                             addDiv = toggle ? ($thisAO.is(':visible') && !condStart ? $([]) : showBlock) : showBlock;
                                     if ($thisA.indexOf('#') !== -1 && !$thisAO.is(':visible')) {
-                                        showBlock[effectOn](durationOn, function() {
+                                        showBlock[effectOn](durationOn, function () {
                                             settings.after($thiss, $thisA, $thisAO.add('[data-id=' + $thisA + ']'));
                                         }).addClass(aC);
                                     }
@@ -1479,7 +1482,7 @@ function getCookie(c_name)
                                             type: 'post',
                                             url: $thisS,
                                             data: $thisData,
-                                            success: function(data) {
+                                            success: function (data) {
                                                 tabsDivT();
                                                 $thisAO.find($thisSel).html(data);
                                                 $(document).trigger({
@@ -1490,7 +1493,7 @@ function getCookie(c_name)
                                             }
                                         });
                                     else
-                                        $thisAO.load($thisS, function() {
+                                        $thisAO.load($thisS, function () {
                                             $(document).trigger({
                                                 'type': 'tabs.afterload',
                                                 "els": tabsDiv[index],
@@ -1514,8 +1517,8 @@ function getCookie(c_name)
                                 }
                                 var wLH = window.location.hash,
                                         i = 0;
-                                _.map(regRefs[index], function(n, j) {
-                                    _.map(methods.hashs[0], function(m, j) {
+                                _.map(regRefs[index], function (n, j) {
+                                    _.map(methods.hashs[0], function (m, j) {
                                         if (m === n)
                                             i++;
                                     });
@@ -1547,7 +1550,7 @@ function getCookie(c_name)
                                     }
                                 }
                                 if ($thiss.data('elchange') !== undefined) {
-                                    refs[index].each(function() {
+                                    refs[index].each(function () {
                                         var $thisDH = $(this).data('href');
                                         if ($thisDH === $thisA)
                                             $($thiss.data('elchange')).addClass($thisA);
@@ -1562,9 +1565,9 @@ function getCookie(c_name)
                     if (thisL - 1 === index)
                         methods.location(regRefs, refs);
                 });
-                wnd.off('hashchange.tabs').on('hashchange.tabs', function(e) {
+                wnd.off('hashchange.tabs').on('hashchange.tabs', function (e) {
                     e.preventDefault();
-                    _.map(location.hash.split('#'), function(i, n) {
+                    _.map(location.hash.split('#'), function (i, n) {
                         if (i !== '') {
                             var el = $('[data-href="#' + i + '"], [href="#' + i + '"]');
                             if (!$.existsN(el.closest('[data-type="toggle"]'))) {
@@ -1577,14 +1580,14 @@ function getCookie(c_name)
             }
             return $this;
         },
-        location: function(regrefs, refs) {
+        location: function (regrefs, refs) {
             var hashs1 = [],
                     hashs2 = [];
             if (location.hash === '')
             {
                 var i = 0,
                         j = 0;
-                _.map(refs, function(n, i) {
+                _.map(refs, function (n, i) {
                     var $this = n.first(),
                             attrOrdataL = $this.attr('href') !== undefined ? 'attr' : 'data';
                     if (attrOrdataL !== 'data') {
@@ -1599,7 +1602,7 @@ function getCookie(c_name)
                 var hashs = [hashs1, hashs2];
             }
             else {
-                _.map(refs, function(n, i) {
+                _.map(refs, function (n, i) {
                     var j = 0,
                             $this = n.first(),
                             attrOrdataL = $this.attr('href') !== undefined ? 'attr' : 'data';
@@ -1632,14 +1635,14 @@ function getCookie(c_name)
             methods.hashs = hashs;
             methods.startCheck(regrefs, methods.hashs);
         },
-        startCheck: function(regrefs, hashs) {
+        startCheck: function (regrefs, hashs) {
             var hash = hashs[0].concat(hashs[1]),
                     regrefsL = regrefs.length,
                     sim = 0;
-            $.map(regrefs, function(n, k) {
+            $.map(regrefs, function (n, k) {
                 var i = 0,
                         hashs2 = [].concat(hash);
-                $.map(hash, function(n, j) {
+                $.map(hash, function (n, j) {
                     if ($.inArray(n, regrefs[k]) >= 0)
                         i++;
                     if ($.inArray(n, regrefs[k]) >= 0 && i > 1) {
@@ -1649,7 +1652,7 @@ function getCookie(c_name)
                 if (hashs2.join() === hash.join())
                     sim++;
                 if (hashs2.join() !== hash.join() || sim === regrefsL)
-                    $.map(hashs2, function(n, i) {
+                    $.map(hashs2, function (n, i) {
                         var attrOrdataNew = "";
                         $('[href=' + n + ']').length === 0 ? attrOrdataNew = 'data-href' : attrOrdataNew = 'href';
                         if ($.inArray(n, hashs[0]) === -1 && $.existsN($('[' + attrOrdataNew + '=' + n + ']').parent().siblings('.' + aC))) {
@@ -1668,7 +1671,7 @@ function getCookie(c_name)
             });
         }
     };
-    $.fn.tabs = function(method) {
+    $.fn.tabs = function (method) {
         if (methods[method]) {
             return methods[ method ].apply(this, Array.prototype.slice.call(arguments, 1));
         } else if (typeof method === 'object' || !method) {
@@ -1677,16 +1680,16 @@ function getCookie(c_name)
             $.error('Method ' + method + ' does not exist on $.tabs');
         }
     };
-    $.tabs = function(m) {
+    $.tabs = function (m) {
         return methods[m];
     };
 })(jQuery);
 /*/plugin tabs end*/
 /*plugin drop*/
-(function($) {
+(function ($) {
     var methods = {
-        init: function(options) {
-            this.each(function() {
+        init: function (options) {
+            this.each(function () {
                 var el = methods.destroy($(this)),
                         elSet = el.data(),
                         trigger = methods._checkProp(elSet, options, 'trigger'),
@@ -1711,17 +1714,17 @@ function getCookie(c_name)
                     'drp': options
                 }).addClass('isDrop');
                 if (triggerOn || triggerOff)
-                    el.data({'triggerOn': triggerOn, 'triggerOff': triggerOff}).on(triggerOn + '.' + $.drop.nS + ' ' + triggerOff + '.' + $.drop.nS, function(e) {
+                    el.data({'triggerOn': triggerOn, 'triggerOff': triggerOff}).on(triggerOn + '.' + $.drop.nS + ' ' + triggerOff + '.' + $.drop.nS, function (e) {
                         e.stopPropagation();
                         e.preventDefault();
-                    }).on(triggerOn + '.' + $.drop.nS, function(e) {
+                    }).on(triggerOn + '.' + $.drop.nS, function (e) {
                         if (condTrigger && eval('(function(){' + condTrigger + '})()'))
                             methods.open(options, null, $(this), e);
-                    }).on(triggerOff + '.' + $.drop.nS, function() {
+                    }).on(triggerOff + '.' + $.drop.nS, function () {
                         methods.close($(el.attr('data-drop')));
                     });
                 else
-                    el.data('trigger', trigger).on(trigger + '.' + $.drop.nS, function(e) {
+                    el.data('trigger', trigger).on(trigger + '.' + $.drop.nS, function (e) {
                         if (el.parent().hasClass(aC))
                             methods.close($(el.attr('data-drop')));
                         else
@@ -1729,7 +1732,7 @@ function getCookie(c_name)
                         e.stopPropagation();
                         e.preventDefault();
                     });
-                el.on('contextmenu.' + $.drop.nS, function(e) {
+                el.on('contextmenu.' + $.drop.nS, function (e) {
                     e.preventDefault();
                 });
                 var href = el.data('href');
@@ -1743,9 +1746,9 @@ function getCookie(c_name)
                     delete $.drop.drp.galleries[i];
             return $(this);
         },
-        destroy: function(el) {
+        destroy: function (el) {
             el = el ? el : this;
-            el.each(function() {
+            el.each(function () {
                 var el = $(this),
                         elSet = el.data();
                 el.removeClass('isDrop');
@@ -1758,7 +1761,7 @@ function getCookie(c_name)
             });
             return el;
         },
-        get: function(el, set, e, hashChange) {
+        get: function (el, set, e, hashChange) {
             if (!el)
                 el = this;
             if (!set)
@@ -1793,13 +1796,13 @@ function getCookie(c_name)
                     type: type,
                     data: datas,
                     url: source,
-                    beforeSend: function() {
+                    beforeSend: function () {
                         if (!methods._checkProp(elSet, set, 'moreOne'))
                             methods._closeMoreOne();
                         $.drop.showActivity();
                     },
                     dataType: modal ? 'json' : dataType,
-                    success: function(data) {
+                    success: function (data) {
                         $.drop.hideActivity();
                         if (!always && !modal)
                             $.drop.drp.drops[source.replace(methods._reg(), '')] = data;
@@ -1823,7 +1826,7 @@ function getCookie(c_name)
                 $.drop.showActivity();
                 if (source.match(/jpg|gif|png|bmp|jpeg/)) {
                     var img = new Image();
-                    $(img).load(function() {
+                    $(img).load(function () {
                         _update($(this));
                     });
                     img.src = source;
@@ -1834,14 +1837,14 @@ function getCookie(c_name)
                         url: source,
                         data: datas,
                         dataType: dataType ? dataType : 'html',
-                        success: function(data) {
+                        success: function (data) {
                             _update(data);
                         }
                     });
             }
             return el;
         },
-        open: function(opt, datas, $this, e, hashChange) {
+        open: function (opt, datas, $this, e, hashChange) {
             e = e ? e : window.event;
             if (!$this) {
                 if ($(this).hasClass('isDrop'))
@@ -1868,7 +1871,7 @@ function getCookie(c_name)
                     }
                 }
             }
-            $this.each(function() {
+            $this.each(function () {
                 var $this = $(this),
                         elSet = $this.data(),
                         moreOne = methods._checkProp(elSet, opt, 'moreOne'),
@@ -1917,7 +1920,7 @@ function getCookie(c_name)
                             if (!confirm && !prompt)
                                 _confirmF();
                             else//for cofirm && prompt
-                                methods._checkMethod(function() {
+                                methods._checkMethod(function () {
                                     methods.confirmPrompt(source, methods, elSet, opt, hashChange, _confirmF, e);
                                 });
                         }
@@ -1930,14 +1933,14 @@ function getCookie(c_name)
             });
             return $this;
         },
-        close: function(sel, hashChange, f) {
+        close: function (sel, hashChange, f) {
             var sel2 = sel;
             if (!sel2)
                 sel2 = this.self ? this.self : this;
             var drop = sel2 instanceof jQuery ? sel2 : $('[data-elrun].' + aC);
             if ((drop instanceof jQuery) && $.existsN(drop)) {
                 clearTimeout($.drop.drp.closeDropTime);
-                drop.each(function() {
+                drop.each(function () {
                     var drop = $(this),
                             set = $.extend({}, drop.data('drp'));
                     if (set && drop.is(':visible') && (set.modal || sel || set.place !== 'inherit' || set.inheritClose || set.overlayOpacity !== 0)) {
@@ -1947,24 +1950,24 @@ function getCookie(c_name)
                                     durOff = set.durationOff;
                             function _hide() {
                                 $thisB.parent().removeClass(aC);
-                                $thisB.each(function() {
+                                $thisB.each(function () {
                                     var $thisHref = $(this).data('href');
                                     if ($thisHref) {
                                         clearTimeout($.drop.drp.curHashTimeout);
                                         $.drop.drp.curHash = hashChange ? $thisHref : null;
                                         $.drop.drp.scrollTop = wnd.scrollTop();
                                         location.hash = location.hash.replace($thisHref, '');
-                                        $.drop.drp.curHashTimeout = setTimeout(function() {
+                                        $.drop.drp.curHashTimeout = setTimeout(function () {
                                             $.drop.drp.curHash = null;
                                             $.drop.drp.scrollTop = null;
                                         }, 400);
                                     }
                                 });
                                 drop.removeClass(aC);
-                                methods._checkMethod(function() {
+                                methods._checkMethod(function () {
                                     methods.placeAfterClose(drop, $thisB, set);
                                 });
-                                drop[$thisEOff](durOff, function() {
+                                drop[$thisEOff](durOff, function () {
                                     var $this = $(this),
                                             ev = set.drop ? set.drop.replace(methods._reg(), '') : '';
                                     if (set.forCenter)
@@ -1973,7 +1976,7 @@ function getCookie(c_name)
                                     body.off('keyup.' + $.drop.nS + ev).off('keyup.' + $.drop.nS).off('click.' + $.drop.nS);
                                     var zInd = 0,
                                             drpV = null;
-                                    $('[data-elrun]:visible').each(function() {
+                                    $('[data-elrun]:visible').each(function () {
                                         var $this = $(this);
                                         if (parseInt($this.css('z-index')) > zInd) {
                                             zInd = parseInt($this.css('z-index'));
@@ -2040,10 +2043,10 @@ function getCookie(c_name)
             }
             return sel;
         },
-        center: function(drop, start) {
+        center: function (drop, start) {
             if (!drop)
                 drop = this.self ? this.self : this;
-            drop.each(function() {
+            drop.each(function () {
                 var drop = $(this),
                         drp = drop.data('drp');
                 if (drp && !drp.droppableIn) {
@@ -2064,7 +2067,7 @@ function getCookie(c_name)
             });
             return drop;
         },
-        _resetStyleDrop: function(drop) {
+        _resetStyleDrop: function (drop) {
             return drop.css({
                 'z-index': '',
                 'width': '',
@@ -2076,7 +2079,7 @@ function getCookie(c_name)
                 'position': ''
             });
         },
-        _checkProp: function(elSet, opt, prop) {
+        _checkProp: function (elSet, opt, prop) {
             if (!elSet)
                 elSet = {};
             if (!opt)
@@ -2089,13 +2092,13 @@ function getCookie(c_name)
                 return elSet[prop] || (opt[prop] ? opt[prop] : false) || $.drop.dP[prop];
             return this;
         },
-        _closeMoreOne: function() {
+        _closeMoreOne: function () {
             if ($.exists('[data-elrun].center:visible, [data-elrun].noinherit:visible'))
                 methods.close($('[data-elrun].center:visible, [data-elrun].noinherit:visible'));
             return this;
         },
-        _modalTrigger: function(el, elSet, set) {
-            el.off('successJson.' + $.drop.nS).on('successJson.' + $.drop.nS, function(e) {
+        _modalTrigger: function (el, elSet, set) {
+            el.off('successJson.' + $.drop.nS).on('successJson.' + $.drop.nS, function (e) {
                 if (e.datas) {
                     if (e.datas.answer === "success")
                         e.el.find(methods._checkProp(elSet, set, 'modalPlace')).empty().append(methods._checkProp(elSet, set, 'message').success(e.datas.data));
@@ -2107,7 +2110,7 @@ function getCookie(c_name)
             });
             return this;
         },
-        _pasteModal: function(el, datas, set, rel, hashChange) {
+        _pasteModal: function (el, datas, set, rel, hashChange) {
             var elSet = el.data(),
                     drop = $(elSet.drop);
             datas = datas || el.data('datas');
@@ -2120,10 +2123,10 @@ function getCookie(c_name)
             methods._show(el, null, set, datas, hashChange);
             return this;
         },
-        _reg: function() {
+        _reg: function () {
             return /[^a-zA-Z0-9]+/ig;
         },
-        _pasteDrop: function(set, drop, addClass, rel) {
+        _pasteDrop: function (set, drop, addClass, rel) {
             if (drop instanceof jQuery && drop.attr('pattern'))
                 drop.find(drop.data('drp').placePaste).empty().append($.drop.drp.drops[set.source.replace(methods._reg(), '')]);
             addClass = addClass ? addClass : '';
@@ -2149,7 +2152,7 @@ function getCookie(c_name)
             }
             return drop.addClass(addClass).filter(set.drop).attr('data-rel', rel).attr('data-elrun', set.drop);
         },
-        _pasteContent: function($this, drop, opt) {
+        _pasteContent: function ($this, drop, opt) {
             function _pasteContent(content, place) {
                 if (content) {
                     place = drop.find(place);
@@ -2164,7 +2167,7 @@ function getCookie(c_name)
             _pasteContent(opt.contentFooter, opt.dropFooter);
             return this;
         },
-        _show: function($this, e, set, data, hashChange) {
+        _show: function ($this, e, set, data, hashChange) {
             $this = $this ? $this : this;
             e = e ? e : window.event;
             var elSet = $this.data(),
@@ -2207,7 +2210,7 @@ function getCookie(c_name)
                     'elrun': opt.elrun
                 }, $.drop.methods())
             }));
-            methods._checkMethod(function() {
+            methods._checkMethod(function () {
                 methods.galleries($this, set, methods);
             });
             var overlays = $('.overlayDrop').css('z-index', 1103),
@@ -2255,19 +2258,19 @@ function getCookie(c_name)
             methods._positionType(drop);
             if (!isTouch && opt.place !== 'inherit' && opt.overlayOpacity !== 0)
                 body.addClass('isScroll').css({'overflow': 'hidden', 'margin-right': $.drop.widthScroll});
-            methods._checkMethod(function() {
+            methods._checkMethod(function () {
                 methods.limitSize(drop);
             });
-            methods._checkMethod(function() {
+            methods._checkMethod(function () {
                 methods.heightContent(drop);
             });
             if (forCenter)
                 forCenter.css('top', wnd.scrollTop()).show();
-            methods._checkMethod(function() {
+            methods._checkMethod(function () {
                 methods.placeBeforeShow(drop, $this, methods, opt.place, opt.placeBeforeShow);
             });
             if (opt.place !== 'inherit')
-                methods._checkMethod(function() {
+                methods._checkMethod(function () {
                     methods[opt.place](drop);
                 });
             var href = $this.data('href');
@@ -2278,7 +2281,7 @@ function getCookie(c_name)
                 var wlh = window.location.hash;
                 if (href.indexOf('#') !== -1 && (new RegExp(href + '#|' + href + '$').exec(wlh) === null))
                     window.location.hash = wlh + href;
-                $.drop.drp.curHashTimeout = setTimeout(function() {
+                $.drop.drp.curHashTimeout = setTimeout(function () {
                     $.drop.drp.curHash = null;
                     $.drop.drp.scrollTop = null;
                 }, 400);
@@ -2292,16 +2295,16 @@ function getCookie(c_name)
             }
             $(opt.next).add($(opt.prev)).css('height', drop.actual('height'));
             var ev = opt.drop ? opt.drop.replace(methods._reg(), '') : '';
-            wnd.off('resize.' + $.drop.nS + ev).on('resize.' + $.drop.nS + ev, function() {
-                methods._checkMethod(function() {
+            wnd.off('resize.' + $.drop.nS + ev).on('resize.' + $.drop.nS + ev, function () {
+                methods._checkMethod(function () {
                     methods.limitSize(drop);
                 });
-                methods._checkMethod(function() {
+                methods._checkMethod(function () {
                     methods.heightContent(drop);
                 });
                 if (opt.place !== 'inherit')
                     methods[opt.place](drop);
-                setTimeout(function() {
+                setTimeout(function () {
                     if (dropOver)
                         dropOver.css('height', '').css('height', $(document).height());
                     if (forCenter && isTouch)
@@ -2311,7 +2314,7 @@ function getCookie(c_name)
             if (condOverlay)
                 dropOver.stop().fadeIn(opt.durationOn / 2);
             if (opt.closeClick)
-                $(forCenter).add(dropOver).off('click.' + $.drop.nS + ev).on('click.' + $.drop.nS + ev, function(e) {
+                $(forCenter).add(dropOver).off('click.' + $.drop.nS + ev).on('click.' + $.drop.nS + ev, function (e) {
                     if ($(e.target).is('.overlayDrop') || $(e.target).is('.forCenter'))
                         methods.close($($(e.target).attr('data-rel')));
                 });
@@ -2321,35 +2324,35 @@ function getCookie(c_name)
                     input.focus();
                 }
                 setTimeout(focusInput, 0);
-                drop.find('form').off('submit.' + $.drop.nS + ev).on('submit.' + $.drop.nS + ev, function(e) {
+                drop.find('form').off('submit.' + $.drop.nS + ev).on('submit.' + $.drop.nS + ev, function (e) {
                     e.preventDefault();
                 });
                 drop.click(focusInput);
             }
-            drop.attr('data-elrun', opt.drop).off('click.' + $.drop.nS, opt.exit).on('click.' + $.drop.nS, opt.exit, function(e) {
+            drop.attr('data-elrun', opt.drop).off('click.' + $.drop.nS, opt.exit).on('click.' + $.drop.nS, opt.exit, function (e) {
                 e.stopPropagation();
                 methods.close($(this).closest('[data-elrun]'));
             });
             body.off('keyup.' + $.drop.nS);
             if (opt.closeEsc)
-                body.on('keyup.' + $.drop.nS, function(e) {
+                body.on('keyup.' + $.drop.nS, function (e) {
                     var key = e.keyCode;
                     if (key === 27)
                         methods.close(false);
                 });
             $('html').css('height', '100%');
-            body.css('height', '100%').off('click.' + $.drop.nS).on('click.' + $.drop.nS, function(e) {
+            body.css('height', '100%').off('click.' + $.drop.nS).on('click.' + $.drop.nS, function (e) {
                 if (opt.closeClick && !$.existsN($(e.target).closest('[data-elrun]')))
                     methods.close(false);
             });
-            drop[opt.effectOn](opt.durationOn, function(e) {
+            drop[opt.effectOn](opt.durationOn, function (e) {
                 var drop = $(this);
                 $.drop.drp.curDrop = drop;
                 if ($.existsN(drop.find('[data-drop]')))
                     methods.init.call(drop.find('[data-drop]'));
                 drop.addClass(aC);
                 if (opt.modal && opt.timeclosemodal)
-                    $.drop.drp.closeDropTime = setTimeout(function() {
+                    $.drop.drp.closeDropTime = setTimeout(function () {
                         methods.close(drop);
                     }, opt.timeclosemodal);
                 var cB = opt.elAfter;
@@ -2366,15 +2369,15 @@ function getCookie(c_name)
                     'datas': data
                 });
                 if (opt.droppable && opt.place !== 'inherit')
-                    methods._checkMethod(function() {
+                    methods._checkMethod(function () {
                         methods.droppable(drop);
                     });
-                wnd.off('scroll.' + $.drop.nS + ev).on('scroll.' + $.drop.nS + ev, function(e) {
+                wnd.off('scroll.' + $.drop.nS + ev).on('scroll.' + $.drop.nS + ev, function (e) {
                     if (opt.place === 'center')
                         methods.center(drop);
                 });
                 if (rel && opt.keyNavigate && methods.galleries)
-                    body.off('keyup.' + $.drop.nS + ev).on('keyup.' + $.drop.nS + ev, function(e) {
+                    body.off('keyup.' + $.drop.nS + ev).on('keyup.' + $.drop.nS + ev, function (e) {
                         $(this).off('keyup.' + $.drop.nS + ev);
                         var key = e.keyCode;
                         if (key === 37)
@@ -2385,7 +2388,7 @@ function getCookie(c_name)
             });
             return this;
         },
-        _checkMethod: function(f) {
+        _checkMethod: function (f) {
             try {
                 f();
             } catch (e) {
@@ -2394,17 +2397,17 @@ function getCookie(c_name)
             }
             return this;
         },
-        _positionType: function(drop) {
+        _positionType: function (drop) {
             if (drop.data('drp').place !== 'inherit')
                 drop.css({
                     'position': drop.data('drp').position
                 });
             return this;
         },
-        _filterSource: function(btn, s) {
+        _filterSource: function (btn, s) {
             var source = s.split(').'),
                     regS, regM = '';
-            $.each(source, function(i, v) {
+            $.each(source, function (i, v) {
                 regS = (v[v.length - 1] !== ')' ? v + ')' : v).match(/\(.*\)/);
                 regM = regS['input'].replace(regS[0], '');
                 regS = regS[0].substring(1, regS[0].length - 1);
@@ -2413,7 +2416,7 @@ function getCookie(c_name)
             return btn;
         }
     };
-    $.fn.drop = function(method) {
+    $.fn.drop = function (method) {
         if (methods[method]) {
             if (!/_/.test(method))
                 return methods[ method ].apply(this, Array.prototype.slice.call(arguments, 1));
@@ -2425,13 +2428,13 @@ function getCookie(c_name)
             $.error('Method ' + method + ' does not exist on $.drop');
         }
     };
-    $.dropInit = function() {
+    $.dropInit = function () {
         this.nS = 'drop';
-        this.method = function(m) {
+        this.method = function (m) {
             if (!/_/.test(m))
                 return methods[m];
         };
-        this.methods = function() {
+        this.methods = function () {
             var newM = {};
             for (var i in methods) {
                 if (!/_/.test(i))
@@ -2456,13 +2459,13 @@ function getCookie(c_name)
             condTrigger: null,
             dropFilter: null,
             message: {
-                success: function(text) {
+                success: function (text) {
                     return '<div class = "msg js-msg"><div class = "success"><span class = "icon_info"></span><div class="text-el">' + text + '</div></div></div>';
                 },
-                error: function(text) {
+                error: function (text) {
                     return '<div class = "msg js-msg"><div class = "error"><span class = "icon_info"></span><div class="text-el">' + text + '</div></div></div>';
                 },
-                info: function(text) {
+                info: function (text) {
                     return '<div class = "msg js-msg"><div class = "info"><span class = "icon_info"></span><div class="text-el">' + text + '</div></div></div>';
                 }
             },
@@ -2478,13 +2481,13 @@ function getCookie(c_name)
             position: 'absolute',
             placeBeforeShow: 'center center',
             placeAfterClose: 'center center',
-            before: function() {
+            before: function () {
             },
-            after: function() {
+            after: function () {
             },
-            close: function() {
+            close: function () {
             },
-            closed: function() {
+            closed: function () {
             },
             pattern: '<div class="drop drop-style drop-default" style="background-color: #fff;"><button type="button" class="icon-times-drop" data-closed="closed-js" style="position: absolute;right: 5px;top: 5px;background-color: red;width: 10px;height: 10px;"></button><div class="drop-header-default"></div><div class="drop-content-default"><button class="drop-prev" type="button"  style="display:none;font-size: 30px;position:absolute;width: 35%;left: 20px;top:0;text-align: left;"><</button><button class="drop-next" type="button" style="display:none;font-size: 30px;position:absolute;width: 35%;right: 20px;top:0;text-align: right;">></button><div class="inside-padd placePaste" style="padding: 20px 40px;text-align: center;"></div></div><div class="drop-footer-default"></div></div>',
             modalBtnDrop: '#drop-notification-default',
@@ -2533,10 +2536,10 @@ function getCookie(c_name)
             curHashTimeout: null,
             scrollTop: null
         };
-        this.setParameters = function(options) {
+        this.setParameters = function (options) {
             $.extend(this.dP, options);
         };
-        this.setMethods = function(ms) {
+        this.setMethods = function (ms) {
             $.extend(methods, ms);
         };
     };
@@ -2549,7 +2552,7 @@ function getCookie(c_name)
     el.parent().remove();
     var loadingTimer, loadingFrame = 1,
             loading = $('<div id="fancybox-loading"><div></div></div>').appendTo(body),
-            _animate_loading = function() {
+            _animate_loading = function () {
                 if (!loading.is(':visible')) {
                     clearInterval(loadingTimer);
                     return;
@@ -2557,17 +2560,17 @@ function getCookie(c_name)
                 $('div', loading).css('top', (loadingFrame * -40) + 'px');
                 loadingFrame = (loadingFrame + 1) % 12;
             };
-    $.dropInit.prototype.showActivity = function() {
+    $.dropInit.prototype.showActivity = function () {
         clearInterval(loadingTimer);
         loading.show();
         loadingTimer = setInterval(_animate_loading, 66);
     };
-    $.dropInit.prototype.hideActivity = function() {
+    $.dropInit.prototype.hideActivity = function () {
         loading.hide();
     };
     $.drop = new $.dropInit();
     var wLH = window.location.hash;
-    wnd.off('hashchange.' + $.drop.nS).on('hashchange.' + $.drop.nS, function(e) {
+    wnd.off('hashchange.' + $.drop.nS).on('hashchange.' + $.drop.nS, function (e) {
         e.preventDefault();
         if ($.drop.drp.scrollTop)
             $('html, body').scrollTop($.drop.drp.scrollTop);
@@ -2584,23 +2587,23 @@ function getCookie(c_name)
 })(jQuery);
 /*/plugin drop end*/
 /*plugin plusminus*/
-(function($) {
+(function ($) {
     var methods = {
-        init: function(options) {
+        init: function (options) {
             var settings = $.extend({
                 prev: 'prev',
                 next: 'next',
                 step: 1,
                 checkProdStock: false,
-                after: function() {
+                after: function () {
                 },
-                before: function() {
+                before: function () {
                 },
-                hover: function() {
+                hover: function () {
                 }
             }, options);
             if (this.length > 0) {
-                return this.each(function() {
+                return this.each(function () {
                     var $this = $(this),
                             $thisVal = $this.val(),
                             checkProdStock = settings.checkProdStock,
@@ -2613,7 +2616,7 @@ function getCookie(c_name)
                         var btn = $this,
                                 regS = '',
                                 regM = '';
-                        $.each(type, function(i, v) {
+                        $.each(type, function (i, v) {
                             regS = v.match(/\(.*\)/);
                             if (regS !== null) {
                                 regM = regS['input'].replace(regS[0], '');
@@ -2636,10 +2639,10 @@ function getCookie(c_name)
                         $this.val(min);
                         $thisPrev.attr('disabled', 'disabled');
                     }
-                    $thisNext.add($thisPrev).off('hover').hover(function(e) {
+                    $thisNext.add($thisPrev).off('hover').hover(function (e) {
                         settings.hover(e, $(this), $this, $(this).is($thisNext) ? 'next' : 'prev');
                     });
-                    $thisNext.off('click.pM').on('click.pM', function(e) {
+                    $thisNext.off('click.pM').on('click.pM', function (e) {
                         var el = $(this);
                         $thisPrev.removeAttr('disabled', 'disabled');
                         if (!el.is(':disabled')) {
@@ -2661,7 +2664,7 @@ function getCookie(c_name)
                             }
                         }
                     });
-                    $thisPrev.off('click.pM').on('click.pM', function(e) {
+                    $thisPrev.off('click.pM').on('click.pM', function (e) {
                         var el = $(this);
                         $thisNext.removeAttr('disabled', 'disabled');
                         if (!el.is(':disabled')) {
@@ -2687,7 +2690,7 @@ function getCookie(c_name)
             }
         }
     };
-    $.fn.plusminus = function(method) {
+    $.fn.plusminus = function (method) {
         if (methods[method]) {
             return methods[ method ].apply(this, Array.prototype.slice.call(arguments, 1));
         } else if (typeof method === 'object' || !method) {
@@ -2696,15 +2699,15 @@ function getCookie(c_name)
             $.error('Method ' + method + ' does not exist on $.plusminus');
         }
     };
-    $.plusminus = function(m) {
+    $.plusminus = function (m) {
         return methods[m];
     };
 })($);
 /*/plugin plusminus end*/
 /*plugin maxminValue*/
-(function($) {
+(function ($) {
     var methods = {
-        init: function(e, f) {
+        init: function (e, f) {
             var $this = this,
                     $thisVal = $this.val(),
                     set = $.maxminValue.settings,
@@ -2719,7 +2722,7 @@ function getCookie(c_name)
                 return false;
         }
     };
-    $.fn.maxminValue = function(method) {
+    $.fn.maxminValue = function (method) {
         if (methods[method]) {
             return methods[ method ].apply(this, Array.prototype.slice.call(arguments, 1));
         } else if (typeof method === 'object' || !method) {
@@ -2733,12 +2736,12 @@ function getCookie(c_name)
             addCond: false
         }
     };
-    $.maxminValue = function(m) {
+    $.maxminValue = function (m) {
         return methods[m];
     };
-    body.off('keypress.max', '[data-max]').on('keypress.max', '[data-max]', function(e) {
+    body.off('keypress.max', '[data-max]').on('keypress.max', '[data-max]', function (e) {
         var el = $(this);
-        setTimeout(function() {
+        setTimeout(function () {
             var res = el.maxminValue(e);
             el.trigger({
                 'type': 'maxminValue',
@@ -2747,7 +2750,7 @@ function getCookie(c_name)
             });
         }, 0);
     });
-    body.off('keypress', '[data-min]').on('keypress', '[data-min]', function(e) {
+    body.off('keypress', '[data-min]').on('keypress', '[data-min]', function (e) {
         var key = e.keyCode,
                 keyChar = parseInt(String.fromCharCode(key));
         var $this = $(this),
@@ -2757,7 +2760,7 @@ function getCookie(c_name)
             return false;
         }
     });
-    body.off('keyup', '[data-min]').on('keyup', '[data-min]', function(e) {
+    body.off('keyup', '[data-min]').on('keyup', '[data-min]', function (e) {
         var $this = $(this),
                 $min = $this.attr('data-min');
         if ($this.val() === "0") {
@@ -2788,9 +2791,9 @@ function getCookie(c_name)
 })(jQuery);
 /*/plugin maxminValue end*/
 /*plugin myCarousel use jQarousel with correction behavior prev and next buttons*/
-(function($) {
+(function ($) {
     var methods = {
-        init: function(options) {
+        init: function (options) {
             if ($.existsN(this)) {
                 var $jsCarousel = this,
                         settings = $.extend({
@@ -2802,9 +2805,9 @@ function getCookie(c_name)
                             vCarousel: '.v-carousel',
                             hCarousel: '.h-carousel',
                             adding: {},
-                            before: function() {
+                            before: function () {
                             },
-                            after: function() {
+                            after: function () {
                             }
                         }, options);
                 var item = settings.item,
@@ -2816,7 +2819,7 @@ function getCookie(c_name)
                         vCarousel = settings.vCarousel,
                         addO = settings.adding,
                         nS = 'mycarousel';
-                $jsCarousel.each(function() {
+                $jsCarousel.each(function () {
                     var $this = $(this);
                     settings.before($this);
                     var m = 'show';
@@ -2849,7 +2852,7 @@ function getCookie(c_name)
                             visible: $countV,
                             scroll: 1,
                             vertical: vertical,
-                            itemVisibleInCallback: function() {
+                            itemVisibleInCallback: function () {
                                 wnd.scroll();
                             }
                         };
@@ -2869,18 +2872,18 @@ function getCookie(c_name)
                                     s = 'pageX';
                                 }
 
-                                $this.off('touchstart.' + nS).on('touchstart.' + nS, function(e) {
+                                $this.off('touchstart.' + nS).on('touchstart.' + nS, function (e) {
                                     e = e.originalEvent.touches[0];
                                     elSet.sP = e[f];
                                     elSet.sPs = e[s];
                                 });
-                                $this.off('touchmove.' + nS).on('touchmove.' + nS, function(e) {
+                                $this.off('touchmove.' + nS).on('touchmove.' + nS, function (e) {
                                     e = e.originalEvent.touches[0];
                                     elSet.eP = e[f];
                                     elSet.ePs = e[s];
                                     e.preventDefault();
                                 });
-                                $this.off('touchend.' + nS).on('touchend.' + nS, function(e) {
+                                $this.off('touchend.' + nS).on('touchend.' + nS, function (e) {
                                     if (Math.abs(elSet.eP - elSet.sP) > Math.abs(elSet.ePs - elSet.sPs))
                                         e.preventDefault();
                                     if (Math.abs(elSet.eP - elSet.sP) > 200) {
@@ -2915,7 +2918,7 @@ function getCookie(c_name)
             return $jsCarousel;
         }
     };
-    $.fn.myCarousel = function(method) {
+    $.fn.myCarousel = function (method) {
         if (methods[method]) {
             return methods[ method ].apply(this, Array.prototype.slice.call(arguments, 1));
         } else if (typeof method === 'object' || !method) {
@@ -2924,7 +2927,7 @@ function getCookie(c_name)
             $.error('Method ' + method + ' does not exist on $.myCarousel');
         }
     };
-    $.myCarousel = function(m) {
+    $.myCarousel = function (m) {
         return methods[m];
     };
 })(jQuery);
