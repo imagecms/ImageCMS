@@ -16,12 +16,13 @@ class GeneralPage
     
     //Модулі
     public static $Modules              = "//div[@class='frame_nav']/table/tbody/tr/td[5]/a";
+    public static function modules($line) { return "//div[@class = 'frame_nav']//td[5]/ul/li[$line]"; }
     public static $ModulesAllModules    = '//a[@href="/admin/components/modules_table"]';
     
     //Настройки
     public static $Settings             = "//div[1]/div[3]/table/tbody/tr/td[7]/a";
     
-    public static $Currencies           = "//div[1]/div[3]/table/tbody/tr/td[7]/ul/li[2]/a"; 
+    public static $Currencies           = "//div[1]/div[3]/table/tbody/tr/td[7]/ul/li[2]/a";
     public static $SettingsDelivery     = "//div[1]/div[3]/table/tbody/tr/td[7]/ul/li[3]/a";
     public static $SettingsShopSettings = "//div[1]/div[3]/table/tbody/tr/td[7]/ul/li[1]/a";
     

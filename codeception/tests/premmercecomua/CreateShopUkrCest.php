@@ -14,7 +14,7 @@ class CreateShopUkrCest
         $I->click(PremmerceMainPage::$CreateShopButtonCentre);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);                
         $I->seeElement(PremmerceCreateShopPage::$DomainEndInRegisterForm);
-        $I->see(".premme.com", PremmerceCreateShopPage::$DomainEndInRegisterForm);        
+        $I->see(".premme.com", PremmerceCreateShopPage::$DomainEndInRegisterForm);
         $I->seeElement(PremmerceCreateShopPage::$EmailField);
         $I->seeElement(PremmerceCreateShopPage::$PasswordField);
         $I->seeElement(PremmerceCreateShopPage::$UserNameField);

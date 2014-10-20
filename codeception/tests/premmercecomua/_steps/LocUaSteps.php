@@ -28,5 +28,5 @@ class LocUaSteps extends \UkrainianTester
             $I->click(\PremmerceCreateShopPage::$AgreeCheckbox);
         }
         $I->click(\PremmerceCreateShopPage::$CreateShopNowRegisterFormButton);
-    }   
-}
+    }  
+ }

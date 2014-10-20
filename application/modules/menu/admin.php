@@ -297,13 +297,19 @@ class Admin extends BaseAdminController {
         $this->load->module('admin/components');
 
         $modules = $this->db->get('components')->result_array();
-
+        $id = $this->uri->segment(6);
+        $id = (int) $id;
         $cnt = count($modules);
         for ($i = 0; $i < $cnt; $i++) {
-            $info = $this->components->get_module_info($modules[$i]['name']);
-
+            $info = $this->components->get_module_info($modules[$i]['name']);            
             $modules[$i]['menu_name'] = $info['menu_name'];
             $modules[$i]['description'] = $info['description'];
+            $modules[$i]['url_image'] = $this->db->where('id',$id)
+                                            ->where('title',$info['menu_name'])
+                                            ->select('item_image')
+                                            ->get('menus_data')
+                                            ->row()
+                                            ->item_image;
         }
 
         unset($info);

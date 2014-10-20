@@ -1,3 +1,12 @@
+function reNameButton(el){
+    var namenew = $('#button-name-new').val();
+    var nameold = $('#button-name-old').val();
+    if(el)
+        $('#reNameButton').html(namenew);
+    else
+        $('#reNameButton').html(nameold);
+}    
+        
 $(document).ready(function() {
 
     /*IMPORT EXPORT*/

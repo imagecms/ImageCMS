@@ -25,14 +25,15 @@
         <span class="price-new">
         <span>
         <span class="price"><%- item.price %></span>{/literal}
-        <span class="curr">{$CS}</span>{literal}
+        <span class="curr">{//$CS}</span>
+        {literal}
         </span>
         </span>
         <% if (item.nextCurrency != null) { %>
         <span class="price-add">
         <span>
         (<span class="price addCurrPrice"><%- item.nextCurrency %></span>
-    {/literal}<span class="curr-add">{$NextCS}</span>){literal}                                            
+    {/literal}<span class="curr-add">{//$NextCS}</span>){literal}                                            
         </span>
         </span>
         <% } %>

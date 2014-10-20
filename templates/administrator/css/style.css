@@ -20,7 +20,7 @@ footer .container{padding-top: 20px;}
 .text > ul{list-style-type: disc;}
 .text > ol{list-style-type: decimal;}
 .text li{margin-top: 9px;padding-left: 15px;}
-.logo{float: left;height: 100%;text-decoration: none;width: 250px;}
+.logo{float: left;height: 100%;text-decoration: none;width: 200px;}
 header{position: relative;z-index: 4;height: 60px;background-color: #405364;}
 header > .container, .right-header{height: 100%;}
 .right-header, .logo{position: relative;z-index: 1;}
@@ -895,7 +895,7 @@ a.btn-quick-access:hover .text-el{text-decoration: underline;}
 .frame-dropdown a{text-decoration: none;padding-left: 24px;}
 .right-header > ul{margin-bottom: 0;}
 
-.frame_nav table{border-right: 1px solid #3cb2da;}
+.frame_nav table{border-right: 1px solid #3cb2da;table-layout: auto;}
 .frame_nav td{vertical-align: middle;border-left: 1px solid #3cb2da;}
 .frame_nav td > a{display: block;font-weight: bold;color: #fff;text-decoration: none;text-align: center;padding: 11px 0 10px;}
 .frame_nav td > a:hover{background-color: #1aafde;}

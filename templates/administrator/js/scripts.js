@@ -1,3 +1,17 @@
+function checkLenghtStr(id,lenLeft,lenRight){
+    var Price = $('#'+id+'').val();
+    var array,Temp;
+    
+    array = Price.split('.');
+    Temp = array[0].substr(0,lenLeft);
+    if(array[1] || array[1] == ''){
+        array[1] = array[1].substr(0,lenRight);
+        array[0] = Temp;
+        Temp = array.join('.');
+    }
+    $('#'+id+'').val(Temp);    
+}
+
 $.exists = function(selector) {
     return ($(selector).length > 0);
 };
@@ -486,6 +500,49 @@ function init_2() {
                             setValueUser();
                             showMessage(langs.message, langs.newUserCreated, "success");
                             handleFormSubmit.call($('#createOrder'));
+                        } else {
+                            showMessage(langs.error, langs.failToCreateUser, "error");
+                        }
+                    }
+                });
+        }
+        else
+            showMessage(langs.error, langs.needToFillFields, "error");
+    });
+    /* Create user in order */
+    $('#createOrderAndExit').off('click').on('click', function(e) {
+        e.stopImmediatePropagation();
+        var emailPattern = /^[a-z0-9_-]+@[a-z0-9-]+\.([a-z]{1,6}\.)?[a-z]{2,6}$/i;
+        setValueUser();
+        if ($('#usersForOrders').is(':visible')) {
+            if ($('#usersForOrders').hasClass('hasUser'))
+                handleFormSubmit.call($('#createOrderAndExit'));
+            else
+                showMessage(langs.error, langs.failToCreateUser, "error");
+        }
+        else if ($('#createUserName').val() != '' && $('#createUserEmail').val() != '') {
+            orders.user = {};
+            orders.user.name = $('#createUserName').val();
+            orders.user.email = $('#createUserEmail').val();
+            orders.user.phone = $('#createUserPhone').val();
+            orders.user.address = $('#createUserAddress').val();
+            setValueUser();
+            if (orders.user.email.search(emailPattern) === -1)
+                showMessage(langs.message, langs.enterValidEmailAddress, "error");
+            else
+                $.ajax({
+                    url: '/admin/components/run/shop/orders/createNewUser',
+                    type: "POST",
+                    data: "name=" + orders.user.name + "&email=" + orders.user.email + "&phone=" + orders.user.phone + "&address=" + orders.user.address,
+                    success: function(response) {
+                        if (response == 'email') {
+                            showMessage(langs.message, langs.thisEmailUserExists, "error");
+                        } else if (response != 'false') {
+                            $.extend(orders.user, $.parseJSON(response));
+                            //$.extend(orders.user, response);
+                            setValueUser();
+                            showMessage(langs.message, langs.newUserCreated, "success");
+                            handleFormSubmit.call($('#createOrderAndExit'));
                         } else {
                             showMessage(langs.error, langs.failToCreateUser, "error");
                         }
@@ -1418,7 +1475,7 @@ $('.variantsForOrders').live('change', function() {
         $('.variantInfoBlock').show();
     //Disable button if stock =0
     if (stock == 0) {
-        $('.addVariantToCart').removeClass('btn-primary').removeClass('btn-success').addClass('btn-danger disabled').html(langs.outOfStock);
+          $('.addVariantToCart').removeClass('btn-primary').removeClass('btn-success').addClass('btn-danger disabled').html(langs.outOfStock);
     } else {
         $('.addVariantToCart').removeClass('btn-primary').addClass('btn-success').removeClass('btn-danger disabled').html(langs.addToCart);
     }
@@ -1431,10 +1488,11 @@ $('.variantsForOrders').live('change', function() {
 });
 //Add product
 $('.addVariantToCart').die('click').live('click', function() {
-    if ((checkProdStock != 1 || $(this).data('stock') != 0) && !$(this).hasClass('btn-primary')) {
+      //Условие убрано в связи с заданием ICMS-1518
+//    if ((checkProdStock != 1 || $(this).data('stock') != 0) && !$(this).hasClass('btn-primary')) {
         orders.addToCartAdmin($(this));
         $('.addVariantToCart').removeClass('btn-success').attr('disabled', 'disabled').addClass('btn-primary').html(langs.inTheCart);
-    }
+//    }
 
 });
 //Remove image type
