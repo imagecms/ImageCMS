@@ -10,8 +10,8 @@ class PremmerceMainPage
     
     
     //Buttons
-    public static $CreateShopFreeButton = '[id="createStoreButton"]';
-    public static $CreateShopButton = 'html/body/div[3]/header/div/div/div/div[1]/div[2]/a';
+    public static $CreateShopButtonCentre = '//*[@id="createStoreButton"]';
+    public static $CreateShopButtonTop = 'html/body/div[3]/header/div/div/div/div[1]/div[2]/a';
     public static $EnterButton = ".//*[@id='loginButton']";
     public static $BenefitsButton = 'html/body/div[3]/header/div/ul/li[1]/a';
     public static $DesignButton = 'html/body/div[3]/header/div/ul/li[2]/a';
