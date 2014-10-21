@@ -1043,9 +1043,6 @@ function getCookie(c_name)
                             otherPage = settings.otherPage,
                             classRemove = settings.classRemove,
                             vertical = settings.vertical;
-                    wnd.load(function () {
-                        menuItem.removeData('show');
-                    });
                     if (menuCache && !refresh) {
                         menu.find('a').each(function () {//if start without cache and remove active item
                             var $this = $(this);
@@ -1190,132 +1187,131 @@ function getCookie(c_name)
                         evLF = 'click';
                     if (evLS === 'toggle')
                         evLS = 'click';
-                    menuItem.off('click').off('hover')[evLF](
-                            function (e) {
-                                var $this = $(this);
-                                if (evLF === 'click')
-                                    e.stopPropagation();
-                                if ($this.data("show") === "no" || !$this.data("show")) {
-                                    $this.data("show", "yes");
-                                    clearTimeout(hoverTO);
-                                    closeMenu($this);
-                                    var $thisI = $this.index(),
-                                            $thisDrop = $this.find(drop).first();
-                                    $this.addClass(hM);
-                                    if ($thisI === 0)
-                                        $this.addClass('firstH');
-                                    if ($thisI === itemMenuL - 1)
-                                        $this.addClass('lastH');
-                                    if ($(e.relatedTarget).is(menuItem) || $.existsN($(e.relatedTarget).parents(menuItem)) || $this.data('kk') === 0)
-                                        k[$thisI] = true;
-                                    if (k[$thisI]) {
-                                        hoverTO = setTimeout(function () {
-                                            $thisDrop[effOn](durationOn, function (e) {
-                                                $this.data('kk', $this.data('kk') + 1);
-                                                $(document).trigger({
-                                                    type: 'menu.showDrop',
-                                                    el: $thisDrop
-                                                });
-                                                if ($thisDrop.length !== 0)
-                                                    menu.addClass(hM);
-                                                if (sub2Frame) {
-                                                    var listDrop = $thisDrop.children();
-                                                    $thisDrop.find(sub2Frame).addClass('is-side');
-                                                    listDrop.children().off('click').off('hover')[evLS](function (e) {
-                                                        var $this = $(this);
-                                                        if (evLS === 'click')
+                    menuItem.off('click').off('hover')[evLF](function (e) {
+                        var $this = $(this);
+                        if (evLF === 'click')
+                            e.stopPropagation();
+                        if ($this.data("show") === "no" || !$this.data("show")) {
+                            $this.data("show", "yes");
+                            clearTimeout(hoverTO);
+                            closeMenu($this);
+                            var $thisI = $this.index(),
+                                    $thisDrop = $this.find(drop).first();
+                            $this.addClass(hM);
+                            if ($thisI === 0)
+                                $this.addClass('firstH');
+                            if ($thisI === itemMenuL - 1)
+                                $this.addClass('lastH');
+                            if ($(e.relatedTarget).is(menuItem) || $.existsN($(e.relatedTarget).parents(menuItem)) || $this.data('kk') === 0)
+                                k[$thisI] = true;
+                            if (k[$thisI]) {
+                                hoverTO = setTimeout(function () {
+                                    $thisDrop[effOn](durationOn, function (e) {
+                                        $this.data('kk', $this.data('kk') + 1);
+                                        $(document).trigger({
+                                            type: 'menu.showDrop',
+                                            el: $thisDrop
+                                        });
+                                        if ($thisDrop.length !== 0)
+                                            menu.addClass(hM);
+                                        if (sub2Frame) {
+                                            var listDrop = $thisDrop.children();
+                                            $thisDrop.find(sub2Frame).addClass('is-side');
+                                            listDrop.children().off('click').off('hover')[evLS](function (e) {
+                                                var $this = $(this);
+                                                if (evLS === 'click')
+                                                    e.stopPropagation();
+                                                if ($this.data("show") === "no" || !$this.data("show")) {
+                                                    $this.data("show", "yes");
+                                                    subFrame = $this.find(sub2Frame);
+                                                    if (e.type !== 'click' && evLS !== 'click') {
+                                                        $this.siblings().removeClass(hM);
+                                                    }
+                                                    if ($.existsN(subFrame)) {
+                                                        if (e.type === 'click' && evLS === 'click') {
                                                             e.stopPropagation();
-                                                        if ($this.data("show") === "no" || !$this.data("show")) {
-                                                            $this.data("show", "yes");
-                                                            subFrame = $this.find(sub2Frame);
-                                                            if (e.type !== 'click' && evLS !== 'click') {
-                                                                $this.siblings().removeClass(hM);
-                                                            }
-                                                            if ($.existsN(subFrame)) {
-                                                                if (e.type === 'click' && evLS === 'click') {
-                                                                    e.stopPropagation();
-                                                                    $this.siblings().filter('.' + hM).click();
-                                                                    $this.addClass(hM);
-                                                                }
-                                                                else
-                                                                    $this.has(sub2Frame).addClass(hM);
-                                                                $thisDrop.css('width', '');
-                                                                listDrop.add(subFrame).css('height', '');
-                                                                var dropW = $thisDrop.width(),
-                                                                        sumW = dropW + subFrame.width(),
-                                                                        subHL2 = subFrame.outerHeight(),
-                                                                        dropDH = listDrop.height();
-                                                                var addH = listDrop.outerHeight() - dropDH;
-                                                                if (subHL2 < dropDH)
-                                                                    subHL2 = dropDH;
-                                                                if (animatesub3) {
-                                                                    listDrop.animate({
-                                                                        'height': subHL2
+                                                            $this.siblings().filter('.' + hM).click();
+                                                            $this.addClass(hM);
+                                                        }
+                                                        else
+                                                            $this.has(sub2Frame).addClass(hM);
+                                                        $thisDrop.css('width', '');
+                                                        listDrop.add(subFrame).css('height', '');
+                                                        var dropW = $thisDrop.width(),
+                                                                sumW = dropW + subFrame.width(),
+                                                                subHL2 = subFrame.outerHeight(),
+                                                                dropDH = listDrop.height();
+                                                        var addH = listDrop.outerHeight() - dropDH;
+                                                        if (subHL2 < dropDH)
+                                                            subHL2 = dropDH;
+                                                        if (animatesub3) {
+                                                            listDrop.animate({
+                                                                'height': subHL2
+                                                            }, {
+                                                                queue: false,
+                                                                duration: durationOnS,
+                                                                complete: function () {
+                                                                    $thisDrop.animate({
+                                                                        'width': sumW,
+                                                                        'height': subHL2 + addH
                                                                     }, {
                                                                         queue: false,
-                                                                        duration: durationOnS,
-                                                                        complete: function () {
-                                                                            $thisDrop.animate({
-                                                                                'width': sumW,
-                                                                                'height': subHL2 + addH
-                                                                            }, {
-                                                                                queue: false,
-                                                                                duration: durationOnS
-                                                                            });
-                                                                        }
+                                                                        duration: durationOnS
                                                                     });
                                                                 }
-                                                                else {
-                                                                    listDrop.css('height', subHL2);
-                                                                    $thisDrop.css({
-                                                                        'height': subHL2 + addH,
-                                                                        'width': sumW
-                                                                    });
-                                                                }
-                                                                subFrame[effOnS](durationOnS, function () {
-                                                                    subFrame.css('height', subHL2);
-                                                                });
-                                                            }
-                                                            else
-                                                                return true;
+                                                            });
                                                         }
                                                         else {
-                                                            $this.data("show", "no");
-                                                            if (e.type === 'click' && evLS === 'click') {
-                                                                e.stopPropagation();
-                                                            }
-                                                            var subFrame = $this.find(sub2Frame);
-                                                            if ($.existsN(subFrame)) {
-                                                                subFrame.hide();
-                                                                $thisDrop.css({
-                                                                    'width': '',
-                                                                    'height': ''
-                                                                });
-                                                                listDrop.add(subFrame).stop().css('height', '');
-                                                                $this.removeClass(hM);
-                                                            }
+                                                            listDrop.css('height', subHL2);
+                                                            $thisDrop.css({
+                                                                'height': subHL2 + addH,
+                                                                'width': sumW
+                                                            });
                                                         }
-                                                    });
+                                                        subFrame[effOnS](durationOnS, function () {
+                                                            subFrame.css('height', subHL2);
+                                                        });
+                                                    }
+                                                    else
+                                                        return true;
+                                                }
+                                                else {
+                                                    $this.data("show", "no");
+                                                    if (e.type === 'click' && evLS === 'click') {
+                                                        e.stopPropagation();
+                                                    }
+                                                    var subFrame = $this.find(sub2Frame);
+                                                    if ($.existsN(subFrame)) {
+                                                        subFrame.hide();
+                                                        $thisDrop.css({
+                                                            'width': '',
+                                                            'height': ''
+                                                        });
+                                                        listDrop.add(subFrame).stop().css('height', '');
+                                                        $this.removeClass(hM);
+                                                    }
                                                 }
                                             });
-                                        }, timeDurM);
-                                    }
-                                }
-                                else {
-                                    $this.data("show", "no");
-                                    var $thisI = $this.index();
-                                    k[$thisI] = true;
-                                    if ($this.index() === 0)
-                                        $this.removeClass('firstH');
-                                    if ($this.index() === itemMenuL - 1)
-                                        $this.removeClass('lastH');
-                                    var $thisDrop = $this.find(drop);
-                                    if ($.existsN($thisDrop)) {
-                                        $thisDrop.stop(true, false)[effOff](durationOff);
-                                    }
-                                    $this.removeClass(hM);
-                                }
-                            });
+                                        }
+                                    });
+                                }, timeDurM);
+                            }
+                        }
+                        else {
+                            $this.data("show", "no");
+                            var $thisI = $this.index();
+                            k[$thisI] = true;
+                            if ($this.index() === 0)
+                                $this.removeClass('firstH');
+                            if ($this.index() === itemMenuL - 1)
+                                $this.removeClass('lastH');
+                            var $thisDrop = $this.find(drop);
+                            if ($.existsN($thisDrop)) {
+                                $thisDrop.stop(true, false)[effOff](durationOff);
+                            }
+                            $this.removeClass(hM);
+                        }
+                    });
                     menu.off('hover')['hover'](
                             function (e) {
                                 menuItem.each(function () {
@@ -1325,6 +1321,7 @@ function getCookie(c_name)
                             },
                             function (e) {
                                 closeMenu();
+                                menuItem.removeData('show');
                                 menuItem.each(function () {
                                     $(this).data('kk', -1);
                                 });
