@@ -69,7 +69,7 @@ class PremmerceSteps extends \PremmerceTester {
     public function loginCabinet($user_email, $user_password) {
 
         $I = $this;
-        $I->amOnPage(\PremmerceMainPage::$URL);
+        $I->amOnPage(\MainPage::$URL);
         $I->wait(3);
         $I->click(\MainPage::$ButtonEnter);
         $I->wait(2);
