@@ -83,7 +83,7 @@ class MY_Controller extends MX_Controller {
             if ($res) {
                 $res = $res->result_array();
             } else {
-                show_error('db error');
+                show_error($this->db->_error_message());
             }
             
             $this->db->cache_off();
