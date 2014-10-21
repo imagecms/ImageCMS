@@ -8,8 +8,9 @@ use \PremmerceTester;
  *      imageqa@tarrrif.test
  *      imageqa
  * 
+ * 
  * Перейти на free > basic > standart > bussiness > premium
- * змінити в адмінці
+ * змінити в адмінці на фрі(перший раз) потім змінювати в кабінеті
  * перевірити які модулі доступні
  * створити максимум товарів( CSV )-  підготувати CSV файли
  * забити місце до максимума
@@ -19,21 +20,28 @@ use \PremmerceTester;
  */
 class TariffsCest {
 
-    protected $storeUrl = 'http://imageqatarifftest.premme.com';
-    protected $email    = 'imageqa@tarrrif.test';
-    protected $password = 'imageqa';
+//    protected $storeUrl = 'http://imageqatarifftest.premme.com';
+    protected $storeUrl = 'http://qwertystore.premme.com';
+//    protected $email    = 'imageqa@tarrrif.test';
+    protected $email    = 'qwerty@store.store';
+//    protected $password = 'imageqa';
+    protected $password = 'qwerty';
+    
     protected $tariffs  = ['Free Russia', 'Basic Russia', 'Standart Russia', 'Business Russia', 'Premium Russia'];
     protected $modules  = [
+        //Basic
         'Настройки шаблона интернет-магазина',
         'Рейтинг',
         'Галерея',
         'Конструктор полей',
         'Редактор шаблонов',
         'Управление шаблонами',
+        //standart
         'Импорт-экспорт в CSV/XLS',
         'Скидки интернет-магазина',
         'SEO эксперт',
         'Module Y.Market',
+        //bussiness
         'Списки пожеланий',
         'Синхронизация с 1С',
         'Статистика',
@@ -47,7 +55,7 @@ class TariffsCest {
      */
     public function checkFreeCabinet(PremmerceTester\PremmerceSteps $I) {
 
-        $this->changeTarif($I, $this->tariffs[0]);
+        $this->changeTariffSaas($I, $this->tariffs[0]);
 
         $I->amOnPage(MainPage::$URL);
         $I->loginCabinet($this->email, $this->password);
@@ -63,13 +71,10 @@ class TariffsCest {
     public function checkFreeStoreAdmin(PremmerceTester\PremmerceSteps $I) {
         $I->amOnUrl($this->storeUrl);
         $I->login($this->email, $this->password);
-        $I->click(GeneralPage::$Modules);
+//        $I->click(GeneralPage::$Modules);
         $length = $I->getAmount($I, 'div.frame_nav td:nth-child(5) ul li');//$I->executeJS("return $('div.frame_nav td:nth-child(5) ul li').length");
         $I->comment("$length");
-        $length = $I->grabCCSAmount($I, 'div.frame_nav td:nth-child(5) ul li');//$I->executeJS("return $('div.frame_nav td:nth-child(5) ul li').length");
-        $I->comment("$length");
-        $length = $I->grabClassCount($I, 'div.frame_nav td:nth-child(5) ul li');//$I->executeJS("return $('div.frame_nav td:nth-child(5) ul li').length");
-        $I->comment("$length");
+
         $I->wait(10);
     }
 
@@ -77,7 +82,7 @@ class TariffsCest {
      * @guy PremmerceTester\PremmerceSteps
      */
     public function checkBasicCabinet(PremmerceTester\PremmerceSteps $I) {
-        $this->changeTarif($I, $this->tariffs[1]);
+        $this->changeTariffSaas($I, $this->tariffs[1]);
         $I->amOnPage('/saas/tariffs');
         $I->reloadPage();
         $cabinet_actual_tarif = $I->grabTextFrom(CabinetPage::$TabTariffFieldTariffText);
@@ -95,7 +100,7 @@ class TariffsCest {
      * @guy PremmerceTester\PremmerceSteps
      */
     public function checkStandartCabinet(PremmerceTester\PremmerceSteps $I) {
-        $this->changeTarif($I, $this->tariffs[2]);
+        $this->changeTariffSaas($I, $this->tariffs[2]);
         $I->reloadPage();
         $cabinet_actual_tarif = $I->grabTextFrom(CabinetPage::$TabTariffFieldTariffText);
         $I->assertEquals(preg_replace('/\s.*/', '', $this->actualTariff), $cabinet_actual_tarif);
@@ -112,7 +117,7 @@ class TariffsCest {
      * @guy PremmerceTester\PremmerceSteps
      */
     public function checkBusinessCabinet(PremmerceTester\PremmerceSteps $I) {
-        $this->changeTarif($I, $this->tariffs[3]);
+        $this->changeTariffSaas($I, $this->tariffs[3]);
         $I->reloadPage();
         $cabinet_actual_tarif = $I->grabTextFrom(CabinetPage::$TabTariffFieldTariffText);
         $I->assertEquals(preg_replace('/\s.*/', '', $this->actualTariff), $cabinet_actual_tarif);
@@ -129,7 +134,7 @@ class TariffsCest {
      * @guy PremmerceTester\PremmerceSteps
      */
     public function checkPremiumCabinet(PremmerceTester\PremmerceSteps $I) {
-        $this->changeTarif($I, $this->tariffs[4]);
+        $this->changeTariffSaas($I, $this->tariffs[4]);
         $I->reloadPage();
         $cabinet_actual_tarif = $I->grabTextFrom(CabinetPage::$TabTariffFieldTariffText);
         $I->assertEquals(preg_replace('/\s.*/', '', $this->actualTariff), $cabinet_actual_tarif);
@@ -150,8 +155,22 @@ class TariffsCest {
      */
     protected $actualTariff;
 
-//    protected function changeTarif(PremmerceTester $I) {
-    protected function changeTarif(PremmerceTester $I, $tariff) {
+    /**
+     * change tariff from cabinet
+     * @param PremmerceTester $I
+     * @param string $tariff
+     */
+    protected function changeTariffCabinet(PremmerceTester $I,$tariff) {
+            $I->amOnPage('/saas/tariffs');
+            //тут зміна тарифа(буде))
+    }
+
+    /**
+     * change tariff from saas admin panel
+     * 
+     * @param string $tariff
+     */
+    protected function changeTariffSaas(PremmerceTester $I, $tariff) {
         $this->actualTariff = $tariff;
 
         $jonny = $I->haveFriend('Jonny', 'PremmerceTester\PremmerceSteps');

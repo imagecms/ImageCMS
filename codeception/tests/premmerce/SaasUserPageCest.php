@@ -10,7 +10,7 @@ class SaasUserPageCest
    private $Cabinet_Url = '/saas/profile';
 
 
-   private $Store_Name = 'populationnationn';
+   private $Store_Name = 'population';
    private $User_Email = 'premme.test@test.com';
    private $User_Password = '98765431';
    private $User_Name = 'Bazooka Band Powerviolence Go';
@@ -48,7 +48,7 @@ class SaasUserPageCest
    
    
     /**
-     * @group a
+     * @group status123
      * @guy PremmerceTester\PremmerceSteps 
      */
     public function CreateStore(PremmerceTester\PremmerceSteps $I){
@@ -95,6 +95,7 @@ class SaasUserPageCest
         $I->fillField(SaasUserListPage::$FilterDomainInput, $this->Store_Name);
         $I->click(SaasUserListPage::$FilterButtonFilter);
         $I->see($this->Store_Name, SaasUserListPage::lineDomainLink(1));
+        $I->wait(1);
         $I->click(SaasUserListPage::lineActionlink(1));
         $I->click(SaasUserListPage::ButtonDisable(1));
         $I->reloadPage();
@@ -142,6 +143,7 @@ class SaasUserPageCest
         $I->click(SaasUserListPage::$FilterActiveSelect);
         $I->click(SaasUserListPage::FilterActiveSelectOption(2));
         $I->click(SaasUserListPage::$FilterButtonFilter);
+        $I->wait(1);
         $I->see($this->Store_Name, SaasUserListPage::lineDomainLink(1));
         $I->click(SaasUserListPage::lineActionlink(1));
         $I->click(SaasUserListPage::ButtonDisable(1));
@@ -184,6 +186,7 @@ class SaasUserPageCest
         $I->click(SaasUserListPage::$FilterPhoneLabel);
         $I->fillField(SaasUserListPage::$FilterPhoneInput, $this->User_Phone);
         $I->click(SaasUserListPage::$FilterButtonFilter);
+        $I->wait(1);
         $I->see($this->User_Phone, SaasUserListPage::linePhoneText(1));
         $I->logoutSaas();
     } 
@@ -204,6 +207,7 @@ class SaasUserPageCest
         $I->click(SaasUserListPage::$FilterPhoneLabel);
         $I->fillField(SaasUserListPage::$FilterPhoneInput, $this->User_Phone);
         $I->click(SaasUserListPage::$FilterButtonFilter);
+        $I->wait(1);
         $I->dontSee($this->User_Phone, SaasUserListPage::linePhoneText(1));
         $I->seeElement($this->Empty_List);
         $I->logoutSaas();
@@ -222,6 +226,7 @@ class SaasUserPageCest
         $I->click(SaasUserListPage::$FilterNameLabel);
         $I->fillField(SaasUserListPage::$FilterNameInput, $this->User_Name);
         $I->click(SaasUserListPage::$FilterButtonFilter);
+        $I->wait(1);
         $I->see($this->User_Name, SaasUserListPage::lineNameText(1));
         $I->logoutSaas();
     }
@@ -239,6 +244,7 @@ class SaasUserPageCest
         $I->click(SaasUserListPage::$FilterEmailLabel);
         $I->fillField(SaasUserListPage::$FilterEmailInput, $this->User_Email);
         $I->click(SaasUserListPage::$FilterButtonFilter);
+        $I->wait(1);
         $I->see($this->User_Email, SaasUserListPage::lineEmailLink(1));
         $I->logoutSaas();
     }
@@ -261,6 +267,7 @@ class SaasUserPageCest
         $I->click(SaasUserListPage::$FilterEmailLabel);
         $I->fillField(SaasUserListPage::$FilterEmailInput, $this->User_Email);
         $I->click(SaasUserListPage::$FilterButtonFilter);
+        $I->wait(1);
         $I->dontSee($this->User_Email, SaasUserListPage::lineEmailLink(1));
         $I->dontSee($this->User_Name, SaasUserListPage::lineNameText(1));
         $I->seeElement($this->Empty_List);
@@ -293,8 +300,10 @@ class SaasUserPageCest
         $I->click(SaasUserListPage::$FilterNameLabel);
         $I->fillField(SaasUserListPage::$FilterNameInput, $this->User_Name);
         $I->click(SaasUserListPage::$FilterCountryLabel);
+        $I->wait(1);
         $I->selectOption(SaasUserListPage::$FilterCountrySelect, $this->Cabinet_Name_Country);
         $I->click(SaasUserListPage::$FilterButtonFilter);
+        $I->wait(1);
         $I->see($this->User_Email, SaasUserListPage::lineEmailLink(1));
         $I->logoutSaas();
     }
@@ -311,6 +320,7 @@ class SaasUserPageCest
         $I->click(SaasUserListPage::$FilterCityLabel);
         $I->fillField(SaasUserListPage::$FilterCityInput, $this->User_City);
         $I->click(SaasUserListPage::$FilterButtonFilter);
+        $I->wait(1);
         $I->see($this->User_Email, SaasUserListPage::lineEmailLink(1));
         $I->logoutSaas();
     }
@@ -318,7 +328,7 @@ class SaasUserPageCest
     
     
     /**
-     * @group a
+     * @group Tariff
      * @guy PremmerceTester\PremmerceSteps 
      */
     public function CetNameTariff(PremmerceTester\PremmerceSteps $I){
@@ -336,7 +346,7 @@ class SaasUserPageCest
     
     
     /**
-     * @group a
+     * @group Tariff
      * @guy PremmerceTester\PremmerceSteps
      */
     public function FilterTariff(PremmerceTester\PremmerceSteps $I){
@@ -346,8 +356,11 @@ class SaasUserPageCest
         $I->click(SaasUserListPage::$FilterDomainLabel);
         $I->fillField(SaasUserListPage::$FilterDomainInput, $this->Store_Name);
         $I->click(SaasUserListPage::$FilterTariffLabel);
+        $I->wait(1);
         $I->selectOption(SaasUserListPage::$FilterTariffSelect, $this->Cabinet_Name_Tariff);
-        $I->click(SaasUserListPage::$FilterButtonFilter);
+        $I->wait(1);
+//        $I->click(SaasUserListPage::$FilterButtonFilter);
+        $I->wait(1);
         $I->see($this->Cabinet_Name_Tariff, SaasUserListPage::lineTariffText(1));
         $I->logoutSaas();
     }
@@ -383,6 +396,7 @@ class SaasUserPageCest
         $I->click(SaasUserListPage::$FilterLevelLabel);
         $I->selectOption(SaasUserListPage::$FilterLevelSelect, $this->Cabinet_Level);
         $I->click(SaasUserListPage::$FilterButtonFilter);
+        $I->wait(1);
         $I->see($this->User_Email, SaasUserListPage::lineEmailLink(1));
         $I->logoutSaas();
     }
@@ -417,6 +431,7 @@ class SaasUserPageCest
         $I->click(SaasUserListPage::$FilterCategoryLabel);
         $I->selectOption(SaasUserListPage::$FilterCategorySelect, $this->Cabinet_Category);
         $I->click(SaasUserListPage::$FilterButtonFilter);
+        $I->wait(1);
         $I->see($this->User_Email, SaasUserListPage::lineEmailLink(1));
         $I->logoutSaas();
     }
@@ -426,53 +441,54 @@ class SaasUserPageCest
      * @group a
      * @guy PremmerceTester\PremmerceSteps 
      */
-    public function CetAmountProduct(PremmerceTester\PremmerceSteps $I){
-        $I->loginCabinet($user_email = $this->User_Email, $user_password = $this->User_Password);
-        $I->wait(3);
-        $Get_Amount_Product = $I->grabTextFrom('//table/tbody/tr[5]/td/span');
-        preg_match('/[0-9]*/', $Get_Amount_Product,$number);
-        $Get_Amount_Product = $number[0];
-        $I->comment("$Get_Amount_Product");
-        $this->Cabinet_Amount_Product = $Get_Amount_Product;
-        $I->wait(1);
-        $I->logoutCabinet();
-    }
+//    public function CetAmountProduct(PremmerceTester\PremmerceSteps $I){
+//        $I->loginCabinet($user_email = $this->User_Email, $user_password = $this->User_Password);
+//        $I->wait(3);
+//        $Get_Amount_Product = $I->grabTextFrom('//table/tbody/tr[5]/td/span');
+//        preg_match('/[0-9]*/', $Get_Amount_Product,$number);
+//        $Get_Amount_Product = $number[0];
+//        $I->comment("$Get_Amount_Product");
+//        $this->Cabinet_Amount_Product = $Get_Amount_Product;
+//        $I->wait(1);
+//        $I->logoutCabinet();
+//    }
     
     
     /**
      * @group a
      * @guy PremmerceTester\PremmerceSteps
      */
-    public function FilterAmountProduct(PremmerceTester\PremmerceSteps $I){
-        $I->login($admin_email = USER_EMAIL, $admin_password = USER_PASSWORD);
-        $I->amOnPage(SaasUserListPage::$URL);
-        $I->wait(1);
-        $I->click(SaasUserListPage::$FilterEmailLabel);
-        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->User_Email);
-        $I->click(SaasUserListPage::$FilterAmountProducntLabel);
-        $I->fillField(SaasUserListPage::$FilterAmountProducntInputFrom, $this->Cabinet_Amount_Product);
-        $I->fillField(SaasUserListPage::$FilterAmountProducntInputTo, $this->Cabinet_Amount_Product);
-        $I->click(SaasUserListPage::$FilterButtonFilter);
-        $I->see($this->User_Email, SaasUserListPage::lineEmailLink(1));
-        $I->logoutSaas();
-    }
+//    public function FilterAmountProduct(PremmerceTester\PremmerceSteps $I){
+//        $I->login($admin_email = USER_EMAIL, $admin_password = USER_PASSWORD);
+//        $I->amOnPage(SaasUserListPage::$URL);
+//        $I->wait(1);
+//        $I->click(SaasUserListPage::$FilterEmailLabel);
+//        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->User_Email);
+//        $I->click(SaasUserListPage::$FilterAmountProducntLabel);
+//        $I->fillField(SaasUserListPage::$FilterAmountProducntInputFrom, $this->Cabinet_Amount_Product);
+//        $I->fillField(SaasUserListPage::$FilterAmountProducntInputTo, $this->Cabinet_Amount_Product);
+//        $I->click(SaasUserListPage::$FilterButtonFilter);
+//        $I->wait(1);
+//        $I->see($this->User_Email, SaasUserListPage::lineEmailLink(1));
+//        $I->logoutSaas();
+//    }
 
     
     /**
      * @group a
      * @guy PremmerceTester\PremmerceSteps 
      */
-    public function CetAmountDisk(PremmerceTester\PremmerceSteps $I){
-        $I->loginCabinet($user_email = $this->User_Email, $user_password = $this->User_Password);
-        $I->wait(3);
-        $Get_Amount_Disk = $I->grabTextFrom('//table/tbody/tr[6]/td/span');
-        preg_match('/[0-9]*/', $Get_Amount_Disk,$number);
-        $Get_Amount_Disk = $number[0];
-        $I->comment("$Get_Amount_Disk");
-        $this->Cabinet_Amount_Disk = $Get_Amount_Disk;
-        $I->wait(1);
-        $I->logoutCabinet();
-    }
+//    public function CetAmountDisk(PremmerceTester\PremmerceSteps $I){
+//        $I->loginCabinet($user_email = $this->User_Email, $user_password = $this->User_Password);
+//        $I->wait(3);
+//        $Get_Amount_Disk = $I->grabTextFrom('//table/tbody/tr[6]/td/span');
+//        preg_match('/[0-9]*/', $Get_Amount_Disk,$number);
+//        $Get_Amount_Disk = $number[0];
+//        $I->comment("$Get_Amount_Disk");
+//        $this->Cabinet_Amount_Disk = $Get_Amount_Disk;
+//        $I->wait(1);
+//        $I->logoutCabinet();
+//    }
     
     
     
@@ -480,19 +496,20 @@ class SaasUserPageCest
      * @group a
      * @guy PremmerceTester\PremmerceSteps
      */
-    public function FilterDisk(PremmerceTester\PremmerceSteps $I){
-        $I->login($admin_email = USER_EMAIL, $admin_password = USER_PASSWORD);
-        $I->amOnPage(SaasUserListPage::$URL);
-        $I->wait(1);
-        $I->click(SaasUserListPage::$FilterEmailLabel);
-        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->User_Email);
-        $I->click(SaasUserListPage::$FilterDiskLimitLabel);
-        $I->fillField(SaasUserListPage::$FilterDiskLimitInputFrom, $this->Cabinet_Amount_Disk);
-        $I->fillField(SaasUserListPage::$FilterDiskLimitInputTo, $this->Cabinet_Amount_Disk);
-        $I->click(SaasUserListPage::$FilterButtonFilter);
-        $I->see($this->User_Email, SaasUserListPage::lineEmailLink(1));
-        $I->logoutSaas();
-    }
+//    public function FilterDisk(PremmerceTester\PremmerceSteps $I){
+//        $I->login($admin_email = USER_EMAIL, $admin_password = USER_PASSWORD);
+//        $I->amOnPage(SaasUserListPage::$URL);
+//        $I->wait(1);
+//        $I->click(SaasUserListPage::$FilterEmailLabel);
+//        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->User_Email);
+//        $I->click(SaasUserListPage::$FilterDiskLimitLabel);
+//        $I->fillField(SaasUserListPage::$FilterDiskLimitInputFrom, $this->Cabinet_Amount_Disk);
+//        $I->fillField(SaasUserListPage::$FilterDiskLimitInputTo, $this->Cabinet_Amount_Disk);
+//        $I->click(SaasUserListPage::$FilterButtonFilter);
+//        $I->wait(1);
+//        $I->see($this->User_Email, SaasUserListPage::lineEmailLink(1));
+//        $I->logoutSaas();
+//    }
     
     /**
      * @group a
@@ -505,6 +522,7 @@ class SaasUserPageCest
         $I->click(SaasUserListPage::$FilterEmailLabel);
         $I->fillField(SaasUserListPage::$FilterEmailInput, $this->User_Email);
         $I->click(SaasUserListPage::$FilterButtonFilter);
+        $I->wait(1);
         $I->see($this->User_Email, SaasUserListPage::lineEmailLink(1));
         $I->click(SaasUserListPage::lineActionlink(1));
         $I->fillField(SaasUserListPage::InputAmountPoints(1), $this->Admin_Amount_Point);
@@ -528,6 +546,7 @@ class SaasUserPageCest
         $I->fillField(SaasUserListPage::$FilterBalansInputFrom, $this->Admin_Amount_Point);
         $I->fillField(SaasUserListPage::$FilterBalansInputTo, $this->Admin_Amount_Point);
         $I->click(SaasUserListPage::$FilterButtonFilter);
+        $I->wait(1);
         $I->see($this->User_Email, SaasUserListPage::lineEmailLink(1));
         $I->seeInField(SaasUserListPage::lineBalansText(1), $this->Admin_Amount_Point);
         $I->logoutSaas();
@@ -568,6 +587,7 @@ class SaasUserPageCest
         $I->click(SaasUserListPage::$FilterManagerLabel);
         $I->selectOption(SaasUserListPage::$FilterManagerSelect, $this->Admin_Name_Manager);
         $I->click(SaasUserListPage::$FilterButtonFilter);
+        $I->wait(1);
         $I->see($this->User_Email, SaasUserListPage::lineEmailLink(1));
         $I->logoutSaas();
     }
@@ -585,6 +605,7 @@ class SaasUserPageCest
         $I->click(SaasUserListPage::$FilterEmailLabel);
         $I->fillField(SaasUserListPage::$FilterEmailInput, $this->User_Email);
         $I->click(SaasUserListPage::$FilterButtonFilter);
+        $I->wait(1);
         $I->see($this->User_Email, SaasUserListPage::lineEmailLink(1));
         $Get_End_domain = $I->grabTextFrom(SaasUserListPage::lineDomainEndText(1));
         $I->comment("$Get_End_domain");
@@ -607,6 +628,7 @@ class SaasUserPageCest
         $I->click(SaasUserListPage::$FilterDomainEndLabel);
         $I->selectOption(SaasUserListPage::$FilterDomainEnSelect, $this->Admin_End_Domain);
         $I->click(SaasUserListPage::$FilterButtonFilter);
+        $I->wait(1);
         $I->see($this->User_Email, SaasUserListPage::lineEmailLink(1));
         $I->logoutSaas();
     }
@@ -628,6 +650,7 @@ class SaasUserPageCest
         $I->click(SaasUserListPage::$FilterActivatedByEmailLabel);
         $I->selectOption(SaasUserListPage::$FilterActivatedByEmailSelect, 'не активовано');
         $I->click(SaasUserListPage::$FilterButtonFilter);
+        $I->wait(1);
         $I->see($this->User_Email, SaasUserListPage::lineEmailLink(1));
         $I->logoutSaas();
     }
@@ -646,6 +669,7 @@ class SaasUserPageCest
         $I->click(SaasUserListPage::$FilterActivatedByEmailLabel);
         $I->selectOption(SaasUserListPage::$FilterActivatedByEmailSelect, 'активовано');
         $I->click(SaasUserListPage::$FilterButtonFilter);
+        $I->wait(1);
         $I->dontSee($this->User_Email, SaasUserListPage::lineEmailLink(1));
         $I->logoutSaas();
     }
@@ -655,19 +679,20 @@ class SaasUserPageCest
      * @group aaqq
      * @guy PremmerceTester\PremmerceSteps
      */
-    public function GetFillProduct(PremmerceTester\PremmerceSteps $I){
-        $I->login($admin_email = USER_EMAIL, $admin_password = USER_PASSWORD);
-        $I->amOnPage(SaasUserListPage::$URL);
-        $I->wait(1);
-        $I->click(SaasUserListPage::$FilterEmailLabel);
-        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->User_Email);
-        $I->click(SaasUserListPage::$FilterButtonFilter);
-        $I->see($this->user_email, SaasUserListPage::lineEmailLink(1));
-        $Get_Values = $I->grabTextFrom(SaasUserListPage::lineFillProductsText(1));
-        $I->comment("$Get_Values");
-        $this->Admin_Fill_Product = $Get_Values;        
-        $I->logoutSaas();
-    }
+//    public function GetFillProduct(PremmerceTester\PremmerceSteps $I){
+//        $I->login($admin_email = USER_EMAIL, $admin_password = USER_PASSWORD);
+//        $I->amOnPage(SaasUserListPage::$URL);
+//        $I->wait(1);
+//        $I->click(SaasUserListPage::$FilterEmailLabel);
+//        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->User_Email);
+//        $I->click(SaasUserListPage::$FilterButtonFilter);
+//        $I->see($this->user_email, SaasUserListPage::lineEmailLink(1));
+//        $I->wait(1);
+//        $Get_Values = $I->grabTextFrom(SaasUserListPage::lineFillProductsText(1));
+//        $I->comment("$Get_Values");
+//        $this->Admin_Fill_Product = $Get_Values;        
+//        $I->logoutSaas();
+//    }
     
     
     
@@ -675,19 +700,20 @@ class SaasUserPageCest
      * @group aa
      * @guy PremmerceTester\PremmerceSteps
      */
-    public function FilterFillProduct(PremmerceTester\PremmerceSteps $I){
-        $I->login($admin_email = USER_EMAIL, $admin_password = USER_PASSWORD);
-        $I->amOnPage(SaasUserListPage::$URL);
-        $I->wait(1);
-        $I->click(SaasUserListPage::$FilterEmailLabel);
-        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->User_Email);
-        $I->click(SaasUserListPage::$FilterFillProductsLabel);
-        $I->selectOption(SaasUserListPage::$FilterFillProductsSelect, $this->Admin_Fill_Product);
-        $I->click(SaasUserListPage::$FilterButtonFilter);
-        $I->see($this->User_Email, SaasUserListPage::lineEmailLink(1));
-        $I->see($this->Admin_Fill_Product, SaasUserListPage::lineFillProductsText(1));
-        $I->logoutSaas();
-    }
+//    public function FilterFillProduct(PremmerceTester\PremmerceSteps $I){
+//        $I->login($admin_email = USER_EMAIL, $admin_password = USER_PASSWORD);
+//        $I->amOnPage(SaasUserListPage::$URL);
+//        $I->wait(1);
+//        $I->click(SaasUserListPage::$FilterEmailLabel);
+//        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->User_Email);
+//        $I->click(SaasUserListPage::$FilterFillProductsLabel);
+//        $I->selectOption(SaasUserListPage::$FilterFillProductsSelect, $this->Admin_Fill_Product);
+//        $I->click(SaasUserListPage::$FilterButtonFilter);
+//        $I->wait(1);
+//        $I->see($this->User_Email, SaasUserListPage::lineEmailLink(1));
+//        $I->see($this->Admin_Fill_Product, SaasUserListPage::lineFillProductsText(1));
+//        $I->logoutSaas();
+//    }
     
     /**
      * @group status
@@ -713,9 +739,32 @@ class SaasUserPageCest
     }
     
     
+    /**
+     * @group status1
+     * @guy PremmerceTester\PremmerceSteps
+     */
+    public function SetStatuses(PremmerceTester\PremmerceSteps $I){
+        $I->login($admin_email = USER_EMAIL, $admin_password = USER_PASSWORD);
+        $I->amOnPage(SaasUserListPage::$URL);
+        $I->wait(1);
+        $I->click(SaasUserListPage::$FilterEmailLabel);
+        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->User_Email);
+        $I->click(SaasUserListPage::$FilterButtonFilter);
+        $I->wait(1);
+        $I->see($this->User_Email, SaasUserListPage::lineEmailLink(1));
+        $I->click(SaasUserListPage::lineActionlink(1)); 
+        $I->wait(1);
+        $I->selectOption(SaasUserListPage::SelectStatuses(1), $this->Status_Name);
+        $I->wait(1);
+        $I->logoutSaas();
+    }
+    
+    
+    
+    
     
     /**
-     * @group i
+     * @group status
      * @guy PremmerceTester\PremmerceSteps
      */
     public function FilterStatuses(PremmerceTester\PremmerceSteps $I){
@@ -726,7 +775,9 @@ class SaasUserPageCest
         $I->fillField(SaasUserListPage::$FilterEmailInput, $this->User_Email);
         $I->click(SaasUserListPage::$FilterStatusesLabel);
         $I->selectOption(SaasUserListPage::$FilterStatusesSelect, $this->Status_Name);
+        $I->wait(1);
         $I->click(SaasUserListPage::$FilterButtonFilter);
+        $I->wait(1);
         $I->see($this->User_Email, SaasUserListPage::lineEmailLink(1));
         $I->logoutSaas();
     }
@@ -770,6 +821,7 @@ class SaasUserPageCest
         $I->click(SaasUserListPage::$FilterDepartmentsLabel);
         $I->selectOption(SaasUserListPage::$FilterDepartmentsSelect, $this->Department_Name);
         $I->click(SaasUserListPage::$FilterButtonFilter);
+        $I->wait(1);
         $I->see($this->User_Name, SaasUserListPage::lineEmailLink(1));
         $I->logoutSaas();
     }
@@ -869,6 +921,7 @@ class SaasUserPageCest
         $I->click(SaasUserListPage::$FilterEmailLabel);
         $I->fillField(SaasUserListPage::$FilterEmailInput, $this->User_Email);
         $I->click(SaasUserListPage::$FilterButtonFilter);
+        $I->wait(1);
         $I->see($this->Store_Name, SaasUserListPage::lineDomainLink(1));
         $I->see($this->User_Name, SaasUserListPage::lineNameText(1));
         $I->see($this->User_Phone, SaasUserListPage::linePhoneText(1));
@@ -896,11 +949,5 @@ class SaasUserPageCest
     }
     
     
-    
-    
-    
-    
-    
-    
-    
+
 }    
