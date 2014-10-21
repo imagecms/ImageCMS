@@ -262,7 +262,10 @@ class SaasUserListPage {
         return "//section/div[2]/div/div[1]/table/tbody/tr[$row]/td[16]/div/div[8]/input";
     }
 
-    public static function SelectStatuses($row, $number) {
+    public static function SelectStatuses($row){
+         "//section/div[2]/div/div[1]/table/tbody/tr[$row]/td[16]/div/div[9]/select";
+    }
+    public static function SelectStatusesOption($row, $number) {
         return "//section/div[2]/div/div[1]/table/tbody/tr[$row]/td[16]/div/div[9]/select/option[$number]";
     }
 

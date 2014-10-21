@@ -115,7 +115,9 @@ class PremmerceSteps extends \PremmerceTester {
         return $name;
     }
     
-    public function SetTextAditorNative() {    
+    public function SetTextAditorNative() {  
+        $I = $this;
+        $I->wait(1);
         $I->amOnPage('/admin/settings#setings');
         $I->wait(2);
         $I->selectOption('#textEditor', 'Native textarea');

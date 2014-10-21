@@ -67,8 +67,9 @@ class MY_Controller extends MX_Controller {
             header('X-PJAX: true');
         }
 
-        if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
+        if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
             $this->ajaxRequest = true;
+        }
 
         defined('SHOP_INSTALLED') OR define('SHOP_INSTALLED', $this->checkForShop());
     }
@@ -77,13 +78,20 @@ class MY_Controller extends MX_Controller {
         if ($this->db) {
             $this->db->cache_on();
             $res = $this->db->where('identif', 'shop')
-                    ->get('components')
-                    ->result_array();
+                    ->get('components');
+            
+            if ($res) {
+                $res = $res->result_array();
+            } else {
+                show_error('db error');
+            }
+            
             $this->db->cache_off();
 
             return (bool) count($res);
-        } else
+        } else {
             return false;
+        }
     }
 
     /**
@@ -92,11 +100,13 @@ class MY_Controller extends MX_Controller {
      */
     public static function getCurrentLocale() {
 
-        if (self::$currentLocale)
+        if (self::$currentLocale) {
             return self::$currentLocale;
+        }
 
-        if (strstr($_SERVER['PATH_INFO'], 'install'))
+        if (strstr($_SERVER['PATH_INFO'], 'install')) {
             return;
+        }
 
         $ci = get_instance();
         $lang_id = $ci->config->item('cur_lang');
@@ -111,8 +121,9 @@ class MY_Controller extends MX_Controller {
                 $defaultLanguage = self::getDefaultLanguage();
                 self::$currentLocale = $defaultLanguage['identif'];
             }
-        } else
+        } else {
             self::$currentLocale = chose_language();
+        }
 
         return self::$currentLocale;
     }
