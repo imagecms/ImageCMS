@@ -26,7 +26,7 @@ class TextAndElementsPresentCast
 //----------------------------LIST PAGE-----------------------------------------   
     
     /**
-     * @group aa
+     * @group awe
      */
     public function Login(OrdersTester $I) {
         InitTest::Login($I);
@@ -254,9 +254,10 @@ class TextAndElementsPresentCast
      */
     public function VerifyСheckButton (OrdersTester $I) {
         $I->amOnPage(OrdersListPage::$URL);
-        $I->click(OrdersListPage::lineCheck(1));
         $I->wait(1);
-        $I->see('Список заказов (1)',OrdersListPage::$Title);
+        $I->click(OrdersListPage::lineCheck(1));
+        $I->wait(2);
+        $I->seeElement(OrdersListPage::$Title);
         $I->see('Фильтр', OrdersListPage::$ButtonFilter);
         $I->see('Изменить статус', OrdersListPage::$ButtonChangeStatus);
         $I->see('Удалить', OrdersListPage::$ButtonDelete);
@@ -372,7 +373,7 @@ class TextAndElementsPresentCast
     }
     
     /**
-     * @group aa
+     * @group awe
      */
     public function TabQuick (OrdersTester $I) {
         $I->amOnPage(OrdersListCreatePage::$URL);
@@ -388,17 +389,14 @@ class TextAndElementsPresentCast
         $I->click(OrdersListCreatePage::$TabQuickSearchButtonAdd);
         $I->wait(1);
         $I->see('В корзине', OrdersListCreatePage::$TabQuickSearchButtonAdd);
-        $I->see('', OrdersListCreatePage::lineProductLink(1));
-        $I->see('', OrdersListCreatePage::lineArticleText(1));
+        $I->see($this->name_product, OrdersListCreatePage::lineProductLink(1));
+        $I->see($this->article_product, OrdersListCreatePage::lineArticleText(1));
         $I->see('', OrdersListCreatePage::lineVarianText(1));
-        $I->see('', OrdersListCreatePage::linePriceText(1));
-        $I->see('', OrdersListCreatePage::lineAmountInput(1));
-        $I->see('', OrdersListCreatePage::lineTotalPriceText(1));
-        $I->see('', OrdersListCreatePage::lineTotalPriceCurrencyText(1));
-        $I->see('', OrdersListCreatePage::$FootTotalPrice);
-        $I->see('', OrdersListCreatePage::$FootTotalPriceCurrency);
-        $I->see('', OrdersListCreatePage::$FootTotalPriceLabel);
-        $I->see('', OrdersListCreatePage::$FootGiftCertificateInput);
+        $I->see($this->price_product, OrdersListCreatePage::linePriceText(1));
+        $I->see('1', OrdersListCreatePage::lineAmountInput(1));
+        $I->see($this->price_product, OrdersListCreatePage::lineTotalPriceText(1));
+        $I->see($this->price_product, OrdersListCreatePage::$FootTotalPrice);
+        $I->see($this->price_product, OrdersListCreatePage::$FootTotalPriceLabel);
         
     }
 }
