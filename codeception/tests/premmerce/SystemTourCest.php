@@ -12,7 +12,7 @@ class SystemTourCest
 
     private $Category_First_Name = 'Main Category 333';
     private $Category_Second_Name = 'Втораыя Категоъя';
-    private $Category_Third_Name = '123 Треього рівняї';
+    private $Category_Third_Name = '123 Треього рівняї MP3, SONY';
 
 
     
@@ -57,17 +57,41 @@ class SystemTourCest
     }
     
     
+    /**
+     * @group x
+     * @guy PremmerceTester\PremmerceSteps
+     */
+    public function DeleteProductCategorys(PremmerceTester\PremmerceSteps $I){
+        $I->loginCabinet($this->User_Email, $this->User_Password);
+        $I->wait(1);
+        $I->amOnUrl($this->storeUrl . '/admin');
+        $I->wait(1);
+        $I->login($this->User_Email, $this->User_Password);
+        $I->wait(1);
+        $I->amOnPage(ProductCategoryListPage::$URL);
+        $I->wait(1);
+        $I->click(ProductCategoryListPage::$HeadCheck);
+        $I->wait(1);
+        $I->click(ProductCategoryListPage::$ButtonDelete);
+        $I->wait(1);
+        $I->click(ProductCategoryListPage::$WindowDeleteButtonDelete);
+        $I->wait(1);
+//        $I->amOnPage($this->Cabinet_Url);
+//        $I->logoutCabinet();
+    }
+    
+    
     
     /**
      * @group x
      * @guy PremmerceTester\PremmerceSteps
      */
     public function CreateProductCategorysThreeLevels (PremmerceTester\PremmerceSteps $I){
-        $I->loginCabinet($this->User_Email, $this->User_Password);
+//        $I->loginCabinet($this->User_Email, $this->User_Password);
         $I->wait(1);
         $I->amOnUrl($this->storeUrl . '/admin');
-        $I->wait(1);
-        $I->login($this->User_Email, $this->User_Password);
+//        $I->wait(1);
+//        $I->login($this->User_Email, $this->User_Password);
         $I->wait(1);
         $I->click(GeneralPage::$ProductsCatalogue);
         $I->wait(1);
@@ -77,29 +101,83 @@ class SystemTourCest
         $I->wait(1);
         $this->CreateProductCategory($I, $this->Category_First_Name);
         $I->wait(1);
-        $this->CreateProductCategory($I, $this->Category_Second_Name);
+        $this->CreateProductCategory($I, $this->Category_Second_Name, $this->Category_First_Name);
         $I->wait(1);
-        $this->CreateProductCategory($I, $this->Category_Third_Name);
+        $this->CreateProductCategory($I, $this->Category_Third_Name, $this->Category_Second_Name);
         $I->wait(1);
 //        $I->logoutCabinet();
     }
     
-    //// PROTECTED
     
-    protected function CreateProductCategory(PremmerceTester $I, $Name_Category, $Name_Parent_Category = NULL) {
+    /**
+     * @group x
+     * @guy PremmerceTester\PremmerceSteps
+     */
+    public function CheckFrontDashboard(PremmerceTester\PremmerceSteps $I){
+        $I->amOnUrl($this->storeUrl);
+        $I->see($this->Category_First_Name, FrontPage::DashboardMainCategory(1));
+        $I->moveMouseOver(FrontPage::DashboardMainCategory(1));
+        $I->wait(1);
+        $I->see($this->Category_Second_Name, FrontPage::DashboardSecondCategory(1));
+        $I->see($this->Category_Third_Name, FrontPage::DashboardThirdCategory(1));
+    }
+
+    
+    /**
+     * @group x
+     * @guy PremmerceTester\PremmerceSteps
+     */
+    public function CheckFrontLevelCategorys(PremmerceTester\PremmerceSteps $I){
+       $I->amOnUrl($this->storeUrl); 
+       $I->click(FrontPage::DashboardMainCategory(1));
+       $I->see($this->Category_First_Name, FrontPage::$CategoryTitle);
+       $I->see($this->Category_Second_Name, FrontPage::CategoryPageCategoryList(1));
+       $I->click(FrontPage::CategoryPageCategoryList(1));
+       $I->see($this->Category_Second_Name, FrontPage::$CategoryTitle);
+       $I->see($this->Category_Third_Name, FrontPage::CategoryPageCategoryList(1));
+       $I->click(FrontPage::CategoryPageCategoryList(1));
+       $I->see($this->Category_Third_Name, FrontPage::$CategoryTitle);
+    }
+    
+    
+    /**
+     * @group x
+     * @guy PremmerceTester\PremmerceSteps
+     */
+    public function Test(PremmerceTester\PremmerceSteps $I){
+        $I->amOnPage('/saas/profile');
+        $I->wait(5);
+    }
+    
+    
+    
+    
+    /*------------------------------------------------------------------------*/
+    /*                        PROTECTED                                       */
+    /*------------------------------------------------------------------------*/
+    
+    
+    protected function CreateProductCategory(PremmerceTester $I,
+                                            $Name_Category,
+                                            $Name_Parent_Category = NULL) {
         $I->amOnPage(ProductCategoryCreatePage::$URL);
         $I->wait('1');
-            $I->fillField(ProductCategoryCreatePage::$InputName, $Name_Category);//'#inputName'
+        $I->fillField(ProductCategoryCreatePage::$InputName, $Name_Category);
         if(isset($Name_Parent_Category)){ 
-//            $I->sele(ProductCategoryCreatePage::$SelectParent);//'//div[1]/div[2]/div/div/a'
-        $I->wait('1');
-            $I->selectOption('#inputMainC', $Name_Parent_Category);
-//            $I->fillField('//section/form/div[1]/table[1]/tbody/tr/td/div/div[1]/div[2]/div/div/div/div/input', $Name_Parent_Category);
-//            $I->click('//section/form/div[1]/table[1]/tbody/tr/td/div/div[1]/div[2]/div/div/div/ul/li');
+            $I->selectOption(ProductCategoryCreatePage::$SelectParent, $Name_Parent_Category);
         }
         $I->click(ProductCategoryCreatePage::$ButtonCreate); 
         $I->wait('2');
     }
+    
+//    protected function CreateProperty(PremmerceTester $I,
+//                                    $Name_Property,
+//                                    $CVS,
+//                                    $Category,
+//                                    $Values1) {
+//        $I->amOnPage($page)
+//        
+//    }
     
 }
 
