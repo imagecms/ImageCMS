@@ -11,7 +11,14 @@ class CreateShopUkrCest
         $I->seeElement(PremmerceMainPage::$CreateShopField);
         $I->seeElement(PremmerceMainPage::$DomainEnd);
         $I->see(".premme.com", PremmerceMainPage::$DomainEnd);
-        $I->click(PremmerceMainPage::$CreateShopFreeButton);        
+        $I->click(PremmerceMainPage::$CreateShopButtonCentre);
+        $RequiredDomain=$I->grabAttributeFrom(PremmerceMainPage::$ErrorDomain, 'class');
+        $I->comment($RequiredDomain);
+        $I->assertEquals($RequiredDomain, 'create-msg');
+        $I->wait('2');
+        $I->fillField(PremmerceMainPage::$CreateShopField, 'sh');
+        $I->wait('2');
+        $I->click(PremmerceMainPage::$CreateShopButtonCentre);
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);                
         $I->seeElement(PremmerceCreateShopPage::$DomainEndInRegisterForm);
         $I->see(".premme.com", PremmerceCreateShopPage::$DomainEndInRegisterForm);
@@ -32,7 +39,7 @@ class CreateShopUkrCest
     public function AllElementsPresent2(UkrainianTester $I)
     {
         $I->amOnPage(PremmerceMainPage::$URL);        
-        $I->click(PremmerceMainPage::$CreateShopButton);        
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);                
         $I->seeElement(PremmerceCreateShopPage::$DomainEndInRegisterForm);
         $I->see(".premme.com", PremmerceCreateShopPage::$DomainEndInRegisterForm);        
@@ -54,32 +61,33 @@ class CreateShopUkrCest
         $I->amOnPage(PremmerceMainPage::$URL);
         $I->wait(5);
         $I->fillField(PremmerceMainPage::$CreateShopField, 'ыывв');
-        $I->click(PremmerceMainPage::$CreateShopFreeButton);
+        $I->wait('2');
+        $I->click(PremmerceMainPage::$CreateShopButtonCentre);
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm); 
         $I->click(PremmerceCreateShopPage::$CreateShopNowRegisterFormButton);
         $ErrorDomain=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorDomain, 'class');
-        $I->comment($ErrorDomain);
+        $I->comment("ErrorDomain: $ErrorDomain");
         $I->assertEquals($ErrorDomain, 'error');
         $RequiredEmail=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorEmail, 'class');
-        $I->comment($RequiredEmail);
+        $I->comment("RequiredEmail: $RequiredEmail");
         $I->assertEquals($RequiredEmail, 'error');
         $RequiredPassword=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorPassword, 'class');
-        $I->comment($RequiredPassword);
+        $I->comment("RequiredPassword: $RequiredPassword");
         $I->assertEquals($RequiredPassword, 'error');
         $RequiredUserName=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorUserName, 'class');
-        $I->comment($RequiredUserName);
+        $I->comment("RequiredUserName: $RequiredUserName");
         $I->assertEquals($RequiredUserName, 'error');
         $RequiredPhone=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorPhoneNumber, 'class');
-        $I->comment($RequiredPhone);
+        $I->comment("RequiredPhone: $RequiredPhone");
         $I->assertEquals($RequiredPhone, 'error');
         $RequiredCity=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorCity, 'class');
-        $I->comment($RequiredCity);
+        $I->comment("RequiredCity: $RequiredCity");
         $I->assertEquals($RequiredCity, 'error');        
         $RequiredLevel=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorLevelOfUse, 'class');
-        $I->comment($RequiredLevel);
+        $I->comment("RequiredLevel: $RequiredLevel");
         $I->assertEquals($RequiredLevel, 'error');
         $RequiredAgree=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorAgree, 'class');
-        $I->comment($RequiredAgree);
+        $I->comment("RequiredAgree: $RequiredAgree");
         $I->assertEquals($RequiredAgree, 'error');
     }
     
@@ -87,32 +95,32 @@ class CreateShopUkrCest
     public function RequiredFields2(UkrainianTester $I)
     {
         $I->amOnPage(PremmerceMainPage::$URL);        
-        $I->click(PremmerceMainPage::$CreateShopButton);        
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm); 
         $I->click(PremmerceCreateShopPage::$CreateShopNowRegisterFormButton);
         $ErrorDomain=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorDomain, 'class');
-        $I->comment($ErrorDomain);
+        $I->comment("ErrorDomain: $ErrorDomain");
         $I->assertEquals($ErrorDomain, 'error');
         $RequiredEmail=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorEmail, 'class');
-        $I->comment($RequiredEmail);
+        $I->comment("RequiredEmail: $RequiredEmail");
         $I->assertEquals($RequiredEmail, 'error');
         $RequiredPassword=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorPassword, 'class');
-        $I->comment($RequiredPassword);
+        $I->comment("RequiredPassword: $RequiredPassword");
         $I->assertEquals($RequiredPassword, 'error');
         $RequiredUserName=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorUserName, 'class');
-        $I->comment($RequiredUserName);
+        $I->comment("RequiredUserName: $RequiredUserName");
         $I->assertEquals($RequiredUserName, 'error');
         $RequiredPhone=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorPhoneNumber, 'class');
-        $I->comment($RequiredPhone);
+        $I->comment("RequiredPhone: $RequiredPhone");
         $I->assertEquals($RequiredPhone, 'error');
         $RequiredCity=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorCity, 'class');
-        $I->comment($RequiredCity);
+        $I->comment("RequiredCity: $RequiredCity");
         $I->assertEquals($RequiredCity, 'error');        
         $RequiredLevel=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorLevelOfUse, 'class');
-        $I->comment($RequiredLevel);
+        $I->comment("RequiredLevel: $RequiredLevel");
         $I->assertEquals($RequiredLevel, 'error');
         $RequiredAgree=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorAgree, 'class');
-        $I->comment($RequiredAgree);
+        $I->comment("RequiredAgree: $RequiredAgree");
         $I->assertEquals($RequiredAgree, 'error');
     }
     
@@ -120,7 +128,7 @@ class CreateShopUkrCest
 //    public function RequiredFields3(UkrainianTester $I)
 //    {
 //        $I->amOnPage('/');        
-//        $I->click(LocUaPage::$CreateShopFreeButton);
+//        $I->click(LocUaPage::$CreateShopButtonCentre);
 //        $I->waitForElement(LocUaPage::$RegisterForm);
 //        $I->click(LocUaPage::$RusLangRegisterFormLink);
 //        $I->seeCurrentUrlEquals('/ru/saas/create_store');
@@ -165,11 +173,11 @@ class CreateShopUkrCest
     public function ValidationDomain1Fail(UkrainianTester\LocUaSteps $I)
     {
         InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-        $I->click(PremmerceMainPage::$CreateShopFreeButton);        
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
         $set="abcdefghijklmnopqrstuvwxyz1234567890";
             $size = strlen($set)-1; 
-            $prefix = 'shop-ru-ru-';
+            $prefix = 'shop-ua-by-';
             $mailsufix = '@gmail.com';
             $name = null;
             $max = 7;
@@ -201,11 +209,11 @@ class CreateShopUkrCest
     public function ValidationDomain2Fail(UkrainianTester\LocUaSteps $I)
     {
         InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-        $I->click(PremmerceMainPage::$CreateShopFreeButton);        
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
         $set="abcdefghijklmnopqrstuvwxyz1234567890";
             $size = strlen($set)-1; 
-            $prefix = 'shop-ru-ru-';
+            $prefix = 'shop-ua-ru-';
             $mailsufix = '@gmail.com';
             $name = null;
             $max = 7;
@@ -218,7 +226,7 @@ class CreateShopUkrCest
             $user='Norman';
             $phone='4443434367';
             $city='Boston';
-            $country='3';
+            $country='2';
             $category='2';
             $level='3';
             $agree='';
@@ -237,24 +245,24 @@ class CreateShopUkrCest
     public function ValidationDomain3Fail(UkrainianTester\LocUaSteps $I)
     {
         InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-        $I->click(PremmerceMainPage::$CreateShopFreeButton);        
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
         $set="abcdefghijklmnopqrstuvwxyz1234567890";
             $size = strlen($set)-1; 
-            $prefix = 'shop-ru-ru-';
+            $prefix = 'shop-ua-ua-';
             $mailsufix = '@gmail.com';
             $name = null;
             $max = 7;
                 while($max--)
                 $name.=$set[rand(0,$size)]; 
-            $store1 = $prefix.'-'.$name;
+            $store1 = $prefix.$name.'-';
             $mail1 = $prefix.$name.$mailsufix;
             echo "your store name: $store1 \nyoour mail: $mail1";
             $password='1111111';
             $user='Norman';
             $phone='4443434367';
             $city='Boston';
-            $country='3';
+            $country='1';
             $category='2';
             $level='3';
             $agree='';
@@ -272,11 +280,11 @@ class CreateShopUkrCest
     public function ValidationDomain4Fail(UkrainianTester\LocUaSteps $I)
     {
         InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-        $I->click(PremmerceMainPage::$CreateShopFreeButton);        
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
         $set="abcdefghijklmnopqrstuvwxyz1234567890";
             $size = strlen($set)-1; 
-            $prefix = 'shop-ru-ru-';
+            $prefix = 'shop-ua-by-';
             $mailsufix = '@gmail.com';
             $name = null;
             $max = 7;
@@ -307,11 +315,11 @@ class CreateShopUkrCest
     public function ValidationDomain5Fail(UkrainianTester\LocUaSteps $I)
     {
         InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-        $I->click(PremmerceMainPage::$CreateShopFreeButton);        
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
         $set="abcdefghijklmnopqrstuvwxyz1234567890";
             $size = strlen($set)-1; 
-            $prefix = 'shop-ru-ru-';
+            $prefix = 'shop-ua-ua-';
             $mailsufix = '@gmail.com';
             $name = null;
             $max = 7;
@@ -324,7 +332,7 @@ class CreateShopUkrCest
             $user='Norman';
             $phone='4443434367';
             $city='Boston';
-            $country='3';
+            $country='1';
             $category='2';
             $level='3';
             $agree='';
@@ -342,11 +350,11 @@ class CreateShopUkrCest
     public function ValidationDomain6Fail(UkrainianTester\LocUaSteps $I)
     {
         InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-        $I->click(PremmerceMainPage::$CreateShopFreeButton);        
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
         $set="abcdefghijklmnopqrstuvwxyz1234567890";
             $size = strlen($set)-1; 
-            $prefix = 'shop-ru-ru-';
+            $prefix = 'shop-ua-ua-';
             $mailsufix = '@gmail.com';
             $name = null;
             $max = 7;
@@ -359,7 +367,7 @@ class CreateShopUkrCest
             $user='Norman';
             $phone='4443434367';
             $city='Boston';
-            $country='3';
+            $country='1';
             $category='2';
             $level='3';
             $agree='';
@@ -378,11 +386,11 @@ class CreateShopUkrCest
     public function ValidationDomain7Fail(UkrainianTester\LocUaSteps $I)
     {
         InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-        $I->click(PremmerceMainPage::$CreateShopFreeButton);        
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
         $set="abcdefghijklmnopqrstuvwxyz1234567890";
             $size = strlen($set)-1; 
-            $prefix = 'shop-ru-ru-';
+            $prefix = 'shop-ua-ua-';
             $mailsufix = '@gmail.com';
             $name = null;
             $max = 10;
@@ -395,7 +403,42 @@ class CreateShopUkrCest
             $user='Norman';
             $phone='4443434367';
             $city='Boston';
-            $country='3';
+            $country='1';
+            $category='2';
+            $level='3';
+            $agree='';
+            $I->CreateShop($store1, $mail1, $password, $user, $phone, $city, null, null, $level, $agree);
+            $I->wait('2');
+        $ErrorDomain=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorDomain, 'class');
+        $I->comment("Domain:$ErrorDomain");
+        $I->assertEquals($ErrorDomain, 'error');        
+    }
+    
+    /**
+     * @guy UkrainianTester\LocUaSteps
+     */
+    
+    public function ValidationDomain8Fail(UkrainianTester\LocUaSteps $I)
+    {
+        InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
+        $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
+        $set="abcdefghijklmnopqrstuvwxyz1234567890";
+            $size = strlen($set)-1; 
+            $prefix = 'shop-ua-ua-';
+            $mailsufix = '@gmail.com';
+            $name = null;
+            $max = 7;
+                while($max--)
+                $name.=$set[rand(0,$size)]; 
+            $store1 = $prefix.' '.$name;
+            $mail1 = $prefix.$name.$mailsufix;
+            echo "your store name: $store1 \nyoour mail: $mail1";
+            $password='1111111';
+            $user='Norman';
+            $phone='4443434367';
+            $city='Boston';
+            $country='1';
             $category='2';
             $level='3';
             $agree='';
@@ -413,24 +456,24 @@ class CreateShopUkrCest
     public function ValidationEmail1Fail(UkrainianTester\LocUaSteps $I)
     {
         InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-        $I->click(PremmerceMainPage::$CreateShopFreeButton);        
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
         $set="abcdefghijklmnopqrstuvwxyz1234567890";
             $size = strlen($set)-1; 
-            $prefix = 'shop-ru-ru-';
+            $prefix = 'shop-ua-ru-';
             $mailsufix = 'gmail.com';
             $name = null;
             $max = 7;
                 while($max--)
                 $name.=$set[rand(0,$size)]; 
-            $store1 = $prefix.$name;
+            $store1 = $prefix.'-'.$name;
             $mail1 = $prefix.$name.$mailsufix;
             echo "your store name: $store1 \nyoour mail: $mail1";
             $password='1111111';
             $user='Norman';
             $phone='4443434367';
             $city='Boston';
-            $country='3';
+            $country='2';
             $category='2';
             $level='3';
             $agree='';
@@ -448,11 +491,11 @@ class CreateShopUkrCest
     public function ValidationEmail2Fail(UkrainianTester\LocUaSteps $I)
     {
         InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-        $I->click(PremmerceMainPage::$CreateShopFreeButton);        
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
         $set="abcdefghijklmnopqrstuvwxyz1234567890";
             $size = strlen($set)-1; 
-            $prefix = 'shop-ru-ru-';
+            $prefix = 'shop-ua-ua-';
             $mailsufix = '@gmail.c';
             $name = null;
             $max = 7;
@@ -465,7 +508,7 @@ class CreateShopUkrCest
             $user='Norman';
             $phone='4443434367';
             $city='Boston';
-            $country='3';
+            $country='1';
             $category='2';
             $level='3';
             $agree='';
@@ -483,11 +526,11 @@ class CreateShopUkrCest
     public function ValidationEmail3Fail(UkrainianTester\LocUaSteps $I)
     {
         InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-        $I->click(PremmerceMainPage::$CreateShopFreeButton);        
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
         $set="abcdefghijklmnopqrstuvwxyz1234567890";
             $size = strlen($set)-1; 
-            $prefix = 'shop-ru-ru-';
+            $prefix = 'shop-ua-ua-';
             $mailsufix = '@g_d.com';
             $name = null;
             $max = 7;
@@ -500,7 +543,7 @@ class CreateShopUkrCest
             $user='Norman';
             $phone='4443434367';
             $city='Boston';
-            $country='3';
+            $country='1';
             $category='2';
             $level='3';
             $agree='';
@@ -519,11 +562,11 @@ class CreateShopUkrCest
     public function ValidationEmail4Fail(UkrainianTester\LocUaSteps $I)
     {
         InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-        $I->click(PremmerceMainPage::$CreateShopFreeButton);        
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
         $set="abcdefghijklmnopqrstuvwxyz1234567890";
             $size = strlen($set)-1; 
-            $prefix = 'shop-ru-ru-';
+            $prefix = 'shop-ua-ua-';
             $mailsufix = '@g_d.com';
             $name = null;
             $max = 7;
@@ -536,7 +579,7 @@ class CreateShopUkrCest
             $user='Norman';
             $phone='4443434367';
             $city='Boston';
-            $country='3';
+            $country='1';
             $category='2';
             $level='3';
             $agree='';
@@ -555,11 +598,11 @@ class CreateShopUkrCest
     public function ValidationEmail5Fail(UkrainianTester\LocUaSteps $I)
     {
         InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-        $I->click(PremmerceMainPage::$CreateShopFreeButton);        
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
         $set="abcdefghijklmnopqrstuvwxyz1234567890";
             $size = strlen($set)-1; 
-            $prefix = 'shop-ru-ru-';
+            $prefix = 'shop-ua-ua-';
             $mailsufix = '@gmail.com';
             $name = null;
             $max = 7;
@@ -572,7 +615,7 @@ class CreateShopUkrCest
             $user='Norman';
             $phone='4443434367';
             $city='Boston';
-            $country='3';
+            $country='1';
             $category='2';
             $level='3';
             $agree='';
@@ -591,11 +634,11 @@ class CreateShopUkrCest
     public function ValidationEmail6Fail(UkrainianTester\LocUaSteps $I)
     {
         InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-        $I->click(PremmerceMainPage::$CreateShopFreeButton);        
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
         $set="abcdefghijklmnopqrstuvwxyz1234567890";
             $size = strlen($set)-1; 
-            $prefix = 'shop-ru-ru-';
+            $prefix = 'shop-ua-ua-';
             $mailsufix = '@gmail.com';
             $name = null;
             $max = 7;
@@ -608,7 +651,7 @@ class CreateShopUkrCest
             $user='Norman';
             $phone='4443434367';
             $city='Boston';
-            $country='3';
+            $country='1';
             $category='2';
             $level='3';
             $agree='';
@@ -626,11 +669,11 @@ class CreateShopUkrCest
     public function ValidationEmail7Fail(UkrainianTester\LocUaSteps $I)
     {
         InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-        $I->click(PremmerceMainPage::$CreateShopFreeButton);        
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
         $set="abcdefghijklmnopqrstuvwxyz1234567890";
             $size = strlen($set)-1; 
-            $prefix = 'shop-ru-ru-';
+            $prefix = 'shop-ua-ua-';
             $mailsufix = '@gmail.com';
             $name = null;
             $max = 7;
@@ -643,7 +686,7 @@ class CreateShopUkrCest
             $user='Norman';
             $phone='4443434367';
             $city='Boston';
-            $country='3';
+            $country='1';
             $category='2';
             $level='3';
             $agree='';
@@ -661,11 +704,11 @@ class CreateShopUkrCest
     public function ValidationEmail8Fail(UkrainianTester\LocUaSteps $I)
     {
         InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-        $I->click(PremmerceMainPage::$CreateShopFreeButton);        
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
         $set="abcdefghijklmnopqrstuvwxyz1234567890";
             $size = strlen($set)-1; 
-            $prefix = 'shop-ru-ru-';
+            $prefix = 'shop-ua-by-';
             $mailsufix = '@gmail.com';
             $name = null;
             $max = 7;
@@ -697,11 +740,11 @@ class CreateShopUkrCest
     public function ValidationEmail9Fail(UkrainianTester\LocUaSteps $I)
     {
         InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-        $I->click(PremmerceMainPage::$CreateShopFreeButton);        
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
         $set="abcdefghijklmnopqrstuvwxyz1234567890";
             $size = strlen($set)-1; 
-            $prefix = 'shop-ru-ru-';
+            $prefix = 'shop-ua-ru-';
             $mailsufix = '@gmail.com';
             $name = null;
             $max = 7;
@@ -714,7 +757,7 @@ class CreateShopUkrCest
             $user='Norman';
             $phone='4443434367';
             $city='Boston';
-            $country='3';
+            $country='2';
             $category='2';
             $level='3';
             $agree='';
@@ -732,11 +775,11 @@ class CreateShopUkrCest
     public function ValidationEmail10Fail(UkrainianTester\LocUaSteps $I)
     {
         InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-        $I->click(PremmerceMainPage::$CreateShopFreeButton);        
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
         $set="abcdefghijklmnopqrstuvwxyz1234567890";
             $size = strlen($set)-1; 
-            $prefix = 'shop-ru-ru-';
+            $prefix = 'shop-ua-ua-';
             $mailsufix = '@gmail.com';
             $name = null;
             $max = 7;
@@ -749,7 +792,7 @@ class CreateShopUkrCest
             $user='Norman';
             $phone='4443434367';
             $city='Boston';
-            $country='3';
+            $country='1';
             $category='2';
             $level='3';
             $agree='';
@@ -767,11 +810,11 @@ class CreateShopUkrCest
     public function ValidationEmail11Passed(UkrainianTester\LocUaSteps $I)
     {
         InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-        $I->click(PremmerceMainPage::$CreateShopFreeButton);        
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
         $set="abcdefghijklmnopqrstuvwxyz1234567890";
             $size = strlen($set)-1; 
-            $prefix = 'shop-ru-ru-';
+            $prefix = 'shop-ua-ua-';
             $mailsufix = '@gmail.com';
             $name = null;
             $max = 7;
@@ -784,14 +827,14 @@ class CreateShopUkrCest
             $user='Norman';
             $phone='4443434367';
             $city='Boston';
-            $country='3';
+            $country='1';
             $category='2';
             $level='3';
             $agree='';
             $I->CreateShop($store1, $mail1, $password, $user, $phone, $city, null, null, $level, $agree);                    
         $I->waitForElementVisible(PremmerceCreateShopPage::$CreateLoadingForm);
         $I->wait('10');
-        $I->waitForElement(PremmerceCabinetPage::$SiteLink, '10');
+        $I->waitForElement(PremmerceCabinetPage::$SiteLink, '60');
         $I->seeCurrentUrlEquals('/saas/profile');
     } 
     
@@ -802,11 +845,11 @@ class CreateShopUkrCest
     public function ValidationEmail12Passed(UkrainianTester\LocUaSteps $I)
     {
         InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-        $I->click(PremmerceMainPage::$CreateShopFreeButton);        
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
         $set="abcdefghijklmnopqrstuvwxyz1234567890";
             $size = strlen($set)-1; 
-            $prefix = 'shopruru';
+            $prefix = 'shopuaua';
             $mailsufix = '@gmail.com';
             $name = null;
             $max = 7;
@@ -826,7 +869,7 @@ class CreateShopUkrCest
             $I->CreateShop($store1, $mail1, $password, $user, $phone, $city, null, null, $level, $agree);            
         $I->waitForElementVisible(PremmerceCreateShopPage::$CreateLoadingForm);
         $I->wait('10');
-        $I->waitForElement(PremmerceCabinetPage::$SiteLink, '10');
+        $I->waitForElement(PremmerceCabinetPage::$SiteLink, '60');
         $I->seeCurrentUrlEquals('/saas/profile');       
     } 
     
@@ -840,7 +883,9 @@ class CreateShopUkrCest
         $I->fillField(PremmerceMainPage::$CreateShopField, 's');
         $I->seeElement(PremmerceMainPage::$DomainEnd);
         $I->see(".premme.com", PremmerceMainPage::$DomainEnd);
-        $I->click(PremmerceMainPage::$CreateShopFreeButton);        
+        $I->wait('2');
+        $I->click(PremmerceMainPage::$CreateShopButtonCentre);     
+        $I->wait('2');
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);       
         $I->seeInField(PremmerceCreateShopPage::$ShopNameField, 's');
         $I->fillField(PremmerceCreateShopPage::$EmailField, 'ss');
@@ -888,9 +933,10 @@ class CreateShopUkrCest
             $phone='123445';
             $city='Херсон';           
         $I->CreateShop($this->store, $this->mail, $password, $user, $phone, $city);
+        $I->wait('5');
         $I->waitForElementVisible(PremmerceCreateShopPage::$CreateLoadingForm);
         $I->wait('10');
-        $I->waitForElement(PremmerceCabinetPage::$SiteLink, '10');
+        $I->waitForElement(PremmerceCabinetPage::$SiteLink, '60');
         $I->seeCurrentUrlEquals('/saas/profile');
         $PageLocale=$I->grabAttributeFrom('/html/body/div[1]/div/div[1]/nav/ul/li[1]/a', 'href');
         $I->comment("Page: $PageLocale");
@@ -899,8 +945,9 @@ class CreateShopUkrCest
         $shopDom=$this->store.$domain;
         $I->see($shopDom, PremmerceCabinetPage::$SiteLink);
         $I->see($shopDom.'/admin', PremmerceCabinetPage::$AdminLink);
+        $I->wait('3');
         $I->click(PremmerceCabinetPage::$SiteLink);
-        $$I->executeInSelenium(function (\Webdriver $webdriver) {
+        $I->executeInSelenium(function (\Webdriver $webdriver) {
             $handles=$webdriver->getWindowHandles();
             $last_window = end($handles);
             $webdriver->switchTo()->window($last_window);
@@ -934,7 +981,7 @@ class CreateShopUkrCest
     public function CreateShopRusCountry(UkrainianTester\LocUaSteps $I)
     {
         InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-        $I->click(PremmerceMainPage::$CreateShopFreeButton);        
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
             $set="abcdefghijklmnopqrstuvwxyz1234567890";
             $size = strlen($set)-1; 
@@ -958,7 +1005,7 @@ class CreateShopUkrCest
         $I->CreateShop($store1, $mail1, $password, $user, $phone, $city, $country, $category, $level,$agree);        
         $I->waitForElementVisible(PremmerceCreateShopPage::$CreateLoadingForm);
         $I->wait('10');
-        $I->waitForElement(PremmerceCabinetPage::$SiteLink, '10');
+        $I->waitForElement(PremmerceCabinetPage::$SiteLink, '60');
         $I->seeCurrentUrlEquals('/saas/profile');
         $PageLocale=$I->grabAttributeFrom('/html/body/div[1]/div/div[1]/nav/ul/li[1]/a', 'href');
         $I->comment("Page: $PageLocale");
@@ -1003,7 +1050,7 @@ class CreateShopUkrCest
 //    public function CreateShopUsaCountry(UkrainianTester\LocUaSteps $I)
 //    {
 //        InitTest::VerifyLogInOrLogOutUkr($I);       
-//        $I->click(LocUaPage::$CreateShopFreeButton);        
+//        $I->click(LocUaPage::$CreateShopButtonTop);        
 //        $I->waitForElement(LocUaPage::$RegisterForm);               
 //            $set="abcdefghijklmnopqrstuvwxyz";
 //            $size = strlen($set)-1; 
@@ -1057,7 +1104,7 @@ class CreateShopUkrCest
     public function CreateShopWithEmailAlreadyRegistered(UkrainianTester\LocUaSteps $I)
     {
         InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-        $I->click(PremmerceMainPage::$CreateShopFreeButton);        
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);               
             $set="abcdefghijklmnopqrstuvwxyz1234567890";
             $size = strlen($set)-1; 
@@ -1086,7 +1133,7 @@ class CreateShopUkrCest
         $I->click(PremmerceCreateShopPage::$CreateShopNowRegisterFormButton);
         $I->waitForElementVisible(PremmerceCreateShopPage::$CreateLoadingForm);
         $I->wait('10');
-        $I->waitForElement(PremmerceCabinetPage::$SiteLink, '10');
+        $I->waitForElement(PremmerceCabinetPage::$SiteLink, '30');
         $I->seeCurrentUrlEquals('/saas/profile');
         $PageLocale=$I->grabAttributeFrom('/html/body/div[1]/div/div[1]/nav/ul/li[1]/a', 'href');
         $I->comment("Page: $PageLocale");
@@ -1131,7 +1178,7 @@ class CreateShopUkrCest
     public function CreateShopWithNameDomainAlreadyRegistered(UkrainianTester\LocUaSteps $I)
     {
         InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-        $I->click(PremmerceMainPage::$CreateShopFreeButton);        
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
             $set="abcdefghijklmnopqrstuvwxyz1234567890";
             $size = strlen($set)-1; 
@@ -1146,7 +1193,7 @@ class CreateShopUkrCest
             echo "your store name: $store1 \nyoour mail: $mail1";
             $password='kkkkkk';
             $user='Victoria';
-            $phone='77-77-77';
+            $phone='777777';
             $city='St.Peterburg';
             $country='2';
             $category='3';
@@ -1164,7 +1211,7 @@ class CreateShopUkrCest
         $I->click(PremmerceCreateShopPage::$CreateShopNowRegisterFormButton);
         $I->waitForElementVisible(PremmerceCreateShopPage::$CreateLoadingForm);
         $I->wait('10');
-        $I->waitForElement(PremmerceCabinetPage::$SiteLink, '10');
+        $I->waitForElement(PremmerceCabinetPage::$SiteLink, '60');
         $I->seeCurrentUrlEquals('/saas/profile');
         $PageLocale=$I->grabAttributeFrom('/html/body/div[1]/div/div[1]/nav/ul/li[1]/a', 'href');
         $I->comment("Page: $PageLocale");
@@ -1206,7 +1253,7 @@ class CreateShopUkrCest
 //    public function CheckPresentTextInFieldAfterChangeLanguage(UkrainianTester $I)
 //    {
 //        InitTest::VerifyLogInOrLogOutUkr($I);         
-//        $I->click(LocUaPage::$CreateShopFreeButton);        
+//        $I->click(LocUaPage::$CreateShopButtonTop);        
 //        $I->waitForElement(LocUaPage::$RegisterForm);
 //        $I->seeCurrentUrlEquals('/saas/create_store');        
 //        $I->fillField(LocUaPage::$ShopNameField, 's');
@@ -1248,7 +1295,7 @@ class CreateShopUkrCest
 //        InitTest::VerifyLogInOrLogOutUkr($I);
 //        $I->click(LocUaPage::$RusLangRegisterFormLink);
 //        $I->seeCurrentUrlEquals('/ru');
-//        $I->click(LocUaPage::$CreateShopFreeButton);        
+//        $I->click(LocUaPage::$CreateShopButtonTop);        
 //        $I->waitForElement(LocUaPage::$RegisterForm);
 //        $I->seeCurrentUrlEquals('/ru/saas/create_store');
 //        $I->click(LocUaPage::$UkrLangRegisterFormLink);
@@ -1318,7 +1365,7 @@ class CreateShopUkrCest
 //        InitTest::VerifyLogInOrLogOutUkr($I);
 //        $I->click(LocUaPage::$RusLangRegisterFormLink);
 //        $I->seeCurrentUrlEquals('/ru');
-//        $I->click(LocUaPage::$CreateShopFreeButton);        
+//        $I->click(LocUaPage::$CreateShopButtonTop);        
 //        $I->waitForElement(LocUaPage::$RegisterForm);
 //        $I->seeCurrentUrlEquals('/ru/saas/create_store');        
 //        $set="abcdefghijklmnopqrstuvwxyz";
