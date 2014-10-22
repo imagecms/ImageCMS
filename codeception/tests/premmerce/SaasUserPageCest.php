@@ -6,7 +6,7 @@ class SaasUserPageCest
 
 
 {
-//   private $Store_Url = 'populationnationn.premme.com';
+
    private $Cabinet_Url = '/saas/profile';
 
 
@@ -19,11 +19,11 @@ class SaasUserPageCest
 
 
    
-   private $Tariff_Free = 'Free';
-   private $Tariff_Basic = 'Basic';
-   private $Tariff_Standart = 'Standart';
-   private $Tariff_Business = 'Business';
-   private $Tariff_Premium = 'Premium';
+//   private $Tariff_Free = 'Free';
+//   private $Tariff_Basic = 'Basic';
+//   private $Tariff_Standart = 'Standart';
+//   private $Tariff_Business = 'Business';
+//   private $Tariff_Premium = 'Premium';
    
    private $Status_Name = 'Test Saas';
    private $Status_Description = 'Jira PRMS-16 Admin page for Managers. Tests';
@@ -48,11 +48,11 @@ class SaasUserPageCest
    
    
     /**
-     * @group status123
+     * @group x
      * @guy PremmerceTester\PremmerceSteps 
      */
     public function CreateStore(PremmerceTester\PremmerceSteps $I){
-//        $I->loginCabinet($user_email = $this->User_Email, $user_password = $this->User_Password);
+//        $I->loginCabinet($this->User_Email, $this->User_Password);
         $I->amOnPage(MainPage::$URL);
         $I->wait(3);  
         $I->click(MainPage::$ButtonCreateStore);
@@ -80,7 +80,7 @@ class SaasUserPageCest
     }
 
     /**
-     * @group a
+     * @group x
      * @guy PremmerceTester\PremmerceSteps 
      */
     public function CheckOffStoreSaas(PremmerceTester\PremmerceSteps $I){
@@ -105,11 +105,11 @@ class SaasUserPageCest
     
     
     /**
-     * @group a
+     * @group x
      * @guy PremmerceTester\PremmerceSteps
      */
     public function CheckOffCabinet (PremmerceTester\PremmerceSteps $I){
-        $I->loginCabinet($user_email = $this->User_Email, $user_password = $this->User_Password);
+        $I->loginCabinet($this->User_Email, $this->User_Password);
         $I->wait(4);
         $I->seeInCurrentUrl($this->Cabinet_Url);
         $I->see($this->Store_Name, CabinetPage::$TabMainFieldSiteLink);
@@ -130,7 +130,7 @@ class SaasUserPageCest
     
     
     /**
-     * @group a
+     * @group x
      * @guy PremmerceTester\PremmerceSteps
      */
     public function CheckOffSaas(PremmerceTester\PremmerceSteps $I){
@@ -154,11 +154,11 @@ class SaasUserPageCest
     
     
     /**
-     * @group a
+     * @group x
      * @guy PremmerceTester\PremmerceSteps 
      */
     public function CheckOnCabinet (PremmerceTester\PremmerceSteps $I){
-        $I->loginCabinet($user_email = $this->User_Email, $user_password = $this->User_Password);
+        $I->loginCabinet($this->User_Email, $this->User_Password);
         $I->wait(1);
         $I->seeInCurrentUrl('/saas/profile');
         $I->see($this->Store_Name, CabinetPage::$TabMainFieldSiteLink);
@@ -280,7 +280,7 @@ class SaasUserPageCest
      * @guy PremmerceTester\PremmerceSteps 
      */
     public function CetNameCountry(PremmerceTester\PremmerceSteps $I){
-        $I->loginCabinet($user_email = $this->User_Email, $user_password = $this->User_Password);
+        $I->loginCabinet($this->User_Email, $this->User_Password);
         $I->wait(1);
         $I->click(CabinetPage::$TabProfile);
         $I->wait(1);
@@ -371,7 +371,7 @@ class SaasUserPageCest
      * @guy PremmerceTester\PremmerceSteps 
      */
     public function CetNameLevel(PremmerceTester\PremmerceSteps $I){
-        $I->loginCabinet($user_email = $this->User_Email, $user_password = $this->User_Password);
+        $I->loginCabinet($this->User_Email, $this->User_Password);
         $I->wait(1);
         $I->click(CabinetPage::$TabProfile);
         $I->wait(1);
@@ -407,7 +407,7 @@ class SaasUserPageCest
      * @guy PremmerceTester\PremmerceSteps 
      */
     public function CetNameCategory(PremmerceTester\PremmerceSteps $I){
-        $I->loginCabinet($user_email = $this->User_Email, $user_password = $this->User_Password);
+        $I->loginCabinet($this->User_Email, $this->User_Password);
         $I->wait(1);
         $I->click(CabinetPage::$TabProfile);
         $I->wait(1);
@@ -939,7 +939,7 @@ class SaasUserPageCest
      * @guy PremmerceTester\PremmerceSteps
      */
     public function VerifyDeleteSahopCabinet(PremmerceTester\PremmerceSteps $I){
-       $I->loginCabinet($user_email = $this->User_Email, $user_password = $this->User_Password);
+       $I->loginCabinet($this->User_Email, $this->User_Password);
        $I->wait(1);
        $I->seeElement('.for_validations.error');
        $I->wait(1);
