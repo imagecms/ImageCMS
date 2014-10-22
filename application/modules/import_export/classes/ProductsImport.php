@@ -579,8 +579,11 @@ class ProductsImport extends BaseImport {
      */
     function urlCheck($url, $id = '', $name = '') {
 
-        if ($url == '')
+        if ($url == '') {
             return translit_url(trim($name));
+        } else {
+            $url = translit_url($url);
+        }
         // Check if Url is aviable.
         $urlCheck = $this->db
                 ->select('url,id')
@@ -589,10 +592,11 @@ class ProductsImport extends BaseImport {
                 ->get('shop_products')
                 ->row();
 
-        if ($urlCheck->id != $id)
+        if ($urlCheck->id != $id) {
             return $url;
-        else
+        } else {
             return $id . '_' . random_string('alnum', 8);
+        }
     }
 
     /**
@@ -606,31 +610,33 @@ class ProductsImport extends BaseImport {
         $this->db->delete('shop_product_images', array('product_id' => $id));
 
         $arg['imgs'] = explode('|', $arg['imgs']);
+        
+        if ($arg['imgs'] != array()) {
+            foreach ((array) $arg['imgs'] as $key => $img) {
+                $this->db->set('product_id', $id);
+                $img = trim($img);
 
-        foreach ((array) $arg['imgs'] as $key => $img) {
-            $this->db->set('product_id', $id);
-            $img = trim($img);
-
-            if (preg_match("/http\:\/\//i", $img)) {
-                $filename = $this->saveImgByUrl($img, 'additional');
-                if ($filename) {
-                    copy($this->imagetemppathAdd . $filename, $this->imageAddPath . $filename);
-                    $this->db->set('image_name', $filename);
-                    $this->db->set('position', $key);
+                if (preg_match("/http\:\/\//i", $img)) {
+                    $filename = $this->saveImgByUrl($img, 'additional');
+                    if ($filename) {
+                        copy($this->imagetemppathAdd . $filename, $this->imageAddPath . $filename);
+                        $this->db->set('image_name', $filename);
+                        $this->db->set('position', $key);
+                        $this->db->insert('shop_product_images');
+                    }
+                } else {
+                    if (file_exists($this->imagetemppathAdd . $img)) {
+                        /* If the photo is in the orogin folder */
+                        copy($this->imagetemppathAdd . $img, $this->imageAddPath . $img);
+                        $this->db->set('image_name', $img);
+                        $this->db->set('position', $key);
+                    } elseif (file_exists($this->imageAddPath . $img)) {
+                        /* If the photo is not in the orogin folder, but there is $this->imageAddPath */
+                        $this->db->set('image_name', $img);
+                        $this->db->set('position', $key);
+                    }
                     $this->db->insert('shop_product_images');
                 }
-            } else {
-                if (file_exists($this->imagetemppathAdd . $img)) {
-                    /* If the photo is in the orogin folder */
-                    copy($this->imagetemppathAdd . $img, $this->imageAddPath . $img);
-                    $this->db->set('image_name', $img);
-                    $this->db->set('position', $key);
-                } elseif (file_exists($this->imageAddPath . $img)) {
-                    /* If the photo is not in the orogin folder, but there is $this->imageAddPath */
-                    $this->db->set('image_name', $img);
-                    $this->db->set('position', $key);
-                }
-                $this->db->insert('shop_product_images');
             }
         }
     }

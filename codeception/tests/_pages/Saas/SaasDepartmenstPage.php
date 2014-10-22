@@ -1,6 +1,6 @@
 <?php
 
- class SaasUserListPage
+ class SaasDepartmenstPage
 
 {
     public static $ListURL = '/admin/components/cp/saas/users_departments/allUsersDepartments';
@@ -35,7 +35,7 @@
     public static $CreateButtonSave = '//body/div[1]/div[5]/section/div/div[2]/div/button';
     public static $CreateInputName = '//section/form/div/table/tbody/tr/td/div/div/div[1]/div/input';
     public static $CreateInputNameLabel = '//section/form/div/table/tbody/tr/td/div/div/div[1]/label';
-    public static $CreateInputDescription = '//body/p';
+    public static $CreateInputDescription = '//table/tbody/tr/td/div/div/div[2]/div/textarea';
     public static $CreateInputDescriptionLabel = '//section/form/div/table/tbody/tr/td/div/div/div[2]/label';
     
     public static $EditTitle = '//body/div[1]/div[5]/section/div/div[1]/span[2]';

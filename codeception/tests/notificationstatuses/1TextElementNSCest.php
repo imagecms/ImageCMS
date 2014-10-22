@@ -7,7 +7,7 @@ class TextElementNSCest
 {
 //---------------------------AUTORIZATION---------------------------------------
     /**
-     * @group aa
+     * @group qa
      */
     public function Login(NotificationStatusesTester $I){
         InitTest::Login($I);
@@ -21,17 +21,21 @@ class TextElementNSCest
      */
     public function VerifyWayNotfStatusesList (NotificationStatusesTester $I){
         $I->click(NavigationBarPage::$Orders);
+        $I->wait('1');
         $I->click(NavigationBarPage::$NotificationStatuses);   
+        $I->wait('1');
         $I->seeInCurrentUrl(NotificationStatusesListPage::$URL);
     } 
     
     
     /**
-     * @group a
+     * @group qa
      */
     public function VerifyWayNotfStatusesCreate1 (NotificationStatusesTester $I){
         $I->click(NavigationBarPage::$Orders);
+        $I->wait('1');
         $I->click(NavigationBarPage::$NotificationStatuses);
+        $I->wait('1');
         $I->seeInCurrentUrl(NotificationStatusesListPage::$URL);
         $I->wait('1');
         $I->click(NotificationStatusesListPage::$ButtonCreate);
@@ -41,15 +45,16 @@ class TextElementNSCest
     
     
     /**
-     * @group a
+     * @group qa
      */
     public function VerifyWayNotfStatusesCreate2 (NotificationStatusesTester $I){
         $I->click(NavigationBarPage::$Orders);
+        $I->wait('1');
         $I->click(NavigationBarPage::$NotificationStatuses);
         $I->wait('1');
         $I->click(NotificationStatusesListPage::$ButtonCreate);
-        $I->seeInCurrentUrl(NotificationStatusesCreatePage::$URL);
         $I->wait('1');
+        $I->seeInCurrentUrl(NotificationStatusesCreatePage::$URL);
         $I->click(NotificationStatusesCreatePage::$ButtonBack);
         $I->wait('1');
         $I->seeInCurrentUrl(NotificationStatusesListPage::$URL);        
