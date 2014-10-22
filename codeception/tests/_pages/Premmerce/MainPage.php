@@ -22,7 +22,7 @@ class MainPage
 
     
     public static $WindowForgotPasswordTitle        = '//body/div[12]/div/div[1]/div';
-    public static $WindowForgotPasswordFieldEmail   = '//form/div/label/span/input';
+    public static $WindowForgotPasswordInputEmail   = '//form/div/label/span/input';
     public static $WindowForgotPasswordButtonClose  = '//body/div[12]/div/button';
     public static $WindowForgotPasswordButtonSend   = '//div[12]/div/div[2]/div/div/form/div/div/div/div/button';
 }

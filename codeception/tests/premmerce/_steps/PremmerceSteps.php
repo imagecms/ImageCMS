@@ -69,7 +69,7 @@ class PremmerceSteps extends \PremmerceTester {
     public function loginCabinet($user_email, $user_password) {
 
         $I = $this;
-        $I->amOnPage(\PremmerceMainPage::$URL);
+        $I->amOnPage(\MainPage::$URL);
         $I->wait(3);
         $I->click(\MainPage::$ButtonEnter);
         $I->wait(2);
@@ -113,5 +113,15 @@ class PremmerceSteps extends \PremmerceTester {
             $name.=$set[rand(0, $size)];
         }
         return $name;
+    }
+    
+    public function SetTextAditorNative() {  
+        $I = $this;
+        $I->wait(1);
+        $I->amOnPage('/admin/settings#setings');
+        $I->wait(2);
+        $I->selectOption('#textEditor', 'Native textarea');
+        $I->click('.btn.btn-small.btn-primary.action_on.formSubmit');
+        $I->wait('3');
     }
 }
