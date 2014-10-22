@@ -11,7 +11,14 @@ class CreateShopRusCest
         $I->seeElement(PremmerceMainPage::$CreateShopField);
         $I->seeElement(PremmerceMainPage::$DomainEnd);
         $I->see(".premme.com", PremmerceMainPage::$DomainEnd);
-        $I->click(PremmerceMainPage::$CreateShopFreeButton);        
+        $I->click(PremmerceMainPage::$CreateShopButtonCentre); 
+        $RequiredDomain=$I->grabAttributeFrom(PremmerceMainPage::$ErrorDomain, 'class');
+        $I->comment("RequiredDomain: $RequiredDomain");
+        $I->assertEquals($RequiredDomain, 'create-msg');
+        $I->wait('2');
+        $I->fillField(PremmerceMainPage::$CreateShopField, 'sh');
+        $I->wait('2');
+        $I->click(PremmerceMainPage::$CreateShopButtonCentre);
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);                
         $I->seeElement(PremmerceCreateShopPage::$DomainEndInRegisterForm);
         $I->see(".premme.com", PremmerceCreateShopPage::$DomainEndInRegisterForm);        
@@ -32,7 +39,7 @@ class CreateShopRusCest
     public function AllElementsPresent2(RussianTester $I)
     {
         $I->amOnPage(PremmerceMainPage::$URL);        
-        $I->click(PremmerceMainPage::$CreateShopButton);        
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);                
         $I->seeElement(PremmerceCreateShopPage::$DomainEndInRegisterForm);
         $I->see(".premme.com", PremmerceCreateShopPage::$DomainEndInRegisterForm);        
@@ -54,32 +61,33 @@ class CreateShopRusCest
         $I->amOnPage(PremmerceMainPage::$URL);
         $I->wait(5);
         $I->fillField(PremmerceMainPage::$CreateShopField, 'ыывв');
-        $I->click(PremmerceMainPage::$CreateShopFreeButton);
+        $I->wait('2');
+        $I->click(PremmerceMainPage::$CreateShopButtonCentre);
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm); 
         $I->click(PremmerceCreateShopPage::$CreateShopNowRegisterFormButton);
         $ErrorDomain=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorDomain, 'class');
-        $I->comment($ErrorDomain);
+        $I->comment("ErrorDomain: $ErrorDomain");
         $I->assertEquals($ErrorDomain, 'error');
         $RequiredEmail=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorEmail, 'class');
-        $I->comment($RequiredEmail);
+        $I->comment("RequiredEmail: $RequiredEmail");
         $I->assertEquals($RequiredEmail, 'error');
         $RequiredPassword=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorPassword, 'class');
-        $I->comment($RequiredPassword);
+        $I->comment("RequiredPassword: $RequiredPassword");
         $I->assertEquals($RequiredPassword, 'error');
         $RequiredUserName=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorUserName, 'class');
-        $I->comment($RequiredUserName);
+        $I->comment("RequiredUserName: $RequiredUserName");
         $I->assertEquals($RequiredUserName, 'error');
         $RequiredPhone=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorPhoneNumber, 'class');
-        $I->comment($RequiredPhone);
+        $I->comment("RequiredPhone: $RequiredPhone");
         $I->assertEquals($RequiredPhone, 'error');
         $RequiredCity=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorCity, 'class');
-        $I->comment($RequiredCity);
+        $I->comment("RequiredCity: $RequiredCity");
         $I->assertEquals($RequiredCity, 'error');        
         $RequiredLevel=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorLevelOfUse, 'class');
-        $I->comment($RequiredLevel);
+        $I->comment("RequiredLevel: $RequiredLevel");
         $I->assertEquals($RequiredLevel, 'error');
         $RequiredAgree=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorAgree, 'class');
-        $I->comment($RequiredAgree);
+        $I->comment("RequiredAgree: $RequiredAgree");
         $I->assertEquals($RequiredAgree, 'error');
     }
     
@@ -87,32 +95,32 @@ class CreateShopRusCest
     public function RequiredFields2(RussianTester $I)
     {
         $I->amOnPage(PremmerceMainPage::$URL);        
-        $I->click(PremmerceMainPage::$CreateShopButton);        
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm); 
         $I->click(PremmerceCreateShopPage::$CreateShopNowRegisterFormButton);
         $ErrorDomain=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorDomain, 'class');
-        $I->comment($ErrorDomain);
+        $I->comment("ErrorDomain: $ErrorDomain");
         $I->assertEquals($ErrorDomain, 'error');
         $RequiredEmail=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorEmail, 'class');
-        $I->comment($RequiredEmail);
+        $I->comment("RequiredEmail: $RequiredEmail");
         $I->assertEquals($RequiredEmail, 'error');
         $RequiredPassword=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorPassword, 'class');
-        $I->comment($RequiredPassword);
+        $I->comment("RequiredPassword: $RequiredPassword");
         $I->assertEquals($RequiredPassword, 'error');
         $RequiredUserName=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorUserName, 'class');
-        $I->comment($RequiredUserName);
+        $I->comment("RequiredUserName: $RequiredUserName");
         $I->assertEquals($RequiredUserName, 'error');
         $RequiredPhone=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorPhoneNumber, 'class');
-        $I->comment($RequiredPhone);
+        $I->comment("RequiredPhone: $RequiredPhone");
         $I->assertEquals($RequiredPhone, 'error');
         $RequiredCity=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorCity, 'class');
-        $I->comment($RequiredCity);
+        $I->comment("RequiredCity: $RequiredCity");
         $I->assertEquals($RequiredCity, 'error');        
         $RequiredLevel=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorLevelOfUse, 'class');
-        $I->comment($RequiredLevel);
+        $I->comment("RequiredLevel: $RequiredLevel");
         $I->assertEquals($RequiredLevel, 'error');
         $RequiredAgree=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorAgree, 'class');
-        $I->comment($RequiredAgree);
+        $I->comment("RequiredAgree: $RequiredAgree");
         $I->assertEquals($RequiredAgree, 'error');
     }
     
@@ -123,7 +131,7 @@ class CreateShopRusCest
     public function ValidationDomain1Fail(RussianTester\LocrusSteps $I)
     {
         InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-        $I->click(PremmerceMainPage::$CreateShopFreeButton);        
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
         $set="abcdefghijklmnopqrstuvwxyz1234567890";
             $size = strlen($set)-1; 
@@ -159,7 +167,7 @@ class CreateShopRusCest
     public function ValidationDomain2Fail(RussianTester\LocrusSteps $I)
     {
         InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-        $I->click(PremmerceMainPage::$CreateShopFreeButton);        
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
         $set="abcdefghijklmnopqrstuvwxyz1234567890";
             $size = strlen($set)-1; 
@@ -195,7 +203,7 @@ class CreateShopRusCest
     public function ValidationDomain3Fail(RussianTester\LocrusSteps $I)
     {
         InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-        $I->click(PremmerceMainPage::$CreateShopFreeButton);        
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
         $set="abcdefghijklmnopqrstuvwxyz1234567890";
             $size = strlen($set)-1; 
@@ -205,7 +213,7 @@ class CreateShopRusCest
             $max = 7;
                 while($max--)
                 $name.=$set[rand(0,$size)]; 
-            $store1 = $prefix.'-'.$name;
+            $store1 = $prefix.$name.'-';
             $mail1 = $prefix.$name.$mailsufix;
             echo "your store name: $store1 \nyoour mail: $mail1";
             $password='1111111';
@@ -230,7 +238,7 @@ class CreateShopRusCest
     public function ValidationDomain4Fail(RussianTester\LocrusSteps $I)
     {
         InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-        $I->click(PremmerceMainPage::$CreateShopFreeButton);        
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
         $set="abcdefghijklmnopqrstuvwxyz1234567890";
             $size = strlen($set)-1; 
@@ -265,7 +273,7 @@ class CreateShopRusCest
     public function ValidationDomain5Fail(RussianTester\LocrusSteps $I)
     {
         InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-        $I->click(PremmerceMainPage::$CreateShopFreeButton);        
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
         $set="abcdefghijklmnopqrstuvwxyz1234567890";
             $size = strlen($set)-1; 
@@ -300,7 +308,7 @@ class CreateShopRusCest
     public function ValidationDomain6Fail(RussianTester\LocrusSteps $I)
     {
         InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-        $I->click(PremmerceMainPage::$CreateShopFreeButton);        
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
         $set="abcdefghijklmnopqrstuvwxyz1234567890";
             $size = strlen($set)-1; 
@@ -336,7 +344,7 @@ class CreateShopRusCest
     public function ValidationDomain7Fail(RussianTester\LocrusSteps $I)
     {
         InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-        $I->click(PremmerceMainPage::$CreateShopFreeButton);        
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
         $set="abcdefghijklmnopqrstuvwxyz1234567890";
             $size = strlen($set)-1; 
@@ -368,10 +376,45 @@ class CreateShopRusCest
      * @guy RussianTester\LocrusSteps
      */
     
+    public function ValidationDomain8Fail(RussianTester\LocrusSteps $I)
+    {
+        InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
+        $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
+        $set="abcdefghijklmnopqrstuvwxyz1234567890";
+            $size = strlen($set)-1; 
+            $prefix = 'shop-ua-ua-';
+            $mailsufix = '@gmail.com';
+            $name = null;
+            $max = 7;
+                while($max--)
+                $name.=$set[rand(0,$size)]; 
+            $store1 = $prefix.' '.$name;
+            $mail1 = $prefix.$name.$mailsufix;
+            echo "your store name: $store1 \nyoour mail: $mail1";
+            $password='1111111';
+            $user='Norman';
+            $phone='4443434367';
+            $city='Boston';
+            $country='1';
+            $category='2';
+            $level='3';
+            $agree='';
+            $I->CreateShop($store1, $mail1, $password, $user, $phone, $city, null, null, $level, $agree);
+            $I->wait('2');
+        $ErrorDomain=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorDomain, 'class');
+        $I->comment("Domain:$ErrorDomain");
+        $I->assertEquals($ErrorDomain, 'error');        
+    }    
+    
+    /**
+     * @guy RussianTester\LocrusSteps
+     */
+    
     public function ValidationEmail1Fail(RussianTester\LocrusSteps $I)
     {
         InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-        $I->click(PremmerceMainPage::$CreateShopFreeButton);        
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
         $set="abcdefghijklmnopqrstuvwxyz1234567890";
             $size = strlen($set)-1; 
@@ -406,7 +449,7 @@ class CreateShopRusCest
     public function ValidationEmail2Fail(RussianTester\LocrusSteps $I)
     {
         InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-        $I->click(PremmerceMainPage::$CreateShopFreeButton);        
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
         $set="abcdefghijklmnopqrstuvwxyz1234567890";
             $size = strlen($set)-1; 
@@ -441,7 +484,7 @@ class CreateShopRusCest
     public function ValidationEmail3Fail(RussianTester\LocrusSteps $I)
     {
         InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-        $I->click(PremmerceMainPage::$CreateShopFreeButton);        
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
         $set="abcdefghijklmnopqrstuvwxyz1234567890";
             $size = strlen($set)-1; 
@@ -477,7 +520,7 @@ class CreateShopRusCest
     public function ValidationEmail4Fail(RussianTester\LocrusSteps $I)
     {
         InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-        $I->click(PremmerceMainPage::$CreateShopFreeButton);        
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
         $set="abcdefghijklmnopqrstuvwxyz1234567890";
             $size = strlen($set)-1; 
@@ -513,7 +556,7 @@ class CreateShopRusCest
     public function ValidationEmail5Fail(RussianTester\LocrusSteps $I)
     {
         InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-        $I->click(PremmerceMainPage::$CreateShopFreeButton);        
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
         $set="abcdefghijklmnopqrstuvwxyz1234567890";
             $size = strlen($set)-1; 
@@ -549,7 +592,7 @@ class CreateShopRusCest
     public function ValidationEmail6Fail(RussianTester\LocrusSteps $I)
     {
         InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-        $I->click(PremmerceMainPage::$CreateShopFreeButton);        
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
         $set="abcdefghijklmnopqrstuvwxyz1234567890";
             $size = strlen($set)-1; 
@@ -584,7 +627,7 @@ class CreateShopRusCest
     public function ValidationEmail7Fail(RussianTester\LocrusSteps $I)
     {
         InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-        $I->click(PremmerceMainPage::$CreateShopFreeButton);        
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
         $set="abcdefghijklmnopqrstuvwxyz1234567890";
             $size = strlen($set)-1; 
@@ -619,7 +662,7 @@ class CreateShopRusCest
     public function ValidationEmail8Fail(RussianTester\LocrusSteps $I)
     {
         InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-        $I->click(PremmerceMainPage::$CreateShopFreeButton);        
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
         $set="abcdefghijklmnopqrstuvwxyz1234567890";
             $size = strlen($set)-1; 
@@ -655,7 +698,7 @@ class CreateShopRusCest
     public function ValidationEmail9Fail(RussianTester\LocrusSteps $I)
     {
         InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-        $I->click(PremmerceMainPage::$CreateShopFreeButton);        
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
         $set="abcdefghijklmnopqrstuvwxyz1234567890";
             $size = strlen($set)-1; 
@@ -690,7 +733,7 @@ class CreateShopRusCest
     public function ValidationEmail10Fail(RussianTester\LocrusSteps $I)
     {
         InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-        $I->click(PremmerceMainPage::$CreateShopFreeButton);        
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
         $set="abcdefghijklmnopqrstuvwxyz1234567890";
             $size = strlen($set)-1; 
@@ -725,7 +768,7 @@ class CreateShopRusCest
     public function ValidationEmail11Passed(RussianTester\LocrusSteps $I)
     {
         InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-        $I->click(PremmerceMainPage::$CreateShopFreeButton);        
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
         $set="abcdefghijklmnopqrstuvwxyz1234567890";
             $size = strlen($set)-1; 
@@ -749,7 +792,7 @@ class CreateShopRusCest
             $I->CreateShop($store1, $mail1, $password, $user, $phone, $city, null, null, $level, $agree);                    
         $I->waitForElementVisible(PremmerceCreateShopPage::$CreateLoadingForm);
         $I->wait('10');
-        $I->waitForElement(PremmerceCabinetPage::$SiteLink, '10');
+        $I->waitForElement(PremmerceCabinetPage::$SiteLink, '60');
         $I->seeCurrentUrlEquals('/saas/profile');
     } 
     
@@ -760,7 +803,7 @@ class CreateShopRusCest
     public function ValidationEmail12Passed(RussianTester\LocrusSteps $I)
     {
         InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-        $I->click(PremmerceMainPage::$CreateShopFreeButton);        
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
         $set="abcdefghijklmnopqrstuvwxyz1234567890";
             $size = strlen($set)-1; 
@@ -784,7 +827,7 @@ class CreateShopRusCest
             $I->CreateShop($store1, $mail1, $password, $user, $phone, $city, null, null, $level, $agree);            
         $I->waitForElementVisible(PremmerceCreateShopPage::$CreateLoadingForm);
         $I->wait('10');
-        $I->waitForElement(PremmerceCabinetPage::$SiteLink, '10');
+        $I->waitForElement(PremmerceCabinetPage::$SiteLink, '60');
         $I->seeCurrentUrlEquals('/saas/profile');       
     } 
     
@@ -799,7 +842,8 @@ class CreateShopRusCest
         $I->fillField(PremmerceMainPage::$CreateShopField, 's');
         $I->seeElement(PremmerceMainPage::$DomainEnd);
         $I->see(".premme.com", PremmerceMainPage::$DomainEnd);
-        $I->click(PremmerceMainPage::$CreateShopFreeButton);        
+        $I->wait('2');
+        $I->click(PremmerceMainPage::$CreateShopButtonCentre);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);       
         $I->seeInField(PremmerceCreateShopPage::$ShopNameField, 's');
         $I->fillField(PremmerceCreateShopPage::$EmailField, 'ss');
@@ -851,7 +895,7 @@ class CreateShopRusCest
         $I->CreateShop($this->store, $this->mail, $password, $user, $phone, $city);
         $I->waitForElementVisible(PremmerceCreateShopPage::$CreateLoadingForm);
         $I->wait('10');
-        $I->waitForElement(PremmerceCabinetPage::$SiteLink, '10');
+        $I->waitForElement(PremmerceCabinetPage::$SiteLink, '60');
         $I->seeCurrentUrlEquals('/saas/profile');
         $PageLocale=$I->grabAttributeFrom('/html/body/div[1]/div/div[1]/nav/ul/li[1]/a', 'href');
         $I->comment("Page: $PageLocale");
@@ -861,7 +905,8 @@ class CreateShopRusCest
         $I->see($shopDom, PremmerceCabinetPage::$SiteLink);
         $I->see($shopDom.'/admin', PremmerceCabinetPage::$AdminLink);
         $I->click(PremmerceCabinetPage::$SiteLink);
-        $$I->executeInSelenium(function (\Webdriver $webdriver) {
+        $I->wait('3');
+        $I->executeInSelenium(function (\Webdriver $webdriver) {
             $handles=$webdriver->getWindowHandles();
             $last_window = end($handles);
             $webdriver->switchTo()->window($last_window);
@@ -895,7 +940,7 @@ class CreateShopRusCest
     public function CreateShopRusCountry(RussianTester\LocrusSteps $I)
     {
         InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-        $I->click(PremmerceMainPage::$CreateShopFreeButton);        
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
             $set="abcdefghijklmnopqrstuvwxyz1234567890";
             $size = strlen($set)-1; 
@@ -918,7 +963,7 @@ class CreateShopRusCest
         $I->CreateShop($store1, $mail1, $password, $user, $phone, $city, $country=null, $category, $level,$agree);
         $I->waitForElementVisible(PremmerceCreateShopPage::$CreateLoadingForm);
         $I->wait('10');
-        $I->waitForElement(PremmerceCabinetPage::$SiteLink, '10');
+        $I->waitForElement(PremmerceCabinetPage::$SiteLink, '60');
         $I->seeCurrentUrlEquals('/saas/profile');
         $PageLocale=$I->grabAttributeFrom('/html/body/div[1]/div/div[1]/nav/ul/li[1]/a', 'href');
         $I->comment("Page: $PageLocale");
@@ -1033,7 +1078,7 @@ class CreateShopRusCest
     public function CreateShopWithEmailAlreadyRegistered(RussianTester\LocrusSteps $I)
     {
         InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-        $I->click(PremmerceMainPage::$CreateShopFreeButton);        
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);               
             $set="abcdefghijklmnopqrstuvwxyz1234567890";
             $size = strlen($set)-1; 
@@ -1063,7 +1108,7 @@ class CreateShopRusCest
         $I->click(PremmerceCreateShopPage::$CreateShopNowRegisterFormButton);
         $I->waitForElementVisible(PremmerceCreateShopPage::$CreateLoadingForm);
         $I->wait('10');
-        $I->waitForElement(PremmerceCabinetPage::$SiteLink, '10');
+        $I->waitForElement(PremmerceCabinetPage::$SiteLink, '60');
         $I->seeCurrentUrlEquals('/saas/profile');
         $PageLocale=$I->grabAttributeFrom('/html/body/div[1]/div/div[1]/nav/ul/li[1]/a', 'href');
         $I->comment("Page: $PageLocale");
@@ -1107,7 +1152,7 @@ class CreateShopRusCest
     public function CreateShopWithNameDomainAlreadyRegistered(RussianTester\LocrusSteps $I)
     {
         InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-        $I->click(PremmerceMainPage::$CreateShopFreeButton);        
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
             $set="abcdefghijklmnopqrstuvwxyz1234567890";
             $size = strlen($set)-1; 
@@ -1139,7 +1184,7 @@ class CreateShopRusCest
         $I->click(PremmerceCreateShopPage::$CreateShopNowRegisterFormButton);
         $I->waitForElementVisible(PremmerceCreateShopPage::$CreateLoadingForm);
         $I->wait('10');
-        $I->waitForElement(PremmerceCabinetPage::$SiteLink, '10');
+        $I->waitForElement(PremmerceCabinetPage::$SiteLink, '60');
         $I->seeCurrentUrlEquals('/saas/profile');
         $PageLocale=$I->grabAttributeFrom('/html/body/div[1]/div/div[1]/nav/ul/li[1]/a', 'href');
         $I->comment("Page: $PageLocale");
