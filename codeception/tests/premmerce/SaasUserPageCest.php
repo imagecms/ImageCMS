@@ -6,7 +6,7 @@ class SaasUserPageCest
 
 
 {
-//   private $Store_Url = 'populationnationn.premme.com';
+
    private $Cabinet_Url = '/saas/profile';
 
 
@@ -19,11 +19,11 @@ class SaasUserPageCest
 
 
    
-   private $Tariff_Free = 'Free';
-   private $Tariff_Basic = 'Basic';
-   private $Tariff_Standart = 'Standart';
-   private $Tariff_Business = 'Business';
-   private $Tariff_Premium = 'Premium';
+//   private $Tariff_Free = 'Free';
+//   private $Tariff_Basic = 'Basic';
+//   private $Tariff_Standart = 'Standart';
+//   private $Tariff_Business = 'Business';
+//   private $Tariff_Premium = 'Premium';
    
    private $Status_Name = 'Test Saas';
    private $Status_Description = 'Jira PRMS-16 Admin page for Managers. Tests';

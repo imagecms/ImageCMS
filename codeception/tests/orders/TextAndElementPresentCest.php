@@ -84,7 +84,8 @@ class TextAndElementsPresentCast
         $I->click(NavigationBarPage::$Orders);
         $I->click(NavigationBarPage::$OrdersList);
         $I->wait(1);
-        $I->see('Список заказов (0)',OrdersListPage::$Title);
+        $I->seeElement(OrdersListPage::$Title);
+        $I->see('Список заказов');
     }
     
     
@@ -388,12 +389,11 @@ class TextAndElementsPresentCast
         $I->see($this->amount_product, OrdersListCreatePage::$TabQuickSearchTextStock);
         $I->click(OrdersListCreatePage::$TabQuickSearchButtonAdd);
         $I->wait(1);
-        $I->see('В корзине', OrdersListCreatePage::$TabQuickSearchButtonAdd);
         $I->see($this->name_product, OrdersListCreatePage::lineProductLink(1));
         $I->see($this->article_product, OrdersListCreatePage::lineArticleText(1));
         $I->see('', OrdersListCreatePage::lineVarianText(1));
         $I->see($this->price_product, OrdersListCreatePage::linePriceText(1));
-        $I->see('1', OrdersListCreatePage::lineAmountInput(1));
+        $I->seeInField(OrdersListCreatePage::lineAmountInput(1), '1');
         $I->see($this->price_product, OrdersListCreatePage::lineTotalPriceText(1));
         $I->see($this->price_product, OrdersListCreatePage::$FootTotalPrice);
         $I->see($this->price_product, OrdersListCreatePage::$FootTotalPriceLabel);
