@@ -6,7 +6,7 @@ class SaasUserListPage {
     public static $Title = '//body/div[1]/div[5]/div[3]/section/div[1]/div[1]/span[2]';
     public static $ButtonBack = '//section/div[1]/div[2]/div/a';
     public static $ButtonChancheData = '//section/div[1]/div[2]/div/button';
-    public static $ButtonStatuses = '//section/div[1]/div[2]/div/a[2]/span';
+    public static $ButtonStatuses = '//section/div[1]/div[2]/div/a[2]';
     public static $ButtonDepartments = '//section/div[1]/div[2]/div/a[3]';
     //--- Вікно Зміни даних ---- Вікно Зміни даних ----Вікно Зміни даних --/
 
@@ -243,7 +243,10 @@ class SaasUserListPage {
         return "//section/div[2]/div/div[1]/table/tbody/tr[$row]/td[16]/div/div[5]/select/option[$number]";
     }
 
-    public static function SelectManager($row, $number) {
+    public static function SelectManager($row) {
+        return "//section/div[2]/div/div[1]/table/tbody/tr[$row]/td[16]/div/div[6]/select";
+    }
+    public static function SelectManagerOption($row, $number) {
         return "//section/div[2]/div/div[1]/table/tbody/tr[$row]/td[16]/div/div[6]/select/option[$number]";
     }
 
@@ -259,7 +262,10 @@ class SaasUserListPage {
         return "//section/div[2]/div/div[1]/table/tbody/tr[$row]/td[16]/div/div[8]/input";
     }
 
-    public static function SelectStatuses($row, $number) {
+    public static function SelectStatuses($row){
+         "//section/div[2]/div/div[1]/table/tbody/tr[$row]/td[16]/div/div[9]/select";
+    }
+    public static function SelectStatusesOption($row, $number) {
         return "//section/div[2]/div/div[1]/table/tbody/tr[$row]/td[16]/div/div[9]/select/option[$number]";
     }
 

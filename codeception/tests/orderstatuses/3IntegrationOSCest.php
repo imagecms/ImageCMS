@@ -15,17 +15,18 @@ class IntegrationOSCest
  //------------VERIFY CREATE ORDER STATUS PRESENCE LIST PAGE--------------------
  
      /**
-     * @group a
+     * @group aa
      */
     public function CteatedOSPresenceListPage(OrderStatusesTester$I){
-        $I->wantTo('Verify Created Status Present on Status List Page.');
-        $nameStatus='123 Super Созданний Status Заказа 890';
+        $nameStatus = '123 Super Созданний Status Заказа 890';
         $I->amOnPage(OrderStatusesCreatePage::$CreateURL);
         $I->wait('1');
         $I->fillField(OrderStatusesCreatePage::$CreateFieldName, $nameStatus);
         $I->click(OrderStatusesCreatePage::$CreateButtonCreateAndGoBack);
         $I->waitForText('Статусы заказов');
         $numbeRows = $I->grabTagCount($I, 'tbody tr');
+        $I->comment("Number Rows:'$numbeRows'.");
+        $numbeRows--;
         $I->comment("Number Rows:'$numbeRows'.");
         for($j=1;$j<=$numbeRows;++$j){
             $I->comment("Search In Row:'$j'");
@@ -43,17 +44,16 @@ class IntegrationOSCest
 //----VERIFY CREATING STATUSE PRESENT ORDERS LIST PAGE SELECT STATUS--------------
 
     /**
-     * @group a
+     * @group aqq
      */
     public function CreateOSPresenceOrdersList (OrderStatusesTester$I){
-        $I->wantTo('Verify Created Status Present on Orders List Page.');
         $nameStatus='123 Super Созданний Status Заказа 890';  
-        $I->amOnPage(OrdersListPage::$ListURLorders);
-        $I->wait('1');
-        $positionsInOption = $I->grabTagCount($I, 'select option');
+        $I->amOnPage(OrdersListPage::$URL);
+        $I->wait('3');
+        $positionsInOption = $I->getAmount($I, '.head_body>td>select[name="status_id"]>option');
         $I->comment("Number Position:'$positionsInOption'.");
         for($j=1;$j<=$positionsInOption;++$j){
-            $searchNameOl = $I->grabTextFrom("//td[3]/select/option[$j]");
+            $searchNameOl = $I->grabTextFrom("//table/thead/tr[2]/td[3]/select/option[$j]");
             if($searchNameOl == $nameStatus){                   
                 $I->comment("Order Status '$nameStatus' Detected In Row:'$j' Select List.");                  
             }
@@ -71,13 +71,13 @@ class IntegrationOSCest
      * @group a
      */    
     public function EditingCteatedOS(OrderStatusesTester$I){
-        $I->wantTo('Verify Edited Status Present on Status List Page.');
         $nameStatus='123 Super Созданний Status Заказа 890';
         $nameEditStatus='Отредактированний Статус Order';
         $I->amOnPage(OrderStatusesListPage::$ListURL);
         $I->wait('1');
         $numbeRows= $I->grabCCSAmount($I, 'section.mini-layout tbody tr');
         $I->comment("Number Rows:'$numbeRows'.");
+//        $numbeRows--;
             for($j=1;$j<$numbeRows;++$j){
             $I->comment("Search In Row$'$j'.");
             $searchName=$I->grabTextFrom("//tbody//tr[$j]/td[2]/a");
@@ -102,14 +102,13 @@ class IntegrationOSCest
      * @group a
      */
     public function EditingOSPresenceOrdersList (OrderStatusesTester$I){
-        $I->wantTo('Verify Edited Status Present on Orders List Page.');
         $nameEditStatus='Отредактированний Статус Order';  
-        $I->amOnPage(OrdersListPage::$ListURLorders);
-        $I->wait('1');
-        $positionsInOption= $I->grabTagCount($I, 'select option');
+        $I->amOnPage(OrdersListPage::$URL);
+        $I->wait('3');
+        $positionsInOption = $I->getAmount($I, '.head_body>td>select[name="status_id"]>option');
         $I->comment("Number Position:'$positionsInOption'.");
         for($j=1;$j<=$positionsInOption;++$j){
-            $searchNameOl=$I->grabTextFrom("//td[3]/select/option[$j]");
+            $searchNameOl=$I->grabTextFrom("//table/thead/tr[2]/td[3]/select/option[$j]");
             if($searchNameOl == $nameEditStatus){                   
                 $I->comment("Order Status '$nameEditStatus' Detectet In Row:'$j'List Select");                  
                 InitTest::ClearAllCach($I);  
@@ -128,17 +127,16 @@ class IntegrationOSCest
 
 
     /**
-     * @group a
+     * @group aqa
      */
     public function DeleetinqOSListPage (OrderStatusesTester $I){
-        $I->wantTo('Verify Deleted Status Present on Status List Page.');
         $nameEditStatus='Отредактированний Статус Order';
         $nameStatus='123 Super Созданний Status Заказа 890';
         $I->amOnPage(OrderStatusesListPage::$ListURL);
         $I->wait('2');
         $numberStatus = $I->grabCCSAmount($I, 'section.mini-layout tbody tr');
         $I->comment("Number Rows:'$numberStatus'");
-        for ($j=1;$j<=$numberStatus;++$j){
+        for ($j=1; $j <= $numberStatus;++$j){
             $CurrentStatus = $I->grabTextFrom("//section[@class='mini-layout']/div[2]/div/table/tbody/tr[$j]/td[2]/a");
             $I->comment("$CurrentStatus");
             if ($CurrentStatus != 'Новый' && $CurrentStatus != 'Доставлен'){
@@ -161,15 +159,14 @@ class IntegrationOSCest
 
 
     /**
-     * @group a
+     * @group awe
      */
     public function VerifyDeletingaStatusNotPresenceOrderListPage (OrderStatusesTester $I){
-        $I->wantTo('Verify Created Status Present on Orders List Page.');
         $nameEditStatus='Отредактированний Статус Order';
         $nameStatus='123 Super Созданний Status Заказа 890';
-        $I->amOnPage(OrdersListPage::$ListURLorders);
-        $I->wait('1');
-        $positionsInOption= $I->grabTagCount($I, 'select option');
+        $I->amOnPage(OrdersListPage::$URL);
+        $I->wait('3');
+        $positionsInOption = $I->getAmount($I, '.head_body>td>select[name="status_id"]>option');
         $I->comment("Number Rows:'$positionsInOption' In List Select");
         if($positionsInOption > 3){
             for($j=1;$j<=$positionsInOption;++$j){
