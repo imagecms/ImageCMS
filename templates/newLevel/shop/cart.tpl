@@ -142,7 +142,7 @@
                                                                     <div> {lang('Стоимость','newLevel')}:
                                                                             {echo \Currency\Currency::create()->getCurrencyToFormat(\Currency\Currency::create()->getMainCurrency()->getId(), number_format($deliveryMethod->getPrice(),$pricePrecision,'.',''),'span', 'curr', '');}
                                                                     </div>
-                                                                    <div> {lang('Стоимость','newLevel')}:
+                                                                    <div> {lang('Бесплатно от','newLevel')}:
                                                                             {echo \Currency\Currency::create()->getCurrencyToFormat(\Currency\Currency::create()->getMainCurrency()->getId(), number_format($deliveryMethod->getFreeFrom(),$pricePrecision,'.',''),'span', 'curr', '');}
                                                                     </div>
                         

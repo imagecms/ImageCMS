@@ -1,119 +1,105 @@
 <?php
 
-use PremmerceTester;
+use \PremmerceTester;
 
 class SaasUserPageCest
 
 
 {
-   private $store_url = 'populationnation.premme.com';
-//   private $store_url = 'message.premme.com.ua';
 
-   private $store_name = 'populationnation';
-   private $user_email = 'premmerce.test@gmail.com';
-   private $user_password = '98765431';
-   private $user_name = 'Bazooka Band Powerviolence Go';
-   private $user_phone = '11144226677788';
-   private $user_city = 'Львів Сіті Сінь Пянь';
+   private $Cabinet_Url = '/saas/profile';
 
 
-   
-   private $tarif_free = 'Free';
-   private $tarif_basic = 'Basic';
-   private $tarif_standart = 'Standart';
-   private $tarif_business = 'Business';
-   private $tarif_premium = 'Premium';
-   
+   private $Store_Name = 'population';
+   private $User_Email = 'premme.test@test.com';
+   private $User_Password = '98765431';
+   private $User_Name = 'Bazooka Band Powerviolence Go';
+   private $User_Phone = '11144226677788';
+   private $User_City = 'Львів Сіті Сінь Пянь';
+
 
    
-   private $price_free = 'Безкоштовно';
-   private $price_basic = '199 грн/міс';
-   private $price_standart = '399 грн/міс';
-   private $price_business = '699 грн/міс';
-   private $price_premium = '1399 грн/міс';
+//   private $Tariff_Free = 'Free';
+//   private $Tariff_Basic = 'Basic';
+//   private $Tariff_Standart = 'Standart';
+//   private $Tariff_Business = 'Business';
+//   private $Tariff_Premium = 'Premium';
    
-   private $name_status = 'TEST';
+   private $Status_Name = 'Test Saas';
+   private $Status_Description = 'Jira PRMS-16 Admin page for Managers. Tests';
    
+   private $Department_Name = 'Test QA';
+   private $Department_Description = 'Test - Jira PRMS-16 Admin page for Managers';
+   
+   private $Admin_Amount_Point = '33';
+   private $Admin_Name_Manager = 'Олена Іванець';
+   private $Admin_End_Domain;
+   private $Admin_Fill_Product;
+   
+   private $Empty_List = '.alert.alert-info';
+   
+   
+   private $Cabinet_Name_Country;
+   private $Cabinet_Name_Tariff;
+   private $Cabinet_Amount_Product;
+   private $Cabinet_Amount_Disk;
+   private $Cabinet_Level;
+   private $Cabinet_Category;
    
    
     /**
-     * @group q
+     * @group status123
      * @guy PremmerceTester\PremmerceSteps 
      */
     public function CreateStore(PremmerceTester\PremmerceSteps $I){
-//        $I->CabinetLogin($user_email = $this->user_email, $user_password = $this->user_password);
+//        $I->loginCabinet($user_email = $this->User_Email, $user_password = $this->User_Password);
         $I->amOnPage(MainPage::$URL);
+        $I->wait(3);  
         $I->click(MainPage::$ButtonCreateStore);
-        $I->createStore($store_name         = '',
-                        $user_email         = '',
-                        $user_password      = '',
-                        $country            = '',
-                        $user_name          = '',
-                        $user_phone         = '',
-                        $user_city          = '',
-                        $product_category   = '',
-                        $product_level      = '');
-//        $I->CreateStore($store_name         = $this->store_name,
-//                        $user_email         = $this->user_email,
-//                        $user_password      = $this->user_password,
-//                        $user_name          = $this->user_name,
-//                        $user_phone         = $this->user_phone,
-//                        $user_city          = $this->user_city,
-//                        $product_category   = 3,
-//                        $product_level      = 2);
-        $I->wait(20);
+        $I->createStore($store_name         = $this->Store_Name,
+                        $user_email         = $this->User_Email,
+                        $user_password      = $this->User_Password,
+                        $country            = NULL,
+                        $user_name          = $this->User_Name,
+                        $user_phone         = $this->User_Phone,
+                        $user_city          = $this->User_City,
+                        $product_category   = '3',
+                        $product_level      = '2');
         $I->wait(1);
-        $I->seeInCurrentUrl('/saas/profile');
-        $I->see('Баланс', PremmerceCabinetPage::$HeadTextBalans);
-        $I->see('днів', PremmerceCabinetPage::$HeadTextDay);
-        $I->see($this->store_name, PremmerceCabinetPage::$TabMainFieldSiteLink);
-        $I->see($this->store_name, PremmerceCabinetPage::$TabMainFieldAdminLink);
-        $I->see($this->tarif_standart, PremmerceCabinetPage::$TabMainFieldTarifNameTarif);
-        $I->see($this->price_standart, PremmerceCabinetPage::$TabMainFieldCostPrice);
-        $I->click(PremmerceCabinetPage::$TabProfile);
+        $I->seeInCurrentUrl(CabinetPage::$URL);
+        $I->see($this->Store_Name, CabinetPage::$TabMainFieldSiteLink);
+        $I->see($this->Store_Name, CabinetPage::$TabMainFieldAdminLink);
+        $I->click(CabinetPage::$TabProfile);
         $I->wait(1);
-        $I->seeInField(PremmerceCabinetPage::$TabProfileFieldName, $this->user_name);
-        $I->seeInField(PremmerceCabinetPage::$TabProfileFieldPhone, $this->user_phone);
-        $I->seeInField(PremmerceCabinetPage::$TabProfileFieldCity, $this->user_city);
-        $I->seeInField(PremmerceCabinetPage::$TabProfileFieldEmail, $this->user_email);
-//        $I->wait(3);
-//        $I->click(PremmerceCabinetPage::$HeadLinkShop);
-//        $I->wait(3);
-//        $I->seeInCurrentUrl($this->store_url);
-//        $I->wait(3);
-//        $I->see('PREMMERCE', '//body/div[1]/div[1]/header/div[2]/div/span/img');
-//        $I->wait(3);
-//        $I->amOnPage('/saas/profile');
-//        $I->wait(3);
-//        $I->click(PremmerceCabinetPage::$HeadLinkAdmin);
-//        $I->AdminLogin($admin_email = 'premmerce.test@gmail.com', $admin_password = '98765431');
-        $I->CabinetLogout();
+        $I->seeInField(CabinetPage::$TabProfileInputdName, $this->User_Name);
+        $I->seeInField(CabinetPage::$TabProfileInputPhone, $this->User_Phone);
+        $I->seeInField(CabinetPage::$TabProfileInputCity, $this->User_City);
+        $I->seeInField(CabinetPage::$TabProfileInputEmail, $this->User_Email);        
+        $I->wait(3);
+        $I->logoutCabinet();
     }
-    
 
-    
-    
     /**
      * @group a
      * @guy PremmerceTester\PremmerceSteps 
      */
-    public function CheckSaas(PremmerceTester\PremmerceSteps $I){
-        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
-        $I->click(SaasUserListPage::$NavigationModules);
+    public function CheckOffStoreSaas(PremmerceTester\PremmerceSteps $I){
+        $I->login($user_email = USER_EMAIL, $user_password = USER_PASSWORD);
+        $I->click(SaasGeneralPage::$Modules);
         $I->wait(1);
-        $I->click(SaasUserListPage::$NavigationModulSaas);
+        $I->click(SaasGeneralPage::$ModulSaas);
         $I->wait(1);
-        $I->click(SaasUserListPage::$NavigationModulSaasTabUser);
+        $I->click(SaasGeneralPage::$ModulSaasTabUser);
         $I->wait(1);
         $I->click(SaasUserListPage::$FilterDomainLabel);
-        $I->fillField(SaasUserListPage::$FilterDomainInput, $this->store_name);
+        $I->fillField(SaasUserListPage::$FilterDomainInput, $this->Store_Name);
         $I->click(SaasUserListPage::$FilterButtonFilter);
-        $I->see($this->store_name, SaasUserListPage::lineDomainLink(1));
+        $I->see($this->Store_Name, SaasUserListPage::lineDomainLink(1));
+        $I->wait(1);
         $I->click(SaasUserListPage::lineActionlink(1));
         $I->click(SaasUserListPage::ButtonDisable(1));
-        $I->wait(12);
         $I->reloadPage();
-        $I->AdminLogout();
+        $I->logoutSaas();
     }
     
     
@@ -123,22 +109,19 @@ class SaasUserPageCest
      * @guy PremmerceTester\PremmerceSteps
      */
     public function CheckOffCabinet (PremmerceTester\PremmerceSteps $I){
-        $I->CabinetLogin($user_email = $this->user_email, $user_password = $this->user_password);
+        $I->loginCabinet($user_email = $this->User_Email, $user_password = $this->User_Password);
+        $I->wait(4);
+        $I->seeInCurrentUrl($this->Cabinet_Url);
+        $I->see($this->Store_Name, CabinetPage::$TabMainFieldSiteLink);
+        $I->see($this->Store_Name, CabinetPage::$TabMainFieldAdminLink);
+        $I->see($this->Tarif_Standart, CabinetPage::$TabMainFieldTariffNameText);
+        $I->click(CabinetPage::$TabProfile);
         $I->wait(1);
-        $I->seeInCurrentUrl('/saas/profile');
-        $I->see('Магазин отключен', PremmerceCabinetPage::$HeadTextShopOff);
-        $I->see('Сплатити', PremmerceCabinetPage::$HeadTextPaid);
-        $I->see($this->store_name, PremmerceCabinetPage::$TabMainFieldSiteLink);
-        $I->see($this->store_name, PremmerceCabinetPage::$TabMainFieldAdminLink);
-        $I->see($this->tarif_standart, PremmerceCabinetPage::$TabMainFieldTarifNameTarif);
-        $I->see($this->price_standart, PremmerceCabinetPage::$TabMainFieldCostPrice);
-        $I->click(PremmerceCabinetPage::$TabProfile);
-        $I->wait(1);
-        $I->seeInField(PremmerceCabinetPage::$TabProfileFieldName, $this->user_name);
-        $I->seeInField(PremmerceCabinetPage::$TabProfileFieldPhone, $this->user_phone);
-        $I->seeInField(PremmerceCabinetPage::$TabProfileFieldCity, $this->user_city);
-        $I->seeInField(PremmerceCabinetPage::$TabProfileFieldEmail, $this->user_email);
-        $I->CabinetLogout();
+        $I->seeInField(CabinetPage::$TabProfileInputdName, $this->User_Name);
+        $I->seeInField(CabinetPage::$TabProfileInputPhone, $this->User_Phone);
+        $I->seeInField(CabinetPage::$TabProfileInputCity, $this->User_City);
+        $I->seeInField(CabinetPage::$TabProfileInputEmail, $this->User_Email);
+        $I->logoutCabinet();
     }
     
     
@@ -151,21 +134,22 @@ class SaasUserPageCest
      * @guy PremmerceTester\PremmerceSteps
      */
     public function CheckOffSaas(PremmerceTester\PremmerceSteps $I){
-        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
+        $I->login($admin_email = USER_EMAIL, $admin_password = USER_PASSWORD);
         $I->amOnPage(SaasUserListPage::$URL);
         $I->wait(1);
         $I->click(SaasUserListPage::$FilterDomainLabel);
-        $I->fillField(SaasUserListPage::$FilterDomainInput, $this->store_name);
+        $I->fillField(SaasUserListPage::$FilterDomainInput, $this->Store_Name);
         $I->click(SaasUserListPage::$FilterActiveLabel);
         $I->click(SaasUserListPage::$FilterActiveSelect);
         $I->click(SaasUserListPage::FilterActiveSelectOption(2));
         $I->click(SaasUserListPage::$FilterButtonFilter);
-        $I->see($this->store_name, SaasUserListPage::lineDomainLink(1));
+        $I->wait(1);
+        $I->see($this->Store_Name, SaasUserListPage::lineDomainLink(1));
         $I->click(SaasUserListPage::lineActionlink(1));
         $I->click(SaasUserListPage::ButtonDisable(1));
-        $I->wait(12);
+        $I->wait(7);
         $I->reloadPage();
-        $I->AdminLogout();
+        $I->logoutSaas();
     }
     
     
@@ -174,22 +158,19 @@ class SaasUserPageCest
      * @guy PremmerceTester\PremmerceSteps 
      */
     public function CheckOnCabinet (PremmerceTester\PremmerceSteps $I){
-        $I->CabinetLogin($user_email = $this->user_email, $user_password = $this->user_password);
+        $I->loginCabinet($user_email = $this->User_Email, $user_password = $this->User_Password);
         $I->wait(1);
         $I->seeInCurrentUrl('/saas/profile');
-        $I->see('Баланс', '//body/div[1]/header/div/div[2]/a/span[2]/span[1]');
-        $I->see('днів', '//body/div[1]/header/div/div[2]/a/span[2]/span[3]');
-        $I->see($this->store_name, PremmerceCabinetPage::$TabMainFieldSiteLink);
-        $I->see($this->store_name, PremmerceCabinetPage::$TabMainFieldAdminLink);
-        $I->see($this->tarif_standart, PremmerceCabinetPage::$TabMainFieldTarifNameTarif);
-        $I->see($this->price_standart, PremmerceCabinetPage::$TabMainFieldCostPrice);
-        $I->click(PremmerceCabinetPage::$TabProfile);
+        $I->see($this->Store_Name, CabinetPage::$TabMainFieldSiteLink);
+        $I->see($this->Store_Name, CabinetPage::$TabMainFieldAdminLink);
+        $I->see($this->Tarif_Standart, CabinetPage::$TabMainFieldTariffNameText);
+        $I->click(CabinetPage::$TabProfile);
         $I->wait(1);
-        $I->seeInField(PremmerceCabinetPage::$TabProfileFieldName, $this->user_name);
-        $I->seeInField(PremmerceCabinetPage::$TabProfileFieldPhone, $this->user_phone);
-        $I->seeInField(PremmerceCabinetPage::$TabProfileFieldCity, $this->user_city);
-        $I->seeInField(PremmerceCabinetPage::$TabProfileFieldEmail, $this->user_email);
-        $I->CabinetLogout();
+        $I->seeInField(CabinetPage::$TabProfileInputdName, $this->User_Name);
+        $I->seeInField(CabinetPage::$TabProfileInputPhone, $this->User_Phone);
+        $I->seeInField(CabinetPage::$TabProfileInputCity, $this->User_City);
+        $I->seeInField(CabinetPage::$TabProfileInputEmail, $this->User_Email);
+        $I->logoutCabinet();
     }
         
     
@@ -199,29 +180,55 @@ class SaasUserPageCest
      * @guy PremmerceTester\PremmerceSteps 
      */
     public function FilterPhone(PremmerceTester\PremmerceSteps $I){
-        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
+        $I->login($admin_email = USER_EMAIL, $admin_password = USER_PASSWORD);
         $I->amOnPage(SaasUserListPage::$URL);
         $I->wait(1);
         $I->click(SaasUserListPage::$FilterPhoneLabel);
-        $I->fillField(SaasUserListPage::$FilterPhoneInput, $this->user_phone);
+        $I->fillField(SaasUserListPage::$FilterPhoneInput, $this->User_Phone);
         $I->click(SaasUserListPage::$FilterButtonFilter);
-        $I->see($this->user_phone, SaasUserListPage::linePhoneText(1));
-        $I->AdminLogout();
+        $I->wait(1);
+        $I->see($this->User_Phone, SaasUserListPage::linePhoneText(1));
+        $I->logoutSaas();
     } 
+    
+    
+    
+    
+    /**
+     * @group a
+     * @guy PremmerceTester\PremmerceSteps 
+     */
+    public function FilterPhoneEmptyList(PremmerceTester\PremmerceSteps $I){
+        $I->login($admin_email = USER_EMAIL, $admin_password = USER_PASSWORD);
+        $I->amOnPage(SaasUserListPage::$URL);
+        $I->wait(1);
+        $I->click(SaasUserListPage::$FilterDomainLabel);
+        $I->fillField(SaasUserListPage::$FilterDomainInput, '!@#+-*/');
+        $I->click(SaasUserListPage::$FilterPhoneLabel);
+        $I->fillField(SaasUserListPage::$FilterPhoneInput, $this->User_Phone);
+        $I->click(SaasUserListPage::$FilterButtonFilter);
+        $I->wait(1);
+        $I->dontSee($this->User_Phone, SaasUserListPage::linePhoneText(1));
+        $I->seeElement($this->Empty_List);
+        $I->logoutSaas();
+    } 
+    
+    
     
     /**
      * @group a
      * @guy PremmerceTester\PremmerceSteps
      */
     public function FilterName(PremmerceTester\PremmerceSteps $I){
-        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
+        $I->login($admin_email = USER_EMAIL, $admin_password = USER_PASSWORD);
         $I->amOnPage(SaasUserListPage::$URL);
         $I->wait(1);
         $I->click(SaasUserListPage::$FilterNameLabel);
-        $I->fillField(SaasUserListPage::$FilterNameInput, $this->user_name);
+        $I->fillField(SaasUserListPage::$FilterNameInput, $this->User_Name);
         $I->click(SaasUserListPage::$FilterButtonFilter);
-        $I->see($this->user_name, SaasUserListPage::lineNameText(1));
-        $I->AdminLogout();
+        $I->wait(1);
+        $I->see($this->User_Name, SaasUserListPage::lineNameText(1));
+        $I->logoutSaas();
     }
     
     
@@ -231,33 +238,74 @@ class SaasUserPageCest
      * @guy PremmerceTester\PremmerceSteps
      */
     public function FilterEmail(PremmerceTester\PremmerceSteps $I){
-        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
+        $I->login($admin_email = USER_EMAIL, $admin_password = USER_PASSWORD);
         $I->amOnPage(SaasUserListPage::$URL);
         $I->wait(1);
         $I->click(SaasUserListPage::$FilterEmailLabel);
-        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->user_email);
+        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->User_Email);
         $I->click(SaasUserListPage::$FilterButtonFilter);
-        $I->see($this->user_email, SaasUserListPage::lineEmailLink(1));
-        $I->AdminLogout();
+        $I->wait(1);
+        $I->see($this->User_Email, SaasUserListPage::lineEmailLink(1));
+        $I->logoutSaas();
     }
     
+    
+    
+    
+    /**
+     * @group a
+     * @guy PremmerceTester\PremmerceSteps 
+     */
+    public function FilterNameAndEmailEmptyList(PremmerceTester\PremmerceSteps $I){
+        $I->login($admin_email = USER_EMAIL, $admin_password = USER_PASSWORD);
+        $I->amOnPage(SaasUserListPage::$URL);
+        $I->wait(1);
+        $I->click(SaasUserListPage::$FilterDomainLabel);
+        $I->fillField(SaasUserListPage::$FilterDomainInput, '!@#+-*/');
+        $I->click(SaasUserListPage::$FilterNameLabel);
+        $I->fillField(SaasUserListPage::$FilterNameInput, $this->User_Name);
+        $I->click(SaasUserListPage::$FilterEmailLabel);
+        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->User_Email);
+        $I->click(SaasUserListPage::$FilterButtonFilter);
+        $I->wait(1);
+        $I->dontSee($this->User_Email, SaasUserListPage::lineEmailLink(1));
+        $I->dontSee($this->User_Name, SaasUserListPage::lineNameText(1));
+        $I->seeElement($this->Empty_List);
+        $I->logoutSaas();
+    } 
+    
+    
+    /**
+     * @group a
+     * @guy PremmerceTester\PremmerceSteps 
+     */
+    public function CetNameCountry(PremmerceTester\PremmerceSteps $I){
+        $I->loginCabinet($user_email = $this->User_Email, $user_password = $this->User_Password);
+        $I->wait(1);
+        $I->click(CabinetPage::$TabProfile);
+        $I->wait(1);
+        $Get_Name_Country = $I->grabTextFrom(CabinetPage::$TabProfileSelectCountry);
+        $this->Cabinet_Name_Country = $Get_Name_Country;
+        $I->logoutCabinet();
+    }
     
     /**
      * @group a
      * @guy PremmerceTester\PremmerceSteps
      */
     public function FilterCountry(PremmerceTester\PremmerceSteps $I){
-        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
+        $I->login($admin_email = USER_EMAIL, $admin_password = USER_PASSWORD);
         $I->amOnPage(SaasUserListPage::$URL);
         $I->wait(1);
-        $I->click(SaasUserListPage::$FilterDomainLabel);
-        $I->fillField(SaasUserListPage::$FilterDomainInput, $this->store_name);
+        $I->click(SaasUserListPage::$FilterNameLabel);
+        $I->fillField(SaasUserListPage::$FilterNameInput, $this->User_Name);
         $I->click(SaasUserListPage::$FilterCountryLabel);
-        $I->click(SaasUserListPage::$FilterCountrySelect);
-        $I->click(SaasUserListPage::FilterCountrySelectOption(2));
+        $I->wait(1);
+        $I->selectOption(SaasUserListPage::$FilterCountrySelect, $this->Cabinet_Name_Country);
         $I->click(SaasUserListPage::$FilterButtonFilter);
-        $I->see($this->user_email, SaasUserListPage::lineEmailLink(1));
-        $I->AdminLogout();
+        $I->wait(1);
+        $I->see($this->User_Email, SaasUserListPage::lineEmailLink(1));
+        $I->logoutSaas();
     }
     
     
@@ -266,35 +314,71 @@ class SaasUserPageCest
      * @guy PremmerceTester\PremmerceSteps
      */
     public function FilterCity(PremmerceTester\PremmerceSteps $I){
-        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
+        $I->login($admin_email = USER_EMAIL, $admin_password = USER_PASSWORD);
         $I->amOnPage(SaasUserListPage::$URL);
         $I->wait(1);
         $I->click(SaasUserListPage::$FilterCityLabel);
-        $I->fillField(SaasUserListPage::$FilterCityInput, $this->user_city);
+        $I->fillField(SaasUserListPage::$FilterCityInput, $this->User_City);
         $I->click(SaasUserListPage::$FilterButtonFilter);
-        $I->see($this->user_email, SaasUserListPage::lineEmailLink(1));
-        $I->AdminLogout();
+        $I->wait(1);
+        $I->see($this->User_Email, SaasUserListPage::lineEmailLink(1));
+        $I->logoutSaas();
     }
     
     
     
-    
     /**
-     * @group a
-     * @guy PremmerceTester\PremmerceSteps
+     * @group Tariff
+     * @guy PremmerceTester\PremmerceSteps 
      */
-    public function FilterTarif(PremmerceTester\PremmerceSteps $I){
-        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
+    public function CetNameTariff(PremmerceTester\PremmerceSteps $I){
+        $I->login($user_email = USER_EMAIL, $user_password = USER_PASSWORD);
         $I->amOnPage(SaasUserListPage::$URL);
         $I->wait(1);
         $I->click(SaasUserListPage::$FilterDomainLabel);
-        $I->fillField(SaasUserListPage::$FilterDomainInput, $this->store_name);
-        $I->click(SaasUserListPage::$FilterTarifLabel);
-        $I->click(SaasUserListPage::$FilterTarifSelect);
-        $I->click(SaasUserListPage::FilterTarifSelectOption(3));
+        $I->fillField(SaasUserListPage::$FilterDomainInput, $this->Store_Name);
         $I->click(SaasUserListPage::$FilterButtonFilter);
-        $I->see($this->user_email, SaasUserListPage::lineEmailLink(1));
-        $I->AdminLogout();
+        $I->wait(1);
+        $Get_Name_Tariff = $I->grabTextFrom(SaasUserListPage::lineTariffText(1));
+        $this->Cabinet_Name_Tariff = $Get_Name_Tariff;
+        $I->logoutSaas();
+    }
+    
+    
+    /**
+     * @group Tariff
+     * @guy PremmerceTester\PremmerceSteps
+     */
+    public function FilterTariff(PremmerceTester\PremmerceSteps $I){
+        $I->login($admin_email = USER_EMAIL, $admin_password = USER_PASSWORD);
+        $I->amOnPage(SaasUserListPage::$URL);
+        $I->wait(1);
+        $I->click(SaasUserListPage::$FilterDomainLabel);
+        $I->fillField(SaasUserListPage::$FilterDomainInput, $this->Store_Name);
+        $I->click(SaasUserListPage::$FilterTariffLabel);
+        $I->wait(1);
+        $I->selectOption(SaasUserListPage::$FilterTariffSelect, $this->Cabinet_Name_Tariff);
+        $I->wait(1);
+//        $I->click(SaasUserListPage::$FilterButtonFilter);
+        $I->wait(1);
+        $I->see($this->Cabinet_Name_Tariff, SaasUserListPage::lineTariffText(1));
+        $I->logoutSaas();
+    }
+    
+    
+    /**
+     * @group a
+     * @guy PremmerceTester\PremmerceSteps 
+     */
+    public function CetNameLevel(PremmerceTester\PremmerceSteps $I){
+        $I->loginCabinet($user_email = $this->User_Email, $user_password = $this->User_Password);
+        $I->wait(1);
+        $I->click(CabinetPage::$TabProfile);
+        $I->wait(1);
+        $Get_Name_level = $I->grabTextFrom(CabinetPage::$TabProfileSelectProduct);
+        $I->comment("$Get_Name_level");
+        $this->Cabinet_Level = $Get_Name_level;
+        $I->logoutCabinet();
     }
     
     
@@ -304,17 +388,33 @@ class SaasUserPageCest
      * @guy PremmerceTester\PremmerceSteps
      */
     public function FilterLevel(PremmerceTester\PremmerceSteps $I){
-        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
+        $I->login($admin_email = USER_EMAIL, $admin_password = USER_PASSWORD);
         $I->amOnPage(SaasUserListPage::$URL);
         $I->wait(1);
         $I->click(SaasUserListPage::$FilterEmailLabel);
-        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->user_email);
+        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->User_Email);
         $I->click(SaasUserListPage::$FilterLevelLabel);
-        $I->click(SaasUserListPage::$FilterLevelSelect);
-        $I->click(SaasUserListPage::FilterLevelSelectOption(2));
+        $I->selectOption(SaasUserListPage::$FilterLevelSelect, $this->Cabinet_Level);
         $I->click(SaasUserListPage::$FilterButtonFilter);
-        $I->see($this->user_email, SaasUserListPage::lineEmailLink(1));
-        $I->AdminLogout();
+        $I->wait(1);
+        $I->see($this->User_Email, SaasUserListPage::lineEmailLink(1));
+        $I->logoutSaas();
+    }
+    
+    
+    /**
+     * @group a
+     * @guy PremmerceTester\PremmerceSteps 
+     */
+    public function CetNameCategory(PremmerceTester\PremmerceSteps $I){
+        $I->loginCabinet($user_email = $this->User_Email, $user_password = $this->User_Password);
+        $I->wait(1);
+        $I->click(CabinetPage::$TabProfile);
+        $I->wait(1);
+        $Get_Name_Category = $I->grabTextFrom(CabinetPage::$TabProfileSelectCategory);
+        $I->comment("$Get_Name_Category");        
+        $this->Cabinet_Category = $Get_Name_Category;
+        $I->logoutCabinet();
     }
     
     
@@ -323,122 +423,214 @@ class SaasUserPageCest
      * @guy PremmerceTester\PremmerceSteps
      */
     public function FilterCategory(PremmerceTester\PremmerceSteps $I){
-        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
+        $I->login($admin_email = USER_EMAIL, $admin_password = USER_PASSWORD);
         $I->amOnPage(SaasUserListPage::$URL);
         $I->wait(1);
         $I->click(SaasUserListPage::$FilterEmailLabel);
-        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->user_email);
+        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->User_Email);
         $I->click(SaasUserListPage::$FilterCategoryLabel);
-        $I->click(SaasUserListPage::$FilterCategorySelect);
-        $I->click(SaasUserListPage::FilterCategorySelectOption(3));
+        $I->selectOption(SaasUserListPage::$FilterCategorySelect, $this->Cabinet_Category);
         $I->click(SaasUserListPage::$FilterButtonFilter);
-        $I->see($this->user_email, SaasUserListPage::lineEmailLink(1));
-        $I->AdminLogout();
+        $I->wait(1);
+        $I->see($this->User_Email, SaasUserListPage::lineEmailLink(1));
+        $I->logoutSaas();
     }
     
     
     /**
-     * @group aa
+     * @group a
+     * @guy PremmerceTester\PremmerceSteps 
+     */
+//    public function CetAmountProduct(PremmerceTester\PremmerceSteps $I){
+//        $I->loginCabinet($user_email = $this->User_Email, $user_password = $this->User_Password);
+//        $I->wait(3);
+//        $Get_Amount_Product = $I->grabTextFrom('//table/tbody/tr[5]/td/span');
+//        preg_match('/[0-9]*/', $Get_Amount_Product,$number);
+//        $Get_Amount_Product = $number[0];
+//        $I->comment("$Get_Amount_Product");
+//        $this->Cabinet_Amount_Product = $Get_Amount_Product;
+//        $I->wait(1);
+//        $I->logoutCabinet();
+//    }
+    
+    
+    /**
+     * @group a
      * @guy PremmerceTester\PremmerceSteps
      */
-    public function FilterAmountProduct(PremmerceTester\PremmerceSteps $I){
-        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
-        $I->amOnPage(SaasUserListPage::$URL);
-        $I->wait(1);
-        $I->click(SaasUserListPage::$FilterEmailLabel);
-        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->user_email);
-        $I->click(SaasUserListPage::$FilterAmountProducntLabel);
-        $I->fillField(SaasUserListPage::$FilterAmountProducntInputFrom, '1');
-        $I->fillField(SaasUserListPage::$FilterAmountProducntInputTo, '1111');
-        $I->click(SaasUserListPage::$FilterButtonFilter);
-        $I->see($this->user_email, SaasUserListPage::lineEmailLink(1));
-        $I->AdminLogout();
-    }
+//    public function FilterAmountProduct(PremmerceTester\PremmerceSteps $I){
+//        $I->login($admin_email = USER_EMAIL, $admin_password = USER_PASSWORD);
+//        $I->amOnPage(SaasUserListPage::$URL);
+//        $I->wait(1);
+//        $I->click(SaasUserListPage::$FilterEmailLabel);
+//        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->User_Email);
+//        $I->click(SaasUserListPage::$FilterAmountProducntLabel);
+//        $I->fillField(SaasUserListPage::$FilterAmountProducntInputFrom, $this->Cabinet_Amount_Product);
+//        $I->fillField(SaasUserListPage::$FilterAmountProducntInputTo, $this->Cabinet_Amount_Product);
+//        $I->click(SaasUserListPage::$FilterButtonFilter);
+//        $I->wait(1);
+//        $I->see($this->User_Email, SaasUserListPage::lineEmailLink(1));
+//        $I->logoutSaas();
+//    }
 
     
+    /**
+     * @group a
+     * @guy PremmerceTester\PremmerceSteps 
+     */
+//    public function CetAmountDisk(PremmerceTester\PremmerceSteps $I){
+//        $I->loginCabinet($user_email = $this->User_Email, $user_password = $this->User_Password);
+//        $I->wait(3);
+//        $Get_Amount_Disk = $I->grabTextFrom('//table/tbody/tr[6]/td/span');
+//        preg_match('/[0-9]*/', $Get_Amount_Disk,$number);
+//        $Get_Amount_Disk = $number[0];
+//        $I->comment("$Get_Amount_Disk");
+//        $this->Cabinet_Amount_Disk = $Get_Amount_Disk;
+//        $I->wait(1);
+//        $I->logoutCabinet();
+//    }
+    
+    
     
     /**
-     * @group aa
+     * @group a
      * @guy PremmerceTester\PremmerceSteps
      */
-    public function FilterDisk(PremmerceTester\PremmerceSteps $I){
-        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
+//    public function FilterDisk(PremmerceTester\PremmerceSteps $I){
+//        $I->login($admin_email = USER_EMAIL, $admin_password = USER_PASSWORD);
+//        $I->amOnPage(SaasUserListPage::$URL);
+//        $I->wait(1);
+//        $I->click(SaasUserListPage::$FilterEmailLabel);
+//        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->User_Email);
+//        $I->click(SaasUserListPage::$FilterDiskLimitLabel);
+//        $I->fillField(SaasUserListPage::$FilterDiskLimitInputFrom, $this->Cabinet_Amount_Disk);
+//        $I->fillField(SaasUserListPage::$FilterDiskLimitInputTo, $this->Cabinet_Amount_Disk);
+//        $I->click(SaasUserListPage::$FilterButtonFilter);
+//        $I->wait(1);
+//        $I->see($this->User_Email, SaasUserListPage::lineEmailLink(1));
+//        $I->logoutSaas();
+//    }
+    
+    /**
+     * @group a
+     * @guy PremmerceTester\PremmerceSteps
+     */
+    public function SetBalans(PremmerceTester\PremmerceSteps $I){
+        $I->login($admin_email = USER_EMAIL, $admin_password = USER_PASSWORD);
         $I->amOnPage(SaasUserListPage::$URL);
         $I->wait(1);
         $I->click(SaasUserListPage::$FilterEmailLabel);
-        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->user_email);
-        $I->click(SaasUserListPage::$FilterDiskLimitLabel);
-        $I->fillField(SaasUserListPage::$FilterDiskLimitInputFrom, '1');
-        $I->fillField(SaasUserListPage::$FilterDiskLimitInputTo, '1111');
+        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->User_Email);
         $I->click(SaasUserListPage::$FilterButtonFilter);
-        $I->see($this->user_email, SaasUserListPage::lineEmailLink(1));
-        $I->AdminLogout();
+        $I->wait(1);
+        $I->see($this->User_Email, SaasUserListPage::lineEmailLink(1));
+        $I->click(SaasUserListPage::lineActionlink(1));
+        $I->fillField(SaasUserListPage::InputAmountPoints(1), $this->Admin_Amount_Point);
+        $I->wait(4);
+        $I->logoutSaas();
     }
     
     
     
     /**
-     * @group aa
+     * @group a
      * @guy PremmerceTester\PremmerceSteps
      */
     public function FilterBalans(PremmerceTester\PremmerceSteps $I){
-        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
+        $I->login($admin_email = USER_EMAIL, $admin_password = USER_PASSWORD);
         $I->amOnPage(SaasUserListPage::$URL);
         $I->wait(1);
         $I->click(SaasUserListPage::$FilterEmailLabel);
-        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->user_email);
+        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->User_Email);
         $I->click(SaasUserListPage::$FilterBalansLabel);
-        $I->fillField(SaasUserListPage::$FilterBalansInputFrom, '1');
-        $I->fillField(SaasUserListPage::$FilterBalansInputTo, '1111');
+        $I->fillField(SaasUserListPage::$FilterBalansInputFrom, $this->Admin_Amount_Point);
+        $I->fillField(SaasUserListPage::$FilterBalansInputTo, $this->Admin_Amount_Point);
         $I->click(SaasUserListPage::$FilterButtonFilter);
-        $I->see($this->user_email, SaasUserListPage::lineEmailLink(1));
-        $I->AdminLogout();
+        $I->wait(1);
+        $I->see($this->User_Email, SaasUserListPage::lineEmailLink(1));
+        $I->seeInField(SaasUserListPage::lineBalansText(1), $this->Admin_Amount_Point);
+        $I->logoutSaas();
+    }
+    
+    
+    /**
+     * @group a
+     * @guy PremmerceTester\PremmerceSteps
+     */
+    public function SetManager(PremmerceTester\PremmerceSteps $I){
+        $I->login($admin_email = USER_EMAIL, $admin_password = USER_PASSWORD);
+        $I->amOnPage(SaasUserListPage::$URL);
+        $I->wait(1);
+        $I->click(SaasUserListPage::$FilterEmailLabel);
+        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->User_Email);
+        $I->click(SaasUserListPage::$FilterButtonFilter);
+        $I->see($this->User_Email, SaasUserListPage::lineEmailLink(1));
+        $I->click(SaasUserListPage::lineActionlink(1));
+        $I->wait(1);        
+        $I->selectOption(SaasUserListPage::SelectManager(1), $this->Admin_Name_Manager);
+        $I->wait(1);        
+        $I->logoutSaas();
     }
     
     
     
     /**
-     * @group aa
+     * @group a
      * @guy PremmerceTester\PremmerceSteps
      */
     public function FilterManager(PremmerceTester\PremmerceSteps $I){
-        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
+        $I->login($admin_email = USER_EMAIL, $admin_password = USER_PASSWORD);
         $I->amOnPage(SaasUserListPage::$URL);
         $I->wait(1);
         $I->click(SaasUserListPage::$FilterEmailLabel);
-        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->user_email);
-        $I->click(SaasUserListPage::$FilterButtonFilter);
-        $I->click(SaasUserListPage::$HeadCheckBox);
-        $I->click(SaasUserListPage::$ButtonChancheData);
-        $I->click(SaasUserListPage::$WindowChancheDataSelectManager);
-        $I->click(SaasUserListPage::WindowChancheDataSelectManagerOption(2));
+        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->User_Email);
         $I->click(SaasUserListPage::$FilterManagerLabel);
-        $I->click(SaasUserListPage::$FilterManagerSelect);
-        $I->click(SaasUserListPage::FilterManagerSelectOption(2));
+        $I->selectOption(SaasUserListPage::$FilterManagerSelect, $this->Admin_Name_Manager);
         $I->click(SaasUserListPage::$FilterButtonFilter);
-        $I->see($this->user_email, SaasUserListPage::lineEmailLink(1));
-        $I->AdminLogout();
+        $I->wait(1);
+        $I->see($this->User_Email, SaasUserListPage::lineEmailLink(1));
+        $I->logoutSaas();
     }
     
     
     
-
     /**
-     * @group aa
+     * @group a
+     * @guy PremmerceTester\PremmerceSteps
+     */
+    public function GetDomainEnd(PremmerceTester\PremmerceSteps $I){
+        $I->login($admin_email = USER_EMAIL, $admin_password = USER_PASSWORD);
+        $I->amOnPage(SaasUserListPage::$URL);
+        $I->wait(1);
+        $I->click(SaasUserListPage::$FilterEmailLabel);
+        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->User_Email);
+        $I->click(SaasUserListPage::$FilterButtonFilter);
+        $I->wait(1);
+        $I->see($this->User_Email, SaasUserListPage::lineEmailLink(1));
+        $Get_End_domain = $I->grabTextFrom(SaasUserListPage::lineDomainEndText(1));
+        $I->comment("$Get_End_domain");
+        $this->Admin_End_Domain =$Get_End_domain;
+        $I->logoutSaas();
+    }
+    
+    
+    
+    /**
+     * @group a
      * @guy PremmerceTester\PremmerceSteps
      */
     public function FilterDomainEnd(PremmerceTester\PremmerceSteps $I){
-        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
+        $I->login($admin_email = USER_EMAIL, $admin_password = USER_PASSWORD);
         $I->amOnPage(SaasUserListPage::$URL);
         $I->wait(1);
         $I->click(SaasUserListPage::$FilterEmailLabel);
-        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->user_email);
+        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->User_Email);
         $I->click(SaasUserListPage::$FilterDomainEndLabel);
-        $I->click(SaasUserListPage::$FilterDomainEndLabel);
-        $I->click(SaasUserListPage::FilterDomainEndSelectOption(3));
+        $I->selectOption(SaasUserListPage::$FilterDomainEnSelect, $this->Admin_End_Domain);
         $I->click(SaasUserListPage::$FilterButtonFilter);
-        $I->see($this->user_email, SaasUserListPage::lineEmailLink(1));
-        $I->AdminLogout();
+        $I->wait(1);
+        $I->see($this->User_Email, SaasUserListPage::lineEmailLink(1));
+        $I->logoutSaas();
     }
     
     
@@ -446,22 +638,61 @@ class SaasUserPageCest
     
     
     /**
-     * @group aa
+     * @group a
      * @guy PremmerceTester\PremmerceSteps
      */
     public function FilterActivateByEmail(PremmerceTester\PremmerceSteps $I){
-        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
+        $I->login($admin_email = USER_EMAIL, $admin_password = USER_PASSWORD);
         $I->amOnPage(SaasUserListPage::$URL);
         $I->wait(1);
         $I->click(SaasUserListPage::$FilterEmailLabel);
-        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->user_email);
+        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->User_Email);
         $I->click(SaasUserListPage::$FilterActivatedByEmailLabel);
-        $I->click(SaasUserListPage::$FilterActivatedByEmailSelect);
-        $I->click(SaasUserListPage::FilterActivatedByEmailSelectOption(2));
+        $I->selectOption(SaasUserListPage::$FilterActivatedByEmailSelect, 'не активовано');
         $I->click(SaasUserListPage::$FilterButtonFilter);
-        $I->see($this->user_email, SaasUserListPage::lineEmailLink(1));
-        $I->AdminLogout();
+        $I->wait(1);
+        $I->see($this->User_Email, SaasUserListPage::lineEmailLink(1));
+        $I->logoutSaas();
     }
+    
+    
+    /**
+     * @group a
+     * @guy PremmerceTester\PremmerceSteps
+     */
+    public function FilterNoactivateByEmail(PremmerceTester\PremmerceSteps $I){
+        $I->login($admin_email = USER_EMAIL, $admin_password = USER_PASSWORD);
+        $I->amOnPage(SaasUserListPage::$URL);
+        $I->wait(1);
+        $I->click(SaasUserListPage::$FilterEmailLabel);
+        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->User_Email);
+        $I->click(SaasUserListPage::$FilterActivatedByEmailLabel);
+        $I->selectOption(SaasUserListPage::$FilterActivatedByEmailSelect, 'активовано');
+        $I->click(SaasUserListPage::$FilterButtonFilter);
+        $I->wait(1);
+        $I->dontSee($this->User_Email, SaasUserListPage::lineEmailLink(1));
+        $I->logoutSaas();
+    }
+    
+    
+    /**
+     * @group aaqq
+     * @guy PremmerceTester\PremmerceSteps
+     */
+//    public function GetFillProduct(PremmerceTester\PremmerceSteps $I){
+//        $I->login($admin_email = USER_EMAIL, $admin_password = USER_PASSWORD);
+//        $I->amOnPage(SaasUserListPage::$URL);
+//        $I->wait(1);
+//        $I->click(SaasUserListPage::$FilterEmailLabel);
+//        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->User_Email);
+//        $I->click(SaasUserListPage::$FilterButtonFilter);
+//        $I->see($this->user_email, SaasUserListPage::lineEmailLink(1));
+//        $I->wait(1);
+//        $Get_Values = $I->grabTextFrom(SaasUserListPage::lineFillProductsText(1));
+//        $I->comment("$Get_Values");
+//        $this->Admin_Fill_Product = $Get_Values;        
+//        $I->logoutSaas();
+//    }
     
     
     
@@ -469,101 +700,201 @@ class SaasUserPageCest
      * @group aa
      * @guy PremmerceTester\PremmerceSteps
      */
-    public function FilterFillProduct(PremmerceTester\PremmerceSteps $I){
-        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
+//    public function FilterFillProduct(PremmerceTester\PremmerceSteps $I){
+//        $I->login($admin_email = USER_EMAIL, $admin_password = USER_PASSWORD);
+//        $I->amOnPage(SaasUserListPage::$URL);
+//        $I->wait(1);
+//        $I->click(SaasUserListPage::$FilterEmailLabel);
+//        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->User_Email);
+//        $I->click(SaasUserListPage::$FilterFillProductsLabel);
+//        $I->selectOption(SaasUserListPage::$FilterFillProductsSelect, $this->Admin_Fill_Product);
+//        $I->click(SaasUserListPage::$FilterButtonFilter);
+//        $I->wait(1);
+//        $I->see($this->User_Email, SaasUserListPage::lineEmailLink(1));
+//        $I->see($this->Admin_Fill_Product, SaasUserListPage::lineFillProductsText(1));
+//        $I->logoutSaas();
+//    }
+    
+    /**
+     * @group status
+     * @guy PremmerceTester\PremmerceSteps 
+     */
+    public function CreateSaasStatus(PremmerceTester\PremmerceSteps $I){
+        $I->login($user_email = USER_EMAIL, $user_password = USER_PASSWORD);
+        $I->wait(1);
+        $I->SetTextAditorNative();
+        $I->wait(1);
+        $I->amOnPage(SaasUserListPage::$URL);
+        $I->wait(1);
+        $I->click(SaasUserListPage::$ButtonStatuses);
+        $I->wait(1);
+        $I->click(SaasStatusesPage::$ListButtonCreate);
+        $I->wait(1);
+        $I->fillField(SaasStatusesPage::$CreateInputName, $this->Status_Name);
+        $I->wait(1);
+        $I->fillField(SaasStatusesPage::$CreateInputDescription, $this->Status_Description);
+        $I->click(SaasStatusesPage::$CreateButtonSave);
+        $I->wait(1);
+        $I->logoutSaas();
+    }
+    
+    
+    /**
+     * @group status1
+     * @guy PremmerceTester\PremmerceSteps
+     */
+    public function SetStatuses(PremmerceTester\PremmerceSteps $I){
+        $I->login($admin_email = USER_EMAIL, $admin_password = USER_PASSWORD);
         $I->amOnPage(SaasUserListPage::$URL);
         $I->wait(1);
         $I->click(SaasUserListPage::$FilterEmailLabel);
-        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->user_email);
-        $I->click(SaasUserListPage::$FilterFillProductsLabel);
-        $I->click(SaasUserListPage::$FilterFillProductsSelect);
-        $I->click(SaasUserListPage::FilterFillProductsSelectOption(2));
+        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->User_Email);
         $I->click(SaasUserListPage::$FilterButtonFilter);
-        $I->see($this->user_email, SaasUserListPage::lineEmailLink(1));
-        $I->AdminLogout();
+        $I->wait(1);
+        $I->see($this->User_Email, SaasUserListPage::lineEmailLink(1));
+        $I->click(SaasUserListPage::lineActionlink(1)); 
+        $I->wait(1);
+        $I->selectOption(SaasUserListPage::SelectStatuses(1), $this->Status_Name);
+        $I->wait(1);
+        $I->logoutSaas();
     }
     
     
     
+    
+    
     /**
-     * @group aa
+     * @group status
      * @guy PremmerceTester\PremmerceSteps
      */
     public function FilterStatuses(PremmerceTester\PremmerceSteps $I){
-        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
+        $I->login($admin_email = USER_EMAIL, $admin_password = USER_PASSWORD);
         $I->amOnPage(SaasUserListPage::$URL);
         $I->wait(1);
         $I->click(SaasUserListPage::$FilterEmailLabel);
-        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->user_email);
+        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->User_Email);
         $I->click(SaasUserListPage::$FilterStatusesLabel);
-        $I->click(SaasUserListPage::$FilterStatusesSelect);
-        $I->click(SaasUserListPage::FilterStatusesSelectOption(2));
+        $I->selectOption(SaasUserListPage::$FilterStatusesSelect, $this->Status_Name);
+        $I->wait(1);
         $I->click(SaasUserListPage::$FilterButtonFilter);
-        $I->see($this->user_email, SaasUserListPage::lineEmailLink(1));
-        $I->AdminLogout();
+        $I->wait(1);
+        $I->see($this->User_Email, SaasUserListPage::lineEmailLink(1));
+        $I->logoutSaas();
     }
     
+    
+    
     /**
-     * @group aa
+     * @group Department
+     * @guy PremmerceTester\PremmerceSteps 
+     */
+    public function CreateSaasDepartment(PremmerceTester\PremmerceSteps $I){
+        $I->login($admin_email = USER_EMAIL, $admin_password = USER_PASSWORD);
+        $I->SetTextAditorNative();
+        $I->amOnPage(SaasUserListPage::$URL);
+        $I->wait(1);
+        $I->click(SaasUserListPage::$ButtonDepartments);
+        $I->wait(1);
+        $I->click(SaasDepartmenstPage::$ListButtonCreate);
+        $I->wait(1);
+        $I->fillField(SaasDepartmenstPage::$CreateInputName, $this->Department_Name);
+        $I->fillField(SaasDepartmenstPage::$CreateInputDescription, $this->Department_Description);
+        $I->click(SaasDepartmenstPage::$CreateButtonSave);
+        $I->wait(1);
+        $I->logoutSaas();
+    }
+    
+    
+    
+    
+    
+    /**
+     * @group i
      * @guy PremmerceTester\PremmerceSteps
      */
     public function FilterDepartments(PremmerceTester\PremmerceSteps $I){
-        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
+        $I->login($admin_email = USER_EMAIL, $admin_password = USER_PASSWORD);
         $I->amOnPage(SaasUserListPage::$URL);
         $I->wait(1);
         $I->click(SaasUserListPage::$FilterEmailLabel);
-        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->user_email);
+        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->User_Email);
         $I->click(SaasUserListPage::$FilterDepartmentsLabel);
-        $I->click(SaasUserListPage::$FilterDepartmentsSelect);
-        $I->click(SaasUserListPage::FilterDepartmentsSelectOption(2));
+        $I->selectOption(SaasUserListPage::$FilterDepartmentsSelect, $this->Department_Name);
         $I->click(SaasUserListPage::$FilterButtonFilter);
-        $I->see($this->user_email, SaasUserListPage::lineEmailLink(1));
-        $I->AdminLogout();
+        $I->wait(1);
+        $I->see($this->User_Name, SaasUserListPage::lineEmailLink(1));
+        $I->logoutSaas();
     }
     
     
-    ///----------Test For Create Statuse------------
+
     
     /**
-     * @group aass
-     * @guy PremmerceTester\PremmerceSteps
+     * @group status
+     * @guy PremmerceTester\PremmerceSteps 
      */
-    public function CreateStatus(PremmerceTester\PremmerceSteps $I){
-        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
-        $I->wait(2);
-        $I->amOnPage('/admin/settings#setings');
-        $I->wait(2);
-        $I->selectOption('#textEditor', 'Native textarea');
-        $I->click('.btn.btn-small.btn-primary.action_on.formSubmit');
-        $I->wait('3');
+    public function DeleteSaasStatus(PremmerceTester\PremmerceSteps $I){
+        $I->login($user_email = USER_EMAIL, $user_password = USER_PASSWORD);
+        $I->wait(3);
+//        $I->SetTextAditorNative();
         $I->amOnPage(SaasUserListPage::$URL);
-        $I->wait(2);
+        $I->wait(3);
         $I->click(SaasUserListPage::$ButtonStatuses);
-        $I->wait(2);
-        $I->seeInCurrentUrl('/admin/components/cp/saas/users_statuses');
-        $I->click(SaasUserListPage::$StatusesListButtonCreate);
-        $I->wait(2);
-        $I->fillField(SaasUserListPage::$StatusesCreateFieldName, $this->name_status);
-        $I->fillField(SaasUserListPage::$StatusesCreateFieldDescription, 'for test');
-        $I->click(SaasUserListPage::$StatusesCreateButtonSave);
-        $I->wait(2);
-        $I->click(SaasUserListPage::$StatusesCreateButtonBack);
-        $I->wait(2);
-        $amount_rows = $I->grabCCSAmount($I, '.table.table-striped.table-bordered.table-hover.table-condensed.t-l_a>tbody>tr>td>p');
-        $I->comment("Количество строк = $amount_rows");
-        for($j = 1;$j > $amount_rows; $j++){
-        $name = $I->grabTextFrom(SaasUserListPage::StatusListlineName($j));
-        if($name == $this->name_status){
-            $number_ID = $I->grabTextFrom(SaasUserListPage::StatusListlineID($j));
-            $I->comment("Вот такое айди созданого статуса = $number_ID");            
+        $I->wait(3);
+        $Amount_Rows = $I->getAmount($I, 'tbody .niceCheck');
+        $I->comment("$Amount_Rows");
+        for ($j = 1;$j <= $Amount_Rows; ++$j){
+        $Get_Name_Statuse = $I->grabTextFrom(SaasStatusesPage::LineName($j));
+        $I->comment("$Get_Name_Statuse");      
+            if($Get_Name_Statuse == $this->Status_Name){
+                $I->wait(1);
+                $I->click(SaasStatusesPage::LineCheckBox($j));
+                $I->wait(1);
+                $I->click(SaasStatusesPage::$ListButtonDelete);
+                $I->wait(1);
+                $I->click(SaasStatusesPage::$WindowDeleteButtonDelete);
+                $Amount_Rows--;
+                $j--;
+            }  else {
+                $I->comment("$Get_Name_Statuse не є створенним тестовим статусом.");
+            }
         }
-        
-        }        
-        $I->AdminLogout();
+        $I->logoutSaas();
     }
     
     
-    
+    /**
+     * @group Department
+     * @guy PremmerceTester\PremmerceSteps 
+     */
+    public function DeleteSaasDepartment(PremmerceTester\PremmerceSteps $I){
+        $I->login($user_email = USER_EMAIL, $user_password = USER_PASSWORD);
+        $I->wait(3);
+//        $I->SetTextAditorNative();
+        $I->amOnPage(SaasUserListPage::$URL);
+        $I->wait(3);
+        $I->click(SaasUserListPage::$ButtonDepartments);
+        $I->wait(3);
+        $Amount_Rows = $I->getAmount($I, 'tbody .niceCheck');
+        $I->comment("$Amount_Rows");
+        for ($j = 1;$j <= $Amount_Rows; ++$j){
+        $Get_Name_Department = $I->grabTextFrom(SaasDepartmenstPage::LineName($j));
+        $I->comment("$Get_Name_Department");      
+            if($Get_Name_Department == $this->Department_Name){
+                $I->wait(1);
+                $I->click(SaasDepartmenstPage::LineCheckBox($j));
+                $I->wait(1);
+                $I->click(SaasDepartmenstPage::$ListButtonDelete);
+                $I->wait(1);
+                $I->click(SaasDepartmenstPage::$WindowDeleteButtonDelete);
+                $Amount_Rows--;
+                $j--;
+            }  else {
+                $I->comment("$Get_Name_Department не є створенним тестовим статусом.");
+            }
+        }
+        $I->logoutSaas();
+    }
     
     
     
@@ -574,31 +905,49 @@ class SaasUserPageCest
    /////////////////////////////////////////////////////////////////////////////
    //DELETE SHOP     DELETE SHOP    DELETE SHOP    DELETE SHOP   DELETE SHOP  //                    
     /**
-     * @group a
+     * @group DeleteShop
      * @guy PremmerceTester\PremmerceSteps
      */
     public function DeleteSahopSaas(PremmerceTester\PremmerceSteps $I){
-        $I->AdminLogin($admin_email = 'ad@min.com', $admin_password = 'admin');
+        $I->login($admin_email = USER_EMAIL, $admin_password = USER_PASSWORD);
         $I->amOnPage(SaasUserListPage::$URL);
         $I->wait(1);
         $I->click(SaasUserListPage::$FilterDomainLabel);
-        $I->fillField(SaasUserListPage::$FilterDomainInput, $this->store_name);
+        $I->fillField(SaasUserListPage::$FilterDomainInput, $this->Store_Name);
+        $I->click(SaasUserListPage::$FilterNameLabel);
+        $I->fillField(SaasUserListPage::$FilterNameInput, $this->User_Name);
+        $I->click(SaasUserListPage::$FilterPhoneLabel);
+        $I->fillField(SaasUserListPage::$FilterPhoneInput, $this->User_Phone);
+        $I->click(SaasUserListPage::$FilterEmailLabel);
+        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->User_Email);
         $I->click(SaasUserListPage::$FilterButtonFilter);
-        $I->see($this->store_name, SaasUserListPage::lineDomainLink(1));
+        $I->wait(1);
+        $I->see($this->Store_Name, SaasUserListPage::lineDomainLink(1));
+        $I->see($this->User_Name, SaasUserListPage::lineNameText(1));
+        $I->see($this->User_Phone, SaasUserListPage::linePhoneText(1));
+        $I->see($this->User_Email, SaasUserListPage::lineEmailLink(1));
         $I->click(SaasUserListPage::lineActionlink(1));
         $I->click(SaasUserListPage::ButtonDelete(1));
         $I->wait(3);
-        $I->AdminLogout();
+        $I->logoutSaas();
     }    
         
-        
+      
+    
+    /**
+     * @group DeleteShopCabinet
+     * @guy PremmerceTester\PremmerceSteps
+     */
+    public function VerifyDeleteSahopCabinet(PremmerceTester\PremmerceSteps $I){
+       $I->loginCabinet($user_email = $this->User_Email, $user_password = $this->User_Password);
+       $I->wait(1);
+       $I->seeElement('.for_validations.error');
+       $I->wait(1);
+       $I->seeInField(MainPage::$WindowLoginInputEmail, $this->User_Email);       
+       $I->seeInField(MainPage::$WindowLoginInputPassword, $this->User_Password);       
+       $I->seeElement(MainPage::$WindowLoginButtonSend);       
+    }
     
     
-    
-    
-    
-    
-    
-    
-    
+
 }    
