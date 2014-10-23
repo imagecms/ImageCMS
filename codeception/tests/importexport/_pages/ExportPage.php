@@ -33,6 +33,10 @@ class ExportPage
        public static $Chek22MetaDis = "//tbody/tr/td/form/div/div[1]/div[22]/span/span";
        public static $Chek23MetaKey = "//tbody/tr/td/form/div/div[1]/div[23]/span/span";
 
+       /**
+        * void
+        * @return array
+        */
        public static function allCheckboxes(){
            return [self::$Chek1Column,  self::$Chek2Name, self::$Chek3URL, self::$Chek4Price, self::$Chek5OldPrice, self::$Chek6Amount,
            self::$Chek7Article, self::$Chek8Variant, self::$Chek9Active, self::$Chek10Hit, self::$Chek11New, self::$Chek12Action, self::$Chek13Brand,
@@ -41,11 +45,9 @@ class ExportPage
            self::$Chek22MetaDis, self::$Chek23MetaKey];
        }
        // Селект меню "Категории"
-       public static $SelectMenu = "//tbody/tr/td/form/div/div[2]/div[1]/div/ul/li/input"; 
+       public static $SelectMenu = "//div[@id='selectedCats_chosen']//input"; 
 //       public static $SelectField = "//tbody/tr/td/form/div/div[2]/div[1]/div/ul/li/input"; 
        public static $SelectSearch = "//tbody/tr/td/form/div/div[2]/div[1]/div/div/ul/li"; 
-       
-       
        
        public static $ButtonShowProperties = "//table/tbody/tr/td/form/div/div[2]/div[1]/button"; 
        
@@ -53,4 +55,4 @@ class ExportPage
        public static $RadioXLSX = '//tbody/tr/td/form/div/div[3]/div/span[2]/span';
        public static $RadioXLS =  '//tbody/tr/td/form/div/div[3]/div/span[3]/span';
 }
-var_dump(ExportPage::allCheckboxes());
+//var_dump(ExportPage::allCheckboxes());
