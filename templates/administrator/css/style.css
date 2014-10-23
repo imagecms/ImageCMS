@@ -111,8 +111,8 @@ table thead td a:hover, table thead th a:hover{color: #aaa;}
 .main_body input[type="text"], .main_body input[type="password"], .main_body textarea, .main_body select, .main_body input[type="file"]{-webkit-box-sizing: border-box;-moz-box-sizing: border-box;-ms-box-sizing: border-box;box-sizing: border-box;}
 .o_h select, .o_h input, .head_body input[type="text"], .head_body select, .head_body select, textarea{width: 100%;}
 input[type="checkbox"], input[type="radio"]{width: auto !important;vertical-align: baseline;margin-right: 5px;}
-select, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input{height: 28px !important;max-width: 100%;}
-table select, table input[type="text"], table input[type="password"], table input[type="datetime"], table input[type="datetime-local"], table input[type="date"], table input[type="month"], table input[type="time"], table input[type="week"], table input[type="number"], table input[type="email"], table input[type="url"], table input[type="search"], table input[type="tel"], table input[type="color"], table .uneditable-input, #category input{height: 27px !important;margin-bottom: 0;}
+select, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input{height: 28px;max-width: 100%;}
+table select, table input[type="text"], table input[type="password"], table input[type="datetime"], table input[type="datetime-local"], table input[type="date"], table input[type="month"], table input[type="time"], table input[type="week"], table input[type="number"], table input[type="email"], table input[type="url"], table input[type="search"], table input[type="tel"], table input[type="color"], table .uneditable-input, #category input{margin-bottom: 0;}
 #category .niceCheck input{height: auto !important;}
 #category{border-width: 0 1px 1px 0;border-style: solid;border-color: #ddd;}
 label, input, button, select, textarea{font-size: 12px;}
@@ -358,7 +358,7 @@ input.alert-error, input.alert-error:focus{color: #b94a48;border-color: #e9322d 
 .form_login input[type="text"], .form_login input[type="password"]{width: 100%;height: 38px !important;font-size: 18px !important;color: #c3c9ce !important;-moz-box-shadow: 0 0 8px rgba(0,0,0,0.1);-webkit-box-shadow: 0 0 8px rgba(0,0,0,0.1);box-shadow: 0 0 8px rgba(0,0,0,0.1);padding-left: 43px;line-height: 38px;}
 .form_login > a{margin: 34px 0 45px 0;}
 .overlay{background-color: #000;width: 100%;height: 100%;position: absolute;z-index: 1000;display: none;left: 0;top: 0;}
-.frame_rep_bug{position: fixed;width: 260px;padding: 20px;padding-bottom: 0;background-color: #fff;-moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;border: 1px solid #aaa;left: 50%;top: 50%;margin: -100px 0 0 -150px;display: none;z-index: 1001;}
+.frame_rep_bug{position: fixed;width: 260px;padding: 20px;padding-bottom: 0;background-color: #fff;-moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;border: 1px solid #aaa;left: 50%;top: 50%;margin: -200px 0 0 -150px;display: none;z-index: 1001;}
 .frame_rep_bug textarea{height: 80px;}
 
 input::-webkit-input-placeholder{color: #c3c9ce;}

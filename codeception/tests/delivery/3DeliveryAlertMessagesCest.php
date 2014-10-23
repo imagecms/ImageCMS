@@ -23,7 +23,7 @@ class DeliveryAlertMessagesCest {
         $I->createDelivery($name);
         $I->waitForText("Редактирование способа доставки: " . $name, null, '.title');
         $I->amOnPage(DeliveryListPage::$URL);
-        $AllMethodsCount = $I->grabClassCount($I, "niceCheck") - 1;
+        $AllMethodsCount = $I->getAmount($I, ".niceCheck") - 1;
         for ($row = 1; $row <= $AllMethodsCount;  ++$row) {
             $CurrentRowMethod = $I->grabTextFrom(DeliveryListPage::lineMethodLink($row));
             if ($CurrentRowMethod == $name) {

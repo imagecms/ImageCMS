@@ -373,7 +373,7 @@
                                 <tbody>
                                     <tr>
                                         <td colspan="6">
-                                            <div class="inside_padd span9">
+                                            <div class="inside_padd">
                                                 <div class="po_settings"></div>
                                             </div>
                                         </td>

@@ -9,14 +9,14 @@
     <tbody>
         <tr>
             <td colspan="6">
-                <div class="inside_padd span9">
+                <div class="inside_padd">
                     <div class="row-fluid">
                         <div class="span12">
                             <div class="control-group">
                                 <label class="control-label" for="iddCategory">{lang('Show in categories', 'shop_news')}:</label>
                                 <div class="controls">
                                     <form  type="post">
-                                        <select id="ajaxSaveShopCategories" name="Categories[]" multiple="multiple" style="height:200px !important;">
+                                        <select id="ajaxSaveShopCategories" name="Categories[]" multiple="multiple" style="height:200px;">
                                             {foreach $categories as $category}
                                                 <option {if $category->getLevel() == 0}style="font-weight: bold;"{/if} {if in_array($category->getId(),$currentCategories)} selected {/if} value="{echo $category->getId()}">{str_repeat('-',$category->getLevel())} {echo ShopCore::encode($category->getName())}</option>
                                             {/foreach}

@@ -15,7 +15,7 @@
                 {if $lang_sel == 'en'}{lang("English","admin")}{else:}{lang("Russian","admin")}{/if}
                 <span class="caret"></span>
             </a>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu pull-right">
                 <li>
                     <a href="{$BASE_URL}admin/rbac/translatePrivilege/{echo $idRole}/{if $lang_sel == 'en'}ru{else:}en{/if}">                                   
                 {if $lang_sel == 'en'} {lang("Russian","admin")} {else:} {lang("English","admin")} (beta){/if}
@@ -42,7 +42,7 @@
                 <tbody>
                     <tr>
                         <td colspan="6">
-                            <div class="inside_padd span9">                                
+                            <div class="inside_padd">                                
                                 <div class="control-group">
                                     <label class="control-label" for="Title">{lang("Description","admin")}:</label>
                                     <div class="controls">

@@ -39,7 +39,7 @@
                         <tbody>
                             <tr>
                                 <td colspan="6">
-                                    <div class="inside_padd span9">
+                                    <div class="inside_padd">
                                         <label>
                                             <span class="frame_form_field__icsi-css">
                                                 <div class="frameLabel__icsi-css error_text" name="error_text"></div>
@@ -225,7 +225,7 @@
                         <tbody>
                             <tr>
                                 <td colspan="6">
-                                    <div class="inside_padd span9">
+                                    <div class="inside_padd">
 
                                         <div id="notifies" >
                                             <!-- class="alert alert-error" -->

@@ -23,7 +23,7 @@
             <tbody>
                 <tr>
                     <td colspan="6">
-                        <div class="inside_padd span9">
+                        <div class="inside_padd">
                             <div class="control-group m-t_10">
                                 <label class="control-label">{lang('Mail to receive notifications', 'found_less_expensive')}:</label>
                                 <div class="controls">

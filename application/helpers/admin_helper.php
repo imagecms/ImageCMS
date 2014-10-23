@@ -43,8 +43,7 @@ if (!function_exists('check_admin_redirect')) {
 
     function create_language_select($languages, $locale, $url) {
         if (count($languages) > 1) {
-            $html =
-                    "<div class='dropdown d-i_b'>";
+            $html = "<div class='dropdown d-i_b'>";
             foreach ($languages as $language) {
                 if ($language['identif'] == $locale) {
                     $html .= "<a class='btn dropdown-toggle btn-small' data-toggle='dropdown' data-lan='" . $language['identif'] . " href='#'>";
@@ -55,7 +54,7 @@ if (!function_exists('check_admin_redirect')) {
                     $html .= "</a>";
                 }
             }
-            $html .= "<ul class='dropdown-menu'>";
+            $html .= "<ul class='dropdown-menu pull-right'>";
             foreach ($languages as $language) {
                 if ($language['identif'] != $locale) {
                     $html .= "<li>";

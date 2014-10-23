@@ -31,7 +31,7 @@
             </div>
             <div class="tab-content">
                 <div class="tab-pane active" id="properties">
-                    <div class="inside_padd span9">
+                    <div class="inside_padd">
                         <table class="table  table-bordered table-hover table-condensed t-l_a">
                             <thead>
                                 <tr>
@@ -72,7 +72,7 @@
                     </div>
                 </div>
                 <div class="tab-pane" id="columns">
-                    <div class="inside_padd span9">
+                    <div class="inside_padd">
                         <table class="table  table-bordered table-hover table-condensed content_big_td">
                             <thead>
                                 <tr>
@@ -84,7 +84,7 @@
                             <tbody>
                                 <tr>
                                     <td colspan="6">
-                                        <div class="inside_padd span9">
+                                        <div class="inside_padd">
                                             <div class="row-fluid" style="overflow: auto;">
                                                 <div class="span3">
                                                     <table class="table-columns">
@@ -94,7 +94,7 @@
                                                                     <div class="control-group">
                                                                         <label class="control-label" for="iddCategory"><b class="columnName">{lang('Column', 'new_level')} {echo $column}:</b></label>
                                                                         <div class="controls ">
-                                                                            <select  id="ajaxSaveShopCategories_{echo $column}" data-id='ajaxSaveShopCategories_{echo $column}' class="ColumnsSelect" name="Categories[]" multiple="multiple" style="height:400px !important;">
+                                                                            <select  id="ajaxSaveShopCategories_{echo $column}" data-id='ajaxSaveShopCategories_{echo $column}' class="ColumnsSelect" name="Categories[]" multiple="multiple" style="height:400px;">
                                                                                 {foreach $categories as $category}
                                                                                     {if in_array($category.id, $columnCategories[$column])}
                                                                                         <option selected {if count($category.full_path_ids) == 0}style="font-weight: bold;"{/if} {if in_array($category.id,$currentCategories)} selected {/if} value="{echo $category.id}">{str_repeat('-',count($category.full_path_ids))} {echo ShopCore::encode($category.name)}</option>
@@ -120,7 +120,7 @@
                     </div>
                 </div>
                 <div class="tab-pane" id="theme">
-                    <div class="inside_padd span9">
+                    <div class="inside_padd">
                         <table id="tickets_table" class="table  table-bordered table-hover table-condensed content_big_td" style="clear:both;">
                             <thead>
                             <th class="span1">{lang('Settings', 'new_level')}</th>
@@ -129,7 +129,7 @@
                                 <tr>
                                     <td>
                                         <form method="post" class="form-horizontal" id="saveMenu">
-                                            <div class="inside_padd span9">
+                                            <div class="inside_padd">
                                                 <div class="form-horizontal">
                                                     <div class="row-fluid">
                                                         <div class="control-group">

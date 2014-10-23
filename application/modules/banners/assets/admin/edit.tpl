@@ -42,20 +42,18 @@
                     <td colspan="6">
                         <div class="inside_padd">
                             <div class="form-horizontal">
-                                <div class="span9">
-                                    <div class="control-group">
-                                        <label class="control-label" for="Name">{lang('Name', 'banners')} {$translatable}:</label>
-                                        <div class="controls">
-                                            <input type="text" name="name" id="Name" value="{echo $banner['name']}" required/>
-                                        </div>
-                                        <div class="controls">
-                                            <span class="frame_label no_connection m-r_15">
-                                                <span class="niceCheck" style="background-position: -46px 0px; ">
-                                                    <input type="checkbox" name="active" value="1" {if $banner['active'] == true}checked="checked"{/if}>
-                                                </span>
-                                                {lang('Active', 'banners')}
+                                <div class="control-group">
+                                    <label class="control-label" for="Name">{lang('Name', 'banners')} {$translatable}:</label>
+                                    <div class="controls">
+                                        <input type="text" name="name" id="Name" value="{echo $banner['name']}" required/>
+                                    </div>
+                                    <div class="controls">
+                                        <span class="frame_label no_connection m-r_15">
+                                            <span class="niceCheck" style="background-position: -46px 0px; ">
+                                                <input type="checkbox" name="active" value="1" {if $banner['active'] == true}checked="checked"{/if}>
                                             </span>
-                                        </div>
+                                            {lang('Active', 'banners')}
+                                        </span>
                                     </div>
                                 </div>
 
