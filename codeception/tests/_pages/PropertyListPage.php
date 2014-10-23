@@ -43,7 +43,12 @@ class PropertyListPage
     public static function LineCSVText($row)                   { return "//table/tbody/tr[$row]/td[4]"; }
     public static function LineStatusToogle($row)              { return "//table/tbody/tr[$row]/td[5]/div/span"; }
 
-    
+    public static $WindowDelete                 = ".modal.hide.fade.modal_del.in";
+    public static $WindowDeleteTitle            = ".modal-header>h3";
+    public static $WindowDeletequestion         = ".modal-body>p";
+    public static $WindowDeleteButtonClose      = ".close";
+    public static $WindowDeleteButtonDelet      = ".btn.btn-primary";
+    public static $WindowDeleteButtonCancel     = "//div[5]/div[1]/div[3]/a[2]";
     
 }
 
