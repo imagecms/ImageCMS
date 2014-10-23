@@ -54,7 +54,7 @@ class ExportCest {
         $I->click(NavigationBarPage::$ModulesAllModules);
         $I->waitForText('Все модули', null, '.title');
         $I->click('Установить модули');
-        $rows = $I->grabCCSAmount($I, '#nimt tbody tr');
+        $rows = $I->getAmount($I, '#nimt tbody tr');
         $present = false;
         for ($index = 1; $index <= $rows; $index++) {
             $module_name = $I->grabTextFrom("//table[@id ='nimt']/tbody/tr[$index]/td[1]");
