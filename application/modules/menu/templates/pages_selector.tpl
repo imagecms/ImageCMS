@@ -33,7 +33,7 @@
                             <tbody>
                                 <tr>
                                     <td colspan="6">
-                                        <div class="inside_padd span9">
+                                        <div class="inside_padd">
                                             <div class="row-fluid">
                                                 <div class="control-group">
                                                     <label class="control-label">{lang("Categories", "menu")}:</label>
@@ -89,7 +89,7 @@
                             <tbody>
                                 <tr>
                                     <td colspan="6">
-                                        <div class="inside_padd span9">
+                                        <div class="inside_padd">
                                             <div class="row-fluid">
                                                 <div class="control-group">
                                                     <label class="control-label">{lang("Type", "menu")}:</label>

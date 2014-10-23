@@ -25,7 +25,7 @@
                 <tbody>
                     <tr>
                         <td colspan="6">
-                            <div class="inside_padd span9">
+                            <div class="inside_padd">
                                 <div class="form-horizontal">
                                     <div class="control-group">
                                         <label class="control-label" for="menu_name">{lang("Name", "menu")}:</label>
