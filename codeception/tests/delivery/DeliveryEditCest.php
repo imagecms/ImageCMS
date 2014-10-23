@@ -23,7 +23,7 @@ class DeliveryEditCest {
         if ($this->loggedin == true) {
             $I->amOnPage("/admin/components/run/shop/deliverymethods/index");
             $rows = $I->grabClassCount($I, 'niceCheck') - 1;
-            for ($row = 1; $row <= $rows; ++$row) {
+            for ($row = 1; $row <= $rows; $row++) {
                 $Cmethod = $I->grabTextFrom(DeliveryListPage::lineMethodLink($row));
                 if ($this->Name == $Cmethod) {
                     $methodCreated = true;
@@ -98,6 +98,7 @@ class DeliveryEditCest {
 
         $I->EditDelivery($name);
         $I->CheckInList($name);
+        $this->Name = $name;
     }
 
     /**
@@ -110,6 +111,7 @@ class DeliveryEditCest {
         $this->CreatedMethods[] = $name;
         $I->EditDelivery($name);
         $I->CheckInList($name);
+        $this->Name = $name;
     }
 
 //    __________________________________________________________________________CHECKBOX_ACTIVE_TESTS

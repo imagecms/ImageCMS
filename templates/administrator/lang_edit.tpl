@@ -37,7 +37,7 @@
                     <tbody>
                         <tr>
                             <td colspan="6">
-                                <div class="inside_padd span9">
+                                <div class="inside_padd">
                                     <div class="form-horizontal">
                                         <form action="{$BASE_URL}admin/languages/update/{$id}" method="post" id="editLang">
                                             <div class="row-fluid">
