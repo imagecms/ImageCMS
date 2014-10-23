@@ -136,7 +136,7 @@ class CabinetPage {
     public static $TabTariffTableHeadPremium = '';
     public static function tabTariffTableColumnProduct()            { return ""; }
     public static function tabTariffTableColumnCapacity()           { return ""; }
-    public static function tabTariffTableColumnButton ($column)            { return "//table[@class='table-tarrifs']//td[$column]//div[@class='d_i-b']/button"; }
+    public static function tabTariffTableColumnButton ($column)     { return "//ul[@class='items items-tarifs items-tarifs-new']/li[$column]//div[@class='inside-padd']/button"; }
     public static function tabTariffTableColumnButtonAdvantage()    { return ""; }
     
     
