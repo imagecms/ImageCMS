@@ -214,7 +214,7 @@ class PaymentSteps extends \PaymentTester {
             $I->fillField(\DeliveryEditPage::$InputPriceSpecified, $message);
         }
         if (isset($pay)) {
-            $paymentAmount = $I->grabClassCount($I, 'niceCheck') - 2;
+            $paymentAmount = $I->getAmount($I, '.niceCheck') - 2;
             for ($row = 1; $row <= $paymentAmount; ++$row) {
                 $Cclass = $I->grabAttributeFrom(\DeliveryEditPage::checkPaymentMethodLabel($row), 'class');
                 if ($Cclass == 'frame_label no_connection d_b active') {
@@ -257,7 +257,7 @@ class PaymentSteps extends \PaymentTester {
         $I->waitForText("Список способов оплаты", NULL, ".title");
 
         $present = false;
-        $rows = $I->grabClassCount($I, 'niceCheck') - 1;
+        $rows = $I->getAmount($I, '.niceCheck') - 1;
 
         if ($rows > 0) {
             for ($row = 1; $row <= $rows; ++$row) {
@@ -333,7 +333,7 @@ $I->wait(1);
         $I->waitForText('Оформление заказа');
         
         $present = FALSE;
-        $DeliveriesInProcessingOrderPageAmount = $I->grabClassCount($I, 'name-count');
+        $DeliveriesInProcessingOrderPageAmount = $I->getAmount($I, '.name-count');
 
         for ($j = 1; $j <= $DeliveriesInProcessingOrderPageAmount; ++$j) {
             $GrabbedName = $I->grabTextFrom("//div[@class='frame-radio']/div[$j]//span[@class='text-el']");
@@ -419,7 +419,7 @@ $I->wait(1);
 
         $Currencies = [];
         $I->amOnPage(\CurrenciesPage::$URL);
-        $CurrenciesAmount = $I->grabClassCount($I, 'mainCurrency');
+        $CurrenciesAmount = $I->getAmount($I, '.mainCurrency');
         for ($row = 1; $row <= $CurrenciesAmount; ++$row) {
             $findedCur = $I->grabTextFrom(\CurrenciesPage::CurrencyNameLine($row));
             $Currencies[] = $findedCur;
@@ -440,7 +440,7 @@ $I->wait(1);
         $I = $this;
         $have_something_to_remove = false;
         $I->amOnPage(\PaymentListPage::$URL);
-        $MethodsAmount = $I->grabClassCount($I, 'niceCheck') - 1;
+        $MethodsAmount = $I->getAmount($I, '.niceCheck') - 1;
         for ($row = 1; $row <= $MethodsAmount; ++$row) {
             $MethodName = $I->grabTextFrom(\PaymentListPage::lineMethodLink($row));
             if (is_array($pay_methods)) {
@@ -474,7 +474,7 @@ $I->wait(1);
     public function deleteCurrencies($currency_name) {
         $I = $this;
         $I->amOnPage(\CurrenciesPage::$URL);
-        $CurrenciesAmount = $I->grabClassCount($I, 'mainCurrency');
+        $CurrenciesAmount = $I->getAmount($I, '.mainCurrency');
         for ($row = 1; $row <= $CurrenciesAmount; ++$row) {
             $findedCur = $I->grabTextFrom(\CurrenciesPage::CurrencyNameLine($row));
             if (is_string($currency_name) && $findedCur == $currency_name || is_array($currency_name) && in_array($findedCur, $currency_name)) {
@@ -497,7 +497,7 @@ $I->wait(1);
         $I = $this;
         $I->amOnPage(\DeliveryListPage::$URL);
         $HaveMethodsToDelete = false;
-        $AllMethodsCount = $I->grabClassCount($I, "niceCheck") - 1;
+        $AllMethodsCount = $I->getAmount($I, ".niceCheck") - 1;
         for ($row = 1; $row <= $AllMethodsCount; ++$row) {
             $CurrentRowMethod = $I->grabTextFrom(\DeliveryListPage::lineMethodLink($row));
             if (is_array($Methods)) {
