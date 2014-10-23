@@ -20,7 +20,7 @@
                 <tr>
                     <td>
                         <form method="post" class="form-horizontal" id="saveMenu">
-                            <div class="inside_padd span9">
+                            <div class="inside_padd">
                                 <div class="form-horizontal">
                                     <div class="row-fluid">
                                         <div class="control-group">

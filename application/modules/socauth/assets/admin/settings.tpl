@@ -28,7 +28,7 @@
             <tbody>
                 <tr>
                     <td colspan="6">
-                        <div class="inside_padd span9">
+                        <div class="inside_padd">
                             <div class="control-group">
                                 <span class="control-label">
                                     <span data-title="&lt;b&gt;OAuth2 client ID&lt;/b&gt;" class="popover_ref" data-original-title="">
@@ -79,7 +79,7 @@
             <tbody>
                 <tr>
                     <td colspan="6">
-                        <div class="inside_padd span9">
+                        <div class="inside_padd">
                             <div class="control-group">
                                 <span class="control-label">
                                     <span data-title="&lt;b&gt;OAuth2 client ID&lt;/b&gt;" class="popover_ref" data-original-title="">
@@ -130,7 +130,7 @@
             <tbody>
                 <tr>
                     <td colspan="6">
-                        <div class="inside_padd span9">
+                        <div class="inside_padd">
                             <div class="control-group">
                                 <span class="control-label">
                                     <span data-title="&lt;b&gt;OAuth2 client ID&lt;/b&gt;" class="popover_ref" data-original-title="">
@@ -181,7 +181,7 @@
             <tbody>
                 <tr>
                     <td colspan="6">
-                        <div class="inside_padd span9">
+                        <div class="inside_padd">
                             <div class="control-group">
                                 <span class="control-label">
                                     <span data-title="&lt;b&gt;OAuth2 client ID&lt;/b&gt;" class="popover_ref" data-original-title="">
@@ -232,7 +232,7 @@
             <tbody>
                 <tr>
                     <td colspan="6">
-                        <div class="inside_padd span9">
+                        <div class="inside_padd">
                             <div class="control-group">
                                 <span class="control-label">
                                     <span data-title="&lt;b&gt;OAuth client ID&lt;/b&gt;" class="popover_ref" data-original-title="">

@@ -26,7 +26,7 @@
                 <tbody>
                     <tr>
                         <td colspan="6">
-                            <div class="inside_padd span9">
+                            <div class="inside_padd">
                                 <div class="form-horizontal">
                                     <div class="row-fluid">
                                         <form id="sample_module_settings" method="post" action="{$BASE_URL}admin/components/cp/sample_module/updateSettings">

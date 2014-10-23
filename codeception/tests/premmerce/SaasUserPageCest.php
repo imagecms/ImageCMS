@@ -48,7 +48,7 @@ class SaasUserPageCest
    
    
     /**
-     * @group x
+     * @group a
      * @guy PremmerceTester\PremmerceSteps 
      */
     public function CreateStore(PremmerceTester\PremmerceSteps $I){
@@ -80,7 +80,7 @@ class SaasUserPageCest
     }
 
     /**
-     * @group x
+     * @group tyu
      * @guy PremmerceTester\PremmerceSteps 
      */
     public function CheckOffStoreSaas(PremmerceTester\PremmerceSteps $I){

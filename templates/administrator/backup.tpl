@@ -79,7 +79,7 @@
                                     <td colspan="6">
                                         <form action="{$BASE_URL}admin/backup/create" method="post" id="createBackup">
                                             <div class="form-horizontal">
-                                                <div class="inside_padd span9">
+                                                <div class="inside_padd">
                                                     <div class="control-group m-t_10">
                                                         <div class="control-label"></div>
                                                         <div class="controls">
@@ -165,7 +165,7 @@
                             <tbody>
                                 <tr>
                                     <td colspan="6">
-                                        <div class="inside_padd span9">
+                                        <div class="inside_padd">
                                             <div class="form-horizontal">
                                                 <div class="row-fluid">
                                                     <div class="control-group">
