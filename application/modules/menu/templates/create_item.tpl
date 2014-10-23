@@ -41,7 +41,7 @@
                     <tbody>
                         <tr>
                             <td colspan="6">
-                                <div class="inside_padd span9">
+                                <div class="inside_padd">
                                     <div class="span12">
                                         <div class="control-group">
                                             <label class="control-label">{lang("Categories", "menu")}:</label>
@@ -96,7 +96,7 @@
                     <tbody>
                         <tr>
                             <td colspan="6">
-                                <div class="inside_padd span9">
+                                <div class="inside_padd">
                                     <div class="span12">
                                         <div class="control-group">
                                             <label class="control-label">{lang("Type", "menu")}:</label>
@@ -225,7 +225,7 @@
                     <tbody>
                         <tr>
                             <td colspan="6">
-                                <div class="inside_padd span9">
+                                <div class="inside_padd">
                                     <div class="span12">
                                         <div class="control-group">
                                             <label class="control-label">{lang("Choose a category", "menu")}:</label>
@@ -252,7 +252,7 @@
                     <tbody>
                         <tr>
                             <td colspan="6">
-                                <div class="inside_padd span9">
+                                <div class="inside_padd">
                                     <div class="span12">
                                         <div class="control-group">
                                             <label class="control-label">{lang("Type", "menu")}:</label>
@@ -391,7 +391,7 @@
                             <tbody>
                                 <tr>
                                     <td colspan="6">
-                                        <div class="inside_padd span9">
+                                        <div class="inside_padd">
                                             <div class="span12">
                                                 <div class="control-group">
                                                     <label class="control-label">{lang("Type", "menu")}:</label>
@@ -532,7 +532,7 @@
                     <tbody>
                         <tr>
                             <td colspan="6">
-                                <div class="inside_padd span9">
+                                <div class="inside_padd">
                                     <div class="span12">
                                         <div class="control-group">
                                             <label class="control-label">{lang("Specify or select a link to the page", "menu")}:</label>
@@ -558,7 +558,7 @@
                         <tr>
                             <td colspan="6">
                                 {$r = unserialize($item.roles)}
-                                <div class="inside_padd span9">
+                                <div class="inside_padd">
                                     <div class="span12">
                                         <div class="control-group">
                                             <label class="control-label">{lang("Title", "menu")}:</label>

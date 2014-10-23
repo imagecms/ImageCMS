@@ -30,7 +30,7 @@
                 <tbody>
                     <tr>
                         <td colspan="6">
-                            <div class="inside_padd span9">
+                            <div class="inside_padd">
                                 <div class="form-horizontal">
                                     <div class="row-fluid">
                                         <form id="create" method="post" active="{$SELF_URL}/create_user/">
