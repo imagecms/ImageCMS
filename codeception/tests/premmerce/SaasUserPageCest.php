@@ -4,14 +4,14 @@ use \PremmerceTester;
 
 class SaasUserPageCest
 
-//qw@oooiiiiioooiii.com
+
 {
 
    private $Cabinet_Url = '/saas/profile';
 
 
-   private $Store_Name = 'population';
-   private $User_Email = 'premme.test@test.com';
+   private $Store_Name = 'popopulation';
+   private $User_Email = 'popremme1.test@test.com';
    private $User_Password = '98765431';
    private $User_Name = 'Bazooka Band Powerviolence Go';
    private $User_Phone = '11144226677788';
@@ -19,11 +19,11 @@ class SaasUserPageCest
 
 
    
-//   private $Tariff_Free = 'Free';
-//   private $Tariff_Basic = 'Basic';
-//   private $Tariff_Standart = 'Standart';
-//   private $Tariff_Business = 'Business';
-//   private $Tariff_Premium = 'Premium';
+   private $Tariff_Free = 'Free';
+   private $Tariff_Basic = 'Basic';
+   private $Tariff_Standart = 'Standart';
+   private $Tariff_Business = 'Business';
+   private $Tariff_Premium = 'Premium';
    
    private $Status_Name = 'Test Saas';
    private $Status_Description = 'Jira PRMS-16 Admin page for Managers. Tests';
@@ -48,7 +48,7 @@ class SaasUserPageCest
    
    
     /**
-     * @group a
+     * @group aasdfg
      * @guy PremmerceTester\PremmerceSteps 
      */
     public function CreateStore(PremmerceTester\PremmerceSteps $I){
@@ -80,7 +80,7 @@ class SaasUserPageCest
     }
 
     /**
-     * @group tyu
+     * @group aasdfg
      * @guy PremmerceTester\PremmerceSteps 
      */
     public function CheckOffStoreSaas(PremmerceTester\PremmerceSteps $I){
@@ -90,6 +90,7 @@ class SaasUserPageCest
         $I->click(SaasGeneralPage::$ModulSaas);
         $I->wait(1);
         $I->click(SaasGeneralPage::$ModulSaasTabUser);
+        $I->waitForElementVisible('//section/div[3]/form/div/input');
         $I->wait(1);
         $I->click(SaasUserListPage::$FilterDomainLabel);
         $I->fillField(SaasUserListPage::$FilterDomainInput, $this->Store_Name);
@@ -105,7 +106,7 @@ class SaasUserPageCest
     
     
     /**
-     * @group x
+     * @group asdfg
      * @guy PremmerceTester\PremmerceSteps
      */
     public function CheckOffCabinet (PremmerceTester\PremmerceSteps $I){
@@ -113,14 +114,24 @@ class SaasUserPageCest
         $I->wait(4);
         $I->seeInCurrentUrl($this->Cabinet_Url);
         $I->see($this->Store_Name, CabinetPage::$TabMainFieldSiteLink);
-        $I->see($this->Store_Name, CabinetPage::$TabMainFieldAdminLink);
-        $I->see($this->Tarif_Standart, CabinetPage::$TabMainFieldTariffNameText);
+        $I->see($this->Store_Name . '.premme.com/admin', CabinetPage::$TabMainFieldAdminLink);
+        $I->see($this->Tariff_Standart, CabinetPage::$TabMainFieldTariffNameText);
         $I->click(CabinetPage::$TabProfile);
         $I->wait(1);
         $I->seeInField(CabinetPage::$TabProfileInputdName, $this->User_Name);
         $I->seeInField(CabinetPage::$TabProfileInputPhone, $this->User_Phone);
         $I->seeInField(CabinetPage::$TabProfileInputCity, $this->User_City);
         $I->seeInField(CabinetPage::$TabProfileInputEmail, $this->User_Email);
+        $I->amOnPage('/admin');
+        $I->wait(3);
+        $I->dontSeeElement('.form_login.t-a_c');
+        $I->dontSeeElement('#with_out_article>label>input');
+        $I->dontSeeElement('.btn.btn-info');
+        $I->amOnPage('/');        
+        $I->wait(3);
+        $I->dontSeeElement('.logo>img');
+        $I->dontSeeElement('#inputString');
+        $I->dontSeeElement('.btnBask');
         $I->logoutCabinet();
     }
     
