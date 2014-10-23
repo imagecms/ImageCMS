@@ -189,7 +189,7 @@ class seoexpertSteps extends \SeoExpertTester
         $I->fillField('//section/div[2]/div[1]/form/table/thead/tr[2]/td[3]/input', $NameProperty);
         $I->click('//section/div[1]/div[2]/div/button[1]');
         $I->wait('2');
-        $get_text = $I->grabCCSAmount($I, '.niceCheck');
+        $get_text = $I->getAmount($I, '.niceCheck');
         $I->comment("$get_text");
         if($get_text > 1){
             $I->click ('//section/div[2]/div[1]/form/table/tbody/tr/td[3]/a');
@@ -340,7 +340,7 @@ class seoexpertSteps extends \SeoExpertTester
         $I = $this;
         $I->amOnPage('/admin/components/run/shop/categories');
         $I->wait('1');
-        $amount_rows = $I->grabCCSAmount($I, '.share_alt');
+        $amount_rows = $I->getAmount($I, '.share_alt');
         for($j = 1;$j <= $amount_rows;$j++){
             $I->wait('1');
         $name_search = $I->grabTextFrom("//section/div[2]/div/div[2]/div/div[$j]/div/div[3]/div/a");

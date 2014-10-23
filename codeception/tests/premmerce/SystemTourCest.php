@@ -5,8 +5,8 @@ use \PremmerceTester;
 class SystemTourCest
 
 {
-    protected $storeUrl = 'http://systemtour.premme.com';
-    private   $Store_Name = 'systemtour';
+    protected $storeUrl = 'http://imitationhloya.premme.com';//systemtour
+    private   $Store_Name = 'imitationhloya';//systemtour
     
     private $Cabinet_Url = '/saas/profile';
 
@@ -16,7 +16,7 @@ class SystemTourCest
 
 
     
-    private $User_Email = 'systemtour.test@test.net';
+    private $User_Email = 'imitationhloya.test@test.net';//systemtour
     private $User_Password = '98765431';
     private $User_Name = 'Cannibal Corpse';
     private $User_Phone = '11177788444';
@@ -25,7 +25,7 @@ class SystemTourCest
 
     
     /**
-     * @group a
+     * @group x
      * @guy PremmerceTester\PremmerceSteps 
      */
     public function CreateStore(PremmerceTester\PremmerceSteps $I){
@@ -58,18 +58,18 @@ class SystemTourCest
     
     
     /**
-     * @group x
+     * @group a
      * @guy PremmerceTester\PremmerceSteps
      */
     public function DeleteProductCategorys(PremmerceTester\PremmerceSteps $I){
         $I->loginCabinet($this->User_Email, $this->User_Password);
         $I->wait(1);
         $I->amOnUrl($this->storeUrl . '/admin');
-        $I->wait(1);
+        $I->wait(3);
         $I->login($this->User_Email, $this->User_Password);
-        $I->wait(1);
+        $I->wait(3);
         $I->amOnPage(ProductCategoryListPage::$URL);
-        $I->wait(1);
+        $I->wait(5);
         $I->click(ProductCategoryListPage::$HeadCheck);
         $I->wait(1);
         $I->click(ProductCategoryListPage::$ButtonDelete);
@@ -83,7 +83,7 @@ class SystemTourCest
     
     
     /**
-     * @group x
+     * @group a
      * @guy PremmerceTester\PremmerceSteps
      */
     public function CreateProductCategorysThreeLevels (PremmerceTester\PremmerceSteps $I){
