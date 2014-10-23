@@ -93,7 +93,7 @@ class PaymentEditCest {
      */
     public function currenciesCheck(PaymentTester\PaymentSteps $I) {
 
-        $OptionsAmount = $I->grabTagCount($I, 'select option', 0);
+        $OptionsAmount = $I->getAmount($I, 'select option', 0);
         $I->comment("$OptionsAmount");
         for ($row = 0; $row < $OptionsAmount; ++$row) {
             $Options[$row] = $I->grabTextFrom(PaymentEditPage::selectCurrencyOption($row + 1));
