@@ -49,25 +49,25 @@ class ExportCest {
      */
     public function activateModuleChangeTextarea(ImportExportTester $I) {
         InitTest::changeTextAditorToNative($I);
-        $I->amOnPage('/admin');
-        $I->click(NavigationBarPage::$Modules);
-        $I->click(NavigationBarPage::$ModulesAllModules);
-        $I->waitForText('Все модули', null, '.title');
-        $I->click('Установить модули');
-        $rows = $I->getAmount($I, '#nimt tbody tr');
-        $present = false;
-        for ($index = 1; $index <= $rows; $index++) {
-            $module_name = $I->grabTextFrom("//table[@id ='nimt']/tbody/tr[$index]/td[1]");
-            if (trim($module_name) == 'Module Import & Export') {
-                $present = true;
-                break;
-            }
-        }
-        if ($present) {
-            $I->comment('Not installed');
-            $I->click("//table[@id ='nimt']/tbody/tr[$index]/td[4]/a");
-            $I->wait(3);
-        }
+//        $I->amOnPage('/admin');
+//        $I->click(NavigationBarPage::$Modules);
+//        $I->click(NavigationBarPage::$ModulesAllModules);
+//        $I->waitForText('Все модули', null, '.title');
+//        $I->click('Установить модули');
+//        $rows = $I->getAmount($I, '#nimt tbody tr');
+//        $present = false;
+//        for ($index = 1; $index <= $rows; $index++) {
+//            $module_name = $I->grabTextFrom("//table[@id ='nimt']/tbody/tr[$index]/td[1]");
+//            if (trim($module_name) == 'Module Import & Export') {
+//                $present = true;
+//                break;
+//            }
+//        }
+//        if ($present) {
+//            $I->comment('Not installed');
+//            $I->click("//table[@id ='nimt']/tbody/tr[$index]/td[4]/a");
+//            $I->wait(3);
+//        }
     }
     
     
@@ -119,8 +119,8 @@ class ExportCest {
 
         $I->wait(1);
         $I->amOnPage(ExportPage::$Url);
-        $I->waitForElement(ExportPage::$SelectMenu);
-        $I->click(ExportPage::$SelectMenu);
+        $I->waitForElement(ExportPage::$SelectCategory);
+//        $I->click(ExportPage::$SelectMenu);
 
         //get pathes to all checkboxes and mark each if its's not checked
         $checkboxes = ExportPage::allCheckboxes();
@@ -130,9 +130,10 @@ class ExportCest {
             }
         }
         $category = $this->data['category'];
-        $I->fillField(ExportPage::$SelectMenu, $category);
+//        $I->fillField(ExportPage::$SelectMenu, $category);
+        $I->selectOption(ExportPage::$SelectCategory, $category);
         $I->wait(3);
-        $I->click("//li[contains(.,'$category')]");
+//        $I->click("//li[contains(.,'$category')]");
         $I->wait(3);
         $I->click(ExportPage::$ButtonExport);
         $I->wait(5);

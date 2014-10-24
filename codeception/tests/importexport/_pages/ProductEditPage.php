@@ -10,7 +10,7 @@ class ProductEditPage
    public static $InputOldPrice = '#oldP';
    public static $ButtonActive = "//section[@class='mini-layout']//tbody/tr/td/div/div[1]/div[1]/div/div/div/span";
    public static $SelectBrend = "//section//tbody/tr/td/div/div[2]/div/div/a";
-   public static $SelectCategory = "//section//tbody/tr/td/div/div[3]/div/div/a";
+   public static $SelectCategory = "#comment";
    public static $ProductVariantRow = '#ProductVariantRow_0';
    public static $InputProductVariantName = "//tr[@id='ProductVariantRow_0']/td[2] /input[@type='text']";
    public static $InputProductVariantPrice = "//tr[@id='ProductVariantRow_0']/td[3] /input[@type='text']";
