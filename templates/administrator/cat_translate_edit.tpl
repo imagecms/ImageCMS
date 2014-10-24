@@ -22,7 +22,7 @@
                             {/if}
                         {/foreach}
 
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu pull-right">
                             {foreach $langs as $l}
                                 {if $l.id != $lang}
                                     {if $l.default}

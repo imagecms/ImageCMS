@@ -6,12 +6,12 @@ class PremmerceMainPage
     public static $URL = '/';
 
     public static $CreateShopField = '[name="domain"]';
-    public static $DomainEnd = '[class="addon d_i-b"]';
-    
+    public static $DomainEnd = '[class="addon"]';
+    public static $ErrorDomain = 'html/body/div[3]/div[1]/div/div[1]/div/div/form/div/div[1]/div[2]';
     
     //Buttons
-    public static $CreateShopFreeButton = '[id="createStoreButton"]';
-    public static $CreateShopButton = 'html/body/div[3]/header/div/div/div/div[1]/div[2]/a';
+    public static $CreateShopButtonCentre = '//*[@id="createStoreButton"]';
+    public static $CreateShopButtonTop = 'html/body/div[3]/header/div/div/div/div[1]/div[2]/a';
     public static $EnterButton = ".//*[@id='loginButton']";
     public static $BenefitsButton = 'html/body/div[3]/header/div/ul/li[1]/a';
     public static $DesignButton = 'html/body/div[3]/header/div/ul/li[2]/a';

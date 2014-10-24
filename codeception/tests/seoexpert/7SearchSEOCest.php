@@ -98,12 +98,12 @@ class SearchSEOCest
     }
     
     
-    /**
-     * @group a
-     */
-    public function ClearChash1(SeoExpertTester $I) {
-        InitTest::ClearAllCach($I);
-    }
+//    /**
+//     * @group a
+//     */
+//    public function ClearChash1(SeoExpertTester $I) {
+//        InitTest::ClearAllCach($I);
+//    }
     
     
     
@@ -164,7 +164,13 @@ class SearchSEOCest
     
     
     
-    
+    /**
+     * @group a
+     * @guy SeoExpertTester\seoexpertSteps 
+     */
+    public function DeleteCategoryForJiraTests(SeoExpertTester\seoexpertSteps $I) {
+        $I->DeleteProductCategorys();
+    }
     
     
 }    

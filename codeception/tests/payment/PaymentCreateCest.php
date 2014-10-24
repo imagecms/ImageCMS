@@ -71,7 +71,7 @@ class PaymentCreateCest {
 
         //add options of <select> at create page to array $Options[]
         $I->amOnPage(PaymentCreatePage::$URL);
-        $OptionsAmount = $I->grabTagCount($I, 'select option', 0);
+        $OptionsAmount = $I->getAmount($I, 'select option', 0);
         $I->comment("$OptionsAmount");
         for ($row = 0; $row < $OptionsAmount; ++$row) {
             $Options[$row] = $I->grabTextFrom(PaymentCreatePage::selectCurrencyOption($row + 1));

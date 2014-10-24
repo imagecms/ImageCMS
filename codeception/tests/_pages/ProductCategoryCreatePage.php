@@ -40,12 +40,12 @@ class ProductCategoryCreatePage
     public static $CheckDontShowShortSiteName   = '//table[2]//div[@class="control-group"][4]/div[2]/div/span/span';
     
     //селекти
-    public static $SelectParent                   = '#inputMainC_chosen';
-    public static $SelectParentInput              = '#inputMainC_chosen input';
+    public static $SelectParent                   = '#inputMainC';
+//    public static $SelectParentInput              = '#inputMainC_chosen input';
     public static $SelectSort                     = '#inputSortdefault';
     
     //опції
-    public static function selectParentOptions($number) { return "#inputMainC_chosen ul li:nth-child($number)"; }
+    public static function selectParentOptions($number) { return "#inputMainC:nth-child($number)"; }
     public static function selectSortOption($number)    { return "#inputSortdefault >option:nth-child($number)"; }
 
     //лейбли

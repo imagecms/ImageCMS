@@ -54,7 +54,7 @@ class ExportCest {
         $I->click(NavigationBarPage::$ModulesAllModules);
         $I->waitForText('Все модули', null, '.title');
         $I->click('Установить модули');
-        $rows = $I->grabCCSAmount($I, '#nimt tbody tr');
+        $rows = $I->getAmount($I, '#nimt tbody tr');
         $present = false;
         for ($index = 1; $index <= $rows; $index++) {
             $module_name = $I->grabTextFrom("//table[@id ='nimt']/tbody/tr[$index]/td[1]");
@@ -85,25 +85,25 @@ class ExportCest {
      * @guy ImportExportTester\ImportExportSteps
      */
     public function createProduct(ImportExportTester\ImportExportSteps $I) {
-        $I->createProduct(  $name               = $this->data['name'],
-                            $price              = $this->data['price'],
-                            $active             = $this->data['active'],
-                            $hit                = $this->data['hit'], 
-                            $hot                = $this->data['hot'], 
-                            $action             = $this->data['action'], 
-                            $old_price          = $this->data['oldPrice'],
-                            $variant_name       = $this->data['variantName'], 
-                            $currency           = $this->data['currency'],
-                            $article            = $this->data['article'],
-                            $amount             = $this->data['amount'], 
-                            $brand              = $this->data['brand'], 
-                            $category           = $this->data['category'],
-                            $short_description  = $this->data['shortDescription'],
-                            $full_description   = $this->data['fullDescription'], 
-                            $url                = $this->data['url'],
-                            $meta_title         = $this->data['metaTitle'], 
-                            $meta_description   = $this->data['metaDescription'], 
-                            $meta_keywords      = $this->data['metaKeywords']);
+        $I->createProduct(  $this->data['name'],
+                            $this->data['price'],
+                            $this->data['active'],
+                            $this->data['hit'], 
+                            $this->data['hot'], 
+                            $this->data['action'], 
+                            $this->data['oldPrice'],
+                            $this->data['variantName'], 
+                            $this->data['currency'],
+                            $this->data['article'],
+                            $this->data['amount'], 
+                            $this->data['brand'], 
+                            $this->data['category'],
+                            $this->data['shortDescription'],
+                            $this->data['fullDescription'], 
+                            $this->data['url'],
+                            $this->data['metaTitle'], 
+                            $this->data['metaDescription'], 
+                            $this->data['metaKeywords']);
     }
     
     /**
