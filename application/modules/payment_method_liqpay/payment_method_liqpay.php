@@ -7,7 +7,7 @@
  * Module Frame
  */
 class Payment_method_liqpay extends MY_Controller {
-    
+
     public $paymentMethod;
 
     public function __construct() {
@@ -19,18 +19,24 @@ class Payment_method_liqpay extends MY_Controller {
     public function index() {
         
     }
-    
-    public function getAdminForm($id, $payName = null){
-        $nameMethod = $payName?$payName:$this->paymentMethod->getPaymentSystemName();
-        $key = $id.'_'.$nameMethod;
+
+    private function getPaymentSettings($key) {
         $ci = &get_instance();
-        $value = $ci->db->where('name',$key)
-                        ->get('shop_settings')
-                        ->row()
-                        ->value;
-        
-        $data= unserialize($value);
-        
+        $value = $ci->db->where('name', $key)
+                ->get('shop_settings');
+        if ($value) {
+            $value = $value->row()->value;
+        } else {
+            show_error($ci->db->_error_message());
+        }               
+        return unserialize($value);
+    }
+
+    public function getAdminForm($id, $payName = null) {
+        $nameMethod = $payName ? $payName : $this->paymentMethod->getPaymentSystemName();
+        $key = $id . '_' . $nameMethod;
+        $data = $this->getPaymentSettings($key);
+
         return '           
             <div class="control-group">
                 <label class="control-label" for="inputRecCount">' . lang('Public key', 'payment_method_liqpay') . ':</label>
@@ -46,24 +52,29 @@ class Payment_method_liqpay extends MY_Controller {
             </div>
      
         ';
-    } 
+    }
 
-    public function getForm($data1){
-//        exit('222');
-        // /var/www/offsite.loc/templates/newLevel/shop/order_view.tpl
-//        $this->order = \ShopCore::app()->SPaymentSystems->getOrder();
-//        var_dump($data1);exit;
+    public function getForm($param) {
+        $nameMethod = 'payment_method_liqpay';
+        $payment_method_id = $param->getPaymentMethod();
+        $key = $payment_method_id . '_' . $nameMethod;
+        $paySettings = $this->getPaymentSettings($key);
+
+        $publicKey = $paySettings['merchant_id'];
+        $privateKey = $paySettings['merchant_sig'];
+        $descr = 'OrderId: ' . $param->id . '; Key: ' . $param->getKey();
+
         $data = array(
-            'public_key' => $this->publicKey,
-            'amount' => $data['summ'], // $data1->getTotalPrice()
-            'currency' => $data['currId'],
-            'description' => $data['desc'],
-            'order_id' => $data['orderId'], //$data1->id
-            'server_url' => $data['serverUrl'],
-            'result_url' => $data['resultUrl'],
+            'public_key' => $publicKey,
+            'amount' => $param->getTotalPrice(),
+            'currency' => \Currency\Currency::create()->getMainCurrency()->getCode(),
+            'description' => $descr,
+            'order_id' => $param->id,
+            'server_url' => site_url() . 'payment_method_liqpay/callback',
+            'result_url' => site_url() . 'shop/order/view/' . $param->getKey(),
         );
 
-        $inv = $this->privateKey . $data['amount'] . $data['currency'] . $data['public_key'] . $data['order_id'] . 'buy' . $data['description'] . $data['result_url'] . $data['server_url'];
+        $inv = $privateKey . $data['amount'] . $data['currency'] . $data['public_key'] . $data['order_id'] . 'buy' . $data['description'] . $data['result_url'] . $data['server_url'];
         $inv = html_entity_decode($inv);
         $signature = base64_encode(sha1($inv, 1));
 
@@ -74,27 +85,26 @@ class Payment_method_liqpay extends MY_Controller {
                       <input type="hidden" name="currency" value="' . $data['currency'] . '"/>
                       <input type="hidden" name="description" value="' . $data['description'] . '"/>
                       <input type="hidden" name="order_id" value="' . $data['order_id'] . '"/>
+                      <input type="hidden" name="sandbox" value="1"/>
                       <input type="hidden" name="result_url" value="' . $data['result_url'] . '"/>
                       ' . "<input type='hidden' name='server_url' value='" . $data['server_url'] . "'/>" . '     
                       <input type="hidden" name="type" value="buy"/>
                       <input type="hidden" name="signature" value="' . $signature . '"/>' .
                 "<div class='btn-cart btn-cart-p'>
                     <input type='submit' value='Оплатить'>
-                </div>".
+                </div>" .
                 '</form>';
-    
     }
-    
-    public function callback(){
-        if($_POST){
+
+    public function callback() {
+        if ($_POST) {
             $this->checkPaid($_POST);
         }
     }
-    
 
-    public function checkPaid($param){
+    public function checkPaid($param) {
         $order_id = $param['order_id'];
-        
+
         $sign = base64_encode(sha1(
                         $this->privateKey .
                         $param['amount'] .
@@ -108,24 +118,22 @@ class Payment_method_liqpay extends MY_Controller {
                         $param['sender_phone']
                         , 1));
 
-        $model = $param['model'];
         
-        //file_put_contents('uploads/tmp/lppost', $param['status']);
-        
+
         if ($param['status'] == 'wait_secure') {
-            $this->waitPaid($model); 
+            $this->waitPaid($model);
             exit;
         }
 
-        if ($param['signature'] == $sign && $model) 
+        if ($param['signature'] == $sign && $model)
             if ($param['status'] == 'success')
-                $this->successPaid($model); 
+                $this->successPaid($model);
             else
-                $this->failPaid($model, $this->type . ': status does not true');         
-        else 
+                $this->failPaid($model, $this->type . ': status does not true');
+        else
             $this->failPaid($model, $this->type . ': sigin does not true');
     }
-    
+
     /**
      * Save settings
      *
@@ -137,19 +145,19 @@ class Payment_method_liqpay extends MY_Controller {
 
         return true;
     }
-    
+
     /**
      * success paid
      */
     public function successPaid() {
-
+        var_dump();
     }
-    
+
     /**
      * wait paid
      */
     public function waitPaid() {
-
+        
     }
 
     /**
@@ -164,7 +172,8 @@ class Payment_method_liqpay extends MY_Controller {
     }
 
     public function _install() {
-        
+        $this->db->where('name', 'payment_method_liqpay')
+                ->update('components', array('enabled' => '1'));
     }
 
     public function _deinstall() {
