@@ -47,6 +47,7 @@ class Payment_method_liqpay extends MY_Controller {
     } 
 
     public function getForm($data1){
+//        exit('222');
         // /var/www/offsite.loc/templates/newLevel/shop/order_view.tpl
 //        $this->order = \ShopCore::app()->SPaymentSystems->getOrder();
 //        var_dump($data1);exit;
