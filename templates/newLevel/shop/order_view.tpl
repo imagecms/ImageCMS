@@ -140,7 +140,6 @@
                                 {$locale = \MY_Controller::getCurrentLocale();}
                                 {/*$notif = $CI->db->where('locale', $locale)->where('name','callback')->get('answer_notifications')->row()*/}
                                 {/*echo $notif->message*/}
-                                {//echo $CI->load->module('payments')->getForm($model->getKey())}
                                 {echo $paymentMethod->getPaymentForm($model)}
                             </div>
                         </td>
