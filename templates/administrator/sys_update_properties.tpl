@@ -32,7 +32,7 @@
             <tbody>
                 <tr>
                     <td colspan="6">
-                        <div class="inside_padd span9">
+                        <div class="inside_padd">
                             <div class="control-group">
                                 <label class="control-label">{lang('Your updation key', 'admin')}:</label>
                                 <div class="controls">

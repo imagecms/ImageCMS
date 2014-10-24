@@ -97,7 +97,7 @@
                     <tbody>
                         <tr>
                             <td colspan="6">
-                                <div class="inside_padd span9">
+                                <div class="inside_padd">
                                     <div class="control-group">
                                         <label class="control-label" for="page_url">
                                             {lang("URL","admin")}:
@@ -212,7 +212,7 @@
                     <tbody>
                         <tr>
                             <td colspan="6">
-                                <div class="inside_padd span9">
+                                <div class="inside_padd">
                                     <div class="control-group">
                                         <label class="control-label" for="post_status">
                                             {lang("Publication status","admin")}:

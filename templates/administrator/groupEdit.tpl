@@ -21,7 +21,7 @@
                     </a>
                 {/if}   
             {/foreach}
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu pull-right">
                 {foreach $arr as $a}
                     <li>
                         <a href="{$BASE_URL}admin/rbac/translateGroup/{echo $model->id}/{if $a == 'russian_lang'}en{else:}ru{/if}">
@@ -51,7 +51,7 @@
                 <tbody>
                     <tr>
                         <td colspan="6">
-                            <div class="inside_padd span9">
+                            <div class="inside_padd">
                                 <div class="control-group m-t_10">
                                     <label class="control-label" for="Name">{lang("Name","admin")}:</label>
                                     <div class="controls">

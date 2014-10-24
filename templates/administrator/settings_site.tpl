@@ -38,7 +38,7 @@
                                 <tbody>
                                     <tr>
                                         <td colspan="6">
-                                            <div class="inside_padd span9">
+                                            <div class="inside_padd">
                                                 <div class="form-horizontal">
                                                     <div class="row-fluid">
                                                         <div class="control-group">
@@ -133,7 +133,7 @@
                                 <tbody>
                                     <tr>
                                         <td colspan="6">
-                                            <div class="inside_padd span9">
+                                            <div class="inside_padd">
                                                 <div class="form-horizontal">
                                                     <div class="row-fluid">
                                                         <div class="control-group m-t_10">
@@ -186,7 +186,7 @@
                                 <tbody>
                                     <tr>
                                         <td colspan="6">
-                                            <div class="inside_padd span9">
+                                            <div class="inside_padd">
                                                 <div class="form-horizontal">
                                                     <div class="row-fluid">
 
@@ -259,7 +259,7 @@
                                 <tbody>
                                     <tr>
                                         <td colspan="6">
-                                            <div class="inside_padd span9">
+                                            <div class="inside_padd">
                                                 <div class="form-horizontal">
                                                     <div class="row-fluid">
 
@@ -341,7 +341,7 @@
                                 <tbody>
                                     <tr>
                                         <td colspan="6">
-                                            <div class="inside_padd span9">
+                                            <div class="inside_padd">
                                                 <div class="form-horizontal">
                                                     <div class="row-fluid">
                                                         <div class="control-group">
@@ -413,7 +413,7 @@
                                 <tbody>
                                     <tr>
                                         <td colspan="6">
-                                            <div class="inside_padd span9">
+                                            <div class="inside_padd">
                                                 <div class="form-horizontal">
                                                     <div class="row-fluid">
                                                         <div class="control-group">

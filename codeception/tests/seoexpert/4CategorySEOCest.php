@@ -16,12 +16,12 @@ class CategorySEOCest
     }
     
    
-    /**
-     * @group a
-     */
-    public function ClearChash(SeoExpertTester $I) {
-        InitTest::ClearAllCach($I);
-    }  
+//    /**
+//     * @group a
+//     */
+//    public function ClearChash(SeoExpertTester $I) {
+//        InitTest::ClearAllCach($I);
+//    }  
     
     
     
@@ -40,7 +40,7 @@ class CategorySEOCest
      */
     public function CreateCategoryEng (SeoExpertTester\seoexpertSteps $I){      
         $I->SeoCreateCategoryProduct($createNameCategory = 'Bird');
-        InitTest::ClearAllCach($I);        
+//        InitTest::ClearAllCach($I);        
     }
     
     
@@ -86,7 +86,7 @@ class CategorySEOCest
      */
     public function CreateBrandFifth (SeoExpertTester\seoexpertSteps $I){
         $I->SeoCreateBrand($brandName = 'Stone Island');
-        InitTest::ClearAllCach($I);
+//        InitTest::ClearAllCach($I);
     }
     
     
@@ -157,7 +157,7 @@ class CategorySEOCest
                 $BrandProduct   = 'Stone Island',
                 $CategoryProduct = 'Bird',
                 $Additional_Category = 'Напиток');
-        InitTest::ClearAllCach($I);
+//        InitTest::ClearAllCach($I);
     }
 
     
@@ -178,7 +178,7 @@ class CategorySEOCest
         $I->SeoCreateDescriptonAndH1($name_category = 'Напиток',
                                     $description_category = 'ДЕСК страх и ненависть ДЕСК',
                                     $H1_category = "'Н1 категории Н1'");
-        InitTest::ClearAllCach($I);
+//        InitTest::ClearAllCach($I);
     }
     
     
@@ -193,12 +193,12 @@ class CategorySEOCest
     }
     
     
-     /**
-     * @group a
-     */
-    public function CCach(SeoExpertTester $I) {
-        InitTest::ClearAllCach($I);
-    }
+//     /**
+//     * @group a
+//     */
+//    public function CCach(SeoExpertTester $I) {
+//        InitTest::ClearAllCach($I);
+//    }
     
     
     /**
@@ -290,12 +290,12 @@ class CategorySEOCest
     
     
     
-    /**
-     * @group a
-     */
-    public function ClearC(SeoExpertTester $I) {
-        InitTest::ClearAllCach($I);
-    }
+//    /**
+//     * @group a
+//     */
+//    public function ClearC(SeoExpertTester $I) {
+//        InitTest::ClearAllCach($I);
+//    }
     
     
     /**
@@ -333,12 +333,12 @@ class CategorySEOCest
     }
     
     
-    /**
-     * @group a
-     */
-    public function ClearChashOn(SeoExpertTester $I) {
-        InitTest::ClearAllCach($I);
-    }
+//    /**
+//     * @group a
+//     */
+//    public function ClearChashOn(SeoExpertTester $I) {
+//        InitTest::ClearAllCach($I);
+//    }
     
     
     /**
@@ -405,12 +405,12 @@ class CategorySEOCest
     }
     
     
-    /**
-     * @group a
-     */
-    public function ClearChashClear(SeoExpertTester $I) {
-        InitTest::ClearAllCach($I);
-    }
+//    /**
+//     * @group a
+//     */
+//    public function ClearChashClear(SeoExpertTester $I) {
+//        InitTest::ClearAllCach($I);
+//    }
     
     
     /**
@@ -476,12 +476,12 @@ class CategorySEOCest
         $I->CheckValuesInPage($URL_Page = '/shop/category/bird#', $values = "Bird  Bird  Bird  Bird  Bird  Bird / mini.loc");
     }
     
-    /**
-     * @group a
-     */
-    public function ChashClear(SeoExpertTester $I) {
-        InitTest::ClearAllCach($I);
-    }
+//    /**
+//     * @group a
+//     */
+//    public function ChashClear(SeoExpertTester $I) {
+//        InitTest::ClearAllCach($I);
+//    }
     
     
     

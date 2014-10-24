@@ -35,7 +35,7 @@
             <tbody>
                 <tr>
                     <td colspan="6">
-                        <div class="inside_padd span9">
+                        <div class="inside_padd">
 
                             <div class="control-group">
                                 <label class="control-label" for="settings[maxUserName]">{lang('Maximum user name length', 'wishlist')}</label>

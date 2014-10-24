@@ -12,7 +12,7 @@
             <tbody>
                 <tr>
                     <td colspan="6">
-                        <div class="inside_padd span9">
+                        <div class="inside_padd">
                             <div class="form-horizontal">
                                 <div class="row-fluid">
                                     <form id="create" method="post" active="{$BASE_URL}admin/components/cp/user_manager/create">

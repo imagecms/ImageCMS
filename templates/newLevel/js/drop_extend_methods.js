@@ -102,6 +102,8 @@ $.dropInit.prototype.extendDrop = function() {
             return drop;
         },
         heightContent: function(drop) {
+            if (isTouch)
+                return false;
             if (drop === undefined)
                 drop = this.self ? this.self : this;
             drop.each(function() {
@@ -189,6 +191,8 @@ $.dropInit.prototype.extendDrop = function() {
             return drop;
         },
         limitSize: function(drop) {
+            if (isTouch)
+                return false;
             if (drop === undefined)
                 drop = this.self ? this.self : this;
             drop.each(function() {

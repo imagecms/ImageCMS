@@ -21,7 +21,7 @@
                                     </a>
                                 {/if}   
                             {/foreach}
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menu pull-right">
                                 {foreach $langs as $l}
                                     {if !$l.default}
                                         <li><a href="{$BASE_URL}admin/categories/translate/{$id}/{$l.id}">{$l.lang_name}</a></li>
@@ -178,7 +178,7 @@
                         <tbody>
                             <tr>
                                 <td colspan="6">
-                                    <div class="inside_padd span9">
+                                    <div class="inside_padd">
                                         <div class="form-horizontal">
                                             <div class="control-group">
                                                 <label class="control-label" for="order_by">{lang('Sort by', 'admin')}:</label>
@@ -276,7 +276,7 @@
                         <tbody>
                             <tr>
                                 <td colspan="6">
-                                    <div class="inside_padd span9">
+                                    <div class="inside_padd">
                                         <div class="form-horizontal">
                                             <div class="control-group"><label class="control-label" for="title">{lang('Meta Title', 'admin')}:</label>
                                                 <div class="controls">

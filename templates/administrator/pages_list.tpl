@@ -135,7 +135,7 @@
                                         </span>
                                     </span>
                                 </th>
-                                <th>ID</th>
+                                <th class="span1">ID</th>
                                 <th>{lang('Title','admin')}</th>
                                 <th>{lang('Url','admin')}</th>
                                     {if $show_cat_list != 'yes'}
@@ -182,7 +182,7 @@
                                                 </span>
                                             </span>
                                         </td>
-                                        <td><span>{$page.id}</span></td>
+                                        <td>{$page.id}</td>
                                         <td class="share_alt">
                                             <a href="{$BASE_URL}{$page.cat_url}{$page.url}" target="_blank" class="go_to_site pull-right btn btn-small" data-rel="tooltip" data-placement="top" data-original-title="{lang("Show on site","admin")}"><i class="icon-share-alt"></i></a>
                                             <div class="o_h">

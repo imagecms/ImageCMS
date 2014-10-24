@@ -134,11 +134,15 @@ class CabinetPage {
     public static $TabTariffTableHeadBasic = '';
     public static $TabTariffTableHeadBusiness = '';
     public static $TabTariffTableHeadPremium = '';
-    public static function tabTariffTableLineFree ()        { return ""; }
-    public static function tabTariffTableLineBasic ()       { return ""; }
-    public static function tabTariffTableLineBusiness ()    { return ""; }
-    public static function tabTariffTableLinePremium ()     { return ""; }
+    public static function tabTariffTableColumnProduct()            { return ""; }
+    public static function tabTariffTableColumnCapacity()           { return ""; }
+    public static function tabTariffTableColumnButton ($column)     { return "//ul[@class='items items-tarifs items-tarifs-new']/li[$column]//div[@class='inside-padd']/button"; }
+    public static function tabTariffTableColumnButtonAdvantage()    { return ""; }
     
+    
+    //                              ВІКНО ЗМІНИ ТАРИФА
+    public static $TabTariffWindowChange = "";
+    public static $TabTariffWindowChangeButtonMove = 'div[class="forCenter"] div[class="inside-padd"] a';
     
     
 //    public static $TabConfigureDomain = '';  
