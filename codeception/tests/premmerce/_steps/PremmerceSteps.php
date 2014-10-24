@@ -38,6 +38,7 @@ class PremmerceSteps extends \PremmerceTester {
         $I->click(\CreateStorePage::selectProductsOption($product_level));
         if ($agree) { $I->checkOption(\CreateStorePage::$CheckAgree);
         }
+        $I->wait(3);
         $I->click(\CreateStorePage::$ButtonCreate);
         $I->waitForElement('.info-header', 60);
     }
