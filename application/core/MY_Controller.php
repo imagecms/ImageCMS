@@ -142,8 +142,9 @@ class MY_Controller extends MX_Controller {
                 ->where('default', 1)
                 ->get('languages');
 
-        if ($languages)
+        if ($languages) {
             $languages = $languages->row_array();
+        }
 
         return $languages;
     }
