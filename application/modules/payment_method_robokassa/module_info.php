@@ -3,7 +3,7 @@
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
 $com_info = array(
-    'menu_name' => lang('Payments', 'module_frame'), // Menu name
+    'menu_name' => lang('Robokassa', 'payment_method_Robokassa'), // Menu name
     'description' => '',            // Module Description
     'admin_type' => 'window',       // Open admin class in new window or not. Possible values window/inside
     'window_type' => 'xhr',         // Load method. Possible values xhr/iframe

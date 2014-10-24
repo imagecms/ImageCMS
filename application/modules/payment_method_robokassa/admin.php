@@ -11,7 +11,7 @@ class Admin extends BaseAdminController {
     public function __construct() {
         parent::__construct();
         $lang = new MY_Lang();
-        $lang->load('payments');
+        $lang->load('payment_method_robokassa');
     }
 
     public function index() {

@@ -6,12 +6,12 @@
  * Image CMS
  * Module Frame
  */
-class Payments extends MY_Controller {
+class Payment_method_robokassa extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
         $lang = new MY_Lang();
-        $lang->load('payments');
+        $lang->load('payment_method_robokassa');
     }
 
     public function index() {
