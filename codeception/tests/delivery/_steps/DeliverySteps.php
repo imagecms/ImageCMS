@@ -74,7 +74,7 @@ class DeliverySteps extends \DeliveryTester {
      */
     function SearchDeliveryMethod($methodname) {
         $I = $this;
-        $rows = $I->grabClassCount($I,'niceCheck') - 1;
+        $rows = $I->getAmount($I,'.niceCheck') - 1;
         $present = FALSE;
 
         for ($row = 1; $row <= $rows; ++$row) {
@@ -109,7 +109,8 @@ class DeliverySteps extends \DeliveryTester {
         $I->amOnPage('/');
         $I->waitForElement('.menu-header');
 
-        $buy = "//div[@class='frame-prices-buy f-s_0']//form/div[3]";
+//        $buy = "//button[@class='btnBuy infoBut']"; //light
+         $buy = "//div[@class='frame-prices-buy f-s_0']//form/div[3]";
         $globalbaseket = 'div#tinyBask button';
 
         $globalbaseketclass = $I->grabAttributeFrom($globalbaseket, 'class');
@@ -122,12 +123,13 @@ class DeliverySteps extends \DeliveryTester {
             $I->wait(5);
             $I->click($buy);
             $I->waitForElementVisible("//*[@id='popupCart']",10);
+//            $I->click(".btn-buy.btn-buy-p.f_r"); //light
             $I->click(".btn-cart.btn-cart-p.f_r");
         }
         $I->waitForText('Оформление заказа');
 
         $present = FALSE;
-        $ClassCount = $I->grabClassCount($I, 'name-count');
+        $ClassCount = $I->getAmount($I, '.name-count');
 
         for ($j = 1; $j <= $ClassCount; ++$j) {
             $CName = $I->grabTextFrom("//div[@class='frame-radio']/div[$j]//span[@class='text-el']");
@@ -223,7 +225,7 @@ $I = $this;
         /**
          * @var int $ClassCount number of all delivery methods available in processing order  page(front)
          */
-        $ClassCount = $I->grabClassCount($I, 'name-count');
+        $ClassCount = $I->getAmount($I, '.name-count');
 
         for ($j = 1; $j <= $ClassCount;  ++$j) {
             /**
@@ -245,7 +247,7 @@ $I = $this;
         $I = $this;
         $I->amOnPage(\DeliveryListPage::$URL);
         $HaveMethodsToDelete = false;
-        $AllMethodsCount = $I->grabClassCount($I, "niceCheck")-1;
+        $AllMethodsCount = $I->getAmount($I, ".niceCheck")-1;
         for ($row = 1;$row <= $AllMethodsCount;++$row){
             $CurrentRowMethod = $I->grabTextFrom(\DeliveryListPage::lineMethodLink($row));
             if(is_array($Methods)){
@@ -283,8 +285,8 @@ $I = $this;
         $I->wait(3);
         $I->amOnPage(\DeliveryListPage::$URL);
         $I->waitForText('Список способов доставки');
-        $rows = $I->grabCCSAmount($I, "section[class=\'mini-layout\'] table tbody tr");
-        $I->comment($rows);
+        $rows = $I->getAmount($I, "section.mini-layout table tbody tr");
+        $I->comment("$rows");
         $present = FALSE;
         if($rows>0){
             
@@ -352,7 +354,7 @@ $I = $this;
          * @var int $rows Count of table rows
          * @var int $row Current row in table 
          */
-        $rows = $I->grabClassCount($I, 'niceCheck')-1;
+        $rows = $I->getAmount($I, '.niceCheck')-1;
         if ($rows > 0){//was !=0
             $I->comment("I want to read and remember all created payment methods");
             for ($row = 1;$row<=$rows;++$row) { $PaymentMethods[$row] = $I->grabTextFrom (\PaymentListPage::lineMethodLink($row)); }
@@ -423,7 +425,7 @@ $I = $this;
             $I->fillField(\DeliveryEditPage::$InputPriceSpecified, $message);
         }
         if(isset($pay)) {
-            $paymentAmount = $I->grabClassCount($I, 'niceCheck')-2;
+            $paymentAmount = $I->getAmount($I, '.niceCheck')-2;
             for($row = 1 ; $row <=$paymentAmount; ++$row){
                 $Cclass = $I->grabAttributeFrom(\DeliveryEditPage::checkPaymentMethodLabel($row), 'class');
                 if($Cclass == 'frame_label no_connection d_b active'){

@@ -173,7 +173,7 @@ class seoexpertSteps extends \SeoExpertTester
         $I->fillField('//section/form/div[2]/div[6]/div/div[1]/table/tbody/tr/td/div/div/div[3]/div/textarea', $Meta_Description);
         $I->fillField('//section/form/div[2]/div[6]/div/div[1]/table/tbody/tr/td/div/div/div[4]/div/textarea', $Meta_Keywords);
         $I->click('//section/div/div[2]/div/button[2]');
-        $I->wait('1');
+        $I->wait('3');
 
         
     }
@@ -184,12 +184,13 @@ class seoexpertSteps extends \SeoExpertTester
                             $Category = NULL,
                             $Values1 = NULL) {
         $I = $this;
+        $I->wait('1');
         $I->amOnPage('/admin/components/run/shop/properties');
-        $I->wait('2');
+        $I->wait('3');
         $I->fillField('//section/div[2]/div[1]/form/table/thead/tr[2]/td[3]/input', $NameProperty);
         $I->click('//section/div[1]/div[2]/div/button[1]');
-        $I->wait('2');
-        $get_text = $I->grabCCSAmount($I, '.niceCheck');
+        $I->wait('3');
+        $get_text = $I->getAmount($I, '.niceCheck');
         $I->comment("$get_text");
         if($get_text > 1){
             $I->click ('//section/div[2]/div[1]/form/table/tbody/tr/td[3]/a');
@@ -197,16 +198,16 @@ class seoexpertSteps extends \SeoExpertTester
             $I->fillField('//tbody/tr/td/div/div[1]/div/input', $NameProperty);
             $I->fillField('//tbody/tr/td/div/div[2]/div/input', $CVS);
             $I->click('//tbody/tr/td/div/div[10]/div/div/ul/li/input');
-            $I->wait('2');
+            $I->wait('3');
             $I->fillField('//tbody/tr/td/div/div[10]/div/div/ul/li/input', $Category);
             $I->wait('1');
             $I->click('//tbody/tr/td/div/div[10]/div/div/div/ul/li'); 
             $I->fillField('//tbody/tr/td/div/div[12]/div/textarea', $Values1);
             $I->click('//section/div/div[2]/div/button[1]');
-            $I->wait('1');
+            $I->wait('2');
         }  elseif($get_text == 1){
             $I->amOnPage('/admin/components/run/shop/properties/create');
-            $I->wait('1');
+            $I->wait('3');
             $I->fillField('//tbody/tr/td/div/div[1]/div/input', $NameProperty);
             $I->fillField('//tbody/tr/td/div/div[2]/div/input', $CVS); 
             $I->click('//tbody/tr/td/div/div[4]/div[2]/span/span');
@@ -340,7 +341,7 @@ class seoexpertSteps extends \SeoExpertTester
         $I = $this;
         $I->amOnPage('/admin/components/run/shop/categories');
         $I->wait('1');
-        $amount_rows = $I->grabCCSAmount($I, '.share_alt');
+        $amount_rows = $I->getAmount($I, '.share_alt');
         for($j = 1;$j <= $amount_rows;$j++){
             $I->wait('1');
         $name_search = $I->grabTextFrom("//section/div[2]/div/div[2]/div/div[$j]/div/div[3]/div/a");

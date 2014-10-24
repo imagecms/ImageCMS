@@ -39,7 +39,7 @@
                     <tbody>
                         <tr>
                             <td colspan="6">
-                                <div class="inside_padd span9">
+                                <div class="inside_padd">
 
                                     <div class="control-group">
                                         <label for="file" style="float: left;width: 180px;padding-top: 5px;text-align: right;">

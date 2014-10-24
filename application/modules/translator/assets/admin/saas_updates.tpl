@@ -36,7 +36,7 @@
                     <tbody>
                         <tr>
                             <td colspan="6">
-                                <div class="inside_padd span9">
+                                <div class="inside_padd">
                                     <div class="control-group">
                                         <label class="control-label" for="file">{lang('Update mode', 'translator')}:</label>
                                         <div class="controls">

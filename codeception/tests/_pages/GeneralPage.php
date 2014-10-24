@@ -11,7 +11,7 @@ class GeneralPage
     public static $TopPanelCallback     = "//div[@id='topPanelNotifications']//a[4]";
     
     public static $PersonalButton       = "//a[@class='btn_header btn-personal-area']";
-    public static $PersonalButtonLogout = "//a[@href='/auth/logout']";
+    public static $PersonalButtonLogout = "//a[@href='/admin/logout']";
     public static $PersonalButtonData   = "#user_name";
     
     //Модулі
@@ -23,12 +23,13 @@ class GeneralPage
     public static $Settings             = "//div[1]/div[3]/table/tbody/tr/td[6]/a";
     
     public static $Currencies           = "//div[1]/div[3]/table/tbody/tr/td[6]/ul/li[2]/a";
-    public static $SettingsDelivery     = "//div[1]/div[3]/table/tbody/tr/td[7]/ul/li[3]/a";
-    public static $SettingsShopSettings = "//div[1]/div[3]/table/tbody/tr/td[7]/ul/li[1]/a";
+    public static $SettingsDelivery     = "//div[1]/div[3]/table/tbody/tr/td[6]/ul/li[3]/a";
+    public static $SettingsShopSettings = "//div[1]/div[3]/table/tbody/tr/td[6]/ul/li[1]/a";
     
     //Система
     public static $System               = "//table/tbody/tr/td[7]/a";
-    public static $SystemGlobalSettings = '//div[1]/div[3]/table/tbody/tr/td[8]/ul/li[1]/a';
+    public static $SystemGlobalSettings = '//div[1]/div[3]/table/tbody/tr/td[7]/ul/li[1]/a';
+
     public static $SystemClearAllCach   = "#clearAllCache";
 
     //Заказы

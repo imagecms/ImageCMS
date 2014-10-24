@@ -18,15 +18,7 @@ class ProductSEOCest
     } 
     
     
-    /**
-     * @group a
-     * @guy SeoExpertTester\seoexpertSteps 
-     */
-    public function ClearCashAndTextAreaOn (SeoExpertTester\seoexpertSteps $I){
-        InitTest::ClearAllCach($I);
-        InitTest::changeTextAditorToNative($I);
-    }
-    
+
     
     /**
      * @group a
@@ -642,9 +634,9 @@ class ProductSEOCest
         $I->DefoultValues();
         $I->SeoProductFillFieldMettaData($name_product = 'Сеошний товар', $Meta_Title = 'ТАЙТЛ', $Meta_Description  = 'ОПИСАНИЕ', $Meta_Keywords = 'КЕЙВОРДС');
         $I->amOnPage(seoexpertPage::$SeoUrl);
-        $I->wait('1');
+        $I->wait('3');
         $I->click(seoexpertPage::$SeoButtShop);
-        $I->wait('1');
+        $I->wait('2');
         $I->fillField(seoexpertPage::$SeoProductTitle, "%ID% %name% %category% %brand% %price% %CS% %p_$this->ID_Russian_Name_Property%");
         $I->fillField(seoexpertPage::$SeoProductDescription, '');
         $I->fillField(seoexpertPage::$SeoProductKeywords, '');
@@ -653,9 +645,9 @@ class ProductSEOCest
         $checkbox_path = '//section/form/div[2]/div[2]/table[1]/tbody/tr/td/div/div/div[2]/div/span[2]';
         $I->ActivateCheckBox($checkbox_xpath = $checkbox_path);
         $I->click(seoexpertPage::$SeoButtSave);
-        $I->wait('1');
+        $I->wait('3');
         $I->amOnPage(seoexpertPage::$FrontProductURLRu);
-        $I->wait('1');
+        $I->wait('3');
         $I->seeInPageSource('ТАЙТЛ');             
         $I->seeInPageSource('ОПИСАНИЕ');             
         $I->seeInPageSource('КЕЙВОРДС');   

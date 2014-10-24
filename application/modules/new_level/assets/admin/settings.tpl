@@ -23,7 +23,7 @@
         </div>
         <div class="tab-content">
             <div class="tab-pane active" id="properties">
-                <div class="inside_padd span9">
+                <div class="inside_padd">
                     <table class="table  table-bordered table-hover table-condensed content_big_td">
                         <thead>
                             <tr>
@@ -35,7 +35,7 @@
                         <tbody>
                             <tr>
                                 <td colspan="6">
-                                    <div class="inside_padd span9">
+                                    <div class="inside_padd">
                                         <div class="control-group">
                                             <label class="control-label" for="settings[propertiesTypes]"></label>
                                             <div class="controls">
@@ -88,7 +88,7 @@
                 </div>
             </div>
             <div class="tab-pane" id="columns">
-                <div class="inside_padd span9">
+                <div class="inside_padd">
                     <table class="table  table-bordered table-hover table-condensed content_big_td">
                         <thead>
                             <tr>
@@ -100,7 +100,7 @@
                         <tbody>
                             <tr>
                                 <td colspan="6">
-                                    <div class="inside_padd span9">
+                                    <div class="inside_padd">
                                         <div class="control-group">
                                             <label class="control-label" for="settings[propertiesTypes]"></label>
                                             <div class="controls">
