@@ -113,7 +113,7 @@ class DeleteThemeCest
 //        $kil=substr($kil1, 39, 41);
 //        $I->comment($kil);
 //        if ($kil<=14){
-//            $rowCallback=$I->grabClassCount($I,"btn btn-small btn-danger my_btn_s");
+//            $rowCallback=$I->grabClassCount($I,".btn btn-small btn-danger my_btn_s");
 //            $I->comment((string)$rowCallback);
 //            $I->see('www', ".//*[@id='callbacks_all']/table/tbody/tr[$rowCallback]/td[3]/a");
 //            $I->see('11', ".//*[@id='callbacks_all']/table/tbody/tr[$rowCallback]/td[4]");
@@ -129,7 +129,7 @@ class DeleteThemeCest
 //        else{
 //            $I->click('.//*[@id="gopages"]/div/ul/li[last()-1]/a');
 //            $I->wait('2');
-//            $rowCallback=$I->grabClassCount($I,"btn btn-small btn-danger my_btn_s");
+//            $rowCallback=$I->grabClassCount($I,".btn btn-small btn-danger my_btn_s");
 //            $I->comment((string)$rowCallback);
 //            $I->see('www', ".//*[@id='callbacks_all']/table/tbody/tr[$rowCallback]/td[3]/a");
 //            $I->see('11', ".//*[@id='callbacks_all']/table/tbody/tr[$rowCallback]/td[4]");

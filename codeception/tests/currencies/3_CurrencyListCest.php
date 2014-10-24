@@ -21,9 +21,9 @@ class CurrencyListCest
     public function NamesInListLanding(CurrenciesTester $I)
     {
         $I->click(NavigationBarPage::$Settings);
-        $I->waitForElement('html/body/div[1]/div[3]/table/tbody/tr/td[7]/ul');
+        $I->waitForElement('html/body/div[1]/div[3]/table/tbody/tr/td[6]/ul');
         $I->click(NavigationBarPage::$Currencies);        
-        $I->waitForElementNotVisible('html/body/div[1]/div[3]/table/tbody/tr/td[7]/ul');
+        $I->waitForElementNotVisible('html/body/div[1]/div[3]/table/tbody/tr/td[6]/ul');
         $I->waitForText('Список валют');
         $I->see('Список валют', ".//*[@id='mainContent']/section/div[1]/div[1]/span[2]");
         $I->see('ID', '//*[@id="mainContent"]/section/div[2]/div/form/table/thead/tr/th[1]');
@@ -85,6 +85,8 @@ class CurrencyListCest
         $I->click(CurrenciesPage::CurrencyNameLine($j));
         $I->waitForText('Редактирование валют');
         $I->fillField(CurrenciesPage::$Rate, '1');
+        $I->click(\CurrenciesPage::$AmountDecimalsSelect);
+        $I->selectOption(\CurrenciesPage::$AmountDecimalsSelect, '1');
         $I->click(CurrenciesPage::$SaveAndExitButton);
         $I->waitForText('Список валют');
         $name="Товар4";
@@ -93,15 +95,15 @@ class CurrencyListCest
         $I->assertEquals($IsoProduct, $isoMainCur);
         $I->amOnPage("/");
         $I->wait('2');
-        $I->fillField(".//*[@id='inputString']", 'товар4');
-        $I->click("html/body/div[1]/div[1]/header/div[2]/div/div/div[2]/div[2]/div/form/span/button");
+        $I->fillField(CurrenciesPage::$SearchField, 'товар4');
+        $I->click(CurrenciesPage::$SearchButton);
         $I->wait('1');
-        $k=$I->grabTextFrom(".//*[@id='items-catalog-main']/li/div[1]/div[2]/span/span/span/span[1]");
-        $sym=$I->grabTextFrom(".//*[@id='items-catalog-main']/li/div[1]/div[2]/span/span/span/span[2]");        
+        $k=$I->grabTextFrom(CurrenciesPage::$MainFirstPlace);
+        $sym=$I->grabTextFrom(CurrenciesPage::$MainSecondPlace);        
         $I->comment("$k", "$sym");
-        $I->assertEquals($k, $price.",00");
+        $I->assertEquals($k, $price);
         $I->assertEquals($sym, $symbMainCur);
-        $I->CheckProductCart($price.",00", $symbMainCur);
+        $I->CheckProductCart($price, $symbMainCur);
     }
     
     /**
@@ -198,6 +200,8 @@ class CurrencyListCest
         $I->click(CurrenciesPage::CurrencyNameLine($j));
         $I->waitForText('Редактирование валют');
         $I->fillField(CurrenciesPage::$Rate, '1');
+        $I->click(\CurrenciesPage::$AmountDecimalsSelect);
+        $I->selectOption(\CurrenciesPage::$AmountDecimalsSelect, '1');
         $I->click(CurrenciesPage::$SaveAndExitButton);
         $I->waitForText('Список валют');
     }
@@ -247,8 +251,8 @@ class CurrencyListCest
         $price1="1.200";
         $I->CreateProduct($name, $price, $j);
         $I->amOnPage("/");
-        $I->fillField(".//*[@id='inputString']", 'товар5');
-        $I->click("html/body/div[1]/div[1]/header/div[2]/div/div/div[2]/div[2]/div/form/span/button");
+        $I->fillField(CurrenciesPage::$SearchField, 'товар5');
+        $I->click(CurrenciesPage::$SearchButton);
         $I->wait('3');
         $kMAIN=$I->grabTextFrom(CurrenciesPage::$MainFirstPlace);
         $symMAIN=$I->grabTextFrom(CurrenciesPage::$MainSecondPlace);
@@ -261,10 +265,10 @@ class CurrencyListCest
         $symADDIT=$I->grabTextFrom(CurrenciesPage::$AdditSecondPlace);
         $i=$price*4;
         $I->comment("$kADDIT", "$symADDIT");
-        $I->assertEquals($kADDIT, $price1.',00');
+        $I->assertEquals($kADDIT, $price1);
         $I->assertEquals($symADDIT, $this->ADDITSYM);
         $I->wait('10');
-        $I->CheckProductCart($price.",00", $this->MAINSYM, $price1.',00', $this->ADDITSYM);
+        $I->CheckProductCart($price, $this->MAINSYM, $price1, $this->ADDITSYM);
     }
     
     /**
@@ -299,8 +303,8 @@ class CurrencyListCest
         InitTest::ClearAllCach($I);
         $I->wait('2');
         $I->amOnPage("/");
-        $I->fillField(".//*[@id='inputString']", 'товар5');
-        $I->click("html/body/div[1]/div[1]/header/div[2]/div/div/div[2]/div[2]/div/form/span/button");
+        $I->fillField(CurrenciesPage::$SearchField, 'товар5');
+        $I->click(CurrenciesPage::$SearchButton);
         $I->wait('3');
         $price=300*4;
         $price1='1.200';
@@ -308,17 +312,17 @@ class CurrencyListCest
         $kMAIN=$I->grabTextFrom(CurrenciesPage::$MainFirstPlace);
         $symMAIN=$I->grabTextFrom(CurrenciesPage::$MainSecondPlace);        
         $I->comment("$kMAIN"."$symMAIN");
-        $I->assertEquals($kMAIN, $price1.",00");
+        $I->assertEquals($kMAIN, $price1);
         $I->assertEquals($symMAIN, $this->ADDITSYM);
         $kADDIT=$I->grabTextFrom(CurrenciesPage::$AdditFirstPlace);
         $symADDIT=$I->grabTextFrom(CurrenciesPage::$AdditSecondPlace);
         $i=$price/4;
         $I->comment("Addit price:$i");
         $I->comment("$kADDIT", "$symADDIT");
-        $I->assertEquals($kADDIT, $i.',00');
+        $I->assertEquals($kADDIT, $i);
         $I->assertEquals($symADDIT, $this->MAINSYM);       
         $I->wait('10');
-        $I->CheckProductCart($price1.",00", $this->ADDITSYM, $i.',00', $this->MAINSYM);
+        $I->CheckProductCart($price1, $this->ADDITSYM, $i, $this->MAINSYM);
 //        $I->amOnPage("/admin/components/run/shop/currencies");
 //        $I->click(CurrenciesPage::RadioButtonLine($this->ROWMAIN));
 //        $I->click(CurrenciesPage::CurrencyNameLine($this->ROWMAIN));
@@ -452,7 +456,7 @@ class CurrencyListCest
         $sym=$I->grabTextFrom(CurrenciesPage::$MainSecondPlace);
         $i=$k*2;
         $I->comment("$i", "$k", "$sym");
-        $I->assertEquals($i.",00", $this->price.",00");
+        $I->assertEquals($i, $this->price);
         $I->assertEquals($sym, $this->MainCurSymb);
         $I->amOnPage(CurrenciesPage::$URL);
         $I->click(CurrenciesPage::CurrencyNameLine($y));
@@ -524,7 +528,7 @@ class CurrencyListCest
         $I->comment("$i2");
         $I->comment("$k2");
         $I->comment("$sym2");
-        $I->assertEquals($i2.",00", $this->price.",00");
+        $I->assertEquals($i2, $this->price);
         $I->assertEquals($sym2, $this->MainCurSymb);
     }
     
