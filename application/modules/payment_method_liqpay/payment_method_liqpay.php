@@ -104,9 +104,21 @@ class Payment_method_liqpay extends MY_Controller {
 
     public function checkPaid($param) {
         $order_id = $param['order_id'];
+        $ci = &get_instance();
+        $userOrder = $ci->db->where('id', $order_id)
+                ->get('shop_orders');
+        if($userOrder){
+            $userOrder = $userOrder->row();
+        } else {
+            show_error($ci->db->_error_message());
+        } 
+
+        $key = $userOrder->payment_method . '_payment_method_liqpay';
+        $paySettings = $this->getPaymentSettings($key);
+        
 
         $sign = base64_encode(sha1(
-                        $this->privateKey .
+                        $paySettings['merchant_sig'] .
                         $param['amount'] .
                         $param['currency'] .
                         $param['public_key'] .
@@ -120,18 +132,18 @@ class Payment_method_liqpay extends MY_Controller {
 
         
 
-        if ($param['status'] == 'wait_secure') {
-            $this->waitPaid($model);
-            exit;
-        }
+//        if ($param['status'] == 'wait_secure') {
+//            $this->waitPaid($model);
+//            exit;
+//        }
 
-        if ($param['signature'] == $sign && $model)
+        if ($param['signature'] == $sign && $order_id)
             if ($param['status'] == 'success')
-                $this->successPaid($model);
-            else
-                $this->failPaid($model, $this->type . ': status does not true');
-        else
-            $this->failPaid($model, $this->type . ': sigin does not true');
+                $this->successPaid($order_id);
+//            else
+//                $this->failPaid($model, $this->type . ': status does not true');
+//        else
+//            $this->failPaid($model, $this->type . ': sigin does not true');
     }
 
     /**
@@ -149,22 +161,42 @@ class Payment_method_liqpay extends MY_Controller {
     /**
      * success paid
      */
-    public function successPaid() {
-        var_dump();
-    }
-
-    /**
-     * wait paid
-     */
-    public function waitPaid() {
+    public function successPaid($order_id) {
+        $ci = &get_instance();
         
-    }
-
-    /**
-     * fail paid
-     */
-    public function failPaid() {
+        $userOrder = $ci->db->where('id', $order_id)
+                ->get('shop_orders');
+        if($userOrder){
+            $userOrder = $userOrder->row();
+        } else {
+            show_error($ci->db->_error_message());
+        }    
         
+        $amount = $ci->db->select('amout')
+                        ->get_where('users', array('id' => $userOrder->user_id));
+        
+        if($amount){
+            $amount = $amount->row()->amout;
+        } else {
+            show_error($ci->db->_error_message());
+        }             
+        $amount += $userOrder->total_price;      
+        
+        $result = $ci->db->where('id',$order_id)
+                ->update('shop_orders', array('paid'=>'1'));
+        if(!$result){
+            show_error($ci->db->_error_message());
+        }
+        
+        $result = $ci->db
+                ->where('id', $userOrder->user_id)
+                ->limit(1)
+                ->update('users', array(
+                    'amout' => str_replace(',', '.', $amount)
+        ));
+        if(!$result){
+            show_error($ci->db->_error_message());
+        }
     }
 
     public function autoload() {
