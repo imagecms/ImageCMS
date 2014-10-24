@@ -39,7 +39,7 @@
                     <table class="table  table-bordered table-hover table-condensed">
                         <thead>
                             <tr>
-                                <th class="span1">
+                                <th class="span1 t-a_c">
                                     <span class="frame_label">
                                         <span class="niceCheck b_n">
                                             <input type="checkbox"/>
@@ -54,7 +54,7 @@
                         <tbody>
                             {foreach $model as $item}
                                 <tr data-id="{echo $item->id}" data-imp={echo $item->importance}>
-                                    <td>
+                                    <td class="span1 t-a_c">
                                         {if $item->id != 1}
                                             <span class="frame_label">
                                                 <span class="niceCheck b_n">

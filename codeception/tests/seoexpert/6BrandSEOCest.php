@@ -15,14 +15,14 @@ class BrandSEOCest
         InitTest::Login($I);
     }
     
-    /**
-     * @group a
-     * @guy SeoExpertTester\seoexpertSteps 
-     */
-    public function ClearCashee (SeoExpertTester\seoexpertSteps $I){
-        InitTest::ClearAllCach($I);
-        InitTest::changeTextAditorToNative($I);
-    }
+//    /**
+//     * @group a
+//     * @guy SeoExpertTester\seoexpertSteps 
+//     */
+//    public function ClearCashee (SeoExpertTester\seoexpertSteps $I){
+//        InitTest::ClearAllCach($I);
+//        InitTest::changeTextAditorToNative($I);
+//    }
     
 
     
@@ -160,12 +160,12 @@ class BrandSEOCest
     }
 
     
-    /**
-     * @group a
-     */
-    public function ClearChash1(SeoExpertTester $I) {
-        InitTest::ClearAllCach($I);
-    }
+//    /**
+//     * @group a
+//     */
+//    public function ClearChash1(SeoExpertTester $I) {
+//        InitTest::ClearAllCach($I);
+//    }
     
 
     /**
@@ -279,12 +279,12 @@ class BrandSEOCest
     }
     
     
-    /**
-     * @group a
-     */
-    public function ClearChash2(SeoExpertTester $I) {
-        InitTest::ClearAllCach($I);
-    }
+//    /**
+//     * @group a
+//     */
+//    public function ClearChash2(SeoExpertTester $I) {
+//        InitTest::ClearAllCach($I);
+//    }
     
     
     
@@ -424,13 +424,13 @@ class BrandSEOCest
     }
     
     
-    /**
-     * @group a
-     */
-    public function ClearChash3(SeoExpertTester $I) {
-        InitTest::ClearAllCach($I);
-    }
-    
+//    /**
+//     * @group a
+//     */
+//    public function ClearChash3(SeoExpertTester $I) {
+//        InitTest::ClearAllCach($I);
+//    }
+//    
     /**
      * @group a
      * @guy SeoExpertTester\seoexpertSteps

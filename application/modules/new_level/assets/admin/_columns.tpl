@@ -9,7 +9,7 @@
     <tbody>
         <tr>
             <td colspan="6">
-                <div class="inside_padd span9">
+                <div class="inside_padd">
                     <div class="row-fluid">
                         <div class="span3">
                             <table class="table-columns">
@@ -19,7 +19,7 @@
                                             <div class="control-group">
                                                 <label class="control-label" for="iddCategory"><b class="columnName">{lang('Column', 'new_level')} {echo $column}:</b></label>
                                                 <div class="controls ">
-                                                    <select  id="ajaxSaveShopCategories" name="Categories[]" multiple="multiple" style="height:250px !important;">
+                                                    <select  id="ajaxSaveShopCategories" name="Categories[]" multiple="multiple" style="height:250px;">
                                                         {foreach $categories as $category}
                                                             {if in_array($category.id, $columnCategories[$column])}
                                                                 <option selected {if count($category.full_path_ids) == 0}style="font-weight: bold;"{/if} {if in_array($category.id,$currentCategories)} selected {/if} value="{echo $category.id}">{str_repeat('-',count($category.full_path_ids))} {echo ShopCore::encode($category['name'])}</option>

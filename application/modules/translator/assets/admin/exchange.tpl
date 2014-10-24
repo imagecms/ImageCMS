@@ -35,7 +35,7 @@
                     <tbody>
                         <tr>
                             <td colspan="6">
-                                <div class="inside_padd span9">
+                                <div class="inside_padd">
                                     <div class="control-group poSelectorsHolder exchanger">
                                         <label class="control-label" for="file">{lang('Choose file exchanger location', 'translator')}:</label>
                                         <div class="controls">
