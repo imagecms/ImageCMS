@@ -20,13 +20,15 @@ class Payment_method_liqpay extends MY_Controller {
         
     }
     
-    public function getAdminForm($id){
-        $key = $id.'_'.$this->paymentMethod->getPaymentSystemName();
+    public function getAdminForm($id, $payName = null){
+        $nameMethod = $payName?$payName:$this->paymentMethod->getPaymentSystemName();
+        $key = $id.'_'.$nameMethod;
         $ci = &get_instance();
         $value = $ci->db->where('name',$key)
                         ->get('shop_settings')
                         ->row()
                         ->value;
+        
         $data= unserialize($value);
         
         return '           
