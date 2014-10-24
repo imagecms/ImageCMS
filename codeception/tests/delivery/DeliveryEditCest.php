@@ -3,6 +3,7 @@
 use \DeliveryTester;
 
 class DeliveryEditCest {
+
     protected $loggedin = false;
     protected $createdMethods = [];
     protected $name = "ДоставкаРедактирование";
@@ -18,19 +19,18 @@ class DeliveryEditCest {
      * @guy DeliveryTester\DeliverySteps
      */
     public function _before(DeliveryTester\DeliverySteps $I) {
-        $I->comment("-- debug In before method");
-        if($this->loggedin){ $I->comment("-- debug  logged"); }
-        if(!$this->loggedin){ $I->comment("-- debug  unlogged"); }
-//        static $LoggedIn = false;
+//        $I->comment("-- debug In before method");
+//        if($this->loggedin){ $I->comment("-- debug  logged"); }
+//        if(!$this->loggedin){ $I->comment("-- debug  unlogged"); }
         $methodCreated = false;
         if ($this->loggedin == true) {
-            if($this->loggedin){ $I->comment("-- debug  logged"); }
+//          $I->comment("-- debug  logged");
             $I->amOnPage("/admin/components/run/shop/deliverymethods/index");
             $rows = $I->getAmount($I, '.niceCheck') - 1;
             for ($row = 1; $row <= $rows; $row++) {
                 $Cmethod = $I->grabTextFrom(DeliveryListPage::lineMethodLink($row));
-                $I->comment("-- debug fact name: $Cmethod");
-                $I->comment("-- debug actual name:" . $this->name);
+//                $I->comment("-- debug fact name: $Cmethod");
+//                $I->comment("-- debug actual name:" . $this->name);
                 if ($this->name == $Cmethod) {
                     $methodCreated = true;
                     $I->click(DeliveryListPage::lineMethodLink($row));
@@ -44,8 +44,6 @@ class DeliveryEditCest {
             $I->waitForText("Редактирование способа доставки: $this->name", NULL, DeliveryEditPage::$Title);
         }
         $this->createdMethods[] = $this->name;
-//        $LoggedIn = true;
-//        $this->loggedin = true;
     }
 
     /**
@@ -259,8 +257,9 @@ class DeliveryEditCest {
             $diabledFreefrom = $I->grabAttributeFrom(DeliveryEditPage::$InputFreeFrom, 'disabled');
             $I->assertEquals($diabledPrice, NULL);
             $I->assertEquals($diabledFreefrom, NULL);
-        } else
+        } else {
             $I->fail('wrong class of checkbox sum specified');
+        }
 
         $I->click(DeliveryCreatePage::$CheckPriceSpecified);
         $class = $I->grabAttributeFrom(DeliveryEditPage::$CheckPriceSpecified . '/..', 'class');
@@ -270,8 +269,9 @@ class DeliveryEditCest {
             $diabledFreefrom = $I->grabAttributeFrom(DeliveryEditPage::$InputFreeFrom, 'disabled');
             $I->assertEquals($diabledPrice, "true");
             $I->assertEquals($diabledFreefrom, "true");
-        } else
+        } else{
             $I->fail('wrong class of checkbox sum specified');
+        }
     }
 
     /**
@@ -366,4 +366,5 @@ class DeliveryEditCest {
         InitTest::Loguot($I);
         $this->loggedin = false;
     }
+
 }
