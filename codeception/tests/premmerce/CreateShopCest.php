@@ -26,6 +26,7 @@ class CreateShopCest {
         $I->amOnPage('/saas/create_store');
         $I->createStore(STORE_NAME, USER_EMAIL, USER_PASSWORD);
         
+        
         $this->_getCodeceptionYml();
         $this->_changeAdress(STORE_URL);
     }        

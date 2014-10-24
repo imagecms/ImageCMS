@@ -40,7 +40,7 @@ class PremmerceSteps extends \PremmerceTester {
         }
         $I->wait(3);
         $I->click(\CreateStorePage::$ButtonCreate);
-        $I->waitForElement('.info-header', 60);
+        $I->waitForElement('.info-header', 360);
     }
     
     
