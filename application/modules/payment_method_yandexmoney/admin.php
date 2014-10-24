@@ -1,8 +1,21 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+(defined('BASEPATH')) OR exit('No direct script access allowed');
 
+/**
+ * Image CMS 
+ * Yandex Money Module Admin
+ */
+class Admin extends BaseAdminController {
+
+    public function __construct() {
+        parent::__construct();
+        $lang = new MY_Lang();
+        $lang->load('payment_method_yandexmoney');
+    }
+
+    public function index() {
+        
+    }
+
+}
