@@ -23,14 +23,13 @@ class Cms_base extends CI_Model {
         $this->db->where('s_name', 'main');
         $query = $this->db->get('settings', 1);
 
-        if ($query->num_rows() == 1) {
+        if ($query and $query->num_rows() == 1) {
             $arr = $query->row_array();
             $lang_arr = get_main_lang();
             $meta = $this->db
                     ->where('lang_ident', $lang_arr['id'])
                     ->limit(1)
                     ->get('settings_i18n')
-                    //echo $this->db->_error_message();
                     ->result_array();
 
             $arr['site_short_title'] = $meta[0]['short_name'];
@@ -40,6 +39,8 @@ class Cms_base extends CI_Model {
             $this->db->cache_off();
 
             return $arr;
+        } else {
+            show_error($this->db->_error_message());
         }
         $this->db->cache_off();
 
@@ -55,8 +56,13 @@ class Cms_base extends CI_Model {
     public function get_langs() {
         $this->db->cache_on();
         $query = $this->db
-                ->get('languages')
-                ->result_array();
+                ->get('languages');
+        if ($query) {
+            $query = $query->result_array();
+        } else {
+            show_error($this->db->_error_message());
+        }
+
         $this->db->cache_off();
 
         return $query;
@@ -168,7 +174,7 @@ class Cms_base extends CI_Model {
         } else {
             return $cats['url'];
         }
-        
+
         return $url;
     }
 
