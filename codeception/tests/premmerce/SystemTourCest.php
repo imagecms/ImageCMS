@@ -6,7 +6,7 @@ class SystemTourCest
 
 {
     protected $storeUrl = 'http://imitationhloya.premme.com';//systemtour
-    private   $Store_Name = 'imitationhloya';//systemtour
+    private   $Store_Name = 'systemtour';//imitationhloya
     
     private $Cabinet_Url = '/saas/profile';
 
@@ -16,7 +16,7 @@ class SystemTourCest
 
 
     
-    private $User_Email = 'imitationhloya.test@test.net';//systemtour
+    private $User_Email = 'systemtour.test@test.net';//systemtour
     private $User_Password = '98765431';
     private $User_Name = 'Cannibal Corpse';
     private $User_Phone = '11177788444';
@@ -58,7 +58,7 @@ class SystemTourCest
     
     
     /**
-     * @group a
+     * @group x
      * @guy PremmerceTester\PremmerceSteps
      */
     public function DeleteProductCategorys(PremmerceTester\PremmerceSteps $I){
@@ -83,7 +83,7 @@ class SystemTourCest
     
     
     /**
-     * @group a
+     * @group x
      * @guy PremmerceTester\PremmerceSteps
      */
     public function CreateProductCategorysThreeLevels (PremmerceTester\PremmerceSteps $I){
@@ -145,9 +145,54 @@ class SystemTourCest
      * @guy PremmerceTester\PremmerceSteps
      */
     public function Test(PremmerceTester\PremmerceSteps $I){
-        $I->amOnPage('/saas/profile');
-        $I->wait(5);
+        $I->wait(1);
+        $I->amOnUrl($this->storeUrl . '/admin');
+        $this->CreateProperty($I,   $Name = 'Особое свойство',
+                                    $CVS = 'terpincodecaption',
+                                    $Category = $this->Category_First_Name,
+                                    $Values = 'Йцу 123 Qwe');
+        
+        $this->CreateProperty($I,   $Name = 'Соленость продукта',
+                                    $CVS = 'oyyyyiamfucku',
+                                    $Category = $this->Category_Second_Name,
+                                    $Values = 'rd2 XX');
+        
+        $this->CreateProperty($I,   $Name = 'Горное раздражение',
+                                    $CVS = 'prostocsvname',
+                                    $Category = $this->Category_Third_Name,
+                                    $Values = '-*/');
     }
+    
+    
+    /////////////////////////////////////////////////////////////////////////////
+   //DELETE SHOP     DELETE SHOP    DELETE SHOP    DELETE SHOP   DELETE SHOP  //                    
+    /**
+     * @group DeleteShop
+     * @guy PremmerceTester\PremmerceSteps
+     */
+    public function DeleteSahopSaas(PremmerceTester\PremmerceSteps $I){
+        $I->login($admin_email = USER_EMAIL, $admin_password = USER_PASSWORD);
+        $I->amOnPage(SaasUserListPage::$URL);
+        $I->wait(1);
+        $I->click(SaasUserListPage::$FilterDomainLabel);
+        $I->fillField(SaasUserListPage::$FilterDomainInput, $this->Store_Name);
+        $I->click(SaasUserListPage::$FilterNameLabel);
+        $I->fillField(SaasUserListPage::$FilterNameInput, $this->User_Name);
+        $I->click(SaasUserListPage::$FilterPhoneLabel);
+        $I->fillField(SaasUserListPage::$FilterPhoneInput, $this->User_Phone);
+        $I->click(SaasUserListPage::$FilterEmailLabel);
+        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->User_Email);
+        $I->click(SaasUserListPage::$FilterButtonFilter);
+        $I->wait(1);
+        $I->see($this->Store_Name, SaasUserListPage::lineDomainLink(1));
+        $I->see($this->User_Name, SaasUserListPage::lineNameText(1));
+        $I->see($this->User_Phone, SaasUserListPage::linePhoneText(1));
+        $I->see($this->User_Email, SaasUserListPage::lineEmailLink(1));
+        $I->click(SaasUserListPage::lineActionlink(1));
+        $I->click(SaasUserListPage::ButtonDelete(1));
+        $I->wait(3);
+        $I->logoutSaas();
+    } 
     
     
     
@@ -170,14 +215,25 @@ class SystemTourCest
         $I->wait('2');
     }
     
-//    protected function CreateProperty(PremmerceTester $I,
-//                                    $Name_Property,
-//                                    $CVS,
-//                                    $Category,
-//                                    $Values1) {
-//        $I->amOnPage($page)
-//        
-//    }
+    protected function CreateProperty(PremmerceTester $I,
+                                    $Name,
+                                    $CVS,
+                                    $Category,
+                                    $Values){
+        $I->amOnPage(PropertyCreatePage::$URL);
+        $I->wait(1);
+        $I->click(PropertyCreatePage::$CheckMainProperty);
+        $I->click(PropertyCreatePage::$CheckHint);
+        $I->click(PropertyCreatePage::$CheckShowProductPage);
+        $I->click(PropertyCreatePage::$CheckShowProductCompare);
+        $I->click(PropertyCreatePage::$CheckShowFilter);
+        $I->fillField(PropertyCreatePage::$InputName, $Name);
+        $I->fillField(PropertyCreatePage::$InputCSV, $CVS);
+        $I->selectOption(PropertyCreatePage::$SelectCategory, $Category);
+        $I->fillField(PropertyCreatePage::$InputValues, $Values);
+        $I->click(PropertyCreatePage::$ButtonCreate);
+        $I->wait(1);
+    }
     
 }
 
