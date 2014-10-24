@@ -109,7 +109,7 @@ class DeliverySteps extends \DeliveryTester {
         $I->amOnPage('/');
         $I->waitForElement('.menu-header');
 
-        $buy = "//div[@class='frame-prices-buy f-s_0']//form/div[3]";
+        $buy = "//button[@class='btnBuy infoBut']";
         $globalbaseket = 'div#tinyBask button';
 
         $globalbaseketclass = $I->grabAttributeFrom($globalbaseket, 'class');
@@ -122,7 +122,7 @@ class DeliverySteps extends \DeliveryTester {
             $I->wait(5);
             $I->click($buy);
             $I->waitForElementVisible("//*[@id='popupCart']",10);
-            $I->click(".btn-cart.btn-cart-p.f_r");
+            $I->click(".btn-buy.btn-buy-p.f_r");
         }
         $I->waitForText('Оформление заказа');
 

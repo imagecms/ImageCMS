@@ -39,7 +39,7 @@ class PremmerceSteps extends \PremmerceTester {
         if ($agree) { $I->checkOption(\CreateStorePage::$CheckAgree);
         }
         $I->click(\CreateStorePage::$ButtonCreate);
-        $I->waitForElement('.info-header', 60);
+        $I->waitForElement('.info-header', 360);
     }
     
     
