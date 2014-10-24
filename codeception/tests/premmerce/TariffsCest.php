@@ -20,11 +20,11 @@ use \PremmerceTester;
  */
 class TariffsCest {
 
-    protected $storeUrl = 'http://imageqatest.premme.com';
+    protected $storeUrl = 'http://fqwenfkjidscgr.premme.com';
 //    protected $storeUrl = 'http://qwertystore.premme.com';
-    protected $email = 'imageqa@tariff.test';
+    protected $email = 'qud@man.net';
 //    protected $email    = 'qwerty@store.store';
-    protected $password = 'imageqa';
+    protected $password = 'premmerce';
 //    protected $password = 'qwerty';
 
     protected $actualTariff;
@@ -41,16 +41,16 @@ class TariffsCest {
         'Настройки шаблона интернет-магазина',
         'Рейтинг',
         'Галерея',
-        'Конструктор полей',
+//        'Конструктор полей',
         'Редактор шаблонов',
         'Управление шаблонами',
         //standart
         'Импорт-экспорт в CSV/XLS',
-        'Скидки интернет-магазина',
+//        'Скидки интернет-магазина',
         'SEO эксперт',
         'Module Y.Market',
         //bussiness
-        'Списки пожеланий',
+//        'Списки пожеланий',
         'Синхронизация с 1С',
         'Статистика',
         'Модуль редиректов',
@@ -64,9 +64,9 @@ class TariffsCest {
      */
     public function checkFreeCabinet(PremmerceTester\PremmerceSteps $I) {
 
-        $this->changeTariffSaas($I, $this->tariffs[0]);
+        $this->changeTariffSaas($I, $this->tariffs[1]);
         $I->loginCabinet($this->email, $this->password);
-        $this->checkCabinet($I);
+//        $this->checkCabinet($I);
     }
 
     /**
@@ -75,18 +75,18 @@ class TariffsCest {
     public function checkFreeStoreAdmin(PremmerceTester\PremmerceSteps $I) {
         $I->amOnUrl($this->storeUrl);
         $I->login($this->email, $this->password);
-        $this->checkStoreModules($I);
+//        $this->checkStoreModules($I);
     }
-
-    /**
-     * @group current
-     * @guy PremmerceTester\PremmerceSteps
-     */
-    public function checkBasicCabinet(PremmerceTester\PremmerceSteps $I) {
-        $this->changeTariffCabinet($I, 2);
-        $this->checkCabinet($I);
-    }
-
+//
+//    /**
+//     * @group current
+//     * @guy PremmerceTester\PremmerceSteps
+//     */
+//    public function checkBasicCabinet(PremmerceTester\PremmerceSteps $I) {
+//        $this->changeTariffCabinet($I, 2);
+//        $this->checkCabinet($I);
+//    }
+//
     /**
      * @guy PremmerceTester\PremmerceSteps
      */
