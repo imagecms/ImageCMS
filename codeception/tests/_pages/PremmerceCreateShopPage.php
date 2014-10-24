@@ -31,4 +31,5 @@ class PremmerceCreateShopPage
     public static $ErrorCity = ".//*[@id='register-form']/div/div[1]/div[3]/div[3]/label";    
     public static $ErrorLevelOfUse = ".//*[@id='register-form']/div/div[1]/div[3]/div[4]/label";
     public static $ErrorAgree = ".//*[@id='register-form']/div/div[2]/label";
+    
 }

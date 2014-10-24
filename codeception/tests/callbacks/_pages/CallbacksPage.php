@@ -18,8 +18,9 @@ class CallbacksPage
     
 
     //фронт
-    public static $CallMeButton  = '.btn-form>button';                                                              //CallbacksList
-    public static $OrderCallButton  = 'html/body/div[1]/div[1]/header/div[2]/div/div/div[1]/div/div[2]/button';     //CallbacksList
+    public static $CallMeButton  = './/*[@class="btn-buy"]/button';                                                              //CallbacksList
+    public static $OrderCallButton  = '//*[@class="btn-order-call"]';     //CallbacksList
+    public static $CloseCallbackFormCreateButton  = './/*[@id="ordercall"]/button';
     //
     
     
@@ -29,6 +30,7 @@ class CallbacksPage
     //Поля
     
     //---------------------------ФРОНТ------------------------------------------
+    public static $CallbackCreateForm  = './/*[@id="ordercall"]';
     public static $UserNameCreate  = './/*[@id="data-callback"]/label[1]/span[2]/input';                            //CallbacksList
     public static $TelephoneCreate  = './/*[@id="data-callback"]/label[2]/span[2]/input';                           //CallbacksList
     public static $CommentCreate  = './/*[@id="data-callback"]/label[3]/span[2]/textarea';                          //CallbacksList
