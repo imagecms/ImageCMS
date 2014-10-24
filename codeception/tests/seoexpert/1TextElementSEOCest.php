@@ -7,7 +7,7 @@ class TextElementSEOCest
     
 //---------------------------AUTORIZATION--------------------------------------- 
     /**
-     * @group a
+     * @group aa
      */
     public function Login(SeoExpertTester $I){
         InitTest::Login($I);

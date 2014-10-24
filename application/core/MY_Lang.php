@@ -58,8 +58,9 @@ class MY_Lang extends MX_Lang {
     }
 
     public function getDBFrontLanguages() {
-        if (!isset($this->ci))
+        if (!isset($this->ci)) {
             $this->ci = & get_instance();
+        }
 
         $languages = $this->ci->db->select('lang_name, identif, locale')->get('languages');
 
@@ -80,8 +81,9 @@ class MY_Lang extends MX_Lang {
     }
 
     private function _init() {
-        if (!isset($this->ci))
+        if (!isset($this->ci)) {
             $this->ci = & get_instance();
+        }
 
         if (!strstr($_SERVER['REQUEST_URI'], 'install')) {
             if (is_null($this->ci->db)) {
@@ -89,13 +91,16 @@ class MY_Lang extends MX_Lang {
                 echo $error->show_error('DB Error', 'Unable to connect to the database', 'error_db');
                 exit;
             }
-
-            $sett = $this->ci->db->where('s_name', 'main')->get('settings')->row();
+            $sett = $this->ci->db->where('s_name', 'main')->get('settings');
+            if ($sett) {
+                $sett = $sett->row();
+            }else {
+                show_error($this->ci->db->_error_message());
+            }
             if ($sett->lang_sel) {
                 $this->ci->config->set_item('language', str_replace('_lang', '', $sett->lang_sel));
             }
             $this->gettext_language = $this->ci->config->item('language');
-//            var_dumps_exit($this->gettext_language);
         } else {
             if (!$this->ci->session->userdata('language')) {
                 $this->ci->session->set_userdata('language', 'ru_RU');

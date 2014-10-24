@@ -8,14 +8,15 @@ class SaasUserPageCest
 {
 
    private $Cabinet_Url = '/saas/profile';
+   private $Store_Url = 'http://ssaasuserlist.premme.com';
 
 
-   private $Store_Name = 'lationpopopu';
-   private $User_Email = 'latremme.test@test.com';
+   private $Store_Name = 'sssaasuserlist';
+   private $User_Email = 'ssaasuserlist.test@test.com';
    private $User_Password = '98765431';
-   private $User_Name = 'Bazooka Band Powerviolence Go';
-   private $User_Phone = '11144226677788';
-   private $User_City = 'Львів Сіті Сінь Пянь';
+   private $User_Name = 'Bazooka Band';
+   private $User_Phone = '+3-3+3-3-+3';
+   private $User_City = 'Львів Сіті';
 
 
    
@@ -56,6 +57,7 @@ class SaasUserPageCest
         $I->amOnPage(MainPage::$URL);
         $I->wait(3);  
         $I->click(MainPage::$ButtonCreateStore);
+        $I->wait(1);  
         $I->createStore($store_name         = $this->Store_Name,
                         $user_email         = $this->User_Email,
                         $user_password      = $this->User_Password,
@@ -80,7 +82,7 @@ class SaasUserPageCest
     }
 
     /**
-     * @group a
+     * @group aa
      * @guy PremmerceTester\PremmerceSteps 
      */
     public function CheckOffStoreSaas(PremmerceTester\PremmerceSteps $I){
@@ -106,39 +108,43 @@ class SaasUserPageCest
     
     
     /**
-     * @group aaa
+     * @group aa
      * @guy PremmerceTester\PremmerceSteps
      */
     public function CheckOffCabinet (PremmerceTester\PremmerceSteps $I){
         $I->loginCabinet($this->User_Email, $this->User_Password);
         $I->wait(4);
         $I->seeInCurrentUrl($this->Cabinet_Url);
-//        $I->see($this->Store_Name, CabinetPage::$TabMainFieldSiteLink);
-//        $I->see($this->Store_Name . '.premme.com/admin', CabinetPage::$TabMainFieldAdminLink);
-//        $I->see($this->Tariff_Standart, CabinetPage::$TabMainFieldTariffNameText);
-//        $I->click(CabinetPage::$TabProfile);
-//        $I->wait(1);
-//        $I->seeInField(CabinetPage::$TabProfileInputdName, $this->User_Name);
-//        $I->seeInField(CabinetPage::$TabProfileInputPhone, $this->User_Phone);
-//        $I->seeInField(CabinetPage::$TabProfileInputCity, $this->User_City);
-//        $I->seeInField(CabinetPage::$TabProfileInputEmail, $this->User_Email);
+        $I->see($this->Store_Name, CabinetPage::$TabMainFieldSiteLink);
+        $I->see($this->Store_Name . '.premme.com/admin', CabinetPage::$TabMainFieldAdminLink);
+        $I->see($this->Tariff_Standart, CabinetPage::$TabMainFieldTariffNameText);
+        $I->click(CabinetPage::$TabProfile);
         $I->wait(1);
-        $I->amOnUrl('http://popopulation.premme.com/admin/');
+        $I->seeInField(CabinetPage::$TabProfileInputdName, $this->User_Name);
+        $I->seeInField(CabinetPage::$TabProfileInputPhone, $this->User_Phone);
+        $I->seeInField(CabinetPage::$TabProfileInputCity, $this->User_City);
+        $I->seeInField(CabinetPage::$TabProfileInputEmail, $this->User_Email);
         $I->wait(1);
-//        $I->dontSeeElement('.form_login.t-a_c');
-//        $I->dontSeeElement('#with_out_article>label>input');
+        $I->amOnUrl($this->Store_Url.'admin/');
+        $I->wait(3);
+        $I->dontSeeElement('.form_login.t-a_c');
+        $I->dontSeeElement('#with_out_article>label>input');
 //        $I->dontSeeElement('.btn.btn-info');
         $I->wait(1);
         $I->amOnPage('/');        
-        $I->wait(1);
-//        $I->dontSeeElement('.logo>img');
-//        $I->dontSeeElement('#inputString');
-//        $I->dontSeeElement('.btnBask');
-        $I->wait(1);
-        $I->amOnUrl('http://premmerce.ru/saas/profile');
-        $I->wait(1);
-        $I->logoutCabinet();
-        $I->wait(1);
+        $I->wait(3);
+        $I->dontSeeElement('.logo>img');
+        $I->dontSeeElement('#inputString');
+        $I->dontSeeElement('.btn-bask>button');
+//        $I->wait(1);
+////        $I->amOnUrl('http://imagego.ru/saas/profile');
+//        $I->amOnUrl('');///saas/profile
+//        $I->wait(3);
+//        $I->click(\MainPage::$ButtonEnter);
+//        $I->wait(2);
+////        $I->wait(5);
+//        $I->logoutCabinet();
+//        $I->wait(1);
     }
     
     
@@ -147,7 +153,7 @@ class SaasUserPageCest
     
     
     /**
-     * @group a
+     * @group aa
      * @guy PremmerceTester\PremmerceSteps
      */
     public function CheckOffSaas(PremmerceTester\PremmerceSteps $I){
@@ -171,7 +177,7 @@ class SaasUserPageCest
     
     
     /**
-     * @group a
+     * @group aa
      * @guy PremmerceTester\PremmerceSteps 
      */
     public function CheckOnCabinet (PremmerceTester\PremmerceSteps $I){
@@ -179,8 +185,8 @@ class SaasUserPageCest
         $I->wait(1);
         $I->seeInCurrentUrl('/saas/profile');
         $I->see($this->Store_Name, CabinetPage::$TabMainFieldSiteLink);
-        $I->see($this->Store_Name, CabinetPage::$TabMainFieldAdminLink);
-        $I->see($this->Tarif_Standart, CabinetPage::$TabMainFieldTariffNameText);
+        $I->see($this->Store_Name . '.premme.com/admin', CabinetPage::$TabMainFieldAdminLink);
+        $I->see($this->Tariff_Standart, CabinetPage::$TabMainFieldTariffNameText);
         $I->click(CabinetPage::$TabProfile);
         $I->wait(1);
         $I->seeInField(CabinetPage::$TabProfileInputdName, $this->User_Name);
@@ -188,22 +194,22 @@ class SaasUserPageCest
         $I->seeInField(CabinetPage::$TabProfileInputCity, $this->User_City);
         $I->seeInField(CabinetPage::$TabProfileInputEmail, $this->User_Email);
         $I->wait(5);
-        $I->amOnUrl('http://popopulation.premme.com/admin/');
+        $I->amOnUrl('http://ssaasuserlist.premme.com/admin/');
         $I->wait(5);
         $I->SeeElement('.form_login.t-a_c');
         $I->SeeElement('#with_out_article>label>input');
-        $I->SeeElement('.btn.btn-info');
+//        $I->SeeElement('.btn.btn-info');
         $I->wait(5);
         $I->amOnPage('/');        
         $I->wait(5);
         $I->SeeElement('.logo>img');
         $I->SeeElement('#inputString');
-        $I->SeeElement('.btnBask');
-        $I->wait(5);
-        $I->amOnUrl('http://premmerce.ru/saas/profile');
-        $I->wait(5);
-        $I->logoutCabinet();
-        $I->wait(5);
+        $I->SeeElement('.btn-bask>button');
+////        $I->wait(5);
+//        $I->amOnUrl('http://imagego.ru/saas/profile');
+//        $I->wait(5);
+//        $I->logoutCabinet();
+//        $I->wait(5);
     }
         
     
