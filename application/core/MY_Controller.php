@@ -83,7 +83,7 @@ class MY_Controller extends MX_Controller {
             if ($res) {
                 $res = $res->result_array();
             } else {
-                show_error('db error');
+                show_error($this->db->_error_message());
             }
             
             $this->db->cache_off();
@@ -142,8 +142,9 @@ class MY_Controller extends MX_Controller {
                 ->where('default', 1)
                 ->get('languages');
 
-        if ($languages)
+        if ($languages) {
             $languages = $languages->row_array();
+        }
 
         return $languages;
     }
