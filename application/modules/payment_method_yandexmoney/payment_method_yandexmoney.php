@@ -17,7 +17,7 @@ class Payment_method_yandexmoney extends MY_Controller {
     }
 
     public function index() {
-        var_dump('adasd');
+        var_dump('adasd1');
     }
     
     
