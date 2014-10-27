@@ -106,6 +106,11 @@ class Lib_init {
 			{
 				define('ICMS_DISBALE_CSRF',true);
 			}
+            //new payment system
+            if(preg_match("/payment_method_/i", $CI->uri->segment(1)) || preg_match("/payment_method_/i", $CI->uri->segment(2)))
+            {
+                define('ICMS_DISBALE_CSRF',true);
+            }
 			
 
         }
