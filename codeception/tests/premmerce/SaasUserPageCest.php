@@ -11,8 +11,8 @@ class SaasUserPageCest
    private $Store_Url = 'http://ssaasuserlist.premme.com';
 
 
-   private $Store_Name = 'saasuserlistt';
-   private $User_Email = 'ssaasuserlistt.test@test.com';
+   private $Store_Name = 'testsaasuserlistt';
+   private $User_Email = 'testssaasuserlistt.test@test.com';
    private $User_Password = '98765431';
    private $User_Name = 'Bazooka Band';
    private $User_Phone = '+3-3+3-3-+3';
@@ -49,7 +49,7 @@ class SaasUserPageCest
    
    
     /**
-     * @group a
+     * @group atest
      * @guy PremmerceTester\PremmerceSteps 
      */
     public function CreateStore(PremmerceTester\PremmerceSteps $I){

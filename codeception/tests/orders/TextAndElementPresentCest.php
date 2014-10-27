@@ -21,31 +21,40 @@ class TextAndElementsPresentCast
     private $user_email     = 'afrika@boombaataa.net';
     private $user_phone     = '9876543210';
     private $user_adress    = 'New York';
+    
+    private $User_Email = 'ssaasuserlisttr.test@test.com';
+    private $User_Password = '98765431';
 
   
 //----------------------------LIST PAGE-----------------------------------------   
     
     /**
      * @group awe
+     * @guy OrdersTester\OrdersSteps
      */
-    public function Login(OrdersTester $I) {
-        InitTest::Login($I);
+    public function Login(OrdersTester\OrdersSteps $I) {
+        $I->loginCabinet('ssaasuserlisttr.test@test.com', '98765431');
+//        InitTest::Login($I);
     }
     
     
     /**
-     * @group a
+     * @group awe
      * @guy OrdersTester\OrdersSteps
      */
     public function CrateProductCategory (OrdersTester\OrdersSteps $I) {
+        $I->amOnUrl('http://saasuserlisttr.premme.com/admin');
+        $I->login('ssaasuserlisttr.test@test.com', '98765431');
         $I->createCategoryProduct($createNameCategory = $this->name_product_category);
     }
     
     /**
-     * @group a
+     * @group awe
      * @guy OrdersTester\OrdersSteps
      */
     public function CrateProduct (OrdersTester\OrdersSteps $I) {
+        $I->amOnUrl('http://saasuserlisttr.premme.com/admin');
+//        $I->login('ssaasuserlisttr.test@test.com', '98765431');
         $I->createProduct(  $name_Product           = $this->name_product,
                             $price_Product          = $this->price_product,
                             $article_Product        = $this->article_product,
@@ -374,7 +383,7 @@ class TextAndElementsPresentCast
     }
     
     /**
-     * @group awe
+     * @group a
      */
     public function TabQuick (OrdersTester $I) {
         $I->amOnPage(OrdersListCreatePage::$URL);
