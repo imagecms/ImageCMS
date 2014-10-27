@@ -268,8 +268,11 @@ class SaasUserListPage {
     public static function SelectStatusesOption($row, $number) {
         return "//section/div[2]/div/div[1]/table/tbody/tr[$row]/td[16]/div/div[9]/select/option[$number]";
     }
+    public static function SelectDepartments($row) {
+        return "//section/div[2]/div/div[1]/table/tbody/tr[$row]/td[16]/div/div[10]/select";
+    }
 
-    public static function SelectDepartments($row, $number) {
+    public static function SelectDepartmentsOption($row, $number) {
         return "//section/div[2]/div/div[1]/table/tbody/tr[$row]/td[16]/div/div[10]/select/option[$number]";
     }
 

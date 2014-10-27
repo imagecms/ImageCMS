@@ -28,7 +28,7 @@
                         <td colspan="6">
                             <div class="importProcess">
                                 <!-- Start. Choose file and load to server on checked slot  -->
-                                <div class="fortextblock inside_padd span9">
+                                <div class="fortextblock inside_padd">
                                     <form action="{$ADMIN_URL}../getImport/imports" method="post" enctype="multipart/form-data">
                                         <div class="control-group form-horizontal">
                                             <label class="control-label"></label>
@@ -46,7 +46,7 @@
 
                                 <!-- Start. Choose file and load to server on checked slot  -->
                                 <form action="{$ADMIN_URL}../getImport/imports" method="post" enctype="multipart/form-data" id="makeImportForm">
-                                    <div class="inside_padd span9 form-horizontal row-fluid">
+                                    <div class="inside_padd form-horizontal row-fluid">
 
                                         <!-- Start. First of tree slots markup -->
                                         <div class="control-group">

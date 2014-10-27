@@ -21,31 +21,40 @@ class TextAndElementsPresentCast
     private $user_email     = 'afrika@boombaataa.net';
     private $user_phone     = '9876543210';
     private $user_adress    = 'New York';
+    
+    private $User_Email = 'ssaasuserlisttr.test@test.com';
+    private $User_Password = '98765431';
 
   
 //----------------------------LIST PAGE-----------------------------------------   
     
     /**
-     * @group aa
+     * @group awe
+     * @guy OrdersTester\OrdersSteps
      */
-    public function Login(OrdersTester $I) {
-        InitTest::Login($I);
+    public function Login(OrdersTester\OrdersSteps $I) {
+        $I->loginCabinet('ssaasuserlisttr.test@test.com', '98765431');
+//        InitTest::Login($I);
     }
     
     
     /**
-     * @group a
+     * @group awe
      * @guy OrdersTester\OrdersSteps
      */
     public function CrateProductCategory (OrdersTester\OrdersSteps $I) {
+        $I->amOnUrl('http://saasuserlisttr.premme.com/admin');
+        $I->login('ssaasuserlisttr.test@test.com', '98765431');
         $I->createCategoryProduct($createNameCategory = $this->name_product_category);
     }
     
     /**
-     * @group a
+     * @group awe
      * @guy OrdersTester\OrdersSteps
      */
     public function CrateProduct (OrdersTester\OrdersSteps $I) {
+        $I->amOnUrl('http://saasuserlisttr.premme.com/admin');
+//        $I->login('ssaasuserlisttr.test@test.com', '98765431');
         $I->createProduct(  $name_Product           = $this->name_product,
                             $price_Product          = $this->price_product,
                             $article_Product        = $this->article_product,
@@ -84,7 +93,8 @@ class TextAndElementsPresentCast
         $I->click(NavigationBarPage::$Orders);
         $I->click(NavigationBarPage::$OrdersList);
         $I->wait(1);
-        $I->see('Список заказов (0)',OrdersListPage::$Title);
+        $I->seeElement(OrdersListPage::$Title);
+        $I->see('Список заказов');
     }
     
     
@@ -254,9 +264,10 @@ class TextAndElementsPresentCast
      */
     public function VerifyСheckButton (OrdersTester $I) {
         $I->amOnPage(OrdersListPage::$URL);
-        $I->click(OrdersListPage::lineCheck(1));
         $I->wait(1);
-        $I->see('Список заказов (1)',OrdersListPage::$Title);
+        $I->click(OrdersListPage::lineCheck(1));
+        $I->wait(2);
+        $I->seeElement(OrdersListPage::$Title);
         $I->see('Фильтр', OrdersListPage::$ButtonFilter);
         $I->see('Изменить статус', OrdersListPage::$ButtonChangeStatus);
         $I->see('Удалить', OrdersListPage::$ButtonDelete);
@@ -372,7 +383,7 @@ class TextAndElementsPresentCast
     }
     
     /**
-     * @group aa
+     * @group a
      */
     public function TabQuick (OrdersTester $I) {
         $I->amOnPage(OrdersListCreatePage::$URL);
@@ -387,18 +398,14 @@ class TextAndElementsPresentCast
         $I->see($this->amount_product, OrdersListCreatePage::$TabQuickSearchTextStock);
         $I->click(OrdersListCreatePage::$TabQuickSearchButtonAdd);
         $I->wait(1);
-        $I->see('В корзине', OrdersListCreatePage::$TabQuickSearchButtonAdd);
-        $I->see('', OrdersListCreatePage::lineProductLink(1));
-        $I->see('', OrdersListCreatePage::lineArticleText(1));
+        $I->see($this->name_product, OrdersListCreatePage::lineProductLink(1));
+        $I->see($this->article_product, OrdersListCreatePage::lineArticleText(1));
         $I->see('', OrdersListCreatePage::lineVarianText(1));
-        $I->see('', OrdersListCreatePage::linePriceText(1));
-        $I->see('', OrdersListCreatePage::lineAmountInput(1));
-        $I->see('', OrdersListCreatePage::lineTotalPriceText(1));
-        $I->see('', OrdersListCreatePage::lineTotalPriceCurrencyText(1));
-        $I->see('', OrdersListCreatePage::$FootTotalPrice);
-        $I->see('', OrdersListCreatePage::$FootTotalPriceCurrency);
-        $I->see('', OrdersListCreatePage::$FootTotalPriceLabel);
-        $I->see('', OrdersListCreatePage::$FootGiftCertificateInput);
+        $I->see($this->price_product, OrdersListCreatePage::linePriceText(1));
+        $I->seeInField(OrdersListCreatePage::lineAmountInput(1), '1');
+        $I->see($this->price_product, OrdersListCreatePage::lineTotalPriceText(1));
+        $I->see($this->price_product, OrdersListCreatePage::$FootTotalPrice);
+        $I->see($this->price_product, OrdersListCreatePage::$FootTotalPriceLabel);
         
     }
 }

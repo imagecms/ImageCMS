@@ -3,9 +3,10 @@
 use \DeliveryTester;
 
 class DeliveryEditCest {
+
     protected $loggedin = false;
-    protected $CreatedMethods = [];
-    public $Name = "ДоставкаРедактирование";
+    protected $createdMethods = [];
+    protected $name = "ДоставкаРедактирование";
 
     /**
      * Works after Autorization before all tests
@@ -18,28 +19,31 @@ class DeliveryEditCest {
      * @guy DeliveryTester\DeliverySteps
      */
     public function _before(DeliveryTester\DeliverySteps $I) {
-//        static $LoggedIn = false;
+//        $I->comment("-- debug In before method");
+//        if($this->loggedin){ $I->comment("-- debug  logged"); }
+//        if(!$this->loggedin){ $I->comment("-- debug  unlogged"); }
         $methodCreated = false;
         if ($this->loggedin == true) {
+//          $I->comment("-- debug  logged");
             $I->amOnPage("/admin/components/run/shop/deliverymethods/index");
-            $rows = $I->grabClassCount($I, 'niceCheck') - 1;
-            for ($row = 1; $row <= $rows; ++$row) {
+            $rows = $I->getAmount($I, '.niceCheck') - 1;
+            for ($row = 1; $row <= $rows; $row++) {
                 $Cmethod = $I->grabTextFrom(DeliveryListPage::lineMethodLink($row));
-                if ($this->Name == $Cmethod) {
+//                $I->comment("-- debug fact name: $Cmethod");
+//                $I->comment("-- debug actual name:" . $this->name);
+                if ($this->name == $Cmethod) {
                     $methodCreated = true;
                     $I->click(DeliveryListPage::lineMethodLink($row));
                     break;
                 }
             }
             if (!$methodCreated) {
-                $I->createDelivery($this->Name);
+                $I->createDelivery($this->name);
                 $methodCreated = true;
             }
-            $I->waitForText("Редактирование способа доставки: $this->Name", NULL, DeliveryEditPage::$Title);
+            $I->waitForText("Редактирование способа доставки: $this->name", NULL, DeliveryEditPage::$Title);
         }
-        $this->CreatedMethods[] = $this->Name;
-//        $LoggedIn = true;
-//        $this->loggedin = true;
+        $this->createdMethods[] = $this->name;
     }
 
     /**
@@ -66,11 +70,11 @@ class DeliveryEditCest {
     public function eName250(DeliveryTester\DeliverySteps $I) {
         $name = InitTest::$text250;
         //For deleting
-        $this->CreatedMethods[] = $name;
+        $this->createdMethods[] = $name;
 
         $I->EditDelivery($name, 'on');
         $I->CheckInList($name);
-        $this->Name = $name;
+        $this->name = $name;
     }
 
     /**
@@ -80,11 +84,11 @@ class DeliveryEditCest {
     public function eName500(DeliveryTester\DeliverySteps $I) {
         $name = InitTest::$text500;
         //For deleting
-        $this->CreatedMethods[] = $name;
+        $this->createdMethods[] = $name;
 
         $I->EditDelivery($name);
         $I->CheckInList($name);
-        $this->Name = $name;
+        $this->name = $name;
     }
 
     /**
@@ -94,10 +98,11 @@ class DeliveryEditCest {
     public function eNameSymbols(DeliveryTester\DeliverySteps $I) {
         $name = InitTest::$textSymbols;
         //For deleting
-        $this->CreatedMethods[] = $name;
+        $this->createdMethods[] = $name;
 
         $I->EditDelivery($name);
         $I->CheckInList($name);
+        $this->name = $name;
     }
 
     /**
@@ -107,9 +112,10 @@ class DeliveryEditCest {
     public function eNameNormal(DeliveryTester\DeliverySteps $I) {
         $name = "ДоставкаРедактирование";
         //For deleting
-        $this->CreatedMethods[] = $name;
+        $this->createdMethods[] = $name;
         $I->EditDelivery($name);
         $I->CheckInList($name);
+        $this->name = $name;
     }
 
 //    __________________________________________________________________________CHECKBOX_ACTIVE_TESTS
@@ -120,7 +126,7 @@ class DeliveryEditCest {
      */
     public function eActiveCheck(DeliveryTester\DeliverySteps $I) {
         $I->EditDelivery(null, 'on');
-        $I->CheckInList($this->Name, 'on');
+        $I->CheckInList($this->name, 'on');
     }
 
     /**
@@ -129,7 +135,7 @@ class DeliveryEditCest {
      */
     public function eActiveUnCheck(DeliveryTester\DeliverySteps $I) {
         $I->EditDelivery(null, 'off');
-        $I->CheckInList($this->Name, 'off');
+        $I->CheckInList($this->name, 'off');
     }
 
 //    __________________________________________________________________________FIELD_DESCRIPTION_TESTS
@@ -141,11 +147,11 @@ class DeliveryEditCest {
     public function eDescriptionDescriptionPrice(DeliveryTester\DeliverySteps $I) {
         $description = $descriptionprice = InitTest::$textSymbols;
         $I->EditDelivery(null, 'on', $description, $descriptionprice);
-        $I->waitForText("Редактирование способа доставки: $this->Name", NULL, ".title");
+        $I->waitForText("Редактирование способа доставки: $this->name", NULL, ".title");
         $I->wait(3);
         $I->seeInField(DeliveryEditPage::$InputDescription, $description);
         $I->seeInField(DeliveryEditPage::$InputDescriptionPrice, $descriptionprice);
-        $I->CheckInFrontEnd($this->Name, $description);
+        $I->CheckInFrontEnd($this->name, $description);
     }
 
 //    __________________________________________________________________________FIELD_PRICE_TESTS
@@ -158,7 +164,7 @@ class DeliveryEditCest {
         $price = InitTest::$textSymbols;
         $I->EditDelivery(null, null, null, null, $price);
         $Nprice = '1234567890';
-        $I->CheckInList($this->Name, null, $Nprice);
+        $I->CheckInList($this->name, null, $Nprice);
     }
 
 //______________________________________________________________________________________________________________________++++++++++++++++BUG_HERE
@@ -170,7 +176,7 @@ class DeliveryEditCest {
         $freefrom = InitTest::$textSymbols;
         $I->EditDelivery(null, null, null, null, null, $freefrom);
         $Nfreefrom = '1234567890';
-        $I->CheckInList($this->Name, null, null, $Nfreefrom);
+        $I->CheckInList($this->name, null, null, $Nfreefrom);
     }
 
     /**
@@ -180,7 +186,7 @@ class DeliveryEditCest {
     public function ePrice15Num(DeliveryTester\DeliverySteps $I) {
         $price = 9999999999.999;
         $I->EditDelivery(null, null, null, null, $price);
-        $I->CheckInList($this->Name, NULL, $price);
+        $I->CheckInList($this->name, NULL, $price);
     }
 
     /**
@@ -190,7 +196,7 @@ class DeliveryEditCest {
     public function ePrice1Num(DeliveryTester\DeliverySteps $I) {
         $price = 1;
         $I->EditDelivery(null, null, null, null, $price);
-        $I->CheckInList($this->Name, null, $price);
+        $I->CheckInList($this->name, null, $price);
     }
 
     /**
@@ -200,7 +206,7 @@ class DeliveryEditCest {
     public function ePrice10Num(DeliveryTester\DeliverySteps $I) {
         $price = 55555.55555;
         $I->EditDelivery(null, null, null, null, $price);
-        $I->CheckInList($this->Name, null, $price);
+        $I->CheckInList($this->name, null, $price);
     }
 
 //    __________________________________________________________________________FIELD_FREE_FROM_TESTS
@@ -212,7 +218,7 @@ class DeliveryEditCest {
     public function eFreeFrom1Num(DeliveryTester\DeliverySteps $I) {
         $freefrom = 1;
         $I->EditDelivery(null, null, null, null, null, $freefrom);
-        $I->CheckInList($this->Name, null, null, $freefrom);
+        $I->CheckInList($this->name, null, null, $freefrom);
     }
 
     /**
@@ -222,7 +228,7 @@ class DeliveryEditCest {
     public function eFreeFrom10Num(DeliveryTester\DeliverySteps $I) {
         $freefrom = 55555.55555;
         $I->EditDelivery(null, null, null, null, null, $freefrom);
-        $I->CheckInList($this->Name, null, null, $freefrom);
+        $I->CheckInList($this->name, null, null, $freefrom);
     }
 
     /**
@@ -232,7 +238,7 @@ class DeliveryEditCest {
     public function eFreeFrom15Num(DeliveryTester\DeliverySteps $I) {
         $freefrom = 9999999999.999;
         $I->EditDelivery(null, null, null, null, null, $freefrom);
-        $I->CheckInList($this->Name, null, null, $freefrom);
+        $I->CheckInList($this->name, null, null, $freefrom);
     }
 
 //    __________________________________________________________________________CHECKBOX_PRICE_SPECIFIED&FIELD_PRICE_SPECIFIED  
@@ -251,8 +257,9 @@ class DeliveryEditCest {
             $diabledFreefrom = $I->grabAttributeFrom(DeliveryEditPage::$InputFreeFrom, 'disabled');
             $I->assertEquals($diabledPrice, NULL);
             $I->assertEquals($diabledFreefrom, NULL);
-        } else
+        } else {
             $I->fail('wrong class of checkbox sum specified');
+        }
 
         $I->click(DeliveryCreatePage::$CheckPriceSpecified);
         $class = $I->grabAttributeFrom(DeliveryEditPage::$CheckPriceSpecified . '/..', 'class');
@@ -262,8 +269,9 @@ class DeliveryEditCest {
             $diabledFreefrom = $I->grabAttributeFrom(DeliveryEditPage::$InputFreeFrom, 'disabled');
             $I->assertEquals($diabledPrice, "true");
             $I->assertEquals($diabledFreefrom, "true");
-        } else
+        } else{
             $I->fail('wrong class of checkbox sum specified');
+        }
     }
 
     /**
@@ -273,7 +281,7 @@ class DeliveryEditCest {
     public function ePriceSpecified250(DeliveryTester\DeliverySteps $I) {
         $message = InitTest::$text250;
         $I->EditDelivery(null, 'on', null, null, null, null, $message);
-        $I->CheckInFrontEnd($this->Name, null, null, null, $message);
+        $I->CheckInFrontEnd($this->name, null, null, null, $message);
     }
 
     /**
@@ -283,7 +291,7 @@ class DeliveryEditCest {
     public function eFieldPriceSpecified500(DeliveryTester\DeliverySteps $I) {
         $message = InitTest::$text500;
         $I->EditDelivery(null, 'on', null, null, null, null, $message);
-        $I->CheckInFrontEnd($this->Name, null, null, null, $message);
+        $I->CheckInFrontEnd($this->name, null, null, null, $message);
     }
 
     /**
@@ -293,7 +301,7 @@ class DeliveryEditCest {
     public function eFieldPriceSpecifiedSymbols(DeliveryTester\DeliverySteps $I) {
         $message = InitTest::$textSymbols;
         $I->EditDelivery(null, 'on', null, null, null, null, $message);
-        $I->CheckInFrontEnd($this->Name, null, null, null, $message);
+        $I->CheckInFrontEnd($this->name, null, null, null, $message);
     }
 
 //    __________________________________________________________________________PAYMENT_METHODS_FIELD
@@ -324,7 +332,7 @@ class DeliveryEditCest {
         //$pay = $I->GrabAllCreatedPayments();
         $this->_before($I);
         $I->EditDelivery(null, 'on', null, null, null, null, null, 'off');
-        $I->CheckInFrontEnd($this->Name, null, null, null, null, 'off');
+        $I->CheckInFrontEnd($this->name, null, null, null, null, 'off');
     }
 
     /**
@@ -335,7 +343,7 @@ class DeliveryEditCest {
         $pay = $I->GrabAllCreatedPayments();
         $this->_before($I);
         $I->EditDelivery(null, 'on', null, null, null, null, null, $pay);
-        $I->CheckInFrontEnd($this->Name, NULL, null, null, null, $pay);
+        $I->CheckInFrontEnd($this->name, NULL, null, null, null, $pay);
     }
 
     /**
@@ -345,8 +353,8 @@ class DeliveryEditCest {
     public function deleteAllCreatedMethods(DeliveryTester\DeliverySteps $I) {
         $I->amOnPage(DeliveryListPage::$URL);
         //Deleting
-        $I->DeleteDeliveryMethods($this->CreatedMethods);
-        unset($this->CreatedMethods);
+        $I->DeleteDeliveryMethods($this->createdMethods);
+        unset($this->createdMethods);
     }
 
     /**
@@ -358,4 +366,5 @@ class DeliveryEditCest {
         InitTest::Loguot($I);
         $this->loggedin = false;
     }
+
 }

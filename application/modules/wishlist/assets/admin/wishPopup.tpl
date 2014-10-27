@@ -29,14 +29,14 @@
                 <tbody>
                     <tr>
                         <td colspan="6">
-                            <div class="inside_padd span9">
+                            <div class="inside_padd">
                                 <form method="post" action="{site_url('/admin/components/cp/wishlist/moveItem/'.$varId . '/' . $wish_list_id)}">
                                     <div id="wishCart" class="active" data-effect-off="fadeOut" data-duration="500" data-elrun="#popupCart" style="top: 922px; left: 571.5px; display: block;">
                                         <div class="fancy fancy_cleaner frame_head_content wishTMP">
                                             <div class="header_title">{lang('Choose Wish List', 'wishlist')}
                                             </div>
                                             <div class="drop-content">
-                                                <div class="inside_padd span9">
+                                                <div class="inside_padd">
                                                     <div class="addWL">
                                                         {foreach $wish_lists as $wish_list}
                                                             <label>

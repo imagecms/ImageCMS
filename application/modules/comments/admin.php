@@ -296,11 +296,9 @@ class Admin extends BaseAdminController {
     public function show_settings() {
         $settings = $this->comments->get_settings();
 
-//        $this->template->add_array(array(
-//            'settings' => $settings
-//        ));
-        $this->render('settings', array('settings' => $settings));
-        //$this->display_tpl('settings');
+        \CMSFactory\assetManager::create()
+                ->setData('settings',$settings)
+                ->renderAdmin('settings');
     }
 
     public function update_settings() {
