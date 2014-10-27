@@ -21,6 +21,11 @@ class Payment_method_liqpay extends MY_Controller {
         
     }
 
+    /**
+     * Вытягивает данные способа оплаты
+     * @param str $key
+     * @return array
+     */
     private function getPaymentSettings($key) {          
         $ci = &get_instance();
         $value = $ci->db->where('name', $key)
@@ -33,6 +38,12 @@ class Payment_method_liqpay extends MY_Controller {
         return unserialize($value);
     }
 
+    /**
+     * Вызывается при редактировании способов оплатыв админке
+     * @param int $id ид метода оплаты
+     * @param string $payName название payment_method_liqpay
+     * @return string
+     */
     public function getAdminForm($id, $payName = null) {
         if(!$this->dx_auth->is_admin()){
             redirect('/');
@@ -60,6 +71,11 @@ class Payment_method_liqpay extends MY_Controller {
         ';
     }
 
+    /**
+     * Формирование кнопки КУПИТЬ
+     * @param obj $param Данные о заказе
+     * @return str
+     */
     public function getForm($param) {
         $payment_method_id = $param->getPaymentMethod();
         $key = $payment_method_id . '_' . $this->moduleName;
@@ -101,14 +117,22 @@ class Payment_method_liqpay extends MY_Controller {
                 '</form>';
     }
 
+    /**
+     * Метод куда система шлет статус заказа
+     */
     public function callback() {
         if ($_POST) {
             $this->checkPaid($_POST);
         }
     }
 
+    /**
+     * Метов обработке статуса заказа
+     * @param array $param пост от метода callback
+     */
     private function checkPaid($param) {  
         $ci = &get_instance();
+        
         $order_id = $param['order_id'];
         $userOrder = $ci->db->where('id', $order_id)
                 ->get('shop_orders');
@@ -153,7 +177,10 @@ class Payment_method_liqpay extends MY_Controller {
     }
 
     /**
-     * success paid
+     * Переводит статус заказа в оплачено, и прибавляет пользователю
+     * оплеченную сумму к акаунту
+     * @param int $order_id ид заказа который обрабатывается
+     * @param obj $userOrder данные заказа
      */
     private function successPaid($order_id, $userOrder) {  
         $ci = &get_instance();
@@ -190,7 +217,8 @@ class Payment_method_liqpay extends MY_Controller {
 
     public function _install() {  
         $ci = &get_instance();
-        $result = $ci->db->where('name', 'payment_method_liqpay')
+        
+        $result = $ci->db->where('name', $this->moduleName)
                 ->update('components', array('enabled' => '1'));
         if(!$result){
             show_error($ci->db->_error_message());
@@ -200,11 +228,11 @@ class Payment_method_liqpay extends MY_Controller {
     public function _deinstall() {  
         $ci = &get_instance();
         
-        $ci->db->where('name', $this->moduleName)
+        $ci->db->where('payment_system_name', $this->moduleName)
                 ->update('shop_payment_methods', array(
                         'active'=>'0',
                         'payment_system_name'=>'0',
-                        ));        
+                        ));
         
         $ci->db->like('name', $this->moduleName)
                ->delete('shop_settings');

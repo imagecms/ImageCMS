@@ -15,7 +15,7 @@ class Admin extends BaseAdminController {
     }
 
     public function index() {
-        
+        redirect('/admin/components/modules_table');
     }
 
 }
