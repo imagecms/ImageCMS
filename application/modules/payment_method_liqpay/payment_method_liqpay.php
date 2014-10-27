@@ -106,7 +106,6 @@ class Payment_method_liqpay extends MY_Controller {
                       <input type="hidden" name="currency" value="' . $data['currency'] . '"/>
                       <input type="hidden" name="description" value="' . $data['description'] . '"/>
                       <input type="hidden" name="order_id" value="' . $data['order_id'] . '"/>
-                      <input type="hidden" name="sandbox" value="1"/>
                       <input type="hidden" name="result_url" value="' . $data['result_url'] . '"/>
                       ' . "<input type='hidden' name='server_url' value='" . $data['server_url'] . "'/>" . '     
                       <input type="hidden" name="type" value="buy"/>
