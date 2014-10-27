@@ -426,7 +426,7 @@ class FieldsNLCest
         $I->wait('1');
         $I->click(NotificationListPage::$WindowDeleteButtonDelete);
         $I->wait('1');
-        InitTest::ClearAllCach($I);
+//        InitTest::ClearAllCach($I);
     }
       
   

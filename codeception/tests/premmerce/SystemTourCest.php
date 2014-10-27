@@ -25,7 +25,7 @@ class SystemTourCest
 
     
     /**
-     * @group x
+     * @group a
      * @guy PremmerceTester\PremmerceSteps 
      */
     public function CreateStore(PremmerceTester\PremmerceSteps $I){
@@ -58,7 +58,7 @@ class SystemTourCest
     
     
     /**
-     * @group x
+     * @group a
      * @guy PremmerceTester\PremmerceSteps
      */
     public function DeleteProductCategorys(PremmerceTester\PremmerceSteps $I){
@@ -83,7 +83,7 @@ class SystemTourCest
     
     
     /**
-     * @group x
+     * @group a
      * @guy PremmerceTester\PremmerceSteps
      */
     public function CreateProductCategorysThreeLevels (PremmerceTester\PremmerceSteps $I){
@@ -110,7 +110,7 @@ class SystemTourCest
     
     
     /**
-     * @group x
+     * @group a
      * @guy PremmerceTester\PremmerceSteps
      */
     public function CheckFrontDashboard(PremmerceTester\PremmerceSteps $I){
@@ -124,7 +124,7 @@ class SystemTourCest
 
     
     /**
-     * @group x
+     * @group a
      * @guy PremmerceTester\PremmerceSteps
      */
     public function CheckFrontLevelCategorys(PremmerceTester\PremmerceSteps $I){
@@ -141,7 +141,7 @@ class SystemTourCest
     
     
     /**
-     * @group x
+     * @group a
      * @guy PremmerceTester\PremmerceSteps
      */
     public function Test(PremmerceTester\PremmerceSteps $I){
@@ -167,7 +167,7 @@ class SystemTourCest
     /////////////////////////////////////////////////////////////////////////////
    //DELETE SHOP     DELETE SHOP    DELETE SHOP    DELETE SHOP   DELETE SHOP  //                    
     /**
-     * @group DeleteShop
+     * @group a
      * @guy PremmerceTester\PremmerceSteps
      */
     public function DeleteSahopSaas(PremmerceTester\PremmerceSteps $I){
