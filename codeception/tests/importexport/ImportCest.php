@@ -48,32 +48,37 @@ class ImportExport {
          InitTest::changeTextAditorToNative($I);
     }
     
+    
+    
+    
+    
+    // NOT ACTUAL FOR PREMMERCE
     /**
      * Install module importExport CSV
      * @group current
      * @group import
      */
-    public function activateModule(ImportExportTester $I) {
-        $I->amOnPage('/admin');
-        $I->click(NavigationBarPage::$Modules);
-        $I->click(NavigationBarPage::$ModulesAllModules);
-        $I->waitForText('Все модули', null, '.title');
-        $I->click('Установить модули');
-        $rows = $I->getAmount($I, '#nimt tbody tr');
-        $present = false;
-        for ($index = 1; $index <= $rows; $index++) {
-            $module_name = $I->grabTextFrom("//table[@id ='nimt']/tbody/tr[$index]/td[1]");
-            if(trim($module_name) == 'Module Import & Export'){
-                $present = true;
-                break;
-            }
-        }
-        if($present){ 
-            $I->comment('Not installed');
-            $I->click("//table[@id ='nimt']/tbody/tr[$index]/td[4]/a");
-            $I->wait(3);
-        }
-    }
+//    public function activateModule(ImportExportTester $I) {
+//        $I->amOnPage('/admin');
+//        $I->click(NavigationBarPage::$Modules);
+//        $I->click(NavigationBarPage::$ModulesAllModules);
+//        $I->waitForText('Все модули', null, '.title');
+//        $I->click('Установить модули');
+//        $rows = $I->getAmount($I, '#nimt tbody tr');
+//        $present = false;
+//        for ($index = 1; $index <= $rows; $index++) {
+//            $module_name = $I->grabTextFrom("//table[@id ='nimt']/tbody/tr[$index]/td[1]");
+//            if(trim($module_name) == 'Module Import & Export'){
+//                $present = true;
+//                break;
+//            }
+//        }
+//        if($present){ 
+//            $I->comment('Not installed');
+//            $I->click("//table[@id ='nimt']/tbody/tr[$index]/td[4]/a");
+//            $I->wait(3);
+//        }
+//    }
 
     /**
      * Create csv file and save him to _data directory
@@ -105,6 +110,8 @@ class ImportExport {
     }
     
     /**
+     * 
+     * Перевірка чи відповідають дані csv - файлу , даним на сторінці товару
      * @group current
      */
     public function verifyExportedDataICMS1540(ImportExportTester $I) {

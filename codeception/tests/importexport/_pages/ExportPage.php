@@ -45,7 +45,7 @@ class ExportPage
            self::$Chek22MetaDis, self::$Chek23MetaKey];
        }
        // Селект меню "Категории"
-       public static $SelectMenu = "//div[@id='selectedCats_chosen']//input"; 
+       public static $SelectCategory= "#selectedCats"; 
 //       public static $SelectField = "//tbody/tr/td/form/div/div[2]/div[1]/div/ul/li/input"; 
        public static $SelectSearch = "//tbody/tr/td/form/div/div[2]/div[1]/div/div/ul/li"; 
        

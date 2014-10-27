@@ -29,6 +29,7 @@ class GeneralPage
     //Система
     public static $System               = "//table/tbody/tr/td[7]/a";
     public static $SystemGlobalSettings = '//div[1]/div[3]/table/tbody/tr/td[7]/ul/li[1]/a';
+
     public static $SystemClearAllCach   = "#clearAllCache";
 
     //Заказы
