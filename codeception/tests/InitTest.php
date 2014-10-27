@@ -60,6 +60,7 @@ class InitTest {
     //Premmerce Admin
     public static function VerifyLogInOrLogOutPremmerceAdmin($I) {
         $I->amOnPage(PremmerceMainPage::$URL);
+        $I->wait(2);
         $Atrib=$I->grabCCSAmount($I, '.f_l.p_r.shop_create_form>input');
         $I->comment("$Atrib");
         $I->wait(2);
