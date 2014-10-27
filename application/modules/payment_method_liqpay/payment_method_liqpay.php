@@ -9,6 +9,7 @@
 class Payment_method_liqpay extends MY_Controller {
 
     public $paymentMethod;
+    public $moduleName = 'payment_method_liqpay';
 
     public function __construct() {
         parent::__construct();
@@ -20,7 +21,7 @@ class Payment_method_liqpay extends MY_Controller {
         
     }
 
-    private function getPaymentSettings($key) {
+    private function getPaymentSettings($key) {          
         $ci = &get_instance();
         $value = $ci->db->where('name', $key)
                 ->get('shop_settings');
@@ -33,6 +34,11 @@ class Payment_method_liqpay extends MY_Controller {
     }
 
     public function getAdminForm($id, $payName = null) {
+        if(!$this->dx_auth->is_admin()){
+            redirect('/');
+            exit;
+        }
+        
         $nameMethod = $payName ? $payName : $this->paymentMethod->getPaymentSystemName();
         $key = $id . '_' . $nameMethod;
         $data = $this->getPaymentSettings($key);
@@ -55,9 +61,8 @@ class Payment_method_liqpay extends MY_Controller {
     }
 
     public function getForm($param) {
-        $nameMethod = 'payment_method_liqpay';
         $payment_method_id = $param->getPaymentMethod();
-        $key = $payment_method_id . '_' . $nameMethod;
+        $key = $payment_method_id . '_' . $this->moduleName;
         $paySettings = $this->getPaymentSettings($key);
 
         $publicKey = $paySettings['merchant_id'];
@@ -70,7 +75,7 @@ class Payment_method_liqpay extends MY_Controller {
             'currency' => \Currency\Currency::create()->getMainCurrency()->getCode(),
             'description' => $descr,
             'order_id' => $param->id,
-            'server_url' => site_url() . 'payment_method_liqpay/callback',
+            'server_url' => site_url() . $this->moduleName.'/callback',
             'result_url' => site_url() . 'shop/order/view/' . $param->getKey(),
         );
 
@@ -102,9 +107,9 @@ class Payment_method_liqpay extends MY_Controller {
         }
     }
 
-    public function checkPaid($param) {
-        $order_id = $param['order_id'];
+    private function checkPaid($param) {  
         $ci = &get_instance();
+        $order_id = $param['order_id'];
         $userOrder = $ci->db->where('id', $order_id)
                 ->get('shop_orders');
         if($userOrder){
@@ -113,7 +118,7 @@ class Payment_method_liqpay extends MY_Controller {
             show_error($ci->db->_error_message());
         } 
 
-        $key = $userOrder->payment_method . '_payment_method_liqpay';
+        $key = $userOrder->payment_method . '_'.$this->moduleName;
         $paySettings = $this->getPaymentSettings($key);
         
 
@@ -130,20 +135,9 @@ class Payment_method_liqpay extends MY_Controller {
                         $param['sender_phone']
                         , 1));
 
-        
-
-//        if ($param['status'] == 'wait_secure') {
-//            $this->waitPaid($model);
-//            exit;
-//        }
-
         if ($param['signature'] == $sign && $order_id)
             if ($param['status'] == 'success')
-                $this->successPaid($order_id);
-//            else
-//                $this->failPaid($model, $this->type . ': status does not true');
-//        else
-//            $this->failPaid($model, $this->type . ': sigin does not true');
+                $this->successPaid($order_id, $userOrder);
     }
 
     /**
@@ -152,7 +146,7 @@ class Payment_method_liqpay extends MY_Controller {
      * @return bool|string
      */
     public function saveSettings(SPaymentMethods $paymentMethod) {
-        $saveKey = $paymentMethod->getId() . '_payment_method_liqpay';
+        $saveKey = $paymentMethod->getId() . '_'.$this->moduleName;
         \ShopCore::app()->SSettings->set($saveKey, serialize($_POST['payment_method_liqpay']));
 
         return true;
@@ -161,17 +155,8 @@ class Payment_method_liqpay extends MY_Controller {
     /**
      * success paid
      */
-    public function successPaid($order_id) {
+    private function successPaid($order_id, $userOrder) {  
         $ci = &get_instance();
-        
-        $userOrder = $ci->db->where('id', $order_id)
-                ->get('shop_orders');
-        if($userOrder){
-            $userOrder = $userOrder->row();
-        } else {
-            show_error($ci->db->_error_message());
-        }    
-        
         $amount = $ci->db->select('amout')
                         ->get_where('users', array('id' => $userOrder->user_id));
         
@@ -203,12 +188,26 @@ class Payment_method_liqpay extends MY_Controller {
         
     }
 
-    public function _install() {
-        $this->db->where('name', 'payment_method_liqpay')
+    public function _install() {  
+        $ci = &get_instance();
+        $result = $ci->db->where('name', 'payment_method_liqpay')
                 ->update('components', array('enabled' => '1'));
+        if(!$result){
+            show_error($ci->db->_error_message());
+        }
     }
 
-    public function _deinstall() {
+    public function _deinstall() {  
+        $ci = &get_instance();
+        
+        $ci->db->where('name', $this->moduleName)
+                ->update('shop_payment_methods', array(
+                        'active'=>'0',
+                        'payment_system_name'=>'0',
+                        ));        
+        
+        $ci->db->like('name', $this->moduleName)
+               ->delete('shop_settings');
         
     }
 
