@@ -8,8 +8,32 @@ class OrdersSteps
 extends \OrdersTester
 
 {
-
     
+    public function login($user_email = USER_EMAIL, $user_password = USER_PASSWORD) {
+        $I = $this;
+        $I->amOnPage('/admin');
+        $I->submitForm('#with_out_article', ['login' => $user_email, 'password' => $user_password]);
+        $I->waitForElement('#topPanelNotifications');
+    }
+
+    /**
+     * @param string $user_email
+     * @param string $user_password
+     */
+    public function loginCabinet($user_email, $user_password) {
+
+        $I = $this;
+        $I->amOnPage(\MainPage::$URL);
+        $I->wait(3);
+        $I->click(\MainPage::$ButtonEnter);
+        $I->wait(2);
+        $I->fillField(\MainPage::$WindowLoginInputEmail, $user_email);
+        $I->wait(1);
+        $I->fillField(\MainPage::$WindowLoginInputPassword, $user_password);
+        $I->wait(1);
+        $I->click(\MainPage::$WindowLoginButtonSend);
+        $I->wait(7);
+    }
     
     
     

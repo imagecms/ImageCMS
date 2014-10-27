@@ -20,7 +20,7 @@
                             {/foreach}
                             <span class="caret"></span>
                         </a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu pull-right">
                             {foreach $langs as $l}
                                 {if $l.id != $page_lang}
                                     <li>
@@ -129,7 +129,7 @@
                         <tr>
                             <td colspan="6">
 
-                                <div class="inside_padd span9">
+                                <div class="inside_padd">
                                     <div class="control-group">
                                         <label class="control-label" for="page_url">
                                             {lang("URL","admin")}:
@@ -245,7 +245,7 @@
                     <tbody>
                         <tr>
                             <td colspan="6">
-                                <div class="inside_padd span9">
+                                <div class="inside_padd">
                                     <div class="control-group">
                                         <label class="control-label" for="post_status">
                                             {lang("Publication status","admin")}:
