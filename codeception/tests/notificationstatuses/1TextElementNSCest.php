@@ -288,7 +288,7 @@ class TextElementNSCest
                 $j--;
             }        
         }
-      InitTest::ClearAllCach($I);   
+//      InitTest::ClearAllCach($I);   
     }
     
     
