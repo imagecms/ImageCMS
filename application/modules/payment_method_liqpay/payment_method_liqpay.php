@@ -72,7 +72,7 @@ class Payment_method_liqpay extends MY_Controller {
     }
 
     /**
-     * Формирование кнопки КУПИТЬ
+     * Формирование кнопки оплаты
      * @param obj $param Данные о заказе
      * @return str
      */
@@ -228,14 +228,20 @@ class Payment_method_liqpay extends MY_Controller {
     public function _deinstall() {  
         $ci = &get_instance();
         
-        $ci->db->where('payment_system_name', $this->moduleName)
-                ->update('shop_payment_methods', array(
-                        'active'=>'0',
-                        'payment_system_name'=>'0',
-                        ));
+        $result = $ci->db->where('payment_system_name', $this->moduleName)
+                        ->update('shop_payment_methods', array(
+                                'active'=>'0',
+                                'payment_system_name'=>'0',
+                                ));
+        if(!$result){
+            show_error($ci->db->_error_message());
+        }
         
-        $ci->db->like('name', $this->moduleName)
-               ->delete('shop_settings');
+        $result = $ci->db->like('name', $this->moduleName)
+                        ->delete('shop_settings');
+        if(!$result){
+            show_error($ci->db->_error_message());
+        }
         
     }
 
