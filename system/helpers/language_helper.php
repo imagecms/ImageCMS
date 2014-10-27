@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 /**
  * CodeIgniter
  *
@@ -45,8 +46,9 @@ if (!function_exists('lang')) {
         $CI = & get_instance();
         $line_tmp = $line;
         $line = $CI->lang->line($line);
-        if (!$line)
+        if (!$line) {
             $line = $line_tmp;
+        }
 
         if ($wraper && defined('ENABLE_TRANSLATION_API')) {
             $line = "<translate origin='" . $line_tmp . "' domain='" . $domain . "'>" . $line . "</translate>";
@@ -77,7 +79,12 @@ if (!function_exists('getMoFileName')) {
                         $locale = $CI->config->item('language');
                     } else {
                         $currentLocale = MY_Controller::getCurrentLocale();
-                        $language = $CI->db->where('identif', $currentLocale)->get('languages')->row_array();
+                        $language = $CI->db->where('identif', $currentLocale)->get('languages');
+                        if ($language) {
+                            $language = $language->row_array();
+                        } else {
+                            show_error($CI->db->_error_message());
+                        }
                         $locale = $language['locale'];
                     }
                 }
@@ -153,15 +160,25 @@ if (!function_exists('chose_language')) {
 
         $languages = $ci->db->get('languages');
 
-        if ($languages)
+        if ($languages) {
             $languages = $languages->result_array();
+        } else {
+            show_error($ci->db->_error_message());
+        }
 
-        foreach ($languages as $l)
-            if (in_array($l['identif'], $url_arr))
+        foreach ($languages as $l) {
+            if (in_array($l['identif'], $url_arr)) {
                 $lang = $l['identif'];
+            }
+        }
 
         if (!$lang) {
-            $languages = $ci->db->where('default', 1)->get('languages')->row();
+            $languages = $ci->db->where('default', 1)->get('languages');
+            if ($languages) {
+                $languages = $languages->row();
+            } else {
+                show_error($ci->db->_error_message());
+            }
             $lang = $languages->identif;
         }
 
@@ -180,6 +197,7 @@ function get_main_lang($flag = null) {
     }
 
     $lang_uri = $ci->uri->segment(1);
+
     if (in_array($lang_uri, $lan_array_rev)) {
         $lang_id = $lan_array[$lang_uri];
         $lang_ident = $lang_uri;
@@ -188,12 +206,18 @@ function get_main_lang($flag = null) {
         $lang_id = $lang[0]['id'];
         $lang_ident = $lang[0]['identif'];
     }
-    if ($flag == 'id')
+
+    if ($flag == 'id') {
         return $lang_id;
-    if ($flag == 'identif')
+    }
+
+    if ($flag == 'identif') {
         return $lang_ident;
-    if ($flag == null)
+    }
+
+    if ($flag == null) {
         return array('id' => $lang_id, 'identif' => $lang_ident);
+    }
 }
 
 /*
