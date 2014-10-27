@@ -872,6 +872,85 @@ class CreateShopUkrCest
         $I->waitForElement(PremmerceCabinetPage::$SiteLink, '60');
         $I->seeCurrentUrlEquals('/saas/profile');       
     } 
+           
+    /**
+     * @guy UkrainianTester\LocUaSteps
+     */
+    
+    public function ValidationUserNameAndCity(UkrainianTester\LocUaSteps $I)
+    {
+        InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
+        $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
+        $set="abcdefghijklmnopqrstuvwxyz1234567890";
+            $size = strlen($set)-1; 
+            $prefix = 'shop-ru-ru-';
+            $mailsufix = '@gmail.com';
+            $name = null;
+            $max = 7;
+                while($max--)
+                $name.=$set[rand(0,$size)]; 
+            $store1 = $prefix.$name;
+            $mail1 = '.'.$prefix.$name.$mailsufix;
+            echo "your store name: $store1 \nyoour mail: $mail1";
+            $password='1111111';
+            $user='Пабло Диего Франциско де Паулак';
+            $user1='Пабло Диего Франциско де Паула';
+            $phone='4443434367';
+            $city='Буэнос-Айрес Буэнос-Айрес Буэно';
+            $city1='Буэнос-Айрес Буэнос-Айрес Буэн';
+            $country='8';
+            $category='2';
+            $level='3';
+            $agree='';
+            $I->CreateShop($store1, $mail1, $password, $user, $phone, $city, null, null, $level, $agree);
+            $I->wait('2');
+            $ErrorUserName=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorUserName, 'class');
+        $I->comment("ErrorUserName: $ErrorUserName");
+        $I->assertEquals($ErrorUserName, 'error');
+//        $RequiredPhone=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorPhoneNumber, 'class');
+//        $I->comment("RequiredPhone: $RequiredPhone");
+//        $I->assertEquals($RequiredPhone, 'error');
+        $ErrorCity=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorCity, 'class');
+        $I->comment("ErrorCity: $ErrorCity");
+        $I->assertEquals($ErrorCity, 'error');
+        $I->fillField(PremmerceCreateShopPage::$UserNameField, $user1); 
+        $I->fillField(PremmerceCreateShopPage::$CityField, $city1);
+        $I->wait(5);
+        $I->click(PremmerceCreateShopPage::$CreateShopNowRegisterFormButton);
+        $I->wait('2');
+        $I->waitForElementVisible(PremmerceCreateShopPage::$CreateLoadingForm);
+        $I->wait('10');
+        $I->waitForElement(PremmerceCabinetPage::$SiteLink, '60');
+        $I->seeCurrentUrlEquals('/saas/profile');
+        $I->click(PremmerceCabinetPage::$SiteLink);
+        $I->wait('3');
+        $I->executeInSelenium(function (\Webdriver $webdriver) {
+            $handles=$webdriver->getWindowHandles();
+            $last_window = end($handles);
+            $webdriver->switchTo()->window($last_window);
+        });
+        $I->wait('6');
+        $I->waitForElement(".//*[@id='inputString']");
+        $I->seeInTitle('ImageCMS DemoShop');
+        $I->amOnPage('/saas/profile');
+        $I->wait(5);
+        $I->click(PremmerceCabinetPage::$AdminLink);
+        $I->executeInSelenium(function (\Webdriver $webdriver) {
+            $handles=$webdriver->getWindowHandles();
+            $last_window = end($handles);
+            $webdriver->switchTo()->window($last_window);
+        });
+        $I->waitForElement('[id="topPanelNotifications"]');
+        $I->seeElement('[class="btn_header btn-personal-area"]');
+        $I->click('[class="btn_header btn-personal-area"]');
+        $I->wait('1');
+        $I->see($user1, ".head");
+        $I->amOnPage('/saas/profile');
+        $I->click(PremmerceCabinetPage::$ProfileButton);
+        $I->click(PremmerceCabinetPage::$ExitButton);
+        $I->wait(2);
+    }   
     
     /**
      * @guy UkrainianTester\LocUaSteps

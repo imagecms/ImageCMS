@@ -57,7 +57,7 @@ class DeleteCallbackByButtonCest
         $kil--; //Количество всех колбеков после удаления
         $I->comment((string)$kil);
         $I->wait('2');
-        $rows=$I->grabClassCount($I,"btn btn-small btn-danger my_btn_s"); //Количество строк на странице
+        $rows=$I->grabClassCount($I,".btn btn-small btn-danger my_btn_s"); //Количество строк на странице
         $I->comment((string)$rows);
         if ($kil<=$rows){//Если только одна страница в списке колбеков
                 for ($j=1; $j<=$rows; $j++){
@@ -88,7 +88,7 @@ class DeleteCallbackByButtonCest
                     while ($pag<=$pagAll){//Для остальных страниц начиная со второй       
                             $I->click(CallbacksPage::PaginationButton($pag)); //Переход на следующую страницу
                             $I->wait('2');
-                            $rowPag=$I->grabClassCount($I,"btn btn-small btn-danger my_btn_s"); //Количество строк на странице
+                            $rowPag=$I->grabClassCount($I,".btn btn-small btn-danger my_btn_s"); //Количество строк на странице
                             $I->comment((string)$rowPag);
                                 for ($j=1; $j<=$rowPag; $j++){
                                     $noId = $I->grabTextFrom(CallbacksPage::IdLine($j));
@@ -147,7 +147,7 @@ class DeleteCallbackByButtonCest
 //        $I->waitForElementNotVisible('//*[@class="alert in fade alert-success"]');
         $kil--;
         $I->comment((string)$kil);
-        $rows=$I->grabClassCount($I,"btn btn-small btn-danger my_btn_s");
+        $rows=$I->grabClassCount($I,".btn btn-small btn-danger my_btn_s");
         $I->comment((string)$rows);
         if ($kil<=$rows){
                 for ($j=1; $j<=$rows; $j++){
@@ -176,7 +176,7 @@ class DeleteCallbackByButtonCest
                     while ($pag<=$pagAll){       
                             $I->click(CallbacksPage::PaginationButton($pag));
                             $I->wait('2');
-                            $rowPag=$I->grabClassCount($I,"btn btn-small btn-danger my_btn_s");
+                            $rowPag=$I->grabClassCount($I,".btn btn-small btn-danger my_btn_s");
                             $I->comment((string)$rowPag);
                                 for ($j=1; $j<=$rowPag; $j++){
                                     $noId = $I->grabTextFrom(CallbacksPage::IdLine($j));                                    
@@ -226,7 +226,7 @@ class DeleteCallbackByButtonCest
         $I->wait('2');
         $kil=$kil-3;
         $I->comment((string)$kil);
-        $rows=$I->grabClassCount($I,"btn btn-small btn-danger my_btn_s");
+        $rows=$I->grabClassCount($I,".btn btn-small btn-danger my_btn_s");
         $I->comment((string)$rows);
         if ($kil<=$rows){
                 for ($j=1; $j<=$rows; $j++){
@@ -269,7 +269,7 @@ class DeleteCallbackByButtonCest
                 while ($pag<=$pagAll){       
                         $I->click(CallbacksPage::PaginationButton($pag));
                         $I->wait('2');
-                        $rowPag=$I->grabClassCount($I,"btn btn-small btn-danger my_btn_s");
+                        $rowPag=$I->grabClassCount($I,".btn btn-small btn-danger my_btn_s");
                         $I->comment((string)$rowPag);
                             for ($j=1; $j<=$rowPag; $j++){
                                 $noId = $I->grabTextFrom(CallbacksPage::IdLine($j));
@@ -312,7 +312,7 @@ class DeleteCallbackByButtonCest
         $I->comment($kil);
         $j=1;                            
         $I->comment((string)$kil);
-        $rows=$I->grabClassCount($I,"btn btn-small btn-danger my_btn_s");
+        $rows=$I->grabClassCount($I,".btn btn-small btn-danger my_btn_s");
         $I->comment((string)$rows);        
         if ($kil<=$rows){
                 for ($j=1; $j<=$rows; $j++){
@@ -339,7 +339,7 @@ class DeleteCallbackByButtonCest
                     while ($pag<=$pagAll){       
                             $I->click(CallbacksPage::PaginationButton($pag));
                             $I->wait('2');
-                            $rowPag=$I->grabClassCount($I,"btn btn-small btn-danger my_btn_s");
+                            $rowPag=$I->grabClassCount($I,".btn btn-small btn-danger my_btn_s");
                             $I->comment((string)$rowPag);
                                 for ($j=1; $j<=$rowPag; $j++){
                                     $ActCheck=$I->grabAttributeFrom(CallbacksPage::CheckBoxButtonLine($j), "checked");
@@ -371,7 +371,7 @@ class DeleteCallbackByButtonCest
         $I->comment($kil);
         $j=1;                            
         $I->comment((string)$kil);
-        $rows=$I->grabClassCount($I,"btn btn-small btn-danger my_btn_s");
+        $rows=$I->grabClassCount($I,".btn btn-small btn-danger my_btn_s");
         $I->comment((string)$rows);
         if ($kil<=$rows){
                 $I->click('.//*[@id="callbacks_all"]/table/thead/tr/th[1]/span/span');
@@ -383,7 +383,7 @@ class DeleteCallbackByButtonCest
                 $I->see('Удалить', './/*[@id="mainContent"]/div[2]/div[3]/a[2]');
                 $I->click('.//*[@id="mainContent"]/div[2]/div[3]/a[2]');
                 $I->wait('2');
-                $rowsNo=$I->grabClassCount($I,"btn btn-small btn-danger my_btn_s");
+                $rowsNo=$I->grabClassCount($I,".btn btn-small btn-danger my_btn_s");
                 $I->comment((string)$rowsNo);
                 $I->assertEquals($rowsNo, '0');
                 $I->seeElement('.//*[@id="mainContent"]/div[1]/form/section/div[3]');
@@ -403,7 +403,7 @@ class DeleteCallbackByButtonCest
                     $I->click('.//*[@id="mainContent"]/div[2]/div[3]/a[2]');
                     $I->wait('2');                    
                 }    
-            $rowsNo=$I->grabClassCount($I,"btn btn-small btn-danger my_btn_s");
+            $rowsNo=$I->grabClassCount($I,".btn btn-small btn-danger my_btn_s");
             $I->comment((string)$rowsNo);
             $I->assertEquals($rowsNo, '0'); 
             $I->seeElement('.//*[@id="mainContent"]/div[1]/form/section/div[3]');

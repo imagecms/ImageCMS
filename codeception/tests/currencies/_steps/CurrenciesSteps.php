@@ -246,23 +246,25 @@ class CurrenciesSteps extends \CurrenciesTester
     function CheckProductCart($firMain,$secMain,$firADD=null,$secADD=null)
     {
         $I = $this;
-        $TextCart=$I->grabTextFrom('//*[@id="tinyBask"]/div/button/span[2]/span[2]/span[1]');
+        $TextCart=$I->grabTextFrom(\CurrenciesPage::$CartInfo);
         $I->comment($TextCart);
-        if($TextCart=='Корзина пуста'){
+        if($TextCart=='0'){
 //            break;
         }
         else{
+            $I->click(\CurrenciesPage::$CartButton);
+            $I->wait('2');
             for($i=1;$i<=$TextCart;$i++){
-                $I->click('//*[@id="popupCart"]/div/div[2]/div/div/div/table/tbody/tr/td[1]/button');
+                $I->click(\CurrenciesPage::$CartDeleteProductButton);
                 $I->wait('2');
             }
             $I->waitForText('Ваша корзина пуста');
-            $I->click('//*[@id="popupCart"]/div/button');
-            $I->waitForElementNotVisible('//*[@id="popupCart"]');
+            $I->click(\CurrenciesPage::$CloseCartButton);
+            $I->waitForElementNotVisible(\CurrenciesPage::$CartForm);
 //            break;
         }
-        $I->click('//*[@id="items-catalog-main"]/li[1]/a');
-        $I->waitForElement("/html/body/div[1]/div[2]/div[2]/div[1]/div/div[2]");
+        $I->click(\CurrenciesPage::$FirstProductSearching);
+        $I->waitForElement(\CurrenciesPage::$CardForm);
 //        $I->seeInCurrentUrl("//shop/product/$name");
         $I->see($firMain, \CurrenciesPage::$MainFirstPlaceCard);
         $I->see($secMain, \CurrenciesPage::$MainSecondPlaceCard);
@@ -273,8 +275,8 @@ class CurrenciesSteps extends \CurrenciesTester
             $I->see($secADD, \CurrenciesPage::$AdditSecondPlaceCard);
         }
         $I->wait('3');
-        $I->click("/html/body/div[1]/div[2]/div[2]/div[1]/div/div[2]/div[2]/div/div/div[1]/div[2]/div/form/div[3]/button");
-        $I->waitForElement('//*[@id="popupCart"]/div');
+        $I->click(\CurrenciesPage::$BuyCardButton);
+        $I->waitForElement(\CurrenciesPage::$CloseCartButton);
         $I->see($firMain, \CurrenciesPage::$MainFirstPlaceSum);
         $I->see($secMain, \CurrenciesPage::$MainSecondPlaceSum);
         $I->see($firMain, \CurrenciesPage::$MainFirstCart);
@@ -286,35 +288,35 @@ class CurrenciesSteps extends \CurrenciesTester
             $I->see($secADD, \CurrenciesPage::$AdditSecondCart);
         }
         $I->wait('3');
-        $I->click('//*[@id="popupCart"]/div/div[3]/div[2]/div/div[2]/a');
+        $I->click(\CurrenciesPage::$ExecuteOrderCardButton);
         $I->waitForText('Оформление заказа');
-        $I->see($firMain, '//*[@id="orderDetails"]/table/tbody/tr/td[3]/div/span/span/span/span/span[1]');
-        $I->see($secMain, '//*[@id="orderDetails"]/table/tbody/tr/td[3]/div/span/span/span/span/span[2]');
-        $I->see($firMain, '//*[@id="orderDetails"]/table/tfoot/tr/td/div/span/span[1]');
-        $I->see($secMain, '//*[@id="orderDetails"]/table/tfoot/tr/td/div/span/span[2]');
-        $I->see($firMain, '//*[@id="orderDetails"]/div[1]/div/span[2]/span/span[1]/span/span/span[1]');
-        $I->see($secMain, '//*[@id="orderDetails"]/div[1]/div/span[2]/span/span[1]/span/span/span[2]');
+        $I->see($firMain, \CurrenciesPage::$MainFirstProductExecuteOrdering);
+        $I->see($secMain, \CurrenciesPage::$MainSecondProductExecuteOrdering);
+        $I->see($firMain, \CurrenciesPage::$MainFirstCostProductsExecuteOrdering);
+        $I->see($secMain, \CurrenciesPage::$MainSecondCostProductsExecuteOrdering);
+        $I->see($firMain, \CurrenciesPage::$MainFirstSumExecuteOrdering);
+        $I->see($secMain, \CurrenciesPage::$MainSecondSumExecuteOrdering);
         if(isset($firADD)){
-            $I->see($firADD, '//*[@id="orderDetails"]/div[1]/div/span[2]/span/span[2]/span/span[1]');
+            $I->see($firADD, \CurrenciesPage::$AdditFirstSumExecuteOrdering);
         }
         if(isset($secADD)){
-            $I->see($secADD, '//*[@id="orderDetails"]/div[1]/div/span[2]/span/span[2]/span/span[2]');
+            $I->see($secADD, \CurrenciesPage::$AdditSecondSumExecuteOrdering);
         }
-        $I->fillField('/html/body/div[1]/div[2]/div/div/div[2]/form/div[2]/div/div[1]/div/div/div/input', '111111111111');
+        $I->fillField(\CurrenciesPage::$PhoneField, '111111111111');
         $I->wait('3');
-        $I->click('//*[@id="submitOrder"]');
+        $I->click(\CurrenciesPage::$SubmitOrderButton);
         $I->waitForText('Заказ');
-        $I->see($firMain, '/html/body/div[1]/div[2]/div/div/div[3]/div/div[1]/div/table/tbody/tr/td[3]/span[2]/span/span/span/span/span[1]');
-        $I->see($secMain, '/html/body/div[1]/div[2]/div/div/div[3]/div/div[1]/div/table/tbody/tr/td[3]/span[2]/span/span/span/span/span[2]');
-        $I->see($firMain, '/html/body/div[1]/div[2]/div/div/div[3]/div/div[1]/div/table/tfoot/tr/td/div/span/span/span/span[1]');
-        $I->see($secMain, '/html/body/div[1]/div[2]/div/div/div[3]/div/div[1]/div/table/tfoot/tr/td/div/span/span/span/span[2]');
-        $I->see($firMain, '/html/body/div[1]/div[2]/div/div/div[3]/div/div[2]/div/div/span[2]/span/span[1]/span/span/span[1]');
-        $I->see($secMain, '/html/body/div[1]/div[2]/div/div/div[3]/div/div[2]/div/div/span[2]/span/span[1]/span/span/span[2]');
+        $I->see($firMain, \CurrenciesPage::$MainFirstProductOrderFinish);
+        $I->see($secMain, \CurrenciesPage::$MainSecondProductOrderFinish);
+        $I->see($firMain, \CurrenciesPage::$MainFirstCostProductsOrderFinish);
+        $I->see($secMain, \CurrenciesPage::$MainSecondCostProductsOrderFinish);
+        $I->see($firMain, \CurrenciesPage::$MainFirstSumOrderFinish);
+        $I->see($secMain, \CurrenciesPage::$MainSecondSumOrderFinish);
         if(isset($firADD)){
-            $I->see($firADD, '/html/body/div[1]/div[2]/div/div/div[3]/div/div[2]/div/div/span[2]/span/span[2]/span/span/span[1]');
+            $I->see($firADD, \CurrenciesPage::$AdditFirstSumOrderFinish);
         }
         if(isset($secADD)){
-            $I->see($secADD, '/html/body/div[1]/div[2]/div/div/div[3]/div/div[2]/div/div/span[2]/span/span[2]/span/span/span[2]');
+            $I->see($secADD, \CurrenciesPage::$AdditSecondSumOrderFinish);
         }
     }
 }
