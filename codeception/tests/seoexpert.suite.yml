@@ -1,3 +1,0 @@
-class_name: SeoExpertTester
-modules:
-    enabled: [AcceptanceHelper]
