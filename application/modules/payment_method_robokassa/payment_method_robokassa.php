@@ -99,8 +99,7 @@ class Payment_method_robokassa extends MY_Controller {
 
         $mrh_login = $paySettings['login'];
         $mrh_pass1 = $paySettings['password1'];
-        $shp_order_key = $param->getKey();
-        $shp_payment_id = $param->getPaymentMethod();
+
         $inv_desc = "Оплата заказа номер " . $param->getId();
 //        // номер заказа
         $inv_id = $param->getId();
@@ -111,26 +110,17 @@ class Payment_method_robokassa extends MY_Controller {
 
         $deliveryPrice = $param->SDeliveryMethods->getPrice();
         $out_summ = ShopCore::app()->SCurrencyHelper->convert($deliveryPrice + $productsPrice);
-//        // предлагаемая валюта платежа
-        $in_curr = "PCR";
-//
-//        // язык
-        $culture = "ru";
-//
+
 //        // формирование подписи
         $crc = md5("$mrh_login:$out_summ:$inv_id:$mrh_pass1");
 
         return '<form method="post" action="https://merchant.roboxchange.com/Index.aspx">
-                <!-- для реального режима измените action формы на "https://merchant.roboxchange.com/Index.aspx" -->
-
                 <input type="hidden" name="MrchLogin" value="'.$mrh_login.'" />
                 <input type="hidden" name="OutSum" value="'.$out_summ.'" />
                 <input type="hidden" name="InvId" value="'.$inv_id.'" />
                 <input type="hidden" name="Desc" value="'.$inv_desc.'" />
                 <input type="hidden" name="SignatureValue" value="'.$crc.'" />
-
                 <input type="submit" value="Оплатить" />
-
                 </form>';
     }
 
@@ -163,22 +153,19 @@ class Payment_method_robokassa extends MY_Controller {
         $paySettings = $this->getPaymentSettings($key);
         
         $mrh_pass2 = $paySettings['password2'];
-        $shp_order_key = $param->getKey();
-        $shp_payment_id = $param->getPaymentMethod();
-        $out_summ = $_REQUEST["OutSum"];
-        $inv_id = $_REQUEST["InvId"];
+        $out_summ = $_POST["OutSum"];
+        $inv_id = $_POST["InvId"];
         $crc = strtoupper($_REQUEST["SignatureValue"]);
-        
-        
+    
         $my_crc = strtoupper(md5("$out_summ:$inv_id:$mrh_pass2"));
 
         // Check sum
         if ($out_summ != ShopCore::app()->SCurrencyHelper->convert($param->getTotalPrice()))
-            return ERROR_SUM;
+            return false;
 
         // Check sign
         if ($my_crc != $crc)
-            return "bad sign $out_summ:$inv_id:Shp_orderKey=$shp_order_key:Shp_pmId=$shp_payment_id";
+            return false;
 
         // Set order paid
         $this->successPaid($order_id, $userOrder);
