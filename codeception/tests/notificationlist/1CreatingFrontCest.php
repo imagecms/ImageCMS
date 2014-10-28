@@ -27,7 +27,7 @@ class CreatingFrontCest
 //---------------------------AUTORIZATION---------------------------------------
     
     /**
-     * @group aa
+     * @group aaaa
      */
     public function Login(NotificationListTester $I){
         InitTest::Login($I);
@@ -35,7 +35,7 @@ class CreatingFrontCest
     
 
     /**
-     * @group a
+     * @group aaaa
      * @guy NotificationListTester\notificationlistSteps
      */
     public function CreateProductCategory(NotificationListTester\notificationlistSteps $I) {
@@ -44,7 +44,7 @@ class CreatingFrontCest
     
     
     /**
-     * @group a
+     * @group aaaa
      * @guy NotificationListTester\notificationlistSteps
      */
     public function CreateProduct(NotificationListTester\notificationlistSteps $I) {
@@ -323,7 +323,7 @@ class CreatingFrontCest
         $I->wait('1');
         $I->click(NotificationListPage::$WindowDeleteButtonDelete);
         $I->wait('1');
-        InitTest::ClearAllCach($I); 
+//        InitTest::ClearAllCach($I); 
     } 
     
     /**

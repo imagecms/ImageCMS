@@ -38,6 +38,7 @@ class CreateShopRusCest
     
     public function AllElementsPresent2(RussianTester $I)
     {
+        InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
         $I->amOnPage(PremmerceMainPage::$URL);        
         $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);                
@@ -58,13 +59,22 @@ class CreateShopRusCest
     
     public function RequiredFields1(RussianTester $I)
     {
+        InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
         $I->amOnPage(PremmerceMainPage::$URL);
         $I->wait(5);
         $I->fillField(PremmerceMainPage::$CreateShopField, 'ыывв');
         $I->wait('2');
         $I->click(PremmerceMainPage::$CreateShopButtonCentre);
+        $ErrorDomain=$I->grabAttributeFrom(PremmerceMainPage::$ErrorDomain.'/span', 'class');
+        $I->comment("ErrorDomain: $ErrorDomain");
+        $I->assertEquals($ErrorDomain, 'text-el');
+        $I->wait('2');
+        $I->fillField(PremmerceMainPage::$CreateShopField, 'sh');
+        $I->wait('2');
+        $I->click(PremmerceMainPage::$CreateShopButtonCentre);
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm); 
-        $I->click(PremmerceCreateShopPage::$CreateShopNowRegisterFormButton);
+        $I->fillField(PremmerceCreateShopPage::$ShopNameField, 'паыво');
+        $I->click(PremmerceCreateShopPage::$CreateShopNowRegisterFormButton);        
         $ErrorDomain=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorDomain, 'class');
         $I->comment("ErrorDomain: $ErrorDomain");
         $I->assertEquals($ErrorDomain, 'error');
@@ -94,6 +104,7 @@ class CreateShopRusCest
         
     public function RequiredFields2(RussianTester $I)
     {
+        InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
         $I->amOnPage(PremmerceMainPage::$URL);        
         $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm); 
@@ -589,7 +600,7 @@ class CreateShopRusCest
      * @guy RussianTester\LocrusSteps
      */
     
-    public function ValidationEmail6Fail(RussianTester\LocrusSteps $I)
+    public function ValidationEmail6Passed(RussianTester\LocrusSteps $I)
     {
         InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
         $I->click(PremmerceMainPage::$CreateShopButtonTop);        
@@ -615,9 +626,37 @@ class CreateShopRusCest
             $agree='';
             $I->CreateShop($store1, $mail1, $password, $user, $phone, $city, null, null, $level, $agree);
             $I->wait('2');
-        $ErrorEmail=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorEmail, 'class');
-        $I->comment("Email:$ErrorEmail");
-        $I->assertEquals($ErrorEmail, 'error');        
+        $I->waitForElementVisible(PremmerceCreateShopPage::$CreateLoadingForm);
+        $I->wait('10');
+        $I->waitForElement(PremmerceCabinetPage::$SiteLink, '60');
+        $I->seeCurrentUrlEquals('/saas/profile');
+        $I->click(PremmerceCabinetPage::$SiteLink);
+        $I->wait('3');
+        $I->executeInSelenium(function (\Webdriver $webdriver) {
+            $handles=$webdriver->getWindowHandles();
+            $last_window = end($handles);
+            $webdriver->switchTo()->window($last_window);
+        });
+        $I->wait('6');
+        $I->waitForElement(".//*[@id='inputString']");
+        $I->seeInTitle('ImageCMS DemoShop');
+        $I->amOnPage('/saas/profile');
+        $I->wait(5);
+        $I->click(PremmerceCabinetPage::$AdminLink);
+        $I->executeInSelenium(function (\Webdriver $webdriver) {
+            $handles=$webdriver->getWindowHandles();
+            $last_window = end($handles);
+            $webdriver->switchTo()->window($last_window);
+        });
+        $I->waitForElement('[id="topPanelNotifications"]');
+        $I->seeElement('[class="btn_header btn-personal-area"]');
+        $I->click('[class="btn_header btn-personal-area"]');
+        $I->wait('1');
+//        $I->see($user, ".head");
+        $I->amOnPage('/saas/profile');
+        $I->click(PremmerceCabinetPage::$ProfileButton);
+        $I->click(PremmerceCabinetPage::$ExitButton);
+        $I->wait(2);       
     }   
     
      /**
@@ -767,6 +806,7 @@ class CreateShopRusCest
     
     public function ValidationEmail11Passed(RussianTester\LocrusSteps $I)
     {
+        $I->wait('10');
         InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
         $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
@@ -794,6 +834,33 @@ class CreateShopRusCest
         $I->wait('10');
         $I->waitForElement(PremmerceCabinetPage::$SiteLink, '60');
         $I->seeCurrentUrlEquals('/saas/profile');
+        $I->click(PremmerceCabinetPage::$SiteLink);
+        $I->wait('3');
+        $I->executeInSelenium(function (\Webdriver $webdriver) {
+            $handles=$webdriver->getWindowHandles();
+            $last_window = end($handles);
+            $webdriver->switchTo()->window($last_window);
+        });
+        $I->wait('6');
+        $I->waitForElement(".//*[@id='inputString']");
+        $I->seeInTitle('ImageCMS DemoShop');
+        $I->amOnPage('/saas/profile');
+        $I->wait(5);
+        $I->click(PremmerceCabinetPage::$AdminLink);
+        $I->executeInSelenium(function (\Webdriver $webdriver) {
+            $handles=$webdriver->getWindowHandles();
+            $last_window = end($handles);
+            $webdriver->switchTo()->window($last_window);
+        });
+        $I->waitForElement('[id="topPanelNotifications"]');
+        $I->seeElement('[class="btn_header btn-personal-area"]');
+        $I->click('[class="btn_header btn-personal-area"]');
+        $I->wait('1');
+//        $I->see($user, ".head");
+        $I->amOnPage('/saas/profile');
+        $I->click(PremmerceCabinetPage::$ProfileButton);
+        $I->click(PremmerceCabinetPage::$ExitButton);
+        $I->wait(2);
     } 
     
     /**
@@ -802,6 +869,7 @@ class CreateShopRusCest
     
     public function ValidationEmail12Passed(RussianTester\LocrusSteps $I)
     {
+        $I->wait('5');
         InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
         $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
@@ -828,9 +896,115 @@ class CreateShopRusCest
         $I->waitForElementVisible(PremmerceCreateShopPage::$CreateLoadingForm);
         $I->wait('10');
         $I->waitForElement(PremmerceCabinetPage::$SiteLink, '60');
-        $I->seeCurrentUrlEquals('/saas/profile');       
+        $I->seeCurrentUrlEquals('/saas/profile');  
+        $I->click(PremmerceCabinetPage::$SiteLink);
+        $I->wait('3');
+        $I->executeInSelenium(function (\Webdriver $webdriver) {
+            $handles=$webdriver->getWindowHandles();
+            $last_window = end($handles);
+            $webdriver->switchTo()->window($last_window);
+        });
+        $I->wait('6');
+        $I->waitForElement(".//*[@id='inputString']");
+        $I->seeInTitle('ImageCMS DemoShop');
+        $I->amOnPage('/saas/profile');
+        $I->wait('5');
+        $I->click(PremmerceCabinetPage::$AdminLink);
+        $I->executeInSelenium(function (\Webdriver $webdriver) {
+            $handles=$webdriver->getWindowHandles();
+            $last_window = end($handles);
+            $webdriver->switchTo()->window($last_window);
+        });
+        $I->waitForElement('[id="topPanelNotifications"]');
+        $I->seeElement('[class="btn_header btn-personal-area"]');
+        $I->click('[class="btn_header btn-personal-area"]');
+        $I->wait('1');
+//        $I->see($user, ".head");
+        $I->amOnPage('/saas/profile');
+        $I->click(PremmerceCabinetPage::$ProfileButton);
+        $I->click(PremmerceCabinetPage::$ExitButton);
+        $I->wait(2);
     } 
     
+    /**
+     * @guy RussianTester\LocrusSteps
+     */
+    
+    public function ValidationUserNameAndCity(RussianTester\LocrusSteps $I)
+    {
+        $I->wait('5');
+        InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
+        $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
+        $set="abcdefghijklmnopqrstuvwxyz1234567890";
+            $size = strlen($set)-1; 
+            $prefix = 'shop-ru-ru-';
+            $mailsufix = '@gmail.com';
+            $name = null;
+            $max = 7;
+                while($max--)
+                $name.=$set[rand(0,$size)]; 
+            $store1 = $prefix.$name;
+            $mail1 = $prefix.$name.$mailsufix;
+            echo "your store name: $store1 \nyoour mail: $mail1";
+            $password='1111111';
+            $user='Петров Петр Петрович Петров Петр';
+            $user1='Петров Петр Петрович';
+            $phone='4443434367';
+            $city='New York New York New Yor k New';
+            $city1='New York';
+            $country='8';
+            $category='2';
+            $level='3';
+            $agree='';
+            $I->CreateShop($store1, $mail1, $password, $user, $phone, $city, null, null, $level, $agree);
+            $I->wait('2');
+       $ErrorUserName=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorUserName, 'class');
+        $I->comment("ErrorUserName: $ErrorUserName");
+        $I->assertEquals($ErrorUserName, 'error');
+//        $RequiredPhone=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorPhoneNumber, 'class');
+//        $I->comment("RequiredPhone: $RequiredPhone");
+//        $I->assertEquals($RequiredPhone, 'error');
+        $ErrorCity=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorCity, 'class');
+        $I->comment("ErrorCity: $ErrorCity");
+        $I->assertEquals($ErrorCity, 'error');
+        $I->fillField(PremmerceCreateShopPage::$UserNameField, $user1); 
+        $I->fillField(PremmerceCreateShopPage::$CityField, $city1);
+        $I->wait(5);
+        $I->click(PremmerceCreateShopPage::$CreateShopNowRegisterFormButton);
+        $I->wait('1');
+        $I->waitForElementVisible(PremmerceCreateShopPage::$CreateLoadingForm);
+        $I->wait('10');
+        $I->waitForElement(PremmerceCabinetPage::$SiteLink, '60');
+        $I->seeCurrentUrlEquals('/saas/profile');
+        $I->click(PremmerceCabinetPage::$SiteLink);
+        $I->wait('3');
+        $I->executeInSelenium(function (\Webdriver $webdriver) {
+            $handles=$webdriver->getWindowHandles();
+            $last_window = end($handles);
+            $webdriver->switchTo()->window($last_window);
+        });
+        $I->wait('6');
+        $I->waitForElement(".//*[@id='inputString']");
+        $I->seeInTitle('ImageCMS DemoShop');
+        $I->amOnPage('/saas/profile');
+        $I->wait(5);
+        $I->click(PremmerceCabinetPage::$AdminLink);
+        $I->executeInSelenium(function (\Webdriver $webdriver) {
+            $handles=$webdriver->getWindowHandles();
+            $last_window = end($handles);
+            $webdriver->switchTo()->window($last_window);
+        });
+        $I->waitForElement('[id="topPanelNotifications"]');
+        $I->seeElement('[class="btn_header btn-personal-area"]');
+        $I->click('[class="btn_header btn-personal-area"]');
+        $I->wait('1');
+//        $I->see($user1, ".head");
+        $I->amOnPage('/saas/profile');
+        $I->click(PremmerceCabinetPage::$ProfileButton);
+        $I->click(PremmerceCabinetPage::$ExitButton);
+        $I->wait(2);
+    }   
     
     /**
      * @guy RussianTester\LocrusSteps
@@ -838,6 +1012,7 @@ class CreateShopRusCest
     
     public function CreateShopUkrCountry(RussianTester\LocrusSteps $I)
     {
+        $I->wait('5');
         InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);        
         $I->fillField(PremmerceMainPage::$CreateShopField, 's');
         $I->seeElement(PremmerceMainPage::$DomainEnd);
@@ -871,9 +1046,9 @@ class CreateShopRusCest
         $ErrorUserName=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorUserName, 'class');
         $I->comment("UserName:$ErrorUserName");
         $I->assertEquals($ErrorUserName, "error");
-        $ErrorPhone=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorPhoneNumber, 'class');
-        $I->comment($ErrorPhone);
-        $I->assertEquals($ErrorPhone, 'error');       
+//        $ErrorPhone=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorPhoneNumber, 'class');
+//        $I->comment($ErrorPhone);
+//        $I->assertEquals($ErrorPhone, 'error');       
         $ErrorCity=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorCity, 'class');
         $I->comment("City:$ErrorCity");
         $I->assertEquals($ErrorCity, 'error');
@@ -926,7 +1101,7 @@ class CreateShopRusCest
         $I->seeElement('[class="btn_header btn-personal-area"]');
         $I->click('[class="btn_header btn-personal-area"]');
         $I->wait('1');
-        $I->see('Sasha', ".head");
+//        $I->see($user, ".head");
         $I->amOnPage('/saas/profile');
         $I->click(PremmerceCabinetPage::$ProfileButton);
         $I->click(PremmerceCabinetPage::$ExitButton);
@@ -939,7 +1114,9 @@ class CreateShopRusCest
     
     public function CreateShopRusCountry(RussianTester\LocrusSteps $I)
     {
+        $I->wait('5');
         InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
+        $I->amOnPage(LocRusPage::$URL);
         $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
             $set="abcdefghijklmnopqrstuvwxyz1234567890";
@@ -994,7 +1171,7 @@ class CreateShopRusCest
         $I->seeElement('[class="btn_header btn-personal-area"]');
         $I->click('[class="btn_header btn-personal-area"]');
         $I->wait('1');
-        $I->see('Катя', ".head");
+//        $I->see($user, ".head");
         $I->amOnPage('/saas/profile');
         $I->click(PremmerceCabinetPage::$ProfileButton);
         $I->click(PremmerceCabinetPage::$ExitButton);
@@ -1077,6 +1254,7 @@ class CreateShopRusCest
         
     public function CreateShopWithEmailAlreadyRegistered(RussianTester\LocrusSteps $I)
     {
+        $I->wait('5');
         InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
         $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);               
@@ -1095,11 +1273,11 @@ class CreateShopRusCest
             $user='David';
             $phone='4545555';
             $city='New York';
-//            $country='1';
+            $country='1';
             $category='2';
             $level='3';
             $agree='';
-            $I->CreateShop($store1, $this->mail, $password, $user, $phone, $city, null, $category, $level, $agree);
+            $I->CreateShop($store1, $this->mail, $password, $user, $phone, $city, $country, $category, $level, $agree);
         $ErrorEmail=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorEmail, 'class');
         $I->comment("Email:$ErrorEmail");
         $I->assertEquals($ErrorEmail, 'error');           
@@ -1138,7 +1316,7 @@ class CreateShopRusCest
         $I->seeElement('[class="btn_header btn-personal-area"]');
         $I->click('[class="btn_header btn-personal-area"]');
         $I->wait('1');
-        $I->see('David', ".head");
+//        $I->see($user, ".head");
         $I->amOnPage('/saas/profile');
         $I->click(PremmerceCabinetPage::$ProfileButton);
         $I->click(PremmerceCabinetPage::$ExitButton);
@@ -1151,6 +1329,7 @@ class CreateShopRusCest
     
     public function CreateShopWithNameDomainAlreadyRegistered(RussianTester\LocrusSteps $I)
     {
+        $I->wait('5');
         InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
         $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
@@ -1169,11 +1348,11 @@ class CreateShopRusCest
             $user='Владимир';
             $phone='12121212';
             $city='Москва';
-            //$country='';
+            $country='1';
             $category='3';
             $level='3';
             $agree='';
-        $I->CreateShop($this->store, $mail1, $password, $user, $phone, $city, $country=null, $category, $level, $agree);
+        $I->CreateShop($this->store, $mail1, $password, $user, $phone, $city, $country, $category, $level, $agree);
         $I->wait(5);
 //        $I->dontSeeElement(PremmerceCreateShopPage::$CreateLoadingForm);
         $ErrorDomain=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorDomain, 'class');
@@ -1215,7 +1394,7 @@ class CreateShopRusCest
         $I->seeElement('[class="btn_header btn-personal-area"]');
         $I->click('[class="btn_header btn-personal-area"]');
         $I->wait('1');
-        $I->see('Владимир', ".head");
+//        $I->see($user, ".head");
         $I->amOnPage('/saas/profile');
         $I->click(PremmerceCabinetPage::$ProfileButton);
         $I->click(PremmerceCabinetPage::$ExitButton);

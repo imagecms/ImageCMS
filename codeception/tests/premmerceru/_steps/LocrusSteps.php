@@ -16,14 +16,17 @@ class LocrusSteps extends \RussianTester
         if(isset($country)){
             $I->click(\PremmerceCreateShopPage::$CountrySelectMenu);        
             $I->click("//*[@id='cusel-scroll-id1']/span[$country]");
+            $I->wait(2);
         }
         if(isset($category)){
             $I->click(\PremmerceCreateShopPage::$CategorySelectMenu);
             $I->click("//*[@id='cusel-scroll-id2']/span[$category]");
+            $I->wait(2);
         }
         if(isset($level)){
             $I->click(\PremmerceCreateShopPage::$LevelOfUseSelectMenu);
             $I->click("//*[@id='cusel-scroll-id3']/span[$level]");
+            $I->wait(2);
         }
         if(isset($agree)){
             $I->click(\PremmerceCreateShopPage::$AgreeCheckbox);

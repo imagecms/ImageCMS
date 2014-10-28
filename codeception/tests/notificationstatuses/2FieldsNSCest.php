@@ -248,7 +248,7 @@ class FieldsNSCest
         $I->dontSee('as 21 Q', NotificationStatusesListPage::$Table);
         $I->wait('1');
         $I->dontSee('1234 QWERT хзщфыв asd ФІВЇ', NotificationStatusesListPage::$Table);
-        InitTest::ClearAllCach($I); 
+//        InitTest::ClearAllCach($I); 
     }   
     
     

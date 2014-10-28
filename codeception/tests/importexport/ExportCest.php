@@ -49,25 +49,25 @@ class ExportCest {
      */
     public function activateModuleChangeTextarea(ImportExportTester $I) {
         InitTest::changeTextAditorToNative($I);
-        $I->amOnPage('/admin');
-        $I->click(NavigationBarPage::$Modules);
-        $I->click(NavigationBarPage::$ModulesAllModules);
-        $I->waitForText('Все модули', null, '.title');
-        $I->click('Установить модули');
-        $rows = $I->grabCCSAmount($I, '#nimt tbody tr');
-        $present = false;
-        for ($index = 1; $index <= $rows; $index++) {
-            $module_name = $I->grabTextFrom("//table[@id ='nimt']/tbody/tr[$index]/td[1]");
-            if (trim($module_name) == 'Module Import & Export') {
-                $present = true;
-                break;
-            }
-        }
-        if ($present) {
-            $I->comment('Not installed');
-            $I->click("//table[@id ='nimt']/tbody/tr[$index]/td[4]/a");
-            $I->wait(3);
-        }
+//        $I->amOnPage('/admin');
+//        $I->click(NavigationBarPage::$Modules);
+//        $I->click(NavigationBarPage::$ModulesAllModules);
+//        $I->waitForText('Все модули', null, '.title');
+//        $I->click('Установить модули');
+//        $rows = $I->getAmount($I, '#nimt tbody tr');
+//        $present = false;
+//        for ($index = 1; $index <= $rows; $index++) {
+//            $module_name = $I->grabTextFrom("//table[@id ='nimt']/tbody/tr[$index]/td[1]");
+//            if (trim($module_name) == 'Module Import & Export') {
+//                $present = true;
+//                break;
+//            }
+//        }
+//        if ($present) {
+//            $I->comment('Not installed');
+//            $I->click("//table[@id ='nimt']/tbody/tr[$index]/td[4]/a");
+//            $I->wait(3);
+//        }
     }
     
     
@@ -85,25 +85,25 @@ class ExportCest {
      * @guy ImportExportTester\ImportExportSteps
      */
     public function createProduct(ImportExportTester\ImportExportSteps $I) {
-        $I->createProduct(  $name               = $this->data['name'],
-                            $price              = $this->data['price'],
-                            $active             = $this->data['active'],
-                            $hit                = $this->data['hit'], 
-                            $hot                = $this->data['hot'], 
-                            $action             = $this->data['action'], 
-                            $old_price          = $this->data['oldPrice'],
-                            $variant_name       = $this->data['variantName'], 
-                            $currency           = $this->data['currency'],
-                            $article            = $this->data['article'],
-                            $amount             = $this->data['amount'], 
-                            $brand              = $this->data['brand'], 
-                            $category           = $this->data['category'],
-                            $short_description  = $this->data['shortDescription'],
-                            $full_description   = $this->data['fullDescription'], 
-                            $url                = $this->data['url'],
-                            $meta_title         = $this->data['metaTitle'], 
-                            $meta_description   = $this->data['metaDescription'], 
-                            $meta_keywords      = $this->data['metaKeywords']);
+        $I->createProduct(  $this->data['name'],
+                            $this->data['price'],
+                            $this->data['active'],
+                            $this->data['hit'], 
+                            $this->data['hot'], 
+                            $this->data['action'], 
+                            $this->data['oldPrice'],
+                            $this->data['variantName'], 
+                            $this->data['currency'],
+                            $this->data['article'],
+                            $this->data['amount'], 
+                            $this->data['brand'], 
+                            $this->data['category'],
+                            $this->data['shortDescription'],
+                            $this->data['fullDescription'], 
+                            $this->data['url'],
+                            $this->data['metaTitle'], 
+                            $this->data['metaDescription'], 
+                            $this->data['metaKeywords']);
     }
     
     /**
@@ -119,8 +119,8 @@ class ExportCest {
 
         $I->wait(1);
         $I->amOnPage(ExportPage::$Url);
-        $I->waitForElement(ExportPage::$SelectMenu);
-        $I->click(ExportPage::$SelectMenu);
+        $I->waitForElement(ExportPage::$SelectCategory);
+//        $I->click(ExportPage::$SelectMenu);
 
         //get pathes to all checkboxes and mark each if its's not checked
         $checkboxes = ExportPage::allCheckboxes();
@@ -130,9 +130,10 @@ class ExportCest {
             }
         }
         $category = $this->data['category'];
-        $I->fillField(ExportPage::$SelectMenu, $category);
+//        $I->fillField(ExportPage::$SelectMenu, $category);
+        $I->selectOption(ExportPage::$SelectCategory, $category);
         $I->wait(3);
-        $I->click("//li[contains(.,'$category')]");
+//        $I->click("//li[contains(.,'$category')]");
         $I->wait(3);
         $I->click(ExportPage::$ButtonExport);
         $I->wait(5);

@@ -8,22 +8,23 @@ class SaasUserPageCest
 {
 
    private $Cabinet_Url = '/saas/profile';
+   private $Store_Url = 'http://ssaasuserlist.premme.com';
 
 
-   private $Store_Name = 'population';
-   private $User_Email = 'premme.test@test.com';
+   private $Store_Name = 'testsaasuserlistt';
+   private $User_Email = 'testssaasuserlistt.test@test.com';
    private $User_Password = '98765431';
-   private $User_Name = 'Bazooka Band Powerviolence Go';
-   private $User_Phone = '11144226677788';
-   private $User_City = 'Львів Сіті Сінь Пянь';
+   private $User_Name = 'Bazooka Band';
+   private $User_Phone = '+3-3+3-3-+3';
+   private $User_City = 'Львів Сіті';
 
 
    
-//   private $Tariff_Free = 'Free';
-//   private $Tariff_Basic = 'Basic';
-//   private $Tariff_Standart = 'Standart';
-//   private $Tariff_Business = 'Business';
-//   private $Tariff_Premium = 'Premium';
+   private $Tariff_Free = 'Free';
+   private $Tariff_Basic = 'Basic';
+   private $Tariff_Standart = 'Standart';
+   private $Tariff_Business = 'Business';
+   private $Tariff_Premium = 'Premium';
    
    private $Status_Name = 'Test Saas';
    private $Status_Description = 'Jira PRMS-16 Admin page for Managers. Tests';
@@ -48,7 +49,7 @@ class SaasUserPageCest
    
    
     /**
-     * @group a
+     * @group atest
      * @guy PremmerceTester\PremmerceSteps 
      */
     public function CreateStore(PremmerceTester\PremmerceSteps $I){
@@ -56,6 +57,7 @@ class SaasUserPageCest
         $I->amOnPage(MainPage::$URL);
         $I->wait(3);  
         $I->click(MainPage::$ButtonCreateStore);
+        $I->wait(1);  
         $I->createStore($store_name         = $this->Store_Name,
                         $user_email         = $this->User_Email,
                         $user_password      = $this->User_Password,
@@ -80,7 +82,7 @@ class SaasUserPageCest
     }
 
     /**
-     * @group tyu
+     * @group a
      * @guy PremmerceTester\PremmerceSteps 
      */
     public function CheckOffStoreSaas(PremmerceTester\PremmerceSteps $I){
@@ -90,6 +92,7 @@ class SaasUserPageCest
         $I->click(SaasGeneralPage::$ModulSaas);
         $I->wait(1);
         $I->click(SaasGeneralPage::$ModulSaasTabUser);
+        $I->waitForElementVisible('//section/div[3]/form/div/input');
         $I->wait(1);
         $I->click(SaasUserListPage::$FilterDomainLabel);
         $I->fillField(SaasUserListPage::$FilterDomainInput, $this->Store_Name);
@@ -105,7 +108,7 @@ class SaasUserPageCest
     
     
     /**
-     * @group x
+     * @group a
      * @guy PremmerceTester\PremmerceSteps
      */
     public function CheckOffCabinet (PremmerceTester\PremmerceSteps $I){
@@ -113,15 +116,35 @@ class SaasUserPageCest
         $I->wait(4);
         $I->seeInCurrentUrl($this->Cabinet_Url);
         $I->see($this->Store_Name, CabinetPage::$TabMainFieldSiteLink);
-        $I->see($this->Store_Name, CabinetPage::$TabMainFieldAdminLink);
-        $I->see($this->Tarif_Standart, CabinetPage::$TabMainFieldTariffNameText);
+        $I->see($this->Store_Name . '.premme.com/admin', CabinetPage::$TabMainFieldAdminLink);
+        $I->see($this->Tariff_Standart, CabinetPage::$TabMainFieldTariffNameText);
         $I->click(CabinetPage::$TabProfile);
         $I->wait(1);
         $I->seeInField(CabinetPage::$TabProfileInputdName, $this->User_Name);
         $I->seeInField(CabinetPage::$TabProfileInputPhone, $this->User_Phone);
         $I->seeInField(CabinetPage::$TabProfileInputCity, $this->User_City);
         $I->seeInField(CabinetPage::$TabProfileInputEmail, $this->User_Email);
-        $I->logoutCabinet();
+        $I->wait(1);
+        $I->amOnUrl($this->Store_Url.'admin/');
+        $I->wait(3);
+        $I->dontSeeElement('.form_login.t-a_c');
+        $I->dontSeeElement('#with_out_article>label>input');
+//        $I->dontSeeElement('.btn.btn-info');
+        $I->wait(1);
+        $I->amOnPage('/');        
+        $I->wait(3);
+        $I->dontSeeElement('.logo>img');
+        $I->dontSeeElement('#inputString');
+        $I->dontSeeElement('.btn-bask>button');
+//        $I->wait(1);
+////        $I->amOnUrl('http://imagego.ru/saas/profile');
+//        $I->amOnUrl('');///saas/profile
+//        $I->wait(3);
+//        $I->click(\MainPage::$ButtonEnter);
+//        $I->wait(2);
+////        $I->wait(5);
+//        $I->logoutCabinet();
+//        $I->wait(1);
     }
     
     
@@ -130,7 +153,7 @@ class SaasUserPageCest
     
     
     /**
-     * @group x
+     * @group a
      * @guy PremmerceTester\PremmerceSteps
      */
     public function CheckOffSaas(PremmerceTester\PremmerceSteps $I){
@@ -154,7 +177,7 @@ class SaasUserPageCest
     
     
     /**
-     * @group x
+     * @group a
      * @guy PremmerceTester\PremmerceSteps 
      */
     public function CheckOnCabinet (PremmerceTester\PremmerceSteps $I){
@@ -162,15 +185,31 @@ class SaasUserPageCest
         $I->wait(1);
         $I->seeInCurrentUrl('/saas/profile');
         $I->see($this->Store_Name, CabinetPage::$TabMainFieldSiteLink);
-        $I->see($this->Store_Name, CabinetPage::$TabMainFieldAdminLink);
-        $I->see($this->Tarif_Standart, CabinetPage::$TabMainFieldTariffNameText);
+        $I->see($this->Store_Name . '.premme.com/admin', CabinetPage::$TabMainFieldAdminLink);
+        $I->see($this->Tariff_Standart, CabinetPage::$TabMainFieldTariffNameText);
         $I->click(CabinetPage::$TabProfile);
         $I->wait(1);
         $I->seeInField(CabinetPage::$TabProfileInputdName, $this->User_Name);
         $I->seeInField(CabinetPage::$TabProfileInputPhone, $this->User_Phone);
         $I->seeInField(CabinetPage::$TabProfileInputCity, $this->User_City);
         $I->seeInField(CabinetPage::$TabProfileInputEmail, $this->User_Email);
-        $I->logoutCabinet();
+        $I->wait(5);
+        $I->amOnUrl('http://ssaasuserlist.premme.com/admin/');
+        $I->wait(5);
+        $I->SeeElement('.form_login.t-a_c');
+        $I->SeeElement('#with_out_article>label>input');
+//        $I->SeeElement('.btn.btn-info');
+        $I->wait(5);
+        $I->amOnPage('/');        
+        $I->wait(5);
+        $I->SeeElement('.logo>img');
+        $I->SeeElement('#inputString');
+        $I->SeeElement('.btn-bask>button');
+////        $I->wait(5);
+//        $I->amOnUrl('http://imagego.ru/saas/profile');
+//        $I->wait(5);
+//        $I->logoutCabinet();
+//        $I->wait(5);
     }
         
     
@@ -328,7 +367,7 @@ class SaasUserPageCest
     
     
     /**
-     * @group Tariff
+     * @group a
      * @guy PremmerceTester\PremmerceSteps 
      */
     public function CetNameTariff(PremmerceTester\PremmerceSteps $I){
@@ -346,7 +385,7 @@ class SaasUserPageCest
     
     
     /**
-     * @group Tariff
+     * @group a
      * @guy PremmerceTester\PremmerceSteps
      */
     public function FilterTariff(PremmerceTester\PremmerceSteps $I){
@@ -676,7 +715,7 @@ class SaasUserPageCest
     
     
     /**
-     * @group aaqq
+     * @group a
      * @guy PremmerceTester\PremmerceSteps
      */
 //    public function GetFillProduct(PremmerceTester\PremmerceSteps $I){
@@ -697,7 +736,7 @@ class SaasUserPageCest
     
     
     /**
-     * @group aa
+     * @group a
      * @guy PremmerceTester\PremmerceSteps
      */
 //    public function FilterFillProduct(PremmerceTester\PremmerceSteps $I){
@@ -716,7 +755,7 @@ class SaasUserPageCest
 //    }
     
     /**
-     * @group status
+     * @group a
      * @guy PremmerceTester\PremmerceSteps 
      */
     public function CreateSaasStatus(PremmerceTester\PremmerceSteps $I){
@@ -740,7 +779,7 @@ class SaasUserPageCest
     
     
     /**
-     * @group status1
+     * @group a
      * @guy PremmerceTester\PremmerceSteps
      */
     public function SetStatuses(PremmerceTester\PremmerceSteps $I){
@@ -764,7 +803,7 @@ class SaasUserPageCest
     
     
     /**
-     * @group status
+     * @group a
      * @guy PremmerceTester\PremmerceSteps
      */
     public function FilterStatuses(PremmerceTester\PremmerceSteps $I){
@@ -785,7 +824,7 @@ class SaasUserPageCest
     
     
     /**
-     * @group Department
+     * @group a
      * @guy PremmerceTester\PremmerceSteps 
      */
     public function CreateSaasDepartment(PremmerceTester\PremmerceSteps $I){
@@ -804,12 +843,32 @@ class SaasUserPageCest
         $I->logoutSaas();
     }
     
+     /**
+     * @group a
+     * @guy PremmerceTester\PremmerceSteps
+     */
+    public function SetDepartment(PremmerceTester\PremmerceSteps $I){
+        $I->login($admin_email = USER_EMAIL, $admin_password = USER_PASSWORD);
+        $I->amOnPage(SaasUserListPage::$URL);
+        $I->wait(1);
+        $I->click(SaasUserListPage::$FilterEmailLabel);
+        $I->fillField(SaasUserListPage::$FilterEmailInput, $this->User_Email);
+        $I->click(SaasUserListPage::$FilterButtonFilter);
+        $I->wait(1);
+        $I->see($this->User_Email, SaasUserListPage::lineEmailLink(1));
+        $I->click(SaasUserListPage::lineActionlink(1)); 
+        $I->wait(1);
+        $I->selectOption(SaasUserListPage::SelectDepartments(1), $this->Department_Name);
+        $I->wait(1);
+        $I->logoutSaas();
+    }
+    
     
     
     
     
     /**
-     * @group i
+     * @group a
      * @guy PremmerceTester\PremmerceSteps
      */
     public function FilterDepartments(PremmerceTester\PremmerceSteps $I){
@@ -830,7 +889,7 @@ class SaasUserPageCest
 
     
     /**
-     * @group status
+     * @group a
      * @guy PremmerceTester\PremmerceSteps 
      */
     public function DeleteSaasStatus(PremmerceTester\PremmerceSteps $I){
@@ -864,7 +923,7 @@ class SaasUserPageCest
     
     
     /**
-     * @group Department
+     * @group a
      * @guy PremmerceTester\PremmerceSteps 
      */
     public function DeleteSaasDepartment(PremmerceTester\PremmerceSteps $I){
@@ -905,7 +964,7 @@ class SaasUserPageCest
    /////////////////////////////////////////////////////////////////////////////
    //DELETE SHOP     DELETE SHOP    DELETE SHOP    DELETE SHOP   DELETE SHOP  //                    
     /**
-     * @group DeleteShop
+     * @group a
      * @guy PremmerceTester\PremmerceSteps
      */
     public function DeleteSahopSaas(PremmerceTester\PremmerceSteps $I){
@@ -935,7 +994,7 @@ class SaasUserPageCest
       
     
     /**
-     * @group DeleteShopCabinet
+     * @group a
      * @guy PremmerceTester\PremmerceSteps
      */
     public function VerifyDeleteSahopCabinet(PremmerceTester\PremmerceSteps $I){
