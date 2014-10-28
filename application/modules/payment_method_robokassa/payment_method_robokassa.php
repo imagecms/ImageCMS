@@ -114,7 +114,7 @@ class Payment_method_robokassa extends MY_Controller {
 //        // формирование подписи
         $crc = md5("$mrh_login:$out_summ:$inv_id:$mrh_pass1");
 
-        return '<form method="post" action="http://test.robokassa.ru/Index.aspx">
+        return '<form method="post" action="https://merchant.roboxchange.com/Index.aspx">
                 <input type="hidden" name="MrchLogin" value="'.$mrh_login.'" />
                 <input type="hidden" name="OutSum" value="'.$out_summ.'" />
                 <input type="hidden" name="InvId" value="'.$inv_id.'" />
