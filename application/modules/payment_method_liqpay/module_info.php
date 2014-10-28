@@ -3,8 +3,8 @@
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
 $com_info = array(
-    'menu_name' => lang('LiqPay', 'payment_method_LiqpPay'), // Menu name
-    'description' => lang('Метод оплаты LiqPay', 'payment_method_LiqpPay'),            // Module Description
+    'menu_name' => lang('LiqPay', 'payment_method_liqppay'), // Menu name
+    'description' => lang('Метод оплаты LiqPay', 'payment_method_liqppay'),            // Module Description
     'admin_type' => 'window',       // Open admin class in new window or not. Possible values window/inside
     'window_type' => 'xhr',         // Load method. Possible values xhr/iframe
     'w' => 600,                     // Window width

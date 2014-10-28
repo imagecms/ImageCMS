@@ -11,7 +11,7 @@ class Admin extends BaseAdminController {
     public function __construct() {
         parent::__construct();
         $lang = new MY_Lang();
-        $lang->load('payment_method_LiqPay');
+        $lang->load('payment_method_liqpay');
     }
 
     public function index() {
