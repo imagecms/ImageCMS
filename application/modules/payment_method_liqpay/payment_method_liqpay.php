@@ -53,22 +53,12 @@ class Payment_method_liqpay extends MY_Controller {
         $nameMethod = $payName ? $payName : $this->paymentMethod->getPaymentSystemName();
         $key = $id . '_' . $nameMethod;
         $data = $this->getPaymentSettings($key);
+        
+        $codeTpl = \CMSFactory\assetManager::create()
+                ->setData('data',$data)
+                ->fetchTemplate('adminForm');
 
-        return '           
-            <div class="control-group">
-                <label class="control-label" for="inputRecCount">' . lang('Public key', 'payment_method_liqpay') . ':</label>
-                <div class="controls">
-                 <input type="text" name="payment_method_liqpay[merchant_id]" value="' . $data['merchant_id'] . '"/>
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="inputRecCount">' . lang('Private key', 'payment_method_liqpay') . ':</label>
-                <div class="controls">
-                 <input type="text" name="payment_method_liqpay[merchant_sig]" value="' . $data['merchant_sig'] . '" />
-                </div>
-            </div>
-     
-        ';
+        return $codeTpl;
     }
 
     /**
@@ -98,22 +88,13 @@ class Payment_method_liqpay extends MY_Controller {
         $inv = $privateKey . $data['amount'] . $data['currency'] . $data['public_key'] . $data['order_id'] . 'buy' . $data['description'] . $data['result_url'] . $data['server_url'];
         $inv = html_entity_decode($inv);
         $signature = base64_encode(sha1($inv, 1));
+        
+        $codeTpl = \CMSFactory\assetManager::create()
+                ->setData('data',$data)
+                ->setData('signature',$signature)
+                ->fetchTemplate('form');
 
-        return '<form id="paidForm" method="POST" action="https://www.liqpay.com/api/pay" 
-                    accept-charset="utf-8">
-                      <input type="hidden" name="public_key" value="' . $data['public_key'] . '"/>
-                      <input type="hidden" name="amount" value="' . $data['amount'] . '"/>
-                      <input type="hidden" name="currency" value="' . $data['currency'] . '"/>
-                      <input type="hidden" name="description" value="' . $data['description'] . '"/>
-                      <input type="hidden" name="order_id" value="' . $data['order_id'] . '"/>
-                      <input type="hidden" name="result_url" value="' . $data['result_url'] . '"/>
-                      ' . "<input type='hidden' name='server_url' value='" . $data['server_url'] . "'/>" . '     
-                      <input type="hidden" name="type" value="buy"/>
-                      <input type="hidden" name="signature" value="' . $signature . '"/>' .
-                "<div class='btn-cart btn-cart-p'>
-                    <input type='submit' value='Оплатить'>
-                </div>" .
-                '</form>';
+        return $codeTpl;
     }
 
     /**
@@ -195,7 +176,7 @@ class Payment_method_liqpay extends MY_Controller {
         
         $result = $ci->db->where('id',$order_id)
                 ->update('shop_orders', array('paid'=>'1'));
-        if(!$result){
+        if($ci->db->_error_message()){
             show_error($ci->db->_error_message());
         }
         
@@ -205,7 +186,7 @@ class Payment_method_liqpay extends MY_Controller {
                 ->update('users', array(
                     'amout' => str_replace(',', '.', $amount)
         ));
-        if(!$result){
+        if($ci->db->_error_message()){
             show_error($ci->db->_error_message());
         }
     }
@@ -219,7 +200,7 @@ class Payment_method_liqpay extends MY_Controller {
         
         $result = $ci->db->where('name', $this->moduleName)
                 ->update('components', array('enabled' => '1'));
-        if(!$result){
+        if($ci->db->_error_message()){
             show_error($ci->db->_error_message());
         }
     }
@@ -232,13 +213,13 @@ class Payment_method_liqpay extends MY_Controller {
                                 'active'=>'0',
                                 'payment_system_name'=>'0',
                                 ));
-        if(!$result){
+        if($ci->db->_error_message()){
             show_error($ci->db->_error_message());
         }
         
         $result = $ci->db->like('name', $this->moduleName)
                         ->delete('shop_settings');
-        if(!$result){
+        if($ci->db->_error_message()){
             show_error($ci->db->_error_message());
         }
         
