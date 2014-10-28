@@ -10,6 +10,6 @@
     <input type="hidden" name="type" value="buy"/>
     <input type="hidden" name="signature" value="{echo $signature}"/>
     <div class='btn-cart btn-cart-p'>
-        <input type='submit' value='Оплатить'>
+        <input type='submit' value='{lang('Оплатить','payment_method_liqpay')}'>
     </div>
 </form>
